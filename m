@@ -2,128 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 767F840BDC4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 04:23:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAD0640BDD2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 04:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234174AbhIOCZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 22:25:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35608 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232958AbhIOCZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 22:25:05 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 535BBC061766
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 19:23:47 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id w19so2117583oik.10
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 19:23:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZSOMRM/4vS8hdTIr2nFrDzrRQaaDCVXD3i6BnhZi0bU=;
-        b=mMNn6wUl9j40Z5Gxxpp4NJMPs1F0XS9e9G2oaS6Bn5Nsc/lah81b9U3gBap3Mn3c+G
-         OAGjEjM+979b8T+Yryw+Z7q6y9WpcbiDsnDSNgLalMascAswdZzVBD/l74YhMpD7lua/
-         9oW9NW3peuHgGDnlg3YgxLr1i+jqAgyGLNmrVJB3R7TGGZgird7OmxOd6p7grHX7pIPP
-         486GXguUsxo+miFY0iDPT7iIPsLnmayqybKIQvfHIXicD1mApuyIX0ttaK9NkDGRLunO
-         9Ab55U2DsEjxTeo8ALaIOiKzIhOLsjVr0EEKkZt/4d6Q/rRmLaI/GyuNVJGunA0B0Num
-         NxBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZSOMRM/4vS8hdTIr2nFrDzrRQaaDCVXD3i6BnhZi0bU=;
-        b=x8Zib3p+hXCT8zfsCwxy7twLVvgl5XcIZuCEdl6XGL/8nYiqlDh7i4HyJ2/m0VksJ8
-         M45QHPMSBBetuxwA9I/77HBWVNuFwt3dq1Sf5CRg1xD1o8VIOPy7hIwiGJQe4xuDM7Cv
-         jdN3N3zR3G7hhOxN0MZCJohjaT6Fzv8VpBHg2cXbE1+26bq2DmPi/AEHezr1szEbm4vG
-         yY+O+UPkfoimDwsz1iu047fSQXb7bSiBcB+cSqtdlm5hKgNF2NJqXih+vCkJsKr6q13V
-         2qaBJwnx3cFO1XyA1llmZsb4OBcXJswh/D7YKpjQrgOpIcedYgRj0HEBe/vlr5GHBpi5
-         wCzQ==
-X-Gm-Message-State: AOAM533ZonEsPxusn4ROSwK0bmACyhqalhf+r9CBkdxo9yrMPzcqVyCx
-        HGWg+ZofJXmViXJeNEO9AmNz8Q==
-X-Google-Smtp-Source: ABdhPJy5VuTl2HScSYvWhRx3n2XIj91ZwpF0pc1yM5u4Vp4q8OfNhe0yB/j+knDBuUbs3X6DmGICxw==
-X-Received: by 2002:a05:6808:81:: with SMTP id s1mr3638815oic.130.1631672626538;
-        Tue, 14 Sep 2021 19:23:46 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l13sm3062159otr.26.2021.09.14.19.23.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Sep 2021 19:23:46 -0700 (PDT)
-Date:   Tue, 14 Sep 2021 19:24:37 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
-        manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v7 3/4] arm64: dts: qcom: sc7280: Add PCIe nodes for IDP
- board
-Message-ID: <YUFZZWQ3t9EH/Z55@ripper>
-References: <1631643550-29960-1-git-send-email-pmaliset@codeaurora.org>
- <1631643550-29960-4-git-send-email-pmaliset@codeaurora.org>
- <CAE-0n52p+5rabienYNG_OQfiaLLCgaRj9vfeKR6s3-bCdzHDQA@mail.gmail.com>
+        id S230299AbhIOCma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 22:42:30 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:49112 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229594AbhIOCma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 22:42:30 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18F2f3gD011135;
+        Tue, 14 Sep 2021 21:41:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631673663;
+        bh=a1D5LbkSa6XxkaDORQZ13b3WaGLuI7Sgt2608PMhTTc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ECMclo0rhulUHthFyOJe7bvsq0ISOLgitBK8Q3AbLctMwYLCjt+fMDkbnbw77x8wa
+         i6hSU847usJ0hXauXije4oOhZiY4XPTNsUnlYincuEVvuiE9d3V+B+J+23PF9HGG+b
+         upFAZjNLN+OZAJ0fOEbvNIZ6lD14zArfzEF4b3Uo=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18F2f2or125912
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 14 Sep 2021 21:41:02 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 14
+ Sep 2021 21:41:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 14 Sep 2021 21:41:01 -0500
+Received: from [10.250.232.51] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18F2ewFD069180;
+        Tue, 14 Sep 2021 21:40:59 -0500
+Subject: Re: [PATCH v3 1/5] arm64: dts: ti: iot2050: Flip mmc device ordering
+ on Advanced devices
+To:     Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Bao Cheng Su <baocheng.su@siemens.com>,
+        Chao Zeng <chao.zeng@siemens.com>
+References: <cover.1631216478.git.jan.kiszka@siemens.com>
+ <7385701c47c11ff2c3455e02c81be24cbb919905.1631216478.git.jan.kiszka@siemens.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <5bc5bc51-cf79-00c8-caf1-10100178cbf9@ti.com>
+Date:   Wed, 15 Sep 2021 08:10:58 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n52p+5rabienYNG_OQfiaLLCgaRj9vfeKR6s3-bCdzHDQA@mail.gmail.com>
+In-Reply-To: <7385701c47c11ff2c3455e02c81be24cbb919905.1631216478.git.jan.kiszka@siemens.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 14 Sep 18:13 PDT 2021, Stephen Boyd wrote:
-
-> Quoting Prasad Malisetty (2021-09-14 11:19:09)
-> > Enable PCIe controller and PHY for sc7280 IDP board.
-> > Add specific NVMe GPIO entries for SKU1 and SKU2 support.
-> >
-> > Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sc7280-idp.dts  |  9 +++++++++
-> >  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 32 ++++++++++++++++++++++++++++++++
-> >  arch/arm64/boot/dts/qcom/sc7280-idp2.dts |  9 +++++++++
-> >  3 files changed, 50 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > index 64fc22a..2cc6b0a 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > @@ -61,6 +61,15 @@
-> >         modem-init;
-> >  };
-> >
-> > +&pcie1_default_state {
-> > +       nvme-n {
-> > +               pins = "gpio19";
-> > +               function = "gpio";
-> > +
-> > +               bias-pull-up;
-> > +       };
+On 10/09/21 1:11 am, Jan Kiszka wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
 > 
-> I don't think the style is to have a single container node anymore.
-> Instead, each pin gets a different node and then pinctrl-0 has a list of
-> phandles to the different nodes. qcom maintainers may have more input
-> here.
+> This ensures that the SD card will remain mmc0 across Basic and Advanced
+> devices, also avoiding surprises for users coming from the downstream
+> kernels.
+> 
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> ---
+
+Acked-by: Aswath Govindraju <a-govindraju@ti.com>
+
+>  arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> index 1008e9162ba2..6261ca8ee2d8 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> @@ -17,6 +17,8 @@
+>  / {
+>  	aliases {
+>  		spi0 = &mcu_spi0;
+> +		mmc0 = &sdhci1;
+> +		mmc1 = &sdhci0;
+>  	};
+>  
+>  	chosen {
 > 
 
-Having a container that defines the state and each part thereof is
-preferred (see other PCIe users or how we typically define the Bluetooth
-UART). But is "nvme_n" really part of the "PCI state" or is this related
-to the NVME device instead?
-
-> Also, this should really go into a different section than here. I
-> thought the style was to have a 'board specific' pinctrl section.
-> 
-
-Yes, pushing pinctrl states to the bottom is preferred and rather than
-amending the existing state I think this goes in a state of its own and
-the pinctrl-N amended to include this new state as well.
-
-Regards,
-Bjorn
-
-> > +};
-> > +
-> >  &pmk8350_vadc {
-> >         pmr735a_die_temp {
-> >                 reg = <PMR735A_ADC7_DIE_TEMP>;
