@@ -2,117 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55B7840CA55
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 18:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDFC240CA1F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 18:31:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230296AbhIOQgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 12:36:02 -0400
-Received: from mga07.intel.com ([134.134.136.100]:58332 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229962AbhIOQgB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 12:36:01 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="286060921"
-X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; 
-   d="scan'208";a="286060921"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 09:34:42 -0700
-X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; 
-   d="scan'208";a="583352209"
-Received: from mvetrive-mobl3.amr.corp.intel.com (HELO [10.212.69.198]) ([10.212.69.198])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 09:34:40 -0700
-Subject: Re: [PATCH v6 18/22] ASoC: qdsp6: audioreach: add topology support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210915131333.19047-1-srinivas.kandagatla@linaro.org>
- <20210915131333.19047-19-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <bc93c17e-b65d-5885-f151-243d259f40ff@linux.intel.com>
-Date:   Wed, 15 Sep 2021 11:22:23 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S229595AbhIOQcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 12:32:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60106 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229665AbhIOQcn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 12:32:43 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C46A1C061764;
+        Wed, 15 Sep 2021 09:31:23 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id g21so5786231edw.4;
+        Wed, 15 Sep 2021 09:31:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=EFqug29mO3vbFWGSrI/1RvpvL9yEVHmFJFSMpcyO/D0=;
+        b=UXufWIgN+iIt2kTGcgk2/QvgWZXZxZmsFdb+oZHQ/ZaIWInpXjpPT1TO19otc7dapr
+         xCU8SGOLOJYNO5DtjYXx6VtC2Xcph0fy1/m13VC658uw+4m8WeYnejuSuN7uoijpZeCH
+         7osLtNe+9H1/WyAHbX+HjTYIq/x3wnIkv1eU/dBIyIawdUue/tJd7U0FVmKSUBcc/hp8
+         jqNASK8RoNT0KmuKhxlyqzbLtiH70OqW4gHyWCbo83Q1CifY0i0RfxFMa2nsIHo4vYVf
+         hWyE0fkxO4errp83fDAqDSfZT3Y1Av30dnq9UnfXumsucC/J6eprSfHOhY/T+7rzs951
+         DKjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=EFqug29mO3vbFWGSrI/1RvpvL9yEVHmFJFSMpcyO/D0=;
+        b=n8zWKQHUGb4Lj6r73qW33F5BKWoS8NqK8M5oE1nZ1N5ESIL7f3JknLLiiQ2cMny1Vj
+         1KR7WC3U9ylBpLEf1zmU9LLThrWpZL2gzlE32xLuwEkk97OJ9LjvbJPiyof4Ql1esZ7t
+         VoiTMFWADU1af5Jj/vcvb/1xgiSdkeugE6EwDoHeQhjwD0VVwqFgkB3z5NqfGZ/GyoM5
+         t7T2JnfP7DyDSOhZ3fetjuWX4HyBe11K4Eta2P6O8uywZWTVre8FjtVrppmn6ucc8Ds4
+         XVWa1eQlkz+ckC1J3AQzpgdyuOUrQBpTFpQ+b8Iz64QGL1SPGNQajjGVDpYSAk+jMknu
+         Ih2w==
+X-Gm-Message-State: AOAM532CEm1mElvSm+MgLdRX4SOUIJ1nAE5HW+xIIz2IsoSFEvtyFRuq
+        MtKEY6bFX22JMwQ0cObUzrw=
+X-Google-Smtp-Source: ABdhPJyNT5tuWqL5VdFq6b5f10J9qWPN4RnW1uZ2pn60g/i01gH6ZIFSvdpUuCcq2ox80ka2Twlc0Q==
+X-Received: by 2002:a05:6402:1c87:: with SMTP id cy7mr892737edb.311.1631723482246;
+        Wed, 15 Sep 2021 09:31:22 -0700 (PDT)
+Received: from kista.localnet (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
+        by smtp.gmail.com with ESMTPSA id kt19sm207194ejb.26.2021.09.15.09.31.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Sep 2021 09:31:21 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Dang Huynh <danct12@disroot.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: Re: [PATCH] arm64: dts: allwinner: pinetab: Add HDMI support
+Date:   Wed, 15 Sep 2021 18:31:20 +0200
+Message-ID: <2776109.MaXvng3DlT@kista>
+In-Reply-To: <4816863.IXWdtHWlKd@melttower>
+References: <20210914193732.3047668-1-danct12@disroot.org> <2558517.IGp7HM5rsX@kista> <4816863.IXWdtHWlKd@melttower>
 MIME-Version: 1.0
-In-Reply-To: <20210915131333.19047-19-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dne sreda, 15. september 2021 ob 07:47:31 CEST je Dang Huynh napisal(a):
+> On Wednesday, September 15, 2021 3:26:51 AM +07 Jernej =C5=A0krabec wrote:
+> > > +&simplefb_hdmi {
+> > > +	vcc-hdmi-supply =3D <&reg_dldo1>;
+> >=20
+> > You have to set status to okay here.
 
-> +static int audioreach_widget_load_buffer(struct snd_soc_component *component,
-> +					 int index, struct snd_soc_dapm_widget *w,
-> +					 struct snd_soc_tplg_dapm_widget *tplg_w)
-> +{
-> +	struct snd_soc_tplg_vendor_array *mod_array;
-> +	struct audioreach_module *mod;
-> +	struct snd_soc_dobj *dobj;
-> +	int ret;
-> +
-> +	ret = audioreach_widget_load_module_common(component, index, w, tplg_w);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dobj = &w->dobj;
-> +	mod = dobj->private;
-> +
-> +	mod_array = audioreach_get_module_array(&tplg_w->priv);
-> +
-> +	switch (mod->module_id) {
-> +	case MODULE_ID_CODEC_DMA_SINK:
-> +	case MODULE_ID_CODEC_DMA_SOURCE:
-> +		audioreach_widget_dma_module_load(mod, mod_array);
-> +		break;
-> +	case MODULE_ID_DATA_LOGGING:
-> +		audioreach_widget_log_module_load(mod, mod_array);
-> +		break;
-> +	case MODULE_ID_I2S_SINK:
-> +	case MODULE_ID_I2S_SOURCE:
-> +		audioreach_widget_i2s_module_load(mod, mod_array);
-> +		break;
+Sorry, this is actually the job of bootloader, so it's all good.
 
-no default case?
+> >=20
+> > With that fixed, you can add:
 
-> +	}
-> +
-> +	return 0;
-> +}
-> +
+No fixing needed for R-b tag.
 
-> +int audioreach_tplg_init(struct snd_soc_component *component)
-> +{
-> +	struct device *dev = component->dev;
-> +	const struct firmware *fw;
-> +	int ret;
-> +
-> +	ret = request_firmware(&fw, "audioreach.bin", dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "tplg fw audioreach.bin load failed with %d\n", ret);
-> +		return ret;
-> +	}
+> > Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> >=20
+> > Best regards,
+> > Jernej
+> >=20
+>=20
+> Is it really needed? The DE2 HDMI driver can be loaded and make this pret=
+ty=20
+> much obsolete.
 
-How does this work if you want to change the topology, which will happen
-rather frequently if you have a framework precisely to change the DSP
-graph? You need to override a file in userspace?
+DE2 and HDMI driver could read current settings from that node and implemen=
+t=20
+flicker free transition. However, that's not supported yet. Another use cas=
+e is=20
+to optimize kernel size to minimum for storing it in SPI flash by removing =
+DRM=20
+driver if simplefb is good enough.
 
-Shouldn't you have a means to identify what topology file you want on a
-platform-basis?
+Anyway, patch looks good. Thanks!
 
-Or at the very least a means to change the file name with a kernel
-parameter or something.
+Best regards,
+Jernej
 
-> +
-> +	ret = snd_soc_tplg_component_load(component, &audioreach_tplg_ops, fw);
-> +	if (ret < 0) {
-> +		dev_err(dev, "tplg component load failed%d\n", ret);
-> +		ret = -EINVAL;
-> +	}
-> +
-> +	release_firmware(fw);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(audioreach_tplg_init);
-> 
+
