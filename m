@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 626C840CDE4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 22:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DABAF40CE1C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 22:34:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231628AbhIOUYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 16:24:30 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:41123 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231592AbhIOUYa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 16:24:30 -0400
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 88F46221E6;
-        Wed, 15 Sep 2021 22:23:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1631737388;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=AZkOIOVxYEU9K3hL387iMzqC693gOZa4X6dtkYrx7z0=;
-        b=wEhO+9KE3mVREpOA4yzw/wQjrXm9kVIhgNqnUx1uG1JBlZiKL1OjsTSkX1d2c6F7Ii3gM+
-        5wzW5h68aWwT1binubXnUByRPO5fJmPlaxrhZEDOVhxD0GYFeZu3eieSA3K8VRpNqakAcD
-        zObniXfmtvqpDghZt1oY4/haep5bEZs=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        id S231535AbhIOUf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 16:35:56 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:43062 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231490AbhIOUf4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 16:35:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=I695fxV3rtoEGJmyLVEw/GhpWuvfSF9OuM8iMImSHYo=; b=5t90GtYm5tUxm8nTNSUJ3Dbw68
+        9E5egFeviFEI9sj4iImH6TEAR4s3fMvz6oLqF3idlbRSjY3Cv51Ca5J6DZ8SyMG2q+Z7QhgLww5lj
+        UhdKryWxuj4rEBxMb5mLicwLF3gXuqCzzWhC+72MVhBcmoG3kZ6aMLU/Dn8FHJSBRcD4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mQbc2-006nuf-4S; Wed, 15 Sep 2021 22:34:34 +0200
+Date:   Wed, 15 Sep 2021 22:34:34 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     DTML <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Yangbo Lu <yangbo.lu@nxp.com>, Yinbo Zhu <yinbo.zhu@nxp.com>,
-        Ashish Kumar <Ashish.Kumar@nxp.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH] arm64: dts: ls1028a: fix eSDHC2 node
-Date:   Wed, 15 Sep 2021 22:22:59 +0200
-Message-Id: <20210915202259.3000923-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Romain Perier <romain.perier@gmail.com>
+Subject: Re: [PATCH 0/3] SigmaStar SSD20XD GPIO interrupt controller
+Message-ID: <YUJY2v59+ui1pGZp@lunn.ch>
+References: <20210914100415.1549208-1-daniel@0x0f.com>
+ <YUDG58WfACd8GYf5@lunn.ch>
+ <CAFr9PX=J85PxAiHC2Cb9Z18v8pYtd2Uea8KOC+AsYyJKFCLHXw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFr9PX=J85PxAiHC2Cb9Z18v8pYtd2Uea8KOC+AsYyJKFCLHXw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On the LS1028A this instance of the eSDHC controller is intended for
-either an eMMC or eSDIO card. It doesn't provide a card detect pin and
-its IO voltage is fixed at 1.8V.
+On Wed, Sep 15, 2021 at 06:06:52PM +0900, Daniel Palmer wrote:
+> Hi Andrew,
+> 
+> On Wed, 15 Sept 2021 at 00:59, Andrew Lunn <andrew@lunn.ch> wrote:
+> > How are the GPIOs mapped to the interrupts? Is it a simple 1:1?
+> 
+> Unfortunately, no.
+> I wanted to add the GPIO controller part of this to this same series
+> but there are some patches in flight for that so it would have been
+> messy.
+> You can see that here though:
+> https://github.com/linux-chenxing/linux/commit/88345dc470bf07d36aa1ddab09551ed33a1cfb22
+> 
+> They've really made a mess of this. Their whole GPIO thing is a mess
+> with no clear logic between the pin names and the register locations
+> etc.
+> This IRQ part is no exception. IRQ 0 from this thing isn't for the pin
+> called GPIO0 or anything sane like that.
 
-Remove the bogus broken-cd property, instead add the non-removable
-property. Fix the voltage-ranges property and set it to 1.8V only.
+O.K. Then it sounds like splitting GPIO and the IRQ makes sense.  This
+is the sort of thing which is good to put in the cover letter,
+explaining why you decided to do it this way.
 
-Fixes: 491d3a3fc113 ("arm64: dts: ls1028a: Add esdhc node in dts")
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index ef771bfad11c..8cee1f79e5c0 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -407,9 +407,9 @@ esdhc1: mmc@2150000 {
- 			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <0>; /* fixed up by bootloader */
- 			clocks = <&clockgen QORIQ_CLK_HWACCEL 1>;
--			voltage-ranges = <1800 1800 3300 3300>;
-+			voltage-ranges = <1800 1800>;
- 			sdhci,auto-cmd12;
--			broken-cd;
-+			non-removable;
- 			little-endian;
- 			bus-width = <4>;
- 			status = "disabled";
--- 
-2.30.2
-
+     Andrew
