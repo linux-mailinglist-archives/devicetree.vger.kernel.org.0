@@ -2,248 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 429E540BE30
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 05:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37FF840BE35
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 05:27:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236182AbhIOD1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 23:27:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49350 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236169AbhIOD1A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 23:27:00 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E79C061764
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 20:25:41 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id l18so2501612lji.12
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 20:25:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Jpkoy1O4W37gxxZz4Q3BGON9SqZWsCkichzbFfj+wPo=;
-        b=j5pbDlKbHAd/SoLCe/0YXf/jcjOdh7iKg2fsZFsarJCya01vUWLgShKILNoLJ7fKDX
-         QYlstdoebXeBTxYpSIVHChb8b+8ERKwmiwpjChYkhJ1M0jnrKMS0za5Nc0xykKZh6ym7
-         EOn20yZdsi/QGUBN2LgWOZceToXqcG+/zRPKY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Jpkoy1O4W37gxxZz4Q3BGON9SqZWsCkichzbFfj+wPo=;
-        b=fJGEsDae1mn/9DqxMLoxr1VxXpWQ/rh0OnnN8ldMIFi4/ZGNJDhfW2oMQzs2XB9Xa4
-         QzUPeYDkshDFUwZVB7t3bwnKM1VkEiRariYfuREP6h+ouOjUYNUIHW0xSKv/LE4T4bKK
-         UFJfYwxgl6tfWFBjEWn0zZSGIbyBkNDKEJRG47DiQinWG+YAiF/oDEppFYg8Azyole4C
-         Jxo68dMnpaEVlyN9lNFTbWqMiGcbTD0aJdowp5T0Aec80yoRTMEc2QIAbBiUmpexo4RR
-         q2E4k2bDcE7ipQDLkYsMKLr4BFOK4qDud6Vh0rGXS+iUIX4ximCABqxdzfsiHqRpY0Kz
-         Z95g==
-X-Gm-Message-State: AOAM531r1l9U+iJUcMwb8IfYiFOtZKvHlAhuExJtJKQXcr4A1UvIMxW+
-        tvcihK3Dve0zB3B4/HjZHBeDCR6XIkR37IX7OTT31g==
-X-Google-Smtp-Source: ABdhPJzxW4QysuCYdlnzVAVxRBzARMIBn0RRJp/tSFmhr5M92N1O+bjF81zqZa2hjgCSzEpa1xAoPr+pFCI3qHYh47I=
-X-Received: by 2002:a2e:7d17:: with SMTP id y23mr18546099ljc.392.1631676339641;
- Tue, 14 Sep 2021 20:25:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210830003603.31864-1-zhiyong.tao@mediatek.com>
- <20210830003603.31864-2-zhiyong.tao@mediatek.com> <CAGXv+5HeNj2Ly-T1bWMvnYXv6nP-Q1kv+D9QEd+5u4xfNVibOg@mail.gmail.com>
- <1630551265.2247.11.camel@mhfsdcap03> <CAGXv+5E2pmS7Og5bRH8Q8yvXPHkJuL6EXKORkq1-Ye+2qNYQpg@mail.gmail.com>
- <4787120f25e76ed3727e10011522fc075da52e32.camel@mediatek.com>
- <CAGXv+5H6Hj9tGkpMHs_uBTcztDBZ_YJ2PUV7J8+abR+5BEsV2g@mail.gmail.com> <05f453a466995a6c272d585f18e81c5fcb837a0b.camel@mediatek.com>
-In-Reply-To: <05f453a466995a6c272d585f18e81c5fcb837a0b.camel@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 15 Sep 2021 11:25:28 +0800
-Message-ID: <CAGXv+5FF25a=28YNmVx_FNJ1o+OrR_LWkd1VPe6ejoxX9-bkaA@mail.gmail.com>
-Subject: Re: [PATCH v11 1/4] dt-bindings: pinctrl: mt8195: add rsel define
-To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
-        Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S235837AbhIOD2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 23:28:47 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:35934 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S236079AbhIOD2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 23:28:46 -0400
+X-UUID: d8bed79257a24e579c53626acf8e978f-20210915
+X-UUID: d8bed79257a24e579c53626acf8e978f-20210915
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <seiya.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 883001550; Wed, 15 Sep 2021 11:27:25 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 15 Sep 2021 11:27:23 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 15 Sep 2021 11:27:23 +0800
+From:   Seiya Wang <seiya.wang@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>
+Subject: [PATCH v2] arm64: dts: mt8183: support coresight-cpu-debug for mt8183
+Date:   Wed, 15 Sep 2021 11:27:19 +0800
+Message-ID: <20210915032719.7194-1-seiya.wang@mediatek.com>
+X-Mailer: git-send-email 2.14.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 14, 2021 at 8:27 PM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
->
-> On Mon, 2021-09-06 at 16:20 +0800, Chen-Yu Tsai wrote:
-> > On Sat, Sep 4, 2021 at 4:40 PM zhiyong.tao <zhiyong.tao@mediatek.com>
-> > wrote:
-> > >
-> > > On Thu, 2021-09-02 at 11:35 +0800, Chen-Yu Tsai wrote:
-> > > > On Thu, Sep 2, 2021 at 10:54 AM zhiyong.tao <
-> > > > zhiyong.tao@mediatek.com
-> > > > > wrote:
-> > > > >
-> > > > > On Wed, 2021-09-01 at 12:35 +0800, Chen-Yu Tsai wrote:
-> > > > > > On Mon, Aug 30, 2021 at 8:36 AM Zhiyong Tao <
-> > > > > > zhiyong.tao@mediatek.com> wrote:
-> > > > > > >
-> > > > > > > This patch adds rsel define for mt8195.
-> > > > > > >
-> > > > > > > Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> > > > > > > ---
-> > > > > > >  include/dt-bindings/pinctrl/mt65xx.h | 9 +++++++++
-> > > > > > >  1 file changed, 9 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/include/dt-bindings/pinctrl/mt65xx.h
-> > > > > > > b/include/dt-
-> > > > > > > bindings/pinctrl/mt65xx.h
-> > > > > > > index 7e16e58fe1f7..f5934abcd1bd 100644
-> > > > > > > --- a/include/dt-bindings/pinctrl/mt65xx.h
-> > > > > > > +++ b/include/dt-bindings/pinctrl/mt65xx.h
-> > > > > > > @@ -16,6 +16,15 @@
-> > > > > > >  #define MTK_PUPD_SET_R1R0_10 102
-> > > > > > >  #define MTK_PUPD_SET_R1R0_11 103
-> > > > > > >
-> > > > > > > +#define MTK_PULL_SET_RSEL_000  200
-> > > > > > > +#define MTK_PULL_SET_RSEL_001  201
-> > > > > > > +#define MTK_PULL_SET_RSEL_010  202
-> > > > > > > +#define MTK_PULL_SET_RSEL_011  203
-> > > > > > > +#define MTK_PULL_SET_RSEL_100  204
-> > > > > > > +#define MTK_PULL_SET_RSEL_101  205
-> > > > > > > +#define MTK_PULL_SET_RSEL_110  206
-> > > > > > > +#define MTK_PULL_SET_RSEL_111  207
-> > > > > >
-> > > > > > Could you keep the spacing between constants tighter, or have
-> > > > > > no
-> > > > > > spacing
-> > > > > > at all? Like having MTK_PULL_SET_RSEL_000 defined as 104 and
-> > > > > > so
-> > > > > > on. This
-> > > > > > would reduce the chance of new macro values colliding with
-> > > > > > actual
-> > > > > > resistor
-> > > > > > values set in the datasheets, plus a contiguous space would
-> > > > > > be
-> > > > > > easy to
-> > > > > > rule as macros.
-> > > > > >
-> > > > > > ChenYu
-> > > > >
-> > > > > Hi chenyu,
-> > > > > By the current solution, it won't be mixed used by
-> > > > > MTK_PULL_SET_RSEL_XXX
-> > > > > and real  resistor value.
-> > > > > If user use MTK_PULL_SET_RSEL_XXX, They don't care the define
-> > > > > which
-> > > > > means how much resistor value.
-> > > >
-> > > > What I meant was that by keeping the value space tight, we avoid
-> > > > the
-> > > > situation where in some new chip, one of the RSEL resistors
-> > > > happens
-> > > > to
-> > > > be 200 or 300 ohms. 100 is already taken, so there's nothing we
-> > > > can
-> > > > do if new designs actually do have 100 ohm settings.
-> > > >
-> > > > > We think that we don't contiguous macro space for different
-> > > > > register.
-> > > > > It may increase code complexity to make having
-> > > > > MTK_PULL_SET_RSEL_000
-> > > > > defined as 104.
-> > > >
-> > > > Can you elaborate? It is a simple range check and offset
-> > > > handling.
-> > > > Are
-> > > > you concerned that a new design would have R2R1R0 and you would
-> > > > like
-> > > > the macros to be contiguous?
-> > > >
-> > > > BTW I don't quite get why decimal base values (100, 200, etc.)
-> > > > were
-> > > > chosen. One would think that binary bases are easier to handle in
-> > > > code.
-> > > >
-> > > >
-> > > > ChenYu
-> > > >
-> > >
-> > > Yes,we concerned that a new design would have R2R1R0 and we would
-> > > like
-> > > the macros to be contiguous in the feature. we reserve it.
-> >
-> > I see. That makes sense. Do you expect to see R3 or even R4 in the
-> > future?
-> > Or put another way, do you expect to see resistor values of 150 or
-> > 200
-> > supported?
-> >
-> > Maybe we could reserve 200 and start from 201 for the RSEL macros?
-> >
-> > Some planning needs to be done here to avoid value clashes.
-> >
-> > > We think that decimal and binary base values are the same for the
-> > > feature.
-> >
-> > With decimal numbers you end up wasting a bit more space, since the
-> > hardware is always using binary values. I just found it odd, that's
-> > all.
-> >
-> > ChenYu
-> >
-> > > > > Thanks.
->
-> Hi ChenYu,
->
-> In the next version, we provide a solution which we discussed internal
-> to avoid value clashes.
->
-> The solution:
-> 1. We will keep the define "MTK_PULL_SET_RSEL_000 200". It won't
-> change.
->
-> 2. We will add a property in pio dtsi node, for example,
-> the property name is "rsel_resistance_in_si_unit".
-> We will add a flag "rsel_si_unit" in pinctrl device.
-> in probe function, we will identify the property name
-> "rsel_resistance_in_si_unit" to set the flag "rsel_si_unit" value.
-> So it can void value clashes.
+Add coresight-cpu-debug nodes to mt8183 for dumping
+EDPRSR, EDPCSR, EDCIDSR, EDVIDSR
+while kernel panic happens
 
-I suppose a "mediatek," prefix should be added. And to future proof
-things this should probably apply to all bias-up/down values, so
-"mediatek,bias-resistance-in-si-units"?
+Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
+ 1 file changed, 64 insertions(+)
 
-And the description should include something like that:
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 409cf827970c..2d36575e7dbe 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -367,6 +367,70 @@
+ 			reg = <0 0x0c530a80 0 0x50>;
+ 		};
+ 
++		cpu_debug0: cpu-debug@d410000 {
++			compatible = "arm,coresight-cpu-debug", "arm,primecell";
++			reg = <0x0 0xd410000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu0>;
++		};
++
++		cpu_debug1: cpu-debug@d510000 {
++			compatible = "arm,coresight-cpu-debug", "arm,primecell";
++			reg = <0x0 0xd510000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu1>;
++		};
++
++		cpu_debug2: cpu-debug@d610000 {
++			compatible = "arm,coresight-cpu-debug", "arm,primecell";
++			reg = <0x0 0xd610000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu2>;
++		};
++
++		cpu_debug3: cpu-debug@d710000 {
++			compatible = "arm,coresight-cpu-debug", "arm,primecell";
++			reg = <0x0 0xd710000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu3>;
++		};
++
++		cpu_debug4: cpu-debug@d810000 {
++			compatible = "arm,coresight-cpu-debug", "arm,primecell";
++			reg = <0x0 0xd810000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu4>;
++		};
++
++		cpu_debug5: cpu-debug@d910000 {
++			compatible = "arm,coresight-cpu-debug", "arm,primecell";
++			reg = <0x0 0xd910000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu5>;
++		};
++
++		cpu_debug6: cpu-debug@da10000 {
++			compatible = "arm,coresight-cpu-debug", "arm,primecell";
++			reg = <0x0 0xda10000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu6>;
++		};
++
++		cpu_debug7: cpu-debug@db10000 {
++			compatible = "arm,coresight-cpu-debug", "arm,primecell";
++			reg = <0x0 0xdb10000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu7>;
++		};
++
+ 		topckgen: syscon@10000000 {
+ 			compatible = "mediatek,mt8183-topckgen", "syscon";
+ 			reg = <0 0x10000000 0 0x1000>;
+-- 
+2.14.1
 
-  Past usage of bias-up/down values included magic numbers to specify
-  different hardware configurations based on register values. This
-  property specifies that all values used for bias-up/down for this
-  controller shall be in SI units.
-
-And this proposal is still subject to maintainer (not me) review.
-
-
-> 3.We will provide the define "MTK_PULL_SET_RSEL_000 200" and si unit
-> two solution. users can support which solution by add property
-> "rsel_resistance_in_si_unit" in dts node or not.
-
-Thanks. I think this solution does provide a clear separation of the
-two value spaces.
-
-ChenYu
-
-> > > > >
-> > > > > >
-> > > > > > >  #define MTK_DRIVE_2mA  2
-> > > > > > >  #define MTK_DRIVE_4mA  4
-> > > > > > >  #define MTK_DRIVE_6mA  6
-> > > > > > > --
-> > > > > > > 2.18.0
-> > > > > > > _______________________________________________
-> > > > > > > Linux-mediatek mailing list
-> > > > > > > Linux-mediatek@lists.infradead.org
-> > > > > > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
