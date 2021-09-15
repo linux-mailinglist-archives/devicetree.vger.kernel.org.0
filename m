@@ -2,80 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5477440BBBC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 00:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A850A40BCEC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 03:10:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235531AbhINWlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 18:41:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41686 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235464AbhINWll (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 18:41:41 -0400
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [IPv6:2001:67c:2050::465:201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07266C061574;
-        Tue, 14 Sep 2021 15:40:23 -0700 (PDT)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [80.241.60.245])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4H8JFy3Q9mzQk4q;
-        Wed, 15 Sep 2021 00:40:22 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hauke-m.de; s=MBO0001;
-        t=1631659220;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=gOanFGnzd70xddgIbFhvpYypTGbga6lbzZldRrxkK4U=;
-        b=KbcUIPaWx3ZU5tAfqJoFx1G6QLdASPBnllZc9tm+FtLw6NX26gymiW9Vx97iVKcK6T0AFo
-        iHXkqSNGPJEckM5PVb4/xKJ0E6XAKIG268hALmnBaAusbBF2rsucJqK2Ge5uVojit/TBun
-        jpEtcxZhFFyS6HNn1flUZM3zgsSdsd57bhkwN57D6yqe55paNiVLx+BAfY1yp2bImgTJIP
-        GrJ7Ib3vJvCAJ9plo99jxh5Wfw+wVMJgYLaXSUwMJ62YvCettsTgM5qPwv4NYEpWz8k4jq
-        puPsZ7JkzBepbY11rgamaWq7qfL08vCi17ZGhR5OFDKnG1QIpts/qRJrmsh2+A==
-Subject: Re: [PATCH net-next 4/8] MIPS: lantiq: dma: make the burst length
- configurable by the drivers
-To:     Aleksander Jan Bajkowski <olek2@wp.pl>, john@phrozen.org,
-        tsbogend@alpha.franken.de, maz@kernel.org, ralf@linux-mips.org,
-        ralph.hempel@lantiq.com, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, dev@kresin.me, arnd@arndb.de, jgg@ziepe.ca,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210914212105.76186-1-olek2@wp.pl>
- <20210914212105.76186-4-olek2@wp.pl>
-From:   Hauke Mehrtens <hauke@hauke-m.de>
-Message-ID: <5ca6a683-47b2-cb4e-aa79-9005bd55465e@hauke-m.de>
-Date:   Wed, 15 Sep 2021 00:40:14 +0200
+        id S229935AbhIOBLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 21:11:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50170 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229586AbhIOBLv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Sep 2021 21:11:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BC5B36115B;
+        Wed, 15 Sep 2021 01:10:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631668233;
+        bh=6JjqhFhlD78+2xi13oa2w4fKo5XUiX8v6a7aF8Sbnuc=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=I4zAEYrKvyfyQepeY2ePCU/E0JWsPjabYtUu2X8Pja1+0R8qzfQbAvBtz9CdP+4St
+         OeSE24ICZi3Qf4MGkfsc4+8cnRmAGnm5xCR26XLP4G4vnG3kIi1BJC2W7g+AFC8Xvf
+         eSW6QG3DGFyux0TTz5sjWbsHzcoOIGpVTYPRv6BbVzw1KKi+8iXAT0ZVkpALiTjgjN
+         EEbkd+4ebWFh9qEAh5pnd2vplC1CbUmHxslpwHoyOC5EIxl31mLhdDPbJCsOf0ruTd
+         XGo+gdJ31UykBq4ucij09iEM5G7Ao/nwYhJ1HN30ybySokewrugFXXuLhpX7mK5WHO
+         BvIZ8qMs59n/Q==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20210914212105.76186-4-olek2@wp.pl>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 4274826F
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <YUEbaEzKT+cCYk9z@robh.at.kernel.org>
+References: <20210913192816.1225025-1-robh@kernel.org> <20210913192816.1225025-6-robh@kernel.org> <163164958886.763609.7483570624844319215@swboyd.mtv.corp.google.com> <YUEbaEzKT+cCYk9z@robh.at.kernel.org>
+Subject: Re: [PATCH v2 5/8] clk: versatile: clk-icst: Support 'reg' in addition to 'vco-offset' for register address
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org
+To:     Rob Herring <robh@kernel.org>
+Date:   Tue, 14 Sep 2021 18:10:32 -0700
+Message-ID: <163166823242.763609.3525207812474759296@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/14/21 11:21 PM, Aleksander Jan Bajkowski wrote:
-> Make the burst length configurable by the drivers.
-> 
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+Quoting Rob Herring (2021-09-14 15:00:08)
+> On Tue, Sep 14, 2021 at 12:59:48PM -0700, Stephen Boyd wrote:
+> > Quoting Rob Herring (2021-09-13 12:28:13)
+> > > The ICST binding now also supports 'reg' in addition to 'vco-offset' =
+for
+> > > the VCO register address. Add support to the driver to get the VCO
+> > > address from 'reg'.
+> > >=20
+> > > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > > Cc: Stephen Boyd <sboyd@kernel.org>
+> > > Cc: linux-arm-kernel@lists.infradead.org
+> > > Cc: linux-clk@vger.kernel.org
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> >=20
+> > Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+> >=20
+> > I don't think this driver is changing much so you can take it through DT
+> > tree if you prefer.
+>=20
+> clk tree is fine. :)
+>=20
 
-Acked-by: Hauke Mehrtens <hauke@hauke-m.de>
-For all 4 "MIPS: lantiq: dma:" changes.
-
-> ---
->   .../include/asm/mach-lantiq/xway/xway_dma.h   |  2 +-
->   arch/mips/lantiq/xway/dma.c                   | 38 ++++++++++++++++---
->   2 files changed, 34 insertions(+), 6 deletions(-)
-> 
-
-The DMA changes are looking good.
-
-There is also a DMA API driver for this IP core now:
-https://elixir.bootlin.com/linux/v5.15-rc1/source/drivers/dma/lgm/lgm-dma.c
-I do not know if it works fully with these older MIPS SoCs.
-Changing the drivers to use the standard DMA API is a bigger change, 
-which could be done later.
-
-Hauke
+Alright alright
