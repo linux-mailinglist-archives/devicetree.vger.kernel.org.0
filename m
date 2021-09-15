@@ -2,98 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4F9940C4DE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 14:04:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C41740C4E1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 14:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237934AbhIOMFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 08:05:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53706 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237913AbhIOMFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 08:05:10 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F45C061793;
-        Wed, 15 Sep 2021 05:03:38 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id z184-20020a1c7ec1000000b003065f0bc631so4639856wmc.0;
-        Wed, 15 Sep 2021 05:03:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1v2Wz7r3SRYsAbKV8aTYHRg0UikNp3UThAxS/q0C7w0=;
-        b=pJcFYnCZ8mO09t/6PwPkutiVf+XGgNkmftb1IuFOZXt0/x8j+s+H4eR/7UzdUyAM7C
-         khmxYCeBsk4uAVQx1i5PBYDwZDOe1u4KMw7JhoEhPakkRCo07QdtkH78Av2fCGSCH23k
-         3tzcnXxsXbOmAA+3woN6NKipC2prvgM5pg2d5oNyapMVCSG76VHvDSlU3Ix092eObs/m
-         tIvMspswgtt18S75p/g/AFfAvzdUNtgTU0b5waeZvuFG94lnkhM70LxRHlieept0Wtwv
-         v3g441vIHUDTNNB7NdeljkjO2Hf05FLuZ2v7ZA9FeT3bISHeLqTis7rkzi3f6p+yHoUP
-         g8RA==
+        id S237953AbhIOMF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 08:05:26 -0400
+Received: from mail-vs1-f49.google.com ([209.85.217.49]:43997 "EHLO
+        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232927AbhIOMFS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 08:05:18 -0400
+Received: by mail-vs1-f49.google.com with SMTP id n17so1824212vsr.10
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 05:04:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1v2Wz7r3SRYsAbKV8aTYHRg0UikNp3UThAxS/q0C7w0=;
-        b=L6gN/BGDlySFbELRW0q8qEPOtKgT27PpEm3RPcHidfjZVpY50fqGt2JY085DBllerk
-         32PNUULtuGt2e51LI145U3sEYb9/frhmwKiQQ4r+jbc3waY5JmL4wOJ3Op6o6jRf+iAj
-         EEAmm8acmI8ECgUfIe0Gs2dm6ZVEoHg3hwyj2tEApA15annxm2BDmO9eJKbPJ42j98MC
-         uf1W2dEE7CvhAiq7CVJnc8VN5r4SFVLPeT1i8M/RCBIY4EHnIITi32K13fJc7Gle0txT
-         B27JREWmq0V2AkVX/NJnU5M6cVZDcC7lTPSMIANltH5DSzfBd1SlPk+wPIYWDg3bM3H9
-         18Rg==
-X-Gm-Message-State: AOAM532WxVPZUuEKYw7VN21/hT4uH6qgBTQbA4ypDG1nDBYLZC0zSnBL
-        6Z8crsE/hK9eXepG17NGkPJTUeeD4vav0y/C
-X-Google-Smtp-Source: ABdhPJzj+iZK8kf6OaDYgEGXfwizWgHXHzrMImbX/tAurZLPWH3d0i0/2suPJkytb2HGqkkfixSqyw==
-X-Received: by 2002:a05:600c:35c4:: with SMTP id r4mr4201100wmq.194.1631707417203;
-        Wed, 15 Sep 2021 05:03:37 -0700 (PDT)
-Received: from hthiery.kontron.local ([213.135.10.150])
-        by smtp.gmail.com with ESMTPSA id p21sm4255497wmi.30.2021.09.15.05.03.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Sep 2021 05:03:36 -0700 (PDT)
-From:   Heiko Thiery <heiko.thiery@gmail.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Heiko Thiery <heiko.thiery@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>
-Subject: [PATCH] arm64: dts: imx8mm-kontron-n801x-som: do not allow to switch off buck2
-Date:   Wed, 15 Sep 2021 14:03:26 +0200
-Message-Id: <20210915120325.20248-1-heiko.thiery@gmail.com>
-X-Mailer: git-send-email 2.30.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=V7RMs5jGTFlhcvPGA0e1hDyrGY0ltbNUmDTaYFkP2PQ=;
+        b=qFWIhz1h5AXZV956+HU/GArhMZclP4vw1giT55v2mMGMPkVrG55nQWtpNeQIV59ug6
+         9M4B83bXHCmDdyR51bpV4uzxFaKFNsbVbNWq7yIO+UUi6TaI9vG4fZBzwKX8YqmIeft2
+         Z9kyImVXVsEWtMCvKgmORaEVpynQd+v4YxcNM3a4jxLRWhlUC55RL7pUsDEdqUID9wpE
+         GWAXekt9/GTvE3l+owlXyWe9rgDKUDOeB5rzr+zhl8DDE+hVN8Hv15hzxzOGIQU7tHrv
+         A8VCEto2sGsUXLT1yonpHZTJ2d0VmWFj5N8rRPq1mnkUp6aKBm0Qo8KEV7v8cYRjiSPR
+         KoCw==
+X-Gm-Message-State: AOAM5339Q+OuxOhIdyV7WkbtLrm5lGzLX5hz+nE7GQ3u9XzrjclRjSEN
+        IbsigqoYzyfSCmu8MvlSw5v2TuwYY9tyOlb9KVU=
+X-Google-Smtp-Source: ABdhPJwSSITFeO5bz1TDyTKf4Yo83/snpgk9r8c4pbnv7rl0it5La4y9XsWcpzM56ZSFV2DDynuhRmpZvBZ8JjUNNJg=
+X-Received: by 2002:a05:6102:3112:: with SMTP id e18mr2846306vsh.50.1631707439508;
+ Wed, 15 Sep 2021 05:03:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210911004546.2139657-1-drhodes@opensource.cirrus.com>
+ <20210911004546.2139657-3-drhodes@opensource.cirrus.com> <1631535523.185638.444716.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1631535523.185638.444716.nullmailer@robh.at.kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 15 Sep 2021 14:03:48 +0200
+Message-ID: <CAMuHMdXvJju4SKreS8c2X47ew+8zshwxbhnJetyLLbGTo8tD5w@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] ASoC: cs35l41: Add bindings for CS35L41
+To:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
+Cc:     David Rhodes <drhodes@opensource.cirrus.com>,
+        ckeepax@opensource.cirrus.com,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        david.rhodes@cirrus.com, brian.austin@cirrus.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, patches@opensource.cirrus.com,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The buck2 output of the PMIC is the VDD core voltage of the cpu.
-Switching off this will poweroff the CPU. Add the 'regulator-always-on'
-property to avoid this.
+On Mon, Sep 13, 2021 at 2:20 PM Rob Herring <robh@kernel.org> wrote:
+> On Fri, 10 Sep 2021 19:45:46 -0500, David Rhodes wrote:
+> > Devicetree binding documentation for CS35L41 driver
+> >
+> > CS35L41 is a 11-V Boosted Mono Class D Amplifier with
+> > DSP Speaker Protection and Equalization
+> >
+> > Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
+> > ---
+> >  .../devicetree/bindings/sound/cs35l41.yaml    | 151 ++++++++++++++++++
+> >  1 file changed, 151 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/cs35l41.yaml
+> >
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/sound/cs35l41.yaml:151:9: [error] no new line character at the end of file (new-line-at-end-of-file)
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/cs35l41.yaml: 'additionalProperties' is a required property
+>         hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
+>         from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/cs35l41.yaml: ignoring, error in schema:
+> warning: no schema found in file: ./Documentation/devicetree/bindings/sound/cs35l41.yaml
+> Documentation/devicetree/bindings/sound/cs35l41.example.dts:21.11-21: Warning (reg_format): /example-0/cs35l41@2:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+> Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: example-0: cs35l41@2:reg:0: [2] is too short
+>         From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+> Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml:0:0: /example-0/cs35l41@2: failed to match any schema with compatible: ['cirrus,cs35l41']
 
-Fixes: 8668d8b2e67f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
-Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+This is now commit 8d7ab8800184cc75 ("ASoC: cs35l41: Add bindings for
+CS35L41") in broonie/sound#for-next, breaking "make dt_binding_check".
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-index d0456daefda8..9db9b90bf2bc 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-@@ -102,6 +102,7 @@ reg_vdd_arm: BUCK2 {
- 				regulator-min-microvolt = <850000>;
- 				regulator-max-microvolt = <950000>;
- 				regulator-boot-on;
-+				regulator-always-on;
- 				regulator-ramp-delay = <3125>;
- 				nxp,dvs-run-voltage = <950000>;
- 				nxp,dvs-standby-voltage = <850000>;
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.30.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
