@@ -2,72 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3890E40C601
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 15:14:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3634440C6C9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 15:54:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233325AbhIONQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 09:16:01 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:39740 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233238AbhIONP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 09:15:59 -0400
-Received: by mail-oi1-f174.google.com with SMTP id v2so4124592oie.6;
-        Wed, 15 Sep 2021 06:14:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=U9iLK0tSsVvo6qJp9SXqhRSLxjtC8EBYGrmrwLb7z0c=;
-        b=mNZj7F35/KCNMqxE6Qmt+5yS1J8LjbW6iJ026yUb7jPjuco+Zi+5zk+6WMRACpujXz
-         46kbOkPLytIMNfrXLI+aEdLfsKtSeiRT97EKfrurn1/0WLzCU5gKLvUfYRximxsNOnT4
-         2u+rqwX6z6IK6ksuCM8g12b6HDGg9SDL9i9JkpB+Lo3jqt2QoxpDboiC4Y/5Px4DFbFr
-         +kqs0R/rSAFDVeAsAH7lwUsdR0SNw+anYoW0PhBZOTPT+YNF27PsufklgVcDAX51m+Ue
-         uEeseQLbrlj3YnVe08vpoUTvE1PWrli2mTDsp4HE9XiPiGIH14spj9xPKxdM9+OZO5Nf
-         OKxA==
-X-Gm-Message-State: AOAM530lMnjPk/NewGYGCTuvlgx0rMAchwENagccmIRzWtXAl1LQONnk
-        JdVIKAKSVhIo3mRwmMbcDjHezR56Hw==
-X-Google-Smtp-Source: ABdhPJxPf15TR81HATeLKU2Ba7ICbL6jj8tpMqVBQurZaztf6SDQQzi4phZ26RCNWb1JtYmRIr5Y+Q==
-X-Received: by 2002:aca:645:: with SMTP id 66mr5114955oig.145.1631711679745;
-        Wed, 15 Sep 2021 06:14:39 -0700 (PDT)
-Received: from robh.at.kernel.org ([12.252.7.226])
-        by smtp.gmail.com with ESMTPSA id r13sm3304574oti.80.2021.09.15.06.14.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Sep 2021 06:14:38 -0700 (PDT)
-Received: (nullmailer pid 957931 invoked by uid 1000);
-        Wed, 15 Sep 2021 13:14:37 -0000
-Date:   Wed, 15 Sep 2021 08:14:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        kernel-team@android.com, Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Revert "of: property: fw_devlink: Add support for
- "phy-handle" property"
-Message-ID: <YUHxvf7/nAhjnBn+@robh.at.kernel.org>
-References: <20210915081933.485112-1-saravanak@google.com>
+        id S233440AbhION4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 09:56:00 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:52100 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229441AbhION4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 09:56:00 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18FDsSTb128368;
+        Wed, 15 Sep 2021 08:54:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631714068;
+        bh=n3Xsh7wMUpKW9VHza0op5L8b8abYDU5Q+J2hqqb6NXI=;
+        h=From:To:CC:Subject:Date;
+        b=hD/f7RZO2jMSRmCWWW3vxAVd71VqBYPI/hzdSfI5D6UgB9Dgl1BC7ZRe45ZdXcApG
+         PaEypBbY4pFUhHfsJGVUykGAT4pXuNzPvg1fCgOJ6iyqJ8bEfnAHMl8RIQPptPnxiY
+         yS29Ofk9+tpUBhRIk1L/Sb7tS8pqX/C8ObOuZNsk=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18FDsSOs020775
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Sep 2021 08:54:28 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 15
+ Sep 2021 08:54:28 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 15 Sep 2021 08:54:28 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18FDsSY8026036;
+        Wed, 15 Sep 2021 08:54:28 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>
+Subject: [PATCH] arm64: dts: ti: ti-k3*: Introduce aliases for mmc nodes
+Date:   Wed, 15 Sep 2021 08:54:15 -0500
+Message-ID: <20210915135415.5706-1-nm@ti.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210915081933.485112-1-saravanak@google.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Sep 2021 01:19:32 -0700, Saravana Kannan wrote:
-> This reverts commit cf4b94c8530d14017fbddae26aad064ddc42edd4.
-> 
-> Some PHYs pointed to by "phy-handle" will never bind to a driver until a
-> consumer attaches to it. And when the consumer attaches to it, they get
-> forcefully bound to a generic PHY driver. In such cases, parsing the
-> phy-handle property and creating a device link will prevent the consumer
-> from ever probing. We don't want that. So revert support for
-> "phy-handle" property until we come up with a better mechanism for
-> binding PHYs to generic drivers before a consumer tries to attach to it.
-> 
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/of/property.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
+Since probe order of mmc can vary depending on device tree dependencies,
+Lets try and introduce a consistent definition of what mmc0, 1 are
+across platforms.
 
-Applied, thanks!
+NOTE: Certain platforms may choose to have overrides due to various
+legacy reasons, we permit that in the board specific alias definition.
+
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am64.dtsi  | 2 ++
+ arch/arm64/boot/dts/ti/k3-am65.dtsi  | 2 ++
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi | 2 ++
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi | 3 +++
+ 4 files changed, 9 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+index de6805b0c72c..120974726be8 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+@@ -30,6 +30,8 @@ aliases {
+ 		serial8 = &main_uart6;
+ 		ethernet0 = &cpsw_port1;
+ 		ethernet1 = &cpsw_port2;
++		mmc0 = &sdhci0;
++		mmc1 = &sdhci1;
+ 	};
+ 
+ 	chosen { };
+diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+index a9fc1af03f27..a58a39fa42db 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+@@ -31,6 +31,8 @@ aliases {
+ 		i2c4 = &main_i2c2;
+ 		i2c5 = &main_i2c3;
+ 		ethernet0 = &cpsw_port1;
++		mmc0 = &sdhci0;
++		mmc1 = &sdhci1;
+ 	};
+ 
+ 	chosen { };
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
+index b7005b803149..47567cb260c2 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
+@@ -30,6 +30,8 @@ aliases {
+ 		serial9 = &main_uart7;
+ 		serial10 = &main_uart8;
+ 		serial11 = &main_uart9;
++		mmc0 = &main_sdhci0;
++		mmc1 = &main_sdhci1;
+ 	};
+ 
+ 	chosen { };
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+index f0587fde147e..214359e7288b 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+@@ -31,6 +31,9 @@ aliases {
+ 		serial10 = &main_uart8;
+ 		serial11 = &main_uart9;
+ 		ethernet0 = &cpsw_port1;
++		mmc0 = &main_sdhci0;
++		mmc1 = &main_sdhci1;
++		mmc2 = &main_sdhci2;
+ 	};
+ 
+ 	chosen { };
+-- 
+2.32.0
+
