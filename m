@@ -2,458 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2172340C236
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 10:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 275C840C241
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 11:00:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237140AbhIOI75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 04:59:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237145AbhIOI7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 04:59:44 -0400
-Received: from mx.msync.work (mx.msync.work [IPv6:2a01:4f9:2b:2dc2::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA60C061574;
-        Wed, 15 Sep 2021 01:58:23 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6DFE8F62B8;
-        Wed, 15 Sep 2021 08:58:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-        t=1631696301; h=from:subject:date:message-id:to:cc:mime-version:
-         content-transfer-encoding:in-reply-to:references;
-        bh=5n0R6drbZsDzE00WoiM8YAqFQ9VV6XgrJxBJAv4+pes=;
-        b=Sp7LSGoiMzJahmo9oUFn6UheOC+U+3hwSTPZKhTBichoQalX+j8iF+Xe37bSI9C96KWlGe
-        jDWAe6AQIp9N4J5Xgoh2h0+/YVku7P5aEjd+Hn+jrGk/cA/cYQ5KiXCfHoFQ1ZAQ+aWJg8
-        u3hjyKvrXAnKFBT1xDjGNtzweSIV+R73IEjzrNVKvxYob791nE8I5MD9eSSnjwuMbpzNkg
-        iSucoV3wFJvfvS5nsV1in9wOL1YmAyrLpxKVj5/zcpI5Kkal5ZjmjM9DwJ72Ju1oHuJmOc
-        p5HGGuSrNAPLgb0CfNU6nSMgjiapwkG59PL6+EOz5lwMXhMp9y7Dplw935eo+A==
-From:   Vyacheslav Bocharov <adeep@lexina.in>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v5 4/4] arm64: dts: meson-axg: add support for JetHub D1
-Date:   Wed, 15 Sep 2021 11:57:19 +0300
-Message-Id: <20210915085715.1134940-5-adeep@lexina.in>
-In-Reply-To: <20210915085715.1134940-1-adeep@lexina.in>
-References: <20210915085715.1134940-1-adeep@lexina.in>
+        id S237083AbhIOJBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 05:01:00 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54298
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237167AbhIOJAy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 05:00:54 -0400
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4BAA74026A
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 08:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1631696369;
+        bh=39NyD7eSdjWRLG7akJoaBQq2vkbMMaThM/SwbRfMg/Y=;
+        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=kSUCDXOUbBSjJTliF3DNPHcJbV96qsvr+7LSkmX5/kweDMsOoSZQt9uJWMtsIe0EJ
+         3EKmUur0EwMaRbDxTe4o2jdAzdxgQR2ppRiSnRbo1FKJnjr7KDXIzOmtGmqe2JSO2R
+         z1nFdOfKL0webr3V0vUXafqXvlhlLzLlgqPnOPqT84dPeMu7XCpndWrUBoktN8xJ3j
+         tXPjRAjdtbPADfxRvsCJd7DnM7Q5nuIhcfOBI8WKUDhS7pWUhjAUYtAvcVbVs6ltuy
+         NureCTGO2INlMbdiXxIPqIUk5hHM7PVLDZCLaSpqYkeIhB0+V39mwqR8ufHIo1mTK6
+         0W6+f2N0n0Iow==
+Received: by mail-ej1-f69.google.com with SMTP id v19-20020a170906b013b02905b2f1bbf8f3so1156022ejy.6
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 01:59:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=39NyD7eSdjWRLG7akJoaBQq2vkbMMaThM/SwbRfMg/Y=;
+        b=P5+kOPexKmlVXR33ECBZKTjcK1YLSwFHzdxA8BMsmXLE0pXVBqIK8mavgN7yZprV/u
+         elPzCpnXcK8JS7FaSGhc8HnHS3N2pAVfpc0dIxvPNIInzgWrqEYg7GLKHohVhwsZ2Oxw
+         jJtF5KsXR4V9JaWWAJ19yfKV8/nMj9Sf3Enf6xMDPAdntc+goKULcIkHWAhGzqnjEXCo
+         /zIWJgRcYnS/IgHk7Lbft2pz2YFNIzVCeGJr7ExSKtvFIVN5cOG8IO9KgZETDKaVZYVo
+         S+fJegy0B6/Q6lIDDJhomaySD6zN/gHY4R1h7KSZa8o7YQlj0TD/VOuthvKJJwUtCkfr
+         1z3A==
+X-Gm-Message-State: AOAM530nuCt7+m53s8RVRyKl/AMiP6jCJXbInOl5h+X9u7Fa7BMG5hVy
+        XkdBHZ9Byp5hbVecuKIlxCleqKqHNL7mfwCYDRu9iC6rNqR9cjQiQq6mX4SG2h4wJpDBHBwl2kK
+        8MwTFH9OqVKk0vUQCv766Isn3CL+0j9R73edLPL4=
+X-Received: by 2002:a17:906:f15:: with SMTP id z21mr23428823eji.177.1631696368015;
+        Wed, 15 Sep 2021 01:59:28 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJymRnBWWR852OpGubXgrdOU89q9lNXSyAJz+ZILaji+sCwYZwgAvCN0PKGDsBRUEBEUCnD23A==
+X-Received: by 2002:a17:906:f15:: with SMTP id z21mr23428808eji.177.1631696367855;
+        Wed, 15 Sep 2021 01:59:27 -0700 (PDT)
+Received: from [192.168.3.211] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id f24sm6703253edc.40.2021.09.15.01.59.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Sep 2021 01:59:27 -0700 (PDT)
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20210914155607.14122-1-semen.protsenko@linaro.org>
+ <20210914155607.14122-7-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH 6/6] clk: samsung: Introduce Exynos850 clock driver
+Message-ID: <3da75dbe-2f98-39db-c455-46adead7097b@canonical.com>
+Date:   Wed, 15 Sep 2021 10:59:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <20210914155607.14122-7-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-JetHome Jethub D1 (http://jethome.ru/jethub-d1) is a home automation
-controller with the following features:
-- DIN Rail Mounting
-- Amlogic A113X (ARM Cortex-A53) quad-core up to 1.5GHz
-- no video out
-- 512Mb/1GB LPDDR4
-- 8/16GB eMMC flash
-- 1 x USB 2.0
-- 1 x 10/100Mbps ethernet
-- WiFi / Bluetooth AMPAK AP6255 (Broadcom BCM43455) IEEE 802.11a/b/g/n/ac,
-  Bluetooth 4.2.
-- TI CC2538 + CC2592 Zigbee Wireless Module with up to 20dBm output power
-  and Zigbee 3.0 support.
-- 2 x gpio LEDS
-- GPIO user Button
-- 1 x 1-Wire
-- 2 x RS-485
-- 4 x dry contact digital GPIO inputs
-- 3 x relay GPIO outputs
-- DC source with a voltage of 9 to 56 V / Passive POE
+On 14/09/2021 17:56, Sam Protsenko wrote:
+> This is the initial implementation adding only basic clocks like UART,
+> MMC, I2C and corresponding parent clocks. Design is influenced by
+> Exynos7 and Exynos5433 clock drivers.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  drivers/clk/samsung/Makefile        |   1 +
+>  drivers/clk/samsung/clk-exynos850.c | 700 ++++++++++++++++++++++++++++
+>  2 files changed, 701 insertions(+)
+>  create mode 100644 drivers/clk/samsung/clk-exynos850.c
+> 
+> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
+> index 028b2e27a37e..c46cf11e4d0b 100644
+> --- a/drivers/clk/samsung/Makefile
+> +++ b/drivers/clk/samsung/Makefile
+> @@ -17,6 +17,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos5433.o
+>  obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) += clk-exynos-audss.o
+>  obj-$(CONFIG_EXYNOS_CLKOUT)	+= clk-exynos-clkout.o
+>  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7.o
+> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos850.o
+>  obj-$(CONFIG_S3C2410_COMMON_CLK)+= clk-s3c2410.o
+>  obj-$(CONFIG_S3C2410_COMMON_DCLK)+= clk-s3c2410-dclk.o
+>  obj-$(CONFIG_S3C2412_COMMON_CLK)+= clk-s3c2412.o
+> diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
+> new file mode 100644
+> index 000000000000..1028caa2102e
+> --- /dev/null
+> +++ b/drivers/clk/samsung/clk-exynos850.c
+> @@ -0,0 +1,700 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2021 Linaro Ltd.
+> + * Author: Sam Protsenko <semen.protsenko@linaro.org>
+> + *
+> + * Common Clock Framework support for Exynos850 SoC.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +
+> +#include <dt-bindings/clock/exynos850.h>
+> +
+> +#include "clk.h"
+> +
+> +/* Gate register bits */
+> +#define GATE_MANUAL		BIT(20)
+> +#define GATE_ENABLE_HWACG	BIT(28)
+> +
+> +/* Gate register offsets range */
+> +#define GATE_OFF_START		0x2000
+> +#define GATE_OFF_END		0x2fff
+> +
+> +/**
+> + * exynos850_init_clocks - Set clocks initial configuration
+> + * @np:			CMU device tree node with "reg" property (CMU addr)
+> + * @reg_offs:		Register offsets array for clocks to init
+> + * @reg_offs_len:	Number of register offsets in reg_offs array
+> + *
+> + * Set manual control mode for all gate clocks.
+> + */
+> +static void __init exynos850_init_clocks(struct device_node *np,
+> +		const unsigned long *reg_offs, size_t reg_offs_len)
+> +{
+> +	const __be32 *regaddr_p;
+> +	u64 regaddr;
+> +	u32 base;
+> +	size_t i;
+> +
+> +	/* Get the base address ("reg" property in dts) */
+> +	regaddr_p = of_get_address(np, 0, NULL, NULL);
+> +	if (!regaddr_p)
+> +		panic("%s: failed to get reg regaddr\n", __func__);
+> +
+> +	regaddr = of_translate_address(np, regaddr_p);
+> +	if (regaddr == OF_BAD_ADDR || !regaddr)
+> +		panic("%s: bad reg regaddr\n", __func__);
+> +
+> +	base = (u32)regaddr;
+> +
+> +	for (i = 0; i < reg_offs_len; ++i) {
+> +		void __iomem *reg;
+> +		u32 val;
+> +
+> +		/* Modify only gate clock registers */
+> +		if (reg_offs[i] < GATE_OFF_START || reg_offs[i] > GATE_OFF_END)
+> +			continue;
+> +
+> +		reg = ioremap(base + reg_offs[i], 4);
 
-Changes from v4:
- - add node for 1wire-gpio for JetHub D1 v2 device
+You first translate the address to CPU physical address and then apply
+offset. This should be equivalent to one of_iomap() of entire range and
+iterate starting from the base pointer.  IOW, I don't get why you have
+to map each register instead of mapping entire SFR/IO range?
 
-Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
+> +		val = ioread32(reg);
+> +		val |= GATE_MANUAL;
+> +		val &= ~GATE_ENABLE_HWACG;
+> +		iowrite32(val, reg);
 
+All other drivers use readl/writel, so how about keeping it consistent?
 
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../amlogic/meson-axg-jethome-jethub-j100.dts | 361 ++++++++++++++++++
- 2 files changed, 362 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
+Rest looks good but I did not verify the numbers :)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 2c3ce7c401a5..3ba6f58b9833 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-new file mode 100644
-index 000000000000..c25b03a91e12
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-@@ -0,0 +1,361 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Vyacheslav Bocharov <adeep@lexina.in>
-+ * Copyright (c) 2020 JetHome
-+ * Author: Aleksandr Kazantsev <ak@tvip.ru>
-+ * Author: Alexey Shevelkin <ash@tvip.ru>
-+ * Author: Vyacheslav Bocharov <adeep@lexina.in>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-axg.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/thermal/thermal.h>
-+
-+/ {
-+	compatible = "jethome,jethub-j100", "amlogic,a113d", "amlogic,meson-axg";
-+	model = "JetHome JetHub J100";
-+	aliases {
-+		serial0 = &uart_AO;   /* Console */
-+		serial1 = &uart_AO_B; /* External UART (Wireless Module) */
-+		ethernet0 = &ethmac;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	/* 1024MB RAM */
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		linux,cma {
-+			size = <0x0 0x400000>;
-+		};
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_5v: regulator-vcc_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_5v>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_ao18: regulator-vddio_ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_boot: regulator-vddio_boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	usb_pwr: regulator-usb_pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v>;
-+		regulator-always-on;
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_7 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ab 0 30518 0>; /* PWM_A at 32.768KHz */
-+	};
-+
-+	thermal-zones {
-+		cpu_thermal: cpu-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&scpi_sensors 0>;
-+			trips {
-+				cpu_passive: cpu-passive {
-+					temperature = <70000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "passive";
-+				};
-+
-+				cpu_hot: cpu-hot {
-+					temperature = <80000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "hot";
-+				};
-+
-+				cpu_critical: cpu-critical {
-+					temperature = <100000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu_cooling_maps: cooling-maps {
-+			map0 {
-+				trip = <&cpu_passive>;
-+				cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+			};
-+
-+			map1 {
-+				trip = <&cpu_hot>;
-+				cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+			};
-+		};
-+	};
-+	onewire {
-+		compatible = "w1-gpio";
-+		gpios = <&gpio GPIOA_14 GPIO_ACTIVE_HIGH>;
-+		#gpio-cells = <1>;
-+	};
-+};
-+
-+&efuse {
-+	sn: sn@32 {
-+		reg = <0x32 0x20>;
-+	};
-+
-+	eth_mac: eth_mac@0 {
-+		reg = <0x0 0x6>;
-+	};
-+
-+	bt_mac: bt_mac@6 {
-+		reg = <0x6 0x6>;
-+	};
-+
-+	wifi_mac: wifi_mac@c {
-+		reg = <0xc 0x6>;
-+	};
-+
-+	bid: bid@12 {
-+		reg = <0x12 0x20>;
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+	pinctrl-0 = <&eth_rmii_x_pins>;
-+	pinctrl-names = "default";
-+	phy-handle = <&eth_phy0>;
-+	phy-mode = "rmii";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* ICPlus IP101A/G Ethernet PHY (vendor_id=0x0243, model_id=0x0c54) */
-+		eth_phy0: ethernet-phy@0 {
-+			/* compatible = "ethernet-phy-id0243.0c54";*/
-+			max-speed = <100>;
-+			reg = <0>;
-+
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <10000>;
-+			reset-gpios = <&gpio GPIOZ_5 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+/* Internal I2C bus (on CPU module) */
-+&i2c1 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c1_z_pins>;
-+	pinctrl-names = "default";
-+
-+	/* RTC */
-+	pcf8563: pcf8563@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+		status = "okay";
-+	};
-+};
-+
-+/* Peripheral I2C bus (on motherboard) */
-+&i2c_AO {
-+	status = "okay";
-+	pinctrl-0 = <&i2c_ao_sck_10_pins>, <&i2c_ao_sda_11_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_ab {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_a_x20_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* wifi module */
-+&sd_emmc_b {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr104;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+/* emmc storage */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* UART Bluetooth */
-+&uart_B {
-+	status = "okay";
-+	pinctrl-0 = <&uart_b_z_pins>, <&uart_b_z_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+/* UART Console */
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* UART Wireless module */
-+&uart_AO_B {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_b_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+	phy-supply = <&usb_pwr>;
-+};
-+
-+&spicc1 {
-+	status = "okay";
-+	pinctrl-0 = <&spi1_x_pins>, <&spi1_ss0_x_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&gpio {
-+	gpio-line-names =
-+		"", "", "", "", "", // 0 - 4
-+		"", "", "", "", "", // 5 - 9
-+		"UserButton", "", "", "", "", // 10 - 14
-+		"", "", "", "", "", // 15 - 19
-+		"", "", "", "", "", // 20 - 24
-+		"", "LedRed", "LedGreen", "Output3", "Output2", // 25 - 29
-+		"Output1", "", "", "", "", // 30 - 34
-+		"", "ZigBeeBOOT", "", "", "", // 35 - 39
-+		"1Wire", "ZigBeeRESET", "", "Input4", "Input3", // 40 - 44
-+		"Input2", "Input1", "", "", "", // 45 - 49
-+		"", "", "", "", "", // 50 - 54
-+		"", "", "", "", "", // 55 - 59
-+		"", "", "", "", "", // 60 - 64
-+		"", "", "", "", "", // 65 - 69
-+		"", "", "", "", "", // 70 - 74
-+		"", "", "", "", "", // 75 - 79
-+		"", "", "", "", "", // 80 - 84
-+		"", ""; // 85-86
-+};
-+
-+&cpu0 {
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu1 {
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu2 {
-+	#cooling-cells = <2>;
-+};
-+
-+&cpu3 {
-+	#cooling-cells = <2>;
-+};
--- 
-2.30.2
-
+Best regards,
+Krzysztof
