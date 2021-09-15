@@ -2,121 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5E8140CB63
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 19:06:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EEB940CB97
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 19:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbhIORHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 13:07:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40364 "EHLO
+        id S230101AbhIORYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 13:24:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229465AbhIORHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 13:07:36 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E282C061574;
-        Wed, 15 Sep 2021 10:06:17 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id b6so4955877wrh.10;
-        Wed, 15 Sep 2021 10:06:17 -0700 (PDT)
+        with ESMTP id S230035AbhIORYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 13:24:06 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C57C2C061574;
+        Wed, 15 Sep 2021 10:22:47 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id f129so3426977pgc.1;
+        Wed, 15 Sep 2021 10:22:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GTVsTGVHzHHxdcEJg4/8YrzvHZvRek9+ki75XlfwV6w=;
-        b=U3vEqEgCOGl+c9PEE+3pQVWcmVpFPwH4Vk1y0emiMUsRJL7SIuEuiz2GuNdcFHZe6C
-         DWyPP5WtNcPjHwquO2rXLaXgsGo3XAGuWZ/2vdt6PjOkXhVU0Zv8NWVXNHUIPRtpE+z/
-         FXyehLwcE/nMqnUUb3yzosCLAtt/aIngZPEhgJTitK23lRkJgXzZGXOPtFiTkZvbDOPt
-         0II9VJR54WTHU5mo/35kAwtjkE7+Wys5Cvyfl0u2ADdMIumGYIZm1cYtFNAB8Ri712Ly
-         wWD3sbj3tK0mwP2PVHMe5hVmFLItWdqcuXTdD+RmRJVK0qlVKQjv95qT1DwMA96qtRiU
-         RdpA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=if+Oxfc9r3mAC+EiZGn7r+WWYsmde9lhPlbyKnYhzuQ=;
+        b=GE3mQtMTDx/kVYzMVBOCMACL/4Xp8c0yfrYkMB0Pu3uYdGXCAkmkGBRFWkb1a6MW77
+         IoXoHR3l1+dCt2fLHAhRsiIlXyv89LKJRnKfVHR59vcsx/saKoa6KNJ5NPfUlNfh5RTe
+         Y7G67uo4sHDzQLgfSeXoyMX3o28zfSRSDl/xMbzElkMhdfTNnq1FupLRcX1iCnSzPTbT
+         CrQbRyGm9+Klqv1OU48+xNIfjntBsDmfUN94p/LX4lhcLwgWO+7SyDQhFDiYLdP+Oy0h
+         0s4I2jySz97+qDFbxgiTCS7XzB2gyF4uSN1kKr26F8E2MT+kEpM0g8vWUkBMlvC/unj8
+         ytJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GTVsTGVHzHHxdcEJg4/8YrzvHZvRek9+ki75XlfwV6w=;
-        b=nraAsBMFULmrqv7A9Se73NLwd91KlbRGcz69U57eougsPYQ0jFwRXP623zIiuGDrz9
-         C7JbmMUxYBUHtKZseJh+a2iDv2GdowwveO4Q7l7RuVPynbtetDyyImTepifDLbPj3Hdd
-         rtCw3WUWVFyRHcalzAHcJ8kLN3pW2ssEegtG1cvvocK41oBVUxXU5k+YmcyAlmezXsyK
-         m8hohy7F5AJ+yDuIcj90WJdKuIo7vrmaDzF/3pPNXUAI11XRAoizKePLwY2NxypkHAJG
-         A4vqDPq7KVHYj5b2I9+CSv8s5FPuPR0oUikZd2nR1QLdwCW/Ch9ufBvM92jpAHsEyJUK
-         dbUw==
-X-Gm-Message-State: AOAM530QxQlH1tTpHBBihwU71oTD1f85qkBorC0moV2eQhb3rfDXwXMd
-        kNrGU2B6WIAbt0y0+h3a+FA=
-X-Google-Smtp-Source: ABdhPJwJpOmUK49E3LeTsgzkI8+y91tIlB46nQfOTD778QVq5gZRib5LmUCXTPjYG103hZ2OLszbrQ==
-X-Received: by 2002:adf:ce0c:: with SMTP id p12mr1204705wrn.194.1631725576068;
-        Wed, 15 Sep 2021 10:06:16 -0700 (PDT)
-Received: from archbook.localnet ([185.213.155.232])
-        by smtp.gmail.com with ESMTPSA id f1sm509887wri.43.2021.09.15.10.06.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Sep 2021 10:06:15 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
-Date:   Wed, 15 Sep 2021 19:06:14 +0200
-Message-ID: <42974939.Tn3hggVSkZ@archbook>
-In-Reply-To: <20210915141012.GC12513@sirena.org.uk>
-References: <20210903231536.225540-1-frattaroli.nicolas@gmail.com> <20210903231536.225540-3-frattaroli.nicolas@gmail.com> <20210915141012.GC12513@sirena.org.uk>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=if+Oxfc9r3mAC+EiZGn7r+WWYsmde9lhPlbyKnYhzuQ=;
+        b=CVM9MpfMbdxCKczkLIvxOz+gVcdnZqPvx1v7RHUN7fl6QNxUwBLH6z8plpTuLwGV4i
+         VjGsByFYplE52psfpxl7lYM5yNlIBAbTdKCuU4KdOgVvn98dNaClR/hZns0rRSCvyduj
+         bkYAmxYIiyxtrsuqpDBMD43vYsSfB97CqLy7JFZg+r91yTZ5zqkpWPUl5YcK/A++n5pg
+         t0XXj/sxBXlORNOUxc00BCcrX1PlFf4vf+MsCc8Sg0zKWY+7vTf3jODkokSFL5Pg1LWt
+         rX51ThC28zhmGu22YOV+pXMlU+hX8EXObdl/cYs0qMC4dn2YZqgMdK59D9QoL6WO5ZKf
+         v2Xg==
+X-Gm-Message-State: AOAM533A15PzdRvuVKtii81VKyHQ8yC7gjd7dRPr/+wL5p4oNHb+cOKy
+        a4JFoSMSfIIXj5NmSAf9/qvUvlDQ7ec=
+X-Google-Smtp-Source: ABdhPJwnmJv9hJ3KPXAGXT/VeLTWr0f+Q2dKPsemiEfsjoB2wkJAac9lyQCubsBIkVCVVBxiGACOYw==
+X-Received: by 2002:aa7:8481:0:b0:43e:c776:e20b with SMTP id u1-20020aa78481000000b0043ec776e20bmr730488pfn.45.1631726566687;
+        Wed, 15 Sep 2021 10:22:46 -0700 (PDT)
+Received: from [172.30.1.2] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id v8sm5088615pjh.24.2021.09.15.10.22.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Sep 2021 10:22:46 -0700 (PDT)
+Subject: Re: [PATCH v4 0/3] extcon: usbc-tusb320: Initial TUSB320L support
+To:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Michael Auchter <michael.auchter@ni.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210901161339.223973-1-y.oudjana@protonmail.com>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Message-ID: <46b969d0-9039-67e4-53f9-c461718ff089@gmail.com>
+Date:   Thu, 16 Sep 2021 02:22:42 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <20210901161339.223973-1-y.oudjana@protonmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mittwoch, 15. September 2021 16:10:12 CEST Mark Brown wrote:
-> On Sat, Sep 04, 2021 at 01:15:34AM +0200, Nicolas Frattaroli wrote:
-> > +  rockchip,tdm-fsync-half-frame:
-> > +    description: Whether to use half frame fsync.
-> > +    type: boolean
-> > +
+On 21. 9. 2. 오전 1:13, Yassine Oudjana wrote:
+> The TUSB320L is a newer chip with additional features. It is close enough to TUSB320 so it works
+> to some extent out-of-the-box, but for some reason it can start in UFP mode which is not desirable.
 > 
-> Why is this not part of the normal bus format configuration?  I don't
-> know what this is but it sounds a lot like I2S mode...
+> This series adds support for reset and mode setting for both chips, and does that while probing
+> to ensure the chip starts with the default mode of following the PORT pin.
+> 
+> Changes since v3:
+>   - Remove unused tusb_modes.
+>   - Remove extra blank line.
+> Changes since v2:
+>   - Read state before setting default mode, then update it again after resetting.
+>   - Remove mode tracing from irq handler
+>   - Add a delay after reset to handle tSOFT_RESET
+>   - Use a separate mode setting function for each of TUSB320 and TUSB320L.
+> Changes since v1:
+>   - Split first patch into two patches, one adding support for mode setting and reset on TUSB320,
+>     and the other adding support for TUSB320L.
+>   - Fix dt_binding_check warning:
+>     ../Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml:15:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+> 
+> Yassine Oudjana (3):
+>    extcon: usbc-tusb320: Add support for mode setting and reset
+>    extcon: usbc-tusb320: Add support for TUSB320L
+>    dt-bindings: extcon: usbc-tusb320: Add TUSB320L compatible string
+> 
+>   .../bindings/extcon/extcon-usbc-tusb320.yaml  |   4 +-
+>   drivers/extcon/extcon-usbc-tusb320.c          | 156 +++++++++++++++++-
+>   2 files changed, 154 insertions(+), 6 deletions(-)
+> 
 
-This affects all TDM I2S modes, i.e. TDM Normal, TDM Left Justified and TDM 
-Right Justified.
+Applied them. Thanks.
 
-Without tdm-fsync-half-frame, we purportedly get the following output in TDM 
-Normal Mode (I2S Format):
-(ch0l = channel 0 left, ch0r = channel 0 right)
-
-fsync: 	_____________________________
-                     	            \____________________________
-sdi/sdo: ch0l, ch0r, ..., ch3l, ch3r,  ch0l, ch0r, ...
-
-With tdm-fsync-half-frame, we purportedly get the following:
-
-fsync: 	_____________________________
-                     	            \____________________________
-sdi/sdo: ch0l,  ch1l,  ch2l,  ch3l,   ch0r,  ch1r,  ch2r,  ch3r
-
-At least, according to the TRM. I do not have an oscilloscope to verify this 
-myself, and in the following paragraphs, I will elaborate why this seems 
-confusing to me.
-
-The comment block "DAI hardware signal polarity" in soc-dai.h seems to imply 
-that what the TRM says the tdm-fsync-half-frame mode is (if one inverts fsync 
-polarity of those waveforms), is what is expected:
-
-> * FSYNC "normal" polarity depends on the frame format:
-> * - I2S: frame consists of left then right channel data. Left channel starts
-> *      with falling FSYNC edge, right channel starts with rising FSYNC edge.
-> * - Left/Right Justified: frame consists of left then right channel data.
-> *      Left channel starts with rising FSYNC edge, right channel starts with
-> *      falling FSYNC edge.
-
-I don't know if this is only applicable to non-TDM I2S, and whether it's 
-normal to have the channels interleaved like that in TDM.
-
-I don't see any DAIFMT that does what this does in any case.
-
-So to answer the question, it's not part of the bus format because it applies 
-to three bus formats, and I'm completely out of my depth here and wouldn't 
-define three separate bus formats based on my own speculation of how this 
-works.
-
-
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
