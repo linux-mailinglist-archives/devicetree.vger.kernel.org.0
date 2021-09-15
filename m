@@ -2,93 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC9A340C7F0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 17:12:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0634140C800
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 17:14:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234113AbhIOPOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 11:14:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41468 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233977AbhIOPOD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 11:14:03 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13AC1C061766
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 08:12:44 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id q68so3012565pga.9
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 08:12:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=wsSC3ElljOcNuAZkoNqFxs8B8LwK8+PsifC2X+pKq7Y=;
-        b=zHdY0vpXi3Pehr90PDksje3KtwyZby9zVYvErd1f3eV5Pa9SrhfiiLDYEiY78DN8yp
-         e+495euySl52T9t+V2t4jh8/xuSmCkhO4oBtKFUoZ0obPPedm3f4F9cTiTzk+XpcVyFV
-         TsOUUcNlJxeXnsA5+TvASjwcGHl1k2GevSoClqzJcupRErVWzaXoMB0sL+rktxgLL8gH
-         LfZ6yYjipI18Z4+FkklOwqTJP+adgJPBLx9WQhMza19gSgVJhIuLnYf0m6YaZk+J5OFA
-         F1ybeX/Ylw1Ahvmf2uw/50ayrfzkakqMLGceTESq3nqCaWU1WarJwdJfmN9qZOofXSJ8
-         ieVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wsSC3ElljOcNuAZkoNqFxs8B8LwK8+PsifC2X+pKq7Y=;
-        b=UiajBUrVrcYbcRMqu3xZg72d0aecgyDCIyIbyaoqHsthqF16M2VXWdckwidiLB1L5J
-         FIvICj1uJuy8l+qUjRYKRt7Pri4gYPwIOw4pXCVcGt7Jvy6G+iOuzNLSYoGrZqyuyZmm
-         hBmxLgbBje8b7TIVQ8NbucjzEgArlEzw4S+LH0wKU3Pxkj6V/H55a7TBBmAiAY5x1+qj
-         J3yToEn/B6dN7K8suVuudaDXagv8hMvupu8xD2rckC2fSqNUVPbzfa6xR7ve9nFaGDVv
-         opbGk0u+AphvTIs2aUE+BK2W+XZSGh13ucUIsPbwpmfQKIwfwSm+AN6D9WdLrFcoLDwb
-         yqLg==
-X-Gm-Message-State: AOAM531DREC5LILwVZdGK7+o8QeyFh/0dwzzJFTsEh/At3iu+Ejvrit6
-        4/ropTbdropQxBSCRhFX3/LbxQ==
-X-Google-Smtp-Source: ABdhPJyGqBLjcp/KUd3ds6sWYN6mT2/YPk+mfHPuNRq4EgjEc+zEcs0+PCVfueU9CI7jAVkKj02vEw==
-X-Received: by 2002:a62:1c85:0:b0:440:3583:9fda with SMTP id c127-20020a621c85000000b0044035839fdamr455092pfc.0.1631718763504;
-        Wed, 15 Sep 2021 08:12:43 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id u10sm92513pjf.46.2021.09.15.08.12.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 15 Sep 2021 08:12:42 -0700 (PDT)
-Date:   Wed, 15 Sep 2021 23:12:37 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] clk: qcom: smd-rpm: Add rate hooks for
- clk_smd_rpm_branch_ops
-Message-ID: <20210915151236.GF25255@dragon>
-References: <20210914025554.5686-1-shawn.guo@linaro.org>
- <20210914025554.5686-2-shawn.guo@linaro.org>
- <YUFgmdhYK/p2v1LS@ripper>
+        id S238135AbhIOPPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 11:15:15 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:35316 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237961AbhIOPPM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 11:15:12 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18FFDgfu010872;
+        Wed, 15 Sep 2021 10:13:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631718822;
+        bh=SlLW5Xj9oEORlw+AqDDG6RwUyumDe2hRBZ/TEGWdrAk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=oW+UKS9jUXsaPDuvtDIvrmYFBC0Mbko/rPwKdslsIrPnVMTrHt2EI2Ji8oP9BvWBD
+         lHJihiWrRf8p42J/BKScYw+ZbZyyvEoS2jm3a/b/TqNuYlqaA8TMOoXI14D/w7kz5J
+         x+V/GGO9BdoUIMguesLi0W3VWSaeDtRhSQaicUrs=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18FFDfPW069214
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Sep 2021 10:13:41 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 15
+ Sep 2021 10:13:41 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 15 Sep 2021 10:13:41 -0500
+Received: from [10.250.232.51] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18FFDbjn106503;
+        Wed, 15 Sep 2021 10:13:38 -0500
+Subject: Re: [PATCH v2 00/15] PHY: Add support for multilink configurations in
+ Cadence Sierra PHY driver
+To:     Swapnil Jakhade <sjakhade@cadence.com>, <vkoul@kernel.org>,
+        <kishon@ti.com>, <robh+dt@kernel.org>, <p.zabel@pengutronix.de>,
+        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <mparab@cadence.com>, <lokeshvutla@ti.com>
+References: <20210908122930.10224-1-sjakhade@cadence.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <23a8f4d9-3467-1cf5-eec7-a4d33fe03458@ti.com>
+Date:   Wed, 15 Sep 2021 20:43:37 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YUFgmdhYK/p2v1LS@ripper>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210908122930.10224-1-sjakhade@cadence.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 14, 2021 at 07:55:21PM -0700, Bjorn Andersson wrote:
-> On Mon 13 Sep 19:55 PDT 2021, Shawn Guo wrote:
+
+On 08/09/21 5:59 pm, Swapnil Jakhade wrote:
+> Cadence Sierra PHY is a multiprotocol PHY supporting different multilink
+> PHY configurations. This patch series extends functionality of Sierra PHY
+> driver by adding features like support for multilink multiprotocol
+> configurations, derived reference clock etc.
 > 
-> > On QCM2290 platform, the clock xo_board runs at 38400000, while the
-> > child clock bi_tcxo needs to run at 19200000.  That said,
-> > clk_smd_rpm_branch_ops needs the capability of setting rate. Add rate
-> > hooks into clk_smd_rpm_branch_ops to make it possible.
-> > 
+> The changes have been validated on TI J721E platform.
 > 
-> Most platforms has a crystal oscillator ticking at 38.4MHz feeding the
-> PMIC (represented by the rpmcc and its "xo" parent) and out comes the
-> bi_tcxo with a fixed 19.2MHz rate.
+> Version History:
+> 
+> v2:
+>    - Added a new patch 3/15 to rename the SSC macros for dt-bindings
+>      to use generic names. These macros are not yet used in any DTS file.
+> 
+> Swapnil Jakhade (15):
+>   phy: cadence: Sierra: Use of_device_get_match_data() to get driver
+>     data
+>   phy: cadence: Sierra: Prepare driver to add support for multilink
+>     configurations
+>   dt-bindings: phy: cadence-torrent: Rename SSC macros to use generic
+>     names
+>   dt-bindings: phy: cadence-sierra: Add binding to specify SSC mode
+>   phy: cadence: Sierra: Add support to get SSC type from device tree
+>   phy: cadence: Sierra: Rename some regmap variables to be in sync with
+>     Sierra documentation
+>   phy: cadence: Sierra: Add PHY PCS common register configurations
+>   phy: cadence: Sierra: Check cmn_ready assertion during PHY power on
+>   phy: cadence: Sierra: Check PIPE mode PHY status to be ready for
+>     operation
+>   phy: cadence: Sierra: Update single link PCIe register configuration
+>   phy: cadence: Sierra: Fix to get correct parent for mux clocks
+>   phy: cadence: Sierra: Add support for PHY multilink configurations
+>   phy: cadence: Sierra: Add PCIe + QSGMII PHY multilink configuration
+>   dt-bindings: phy: cadence-sierra: Add clock ID for derived reference
+>     clock
+>   phy: cadence: Sierra: Add support for derived reference clock output
+> 
 
-Yeah, but all those platforms are running clk-rpmh driver, I think.
+for the complete series,
 
-> Is there a problem with the way sdm660_bi_tcxo is defined in this
-> regard?
+Reviewed-by: Aswath Govindraju <a-govindraju@ti.com>
 
-There is no problem if xo clock is 19.2MHz, but for platforms with
-38.4MHz xo, bi_tcxo will be seen as 38.4MHz in clock tree, while we
-expect it to be 19.2MHz.
+Thanks,
+Aswath
 
-Shawn
+>  .../bindings/phy/phy-cadence-sierra.yaml      |    9 +
+>  .../bindings/phy/phy-cadence-torrent.yaml     |    4 +-
+>  drivers/phy/cadence/phy-cadence-sierra.c      | 1299 +++++++++++++++--
+>  include/dt-bindings/phy/phy-cadence.h         |    9 +-
+>  4 files changed, 1226 insertions(+), 95 deletions(-)
+> 
+
