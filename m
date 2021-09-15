@@ -2,198 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE32B40BE03
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 05:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 429E540BE30
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 05:25:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229852AbhIODLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 23:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45834 "EHLO
+        id S236182AbhIOD1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 23:27:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbhIODLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 23:11:19 -0400
-Received: from mail-qv1-xf49.google.com (mail-qv1-xf49.google.com [IPv6:2607:f8b0:4864:20::f49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1727BC061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 20:10:01 -0700 (PDT)
-Received: by mail-qv1-xf49.google.com with SMTP id w13-20020a05621412ed00b0037cc26a5659so971366qvv.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 20:10:01 -0700 (PDT)
+        with ESMTP id S236169AbhIOD1A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 23:27:00 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E79C061764
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 20:25:41 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id l18so2501612lji.12
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 20:25:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=jAy5ZO2AeP18Q1PLRPQevhEuoLi1BItbrfO3lZX0e/4=;
-        b=QZzeguFKy9TLKw8z5mSOBfy/TDIRHtnS5H7qN/jShAO+2D7Xwv/vkvplU7REnkXTM7
-         UHLW7OjxC11f1ZCxwnk5sjza3pC0w4wlMcqBgOANM7uvvMn0IMdfzhveJnY3W9HFo0B+
-         YZM6HApRAA7U3+/D9cvWT80cf5XsmvMKe9S5y4/kEFCJ/CszhEH+3cjagUztSUeTtWgE
-         Z0h24Otr0friyTLJWCp3RdyLij9zrBjKRS3o/JxeaQrM20U9mNZH413fuRpjwoYtb6aP
-         9tboUQFCgfftuFArIU4eewPGBuMrCWFAjrk5LtLw+U2uiF7CFsjTVjmLYwYkaYmdj7ZK
-         s42Q==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Jpkoy1O4W37gxxZz4Q3BGON9SqZWsCkichzbFfj+wPo=;
+        b=j5pbDlKbHAd/SoLCe/0YXf/jcjOdh7iKg2fsZFsarJCya01vUWLgShKILNoLJ7fKDX
+         QYlstdoebXeBTxYpSIVHChb8b+8ERKwmiwpjChYkhJ1M0jnrKMS0za5Nc0xykKZh6ym7
+         EOn20yZdsi/QGUBN2LgWOZceToXqcG+/zRPKY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=jAy5ZO2AeP18Q1PLRPQevhEuoLi1BItbrfO3lZX0e/4=;
-        b=7wyHTlBx6IQ1bUBsQvQrms47CtgABhKwyBR0ZH9qQL1Kd9QEKV1VzKCN88lW93F/t8
-         L9dWWxrTYez18Lfmdsi/9MCOABtEOOy3TB1ygyN1aegV6Uj6lo9QU7OsUCeBaOx0bBDW
-         9zYb1PfTvL3GqBIfGZMXHVs6QnoKB7WUOOxFBQHzZcSrO8YUstgQQYBDQUA9iHBY0Shg
-         t0krVBrjbiNxia8BgTlIbQ6yEvuTvLTdhiR/luYxMDbzOBLVsDIJDEZBNwUpmOQA7+dm
-         xJGejbHFeYE88fV5fRrpR88koJCsydSx+G/ZDSRExJeBdI94lWimwsjet/y5do9QzXfe
-         vZ4g==
-X-Gm-Message-State: AOAM531HU/Q3JwFiDbwG030M2rV1G+lN4QmV7XtWONNtQ4xmCDT62TRf
-        MnOWjzNDX3okCspqkYrDP6WMMrMDfqU0
-X-Google-Smtp-Source: ABdhPJwvqKiGSSV6Z7HG2VYx+JKVRocjK1EXbL1IOtUvsjZjxJPnw/pSxdUioCC3EZSjArZHuu9B8+exbi1K
-X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:10:1d24:4827:7125:1e19])
- (user=tzungbi job=sendgmr) by 2002:a0c:9146:: with SMTP id
- q64mr8784899qvq.38.1631675400230; Tue, 14 Sep 2021 20:10:00 -0700 (PDT)
-Date:   Wed, 15 Sep 2021 11:09:53 +0800
-Message-Id: <20210915030953.2347176-1-tzungbi@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.33.0.309.g3052b89438-goog
-Subject: [PATCH v4] ASoC: dt-bindings: mediatek: mt8192: re-add audio afe document
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     broonie@kernel.org, robh+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, tzungbi@google.com,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Jpkoy1O4W37gxxZz4Q3BGON9SqZWsCkichzbFfj+wPo=;
+        b=fJGEsDae1mn/9DqxMLoxr1VxXpWQ/rh0OnnN8ldMIFi4/ZGNJDhfW2oMQzs2XB9Xa4
+         QzUPeYDkshDFUwZVB7t3bwnKM1VkEiRariYfuREP6h+ouOjUYNUIHW0xSKv/LE4T4bKK
+         UFJfYwxgl6tfWFBjEWn0zZSGIbyBkNDKEJRG47DiQinWG+YAiF/oDEppFYg8Azyole4C
+         Jxo68dMnpaEVlyN9lNFTbWqMiGcbTD0aJdowp5T0Aec80yoRTMEc2QIAbBiUmpexo4RR
+         q2E4k2bDcE7ipQDLkYsMKLr4BFOK4qDud6Vh0rGXS+iUIX4ximCABqxdzfsiHqRpY0Kz
+         Z95g==
+X-Gm-Message-State: AOAM531r1l9U+iJUcMwb8IfYiFOtZKvHlAhuExJtJKQXcr4A1UvIMxW+
+        tvcihK3Dve0zB3B4/HjZHBeDCR6XIkR37IX7OTT31g==
+X-Google-Smtp-Source: ABdhPJzxW4QysuCYdlnzVAVxRBzARMIBn0RRJp/tSFmhr5M92N1O+bjF81zqZa2hjgCSzEpa1xAoPr+pFCI3qHYh47I=
+X-Received: by 2002:a2e:7d17:: with SMTP id y23mr18546099ljc.392.1631676339641;
+ Tue, 14 Sep 2021 20:25:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210830003603.31864-1-zhiyong.tao@mediatek.com>
+ <20210830003603.31864-2-zhiyong.tao@mediatek.com> <CAGXv+5HeNj2Ly-T1bWMvnYXv6nP-Q1kv+D9QEd+5u4xfNVibOg@mail.gmail.com>
+ <1630551265.2247.11.camel@mhfsdcap03> <CAGXv+5E2pmS7Og5bRH8Q8yvXPHkJuL6EXKORkq1-Ye+2qNYQpg@mail.gmail.com>
+ <4787120f25e76ed3727e10011522fc075da52e32.camel@mediatek.com>
+ <CAGXv+5H6Hj9tGkpMHs_uBTcztDBZ_YJ2PUV7J8+abR+5BEsV2g@mail.gmail.com> <05f453a466995a6c272d585f18e81c5fcb837a0b.camel@mediatek.com>
+In-Reply-To: <05f453a466995a6c272d585f18e81c5fcb837a0b.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 15 Sep 2021 11:25:28 +0800
+Message-ID: <CAGXv+5FF25a=28YNmVx_FNJ1o+OrR_LWkd1VPe6ejoxX9-bkaA@mail.gmail.com>
+Subject: Re: [PATCH v11 1/4] dt-bindings: pinctrl: mt8195: add rsel define
+To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
+        Light Hsieh <light.hsieh@mediatek.com>,
+        Biao Huang <biao.huang@mediatek.com>,
+        Hongzhou Yang <hongzhou.yang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The document was merged as commit 1afc60e00de3 ("dt-bindings:
-mediatek: mt8192: add audio afe document").
+On Tue, Sep 14, 2021 at 8:27 PM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
+>
+> On Mon, 2021-09-06 at 16:20 +0800, Chen-Yu Tsai wrote:
+> > On Sat, Sep 4, 2021 at 4:40 PM zhiyong.tao <zhiyong.tao@mediatek.com>
+> > wrote:
+> > >
+> > > On Thu, 2021-09-02 at 11:35 +0800, Chen-Yu Tsai wrote:
+> > > > On Thu, Sep 2, 2021 at 10:54 AM zhiyong.tao <
+> > > > zhiyong.tao@mediatek.com
+> > > > > wrote:
+> > > > >
+> > > > > On Wed, 2021-09-01 at 12:35 +0800, Chen-Yu Tsai wrote:
+> > > > > > On Mon, Aug 30, 2021 at 8:36 AM Zhiyong Tao <
+> > > > > > zhiyong.tao@mediatek.com> wrote:
+> > > > > > >
+> > > > > > > This patch adds rsel define for mt8195.
+> > > > > > >
+> > > > > > > Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+> > > > > > > ---
+> > > > > > >  include/dt-bindings/pinctrl/mt65xx.h | 9 +++++++++
+> > > > > > >  1 file changed, 9 insertions(+)
+> > > > > > >
+> > > > > > > diff --git a/include/dt-bindings/pinctrl/mt65xx.h
+> > > > > > > b/include/dt-
+> > > > > > > bindings/pinctrl/mt65xx.h
+> > > > > > > index 7e16e58fe1f7..f5934abcd1bd 100644
+> > > > > > > --- a/include/dt-bindings/pinctrl/mt65xx.h
+> > > > > > > +++ b/include/dt-bindings/pinctrl/mt65xx.h
+> > > > > > > @@ -16,6 +16,15 @@
+> > > > > > >  #define MTK_PUPD_SET_R1R0_10 102
+> > > > > > >  #define MTK_PUPD_SET_R1R0_11 103
+> > > > > > >
+> > > > > > > +#define MTK_PULL_SET_RSEL_000  200
+> > > > > > > +#define MTK_PULL_SET_RSEL_001  201
+> > > > > > > +#define MTK_PULL_SET_RSEL_010  202
+> > > > > > > +#define MTK_PULL_SET_RSEL_011  203
+> > > > > > > +#define MTK_PULL_SET_RSEL_100  204
+> > > > > > > +#define MTK_PULL_SET_RSEL_101  205
+> > > > > > > +#define MTK_PULL_SET_RSEL_110  206
+> > > > > > > +#define MTK_PULL_SET_RSEL_111  207
+> > > > > >
+> > > > > > Could you keep the spacing between constants tighter, or have
+> > > > > > no
+> > > > > > spacing
+> > > > > > at all? Like having MTK_PULL_SET_RSEL_000 defined as 104 and
+> > > > > > so
+> > > > > > on. This
+> > > > > > would reduce the chance of new macro values colliding with
+> > > > > > actual
+> > > > > > resistor
+> > > > > > values set in the datasheets, plus a contiguous space would
+> > > > > > be
+> > > > > > easy to
+> > > > > > rule as macros.
+> > > > > >
+> > > > > > ChenYu
+> > > > >
+> > > > > Hi chenyu,
+> > > > > By the current solution, it won't be mixed used by
+> > > > > MTK_PULL_SET_RSEL_XXX
+> > > > > and real  resistor value.
+> > > > > If user use MTK_PULL_SET_RSEL_XXX, They don't care the define
+> > > > > which
+> > > > > means how much resistor value.
+> > > >
+> > > > What I meant was that by keeping the value space tight, we avoid
+> > > > the
+> > > > situation where in some new chip, one of the RSEL resistors
+> > > > happens
+> > > > to
+> > > > be 200 or 300 ohms. 100 is already taken, so there's nothing we
+> > > > can
+> > > > do if new designs actually do have 100 ohm settings.
+> > > >
+> > > > > We think that we don't contiguous macro space for different
+> > > > > register.
+> > > > > It may increase code complexity to make having
+> > > > > MTK_PULL_SET_RSEL_000
+> > > > > defined as 104.
+> > > >
+> > > > Can you elaborate? It is a simple range check and offset
+> > > > handling.
+> > > > Are
+> > > > you concerned that a new design would have R2R1R0 and you would
+> > > > like
+> > > > the macros to be contiguous?
+> > > >
+> > > > BTW I don't quite get why decimal base values (100, 200, etc.)
+> > > > were
+> > > > chosen. One would think that binary bases are easier to handle in
+> > > > code.
+> > > >
+> > > >
+> > > > ChenYu
+> > > >
+> > >
+> > > Yes,we concerned that a new design would have R2R1R0 and we would
+> > > like
+> > > the macros to be contiguous in the feature. we reserve it.
+> >
+> > I see. That makes sense. Do you expect to see R3 or even R4 in the
+> > future?
+> > Or put another way, do you expect to see resistor values of 150 or
+> > 200
+> > supported?
+> >
+> > Maybe we could reserve 200 and start from 201 for the RSEL macros?
+> >
+> > Some planning needs to be done here to avoid value clashes.
+> >
+> > > We think that decimal and binary base values are the same for the
+> > > feature.
+> >
+> > With decimal numbers you end up wasting a bit more space, since the
+> > hardware is always using binary values. I just found it odd, that's
+> > all.
+> >
+> > ChenYu
+> >
+> > > > > Thanks.
+>
+> Hi ChenYu,
+>
+> In the next version, we provide a solution which we discussed internal
+> to avoid value clashes.
+>
+> The solution:
+> 1. We will keep the define "MTK_PULL_SET_RSEL_000 200". It won't
+> change.
+>
+> 2. We will add a property in pio dtsi node, for example,
+> the property name is "rsel_resistance_in_si_unit".
+> We will add a flag "rsel_si_unit" in pinctrl device.
+> in probe function, we will identify the property name
+> "rsel_resistance_in_si_unit" to set the flag "rsel_si_unit" value.
+> So it can void value clashes.
 
-However, [1] revealed that the commit 1afc60e00de3 breaks
-dt_binding_check due to dt-bindings/clock/mt8192-clk.h doesn't
-exist.
+I suppose a "mediatek," prefix should be added. And to future proof
+things this should probably apply to all bias-up/down values, so
+"mediatek,bias-resistance-in-si-units"?
 
-As a temporary fix, commit 7d94ca3c8acd ("ASoC: mt8192: revert
-add audio afe document") reverted commit 1afc60e00de3.
+And the description should include something like that:
 
-dt-bindings/clock/mt8192-clk.h is in mainline per commit
-f35f1a23e0e1 ("clk: mediatek: Add dt-bindings of MT8192 clocks").
-Re-adds the document back.
+  Past usage of bias-up/down values included magic numbers to specify
+  different hardware configurations based on register values. This
+  property specifies that all values used for bias-up/down for this
+  controller shall be in SI units.
 
-[1]: https://mailman.alsa-project.org/pipermail/alsa-devel/2020-November/176873.html
+And this proposal is still subject to maintainer (not me) review.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
----
-Changes from v3 (https://mailman.alsa-project.org/pipermail/alsa-devel/2021-September/189705.html):
-- Fix the indent errors.
 
-Changes from v2 (https://mailman.alsa-project.org/pipermail/alsa-devel/2021-August/189058.html):
-- Simplify the commit message.
+> 3.We will provide the define "MTK_PULL_SET_RSEL_000 200" and si unit
+> two solution. users can support which solution by add property
+> "rsel_resistance_in_si_unit" in dts node or not.
 
-Changes from v1 (https://mailman.alsa-project.org/pipermail/alsa-devel/2021-August/189048.html):
-- Add more context to the commit message.
+Thanks. I think this solution does provide a clear separation of the
+two value spaces.
 
- .../bindings/sound/mt8192-afe-pcm.yaml        | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+ChenYu
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-new file mode 100644
-index 000000000000..5e9fe067f440
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek AFE PCM controller for mt8192
-+
-+maintainers:
-+  - Jiaxin Yu <jiaxin.yu@mediatek.com>
-+  - Shane Chien <shane.chien@mediatek.com>
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt8192-audio
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: audiosys
-+
-+  mediatek,apmixedsys:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of the mediatek apmixedsys controller
-+
-+  mediatek,infracfg:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of the mediatek infracfg controller
-+
-+  mediatek,topckgen:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of the mediatek topckgen controller
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: AFE clock
-+      - description: ADDA DAC clock
-+      - description: ADDA DAC pre-distortion clock
-+      - description: audio infra sys clock
-+      - description: audio infra 26M clock
-+
-+  clock-names:
-+    items:
-+      - const: aud_afe_clk
-+      - const: aud_dac_clk
-+      - const: aud_dac_predis_clk
-+      - const: aud_infra_clk
-+      - const: aud_infra_26m_clk
-+
-+required:
-+  - compatible
-+  - interrupts
-+  - resets
-+  - reset-names
-+  - mediatek,apmixedsys
-+  - mediatek,infracfg
-+  - mediatek,topckgen
-+  - power-domains
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/mt8192-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/power/mt8192-power.h>
-+    #include <dt-bindings/reset-controller/mt8192-resets.h>
-+
-+    afe: mt8192-afe-pcm {
-+        compatible = "mediatek,mt8192-audio";
-+        interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>;
-+        resets = <&watchdog MT8192_TOPRGU_AUDIO_SW_RST>;
-+        reset-names = "audiosys";
-+        mediatek,apmixedsys = <&apmixedsys>;
-+        mediatek,infracfg = <&infracfg>;
-+        mediatek,topckgen = <&topckgen>;
-+        power-domains = <&scpsys MT8192_POWER_DOMAIN_AUDIO>;
-+        clocks = <&audsys CLK_AUD_AFE>,
-+                 <&audsys CLK_AUD_DAC>,
-+                 <&audsys CLK_AUD_DAC_PREDIS>,
-+                 <&infracfg CLK_INFRA_AUDIO>,
-+                 <&infracfg CLK_INFRA_AUDIO_26M_B>;
-+        clock-names = "aud_afe_clk",
-+                      "aud_dac_clk",
-+                      "aud_dac_predis_clk",
-+                      "aud_infra_clk",
-+                      "aud_infra_26m_clk";
-+    };
-+
-+...
--- 
-2.33.0.309.g3052b89438-goog
-
+> > > > >
+> > > > > >
+> > > > > > >  #define MTK_DRIVE_2mA  2
+> > > > > > >  #define MTK_DRIVE_4mA  4
+> > > > > > >  #define MTK_DRIVE_6mA  6
+> > > > > > > --
+> > > > > > > 2.18.0
+> > > > > > > _______________________________________________
+> > > > > > > Linux-mediatek mailing list
+> > > > > > > Linux-mediatek@lists.infradead.org
+> > > > > > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
