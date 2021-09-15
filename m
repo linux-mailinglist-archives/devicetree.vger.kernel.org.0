@@ -2,84 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E36040C39D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 12:30:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4B9640C3BC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 12:42:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232317AbhIOKbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 06:31:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52700 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232304AbhIOKbc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 06:31:32 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 8407A61264;
-        Wed, 15 Sep 2021 10:30:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631701813;
-        bh=jdmVvPHukyHZKRwq9G234NU2Mc/pWdC6USWlLOKk20E=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=l8JddP0ugQQGqzeFk9LiE5jTKqyxQdHaQPFUf6BJAJevYqLVtqznqKAYMt/vKYDAW
-         svXoYXsGgz171uYcmd9eDlyGY4UZcm7ZansKDK+AQ+wLOz9Lo2uV4AjKWCn1yRlb95
-         cFSiSxb3h7MpOMGcRESXzCL62V5pb32u7+2Jmo/x9FZUxGN3+XYYfv+nst9HghQcZi
-         BKUl7XmwT/f2Fa5tqQEZYN9L41lYrXZL5X6l3M31ekA4abOGevSSX+iza22yPxBLfq
-         YLqIfzSk9gELc+d6GuwWmnez9RPTV898CyLYzIcMzT0SPRzH6I9fzxkw278LvDVdqx
-         zXdj8d+2K5rVA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 7336060BC7;
-        Wed, 15 Sep 2021 10:30:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S232222AbhIOKnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 06:43:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231940AbhIOKns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 06:43:48 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC70C061574;
+        Wed, 15 Sep 2021 03:42:30 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id b21-20020a1c8015000000b003049690d882so4402737wmd.5;
+        Wed, 15 Sep 2021 03:42:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sgo6Yb1X9wS95dBMTKdBBDgrxoGCLEJr8Z6/JZ15/ic=;
+        b=Q6igbe40DJKzHRUCwY6lSsF1a0SUYMZ7BX/lZz4SHix092qAU4camkUkL+gXx5Q2XC
+         /QhvgRZ3uMBqJEprU4LB+oLGa2sVZI+qA6+PpGzgwh4sAW6znXV3Ioy3TRmuFbkAnFVz
+         SC7RCyTvnfB9L+zvEI6LgJU98+HHM9xtjmsyVv8w5rKkXPfVilqe91FNZTg3rlMArhs8
+         bxkr518Z6G7rsrXMJEiSjCSL83q+fChDF8FQ1m4k1xHG6b8fHC1/Mj6sBejoLzgfeNFs
+         /E5FPVM98ZcZd2bOcdCadQ3ttDWibAJmDvZxBs5n0D0WNv4j5hjjxpSJEiOU9PbpbfZ1
+         v8rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sgo6Yb1X9wS95dBMTKdBBDgrxoGCLEJr8Z6/JZ15/ic=;
+        b=t8Z53gMvXDD9/wT14RbJz/TT0r8cDctgEknqcTpXsLv/r6JvMXhaMKlS/JL36/YCWu
+         fODs0Gr2LoH1YuwO3kbfbBwRTZ8smBd9yMXXqdctQlHjAURByC3qxWGO+v1cC3f91WEA
+         J4YCsrjbBMhAWewH7Z1HGGPEPms9bdh4NWdDRaCWaNMAGgN6N5JuJCTTrsOF2WCc2NN/
+         oqUw+bbK/QgyM65HWxQp86CMf6VDhq2gy52zs7D3IrKPPSVvQ4JLznQ6lChyoWBCom6M
+         IBgfgi51avJ+ncO6f5/f1c0Wly9JVx+XTH9qzwlpJCu9OpkWzvD1f1HtuI7Mbp1HRvis
+         4mqQ==
+X-Gm-Message-State: AOAM5331OdIUrRGF2l4Ayjp0ww+1uR9rX/wkhrHzead7tKejFcXVheiN
+        bQ93idyVgp2cyOTvzkncB0o=
+X-Google-Smtp-Source: ABdhPJyLUFn5YuG/uyaSOIJoVC3BBuFKn7Lg+SDIEmzpI4CJQq5QpM0b/c5Fe8i0kE35K6gOMuvkmQ==
+X-Received: by 2002:a1c:19c6:: with SMTP id 189mr3696144wmz.174.1631702548689;
+        Wed, 15 Sep 2021 03:42:28 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3d3:9cc4::e68])
+        by smtp.gmail.com with ESMTPSA id i2sm9023751wrq.78.2021.09.15.03.42.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Sep 2021 03:42:27 -0700 (PDT)
+From:   "=?UTF-8?q?Bastien=20Roucari=C3=A8s?=" <roucaries.bastien@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Bastien=20Roucari=C3=A8s?= <rouca@debian.org>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Chen-Yu Tsai <wens@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Salvatore Bonaccorso <carnil@debian.org>,
+        =?UTF-8?q?Bastien=20Roucari=C3=A8s?= <rouca@debian.org>
+Subject: [PATCH] [PATCH] ARM: dts: sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode
+Date:   Wed, 15 Sep 2021 10:41:56 +0000
+Message-Id: <20210915104155.2237481-1-rouca@debian.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next 1/8] MIPS: lantiq: dma: add small delay after reset
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <163170181346.3937.14860350740093197209.git-patchwork-notify@kernel.org>
-Date:   Wed, 15 Sep 2021 10:30:13 +0000
-References: <20210914212105.76186-1-olek2@wp.pl>
-In-Reply-To: <20210914212105.76186-1-olek2@wp.pl>
-To:     Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc:     john@phrozen.org, tsbogend@alpha.franken.de, maz@kernel.org,
-        ralf@linux-mips.org, ralph.hempel@lantiq.com, davem@davemloft.net,
-        kuba@kernel.org, robh+dt@kernel.org, hauke@hauke-m.de,
-        dev@kresin.me, arnd@arndb.de, jgg@ziepe.ca, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay
+config") sets the RX/TX delay according to the phy-mode property in the
+device tree. For the A20-olinuxino-lime2 board this is "rgmii", which is the
+wrong setting.
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+Following the example of a900cac3750b ("ARM: dts: sun7i: a20: bananapro:
+Fix ethernet phy-mode") the phy-mode is changed to "rgmii-id" which gets
+the Ethernet working again on this board.
 
-On Tue, 14 Sep 2021 23:20:58 +0200 you wrote:
-> Reading the DMA registers immediately after the reset causes
-> Data Bus Error. Adding a small delay fixes this issue.
-> 
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
-> ---
->  arch/mips/lantiq/xway/dma.c | 3 +++
->  1 file changed, 3 insertions(+)
+Signed-off-by: Bastien Roucariès <rouca@debian.org>
+---
+ arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Here is the summary with links:
-  - [net-next,1/8] MIPS: lantiq: dma: add small delay after reset
-    https://git.kernel.org/netdev/net-next/c/c12aa581f6d5
-  - [net-next,2/8] MIPS: lantiq: dma: reset correct number of channel
-    https://git.kernel.org/netdev/net-next/c/5ca9ce2ba4d5
-  - [net-next,3/8] MIPS: lantiq: dma: fix burst length for DEU
-    https://git.kernel.org/netdev/net-next/c/5ad74d39c51d
-  - [net-next,4/8] MIPS: lantiq: dma: make the burst length configurable by the drivers
-    https://git.kernel.org/netdev/net-next/c/49293bbc50cb
-  - [net-next,5/8] net: lantiq: configure the burst length in ethernet drivers
-    https://git.kernel.org/netdev/net-next/c/14d4e308e0aa
-  - [net-next,6/8] dt-bindings: net: lantiq-xrx200-net: convert to the json-schema
-    https://git.kernel.org/netdev/net-next/c/5535bcfa725a
-  - [net-next,7/8] dt-bindings: net: lantiq,etop-xway: Document Lantiq Xway ETOP bindings
-    https://git.kernel.org/netdev/net-next/c/dac0bad93741
-  - [net-next,8/8] dt-bindings: net: lantiq: Add the burst length properties
-    https://git.kernel.org/netdev/net-next/c/c68872146489
-
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+index 8077f1716fbc..ecb91fb899ff 100644
+--- a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
++++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+@@ -112,7 +112,7 @@ &gmac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	status = "okay";
+ };
+ 
+-- 
+2.33.0
 
