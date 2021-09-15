@@ -2,119 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DFCD40CD55
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 21:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED2240CD7E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 21:52:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231676AbhIOTmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 15:42:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47546 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231585AbhIOTmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 15:42:18 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EE13C061764
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 12:40:59 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id k12-20020a056830150c00b0051abe7f680bso5135189otp.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 12:40:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=mDzdWtBB1uSsJFNpS+LW0eoU/BmEDcIzioUx3tBX9MQ=;
-        b=Ly9kyawmN861/4Wr1C8M9aEGfTfVB+G/JQ7VM6jBRtd5RWpnuD2lPePwRMRuLavd/Z
-         l8suHz6HXSPxNA92D6B5fDECCdQZfwfXlT/5HCGbUPotXdK7yhmz23qRgEnePR+XiRHf
-         BSt2Q4tYyys9osDsdTtmsmngLHLwlhPe6oNPU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=mDzdWtBB1uSsJFNpS+LW0eoU/BmEDcIzioUx3tBX9MQ=;
-        b=67LvJSp/OOneXvRMhXZOjgo3TfMyBcHm7CZGSkeaa7ZLOPvW8zwhSpjhsmGzPz85x3
-         JRZaMvc/iN5C7rL7aYqqe9f32FG9HN0OUAH+aXC4oZbv4bvjyxVM5U1+o8CJXY2/XoUs
-         QiYwgyVBFap9wgUM61E8DPnBPJr9W742tOwcFcFiT6Snvf75tfliHueX1RCxM89LcKuv
-         3qISapwAVUp5qAmx6diP7eP+wHVpfvTKTQ10xPi4NSu/TO2MN+BfxJ1oz+e+o4rIlSFa
-         IMfiIF08qOCFR4H6uslo5u/yukI9tHzojWOZYi6Yg91kTowB8Fe4tHjx2RwMoBIGjUCu
-         iGrw==
-X-Gm-Message-State: AOAM5310VQJaisRJJ0xMRjIDGhkMKHUnKwwVyhd4v55QvEtILYJlpVEr
-        8j2ygkh4fBpeDtf5Ln9BtzXCBrvlQITgJL3FwJbwQg==
-X-Google-Smtp-Source: ABdhPJwivxhkg8fCpBrYDaYtdYT13Ef9VjmdoM5RJyzQ0CrKUqXreux0XnV6qMdYSvfLig+lS8I5BpdTbzuXMDMwPsI=
-X-Received: by 2002:a05:6830:18c7:: with SMTP id v7mr1527419ote.126.1631734858214;
- Wed, 15 Sep 2021 12:40:58 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Sep 2021 12:40:57 -0700
+        id S231585AbhIOTxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 15:53:20 -0400
+Received: from mga05.intel.com ([192.55.52.43]:19949 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229732AbhIOTxT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 15:53:19 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="307963041"
+X-IronPort-AV: E=Sophos;i="5.85,296,1624345200"; 
+   d="scan'208";a="307963041"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 12:52:00 -0700
+X-IronPort-AV: E=Sophos;i="5.85,296,1624345200"; 
+   d="scan'208";a="482468324"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 12:51:55 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 42E0920656; Wed, 15 Sep 2021 22:51:53 +0300 (EEST)
+Date:   Wed, 15 Sep 2021 22:51:53 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-staging@lists.linux.dev, Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 15/22] media: sunxi: Remove the sun6i-csi driver
+ implementation
+Message-ID: <YUJO2cG/46vOkuBe@paasikivi.fi.intel.com>
+References: <20210910184147.336618-1-paul.kocialkowski@bootlin.com>
+ <20210910184147.336618-16-paul.kocialkowski@bootlin.com>
+ <20210913081707.3pjcfuwan46pbdep@gilmour>
+ <YUBXiSrQjccLoa8b@aptenodytes>
 MIME-Version: 1.0
-In-Reply-To: <36fe241f845a27b52509274d007948b1@codeaurora.org>
-References: <1629458622-4915-1-git-send-email-okukatla@codeaurora.org>
- <1629458622-4915-4-git-send-email-okukatla@codeaurora.org>
- <CAE-0n51WBdLoJRPs9tWZgdAukJMnkD3V00o7xNYVX77-eToKvw@mail.gmail.com>
- <749157bdb4613ae370adfb7ba055a2a9@codeaurora.org> <36fe241f845a27b52509274d007948b1@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 15 Sep 2021 12:40:57 -0700
-Message-ID: <CAE-0n53g=qGoVAMh_me_W0ksp39WUm2CCwAttcAK+Do5nYXq5g@mail.gmail.com>
-Subject: Re: [v7 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect provider
-To:     okukatla@codeaurora.org
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        evgreen@google.com, georgi.djakov@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mdtipton@codeaurora.org, sibis@codeaurora.org,
-        saravanak@google.com, seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
-        okukatla=codeaurora.org@codeaurora.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YUBXiSrQjccLoa8b@aptenodytes>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting okukatla@codeaurora.org (2021-09-14 23:26:19)
-> On 2021-09-15 10:35, okukatla@codeaurora.org wrote:
-> > On 2021-09-04 00:36, Stephen Boyd wrote:
-> >> Quoting Odelu Kukatla (2021-08-20 04:23:41)
-> >>> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
-> >>> SoCs.
-> >>>
-> >>> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
-> >>> ---
-> >>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 11 +++++++++++
-> >>>  1 file changed, 11 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> index 53a21d0..cf59b47 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> @@ -1848,6 +1848,17 @@
-> >>>                         };
-> >>>                 };
-> >>>
-> >>> +               epss_l3: interconnect@18590000 {
-> >>> +                       compatible = "qcom,sc7280-epss-l3";
-> >>> +                       reg = <0 0x18590000 0 1000>,
-> >>
-> >> Is this supposed to be 0x1000?
-> >>
-> > No, This is 1000 or 0x3E8.
+Hi Paul, Maxime,
 
-Wow ok. Why is it the only size that isn't in hex format? Please try to
-be consistent and use hex throughout.
+On Tue, Sep 14, 2021 at 10:04:25AM +0200, Paul Kocialkowski wrote:
+> Hi,
+> 
+> On Mon 13 Sep 21, 10:17, Maxime Ripard wrote:
+> > On Fri, Sep 10, 2021 at 08:41:40PM +0200, Paul Kocialkowski wrote:
+> > > As described in the commit adding support for the new sun6i-csi driver,
+> > > a complete rewrite was necessary to support the Allwinner A31 ISP as
+> > > well as fix a number of issues with the current implementation.
+> > > 
+> > > Farewell and thanks for all the pixels!
+> > > 
+> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > 
+> > For completeness, this is what the other commit log mentions:
+> > 
+> > > While adapting the sun6i-csi driver for MIPI CSI-2 support was
+> > > possible, it became clear that adding support for the ISP required
+> > > very heavy changes to the driver which were quite hard to break down
+> > > into a series of subsequent changes.
+> > 
+> > > The first major difficulty comes from the lack of v4l2 subdev that
+> > > acts a bridge, separate from the video node representing the DMA
+> > > engine. To support the ISP, only parts of the hardware must be
+> > > configured (excluding aspects related to the DMA output), which made
+> > > the separation a hard requirement.
+> > 
+> > > Another significant difficulty was the specific dance that is required
+> > > to have both the ISP and CSI device be part of the same media device.
+> > > Because the ISP and CSI are two different hardware blocks, they have
+> > > two distinct drivers that will each try to register their own v4l2
+> > > and media devices, resulting in two distinct pipelines. When the ISP
+> > > is in use, we actually want the CSI driver to register with the ISP's
+> > > v4l2 and media devices while keeping the ability to register its own
+> > > when the ISP is not in use. This is done by:
+> > > 1. Having the CSI driver check whether the ISP is available, using
+> > >    sun6i_csi_isp_detect();
+> > > 2. If not, it can register when its own async subdevs are ready, using
+> > >    sun6i_csi_v4l2_complete();
+> > > 3. If so, it will register its bridge as an async subdev which will
+> > >    be picked-up by the ISP driver (from the fwnode graph link);
+> > > 4. When the subdev becomes bound to the ISP's v4l2 device, we can
+> > >    then access that device (and the associated media device) to
+> > >    complete registration of the capture video node, using
+> > >    sun6i_csi_isp_complete();
+> > > Besides the logic rework, other issues were identified and resolved:
+> > > - The sync mechanism for buffer flipping was based on the frame done
+> > >   interrupt, which is too late (next frame is already being processed).
+> > >   This lead to requiring 3 buffers to start and writing two addresses
+> > >   when starting. Using vsync as a sync point seems to be the correct
+> > >   approach and allows using only two buffers without tearing;
+> > > - Using devm_regmap_init_mmio_clk was incorrect since the reset also
+> > >   comes into play;
+> > > - Some register definitions were inverted compared to their actual
+> > >   effect (which was inherited from the Allwinner documentation and
+> > >   code): comments were added where relevant;
+> > > - The deprecated v4l2_async_notifier_parse_fwnode_endpoints() helper
+> > >   is no longer used by the driver;
+> > 
+> > With that being said, NAK.
+> > 
+> > Having heavy changes to a driver is completely fine, and is kind of
+> > expected really with such a big change. Breaking all possibility of
+> > bisection and throwing away years of stabilization and maintenance
+> > isn't.
+> > 
+> > And all those small bug fixes you mention at the end are just that:
+> > small bug fixes that can be done on the current driver just fine too.
+> 
+> I understand that this looks like we're trashing all the work that was
+> done previously by removing the current driver and adding the new one
+> but the logic for deciding what to write into registers was carefully
+> preserved from the original driver to make sure that the works of
+> stabilization and maintenance are not lost.
+> 
+> However I would understand that my good promise on this is not enough,
+> so perhaps I could provide a combinatory verification that the same set
+> of mbus/pixel formats end up with the same thing being written into
+> registers.
+> 
+> In addition I understand that it will be necessary to split the changes
+> up into small commits to clarify the transition path between the two
+> drivers. So I will do my best to split things up.
+> 
+> Does that seem like an agreeable plan or do you see other things that
+> would be blockers?
 
-> We have mapped only required registers for L3 scaling, 1000/0x3E8 is
-> suffice.
-> But i will update it to 0x1000 in next revision so that entire clock
-> domain region-0 is mapped.
+Please do refactor the patches into reviewable chunks that make sense on
+their own. I'd see the result being the same driver but with additional
+patches fixing bugs, doing some or more refactoring and adding new
+functionality. Please use -C100 -M100 if there's a need to rename files,
+and preferrably do so in separate patches.
 
-Doesn't that conflict with the cpufreq-hw device?
+See e.g. patches to the smiapp driver that turned it into a CCS driver:
 
-> >>> +                             <0 0x18591000 0 0x100>,
-> >>> +                             <0 0x18592000 0 0x100>,
-> >>> +                             <0 0x18593000 0 0x100>;
-> >>> +                       clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc
-> >>> GCC_GPLL0>;
-> >>> +                       clock-names = "xo", "alternate";
-> >>> +                       #interconnect-cells = <1>;
-> >>> +               };
-> >>> +
-> >>>                 cpufreq_hw: cpufreq@18591000 {
-> >>>                         compatible = "qcom,cpufreq-epss";
-> >>>                         reg = <0 0x18591100 0 0x900>,
+	git log 2db8166f739e75c1269d7e8afe8da68e70098810..b24cc2a18c50e4e315abc76a86b26b4c49652f79~ -- drivers/media/i2c/smiapp
+	git log drivers/media/i2c/ccs
+
+Usually bugfixes are best put first.
+
+> 
+> My initial thought was that it would be much easier to review the driver as a
+> rewrite, but I'm not too surprised I was wrong. To be honest it was nearly
+> impossible to actually have the initial development happen as sequential steps
+> and I preferred to allocate my time on other tasks than splitting the changes
+> into these sequential steps.
+
+This isn't really unusual when you're changing an existing driver:
+sometimes you have to implement what you want to achieve in whole, and only
+then figure out how to split it into something that can be reviewed. Often
+the end result will look different than what you arrived with on the first
+time.
+
+-- 
+Kind regards,
+
+Sakari Ailus
