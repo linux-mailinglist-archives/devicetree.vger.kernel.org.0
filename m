@@ -2,181 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7836940C259
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 11:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D054140C25E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 11:06:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231805AbhIOJGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 05:06:33 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:60288 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233048AbhIOJGd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 05:06:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1631696714; x=1663232714;
-  h=subject:to:references:from:message-id:date:mime-version:
-   in-reply-to:content-transfer-encoding;
-  bh=J9NSTBFBDD6Euze/JyKQc/2xOsESGf+Cb3hPj272mA4=;
-  b=e4DwLs7y8SMIu9X7hPdqT2UoHxEMUlBlvSf9pQnrETot8OmV4fjxpjNa
-   SiPbOiBBF+TyFi+PWYaHeJwqEm484uwlq9Dths2KZMRlIzY/S9P1M+8rU
-   TmdRgS8SpE4lKjovDwv1K9tJf8h+ICUzqeVNCGsu5CJA5GJyCXRMmGxxC
-   FERthqQsVKm0OGqq0iTbr+oDx18xAItT/dDwLsFue4eqDgbPoBKr+9pGK
-   JjBuiiSTfGKum9JAAEkU/PmK9XfMkO0FYRwn1meyiQRc7fFCRzhC2yxDp
-   Zzx6CMOKvMH410NM4f8o/Xkc6qLn99ePgMd1EQjG2skh4SZW4DHF5j8oa
-   A==;
-IronPort-SDR: 0B1ZF6LPSY9Q11FQ9mnvDdQ0pZ31w1VR2cRwuJaD+qj3S94L8zg1/7BwVIalRQn4hdg76GiIv5
- egkuaHwe4EgkzRpfPLmtfSpkbOYNVE/5/DWtcU4W2GLeCLciP7AT9ZvO40wEzaU6H3iUHD39k/
- Unuz27bojy94ssIhdPSTid4jbAR/PUseaSLXq/LN0aJBp3pEoUOLf/FCMPOlXFSgit07H33iel
- s3NfChqpkHkOPbsAFfjCuuBYTh0N4tJnt6zC4ID3sG79ALZq00LnJ+MPGFu6/Z5I8OuN3nQXL5
- Lql0igsXpZpkFl7poaTHT7L4
-X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; 
-   d="scan'208";a="69372614"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Sep 2021 02:05:13 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 15 Sep 2021 02:05:12 -0700
-Received: from [10.171.246.91] (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Wed, 15 Sep 2021 02:05:11 -0700
-Subject: Re: [PATCH] ARM: dts: at91-sama5d27_som1_ek: Added I2C bus recovery
- support
-To:     Durai Manickam KR <durai.manickamkr@microchip.com>,
-        <robh+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <Hari.PrasathGE@microchip.com>
-References: <20210914052113.85695-1-durai.manickamkr@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <e154c093-222d-0d84-9dba-45277c61cb5e@microchip.com>
-Date:   Wed, 15 Sep 2021 11:05:10 +0200
+        id S233068AbhIOJG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 05:06:59 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54490
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233048AbhIOJG7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 05:06:59 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 20E933F338
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 09:05:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1631696740;
+        bh=X7Cc3jU81HRUvI9Nu63KcpmXz37KgSemXGthehwJJeg=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=CUerVHaNwS+LaBH1z4i2I9dF9ZawSFEpGJc97A0Qk+8lUhsSy5vKQmK6GoJhIu1yB
+         /OgHOf1Iftu0u+5oraWJliNJwyJ2jDR8sIALsDoogV2jr17BAmVXIwq2a2tkaibXcH
+         cT85G2Pl+GcQ9HolyKV9SlLI80kcESDEp1nL2tFc8LekRltvDpSp02Q9fuonsoCsiF
+         ctoyuutwR2Tu9+UTFQOUe44HXbL6OPnV0SmYUh8PbBNTvFr6CWlQrKhjvXauB3f9TT
+         hHOVYpvxsZHweFVMZSSYqskWvPfCDwE0q8Wog0507HK+QKEVeAxYwGCsK3e+/Q/r0b
+         jAI57NTeAWDow==
+Received: by mail-ed1-f71.google.com with SMTP id m20-20020aa7c2d4000000b003d1add00b8aso1253955edp.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 02:05:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=X7Cc3jU81HRUvI9Nu63KcpmXz37KgSemXGthehwJJeg=;
+        b=ZO//OOvxey0BzEsv/5PcEovc1PIjzA5ZNTiDZClZKi2fjhhXE0csGSJmzlMVU9OsKG
+         yti83tlyS3cRHTsTXS85K/8IZz1Hi+r69i+7pOjO2CGz4A2zvps2FfCItS6V9JA+oOD0
+         TG6jKrFb7d+wCQ2dwXBrOvnAgX94krF46VphlUv90n5t4yLYzQGUP853OPYe8JulKTAE
+         4fCgAGHKpmhFxUVuNba9/Y2y8Xnh4etszmyDDTVwcsEQxg4coTg4F3tkN9nDdSRgcqv5
+         yvJKZnn3Qt4lFZ0vh8K7MInHiaQZWBwxx1MkvbWwLwWs34AkIrBdyvDED8M5tDyYQNRX
+         jkOg==
+X-Gm-Message-State: AOAM533TtFn+B+cbPQI8zmhKtHXdnN6O670v9nlJQWYGpjOH6bnRdw8E
+        MaUaBvchIArdOEXJgK3tX4l+eJ+l/VWuzOljHqpKN+Ui2HABv7J6hdojMCVyILlT/bBpGRsSdeb
+        Q73uDb3eZOCkvjgHv8Xppb/CGqBoAr4hMh34e1bc=
+X-Received: by 2002:a17:907:7613:: with SMTP id jx19mr24334737ejc.453.1631696739813;
+        Wed, 15 Sep 2021 02:05:39 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzD9fO3zbzPRg3ejtmsih8V9NIThIYB0jKBalTlLEm2XpSRUk4IVkXNzIOR7td1TQ+/UiTNCQ==
+X-Received: by 2002:a17:907:7613:: with SMTP id jx19mr24334728ejc.453.1631696739675;
+        Wed, 15 Sep 2021 02:05:39 -0700 (PDT)
+Received: from [192.168.3.211] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id c5sm6843180edx.81.2021.09.15.02.05.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Sep 2021 02:05:39 -0700 (PDT)
+Subject: Re: [PATCH v4 8/8] memory: gpmc-omap: "gpmc,device-width" DT property
+ is optional
+To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
+Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
+        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210914122705.15421-1-rogerq@kernel.org>
+ <20210914122705.15421-9-rogerq@kernel.org>
+ <e0c4759b-7c2d-e32c-f912-8409c1f65b49@canonical.com>
+ <6a06f4bd-f20a-8b5a-c152-0877707670ff@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <1b915c39-fd6d-3c3c-e4bf-4df9a694dfb6@canonical.com>
+Date:   Wed, 15 Sep 2021 11:05:37 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210914052113.85695-1-durai.manickamkr@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+In-Reply-To: <6a06f4bd-f20a-8b5a-c152-0877707670ff@kernel.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/09/2021 at 07:21, Durai Manickam KR wrote:
-> SDA and SCL is configured as GPIO for I2C bus to recover during
-> I2C bus malfunction.
+On 15/09/2021 10:47, Roger Quadros wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-Queued in at91-dt for 5.16.
-
-Thanks Durai, best regards,
-   Nicolas
-
-> ---
->   arch/arm/boot/dts/at91-sama5d27_som1.dtsi   | 12 ++++++++++-
->   arch/arm/boot/dts/at91-sama5d27_som1_ek.dts | 23 +++++++++++++++++++--
->   2 files changed, 32 insertions(+), 3 deletions(-)
+> On 15/09/2021 10:12, Krzysztof Kozlowski wrote:
+>> On 14/09/2021 14:27, Roger Quadros wrote:
+>>> Check for valid gpmc,device-width, nand-bus-width and bank-width
+>>> at one place. Default to 8-bit width if none present.
+>>>
+>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>>> ---
+>>>  drivers/memory/omap-gpmc.c | 41 ++++++++++++++++++++++++--------------
+>>>  1 file changed, 26 insertions(+), 15 deletions(-)
+>>>
+>>
+>> All the comments from v3 are still applicable because it seems you
+>> ignored them. Please respond to them.
+>>
+>> It's the second patch where the reviewer's comments got lost, so it
+>> creates rather poor impression.
 > 
-> diff --git a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-> index e3251f3e3eaa..edce6bcf6cd6 100644
-> --- a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-> +++ b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-> @@ -8,6 +8,7 @@
->    */
->   #include "sama5d2.dtsi"
->   #include "sama5d2-pinfunc.h"
-> +#include <dt-bindings/gpio/gpio.h>
->   
->   / {
->   	model = "Atmel SAMA5D27 SoM1";
-> @@ -95,8 +96,11 @@ ethernet-phy@7 {
->   
->   			i2c0: i2c@f8028000 {
->   				dmas = <0>, <0>;
-> -				pinctrl-names = "default";
-> +				pinctrl-names = "default", "gpio";
->   				pinctrl-0 = <&pinctrl_i2c0_default>;
-> +				pinctrl-1 = <&pinctrl_i2c0_gpio>;
-> +				sda-gpios = <&pioA PIN_PD21 GPIO_ACTIVE_HIGH>;
-> +				scl-gpios = <&pioA PIN_PD22 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->   				status = "okay";
->   
->   				at24@50 {
-> @@ -113,6 +117,12 @@ pinctrl_i2c0_default: i2c0_default {
->   					bias-disable;
->   				};
->   
-> +				pinctrl_i2c0_gpio: i2c0_gpio {
-> +					pinmux = <PIN_PD21__GPIO>,
-> +						 <PIN_PD22__GPIO>;
-> +					bias-disable;
-> +				};
-> +
->   				pinctrl_qspi1_default: qspi1_default {
->   					sck_cs {
->   						pinmux = <PIN_PB5__QSPI1_SCK>,
-> diff --git a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
-> index 614999dcb990..0f10e05d6e23 100644
-> --- a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
-> +++ b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
-> @@ -131,8 +131,11 @@ i2c3: i2c@600 {
->   					i2c-analog-filter;
->   					i2c-digital-filter;
->   					i2c-digital-filter-width-ns = <35>;
-> -					pinctrl-names = "default";
-> +					pinctrl-names = "default", "gpio";
->   					pinctrl-0 = <&pinctrl_mikrobus_i2c>;
-> +					pinctrl-1 = <&pinctrl_i2c3_gpio>;
-> +					sda-gpios = <&pioA PIN_PA24 GPIO_ACTIVE_HIGH>;
-> +					scl-gpios = <&pioA PIN_PA23 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->   					status = "okay";
->   				};
->   			};
-> @@ -216,8 +219,11 @@ i2c1: i2c@fc028000 {
->   				i2c-analog-filter;
->   				i2c-digital-filter;
->   				i2c-digital-filter-width-ns = <35>;
-> -				pinctrl-names = "default";
-> +				pinctrl-names = "default", "gpio";
->   				pinctrl-0 = <&pinctrl_i2c1_default>;
-> +				pinctrl-1 = <&pinctrl_i2c1_gpio>;
-> +				sda-gpios = <&pioA PIN_PD4 GPIO_ACTIVE_HIGH>;
-> +				scl-gpios = <&pioA PIN_PD5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->   				status = "okay";
->   			};
->   
-> @@ -253,6 +259,13 @@ pinctrl_i2c1_default: i2c1_default {
->   					bias-disable;
->   				};
->   
-> +				pinctrl_i2c1_gpio: i2c1_gpio {
-> +                                        pinmux = <PIN_PD4__GPIO>,
-> +                                                 <PIN_PD5__GPIO>;
-> +                                        bias-disable;
-> +                                };
-> +
-> +
->   				pinctrl_isc_base: isc_base {
->   					pinmux = <PIN_PC21__ISC_PCK>,
->   						 <PIN_PC22__ISC_VSYNC>,
-> @@ -442,6 +455,12 @@ pinctrl_mikrobus_i2c: mikrobus1_i2c {
->   					bias-disable;
->   				};
->   
-> +				pinctrl_i2c3_gpio: i2c3_gpio {
-> +					pinmux = <PIN_PA24__GPIO>,
-> +						 <PIN_PA23__GPIO>;
-> +					bias-disable;
-> +				};
-> +
->   				pinctrl_flx4_default: flx4_uart_default {
->   					pinmux = <PIN_PC28__FLEXCOM4_IO0>,
->   						 <PIN_PC29__FLEXCOM4_IO1>,
+> I was wondering what comments and then realized that gmail server has put
+> all your messages into spam folder.
 > 
+> I'm very sorry about that. I will address your comments ASAP.
 
+Oops. There were just two emails from me for v3. Can you send me
+(privately) the headers from my emails so I can investigate why they
+ended up on Spam?
 
--- 
-Nicolas Ferre
+Best regards,
+Krzysztof
