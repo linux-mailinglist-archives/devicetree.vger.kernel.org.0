@@ -2,169 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11AFF40C437
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 13:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5A040C443
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 13:19:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237486AbhIOLRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 07:17:11 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:44538 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237461AbhIOLRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 07:17:10 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1631704552; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
- Subject: Sender; bh=ariktyMIf7Dayb70iaKJjrmLCHgnkUzRmqPEPsHm0rU=; b=uvqoNEHVnMSMrnCFccvE5cSX65f3bQObMls9JY1gQiBEKDXzFekNu2sTeoed8yid8cGHc3nh
- 2zI6X7Cz7JoXxVv1/cN6DpnBXgj4/f/5R1o1ezCeEfELDCUWv2dzAAOANGE6w+jE6ZDyFMKu
- 4mYsjFCb+FzesHbnM9aaAWJxgFI=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 6141d5e7e0f78151d620a1a0 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 15 Sep 2021 11:15:51
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2BF75C43618; Wed, 15 Sep 2021 11:15:51 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.6 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.0
-Received: from [10.242.137.170] (unknown [202.46.23.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 97A1DC4338F;
-        Wed, 15 Sep 2021 11:15:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 97A1DC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v2 1/2] ASoC: google: dt-bindings: Add sc7280-herobrine
- machine bindings
-To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
-        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
-        bjorn.andersson@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, judyhsiao@chromium.org,
-        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
-        robh+dt@kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, tiwai@suse.com
-References: <1631539062-28577-1-git-send-email-srivasam@codeaurora.org>
- <1631539062-28577-2-git-send-email-srivasam@codeaurora.org>
- <CAE-0n50=ABP+fs1U3JjiqMSKphfxFsZBqQQYwVH2o_iOE1Wu_g@mail.gmail.com>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <e1e84488-2af5-2272-010a-474788a498a3@codeaurora.org>
-Date:   Wed, 15 Sep 2021 16:45:43 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S232701AbhIOLUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 07:20:39 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:46788 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232745AbhIOLUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 07:20:38 -0400
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20210915111914epoutp039a6467e9f34718f014ca10346568bded~k_tQuHYIp3217632176epoutp036
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 11:19:14 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20210915111914epoutp039a6467e9f34718f014ca10346568bded~k_tQuHYIp3217632176epoutp036
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1631704754;
+        bh=WRI58h8fgGgCoO94+KVd1E7f0/lNdZ273QzsFa9FrwM=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=l7WZT8w/rEUag0bGaQVA7aPwNuy3nDd3QweMDreRQvmL2XVBDnRaYGr50mdUWfCf8
+         f/dAffLxhjQWukL/JdlhT6iYJiQFMnrxqSauhZo1BoFk8JkoObOPQ0f8f4CGqqqCzx
+         7sUQ5XClkD4KkrwRU3IfNfi3KRs5bzJVZHwdG0I8=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20210915111913epcas2p2c9a16c636594023be111f73359031cc6~k_tPs0Lc22487124871epcas2p22;
+        Wed, 15 Sep 2021 11:19:13 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.40.186]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4H8d5W03scz4x9Pp; Wed, 15 Sep
+        2021 11:19:11 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        C7.EF.09816.EA6D1416; Wed, 15 Sep 2021 20:19:10 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+        20210915111909epcas2p345ed0a47b12d82d67ab28da1d9fd2eb8~k_tMu2pkk1723317233epcas2p3r;
+        Wed, 15 Sep 2021 11:19:09 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20210915111909epsmtrp1ff75d8e5b33b901f680b2572f9309336~k_tMrb2Iy0733807338epsmtrp1W;
+        Wed, 15 Sep 2021 11:19:09 +0000 (GMT)
+X-AuditID: b6c32a46-63bff70000002658-4b-6141d6ae12ec
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        FF.59.08750.DA6D1416; Wed, 15 Sep 2021 20:19:09 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20210915111909epsmtip26d3b9eea4154e9c1f6dcb7d283391cf3~k_tMfDMUR2974329743epsmtip2U;
+        Wed, 15 Sep 2021 11:19:09 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH v12] dt-bindings: ufs: Add bindings for Samsung ufs host
+Date:   Wed, 15 Sep 2021 20:18:44 +0900
+Message-Id: <20210915111844.42752-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n50=ABP+fs1U3JjiqMSKphfxFsZBqQQYwVH2o_iOE1Wu_g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjk+LIzCtJLcpLzFFi42LZdljTVHfdNcdEgx3vzSwezNvGZjH14RM2
+        i8v7tS3mHznHarHoxjYmi41vfzBZzDi/j8li+fF/TBate4+wO3B6zGroZfPYtKqTzWPCogOM
+        Hh+f3mLx6NuyitHj8ya5ALaoHJuM1MSU1CKF1Lzk/JTMvHRbJe/geOd4UzMDQ11DSwtzJYW8
+        xNxUWyUXnwBdt8wcoKOUFMoSc0qBQgGJxcVK+nY2RfmlJakKGfnFJbZKqQUpOQWGhgV6xYm5
+        xaV56XrJ+blWhgYGRqZAlQk5GffWXGYqeCBV8fD3S7YGxgciXYycHBICJhKPtj1m7GLk4hAS
+        2MEo8bD9NJTziVFi47eZzBDOZ0aJptfr2LoYOcBanp7LgIjvYpSYOvMoVNFHRokjXTvZQOay
+        CehKbHn+ihHEFhFQkdjw/BZYEbPATSaJWwfmgSWEBTwk9n55zgpiswioSnTO6GIBsXkF7CTm
+        rVnMDnGgvMSRX53MEHFBiZMzn4DVMAPFm7fOBhsqIfCSXeLLzp3sEOe5SFw9ZQLRKyzx6vgW
+        qDlSEi/729gh6rsZJVof/YdKrGaU6Gz0gbDtJX5N38IKModZQFNi/S59iJHKEkduQa3lk+g4
+        /BdqE69ER5sQRKO6xIHt01kgbFmJ7jmfWSFsoA9b28EWCQnESrx68495AqP8LCTPzELyzCyE
+        vQsYmVcxiqUWFOempxYbFRghR+omRnDC1HLbwTjl7Qe9Q4xMHIyHGCU4mJVEeC/UOCYK8aYk
+        VlalFuXHF5XmpBYfYjQFBu9EZinR5Hxgys4riTc0NTIzM7A0tTA1M7JQEuc9/9oyUUggPbEk
+        NTs1tSC1CKaPiYNTqoGpf8N3pzx+4b4+c+v+G32VHUcnfF/vUZqoqXX0SvF+tw3vU25/s7A7
+        7Mw5c09fgRsr20lfpX4fjefb62a5/fn6fPM/JqXV7mzb1t/aFdoqk1mdEzmP4c/m52b/1XZq
+        fU68F1zqaFLCcOvT2jdlPzNfT6/QDTOonNe6e0XTrF8WjyakPS+72Loz3dLpIHuNp+3HSXP1
+        xV6bsjrMfi78isvcv3qy34PuqT6WB2UWGP0ReR1sv5v359v7N9Y1WWiLPX8W+viD7bs1DwyC
+        RWs+9x5vOvv7c2KLYNOEqDOia2OXvmE+waEs+zHnf4HV7PDDtdFfH717ysv3OGLtj4lcr9JW
+        q3Hs+pEwx+ffEdfMTuNuJZbijERDLeai4kQAj1N7TiEEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrDLMWRmVeSWpSXmKPExsWy7bCSvO7aa46JBkdf6ls8mLeNzWLqwyds
+        Fpf3a1vMP3KO1WLRjW1MFhvf/mCymHF+H5PF8uP/mCxa9x5hd+D0mNXQy+axaVUnm8eERQcY
+        PT4+vcXi0bdlFaPH501yAWxRXDYpqTmZZalF+nYJXBn31lxmKnggVfHw90u2BsYHIl2MHBwS
+        AiYST89ldDFycggJ7GCUmN/GDWJLCMhKPHu3gx3CFpa433KEtYuRC6jmPaNEy/QtzCAJNgFd
+        iS3PXzGC2CICKhIbnt9iBiliFrjLJHF+/x2wbmEBD4m9X56zgtgsAqoSnTO6WEBsXgE7iXlr
+        FkNtkJc48quTGSIuKHFy5hOwGmagePPW2cwTGPlmIUnNQpJawMi0ilEytaA4Nz232LDAKC+1
+        XK84Mbe4NC9dLzk/dxMjOIC1tHYw7ln1Qe8QIxMH4yFGCQ5mJRHeCzWOiUK8KYmVValF+fFF
+        pTmpxYcYpTlYlMR5L3SdjBcSSE8sSc1OTS1ILYLJMnFwSjUwTTO90Ms9oUo9cLK/tR2fyikd
+        fcd/1514Nh9MdXNIij5vX+C4qF3+gcyGI4VxGivV3Vi1et3rewsqHh3wDN8hwiu/crX2z5YI
+        3ltr7jIUVHzyvirzd1un2IkJt1e8mfzU+mLj4Zl2G53f744025ukrXbgXYqZUc550Xfexkv+
+        NIfy5HqZch53nxO4SZ5xDdPJEO9TjhvFtBJKs8N03CxXrT/xxuHfzzaJjfqrmtr0jpy8K1R/
+        9UPGJQWO/CiVN3/E39jX8a7oWnzqwd3LGa91exMWPrvEI8UlZXkh8sqUS1uadGo1eKsWGlvc
+        +9XVXOnd/ejpf/l5h6/r/W15ZVJ6bwXXz9wLLQFr9OwWLpivxFKckWioxVxUnAgAt29S0s8C
+        AAA=
+X-CMS-MailID: 20210915111909epcas2p345ed0a47b12d82d67ab28da1d9fd2eb8
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210915111909epcas2p345ed0a47b12d82d67ab28da1d9fd2eb8
+References: <CGME20210915111909epcas2p345ed0a47b12d82d67ab28da1d9fd2eb8@epcas2p3.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Alim Akhtar <alim.akhtar@samsung.com>
 
-On 9/14/2021 1:21 AM, Stephen Boyd wrote:
-> Quoting Srinivasa Rao Mandadapu (2021-09-13 06:17:41)
->> diff --git a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
->> new file mode 100644
->> index 0000000..e0d705f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
->> @@ -0,0 +1,169 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/sound/google,sc7280-herobrine.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Google SC7280-Herobrine ASoC sound card driver
->> +
->> +maintainers:
->> +  - Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->> +  - Judy Hsiao <judyhsiao@chromium.org>
->> +
->> +description:
->> +  This binding describes the SC7280 sound card which uses LPASS for audio.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - google,sc7280-herobrine
->> +
->> +  audio-routing:
->> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->> +    description:
->> +      A list of the connections between audio components. Each entry is a
->> +      pair of strings, the first being the connection's sink, the second
->> +      being the connection's source.
->> +
->> +  model:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    description: User specified audio sound card name
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
->> +
->> +patternProperties:
->> +  "^dai-link@[0-9a-f]$":
->> +    description:
->> +      Each subnode represents a dai link. Subnodes of each dai links would be
->> +      cpu/codec dais.
->> +
->> +    type: object
->> +
->> +    properties:
->> +      link-name:
->> +        description: Indicates dai-link name and PCM stream name.
->> +        $ref: /schemas/types.yaml#/definitions/string
->> +        maxItems: 1
->> +
->> +      reg:
->> +        maxItems: 1
->> +        description: dai link address.
->> +
->> +      cpu:
->> +        description: Holds subnode which indicates cpu dai.
->> +        type: object
->> +        properties:
->> +          sound-dai: true
-> Shouldn't sound-dai be required?
-Sorry. I didn't get your Query. You mean in below "required:" properties 
-need to add sound-dai also?
->
->> +
->> +      codec:
->> +        description: Holds subnode which indicates codec dai.
->> +        type: object
->> +        properties:
->> +          sound-dai: true
-> Shouldn't sound-dai be required? I don't know but maybe also additional
-> properties is false for this node too?
->
->> +
->> +    required:
->> +      - link-name
->> +      - cpu
->> +      - codec
-> Should 'reg' be required?
-Okay. I think reg is required. will check and update it.
->
->> +
->> +    additionalProperties: false
+This patch adds DT bindings for Samsung ufs hci
 
+Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+---
+Changes since v11
+* remove below warning by dt_binding_check
+./Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml:26:6:
+[warning] wrong indentation: expected 6 but found 5 (indentation)
+
+Changes since v10
+* Rebased on v5.14-rc2
+* removed Rob Herring earlier Reviewed-by tag
+
+This patch was part of exynos ufs driver series, somehow
+this got missed to applied on the tree, sending again as a new
+patch v11, removing Rob's earlier Reviewed-by tag.
+
+ .../bindings/ufs/samsung,exynos-ufs.yaml      | 89 +++++++++++++++++++
+ 1 file changed, 89 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+
+diff --git a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+new file mode 100644
+index 000000000000..b9ca8ef4f2be
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ufs/samsung,exynos-ufs.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung SoC series UFS host controller Device Tree Bindings
++
++maintainers:
++  - Alim Akhtar <alim.akhtar@samsung.com>
++
++description: |
++  Each Samsung UFS host controller instance should have its own node.
++  This binding define Samsung specific binding other then what is used
++  in the common ufshcd bindings
++  [1] Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
++
++properties:
++
++  compatible:
++    enum:
++      - samsung,exynos7-ufs
++
++  reg:
++    items:
++      - description: HCI register
++      - description: vendor specific register
++      - description: unipro register
++      - description: UFS protector register
++
++  reg-names:
++    items:
++      - const: hci
++      - const: vs_hci
++      - const: unipro
++      - const: ufsp
++
++  clocks:
++    items:
++      - description: ufs link core clock
++      - description: unipro main clock
++
++  clock-names:
++    items:
++      - const: core_clk
++      - const: sclk_unipro_main
++
++  interrupts:
++    maxItems: 1
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    const: ufs-phy
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - phys
++  - phy-names
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/exynos7-clk.h>
++
++    ufs: ufs@15570000 {
++       compatible = "samsung,exynos7-ufs";
++       reg = <0x15570000 0x100>,
++             <0x15570100 0x100>,
++             <0x15571000 0x200>,
++             <0x15572000 0x300>;
++       reg-names = "hci", "vs_hci", "unipro", "ufsp";
++       interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>;
++       clocks = <&clock_fsys1 ACLK_UFS20_LINK>,
++                <&clock_fsys1 SCLK_UFSUNIPRO20_USER>;
++       clock-names = "core_clk", "sclk_unipro_main";
++       pinctrl-names = "default";
++       pinctrl-0 = <&ufs_rst_n &ufs_refclk_out>;
++       phys = <&ufs_phy>;
++       phy-names = "ufs-phy";
++    };
++...
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.33.0
 
