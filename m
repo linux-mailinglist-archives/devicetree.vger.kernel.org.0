@@ -2,195 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5055140C537
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 14:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3127440C63F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 15:20:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237034AbhIOM2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 08:28:45 -0400
-Received: from thoth.sbs.de ([192.35.17.2]:35179 "EHLO thoth.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234331AbhIOM2p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 08:28:45 -0400
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by thoth.sbs.de (8.15.2/8.15.2) with ESMTPS id 18FCRF2M005873
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 15 Sep 2021 14:27:15 +0200
-Received: from md1f2u6c.ad001.siemens.net ([167.87.79.72])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 18FCRAr8006124;
-        Wed, 15 Sep 2021 14:27:14 +0200
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-Subject: [PATCH v4 6/6] arm64: dts: ti: iot2050: Add support for product generation 2 boards
-Date:   Wed, 15 Sep 2021 14:27:10 +0200
-Message-Id: <a4d6ab1dd1f5582b940ac25395eb878e683b3a38.1631708830.git.jan.kiszka@siemens.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1631708830.git.jan.kiszka@siemens.com>
-References: <cover.1631708830.git.jan.kiszka@siemens.com>
+        id S234599AbhIONVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 09:21:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234804AbhIONVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 09:21:42 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A112C061574
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 06:20:23 -0700 (PDT)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by albert.telenet-ops.be with bizsmtp
+        id uDLH2500r4C55Sk06DLHoV; Wed, 15 Sep 2021 15:20:21 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mQUnf-004eT9-Vh; Wed, 15 Sep 2021 15:18:07 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mQUIy-002gEP-Jn; Wed, 15 Sep 2021 14:46:24 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lukasz Stelmach <l.stelmach@samsung.com>
+Cc:     Simon Horman <horms@verge.net.au>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kexec@lists.infradead.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v6] ARM: uncompress: Parse "linux,usable-memory-range" DT property
+Date:   Wed, 15 Sep 2021 14:46:20 +0200
+Message-Id: <0de07021e49ac26a8f9386f62f3e15e947d0f6d0.1631709384.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
+Add support for parsing the "linux,usable-memory-range" DT property.
+This property is used to describe the usable memory reserved for the
+crash dump kernel, and thus makes the memory reservation explicit.
+If present, Linux no longer needs to mask the program counter, and rely
+on the "mem=" kernel parameter to obtain the start and size of usable
+memory.
 
-This adds the devices trees for IOT2050 Product Generation 2 (PG2)
-boards. We have Basic and an Advanced variants again, differing in
-number of cores, RAM size, availability of eMMC and further details.
-The major difference to PG1 is the used silicon revision (SR2.x on
-PG2).
+For backwards compatibility, the traditional method to derive the start
+of memory is still used if "linux,usable-memory-range" is absent.
 
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- arch/arm64/boot/dts/ti/Makefile               |  2 +
- .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    | 51 +++++++++++++++++++
- .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    | 24 +++++++++
- .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts | 29 +++++++++++
- 4 files changed, 106 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
+KernelVersion: v5.15-rc1
+---
+The corresponding patch for kexec-tools is "[PATCH] arm: kdump: Add DT
+properties to crash dump kernel's DTB", which is still valid:
+https://lore.kernel.org/r/20200902154129.6358-1-geert+renesas@glider.be/
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index d56c742f5a10..41a4bc96e6bd 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -8,7 +8,9 @@
+v6:
+  - All dependencies are in v5.15-rc1,
+
+v5:
+  - Remove the addition of "linux,elfcorehdr" and
+    "linux,usable-memory-range" handling to arch/arm/mm/init.c,
+
+v4:
+  - Remove references to architectures in chosen.txt, to avoid having to
+    change this again when more architectures copy kdump support,
+  - Remove the architecture-specific code for parsing
+    "linux,usable-memory-range" and "linux,elfcorehdr", as the FDT core
+    code now takes care of this,
+  - Move chosen.txt change to patch changing the FDT core,
+  - Use IS_ENABLED(CONFIG_CRASH_DUMP) instead of #ifdef,
+
+v3:
+  - Rebase on top of accepted solution for DTB memory information
+    handling, which is part of v5.12-rc1,
+
+v2:
+  - Rebase on top of reworked DTB memory information handling.
+---
+ .../arm/boot/compressed/fdt_check_mem_start.c | 48 ++++++++++++++++---
+ 1 file changed, 42 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/boot/compressed/fdt_check_mem_start.c b/arch/arm/boot/compressed/fdt_check_mem_start.c
+index 62450d824c3ca180..9291a2661bdfe57f 100644
+--- a/arch/arm/boot/compressed/fdt_check_mem_start.c
++++ b/arch/arm/boot/compressed/fdt_check_mem_start.c
+@@ -55,16 +55,17 @@ static uint64_t get_val(const fdt32_t *cells, uint32_t ncells)
+  * DTB, and, if out-of-range, replace it by the real start address.
+  * To preserve backwards compatibility (systems reserving a block of memory
+  * at the start of physical memory, kdump, ...), the traditional method is
+- * always used if it yields a valid address.
++ * used if it yields a valid address, unless the "linux,usable-memory-range"
++ * property is present.
+  *
+  * Return value: start address of physical memory to use
+  */
+ uint32_t fdt_check_mem_start(uint32_t mem_start, const void *fdt)
+ {
+-	uint32_t addr_cells, size_cells, base;
++	uint32_t addr_cells, size_cells, usable_base, base;
+ 	uint32_t fdt_mem_start = 0xffffffff;
+-	const fdt32_t *reg, *endp;
+-	uint64_t size, end;
++	const fdt32_t *usable, *reg, *endp;
++	uint64_t size, usable_end, end;
+ 	const char *type;
+ 	int offset, len;
  
- dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+@@ -80,6 +81,27 @@ uint32_t fdt_check_mem_start(uint32_t mem_start, const void *fdt)
+ 	if (addr_cells > 2 || size_cells > 2)
+ 		return mem_start;
  
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
++	/*
++	 * Usable memory in case of a crash dump kernel
++	 * This property describes a limitation: memory within this range is
++	 * only valid when also described through another mechanism
++	 */
++	usable = get_prop(fdt, "/chosen", "linux,usable-memory-range",
++			  (addr_cells + size_cells) * sizeof(fdt32_t));
++	if (usable) {
++		size = get_val(usable + addr_cells, size_cells);
++		if (!size)
++			return mem_start;
++
++		if (addr_cells > 1 && fdt32_ld(usable)) {
++			/* Outside 32-bit address space */
++			return mem_start;
++		}
++
++		usable_base = fdt32_ld(usable + addr_cells - 1);
++		usable_end = usable_base + size;
++	}
++
+ 	/* Walk all memory nodes and regions */
+ 	for (offset = fdt_next_node(fdt, -1, NULL); offset >= 0;
+ 	     offset = fdt_next_node(fdt, offset, NULL)) {
+@@ -107,7 +129,20 @@ uint32_t fdt_check_mem_start(uint32_t mem_start, const void *fdt)
  
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-new file mode 100644
-index 000000000000..c25bce7339b7
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2021
-+ *
-+ * Authors:
-+ *   Chao Zeng <chao.zeng@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * Common bits of the IOT2050 Basic and Advanced variants, PG2
-+ */
+ 			base = fdt32_ld(reg + addr_cells - 1);
+ 			end = base + size;
+-			if (mem_start >= base && mem_start < end) {
++			if (usable) {
++				/*
++				 * Clip to usable range, which takes precedence
++				 * over mem_start
++				 */
++				if (base < usable_base)
++					base = usable_base;
 +
-+&main_pmx0 {
-+	cp2102n_reset_pin_default: cp2102n-reset-pin-default {
-+		pinctrl-single,pins = <
-+			/* (AF12) GPIO1_24, used as cp2102 reset */
-+			AM65X_IOPAD(0x01e0, PIN_OUTPUT, 7)
-+		>;
-+	};
-+};
++				if (end > usable_end)
++					end = usable_end;
 +
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp2102n_reset_pin_default>;
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "", "", "",
-+		"", "", "", "", "CP2102N-RESET";
-+};
-+
-+&dss {
-+	/* Workaround needed to get DP clock of 154Mhz */
-+	assigned-clocks = <&k3_clks 67 0>;
-+};
-+
-+&serdes0 {
-+	assigned-clocks = <&k3_clks 153 4>, <&serdes0 AM654_SERDES_CMU_REFCLK>;
-+	assigned-clock-parents = <&k3_clks 153 7>, <&k3_clks 153 4>;
-+};
-+
-+&dwc3_0 {
-+	assigned-clock-parents = <&k3_clks 151 4>,  /* set REF_CLK to 20MHz i.e. PER0_PLL/48 */
-+				 <&k3_clks 151 8>;  /* set PIPE3_TXB_CLK to WIZ8B2M4VSB */
-+	phys = <&serdes0 PHY_TYPE_USB3 0>;
-+	phy-names = "usb3-phy";
-+};
-+
-+&usb0_phy {
-+	maximum-speed = "super-speed";
-+	snps,dis-u1-entry-quirk;
-+	snps,dis-u2-entry-quirk;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-new file mode 100644
-index 000000000000..c62549a4b436
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2018-2021
-+ *
-+ * Authors:
-+ *   Le Jin <le.jin@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * AM6528-based (dual-core) IOT2050 Basic variant, Product Generation 2
-+ * 1 GB RAM, no eMMC, main_uart0 on connector X30
-+ *
-+ * Product homepage:
-+ * https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am6528-iot2050-basic-common.dtsi"
-+#include "k3-am65-iot2050-common-pg2.dtsi"
-+
-+/ {
-+	compatible = "siemens,iot2050-basic-pg2", "ti,am654";
-+	model = "SIMATIC IOT2050 Basic PG2";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-new file mode 100644
-index 000000000000..f00dc86d01b9
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2018-2021
-+ *
-+ * Authors:
-+ *   Le Jin <le.jin@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * AM6548-based (quad-core) IOT2050 Advanced variant, Product Generation 2
-+ * 2 GB RAM, 16 GB eMMC, USB-serial converter on connector X30
-+ *
-+ * Product homepage:
-+ * https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am6548-iot2050-advanced-common.dtsi"
-+#include "k3-am65-iot2050-common-pg2.dtsi"
-+
-+/ {
-+	compatible = "siemens,iot2050-advanced-pg2", "ti,am654";
-+	model = "SIMATIC IOT2050 Advanced PG2";
-+};
-+
-+&mcu_r5fss0 {
-+	/* lock-step mode not supported on this board */
-+	ti,cluster-mode = <0>;
-+};
++				if (end <= base)
++					continue;
++			} else if (mem_start >= base && mem_start < end) {
+ 				/* Calculated address is valid, use it */
+ 				return mem_start;
+ 			}
+@@ -123,7 +158,8 @@ uint32_t fdt_check_mem_start(uint32_t mem_start, const void *fdt)
+ 	}
+ 
+ 	/*
+-	 * The calculated address is not usable.
++	 * The calculated address is not usable, or was overridden by the
++	 * "linux,usable-memory-range" property.
+ 	 * Use the lowest usable physical memory address from the DTB instead,
+ 	 * and make sure this is a multiple of 2 MiB for phys/virt patching.
+ 	 */
 -- 
-2.31.1
+2.25.1
 
