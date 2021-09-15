@@ -2,195 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 275C840C241
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 11:00:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7836940C259
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 11:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237083AbhIOJBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 05:01:00 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54298
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237167AbhIOJAy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 05:00:54 -0400
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4BAA74026A
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 08:59:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1631696369;
-        bh=39NyD7eSdjWRLG7akJoaBQq2vkbMMaThM/SwbRfMg/Y=;
-        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=kSUCDXOUbBSjJTliF3DNPHcJbV96qsvr+7LSkmX5/kweDMsOoSZQt9uJWMtsIe0EJ
-         3EKmUur0EwMaRbDxTe4o2jdAzdxgQR2ppRiSnRbo1FKJnjr7KDXIzOmtGmqe2JSO2R
-         z1nFdOfKL0webr3V0vUXafqXvlhlLzLlgqPnOPqT84dPeMu7XCpndWrUBoktN8xJ3j
-         tXPjRAjdtbPADfxRvsCJd7DnM7Q5nuIhcfOBI8WKUDhS7pWUhjAUYtAvcVbVs6ltuy
-         NureCTGO2INlMbdiXxIPqIUk5hHM7PVLDZCLaSpqYkeIhB0+V39mwqR8ufHIo1mTK6
-         0W6+f2N0n0Iow==
-Received: by mail-ej1-f69.google.com with SMTP id v19-20020a170906b013b02905b2f1bbf8f3so1156022ejy.6
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 01:59:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=39NyD7eSdjWRLG7akJoaBQq2vkbMMaThM/SwbRfMg/Y=;
-        b=P5+kOPexKmlVXR33ECBZKTjcK1YLSwFHzdxA8BMsmXLE0pXVBqIK8mavgN7yZprV/u
-         elPzCpnXcK8JS7FaSGhc8HnHS3N2pAVfpc0dIxvPNIInzgWrqEYg7GLKHohVhwsZ2Oxw
-         jJtF5KsXR4V9JaWWAJ19yfKV8/nMj9Sf3Enf6xMDPAdntc+goKULcIkHWAhGzqnjEXCo
-         /zIWJgRcYnS/IgHk7Lbft2pz2YFNIzVCeGJr7ExSKtvFIVN5cOG8IO9KgZETDKaVZYVo
-         S+fJegy0B6/Q6lIDDJhomaySD6zN/gHY4R1h7KSZa8o7YQlj0TD/VOuthvKJJwUtCkfr
-         1z3A==
-X-Gm-Message-State: AOAM530nuCt7+m53s8RVRyKl/AMiP6jCJXbInOl5h+X9u7Fa7BMG5hVy
-        XkdBHZ9Byp5hbVecuKIlxCleqKqHNL7mfwCYDRu9iC6rNqR9cjQiQq6mX4SG2h4wJpDBHBwl2kK
-        8MwTFH9OqVKk0vUQCv766Isn3CL+0j9R73edLPL4=
-X-Received: by 2002:a17:906:f15:: with SMTP id z21mr23428823eji.177.1631696368015;
-        Wed, 15 Sep 2021 01:59:28 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJymRnBWWR852OpGubXgrdOU89q9lNXSyAJz+ZILaji+sCwYZwgAvCN0PKGDsBRUEBEUCnD23A==
-X-Received: by 2002:a17:906:f15:: with SMTP id z21mr23428808eji.177.1631696367855;
-        Wed, 15 Sep 2021 01:59:27 -0700 (PDT)
-Received: from [192.168.3.211] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id f24sm6703253edc.40.2021.09.15.01.59.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Sep 2021 01:59:27 -0700 (PDT)
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20210914155607.14122-1-semen.protsenko@linaro.org>
- <20210914155607.14122-7-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH 6/6] clk: samsung: Introduce Exynos850 clock driver
-Message-ID: <3da75dbe-2f98-39db-c455-46adead7097b@canonical.com>
-Date:   Wed, 15 Sep 2021 10:59:24 +0200
+        id S231805AbhIOJGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 05:06:33 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:60288 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233048AbhIOJGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 05:06:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1631696714; x=1663232714;
+  h=subject:to:references:from:message-id:date:mime-version:
+   in-reply-to:content-transfer-encoding;
+  bh=J9NSTBFBDD6Euze/JyKQc/2xOsESGf+Cb3hPj272mA4=;
+  b=e4DwLs7y8SMIu9X7hPdqT2UoHxEMUlBlvSf9pQnrETot8OmV4fjxpjNa
+   SiPbOiBBF+TyFi+PWYaHeJwqEm484uwlq9Dths2KZMRlIzY/S9P1M+8rU
+   TmdRgS8SpE4lKjovDwv1K9tJf8h+ICUzqeVNCGsu5CJA5GJyCXRMmGxxC
+   FERthqQsVKm0OGqq0iTbr+oDx18xAItT/dDwLsFue4eqDgbPoBKr+9pGK
+   JjBuiiSTfGKum9JAAEkU/PmK9XfMkO0FYRwn1meyiQRc7fFCRzhC2yxDp
+   Zzx6CMOKvMH410NM4f8o/Xkc6qLn99ePgMd1EQjG2skh4SZW4DHF5j8oa
+   A==;
+IronPort-SDR: 0B1ZF6LPSY9Q11FQ9mnvDdQ0pZ31w1VR2cRwuJaD+qj3S94L8zg1/7BwVIalRQn4hdg76GiIv5
+ egkuaHwe4EgkzRpfPLmtfSpkbOYNVE/5/DWtcU4W2GLeCLciP7AT9ZvO40wEzaU6H3iUHD39k/
+ Unuz27bojy94ssIhdPSTid4jbAR/PUseaSLXq/LN0aJBp3pEoUOLf/FCMPOlXFSgit07H33iel
+ s3NfChqpkHkOPbsAFfjCuuBYTh0N4tJnt6zC4ID3sG79ALZq00LnJ+MPGFu6/Z5I8OuN3nQXL5
+ Lql0igsXpZpkFl7poaTHT7L4
+X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; 
+   d="scan'208";a="69372614"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Sep 2021 02:05:13 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 15 Sep 2021 02:05:12 -0700
+Received: from [10.171.246.91] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Wed, 15 Sep 2021 02:05:11 -0700
+Subject: Re: [PATCH] ARM: dts: at91-sama5d27_som1_ek: Added I2C bus recovery
+ support
+To:     Durai Manickam KR <durai.manickamkr@microchip.com>,
+        <robh+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Hari.PrasathGE@microchip.com>
+References: <20210914052113.85695-1-durai.manickamkr@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <e154c093-222d-0d84-9dba-45277c61cb5e@microchip.com>
+Date:   Wed, 15 Sep 2021 11:05:10 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210914155607.14122-7-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210914052113.85695-1-durai.manickamkr@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/09/2021 17:56, Sam Protsenko wrote:
-> This is the initial implementation adding only basic clocks like UART,
-> MMC, I2C and corresponding parent clocks. Design is influenced by
-> Exynos7 and Exynos5433 clock drivers.
+On 14/09/2021 at 07:21, Durai Manickam KR wrote:
+> SDA and SCL is configured as GPIO for I2C bus to recover during
+> I2C bus malfunction.
 > 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
+
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Queued in at91-dt for 5.16.
+
+Thanks Durai, best regards,
+   Nicolas
+
 > ---
->  drivers/clk/samsung/Makefile        |   1 +
->  drivers/clk/samsung/clk-exynos850.c | 700 ++++++++++++++++++++++++++++
->  2 files changed, 701 insertions(+)
->  create mode 100644 drivers/clk/samsung/clk-exynos850.c
+>   arch/arm/boot/dts/at91-sama5d27_som1.dtsi   | 12 ++++++++++-
+>   arch/arm/boot/dts/at91-sama5d27_som1_ek.dts | 23 +++++++++++++++++++--
+>   2 files changed, 32 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
-> index 028b2e27a37e..c46cf11e4d0b 100644
-> --- a/drivers/clk/samsung/Makefile
-> +++ b/drivers/clk/samsung/Makefile
-> @@ -17,6 +17,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos5433.o
->  obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) += clk-exynos-audss.o
->  obj-$(CONFIG_EXYNOS_CLKOUT)	+= clk-exynos-clkout.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7.o
-> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos850.o
->  obj-$(CONFIG_S3C2410_COMMON_CLK)+= clk-s3c2410.o
->  obj-$(CONFIG_S3C2410_COMMON_DCLK)+= clk-s3c2410-dclk.o
->  obj-$(CONFIG_S3C2412_COMMON_CLK)+= clk-s3c2412.o
-> diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
-> new file mode 100644
-> index 000000000000..1028caa2102e
-> --- /dev/null
-> +++ b/drivers/clk/samsung/clk-exynos850.c
-> @@ -0,0 +1,700 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2021 Linaro Ltd.
-> + * Author: Sam Protsenko <semen.protsenko@linaro.org>
-> + *
-> + * Common Clock Framework support for Exynos850 SoC.
-> + */
+> diff --git a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+> index e3251f3e3eaa..edce6bcf6cd6 100644
+> --- a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+> +++ b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+> @@ -8,6 +8,7 @@
+>    */
+>   #include "sama5d2.dtsi"
+>   #include "sama5d2-pinfunc.h"
+> +#include <dt-bindings/gpio/gpio.h>
+>   
+>   / {
+>   	model = "Atmel SAMA5D27 SoM1";
+> @@ -95,8 +96,11 @@ ethernet-phy@7 {
+>   
+>   			i2c0: i2c@f8028000 {
+>   				dmas = <0>, <0>;
+> -				pinctrl-names = "default";
+> +				pinctrl-names = "default", "gpio";
+>   				pinctrl-0 = <&pinctrl_i2c0_default>;
+> +				pinctrl-1 = <&pinctrl_i2c0_gpio>;
+> +				sda-gpios = <&pioA PIN_PD21 GPIO_ACTIVE_HIGH>;
+> +				scl-gpios = <&pioA PIN_PD22 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>   				status = "okay";
+>   
+>   				at24@50 {
+> @@ -113,6 +117,12 @@ pinctrl_i2c0_default: i2c0_default {
+>   					bias-disable;
+>   				};
+>   
+> +				pinctrl_i2c0_gpio: i2c0_gpio {
+> +					pinmux = <PIN_PD21__GPIO>,
+> +						 <PIN_PD22__GPIO>;
+> +					bias-disable;
+> +				};
 > +
-> +#include <linux/clk-provider.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
+>   				pinctrl_qspi1_default: qspi1_default {
+>   					sck_cs {
+>   						pinmux = <PIN_PB5__QSPI1_SCK>,
+> diff --git a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+> index 614999dcb990..0f10e05d6e23 100644
+> --- a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+> +++ b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+> @@ -131,8 +131,11 @@ i2c3: i2c@600 {
+>   					i2c-analog-filter;
+>   					i2c-digital-filter;
+>   					i2c-digital-filter-width-ns = <35>;
+> -					pinctrl-names = "default";
+> +					pinctrl-names = "default", "gpio";
+>   					pinctrl-0 = <&pinctrl_mikrobus_i2c>;
+> +					pinctrl-1 = <&pinctrl_i2c3_gpio>;
+> +					sda-gpios = <&pioA PIN_PA24 GPIO_ACTIVE_HIGH>;
+> +					scl-gpios = <&pioA PIN_PA23 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>   					status = "okay";
+>   				};
+>   			};
+> @@ -216,8 +219,11 @@ i2c1: i2c@fc028000 {
+>   				i2c-analog-filter;
+>   				i2c-digital-filter;
+>   				i2c-digital-filter-width-ns = <35>;
+> -				pinctrl-names = "default";
+> +				pinctrl-names = "default", "gpio";
+>   				pinctrl-0 = <&pinctrl_i2c1_default>;
+> +				pinctrl-1 = <&pinctrl_i2c1_gpio>;
+> +				sda-gpios = <&pioA PIN_PD4 GPIO_ACTIVE_HIGH>;
+> +				scl-gpios = <&pioA PIN_PD5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>   				status = "okay";
+>   			};
+>   
+> @@ -253,6 +259,13 @@ pinctrl_i2c1_default: i2c1_default {
+>   					bias-disable;
+>   				};
+>   
+> +				pinctrl_i2c1_gpio: i2c1_gpio {
+> +                                        pinmux = <PIN_PD4__GPIO>,
+> +                                                 <PIN_PD5__GPIO>;
+> +                                        bias-disable;
+> +                                };
 > +
-> +#include <dt-bindings/clock/exynos850.h>
 > +
-> +#include "clk.h"
+>   				pinctrl_isc_base: isc_base {
+>   					pinmux = <PIN_PC21__ISC_PCK>,
+>   						 <PIN_PC22__ISC_VSYNC>,
+> @@ -442,6 +455,12 @@ pinctrl_mikrobus_i2c: mikrobus1_i2c {
+>   					bias-disable;
+>   				};
+>   
+> +				pinctrl_i2c3_gpio: i2c3_gpio {
+> +					pinmux = <PIN_PA24__GPIO>,
+> +						 <PIN_PA23__GPIO>;
+> +					bias-disable;
+> +				};
 > +
-> +/* Gate register bits */
-> +#define GATE_MANUAL		BIT(20)
-> +#define GATE_ENABLE_HWACG	BIT(28)
-> +
-> +/* Gate register offsets range */
-> +#define GATE_OFF_START		0x2000
-> +#define GATE_OFF_END		0x2fff
-> +
-> +/**
-> + * exynos850_init_clocks - Set clocks initial configuration
-> + * @np:			CMU device tree node with "reg" property (CMU addr)
-> + * @reg_offs:		Register offsets array for clocks to init
-> + * @reg_offs_len:	Number of register offsets in reg_offs array
-> + *
-> + * Set manual control mode for all gate clocks.
-> + */
-> +static void __init exynos850_init_clocks(struct device_node *np,
-> +		const unsigned long *reg_offs, size_t reg_offs_len)
-> +{
-> +	const __be32 *regaddr_p;
-> +	u64 regaddr;
-> +	u32 base;
-> +	size_t i;
-> +
-> +	/* Get the base address ("reg" property in dts) */
-> +	regaddr_p = of_get_address(np, 0, NULL, NULL);
-> +	if (!regaddr_p)
-> +		panic("%s: failed to get reg regaddr\n", __func__);
-> +
-> +	regaddr = of_translate_address(np, regaddr_p);
-> +	if (regaddr == OF_BAD_ADDR || !regaddr)
-> +		panic("%s: bad reg regaddr\n", __func__);
-> +
-> +	base = (u32)regaddr;
-> +
-> +	for (i = 0; i < reg_offs_len; ++i) {
-> +		void __iomem *reg;
-> +		u32 val;
-> +
-> +		/* Modify only gate clock registers */
-> +		if (reg_offs[i] < GATE_OFF_START || reg_offs[i] > GATE_OFF_END)
-> +			continue;
-> +
-> +		reg = ioremap(base + reg_offs[i], 4);
+>   				pinctrl_flx4_default: flx4_uart_default {
+>   					pinmux = <PIN_PC28__FLEXCOM4_IO0>,
+>   						 <PIN_PC29__FLEXCOM4_IO1>,
+> 
 
-You first translate the address to CPU physical address and then apply
-offset. This should be equivalent to one of_iomap() of entire range and
-iterate starting from the base pointer.  IOW, I don't get why you have
-to map each register instead of mapping entire SFR/IO range?
 
-> +		val = ioread32(reg);
-> +		val |= GATE_MANUAL;
-> +		val &= ~GATE_ENABLE_HWACG;
-> +		iowrite32(val, reg);
-
-All other drivers use readl/writel, so how about keeping it consistent?
-
-Rest looks good but I did not verify the numbers :)
-
-Best regards,
-Krzysztof
+-- 
+Nicolas Ferre
