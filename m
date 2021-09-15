@@ -2,229 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D01EA40C5AB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 14:51:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EF5440C5B1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 14:52:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233148AbhIOMwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 08:52:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32892 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233139AbhIOMwx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 08:52:53 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B796F600CD;
-        Wed, 15 Sep 2021 12:51:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631710295;
-        bh=R2mEq52Tws4xcSHD4WedZOvyM/BuVJ85S/qpuGRFFEc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=MVea30ZE5V+VQRC7xofSAiJUssHu1pKS/CPbmc3UblKwEtG70dkeFJ4HwtpF7cbaI
-         XJN6tf5hkOsC4GZ124698NSU4i0oLRnB2I+NH02nmy+MT74Wnaeq7pspGbc4ab+RKb
-         Udaq3AskbqaJe77dr6JKr0mbR7qRI7sr2tX5bw1/aqtY8aDokp0R3DxlV+WKg4hZqb
-         Chlhc34G6yDAt19Obd3ITGTxZO7DRLBc/ss25OUlqoNa96TF19JFzdfQOn+Pi29eVv
-         XHeL0lz57Ped+SSCnyHOUZyHSivYkRxarCzOgCPhzAEtUVmHypi56lwBm/EdIeQBb/
-         RcI0ROPq6k8aw==
-Date:   Wed, 15 Sep 2021 14:51:31 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Wei Xu <xuwei5@hisilicon.com>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: hisilicon: Add support for Hikey 970
- PMIC
-Message-ID: <20210915145131.265502f6@coco.lan>
-In-Reply-To: <75bd73dc3a1a7a8d08eab60d4aab34e5feb2a000.1630583382.git.mchehab+huawei@kernel.org>
-References: <cover.1630583382.git.mchehab+huawei@kernel.org>
-        <75bd73dc3a1a7a8d08eab60d4aab34e5feb2a000.1630583382.git.mchehab+huawei@kernel.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
+        id S233835AbhIOMxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 08:53:17 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:59156 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233708AbhIOMxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 08:53:16 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20210915125156euoutp01d3c8e671c7db4900124942ca0fb5c247~k-_NHroGN1783317833euoutp01T
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 12:51:56 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20210915125156euoutp01d3c8e671c7db4900124942ca0fb5c247~k-_NHroGN1783317833euoutp01T
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1631710316;
+        bh=03ujAQ/c7ECVsa5KofPPIAP+m4Mo6XF14OM04r2XKJw=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=mTmqiXMlKCFzFaFmdj7kpvbKxAJqJwQv/djdI5QoSFCt+fb3r5s1J7mY6s0Sa5mAz
+         nD9H6d8R/ovBiPwuPAJYQLsHstL4JK8m1vH2qOMjIXsDAb4J36nbafq8R1weowtvpI
+         YebgNbwNN+29Rn1TtWXa1gH5a/UE7aVP5Qn9L36Y=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20210915125156eucas1p12243ad632605b39bf97dfd841fb56e7c~k-_Mw66VD2997129971eucas1p1S;
+        Wed, 15 Sep 2021 12:51:56 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id EF.BF.56448.C6CE1416; Wed, 15
+        Sep 2021 13:51:56 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20210915125155eucas1p204553084818cc0e14ea20acc295519cb~k-_MLv-By0821808218eucas1p2U;
+        Wed, 15 Sep 2021 12:51:55 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20210915125155eusmtrp1213fd6a52fe4c505cb90093d4c500a95~k-_MKuv6W1149811498eusmtrp1K;
+        Wed, 15 Sep 2021 12:51:55 +0000 (GMT)
+X-AuditID: cbfec7f5-d53ff7000002dc80-7c-6141ec6cf2b2
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id AF.69.20981.B6CE1416; Wed, 15
+        Sep 2021 13:51:55 +0100 (BST)
+Received: from [106.210.134.141] (unknown [106.210.134.141]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20210915125154eusmtip2f8cac74da6df926a2f4be386cad6fd07~k-_LLOEb62365823658eusmtip2O;
+        Wed, 15 Sep 2021 12:51:54 +0000 (GMT)
+Subject: Re: [PATCH 1/6] clk: samsung: Enable bus clock on init
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>
+Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <b44e1c4a-5abc-7a27-e9ae-d4645d04527a@samsung.com>
+Date:   Wed, 15 Sep 2021 14:51:54 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
+        Gecko/20100101 Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20210914155607.14122-2-semen.protsenko@linaro.org>
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SfUwbZRjfe3e9XiutR5npE5iOtDOyJYPhTHZGh5CM5Ga2ZRsuMSSOXdiF
+        FVogLR9OpzJwCBUQcWOug0DJHF0lQ75HxUWgWNdWKg7pwvjaSsAwiTTMpPtode3FyH+/r+d5
+        3l/yUrjiviiW0uQX8fp8TqsipUT/T488O7V/pnG7bNMSZs3Shhjvw2UR02IfFzHuJzuZrtUA
+        xnT7pkSMv2ZOxNy2NZHM156bGDPhTGcCjjqcOfeDXcxcCEyTTGiqi2CW656Zztl1MTPprsIY
+        q+0pSlWwf905J2ZNZbUkO2iaFbPd1mqSnZkaItmeK5+wdb1WxK53v3SYypS+eZLXakp4fVLK
+        CempW5U2VNikfN85OycuQzMKI6IooF+DgUCmEUkpBW1BMDR4UyyQhwh+Di1hAllHYPNex41I
+        EpkwL9xFgtGOoNf8CyEQP4JrZi8RTsXQb0HLmC8yvpkOILDf9kdGcHoKh/m+7yIpkk6G2rE6
+        FMYyOgU+8w5EdIJ+GSw1RjKMX6CzoTFYjguZaLh1aTGSkdCp0NrhiOg4rYTpxRZMwFthYLUJ
+        Dx8DelQCoW/PYkLVfeCeUAodYmDF0SsW8BZwfVVDCPkKBDXf3xULpB7BvKMVCak3YGb8MRle
+        hNPbodOWJMhpsPDHMiHsl8Od1WjhDXJo6L+IC7IMqioVQnobPLFexAQcC58v/kPUI5VpQzPT
+        hjamDW1M/99tRYQVKfligy6HN+zO50sTDZzOUJyfk5hdoOtGz76hK+T4+wayrPgTRxBGoREE
+        FK7aLPv1TBqnkJ3kTn/A6wuy9MVa3jCC4ihCpZTZ+jqyFHQOV8Tn8Xwhr//PxShJbBnW6Hmv
+        PjR8PP6eaVAfpTbXLtqz11yUfqV2f/uLHQfOH1w7+2Hsx0dvbG1p7pzUxD9Q7DJ1ve3KW3oK
+        wWS59PqwXd1GVkxov8E/7dI9Kj4x+rgSOX/zWDjzmcaCOKCiK3wJQxpJaFMe7yz1+uOWOl3n
+        h3ri1PtOF84H28rcr2Tk7lgY2HNhr+aepzX1nZ7RPZn91V/MVJQHm5u9lxo0H+2+LPkSXk0f
+        G8/a1vhgqdqp28L6SuPp9Sp/bgmm356rVEcNcz8e26S9GnU54dqVopIjk+XpB+TO5L37+44e
+        Vng8vyfo3LlHnk+akL/e/pxvznfoUNCYkuDIyFDzDcffjbmvIgynuOQduN7A/QsgRzDs9QMA
+        AA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrKIsWRmVeSWpSXmKPExsVy+t/xe7rZbxwTDdrXKFh8WLGI0eL6l+es
+        FvOPnGO1OPNb12Lj2x9MFpseX2O1+Nhzj9Xi8q45bBYzzu9jsrh4ytXix/E+ZovWvUfYLab+
+        uMVm8e/aRhaL531AyVN3P7NbXDnTwWSxatcfRgchj/c3Wtk9ZjX0snnsnHWX3WPTqk42jzvX
+        9rB5bF5S79G3ZRWjx+dNcgEcUXo2RfmlJakKGfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK
+        +nY2Kak5mWWpRfp2CXoZJ9t2MRbMEa84dfceewPjHaEuRk4OCQETiYUPbjN2MXJxCAksZZTY
+        f6GHrYuRAyghJTG/RQmiRljiz7UuNoia94wS7/etYAFJCAvYS8w/+pgJJCEi8INR4uCV38wg
+        DrPANWaJLft+sEK0nGSUOPG3jxGkhU3AUKL3KITNK2An0X59O9goFgFViRU9IDs4OUQFkiXe
+        vv7OBFEjKHFy5hOwGk4BB4kFa44zg9jMAuoSf+ZdgrLFJW49mc8EYctLbH87h3kCo9AsJO2z
+        kLTMQtIyC0nLAkaWVYwiqaXFuem5xUZ6xYm5xaV56XrJ+bmbGIHxv+3Yzy07GFe++qh3iJGJ
+        g/EQowQHs5II74Uax0Qh3pTEyqrUovz4otKc1OJDjKZA/0xklhJNzgcmoLySeEMzA1NDEzNL
+        A1NLM2MlcV6TI2vihQTSE0tSs1NTC1KLYPqYODilGpgC3+g8nPaf61PWlrUzX8TMYtv7VnvV
+        5zjvLyum2J97kL2DgzvS/tDFXJ9zJeX7F7Mu+ZlpsWLecumNj1+/fXbzac350ocFpSLObxcy
+        3PPk8HJedGG6PvOsuvX+ifpmJ0xPin8umOvcd/CDSUe8dPHG1rbJeSpaasH18441eun/cf2/
+        MZBFu73yTMLG65kp/oc3r/L8czBVzuLwtWS+W2fU63b2KClff2r1ULlVMDTgobv19h9mlwU2
+        epk6uDjqSIlZJ21N/Fm+7f5cbu4CBUF1jievMxpcNKcFXUh53+ST9YrvieGBlUnLQu7cEXqa
+        WM1fY/ttNYfGx8gz68K+WrlozrfZpl4768rKLm1RTS8lluKMREMt5qLiRACKwJ3piAMAAA==
+X-CMS-MailID: 20210915125155eucas1p204553084818cc0e14ea20acc295519cb
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20210914155621eucas1p18e0f1f50fe42af4f8048ed88507219ed
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20210914155621eucas1p18e0f1f50fe42af4f8048ed88507219ed
+References: <20210914155607.14122-1-semen.protsenko@linaro.org>
+        <CGME20210914155621eucas1p18e0f1f50fe42af4f8048ed88507219ed@eucas1p1.samsung.com>
+        <20210914155607.14122-2-semen.protsenko@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Thu,  2 Sep 2021 13:55:23 +0200
-Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:
+Hi,
 
-> Add a device tree for the HiSilicon 6421v600 SPMI PMIC, used
-> on HiKey970 board.
+On 14.09.2021 17:56, Sam Protsenko wrote:
+> By default if bus clock has no users its "enable count" value is 0. It
+> might be actually running if it's already enabled in bootloader, but
+> then in some cases it can be disabled by mistake. For example, such case
+> was observed when dw_mci_probe() enabled bus clock, then failed to do
+> something and disabled that bus clock on error path. After that even
+> attempt to read the 'clk_summary' file in DebugFS freezed forever, as
+> CMU bus clock ended up being disabled and it wasn't possible to access
+> CMU registers anymore.
 > 
-> As we now have support for it, change the fixed regulators
-> used by the SD I/O to use the proper LDO supplies.
-
-Hi Wei,
-
-Gentile ping.
-
-Now that the drivers and the DT schema are already upstreamed, could 
-you please merge those two patches?
-
-Thank you!
-Mauro
-
+> To avoid such cases, CMU driver must increment the ref count for that
+> bus clock by running clk_prepare_enable(). There is already existing
+> '.clk_name' field in struct samsung_cmu_info, exactly for that reason.
+> It was added in commit 523d3de41f02 ("clk: samsung: exynos5433: Add
+> support for runtime PM"). But the clock is actually enabled only in
+> Exynos5433 clock driver. Let's mimic what is done there in generic
+> samsung_cmu_register_one() function, so other drivers can benefit from
+> that `.clk_name' field. As was described above, it might be helpful not
+> only for PM reasons, but also to prevent possible erroneous clock gating
+> on error paths.
 > 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> Another way to workaround that issue would be to use CLOCK_IS_CRITICAL
+> flag for corresponding gate clocks. But that might be not very good
+> design decision, as we might still want to disable that bus clock, e.g.
+> on PM suspend.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
->  .../boot/dts/hisilicon/hi3670-hikey970.dts    | 22 +----
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  2 +-
->  .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 86 +++++++++++++++++++
->  3 files changed, 90 insertions(+), 20 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+>  drivers/clk/samsung/clk.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> index d8abf442ee7e..7c32f5fd5cc5 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> @@ -12,6 +12,7 @@
+> diff --git a/drivers/clk/samsung/clk.c b/drivers/clk/samsung/clk.c
+> index 1949ae7851b2..da65149fa502 100644
+> --- a/drivers/clk/samsung/clk.c
+> +++ b/drivers/clk/samsung/clk.c
+> @@ -357,6 +357,19 @@ struct samsung_clk_provider * __init samsung_cmu_register_one(
 >  
->  #include "hi3670.dtsi"
->  #include "hikey970-pinctrl.dtsi"
-> +#include "hikey970-pmic.dtsi"
+>  	ctx = samsung_clk_init(np, reg_base, cmu->nr_clk_ids);
 >  
->  / {
->  	model = "HiKey970";
-> @@ -39,23 +40,6 @@ memory@0 {
->  		reg = <0x0 0x0 0x0 0x0>;
->  	};
->  
-> -	sd_1v8: regulator-1v8 {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "fixed-1.8V";
-> -		regulator-min-microvolt = <1800000>;
-> -		regulator-max-microvolt = <1800000>;
-> -		regulator-always-on;
-> -	};
-> -
-> -	sd_3v3: regulator-3v3 {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "fixed-3.3V";
-> -		regulator-min-microvolt = <3300000>;
-> -		regulator-max-microvolt = <3300000>;
-> -		regulator-boot-on;
-> -		regulator-always-on;
-> -	};
-> -
->  	wlan_en: wlan-en-1-8v {
->  		compatible = "regulator-fixed";
->  		regulator-name = "wlan-en-regulator";
-> @@ -402,8 +386,8 @@ &dwmmc1 {
->  	pinctrl-0 = <&sd_pmx_func
->  		     &sd_clk_cfg_func
->  		     &sd_cfg_func>;  
-> -	vmmc-supply = <&sd_3v3>;
-> -	vqmmc-supply = <&sd_1v8>;
-> +	vmmc-supply = <&ldo16>;
-> +	vqmmc-supply = <&ldo9>;
->  	status = "okay";
->  };
->  
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 20698cfd0637..636c8817df7e 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -669,7 +669,7 @@ ufs: ufs@ff3c0000 {
->  			interrupt-parent = <&gic>;
->  			interrupts = <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&crg_ctrl HI3670_CLK_GATE_UFSIO_REF>,
-> -				<&crg_ctrl HI3670_CLK_GATE_UFS_SUBSYS>;
-> +				 <&crg_ctrl HI3670_CLK_GATE_UFS_SUBSYS>;
->  			clock-names = "ref_clk", "phy_clk";
->  			freq-table-hz = <0 0
->  					 0 0>;
-> diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-> new file mode 100644
-> index 000000000000..970047f2dabd
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-> @@ -0,0 +1,86 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * dts file for Hi6421v600 SPMI PMIC used at the HiKey970 Development Board
-> + *
-> + * Copyright (C) 2020, Huawei Tech. Co., Ltd.
-> + */
+> +	/* Keep bus clock running, so it's possible to access CMU registers */
+> +	if (cmu->clk_name) {
+> +		struct clk *bus_clk;
 > +
-> +#include <dt-bindings/spmi/spmi.h>
+> +		bus_clk = __clk_lookup(cmu->clk_name);
+> +		if (bus_clk) {
+> +			clk_prepare_enable(bus_clk);
+> +		} else {
+> +			pr_err("%s: could not find bus clock %s\n", __func__,
+> +			       cmu->clk_name);
+> +		}
+> +	}
 > +
-> +/ {
-> +	spmi: spmi@fff24000 {
-> +		compatible = "hisilicon,kirin970-spmi-controller";
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +		status = "okay";
-> +		reg = <0x0 0xfff24000 0x0 0x1000>;
-> +		hisilicon,spmi-channel = <2>;
-> +
-> +		pmic: pmic@0 {
-> +			compatible = "hisilicon,hi6421-spmi";
-> +			reg = <0 SPMI_USID>;
-> +
-> +			#interrupt-cells = <2>;
-> +			interrupt-controller;
-> +			gpios = <&gpio28 0 0>;
-> +
-> +			regulators {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				ldo3: ldo3 { /* HDMI */
-> +					regulator-name = "ldo3";
-> +					regulator-min-microvolt = <1500000>;
-> +					regulator-max-microvolt = <2000000>;
-> +					regulator-boot-on;
-> +				};
-> +
-> +				ldo4: ldo4 { /* 40 PIN */
-> +					regulator-name = "ldo4";
-> +					regulator-min-microvolt = <1725000>;
-> +					regulator-max-microvolt = <1900000>;
-> +					regulator-boot-on;
-> +				};
-> +
-> +				ldo9: ldo9 { /* SDCARD I/O */
-> +					regulator-name = "ldo9";
-> +					regulator-min-microvolt = <1750000>;
-> +					regulator-max-microvolt = <3300000>;
-> +					regulator-boot-on;
-> +				};
-> +
-> +				ldo15: ldo15 { /* UFS */
-> +					regulator-name = "ldo15";
-> +					regulator-min-microvolt = <1800000>;
-> +					regulator-max-microvolt = <3000000>;
-> +					regulator-always-on;
-> +				};
-> +
-> +				ldo16: ldo16 { /* SD */
-> +					regulator-name = "ldo16";
-> +					regulator-min-microvolt = <1800000>;
-> +					regulator-max-microvolt = <3000000>;
-> +					regulator-boot-on;
-> +				};
-> +
-> +				ldo17: ldo17 { /* USB HUB */
-> +					regulator-name = "ldo17";
-> +					regulator-min-microvolt = <2500000>;
-> +					regulator-max-microvolt = <3300000>;
-> +				};
-> +
-> +				ldo33: ldo33 { /* PEX8606 */
-> +					regulator-name = "ldo33";
-> +					regulator-min-microvolt = <2500000>;
-> +					regulator-max-microvolt = <3300000>;
-> +				};
-> +
-> +				ldo34: ldo34 { /* GPS AUX IN VDD */
-> +					regulator-name = "ldo34";
-> +					regulator-min-microvolt = <2600000>;
-> +					regulator-max-microvolt = <3300000>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
+>  	if (cmu->pll_clks)
+>  		samsung_clk_register_pll(ctx, cmu->pll_clks, cmu->nr_pll_clks,
+>  			reg_base);
 
+I would suggest to implement runtime PM ops in your driver instead, even though
+those would initially only contain single clk enable/disable. Things like 
+the clk_summary will work then thanks to runtime PM support in the clk core 
+(see clk_pm_runtime_* calls).
+We could also make common runtime PM suspend/resume helpers but I wouldn't focus
+on that too much now, it could well be done later.
+And please avoid introducing new __clk_lookup() calls.
 
-
-Thanks,
-Mauro
+-- 
+Regards,
+Sylwester
