@@ -2,69 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DABAF40CE1C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 22:34:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE52840CE47
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 22:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231535AbhIOUf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 16:35:56 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:43062 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231490AbhIOUf4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 16:35:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=I695fxV3rtoEGJmyLVEw/GhpWuvfSF9OuM8iMImSHYo=; b=5t90GtYm5tUxm8nTNSUJ3Dbw68
-        9E5egFeviFEI9sj4iImH6TEAR4s3fMvz6oLqF3idlbRSjY3Cv51Ca5J6DZ8SyMG2q+Z7QhgLww5lj
-        UhdKryWxuj4rEBxMb5mLicwLF3gXuqCzzWhC+72MVhBcmoG3kZ6aMLU/Dn8FHJSBRcD4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mQbc2-006nuf-4S; Wed, 15 Sep 2021 22:34:34 +0200
-Date:   Wed, 15 Sep 2021 22:34:34 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     DTML <devicetree@vger.kernel.org>,
+        id S231882AbhIOUlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 16:41:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231490AbhIOUlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 16:41:03 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3091FC061574
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 13:39:44 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id u4so3627686qta.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 13:39:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=poorly.run; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=9OuUx3KXVHJzGt1nkLMrzoX0tQkzHA3ws4rQqxVIlAU=;
+        b=Gplj4vlsNLaGWWlUfnYJZw6WjTg0vIpqnB0tUu5lVhgJX6jnBQ6efnvb1U/rmq7Ibn
+         UeqnfcOTnqUZk42vDAJmgbqJI4idzeq+C7JC429NNojeDfNLXYPUEVoGQSaLuQci7ZDN
+         TozBYn6EDnNElG7Ie+I/6c3XnemtP1uguZJ63397Lmia4hi/syUd7yy0JSKRzwpz2zPW
+         /7jZwq2Hsl9MmeLZheJSR7NHUZ/0KyPDjjswdqHuxmcS7x+0RPYoQTlqC3pdJAS4VVeX
+         aquHQHpkrsi72qj6LMohkeEFzZNwr7ko9IdKT17J8TMsoniVLMXUATMIb3q+is8/BmXC
+         Kevg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=9OuUx3KXVHJzGt1nkLMrzoX0tQkzHA3ws4rQqxVIlAU=;
+        b=eXBFyl/Nty5uNAqpAaYU+opnuGm2knbKv4m1zj2vnoY9H0zPQV9PF6OCj/agpn/ugq
+         Cc3r8QgDq+h+tBbXTWdLUG+V+y5o82MY1/2LIt9Y5AjjwNjCWc/x3WCnwTbpoVDUbA3h
+         +6HxIDkKdIxc2bPJ6EL6Ajw0+ub8949SUzHTgYoy/pmO1DinV4/NQIpreuiBxu40BoU8
+         cE69enXmNaJgl462VA+ZCsDOfaV3jPJV8C1T+sCidoqUtpNUjS9CADJBGSCthhQ6dKqO
+         3WgbNfcpUt6iX4OBAsIS7NnG0MCfoNOVYwU7Phgj6VQ1EON0k3SfQbpbkYdJmgX2FREN
+         z1UA==
+X-Gm-Message-State: AOAM533Ef6sVy6C/zI8K9ukCp1NUS1Tg+tk5xu//cOcT5+ouVjXnzPzC
+        F8QhCiM1+3zEwz85bLCSgiqOgw==
+X-Google-Smtp-Source: ABdhPJwv8VMJ4KHRU0dxak2AD3U+O/PeXgwnCOo3RcWxIVJqB9SSvTLPKmheRvTC6ByxBh3Brhm6ig==
+X-Received: by 2002:ac8:70b:: with SMTP id g11mr1789777qth.387.1631738383390;
+        Wed, 15 Sep 2021 13:39:43 -0700 (PDT)
+Received: from localhost ([167.100.64.199])
+        by smtp.gmail.com with ESMTPSA id j18sm843374qke.75.2021.09.15.13.39.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 15 Sep 2021 13:39:42 -0700 (PDT)
+From:   Sean Paul <sean@poorly.run>
+To:     dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Cc:     swboyd@chromium.org, Sean Paul <seanpaul@chromium.org>,
+        Rob Herring <robh@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Romain Perier <romain.perier@gmail.com>
-Subject: Re: [PATCH 0/3] SigmaStar SSD20XD GPIO interrupt controller
-Message-ID: <YUJY2v59+ui1pGZp@lunn.ch>
-References: <20210914100415.1549208-1-daniel@0x0f.com>
- <YUDG58WfACd8GYf5@lunn.ch>
- <CAFr9PX=J85PxAiHC2Cb9Z18v8pYtd2Uea8KOC+AsYyJKFCLHXw@mail.gmail.com>
+        Kuogee Hsieh <khsieh@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 12/13] dt-bindings: msm/dp: Add bindings for HDCP registers
+Date:   Wed, 15 Sep 2021 16:38:31 -0400
+Message-Id: <20210915203834.1439-13-sean@poorly.run>
+X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20210915203834.1439-1-sean@poorly.run>
+References: <20210915203834.1439-1-sean@poorly.run>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFr9PX=J85PxAiHC2Cb9Z18v8pYtd2Uea8KOC+AsYyJKFCLHXw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 15, 2021 at 06:06:52PM +0900, Daniel Palmer wrote:
-> Hi Andrew,
-> 
-> On Wed, 15 Sept 2021 at 00:59, Andrew Lunn <andrew@lunn.ch> wrote:
-> > How are the GPIOs mapped to the interrupts? Is it a simple 1:1?
-> 
-> Unfortunately, no.
-> I wanted to add the GPIO controller part of this to this same series
-> but there are some patches in flight for that so it would have been
-> messy.
-> You can see that here though:
-> https://github.com/linux-chenxing/linux/commit/88345dc470bf07d36aa1ddab09551ed33a1cfb22
-> 
-> They've really made a mess of this. Their whole GPIO thing is a mess
-> with no clear logic between the pin names and the register locations
-> etc.
-> This IRQ part is no exception. IRQ 0 from this thing isn't for the pin
-> called GPIO0 or anything sane like that.
+From: Sean Paul <seanpaul@chromium.org>
 
-O.K. Then it sounds like splitting GPIO and the IRQ makes sense.  This
-is the sort of thing which is good to put in the cover letter,
-explaining why you decided to do it this way.
+This patch adds the bindings for the MSM DisplayPort HDCP registers
+which are required to write the HDCP key into the display controller as
+well as the registers to enable HDCP authentication/key
+exchange/encryption.
 
-     Andrew
+Cc: Rob Herring <robh@kernel.org>
+Cc: Stephen Boyd <swboyd@chromium.org>
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
+Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-13-sean@poorly.run #v1
+
+Changes in v2:
+-Drop register range names (Stephen)
+-Fix yaml errors (Rob)
+---
+ .../devicetree/bindings/display/msm/dp-controller.yaml     | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+index 64d8d9e5e47a..80a55e9ff532 100644
+--- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+@@ -19,7 +19,7 @@ properties:
+       - qcom,sc7180-dp
+ 
+   reg:
+-    maxItems: 1
++    maxItems: 3
+ 
+   interrupts:
+     maxItems: 1
+@@ -99,8 +99,9 @@ examples:
+     #include <dt-bindings/power/qcom-rpmpd.h>
+ 
+     displayport-controller@ae90000 {
+-        compatible = "qcom,sc7180-dp";
+-        reg = <0xae90000 0x1400>;
++        reg = <0 0x0ae90000 0 0x1400>,
++              <0 0x0aed1000 0 0x174>,
++              <0 0x0aee1000 0 0x2c>;
+         interrupt-parent = <&mdss>;
+         interrupts = <12>;
+         clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
+
