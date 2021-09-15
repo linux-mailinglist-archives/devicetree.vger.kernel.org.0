@@ -2,212 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1117F40C7DD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 17:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCC4940C7EA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 17:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234009AbhIOPG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 11:06:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39892 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbhIOPGz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 11:06:55 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB09C061574
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 08:05:36 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id t20so2333072pju.5
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 08:05:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=tuZ5AJo9HYV72r//BB/nhJCCtA8J0cLgDUQf1Wa73oU=;
-        b=AqTzpIsgPDCO3HJy4ctU22tG7V35oU3V+ofAVG3HhLBvwkxZqzp3LpsALS6nVYDedT
-         eMz3lyh37h7vFtPORm/SZiEEuVt3GC7omw3sbfd0F5rlvBuKXiANq8qYQ8dklwizxk/t
-         1ldrHdFd+PzmDFTI+BVF+yRpvzPnXS4k6ZKHAjcT9gHOcxopn7G/pEvYWyUo6jwOuwK7
-         EwVXYQKijQjvGtkBRVX2IyhopAvmMkmkHPz42x3ePAD+N6120sVpz9s1acBQ7fJcmYuU
-         WDVHoXJdQsCi4AQBpOzErgvdsLdvTeTzZ71N9gyWUPvp3au/xYfiJpx0b9jaczHLFDWG
-         4Xag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=tuZ5AJo9HYV72r//BB/nhJCCtA8J0cLgDUQf1Wa73oU=;
-        b=hidt1TO5VcBliJc3EzfBZvNOD6JUiFd2XxWVuAdhaG5sAQLBykzx+cCmk4TGbTDLuX
-         A9U+2m34/nRcoQOMtTnJDs4FQfKLPTAL2KUnFl+BQbhnfbfIIqX9jYSsZ+N36phdf906
-         5VbPrZYm6X8BZT0qDJEo6BJ1RVhzBD2eN+QK3OLZHAc7yIYcvJwPiIiTF0Q+KT0PEg9O
-         O7E0w83ShZdHCoEBH+O4ZKkC+Zrf8bKhEfvvu4DU8RiJmkQj843fWlsxqexfrQxhOwoA
-         kkjbDWnxcYfBTO+YR1XF3qWYfkSiDqF2f8bEnsvyg42vPzDkL2SgMjMJKd4m2yv6aFz2
-         NKPw==
-X-Gm-Message-State: AOAM530Pcm8AI4d5CWztyB4paN+8DC5Wk+bizoyG6TA9PZtAPY77Ztpu
-        sNxBD8B7r+EyVE3u9gYGZSTCCQ==
-X-Google-Smtp-Source: ABdhPJy0Tg9oNP4ZFHBxknMHxgqD9Dk0JxCQuX5C2E5V0NQzkRuEYxefKNUn+Phg3g7CrFCnyeEKfw==
-X-Received: by 2002:a17:90b:957:: with SMTP id dw23mr253699pjb.125.1631718336048;
-        Wed, 15 Sep 2021 08:05:36 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id s10sm3795857pjn.38.2021.09.15.08.05.33
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 15 Sep 2021 08:05:35 -0700 (PDT)
-Date:   Wed, 15 Sep 2021 23:05:27 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] clk: qcom: smd-rpm: Add rate hooks for
- clk_smd_rpm_branch_ops
-Message-ID: <20210915150526.GE25255@dragon>
-References: <20210914025554.5686-1-shawn.guo@linaro.org>
- <20210914025554.5686-2-shawn.guo@linaro.org>
- <163165658855.763609.14080313241484048687@swboyd.mtv.corp.google.com>
+        id S233990AbhIOPN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 11:13:28 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:35036 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233711AbhIOPN2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 11:13:28 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18FFBxml010177;
+        Wed, 15 Sep 2021 10:11:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631718719;
+        bh=Noc3Vg1u4OEnmLXjCiSBH2Vbn3a+JN5Yh0ZigrDpems=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=sUJAhIGAzzW3FG9m6quq1YhD82iowiyT8KfFt9pZ3LMG0nHOgmno0ZztiHac/0ktI
+         mrDpdop3BlaxubGsmJLeQQoxHA8ubAzypDjPotr6xrPF7p0CNO7537EtYFp7fvbZs6
+         fRRkIqeIBJin/owiLCl4Ee8Nwf6Mcj7ii+QkFSkU=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18FFBxQ1046872
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 15 Sep 2021 10:11:59 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 15
+ Sep 2021 10:11:58 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 15 Sep 2021 10:11:58 -0500
+Received: from [10.250.232.51] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18FFBtFN103656;
+        Wed, 15 Sep 2021 10:11:56 -0500
+Subject: Re: [PATCH] arm64: dts: ti: ti-k3*: Introduce aliases for mmc nodes
+To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>
+References: <20210915135415.5706-1-nm@ti.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <22d8a179-cc6c-0be6-1580-cb2a5a749417@ti.com>
+Date:   Wed, 15 Sep 2021 20:41:55 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <163165658855.763609.14080313241484048687@swboyd.mtv.corp.google.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210915135415.5706-1-nm@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 14, 2021 at 02:56:28PM -0700, Stephen Boyd wrote:
-> Quoting Shawn Guo (2021-09-13 19:55:52)
-> > On QCM2290 platform, the clock xo_board runs at 38400000, while the
-> > child clock bi_tcxo needs to run at 19200000.  That said,
-> > clk_smd_rpm_branch_ops needs the capability of setting rate. Add rate
-> > hooks into clk_smd_rpm_branch_ops to make it possible.
+On 15/09/21 7:24 pm, Nishanth Menon wrote:
+> Since probe order of mmc can vary depending on device tree dependencies,
+> Lets try and introduce a consistent definition of what mmc0, 1 are
+> across platforms.
 > 
-> This doesn't sound right. The branch is a simple on/off. If xo_board is
-> 38.4MHz, then there is an internal divider in the SoC that makes bi_tcxo
-> (i.e. the root of the entire clk tree) be 19.2MHz. We don't model the
-> divider, I guess because it isn't very important to. Instead, we tack on
-> a divider field and implement recalc_rate op. See clk-rpmh.c in the qcom
-> directory for this.
+> NOTE: Certain platforms may choose to have overrides due to various
+> legacy reasons, we permit that in the board specific alias definition.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
 
-Thanks for the comment, Stephen!  To be honest, I copied the
-implementation from vendor kernel, and wasn't really sure if it's
-correct or the best.
+Reviewed-by: Aswath Govindraju <a-govindraju@ti.com>
 
-So here is what I get based on your suggestion.  Let's me know if
-it's how you wanted it to be.  Thanks!
-
-Shawn
-
-----8<---------
-
-From 23dda79fee412738f046b89bdd20ef95a24c35cc Mon Sep 17 00:00:00 2001
-From: Shawn Guo <shawn.guo@linaro.org>
-Date: Wed, 15 Sep 2021 22:00:32 +0800
-Subject: [PATCH] clk: qcom: smd-rpm: Add a divider field for branch clock
-
-Similar to clk-rpmh, clk-smd-rpm has the same need to handle the case
-where an internal divider is there between xo_board and bi_tcxo.  The
-change is made in the a back compatible way below.
-
- - Add div field to struct clk_smd_rpm, and have
-   __DEFINE_CLK_SMD_RPM_BRANCH() assign it.
-
- - Update all existing __DEFINE_CLK_SMD_RPM_BRANCH() wrappers to pass a
-   zero div.
-
- - Add DEFINE_CLK_SMD_RPM_BRANCH_DIV() which doesn't take rate argument
-   but div.
-
- - Update clk_smd_rpm_recalc_rate() to handle div and add it as
-   .recalc_rate of clk_smd_rpm_branch_ops.
-
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- drivers/clk/qcom/clk-smd-rpm.c | 23 ++++++++++++++++-------
- 1 file changed, 16 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
-index 66d7807ee38e..66ef0d3795fd 100644
---- a/drivers/clk/qcom/clk-smd-rpm.c
-+++ b/drivers/clk/qcom/clk-smd-rpm.c
-@@ -66,13 +66,14 @@
- 	}
- 
- #define __DEFINE_CLK_SMD_RPM_BRANCH(_platform, _name, _active, type, r_id,    \
--				    stat_id, r, key)			      \
-+				    stat_id, r, key, _div)		      \
- 	static struct clk_smd_rpm _platform##_##_active;		      \
- 	static struct clk_smd_rpm _platform##_##_name = {		      \
- 		.rpm_res_type = (type),					      \
- 		.rpm_clk_id = (r_id),					      \
- 		.rpm_status_id = (stat_id),				      \
- 		.rpm_key = (key),					      \
-+		.div = (_div),						      \
- 		.branch = true,						      \
- 		.peer = &_platform##_##_active,				      \
- 		.rate = (r),						      \
-@@ -92,6 +93,7 @@
- 		.rpm_status_id = (stat_id),				      \
- 		.active_only = true,					      \
- 		.rpm_key = (key),					      \
-+		.div = (_div),						      \
- 		.branch = true,						      \
- 		.peer = &_platform##_##_name,				      \
- 		.rate = (r),						      \
-@@ -112,7 +114,12 @@
- 
- #define DEFINE_CLK_SMD_RPM_BRANCH(_platform, _name, _active, type, r_id, r)   \
- 		__DEFINE_CLK_SMD_RPM_BRANCH(_platform, _name, _active, type,  \
--		r_id, 0, r, QCOM_RPM_SMD_KEY_ENABLE)
-+		r_id, 0, r, QCOM_RPM_SMD_KEY_ENABLE, 0)
-+
-+#define DEFINE_CLK_SMD_RPM_BRANCH_DIV(_platform, _name, _active, type, r_id,  \
-+				      _div)				      \
-+		__DEFINE_CLK_SMD_RPM_BRANCH(_platform, _name, _active, type,  \
-+		r_id, 0, 0, QCOM_RPM_SMD_KEY_ENABLE, _div)
- 
- #define DEFINE_CLK_SMD_RPM_QDSS(_platform, _name, _active, type, r_id)	      \
- 		__DEFINE_CLK_SMD_RPM(_platform, _name, _active, type, r_id,   \
-@@ -121,12 +128,12 @@
- #define DEFINE_CLK_SMD_RPM_XO_BUFFER(_platform, _name, _active, r_id)	      \
- 		__DEFINE_CLK_SMD_RPM_BRANCH(_platform, _name, _active,	      \
- 		QCOM_SMD_RPM_CLK_BUF_A, r_id, 0, 1000,			      \
--		QCOM_RPM_KEY_SOFTWARE_ENABLE)
-+		QCOM_RPM_KEY_SOFTWARE_ENABLE, 0)
- 
- #define DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(_platform, _name, _active, r_id) \
- 		__DEFINE_CLK_SMD_RPM_BRANCH(_platform, _name, _active,	      \
- 		QCOM_SMD_RPM_CLK_BUF_A, r_id, 0, 1000,			      \
--		QCOM_RPM_KEY_PIN_CTRL_CLK_BUFFER_ENABLE_KEY)
-+		QCOM_RPM_KEY_PIN_CTRL_CLK_BUFFER_ENABLE_KEY, 0)
- 
- #define to_clk_smd_rpm(_hw) container_of(_hw, struct clk_smd_rpm, hw)
- 
-@@ -140,6 +147,7 @@ struct clk_smd_rpm {
- 	bool branch;
- 	struct clk_smd_rpm *peer;
- 	struct clk_hw hw;
-+	u8 div;
- 	unsigned long rate;
- 	struct qcom_smd_rpm *rpm;
- };
-@@ -370,10 +378,10 @@ static unsigned long clk_smd_rpm_recalc_rate(struct clk_hw *hw,
- 
- 	/*
- 	 * RPM handles rate rounding and we don't have a way to
--	 * know what the rate will be, so just return whatever
--	 * rate was set.
-+	 * know what the rate will be, so just return divided parent
-+	 * rate or whatever rate was set.
- 	 */
--	return r->rate;
-+	return r->div ? parent_rate / r->div : r->rate;
- }
- 
- static int clk_smd_rpm_enable_scaling(struct qcom_smd_rpm *rpm)
-@@ -416,6 +424,7 @@ static const struct clk_ops clk_smd_rpm_ops = {
- static const struct clk_ops clk_smd_rpm_branch_ops = {
- 	.prepare	= clk_smd_rpm_prepare,
- 	.unprepare	= clk_smd_rpm_unprepare,
-+	.recalc_rate	= clk_smd_rpm_recalc_rate,
- };
- 
- DEFINE_CLK_SMD_RPM(msm8916, pcnoc_clk, pcnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 0);
--- 
-2.17.1
+>  arch/arm64/boot/dts/ti/k3-am64.dtsi  | 2 ++
+>  arch/arm64/boot/dts/ti/k3-am65.dtsi  | 2 ++
+>  arch/arm64/boot/dts/ti/k3-j7200.dtsi | 2 ++
+>  arch/arm64/boot/dts/ti/k3-j721e.dtsi | 3 +++
+>  4 files changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> index de6805b0c72c..120974726be8 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> @@ -30,6 +30,8 @@ aliases {
+>  		serial8 = &main_uart6;
+>  		ethernet0 = &cpsw_port1;
+>  		ethernet1 = &cpsw_port2;
+> +		mmc0 = &sdhci0;
+> +		mmc1 = &sdhci1;
+>  	};
+>  
+>  	chosen { };
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> index a9fc1af03f27..a58a39fa42db 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> @@ -31,6 +31,8 @@ aliases {
+>  		i2c4 = &main_i2c2;
+>  		i2c5 = &main_i2c3;
+>  		ethernet0 = &cpsw_port1;
+> +		mmc0 = &sdhci0;
+> +		mmc1 = &sdhci1;
+>  	};
+>  
+>  	chosen { };
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
+> index b7005b803149..47567cb260c2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
+> @@ -30,6 +30,8 @@ aliases {
+>  		serial9 = &main_uart7;
+>  		serial10 = &main_uart8;
+>  		serial11 = &main_uart9;
+> +		mmc0 = &main_sdhci0;
+> +		mmc1 = &main_sdhci1;
+>  	};
+>  
+>  	chosen { };
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> index f0587fde147e..214359e7288b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+> @@ -31,6 +31,9 @@ aliases {
+>  		serial10 = &main_uart8;
+>  		serial11 = &main_uart9;
+>  		ethernet0 = &cpsw_port1;
+> +		mmc0 = &main_sdhci0;
+> +		mmc1 = &main_sdhci1;
+> +		mmc2 = &main_sdhci2;
+>  	};
+>  
+>  	chosen { };
+> 
 
