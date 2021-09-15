@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 858EC40C1A9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 10:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FE7C40C1AD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 10:26:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236700AbhIOIZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 04:25:56 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46630
+        id S236717AbhIOI1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 04:27:31 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46742
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231728AbhIOIZ4 (ORCPT
+        by vger.kernel.org with ESMTP id S231610AbhIOI1a (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 04:25:56 -0400
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        Wed, 15 Sep 2021 04:27:30 -0400
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1062A4028B
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 08:24:37 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 19A8F4028C
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 08:26:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1631694277;
-        bh=jH5yqZdy0poBMayuZGGYMX7sqt3HTnu/3+K0ZeEsCPk=;
+        s=20210705; t=1631694371;
+        bh=ptvhp8j3x8Ftji47LhZR4Wys0W2gMYnRB4nsbyxXHrA=;
         h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
          In-Reply-To:Content-Type;
-        b=rvsBoM5hXP/ROal7lSPOY5nmCailY+6GI4ig7XhKJC6XQucDLAv56usAPq6R+mQpG
-         TT1RT1ywPpzpSBjlV5Je0l4/w25Sr784656cZSWppbeyTWfeUhHpVfyqx66f3U0lhe
-         pVExi94/RWsryNPljlGTAVrwmP/eNwzqF+uYQWt9d8qh8e56JVM8opWGAcHNukfoTO
-         5/O5Yn66uowJCzx+0liE8ZpZEURsRfIbrbl/vFiBUPmS7Aa3Z74w1xagm3/SebGlfL
-         nKgrt2v2cIIM5d8Km2G/obRqKybUGB8Ld25JIRa2cRiJMdoFYe+etC8D5IcC8rXLz8
-         cq/Rc7Dw8++pQ==
-Received: by mail-ed1-f71.google.com with SMTP id z6-20020a50cd06000000b003d2c2e38f1fso1175585edi.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 01:24:37 -0700 (PDT)
+        b=nH04XNGSn6xeGnsBVWlgCBH4L3qjJZ9Q6lHSeWEzXl+9cOjKdbMOKiUiC4s2YA6Co
+         D+lJw9tlJpI0OuZailsBMJ7TP/pROoGN09FKSOCD0pRfb4F1rr1Tg8DhcOYqZK9Wqw
+         qBa2uN/IqDq5/q/xdrkAulTPnapSXbNgQJpAF931BA/0Tkm2ZoegJmsyRPpQSOwqz9
+         ls6RRa7AprITK+F6aepTumDpg4jAkw2+GlES6UK/pgjSMWepCht0bzss+bw7ypP2xY
+         HCqYLIfAj04BETdYx6RriuLOPicqHovt88m2gGbkJGsu8T+ig+jVHaZC8wosSn7jAZ
+         BAX5oFhqczCxA==
+Received: by mail-ed1-f72.google.com with SMTP id o18-20020a056402439200b003d2b11eb0a9so1133111edc.23
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 01:26:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=jH5yqZdy0poBMayuZGGYMX7sqt3HTnu/3+K0ZeEsCPk=;
-        b=j2XLRhGG3IGOIeI9SCFH4jQDGVh/a5iKmW//pBe3H3/3IH0AqoShT7aHFOH9qg7Twg
-         WU4iMnZLkk4cOhLxg9A8YqO6nTOBKgKmAvLGSrwDnIQ/W5ze5LdkcC+lCLT+aFkhvh/8
-         ePtfHsiog5hw9IU1G8mln5ysPOhGtn4dcYIdzkHYXqSDNTbNNLcxagvVS2kbtfSzJIa1
-         6YnJ1TzAw6AiRR+WB1ya/NvbfRS46xnYXM4/D3U70THCCAAM9ornG733AvHSDV48BrDF
-         F3K03n0Up1NIXupV94A96pN6c6F4o8WMg+UoLcKorJSd/Ct2zezpZzYzAY9vOzFxLK0M
-         Fb2g==
-X-Gm-Message-State: AOAM5312zjHzTlA9AUtC7SZiKoAd2/y1Nw0N3WRbS3MGzrRZfirhtHW7
-        ybZuPaG0pSL1as4bmqFPXIJsQpS0bZ8d8ho4/gd6xkebGsxMTliHoNPIeM+KQsfqKiIs8BC0sUE
-        rSeCR3I0itdAXQpq4nR9QbSSJSuJTVbhosK4p4ac=
-X-Received: by 2002:a17:907:d23:: with SMTP id gn35mr24610922ejc.556.1631694276566;
-        Wed, 15 Sep 2021 01:24:36 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzsVkw4c2rpKq/jC9r7maHh5NKfix2SH8toBQTvS0RrkMXOk3q+BW0FeTzs/ZNQvvCu8pb6OQ==
-X-Received: by 2002:a17:907:d23:: with SMTP id gn35mr24610904ejc.556.1631694276399;
-        Wed, 15 Sep 2021 01:24:36 -0700 (PDT)
+        bh=ptvhp8j3x8Ftji47LhZR4Wys0W2gMYnRB4nsbyxXHrA=;
+        b=LNwzrTaKwYN21L/4ClTtwctJnHb6MpjfEZVWL0RsLuULJoFlM0gruSGfeKsdSD8Dyb
+         7gzFCApWjO+FStKLGh156sOMrthWUm3FR3f0jBkWOUUYwVB6krFgQe4Tx7YZOaXS4mVX
+         mSNBld1/BOZQkKU9e/4uZak+87PVr6PhLjcugdPYqWsIuuzNyQoOWEwnNab+ONFvX+Fw
+         xnlg8YcQ3sGExxlzeq4Vxwg+8CTWH0MBA/7t7uaWJ+V4GmiRXct7XxkZbbh8glnYnoaP
+         tFzxmPOqQN50IxuclQxTW2ZpqphNNvie3Myr2+WXjTvYoNj4JJe1+euAVrk5fujbEa62
+         SKZg==
+X-Gm-Message-State: AOAM5324pTEU9nUZi14GthW+Oaq6HBn0MScUEu6y85X6/jXkLOMTrWpA
+        UbQEU0v0G6NFCkjZLjA43VXMG4EvSxyqEcdSM1tBQKttfOKvqmHD/ZgRnBJj5sXh8MZhbSqmH/N
+        OumyQl2VOdXWYv6dsMkOdvL6/Us3BDpgRqXRE9EM=
+X-Received: by 2002:a17:906:72d0:: with SMTP id m16mr23559513ejl.282.1631694370555;
+        Wed, 15 Sep 2021 01:26:10 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy40iZHAYHG7of77gqMHSsEjCU0O3RP/sEGAl+pwIJiNsr9dTKA2Dzu3UElI7w7k0XRmYtnuw==
+X-Received: by 2002:a17:906:72d0:: with SMTP id m16mr23559504ejl.282.1631694370363;
+        Wed, 15 Sep 2021 01:26:10 -0700 (PDT)
 Received: from [192.168.3.211] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id d3sm6658015edv.87.2021.09.15.01.24.34
+        by smtp.gmail.com with ESMTPSA id a12sm2689234eje.27.2021.09.15.01.26.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Sep 2021 01:24:35 -0700 (PDT)
-Subject: Re: [PATCH 2/6] clk: samsung: clk-pll: Implement pll0822x PLL type
+        Wed, 15 Sep 2021 01:26:09 -0700 (PDT)
+Subject: Re: [PATCH 3/6] clk: samsung: clk-pll: Implement pll0831x PLL type
 To:     Sam Protsenko <semen.protsenko@linaro.org>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
         =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
@@ -72,14 +72,14 @@ Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
         linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org
 References: <20210914155607.14122-1-semen.protsenko@linaro.org>
- <20210914155607.14122-3-semen.protsenko@linaro.org>
+ <20210914155607.14122-4-semen.protsenko@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <47e5b93a-27b4-2188-7b1e-fd2c1b2379d3@canonical.com>
-Date:   Wed, 15 Sep 2021 10:24:33 +0200
+Message-ID: <4a6e73bb-617d-d849-d64a-7f0de46ea03b@canonical.com>
+Date:   Wed, 15 Sep 2021 10:26:07 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210914155607.14122-3-semen.protsenko@linaro.org>
+In-Reply-To: <20210914155607.14122-4-semen.protsenko@linaro.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -88,32 +88,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/09/2021 17:56, Sam Protsenko wrote:
-> pll0822x PLL is used in Exynos850 SoC for top-level integer PLLs. The
-> code was derived from very similar pll35xx type, with next differences:
+> pll0831x PLL is used in Exynos850 SoC for top-level fractional PLLs. The
+> code was derived from very similar pll36xx type, with next differences:
 > 
-> 1. Lock time for pll0822x is 150*P_DIV, when for pll35xx it's 270*P_DIV
+> 1. Lock time for pll0831x is 500*P_DIV, when for pll36xx it's 3000*P_DIV
 > 2. It's not suggested in Exynos850 TRM that S_DIV change doesn't require
->    performing PLL lock procedure (which is done in pll35xx
+>    performing PLL lock procedure (which is done in pll36xx
 >    implementation)
+> 3. The offset from PMS-values register to K-value register is 0x8 for
+>    pll0831x, when for pll36xx it's 0x4
 > 
-> When defining pll0822x type, CON3 register offset should be provided as
+> When defining pll0831x type, CON3 register offset should be provided as
 > a "con" parameter of PLL() macro, like this:
 > 
->     PLL(pll_0822x, 0, "fout_shared0_pll", "oscclk",
->         PLL_LOCKTIME_PLL_SHARED0, PLL_CON3_PLL_SHARED0,
->         exynos850_shared0_pll_rates),
+>     PLL(pll_0831x, 0, "fout_mmc_pll", "oscclk",
+>         PLL_LOCKTIME_PLL_MMC, PLL_CON3_PLL_MMC, pll0831x_26mhz_tbl),
 > 
-> To define PLL rates table, one can use PLL_35XX_RATE() macro, e.g.:
+> To define PLL rates table, one can use PLL_36XX_RATE() macro, e.g.:
 > 
->     PLL_35XX_RATE(26 * MHZ, 1600 * MHZ, 800, 13, 0)
+>     PLL_36XX_RATE(26 * MHZ, 799999877, 31, 1, 0, -15124)
 > 
-> as it's completely appropriate for pl0822x type and there is no sense in
+> as it's completely appropriate for pl0831x type and there is no sense in
 > duplicating that.
 > 
 > If bit #1 (MANUAL_PLL_CTRL) is not set in CON1 register, it won't be
 > possible to set new rate, with next error showing in kernel log:
 > 
->     Could not lock PLL fout_shared1_pll
+>     Could not lock PLL fout_mmc_pll
 > 
 > That can happen for example if bootloader clears that bit beforehand.
 > PLL driver doesn't account for that, so if MANUAL_PLL_CTRL bit was
@@ -122,9 +123,9 @@ On 14/09/2021 17:56, Sam Protsenko wrote:
 > 
 > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
->  drivers/clk/samsung/clk-pll.c | 91 +++++++++++++++++++++++++++++++++++
->  drivers/clk/samsung/clk-pll.h |  1 +
->  2 files changed, 92 insertions(+)
+>  drivers/clk/samsung/clk-pll.c | 105 ++++++++++++++++++++++++++++++++++
+>  drivers/clk/samsung/clk-pll.h |   1 +
+>  2 files changed, 106 insertions(+)
 > 
 
 
