@@ -2,206 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5582440CC64
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 20:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F17E40CD0C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 21:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230439AbhIOSNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 14:13:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55596 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230010AbhIOSNj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 14:13:39 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D733DC061574;
-        Wed, 15 Sep 2021 11:12:20 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id f11-20020a17090aa78b00b0018e98a7cddaso2820546pjq.4;
-        Wed, 15 Sep 2021 11:12:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=SvTGV/EwYbpT949M265y3feZdG0GQPEcYHnVzA9XpeU=;
-        b=WZzmWUaRYFUp7XyiDzJ0JwTqRG3Pw2RdpRu/7oki7r4BiZdSVOvryhNE2fLyB5H3CB
-         Tj8pCwnP+Nu2cMaN1Oalx4Ru6DgZkW49vvVrsfBmrSK7mYSxmVtil0/x1esua93D662e
-         SR+41Mujdsvnn7drijMFKZ8ioHbcjRg/c7rnQSDRfODa4KzhfcD8mD/zBdlKBNfejmWY
-         MhX6pBckBV3NKZovGXDLpBIXDu1O0vpnKfT0ZP7Vc6fzFVlqcrOMuGRUqO0lemd7SMr+
-         BC9seL8u3hszQjfkgRGNCg5o3FI6+/6tRc9ldq8vrg/5Kpp1kd2dP7V0FLCaL+ru4LwL
-         /LAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=SvTGV/EwYbpT949M265y3feZdG0GQPEcYHnVzA9XpeU=;
-        b=7Jo5+VVz3Yvnx+mHue8QBJk5W4M3NWrN4WKjiYzf6th0PRPL69IBD4qBC/Uuv0wc3J
-         FJCGJqIFi9Nf8obr2G6PNHQmr2GbeKCs05YFK5KAdDvH0ipS9A+ZdPPY/Cxfuf2iTjF7
-         DtEiiT6vU5t/ZcV2E1LIt/OgItVfl8HaqT3Z+hUkME2XKGInw3WFn6Z1oF4i+GI9spJ+
-         bzlMCd30G8fobMH9n+JqaaBESpSxGETYuM2/UFKpUl6F1siGvN//vAFXdYhEfE27Lr8v
-         aHA47YyVked1mjO6K9Q6VYkziYTXwVzQwwJN6aYbe/UvORds+3nsbij9372l5cjYFaKJ
-         Qmug==
-X-Gm-Message-State: AOAM5312cM5A9dlIz4mBmiJAn3FI1hkevOz0QiU+uRG06BmFVV2vbV79
-        KJ7Rv10Wtv5KZU/nTP7w2JU=
-X-Google-Smtp-Source: ABdhPJxXRAyNmmsZYN4Df/qr27CfQsUOPlxdXZTsnl2dcUmPMfR0iCuwyWfQ76OBzcbaCkTZ2Qi1eg==
-X-Received: by 2002:a17:90a:7d03:: with SMTP id g3mr1170487pjl.242.1631729540219;
-        Wed, 15 Sep 2021 11:12:20 -0700 (PDT)
-Received: from [172.30.1.2] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id v13sm580440pfm.16.2021.09.15.11.12.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Sep 2021 11:12:19 -0700 (PDT)
-Subject: Re: [RFC 05/19] devfreq: imx8m-ddrc: Use the opps acquired from EL3
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-To:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-serial@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <1631554694-9599-1-git-send-email-abel.vesa@nxp.com>
- <1631554694-9599-6-git-send-email-abel.vesa@nxp.com>
- <b52430cc-1216-8b3e-baec-7d3fffc1274a@gmail.com>
-Message-ID: <a8ccf50b-cb05-675e-aef1-50f33783b0c0@gmail.com>
-Date:   Thu, 16 Sep 2021 03:12:12 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S231386AbhIOTRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 15:17:35 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:34142 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230230AbhIOTRe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 15:17:34 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18F5eGcZ026124;
+        Wed, 15 Sep 2021 14:16:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=Z8ib6lB8KbLTkwjVRcR7h5XbX7gB8drrTq0rGeKBV64=;
+ b=daLNMkQ9/xFoKHHF8t7xKuzTVozAjOdkaMcGIFxwYl6+ZCGfOy1ZfyoFhv/2/uf3FWKF
+ rRuJvc3OQdL2lphAjH9K5G1LssdcRi69PhNACNon6yQ8KBYQANegGiWO/HzyTb+q/Vgh
+ dflKuT107sCqitrw4hAMjQW6zXwVmDLiNYyQds9gOfUO3T06U9OUc63BpFfjTWTzoIrH
+ d6uqnd8ANVP3oWAPY6tAaT9JeNZtGhvbZqaV4FMrxoRBi+YZea5LukS42JxkGB3Ary6E
+ GYOFjHPhRIIi7YgdEjZaoLeSwa/JtJQhsNIK4Zij2CkKBlLfmfgzIUUrGZDC7adFPTJi 3g== 
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 3b3287h8qw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 15 Sep 2021 14:16:06 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Wed, 15 Sep
+ 2021 20:14:45 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2242.12 via Frontend
+ Transport; Wed, 15 Sep 2021 20:14:45 +0100
+Received: from david-ubuntu20.crystal.cirrus.com (macC02XQ1DJJG5K.ad.cirrus.com [141.131.65.58])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 19AADB2F;
+        Wed, 15 Sep 2021 19:14:31 +0000 (UTC)
+From:   David Rhodes <drhodes@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh@kernel.org>,
+        <ckeepax@opensource.cirrus.com>, <patches@opensource.cirrus.com>,
+        <alsa-devel@alsa-project.org>, <david.rhodes@cirrus.com>,
+        <devicetree@vger.kernel.org>
+CC:     David Rhodes <drhodes@opensource.cirrus.com>
+Subject: [PATCH] ASoC: cs35l41: Binding fixes
+Date:   Wed, 15 Sep 2021 14:14:22 -0500
+Message-ID: <20210915191422.2371623-1-drhodes@opensource.cirrus.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <b52430cc-1216-8b3e-baec-7d3fffc1274a@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: CIhnUgtVIHg3DyDhhuJTP042U3bvzEXE
+X-Proofpoint-ORIG-GUID: CIhnUgtVIHg3DyDhhuJTP042U3bvzEXE
+X-Proofpoint-Spam-Reason: safe
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21. 9. 15. 오후 12:29, Chanwoo Choi wrote:
-> Hi,
-> 
-> OPP is mandatory for devfreq driver. Also, must need to add
-> the OPP levels to  devicetree file, it is better to show
-> the supported OPP list for the developer who don't know
-> the detailed background of driver. If there are no any
-> critical issue. I prefer the existing approach for the readability.
+Fix warnings and errors in DT bindings
 
-Also, by keeping the existing approach, the user is able to
-select the their own OPP entries among the all supported frequencies
-from EL3. Even if the some clock support the multiple frequencies,
-the user might want to use the a few frequency instead of using
-all supported frequencies.
+Add newline at end of file
+Replace 'unevaluatedProperties' with 'additionalProperties'
+Add spi context to DT example
+Add #sound-dai-cells to DT example
+Rename to 'cirrus,cs35l41.yaml'
 
-> 
-> On 21. 9. 14. 오전 2:38, Abel Vesa wrote:
->> i.MX8M platforms get their dram OPPs from the EL3.
->> We don't need to duplicate that in the kernel dram dts node.
->> We should just trust the OPPs provided by the EL3.
->>
->> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
->> ---
->>   drivers/devfreq/imx8m-ddrc.c | 50 +++---------------------------------
->>   1 file changed, 3 insertions(+), 47 deletions(-)
->>
->> diff --git a/drivers/devfreq/imx8m-ddrc.c b/drivers/devfreq/imx8m-ddrc.c
->> index 583123bf2100..f18a5c3c1c03 100644
->> --- a/drivers/devfreq/imx8m-ddrc.c
->> +++ b/drivers/devfreq/imx8m-ddrc.c
->> @@ -321,38 +321,9 @@ static int imx8m_ddrc_init_freq_info(struct 
->> device *dev)
->>           if (freq->dram_core_parent_index == 2 &&
->>                   freq->dram_alt_parent_index == 0)
->>               return -ENODEV;
->> -    }
->> -
->> -    return 0;
->> -}
->> -
->> -static int imx8m_ddrc_check_opps(struct device *dev)
->> -{
->> -    struct imx8m_ddrc *priv = dev_get_drvdata(dev);
->> -    struct imx8m_ddrc_freq *freq_info;
->> -    struct dev_pm_opp *opp;
->> -    unsigned long freq;
->> -    int i, opp_count;
->> -
->> -    /* Enumerate DT OPPs and disable those not supported by firmware */
->> -    opp_count = dev_pm_opp_get_opp_count(dev);
->> -    if (opp_count < 0)
->> -        return opp_count;
->> -    for (i = 0, freq = 0; i < opp_count; ++i, ++freq) {
->> -        opp = dev_pm_opp_find_freq_ceil(dev, &freq);
->> -        if (IS_ERR(opp)) {
->> -            dev_err(dev, "Failed enumerating OPPs: %ld\n",
->> -                PTR_ERR(opp));
->> -            return PTR_ERR(opp);
->> -        }
->> -        dev_pm_opp_put(opp);
->> -        freq_info = imx8m_ddrc_find_freq(priv, freq);
->> -        if (!freq_info) {
->> -            dev_info(dev, "Disable unsupported OPP %luHz %luMT/s\n",
->> -                    freq, DIV_ROUND_CLOSEST(freq, 250000));
->> -            dev_pm_opp_disable(dev, freq);
->> -        }
->> +        if (dev_pm_opp_add(dev, freq->rate * 250000, 0))
->> +            return -ENODEV;
->>       }
->>       return 0;
->> @@ -360,7 +331,6 @@ static int imx8m_ddrc_check_opps(struct device *dev)
->>   static void imx8m_ddrc_exit(struct device *dev)
->>   {
->> -    dev_pm_opp_of_remove_table(dev);
->>   }
->>   static int imx8m_ddrc_probe(struct platform_device *pdev)
->> @@ -407,16 +377,7 @@ static int imx8m_ddrc_probe(struct 
->> platform_device *pdev)
->>           return ret;
->>       }
->> -    ret = dev_pm_opp_of_add_table(dev);
->> -    if (ret < 0) {
->> -        dev_err(dev, "failed to get OPP table\n");
->> -        return ret;
->> -    }
->> -
->> -    ret = imx8m_ddrc_check_opps(dev);
->> -    if (ret < 0)
->> -        goto err;
->> -
->> +    priv->profile.polling_ms = 1000;
-> 
-> This change is not related to role of this patch.
-> Need to make the separate patch.
-> 
->>       priv->profile.target = imx8m_ddrc_target;
->>       priv->profile.exit = imx8m_ddrc_exit;
->>       priv->profile.get_cur_freq = imx8m_ddrc_get_cur_freq;
->> @@ -427,13 +388,8 @@ static int imx8m_ddrc_probe(struct 
->> platform_device *pdev)
->>       if (IS_ERR(priv->devfreq)) {
->>           ret = PTR_ERR(priv->devfreq);
->>           dev_err(dev, "failed to add devfreq device: %d\n", ret);
->> -        goto err;
->>       }
->> -    return 0;
->> -
->> -err:
->> -    dev_pm_opp_of_remove_table(dev);
->>       return ret;
->>   }
->>
-> 
-> 
+Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
+---
+ .../{cs35l41.yaml => cirrus,cs35l41.yaml}     | 30 +++++++++++--------
+ 1 file changed, 18 insertions(+), 12 deletions(-)
+ rename Documentation/devicetree/bindings/sound/{cs35l41.yaml => cirrus,cs35l41.yaml} (87%)
 
-
+diff --git a/Documentation/devicetree/bindings/sound/cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+similarity index 87%
+rename from Documentation/devicetree/bindings/sound/cs35l41.yaml
+rename to Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+index fde78c850286..3235702ce402 100644
+--- a/Documentation/devicetree/bindings/sound/cs35l41.yaml
++++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/sound/cs35l41.yaml#
++$id: http://devicetree.org/schemas/sound/cirrus,cs35l41.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Cirrus Logic CS35L41 Speaker Amplifier
+@@ -135,17 +135,23 @@ required:
+   - cirrus,boost-ind-nanohenry
+   - cirrus,boost-cap-microfarad
+ 
+-unevaluatedProperties: false
++additionalProperties: false
+ 
+ examples:
+   - |
+-      cs35l41: cs35l41@2 {
+-        compatible = "cirrus,cs35l41";
+-        reg = <2>;
+-        VA-supply = <&dummy_vreg>;
+-        VP-supply = <&dummy_vreg>;
+-        reset-gpios = <&gpio 110 0>;
+-        cirrus,boost-peak-milliamp = <4500>;
+-        cirrus,boost-ind-nanohenry = <1000>;
+-        cirrus,boost-cap-microfarad = <15>;
+-      };
+\ No newline at end of file
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        cs35l41: cs35l41@2 {
++          #sound-dai-cells = <1>;
++          compatible = "cirrus,cs35l41";
++          reg = <2>;
++          VA-supply = <&dummy_vreg>;
++          VP-supply = <&dummy_vreg>;
++          reset-gpios = <&gpio 110 0>;
++          cirrus,boost-peak-milliamp = <4500>;
++          cirrus,boost-ind-nanohenry = <1000>;
++          cirrus,boost-cap-microfarad = <15>;
++        };
++    };
 -- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+2.25.1
+
