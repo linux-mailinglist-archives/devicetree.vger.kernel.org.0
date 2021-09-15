@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C883B40C0E9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 09:51:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0076140C0EC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 09:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231644AbhIOHwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 03:52:23 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:51204
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231611AbhIOHwX (ORCPT
+        id S231624AbhIOHw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 03:52:26 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:44944
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236717AbhIOHwZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 03:52:23 -0400
+        Wed, 15 Sep 2021 03:52:25 -0400
 Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B66793F229
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 07:51:03 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 51AF640268
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 07:51:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1631692263;
-        bh=ZPPsEFlwBfA1eTgPCoHOeJvzGiA/qDxA8TsO1MrIx1M=;
+        s=20210705; t=1631692266;
+        bh=yfmyLGLaZHO2X3SIp2h1tQ0oSU6KsOx2ug/7Y4ecG1Y=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version:Content-Type;
-        b=kxgA1swzHGix1op87iL2tXo15FWn6KitXrbp2PVJE1NaMxLRmKrxq4vunWTgvHNV1
-         kNkcvf9+EDfPgRlLCTlWHm4KSR8J6SpDQwJ9loXnMwHcXXGiI3l/wcq4uYo1Urpx0n
-         DosddVe8ed5DqHpZBivNrQ49rPlXxpVIHTMkxUGmQyHEtVyAiB6FlJ9JAtjvke5MxQ
-         qfFU0wvfLsDB+Gg4TVdX67f2353UhaEsNPYFGHtWOVZBfDC34FCudvPfpBYKJ7SYmI
-         s5XFg+lV6Y75STqbHP2P0fhD+5DBKlmpb6B1heO41LyJgKlYteYBmRnvBPJ9VZcgR/
-         4FndKIQymA4aQ==
-Received: by mail-ed1-f72.google.com with SMTP id j6-20020aa7de86000000b003d4ddaf2bf9so1112663edv.7
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 00:51:03 -0700 (PDT)
+        b=GcSj10tYJ8+Z1OPk/51Elz8W7vfte/kCNMUqyRQML9yIUfv2Ywptkg+nBoDb0Lvw7
+         3hlCVNaaQK/clFgOe3uOgiFRle86o/ii4ufCv8CtHtfFoR79US4ltbUnPr1PwVBT9O
+         mVGMZMtD7+B1epDAVhVXLiPCy/NV8xQ2tGmGpQlG7gXUoC8mZqvvJV1VCS9NZ6HzGW
+         aMpb/GbiqCQ/7ZcmraPgC1oU97ZTZLzQndIPlpLcMUmAkIDkeXtSOosuIPPKwQtSJk
+         2VzdRNJlWE/FMyVWrwSYT0ZQNNJifWZld7fZzMKSDM+eP6U0lhyzfqS08EQ6ISFT+R
+         Xgrhyn981HWtw==
+Received: by mail-ed1-f72.google.com with SMTP id m30-20020a50999e000000b003cdd7680c8cso1102044edb.11
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 00:51:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ZPPsEFlwBfA1eTgPCoHOeJvzGiA/qDxA8TsO1MrIx1M=;
-        b=3tyH43lb2gEzAm+UjZT9eJIZdEKNCUUBlWCijzPhoKuqU16OXtfpvXemzNSgfFwchG
-         OvzTj+PeBqp+A+90+WNg9njhyyOemP0vwwnYhj03Ai9l25NI/k20VUL89xsFgAnfP0gA
-         RnhiPu5lel0J2v6OnytITBRZr1xo1d3Y4sMVYXr5Sd/D69wJuoDDVBOSqWmiwcWZA9Ub
-         FNAyMtZwEjh61Z6JNYfL7UMd0+E7fyuGjLxlMQ3FHBMYOvoFKBzRdbxgJWZsCw50J9tr
-         itqy58XNG27Iz0x6sAPVS6o7ALk4k0PY+7F+rtpeYrI+g+8E17n7SrhWua0lcx3oYUsV
-         /jvw==
-X-Gm-Message-State: AOAM531PXeR+3Q+nDRwRX62+xK1EdP3ZY4CNbjox5qLbXm8vsBcQWIa+
-        yTwCFztF3UUqvA16CfS5ufZzLQML7OP2uhMgPOVvfLr29zHFVE7FTrI/aFnp5ZjCtFwhKazO29M
-        JZkrjPiQe26pZJtE7NkpKfnSCFNK8uhnz1/E+Yx4=
-X-Received: by 2002:aa7:db4d:: with SMTP id n13mr21505136edt.398.1631692263444;
-        Wed, 15 Sep 2021 00:51:03 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy+WyCHnD+lfmB0FjoPiCQDeKX4wp21vo3/85j5pwzMA7v8zxcjkjew58uNFvFPYNOOjESEbQ==
-X-Received: by 2002:aa7:db4d:: with SMTP id n13mr21505124edt.398.1631692263328;
-        Wed, 15 Sep 2021 00:51:03 -0700 (PDT)
+        bh=yfmyLGLaZHO2X3SIp2h1tQ0oSU6KsOx2ug/7Y4ecG1Y=;
+        b=TgtSIjUIRvJzqJqbJ8pV5hSy0ADUXji7wbkBUDjyw/HUVRxhcQpfykBBBIGQn01NvA
+         2xjEXglnJYD/sI/SOml0luKFXpIDERqDUXCCRkJ3LuELLZOe0ZPzyG0QOLhkx18X1dbm
+         7+mLFxWAkw1XSB5ofl7gXSGdARzvpvp/AdYriQm+2wR1vU6lmvx889mXvQ2EWS+nDR6m
+         Ql1jDcdnYLzf5pTPCZZq8UK7BbJkDRZEETYoIuNRZCsJwkfpxcgy2Gkc+ngWgQ3hGSAu
+         nIaByswZArLh65vPmgN+tHL4MQK9c8x6onyP9kik4978byX0azy79+GBRdNWhWFl/img
+         eLcw==
+X-Gm-Message-State: AOAM531S5geqp4AM3FNJbtj0T+F7Bp0EHNm3G0xKC9zYHoVf7JGLftRt
+        Wlck9LNsl8kJGFl02z18SLrZCQ7xZQa5o7eCXSWJjp1stQBQeYkVzSynCH9x0L4Gw+U0Kjm5WKA
+        QLgEfqS6NvvOGc2Nh4ft+fGCgh68f/4g7WREf8+o=
+X-Received: by 2002:a17:906:1484:: with SMTP id x4mr23446550ejc.72.1631692266014;
+        Wed, 15 Sep 2021 00:51:06 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwOUoG/3APcqCn+ZeMkj7rfrYeSKawWs4kMluxJlwRm1ZVOU1UXmVKC+P6dzqxBWLZzMUXm7g==
+X-Received: by 2002:a17:906:1484:: with SMTP id x4mr23446537ejc.72.1631692265892;
+        Wed, 15 Sep 2021 00:51:05 -0700 (PDT)
 Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id n11sm591922edr.51.2021.09.15.00.51.02
+        by smtp.gmail.com with ESMTPSA id n11sm591922edr.51.2021.09.15.00.51.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Sep 2021 00:51:02 -0700 (PDT)
+        Wed, 15 Sep 2021 00:51:05 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     linux-samsung-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Jens Axboe <axboe@kernel.dk>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: exynos: align operating-points table name with dtschema in Exynos5433
-Date:   Wed, 15 Sep 2021 09:50:56 +0200
-Message-Id: <163169222223.16372.5421804464819720795.b4-ty@canonical.com>
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 2/2] ARM: dts: exynos: drop undocumented samsung,sata-freq property in Exynos5250
+Date:   Wed, 15 Sep 2021 09:50:57 +0200
+Message-Id: <163169222223.16372.5968468091067814422.b4-ty@canonical.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210820081458.83406-1-krzysztof.kozlowski@canonical.com>
-References: <20210820081458.83406-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210811083859.28234-2-krzysztof.kozlowski@canonical.com>
+References: <20210811083859.28234-1-krzysztof.kozlowski@canonical.com> <20210811083859.28234-2-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -73,17 +73,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Aug 2021 10:14:57 +0200, Krzysztof Kozlowski wrote:
-> Align the name of operating-points node to dtschema to fix warnings like:
+On Wed, 11 Aug 2021 10:38:59 +0200, Krzysztof Kozlowski wrote:
+> The samsung,sata-freq property is not used (and not documented by
+> generic AHCI platform bindings), so can be safely dropped.
 > 
 > 
 
 Applied, thanks!
 
-[1/2] arm64: dts: exynos: align operating-points table name with dtschema in Exynos5433
-      commit: ee3b1f976c5214b79d939ecaba42f9e83b5efc86
-[2/2] arm64: dts: exynos: add proper comaptible FSYS syscon in Exynos5433
-      commit: 6de3cc6db06d2b9ba1e614aa58a413c9f8f22712
+[2/2] ARM: dts: exynos: drop undocumented samsung,sata-freq property in Exynos5250
+      commit: 06cf9e0b1aae8ff4f4cee39126a415b2b173b986
 
 Best regards,
 -- 
