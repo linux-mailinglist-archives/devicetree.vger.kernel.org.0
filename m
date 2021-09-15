@@ -2,97 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5206940C186
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 10:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA36F40C193
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 10:21:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231649AbhIOIU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 04:20:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58994 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231610AbhIOIU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 04:20:57 -0400
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE553C061575
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 01:19:37 -0700 (PDT)
-Received: by mail-yb1-xb4a.google.com with SMTP id 124-20020a251182000000b005a027223ed9so2598469ybr.13
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 01:19:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=xksPysZDVZhrOtkfjh5uX2r1uF1vasoJ9BL4wGJBhp4=;
-        b=PVLDc2/w6cE/8CsXU2F+JvjwMWiHmYQ6Q4yqg5hibiHawgrVswftPmjJmQedrlCeSD
-         FBPm6h8oGKKqVWTc9+KnUB7cgyioao1y50r45cYSJ23eYHUhXxkswfpHXtV4Eaqghh6F
-         ANNXUGReCdSgaF9wAK6N4BUV7JiEYQo3VHmCj/R0RnXWLGCLpPPKbWof6JIyv7t/wbOC
-         tzHYPUaOx+01bh9THvl+yDQqW0GUUS8yGcUPDzCo906DFDWQRMhj+DZUofWHNFevVMUH
-         MDd4I5ht6ZeD+TiVck3c1xlQccIHN/ThBiWpPueFR+Q4TlPS7QP9L3OmQvJdiXnYMqW2
-         7qWw==
+        id S236821AbhIOIWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 04:22:48 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:52542
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236805AbhIOIWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 04:22:47 -0400
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5ADF740271
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 08:21:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1631694088;
+        bh=T9oBygJtDcSxynkt0eDMI4wk/aOKBmsP5WZcP0OudvE=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=Ywx/9rGUCRPEAySS0CABXhyg0v20hpLlc0leB3QXJoarh4wbWebdFAFaWeYq5uUOG
+         SltSdba6Q/GouVyf7xOE2F9C6cDK2TcyWEUJbgpqq/X6i5Y/ouOjt55sbMLwriS2xf
+         1YKtYM/78O2B/QJGhv5jsP36Z25r704SzpX5aLnbUrg9GI7UdyYpfObz5g1jsg0v8S
+         mGsc2pBT6x69F0I6GFW3bpMFgQWiGiXy682iis2ah5P+iFApQnr5VSBWTEMh0uQDpb
+         S60qvS+S8jKymEnm+shAvavOaqrBLg6ZBhCW9k++5QWKOUcPy6xITdEwJ6GeIQa/uS
+         AJKqgo9wgpPxQ==
+Received: by mail-ed1-f69.google.com with SMTP id n5-20020a05640206c500b003cf53f7cef2so1153984edy.12
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 01:21:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=xksPysZDVZhrOtkfjh5uX2r1uF1vasoJ9BL4wGJBhp4=;
-        b=2+e5hXWSwRF4Txo53BKWLxLkpFYzytTK8Po/Y+Zfabdky3ll+qyVTvVd70jmtXniWX
-         wz139kQQiYy+HqE+/milOb+I0UbxchQvlG3E8h2WBtf8ll5Bte3sJYWaUPZJoNQ4JD3g
-         fZ0cdVmgJApSgd0Xeb2ToW30TpKj4MPcoArNVycXJEtOewNKTUo9HyjDBjd8vYwmjsdx
-         3uaIDvBIe9e5E+Tt2YtNhZ2AToPgAIOp28S/Fov2E1+7VRLHNxNpRCK2AIVCbFFQIPue
-         BNqaHEaIh00u87ktd6L0rKkKfqdVhVk+YAGYl0hqRBKaYtMlb7SqFaUUFocp2P7gvUJU
-         iLog==
-X-Gm-Message-State: AOAM531vtDMCecVk+CBX6CdIMmHvuqzRR4p7fdcO/YdAizOOtDhK8aZs
-        HKR3ZqM6z3XZCQHbkv4ghrrdVKD82C6hTI8=
-X-Google-Smtp-Source: ABdhPJym4yqW4KVwALzCsXgboRciDkT6O5qKX9PFgO307Nl7m2pFGImULENAojAxKBDeIitTqWcKFHNl2RQl/OQ=
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:16d1:ab0e:fc4a:b9b1])
- (user=saravanak job=sendgmr) by 2002:a25:5e41:: with SMTP id
- s62mr4998900ybb.456.1631693976809; Wed, 15 Sep 2021 01:19:36 -0700 (PDT)
-Date:   Wed, 15 Sep 2021 01:19:32 -0700
-Message-Id: <20210915081933.485112-1-saravanak@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.33.0.309.g3052b89438-goog
-Subject: [PATCH] Revert "of: property: fw_devlink: Add support for
- "phy-handle" property"
-From:   Saravana Kannan <saravanak@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=T9oBygJtDcSxynkt0eDMI4wk/aOKBmsP5WZcP0OudvE=;
+        b=zjfM/d8jiDpPAWkoTBCj0dGqzSC3aDb5Nx8mI6zJHlnWpw6u/MfEhE8Rc4YDI4hgmX
+         e2v+csDDt9sQQ4KBXZFHLvBdggnRMWx0cBLlFAu4vp9KrjEfJ9rKJ686MZizk+lrCmFY
+         KT6UXv+BHySSAd3vHlTdg2fIqURzz++vSh647yFSgRboSG+3oncbYaW7gv3lBCOS0xsD
+         EDyICz6UO25WDaqaiW26BRkC7FrFeAX/uOKPq97LIoGngeNFTfIId/2NyXqFEiJ5cr5u
+         II4nJXwhSXLEMZSD1qqfvZwituQK3Ir/iYM/VnOobCDUtYQ7smuM5fn8SYMO2RJFuKrd
+         2fMg==
+X-Gm-Message-State: AOAM532fp68619qqvl7V5jxcERrGa47pR8+g6fgWgStJQRLY6a99W2lw
+        pPzbIPFjg/YC0VRvdbwGgydz8KtzB7r5HsHKze+YJcZb7N8ye7SaAw9XT2CBHIKpxYvl4Oi3sxA
+        dPn3XmjVAANIzdMbeOq2d0s6akDymFVj+b51q7fc=
+X-Received: by 2002:a17:907:2659:: with SMTP id ar25mr6434157ejc.541.1631694087331;
+        Wed, 15 Sep 2021 01:21:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwJHhAt+UC2TTt6eZKM2wmD48YPJlH69BUzCNHbTGNiVGA/qWWuPtGChl6QJ4B1hK5grd9Teg==
+X-Received: by 2002:a17:907:2659:: with SMTP id ar25mr6434129ejc.541.1631694087157;
+        Wed, 15 Sep 2021 01:21:27 -0700 (PDT)
+Received: from [192.168.3.211] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id n10sm5922155ejk.86.2021.09.15.01.21.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Sep 2021 01:21:26 -0700 (PDT)
+Subject: Re: [PATCH 1/6] clk: samsung: Enable bus clock on init
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20210914155607.14122-1-semen.protsenko@linaro.org>
+ <20210914155607.14122-2-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <6ef3e9a3-77e7-48b7-cbcd-c13db50d0cd9@canonical.com>
+Date:   Wed, 15 Sep 2021 10:21:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20210914155607.14122-2-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit cf4b94c8530d14017fbddae26aad064ddc42edd4.
+On 14/09/2021 17:56, Sam Protsenko wrote:
+> By default if bus clock has no users its "enable count" value is 0. It
+> might be actually running if it's already enabled in bootloader, but
+> then in some cases it can be disabled by mistake. For example, such case
+> was observed when dw_mci_probe() enabled bus clock, then failed to do
+> something and disabled that bus clock on error path. After that even
+> attempt to read the 'clk_summary' file in DebugFS freezed forever, as
+> CMU bus clock ended up being disabled and it wasn't possible to access
+> CMU registers anymore.
+> 
+> To avoid such cases, CMU driver must increment the ref count for that
+> bus clock by running clk_prepare_enable(). There is already existing
+> '.clk_name' field in struct samsung_cmu_info, exactly for that reason.
+> It was added in commit 523d3de41f02 ("clk: samsung: exynos5433: Add
+> support for runtime PM"). But the clock is actually enabled only in
+> Exynos5433 clock driver. Let's mimic what is done there in generic
+> samsung_cmu_register_one() function, so other drivers can benefit from
+> that `.clk_name' field. As was described above, it might be helpful not
+> only for PM reasons, but also to prevent possible erroneous clock gating
+> on error paths.
+> 
+> Another way to workaround that issue would be to use CLOCK_IS_CRITICAL
+> flag for corresponding gate clocks. But that might be not very good
+> design decision, as we might still want to disable that bus clock, e.g.
+> on PM suspend.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  drivers/clk/samsung/clk.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/clk/samsung/clk.c b/drivers/clk/samsung/clk.c
+> index 1949ae7851b2..da65149fa502 100644
+> --- a/drivers/clk/samsung/clk.c
+> +++ b/drivers/clk/samsung/clk.c
+> @@ -357,6 +357,19 @@ struct samsung_clk_provider * __init samsung_cmu_register_one(
+>  
+>  	ctx = samsung_clk_init(np, reg_base, cmu->nr_clk_ids);
+>  
+> +	/* Keep bus clock running, so it's possible to access CMU registers */
+> +	if (cmu->clk_name) {
+> +		struct clk *bus_clk;
+> +
+> +		bus_clk = __clk_lookup(cmu->clk_name);
+> +		if (bus_clk) {
+> +			clk_prepare_enable(bus_clk);
+> +		} else {
+> +			pr_err("%s: could not find bus clock %s\n", __func__,
+> +			       cmu->clk_name);
+> +		}
+> +	}
+> +
 
-Some PHYs pointed to by "phy-handle" will never bind to a driver until a
-consumer attaches to it. And when the consumer attaches to it, they get
-forcefully bound to a generic PHY driver. In such cases, parsing the
-phy-handle property and creating a device link will prevent the consumer
-from ever probing. We don't want that. So revert support for
-"phy-handle" property until we come up with a better mechanism for
-binding PHYs to generic drivers before a consumer tries to attach to it.
+Solving this problem in generic way makes sense but your solution is
+insufficient. You skipped suspend/resume paths and in such case you
+should remove the Exynos5433-specific code.
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/property.c | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 3fd74bb34819..a3483484a5a2 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1291,7 +1291,6 @@ DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
- DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
- DEFINE_SIMPLE_PROP(leds, "leds", NULL)
- DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
--DEFINE_SIMPLE_PROP(phy_handle, "phy-handle", NULL)
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
- 
-@@ -1380,7 +1379,6 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_resets, },
- 	{ .parse_prop = parse_leds, },
- 	{ .parse_prop = parse_backlight, },
--	{ .parse_prop = parse_phy_handle, },
- 	{ .parse_prop = parse_gpio_compat, },
- 	{ .parse_prop = parse_interrupts, },
- 	{ .parse_prop = parse_regulators, },
--- 
-2.33.0.309.g3052b89438-goog
-
+Best regards,
+Krzysztof
