@@ -2,128 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3634440C6C9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 15:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F183240C718
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 16:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233440AbhION4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 09:56:00 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:52100 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbhION4A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 09:56:00 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18FDsSTb128368;
-        Wed, 15 Sep 2021 08:54:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631714068;
-        bh=n3Xsh7wMUpKW9VHza0op5L8b8abYDU5Q+J2hqqb6NXI=;
-        h=From:To:CC:Subject:Date;
-        b=hD/f7RZO2jMSRmCWWW3vxAVd71VqBYPI/hzdSfI5D6UgB9Dgl1BC7ZRe45ZdXcApG
-         PaEypBbY4pFUhHfsJGVUykGAT4pXuNzPvg1fCgOJ6iyqJ8bEfnAHMl8RIQPptPnxiY
-         yS29Ofk9+tpUBhRIk1L/Sb7tS8pqX/C8ObOuZNsk=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18FDsSOs020775
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Sep 2021 08:54:28 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 15
- Sep 2021 08:54:28 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 15 Sep 2021 08:54:28 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18FDsSY8026036;
-        Wed, 15 Sep 2021 08:54:28 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>
-Subject: [PATCH] arm64: dts: ti: ti-k3*: Introduce aliases for mmc nodes
-Date:   Wed, 15 Sep 2021 08:54:15 -0500
-Message-ID: <20210915135415.5706-1-nm@ti.com>
-X-Mailer: git-send-email 2.32.0
+        id S237489AbhIOOMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 10:12:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58626 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234504AbhIOOMM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 10:12:12 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2D688611C1;
+        Wed, 15 Sep 2021 14:10:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631715053;
+        bh=YbvuYcfAW5Fjwy98n/gQJCW044gac9hZzpuoydBe/dQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NhHMNxjD3PIagYWukAJT16WejQu1Dbiq44S2cQuGmDemU2s0PzXskS0Mb6Irn2nY0
+         BvejqDNI6tgKrU1ojfMAGWva+cvxOeL1smppWSvCJUDTI7NVGjiBan1X2KNSHfm7Cv
+         SSpy5IqfbXrxWkAx/ybCRQtL/d6EL853pp8VMM72yCXx3IQT/T5e6tI417NVsb0NcG
+         apEMwbvZhpq0W4c93pt3BoeiITIqoc9OSZs4wJcnpAcw2hMTEjTT57GRqIozJsev+y
+         lxg8x+/sbjcNbn/yBiGmplD1n/bTKDfkkMtprEac4uc6TZbXNEVB2zY8NoV8SVuzGK
+         BaTvvFkw5hLng==
+Date:   Wed, 15 Sep 2021 15:10:12 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
+Message-ID: <20210915141012.GC12513@sirena.org.uk>
+References: <20210903231536.225540-1-frattaroli.nicolas@gmail.com>
+ <20210903231536.225540-3-frattaroli.nicolas@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="XWOWbaMNXpFDWE00"
+Content-Disposition: inline
+In-Reply-To: <20210903231536.225540-3-frattaroli.nicolas@gmail.com>
+X-Cookie: The more the merrier.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since probe order of mmc can vary depending on device tree dependencies,
-Lets try and introduce a consistent definition of what mmc0, 1 are
-across platforms.
 
-NOTE: Certain platforms may choose to have overrides due to various
-legacy reasons, we permit that in the board specific alias definition.
+--XWOWbaMNXpFDWE00
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am64.dtsi  | 2 ++
- arch/arm64/boot/dts/ti/k3-am65.dtsi  | 2 ++
- arch/arm64/boot/dts/ti/k3-j7200.dtsi | 2 ++
- arch/arm64/boot/dts/ti/k3-j721e.dtsi | 3 +++
- 4 files changed, 9 insertions(+)
+On Sat, Sep 04, 2021 at 01:15:34AM +0200, Nicolas Frattaroli wrote:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-index de6805b0c72c..120974726be8 100644
---- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-@@ -30,6 +30,8 @@ aliases {
- 		serial8 = &main_uart6;
- 		ethernet0 = &cpsw_port1;
- 		ethernet1 = &cpsw_port2;
-+		mmc0 = &sdhci0;
-+		mmc1 = &sdhci1;
- 	};
- 
- 	chosen { };
-diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-index a9fc1af03f27..a58a39fa42db 100644
---- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-@@ -31,6 +31,8 @@ aliases {
- 		i2c4 = &main_i2c2;
- 		i2c5 = &main_i2c3;
- 		ethernet0 = &cpsw_port1;
-+		mmc0 = &sdhci0;
-+		mmc1 = &sdhci1;
- 	};
- 
- 	chosen { };
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-index b7005b803149..47567cb260c2 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-@@ -30,6 +30,8 @@ aliases {
- 		serial9 = &main_uart7;
- 		serial10 = &main_uart8;
- 		serial11 = &main_uart9;
-+		mmc0 = &main_sdhci0;
-+		mmc1 = &main_sdhci1;
- 	};
- 
- 	chosen { };
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-index f0587fde147e..214359e7288b 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-@@ -31,6 +31,9 @@ aliases {
- 		serial10 = &main_uart8;
- 		serial11 = &main_uart9;
- 		ethernet0 = &cpsw_port1;
-+		mmc0 = &main_sdhci0;
-+		mmc1 = &main_sdhci1;
-+		mmc2 = &main_sdhci2;
- 	};
- 
- 	chosen { };
--- 
-2.32.0
+> +  rockchip,frame-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 64
+> +    minimum: 32
+> +    maximum: 512
+> +    description:
+> +      Width of a frame, usually slot width multiplied by number of slots.
+> +      Must be even.
 
+Why is this in the binding?  This is normally configured by the machine
+driver setting the TDM slots, not through DT.
+
+> +  rockchip,mclk-calibrate:
+> +    description:
+> +      Switch between two root clocks depending on the audio sample rate.
+> +      For integer multiples of 8000 (e.g. 48000 Hz), mclk_root0 is used.
+> +      For integer multiples of 11025 (e.g. 44100 Hz), mclk_root1 is used.
+> +    type: boolean
+
+Why would we not want to do this, and assuming it's to do with
+availability can't we detect it simply through seeing if both MCLKs are
+available?
+
+> +  rockchip,tdm-fsync-half-frame:
+> +    description: Whether to use half frame fsync.
+> +    type: boolean
+> +
+
+Why is this not part of the normal bus format configuration?  I don't
+know what this is but it sounds a lot like I2S mode...
+
+--XWOWbaMNXpFDWE00
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFB/sMACgkQJNaLcl1U
+h9AyVgf/R1hx+9U5odYrV/J4RA9uPRmhSRnrn3d9jvqBMcYWbZUVHv4dTKqn4SqK
+QUkjtLocXUuai3S1P/4XuaoN0HvXjNaPsGxo7967IUUgfxrWbRiBIsG+DQJiAMWS
+95KX7lNSNmjf8ZGDY5LTp78M8fhzUpB0zedTNQw5D9r8aCHTBAmIUw+fKOJFlucS
+ndk/eJHrgcxpcvaVZX8nuRdgAfJpv/i4v4+K6I/dAHsiGOkbFwiJiOIZ+psy7wpr
+lp5ioBhSuQQEH/sA62y0nSDVXggOJEPp+APhIqeiGDTmiZ9gabhBClhDHQ3aylpJ
+9vmhvE2NT59s90BGBWMnFEQfyqdk4A==
+=s91p
+-----END PGP SIGNATURE-----
+
+--XWOWbaMNXpFDWE00--
