@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0076140C0EC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 09:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8424E40C0F1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 09:51:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231624AbhIOHw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 03:52:26 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:44944
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236717AbhIOHwZ (ORCPT
+        id S236779AbhIOHwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 03:52:30 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:51246
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236745AbhIOHw1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 03:52:25 -0400
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        Wed, 15 Sep 2021 03:52:27 -0400
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 51AF640268
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 07:51:06 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id AD9273F338
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 07:51:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1631692266;
-        bh=yfmyLGLaZHO2X3SIp2h1tQ0oSU6KsOx2ug/7Y4ecG1Y=;
+        s=20210705; t=1631692267;
+        bh=3UuhH6DfF97G63xEabBbDhstzQxGbUL43IU2MzmFk4s=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version:Content-Type;
-        b=GcSj10tYJ8+Z1OPk/51Elz8W7vfte/kCNMUqyRQML9yIUfv2Ywptkg+nBoDb0Lvw7
-         3hlCVNaaQK/clFgOe3uOgiFRle86o/ii4ufCv8CtHtfFoR79US4ltbUnPr1PwVBT9O
-         mVGMZMtD7+B1epDAVhVXLiPCy/NV8xQ2tGmGpQlG7gXUoC8mZqvvJV1VCS9NZ6HzGW
-         aMpb/GbiqCQ/7ZcmraPgC1oU97ZTZLzQndIPlpLcMUmAkIDkeXtSOosuIPPKwQtSJk
-         2VzdRNJlWE/FMyVWrwSYT0ZQNNJifWZld7fZzMKSDM+eP6U0lhyzfqS08EQ6ISFT+R
-         Xgrhyn981HWtw==
-Received: by mail-ed1-f72.google.com with SMTP id m30-20020a50999e000000b003cdd7680c8cso1102044edb.11
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 00:51:06 -0700 (PDT)
+        b=UYw9c0j9eac3HCzWQmm3jQ6gJ18zP+LHIMsuEOOoIsof7k7nFQdee+EYcCGmN2D1N
+         nijS9C4zfkM7hNnbEGnEBrKtcI8PnaBWg4WdS91ztGlhCnCEdViv7rqiP306JrbZKY
+         XGBpobvadbOYK2Qnqjt3C1IZAU7NZwkwMq8Z0y8JB3L4+QATTyZOqHHD74LON1QvSP
+         3URttKG9mkhakfKFKQhpnqeZ6VD6e2NbyQwi+TpDFoY7SpCoJFSdXhD7jl9Jt4eIVX
+         CUX7RP9Lk/O3KrrpQM4jU7oGGxNCMPDR2dRq2LhKoeFcecpeZJxesqX9IcpPCAwDEG
+         9L1VfxEUFUs5g==
+Received: by mail-ej1-f70.google.com with SMTP id v19-20020a170906b013b02905b2f1bbf8f3so1062220ejy.6
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 00:51:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=yfmyLGLaZHO2X3SIp2h1tQ0oSU6KsOx2ug/7Y4ecG1Y=;
-        b=TgtSIjUIRvJzqJqbJ8pV5hSy0ADUXji7wbkBUDjyw/HUVRxhcQpfykBBBIGQn01NvA
-         2xjEXglnJYD/sI/SOml0luKFXpIDERqDUXCCRkJ3LuELLZOe0ZPzyG0QOLhkx18X1dbm
-         7+mLFxWAkw1XSB5ofl7gXSGdARzvpvp/AdYriQm+2wR1vU6lmvx889mXvQ2EWS+nDR6m
-         Ql1jDcdnYLzf5pTPCZZq8UK7BbJkDRZEETYoIuNRZCsJwkfpxcgy2Gkc+ngWgQ3hGSAu
-         nIaByswZArLh65vPmgN+tHL4MQK9c8x6onyP9kik4978byX0azy79+GBRdNWhWFl/img
-         eLcw==
-X-Gm-Message-State: AOAM531S5geqp4AM3FNJbtj0T+F7Bp0EHNm3G0xKC9zYHoVf7JGLftRt
-        Wlck9LNsl8kJGFl02z18SLrZCQ7xZQa5o7eCXSWJjp1stQBQeYkVzSynCH9x0L4Gw+U0Kjm5WKA
-        QLgEfqS6NvvOGc2Nh4ft+fGCgh68f/4g7WREf8+o=
-X-Received: by 2002:a17:906:1484:: with SMTP id x4mr23446550ejc.72.1631692266014;
-        Wed, 15 Sep 2021 00:51:06 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwOUoG/3APcqCn+ZeMkj7rfrYeSKawWs4kMluxJlwRm1ZVOU1UXmVKC+P6dzqxBWLZzMUXm7g==
-X-Received: by 2002:a17:906:1484:: with SMTP id x4mr23446537ejc.72.1631692265892;
-        Wed, 15 Sep 2021 00:51:05 -0700 (PDT)
+        bh=3UuhH6DfF97G63xEabBbDhstzQxGbUL43IU2MzmFk4s=;
+        b=vFw2oDK0eMIzp1qIZxKSenC+XzwSNDBwtQnn58+PA6BJS5Zh1HxJbZz59GqF66Jilg
+         mMTQN0DumL/sYVE7gZzNMUQNOZk0tO073ZGICjGAnG1J5GREMlDLVcEducvifEMZkv9f
+         cmHdxfUkiHVmwLYId4dSw5dHh00uPAWZ4eG+dtWEAjJYYkW9TsUNDKsWXVsxoL2+VTAv
+         AN6/d0mndFLdiL2R5VBCXD2ToZP8LbtnzS65c+Vdevi/6UifRPUaryp5KoQmwBBof5YV
+         HaTLjFrHHZUCJozN/uDzVKL0O9jtk9ispZ6aDowLpSuds+9k9MtpWC13PiHEjl7/TdtN
+         z73Q==
+X-Gm-Message-State: AOAM531TkgEDbimEApy6FPyicNI1yPYseVb8x9rFXcguQXM5t47wm43k
+        KVT6d8ds1qs/KLsQv/Wnq98gR2MnsDBFaGv/3f0RItKhYLRqJK0Pk16Tlo48/vpgGnI+H0bwjpK
+        7npTr5y5h9EvtKPTY7ItjtIl2SL12pOHUZ57+Kcs=
+X-Received: by 2002:a17:906:9aca:: with SMTP id ah10mr15858280ejc.471.1631692267470;
+        Wed, 15 Sep 2021 00:51:07 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyZ3105Y/iQTlTiucEVyhs8Y5dCC+GLZzdNSu4AJG3m4GNgDvfkECg7+b3PmxdlHBXvw0U+bA==
+X-Received: by 2002:a17:906:9aca:: with SMTP id ah10mr15858264ejc.471.1631692267342;
+        Wed, 15 Sep 2021 00:51:07 -0700 (PDT)
 Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id n11sm591922edr.51.2021.09.15.00.51.03
+        by smtp.gmail.com with ESMTPSA id n11sm591922edr.51.2021.09.15.00.51.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Sep 2021 00:51:05 -0700 (PDT)
+        Wed, 15 Sep 2021 00:51:06 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     linux-samsung-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+To:     Kyungmin Park <kyungmin.park@samsung.com>,
+        linux-samsung-soc@vger.kernel.org,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        linux-kernel@vger.kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-pm@vger.kernel.org, Lukasz Luba <lukasz.luba@arm.com>,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 2/2] ARM: dts: exynos: drop undocumented samsung,sata-freq property in Exynos5250
-Date:   Wed, 15 Sep 2021 09:50:57 +0200
-Message-Id: <163169222223.16372.5968468091067814422.b4-ty@canonical.com>
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: (subset) [PATCH v2 4/4] ARM: dts: exynos: align PPMU event node names with dtschema
+Date:   Wed, 15 Sep 2021 09:50:58 +0200
+Message-Id: <163169222223.16372.15525688455985156121.b4-ty@canonical.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210811083859.28234-2-krzysztof.kozlowski@canonical.com>
-References: <20210811083859.28234-1-krzysztof.kozlowski@canonical.com> <20210811083859.28234-2-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210820150353.161161-4-krzysztof.kozlowski@canonical.com>
+References: <20210820150353.161161-1-krzysztof.kozlowski@canonical.com> <20210820150353.161161-4-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -73,16 +77,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Aug 2021 10:38:59 +0200, Krzysztof Kozlowski wrote:
-> The samsung,sata-freq property is not used (and not documented by
-> generic AHCI platform bindings), so can be safely dropped.
+On Fri, 20 Aug 2021 17:03:53 +0200, Krzysztof Kozlowski wrote:
+> Use hyphen instead of underscore and align the PPMU event node name with
+> dtschema.
 > 
 > 
 
 Applied, thanks!
 
-[2/2] ARM: dts: exynos: drop undocumented samsung,sata-freq property in Exynos5250
-      commit: 06cf9e0b1aae8ff4f4cee39126a415b2b173b986
+[4/4] ARM: dts: exynos: align PPMU event node names with dtschema
+      commit: fb9b199e562d66af90f61d70eb737fa5e4deac2c
 
 Best regards,
 -- 
