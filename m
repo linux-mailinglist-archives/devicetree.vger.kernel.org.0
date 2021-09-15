@@ -2,257 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD71640C20D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 10:53:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 782C340C227
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 10:57:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236721AbhIOIyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 04:54:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47118 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229464AbhIOIyx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 04:54:53 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7FCCD60527;
-        Wed, 15 Sep 2021 08:53:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631696014;
-        bh=90q4chnHqBl4Fv9eq18MPsgeRlEm6vM07J+DvSqpV8k=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=gG/35fLu/vYqx/K5P/TVmP3OK5s3iCpU/lbipLiD0pOs65oC8YgtH43Kw9FgH64iD
-         PB+YDtQdt4KKN7xhWeoRUbt4HNbXGzcq8P+MpuLBleTHkXf9fseVgaHE2QP8Oheevs
-         NSIPZ3m0qCrGdlhtPZKXb1YOnYWuW0yqn6v9WmcAx9kO4f8DdjSMDtMzaub66H6DlF
-         cOOwZseFQcW+KemzXC5KSG5FKLWDLNWKQJVXGtGNcsE9Jjpw14K6mmo01XF/VSxYBT
-         30nO+dJqNC083uj7NZkAaFX4JmtLq5wgmtUVJtBu35gyB/hqnpI9DIUoPSv8jD4U4Y
-         1wS8CQSi0aqJw==
-Subject: Re: [PATCH v3 1/8] ARM: dts: omap: Fixup GPMC child nodes
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        tony@atomide.com
-Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
-        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210907113226.31876-1-rogerq@kernel.org>
- <20210907113226.31876-2-rogerq@kernel.org>
- <8e29cf74-313f-b8c5-7514-60b5e404833d@canonical.com>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <ff88463e-50f7-7a65-0a40-09ba2e420885@kernel.org>
-Date:   Wed, 15 Sep 2021 11:53:30 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S229464AbhIOI6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 04:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39590 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232676AbhIOI6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 04:58:53 -0400
+Received: from mx.msync.work (mx.msync.work [IPv6:2a01:4f9:2b:2dc2::3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A9BC061574;
+        Wed, 15 Sep 2021 01:57:34 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 661FBF6273;
+        Wed, 15 Sep 2021 08:57:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+        t=1631696251; h=from:subject:date:message-id:to:cc:mime-version:
+         content-transfer-encoding; bh=H5qdDcH8TpR0CnX1Fd/kIIzcZXwfWBWur4Fc/P7iFjE=;
+        b=sJBMHob4pjc07+FI0LHrV4RLYZhBHitb73gu5L7eF9r5C/uRg32xKL9Y/Zzt/kKN+W5Z8P
+        ymfoG/Z2IZpEo995WiZfn95wxVhFUb3pKX5H6Xgv1/2GPphkqmge2Oz9p3QcRtdhbIW0ew
+        Fvhex2NsoOCLAxC1xNqdE5M02NCJtiB4qRFzwjhrIzZrHlVwAOOCF2DJVyRTQsFqgJxJgj
+        E8fQ+vD6YTHpQdNRsiiWXX2wmGCinDDwNLB9h0Q7vGRnrB2IZ2fRl9z3OFNNsjNtXj5RNK
+        Wq492ZCzlYQh3GG8Wu3xCywBaGX7xy5oj757VR9qc9NBvpt9ZIBNevU+3k2esA==
+From:   Vyacheslav Bocharov <adeep@lexina.in>
+To:     Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v5 0/4] arm64: meson: add support for JetHub D1/H1
+Date:   Wed, 15 Sep 2021 11:57:11 +0300
+Message-Id: <20210915085715.1134940-1-adeep@lexina.in>
 MIME-Version: 1.0
-In-Reply-To: <8e29cf74-313f-b8c5-7514-60b5e404833d@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Add support for new home automation devices.
 
-On 07/09/2021 15:44, Krzysztof Kozlowski wrote:
-> On 07/09/2021 13:32, Roger Quadros wrote:
->> Fixes up the GPMC child nodes to prevent dtbs_check errors
->> after device tree binding conversion to yaml.
->>
->> - Use reg address as node name
->> - gpmc,cycle2cycle-samecsen and gpmc,cycle2cycle-diffcsen are
->>   boolean properties.
->>
->> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->> ---
->>  .../boot/dts/logicpd-som-lv-baseboard.dtsi    |  2 +-
->>  .../boot/dts/logicpd-torpedo-37xx-devkit.dts  |  2 +-
->>  .../boot/dts/logicpd-torpedo-baseboard.dtsi   |  2 +-
->>  arch/arm/boot/dts/omap-gpmc-smsc911x.dtsi     | 62 +++++++++----------
->>  arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi     | 59 +++++++++---------
->>  arch/arm/boot/dts/omap-zoom-common.dtsi       | 16 ++---
->>  arch/arm/boot/dts/omap2430-sdp.dts            |  6 +-
->>  arch/arm/boot/dts/omap3-cm-t3x30.dtsi         |  6 +-
->>  .../arm/boot/dts/omap3-devkit8000-common.dtsi |  4 +-
->>  arch/arm/boot/dts/omap3-evm-37xx.dts          |  1 +
->>  arch/arm/boot/dts/omap3-evm-common.dtsi       |  9 ---
->>  .../boot/dts/omap3-evm-processor-common.dtsi  |  5 +-
->>  arch/arm/boot/dts/omap3-evm.dts               |  1 +
->>  arch/arm/boot/dts/omap3-igep0020-common.dtsi  |  5 +-
->>  arch/arm/boot/dts/omap3-ldp.dts               |  5 +-
->>  arch/arm/boot/dts/omap3-n900.dts              |  2 +-
->>  .../dts/omap3-overo-chestnut43-common.dtsi    |  6 +-
->>  .../arm/boot/dts/omap3-overo-tobi-common.dtsi |  6 +-
->>  .../boot/dts/omap3-overo-tobiduo-common.dtsi  |  8 +--
->>  arch/arm/boot/dts/omap3-sb-t35.dtsi           |  4 +-
->>  arch/arm/boot/dts/omap4-duovero-parlor.dts    |  6 +-
->>  21 files changed, 105 insertions(+), 112 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/logicpd-som-lv-baseboard.dtsi b/arch/arm/boot/dts/logicpd-som-lv-baseboard.dtsi
->> index 7d0468a23781..f2364cb114c5 100644
->> --- a/arch/arm/boot/dts/logicpd-som-lv-baseboard.dtsi
->> +++ b/arch/arm/boot/dts/logicpd-som-lv-baseboard.dtsi
->> @@ -65,7 +65,7 @@
->>  		  1 0 0x2c000000 0x1000000	/* CS1: 16MB for LAN9221 */
->>  		  2 0 0x10000000 0x2000000>;    /* CS2: 32MB for NOR */
->>  
->> -	ethernet@gpmc {
->> +	gpmc_ethernet: ethernet@1,0 {
->>  		pinctrl-names = "default";
->>  		pinctrl-0 = <&lan9221_pins>;
->>  		interrupt-parent = <&gpio5>;
->> diff --git a/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit.dts b/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit.dts
->> index 5532db04046c..6357915d207b 100644
->> --- a/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit.dts
->> +++ b/arch/arm/boot/dts/logicpd-torpedo-37xx-devkit.dts
->> @@ -4,8 +4,8 @@
->>  
->>  #include "omap36xx.dtsi"
->>  #include "logicpd-torpedo-som.dtsi"
->> -#include "omap-gpmc-smsc9221.dtsi"
->>  #include "logicpd-torpedo-baseboard.dtsi"
->> +#include "omap-gpmc-smsc9221.dtsi"
->>  
->>  / {
->>  	model = "LogicPD Zoom DM3730 Torpedo + Wireless Development Kit";
->> diff --git a/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi b/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
->> index 533a47bc4a53..05049a34b6f1 100644
->> --- a/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
->> +++ b/arch/arm/boot/dts/logicpd-torpedo-baseboard.dtsi
->> @@ -95,7 +95,7 @@
->>  	ranges = <0 0 0x30000000 0x1000000	/* CS0: 16MB for NAND */
->>  		  1 0 0x2c000000 0x1000000>;	/* CS1: 16MB for LAN9221 */
->>  
->> -	ethernet@gpmc {
->> +	gpmc_ethernet: ethernet@1,0 {
->>  		pinctrl-names = "default";
->>  		pinctrl-0 = <&lan9221_pins>;
->>  		interrupt-parent = <&gpio5>;
->> diff --git a/arch/arm/boot/dts/omap-gpmc-smsc911x.dtsi b/arch/arm/boot/dts/omap-gpmc-smsc911x.dtsi
->> index ded7e8fec9eb..2a462cb65a7d 100644
->> --- a/arch/arm/boot/dts/omap-gpmc-smsc911x.dtsi
->> +++ b/arch/arm/boot/dts/omap-gpmc-smsc911x.dtsi
->> @@ -20,36 +20,34 @@
->>  	};
->>  };
->>  
->> -&gpmc {
->> -	ethernet@gpmc {
->> -		compatible = "smsc,lan9221", "smsc,lan9115";
->> -		bank-width = <2>;
->> -		gpmc,device-width = <1>;
->> -		gpmc,cycle2cycle-samecsen = <1>;
->> -		gpmc,cycle2cycle-diffcsen = <1>;
->> -		gpmc,cs-on-ns = <5>;
->> -		gpmc,cs-rd-off-ns = <150>;
->> -		gpmc,cs-wr-off-ns = <150>;
->> -		gpmc,adv-on-ns = <0>;
->> -		gpmc,adv-rd-off-ns = <15>;
->> -		gpmc,adv-wr-off-ns = <40>;
->> -		gpmc,oe-on-ns = <45>;
->> -		gpmc,oe-off-ns = <140>;
->> -		gpmc,we-on-ns = <45>;
->> -		gpmc,we-off-ns = <140>;
->> -		gpmc,rd-cycle-ns = <155>;
->> -		gpmc,wr-cycle-ns = <155>;
->> -		gpmc,access-ns = <120>;
->> -		gpmc,page-burst-access-ns = <20>;
->> -		gpmc,bus-turnaround-ns = <75>;
->> -		gpmc,cycle2cycle-delay-ns = <75>;
->> -		gpmc,wait-monitoring-ns = <0>;
->> -		gpmc,clk-activation-ns = <0>;
->> -		gpmc,wr-data-mux-bus-ns = <0>;
->> -		gpmc,wr-access-ns = <0>;
->> -		vddvario-supply = <&vddvario>;
->> -		vdd33a-supply = <&vdd33a>;
->> -		reg-io-width = <4>;
->> -		smsc,save-mac-address;
->> -	};
->> +&gpmc_ethernet {
->> +	compatible = "smsc,lan9221", "smsc,lan9115";
-> 
-> This looks like regular override-by-label instead of full path.
-> Unfortunately change of the indentation causes difficulties to find the
-> real difference - if there is such. Can you split it into separate patch?
-> 
-> The point is that override-by-label should have zero effect on
-> functionality and produce same dtb. This is easy to compare with
-> dtx_diff or fdt-decompile but if you mix it with other changes, the
-> comparison is not straight-forward.
+JetHome Jethub D1 (http://jethome.ru/jethub-d1) is a home automation controller with the following features:
+- DIN Rail Mounting
+- Amlogic A113X (ARM Cortex-A53) quad-core up to 1.5GHz
+- no video out
+- 512Mb/1GB LPDDR4
+- 8/16GB eMMC flash
+- 1 x USB 2.0
+- 1 x 10/100Mbps ethernet
+- WiFi / Bluetooth AMPAK AP6255 (Broadcom BCM43455) IEEE 802.11a/b/g/n/ac, Bluetooth 4.2.
+- TI CC2538 + CC2592 Zigbee Wireless Module with up to 20dBm output power and Zigbee 3.0 support.
+- 2 x gpio LEDS
+- GPIO user Button
+- 1 x 1-Wire
+- 2 x RS-485
+- 4 x dry contact digital GPIO inputs
+- 3 x relay GPIO outputs
+- DC source with a voltage of 9 to 56 V / Passive POE
 
-OK. I will split the overide-by-label to separate patch and ensure there is no
-change in compiled dtb for that patch.
+JetHome Jethub H1 (http://jethome.ru/jethub-h1) is a home automation controller with the following features:
+- square plastic case
+- Amlogic S905W (ARM Cortex-A53) quad-core up to 1.5GHz
+- no video out
+- 1GB LPDDR4
+- 8/16GB eMMC flash
+- 2 x USB 2.0
+- 1 x 10/100Mbps ethernet
+- WiFi / Bluetooth RTL8822CS IEEE 802.11a/b/g/n/ac, Bluetooth 5.0.
+- TI CC2538 + CC2592 Zigbee Wireless Module with up to 20dBm output power and Zigbee 3.0 support.
+- MicroSD 2.x/3.x/4.x DS/HS cards.      
+- 1 x gpio LED
+- ADC user Button
+- DC source 5V microUSB
 
-> 
->> +	bank-width = <2>;
->> +	gpmc,device-width = <1>;
->> +	gpmc,cycle2cycle-samecsen;
->> +	gpmc,cycle2cycle-diffcsen;
->> +	gpmc,cs-on-ns = <5>;
->> +	gpmc,cs-rd-off-ns = <150>;
->> +	gpmc,cs-wr-off-ns = <150>;
->> +	gpmc,adv-on-ns = <0>;
->> +	gpmc,adv-rd-off-ns = <15>;
->> +	gpmc,adv-wr-off-ns = <40>;
->> +	gpmc,oe-on-ns = <45>;
->> +	gpmc,oe-off-ns = <140>;
->> +	gpmc,we-on-ns = <45>;
->> +	gpmc,we-off-ns = <140>;
->> +	gpmc,rd-cycle-ns = <155>;
->> +	gpmc,wr-cycle-ns = <155>;
->> +	gpmc,access-ns = <120>;
->> +	gpmc,page-burst-access-ns = <20>;
->> +	gpmc,bus-turnaround-ns = <75>;
->> +	gpmc,cycle2cycle-delay-ns = <75>;
->> +	gpmc,wait-monitoring-ns = <0>;
->> +	gpmc,clk-activation-ns = <0>;
->> +	gpmc,wr-data-mux-bus-ns = <0>;
->> +	gpmc,wr-access-ns = <0>;
->> +	vddvario-supply = <&vddvario>;
->> +	vdd33a-supply = <&vdd33a>;
->> +	reg-io-width = <4>;
->> +	smsc,save-mac-address;
->>  };
->> diff --git a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
->> index 7f6aefd13451..c1e78f929d2b 100644
->> --- a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
->> +++ b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
->> @@ -24,36 +24,33 @@
->>  	};
->>  };
->>  
->> -&gpmc {
->> -	ethernet@gpmc {
->> -		compatible = "smsc,lan9221","smsc,lan9115";
->> -		bank-width = <2>;
->> +&gpmc_ethernet {
->> +	compatible = "smsc,lan9221","smsc,lan9115";
->> +	bank-width = <2>;
->> +	gpmc,mux-add-data = <0>;
->> +	gpmc,cs-on-ns = <0>;
->> +	gpmc,cs-rd-off-ns = <42>;
->> +	gpmc,cs-wr-off-ns = <36>;
->> +	gpmc,adv-on-ns = <6>;
->> +	gpmc,adv-rd-off-ns = <12>;
->> +	gpmc,adv-wr-off-ns = <12>;
->> +	gpmc,oe-on-ns = <0>;
->> +	gpmc,oe-off-ns = <42>;
->> +	gpmc,we-on-ns = <0>;
->> +	gpmc,we-off-ns = <36>;
->> +	gpmc,rd-cycle-ns = <60>;
->> +	gpmc,wr-cycle-ns = <54>;
->> +	gpmc,access-ns = <36>;
->> +	gpmc,page-burst-access-ns = <0>;
->> +	gpmc,bus-turnaround-ns = <0>;
->> +	gpmc,cycle2cycle-delay-ns = <0>;
->> +	gpmc,wr-data-mux-bus-ns = <18>;
->> +	gpmc,wr-access-ns = <42>;
->> +	gpmc,cycle2cycle-samecsen;
->> +	gpmc,cycle2cycle-diffcsen;
->>  
->> -		gpmc,mux-add-data;
-> 
-> Same here and in other places. Actually here a sneaky change is visible
-> - different property.
-> 
-> Best regards,
-> Krzysztof
-> 
+Changes from v4:
+- add 1wire-gpio node in meson-axg-jethome-jethub-j100.dts
 
-cheers,
--roger
+Changes from v3:
+- add pinctrl for spicc1 in meson-axg-jethome-jethub-j100.dts
+
+Changes from v2:
+- add new vendor to vendor-prefixes
+- sync board compatible dt-bindings to jethome,jethub-*
+- fix efuse fields
+- fix gpio-line-names
+- fix spaces and blank lines
+- recheck via checkpatch
+ 
+Changes from v1:
+- rearrange patches
+- add SPDX license and copyright header
+- remove attributes without bindings
+- small fixes with spaces
+
+Vyacheslav Bocharov (4):
+  dt-bindings: arm: amlogic: add bindings for Jethub D1/H1
+  dt-bindings: vendor-prefixes: add jethome prefix
+  arm64: dts: meson-gxl: add support for JetHub H1
+  arm64: dts: meson-axg: add support for JetHub D1
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+ .../amlogic/meson-axg-jethome-jethub-j100.dts | 361 ++++++++++++++++++
+ .../meson-gxl-s905w-jethome-jethub-j80.dts    | 241 ++++++++++++
+ 5 files changed, 608 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dts
+
+-- 
+2.30.2
+
