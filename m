@@ -2,98 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FD9B40C3F5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 12:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 375B740C416
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 13:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232365AbhIOKvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 06:51:47 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40528 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232286AbhIOKvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 06:51:43 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18FAoHVb060341;
-        Wed, 15 Sep 2021 05:50:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631703017;
-        bh=GN8pZsey/RR06IXEKnscJqHOLNMGzjG3cDJ4OGON/0Q=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=IOFeOdYYrfOhwQoGRn/2l/NwOwtilMr0DX/4N2BSlKqioOBEiT8i0Hbx0AUUJ+uP4
-         vOhBaApcoPiCyNx+0zQRaY6sITRk+51N8ql0QnwCz61eDf2baI0OG81g4Y7MnYy/6F
-         Z+SLjWzD9qR3GOU3RubyYsWHJzClh3e8agXqc8IA=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18FAoHe2088727
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Sep 2021 05:50:17 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 15
- Sep 2021 05:50:16 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 15 Sep 2021 05:50:16 -0500
-Received: from [10.250.232.51] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18FAoCW6030304;
-        Wed, 15 Sep 2021 05:50:14 -0500
-Subject: Re: [PATCH 0/6] AM65/J7200/J721E: Misc PCIe DT fixes
-To:     Kishon Vijay Abraham I <kishon@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <lokeshvutla@ti.com>
-References: <20210915055358.19997-1-kishon@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <baec5ff9-8c33-eae9-819b-78697a30b478@ti.com>
-Date:   Wed, 15 Sep 2021 16:20:12 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232512AbhIOLHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 07:07:03 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:28701 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232313AbhIOLHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 07:07:02 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631703944; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
+ Subject: Sender; bh=oFYOphu9er1kSJGp6Y6sVZhQq4tL7St6PiF6qEExbaw=; b=YStBuGzjkWtRamkgCM+59o2tvZ0iR8JdKKstC0FiN8awgTjAnm7hYQ4IgrKA6RBfeREC4OfU
+ XmW4R8bRWhulkxjPZkNrp5q4uqvrAUaBk5XaWzweOd91+X+IEeCQIkmAKSSTMSvtNVXSrcGV
+ ozWFOaWLS/XjY9R2GSYXQIpEFGg=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 6141d378bd6681d8ed6d4ad1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 15 Sep 2021 11:05:28
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B02B5C43619; Wed, 15 Sep 2021 11:05:27 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.6 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.242.137.170] (unknown [202.46.23.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 54B07C4338F;
+        Wed, 15 Sep 2021 11:05:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 54B07C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v2 2/2] ASoC: qcom: SC7280: Add machine driver
+To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
+        bjorn.andersson@linaro.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
+        robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+References: <1631539062-28577-1-git-send-email-srivasam@codeaurora.org>
+ <1631539062-28577-3-git-send-email-srivasam@codeaurora.org>
+ <CAE-0n50i9rm6fcuyjCCPXjtxTyXwAiRVx91dXT4BDpbGA-tKjg@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <7e179a64-2fe8-e761-c247-90ba55fcba82@codeaurora.org>
+Date:   Wed, 15 Sep 2021 16:35:19 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <20210915055358.19997-1-kishon@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+In-Reply-To: <CAE-0n50i9rm6fcuyjCCPXjtxTyXwAiRVx91dXT4BDpbGA-tKjg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/21 11:23 am, Kishon Vijay Abraham I wrote:
-> Patch series adds a bunch of PCIe DT fixes. Except from
-> "[PATCH 5/6] arm64: dts: ti: j7200-main: Add *max-virtual-functions*
->  for pcie-ep DT node" which adds *max-virtual-functions* property
-> to PCIe DT node, rest of them are fixes or cleanups on already added
-> DT properties.
-> 
-> If required I can post 5th patch separately to be merged for next merge
-> window while the rest can go in this -rc cycle.
-> 
-> Kishon Vijay Abraham I (6):
->   arm64: dts: ti: k3-j721e-main: Fix "max-virtual-functions" in PCIe EP
->     nodes
->   arm64: dts: ti: k3-j721e-main: Fix "bus-range" upto 256 bus number for
->     PCIe
->   arm64: dts: ti: j7200-main: Fix "vendor-id"/"device-id" properties of
->     pcie node
->   arm64: dts: ti: j7200-main: Fix "bus-range" upto 256 bus number for
->     PCIe
->   arm64: dts: ti: j7200-main: Add *max-virtual-functions* for pcie-ep DT
->     node
->   arm64: dts: ti: k3-am65-main: Cleanup "ranges" property in "pcie" DT
->     node
-> 
 
-for the complete series,
+On 9/14/2021 1:19 AM, Stephen Boyd wrote:
 
-Reviewed-by: Aswath Govindraju <a-govindraju@ti.com>
+Thanks for Your time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2021-09-13 06:17:42)
+>> diff --git a/sound/soc/qcom/sc7280.c b/sound/soc/qcom/sc7280.c
+>> new file mode 100644
+>> index 0000000..906910c
+>> --- /dev/null
+>> +++ b/sound/soc/qcom/sc7280.c
+>> @@ -0,0 +1,343 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +//
+>> +// Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+>> +//
+>> +// sc7280.c -- ALSA SoC Machine driver for sc7280
+>> +
+>> +#include <linux/gpio.h>
+>> +#include <linux/gpio/consumer.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/platform_device.h>
+>> +#include <sound/core.h>
+>> +#include <sound/jack.h>
+>> +#include <sound/pcm.h>
+>> +#include <sound/soc.h>
+>> +#include <uapi/linux/input-event-codes.h>
+> Looks like the include should be <linux/input.h> instead. I see that
+> practically no other code in the kernel is including the uapi header as
+> it's for userspace, not kernel. The uapi header is included in input.h
+> though so it's not actually all that different.
+Okay Will change accordingly!!!
+>
+>> +
+>> +#include <dt-bindings/sound/sc7180-lpass.h>
+>> +#include <dt-bindings/sound/qcom,q6afe.h>
+>> +
+>> +#include "../codecs/wcd938x.h"
+>> +#include "common.h"
+>> +#include "lpass.h"
+>> +
+> [...]
+>> +static int sc7280_snd_platform_probe(struct platform_device *pdev)
+>> +{
+>> +       struct snd_soc_card *card;
+>> +       struct sc7280_snd_data *data;
+>> +       struct device *dev = &pdev->dev;
+>> +       struct snd_soc_dai_link *link;
+>> +       int ret, i;
+>> +
+>> +       /* Allocate the private data */
+> This comment is worthless.
+Okay. Will remove it.
+>
+>> +       data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>> +       if (!data)
+>> +               return -ENOMEM;
+>> +
+>> +       card = &data->card;
+>> +       snd_soc_card_set_drvdata(card, data);
+>> +
+>> +       card->owner = THIS_MODULE;
+>> +       card->driver_name = "SC7280";
+>> +       card->dev = dev;
+>> +
+>> +       ret = qcom_snd_parse_of(card);
+>> +       if (ret)
+>> +               return ret;
+>> +
+>> +       for_each_card_prelinks(card, i, link) {
+>> +               link->init = sc7280_init;
+>> +               link->ops = &sc7280_ops;
+>> +       }
+> Nitpick: Newline here.
+Okay.
+>
+>> +       return devm_snd_soc_register_card(dev, card);
+>> +}
+>> +
 
-Thanks,
-Aswath
-
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi  |  8 ++++----
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi |  7 ++++---
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 16 ++++++++--------
->  3 files changed, 16 insertions(+), 15 deletions(-)
-> 
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
