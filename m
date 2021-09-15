@@ -2,268 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8399E40BDD5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 04:43:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9368640BDE7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 04:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232096AbhIOCod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 22:44:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39850 "EHLO
+        id S233888AbhIOCzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 22:55:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbhIOCod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 22:44:33 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 524C8C061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 19:43:15 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id k12-20020a056830150c00b0051abe7f680bso1608013otp.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 19:43:15 -0700 (PDT)
+        with ESMTP id S229834AbhIOCzt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 22:55:49 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46125C061762
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 19:54:31 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id h133so2229760oib.7
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 19:54:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=tNmrdyHBY85C8s/wAkstNSGLnQN601xfdUuYWcdHIhM=;
-        b=DyMA4+7gLmsdBiTiE0z9HP894JM1HrHZrdGfm3HvfqosJWPO89OisfkTvwffxdVD6+
-         Zad5B7YYUkt8+/hNW9EXpFKgwT+bd77rOrTRRXOdGhgPoGBw7BS2SJglDR6DDug7KvGJ
-         z8LxKhmiGBKL/mu6bzYMBRKfMNx48hSELzrlKtvC6fgwmXOCGmcjEACaFiMbCTSjJDTy
-         Rgs3rVLU/nYyNJaqm3dCftRXoot1Jelt/pv4oeYCzG4+2SjMp2Z6iBnhGnOHs3VrKET2
-         R4mquCLlG9tmKP31w3yI8W850NBt+XZS3JWCxT8+VH6y1gEqxZfTaICEBUe4GoLIeATn
-         hijA==
+        bh=BZeoBKUFa4ew4uv0EZ30vPzxQarHfe3j0m8mhnfs+zw=;
+        b=JcqNRZTiVw3QdMoQVVGBc+8k5VQThZIIlM6OMkWDZXKT/CwqCvnHfe3/HAV3ZctsOs
+         W8K7MhJVU/xzn6g8TJpc1/xHNhR5YEbhZVrmh60VRZkUwRXGZMOb3peAv3hyUVreL9qG
+         S4xHC8SbOocObLCSheCrObrrZz7VgGeomQn4aqYIRmzXVZDO12+thgbz19R9uU8YVvzo
+         HxuEPlelMKe1sw6m+KQP/ElHXWNhakdgniKAo7i27ZQhjY5RQ3DukB9GdtQnjA4o3xxU
+         KKxbgBeP/RXg22B7l9P7f1bwjW6cuidiiCu3hd3tkMnloWIQ4LsjI7gFgRPSvZFmGCkO
+         Kz4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=tNmrdyHBY85C8s/wAkstNSGLnQN601xfdUuYWcdHIhM=;
-        b=VojK7KLYgmhBgNWy0Hqm6XxujrR2k1/6CFwGmFVRkwkgPvfEYprRfdk7W+ELf/9XWJ
-         JuU/ZgG20C/8HuoSe7MvPWwbk1Iqstyrg9+xSFMilDWhFhj8BKO3HCgYXDL/jaqWGAN2
-         8dOXKoWVl9delpuZwTeONATcPi4WfEXShWCh7bTs16aRa2qKt3FGd9CDXBQrVrrsLue/
-         Y7sWBzaveuUfWUAkNpjykdbN2xteOYqe7xthp+DHlQZAqt9q+88LboKSn/cW1UCpKrP9
-         xhQZdgVd+48HQ2VmNkNS/cirzlqcpBcy1T7E2DRZ7cg0UFT0ah7qBvFjsAeBdhFCnd6h
-         iEpA==
-X-Gm-Message-State: AOAM533htuvHkH3mLUqK/OQn2ilrBvBNMSuNo9tIe60kVSfZ51euWpRn
-        D4Ip9p7rFd1HheZV+IsmsPs/AQ==
-X-Google-Smtp-Source: ABdhPJzqQ3HdgDW2xWQDpyRLSFxaJF9zE9RR3EeLl1fWD+gRi6WH63pb7blLdz/zkO1cINCweaI8GQ==
-X-Received: by 2002:a05:6830:10c8:: with SMTP id z8mr17165664oto.175.1631673794569;
-        Tue, 14 Sep 2021 19:43:14 -0700 (PDT)
+        bh=BZeoBKUFa4ew4uv0EZ30vPzxQarHfe3j0m8mhnfs+zw=;
+        b=TuvDJkkaqFNFe5avctolWqLLDYkxjHBIAI4v0CpWj9ShvfgaDVmmWMs3282jiWwYzc
+         R63heeEK+e0pb6DhfUbURColks8gZfsEK+Tb3BtTlEzMN+Sd5SRxInV1orll4YFN3dDo
+         INuuSdm9yymJeZ/VnoN+8U3S72sGOrANe2VfWZb+iIxXR78ZOwspfAIHdM8/eBuHi9Cy
+         Sp8nLDt5G/C+Ym+V3RxHSSiTlO+Z1bOpDdyFvj8GNZVoQjw/SQSxRdHBOheQYwdXaf93
+         O00TKFxfCgG20IM0Sg//u6Qc8mU0IBRlyt/bnaMiG0hgStsCtwQVOrISzgx+K6GnIeD4
+         F3BA==
+X-Gm-Message-State: AOAM532tgoTxqkpD/3g5aeXNQFPO39dU9EsIKZtuo/P/aFgUhgRMiYJw
+        wX2vOGVHGrUo5YOyVPAU9Aye6g==
+X-Google-Smtp-Source: ABdhPJzbdhz88XinGhshynrR89pS2iPgi7Zypps5yKSPbFugPDtM4QDa/rKa8jNWUlN/gUKSY5bC9g==
+X-Received: by 2002:aca:6041:: with SMTP id u62mr3737643oib.82.1631674470457;
+        Tue, 14 Sep 2021 19:54:30 -0700 (PDT)
 Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s14sm2651965oiw.8.2021.09.14.19.43.13
+        by smtp.gmail.com with ESMTPSA id k21sm3037906ots.53.2021.09.14.19.54.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Sep 2021 19:43:14 -0700 (PDT)
-Date:   Tue, 14 Sep 2021 19:44:05 -0700
+        Tue, 14 Sep 2021 19:54:30 -0700 (PDT)
+Date:   Tue, 14 Sep 2021 19:55:21 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Prasad Malisetty <pmaliset@codeaurora.org>
-Cc:     agross@kernel.org, bhelgaas@google.com, robh+dt@kernel.org,
-        swboyd@chromium.org, lorenzo.pieralisi@arm.com,
-        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
-        manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v7 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
- init in SC7280
-Message-ID: <YUFd9aTlTJ45b9Gg@ripper>
-References: <1631643550-29960-1-git-send-email-pmaliset@codeaurora.org>
- <1631643550-29960-5-git-send-email-pmaliset@codeaurora.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] clk: qcom: smd-rpm: Add rate hooks for
+ clk_smd_rpm_branch_ops
+Message-ID: <YUFgmdhYK/p2v1LS@ripper>
+References: <20210914025554.5686-1-shawn.guo@linaro.org>
+ <20210914025554.5686-2-shawn.guo@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1631643550-29960-5-git-send-email-pmaliset@codeaurora.org>
+In-Reply-To: <20210914025554.5686-2-shawn.guo@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 14 Sep 11:19 PDT 2021, Prasad Malisetty wrote:
+On Mon 13 Sep 19:55 PDT 2021, Shawn Guo wrote:
 
-> On the SC7280, the clock source for gcc_pcie_1_pipe_clk_src
-> must be the TCXO while gdsc is enabled. After PHY init successful
-> clock source should switch to pipe clock for gcc_pcie_1_pipe_clk_src.
+> On QCM2290 platform, the clock xo_board runs at 38400000, while the
+> child clock bi_tcxo needs to run at 19200000.  That said,
+> clk_smd_rpm_branch_ops needs the capability of setting rate. Add rate
+> hooks into clk_smd_rpm_branch_ops to make it possible.
 > 
-> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 90 +++++++++++++++++++++++++++++-----
->  1 file changed, 79 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 8a7a300..380c962 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
->  	struct regulator_bulk_data supplies[2];
->  	struct reset_control *pci_reset;
->  	struct clk *pipe_clk;
-> +	struct clk *gcc_pcie_1_pipe_clk_src;
 
-Afaict you have both 2 PCIe controllers on sc7280, so I think it seems
-more reasonable to shorted this to "pipe_clk_src".
+Most platforms has a crystal oscillator ticking at 38.4MHz feeding the
+PMIC (represented by the rpmcc and its "xo" parent) and out comes the
+bi_tcxo with a fixed 19.2MHz rate.
 
-> +	struct clk *phy_pipe_clk;
-> +	struct clk *ref_clk_src;
->  };
->  
->  union qcom_pcie_resources {
-> @@ -189,6 +192,11 @@ struct qcom_pcie_ops {
->  	int (*config_sid)(struct qcom_pcie *pcie);
->  };
->  
-> +struct qcom_pcie_cfg {
-> +	const struct qcom_pcie_ops *ops;
-> +	bool pcie_1_pipe_clk_src_switch;
-
-Perhaps something little bit more generic, like pipe_clk_need_muxing?
-
-> +};
-> +
->  struct qcom_pcie {
->  	struct dw_pcie *pci;
->  	void __iomem *parf;			/* DT parf */
-> @@ -197,6 +205,7 @@ struct qcom_pcie {
->  	struct phy *phy;
->  	struct gpio_desc *reset;
->  	const struct qcom_pcie_ops *ops;
-> +	bool pcie_1_pipe_clk_src_switch;
->  };
->  
->  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-> @@ -1167,6 +1176,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	if (ret < 0)
->  		return ret;
->  
-> +	if (pcie->pcie_1_pipe_clk_src_switch) {
-
-This looks much better, now it will easily scale to other platforms that
-have inherited this need.
-
-> +		res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
-> +		if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
-> +			return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
-> +
-> +		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
-> +		if (IS_ERR(res->phy_pipe_clk))
-> +			return PTR_ERR(res->phy_pipe_clk);
-> +
-> +		res->ref_clk_src = devm_clk_get(dev, "ref");
-> +		if (IS_ERR(res->ref_clk_src))
-> +			return PTR_ERR(res->ref_clk_src);
-> +	}
-> +
->  	res->pipe_clk = devm_clk_get(dev, "pipe");
->  	return PTR_ERR_OR_ZERO(res->pipe_clk);
->  }
-> @@ -1185,6 +1208,10 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->  		return ret;
->  	}
->  
-> +	/* Set TCXO as clock source for gcc_pcie_1_pipe_clk_src */
-> +	if (pcie->pcie_1_pipe_clk_src_switch)
-> +		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->ref_clk_src);
-> +
->  	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
->  	if (ret < 0)
->  		goto err_disable_regulators;
-> @@ -1256,6 +1283,10 @@ static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->  {
->  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
->  
-> +	/* Set pipe clock as clock source for gcc_pcie_1_pipe_clk_src */
-> +	if (pcie->pcie_1_pipe_clk_src_switch)
-> +		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
-> +
->  	return clk_prepare_enable(res->pipe_clk);
->  }
->  
-> @@ -1456,6 +1487,39 @@ static const struct qcom_pcie_ops ops_1_9_0 = {
->  	.config_sid = qcom_pcie_config_sid_sm8250,
->  };
->  
-> +static const struct qcom_pcie_cfg apq8084_cfg = {
-> +	.ops = &ops_1_0_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg ipq8064_cfg = {
-> +	.ops = &ops_2_1_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg msm8996_cfg = {
-> +	.ops = &ops_2_3_2,
-> +};
-> +
-> +static const struct qcom_pcie_cfg ipq8074_cfg = {
-> +	.ops = &ops_2_3_3,
-> +};
-> +
-> +static const struct qcom_pcie_cfg ipq4019_cfg = {
-> +	.ops = &ops_2_4_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg sdm845_cfg = {
-> +	.ops = &ops_2_7_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg sm8250_cfg = {
-> +	.ops = &ops_1_9_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg sc7280_cfg = {
-> +	.ops = &ops_1_9_0,
-> +	.pcie_1_pipe_clk_src_switch = true,
-> +};
-> +
->  static const struct dw_pcie_ops dw_pcie_ops = {
->  	.link_up = qcom_pcie_link_up,
->  	.start_link = qcom_pcie_start_link,
-> @@ -1467,6 +1531,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  	struct pcie_port *pp;
->  	struct dw_pcie *pci;
->  	struct qcom_pcie *pcie;
-> +	const struct qcom_pcie_cfg *pcie_cfg = NULL;
-
-First use of this variable is an assignment, so I don't see a need for
-zero initialize it.
+Is there a problem with the way sdm660_bi_tcxo is defined in this
+regard?
 
 Regards,
 Bjorn
 
->  	int ret;
->  
->  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> @@ -1488,7 +1553,9 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  
->  	pcie->pci = pci;
->  
-> -	pcie->ops = of_device_get_match_data(dev);
-> +	pcie_cfg = of_device_get_match_data(dev);
-> +	pcie->ops = pcie_cfg->ops;
-> +	pcie->pcie_1_pipe_clk_src_switch = pcie_cfg->pcie_1_pipe_clk_src_switch;
->  
->  	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
->  	if (IS_ERR(pcie->reset)) {
-> @@ -1545,16 +1612,17 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id qcom_pcie_match[] = {
-> -	{ .compatible = "qcom,pcie-apq8084", .data = &ops_1_0_0 },
-> -	{ .compatible = "qcom,pcie-ipq8064", .data = &ops_2_1_0 },
-> -	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ops_2_1_0 },
-> -	{ .compatible = "qcom,pcie-apq8064", .data = &ops_2_1_0 },
-> -	{ .compatible = "qcom,pcie-msm8996", .data = &ops_2_3_2 },
-> -	{ .compatible = "qcom,pcie-ipq8074", .data = &ops_2_3_3 },
-> -	{ .compatible = "qcom,pcie-ipq4019", .data = &ops_2_4_0 },
-> -	{ .compatible = "qcom,pcie-qcs404", .data = &ops_2_4_0 },
-> -	{ .compatible = "qcom,pcie-sdm845", .data = &ops_2_7_0 },
-> -	{ .compatible = "qcom,pcie-sm8250", .data = &ops_1_9_0 },
-> +	{ .compatible = "qcom,pcie-apq8084", .data = &apq8084_cfg },
-> +	{ .compatible = "qcom,pcie-ipq8064", .data = &ipq8064_cfg },
-> +	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ipq8064_cfg },
-> +	{ .compatible = "qcom,pcie-apq8064", .data = &ipq8064_cfg },
-> +	{ .compatible = "qcom,pcie-msm8996", .data = &msm8996_cfg },
-> +	{ .compatible = "qcom,pcie-ipq8074", .data = &ipq8074_cfg },
-> +	{ .compatible = "qcom,pcie-ipq4019", .data = &ipq4019_cfg },
-> +	{ .compatible = "qcom,pcie-qcs404", .data = &ipq4019_cfg },
-> +	{ .compatible = "qcom,pcie-sdm845", .data = &sdm845_cfg },
-> +	{ .compatible = "qcom,pcie-sm8250", .data = &sm8250_cfg },
-> +	{ .compatible = "qcom,pcie-sc7280", .data = &sc7280_cfg },
->  	{ }
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> ---
+>  drivers/clk/qcom/clk-smd-rpm.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
+> index 66d7807ee38e..2380e45b6247 100644
+> --- a/drivers/clk/qcom/clk-smd-rpm.c
+> +++ b/drivers/clk/qcom/clk-smd-rpm.c
+> @@ -416,6 +416,9 @@ static const struct clk_ops clk_smd_rpm_ops = {
+>  static const struct clk_ops clk_smd_rpm_branch_ops = {
+>  	.prepare	= clk_smd_rpm_prepare,
+>  	.unprepare	= clk_smd_rpm_unprepare,
+> +	.set_rate	= clk_smd_rpm_set_rate,
+> +	.round_rate	= clk_smd_rpm_round_rate,
+> +	.recalc_rate	= clk_smd_rpm_recalc_rate,
 >  };
 >  
+>  DEFINE_CLK_SMD_RPM(msm8916, pcnoc_clk, pcnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 0);
 > -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
+> 2.17.1
 > 
