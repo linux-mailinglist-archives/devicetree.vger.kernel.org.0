@@ -2,112 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D054140C25E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 11:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCB1E40C261
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 11:07:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233068AbhIOJG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 05:06:59 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54490
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233048AbhIOJG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 05:06:59 -0400
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 20E933F338
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 09:05:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1631696740;
-        bh=X7Cc3jU81HRUvI9Nu63KcpmXz37KgSemXGthehwJJeg=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=CUerVHaNwS+LaBH1z4i2I9dF9ZawSFEpGJc97A0Qk+8lUhsSy5vKQmK6GoJhIu1yB
-         /OgHOf1Iftu0u+5oraWJliNJwyJ2jDR8sIALsDoogV2jr17BAmVXIwq2a2tkaibXcH
-         cT85G2Pl+GcQ9HolyKV9SlLI80kcESDEp1nL2tFc8LekRltvDpSp02Q9fuonsoCsiF
-         ctoyuutwR2Tu9+UTFQOUe44HXbL6OPnV0SmYUh8PbBNTvFr6CWlQrKhjvXauB3f9TT
-         hHOVYpvxsZHweFVMZSSYqskWvPfCDwE0q8Wog0507HK+QKEVeAxYwGCsK3e+/Q/r0b
-         jAI57NTeAWDow==
-Received: by mail-ed1-f71.google.com with SMTP id m20-20020aa7c2d4000000b003d1add00b8aso1253955edp.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 02:05:40 -0700 (PDT)
+        id S231926AbhIOJIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 05:08:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41928 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231875AbhIOJIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 05:08:22 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19709C061574
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 02:07:04 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id y144so2653469qkb.6
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 02:07:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0RJdDy9GciodUDReXjUDaIDFkjFGW73S7dZ7n74WMu8=;
+        b=YILCy+h7tFJaAsVRaaAIlQKJYokPpV55xGBcCthglwybJ0Gzzkh/Kwywtit4p6DlbG
+         c2H5KZM3i/9FqennjeteKBG2nu0lBhbaGvVLnsAB6b5VT8AAxLpXDZKhIgeNUA5sfc+S
+         IsyX3TKqaXRSdaqOecKGcV80HxeTx+NegIPkI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=X7Cc3jU81HRUvI9Nu63KcpmXz37KgSemXGthehwJJeg=;
-        b=ZO//OOvxey0BzEsv/5PcEovc1PIjzA5ZNTiDZClZKi2fjhhXE0csGSJmzlMVU9OsKG
-         yti83tlyS3cRHTsTXS85K/8IZz1Hi+r69i+7pOjO2CGz4A2zvps2FfCItS6V9JA+oOD0
-         TG6jKrFb7d+wCQ2dwXBrOvnAgX94krF46VphlUv90n5t4yLYzQGUP853OPYe8JulKTAE
-         4fCgAGHKpmhFxUVuNba9/Y2y8Xnh4etszmyDDTVwcsEQxg4coTg4F3tkN9nDdSRgcqv5
-         yvJKZnn3Qt4lFZ0vh8K7MInHiaQZWBwxx1MkvbWwLwWs34AkIrBdyvDED8M5tDyYQNRX
-         jkOg==
-X-Gm-Message-State: AOAM533TtFn+B+cbPQI8zmhKtHXdnN6O670v9nlJQWYGpjOH6bnRdw8E
-        MaUaBvchIArdOEXJgK3tX4l+eJ+l/VWuzOljHqpKN+Ui2HABv7J6hdojMCVyILlT/bBpGRsSdeb
-        Q73uDb3eZOCkvjgHv8Xppb/CGqBoAr4hMh34e1bc=
-X-Received: by 2002:a17:907:7613:: with SMTP id jx19mr24334737ejc.453.1631696739813;
-        Wed, 15 Sep 2021 02:05:39 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzD9fO3zbzPRg3ejtmsih8V9NIThIYB0jKBalTlLEm2XpSRUk4IVkXNzIOR7td1TQ+/UiTNCQ==
-X-Received: by 2002:a17:907:7613:: with SMTP id jx19mr24334728ejc.453.1631696739675;
-        Wed, 15 Sep 2021 02:05:39 -0700 (PDT)
-Received: from [192.168.3.211] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id c5sm6843180edx.81.2021.09.15.02.05.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Sep 2021 02:05:39 -0700 (PDT)
-Subject: Re: [PATCH v4 8/8] memory: gpmc-omap: "gpmc,device-width" DT property
- is optional
-To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
-Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
-        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210914122705.15421-1-rogerq@kernel.org>
- <20210914122705.15421-9-rogerq@kernel.org>
- <e0c4759b-7c2d-e32c-f912-8409c1f65b49@canonical.com>
- <6a06f4bd-f20a-8b5a-c152-0877707670ff@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <1b915c39-fd6d-3c3c-e4bf-4df9a694dfb6@canonical.com>
-Date:   Wed, 15 Sep 2021 11:05:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0RJdDy9GciodUDReXjUDaIDFkjFGW73S7dZ7n74WMu8=;
+        b=Cxk4ovfgxnu5s9SRy9TK+MJzz1NiuT5kK5bgKL5icbTeF7t5/P0+dQOwC7eaIz2C5s
+         71ksDP/1dzyANwuxf+3GarqR84LET++RQysY5YF/NOILw0057Qy8amiUzanUPGw5vjZY
+         I3fxAPQh3kwyTiYs2Q8D2ZWcC8XfLn1bKdwe6HJYJ4QQ6bboMImAPZS1HyEPfuITZYlM
+         VM3LxIzxky8iRrT4VivzobWtyF78/5dyCgT2xXJbsCBHdt6l3VfM2uVL5pZuOOJNPiRD
+         KmR8E7+zHZST0OjUBEGLNqd51B2kOp6bUzZYYALIyAIngqvg0xI32KYaDRKMuVUORiF0
+         K5dw==
+X-Gm-Message-State: AOAM530egWAEmepr8FhcodlxqFLkoulDYtvAix1p1Ae39kjHnGb60lik
+        b5fFI7yq4GwV7nfZYM80Ywvq5xUtc3a0FMNssiVJmw==
+X-Google-Smtp-Source: ABdhPJws1Ho/iB+xb+WL3xHvw7qxPAcEuT6fJ2i6E7ObmyaGC6uVnXaezCAoFfxaSUWTEFxDkjgiHEAfQ2mE9qxVyHg=
+X-Received: by 2002:a05:620a:4495:: with SMTP id x21mr8855230qkp.378.1631696823227;
+ Wed, 15 Sep 2021 02:07:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <6a06f4bd-f20a-8b5a-c152-0877707670ff@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210914100415.1549208-1-daniel@0x0f.com> <YUDG58WfACd8GYf5@lunn.ch>
+In-Reply-To: <YUDG58WfACd8GYf5@lunn.ch>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Wed, 15 Sep 2021 18:06:52 +0900
+Message-ID: <CAFr9PX=J85PxAiHC2Cb9Z18v8pYtd2Uea8KOC+AsYyJKFCLHXw@mail.gmail.com>
+Subject: Re: [PATCH 0/3] SigmaStar SSD20XD GPIO interrupt controller
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Romain Perier <romain.perier@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2021 10:47, Roger Quadros wrote:
-> Hi Krzysztof,
-> 
-> On 15/09/2021 10:12, Krzysztof Kozlowski wrote:
->> On 14/09/2021 14:27, Roger Quadros wrote:
->>> Check for valid gpmc,device-width, nand-bus-width and bank-width
->>> at one place. Default to 8-bit width if none present.
->>>
->>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->>> ---
->>>  drivers/memory/omap-gpmc.c | 41 ++++++++++++++++++++++++--------------
->>>  1 file changed, 26 insertions(+), 15 deletions(-)
->>>
->>
->> All the comments from v3 are still applicable because it seems you
->> ignored them. Please respond to them.
->>
->> It's the second patch where the reviewer's comments got lost, so it
->> creates rather poor impression.
-> 
-> I was wondering what comments and then realized that gmail server has put
-> all your messages into spam folder.
-> 
-> I'm very sorry about that. I will address your comments ASAP.
+Hi Andrew,
 
-Oops. There were just two emails from me for v3. Can you send me
-(privately) the headers from my emails so I can investigate why they
-ended up on Spam?
+On Wed, 15 Sept 2021 at 00:59, Andrew Lunn <andrew@lunn.ch> wrote:
+> How are the GPIOs mapped to the interrupts? Is it a simple 1:1?
 
-Best regards,
-Krzysztof
+Unfortunately, no.
+I wanted to add the GPIO controller part of this to this same series
+but there are some patches in flight for that so it would have been
+messy.
+You can see that here though:
+https://github.com/linux-chenxing/linux/commit/88345dc470bf07d36aa1ddab09551ed33a1cfb22
+
+They've really made a mess of this. Their whole GPIO thing is a mess
+with no clear logic between the pin names and the register locations
+etc.
+This IRQ part is no exception. IRQ 0 from this thing isn't for the pin
+called GPIO0 or anything sane like that.
+
+> The GPIO core has some support for the GPIO drivers to be also
+> interrupt controllers. So if this interrupt control is dedicated to
+> GPIO, you would be better to make it part of the GPIO driver.
+
+I don't think so. One reason is the non-linear mapping stuff. A second
+reason is this GPIO interrupt controller might handle GPIO interrupts
+for multiple GPIO controller blocks.
+Finally, in newer chips they've replaced one of the GPIO blocks with a
+new IP which will need it's own driver. That GPIO controller still
+seems to use this same IRQ block to handle it's interrupts.
+So if this code is wrapped into the GPIO driver itself it would end up
+duplicated in two GPIO drivers.
+
+Cheers,
+
+Daniel
