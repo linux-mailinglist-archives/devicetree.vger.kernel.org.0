@@ -2,186 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A693F40C1C0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 10:30:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD88040C201
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 10:47:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232257AbhIOIbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 04:31:37 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:62459 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231610AbhIOIbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 04:31:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1631694618; x=1663230618;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=CuDyKY55ZbzDXbGqx9WS7l9zi6qqPhidS7v7vJGSuLs=;
-  b=cd0EAcgXJQKSdy0rVllzJJtT79bINR5jAgQ7FOe4YwvbWdRN78VojbDB
-   4iEftccpJNLxyn/DomwfDyPVXyb11T+Vm+VOAdxtiA8FeORbriXad+KNi
-   +lk4QvrAZBe6TqFrI3f4XOaaC5KiwRePYNxHccMB3viP83BG+uhw0t+ej
-   woHO1gmd3NKqCOfAB9kikNh2sFGH375kkZeLFWWtB2xcT2lqDxNVrk4a4
-   +jCVXhX+UqFAaulJMlrhWKWZ4R9G7k1M28BudW4ATSpI0KwabmBcfraLN
-   mdkGGlF39yuLjAvi2tZFrmv0q3Hz8RdrYFWPp7A6Nn1uZ6X/eE5RbjdGI
-   A==;
-IronPort-SDR: aPOA3TQeBHXmCnnIFjMal0zDrapdgayYa6Y7ITo+7FGmc4XV14hL1ApDDwGD5nCOJ7Vc/3VfZj
- AEbo+CReP32v++McuvAcPMshCYNIk9N1elJlSuErnXbI63Ib5kuI8xKhZjB7GKNVxiniHZL3/H
- meFEAgX/f5kGvVGPER2e95QyGSzFzVcHuom7jDlmqG9JMqSZXWhybqEin+gDfv3yuiTPc1YkrJ
- QixCqqoQuowHMcsYJhPcFDUpP+J/szVZCE1//HxWD3EXw9wlSfM1G4Z1QP+sSSpc7n60//qiW3
- t+uCmpAYz0CPuxvITk9VpwjH
-X-IronPort-AV: E=Sophos;i="5.85,294,1624345200"; 
-   d="scan'208";a="129372772"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Sep 2021 01:30:18 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 15 Sep 2021 01:30:17 -0700
-Received: from [10.171.246.91] (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Wed, 15 Sep 2021 01:30:15 -0700
-Subject: Re: [PATCH v4] ARM: dts: at91: sama5d27_wlsom1: add wifi device
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>
-References: <20210825094055.642941-1-claudiu.beznea@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <b80be4c4-27ec-9e94-2bbb-5a2640af0514@microchip.com>
-Date:   Wed, 15 Sep 2021 10:30:15 +0200
+        id S232511AbhIOItD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 04:49:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41640 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231610AbhIOItC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 04:49:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2774661214;
+        Wed, 15 Sep 2021 08:47:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631695664;
+        bh=37HeyMHel+k/wlDZvQA9JOKb2529T3W+e5XKkmXDX1I=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=dGqbUPjOCF/tGXC2a/x4Tmy4N6McGkTrftspLLYg5pcCCUzTSFDB9wHiNBQyLikxp
+         zJ4qheoU0Z9msh+F9O+XpzXHA5XGdlhn0g1F/mBmUgBmTY6SfVeA3BJtcArYUAZLTI
+         H5z0OyDRGJAk5OyKdzGQvgfZnMiQreMM/32mYa/A5km2VPeOUiiCucgKDIpFC4EWlC
+         mhJJITNokSVVdr2R6yiFBvRSY6m/4cbuWHuNITw/7BGk/oljPga6OYqmPlQk42gejD
+         gnkPlfYkU14qGvj08Jr45FSn69n4XRjprS4tTPqEGQ0eBOoRhqRMdQQ+duTec1x6xU
+         2N4NEv4hOlVLw==
+Subject: Re: [PATCH v4 8/8] memory: gpmc-omap: "gpmc,device-width" DT property
+ is optional
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        tony@atomide.com
+Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
+        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210914122705.15421-1-rogerq@kernel.org>
+ <20210914122705.15421-9-rogerq@kernel.org>
+ <e0c4759b-7c2d-e32c-f912-8409c1f65b49@canonical.com>
+From:   Roger Quadros <rogerq@kernel.org>
+Message-ID: <6a06f4bd-f20a-8b5a-c152-0877707670ff@kernel.org>
+Date:   Wed, 15 Sep 2021 11:47:39 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210825094055.642941-1-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+In-Reply-To: <e0c4759b-7c2d-e32c-f912-8409c1f65b49@canonical.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2021 at 11:40, Claudiu Beznea wrote:
-> From: Eugen Hristev <eugen.hristev@microchip.com>
-> 
-> SAMA5D27 WLSOM1 boards has a WILC3000 device soldered. Add proper
-> device tree nodes for this.
-> 
-> [eugen.hristev: original author of this code]
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> [nicolas.ferre: original author of this code]
-> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> [claudiu.beznea: adapt such that make dtbs_check is happy, remove status
->   for wifi_pwrseq and wifi nodes]
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+Hi Krzysztof,
 
-Thanks Claudiu for having handled this work!
-
-I queue it in at91-dt for 5.16.
-Best regards,
-   Nicolas
-
-> ---
+On 15/09/2021 10:12, Krzysztof Kozlowski wrote:
+> On 14/09/2021 14:27, Roger Quadros wrote:
+>> Check for valid gpmc,device-width, nand-bus-width and bank-width
+>> at one place. Default to 8-bit width if none present.
+>>
+>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>> ---
+>>  drivers/memory/omap-gpmc.c | 41 ++++++++++++++++++++++++--------------
+>>  1 file changed, 26 insertions(+), 15 deletions(-)
+>>
 > 
-> Changes in v4:
-> - keep only this patch as the rest from series were applied on mmc tree
-> - remove status="okay" on wifi node and pwrseq node
-> - adapt to remove all warnings thown by make dtbs_check
+> All the comments from v3 are still applicable because it seems you
+> ignored them. Please respond to them.
 > 
->   arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi | 70 +++++++++++++++++++++
->   1 file changed, 70 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-> index 025a78310e3a..21c86171e462 100644
-> --- a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-> +++ b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-> @@ -30,6 +30,14 @@ main_xtal {
->   			clock-frequency = <24000000>;
->   		};
->   	};
-> +
-> +	wifi_pwrseq: wifi_pwrseq {
-> +		compatible = "mmc-pwrseq-wilc1000";
-> +		reset-gpios = <&pioA PIN_PA27 GPIO_ACTIVE_HIGH>;
-> +		powerdown-gpios = <&pioA PIN_PA29 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-0 = <&pinctrl_wilc_pwrseq>;
-> +		pinctrl-names = "default";
-> +	};
->   };
->   
->   &flx1 {
-> @@ -310,5 +318,67 @@ pinctrl_qspi1_default: qspi1_default {
->   			 <PIN_PB10__QSPI1_IO3>;
->   		bias-pull-up;
->   	};
-> +
-> +	pinctrl_sdmmc1_default: sdmmc1_default {
-> +		cmd-data {
-> +			pinmux = <PIN_PA28__SDMMC1_CMD>,
-> +				 <PIN_PA18__SDMMC1_DAT0>,
-> +				 <PIN_PA19__SDMMC1_DAT1>,
-> +				 <PIN_PA20__SDMMC1_DAT2>,
-> +				 <PIN_PA21__SDMMC1_DAT3>;
-> +			bias-disable;
-> +		};
-> +
-> +		conf-ck {
-> +			pinmux = <PIN_PA22__SDMMC1_CK>;
-> +			bias-disable;
-> +		};
-> +	};
-> +
-> +	pinctrl_wilc_default: wilc_default {
-> +		conf-irq {
-> +			pinmux = <PIN_PB25__GPIO>;
-> +			bias-disable;
-> +		};
-> +	};
-> +
-> +	pinctrl_wilc_pwrseq: wilc_pwrseq {
-> +		conf-ce-nrst {
-> +			pinmux = <PIN_PA27__GPIO>,
-> +				 <PIN_PA29__GPIO>;
-> +			bias-disable;
-> +		};
-> +
-> +		conf-rtcclk {
-> +			pinmux = <PIN_PB13__PCK1>;
-> +			bias-disable;
-> +		};
-> +	};
-> +};
-> +
-> +&sdmmc1 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	bus-width = <4>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sdmmc1_default>;
-> +	mmc-pwrseq = <&wifi_pwrseq>;
-> +	no-1-8-v;
-> +	non-removable;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +
-> +	wilc: wifi@0 {
-> +		reg = <0>;
-> +		compatible = "microchip,wilc1000";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_wilc_default>;
-> +		clocks = <&pmc PMC_TYPE_SYSTEM 9>;
-> +		clock-names = "rtc";
-> +		interrupts = <PIN_PB25 IRQ_TYPE_NONE>;
-> +		interrupt-parent = <&pioA>;
-> +		assigned-clocks = <&pmc PMC_TYPE_SYSTEM 9>;
-> +		assigned-clock-rates = <32768>;
-> +	};
->   };
->   
-> 
+> It's the second patch where the reviewer's comments got lost, so it
+> creates rather poor impression.
 
+I was wondering what comments and then realized that gmail server has put
+all your messages into spam folder.
 
--- 
-Nicolas Ferre
+I'm very sorry about that. I will address your comments ASAP.
+
+cheers,
+-roger
