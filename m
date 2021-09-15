@@ -2,129 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12B1840C84F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 17:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22AEA40C913
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 17:59:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234242AbhIOPaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 11:30:08 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:39332 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234085AbhIOPaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 11:30:08 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18FFSf91017429;
-        Wed, 15 Sep 2021 10:28:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631719721;
-        bh=qbzow5ypizsvI+pviMheO7Zt+Z9kjRjW9l+xECbmrNY=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=fJK8fbuhac+4AoH2am0to+/LvQNTJzd8c8AZcQM/ZV3Bq4q12Lwt6paZsP/AUhEQ2
-         c+dfuWTAOOeSyRz7XYpGKa3LwuG0X8RMQ8kmY1ktZ1ZgCKhRkDs0K7C7xPJjXdXKr3
-         bNwwLGDM4e1Uyz5lkz2Aqfqw+1i1w43lGuV5AhEk=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18FFSfiP070717
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Sep 2021 10:28:41 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 15
- Sep 2021 10:28:40 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 15 Sep 2021 10:28:40 -0500
-Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18FFSajb060663;
-        Wed, 15 Sep 2021 10:28:37 -0500
-Subject: Re: [PATCH v3 3/5] arm64: dts: ti: iot2050: Add/enabled mailboxes and
- carve-outs for R5F cores
-To:     Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>,
+        id S234381AbhIOQAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 12:00:32 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:51937 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234166AbhIOQAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 12:00:31 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id BDDAA1BF207;
+        Wed, 15 Sep 2021 15:59:08 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
+        Tony Lindgren <tony@atomide.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
         Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-References: <cover.1631216478.git.jan.kiszka@siemens.com>
- <e4cfc36a6f4fef33727f042748caa7d83f8609a7.1631216478.git.jan.kiszka@siemens.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <669d3baa-d5f7-dfee-691b-58d00ce43a2c@ti.com>
-Date:   Wed, 15 Sep 2021 20:58:36 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        Ryan Barnett <ryan.barnett@collins.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Jason Reeder <jreeder@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v3 00/47] TI AM437X ADC1
+Date:   Wed, 15 Sep 2021 17:58:21 +0200
+Message-Id: <20210915155908.476767-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <e4cfc36a6f4fef33727f042748caa7d83f8609a7.1631216478.git.jan.kiszka@siemens.com>
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
+
+This is a (fairly big) series bringing support of AM437X ADC1.
+On TI AM33XX SoCs family there is an ADC that can also be connected to a
+touchscreen. This hardware has been extended and is present on certain
+SoCs from the AM437X family. In particular, the touchscreen has been
+replaced by a magnetic card reader. In both cases, the representation is
+an MFD device with two children:
+* on AM33XX: the touchscreen controller and the ADC
+* on AM437X: the magnetic card reader and the ADC
+
+This series really targets small and atomic changes so that the overall
+review is eased, even though it leads to a lot of rather small patches.
+Here are the steps:
+* Supporting the missing clock
+* Translating a single text file containing the description for the
+  MFD, the touchscreen and the ADC into three independent yaml files.
+* Cleaning/preparing the MFD driver.
+* Supporting ADC1 in the MFD driver.
+* Cleaning/preparing of the ADC driver.
+* Supporting ADC1 in the ADC driver.
+* Updating various device trees.
+
+Here is the full series again, almost reviewed and acked entirely, but
+rebased on the last -rc1. The clock patch has been acked, the ADC
+patches as well, so we expect the series to go through the MFD
+tree if hte maintainers agree with it.
+
+Thanks,
+Miquèl
+
+Changes in v3:
+* Rebased on top of v5.15-rc1.
+* R-by/A-by tags added.
+* Light reordering to let the of_put_node() fix to be applied more easily
+* Dropped a patch made useless because of the previous reordering
+* Explained how the tscadc->ctrl variable was used.
+* Fixed a couple of typos.
+* Included the change for the HZ macro.
+* Went further in the BIT()/FIELD_PREP() cleanup.
+* Added maximum definitions for sample delay/open delay.
+* Removed useless definitions.
+* Fixed a couple of rebase conflicts (the series was not bisectable).
+
+Changes in v2:
+* Added various R-by/A-by tags.
+* Various typos & style fixes.
+[Bindings]
+* Included the missing ti,am654-tscadc compatible.
+* Reworded the compatible lines as requested by Jonathan.
+* Reworded the bindings content a little bit as advised by Rob (subnodes
+  being objects, MFD descriptions provided once, status and unused
+  labels removed).
+[SPDX changes]
+* Mentioned that the license macro and the license text matched.
+* Also added an SPDX tag in the MFD header.
+[MFD header]
+* Used the BIT(), GENMASK() and PREP_FIELD() macros when relevant.
+[MFD driver]
+* Did not reordered the variables declared on the probe stack as advised
+  by Jonathan.
+* Added missing of_node_put() calls.
+* Moved the patch changing the place where the main structure is
+  allocated to directly precede the patch using this change.
+* Fixed the driver data wiring (bug happening between ex patches 16 and
+  28).
+* Added a commit just to explain the reordering of the register writes
+  during initialization/resume.
+* Explained the check about 'use_tsc' in the commit message.
+* Added a link to the TRM in a commit message referencing it.
+* Removed the use of the ti,tracks property, used a constant value
+  instead.
+* Dropped the error check when retrieving the "wrong" DT property
+  (coordiante-readouts) which is unused.
 
 
-On 9/10/21 1:11 AM, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> Analogously to the am654-base-board, configure the mailboxes for the the
-> two R5F cores, add them and the already existing memory carve-outs to
-> the related MCU nodes. Allows to load applications under Linux onto the
-> cores, e.g. the RTI watchdog firmware.
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+Miquel Raynal (47):
+  clk: ti: am43xx: Add clkctrl data for am43xx ADC1
+  dt-bindings: mfd: ti,am3359-tscadc: Add a yaml description for this
+    MFD
+  dt-bindings: touchscreen: ti,am3359-tsc: New yaml description
+  dt-bindings: iio: adc: ti,am3359-adc: New yaml description
+  dt-bindings: touchscreen: ti,am3359-tsc: Remove deprecated text file
+  dt-bindings: mfd: ti,am3359-tscadc: Describe am4372 MFD compatible
+  dt-bindings: iio: adc: ti,am3359-adc: Describe am4372 ADC compatible
+  mfd: ti_am335x_tscadc: Ensure a balanced number of node get/put
+  mfd: ti_am335x_tscadc: Replace license text with SPDX tag
+  mfd: ti_am335x_tscadc: Fix style
+  mfd: ti_am335x_tscadc: Drop extra spacing when declaring stack
+    variables
+  mfd: ti_am335x_tscadc: Get rid of useless gotos
+  mfd: ti_am335x_tscadc: Reword the comment explaining the dividers
+  mfd: ti_am335x_tscadc: Don't search the tree for our clock
+  mfd: ti_am335x_tscadc: Simplify divisor calculation
+  mfd: ti_am335x_tscadc: Move the driver structure allocation earlier
+  mfd: ti_am335x_tscadc: Use driver data
+  mfd: ti_am335x_tscadc: Mimic the probe from resume()
+  mfd: ti_am335x_tscadc: Drop useless variables from the driver
+    structure
+  mfd: ti_am335x_tscadc: Always provide an idle configuration
+  mfd: ti_am335x_tscadc: Reorder the initialization steps
+  mfd: ti_am335x_tscadc: Gather the ctrl register logic in one place
+  mfd: ti_am335x_tscadc: Replace the header license text with SPDX tag
+  mfd: ti_am335x_tscadc: Fix header spacing
+  mfd: ti_am335x_tscadc: Use the new HZ_PER_MHZ macro
+  mfd: ti_am335x_tscadc: Use BIT(), GENMASK() and FIELD_PREP() when
+    relevant
+  mfd: ti_am335x_tscadc: Clarify the maximum values for DT entries
+  mfd: ti_am335x_tscadc: Drop useless definitions from the header
+  mfd: ti_am335x_tscadc: Rename the subsystem enable macro
+  mfd: ti_am335x_tscadc: Add TSC prefix in certain macros
+  mfd: ti_am335x_tscadc: Rename a variable
+  mfd: ti_am335x_tscadc: Fix an error message
+  mfd: ti_am335x_tscadc: Add a boolean to clarify the presence of a
+    touchscreen
+  mfd: ti_am335x_tscadc: Introduce has_tsc
+  mfd: ti_am335x_tscadc: Add ADC1/magnetic reader support
+  mfd: ti_am335x_tscadc: Support the correctly spelled DT property
+  iio: adc: ti_am335x_adc: Wait the idle state to avoid stalls
+  iio: adc: ti_am335x_adc: Replace license text with SPDX tag
+  iio: adc: ti_am335x_adc: Fix style
+  iio: adc: ti_am335x_adc: Get rid of useless gotos
+  iio: adc: ti_am335x_adc: Gather the checks on the delays
+  iio: adc: ti_am335x_adc: Add a unit to the timeout delay
+  iio: adc: ti_am335x_adc: Add the scale information
+  iio: adc: ti_am335x_adc: Add the am437x compatible
+  ARM: dts: am437x-cm-t43: Use a correctly spelled DT property
+  ARM: dts: am43xx: Describe the magnetic reader/ADC1 hardware module
+  ARM: dts: am437x-gp-evm: enable ADC1
 
-Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
+ .../bindings/iio/adc/ti,am3359-adc.yaml       |  70 +++++
+ .../input/touchscreen/ti,am3359-tsc.yaml      |  76 ++++++
+ .../bindings/input/touchscreen/ti-tsc-adc.txt |  91 -------
+ .../bindings/mfd/ti,am3359-tscadc.yaml        |  84 ++++++
+ arch/arm/boot/dts/am437x-cm-t43.dts           |   2 +-
+ arch/arm/boot/dts/am437x-gp-evm.dts           |   8 +
+ arch/arm/boot/dts/am437x-l4.dtsi              |  31 ++-
+ arch/arm/boot/dts/am43xx-clocks.dtsi          |   7 +
+ drivers/clk/ti/clk-43xx.c                     |   1 +
+ drivers/iio/adc/ti_am335x_adc.c               | 220 +++++++++-------
+ drivers/mfd/ti_am335x_tscadc.c                | 243 ++++++++++--------
+ include/dt-bindings/clock/am4.h               |   1 +
+ include/linux/mfd/ti_am335x_tscadc.h          | 115 ++++-----
+ 13 files changed, 599 insertions(+), 350 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti,am3359-tsc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
 
-> ---
->  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 26 +++++++++++++++++--
->  1 file changed, 24 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> index 58c8e64d5885..b29537088289 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> @@ -658,11 +658,21 @@ &pcie1_ep {
->  };
->  
->  &mailbox0_cluster0 {
-> -	status = "disabled";
-> +	interrupts = <436>;
-> +
-> +	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
-> +		ti,mbox-tx = <1 0 0>;
-> +		ti,mbox-rx = <0 0 0>;
-> +	};
->  };
->  
->  &mailbox0_cluster1 {
-> -	status = "disabled";
-> +	interrupts = <432>;
-> +
-> +	mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
-> +		ti,mbox-tx = <1 0 0>;
-> +		ti,mbox-rx = <0 0 0>;
-> +	};
->  };
->  
->  &mailbox0_cluster2 {
-> @@ -705,6 +715,18 @@ &mailbox0_cluster11 {
->  	status = "disabled";
->  };
->  
-> +&mcu_r5fss0_core0 {
-> +	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-> +			<&mcu_r5fss0_core0_memory_region>;
-> +	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
-> +};
-> +
-> +&mcu_r5fss0_core1 {
-> +	memory-region = <&mcu_r5fss0_core1_dma_memory_region>,
-> +			<&mcu_r5fss0_core1_memory_region>;
-> +	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5fss0_core1>;
-> +};
-> +
->  &icssg0_mdio {
->  	status = "disabled";
->  };
-> 
+-- 
+2.27.0
+
