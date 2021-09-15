@@ -2,109 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7683640CD2B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 21:27:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DFCD40CD55
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 21:41:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231497AbhIOT2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 15:28:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44384 "EHLO
+        id S231676AbhIOTmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 15:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231575AbhIOT2P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 15:28:15 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C82C061764
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 12:26:56 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id n27so5724241oij.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 12:26:56 -0700 (PDT)
+        with ESMTP id S231585AbhIOTmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 15:42:18 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EE13C061764
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 12:40:59 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id k12-20020a056830150c00b0051abe7f680bso5135189otp.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 12:40:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to;
-        bh=o/xLkGlhrSnpCqv+HEwTNRKoItyS4LasgozuRU4ni1o=;
-        b=AvsLqD+ImZ3uG21Z85q9lNII8aPV/FqVgO1IUBdXtaed29+o/L4jPx8h2xxrNvZPNZ
-         /AqAaoUsRfDPKhJegTmB5uaHM+phiDSUEtA9+4ewEGnBJfLTz6+DfPPN7KFy0S+kZvTH
-         xt6LBjfee3cPZwN1+ScwgNDTcJbEx0PfLPLi4=
+         :subject:to:cc;
+        bh=mDzdWtBB1uSsJFNpS+LW0eoU/BmEDcIzioUx3tBX9MQ=;
+        b=Ly9kyawmN861/4Wr1C8M9aEGfTfVB+G/JQ7VM6jBRtd5RWpnuD2lPePwRMRuLavd/Z
+         l8suHz6HXSPxNA92D6B5fDECCdQZfwfXlT/5HCGbUPotXdK7yhmz23qRgEnePR+XiRHf
+         BSt2Q4tYyys9osDsdTtmsmngLHLwlhPe6oNPU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to;
-        bh=o/xLkGlhrSnpCqv+HEwTNRKoItyS4LasgozuRU4ni1o=;
-        b=oK8UgNZQOjiZKijJYzxA3dtINih9PwPt2RlHIKTl+mM9cD/b2MVKcnOv0jg0JufLh2
-         GcgnFUFGjj05OdS95QwmcEBw70dbMJZRxHOf2Sc/W1fJXx/HC9pnGBfR+K7tDql48JeZ
-         Tx582ZUKpNy+wYceWg7QwECU1X3reUqK8mfBc91Y06Q3ecQNfFHwnw6vy5clyVJyUQEt
-         /c1KW0kVRHj+zFBKHSDYYQsRg2rZ9b0V8r1Bv7T32gDXnPkm5BqnrH4VS5UQ8eEu9M5f
-         7qLbFgy/0F4YZWpGesQBM0QorfHIJR+2HLLlKYYw+IzxzW15TW5IfS6yAmiruxyp9Wqc
-         yRBQ==
-X-Gm-Message-State: AOAM532fZlGa+rAtIyhicU5W6V3/HL4qZKdHpIP72rhmz49Dd3FovAME
-        L4U45Rd7scbVEB0f+Gt73Byvf4wgKGzB4oKG2ItCXQ==
-X-Google-Smtp-Source: ABdhPJwFkrl8F6Ej21HTUvXwucYyETWWwd0o6RXQlIIKy4y8Ocqoi0zQx97NR+cpDDHoED2PMDRevSzOS/rZyXj3qnQ=
-X-Received: by 2002:aca:2310:: with SMTP id e16mr1006542oie.64.1631734016098;
- Wed, 15 Sep 2021 12:26:56 -0700 (PDT)
+         :user-agent:date:message-id:subject:to:cc;
+        bh=mDzdWtBB1uSsJFNpS+LW0eoU/BmEDcIzioUx3tBX9MQ=;
+        b=67LvJSp/OOneXvRMhXZOjgo3TfMyBcHm7CZGSkeaa7ZLOPvW8zwhSpjhsmGzPz85x3
+         JRZaMvc/iN5C7rL7aYqqe9f32FG9HN0OUAH+aXC4oZbv4bvjyxVM5U1+o8CJXY2/XoUs
+         QiYwgyVBFap9wgUM61E8DPnBPJr9W742tOwcFcFiT6Snvf75tfliHueX1RCxM89LcKuv
+         3qISapwAVUp5qAmx6diP7eP+wHVpfvTKTQ10xPi4NSu/TO2MN+BfxJ1oz+e+o4rIlSFa
+         IMfiIF08qOCFR4H6uslo5u/yukI9tHzojWOZYi6Yg91kTowB8Fe4tHjx2RwMoBIGjUCu
+         iGrw==
+X-Gm-Message-State: AOAM5310VQJaisRJJ0xMRjIDGhkMKHUnKwwVyhd4v55QvEtILYJlpVEr
+        8j2ygkh4fBpeDtf5Ln9BtzXCBrvlQITgJL3FwJbwQg==
+X-Google-Smtp-Source: ABdhPJwivxhkg8fCpBrYDaYtdYT13Ef9VjmdoM5RJyzQ0CrKUqXreux0XnV6qMdYSvfLig+lS8I5BpdTbzuXMDMwPsI=
+X-Received: by 2002:a05:6830:18c7:: with SMTP id v7mr1527419ote.126.1631734858214;
+ Wed, 15 Sep 2021 12:40:58 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Sep 2021 12:26:55 -0700
+ HTTPREST; Wed, 15 Sep 2021 12:40:57 -0700
 MIME-Version: 1.0
-In-Reply-To: <e1e84488-2af5-2272-010a-474788a498a3@codeaurora.org>
-References: <1631539062-28577-1-git-send-email-srivasam@codeaurora.org>
- <1631539062-28577-2-git-send-email-srivasam@codeaurora.org>
- <CAE-0n50=ABP+fs1U3JjiqMSKphfxFsZBqQQYwVH2o_iOE1Wu_g@mail.gmail.com> <e1e84488-2af5-2272-010a-474788a498a3@codeaurora.org>
+In-Reply-To: <36fe241f845a27b52509274d007948b1@codeaurora.org>
+References: <1629458622-4915-1-git-send-email-okukatla@codeaurora.org>
+ <1629458622-4915-4-git-send-email-okukatla@codeaurora.org>
+ <CAE-0n51WBdLoJRPs9tWZgdAukJMnkD3V00o7xNYVX77-eToKvw@mail.gmail.com>
+ <749157bdb4613ae370adfb7ba055a2a9@codeaurora.org> <36fe241f845a27b52509274d007948b1@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Wed, 15 Sep 2021 12:26:55 -0700
-Message-ID: <CAE-0n50wVDvL+f19abt9o9d0GvuAD+AanCwHozoyGfEFWKWz_g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] ASoC: google: dt-bindings: Add sc7280-herobrine
- machine bindings
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
+Date:   Wed, 15 Sep 2021 12:40:57 -0700
+Message-ID: <CAE-0n53g=qGoVAMh_me_W0ksp39WUm2CCwAttcAK+Do5nYXq5g@mail.gmail.com>
+Subject: Re: [v7 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect provider
+To:     okukatla@codeaurora.org
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        evgreen@google.com, georgi.djakov@linaro.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
+        mdtipton@codeaurora.org, sibis@codeaurora.org,
+        saravanak@google.com, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
+        okukatla=codeaurora.org@codeaurora.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-09-15 04:15:43)
->
-> On 9/14/2021 1:21 AM, Stephen Boyd wrote:
-> > Quoting Srinivasa Rao Mandadapu (2021-09-13 06:17:41)
-> >> diff --git a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-> >> new file mode 100644
-> >> index 0000000..e0d705f
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-> >> +patternProperties:
-> >> +  "^dai-link@[0-9a-f]$":
-> >> +    description:
-> >> +      Each subnode represents a dai link. Subnodes of each dai links would be
-> >> +      cpu/codec dais.
-> >> +
-> >> +    type: object
-> >> +
-> >> +    properties:
-> >> +      link-name:
-> >> +        description: Indicates dai-link name and PCM stream name.
-> >> +        $ref: /schemas/types.yaml#/definitions/string
-> >> +        maxItems: 1
-> >> +
-> >> +      reg:
-> >> +        maxItems: 1
-> >> +        description: dai link address.
-> >> +
-> >> +      cpu:
-> >> +        description: Holds subnode which indicates cpu dai.
-> >> +        type: object
-> >> +        properties:
-> >> +          sound-dai: true
-> > Shouldn't sound-dai be required?
-> Sorry. I didn't get your Query. You mean in below "required:" properties
-> need to add sound-dai also?
+Quoting okukatla@codeaurora.org (2021-09-14 23:26:19)
+> On 2021-09-15 10:35, okukatla@codeaurora.org wrote:
+> > On 2021-09-04 00:36, Stephen Boyd wrote:
+> >> Quoting Odelu Kukatla (2021-08-20 04:23:41)
+> >>> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
+> >>> SoCs.
+> >>>
+> >>> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+> >>> ---
+> >>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 11 +++++++++++
+> >>>  1 file changed, 11 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >>> index 53a21d0..cf59b47 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >>> @@ -1848,6 +1848,17 @@
+> >>>                         };
+> >>>                 };
+> >>>
+> >>> +               epss_l3: interconnect@18590000 {
+> >>> +                       compatible = "qcom,sc7280-epss-l3";
+> >>> +                       reg = <0 0x18590000 0 1000>,
+> >>
+> >> Is this supposed to be 0x1000?
+> >>
+> > No, This is 1000 or 0x3E8.
 
-I'd expect there to be a required: list for the 'cpu' and 'codec'
-objects that says sound-dai, unless that is implicit somehow. I'm
-definitely not an expert in the DT yaml, but I suspect two more
-'required:' sections are needed so that 'sound-dai' isn't an optional
-property.
+Wow ok. Why is it the only size that isn't in hex format? Please try to
+be consistent and use hex throughout.
+
+> We have mapped only required registers for L3 scaling, 1000/0x3E8 is
+> suffice.
+> But i will update it to 0x1000 in next revision so that entire clock
+> domain region-0 is mapped.
+
+Doesn't that conflict with the cpufreq-hw device?
+
+> >>> +                             <0 0x18591000 0 0x100>,
+> >>> +                             <0 0x18592000 0 0x100>,
+> >>> +                             <0 0x18593000 0 0x100>;
+> >>> +                       clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc
+> >>> GCC_GPLL0>;
+> >>> +                       clock-names = "xo", "alternate";
+> >>> +                       #interconnect-cells = <1>;
+> >>> +               };
+> >>> +
+> >>>                 cpufreq_hw: cpufreq@18591000 {
+> >>>                         compatible = "qcom,cpufreq-epss";
+> >>>                         reg = <0 0x18591100 0 0x900>,
