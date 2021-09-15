@@ -2,180 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E69640CEAD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 23:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA29940CF28
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 00:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231969AbhIOVSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 17:18:39 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:43122 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230382AbhIOVSb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 17:18:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=r86CNqldwDEtT67/MPxr+lwRy10J2msOmuDKCgTFsHA=; b=Am1/doWwxRfmJugYmt746kUzi2
-        m/4EPXqeca+ZsOZGRhMDWkPqhbZ0UlQ7VUWfneEXaVAau35yEHLQY3ZXiNul3WZaux6VuZlJMS05K
-        lbCW5X8QMJ9Cl1ZVpQEQgr5o10FOpcndhBlCUxWLJMTq7Z20PW+wiJNLo7YzZ959FYDA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mQcHB-006oEm-4f; Wed, 15 Sep 2021 23:17:05 +0200
-Date:   Wed, 15 Sep 2021 23:17:05 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Heimpold <michael.heimpold@in-tech.com>,
-        jimmy.shen@vertexcom.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 3/3] net: vertexcom: Add MSE102x SPI support
-Message-ID: <YUJi0cVawjyiteEx@lunn.ch>
-References: <20210914151717.12232-1-stefan.wahren@i2se.com>
- <20210914151717.12232-4-stefan.wahren@i2se.com>
+        id S232644AbhIOWC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 18:02:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50972 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232608AbhIOWCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 18:02:23 -0400
+Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6ECCC061767
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 15:01:03 -0700 (PDT)
+Received: by mail-vs1-xe32.google.com with SMTP id i23so4239736vsj.4
+        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 15:01:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=zGSJw2mijcD917fI6iH/7Zmw4K7gJ7WwhrleRMcWjCU=;
+        b=LBVx6jNrGw1ARumMNWN8gjXgHRgv4QoeCFG8s+d30GDiNRCUhBeoZQEOGM7at5+ZxA
+         YlEDaKkfE5T7wQapssiYzPc+0mfn6SZ/qKsDr+6dxxaaxJDNlXqE2cQyCaf8JsOeBJtt
+         2DydeWngGgU1+3u/dMVj1mSx/JrPW/muOAaZpp14KzYOlfAwXayfBekr8wcM9P0lSs7e
+         MC3kq/lnoI/L08K+K39Zbzny5g3GEjc5zqitkcDi5qmEajO+XqcXSXqoq59PE1cGB1G3
+         7FT/N/gdr8LyRl0DqThGvCtJx3a/TTWQd2V9//rJqXUrkyyHVUq41e/kEEuFibfVoKuy
+         ocWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=zGSJw2mijcD917fI6iH/7Zmw4K7gJ7WwhrleRMcWjCU=;
+        b=Gfzrxdm5oJ17HgRcvk4r4BkUtCzDdeRPw7sVt6wSyFQYdOtdt8dB9h7vx907Xw4QE+
+         TC2R853HhbptX7C/I3Br3OxSVmdp+mK2bM9ocJiCkp48VUbcRd2TfpoXJsxejKqXGy7a
+         9/lJFPt4rXwRZisxGeU84+hkdcbIMAU+gUUrk8LJbooCDDUcqZvCiSNPzYVV4ariQyi+
+         G3R1SKdXdWa/m0YU9Hf28w7IcRJNnLGKq5R4k64iCB7DE/QkP8IprN4dX62rru4bNVot
+         nuCAtRlbOzozalSa6860jkIrlbHcl9KUR0bUvWp4VbRMpg/O8rOatNw5TefpWbb02JYh
+         8FmQ==
+X-Gm-Message-State: AOAM5325d7fcKjXIQVWx3xkGBJ5VtgRI2eM5tut1199NaPZnv0UEVBTc
+        InVO24vZKPbUeNOZZiOSW7ViHliok3QYh3IYGecbZg==
+X-Google-Smtp-Source: ABdhPJyOr8yGWQEsGudvQrYqjyuQgXeLh226eqUsm3m0MrCX91sh9IJVmTTEPi2a0+PjKOMEygDNsAmyA5u+GuSIjMo=
+X-Received: by 2002:a67:d589:: with SMTP id m9mr2041213vsj.30.1631743262794;
+ Wed, 15 Sep 2021 15:01:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210914151717.12232-4-stefan.wahren@i2se.com>
+References: <20210914155607.14122-1-semen.protsenko@linaro.org>
+ <20210914155607.14122-7-semen.protsenko@linaro.org> <1428bfc4-520f-9af3-5255-b17308881243@gmail.com>
+In-Reply-To: <1428bfc4-520f-9af3-5255-b17308881243@gmail.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Thu, 16 Sep 2021 01:00:51 +0300
+Message-ID: <CAPLW+4k8ZihQtnpYGULcS1uOP+9tvFi_yo27GadP3aa8KNC7aQ@mail.gmail.com>
+Subject: Re: [PATCH 6/6] clk: samsung: Introduce Exynos850 clock driver
+To:     Chanwoo Choi <cwchoi00@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
-> +
-> +#include <linux/interrupt.h>
-> +#include <linux/module.h>
-> +#include <linux/kernel.h>
-> +#include <linux/netdevice.h>
-> +#include <linux/etherdevice.h>
-> +#include <linux/ethtool.h>
-> +#include <linux/cache.h>
-> +#include <linux/debugfs.h>
-> +#include <linux/seq_file.h>
-> +
-> +#include <linux/spi/spi.h>
-> +#include <linux/of_net.h>
-> +
-> +#define MSG_DEFAULT	(NETIF_MSG_DRV | NETIF_MSG_PROBE | NETIF_MSG_LINK | \
-> +			 NETIF_MSG_TIMER)
-> +
-> +#define DRV_NAME	"mse102x"
-> +
-> +#define DET_CMD		0x0001
-> +#define DET_SOF		0x0002
-> +#define DET_DFT		0x55AA
-> +
-> +#define CMD_SHIFT	12
-> +#define CMD_RTS		(0x1 << CMD_SHIFT)
-> +#define CMD_CTR		(0x2 << CMD_SHIFT)
-> +
-> +#define CMD_MASK	GENMASK(15, CMD_SHIFT)
-> +#define LEN_MASK	GENMASK(CMD_SHIFT - 1, 0)
-> +
-> +#define	DET_CMD_LEN	4
-> +#define	DET_SOF_LEN	2
-> +#define	DET_DFT_LEN	2
+On Wed, 15 Sept 2021 at 21:05, Chanwoo Choi <cwchoi00@gmail.com> wrote:
+>
+> Hi Sam,
+>
+> On 21. 9. 15. =EC=98=A4=EC=A0=84 12:56, Sam Protsenko wrote:
+> > This is the initial implementation adding only basic clocks like UART,
+> > MMC, I2C and corresponding parent clocks. Design is influenced by
+> > Exynos7 and Exynos5433 clock drivers.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> >   drivers/clk/samsung/Makefile        |   1 +
+> >   drivers/clk/samsung/clk-exynos850.c | 700 +++++++++++++++++++++++++++=
++
+> >   2 files changed, 701 insertions(+)
+> >   create mode 100644 drivers/clk/samsung/clk-exynos850.c
+> >
+> > diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefil=
+e
+> > index 028b2e27a37e..c46cf11e4d0b 100644
+> > --- a/drivers/clk/samsung/Makefile
+> > +++ b/drivers/clk/samsung/Makefile
+> > @@ -17,6 +17,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)       +=3D clk-=
+exynos5433.o
+> >   obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) +=3D clk-exynos-audss.o
+> >   obj-$(CONFIG_EXYNOS_CLKOUT) +=3D clk-exynos-clkout.o
+> >   obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)       +=3D clk-exynos7.o
+> > +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        +=3D clk-exynos850.o
+> >   obj-$(CONFIG_S3C2410_COMMON_CLK)+=3D clk-s3c2410.o
+> >   obj-$(CONFIG_S3C2410_COMMON_DCLK)+=3D clk-s3c2410-dclk.o
+> >   obj-$(CONFIG_S3C2412_COMMON_CLK)+=3D clk-s3c2412.o
+> > diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/=
+clk-exynos850.c
+> > new file mode 100644
+> > index 000000000000..1028caa2102e
+> > --- /dev/null
+> > +++ b/drivers/clk/samsung/clk-exynos850.c
+> > @@ -0,0 +1,700 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2021 Linaro Ltd.
+> > + * Author: Sam Protsenko <semen.protsenko@linaro.org>
+> > + *
+> > + * Common Clock Framework support for Exynos850 SoC.
+> > + */
+> > +
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_address.h>
+> > +
+> > +#include <dt-bindings/clock/exynos850.h>
+> > +
+> > +#include "clk.h"
+> > +
+> > +/* Gate register bits */
+> > +#define GATE_MANUAL          BIT(20)
+> > +#define GATE_ENABLE_HWACG    BIT(28)
+> > +
+> > +/* Gate register offsets range */
+> > +#define GATE_OFF_START               0x2000
+> > +#define GATE_OFF_END         0x2fff
+> > +
+> > +/**
+> > + * exynos850_init_clocks - Set clocks initial configuration
+> > + * @np:                      CMU device tree node with "reg" property =
+(CMU addr)
+> > + * @reg_offs:                Register offsets array for clocks to init
+> > + * @reg_offs_len:    Number of register offsets in reg_offs array
+> > + *
+> > + * Set manual control mode for all gate clocks.
+> > + */
+> > +static void __init exynos850_init_clocks(struct device_node *np,
+> > +             const unsigned long *reg_offs, size_t reg_offs_len)
+> > +{
+> > +     const __be32 *regaddr_p;
+> > +     u64 regaddr;
+> > +     u32 base;
+> > +     size_t i;
+> > +
+> > +     /* Get the base address ("reg" property in dts) */
+> > +     regaddr_p =3D of_get_address(np, 0, NULL, NULL);
+> > +     if (!regaddr_p)
+> > +             panic("%s: failed to get reg regaddr\n", __func__);
+> > +
+> > +     regaddr =3D of_translate_address(np, regaddr_p);
+> > +     if (regaddr =3D=3D OF_BAD_ADDR || !regaddr)
+> > +             panic("%s: bad reg regaddr\n", __func__);
+> > +
+> > +     base =3D (u32)regaddr;
+> > +
+> > +     for (i =3D 0; i < reg_offs_len; ++i) {
+> > +             void __iomem *reg;
+> > +             u32 val;
+> > +
+> > +             /* Modify only gate clock registers */
+> > +             if (reg_offs[i] < GATE_OFF_START || reg_offs[i] > GATE_OF=
+F_END)
+> > +                     continue; > +
+> > +             reg =3D ioremap(base + reg_offs[i], 4);
+> > +             val =3D ioread32(reg);
+> > +             val |=3D GATE_MANUAL;
+> > +             val &=3D ~GATE_ENABLE_HWACG;
+> > +             iowrite32(val, reg);
+> > +             iounmap(reg);
+>
+> I understand your intention for disabling HWACG.
+> But, it is not good to execute ioreamp/iounmap for each clock gate
+> register. I think that we need to consider the more pretty method
+> to initialize the clock register before clock registration.
+>
+> [snip]
+>
 
-Looks like these tabs should be spaces?
+Hi guys,
 
-> +static int msg_enable;
-> +module_param_named(message, msg_enable, int, 0);
-> +MODULE_PARM_DESC(message, "Message verbosity level (0=none, 31=all)");
+Thanks for the quick review! I'll address all your comments once I get
+back from vacation (in two weeks), and will send v2.
 
-I know a lot of drivers do this, but module parameters are not
-liked. There is a well used ethtool setting for this, msglvl, which
-should be used instead. Which in fact, you have support for.
-
-> +static void mse102x_init_mac(struct mse102x_net *mse, struct device_node *np)
-> +{
-> +	struct net_device *ndev = mse->ndev;
-> +	int ret = of_get_mac_address(np, ndev->dev_addr);
-> +
-> +	if (ret) {
-> +		eth_hw_addr_random(ndev);
-> +		netdev_err(ndev, "Using random MAC address: %pM\n",
-> +			   ndev->dev_addr);
-> +	}
-> +}
-
-No need to tell the hardware? Does it work in promiscuous mode by
-default?
-
-> +static int mse102x_net_stop(struct net_device *ndev)
-> +{
-> +	struct mse102x_net *mse = netdev_priv(ndev);
-> +	struct mse102x_net_spi *mses = to_mse102x_spi(mse);
-> +
-> +	netif_info(mse, ifdown, ndev, "shutting down\n");
-> +
-> +	netif_stop_queue(ndev);
-> +
-> +	/* stop any outstanding work */
-> +	flush_work(&mses->tx_work);
-> +
-> +	/* ensure any queued tx buffers are dumped */
-> +	while (!skb_queue_empty(&mse->txq)) {
-> +		struct sk_buff *txb = skb_dequeue(&mse->txq);
-> +
-> +		netif_dbg(mse, ifdown, ndev,
-> +			  "%s: freeing txb %p\n", __func__, txb);
-> +
-> +		dev_kfree_skb(txb);
-> +	}
-> +
-> +	free_irq(ndev->irq, mse);
-> +
-> +	return 0;
-
-Maybe a netif_carrier_off() in there, to be symmetric with open?
-
-> +/* ethtool support */
-> +
-> +static void mse102x_get_drvinfo(struct net_device *ndev,
-> +				struct ethtool_drvinfo *di)
-> +{
-> +	strscpy(di->driver, DRV_NAME, sizeof(di->driver));
-> +	strscpy(di->version, "1.00", sizeof(di->version));
-> +	strscpy(di->bus_info, dev_name(ndev->dev.parent), sizeof(di->bus_info));
-> +}
-
-Version is pretty pointless. We suggest you don't use it. The ethtool
-core will then fill it with the kernel version, 
-
-> +static int mse102x_probe_spi(struct spi_device *spi)
-> +{
-
-...
-
-> +	netif_carrier_off(mse->ndev);
-> +	ndev->if_port = IF_PORT_10BASET;
-
-That is not correct. Maybe you should add a IF_PORT_HOMEPLUG ?
-
-> +	ndev->netdev_ops = &mse102x_netdev_ops;
-> +	ndev->ethtool_ops = &mse102x_ethtool_ops;
-> +
-> +	mse102x_init_mac(mse, dev->of_node);
-> +
-> +	ret = register_netdev(ndev);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register network device: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	mse102x_init_device_debugfs(mses);
-> +
-> +	return 0;
-> +}
-
-> +static const struct of_device_id mse102x_match_table[] = {
-> +	{ .compatible = "vertexcom,mse1021" },
-> +	{ .compatible = "vertexcom,mse1022" },
-
-Is there an ID register you can read to determine what device you
-actually have? If so, i suggest you verify the correct compatible is
-used.
-
-	Andrew
+> --
+> Best Regards,
+> Samsung Electronics
+> Chanwoo Choi
