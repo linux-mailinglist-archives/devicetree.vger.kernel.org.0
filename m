@@ -2,81 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1435D40C510
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 14:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC91E40C536
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 14:27:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232865AbhIOMVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 08:21:01 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:58726 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232399AbhIOMVA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 08:21:00 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18FCJchP091566;
-        Wed, 15 Sep 2021 07:19:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631708378;
-        bh=ZVU2ZQLO8yOm95K2Q1ratQNPp8CFKFYo2ZO9PRMQogU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=w2tlOT3jVMiVfeyPL4Uf487baEsDsmfG+aBHt4hpDclwqPDpjtVRrQihxCyUTeYXA
-         kcMho3bFwlXQZNpmuLeLN3AgudnYu0noeDHGpnAf++QjnjDMPjVYtukX0oUfy8zzMv
-         crnn44u2rcW+QtXnbsYg+j3Vh83zEY09sCcYIVAQ=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18FCJck0089483
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Sep 2021 07:19:38 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 15
- Sep 2021 07:19:38 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 15 Sep 2021 07:19:38 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18FCJcAZ046598;
-        Wed, 15 Sep 2021 07:19:38 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH 3/3] arm64: dts: ti: k3-j7200-common-proc-board: Add j7200-evm compatible
-Date:   Wed, 15 Sep 2021 07:19:37 -0500
-Message-ID: <20210915121937.27702-4-nm@ti.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210915121937.27702-1-nm@ti.com>
-References: <20210915121937.27702-1-nm@ti.com>
+        id S229464AbhIOM2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 08:28:45 -0400
+Received: from david.siemens.de ([192.35.17.14]:35094 "EHLO david.siemens.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231689AbhIOM2o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 08:28:44 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by david.siemens.de (8.15.2/8.15.2) with ESMTPS id 18FCRCSW030305
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 15 Sep 2021 14:27:12 +0200
+Received: from md1f2u6c.ad001.siemens.net ([167.87.79.72])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 18FCRAr2006124;
+        Wed, 15 Sep 2021 14:27:11 +0200
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
+        Chao Zeng <chao.zeng@siemens.com>
+Subject: [PATCH v4 0/6] arm64: dts: Update IOT2050 boards
+Date:   Wed, 15 Sep 2021 14:27:04 +0200
+Message-Id: <cover.1631708830.git.jan.kiszka@siemens.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add j7200-evm compatible to the board to allow the board to distinguish
-itself from other platforms that may be added in the future.
+This enhances the DTs for the IOT2050, primarily by added support for
+upcoming Production Generation 2 (PG2) and by ordering the MMC devices
+consistently across variants.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 3 +++
- 1 file changed, 3 insertions(+)
+Changes in v4:
+ - update dtbinding with new board names
+ - fix review comments on commit messages and style
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index d14f3c18b65f..121975dc8239 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -12,6 +12,9 @@
- #include <dt-bindings/phy/phy.h>
- 
- / {
-+	compatible = "ti,j7200-evm", "ti,j7200";
-+	model = "Texas Instruments J7200 EVM";
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
+Changes in v3:
+ - move mmc alias back into board DTs
+ - add patch to enable R5F cores for rproc
+
+Changes in v2:
+ - move mmc alias to SoC level
+ - split up into PG2 preparation and addition patch
+ - add link to product homepage
+
+Jan
+
+Jan Kiszka (6):
+  arm64: dts: ti: iot2050: Flip mmc device ordering on Advanced devices
+  arm64: dts: ti: iot2050: Disable SR2.0-only PRUs
+  arm64: dts: ti: iot2050: Add/enabled mailboxes and carve-outs for R5F
+    cores
+  dt-bindings: arm: ti: Add bindings for Siemens IOT2050 PG2 boards
+  arm64: dts: ti: iot2050: Prepare for adding 2nd-generation boards
+  arm64: dts: ti: iot2050: Add support for product generation 2 boards
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |  2 +
+ arch/arm64/boot/dts/ti/Makefile               |  2 +
+ .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 46 +++++++++++++++
+ .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    | 51 +++++++++++++++++
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 39 +++++++++----
+ ...ts => k3-am6528-iot2050-basic-common.dtsi} | 12 +---
+ .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    | 24 ++++++++
+ .../boot/dts/ti/k3-am6528-iot2050-basic.dts   | 56 +++----------------
+ ...=> k3-am6548-iot2050-advanced-common.dtsi} |  8 +--
+ .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts | 29 ++++++++++
+ .../dts/ti/k3-am6548-iot2050-advanced.dts     | 50 +++--------------
+ 11 files changed, 201 insertions(+), 118 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
+ copy arch/arm64/boot/dts/ti/{k3-am6528-iot2050-basic.dts => k3-am6528-iot2050-basic-common.dtsi} (80%)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
+ copy arch/arm64/boot/dts/ti/{k3-am6548-iot2050-advanced.dts => k3-am6548-iot2050-advanced-common.dtsi} (85%)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
+
 -- 
-2.32.0
+2.31.1
 
