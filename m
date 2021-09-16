@@ -2,144 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA1DF40EAAA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 21:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDCB240EAC0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 21:20:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233270AbhIPTLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 15:11:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55452 "EHLO
+        id S229852AbhIPTVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 15:21:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230515AbhIPTLG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 15:11:06 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56753C061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 12:09:45 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id 6so10457240oiy.8
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 12:09:45 -0700 (PDT)
+        with ESMTP id S230483AbhIPTVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 15:21:23 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE36BC061766
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 12:20:01 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id b18so21143502lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 12:20:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=RLRBlnVNi17+ow5TrySaM4i4u5LdTRHPbnI02x12qH0=;
-        b=Bj6VSBPwrKgMAmJr7eDmeyOqRnppCyyGPf+Z87vDRoG5S1ecfOYekYQFzOByKwPjXL
-         yDaTu1LOnvDyNC0k02nWOdLBjKXTKSomzMrSCnZudMYiy+qwiNBUWBOuEwVJgvhKWXC+
-         B6TBr17aalAOPFw4/Emp5/ajJxwXT5x3BVIRjvBbHcjkUa3+4LyjSLJqE9unofpIPO/K
-         NXXCZkL/YjBaZzjN4pQgBco2Rr90MNIbJy4r1+IYt/gokzXIPklrlO+FUP2T3U0gq7Dt
-         RdxiTqVv9oLu3DAVeh/DXGWqYSqPtUuUFMw1rDHOCIJLFMK1qzM7pzkQb0CmC3FIe9Y2
-         4t8A==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PPtErykHffDTwWwkTPv05ujpl6rxPVv0ht1R2b6tSic=;
+        b=e0PC1GpB7ZJFgXRVvu3ZJnMbNXGWfdET3mocGGzH+6WVb9vKeNS3d8lNhcLhQduljR
+         sPJROxKxQMuFAvNIHrikUiUp1G/x3EUMYJ9v0pGCWsKvUIzdGx6EYh8WRyalywQM1Tip
+         6zbp5PTUekyq//jYZBaTQ7SZJstfBpCAQUAj3qJ+q1ra1I1vo8nqItuNWXgdmjTYtSle
+         dsC3MCx+Ls10DzQWh70iqoAiGEbWXv+thS6sbgRWV578KKD9whbEYpkf5OttIC89M1xL
+         wSCHOkSJRjL8MOO9ID2uHW3LW9RXxbZ1p7mhBDiBNIzJYXRM1Ik+lLV+XOioIbyrrwK0
+         iEiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=RLRBlnVNi17+ow5TrySaM4i4u5LdTRHPbnI02x12qH0=;
-        b=qbu5rJ712MTWzlW+ION6Td1bLhftCePxbEZR35AsAQYKL2ytJnye+2vIH38E0DeIWj
-         UG952DlTtEnJ/rZMuoJ/c532l/VEOVdXghmTXWfQTcBOwbFaz6Q9XP/3NajSl+Tj4TwG
-         rXBYlBYRwAUart+KfiwPyhY5WDjApxsm17pxFlvMA9l2s1AbFTIpf0zfm3tR7F2jZF0n
-         QvbJhe6XHGtEaHnFhpApjDoR52TtmXxtMR7eyh1qEn/nkBD6agzUSvEYOC82LUx4nGoU
-         lMNoYwqu4tTniD0YeMnnqYju9/g/jQK9iBFfLvzm0+W+TzERU8//3kNrEE1qG00qDXEh
-         hrdQ==
-X-Gm-Message-State: AOAM53014yzZAQedadcqlDlxpOkSGaQQdA7/68Dik1rQLUo4Xq1Zq7UT
-        OyEtMWzdijWtc/Tg0BDN53RKTpnWylE=
-X-Google-Smtp-Source: ABdhPJwBtS1W/QntHfjSnkquwQuMfavF2gDEgmczU80Lll3g6PeZc2vnPJicVDXeID5MBsQ14lyfgw==
-X-Received: by 2002:a05:6808:997:: with SMTP id a23mr10600919oic.11.1631819383749;
-        Thu, 16 Sep 2021 12:09:43 -0700 (PDT)
-Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id w24sm318260oow.5.2021.09.16.12.09.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 12:09:43 -0700 (PDT)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     linux-rockchip@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, heiko@sntech.de, robh+dt@kernel.org,
-        maccraft123mc@gmail.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v3] arm64: dts: rockchip: Correct regulator for USB host
-Date:   Thu, 16 Sep 2021 14:09:38 -0500
-Message-Id: <20210916190938.6175-1-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PPtErykHffDTwWwkTPv05ujpl6rxPVv0ht1R2b6tSic=;
+        b=Oo/w1oQxI9u3v/j13cr120RaHSpcu5PXoZQOxRId9tL9X15HZ6KPyg0I5O2cT0z1bu
+         4raANG4/3h3kP2MVah8QXdJRExcIlp0g2Cluey2glzAMrpFhew/qmEQ4PLmvjofs1z3P
+         nvdXlpbkPgUj2Zi74WdYIU9yI3Ix3CimcMpiSkhVHctctv+VE/TPSazOfrKjpxlaBiLM
+         yNNSu4MW0JoTB/Szc1SqSjhzgB6M+fPxiTEc+cSYazry0BWXKbTt6pP4oUHMkhjg7FLd
+         4/Jja2fvjXiAyGq46HJ7qkF3AFghaDBZPdNXhP8Tm7NJcEmukLaWWDOa0NKQCFkyCmd8
+         k0Fg==
+X-Gm-Message-State: AOAM531ASMpWfWOoci2Fe03g+gg9RGwta9nesW6FKnMFQRSJAJm5f3Lt
+        lL1bcZWefeXdstYcF0j2EBuLUhtM93v4oMTKoZHZIA==
+X-Google-Smtp-Source: ABdhPJyqXxi8sTfia4C+SnKlFeZM97GP6T8DvwfvgC4OqIQLWfI9nLD5oL0an/dH+HuZ4zfTVtjjBkgiqIZULSRCNoo=
+X-Received: by 2002:a19:770d:: with SMTP id s13mr5391720lfc.243.1631819999752;
+ Thu, 16 Sep 2021 12:19:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210910130337.2025426-1-osk@google.com> <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
+ <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
+ <722b27f6-4390-9b5b-f6f2-75ce9e967d12@roeck-us.net> <CABoTLcSdkmuBxd5Yh6z2Oqm1-_Vd4J5Ni1i1qq5s07mWu7Ndew@mail.gmail.com>
+ <20210914150859.GB3457579@roeck-us.net> <CABoTLcQfS5-UL92NR9vbc2YrGJv3oQPYCqAm-diNoq-tkHP_hQ@mail.gmail.com>
+ <c410eba9-f6cf-4dbf-797f-48afde9c1898@roeck-us.net>
+In-Reply-To: <c410eba9-f6cf-4dbf-797f-48afde9c1898@roeck-us.net>
+From:   Oskar Senft <osk@google.com>
+Date:   Thu, 16 Sep 2021 15:19:42 -0400
+Message-ID: <CABoTLcQWXerMWPvWUqjykiNcx9oGoP8aEcuDwcQ36yu-CBc0pA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+    Hi Guenter
 
-When writing a battery driver, I noticed that the USB voltage was ~3.7V
-while running off of battery on a mainline kernel. After consulting the
-schematics for the Odroid Go Advance, it appears that the BOOST
-regulator is involved in the process of powering the USB host. Power
-for the USB host goes from the vccsys regulator into the PMIC, then out
-from the PMIC BOOST regulator into the FC9516A (which is controlled by
-GPIO), which then feeds power into the USB host. I named the regulator
-usb_midu because on the datasheet the pin is described as "MIDU/BOOST -
-middle point of USB power supply / boost output". Making these changes
-solved the USB power issue on battery and I'm now reading approximately
-5v.
+> > Would it be acceptable to simply number the sensors and document which
+> > sensor has which number?
+> >
+> > Something like this:
+> > 0 = LTD
+> > 1 = RTD1
+> > ...
+> >
+> That might be a possibility, though it would have to be well defined
+> for each chip (nct7802 also has voltage sensors). We'll have to discuss
+> this with Rob.
+>
+> Personally I think I would prefer using a type qualifier - that seems
+> cleaner. But that is really a matter of opinion.
 
-Note that on my board at least there is a difference in time from the
-USB PHY probing and the regulators being powered on. This causes the
-USB port to be undervolted for a few seconds during boot up. The
-solutions to this problem are either 1) to add the proper phy-supply
-on the host port, or to 2) add regulator-boot-on to the regulator. I
-chose to add regulator-boot-on because there is an issue with the phy
-clk that causes a warning when booting (see v1 of this patch series).
-Basically the clock usb480m is a child of the usb480m_phy clock (used
-by the USB PHY) and also a critical clock. Setting the phy-supply
-causes this driver to be EPROBE_DEFERed until the regulator is ready,
-however upon unregistering the driver to be probed later the system
-cannot remove the usb480m_phy clock due to a child being marked
-critical.
+Another existing way I found is in ltc2978. Following that, we could
+do it as follows:
 
-Changes since v2:
- - Added notes about clk problem and regulator voltage at boot.
- - Added regulator-boot-on as a workaround for the voltage at boot.
- - Removed note about fixed regulator warning, as that has been
-   fixed upstream.
+i2c {
+    #address-cells = <1>;
+    #size-cells = <0>;
 
-Changes since v1:
- - Removed phy-supply, as this generated a warning in dmesg.
+    nct7802@28 {
+        compatible = "nuvoton,nct7802";
+        reg = <0x28>;
+        #address-cells = <1>;
+        #size-cells = <0>;
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+        sensors {
+            ltd {
+                status = "okay";
+                label = "my local temperature";
+            };
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index 7fc674a99a6c..8985efccbb4d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -207,7 +207,8 @@ vcc_host: vcc_host {
- 		gpio = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 		regulator-always-on;
--		vin-supply = <&vccsys>;
-+		regulator-boot-on;
-+		vin-supply = <&usb_midu>;
- 	};
- };
- 
-@@ -311,6 +312,7 @@ rk817: pmic@20 {
- 		vcc5-supply = <&vccsys>;
- 		vcc6-supply = <&vccsys>;
- 		vcc7-supply = <&vccsys>;
-+		vcc8-supply = <&vccsys>;
- 
- 		regulators {
- 			vdd_logic: DCDC_REG1 {
-@@ -460,6 +462,14 @@ regulator-state-mem {
- 					regulator-suspend-microvolt = <3000000>;
- 				};
- 			};
-+
-+			usb_midu: BOOST {
-+				regulator-name = "usb_midu";
-+				regulator-min-microvolt = <5000000>;
-+				regulator-max-microvolt = <5400000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
- 		};
- 
- 		rk817_codec: codec {
--- 
-2.25.1
+            rtd1 {
+                status = "okay";
+                mode = <0x2>; /* 3904 transistor */
+                label = "other temperature";
+            };
 
+            rtd3 {
+                status = "okay";
+                mode = <0x3>; /* thermal diode */
+                label = "3rd temperature";
+           };
+        };
+    };
+};
+
+
+> > The NCT7802Y can self-program from an EEPROM, so I assume we should
+> > honor the "power-up configuration" obtained from there? I.e. if no
+> > configuration is provided in the device tree, the driver should use
+> > whatever configuration the chip has when the driver is loaded.
+> >
+> Definitely yes. My question was more what to do if the information
+> in devicetree nodes is incomplete.
+I think there are two cases:
+1) If the new "sensor" tree is missing, the driver should behave as it
+does today to not break existing users.
+2) If the new "sensor" tree is present, then each of the sensors that
+should be disabled needs to have "status = 'okay'" and have the mode
+set (unless it's LTD). In the above example, rtd2 is missing and would
+therefore be considered disabled.
+
+Does that make sense? I still need to find out whether this is
+actually valid DT and how to express that in the YAML, though ...
+
+Thanks
+Oskar.
