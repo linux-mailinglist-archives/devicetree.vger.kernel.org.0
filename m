@@ -2,117 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68F6240DA76
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB74A40DA99
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 15:04:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239521AbhIPNAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 09:00:02 -0400
-Received: from mail-il1-f171.google.com ([209.85.166.171]:39626 "EHLO
-        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239553AbhIPNAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 09:00:01 -0400
-Received: by mail-il1-f171.google.com with SMTP id h9so6498363ile.6;
-        Thu, 16 Sep 2021 05:58:41 -0700 (PDT)
+        id S239126AbhIPNFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 09:05:13 -0400
+Received: from mail-il1-f180.google.com ([209.85.166.180]:38616 "EHLO
+        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239847AbhIPNFN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 09:05:13 -0400
+Received: by mail-il1-f180.google.com with SMTP id q14so6548661ils.5;
+        Thu, 16 Sep 2021 06:03:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xuGmIRYmRVR4BbQ5sSs7x/lja/8gmIMOpkyKDr7Fynw=;
-        b=C/U/JPvWVEvlebZwVX5InGDODs0BMuuLS/rTQvIDtY9/vxtIFNyfPZi9Q+i+FU/zVx
-         3uViaKBQEzIy68Bi2jMo09XNs8cRVth8u6/x0buE9JH/GU2cAOrDDiCMS6s4g0ptXrad
-         LJXpZ1xpI6ffcqy4QZEM3x7XBXMD+Ufy9uuWdkVYRTvRSDl53Ec8BkLginC1COITiqGJ
-         iu2P/iOsL8fCO5dG8rN9oJZoAP0BnP+jLJNn94cWYtSzBThXpAy3xL+S8FsYiQ3JZUYD
-         pSb3rHwJHZ9kANKWSQL0T6Do4SaLJ0aY/Wk20GkMuNidHgrHDiymH0nxSEtMy4OFJOrG
-         8tfQ==
-X-Gm-Message-State: AOAM531gXWNxpyp76Ymc3nAHacRSpbQuCL6ZV3du0a8pL1Wv9osDpVKz
-        cPazVzkeXqGZ7VBdVoB20w==
-X-Google-Smtp-Source: ABdhPJyyXBHunWFCmA9Dfv2/1tQjiuIFaS0T9uMZFgBdkv0SEDRIS4IlK00+pb6X39FFOXCwOT2fsg==
-X-Received: by 2002:a05:6e02:dce:: with SMTP id l14mr3985745ilj.272.1631797120682;
-        Thu, 16 Sep 2021 05:58:40 -0700 (PDT)
+        bh=Xm9Xe5gjMezORsww/slJFTPNqAjcAangvFqeNrb/6gY=;
+        b=Y3NJZwP80slc3NFLFUHlhb+qHl4kAFpKY80Q+B1bLjcRXTcgzjHz17L28df6kVSgVh
+         +EnOa9ncdQmiptASKYOGCfjbic7+doQcNonykUBfobA9pUytmFaGIW4uGO/RjRmQFXbf
+         iFXIf3VpfQiqJ4TwL5D9xSzlXKmK5xsD1djOBTOPeiShi81NuKnB4vwXiHIHkjPCmEGy
+         ZG9V056i51c3yYG/3+9w+EBrKfdNC3LplE/Y3feC9dK0hqfsHyYoi4EsV2xOISYP3+QB
+         2Zdz+fKXkPlN9EqqtbjeOFmLmDFVccbOs95WsUwgTkS43Gu+XWc0MzOOZrxn/3nj3UJT
+         cIjQ==
+X-Gm-Message-State: AOAM531RlGMPh5jocWSQLcBwJyAmAop0sH2FBelznaOOMVLs2g+Z+xnD
+        RLtVTQGLDoMYA+lXxrED6Ehy72L1nw==
+X-Google-Smtp-Source: ABdhPJzvAmFQ5t5GjSdvsOIzuFbTAjayjg+B9Q7VZG0D4kQxYJb6vlyLOVLr5Mu2OjhHrbTrX4w2lw==
+X-Received: by 2002:a92:c211:: with SMTP id j17mr3908832ilo.57.1631797432572;
+        Thu, 16 Sep 2021 06:03:52 -0700 (PDT)
 Received: from robh.at.kernel.org (96-84-70-89-static.hfc.comcastbusiness.net. [96.84.70.89])
-        by smtp.gmail.com with ESMTPSA id k7sm1654209iok.22.2021.09.16.05.58.39
+        by smtp.gmail.com with ESMTPSA id y11sm1733089ilh.73.2021.09.16.06.03.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 05:58:39 -0700 (PDT)
-Received: (nullmailer pid 1170339 invoked by uid 1000);
-        Thu, 16 Sep 2021 12:58:38 -0000
-Date:   Thu, 16 Sep 2021 07:58:38 -0500
+        Thu, 16 Sep 2021 06:03:52 -0700 (PDT)
+Received: (nullmailer pid 1177697 invoked by uid 1000);
+        Thu, 16 Sep 2021 13:03:51 -0000
+Date:   Thu, 16 Sep 2021 08:03:51 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sean Paul <sean@poorly.run>
-Cc:     dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, swboyd@chromium.org,
-        Sean Paul <seanpaul@chromium.org>,
-        Rob Clark <robdclark@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Kuogee Hsieh <khsieh@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 12/13] dt-bindings: msm/dp: Add bindings for HDCP
- registers
-Message-ID: <YUM/fl0U95Cxc+iM@robh.at.kernel.org>
-References: <20210915203834.1439-1-sean@poorly.run>
- <20210915203834.1439-13-sean@poorly.run>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+Message-ID: <YUNAtwXJzQy1cQgR@robh.at.kernel.org>
+References: <20210916084714.311048-1-zhang.lyra@gmail.com>
+ <20210916084714.311048-2-zhang.lyra@gmail.com>
+ <1631794913.500942.1119419.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210915203834.1439-13-sean@poorly.run>
+In-Reply-To: <1631794913.500942.1119419.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 15, 2021 at 04:38:31PM -0400, Sean Paul wrote:
-> From: Sean Paul <seanpaul@chromium.org>
+On Thu, Sep 16, 2021 at 07:21:53AM -0500, Rob Herring wrote:
+> On Thu, 16 Sep 2021 16:47:11 +0800, Chunyan Zhang wrote:
+> > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > 
+> > Add bindings for Unisoc system global register which provide register map
+> > for clocks.
+> > 
+> > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > ---
+> >  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 67 +++++++++++++++++++
+> >  1 file changed, 67 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+> > 
 > 
-> This patch adds the bindings for the MSM DisplayPort HDCP registers
-> which are required to write the HDCP key into the display controller as
-> well as the registers to enable HDCP authentication/key
-> exchange/encryption.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-13-sean@poorly.run #v1
+> yamllint warnings/errors:
 > 
-> Changes in v2:
-> -Drop register range names (Stephen)
-> -Fix yaml errors (Rob)
-> ---
->  .../devicetree/bindings/display/msm/dp-controller.yaml     | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> index 64d8d9e5e47a..80a55e9ff532 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> @@ -19,7 +19,7 @@ properties:
->        - qcom,sc7180-dp
->  
->    reg:
-> -    maxItems: 1
-> +    maxItems: 3
+> dtschema/dtc warnings/errors:
+> Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> xargs: dt-doc-validate: exited with status 255; aborting
+> make[1]: *** Deleting file 'Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml'
+> Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml] Error 255
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1441: dt_binding_check] Error 2
 
-You need to define what each entry is.
-
-items:
-  - description: ...
-  - description: ...
-  - description: ...
-
->  
->    interrupts:
->      maxItems: 1
-> @@ -99,8 +99,9 @@ examples:
->      #include <dt-bindings/power/qcom-rpmpd.h>
->  
->      displayport-controller@ae90000 {
-> -        compatible = "qcom,sc7180-dp";
-> -        reg = <0xae90000 0x1400>;
-> +        reg = <0 0x0ae90000 0 0x1400>,
-> +              <0 0x0aed1000 0 0x174>,
-> +              <0 0x0aee1000 0 0x2c>;
->          interrupt-parent = <&mdss>;
->          interrupts = <12>;
->          clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> -- 
-> Sean Paul, Software Engineer, Google / Chromium OS
-> 
-> 
+Please reorder your patches to avoid this.
