@@ -2,74 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C793540EBB3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 22:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C16A440ED64
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 00:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237562AbhIPUbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 16:31:01 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:34551 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbhIPUbB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 16:31:01 -0400
-Received: by mail-oi1-f172.google.com with SMTP id p2so10820842oif.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 13:29:40 -0700 (PDT)
+        id S241143AbhIPWeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 18:34:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241131AbhIPWeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 18:34:21 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E24BC061764
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 15:33:00 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id t10so18867744lfd.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 15:33:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=C2Pd9oQGhsIAALkBCdNNs3Jk3IqYwXgIkUsJNmKqGe4=;
+        b=AFSoc9u3yI+qZzT607V2n1nfEHCXO38yJEtaibfgn8ZEFzLgedJN/Rop5q/SWjAqam
+         NExNaUbhkeVgxA/JRNTOLd+QU79s8Y0aRXFaxaTY9UbFHBAAjtNlESlSl/L/dMqas/vG
+         +prNUa2EEa2Ft6E1RlwGuxTVLZjNN8Stgh+JZr3AtjtKO62Q/XIs3iS6mNbSSQUw1eCz
+         fgHlZx78TKrmNlK/BOZrlviCUFCG3Ip8T8nDqFbZB8w5r/F6h9uu89rWa+upbH3cJpcY
+         0wlfA0GY9GgbLoNL4fllS6wGxeD06CTdJZ7HMLfPfpKeTyefnImaRTMjLjJsKql8PrUe
+         YBvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=m71PF4TY4Qs5jvqdlBUKjt+as1k3HqgXBJvRfoZhrW4=;
-        b=DgtfhOrRfKuZHW90XhkC7VEXuB0crNAarEjxfKONc7JJphXyZSM2FIXGiPugR4FKUo
-         1K3gD5C9Kq3bpYRBCTpv4lm7M2K+2mcoHUsVRd000wasewlZXfgW/5xOiDV1b2u7zbDy
-         wZkpPel+EsSxvcXxcm5FeRAnsCVlsn9mbvntnqERGyTDvq3H6deJQtJrHdeIw7Xhdxad
-         QRDheKxBsxQ5db7Apj2bzj3QKL1K0MWPu4e+kCGw3NCsCWTKp8eDzWx+aEzjAy0aMOl3
-         rvDyaoXFDpV9UIzXZjt945xXNzWeIobGprPwF/P6GUWdU3FCnax5HXg3DSF4guufnNtd
-         wegw==
-X-Gm-Message-State: AOAM532PW1j5nsi1fjppAW9XGW/lA0MruUzM5lRXzJi6snLH3ixDKZ/o
-        wz5xWoVOFPJzXZE9tHrTdA==
-X-Google-Smtp-Source: ABdhPJydwOD5f69YFpKkeMkt6mb/61JRDkZhnWLEb0fPGLFcaOT/B+Bel16RDh+y6neYsmqUSYfqCg==
-X-Received: by 2002:aca:2b0e:: with SMTP id i14mr10787937oik.16.1631824180042;
-        Thu, 16 Sep 2021 13:29:40 -0700 (PDT)
-Received: from robh.at.kernel.org (107-211-252-53.lightspeed.cicril.sbcglobal.net. [107.211.252.53])
-        by smtp.gmail.com with ESMTPSA id r13sm969347oti.80.2021.09.16.13.29.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 13:29:39 -0700 (PDT)
-Received: (nullmailer pid 1448638 invoked by uid 1000);
-        Thu, 16 Sep 2021 20:29:36 -0000
-Date:   Thu, 16 Sep 2021 15:29:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     NXP Linux Team <linux-imx@nxp.com>, patchwork-lst@pengutronix.de,
-        Adam Ford <aford173@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: Re: [PATCH v4 12/18] dt-bindings: power: imx8mm: add defines for
- DISP blk-ctrl domains
-Message-ID: <YUOpMHkdiQnd236K@robh.at.kernel.org>
-References: <20210910202640.980366-1-l.stach@pengutronix.de>
- <20210910202640.980366-13-l.stach@pengutronix.de>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=C2Pd9oQGhsIAALkBCdNNs3Jk3IqYwXgIkUsJNmKqGe4=;
+        b=GGZQWQgTfS16SWKIhL7MHb+Q8fWK6P+wg1P3gAMsN68lglAMFpDgMX/WFwxcSdRHOq
+         9OGE4p4NaPDEZgg34ZNTweJRSXPVXqPsySaNq2ZxJ87TnUOk0lCDF3FJJ1FkfocwEDjS
+         w8cXkBkVGeuSi7KFXj4UHG+PrnzpHh9xa6C6s+/d9MuTmnCgbN7FwfPXeY045F293D3Z
+         DiOI+/fr2L97nPX2BhEjaEhp0ohamZIIppVnEJKCISN8wB5OFmnazpnxdenio5bC6cfS
+         2ZmLVStVgZj6I61J/jteJrLQWG+x7h38x80A5f2316x4qiL7hVjEBb9GW5pyCdchYzIJ
+         1Ejg==
+X-Gm-Message-State: AOAM531H9/YG51cPNjqOzHZ7aIaWfxLjT/oz5q5ZZtVb3lBeQfxRTHvk
+        UCohn+/4s+F938/M1ixpYFR1Zoftss3bU/RJR2l6fw==
+X-Google-Smtp-Source: ABdhPJyxqxvinOj8aMJiZNnMyx2DgvsDEllzpmCWgV30ksZxAhfVIZ1rNGoh75+UjjbXoIY477ApJn6fT4OHdj1weFc=
+X-Received: by 2002:a2e:5758:: with SMTP id r24mr6861004ljd.432.1631831578894;
+ Thu, 16 Sep 2021 15:32:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210910202640.980366-13-l.stach@pengutronix.de>
+References: <20210911071046.17349-1-zhiyong.tao@mediatek.com> <20210911071046.17349-2-zhiyong.tao@mediatek.com>
+In-Reply-To: <20210911071046.17349-2-zhiyong.tao@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 17 Sep 2021 00:32:48 +0200
+Message-ID: <CACRpkdYim-2xcKux+4M3JTwRuE7SgEH7d2HszPXO3Z=AKdHTrg@mail.gmail.com>
+Subject: Re: [PATCH v1] pinctrl: mediatek: mt8195: Add pm_ops
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        hui.liu@mediatek.com, Light Hsieh <light.hsieh@mediatek.com>,
+        Biao Huang <biao.huang@mediatek.com>,
+        Hongzhou Yang <hongzhou.yang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Sep 2021 22:26:34 +0200, Lucas Stach wrote:
-> This adds the defines for the power domains provided by the DISP
-> blk-ctrl.
-> 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
-> v4: Change naming to be consistent with the VPUBLK domains.
-> ---
->  include/dt-bindings/power/imx8mm-power.h | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+On Sat, Sep 11, 2021 at 9:10 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
 
-Acked-by: Rob Herring <robh@kernel.org>
+> Setting this up will configure wake from suspend properly,
+> and wake only for the interrupts that are setup in wake_mask,
+> not all interrupts.
+>
+> Fixes: 6cf5e9ef362af824de2e4e8afb78d74537f1e3db ("pinctrl: add pinctrl driver on mt8195")
+> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+
+Patch applied.
+
+Yours,
+Linus Walleij
