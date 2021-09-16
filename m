@@ -2,179 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1633140DD69
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 16:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC8F840DD74
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 17:02:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238991AbhIPO7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 10:59:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55192 "EHLO
+        id S238379AbhIPPDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 11:03:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238047AbhIPO7K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 10:59:10 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68650C061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 07:57:50 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id c19-20020a9d6153000000b0051829acbfc7so8657083otk.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 07:57:50 -0700 (PDT)
+        with ESMTP id S235474AbhIPPDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 11:03:31 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28917C061574
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 08:02:11 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id g16so10013522wrb.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 08:02:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=2ojGxC9vujlZc6BKBj4erHX2ecNDJAjcVaF4hMOlH4o=;
-        b=mIxrq7XkbBn6Zxtgzhd+JfrtYQifKCFKvMjoInuUAeT+oearKX4kwCosgE4+vxlWpX
-         HazLhxZUv1kcyk8S2Y/eJaxxvCvjQHZ1Lf1ZeOg6SNn9kGrvYckflN+gpKbgwuctJPQz
-         +zuBzTDsf08/rLD1cNd4GBx5bZSI8v4xCbioFbzh4T6nZO0znfa8oTMlKfqlJfoM7pd9
-         1MHmteJmnPla195abUIc7dPgv118di4y6QaGXvva/zDTZUifBN2bRkBA4FRLmla/2xP4
-         /k6IyqBFZmGTGTRjCAymnuGOd4rNwGvBshkV1ltWMk7s+iMfFitYqpvScHokaubHIoXi
-         ARsA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=csQ1MWc5sV0qhfV6R4T1gxw/hYapqEzRXs9dv7ZLsGQ=;
+        b=LYPGj0poWIctsfOuBHXwVqe8+7faAzwKMZkHv8w/oBHTuxFYsuDi/WTO1vYXzcLhMB
+         K6Wdiaswd88e0undEeQLqPzp1lzE/JaRg2Dk6JJWOxbi6ZJg5XlVREThmdUzuFes9DIk
+         PbjY+q8R2GBTg8YswrbFJvLEiLyw+mTGj+Q6n78/jowXZeMNRgG6V7KsDr7lt8uN2NL8
+         z/zl6nJiqeqmKLMC/4Iwd4X85As5F/FBKTFf5fI+OCNnRXDLANYVOAqr8JI3VpTajms6
+         V2MOUpNUFLBT1yMBZCTK84tT3aYhJVQ9Th5k3fyKVshAR25CWEdVkpDe2bJnea3JXE4Y
+         urEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2ojGxC9vujlZc6BKBj4erHX2ecNDJAjcVaF4hMOlH4o=;
-        b=mOJsDhcoBYWzaGnZAKoGRKpGY3R71DamAa1VBkAmnpdGOseocc04mgs4yOX8q1bw+S
-         vOjCZl+cDhFacFrICF6KYIqRKR2EIly2WF4thYmsmT92I3RUAA+/7olJ5An8DwMed7LM
-         WkDtj8DfDxivy0XEMMgY/LzcsIZhN3u5BmBSz9cnS5SxJdCSXCBHqzicoER0agIrTN9v
-         eJIZ4MSZiMm7NfjUA9dTHhS5qQbvmLR9uABC1i40Ojeo9ylV/wA3WPTPt3FQaEwt+3GT
-         gYyob5plBrrWiH5UBCwcpQQaR/ZJe54uL2HNilt87+3paJRvN5BpkHpYJNi8IoUVRQVp
-         NTBQ==
-X-Gm-Message-State: AOAM530MFKamDWe4wm4VRojtl8y6RBlJo9/pOvI5U3Ij6UJiOohwmZR+
-        4CfxERRbBOGxvkGChhFq28DDzQ==
-X-Google-Smtp-Source: ABdhPJxvx5aZVF3jwkCQ9pRxe/zGSTNOvZZirDWCK8+/Ou26JoxFK38MBnpygOQrI2sTDdpH41xq7A==
-X-Received: by 2002:a9d:6046:: with SMTP id v6mr5168492otj.234.1631804269687;
-        Thu, 16 Sep 2021 07:57:49 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l21sm761050oop.22.2021.09.16.07.57.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 07:57:49 -0700 (PDT)
-Date:   Thu, 16 Sep 2021 07:58:38 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Amit Pundir <amit.pundir@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Alex Elder <elder@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sdm850-yoga: Enable IPA
-Message-ID: <YUNbntpsxISYxOro@ripper>
-References: <20210615232816.835325-1-bjorn.andersson@linaro.org>
- <CAMi1Hd0hZV7antTa7ShKvfS5CRxRei4TNycM9EJ9NR5qEBJV7g@mail.gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=csQ1MWc5sV0qhfV6R4T1gxw/hYapqEzRXs9dv7ZLsGQ=;
+        b=HhLpsT3XTG/8/TU6JtEkJywEiYLykD5f8xVMggEONvoaWnH7qjt+DYnSPX3VnIkIyM
+         q1J9VC0ItoZndTYbf5axZ/17WTu95WQZlVnbeDppm5/Kf50LBZjDo85q/1XB0TwJxKpa
+         vHCse+01gg1exbGzdRhTcHAQ5G+HF+Rhh+S/1r+dqmwiDhKbhk770jQqSORPnohTECdN
+         YRpup5fSDC/avek/LcInwBbTrzH9kFZekiNCkdTgew82BQRCZuxa1EDZDOfrSsg1TXS2
+         YlocApxJlNMZZyKL+uU7LXdTsVN19NnxVPiIiI8iAvi0ciKEZBNNR6UnuER+MA3YeaJ3
+         BfXw==
+X-Gm-Message-State: AOAM532w556DhTczZO7cOoyvw2eHcxjb8wws1ZGv5mVxNQl54+LHOQRI
+        ZJqwsmHT+KhQ0NkP4ElLKTt0ug==
+X-Google-Smtp-Source: ABdhPJyytYPgs97uBMV0kIWC2G4lKa6lnjW2JayT2BL8liWzxGpiTeW5ACLrmyPYxEeCjzEC2i+Bmw==
+X-Received: by 2002:a5d:5541:: with SMTP id g1mr6792001wrw.402.1631804529677;
+        Thu, 16 Sep 2021 08:02:09 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id d7sm3771387wrf.3.2021.09.16.08.02.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Sep 2021 08:02:09 -0700 (PDT)
+Subject: Re: [PATCH v6 05/22] soc: qcom: apr: Add GPR support
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+References: <20210915131333.19047-1-srinivas.kandagatla@linaro.org>
+ <20210915131333.19047-6-srinivas.kandagatla@linaro.org>
+ <83c503aa-7cb2-e6fa-e22a-b359a9cb9059@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <4f71f5c7-42c4-6419-5f79-26ed83695793@linaro.org>
+Date:   Thu, 16 Sep 2021 16:02:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMi1Hd0hZV7antTa7ShKvfS5CRxRei4TNycM9EJ9NR5qEBJV7g@mail.gmail.com>
+In-Reply-To: <83c503aa-7cb2-e6fa-e22a-b359a9cb9059@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 16 Sep 03:52 PDT 2021, Amit Pundir wrote:
+Thanks Pierre,
 
-> Hi Bjorn,
+On 15/09/2021 16:47, Pierre-Louis Bossart wrote:
 > 
-> On Wed, 16 Jun 2021 at 04:58, Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > Shuffle memory regions to make firmware loading succeed and then enable
-> > the ipa device.
+>> +gpr_port_t *gpr_alloc_port(struct apr_device *gdev, struct device *dev,
+>> +				gpr_port_cb cb,	void *priv)
+>> +{
+>> +	struct packet_router *pr = dev_get_drvdata(gdev->dev.parent);
+>> +	gpr_port_t *port;
+>> +	struct pkt_router_svc *svc;
+>> +	int id;
+>> +
+>> +	port = kzalloc(sizeof(*port), GFP_KERNEL);
+>> +	if (!port)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	svc = port;
+>> +	svc->callback = cb;
+>> +	svc->pr = pr;
+>> +	svc->priv = priv;
+>> +	svc->dev = dev;
+>> +	spin_lock_init(&svc->lock);
+>> +
+>> +	spin_lock(&pr->svcs_lock);
+>> +	id = idr_alloc_cyclic(&pr->svcs_idr, svc, GPR_DYNAMIC_PORT_START,
+>> +			      GPR_DYNAMIC_PORT_END, GFP_ATOMIC);
+>> +	if (id < 0) {
+>> +		dev_err(dev, "Unable to allocate dynamic GPR src port\n");
+>> +		kfree(port);
+>> +		spin_unlock(&pr->svcs_lock);
+>> +		return ERR_PTR(-ENOMEM);
+>> +	}
+>> +
+>> +	svc->id = id;
+>> +	spin_unlock(&pr->svcs_lock);
+>> +
+>> +	dev_info(dev, "Adding GPR src port (%x)\n", svc->id);
 > 
-> Just a heads-up, this reserved memory region shuffling in sdm845.dtsi
-> broke PocoF1 and may be other devices too(?) which do not override
-> these regions.
+> nit-pick: isn't this a bit verbose?
+
+Yes, Its now removed.
+
 > 
-
-Thanks for the report!
-
-> IIRC you once had a patch to move the reserved memory regions to board
-> specific dts files, is it still on the cards so that we don't run into
-> breakages like this?
+>> +
+>> +	return port;
+>> +}
+>> +EXPORT_SYMBOL_GPL(gpr_alloc_port);
 > 
-
-As you might remember the feedback I got was to not move the regions to
-the individual devices and it was better to just deal with the problem
-this way...
-
-But apparently I was too optimistic and should have played the usual
-game of deleting the inherited nodes and made the changes in the yoga
-dts...
-
-> Meanwhile I'll go and add these regions in sdm845-xiaomi-beryllium.dts.
+>> +struct gpr_pkt {
+>> +	struct gpr_hdr hdr;
+>> +	uint32_t payload[0];
+>> +};
 > 
-
-Let's prepare a fix that moves this change into the yoga.dts and get
-that landed asap.
-
-Regards,
-Bjorn
-
-> Regards,
-> Amit Pundir
+> looks like a zero-length array?
 > 
+looks like I missed this one, its fixed now.
+
+--srini
+> should this be
 > 
+> struct gpr_pkt {
+>      struct gpr_hdr hdr;
+>      uint32_t payload[];
+> };
 > 
-> >
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 21 +++++++------------
-> >  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  5 +++++
-> >  2 files changed, 13 insertions(+), 13 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > index 1796ae8372be..49624eadce84 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > @@ -128,28 +128,23 @@ camera_mem: memory@8bf00000 {
-> >                         no-map;
-> >                 };
-> >
-> > -               ipa_fw_mem: memory@8c400000 {
-> > -                       reg = <0 0x8c400000 0 0x10000>;
-> > +               wlan_msa_mem: memory@8c400000 {
-> > +                       reg = <0 0x8c400000 0 0x100000>;
-> >                         no-map;
-> >                 };
-> >
-> > -               ipa_gsi_mem: memory@8c410000 {
-> > -                       reg = <0 0x8c410000 0 0x5000>;
-> > +               gpu_mem: memory@8c515000 {
-> > +                       reg = <0 0x8c515000 0 0x2000>;
-> >                         no-map;
-> >                 };
-> >
-> > -               gpu_mem: memory@8c415000 {
-> > -                       reg = <0 0x8c415000 0 0x2000>;
-> > +               ipa_fw_mem: memory@8c517000 {
-> > +                       reg = <0 0x8c517000 0 0x5a000>;
-> >                         no-map;
-> >                 };
-> >
-> > -               adsp_mem: memory@8c500000 {
-> > -                       reg = <0 0x8c500000 0 0x1a00000>;
-> > -                       no-map;
-> > -               };
-> > -
-> > -               wlan_msa_mem: memory@8df00000 {
-> > -                       reg = <0 0x8df00000 0 0x100000>;
-> > +               adsp_mem: memory@8c600000 {
-> > +                       reg = <0 0x8c600000 0 0x1a00000>;
-> >                         no-map;
-> >                 };
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > index c2a709a384e9..3eaa42dc3794 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > @@ -415,6 +415,11 @@ ecsh: hid@5c {
-> >         };
-> >  };
-> >
-> > +&ipa {
-> > +       status = "okay";
-> > +       memory-region = <&ipa_fw_mem>;
-> > +};
-> > +
-> >  &mdss {
-> >         status = "okay";
-> >  };
-> > --
-> > 2.31.0
-> >
+> ?
+> 
