@@ -2,96 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D88D640DA00
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8980940DA45
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:48:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235556AbhIPMhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 08:37:13 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:44024 "EHLO vps0.lunn.ch"
+        id S239598AbhIPMtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 08:49:49 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:15265 "EHLO mx1.tq-group.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230299AbhIPMhN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 08:37:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=V6UiYMHUcx5TF7n24nYkSm/8/ySg85wDtoqkAeaY5B0=; b=E0k1SVPE/SRI7xHGQptd3ceuNZ
-        rxG+qoikEDd0dYbi/Cf8ht8yF2RT8mky4ZZg6iHhNCuWQLZTVLwFMWNDtHwrwnRemT5PmOyk32UOg
-        Ht+AU4rQjzqki9vXM2E/SmDIBdehqOATkI8jbMNrr9ikOtCMzZjQnE3N5BBZnVzH1ePI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mQqc9-006u8h-KC; Thu, 16 Sep 2021 14:35:41 +0200
-Date:   Thu, 16 Sep 2021 14:35:41 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Heimpold <michael.heimpold@in-tech.com>,
-        jimmy.shen@vertexcom.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 3/3] net: vertexcom: Add MSE102x SPI support
-Message-ID: <YUM6HfDYX0Twe67+@lunn.ch>
-References: <20210914151717.12232-1-stefan.wahren@i2se.com>
- <20210914151717.12232-4-stefan.wahren@i2se.com>
- <YUJi0cVawjyiteEx@lunn.ch>
- <bfbbf816-f467-7e2e-12ca-fb2172ce93f9@i2se.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bfbbf816-f467-7e2e-12ca-fb2172ce93f9@i2se.com>
+        id S232181AbhIPMtq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Sep 2021 08:49:46 -0400
+X-Greylist: delayed 431 seconds by postgrey-1.27 at vger.kernel.org; Thu, 16 Sep 2021 08:49:45 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1631796506; x=1663332506;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Ykdzm4haCFJvWuW9ljTbSMtQyKZmQuVu8x/zfRHUC6Q=;
+  b=SGK38Rpr+cm9l8W8y8/0HXBxFLKZWtyWSB5H8vprZwxggyK3wkc2FwA2
+   /c90KffIJICx635rhOTNIkNSvckn/SfCZC5QEmFu5iz1/wmt7wHQ7xiwY
+   Skc088XlIZdXR3nutJ182uHGU6jcqKQfjDg0Vt3AKKMeV0xxH6coo2BZl
+   QwHRVYurGNcpmgBbQreMw1AT1M4IZ6PX+nQ6Sd+LjUMBHCUiSW0OJRBrL
+   t5/ts94frqPIuZROvFTBFfepajjdZKgRY9WTrlgC9U4jCo8UYBAfdYF/1
+   okdTXXWuXW4afEHfvs2ZYyf31Da55KRHAn+LHZcFsVFQQpo+qFDUAbB03
+   w==;
+X-IronPort-AV: E=Sophos;i="5.85,298,1624312800"; 
+   d="scan'208";a="19552342"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 16 Sep 2021 14:41:13 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 16 Sep 2021 14:41:13 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 16 Sep 2021 14:41:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1631796073; x=1663332073;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Ykdzm4haCFJvWuW9ljTbSMtQyKZmQuVu8x/zfRHUC6Q=;
+  b=CZduA0BmJaq3hbWuV7mfdm3bUmlCQy44nIklP3xB2Ftdjxmt3DJNoY5c
+   bliWZiX87V3Sr2c9AD1dExq/a74BOV5oVsqnrHhidt05WJA6z1AHNWg1K
+   dmUsCTNC+ZqQqNTwVwNPXYZ9z5t/IpY2cX5zNztDjKwBF4VGw539U06zM
+   imNjrBW1k2ZvY8lseoj6eZ9wMVtgzrAKP7fE0dDSTxrBjSnQTwDwUvmpr
+   Upr4JcoiehoZCX4yYs53h3Dbi1uHOZ2CH23cX6LphV/7Cq2AITkDO1cmC
+   srPQEtao2MfrOicB53pKHvWD0Ztbuq3Hw1dMvjxoHWzoQIMbyYBNXe4bZ
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.85,298,1624312800"; 
+   d="scan'208";a="19552341"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 16 Sep 2021 14:41:13 +0200
+Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.121.48.12])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 5E0FC280070;
+        Thu, 16 Sep 2021 14:41:13 +0200 (CEST)
+Message-ID: <ee4b6f3040d9357ad7d1be80e02ec97be05a9e5b.camel@ew.tq-group.com>
+Subject: Re: [PATCH v2 1/2] ARM: dts: imx7-tqma7: add SPI-NOR flash
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Date:   Thu, 16 Sep 2021 14:41:11 +0200
+In-Reply-To: <20201102082431.ww6q4x3kyr4ix72k@pengutronix.de>
+References: <20201030102636.16476-1-matthias.schiffer@ew.tq-group.com>
+         <20201102082431.ww6q4x3kyr4ix72k@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> >> +	netif_carrier_off(mse->ndev);
-> >> +	ndev->if_port = IF_PORT_10BASET;
-> > That is not correct. Maybe you should add a IF_PORT_HOMEPLUG ?
-
-
-> There is already a driver (qca_spi, qcauart) for a similiar Homeplug
-> device (QCA7000), which also uses IF_PORT_10BASET. Should i change this
-> too or leave it because of resulting changes to userspace?
-
-Technically, it would be an ABI change. But ifmap seems pretty loosely
-defined. See man 7 netdevice:
-
-       SIOCGIFMAP, SIOCSIFMAP
-              Get or set the interface's hardware parameters using ifr_map.
-	      Setting the parameters is a privileged operation.
-
-                  struct ifmap {
-                      unsigned long   mem_start;
-                      unsigned long   mem_end;
-                      unsigned short  base_addr;
-                      unsigned char   irq;
-                      unsigned char   dma;
-                      unsigned char   port;
-                  };
-
-              The interpretation of the ifmap structure depends on the device driver
-	      and the architecture.
-
-The if_port value ends up in port. And i've no idea where it is
-actually available in user space. iproute2 does not use it, nor
-ethtool. So, i would say, submit a separate patch for the other
-drivers, and we will see if anybody notices.
-
-> >> +static const struct of_device_id mse102x_match_table[] = {
-> >> +	{ .compatible = "vertexcom,mse1021" },
-> >> +	{ .compatible = "vertexcom,mse1022" },
-> > Is there an ID register you can read to determine what device you
-> > actually have? If so, i suggest you verify the correct compatible is
-> > used.
+On Mon, 2020-11-02 at 09:24 +0100, Marco Felsch wrote:
+> Hi Matthias,
 > 
-> AFAIK the device doesn't have any kind of ID register.
+> On 20-10-30 11:26, Matthias Schiffer wrote:
+> > The SPI-NOR flash on the SoM was missing from the device tree.
+> > 
+> > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> > ---
+> >  arch/arm/boot/dts/imx7-tqma7.dtsi | 30 ++++++++++++++++++++++++++++++
+> >  1 file changed, 30 insertions(+)
+> > 
+> > v2: change node name to flash@0
 
-Then i would suggest changing the compatible to "vertexcom,mse102x".
+Sorry for the very late reply, I intend to address the review comments
+soon.
 
-If you cannot verify it, and it makes no actual difference, then 50%
-of the boards will use the wrong one. Which means you can then later
-not actually make use of it to enable features specific to a
-compatible string.
 
-	   Andrew
+> > 
+> > 
+> > diff --git a/arch/arm/boot/dts/imx7-tqma7.dtsi b/arch/arm/boot/dts/imx7-tqma7.dtsi
+> > index 8773344b54aa..22f4194322ed 100644
+> > --- a/arch/arm/boot/dts/imx7-tqma7.dtsi
+> > +++ b/arch/arm/boot/dts/imx7-tqma7.dtsi
+> > @@ -160,6 +160,20 @@
+> >  		>;
+> >  	};
+> >  
+> > +	pinctrl_qspi: qspigrp {
+> > +		fsl,pins = <
+> > +			MX7D_PAD_EPDC_DATA00__QSPI_A_DATA0	0x5A
+> > +			MX7D_PAD_EPDC_DATA01__QSPI_A_DATA1	0x5A
+> > +			MX7D_PAD_EPDC_DATA02__QSPI_A_DATA2	0x5A
+> > +			MX7D_PAD_EPDC_DATA03__QSPI_A_DATA3	0x5A
+> > +			MX7D_PAD_EPDC_DATA05__QSPI_A_SCLK	0x11
+> > +			MX7D_PAD_EPDC_DATA06__QSPI_A_SS0_B	0x54
+> > +			MX7D_PAD_EPDC_DATA07__QSPI_A_SS1_B	0x54
+> 
+> As far as I know we are using GPIO based chip selects and not the one
+> from the controller-IP or is this different for qspi?
+
+Native chip selects are used for QSPI. I don't think GPIO CS make sense
+for this kind of QSPI controller that provides memory-mapped access to
+SPI flash.
+
+
+> 
+> > +			/* #QSPI_RESET */
+> > +			MX7D_PAD_EPDC_DATA04__GPIO2_IO4		0x40000052
+> 
+> Do you really need to mux the reset-gpio?
+
+The muxing configures a pullup on the reset pin to ensure that a
+connected flash chip is not held in reset. However, the signal is
+marked as optional in the schematics, and on all SoMs I have here the
+flash reset is wired to the board reset instead of this SoC GPIO.
+
+Still, configuring the pullup seems like a good idea to me, in case
+hardware variants with the optional signal actually exist - there
+shouldn't be any downsides, as the pin is either unconnected or wired
+to the flash reset.
+
+I guess I could additionally add an input hog to ensure that the pin
+cannot be changed?
+
+The SION bit in the pad configuration seems to be a mistake, I'll
+remove it.
+
+
+> 
+> > +		>;
+> > +	};
+> > +
+> >  	pinctrl_usdhc3: usdhc3grp {
+> >  		fsl,pins = <
+> >  			MX7D_PAD_SD3_CMD__SD3_CMD		0x59
+> > @@ -217,6 +231,22 @@
+> >  	};
+> >  };
+> >  
+> > +&qspi {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_qspi>;
+> > +	status = "okay";
+> > +
+> > +	flash0: flash@0 {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <1>;
+> > +		compatible = "jedec,spi-nor";
+> > +		spi-max-frequency = <29000000>;
+> > +		spi-rx-bus-width = <4>;
+> > +		spi-tx-bus-width = <4>;
+> > +		reg = <0>;
+> 
+> Please check Documentation/devicetree/bindings/mtd/partition.txt to see
+> how partitions are added nowadays. With this in mind you should reorder
+> the node to:
+> 
+> 	compatible = "jedec,spi-nor";
+> 	reg = <0>;
+> 	spi-max-frequency = <29000000>;
+> 	spi-rx-bus-width = <4>;
+> 	spi-tx-bus-width = <4>;
+> 
+> 
+> Regards,
+>   Marco
+> 
+> > +	};
+> > +};
+> > +
+> >  &sdma {
+> >  	status = "okay";
+> >  };
+> > -- 
+> > 2.17.1
+> > 
+> > 
+> > 
+
