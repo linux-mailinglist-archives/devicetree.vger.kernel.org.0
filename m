@@ -2,135 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8577C40D2C1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 07:04:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9417840D2F0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 07:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234316AbhIPFF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 01:05:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59730 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234201AbhIPFFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 01:05:52 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C34C061767
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 22:04:31 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id y17so4727088pfl.13
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 22:04:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=m8pZguFuGhNfWPMK3DmEgTUY5gKWHuK0UZr8qzbuIE8=;
-        b=B+TGQJxmKEGSc6t2j6mF/MTC9uF/Pt3UZv+uKFZCWgbwxD1YxsKnbgyHRwSbpUach5
-         pu/GkPk4PdJzibuK3pQ7TDNeOdyfU6wzNrJ8vn5kpPVOBk6dhlxVl2mV2S8FJKYdUsoz
-         n1KG/CinnA/0MLc9ZcnNY7Xo1ce52YE+01PYSeQyFeHMoOdC9LKy/bFKMm1yLeI7Ce5A
-         nLFhM08VvvPf7HkfzQFIiKPKKvAqTOGxPS+y2eV350lMKLII2AwBebdrYy8PFP2420XI
-         alBvBbQvfAgu8hMp1NSfsIuBc427UgJnfOPL8SkwLA1bD3WrdpFmzVqKPy+5RW5UJNs9
-         F1nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=m8pZguFuGhNfWPMK3DmEgTUY5gKWHuK0UZr8qzbuIE8=;
-        b=CULiprcNUgoG1Qbs7nVDu63WOvZUiSmmNgAeSoY10gmnqUskptRjl4fIZm7gni8k66
-         HBCUM9O1o3AHVX3W7wHcvS4QjRqMnURNTpZrtQX20eDKTUOj6EK6HWTNv6HSo9Tvg+cR
-         TB65AaWhoh89j9tmAxeyN7AqA/ZBCBEuB7lKddXIunJmISU2x/axNprM1aDVGKSCh2eb
-         ICcKbiepZYGF/PRsqFZva0w3wth3yMrIsmUdxfbo5S83QifrlM68bhSV3sWo57M3DGJZ
-         sYx25qNxk9bsX4nTtzHcBMXivh9S9uQDIAR4Sw3agcHi5MM5KymYwPYQpnQnFmrxyI9y
-         WbCw==
-X-Gm-Message-State: AOAM533q0oBLs+AUDBBK0T6x6JmesA7D0vqN18TRf+25F7ltMy7Fixbp
-        bpET5eMSJH0bQ/hvQx1HNFBgAw==
-X-Google-Smtp-Source: ABdhPJyZ3lZHJLjMxaOxtl//zK+Bx2+Knn0ildGND0zESTIraqGjWOSxIEkQV9lV/6Ws71LrCdJJLA==
-X-Received: by 2002:a05:6a00:22d5:b0:440:3750:f5f4 with SMTP id f21-20020a056a0022d500b004403750f5f4mr3579272pfj.64.1631768670992;
-        Wed, 15 Sep 2021 22:04:30 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id g13sm1440188pfi.176.2021.09.15.22.04.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 15 Sep 2021 22:04:30 -0700 (PDT)
-Date:   Thu, 16 Sep 2021 13:04:24 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] clk: qcom: smd-rpm: Add rate hooks for
- clk_smd_rpm_branch_ops
-Message-ID: <20210916050423.GG25255@dragon>
-References: <20210914025554.5686-1-shawn.guo@linaro.org>
- <20210914025554.5686-2-shawn.guo@linaro.org>
- <163165658855.763609.14080313241484048687@swboyd.mtv.corp.google.com>
- <20210915150526.GE25255@dragon>
- <YUIr/002dfXxDWDY@ripper>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YUIr/002dfXxDWDY@ripper>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S232976AbhIPF7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 01:59:47 -0400
+Received: from mga18.intel.com ([134.134.136.126]:43514 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229503AbhIPF7p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Sep 2021 01:59:45 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="209583413"
+X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; 
+   d="scan'208";a="209583413"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 22:58:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,297,1624345200"; 
+   d="scan'208";a="471234605"
+Received: from inlubt0150.iind.intel.com ([10.67.198.203])
+  by fmsmga007.fm.intel.com with ESMTP; 15 Sep 2021 22:58:19 -0700
+From:   kenchappa.demakkanavar@intel.com
+To:     will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, dinguyen@kernel.org
+Cc:     furong.zhou@intel.com, kris.pan@linux.intel.com,
+        kris.pan@intel.com, mgross@linux.intel.com, mark.gross@intel.com,
+        "Kenchappa, Demakkanavar" <kenchappa.demakkanavar@intel.com>
+Subject: [PATCH v3 0/3] Add initial Thunder Bay SoC / Board support
+Date:   Thu, 16 Sep 2021 11:28:15 +0530
+Message-Id: <1631771898-18702-1-git-send-email-kenchappa.demakkanavar@intel.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 15, 2021 at 10:23:11AM -0700, Bjorn Andersson wrote:
-> On Wed 15 Sep 08:05 PDT 2021, Shawn Guo wrote:
-> 
-> > On Tue, Sep 14, 2021 at 02:56:28PM -0700, Stephen Boyd wrote:
-> > > Quoting Shawn Guo (2021-09-13 19:55:52)
-> > > > On QCM2290 platform, the clock xo_board runs at 38400000, while the
-> > > > child clock bi_tcxo needs to run at 19200000.  That said,
-> > > > clk_smd_rpm_branch_ops needs the capability of setting rate. Add rate
-> > > > hooks into clk_smd_rpm_branch_ops to make it possible.
-> > > 
-> > > This doesn't sound right. The branch is a simple on/off. If xo_board is
-> > > 38.4MHz, then there is an internal divider in the SoC that makes bi_tcxo
-> > > (i.e. the root of the entire clk tree) be 19.2MHz. We don't model the
-> > > divider, I guess because it isn't very important to. Instead, we tack on
-> > > a divider field and implement recalc_rate op. See clk-rpmh.c in the qcom
-> > > directory for this.
-> > 
-> > Thanks for the comment, Stephen!  To be honest, I copied the
-> > implementation from vendor kernel, and wasn't really sure if it's
-> > correct or the best.
-> > 
-> > So here is what I get based on your suggestion.  Let's me know if
-> > it's how you wanted it to be.  Thanks!
-> > 
-> > Shawn
-> > 
-> > ----8<---------
-> > 
-> > From 23dda79fee412738f046b89bdd20ef95a24c35cc Mon Sep 17 00:00:00 2001
-> > From: Shawn Guo <shawn.guo@linaro.org>
-> > Date: Wed, 15 Sep 2021 22:00:32 +0800
-> > Subject: [PATCH] clk: qcom: smd-rpm: Add a divider field for branch clock
-> > 
-> > Similar to clk-rpmh, clk-smd-rpm has the same need to handle the case
-> > where an internal divider is there between xo_board and bi_tcxo.  The
-> > change is made in the a back compatible way below.
-> > 
-> >  - Add div field to struct clk_smd_rpm, and have
-> >    __DEFINE_CLK_SMD_RPM_BRANCH() assign it.
-> > 
-> >  - Update all existing __DEFINE_CLK_SMD_RPM_BRANCH() wrappers to pass a
-> >    zero div.
-> > 
-> >  - Add DEFINE_CLK_SMD_RPM_BRANCH_DIV() which doesn't take rate argument
-> >    but div.
-> > 
-> >  - Update clk_smd_rpm_recalc_rate() to handle div and add it as
-> >    .recalc_rate of clk_smd_rpm_branch_ops.
-> > 
-> 
-> This looks good to me.
-> 
-> And the confirmed that the xo_board in sdm630.dtsi (and hence SDM660) is
-> wrong, it should be 38.4MHz as well.
+From: "Kenchappa, Demakkanavar" <kenchappa.demakkanavar@intel.com>
 
-Hmm, I see CAF kernel has 19.2MHz for SDM630/660 xo_board clock.  Or am
-I looking at the wrong place?
+Hi,
 
-Shawn
+This patch-set adds initial support for a new Intel Movidius SoC
+code-named Thunder Bay. The SoC couples an ARM Cortex A53 CPU
+with an Intel Movidius VPU.
 
-> Unfortunately adding the appropriate divider to the sdm660 bcxo would
-> break existing .dtsi (but we can probably convince the community that it
-> would be ok, if we do it now).
+This initial patch-set enables only the minimal set of components
+required to make the Thunder Bay full or prime configuration boards
+boot into initramfs.
+
+Thunder Bay full configuration board has 4 clusters of 4 ARM
+Cortex A53 CPUs per cluster, 4 VPU processors and
+(8GB + 8GB + 4GB + 4GB) DDR memory.
+
+Thunder Bay prime configuration board has 4 clusters of 4 ARM
+Cortex A53 CPUs per cluster, 2 VPU processors and
+(8GB + 4GB) DDR memory.
+
+Changes since v2:
+* Add compatibility strings for all supported boards in dt-binding yaml
+* Email id format corrected. (First name, Last name)
+* $nodename schema added for the root node
+* Fixed 'make dtbs_check' warnings/errors
+* Removed alias name for disabled serial1 node
+* Corrected lowercase hex on unit-addresses
+
+Changes since v1:
+* Commit message updated for patch 3/3
+* UART0 enabled by default for all Thunder Bay boards
+
+Regards,
+Kenchappa S. D.
+
+Kenchappa, Demakkanavar (3):
+  arm64: Add config for Thunder Bay SoC
+  dt-bindings: arm: Add Thunder Bay bindings
+  arm64: dts: add initial device tree for Thunder Bay SoC
+
+ .../devicetree/bindings/arm/intel,thunderbay.yaml  |  27 +++
+ MAINTAINERS                                        |   7 +
+ arch/arm64/Kconfig.platforms                       |   5 +
+ arch/arm64/boot/dts/intel/Makefile                 |   6 +
+ arch/arm64/boot/dts/intel/hddl_hybrid_2s_02.dts    |  42 ++++
+ arch/arm64/boot/dts/intel/hddl_hybrid_2s_03.dts    |  42 ++++
+ arch/arm64/boot/dts/intel/hddl_hybrid_2s_12.dts    |  42 ++++
+ arch/arm64/boot/dts/intel/hddl_hybrid_2s_13.dts    |  42 ++++
+ arch/arm64/boot/dts/intel/hddl_hybrid_4s.dts       |  53 +++++
+ arch/arm64/boot/dts/intel/thunderbay-soc.dtsi      | 242 +++++++++++++++++++++
+ 10 files changed, 508 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/intel,thunderbay.yaml
+ create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_2s_02.dts
+ create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_2s_03.dts
+ create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_2s_12.dts
+ create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_2s_13.dts
+ create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_4s.dts
+ create mode 100644 arch/arm64/boot/dts/intel/thunderbay-soc.dtsi
+
+-- 
+2.7.4
+
