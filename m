@@ -2,103 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AAF840DBC2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 15:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF0EA40DC04
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 16:00:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236537AbhIPNxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 09:53:42 -0400
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:41043 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236515AbhIPNxg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 09:53:36 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id A3A6A3200970;
-        Thu, 16 Sep 2021 09:52:15 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Thu, 16 Sep 2021 09:52:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=P6BBuNiEaEPiNV/0YQaIad18nlp
-        DySRjD154k7UbZYc=; b=bK1jS/5jZsW7UA+FeJJue/+F5NJ9OZ9BTMd+AwYlRmH
-        dbXSFsqncpg4kbmMdGjNjAY0J5t/OSAB/UD5/b1KO45Qln3GLhrnP4ARED5BcNtn
-        I4QG8NPm2bJCtacmsJoPnjYFiXF/Izo7+/65YCx86z6SXIg6ZbOXICm6vuw4PBoZ
-        T3YBffMOOVHzYQaf/TleejdnkTXaP8QJ6DQKZPvCYZHj9JleWKjBhisk5+hpZ0Xd
-        eKhuvY/SehAJ1cJXyuX4jvwMYYU0OkFiplJbxj7FMB0WVkLz7o1rM76kNBBTS5on
-        2GpGBhBebugkaOhZH8O7shwC6WqFgXbnCVCmHTFLz7Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=P6BBuN
-        iEaEPiNV/0YQaIad18nlpDySRjD154k7UbZYc=; b=dHSaDsYcGUJ0voilJhRVV/
-        gDMJRe6anFnn0s3lIy1LuZ9bhctzXIKyYVVaF/8TOinUyrZhjt2qIqJD7QmV8GMm
-        OBzGJHuizQmxVzV1yrb+o7OuZ6qmcrk9ubzeSUgChQhoBrmTA0aeNnoogLD57/fV
-        zK11JrzJC/aXkaojOOj0NJOv4V8BqEhsRC1JOmZ2bI/p/wQauLDFBHT/ZOrY9MyK
-        28to/BLzKjMsUj3RtoCcxKJR6n0tpmFdxKDIxQ6PT04rAwtvEfuSKjjcnc/0F890
-        VhgO23rSXpHcFkVMG8dHP4npujTD3D44nW8S0lk2gIZT4JWcjRuFwnycX/nGsrRA
-        ==
-X-ME-Sender: <xms:DExDYffpws5TT8ktwwJdbP34nSPElgehUCCZgXNd4IMur-IA0e11TA>
-    <xme:DExDYVOk21DNX-1NFT0-Y8LG9QZI0AT0vv10bdmMZBRyfjBMfBeeOqLXv74oH4rIT
-    QRlj31eKejncFJrnL4>
-X-ME-Received: <xmr:DExDYYjhCzHxO9LrqAU-iVUDbRF84YT5XDg_9a9kXkVjWr7qrOpwKbFnFXwfrIhvlWc7S2X-x6ntVyWPd_zmfQr9cspKnqsRiFf9>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehgedgieegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:DExDYQ-j8qz1JbGNEKJ_zS6CKX918C4UBa4bEEfPFqg6bvUGynsyUw>
-    <xmx:DExDYbur5jFaY0w2MtyQaK4CG8lgGbmaRrfO-GPK9fVpXXIFvEt3SQ>
-    <xmx:DExDYfG8y3hn2WSfKSjwVkZ_eOcQIlggN5QvhzyRvfGrVhinvwWbXA>
-    <xmx:D0xDYfi6qlSWUaSx5qLTQWZxsMr2VhqexiILdDjm_S_0taEpf6tR4Q>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 16 Sep 2021 09:52:12 -0400 (EDT)
-Date:   Thu, 16 Sep 2021 15:52:09 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Dang Huynh <danct12@disroot.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: pinetab: Add HDMI support
-Message-ID: <20210916135209.giscejyyratasjdg@gilmour>
-References: <20210914193732.3047668-1-danct12@disroot.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="nkqxigxo62xn7yj4"
-Content-Disposition: inline
-In-Reply-To: <20210914193732.3047668-1-danct12@disroot.org>
+        id S237262AbhIPOBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 10:01:34 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:23621 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236957AbhIPOBb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Sep 2021 10:01:31 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631800811; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=1HDw1GuWcm7V54NtvtVtUQalQsKuCbF2MK5RGacuHOU=; b=sKfdC3iLhbLN5wnHIYD8uwByFdUGoa1dFuHN0LOm9nrenAjSNWmU9R2/7AhSeFJed51pz4r8
+ aayWBB0uQ3+0tcdVU2T+UE8FVn0jRFg3z/zgTxu10tTTEdNFDoabgTv/QXXIvn8wqpeK3VfO
+ 3Smu9KBEwUG8klQgKVu0y2Lb2SY=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 61434dd2c1b30e2f02b133d7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 16 Sep 2021 13:59:46
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6C29AC4360C; Thu, 16 Sep 2021 13:59:45 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BA928C4338F;
+        Thu, 16 Sep 2021 13:59:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org BA928C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     mka@chromium.org, swboyd@chromium.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org
+Cc:     ulf.hansson@linaro.org, rjw@rjwysocki.net, agross@kernel.org,
+        ohad@wizery.com, mathieu.poirier@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, rishabhb@codeaurora.org,
+        sidgup@codeaurora.org, Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH v7 00/13] Use qmp_send to update co-processor load state
+Date:   Thu, 16 Sep 2021 19:29:17 +0530
+Message-Id: <1631800770-371-1-git-send-email-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The power domains exposed by the AOSS QMP driver control the load state
+resources linked to modem, adsp, cdsp remoteprocs. These are used to
+notify the Always on Subsystem (AOSS) that a particular co-processor is
+up/down. AOSS uses this information to wait for the co-processors to
+suspend before starting its sleep sequence. These co-processors enter
+low-power modes independent to that of the application processor and
+the load state resources linked to them are expected to remain unaltered
+across system suspend/resume cycles. To achieve this behavior let's stop
+modeling them as power-domains and replace them with generic qmp_send
+interface instead.
 
---nkqxigxo62xn7yj4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+https://lore.kernel.org/lkml/20200913034603.GV3715@yoga/
+Previous discussion on dropping power-domain support from AOSS QMP driver
 
-On Wed, Sep 15, 2021 at 02:37:32AM +0700, Dang Huynh wrote:
-> This patch enables HDMI display on PINE64 PineTab.
->=20
-> The PineTab has a HDMI Type C (mini) port.
->=20
-> Signed-off-by: Dang Huynh <danct12@disroot.org>
+Depends on:
+qmp_send: https://patchwork.kernel.org/project/linux-arm-msm/cover/1630420228-31075-1-git-send-email-deesin@codeaurora.org/
 
-Applied, thanks
-Maxime
+V7:
+ * Set "qcom,qmp" property to false for unsupported devices (patch 2). [Rob]
+ * Let's not miss adding qcom,qmp to ADSP/CDSP on SDM845 SoC.
 
---nkqxigxo62xn7yj4
-Content-Type: application/pgp-signature; name="signature.asc"
+V6:
+ * Updated commit message to explain binding breakage (patch 2). [Stephen]
 
------BEGIN PGP SIGNATURE-----
+V5:
+ * Fixup power-domain count (patch 2). [Matthias]
+ * Add WARN_ON on truncation, remove redundant initialization
+   code, use dev_err_probe (patch 4). [Stephen]
+ * Use devm_kstrdup, handle kstrdup failure due to
+   no memory and set qmp to NULL when not available
+   (patch 4). [Bjorn]
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYUNMCQAKCRDj7w1vZxhR
-xTEqAP9ro5D53+31qOxH8kBn5T6Ou9v/necu0PAF6j7FTKjoqgEAnrx+No2LMAoz
-PO2bFzKODx0r5ulxuskCxduClVqMpwY=
-=+jtd
------END PGP SIGNATURE-----
+V4:
+ * Rebase patch 1 due to the aoss-qmp yaml conversion (Dropping Rb).
+ * Commit message change and sc8180x co-processor addition
+   to patch 2. [Rob/Bjorn]
+ * Drop unused pdev and kfree the load state string in q6v5_deinit
+   /probe path for patch 4. [Matthias]
+ * Replaced "binding" with "property" across the series. [Matthias]
+ * Commit message change and drop incorrect cleanup on cooling
+   device probe failures. [Matthias]
 
---nkqxigxo62xn7yj4--
+V3:
+ * Misc. documentation fixes [patch 2]:
+  - Reduce power-domain maxItems due to load_state pd removal
+  - Combine compatibles where possible with the load_state pd removal
+  - Fixup the qcom,qmp ref to phandle type
+
+V2:
+ * load_state is currently broken on mainline so be safely dropped
+   without side-effects.
+ * Rebased on top of qmp_send v3 series.
+ * Dropped R-b from Stephen and Rob on patch 3 due to the yaml
+   conversion.
+ * New patch [12] to drop unused aoss-qmp header.
+ * Commit message update [patch 1] [Rob]
+ * Reorder the series [Stephen]
+
+Sibi Sankar (13):
+  dt-bindings: soc: qcom: aoss: Drop the load state power-domain
+  dt-bindings: remoteproc: qcom: pas: Add QMP property
+  dt-bindings: remoteproc: qcom: Add QMP property
+  remoteproc: qcom: q6v5: Use qmp_send to update co-processor load state
+  arm64: dts: qcom: sc7180: Use QMP property to control load state
+  arm64: dts: qcom: sc7280: Use QMP property to control load state
+  arm64: dts: qcom: sdm845: Use QMP property to control load state
+  arm64: dts: qcom: sm8150: Use QMP property to control load state
+  arm64: dts: qcom: sm8250: Use QMP property to control load state
+  arm64: dts: qcom: sm8350: Use QMP property to control load state
+  soc: qcom: aoss: Drop power domain support
+  dt-bindings: msm/dp: Remove aoss-qmp header
+  dt-bindings: soc: qcom: aoss: Delete unused power-domain definitions
+
+ .../bindings/display/msm/dp-controller.yaml        |   1 -
+ .../devicetree/bindings/remoteproc/qcom,adsp.yaml  |  54 +++++-----
+ .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |   7 +-
+ .../bindings/soc/qcom/qcom,aoss-qmp.yaml           |  11 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |   9 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |   2 -
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |  12 ++-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               |  28 ++---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |  22 ++--
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               |  30 +++---
+ drivers/remoteproc/qcom_q6v5.c                     |  57 ++++++++++-
+ drivers/remoteproc/qcom_q6v5.h                     |   7 +-
+ drivers/remoteproc/qcom_q6v5_adsp.c                |   7 +-
+ drivers/remoteproc/qcom_q6v5_mss.c                 |  44 ++------
+ drivers/remoteproc/qcom_q6v5_pas.c                 | 113 ++++++++-------------
+ drivers/remoteproc/qcom_q6v5_wcss.c                |   4 +-
+ drivers/soc/qcom/qcom_aoss.c                       | 107 -------------------
+ include/dt-bindings/power/qcom-aoss-qmp.h          |  14 ---
+ 18 files changed, 206 insertions(+), 323 deletions(-)
+ delete mode 100644 include/dt-bindings/power/qcom-aoss-qmp.h
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
