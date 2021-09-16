@@ -2,148 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA5C40D7C3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 12:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0357B40D7E6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 12:53:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235675AbhIPKto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 06:49:44 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:36072
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235627AbhIPKtn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 06:49:43 -0400
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6EB024017B
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 10:48:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1631789302;
-        bh=kVs9piweAjfYKX1/D2zYPYLh8oMdXLORitDm0x3OItc=;
-        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=Z+L8RQG5ANhF34LExzxkQYwIdTOymYuyFGbAHKYFocaLCX0/e2gUFpLHUB9WHRMMs
-         7A2Y25zay3vg8bmSJm1K40XQMR2jhvOsRc4vZkPB27prf/XX70m7XzbDbKEzOrsDA5
-         4eN/c8CFj+3UMf/Id1ONvw7cbHle7KJshuKrLgiYqok8CT6sAc05yIyJCAraZx1k3b
-         N0/Nj9iN/a3to9lQ3xF20cC6lxLica/SZUGPtlS0AB1vyKuV8NEbijWM3BcMnrCN6Q
-         YunoCZdIEJnEx1excPiW39+kxfF95/AHsSnOkbL1sCOA6iNY/j3y4UVdrfkZDtEbs8
-         Q/5MwZYmU8B9w==
-Received: by mail-ed1-f72.google.com with SMTP id m20-20020aa7c2d4000000b003d1add00b8aso4994487edp.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 03:48:22 -0700 (PDT)
+        id S237123AbhIPKyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 06:54:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53984 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237026AbhIPKyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 06:54:19 -0400
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F33DC061574
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 03:52:59 -0700 (PDT)
+Received: by mail-io1-xd2e.google.com with SMTP id b7so7354501iob.4
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 03:52:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QX3J+lUtcHl1rFrYQo/2vL7jGEFZy+rKbVwUEHeLE5g=;
+        b=uFkMWiw8rD+C7Ybev6NMLWHn46waK1pPREFY3onqFoy9CkZB48DRqxcHild+8mefp8
+         /I9G2qh8rQoaBCDLgPrrbsFzXboiJJkUBDH7bHb2MaX3jMq59CFoX4jNIbtb8u+VcbZO
+         MZrq4sBximDL6QSgmuXKvXiPY7nhop0TxBz9Gs6Y74r758sfFwGxq7V67aBaRU5f6Ew1
+         0QIyyZT/VYo4e29QcEHEKYcuURbLqXCmvzjy/tIGSpGe7EGBtDsr8TtwSYGOnUxsK5zw
+         UFmmTyN8If9/8sTn3rLzSpY1Y0ohDphw6n0CNAYlz1Bcl7gMatxVNCSAbIoDsTpe0a2t
+         lbgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kVs9piweAjfYKX1/D2zYPYLh8oMdXLORitDm0x3OItc=;
-        b=ZIYU6Cl42n3IqaYl8GTPufIca4V68JhU8MBmdrLfczW/flhEM2bLcDzGbF8wXhfJj7
-         Av9En86NBeJZNZbvR9XlDE/a/A8t0cBMU0FHZsWoUHhX62SbrjMUD05+15jArfpS1KEz
-         q/AP2eIL5+zCdw2nUB43W/ZE8WIYoZZqvBVbz62x+pqWKy3vuhKGqpGfhPIsoJtM6i0X
-         Hs6MXNGbcfbBLFFPlPNpU//1nTtXYGe4LoMjD9xYNbasrI7t6ho7/afDWuLKsIRzr3Ce
-         319AEdA43DmO8xrLV/ws6DTs3FOTcKgMsbfq4XCAAv/9RwlCCL0yoQg4zo0LawgLuj/k
-         PrwQ==
-X-Gm-Message-State: AOAM533kHhdNni9d7XCvfYvNd6AKoR8zfW9gHeAWb5FN5OfE+lMuH0RV
-        a4T89KPI5VRJuu52XnNbz3SA/Nyi640wZzlo4cUOMc8qdySu9lcDg32Y60Z1UwQI3fQpJVl2bkx
-        HUI41FXnNdDkelhLbR2B/6r0/Whl9RtJ56TPJ3T4=
-X-Received: by 2002:a17:906:d045:: with SMTP id bo5mr5518399ejb.461.1631789301890;
-        Thu, 16 Sep 2021 03:48:21 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJynS1M3E+u6uh9PExpnyfy/1dCw+s8TwhyM85ZmKchIA4QZXHFyZ+/z9Io2RWKgwjZkL25Tow==
-X-Received: by 2002:a17:906:d045:: with SMTP id bo5mr5518370ejb.461.1631789301532;
-        Thu, 16 Sep 2021 03:48:21 -0700 (PDT)
-Received: from [192.168.3.211] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id m10sm1007452ejx.76.2021.09.16.03.48.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Sep 2021 03:48:21 -0700 (PDT)
-To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
-Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
-        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210907113226.31876-1-rogerq@kernel.org>
- <20210907113226.31876-9-rogerq@kernel.org>
- <aa465bd9-b3d5-8d75-3e59-e86c2cd093cd@canonical.com>
- <a881ac1f-2f00-e675-aea6-154b28ca6eff@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v3 8/8] memory: gpmc-omap: "gpmc,device-width" DT property
- is optional
-Message-ID: <35643319-e3b0-bde1-c51b-57c3b5474146@canonical.com>
-Date:   Thu, 16 Sep 2021 12:48:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QX3J+lUtcHl1rFrYQo/2vL7jGEFZy+rKbVwUEHeLE5g=;
+        b=Phjw1Hp86h5BF2bJ8s+rtPG4BxPpSKTA4BM7p2Pq1M0V2XapXCnO/UJto9YZUCtu3W
+         4Q3zP+dZYRMxmiSDGH2it/A6L/3jwtPJutbfVZ9Gm915CV36l78x1FZxD5coFH7RSEJA
+         5YjGdMOSjgN8PZ0eu3pxTVAy4dGKVeMag1eeIonXUjLX6D7e2KguNo7YI5gbmR2kekpx
+         CGGRqXIxIRcRcHv34LE1oBXplBrtFkxArjKOtNrKsah+BnGdOmpXX6uxZiXgRPhC4o6P
+         ytaowQoos3/WORcFlItPx/iYY6UGjLC+GvTO8H1vCxh8OJzeKv5Tms6gsP/zaCjkBLD8
+         Cv6g==
+X-Gm-Message-State: AOAM532g2GOaAERrBeJaXIAk4M2eDlRl/L8F2M2kNZupC3dWh1yzeVlx
+        h4rzfvZ6dssqsLvVA6dDbbY2yEZ33iJEvncRRK5wQFd2ypCB/w==
+X-Google-Smtp-Source: ABdhPJwwO1fzUnd0LKwvGXlwo3VYCx9ksmdwcyVRTMibUbqtB5b8P/Pz200i37SEP0roG060ZzCC0sLqwiXGG+WO+ec=
+X-Received: by 2002:a6b:3f02:: with SMTP id m2mr3751213ioa.136.1631789578807;
+ Thu, 16 Sep 2021 03:52:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <a881ac1f-2f00-e675-aea6-154b28ca6eff@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210615232816.835325-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20210615232816.835325-1-bjorn.andersson@linaro.org>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Thu, 16 Sep 2021 16:22:22 +0530
+Message-ID: <CAMi1Hd0hZV7antTa7ShKvfS5CRxRei4TNycM9EJ9NR5qEBJV7g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm850-yoga: Enable IPA
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Alex Elder <elder@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2021 11:11, Roger Quadros wrote:
-> Hi Krzysztof,
-> 
-> On 07/09/2021 15:36, Krzysztof Kozlowski wrote:
->> On 07/09/2021 13:32, Roger Quadros wrote:
->>> Check for valid gpmc,device-width, nand-bus-width and bank-width
->>> at one place. Default to 8-bit width if none present.
->>
->> I don't understand the message in the context of the patch. The title
->> says one property is optional - that's it. The message says you
->> consolidate checks. How is this related to the title?
->>
->> The patch itself moves around checking of properties and reads
->> nand-bus-width *always*. It does not "check at one place" but rather
->> "check always". In the same time, the patch does not remove
->> gpmc,device-width check in other place.
->>
->> All three elements - the title, message and patch - do different things.
->> What did you want to achieve here? Can you help in clarifying it?
->>
-> 
-> OK I will explain it better in commit log in next revision. Let me explain here a bit.
-> 
-> Prior to this patch it was working like this
-> 
-> 	/* in gpmc_read_settings_dt() */
-> 	s->device_width = 0;	/* invalid width, should be 1 for 8-bit, 2 for 16-bit */
-> 	of_property_read_u32(np, "gpmc,device-width", s->device_width);
-> 
-> 	/* in gpmc_probe_generic_child () */
-> 	if (of_device_is_compatible(child, "ti,omap2-nand")) {
-> 		/* check for nand-bus-width, if absent set s->device_width to 1 (i.e. 8-bit) */
-> 	} else {
-> 		/* check for bank-width, if absent and s->device_width not set, error out */
-> 	}
-> 
-> So that means if all three, "gpmc,device-width". "nand-bus-width" and "bank-width" are missing then
-> it would create an error situation.
-> 
-> The patch is doing 3 things.
-> 1) Make sure all DT checks related to bus width are being done at one place for better readability.
+Hi Bjorn,
 
-Not entirely. The gpmc,device-width is still done in the other place
-because you did not remove it from the code. Unless you meant parsing of
-gpmc,device-width not reading from DT? But then another round of checks
-is in gpmc_cs_program_settings() so not in one place.
+On Wed, 16 Jun 2021 at 04:58, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> Shuffle memory regions to make firmware loading succeed and then enable
+> the ipa device.
 
-If you consolidate the checks to one place, I would expect the code to
-be removed from other places, so from gpmc_cs_program_settings() and
-gpmc_read_settings_dt(). Since this is not happening, the message
-confuses me.
+Just a heads-up, this reserved memory region shuffling in sdm845.dtsi
+broke PocoF1 and may be other devices too(?) which do not override
+these regions.
 
-> 2) even if all 3 width properties are absent, we will not treat it as error and default to 8-bit.
+IIRC you once had a patch to move the reserved memory regions to board
+specific dts files, is it still on the cards so that we don't run into
+breakages like this?
 
-This is not mentioned in commit msg.
+Meanwhile I'll go and add these regions in sdm845-xiaomi-beryllium.dts.
 
-> 3) check for nand-bus-width regardless of whether compatible to "ti,omap2-nand" or not.
+Regards,
+Amit Pundir
 
-Also not mentioned in commit msg.
 
-Your commit reorganizes parsing and validating the child DT properties
-but it does not change from "multiple place" to "one place".
 
-At least I don't see it.
-
-Best regards,
-Krzysztof
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 21 +++++++------------
+>  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  5 +++++
+>  2 files changed, 13 insertions(+), 13 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 1796ae8372be..49624eadce84 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -128,28 +128,23 @@ camera_mem: memory@8bf00000 {
+>                         no-map;
+>                 };
+>
+> -               ipa_fw_mem: memory@8c400000 {
+> -                       reg = <0 0x8c400000 0 0x10000>;
+> +               wlan_msa_mem: memory@8c400000 {
+> +                       reg = <0 0x8c400000 0 0x100000>;
+>                         no-map;
+>                 };
+>
+> -               ipa_gsi_mem: memory@8c410000 {
+> -                       reg = <0 0x8c410000 0 0x5000>;
+> +               gpu_mem: memory@8c515000 {
+> +                       reg = <0 0x8c515000 0 0x2000>;
+>                         no-map;
+>                 };
+>
+> -               gpu_mem: memory@8c415000 {
+> -                       reg = <0 0x8c415000 0 0x2000>;
+> +               ipa_fw_mem: memory@8c517000 {
+> +                       reg = <0 0x8c517000 0 0x5a000>;
+>                         no-map;
+>                 };
+>
+> -               adsp_mem: memory@8c500000 {
+> -                       reg = <0 0x8c500000 0 0x1a00000>;
+> -                       no-map;
+> -               };
+> -
+> -               wlan_msa_mem: memory@8df00000 {
+> -                       reg = <0 0x8df00000 0 0x100000>;
+> +               adsp_mem: memory@8c600000 {
+> +                       reg = <0 0x8c600000 0 0x1a00000>;
+>                         no-map;
+>                 };
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> index c2a709a384e9..3eaa42dc3794 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> @@ -415,6 +415,11 @@ ecsh: hid@5c {
+>         };
+>  };
+>
+> +&ipa {
+> +       status = "okay";
+> +       memory-region = <&ipa_fw_mem>;
+> +};
+> +
+>  &mdss {
+>         status = "okay";
+>  };
+> --
+> 2.31.0
+>
