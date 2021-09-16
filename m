@@ -2,605 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A876140DE91
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 17:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8623E40E567
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 19:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240183AbhIPPvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 11:51:01 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:55241 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240126AbhIPPu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 11:50:57 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 49BE7580E7E;
-        Thu, 16 Sep 2021 11:49:36 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Thu, 16 Sep 2021 11:49:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=Ll0n726U9PXQo
-        +D6NVJN5lQhLOVUbwNC5No/493J+wI=; b=YEOasJSx0+NN6jURjWzaBe8pVqFpy
-        pGL9udRCRPBDQtU2G63mQWutcZVHCPx8r0yM6A2jZ0We8jSQU9Z8IcYyJEBk1r33
-        D9ZPXEEe8NY/5EsofrnN8zIPwRJybXPa8v32SznJqrHlQ41rq6KeHELMEUoQ6ipz
-        Stwb7LB5m5AcajU7d+nUO7AkXZHxEyxnYxq0fwAB1XZpgoSwhIKdUr7UqtBx+T8i
-        njBQUsuHLEOe9Qa757OmTJxlnWT34Rdq5tFw1YHakuGdG9w7voSHcfhYetbB5XXR
-        JRjDxU0diexB/lRWaniWFw1fLdiAv2UIZhlCVHkCY/HGmnmvi8N+G7Hng==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=Ll0n726U9PXQo+D6NVJN5lQhLOVUbwNC5No/493J+wI=; b=oZM8HSG8
-        fGBtXuQeKJtLKRtg9T1wE1xxh33FQwuT/BqNF1kmeyV53zqZMOQN5iXAWrGoxnRP
-        qafr1gLTVjpazN1rXiQRq6TX6082XASUT82t7eIekx5LrK+oVTVgX1keOfUjvNUa
-        YgIwLTta7mxLBIEHIVQLAJ+VAFw9yOv+TG/0MO6385980//dZpNuSzQFIH+QngtK
-        CyNfRIU/r3HvIFZFgDgMXQHnUW4LpvIXnrJlYsFp2L7t8Z6FrDYPiDielcJBcjVL
-        DWtJdEXjCCGhFmsARzA0sCQb6DZofRTlb7A2lVfIIMb0XYuMgGWTmFwywsepO2d9
-        34mFS03y/GA6+w==
-X-ME-Sender: <xms:kGdDYb9Xbx_pcWzrMeXSciJNkAcb8uZTScG52s2lVdYkbkDyMy44Dw>
-    <xme:kGdDYXsSSDlL48M5_jPXl9gsstfD03PXbN5j5nyK9VNQUWB2aQidu9bhu8At1KJhp
-    8575bJaqY9xcF2ashA>
-X-ME-Received: <xmr:kGdDYZC4Ds8N-7SoK-RuptF3Hf2uwl9gjbltllvLCY3Xe1veadFo_u477VtQ-LDV10cCjyQEa1_KifIJy0Nvo7tgZ9kGPKxw0ukikFfrP8vt57pVqKSeh8dtsUjcVQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehgedgkeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcu
-    rfgvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvg
-    hrnheptedvkeetleeuffffhfekteetffeggffgveehieelueefvddtueffveevlefhfeej
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvg
-    hnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:kGdDYXdhuaygGfNZib8rt_SXmV08mckIMId-3-2QuCo5Uf_dUagsUg>
-    <xmx:kGdDYQMud2CpN1guwmAYS8KhvVyBl-pXPZL5htE2ZrEjGf8APagqcw>
-    <xmx:kGdDYZnlv6tbQEqNzPku30oLaQ3Ler4H6ZnUUZbbpwj265Mncax9fw>
-    <xmx:kGdDYfrN1TRiE3AyBBNs4BzmdkBh6O2pQSpX85jVHKqjmlpWKbWamA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 16 Sep 2021 11:49:34 -0400 (EDT)
-From:   Sven Peter <sven@svenpeter.dev>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] mailbox: apple: Add driver for Apple mailboxes
-Date:   Thu, 16 Sep 2021 17:49:11 +0200
-Message-Id: <20210916154911.3168-3-sven@svenpeter.dev>
-X-Mailer: git-send-email 2.30.1 (Apple Git-130)
-In-Reply-To: <20210916154911.3168-1-sven@svenpeter.dev>
-References: <20210916154911.3168-1-sven@svenpeter.dev>
+        id S1345560AbhIPRLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 13:11:12 -0400
+Received: from mga09.intel.com ([134.134.136.24]:30114 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1345643AbhIPRJL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Sep 2021 13:09:11 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="222651966"
+X-IronPort-AV: E=Sophos;i="5.85,299,1624345200"; 
+   d="scan'208";a="222651966"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2021 10:03:57 -0700
+X-IronPort-AV: E=Sophos;i="5.85,299,1624345200"; 
+   d="scan'208";a="554167905"
+Received: from xuanguan-mobl.amr.corp.intel.com (HELO [10.213.180.84]) ([10.213.180.84])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2021 10:03:56 -0700
+Subject: Re: [PATCH v6 16/22] ASoC: qdsp6: audioreach: add module
+ configuration command helpers
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+References: <20210915131333.19047-1-srinivas.kandagatla@linaro.org>
+ <20210915131333.19047-17-srinivas.kandagatla@linaro.org>
+ <4cd0e63f-107b-d10a-11e9-bced83f487a5@linux.intel.com>
+ <00472b83-f02d-70cc-7c6e-cf414dc17754@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <dbe12aeb-3200-e7d3-7530-39e2d3aa990c@linux.intel.com>
+Date:   Thu, 16 Sep 2021 10:40:11 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <00472b83-f02d-70cc-7c6e-cf414dc17754@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apple SoCs such as the M1 come with various co-processors. Mailboxes
-are used to communicate with those. This driver adds support for
-two variants of those mailboxes.
 
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
----
- MAINTAINERS                     |   2 +
- drivers/mailbox/Kconfig         |  12 +
- drivers/mailbox/Makefile        |   2 +
- drivers/mailbox/apple-mailbox.c | 431 ++++++++++++++++++++++++++++++++
- include/linux/apple-mailbox.h   |  18 ++
- 5 files changed, 465 insertions(+)
- create mode 100644 drivers/mailbox/apple-mailbox.c
- create mode 100644 include/linux/apple-mailbox.h
+>>> +int q6apm_read(struct q6apm_graph *graph)
+>>> +{
+>>> +    struct data_cmd_rd_sh_mem_ep_data_buffer_v2 *read;
+>>> +    struct audioreach_graph_data *port;
+>>> +    struct audio_buffer *ab;
+>>> +    struct gpr_pkt *pkt;
+>>> +    int rc, iid;
+>>> +
+>>> +    iid = q6apm_graph_get_tx_shmem_module_iid(graph);
+>>> +    pkt = audioreach_alloc_pkt(sizeof(*read),
+>>> DATA_CMD_RD_SH_MEM_EP_DATA_BUFFER_V2,
+>>> +                 graph->tx_data.dsp_buf, graph->port->id, iid);
+>>> +    if (IS_ERR(pkt))
+>>> +        return -ENOMEM;
+>>> +
+>>> +    read = (void *)pkt + GPR_HDR_SIZE;
+>>
+>> same nit-pick on variable naming, with the additional present/past
+>> grammar issue that you don't know if it's a read buffer or a pointer to
+>> data read in the past.
+>>
+> 
+> do you think adding "_cmd" suffix like read_cmd would make more sense?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 47de27282c98..cf0500bbea5b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1724,8 +1724,10 @@ F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
- F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
- F:	arch/arm64/boot/dts/apple/
- F:	drivers/irqchip/irq-apple-aic.c
-+F:	drivers/mailbox/apple-mailbox.c
- F:	include/dt-bindings/interrupt-controller/apple-aic.h
- F:	include/dt-bindings/pinctrl/apple.h
-+F:	include/linux/apple-mailbox.h
- 
- ARM/ARTPEC MACHINE SUPPORT
- M:	Jesper Nilsson <jesper.nilsson@axis.com>
-diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index c9fc06c7e685..d9cd3606040e 100644
---- a/drivers/mailbox/Kconfig
-+++ b/drivers/mailbox/Kconfig
-@@ -8,6 +8,18 @@ menuconfig MAILBOX
- 
- if MAILBOX
- 
-+config APPLE_MAILBOX
-+	tristate "Apple Mailbox driver"
-+	depends on ARCH_APPLE || (ARM64 && COMPILE_TEST)
-+	default ARCH_APPLE
-+	help
-+	  Apple SoCs have various co-processors required for certain
-+	  peripherals to work (NVMe, display controller, etc.). This
-+	  driver adds support for the mailbox controller used to
-+	  communicate with those.
-+
-+	  Say Y here if you have a Apple SoC.
-+
- config ARM_MHU
- 	tristate "ARM MHU Mailbox"
- 	depends on ARM_AMBA
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index c2089f04887e..338cc05e5431 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -58,3 +58,5 @@ obj-$(CONFIG_SUN6I_MSGBOX)	+= sun6i-msgbox.o
- obj-$(CONFIG_SPRD_MBOX)		+= sprd-mailbox.o
- 
- obj-$(CONFIG_QCOM_IPCC)		+= qcom-ipcc.o
-+
-+obj-$(CONFIG_APPLE_MAILBOX)	+= apple-mailbox.o
-diff --git a/drivers/mailbox/apple-mailbox.c b/drivers/mailbox/apple-mailbox.c
-new file mode 100644
-index 000000000000..2622a6369075
---- /dev/null
-+++ b/drivers/mailbox/apple-mailbox.c
-@@ -0,0 +1,431 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Apple mailbox driver
-+ *
-+ * Copyright (C) 2021 The Asahi Linux Contributors
-+ *
-+ * This driver adds support for two mailbox variants (called ASC and M3 by
-+ * Apple) found in Apple SoCs such as the M1. It consists of two FIFOs used to
-+ * exchange 64+32 bit messages between the main CPU and a co-processor.
-+ * Various coprocessors implement different IPC protocols based on these simple
-+ * messages and shared memory buffers.
-+ *
-+ * Both the main CPU and the co-processor see the same set of registers but
-+ * the first FIFO (A2I) is always used to transfer messages from the application
-+ * processor (us) to the I/O processor and the second one (I2A) for the
-+ * other direction.
-+ */
-+
-+#include <linux/apple-mailbox.h>
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/gfp.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/mailbox_controller.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/types.h>
-+
-+#define APPLE_ASC_MBOX_CONTROL_FULL  BIT(16)
-+#define APPLE_ASC_MBOX_CONTROL_EMPTY BIT(17)
-+
-+#define APPLE_ASC_MBOX_A2I_CONTROL 0x110
-+#define APPLE_ASC_MBOX_A2I_SEND0   0x800
-+#define APPLE_ASC_MBOX_A2I_SEND1   0x808
-+#define APPLE_ASC_MBOX_A2I_RECV0   0x810
-+#define APPLE_ASC_MBOX_A2I_RECV1   0x818
-+
-+#define APPLE_ASC_MBOX_I2A_CONTROL 0x114
-+#define APPLE_ASC_MBOX_I2A_SEND0   0x820
-+#define APPLE_ASC_MBOX_I2A_SEND1   0x828
-+#define APPLE_ASC_MBOX_I2A_RECV0   0x830
-+#define APPLE_ASC_MBOX_I2A_RECV1   0x838
-+
-+#define APPLE_M3_MBOX_CONTROL_FULL  BIT(16)
-+#define APPLE_M3_MBOX_CONTROL_EMPTY BIT(17)
-+
-+#define APPLE_M3_MBOX_A2I_CONTROL 0x50
-+#define APPLE_M3_MBOX_A2I_SEND0	  0x60
-+#define APPLE_M3_MBOX_A2I_SEND1	  0x68
-+#define APPLE_M3_MBOX_A2I_RECV0	  0x70
-+#define APPLE_M3_MBOX_A2I_RECV1	  0x78
-+
-+#define APPLE_M3_MBOX_I2A_CONTROL 0x80
-+#define APPLE_M3_MBOX_I2A_SEND0	  0x90
-+#define APPLE_M3_MBOX_I2A_SEND1	  0x98
-+#define APPLE_M3_MBOX_I2A_RECV0	  0xa0
-+#define APPLE_M3_MBOX_I2A_RECV1	  0xa8
-+
-+#define APPLE_M3_MBOX_IRQ_ENABLE	0x48
-+#define APPLE_M3_MBOX_IRQ_ACK		0x4c
-+#define APPLE_M3_MBOX_IRQ_A2I_EMPTY	BIT(0)
-+#define APPLE_M3_MBOX_IRQ_A2I_NOT_EMPTY BIT(1)
-+#define APPLE_M3_MBOX_IRQ_I2A_EMPTY	BIT(2)
-+#define APPLE_M3_MBOX_IRQ_I2A_NOT_EMPTY BIT(3)
-+
-+#define APPLE_MBOX_MSG1_OUTCNT GENMASK(56, 52)
-+#define APPLE_MBOX_MSG1_INCNT  GENMASK(51, 48)
-+#define APPLE_MBOX_MSG1_OUTPTR GENMASK(47, 44)
-+#define APPLE_MBOX_MSG1_INPTR  GENMASK(43, 40)
-+#define APPLE_MBOX_MSG1_MSG    GENMASK(31, 0)
-+
-+struct apple_mbox_hw {
-+	unsigned int control_full;
-+	unsigned int control_empty;
-+
-+	unsigned int a2i_control;
-+	unsigned int a2i_send0;
-+	unsigned int a2i_send1;
-+
-+	unsigned int i2a_control;
-+	unsigned int i2a_recv0;
-+	unsigned int i2a_recv1;
-+
-+	bool has_irq_controls;
-+	unsigned int irq_enable;
-+	unsigned int irq_ack;
-+	unsigned int irq_bit_recv_not_empty;
-+	unsigned int irq_bit_send_empty;
-+};
-+
-+static const struct apple_mbox_hw apple_mbox_asc_hw = {
-+	.control_full = APPLE_ASC_MBOX_CONTROL_FULL,
-+	.control_empty = APPLE_ASC_MBOX_CONTROL_EMPTY,
-+
-+	.a2i_control = APPLE_ASC_MBOX_A2I_CONTROL,
-+	.a2i_send0 = APPLE_ASC_MBOX_A2I_SEND0,
-+	.a2i_send1 = APPLE_ASC_MBOX_A2I_SEND1,
-+
-+	.i2a_control = APPLE_ASC_MBOX_I2A_CONTROL,
-+	.i2a_recv0 = APPLE_ASC_MBOX_I2A_RECV0,
-+	.i2a_recv1 = APPLE_ASC_MBOX_I2A_RECV1,
-+
-+	.has_irq_controls = false,
-+};
-+
-+static const struct apple_mbox_hw apple_mbox_m3_hw = {
-+	.control_full = APPLE_M3_MBOX_CONTROL_FULL,
-+	.control_empty = APPLE_M3_MBOX_CONTROL_EMPTY,
-+
-+	.a2i_control = APPLE_M3_MBOX_A2I_CONTROL,
-+	.a2i_send0 = APPLE_M3_MBOX_A2I_SEND0,
-+	.a2i_send1 = APPLE_M3_MBOX_A2I_SEND1,
-+
-+	.i2a_control = APPLE_M3_MBOX_I2A_CONTROL,
-+	.i2a_recv0 = APPLE_M3_MBOX_I2A_RECV0,
-+	.i2a_recv1 = APPLE_M3_MBOX_I2A_RECV1,
-+
-+	.has_irq_controls = true,
-+	.irq_enable = APPLE_M3_MBOX_IRQ_ENABLE,
-+	.irq_ack = APPLE_M3_MBOX_IRQ_ACK,
-+	.irq_bit_recv_not_empty = APPLE_M3_MBOX_IRQ_I2A_NOT_EMPTY,
-+	.irq_bit_send_empty = APPLE_M3_MBOX_IRQ_A2I_EMPTY,
-+};
-+
-+static const struct of_device_id apple_mbox_of_match[] = {
-+	{ .compatible = "apple,t8103-asc-mailbox", .data = &apple_mbox_asc_hw },
-+	{ .compatible = "apple,t8103-m3-mailbox", .data = &apple_mbox_m3_hw },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, apple_mbox_of_match);
-+
-+struct apple_mbox {
-+	void __iomem *regs;
-+	const struct apple_mbox_hw *hw;
-+
-+	int irq_recv_not_empty;
-+	int irq_send_empty;
-+
-+	struct clk_bulk_data *clks;
-+	int num_clks;
-+
-+	struct mbox_chan chan;
-+
-+	struct device *dev;
-+	struct mbox_controller controller;
-+};
-+
-+static bool apple_mbox_hw_can_send(struct apple_mbox *apple_mbox)
-+{
-+	u32 mbox_ctrl =
-+		readl_relaxed(apple_mbox->regs + apple_mbox->hw->a2i_control);
-+
-+	return !(mbox_ctrl & apple_mbox->hw->control_full);
-+}
-+
-+static int apple_mbox_hw_send(struct apple_mbox *apple_mbox,
-+			      struct apple_mbox_msg *msg)
-+{
-+	if (!apple_mbox_hw_can_send(apple_mbox))
-+		return -EBUSY;
-+
-+	dev_dbg(apple_mbox->dev, "> TX %016llx %08x\n", msg->msg0, msg->msg1);
-+
-+	/*
-+	 * This message may be related to a shared memory buffer and we must
-+	 * ensure all previous writes to normal memory are visible before
-+	 * submitting it.
-+	 */
-+	dma_wmb();
-+
-+	writeq_relaxed(msg->msg0, apple_mbox->regs + apple_mbox->hw->a2i_send0);
-+	writeq_relaxed(FIELD_PREP(APPLE_MBOX_MSG1_MSG, msg->msg1),
-+		       apple_mbox->regs + apple_mbox->hw->a2i_send1);
-+
-+	return 0;
-+}
-+
-+static bool apple_mbox_hw_can_recv(struct apple_mbox *apple_mbox)
-+{
-+	u32 mbox_ctrl =
-+		readl_relaxed(apple_mbox->regs + apple_mbox->hw->i2a_control);
-+
-+	return !(mbox_ctrl & apple_mbox->hw->control_empty);
-+}
-+
-+static int apple_mbox_hw_recv(struct apple_mbox *apple_mbox,
-+			      struct apple_mbox_msg *msg)
-+{
-+	if (!apple_mbox_hw_can_recv(apple_mbox))
-+		return -ENOMSG;
-+
-+	msg->msg0 = readq_relaxed(apple_mbox->regs + apple_mbox->hw->i2a_recv0);
-+	msg->msg1 = FIELD_GET(
-+		APPLE_MBOX_MSG1_MSG,
-+		readq_relaxed(apple_mbox->regs + apple_mbox->hw->i2a_recv1));
-+
-+	dev_dbg(apple_mbox->dev, "< RX %016llx %08x\n", msg->msg0, msg->msg1);
-+
-+	/*
-+	 * This message may be related to a shared memory buffer and we must
-+	 * ensure any following reads from normal memory only happen after
-+	 * having read this message.
-+	 */
-+	dma_rmb();
-+
-+	return 0;
-+}
-+
-+static int apple_mbox_chan_send_data(struct mbox_chan *chan, void *data)
-+{
-+	struct apple_mbox *apple_mbox = chan->con_priv;
-+	struct apple_mbox_msg *msg = data;
-+	int ret;
-+
-+	ret = apple_mbox_hw_send(apple_mbox, msg);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The interrupt is level triggered and will keep firing as long as the
-+	 * FIFO is empty. It will also keep firing if the FIFO was empty
-+	 * at any point in the past until it has been acknowledged at the
-+	 * mailbox level. By acknowledging it here we can ensure that we will
-+	 * only get the interrupt once the FIFO has been cleared again.
-+	 * If the FIFO is already empty before the ack it will fire again
-+	 * immediately after the ack.
-+	 */
-+	if (apple_mbox->hw->has_irq_controls) {
-+		writel_relaxed(apple_mbox->hw->irq_bit_send_empty,
-+			       apple_mbox->regs + apple_mbox->hw->irq_ack);
-+	}
-+	enable_irq(apple_mbox->irq_send_empty);
-+
-+	return 0;
-+}
-+
-+static irqreturn_t apple_mbox_send_empty_irq(int irq, void *data)
-+{
-+	struct apple_mbox *apple_mbox = data;
-+
-+	/*
-+	 * We don't need to acknowledge the interrupt at the mailbox level
-+	 * here even if supported by the hardware. It will keep firing but that
-+	 * doesn't matter since it's disabled at the main interrupt controller.
-+	 * apple_mbox_chan_send_data will acknowledge it before enabling
-+	 * it at the main controller again.
-+	 */
-+	disable_irq_nosync(apple_mbox->irq_send_empty);
-+	mbox_chan_txdone(&apple_mbox->chan, 0);
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t apple_mbox_recv_irq(int irq, void *data)
-+{
-+	struct apple_mbox *apple_mbox = data;
-+	struct apple_mbox_msg msg;
-+
-+	while (apple_mbox_hw_recv(apple_mbox, &msg) == 0)
-+		mbox_chan_received_data(&apple_mbox->chan, (void *)&msg);
-+
-+	/*
-+	 * The interrupt will keep firing even if there are no more messages
-+	 * unless we also acknowledge it at the mailbox level here.
-+	 * There's no race if a message comes in between the check in the while
-+	 * loop above and the ack below: If a new messages arrives inbetween
-+	 * those two the interrupt will just fire again immediately after the
-+	 * ack since it's level triggered.
-+	 */
-+	if (apple_mbox->hw->has_irq_controls) {
-+		writel_relaxed(apple_mbox->hw->irq_bit_recv_not_empty,
-+			       apple_mbox->regs + apple_mbox->hw->irq_ack);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static struct mbox_chan *apple_mbox_of_xlate(struct mbox_controller *mbox,
-+					     const struct of_phandle_args *spec)
-+{
-+	struct apple_mbox *apple_mbox = dev_get_drvdata(mbox->dev);
-+
-+	if (spec->args_count != 0)
-+		return ERR_PTR(-EINVAL);
-+	if (apple_mbox->chan.con_priv)
-+		return ERR_PTR(-EBUSY);
-+
-+	apple_mbox->chan.con_priv = apple_mbox;
-+	return &apple_mbox->chan;
-+}
-+
-+static int apple_mbox_chan_startup(struct mbox_chan *chan)
-+{
-+	struct apple_mbox *apple_mbox = chan->con_priv;
-+
-+	/*
-+	 * Only some variants of this mailbox HW provide interrupt control
-+	 * at the mailbox level. We therefore need to handle enabling/disabling
-+	 * interrupts at the main interrupt controller anyway for hardware that
-+	 * doesn't. Just always keep the interrupts we care about enabled at
-+	 * the mailbox level so that both hardware revisions behave almost
-+	 * the same.
-+	 */
-+	if (apple_mbox->hw->has_irq_controls) {
-+		writel_relaxed(apple_mbox->hw->irq_bit_recv_not_empty |
-+				       apple_mbox->hw->irq_bit_send_empty,
-+			       apple_mbox->regs + apple_mbox->hw->irq_enable);
-+	}
-+
-+	enable_irq(apple_mbox->irq_recv_not_empty);
-+	return 0;
-+}
-+
-+static void apple_mbox_chan_shutdown(struct mbox_chan *chan)
-+{
-+	struct apple_mbox *apple_mbox = chan->con_priv;
-+
-+	disable_irq(apple_mbox->irq_recv_not_empty);
-+}
-+
-+static const struct mbox_chan_ops apple_mbox_ops = {
-+	.send_data = apple_mbox_chan_send_data,
-+	.startup = apple_mbox_chan_startup,
-+	.shutdown = apple_mbox_chan_shutdown,
-+};
-+
-+static int apple_mbox_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+	const struct of_device_id *match;
-+	char *irqname;
-+	struct apple_mbox *mbox;
-+	struct device *dev = &pdev->dev;
-+
-+	match = of_match_node(apple_mbox_of_match, pdev->dev.of_node);
-+	if (!match)
-+		return -EINVAL;
-+	if (!match->data)
-+		return -EINVAL;
-+
-+	mbox = devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
-+	if (!mbox)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, mbox);
-+
-+	mbox->dev = dev;
-+	mbox->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(mbox->regs))
-+		return PTR_ERR(mbox->regs);
-+
-+	mbox->hw = match->data;
-+	mbox->irq_recv_not_empty =
-+		platform_get_irq_byname(pdev, "recv-not-empty");
-+	if (mbox->irq_recv_not_empty < 0)
-+		return -ENODEV;
-+
-+	mbox->irq_send_empty = platform_get_irq_byname(pdev, "send-empty");
-+	if (mbox->irq_send_empty < 0)
-+		return -ENODEV;
-+
-+	ret = devm_clk_bulk_get_all(dev, &mbox->clks);
-+	if (ret < 0)
-+		return ret;
-+	mbox->num_clks = ret;
-+
-+	ret = clk_bulk_prepare_enable(mbox->num_clks, mbox->clks);
-+	if (ret)
-+		return ret;
-+
-+	mbox->controller.dev = mbox->dev;
-+	mbox->controller.num_chans = 1;
-+	mbox->controller.chans = &mbox->chan;
-+	mbox->controller.ops = &apple_mbox_ops;
-+	mbox->controller.of_xlate = &apple_mbox_of_xlate;
-+	mbox->controller.txdone_irq = true;
-+
-+	irqname = devm_kasprintf(dev, GFP_KERNEL, "%s-recv", dev_name(dev));
-+	if (!irqname) {
-+		ret = -ENOMEM;
-+		goto err_clk_disable;
-+	}
-+	ret = devm_request_threaded_irq(dev, mbox->irq_recv_not_empty, NULL,
-+					apple_mbox_recv_irq,
-+					IRQF_NO_AUTOEN | IRQF_ONESHOT, irqname,
-+					mbox);
-+	if (ret)
-+		goto err_clk_disable;
-+
-+	irqname = devm_kasprintf(dev, GFP_KERNEL, "%s-send", dev_name(dev));
-+	if (!irqname) {
-+		ret = -ENOMEM;
-+		goto err_clk_disable;
-+	}
-+	ret = devm_request_irq(dev, mbox->irq_send_empty,
-+			       apple_mbox_send_empty_irq, IRQF_NO_AUTOEN,
-+			       irqname, mbox);
-+	if (ret)
-+		goto err_clk_disable;
-+
-+	ret = devm_mbox_controller_register(dev, &mbox->controller);
-+	if (ret)
-+		goto err_clk_disable;
-+	return ret;
-+
-+err_clk_disable:
-+	clk_bulk_disable_unprepare(mbox->num_clks, mbox->clks);
-+	return ret;
-+}
-+
-+static int apple_mbox_remove(struct platform_device *pdev)
-+{
-+	struct apple_mbox *apple_mbox = dev_get_drvdata(&pdev->dev);
-+
-+	clk_bulk_disable_unprepare(apple_mbox->num_clks, apple_mbox->clks);
-+	return 0;
-+}
-+
-+static struct platform_driver apple_mbox_driver = {
-+	.driver = {
-+		.name = "apple-mailbox",
-+		.of_match_table = apple_mbox_of_match,
-+	},
-+	.probe = apple_mbox_probe,
-+	.remove = apple_mbox_remove,
-+};
-+module_platform_driver(apple_mbox_driver);
-+
-+MODULE_LICENSE("Dual MIT/GPL");
-+MODULE_AUTHOR("Sven Peter <sven@svenpeter.dev>");
-+MODULE_DESCRIPTION("Apple Mailbox driver");
-diff --git a/include/linux/apple-mailbox.h b/include/linux/apple-mailbox.h
-new file mode 100644
-index 000000000000..c455e0f9c73b
---- /dev/null
-+++ b/include/linux/apple-mailbox.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
-+/*
-+ * Apple mailbox message format
-+ *
-+ * Copyright (C) 2021 The Asahi Linux Contributors
-+ */
-+
-+#ifndef _LINUX_APPLE_MAILBOX_H_
-+#define _LINUX_APPLE_MAILBOX_H_
-+
-+#include <linux/types.h>
-+
-+struct apple_mbox_msg {
-+	u64 msg0;
-+	u32 msg1;
-+};
-+
-+#endif
--- 
-2.25.1
+My personal preference is read_buffer or write_buffer, less ambiguous
+than 'read' or 'write'.
 
+I've started cracking down on the use of 'stream' for a similar reason,
+at some point no one know what the code/variables represent.
