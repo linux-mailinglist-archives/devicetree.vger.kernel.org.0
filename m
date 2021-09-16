@@ -2,76 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8623E40E567
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 19:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6AB740E6C9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 19:31:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345560AbhIPRLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 13:11:12 -0400
-Received: from mga09.intel.com ([134.134.136.24]:30114 "EHLO mga09.intel.com"
+        id S1347068AbhIPRZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 13:25:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44344 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345643AbhIPRJL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 13:09:11 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="222651966"
-X-IronPort-AV: E=Sophos;i="5.85,299,1624345200"; 
-   d="scan'208";a="222651966"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2021 10:03:57 -0700
-X-IronPort-AV: E=Sophos;i="5.85,299,1624345200"; 
-   d="scan'208";a="554167905"
-Received: from xuanguan-mobl.amr.corp.intel.com (HELO [10.213.180.84]) ([10.213.180.84])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2021 10:03:56 -0700
-Subject: Re: [PATCH v6 16/22] ASoC: qdsp6: audioreach: add module
- configuration command helpers
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210915131333.19047-1-srinivas.kandagatla@linaro.org>
- <20210915131333.19047-17-srinivas.kandagatla@linaro.org>
- <4cd0e63f-107b-d10a-11e9-bced83f487a5@linux.intel.com>
- <00472b83-f02d-70cc-7c6e-cf414dc17754@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <dbe12aeb-3200-e7d3-7530-39e2d3aa990c@linux.intel.com>
-Date:   Thu, 16 Sep 2021 10:40:11 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S1347104AbhIPRWu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Sep 2021 13:22:50 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 08CEF61A2F;
+        Thu, 16 Sep 2021 16:43:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1631810594;
+        bh=NU5ZOx0naDK85oG0/HUbMQFEYp7Zrotfi5JaGSGDnmc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=PviFyakPMUB9lc9DShIgpQLRbk9e9GBiUqZR6dtiLrpIjHtWh+xClSTp8G/QKP31m
+         w82Zmz0x01FV8oe/22ESmTcSOT8ycMtj20i7jYzijK1FryybSAV47+iulTp7/Is+JT
+         fqttcTSGD2N6xVeyG7KgO3wsSDNXEcJL12DaCZwc=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        stable@vger.kernel.org,
+        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 5.14 166/432] drm/panel: Fix up DT bindings for Samsung lms397kf04
+Date:   Thu, 16 Sep 2021 17:58:35 +0200
+Message-Id: <20210916155816.371280765@linuxfoundation.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210916155810.813340753@linuxfoundation.org>
+References: <20210916155810.813340753@linuxfoundation.org>
+User-Agent: quilt/0.66
 MIME-Version: 1.0
-In-Reply-To: <00472b83-f02d-70cc-7c6e-cf414dc17754@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Linus Walleij <linus.walleij@linaro.org>
 
->>> +int q6apm_read(struct q6apm_graph *graph)
->>> +{
->>> +    struct data_cmd_rd_sh_mem_ep_data_buffer_v2 *read;
->>> +    struct audioreach_graph_data *port;
->>> +    struct audio_buffer *ab;
->>> +    struct gpr_pkt *pkt;
->>> +    int rc, iid;
->>> +
->>> +    iid = q6apm_graph_get_tx_shmem_module_iid(graph);
->>> +    pkt = audioreach_alloc_pkt(sizeof(*read),
->>> DATA_CMD_RD_SH_MEM_EP_DATA_BUFFER_V2,
->>> +                 graph->tx_data.dsp_buf, graph->port->id, iid);
->>> +    if (IS_ERR(pkt))
->>> +        return -ENOMEM;
->>> +
->>> +    read = (void *)pkt + GPR_HDR_SIZE;
->>
->> same nit-pick on variable naming, with the additional present/past
->> grammar issue that you don't know if it's a read buffer or a pointer to
->> data read in the past.
->>
-> 
-> do you think adding "_cmd" suffix like read_cmd would make more sense?
+[ Upstream commit 710fa9aa16321f2ffdd8383f6f780c9cc1e5a197 ]
 
-My personal preference is read_buffer or write_buffer, less ambiguous
-than 'read' or 'write'.
+Improve the bindings and make them more usable:
 
-I've started cracking down on the use of 'stream' for a similar reason,
-at some point no one know what the code/variables represent.
+- Pick in spi-cpha and spi-cpol from the SPI node parent,
+  this will specify that we are "type 3" in the device tree
+  rather than hardcoding it in the operating system.
+- Drop the u32 ref from the SPI frequency: comes in from
+  the SPI host bindings.
+- Make spi-cpha, spi-cpol and port compulsory.
+- Update the example with a real-world SPI controller,
+  spi-gpio.
+
+Cc: Noralf Trønnes <noralf@tronnes.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Link: https://patchwork.freedesktop.org/patch/msgid/20210701213618.3818821-1-linus.walleij@linaro.org
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ .../display/panel/samsung,lms397kf04.yaml      | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml b/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
+index 4cb75a5f2e3a..cd62968426fb 100644
+--- a/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
++++ b/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
+@@ -33,8 +33,11 @@ properties:
+ 
+   backlight: true
+ 
++  spi-cpha: true
++
++  spi-cpol: true
++
+   spi-max-frequency:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     description: inherited as a SPI client node, the datasheet specifies
+       maximum 300 ns minimum cycle which gives around 3 MHz max frequency
+     maximum: 3000000
+@@ -44,6 +47,9 @@ properties:
+ required:
+   - compatible
+   - reg
++  - spi-cpha
++  - spi-cpol
++  - port
+ 
+ additionalProperties: false
+ 
+@@ -52,15 +58,23 @@ examples:
+     #include <dt-bindings/gpio/gpio.h>
+ 
+     spi {
++      compatible = "spi-gpio";
++      sck-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
++      miso-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
++      mosi-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
++      cs-gpios = <&gpio 3 GPIO_ACTIVE_HIGH>;
++      num-chipselects = <1>;
+       #address-cells = <1>;
+       #size-cells = <0>;
+       panel@0 {
+         compatible = "samsung,lms397kf04";
+         spi-max-frequency = <3000000>;
++        spi-cpha;
++        spi-cpol;
+         reg = <0>;
+         vci-supply = <&lcd_3v0_reg>;
+         vccio-supply = <&lcd_1v8_reg>;
+-        reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
++        reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
+         backlight = <&ktd259>;
+ 
+         port {
+-- 
+2.30.2
+
+
+
