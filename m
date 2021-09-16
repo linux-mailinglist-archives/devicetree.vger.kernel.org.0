@@ -2,1195 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F065440D668
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 11:41:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A76440D68E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 11:47:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235645AbhIPJmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 05:42:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235287AbhIPJmY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 05:42:24 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393ACC061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 02:41:04 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id h16so16052737lfk.10
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 02:41:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/ViqmEUURV9KzmdbdWaeuenbxlMIV07XJg+kIahFwNc=;
-        b=TZ5teF52Vg9Wl8dI5uNYZIKIIwZyCLDyfLsauRqnJSjhzmlyIjvwe/HhChQmL4Gm60
-         QzvYUu6OEvJofCOF5hGp66Du4CYUMrtt2tou6SKd+wX8cnzZgLECynlg2b3pczLMS2By
-         urZ95aABKdbV6SuYg00B0CXbz+wDgjfBm7fIA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/ViqmEUURV9KzmdbdWaeuenbxlMIV07XJg+kIahFwNc=;
-        b=4teK/TvprtKEdjhpE0011AwVSI8utuzSeFX97TxPWSZGFRczLdadd5MTwmkdqrtN21
-         iFAwt6+vybFnk01yDaBHS9o6nZ6MIbA+8LZgIHmmAQQPzAdpG9u7Ra3Ca6k2efEtc7/M
-         lKgEr3j8+mqRBLz6lcnUBql46wPYjqEj/gVxyCK8MMTe4Kzgm6dMCN99uEPmE1V2u5Ht
-         yzAL0HCQXTYLL+phCpcmSN6NcSt8Y2ZZgMwxXUgn02lhsFGVPJU9OGVcLdVH0owEzugm
-         JtSo9t7RE9VgslvHigxpUv/+PWdazOuxc5N7/3FisFjAh6PjivlvZeZ8/UaZja6qNA3K
-         +shA==
-X-Gm-Message-State: AOAM530a9cDck5aEthPMCzRqlFilOGwlRegMs0w2uBWt0aE+BvuWg7cw
-        nbESYaOAfW4VAy1ZxnGRE4WplHE9bOqUxBNIluW4gw==
-X-Google-Smtp-Source: ABdhPJzxTLHXLQJOuZdu8Mny+fYV+/Xp/ULsddhyyWrKP/YTnILrxK46Rn/Bz/ap69BeHtP3JN3SHn1dqoJzrquL5g8=
-X-Received: by 2002:ac2:4c4e:: with SMTP id o14mr3650420lfk.482.1631785262209;
- Thu, 16 Sep 2021 02:41:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210830003603.31864-1-zhiyong.tao@mediatek.com>
- <20210830003603.31864-5-zhiyong.tao@mediatek.com> <CAGXv+5H5KnskzBYuqniBGQWBLriyFkBvVXEk1Cyg6XSmKMWP8w@mail.gmail.com>
- <b82ae857d8a3acf117721bb83d4dbbc44f612565.camel@mediatek.com>
- <CAGXv+5F=H3C9mB+uYJDmk8vPiKjWixFs8DF3Pk_Xh3x6Jpq6iA@mail.gmail.com> <74a3a96745e93c5a2392b8a39822c872fd468466.camel@mediatek.com>
-In-Reply-To: <74a3a96745e93c5a2392b8a39822c872fd468466.camel@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 16 Sep 2021 17:40:50 +0800
-Message-ID: <CAGXv+5HN_rPzwhbEYEj2=XfZFuX2b+xWoqUPYr3Bwz5SbV8fng@mail.gmail.com>
-Subject: Re: [PATCH v11 4/4] pinctrl: mediatek: add rsel setting on MT8195
-To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S235360AbhIPJs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 05:48:28 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52236 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235287AbhIPJsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 05:48:22 -0400
+X-UUID: b24c56970c29439d8ec080905c5e978a-20210916
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=gzK+pw9KcoSRjkXWSdTBJMZzJJD5+HACqPNMRdGb1tk=;
+        b=Wi3xo/Y7avQsxBVopoJiqfII1YKFMItQ6PS85KIBagKkU2YbBeEEqPI5SKESRv99tpYr3WLoDjnnJ+julM+EJVHzZvRrpfUdQRzBUE9ibA0k4ZZ2x6OkoObLi+p07IUGBbYmtRcs3QO9ZITisAk0yjxzqpqXUqZvVKqTiXXWKmw=;
+X-UUID: b24c56970c29439d8ec080905c5e978a-20210916
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <wenbin.mei@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1925041971; Thu, 16 Sep 2021 17:46:59 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 16 Sep 2021 17:46:58 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 16 Sep 2021 17:46:57 +0800
+Message-ID: <5d5d49747b748db18ca66b9cf82c0e626f9c7638.camel@mediatek.com>
+Subject: Re: [PATCH v3 2/2] mmc: mediatek: Add HS400 online tuning support
+From:   Wenbin Mei <wenbin.mei@mediatek.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
-        Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        "Avri Altman" <avri.altman@wdc.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Yue Hu <huyue2@yulong.com>, Bean Huo <beanhuo@micron.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Date:   Thu, 16 Sep 2021 17:46:59 +0800
+In-Reply-To: <CAPDyKFqTx3wMm6mMy-wY892Nvu-ukqpRS=TSZxYr7e3TJWgF4A@mail.gmail.com>
+References: <20210908013218.29702-1-wenbin.mei@mediatek.com>
+         <20210908013218.29702-3-wenbin.mei@mediatek.com>
+         <CAPDyKFqTx3wMm6mMy-wY892Nvu-ukqpRS=TSZxYr7e3TJWgF4A@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 16, 2021 at 5:31 PM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
->
-> On Mon, 2021-09-06 at 18:09 +0800, Chen-Yu Tsai wrote:
-> > On Mon, Sep 6, 2021 at 11:17 AM zhiyong.tao <zhiyong.tao@mediatek.com
-> > > wrote:
-> > >
-> > > On Wed, 2021-09-01 at 18:10 +0800, Chen-Yu Tsai wrote:
-> > > > Hi,
-> > > >
-> > > > On Mon, Aug 30, 2021 at 8:37 AM Zhiyong Tao <
-> > > > zhiyong.tao@mediatek.com
-> > > > > wrote:
-> > > > >
-> > > > > This patch provides rsel setting on MT8195
-> > > >
-> > > > A bit more context, like what is rsel, would be nice.
-> > > >
-> > >
-> > > we will add more context it in the next version.
-> > > > >
-> > > > > Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> > > > > ---
-> > > > >  drivers/pinctrl/mediatek/pinctrl-mt8195.c     | 133
-> > > > > +++++++++++++
-> > > > >  .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  | 181
-> > > > > ++++++++++++++++--
-> > > > >  .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |  35 +++-
-> > > > >  drivers/pinctrl/mediatek/pinctrl-paris.c      |  24 ++-
-> > > > >  drivers/pinctrl/mediatek/pinctrl-paris.h      |   2 +-
-> > > > >  5 files changed, 348 insertions(+), 27 deletions(-)
-> > > >
-> > > > Could you split this patch into two, so the common parts are in
-> > > > the
-> > > > first
-> > > > patch, and the mt8195 specific changes are in the second?
-> > > >
-> > >
-> > > ok, we will split in the next version.
->
-> Hi Chen-Yu,
->
-> the common parts and the mt8195 specific changes are a new rsel
-> feature. Is it suitable to separate them?
+T24gVHVlLCAyMDIxLTA5LTE0IGF0IDEwOjQ2ICswMjAwLCBVbGYgSGFuc3NvbiB3cm90ZToNCj4g
+T24gV2VkLCA4IFNlcHQgMjAyMSBhdCAwMzozMiwgV2VuYmluIE1laSA8d2VuYmluLm1laUBtZWRp
+YXRlay5jb20+DQo+IHdyb3RlOg0KPiA+IA0KPiA+IER1ZSB0byB0aGUgaW5mbHVlbmNlIG9mIHRo
+ZSBjb3JuZXIgSUMgYW5kIHZjb3JlIHZvbHRhZ2UsIGZvciB0aGUNCj4gPiBzdGFiaWxpdHkNCj4g
+PiBvZiBIUzQwMCBtb2RlLCB3ZSBBZGQgSFM0MDAgbW9kZSBvbmxpbmUgdHVuaW5nIHN1cHBvcnQg
+Zm9yIG1lZGlhdGVrDQo+ID4gbW1jDQo+ID4gaG9zdC4NCj4gDQo+IE15IGFwb2xvZ2llcywgYnV0
+IEkgYW0gbm90IGZhbWlsaWFyIHdpdGggd2hhdCAnSFM0MDAgb25saW5lIHR1bmluZycNCj4gaXM/
+IENhbiB5b3UgcGxlYXNlIGVsYWJvcmF0ZSBvbiB0aGlzPw0KPiANCj4gSXMgaXQgc3BlY2lmaWMg
+Zm9yIGEgTWVkaWF0ZWsgZU1NQyBjb250cm9sbGVyIC0gb3IgaXMgYSBjb21tb24gZU1NQw0KPiBm
+ZWF0dXJlIHRoYXQgaXMgZGVzY3JpYmVkIGluIHRoZSBlTU1DIHNwZWM/DQo+IA0KQWNjb3JkaW5n
+IHRvIEpFREVDIFNwZWMsIHRoZXJlIGlzIG5vIG5lZWQgdG8gZG8gdHVuaW5nIHVuZGVyIEhTNDAw
+IG1vZGUNCnNpbmNlIHRoZSBSeCBzaWduYWwgaXMgYWxpZ25lZCB3aXRoIHRoZSBEUyBzaWduYWwu
+IEhvd2V2ZXIsIE1lZGlhVGVrJ3MNCklDIG5lZWQgc2V0IGl0cyAiRFMgZGVsYXkiIGludGVybmFs
+bHkgdG8gZW5zdXJlIGl0IGNhbiBsYXRjaCBSeCBzaWduYWwNCmNvcnJlY3RseS4NCkluIHByZXZp
+b3VzIHZlcnNpb24sIFdlIHByb3ZpZGUgYW4gImhzNDAwLWRzLWRlbGF5IiBpbiBkZXZpY2UgdHJl
+ZSB0bw0KY292ZXIgZGlmZmVyZW50IGNoaXBzZXQvUENCIGRlc2lnbiwgYW5kIGl0IHdvcmtzIGZp
+bmUgaW4gbW9zdCBjYXNlcy4NCkJ1dCwgd2l0aCB0aGUgZGV2ZWxvcG1lbnQgb2YgcHJvY2VzcyB0
+ZWNobm9sb2d5IGFuZCB0aGUgYmlnIFZDb3JlDQp2b2x0YWdlIHNjYWxlIHJhbmdlKG1heSBoYXZl
+IDAuN1YvMC42Vi8wLjU1ViksIGl0IGlzIGRpZmZpY3VsdCB0byBmaW5kDQphIHN1aXRhYmxlICJo
+czQwMC1kcy1kZWxheSIgdG8gY292ZXIgYWxsIG9mIElDIGNvcm5lcg0KY2FzZXMoU1NTUy9UVFRU
+L0ZGRkYpLg0KU28gdGhhdCBXZSBtdXN0IGhhdmUgdGhlIGFiaWxpdHkgdG8gZG8gaHM0MDAgb25s
+aW5lIHR1bmluZy4NCkl0IGlzIHNwZWNpZmljIGZvciB0aGUgTWVkaWF0ZWsgZU1NQyBjb250cm9s
+bGVyIHdoaWNoIHN1cHBvcnQgSFM0MDANCm1vZGUuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTog
+V2VuYmluIE1laSA8d2VuYmluLm1laUBtZWRpYXRlay5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IENo
+YW90aWFuIEppbmcgPGNoYW90aWFuLmppbmdAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICBk
+cml2ZXJzL21tYy9jb3JlL21tYy5jICAgIHwgICA4ICsrKw0KPiA+ICBkcml2ZXJzL21tYy9ob3N0
+L210ay1zZC5jIHwgMTE4DQo+ID4gKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+Ky0NCj4gPiAgaW5jbHVkZS9saW51eC9tbWMvaG9zdC5oICB8ICAgMyArDQo+IA0KPiBQbGVhc2Ug
+c3BsaXQgdGhpcyBwYXRjaCBpbnRvIGEgY29yZSBwYXRjaCBhbmQgYSBtdGstc2QgcGF0Y2guDQo+
+IA0KSSB3aWxsIGNoYW5nZSBpdCBpbiB0aGUgbmV4dCB2ZXJzaW9uLg0KPiA+ICAzIGZpbGVzIGNo
+YW5nZWQsIDEyNyBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL21tYy9jb3JlL21tYy5jIGIvZHJpdmVycy9tbWMvY29yZS9tbWMuYw0K
+PiA+IGluZGV4IDgzODcyNmI2OGZmMy4uMGFhNzJhY2Q4NjEyIDEwMDY0NA0KPiA+IC0tLSBhL2Ry
+aXZlcnMvbW1jL2NvcmUvbW1jLmMNCj4gPiArKysgYi9kcml2ZXJzL21tYy9jb3JlL21tYy5jDQo+
+ID4gQEAgLTEyMjIsNiArMTIyMiwxNCBAQCBzdGF0aWMgaW50IG1tY19zZWxlY3RfaHM0MDAoc3Ry
+dWN0IG1tY19jYXJkDQo+ID4gKmNhcmQpDQo+ID4gICAgICAgICBtbWNfc2V0X3RpbWluZyhob3N0
+LCBNTUNfVElNSU5HX01NQ19IUzQwMCk7DQo+ID4gICAgICAgICBtbWNfc2V0X2J1c19zcGVlZChj
+YXJkKTsNCj4gPiANCj4gPiArICAgICAgIGlmIChob3N0LT5vcHMtPmV4ZWN1dGVfaHM0MDBfdHVu
+aW5nKSB7DQo+ID4gKyAgICAgICAgICAgICAgIG1tY19yZXR1bmVfZGlzYWJsZShob3N0KTsNCj4g
+PiArICAgICAgICAgICAgICAgZXJyID0gaG9zdC0+b3BzLT5leGVjdXRlX2hzNDAwX3R1bmluZyho
+b3N0LCBjYXJkKTsNCj4gPiArICAgICAgICAgICAgICAgbW1jX3JldHVuZV9lbmFibGUoaG9zdCk7
+DQo+ID4gKyAgICAgICAgICAgICAgIGlmIChlcnIpDQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgZ290byBvdXRfZXJyOw0KPiA+ICsgICAgICAgfQ0KPiA+ICsNCj4gPiAgICAgICAgIGlmICho
+b3N0LT5vcHMtPmhzNDAwX2NvbXBsZXRlKQ0KPiA+ICAgICAgICAgICAgICAgICBob3N0LT5vcHMt
+PmhzNDAwX2NvbXBsZXRlKGhvc3QpOw0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21t
+Yy9ob3N0L210ay1zZC5jIGIvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYw0KPiA+IGluZGV4IDRk
+ZmMyNDZjNWY5NS4uNDg0ZjVjMzhiZmFmIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvbW1jL2hv
+c3QvbXRrLXNkLmMNCj4gPiArKysgYi9kcml2ZXJzL21tYy9ob3N0L210ay1zZC5jDQo+ID4gQEAg
+LTI1OCw2ICsyNTgsNyBAQA0KPiA+ICAjZGVmaW5lIE1TRENfUEFEX1RVTkVfUkRfU0VMICAgICAo
+MHgxIDw8IDEzKSAgIC8qIFJXICovDQo+ID4gICNkZWZpbmUgTVNEQ19QQURfVFVORV9DTURfU0VM
+ICAgICgweDEgPDwgMjEpICAgLyogUlcgKi8NCj4gPiANCj4gPiArI2RlZmluZSBQQURfRFNfVFVO
+RV9ETFlfU0VMICAgICAgICgweDEgPDwgMCkgICAvKiBSVyAqLw0KPiA+ICAjZGVmaW5lIFBBRF9E
+U19UVU5FX0RMWTEgICAgICAgICAoMHgxZiA8PCAyKSAgIC8qIFJXICovDQo+ID4gICNkZWZpbmUg
+UEFEX0RTX1RVTkVfRExZMiAgICAgICAgICgweDFmIDw8IDcpICAgLyogUlcgKi8NCj4gPiAgI2Rl
+ZmluZSBQQURfRFNfVFVORV9ETFkzICAgICAgICAgKDB4MWYgPDwgMTIpICAvKiBSVyAqLw0KPiA+
+IEBAIC0zMDEsNiArMzAyLDExIEBADQo+ID4gICNkZWZpbmUgUEFEX0NNRF9SRF9SWERMWV9TRUwg
+ICAgKDB4MSA8PCAxMSkgICAgIC8qIFJXICovDQo+ID4gICNkZWZpbmUgUEFEX0NNRF9UWF9ETFkg
+ICAgICAgICAgKDB4MWYgPDwgMTIpICAgIC8qIFJXICovDQo+ID4gDQo+ID4gKy8qIEVNTUM1MF9Q
+QURfRFNfVFVORSBtYXNrICovDQo+ID4gKyNkZWZpbmUgUEFEX0RTX0RMWV9TRUwgICAgICAgICAo
+MHgxIDw8IDE2KSAgICAgLyogUlcgKi8NCj4gPiArI2RlZmluZSBQQURfRFNfRExZMSAgICAgICAg
+ICAgICgweDFmIDw8IDEwKSAgICAvKiBSVyAqLw0KPiA+ICsjZGVmaW5lIFBBRF9EU19ETFkzICAg
+ICAgICAgICAgKDB4MWYgPDwgMCkgICAgIC8qIFJXICovDQo+ID4gKw0KPiA+ICAjZGVmaW5lIFJF
+UV9DTURfRUlPICAoMHgxIDw8IDApDQo+ID4gICNkZWZpbmUgUkVRX0NNRF9UTU8gICgweDEgPDwg
+MSkNCj4gPiAgI2RlZmluZSBSRVFfREFUX0VSUiAgKDB4MSA8PCAyKQ0KPiA+IEBAIC00NDgsMTEg
+KzQ1NCwxMyBAQCBzdHJ1Y3QgbXNkY19ob3N0IHsNCj4gPiAgICAgICAgIGJvb2wgdnFtbWNfZW5h
+YmxlZDsNCj4gPiAgICAgICAgIHUzMiBsYXRjaF9jazsNCj4gPiAgICAgICAgIHUzMiBoczQwMF9k
+c19kZWxheTsNCj4gPiArICAgICAgIHUzMiBoczQwMF9kc19kbHkzOw0KPiA+ICAgICAgICAgdTMy
+IGhzMjAwX2NtZF9pbnRfZGVsYXk7IC8qIGNtZCBpbnRlcm5hbCBkZWxheSBmb3INCj4gPiBIUzIw
+MC9TRFIxMDQgKi8NCj4gPiAgICAgICAgIHUzMiBoczQwMF9jbWRfaW50X2RlbGF5OyAvKiBjbWQg
+aW50ZXJuYWwgZGVsYXkgZm9yIEhTNDAwICovDQo+ID4gICAgICAgICBib29sIGhzNDAwX2NtZF9y
+ZXNwX3NlbF9yaXNpbmc7DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLyog
+Y21kIHJlc3BvbnNlIHNhbXBsZSBzZWxlY3Rpb24NCj4gPiBmb3IgSFM0MDAgKi8NCj4gPiAgICAg
+ICAgIGJvb2wgaHM0MDBfbW9kZTsgICAgICAgIC8qIGN1cnJlbnQgZU1NQyB3aWxsIHJ1biBhdCBo
+czQwMA0KPiA+IG1vZGUgKi8NCj4gPiArICAgICAgIGJvb2wgaHM0MDBfdHVuaW5nOyAgICAgIC8q
+IGhzNDAwIG1vZGUgb25saW5lIHR1bmluZyAqLw0KPiA+ICAgICAgICAgYm9vbCBpbnRlcm5hbF9j
+ZDsgICAgICAgLyogVXNlIGludGVybmFsIGNhcmQtZGV0ZWN0IGxvZ2ljDQo+ID4gKi8NCj4gPiAg
+ICAgICAgIGJvb2wgY3FoY2k7ICAgICAgICAgICAgIC8qIHN1cHBvcnQgZU1NQyBodyBjbWRxICov
+DQo+ID4gICAgICAgICBzdHJ1Y3QgbXNkY19zYXZlX3BhcmEgc2F2ZV9wYXJhOyAvKiB1c2VkIHdo
+ZW4gZ2F0ZSBIQ0xLICovDQo+ID4gQEAgLTExOTAsNyArMTE5OCw4IEBAIHN0YXRpYyBib29sIG1z
+ZGNfY21kX2RvbmUoc3RydWN0IG1zZGNfaG9zdA0KPiA+ICpob3N0LCBpbnQgZXZlbnRzLA0KPiA+
+ICAgICAgICAgaWYgKCFzYmNfZXJyb3IgJiYgIShldmVudHMgJiBNU0RDX0lOVF9DTURSRFkpKSB7
+DQo+ID4gICAgICAgICAgICAgICAgIGlmIChldmVudHMgJiBNU0RDX0lOVF9DTURUTU8gfHwNCj4g
+PiAgICAgICAgICAgICAgICAgICAgIChjbWQtPm9wY29kZSAhPSBNTUNfU0VORF9UVU5JTkdfQkxP
+Q0sgJiYNCj4gPiAtICAgICAgICAgICAgICAgICAgICBjbWQtPm9wY29kZSAhPSBNTUNfU0VORF9U
+VU5JTkdfQkxPQ0tfSFMyMDApKQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgIGNtZC0+b3Bjb2Rl
+ICE9IE1NQ19TRU5EX1RVTklOR19CTE9DS19IUzIwMCAmJg0KPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICFob3N0LT5oczQwMF90dW5pbmcpKQ0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIC8q
+DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICogc2hvdWxkIG5vdCBjbGVhciBmaWZvL2lu
+dGVycnVwdCBhcyB0aGUNCj4gPiB0dW5lIGRhdGENCj4gPiAgICAgICAgICAgICAgICAgICAgICAg
+ICAgKiBtYXkgaGF2ZSBhbHJlYXkgY29tZSB3aGVuIGNtZDE5L2NtZDIxDQo+ID4gZ2V0cyByZXNw
+b25zZQ0KPiA+IEBAIC0xMjg3LDcgKzEyOTYsOCBAQCBzdGF0aWMgdm9pZCBtc2RjX2NtZF9uZXh0
+KHN0cnVjdCBtc2RjX2hvc3QNCj4gPiAqaG9zdCwNCj4gPiAgICAgICAgIGlmICgoY21kLT5lcnJv
+ciAmJg0KPiA+ICAgICAgICAgICAgICEoY21kLT5lcnJvciA9PSAtRUlMU0VRICYmDQo+ID4gICAg
+ICAgICAgICAgICAoY21kLT5vcGNvZGUgPT0gTU1DX1NFTkRfVFVOSU5HX0JMT0NLIHx8DQo+ID4g
+LSAgICAgICAgICAgICAgY21kLT5vcGNvZGUgPT0gTU1DX1NFTkRfVFVOSU5HX0JMT0NLX0hTMjAw
+KSkpIHx8DQo+ID4gKyAgICAgICAgICAgICAgY21kLT5vcGNvZGUgPT0gTU1DX1NFTkRfVFVOSU5H
+X0JMT0NLX0hTMjAwIHx8DQo+ID4gKyAgICAgICAgICAgICAgaG9zdC0+aHM0MDBfdHVuaW5nKSkp
+IHx8DQo+ID4gICAgICAgICAgICAgKG1ycS0+c2JjICYmIG1ycS0+c2JjLT5lcnJvcikpDQo+ID4g
+ICAgICAgICAgICAgICAgIG1zZGNfcmVxdWVzdF9kb25lKGhvc3QsIG1ycSk7DQo+ID4gICAgICAg
+ICBlbHNlIGlmIChjbWQgPT0gbXJxLT5zYmMpDQo+ID4gQEAgLTIyNTEsNiArMjI2MSwxMDYgQEAg
+c3RhdGljIGludCBtc2RjX3ByZXBhcmVfaHM0MDBfdHVuaW5nKHN0cnVjdA0KPiA+IG1tY19ob3N0
+ICptbWMsIHN0cnVjdCBtbWNfaW9zICppb3MpDQo+ID4gICAgICAgICByZXR1cm4gMDsNCj4gPiAg
+fQ0KPiA+IA0KPiA+ICtzdGF0aWMgaW50IG1zZGNfc2VuZF9jeGRfZGF0YShzdHJ1Y3QgbW1jX2Nh
+cmQgKmNhcmQsIHN0cnVjdA0KPiA+IG1tY19ob3N0ICpob3N0KQ0KPiA+ICt7DQo+ID4gKyAgICAg
+ICBzdHJ1Y3QgbW1jX3JlcXVlc3QgbXJxID0ge307DQo+ID4gKyAgICAgICBzdHJ1Y3QgbW1jX2Nv
+bW1hbmQgY21kID0ge307DQo+ID4gKyAgICAgICBzdHJ1Y3QgbW1jX2RhdGEgZGF0YSA9IHt9Ow0K
+PiA+ICsgICAgICAgdW5zaWduZWQgaW50IGxlbiA9IDUxMjsNCj4gPiArICAgICAgIHN0cnVjdCBz
+Y2F0dGVybGlzdCBzZzsNCj4gPiArICAgICAgIHU4ICpleHRfY3NkOw0KPiA+ICsNCj4gPiArICAg
+ICAgIGV4dF9jc2QgPSBremFsbG9jKGxlbiwgR0ZQX0tFUk5FTCk7DQo+ID4gKyAgICAgICBpZiAo
+IWV4dF9jc2QpDQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiAtRU5PTUVNOw0KPiA+ICsNCj4g
+PiArICAgICAgIG1ycS5jbWQgPSAmY21kOw0KPiA+ICsgICAgICAgbXJxLmRhdGEgPSAmZGF0YTsN
+Cj4gPiArDQo+ID4gKyAgICAgICBjbWQub3Bjb2RlID0gTU1DX1NFTkRfRVhUX0NTRDsNCj4gPiAr
+ICAgICAgIGNtZC5hcmcgPSAwOw0KPiA+ICsgICAgICAgY21kLmZsYWdzID0gTU1DX1JTUF9TUElf
+UjEgfCBNTUNfUlNQX1IxIHwgTU1DX0NNRF9BRFRDOw0KPiA+ICsNCj4gPiArICAgICAgIGRhdGEu
+Ymxrc3ogPSBsZW47DQo+ID4gKyAgICAgICBkYXRhLmJsb2NrcyA9IDE7DQo+ID4gKyAgICAgICBk
+YXRhLmZsYWdzID0gTU1DX0RBVEFfUkVBRDsNCj4gPiArICAgICAgIGRhdGEuc2cgPSAmc2c7DQo+
+ID4gKyAgICAgICBkYXRhLnNnX2xlbiA9IDE7DQo+ID4gKw0KPiA+ICsgICAgICAgc2dfaW5pdF9v
+bmUoJnNnLCBleHRfY3NkLCBsZW4pOw0KPiA+ICsgICAgICAgbW1jX3NldF9kYXRhX3RpbWVvdXQo
+JmRhdGEsIGNhcmQpOw0KPiA+ICsgICAgICAgbW1jX3dhaXRfZm9yX3JlcShob3N0LCAmbXJxKTsN
+Cj4gPiArDQo+ID4gKyAgICAgICBrZnJlZShleHRfY3NkKTsNCj4gPiArDQo+ID4gKyAgICAgICBp
+ZiAoY21kLmVycm9yKQ0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gY21kLmVycm9yOw0KPiA+
+ICsgICAgICAgaWYgKGRhdGEuZXJyb3IpDQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiBkYXRh
+LmVycm9yOw0KPiA+ICsNCj4gPiArICAgICAgIHJldHVybiAwOw0KPiANCj4gV2h5IGRvIHdlIG5l
+ZWQgdG8gc2VuZCBhIE1NQ19TRU5EX0VYVF9DU0QgY29tbWFuZCwgZXhhY3RseT8NCj4gDQo+IFdo
+eSBjYW4ndCBtbWNfc2VuZF90dW5pbmcoKSB3b3JrIGhlcmUgdG9vPyBXaGF0IGRvZXMgdGhlIGVN
+TUMgc3BlYw0KPiBzdGF0ZSBhYm91dCB0aGlzPw0KPiANClRoZSBDTUQyMSBpcyBpbGxlZ2FsIHVu
+ZGVyIGhzNDAwIG1vZGUgc28gdGhhdCBjYW5ub3QgdXNlIHRoZQ0KbW1jX3NlbmRfdHVuaW5nKCku
+IFRoZSBDTUQ4IGlzIHN1aXRhYmxlIGJlY2F1c2UgaXQgd2lsbCByZWNlaXZlIDEgYmxvY2sNCm9m
+IG5vbi16ZXJvIGRhdGEuDQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgbXNkY19leGVj
+dXRlX2hzNDAwX3R1bmluZyhzdHJ1Y3QgbW1jX2hvc3QgKm1tYywgc3RydWN0DQo+ID4gbW1jX2Nh
+cmQgKmNhcmQpDQo+ID4gK3sNCj4gPiArICAgICAgIHN0cnVjdCBtc2RjX2hvc3QgKmhvc3QgPSBt
+bWNfcHJpdihtbWMpOw0KPiA+ICsgICAgICAgc3RydWN0IG1zZGNfZGVsYXlfcGhhc2UgZGx5MV9k
+ZWxheTsNCj4gPiArICAgICAgIHUzMiB2YWwsIHJlc3VsdF9kbHkxID0gMDsNCj4gPiArICAgICAg
+IGludCBpLCByZXQ7DQo+ID4gKw0KPiA+ICsgICAgICAgaWYgKGhvc3QtPnRvcF9iYXNlKSB7DQo+
+ID4gKyAgICAgICAgICAgICAgIHNkcl9zZXRfYml0cyhob3N0LT50b3BfYmFzZSArIEVNTUM1MF9Q
+QURfRFNfVFVORSwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgIFBBRF9EU19ETFlf
+U0VMKTsNCj4gPiArICAgICAgICAgICAgICAgaWYgKGhvc3QtPmhzNDAwX2RzX2RseTMpDQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgc2RyX3NldF9maWVsZChob3N0LT50b3BfYmFzZSArDQo+
+ID4gRU1NQzUwX1BBRF9EU19UVU5FLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgUEFEX0RTX0RMWTMsIGhvc3QtDQo+ID4gPmhzNDAwX2RzX2RseTMpOw0KPiA+ICsg
+ICAgICAgfSBlbHNlIHsNCj4gPiArICAgICAgICAgICAgICAgc2RyX3NldF9iaXRzKGhvc3QtPmJh
+c2UgKyBQQURfRFNfVFVORSwNCj4gPiBQQURfRFNfVFVORV9ETFlfU0VMKTsNCj4gPiArICAgICAg
+ICAgICAgICAgaWYgKGhvc3QtPmhzNDAwX2RzX2RseTMpDQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgc2RyX3NldF9maWVsZChob3N0LT5iYXNlICsgUEFEX0RTX1RVTkUsDQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBQQURfRFNfVFVORV9ETFkzLCBob3N0LQ0K
+PiA+ID5oczQwMF9kc19kbHkzKTsNCj4gPiArICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICBo
+b3N0LT5oczQwMF90dW5pbmcgPSB0cnVlOw0KPiA+ICsgICAgICAgZm9yIChpID0gMDsgaSA8IFBB
+RF9ERUxBWV9NQVg7IGkrKykgew0KPiA+ICsgICAgICAgICAgICAgICBpZiAoaG9zdC0+dG9wX2Jh
+c2UpDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgc2RyX3NldF9maWVsZChob3N0LT50b3Bf
+YmFzZSArDQo+ID4gRU1NQzUwX1BBRF9EU19UVU5FLA0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgUEFEX0RTX0RMWTEsIGkpOw0KPiA+ICsgICAgICAgICAgICAgICBl
+bHNlDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgc2RyX3NldF9maWVsZChob3N0LT5iYXNl
+ICsgUEFEX0RTX1RVTkUsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBQQURfRFNfVFVORV9ETFkxLCBpKTsNCj4gPiArICAgICAgICAgICAgICAgcmV0ID0gbXNkY19z
+ZW5kX2N4ZF9kYXRhKGNhcmQsIG1tYyk7DQo+ID4gKyAgICAgICAgICAgICAgIGlmICghcmV0KQ0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHJlc3VsdF9kbHkxIHw9ICgxIDw8IGkpOw0KPiA+
+ICsgICAgICAgfQ0KPiA+ICsgICAgICAgaG9zdC0+aHM0MDBfdHVuaW5nID0gZmFsc2U7DQo+ID4g
+Kw0KPiA+ICsgICAgICAgZGx5MV9kZWxheSA9IGdldF9iZXN0X2RlbGF5KGhvc3QsIHJlc3VsdF9k
+bHkxKTsNCj4gPiArICAgICAgIGlmIChkbHkxX2RlbGF5Lm1heGxlbiA9PSAwKSB7DQo+ID4gKyAg
+ICAgICAgICAgICAgIGRldl9lcnIoaG9zdC0+ZGV2LCAiRmFpbGVkIHRvIGdldCBETFkxIGRlbGF5
+IVxuIik7DQo+ID4gKyAgICAgICAgICAgICAgIGdvdG8gZmFpbDsNCj4gPiArICAgICAgIH0NCj4g
+PiArICAgICAgIGlmIChob3N0LT50b3BfYmFzZSkNCj4gPiArICAgICAgICAgICAgICAgc2RyX3Nl
+dF9maWVsZChob3N0LT50b3BfYmFzZSArIEVNTUM1MF9QQURfRFNfVFVORSwNCj4gPiArICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBQQURfRFNfRExZMSwgZGx5MV9kZWxheS5maW5hbF9waGFz
+ZSk7DQo+ID4gKyAgICAgICBlbHNlDQo+ID4gKyAgICAgICAgICAgICAgIHNkcl9zZXRfZmllbGQo
+aG9zdC0+YmFzZSArIFBBRF9EU19UVU5FLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIFBBRF9EU19UVU5FX0RMWTEsDQo+ID4gZGx5MV9kZWxheS5maW5hbF9waGFzZSk7DQo+ID4g
+Kw0KPiA+ICsgICAgICAgaWYgKGhvc3QtPnRvcF9iYXNlKQ0KPiA+ICsgICAgICAgICAgICAgICB2
+YWwgPSByZWFkbChob3N0LT50b3BfYmFzZSArIEVNTUM1MF9QQURfRFNfVFVORSk7DQo+ID4gKyAg
+ICAgICBlbHNlDQo+ID4gKyAgICAgICAgICAgICAgIHZhbCA9IHJlYWRsKGhvc3QtPmJhc2UgKyBQ
+QURfRFNfVFVORSk7DQo+ID4gKw0KPiA+ICsgICAgICAgZGV2X2luZm8oaG9zdC0+ZGV2LCAiRmlh
+bmwgUEFEX0RTX1RVTkU6IDB4JXhcbiIsIHZhbCk7DQo+ID4gKw0KPiA+ICsgICAgICAgcmV0dXJu
+IDA7DQo+ID4gKw0KPiA+ICtmYWlsOg0KPiA+ICsgICAgICAgZGV2X2Vycihob3N0LT5kZXYsICJG
+YWlsZWQgdG8gdHVuaW5nIERTIHBpbiBkZWxheSFcbiIpOw0KPiA+ICsgICAgICAgcmV0dXJuIC1F
+SU87DQo+ID4gK30NCj4gDQo+IFsuLi5dDQo+IA0KPiBLaW5kIHJlZ2FyZHMNCj4gVWZmZQ0K
 
-Because you are changing an existing, used code path, it would make it
-much clearer what the change is. This helps if the change accidentally
-introduced some bug, and someone later bisected the issue down to this
-specific patch. It would make more sense to that person if they saw
-"introduce support for RSEL" instead of "introduce RSEL for MT8195".
-
-The latter could be understood as support for the RSEL feature already
-existed, and thus might seem confusing; whereas if you separate out
-the core changes it would be clear that you are adding support for a
-new feature, and the platform changes come later.
-
-> Thanks.
->
-> > >
-> > > > >
-> > > > > diff --git a/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-> > > > > b/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-> > > > > index 892e79703f98..275b7ba4386d 100644
-> > > > > --- a/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-> > > > > +++ b/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-> > > > > @@ -779,6 +779,135 @@ static const struct mtk_pin_field_calc
-> > > > > mt8195_pin_drv_adv_range[] = {
-> > > > >         PIN_FIELD_BASE(45, 45, 1, 0x040, 0x10, 9, 3),
-> > > > >  };
-> > > > >
-> > > > > +static const struct mtk_pin_field_calc mt8195_pin_rsel_range[]
-> > > > > = {
-> > > > > +       PIN_FIELD_BASE(8, 8, 4, 0x0c0, 0x10, 15, 3),
-> > > > > +       PIN_FIELD_BASE(9, 9, 4, 0x0c0, 0x10, 0, 3),
-> > > > > +       PIN_FIELD_BASE(10, 10, 4, 0x0c0, 0x10, 18, 3),
-> > > > > +       PIN_FIELD_BASE(11, 11, 4, 0x0c0, 0x10, 3, 3),
-> > > > > +       PIN_FIELD_BASE(12, 12, 4, 0x0c0, 0x10, 21, 3),
-> > > > > +       PIN_FIELD_BASE(13, 13, 4, 0x0c0, 0x10, 6, 3),
-> > > > > +       PIN_FIELD_BASE(14, 14, 4, 0x0c0, 0x10, 24, 3),
-> > > > > +       PIN_FIELD_BASE(15, 15, 4, 0x0c0, 0x10, 9, 3),
-> > > > > +       PIN_FIELD_BASE(16, 16, 4, 0x0c0, 0x10, 27, 3),
-> > > > > +       PIN_FIELD_BASE(17, 17, 4, 0x0c0, 0x10, 12, 3),
-> > > > > +       PIN_FIELD_BASE(29, 29, 2, 0x080, 0x10, 0, 3),
-> > > > > +       PIN_FIELD_BASE(30, 30, 2, 0x080, 0x10, 3, 3),
-> > > > > +       PIN_FIELD_BASE(34, 34, 1, 0x0e0, 0x10, 0, 3),
-> > > > > +       PIN_FIELD_BASE(35, 35, 1, 0x0e0, 0x10, 3, 3),
-> > > > > +       PIN_FIELD_BASE(44, 44, 1, 0x0e0, 0x10, 6, 3),
-> > > > > +       PIN_FIELD_BASE(45, 45, 1, 0x0e0, 0x10, 9, 3),
-> > > > > +};
-> > > > > +
-> > > > > +static const struct mtk_pin_rsel mt8195_pin_rsel_val_range[] =
-> > > > > {
-> > > > > +       PIN_RSEL(8, 17, 0x0, 75000, 75000),
-> > > > > +       PIN_RSEL(8, 17, 0x1, 10000, 5000),
-> > > > > +       PIN_RSEL(8, 17, 0x2, 5000, 75000),
-> > > > > +       PIN_RSEL(8, 17, 0x3, 4000, 5000),
-> > > > > +       PIN_RSEL(8, 17, 0x4, 3000, 75000),
-> > > > > +       PIN_RSEL(8, 17, 0x5, 2000, 5000),
-> > > > > +       PIN_RSEL(8, 17, 0x6, 1500, 75000),
-> > > > > +       PIN_RSEL(8, 17, 0x7, 1000, 5000),
-> > > > > +       PIN_RSEL(29, 30, 0x0, 75000, 75000),
-> > > > > +       PIN_RSEL(29, 30, 0x1, 10000, 5000),
-> > > > > +       PIN_RSEL(29, 30, 0x2, 5000, 75000),
-> > > > > +       PIN_RSEL(29, 30, 0x3, 4000, 5000),
-> > > > > +       PIN_RSEL(29, 30, 0x4, 3000, 75000),
-> > > > > +       PIN_RSEL(29, 30, 0x5, 2000, 5000),
-> > > > > +       PIN_RSEL(29, 30, 0x6, 1500, 75000),
-> > > > > +       PIN_RSEL(29, 30, 0x7, 1000, 5000),
-> > > > > +       PIN_RSEL(34, 35, 0x0, 75000, 75000),
-> > > > > +       PIN_RSEL(34, 35, 0x1, 10000, 5000),
-> > > > > +       PIN_RSEL(34, 35, 0x2, 5000, 75000),
-> > > > > +       PIN_RSEL(34, 35, 0x3, 4000, 5000),
-> > > > > +       PIN_RSEL(34, 35, 0x4, 3000, 75000),
-> > > > > +       PIN_RSEL(34, 35, 0x5, 2000, 5000),
-> > > > > +       PIN_RSEL(34, 35, 0x6, 1500, 75000),
-> > > > > +       PIN_RSEL(34, 35, 0x7, 1000, 5000),
-> > > > > +       PIN_RSEL(44, 45, 0x0, 75000, 75000),
-> > > > > +       PIN_RSEL(44, 45, 0x1, 10000, 5000),
-> > > > > +       PIN_RSEL(44, 45, 0x2, 5000, 75000),
-> > > > > +       PIN_RSEL(44, 45, 0x3, 4000, 5000),
-> > > > > +       PIN_RSEL(44, 45, 0x4, 3000, 75000),
-> > > > > +       PIN_RSEL(44, 45, 0x5, 2000, 5000),
-> > > > > +       PIN_RSEL(44, 45, 0x6, 1500, 75000),
-> > > > > +       PIN_RSEL(44, 45, 0x7, 1000, 5000),
-> > > > > +};
-> > > > > +
-> > > > > +static const unsigned int mt8195_pull_type[] = {
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 0 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE /*
-> > > > > 1 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 2 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE /*
-> > > > > 3 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 4 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE /*
-> > > > > 5 */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 6 */, MTK_PULL_PU_PD_TYPE /* 7
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_RSEL_TYPE /* 8 */,
-> > > > > MTK_PULL_PU_PD_RSEL_TYPE
-> > > > > /* 9 */,
-> > > > > +       MTK_PULL_PU_PD_RSEL_TYPE /* 10 */,
-> > > > > MTK_PULL_PU_PD_RSEL_TYPE
-> > > > > /* 11 */,
-> > > > > +       MTK_PULL_PU_PD_RSEL_TYPE /* 12 */,
-> > > > > MTK_PULL_PU_PD_RSEL_TYPE
-> > > > > /* 13 */,
-> > > > > +       MTK_PULL_PU_PD_RSEL_TYPE /* 14 */,
-> > > > > MTK_PULL_PU_PD_RSEL_TYPE
-> > > > > /* 15 */,
-> > > > > +       MTK_PULL_PU_PD_RSEL_TYPE /* 16 */,
-> > > > > MTK_PULL_PU_PD_RSEL_TYPE
-> > > > > /* 17 */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 18 */, MTK_PULL_PU_PD_TYPE /* 19
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 20 */, MTK_PULL_PU_PD_TYPE /* 21
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 22 */, MTK_PULL_PU_PD_TYPE /* 23
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 24 */, MTK_PULL_PU_PD_TYPE /* 25
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 26 */, MTK_PULL_PU_PD_TYPE /* 27
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 28 */, MTK_PULL_PU_PD_RSEL_TYPE
-> > > > > /*
-> > > > > 29 */,
-> > > > > +       MTK_PULL_PU_PD_RSEL_TYPE /* 30 */, MTK_PULL_PU_PD_TYPE
-> > > > > /*
-> > > > > 31 */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 32 */, MTK_PULL_PU_PD_TYPE /* 33
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_RSEL_TYPE /* 34 */,
-> > > > > MTK_PULL_PU_PD_RSEL_TYPE
-> > > > > /* 35 */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 36 */, MTK_PULL_PU_PD_TYPE /* 37
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 38 */, MTK_PULL_PU_PD_TYPE /* 39
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 40 */, MTK_PULL_PU_PD_TYPE /* 41
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 42 */, MTK_PULL_PU_PD_TYPE /* 43
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_RSEL_TYPE /* 44 */,
-> > > > > MTK_PULL_PU_PD_RSEL_TYPE
-> > > > > /* 45 */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 46 */, MTK_PULL_PU_PD_TYPE /* 47
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 48 */, MTK_PULL_PU_PD_TYPE /* 49
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 50 */, MTK_PULL_PU_PD_TYPE /* 51
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 52 */, MTK_PULL_PU_PD_TYPE /* 53
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 54 */, MTK_PULL_PU_PD_TYPE /* 55
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 56 */, MTK_PULL_PU_PD_TYPE /* 57
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 58 */, MTK_PULL_PU_PD_TYPE /* 59
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 60 */, MTK_PULL_PU_PD_TYPE /* 61
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 62 */, MTK_PULL_PU_PD_TYPE /* 63
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 64 */, MTK_PULL_PU_PD_TYPE /* 65
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 66 */, MTK_PULL_PU_PD_TYPE /* 67
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 68 */, MTK_PULL_PU_PD_TYPE /* 69
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 70 */, MTK_PULL_PU_PD_TYPE /* 71
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 72 */, MTK_PULL_PU_PD_TYPE /* 73
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 74 */, MTK_PULL_PU_PD_TYPE /* 75
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 76 */, MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 77
-> > > > > */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 78 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 79 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 80 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 81 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 82 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 83 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 84 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 85 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 86 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 87 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 88 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 89 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 90 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 91 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 92 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 93 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 94 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 95 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 96 */, MTK_PULL_PU_PD_TYPE
-> > > > > /* 97
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 98 */, MTK_PULL_PU_PD_TYPE /* 99
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 100 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 101
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 102 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 103
-> > > > > */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 104 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 105 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 106 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 107 */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 108 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 109
-> > > > > */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 110 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 111 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 112 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 113 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 114 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 115 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 116 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 117 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 118 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 119 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 120 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 121 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 122 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 123 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 124 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 125 */,
-> > > > > +       MTK_PULL_PUPD_R1R0_TYPE /* 126 */,
-> > > > > MTK_PULL_PUPD_R1R0_TYPE
-> > > > > /* 127 */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 128 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 129
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 130 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 131
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 132 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 133
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 134 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 135
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 136 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 137
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 138 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 139
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 140 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 141
-> > > > > */,
-> > > > > +       MTK_PULL_PU_PD_TYPE /* 142 */, MTK_PULL_PU_PD_TYPE /*
-> > > > > 143
-> > > > > */,
-> > > > > +};
-> > > > > +
-> > > > >  static const struct mtk_pin_reg_calc
-> > > > > mt8195_reg_cals[PINCTRL_PIN_REG_MAX] = {
-> > > > >         [PINCTRL_PIN_REG_MODE] =
-> > > > > MTK_RANGE(mt8195_pin_mode_range),
-> > > > >         [PINCTRL_PIN_REG_DIR] =
-> > > > > MTK_RANGE(mt8195_pin_dir_range),
-> > > > > @@ -793,6 +922,7 @@ static const struct mtk_pin_reg_calc
-> > > > > mt8195_reg_cals[PINCTRL_PIN_REG_MAX] = {
-> > > > >         [PINCTRL_PIN_REG_R0] = MTK_RANGE(mt8195_pin_r0_range),
-> > > > >         [PINCTRL_PIN_REG_R1] = MTK_RANGE(mt8195_pin_r1_range),
-> > > > >         [PINCTRL_PIN_REG_DRV_ADV] =
-> > > > > MTK_RANGE(mt8195_pin_drv_adv_range),
-> > > > > +       [PINCTRL_PIN_REG_RSEL] =
-> > > > > MTK_RANGE(mt8195_pin_rsel_range),
-> > > > >  };
-> > > > >
-> > > > >  static const char * const mt8195_pinctrl_register_base_names[]
-> > > > > = {
-> > > > > @@ -817,6 +947,9 @@ static const struct mtk_pin_soc mt8195_data
-> > > > > = {
-> > > > >         .gpio_m = 0,
-> > > > >         .base_names = mt8195_pinctrl_register_base_names,
-> > > > >         .nbase_names =
-> > > > > ARRAY_SIZE(mt8195_pinctrl_register_base_names),
-> > > > > +       .pull_type = mt8195_pull_type,
-> > > > > +       .pin_rsel = mt8195_pin_rsel_val_range,
-> > > > > +       .npin_rsel = ARRAY_SIZE(mt8195_pin_rsel_val_range),
-> > > > >         .bias_set_combo = mtk_pinconf_bias_set_combo,
-> > > > >         .bias_get_combo = mtk_pinconf_bias_get_combo,
-> > > > >         .drive_set = mtk_pinconf_drive_set_rev1,
-> > > > > diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> > > > > b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> > > > > index 5b3b048725cc..b6a89d41f040 100644
-> > > > > --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> > > > > +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> > > > > @@ -641,6 +641,9 @@ static int
-> > > > > mtk_pinconf_bias_set_pupd_r1_r0(struct mtk_pinctrl *hw,
-> > > > >         } else if (arg == MTK_PUPD_SET_R1R0_11) {
-> > > > >                 r0 = 1;
-> > > > >                 r1 = 1;
-> > > > > +       } else if (arg == MTK_ENABLE) {
-> > > > > +               r0 = 1;
-> > > > > +               r1 = 0;
-> > > >
-> > > > This change does not seem related. This should be in a separate
-> > > > patch
-> > > > and why and what this change is should be described in the commit
-> > > > log.
-> > > > I assume this is to support "bias-pull-up" or "bias-pull-down"
-> > > > without
-> > > > arguments on pins using R1R0?
-> > >
-> > > we will separate it in next version.
-> > > some users want only pull up/down, they don't care about the
-> > > resistance
-> > > value. So we support the case which only use "bias-pull-up" or
-> > > "bias-
-> > > pull-down" without arguments on pins using R1R0.
-> >
-> > I see. This should be added as a separate patch before the RSEL stuff
-> > then. That way it would also be easier to backport in case it is
-> > needed.
-> >
-> > > >
-> > > > >         } else {
-> > > > >                 err = -EINVAL;
-> > > > >                 goto out;
-> > > > > @@ -661,6 +664,75 @@ static int
-> > > > > mtk_pinconf_bias_set_pupd_r1_r0(struct mtk_pinctrl *hw,
-> > > > >         return err;
-> > > > >  }
-> > > > >
-> > > > > +static int mtk_hw_pin_rsel_lookup(struct mtk_pinctrl *hw,
-> > > > > +                                 const struct mtk_pin_desc
-> > > > > *desc,
-> > > > > +                                 u32 pullup, u32 arg, u32
-> > > > > *rsel_val)
-> > > > > +{
-> > > > > +       const struct mtk_pin_rsel *rsel;
-> > > > > +       int check;
-> > > > > +       bool found = false;
-> > > > > +
-> > > > > +       rsel = hw->soc->pin_rsel;
-> > > > > +
-> > > > > +       for (check = 0; check <= hw->soc->npin_rsel - 1;
-> > > > > check++) {
-> > > > > +               if (desc->number >= rsel[check].s_pin &&
-> > > > > +                   desc->number <= rsel[check].e_pin) {
-> > > > > +                       if (pullup) {
-> > > > > +                               if (rsel[check].up_rsel == arg)
-> > > > > {
-> > > > > +                                       found = true;
-> > > > > +                                       *rsel_val =
-> > > > > rsel[check].rsel_index;
-> > > > > +                                       break;
-> > > > > +                               }
-> > > > > +                       } else {
-> > > > > +                               if (rsel[check].down_rsel ==
-> > > > > arg) {
-> > > > > +                                       found = true;
-> > > > > +                                       *rsel_val =
-> > > > > rsel[check].rsel_index;
-> > > > > +                                       break;
-> > > > > +                               }
-> > > > > +                       }
-> > > > > +               }
-> > > > > +       }
-> > > > > +
-> > > > > +       if (!found) {
-> > > > > +               dev_err(hw->dev, "Not support rsel value %d Ohm
-> > > > > for
-> > > > > pin = %d (%s)\n",
-> > > > > +                       arg, desc->number, desc->name);
-> > > > > +               return -EOPNOTSUPP;
-> > > >
-> > > > I believe ENOTSUPP is the correct one. EOPNOTSUPP seems to be
-> > > > network
-> > > > related.
-> > > >
-> > >
-> > > if we change it as "ENOTSUPP", it will report warning"ENOTSUPP is
-> > > not
-> > > SUSV4 error code, prefer EOPNOTSUP" when checking patch.
-> >
-> > The context surrounding this warning seems to be that ENOTSUPP is
-> > hard
-> > for userspace to understand. AFAIK the return code here does not get
-> > passed to userspace? And the pinctrl core does check for EINVAL or
-> > ENOTSUPP, so I think this is a valid use case.
-> >
-> > Linus?
-> >
->
-> Hi Linus,
->
-> Do you have some suggestion for the warning issue?
->
-> Thanks
->
-> > > > I also think it would make sense to differentiate between the pin
-> > > > not
-> > > > supporting RSEL (return -ENOTSUPP) vs supporting RSEL but a
-> > > > resistor
-> > > > value not in the table was requested (return -EINVAL). This might
-> > > > be
-> > > > easier to do with the two-table design I mentioned.
-> > >
-> > > It only support resistor value on the patch on mt8195. we think we
-> > > need
-> > > only maintain one-table design.
-> >
-> > OK. I think there's a possibility that some corner case might happen.
-> > I guess we'll deal with them if they occur.
-> >
-> > > >
-> > > > > +       }
-> > > > > +
-> > > > > +       return 0;
-> > > > > +}
-> > > > > +
-> > > > > +static int mtk_pinconf_bias_set_rsel(struct mtk_pinctrl *hw,
-> > > > > +                                    const struct mtk_pin_desc
-> > > > > *desc,
-> > > > > +                                    u32 pullup, u32 arg)
-> > > > > +{
-> > > > > +       int err, rsel_val;
-> > > > > +
-> > > > > +       if (hw->soc->pin_rsel) {
-> > > > > +               /* find pin rsel_index from pin_rsel array*/
-> > > > > +               err = mtk_hw_pin_rsel_lookup(hw, desc, pullup,
-> > > > > arg,
-> > > > > &rsel_val);
-> > > > > +               if (err)
-> > > > > +                       goto out;
-> > > > > +       } else {
-> > > > > +               if (arg < MTK_PULL_SET_RSEL_000 ||
-> > > > > +                   arg > MTK_PULL_SET_RSEL_111) {
-> > > > > +                       err = -EINVAL;
-> > > > > +                       goto out;
-> > > > > +               }
-> > > > > +
-> > > > > +               rsel_val -= MTK_PULL_SET_RSEL_000;
-> > > > > +       }
-> > > >
-> > > > This is not structured correctly. Think about this: on a chip,
-> > > > say
-> > > > MT8195,
-> > > > which has hw->soc->pin_rsel defined, but the device tree writer
-> > > > chose
-> > > > to use the macros instead of SI unit values. This is exactly the
-> > > > scenario
-> > > > you discussed privately with me.
-> > > >
-> > > > This also fails the case where bias-pull-{up,down} is specified
-> > > > without
-> > > > an argument, in which case arg == 1. This does seem to be covered
-> > > > by
-> > > > falling back to just PU/PD, but it's not exactly obvious,
-> > > > especially
-> > > > since we are skipping mtk_pinconf_bias_set_pu_pd() just below.
-> > > >
-> > > > So you actually need to check for the magic values first, and if
-> > > > arg
-> > > > doesn't match any of them, assume an SI unit argument and try to
-> > > > do
-> > > > a lookup.
-> > > >
-> > >
-> > > one very important point of upstream is keeping backward
-> > > compatibility,
-> > > since almost all customers of other MTK platforms does not care
-> > > about
-> > > resistor values so we leave user to choose MTK_PULL_SET_RSEL_XXX
-> > > without necessity to know resistor value.
-> >
-> > I'm not sure about the connection to backward compatibility here,
-> > given
-> > that you are just introducing support for RSEL.
-> >
-> > > Our policy is making most customers/users convenient.
-> > > Encourage of using SI unit is not in concern.
-> > >
-> > > For mt8195, we choose "hw->soc->pin_rsel", so it can support SI
-> > > unit.
-> >
-> > Regarding my concern, there are a lot of moving pieces here, so let's
-> > see
-> > how the next revision turns out and if this is still an issue.
-> >
-> > > > > +
-> > > > > +       err = mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_RSEL,
-> > > > > rsel_val);
-> > > > > +       if (err)
-> > > > > +               goto out;
-> > > > > +
-> > > > > +       err = mtk_pinconf_bias_set_pu_pd(hw, desc, pullup,
-> > > > > MTK_ENABLE);
-> > > > > +
-> > > > > +out:
-> > > > > +       return err;
-> > > > > +}
-> > > > > +
-> > > > >  static int mtk_pinconf_bias_get_pu_pd(struct mtk_pinctrl *hw,
-> > > > >                                 const struct mtk_pin_desc
-> > > > > *desc,
-> > > > >                                 u32 *pullup, u32 *enable)
-> > > > > @@ -742,44 +814,117 @@ static int
-> > > > > mtk_pinconf_bias_get_pupd_r1_r0(struct mtk_pinctrl *hw,
-> > > >
-> > > > This hunk is somewhat whacky. I assume it's because you also
-> > > > fixed up
-> > > > the indentation for mtk_pinconf_bias_set_combo(). While nice to
-> > > > do,
-> > > > in this case it actually works against having an easy to read
-> > > > patch.
-> > > >
-> > >
-> > > yes, it's because to fix up
-> > > the indentation for mtk_pinconf_bias_set_combo().
-> >
-> > I suggest moving that to a separate patch. While whitespace changes
-> > are
-> > sometimes frowned upon, I think this is OK given that it would
-> > improve
-> > readability of the patches following it. You should mention that in
-> > the
-> > commit message to justify the change.
-> >
-> > > > >         return err;
-> > > > >  }
-> > > > >
-> > > > > -int mtk_pinconf_bias_set_combo(struct mtk_pinctrl *hw,
-> > > > > -                               const struct mtk_pin_desc
-> > > > > *desc,
-> > > > > -                               u32 pullup, u32 arg)
-> > > > > +static int mtk_pinconf_bias_get_rsel(struct mtk_pinctrl *hw,
-> > > > > +                                    const struct mtk_pin_desc
-> > > > > *desc,
-> > > > > +                                    u32 *pullup, u32 *enable)
-> > > > >  {
-> > > > > -       int err;
-> > > > > +       int pu, pd, rsel, err;
-> > > > >
-> > > > > -       err = mtk_pinconf_bias_set_pu_pd(hw, desc, pullup,
-> > > > > arg);
-> > > > > -       if (!err)
-> > > > > +       err = mtk_hw_get_value(hw, desc, PINCTRL_PIN_REG_RSEL,
-> > > > > &rsel);
-> > > > > +       if (err)
-> > > > >                 goto out;
-> > > > >
-> > > > > -       err = mtk_pinconf_bias_set_pullsel_pullen(hw, desc,
-> > > > > pullup,
-> > > > > arg);
-> > > > > -       if (!err)
-> > > > > +       err = mtk_hw_get_value(hw, desc, PINCTRL_PIN_REG_PU,
-> > > > > &pu);
-> > > > > +       if (err)
-> > > > >                 goto out;
-> > > > >
-> > > > > -       err = mtk_pinconf_bias_set_pupd_r1_r0(hw, desc, pullup,
-> > > > > arg);
-> > > > > +       err = mtk_hw_get_value(hw, desc, PINCTRL_PIN_REG_PD,
-> > > > > &pd);
-> > > >
-> > > > Maybe this could reuse mtk_pinconf_bias_get_pu_pd(), much like on
-> > > > the
-> > > > `set`
-> > > > side?
-> > > >
-> > >
-> > > we will try to reuse mtk_pinconf_bias_get_pu_pd().
-> > >
-> > > > > +
-> > > > > +       if (pu == 0 && pd == 0) {
-> > > > > +               *pullup = 0;
-> > > > > +               *enable = MTK_DISABLE;
-> > > > > +       } else if (pu == 1 && pd == 0) {
-> > > > > +               *pullup = 1;
-> > > > > +               *enable = rsel + MTK_PULL_SET_RSEL_000;
-> > > > > +       } else if (pu == 0 && pd == 1) {
-> > > > > +               *pullup = 0;
-> > > > > +               *enable = rsel + MTK_PULL_SET_RSEL_000;
-> > > > > +       } else {
-> > > > > +               err = -EINVAL;
-> > > > > +               goto out;
-> > > > > +       }
-> > > > >
-> > > > >  out:
-> > > > >         return err;
-> > > > >  }
-> > > > > +
-> > > > > +int mtk_pinconf_bias_set_combo(struct mtk_pinctrl *hw,
-> > > > > +                              const struct mtk_pin_desc *desc,
-> > > > > +                              u32 pullup, u32 arg)
-> > > > > +{
-> > > > > +       int err = -EOPNOTSUPP;
-> > > > > +       bool try_all_type;
-> > > > > +
-> > > > > +       try_all_type = hw->soc->pull_type ? false : true;
-> > > >
-> > > > Using ternary ops is discouraged. Maybe this could be structured
-> > > > like:
-> > > >
-> > > >     u32 pull_type;
-> > > >
-> > > >     if (hw->soc->pull_type)
-> > > >             pull_type = hw->soc->pull_type[desc->number];
-> > > >     else
-> > > >             pull_type = MTK_PULL_TYPE_MASK;
-> > > >
-> > > > That way you don't need to test `try_all_type` every time.
-> > >
-> > > we will try to change it in next version.
-> > >
-> > > >
-> > > > > +
-> > > > > +       if (try_all_type ||
-> > > > > +           (hw->soc->pull_type[desc->number] &
-> > > > > MTK_PULL_RSEL_TYPE)) {
-> > > > > +               err = mtk_pinconf_bias_set_rsel(hw, desc,
-> > > > > pullup,
-> > > > > arg);
-> > > > > +               if (!err)
-> > > > > +                       return err;
-> > > > > +       }
-> > > > > +
-> > > > > +       if (try_all_type ||
-> > > > > +           (hw->soc->pull_type[desc->number] &
-> > > > > MTK_PULL_PU_PD_TYPE)) {
-> > > > > +               err = mtk_pinconf_bias_set_pu_pd(hw, desc,
-> > > > > pullup,
-> > > > > arg);
-> > > > > +               if (!err)
-> > > > > +                       return err;
-> > > > > +       }
-> > > > > +
-> > > > > +       if (try_all_type ||
-> > > > > +           (hw->soc->pull_type[desc->number] &
-> > > > > MTK_PULL_PULLSEL_TYPE)) {
-> > > > > +               err = mtk_pinconf_bias_set_pullsel_pullen(hw,
-> > > > > desc,
-> > > > > +                                                         pullu
-> > > > > p,
-> > > > > arg);
-> > > > > +               if (!err)
-> > > > > +                       return err;
-> > > > > +       }
-> > > > > +
-> > > > > +       if (try_all_type ||
-> > > > > +           (hw->soc->pull_type[desc->number] &
-> > > > > MTK_PULL_PUPD_R1R0_TYPE)) {
-> > > > > +               err = mtk_pinconf_bias_set_pupd_r1_r0(hw, desc,
-> > > > > pullup, arg);
-> > > > > +               if (err)
-> > > > > +                       dev_err(hw->dev, "Invalid pull
-> > > > > argument\n");
-> > > >
-> > > > The "if (err)" could be moved outside the upper "if" block. That
-> > > > way
-> > > > the code flow looks more consistent, plus we get an error message
-> > > > regardless of the pull type supported.
-> > >
-> > > we will move "if (err)" outside the upper "if" block in the next
-> > > version.
-> > > >
-> > > > > +       }
-> > > > > +
-> > > > > +       return err;
-> > > > > +}
-> > > > >  EXPORT_SYMBOL_GPL(mtk_pinconf_bias_set_combo);
-> > > > >
-> > > > >  int mtk_pinconf_bias_get_combo(struct mtk_pinctrl *hw,
-> > > > >                               const struct mtk_pin_desc *desc,
-> > > > >                               u32 *pullup, u32 *enable)
-> > > > >  {
-> > > > > -       int err;
-> > > > > +       int err = -EOPNOTSUPP;
-> > > > > +       bool try_all_type;
-> > > > >
-> > > > > -       err = mtk_pinconf_bias_get_pu_pd(hw, desc, pullup,
-> > > > > enable);
-> > > > > -       if (!err)
-> > > > > -               goto out;
-> > > > > +       try_all_type = hw->soc->pull_type ? false : true;
-> > > >
-> > > > Same here.
-> > > >
-> > >
-> > > we will try to change it in next version.
-> > >
-> > > > >
-> > > > > -       err = mtk_pinconf_bias_get_pullsel_pullen(hw, desc,
-> > > > > pullup,
-> > > > > enable);
-> > > > > -       if (!err)
-> > > > > -               goto out;
-> > > > > +       if (try_all_type ||
-> > > > > +           (hw->soc->pull_type[desc->number] &
-> > > > > MTK_PULL_RSEL_TYPE)) {
-> > > > > +               err = mtk_pinconf_bias_get_rsel(hw, desc,
-> > > > > pullup,
-> > > > > enable);
-> > > > > +               if (!err)
-> > > > > +                       return err;
-> > > > > +       }
-> > > > > +
-> > > > > +       if (try_all_type ||
-> > > > > +           (hw->soc->pull_type[desc->number] &
-> > > > > MTK_PULL_PU_PD_TYPE)) {
-> > > > > +               err = mtk_pinconf_bias_get_pu_pd(hw, desc,
-> > > > > pullup,
-> > > > > enable);
-> > > > > +               if (!err)
-> > > > > +                       return err;
-> > > > > +       }
-> > > > >
-> > > > > -       err = mtk_pinconf_bias_get_pupd_r1_r0(hw, desc, pullup,
-> > > > > enable);
-> > > > > +       if (try_all_type ||
-> > > > > +           (hw->soc->pull_type[desc->number] &
-> > > > > MTK_PULL_PULLSEL_TYPE)) {
-> > > > > +               err = mtk_pinconf_bias_get_pullsel_pullen(hw,
-> > > > > desc,
-> > > > > +                                                         pullu
-> > > > > p,
-> > > > > enable);
-> > > > > +               if (!err)
-> > > > > +                       return err;
-> > > > > +       }
-> > > > > +
-> > > > > +       if (try_all_type ||
-> > > > > +           (hw->soc->pull_type[desc->number] &
-> > > > > MTK_PULL_PUPD_R1R0_TYPE))
-> > > > > +               err = mtk_pinconf_bias_get_pupd_r1_r0(hw, desc,
-> > > > > pullup, enable);
-> > > > >
-> > > > > -out:
-> > > > >         return err;
-> > > > >  }
-> > > > >  EXPORT_SYMBOL_GPL(mtk_pinconf_bias_get_combo);
-> > > > > diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> > > > > b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> > > > > index a6f1bdb2083b..a3d73f153efe 100644
-> > > > > --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> > > > > +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> > > > > @@ -17,6 +17,13 @@
-> > > > >  #define MTK_ENABLE     1
-> > > > >  #define MTK_PULLDOWN   0
-> > > > >  #define MTK_PULLUP     1
-> > > > > +#define MTK_PULL_PU_PD_TYPE            BIT(0)
-> > > > > +#define MTK_PULL_PULLSEL_TYPE          BIT(1)
-> > > > > +#define MTK_PULL_PUPD_R1R0_TYPE                BIT(2)
-> > > > > +#define MTK_PULL_RSEL_TYPE             BIT(3)
-> > > > > +#define MTK_PULL_PU_PD_RSEL_TYPE       (MTK_PULL_PU_PD_TYPE \
-> > > > > +                                       | MTK_PULL_RSEL_TYPE)
-> > > >
-> > > > MTK_PULL_RSEL_TYPE deserves a comment saying why it should not be
-> > > > used
-> > > > on its own.
-> > > >
-> > > > But since mtk_pinconf_bias_set_rsel() is already calling
-> > > > mtk_pinconf_bias_set_pu_pd(), if the former function is reworked,
-> > > > then
-> > > > the two types don't need to be combined for the fallback
-> > > > behavior.
-> > > >
-> > >
-> > >
-> > > MTK_PULL_PU_PD_RSEL_TYPE is type wihch is can be control by
-> > > MTK_PULL_PU_PD_TYPE or MTK_PULL_RSEL_TYPE. so we combibe them
-> > > together.
-> >
-> > But can RSEL be used without PU/PD? The definitions read like
-> > "PU_PD_RSEL"
-> > means either RSEL or PU/PD can be used, but if I understand the
-> > hardware
-> > correctly, RSEL by itself only selects the resistor value, but
-> > doesn't
-> > turn on/off the bias nor select pull up or down. So RSEL is an
-> > extension
-> > of PU/PD, and by itself won't have any real effect.
-> >
-> > Since this could be interpreted either way, a comment explaining
-> > things
-> > should be added to document the author's intentions.
-> >
-> > > > >  #define EINT_NA        U16_MAX
-> > > > >  #define NO_EINT_SUPPORT        EINT_NA
-> > > > > @@ -42,6 +49,14 @@
-> > > > >         PIN_FIELD_CALC(_s_pin, _e_pin, 0, _s_addr, _x_addrs,
-> > > > > _s_bit,    \
-> > > > >                        _x_bits, 32, 1)
-> > > > >
-> > > > > +#define PIN_RSEL(_s_pin, _e_pin, _rsel_index, _up_resl,
-> > > > > _down_rsel) {  \
-> > > >
-> > > >                                                     ^ rsel?
-> > > >
-> > > > > +               .s_pin =
-> > > > > _s_pin,                                        \
-> > > > > +               .e_pin =
-> > > > > _e_pin,                                        \
-> > > > > +               .rsel_index =
-> > > > > _rsel_index,                              \
-> > > > > +               .up_rsel =
-> > > > > _up_resl,                                    \
-> > > > > +               .down_rsel =
-> > > > > _down_rsel,                                \
-> > > > > +       }
-> > > > > +
-> > > > >  /* List these attributes which could be modified for the pin
-> > > > > */
-> > > > >  enum {
-> > > > >         PINCTRL_PIN_REG_MODE,
-> > > > > @@ -67,6 +82,7 @@ enum {
-> > > > >         PINCTRL_PIN_REG_DRV_E0,
-> > > > >         PINCTRL_PIN_REG_DRV_E1,
-> > > > >         PINCTRL_PIN_REG_DRV_ADV,
-> > > > > +       PINCTRL_PIN_REG_RSEL,
-> > > > >         PINCTRL_PIN_REG_MAX,
-> > > > >  };
-> > > > >
-> > > > > @@ -129,6 +145,21 @@ struct mtk_pin_field_calc {
-> > > > >         u8  fixed;
-> > > > >  };
-> > > > >
-> > > > > +/* struct mtk_pin_rsel - the structure that providing bias
-> > > > > resistance selection.
-> > > >
-> > > >                                                ^ provides
-> > >
-> > > we will change it in next version.
-> > >
-> > >
-> > > >
-> > > > > + * @s_pin:             the start pin within the rsel range
-> > > > > + * @e_pin:             the end pin within the rsel range
-> > > > > + * @rsel_index:        the rsel bias resistance index
-> > > > > + * @up_rsel:   the pullup rsel bias resistance value
-> > > > > + * @down_rsel: the pulldown rsel bias resistance value
-> > > > > + */
-> > > > > +struct mtk_pin_rsel {
-> > > > > +       u16 s_pin;
-> > > > > +       u16 e_pin;
-> > > > > +       u16 rsel_index;
-> > > > > +       u32 up_rsel;
-> > > > > +       u32 down_rsel;
-> > > > > +};
-> > > > > +
-> > > >
-> > > > If it were up to me, I would split this into two layers, one for
-> > > > the
-> > > > register value <-> resistor value mapping, lets call it "rsel
-> > > > table",
-> > > > and the other for pin <-> "rsel table" mapping.
-> > > >
-> > > > I assume most if not all pins that support rsel would have the
-> > > > same
-> > > > set
-> > > > of resistor values, so that would trade a level of indirection
-> > > > for
-> > > > better
-> > > > usage of space.
-> > > >
-> > > > >  /* struct mtk_pin_reg_calc - the structure that holds all
-> > > > > ranges
-> > > > > used to
-> > > > >   *                          determine which register the pin
-> > > > > would
-> > > > > make use of
-> > > > >   *                          for certain pin attribute.
-> > > > > @@ -206,6 +237,9 @@ struct mtk_pin_soc {
-> > > > >         bool                            ies_present;
-> > > > >         const char * const              *base_names;
-> > > > >         unsigned int                    nbase_names;
-> > > > > +       const unsigned int              *pull_type;
-> > > > > +       const struct mtk_pin_rsel       *pin_rsel;
-> > > > > +       unsigned int                    npin_rsel;
-> > > > >
-> > > > >         /* Specific pinconfig operations */
-> > > > >         int (*bias_disable_set)(struct mtk_pinctrl *hw,
-> > > > > @@ -237,7 +271,6 @@ struct mtk_pin_soc {
-> > > > >                              const struct mtk_pin_desc *desc,
-> > > > > u32
-> > > > > arg);
-> > > > >         int (*adv_drive_get)(struct mtk_pinctrl *hw,
-> > > > >                              const struct mtk_pin_desc *desc,
-> > > > > u32
-> > > > > *val);
-> > > > > -
-> > > >
-> > > > Unrelated whitespace change. Please remove it.
-> > >
-> > > we will remove it in next version.
-> > >
-> > > >
-> > > > >         /* Specific driver data */
-> > > > >         void                            *driver_data;
-> > > > >  };
-> > > > > diff --git a/drivers/pinctrl/mediatek/pinctrl-paris.c
-> > > > > b/drivers/pinctrl/mediatek/pinctrl-paris.c
-> > > > > index 85db2e4377f0..8990cfe47d72 100644
-> > > > > --- a/drivers/pinctrl/mediatek/pinctrl-paris.c
-> > > > > +++ b/drivers/pinctrl/mediatek/pinctrl-paris.c
-> > > > > @@ -577,9 +577,9 @@ static int mtk_hw_get_value_wrap(struct
-> > > > > mtk_pinctrl *hw, unsigned int gpio, int
-> > > > >         mtk_hw_get_value_wrap(hw, gpio, PINCTRL_PIN_REG_DRV)
-> > > > >
-> > > > >  ssize_t mtk_pctrl_show_one_pin(struct mtk_pinctrl *hw,
-> > > > > -       unsigned int gpio, char *buf, unsigned int bufLen)
-> > > > > +       unsigned int gpio, char *buf, unsigned int buf_len)
-> > > >
-> > > > Unrelated change.
-> > >
-> > > we will sparate it in next version.
-> > >
-> > > >
-> > > > >  {
-> > > > > -       int pinmux, pullup, pullen, len = 0, r1 = -1, r0 = -1;
-> > > > > +       int pinmux, pullup, pullen, len = 0, r1 = -1, r0 = -1,
-> > > > > rsel
-> > > > > = -1;
-> > > > >         const struct mtk_pin_desc *desc;
-> > > > >
-> > > > >         if (gpio >= hw->soc->npins)
-> > > > > @@ -591,6 +591,8 @@ ssize_t mtk_pctrl_show_one_pin(struct
-> > > > > mtk_pinctrl *hw,
-> > > > >                 pinmux -= hw->soc->nfuncs;
-> > > > >
-> > > > >         mtk_pinconf_bias_get_combo(hw, desc, &pullup, &pullen);
-> > > > > +
-> > > > > +       /* Case for: R1R0 */
-> > > > >         if (pullen == MTK_PUPD_SET_R1R0_00) {
-> > > > >                 pullen = 0;
-> > > > >                 r1 = 0;
-> > > > > @@ -607,10 +609,16 @@ ssize_t mtk_pctrl_show_one_pin(struct
-> > > > > mtk_pinctrl *hw,
-> > > > >                 pullen = 1;
-> > > > >                 r1 = 1;
-> > > > >                 r0 = 1;
-> > > > > -       } else if (pullen != MTK_DISABLE && pullen !=
-> > > > > MTK_ENABLE) {
-> > > > > -               pullen = 0;
-> > > > >         }
-> > > > > -       len += scnprintf(buf + len, bufLen - len,
-> > > > > +
-> > > > > +       /* Case for: RSEL */
-> > > > > +       if (pullen >= MTK_PULL_SET_RSEL_000 &&
-> > > > > +           pullen <= MTK_PULL_SET_RSEL_111) {
-> > > > > +               rsel = pullen - MTK_PULL_SET_RSEL_000;
-> > > > > +               pullen = 1;
-> > > > > +       }
-> > > > > +
-> > > > > +       len += scnprintf(buf + len, buf_len - len,
-> > > >
-> > > > Unrelated change.
-> > >
-> > > it is used to get rsel debug changes
-> > > >
-> > > > >                         "%03d: %1d%1d%1d%1d%02d%1d%1d%1d%1d",
-> > > > >                         gpio,
-> > > > >                         pinmux,
-> > > > > @@ -624,10 +632,12 @@ ssize_t mtk_pctrl_show_one_pin(struct
-> > > > > mtk_pinctrl *hw,
-> > > > >                         pullup);
-> > > > >
-> > > > >         if (r1 != -1) {
-> > > > > -               len += scnprintf(buf + len, bufLen - len, "
-> > > > > (%1d
-> > > > > %1d)\n",
-> > > > > +               len += scnprintf(buf + len, buf_len - len, "
-> > > > > (%1d
-> > > > > %1d)\n",
-> > > > >                         r1, r0);
-> > > > > +       } else if (rsel != -1) {
-> > > > > +               len += scnprintf(buf + len, buf_len - len, "
-> > > > > (%1d)\n", rsel);
-> > > > >         } else {
-> > > > > -               len += scnprintf(buf + len, bufLen - len,
-> > > > > "\n");
-> > > > > +               len += scnprintf(buf + len, buf_len - len,
-> > > > > "\n");
-> > > >
-> > > > Unrelated changes.
-> > >
-> > > it is used to get rsel debug changes
-> >
-> > Sorry about the confusion. The unrelated change I meant to point out
-> > is actually just the "bufLen" to "buf_len" change.
-> >
-> >
-> > Regards
-> > ChenYu
-> >
-> >
->
-> Hi ChenYu,
->
-> we find that we want to print rsel value, If we not change "bufLen" to
-> "buf_len". It will print warning. So we change them in the rsel patch.
-> It seems that it is not suitable to separate it as another one patch.
-
-I understand it to be a style check warning triggered by your changes
-covering the same section to add rsel to the debug output (and getting
-seen by checkpatch).
-
-You can structure your patches so that you first fix the code style
-in a preceding patch, with its commit message expressly stating that
-you are doing the cleanup to avoid checkpatch warnings in a following
-patch.
-
-That way you clean up existing code, avoid the warning, and don't do
-two things in one patch.
-
-
-Regards
-ChenYu
-
-> Thanks.
->
-> >
-> >
-> > > >
-> > > > >         }
-> > > > >
-> > > > >         return len;
-> > > > > diff --git a/drivers/pinctrl/mediatek/pinctrl-paris.h
-> > > > > b/drivers/pinctrl/mediatek/pinctrl-paris.h
-> > > > > index afb7650fd25b..681267c0e1a4 100644
-> > > > > --- a/drivers/pinctrl/mediatek/pinctrl-paris.h
-> > > > > +++ b/drivers/pinctrl/mediatek/pinctrl-paris.h
-> > > > > @@ -61,7 +61,7 @@ int mtk_paris_pinctrl_probe(struct
-> > > > > platform_device *pdev,
-> > > > >                             const struct mtk_pin_soc *soc);
-> > > > >
-> > > > >  ssize_t mtk_pctrl_show_one_pin(struct mtk_pinctrl *hw,
-> > > > > -       unsigned int gpio, char *buf, unsigned int bufLen);
-> > > > > +       unsigned int gpio, char *buf, unsigned int buf_len);
-> > > >
-> > > > Unrelated change.
-> > > >
-> > >
-> > > sparate it in next version.
-> > >
-> > > >
-> > > > Regards
-> > > > ChenYu
-> > > >
-> > > > >
-> > > > >  extern const struct dev_pm_ops mtk_paris_pinctrl_pm_ops;
-> > > > >
-> > > > > --
-> > > > > 2.18.0
-> > > > > _______________________________________________
-> > > > > Linux-mediatek mailing list
-> > > > > Linux-mediatek@lists.infradead.org
-> > > > > http://lists.infradead.org/mailman/listinfo/linux-mediatekwe
-> > > > > will
-> > >
-> > >
-> > >
