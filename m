@@ -2,81 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C50CB40DD14
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 16:43:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 950C240DD1E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 16:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237739AbhIPOo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 10:44:59 -0400
-Received: from mail-io1-f52.google.com ([209.85.166.52]:42734 "EHLO
-        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237526AbhIPOo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 10:44:59 -0400
-Received: by mail-io1-f52.google.com with SMTP id b10so8178813ioq.9;
-        Thu, 16 Sep 2021 07:43:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PBMbyG66JcsJeX8hysmtBlI8q6/uwacbLt8pVZtH9oY=;
-        b=3oIy7Zp5jijawIACXMMZEP4nqsk7uS79Kr5GF0/bzYSKiZRA71iIJdoyJAwVI1RAUO
-         zrdYHsbC1zn3YSBA3Pf8n2+vzSen1ts81EjpmqQRIifShhLcnJsUSxm1ZtrWXZ0ngy0z
-         j5m5C4Aek27qCa2cF4p7MPHcgmeJqJX7uukQfFXNmheJbGBIjjkVy2DFYcJiDb/fxd0n
-         UKW9dmcmlyQR25n/cfq+H1QPw6eYFN49zWRB6Kfr7RrzeUJSHGrbgFIBNj7vquS2fSJ1
-         J2I1XIlbT5w1zBtzz8+8+ViWtfcMV+ocj/ZI0Snc+pW/D0lP6e8j0vyLybELqloM2dZ4
-         qsOw==
-X-Gm-Message-State: AOAM531YGOMZdmRHwNgkU2efxlVJhU4+AkLA6D7eR2P+ByEGCh5gLnRS
-        7zd5SMN3ue9RUeR/ro4AJw==
-X-Google-Smtp-Source: ABdhPJxxammQEcKK3G2JWaR69oSUKLj81sFdPLSuBn/OtrrWh35XAzDzP/+ey1dgIMCyhEre4XQ7RA==
-X-Received: by 2002:a05:6638:3890:: with SMTP id b16mr4807745jav.65.1631803418434;
-        Thu, 16 Sep 2021 07:43:38 -0700 (PDT)
-Received: from robh.at.kernel.org (96-84-70-89-static.hfc.comcastbusiness.net. [96.84.70.89])
-        by smtp.gmail.com with ESMTPSA id q17sm2011045ilc.81.2021.09.16.07.43.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 07:43:37 -0700 (PDT)
-Received: (nullmailer pid 1327692 invoked by uid 1000);
-        Thu, 16 Sep 2021 14:43:36 -0000
-Date:   Thu, 16 Sep 2021 09:43:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     amirmizi6@gmail.com
-Cc:     jgg@ziepe.ca, devicetree@vger.kernel.org, oshrialkoby85@gmail.com,
-        gregkh@linuxfoundation.org, kgoldman@us.ibm.com,
-        robh+dt@kernel.org, alexander.steffen@infineon.com,
-        jarkko@kernel.org, oshri.alkoby@nuvoton.com, peterhuewe@gmx.de,
-        linux-kernel@vger.kernel.org, benoit.houyere@st.com,
-        Eyal.Cohen@nuvoton.com, gcwilson@us.ibm.com, mark.rutland@arm.com,
-        joel@jms.id.au, Dan.Morav@nuvoton.com, shmulik.hager@nuvoton.com,
-        amir.mizinski@nuvoton.com, oren.tanami@nuvoton.com,
-        tmaimon77@gmail.com, arnd@arndb.de,
-        linux-integrity@vger.kernel.org, eajames@linux.ibm.com
-Subject: Re: [PATCH v15 6/6] tpm: Add YAML schema for TPM TIS I2C options
-Message-ID: <YUNYGNktq0HgiThT@robh.at.kernel.org>
-References: <20210914151032.216122-1-amirmizi6@gmail.com>
- <20210914151032.216122-7-amirmizi6@gmail.com>
+        id S237526AbhIPOqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 10:46:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52030 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237406AbhIPOqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 10:46:00 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54D03C061574;
+        Thu, 16 Sep 2021 07:44:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=xTm1NaRptFZFSmCrLe8ZDubXtDPN1FNQ3UUquBBkFTA=; b=q3GRRUqLLOZxg2lFURWvmGFCf4
+        /7RiofdSzBX/4+CnHgX2vifQKLEImTH+bgoKrYOwoeRfkAO9eA5U6pDsm6voeJnwXGllVhxSy9Vht
+        2oKJvhwZ9KThO+TtxjcaIouqVo4sNX+loMPdFyTeM6Y7L4WgYEGgUrrTQFuPjvB1RGuSeIn49sjKZ
+        hQJHDhbmWb7rJlkjiFhVQNuHkWCRrWi+rfYV4KKhB431wcM1pmSPRMtZp5DAFL+q8Y7bN3XxAxz76
+        9A6XYca5N4z2uxACRd8gcZIATe2j+RRcV/WE2SHctZMc48XmGmwdO+pSXDY5bAPUtosAGIy5U4LSs
+        lyvn2g4A==;
+Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=[192.168.1.10])
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1mQscu-00009G-O6; Thu, 16 Sep 2021 17:44:36 +0300
+Subject: Re: [PATCH v5 1/3] dt-bindings: Add YAML bindings for NVDEC
+To:     Rob Herring <robh@kernel.org>,
+        Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, airlied@linux.ie,
+        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210910104247.1206716-1-mperttunen@nvidia.com>
+ <20210910104247.1206716-2-mperttunen@nvidia.com>
+ <YUDCRb75pIqGZX1S@robh.at.kernel.org>
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+Message-ID: <8e84e7e8-7930-db49-f5dd-5dfb0ce6cb11@kapsi.fi>
+Date:   Thu, 16 Sep 2021 17:44:36 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210914151032.216122-7-amirmizi6@gmail.com>
+In-Reply-To: <YUDCRb75pIqGZX1S@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 84.249.134.236
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Sep 2021 18:10:32 +0300, amirmizi6@gmail.com wrote:
-> From: Amir Mizinski <amirmizi6@gmail.com>
+On 9/14/21 6:39 PM, Rob Herring wrote:
+> On Fri, Sep 10, 2021 at 01:42:45PM +0300, Mikko Perttunen wrote:
+>> Add YAML device tree bindings for NVDEC, now in a more appropriate
+>> place compared to the old textual Host1x bindings.
+>>
+>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+>> ---
+>> v5:
+>> * Changed from nvidia,instance to nvidia,host1x-class optional
+>>    property.
+>> * Added dma-coherent
+>> v4:
+>> * Fix incorrect compatibility string in 'if' condition
+>> v3:
+>> * Drop host1x bindings
+>> * Change read2 to read-1 in interconnect names
+>> v2:
+>> * Fix issues pointed out in v1
+>> * Add T194 nvidia,instance property
+>> ---
+>>   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 104 ++++++++++++++++++
+>>   MAINTAINERS                                   |   1 +
+>>   2 files changed, 105 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>> new file mode 100644
+>> index 000000000000..f1f8d083d736
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>> @@ -0,0 +1,104 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvdec.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Device tree binding for NVIDIA Tegra NVDEC
+>> +
+>> +description: |
+>> +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
+>> +  and newer chips. It is located on the Host1x bus and typically
+>> +  programmed through Host1x channels.
+>> +
+>> +maintainers:
+>> +  - Thierry Reding <treding@gmail.com>
+>> +  - Mikko Perttunen <mperttunen@nvidia.com>
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^nvdec@[0-9a-f]*$"
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - nvidia,tegra210-nvdec
+>> +      - nvidia,tegra186-nvdec
+>> +      - nvidia,tegra194-nvdec
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: nvdec
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: nvdec
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  iommus:
+>> +    maxItems: 1
+>> +
+>> +  dma-coherent: true
+>> +
+>> +  interconnects:
+>> +    items:
+>> +      - description: DMA read memory client
+>> +      - description: DMA read 2 memory client
+>> +      - description: DMA write memory client
+>> +
+>> +  interconnect-names:
+>> +    items:
+>> +      - const: dma-mem
+>> +      - const: read-1
+>> +      - const: write
+>> +
+>> +  nvidia,host1x-class:
+>> +    description: Host1x class of the engine. If not specified, defaults to 0xf0.
 > 
-> Add a YAML schema to support tpm tis i2c related dt-bindings for the I2c
-> PTP based physical layer.
-> 
-> This patch adds the documentation for corresponding device tree bindings of
-> I2C based Physical TPM.
-> Refer to the 'I2C Interface Definition' section in
-> 'TCG PC Client PlatformTPMProfile(PTP) Specification' publication
-> for specification.
-> 
-> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
-> ---
->  .../bindings/security/tpm/tpm-tis-i2c.yaml         | 52 ++++++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-> 
+> Define what this is with more than just repeating what is in the
+> property name.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Sure, I'll add a description.
+
+> 
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> default: 0xf0
+> 
+> Is there a range or set of valid values you specify as schema?
+
+Only to the same extent that there is a set of valid MMIO addresses in 
+the 'reg' field.
+
+Mikko
+
+> 
+> Rob
+> 
