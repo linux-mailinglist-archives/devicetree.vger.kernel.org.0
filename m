@@ -2,176 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 950C240DD1E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 16:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BE5740DD44
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 16:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237526AbhIPOqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 10:46:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52030 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237406AbhIPOqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 10:46:00 -0400
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54D03C061574;
-        Thu, 16 Sep 2021 07:44:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=xTm1NaRptFZFSmCrLe8ZDubXtDPN1FNQ3UUquBBkFTA=; b=q3GRRUqLLOZxg2lFURWvmGFCf4
-        /7RiofdSzBX/4+CnHgX2vifQKLEImTH+bgoKrYOwoeRfkAO9eA5U6pDsm6voeJnwXGllVhxSy9Vht
-        2oKJvhwZ9KThO+TtxjcaIouqVo4sNX+loMPdFyTeM6Y7L4WgYEGgUrrTQFuPjvB1RGuSeIn49sjKZ
-        hQJHDhbmWb7rJlkjiFhVQNuHkWCRrWi+rfYV4KKhB431wcM1pmSPRMtZp5DAFL+q8Y7bN3XxAxz76
-        9A6XYca5N4z2uxACRd8gcZIATe2j+RRcV/WE2SHctZMc48XmGmwdO+pSXDY5bAPUtosAGIy5U4LSs
-        lyvn2g4A==;
-Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=[192.168.1.10])
-        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1mQscu-00009G-O6; Thu, 16 Sep 2021 17:44:36 +0300
-Subject: Re: [PATCH v5 1/3] dt-bindings: Add YAML bindings for NVDEC
-To:     Rob Herring <robh@kernel.org>,
-        Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, airlied@linux.ie,
-        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210910104247.1206716-1-mperttunen@nvidia.com>
- <20210910104247.1206716-2-mperttunen@nvidia.com>
- <YUDCRb75pIqGZX1S@robh.at.kernel.org>
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-Message-ID: <8e84e7e8-7930-db49-f5dd-5dfb0ce6cb11@kapsi.fi>
-Date:   Thu, 16 Sep 2021 17:44:36 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S238545AbhIPOxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 10:53:53 -0400
+Received: from mail-il1-f182.google.com ([209.85.166.182]:41801 "EHLO
+        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230429AbhIPOxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 10:53:51 -0400
+Received: by mail-il1-f182.google.com with SMTP id d11so2966529ilc.8;
+        Thu, 16 Sep 2021 07:52:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0270jj8hnvtU6Z8Tv4sd6F6VhusCWGFru+o41CqU4dY=;
+        b=o80zXQa9nIN7SmpAANPH79CrxeYfABSEvLoiu71M9/i9CDkqxf58ewXFTY9MuahkeZ
+         D4La5B0tEwW9Jwsb94lkCYjArF5kvI0mwVyrEHfwCquHoKD4Gf4GJ4YVVtr1ulylQKMv
+         XeCBx+cfqH2bLK95GeqfykulgXWB3ZzFKRnEgS0bo1f1X1E9Vz155l30KL5nKkgdqFOe
+         1NoyLBNxqdtSPwabpNrf8aRreQWhTHJr1xp37LnmtMoMm/mzDgldQvUuOVnrZeVyO8cv
+         g0MxMfxo//eqzQjySbEe2QYBc6/xx0PofRyd2SMnP4Y1R3GymukIwoTnZYkyklagMW2E
+         1W0g==
+X-Gm-Message-State: AOAM5309GtHWSVucBZTSDxMm1D5OzuzAAKMJ8wF1FUzXNDObjH4twD70
+        DI81zaNr24AzjCwCzFbh9KTp/L7r1Q==
+X-Google-Smtp-Source: ABdhPJyhvUDPfLSQOfqzy/j95As8UgMQaFnCqJEywtA9Ni9W2l1qewwlfPBHZo0IFSPe2ybOjx+Azw==
+X-Received: by 2002:a92:7f08:: with SMTP id a8mr4112867ild.125.1631803950945;
+        Thu, 16 Sep 2021 07:52:30 -0700 (PDT)
+Received: from robh.at.kernel.org (96-84-70-89-static.hfc.comcastbusiness.net. [96.84.70.89])
+        by smtp.gmail.com with ESMTPSA id e15sm1822474ilu.29.2021.09.16.07.52.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Sep 2021 07:52:30 -0700 (PDT)
+Received: (nullmailer pid 1340114 invoked by uid 1000);
+        Thu, 16 Sep 2021 14:52:29 -0000
+Date:   Thu, 16 Sep 2021 09:52:29 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        git@xilinx.com, shubhrajyoti.datta@gmail.com,
+        gregkh@linuxfoundation.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v13 1/5] dt-bindings: add documentation of xilinx
+ clocking wizard
+Message-ID: <YUNaLWfcTEYpGwJx@robh.at.kernel.org>
+References: <cover.1631623906.git.shubhrajyoti.datta@xilinx.com>
+ <5abe09974e95f127784b9eb5b8764e099e4a1b2d.1631623906.git.shubhrajyoti.datta@xilinx.com>
 MIME-Version: 1.0
-In-Reply-To: <YUDCRb75pIqGZX1S@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 84.249.134.236
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5abe09974e95f127784b9eb5b8764e099e4a1b2d.1631623906.git.shubhrajyoti.datta@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/14/21 6:39 PM, Rob Herring wrote:
-> On Fri, Sep 10, 2021 at 01:42:45PM +0300, Mikko Perttunen wrote:
->> Add YAML device tree bindings for NVDEC, now in a more appropriate
->> place compared to the old textual Host1x bindings.
->>
->> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
->> ---
->> v5:
->> * Changed from nvidia,instance to nvidia,host1x-class optional
->>    property.
->> * Added dma-coherent
->> v4:
->> * Fix incorrect compatibility string in 'if' condition
->> v3:
->> * Drop host1x bindings
->> * Change read2 to read-1 in interconnect names
->> v2:
->> * Fix issues pointed out in v1
->> * Add T194 nvidia,instance property
->> ---
->>   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 104 ++++++++++++++++++
->>   MAINTAINERS                                   |   1 +
->>   2 files changed, 105 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
->> new file mode 100644
->> index 000000000000..f1f8d083d736
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
->> @@ -0,0 +1,104 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvdec.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Device tree binding for NVIDIA Tegra NVDEC
->> +
->> +description: |
->> +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
->> +  and newer chips. It is located on the Host1x bus and typically
->> +  programmed through Host1x channels.
->> +
->> +maintainers:
->> +  - Thierry Reding <treding@gmail.com>
->> +  - Mikko Perttunen <mperttunen@nvidia.com>
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^nvdec@[0-9a-f]*$"
->> +
->> +  compatible:
->> +    enum:
->> +      - nvidia,tegra210-nvdec
->> +      - nvidia,tegra186-nvdec
->> +      - nvidia,tegra194-nvdec
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: nvdec
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  reset-names:
->> +    items:
->> +      - const: nvdec
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  iommus:
->> +    maxItems: 1
->> +
->> +  dma-coherent: true
->> +
->> +  interconnects:
->> +    items:
->> +      - description: DMA read memory client
->> +      - description: DMA read 2 memory client
->> +      - description: DMA write memory client
->> +
->> +  interconnect-names:
->> +    items:
->> +      - const: dma-mem
->> +      - const: read-1
->> +      - const: write
->> +
->> +  nvidia,host1x-class:
->> +    description: Host1x class of the engine. If not specified, defaults to 0xf0.
+On Tue, 14 Sep 2021 18:27:41 +0530, Shubhrajyoti Datta wrote:
+> Add the devicetree binding for the xilinx clocking wizard.
 > 
-> Define what this is with more than just repeating what is in the
-> property name.
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> ---
+>  .../bindings/clock/xlnx,clocking-wizard.yaml  | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+> 
 
-Sure, I'll add a description.
-
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> default: 0xf0
-> 
-> Is there a range or set of valid values you specify as schema?
-
-Only to the same extent that there is a set of valid MMIO addresses in 
-the 'reg' field.
-
-Mikko
-
-> 
-> Rob
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
