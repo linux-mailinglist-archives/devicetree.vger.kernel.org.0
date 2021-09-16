@@ -2,110 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D95A840ED92
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 00:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BB4340EDB1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 01:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235391AbhIPWzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 18:55:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50980 "EHLO
+        id S241336AbhIPXKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 19:10:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235087AbhIPWzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 18:55:16 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A924C061756
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 15:53:55 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id p29so24702711lfa.11
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 15:53:55 -0700 (PDT)
+        with ESMTP id S241240AbhIPXKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 19:10:09 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 140C3C061764
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 16:08:48 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id g1so24940138lfj.12
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 16:08:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=64aRGDxfXVoa1qTlY3upuJ19yGXpI/+Kdh+ykSMARUA=;
-        b=PTTrrtcAQ0MZYQljqcAEHN2QYzJVOe5PNdmKDLNHnXNOiptmi9UeFaAlszfg18iSvT
-         eiofM9HmyYDvNuV1FZzVEmPcDKqNj4trR4GHfSKgNODjbzaFWGTvt+LhT0S7iUvFa+AQ
-         tNcfKN8zWtSBaXEAawLyLfvAWYTDFL/WImrGXyAdrERGD8EuOsrZ0iMqBb9GzDaWes0k
-         2FtXnVaX6RrQ+Ov8K0KA1+1V7MJvBEB/ztwWsdRpr8+5qiMtqZfuBKUI7wE/orRw8Wsa
-         Q50iSggylqcR6T2ihn2SYgYbNLABcZISk7Vp0Ml3MQtXVnF6F6r2As0l1+n1UzjVz61k
-         1ZmA==
+        bh=EEZ3KzJ/OoVk3tZxbZ8tD6FSY51r/kCa6gRIxucdHJM=;
+        b=z48XNACMi5II30bJAbbmdTmkselHRQoTfWaZRmNYCVPyXUj5bLzFr1Bh2hqfadlIV/
+         qUOax18dNGgiRKBPpDX9sEtQ5kjm7KUNdIrkxI218QPrls6K2KTjGz6+mjYo3emrVm5X
+         WRnJFUdDh1oUplNZCRK2y/l9zMClcM+nkpOsFqu/F6awihIeu6bWgVLsqQPJEwZ/DDsd
+         9nrySfUBYR/rPcaL06JHsseWnnK1k3WPoZsUcvZyn+yu6sicOR85UeR0K0/erM6ggzjh
+         dBKggmeAp1OhpVf1hcKPytH37NiRy7FXKYi3VrsfWugw50mnNUe2ZYNI3XCJFJFNLZE8
+         YnjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=64aRGDxfXVoa1qTlY3upuJ19yGXpI/+Kdh+ykSMARUA=;
-        b=uczeVKcvdqWT0FFPE3FFkKhyNwyFyxOLGuH9A1Mwabep3vnywjftw/o/5QQbAYwR4u
-         irTQcUJmmR7WGDjoNIdmY4Bq6zOHQF90BDtzoURPy5jTknOh3QZurvg0KS/e+NBL97Ut
-         lJ1RqJCeTSvywknkzr0PhnCkao96FkXsJX7PvoOAgSLATariP0FxoGeEJ5AtT5o2ccxK
-         gvcHDXChJgPVtHZhBE6MVknHaHlAcLtrXmKSMqXW3Fs+QU4XW/ub7T2LqWg4YcSzmNrs
-         oxsL0cgDUaICyDYKFRQGLY3cLgqkBSUdtLUtv6uPwc0/zeAIDKDDp4Uxv5RTx54dG1JF
-         Lj8Q==
-X-Gm-Message-State: AOAM532fRruokV7MkLXtXxtyt94YxBOZc/BUBFun3CbPJ88+hmS8CKw6
-        BDxd2EvtkmNZ3Hy6+yWYMBmzSSxHZ9BKbegg5vkOICOZYj4=
-X-Google-Smtp-Source: ABdhPJwx8ITFkSsQzaVlRuqb8ifRkDnCbGjxFukpklP6ZORMZwGg6j2a4KP6PgB3oxlHxBr2VGB/Qe7r2bMKHCu2gfY=
-X-Received: by 2002:a05:6512:e89:: with SMTP id bi9mr5641322lfb.95.1631832833481;
- Thu, 16 Sep 2021 15:53:53 -0700 (PDT)
+        bh=EEZ3KzJ/OoVk3tZxbZ8tD6FSY51r/kCa6gRIxucdHJM=;
+        b=v+cECb2eQ/Hjz2lEP96SiQ+aCZO4fJRfaPqV5foPJCikSEARcX1e25YVo5hpkM17b8
+         55hhXzgHZ4JpRgI3Rhn38vY8mC3VPsO0MMNcsc3rvRA9H00M+3YdW0kI5KTQPH+8Fuw9
+         63mOxsQ1ZlWI84JBc+cMx930lzMIokmt9fTWEUmwESxvE6Qj8CvIFoXBVmnysOwyxE5d
+         7werUpR6B8dWEWE43MjU4keteoryXa0ujWRYoHw9qJqR+xz17RzAZWuYERpH2ztCPckZ
+         3CwY3JqINAtitmXXu0X60gfz/tT2Xj7aj4xuQU6pMGh4KmU5qjCaBaupmEpkSN2nYEYR
+         UEqg==
+X-Gm-Message-State: AOAM532rvYnI7OJXhaEdOcIe73ONqLoDYxZg+J8VCL03w8bYKpe6bpV2
+        16J+Xb7xW2sIMiAx+/iAL1guEMhS0PP+MABVOBTSSQ==
+X-Google-Smtp-Source: ABdhPJymcPdf0VI+AxaenTQWWVdAj6oiW83pqHfJDqYKIz35Ixkc9MmtlBYPB2581adUDpiVJFaiyWCHh3v//qtvxac=
+X-Received: by 2002:a2e:4c19:: with SMTP id z25mr663526lja.145.1631833726007;
+ Thu, 16 Sep 2021 16:08:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210901091852.479202-1-maxime@cerno.tech> <20210901091852.479202-8-maxime@cerno.tech>
-In-Reply-To: <20210901091852.479202-8-maxime@cerno.tech>
+References: <1631798498-10864-1-git-send-email-skakit@codeaurora.org> <1631798498-10864-2-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <1631798498-10864-2-git-send-email-skakit@codeaurora.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 17 Sep 2021 00:53:42 +0200
-Message-ID: <CACRpkdYGnCd8fkAPPTP6VHFXC9k-_BNGqTE4cvPORyXJ=rVWLA@mail.gmail.com>
-Subject: Re: [PATCH v2 07/52] dt-bindings: bluetooth: broadcom: Fix clocks check
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        netdev <netdev@vger.kernel.org>, Rob Herring <robh@kernel.org>
+Date:   Fri, 17 Sep 2021 01:08:35 +0200
+Message-ID: <CACRpkdYenJw10ddiXh1FhwQQvCJ-ssV96ezQxVboDe5bVzpR5A@mail.gmail.com>
+Subject: Re: [PATCH V5 1/2] pinctrl: qcom: spmi-gpio: correct parent irqspec translation
+To:     Satya Priya <skakit@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 1, 2021 at 11:19 AM Maxime Ripard <maxime@cerno.tech> wrote:
+On Thu, Sep 16, 2021 at 3:22 PM Satya Priya <skakit@codeaurora.org> wrote:
 
-> The original binding was mentioning that valid values for the clocks and
-> clock-names property were one or two clocks from extclk, txco and lpo,
-> with extclk being deprecated in favor of txco.
+> From: David Collins <collinsd@codeaurora.org>
 >
-> However, the current binding lists a valid array as extclk, txco and
-> lpo, with either one or two items.
+> pmic_gpio_child_to_parent_hwirq() and
+> gpiochip_populate_parent_fwspec_fourcell() translate a pinctrl-
+> spmi-gpio irqspec to an SPMI controller irqspec.  When they do
+> this, they use a fixed SPMI slave ID of 0 and a fixed GPIO
+> peripheral offset of 0xC0 (corresponding to SPMI address 0xC000).
+> This translation results in an incorrect irqspec for secondary
+> PMICs that don't have a slave ID of 0 as well as for PMIC chips
+> which have GPIO peripherals located at a base address other than
+> 0xC000.
 >
-> While this looks similar, it actually enforces that all the device trees
-> use either ["extclk"], or ["extclk", "txco"]. That doesn't make much
-> sense, since the two clocks are said to be equivalent, with one
-> superseeding the other.
+> Correct this issue by passing the slave ID of the pinctrl-spmi-
+> gpio device's parent in the SPMI controller irqspec and by
+> calculating the peripheral ID base from the device tree 'reg'
+> property of the pinctrl-spmi-gpio device.
 >
-> lpo is also not a valid clock anymore, and would be as the third clock
-> of the list, while we could have only this clock in the previous binding
-> (and in DTs).
->
-> Let's rework the clock clause to allow to have either:
->
->  - extclk, and mark it a deprecated
->  - txco alone
->  - lpo alone
->  - txco, lpo
->
-> While ["extclk", "lpo"] wouldn't be valid, it wasn't found in any device
-> tree so it's not an issue in practice.
->
-> Similarly, ["lpo", "txco"] is still considered invalid, but it's
-> generally considered as a best practice to fix the order of clocks.
->
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: netdev@vger.kernel.org
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> Signed-off-by: David Collins <collinsd@codeaurora.org>
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> Fixes: ca69e2d165eb ("qcom: spmi-gpio: add support for hierarchical IRQ chip")
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-Looks good to me!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Patch applied for fixes.
+
+Is a similar patch needed for
+drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c
+?
+
+Notice ssbi rather than sbmi...
 
 Yours,
 Linus Walleij
