@@ -2,100 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B186F40D229
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 05:52:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 869D240D292
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 06:32:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233450AbhIPDx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 23:53:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232217AbhIPDx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 23:53:57 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27781C061574;
-        Wed, 15 Sep 2021 20:52:37 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id m21so5961128qkm.13;
-        Wed, 15 Sep 2021 20:52:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i8pdCgT8Dk9nwi5cOThdaZCDIas189n8MqwW6echK9k=;
-        b=iMEBrtz94FcLe6yTN+V8qvN1F2TF07AfZN8/epMBz1JuEkvAACV3q1W+GVdmfo5r54
-         bg//8MWY6mTmX9lQC2Kp25KUDBA1EPKA5JlE5ZvNPGF/W8cCJyS5CQg2Asy5KM8G0qP8
-         j+r6IMN2id2P0wQtIbzl33v2wIQA2cOhsEYVc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i8pdCgT8Dk9nwi5cOThdaZCDIas189n8MqwW6echK9k=;
-        b=xOSMJqMCa1K53ISWxDVr9mCYpxZjRXuRsqlXZpPmnwOzfCjwN9cVrSdUI5C0WYzMLk
-         sdVG5lwx9nLU3+qutXQctxtyV3LTnuInnVrFKLiCBceFCwbEBaEpitYhwRFqX8mbT0pI
-         k3UZfccga+tpAewOlec1QjG/qrmuVzkg/lejfDoKOAq55qNuTtj0tu/B+v7pQ8ctWZ5Q
-         /zK8ZBvmVwkBGuPQNfb0VUs0C0r9a387KamAZVLix9xRRZNmeN/3MZirMBR5niuSfxKX
-         sSbfm2n1YG61t5910AWMgjTeOMddXsdS7ynPQQniqltnpJcv4Vn3nXo0Vl5ubka03cZR
-         cCiQ==
-X-Gm-Message-State: AOAM531nykOjtd49j33J9TUdPjrPLPP1Y55PPgB/s4q1QSGa22iq3kG0
-        8M0VuQCqwxZvBgxYsWY746LpLrvFUr7euJnmzr75hF5b
-X-Google-Smtp-Source: ABdhPJxoby/8H50notx6irHNgeSday5LPM9+rzgXxcx7N4BW5dKsUnLAMdsFv2lQFsB3wKXccEJdgJUW4SCIhBWwhqU=
-X-Received: by 2002:a05:620a:140c:: with SMTP id d12mr3200243qkj.381.1631764356048;
- Wed, 15 Sep 2021 20:52:36 -0700 (PDT)
+        id S234179AbhIPEdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 00:33:39 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:64982 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229521AbhIPEdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 00:33:38 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631766739; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=EE9lOacJtzvDM9XaYOOMkcLX+XxN2Z5vNgDB2YTbdIA=;
+ b=ZJB8qI8XWv4jwwuEG9qiUaw9iaVZmR6tAIY1rEcBHFIpzXngsUr9BR+h6eeSvcLnqegk3kMy
+ +lrmUXQdPCbmPRNg4yykjlTLHDx2+PnbvOsGFq6YA5hOlsGyMUcTyiB4Tlq9MbBFky9IE4pp
+ Z+08FLlSWvNTUOqHqB0vv0wZVdY=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 6142c8a8d914b051822b6dce (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 16 Sep 2021 04:31:36
+ GMT
+Sender: rajpat=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 01364C43616; Thu, 16 Sep 2021 04:31:36 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: rajpat)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6F503C4338F;
+        Thu, 16 Sep 2021 04:31:34 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210831071458.2334-1-billy_tsai@aspeedtech.com>
- <20210831071458.2334-5-billy_tsai@aspeedtech.com> <20210905153339.751732cc@jic23-huawei>
- <20210905155029.3faa2c04@jic23-huawei>
-In-Reply-To: <20210905155029.3faa2c04@jic23-huawei>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 16 Sep 2021 03:52:24 +0000
-Message-ID: <CACPK8Xe4KifkDxm0H6LtpCJZ1n07GLvxR_nF4Cfy5+4WXn9Z6g@mail.gmail.com>
-Subject: Re: [v5 04/15] iio: adc: aspeed: Keep model data to driver data.
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 16 Sep 2021 10:01:34 +0530
+From:   rajpat@codeaurora.org
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Philipp Zabel <p.zabel@pengutronix.de>, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        msavaliy@qti.qualcomm.com, satya priya <skakit@codeaurora.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>
+Subject: Re: [PATCH V7 1/7] arm64: dts: sc7280: Add QSPI node
+In-Reply-To: <CAD=FV=XjjNx5UzgiKvONw+n0waGqgF+g7Qf4su9dvPQRS7uCrw@mail.gmail.com>
+References: <1630643340-10373-1-git-send-email-rajpat@codeaurora.org>
+ <1630643340-10373-2-git-send-email-rajpat@codeaurora.org>
+ <CAD=FV=XjjNx5UzgiKvONw+n0waGqgF+g7Qf4su9dvPQRS7uCrw@mail.gmail.com>
+Message-ID: <188e0a1f45336cc56ac2abb98d53dbde@codeaurora.org>
+X-Sender: rajpat@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 5 Sept 2021 at 14:47, Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Sun, 5 Sep 2021 15:33:39 +0100
-> Jonathan Cameron <jic23@kernel.org> wrote:
->
-> > On Tue, 31 Aug 2021 15:14:47 +0800
-> > Billy Tsai <billy_tsai@aspeedtech.com> wrote:
-> >
-> > > Keep the model data pointer to driver data for reducing the usage of
-> > > of_device_get_match_data().
-> > >
-> > > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> > This one starts to be impacted by the fix (as its in the context).
-> > Rather than making a mess of things for linux-next etc I'll hold
-> > off on these until that fix is upstream in a few weeks.
-> >
-> > If I seem to have lost it (it's been known to happen :( ) then
-> > feel free to poke me!
->
-> Having taken another look at the rest of the series (and Philipp's review)
-> please do a v6 starting from this patch.
+On 2021-09-03 21:58, Doug Anderson wrote:
+> Hi,
+> 
+> On Thu, Sep 2, 2021 at 9:29 PM Rajesh Patil <rajpat@codeaurora.org> 
+> wrote:
+>> 
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -415,6 +415,25 @@
+>>                 method = "smc";
+>>         };
+>> 
+>> +       qspi_opp_table: qspi-opp-table {
+>> +               compatible = "operating-points-v2";
+>> +
+>> +               opp-75000000 {
+>> +                       opp-hz = /bits/ 64 <75000000>;
+>> +                       required-opps = <&rpmhpd_opp_low_svs>;
+>> +               };
+>> +
+>> +               opp-150000000 {
+>> +                       opp-hz = /bits/ 64 <150000000>;
+>> +                       required-opps = <&rpmhpd_opp_svs>;
+>> +               };
+>> +
+> 
+> Any chance you could add a 200 MHz OPP point? It seems plausible that
+> we might want to run the Quad SPI bus at 50 MHz and this OPP needs to
+> be 4x that, so 200 MHz. ...or does it magically handle that case by
+> one of the other OPPs?
 
-I'd recommend against the practice of half applying a series. I have
-just spent a good chunk of time looking at v6, and wondering why it
-won't apply to any tags in Linus tree nor to next.
+Okay
 
-(It was made worse by the branch you applied them to not being part of
-linux-next.)
+> 
+>> +               opp-300000000 {
+>> +                       opp-hz = /bits/ 64 <300000000>;
+>> +                       required-opps = <&rpmhpd_opp_nom>;
+>> +               };
+>> +       };
+>> +
+>>         soc: soc@0 {
+>>                 #address-cells = <2>;
+>>                 #size-cells = <2>;
+>> @@ -1318,6 +1337,23 @@
+>>                         };
+>>                 };
+>> 
+>> +               qspi: spi@88dc000 {
+>> +                       compatible = "qcom,qspi-v1";
+> 
+> The above compatible should be:
+> 
+> compatible = "qcom,sdm7280-qspi", "qcom,qspi-v1";
+> 
+> ...and you should fix the devicetree bindings to handle that. You
+> should also fix sc7180.
+> 
+> Technically the "qcom,sdm7280-qspi" isn't really needed to make
+> anything work today but having it is encouraged so that if we need to
+> deal with a quirk in the future we can easily do it. Also note that
+> your current dts will cause a bindings error because the current
+> bindings _require_ you to have two compatible strings.
 
-Cheers,
-
-Joel
+Okay
