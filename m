@@ -2,106 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB22440E9BE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 20:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E2140EA48
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 20:54:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348337AbhIPSUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 14:20:35 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:37852 "EHLO
+        id S245721AbhIPSzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 14:55:47 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44932 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348445AbhIPST2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 14:19:28 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18GII26a072604;
-        Thu, 16 Sep 2021 13:18:02 -0500
+        with ESMTP id S1344030AbhIPSzi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 14:55:38 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18GIruAR084558;
+        Thu, 16 Sep 2021 13:53:56 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631816282;
-        bh=pyw9qfNvaWdLSiz1gujXS6WUJuA+dp3Tth+WCvjmhP0=;
+        s=ti-com-17Q1; t=1631818436;
+        bh=ofxg2rOoyTHRLO7cygaz8Om7ldfzCv8/JSm+cnOaM94=;
         h=From:To:CC:Subject:Date;
-        b=gHttkm+7FmDOQZqeCnfvj5kj4FCHgXgVO/dkBoBfgohtSr44IHd4WXsO2naS86a6h
-         x7F5x9xHVTk1hC1NiopWOhXZMiwmrEZwbJRAgL0sP5EunIxhjJt+zy+I+AynE6SmO0
-         g8LEp/qiTiQch9h9p0/CcKJai5BLTmqEhB+WMI7Y=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18GII2oq112717
+        b=LE5/W7o1G+2F8rb9BnFfpVShf9T2XZvugeR7TwgAOldluQwHIEaTODJsGVWeymYvF
+         5I2BTmaivJsgcNdGa7hoOxilmZVT60pkqI+sJsefNVWmKW8FPciuhtZPdVJ5SdJHJo
+         wLEu9rY1t4EGKYdY5zDRjdLIb/+DMFa41Qt3A2HI=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18GIrteN098340
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 16 Sep 2021 13:18:02 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 16 Sep 2021 13:53:56 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 16
- Sep 2021 13:18:02 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ Sep 2021 13:53:55 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
  (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 16 Sep 2021 13:18:02 -0500
+ Frontend Transport; Thu, 16 Sep 2021 13:53:55 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18GII10w082245;
-        Thu, 16 Sep 2021 13:18:01 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Keerthy <j-keerthy@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am65: Relocate thermal-zones to SoC specific location
-Date:   Thu, 16 Sep 2021 13:18:01 -0500
-Message-ID: <20210916181801.32588-1-nm@ti.com>
-X-Mailer: git-send-email 2.32.0
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18GIrrJa097516;
+        Thu, 16 Sep 2021 13:53:54 -0500
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <devicetree@vger.kernel.org>
+CC:     <mpm@selenic.com>, <herbert@gondor.apana.org.au>,
+        <robh+dt@kernel.org>, <j-choudhary@ti.com>,
+        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] dt-bindings: rng: convert OMAP and Inside-Secure HWRNG to yaml schema
+Date:   Fri, 17 Sep 2021 00:23:52 +0530
+Message-ID: <20210916185352.7919-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When commit 64f9147d914d ("arm64: dts: ti: am654: Add thermal
-zones") introduced thermal-zones for am654, it defined as under the
-common am65-wakeup bus segment, when it is am654 specific (other SoC
-spins can have slightly different thermal characteristics). Futher,
-thermal-zones is introduced under simple-bus node, when it has no
-actual register or base address.
+Converts the RNG bindings for OMAP SoCs and Inside-Secure
+HWRNG modules to YAML schema.
 
-So, move it to it's rightful place under am654 SoC dtsi under the base
-node.
-
-Signed-off-by: Nishanth Menon <nm@ti.com>
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 ---
+ .../devicetree/bindings/rng/omap_rng.txt      | 38 --------
+ .../devicetree/bindings/rng/omap_rng.yaml     | 94 +++++++++++++++++++
+ 2 files changed, 94 insertions(+), 38 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rng/omap_rng.txt
+ create mode 100644 Documentation/devicetree/bindings/rng/omap_rng.yaml
 
-NOTE:
-1. This is a cosmetic fixup, so skip the "Fixes" tag.
-2. This fixes up noisy dtbs_check warning around thermal.
-
- arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi | 4 ----
- arch/arm64/boot/dts/ti/k3-am654.dtsi       | 4 ++++
- 2 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-index 9d21cdf6fce8..9c69d0917f69 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-@@ -100,8 +100,4 @@ wkup_vtm0: temperature-sensor@42050000 {
- 		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
- 		#thermal-sensor-cells = <1>;
- 	};
+diff --git a/Documentation/devicetree/bindings/rng/omap_rng.txt b/Documentation/devicetree/bindings/rng/omap_rng.txt
+deleted file mode 100644
+index ea434ce50f36..000000000000
+--- a/Documentation/devicetree/bindings/rng/omap_rng.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-OMAP SoC and Inside-Secure HWRNG Module
 -
--	thermal_zones: thermal-zones {
--		#include "k3-am654-industrial-thermal.dtsi"
--	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am654.dtsi b/arch/arm64/boot/dts/ti/k3-am654.dtsi
-index f0a6541b8042..a89257900047 100644
---- a/arch/arm64/boot/dts/ti/k3-am654.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am654.dtsi
-@@ -112,4 +112,8 @@ msmc_l3: l3-cache0 {
- 		compatible = "cache";
- 		cache-level = <3>;
- 	};
+-Required properties:
+-
+-- compatible : Should contain entries for this and backward compatible
+-  RNG versions:
+-  - "ti,omap2-rng" for OMAP2.
+-  - "ti,omap4-rng" for OMAP4, OMAP5 and AM33XX.
+-  - "inside-secure,safexcel-eip76" for SoCs with EIP76 IP block
+-  Note that these two versions are incompatible.
+-- ti,hwmods: Name of the hwmod associated with the RNG module
+-- reg : Offset and length of the register set for the module
+-- interrupts : the interrupt number for the RNG module.
+-		Used for "ti,omap4-rng" and "inside-secure,safexcel-eip76"
+-- clocks: the trng clock source. Only mandatory for the
+-  "inside-secure,safexcel-eip76" compatible, the second clock is
+-  needed for the Armada 7K/8K SoCs
+-- clock-names: mandatory if there is a second clock, in this case the
+-  name must be "core" for the first clock and "reg" for the second
+-  one
+-
+-
+-Example:
+-/* AM335x */
+-rng: rng@48310000 {
+-	compatible = "ti,omap4-rng";
+-	ti,hwmods = "rng";
+-	reg = <0x48310000 0x2000>;
+-	interrupts = <111>;
+-};
+-
+-/* SafeXcel IP-76 */
+-trng: rng@f2760000 {
+-	compatible = "inside-secure,safexcel-eip76";
+-	reg = <0xf2760000 0x7d>;
+-	interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
+-	clocks = <&cpm_syscon0 1 25>;
+-};
+diff --git a/Documentation/devicetree/bindings/rng/omap_rng.yaml b/Documentation/devicetree/bindings/rng/omap_rng.yaml
+new file mode 100644
+index 000000000000..86bbc2c53e7d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rng/omap_rng.yaml
+@@ -0,0 +1,94 @@
++# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rng/omap_rng.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	thermal_zones: thermal-zones {
-+		#include "k3-am654-industrial-thermal.dtsi"
-+	};
- };
++title: OMAP SoC and Inside-Secure HWRNG Module
++
++maintainers:
++  - Jayesh Choudhary <j-choudhary@ti.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,omap2-rng
++      - ti,omap4-rng
++      - inside-secure,safexcel-eip76
++
++  ti,hwmods:
++    const: rng
++    deprecated: true
++    description: Name of the hwmod associated with the RNG module
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++    items:
++      - description: EIP150 gatable clock
++      - description: Main gatable clock
++
++  clock-names:
++    oneOf:
++      - items:
++          - const: core
++          - const: reg
++      - const: core
++
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ti,omap4-rng
++              - inside-secure,safexcel-eip76
++
++    then:
++      required:
++        - interrupts
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - inside-secure,safexcel-eip76
++
++    then:
++      required:
++        - clocks
++
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    /* AM335x */
++    rng: rng@48310000 {
++            compatible = "ti,omap4-rng";
++            ti,hwmods = "rng";
++            reg = <0x48310000 0x2000>;
++            interrupts = <111>;
++    };
++  - |
++    /* SafeXcel IP-76 */
++    trng: rng@f2760000 {
++            compatible = "inside-secure,safexcel-eip76";
++            reg = <0xf2760000 0x7d>;
++            interrupts = <0 59 4>;
++            clocks = <&cpm_syscon0 1 25>;
++    };
++
++...
 -- 
-2.32.0
+2.17.1
 
