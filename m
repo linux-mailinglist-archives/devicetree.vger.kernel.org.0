@@ -2,96 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D6A040DA36
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:42:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AD740DA42
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239138AbhIPMn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 08:43:56 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59708 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235820AbhIPMnv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 08:43:51 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18GCgOOZ121493;
-        Thu, 16 Sep 2021 07:42:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631796144;
-        bh=Kuof01oAoVK5shV6OwE094wTE2t1T+kOfgtttEclCY0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=eq2t6NfhmNSL73YHNhBl/765wJEO7Jf9hbF57NMlxH+GUF+yK7zs3S+jNh0XAFPEX
-         e2xDfSyLF71/oyK9T89/lPjyCSbFAo14OwvMt4wVrmVDeFpkPZ4354qCwmd7N8xy8s
-         ZweIF7eCJoJ/6gAN9B0TvcuKnYSQ/yCJUsvxGCms=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18GCgOZG075788
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 16 Sep 2021 07:42:24 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 16
- Sep 2021 07:42:23 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 16 Sep 2021 07:42:23 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18GCgNvm081967;
-        Thu, 16 Sep 2021 07:42:23 -0500
-Date:   Thu, 16 Sep 2021 07:42:23 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, Tero Kristo <kristo@kernel.org>,
+        id S235773AbhIPMrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 08:47:55 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:44078 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230299AbhIPMry (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Sep 2021 08:47:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=blLTBJBUXDjrO3ZZ8TPo9N3rgru39vDBHZ72imqGbm0=; b=j+bY353POdkkFTi0Yg5Io/vtDW
+        KKNt6puNypRB+qwdof2rDeewxXt5LVRSu6Y7WQf+WGKf8w0xhvmfFWvRu1fTnT95SWTqbnXArBHV/
+        Of53Gj0Dt8qfoCHrQF2q0YLGadFHWJPRyKyx1xXE8AzWRNqbXv7dmiDDQVoc7TTS2734=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mQqma-006uH7-VD; Thu, 16 Sep 2021 14:46:28 +0200
+Date:   Thu, 16 Sep 2021 14:46:28 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Michael Heimpold <mhei@heimpold.de>
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: ti: Add missing compatibles for
- j721e/j7200 evms
-Message-ID: <20210916124223.ccewyyog26rz2l6n@molar>
-References: <20210915121937.27702-1-nm@ti.com>
- <20210915121937.27702-2-nm@ti.com>
- <1631794913.472895.1119414.nullmailer@robh.at.kernel.org>
+        Michael Heimpold <michael.heimpold@in-tech.com>,
+        jimmy.shen@vertexcom.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 3/3] net: vertexcom: Add MSE102x SPI support
+Message-ID: <YUM8pAkt7kxD7owG@lunn.ch>
+References: <20210914151717.12232-1-stefan.wahren@i2se.com>
+ <20210914151717.12232-4-stefan.wahren@i2se.com>
+ <YUJi0cVawjyiteEx@lunn.ch>
+ <20210916112618.Horde.UWH1AKpXpmAwqSTq8U1y-WN@www.mhei.heimpold.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1631794913.472895.1119414.nullmailer@robh.at.kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210916112618.Horde.UWH1AKpXpmAwqSTq8U1y-WN@www.mhei.heimpold.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07:21-20210916, Rob Herring wrote:
-> On Wed, 15 Sep 2021 07:19:35 -0500, Nishanth Menon wrote:
-> > Add compatibles for j721e and j7200 evms to allow for newer platforms
-> > to distinguish themselves.
+On Thu, Sep 16, 2021 at 11:26:18AM +0000, Michael Heimpold wrote:
+> Hi Andrew,
+> 
+> Zitat von Andrew Lunn <andrew@lunn.ch>:
+> 
+> > > +static int mse102x_probe_spi(struct spi_device *spi)
+> > > +{
 > > 
-> > Signed-off-by: Nishanth Menon <nm@ti.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/ti/k3.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
+> > ...
 > > 
+> > > +	netif_carrier_off(mse->ndev);
+> > > +	ndev->if_port = IF_PORT_10BASET;
+> > 
+> > That is not correct. Maybe you should add a IF_PORT_HOMEPLUG ?
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.example.dt.yaml: /: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['ti,j721e'] is too short
-> 	'ti,j721e' is not one of ['ti,am654-evm', 'siemens,iot2050-basic', 'siemens,iot2050-advanced']
-> 	'ti,j721e' is not one of ['ti,j721e-evm']
-> 	'ti,j721e' is not one of ['ti,j7200-evm']
-> 	'ti,j721e' is not one of ['ti,am642-evm', 'ti,am642-sk']
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> 
+> Would a simple IF_PORT_HOMEPLUG be sufficient, or should it be
+> more precise as for Ethernet (10BASET, 100BASET...), e.g.
+> IF_PORT_HOMEPLUG_10
+> IF_PORT_HOMEPLUG_AV
+> IF_PORT_HOMEPLUG_AV2
+> IF_PORT_HOMEPLUG_GREENPHY
+
+It is an interesting question. I think the first thing to find out is,
+what in userspace actually uses this. If it is a deprecated tool, i
+would not spend the energy.
+
+Probably a better interface is ethtool get_link_ksettings, and
+set_link_ksettings.
+
+$ /sbin/ethtool enp3s0
+Settings for enp3s0:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Full
+
+You can set supported ports to HomePlug, and supported link modes to
+10, AV, AV2, GREENPHY etc.
+
+Is there a negotiation mechanism where different homeplug devices can
+find out what they have in common and select a mode? That would be
+very similar to Ethernet autoneg, so you can make use of the other
+fields ethtool provides to show this information, etc.
+
+       Andrew
 
 
-Aaargh, crap ->
-	https://lore.kernel.org/linux-devicetree/20210818074030.1877-1-sinthu.raja@ti.com/
-
-needs to be resolved first.
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
