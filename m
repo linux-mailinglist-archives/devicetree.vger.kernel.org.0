@@ -2,128 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88D9240D450
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 10:12:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1CB540D45A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 10:17:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234994AbhIPINc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 04:13:32 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:26344 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229908AbhIPINb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 04:13:31 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1631779931; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=tP+XNZ/9NH4K4GD+4JVcxuh8dLGXglkOiSbkpJxZE3s=;
- b=w6AznCGbySjVRbeqvlMq06THlBbTvmji7QctdBjzWiLT8ex5Tpc6XgnFjglLq6qX3vGdxmtD
- WM3xhODUfqKDiR4GokVzcEYVUyYpnGP0lruKnO5+hZE7BEDa+EDKxK4pMnNBqkoBA4rHnHoC
- kczL1kP7E0tfbVsXZYzcKLzEkuU=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 6142f9a4bd6681d8ed36759c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 16 Sep 2021 08:00:36
- GMT
-Sender: okukatla=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 92B98C43617; Thu, 16 Sep 2021 08:00:35 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: okukatla)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BBFEBC4360D;
-        Thu, 16 Sep 2021 08:00:34 +0000 (UTC)
+        id S234892AbhIPISu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 04:18:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46114 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229908AbhIPISt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 04:18:49 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3194DC061574;
+        Thu, 16 Sep 2021 01:17:29 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id g19-20020a1c9d13000000b003075062d4daso3890756wme.0;
+        Thu, 16 Sep 2021 01:17:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=H1ww3lGPcUZ1JbC+7bYQbWQsgaNUgWkADb7sAryk5jc=;
+        b=A8Z3uN2lf864arVF5o7WX9EgjI9uohgDQAxPkOHuv/4ufOpnRhskoT03t0rDPCbo5i
+         1W5As73lc8AYuDAAlwrrL+98tN1dawtl5CUjmwmsgLY+LysAfywze/jXDpCaYZNjGtGd
+         MBnkPVZ6qGwa7FuI0VayRtjBuI3LuOB517JNjYnh/cOuvyCocZ8fctLqGdOzH9t/Phpq
+         em+rujCXobpt2tOmY2YZEVdWS8np9cyifkdq9z9tof+w40O9C7F1ArYXlAHmBcplI+Nl
+         XAv//XqmqxGeRLH3OjksGKFTl/fB5Bo/REoTC8gy7RtYSy+u3tVwHxdtqyk3vV4nRz6Z
+         uQ/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=H1ww3lGPcUZ1JbC+7bYQbWQsgaNUgWkADb7sAryk5jc=;
+        b=b+6Q1E4siZeNRyiMbyHsGvXyBwjZspbpQtbJ8e3UJY9ZnLtTEEee52xd6+6uZh65h3
+         wi2hd9+DGGoCFGmpIkXNp1PN1D81NbaWMoJ+prYuzjwYVLlH9TcAKGF6sWu6CsM+UioF
+         VMk7No2VfVuifH4CuYFyX2SJLiRnZ2/Ksq35O0VVSiYd8Od75F2lirWvoK1ICNPcasPF
+         XLo8WpiuWFqbgA0R5gwapamYNH4e7g0QPgJV9avpCg8NiPi1QDQHnv0CceibKkT9Ml27
+         z1w7q3wZWe258h7dwY/LPmIjTgy84uv3sYYL1uWQo8+4pWReKfu3B027egjAprpSZj28
+         djkg==
+X-Gm-Message-State: AOAM531iMUwjkgpIlp1hnL0jUO6Uw83vJ9hMmzORxnJ3rWaVyA3AMweL
+        XXfqdTLz4JM+q71fXLDY6zE=
+X-Google-Smtp-Source: ABdhPJwngzby5zhk6Y6v22PCQTRfp3xLylztrh6TLkn7x93W6jIB6p9DPAgGnFHTijPTxW05R4kAzw==
+X-Received: by 2002:a1c:149:: with SMTP id 70mr8518758wmb.187.1631780247660;
+        Thu, 16 Sep 2021 01:17:27 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3d3:9cc4:89bf:529b:6a06:470])
+        by smtp.gmail.com with ESMTPSA id m18sm2462192wrn.85.2021.09.16.01.17.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Sep 2021 01:17:26 -0700 (PDT)
+From:   roucaries.bastien@gmail.com
+X-Google-Original-From: rouca@debian.org
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Chen-Yu Tsai <wens@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Salvatore Bonaccorso <carnil@debian.org>,
+        =?UTF-8?q?Bastien=20Roucari=C3=A8s?= <rouca@debian.org>
+Subject: [PATCH] [PATCH] ARM: dts: sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode
+Date:   Thu, 16 Sep 2021 08:17:21 +0000
+Message-Id: <20210916081721.237137-1-rouca@debian.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 16 Sep 2021 13:30:34 +0530
-From:   okukatla@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        evgreen@google.com, georgi.djakov@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mdtipton@codeaurora.org, sibis@codeaurora.org,
-        saravanak@google.com, seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
-        okukatla=codeaurora.org@codeaurora.org
-Subject: Re: [v7 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect
- provider
-In-Reply-To: <CAE-0n53g=qGoVAMh_me_W0ksp39WUm2CCwAttcAK+Do5nYXq5g@mail.gmail.com>
-References: <1629458622-4915-1-git-send-email-okukatla@codeaurora.org>
- <1629458622-4915-4-git-send-email-okukatla@codeaurora.org>
- <CAE-0n51WBdLoJRPs9tWZgdAukJMnkD3V00o7xNYVX77-eToKvw@mail.gmail.com>
- <749157bdb4613ae370adfb7ba055a2a9@codeaurora.org>
- <36fe241f845a27b52509274d007948b1@codeaurora.org>
- <CAE-0n53g=qGoVAMh_me_W0ksp39WUm2CCwAttcAK+Do5nYXq5g@mail.gmail.com>
-Message-ID: <49ba33707767f856ff2a868906387b16@codeaurora.org>
-X-Sender: okukatla@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-09-16 01:10, Stephen Boyd wrote:
-> Quoting okukatla@codeaurora.org (2021-09-14 23:26:19)
->> On 2021-09-15 10:35, okukatla@codeaurora.org wrote:
->> > On 2021-09-04 00:36, Stephen Boyd wrote:
->> >> Quoting Odelu Kukatla (2021-08-20 04:23:41)
->> >>> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
->> >>> SoCs.
->> >>>
->> >>> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
->> >>> ---
->> >>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 11 +++++++++++
->> >>>  1 file changed, 11 insertions(+)
->> >>>
->> >>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >>> index 53a21d0..cf59b47 100644
->> >>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >>> @@ -1848,6 +1848,17 @@
->> >>>                         };
->> >>>                 };
->> >>>
->> >>> +               epss_l3: interconnect@18590000 {
->> >>> +                       compatible = "qcom,sc7280-epss-l3";
->> >>> +                       reg = <0 0x18590000 0 1000>,
->> >>
->> >> Is this supposed to be 0x1000?
->> >>
->> > No, This is 1000 or 0x3E8.
-> 
-> Wow ok. Why is it the only size that isn't in hex format? Please try to
-> be consistent and use hex throughout.
-> 
-Sure, will update it to hex format in new revision.
->> We have mapped only required registers for L3 scaling, 1000/0x3E8 is
->> suffice.
->> But i will update it to 0x1000 in next revision so that entire clock
->> domain region-0 is mapped.
-> 
-> Doesn't that conflict with the cpufreq-hw device?
-> 
-epss_l3 maps (0x18590000, size:0x1000) region which cpufreq-hw does not 
-need. I will update size to 0x1000 for this region only.
+From: Bastien Roucariès <rouca@debian.org>
 
->> >>> +                             <0 0x18591000 0 0x100>,
->> >>> +                             <0 0x18592000 0 0x100>,
->> >>> +                             <0 0x18593000 0 0x100>;
->> >>> +                       clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc
->> >>> GCC_GPLL0>;
->> >>> +                       clock-names = "xo", "alternate";
->> >>> +                       #interconnect-cells = <1>;
->> >>> +               };
->> >>> +
->> >>>                 cpufreq_hw: cpufreq@18591000 {
->> >>>                         compatible = "qcom,cpufreq-epss";
->> >>>                         reg = <0 0x18591100 0 0x900>,
+Commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay
+config") sets the RX/TX delay according to the phy-mode property in the
+device tree. For the A20-olinuxino-lime2 board this is "rgmii", which is the
+wrong setting.
+
+Following the example of a900cac3750b ("ARM: dts: sun7i: a20: bananapro:
+Fix ethernet phy-mode") the phy-mode is changed to "rgmii-id" which gets
+the Ethernet working again on this board.
+
+Signed-off-by: Bastien Roucariès <rouca@debian.org>
+---
+ arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+index 8077f1716fbc..ecb91fb899ff 100644
+--- a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
++++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+@@ -112,7 +112,7 @@ &gmac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+-	phy-mode = "rgmii";
++	phy-mode = "rgmii-id";
+ 	status = "okay";
+ };
+ 
+-- 
+2.33.0
+
