@@ -2,135 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6629E40E56A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 19:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C17E440E1FD
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 19:15:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349893AbhIPRLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 13:11:17 -0400
-Received: from mga09.intel.com ([134.134.136.24]:31753 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1348044AbhIPRJM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 13:09:12 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="222651971"
-X-IronPort-AV: E=Sophos;i="5.85,299,1624345200"; 
-   d="scan'208";a="222651971"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2021 10:03:58 -0700
-X-IronPort-AV: E=Sophos;i="5.85,299,1624345200"; 
-   d="scan'208";a="554167924"
-Received: from xuanguan-mobl.amr.corp.intel.com (HELO [10.213.180.84]) ([10.213.180.84])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2021 10:03:57 -0700
-Subject: Re: [PATCH v6 18/22] ASoC: qdsp6: audioreach: add topology support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210915131333.19047-1-srinivas.kandagatla@linaro.org>
- <20210915131333.19047-19-srinivas.kandagatla@linaro.org>
- <bc93c17e-b65d-5885-f151-243d259f40ff@linux.intel.com>
- <3c5f75f9-8ee2-6da2-b7ec-7854759e2647@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <9d02f47c-0fe5-b8b9-6b55-17678ac05c22@linux.intel.com>
-Date:   Thu, 16 Sep 2021 11:28:05 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S242840AbhIPQdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 12:33:31 -0400
+Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:51859 "EHLO
+        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S243454AbhIPQba (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Sep 2021 12:31:30 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.west.internal (Postfix) with ESMTP id B62142B00B18;
+        Thu, 16 Sep 2021 12:30:07 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Thu, 16 Sep 2021 12:30:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=Lqt0we4A/T0SHYBhw0ZBiteVrFa
+        e9rbK0EPrRuFl3oY=; b=LnIWuareiS2jP4nnsunZoVLeH91/ijKlwjtNs0JMLTq
+        W5SkajmnGWk707CsLe1azxnZa8myH4n+bFwA8ckwnQjA8EphQZ0JCTbh4Y6K4n92
+        g2g1F/E53xOP06kQjsn+JOMXRyEu2S88ZzuGGJQxDVYZTatLErit5ewiKV6u2BdI
+        lsdp1cZ5a3HMBapmFj07mGRW4hl42aMEFuzE7fU2OxArRkU7uz0Iikxns502WK2A
+        VurLq8I/YfExtRjENhb9CeCKHxLmcZVIj9cZsKuRCnd2TZcIYlaMPv+7tJ16zeKO
+        lv+MK8f24hm/KgC6L9xe5JnBP56ZQ7rQAeA2NIPzziw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Lqt0we
+        4A/T0SHYBhw0ZBiteVrFae9rbK0EPrRuFl3oY=; b=hzcmiTskzfJ0LpViQyTC36
+        ukeBnRV3kVOlWsu8LkC8k3TIb0V6CrrFJkdx5Op//6RBN8W6uLa83Op2gJZ5M6bA
+        5CKZYAMI8pT3jB91IQObI/Zwdf7H9RY3lcqQvuTZhmouwzJmpjnAINJFQk9RZqCP
+        oU/PuigbRr66lGhsqy7F+GrdxXBtRVpmg3VbU/sccLOyqg5GIWO6uiqOk+75rKvi
+        GRDXS8VgLCMv6LllYt39AjMMPv/a9ZRqCUaBNHwX4nrPHQB95LHjWGSY5fpeEy9C
+        I78PdIa9tVQJn/iwGijd8nj+guRXbXSpCIkz5ojHdqqkHjRo0hnQ5vsB7RyPdKEA
+        ==
+X-ME-Sender: <xms:DHFDYefc5hj8gi4dxWD0LPwIZ-7eCAuChRgl45hXKphK3maJmwnwXg>
+    <xme:DHFDYYO0rUPS9nmSFSqwpcxqfQ_pQUfnIXBaWh_gKPlov19Nv09H08sl9fMbW8jej
+    x4FLS8PBE-WDjuxu1Q>
+X-ME-Received: <xmr:DHFDYfjlR9vtTu4VW1DUC-1go9vAGAgiu4mdYnnLPoc-sg8jUE3667OYC6LwQ6eKgLK2bp65AsiHYahP4-YRGqqoixLRb-JI6Ggs>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehgedgleeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:DHFDYb8mvUuKkKkddxegg6gItiZ5TjT8Cc64Qf7pAUHPtYmMU-xSjA>
+    <xmx:DHFDYavdsMaQrdk1zzZdfVtKrlwD3fDdTKdBvT-bzXktew1v5aVQpw>
+    <xmx:DHFDYSGgAKXuaQV93QNJ2A44fGIJFswzUnmo5pe6HbLIx8qSeTi1UA>
+    <xmx:D3FDYVkgEXJK3xiJFUwFzoVSyYi_MlOVvwBGpewYBcsbvogO0Rptf9nzLW8>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 16 Sep 2021 12:30:03 -0400 (EDT)
+Date:   Thu, 16 Sep 2021 18:30:00 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 01/22] clk: sunxi-ng: v3s: Make the ISP PLL clock public
+Message-ID: <20210916163000.6ezo6muhq23bewyi@gilmour>
+References: <20210910184147.336618-1-paul.kocialkowski@bootlin.com>
+ <20210910184147.336618-2-paul.kocialkowski@bootlin.com>
+ <20210913075417.ampb2jt4quftpqzj@gilmour>
+ <YT8RnzVqLebtPMD+@aptenodytes>
 MIME-Version: 1.0
-In-Reply-To: <3c5f75f9-8ee2-6da2-b7ec-7854759e2647@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6h7nudibxh245pvl"
+Content-Disposition: inline
+In-Reply-To: <YT8RnzVqLebtPMD+@aptenodytes>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--6h7nudibxh245pvl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Salut Paul,
 
->>> +int audioreach_tplg_init(struct snd_soc_component *component)
->>> +{
->>> +    struct device *dev = component->dev;
->>> +    const struct firmware *fw;
->>> +    int ret;
->>> +
->>> +    ret = request_firmware(&fw, "audioreach.bin", dev);
->>> +    if (ret < 0) {
->>> +        dev_err(dev, "tplg fw audioreach.bin load failed with %d\n",
->>> ret);
->>> +        return ret;
->>> +    }
->>
->> How does this work if you want to change the topology, which will happen
->> rather frequently if you have a framework precisely to change the DSP
->> graph? You need to override a file in userspace?
->>
->> Shouldn't you have a means to identify what topology file you want on a
->> platform-basis?
->>
->> Or at the very least a means to change the file name with a kernel
->> parameter or something.
-> 
-> I totally agree, I was planning to do that as a next step. But now that
-> you pointed it out, I can take a look at SOF for some ideas and add it
-> in next version.
+On Mon, Sep 13, 2021 at 10:53:51AM +0200, Paul Kocialkowski wrote:
+> On Mon 13 Sep 21, 09:54, Maxime Ripard wrote:
+> > On Fri, Sep 10, 2021 at 08:41:26PM +0200, Paul Kocialkowski wrote:
+> > > In order to reparent the CSI module clock to the ISP PLL via
+> > > device-tree, export the ISP PLL clock declaration in the public
+> > > device-tree header.
+> >=20
+> > You use clk_set_rate_exclusive in the ISP driver on the module clock so
+> > it should prevent what you're mentioning from happening.
+>=20
+> It does, but then it breaks display support entirely (because the DRM
+> driver doesn't use clk_set_rate_exclusive).
+>=20
+> The bottomline is that using the same PLL for both display and camera
+> easily results in conflicts.
 
-Good that we are on the same wavelength.
+The commit log should reflect that then
 
-In initial uses on the Intel side, the kernel could retrieve an
-identifier from platform firmware (NHLT tables), and then fetch the
-topology.
+> > If it doesn't, then clk_set_rate_exclusive has a bug and should be
+> > fixed.
+> >=20
+> > Either way, using assigned-clock-parents is not a good solution here
+> > either, it only makes sure that this is the case when probe is run.
+>=20
+> I'm not sure what could provide better guarantees. There is a clock
+> parenting API (in the clock framework) which may, but this implies
+> providing the parent clock to the driver which seems way out of line
+> since this is a platform-specific matter that should certainly not
+> be handled by the driver.
+>=20
+> I also tried hardcoding the reparenting bit in the CCU driver, but
+> this felt less clean than doing it in device-tree.
+>=20
+> What do you think?
 
-	snprintf(skl->tplg_name, sizeof(skl->tplg_name), "%x-%.6s-%.8s-%d%s",
-		skl->pci_id, nhlt->header.oem_id, nhlt->header.oem_table_id,
-		nhlt->header.oem_revision, "-tplg.bin");
+This is essentially policy, and putting it in the DT fails for the
+reason we already discussed, but also if we ever want to change it for
+example to optimize it a bit. In this case, we would have to deal with
+the old and new DT, and the possible consequences.
 
-As a fallback the topology was named "dfw_sst.bin", similar to your
-"audioreach.bin"
+So yeah, hardcoding it in the clock driver seems like a more sensible
+choice.
 
-This was fine when the distribution controlled a limited number of
-builds but was impractical for generic distros which have to figure out
-what to add in /lib/firmware/
+Maxime
 
-Later on a more generic topology name was added
+--6h7nudibxh245pvl
+Content-Type: application/pgp-signature; name="signature.asc"
 
-snprintf(alt_tplg_name, sizeof(alt_tplg_name), "%s-tplg.bin",
-			 skl->mach->drv_name);
+-----BEGIN PGP SIGNATURE-----
 
-That's also problematic if the same machine driver can deal with
-multiple platforms, as we do now.
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYUNxCAAKCRDj7w1vZxhR
+xTHSAP94s1QU8mIU0mn77banRpkH0ZGKIUjPYygrvhOgdlCSegD/UryBgzqTDNlY
+omqVVtLWlYLTj9NQE+yJaYV+lXE3oQo=
+=K8KU
+-----END PGP SIGNATURE-----
 
-In SOF we took a different route, we added a topology name in the same
-tables used to identify a machine driver. Chrome recently added a more
-specific match when that approach failed to describe the platform, e.g.
-with the same they now use now have specific DMI matches for e.g.
-DMI_MATCH(DMI_OEM_STRING, "AUDIO-MAX98373_ALC5682I_I2S_UP4")
-
-It's really hard to find a good solution that provides the means to
-describe a specific configuration while still bounding the number of
-topology files that need to be maintained. It's a constant battle in SOF
-development to try to limit changes or enforce consistency, ironically
-the additional flexibility that the topology provides is offset by the
-configuration management.
-
-For DeviceTree platforms, you may be in the same case as the initial
-Intel approach, it's really easy to have a proliferation of topology
-file names, which becomes a nightmare to maintain for generic
-distributions.
-
-BTW if you put information in DeviceTree blobs, it'll be interesting to
-determine where this information should be: the topology is used by the
-DSP driver, but it also contains information related to dailinks, which
-are defined in the machine driver. It's one of the issues I have with
-the ASoC topology framework: it blurs the layers between DSP and
-platform support. We're really missing a 'compatibility layer' between
-the hardware description, that should come from platform firmware, and
-the DSP topology that can be modified at will. The topology is
-essentially too flexible and ignores the hardware definition. 90% of our
-recent topology changes are just to swap interfaces and adjust to
-hardware changes, it's really painful to maintain, and mistakes are
-common with the topology referring to dailinks that don't exist.
-
-Hope this helps!
--Pierre
-
-
+--6h7nudibxh245pvl--
