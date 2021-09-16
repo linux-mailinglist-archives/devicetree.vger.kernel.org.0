@@ -2,211 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66E2140EA48
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 20:54:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48CFE40EAA2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 21:06:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245721AbhIPSzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 14:55:47 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44932 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344030AbhIPSzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 14:55:38 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18GIruAR084558;
-        Thu, 16 Sep 2021 13:53:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631818436;
-        bh=ofxg2rOoyTHRLO7cygaz8Om7ldfzCv8/JSm+cnOaM94=;
-        h=From:To:CC:Subject:Date;
-        b=LE5/W7o1G+2F8rb9BnFfpVShf9T2XZvugeR7TwgAOldluQwHIEaTODJsGVWeymYvF
-         5I2BTmaivJsgcNdGa7hoOxilmZVT60pkqI+sJsefNVWmKW8FPciuhtZPdVJ5SdJHJo
-         wLEu9rY1t4EGKYdY5zDRjdLIb/+DMFa41Qt3A2HI=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18GIrteN098340
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 16 Sep 2021 13:53:56 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 16
- Sep 2021 13:53:55 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 16 Sep 2021 13:53:55 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18GIrrJa097516;
-        Thu, 16 Sep 2021 13:53:54 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <devicetree@vger.kernel.org>
-CC:     <mpm@selenic.com>, <herbert@gondor.apana.org.au>,
-        <robh+dt@kernel.org>, <j-choudhary@ti.com>,
-        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] dt-bindings: rng: convert OMAP and Inside-Secure HWRNG to yaml schema
-Date:   Fri, 17 Sep 2021 00:23:52 +0530
-Message-ID: <20210916185352.7919-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S1347125AbhIPTIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 15:08:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53944 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347066AbhIPTIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 15:08:02 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E263C06AA77
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 12:02:37 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id c8-20020a9d6c88000000b00517cd06302dso9565471otr.13
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 12:02:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=FWeWVI89CMKoqS12Pp2ofBTtl9f9+kDvHLEYyvtvj3Y=;
+        b=Wt7OcJpNUxw12DAwblAXr10E60SnW77IXBLxYGtjl4MPd+CK4GnWnRs87pe+Uuu3c8
+         ohI3BW3y/F/UIenD56eQVQ6KreefgJIrVNqutHJM0rSM4Fb/zmBfCpOGmXur9lqq2EyJ
+         IzKs4ujCFIvkiccoa6fLoYT+/DDXEJgWTUK08=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=FWeWVI89CMKoqS12Pp2ofBTtl9f9+kDvHLEYyvtvj3Y=;
+        b=Y3X62RvkCuT2CcCNPJMklEnXopzdzuaPSBhUM9BrOk68ledpK9UJg2EZhVDpi0RhNl
+         O6XWEbuFDCflJA/RXlkythU/cjnWssyTfBi/av6RrV5Ny8cAdUsBR3rw6FALwxhePuKS
+         5Y8d/eLqh76ofGgpj7bVOE6dquVnR7Edk9zkeCVJXP4Tf57vSmKmS51ECPbWHQY44aQZ
+         AvwdS5LceozfhZmJCIU3WgWhAy6Ik3eC4pGxRNKcZz9hd0N0PhevFyEsHQSQLaCNRwRs
+         JaqtlzyYAv6nSrnnta2TBRb0Kp7CX9xzv6O3n7VLtb3k5BbLsmKrQVhRgCUd75mfIj2L
+         MJNQ==
+X-Gm-Message-State: AOAM530Qp0LYbsSvJfPumzYhp3FWVUzl4Nmd97emhYv5zAlaFBTh4FpG
+        0+przSsvolmsergdgezFA2Hnmvk1btR4e1+UWzB0xQ==
+X-Google-Smtp-Source: ABdhPJzEFLzP9i6NLH2BNZiamfhPoIiZWSUb5DRAGv784Z0t+KDMcv3d9XBq8O+KgpL10r2bUObyqJ+JYSPOsod0imQ=
+X-Received: by 2002:a05:6830:1212:: with SMTP id r18mr5777608otp.159.1631818956932;
+ Thu, 16 Sep 2021 12:02:36 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 16 Sep 2021 12:02:36 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <1631798498-10864-3-git-send-email-skakit@codeaurora.org>
+References: <1631798498-10864-1-git-send-email-skakit@codeaurora.org> <1631798498-10864-3-git-send-email-skakit@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 16 Sep 2021 12:02:36 -0700
+Message-ID: <CAE-0n53i4pU==W-dc=md_x+0Tqbd1gtwkPBFode+rtupSFi0WQ@mail.gmail.com>
+Subject: Re: [PATCH V5 2/2] arm64: dts: sc7280: Add volume up support for sc7280-idp
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <skakit@codeaurora.org>
+Cc:     David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Converts the RNG bindings for OMAP SoCs and Inside-Secure
-HWRNG modules to YAML schema.
+Quoting Satya Priya (2021-09-16 06:21:38)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 371a2a9..cbbb0ee 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -12,6 +12,26 @@
+>  #include "pm8350c.dtsi"
+>  #include "pmk8350.dtsi"
+>
+> +/ {
+> +       gpio-keys {
+> +               compatible = "gpio-keys";
+> +               label = "gpio-keys";
+> +
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&key_vol_up_default>;
+> +
+> +               volume-up {
+> +                       label = "volume_up";
+> +                       gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
+> +                       linux,input-type = <1>;
+> +                       linux,code = <KEY_VOLUMEUP>;
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- .../devicetree/bindings/rng/omap_rng.txt      | 38 --------
- .../devicetree/bindings/rng/omap_rng.yaml     | 94 +++++++++++++++++++
- 2 files changed, 94 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rng/omap_rng.txt
- create mode 100644 Documentation/devicetree/bindings/rng/omap_rng.yaml
+Is there an include for this define? Looks like
+<dt-bindings/input/input.h> should be added as well? Did you try
+compiling?
 
-diff --git a/Documentation/devicetree/bindings/rng/omap_rng.txt b/Documentation/devicetree/bindings/rng/omap_rng.txt
-deleted file mode 100644
-index ea434ce50f36..000000000000
---- a/Documentation/devicetree/bindings/rng/omap_rng.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--OMAP SoC and Inside-Secure HWRNG Module
--
--Required properties:
--
--- compatible : Should contain entries for this and backward compatible
--  RNG versions:
--  - "ti,omap2-rng" for OMAP2.
--  - "ti,omap4-rng" for OMAP4, OMAP5 and AM33XX.
--  - "inside-secure,safexcel-eip76" for SoCs with EIP76 IP block
--  Note that these two versions are incompatible.
--- ti,hwmods: Name of the hwmod associated with the RNG module
--- reg : Offset and length of the register set for the module
--- interrupts : the interrupt number for the RNG module.
--		Used for "ti,omap4-rng" and "inside-secure,safexcel-eip76"
--- clocks: the trng clock source. Only mandatory for the
--  "inside-secure,safexcel-eip76" compatible, the second clock is
--  needed for the Armada 7K/8K SoCs
--- clock-names: mandatory if there is a second clock, in this case the
--  name must be "core" for the first clock and "reg" for the second
--  one
--
--
--Example:
--/* AM335x */
--rng: rng@48310000 {
--	compatible = "ti,omap4-rng";
--	ti,hwmods = "rng";
--	reg = <0x48310000 0x2000>;
--	interrupts = <111>;
--};
--
--/* SafeXcel IP-76 */
--trng: rng@f2760000 {
--	compatible = "inside-secure,safexcel-eip76";
--	reg = <0xf2760000 0x7d>;
--	interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
--	clocks = <&cpm_syscon0 1 25>;
--};
-diff --git a/Documentation/devicetree/bindings/rng/omap_rng.yaml b/Documentation/devicetree/bindings/rng/omap_rng.yaml
-new file mode 100644
-index 000000000000..86bbc2c53e7d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rng/omap_rng.yaml
-@@ -0,0 +1,94 @@
-+# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rng/omap_rng.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OMAP SoC and Inside-Secure HWRNG Module
-+
-+maintainers:
-+  - Jayesh Choudhary <j-choudhary@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,omap2-rng
-+      - ti,omap4-rng
-+      - inside-secure,safexcel-eip76
-+
-+  ti,hwmods:
-+    const: rng
-+    deprecated: true
-+    description: Name of the hwmod associated with the RNG module
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - description: EIP150 gatable clock
-+      - description: Main gatable clock
-+
-+  clock-names:
-+    oneOf:
-+      - items:
-+          - const: core
-+          - const: reg
-+      - const: core
-+
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,omap4-rng
-+              - inside-secure,safexcel-eip76
-+
-+    then:
-+      required:
-+        - interrupts
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - inside-secure,safexcel-eip76
-+
-+    then:
-+      required:
-+        - clocks
-+
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    /* AM335x */
-+    rng: rng@48310000 {
-+            compatible = "ti,omap4-rng";
-+            ti,hwmods = "rng";
-+            reg = <0x48310000 0x2000>;
-+            interrupts = <111>;
-+    };
-+  - |
-+    /* SafeXcel IP-76 */
-+    trng: rng@f2760000 {
-+            compatible = "inside-secure,safexcel-eip76";
-+            reg = <0xf2760000 0x7d>;
-+            interrupts = <0 59 4>;
-+            clocks = <&cpm_syscon0 1 25>;
-+    };
-+
-+...
--- 
-2.17.1
-
+> +                       gpio-key,wakeup;
+> +                       debounce-interval = <15>;
+> +                       linux,can-disable;
+> +               };
+> +       };
+> +};
+> +
+>  &apps_rsc {
+>         pm7325-regulators {
+>                 compatible = "qcom,pm7325-rpmh-regulators";
+> @@ -284,6 +304,17 @@
+>
+>  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
+>
+> +&pm7325_gpios {
+> +       key_vol_up_default: key-vol-up-default {
+> +               pins = "gpio6";
+> +               function = "normal";
+> +               input-enable;
+> +               bias-pull-up;
+> +               power-source = <0>;
+> +               qcom,drive-strength = <3>;
+> +       };
+> +};
+> +
+>  &qup_uart5_default {
+>         tx {
+>                 pins = "gpio46";
+> --
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+>
