@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFD9F40EBB0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 22:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C793540EBB3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 22:29:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237226AbhIPU3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 16:29:38 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:40750 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbhIPU3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 16:29:37 -0400
-Received: by mail-ot1-f53.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so9910300otq.7
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 13:28:17 -0700 (PDT)
+        id S237562AbhIPUbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 16:31:01 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:34551 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230338AbhIPUbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 16:31:01 -0400
+Received: by mail-oi1-f172.google.com with SMTP id p2so10820842oif.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 13:29:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=IoD7a1HPYyTmBF3qUxg3ylJtemVi3oyKIfMVDL3ojdg=;
-        b=3MKq0+7trXne55EagutHWYtuc1V1YSpqXKWAPVq4Iahk5vhfvUNDtOZqwAnzLKG7B6
-         OayKQ64i2S0u3IgtNWkslZPJR9dS9G9tYUo7LBQ9YPxqovSzLjw09dUcshgE35wW3Rb6
-         Olj6oY67MxmQuAfkyWU2tIURKu57AEaCJl4ekh4Z4JJJhrpNpg7d3TNIOSixAuyA7ulX
-         KBBNHBV37DQwFCi+q9zUZ9vKo7/ef6nfShrjAtxJJZAMoyDfuFJ8z8rQ3hrrc/a1hmZT
-         oyHInekmcu7qbYrOBv7jY0PIDdCg8U18Imw8rbFyRQeHc1HdY2voHNU5enXnshbroHb1
-         B+bw==
-X-Gm-Message-State: AOAM530ldlCeg7dyCto2V73/zKmQpgSHmMGbtN/z8Rs20bmqG/8nH5HF
-        ddIYoK3cOrY1gBqartWs6A==
-X-Google-Smtp-Source: ABdhPJzLwk2/PaOKC/yIQpbdB7xB4zoQcPxZYB7EZTlz/WBVjx63k9Ia8xFeNzyFzkdZzKubzkZm5A==
-X-Received: by 2002:a05:6830:2151:: with SMTP id r17mr6481185otd.141.1631824096670;
-        Thu, 16 Sep 2021 13:28:16 -0700 (PDT)
+        bh=m71PF4TY4Qs5jvqdlBUKjt+as1k3HqgXBJvRfoZhrW4=;
+        b=DgtfhOrRfKuZHW90XhkC7VEXuB0crNAarEjxfKONc7JJphXyZSM2FIXGiPugR4FKUo
+         1K3gD5C9Kq3bpYRBCTpv4lm7M2K+2mcoHUsVRd000wasewlZXfgW/5xOiDV1b2u7zbDy
+         wZkpPel+EsSxvcXxcm5FeRAnsCVlsn9mbvntnqERGyTDvq3H6deJQtJrHdeIw7Xhdxad
+         QRDheKxBsxQ5db7Apj2bzj3QKL1K0MWPu4e+kCGw3NCsCWTKp8eDzWx+aEzjAy0aMOl3
+         rvDyaoXFDpV9UIzXZjt945xXNzWeIobGprPwF/P6GUWdU3FCnax5HXg3DSF4guufnNtd
+         wegw==
+X-Gm-Message-State: AOAM532PW1j5nsi1fjppAW9XGW/lA0MruUzM5lRXzJi6snLH3ixDKZ/o
+        wz5xWoVOFPJzXZE9tHrTdA==
+X-Google-Smtp-Source: ABdhPJydwOD5f69YFpKkeMkt6mb/61JRDkZhnWLEb0fPGLFcaOT/B+Bel16RDh+y6neYsmqUSYfqCg==
+X-Received: by 2002:aca:2b0e:: with SMTP id i14mr10787937oik.16.1631824180042;
+        Thu, 16 Sep 2021 13:29:40 -0700 (PDT)
 Received: from robh.at.kernel.org (107-211-252-53.lightspeed.cicril.sbcglobal.net. [107.211.252.53])
-        by smtp.gmail.com with ESMTPSA id n23sm408399otj.70.2021.09.16.13.28.14
+        by smtp.gmail.com with ESMTPSA id r13sm969347oti.80.2021.09.16.13.29.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 13:28:16 -0700 (PDT)
-Received: (nullmailer pid 1446078 invoked by uid 1000);
-        Thu, 16 Sep 2021 20:28:13 -0000
-Date:   Thu, 16 Sep 2021 15:28:13 -0500
+        Thu, 16 Sep 2021 13:29:39 -0700 (PDT)
+Received: (nullmailer pid 1448638 invoked by uid 1000);
+        Thu, 16 Sep 2021 20:29:36 -0000
+Date:   Thu, 16 Sep 2021 15:29:36 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Cc:     NXP Linux Team <linux-imx@nxp.com>, patchwork-lst@pengutronix.de,
+        Adam Ford <aford173@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Adam Ford <aford173@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        patchwork-lst@pengutronix.de, Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>
-Subject: Re: [PATCH v4 11/18] dt-bindings: soc: add binding for i.MX8MM DISP
- blk-ctrl
-Message-ID: <YUOo3batnxjyDRoi@robh.at.kernel.org>
+        Rob Herring <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Tim Harvey <tharvey@gateworks.com>
+Subject: Re: [PATCH v4 12/18] dt-bindings: power: imx8mm: add defines for
+ DISP blk-ctrl domains
+Message-ID: <YUOpMHkdiQnd236K@robh.at.kernel.org>
 References: <20210910202640.980366-1-l.stach@pengutronix.de>
- <20210910202640.980366-12-l.stach@pengutronix.de>
+ <20210910202640.980366-13-l.stach@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210910202640.980366-12-l.stach@pengutronix.de>
+In-Reply-To: <20210910202640.980366-13-l.stach@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Sep 2021 22:26:33 +0200, Lucas Stach wrote:
-> This adds the DT binding for the i.MX8MM VPU blk-ctrl.
+On Fri, 10 Sep 2021 22:26:34 +0200, Lucas Stach wrote:
+> This adds the defines for the power domains provided by the DISP
+> blk-ctrl.
 > 
 > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 > ---
->  .../soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml     | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml
+> v4: Change naming to be consistent with the VPUBLK domains.
+> ---
+>  include/dt-bindings/power/imx8mm-power.h | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
