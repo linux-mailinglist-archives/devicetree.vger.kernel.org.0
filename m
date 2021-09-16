@@ -2,163 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B4B40D1F0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 05:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B186F40D229
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 05:52:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234010AbhIPDOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 23:14:39 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:41077 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234037AbhIPDOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 23:14:37 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1631761997; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=L56PSK7UJgVh+fg1UMQNlQbJl4Gk/N51kf4QAV1HAdA=;
- b=CwBpjJyH0kN+ebQZagIKjRFBU/pDpqlH7zfPcOHc2KsuMa9AJ7RNV+9pjmTBPumDPQXJlAyl
- UCmJegJE8g94KAHmd4aIJhW9Gx0JnG31jJsMtbVAPR0tteupEixRD459JEz47MA/refR+Hkc
- kTRbhPLD7tAi8ROjNWGWhndwczs=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 6142b64bbd6681d8ed883fd9 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 16 Sep 2021 03:13:15
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 053EDC43460; Thu, 16 Sep 2021 03:13:15 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 25E42C4338F;
-        Thu, 16 Sep 2021 03:13:13 +0000 (UTC)
+        id S233450AbhIPDx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 23:53:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232217AbhIPDx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 23:53:57 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27781C061574;
+        Wed, 15 Sep 2021 20:52:37 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id m21so5961128qkm.13;
+        Wed, 15 Sep 2021 20:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i8pdCgT8Dk9nwi5cOThdaZCDIas189n8MqwW6echK9k=;
+        b=iMEBrtz94FcLe6yTN+V8qvN1F2TF07AfZN8/epMBz1JuEkvAACV3q1W+GVdmfo5r54
+         bg//8MWY6mTmX9lQC2Kp25KUDBA1EPKA5JlE5ZvNPGF/W8cCJyS5CQg2Asy5KM8G0qP8
+         j+r6IMN2id2P0wQtIbzl33v2wIQA2cOhsEYVc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i8pdCgT8Dk9nwi5cOThdaZCDIas189n8MqwW6echK9k=;
+        b=xOSMJqMCa1K53ISWxDVr9mCYpxZjRXuRsqlXZpPmnwOzfCjwN9cVrSdUI5C0WYzMLk
+         sdVG5lwx9nLU3+qutXQctxtyV3LTnuInnVrFKLiCBceFCwbEBaEpitYhwRFqX8mbT0pI
+         k3UZfccga+tpAewOlec1QjG/qrmuVzkg/lejfDoKOAq55qNuTtj0tu/B+v7pQ8ctWZ5Q
+         /zK8ZBvmVwkBGuPQNfb0VUs0C0r9a387KamAZVLix9xRRZNmeN/3MZirMBR5niuSfxKX
+         sSbfm2n1YG61t5910AWMgjTeOMddXsdS7ynPQQniqltnpJcv4Vn3nXo0Vl5ubka03cZR
+         cCiQ==
+X-Gm-Message-State: AOAM531nykOjtd49j33J9TUdPjrPLPP1Y55PPgB/s4q1QSGa22iq3kG0
+        8M0VuQCqwxZvBgxYsWY746LpLrvFUr7euJnmzr75hF5b
+X-Google-Smtp-Source: ABdhPJxoby/8H50notx6irHNgeSday5LPM9+rzgXxcx7N4BW5dKsUnLAMdsFv2lQFsB3wKXccEJdgJUW4SCIhBWwhqU=
+X-Received: by 2002:a05:620a:140c:: with SMTP id d12mr3200243qkj.381.1631764356048;
+ Wed, 15 Sep 2021 20:52:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 16 Sep 2021 08:43:13 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     mka@chromium.org, swboyd@chromium.org, bjorn.andersson@linaro.org,
-        ulf.hansson@linaro.org, rjw@rjwysocki.net, agross@kernel.org,
-        ohad@wizery.com, mathieu.poirier@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, rishabhb@codeaurora.org,
-        sidgup@codeaurora.org
-Subject: Re: [PATCH v6 02/13] dt-bindings: remoteproc: qcom: pas: Add QMP
- property
-In-Reply-To: <YTi/+VIOuja9eLbl@robh.at.kernel.org>
-References: <1630916637-4278-1-git-send-email-sibis@codeaurora.org>
- <1630916637-4278-3-git-send-email-sibis@codeaurora.org>
- <YTi/+VIOuja9eLbl@robh.at.kernel.org>
-Message-ID: <fbd2f3ee8b5fc8dd26011a85df9cb348@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <20210831071458.2334-1-billy_tsai@aspeedtech.com>
+ <20210831071458.2334-5-billy_tsai@aspeedtech.com> <20210905153339.751732cc@jic23-huawei>
+ <20210905155029.3faa2c04@jic23-huawei>
+In-Reply-To: <20210905155029.3faa2c04@jic23-huawei>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Thu, 16 Sep 2021 03:52:24 +0000
+Message-ID: <CACPK8Xe4KifkDxm0H6LtpCJZ1n07GLvxR_nF4Cfy5+4WXn9Z6g@mail.gmail.com>
+Subject: Re: [v5 04/15] iio: adc: aspeed: Keep model data to driver data.
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Billy Tsai <billy_tsai@aspeedtech.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Philipp Zabel <p.zabel@pengutronix.de>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Rob,
+On Sun, 5 Sept 2021 at 14:47, Jonathan Cameron <jic23@kernel.org> wrote:
+>
+> On Sun, 5 Sep 2021 15:33:39 +0100
+> Jonathan Cameron <jic23@kernel.org> wrote:
+>
+> > On Tue, 31 Aug 2021 15:14:47 +0800
+> > Billy Tsai <billy_tsai@aspeedtech.com> wrote:
+> >
+> > > Keep the model data pointer to driver data for reducing the usage of
+> > > of_device_get_match_data().
+> > >
+> > > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> > This one starts to be impacted by the fix (as its in the context).
+> > Rather than making a mess of things for linux-next etc I'll hold
+> > off on these until that fix is upstream in a few weeks.
+> >
+> > If I seem to have lost it (it's been known to happen :( ) then
+> > feel free to poke me!
+>
+> Having taken another look at the rest of the series (and Philipp's review)
+> please do a v6 starting from this patch.
 
-Thanks for taking time to review
-the series.
+I'd recommend against the practice of half applying a series. I have
+just spent a good chunk of time looking at v6, and wondering why it
+won't apply to any tags in Linus tree nor to next.
 
-On 2021-09-08 19:21, Rob Herring wrote:
-> On Mon, Sep 06, 2021 at 01:53:46PM +0530, Sibi Sankar wrote:
->> The load state power-domain, used by the co-processors to notify the
->> Always on Subsystem (AOSS) that a particular co-processor is up/down,
->> suffers from the side-effect of changing states during suspend/resume.
->> However the co-processors enter low-power modes independent to that of
->> the application processor and their states are expected to remain
->> unaltered across system suspend/resume cycles. To achieve this 
->> behavior
->> let's drop the load state power-domain and replace them with the qmp
->> property for all SoCs supporting low power mode signalling.
->> 
->> Due to the current broken load state implementation, we can afford the
->> binding breakage that ensues and the remoteproc functionality will 
->> remain
->> the same when using newer kernels with older dtbs.
->> 
->> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
->> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->> ---
->> 
->> v6:
->>  * Updated commit message to explain binding breakage. [Stephen]
->> 
->>  .../devicetree/bindings/remoteproc/qcom,adsp.yaml  | 61 
->> +++++++++++-----------
->>  1 file changed, 31 insertions(+), 30 deletions(-)
->> 
->> diff --git 
->> a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml 
->> b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
->> index 0c112f3264a9..0d2b5bd4907a 100644
->> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
->> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
->> @@ -93,6 +93,10 @@ properties:
->>      maxItems: 1
->>      description: Reference to the reserved-memory for the Hexagon 
->> core
->> 
->> +  qcom,qmp:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description: Reference to the AOSS side-channel message RAM.
->> +
-> 
-> [...]
-> 
->> @@ -511,6 +486,32 @@ allOf:
->>              - const: mss_restart
->>              - const: pdc_reset
->> 
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sc7180-mpss-pas
->> +              - qcom,sc8180x-adsp-pas
->> +              - qcom,sc8180x-cdsp-pas
->> +              - qcom,sc8180x-mpss-pas
->> +              - qcom,sm8150-adsp-pas
->> +              - qcom,sm8150-cdsp-pas
->> +              - qcom,sm8150-mpss-pas
->> +              - qcom,sm8150-slpi-pas
->> +              - qcom,sm8250-adsp-pas
->> +              - qcom,sm8250-cdsp-pas
->> +              - qcom,sm8250-slpi-pas
->> +              - qcom,sm8350-adsp-pas
->> +              - qcom,sm8350-cdsp-pas
->> +              - qcom,sm8350-mpss-pas
->> +              - qcom,sm8350-slpi-pas
->> +    then:
->> +      properties:
->> +        qcom,qmp:
->> +          items:
->> +            - description: Reference to the AOSS side-channel message 
->> RAM.
-> 
-> This doesn't do anything. The property is already allowed for all
-> compatibles. Perhaps you want to negate the if and put 'qcom,qmp: 
-> false'
-> here.
+(It was made worse by the branch you applied them to not being part of
+linux-next.)
 
-sure will fix it in the next re-spin.
+Cheers,
 
-> 
-> Rob
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+Joel
