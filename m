@@ -2,120 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBFFB40D9E4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:26:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D88D640DA00
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:35:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239402AbhIPM1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 08:27:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37124 "EHLO mail.kernel.org"
+        id S235556AbhIPMhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 08:37:13 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:44024 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239363AbhIPM1v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 08:27:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 26EA360F25;
-        Thu, 16 Sep 2021 12:26:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631795190;
-        bh=mfX29/di/xilhJPTUe/47Dt9l+sLXh8n1/Bzm8nigXo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dot7UTFG9z5RDoKt9YwghU4gkD4y/1MEbPdmOHoSGOeFeQji17JwBeN4q3v3btsll
-         KjYI9NO8L81+jJYoA3/jm81mU0MgfS6GoThC/wrSXbfjXVWKnyEt3ACq6ylbFiw+Oa
-         2dd/mbMaYaFyYpP0cwWTNRGJcZnoZY+YOrDEybg5aEKgEflxSVHSycN1NW3s98A17/
-         QEb7g5+IoM+MrG/lX8TzMEELRy7gCn6wvNQMN6MComagWtYo/VixmF8TN+o00lA0I5
-         dG9SGeD13axlKcBfB7jyvb68L8mgCHFwQLw2oqTuBOB+6rZnOUbJdwNj1qistYfVzG
-         0gwbWdMYlARow==
-Date:   Thu, 16 Sep 2021 13:25:49 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        id S230299AbhIPMhN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Sep 2021 08:37:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=V6UiYMHUcx5TF7n24nYkSm/8/ySg85wDtoqkAeaY5B0=; b=E0k1SVPE/SRI7xHGQptd3ceuNZ
+        rxG+qoikEDd0dYbi/Cf8ht8yF2RT8mky4ZZg6iHhNCuWQLZTVLwFMWNDtHwrwnRemT5PmOyk32UOg
+        Ht+AU4rQjzqki9vXM2E/SmDIBdehqOATkI8jbMNrr9ikOtCMzZjQnE3N5BBZnVzH1ePI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mQqc9-006u8h-KC; Thu, 16 Sep 2021 14:35:41 +0200
+Date:   Thu, 16 Sep 2021 14:35:41 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
-Message-ID: <20210916122549.GF5048@sirena.org.uk>
-References: <20210903231536.225540-1-frattaroli.nicolas@gmail.com>
- <20210903231536.225540-3-frattaroli.nicolas@gmail.com>
- <20210915141012.GC12513@sirena.org.uk>
- <42974939.Tn3hggVSkZ@archbook>
+        Michael Heimpold <michael.heimpold@in-tech.com>,
+        jimmy.shen@vertexcom.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 3/3] net: vertexcom: Add MSE102x SPI support
+Message-ID: <YUM6HfDYX0Twe67+@lunn.ch>
+References: <20210914151717.12232-1-stefan.wahren@i2se.com>
+ <20210914151717.12232-4-stefan.wahren@i2se.com>
+ <YUJi0cVawjyiteEx@lunn.ch>
+ <bfbbf816-f467-7e2e-12ca-fb2172ce93f9@i2se.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="hUH5gZbnpyIv7Mn4"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <42974939.Tn3hggVSkZ@archbook>
-X-Cookie: We've upped our standards, so up yours!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <bfbbf816-f467-7e2e-12ca-fb2172ce93f9@i2se.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> >> +	netif_carrier_off(mse->ndev);
+> >> +	ndev->if_port = IF_PORT_10BASET;
+> > That is not correct. Maybe you should add a IF_PORT_HOMEPLUG ?
 
---hUH5gZbnpyIv7Mn4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 15, 2021 at 07:06:14PM +0200, Nicolas Frattaroli wrote:
-> On Mittwoch, 15. September 2021 16:10:12 CEST Mark Brown wrote:
+> There is already a driver (qca_spi, qcauart) for a similiar Homeplug
+> device (QCA7000), which also uses IF_PORT_10BASET. Should i change this
+> too or leave it because of resulting changes to userspace?
 
-> > Why is this not part of the normal bus format configuration?  I don't
-> > know what this is but it sounds a lot like I2S mode...
+Technically, it would be an ABI change. But ifmap seems pretty loosely
+defined. See man 7 netdevice:
 
-> This affects all TDM I2S modes, i.e. TDM Normal, TDM Left Justified and T=
-DM=20
-> Right Justified.
+       SIOCGIFMAP, SIOCSIFMAP
+              Get or set the interface's hardware parameters using ifr_map.
+	      Setting the parameters is a privileged operation.
 
-> Without tdm-fsync-half-frame, we purportedly get the following output in =
-TDM=20
-> Normal Mode (I2S Format):
-> (ch0l =3D channel 0 left, ch0r =3D channel 0 right)
+                  struct ifmap {
+                      unsigned long   mem_start;
+                      unsigned long   mem_end;
+                      unsigned short  base_addr;
+                      unsigned char   irq;
+                      unsigned char   dma;
+                      unsigned char   port;
+                  };
 
-> fsync: 	_____________________________
->                      	            \____________________________
-> sdi/sdo: ch0l, ch0r, ..., ch3l, ch3r,  ch0l, ch0r, ...
->=20
-> With tdm-fsync-half-frame, we purportedly get the following:
->=20
-> fsync: 	_____________________________
->                      	            \____________________________
-> sdi/sdo: ch0l,  ch1l,  ch2l,  ch3l,   ch0r,  ch1r,  ch2r,  ch3r
+              The interpretation of the ifmap structure depends on the device driver
+	      and the architecture.
 
-> At least, according to the TRM. I do not have an oscilloscope to verify t=
-his=20
-> myself, and in the following paragraphs, I will elaborate why this seems=
-=20
-> confusing to me.
+The if_port value ends up in port. And i've no idea where it is
+actually available in user space. iproute2 does not use it, nor
+ethtool. So, i would say, submit a separate patch for the other
+drivers, and we will see if anybody notices.
 
-fsync-half-frame is just normal TDM for I2S, the default mode is how DSP
-mode normally operates.  I don't know that there's any pressing need to
-support mix'n'match here, you could but it should be through the TDM
-configuration API.
+> >> +static const struct of_device_id mse102x_match_table[] = {
+> >> +	{ .compatible = "vertexcom,mse1021" },
+> >> +	{ .compatible = "vertexcom,mse1022" },
+> > Is there an ID register you can read to determine what device you
+> > actually have? If so, i suggest you verify the correct compatible is
+> > used.
+> 
+> AFAIK the device doesn't have any kind of ID register.
 
-> So to answer the question, it's not part of the bus format because it app=
-lies=20
-> to three bus formats, and I'm completely out of my depth here and wouldn'=
-t=20
-> define three separate bus formats based on my own speculation of how this=
-=20
-> works.
+Then i would suggest changing the compatible to "vertexcom,mse102x".
 
-It is part of the bus format really.  I suspect the hardware is the kind
-that only really implements DSP mode and can just fake up a LRCLK for
-I2S in order to interoperate.
+If you cannot verify it, and it makes no actual difference, then 50%
+of the boards will use the wrong one. Which means you can then later
+not actually make use of it to enable features specific to a
+compatible string.
 
---hUH5gZbnpyIv7Mn4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFDN8wACgkQJNaLcl1U
-h9AhiAf/ZlfcZ9ejEekSn1zn4A88+/ZgbySK7f6ieclZDuSJ0PyYj0x6VN5f+p8U
-UrfT02ie6+dpCTcQHVQtFcJx5+BN5N8WoBidKDS0gAN3W8R2i9LvWGw8z9wT6tKS
-KCnSoIL4Gr0ZQ/556y5vIocYG7waZMOckP6/ZuIjBewEH+j0iV34b7uT54kDbfXA
-JLi2Y6LDveRJbnVsJ4EK4cLgmxHDfjmirUiAjvrWvTcVUXXZDQ1qXalGDFX/ZEFq
-RzP18+TUX33qEgF1UApmZEIOqSCHst3po+sy1xkpZlOvTzcQAQLaZXMm9PulSx41
-Aq2b/PrIEwOcL8Kc4GfCeW9YoGOm3w==
-=u+Qx
------END PGP SIGNATURE-----
-
---hUH5gZbnpyIv7Mn4--
+	   Andrew
