@@ -2,197 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8980940DA45
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D6A040DA36
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:42:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239598AbhIPMtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 08:49:49 -0400
-Received: from mx1.tq-group.com ([93.104.207.81]:15265 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232181AbhIPMtq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 08:49:46 -0400
-X-Greylist: delayed 431 seconds by postgrey-1.27 at vger.kernel.org; Thu, 16 Sep 2021 08:49:45 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1631796506; x=1663332506;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Ykdzm4haCFJvWuW9ljTbSMtQyKZmQuVu8x/zfRHUC6Q=;
-  b=SGK38Rpr+cm9l8W8y8/0HXBxFLKZWtyWSB5H8vprZwxggyK3wkc2FwA2
-   /c90KffIJICx635rhOTNIkNSvckn/SfCZC5QEmFu5iz1/wmt7wHQ7xiwY
-   Skc088XlIZdXR3nutJ182uHGU6jcqKQfjDg0Vt3AKKMeV0xxH6coo2BZl
-   QwHRVYurGNcpmgBbQreMw1AT1M4IZ6PX+nQ6Sd+LjUMBHCUiSW0OJRBrL
-   t5/ts94frqPIuZROvFTBFfepajjdZKgRY9WTrlgC9U4jCo8UYBAfdYF/1
-   okdTXXWuXW4afEHfvs2ZYyf31Da55KRHAn+LHZcFsVFQQpo+qFDUAbB03
-   w==;
-X-IronPort-AV: E=Sophos;i="5.85,298,1624312800"; 
-   d="scan'208";a="19552342"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 16 Sep 2021 14:41:13 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 16 Sep 2021 14:41:13 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 16 Sep 2021 14:41:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1631796073; x=1663332073;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Ykdzm4haCFJvWuW9ljTbSMtQyKZmQuVu8x/zfRHUC6Q=;
-  b=CZduA0BmJaq3hbWuV7mfdm3bUmlCQy44nIklP3xB2Ftdjxmt3DJNoY5c
-   bliWZiX87V3Sr2c9AD1dExq/a74BOV5oVsqnrHhidt05WJA6z1AHNWg1K
-   dmUsCTNC+ZqQqNTwVwNPXYZ9z5t/IpY2cX5zNztDjKwBF4VGw539U06zM
-   imNjrBW1k2ZvY8lseoj6eZ9wMVtgzrAKP7fE0dDSTxrBjSnQTwDwUvmpr
-   Upr4JcoiehoZCX4yYs53h3Dbi1uHOZ2CH23cX6LphV/7Cq2AITkDO1cmC
-   srPQEtao2MfrOicB53pKHvWD0Ztbuq3Hw1dMvjxoHWzoQIMbyYBNXe4bZ
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.85,298,1624312800"; 
-   d="scan'208";a="19552341"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 Sep 2021 14:41:13 +0200
-Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.121.48.12])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 5E0FC280070;
-        Thu, 16 Sep 2021 14:41:13 +0200 (CEST)
-Message-ID: <ee4b6f3040d9357ad7d1be80e02ec97be05a9e5b.camel@ew.tq-group.com>
-Subject: Re: [PATCH v2 1/2] ARM: dts: imx7-tqma7: add SPI-NOR flash
-From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Date:   Thu, 16 Sep 2021 14:41:11 +0200
-In-Reply-To: <20201102082431.ww6q4x3kyr4ix72k@pengutronix.de>
-References: <20201030102636.16476-1-matthias.schiffer@ew.tq-group.com>
-         <20201102082431.ww6q4x3kyr4ix72k@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S239138AbhIPMn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 08:43:56 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59708 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235820AbhIPMnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 08:43:51 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18GCgOOZ121493;
+        Thu, 16 Sep 2021 07:42:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631796144;
+        bh=Kuof01oAoVK5shV6OwE094wTE2t1T+kOfgtttEclCY0=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=eq2t6NfhmNSL73YHNhBl/765wJEO7Jf9hbF57NMlxH+GUF+yK7zs3S+jNh0XAFPEX
+         e2xDfSyLF71/oyK9T89/lPjyCSbFAo14OwvMt4wVrmVDeFpkPZ4354qCwmd7N8xy8s
+         ZweIF7eCJoJ/6gAN9B0TvcuKnYSQ/yCJUsvxGCms=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18GCgOZG075788
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 16 Sep 2021 07:42:24 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 16
+ Sep 2021 07:42:23 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 16 Sep 2021 07:42:23 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18GCgNvm081967;
+        Thu, 16 Sep 2021 07:42:23 -0500
+Date:   Thu, 16 Sep 2021 07:42:23 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: ti: Add missing compatibles for
+ j721e/j7200 evms
+Message-ID: <20210916124223.ccewyyog26rz2l6n@molar>
+References: <20210915121937.27702-1-nm@ti.com>
+ <20210915121937.27702-2-nm@ti.com>
+ <1631794913.472895.1119414.nullmailer@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1631794913.472895.1119414.nullmailer@robh.at.kernel.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2020-11-02 at 09:24 +0100, Marco Felsch wrote:
-> Hi Matthias,
-> 
-> On 20-10-30 11:26, Matthias Schiffer wrote:
-> > The SPI-NOR flash on the SoM was missing from the device tree.
+On 07:21-20210916, Rob Herring wrote:
+> On Wed, 15 Sep 2021 07:19:35 -0500, Nishanth Menon wrote:
+> > Add compatibles for j721e and j7200 evms to allow for newer platforms
+> > to distinguish themselves.
 > > 
-> > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> > Signed-off-by: Nishanth Menon <nm@ti.com>
 > > ---
-> >  arch/arm/boot/dts/imx7-tqma7.dtsi | 30 ++++++++++++++++++++++++++++++
-> >  1 file changed, 30 insertions(+)
+> >  Documentation/devicetree/bindings/arm/ti/k3.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
 > > 
-> > v2: change node name to flash@0
-
-Sorry for the very late reply, I intend to address the review comments
-soon.
-
-
-> > 
-> > 
-> > diff --git a/arch/arm/boot/dts/imx7-tqma7.dtsi b/arch/arm/boot/dts/imx7-tqma7.dtsi
-> > index 8773344b54aa..22f4194322ed 100644
-> > --- a/arch/arm/boot/dts/imx7-tqma7.dtsi
-> > +++ b/arch/arm/boot/dts/imx7-tqma7.dtsi
-> > @@ -160,6 +160,20 @@
-> >  		>;
-> >  	};
-> >  
-> > +	pinctrl_qspi: qspigrp {
-> > +		fsl,pins = <
-> > +			MX7D_PAD_EPDC_DATA00__QSPI_A_DATA0	0x5A
-> > +			MX7D_PAD_EPDC_DATA01__QSPI_A_DATA1	0x5A
-> > +			MX7D_PAD_EPDC_DATA02__QSPI_A_DATA2	0x5A
-> > +			MX7D_PAD_EPDC_DATA03__QSPI_A_DATA3	0x5A
-> > +			MX7D_PAD_EPDC_DATA05__QSPI_A_SCLK	0x11
-> > +			MX7D_PAD_EPDC_DATA06__QSPI_A_SS0_B	0x54
-> > +			MX7D_PAD_EPDC_DATA07__QSPI_A_SS1_B	0x54
 > 
-> As far as I know we are using GPIO based chip selects and not the one
-> from the controller-IP or is this different for qspi?
-
-Native chip selects are used for QSPI. I don't think GPIO CS make sense
-for this kind of QSPI controller that provides memory-mapped access to
-SPI flash.
-
-
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> > +			/* #QSPI_RESET */
-> > +			MX7D_PAD_EPDC_DATA04__GPIO2_IO4		0x40000052
+> yamllint warnings/errors:
 > 
-> Do you really need to mux the reset-gpio?
-
-The muxing configures a pullup on the reset pin to ensure that a
-connected flash chip is not held in reset. However, the signal is
-marked as optional in the schematics, and on all SoMs I have here the
-flash reset is wired to the board reset instead of this SoC GPIO.
-
-Still, configuring the pullup seems like a good idea to me, in case
-hardware variants with the optional signal actually exist - there
-shouldn't be any downsides, as the pin is either unconnected or wired
-to the flash reset.
-
-I guess I could additionally add an input hog to ensure that the pin
-cannot be changed?
-
-The SION bit in the pad configuration seems to be a mistake, I'll
-remove it.
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.example.dt.yaml: /: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	['ti,j721e'] is too short
+> 	'ti,j721e' is not one of ['ti,am654-evm', 'siemens,iot2050-basic', 'siemens,iot2050-advanced']
+> 	'ti,j721e' is not one of ['ti,j721e-evm']
+> 	'ti,j721e' is not one of ['ti,j7200-evm']
+> 	'ti,j721e' is not one of ['ti,am642-evm', 'ti,am642-sk']
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> 
 
 
-> 
-> > +		>;
-> > +	};
-> > +
-> >  	pinctrl_usdhc3: usdhc3grp {
-> >  		fsl,pins = <
-> >  			MX7D_PAD_SD3_CMD__SD3_CMD		0x59
-> > @@ -217,6 +231,22 @@
-> >  	};
-> >  };
-> >  
-> > +&qspi {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_qspi>;
-> > +	status = "okay";
-> > +
-> > +	flash0: flash@0 {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <1>;
-> > +		compatible = "jedec,spi-nor";
-> > +		spi-max-frequency = <29000000>;
-> > +		spi-rx-bus-width = <4>;
-> > +		spi-tx-bus-width = <4>;
-> > +		reg = <0>;
-> 
-> Please check Documentation/devicetree/bindings/mtd/partition.txt to see
-> how partitions are added nowadays. With this in mind you should reorder
-> the node to:
-> 
-> 	compatible = "jedec,spi-nor";
-> 	reg = <0>;
-> 	spi-max-frequency = <29000000>;
-> 	spi-rx-bus-width = <4>;
-> 	spi-tx-bus-width = <4>;
-> 
-> 
-> Regards,
->   Marco
-> 
-> > +	};
-> > +};
-> > +
-> >  &sdma {
-> >  	status = "okay";
-> >  };
-> > -- 
-> > 2.17.1
-> > 
-> > 
-> > 
+Aaargh, crap ->
+	https://lore.kernel.org/linux-devicetree/20210818074030.1877-1-sinthu.raja@ti.com/
 
+needs to be resolved first.
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
