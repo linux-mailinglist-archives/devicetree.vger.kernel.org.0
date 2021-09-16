@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2B2040DD76
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 17:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0E5040DD77
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 17:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238384AbhIPPDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 11:03:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56250 "EHLO
+        id S238402AbhIPPDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 11:03:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235474AbhIPPDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 11:03:42 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2DC3C061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 08:02:21 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id d6so9946718wrc.11
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 08:02:21 -0700 (PDT)
+        with ESMTP id S235474AbhIPPDs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 11:03:48 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD8DC061574
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 08:02:28 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id q26so9984748wrc.7
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 08:02:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=YIIiNZ1N2SOMMX7Uq/ij5mF3RLXqeUCzPbsrlrJuR74=;
-        b=jt/5tWITWXCzx9TuxJKlc/4ci7MWX1d5XSJEosH7mEdxVHMgiJmIS+GpcgYOrjTTys
-         liC5dOyHjJgXUb7WZxSKFCFHL0EdBWnw5anzuLoQGCIQD2hnaFSPayFdwVxBtMgLAo/3
-         4rP8tAvjgUbtwCtV16AQDUj3I9Ui4kWa7WE34tnTI3aJtvshY1AxZOS/i6fGPfBoeBJ9
-         caIwYFHgXHNpuuHhqYvInn0WTiRIU7wS42tih6bLLPfyDbBmy3dRKUDjHCl8sLhHs3HB
-         KorpmD7IMAr0EuQc++UuAzXTZwBCtVN/Zfheh2LD9NG4CdLl1oSgRl6MUyPNABO2601c
-         GgsA==
+        bh=ZjJ0xClmqjo+gTIddy26W01R4VzloCVoaZoUYIC3Lp4=;
+        b=deewXA8/pg6ilkcnc2ZuFqW+Ug3T39c9cL8co760X8Dt8n9vjqspGIvwMsOUAwnra8
+         xVyTkdIPwwlOpVshd0ql6TQvjqyxAyBKgJZKJJP1AVvrgfnF+DIxlLoPHkIoAcOHpdLI
+         qB00IvnZtiAC39veO4CHtxw9/9u0hfQmtbvT++4q89DOjcjewBm5wAz1RxD75McOntAc
+         wtce4RDSf3Jfzv8tsm2Vv5og9/ZTayiFTpwzd1YsCGnt8q+AmjQWOpAFz8PNXfJl1kcd
+         e4d9nHDP1RPAvqImxRxWrrZwwgm+3H5uLlKbNUH9jVUgE10ClacvM05hI1SzDSowZw2W
+         C9Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=YIIiNZ1N2SOMMX7Uq/ij5mF3RLXqeUCzPbsrlrJuR74=;
-        b=QX2jv9bqLb5PQHb+TwlE7SAORmGx0DWu7Sv1YpMfLnKkr76evHgukMLQBgtega5UxY
-         SuIMUzovTaIVyZdRSqT19ZXl5dDliXteqvYr6OmF9GXekrZw4wjauBQqn3V5Mq2YTDI+
-         Dq5k2BLR0fkMRDhA6ANThtOvRkPhOoLXujNy0Vyoly/+47DBPwwN0ODA5U/vjkpOfKtR
-         uOiO0hzeSfF4nVT5G6CbPhqduTzPs7UcMD8FdrFL0wF+4NqkR5nQq2v731OBLWAvuRDo
-         0VXU6GAlAnN4V++X4H8C5mJxf4QrmSu3WZ4zXXlFPn+vZUPGmf0ZRhnVESS370XvusLR
-         U7cg==
-X-Gm-Message-State: AOAM530eHqnPy8oTXUb8CW4b8KhoFUlJk2yfrfZ00NHFmTDkk+M+lrZy
-        yQKGKm2sT4j5DPJXF4FQ1JcV+vD+5doDJQ==
-X-Google-Smtp-Source: ABdhPJxlcORnlxuErR9hc2YbkqoJnbdb3QRiu5wa7dRIyegpk7J0bufluMi21B4MZ11Ja6aCC376zg==
-X-Received: by 2002:adf:e5c5:: with SMTP id a5mr6546246wrn.290.1631804540284;
-        Thu, 16 Sep 2021 08:02:20 -0700 (PDT)
+        bh=ZjJ0xClmqjo+gTIddy26W01R4VzloCVoaZoUYIC3Lp4=;
+        b=c3lBLWnS+O352BYNcF83+WB8KzSo3Vl3eHTQMLlBKgdGZsgIeiRwmpRP/Wwe9R5qv+
+         X6z9s0Au6z+FQuITTxQKPD15uWi11icu1tk1DzvCLFQiaV/Cdc9JewwhkknjiSimISF5
+         mCS7qABhEs+MW605AcvL/hVcl+cZ2rAPSNLAE1QF5eBA6pYlXvzqwWEw7qAXo2q137L0
+         0KQ5lagxF4NKWB2wTLoG2Zb1PnnwkunCB9Vzt+ID5leEAwFDgz6YMh0vAQM6eeZ1gLpH
+         RUcRpJBMf00EE1QrmZMBzi5JPG05K311wU4A2xSmrN38JxhEZfkegtlqbEOJkUwnWohO
+         LVOA==
+X-Gm-Message-State: AOAM533o5bxTmAZHVtSMd6wT+ghZEDPUOdhc6TVXDzPy2/1xS0pWWLbC
+        fwuZIBD9kBFkszuh2asJr0r4fA==
+X-Google-Smtp-Source: ABdhPJzVwyp2uNEXD/zDcQ//GhQNtYuBAQxM5In2OAZtb8Hm0X7q7RDIzeRdcvaP+tzu6a4H60MP+A==
+X-Received: by 2002:adf:c7d1:: with SMTP id y17mr6535042wrg.214.1631804546633;
+        Thu, 16 Sep 2021 08:02:26 -0700 (PDT)
 Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id u2sm3573509wmj.29.2021.09.16.08.02.19
+        by smtp.googlemail.com with ESMTPSA id o1sm3712718wru.91.2021.09.16.08.02.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Sep 2021 08:02:19 -0700 (PDT)
-Subject: Re: [PATCH v6 15/22] ASoC: qdsp6: audioreach: add q6apm support
+        Thu, 16 Sep 2021 08:02:26 -0700 (PDT)
+Subject: Re: [PATCH v6 16/22] ASoC: qdsp6: audioreach: add module
+ configuration command helpers
 To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
         bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
 Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
         perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
         bgoswami@codeaurora.org
 References: <20210915131333.19047-1-srinivas.kandagatla@linaro.org>
- <20210915131333.19047-16-srinivas.kandagatla@linaro.org>
- <f4c9702d-72a4-f602-71ce-006e6588190f@linux.intel.com>
+ <20210915131333.19047-17-srinivas.kandagatla@linaro.org>
+ <4cd0e63f-107b-d10a-11e9-bced83f487a5@linux.intel.com>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <0938083f-debd-6ab1-b5fc-fc3335e0d9dd@linaro.org>
-Date:   Thu, 16 Sep 2021 16:02:18 +0100
+Message-ID: <00472b83-f02d-70cc-7c6e-cf414dc17754@linaro.org>
+Date:   Thu, 16 Sep 2021 16:02:25 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <f4c9702d-72a4-f602-71ce-006e6588190f@linux.intel.com>
+In-Reply-To: <4cd0e63f-107b-d10a-11e9-bced83f487a5@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -71,185 +72,174 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Pierre for review,
+Thanks Pierre,
 
-On 15/09/2021 17:02, Pierre-Louis Bossart wrote:
+On 15/09/2021 17:11, Pierre-Louis Bossart wrote:
 > 
->> +static void audioreach_populate_graph(struct apm_graph_open_params *open,
->> +				      struct list_head *sg_list,
->> +				      int num_sub_graphs)
+>> +int q6apm_map_memory_regions(struct q6apm_graph *graph, unsigned int dir, phys_addr_t phys,
+>> +			     size_t period_sz, unsigned int periods)
 >> +{
->> +	struct apm_mod_conn_list_params *mc_data = open->mod_conn_list_data;
->> +	struct apm_module_list_params *ml_data = open->mod_list_data;
->> +	struct apm_prop_list_params *mp_data = open->mod_prop_data;
->> +	struct apm_container_params *c_data = open->cont_data;
->> +	struct apm_sub_graph_params *sg_data = open->sg_data;
->> +	int ncontainer = 0, nmodule = 0, nconn = 0;
->> +	struct apm_mod_prop_obj *module_prop_obj;
->> +	struct audioreach_container *container;
->> +	struct apm_module_conn_obj *conn_obj;
->> +	struct audioreach_module *module;
->> +	struct audioreach_sub_graph *sg;
->> +	struct apm_container_obj *cobj;
->> +	struct apm_mod_list_obj *mlobj;
->> +	int i = 0;
+>> +	struct audioreach_graph_data *data;
+>> +	struct audio_buffer *buf;
+>> +	int cnt;
+>> +	int rc;
 >> +
->> +	mlobj = &ml_data->mod_list_obj[0];
+>> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK)
+>> +		data = &graph->rx_data;
+>> +	else
+>> +		data = &graph->tx_data;
 >> +
->> +	list_for_each_entry(sg, sg_list, node) {
->> +		struct apm_sub_graph_data *sg_cfg = &sg_data->sg_cfg[i++];
+>> +	mutex_lock(&graph->lock);
 >> +
->> +		apm_populate_sub_graph_config(sg_cfg, sg);
->> +
->> +		list_for_each_entry(container, &sg->container_list, node) {
->> +			cobj = &c_data->cont_obj[ncontainer];
->> +
->> +			apm_populate_container_config(cobj, container);
->> +			apm_populate_module_list_obj(mlobj, container, sg->sub_graph_id);
->> +
->> +			list_for_each_container_module(module, container) {
->> +				uint32_t src_mod_inst_id;
->> +
->> +				src_mod_inst_id = module->src_mod_inst_id;
->> +
->> +				module_prop_obj = &mp_data->mod_prop_obj[nmodule];
->> +				apm_populate_module_prop_obj(module_prop_obj, module);
->> +
->> +				if (src_mod_inst_id /*&& dst_mod_inst_id*/) {
+>> +	if (data->buf) {
+>> +		dev_err(graph->dev, "Buffer already allocated\n");
+>> +		mutex_unlock(&graph->lock);
+>> +		return 0;
 > 
-> remove left-over code or uncomment required condition?
-
-Yes, this can be removed.
+> is this an error worth of dev_err() if you return 0?
+No, its removed now.
 
 > 
->> +					conn_obj = &mc_data->conn_obj[nconn];
->> +					apm_populate_connection_obj(conn_obj, module);
->> +					nconn++;
->> +				}
+>> +	}
 >> +
->> +				nmodule++;
->> +			}
->> +			mlobj = (void *) mlobj + APM_MOD_LIST_OBJ_PSIZE(container->num_modules);
+>> +	buf = kzalloc(((sizeof(struct audio_buffer)) * periods), GFP_KERNEL);
+>> +	if (!buf) {
+>> +		mutex_unlock(&graph->lock);
+>> +		return -ENOMEM;
+>> +	}
 >> +
->> +			ncontainer++;
+>> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK)
+>> +		data = &graph->rx_data;
+>> +	else
+>> +		data = &graph->tx_data;
+>> +
+>> +	data->buf = buf;
+>> +
+>> +	buf[0].phys = phys;
+>> +	buf[0].size = period_sz;
+>> +
+>> +	for (cnt = 1; cnt < periods; cnt++) {
+>> +		if (period_sz > 0) {
+>> +			buf[cnt].phys = buf[0].phys + (cnt * period_sz);
+>> +			buf[cnt].size = period_sz;
 >> +		}
 >> +	}
->> +}
-> 
->> +static struct audioreach_graph *q6apm_get_audioreach_graph(struct q6apm *apm, uint32_t graph_id)
->> +{
->> +	struct audioreach_graph_info *info;
->> +	struct audioreach_graph *graph;
+>> +	data->num_periods = periods;
 >> +
->> +	mutex_lock(&apm->lock);
->> +	graph = idr_find(&apm->graph_idr, graph_id);
->> +	mutex_unlock(&apm->lock);
+>> +	mutex_unlock(&graph->lock);
 >> +
->> +	if (graph) {
->> +		kref_get(&graph->refcount);
->> +		return graph;
+>> +	rc = audioreach_map_memory_regions(graph, dir, period_sz, periods, 1);
+>> +	if (rc < 0) {
+>> +		dev_err(graph->dev, "Memory_map_regions failed\n");
+>> +		audioreach_graph_free_buf(graph);
 >> +	}
 >> +
->> +	info = idr_find(&apm->graph_info_idr, graph_id);
->> +
->> +	if (!info)
->> +		return ERR_PTR(-ENODEV);
->> +
->> +	graph = kzalloc(sizeof(*graph), GFP_KERNEL);
->> +	if (!graph)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	graph->apm = apm;
->> +	graph->info = info;
->> +	graph->id = graph_id;
->> +
->> +	graph->graph = audioreach_alloc_graph_pkt(apm, &info->sg_list, graph_id);
->> +	if (IS_ERR(graph->graph)) {
->> +		kfree(graph);
->> +		return ERR_PTR(-ENOMEM);
->> +	}
->> +
->> +	mutex_lock(&apm->lock);
->> +	idr_alloc(&apm->graph_idr, graph, graph_id, graph_id + 1, GFP_KERNEL);
-> 
-> test for idr_alloc() success? You have error checks for idr_find() but
-> not for the _alloc() case.
-
-Yes, error handing is missing in this case, fixed in next version.
-
-> 
->> +	mutex_unlock(&apm->lock);
->> +
->> +	kref_init(&graph->refcount);
->> +
->> +	q6apm_send_cmd_sync(apm, graph->graph, 0);
->> +
->> +	return graph;
+>> +	return rc;
 >> +}
->> +
-
->> +static int apm_callback(struct gpr_resp_pkt *data, void *priv, int op)
+>> +EXPORT_SYMBOL_GPL(q6apm_map_memory_regions);
+> 
+>> +int q6apm_write_async(struct q6apm_graph *graph, uint32_t len, uint32_t msw_ts,
+>> +		      uint32_t lsw_ts, uint32_t wflags)
 >> +{
->> +	gpr_device_t *gdev = priv;
->> +	struct q6apm *apm = dev_get_drvdata(&gdev->dev);
->> +	struct device *dev = &gdev->dev;
->> +	struct gpr_ibasic_rsp_result_t *result;
->> +	struct gpr_hdr *hdr = &data->hdr;
->> +	int ret = -EINVAL;
+>> +	struct apm_data_cmd_wr_sh_mem_ep_data_buffer_v2 *write;
+>> +	int rc, payload_size, iid;
+>> +	struct audio_buffer *ab;
+>> +	struct gpr_pkt *pkt;
 >> +
->> +	result = data->payload;
->> +
->> +	switch (hdr->opcode) {
->> +	case APM_CMD_RSP_GET_SPF_STATE:
->> +		apm->result.opcode = hdr->opcode;
->> +		apm->result.status = 0;
->> +		/* First word of result it state */
->> +		apm->state = result->opcode;
->> +		wake_up(&apm->wait);
->> +		break;
+>> +	payload_size = sizeof(*write);
 > 
-> this would keep ret = -EINVAL and return it, that seems suspicious since
-> this doesn't look as an error case?
-> 
->> +	case GPR_BASIC_RSP_RESULT:
->> +		switch (result->opcode) {
->> +		case APM_CMD_GRAPH_START:
->> +		case APM_CMD_GRAPH_OPEN:
->> +		case APM_CMD_GRAPH_PREPARE:
->> +		case APM_CMD_GRAPH_CLOSE:
->> +		case APM_CMD_GRAPH_FLUSH:
->> +		case APM_CMD_GRAPH_STOP:
->> +		case APM_CMD_SET_CFG:
->> +			apm->result.opcode = result->opcode;
->> +			apm->result.status = result->status;
->> +			if (result->status) {
->> +				dev_err(dev, "Error (%d) Processing 0x%08x cmd\n",
->> +					result->status, result->opcode);
->> +				ret = -EINVAL;
->> +			} else {
->> +				ret = 0;
-> 
-> That's also weird, maybe initialize to zero and return an error code in
-> error cases, or fix the case APM_CMD_RSP_GET_SPF_STATE above.
+> nit-pick on variable-naming: I get confused between actions and objects.
 
-this is now fixed by initializing the ret to 0 and setting it in error path.
+this is payload_size for the command packet.
+
+> 
+>> +
+>> +	iid = q6apm_graph_get_rx_shmem_module_iid(graph);
+>> +	pkt = audioreach_alloc_pkt(payload_size, DATA_CMD_WR_SH_MEM_EP_DATA_BUFFER_V2,
+>> +				 graph->rx_data.dsp_buf | (len << APM_WRITE_TOKEN_LEN_SHIFT),
+>> +				 graph->port->id, iid);
+>> +	if (IS_ERR(pkt))
+>> +		return -ENOMEM;
+>> +
+>> +	write = (void *)pkt + GPR_HDR_SIZE;
+>> +
+>> +	mutex_lock(&graph->lock);
+>> +	ab = &graph->rx_data.buf[graph->rx_data.dsp_buf];
+>> +
+>> +	write->buf_addr_lsw = lower_32_bits(ab->phys);
+>> +	write->buf_addr_msw = upper_32_bits(ab->phys);
+>> +	write->buf_size = len;
+>> +	write->timestamp_lsw = lsw_ts;
+>> +	write->timestamp_msw = msw_ts;
+>> +	write->mem_map_handle = graph->rx_data.mem_map_handle;
+>> +	write->flags = wflags;
+>> +
+>> +	graph->rx_data.dsp_buf++;
+>> +
+>> +	if (graph->rx_data.dsp_buf >= graph->rx_data.num_periods)
+>> +		graph->rx_data.dsp_buf = 0;
+>> +
+>> +	mutex_unlock(&graph->lock);
+>> +
+>> +	rc = gpr_send_port_pkt(graph->port, pkt);
+>> +
+>> +	kfree(pkt);
+>> +
+>> +	return rc;
+>> +}
+>> +EXPORT_SYMBOL_GPL(q6apm_write_async);
+>> +
+>> +int q6apm_read(struct q6apm_graph *graph)
+>> +{
+>> +	struct data_cmd_rd_sh_mem_ep_data_buffer_v2 *read;
+>> +	struct audioreach_graph_data *port;
+>> +	struct audio_buffer *ab;
+>> +	struct gpr_pkt *pkt;
+>> +	int rc, iid;
+>> +
+>> +	iid = q6apm_graph_get_tx_shmem_module_iid(graph);
+>> +	pkt = audioreach_alloc_pkt(sizeof(*read), DATA_CMD_RD_SH_MEM_EP_DATA_BUFFER_V2,
+>> +				 graph->tx_data.dsp_buf, graph->port->id, iid);
+>> +	if (IS_ERR(pkt))
+>> +		return -ENOMEM;
+>> +
+>> +	read = (void *)pkt + GPR_HDR_SIZE;
+> 
+> same nit-pick on variable naming, with the additional present/past
+> grammar issue that you don't know if it's a read buffer or a pointer to
+> data read in the past.
+> 
+
+do you think adding "_cmd" suffix like read_cmd would make more sense?
 
 --srini
 
-> 
->> +			}
->> +			wake_up(&apm->wait);
->> +			break;
->> +		default:
->> +			break;
->> +		}
->> +		break;
->> +	default:
->> +		break;
-> 
-> so all the defaults are errors?
-> 
->> +	}
+
 >> +
->> +	return ret;
+>> +	mutex_lock(&graph->lock);
+>> +	port = &graph->tx_data;
+>> +	ab = &port->buf[port->dsp_buf];
+>> +
+>> +	read->buf_addr_lsw = lower_32_bits(ab->phys);
+>> +	read->buf_addr_msw = upper_32_bits(ab->phys);
+>> +	read->mem_map_handle = port->mem_map_handle;
+>> +	read->buf_size = ab->size;
+>> +
+>> +	port->dsp_buf++;
+>> +
+>> +	if (port->dsp_buf >= port->num_periods)
+>> +		port->dsp_buf = 0;
+>> +
+>> +	mutex_unlock(&graph->lock);
+>> +
+>> +	rc = gpr_send_port_pkt(graph->port, pkt);
+>> +	kfree(pkt);
+>> +
+>> +	return rc;
 >> +}
+>> +EXPORT_SYMBOL_GPL(q6apm_read);
+>> +
+>>   static int graph_callback(struct gpr_resp_pkt *data, void *priv, int op)
+>>   {
+>>   	struct data_cmd_rsp_rd_sh_mem_ep_data_buffer_done_v2 *rd_done;
+>>
