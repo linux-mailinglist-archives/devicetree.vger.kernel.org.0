@@ -2,199 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA29940CF28
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 00:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63B4B40D1F0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 05:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232644AbhIOWC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 18:02:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50972 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232608AbhIOWCX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 18:02:23 -0400
-Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6ECCC061767
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 15:01:03 -0700 (PDT)
-Received: by mail-vs1-xe32.google.com with SMTP id i23so4239736vsj.4
-        for <devicetree@vger.kernel.org>; Wed, 15 Sep 2021 15:01:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=zGSJw2mijcD917fI6iH/7Zmw4K7gJ7WwhrleRMcWjCU=;
-        b=LBVx6jNrGw1ARumMNWN8gjXgHRgv4QoeCFG8s+d30GDiNRCUhBeoZQEOGM7at5+ZxA
-         YlEDaKkfE5T7wQapssiYzPc+0mfn6SZ/qKsDr+6dxxaaxJDNlXqE2cQyCaf8JsOeBJtt
-         2DydeWngGgU1+3u/dMVj1mSx/JrPW/muOAaZpp14KzYOlfAwXayfBekr8wcM9P0lSs7e
-         MC3kq/lnoI/L08K+K39Zbzny5g3GEjc5zqitkcDi5qmEajO+XqcXSXqoq59PE1cGB1G3
-         7FT/N/gdr8LyRl0DqThGvCtJx3a/TTWQd2V9//rJqXUrkyyHVUq41e/kEEuFibfVoKuy
-         ocWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=zGSJw2mijcD917fI6iH/7Zmw4K7gJ7WwhrleRMcWjCU=;
-        b=Gfzrxdm5oJ17HgRcvk4r4BkUtCzDdeRPw7sVt6wSyFQYdOtdt8dB9h7vx907Xw4QE+
-         TC2R853HhbptX7C/I3Br3OxSVmdp+mK2bM9ocJiCkp48VUbcRd2TfpoXJsxejKqXGy7a
-         9/lJFPt4rXwRZisxGeU84+hkdcbIMAU+gUUrk8LJbooCDDUcqZvCiSNPzYVV4ariQyi+
-         G3R1SKdXdWa/m0YU9Hf28w7IcRJNnLGKq5R4k64iCB7DE/QkP8IprN4dX62rru4bNVot
-         nuCAtRlbOzozalSa6860jkIrlbHcl9KUR0bUvWp4VbRMpg/O8rOatNw5TefpWbb02JYh
-         8FmQ==
-X-Gm-Message-State: AOAM5325d7fcKjXIQVWx3xkGBJ5VtgRI2eM5tut1199NaPZnv0UEVBTc
-        InVO24vZKPbUeNOZZiOSW7ViHliok3QYh3IYGecbZg==
-X-Google-Smtp-Source: ABdhPJyOr8yGWQEsGudvQrYqjyuQgXeLh226eqUsm3m0MrCX91sh9IJVmTTEPi2a0+PjKOMEygDNsAmyA5u+GuSIjMo=
-X-Received: by 2002:a67:d589:: with SMTP id m9mr2041213vsj.30.1631743262794;
- Wed, 15 Sep 2021 15:01:02 -0700 (PDT)
+        id S234010AbhIPDOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 23:14:39 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:41077 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234037AbhIPDOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 23:14:37 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631761997; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=L56PSK7UJgVh+fg1UMQNlQbJl4Gk/N51kf4QAV1HAdA=;
+ b=CwBpjJyH0kN+ebQZagIKjRFBU/pDpqlH7zfPcOHc2KsuMa9AJ7RNV+9pjmTBPumDPQXJlAyl
+ UCmJegJE8g94KAHmd4aIJhW9Gx0JnG31jJsMtbVAPR0tteupEixRD459JEz47MA/refR+Hkc
+ kTRbhPLD7tAi8ROjNWGWhndwczs=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 6142b64bbd6681d8ed883fd9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 16 Sep 2021 03:13:15
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 053EDC43460; Thu, 16 Sep 2021 03:13:15 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 25E42C4338F;
+        Thu, 16 Sep 2021 03:13:13 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210914155607.14122-1-semen.protsenko@linaro.org>
- <20210914155607.14122-7-semen.protsenko@linaro.org> <1428bfc4-520f-9af3-5255-b17308881243@gmail.com>
-In-Reply-To: <1428bfc4-520f-9af3-5255-b17308881243@gmail.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Thu, 16 Sep 2021 01:00:51 +0300
-Message-ID: <CAPLW+4k8ZihQtnpYGULcS1uOP+9tvFi_yo27GadP3aa8KNC7aQ@mail.gmail.com>
-Subject: Re: [PATCH 6/6] clk: samsung: Introduce Exynos850 clock driver
-To:     Chanwoo Choi <cwchoi00@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 16 Sep 2021 08:43:13 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     mka@chromium.org, swboyd@chromium.org, bjorn.andersson@linaro.org,
+        ulf.hansson@linaro.org, rjw@rjwysocki.net, agross@kernel.org,
+        ohad@wizery.com, mathieu.poirier@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, rishabhb@codeaurora.org,
+        sidgup@codeaurora.org
+Subject: Re: [PATCH v6 02/13] dt-bindings: remoteproc: qcom: pas: Add QMP
+ property
+In-Reply-To: <YTi/+VIOuja9eLbl@robh.at.kernel.org>
+References: <1630916637-4278-1-git-send-email-sibis@codeaurora.org>
+ <1630916637-4278-3-git-send-email-sibis@codeaurora.org>
+ <YTi/+VIOuja9eLbl@robh.at.kernel.org>
+Message-ID: <fbd2f3ee8b5fc8dd26011a85df9cb348@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Sept 2021 at 21:05, Chanwoo Choi <cwchoi00@gmail.com> wrote:
->
-> Hi Sam,
->
-> On 21. 9. 15. =EC=98=A4=EC=A0=84 12:56, Sam Protsenko wrote:
-> > This is the initial implementation adding only basic clocks like UART,
-> > MMC, I2C and corresponding parent clocks. Design is influenced by
-> > Exynos7 and Exynos5433 clock drivers.
-> >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > ---
-> >   drivers/clk/samsung/Makefile        |   1 +
-> >   drivers/clk/samsung/clk-exynos850.c | 700 +++++++++++++++++++++++++++=
-+
-> >   2 files changed, 701 insertions(+)
-> >   create mode 100644 drivers/clk/samsung/clk-exynos850.c
-> >
-> > diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefil=
-e
-> > index 028b2e27a37e..c46cf11e4d0b 100644
-> > --- a/drivers/clk/samsung/Makefile
-> > +++ b/drivers/clk/samsung/Makefile
-> > @@ -17,6 +17,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)       +=3D clk-=
-exynos5433.o
-> >   obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) +=3D clk-exynos-audss.o
-> >   obj-$(CONFIG_EXYNOS_CLKOUT) +=3D clk-exynos-clkout.o
-> >   obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)       +=3D clk-exynos7.o
-> > +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        +=3D clk-exynos850.o
-> >   obj-$(CONFIG_S3C2410_COMMON_CLK)+=3D clk-s3c2410.o
-> >   obj-$(CONFIG_S3C2410_COMMON_DCLK)+=3D clk-s3c2410-dclk.o
-> >   obj-$(CONFIG_S3C2412_COMMON_CLK)+=3D clk-s3c2412.o
-> > diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/=
-clk-exynos850.c
-> > new file mode 100644
-> > index 000000000000..1028caa2102e
-> > --- /dev/null
-> > +++ b/drivers/clk/samsung/clk-exynos850.c
-> > @@ -0,0 +1,700 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (C) 2021 Linaro Ltd.
-> > + * Author: Sam Protsenko <semen.protsenko@linaro.org>
-> > + *
-> > + * Common Clock Framework support for Exynos850 SoC.
-> > + */
-> > +
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_address.h>
-> > +
-> > +#include <dt-bindings/clock/exynos850.h>
-> > +
-> > +#include "clk.h"
-> > +
-> > +/* Gate register bits */
-> > +#define GATE_MANUAL          BIT(20)
-> > +#define GATE_ENABLE_HWACG    BIT(28)
-> > +
-> > +/* Gate register offsets range */
-> > +#define GATE_OFF_START               0x2000
-> > +#define GATE_OFF_END         0x2fff
-> > +
-> > +/**
-> > + * exynos850_init_clocks - Set clocks initial configuration
-> > + * @np:                      CMU device tree node with "reg" property =
-(CMU addr)
-> > + * @reg_offs:                Register offsets array for clocks to init
-> > + * @reg_offs_len:    Number of register offsets in reg_offs array
-> > + *
-> > + * Set manual control mode for all gate clocks.
-> > + */
-> > +static void __init exynos850_init_clocks(struct device_node *np,
-> > +             const unsigned long *reg_offs, size_t reg_offs_len)
-> > +{
-> > +     const __be32 *regaddr_p;
-> > +     u64 regaddr;
-> > +     u32 base;
-> > +     size_t i;
-> > +
-> > +     /* Get the base address ("reg" property in dts) */
-> > +     regaddr_p =3D of_get_address(np, 0, NULL, NULL);
-> > +     if (!regaddr_p)
-> > +             panic("%s: failed to get reg regaddr\n", __func__);
-> > +
-> > +     regaddr =3D of_translate_address(np, regaddr_p);
-> > +     if (regaddr =3D=3D OF_BAD_ADDR || !regaddr)
-> > +             panic("%s: bad reg regaddr\n", __func__);
-> > +
-> > +     base =3D (u32)regaddr;
-> > +
-> > +     for (i =3D 0; i < reg_offs_len; ++i) {
-> > +             void __iomem *reg;
-> > +             u32 val;
-> > +
-> > +             /* Modify only gate clock registers */
-> > +             if (reg_offs[i] < GATE_OFF_START || reg_offs[i] > GATE_OF=
-F_END)
-> > +                     continue; > +
-> > +             reg =3D ioremap(base + reg_offs[i], 4);
-> > +             val =3D ioread32(reg);
-> > +             val |=3D GATE_MANUAL;
-> > +             val &=3D ~GATE_ENABLE_HWACG;
-> > +             iowrite32(val, reg);
-> > +             iounmap(reg);
->
-> I understand your intention for disabling HWACG.
-> But, it is not good to execute ioreamp/iounmap for each clock gate
-> register. I think that we need to consider the more pretty method
-> to initialize the clock register before clock registration.
->
-> [snip]
->
+Hey Rob,
 
-Hi guys,
+Thanks for taking time to review
+the series.
 
-Thanks for the quick review! I'll address all your comments once I get
-back from vacation (in two weeks), and will send v2.
+On 2021-09-08 19:21, Rob Herring wrote:
+> On Mon, Sep 06, 2021 at 01:53:46PM +0530, Sibi Sankar wrote:
+>> The load state power-domain, used by the co-processors to notify the
+>> Always on Subsystem (AOSS) that a particular co-processor is up/down,
+>> suffers from the side-effect of changing states during suspend/resume.
+>> However the co-processors enter low-power modes independent to that of
+>> the application processor and their states are expected to remain
+>> unaltered across system suspend/resume cycles. To achieve this 
+>> behavior
+>> let's drop the load state power-domain and replace them with the qmp
+>> property for all SoCs supporting low power mode signalling.
+>> 
+>> Due to the current broken load state implementation, we can afford the
+>> binding breakage that ensues and the remoteproc functionality will 
+>> remain
+>> the same when using newer kernels with older dtbs.
+>> 
+>> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>> ---
+>> 
+>> v6:
+>>  * Updated commit message to explain binding breakage. [Stephen]
+>> 
+>>  .../devicetree/bindings/remoteproc/qcom,adsp.yaml  | 61 
+>> +++++++++++-----------
+>>  1 file changed, 31 insertions(+), 30 deletions(-)
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml 
+>> b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+>> index 0c112f3264a9..0d2b5bd4907a 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+>> @@ -93,6 +93,10 @@ properties:
+>>      maxItems: 1
+>>      description: Reference to the reserved-memory for the Hexagon 
+>> core
+>> 
+>> +  qcom,qmp:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: Reference to the AOSS side-channel message RAM.
+>> +
+> 
+> [...]
+> 
+>> @@ -511,6 +486,32 @@ allOf:
+>>              - const: mss_restart
+>>              - const: pdc_reset
+>> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,sc7180-mpss-pas
+>> +              - qcom,sc8180x-adsp-pas
+>> +              - qcom,sc8180x-cdsp-pas
+>> +              - qcom,sc8180x-mpss-pas
+>> +              - qcom,sm8150-adsp-pas
+>> +              - qcom,sm8150-cdsp-pas
+>> +              - qcom,sm8150-mpss-pas
+>> +              - qcom,sm8150-slpi-pas
+>> +              - qcom,sm8250-adsp-pas
+>> +              - qcom,sm8250-cdsp-pas
+>> +              - qcom,sm8250-slpi-pas
+>> +              - qcom,sm8350-adsp-pas
+>> +              - qcom,sm8350-cdsp-pas
+>> +              - qcom,sm8350-mpss-pas
+>> +              - qcom,sm8350-slpi-pas
+>> +    then:
+>> +      properties:
+>> +        qcom,qmp:
+>> +          items:
+>> +            - description: Reference to the AOSS side-channel message 
+>> RAM.
+> 
+> This doesn't do anything. The property is already allowed for all
+> compatibles. Perhaps you want to negate the if and put 'qcom,qmp: 
+> false'
+> here.
 
-> --
-> Best Regards,
-> Samsung Electronics
-> Chanwoo Choi
+sure will fix it in the next re-spin.
+
+> 
+> Rob
+
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
