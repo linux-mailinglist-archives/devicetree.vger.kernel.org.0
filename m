@@ -2,182 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43E2040EB66
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 22:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23EC440EB71
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 22:11:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237255AbhIPUMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 16:12:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41772 "EHLO
+        id S237785AbhIPUMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 16:12:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233117AbhIPUMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 16:12:01 -0400
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38DBDC061756
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 13:10:40 -0700 (PDT)
-Received: by mail-io1-xd2b.google.com with SMTP id y18so9475933ioc.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 13:10:40 -0700 (PDT)
+        with ESMTP id S237734AbhIPUMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 16:12:37 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BA89C061574
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 13:11:16 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id x27so23303614lfu.5
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 13:11:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=google.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=wu/5meqeHZqsVUKSjtYxX+ZcUZzqTdvsMcCN8QTUfPI=;
-        b=J/r8x5aEqy8Zz1boK1o6nPUUBlaotFj7ta5KZX5ZUTU5V0joZCkMVqLukEG5o2CDDk
-         IVID5A72jCCD+Xg9jI5DoVDUwa1QDhwIiBMW2+o4wK3uG3/LJVtwPKoAthIRAgnvHQcp
-         4yUtKUO4Zzw0lMANMOZYcwKnxXr32rOTNAEuvtJPnykVE5wjUjKT/K2R3mjQDKTwO1sN
-         ueIG2ajmmuh1zgQ3rNJ/HeqcL0yTz/ulLTcW8cXB66dQ9gN7Hh4rLciGmmB6lxJl7LYF
-         gt/rTSDsCE5SWza8KETcR2wVib5qQIrw9UkkjjrKK3xMMu7VB7WUE/Rcyg7Kim5QVxhR
-         sWXQ==
+        bh=Zu9vDGjBH/c1GwA4DO06e/FELXSh704ia9MKIbXI+tY=;
+        b=QqV/TSyvqEuFfRPRashNipb7Miu6y/Wx05ntrOUCB291k+AIWICHSrTP7t+zvRjdJt
+         cDms/iQwDgJW3WXM659EyUCTt5q66hrNYKGb/ft8t0R8WN/S7vTfeI5mEpkDc4lGYtTA
+         snTXX+mj4HVUJiSjxCXItu5SvxsVLib9TZZhjkVXNhz/Ce7F6vGdkCExEptDyFAWtsYN
+         gZz1sRoziih7R2Okh8ZK6MsjjFCEaAcpa26tBhRKdmwT/JeD8kbFIzp6wmxg0xPXQUxu
+         YzKHcW+7yWqzXKBsakqGlQgSWAJGnSX80gRvos2uxOxgtm+s7DHhy2O9zD0WAp9K5CCP
+         ClCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=wu/5meqeHZqsVUKSjtYxX+ZcUZzqTdvsMcCN8QTUfPI=;
-        b=u4t2W1F3qI9yFy3iSf/hikW2bJR4oyPR+u65PK1Yo3PqDcdCRl8fDh7nG969OoGPyw
-         S1WaVVIaud0tN4UBfT3+OhleKdY/xXLsEAMYRfpiPBQiZM9YY/07rAP1+9RDOuUYfCNU
-         8BLke9w5SgB3TUMYehj/88PJYNdzc/60SOzaN7ifZN7Q8FpSk3J40Flq8kb//xljgHM6
-         icydkRWA4EWrcQuJE5y+eT/4FmoJD/9au2jHYwLW+RHZkw1T+X2IiTh+qMEPFaQOk5FZ
-         T+ZRi758LMR99oH4lHZGzoNuJjb/wdhPo6no6qQT3dBFtYgYGz80B3/sUw1MG9EBYI4D
-         ScHQ==
-X-Gm-Message-State: AOAM532vCRJjKJnSVxus7ilMWbWgi9dCTwSBtRbGsZLg9Viy1SwfQdmj
-        FstS2vObCrHBkg4sLYUy5qtp0gdvyHnQIKGN/1kLUw==
-X-Google-Smtp-Source: ABdhPJz7Kg81nthb06WDU+z8rueH0TLTwNaN9xl5YeWzadsfmddf39Ly2LGb7sxy58ZaG3ZW/Opk9vAlZ6fYEjD4NQw=
-X-Received: by 2002:a6b:8bcf:: with SMTP id n198mr5846212iod.178.1631823039559;
- Thu, 16 Sep 2021 13:10:39 -0700 (PDT)
+        bh=Zu9vDGjBH/c1GwA4DO06e/FELXSh704ia9MKIbXI+tY=;
+        b=j9wtVTg8phuQg9aAuX6N//UB3lLn3/Oc7hLmTh3d0RTq05i1ZuCq1fVASRptGYicGL
+         pqurx17tyEmFrZ3XYyAYge1YSu5YmwrrSYGSHW4TVIpXcP2qnkoP3ijaDR16wj7Ryzee
+         auXa8g9Wi3BX7ps15UvNKKGVMsKlWwTMRRCoyr0bjAY6OaSBxXceYu2FNB49gBvaLlmz
+         VyMUaoFqOvYNWgHp+1dcWR2z/TW2L42P6MoDefiYRK7jdIzCUZIUekETqloYvnvvgrgB
+         tOdGLP1q4mci7LwEl8huG36+xWm3qcmgGloNhGYwxQ61WEqu8YQBqbMNRVNhBjtqN1Qe
+         f5Nw==
+X-Gm-Message-State: AOAM533Vb2mZS+VlD3Q0np4hre9Jel++GFG4ARZhaFDPTLZfP4vWxslR
+        qTYSffsSGTt6XRV1NfIR8gC0OWrgWgtkytZbtXgFmQ==
+X-Google-Smtp-Source: ABdhPJzbK8PRHhLqc5IVMBPRDMMMgXkc/UjRCEL24yCbtWAuWLaBUpDzRhwlaHm11W0oTfcD+0Z7CqasqhTMYjSiFP8=
+X-Received: by 2002:a05:651c:178e:: with SMTP id bn14mr6693269ljb.521.1631823074554;
+ Thu, 16 Sep 2021 13:11:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210615232816.835325-1-bjorn.andersson@linaro.org>
- <CAMi1Hd0hZV7antTa7ShKvfS5CRxRei4TNycM9EJ9NR5qEBJV7g@mail.gmail.com> <YUNbntpsxISYxOro@ripper>
-In-Reply-To: <YUNbntpsxISYxOro@ripper>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Fri, 17 Sep 2021 01:40:03 +0530
-Message-ID: <CAMi1Hd2y8CG8Vy--b6dG7UiVKAfG+X71Ofe9Woqg_K6F3_Tn_w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sdm850-yoga: Enable IPA
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Alex Elder <elder@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
+References: <20210910130337.2025426-1-osk@google.com> <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
+ <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
+ <722b27f6-4390-9b5b-f6f2-75ce9e967d12@roeck-us.net> <CABoTLcSdkmuBxd5Yh6z2Oqm1-_Vd4J5Ni1i1qq5s07mWu7Ndew@mail.gmail.com>
+ <20210914150859.GB3457579@roeck-us.net> <CABoTLcQfS5-UL92NR9vbc2YrGJv3oQPYCqAm-diNoq-tkHP_hQ@mail.gmail.com>
+ <c410eba9-f6cf-4dbf-797f-48afde9c1898@roeck-us.net> <CABoTLcQWXerMWPvWUqjykiNcx9oGoP8aEcuDwcQ36yu-CBc0pA@mail.gmail.com>
+ <382858f5-e833-d4b9-f189-449671992ba5@roeck-us.net> <CABoTLcST=74wRbtMA2SdmeHd0WmU7id05ouSfw4PFw2nJt_gLw@mail.gmail.com>
+ <9869ed19-b8ab-d9e5-e791-a02eeb2c5eed@roeck-us.net>
+In-Reply-To: <9869ed19-b8ab-d9e5-e791-a02eeb2c5eed@roeck-us.net>
+From:   Oskar Senft <osk@google.com>
+Date:   Thu, 16 Sep 2021 16:10:58 -0400
+Message-ID: <CABoTLcS6krUnqDU7=1+_wBPoGN==VfmZHDQ4rWVZUv7c3ExNkQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Sept 2021 at 20:27, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
+> I think there was a reason for "sensors", because there can be other
+> bindings on the same level. Documentation/devicetree/bindings/hwmon/ltc2978.txt
+> lists "regulators", for example.
 >
-> On Thu 16 Sep 03:52 PDT 2021, Amit Pundir wrote:
->
-> > Hi Bjorn,
-> >
-> > On Wed, 16 Jun 2021 at 04:58, Bjorn Andersson
-> > <bjorn.andersson@linaro.org> wrote:
-> > >
-> > > Shuffle memory regions to make firmware loading succeed and then enable
-> > > the ipa device.
-> >
-> > Just a heads-up, this reserved memory region shuffling in sdm845.dtsi
-> > broke PocoF1 and may be other devices too(?) which do not override
-> > these regions.
-> >
->
-> Thanks for the report!
->
-> > IIRC you once had a patch to move the reserved memory regions to board
-> > specific dts files, is it still on the cards so that we don't run into
-> > breakages like this?
-> >
->
-> As you might remember the feedback I got was to not move the regions to
-> the individual devices and it was better to just deal with the problem
-> this way...
->
-> But apparently I was too optimistic and should have played the usual
-> game of deleting the inherited nodes and made the changes in the yoga
-> dts...
->
-> > Meanwhile I'll go and add these regions in sdm845-xiaomi-beryllium.dts.
-> >
->
-> Let's prepare a fix that moves this change into the yoga.dts and get
-> that landed asap.
+> Where did you find the "sensors" example for ltc2978 ? I don't see it
+> in the upstream kernel. Or was that derived from the official "regulators"
+> bindings ?
 
-Done https://patchwork.kernel.org/project/linux-arm-msm/patch/20210916200554.2434439-1-amit.pundir@linaro.org/
+Yes, I just followed the structure from there, renaming "regulators"
+as "sensors".
 
-Smoke tested on PocoF1 only.
 
->
-> Regards,
-> Bjorn
->
-> > Regards,
-> > Amit Pundir
-> >
-> >
-> >
-> > >
-> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 21 +++++++------------
-> > >  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  5 +++++
-> > >  2 files changed, 13 insertions(+), 13 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > index 1796ae8372be..49624eadce84 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > @@ -128,28 +128,23 @@ camera_mem: memory@8bf00000 {
-> > >                         no-map;
-> > >                 };
-> > >
-> > > -               ipa_fw_mem: memory@8c400000 {
-> > > -                       reg = <0 0x8c400000 0 0x10000>;
-> > > +               wlan_msa_mem: memory@8c400000 {
-> > > +                       reg = <0 0x8c400000 0 0x100000>;
-> > >                         no-map;
-> > >                 };
-> > >
-> > > -               ipa_gsi_mem: memory@8c410000 {
-> > > -                       reg = <0 0x8c410000 0 0x5000>;
-> > > +               gpu_mem: memory@8c515000 {
-> > > +                       reg = <0 0x8c515000 0 0x2000>;
-> > >                         no-map;
-> > >                 };
-> > >
-> > > -               gpu_mem: memory@8c415000 {
-> > > -                       reg = <0 0x8c415000 0 0x2000>;
-> > > +               ipa_fw_mem: memory@8c517000 {
-> > > +                       reg = <0 0x8c517000 0 0x5a000>;
-> > >                         no-map;
-> > >                 };
-> > >
-> > > -               adsp_mem: memory@8c500000 {
-> > > -                       reg = <0 0x8c500000 0 0x1a00000>;
-> > > -                       no-map;
-> > > -               };
-> > > -
-> > > -               wlan_msa_mem: memory@8df00000 {
-> > > -                       reg = <0 0x8df00000 0 0x100000>;
-> > > +               adsp_mem: memory@8c600000 {
-> > > +                       reg = <0 0x8c600000 0 0x1a00000>;
-> > >                         no-map;
-> > >                 };
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > > index c2a709a384e9..3eaa42dc3794 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > > @@ -415,6 +415,11 @@ ecsh: hid@5c {
-> > >         };
-> > >  };
-> > >
-> > > +&ipa {
-> > > +       status = "okay";
-> > > +       memory-region = <&ipa_fw_mem>;
-> > > +};
-> > > +
-> > >  &mdss {
-> > >         status = "okay";
-> > >  };
-> > > --
-> > > 2.31.0
-> > >
+> Yes, let's do that. I'd like us to keep the "sensors" subnode to have a clear
+> association and differentiator to other sub-nodes such as "regulators".
+> Open is if we can use "temperature-sensor@0" or if it would have to be
+> a chip specific "ltd", but I think we can sort that out after suggesting
+> an initial set of bindings to Rob.
+Makes sense, I'll do that. Now I just need to figure out how to
+express that in YAML ...
+
+I'll send a new patch as soon as I figured that out and got it to work.
+
+Thanks for your input!
+
+Oskar.
