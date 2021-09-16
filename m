@@ -2,99 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1CB540D45A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 10:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEFD340D4E4
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 10:47:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234892AbhIPISu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 04:18:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46114 "EHLO
+        id S235249AbhIPIst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 04:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229908AbhIPISt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 04:18:49 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3194DC061574;
-        Thu, 16 Sep 2021 01:17:29 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id g19-20020a1c9d13000000b003075062d4daso3890756wme.0;
-        Thu, 16 Sep 2021 01:17:29 -0700 (PDT)
+        with ESMTP id S235275AbhIPIss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 04:48:48 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D30FBC061574;
+        Thu, 16 Sep 2021 01:47:28 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id w7so5446494pgk.13;
+        Thu, 16 Sep 2021 01:47:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=H1ww3lGPcUZ1JbC+7bYQbWQsgaNUgWkADb7sAryk5jc=;
-        b=A8Z3uN2lf864arVF5o7WX9EgjI9uohgDQAxPkOHuv/4ufOpnRhskoT03t0rDPCbo5i
-         1W5As73lc8AYuDAAlwrrL+98tN1dawtl5CUjmwmsgLY+LysAfywze/jXDpCaYZNjGtGd
-         MBnkPVZ6qGwa7FuI0VayRtjBuI3LuOB517JNjYnh/cOuvyCocZ8fctLqGdOzH9t/Phpq
-         em+rujCXobpt2tOmY2YZEVdWS8np9cyifkdq9z9tof+w40O9C7F1ArYXlAHmBcplI+Nl
-         XAv//XqmqxGeRLH3OjksGKFTl/fB5Bo/REoTC8gy7RtYSy+u3tVwHxdtqyk3vV4nRz6Z
-         uQ/g==
+        bh=oop37z3HgR52li/vcT841jMFHjQvdsUm7P/yJllBQgg=;
+        b=aPiWktH1fojagpTFlcRcfLEuiCp5oyhPbrWj4v1q+Y/+4sy4kaJUKe+62J5t0m0GRB
+         Ph+BUjuguxP5IArbmycLpW4XuKazvT3WrZkytsvYBRXLoieljhtkUs3XqIveki2VSTgu
+         65Tz9ZCvcX9+HebdpRNLWtcsveZ5d3MgscJyRmh1yPOVDd/MlSDAKmCe1KZBUeEO8Cpt
+         eGUsMr8uEr/ny+Zs9rBOcPVp2Kid2NrWxTovR+ZP+zPquYbMnM+Ga3HMDOZrm2Gvwz4f
+         NFHzJbIbWnSbsmYj6monQQ+Ip2SarSmtCIl/8HBn/jC/MYEOS15nC3n8MGHjD9AIzg0V
+         l3TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=H1ww3lGPcUZ1JbC+7bYQbWQsgaNUgWkADb7sAryk5jc=;
-        b=b+6Q1E4siZeNRyiMbyHsGvXyBwjZspbpQtbJ8e3UJY9ZnLtTEEee52xd6+6uZh65h3
-         wi2hd9+DGGoCFGmpIkXNp1PN1D81NbaWMoJ+prYuzjwYVLlH9TcAKGF6sWu6CsM+UioF
-         VMk7No2VfVuifH4CuYFyX2SJLiRnZ2/Ksq35O0VVSiYd8Od75F2lirWvoK1ICNPcasPF
-         XLo8WpiuWFqbgA0R5gwapamYNH4e7g0QPgJV9avpCg8NiPi1QDQHnv0CceibKkT9Ml27
-         z1w7q3wZWe258h7dwY/LPmIjTgy84uv3sYYL1uWQo8+4pWReKfu3B027egjAprpSZj28
-         djkg==
-X-Gm-Message-State: AOAM531iMUwjkgpIlp1hnL0jUO6Uw83vJ9hMmzORxnJ3rWaVyA3AMweL
-        XXfqdTLz4JM+q71fXLDY6zE=
-X-Google-Smtp-Source: ABdhPJwngzby5zhk6Y6v22PCQTRfp3xLylztrh6TLkn7x93W6jIB6p9DPAgGnFHTijPTxW05R4kAzw==
-X-Received: by 2002:a1c:149:: with SMTP id 70mr8518758wmb.187.1631780247660;
-        Thu, 16 Sep 2021 01:17:27 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3d3:9cc4:89bf:529b:6a06:470])
-        by smtp.gmail.com with ESMTPSA id m18sm2462192wrn.85.2021.09.16.01.17.26
+        bh=oop37z3HgR52li/vcT841jMFHjQvdsUm7P/yJllBQgg=;
+        b=hMEWngUfV+cGf2/98+o4J7xTY+kly8oq7KYnJuHgpn7mJ8Jhyez51iK7ST/zR1p9bA
+         BMvwNRi//AC6ehnEZlc2qIrl+D6FLjJqqP9+eS5JznEquqexoH5SAXCJ7ZBCxyKGpS15
+         N5Ou3xH8PsFc2+OMLFnolTy1XQNJdg6CSy0AASGJRJvjr0XG1A6wG7PwkEKEvy+FitbO
+         AeFCvFAet8vWNBv+2F/wLwXg7mCleOLfQDTO2WaFRGb2tDd8lU5V0iBlqUdD9e6OMPsu
+         cFcuptjypXYDnomsBuCJIznOAb/TIQUjwDESmKJJ7qg4VWr3fnI7pcnMH56ubDebuXac
+         O5DA==
+X-Gm-Message-State: AOAM531zWswoIHDtoonsaufmxJWvOooBPCj6Uys04rgTtj29XPmcpnmP
+        Ma0Nf9dUbu6oxD7sPWVuqiXOAIuWwMADPA==
+X-Google-Smtp-Source: ABdhPJxVDSTxbHiG3O+bFsKRUJXxGbQaqRpO4mpHyedOF0EwXRkvF6OXDXBIs5K/mmFb+SkJAx8I2Q==
+X-Received: by 2002:a65:44c3:: with SMTP id g3mr3942486pgs.233.1631782048366;
+        Thu, 16 Sep 2021 01:47:28 -0700 (PDT)
+Received: from ubt.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id l12sm2187621pff.182.2021.09.16.01.47.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 01:17:26 -0700 (PDT)
-From:   roucaries.bastien@gmail.com
-X-Google-Original-From: rouca@debian.org
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Chen-Yu Tsai <wens@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Salvatore Bonaccorso <carnil@debian.org>,
-        =?UTF-8?q?Bastien=20Roucari=C3=A8s?= <rouca@debian.org>
-Subject: [PATCH] [PATCH] ARM: dts: sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode
-Date:   Thu, 16 Sep 2021 08:17:21 +0000
-Message-Id: <20210916081721.237137-1-rouca@debian.org>
-X-Mailer: git-send-email 2.33.0
+        Thu, 16 Sep 2021 01:47:27 -0700 (PDT)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/4] Add Unisoc's UMS512 clock support
+Date:   Thu, 16 Sep 2021 16:47:10 +0800
+Message-Id: <20210916084714.311048-1-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bastien Roucariès <rouca@debian.org>
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-Commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay
-config") sets the RX/TX delay according to the phy-mode property in the
-device tree. For the A20-olinuxino-lime2 board this is "rgmii", which is the
-wrong setting.
+Changes since v1:
+* Fixed errors founded on sprd,ums512-clk.yaml;
+* Added a new bindings file for global register which would provide register map for clocks.
 
-Following the example of a900cac3750b ("ARM: dts: sun7i: a20: bananapro:
-Fix ethernet phy-mode") the phy-mode is changed to "rgmii-id" which gets
-the Ethernet working again on this board.
+Chunyan Zhang (2):
+  dt-bindings: mfd: sprd: Add bindings for ums512 global registers
+  dt-bindings: clk: sprd: Add bindings for ums512 clock controller
 
-Signed-off-by: Bastien Roucariès <rouca@debian.org>
----
- arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Xiongpeng Wu (2):
+  clk: sprd: Add dt-bindings include file for UMS512
+  clk: sprd: Add Unisoc's UMS512 clock driver
 
-diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
-index 8077f1716fbc..ecb91fb899ff 100644
---- a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
-@@ -112,7 +112,7 @@ &gmac {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&gmac_rgmii_pins>;
- 	phy-handle = <&phy1>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	status = "okay";
- };
- 
+ .../bindings/clock/sprd,ums512-clk.yaml       |  106 +
+ .../bindings/mfd/sprd,ums512-glbreg.yaml      |   67 +
+ drivers/clk/sprd/Kconfig                      |    8 +
+ drivers/clk/sprd/Makefile                     |    1 +
+ drivers/clk/sprd/ums512-clk.c                 | 2197 +++++++++++++++++
+ include/dt-bindings/clock/sprd,ums512-clk.h   |  396 +++
+ 6 files changed, 2775 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+ create mode 100644 drivers/clk/sprd/ums512-clk.c
+ create mode 100644 include/dt-bindings/clock/sprd,ums512-clk.h
+
 -- 
-2.33.0
+2.25.1
 
