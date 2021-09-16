@@ -2,78 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D016B40D9C5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 582B640D9D3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:22:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239420AbhIPMXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 08:23:23 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:34526 "EHLO
-        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238923AbhIPMXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 08:23:22 -0400
-Received: by mail-il1-f176.google.com with SMTP id w1so6429100ilv.1;
-        Thu, 16 Sep 2021 05:22:02 -0700 (PDT)
+        id S239492AbhIPMXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 08:23:32 -0400
+Received: from mail-il1-f178.google.com ([209.85.166.178]:44636 "EHLO
+        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239479AbhIPMXb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 08:23:31 -0400
+Received: by mail-il1-f178.google.com with SMTP id x2so6354521ila.11;
+        Thu, 16 Sep 2021 05:22:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=EVQqC8AW3pOLfAZpC/J13w/nd9TcW2QmXYLcYpULoW0=;
-        b=6Kg1ikkvBHD6a1sj9pbDS4UI3K9CfV+HFMWrLKSUoFs2JF1+rio1DL95OQor2KJZcH
-         UOyALJlOMFbUqCOIkAiTnaG7fpK6uPInHOd/aR2+TPF63RBvwI1FI1cTcOr0b9yRP/F+
-         W280c1ByhH0rYyot/fABKruYlH4udXAwTvHqLJ+6wroKMQseHwhjqyMzoFeQNtcMO5ko
-         WrH4mLygf+K27Q788u1YRTejHwTBi3NHUUqS3YhO2j2ZiOtFHesogOPsDmmI06L8rOL1
-         0XPS2la1DfyXMamWSpVshQEW/x9hz+nZtAd7fd9KLhe5xOkJyHr8aK+v7HB/1puS8hDM
-         iMDw==
-X-Gm-Message-State: AOAM532a7uYsxTxukQYrTAG1lYkwhD13Qy6n5N+fmCvPFryOHUiIJLx6
-        2XjM93d4SCc4qmJTJxEoegiQ5y5e7A==
-X-Google-Smtp-Source: ABdhPJwf4LTJaVVOvBti2mp++cV6RVQejghzfyjFl1WK2fdLYY06RrcvFWCtsVFoXJlhrSb+x0UeIQ==
-X-Received: by 2002:a92:c98b:: with SMTP id y11mr3665064iln.205.1631794921982;
-        Thu, 16 Sep 2021 05:22:01 -0700 (PDT)
+        bh=IFftwoDUAHs9Nz4h9MoROct44Y+LsTp6P6HEC2g+7PI=;
+        b=KQw0ou/RCLOyURHpSJzxKWGZ8+Se1gLOa6Jhsj96RLHeaeK8BCp1RGZUWS/U+UTgPl
+         xRa/Bk/LcEnGiElly0qs5XAkyTW2iVGPESObHZx0H9Ci+8K7pmYfH2VfOYS4/kkJWatW
+         xz9mWztp8Rghrb0TyPe9/1NZ8f//hhnG+sWWUG4NBodv0PpyXtYZdKaWg7rufaKnJj4W
+         7QVKkVRQmU4dKfNo7EaRAqFmY7EAQxqfPaeVR7PnqZK0NRXp31/+izn2vbYc5Q1xfHtW
+         xc3bPtn6NnjqH9ZPRKefXl2bQDbPWOsUwR9KvIDiDzWaDjE+ql2jyb3hVXlBq6+pa+n7
+         eZZA==
+X-Gm-Message-State: AOAM5339Wd3dJAfV0JJ6tYnA9DoPM0oOu5pSwyQ6fchJVS5xurwIY98l
+        9E0VcJzhcdsMyk2vMwtbuA==
+X-Google-Smtp-Source: ABdhPJyM21Lfun7gEMOg6IfXLhT7D1Exg4DZsflUvLg259E9u2BpDENkfoIlSfCgxYHOA6gj7Pq+6g==
+X-Received: by 2002:a05:6e02:1a0e:: with SMTP id s14mr3658426ild.47.1631794930759;
+        Thu, 16 Sep 2021 05:22:10 -0700 (PDT)
 Received: from robh.at.kernel.org (96-84-70-89-static.hfc.comcastbusiness.net. [96.84.70.89])
-        by smtp.gmail.com with ESMTPSA id i14sm1737953ilc.51.2021.09.16.05.21.59
+        by smtp.gmail.com with ESMTPSA id g19sm1799388ilb.84.2021.09.16.05.22.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 05:22:00 -0700 (PDT)
-Received: (nullmailer pid 1119418 invoked by uid 1000);
+        Thu, 16 Sep 2021 05:22:10 -0700 (PDT)
+Received: (nullmailer pid 1119422 invoked by uid 1000);
         Thu, 16 Sep 2021 12:21:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sean Paul <sean@poorly.run>
-Cc:     swboyd@chromium.org, Daniel Vetter <daniel@ffwll.ch>,
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
         devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        intel-gfx@lists.freedesktop.org,
-        Kuogee Hsieh <khsieh@codeaurora.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        Rob Clark <robdclark@gmail.com>,
-        freedreno@lists.freedesktop.org
-In-Reply-To: <20210915203834.1439-13-sean@poorly.run>
-References: <20210915203834.1439-1-sean@poorly.run> <20210915203834.1439-13-sean@poorly.run>
-Subject: Re: [PATCH v2 12/13] dt-bindings: msm/dp: Add bindings for HDCP registers
+        linux-clk@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Stephen Boyd <sboyd@kernel.org>
+In-Reply-To: <20210916084714.311048-3-zhang.lyra@gmail.com>
+References: <20210916084714.311048-1-zhang.lyra@gmail.com> <20210916084714.311048-3-zhang.lyra@gmail.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: clk: sprd: Add bindings for ums512 clock controller
 Date:   Thu, 16 Sep 2021 07:21:53 -0500
-Message-Id: <1631794913.488685.1119417.nullmailer@robh.at.kernel.org>
+Message-Id: <1631794913.511855.1119421.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Sep 2021 16:38:31 -0400, Sean Paul wrote:
-> From: Sean Paul <seanpaul@chromium.org>
+On Thu, 16 Sep 2021 16:47:12 +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > 
-> This patch adds the bindings for the MSM DisplayPort HDCP registers
-> which are required to write the HDCP key into the display controller as
-> well as the registers to enable HDCP authentication/key
-> exchange/encryption.
+> Add a new bindings to describe ums512 clock compatible strings.
 > 
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-13-sean@poorly.run #v1
-> 
-> Changes in v2:
-> -Drop register range names (Stephen)
-> -Fix yaml errors (Rob)
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > ---
->  .../devicetree/bindings/display/msm/dp-controller.yaml     | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+>  .../bindings/clock/sprd,ums512-clk.yaml       | 106 ++++++++++++++++++
+>  1 file changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -82,16 +70,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.example.dt.yaml: example-0: displayport-controller@ae90000:reg:0: [0, 183042048, 0, 5120] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.example.dt.yaml: example-0: displayport-controller@ae90000:reg:1: [0, 183308288, 0, 372] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.example.dt.yaml: example-0: displayport-controller@ae90000:reg:2: [0, 183373824, 0, 44] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+Documentation/devicetree/bindings/clock/sprd,ums512-clk.example.dt.yaml:0:0: /example-1/syscon@71000000: failed to match any schema with compatible: ['sprd,ums512-glbregs', 'syscon', 'simple-mfd']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1528559
+See https://patchwork.ozlabs.org/patch/1528692
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
