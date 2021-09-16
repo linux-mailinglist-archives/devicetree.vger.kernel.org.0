@@ -2,82 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A565440D6A7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 11:55:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E2A540D712
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 12:07:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236297AbhIPJ4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 05:56:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57856 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235842AbhIPJ4q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 05:56:46 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2886261209;
-        Thu, 16 Sep 2021 09:55:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631786126;
-        bh=zDcDBX6eE0bO8UITevPPoTLTO8JLB4xPsBz8UuRXPe4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=feSKElMW4rq1yHiIKDtA7h/hVpjTffl1JyFKYr8M677T2LwZkphh8+2XQYBfWyRUk
-         /Xx+OwBX7NvghS7UMziBtE89z6YJJWIOFrIu5eN9jcnoX82V/6DETnKT3//g1gfBah
-         Z7bW2rkuNC9GSxyGgsoveSWI5P2Hnor6G9ggR7QJ2YrRBRK0dTkUpjyowh8TGxrdhj
-         g6sGPRhWb7pHyMD5Ntytop1pHu+T/onq4TIhrQXwicW3iZknRN1KrxRvc+0o06Kcb8
-         3WnXG3WA9McHjg69CLBCRRGhMkRWwsZOaUdFPpwNqTAt9jyC+UXbX+Yq1YLjrldZuz
-         Q570TEWpcloFA==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1mQo72-001vTT-7I; Thu, 16 Sep 2021 11:55:24 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Fabien Parent <fparent@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 03/23] dt-bindings: arm: mediatek: mmsys: update mediatek,mmsys.yaml reference
-Date:   Thu, 16 Sep 2021 11:55:02 +0200
-Message-Id: <a87eb079a73e8ab41cdf6e40e80b1d1f868da6bd.1631785820.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1631785820.git.mchehab+huawei@kernel.org>
-References: <cover.1631785820.git.mchehab+huawei@kernel.org>
+        id S236311AbhIPKJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 06:09:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43552 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236718AbhIPKJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 06:09:11 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2375C061764
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 03:07:50 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id bq5so16341632lfb.9
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 03:07:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jUO5tSYLVRile5AWlAafA8DmhpHLLp7fGg/YtJNAKkA=;
+        b=kb18yEmDjFeTISL5Cj3f+OE1reEAL0nH5XmyNUxp+vvOyzUcj+l9m5OworF15vyOXF
+         b8YVBrLmGwq/u0XPPb8fk3JaoNhQe+7Ho6ZKojUxfMsvVZB1S+AXaj2bjkGQpTH2BDMF
+         RFKGzdZkL5STdbXuztAsLUi82lROJaEFce1QQBJQFnJ6BNDzh73ydU6twoHnOf/LFIT6
+         m36gdukOrXppQsBrmuso+yADYfJZDVaWVxIsFzYI2GyA9+KlNEDbRQnmoxutZH37cusb
+         kMvPFWujPGOtbzPt0qbQ8UKq9xhYrz+jKKgOqdrQtVAmzqRwqbisq3ed603uxeTFFJJ1
+         7TrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jUO5tSYLVRile5AWlAafA8DmhpHLLp7fGg/YtJNAKkA=;
+        b=7mqPHcLuDBy+bC4CHQ4tFKwn67C5KH2BuFD3+5hmk75z0c+0KhFbIJOJBWAX3xtX+e
+         oBt+VzwP2JVJqu/HuS3Hcylj9vwkJppnk/hayUQLYFtqWuaNALh9nJ2rVoq+6gEsaO2h
+         3PTCbojpSzX0IUJ0UNxCtCjDY7GNxoYI0sE6+luWjGRVcxXwCA+JR4Tpvr7NjmDUvrGK
+         7ZPineEoDUs+qPWzp0YyfvV2e7rfKDrrS5Ibi/hDmj4AMvU2lXhCYKJEa86l7gQKVPJA
+         7Wmj8Z6EgcYigS3VcV5SY24DbUp0UtA6r4z3eb8Oj9oxYDM6N7W3NZlsBjN57/mdqkhx
+         lAXA==
+X-Gm-Message-State: AOAM532aoSZ7GPh3gb8SZ5Gr45CX1gJL3bgh4bkUKTYxL7drY653nGTu
+        Tjx+pAl9w08QgJ+d+peWzP9S8G0uXnTH7YVNt0ShQg==
+X-Google-Smtp-Source: ABdhPJytweAIsY0sxsinkWN7FPbeTdhVCteGXtpk0WGBS/7V1nIDt7Ry+vbrBBnhe783d+4wyWb3AQdWBV5/FDYn/9Q=
+X-Received: by 2002:a05:6512:3096:: with SMTP id z22mr3486963lfd.584.1631786869054;
+ Thu, 16 Sep 2021 03:07:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <20210914085137.31761-1-sam.shih@mediatek.com> <20210914085137.31761-5-sam.shih@mediatek.com>
+In-Reply-To: <20210914085137.31761-5-sam.shih@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 16 Sep 2021 12:07:38 +0200
+Message-ID: <CACRpkdYkvBS5+MHSGBDhNQtvCxRquef1kPHmCSfzruz2N=VCyw@mail.gmail.com>
+Subject: Re: [RESEND,v3,4/9] pinctrl: mediatek: moore: check if pin_desc is
+ valid before use
+To:     Sam Shih <sam.shih@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        John Crispin <john@phrozen.org>,
+        Ryder Lee <Ryder.Lee@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changeset cba3c40d1f97 ("dt-bindings: arm: mediatek: mmsys: convert to YAML format")
-renamed: Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
-to: Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml.
+On Tue, Sep 14, 2021 at 10:52 AM Sam Shih <sam.shih@mediatek.com> wrote:
 
-Update its cross-reference accordingly.
+> Certain SoC are missing the middle part gpios in consecutive pins,
+> it's better to check if mtk_pin_desc is a valid pin for the extensibility
+>
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> Acked-by: Sean Wang <sean.wang@mediatek.com>
 
-Fixes: cba3c40d1f97 ("dt-bindings: arm: mediatek: mmsys: convert to YAML format")
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../devicetree/bindings/display/mediatek/mediatek,disp.txt      | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This patch applied for v5.16 so we get some stuff merged.
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-index fbb59c9ddda6..78044c340e20 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-@@ -9,7 +9,7 @@ function block.
- 
- All DISP device tree nodes must be siblings to the central MMSYS_CONFIG node.
- For a description of the MMSYS_CONFIG binding, see
--Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt.
-+Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml.
- 
- DISP function blocks
- ====================
--- 
-2.31.1
-
+Yours,
+Linus Walleij
