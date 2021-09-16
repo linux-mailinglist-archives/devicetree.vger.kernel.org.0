@@ -2,150 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 635EA40D87D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 13:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9106C40D9CD
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 14:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237536AbhIPL1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 07:27:44 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:19302 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237446AbhIPL1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 07:27:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1631791579;
-    s=strato-dkim-0002; d=heimpold.de;
-    h=In-Reply-To:References:Subject:Cc:To:From:Message-ID:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DS3mnRRcGXjdmBCBcvU/cxdm6qdEX7sUPpdbKeW8mdU=;
-    b=o011rUdQ2rSK4NGDyeAVP/zGedb+PTsOU1RcNK6bHPUZlytRjZNuhFJiQQo5lbvqrJ
-    SAWZ2buT545/lH7Cl495TX2IBUFrX5bDyl/OP769AfgEtI5IYHKuGGAbjj+ZJCKy1X9e
-    C5suBDob6Yi1hFR6mBNiZWJtPghHUNU1WxWonlZe11DeyIbxhA0G6DwdMJo6hqzCUsly
-    QLU/+Swc6EujJmUw3QPZHezsrxoKwamdKjITxHuq4WMVzDfzsNjmtgBRqtv06fzPQtvE
-    VhxhFen5LueByl4oxSks8VhQ9n0m7Jan8uiYHTYumhOzt97wDH4BOEQSz2X0HH6/YDXr
-    Aa1A==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":O2kGeEG7b/pS1EW8QnKjhhg/vO4pzqdNytq77N6ZKUSN7PfdWTGbO3oK8Gj1qrjlHg/zTQ=="
-X-RZG-CLASS-ID: mo00
-Received: from tonne.mhei.heimpold.itr
-    by smtp.strato.de (RZmta 47.33.1 DYNA|AUTH)
-    with ESMTPSA id R03356x8GBQJ0YY
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Thu, 16 Sep 2021 13:26:19 +0200 (CEST)
-Received: from tonne (localhost [IPv6:::1])
-        by tonne.mhei.heimpold.itr (Postfix) with ESMTPS id 64946179882;
-        Thu, 16 Sep 2021 13:26:18 +0200 (CEST)
-Received: from i5C7537B0.versanet.de (i5C7537B0.versanet.de [92.117.55.176])
- by www.mhei.heimpold.org (Horde Framework) with HTTPS; Thu, 16 Sep 2021
- 11:26:18 +0000
-Date:   Thu, 16 Sep 2021 11:26:18 +0000
-Message-ID: <20210916112618.Horde.UWH1AKpXpmAwqSTq8U1y-WN@www.mhei.heimpold.org>
-From:   Michael Heimpold <mhei@heimpold.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S239463AbhIPMXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 08:23:30 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:40583 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239479AbhIPMX3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 08:23:29 -0400
+Received: by mail-io1-f54.google.com with SMTP id z1so7631686ioh.7;
+        Thu, 16 Sep 2021 05:22:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=v3euXLp738T6azy0GiFk2D3abOLmLgbiKaC1a4iOzp8=;
+        b=BvdE0TWV/9oTOE8C7VeAJdtt00XvLFBJdbTUXAlT/GNMUBN6N6lererFd4lMIAozVw
+         6oRXbR2KEDb63MnK2yimxdRcKQsGgembibUriooOAA/7FEFlWkOfceTj8rQKbWtiDBIx
+         JSoG8hEHQKFGkT8sNd7FFrQLQEA0yLBot848jptTUXjEEjXGyxzNFbpYpdYxwGVk/TpK
+         CGk6mpHJNHUQPTkTVhhKjpUvH4wDecpF/L/5ZI4m9ufNUR/E5JYT3adlJaEBwFz9GIWa
+         HFWWJsf2PfLKrENAv1m68oj+GZLFl5CkVGNkUkJBpgBE4dvtHx74+2BfIhrnrjaI7m4w
+         yjYA==
+X-Gm-Message-State: AOAM530JLT05tOYrvLKpOzXDxNl0sWEnCHPA28600qkrEO2/XhZrHYZo
+        aZQDV6/ZiKJLmzy6/DDzpg==
+X-Google-Smtp-Source: ABdhPJzmbQl+zrU9lv/3dovKA4P564DnLW2Yj00HM0HTXfMPkKhnL/7Rbc4MNmugR9La+k/sr1wM1A==
+X-Received: by 2002:a05:6602:22d4:: with SMTP id e20mr4056514ioe.203.1631794928568;
+        Thu, 16 Sep 2021 05:22:08 -0700 (PDT)
+Received: from robh.at.kernel.org (96-84-70-89-static.hfc.comcastbusiness.net. [96.84.70.89])
+        by smtp.gmail.com with ESMTPSA id t25sm1566474ioh.51.2021.09.16.05.22.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Sep 2021 05:22:07 -0700 (PDT)
+Received: (nullmailer pid 1119420 invoked by uid 1000);
+        Thu, 16 Sep 2021 12:21:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Heimpold <michael.heimpold@in-tech.com>,
-        jimmy.shen@vertexcom.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 3/3] net: vertexcom: Add MSE102x SPI support
-References: <20210914151717.12232-1-stefan.wahren@i2se.com>
- <20210914151717.12232-4-stefan.wahren@i2se.com> <YUJi0cVawjyiteEx@lunn.ch>
-In-Reply-To: <YUJi0cVawjyiteEx@lunn.ch>
-User-Agent: Horde Application Framework 5
-Content-Type: multipart/mixed; boundary="=_BSXR-daGI8uzy-NgKF7qpXC"
-MIME-Version: 1.0
+        LKML <linux-kernel@vger.kernel.org>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+In-Reply-To: <20210916084714.311048-2-zhang.lyra@gmail.com>
+References: <20210916084714.311048-1-zhang.lyra@gmail.com> <20210916084714.311048-2-zhang.lyra@gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: sprd: Add bindings for ums512 global registers
+Date:   Thu, 16 Sep 2021 07:21:53 -0500
+Message-Id: <1631794913.500942.1119419.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This message is in MIME format.
+On Thu, 16 Sep 2021 16:47:11 +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> 
+> Add bindings for Unisoc system global register which provide register map
+> for clocks.
+> 
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> ---
+>  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+> 
 
---=_BSXR-daGI8uzy-NgKF7qpXC
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
-Content-Disposition: inline
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Hi Andrew,
+yamllint warnings/errors:
 
-Zitat von Andrew Lunn <andrew@lunn.ch>:
+dtschema/dtc warnings/errors:
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+xargs: dt-doc-validate: exited with status 255; aborting
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml'
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml] Error 255
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1441: dt_binding_check] Error 2
 
->> +static int mse102x_probe_spi(struct spi_device *spi)
->> +{
->
-> ...
->
->> +	netif_carrier_off(mse->ndev);
->> +	ndev->if_port = IF_PORT_10BASET;
->
-> That is not correct. Maybe you should add a IF_PORT_HOMEPLUG ?
+doc reference errors (make refcheckdocs):
+Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml: Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
 
-Would a simple IF_PORT_HOMEPLUG be sufficient, or should it be
-more precise as for Ethernet (10BASET, 100BASET...), e.g.
-IF_PORT_HOMEPLUG_10
-IF_PORT_HOMEPLUG_AV
-IF_PORT_HOMEPLUG_AV2
-IF_PORT_HOMEPLUG_GREENPHY
+See https://patchwork.ozlabs.org/patch/1528691
 
-Thanks,
-Michael
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
---=_BSXR-daGI8uzy-NgKF7qpXC
-Content-Type: application/pgp-keys
-Content-Description: =?utf-8?b?w5ZmZmVudGxpY2hlciBQR1AtU2NobMO8c3NlbA==?=
+pip3 install dtschema --upgrade
 
------BEGIN PGP PUBLIC KEY BLOCK-----
-Version: GnuPG v1.4
-
-mQINBFyFhhsBEADDLoo6Ao90G4vafO0lsguAHUKW27n3w20cPdFy4hBVaVYb2Jti
-Taqo9xZ+pHoTrN3iBwKGMrf7lWs7fsFF8LqRS0calhZCPQLorbJPoKjMTPwwmmtt
-WBQcs2H3WmVibHCusYaCp32oGtzVvKLZViKkyyk0brMYVIclMC2fYIaiV+a7wzOt
-LjAUcqYlYUMT0kdfLdlFHm41S1tYjzxSn/R8t240wbPEuIsGxZY3BGIJJpon0Y9n
-1kAGQCpcO+hFD2kGdFOEcitxv9JWV64lA6my4KIJK+yZXJYx/O/adWzGlEFCipbL
-YaZ1CWqZzocy9C3x0mMZDBUFz3DELPpn6omlm5uYkkf+5pzwmFsPMF+zL+5UMxiU
-E+ifCIhoLw0fBPyhIfANLKak0R88spknuyQ+V+Ekciy8wgXipgUBbBGplhmkgSls
-fnoWvi+FtFo+V0baWl8VnbEnB89YlS4lm0z8u9dQOSsmB08D0EXMRyEZKKyAdiNK
-EZO1AnZEW2FyGZfwGMEmeA5krbVjX1MLx9JstM8Ny6cOW6grFG2NZVIW5cgErYom
-5kfB44TSHLIrYvtcf4e8valAwsaPM/LqwFiklOXd0UUp9xqPnPgHQQdgPTKIXOUM
-OseKRGnRYOfg7KHdFFZlafQp+vAKQ6dHMT5jUc2h7unLcJ+7hMxXAHJNOwARAQAB
-tCNNaWNoYWVsIEhlaW1wb2xkIDxtaGVpQGhlaW1wb2xkLmRlPokCTgQTAQoAOBYh
-BLqmVSLI/uwdD5yAIZSCIwN6WR5/BQJchYYbAhsDBQsJCAcCBhUKCQgLAgQWAgMB
-Ah4BAheAAAoJEJSCIwN6WR5/Ry0QAKv5/uYV8Ou+h2DveXMXboSVJkCs/q4JdnbA
-sdwEnauwX784ZRxvzRjY9GcQDxWP48HYb+O8Gl0CpJVC5H64Q12djQE84AH7Yliw
-0tTvMkqyNDKeEMYhU+r+dOQZ0iZQcQM+muhu1qvFEc+QKkLS3MESkUERkzzccS/D
-s3uazTlE/O1nEQ40GwoCfNPmQ+xKtgbbjVbVsQtk0zFzLtspZY5OcjSCsq0/kU22
-wdA474nZr9Z8/snDDHZabJ2v02GAg8SvT1Krvgd38WWcrbtcW8R5aHH23vBISVTP
-ja2ApCi039+itv01JUOz+/6TNSlBbgG79RN9ERga0b+jAN5GpBRj6a34J3IVixU8
-HyUPQm23/0XpO0hh0TzYXdFqYfy+wntq7Vmxw5UorPm4IGreYH0OlG6QjVD7YdyC
-9wr41leVgyfzyZQsFs0+ynx+tqEwfE2B3tgyEKMx/rjyIcHmODmVeOumCd80a1p6
-CF5EnROe0+ryNz8oj3Bn5SxKTX1WoVk41EWENjcqvlKHn6AzWw7T998RkPMREMq9
-pymM0vJKZW7kq2i7RHi1O6Kkct4EsKNqFD9dNgTn2V1o57Ee3bN4QWjedq+Z3tkx
-IbaPn79Y94s211+c7QTEoaNBXehUv7toJkyn/wJ5iRCFbVY9CZ2s2zujn68pWm4T
-cynypHX+uQINBFyFhhsBEADpQk1v7h6vJzJ8WvWL+9lbO/PxCcLegcPZwHOGA2qy
-pyagVfkRHj76UDZSvsDSV66z/PVF3rlq1hrFf7k5H8lbo9pqaisFWbhxvPx+38gL
-BcmvAPNQlWn/WqZdzfNIaBsnFzB8sd3mleJw7FliaDHBIBfsAO42y1zeCWLwzBE0
-tLmBmiAc2CrHFKPLcKFXdhivmdkzbIqY9klyFGNufdo3o7vKGBa0ByBKs6eV5QRi
-8LQlu4VUJbyGDGWHOPvtPoI73yipSiq8JBt6llFIJ8nWLYsKWJLL4VS+GjuYJOGe
-sWPrQiPY7fDomuGqvxOe+iudK7FypZE19oonN3CIBxN9Kb789zrn3JlpEPLTlLVZ
-X5bGQXmUMrYunX7nZWQJier1PZeXVtVoyzUJAUJnVWbtS9ijUL02qheihtzC8/CN
-sn4aBFswX1qzj5uc+9XjxB80iPGSengJMhjQYmdkVznmtvzc6/VgHf4NVBgckgYJ
-xKmBKmPQ/YzjVIYyedbq2k2+vXODHPpAhRF0be2eTRLk0O2ulH5v5pCFZLRZx6MU
-oIMmovPuENB3V0SKJN9n+1f0wOec7bicjF2i5LeXnyvjOCJfXU42EStG+B31B7f0
-LWwthGkz1sQGOrY/uCDDkZ9HRgNqC3zVrNTLbDprrBUfWSunBjqkM90VBD52lJ32
-/wARAQABiQI2BBgBCgAgFiEEuqZVIsj+7B0PnIAhlIIjA3pZHn8FAlyFhhsCGwwA
-CgkQlIIjA3pZHn87Bg/+L+p0d7iuwY7NdAUkUfS4oH+QiQ1mNdocZ3G/g30rOh0w
-dL/NzaaISq310auhA95MqIw3SYS9JG+67dteovbRv4TjUJsJ4YVRJzkmAsSqnw8B
-t2P55DaIDuYziCdL0L4jly22clVLSEFuNr9PJSu9sStptsM7UrdzGej1H1guod16
-G5O6ge8LuJ8vQemM/nWQYTN8uClhDAlP81eXk/rVmcnw1e/cWAkvbF3iB1yGKA1e
-JDZW32vrebniKh+fA34xccgIGre+hfdURA9RQw7qAbMbco4z/1ia1OQiDa3YuqJH
-gGGWNODOXYey7KnbTUU0PClq+x/Jnj7p4TIjb1aZfTE+Q9oaZbcMbjR7ZeqRHyR1
-gHNuyrSmII+JWfhl3p/yTweTTXTA7dTACY+Ru1Zj6v/3B1B44FA3rJvGRxS2ZFEG
-jALB/4sTxMJcwDKOcsDA9T9mbDlxHqia7Sx8ZXybkGfS+H4rYmjRfj3b+QAOjgS+
-0gqs97bnFU8wArE4Tf0vU2IO9zkhJ/vQLiWPLJPE5WpBXWcOs9dW4pyE/I6QP7+W
-6rUjXyUlWXjhyQsqwN+xllgbxMwNCvWfXkQS+wb02su/68oBLcUY+X1Y+O3CBlfk
-qXXXMt0zBy4xRkjdCiixiJnENAEnG/rR2OF+7NBQlM0Heu2229fI6Oli/0Fo58Q=
-=B0nQ
------END PGP PUBLIC KEY BLOCK-----
---=_BSXR-daGI8uzy-NgKF7qpXC--
+Please check and re-submit.
 
