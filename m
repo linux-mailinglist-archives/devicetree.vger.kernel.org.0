@@ -2,163 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D430F40EAE3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 21:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A2AC40EAF3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 21:42:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233137AbhIPTgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 15:36:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33174 "EHLO
+        id S230452AbhIPTnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 15:43:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232812AbhIPTgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 15:36:20 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B07C061574;
-        Thu, 16 Sep 2021 12:35:00 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso9751890ots.5;
-        Thu, 16 Sep 2021 12:35:00 -0700 (PDT)
+        with ESMTP id S230267AbhIPTne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 15:43:34 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACBC9C061574;
+        Thu, 16 Sep 2021 12:42:13 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so9767071otf.6;
+        Thu, 16 Sep 2021 12:42:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=s/5An8ZJhvhfRlZxTeIIggw/jOkq6WE1Xp3iVwLwkX0=;
-        b=GoI3555vu1+SkUsvIX0T8i1fySL0jZPBdfh2WGeXZ3sq4vVDs1rMGe3saO9LT9sOjk
-         +yVa9+5P7kabIW06OrQJzg6D+Drsv6oyAPioWrxD7Aov64cSHfOBlKH3AFjLUsRT67ip
-         XW+efkrtdL2YGHDuCIe8HpRDgFsU8+1lrLcGQ4SnEQj5lhcF+IwPstwHFZVRx8fCVNuR
-         BzpzQJdi8quku959XzfWO2d8z0zYqJj068ZvUS8w8CNDSc7Jve2SQSpeMk4ZC0a2ABcW
-         EVTt/xRwX57XjlA7TbPPG1fhDp9VI6Hw7VZRFa/T3TbjcaSZtp/I/keYvmORa9RkNoyS
-         8yKg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v7s0jc31HPLAs0gXkmeRMnAPIKh72hl0mqHTuEnX+aY=;
+        b=dTNR08u17lmNeUCGekNoFNPAymVJ+EvYhpaWHvM3EFTIe2VmVwIoTOF3QkpLsHjlNy
+         pd0ZClvLf/KnscJkMwN7Cs3R9D7Jj6V3TLMQ7a7l6eBdPty6zfyEO31AZJB3zGgDTrap
+         eVOGDptGIcCdVUNVbjRZRoYyFBDX8u93xWyTf/cKc63suVAtFaFxoT6mLog93rEVdhqR
+         d2xPcBOvXbsrw+zL1VBIfrNdWVok02S+E2qE7VTrNcKwnL2FxTdyO2R4/c02HP+Illum
+         D/RfAkEn/55XI9dartV1w7KaIcEO74gjLoEc1GH8vo55PBxNWVGC+F7bklXJrA4KkwRP
+         y9Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=s/5An8ZJhvhfRlZxTeIIggw/jOkq6WE1Xp3iVwLwkX0=;
-        b=EzjWoE8HPL/uFDn3QhYC4+fBAHkKzf0wgZaKktLUqCt2+bZzVjD2dQuy9PApZ1Yqho
-         Lz8GPc/HDtA8nkPG6bJHbykHL5+S2yd8RHWL0LM4iSnhDpqQk+dLT9crZCXXz4Nn32JO
-         elyZQiQkem2v5LpEQbIHDwEW6o/T8KRvoSCL2fTzeI7am6GJrox4+zz1nRENxouGf9cl
-         Pdnwxow/nJKh/UeeRBrcDwa+G3ozYEAezD+00RprtUODQelBflhRCQ5wfQyCJBvKMBJX
-         oVpKIqlvEezundL41JmAkYTOzzQEFqoBWLW19ZR081FWyYrzqJHJ2Rps88aOQ27kOE1a
-         mgcw==
-X-Gm-Message-State: AOAM532WFObicfwiQ96QaYjGFe6kjsDSY7aap5CXhhHUOGYlZxiDzT8Q
-        GQuJ0ve+LXBL0y8t4XUbheY=
-X-Google-Smtp-Source: ABdhPJwQ39Meb8g3bD5LeTVGWQS66NTxcbxEnijMnzcz57csCZzYg4F9uVLdSV2Q/k6jC16/IG7+ag==
-X-Received: by 2002:a05:6830:88:: with SMTP id a8mr6128825oto.233.1631820899562;
-        Thu, 16 Sep 2021 12:34:59 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id x198sm878970ooa.43.2021.09.16.12.34.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Sep 2021 12:34:58 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
-To:     Oskar Senft <osk@google.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20210910130337.2025426-1-osk@google.com>
- <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
- <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
- <722b27f6-4390-9b5b-f6f2-75ce9e967d12@roeck-us.net>
- <CABoTLcSdkmuBxd5Yh6z2Oqm1-_Vd4J5Ni1i1qq5s07mWu7Ndew@mail.gmail.com>
- <20210914150859.GB3457579@roeck-us.net>
- <CABoTLcQfS5-UL92NR9vbc2YrGJv3oQPYCqAm-diNoq-tkHP_hQ@mail.gmail.com>
- <c410eba9-f6cf-4dbf-797f-48afde9c1898@roeck-us.net>
- <CABoTLcQWXerMWPvWUqjykiNcx9oGoP8aEcuDwcQ36yu-CBc0pA@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <382858f5-e833-d4b9-f189-449671992ba5@roeck-us.net>
-Date:   Thu, 16 Sep 2021 12:34:57 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        bh=v7s0jc31HPLAs0gXkmeRMnAPIKh72hl0mqHTuEnX+aY=;
+        b=xOfsQPZ7QEP2VZe1ijfldjjxVcBEqO4WDm2JoQXb+XJDQi82tFno0Wa2X/xfIt/s8g
+         pQVEf4F8IEAW9lkvI8QJzwXMEhC49sFsS2Q/gJRstHsDDUZhMcTBb7xuQvzBVMtXUIcz
+         hRS04QS/SJ8tDPhbpLbZedKLuRt9nHn8n5ilBBS57wYdWCcHs1dT85oULU3q4Y06SALV
+         JgEkQG5OG56QzzmAmg7C6bB/znTrGC6hTB6/qsPcrertdEHWvU2m9TSeNipUQo+VC0wM
+         MNBSxJZB6tF+iFbvuNUiKzpDULHKEd+gbmi226ttk8WP7IVhb/wzMOtLanf7BpLBLtdt
+         6tNw==
+X-Gm-Message-State: AOAM530ybVZYQfYbLjKguX+ZqGkTVL0z+qIWcO7bad2H4hEzHxEbM97O
+        p6PACNfrWXFzalsb9rd4zro=
+X-Google-Smtp-Source: ABdhPJzIoMzJpohFqllA5LVocwtyw6xysu0DyOhL6PvnjBo49cXhoyjk3ExnnR4ZJ2MwsflFQCseig==
+X-Received: by 2002:a9d:71c6:: with SMTP id z6mr6181684otj.382.1631821333103;
+        Thu, 16 Sep 2021 12:42:13 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id c10sm963359ooi.11.2021.09.16.12.42.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Sep 2021 12:42:12 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     lee.jones@linaro.org, robh+dt@kernel.org, heiko@sntech.de,
+        sre@kernel.org, maccraft123mc@gmail.com,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v4 RESEND 0/4] power: supply: Add Support for RK817 Charger
+Date:   Thu, 16 Sep 2021 14:42:04 -0500
+Message-Id: <20210916194208.10387-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <CABoTLcQWXerMWPvWUqjykiNcx9oGoP8aEcuDwcQ36yu-CBc0pA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/16/21 12:19 PM, Oskar Senft wrote:
->      Hi Guenter
-> 
->>> Would it be acceptable to simply number the sensors and document which
->>> sensor has which number?
->>>
->>> Something like this:
->>> 0 = LTD
->>> 1 = RTD1
->>> ...
->>>
->> That might be a possibility, though it would have to be well defined
->> for each chip (nct7802 also has voltage sensors). We'll have to discuss
->> this with Rob.
->>
->> Personally I think I would prefer using a type qualifier - that seems
->> cleaner. But that is really a matter of opinion.
-> 
-> Another existing way I found is in ltc2978. Following that, we could
-> do it as follows:
-> 
-> i2c {
->      #address-cells = <1>;
->      #size-cells = <0>;
-> 
->      nct7802@28 {
->          compatible = "nuvoton,nct7802";
->          reg = <0x28>;
->          #address-cells = <1>;
->          #size-cells = <0>;
-> 
->          sensors {
->              ltd {
->                  status = "okay";
->                  label = "my local temperature";
->              };
-> 
->              rtd1 {
->                  status = "okay";
->                  mode = <0x2>; /* 3904 transistor */
->                  label = "other temperature";
->              };
-> 
->              rtd3 {
->                  status = "okay";
->                  mode = <0x3>; /* thermal diode */
->                  label = "3rd temperature";
->             };
->          };
->      };
-> };
-> 
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Ah, using the node name as indication for both sensor type and
-index ? SGTM, though we'd really need input from Rob.
-I guess one could also consider something more generic like
-"temperature-sensor@0", "voltage-sensor@0", and so on (instead
-of [mis-]using reg and a sensor-type field).
+This series is to add support for the Rockchip rk817 battery charger
+which is present in all Rockchip RK817 PMICs. The driver was written
+as a joint effort by Maya Matuszczyk <maccraft123mc@gmail.com> and
+myself Chris Morgan <macromorgan@hotmail.com>.
 
-Thanks,
-Guenter
+The driver requires some basic parameters be described about the
+battery in the devicetree such as the maximum capacity, the minimum
+and maximum voltage for the battery, the maximum charge current, the
+maximum charge voltage, and the value of sample resistors and sleep
+currents.
 
-> 
->>> The NCT7802Y can self-program from an EEPROM, so I assume we should
->>> honor the "power-up configuration" obtained from there? I.e. if no
->>> configuration is provided in the device tree, the driver should use
->>> whatever configuration the chip has when the driver is loaded.
->>>
->> Definitely yes. My question was more what to do if the information
->> in devicetree nodes is incomplete.
-> I think there are two cases:
-> 1) If the new "sensor" tree is missing, the driver should behave as it
-> does today to not break existing users.
-> 2) If the new "sensor" tree is present, then each of the sensors that
-> should be disabled needs to have "status = 'okay'" and have the mode
-> set (unless it's LTD). In the above example, rtd2 is missing and would
-> therefore be considered disabled.
-> 
-> Does that make sense? I still need to find out whether this is
-> actually valid DT and how to express that in the YAML, though ...
-> 
-> Thanks
-> Oskar.
-> 
+The hardware itself contains an ADC capable of measuring the voltage,
+current, and temperature of the battery (though my implementation of an
+Odroid Go Advance lacks a thermistor for temperature). It also contains
+a columb counter, registers for tracking the measured voltage and
+current at boot, and a few bytes of nvram for storing data.
+
+Changes from V3:
+
+ - Corrected issues in device tree documentation.
+ - Added additional logic to battery to correct for columb counter
+   drift when the device stays plugged in at a full charge state.
+
+Changes from V2:
+
+ - Updated devicetree bindings to use common property units.
+ - Removed unneeded includes.
+ - Updated rk817_chg_cur_to_reg to make more legible.
+ - Simplified formula for displaying calibrated voltage.
+ - Updated power supply type to POWER_SUPPLY_TYPE_USB.
+ - Implemented get/put_unaligned macros for bulk reads and writes.
+ - Changed numerous dev_err() to dev_err_probe().
+ - Call power_supply_put_battery_info() at end of probe function.
+ - Removed unneeded whitespace.
+
+Changes from V1:
+
+ - Fixed a CLANG warning regarding an uninitalized variable.
+ - Fixed a CLANG warning regarding a pointer as a bool value always
+   returning as true.
+ - Added Maya Matuszczyk to the Signed-off-by.
+
+Chris Morgan (4):
+  dt-bindings: Add Rockchip rk817 battery charger support
+  mfd: Add Rockchip rk817 battery charger support
+  power: supply: Add charger driver for Rockchip RK817
+  arm64: dts: rockchip: add rk817 charger to Odroid Go Advance
+
+ .../devicetree/bindings/mfd/rk808.txt         |  38 +
+ .../boot/dts/rockchip/rk3326-odroid-go2.dts   |  26 +
+ drivers/mfd/rk808.c                           |  16 +-
+ drivers/power/supply/Kconfig                  |   6 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/rk817_charger.c          | 959 ++++++++++++++++++
+ include/linux/mfd/rk808.h                     |  87 ++
+ 7 files changed, 1132 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/power/supply/rk817_charger.c
+
+-- 
+2.25.1
 
