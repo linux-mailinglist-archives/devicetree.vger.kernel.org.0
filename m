@@ -2,195 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A45240DCCF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 16:33:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C50CB40DD14
+	for <lists+devicetree@lfdr.de>; Thu, 16 Sep 2021 16:43:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238509AbhIPOez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 10:34:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49310 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237656AbhIPOeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 10:34:50 -0400
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B20FC0613C1;
-        Thu, 16 Sep 2021 07:33:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=xtxY+cXT8XfPoPIGlZyiPeXDXul2zQL4SqWivDuepj4=; b=QV15Ac0XhHrt5pDBOkpviaHDeu
-        lKoPCHIrQh5xpfB2IzNL+4Sw7Qnow9KyDZ1xtQYDZwnNvHux8UYRKptD64nQJ+WdLtPZM2BQhAh0W
-        KONWoXth4fs6j7Z4pp7p25R3wQzBPoy0ylhX3gSCYFu6T035vt/TSDDrabzn1NLVYkTHOA+KcawOE
-        pDDmwXD4xJjGNqqiC/N7qHd5rqy80ozxwzM+1Ce0emf4ozIgiUxnDLJ68iZC0dUFG0N4VcmyYAvS4
-        wOg4oE85Uud9uB5RE0bNL31rbK/IOK8FHThsvR/mRUw2NG0SLRDWDE5pxniss5PUlQNa142+IKI/V
-        lYTEnVSQ==;
-Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=toshino.localdomain)
-        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <mperttunen@nvidia.com>)
-        id 1mQsRw-0005Xx-Dm; Thu, 16 Sep 2021 17:33:16 +0300
-From:   Mikko Perttunen <mperttunen@nvidia.com>
-To:     thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
-        will@kernel.org, robh+dt@kernel.org, robin.murphy@arm.com
-Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mikko Perttunen <mperttunen@nvidia.com>
-Subject: [PATCH v2 8/8] drm/tegra: Support context isolation
-Date:   Thu, 16 Sep 2021 17:33:02 +0300
-Message-Id: <20210916143302.2024933-9-mperttunen@nvidia.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210916143302.2024933-1-mperttunen@nvidia.com>
-References: <20210916143302.2024933-1-mperttunen@nvidia.com>
+        id S237739AbhIPOo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 10:44:59 -0400
+Received: from mail-io1-f52.google.com ([209.85.166.52]:42734 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237526AbhIPOo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 10:44:59 -0400
+Received: by mail-io1-f52.google.com with SMTP id b10so8178813ioq.9;
+        Thu, 16 Sep 2021 07:43:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=PBMbyG66JcsJeX8hysmtBlI8q6/uwacbLt8pVZtH9oY=;
+        b=3oIy7Zp5jijawIACXMMZEP4nqsk7uS79Kr5GF0/bzYSKiZRA71iIJdoyJAwVI1RAUO
+         zrdYHsbC1zn3YSBA3Pf8n2+vzSen1ts81EjpmqQRIifShhLcnJsUSxm1ZtrWXZ0ngy0z
+         j5m5C4Aek27qCa2cF4p7MPHcgmeJqJX7uukQfFXNmheJbGBIjjkVy2DFYcJiDb/fxd0n
+         UKW9dmcmlyQR25n/cfq+H1QPw6eYFN49zWRB6Kfr7RrzeUJSHGrbgFIBNj7vquS2fSJ1
+         J2I1XIlbT5w1zBtzz8+8+ViWtfcMV+ocj/ZI0Snc+pW/D0lP6e8j0vyLybELqloM2dZ4
+         qsOw==
+X-Gm-Message-State: AOAM531YGOMZdmRHwNgkU2efxlVJhU4+AkLA6D7eR2P+ByEGCh5gLnRS
+        7zd5SMN3ue9RUeR/ro4AJw==
+X-Google-Smtp-Source: ABdhPJxxammQEcKK3G2JWaR69oSUKLj81sFdPLSuBn/OtrrWh35XAzDzP/+ey1dgIMCyhEre4XQ7RA==
+X-Received: by 2002:a05:6638:3890:: with SMTP id b16mr4807745jav.65.1631803418434;
+        Thu, 16 Sep 2021 07:43:38 -0700 (PDT)
+Received: from robh.at.kernel.org (96-84-70-89-static.hfc.comcastbusiness.net. [96.84.70.89])
+        by smtp.gmail.com with ESMTPSA id q17sm2011045ilc.81.2021.09.16.07.43.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Sep 2021 07:43:37 -0700 (PDT)
+Received: (nullmailer pid 1327692 invoked by uid 1000);
+        Thu, 16 Sep 2021 14:43:36 -0000
+Date:   Thu, 16 Sep 2021 09:43:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     amirmizi6@gmail.com
+Cc:     jgg@ziepe.ca, devicetree@vger.kernel.org, oshrialkoby85@gmail.com,
+        gregkh@linuxfoundation.org, kgoldman@us.ibm.com,
+        robh+dt@kernel.org, alexander.steffen@infineon.com,
+        jarkko@kernel.org, oshri.alkoby@nuvoton.com, peterhuewe@gmx.de,
+        linux-kernel@vger.kernel.org, benoit.houyere@st.com,
+        Eyal.Cohen@nuvoton.com, gcwilson@us.ibm.com, mark.rutland@arm.com,
+        joel@jms.id.au, Dan.Morav@nuvoton.com, shmulik.hager@nuvoton.com,
+        amir.mizinski@nuvoton.com, oren.tanami@nuvoton.com,
+        tmaimon77@gmail.com, arnd@arndb.de,
+        linux-integrity@vger.kernel.org, eajames@linux.ibm.com
+Subject: Re: [PATCH v15 6/6] tpm: Add YAML schema for TPM TIS I2C options
+Message-ID: <YUNYGNktq0HgiThT@robh.at.kernel.org>
+References: <20210914151032.216122-1-amirmizi6@gmail.com>
+ <20210914151032.216122-7-amirmizi6@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 84.249.134.236
-X-SA-Exim-Mail-From: mperttunen@nvidia.com
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210914151032.216122-7-amirmizi6@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For engines that support context isolation, allocate a context when
-opening a channel, and set up stream ID offset and context fields
-when submitting a job.
+On Tue, 14 Sep 2021 18:10:32 +0300, amirmizi6@gmail.com wrote:
+> From: Amir Mizinski <amirmizi6@gmail.com>
+> 
+> Add a YAML schema to support tpm tis i2c related dt-bindings for the I2c
+> PTP based physical layer.
+> 
+> This patch adds the documentation for corresponding device tree bindings of
+> I2C based Physical TPM.
+> Refer to the 'I2C Interface Definition' section in
+> 'TCG PC Client PlatformTPMProfile(PTP) Specification' publication
+> for specification.
+> 
+> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
+> ---
+>  .../bindings/security/tpm/tpm-tis-i2c.yaml         | 52 ++++++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+> 
 
-Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
----
- drivers/gpu/drm/tegra/drm.h    |  2 ++
- drivers/gpu/drm/tegra/submit.c | 13 +++++++++++++
- drivers/gpu/drm/tegra/uapi.c   | 34 ++++++++++++++++++++++++++++++++--
- 3 files changed, 47 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/tegra/drm.h b/drivers/gpu/drm/tegra/drm.h
-index fc0a19554eac..717e9f81ee1f 100644
---- a/drivers/gpu/drm/tegra/drm.h
-+++ b/drivers/gpu/drm/tegra/drm.h
-@@ -80,6 +80,7 @@ struct tegra_drm_context {
- 
- 	/* Only used by new UAPI. */
- 	struct xarray mappings;
-+	struct host1x_context *memory_context;
- };
- 
- struct tegra_drm_client_ops {
-@@ -91,6 +92,7 @@ struct tegra_drm_client_ops {
- 	int (*submit)(struct tegra_drm_context *context,
- 		      struct drm_tegra_submit *args, struct drm_device *drm,
- 		      struct drm_file *file);
-+	int (*get_streamid_offset)(struct tegra_drm_client *client);
- };
- 
- int tegra_drm_submit(struct tegra_drm_context *context,
-diff --git a/drivers/gpu/drm/tegra/submit.c b/drivers/gpu/drm/tegra/submit.c
-index 776f825df52f..b6008246bebe 100644
---- a/drivers/gpu/drm/tegra/submit.c
-+++ b/drivers/gpu/drm/tegra/submit.c
-@@ -469,6 +469,9 @@ static void release_job(struct host1x_job *job)
- 	struct tegra_drm_submit_data *job_data = job->user_data;
- 	u32 i;
- 
-+	if (job->context)
-+		host1x_context_put(job->context);
-+
- 	for (i = 0; i < job_data->num_used_mappings; i++)
- 		tegra_drm_mapping_put(job_data->used_mappings[i].mapping);
- 
-@@ -572,6 +575,16 @@ int tegra_drm_ioctl_channel_submit(struct drm_device *drm, void *data,
- 	job->release = release_job;
- 	job->timeout = 10000;
- 
-+	if (context->memory_context && context->client->ops->get_streamid_offset) {
-+		int offset = context->client->ops->get_streamid_offset(context->client);
-+
-+		if (offset >= 0) {
-+			job->context = context->memory_context;
-+			job->engine_streamid_offset = offset;
-+			host1x_context_get(job->context);
-+		}
-+	}
-+
- 	/*
- 	 * job_data is now part of job reference counting, so don't release
- 	 * it from here.
-diff --git a/drivers/gpu/drm/tegra/uapi.c b/drivers/gpu/drm/tegra/uapi.c
-index 690a339c52ec..bfded46b974a 100644
---- a/drivers/gpu/drm/tegra/uapi.c
-+++ b/drivers/gpu/drm/tegra/uapi.c
-@@ -37,6 +37,9 @@ static void tegra_drm_channel_context_close(struct tegra_drm_context *context)
- 	struct tegra_drm_mapping *mapping;
- 	unsigned long id;
- 
-+	if (context->memory_context)
-+		host1x_context_put(context->memory_context);
-+
- 	xa_for_each(&context->mappings, id, mapping)
- 		tegra_drm_mapping_put(mapping);
- 
-@@ -76,6 +79,7 @@ static struct tegra_drm_client *tegra_drm_find_client(struct tegra_drm *tegra, u
- 
- int tegra_drm_ioctl_channel_open(struct drm_device *drm, void *data, struct drm_file *file)
- {
-+	struct host1x *host = tegra_drm_to_host1x(drm->dev_private);
- 	struct tegra_drm_file *fpriv = file->driver_priv;
- 	struct tegra_drm *tegra = drm->dev_private;
- 	struct drm_tegra_channel_open *args = data;
-@@ -106,10 +110,29 @@ int tegra_drm_ioctl_channel_open(struct drm_device *drm, void *data, struct drm_
- 		}
- 	}
- 
-+	/* Only allocate context if the engine supports context isolation. */
-+	if (client->ops->get_streamid_offset &&
-+	    client->ops->get_streamid_offset(client) >= 0) {
-+		context->memory_context =
-+			host1x_context_alloc(host, get_task_pid(current, PIDTYPE_TGID));
-+		if (IS_ERR(context->memory_context)) {
-+			if (PTR_ERR(context->memory_context) != -EOPNOTSUPP) {
-+				err = PTR_ERR(context->memory_context);
-+				goto put_channel;
-+			} else {
-+				/*
-+				 * OK, HW does not support contexts or contexts
-+				 * are disabled.
-+				 */
-+				context->memory_context = NULL;
-+			}
-+		}
-+	}
-+
- 	err = xa_alloc(&fpriv->contexts, &args->context, context, XA_LIMIT(1, U32_MAX),
- 		       GFP_KERNEL);
- 	if (err < 0)
--		goto put_channel;
-+		goto put_memctx;
- 
- 	context->client = client;
- 	xa_init_flags(&context->mappings, XA_FLAGS_ALLOC1);
-@@ -122,6 +145,9 @@ int tegra_drm_ioctl_channel_open(struct drm_device *drm, void *data, struct drm_
- 
- 	return 0;
- 
-+put_memctx:
-+	if (context->memory_context)
-+		host1x_context_put(context->memory_context);
- put_channel:
- 	host1x_channel_put(context->channel);
- free:
-@@ -180,7 +206,11 @@ int tegra_drm_ioctl_channel_map(struct drm_device *drm, void *data, struct drm_f
- 
- 	kref_init(&mapping->ref);
- 
--	mapping->dev = context->client->base.dev;
-+	if (context->memory_context)
-+		mapping->dev = &context->memory_context->dev;
-+	else
-+		mapping->dev = context->client->base.dev;
-+
- 	mapping->bo = tegra_gem_lookup(file, args->handle);
- 	if (!mapping->bo) {
- 		err = -EINVAL;
--- 
-2.32.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
