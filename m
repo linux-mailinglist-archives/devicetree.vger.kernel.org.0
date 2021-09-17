@@ -2,74 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F334A40F612
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 12:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10E0E40F625
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 12:46:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343714AbhIQKoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 06:44:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40632 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231364AbhIQKoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 06:44:15 -0400
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A32C061574;
-        Fri, 17 Sep 2021 03:42:53 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 3658541E57;
-        Fri, 17 Sep 2021 10:42:46 +0000 (UTC)
-Subject: Re: [PATCH v3 04/10] PCI: apple: Add initial hardware bring-up
-To:     Marc Zyngier <maz@kernel.org>, Sven Peter <sven@svenpeter.dev>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Robin Murphy <Robin.Murphy@arm.com>, kernel-team@android.com
-References: <20210913182550.264165-1-maz@kernel.org>
- <20210913182550.264165-5-maz@kernel.org>
- <6eb53661-e11e-4634-9fa5-5e7e62d57a15@www.fastmail.com>
- <87lf3vblt6.wl-maz@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <9cf94456-d7ab-ac2b-fb12-019e40424793@marcan.st>
-Date:   Fri, 17 Sep 2021 19:42:44 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
-MIME-Version: 1.0
-In-Reply-To: <87lf3vblt6.wl-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+        id S230338AbhIQKro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 06:47:44 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:40285 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240611AbhIQKro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 06:47:44 -0400
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 17 Sep 2021 03:46:22 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 17 Sep 2021 03:46:20 -0700
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 17 Sep 2021 16:15:57 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 4CD08518E; Fri, 17 Sep 2021 16:15:56 +0530 (IST)
+From:   Satya Priya <skakit@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, mka@chromium.org,
+        swboyd@chromium.org, Das Srinagesh <gurus@codeaurora.org>,
+        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Satya Priya <skakit@codeaurora.org>
+Subject: [PATCH 0/4] Add Qualcomm Technologies, Inc. PM8008 regulator driver
+Date:   Fri, 17 Sep 2021 16:15:34 +0530
+Message-Id: <1631875538-22473-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/09/2021 18.20, Marc Zyngier wrote:
-> On Mon, 13 Sep 2021 21:48:47 +0100,
->> On Mon, Sep 13, 2021, at 20:25, Marc Zyngier wrote:
->>> +static inline void rmwl(u32 clr, u32 set, void __iomem *addr)
->>> +{
->>> +	writel_relaxed((readl_relaxed(addr) & ~clr) | set, addr);
->>> +}
->>
->> This helper is a bit strange, especially since it's always only used
->> with either clr != 0 or set != 0 but never (clr = 0 and set = 0) afaict.
->> Maybe create two instead for setting and clearing bits?
-> 
-> That's indeed nicer, and it makes the code more readable.
+Satya Priya (2):
+  dt-bindings: mfd: pm8008: Add pm8008-regulator binding
+  regulator: dt-bindings: Add pm8008 regulator bindings
 
-This seems to be a pattern in Corellium code; the cpufreq code is the 
-same and I honestly found it quite hard to read when used for simple set 
-or clear operations. I find set32/clear32 style helpers much more 
-readable, so it's probably a good idea to make this change any time we 
-upstream stuff derived from their tree.
+satya priya (2):
+  regulator: Add a regulator driver for the PM8008 PMIC
+  arm64: dts: qcom: sc7280: Add pm8008 regulators support for sc7280-idp
+
+ .../devicetree/bindings/mfd/qcom,pm8008.yaml       |  24 ++
+ .../bindings/regulator/qcom,pm8008-regulator.yaml  |  76 ++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           | 103 +++++
+ drivers/regulator/Kconfig                          |   9 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/qcom-pm8008-regulator.c          | 441 +++++++++++++++++++++
+ 6 files changed, 654 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
+ create mode 100644 drivers/regulator/qcom-pm8008-regulator.c
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
