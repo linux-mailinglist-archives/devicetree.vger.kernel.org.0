@@ -2,91 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E166540F5C8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 12:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1983C40F5DF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 12:27:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237545AbhIQKWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 06:22:15 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40884 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234869AbhIQKWO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 06:22:14 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18HAKnfg085552;
-        Fri, 17 Sep 2021 05:20:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631874049;
-        bh=VLm4UxwbbuEzVUE70aWdz5RD8bv6XF2EJwP+insnRhM=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=OqNp2nxItL3bQWAwT3wpC/o4J+vwLWsmZs4o9IrUhlpCXCZ7oEVkt1VgnyjLzLryI
-         KcSW0JksYR9G/oBOLrYBCxDmMy1QeQtd6vtjKPxjkjQALIg3cTiO5KPei21Lw1ZiyV
-         QoCvuIUB72dxwwM/9UBfkK4ZhhBS8K+9D892lqoc=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18HAKn1D056993
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 17 Sep 2021 05:20:49 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 17
- Sep 2021 05:20:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 17 Sep 2021 05:20:49 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18HAKmfA104639;
-        Fri, 17 Sep 2021 05:20:49 -0500
-Date:   Fri, 17 Sep 2021 15:50:47 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Parshuram Thombare <pthombar@cadence.com>
-CC:     <broonie@kernel.org>, <lukas@wunner.de>, <robh+dt@kernel.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
-        <mparab@cadence.com>, Konrad Kociolek <konrad@cadence.com>
-Subject: Re: [PATCH v4 2/2] spi: cadence: add support for Cadence XSPI
- controller
-Message-ID: <20210917102045.mapb7j3sixzxwald@ti.com>
-References: <1631534558-8102-1-git-send-email-pthombar@cadence.com>
- <1631534779-8371-1-git-send-email-pthombar@cadence.com>
+        id S242699AbhIQK20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 06:28:26 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:18018 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240737AbhIQK20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 06:28:26 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631874424; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
+ To: From: Sender; bh=LhtmfeNAIlX8M2dcVRidCgdVPxkrLfqIMyZ5JSXqj6M=; b=U0wLtXwGW7PjB0X2T1FoD0mUhvamr4JGqsxsRS5PLyo5tmdsi16/j8Dw2fV6G0Qacml807b5
+ rpuOZCwTyOJ/OwCDmSJfTLuwlr7Ct7hwEaAhO7Jk33RzpP+McHHdOae9WJLkPHAA396RkoZe
+ b+Fj1z/lOq5liEKPoicHSW6wxlc=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 61446d77b585cc7d24722ed5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 17 Sep 2021 10:27:03
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0B869C43617; Fri, 17 Sep 2021 10:27:03 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from PILLAIR1 (unknown [103.149.158.99])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 77B95C4338F;
+        Fri, 17 Sep 2021 10:26:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 77B95C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   <pillair@codeaurora.org>
+To:     "'Stephen Boyd'" <swboyd@chromium.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
+        <ohad@wizery.com>, <p.zabel@pengutronix.de>, <robh+dt@kernel.org>
+Cc:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sibis@codeaurora.org>,
+        <mpubbise@codeaurora.org>, <kuabhs@chromium.org>
+References: <1631811353-503-1-git-send-email-pillair@codeaurora.org> <1631811353-503-3-git-send-email-pillair@codeaurora.org> <CAE-0n51KBYjZvwGNy06_okmEWjEfRLQO54CYaY6-JnbBk6kOhA@mail.gmail.com>
+In-Reply-To: <CAE-0n51KBYjZvwGNy06_okmEWjEfRLQO54CYaY6-JnbBk6kOhA@mail.gmail.com>
+Subject: RE: [PATCH v3 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
+Date:   Fri, 17 Sep 2021 15:56:54 +0530
+Message-ID: <001201d7abae$8d160a10$a7421e30$@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1631534779-8371-1-git-send-email-pthombar@cadence.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHMNEBDEmK8+OU0e0UN4gvXCrx/ZwJ79PxeAhycz42rmi+7oA==
+Content-Language: en-us
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/09/21 02:06PM, Parshuram Thombare wrote:
-> This patch adds driver for Cadence's XSPI controller.
-> It supports 3 work modes.
-> 1. ACMD (auto command) work mode
->     ACMD name is because it uses auto command engine in the controller.
->     It further has 2 modes PIO and CDMA (command DMA).
->     The CDMA work mode is dedicated for high-performance application
->     where very low software overhead is required. In this mode the
->     Command Engine is programmed by the series of linked descriptors
->     stored in system memory. These descriptors provide commands to execute
->     and store status information for finished commands.
->     The PIO mode work mode is dedicated for single operation where
->     constructing a linked list of descriptors would require too
->     much effort.
-> 2. STIG (Software Triggered Instruction Generator) work mode
->     In STIG mode, controller sends low-level instructions to memory.
->     Each instruction is 128-bit width. There is special instruction
->     DataSequence which carries information about data phase.
->     Driver uses Slave DMA interface to transfer data as only this
->     interface can be used in STIG work mode.
-> 3. Direct work mode
->     This work mode allows sending data without invoking any command through
->     the slave interface.
-> Currently only STIG work mode is enabled, remaining work modes will
-> be added later.
 
-Acked-by: Pratyush Yadav <p.yadav@ti.com>
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+> -----Original Message-----
+> From: Stephen Boyd <swboyd@chromium.org>
+> Sent: Friday, September 17, 2021 11:56 AM
+> To: Rakesh Pillai <pillair@codeaurora.org>; agross@kernel.org;
+> bjorn.andersson@linaro.org; mathieu.poirier@linaro.org; =
+ohad@wizery.com;
+> p.zabel@pengutronix.de; robh+dt@kernel.org
+> Cc: linux-arm-msm@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; sibis@codeaurora.org; mpubbise@codeaurora.org;
+> kuabhs@chromium.org
+> Subject: Re: [PATCH v3 2/3] dt-bindings: remoteproc: qcom: Add SC7280
+> WPSS support
+>=20
+> Quoting Rakesh Pillai (2021-09-16 09:55:52)
+> > @@ -78,6 +84,10 @@ properties:
+> >        Phandle reference to a syscon representing TCSR followed by =
+the
+> >        three offsets within syscon for q6, modem and nc halt =
+registers.
+> >
+> > +  qcom,qmp:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: Reference to the AOSS side-channel message RAM.
+> > +
+> >    qcom,smem-states:
+> >      $ref: /schemas/types.yaml#/definitions/phandle-array
+> >      description: States used by the AP to signal the Hexagon core =
+@@
+> > -117,6 +127,33 @@ allOf:
+> >          compatible:
+> >            contains:
+> >              enum:
+> > +              - qcom,sc7280-wpss-pil
+> > +    then:
+>=20
+> Honestly I find this if/else to be a huge tangle. Why not split the =
+binding so
+> that each compatible is a different file? Then it is easier to read =
+and see what
+> properties to set.
+
+Hi Stephen,
+I will create a separate dt-bindings yaml file for sc7280-wpss-pil, =
+which will avoid all such if-else conditions.
+
+>=20
+> > +      properties:
+> > +        interrupts-extended:
+> > +          maxItems: 6
+> > +          items:
+> > +            - description: Watchdog interrupt
+> > +            - description: Fatal interrupt
+> > +            - description: Ready interrupt
+
