@@ -2,171 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E1BA40F49C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 11:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B762E40F4AB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 11:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbhIQJUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 05:20:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49284 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234064AbhIQJTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 05:19:13 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7F10C061766
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 02:17:50 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id d42so8702887lfv.10
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 02:17:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U+KFp85eGIg3j+xXBPsUkFDbTysqRdcy9QOXEE3yrfg=;
-        b=HrMoVzyJcd8uem8o60ameQ66p1cuF7BYcwBiKZyHg6HzAJ1/mPO6rSYnzXIBpvVJxY
-         R2qZN95MAWaF8IFX3HyXyFFzZ793fpgmI5bUUKxyN5DZbdETRAu3TzgyR9wOoVnw9iHI
-         8El4fDJwcyQ2EtKMvVzMx6GNaRw6vbPZWwRYeGwtBv9m5oD/kF8FfQtli4kR1CCDzW7C
-         jl7SlKPE5mVueGinHLO9S1oenwBMf+J9+1d8PjxRGuY10fOez1jiFZJOK9gNNZ9vOUZU
-         5SLTYGDJRhQCAMsLX7fQ7d79quczVr+6RbIIWKi/NLvpPnN5TfqpG3BDzLAM1B1cCIqC
-         +KeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U+KFp85eGIg3j+xXBPsUkFDbTysqRdcy9QOXEE3yrfg=;
-        b=5kZdvcJBVfkiGMejI9okUM36SzP9FyyjQeNDwfPnE6S/vcNMYLV71BU5XGeS5WFNso
-         z8g2/j6RKFvVQiWKDbb07xCV+IJVk/er6Dpqx96xf7nz4VhQOEnRH8zzTjJ5wCFPj/gR
-         aZZEIo633iOcwF+hQiBD7QY+Sc1THEI5fOdOowSyOq68/baX2EMYvneJPUn+V8rEVe/J
-         2bRNwpW6K9sDSvR8UBAdpiWVOKAZhQ1d02fYaF+q5OW9Lnmc84j4Mm+U+gPAbAwrqnYZ
-         aNUrbKerP1QvxaIYgLW4LG12BI9GdTUO6QugLThfdGVM217vmw1C6DXvK7og8Y/TQ1+K
-         971Q==
-X-Gm-Message-State: AOAM532lHTuIZYMUpr3pXKVMt6+aT3iA1X00UgKe+PsdBxd/vFfDJ0FM
-        AjfF5EmS+WlmjR4U9yDEmQ7dEDuLpozTBAW2/wvtDg==
-X-Google-Smtp-Source: ABdhPJzPCC9qx4Soovidg9FbsVH4UyQFz22TaLL0+9TH41TnoI9FCTSOUyclgROpBvrJXqowZBk/+HvYjM6pCl3Q3mU=
-X-Received: by 2002:a05:6512:6cd:: with SMTP id u13mr7227175lff.184.1631870269158;
- Fri, 17 Sep 2021 02:17:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210908013218.29702-1-wenbin.mei@mediatek.com>
- <20210908013218.29702-3-wenbin.mei@mediatek.com> <CAPDyKFqTx3wMm6mMy-wY892Nvu-ukqpRS=TSZxYr7e3TJWgF4A@mail.gmail.com>
- <5d5d49747b748db18ca66b9cf82c0e626f9c7638.camel@mediatek.com>
-In-Reply-To: <5d5d49747b748db18ca66b9cf82c0e626f9c7638.camel@mediatek.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 17 Sep 2021 11:17:13 +0200
-Message-ID: <CAPDyKFoeiLZwj_uQOc0C-=nAOHqpxU7RmN2iRvdpKbX1oL32ZA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] mmc: mediatek: Add HS400 online tuning support
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yue Hu <huyue2@yulong.com>, Bean Huo <beanhuo@micron.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S240044AbhIQJW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 05:22:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45000 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S245576AbhIQJUc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Sep 2021 05:20:32 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D385B6103B;
+        Fri, 17 Sep 2021 09:19:05 +0000 (UTC)
+Received: from [198.52.44.129] (helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mRA1P-00BKtD-Ro; Fri, 17 Sep 2021 10:19:03 +0100
+Date:   Fri, 17 Sep 2021 10:19:02 +0100
+Message-ID: <87mtobblvd.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     sven@svenpeter.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com,
+        kw@linux.com, alyssa@rosenzweig.io, stan@corellium.com,
+        kettenis@openbsd.org, marcan@marcan.st, Robin.Murphy@arm.com,
+        kernel-team@android.com
+Subject: Re: [PATCH v3 10/10] PCI: apple: Configure RID to SID mapper on device addition
+In-Reply-To: <56145a72aa978ebd@bloch.sibelius.xs4all.nl>
+References: <20210913182550.264165-1-maz@kernel.org>
+        <20210913182550.264165-11-maz@kernel.org>
+        <b502383a-fe68-498a-b714-7832d3c8703e@www.fastmail.com>
+        <87y27zbiu3.wl-maz@kernel.org>
+        <56145a72aa978ebd@bloch.sibelius.xs4all.nl>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 198.52.44.129
+X-SA-Exim-Rcpt-To: mark.kettenis@xs4all.nl, sven@svenpeter.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, kw@linux.com, alyssa@rosenzweig.io, stan@corellium.com, kettenis@openbsd.org, marcan@marcan.st, Robin.Murphy@arm.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Sept 2021 at 11:47, Wenbin Mei <wenbin.mei@mediatek.com> wrote:
->
-> On Tue, 2021-09-14 at 10:46 +0200, Ulf Hansson wrote:
-> > On Wed, 8 Sept 2021 at 03:32, Wenbin Mei <wenbin.mei@mediatek.com>
-> > wrote:
-> > >
-> > > Due to the influence of the corner IC and vcore voltage, for the
-> > > stability
-> > > of HS400 mode, we Add HS400 mode online tuning support for mediatek
-> > > mmc
-> > > host.
-> >
-> > My apologies, but I am not familiar with what 'HS400 online tuning'
-> > is? Can you please elaborate on this?
-> >
-> > Is it specific for a Mediatek eMMC controller - or is a common eMMC
-> > feature that is described in the eMMC spec?
-> >
-> According to JEDEC Spec, there is no need to do tuning under HS400 mode
-> since the Rx signal is aligned with the DS signal. However, MediaTek's
-> IC need set its "DS delay" internally to ensure it can latch Rx signal
-> correctly.
-> In previous version, We provide an "hs400-ds-delay" in device tree to
-> cover different chipset/PCB design, and it works fine in most cases.
-> But, with the development of process technology and the big VCore
-> voltage scale range(may have 0.7V/0.6V/0.55V), it is difficult to find
-> a suitable "hs400-ds-delay" to cover all of IC corner
-> cases(SSSS/TTTT/FFFF).
-> So that We must have the ability to do hs400 online tuning.
-> It is specific for the Mediatek eMMC controller which support HS400
-> mode.
+On Tue, 14 Sep 2021 10:56:05 +0100,
+Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> 
+> > Date: Tue, 14 Sep 2021 10:35:32 +0100
+> > From: Marc Zyngier <maz@kernel.org>
+> > 
+> > On Mon, 13 Sep 2021 21:45:13 +0100,
+> > "Sven Peter" <sven@svenpeter.dev> wrote:
+> > > 
+> > > On Mon, Sep 13, 2021, at 20:25, Marc Zyngier wrote:
+> > > > The Apple PCIe controller doesn't directly feed the endpoint's
+> > > > Requester ID to the IOMMU (DART), but instead maps RIDs onto
+> > > > Stream IDs (SIDs). The DART and the PCIe controller must thus
+> > > > agree on the SIDs that are used for translation (by using
+> > > > the 'iommu-map' property).
+> > > > 
+> > > > For this purpose, parse the 'iommu-map' property each time a
+> > > > device gets added, and use the resulting translation to configure
+> > > > the PCIe RID-to-SID mapper. Similarily, remove the translation
+> > > > if/when the device gets removed.
+> > > > 
+> > > > This is all driven from a bus notifier which gets registered at
+> > > > probe time. Hopefully this is the only PCI controller driver
+> > > > in the whole system.
+> > > > 
+> > > > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> > > > ---
+> > > >  drivers/pci/controller/pcie-apple.c | 158 +++++++++++++++++++++++++++-
+> > > >  1 file changed, 156 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/pci/controller/pcie-apple.c 
+> > > > b/drivers/pci/controller/pcie-apple.c
+> > > > index 76344223245d..68d71eabe708 100644
+> > > > --- a/drivers/pci/controller/pcie-apple.c
+> > > > +++ b/drivers/pci/controller/pcie-apple.c
+> > > > @@ -23,8 +23,10 @@
+> > > >  #include <linux/iopoll.h>
+> > > >  #include <linux/irqchip/chained_irq.h>
+> > > >  #include <linux/irqdomain.h>
+> > > > +#include <linux/list.h>
+> > > >  #include <linux/module.h>
+> > > >  #include <linux/msi.h>
+> > > > +#include <linux/notifier.h>
+> > > >  #include <linux/of_irq.h>
+> > > >  #include <linux/pci-ecam.h>
+> > > >  
+> > > > @@ -116,6 +118,8 @@
+> > > >  #define   PORT_TUNSTAT_PERST_ACK_PEND	BIT(1)
+> > > >  #define PORT_PREFMEM_ENABLE		0x00994
+> > > >  
+> > > > +#define MAX_RID2SID			64
+> > > 
+> > > Do these actually have 64 slots? I thought that was only for
+> > > the Thunderbolt controllers and that these only had 16.
+> > 
+> > You are indeed right, and I blindly used the limit used in the
+> > Correlium driver. Using entries from 16 onward result in a non booting
+> > system. The registers do not fault though, and simply ignore writes. I
+> > came up with an simple fix for this, see below.
+> 
+> Or should be add a property to the DT binding to indicate the number
+> of entries (using a default of 16)?  We don't have to add that
+> property right away; we can delay that until we actually try to
+> support the Thunderbolt ports.
 
-I see, thanks for clarifying. Please put some of this information in
-the commit message for the next version, it certainly helps to
-understand.
+I'd rather only add a property for things we cannot discover
+ourselves. And indeed, we don't have to decide on this right now.
 
-[...]
+> In case you didn't know already, RIDs that have no mapping in the
+> RID2SID table map to SID 0.  That's why I picked 1 as the SID in the
+> iommu-map property for the port.
 
-> > > +static int msdc_send_cxd_data(struct mmc_card *card, struct
-> > > mmc_host *host)
-> > > +{
-> > > +       struct mmc_request mrq = {};
-> > > +       struct mmc_command cmd = {};
-> > > +       struct mmc_data data = {};
-> > > +       unsigned int len = 512;
-> > > +       struct scatterlist sg;
-> > > +       u8 *ext_csd;
-> > > +
-> > > +       ext_csd = kzalloc(len, GFP_KERNEL);
-> > > +       if (!ext_csd)
-> > > +               return -ENOMEM;
-> > > +
-> > > +       mrq.cmd = &cmd;
-> > > +       mrq.data = &data;
-> > > +
-> > > +       cmd.opcode = MMC_SEND_EXT_CSD;
-> > > +       cmd.arg = 0;
-> > > +       cmd.flags = MMC_RSP_SPI_R1 | MMC_RSP_R1 | MMC_CMD_ADTC;
-> > > +
-> > > +       data.blksz = len;
-> > > +       data.blocks = 1;
-> > > +       data.flags = MMC_DATA_READ;
-> > > +       data.sg = &sg;
-> > > +       data.sg_len = 1;
-> > > +
-> > > +       sg_init_one(&sg, ext_csd, len);
-> > > +       mmc_set_data_timeout(&data, card);
-> > > +       mmc_wait_for_req(host, &mrq);
-> > > +
-> > > +       kfree(ext_csd);
-> > > +
-> > > +       if (cmd.error)
-> > > +               return cmd.error;
-> > > +       if (data.error)
-> > > +               return data.error;
-> > > +
-> > > +       return 0;
-> >
-> > Why do we need to send a MMC_SEND_EXT_CSD command, exactly?
-> >
-> > Why can't mmc_send_tuning() work here too? What does the eMMC spec
-> > state about this?
-> >
-> The CMD21 is illegal under hs400 mode so that cannot use the
-> mmc_send_tuning(). The CMD8 is suitable because it will receive 1 block
-> of non-zero data.
+I sort-off guessed, as using 0 made everything work by 'magic', while
+using your DT prevented the machine from booting. I tend to dislike
+magic, hence this patch.
 
-I see.
+> 
+> > > I never checked it myself though and it doesn't make much
+> > > of a difference for now since only four different RIDs will
+> > > ever be connected anyway.
+> > 
+> > Four? I guess the radios expose more than a single RID?
+> 
+> At this point, on the M1 mini there is the Broadcom BCM4378 WiFi/BT
+> device (which has two functions), the Fresco Logic FL1100 xHCI
+> controller (single function) and the Broadcom BCM57765 Ethernet
+> controller.  So yes, there are for RIDs.
 
-In that case it seems better to use mmc_get_ext_csd(), from the core,
-rather than open coding the above. To do that, you also need to move
-the declaration of mmc_get_ext_csd() to include/linux/mmc/host.h.
+But as far as I can see, the RID-to-SID mapping is per port. So at
+most, we have two RIDs per port/DART, not four. Or am I missing
+something altogether?
 
-[...]
+	M.
 
-Kind regards
-Uffe
+-- 
+Without deviation from the norm, progress is not possible.
