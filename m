@@ -2,105 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0BE640F33B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 09:27:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3CFF40F341
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 09:29:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241052AbhIQH3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 03:29:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52610 "EHLO
+        id S239161AbhIQHa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 03:30:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240983AbhIQH3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 03:29:18 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDE8FC061764
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 00:27:56 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id x6so13500140wrv.13
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 00:27:56 -0700 (PDT)
+        with ESMTP id S236843AbhIQHa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 03:30:26 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92ABCC061574;
+        Fri, 17 Sep 2021 00:29:04 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id y28so29176675lfb.0;
+        Fri, 17 Sep 2021 00:29:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=yxTXBHJqU7RR9a49yqQjWpbG2NbNPVK/5PjCc/Yjeb8=;
-        b=Qbk2KEturmAbJqgDKUYYrlSgYiyY3lGDetYhmrEK+NGbKMuJIuxfGqmYBW4w/YT/88
-         ZtDCrIjDIIWXG3RoM7CBo0OB49876VpHXTTA6Ty12wDY/OhuHyLHU1lI8uvIpVLKJ06Y
-         BjATW35xbrTCwHQ3ZKSyoLB/9DwY/5R0vIYYRFGw+LTTQNl3VWmP0uTxUsX6xxt2Zqp2
-         DFflrYRBGLQ4GPP+ldEB+Hv5TAs9Uj7jvLMJ3zBvvO3g0eZiba48c/oMaK2h9OE5eixx
-         awZhmfRJC6Mi16EWsNltIFhfsd4eOcfP1KMiB+WJ/WR5mPloUeDDcA03lDDhveExjnH2
-         ZKjQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tmHkW0s9+t/ONd+yDxBn//RRzbrXvdLqidVR1RkmYM0=;
+        b=Y6iqwhp+URme2AkzCH6L9p/AD3OAkrXgDg2Hd/frLGzetlzUbIKV6+bnRjZGnvshpy
+         /l8JJ277oOtCeGJJ+DIERy4c4FADZE2AqvdS92eFtq/8iEmpcFZinGXcBomIteSyN1Os
+         H3zJHZMJpwnkl7B7C0uAOdR7Xs1mVHHWqQlFZ2m9sX4BgjcX3cXxbOXpD8sEky+cBYuQ
+         eQfK/R7Xt5X8Pg5GjhjLBy5p8YD7AEDm12cjWqdvDAIYFnAudALwgNruuGmwu5zBUfSA
+         vEukpaGJ7dGG4X8IEUpFe3U3uBvfYSpn9dWoQ0hv64jo7eyWAWFBU38H0V2URk/a0sfW
+         ZLcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=yxTXBHJqU7RR9a49yqQjWpbG2NbNPVK/5PjCc/Yjeb8=;
-        b=53928weooxWHW4A2O5w0pp4SDXNzy3tEG4/rYtptLzpEjHlGG/7N48tcbaWr0KTFyz
-         ywQ+Wf9RKDCbtGh2tCy74L7MXnbkFjGwcWfNx00y7IbT0J+cLmjKJJzWy2mBncMyMY91
-         uf1QQyYPJNZHPdQBn6AT8X8PJLnxDPTWeW/POQZ83L8Y384EfU+mDi3pfqD3m89FGXoo
-         f/i4CpCONzWstjAg/yQDsAwR++twHsncHy38e6Cv0nbXQMW2xK9OgCR/wnGtVNj5zQ/W
-         gccmzHrt+eUKkJUjaKij8t5oWh2xfajmmErJzQy5HDzKAY+WBdJcNMfGvZOtDPwHu3G7
-         o7Zg==
-X-Gm-Message-State: AOAM530QiQKWJaj2eSiSd9c7NNPVntRBeznpkESB+Y1dfutNqm5BpoyB
-        04PKYBzhqGwOotPlQjJNeMaQ3g==
-X-Google-Smtp-Source: ABdhPJxkIQE8ZUfNFBVHAIoWL72FYkFUxDDXpV2GYzAp6lpUk9xvBeKN6+Jp9yTAX7/9u+HFkXAqqA==
-X-Received: by 2002:adf:fd12:: with SMTP id e18mr10449923wrr.275.1631863675219;
-        Fri, 17 Sep 2021 00:27:55 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:7c8c:5a9b:1b6e:1623])
-        by smtp.gmail.com with ESMTPSA id o2sm6500714wrh.13.2021.09.17.00.27.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Sep 2021 00:27:54 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     Vyacheslav Bocharov <adeep@lexina.in>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 0/4] arm64: meson: add support for JetHub D1/H1
-Date:   Fri, 17 Sep 2021 09:27:52 +0200
-Message-Id: <163186366690.1044811.10268335087144036716.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210915085715.1134940-1-adeep@lexina.in>
-References: <20210915085715.1134940-1-adeep@lexina.in>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tmHkW0s9+t/ONd+yDxBn//RRzbrXvdLqidVR1RkmYM0=;
+        b=QQefVU8HDeVsPRKG/srJnRn1Vn+AINLWD6wLvwNd0s3W0SwKUW8ns10eg4V5/OuJ0E
+         FVXUvRXuR0dvdntF3y6z7ryHa8XmthU1aOyBIzYJ771sq46xXRbPzs7sKb3+ajPK+2sZ
+         PhPikh/pOQLew93AglQtsGq3cYd6UZ8BiMFphhCR1lSXQhYY09KydSz6xnbaHUGOh3aw
+         QSnjPDzh2SNoZR3OD92Zka7O1ctb7oYMDv2AWeANIx4vR+v7iw6W5wbi3XDHqEgg3M6z
+         btDw2BCNqruw7kkVYIuOcAMgTSIqjApY7gvHA8HHZQBXUnCe+5ixxovYfktNMl11dhUC
+         lK9w==
+X-Gm-Message-State: AOAM533w+baypzddOkjoxUc5iQNSYKy+UJwPHk9Irr/sIM1FH0UHftTa
+        xwgTXKlF6qMHCs0caC6Azb7zDi9A4BuFfPGYZps=
+X-Google-Smtp-Source: ABdhPJzGxQQwBhhrtEaweLkfzFUJA40jcPwllFvwIuOzWW6Oa+Fg+WH65jNMZ9ivUDYbeVPe3h9sKPNiDRJJGM8HZp4=
+X-Received: by 2002:a19:6512:: with SMTP id z18mr7266098lfb.106.1631863742007;
+ Fri, 17 Sep 2021 00:29:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20210915120325.20248-1-heiko.thiery@gmail.com>
+ <7e7ee4244ababc0a46e0875222c7e37d@walle.cc> <898fd5e0-2073-3689-89b6-2c5071773786@kontron.de>
+In-Reply-To: <898fd5e0-2073-3689-89b6-2c5071773786@kontron.de>
+From:   Heiko Thiery <heiko.thiery@gmail.com>
+Date:   Fri, 17 Sep 2021 09:28:51 +0200
+Message-ID: <CAEyMn7ZbJr0_2Phc2rW7sDYQu4AABWPZ1F7xDgaS5U7ha7iqzA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm-kontron-n801x-som: do not allow to
+ switch off buck2
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc:     Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Frieder,
 
-On Wed, 15 Sep 2021 11:57:11 +0300, Vyacheslav Bocharov wrote:
-> Add support for new home automation devices.
-> 
-> JetHome Jethub D1 (http://jethome.ru/jethub-d1) is a home automation controller with the following features:
-> - DIN Rail Mounting
-> - Amlogic A113X (ARM Cortex-A53) quad-core up to 1.5GHz
-> - no video out
-> - 512Mb/1GB LPDDR4
-> - 8/16GB eMMC flash
-> - 1 x USB 2.0
-> - 1 x 10/100Mbps ethernet
-> - WiFi / Bluetooth AMPAK AP6255 (Broadcom BCM43455) IEEE 802.11a/b/g/n/ac, Bluetooth 4.2.
-> - TI CC2538 + CC2592 Zigbee Wireless Module with up to 20dBm output power and Zigbee 3.0 support.
-> - 2 x gpio LEDS
-> - GPIO user Button
-> - 1 x 1-Wire
-> - 2 x RS-485
-> - 4 x dry contact digital GPIO inputs
-> - 3 x relay GPIO outputs
-> - DC source with a voltage of 9 to 56 V / Passive POE
-> 
-> [...]
+Am Mi., 15. Sept. 2021 um 14:09 Uhr schrieb Frieder Schrempf
+<frieder.schrempf@kontron.de>:
+>
+> On 15.09.21 14:05, Michael Walle wrote:
+> > Am 2021-09-15 14:03, schrieb Heiko Thiery:
+> >> The buck2 output of the PMIC is the VDD core voltage of the cpu.
+> >> Switching off this will poweroff the CPU. Add the 'regulator-always-on'
+> >> property to avoid this.
+> >
+> > Mh, have this ever worked? Is there a commit which introduced a regression?
+>
+> Yes, this did work before, even without 'regulator-always-on'. I
+> currently don't understand why this is needed. The regulator is
+> referenced in the CPU nodes as 'cpu-supply'. This should be enough to
+> not disable it as long as the CPU is up.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.16/dt64)
+I rechecked that with 5.11, 5.10 and 5.9 and I see on all of them the
+same issue:
 
-[1/4] dt-bindings: arm: amlogic: add bindings for Jethub D1/H1
-      https://git.kernel.org/amlogic/c/c649e25c0fcd53e0f1e83f710fefbda9d2809c32
-[2/4] dt-bindings: vendor-prefixes: add jethome prefix
-      https://git.kernel.org/amlogic/c/a1732cca0ed3d1ac2a256d16302c93443d636146
-[3/4] arm64: dts: meson-gxl: add support for JetHub H1
-      https://git.kernel.org/amlogic/c/abfaae24ecf3e7f00508b60fa05e2b6789b8f607
-[4/4] arm64: dts: meson-axg: add support for JetHub D1
-      https://git.kernel.org/amlogic/c/8e279fb2903990cc6296ec56b3b80b2f854b6c79
+[ 31.716031] vdd-5v: disabling
+[ 31.719032] rst-usb-eth2: disabling
+[ 31.722553] buck2: disabling
+
+While on that I tried to compare with other boards and see that they
+also have the cpu-voltage marked as "regulator-always-on". The only
+exception in dts/freescale is in imx8mq-librem5-devkit.dts [1] that
+has not set this property.
+
+I agree with you and don't understand why this is happening. Has
+anyone else an explanation?
+
+[1] https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts#L319
 
 -- 
-Neil
+Heiko
