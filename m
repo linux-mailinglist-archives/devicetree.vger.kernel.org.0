@@ -2,192 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C0F140FC1C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 17:21:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DE7040FC25
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 17:23:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245612AbhIQPWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 11:22:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48344 "EHLO
+        id S234199AbhIQPYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 11:24:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241613AbhIQPWJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 11:22:09 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D957C0613E5
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 08:16:43 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id t189so1872011oie.7
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 08:16:43 -0700 (PDT)
+        with ESMTP id S1344335AbhIQPY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 11:24:27 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364B1C0613CF
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 08:22:40 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id bg1so6366812plb.13
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 08:22:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=/3ZxpeUuB/vl9DBmorUmc8ZV+Xm47ifZ9EKEnAgqH44=;
-        b=AAzpchrqmAvROqA1BlIRO/9Vt38/lpzDVY4myOFl2Nw3HzTxSAx7/haQEDJ9+U/5lD
-         dPxMZmmIBketNOrFnHVCeSEHfWfwjPCMxTeF4f6e6HogmN19bRVAnjZixO+KQntO/hqe
-         JHa5bQDN9sK2L/f4IuKMIqMfGKswFdlUa0UKwp+Y9yi/GUo9yPWiIAqBrsRAeRkC/sn0
-         K3w/Yd94kp1K26aa2Cn3BIfLC9+yVwLhNw2oSUqWO8DvxnkJPB/FXmpjgGVG8GYl0W7C
-         WB0WPVDNyki2p1qcYC7bwwZZBlgQJb7SIz8ajsG33oXbQqbgcm0CFDzOa9C+6Nnk4k//
-         GSrg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=OS94uZTmA0qnszl1fwVMo+RQL+/vTVqvtH0x+p48wY0=;
+        b=bRsPWtlhXzo4Tc/8or9LqnXhztTrk9NmxMapoTxWY0Ypjm1gL3iusGWCPx1hXm6hXA
+         OnJWj3AfeV/AyOHx5exXC8jx9r5SrprlQOmDZ4fXNd1uKmS3VPuHRNL+hiI+Z8GF4XPi
+         WK/2g61WY2v+O6shCYTiop8X+p9M/F/J96rA8m3g8Ut+moKVIOQoEjGLOImm2cOJAt7M
+         f5crjbQisPGL3RZe3I/3BFsuR2bOn0bHvJN95jx9lTXBpcsUvy5TCJbdsn1eUZwqGKRR
+         MXAOf8+zN8rXXGS6FxxD2Hn+G8vBOwu4E/XhZs8fEPSUn5SEgVF7Nbf60iAD89hmPRX4
+         Go7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=/3ZxpeUuB/vl9DBmorUmc8ZV+Xm47ifZ9EKEnAgqH44=;
-        b=4jf3NwKTeVA7EydcAEuXRgVDcwm4Q5ifNfbFpqYjNRHJoY9rosGR+7kF8Gmz3NMb3m
-         DzzqeikfzWbyBbU5BxDNTXHH9TqAJsk5Xiacnz5dWgo58JsS/D3ZAuLDM2Z+L2vgOhnk
-         QSYMSQPW8GDi22+NmhNMl3J2I8JgSArJZiFYxk2i95W9E9GPvOXRLEywIe8cwmk0k138
-         z4WKo2Iac2pALB+pUAQoGcUujqvNhKY8690uhtNI771Z3QGiusj04HumVEgRhGnChK6p
-         gZzY3YfkhSKaGE4DgGXEro6qEcn5RmtF+ckqMSABjh+kJwnE5s11V4T1T0l6yAMqn3dU
-         qjdg==
-X-Gm-Message-State: AOAM533sJTyYLwHCHEWprLOB/+JPNE/C6vMxmX3NtCL053FgxoYI8y16
-        FrNZ+trkukI09AsvFOK9a7dANQ==
-X-Google-Smtp-Source: ABdhPJzp1trLSa7nhgEpwBRW/4AxMYCyKtiwCAEIt1jVH+RoANmH8n/6aja8/U5VsL91FoqoOUCO+Q==
-X-Received: by 2002:a05:6808:8d2:: with SMTP id k18mr4280963oij.62.1631891802835;
-        Fri, 17 Sep 2021 08:16:42 -0700 (PDT)
-Received: from MacBook-Pro.hackershack.net (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id x192sm358739oix.9.2021.09.17.08.16.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Sep 2021 08:16:42 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: qcom: sdm850-yoga: Reshuffle IPA memory
- mappings
-To:     Amit Pundir <amit.pundir@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OS94uZTmA0qnszl1fwVMo+RQL+/vTVqvtH0x+p48wY0=;
+        b=STD4WiGSaWWO9eoEuDOpoIBeGGsXwERw/eGKwmpZRbindxaehmwUxTRKEt4QRAztxL
+         hH63rFFRPVRDO9Yfv3VKLtHReIOYBEgrDxJpSITE7yHXUVp2Pzv6cAH+uvYmWxnLgLma
+         HuXhD0MLVROMk3hJOfSohN3DXp6M2Ii+5tvuC3Uw8YohoYnU4Nxn+KkTTc8wCYtJEpCy
+         7d10qOh24rBxxeMn3wJpAqY2kNJA2lW8qjnLvWol+D6HtJ8GQLbDl+HqqqsMXiTmPXKB
+         lQEplSHxDnMmoM1tO+ez+HaqR7yGfAoJRC/6JRYHRAWUOAn5VbStIOrNVr5zyU+PkEEd
+         M1Zw==
+X-Gm-Message-State: AOAM5337rlVdhnQe/ky6FhLoJTI4MSwpILBDrlFh4+q4osBqKFU+F+qb
+        Kz723rG372IKX7t3owTockNplA==
+X-Google-Smtp-Source: ABdhPJwTfxqmzpmynstN+ueD82dE7pITyL8lRsfd5Z/m6O2J/WXNuzsrz1m0cTCWJw2yZBW048Tt5g==
+X-Received: by 2002:a17:902:a3ca:b0:13c:a7be:1767 with SMTP id q10-20020a170902a3ca00b0013ca7be1767mr6481323plb.88.1631892159539;
+        Fri, 17 Sep 2021 08:22:39 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id 23sm6472340pfp.206.2021.09.17.08.22.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Sep 2021 08:22:38 -0700 (PDT)
+Date:   Fri, 17 Sep 2021 09:22:36 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Ohad Ben Cohen <ohad@wizery.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Alex Elder <elder@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20210916200554.2434439-1-amit.pundir@linaro.org>
-From:   Steev Klimaszewski <steev@kali.org>
-Message-ID: <e72beb6a-10c0-6edb-7a38-a3870285c423@kali.org>
-Date:   Fri, 17 Sep 2021 10:16:41 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.14.0
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 3/4] remoteproc: imx_dsp_rproc: Add remoteproc driver
+ for DSP on i.MX
+Message-ID: <20210917152236.GA1878943@p14s>
+References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
+ <1631092255-25150-4-git-send-email-shengjiu.wang@nxp.com>
+ <20210915161624.GA1770838@p14s>
+ <CAA+D8AO0c+jk_k7j=ZvNFsVvC-p_zMLPJDS3qmLjNbJ+U0E9Cg@mail.gmail.com>
+ <20210916165957.GA1825273@p14s>
+ <CAA+D8AN_ni_XmEFNfY0Z0qLAJX00XFSUP1RkJdNQd-MVY6pd4g@mail.gmail.com>
+ <CAA+D8AMaszzT5q8oGhXOtE3W5Ue9S3r=es2sTp2uJ7RwjX8Bzg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210916200554.2434439-1-amit.pundir@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA+D8AMaszzT5q8oGhXOtE3W5Ue9S3r=es2sTp2uJ7RwjX8Bzg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Sep 17, 2021 at 05:44:44PM +0800, Shengjiu Wang wrote:
+> On Fri, Sep 17, 2021 at 1:20 PM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
+> >
+> > On Fri, Sep 17, 2021 at 1:00 AM Mathieu Poirier
+> > <mathieu.poirier@linaro.org> wrote:
+> > >
+> > > [...]
+> > >
+> > > > > > +
+> > > > > > +/**
+> > > > > > + * imx_dsp_rproc_elf_load_segments() - load firmware segments to memory
+> > > > > > + * @rproc: remote processor which will be booted using these fw segments
+> > > > > > + * @fw: the ELF firmware image
+> > > > > > + *
+> > > > > > + * This function specially checks if memsz is zero or not, otherwise it
+> > > > > > + * is mostly same as rproc_elf_load_segments().
+> > > > > > + */
+> > > > > > +static int imx_dsp_rproc_elf_load_segments(struct rproc *rproc,
+> > > > > > +                                        const struct firmware *fw)
+> > > > > > +{
+> > > > > > +     struct device *dev = &rproc->dev;
+> > > > > > +     u8 class = fw_elf_get_class(fw);
+> > > > > > +     u32 elf_phdr_get_size = elf_size_of_phdr(class);
+> > > > > > +     const u8 *elf_data = fw->data;
+> > > > > > +     const void *ehdr, *phdr;
+> > > > > > +     int i, ret = 0;
+> > > > > > +     u16 phnum;
+> > > > > > +
+> > > > > > +     ehdr = elf_data;
+> > > > > > +     phnum = elf_hdr_get_e_phnum(class, ehdr);
+> > > > > > +     phdr = elf_data + elf_hdr_get_e_phoff(class, ehdr);
+> > > > > > +
+> > > > > > +     /* go through the available ELF segments */
+> > > > > > +     for (i = 0; i < phnum; i++, phdr += elf_phdr_get_size) {
+> > > > > > +             u64 da = elf_phdr_get_p_paddr(class, phdr);
+> > > > > > +             u64 memsz = elf_phdr_get_p_memsz(class, phdr);
+> > > > > > +             u64 filesz = elf_phdr_get_p_filesz(class, phdr);
+> > > > > > +             u64 offset = elf_phdr_get_p_offset(class, phdr);
+> > > > > > +             u32 type = elf_phdr_get_p_type(class, phdr);
+> > > > > > +             void *ptr;
+> > > > > > +             bool is_iomem;
+> > > > > > +
+> > > > > > +             if (type != PT_LOAD || !memsz)
+> > > > >
+> > > > > You did a really good job with adding comments but this part is undocumented...
+> > > > > If I read this correctly you need to check for !memsz because some part of
+> > > > > the program segment may have a header but its memsz is zero, in which case it can
+> > > > > be safely skipped.  So why is that segment in the image to start with, and why
+> > > > > is it marked PT_LOAD if it is not needed?  This is very puzzling...
+> > > >
+> > > > Actually I have added comments in the header of this function.
+> > >
+> > > Indeed there is a mention of memsz in the function's header but it doesn't
+> > > mention _why_ this is needed, and that is what I'm looking for.
+> > >
+> > > >
+> > > > memsz= 0 with PT_LOAD issue, I have asked the toolchain's vendor,
+> > > > they said that this case is allowed by elf spec...
+> > > >
+> > > > And in the "pru_rproc.c" and "mtk_scp.c", seems they met same problem
+> > > > they also check the filesz in their internal xxx_elf_load_segments() function.
+> > >
+> > > In both cases they are skipping PT_LOAD sections where "filesz" is '0', which
+> > > makes sense because we don't know how many bytes to copy.  But here you are
+> > > skipping over a PT_LOAD section with a potentially valid filesz, and that is the
+> > > part I don't understand.
+> >
+> > Ok, I can use filesz instead. For my case, filesz = memsz = 0,
+> > it is the same result I want.
 
-On 9/16/21 3:05 PM, Amit Pundir wrote:
-> Upstream commit 2e01e0c21459 ("arm64: dts: qcom: sdm850-yoga:
-> Enable IPA") shuffled reserved memory regions in sdm845.dtsi
-> to make firmware loading succeed and enable the ipa device on
-> sdm845-yoga but it broke the other common users of those
-> memory regions like Xiaomi Pocophone F1.
->
-> So this patch effectively revert those upstream commit changes
-> and move all the relevant changes to sdm850-lenovo-yoga-c630.dts
-> instead.
->
-> Fixes: 2e01e0c21459 ("arm64: dts: qcom: sdm850-yoga: Enable IPA")
-> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> ---
-> Smoke tested on PocoF1 and not on Yoga-C630.
->
->  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 21 +++++++-----
->  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 34 +++++++++++++++++++
->  2 files changed, 47 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 6d7172e6f4c3..b3b911926184 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -128,23 +128,28 @@ camera_mem: memory@8bf00000 {
->  			no-map;
->  		};
->  
-> -		wlan_msa_mem: memory@8c400000 {
-> -			reg = <0 0x8c400000 0 0x100000>;
-> +		ipa_fw_mem: memory@8c400000 {
-> +			reg = <0 0x8c400000 0 0x10000>;
->  			no-map;
->  		};
->  
-> -		gpu_mem: memory@8c515000 {
-> -			reg = <0 0x8c515000 0 0x2000>;
-> +		ipa_gsi_mem: memory@8c410000 {
-> +			reg = <0 0x8c410000 0 0x5000>;
->  			no-map;
->  		};
->  
-> -		ipa_fw_mem: memory@8c517000 {
-> -			reg = <0 0x8c517000 0 0x5a000>;
-> +		gpu_mem: memory@8c415000 {
-> +			reg = <0 0x8c415000 0 0x2000>;
->  			no-map;
->  		};
->  
-> -		adsp_mem: memory@8c600000 {
-> -			reg = <0 0x8c600000 0 0x1a00000>;
-> +		adsp_mem: memory@8c500000 {
-> +			reg = <0 0x8c500000 0 0x1a00000>;
-> +			no-map;
-> +		};
-> +
-> +		wlan_msa_mem: memory@8df00000 {
-> +			reg = <0 0x8df00000 0 0x100000>;
->  			no-map;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index 385e5029437d..2ba23aa582a1 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -16,6 +16,17 @@
->  #include "sdm850.dtsi"
->  #include "pm8998.dtsi"
->  
-> +/*
-> + * Update following upstream (sdm845.dtsi) reserved
-> + * memory mappings for firmware loading to succeed
-> + * and enable the IPA device.
-> + */
-> +/delete-node/ &ipa_fw_mem;
-> +/delete-node/ &ipa_gsi_mem;
-> +/delete-node/ &gpu_mem;
-> +/delete-node/ &adsp_mem;
-> +/delete-node/ &wlan_msa_mem;
-> +
->  / {
->  	model = "Lenovo Yoga C630";
->  	compatible = "lenovo,yoga-c630", "qcom,sdm845";
-> @@ -58,6 +69,29 @@ panel_in_edp: endpoint {
->  		};
->  	};
->  
-> +	/* Reserved memory changes for IPA */
-> +	reserved-memory {
-> +		wlan_msa_mem: memory@8c400000 {
-> +			reg = <0 0x8c400000 0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		gpu_mem: memory@8c515000 {
-> +			reg = <0 0x8c515000 0 0x2000>;
-> +			no-map;
-> +		};
-> +
-> +		ipa_fw_mem: memory@8c517000 {
-> +			reg = <0 0x8c517000 0 0x5a000>;
-> +			no-map;
-> +		};
-> +
-> +		adsp_mem: memory@8c600000 {
-> +			reg = <0 0x8c600000 0 0x1a00000>;
-> +			no-map;
-> +		};
-> +	};
-> +
->  	sn65dsi86_refclk: sn65dsi86-refclk {
->  		compatible = "fixed-clock";
->  		#clock-cells = <0>;
+If that is the case then rproc_elf_load_segments() should work, i.e it won't
+copy anything.  If rproc_elf_load_segments() doesn't work for you then there are
+corner cases you haven't told me about.
 
-Tested on the Lenovo Yoga C630 I have.  I get the ipa modem device, so it looks like it does the correct thing.  I don't have a SIM card to test actual connectivity though.
+> >
+> > The reason why I use "memsz '' is because there is  "if (filesz > memsz) "
+> > check after this,  if memsz is zero, then "filesz" should be zero too, other
+> > values are not allowed.
+> 
+> But I still think checking "!memsz" is better than filesz,  because
+> memsz > filesz is allowed (filesz = 0),  the code below can be executed.
+> filesz > memsz is not allowed.
+> 
+> What do you think?
 
-Tested-By: Steev Klimaszewski <steev@kali.org>
+I don't see a need to add a custom implementation for things that _may_ happen.
+If using the default rproc_elf_load_segments() works than go with that.  We can deal
+with problems if/when there is a need for it.
 
+> 
+> Best regards
+> Wang shengjiu
+> >
+> > >
+> > > >
+> > > > >
+> > > > >
+> > > > > > +                     continue;
+> > > > > > +
+> > > > > > +             dev_dbg(dev, "phdr: type %d da 0x%llx memsz 0x%llx filesz 0x%llx\n",
+> > > > > > +                     type, da, memsz, filesz);
+> > > > > > +
+> > > > > > +             if (filesz > memsz) {
+> > > > > > +                     dev_err(dev, "bad phdr filesz 0x%llx memsz 0x%llx\n",
+> > > > > > +                             filesz, memsz);
+> > > > > > +                     ret = -EINVAL;
+> > > > > > +                     break;
+> > > > > > +             }
+> > > > > > +
+> > > > > > +             if (offset + filesz > fw->size) {
+> > > > > > +                     dev_err(dev, "truncated fw: need 0x%llx avail 0x%zx\n",
+> > > > > > +                             offset + filesz, fw->size);
+> > > > > > +                     ret = -EINVAL;
+> > > > > > +                     break;
+> > > > > > +             }
+> > > > > > +
+> > > > > > +             if (!rproc_u64_fit_in_size_t(memsz)) {
+> > > > > > +                     dev_err(dev, "size (%llx) does not fit in size_t type\n",
+> > > > > > +                             memsz);
+> > > > > > +                     ret = -EOVERFLOW;
+> > > > > > +                     break;
+> > > > > > +             }
+> > > > > > +
+> > > > > > +             /* grab the kernel address for this device address */
+> > > > > > +             ptr = rproc_da_to_va(rproc, da, memsz, &is_iomem);
+> > > > >
+> > > > >                 rproc_da_to_va(rproc, da, memsz, NULL);
+> > > >
+> > > > yes, will update it.
+> > > >
+> > > > >
+> > > > > More comments to follow later today or tomorrow.
+> > > >
+> > > > Thanks.
+> > > >
+> > > > Best regards
+> > > > Wang Shengjiu
