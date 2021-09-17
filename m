@@ -2,147 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD7A140F3E6
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 10:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4291440F3B8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 10:08:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237446AbhIQIRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 04:17:13 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:48072 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbhIQIRM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 04:17:12 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1631866550; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
- To: From: Sender; bh=B5ORCBwgNQl5ow+QjWVTKGscJFpCMUohasS/OMFn1go=; b=hn38+WdLkQN1P4p/hYZUEX+/hxKgLEVD8fwXEfqKLHqUzcMJ73OdxnLdD+sd1GffUQBBt+6C
- 1yy+AzwrGUcGbGMn2AwHZepXHfQRS0i5eR44W/BiQbxcyapayOggkVrFuGBa9rF9+VWBPfJ1
- NooxIqfv4K/rluz9ZVGbcPkR6q4=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 61444c1fb585cc7d240728d1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 17 Sep 2021 08:04:47
- GMT
-Sender: pillair=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 4A340C43619; Fri, 17 Sep 2021 08:04:47 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from PILLAIR1 (unknown [103.149.158.99])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 906C7C4338F;
-        Fri, 17 Sep 2021 08:04:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 906C7C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   <pillair@codeaurora.org>
-To:     "'Stephen Boyd'" <swboyd@chromium.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>
-Cc:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <sibis@codeaurora.org>,
-        <mpubbise@codeaurora.org>, <kuabhs@chromium.org>
-References: <1631811121-32662-1-git-send-email-pillair@codeaurora.org> <CAE-0n50Qmnxa8dz9pQbP408Y_vOu_8j1qeYFGo61W47WQkGunA@mail.gmail.com>
-In-Reply-To: <CAE-0n50Qmnxa8dz9pQbP408Y_vOu_8j1qeYFGo61W47WQkGunA@mail.gmail.com>
-Subject: RE: [PATCH v3] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
-Date:   Fri, 17 Sep 2021 13:34:39 +0530
-Message-ID: <001001d7ab9a$ad6e9de0$084bd9a0$@codeaurora.org>
+        id S245128AbhIQIJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 04:09:25 -0400
+Received: from mx.msync.work ([95.217.65.204]:33496 "EHLO mx.msync.work"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S245125AbhIQIJZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Sep 2021 04:09:25 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id ED37A1073BD;
+        Fri, 17 Sep 2021 08:06:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+        t=1631866006; h=from:subject:date:message-id:cc:mime-version:content-type:
+         content-transfer-encoding:content-language:in-reply-to:references:
+         disposition-notification-to; bh=K8pUvKYmihVFtXVo7mlfRJfCXmaPt+xZW7fToK+rFyQ=;
+        b=NkzIUlrcyoaOa6SpQVwrx5j7MONIVEgATiUUOSEdUp5y/Lxuusc5dVnxUPuYeDIDcBBgxs
+        YebI7LFHBOQ5b94cH3Y91DWjHpG+39kmu3mY2fBCFhwl5si+2z643RZnm+nKWaL16TfaN1
+        D4Gxt8hc8CTLxVDVPvZiw9UZpuoeK8wd9V5fGbS8R45J1W4oZoCmhP8xdxcQoCMj9qMlnO
+        6KmBZc2UIt4Qlic7CHfXunJmnqrFl5mNltxOkC0d0cg48j3kAPywgd3a+DhOpMf3mgKTh7
+        OFuzfNz2npYHp8O3kHD6/DMUlmnMUaViORjxp3UrsTikQ7/1XyCoPGKTP1MIEQ==
+Subject: Re: [PATCH v5 0/4] arm64: meson: add support for JetHub D1/H1
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+References: <20210915085715.1134940-1-adeep@lexina.in>
+ <163186366690.1044811.10268335087144036716.b4-ty@baylibre.com>
+From:   Vyacheslav <adeep@lexina.in>
+Message-ID: <24c06118-5eee-055e-e9c6-bbacd6e2eea5@lexina.in>
+Date:   Fri, 17 Sep 2021 11:06:44 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQI9zuPItyMZ6cixTNcgXkzSDqOHZwIO8vddqssfoKA=
-Content-Language: en-us
+In-Reply-To: <163186366690.1044811.10268335087144036716.b4-ty@baylibre.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+17.09.2021 10:27, Neil Armstrong wrote:
+> Hi,
+> 
+> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.16/dt64)
 
-
-> -----Original Message-----
-> From: Stephen Boyd <swboyd@chromium.org>
-> Sent: Friday, September 17, 2021 6:25 AM
-> To: Rakesh Pillai <pillair@codeaurora.org>; agross@kernel.org;
-> bjorn.andersson@linaro.org; robh+dt@kernel.org
-> Cc: linux-arm-msm@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; sibis@codeaurora.org; mpubbise@codeaurora.org;
-> kuabhs@chromium.org
-> Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Add WPSS remoteproc
-> node
->=20
-> Quoting Rakesh Pillai (2021-09-16 09:52:01)
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > index 64fc22a..2b8bbcd 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > @@ -1423,6 +1433,59 @@
-> >                         #power-domain-cells =3D <1>;
-> >                 };
-> >
-> > +               remoteproc_wpss: remoteproc@8a00000 {
-> > +                       compatible =3D "qcom,sc7280-wpss-pil";
-> > +                       reg =3D <0 0x08a00000 0 0x10000>;
-> > +
-> > +                       interrupts-extended =3D <&intc GIC_SPI 587
-> IRQ_TYPE_EDGE_RISING>,
-> > +                                             <&wpss_smp2p_in 0 =
-IRQ_TYPE_EDGE_RISING>,
-> > +                                             <&wpss_smp2p_in 1 =
-IRQ_TYPE_EDGE_RISING>,
-> > +                                             <&wpss_smp2p_in 2 =
-IRQ_TYPE_EDGE_RISING>,
-> > +                                             <&wpss_smp2p_in 3 =
-IRQ_TYPE_EDGE_RISING>,
-> > +                                             <&wpss_smp2p_in 7 =
-IRQ_TYPE_EDGE_RISING>;
-> > +                       interrupt-names =3D "wdog", "fatal", =
-"ready", "handover",
-> > +                                         "stop-ack", =
-"shutdown-ack";
-> > +
-> > +                       clocks =3D <&gcc GCC_WPSS_AHB_BDG_MST_CLK>,
-> > +                                <&gcc GCC_WPSS_AHB_CLK>,
-> > +                                <&gcc GCC_WPSS_RSCP_CLK>,
-> > +                                <&rpmhcc RPMH_CXO_CLK>;
-> > +                       clock-names =3D "gcc_wpss_ahb_bdg_mst_clk",
-> > +                                     "gcc_wpss_ahb_clk",
-> > +                                     "gcc_wpss_rscp_clk",
-> > +                                     "xo";
-> > +
-> > +                       power-domains =3D <&rpmhpd SC7280_CX>,
-> > +                                       <&rpmhpd SC7280_MX>;
-> > +                       power-domain-names =3D "cx", "mx";
-> > +
-> > +                       memory-region =3D <&wpss_mem>;
-> > +
-> > +                       qcom,qmp =3D <&aoss_qmp>;
-> > +
-> > +                       qcom,smem-states =3D <&wpss_smp2p_out 0>;
-> > +                       qcom,smem-state-names =3D "stop";
-> > +
-> > +                       resets =3D <&aoss_reset =
-AOSS_CC_WCSS_RESTART>,
-> > +                                <&pdc_reset PDC_WPSS_SYNC_RESET>;
-> > +                       reset-names =3D "restart", "pdc_sync";
-> > +
-> > +                       qcom,halt-regs =3D <&tcsr_mutex_regs =
-0x37000>;
->=20
-> Where is this node defined? I don't see it on the mailing list for =
-sc7280. Can
-> you indicate what patches this depends on, and use git format-patch =
---base=3D
-> so we can try to find them ourselves.
-
-Hi Stephen,
-My bad, it shud be "tcsr_mutex" instead of "tcsr_mutex_regs".
-I will correct it and send v4.
-
+Thanks
