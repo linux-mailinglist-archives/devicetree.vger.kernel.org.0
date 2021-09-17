@@ -2,109 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C3BD40EE7D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 02:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25D2F40EE78
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 02:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234800AbhIQAuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 20:50:35 -0400
-Received: from mail-il1-f170.google.com ([209.85.166.170]:46073 "EHLO
-        mail-il1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241998AbhIQAue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 20:50:34 -0400
-Received: by mail-il1-f170.google.com with SMTP id b8so8477032ilh.12
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 17:49:13 -0700 (PDT)
+        id S232111AbhIQAuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 20:50:32 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:45823 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241940AbhIQAua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 20:50:30 -0400
+Received: by mail-io1-f50.google.com with SMTP id a22so10127053iok.12;
+        Thu, 16 Sep 2021 17:49:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=k7gKpuMaJoydn9f/v4vT+vaFh5PNfinn7hZgJ+Eqzao=;
-        b=USQxAsrdI1oZn8EMrn4/AalyAUJTpMQ4jFM/ZLUqug1ccfbMXtFzNvPp9ALvX014WJ
-         bed1/ohuwCn7FnXccosg2z8XUrDHW89YBviLC3nrrcUnnfjDPHWMXStPWo9B6x0E8pJW
-         XCt2LbI7L6v6a4ZKltXQYuBu+QBmJEvryHZ7SA9kzZWUY1lBow+5J5mezs1RRJ8EFZ6W
-         kp31Tf+VY6UGvADEACgW7vES1Toaodv+6ZPiY8UKbwJw8nEhgQ1sssx07UoHcCJB/Q0S
-         9gpq0G0V76WLmyu3JkkjpkB8c7AIL7HqDUjObnpNCldE1DfX49yidM41mujUZZ2K4aru
-         Mqdg==
-X-Gm-Message-State: AOAM532Aegg3Z5Zcn1zfBJugQWZ9Yn3Foi4r56v6NQaKwUXkZVXwP3k3
-        3TqOIzk18XB6TdMQ3XmU2Q==
-X-Google-Smtp-Source: ABdhPJz1qM7Ulfa/Yv+R3w3hGuKWglaG8AkWYT38GJ1KEQkLdB/7UzdPHunJWNKAVgNkrrVuSCN/2Q==
-X-Received: by 2002:a05:6e02:8a7:: with SMTP id a7mr6165839ilt.246.1631839753093;
-        Thu, 16 Sep 2021 17:49:13 -0700 (PDT)
+        bh=6zodSke86hnlsQe7klR3A5X+2RRUPHUNpKbftVQV0oE=;
+        b=x2mUSsdNt8gKcACGf2jT2oRKZ7nG/6AL1zulEay/qO5efzJvCVIykWByxE0jtstkUu
+         9+F8WlHhPLjADFVwjCRSuWaAxQi6H/fAyqizO5jV6Tywrbw6NGbM7+K2Nla+0TYPCkBM
+         2Ki06InVFwqNFwkfD6WEWBlSqoJtCIxBiRxu7IFSazPl5QdorQ3ej6CGVxWV9TRy0a9N
+         vGNrG1SczZZfetEDHG1A5NSAI8BsJrYx8Sq2ltN+DRXodAhdYssAZJyooLmF/QA/ff06
+         3ftvUgTImVUABvCbG/AKvNpU/E/EaliVHoe7S94NesMVt6pTkvUj83pGSspbFa1DTpIs
+         DKcA==
+X-Gm-Message-State: AOAM532Fg4wjJbXTUkTqAKqSyHjM33CH38CKUdoPYgvg2/FX3wVkm5Dg
+        VbyKq02vJ+BE3Ik6LZkPsQ==
+X-Google-Smtp-Source: ABdhPJxbqFS9VhfN7t4ZOhlO3skieDQOI5xZyT2eWGR/1mS9FuokN01beDwOIfVzeVBuy/bDqxtasA==
+X-Received: by 2002:a6b:7710:: with SMTP id n16mr6311114iom.101.1631839748848;
+        Thu, 16 Sep 2021 17:49:08 -0700 (PDT)
 Received: from robh.at.kernel.org (96-84-70-89-static.hfc.comcastbusiness.net. [96.84.70.89])
-        by smtp.gmail.com with ESMTPSA id r18sm2521300ioa.13.2021.09.16.17.49.11
+        by smtp.gmail.com with ESMTPSA id z15sm2498669ioh.28.2021.09.16.17.49.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Sep 2021 17:49:12 -0700 (PDT)
-Received: (nullmailer pid 1484030 invoked by uid 1000);
+        Thu, 16 Sep 2021 17:49:08 -0700 (PDT)
+Received: (nullmailer pid 1484025 invoked by uid 1000);
         Fri, 17 Sep 2021 00:49:06 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     lee.jones@linaro.org, Chris Morgan <macromorgan@hotmail.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        zyw@rock-chips.com, zhangqing@rock-chips.com, heiko@sntech.de,
-        robh+dt@kernel.org
-In-Reply-To: <20210916201947.18237-1-macroalpha82@gmail.com>
-References: <20210916201947.18237-1-macroalpha82@gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mfd: rk808: Convert bindings to yaml
+To:     Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     daniel@ffwll.ch, thierry.reding@gmail.com,
+        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        airlied@linux.ie, devicetree@vger.kernel.org, robh+dt@kernel.org,
+        jonathanh@nvidia.com
+In-Reply-To: <20210916145517.2047351-2-mperttunen@nvidia.com>
+References: <20210916145517.2047351-1-mperttunen@nvidia.com> <20210916145517.2047351-2-mperttunen@nvidia.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: Add YAML bindings for NVDEC
 Date:   Thu, 16 Sep 2021 19:49:06 -0500
-Message-Id: <1631839746.891478.1484029.nullmailer@robh.at.kernel.org>
+Message-Id: <1631839746.871547.1484024.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Sep 2021 15:19:47 -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Thu, 16 Sep 2021 17:55:15 +0300, Mikko Perttunen wrote:
+> Add YAML device tree bindings for NVDEC, now in a more appropriate
+> place compared to the old textual Host1x bindings.
 > 
-> Convert the rk808 bindings into yaml format. Please note that currently
-> there are a few errors that appear when performing a make dtbs_check.
-> However, after looking at the errors it appears in most cases it occurs
-> on device trees which are not following the current rk808.txt document
-> today. For example for the rk808 there are multiple errors regarding
-> vcc13-supply, vcc14-supply, and vddio-supply; however these supplies
-> are not listed in the current driver or cared for in any way.
-> 
-> For the moment the rk817 is the only MFD that will support a battery.
-> I believe the rk818 also supports a batter but I do not have one to
-> test or write the code for. When it is supported we can split off
-> the battery to its own document. Note that the battery is being added
-> in a separate commit series.
-> 
-> Changes from V1:
-> 
->  - Removed generic descriptions.
->  - Added maxItems to clock-output-names. Max items is 2 per the driver.
->  - Added unevaluatedProperties as false to regulators.
->  - Correct i2c node.
->  - Added note about the battery.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
 > ---
->  .../devicetree/bindings/mfd/rk808.txt         | 465 ------------------
->  .../bindings/mfd/rockchip,rk805.yaml          |  84 ++++
->  .../bindings/mfd/rockchip,rk808.yaml          | 253 ++++++++++
->  .../bindings/mfd/rockchip,rk809.yaml          |  98 ++++
->  .../bindings/mfd/rockchip,rk817.yaml          | 362 ++++++++++++++
->  .../bindings/mfd/rockchip,rk818.yaml          | 106 ++++
->  6 files changed, 903 insertions(+), 465 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/rk808.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml
+> v6:
+> * Elaborated description for nvidia,host1x-class.
+> * Added default value for nvidia,host1x-class.
+> v5:
+> * Changed from nvidia,instance to nvidia,host1x-class optional
+>   property.
+> * Added dma-coherent
+> v4:
+> * Fix incorrect compatibility string in 'if' condition
+> v3:
+> * Drop host1x bindings
+> * Change read2 to read-1 in interconnect names
+> v2:
+> * Fix issues pointed out in v1
+> * Add T194 nvidia,instance property
+> ---
+>  .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 108 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 109 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml:108:1: [warning] too many blank lines (2 > 1) (empty-lines)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/rockchip,rk808.example.dt.yaml: pmic@1b: 'vddio-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
 
 doc reference errors (make refcheckdocs):
-Documentation/devicetree/bindings/pinctrl/pinctrl-rk805.txt: Documentation/devicetree/bindings/mfd/rk808.txt
 
-See https://patchwork.ozlabs.org/patch/1529027
+See https://patchwork.ozlabs.org/patch/1528902
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
