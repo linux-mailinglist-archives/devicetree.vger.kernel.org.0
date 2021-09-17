@@ -2,222 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BED9B40F843
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 14:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C46E140F871
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 14:58:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238345AbhIQMte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 08:49:34 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:50486 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S236034AbhIQMte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 08:49:34 -0400
-X-UUID: 4595b7819af64c1e85e53f3057aa8254-20210917
-X-UUID: 4595b7819af64c1e85e53f3057aa8254-20210917
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 592480751; Fri, 17 Sep 2021 20:48:08 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 17 Sep 2021 20:48:07 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by mtkcas07.mediatek.inc
- (172.21.101.84) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 17 Sep
- 2021 20:48:06 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 17 Sep 2021 20:48:05 +0800
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yue Hu <huyue2@yulong.com>, Bean Huo <beanhuo@micron.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [RESEND v4 3/3] mmc: mediatek: Add HS400 online tuning support
-Date:   Fri, 17 Sep 2021 20:48:03 +0800
-Message-ID: <20210917124803.22871-4-wenbin.mei@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210917124803.22871-1-wenbin.mei@mediatek.com>
-References: <20210917124803.22871-1-wenbin.mei@mediatek.com>
+        id S244834AbhIQM7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 08:59:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43462 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244816AbhIQM7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 08:59:18 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18635C061766
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 05:57:56 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id t18so15104371wrb.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 05:57:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TmSUd1g256AwM6GPkCVL8KzZlMuiVA8rcald4HgLdWY=;
+        b=Vojsq/qATfqaLlBx4GBlzY1M3WQZBkET3/mYiL3HkeYBMyHzWtJbjHthyfck3N2imY
+         cOchlbwuXK/iJL6FTVNRR4N6LsDzg5ueKC6Q/busloEZbIggqb55XCgGJc5u+W6/q1Sc
+         C3F2brFPLgR81rImVQ/fzY1R8cBgz8gBVfsLVqJeh3G9HxBG0VqAwdbdGikzpDS42CE9
+         ofZWBpM1Dyv1TFNfej7D0ZCxUYMFOKLR0gPEgxl3cicBjY9FSggM8IL0jVct8KiT/Ctm
+         6Dr2o3sqhUQ9wRKHM2Se+EoGr+ehAxcbcAFY6nNObaZgFuVZTxRftv90jKjlNW6Xwtc/
+         fmig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TmSUd1g256AwM6GPkCVL8KzZlMuiVA8rcald4HgLdWY=;
+        b=2hGEYa8ZxrTdRt9JjZ71D6tuYmju06S7YP6d5IVG3jSSMPo36KgJ3PJMzMkTf+P6Ki
+         +MqJ9tO9/nLlXDQhTcibR8t6PaTX7/IVsRp1jMB5p7FLLOqh9GBNxJPbONXAYeR+F8Lm
+         uHYoLrXMIdL6z6Gd8WBqyMuvbM1n6XY8+UM9vB7O1KjUvU3HGEH1LkgVXoK3/tdPok2+
+         J2JR/wLMErQGV2iXQvfFuWov6lrmWcahEIJDXF+bMKlTOPVoWS+NPXd6EBqpSSChiPQO
+         IkuFIok6QLSMsPnQ3TYmXb++APc0FRTaqkjfxcLjtAxLguhSSXkMTdAVo/Rr6jskVrL7
+         i4gA==
+X-Gm-Message-State: AOAM531ebcwwOVfQdvzFZwZDP7brrVUijYmnvy8MVnw1w2Y4Qsp6APVj
+        Z3V9Pv9KVzTaQ0DYsZSJiAGPGg==
+X-Google-Smtp-Source: ABdhPJwUld7Y82YW6Rc8Pz69DPxiv4IUt7DfWDhYwTVj5a1Rbt107Ifh+5ZTcTCPWcgP4Ahl8EgU4Q==
+X-Received: by 2002:adf:b781:: with SMTP id s1mr11968492wre.165.1631883474593;
+        Fri, 17 Sep 2021 05:57:54 -0700 (PDT)
+Received: from localhost.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id f3sm6358636wmj.28.2021.09.17.05.57.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Sep 2021 05:57:53 -0700 (PDT)
+From:   Alexandre Bailon <abailon@baylibre.com>
+To:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, maarten.lankhorst@linux.intel.com,
+        mripard@kernel.org, tzimmermann@suse.de, ohad@wizery.com,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        sumit.semwal@linaro.org
+Cc:     christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-media@vger.kernel.org,
+        linaro-mm-sig@lists.linaro.org, khilman@baylibre.com,
+        gpain@baylibre.com, Alexandre Bailon <abailon@baylibre.com>
+Subject: [RFC PATCH 0/4]  Add a DRM driver to support AI Processing Unit (APU)
+Date:   Fri, 17 Sep 2021 14:59:41 +0200
+Message-Id: <20210917125945.620097-1-abailon@baylibre.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to JEDEC Spec, there is no need to do tuning under HS400 mode
-since the Rx signal is aligned with the DS signal. However, MediaTek's
-IC need set its "DS delay" internally to ensure it can latch Rx signal
-correctly.
-In previous version, We provide an "hs400-ds-delay" in device tree to
-cover different chipset/PCB design, and it works fine in most cases.
-But, with the development of process technology and the big VCore
-voltage scale range(may have 0.7V/0.6V/0.55V), it is difficult to find
-a suitable "hs400-ds-delay" to cover all of IC corner
-cases(SSSS/TTTT/FFFF).
-So that We must have the ability to do hs400 online tuning.
+This adds a DRM driver that implements communication between the CPU and an
+APU.
+This uses VirtIO buffer to exchange messages.
+For the data, we allocate a GEM object and map it using IOMMU to make it
+available to the APU.
+The driver is relatively generic, and should work with any SoC implementing
+hardware accelerator for AI if they use support remoteproc and VirtIO.
 
-Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-Reviewed-by: Chaotian Jing <chaotian.jing@mediatek.com>
----
- drivers/mmc/host/mtk-sd.c | 79 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 77 insertions(+), 2 deletions(-)
+For the people interested by the firmware or userspace library,
+the sources are available here:
+https://github.com/BayLibre/open-amp/tree/v2020.01-mtk/apps/examples/apu
 
-diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-index 4dfc246c5f95..5f98f869545d 100644
---- a/drivers/mmc/host/mtk-sd.c
-+++ b/drivers/mmc/host/mtk-sd.c
-@@ -258,6 +258,7 @@
- #define MSDC_PAD_TUNE_RD_SEL	  (0x1 << 13)   /* RW */
- #define MSDC_PAD_TUNE_CMD_SEL	  (0x1 << 21)   /* RW */
- 
-+#define PAD_DS_TUNE_DLY_SEL       (0x1 << 0)	/* RW */
- #define PAD_DS_TUNE_DLY1	  (0x1f << 2)   /* RW */
- #define PAD_DS_TUNE_DLY2	  (0x1f << 7)   /* RW */
- #define PAD_DS_TUNE_DLY3	  (0x1f << 12)  /* RW */
-@@ -301,6 +302,11 @@
- #define PAD_CMD_RD_RXDLY_SEL    (0x1 << 11)     /* RW */
- #define PAD_CMD_TX_DLY          (0x1f << 12)    /* RW */
- 
-+/* EMMC50_PAD_DS_TUNE mask */
-+#define PAD_DS_DLY_SEL		(0x1 << 16)	/* RW */
-+#define PAD_DS_DLY1		(0x1f << 10)	/* RW */
-+#define PAD_DS_DLY3		(0x1f << 0)	/* RW */
-+
- #define REQ_CMD_EIO  (0x1 << 0)
- #define REQ_CMD_TMO  (0x1 << 1)
- #define REQ_DAT_ERR  (0x1 << 2)
-@@ -448,11 +454,13 @@ struct msdc_host {
- 	bool vqmmc_enabled;
- 	u32 latch_ck;
- 	u32 hs400_ds_delay;
-+	u32 hs400_ds_dly3;
- 	u32 hs200_cmd_int_delay; /* cmd internal delay for HS200/SDR104 */
- 	u32 hs400_cmd_int_delay; /* cmd internal delay for HS400 */
- 	bool hs400_cmd_resp_sel_rising;
- 				 /* cmd response sample selection for HS400 */
- 	bool hs400_mode;	/* current eMMC will run at hs400 mode */
-+	bool hs400_tuning;	/* hs400 mode online tuning */
- 	bool internal_cd;	/* Use internal card-detect logic */
- 	bool cqhci;		/* support eMMC hw cmdq */
- 	struct msdc_save_para save_para; /* used when gate HCLK */
-@@ -1190,7 +1198,8 @@ static bool msdc_cmd_done(struct msdc_host *host, int events,
- 	if (!sbc_error && !(events & MSDC_INT_CMDRDY)) {
- 		if (events & MSDC_INT_CMDTMO ||
- 		    (cmd->opcode != MMC_SEND_TUNING_BLOCK &&
--		     cmd->opcode != MMC_SEND_TUNING_BLOCK_HS200))
-+		     cmd->opcode != MMC_SEND_TUNING_BLOCK_HS200 &&
-+		     !host->hs400_tuning))
- 			/*
- 			 * should not clear fifo/interrupt as the tune data
- 			 * may have alreay come when cmd19/cmd21 gets response
-@@ -1287,7 +1296,8 @@ static void msdc_cmd_next(struct msdc_host *host,
- 	if ((cmd->error &&
- 	    !(cmd->error == -EILSEQ &&
- 	      (cmd->opcode == MMC_SEND_TUNING_BLOCK ||
--	       cmd->opcode == MMC_SEND_TUNING_BLOCK_HS200))) ||
-+	       cmd->opcode == MMC_SEND_TUNING_BLOCK_HS200 ||
-+	       host->hs400_tuning))) ||
- 	    (mrq->sbc && mrq->sbc->error))
- 		msdc_request_done(host, mrq);
- 	else if (cmd == mrq->sbc)
-@@ -2251,6 +2261,67 @@ static int msdc_prepare_hs400_tuning(struct mmc_host *mmc, struct mmc_ios *ios)
- 	return 0;
- }
- 
-+static int msdc_execute_hs400_tuning(struct mmc_host *mmc, struct mmc_card *card)
-+{
-+	struct msdc_host *host = mmc_priv(mmc);
-+	struct msdc_delay_phase dly1_delay;
-+	u32 val, result_dly1 = 0;
-+	u8 *ext_csd;
-+	int i, ret;
-+
-+	if (host->top_base) {
-+		sdr_set_bits(host->top_base + EMMC50_PAD_DS_TUNE,
-+			     PAD_DS_DLY_SEL);
-+		if (host->hs400_ds_dly3)
-+			sdr_set_field(host->top_base + EMMC50_PAD_DS_TUNE,
-+				      PAD_DS_DLY3, host->hs400_ds_dly3);
-+	} else {
-+		sdr_set_bits(host->base + PAD_DS_TUNE, PAD_DS_TUNE_DLY_SEL);
-+		if (host->hs400_ds_dly3)
-+			sdr_set_field(host->base + PAD_DS_TUNE,
-+				      PAD_DS_TUNE_DLY3, host->hs400_ds_dly3);
-+	}
-+
-+	host->hs400_tuning = true;
-+	for (i = 0; i < PAD_DELAY_MAX; i++) {
-+		if (host->top_base)
-+			sdr_set_field(host->top_base + EMMC50_PAD_DS_TUNE,
-+				      PAD_DS_DLY1, i);
-+		else
-+			sdr_set_field(host->base + PAD_DS_TUNE,
-+				      PAD_DS_TUNE_DLY1, i);
-+		ret = mmc_get_ext_csd(card, &ext_csd);
-+		if (!ret)
-+			result_dly1 |= (1 << i);
-+	}
-+	host->hs400_tuning = false;
-+
-+	dly1_delay = get_best_delay(host, result_dly1);
-+	if (dly1_delay.maxlen == 0) {
-+		dev_err(host->dev, "Failed to get DLY1 delay!\n");
-+		goto fail;
-+	}
-+	if (host->top_base)
-+		sdr_set_field(host->top_base + EMMC50_PAD_DS_TUNE,
-+			      PAD_DS_DLY1, dly1_delay.final_phase);
-+	else
-+		sdr_set_field(host->base + PAD_DS_TUNE,
-+			      PAD_DS_TUNE_DLY1, dly1_delay.final_phase);
-+
-+	if (host->top_base)
-+		val = readl(host->top_base + EMMC50_PAD_DS_TUNE);
-+	else
-+		val = readl(host->base + PAD_DS_TUNE);
-+
-+	dev_info(host->dev, "Fianl PAD_DS_TUNE: 0x%x\n", val);
-+
-+	return 0;
-+
-+fail:
-+	dev_err(host->dev, "Failed to tuning DS pin delay!\n");
-+	return -EIO;
-+}
-+
- static void msdc_hw_reset(struct mmc_host *mmc)
- {
- 	struct msdc_host *host = mmc_priv(mmc);
-@@ -2377,6 +2448,7 @@ static const struct mmc_host_ops mt_msdc_ops = {
- 	.card_busy = msdc_card_busy,
- 	.execute_tuning = msdc_execute_tuning,
- 	.prepare_hs400_tuning = msdc_prepare_hs400_tuning,
-+	.execute_hs400_tuning = msdc_execute_hs400_tuning,
- 	.hw_reset = msdc_hw_reset,
- };
- 
-@@ -2396,6 +2468,9 @@ static void msdc_of_property_parse(struct platform_device *pdev,
- 	of_property_read_u32(pdev->dev.of_node, "hs400-ds-delay",
- 			     &host->hs400_ds_delay);
- 
-+	of_property_read_u32(pdev->dev.of_node, "mediatek,hs400-ds-dly3",
-+			     &host->hs400_ds_dly3);
-+
- 	of_property_read_u32(pdev->dev.of_node, "mediatek,hs200-cmd-int-delay",
- 			     &host->hs200_cmd_int_delay);
- 
+This RFC is a rewrite of a previous RFC that was not using DRM:
+https://patchwork.kernel.org/project/linux-remoteproc/cover/20200930115350.5272-1-abailon@baylibre.com/
+
+Alexandre Bailon (4):
+  dt-bindings: Add bidings for mtk,apu-drm
+  DRM: Add support of AI Processor Unit (APU)
+  rpmsg: Add support of AI Processor Unit (APU)
+  ARM64: mt8183-pumpkin: Add the APU DRM device
+
+ .../devicetree/bindings/gpu/mtk,apu-drm.yaml  |  38 ++
+ .../boot/dts/mediatek/mt8183-pumpkin.dts      |   6 +
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/apu/Kconfig                   |  10 +
+ drivers/gpu/drm/apu/Makefile                  |   7 +
+ drivers/gpu/drm/apu/apu_drm_drv.c             | 238 +++++++
+ drivers/gpu/drm/apu/apu_gem.c                 | 232 +++++++
+ drivers/gpu/drm/apu/apu_internal.h            |  89 +++
+ drivers/gpu/drm/apu/apu_sched.c               | 634 ++++++++++++++++++
+ drivers/rpmsg/Kconfig                         |  10 +
+ drivers/rpmsg/Makefile                        |   1 +
+ drivers/rpmsg/apu_rpmsg.c                     | 184 +++++
+ include/drm/apu_drm.h                         |  59 ++
+ include/uapi/drm/apu_drm.h                    | 106 +++
+ 15 files changed, 1617 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
+ create mode 100644 drivers/gpu/drm/apu/Kconfig
+ create mode 100644 drivers/gpu/drm/apu/Makefile
+ create mode 100644 drivers/gpu/drm/apu/apu_drm_drv.c
+ create mode 100644 drivers/gpu/drm/apu/apu_gem.c
+ create mode 100644 drivers/gpu/drm/apu/apu_internal.h
+ create mode 100644 drivers/gpu/drm/apu/apu_sched.c
+ create mode 100644 drivers/rpmsg/apu_rpmsg.c
+ create mode 100644 include/drm/apu_drm.h
+ create mode 100644 include/uapi/drm/apu_drm.h
+
 -- 
-2.25.1
+2.31.1
 
