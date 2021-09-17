@@ -2,192 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64F0840F18F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 07:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAC3740F1AC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 07:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbhIQFVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 01:21:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51918 "EHLO
+        id S244889AbhIQFjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 01:39:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbhIQFVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 01:21:36 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 092EDC061574;
-        Thu, 16 Sep 2021 22:20:15 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id 72so2113669qkk.7;
-        Thu, 16 Sep 2021 22:20:14 -0700 (PDT)
+        with ESMTP id S244888AbhIQFjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 01:39:32 -0400
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFDDCC061764
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 22:38:10 -0700 (PDT)
+Received: by mail-il1-x143.google.com with SMTP id q14so9118947ils.5
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 22:38:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6gFJYxi0zxGSRpI2PuuFPOQR7c4um15SmymyYqP7uG0=;
-        b=oXU5KwH1xhSFJXKKqJ7wjuuExqCIDJJCWTT7BUFlJN126HSQ7dwqV6QFCVnhUcuZl1
-         ARpXtUrqx0Y5RfFG0+gFDaTwgWzGLeMgIHTX09rwKKOeX76b3SDzA6TTzf7ziEO0lVES
-         QXLw4EkyrzrpnIh4IFdiceOK1QBvrJuAjSzY7dsLuUZjtxFQyTWep4qvS55qLPt4GQtd
-         MzAgdKaeizDYU8qB0xslETw8eke0kyGgjeenpUYe7w86HKk8bsMR3zsRYicW8kn0kpZj
-         1DpzqdjfIcoIpgfzy55CGzu0w7dyAL2NpZMPBBCjUC4ar6px+0mxp74lLszeK0/tQj3H
-         t27w==
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=RzIkdEm5aJl66a3p0t6hmEQ+Qv+8MFJLxj5JlLxnEbs=;
+        b=K0E/4zH7XGIxHTM+biWzSlC8S60kalurevr/LWxvjOmt2WagSSKoMhbQ6bUmTzbTAf
+         YeM1w/waXS6jrfWNwAGq4cprWFdiZVLq2pL0+E2eoOz+kFOJdwU94inXtGhMqT5kNqh9
+         y3XV3QvoGz9ud8/6USKrjfjiC8xrtYUFXOlizT1pRslyOxfbiuqiPyl5pNJ8joOCZcR1
+         NU44LOYGwhIpqk6pw+U+A2ZPESNLDMuw2k431B1rSBextkbajNPVSgjJKCfUjdHnsWVA
+         SVsJR0mi/Bj3UPABc5tZJ+YIeg4HeJ3uKgOGr/6Lqj9DlB24neSQ17wbC1FEgFLysst3
+         gvJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6gFJYxi0zxGSRpI2PuuFPOQR7c4um15SmymyYqP7uG0=;
-        b=ezloV6iDoTemoer3EKKZWAQ2eC+BRJXqPj3nHcnFYydqrN5je2+iVkwa4NCmLVBxPQ
-         qTKLtmipSvMweEhTh0Jwx1PN7Vq7yLK7f5Lcn3d0lCxcBK5cOFgFFyPVXlt1fhS1XRXI
-         s/WwxNg5hvyjcj79lNV1oG0rjjUAOkFydLhJewwTHoJwIGOXN+DgCP+o/9Ta+Zuaf/2E
-         pqUjKzlhvJ0XenUJUMpdZ/cpQ2nWDlC+C7ACcVc4EhWUDWZoYyp4+rYLFo2eXp5PVThw
-         myYBZHHM8Jf+8X9EtJRGO8MOZBhBXhiPkhrKVT2CinI5zE60KrEOylPVa9LMUJim6IwD
-         EykA==
-X-Gm-Message-State: AOAM533QlrAC+m2vzVGs5/L90VVwc20b2Yyen6oFxhM6r2Cvh/vZaGQY
-        gneKrunBK3Jra8OBdn5YGmZn5sCo4XGe7MGaSLY=
-X-Google-Smtp-Source: ABdhPJyRCwibaE95hnBBiXNW3ZuUaJcH5Mfj8Fe4Xmbtt/4mmfgiv37Oghof+paUBSL4RIfOSqkKChj5Y/2NET+S/bg=
-X-Received: by 2002:a05:620a:4106:: with SMTP id j6mr8779525qko.392.1631856014127;
- Thu, 16 Sep 2021 22:20:14 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=RzIkdEm5aJl66a3p0t6hmEQ+Qv+8MFJLxj5JlLxnEbs=;
+        b=ppwNtW0dGMGfGukLGJh8PZtGMF0KrWBepY/zyl+zoISmqg3U6ocpI+94VvUzZa/S+P
+         VX6MFu1gPfMYhaiQcrhYVjKMqSsnRbhMe4H2h3GtuJL617iL+c/FIxaqRM7EJ89T/dkk
+         SgohQQoaQDKLS/c3vs8PArOV7VojAWoLAbRQKy95QfECYHH7Fy9ksSQx2BajdQCmejNO
+         HRMZLE+oP/wyWrPh3LyX0XAK1bJvBJJJ/EOUWHBwWw5dDWWbbwytgzQJ99r6Oog/uBjU
+         4r/TQpjKjNzkr5QMkiTbhFS86fSjFeLp8oBDGhksyqIezbvlTBK5LdacgoEGChgFVwiV
+         Ll0g==
+X-Gm-Message-State: AOAM531bSpliASxcJizWOsXbgog6ULqI0zaBqadVqVogBYGsHKUI1RNu
+        GiYIMMAI1tYHpo2q6zwaOgMJIzEW7Tg/1nDUU5Y=
+X-Google-Smtp-Source: ABdhPJypAMgr7DsPgIMLXulWyQqljkXXRsr4JOts9oxqUX7zB3IgZTCmrf4ITRsqN/GVCQC2RQIH3pDqVefKC0rty6c=
+X-Received: by 2002:a05:6e02:1b88:: with SMTP id h8mr499714ili.40.1631857089943;
+ Thu, 16 Sep 2021 22:38:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
- <1631092255-25150-4-git-send-email-shengjiu.wang@nxp.com> <20210915161624.GA1770838@p14s>
- <CAA+D8AO0c+jk_k7j=ZvNFsVvC-p_zMLPJDS3qmLjNbJ+U0E9Cg@mail.gmail.com> <20210916165957.GA1825273@p14s>
-In-Reply-To: <20210916165957.GA1825273@p14s>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Fri, 17 Sep 2021 13:20:03 +0800
-Message-ID: <CAA+D8AN_ni_XmEFNfY0Z0qLAJX00XFSUP1RkJdNQd-MVY6pd4g@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] remoteproc: imx_dsp_rproc: Add remoteproc driver
- for DSP on i.MX
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Ohad Ben Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+Reply-To: godwinppter@gmail.com
+Sender: mrs.raissaomar11@gmail.com
+Received: by 2002:a05:6e02:1032:0:0:0:0 with HTTP; Thu, 16 Sep 2021 22:38:09
+ -0700 (PDT)
+From:   Godwin Pete <godwinnpeter@gmail.com>
+Date:   Fri, 17 Sep 2021 07:38:09 +0200
+X-Google-Sender-Auth: 57A21HB_jZlvWiiFOgX5Jv501tc
+Message-ID: <CAONac3H=dEuN6UjTKWBeJXStYOHtWowxm1_jwsfmaPCityr8Zw@mail.gmail.com>
+Subject: I want to use this opportunity to inform you
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 17, 2021 at 1:00 AM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
->
-> [...]
->
-> > > > +
-> > > > +/**
-> > > > + * imx_dsp_rproc_elf_load_segments() - load firmware segments to memory
-> > > > + * @rproc: remote processor which will be booted using these fw segments
-> > > > + * @fw: the ELF firmware image
-> > > > + *
-> > > > + * This function specially checks if memsz is zero or not, otherwise it
-> > > > + * is mostly same as rproc_elf_load_segments().
-> > > > + */
-> > > > +static int imx_dsp_rproc_elf_load_segments(struct rproc *rproc,
-> > > > +                                        const struct firmware *fw)
-> > > > +{
-> > > > +     struct device *dev = &rproc->dev;
-> > > > +     u8 class = fw_elf_get_class(fw);
-> > > > +     u32 elf_phdr_get_size = elf_size_of_phdr(class);
-> > > > +     const u8 *elf_data = fw->data;
-> > > > +     const void *ehdr, *phdr;
-> > > > +     int i, ret = 0;
-> > > > +     u16 phnum;
-> > > > +
-> > > > +     ehdr = elf_data;
-> > > > +     phnum = elf_hdr_get_e_phnum(class, ehdr);
-> > > > +     phdr = elf_data + elf_hdr_get_e_phoff(class, ehdr);
-> > > > +
-> > > > +     /* go through the available ELF segments */
-> > > > +     for (i = 0; i < phnum; i++, phdr += elf_phdr_get_size) {
-> > > > +             u64 da = elf_phdr_get_p_paddr(class, phdr);
-> > > > +             u64 memsz = elf_phdr_get_p_memsz(class, phdr);
-> > > > +             u64 filesz = elf_phdr_get_p_filesz(class, phdr);
-> > > > +             u64 offset = elf_phdr_get_p_offset(class, phdr);
-> > > > +             u32 type = elf_phdr_get_p_type(class, phdr);
-> > > > +             void *ptr;
-> > > > +             bool is_iomem;
-> > > > +
-> > > > +             if (type != PT_LOAD || !memsz)
-> > >
-> > > You did a really good job with adding comments but this part is undocumented...
-> > > If I read this correctly you need to check for !memsz because some part of
-> > > the program segment may have a header but its memsz is zero, in which case it can
-> > > be safely skipped.  So why is that segment in the image to start with, and why
-> > > is it marked PT_LOAD if it is not needed?  This is very puzzling...
-> >
-> > Actually I have added comments in the header of this function.
->
-> Indeed there is a mention of memsz in the function's header but it doesn't
-> mention _why_ this is needed, and that is what I'm looking for.
->
-> >
-> > memsz= 0 with PT_LOAD issue, I have asked the toolchain's vendor,
-> > they said that this case is allowed by elf spec...
-> >
-> > And in the "pru_rproc.c" and "mtk_scp.c", seems they met same problem
-> > they also check the filesz in their internal xxx_elf_load_segments() function.
->
-> In both cases they are skipping PT_LOAD sections where "filesz" is '0', which
-> makes sense because we don't know how many bytes to copy.  But here you are
-> skipping over a PT_LOAD section with a potentially valid filesz, and that is the
-> part I don't understand.
+Hi,
 
-Ok, I can use filesz instead. For my case, filesz = memsz = 0,
-it is the same result I want.
+I just want to use this little opportunity to inform you about my
+success towards the transfer. I'm currently out of the country for an
+investment with part of my share, after completing the transfer with
+an Indian business man. But i will visit your country, next year.
+After the completion of my project. Please, contact my secretary to
+send you the (ATM) card which I've already credited with the sum of
+($500,000.00). Just contact her to help you in receiving the (ATM)
+card. I've explained everything to her before my trip. This is what I
+can do for you because, you couldn't help in the transfer, but for the
+fact that you're the person whom I've contacted initially, for the
+transfer. I decided to give this ($500,000.00) as a compensation for
+being contacted initially for the transfer. I always try to make the
+difference, in dealing with people any time I come in contact with
+them. I'm also trying to show that I'm quite a different person from
+others whose may have a different purpose within them. I believe that
+you will render some help to me when I, will visit your country, for
+another investment there. So contact my secretary for the card, Her
+contact are as follows,
 
-The reason why I use "memsz '' is because there is  "if (filesz > memsz) "
-check after this,  if memsz is zero, then "filesz" should be zero too, other
-values are not allowed.
+Full name: Mrs, Jovita Dumuije,
+Country: Burkina Faso
+Email: jovitadumuije@gmail.com
 
->
-> >
-> > >
-> > >
-> > > > +                     continue;
-> > > > +
-> > > > +             dev_dbg(dev, "phdr: type %d da 0x%llx memsz 0x%llx filesz 0x%llx\n",
-> > > > +                     type, da, memsz, filesz);
-> > > > +
-> > > > +             if (filesz > memsz) {
-> > > > +                     dev_err(dev, "bad phdr filesz 0x%llx memsz 0x%llx\n",
-> > > > +                             filesz, memsz);
-> > > > +                     ret = -EINVAL;
-> > > > +                     break;
-> > > > +             }
-> > > > +
-> > > > +             if (offset + filesz > fw->size) {
-> > > > +                     dev_err(dev, "truncated fw: need 0x%llx avail 0x%zx\n",
-> > > > +                             offset + filesz, fw->size);
-> > > > +                     ret = -EINVAL;
-> > > > +                     break;
-> > > > +             }
-> > > > +
-> > > > +             if (!rproc_u64_fit_in_size_t(memsz)) {
-> > > > +                     dev_err(dev, "size (%llx) does not fit in size_t type\n",
-> > > > +                             memsz);
-> > > > +                     ret = -EOVERFLOW;
-> > > > +                     break;
-> > > > +             }
-> > > > +
-> > > > +             /* grab the kernel address for this device address */
-> > > > +             ptr = rproc_da_to_va(rproc, da, memsz, &is_iomem);
-> > >
-> > >                 rproc_da_to_va(rproc, da, memsz, NULL);
-> >
-> > yes, will update it.
-> >
-> > >
-> > > More comments to follow later today or tomorrow.
-> >
-> > Thanks.
-> >
-> > Best regards
-> > Wang Shengjiu
+Thanks, and hope for a good corporation with you in future.
+
+Godwin Peter,
