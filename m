@@ -2,74 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D720340F250
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 08:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 748FC40F2A8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 08:55:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233824AbhIQG2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 02:28:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38598 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233801AbhIQG2E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 02:28:04 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4201BC061766
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 23:26:43 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id bi4so12578161oib.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 23:26:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=evM8dYW25rUmoo+jhaGEhb/KiP/SeJMcvT7KRQQj0k4=;
-        b=GloPPC5iQ+gAScdWkJeOIsSgsZ5BSp9BiCqP1rzXOdxccRDtfeoX8O0HsiM7fJbpE9
-         tUSl/aQESeWKK1uPMUO7DCltaBfer5Uo3L92ywAfuAXPYyuw0Q6UkoscP2In/ZftAmou
-         tpYiHFxNgvo/7eg58Bk7Zn4HkLVXoT+1ihqFM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=evM8dYW25rUmoo+jhaGEhb/KiP/SeJMcvT7KRQQj0k4=;
-        b=caR56AtgH5VwnAA6t6xEd28Dn/eepzJ4fQeYBglF8fYpWKBmkHRsSRI3aMsuIO+4eX
-         lysOZQoc3FtA1X85ow2hcAUG0RNSrrvhnd66LSFaEcr9cjuHjmeutawlBndFXz3o6xxB
-         HN2MVwFjJG0FNFyN11jILO+BoCX4GsLe27K2XfXb/B5HWuWg76hJAMDVdD0ecFUxHrLS
-         0WvR/X4yxLL70jompxvkHflc400ayiGQwT1KdHZUr9qFh/4lqV9CXIZ0Sx43ZGZQ2Zqn
-         lrD94KetRyOi+mOZfy1yq4LughFidUEJwwcURkw6n0t6ukZ8vW6d+XKZF/gUMB3c5u/4
-         vWHQ==
-X-Gm-Message-State: AOAM533u0m0yJU1ZwWRFqqIpzMpan1XWNB9/F+lP/iv5zx4DiIM8zGkx
-        Daq3EiCZFGt6z/6Eorw6yniP0INK8s4hz3+LXPI6PQ==
-X-Google-Smtp-Source: ABdhPJyrkQzCWSDEUH1Rd5lLaPb2mxQs/iP6fiO2b9602AYM1Z/L3nqb7ScjuiLu6cPKzfoKXdFQgYK/XitKb8oyxGk=
-X-Received: by 2002:aca:2310:: with SMTP id e16mr2823690oie.64.1631860002668;
- Thu, 16 Sep 2021 23:26:42 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 16 Sep 2021 23:26:42 -0700
+        id S238385AbhIQG4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 02:56:53 -0400
+Received: from mailout4.samsung.com ([203.254.224.34]:28936 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237400AbhIQG4u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 02:56:50 -0400
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20210917065526epoutp049671bd563f073aa1b7cb223060045c8e~liZgWgPJV2962229622epoutp04M
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 06:55:26 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20210917065526epoutp049671bd563f073aa1b7cb223060045c8e~liZgWgPJV2962229622epoutp04M
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1631861726;
+        bh=tc0uZzq7xcvc4vhtgqkHflrQXkhw5OzNX5MhWBfkhxw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=SZB1sBBceJtAAHpTdoj2E8TBFWpUyTclk2mPUkP7E281mzoYDdyGXjMjU8pp+9gu/
+         AdH+OiXytXbE5Sd+PrWVaYN5PrrFTWVeOoBb4+F4WzYTgpYSJV0aHCLsNdKyj+t4Mz
+         8DLzhph31IC4FaGzzOc4i4KjI1FBEdJgT0k5hTyk=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20210917065525epcas2p28bc73291141f535486227643f0f56ccf~liZfiUsPY0927909279epcas2p2S;
+        Fri, 17 Sep 2021 06:55:25 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.40.188]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4H9l8C6MlPz4x9QT; Fri, 17 Sep
+        2021 06:55:23 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        6A.43.09816.BDB34416; Fri, 17 Sep 2021 15:55:23 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+        20210917065523epcas2p3ff66daa15c8c782f839422756c388d93~liZdXvjxE1851718517epcas2p3Z;
+        Fri, 17 Sep 2021 06:55:23 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20210917065523epsmtrp2db8f0512223859b5c94d1fdde9bbe5e0~liZdWsgtF1373513735epsmtrp2B;
+        Fri, 17 Sep 2021 06:55:23 +0000 (GMT)
+X-AuditID: b6c32a46-63bff70000002658-11-61443bdb7845
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        86.91.08750.ADB34416; Fri, 17 Sep 2021 15:55:22 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20210917065522epsmtip21a92d287d448f061178b09cc039ba8a8~liZdHXhrv2199021990epsmtip2s;
+        Fri, 17 Sep 2021 06:55:22 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Bean Huo <beanhuo@micron.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Can Guo <cang@codeaurora.org>,
+        Jaegeuk Kim <jaegeuk@kernel.org>,
+        Gyunghoon Kwon <goodjob.kwon@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 05/17] dt-bindings: ufs: exynos-ufs: add sysreg regmap
+ property
+Date:   Fri, 17 Sep 2021 15:54:24 +0900
+Message-Id: <20210917065436.145629-6-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210917065436.145629-1-chanho61.park@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <1631811353-503-4-git-send-email-pillair@codeaurora.org>
-References: <1631811353-503-1-git-send-email-pillair@codeaurora.org> <1631811353-503-4-git-send-email-pillair@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 16 Sep 2021 23:26:42 -0700
-Message-ID: <CAE-0n501fpj13snR9Q+RyOW12zPqyY8W4ZqzFcrmeqiwA77GVQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] remoteproc: qcom: q6v5_wpss: Add support for
- sc7280 WPSS
-To:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        ohad@wizery.com, p.zabel@pengutronix.de, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
-        mpubbise@codeaurora.org, kuabhs@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Te0xTVxjfube9XAzMS+vkhGVaLw4HBqRlrUfHwyFrboAlLLrEmMV6gWsh
+        lLa2wAarrmbgqDzCgoirY0xgk4Gz4/0YDAZ16vAVoZF1bhNW42BxKM3CIyJruZjx3+873++R
+        7zvnkLjodyKIzNTmcAYtq6GJdYLO4VAU/usbCWykwxKFrrkuEuj+F50EmlpwEOjHCYsAnXm8
+        gKNZ29dCNDqwHdXabwpRac9eNFJRhyGXzYqjuvFODLU8msfQ2Vs/YKjkbjeBLlx5hqGifrvP
+        ngBmdCyJsZrLCGa0vAxj2hrDmPq+KYxpbbIQTEXdIGDmbMUE8+SBU8CUtzcBxt26iflksARL
+        8Tuoic7g2HTOIOG0abr0TK06hk7ap9qrkisipeHSXWgnLdGy2VwMnZCcEq7M1HjmoiV5rCbX
+        c5TCGo30jthogy43h5Nk6Iw5MTSnT9fopVJ9hJHNNuZq1RFpuuzd0shImdzDPKzJmHRWYvp+
+        nw+KG2aAGViJU8CXhNTrsPH8JHYKrCNFVDeA5tpxwBezAC71FK4WbgCrF8fAc8miq2K10Qvg
+        hYElH29DRD0BcHou1YsJKhy2P5xeIW2gZgB0/Xnax1vgVAcOy844VqzE1H5o7u0ReLGAehX+
+        4r6MebE/FQcdtSeEfNxmaF+04F7sS+2Bzt5lwHMC4LXPXCta3MP5uOMc7g2A1H0SdtQ88JBI
+        T5EAJ2tI3kcMp6+0+/A4CLr/6Sd4fgmARZPLq41mAC0nknkcBxer24VeH5wKhbbeHbxlMLQ7
+        V2NfhMXD3uG9x/6w+KSIF26Dg13VAh6/Aks+dwt5CgOLGhT83ioBbBm5BCqAxLpmGOuaYaz/
+        534J8CawkdMbs9WcUaaXrb3hVrDy0MOU3eD0o8cRQwAjwRCAJE5v8L9tepMV+aez+QWcQacy
+        5Go44xCQe1b9KR70UprO81O0OSqpXKZQRO6SI7lChuhA/5pn8ayIUrM5XBbH6TnDcx1G+gaZ
+        MXZL1iGrMrAoO8DcJjhalTugH1yvMIG3Q+MFX938XndLlX+o0/f2lrf6jv/100epHW41O/PC
+        pS5p/PRvV+ud77Rs050li1ITS0biziVHvHzsW3vBnHKJuhjSUr4Qda+KFOPbjwQ7KoQHFT8X
+        vL91a8LovvNtKctZsTPDzUtaJfnUoPLrFu//sGtzYWPHeuvRGw0hSeOBNzRz6miXfWJmOKTB
+        LzhKPN+Tv3OhPpH8TlZl+/u1h9bG9+4khqfudplpy1RC7LGxvOnCf4+nfHMy/670aQZn662q
+        DLp+Z2Ppu+WmTc2zdLIq7/If830Hmg9cvTcCD5u015exIxNWcWmwZslhSqMFxgxWGoYbjOx/
+        Ac6Nj3EEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJIsWRmVeSWpSXmKPExsWy7bCSvO4ta5dEg/4zNhYnn6xhs3gwbxub
+        xcufV9ksDj7sZLGY9uEns8Wn9ctYLS7v17aYf+Qcq0XPTmeL0xMWMVk8WT+L2WLRjW1MFhvf
+        /mCymHF+H5NF9/UdbBbLj/9jsmjde4TdQdDj8hVvj1kNvWwel/t6mTw2r9DyWLznJZPHplWd
+        bB4TFh1g9Pi+voPN4+PTWywefVtWMXp83iTn0X6gmymAJ4rLJiU1J7MstUjfLoEr49GtyUwF
+        e9krOpa8Z2xgnMXWxcjJISFgIvHryQTGLkYuDiGBHYwSP/c3MUMkZCWevdvBDmELS9xvOcIK
+        UfSeUaJzzmoWkASbgK7EluevGEFsEYGPjBJzvmmBFDEL7GeW+Nd6kwkkISwQJDHx2BWwBhYB
+        VYmbn4+CxXkF7CWuzm9khdggL3HkVyfYZk4BB4lbu/6DDRUCqpk4eREjRL2gxMmZT8DmMAPV
+        N2+dzTyBUWAWktQsJKkFjEyrGCVTC4pz03OLDQuM8lLL9YoTc4tL89L1kvNzNzGCY09Lawfj
+        nlUf9A4xMnEwHmKU4GBWEuG9UOOYKMSbklhZlVqUH19UmpNafIhRmoNFSZz3QtfJeCGB9MSS
+        1OzU1ILUIpgsEwenVAPT6Zdcpx65f2c7wbno9c4fpiw1GwpVEs/VuXx63vB404+901nWfm6p
+        Ti/dvCa76cOZ8IkrHzI9s9+c3OffUmNSV7D/f3z0yYnepaueGFvGHj3xTrAlJuJHvembE//X
+        WisHp1550hGslZ6nt/KZ6xvtk4oPpXmNHuVzRd89kRli9u9Vo3HZ4RrebLut58/ktjm4RX31
+        fMt3W7g4izd506+4eelqzp6N70UEMrjWT2Ktn9Vw4tK58ncmJbc8DBasMD1iHMdUcMF7/2mT
+        pamb+33f/Nz/Vq9ttZ+zPpdk/+Sni7956XkwuPPZbeyZ8yfUqsOhjOsvT+KZGd9z3X256813
+        XOg86b8wk3nFGvG4yT+UWIozEg21mIuKEwH5prIYLAMAAA==
+X-CMS-MailID: 20210917065523epcas2p3ff66daa15c8c782f839422756c388d93
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210917065523epcas2p3ff66daa15c8c782f839422756c388d93
+References: <20210917065436.145629-1-chanho61.park@samsung.com>
+        <CGME20210917065523epcas2p3ff66daa15c8c782f839422756c388d93@epcas2p3.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rakesh Pillai (2021-09-16 09:55:53)
-> Add support for PIL loading of WPSS processor for SC7280
-> - WPSS boot will be requested by the wifi driver and hence
->   disable auto-boot for WPSS.
-> - Add a separate shutdown sequence handler for WPSS.
-> - Add multiple power-domain voting support
->
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> ---
+Add "sysreg" regmap phandle property to control io coherency setting.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+---
+ .../devicetree/bindings/ufs/samsung,exynos-ufs.yaml          | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+index b9ca8ef4f2be..c3f14f81d4b7 100644
+--- a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
++++ b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+@@ -54,6 +54,11 @@ properties:
+   phy-names:
+     const: ufs-phy
+ 
++  sysreg:
++    $ref: '/schemas/types.yaml#/definitions/phandle'
++    description: phandle for FSYS sysreg interface, used to control
++                 sysreg register bit for UFS IO Coherency
++
+ required:
+   - compatible
+   - reg
+-- 
+2.33.0
+
