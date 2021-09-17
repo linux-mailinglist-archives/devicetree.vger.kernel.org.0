@@ -2,67 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17FA541007A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 23:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E71D441007E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 23:05:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236321AbhIQVEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 17:04:52 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:46762 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235643AbhIQVEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 17:04:52 -0400
-Received: by mail-ot1-f47.google.com with SMTP id c8-20020a9d6c88000000b00517cd06302dso14563361otr.13;
-        Fri, 17 Sep 2021 14:03:29 -0700 (PDT)
+        id S244178AbhIQVGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 17:06:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235643AbhIQVGh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 17:06:37 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96E3BC061574
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 14:05:14 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id q3so13765093iot.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 14:05:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=poorly.run; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=hYgcz2WmuoTKimNGZMC9XjOQ7lSec5qs3OosNYmK+Ok=;
+        b=MAON7TiphB4V7pl4cblyJU4fCBNd3AtveOG2N9qog5RtSabP80L+gI+5W27tWQEYLK
+         YvxUcBYeSvcJBT3VOHqcvtcl2yR2zxzhCXaRrDEpW3uWD+ac6AA5S7WHRFuVEyzyQGom
+         qMxoopdTBnoIy53LkjdOG7U3iBmeF+WbFnj58NcCFjGcmDj0US9Aj5CLvjp4UlgJEzUD
+         sRe+TgOi1lGjWJsBHO7J/tQRLOJhoEV0WYfMQci4h8eCOR15IdQdEu2t5kFFVeMq1Xo+
+         T48/kki+hg31MvafHT2J/GJxN48aHiGWQuGcWTn5gGcE1IRjdxEeVAxWrFFhXxEteocl
+         sUlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bSRL/HAt3gwwiTvd49CidfkDbJhDEQUk/H1eOxq58lw=;
-        b=MaT0eS7993DozhC+TsLR780om+hQVHyfJ2Fit7cbBNulKjkvaa1Hox2rKqzb7RgJQl
-         lcMbIZdPfeDBH79S/tccBvgUFkzTFjjM3rK4g4D76me7fCUk0xZv1alj6owBJ1lNoA1T
-         IdomnIUk6O+rBVGzf63HVKwPOOsiz9KeG4U24OcWwFYWXoGk9tJ0by9KEqT2STuyPD1n
-         Bnzm5DJUEJeS6ncnms4uC9A2AZsaYG4xK+SzjbqF82fD0tNWXXTwhgqpVG7GLRKQGJ8m
-         6Sm36WWpbFiK0jBupBDZNJ/JDz/omKARa6eDazwIdNDAXMABAD2PMEEveS7fywgvDAXv
-         14Qg==
-X-Gm-Message-State: AOAM5313TALfXV7Kl4TTs+kiThNAFfC5dsAimOGl+58EVCNRQxI7nLk4
-        oYcyDB5lhsU4hr2JEipJVTcdp9FUlA==
-X-Google-Smtp-Source: ABdhPJyHEghgsCONkiA8TV/Uz/eGEB9pKxLPy0qAHmlMAmYXUJtC22LiPuviROkj6Xo/ikbU3cn/3A==
-X-Received: by 2002:a05:6830:1b78:: with SMTP id d24mr11253229ote.197.1631912609355;
-        Fri, 17 Sep 2021 14:03:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a11sm1714818oiw.36.2021.09.17.14.03.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Sep 2021 14:03:27 -0700 (PDT)
-Received: (nullmailer pid 2156706 invoked by uid 1000);
-        Fri, 17 Sep 2021 21:03:26 -0000
-Date:   Fri, 17 Sep 2021 16:03:26 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=hYgcz2WmuoTKimNGZMC9XjOQ7lSec5qs3OosNYmK+Ok=;
+        b=7zZ378+m+30hJoPYOFvh+hM+p80cCIQ+iqssIq/QssZZgoq08L/z6GavlY1Fnws5M+
+         Gp+5XZiuRFgL5C1hyTD97i4I2x7gUNPzA08pnvQ04ax+c4zu6bPvQ0AiiiOYVpKUEXMQ
+         wDzTQrtuEdTew2OGF8ASRS3CuP1Rv6wJspfMqam26jSwxL/qcs8lsz6fRQpIetrUbdoz
+         aIkPa4PHxlehNyadWaUxsZSIeHn1QwcWYGOEZts9El+mOIGLTIP3AOSXzeyt4WqhuGD3
+         AOAzGMq4GYD5mmIl53E/5nfJWaW8V7wzQK2MybvSgYVaAk0CuvwbjKp6TTm8E2D77FnI
+         uGmQ==
+X-Gm-Message-State: AOAM530qTJFQ/YEflKq00gLdCC3yj66sCNa2dMavlcP6iTrwpfuCsA8+
+        PxvlD87YNs0mMKLFJOIy7qx5OQ==
+X-Google-Smtp-Source: ABdhPJyVGXTAKtSUaIMT4jST+b54K6uGNImHSympt1CfZVSL4qvHFcKKnAOXl2UCKvZYN210dAx95g==
+X-Received: by 2002:a5e:d80a:: with SMTP id l10mr9913779iok.36.1631912713480;
+        Fri, 17 Sep 2021 14:05:13 -0700 (PDT)
+Received: from localhost ([167.100.64.199])
+        by smtp.gmail.com with ESMTPSA id a5sm4857356ilf.27.2021.09.17.14.05.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 17 Sep 2021 14:05:13 -0700 (PDT)
+Date:   Fri, 17 Sep 2021 17:05:07 -0400
+From:   Sean Paul <sean@poorly.run>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        Sean Paul <seanpaul@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH] dt-bindings: arm: Fix Toradex compatible typo
-Message-ID: <YUUCnosxz7uK4jaJ@robh.at.kernel.org>
-References: <20210912165120.188490-1-david@ixit.cz>
+        Rob Clark <robdclark@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 13/13] drm/msm: Implement HDCP 1.x using the new drm
+ HDCP helpers
+Message-ID: <20210917210507.GR2515@art_vandelay>
+References: <20210915203834.1439-1-sean@poorly.run>
+ <20210915203834.1439-14-sean@poorly.run>
+ <CAE-0n52Gm6SsjUTEEOt-9LD9dGCb7pFf0OC_xKSnRxLy4PO_iw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210912165120.188490-1-david@ixit.cz>
+In-Reply-To: <CAE-0n52Gm6SsjUTEEOt-9LD9dGCb7pFf0OC_xKSnRxLy4PO_iw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 Sep 2021 18:51:20 +0200, David Heidelberg wrote:
-> Fixes: f4d1577e9bc6 ("dt-bindings: arm: Convert Tegra board/soc bindings to json-schema")
+On Thu, Sep 16, 2021 at 11:00:25PM -0700, Stephen Boyd wrote:
+> Quoting Sean Paul (2021-09-15 13:38:32)
+
+/snip
+
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c b/drivers/gpu/drm/msm/dp/dp_debug.c
+> > index 2f6247e80e9d..de16fca8782a 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_debug.c
+> > +++ b/drivers/gpu/drm/msm/dp/dp_debug.c
+> > @@ -8,6 +8,7 @@
+> >  #include <linux/debugfs.h>
+> >  #include <drm/drm_connector.h>
+> >  #include <drm/drm_file.h>
+> > +#include <drm/drm_hdcp.h>
+> >
+> >  #include "dp_parser.h"
+> >  #include "dp_catalog.h"
+> > @@ -15,6 +16,7 @@
+> >  #include "dp_ctrl.h"
+> >  #include "dp_debug.h"
+> >  #include "dp_display.h"
+> > +#include "dp_hdcp.h"
+> >
+> >  #define DEBUG_NAME "msm_dp"
+> >
+> > @@ -24,6 +26,7 @@ struct dp_debug_private {
+> >         struct dp_usbpd *usbpd;
+> >         struct dp_link *link;
+> >         struct dp_panel *panel;
+> > +       struct dp_hdcp *hdcp;
+> >         struct drm_connector **connector;
+> >         struct device *dev;
+> >         struct drm_device *drm_dev;
+> > @@ -349,6 +352,38 @@ static int dp_test_active_open(struct inode *inode,
+> >                         inode->i_private);
+> >  }
+> >
+> > +static ssize_t dp_hdcp_key_write(struct file *file, const char __user *ubuf,
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  Documentation/devicetree/bindings/arm/tegra.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Is this the API that userspace is going to use to set the key? Or a
+> simple debug interface that's used to test this code out? I hope it's a
+> debugging aid and not the normal flow given that it's through debugfs.
 > 
 
-Added Dmitry's commit msg suggestion and applied, thanks!
+At the moment, generic UAPI is not useful beyond msm-based CrOS devices, which
+is not really a burden upstream should be carrying. On other platforms
+(including qc-based Android devices), the key injection is done in HW. As such,
+I'm tempted to kick key injection UAPI down the road.
+
+Once I finish the userspace client in CrOS, I can upload the UAPI for folks to
+comment on.
+
+/snip
+
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_display.h b/drivers/gpu/drm/msm/dp/dp_display.h
+> > index 8b47cdabb67e..421268e47f30 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_display.h
+> > +++ b/drivers/gpu/drm/msm/dp/dp_display.h
+
+> > +static int dp_hdcp_load_keys(struct drm_connector *connector)
+> > +{
+> > +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
+> > +       struct dp_hdcp_key *key;
+> > +       int i, ret = 0;
+> > +
+> > +       mutex_lock(&hdcp->key_lock);
+> > +
+> > +       key = hdcp->key;
+> > +
+> > +       if (!key->valid) {
+> > +               ret = -ENOENT;
+> > +               goto out;
+> > +       }
+> > +
+> > +       dp_hdcp_write_dp(hdcp, DP_HDCP_SW_LOWER_AKSV, key->ksv.words[0]);
+> > +       dp_hdcp_write_dp(hdcp, DP_HDCP_SW_UPPER_AKSV, key->ksv.words[1]);
+> > +
+> > +       for (i = 0; i < DP_HDCP_NUM_KEYS; i++) {
+> > +               dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_LSB(i),
+> > +                                  key->keys[i].words[0]);
+> > +               dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_MSB(i),
+> > +                                  key->keys[i].words[1]);
+> > +       }
+> > +
+> > +       dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_VALID, DP_HDCP_SW_KEY_VALID);
+> > +       wmb();
+> 
+> What are the wmb()s for? Can you add a comment indicating what we're
+> trying to fix by having them?
+> 
+
+I think these were left over from testing (when things weren't working for me).
+Will remove in the next version, thanks for catching!
+
+/snip
+
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_parser.c b/drivers/gpu/drm/msm/dp/dp_parser.c
+> > index 0519dd3ac3c3..75a163b0b5af 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_parser.c
+> > +++ b/drivers/gpu/drm/msm/dp/dp_parser.c
+
+/snip
+
+> > @@ -55,6 +55,8 @@ static void dp_parser_unmap_io_resources(struct dp_parser *parser)
+> >  {
+> >         struct dp_io *io = &parser->io;
+> >
+> > +       msm_dss_iounmap(&io->hdcp_tz);
+> > +       msm_dss_iounmap(&io->hdcp_key);
+> >         msm_dss_iounmap(&io->dp_controller);
+> >  }
+> >
+> > @@ -64,10 +66,20 @@ static int dp_parser_ctrl_res(struct dp_parser *parser)
+> >         struct platform_device *pdev = parser->pdev;
+> >         struct dp_io *io = &parser->io;
+> >
+> > -       rc = msm_dss_ioremap(pdev, &io->dp_controller);
+> > -       if (rc) {
+> > -               DRM_ERROR("unable to remap dp io resources, rc=%d\n", rc);
+> > +       rc = msm_dss_ioremap(pdev, &io->dp_controller, 0);
+> > +       if (rc)
+> >                 goto err;
+> > +
+> > +       rc = msm_dss_ioremap(pdev, &io->hdcp_key, 1);
+> > +       if (rc) {
+> > +               io->hdcp_key.base = NULL;
+> > +               io->hdcp_key.len = 0;
+> > +       }
+> > +
+> > +       rc = msm_dss_ioremap(pdev, &io->hdcp_tz, 2);
+> > +       if (rc) {
+> > +               io->hdcp_tz.base = NULL;
+> > +               io->hdcp_tz.len = 0;
+> 
+> Bjorn is trying to split the single io region apart into 4 different
+> regions[1]. This would add two more io regions. Maybe this should come
+> after those patches and be indexed later? I worry about needing to add
+> more register properties later on though. Maybe a better approach would
+> be to make them mandatory for certain compatible strings instead.
+
+Thanks for the heads up, I'll look into adding a compatible string.
+
+All your other comments will be addressed in v3.
+
+Sean
+
+> 
+> [1] https://lore.kernel.org/r/20210825222557.1499104-6-bjorn.andersson@linaro.org
+> 
+> >         }
+> >
+> >         io->phy = devm_phy_get(&pdev->dev, "dp");
+
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
