@@ -2,95 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F097640F8EA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 15:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D35E40F989
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 15:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236303AbhIQNPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 09:15:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47348 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230421AbhIQNPx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 09:15:53 -0400
-Received: from mail-qt1-x84a.google.com (mail-qt1-x84a.google.com [IPv6:2607:f8b0:4864:20::84a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E01C061764
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 06:14:31 -0700 (PDT)
-Received: by mail-qt1-x84a.google.com with SMTP id x11-20020ac86b4b000000b00299d7592d31so90021895qts.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 06:14:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=JrjnNmu7/Xbl/QIjypxVMk3ociL3bf/wAlM5pRyPRyI=;
-        b=bjM1k9R28SXqglwFD8qF0kwjiVTjTr3BEYdv/f80g6uQZqDwGxZHEWnTfY1quD4BCh
-         sEwAO+hyvQ8UuPhbrWgXcAz/7r6d76IVIiv37UChKjbLKsRpcL/ZJlbrT26ffZhrHCl1
-         k8T5rLl4myRv3E+VT5cKZajxfdIoBocSiRJ0Xd9wp5NcfvU4yejgFaJsWZqdFRPUmp5r
-         Mr43DnnCdEz9h3tbWrfvlx/uPY7X4Tn1qGLCGBUAR9PY2CANyXy0RMhexDruFVO7kwYl
-         Jd7XvhW8Ib/STch4nZCNxmg4rlQLgdKa/MMZDlcyPuBA86pNQZ3femc7hjAMOCOK0MVS
-         VuWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=JrjnNmu7/Xbl/QIjypxVMk3ociL3bf/wAlM5pRyPRyI=;
-        b=M/WEoSMzJqSJYTiQ3NWAzDDDauIFWV1tF+2M8gAfwG+CzNlszWuodbFdZXg8YptpUk
-         TqvvlZAdYNyfuN9/6mX3MwrPKbovh0xbcMXZogJ2gHWs4L86KdiLMSvOLnaB5JWgxKVu
-         ZdSq27V9bXJt+pZUxIOmWTNFz7bfzAtJQfJK4pzzYDUXqik/ocAlx0wrpiIZaNnAaAzA
-         s807Wrt7CdvOpbIOamy/sOEV1/5yIBM4v71ztq01kVBny7G26oCDqNGcotGrMhpGlChQ
-         KA9QmQ50y168xoVGq7oh2oowXeAzcDmVhsstsJGURKHFmwbCvv2WNU3k85varSBYeQxc
-         tp/g==
-X-Gm-Message-State: AOAM530ldJYui4M4kmceAH1Hb/TnJ49N7aswCrsh0TIAzVque1scnEJl
-        3puMpTQaVqZMZzXatvDNsIavkrnIXmetwguTJKCIrBwmQQCgt5wzVzHjSLwPVykxUG9PHheSyt5
-        IBbB9325TXNTvifcUhADj5w25N42sKrkHYaJo5sndgWFFjDCjYHarNzUmXBzqGcVskGk71AL5
-X-Google-Smtp-Source: ABdhPJzGxPRERqbFVuDutl/KOYevoTCiuYPRff1GNHJAeyMg+opV8RXRckW7/Ap7pXE8j9MGP5SJDcvs0Qny3w==
-X-Received: from zachary-panic1.lon.corp.google.com ([2a00:79e0:d:209:25f4:f11e:ff5e:bad])
- (user=dbrazdil job=sendgmr) by 2002:ad4:554b:: with SMTP id
- v11mr11093886qvy.31.1631884470574; Fri, 17 Sep 2021 06:14:30 -0700 (PDT)
-Date:   Fri, 17 Sep 2021 14:14:23 +0100
-Message-Id: <20210917131423.2760155-1-dbrazdil@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.33.0.464.g1972c5931b-goog
-Subject: [PATCH] of: restricted dma: Fix condition for rmem init
-From:   David Brazdil <dbrazdil@google.com>
-To:     devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        linux-kernel@vger.kernel.org, David Brazdil <dbrazdil@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S235440AbhIQNxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 09:53:12 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:12065 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235351AbhIQNxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 09:53:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1631886709; x=1663422709;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=BaKR0GXJ7avCWzr+NGsVFd6GROFyzc6wFVyGk4om47Y=;
+  b=q+aLJTKhrCWv+fv1TrJsickP77LvIV+NkhE0nRjzoLe0mp/ykubSUsjr
+   FPpNFwuo8x7um43G06C5YGjtAHBQD3a0ANAGgVCsA63GzZyN9IyeGpA+u
+   +O3KAiss2ZTWPqSUe7lZBHMno8JzwENWfYiyaLjNpyhULmEJAarkBr9Ct
+   5XPLkUpckbIZZfHdoOMPtr0eMNMiE3Gwb8/lS2mXaW1rui3GdWQAFSVfh
+   9aZmAiRzl5oeTmiTSsmXpc9D7R4BiadgF6BB+ysQH8zrAh0+x3VsCYtsX
+   3hDoJKqBqFSaXQsW8kFOAAVfdj5p3HIcES4iqzd8KWTaISon/jP/6gygT
+   w==;
+IronPort-SDR: lXznJIalnbo3zY6JUz7II6EWu5d1JoYIwWwrSmSzjMD7WVJRP7090GHnf9qcRd8+U/9RBNgWme
+ adLARUJgTmKyKu7PqGZhNjA+PhnRyIVSs6D0aOQ/6cIESFDOWpZkIQ/I9AxuFlOSUID0EU4TzB
+ NEF1S8cKBdPRP8aY648HuXjC9o+1aEW0HnMJ/+yygdkMKipvjzb+7ws7SjirEn8VflLIBULn8X
+ yAtkJfRa+YCzGfDBnbIBCXhnB/7n4JhVgk+W2K6nYBP3So6/On8WnP6F8yjXEqmcyQW2p6ahCT
+ 2wypRFehQvZ6a+is5OZ8fxNy
+X-IronPort-AV: E=Sophos;i="5.85,301,1624345200"; 
+   d="scan'208";a="132212843"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Sep 2021 06:51:49 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 17 Sep 2021 06:51:48 -0700
+Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 17 Sep 2021 06:51:45 -0700
+From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+To:     <robh+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
+        <Eugen.Hristev@microchip.com>, <Kavyasree.Kotagiri@microchip.com>,
+        <Manohar.Puri@microchip.com>
+Subject: [PATCH v5 0/3] Add driver for lan966x Generic Clock Controller
+Date:   Fri, 17 Sep 2021 19:21:39 +0530
+Message-ID: <20210917135142.9689-1-kavyasree.kotagiri@microchip.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-of_dma_set_restricted_buffer fails to handle negative return values from
-of_property_count_elems_of_size, e.g. when the property does not exist.
-This results in an attempt to assign a non-existent reserved memory
-region to the device and a warning being printed. Fix the condition to
-take negative values into account.
+This patch series adds a device driver for Generic Clock Controller
+of lan966x SoC.
 
-Fixes: f3cfd136aef0 ("of: restricted dma: Don't fail device probe on
-rmem init failure")
-Cc: Will Deacon <will@kernel.org>
-Signed-off-by: David Brazdil <dbrazdil@google.com>
----
- drivers/of/device.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+v4 -> v5:
+- In v4 dt-bindings, missed adding "clock-names" in required
+  properties and example. So, added them.
+- Returning proper error - PTR_ERR.
+- Removed unused variable "ret" in probe function.
 
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 5b043ee30824..b0800c260f64 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -85,7 +85,11 @@ of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
- 			break;
- 	}
- 
--	if (i != count && of_reserved_mem_device_init_by_idx(dev, of_node, i))
-+	/*
-+	 * Attempt to initialize a restricted-dma-pool region if one was found.
-+	 * Note that count can hold a negative error code.
-+	 */
-+	if (i < count && of_reserved_mem_device_init_by_idx(dev, of_node, i))
- 		dev_warn(dev, "failed to initialise \"restricted-dma-pool\" memory node\n");
- }
- 
+v3 -> v4:
+- Updated "clocks" and added "clock-names" in dt-bindings.
+- Used clk_parent_data instead of of_clk_get_parent_name().
+
+v2 -> v3:
+- Fixed dt_binding_check errors.
+
+v1 -> v2:
+- Updated license in dt-bindings.
+- Updated example provided for clock controller node.
+
+
+Kavyasree Kotagiri (3):
+  dt-bindings: clock: lan966x: Add binding includes for lan966x SoC
+    clock IDs
+  dt-bindings: clock: lan966x: Add LAN966X Clock Controller
+  clk: lan966x: Add lan966x SoC clock driver
+
+ .../bindings/clock/microchip,lan966x-gck.yaml |  57 +++++
+ drivers/clk/clk-lan966x.c                     | 236 ++++++++++++++++++
+ include/dt-bindings/clock/microchip,lan966x.h |  28 +++
+ 3 files changed, 321 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
+ create mode 100644 drivers/clk/clk-lan966x.c
+ create mode 100644 include/dt-bindings/clock/microchip,lan966x.h
+
 -- 
-2.33.0.464.g1972c5931b-goog
+2.17.1
 
