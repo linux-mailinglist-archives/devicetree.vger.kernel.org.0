@@ -2,105 +2,352 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 743D040F1E0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 08:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D3440F242
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 08:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244975AbhIQGI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 02:08:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34030 "EHLO
+        id S232878AbhIQGZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 02:25:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244959AbhIQGI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 02:08:28 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FB2AC061766
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 23:07:06 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id 77-20020a9d0ed3000000b00546e10e6699so416985otj.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 23:07:06 -0700 (PDT)
+        with ESMTP id S232832AbhIQGZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 02:25:32 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62BC3C061766
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 23:24:11 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id s69so5077505oie.13
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 23:24:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=uFxktZTFTvrgPpVfXvx5wJ9NT0aZLesc6X5ChP1iv7A=;
-        b=i/ncKKPIpr+3o9b6pA0DCzCBl8WUKX1Ag2tuxiTlv5DFjg2x0hUOLgQi34zNW/rawU
-         vC6nF7DwJ49OTMrhSPq1WDne735OUV/Q9jbN/spxDPPRnkqpOh/AHISPiJjUeoj/vdLZ
-         y4j4lxX/R/X0aM40ICqquVM9oB2b3UQr+OXIk=
+        bh=uvedJzBN/73IuBDGdWhBl3aDTDET6lrA/D9kWiWxZqk=;
+        b=WdEgGhg8h9k7yZRIZzKv9DC1NPduWAMEmRoYdtJpF+0st/v1okda/Jh4LupEZMWouV
+         fKRHg9NUOaWFcpno+jzFAEDA6vzPXewvHSYq943p7I+YcrL27AJLCpmkxUpS2pMhg6eU
+         /VdsdZ+XoDrJ4+GqMvyqWCYHthb4dFyN5Wt5A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=uFxktZTFTvrgPpVfXvx5wJ9NT0aZLesc6X5ChP1iv7A=;
-        b=PUZhIwioxX1M0vrWokrQLst2v9S6QjaWx4354aCX/XgQ81luO+cijY2PKvcx8U2exc
-         WrAoMf1Ai99ejpWnZFVRgobLO19jl8rdPxsEqgEGyv/3ErmoHVgancVJ2WJyhUFGXeTQ
-         enl5lNDwTh7+l5S1yKIe9HNNv8sMCfD5dcwceGOJCktHSpP5TYCKFfy19CFKhIBQCoWj
-         hQg6O5YAh4wx/RTTliFcfHmYw3IwhOBWaLIotACVyid9Egzxvos4D1VS7sqHwEC1ypWD
-         SAb4af/vbbv6yMR4qgOnvkguSoYgxWImXaLj8nXOHnmNzsDZP4o3wg5kBCDv2/dnAmJz
-         d0MA==
-X-Gm-Message-State: AOAM531GQqXHyJfPUk5Y/KFE0y1PDQGTOZykDBHfOHK9TB96MAOsXYLh
-        P06bQyEOR23rM7YP309VyRYU9P2fn2hHgv2CxfgwMg==
-X-Google-Smtp-Source: ABdhPJxQEesmDcj/3cYONDWgEpdGmnZZmuk8Te4FWZg9ahd8D1bR5hpR8n7vTHM4r69wQilPoaiFgB2r7HIGEK65gJE=
-X-Received: by 2002:a05:6830:719:: with SMTP id y25mr7898467ots.77.1631858825850;
- Thu, 16 Sep 2021 23:07:05 -0700 (PDT)
+        bh=uvedJzBN/73IuBDGdWhBl3aDTDET6lrA/D9kWiWxZqk=;
+        b=it/Pq2kF/g/xZLKI/0MlYOw1r6avZMZ11WOvZ537B90WGncsYF4IRHc1vpoV9xzzSf
+         mOM31BaIjA5gjffp/Rs8Wxq9Dflgf2CayM6mqkIn+XXBSl93opoTMU+p/Vx8l2TZ0rUp
+         y34TP6q2Ao96tCO/+/LrjRXIQ1c42xMp2UnjVG5FFa+ezTR9ZQS5DEnw00Z8ZeeEbmj5
+         8hJrXPwuY/6VsUWzCQXgzN9dkNd4ZObIxuGOnP34kZ0lj0njQYfZ3Wrig7wFJewNJi7v
+         gtA4uqFyMxLiipBzKNcyn/Ey1e9KWYqgj7nGyG6FINaTMHGtiCxMix4/SoLpF51/glRL
+         qhQQ==
+X-Gm-Message-State: AOAM533s4T0mR6ngqq48iKskVGgNh6DAueYe9BYJJc78u3xhZFNJbW0F
+        mZCvSCGsdokNcQQpAoFRCos5zR40b9cs81g/VYTzQ739png=
+X-Google-Smtp-Source: ABdhPJxZ4Ic1TvCnSL3eLZ/vOckRMNFuHjhmq9VtOO0Bo6eNg6wu0pRIWhZM/fEglRmANAvXztt7Ab5n6x3aKknQSvA=
+X-Received: by 2002:aca:2310:: with SMTP id e16mr2817754oie.64.1631859850582;
+ Thu, 16 Sep 2021 23:24:10 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 16 Sep 2021 23:07:05 -0700
+ HTTPREST; Thu, 16 Sep 2021 23:24:10 -0700
 MIME-Version: 1.0
-In-Reply-To: <baa5c4b4dd19e0a24d28b8bff559b868@codeaurora.org>
-References: <1631798498-10864-1-git-send-email-skakit@codeaurora.org>
- <1631798498-10864-3-git-send-email-skakit@codeaurora.org> <CAE-0n53i4pU==W-dc=md_x+0Tqbd1gtwkPBFode+rtupSFi0WQ@mail.gmail.com>
- <baa5c4b4dd19e0a24d28b8bff559b868@codeaurora.org>
+In-Reply-To: <1631811353-503-2-git-send-email-pillair@codeaurora.org>
+References: <1631811353-503-1-git-send-email-pillair@codeaurora.org> <1631811353-503-2-git-send-email-pillair@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Thu, 16 Sep 2021 23:07:05 -0700
-Message-ID: <CAE-0n53x6oB+Rj1_1QDNMVJowyCUeXgGBMmZ1SW1rTMmcEwD4A@mail.gmail.com>
-Subject: Re: [PATCH V5 2/2] arm64: dts: sc7280: Add volume up support for sc7280-idp
-To:     skakit@codeaurora.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Date:   Thu, 16 Sep 2021 23:24:10 -0700
+Message-ID: <CAE-0n52t_1GGsFfDnrnwTx7j8RFdFLqZ2EGQY84D3UMbTeG69g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: remoteproc: qcom: adsp: Convert
+ binding to YAML
+To:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        ohad@wizery.com, p.zabel@pengutronix.de, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org,
+        Rakesh Pillai <pillair@qti.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting skakit@codeaurora.org (2021-09-16 21:08:11)
-> On 2021-09-17 00:32, Stephen Boyd wrote:
-> > Quoting Satya Priya (2021-09-16 06:21:38)
-> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> >> b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> >> index 371a2a9..cbbb0ee 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> >> @@ -12,6 +12,26 @@
-> >>  #include "pm8350c.dtsi"
-> >>  #include "pmk8350.dtsi"
-> >>
-> >> +/ {
-> >> +       gpio-keys {
-> >> +               compatible = "gpio-keys";
-> >> +               label = "gpio-keys";
-> >> +
-> >> +               pinctrl-names = "default";
-> >> +               pinctrl-0 = <&key_vol_up_default>;
-> >> +
-> >> +               volume-up {
-> >> +                       label = "volume_up";
-> >> +                       gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
-> >> +                       linux,input-type = <1>;
-> >> +                       linux,code = <KEY_VOLUMEUP>;
-> >
-> > Is there an include for this define? Looks like
-> > <dt-bindings/input/input.h> should be added as well? Did you try
-> > compiling?
-> >
->
-> Yeah, it needs <dt-bindings/input/linux-event-codes.h> to be included.
-> This header was included in pmk8350.dtsi which is added in this file.
+Quoting Rakesh Pillai (2021-09-16 09:55:51)
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml
+> new file mode 100644
+> index 0000000..051da43
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml
+> @@ -0,0 +1,267 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/qcom,hexagon-v56.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Hexagon v56 Peripheral Image Loader
+> +
+> +maintainers:
+> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> +
+> +description:
+> +  This document defines the binding for a component that loads and boots firmware
+> +  on the Qualcomm Technology Inc. Hexagon v56 core.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,qcs404-cdsp-pil
+> +      - qcom,sdm845-adsp-pil
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      The base address and size of the qdsp6ss register
+> +
+> +  interrupts-extended:
+> +    minItems: 5
+> +    items:
+> +      - description: Watchdog interrupt
+> +      - description: Fatal interrupt
+> +      - description: Ready interrupt
+> +      - description: Handover interrupt
+> +      - description: Stop acknowledge interrupt
+> +
+> +  interrupt-names:
+> +    minItems: 5
+> +    items:
+> +      - const: wdog
+> +      - const: fatal
+> +      - const: ready
+> +      - const: handover
+> +      - const: stop-ack
+> +
+> +  clocks:
+> +    minItems: 7
+> +    maxItems: 8
+> +    description:
+> +      List of phandles and clock specifier pairs for the Hexagon,
+> +      per clock-names below.
+> +
+> +  clock-names:
+> +    minItems: 7
+> +    maxItems: 8
+> +
+> +  power-domains:
+> +    minItems: 1
+> +    items:
+> +      - description: CX power domain
+> +
+> +  resets:
+> +    minItems: 1
+> +    maxItems: 2
+> +    description:
+> +      reference to the list of resets for the Hexagon.
+> +
+> +  reset-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +    description: Reference to the reserved-memory for the Hexagon core
+> +
+> +  qcom,halt-regs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandle reference to a syscon representing TCSR followed by the
+> +      three offsets within syscon for q6, modem and nc halt registers.
+> +
+> +  qcom,smem-states:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: States used by the AP to signal the Hexagon core
+> +    items:
+> +      - description: Stop the modem
+> +
+> +  qcom,smem-state-names:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description: The names of the state bits used for SMP2P output
+> +    items:
+> +      - const: stop
+> +
+> +  glink-edge:
+> +    type: object
+> +    description:
+> +      Qualcomm G-Link subnode which represents communication edge, channels
+> +      and devices related to the ADSP.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts-extended
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - qcom,halt-regs
+> +  - memory-region
+> +  - qcom,smem-states
+> +  - qcom,smem-state-names
 
-Alright, got it. If you can include this header in this dts file it
-would be better so we don't rely on implicit includes from other files
-to get macros. With that change you can add my
+Is there some way to make sure that 'resets' and 'reset-names' is
+present when the compatible that defines them is used and not required
+otherwise?
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> +
+> +additionalProperties: false
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sdm845-adsp-pil
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: XO clock
+> +            - description: SWAY clock
+> +            - description: LPASS AHBS AON clock
+> +            - description: LPASS AHBM AON clock
+> +            - description: QDSP6SS XO clock
+> +            - description: QDSP6SS SLEEP clock
+> +            - description: QDSP6SS CORE clock
+> +        clock-names:
+> +          items:
+> +            - const: xo
+> +            - const: sway_cbcr
+> +            - const: lpass_ahbs_aon_cbcr
+> +            - const: lpass_ahbm_aon_cbcr
+> +            - const: qdsp6ss_xo
+> +            - const: qdsp6ss_sleep
+> +            - const: qdsp6ss_core
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,qcs404-cdsp-pil
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: XO clock
+> +            - description: SWAY clock
+> +            - description: TBU clock
+> +            - description: BIMC clock
+> +            - description: AHB AON clock
+> +            - description: Q6SS SLAVE clock
+> +            - description: Q6SS MASTER clock
+> +            - description: Q6 AXIM clock
+> +        clock-names:
+> +          items:
+> +            - const: xo
+> +            - const: sway
+> +            - const: tbu
+> +            - const: bimc
+> +            - const: ahb_aon
+> +            - const: q6ss_slave
+> +            - const: q6ss_master
+> +            - const: q6_axim
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sc7280-wpss-pil
+
+This should be documented above in the compatible list?
+
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: GCC WPSS AHB BDG Master clock
+> +            - description: GCC WPSS AHB clock
+> +            - description: GCC WPSS RSCP clock
+> +        clock-names:
+> +          items:
+> +            - const: gcc_wpss_ahb_bdg_mst_clk
+> +            - const: gcc_wpss_ahb_clk
+> +            - const: gcc_wpss_rscp_clk
+
+Is the 'gcc_wpss' prefix important? It would be shorter if it wasn't
+there.
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sdm845-adsp-pil
+> +    then:
+> +      properties:
+> +        resets:
+> +          items:
+> +            - description: PDC SYNC
+> +            - description: CC LPASS
+> +        reset-names:
+> +          items:
+> +            - const: pdc_sync
+> +            - const: cc_lpass
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,qcs404-cdsp-pil
+> +    then:
+> +      properties:
+> +        resets:
+> +          items:
+> +            - description: CDSP restart
+> +        reset-names:
+> +          items:
+> +            - const: restart
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/qcom,rpmh.h>
+> +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
+> +    #include <dt-bindings/clock/qcom,lpass-sdm845.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +    #include <dt-bindings/reset/qcom,sdm845-pdc.h>
+> +    #include <dt-bindings/reset/qcom,sdm845-aoss.h>
+> +    remoteproc@17300000 {
+> +        compatible = "qcom,sdm845-adsp-pil";
+> +        reg = <0x17300000 0x40c>;
+> +
+> +        interrupts-extended = <&intc GIC_SPI 162 IRQ_TYPE_EDGE_RISING>,
+> +                <&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +                <&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> +                <&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> +                <&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+> +        interrupt-names = "wdog", "fatal", "ready",
+> +                "handover", "stop-ack";
+> +
+> +        clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +                 <&gcc GCC_LPASS_SWAY_CLK>,
+> +                 <&lpasscc LPASS_Q6SS_AHBS_AON_CLK>,
+> +                 <&lpasscc LPASS_Q6SS_AHBM_AON_CLK>,
+> +                 <&lpasscc LPASS_QDSP6SS_XO_CLK>,
+> +                 <&lpasscc LPASS_QDSP6SS_SLEEP_CLK>,
+> +                 <&lpasscc LPASS_QDSP6SS_CORE_CLK>;
+> +        clock-names = "xo", "sway_cbcr",
+> +                "lpass_ahbs_aon_cbcr",
+> +                "lpass_ahbm_aon_cbcr", "qdsp6ss_xo",
+> +                "qdsp6ss_sleep", "qdsp6ss_core";
+> +
+> +        power-domains = <&rpmhpd SDM845_CX>;
+> +
+> +        resets = <&pdc_reset PDC_AUDIO_SYNC_RESET>,
+> +                 <&aoss_reset AOSS_CC_LPASS_RESTART>;
+> +        reset-names = "pdc_sync", "cc_lpass";
+> +
+> +        qcom,halt-regs = <&tcsr_mutex_regs 0x22000>;
+> +
+> +        memory-region = <&pil_adsp_mem>;
+> +
+> +        qcom,smem-states = <&adsp_smp2p_out 0>;
+> +        qcom,smem-state-names = "stop";
+> +    };
+
+Should there be two more examples for the other compatible strings here?
