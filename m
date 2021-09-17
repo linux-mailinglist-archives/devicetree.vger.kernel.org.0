@@ -2,122 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F245340F46D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 10:52:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE27F40F48B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 11:10:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245513AbhIQIxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 04:53:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43516 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235322AbhIQIxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 04:53:24 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F32EC061574;
-        Fri, 17 Sep 2021 01:52:02 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id m3so28222155lfu.2;
-        Fri, 17 Sep 2021 01:52:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XvpEIBoByg42XkOM/TNyoYT6HJF27BGOhJ85ClCpsEY=;
-        b=QbFfYFO80788sb60dOMh7/d+qKia30CW+uSSxaXSFw2PZamB+PJlEwH2S7pM/p4Y1g
-         gKEdEiynO3nwbRxZ8kj2Q6Eb32bMrSHCmKrRskQ+kyIjg4skyJER0BR9BDYMY6OZdcwn
-         Yf8Tma/Igfkgj0XsLcjnnqEGtUDWeqdNRh5XB+QY49zp8F6KaSeKgDii2sacaxNG0cLk
-         6JX4vsnYJLt6hLcsRDrwzS4UAEceqKLHQ07HxzvscaMuFCfvQoqk6b6NvLmX3SBdEIhj
-         jLU1NchNKpN6ww230QmMKSk2BMYgdW7jS/JW28pZF1qcpUJMlD/hhqRCYNMj0c22Y6S7
-         d3IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XvpEIBoByg42XkOM/TNyoYT6HJF27BGOhJ85ClCpsEY=;
-        b=A6vp0c11AANbcEJS96W79S+W8RHtoLaz+88kUJ43bqns1+OaA4iz3u04ndSYLKkTOz
-         92xmjgqu7b5hWHdxFr4+9tePrLBE8oiaq+YHH7R7R3IiDfiDBAfMvazOj3grK3YYeAyo
-         2N8OJOcDd0N23HR7JJIuWRhcY3LNEv7Qe3rEjev/nH/UCJoNoWJ0AUpSfVFiy5m+ny69
-         bbLYXZH00DgepxKGQoCMI7tlQmGSVFXoLQSImf9XEaTg8b3M5mggYT5Qznj54126NOYs
-         2J5Ly9qiEW6pHKqmuIJMQodPoE3BeV/oo+ep+ILX+kbo2lmahcRUA1IeniE49uyVn5v5
-         jCyQ==
-X-Gm-Message-State: AOAM530FNVpmv2iQnq+iUABoMGHciCTpovbUEzXrZ5QSQ5ODGwU6S5T7
-        MDw1FnzWmgPyDmEYhDyE12KxQykZToN2LSSRYtM=
-X-Google-Smtp-Source: ABdhPJyGLH723MyowALyoIZWfMm/f/MFSOi+oazfMJPxfw2fPSZRaRXq7YBHvsBrRWq6ok+xNSwPI79c68bHb9irV4M=
-X-Received: by 2002:a05:651c:a12:: with SMTP id k18mr8561807ljq.90.1631868720641;
- Fri, 17 Sep 2021 01:52:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210915120325.20248-1-heiko.thiery@gmail.com>
- <7e7ee4244ababc0a46e0875222c7e37d@walle.cc> <898fd5e0-2073-3689-89b6-2c5071773786@kontron.de>
- <CAEyMn7ZbJr0_2Phc2rW7sDYQu4AABWPZ1F7xDgaS5U7ha7iqzA@mail.gmail.com> <3EDFF987-82C2-4B0A-9488-037D1BD4CA48@walle.cc>
-In-Reply-To: <3EDFF987-82C2-4B0A-9488-037D1BD4CA48@walle.cc>
-From:   Heiko Thiery <heiko.thiery@gmail.com>
-Date:   Fri, 17 Sep 2021 10:51:49 +0200
-Message-ID: <CAEyMn7Z9wRZWpWD3krx=3Zgc-9H0Y6eWjDpOhbO-v2yXuRcGXg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm-kontron-n801x-som: do not allow to
- switch off buck2
-To:     Michael Walle <michael@walle.cc>
-Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        id S238886AbhIQJLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 05:11:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38646 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239492AbhIQJKV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Sep 2021 05:10:21 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B8C7E6113A;
+        Fri, 17 Sep 2021 09:08:59 +0000 (UTC)
+Received: from [198.52.44.129] (helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mR9rd-00BKoA-Sa; Fri, 17 Sep 2021 10:08:58 +0100
+Date:   Fri, 17 Sep 2021 10:08:56 +0100
+Message-ID: <87o88rbmc7.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>
-Content-Type: text/plain; charset="UTF-8"
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Robin Murphy <Robin.Murphy@arm.com>, kernel-team@android.com
+Subject: Re: [PATCH v3 08/10] PCI: apple: Implement MSI support
+In-Reply-To: <YT+36/qmoO+ZfJXh@sunset>
+References: <20210913182550.264165-1-maz@kernel.org>
+        <20210913182550.264165-9-maz@kernel.org>
+        <YT+36/qmoO+ZfJXh@sunset>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 198.52.44.129
+X-SA-Exim-Rcpt-To: alyssa@rosenzweig.io, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, kw@linux.com, stan@corellium.com, kettenis@openbsd.org, sven@svenpeter.dev, marcan@marcan.st, Robin.Murphy@arm.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI Michael,
+On Mon, 13 Sep 2021 21:43:23 +0100,
+Alyssa Rosenzweig <alyssa@rosenzweig.io> wrote:
+> 
+> > +static void apple_msi_compose_msg(struct irq_data *data, struct msi_msg *msg)
+> > +{
+> > +	BUILD_BUG_ON(upper_32_bits(DOORBELL_ADDR));
+> > +
+> > +	msg->address_hi = upper_32_bits(DOORBELL_ADDR);
+> > +	msg->address_lo = lower_32_bits(DOORBELL_ADDR);
+> > +	msg->data = data->hwirq;
+> > +}
+> ...
+> > @@ -269,6 +378,14 @@ static int apple_pcie_port_setup_irq(struct apple_pcie_port *port)
+> >  
+> >  	irq_set_chained_handler_and_data(irq, apple_port_irq_handler, port);
+> >  
+> > +	/* Configure MSI base address */
+> > +	writel_relaxed(lower_32_bits(DOORBELL_ADDR), port->base + PORT_MSIADDR);
+> > +
+> > +	/* Enable MSIs, shared between all ports */
+> > +	writel_relaxed(0, port->base + PORT_MSIBASE);
+> > +	writel_relaxed((ilog2(port->pcie->nvecs) << PORT_MSICFG_L2MSINUM_SHIFT) |
+> > +		       PORT_MSICFG_EN, port->base + PORT_MSICFG);
+> > +
+> >  	return 0;
+> >  }
+> 
+> I think the BUILD_BUG_ON makes more sense next to configuring the base
+> address (which only has a 32-bit register, the BUILD_BUG_ON justifies
+> using writel and not writeq), rather than configuring the message (which
+> specifies the full 64-bits).
 
-Am Fr., 17. Sept. 2021 um 10:21 Uhr schrieb Michael Walle <michael@walle.cc>:
->
-> Am 17. September 2021 09:28:51 MESZ schrieb Heiko Thiery <heiko.thiery@gmail.com>:
-> >Hi Frieder,
-> >
-> >Am Mi., 15. Sept. 2021 um 14:09 Uhr schrieb Frieder Schrempf
-> ><frieder.schrempf@kontron.de>:
-> >>
-> >> On 15.09.21 14:05, Michael Walle wrote:
-> >> > Am 2021-09-15 14:03, schrieb Heiko Thiery:
-> >> >> The buck2 output of the PMIC is the VDD core voltage of the cpu.
-> >> >> Switching off this will poweroff the CPU. Add the 'regulator-always-on'
-> >> >> property to avoid this.
-> >> >
-> >> > Mh, have this ever worked? Is there a commit which introduced a regression?
-> >>
-> >> Yes, this did work before, even without 'regulator-always-on'. I
-> >> currently don't understand why this is needed. The regulator is
-> >> referenced in the CPU nodes as 'cpu-supply'. This should be enough to
-> >> not disable it as long as the CPU is up.
-> >
-> >I rechecked that with 5.11, 5.10 and 5.9 and I see on all of them the
-> >same issue:
-> >
-> >[ 31.716031] vdd-5v: disabling
-> >[ 31.719032] rst-usb-eth2: disabling
-> >[ 31.722553] buck2: disabling
-> >
-> >While on that I tried to compare with other boards and see that they
-> >also have the cpu-voltage marked as "regulator-always-on". The only
-> >exception in dts/freescale is in imx8mq-librem5-devkit.dts [1] that
-> >has not set this property.
-> >
-> >I agree with you and don't understand why this is happening. Has
-> >anyone else an explanation?
->
-> Do you have the CPU frequency scaling driver enabled?
+Indeed, this makes a bit more sense. Thanks for pointing this out.
 
-That was a good hint. What I now see is in my case the driver is not
-loaded (I boot via network). In the default kernel config the module
-is marked as 'm'. When switching to 'y' as expected it will be probed
-and the the buck2 (cpu-supply) will not be deactivated after 30
-seconds.
+	M.
 
 -- 
-Heiko
+Without deviation from the norm, progress is not possible.
