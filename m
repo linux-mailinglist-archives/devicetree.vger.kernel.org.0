@@ -2,167 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F28340F424
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 10:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D561540F44F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 10:41:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245352AbhIQIbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 04:31:31 -0400
-Received: from mail-co1nam11on2132.outbound.protection.outlook.com ([40.107.220.132]:55008
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S244170AbhIQIba (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Sep 2021 04:31:30 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XCQbppP0giKQbdCO3a+iB5NZoY1qgufl3zj5t8vtDVE2Fb650XCm9e7qqbAAAezYavYsVlWXDrl6nVOj7RuYHRgv0yuRT7yiuAzQBEZT2PYiP+RFV3A21wIS++mA9AO16Ef4PaeGonhz006gmUcYjC2Q67os87yYGRvhVALgaktL3eXhz/rdDZ8W3GnfWmqOMFHPkqMNLmC1kFTED9HZeWZZz9CgeTiipZnefaUk2LNtB9bzpubD2vgpYmZle2JWGeSutNDEbuZjKnxFXvGhJRbIYCLIylumV2rBzJFfH7nYLYIZjsZQodEhOnFnyWge81nocZu/UIhR+9TEc0VWoQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=xAIHhbmkdsXrC7RQqj3WKAa+pRSVG7holBeE9bDHoAc=;
- b=BILPgHRSdzuedny6S+5NX7FJU3KbnO3qkGgoGsyYwHW5tKxMHTgZ3cxVztkdekZ48q6VcRK9xPy1pLu2cVIszo9TDFM9JPZDnv1q5zI72zv4M6ElWRgdY+udGxt/zh23+m7g5X4Ufy2zm185Uq4WnEMRB1NM92cGYixATBJ3BsA6km78G0DTwK/4RTD67oXEoIkFR1Eo9Ols7l2bxTGTk05XN/q1qCp8FvWN0wvmzX1CU+d9PfM3xXqDModGbwXEIHJuHyjJI3rD4bejEqjnLkR0+qcQ2I38ec23+fza0paj45qbjZ8BDGeIRxA5/NDlmZI8WkgZUuirlpTdP1iugA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
+        id S234585AbhIQImt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 04:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41162 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233688AbhIQIms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 04:42:48 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AB26C061574;
+        Fri, 17 Sep 2021 01:41:26 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id o66so10340053oib.11;
+        Fri, 17 Sep 2021 01:41:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xAIHhbmkdsXrC7RQqj3WKAa+pRSVG7holBeE9bDHoAc=;
- b=GHmN3KBb3K+Bfz/C4ghwhpJ9sqwm1mAYOiCaZ+JEIaD9k0X40lXS49rkJZUjptrnzG3SkyW16B2bPp05k1bUiHQLpCJgmMWqVX39C7+SajDjMm/CL190EXBvZC7NyvRGLQBMUxgb/URkOHdfY7Kdju0oocz3XghW2KYolehLUEM=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none
- header.from=os.amperecomputing.com;
-Received: from MW2PR0102MB3482.prod.exchangelabs.com (2603:10b6:302:c::32) by
- MW2PR0102MB3546.prod.exchangelabs.com (2603:10b6:302:2::30) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4523.16; Fri, 17 Sep 2021 08:30:05 +0000
-Received: from MW2PR0102MB3482.prod.exchangelabs.com
- ([fe80::d9d6:d7bc:2f2e:932b]) by MW2PR0102MB3482.prod.exchangelabs.com
- ([fe80::d9d6:d7bc:2f2e:932b%7]) with mapi id 15.20.4523.015; Fri, 17 Sep 2021
- 08:30:05 +0000
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: [PATCH v1] ARM: dts: aspeed: mtjade: Add some gpios
-Date:   Fri, 17 Sep 2021 15:29:45 +0700
-Message-Id: <20210917082945.19111-1-quan@os.amperecomputing.com>
-X-Mailer: git-send-email 2.28.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2P153CA0052.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::21)
- To MW2PR0102MB3482.prod.exchangelabs.com (2603:10b6:302:c::32)
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CeZGDq8ylzh0OWJzXB6+CtfSipSUr15SxgokLFW4ZVI=;
+        b=WaymPEyRLqNpvKq6QKWcZQuFRxGbIlHlFC5742NkQMVBtfx60uoTSYM5jlUNRoD7oW
+         q9amg37w+jLi3kcMqCyQyv+Kc49G5ljBNfEyWm9QPiSpEeS7EHAUBJoAz5zMRAeQ88CO
+         9qYON5/tbRVZcuU3DFs8MBdSWOt+XoMmtOU9VxwfOl3lVDdjPW00E0aOW0acpOxw7CeY
+         Eny41KXEeNuwqzPk+bYvyWd3gvewUOuuv/FpLZ3rSslqJBejf+lBRLj3hSn/yrkxqQSz
+         bMufkCWsZE3THwurq28MEqJI4KYNfzSQdnqVM5B4aHnXSkoZKZebJqcpV8s330Z8q4Kd
+         l8Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CeZGDq8ylzh0OWJzXB6+CtfSipSUr15SxgokLFW4ZVI=;
+        b=lde1zudQVN1rFj0d/B18LCvQDqFlzngOs9aFtSlRY3s6q/XRbK/Z0LnZy76TwNF8F8
+         VT07hJ/n8lEYm+X1yIqP1rCNs3DckvHVeemREo8blgggf6bXAwajvd9GlTI+1Im20/HC
+         RrdhkYPPg83HQj33s8rfM3qpYAzw4kW9nU1THlw0oUGsEdL2wq7AYaVbIMmiTdhyvbsO
+         ms66FUCtgS02+3HYpNC2wWMMVsczExWW3VE3rH2ALDlBrr7tMghkIRfA0jt67k3T2Te6
+         O2KV/WLGBXA3zth4uYcL96d+BgmlVlwNa8ju5bniRaIXwlVHT6Cl+Zf54Wjl1wzJ/Ox3
+         8oRA==
+X-Gm-Message-State: AOAM532AiRhdM1miwA36n3bXYIKcUM8fJwjKqQnsl8md0kfl6fXxLu+v
+        bYynPqxvjiV9oiXGlCmIVCzl5rUThWZOBgGOODs=
+X-Google-Smtp-Source: ABdhPJz7V7FeVpl5yX3RqCVrs3KwlTNT4jU+AaBexgzmZmDAnC7p+czNAUHGaQAgpSSO8kbpBYA/y8BafRDFGo/48Hc=
+X-Received: by 2002:aca:1717:: with SMTP id j23mr3076167oii.43.1631868085306;
+ Fri, 17 Sep 2021 01:41:25 -0700 (PDT)
 MIME-Version: 1.0
-Received: from hcm-sw-17.amperecomputing.com (118.69.219.201) by SG2P153CA0052.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.8 via Frontend Transport; Fri, 17 Sep 2021 08:30:02 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e3f6eb6e-57a1-47c9-c02f-08d979b559e3
-X-MS-TrafficTypeDiagnostic: MW2PR0102MB3546:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW2PR0102MB354665F68A519BDDF737C73FF2DD9@MW2PR0102MB3546.prod.exchangelabs.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:785;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tpNyMqswhQSe11dcogxsJK/4p7a3xLmy7L+9wrtjDADlOhqvTi9EnQv73hGV0127pvIL3k/V2PQc+0BDS4WZxRhdAL59W2+CLEQD/gN/8SgDhARwpZdyWOT310H/b8m35XpC3cvoAHtB3G9kZ4n53foQ38YvrL+9CgQTBfJd9P6NpKK7pQzY05KXMvs3KjWEjmQ+KeNb7TVH3QksU4xPL7TN1mtM8SU/SD1U9R4kJzeazGJGjmhRLtynC4MrVt8u0Q1XpTqVQP1PJnwIV9Mk0DSxX4PJtUi8vOegClW7l7HNkFxuhRII7KuX9qhni4+tWq/kb9wB5iQW1YuJvWWDCZ8kog4tRuvJmStRekHI0Uk1gSkgVjdVHEvzF4fB8GVkTcL//XJuw3eV6kNQSNQvpR8UZQ9ozuAZWUvm1U60YwszatT+Y3YIGSdoszRurhK/RAjy/BtcjU/obn+SDIUDhVb0zER9IokPgZHFR/6HuinQmnQLakMne2mjCi0CHqlJEXVDgFSJ2B2ZuD/s6nrIdR0JMXkprkxyIY3IPbpwW9ai2gVGchtUcpws5tKOm1pVX0M1iwXz6qyfcGDouOhk0UzKQV1KL1juyS/MM0QNdTr0XPoz/YpRaH3MEW1m0SVeGAtXE8RR6RKr00dLqHHpaweQlRLYPe5CBYE8nvnRTPPoXoo0GPH/+SeATAI7TxbwoRNMCo6B2XvJIzYBg998EQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR0102MB3482.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(4326008)(316002)(110136005)(2616005)(26005)(107886003)(83380400001)(6666004)(8676002)(38350700002)(38100700002)(66946007)(8936002)(956004)(186003)(1076003)(5660300002)(86362001)(508600001)(54906003)(6512007)(66476007)(66556008)(2906002)(52116002)(6506007)(6486002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YaLfV5FcZ63uB/BsVgwMkPFyGY6Ypfp78hwXdXRPubmGzQFlhQBXIvhRyLG6?=
- =?us-ascii?Q?XKiQFE1jLktz7TWpDT6O4vFrlk2EUVVqUmkckFy/POC44XYKmbG67/clcH5X?=
- =?us-ascii?Q?+SI/GTpTrttuRXQVwVWyh8EU3zKTvY7lRywNQfEdU//jOHpYBlkS9dn0/n2f?=
- =?us-ascii?Q?7eWEcXcKqNULMdscjLn3VWA5lttmIfesUlD3TloZBUwXThytjC9U/wQR0S6m?=
- =?us-ascii?Q?bPD33l9KwVGD7Fna7jzDOvvr46/2uPnByxR6k26r9IxsZvoj6NWrSujcldzi?=
- =?us-ascii?Q?8AkWmjZDgcgD8/e4y4arQoPfEulx76Ap5RzeGrW1hn0dkzzjzFM2Jc/W+2Q8?=
- =?us-ascii?Q?s8TKX1SBmPRlUF4hqE4z93iippKixLvO3ZZP4D5Qgi/iawPYQAH7Owv+81Ok?=
- =?us-ascii?Q?deQFY2PrHh6lkkFBuoYnF4wc/kzkxdbIXcjtHwkl7ANHXvPXolDXwCNq0fSP?=
- =?us-ascii?Q?yqM9MMa+ZvT8tPAtCcZPVwAUUrjvV7nP80id4I0Eos0zE0cN58Y0jTDvMQO8?=
- =?us-ascii?Q?RSApP3l6MAFaXVTJ44D/mgvw6Og9nAlgTkHQJ691YpLmOf5WcgN36n6PaeRJ?=
- =?us-ascii?Q?/lNUaXINR9Uvkvum3/xHseUxhOLGvKf3xgspFJOwGQdbZX/8JQe/RNjrtqGS?=
- =?us-ascii?Q?pjEql6kzfN4CTc93YLNS4GOkxgvmScobgSRvXw8G94xpyd17Xek6btWQ08vi?=
- =?us-ascii?Q?YAPoGpPjgw9r7rmLcI95R6auOsrHkR1As9kYPTSb/KE0S++wjDsHmNfIPimp?=
- =?us-ascii?Q?+ywkR4FPLLe6Tj24G889uYUHCqEo4XJwBx9J2luzolS4PJqHny5t+/G8WcKp?=
- =?us-ascii?Q?rJpWkAnsTfVv8n0T29gci7e7iKrVf0GX4iub1MpbKTfTjIBULw4YcqfLhgm1?=
- =?us-ascii?Q?COuuZmzjnSQfjJrsq/g5OBLdDwQiEQGqhFdYfWwPDEYAG+b4or/IcRKOymU8?=
- =?us-ascii?Q?6qxbW7oMakzNsCgi9p0BdQHFQZ/ta7Nxf6iRenY9poWcsujK/tclKqdQ/8EN?=
- =?us-ascii?Q?bAfARAOijulWJ7y+1fOArkq3bLv9AwFzDBXkKHxRGYrRJ4TY1ptSyfzwM/qF?=
- =?us-ascii?Q?v/lSP9151t3Yq+17jrJi8fWDWZO9ScOcIimByBGXL+56/z28SMqww+fyF+7H?=
- =?us-ascii?Q?QnRmjSiVgMKchbfvhYRC6kGxR4lvlu8MkfwkmdoztBDBeBoGE5NvJGbjq+lg?=
- =?us-ascii?Q?lBGLBE9Ga4ln6R8j3sdexaCryZqIJQxIwQTb8suXkJtYF8ndtZDydK2B35wD?=
- =?us-ascii?Q?9lOYDZxQpEPW9hP50oZcaDo2p3+n+0BCLotlqv4nArOM8x5f7bijWBF8goEr?=
- =?us-ascii?Q?ZKprl6QG0M5rSLJBI077EVdb?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3f6eb6e-57a1-47c9-c02f-08d979b559e3
-X-MS-Exchange-CrossTenant-AuthSource: MW2PR0102MB3482.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2021 08:30:05.7373
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7v2Xgv+xaMsgMCvLRf5TYLb93BQwXIDYxap3qS5qWmF5yHK41wxJrzcFYEXzshjxtyT/1y7RD6X1B5oPdmJwW7D/GL2PBeAfsha/TYYqjq4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR0102MB3546
+References: <20210916084714.311048-1-zhang.lyra@gmail.com> <20210916084714.311048-3-zhang.lyra@gmail.com>
+ <YUNUyolr6ksEoZI3@robh.at.kernel.org>
+In-Reply-To: <YUNUyolr6ksEoZI3@robh.at.kernel.org>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Fri, 17 Sep 2021 16:40:49 +0800
+Message-ID: <CAAfSe-vYMUb8wGUJG7Fzehjkj8gAq1QOdgCdsTvcNyMuVeEW8g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: clk: sprd: Add bindings for ums512
+ clock controller
+To:     Rob Herring <robh@kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add S0_SCP_AUTH_FAIL, S1_SCP_AUTH_FAIL gpios to indicates firmware
-authentication fail on each socket.
+On Thu, 16 Sept 2021 at 22:29, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Sep 16, 2021 at 04:47:12PM +0800, Chunyan Zhang wrote:
+> > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> >
+> > Add a new bindings to describe ums512 clock compatible strings.
+> >
+> > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > ---
+> >  .../bindings/clock/sprd,ums512-clk.yaml       | 106 ++++++++++++++++++
+> >  1 file changed, 106 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> > new file mode 100644
+> > index 000000000000..be3c37180279
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> > @@ -0,0 +1,106 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright 2019-2021 Unisoc Inc.
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/clock/sprd,ums512-clk.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: UMS512 Clock Control Unit Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Orson Zhai <orsonzhai@gmail.com>
+> > +  - Baolin Wang <baolin.wang7@gmail.com>
+> > +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> > +
+> > +properties:
+> > +  "#clock-cells":
+> > +    const: 1
+> > +
+> > +  compatible:
+> > +    enum:
+> > +      - sprd,ums512-apahb-gate
+> > +      - sprd,ums512-ap-clk
+> > +      - sprd,ums512-aonapb-clk
+> > +      - sprd,ums512-pmu-gate
+> > +      - sprd,ums512-g0-pll
+> > +      - sprd,ums512-g2-pll
+> > +      - sprd,ums512-g3-pll
+> > +      - sprd,ums512-gc-pll
+> > +      - sprd,ums512-aon-gate
+> > +      - sprd,ums512-audcpapb-gate
+> > +      - sprd,ums512-audcpahb-gate
+> > +      - sprd,ums512-gpu-clk
+> > +      - sprd,ums512-mm-clk
+> > +      - sprd,ums512-mm-gate-clk
+> > +      - sprd,ums512-apapb-gate
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 4
+> > +    description: |
+> > +      The input parent clock(s) phandle for this clock, only list fixed
+> > +      clocks which are declared in devicetree.
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    maxItems: 4
+> > +    items:
+> > +      - const: ext-26m
+> > +      - const: ext-32k
+> > +      - const: ext-4m
+> > +      - const: rco-100m
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - '#clock-cells'
+> > +
+> > +if:
+> > +  properties:
+> > +    compatible:
+> > +      enum:
+> > +        - sprd,ums512-ap-clk
+> > +        - sprd,ums512-aonapb-clk
+> > +        - sprd,ums512-mm-clk
+> > +then:
+> > +  required:
+> > +    - reg
+> > +
+> > +else:
+> > +  description: |
+> > +    Other UMS512 clock nodes should be the child of a syscon node in
+> > +    which compatible string should be:
+> > +            "sprd,ums512-glbregs", "syscon", "simple-mfd"
+> > +
+> > +    The 'reg' property for the clock node is also required if there is a sub
+> > +    range of registers for the clocks.
+>
+> In which cases is this not true?
 
-Add gpio RTC_BAT_SEN_EN to enable RTC battery adc sensor.
+Seems not needed, I will remove 'reg' property for this kind of cases.
 
-Add BMC_I2C4_O_EN gpio to go high at boot to enable access to I2C4 bus.
+>
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    ap_clk: clock-controller@20200000 {
+> > +      compatible = "sprd,ums512-ap-clk";
+> > +      reg = <0x20200000 0x1000>;
+> > +      clocks = <&ext_26m>;
+> > +      clock-names = "ext-26m";
+> > +      #clock-cells = <1>;
+> > +    };
+> > +
+> > +  - |
+> > +    ap_apb_regs: syscon@71000000 {
+> > +      compatible = "sprd,ums512-glbregs", "syscon", "simple-mfd";
+> > +      reg = <0x71000000 0x3000>;
+> > +      #address-cells = <1>;
+> > +      #size-cells = <1>;
+> > +      ranges = <0 0x71000000 0x3000>;
+> > +
+> > +      apahb_gate: clock-controller@0 {
+> > +        compatible = "sprd,ums512-apahb-gate";
+> > +        reg = <0x0 0x2000>;
+> > +        #clock-cells = <1>;
+> > +      };
+>
+> We have this example in the MFD schema, so drop it here.
 
-Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-Signed-off-by: Thang Nguyen <thang@os.amperecomputing.com>
----
- .../arm/boot/dts/aspeed-bmc-ampere-mtjade.dts | 21 ++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+Ok.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
-index 57b0c45a2298..3515d55bd312 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
-@@ -86,6 +86,18 @@ S0_cpu_fault {
- 			linux,code = <ASPEED_GPIO(J, 1)>;
- 		};
- 
-+		S0_scp_auth_fail {
-+			label = "S0_SCP_AUTH_FAIL";
-+			gpios = <&gpio ASPEED_GPIO(J, 2) GPIO_ACTIVE_LOW>;
-+			linux,code = <ASPEED_GPIO(J, 2)>;
-+		};
-+
-+		S1_scp_auth_fail {
-+			label = "S1_SCP_AUTH_FAIL";
-+			gpios = <&gpio ASPEED_GPIO(Z, 5) GPIO_ACTIVE_LOW>;
-+			linux,code = <ASPEED_GPIO(Z, 5)>;
-+		};
-+
- 		S1_overtemp {
- 			label = "S1_OVERTEMP";
- 			gpios = <&gpio ASPEED_GPIO(Z, 6) GPIO_ACTIVE_LOW>;
-@@ -590,7 +602,7 @@ &gpio {
- 	/*Q0-Q7*/	"","","","","","UID_BUTTON","","",
- 	/*R0-R7*/	"","","BMC_EXT_HIGHTEMP_L","OCP_AUX_PWREN",
- 			"OCP_MAIN_PWREN","RESET_BUTTON","","",
--	/*S0-S7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","RTC_BAT_SEN_EN","","","",
- 	/*T0-T7*/	"","","","","","","","",
- 	/*U0-U7*/	"","","","","","","","",
- 	/*V0-V7*/	"","","","","","","","",
-@@ -604,4 +616,11 @@ &gpio {
- 			"S1_BMC_DDR_ADR","","","","",
- 	/*AC0-AC7*/	"SYS_PWR_GD","","","","","BMC_READY","SLAVE_PRESENT_L",
- 			"BMC_OCP_PG";
-+
-+	i2c4_o_en {
-+		gpio-hog;
-+		gpios = <ASPEED_GPIO(Y, 2) GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "BMC_I2C4_O_EN";
-+	};
- };
--- 
-2.28.0
-
+Thanks for your review and comments,
+Chunyan
