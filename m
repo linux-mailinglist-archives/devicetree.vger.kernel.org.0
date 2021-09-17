@@ -2,223 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DE7040FC25
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 17:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C5E440FCBC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 17:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234199AbhIQPYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 11:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48330 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344335AbhIQPY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 11:24:27 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364B1C0613CF
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 08:22:40 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id bg1so6366812plb.13
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 08:22:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=OS94uZTmA0qnszl1fwVMo+RQL+/vTVqvtH0x+p48wY0=;
-        b=bRsPWtlhXzo4Tc/8or9LqnXhztTrk9NmxMapoTxWY0Ypjm1gL3iusGWCPx1hXm6hXA
-         OnJWj3AfeV/AyOHx5exXC8jx9r5SrprlQOmDZ4fXNd1uKmS3VPuHRNL+hiI+Z8GF4XPi
-         WK/2g61WY2v+O6shCYTiop8X+p9M/F/J96rA8m3g8Ut+moKVIOQoEjGLOImm2cOJAt7M
-         f5crjbQisPGL3RZe3I/3BFsuR2bOn0bHvJN95jx9lTXBpcsUvy5TCJbdsn1eUZwqGKRR
-         MXAOf8+zN8rXXGS6FxxD2Hn+G8vBOwu4E/XhZs8fEPSUn5SEgVF7Nbf60iAD89hmPRX4
-         Go7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OS94uZTmA0qnszl1fwVMo+RQL+/vTVqvtH0x+p48wY0=;
-        b=STD4WiGSaWWO9eoEuDOpoIBeGGsXwERw/eGKwmpZRbindxaehmwUxTRKEt4QRAztxL
-         hH63rFFRPVRDO9Yfv3VKLtHReIOYBEgrDxJpSITE7yHXUVp2Pzv6cAH+uvYmWxnLgLma
-         HuXhD0MLVROMk3hJOfSohN3DXp6M2Ii+5tvuC3Uw8YohoYnU4Nxn+KkTTc8wCYtJEpCy
-         7d10qOh24rBxxeMn3wJpAqY2kNJA2lW8qjnLvWol+D6HtJ8GQLbDl+HqqqsMXiTmPXKB
-         lQEplSHxDnMmoM1tO+ez+HaqR7yGfAoJRC/6JRYHRAWUOAn5VbStIOrNVr5zyU+PkEEd
-         M1Zw==
-X-Gm-Message-State: AOAM5337rlVdhnQe/ky6FhLoJTI4MSwpILBDrlFh4+q4osBqKFU+F+qb
-        Kz723rG372IKX7t3owTockNplA==
-X-Google-Smtp-Source: ABdhPJwTfxqmzpmynstN+ueD82dE7pITyL8lRsfd5Z/m6O2J/WXNuzsrz1m0cTCWJw2yZBW048Tt5g==
-X-Received: by 2002:a17:902:a3ca:b0:13c:a7be:1767 with SMTP id q10-20020a170902a3ca00b0013ca7be1767mr6481323plb.88.1631892159539;
-        Fri, 17 Sep 2021 08:22:39 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id 23sm6472340pfp.206.2021.09.17.08.22.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Sep 2021 08:22:38 -0700 (PDT)
-Date:   Fri, 17 Sep 2021 09:22:36 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Ohad Ben Cohen <ohad@wizery.com>,
+        id S243521AbhIQPk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 11:40:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44160 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242055AbhIQPkn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Sep 2021 11:40:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 33E6761164;
+        Fri, 17 Sep 2021 15:39:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631893159;
+        bh=kSdq0hKExFv8TXBDsAqqcVjzosArwA4JtM7vQeOmyb0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=l01PzpViwki9LA7T5gwPRzros5O03Fnq4JF1/rmEmPMtO4J2Yf6qcIa3IIQeJQNBf
+         o7KN+YVWoGpllAa9JPybanl3gwpiaiMl9dnKvdY7Q3LjHUGgGLyh0/P/YHaizBQ0h8
+         89xnTV/vt9ANhXKh884AS3PhWcyPFK9kRPloDZnefAupBgeWZbJbpCY7ivTmkhYq6w
+         BCjSBab3TY9CHETuz2IrIdbJ9zCGoUYq/5+xiKkKZ2h6OXFimp9anSJz3YKt/yr0mU
+         GT6F8BFi/XcRQW9WWC7yWDQVS5sZNrrjyLkyRvIeXJObrRKqSWGtpP+UV13r2fqu7I
+         3DnNZZ2cCaf9A==
+Date:   Fri, 17 Sep 2021 16:38:37 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Satya Priya <skakit@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 3/4] remoteproc: imx_dsp_rproc: Add remoteproc driver
- for DSP on i.MX
-Message-ID: <20210917152236.GA1878943@p14s>
-References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
- <1631092255-25150-4-git-send-email-shengjiu.wang@nxp.com>
- <20210915161624.GA1770838@p14s>
- <CAA+D8AO0c+jk_k7j=ZvNFsVvC-p_zMLPJDS3qmLjNbJ+U0E9Cg@mail.gmail.com>
- <20210916165957.GA1825273@p14s>
- <CAA+D8AN_ni_XmEFNfY0Z0qLAJX00XFSUP1RkJdNQd-MVY6pd4g@mail.gmail.com>
- <CAA+D8AMaszzT5q8oGhXOtE3W5Ue9S3r=es2sTp2uJ7RwjX8Bzg@mail.gmail.com>
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, mka@chromium.org,
+        swboyd@chromium.org, Das Srinagesh <gurus@codeaurora.org>,
+        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] regulator: Add a regulator driver for the PM8008 PMIC
+Message-ID: <20210917153837.GB4700@sirena.org.uk>
+References: <1631875538-22473-1-git-send-email-skakit@codeaurora.org>
+ <1631875538-22473-4-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7ZAtKRhVyVSsbBD2"
 Content-Disposition: inline
-In-Reply-To: <CAA+D8AMaszzT5q8oGhXOtE3W5Ue9S3r=es2sTp2uJ7RwjX8Bzg@mail.gmail.com>
+In-Reply-To: <1631875538-22473-4-git-send-email-skakit@codeaurora.org>
+X-Cookie: A man's house is his hassle.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 17, 2021 at 05:44:44PM +0800, Shengjiu Wang wrote:
-> On Fri, Sep 17, 2021 at 1:20 PM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
-> >
-> > On Fri, Sep 17, 2021 at 1:00 AM Mathieu Poirier
-> > <mathieu.poirier@linaro.org> wrote:
-> > >
-> > > [...]
-> > >
-> > > > > > +
-> > > > > > +/**
-> > > > > > + * imx_dsp_rproc_elf_load_segments() - load firmware segments to memory
-> > > > > > + * @rproc: remote processor which will be booted using these fw segments
-> > > > > > + * @fw: the ELF firmware image
-> > > > > > + *
-> > > > > > + * This function specially checks if memsz is zero or not, otherwise it
-> > > > > > + * is mostly same as rproc_elf_load_segments().
-> > > > > > + */
-> > > > > > +static int imx_dsp_rproc_elf_load_segments(struct rproc *rproc,
-> > > > > > +                                        const struct firmware *fw)
-> > > > > > +{
-> > > > > > +     struct device *dev = &rproc->dev;
-> > > > > > +     u8 class = fw_elf_get_class(fw);
-> > > > > > +     u32 elf_phdr_get_size = elf_size_of_phdr(class);
-> > > > > > +     const u8 *elf_data = fw->data;
-> > > > > > +     const void *ehdr, *phdr;
-> > > > > > +     int i, ret = 0;
-> > > > > > +     u16 phnum;
-> > > > > > +
-> > > > > > +     ehdr = elf_data;
-> > > > > > +     phnum = elf_hdr_get_e_phnum(class, ehdr);
-> > > > > > +     phdr = elf_data + elf_hdr_get_e_phoff(class, ehdr);
-> > > > > > +
-> > > > > > +     /* go through the available ELF segments */
-> > > > > > +     for (i = 0; i < phnum; i++, phdr += elf_phdr_get_size) {
-> > > > > > +             u64 da = elf_phdr_get_p_paddr(class, phdr);
-> > > > > > +             u64 memsz = elf_phdr_get_p_memsz(class, phdr);
-> > > > > > +             u64 filesz = elf_phdr_get_p_filesz(class, phdr);
-> > > > > > +             u64 offset = elf_phdr_get_p_offset(class, phdr);
-> > > > > > +             u32 type = elf_phdr_get_p_type(class, phdr);
-> > > > > > +             void *ptr;
-> > > > > > +             bool is_iomem;
-> > > > > > +
-> > > > > > +             if (type != PT_LOAD || !memsz)
-> > > > >
-> > > > > You did a really good job with adding comments but this part is undocumented...
-> > > > > If I read this correctly you need to check for !memsz because some part of
-> > > > > the program segment may have a header but its memsz is zero, in which case it can
-> > > > > be safely skipped.  So why is that segment in the image to start with, and why
-> > > > > is it marked PT_LOAD if it is not needed?  This is very puzzling...
-> > > >
-> > > > Actually I have added comments in the header of this function.
-> > >
-> > > Indeed there is a mention of memsz in the function's header but it doesn't
-> > > mention _why_ this is needed, and that is what I'm looking for.
-> > >
-> > > >
-> > > > memsz= 0 with PT_LOAD issue, I have asked the toolchain's vendor,
-> > > > they said that this case is allowed by elf spec...
-> > > >
-> > > > And in the "pru_rproc.c" and "mtk_scp.c", seems they met same problem
-> > > > they also check the filesz in their internal xxx_elf_load_segments() function.
-> > >
-> > > In both cases they are skipping PT_LOAD sections where "filesz" is '0', which
-> > > makes sense because we don't know how many bytes to copy.  But here you are
-> > > skipping over a PT_LOAD section with a potentially valid filesz, and that is the
-> > > part I don't understand.
-> >
-> > Ok, I can use filesz instead. For my case, filesz = memsz = 0,
-> > it is the same result I want.
 
-If that is the case then rproc_elf_load_segments() should work, i.e it won't
-copy anything.  If rproc_elf_load_segments() doesn't work for you then there are
-corner cases you haven't told me about.
+--7ZAtKRhVyVSsbBD2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> >
-> > The reason why I use "memsz '' is because there is  "if (filesz > memsz) "
-> > check after this,  if memsz is zero, then "filesz" should be zero too, other
-> > values are not allowed.
-> 
-> But I still think checking "!memsz" is better than filesz,  because
-> memsz > filesz is allowed (filesz = 0),  the code below can be executed.
-> filesz > memsz is not allowed.
-> 
-> What do you think?
+On Fri, Sep 17, 2021 at 04:15:37PM +0530, Satya Priya wrote:
 
-I don't see a need to add a custom implementation for things that _may_ happen.
-If using the default rproc_elf_load_segments() works than go with that.  We can deal
-with problems if/when there is a need for it.
+> +static int pm8008_regulator_is_enabled(struct regulator_dev *rdev)
+> +{
+> +	struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
+> +	int rc;
+> +	u8 reg;
+> +
+> +	rc = pm8008_read(pm8008_reg->regmap,
+> +			LDO_ENABLE_REG(pm8008_reg->base), &reg, 1);
+> +	if (rc < 0) {
+> +		pr_err("failed to read enable reg rc=%d\n", rc);
+> +		return rc;
+> +	}
+> +
+> +	return !!(reg & ENABLE_BIT);
+> +}
 
-> 
-> Best regards
-> Wang shengjiu
-> >
-> > >
-> > > >
-> > > > >
-> > > > >
-> > > > > > +                     continue;
-> > > > > > +
-> > > > > > +             dev_dbg(dev, "phdr: type %d da 0x%llx memsz 0x%llx filesz 0x%llx\n",
-> > > > > > +                     type, da, memsz, filesz);
-> > > > > > +
-> > > > > > +             if (filesz > memsz) {
-> > > > > > +                     dev_err(dev, "bad phdr filesz 0x%llx memsz 0x%llx\n",
-> > > > > > +                             filesz, memsz);
-> > > > > > +                     ret = -EINVAL;
-> > > > > > +                     break;
-> > > > > > +             }
-> > > > > > +
-> > > > > > +             if (offset + filesz > fw->size) {
-> > > > > > +                     dev_err(dev, "truncated fw: need 0x%llx avail 0x%zx\n",
-> > > > > > +                             offset + filesz, fw->size);
-> > > > > > +                     ret = -EINVAL;
-> > > > > > +                     break;
-> > > > > > +             }
-> > > > > > +
-> > > > > > +             if (!rproc_u64_fit_in_size_t(memsz)) {
-> > > > > > +                     dev_err(dev, "size (%llx) does not fit in size_t type\n",
-> > > > > > +                             memsz);
-> > > > > > +                     ret = -EOVERFLOW;
-> > > > > > +                     break;
-> > > > > > +             }
-> > > > > > +
-> > > > > > +             /* grab the kernel address for this device address */
-> > > > > > +             ptr = rproc_da_to_va(rproc, da, memsz, &is_iomem);
-> > > > >
-> > > > >                 rproc_da_to_va(rproc, da, memsz, NULL);
-> > > >
-> > > > yes, will update it.
-> > > >
-> > > > >
-> > > > > More comments to follow later today or tomorrow.
-> > > >
-> > > > Thanks.
-> > > >
-> > > > Best regards
-> > > > Wang Shengjiu
+This could just be regulator_is_enabled_regmap().  There's also a lot of
+instances in the driver where it's using pr_err() not dev_err() (and
+similarly for the debug prints).
+
+> +
+> +static int pm8008_regulator_enable(struct regulator_dev *rdev)
+> +{
+> +	struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
+> +	int rc, current_uv, delay_us, delay_ms, retry_count = 10;
+> +	u8 reg;
+
+This is the regmap helper.
+
+> +	/*
+> +	 * Wait for the VREG_READY status bit to be set using a timeout delay
+> +	 * calculated from the current commanded voltage.
+> +	 */
+> +	delay_us = STARTUP_DELAY_USEC
+> +			+ DIV_ROUND_UP(current_uv, pm8008_reg->step_rate);
+> +	delay_ms = DIV_ROUND_UP(delay_us, 1000);
+
+Set poll_enable_time and implement get_status() then this will be
+handled by the core.
+
+> +static int pm8008_regulator_disable(struct regulator_dev *rdev)
+> +{
+
+Use the regmap helper.
+
+> +	rc = pm8008_write_voltage(pm8008_reg, min_uv, max_uv);
+> +	if (rc < 0)
+> +		return rc;
+
+This is the only place where write_voltage() is called, may as well just
+inline it.
+
+> +	init_voltage = -EINVAL;
+> +	of_property_read_u32(reg_node, "qcom,init-voltage", &init_voltage);
+
+Why does this property exist and if it's needed why is it specific to
+this device?  It looks like the device allows you to read the voltage on
+startup from the regmap.
+
+> +	init_data = of_get_regulator_init_data(dev, reg_node,
+> +						&pm8008_reg->rdesc);
+> +	if (init_data == NULL) {
+> +		dev_err(dev, "%s: failed to get regulator data\n", name);
+> +		return -ENODATA;
+> +	}
+> +	if (!init_data->constraints.name) {
+> +		dev_err(dev, "%s: regulator name missing\n", name);
+> +		return -EINVAL;
+> +	}
+
+Just let the core find the init data for you, there is no reason to
+insist on a system provided name - that is an entirely optional property
+for systems to use, there is no reason for a regulator driver to care.
+
+> +	init_data->constraints.input_uV = init_data->constraints.max_uV;
+> +	init_data->constraints.valid_ops_mask |= REGULATOR_CHANGE_STATUS
+> +						| REGULATOR_CHANGE_VOLTAGE;
+
+This is absolutely not something that a regulator driver should be
+doing, the whole point with constraints is that they come from the
+machine.
+
+> +static int pm8008_parse_regulator(struct regmap *regmap, struct device *dev)
+> +{
+> +	int rc = 0;
+> +	const char *name;
+> +	struct device_node *child;
+> +	struct pm8008_regulator *pm8008_reg;
+> +
+> +	/* parse each subnode and register regulator for regulator child */
+> +	for_each_available_child_of_node(dev->of_node, child) {
+> +		pm8008_reg = devm_kzalloc(dev, sizeof(*pm8008_reg), GFP_KERNEL);
+> +		if (!pm8008_reg)
+
+You shouldn't be doing this, just unconditionally register all the
+regulators supported by the chip.  If they don't appear in the DT that's
+totally fine - it gives read only access which can be useful for
+diagnostics.
+
+--7ZAtKRhVyVSsbBD2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFEtnwACgkQJNaLcl1U
+h9CrJAf/TnpjaJxjPGDD/NDInzhqNZ3pu873PCgDW33FLzZrLDR9VA9y65y4D4V3
+5QTDdaeFkrw6Z7JCVafXdZ+FpkNFs8gObqtdDgiaAascU9fbKEJY1Vwsc+GUdH6m
+R07VKi0wvmn8Gjb12vUMkTBB+bZKlMBIRoFKSkavYSZmiKbeoLDRXZKq1V42rqv5
+BQeCB/irm3UeeuqkT9Ek7365vaVP7pdnDQ7N9DF3pS0P7Tly/zCMfW401VbwkMia
+jf2OR0Ke7h4C3NBUzLPlxW5JEbjZwVduiUJlNMvl/tW1CpcXNfnt7Fzq9/co+1/L
+y7hwKMN3pFDpeSByl63kPgWPQ80slQ==
+=HmpC
+-----END PGP SIGNATURE-----
+
+--7ZAtKRhVyVSsbBD2--
