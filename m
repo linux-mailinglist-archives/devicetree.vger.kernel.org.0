@@ -2,140 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 142CF41005B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 22:43:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201DF410074
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 22:58:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236494AbhIQUoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 16:44:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37244 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbhIQUoy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 16:44:54 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFE20C061574;
-        Fri, 17 Sep 2021 13:43:31 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id ay33so21331916qkb.10;
-        Fri, 17 Sep 2021 13:43:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cURptoPnmh8nPXIL1WD6aR8XbtjzUJTY/I85DjzE1Ec=;
-        b=YcJex6R4/YUKGwpA6LHeDHupG0hrNWpM/T6wzWN2Bijs6ouIHqTsAbOc66oyRRwm/t
-         kM2xx/EnAkyOF+Vmxjo6M5h8sy6EP9tz/SrKPJDzJP+x+xa+MBYuTFKsWo/BYvPyLZkz
-         3vuSbwXl/mFsKk3zheWHSrFPfn4096fdAmzOrJbDoh+4r/Vyf801DJcMQkYpz06fb2Re
-         Xnzj+Q7e+TMpE8w7PcvL7Quwl32ucZq2E4QL8z1qsp17ee2kXkl6ESldNLzDMJCOQTvH
-         qofNSTbs+Fy+VtYr+SpN0JlvqBrDSOrg6/nUZQ6A467Wyx3BceKoQzNh9ZY9wIpRmqq+
-         6VFA==
+        id S234935AbhIQU7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 16:59:40 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:46990 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243817AbhIQU7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 16:59:39 -0400
+Received: by mail-oi1-f180.google.com with SMTP id s69so8196381oie.13;
+        Fri, 17 Sep 2021 13:58:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cURptoPnmh8nPXIL1WD6aR8XbtjzUJTY/I85DjzE1Ec=;
-        b=HXw8/2iHy+NBrcjELADUn8Ui3PL8x5fY0SdG9gPenP/9bVYGV4LkFotOxqHWgsPKnN
-         7Xlzy1kNoMtnoyS1WyVyAMrHWvEf/Bt6cKeMqAAgla9dH6UuzJPXpIe0+vRqU+aypCao
-         4Ic/DnANGhQeMjjPwu+UVsYjKFcaWi3z0URetfpKGuoY5fktZ8R+SjutbOaTPvIot9/Z
-         z/LkMti2sNAbXtgvofVJdrlqq/xtH4QEZNohaiU/StzuHmJ+3gFz+vDvYIHFAVynC4uo
-         Wu2/q4QoKOPZA6C6GHW7DijHxVEgm8oxCyIpx2nKz86yUv/00G5bmx0eFraW4OiEcF/3
-         Nk0Q==
-X-Gm-Message-State: AOAM5302gb4NfhzZb4ZHFI+17BusGzAZzLoHj12KVzbpoHRVleMFUZHz
-        UDwemCcT18wB2jZZIAc2IwfmV7+49nLiShHzgDA=
-X-Google-Smtp-Source: ABdhPJwnUutnkolgj1UH1xmlNTDKws6K+v3ZaKVneH1VoEvZTRGXVtZh18KndhJ1hiUo/Bha3srK+W3HoiBrqMkBz88=
-X-Received: by 2002:a37:e14:: with SMTP id 20mr12927560qko.229.1631911410908;
- Fri, 17 Sep 2021 13:43:30 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=h2nvr9WySpUfoUUOMesCSZna6xZu3VYn2QdrgFpGv/g=;
+        b=vbEJx4oBqZEAAuFnj+0WQk7bdRb2pCRG0aYsqFymVRiiyxfXCd+aWJQ6nuinlSc5h2
+         mOVBBWT0V7M9Ol0fl0H0m5fcno3lb3OAt94WFhkvJsVrIVIgVP1H18lEDpuRzuYxerqP
+         ydDirplvg/I1ncqUxhfmb+PlN4DM1gOD8f7nlNIaempM6FRXyexVYSYKm/w43r1+6mbL
+         IDD9B3SWJ8OU5bljM605alx3jYYUnwG5WWV0XSTGxH8wQfa+1fovKDEYG1n+FwA3kw4a
+         3PoLhAeLz/AIhYeujk0tW1mdDU+xTFr7V9dEV5rWHD78G4f3pVy+9YqYfpLlW2afJEyA
+         Oc6w==
+X-Gm-Message-State: AOAM533zp7p+jCwBIMo49hp+u+UCRSwtu3DGyNvgVECCTydU+rcwr/Zr
+        p2BdIuaCKmHqSBRXT6RNgw==
+X-Google-Smtp-Source: ABdhPJwydEOAYBxgQx86qLyGG4a09V4cQkiUoZcCtBoBkuTbIV4Yb0NldnGGiWeu+bj/32qE7SHiIg==
+X-Received: by 2002:aca:2b05:: with SMTP id i5mr5522594oik.55.1631912296452;
+        Fri, 17 Sep 2021 13:58:16 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id b2sm1786450ook.46.2021.09.17.13.58.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Sep 2021 13:58:12 -0700 (PDT)
+Received: (nullmailer pid 2146896 invoked by uid 1000);
+        Fri, 17 Sep 2021 20:58:11 -0000
+Date:   Fri, 17 Sep 2021 15:58:11 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     David Brazdil <dbrazdil@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: restricted dma: Fix condition for rmem init
+Message-ID: <YUUBYx7qiwYjxhIG@robh.at.kernel.org>
+References: <20210917131423.2760155-1-dbrazdil@google.com>
 MIME-Version: 1.0
-References: <20210829091925.190-1-alistair@alistair23.me> <20210829091925.190-7-alistair@alistair23.me>
- <YS1DGuTTAEKAd2Yr@google.com> <PA4PR07MB7407FE9FE271191AC52F7EA387CE9@PA4PR07MB7407.eurprd07.prod.outlook.com>
- <YTcBOskPYjbv4q61@google.com> <CAF8JNh+PcYuaLL=ToS0hOT62YbVmMWY9BCT-CGx_x+AkKuO_Tw@mail.gmail.com>
- <YThQUtE757b/ExR4@google.com>
-In-Reply-To: <YThQUtE757b/ExR4@google.com>
-From:   Ping Cheng <pinglinux@gmail.com>
-Date:   Fri, 17 Sep 2021 13:43:18 -0700
-Message-ID: <CAF8JNhJL_AzqnpzPw5PRR1xczhMBscxwLHMN7tE2EGRH8PHu4A@mail.gmail.com>
-Subject: Re: [PATCH v10 05/12] Input: wacom_i2c - Read the descriptor values
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alistair Francis <alistair@alistair23.me>
-Cc:     "Tobita, Tatsunosuke" <tatsunosuke.tobita@wacom.com>,
-        linux-input <linux-input@vger.kernel.org>, linux-imx@nxp.com,
-        kernel@pengutronix.de, Tatsunosuke Tobita <junkpainting@gmail.com>,
-        linux-kernel@vger.kernel.org, alistair23@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210917131423.2760155-1-dbrazdil@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On Fri, 17 Sep 2021 14:14:23 +0100, David Brazdil wrote:
+> of_dma_set_restricted_buffer fails to handle negative return values from
+> of_property_count_elems_of_size, e.g. when the property does not exist.
+> This results in an attempt to assign a non-existent reserved memory
+> region to the device and a warning being printed. Fix the condition to
+> take negative values into account.
+> 
+> Fixes: f3cfd136aef0 ("of: restricted dma: Don't fail device probe on
+> rmem init failure")
+> Cc: Will Deacon <will@kernel.org>
+> Signed-off-by: David Brazdil <dbrazdil@google.com>
+> ---
+>  drivers/of/device.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
 
-On Tue, Sep 7, 2021 at 10:55 PM Dmitry Torokhov
-<dmitry.torokhov@gmail.com> wrote:
->
-> > > >
-> > > > Yes, our firmware supports HID over I2C.  However, some of our
-> > > > customers often do not want to use HID to handle our hardware; even
-> > > > they don't install the generic HID driver neither.  In such case, we
-> > > > need to distinguish what generation of our device customer's has. And
-> > > > to do so, we check I2C HID descriptor even though the driver is not
-> > > > working with HID driver components, but this one.  That is why I2C HID
-> > > > descriptor is used there. It is called, but the situation with this
-> > > > driver is not supposed to work as a HID device.
-> > >
-> > > I would like to understand better why the customers do not want to use
-> > > HID.
-> >
-> >
-> > Those customers normally run embedded Linux. Their hardwares have very
-> > specific use cases. They don't need to support any other HID devices except
-> > the Wacom i2c device.
-> >
-> > >
-> > There needs to be a _very_ strong reason to essentially duplicate
-> > > HID layer in a vendor driver and I inclined to say that such customers
-> >
-> > would need to patch their kernels themselves.
-> >
-> > They most likely don't want to duplicate HID layer. They just don't need
-> > most of the HID layer code.
->
-> They just need touchscreen support. Plus stylus support. And maybe
-> battery support. And maybe something else down the road... And they need
-> to introduce DT and ACPI descriptors to be able to mould the behavior to
-> platform needs. Which is pretty much the purpose of HID layer.
-
-I see your point.
-
-> > wacom_i2c simplifies their deployment and
-> > testing process. Most of those customers are very small companies...
->
-> And now please continue this train of thoughts and consider every touch
-> vendor. Wacom is not unique. We have Elan, Cypress, Weida, Goodix, etc.
-> etc. Vendor drivers were acceptable before we had I2C standard, but now
-> it is much better for everyone to share the efforts and use HID instead
-> of replicating it for every vendor.
-
-And I agree with you that we should share our efforts on the main tasks.
-
-However, with the same token of sharing efforts, I see the benefit of
-merging this set of patches upstream. From the version number we can
-tell the patchset has gone through at least 10 rounds of review and
-update. Alistair has put a lot of effort to get this far (Thank you
-Alistair for your time and effort!). A few community developers have
-also reviewed the patches. This set of patches thoroughly touched all
-parts of the components that related to an input i2c driver, which is
-much better than the original version. This patchset would be a great
-starting point for vendors to create their out of tree drivers, when
-necessary. It would also offer vendors a clear picture of what
-components they need to change/update to make their i2c input device
-work under kernel input subsystem.
-
-So, merging the patchset will benefit more people and preserve the
-effort that went into the patchset so far. If you like, you can add a
-comment in the patch mentioning that future effort should be directed
-to the i2c-hid subsystem, etc...
-
-I think the ultimate goal is to encourage more people to contribute to
-open source projects and to make Linux a great platform that everyone
-can work on easily.
-
-Thank you for your consideration and support,
-Ping
+Applied, thanks!
