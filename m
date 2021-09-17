@@ -2,86 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D0440EDDD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 01:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B221640EE5B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 02:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234627AbhIPXeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 19:34:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59730 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234450AbhIPXeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 19:34:24 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF0FC061764
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 16:33:02 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id m3so23281035lfu.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 16:33:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rjHqvEYv6+gMyg4Tq+Rh/G8JnWMIR7cUG1Fmcv07v/Y=;
-        b=mVwI96FJbGbROeb+waDs8Fr9jg58Ppg3G2f/qwPZr8axanVXE1bqdoj0ztls5rFeZs
-         7VP7jjoGJfuz3jYXmZXGUUni8EfJ0lHPi6gBIwHP/3X+JyNUfkM64ieQN7Eup9QB3k9+
-         vuJiV+V11n2Sz8DjTwNiUX7vhU6ELwHZd9a1rYo3jBA8DojYTwgzZN1KmzCSV73sP+lr
-         XQiXPoqQ9zuPRQKFU7kB7mBZs4lDHUt202CByLC5d9bKgKa3M18kMIbzFQ/7AvVQvp2f
-         Mv4pVqPYTnLLv3IYLLOI9QoERjjqo3vdcr/qYaQ/3TiL0X0yeZOBfspENrBEt6KUVBUs
-         6vIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rjHqvEYv6+gMyg4Tq+Rh/G8JnWMIR7cUG1Fmcv07v/Y=;
-        b=so552/O7FMLamN1JEYOxaKzXD42dPwY/wNGrFoqpknA4uaYcKjH978YMn9kOT3BM7F
-         BgeHMYJHQPxtCb6h8LJP9tBhrUAIptCDnow5zT/Vgpy5BIjJ+bpggyKhWqm7kQm1SoNu
-         +BRRtg76Zp1yHCNUhtxult78GduS3pPI5RshNSfDcJsIEGyUSLqebbf4DrcQ+cbRnz+N
-         APNs5X5xUD8aojD4qEuqwcvpYekZnfuJw619FTTnwlcwWm3QH6ITXP8y1TVda5Toq49+
-         id+dJD4anvV6eW9jb9zOftrFXgkAYOXsLwQxMTXsrdlHJygil8RFezLTvPeKdzAGmBje
-         qh6g==
-X-Gm-Message-State: AOAM533ADkdAS7vcVQt+nnZXEMW+MahKJXjbZhSYtz79pg1JNdvGuIGe
-        zzEekCKJ1AGSzjFHAAiOCxGFuzCyCXyaxLgunLKo3A==
-X-Google-Smtp-Source: ABdhPJx3qUqm8D+MvhzJv8yo3TmSo9hTYPFYIbXvo26tL6U4gur7fI6B/LsMvGG2bOFUWelJ1aarRW0hBAjmL6Wq+v0=
-X-Received: by 2002:a19:f249:: with SMTP id d9mr5952890lfk.229.1631835180984;
- Thu, 16 Sep 2021 16:33:00 -0700 (PDT)
+        id S241695AbhIQAfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 20:35:18 -0400
+Received: from mailout1.samsung.com ([203.254.224.24]:39280 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241693AbhIQAfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 20:35:18 -0400
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20210917003355epoutp01103197c4a63e71b8b88e20693bd2c0ba~ldMZS5KXC2402424024epoutp01i
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 00:33:55 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20210917003355epoutp01103197c4a63e71b8b88e20693bd2c0ba~ldMZS5KXC2402424024epoutp01i
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1631838835;
+        bh=ezRX2eO/DzzCCPiZ8REIobY3IaFhCJexUNSlqzsqieg=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=BHEfnET0g4r0V+Nn/+jUshLwPeBMxrACUBJZaFAtkkbGGoz5Q0cClumf0xT5dI4eC
+         a0+Ud2bXKBvi4mTzk1Ud73sezhIK9doM52p+u+nV95rvLWr0scvBYoWJCFtf1AU3uR
+         V8Z9ab2+4K55B3v5dw/JNrw3MPY+ppMLRWp38tdA=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20210917003354epcas2p3b6d2c94b7ac5685a7594b780e252b690~ldMYjEnNq1672416724epcas2p3T;
+        Fri, 17 Sep 2021 00:33:54 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.40.186]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4H9Zh06VmQz4x9QG; Fri, 17 Sep
+        2021 00:33:52 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        50.87.09816.072E3416; Fri, 17 Sep 2021 09:33:52 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+        20210917003351epcas2p22d539ff6e5cfbab4a77944afbef0cf76~ldMWFI18s1348013480epcas2p2V;
+        Fri, 17 Sep 2021 00:33:51 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20210917003351epsmtrp1f5d4f71bbab9c96a01fdb3bc3e1f77c7~ldMWEQzTT3271132711epsmtrp1Y;
+        Fri, 17 Sep 2021 00:33:51 +0000 (GMT)
+X-AuditID: b6c32a46-63bff70000002658-fc-6143e270ee3f
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        54.57.09091.F62E3416; Fri, 17 Sep 2021 09:33:51 +0900 (KST)
+Received: from KORCO039056 (unknown [10.229.8.156]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20210917003351epsmtip2c020abce850cabe1a85ddf3257c74231~ldMV3B0d60416604166epsmtip2P;
+        Fri, 17 Sep 2021 00:33:51 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Rob Herring'" <robh@kernel.org>
+Cc:     "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        "'Martin K . Petersen'" <martin.petersen@oracle.com>,
+        "'Mark Brown'" <broonie@kernel.org>,
+        "'James E . J . Bottomley'" <jejb@linux.ibm.com>,
+        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        <devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>
+In-Reply-To: <YUNdqnZ2kYefxFUC@robh.at.kernel.org>
+Subject: RE: [PATCH v12] dt-bindings: ufs: Add bindings for Samsung ufs host
+Date:   Fri, 17 Sep 2021 09:33:51 +0900
+Message-ID: <000a01d7ab5b$b00e9bc0$102bd340$@samsung.com>
 MIME-Version: 1.0
-References: <20210908013218.29702-1-wenbin.mei@mediatek.com> <20210908013218.29702-2-wenbin.mei@mediatek.com>
-In-Reply-To: <20210908013218.29702-2-wenbin.mei@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 17 Sep 2021 01:32:50 +0200
-Message-ID: <CACRpkdYxSwr05eK1x+BAgHxgccQWGUxW-_q_xSGmfkTHEbs+5w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: mtk-sd: add hs400 dly3 setting
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Yue Hu <huyue2@yulong.com>, Bean Huo <beanhuo@micron.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGJ/Jp92TpvhAoxglG1ohsbE35VEwH94E56AkiHA1isIIkFUA==
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOJsWRmVeSWpSXmKPExsWy7bCmqW7BI+dEg/tzJCwezNvGZjH14RM2
+        i/lHzrFaLLqxjcli49sfTBYzzu9jslh+/B+TReveI+wW//fsYHfg9JjV0MvmsWlVJ5vHhEUH
+        GD0+Pr3F4tG3ZRWjx+dNcgFsUTk2GamJKalFCql5yfkpmXnptkrewfHO8aZmBoa6hpYW5koK
+        eYm5qbZKLj4Bum6ZOUBXKSmUJeaUAoUCEouLlfTtbIryS0tSFTLyi0tslVILUnIKDA0L9IoT
+        c4tL89L1kvNzrQwNDIxMgSoTcjIuP1vFUjCZqeLG3pmsDYynGLsYOTkkBEwknrf3sXcxcnEI
+        CexglHj7cQoLhPOJUeLx3VZWCOcbo8SNNR+YYVre718CldjLKPF831VmCOcFo8T9hWfYQKrY
+        BPQlXnZsYwWxRQRUJZpmPWABsZkFXjFJzP6TBWJzChhJHFl2FWyqsICPxPPt84HqOThYgOov
+        vbcCCfMKWErc6NjGCGELSpyc+QRqjLzE9rdzoA5SkPj5dBnUKieJ6w/aWSFqRCRmd7aB3SYh
+        sJJDYu70v1BPu0i8nfwIyhaWeHV8CzuELSXxsr+NHaKhm1Gi9dF/qMRqRonORh8I217i1/Qt
+        YIcyC2hKrN+lD2JKCChLHLkFdRufRMfhv+wQYV6JjjYhiEZ1iQPbp7NA2LIS3XM+s05gVJqF
+        5LNZSD6bheSDWQi7FjCyrGIUSy0ozk1PLTYqMEKO7E2M4BSr5baDccrbD3qHGJk4GA8xSnAw
+        K4nwXqhxTBTiTUmsrEotyo8vKs1JLT7EaAoM6onMUqLJ+cAkn1cSb2hqZGZmYGlqYWpmZKEk
+        zjv3n1OikEB6YklqdmpqQWoRTB8TB6dUA1P5RK9PV0/U3oq07i+dtWN3+bveq3scLLTry1k2
+        fTJMF2V/eqIpQH6hU6jWzPQ0yTB/q3WHrrUmPP6UEN/7f4nuLvsFU757O+TU1k23yt7sEOnD
+        9S/lmQeny8v+j53nPJ+YRxepMb17JfqMR3GF3yc9mf2TbjwusBKZzeJ7SDtXastrw9//co5K
+        9fxRn2hzg8VPrnU3ywauHPPUzYsmtxbPsr2270PuW73SFavcVerSFCSsp2vMTNiwaseEpIo3
+        fhtvTe9fGz89cs5J11NTuVKYqtyCtiscFDFsk7rHMLF72bVP0tefrT1fErLf5r4w1/QQ9j/z
+        lU/s33nk5ub27ZYmFwOXakb+MmC4surutKdKLMUZiYZazEXFiQB1s1Z7OgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupnkeLIzCtJLcpLzFFi42LZdlhJXjf/kXOiwduDShYP5m1js5j68Amb
+        xfwj51gtFt3YxmSx8e0PJosZ5/cxWSw//o/JonXvEXaL/3t2sDtwesxq6GXz2LSqk81jwqID
+        jB4fn95i8ejbsorR4/MmuQC2KC6blNSczLLUIn27BK6My89WsRRMZqq4sXcmawPjKcYuRk4O
+        CQETiff7l7B2MXJxCAnsZpT49fssG0RCVuLZux3sELawxP2WI6wgtpDAM0aJ2b8DQGw2AX2J
+        lx3bwOIiAqoSTbMesIDYzALvmCTmzjWDGLqNUeJn+3GwBKeAkcSRZVeZQWxhAR+J59vnAzVz
+        cLAANV96bwUS5hWwlLjRsY0RwhaUODnzCQtICbOAnkTbRkaI8fIS29/OYYY4TUHi59NlUCc4
+        SVx/0M4KUSMiMbuzjXkCo/AsJJNmIUyahWTSLCQdCxhZVjFKphYU56bnFhsWGOallusVJ+YW
+        l+al6yXn525iBMeZluYOxu2rPugdYmTiYDzEKMHBrCTCe6HGMVGINyWxsiq1KD++qDQntfgQ
+        ozQHi5I474Wuk/FCAumJJanZqakFqUUwWSYOTqkGJvcChZVTI97eXCywrL6FL0pRNETuvtHV
+        st8dim9WL6pOL9v+b1bAnI+aV8SuiE1W5X6S3rRr9t4dE9O7k9LOtAh+vMaiOUdcav8HFp9D
+        2tsb7wcwrg9WlZpelGGxw/6h/w6zIxt+5UdMlt/rVsbSkpTPry2/kim6ZML8rrXnSpJ/zDgl
+        cDMmfLEKx/EDwlqZ15Z1e7l2/U0T9ZsY6OTnp33DUmDP7ugjTrYBWedW/Ll/voR7YUmmwPQz
+        B/x1qqPLPjXUlMXcyf+ZUxma8H+z+kPj3h9nYn+kH452+bda2eP1l+NTVD4dOsH5p3teUO2d
+        PH8N7m8P/P5dkTjS9imkM2kdm3yd32rZclPWRbvllViKMxINtZiLihMBONFDZyIDAAA=
+X-CMS-MailID: 20210917003351epcas2p22d539ff6e5cfbab4a77944afbef0cf76
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210915111909epcas2p345ed0a47b12d82d67ab28da1d9fd2eb8
+References: <CGME20210915111909epcas2p345ed0a47b12d82d67ab28da1d9fd2eb8@epcas2p3.samsung.com>
+        <20210915111844.42752-1-chanho61.park@samsung.com>
+        <YUNdqnZ2kYefxFUC@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 8, 2021 at 3:32 AM Wenbin Mei <wenbin.mei@mediatek.com> wrote:
+> Applied, thanks!
+> 
+> 
+> Sorry it fell thru the cracks, but it taking a year to notice is not
+great.
+> If no one cares enough to notice, why are we applying any of it.
+> 
 
-> Add hs400 dly3 setting for mtk-sd yaml
->
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+Thanks. Take care of the patches next time not to delay :).
 
-Excellent doc!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Best Regards,
+Chanho Park
 
-Yours,
-Linus Walleij
