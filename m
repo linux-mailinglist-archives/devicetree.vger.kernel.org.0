@@ -2,213 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05C4D40EE6F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 02:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E62CD40EE7A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 02:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241876AbhIQAr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 20:47:28 -0400
-Received: from mail-eopbgr1320129.outbound.protection.outlook.com ([40.107.132.129]:34272
-        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234570AbhIQAr2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Sep 2021 20:47:28 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SsUbbcEwAFDjY2i5NVWmIeFkT9JHP85yVF6RkPxt6hoOMdf5XgpP53BFCGO0jGQSw0LbksB2EHNPMMIgr1R+qKYfokDHd/0IBo32ydP+0Q8YxeviasWl9MqX/AejfXE4fJiIyTAX2/tzjnxbXS1l+TMM3AMwSJD7WqrL7DnCQSN6HnN6KHGYk5geb6tc3CdJAU7TIFW34tm8FDDZgIhLVbGkLzGy0xXv6yiTQL6HQA1pbXlkdw/CN7Vj1+8T3mIJYSgmPQZqMW7c3OXY4pJuEpOt2MhaJ264tz3aNK2O2edqlBo1xkQCam2DtPZbcUYP7Gagx50IQNjX81B82Q5D7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=FB4ptc6hYyJcHI4zkbLFJq8A8pXG6F0KqjxYaDTlXzw=;
- b=H25lD/jNYADUcVMP4TRiqwwQfEhHw8UFRXl7q3JUSBR65kaenrspI5LUXQ6i5eNmqAEj+azdezvmYDvx8FUvZvKALR2EbFXRaLe2sE6us1+tLp/UGqhqYUTXfb9/FdNC3107VXNU+2CRGxQfUA6t6+dmvtdOzmOeCVqNiNV1TeEbeFsuqWuyw8fdGqOUQaHfkIL32hEfRYppgN1yd7cU80WkMQK3JxFT4oiQ5DPhwtX5yH8wIpOT1gfJ6s0RI1hDxJ1Gh2FOyl5jNgy5VRK4N9kdT+eEZeX/RyRS8PUVYwKog4fbWVXrx+Yw4wTq3KTKe6sR5LWBdU5umE7l4gOv2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FB4ptc6hYyJcHI4zkbLFJq8A8pXG6F0KqjxYaDTlXzw=;
- b=Hx7XcTcujnYz8xQsN5aJOEAL91mWwaZ5/m34DxRnwskvN+l3EpGZK52yKF9wvJ2J75zUIcLnDcwcz7cBe7Ox8OsP+ANIG3YKqNNjNRXsELF/yCnPdXzhIohaUT4KRyLNRh6Blvmz3Fu5DhmrfPdWmM7VUWIRfz45kXeVXlqP21r2xNJhYfD7W2GOpBKw07rXnbICqOI4QuXTpOC0Yf5jUmX02ioa6u7bI9cLQ6G9F1L0QmRg26Ijv2s1haFMuoNxSaSPZ4W+e6bdt4PXB4jfssAlYHDnQIrVzeFeqnElXZShBYG9InFrVGk0v5OxsECitszSiML17juTgTgjIucwWA==
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
- by HK2PR06MB3251.apcprd06.prod.outlook.com (2603:1096:202:3a::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.18; Fri, 17 Sep
- 2021 00:46:02 +0000
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::3517:6c51:50d:1a55]) by HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::3517:6c51:50d:1a55%3]) with mapi id 15.20.4500.019; Fri, 17 Sep 2021
- 00:46:02 +0000
-From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "osk@google.com" <osk@google.com>,
-        "yulei.sh@bytedance.com" <yulei.sh@bytedance.com>
-Subject: RE: [PATCH v5 2/4] dt-bindings: aspeed: Add UART routing controller
-Thread-Topic: [PATCH v5 2/4] dt-bindings: aspeed: Add UART routing controller
-Thread-Index: AQHXqtz27VKj1AH6l0KtPAiIVT2SLqunGmaAgABJ27A=
-Date:   Fri, 17 Sep 2021 00:46:02 +0000
-Message-ID: <HK0PR06MB377954A91F788E4B091CAA1891DD9@HK0PR06MB3779.apcprd06.prod.outlook.com>
-References: <20210916092515.10553-1-chiawei_wang@aspeedtech.com>
- <20210916092515.10553-3-chiawei_wang@aspeedtech.com>
- <YUOmq4hLoP2ds18w@robh.at.kernel.org>
-In-Reply-To: <YUOmq4hLoP2ds18w@robh.at.kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 08df6254-b07e-415f-ef54-08d979748666
-x-ms-traffictypediagnostic: HK2PR06MB3251:
-x-microsoft-antispam-prvs: <HK2PR06MB3251149A31A19A9B42AAED2991DD9@HK2PR06MB3251.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 3c5Po67P+Gq1UZG+1eRUFP0YBGFzEHQo2aVk7nBCGbGzP+nS7wZA2PVB/33ZVbSNZZgKPv0U8xOHu+Ee/DAFDWy9UVIK7OONKimuDsmtJb4KptNxVefaNEudS8t2KI8BCqhIaKUX6iDPLeotV2fjneGWJSBgjdJItqOyLJjwPNSUHCg3iQIbzFfvyaIMt9pM9s/WckTZMwgsGTCu9L7L3cNPAPwUMu3HNfbhPct1N8NRYhMkU9+B5p2b4ilqRTJq95w6fHTyJzoMJvfIxmmy1fa5EdkFT9mp4OlpOsPLSNyYP1g7B46qJaYXsq8D5Mn+jBkyABe5Q6gtTyZOkABzc/9uqLXiN0EQsN5pT2fsxi8p+J1kf+SOlXwT0EzXIc8m+9AjTyY94bLFhkY4MwNz/K1mwNhsi47N6S0MK5MJYuDmstxYM+sBwpKVRFD+YVUDrm/tBCkQsXlLX0PzXRc187n0P8AmvX0+r0/x0l7yjxtbo4xtr9hci8Ert4UT69e0DBUGPLREsWn3gTlQKZv1LnIbR6mQZcoFSZyNWP98ftqYz3oxP2aqbf/ySLt0m9ov048NxxY7PBHTa0VogYWKW3tgxGbFExcFp+l/Ti1ZPHVzE9fIniLh3DyyLqTnLrmsoZiyoVQ6oa6HxdgQr7nmNF4AO1DwZcQMm0ZyW81BNqb052LLwpTXjrp3Jq9wpONCkwCdrU8yaiHXrOLM3DrOLHlCd6gYaixZbFJc7uv3q/VAQwDoihRgDZZsLYdbYSTi6TZInFm2EngSi0kzQOv4AAf3ic/ELGJFWDBm90cP5fsnT41LEljivc4eFAO0wzIAfZPrYXW4TknUBuViC+knag==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(396003)(346002)(366004)(39840400004)(136003)(64756008)(6916009)(8936002)(26005)(122000001)(316002)(33656002)(52536014)(66446008)(9686003)(4326008)(38070700005)(76116006)(6506007)(478600001)(66556008)(55016002)(186003)(5660300002)(71200400001)(7416002)(86362001)(83380400001)(7696005)(54906003)(66476007)(38100700002)(8676002)(2906002)(66946007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yRLnkzl8rbfPl0Mjc8MIAVAVLgiClyKwN6wkwTm0Y7F6toD6Yfy6GckcqK4E?=
- =?us-ascii?Q?8KlXagtfzJI1Yhi/3lYOSvzfx5dgtbSoF2SCg2l9AcTvyztN3kFgdEKt90tZ?=
- =?us-ascii?Q?opmDVtVBMCNHJLbLrlxY/LC2ZQ/0H40+xtj+QG8hFt1RpYxtDczCXgDyLK0M?=
- =?us-ascii?Q?0opzXmF/cWCQqS1LFazN5TWFwyKhsnH/6A49EbzWpeXoInfCrmCebsJjdiAm?=
- =?us-ascii?Q?Zrx4NYE9O8t3siZiHp0lwmaYKcgE+U3s5P4+FMB5knCwkPoh8ANno/NfXPcW?=
- =?us-ascii?Q?bd1/13hOJqOOOLwztK2yb8NtUPO06FBc2lGU1nBuZsBAm6Yw5o674uLWwqyo?=
- =?us-ascii?Q?6Vt2RgDtVb9bZreAznpvVe1sIww62ShT/fB1Y/bl2fyh1Lw/6A4kV9+/H65w?=
- =?us-ascii?Q?nGDxSYxuon3+pgOxwWdSYhWtySAaQxZifAJ3aC4h8kIJqdKbpyLp3z/6fVV3?=
- =?us-ascii?Q?Z5bmzVlYKdYmJWouJPZCaP/LfEjoqsB6X2oxo/BEQUOuXdUWt7Wy2sJ7RiS8?=
- =?us-ascii?Q?LyhopboEzAEA2oybVT46E8wAQwWTVbQ0NeCqk9/z5RWuHgR17/ZPrYOORSLf?=
- =?us-ascii?Q?FCqkb1gKRm2aSlDwLXVeUkf1Q46MX1mcTYI9c5zWtL71wjM7wRdKPn7JYlNX?=
- =?us-ascii?Q?YTaMcdm+WcHliTtD/y519JM35pYQCTcRg8WLTyDd8R5UeLmyWGYVg9y8PoaL?=
- =?us-ascii?Q?1vDnTokGW7kt6/hZa16MbdgjneItlxcQXEbvGhow/drqFUPppOvxSjogH8Ec?=
- =?us-ascii?Q?dGINxsTWMF6h7Of8g+tMDj0ee4Z37KqFR3ufzMdHh+hIaSZnUJSCO33iE6DO?=
- =?us-ascii?Q?L7f0+U3aFMzlpAjXSI1rKzNtbXhvGMKFUX8Pv0AQ1Qmlm/AGbm2rUbIQ4Ot9?=
- =?us-ascii?Q?wcpt53nfLrdHx6Bn5fgyqFTCkYB+sF9pP5/QiceHS+aT29cbK4RdeYQ8p22Z?=
- =?us-ascii?Q?NkzyZp+JbFzfNAAJORwxA3kardmpor7tsyHFH/0sd2SQiIuuZTizqFAGn+zA?=
- =?us-ascii?Q?cugPRKoHbG7Xj8tF3LMNWRVO7jPYVEIcD9feATEfOtrDBUnWjMqceV9KCDaX?=
- =?us-ascii?Q?W4ynjShrjZhPSfu3xb2Fe3o5mSpnf/9OuF42JHnrQNWWvvEQROyNk5ZnVpvg?=
- =?us-ascii?Q?DJhsrvTuZjK//LuFDnOYY8I553cn4DLTX3aAUQT7hLUzg4FdyKDW1Em0O4Cc?=
- =?us-ascii?Q?d1V3XxqhLXF8KvK6qp2qeh5jqIGU4s0/9Qiq6008bQbMkFPLdaePC8Xj9gzR?=
- =?us-ascii?Q?0lcVasW4t8PNUkuMhzRlUXjkwa3SDxndYx0DdCz+85u8JMe7PP6cEtXUJhjo?=
- =?us-ascii?Q?Lis/wKvp7xJPIFCvbtXt+IaZ?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08df6254-b07e-415f-ef54-08d979748666
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2021 00:46:02.5867
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AbnsoY2g92ZbHQPv/JZ9M/FHM439ts3MVLeE+MQpVqSp/fP14O8RChubUvzIVrh1c9I5fgM6D8HmgCHMMbaTg86uzK8qJwqEbsTPCf441As=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR06MB3251
+        id S241964AbhIQAud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 20:50:33 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:42767 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241940AbhIQAuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 20:50:32 -0400
+Received: by mail-io1-f45.google.com with SMTP id b10so10129448ioq.9;
+        Thu, 16 Sep 2021 17:49:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=O2spRFbCOUOnJB6jpuql0vC/edxjCzLdfxtqH2j6VJY=;
+        b=akoeOCAhxYyq/H1IFVgR7tbJQyPFPJil1DlSfIPvV4zWRkTXnGQrlttUdgj5MIRLyJ
+         x8an9OgrtqRX9a0/UoijksXVKbaSy4LsM5Lb9fSzm16R9WqtwjEbcI2LvJpwVFabPmeb
+         tDWXMINWskGMeMQeLfA/ILTUrooztAorVWMkQcCJ9mSa0DYCaFFwU0gp2J0oKgtFNna4
+         9icVz3G39/Gul0QgGSZUJJ3NPjRNtNXdXXKrwiJPYSf0N8BafF8V+sakYdADmUfSSvIh
+         jC5oJ/gezFy/cGoYPSvEoI2VoJXiYVXPC6ngSfTNZSiCpSrERhMfhP/s96Q9FI81OrVk
+         qTXQ==
+X-Gm-Message-State: AOAM533IM4lqsoeMPpdyMA/G5EZDLMixoiJx62SQ91AmP8fIKoIFj3QS
+        bLHH2GLk716IOAwRzUe75A==
+X-Google-Smtp-Source: ABdhPJzecYiE/DMtj7b8c+o0dRLsJAM1UEhGjCxttMsu3UhHMST0+ADy/DBp106ezADEWTugRBTCtw==
+X-Received: by 2002:a5d:8505:: with SMTP id q5mr6382635ion.53.1631839751026;
+        Thu, 16 Sep 2021 17:49:11 -0700 (PDT)
+Received: from robh.at.kernel.org (96-84-70-89-static.hfc.comcastbusiness.net. [96.84.70.89])
+        by smtp.gmail.com with ESMTPSA id a16sm2663931ili.64.2021.09.16.17.49.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Sep 2021 17:49:10 -0700 (PDT)
+Received: (nullmailer pid 1484028 invoked by uid 1000);
+        Fri, 17 Sep 2021 00:49:06 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Alvaro Gamez <alvaro.gamez@hazent.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Lee Jones <lee.jones@linaro.org>,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, michal.simek@xilinx.com
+In-Reply-To: <20210916180544.2873770-1-sean.anderson@seco.com>
+References: <20210916180544.2873770-1-sean.anderson@seco.com>
+Subject: Re: [PATCH v7 1/3] dt-bindings: pwm: Add Xilinx AXI Timer
+Date:   Thu, 16 Sep 2021 19:49:06 -0500
+Message-Id: <1631839746.883519.1484027.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Thu, 16 Sep 2021 14:05:41 -0400, Sean Anderson wrote:
+> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is a
+> "soft" block, so it has some parameters which would not be configurable in
+> most hardware. This binding is usually automatically generated by Xilinx's
+> tools, so the names and values of some properties should be kept as they
+> are, if possible. In addition, this binding is already in the kernel at
+> arch/microblaze/boot/dts/system.dts, and in user software such as QEMU.
+> 
+> The existing driver uses the clock-frequency property, or alternatively the
+> /cpus/timebase-frequency property as its frequency input. Because these
+> properties are deprecated, they have not been included with this schema.
+> All new bindings should use the clocks/clock-names properties to specify
+> the parent clock.
+> 
+> Because we need to init timer devices so early in boot, we determine if we
+> should use the PWM driver or the clocksource/clockevent driver by the
+> presence/absence, respectively, of #pwm-cells. Because both counters are
+> used by the PWM, there is no need for a separate property specifying which
+> counters are to be used for the PWM.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
+> 
+> Changes in v7:
+> - Add #pwm-cells to properties
+> - Document why additionalProperties is true
+> 
+> Changes in v6:
+> - Enumerate possible counter widths
+> - Fix incorrect schema id
+> 
+> Changes in v5:
+> - Add example for timer binding
+> - Fix indentation lint
+> - Move schema into the timer directory
+> - Remove xlnx,axi-timer-2.0 compatible string
+> - Update commit message to reflect revisions
+> 
+> Changes in v4:
+> - Make some properties optional for clocksource drivers
+> - Predicate PWM driver on the presence of #pwm-cells
+> - Remove references to generate polarity so this can get merged
+> 
+> Changes in v3:
+> - Add an example with non-deprecated properties only.
+> - Add xlnx,pwm and xlnx,gen?-active-low properties.
+> - Make newer replacement properties mutually-exclusive with what they
+>   replace
+> - Mark all boolean-as-int properties as deprecated
+> 
+> Changes in v2:
+> - Use 32-bit addresses for example binding
+> 
+>  .../bindings/timer/xlnx,xps-timer.yaml        | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
+> 
 
-> From: Rob Herring <robh@kernel.org>
-> Sent: Friday, September 17, 2021 4:19 AM
->=20
-> On Thu, Sep 16, 2021 at 05:25:13PM +0800, Chia-Wei Wang wrote:
-> > Add dt-bindings for Aspeed UART routing controller.
-> >
-> > Signed-off-by: Oskar Senft <osk@google.com>
-> > Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> > ---
-> >  .../devicetree/bindings/mfd/aspeed-lpc.yaml   |  4 ++
-> >  .../bindings/soc/aspeed/uart-routing.yaml     | 70
-> +++++++++++++++++++
-> >  2 files changed, 74 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/soc/aspeed/uart-routing.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-> > b/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-> > index 54f080df5e2f..697331d840a0 100644
-> > --- a/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-> > @@ -142,6 +142,10 @@ patternProperties:
-> >        - interrupts
-> >        - snoop-ports
-> >
-> > +  "^uart-routing@[0-9a-f]+$":
-> > +    $ref: /schemas/soc/aspeed/uart-routing.yaml#
-> > +    description: The UART routing control under LPC register space
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > diff --git
-> > a/Documentation/devicetree/bindings/soc/aspeed/uart-routing.yaml
-> > b/Documentation/devicetree/bindings/soc/aspeed/uart-routing.yaml
-> > new file mode 100644
-> > index 000000000000..534b2a9340ce
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/aspeed/uart-routing.yaml
-> > @@ -0,0 +1,70 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) # #
-> > +Copyright (c) 2018 Google LLC # # Copyright (c) 2021 Aspeed
-> > +Technology Inc.
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/soc/aspeed/uart-routing.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Aspeed UART Routing Controller
-> > +
-> > +maintainers:
-> > +  - Oskar Senft <osk@google.com>
-> > +  - Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> > +
-> > +description:
-> > +  The Aspeed UART routing control allow to dynamically route the
-> > +inputs for
-> > +  the built-in UARTS and physical serial I/O ports.
-> > +
-> > +  This allows, for example, to connect the output of UART to another U=
-ART.
-> > +  This can be used to enable Host <-> BMC communication via UARTs,
-> > + e.g. to  allow access to the Host's serial console.
-> > +
-> > +  This driver is for the BMC side. The sysfs files allow the BMC
-> > + userspace  which owns the system configuration policy, to configure
-> > + how UARTs and  physical serial I/O ports are routed.
-> > +
-> > +  Two types of files, uart* and io*, are presented in sysfs. The
-> > + uart*  configures the input signal of a UART controller whereas io*
-> > + configures  that of a physical serial port.
-> > +
-> > +  When read, each file shows the list of available options with
-> > + currently  selected option marked by brackets "[]". The list of
-> > + available options  depends on the selected file.
-> > +
-> > +  e.g.
-> > +  cat
-> > + /sys/bus/platform/drivers/aspeed-uart-routing/*.uart_routing/uart1
-> > +  [io1] io2 io3 io4 uart2 uart3 uart4 io6
-> > +
-> > +  In this case, UART1 gets its input from IO1 (physical serial port 1)=
-.
->=20
-> This is about documenting the hardware, not an OS driver.
->=20
-> sysfs files have their own documentation.
->=20
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Understood. I will remove this sysfs description from bindings in the next =
-revision.
-Thanks.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml:71:111: [warning] line too long (154 > 110 characters) (line-length)
 
-Chiawei
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1529007
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
