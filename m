@@ -2,125 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FC9640F2F9
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 09:17:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0BE640F33B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 09:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238768AbhIQHSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 03:18:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55958 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238726AbhIQHSh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Sep 2021 03:18:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 512AE61152;
-        Fri, 17 Sep 2021 07:17:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631863035;
-        bh=ja8+tLdTmXfno2EXHr51WCR4GUxc76U00kgVCyJ/NGo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=M4ewBQPtOqclfz0Ur4bXuvZKTjWgHGjINFiOawT7DeG8XrFKcauPh5bd7a9DXG/3N
-         VD3oPf2BhVIcMKZ6QKsNO8wZTcWOqMEtvd6MRFK9aNK6EqzM0mnMlxuLb1D9Q4sgSY
-         Iz/Pma94UcjIpkwjJ5BOumdpzaMBRwyXqOCaKIosCvsNhJqio5gxSKaQVTImdvReMi
-         TEWuOMlom04nNjWa3Yw7vARiih+dcMvuHShiv5xMCjjoyhRzLyoysS+Zli9Gu2JwiE
-         y4AiuolYY/i6UTP4mRGd56UFiXpoLys3x1OIbCQ1UZabOOIPJOd/ASxUtKc5OhqzQ4
-         /pPszyUB5KTLw==
-Subject: Re: [PATCH v3 8/8] memory: gpmc-omap: "gpmc,device-width" DT property
- is optional
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        tony@atomide.com
-Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
-        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210907113226.31876-1-rogerq@kernel.org>
- <20210907113226.31876-9-rogerq@kernel.org>
- <aa465bd9-b3d5-8d75-3e59-e86c2cd093cd@canonical.com>
- <a881ac1f-2f00-e675-aea6-154b28ca6eff@kernel.org>
- <35643319-e3b0-bde1-c51b-57c3b5474146@canonical.com>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <d574837c-b42a-53be-7885-9feb7183ce96@kernel.org>
-Date:   Fri, 17 Sep 2021 10:17:10 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S241052AbhIQH3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 03:29:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52610 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240983AbhIQH3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 03:29:18 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDE8FC061764
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 00:27:56 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id x6so13500140wrv.13
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 00:27:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=yxTXBHJqU7RR9a49yqQjWpbG2NbNPVK/5PjCc/Yjeb8=;
+        b=Qbk2KEturmAbJqgDKUYYrlSgYiyY3lGDetYhmrEK+NGbKMuJIuxfGqmYBW4w/YT/88
+         ZtDCrIjDIIWXG3RoM7CBo0OB49876VpHXTTA6Ty12wDY/OhuHyLHU1lI8uvIpVLKJ06Y
+         BjATW35xbrTCwHQ3ZKSyoLB/9DwY/5R0vIYYRFGw+LTTQNl3VWmP0uTxUsX6xxt2Zqp2
+         DFflrYRBGLQ4GPP+ldEB+Hv5TAs9Uj7jvLMJ3zBvvO3g0eZiba48c/oMaK2h9OE5eixx
+         awZhmfRJC6Mi16EWsNltIFhfsd4eOcfP1KMiB+WJ/WR5mPloUeDDcA03lDDhveExjnH2
+         ZKjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=yxTXBHJqU7RR9a49yqQjWpbG2NbNPVK/5PjCc/Yjeb8=;
+        b=53928weooxWHW4A2O5w0pp4SDXNzy3tEG4/rYtptLzpEjHlGG/7N48tcbaWr0KTFyz
+         ywQ+Wf9RKDCbtGh2tCy74L7MXnbkFjGwcWfNx00y7IbT0J+cLmjKJJzWy2mBncMyMY91
+         uf1QQyYPJNZHPdQBn6AT8X8PJLnxDPTWeW/POQZ83L8Y384EfU+mDi3pfqD3m89FGXoo
+         f/i4CpCONzWstjAg/yQDsAwR++twHsncHy38e6Cv0nbXQMW2xK9OgCR/wnGtVNj5zQ/W
+         gccmzHrt+eUKkJUjaKij8t5oWh2xfajmmErJzQy5HDzKAY+WBdJcNMfGvZOtDPwHu3G7
+         o7Zg==
+X-Gm-Message-State: AOAM530QiQKWJaj2eSiSd9c7NNPVntRBeznpkESB+Y1dfutNqm5BpoyB
+        04PKYBzhqGwOotPlQjJNeMaQ3g==
+X-Google-Smtp-Source: ABdhPJxkIQE8ZUfNFBVHAIoWL72FYkFUxDDXpV2GYzAp6lpUk9xvBeKN6+Jp9yTAX7/9u+HFkXAqqA==
+X-Received: by 2002:adf:fd12:: with SMTP id e18mr10449923wrr.275.1631863675219;
+        Fri, 17 Sep 2021 00:27:55 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:7c8c:5a9b:1b6e:1623])
+        by smtp.gmail.com with ESMTPSA id o2sm6500714wrh.13.2021.09.17.00.27.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Sep 2021 00:27:54 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     Vyacheslav Bocharov <adeep@lexina.in>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 0/4] arm64: meson: add support for JetHub D1/H1
+Date:   Fri, 17 Sep 2021 09:27:52 +0200
+Message-Id: <163186366690.1044811.10268335087144036716.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210915085715.1134940-1-adeep@lexina.in>
+References: <20210915085715.1134940-1-adeep@lexina.in>
 MIME-Version: 1.0
-In-Reply-To: <35643319-e3b0-bde1-c51b-57c3b5474146@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On 16/09/2021 13:48, Krzysztof Kozlowski wrote:
-> On 15/09/2021 11:11, Roger Quadros wrote:
->> Hi Krzysztof,
->>
->> On 07/09/2021 15:36, Krzysztof Kozlowski wrote:
->>> On 07/09/2021 13:32, Roger Quadros wrote:
->>>> Check for valid gpmc,device-width, nand-bus-width and bank-width
->>>> at one place. Default to 8-bit width if none present.
->>>
->>> I don't understand the message in the context of the patch. The title
->>> says one property is optional - that's it. The message says you
->>> consolidate checks. How is this related to the title?
->>>
->>> The patch itself moves around checking of properties and reads
->>> nand-bus-width *always*. It does not "check at one place" but rather
->>> "check always". In the same time, the patch does not remove
->>> gpmc,device-width check in other place.
->>>
->>> All three elements - the title, message and patch - do different things.
->>> What did you want to achieve here? Can you help in clarifying it?
->>>
->>
->> OK I will explain it better in commit log in next revision. Let me explain here a bit.
->>
->> Prior to this patch it was working like this
->>
->> 	/* in gpmc_read_settings_dt() */
->> 	s->device_width = 0;	/* invalid width, should be 1 for 8-bit, 2 for 16-bit */
->> 	of_property_read_u32(np, "gpmc,device-width", s->device_width);
->>
->> 	/* in gpmc_probe_generic_child () */
->> 	if (of_device_is_compatible(child, "ti,omap2-nand")) {
->> 		/* check for nand-bus-width, if absent set s->device_width to 1 (i.e. 8-bit) */
->> 	} else {
->> 		/* check for bank-width, if absent and s->device_width not set, error out */
->> 	}
->>
->> So that means if all three, "gpmc,device-width". "nand-bus-width" and "bank-width" are missing then
->> it would create an error situation.
->>
->> The patch is doing 3 things.
->> 1) Make sure all DT checks related to bus width are being done at one place for better readability.
+On Wed, 15 Sep 2021 11:57:11 +0300, Vyacheslav Bocharov wrote:
+> Add support for new home automation devices.
 > 
-> Not entirely. The gpmc,device-width is still done in the other place
-> because you did not remove it from the code. Unless you meant parsing of
-> gpmc,device-width not reading from DT? But then another round of checks
-> is in gpmc_cs_program_settings() so not in one place.
+> JetHome Jethub D1 (http://jethome.ru/jethub-d1) is a home automation controller with the following features:
+> - DIN Rail Mounting
+> - Amlogic A113X (ARM Cortex-A53) quad-core up to 1.5GHz
+> - no video out
+> - 512Mb/1GB LPDDR4
+> - 8/16GB eMMC flash
+> - 1 x USB 2.0
+> - 1 x 10/100Mbps ethernet
+> - WiFi / Bluetooth AMPAK AP6255 (Broadcom BCM43455) IEEE 802.11a/b/g/n/ac, Bluetooth 4.2.
+> - TI CC2538 + CC2592 Zigbee Wireless Module with up to 20dBm output power and Zigbee 3.0 support.
+> - 2 x gpio LEDS
+> - GPIO user Button
+> - 1 x 1-Wire
+> - 2 x RS-485
+> - 4 x dry contact digital GPIO inputs
+> - 3 x relay GPIO outputs
+> - DC source with a voltage of 9 to 56 V / Passive POE
+> 
+> [...]
 
-By checking I meant parsing. But you are right, I missed the part in gpmc_cs_program_settings().
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.16/dt64)
 
-> 
-> If you consolidate the checks to one place, I would expect the code to
-> be removed from other places, so from gpmc_cs_program_settings() and
-> gpmc_read_settings_dt(). Since this is not happening, the message
-> confuses me.
-> 
->> 2) even if all 3 width properties are absent, we will not treat it as error and default to 8-bit.
-> 
-> This is not mentioned in commit msg.
-> 
->> 3) check for nand-bus-width regardless of whether compatible to "ti,omap2-nand" or not.
-> 
-> Also not mentioned in commit msg.
-> 
-> Your commit reorganizes parsing and validating the child DT properties
-> but it does not change from "multiple place" to "one place".
-> 
-> At least I don't see it.
+[1/4] dt-bindings: arm: amlogic: add bindings for Jethub D1/H1
+      https://git.kernel.org/amlogic/c/c649e25c0fcd53e0f1e83f710fefbda9d2809c32
+[2/4] dt-bindings: vendor-prefixes: add jethome prefix
+      https://git.kernel.org/amlogic/c/a1732cca0ed3d1ac2a256d16302c93443d636146
+[3/4] arm64: dts: meson-gxl: add support for JetHub H1
+      https://git.kernel.org/amlogic/c/abfaae24ecf3e7f00508b60fa05e2b6789b8f607
+[4/4] arm64: dts: meson-axg: add support for JetHub D1
+      https://git.kernel.org/amlogic/c/8e279fb2903990cc6296ec56b3b80b2f854b6c79
 
-OK. I will write a better commit log next time. Thanks for the review :)
-
-cheers,
--roger
+-- 
+Neil
