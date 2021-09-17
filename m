@@ -2,109 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3CFF40F341
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 09:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D13240F351
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 09:32:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239161AbhIQHa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 03:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52902 "EHLO
+        id S240404AbhIQHdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 03:33:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236843AbhIQHa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 03:30:26 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92ABCC061574;
-        Fri, 17 Sep 2021 00:29:04 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id y28so29176675lfb.0;
-        Fri, 17 Sep 2021 00:29:04 -0700 (PDT)
+        with ESMTP id S230393AbhIQHdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 03:33:40 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5A6C061574
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 00:32:18 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id y132so6573665wmc.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 00:32:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tmHkW0s9+t/ONd+yDxBn//RRzbrXvdLqidVR1RkmYM0=;
-        b=Y6iqwhp+URme2AkzCH6L9p/AD3OAkrXgDg2Hd/frLGzetlzUbIKV6+bnRjZGnvshpy
-         /l8JJ277oOtCeGJJ+DIERy4c4FADZE2AqvdS92eFtq/8iEmpcFZinGXcBomIteSyN1Os
-         H3zJHZMJpwnkl7B7C0uAOdR7Xs1mVHHWqQlFZ2m9sX4BgjcX3cXxbOXpD8sEky+cBYuQ
-         eQfK/R7Xt5X8Pg5GjhjLBy5p8YD7AEDm12cjWqdvDAIYFnAudALwgNruuGmwu5zBUfSA
-         vEukpaGJ7dGG4X8IEUpFe3U3uBvfYSpn9dWoQ0hv64jo7eyWAWFBU38H0V2URk/a0sfW
-         ZLcQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=2THikK+ZWL+RF3hVyz41egxjiPVtWjXYvxUpPXvBXFY=;
+        b=5jTefkWXREWF2cGsPQ1xqboI1NOUcMMKqOp5GGGKX00o++JvixQQFdZgiGhbfPztZW
+         AWuZRDnm+43FAef/op1HcpXS5j5SaqtpytYaUTTWGt26kR8idjX3hjDIm4xd77FB0yOf
+         Zg2uVfTXBQwBb+UVwlX7pkgaC7U3ixigzPp+XHaoyGFnz3Z+NiQe/JeGlrbFf2WhUO1x
+         HwGLMSBt8273hll9oKHJOn9F29xiTgehodeF6NF6jCzz46EEzqGDdxK1KrLSAcsB1RXW
+         T5PZBO1tvfEfNlGA1jrDFfX5T9SLQsmJ71rhoG0BZFNYdTStf0bJbkfrrKLlEc7BfmlT
+         jVHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tmHkW0s9+t/ONd+yDxBn//RRzbrXvdLqidVR1RkmYM0=;
-        b=QQefVU8HDeVsPRKG/srJnRn1Vn+AINLWD6wLvwNd0s3W0SwKUW8ns10eg4V5/OuJ0E
-         FVXUvRXuR0dvdntF3y6z7ryHa8XmthU1aOyBIzYJ771sq46xXRbPzs7sKb3+ajPK+2sZ
-         PhPikh/pOQLew93AglQtsGq3cYd6UZ8BiMFphhCR1lSXQhYY09KydSz6xnbaHUGOh3aw
-         QSnjPDzh2SNoZR3OD92Zka7O1ctb7oYMDv2AWeANIx4vR+v7iw6W5wbi3XDHqEgg3M6z
-         btDw2BCNqruw7kkVYIuOcAMgTSIqjApY7gvHA8HHZQBXUnCe+5ixxovYfktNMl11dhUC
-         lK9w==
-X-Gm-Message-State: AOAM533w+baypzddOkjoxUc5iQNSYKy+UJwPHk9Irr/sIM1FH0UHftTa
-        xwgTXKlF6qMHCs0caC6Azb7zDi9A4BuFfPGYZps=
-X-Google-Smtp-Source: ABdhPJzGxQQwBhhrtEaweLkfzFUJA40jcPwllFvwIuOzWW6Oa+Fg+WH65jNMZ9ivUDYbeVPe3h9sKPNiDRJJGM8HZp4=
-X-Received: by 2002:a19:6512:: with SMTP id z18mr7266098lfb.106.1631863742007;
- Fri, 17 Sep 2021 00:29:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210915120325.20248-1-heiko.thiery@gmail.com>
- <7e7ee4244ababc0a46e0875222c7e37d@walle.cc> <898fd5e0-2073-3689-89b6-2c5071773786@kontron.de>
-In-Reply-To: <898fd5e0-2073-3689-89b6-2c5071773786@kontron.de>
-From:   Heiko Thiery <heiko.thiery@gmail.com>
-Date:   Fri, 17 Sep 2021 09:28:51 +0200
-Message-ID: <CAEyMn7ZbJr0_2Phc2rW7sDYQu4AABWPZ1F7xDgaS5U7ha7iqzA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm-kontron-n801x-som: do not allow to
- switch off buck2
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc:     Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=2THikK+ZWL+RF3hVyz41egxjiPVtWjXYvxUpPXvBXFY=;
+        b=3RJnviUiJkXCTZ5hxZ24lMCjf+xS04K2OtaChfvfZ374DuoA6qtGOGUV6Yphi/T3Hs
+         DvbQK2Fa6MTVRZCKkLLan7Yj6Ybht7vpI+aYph4gKnH65HI4x6rEIOBYeKx9ckg5N1M0
+         bM/yDLv5iEXmQuS1++oH7s1ygo7uHpawtcFl6WmCXh2WZ/9TShh9H9eveP9Nzn5jmqaz
+         i1NQdFZpbMZjEJdslg/WhoTHWS1V9i8nSpqa8EKls+oa5v594CZBtgRVVjy1HYIfzhtU
+         leMWhNDevADoNGuW3lmHVSOmmzhOeGDNJAHphURxO/cciJE/fyjRLfhn+kUUJhASmxEj
+         V6hA==
+X-Gm-Message-State: AOAM532VTeacTjhj+I1cWCVQXNsRoTvSxfonFX/dmrOgMu08hM6lTEWK
+        2DsQ0r96gog1tp6yavsK9m7H0A==
+X-Google-Smtp-Source: ABdhPJwRGFW/dlw8u8+sISzcx3AX9UykA/D7q41zATuitAWDOLHohqdL50iGXLQcC6es+k30msM6wg==
+X-Received: by 2002:a7b:cc0b:: with SMTP id f11mr12363412wmh.2.1631863937090;
+        Fri, 17 Sep 2021 00:32:17 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:7c8c:5a9b:1b6e:1623])
+        by smtp.gmail.com with ESMTPSA id d8sm6148326wrv.20.2021.09.17.00.32.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Sep 2021 00:32:16 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: meson: add audio playback to rbox-pro
+Date:   Fri, 17 Sep 2021 09:32:12 +0200
+Message-Id: <163186392856.1051643.15826774789936581584.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210914151631.2841-1-christianshewitt@gmail.com>
+References: <20210914151631.2841-1-christianshewitt@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frieder,
+Hi,
 
-Am Mi., 15. Sept. 2021 um 14:09 Uhr schrieb Frieder Schrempf
-<frieder.schrempf@kontron.de>:
->
-> On 15.09.21 14:05, Michael Walle wrote:
-> > Am 2021-09-15 14:03, schrieb Heiko Thiery:
-> >> The buck2 output of the PMIC is the VDD core voltage of the cpu.
-> >> Switching off this will poweroff the CPU. Add the 'regulator-always-on'
-> >> property to avoid this.
-> >
-> > Mh, have this ever worked? Is there a commit which introduced a regression?
->
-> Yes, this did work before, even without 'regulator-always-on'. I
-> currently don't understand why this is needed. The regulator is
-> referenced in the CPU nodes as 'cpu-supply'. This should be enough to
-> not disable it as long as the CPU is up.
+On Tue, 14 Sep 2021 15:16:31 +0000, Christian Hewitt wrote:
+> Add initial support limited to HDMI i2s and SPDIF (LPCM).
 
-I rechecked that with 5.11, 5.10 and 5.9 and I see on all of them the
-same issue:
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.16/dt64)
 
-[ 31.716031] vdd-5v: disabling
-[ 31.719032] rst-usb-eth2: disabling
-[ 31.722553] buck2: disabling
-
-While on that I tried to compare with other boards and see that they
-also have the cpu-voltage marked as "regulator-always-on". The only
-exception in dts/freescale is in imx8mq-librem5-devkit.dts [1] that
-has not set this property.
-
-I agree with you and don't understand why this is happening. Has
-anyone else an explanation?
-
-[1] https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts#L319
+[1/1] arm64: dts: meson: add audio playback to rbox-pro
+      https://git.kernel.org/amlogic/c/9450f63ba4d1915d8d605bad6454fc82522d95d7
 
 -- 
-Heiko
+Neil
