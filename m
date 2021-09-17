@@ -2,69 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 310E040F2F1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 09:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC9640F2F9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 09:17:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237253AbhIQHRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 03:17:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49706 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237058AbhIQHRR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 03:17:17 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 908A9C061764
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 00:15:54 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id z184-20020a1c7ec1000000b003065f0bc631so9203370wmc.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 00:15:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=wSexYtZcx8Zl061Pgh+/19nNzstnphN0+uFbijDxZpQ=;
-        b=3sY3Np63qqTbDp+hH8V+00cYF0f8tIoihAjjZk/SUHiufYaJWufLYIGr6hPuj5+5Sa
-         G8xH+AWHilBE4bBVeEcl51/S3TIRiKwDPMaT9SaHZEtYUprZ3aa33Mhdu0uzK9tR9Ygz
-         thVek0FoBO6RQlgtThZ96JV4io7TkuEGDnXs4nKQONA+nv5pfzSFIRrsW4R4w75UXyW7
-         t1q/Wb2yRwg9xqreCL/HIOk/Lhq6u3Z+4nQRe7bOzBTkFAaK+s6hha8odzq9DgnAKK5b
-         3Q8l3+4jthe9gqYlxvwG/x/l2pSLqZGes9gTiIKouTOqo0GLsmIy+GNRd/S9WijBjC7Z
-         lEyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=wSexYtZcx8Zl061Pgh+/19nNzstnphN0+uFbijDxZpQ=;
-        b=AwZZIK2vrHATCqKRr0vTDmV24ZjEPRA/c2Q+MoiGnd4fk/kBhJn68swP9vuq0IRXkh
-         p7/14ttyX9oLku7VSvUvSsKLSrXVdy32AkwvWh9+kYw+qq1keHPncuckymSDiS9TM1gu
-         tUENAAV9SQkhe/Lj6AQN6wm+Z87rYvaSGb5HTX/oHdKeCmRW8dyIZlmbnX2RuY6JWCNI
-         hqWaseFa+I/VJUyZeTnItnIdzqoJ6139ovF+mZg6kBhRelrn4KMtKuvfVJqS0plMq7fN
-         OFQtgi8MK4ya61tNPvcN2yd9HTNjtqbTxNpsDGY3Y7ceGunDixjQtoPTrR/4KzpCa3zl
-         cXow==
-X-Gm-Message-State: AOAM5334AlfQ4Gbkfbyrg6m3QBfrs6U1n6ko9H8uScizLp/aaIXYWsrW
-        meVx4UPMzTBbn0j3iHr3M+CKxSDH9hsxXMdl
-X-Google-Smtp-Source: ABdhPJzWei8wbNNcFEm4mky4jx0Xcjo49xKE8JQ5KsqxyHYoWLFm6zi1tTvTejA7lIpXr4ar7Y+a6w==
-X-Received: by 2002:a1c:1d86:: with SMTP id d128mr6980150wmd.142.1631862952592;
-        Fri, 17 Sep 2021 00:15:52 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:7c8c:5a9b:1b6e:1623? ([2001:861:44c0:66c0:7c8c:5a9b:1b6e:1623])
-        by smtp.gmail.com with ESMTPSA id n3sm5584093wmi.0.2021.09.17.00.15.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Sep 2021 00:15:52 -0700 (PDT)
-Subject: Re: [PATCH v5 4/4] arm64: dts: meson-axg: add support for JetHub D1
-To:     Vyacheslav Bocharov <adeep@lexina.in>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210915085715.1134940-1-adeep@lexina.in>
- <20210915085715.1134940-5-adeep@lexina.in>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <d44060f6-e4db-d2bb-47be-03c304fd91b3@baylibre.com>
-Date:   Fri, 17 Sep 2021 09:15:51 +0200
+        id S238768AbhIQHSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 03:18:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55958 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238726AbhIQHSh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Sep 2021 03:18:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 512AE61152;
+        Fri, 17 Sep 2021 07:17:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631863035;
+        bh=ja8+tLdTmXfno2EXHr51WCR4GUxc76U00kgVCyJ/NGo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=M4ewBQPtOqclfz0Ur4bXuvZKTjWgHGjINFiOawT7DeG8XrFKcauPh5bd7a9DXG/3N
+         VD3oPf2BhVIcMKZ6QKsNO8wZTcWOqMEtvd6MRFK9aNK6EqzM0mnMlxuLb1D9Q4sgSY
+         Iz/Pma94UcjIpkwjJ5BOumdpzaMBRwyXqOCaKIosCvsNhJqio5gxSKaQVTImdvReMi
+         TEWuOMlom04nNjWa3Yw7vARiih+dcMvuHShiv5xMCjjoyhRzLyoysS+Zli9Gu2JwiE
+         y4AiuolYY/i6UTP4mRGd56UFiXpoLys3x1OIbCQ1UZabOOIPJOd/ASxUtKc5OhqzQ4
+         /pPszyUB5KTLw==
+Subject: Re: [PATCH v3 8/8] memory: gpmc-omap: "gpmc,device-width" DT property
+ is optional
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        tony@atomide.com
+Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
+        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210907113226.31876-1-rogerq@kernel.org>
+ <20210907113226.31876-9-rogerq@kernel.org>
+ <aa465bd9-b3d5-8d75-3e59-e86c2cd093cd@canonical.com>
+ <a881ac1f-2f00-e675-aea6-154b28ca6eff@kernel.org>
+ <35643319-e3b0-bde1-c51b-57c3b5474146@canonical.com>
+From:   Roger Quadros <rogerq@kernel.org>
+Message-ID: <d574837c-b42a-53be-7885-9feb7183ce96@kernel.org>
+Date:   Fri, 17 Sep 2021 10:17:10 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210915085715.1134940-5-adeep@lexina.in>
+In-Reply-To: <35643319-e3b0-bde1-c51b-57c3b5474146@canonical.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,425 +50,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2021 10:57, Vyacheslav Bocharov wrote:
-> JetHome Jethub D1 (http://jethome.ru/jethub-d1) is a home automation
-> controller with the following features:
-> - DIN Rail Mounting
-> - Amlogic A113X (ARM Cortex-A53) quad-core up to 1.5GHz
-> - no video out
-> - 512Mb/1GB LPDDR4
-> - 8/16GB eMMC flash
-> - 1 x USB 2.0
-> - 1 x 10/100Mbps ethernet
-> - WiFi / Bluetooth AMPAK AP6255 (Broadcom BCM43455) IEEE 802.11a/b/g/n/ac,
->   Bluetooth 4.2.
-> - TI CC2538 + CC2592 Zigbee Wireless Module with up to 20dBm output power
->   and Zigbee 3.0 support.
-> - 2 x gpio LEDS
-> - GPIO user Button
-> - 1 x 1-Wire
-> - 2 x RS-485
-> - 4 x dry contact digital GPIO inputs
-> - 3 x relay GPIO outputs
-> - DC source with a voltage of 9 to 56 V / Passive POE
-> 
-> Changes from v4:
->  - add node for 1wire-gpio for JetHub D1 v2 device
-> 
-> Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
-> 
-> 
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->  .../amlogic/meson-axg-jethome-jethub-j100.dts | 361 ++++++++++++++++++
->  2 files changed, 362 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 2c3ce7c401a5..3ba6f58b9833 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-> new file mode 100644
-> index 000000000000..c25b03a91e12
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dts
-> @@ -0,0 +1,361 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2021 Vyacheslav Bocharov <adeep@lexina.in>
-> + * Copyright (c) 2020 JetHome
-> + * Author: Aleksandr Kazantsev <ak@tvip.ru>
-> + * Author: Alexey Shevelkin <ash@tvip.ru>
-> + * Author: Vyacheslav Bocharov <adeep@lexina.in>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-axg.dtsi"
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +
-> +/ {
-> +	compatible = "jethome,jethub-j100", "amlogic,a113d", "amlogic,meson-axg";
-> +	model = "JetHome JetHub J100";
-> +	aliases {
-> +		serial0 = &uart_AO;   /* Console */
-> +		serial1 = &uart_AO_B; /* External UART (Wireless Module) */
-> +		ethernet0 = &ethmac;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	/* 1024MB RAM */
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x40000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		linux,cma {
-> +			size = <0x0 0x400000>;
-> +		};
-> +	};
-> +
-> +	emmc_pwrseq: emmc-pwrseq {
-> +		compatible = "mmc-pwrseq-emmc";
-> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	vcc_3v3: regulator-vcc_3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vddao_3v3>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vcc_5v: regulator-vcc_5v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC5V";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vddao_3v3: regulator-vddao_3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDAO_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc_5v>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vddio_ao18: regulator-vddio_ao18 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDIO_AO18";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vddao_3v3>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vddio_boot: regulator-vddio_boot {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDIO_BOOT";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vddao_3v3>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	usb_pwr: regulator-usb_pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "USB_PWR";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vcc_5v>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio GPIOX_7 GPIO_ACTIVE_LOW>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "ext_clock";
-> +	};
-> +
-> +	wifi32k: wifi32k {
-> +		compatible = "pwm-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		pwms = <&pwm_ab 0 30518 0>; /* PWM_A at 32.768KHz */
-> +	};
-> +
-> +	thermal-zones {
-> +		cpu_thermal: cpu-thermal {
-> +			polling-delay-passive = <250>;
-> +			polling-delay = <1000>;
-> +			thermal-sensors = <&scpi_sensors 0>;
-> +			trips {
-> +				cpu_passive: cpu-passive {
-> +					temperature = <70000>; /* millicelsius */
-> +					hysteresis = <2000>; /* millicelsius */
-> +					type = "passive";
-> +				};
-> +
-> +				cpu_hot: cpu-hot {
-> +					temperature = <80000>; /* millicelsius */
-> +					hysteresis = <2000>; /* millicelsius */
-> +					type = "hot";
-> +				};
-> +
-> +				cpu_critical: cpu-critical {
-> +					temperature = <100000>; /* millicelsius */
-> +					hysteresis = <2000>; /* millicelsius */
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu_cooling_maps: cooling-maps {
-> +			map0 {
-> +				trip = <&cpu_passive>;
-> +				cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +			};
-> +
-> +			map1 {
-> +				trip = <&cpu_hot>;
-> +				cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +			};
-> +		};
-> +	};
 
-
-Newline is missing here, I'll add while applying.
-
-> +	onewire {
-> +		compatible = "w1-gpio";
-> +		gpios = <&gpio GPIOA_14 GPIO_ACTIVE_HIGH>;
-> +		#gpio-cells = <1>;
-> +	};
-> +};
-> +
-> +&efuse {
-> +	sn: sn@32 {
-> +		reg = <0x32 0x20>;
-> +	};
-> +
-> +	eth_mac: eth_mac@0 {
-> +		reg = <0x0 0x6>;
-> +	};
-> +
-> +	bt_mac: bt_mac@6 {
-> +		reg = <0x6 0x6>;
-> +	};
-> +
-> +	wifi_mac: wifi_mac@c {
-> +		reg = <0xc 0x6>;
-> +	};
-> +
-> +	bid: bid@12 {
-> +		reg = <0x12 0x20>;
-> +	};
-> +};
-> +
-> +&ethmac {
-> +	status = "okay";
-> +	pinctrl-0 = <&eth_rmii_x_pins>;
-> +	pinctrl-names = "default";
-> +	phy-handle = <&eth_phy0>;
-> +	phy-mode = "rmii";
-> +
-> +	mdio {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		/* ICPlus IP101A/G Ethernet PHY (vendor_id=0x0243, model_id=0x0c54) */
-> +		eth_phy0: ethernet-phy@0 {
-> +			/* compatible = "ethernet-phy-id0243.0c54";*/
-> +			max-speed = <100>;
-> +			reg = <0>;
-> +
-> +			reset-assert-us = <10000>;
-> +			reset-deassert-us = <10000>;
-> +			reset-gpios = <&gpio GPIOZ_5 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +/* Internal I2C bus (on CPU module) */
-> +&i2c1 {
-> +	status = "okay";
-> +	pinctrl-0 = <&i2c1_z_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	/* RTC */
-> +	pcf8563: pcf8563@51 {
-> +		compatible = "nxp,pcf8563";
-> +		reg = <0x51>;
-> +		status = "okay";
-> +	};
-> +};
-> +
-> +/* Peripheral I2C bus (on motherboard) */
-> +&i2c_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&i2c_ao_sck_10_pins>, <&i2c_ao_sda_11_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&pwm_ab {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_a_x20_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +/* wifi module */
-> +&sd_emmc_b {
-> +	status = "okay";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	pinctrl-0 = <&sdio_pins>;
-> +	pinctrl-1 = <&sdio_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	sd-uhs-sdr104;
-> +	max-frequency = <200000000>;
-> +	non-removable;
-> +	disable-wp;
-> +
-> +	mmc-pwrseq = <&sdio_pwrseq>;
-> +
-> +	vmmc-supply = <&vddao_3v3>;
-> +	vqmmc-supply = <&vddio_boot>;
-> +
-> +	brcmf: wifi@1 {
-> +		reg = <1>;
-> +		compatible = "brcm,bcm4329-fmac";
-> +	};
-> +};
-> +
-> +/* emmc storage */
-> +&sd_emmc_c {
-> +	status = "okay";
-> +	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-> +	pinctrl-1 = <&emmc_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +
-> +	bus-width = <8>;
-> +	cap-mmc-highspeed;
-> +	max-frequency = <200000000>;
-> +	non-removable;
-> +	disable-wp;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +
-> +	mmc-pwrseq = <&emmc_pwrseq>;
-> +
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&vddio_boot>;
-> +};
-> +
-> +/* UART Bluetooth */
-> +&uart_B {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_b_z_pins>, <&uart_b_z_cts_rts_pins>;
-> +	pinctrl-names = "default";
-> +	uart-has-rtscts;
-> +
-> +	bluetooth {
-> +		compatible = "brcm,bcm43438-bt";
-> +		shutdown-gpios = <&gpio GPIOZ_7 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
-> +
-> +/* UART Console */
-> +&uart_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_ao_a_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +/* UART Wireless module */
-> +&uart_AO_B {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_ao_b_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&usb {
-> +	status = "okay";
-> +	phy-supply = <&usb_pwr>;
-> +};
-> +
-> +&spicc1 {
-> +	status = "okay";
-> +	pinctrl-0 = <&spi1_x_pins>, <&spi1_ss0_x_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&gpio {
-> +	gpio-line-names =
-> +		"", "", "", "", "", // 0 - 4
-> +		"", "", "", "", "", // 5 - 9
-> +		"UserButton", "", "", "", "", // 10 - 14
-> +		"", "", "", "", "", // 15 - 19
-> +		"", "", "", "", "", // 20 - 24
-> +		"", "LedRed", "LedGreen", "Output3", "Output2", // 25 - 29
-> +		"Output1", "", "", "", "", // 30 - 34
-> +		"", "ZigBeeBOOT", "", "", "", // 35 - 39
-> +		"1Wire", "ZigBeeRESET", "", "Input4", "Input3", // 40 - 44
-> +		"Input2", "Input1", "", "", "", // 45 - 49
-> +		"", "", "", "", "", // 50 - 54
-> +		"", "", "", "", "", // 55 - 59
-> +		"", "", "", "", "", // 60 - 64
-> +		"", "", "", "", "", // 65 - 69
-> +		"", "", "", "", "", // 70 - 74
-> +		"", "", "", "", "", // 75 - 79
-> +		"", "", "", "", "", // 80 - 84
-> +		"", ""; // 85-86
-> +};
-> +
-> +&cpu0 {
-> +	#cooling-cells = <2>;
-> +};
-> +
-> +&cpu1 {
-> +	#cooling-cells = <2>;
-> +};
-> +
-> +&cpu2 {
-> +	#cooling-cells = <2>;
-> +};
-> +
-> +&cpu3 {
-> +	#cooling-cells = <2>;
-> +};
+On 16/09/2021 13:48, Krzysztof Kozlowski wrote:
+> On 15/09/2021 11:11, Roger Quadros wrote:
+>> Hi Krzysztof,
+>>
+>> On 07/09/2021 15:36, Krzysztof Kozlowski wrote:
+>>> On 07/09/2021 13:32, Roger Quadros wrote:
+>>>> Check for valid gpmc,device-width, nand-bus-width and bank-width
+>>>> at one place. Default to 8-bit width if none present.
+>>>
+>>> I don't understand the message in the context of the patch. The title
+>>> says one property is optional - that's it. The message says you
+>>> consolidate checks. How is this related to the title?
+>>>
+>>> The patch itself moves around checking of properties and reads
+>>> nand-bus-width *always*. It does not "check at one place" but rather
+>>> "check always". In the same time, the patch does not remove
+>>> gpmc,device-width check in other place.
+>>>
+>>> All three elements - the title, message and patch - do different things.
+>>> What did you want to achieve here? Can you help in clarifying it?
+>>>
+>>
+>> OK I will explain it better in commit log in next revision. Let me explain here a bit.
+>>
+>> Prior to this patch it was working like this
+>>
+>> 	/* in gpmc_read_settings_dt() */
+>> 	s->device_width = 0;	/* invalid width, should be 1 for 8-bit, 2 for 16-bit */
+>> 	of_property_read_u32(np, "gpmc,device-width", s->device_width);
+>>
+>> 	/* in gpmc_probe_generic_child () */
+>> 	if (of_device_is_compatible(child, "ti,omap2-nand")) {
+>> 		/* check for nand-bus-width, if absent set s->device_width to 1 (i.e. 8-bit) */
+>> 	} else {
+>> 		/* check for bank-width, if absent and s->device_width not set, error out */
+>> 	}
+>>
+>> So that means if all three, "gpmc,device-width". "nand-bus-width" and "bank-width" are missing then
+>> it would create an error situation.
+>>
+>> The patch is doing 3 things.
+>> 1) Make sure all DT checks related to bus width are being done at one place for better readability.
 > 
+> Not entirely. The gpmc,device-width is still done in the other place
+> because you did not remove it from the code. Unless you meant parsing of
+> gpmc,device-width not reading from DT? But then another round of checks
+> is in gpmc_cs_program_settings() so not in one place.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+By checking I meant parsing. But you are right, I missed the part in gpmc_cs_program_settings().
 
-Thanks,
-Neil
+> 
+> If you consolidate the checks to one place, I would expect the code to
+> be removed from other places, so from gpmc_cs_program_settings() and
+> gpmc_read_settings_dt(). Since this is not happening, the message
+> confuses me.
+> 
+>> 2) even if all 3 width properties are absent, we will not treat it as error and default to 8-bit.
+> 
+> This is not mentioned in commit msg.
+> 
+>> 3) check for nand-bus-width regardless of whether compatible to "ti,omap2-nand" or not.
+> 
+> Also not mentioned in commit msg.
+> 
+> Your commit reorganizes parsing and validating the child DT properties
+> but it does not change from "multiple place" to "one place".
+> 
+> At least I don't see it.
+
+OK. I will write a better commit log next time. Thanks for the review :)
+
+cheers,
+-roger
