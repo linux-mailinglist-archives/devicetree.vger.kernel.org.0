@@ -2,915 +2,1108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B4A240F1D1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 08:00:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D656F40F1DA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 08:04:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244930AbhIQGBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 02:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60740 "EHLO
+        id S244939AbhIQGFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 02:05:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244801AbhIQGBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 02:01:49 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF86C061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 23:00:26 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id p2so12580116oif.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 23:00:26 -0700 (PDT)
+        with ESMTP id S232726AbhIQGFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 02:05:48 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A28D4C061574;
+        Thu, 16 Sep 2021 23:04:26 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id a10so14102637qka.12;
+        Thu, 16 Sep 2021 23:04:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=HJVk74ksesjVpHX6ggQ04OhCGam/Bip9FHnxMHk/boU=;
-        b=IhUalMFhP1hAB7rkh5yYvQ1cnkQbdB8DATyoGuejoOnYJs935125xvlaI81zgY7+GB
-         lOY2AfrHk/3tcDffPetIJzrL+7MDs10ohHWfztqA+G2yldK4xeB4SX7AJ0Rj30CsOKCN
-         wTR/QiwGuFJrILr5eEwPh0gYIgJTXrDFIIovc=
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UQYjqrB/bTS0XQBFk0D8LrPJ+8yCpF1N2QpDTCmxcuA=;
+        b=cXfAbtH7ydFPQpvLUkuwUd7LCeXMWtB/xOPiVlNkX3U7I7wLdw9tNBQLTXQA7yU7Ia
+         vllGd3BHyAtoauPKqrI2En9pKbCYDrG7FFL48rJ87KlgVVOQBBdQEre+3Ul7+03g88Em
+         TXHLWMAf/9T+UEV2fNtELvKdHnrwy24tyz6ul0Sk52+uomAkvru2crGLetvinyT7rrqj
+         x3uBL3Gp4gmj6WL2nRh3SEDcJ0Os3tgk0pvKMpiFFh6y/9ZtGpn8dYhQnrgRBhRikh+B
+         lx0woXq2Jdfxvpr3w18Jk+4l9MBYjHqzU90nuCe+JGKHDku8LxKzjTEhffTe1/mw+KHh
+         wPKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=HJVk74ksesjVpHX6ggQ04OhCGam/Bip9FHnxMHk/boU=;
-        b=vHwUvnAbEc4uPNbcUSBnrPOsQScp7l5GoHiRjl/GBhx7Jk724WLfAL7xa1k0zwFCV2
-         9iqlLE6z3IX/ks/WgaEi+Azg9hQCOHY1Wiig/D2ZjuCDb1RNMz7Ju7DhP2PcFZxvxqzJ
-         TN0OxezK4V0nTur6BmvVr49mD4mD1oZhioD9OdhFiJbVQXP83EHuiY3e7N6bjQbBopxf
-         4r63PJxha/VXz33XBMfBd+3yY3p57orMh8IyxyTMOU66+Tqg9FRBuTYx/W3z/a+TiMWl
-         BV3AaNnCCEt0oEcsrmt1HF4A5UgHVxcWdW5Lfqs0puisyA7vw1esRp/R3cvP6QdAYiEU
-         jWPQ==
-X-Gm-Message-State: AOAM5329lLun54xxQ6fRTY6rp968f6kurG++sR4z/7B22BvIIGMHPFp7
-        nodFCW9xuT0RnZ3mbTuQERYPyEbcjkTRVwuDegSIZw==
-X-Google-Smtp-Source: ABdhPJwekWjbNHvii3/jtjj4v0y3fe+JdaFKhDVsknl2UYfyPp9yo0WmsOSXex/4DpQ2gGr2Ox7hVH4dURqeAr91Do0=
-X-Received: by 2002:a54:4419:: with SMTP id k25mr12265185oiw.32.1631858425734;
- Thu, 16 Sep 2021 23:00:25 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 16 Sep 2021 23:00:25 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UQYjqrB/bTS0XQBFk0D8LrPJ+8yCpF1N2QpDTCmxcuA=;
+        b=OTpMu+iTqDFBPLqSz8fRIUNH7ABlD1SblMLjx3HymnJ3XEIIQ6TZpewc6JBGKnbtUh
+         NZJ0j02uvMRRANlPs2U6lmZKbpJB1RbBVILVgnUbxjpVNxfgRN362/fSUvrLYExpCcSh
+         bvRtv2GO1mIcDMfspq4N3KSBv7yw45Kj5bsk4Fbu0PEd8gyC0tcnz7PydTNxtvuVlgkK
+         nWKbNyEqnZfPcUl0pw+Wowqgkh8FueiTMP+BqANjhf10k/FHGpFfvVpa2wccXhLATt1J
+         lfsuEHeKXsDxk6nTs6P9xjRW6EKBnP6cFVAjXnBd9WenUfrb/wK8UdkPCsUP99s8O/6k
+         2Q7w==
+X-Gm-Message-State: AOAM5305uIgxfsu6mdSNcv4H1xf0305kFFZR3jZFQpDh07i+3tV3PZrt
+        stNlr65lNrJJOebVuw+GoLTX4L1gdfR7PPNaGgf7ZdxE+sQ=
+X-Google-Smtp-Source: ABdhPJxOcs28U+NzQ7UVI/Rka5euWS/roJmj3NslKnFbVFRHUt9HwYAws1CUZYnz5Z9qwTi0GtAY3fm0N+LnfMU45vM=
+X-Received: by 2002:a05:620a:1677:: with SMTP id d23mr6221957qko.327.1631858665651;
+ Thu, 16 Sep 2021 23:04:25 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210915203834.1439-14-sean@poorly.run>
-References: <20210915203834.1439-1-sean@poorly.run> <20210915203834.1439-14-sean@poorly.run>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 16 Sep 2021 23:00:25 -0700
-Message-ID: <CAE-0n52Gm6SsjUTEEOt-9LD9dGCb7pFf0OC_xKSnRxLy4PO_iw@mail.gmail.com>
-Subject: Re: [PATCH v2 13/13] drm/msm: Implement HDCP 1.x using the new drm
- HDCP helpers
-To:     Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc:     Sean Paul <seanpaul@chromium.org>, Andy Gross <agross@kernel.org>,
+References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
+ <1631092255-25150-4-git-send-email-shengjiu.wang@nxp.com> <20210916172355.GB1825273@p14s>
+In-Reply-To: <20210916172355.GB1825273@p14s>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Fri, 17 Sep 2021 14:04:14 +0800
+Message-ID: <CAA+D8AMAajxHdBfH8oWc+-2CPMKJCcp14M3+kYbv1c2EZXEArA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] remoteproc: imx_dsp_rproc: Add remoteproc driver
+ for DSP on i.MX
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Ohad Ben Cohen <ohad@wizery.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sean Paul (2021-09-15 13:38:32)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index c8921e2d6480..3ae6fc7a2c01 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -3088,7 +3088,9 @@ mdss_dp: displayport-controller@ae90000 {
->                                 compatible = "qcom,sc7180-dp";
->                                 status = "disabled";
+On Fri, Sep 17, 2021 at 1:23 AM Mathieu Poirier
+<mathieu.poirier@linaro.org> wrote:
 >
-> -                               reg = <0 0x0ae90000 0 0x1400>;
-> +                               reg = <0 0x0ae90000 0 0x1400>,
-> +                                     <0 0x0aed1000 0 0x174>,
-> +                                     <0 0x0aee1000 0 0x2c>;
+> On Wed, Sep 08, 2021 at 05:10:54PM +0800, Shengjiu Wang wrote:
+> > Provide a basic driver to control DSP processor found on NXP i.MX8QM,
+> > i.MX8QXP, i.MX8MP and i.MX8ULP.
+> >
+> > Currently it is able to resolve addresses between DSP and main CPU,
+> > start and stop the processor, suspend and resume.
+> >
+> > The communication between DSP and main CPU is based on mailbox, there
+> > are three mailbox channels (tx, rx, rxdb).
+> >
+> > This driver was tested on NXP i.MX8QM, i.MX8QXP, i.MX8MP and i.MX8ULP.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> >  drivers/remoteproc/Kconfig         |   11 +
+> >  drivers/remoteproc/Makefile        |    1 +
+> >  drivers/remoteproc/imx_dsp_rproc.c | 1178 ++++++++++++++++++++++++++++
+> >  3 files changed, 1190 insertions(+)
+> >  create mode 100644 drivers/remoteproc/imx_dsp_rproc.c
+> >
+> > diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> > index 9a6eedc3994a..890a14e6f3f9 100644
+> > --- a/drivers/remoteproc/Kconfig
+> > +++ b/drivers/remoteproc/Kconfig
+> > @@ -34,6 +34,17 @@ config IMX_REMOTEPROC
+> >
+> >         It's safe to say N here.
+> >
+> > +config IMX_DSP_REMOTEPROC
+> > +     tristate "i.MX DSP remoteproc support"
+> > +     depends on ARCH_MXC
+> > +     depends on HAVE_ARM_SMCCC
+> > +     select MAILBOX
+> > +     help
+> > +       Say y here to support iMX's DSP remote processors via the remote
+> > +       processor framework.
+> > +
+> > +       It's safe to say N here.
+> > +
+> >  config INGENIC_VPU_RPROC
+> >       tristate "Ingenic JZ47xx VPU remoteproc support"
+> >       depends on MIPS || COMPILE_TEST
+> > diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+> > index bb26c9e4ef9c..37d5cb1c04bf 100644
+> > --- a/drivers/remoteproc/Makefile
+> > +++ b/drivers/remoteproc/Makefile
+> > @@ -12,6 +12,7 @@ remoteproc-y                                += remoteproc_virtio.o
+> >  remoteproc-y                         += remoteproc_elf_loader.o
+> >  obj-$(CONFIG_REMOTEPROC_CDEV)                += remoteproc_cdev.o
+> >  obj-$(CONFIG_IMX_REMOTEPROC)         += imx_rproc.o
+> > +obj-$(CONFIG_IMX_DSP_REMOTEPROC)     += imx_dsp_rproc.o
+> >  obj-$(CONFIG_INGENIC_VPU_RPROC)              += ingenic_rproc.o
+> >  obj-$(CONFIG_MTK_SCP)                        += mtk_scp.o mtk_scp_ipi.o
+> >  obj-$(CONFIG_OMAP_REMOTEPROC)                += omap_remoteproc.o
+> > diff --git a/drivers/remoteproc/imx_dsp_rproc.c b/drivers/remoteproc/imx_dsp_rproc.c
+> > new file mode 100644
+> > index 000000000000..a12e306b06bd
+> > --- /dev/null
+> > +++ b/drivers/remoteproc/imx_dsp_rproc.c
+> > @@ -0,0 +1,1178 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +// Copyright 2021 NXP
+> > +
+> > +#include <dt-bindings/firmware/imx/rsrc.h>
+> > +#include <linux/arm-smccc.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/err.h>
+> > +#include <linux/firmware.h>
+> > +#include <linux/firmware/imx/sci.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/mailbox_client.h>
+> > +#include <linux/mfd/syscon.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/of_reserved_mem.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pm_domain.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/remoteproc.h>
+> > +#include <linux/slab.h>
+> > +#include <linux/workqueue.h>
+> > +
+> > +#include "imx_rproc.h"
+> > +#include "remoteproc_elf_helpers.h"
+> > +#include "remoteproc_internal.h"
+> > +
+> > +#define DSP_RPROC_CLK_MAX                    5
+> > +
+> > +#define REMOTE_IS_READY                              BIT(0)
+> > +#define REMOTE_READY_WAIT_MAX_RETRIES                500
+> > +
+> > +/* att flags */
+> > +/* DSP own area */
+> > +#define ATT_OWN                                      BIT(31)
+> > +/* DSP instruction area */
+> > +#define ATT_IRAM                             BIT(30)
+> > +
+> > +/* Definitions for i.MX8MP */
+> > +/* DAP registers */
+> > +#define IMX8M_DAP_DEBUG                              0x28800000
+> > +#define IMX8M_DAP_DEBUG_SIZE                 (64 * 1024)
+> > +#define IMX8M_DAP_PWRCTL                     (0x4000 + 0x3020)
+> > +#define IMX8M_PWRCTL_CORERESET                       BIT(16)
+> > +
+> > +/* DSP audio mix registers */
+> > +#define IMX8M_AudioDSP_REG0                  0x100
+> > +#define IMX8M_AudioDSP_REG1                  0x104
+> > +#define IMX8M_AudioDSP_REG2                  0x108
+> > +#define IMX8M_AudioDSP_REG3                  0x10c
+> > +
+> > +#define IMX8M_AudioDSP_REG2_RUNSTALL         BIT(5)
+> > +#define IMX8M_AudioDSP_REG2_PWAITMODE                BIT(1)
+> > +
+> > +/* Definitions for i.MX8ULP */
+> > +#define IMX8ULP_SIM_LPAV_REG_SYSCTRL0                0x8
+> > +#define IMX8ULP_SYSCTRL0_DSP_DBG_RST         BIT(25)
+> > +#define IMX8ULP_SYSCTRL0_DSP_PLAT_CLK_EN     BIT(19)
+> > +#define IMX8ULP_SYSCTRL0_DSP_PBCLK_EN                BIT(18)
+> > +#define IMX8ULP_SYSCTRL0_DSP_CLK_EN          BIT(17)
+> > +#define IMX8ULP_SYSCTRL0_DSP_RST             BIT(16)
+> > +#define IMX8ULP_SYSCTRL0_DSP_OCD_HALT                BIT(14)
+> > +#define IMX8ULP_SYSCTRL0_DSP_STALL           BIT(13)
+> > +
+> > +#define IMX8ULP_SIP_HIFI_XRDC                        0xc200000e
+> > +
+> > +/*
+> > + * enum - Predefined Mailbox Messages
+> > + *
+> > + * @RP_MBOX_SUSPEND_SYSTEM: system suspend request for the remote processor
+> > + *
+> > + * @RP_MBOX_SUSPEND_ACK: successful response from remote processor for a
+> > + * suspend request
+> > + *
+> > + * @RP_MBOX_RESUME_SYSTEM: system resume request for the remote processor
+> > + *
+> > + * @RP_MBOX_RESUME_ACK: successful response from remote processor for a
+> > + * resume request
+> > + */
+> > +enum imx_dsp_rp_mbox_messages {
+> > +     RP_MBOX_SUSPEND_SYSTEM                  = 0xFF11,
+> > +     RP_MBOX_SUSPEND_ACK                     = 0xFF12,
+> > +     RP_MBOX_RESUME_SYSTEM                   = 0xFF13,
+> > +     RP_MBOX_RESUME_ACK                      = 0xFF14,
+> > +};
+> > +
+> > +/**
+> > + * struct imx_dsp_rproc - DSP remote processor state
+> > + * @regmap: regmap handler
+> > + * @rproc: rproc handler
+> > + * @dsp_dcfg: device configuration pointer
+> > + * @clks: clocks needed by this device
+> > + * @cl: mailbox client to request the mailbox channel
+> > + * @cl_rxdb: mailbox client to request the mailbox channel for doorbell
+> > + * @tx_ch: mailbox tx channel handle
+> > + * @rx_ch: mailbox rx channel handle
+> > + * @rxdb_ch: mailbox rx doorbell channel handle
+> > + * @pd_dev: power domain device
+> > + * @pd_dev_link: power domain device link
+> > + * @ipc_handle: System Control Unit ipc handle
+> > + * @rproc_work: work for processing virtio interrupts
+> > + * @workqueue: workqueue for processing virtio interrupts
+> > + * @pm_comp: completion primitive to sync for suspend response
+> > + * @num_domains: power domain number
+> > + * @flags: control flags
+> > + */
+> > +struct imx_dsp_rproc {
+> > +     struct regmap                           *regmap;
+> > +     struct rproc                            *rproc;
+> > +     const struct imx_dsp_rproc_dcfg         *dsp_dcfg;
+> > +     struct clk_bulk_data                    clks[DSP_RPROC_CLK_MAX];
+> > +     struct mbox_client                      cl;
+> > +     struct mbox_client                      cl_rxdb;
+> > +     struct mbox_chan                        *tx_ch;
+> > +     struct mbox_chan                        *rx_ch;
+> > +     struct mbox_chan                        *rxdb_ch;
+> > +     struct device                           **pd_dev;
+> > +     struct device_link                      **pd_dev_link;
+> > +     struct imx_sc_ipc                       *ipc_handle;
+> > +     struct work_struct                      rproc_work;
+> > +     struct workqueue_struct                 *workqueue;
+> > +     struct completion                       pm_comp;
+> > +     int                                     num_domains;
+> > +     u32                                     flags;
+> > +};
+> > +
+> > +/**
+> > + * struct imx_dsp_rproc_dcfg - DSP remote processor configuration
+> > + * @dcfg: imx_rproc_dcfg handler
+> > + * @reset: reset callback function
+> > + */
+> > +struct imx_dsp_rproc_dcfg {
+> > +     const struct imx_rproc_dcfg             *dcfg;
+> > +     int (*reset)(struct imx_dsp_rproc *priv);
+> > +};
+> > +
+> > +static const struct imx_rproc_att imx_dsp_rproc_att_imx8qm[] = {
+> > +     /* dev addr , sys addr  , size      , flags */
+> > +     { 0x596e8000, 0x556e8000, 0x00008000, ATT_OWN },
+> > +     { 0x596f0000, 0x556f0000, 0x00008000, ATT_OWN },
+> > +     { 0x596f8000, 0x556f8000, 0x00000800, ATT_OWN | ATT_IRAM},
+> > +     { 0x55700000, 0x55700000, 0x00070000, ATT_OWN },
+> > +     /* DDR (Data) */
+> > +     { 0x80000000, 0x80000000, 0x60000000, 0},
+> > +};
+> > +
+> > +static const struct imx_rproc_att imx_dsp_rproc_att_imx8qxp[] = {
+> > +     /* dev addr , sys addr  , size      , flags */
+> > +     { 0x596e8000, 0x596e8000, 0x00008000, ATT_OWN },
+> > +     { 0x596f0000, 0x596f0000, 0x00008000, ATT_OWN },
+> > +     { 0x596f8000, 0x596f8000, 0x00000800, ATT_OWN | ATT_IRAM},
+> > +     { 0x59700000, 0x59700000, 0x00070000, ATT_OWN },
+> > +     /* DDR (Data) */
+> > +     { 0x80000000, 0x80000000, 0x60000000, 0},
+> > +};
+> > +
+> > +static const struct imx_rproc_att imx_dsp_rproc_att_imx8mp[] = {
+> > +     /* dev addr , sys addr  , size      , flags */
+> > +     { 0x3b6e8000, 0x3b6e8000, 0x00008000, ATT_OWN },
+> > +     { 0x3b6f0000, 0x3b6f0000, 0x00008000, ATT_OWN },
+> > +     { 0x3b6f8000, 0x3b6f8000, 0x00000800, ATT_OWN | ATT_IRAM},
+> > +     { 0x3b700000, 0x3b700000, 0x00040000, ATT_OWN },
+> > +     /* DDR (Data) */
+> > +     { 0x40000000, 0x40000000, 0x80000000, 0},
+> > +};
+> > +
+> > +static const struct imx_rproc_att imx_dsp_rproc_att_imx8ulp[] = {
+> > +     /* dev addr , sys addr  , size      , flags */
+> > +     { 0x21170000, 0x21170000, 0x00010000, ATT_OWN | ATT_IRAM},
+> > +     { 0x21180000, 0x21180000, 0x00010000, ATT_OWN },
+> > +     /* DDR (Data) */
+> > +     { 0x0c000000, 0x80000000, 0x10000000, 0},
+> > +     { 0x30000000, 0x90000000, 0x10000000, 0},
+> > +};
+> > +
+> > +/* Reset function for DSP on i.MX8MP */
+> > +static int imx8mp_dsp_reset(struct imx_dsp_rproc *priv)
+> > +{
+> > +     void __iomem *dap = ioremap_wc(IMX8M_DAP_DEBUG, IMX8M_DAP_DEBUG_SIZE);
+> > +     int pwrctl;
+> > +
+> > +     /* Put DSP into reset and stall */
+> > +     pwrctl = readl(dap + IMX8M_DAP_PWRCTL);
+> > +     pwrctl |= IMX8M_PWRCTL_CORERESET;
+> > +     writel(pwrctl, dap + IMX8M_DAP_PWRCTL);
+> > +
+> > +     /* Keep reset asserted for 10 cycles */
+> > +     usleep_range(1, 2);
+> > +
+> > +     regmap_update_bits(priv->regmap, IMX8M_AudioDSP_REG2,
+> > +                        IMX8M_AudioDSP_REG2_RUNSTALL,
+> > +                        IMX8M_AudioDSP_REG2_RUNSTALL);
+> > +
+> > +     /* Take the DSP out of reset and keep stalled for FW loading */
+> > +     pwrctl = readl(dap + IMX8M_DAP_PWRCTL);
+> > +     pwrctl &= ~IMX8M_PWRCTL_CORERESET;
+> > +     writel(pwrctl, dap + IMX8M_DAP_PWRCTL);
+> > +
+> > +     iounmap(dap);
+> > +     return 0;
+> > +}
+> > +
+> > +/* Reset function for DSP on i.MX8ULP */
+> > +static int imx8ulp_dsp_reset(struct imx_dsp_rproc *priv)
+> > +{
+> > +     struct arm_smccc_res res;
+> > +
+> > +     /* Put DSP into reset and stall */
+> > +     regmap_update_bits(priv->regmap, IMX8ULP_SIM_LPAV_REG_SYSCTRL0,
+> > +                        IMX8ULP_SYSCTRL0_DSP_RST, IMX8ULP_SYSCTRL0_DSP_RST);
+> > +     regmap_update_bits(priv->regmap, IMX8ULP_SIM_LPAV_REG_SYSCTRL0,
+> > +                        IMX8ULP_SYSCTRL0_DSP_STALL,
+> > +                        IMX8ULP_SYSCTRL0_DSP_STALL);
+> > +
+> > +     /* Configure resources of DSP through TFA */
+> > +     arm_smccc_smc(IMX8ULP_SIP_HIFI_XRDC, 0, 0, 0, 0, 0, 0, 0, &res);
+> > +
+> > +     /* Take the DSP out of reset and keep stalled for FW loading */
+> > +     regmap_update_bits(priv->regmap, IMX8ULP_SIM_LPAV_REG_SYSCTRL0,
+> > +                        IMX8ULP_SYSCTRL0_DSP_RST, 0);
+> > +     regmap_update_bits(priv->regmap, IMX8ULP_SIM_LPAV_REG_SYSCTRL0,
+> > +                        IMX8ULP_SYSCTRL0_DSP_DBG_RST, 0);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +/* Specific configuration for i.MX8MP */
+> > +static const struct imx_rproc_dcfg dsp_rproc_cfg_imx8mp = {
+> > +     .src_reg        = IMX8M_AudioDSP_REG2,
+> > +     .src_mask       = IMX8M_AudioDSP_REG2_RUNSTALL,
+> > +     .src_start      = 0,
+> > +     .src_stop       = IMX8M_AudioDSP_REG2_RUNSTALL,
+> > +     .att            = imx_dsp_rproc_att_imx8mp,
+> > +     .att_size       = ARRAY_SIZE(imx_dsp_rproc_att_imx8mp),
+> > +     .method         = IMX_RPROC_MMIO,
+> > +};
+> > +
+> > +static const struct imx_dsp_rproc_dcfg imx_dsp_rproc_cfg_imx8mp = {
+> > +     .dcfg           = &dsp_rproc_cfg_imx8mp,
+> > +     .reset          = imx8mp_dsp_reset,
+> > +};
+> > +
+> > +/* Specific configuration for i.MX8ULP */
+> > +static const struct imx_rproc_dcfg dsp_rproc_cfg_imx8ulp = {
+> > +     .src_reg        = IMX8ULP_SIM_LPAV_REG_SYSCTRL0,
+> > +     .src_mask       = IMX8ULP_SYSCTRL0_DSP_STALL,
+> > +     .src_start      = 0,
+> > +     .src_stop       = IMX8ULP_SYSCTRL0_DSP_STALL,
+> > +     .att            = imx_dsp_rproc_att_imx8ulp,
+> > +     .att_size       = ARRAY_SIZE(imx_dsp_rproc_att_imx8ulp),
+> > +     .method         = IMX_RPROC_MMIO,
+> > +};
+> > +
+> > +static const struct imx_dsp_rproc_dcfg imx_dsp_rproc_cfg_imx8ulp = {
+> > +     .dcfg           = &dsp_rproc_cfg_imx8ulp,
+> > +     .reset          = imx8ulp_dsp_reset,
+> > +};
+> > +
+> > +/* Specific configuration for i.MX8QXP */
+> > +static const struct imx_rproc_dcfg dsp_rproc_cfg_imx8qxp = {
+> > +     .att            = imx_dsp_rproc_att_imx8qxp,
+> > +     .att_size       = ARRAY_SIZE(imx_dsp_rproc_att_imx8qxp),
+> > +     .method         = IMX_RPROC_SCU_API,
+> > +};
+> > +
+> > +static const struct imx_dsp_rproc_dcfg imx_dsp_rproc_cfg_imx8qxp = {
+> > +     .dcfg           = &dsp_rproc_cfg_imx8qxp,
+> > +};
+> > +
+> > +/* Specific configuration for i.MX8QM */
+> > +static const struct imx_rproc_dcfg dsp_rproc_cfg_imx8qm = {
+> > +     .att            = imx_dsp_rproc_att_imx8qm,
+> > +     .att_size       = ARRAY_SIZE(imx_dsp_rproc_att_imx8qm),
+> > +     .method         = IMX_RPROC_SCU_API,
+> > +};
+> > +
+> > +static const struct imx_dsp_rproc_dcfg imx_dsp_rproc_cfg_imx8qm = {
+> > +     .dcfg           = &dsp_rproc_cfg_imx8qm,
+> > +};
+> > +
+> > +static int imx_dsp_rproc_ready(struct rproc *rproc)
+> > +{
+> > +     struct imx_dsp_rproc *priv = rproc->priv;
+> > +     int i;
+> > +
+> > +     if (!priv->rxdb_ch)
+> > +             return 0;
+> > +
+> > +     for (i = 0; i < REMOTE_READY_WAIT_MAX_RETRIES; i++) {
+> > +             if (priv->flags & REMOTE_IS_READY)
+> > +                     return 0;
+> > +             usleep_range(100, 200);
+> > +     }
+> > +
+> > +     return -ETIMEDOUT;
+> > +}
+> > +
+> > +/*
+> > + * Start function for rproc_ops
+> > + *
+> > + * There is a handshake for start procedure: when DSP starts, it
+> > + * will send a doorbell message to this driver, then the
+> > + * REMOTE_IS_READY flags is set, then driver will kick
+> > + * a message to DSP.
+> > + */
+> > +static int imx_dsp_rproc_start(struct rproc *rproc)
+> > +{
+> > +     struct imx_dsp_rproc *priv = rproc->priv;
+> > +     const struct imx_dsp_rproc_dcfg *dsp_dcfg = priv->dsp_dcfg;
+> > +     const struct imx_rproc_dcfg *dcfg = dsp_dcfg->dcfg;
+> > +     struct device *dev = rproc->dev.parent;
+> > +     int ret;
+> > +
+> > +     switch (dcfg->method) {
+> > +     case IMX_RPROC_MMIO:
+> > +             ret = regmap_update_bits(priv->regmap,
+> > +                                      dcfg->src_reg,
+> > +                                      dcfg->src_mask,
+> > +                                      dcfg->src_start);
+> > +             break;
+> > +     case IMX_RPROC_SCU_API:
+> > +             ret = imx_sc_pm_cpu_start(priv->ipc_handle,
+> > +                                       IMX_SC_R_DSP,
+> > +                                       true,
+> > +                                       rproc->bootaddr);
+> > +             break;
+> > +     default:
+> > +             return -EOPNOTSUPP;
+> > +     }
+> > +
+> > +     if (ret)
+> > +             dev_err(dev, "Failed to enable remote core!\n");
+> > +     else
+> > +             ret = imx_dsp_rproc_ready(rproc);
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +/*
+> > + * Stop function for rproc_ops
+> > + * It clears the REMOTE_IS_READY flags
+> > + */
+> > +static int imx_dsp_rproc_stop(struct rproc *rproc)
+> > +{
+> > +     struct imx_dsp_rproc *priv = rproc->priv;
+> > +     const struct imx_dsp_rproc_dcfg *dsp_dcfg = priv->dsp_dcfg;
+> > +     const struct imx_rproc_dcfg *dcfg = dsp_dcfg->dcfg;
+> > +     struct device *dev = rproc->dev.parent;
+> > +     int ret = 0;
+> > +
+> > +     if (rproc->state == RPROC_CRASHED) {
+> > +             priv->flags &= ~REMOTE_IS_READY;
+> > +             return 0;
+> > +     }
+> > +
+> > +     switch (dcfg->method) {
+> > +     case IMX_RPROC_MMIO:
+> > +             ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
+> > +                                      dcfg->src_stop);
+> > +             break;
+> > +     case IMX_RPROC_SCU_API:
+> > +             ret = imx_sc_pm_cpu_start(priv->ipc_handle,
+> > +                                       IMX_SC_R_DSP,
+> > +                                       false,
+> > +                                       rproc->bootaddr);
+> > +             break;
+> > +     default:
+> > +             return -EOPNOTSUPP;
+> > +     }
+> > +
+> > +     if (ret)
+> > +             dev_err(dev, "Failed to stop remote core\n");
+> > +     else
+> > +             priv->flags &= ~REMOTE_IS_READY;
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +/**
+> > + * imx_dsp_rproc_sys_to_da() - internal memory translation helper
+> > + * @priv: private data pointer
+> > + * @sys: system address (DDR address)
+> > + * @len: length of the memory buffer
+> > + * @da: device address to translate
+> > + *
+> > + * Convert system address (DDR address) to device address (DSP)
+> > + * for there may be memory remap for device.
+> > + */
+> > +static int imx_dsp_rproc_sys_to_da(struct imx_dsp_rproc *priv, u64 sys,
+> > +                                size_t len, u64 *da)
+> > +{
+> > +     const struct imx_dsp_rproc_dcfg *dsp_dcfg = priv->dsp_dcfg;
+> > +     const struct imx_rproc_dcfg *dcfg = dsp_dcfg->dcfg;
+> > +     int i;
+> > +
+> > +     /* Parse address translation table */
+> > +     for (i = 0; i < dcfg->att_size; i++) {
+> > +             const struct imx_rproc_att *att = &dcfg->att[i];
+> > +
+> > +             if (sys >= att->sa && sys + len <= att->sa + att->size) {
+> > +                     unsigned int offset = sys - att->sa;
+> > +
+> > +                     *da = att->da + offset;
+> > +                     return 0;
+> > +             }
+> > +     }
+> > +
+> > +     return -ENOENT;
+> > +}
+> > +
+> > +static void imx_dsp_rproc_vq_work(struct work_struct *work)
+> > +{
+> > +     struct imx_dsp_rproc *priv = container_of(work, struct imx_dsp_rproc,
+> > +                                               rproc_work);
+> > +
+> > +     rproc_vq_interrupt(priv->rproc, 0);
+> > +     rproc_vq_interrupt(priv->rproc, 1);
+> > +}
+> > +
+> > +/**
+> > + * imx_dsp_rproc_rx_callback() - inbound mailbox message handler
+> > + * @cl: mailbox client pointer used for requesting the mailbox channel
+> > + * @data: mailbox payload
+> > + *
+> > + * This handler is invoked by mailbox driver whenever a mailbox
+> > + * message is received. Usually, the SUSPEND and RESUME related messages
+> > + * are handled in this function, other messages are handled by remoteproc core
+> > + */
+> > +static void imx_dsp_rproc_rx_callback(struct mbox_client *cl, void *data)
+> > +{
+> > +     struct rproc *rproc = dev_get_drvdata(cl->dev);
+> > +     struct imx_dsp_rproc *priv = rproc->priv;
+> > +     struct device *dev = rproc->dev.parent;
+> > +     u32 message = (u32)(*(u32 *)data);
+> > +
+> > +     dev_dbg(dev, "mbox msg: 0x%x\n", message);
+> > +
+> > +     switch (message) {
+> > +     case RP_MBOX_SUSPEND_ACK:
+> > +             complete(&priv->pm_comp);
+> > +             break;
+> > +     case RP_MBOX_RESUME_ACK:
+> > +             complete(&priv->pm_comp);
+> > +             break;
+> > +     default:
+> > +             queue_work(priv->workqueue, &priv->rproc_work);
+> > +             break;
+> > +     }
+> > +}
+> > +
+> > +/**
+> > + * imx_dsp_rproc_rxdb_callback() - inbound mailbox message handler
+> > + * @cl: mailbox client pointer used for requesting the mailbox channel
+> > + * @data: mailbox payload
+> > + *
+> > + * For doorbell, there is no message specified, just set REMOTE_IS_READY
+> > + * flag.
+> > + */
+> > +static void imx_dsp_rproc_rxdb_callback(struct mbox_client *cl, void *data)
+> > +{
+> > +     struct rproc *rproc = dev_get_drvdata(cl->dev);
+> > +     struct imx_dsp_rproc *priv = rproc->priv;
+> > +
+> > +     /* Remote is ready after firmware is loaded and running */
+> > +     priv->flags |= REMOTE_IS_READY;
+> > +}
+> > +
+> > +/**
+> > + * imx_dsp_rproc_mbox_init() - request mailbox channels
+> > + * @priv: private data pointer
+> > + *
+> > + * Request three mailbox channels (tx, rx, rxdb).
+> > + */
+> > +static int imx_dsp_rproc_mbox_init(struct imx_dsp_rproc *priv)
+> > +{
+> > +     struct device *dev = priv->rproc->dev.parent;
+> > +     struct mbox_client *cl;
+> > +     int ret;
+> > +
+> > +     if (!of_get_property(dev->of_node, "mbox-names", NULL))
+> > +             return 0;
+> > +
+> > +     cl = &priv->cl;
+> > +     cl->dev = dev;
+> > +     cl->tx_block = true;
+> > +     cl->tx_tout = 100;
+> > +     cl->knows_txdone = false;
+> > +     cl->rx_callback = imx_dsp_rproc_rx_callback;
 >
+> Using function imx_dsp_rproc_rx_callback() for both rx and tx channels is highly
+> confusing...  Please call it imx_dsp_rproc_rx_tx_callback().
 
-I suspect we'll still want this hunk of the patch to be split off and go
-through arm-soc tree.
+OK, will update it.
 
->                                 interrupt-parent = <&mdss>;
->                                 interrupts = <12>;
-> diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c b/drivers/gpu/drm/msm/dp/dp_debug.c
-> index 2f6247e80e9d..de16fca8782a 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_debug.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_debug.c
-> @@ -8,6 +8,7 @@
->  #include <linux/debugfs.h>
->  #include <drm/drm_connector.h>
->  #include <drm/drm_file.h>
-> +#include <drm/drm_hdcp.h>
 >
->  #include "dp_parser.h"
->  #include "dp_catalog.h"
-> @@ -15,6 +16,7 @@
->  #include "dp_ctrl.h"
->  #include "dp_debug.h"
->  #include "dp_display.h"
-> +#include "dp_hdcp.h"
+> > +
+> > +     /* Channel for sending message */
+> > +     priv->tx_ch = mbox_request_channel_byname(cl, "tx");
+> > +     if (IS_ERR(priv->tx_ch)) {
+> > +             ret = PTR_ERR(priv->tx_ch);
+> > +             dev_dbg(cl->dev, "failed to request tx mailbox channel: %d\n",
+> > +                     ret);
+> > +             goto err_out;
+> > +     }
+> > +
+> > +     /* Channel for receiving message */
+> > +     priv->rx_ch = mbox_request_channel_byname(cl, "rx");
+> > +     if (IS_ERR(priv->rx_ch)) {
+> > +             ret = PTR_ERR(priv->rx_ch);
+> > +             dev_dbg(cl->dev, "failed to request rx mailbox channel: %d\n",
+> > +                     ret);
+> > +             goto err_out;
+> > +     }
+> > +
+> > +     cl = &priv->cl_rxdb;
+> > +     cl->dev = dev;
+> > +     cl->rx_callback = imx_dsp_rproc_rxdb_callback;
+> > +
+> > +     /*
+> > +      * RX door bell is used to receive the ready signal from remote
+> > +      * after firmware loaded.
+> > +      */
+> > +     priv->rxdb_ch = mbox_request_channel_byname(cl, "rxdb");
+> > +     if (IS_ERR(priv->rxdb_ch)) {
+> > +             ret = PTR_ERR(priv->rxdb_ch);
+> > +             dev_dbg(cl->dev, "failed to request mbox chan rxdb, ret %d\n",
+> > +                     ret);
+> > +             goto err_out;
+> > +     }
+> > +
+> > +     return 0;
+> > +
+> > +err_out:
+> > +     if (!IS_ERR(priv->tx_ch))
+> > +             mbox_free_channel(priv->tx_ch);
+> > +     if (!IS_ERR(priv->rx_ch))
+> > +             mbox_free_channel(priv->rx_ch);
+> > +     if (!IS_ERR(priv->rxdb_ch))
+> > +             mbox_free_channel(priv->rxdb_ch);
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +static void imx_dsp_rproc_free_mbox(struct imx_dsp_rproc *priv)
+> > +{
+> > +     mbox_free_channel(priv->tx_ch);
+> > +     mbox_free_channel(priv->rx_ch);
+> > +     mbox_free_channel(priv->rxdb_ch);
+> > +}
+> > +
+> > +/**
+> > + * imx_dsp_rproc_add_carveout() - request mailbox channels
+> > + * @priv: private data pointer
+> > + *
+> > + * This function registers specified memory entry in @rproc carveouts list
+> > + * The carveouts can help to mapping the memory address for DSP.
+> > + */
+> > +static int imx_dsp_rproc_add_carveout(struct imx_dsp_rproc *priv)
+> > +{
+> > +     const struct imx_dsp_rproc_dcfg *dsp_dcfg = priv->dsp_dcfg;
+> > +     const struct imx_rproc_dcfg *dcfg = dsp_dcfg->dcfg;
+> > +     struct rproc *rproc = priv->rproc;
+> > +     struct device *dev = rproc->dev.parent;
+> > +     struct device_node *np = dev->of_node;
+> > +     struct of_phandle_iterator it;
+> > +     struct rproc_mem_entry *mem;
+> > +     struct reserved_mem *rmem;
+> > +     void __iomem *cpu_addr;
+> > +     int a;
+> > +     u64 da;
+> > +
+> > +     /* Remap required addresses */
+> > +     for (a = 0; a < dcfg->att_size; a++) {
+> > +             const struct imx_rproc_att *att = &dcfg->att[a];
+> > +
+> > +             if (!(att->flags & ATT_OWN))
+> > +                     continue;
+> > +
+> > +             if (imx_dsp_rproc_sys_to_da(priv, att->sa, att->size, &da))
+> > +                     return -EINVAL;
+> > +
+> > +             cpu_addr = devm_ioremap_wc(dev, att->sa, att->size);
+> > +
+> > +             /* Register memory region */
+> > +             mem = rproc_mem_entry_init(dev, cpu_addr, (dma_addr_t)att->sa,
+> > +                                        att->size, da, NULL, NULL, "dsp_mem");
+> > +
+> > +             if (mem)
+> > +                     rproc_coredump_add_segment(rproc, da, att->size);
+> > +             else
+> > +                     return -ENOMEM;
+> > +
+> > +             rproc_add_carveout(rproc, mem);
+> > +     }
+> > +
+> > +     of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
+> > +     while (of_phandle_iterator_next(&it) == 0) {
+> > +             /*
+> > +              * Ignore the first memory region which will be used vdev buffer.
+> > +              * No need to do extra handlings, rproc_add_virtio_dev will handle it.
+> > +              */
+> > +             if (!strcmp(it.node->name, "vdev0buffer"))
+> > +                     continue;
+> > +
+> > +             rmem = of_reserved_mem_lookup(it.node);
+> > +             if (!rmem) {
+> > +                     dev_err(dev, "unable to acquire memory-region\n");
+> > +                     return -EINVAL;
+> > +             }
+> > +
+> > +             if (imx_dsp_rproc_sys_to_da(priv, rmem->base, rmem->size, &da))
+> > +                     return -EINVAL;
+> > +
+> > +             cpu_addr = devm_ioremap_wc(dev, rmem->base, rmem->size);
+> > +
+> > +             /* Register memory region */
+> > +             mem = rproc_mem_entry_init(dev, cpu_addr, (dma_addr_t)rmem->base,
+> > +                                        rmem->size, da, NULL, NULL, it.node->name);
+> > +
+> > +             if (mem)
+> > +                     rproc_coredump_add_segment(rproc, da, rmem->size);
+> > +             else
+> > +                     return -ENOMEM;
+> > +
+> > +             rproc_add_carveout(rproc, mem);
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +/**
+> > + * imx_dsp_rproc_elf_load_segments() - load firmware segments to memory
+> > + * @rproc: remote processor which will be booted using these fw segments
+> > + * @fw: the ELF firmware image
+> > + *
+> > + * This function specially checks if memsz is zero or not, otherwise it
+> > + * is mostly same as rproc_elf_load_segments().
+> > + */
+> > +static int imx_dsp_rproc_elf_load_segments(struct rproc *rproc,
+> > +                                        const struct firmware *fw)
+> > +{
+> > +     struct device *dev = &rproc->dev;
+> > +     u8 class = fw_elf_get_class(fw);
+> > +     u32 elf_phdr_get_size = elf_size_of_phdr(class);
+> > +     const u8 *elf_data = fw->data;
+> > +     const void *ehdr, *phdr;
+> > +     int i, ret = 0;
+> > +     u16 phnum;
+> > +
+> > +     ehdr = elf_data;
+> > +     phnum = elf_hdr_get_e_phnum(class, ehdr);
+> > +     phdr = elf_data + elf_hdr_get_e_phoff(class, ehdr);
+> > +
+> > +     /* go through the available ELF segments */
+> > +     for (i = 0; i < phnum; i++, phdr += elf_phdr_get_size) {
+> > +             u64 da = elf_phdr_get_p_paddr(class, phdr);
+> > +             u64 memsz = elf_phdr_get_p_memsz(class, phdr);
+> > +             u64 filesz = elf_phdr_get_p_filesz(class, phdr);
+> > +             u64 offset = elf_phdr_get_p_offset(class, phdr);
+> > +             u32 type = elf_phdr_get_p_type(class, phdr);
+> > +             void *ptr;
+> > +             bool is_iomem;
+> > +
+> > +             if (type != PT_LOAD || !memsz)
+> > +                     continue;
+> > +
+> > +             dev_dbg(dev, "phdr: type %d da 0x%llx memsz 0x%llx filesz 0x%llx\n",
+> > +                     type, da, memsz, filesz);
+> > +
+> > +             if (filesz > memsz) {
+> > +                     dev_err(dev, "bad phdr filesz 0x%llx memsz 0x%llx\n",
+> > +                             filesz, memsz);
+> > +                     ret = -EINVAL;
+> > +                     break;
+> > +             }
+> > +
+> > +             if (offset + filesz > fw->size) {
+> > +                     dev_err(dev, "truncated fw: need 0x%llx avail 0x%zx\n",
+> > +                             offset + filesz, fw->size);
+> > +                     ret = -EINVAL;
+> > +                     break;
+> > +             }
+> > +
+> > +             if (!rproc_u64_fit_in_size_t(memsz)) {
+> > +                     dev_err(dev, "size (%llx) does not fit in size_t type\n",
+> > +                             memsz);
+> > +                     ret = -EOVERFLOW;
+> > +                     break;
+> > +             }
+> > +
+> > +             /* grab the kernel address for this device address */
+> > +             ptr = rproc_da_to_va(rproc, da, memsz, &is_iomem);
+> > +             if (!ptr) {
+> > +                     dev_err(dev, "bad phdr da 0x%llx mem 0x%llx\n", da,
+> > +                             memsz);
+> > +                     ret = -EINVAL;
+> > +                     break;
+> > +             }
+> > +
+> > +             /* put the segment where the remote processor expects it */
+> > +             if (filesz)
+> > +                     memcpy(ptr, elf_data + offset, filesz);
+> > +
+> > +             /*
+> > +              * Zero out remaining memory for this segment.
+> > +              *
+> > +              * This isn't strictly required since dma_alloc_coherent already
+> > +              * did this for us. albeit harmless, we may consider removing
+> > +              * this.
+> > +              */
+> > +             if (memsz > filesz)
+> > +                     memset(ptr + filesz, 0, memsz - filesz);
+> > +     }
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +/* Prepare function for rproc_ops */
+> > +static int imx_dsp_rproc_prepare(struct rproc *rproc)
+> > +{
+> > +     struct imx_dsp_rproc *priv = rproc->priv;
+> > +     struct device *dev = rproc->dev.parent;
+> > +     struct rproc_mem_entry *carveout;
+> > +     int ret;
+> > +
+> > +     ret = imx_dsp_rproc_add_carveout(priv);
+> > +     if (ret) {
+> > +             dev_err(dev, "failed on imx_dsp_rproc_add_carveout\n");
+> > +             return ret;
+> > +     }
+> > +
+> > +     pm_runtime_get_sync(dev);
+> > +
+> > +     /*
+> > +      * Clear buffers after pm rumtime for internal ocram is not
+> > +      * accessible if power and clock are not enabled.
+> > +      */
+> > +     list_for_each_entry(carveout, &rproc->carveouts, node) {
+> > +             if (carveout->va)
+> > +                     memset(carveout->va, 0, carveout->len);
+> > +     }
+> > +
+> > +     return  0;
+> > +}
+> > +
+> > +/* Unprepare function for rproc_ops */
+> > +static int imx_dsp_rproc_unprepare(struct rproc *rproc)
+> > +{
+> > +     pm_runtime_put_sync(rproc->dev.parent);
+> > +
+> > +     return  0;
+> > +}
+> > +
+> > +/* Kick function for rproc_ops */
+> > +static void imx_dsp_rproc_kick(struct rproc *rproc, int vqid)
+> > +{
+> > +     struct imx_dsp_rproc *priv = rproc->priv;
+> > +     struct device *dev = rproc->dev.parent;
+> > +     int err;
+> > +     __u32 mmsg;
+> > +
+> > +     if (!priv->tx_ch) {
+> > +             dev_err(dev, "No initialized mbox tx channel\n");
+> > +             return;
+> > +     }
+> > +
+> > +     /*
+> > +      * Send the index of the triggered virtqueue as the mu payload.
+> > +      * Let remote processor know which virtqueue is used.
+> > +      */
+> > +     mmsg = vqid;
+> > +
+> > +     err = mbox_send_message(priv->tx_ch, (void *)&mmsg);
+> > +     if (err < 0)
+> > +             dev_err(dev, "%s: failed (%d, err:%d)\n", __func__, vqid, err);
+> > +}
+> > +
+> > +static const struct rproc_ops imx_dsp_rproc_ops = {
+> > +     .prepare        = imx_dsp_rproc_prepare,
+> > +     .unprepare      = imx_dsp_rproc_unprepare,
+> > +     .start          = imx_dsp_rproc_start,
+> > +     .stop           = imx_dsp_rproc_stop,
+> > +     .kick           = imx_dsp_rproc_kick,
+> > +     .load           = imx_dsp_rproc_elf_load_segments,
+> > +     .parse_fw       = rproc_elf_load_rsc_table,
+> > +     .sanity_check   = rproc_elf_sanity_check,
+> > +     .get_boot_addr  = rproc_elf_get_boot_addr,
+> > +};
+> > +
+> > +/**
+> > + * imx_dsp_attach_pm_domains() - attach the power domains
+> > + * @priv: private data pointer
+> > + *
+> > + * On i.MX8QM and i.MX8QXP there is multiple power domains
+> > + * required, so need to link them.
+> > + */
+> > +static int imx_dsp_attach_pm_domains(struct imx_dsp_rproc *priv)
+> > +{
+> > +     struct device *dev = priv->rproc->dev.parent;
+> > +     int ret, i;
+> > +
+> > +     priv->num_domains = of_count_phandle_with_args(dev->of_node,
+> > +                                                    "power-domains",
+> > +                                                    "#power-domain-cells");
+> > +
+> > +     /* If only one domain, then no need to link the device */
+> > +     if (priv->num_domains <= 1)
+> > +             return 0;
+> > +
+> > +     priv->pd_dev = devm_kmalloc_array(dev, priv->num_domains,
+> > +                                       sizeof(*priv->pd_dev),
+> > +                                       GFP_KERNEL);
+> > +     if (!priv->pd_dev)
+> > +             return -ENOMEM;
+> > +
+> > +     priv->pd_dev_link = devm_kmalloc_array(dev, priv->num_domains,
+> > +                                            sizeof(*priv->pd_dev_link),
+> > +                                            GFP_KERNEL);
+> > +     if (!priv->pd_dev_link)
+> > +             return -ENOMEM;
+> > +
+> > +     for (i = 0; i < priv->num_domains; i++) {
+> > +             priv->pd_dev[i] = dev_pm_domain_attach_by_id(dev, i);
+> > +             if (IS_ERR(priv->pd_dev[i]))
+> > +                     return PTR_ERR(priv->pd_dev[i]);
+> > +
+> > +             priv->pd_dev_link[i] = device_link_add(dev,
+> > +                                                    priv->pd_dev[i],
+> > +                                                    DL_FLAG_STATELESS |
+> > +                                                    DL_FLAG_PM_RUNTIME);
+> > +             if (IS_ERR(priv->pd_dev_link[i])) {
+> > +                     dev_pm_domain_detach(priv->pd_dev[i], false);
+> > +                     ret = PTR_ERR(priv->pd_dev_link[i]);
+> > +                     goto detach_pm;
+> > +             }
+> > +     }
+> > +
+> > +     return 0;
+> > +
+> > +detach_pm:
+> > +     while (--i >= 0) {
+> > +             device_link_del(priv->pd_dev_link[i]);
+> > +             dev_pm_domain_detach(priv->pd_dev[i], false);
+> > +     }
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +static int imx_dsp_detach_pm_domains(struct imx_dsp_rproc *priv)
+> > +{
+> > +     int i;
+> > +
+> > +     if (priv->num_domains <= 1)
+> > +             return 0;
+> > +
+> > +     for (i = 0; i < priv->num_domains; i++) {
+> > +             device_link_del(priv->pd_dev_link[i]);
+> > +             dev_pm_domain_detach(priv->pd_dev[i], false);
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +/**
+> > + * imx_dsp_rproc_detect_mode() - detect DSP control mode
+> > + * @priv: private data pointer
+> > + *
+> > + * Different platform has different control method for DSP, which depends
+> > + * on how the DSP is integrated in platform.
+> > + *
+> > + * For i.MX8QXP and i.MX8QM, DSP should be started and stopped by System
+> > + * Control Unit.
+> > + * For i.MX8MP and i.MX8ULP, DSP should be started and stopped by system
+> > + * integration module.
+> > + */
+> > +static int imx_dsp_rproc_detect_mode(struct imx_dsp_rproc *priv)
+> > +{
+> > +     const struct imx_dsp_rproc_dcfg *dsp_dcfg = priv->dsp_dcfg;
+> > +     struct device *dev = priv->rproc->dev.parent;
+> > +     struct regmap *regmap;
+> > +     int ret = 0;
+> > +
+> > +     switch (dsp_dcfg->dcfg->method) {
+> > +     case IMX_RPROC_SCU_API:
+> > +             ret = imx_scu_get_handle(&priv->ipc_handle);
+> > +             if (ret)
+> > +                     return ret;
+> > +             break;
+> > +     case IMX_RPROC_MMIO:
+> > +             regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "fsl,dsp-ctrl");
+> > +             if (IS_ERR(regmap)) {
+> > +                     dev_err(dev, "failed to find syscon\n");
+> > +                     return PTR_ERR(regmap);
+> > +             }
+> > +
+> > +             priv->regmap = regmap;
+> > +             break;
+> > +     default:
+> > +             ret = -EOPNOTSUPP;
+> > +             break;
+> > +     }
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +static const char *imx_dsp_clks_names[DSP_RPROC_CLK_MAX] = {
+> > +     /* DSP clocks */
+> > +     "core", "ocram", "debug", "ipg", "mu",
+> > +};
+> > +
+> > +static int imx_dsp_rproc_clk_get(struct imx_dsp_rproc *priv)
+> > +{
+> > +     struct device *dev = priv->rproc->dev.parent;
+> > +     struct clk_bulk_data *clks = priv->clks;
+> > +     int i;
+> > +
+> > +     for (i = 0; i < DSP_RPROC_CLK_MAX; i++)
+> > +             clks[i].id = imx_dsp_clks_names[i];
+> > +
+> > +     return devm_clk_bulk_get_optional(dev, DSP_RPROC_CLK_MAX, clks);
+> > +}
+> > +
+> > +static int imx_dsp_rproc_probe(struct platform_device *pdev)
+> > +{
+> > +     const struct imx_dsp_rproc_dcfg *dsp_dcfg;
+> > +     struct device *dev = &pdev->dev;
+> > +     struct imx_dsp_rproc *priv;
+> > +     struct rproc *rproc;
+> > +     const char *fw_name;
+> > +     int ret;
+> > +
+> > +     dsp_dcfg = of_device_get_match_data(dev);
+> > +     if (!dsp_dcfg)
+> > +             return -ENODEV;
+> > +
+> > +     ret = rproc_of_parse_firmware(dev, 0, &fw_name);
+> > +     if (ret) {
+> > +             dev_err(dev, "failed to parse firmware-name property, ret = %d\n",
+> > +                     ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     rproc = rproc_alloc(dev, "imx-dsp-rproc", &imx_dsp_rproc_ops, fw_name,
+> > +                         sizeof(*priv));
+> > +     if (!rproc)
+> > +             return -ENOMEM;
+> > +
+> > +     priv = rproc->priv;
+> > +     priv->rproc = rproc;
+> > +     priv->dsp_dcfg = dsp_dcfg;
+> > +
+> > +     dev_set_drvdata(dev, rproc);
+> > +
+> > +     priv->workqueue = create_workqueue(dev_name(dev));
 >
->  #define DEBUG_NAME "msm_dp"
+> Any specific reason for instantiating a new workqueue?  Could the system's
+> workqueue be used instead?
+
+I think system workqueue can be used, I will update it.
+
 >
-> @@ -24,6 +26,7 @@ struct dp_debug_private {
->         struct dp_usbpd *usbpd;
->         struct dp_link *link;
->         struct dp_panel *panel;
-> +       struct dp_hdcp *hdcp;
->         struct drm_connector **connector;
->         struct device *dev;
->         struct drm_device *drm_dev;
-> @@ -349,6 +352,38 @@ static int dp_test_active_open(struct inode *inode,
->                         inode->i_private);
->  }
+> I am done with this revision.
 >
-> +static ssize_t dp_hdcp_key_write(struct file *file, const char __user *ubuf,
+Thanks, I will update the code according your comments.
 
-Is this the API that userspace is going to use to set the key? Or a
-simple debug interface that's used to test this code out? I hope it's a
-debugging aid and not the normal flow given that it's through debugfs.
-
-> +                                size_t len, loff_t *offp)
-> +{
-> +       char *input_buffer;
-> +       int ret = 0;
-
-Please don't assign variables and then overwrite without testing the
-variable.
-
-> +       struct dp_debug_private *debug = file->private_data;
-> +       struct drm_device *dev;
-> +
-> +       dev = debug->drm_dev;
-> +
-> +       if (len != (DRM_HDCP_KSV_LEN + DP_HDCP_NUM_KEYS * DP_HDCP_KEY_LEN))
-> +               return -EINVAL;
-> +
-> +       if (!debug->hdcp)
-> +               return -ENOENT;
-> +
-> +       input_buffer = memdup_user_nul(ubuf, len);
-> +       if (IS_ERR(input_buffer))
-> +               return PTR_ERR(input_buffer);
-> +
-> +       ret = dp_hdcp_ingest_key(debug->hdcp, input_buffer, len);
-> +
-> +       kfree(input_buffer);
-> +       if (ret < 0) {
-> +               DRM_ERROR("Could not ingest HDCP key, ret=%d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       *offp += len;
-> +       return len;
-> +}
-> +
->  static const struct file_operations dp_debug_fops = {
->         .open = simple_open,
->         .read = dp_debug_read_info,
-> @@ -363,6 +398,12 @@ static const struct file_operations test_active_fops = {
->         .write = dp_test_active_write
->  };
->
-> +static const struct file_operations dp_hdcp_key_fops = {
-> +       .owner = THIS_MODULE,
-> +       .open = simple_open,
-> +       .write = dp_hdcp_key_write,
-> +};
-> +
->  static int dp_debug_init(struct dp_debug *dp_debug, struct drm_minor *minor)
->  {
->         int rc = 0;
-> @@ -384,6 +425,10 @@ static int dp_debug_init(struct dp_debug *dp_debug, struct drm_minor *minor)
->                         minor->debugfs_root,
->                         debug, &dp_test_type_fops);
->
-> +       debugfs_create_file("msm_dp_hdcp_key", 0222,
-> +                       minor->debugfs_root,
-> +                       debug, &dp_hdcp_key_fops);
-> +
->         debug->root = minor->debugfs_root;
->
->         return rc;
-> @@ -391,7 +436,8 @@ static int dp_debug_init(struct dp_debug *dp_debug, struct drm_minor *minor)
->
->  struct dp_debug *dp_debug_get(struct device *dev, struct dp_panel *panel,
->                 struct dp_usbpd *usbpd, struct dp_link *link,
-> -               struct drm_connector **connector, struct drm_minor *minor)
-> +               struct dp_hdcp *hdcp, struct drm_connector **connector,
-> +               struct drm_minor *minor)
->  {
->         int rc = 0;
->         struct dp_debug_private *debug;
-> @@ -413,6 +459,7 @@ struct dp_debug *dp_debug_get(struct device *dev, struct dp_panel *panel,
->         debug->usbpd = usbpd;
->         debug->link = link;
->         debug->panel = panel;
-> +       debug->hdcp = hdcp;
->         debug->dev = dev;
->         debug->drm_dev = minor->dev;
->         debug->connector = connector;
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.h b/drivers/gpu/drm/msm/dp/dp_display.h
-> index 8b47cdabb67e..421268e47f30 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.h
-> @@ -27,8 +27,13 @@ struct msm_dp {
->         struct dp_audio *dp_audio;
->  };
->
-> +struct drm_atomic_state;
-> +
->  int dp_display_set_plugged_cb(struct msm_dp *dp_display,
->                 hdmi_codec_plugged_cb fn, struct device *codec_dev);
-> +struct dp_hdcp *dp_display_connector_to_hdcp(struct drm_connector *connector);
-> +void dp_display_hdcp_commit(struct msm_dp *dp_display,
-> +                           struct drm_atomic_state *state);
->  int dp_display_validate_mode(struct msm_dp *dp_display, u32 mode_pclk_khz);
->  int dp_display_get_modes(struct msm_dp *dp_display,
->                 struct dp_display_mode *dp_mode);
-> diff --git a/drivers/gpu/drm/msm/dp/dp_drm.c b/drivers/gpu/drm/msm/dp/dp_drm.c
-> index 764f4b81017e..8e62558b4fc3 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_drm.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_drm.c
-> @@ -5,11 +5,20 @@
->
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_atomic.h>
-> +#include <drm/drm_connector.h>
->  #include <drm/drm_crtc.h>
-> +#include <drm/drm_hdcp.h>
->
->  #include "msm_drv.h"
->  #include "msm_kms.h"
->  #include "dp_drm.h"
-> +#include "dp_hdcp.h"
-> +
-> +struct dp_connector_state {
-> +       struct drm_connector_state base;
-> +       bool hdcp_transition;
-> +};
-> +#define to_dp_connector_state(x) container_of(x, struct dp_connector_state, base)
->
->  struct dp_connector {
->         struct drm_connector base;
-> @@ -17,6 +26,11 @@ struct dp_connector {
->  };
->  #define to_dp_connector(x) container_of(x, struct dp_connector, base)
->
-> +struct msm_dp *msm_dp_from_connector(struct drm_connector *connector)
-> +{
-> +       return to_dp_connector(connector)->dp_display;
-> +}
-> +
->  /**
->   * dp_connector_detect - callback to determine if connector is connected
->   * @conn: Pointer to drm connector structure
-> @@ -114,20 +128,72 @@ static enum drm_mode_status dp_connector_mode_valid(
->         return dp_display_validate_mode(dp_disp, mode->clock);
->  }
->
-> +static int dp_connector_atomic_check(struct drm_connector *connector,
-> +                                    struct drm_atomic_state *state)
-> +{
-> +       struct drm_connector_state *conn_state;
-> +       struct dp_connector_state *dp_state;
-> +
-> +       conn_state = drm_atomic_get_new_connector_state(state, connector);
-> +       dp_state = to_dp_connector_state(conn_state);
-> +
-> +       dp_state->hdcp_transition = drm_hdcp_atomic_check(connector, state);
-> +
-> +       return 0;
-> +}
-> +
-> +static struct drm_connector_state *
-> +dp_connector_atomic_duplicate_state(struct drm_connector *connector)
-> +{
-> +       struct dp_connector_state *state;
-> +
-> +       state = kzalloc(sizeof(*state), GFP_KERNEL);
-> +       if (!state)
-> +               return NULL;
-> +
-> +       state->hdcp_transition = false;
-> +
-> +       __drm_atomic_helper_connector_duplicate_state(connector, &state->base);
-> +       return &state->base;
-> +}
-> +
->  static const struct drm_connector_funcs dp_connector_funcs = {
->         .detect = dp_connector_detect,
->         .fill_modes = drm_helper_probe_single_connector_modes,
->         .destroy = drm_connector_cleanup,
->         .reset = drm_atomic_helper_connector_reset,
-> -       .atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-> +       .atomic_duplicate_state = dp_connector_atomic_duplicate_state,
->         .atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
->  };
->
->  static const struct drm_connector_helper_funcs dp_connector_helper_funcs = {
->         .get_modes = dp_connector_get_modes,
->         .mode_valid = dp_connector_mode_valid,
-> +       .atomic_check = dp_connector_atomic_check,
->  };
->
-> +bool dp_drm_is_connector_msm_dp(struct drm_connector *connector)
-> +{
-> +       return connector->funcs == &dp_connector_funcs;
-> +}
-> +
-> +void dp_drm_atomic_commit(struct drm_connector *connector,
-> +                         struct drm_connector_state *conn_state,
-> +                         struct drm_atomic_state *state)
-> +{
-> +       struct dp_connector_state *dp_state;
-> +       struct msm_dp *dp_disp;
-> +
-> +       dp_state = to_dp_connector_state(conn_state);
-> +
-> +       if (!dp_state->hdcp_transition)
-> +               return;
-> +
-> +       dp_disp = msm_dp_from_connector(connector);
-> +
-> +       dp_display_hdcp_commit(dp_disp, state);
-> +}
-> +
->  /* connector initialization */
->  struct drm_connector *dp_drm_connector_init(struct msm_dp *dp_display)
->  {
-> diff --git a/drivers/gpu/drm/msm/dp/dp_drm.h b/drivers/gpu/drm/msm/dp/dp_drm.h
-> index c27bfceefdf0..a5d95c6acd67 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_drm.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_drm.h
-> @@ -14,5 +14,10 @@
->  #include "dp_display.h"
->
->  struct drm_connector *dp_drm_connector_init(struct msm_dp *dp_display);
-> +struct msm_dp *msm_dp_from_connector(struct drm_connector *connector);
-> +bool dp_drm_is_connector_msm_dp(struct drm_connector *connector);
-> +void dp_drm_atomic_commit(struct drm_connector *connector,
-> +                         struct drm_connector_state *conn_state,
-> +                         struct drm_atomic_state *state);
->
->  #endif /* _DP_DRM_H_ */
-> diff --git a/drivers/gpu/drm/msm/dp/dp_hdcp.c b/drivers/gpu/drm/msm/dp/dp_hdcp.c
-> new file mode 100644
-> index 000000000000..07d2a1f04d97
-> --- /dev/null
-> +++ b/drivers/gpu/drm/msm/dp/dp_hdcp.c
-> @@ -0,0 +1,433 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright (C) 2021 Google, Inc.
-> + *
-> + * Authors:
-> + * Sean Paul <seanpaul@chromium.org>
-> + */
-> +
-> +#include "dp_display.h"
-> +#include "dp_drm.h"
-> +#include "dp_hdcp.h"
-> +#include "dp_reg.h"
-> +
-> +#include <drm/drm_connector.h>
-> +#include <drm/drm_device.h>
-> +#include <drm/drm_dp_helper.h>
-> +#include <drm/drm_hdcp.h>
-> +#include <drm/drm_print.h>
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/mutex.h>
-> +#include <linux/random.h>
-> +#include <linux/slab.h>
-> +
-> +/* Offsets based on hdcp_ksv mmio */
-> +#define DP_HDCP_KSV_AN_LSB                     0x0
-> +#define DP_HDCP_KSV_AN_MSB                     0x4
-> +#define DP_HDCP_KSV_AKSV_MSB                   0x1D8
-> +#define DP_HDCP_KSV_AKSV_LSB                   0x1DC
-> +
-> +/* Key offsets based on hdcp_key mmio */
-> +#define DP_HDCP_KEY_BASE                       0x30
-> +#define  DP_HDCP_KEY_MSB(x)                    (DP_HDCP_KEY_BASE + (x * 8))
-> +#define  DP_HDCP_KEY_LSB(x)                    (DP_HDCP_KEY_MSB(x) + 4)
-> +#define DP_HDCP_KEY_VALID                      0x170
-> +#define  DP_HDCP_SW_KEY_VALID                  BIT(0)
-> +
-> +/*
-> + * dp_hdcp_key - structure which contains an HDCP key set
-> + * @ksv: The key selection vector
-> + * @keys: Contains 40 keys
-> + */
-> +struct dp_hdcp_key {
-> +       struct drm_hdcp_ksv ksv;
-> +       union {
-> +               u32 words[2];
-> +               u8 bytes[DP_HDCP_KEY_LEN];
-> +       } keys[DP_HDCP_NUM_KEYS];
-> +       bool valid;
-> +};
-> +
-> +struct dp_hdcp {
-> +       struct drm_device *dev;
-> +       struct drm_connector *connector;
-> +
-> +       struct drm_dp_aux *aux;
-> +       struct dp_parser *parser;
-> +
-> +       struct drm_hdcp_helper_data *helper_data;
-> +
-> +       struct mutex key_lock;
-> +       struct dp_hdcp_key *key;
-
-Is there a reason this is a pointer vs. a plain struct member?
-
-> +};
-> +
-> +static inline void dp_hdcp_write_dp(struct dp_hdcp *hdcp, u32 offset, u32 val)
-> +{
-> +       writel(val, hdcp->parser->io.dp_controller.base + offset);
-> +}
-> +
-> +static inline u32 dp_hdcp_read_dp(struct dp_hdcp *hdcp, u32 offset)
-> +{
-> +       return readl(hdcp->parser->io.dp_controller.base + offset);
-> +}
-> +
-> +static inline void dp_hdcp_write_hdcp(struct dp_hdcp *hdcp, u32 offset, u32 val)
-> +{
-> +       writel(val, hdcp->parser->io.hdcp_key.base + offset);
-> +}
-> +
-> +static inline u32 dp_hdcp_read_hdcp(struct dp_hdcp *hdcp, u32 offset)
-> +{
-> +       return readl(hdcp->parser->io.hdcp_key.base + offset);
-> +}
-> +
-> +static inline void dp_hdcp_write_tz(struct dp_hdcp *hdcp, u32 offset, u32 val)
-> +{
-> +       writel(val, hdcp->parser->io.hdcp_tz.base + offset);
-> +}
-> +
-> +static inline u32 dp_hdcp_read_tz(struct dp_hdcp *hdcp, u32 offset)
-> +{
-> +       return readl(hdcp->parser->io.hdcp_tz.base + offset);
-> +}
-> +
-> +int dp_hdcp_ingest_key(struct dp_hdcp *hdcp, const u8 *raw_key, int raw_len)
-> +{
-> +       struct dp_hdcp_key *key;
-> +       const u8 *ptr = raw_key;
-
-Why have the local variable when raw_key will do?
-
-> +       unsigned int ksv_weight;
-> +       int i, ret = 0;
-> +
-> +       mutex_lock(&hdcp->key_lock);
-
-This can move after the length check?
-
-> +
-> +       if (raw_len != (DRM_HDCP_KSV_LEN + DP_HDCP_NUM_KEYS * DP_HDCP_KEY_LEN)) {
-> +               DRM_ERROR("Invalid HDCP key length expected=%d actual=%d\n",
-> +                         (DRM_HDCP_KSV_LEN + DP_HDCP_NUM_KEYS * DP_HDCP_KEY_LEN),
-> +                         raw_len);
-> +               ret = -EINVAL;
-> +               goto out;
-> +       }
-> +
-> +       key = hdcp->key;
-> +
-> +       memcpy(key->ksv.bytes, ptr, DRM_HDCP_KSV_LEN);
-> +       ksv_weight = hweight32(key->ksv.words[0]) + hweight32(key->ksv.words[1]);
-> +       if (ksv_weight != 20) {
-> +               DRM_ERROR("Invalid ksv weight, expected=20 actual=%d\n",
-> +                         ksv_weight);
-> +               ret = -EINVAL;
-> +               goto out;
-> +       }
-> +
-> +       ptr += DRM_HDCP_KSV_LEN;
-> +       for (i = 0; i < DP_HDCP_NUM_KEYS; i++) {
-> +               memcpy(key->keys[i].bytes, ptr, DP_HDCP_KEY_LEN);
-> +               ptr += DP_HDCP_KEY_LEN;
-> +       }
-> +
-> +       DRM_DEBUG_DRIVER("Successfully ingested HDCP key\n");
-> +       hdcp->key->valid = true;
-> +
-> +out:
-> +       mutex_unlock(&hdcp->key_lock);
-> +       return ret;
-> +}
-> +
-> +static bool dp_hdcp_are_keys_valid(struct drm_connector *connector)
-> +{
-> +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> +       u32 val;
-> +
-> +       val = dp_hdcp_read_dp(hdcp, DP_HDCP_STATUS);
-> +       return FIELD_GET(DP_HDCP_KEY_STATUS, val) == DP_HDCP_KEY_STATUS_VALID;
-> +}
-> +
-> +static int dp_hdcp_load_keys(struct drm_connector *connector)
-> +{
-> +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> +       struct dp_hdcp_key *key;
-> +       int i, ret = 0;
-> +
-> +       mutex_lock(&hdcp->key_lock);
-> +
-> +       key = hdcp->key;
-> +
-> +       if (!key->valid) {
-> +               ret = -ENOENT;
-> +               goto out;
-> +       }
-> +
-> +       dp_hdcp_write_dp(hdcp, DP_HDCP_SW_LOWER_AKSV, key->ksv.words[0]);
-> +       dp_hdcp_write_dp(hdcp, DP_HDCP_SW_UPPER_AKSV, key->ksv.words[1]);
-> +
-> +       for (i = 0; i < DP_HDCP_NUM_KEYS; i++) {
-> +               dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_LSB(i),
-> +                                  key->keys[i].words[0]);
-> +               dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_MSB(i),
-> +                                  key->keys[i].words[1]);
-> +       }
-> +
-> +       dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_VALID, DP_HDCP_SW_KEY_VALID);
-> +       wmb();
-
-What are the wmb()s for? Can you add a comment indicating what we're
-trying to fix by having them?
-
-> +
-> +       dp_hdcp_write_dp(hdcp, DP_HDCP_ENTROPY_CTRL0, get_random_u32());
-> +       dp_hdcp_write_dp(hdcp, DP_HDCP_ENTROPY_CTRL1, get_random_u32());
-
-Can we call get_random_u64() at the start of this function outside the
-mutex lock and then use the upper and lower halves for these two lines
-above?
-
-> +       wmb();
-> +
-> +out:
-> +       mutex_unlock(&hdcp->key_lock);
-> +       return ret;
-> +}
-> +
-> +static int dp_hdcp_hdcp2_capable(struct drm_connector *connector, bool *capable)
-> +{
-> +       *capable = false;
-> +       return 0;
-> +}
-> +
-> +static int dp_hdcp_hdcp1_read_an_aksv(struct drm_connector *connector,
-> +                                     u32 *an, u32 *aksv)
-> +{
-> +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> +       bool keys_valid;
-> +       int ret;
-> +       u32 val;
-> +
-> +       dp_hdcp_write_dp(hdcp, DP_HDCP_CTRL, 1);
-> +
-> +       ret = read_poll_timeout(dp_hdcp_are_keys_valid, keys_valid, keys_valid,
-> +                               20 * 1000, 10 * 1000, false, connector);
-> +       if (ret) {
-> +               drm_err(hdcp->dev, "HDCP keys invalid %d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       /* Clear AInfo */
-> +       dp_hdcp_write_dp(hdcp, DP_HDCP_RCVPORT_DATA4, 0);
-> +
-> +       aksv[0] = dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA3);
-> +       aksv[1] = GENMASK(7, 0) & dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA4);
-> +
-> +       ret = read_poll_timeout(dp_hdcp_read_dp, val,
-> +                               (val & DP_HDCP_AN_READY_MASK) == DP_HDCP_AN_READY_MASK,
-> +                               100, 10 * 1000, false, hdcp, DP_HDCP_STATUS);
-> +       if (ret) {
-> +               drm_err(hdcp->dev, "AN failed to become ready %x/%d\n", val, ret);
-> +               return ret;
-> +       }
-> +
-> +       /*
-> +        * Get An from hardware, for unknown reasons we need to read the reg
-> +        * twice to get valid data.
-
-That's annoying.
-
-> +        */
-> +       dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA5);
-> +       an[0] = dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA5);
-> +
-> +       dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA6);
-> +       an[1] = dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA6);
-> +
-> +       return 0;
-> +}
-> +
-> +static int dp_hdcp_hdcp1_store_receiver_info(struct drm_connector *connector,
-> +                                            u32 *ksv, u32 status, u8 bcaps,
-> +                                            bool is_repeater)
-> +{
-> +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> +       u32 val;
-> +
-> +       dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA0,
-> +                        ksv[0]);
-> +       dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA1,
-> +                        ksv[1]);
-> +
-> +       val = ((status & GENMASK(15, 0)) << 8) | (bcaps & GENMASK(7, 0));
-
-Nitpick: Can this use FIELD_PREP() too?
-
-> +
-> +       dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA12, val);
-> +
-> +       return 0;
-> +}
-> +
-> +static int dp_hdcp_hdcp1_enable_encryption(struct drm_connector *connector)
-> +{
-> +       return 0;
-> +}
-> +
-> +static int dp_hdcp_hdcp1_wait_for_r0(struct drm_connector *connector)
-> +{
-> +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> +       int ret;
-> +       u32 val;
-> +
-> +       ret = read_poll_timeout(dp_hdcp_read_dp, val, (val & DP_HDCP_R0_READY),
-> +                               100, 1000, false, hdcp,
-> +                               DP_HDCP_STATUS);
-> +       if (ret) {
-> +               drm_err(hdcp->dev, "HDCP R0 not ready %x/%d\n", val, ret);
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int dp_hdcp_hdcp1_match_ri(struct drm_connector *connector, u32 ri_prime)
-> +{
-> +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> +       int ret;
-> +       u32 val;
-> +
-> +       dp_hdcp_write_dp(hdcp, DP_HDCP_RCVPORT_DATA2_0, ri_prime);
-> +
-> +       ret = read_poll_timeout(dp_hdcp_read_dp, val, (val & DP_HDCP_RI_MATCH),
-> +                               20 * 1000, 100 * 1000, false, hdcp,
-
-Maybe 20 * 1000 and 100 * 1000 should be some defines at the top of this
-file?
-
-> +                               DP_HDCP_STATUS);
-> +       if (ret) {
-> +               drm_err(hdcp->dev, "Failed to match Ri and Ri` (%08x) %08x/%d\n",
-> +                       ri_prime, val, ret);
-> +               return ret;
-> +       }
-> +       return 0;
-> +}
-> +
-> +static int dp_hdcp_hdcp1_store_ksv_fifo(struct drm_connector *connector,
-> +                                       u8 *ksv_fifo, u8 num_downstream,
-> +                                       u8 *bstatus, u32 *vprime)
-> +{
-> +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> +       int num_bytes = (num_downstream * DRM_HDCP_KSV_LEN);
-
-Nitpick: Why the parenthesis?
-
-> +       int ret, i;
-> +       u32 val;
-> +
-> +       /* Reset the SHA computation block */
-> +       dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_SHA_CTRL,
-> +                        DP_HDCP_SHA_CTRL_RESET);
-> +       dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_SHA_CTRL, 0);
-> +
-> +       /*
-> +        * KSV info gets written a byte at a time in the same order it was
-> +        * received. Every 64 bytes, we need to wait for the SHA_BLOCK_DONE
-> +        * bit to be set in SHA_CTRL.
-> +        */
-> +       for (i = 0; i < num_bytes; i++) {
-> +               val = FIELD_PREP(DP_HDCP_SHA_DATA_MASK, ksv_fifo[i]);
-> +
-> +               if (i == (num_bytes - 1))
-> +                       val |= DP_HDCP_SHA_DATA_DONE;
-> +
-> +               dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_SHA_DATA,
-> +                                val);
-> +
-> +               if (((i + 1) % 64) != 0)
-> +                       continue;
-> +
-> +               ret = read_poll_timeout(dp_hdcp_read_dp, val,
-> +                                       (val & DP_HDCP_SHA_DONE), 100,
-> +                                       100 * 1000, false, hdcp,
-> +                                       DP_HDCP_SHA_STATUS);
-> +               if (ret) {
-> +                       drm_err(hdcp->dev, "SHA block incomplete %d\n", ret);
-> +                       return ret;
-> +               }
-> +       }
-> +
-> +       ret = read_poll_timeout(dp_hdcp_read_dp, val,
-> +                               (val & DP_HDCP_SHA_COMP_DONE), 100, 100 * 1000,
-> +                               false, hdcp, DP_HDCP_SHA_STATUS);
-> +       if (ret) {
-> +               drm_err(hdcp->dev, "SHA computation incomplete %d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int dp_hdcp_hdcp1_disable(struct drm_connector *connector)
-> +{
-> +       struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> +       u32 val;
-> +
-> +       val = dp_hdcp_read_dp(hdcp, REG_DP_SW_RESET);
-> +       dp_hdcp_write_dp(hdcp, REG_DP_SW_RESET, val | DP_HDCP_SW_RESET);
-> +
-> +       /* Disable encryption and disable the HDCP block */
-> +       dp_hdcp_write_dp(hdcp, DP_HDCP_CTRL, 0);
-> +
-> +       dp_hdcp_write_dp(hdcp, REG_DP_SW_RESET, val);
-> +
-> +       return 0;
-> +}
-> +
-> +void dp_hdcp_commit(struct dp_hdcp *hdcp, struct drm_atomic_state *state)
-> +{
-> +       drm_hdcp_helper_atomic_commit(hdcp->helper_data, state, NULL);
-> +}
-> +
-> +static const struct drm_hdcp_helper_funcs dp_hdcp_funcs = {
-> +       .are_keys_valid = dp_hdcp_are_keys_valid,
-> +       .load_keys = dp_hdcp_load_keys,
-> +       .hdcp2_capable = dp_hdcp_hdcp2_capable,
-> +       .hdcp1_read_an_aksv = dp_hdcp_hdcp1_read_an_aksv,
-> +       .hdcp1_store_receiver_info = dp_hdcp_hdcp1_store_receiver_info,
-> +       .hdcp1_enable_encryption = dp_hdcp_hdcp1_enable_encryption,
-> +       .hdcp1_wait_for_r0 = dp_hdcp_hdcp1_wait_for_r0,
-> +       .hdcp1_match_ri = dp_hdcp_hdcp1_match_ri,
-> +       .hdcp1_store_ksv_fifo = dp_hdcp_hdcp1_store_ksv_fifo,
-> +       .hdcp1_disable = dp_hdcp_hdcp1_disable,
-> +};
-> +
-> +int dp_hdcp_attach(struct dp_hdcp *hdcp, struct drm_connector *connector)
-> +{
-> +       struct drm_device *dev = connector->dev;
-> +       struct drm_hdcp_helper_data *helper_data;
-> +       int ret;
-> +
-> +       /* HDCP is not configured for this device */
-> +       if (!hdcp || !hdcp->parser || hdcp->parser->io.hdcp_key.len == 0)
-> +               return 0;
-> +
-> +       helper_data = drm_hdcp_helper_initialize_dp(connector, hdcp->aux,
-> +                                                   &dp_hdcp_funcs, false);
-> +       if (IS_ERR_OR_NULL(helper_data))
-> +               return PTR_ERR(helper_data);
-> +
-> +       ret = drm_connector_attach_content_protection_property(connector, false);
-> +       if (ret) {
-> +               drm_hdcp_helper_destroy(helper_data);
-> +               drm_err(dev, "Failed to attach content protection prop %d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       hdcp->dev = connector->dev;
-> +       hdcp->connector = connector;
-> +       hdcp->helper_data = helper_data;
-> +
-> +       return 0;
-> +}
-> +
-> +struct dp_hdcp *dp_hdcp_get(struct dp_parser *parser, struct drm_dp_aux *aux)
-> +{
-> +       struct dp_hdcp *hdcp;
-> +
-> +       hdcp = devm_kzalloc(&parser->pdev->dev, sizeof(*hdcp), GFP_KERNEL);
-> +       if (!hdcp)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       hdcp->key = devm_kzalloc(&parser->pdev->dev, sizeof(*hdcp->key), GFP_KERNEL);
-> +       if (!hdcp->key)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       hdcp->parser = parser;
-> +       hdcp->aux = aux;
-> +
-> +       mutex_init(&hdcp->key_lock);
-> +
-> +       return hdcp;
-> +}
-> +
-> +void dp_hdcp_put(struct dp_hdcp *hdcp)
-> +{
-> +       drm_hdcp_helper_destroy(hdcp->helper_data);
-> +}
-> diff --git a/drivers/gpu/drm/msm/dp/dp_hdcp.h b/drivers/gpu/drm/msm/dp/dp_hdcp.h
-> new file mode 100644
-> index 000000000000..5637a9b0dea2
-> --- /dev/null
-> +++ b/drivers/gpu/drm/msm/dp/dp_hdcp.h
-> @@ -0,0 +1,27 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright (C) 2021 Google, Inc.
-> + *
-> + * Authors:
-> + * Sean Paul <seanpaul@chromium.org>
-> + */
-> +
-> +#ifndef DP_HDCP_H_
-> +#define DP_HDCP_H_
-> +
-> +#define DP_HDCP_KEY_LEN                                7
-> +#define DP_HDCP_NUM_KEYS                       40
-> +
-> +struct dp_hdcp;
-> +struct dp_parser;
-> +struct drm_atomic_state;
-> +struct drm_dp_aux;
-> +
-> +struct dp_hdcp *dp_hdcp_get(struct dp_parser *parser, struct drm_dp_aux *aux);
-> +void dp_hdcp_put(struct dp_hdcp *hdcp);
-> +
-> +int dp_hdcp_attach(struct dp_hdcp *hdcp, struct drm_connector *connector);
-> +int dp_hdcp_ingest_key(struct dp_hdcp *hdcp, const u8 *raw_key, int raw_len);
-> +void dp_hdcp_commit(struct dp_hdcp *hdcp, struct drm_atomic_state *state);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.c b/drivers/gpu/drm/msm/dp/dp_parser.c
-> index 0519dd3ac3c3..75a163b0b5af 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_parser.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_parser.c
-> @@ -20,11 +20,11 @@ static const struct dp_regulator_cfg sdm845_dp_reg_cfg = {
->  };
->
->  static int msm_dss_ioremap(struct platform_device *pdev,
-> -                               struct dss_io_data *io_data)
-> +                               struct dss_io_data *io_data, int idx)
->  {
->         struct resource *res = NULL;
->
-> -       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, idx);
->         if (!res) {
->                 DRM_ERROR("%pS->%s: msm_dss_get_res failed\n",
->                         __builtin_return_address(0), __func__);
-
-We should remove this error message. It's confusing now that some
-resources are optional.
-
-> @@ -55,6 +55,8 @@ static void dp_parser_unmap_io_resources(struct dp_parser *parser)
->  {
->         struct dp_io *io = &parser->io;
->
-> +       msm_dss_iounmap(&io->hdcp_tz);
-> +       msm_dss_iounmap(&io->hdcp_key);
->         msm_dss_iounmap(&io->dp_controller);
->  }
->
-> @@ -64,10 +66,20 @@ static int dp_parser_ctrl_res(struct dp_parser *parser)
->         struct platform_device *pdev = parser->pdev;
->         struct dp_io *io = &parser->io;
->
-> -       rc = msm_dss_ioremap(pdev, &io->dp_controller);
-> -       if (rc) {
-> -               DRM_ERROR("unable to remap dp io resources, rc=%d\n", rc);
-> +       rc = msm_dss_ioremap(pdev, &io->dp_controller, 0);
-> +       if (rc)
->                 goto err;
-> +
-> +       rc = msm_dss_ioremap(pdev, &io->hdcp_key, 1);
-> +       if (rc) {
-> +               io->hdcp_key.base = NULL;
-> +               io->hdcp_key.len = 0;
-> +       }
-> +
-> +       rc = msm_dss_ioremap(pdev, &io->hdcp_tz, 2);
-> +       if (rc) {
-> +               io->hdcp_tz.base = NULL;
-> +               io->hdcp_tz.len = 0;
-
-Bjorn is trying to split the single io region apart into 4 different
-regions[1]. This would add two more io regions. Maybe this should come
-after those patches and be indexed later? I worry about needing to add
-more register properties later on though. Maybe a better approach would
-be to make them mandatory for certain compatible strings instead.
-
-[1] https://lore.kernel.org/r/20210825222557.1499104-6-bjorn.andersson@linaro.org
-
->         }
->
->         io->phy = devm_phy_get(&pdev->dev, "dp");
+Best regards
+wang shengjiu
