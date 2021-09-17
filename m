@@ -2,358 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7092B40EEAF
-	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 03:23:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D44140EEBE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Sep 2021 03:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234078AbhIQBZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Sep 2021 21:25:00 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:43468 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232222AbhIQBZA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 21:25:00 -0400
-X-UUID: 3fe0887dc5174655a9317812a8c572ad-20210917
-X-UUID: 3fe0887dc5174655a9317812a8c572ad-20210917
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 398700776; Fri, 17 Sep 2021 09:23:34 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 17 Sep 2021 09:23:32 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 17 Sep 2021 09:23:32 +0800
-Message-ID: <e42db754228d577979833657a5c2d8c32a20d47e.camel@mediatek.com>
-Subject: Re: [PATCH v7 1/5] soc: mediatek: mutex: add support for MDP
-From:   moudy ho <moudy.ho@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-CC:     Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <tfiga@chromium.org>,
-        <drinkcat@chromium.org>, <acourbot@chromium.org>,
-        <pihsun@chromium.org>, <menghui.lin@mediatek.com>,
-        <sj.huang@mediatek.com>, <ben.lok@mediatek.com>,
-        <randy.wu@mediatek.com>, <srv_heupstream@mediatek.com>,
-        <hsinyi@google.com>
-Date:   Fri, 17 Sep 2021 09:23:32 +0800
-In-Reply-To: <01e4d221-0c77-fdcb-0e01-540e315481d8@gmail.com>
-References: <20210824100027.25989-1-moudy.ho@mediatek.com>
-         <20210824100027.25989-2-moudy.ho@mediatek.com>
-         <01e4d221-0c77-fdcb-0e01-540e315481d8@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S242262AbhIQBcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Sep 2021 21:32:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57234 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232222AbhIQBcx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Sep 2021 21:32:53 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19EA6C061574
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 18:31:32 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id r26so11757471oij.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Sep 2021 18:31:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=f57u0A/QcXB9Uc7ywKqPgF1+a3SXXQ/NQC+jmV4WsJI=;
+        b=UszOX13r//yuKwayXPHevyhJm1/hLmvOOlm99g/9vqe6EU0P7RwfzzZjeXwfg2E7cM
+         aEfy2fMwutqjNxv8ZwPhKvafBceGe9ve8lKqS5Ak75rdUYALNmcGICwM6gYLeC5hUi0x
+         mTwrrpIU49RA+D2nWnKJ8QDpKxK9uUaijmjX0Po1LE1HwIqaH/UJ4NCaWVCUA6BzKuLV
+         2hvoSLGkKICFQ8y/uZUWPms1X+Rc+Nk4KT8cvVplPjyB49rPEcoqd+U8QQ5v+V2tyChx
+         k02lHdDAoYjmhrSQ5PXYZoywNJYYmY2sXNAcoyH/m8nkXL9/uBTPHoqKk5R5g/vg9Tr4
+         N/Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=f57u0A/QcXB9Uc7ywKqPgF1+a3SXXQ/NQC+jmV4WsJI=;
+        b=FMvY+Dxgsb+K2DRpGTZ56A8Tlmqa8W0BOpBBQzu9xSdTKVh3+pH8/efnh0gjeg+5sf
+         GWNjckqhlokt2bPaUiki/246aG0uJ2GvMviRZKi5D9faCc9nGJPzwZxKTBHDR92Qkh8Z
+         1ZtGv9Rifrj/+VD8aZikDDcYulWcPr4ZmMANj3p2xOahuPVQvW7cjFmIhmjvqnI7t6Yu
+         fb4Z/S+LcRe5IlzzvOc0ozQjt23RMTXct8nJEVIyADwPtKPW8l5UoH/sa6jfOHwFoB41
+         2HRP4T/osJ/6Q+9zf9G8Z/zr5V8w39EVzPsB6Y4sbspR7//H5R6rpKJ/Ig5e4YpwAE57
+         cZ1w==
+X-Gm-Message-State: AOAM530/3lt7ZGTu5eXOOivPrkTPbNgc2iarilxgNcQEL4QeewHAYnUo
+        +YYaRWqI0led/ity9YdwAus=
+X-Google-Smtp-Source: ABdhPJzPE8xeK6Qls1N3K85Pd7QO4u+kZK6xIKc89ErochxrBtGoWHHXThQ+A/nsdOSkD3GemQvcAg==
+X-Received: by 2002:a54:4589:: with SMTP id z9mr11266921oib.22.1631842291380;
+        Thu, 16 Sep 2021 18:31:31 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id w9sm1103518oti.35.2021.09.16.18.31.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Sep 2021 18:31:30 -0700 (PDT)
+Date:   Thu, 16 Sep 2021 20:31:28 -0500
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     lee.jones@linaro.org, Chris Morgan <macromorgan@hotmail.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        zyw@rock-chips.com, zhangqing@rock-chips.com, heiko@sntech.de,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mfd: rk808: Convert bindings to yaml
+Message-ID: <20210917013128.GA19894@wintermute.localdomain>
+References: <20210916201947.18237-1-macroalpha82@gmail.com>
+ <1631839746.891478.1484029.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1631839746.891478.1484029.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-09-07 at 13:52 +0200, Matthias Brugger wrote:
-> 
-> On 24/08/2021 12:00, Moudy Ho wrote:
-> > Add functions to support MDP:
-> >    1. Get mutex function
-> >    2. Enable/disable mutex
-> >    3. Enable MDP's modules
-> >    4. Write register via CMDQ
+On Thu, Sep 16, 2021 at 07:49:06PM -0500, Rob Herring wrote:
+> On Thu, 16 Sep 2021 15:19:47 -0500, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
 > > 
-> > Add MDP related settings for 8183 SoC
-> >    1. Register settings
+> > Convert the rk808 bindings into yaml format. Please note that currently
+> > there are a few errors that appear when performing a make dtbs_check.
+> > However, after looking at the errors it appears in most cases it occurs
+> > on device trees which are not following the current rk808.txt document
+> > today. For example for the rk808 there are multiple errors regarding
+> > vcc13-supply, vcc14-supply, and vddio-supply; however these supplies
+> > are not listed in the current driver or cared for in any way.
 > > 
-> 
-> Please write some good commit message.
-> 
-> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> > For the moment the rk817 is the only MFD that will support a battery.
+> > I believe the rk818 also supports a batter but I do not have one to
+> > test or write the code for. When it is supported we can split off
+> > the battery to its own document. Note that the battery is being added
+> > in a separate commit series.
+> > 
+> > Changes from V1:
+> > 
+> >  - Removed generic descriptions.
+> >  - Added maxItems to clock-output-names. Max items is 2 per the driver.
+> >  - Added unevaluatedProperties as false to regulators.
+> >  - Correct i2c node.
+> >  - Added note about the battery.
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > > ---
-> >   drivers/soc/mediatek/mtk-mutex.c       | 106
-> > +++++++++++++++++++++++--
-> >   include/linux/soc/mediatek/mtk-mutex.h |   8 ++
-> >   2 files changed, 108 insertions(+), 6 deletions(-)
+> >  .../devicetree/bindings/mfd/rk808.txt         | 465 ------------------
+> >  .../bindings/mfd/rockchip,rk805.yaml          |  84 ++++
+> >  .../bindings/mfd/rockchip,rk808.yaml          | 253 ++++++++++
+> >  .../bindings/mfd/rockchip,rk809.yaml          |  98 ++++
+> >  .../bindings/mfd/rockchip,rk817.yaml          | 362 ++++++++++++++
+> >  .../bindings/mfd/rockchip,rk818.yaml          | 106 ++++
+> >  6 files changed, 903 insertions(+), 465 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/mfd/rk808.txt
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml
 > > 
-> > diff --git a/drivers/soc/mediatek/mtk-mutex.c
-> > b/drivers/soc/mediatek/mtk-mutex.c
-> > index 2e4bcc300576..935f2849a094 100644
-> > --- a/drivers/soc/mediatek/mtk-mutex.c
-> > +++ b/drivers/soc/mediatek/mtk-mutex.c
-> > @@ -7,9 +7,11 @@
-> >   #include <linux/iopoll.h>
-> >   #include <linux/module.h>
-> >   #include <linux/of_device.h>
-> > +#include <linux/of_address.h>
-> >   #include <linux/platform_device.h>
-> >   #include <linux/regmap.h>
-> >   #include <linux/soc/mediatek/mtk-mmsys.h>
-> > +#include <linux/soc/mediatek/mtk-cmdq.h>
-> >   #include <linux/soc/mediatek/mtk-mutex.h>
-> >   
-> >   #define MT2701_MUTEX0_MOD0			0x2c
-> > @@ -107,6 +109,10 @@
-> >   #define MT8183_MUTEX_EOF_DSI0			(MT8183_MUTEX_S
-> > OF_DSI0 << 6)
-> >   #define MT8183_MUTEX_EOF_DPI0			(MT8183_MUTEX_S
-> > OF_DPI0 << 6)
-> >   
-> > +#define MT8183_MUTEX_MDP_START			5
-> > +#define MT8183_MUTEX_MDP_MOD_MASK		0x07FFFFFF
-> > +#define MT8183_MUTEX_MDP_SOF_MASK		0x00000007
-> > +
-> >   struct mtk_mutex {
-> >   	int id;
-> >   	bool claimed;
-> > @@ -123,11 +129,14 @@ enum mtk_mutex_sof_id {
-> >   };
-> >   
-> >   struct mtk_mutex_data {
-> > -	const unsigned int *mutex_mod;
-> > -	const unsigned int *mutex_sof;
-> > -	const unsigned int mutex_mod_reg;
-> > -	const unsigned int mutex_sof_reg;
-> > -	const bool no_clk;
-> > +	const unsigned int	*mutex_mod;
-> > +	const unsigned int	*mutex_sof;
-> > +	const unsigned int	mutex_mod_reg;
-> > +	const unsigned int	mutex_sof_reg;
-> > +	const unsigned int	*mutex_mdp_offset;
-> > +	const unsigned int	mutex_mdp_mod_mask;
-> > +	const unsigned int	mutex_mdp_sof_mask;
-> > +	const bool		no_clk;
 > 
-> Not needed, please drop.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> >   };
-> >   
-> >   struct mtk_mutex_ctx {
-> > @@ -136,6 +145,8 @@ struct mtk_mutex_ctx {
-> >   	void __iomem			*regs;
-> >   	struct mtk_mutex		mutex[10];
-> >   	const struct mtk_mutex_data	*data;
-> > +	phys_addr_t			addr;
-> > +	u8				subsys_id;
-> >   };
-> >   
-> >   static const unsigned int mt2701_mutex_mod[DDP_COMPONENT_ID_MAX]
-> > = {
-> > @@ -238,6 +249,14 @@ static const unsigned int
-> > mt8183_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
-> >   	[MUTEX_SOF_DPI0] = MT8183_MUTEX_SOF_DPI0 |
-> > MT8183_MUTEX_EOF_DPI0,
-> >   };
-> >   
-> > +/* indicate which mutex is used by each pipepline */
-> > +static const unsigned int mt8183_mutex_mdp_offset[MDP_PIPE_MAX] =
-> > {
+> yamllint warnings/errors:
 > 
-> Does this code even compile?
-> There is some basic rules for patches, for example that they have to
-> compile, 
-> don't break anything etc.
-> Please read the documentation and stick to it, before submitting
-> patches:
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/rockchip,rk808.example.dt.yaml: pmic@1b: 'vddio-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
 > 
-https://urldefense.com/v3/__https://www.kernel.org/doc/html/latest/process/submitting-patches.html__;!!CTRNKA9wMg0ARbw!ydpwywaE1_wrjDqXOQ2N-a98Tw2kejngWaJOgZAWmh-y8tBOW0M_BRXfuhKHSZQ9$
->  
+> doc reference errors (make refcheckdocs):
+> Documentation/devicetree/bindings/pinctrl/pinctrl-rk805.txt: Documentation/devicetree/bindings/mfd/rk808.txt
 > 
-> Regards,
-> Matthias
+> See https://patchwork.ozlabs.org/patch/1529027
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
 
-Hi Matthias,
+What would be the best way to handle this? I can confirm that there
+is no vddio cared for in the driver, however the datasheet appears
+to show that one exists (vddio appears to be the supply for the
+BUCK1 and BUCK2 DVS voltage). Should I update the yaml to reflect what
+already exists today in the various device trees, should I only allow
+what the driver cares for today, or should I "meet halfway" and allow
+that which the datasheet permits (such as this) even if it's not
+implemented in the driver? Note that there will also be some other
+errors that are expected, because the existing device trees didn't
+always follow the previous rk808.txt file (there is at least one board
+with the wrong clock-cells value).
 
-I shouldn't have applied patches directly after chip compatibility
-testing in internal codebase that it had to resolve some conflict and
-been recorded automatically by GIT.
-Sorry for the inconvenience, those redundant codes that cause
-compilation errors will be removed and confirmed in future versions.
+Thank you.
 
-Thanks & Regards,
-Moudy Ho
 > 
-> > +	[MDP_PIPE_IMGI] = MT8183_MUTEX_MDP_START,
-> > +	[MDP_PIPE_RDMA0] = MT8183_MUTEX_MDP_START + 1,
-> > +	[MDP_PIPE_WPEI] = MT8183_MUTEX_MDP_START + 2,
-> > +	[MDP_PIPE_WPEI2] = MT8183_MUTEX_MDP_START + 3
-> > +};
-> > +
-> >   static const struct mtk_mutex_data mt2701_mutex_driver_data = {
-> >   	.mutex_mod = mt2701_mutex_mod,
-> >   	.mutex_sof = mt2712_mutex_sof,
-> > @@ -272,6 +291,9 @@ static const struct mtk_mutex_data
-> > mt8183_mutex_driver_data = {
-> >   	.mutex_sof = mt8183_mutex_sof,
-> >   	.mutex_mod_reg = MT8183_MUTEX0_MOD0,
-> >   	.mutex_sof_reg = MT8183_MUTEX0_SOF0,
-> > +	.mutex_mdp_offset = mt8183_mutex_mdp_offset,
-> > +	.mutex_mdp_mod_mask = MT8183_MUTEX_MDP_MOD_MASK,
-> > +	.mutex_mdp_sof_mask = MT8183_MUTEX_MDP_SOF_MASK,
-> >   	.no_clk = true,
-> >   };
-> >   
-> > @@ -290,6 +312,21 @@ struct mtk_mutex *mtk_mutex_get(struct device
-> > *dev)
-> >   }
-> >   EXPORT_SYMBOL_GPL(mtk_mutex_get);
-> >   
-> > +struct mtk_mutex *mtk_mutex_mdp_get(struct device *dev,
-> > +				    enum mtk_mdp_pipe_id id)
-> > +{
-> > +	struct mtk_mutex_ctx *mtx = dev_get_drvdata(dev);
-> > +	int i = mtx->data->mutex_mdp_offset[id];
-> > +
-> > +	if (!mtx->mutex[i].claimed) {
-> > +		mtx->mutex[i].claimed = true;
-> > +		return &mtx->mutex[i];
-> > +	}
-> > +
-> > +	return ERR_PTR(-EBUSY);
-> > +}
-> > +EXPORT_SYMBOL_GPL(mtk_mutex_mdp_get);
-> > +
-> >   void mtk_mutex_put(struct mtk_mutex *mutex)
-> >   {
-> >   	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> > mtk_mutex_ctx,
-> > @@ -369,6 +406,25 @@ void mtk_mutex_add_comp(struct mtk_mutex
-> > *mutex,
-> >   }
-> >   EXPORT_SYMBOL_GPL(mtk_mutex_add_comp);
-> >   
-> > +void mtk_mutex_add_mdp_mod(struct mtk_mutex *mutex, u32 mod,
-> > +			   struct mmsys_cmdq_cmd *cmd)
-> > +{
-> > +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> > mtk_mutex_ctx,
-> > +						 mutex[mutex->id]);
-> > +	unsigned int offset;
-> > +
-> > +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-> > +
-> > +	offset = DISP_REG_MUTEX_MOD(mtx->data->mutex_mod_reg, mutex-
-> > >id);
-> > +	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id, mtx->addr +
-> > offset,
-> > +			    mod, mtx->data->mutex_mdp_mod_mask);
-> > +
-> > +	offset = DISP_REG_MUTEX_SOF(mtx->data->mutex_sof_reg, mutex-
-> > >id);
-> > +	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id, mtx->addr +
-> > offset,
-> > +			    0, mtx->data->mutex_mdp_sof_mask);
-> > +}
-> > +EXPORT_SYMBOL_GPL(mtk_mutex_add_mdp_mod);
-> > +
-> >   void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
-> >   			   enum mtk_ddp_comp_id id)
-> >   {
-> > @@ -420,6 +476,20 @@ void mtk_mutex_enable(struct mtk_mutex *mutex)
-> >   }
-> >   EXPORT_SYMBOL_GPL(mtk_mutex_enable);
-> >   
-> > +void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
-> > +			      struct mmsys_cmdq_cmd *cmd)
-> > +{
-> > +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> > mtk_mutex_ctx,
-> > +						 mutex[mutex->id]);
-> > +
-> > +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-> > +
-> > +	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id,
-> > +			    mtx->addr + DISP_REG_MUTEX_EN(mutex->id),
-> > +			    0x1, 0x00000001);
-> > +}
-> > +EXPORT_SYMBOL_GPL(mtk_mutex_enable_by_cmdq);
-> > +
-> >   void mtk_mutex_disable(struct mtk_mutex *mutex)
-> >   {
-> >   	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> > mtk_mutex_ctx,
-> > @@ -431,6 +501,20 @@ void mtk_mutex_disable(struct mtk_mutex
-> > *mutex)
-> >   }
-> >   EXPORT_SYMBOL_GPL(mtk_mutex_disable);
-> >   
-> > +void mtk_mutex_disable_by_cmdq(struct mtk_mutex *mutex,
-> > +			       struct mmsys_cmdq_cmd *cmd)
-> > +{
-> > +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> > mtk_mutex_ctx,
-> > +						 mutex[mutex->id]);
-> > +
-> > +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-> > +
-> > +	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id,
-> > +			    mtx->addr + DISP_REG_MUTEX_EN(mutex->id),
-> > +			    0x0, 0x00000001);
-> > +}
-> > +EXPORT_SYMBOL_GPL(mtk_mutex_disable_by_cmdq);
-> > +
-> >   void mtk_mutex_acquire(struct mtk_mutex *mutex)
-> >   {
-> >   	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> > mtk_mutex_ctx,
-> > @@ -458,7 +542,8 @@ static int mtk_mutex_probe(struct
-> > platform_device *pdev)
-> >   {
-> >   	struct device *dev = &pdev->dev;
-> >   	struct mtk_mutex_ctx *mtx;
-> > -	struct resource *regs;
-> > +	struct cmdq_client_reg cmdq_reg;
-> > +	struct resource *regs, addr;
-> >   	int i;
-> >   
-> >   	mtx = devm_kzalloc(dev, sizeof(*mtx), GFP_KERNEL);
-> > @@ -479,6 +564,15 @@ static int mtk_mutex_probe(struct
-> > platform_device *pdev)
-> >   		}
-> >   	}
-> >   
-> > +	if (of_address_to_resource(dev->of_node, 0, &addr) < 0)
-> > +		mtx->addr = 0L;
-> > +	else
-> > +		mtx->addr = addr.start;
-> > +
-> > +	if (cmdq_dev_get_client_reg(dev, &cmdq_reg, 0) != 0)
-> > +		dev_info(dev, "cmdq subsys id has not been set\n");
-> > +	mtx->subsys_id = cmdq_reg.subsys;
-> > +
-> >   	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> >   	mtx->regs = devm_ioremap_resource(dev, regs);
-> >   	if (IS_ERR(mtx->regs)) {
-> > diff --git a/include/linux/soc/mediatek/mtk-mutex.h
-> > b/include/linux/soc/mediatek/mtk-mutex.h
-> > index 6fe4ffbde290..d08b98419dd9 100644
-> > --- a/include/linux/soc/mediatek/mtk-mutex.h
-> > +++ b/include/linux/soc/mediatek/mtk-mutex.h
-> > @@ -11,11 +11,19 @@ struct device;
-> >   struct mtk_mutex;
-> >   
-> >   struct mtk_mutex *mtk_mutex_get(struct device *dev);
-> > +struct mtk_mutex *mtk_mutex_mdp_get(struct device *dev,
-> > +				    enum mtk_mdp_pipe_id id);
-> >   int mtk_mutex_prepare(struct mtk_mutex *mutex);
-> >   void mtk_mutex_add_comp(struct mtk_mutex *mutex,
-> >   			enum mtk_ddp_comp_id id);
-> > +void mtk_mutex_add_mdp_mod(struct mtk_mutex *mutex, u32 mod,
-> > +			   struct mmsys_cmdq_cmd *cmd);
-> >   void mtk_mutex_enable(struct mtk_mutex *mutex);
-> > +void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
-> > +			      struct mmsys_cmdq_cmd *cmd);
-> >   void mtk_mutex_disable(struct mtk_mutex *mutex);
-> > +void mtk_mutex_disable_by_cmdq(struct mtk_mutex *mutex,
-> > +			       struct mmsys_cmdq_cmd *cmd);
-> >   void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
-> >   			   enum mtk_ddp_comp_id id);
-> >   void mtk_mutex_unprepare(struct mtk_mutex *mutex);
-> > 
-
