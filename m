@@ -2,131 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4843B4105F5
-	for <lists+devicetree@lfdr.de>; Sat, 18 Sep 2021 12:48:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAA8E410638
+	for <lists+devicetree@lfdr.de>; Sat, 18 Sep 2021 14:10:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231368AbhIRKuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Sep 2021 06:50:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbhIRKuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Sep 2021 06:50:09 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D9A3C061574;
-        Sat, 18 Sep 2021 03:48:46 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id q11so19389953wrr.9;
-        Sat, 18 Sep 2021 03:48:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version;
-        bh=MU4kIxxMIxBExIJtSVF8R7Su9e74XUBdqKLR5SUf6Qw=;
-        b=eaQ0lRr92UC4ry0qZshEmv0yDb1Rw+dWHQBRPKSR11nquRz9f+SATYrQL3DVBe9qij
-         e6BLg/Ps9dUh4PZk+1wZIOjP7SWgxKJAYetcw0kOEkcPNTX8R3hocsre1mQosvmIUt7m
-         hCYz4qR+BqFDhqhfiCZ+4kzNSfm64yxYw9gZ2Ei+FFEcWt9S+M1rKqdl9AlKdnr6aqfp
-         6L8S9K4kk1Raxy5lAEBW6e/ZgYWxSQgb06DxMPssclxGsAudlJguwT100xVMASPzaV6k
-         VJr8bx1ydFzNyNQg8bshrBHlfPwOFd0EK3agbIG09RhraHfxcU1LkCiFVIObqvBwV5RC
-         /3gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version;
-        bh=MU4kIxxMIxBExIJtSVF8R7Su9e74XUBdqKLR5SUf6Qw=;
-        b=WYo7A1hPvVsyji5ML2DZwCNcqux5AdrqOUeV3af/qjaiJQCAYbHAInjy7TcUXYxjiE
-         dtgaJmFOT+hsRune0IQ6bqetdTQnsKS0lUvAEFJ/xjJYtc3qM6BbcjsO57pun2zkHbPU
-         RtTybfayi0FF1fQzWIioevDoPNZePU0lnRMgRYoIvDomBNAFdWlKoZPwy/0wHy36bPlR
-         MEFOM7D0Q4k3/i5ssOgjh8D5iXS0Vz2DjgasI11Xcz31dzCV1uHIWteN/tLp0VRN59Zw
-         jwpsn9p3l31C4KpvdMEpPoekMPDxigg0UeMnXOetZfClD2MikJv45J+I4CNNpRAonQ67
-         faFg==
-X-Gm-Message-State: AOAM532ry5g/e/IcqsUIph+rnRJgkJ0fi39XvySehvtqpCQm/974z00S
-        b7k8GOO2uTdOLa0myHEAbfo=
-X-Google-Smtp-Source: ABdhPJykBid9mMlT5U7Xlu+UqlFELIhoRpofIn/8n+6tUXEdJXImN0YjID821v8FbU/YAuiOhHiesQ==
-X-Received: by 2002:adf:e6c9:: with SMTP id y9mr17681333wrm.430.1631962124536;
-        Sat, 18 Sep 2021 03:48:44 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3d3:9cc4:4624:564:2256:d6c3])
-        by smtp.gmail.com with ESMTPSA id a72sm13744853wme.5.2021.09.18.03.48.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Sep 2021 03:48:43 -0700 (PDT)
-From:   "Bastien =?ISO-8859-1?Q?Roucari=E8s?=" <roucaries.bastien@gmail.com>
-X-Google-Original-From: Bastien =?ISO-8859-1?Q?Roucari=E8s?= <rouca@debian.org>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Chen-Yu Tsai <wens@csie.org>, Chen-Yu Tsai <wens@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Salvatore Bonaccorso <carnil@debian.org>,
-        Maxime Ripard <maxime@cerno.tech>
-Subject: Re: [PATCH] [PATCH] ARM: dts: sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode
-Date:   Sat, 18 Sep 2021 10:48:42 +0000
-Message-ID: <58294171.jumPIWX89V@portable-bastien>
-In-Reply-To: <20210916110305.ehmaspxht4nnhksg@gilmour>
-References: <20210916081721.237137-1-rouca@debian.org> <20210916110305.ehmaspxht4nnhksg@gilmour>
+        id S239660AbhIRMLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Sep 2021 08:11:48 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:39437 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239578AbhIRMLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 18 Sep 2021 08:11:17 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 23539580A6A;
+        Sat, 18 Sep 2021 08:09:54 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Sat, 18 Sep 2021 08:09:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-transfer-encoding; s=fm2; bh=cEal9g6XjUtTf
+        /+blnFGD/0r9W4KfOLAKJXx/OVMfPQ=; b=O+X8MSeJQ7T73PWHX8toq+IPO4nFg
+        WfwR41ARq4KH3Rr8fPnMMcOENkIWzd6H/EKNe1Ry1J3JROZwF0pOu78mLkOirKGs
+        6XtOfsOUrDyRTxHDuAKDm1vX0why6ghheIMHkbJnNLkWi/Z6ExAP3yf5VoPeIfHr
+        Vs719+Ipe/T0PoGmncNB4SGIbTof9ONaVBtQDRCG8ZOAgV7Js2xOWLz0i1MO7RFD
+        PRCW68avx+TXhItG/yZwFwb/Bo4yg2/Px7D7DEdugJ16ckmG7eZnDWaIXarZLGM1
+        FFyV2OnuOMvUjZYQXUrV3nN3BQpDFfr+rcbN/PPY3yiTyzm5R/GvcQciA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :in-reply-to:message-id:mime-version:references:subject:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; bh=cEal9g6XjUtTf/+blnFGD/0r9W4KfOLAKJXx/OVMfPQ=; b=JtRfETVR
+        h4pm5y4JfhIv+BCoiBsNT3kDv9VPyw0YwKIufgMyYFiuvaxsW5gNI6TNDZfUeEdP
+        3uovH03RccqIPQb66yxIF1g/n7KD8zp9g92AE+KpRxdAtWsNv6fzXWmRqHx5RZn/
+        s9Lj7BGXyVa6jgDPSJb9FjxI2WUb7T4BqGgo2ovq4YwFTNIFA8V1dzyk5YZ37VMH
+        cWw1Io+5sda0pTxcSsrPAl7dgR0KX5tt4zxecxavm1OVMTdX3w2kjMjs2r03e+WM
+        RPv9wnxlrSBIuujNLfv5f/fSgCYzta1DwclDP6rwlN6w/VbW5/X8lOo3JHeYoqjg
+        7LhdjGqlC4kVNQ==
+X-ME-Sender: <xms:EtdFYTWf4AxLerCbd9YMymRxuEfTfQUxpKvQ38EZ6g0DBFIHk5CZ4w>
+    <xme:EtdFYbmDf02ihRPtluZX9MkTPIDksS1Y2wougo6puwAIKUyRZA4nfUA-cJa1Xt_RV
+    mwiPw6FxR_T2OYGHPM>
+X-ME-Received: <xmr:EtdFYfajj2NU2dmEKZm6QnscfQKOygmlVAIrVfUtwPxtays5sQWqzlpDhfKiF_c8NjqCgx1jyjjZdNXEF8McLF9iubFbhAPOfZ4jvOIP2LdcNR0FLLWT5TYSXg3sTQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudehkedggeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcu
+    rfgvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvg
+    hrnheptedvkeetleeuffffhfekteetffeggffgveehieelueefvddtueffveevlefhfeej
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvg
+    hnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:EtdFYeU_IzExlt_F-eFDCgnGnBENh9HuJpuuW7qIHhpiMpqdQlkcrg>
+    <xmx:EtdFYdm2yVCHkApSuPOaAyDFbMJPtchwrsJzYxjyGk0ULLKPjoQG1g>
+    <xmx:EtdFYbdsHN-AZQaES0bbEp7KOCiuRxr9MfIbWRtbujJvS0mWZ-gxmw>
+    <xmx:EtdFYfkvF-rXAaayH4nJkj2DokWddBUrEe_Jx9RjHUoapK-zECpvZg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 18 Sep 2021 08:09:52 -0400 (EDT)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Alexander Graf <graf@amazon.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [RFT PATCH 1/9] dt-bindings: usb: tps6598x: Add Apple CD321x compatible
+Date:   Sat, 18 Sep 2021 14:09:26 +0200
+Message-Id: <20210918120934.28252-2-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
+In-Reply-To: <20210918120934.28252-1-sven@svenpeter.dev>
+References: <20210918120934.28252-1-sven@svenpeter.dev>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2254600.lUWymMvBDu"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---nextPart2254600.lUWymMvBDu
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"; protected-headers="v1"
-From: Bastien =?ISO-8859-1?Q?Roucari=E8s?= <rouca@debian.org>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Chen-Yu Tsai <wens@csie.org>, Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Salvatore Bonaccorso <carnil@debian.org>, Maxime Ripard <maxime@cerno.tech>
-Subject: Re: [PATCH] [PATCH] ARM: dts: sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode
-Date: Sat, 18 Sep 2021 10:48:26 +0000
-Message-ID: <58294171.jumPIWX89V@portable-bastien>
-In-Reply-To: <20210916110305.ehmaspxht4nnhksg@gilmour>
-References: <20210916081721.237137-1-rouca@debian.org> <20210916110305.ehmaspxht4nnhksg@gilmour>
+A variant of the TI TPS 6598x Type-C Port Switch and Power Delivery
+controller known as Apple CD321x is present on boards with Apple SoCs
+such as the M1. Add its compatible to the device tree binding.
 
-Le jeudi 16 septembre 2021, 11:03:05 UTC Maxime Ripard a =C3=A9crit :
-> Hi,
->=20
-> On Thu, Sep 16, 2021 at 08:17:21AM +0000, roucaries.bastien@gmail.com wro=
-te:
-> > From: Bastien Roucari=C3=A8s <rouca@debian.org>
-> >=20
-> > Commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay
-> > config") sets the RX/TX delay according to the phy-mode property in the
-> > device tree. For the A20-olinuxino-lime2 board this is "rgmii", which is
-> > the wrong setting.
-> >=20
-> > Following the example of a900cac3750b ("ARM: dts: sun7i: a20: bananapro:
-> > Fix ethernet phy-mode") the phy-mode is changed to "rgmii-id" which gets
-> > the Ethernet working again on this board.
-> >=20
-> > Signed-off-by: Bastien Roucari=C3=A8s <rouca@debian.org>
->=20
-> It's the third time you've sent it since yesterday, what are the
-> differences and which one am I supposed to apply?
+Signed-off-by: Sven Peter <sven@svenpeter.dev>
+---
+ Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-apply the first, my infra is falky sorry for the three messages send
-
-Bastien
->=20
-> Maxime
-
-
---nextPart2254600.lUWymMvBDu
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEXQGHuUCiRbrXsPVqADoaLapBCF8FAmFFw/oACgkQADoaLapB
-CF9QWxAAguLfgRJtwGFHJiP1VFF7kzOq3ZDuBjsSV5h0SmJ/dgvc4PDmAbzZLEj3
-ScHILpo1r3Pifcpqkv7WHpqhwryrW0dWqmUxHXgmKVaVJOZ0kVZnQYMkZ/fEA7Ei
-rIZiRFVN7KHJOCKEXi9pOK3T3WJZJSxLbzEIdHKe5gT46i4HQ16FxaasVJlUqz5w
-HFwOPqNpNDi/zu0yyXO4KzbhRbajKKvXLTGTmLNyQVANWEGr+iYnBMmk5Vr538xQ
-Aua/tZkyPHtWV27hT3ombEkrt3wmGsALfvi4wo47/jJY8XfZjep80umhvi8M/zLY
-h5cQ/bliw2kfAPzxo5cmz+atWk1ICygNNr2G449ZE+aQ9qnr9V41QgeR1ZLPwC1C
-wxEd+lw/P651fSrhRxvStSO3HUhYxDTHbNRAbF7ZZ9uyWR1L8UKJzz5IhtDiLJ1X
-eu2ddOfTMqAxFqiuMiflSc4/YKn0vZg9KtPk/cMRKFTv3QgsalO4di5JT5lykJM/
-x+5RA5fe0sgoV6hlteY5j8mZkaoUwV/kaSWq604dBX/0y5asXO3NGmqtiSEwKaNO
-ssRpDM/SZ5DKrNd9QPB4XeuecW+pAgw//wyt67AjrNz/4NTSVNzBgYCWUmmtMoUG
-KOLUEUpociQD2R7F7UNkNPYWlOQgqI/zW+XjfUX9WOI51sT2PUo=
-=nqzX
------END PGP SIGNATURE-----
-
---nextPart2254600.lUWymMvBDu--
+diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+index f6819bf2a3b5..a4c53b1f1af3 100644
+--- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
+@@ -12,10 +12,14 @@ maintainers:
+ description: |
+   Texas Instruments 6598x Type-C Port Switch and Power Delivery controller
+ 
++  A variant of this controller known as Apple CD321x or Apple ACE is also
++  present on hardware with Apple SoCs such as the M1.
++
+ properties:
+   compatible:
+     enum:
+       - ti,tps6598x
++      - apple,cd321x
+   reg:
+     maxItems: 1
+ 
+-- 
+2.25.1
 
