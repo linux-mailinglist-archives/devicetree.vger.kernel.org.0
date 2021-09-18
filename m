@@ -2,85 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276554102EE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Sep 2021 04:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 811C04103B0
+	for <lists+devicetree@lfdr.de>; Sat, 18 Sep 2021 06:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239236AbhIRCSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 22:18:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54334 "EHLO
+        id S230376AbhIREwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Sep 2021 00:52:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238942AbhIRCSK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 22:18:10 -0400
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44AD4C061574
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 19:16:47 -0700 (PDT)
-Received: by mail-il1-x12c.google.com with SMTP id h29so12295695ila.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 19:16:47 -0700 (PDT)
+        with ESMTP id S229963AbhIREwx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Sep 2021 00:52:53 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DAECC061574;
+        Fri, 17 Sep 2021 21:51:30 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id k23-20020a17090a591700b001976d2db364so8835701pji.2;
+        Fri, 17 Sep 2021 21:51:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=K7wQ0o4+0+N6K8uTNDIjAnd7BQeGhXDT1oOTokZhfWA=;
-        b=Ar0GSwscbBwFxwlVKIp4/S7yKgl4Qy6yRtw6ZsyhrUCn/7cbvnXDxtqETgN8mOPcRv
-         AENTFOQF2rbcWTzZfPV0ks5EtMVWNwCzAxHbj+3O6QumV2Sj55UODNg4FA2pNaTczJuF
-         uOSxh0L7yLt/sgbF2xKdc301RPWqWTgGwY44jUPkmIVj5RMvZt3mojU/CAmXNb7Xh3Au
-         JG5Eit2wg6e4lSHm+vNDGBMQ75PNed0CGI4DsvVRxGuuo7UtslkngjzFEE3kH87jgu2R
-         cUOub8wzopIRu35A6RZ9zCYIl/fhKL5PYDTyPOE6OgrDg2DOSmapZ5kl7Ko1ToL3WFj4
-         wh4w==
+        bh=WNZGMzb9nyB3MBMeK+QJjWLcTHItRnQ+7G/+BEDduNE=;
+        b=Bo2jvmWsFr1hFGLC/xPMcs2O1qJ2I6XbQkEh52guZiJqM4FfbS0OYR51O/D5RdvxPl
+         wMHz2rE+M5hyFwW+MiCZquf72SAg4oPpZzFKDLzW80WrZe+mi6umYwDILiuz2EhvYheQ
+         tDQu53wRf9kFG4S2a0Te+9pZKZjF4Jchs9ash+KDemOPgzNa7noFMP/mOz4UPHxhPVS8
+         46apqtJVWkeD6Tt3uoKAkX7sbkLTt2J4aY+oJBECFxMKwt++WDXS6yQXC3rhpADmYiSh
+         TKDeqDADk8+Xo5LMtyc2aRgchvN7lMEGmVS8FMPdxTE6RuqUhFct6TvKxuqQ31GeRrnU
+         4KgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=K7wQ0o4+0+N6K8uTNDIjAnd7BQeGhXDT1oOTokZhfWA=;
-        b=ghNvccpzRFnKkseb86K5AomdCEEtfRD2c7IJ3pAlODpjzvWHGH3BMG6ZrO9S3bk0b/
-         xuJF3M2RVR2CFiMn8BFtMNOaDu+HS8Ww64shHniD/+h8qkOv/Ocx5eaNwSNlsqBBTBjz
-         u1WlL4vmbv8VSjIJPtAUr/lv0ZZV1fgJ/WKjXWLSYZ3ugdqDH0MHFxCHvpOxOKK2JDgb
-         wWYpAH0nMaXcRpeC4pKOAkr4oSER4o8ast/2P85YGciJBC5tnahJl7o/WSmn9K7fL2HU
-         Z1qkHHDTSvqrK7n361LU4OJ8y+cGVLHJQ5LRYHcLW2/EBtwUXequufg/Q1w8rGgrqs+2
-         7pTA==
-X-Gm-Message-State: AOAM531nwc1Tl5u6IMlvw4ACQ/w2oGajlr068TXyYClr51hqLlmgb9yq
-        i5xHVrpM7/qAuuzlxGltIurBirqf9ge7SS92NJc=
-X-Google-Smtp-Source: ABdhPJzuiiZ0cJ7aX3WB4++vQ8Wt373X7Ba7Fwje77mLohqxgXcg7pAncdRUqNqn4tH6UsOzXOtjeSKt5o8ZGKoGUIk=
-X-Received: by 2002:a05:6e02:cc5:: with SMTP id c5mr10069983ilj.110.1631931406629;
- Fri, 17 Sep 2021 19:16:46 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WNZGMzb9nyB3MBMeK+QJjWLcTHItRnQ+7G/+BEDduNE=;
+        b=K3vbbO1W365RAdcvQ/p4TXen0r3pqHH79yk7YBCQ8P5Itmst8s1DPU5GFFB6ALpAd9
+         /zFNtZg1aIRlHN86QBxvzhPKhWNwmT63wlYUD7lBEdcY7y5P4s9lDEA7CrI3/DCOMmrx
+         ujGZrLeujmwEzn6Gl73DQ/eETZnOIU3QfoDHhsSkELfMpT8LMbvLXu2mDGE6/nJNl+X/
+         QvhfvmDIeACkHfdx74KuyS2x6GzZrzwnMBkEN4acXXps4bQZ7K/WNDkrKVzx/GjTe5uD
+         afr1olaEtrjYKWZsRIbeuHgYYfFpISiVXIyic+z+/2TOcSFJTegJN3nwjlhYVGoGdqKp
+         TeLA==
+X-Gm-Message-State: AOAM533eHElnd2A4YRayjOOu7qt2u3bYIYDEjpEzWtLGmhlVbvK127vE
+        zChU/+tujwxZ6QieiyiWyII=
+X-Google-Smtp-Source: ABdhPJwVwe1tdbys8AUd/o80ED7iL8hOIFvgcH5y6yHMv0ePGFoWjh/646L9AUpCkLngtPyTuD3lPw==
+X-Received: by 2002:a17:90b:791:: with SMTP id l17mr16434601pjz.155.1631940689460;
+        Fri, 17 Sep 2021 21:51:29 -0700 (PDT)
+Received: from ubt.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id p5sm7663101pfp.218.2021.09.17.21.51.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Sep 2021 21:51:28 -0700 (PDT)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/4] Add Unisoc's UMS512 clock support
+Date:   Sat, 18 Sep 2021 12:51:10 +0800
+Message-Id: <20210918045114.387005-1-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Received: by 2002:a05:6602:2c41:0:0:0:0 with HTTP; Fri, 17 Sep 2021 19:16:46
- -0700 (PDT)
-Reply-To: charles_jackson86@aol.com
-From:   "Charles W. Jackson Jr" <diandrawalker1980@gmail.com>
-Date:   Fri, 17 Sep 2021 19:16:46 -0700
-Message-ID: <CAEP59rJb4-YTw7sm4pS1oZafHDCh=PDJXdR5vQseHup2AHE5mw@mail.gmail.com>
-Subject: =?UTF-8?B?NTUuMDAwLDAwIOKCrCBhbiBTaWU=?=
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-=E2=82=AC55,000.00 Euros has been donated to you by Charles W. Jackson, Ema=
-il
-to claim your =E2=82=AC55,000.00 now.
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-Herzlichen Gl=C3=BCckwunsch, die Summe von f=C3=BCnfundf=C3=BCnfzigtausend =
-Euro wurde
-Ihnen von Charles W. Jackson gespendet, ich habe 344,6 Millionen
-US-Dollar beim Powerball-Jackpot gewonnen. Dieser Sieg ist ein Segen.
-Deshalb habe ich beschlossen, der =C3=96ffentlichkeit etwas zur=C3=BCckzuge=
-ben.
-Dies bedeutet, dass ich offiziell bekannt geben werde, dass Sie als
-einer der Nutznie=C3=9Fer des Wohlt=C3=A4tigkeitsheims von Charles W Jackso=
-n Jr.
-ausgew=C3=A4hlt wurden.
+Changes since v2:
+* Fixed bindings check errors;
+* Addressed Rob's comments;
+* Added an example of syscon which doesn't include "#address-cells",
+ "#size-cells", "ranges" properties, so removed these three
+  properties from "required".
 
-  Ich spende (55.000,00 =E2=82=AC) an Sie aufgrund von COVID-19, das so vie=
-le
-Menschenleben gekostet und einige kaputt gemacht hat. Sorge daf=C3=BCr,
-dass jeder die Pflege bekommt, die er braucht. Ich gebe in allen
-Counties den gleichen Betrag an verschiedene Personen aus. Ich bete,
-dass wir alle aus diesem COVID-19 herauskommen. Senden Sie jetzt eine
-E-Mail, um Ihre 55.000,00 =E2=82=AC einzufordern.
+Changes since v1:
+* Fixed errors founded on sprd,ums512-clk.yaml;
+* Added a new bindings file for global register which would provide register map for clocks.
 
-Ich, Charles W. Jackson Jr., gratuliere Ihnen.
-E-Mail f=C3=BCr weitere Informationen: charles_jackson86@aol.com
+Chunyan Zhang (2):
+  dt-bindings: clk: sprd: Add bindings for ums512 clock controller
+  dt-bindings: mfd: sprd: Add bindings for ums512 global registers
+
+Xiongpeng Wu (2):
+  clk: sprd: Add dt-bindings include file for UMS512
+  clk: sprd: Add Unisoc's UMS512 clock driver
+
+ .../bindings/clock/sprd,ums512-clk.yaml       |   88 +
+ .../bindings/mfd/sprd,ums512-glbreg.yaml      |   68 +
+ drivers/clk/sprd/Kconfig                      |    8 +
+ drivers/clk/sprd/Makefile                     |    1 +
+ drivers/clk/sprd/ums512-clk.c                 | 2197 +++++++++++++++++
+ include/dt-bindings/clock/sprd,ums512-clk.h   |  396 +++
+ 6 files changed, 2758 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+ create mode 100644 drivers/clk/sprd/ums512-clk.c
+ create mode 100644 include/dt-bindings/clock/sprd,ums512-clk.h
+
+-- 
+2.25.1
+
