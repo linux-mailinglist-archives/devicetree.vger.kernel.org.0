@@ -2,88 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBD854101DE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Sep 2021 01:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 276554102EE
+	for <lists+devicetree@lfdr.de>; Sat, 18 Sep 2021 04:16:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235860AbhIQXqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Sep 2021 19:46:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49526 "EHLO
+        id S239236AbhIRCSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Sep 2021 22:18:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233569AbhIQXqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 19:46:44 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A76FC061766
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 16:45:21 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id i25so39834053lfg.6
-        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 16:45:21 -0700 (PDT)
+        with ESMTP id S238942AbhIRCSK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Sep 2021 22:18:10 -0400
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44AD4C061574
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 19:16:47 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id h29so12295695ila.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Sep 2021 19:16:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Adpjj8eb9qPefLqJjlRRH4Z+UTglNnbz6imJOtpowtE=;
-        b=Stu4Yvcx+jZlQ6bo4SsaVgSClupIVtykd85F8zGJwqrRts+FNZKGCFRHGGl/XECWkG
-         F9ceDrRBFlGqgZoQ6Ro8gV1Ip44OxLU7jAJ8prtT6k4BUAx+NwH/Xp81ioV+o3QUYC52
-         LPzi4M8ehhgEOcyl4/4wqcrQZjedLbviqQKZ6MNPcNbSLRaetIZMhcsL9Zvh/JyttAtG
-         gcfm4hdIKFBeRTjVl6zUTB8mzTG55FQ+hsNogyDh7ZK9ME8jFvqcND6CLG1i7ZEDogID
-         xrxJQhuQvKImxHbaGmUJWoahxq6WwUdESY32n6tpsr7dznrHmSaWcdXRxdNh+oRIo2kq
-         L02A==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=K7wQ0o4+0+N6K8uTNDIjAnd7BQeGhXDT1oOTokZhfWA=;
+        b=Ar0GSwscbBwFxwlVKIp4/S7yKgl4Qy6yRtw6ZsyhrUCn/7cbvnXDxtqETgN8mOPcRv
+         AENTFOQF2rbcWTzZfPV0ks5EtMVWNwCzAxHbj+3O6QumV2Sj55UODNg4FA2pNaTczJuF
+         uOSxh0L7yLt/sgbF2xKdc301RPWqWTgGwY44jUPkmIVj5RMvZt3mojU/CAmXNb7Xh3Au
+         JG5Eit2wg6e4lSHm+vNDGBMQ75PNed0CGI4DsvVRxGuuo7UtslkngjzFEE3kH87jgu2R
+         cUOub8wzopIRu35A6RZ9zCYIl/fhKL5PYDTyPOE6OgrDg2DOSmapZ5kl7Ko1ToL3WFj4
+         wh4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Adpjj8eb9qPefLqJjlRRH4Z+UTglNnbz6imJOtpowtE=;
-        b=uUeNFBlUxGahdsa5Pb7Fp6V9cGL994QvfYZQYlDtPnlVOPhwAnVwV9GP2t1B4/A417
-         iP0C/hWraxONyo5i4QGy7asCv3jHbzvd+QBUl2Mj2QKUrwsg+qb7Ny5pjIMSX0h8/qns
-         CkjQdpcK+sXAlLgvVN7K8btAxW6GNz3xGrXcQu+u0LIpaY4A4ygM0pLVHppXG3t6M0aE
-         WfvANvb6hVgjD0JvHxSSCO2tQ6A+38KMHcNXd4w/p2OBdJ+MazWIoYiwn4mc41m8026K
-         Oyh/vzZza5v9qoStHVx2j7Lm7H9cLoPlxIMyG8Y2OXz+UnujFEXrAkclfXgKTGoaOSk+
-         kUWw==
-X-Gm-Message-State: AOAM531pafxlq0Cd+psrWRNAt+p4amkMxv3CrubbGc+2gizhFFMzmrge
-        LeGT8MyEMsVHbgPRqONfVKwU2tAJ/UNW/KbsQijA+Q==
-X-Google-Smtp-Source: ABdhPJySPdlC4kFGb/uPqpNRVO7RsaaNmYQ7Dsfc4dTO/WXhWAE1PedasJyvgTCKrCA5g+mA2q9H0CQsy0ibTumhe7A=
-X-Received: by 2002:ac2:4651:: with SMTP id s17mr5137396lfo.584.1631922319876;
- Fri, 17 Sep 2021 16:45:19 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=K7wQ0o4+0+N6K8uTNDIjAnd7BQeGhXDT1oOTokZhfWA=;
+        b=ghNvccpzRFnKkseb86K5AomdCEEtfRD2c7IJ3pAlODpjzvWHGH3BMG6ZrO9S3bk0b/
+         xuJF3M2RVR2CFiMn8BFtMNOaDu+HS8Ww64shHniD/+h8qkOv/Ocx5eaNwSNlsqBBTBjz
+         u1WlL4vmbv8VSjIJPtAUr/lv0ZZV1fgJ/WKjXWLSYZ3ugdqDH0MHFxCHvpOxOKK2JDgb
+         wWYpAH0nMaXcRpeC4pKOAkr4oSER4o8ast/2P85YGciJBC5tnahJl7o/WSmn9K7fL2HU
+         Z1qkHHDTSvqrK7n361LU4OJ8y+cGVLHJQ5LRYHcLW2/EBtwUXequufg/Q1w8rGgrqs+2
+         7pTA==
+X-Gm-Message-State: AOAM531nwc1Tl5u6IMlvw4ACQ/w2oGajlr068TXyYClr51hqLlmgb9yq
+        i5xHVrpM7/qAuuzlxGltIurBirqf9ge7SS92NJc=
+X-Google-Smtp-Source: ABdhPJzuiiZ0cJ7aX3WB4++vQ8Wt373X7Ba7Fwje77mLohqxgXcg7pAncdRUqNqn4tH6UsOzXOtjeSKt5o8ZGKoGUIk=
+X-Received: by 2002:a05:6e02:cc5:: with SMTP id c5mr10069983ilj.110.1631931406629;
+ Fri, 17 Sep 2021 19:16:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210913192816.1225025-1-robh@kernel.org> <20210913192816.1225025-5-robh@kernel.org>
-In-Reply-To: <20210913192816.1225025-5-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 18 Sep 2021 01:45:09 +0200
-Message-ID: <CACRpkdb5ZOyaoVg74ByFDqv9Da-=zaBwD_4uTnd7ZTe875dY3Q@mail.gmail.com>
-Subject: Re: [PATCH v2 4/8] dt-bindings: clock: arm,syscon-icst: Use 'reg'
- instead of 'vco-offset' for VCO register address
-To:     Rob Herring <robh@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
+Received: by 2002:a05:6602:2c41:0:0:0:0 with HTTP; Fri, 17 Sep 2021 19:16:46
+ -0700 (PDT)
+Reply-To: charles_jackson86@aol.com
+From:   "Charles W. Jackson Jr" <diandrawalker1980@gmail.com>
+Date:   Fri, 17 Sep 2021 19:16:46 -0700
+Message-ID: <CAEP59rJb4-YTw7sm4pS1oZafHDCh=PDJXdR5vQseHup2AHE5mw@mail.gmail.com>
+Subject: =?UTF-8?B?NTUuMDAwLDAwIOKCrCBhbiBTaWU=?=
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 13, 2021 at 9:28 PM Rob Herring <robh@kernel.org> wrote:
+--=20
+=E2=82=AC55,000.00 Euros has been donated to you by Charles W. Jackson, Ema=
+il
+to claim your =E2=82=AC55,000.00 now.
 
-> 'reg' is the standard property for defining register banks/addresses. Add
-> it to use for the VCO register address and deprecate 'vco-offset'. This
-> will also allow for using standard node names with unit-addresses.
->
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Herzlichen Gl=C3=BCckwunsch, die Summe von f=C3=BCnfundf=C3=BCnfzigtausend =
+Euro wurde
+Ihnen von Charles W. Jackson gespendet, ich habe 344,6 Millionen
+US-Dollar beim Powerball-Jackpot gewonnen. Dieser Sieg ist ein Segen.
+Deshalb habe ich beschlossen, der =C3=96ffentlichkeit etwas zur=C3=BCckzuge=
+ben.
+Dies bedeutet, dass ich offiziell bekannt geben werde, dass Sie als
+einer der Nutznie=C3=9Fer des Wohlt=C3=A4tigkeitsheims von Charles W Jackso=
+n Jr.
+ausgew=C3=A4hlt wurden.
 
-Yeah this is better, dunno why I did it like that. I guess
-it was the Wild West of DT bindings back then.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+  Ich spende (55.000,00 =E2=82=AC) an Sie aufgrund von COVID-19, das so vie=
+le
+Menschenleben gekostet und einige kaputt gemacht hat. Sorge daf=C3=BCr,
+dass jeder die Pflege bekommt, die er braucht. Ich gebe in allen
+Counties den gleichen Betrag an verschiedene Personen aus. Ich bete,
+dass wir alle aus diesem COVID-19 herauskommen. Senden Sie jetzt eine
+E-Mail, um Ihre 55.000,00 =E2=82=AC einzufordern.
 
-Yours,
-Linus Walleij
+Ich, Charles W. Jackson Jr., gratuliere Ihnen.
+E-Mail f=C3=BCr weitere Informationen: charles_jackson86@aol.com
