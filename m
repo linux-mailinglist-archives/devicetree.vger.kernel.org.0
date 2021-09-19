@@ -2,74 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63882410B61
-	for <lists+devicetree@lfdr.de>; Sun, 19 Sep 2021 14:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7021410B6C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Sep 2021 14:02:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231748AbhISMDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Sep 2021 08:03:21 -0400
-Received: from rosenzweig.io ([138.197.143.207]:46410 "EHLO rosenzweig.io"
+        id S234171AbhISMDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Sep 2021 08:03:41 -0400
+Received: from rosenzweig.io ([138.197.143.207]:46608 "EHLO rosenzweig.io"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230393AbhISMDV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 Sep 2021 08:03:21 -0400
-Date:   Sun, 19 Sep 2021 07:25:59 -0400
+        id S231956AbhISMDf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 Sep 2021 08:03:35 -0400
+Date:   Sun, 19 Sep 2021 07:39:32 -0400
 From:   Alyssa Rosenzweig <alyssa@rosenzweig.io>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
         Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Alexander Graf <graf@amazon.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFT PATCH 1/9] dt-bindings: usb: tps6598x: Add Apple CD321x
- compatible
-Message-ID: <YUceR+9p8YS1HeCt@sunset>
-References: <20210918120934.28252-1-sven@svenpeter.dev>
- <20210918120934.28252-2-sven@svenpeter.dev>
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Robin Murphy <Robin.Murphy@arm.com>, kernel-team@android.com
+Subject: Re: [PATCH v3 00/10] PCI: Add support for Apple M1
+Message-ID: <YUchdKwx6Ce2KaYw@sunset>
+References: <20210913182550.264165-1-maz@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210918120934.28252-2-sven@svenpeter.dev>
+In-Reply-To: <20210913182550.264165-1-maz@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Thanks for giving this another push, the changes look great. The series
+is
 
+	Tested-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
 
-On Sat , Sep 18, 2021 at 02:09:26PM +0200, Sven Peter wrote:
-> A variant of the TI TPS 6598x Type-C Port Switch and Power Delivery
-> controller known as Apple CD321x is present on boards with Apple SoCs
-> such as the M1. Add its compatible to the device tree binding.
+On Mon, Sep 13, 2021 at 07:25:40PM +0100, Marc Zyngier wrote:
+> I have resumed my earlier effort to bring the Apple-M1 into the world
+> of living by equipping it with a PCIe controller driver. Huge thanks
+> to Alyssa Rosenzweig for kicking it into shape and providing the first
+> two versions of this series.
 > 
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> ---
->  Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+> Much has changed since v2[2]. Mark Kettenis is doing a great job with
+> the binding [0], so I have dropped that from the series, and strictly
+> focused on the Linux side of thing. I am now using this binding as is,
+> with the exception of a single line change, which I believe is a fix
+> [1].
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> index f6819bf2a3b5..a4c53b1f1af3 100644
-> --- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> +++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-> @@ -12,10 +12,14 @@ maintainers:
->  description: |
->    Texas Instruments 6598x Type-C Port Switch and Power Delivery controller
->  
-> +  A variant of this controller known as Apple CD321x or Apple ACE is also
-> +  present on hardware with Apple SoCs such as the M1.
-> +
->  properties:
->    compatible:
->      enum:
->        - ti,tps6598x
-> +      - apple,cd321x
->    reg:
->      maxItems: 1
->  
+> Supporting the per-port interrupt controller has brought in a couple
+> of fixes for the core DT code.  Also, some work has gone into dealing
+> with excluding the MSI page from the IOVA range, as well as
+> programming the RID-to-SID mapper.
+> 
+> Overall, the driver is now much cleaner and most probably feature
+> complete when it comes to supporting internal devices (although I
+> haven't investigated things like power management). TB support is
+> another story, and will require some more hacking.
+> 
+> This of course still depends on the clock and pinctrl drivers that are
+> otherwise in flight, and will affect this driver one way or another.
+> I have pushed a branch with all the dependencies (and more) at [3].
+> 
+> * From v2 [2]:
+>   - Refactor DT parsing to match the new version of the binding
+>   - Add support for INTx and port-private interrupts
+>   - Signal link-up/down using interrupts
+>   - Export of_phandle_args_to_fwspec
+>   - Fix generic parsing of interrupt map
+>   - Rationalise port setup (data structure, self discovery)
+>   - Tell DART to exclude MSI doorbell from the IOVA mappings
+>   - Get rid of the setup bypass if the link was found up on boot
+>   - Prevent the module from being removed
+>   - Program the RID-to-SID mapper on device discovery
+>   - Rebased on 5.15-rc1
+> 
+> [0] https://lore.kernel.org/r/20210827171534.62380-1-mark.kettenis@xs4all.nl
+> [1] https://lore.kernel.org/r/871r5tcwhp.wl-maz@kernel.org
+> [2] https://lore.kernel.org/r/20210816031621.240268-1-alyssa@rosenzweig.io
+> [3] https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms.git/log/?h=hack/m1-pcie-v3
+> 
+> Alyssa Rosenzweig (2):
+>   PCI: apple: Add initial hardware bring-up
+>   PCI: apple: Set up reference clocks when probing
+> 
+> Marc Zyngier (8):
+>   irqdomain: Make of_phandle_args_to_fwspec generally available
+>   of/irq: Allow matching of an interrupt-map local to an interrupt
+>     controller
+>   PCI: of: Allow matching of an interrupt-map local to a pci device
+>   PCI: apple: Add INTx and per-port interrupt support
+>   arm64: apple: t8103: Add root port interrupt routing
+>   PCI: apple: Implement MSI support
+>   iommu/dart: Exclude MSI doorbell from PCIe device IOVA range
+>   PCI: apple: Configure RID to SID mapper on device addition
+> 
+>  MAINTAINERS                          |   7 +
+>  arch/arm64/boot/dts/apple/t8103.dtsi |  33 +-
+>  drivers/iommu/apple-dart.c           |  25 +
+>  drivers/of/irq.c                     |  17 +-
+>  drivers/pci/controller/Kconfig       |  17 +
+>  drivers/pci/controller/Makefile      |   1 +
+>  drivers/pci/controller/pcie-apple.c  | 818 +++++++++++++++++++++++++++
+>  drivers/pci/of.c                     |  10 +-
+>  include/linux/irqdomain.h            |   4 +
+>  kernel/irq/irqdomain.c               |   6 +-
+>  10 files changed, 925 insertions(+), 13 deletions(-)
+>  create mode 100644 drivers/pci/controller/pcie-apple.c
+> 
 > -- 
-> 2.25.1
+> 2.30.2
 > 
