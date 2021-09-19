@@ -2,111 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8B6A410B9F
-	for <lists+devicetree@lfdr.de>; Sun, 19 Sep 2021 14:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A4E0410C1E
+	for <lists+devicetree@lfdr.de>; Sun, 19 Sep 2021 17:16:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232345AbhISM55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Sep 2021 08:57:57 -0400
-Received: from mout.perfora.net ([74.208.4.196]:49833 "EHLO mout.perfora.net"
+        id S233122AbhISPRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Sep 2021 11:17:36 -0400
+Received: from ixit.cz ([94.230.151.217]:42940 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232231AbhISM54 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 Sep 2021 08:57:56 -0400
-Received: from localhost.localdomain ([81.221.236.183]) by mrelay.perfora.net
- (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MbB1Y-1n3U6q1rBI-00bYCZ;
- Sun, 19 Sep 2021 14:56:16 +0200
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Rob Herring <robh@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 9/9] dt-bindings: arm: fsl: add toradex,colibri-imx6ull-emmc
-Date:   Sun, 19 Sep 2021 14:55:36 +0200
-Message-Id: <20210919125536.117743-10-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210919125536.117743-1-marcel@ziswiler.com>
-References: <20210919125536.117743-1-marcel@ziswiler.com>
+        id S230503AbhISPRg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 Sep 2021 11:17:36 -0400
+Received: from newone.lan (ixit.cz [94.230.151.217])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 411B023B26;
+        Sun, 19 Sep 2021 17:16:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1632064564;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=vjJn7Q1mIO9PwVF5yLremqaWidVb9IF8rIl52enZifc=;
+        b=Et2Dr8SwfFGJe9Ap16dN9km/rIHw/utTNmJxDjSZeabuEU+RqgYs3KZMt//1GR97t1ZMm7
+        7/P8AmE/06/03Y5kMyHiUYUkvfwnDttgBiOctCUXPlmSSQ3Lssh88DBtLPIFqQsDedxpel
+        MlnZKhTlqshgP1+UyXJGbabCYbprBok=
+From:   David Heidelberg <david@ixit.cz>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+Subject: [PATCH] dt-bindings: leds: document rfkill default action
+Date:   Sun, 19 Sep 2021 17:14:44 +0200
+Message-Id: <20210919151444.68845-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:kJQTiLoy6F8KE5OWlRnJXlt84f5B/dEyvQJMv8gxAkhvrvUfC+F
- 2xhfocdn7x91w1cWD3e+JXhv0v3UO5/8KkZ+ARi+80LzIZ3CQLwjCMgq85PkJ9k0LsVLQbM
- LXhlPhS/T2USnu+qE2sqbXex+sYiEJSI/0O0oDrwNQUbuzGsQh/7jnyhMrFCq89K/i4cSit
- xypNnRbwrHYtEwa+0QuPg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dqh92kmVwbs=:JW6IcQhVY2OfM+q+LIkDlo
- PmlJtWInSqX5++d75jvDwVPhPd0NzUldyhC+Co03a/hdphmhon+wAayMY4oEIZboGdUU3uwdK
- 3uj+fcDRx8/e5hITswKjt9FNZOFydKJGR1UamDYWcz4Pld7JotiVhaRCacH9A3mFXZN9JJWm+
- FPktRgpl6K2n688LZJPnCRx0sFY0ROzmgBq4qamYUlw9JWF8aeI4Oobfm+qSdEg+hE3+Q0xBL
- hSgU0DS4jq3mQiKCqsN0Ex1ZYqndPE+z9Vd0Ap/OEFE9+lg8h6NwkgzCltFPbGI7ll5h19XG7
- 6P7S7e3PMXWsvNb1NSDVlTAC4INE1CtCpzmFSYGdqzp9Kr7Wg8dWYZSCqiVbkLblH+i4gj3QJ
- yZU7IVwBqg7cFf0x1eu4Z8aQ5PZrcmali0IJuHSmsozBVh/dybinIy+FCtmZ+MV0mhX3X5L/6
- iLiJjr4wjNISbzGHsUrWfNDwP++Ghnsm+DjBOl9B9jBT1f4CD3sLXoTGTIge4rqPiT6aChbQe
- LYVjF3PRjdBI0BMYzGoqZ0AQOhg64HRtjbE12TQPzrZlJIkjczML758jRmPg7HLzoDg4YoUt/
- KPgS7W1fZZhL+9zrubKXEAQklTd26NG7MUgnWbgC137+WheuwQ9JoqpT0nh8Q+Hqw9q0y6kAD
- h+i7fEAfPWZRKFLVdScZajXO6TH7fiFur4Fgy+d0lXbsOoCWM2GAhuyDYklyKbX6ou7TsZZdn
- YLm9WW6q8CYTjYXHBsQgOQbxbNt1avuCPmS/gQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Used only in Toshiba AC100 / Dynabook AZ, but throws ugly warning:
+arch/arm/boot/dts/tegra20-paz00.dt.yaml: gpio-leds: led-0:linux,default-trigger:0: 'rfkill0' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
 
-Add toradex,colibri-imx6ull-emmc for our new Colibri iMX6ULL 1GB (eMMC)
-Module and the carrier boards (so far only Colibri Evaluation Board) it
-may be mated in.
-
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
-
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
+ Documentation/devicetree/bindings/leds/common.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes in v3:
-- Add Rob's ack. Thanks!
-- Add Fabio's reviewed-by. Thanks!
-
-Changes in v2:
-- New patch documenting dt-bindings.
-
- Documentation/devicetree/bindings/arm/fsl.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index a95314bd271c7..32e2d5537210b 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -581,6 +581,7 @@ properties:
-               - kontron,imx6ull-n6411-som # Kontron N6411 SOM
-               - myir,imx6ull-mys-6ulx-eval # MYiR Tech iMX6ULL Evaluation Board
-               - toradex,colibri-imx6ull      # Colibri iMX6ULL Modules
-+              - toradex,colibri-imx6ull-emmc # Colibri iMX6ULL 1GB (eMMC) Module
-               - toradex,colibri-imx6ull-wifi # Colibri iMX6ULL Wi-Fi / BT Modules
-           - const: fsl,imx6ull
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index 697102707703..d3814e6bf3cf 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -96,6 +96,8 @@ properties:
+       - timer
+         # LED alters the brightness for the specified duration with one software
+         # timer (requires "led-pattern" property)
++      - rfkill0
++        # LED indicates rfkill state
+       - pattern
  
-@@ -606,6 +607,13 @@ properties:
-           - const: toradex,colibri-imx6ull        # Colibri iMX6ULL Module
-           - const: fsl,imx6dl
- 
-+      - description: i.MX6ULL Boards with Toradex Colibri iMX6ULL 1GB (eMMC) Module
-+        items:
-+          - enum:
-+              - toradex,colibri-imx6ull-emmc-eval # Colibri iMX6ULL 1GB (eMMC) Module on Colibri Evaluation Board
-+          - const: toradex,colibri-imx6ull-emmc   # Colibri iMX6ULL 1GB (eMMC) Module
-+          - const: fsl,imx6dl
-+
-       - description: i.MX6ULL Boards with Toradex Colibri iMX6ULL Wi-Fi / BT Modules
-         items:
-           - enum:
+   led-pattern:
 -- 
-2.26.2
+2.33.0
 
