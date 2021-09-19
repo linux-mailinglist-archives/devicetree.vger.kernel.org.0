@@ -2,118 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7E6410D1A
-	for <lists+devicetree@lfdr.de>; Sun, 19 Sep 2021 21:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3553A410D49
+	for <lists+devicetree@lfdr.de>; Sun, 19 Sep 2021 22:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231698AbhISTfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Sep 2021 15:35:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54156 "EHLO
+        id S232172AbhISUa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Sep 2021 16:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229723AbhISTfI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Sep 2021 15:35:08 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38DF9C061574
-        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 12:33:42 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id g1so58366661lfj.12
-        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 12:33:42 -0700 (PDT)
+        with ESMTP id S232166AbhISUaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Sep 2021 16:30:55 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53001C061574;
+        Sun, 19 Sep 2021 13:29:30 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id c13-20020a17090a558d00b00198e6497a4fso13708936pji.4;
+        Sun, 19 Sep 2021 13:29:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rwG0cyjmLoqo6KWJPkoebUUL/eGcFniLZjCwbXyHXbY=;
-        b=QttFeThvsBKoZD/JJSZUGcnMxxYovmSAcPaoFut8GAFLHLvS3IsTDF2HdKr15LPN9G
-         dQm8BvfUECw8XeDSv0m1SrsY5DNjsXO5PhGldlbFPGCmZzLQf5f4vh/pFDbjSFvStSof
-         bsHKoK1XDB+jm11SUX3KQZcdBcwrIoJ9zJT7u7lZPKBBvscShFCJI06s8Nc+Cbx5aPk8
-         FLEsvge3r+dLL5c8eRyGYCib3lpmVuGEyJOQApoo1BXqM0ORTQDvz1f9o1dc6g3fwHqJ
-         sn8PMwx45/tPsdybUcEWbNcsQsIJx3OV8yTmV/E9eKunE7RJcgj2CWzrCIKxFp+jpbCh
-         0Qnw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yBjSMPq/tc0MbMsuyhFQ5R0zfd/wCDAa5rcp0EQgEaE=;
+        b=lYdbvL9opmTy4v90dyhALAdqgj2jW0gtT5y2fppjGanjkhqQSamb4ZVgE/rHd6DZLR
+         qBESeBE8UgGzFjKp2XOGq/6hqha7HEWjt7wihYzM+8HB02ExZxGWuv34y7IrgVofHvev
+         lbQJGbhiHrnwc0OTXZp+SyEtcFMv2Xoc5vNqmedcc1GfqVD2cBJ1s266BUj9vORr+CV7
+         B1kzKNvuifwAxxXUgYsnmgCso8TOK0VXJmKuI/x1zbKIi7xYHohvW7+cN37Y0c3CZ4J5
+         zy+epdlDWbMsyW+krMaQrF0dbWI2c4DcijM50ZSF7RlWa1QpaSf6F4EL231pKrYyrV8a
+         Gc3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rwG0cyjmLoqo6KWJPkoebUUL/eGcFniLZjCwbXyHXbY=;
-        b=S1GOy3f5skaQE1FVw73eeE+5PYL/Mb9GBzGKatt2/fcZnILMzyLfk31rJiYtyOrftE
-         3ptD22RxXSS/tjXWE0oW8f+TMod4CoYu8O8z47o45gvML36ZmIdbb59FCCKonqF9LJkU
-         EhW0SwvRNWiAvMAQEqF9+rn9Wz2PsRScksW/tga5UleY1xSFpbHTWrwgmOFytIq+0Ah7
-         5KODsCuPlCpumLLO2ROvDVevcNOEyRFSztywJGzKrWYynd/pqo+NKDRqHE8Z9C0jjNSl
-         MJ3L+bgT18A5Ea8zFG8pKZlzzAItjJAxUME/54dHUglWEvt50FUTDH43hfCPVuD0aCuc
-         ntMg==
-X-Gm-Message-State: AOAM532f+VutO5f56vk3L7lZmmwrZcnmNDYz69G3Pe3H7KiS4Qwd3mcs
-        zlAPF9QCtPZniZgHDSz71mgKj/tocSBpW4YcuYYcV0whz5Q=
-X-Google-Smtp-Source: ABdhPJzzLzWh+7RmTbVSRRZX4HMrJdrIe97VWJWO+B8mpVmZZvCUE6yjBm+7MlNH7sV61wIx/Rt//VfW14RHiA0ZsuQ=
-X-Received: by 2002:a05:6512:10cb:: with SMTP id k11mr6357275lfg.72.1632080020480;
- Sun, 19 Sep 2021 12:33:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210830003603.31864-1-zhiyong.tao@mediatek.com>
- <20210830003603.31864-5-zhiyong.tao@mediatek.com> <CAGXv+5H5KnskzBYuqniBGQWBLriyFkBvVXEk1Cyg6XSmKMWP8w@mail.gmail.com>
- <b82ae857d8a3acf117721bb83d4dbbc44f612565.camel@mediatek.com>
- <CAGXv+5F=H3C9mB+uYJDmk8vPiKjWixFs8DF3Pk_Xh3x6Jpq6iA@mail.gmail.com> <74a3a96745e93c5a2392b8a39822c872fd468466.camel@mediatek.com>
-In-Reply-To: <74a3a96745e93c5a2392b8a39822c872fd468466.camel@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 19 Sep 2021 21:33:29 +0200
-Message-ID: <CACRpkdZjqMk_gVpeZ2SqCijuOiiGfPOXHhBOdyL9Y+j750cGsQ@mail.gmail.com>
-Subject: Re: [PATCH v11 4/4] pinctrl: mediatek: add rsel setting on MT8195
-To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yBjSMPq/tc0MbMsuyhFQ5R0zfd/wCDAa5rcp0EQgEaE=;
+        b=iphCVDZqabrzJrQZogUaklz4KE4ReO+oW0P5JwzA16jLWyr3cv/j+gZuKiAPBn8mPX
+         1exd5B9U110RsFQH2mruUWLg6uRQFTNMOyCntwWVBL0Gsnr5eqsgtYe1UVqo7+b1iSIU
+         iJNJglo83qXT6IFhGrqPBd+tEQA2U31EsDs+O7STWea8Ve5SALi8Li94XsdbgLSyWDyz
+         W+Daj+NtB/zuZ11rvX6G9knvXnevvlH93EUHf2O8RMCF7MtQV9bkuU1CD0R1X3IaAS0a
+         f2tpyFj7Hj2L4WRUwnd+Rp+jYM154lGD3YJqNUBxwWGk4bU5CaPCADgsnw0sX9WMfsf8
+         01xg==
+X-Gm-Message-State: AOAM530Oh8wOJPrw3IwaIjy5Qm9C/9CV5oh4ia7V+pdImgWR5Ju8BLpb
+        i6QyWhnRLNPpoiuDizaNpPSEp1NYp8avuA==
+X-Google-Smtp-Source: ABdhPJxoT9VPIS67Ft6batnOOnUBctnyPbP4zsaE4K0N3bJ3Ttj092+S5csLVDH6cJp1W6xUrz7//A==
+X-Received: by 2002:a17:90b:3b4f:: with SMTP id ot15mr34599158pjb.243.1632083369891;
+        Sun, 19 Sep 2021 13:29:29 -0700 (PDT)
+Received: from archl-c2lm.. ([103.51.72.29])
+        by smtp.gmail.com with ESMTPSA id z11sm12663684pff.144.2021.09.19.13.29.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Sep 2021 13:29:28 -0700 (PDT)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Anand Moon <linux.amoon@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
-        Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCHv2 0/3] Fix the pwm regulator supply properties
+Date:   Sun, 19 Sep 2021 20:29:08 +0000
+Message-Id: <20210919202918.3556-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 16, 2021 at 11:31 AM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
-> On Mon, 2021-09-06 at 18:09 +0800, Chen-Yu Tsai wrote:
+Changes PWM supply properties help fix internal link of PWM to
+main 12V supply as per the shematics.
 
-> > > > > +       if (!found) {
-> > > > > +               dev_err(hw->dev, "Not support rsel value %d Ohm
-> > > > > for
-> > > > > pin = %d (%s)\n",
-> > > > > +                       arg, desc->number, desc->name);
-> > > > > +               return -EOPNOTSUPP;
-> > > >
-> > > > I believe ENOTSUPP is the correct one. EOPNOTSUPP seems to be
-> > > > network
-> > > > related.
-> > > >
-> > >
-> > > if we change it as "ENOTSUPP", it will report warning"ENOTSUPP is
-> > > not
-> > > SUSV4 error code, prefer EOPNOTSUP" when checking patch.
-> >
-> > The context surrounding this warning seems to be that ENOTSUPP is
-> > hard
-> > for userspace to understand. AFAIK the return code here does not get
-> > passed to userspace? And the pinctrl core does check for EINVAL or
-> > ENOTSUPP, so I think this is a valid use case.
-> >
-> > Linus?
-> >
->
-> Hi Linus,
->
-> Do you have some suggestion for the warning issue?
+V1: https://lkml.org/lkml/2021/6/29/288
 
-Ignore the warning. We use this code in the pinctrl subsystem.
+Thanks
+-Anand
 
-The pinctrl subsystem has no userspace API so that is certainly
-not a problem.
+Anand Moon (3):
+  arm64: dts: meson-g12a: Fix the pwm regulator supply properties
+  arm64: dts: meson-g12b: Fix the pwm regulator supply properties
+  arm64: dts: meson-sm1: Fix the pwm regulator supply properties
 
-Yours,
-Linus Walleij
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts       | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts         | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts      | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi   | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi        | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts   | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts  | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi       | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts        | 2 +-
+ 10 files changed, 13 insertions(+), 13 deletions(-)
+
+--
+2.33.0
+
