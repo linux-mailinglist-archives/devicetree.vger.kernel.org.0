@@ -2,101 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0726E410EEE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 06:24:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F925410F2D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 07:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbhITEUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 00:20:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54672 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbhITEUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 00:20:49 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0937CC061574
-        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 21:19:22 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id y63-20020a9d22c5000000b005453f95356cso14973502ota.11
-        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 21:19:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+0zIusT79rEl3tQEMjYWSIcpYjJVkEmHA6tnDGzl4z4=;
-        b=T5D3d5C49TTWEqm0Gqnnxr6W09e+ae6LIAYzdsXNjXmuFivuY9eEIexv/riOqJDEfC
-         8SVpjDnyiGuizA12IGXQWIpOcTdGk20V22hjQMR4ZwfJ92F7eVDb75QBq9VpFKBUc+Mq
-         Kp5DwOAOHFhPrcDZW7Set69UAfAVFqpdoBuOX2soDfvMdiE7ykd8CUawAnxU+4I0sAw2
-         VBSPa9ujFFspiyENZSUxg9/I19R3g3SDQXMYhZ0LvHN/itTots90dVuVd+b/525qRxbx
-         esegTFBKiPp795Zh4DNQpYW/DeHMckbhAayoK477pXL+6GyOGPolZhGQQUwGQZUXsYno
-         xZOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+0zIusT79rEl3tQEMjYWSIcpYjJVkEmHA6tnDGzl4z4=;
-        b=PpP6vqGHcE4x4zoreX8eTGLy32ogCpv3YPXv/nbuGTGA2ZMwDlymDXYcHA2YDS8YTJ
-         lwx1RAfImyTg6BByoeTfD91IuNeAwaQC+gb9rVABhy0G0u9+gcLwZzuKur4E3QXHlkjo
-         Gb8INRFGtpoH99vxMZNHilfyStuIvO/3nwibgfECotv58UJReJ3y/UAvQTnd/mEsjvt6
-         sj6LlSRQ4q+M+iunTjqUCFpxB8tCybZT2wU94zMneK4lTS9FOPqWcWk4zNZORVoRcA5t
-         Z0kJEfdYLX4JR8ZIe4ALorGHyYdh2Gd6Yqh1xlmulROoUCmqvDh9aISfBLTJDcCoanCA
-         V69Q==
-X-Gm-Message-State: AOAM531PJiJ7bGYPYB+5tYvxpSBTK5B+/EzruT3zPGxzq2Rg5rgVbw9M
-        GBuBZ/D20jU6MLm8Fh35c9tFSg==
-X-Google-Smtp-Source: ABdhPJzH0nBJB1Qtu9giAw30slJTq7+MJuJoDjlBg22NMkKAlYNZH0G9+dpqkbjuzGTlm+H4d/kFAg==
-X-Received: by 2002:a05:6830:1355:: with SMTP id r21mr19055808otq.11.1632111561348;
-        Sun, 19 Sep 2021 21:19:21 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r23sm3205383otu.54.2021.09.19.21.19.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Sep 2021 21:19:20 -0700 (PDT)
-Date:   Sun, 19 Sep 2021 23:19:19 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: qcom: add ipq4019 standalone entry
-Message-ID: <YUgLx7zKmD/QTCfn@builder.lan>
-References: <20210909060450.10111-1-david@ixit.cz>
+        id S231325AbhITFKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 01:10:14 -0400
+Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:2416 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229695AbhITFKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 01:10:13 -0400
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18JL1jHa006112;
+        Sun, 19 Sep 2021 22:08:30 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=OWTCfqu7Vx2ZKzeafK27D5nJugmxdFtG4FFDF/bIHDM=;
+ b=FbPnlwtPenrJgo4+jN1Qb7IXo2Jbh6CLwsR+f92fsjnxJ1tgBK+vhi0EivJTVaEnfK6A
+ fFe/U7mU0B//wcqdZ1aLQm0gHeTazzylRFImb3vWZglwlDQIZUoabHCUjIjm6Em+vfRn
+ WD+sdQV61qCIXgUCI5mjzBREfJsxZMgba1KNq37dTKydpap8I8TOAvyLqd37CxlogPEw
+ qVgVHq1Fj6HHZ85W0hHbiDZkBLPTHM1jNumlTqN1/UzK1jdVoYMmfmX1rmmH800xS/+D
+ pKWVDR8TE+QQK5F43oC8m8f/5RlNj5DE7+4qd3u693wOiV5gKJLk0g9taK6eJgKacecB gg== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+        by mx0b-0016f401.pphosted.com with ESMTP id 3b6ascgyse-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Sun, 19 Sep 2021 22:08:30 -0700
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Sun, 19 Sep
+ 2021 22:08:28 -0700
+Received: from bbhushan2.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Sun, 19 Sep 2021 22:08:26 -0700
+From:   Bharat Bhushan <bbhushan2@marvell.com>
+To:     <will@kernel.org>, <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Bharat Bhushan <bbhushan2@marvell.com>
+Subject: [PATCH v4 0/4] cn10k DDR Performance monitor support
+Date:   Mon, 20 Sep 2021 10:38:19 +0530
+Message-ID: <20210920050823.10853-1-bbhushan2@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210909060450.10111-1-david@ixit.cz>
+Content-Type: text/plain
+X-Proofpoint-GUID: kQP73YmVALOYBGmgl4zVaULD9Rp_vvez
+X-Proofpoint-ORIG-GUID: kQP73YmVALOYBGmgl4zVaULD9Rp_vvez
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-20_01,2021-09-17_02,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 09 Sep 01:04 CDT 2021, David Heidelberg wrote:
+This patch series adds DDR performance monitor support
+on Marvell cn10k series of processor.
 
-> It seems that some ipq4019 boards just accepted architecture.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 5169ebb97946..9b6dd7dc3825 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -174,6 +174,9 @@ properties:
->                - qcom,ipq4019-dk04.1-c1
->            - const: qcom,ipq4019
+First patch adds device tree binding changes.
+Second patch add basic support (without overflow and event
+ownership). Third and fourth patch adds overflow and event
+ownership respectively.
 
-It seems reasonable to expect that the board isn't just a "qcom,ipq4019"
-and in that case I believe this should cover all boards.
+Seems like 4th patch can be merged in second patch,
+For easy review it is currently separate
 
-Please let me know if I'm misunderstanding things.
+v3->v4:
+ - Added Rob Herring reviewed-by for dt-binding patch
 
-Regards,
-Bjorn
+v2->v3:
+ - dt-binding, ddrcpmu@1 -> pmu@87e1c0000000
+ - Add COMPILE_TEST as a dependency
+ - Switch to sysfs_emit()
+ - Error propagation when invalif event requested
+ - Switch to devm_platform_get_and_ioremap_resource()
+ - Other review comments on v2.
 
->  
-> +      - items:
-> +          - const: qcom,ipq4019
-> +
->        - items:
->            - enum:
->                - qcom,ipq8064-ap148
-> -- 
-> 2.33.0
-> 
+v1->v2:
+ - DT binding changed to new DT Schema
+ - writeq/readq changed to respective relaxed
+ - Using PMU_EVENT_ATTR_ID
+
+Bharat Bhushan (4):
+  dt-bindings: perf: marvell: cn10k ddr performance monitor
+  perf/marvell: CN10k DDR performance monitor support
+  perf/marvell: cn10k DDR perfmon event overflow handling
+  perf/marvell: cn10k DDR perf event core ownership
+
+ .../bindings/perf/marvell-cn10k-ddr.yaml      |  37 +
+ drivers/perf/Kconfig                          |   7 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/marvell_cn10k_ddr_pmu.c          | 756 ++++++++++++++++++
+ include/linux/cpuhotplug.h                    |   1 +
+ 5 files changed, 802 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn10k-ddr.yaml
+ create mode 100644 drivers/perf/marvell_cn10k_ddr_pmu.c
+
+-- 
+2.17.1
+
