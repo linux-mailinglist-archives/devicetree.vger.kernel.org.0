@@ -2,87 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E276412C0A
+	by mail.lfdr.de (Postfix) with ESMTP id B33B2412C0B
 	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 04:41:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352354AbhIUCmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 22:42:25 -0400
+        id S1352379AbhIUCm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 22:42:26 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238650AbhIUC3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 22:29:23 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B070C0F3457;
-        Mon, 20 Sep 2021 12:26:21 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id t6so65150872edi.9;
-        Mon, 20 Sep 2021 12:26:21 -0700 (PDT)
+        with ESMTP id S243960AbhIUCbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 22:31:11 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D115CC0610D0;
+        Mon, 20 Sep 2021 13:11:26 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id v5so64666174edc.2;
+        Mon, 20 Sep 2021 13:11:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RJWnZekTUMSnBRk/CtZe/v9CvFL/Hwr4JrpVx75Cmtk=;
-        b=ZdiTJXLL9mgXbyU5Qnw0VxfH6+FlkVxGLpvKOkpbK2L5XLuH1ISSVM2i5YsSzv538d
-         Y3zLxEWtL52DZlUT9ehwoPZ9aMiO8iSp5Zlt9m2H9QdyEZ9GvSTTXd1gH8aT1BmtkyZF
-         bWNEyJhSpyHwgkLwM9Z0Dnh1wfi1UQCUmPhdAwR6Z0ucyryHZ/2f4IqUNl0QsnJs7jHK
-         9c30JmQqxVlas0u3kN0dg0NklDnWDz7IwkWoKBgVT4khJYCCWqwWDsgU9KF/wfCWmmZy
-         wVHzUDGDkelDhFf8NRZXfzNN3vgmCtSczIr3bJDAIfDxRWnn2FOK1sO7Xkn8AWvETb4k
-         wGtw==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=98Yd/K1Bh/3/kN/u7n+eWpJ4IriwcVmS+sgj8ZHAVhE=;
+        b=SaQJims3Q66u4dkNl16L3kFOTCHhK2QjTatEpa7vXYYTv5uK1xApAIYBiqdxMsJDUo
+         KseyA5OIRPnu0REy/i2AlO47+/QvbGy8J20RTdc/PLBgC8j3/NbW/xZZDQbb9BP3CroC
+         gkueHKOWSGeOo+TsJCz2cR5VJ3xx4E4WgLzWvyE+sv7IlBQTRlcuAFSYYnDC/dEB3euQ
+         zl9X2P0MGWCGq1Qjc9D8JpLKaTNrMvo5SIFBEjDQfZz6MqOpCmW05P5o0DJv6r5c4buV
+         wjw+3Jf0+CpPd3Q4Yo47GyfCbrjEwE/z1f/6wPORer5DN8dAMMe8BKf08lzwFFFWlYxr
+         rFPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RJWnZekTUMSnBRk/CtZe/v9CvFL/Hwr4JrpVx75Cmtk=;
-        b=7dhAuV9BIORRaL+bH46kTwOKc053bHpSbLsNKCUc+wrCH/kIzmLtZOLUz5Qi5VbH4/
-         fgy7CPZTQcyjUre5qlOLxeGL4MXl6nSQ5fEL3phdsb8i5ew6K9oaFLCZUYJX8HgnZR//
-         9g10nu0FIC08V2loNGCz9WEvdXoxjhn/LMCNMJOpotjmcLiYpEck7j2Ck+Wp/0TGbemx
-         IU3v3HXE71490MLhP/z0X1TZLF4VNrs6yK4bWAgpYvh25YC6irn2WmSIiL5H0o08SocS
-         PV6iUh6krzdWtLpU2vFVUGv6Of6wM69jsiAsgE9648RUBayVSD2VxA5tnfdSK8qmlJeI
-         bnBA==
-X-Gm-Message-State: AOAM531V5mXQaSBzUL4EKtIlXOEMAj3uVNuTKdgZ7KFlOsuwLERm6Av1
-        rLWtJXgLlwB99SQbI8USDOwz9Cd8xm0ZeZDY0vk=
-X-Google-Smtp-Source: ABdhPJwdPfnVeY2p6IsWhgrDuynL1Mi9SZtZIeW/NWNfEuNbq4u5cqaYdIMy2elkx0SvapDlMWXEb9a6p2wF4K3n4I8=
-X-Received: by 2002:a17:906:e105:: with SMTP id gj5mr29600783ejb.408.1632165979872;
- Mon, 20 Sep 2021 12:26:19 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=98Yd/K1Bh/3/kN/u7n+eWpJ4IriwcVmS+sgj8ZHAVhE=;
+        b=FhoXPVm7o/M8Lcj3lVf6XzBjZwSiqkBrCNoGIVh+OTIphg+Fs28+3zxCr0PidM1PjT
+         2iOVCzcyId4MwNgDtB9gCo/LlixQBDfhHZqGPKDZtIqja9XP6688L7EH1juf7E/m0cyb
+         i+p/ClK1LirZvWOJELrSB+cOL0i3W812u2cthmrPdRWM3qNz8LjjXwGVY7vCO4J7L//x
+         xLd8X4iCdcXu21tUzgMt+hXJmhtlGSJVZqjccih6wLkjzkWQyoR7DY1MZ2OpIVUBVkUC
+         aVaz6upiAnKlWrUSjJqS/5qrWk7RLkyUZdlY8e5jaM6KnFm7TTCoSEUL54NcVU6ZnOgD
+         eGCQ==
+X-Gm-Message-State: AOAM532oDxNEa7O2PrvbFUWHrVPpuyrHt6laniLp9KLIzyx3hvQYXh7o
+        8y/77BauyjMzmtZiDCmOUbo=
+X-Google-Smtp-Source: ABdhPJzSfDNUL+PuZQPM6mZ3V3eB07yEHRLqMiP/E6jMcq9ks9IncSRyBxrB4mm/7j9AVhRA61nejQ==
+X-Received: by 2002:a50:9d8e:: with SMTP id w14mr8056745ede.74.1632168685035;
+        Mon, 20 Sep 2021 13:11:25 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-67-254.ip85.fastwebnet.it. [93.42.67.254])
+        by smtp.gmail.com with ESMTPSA id m10sm6385451ejx.76.2021.09.20.13.11.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 13:11:24 -0700 (PDT)
+Date:   Mon, 20 Sep 2021 22:11:00 +0200
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH 1/2] drivers: net: dsa: qca8k: add support
+ for led config
+Message-ID: <YUjq1Al7s5fP7PBa@Ansuel-xps.localdomain>
+References: <20210920180851.30762-1-ansuelsmth@gmail.com>
+ <YUjZNA1Swo6Bv3/Q@lunn.ch>
+ <YUja1JsFJNwh8hXr@Ansuel-xps.localdomain>
+ <YUjesc5nLItkUNxy@lunn.ch>
 MIME-Version: 1.0
-References: <20210817041548.1276-1-linux.amoon@gmail.com> <20210817041548.1276-2-linux.amoon@gmail.com>
- <c7f6213b-5ddc-881c-1aea-9cc7b03e6a4f@baylibre.com> <CAFBinCBeNMET2tvH0h6HF3dR+xBb59hifQyaoXigUs3UGkS+KQ@mail.gmail.com>
- <2b07b3de-cee5-c570-8fde-6a4c684122d6@baylibre.com> <CANAwSgRNp8UtU+Yy4smwZ5POTWTU+xN1mrf_cH7Pu9yX5HU=VA@mail.gmail.com>
-In-Reply-To: <CANAwSgRNp8UtU+Yy4smwZ5POTWTU+xN1mrf_cH7Pu9yX5HU=VA@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 20 Sep 2021 21:26:08 +0200
-Message-ID: <CAFBinCDmNt+aXRE4xFZdegOUs8BqJiTPF3+DQ-buvWWXrQLkdw@mail.gmail.com>
-Subject: Re: [PATCHv3 1/6] ARM: dts: meson8b: odroidc1: Add usb phy power node
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Matt Corallo <oc2udbzfd@mattcorallo.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Emiliano Ingrassia <ingrassia@epigenesys.com>,
-        Brian Kim <brian.kim@hardkernel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YUjesc5nLItkUNxy@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+On Mon, Sep 20, 2021 at 09:19:13PM +0200, Andrew Lunn wrote:
+> > Yes, can you point me to the discussion?
+> 
+> It has gone through many cycles :-(
+> 
+> The linux-led list is probably the better archive to look through, it
+> is a lot lower volume than netdev.
+> 
+> https://www.spinics.net/lists/linux-leds/msg18652.html
+> 
+> https://www.spinics.net/lists/linux-leds/msg18527.html
+> 
+> 
 
-On Tue, Aug 31, 2021 at 10:48 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> After enabling CONFIG_REGULATOR_DEBUG, with this patch applied
-> I still not getting the USB regulator to enable.
-> Do you see different output at your end?
-I don't have much time for testing and debugging currently but I'll
-put it on my TODO-list
-Until either of us has found the issue I suggest not merging this patch.
+Thanks for the links.
 
+> > I post this as RFC for this exact reason... I read somehwere that there
+> > was a discussion on how to implementd leds for switch but never ever
+> > found it.
+> 
+> Most of the discussion so far has been about PHY LEDs, where the PHY
+> driver controls the LEDs. However some Ethernet switches also have LED
+> controls, which are not part of the PHY. And then there are some MAC
+> drivers which control the PHY in firmware, and have firmware calls for
+> controlling the LEDs. We need a generic solution which scales across
+> all this. And it needs to work without DT, or at least, not block ACPI
+> being added later.
+> 
+> But progress is slow. I hope that the PHY use case will drive things
+> forward, get the ABI defined. We can then scale it out to include
+> switches, maybe with a bit of code refactoring.
+> 
+> 	  Andrew
 
-Best regards,
-Martin
+Wow... What a mess. Tell me if I'm wrong but it seems progress is stuck.
+I can see the api proposal patch had no review from June. Should I put a
+message there to try to move things up?
+
