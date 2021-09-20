@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8852F4115C2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 15:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EDE34115C6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 15:28:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236861AbhITNaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 09:30:09 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:34856
+        id S239514AbhITNaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 09:30:14 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:34888
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239451AbhITNaI (ORCPT
+        by vger.kernel.org with ESMTP id S239451AbhITNaK (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 09:30:08 -0400
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+        Mon, 20 Sep 2021 09:30:10 -0400
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 65A523F320
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 13:28:41 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3F09C4025C
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 13:28:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632144521;
-        bh=o/Js1PjbYfMgzPBeKDkGOA2puRzMdr5LGwoQCLB6OLo=;
+        s=20210705; t=1632144523;
+        bh=xU11jaLpUDnoKTVDhNl4Nnz5+4KkmeAKnf0UgxOYDK0=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=fvZYJegStS5QF/PKhR/t/+Q0klBCpCYmKP3BbedKW4ThFCGpBbhu5It1xUVMKJu99
-         5yhx42ZfGKh71wZmz870fDIyuAOFPaFS6IgLGiCTnzPNkpDEHDeDg4Ev8gYyzCwn2w
-         ZeNUYUeDXge+qLaFy2/SHlWJ3pF9r4hTWnBa1puQC4Y3Yev3fCJNkj6cR0YTYk1rCo
-         iw2Vh/71vEn8IRsDM8E6LBW/4nyk+/yyqWFwMR7QZJP7+FDmZpiGZ9LvcLA4CQM0Lj
-         RDkNNVOeKc8FE0YKKAgERY6DrcVgDdkaoj9Cl5/Om//GttePAqQCbOBN4uxL33gAYF
-         vmNDU9FLUp/Iw==
-Received: by mail-wr1-f69.google.com with SMTP id j16-20020adfa550000000b0016012acc443so703986wrb.14
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 06:28:41 -0700 (PDT)
+        b=qpLyJV7Y0LSL5eudECtLW4MNYCGwrihUPQDBdZzGXMPK2cbE93Jm3mC4Uriu9v8zp
+         INKVkl29hARV0ZbmF8mdPrSRX35SHhxt543t1ooj9E60WCz3JT/Px94ZJwOztq3CkV
+         v9hXY1sKcSSU22fPqQby64XhDnzWPHxRs+qBmdgCnovM9hHP0RB61HxxAypBwIs9yY
+         Ud0tKFGS52FjKm4c/s8v3dekKCPFSPdS0dzFdRmGUdiaUQpxCUF7uUsMhnqiVG8URf
+         AFI93K+nyfPE8VcuuaAXE1DT4xc0UEYhet/ZG/M6kY+4EROwPZCrgZa9Cq/+N8rnpe
+         Q79kPZ1j5q24w==
+Received: by mail-wr1-f72.google.com with SMTP id r7-20020a5d6947000000b0015e0f68a63bso6097242wrw.22
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 06:28:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=o/Js1PjbYfMgzPBeKDkGOA2puRzMdr5LGwoQCLB6OLo=;
-        b=bCEU43TmeOyo750r24kj7tnc6DJsd9/t5xAsdvFve1bSoZf8yPejc09OWxbColX65K
-         xKuzgJffkWDT0XR1B57wtPKnZr4g3Is+pkoUs8/hLTCurCdkyrRxSGtjm0rhi/7PreeU
-         z19uQVeCUmBOEf1cfD0EBuDvewYfjZeCsMdgdo0M0xrSe5+7si9ToH/sm2bZfNbvTpxH
-         +hOyse4APc4XW8Q3BmIONTw7nhQl4ssecWM4BFmspDMthlfbSKz/Bpdy/SaUIRIs9qp2
-         2oucDXncJXwfPjvmIY32oRbnYlbN46Rnn9IBbQof1LFFOw2hW8DYJK95z69i9L2GIHet
-         Dvjw==
-X-Gm-Message-State: AOAM532QUxI3/tGRU/bZFbL6+iBinQ5WzmoeIG17sNAqYY7q67xe0uax
-        E83rjB3Shdj5sLrfUo+SyWo+vUSdrXJFm8lUrQwEphxtoUvCNMrRQ/pHQX9D2iyIYYRSJ/IPpBN
-        QLdwNojyPiPa3lEWFrhodGxF/h2WQF/QayJOMCTc=
-X-Received: by 2002:a05:600c:19ca:: with SMTP id u10mr15004750wmq.45.1632144521109;
-        Mon, 20 Sep 2021 06:28:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy5Tjyuod+S15/Y23kxUirk/6MQldc+XQ33JOgIf8TozvJ3laDQt2n04lodhRvn8cF9FhtwQg==
-X-Received: by 2002:a05:600c:19ca:: with SMTP id u10mr15004733wmq.45.1632144520924;
-        Mon, 20 Sep 2021 06:28:40 -0700 (PDT)
+        bh=xU11jaLpUDnoKTVDhNl4Nnz5+4KkmeAKnf0UgxOYDK0=;
+        b=BYoB3yH5B+pNGiPY8gSUQ1E6TqhGtw7dJ3msgJEPuByi3Ks0eFTfXrMoC4ZS0shnsI
+         bOvEsMHemhBiDCDB7FF3oVJMnjNuRIzAypJXu5zKLkIgeTkhVD2CDKbCHbn9aQyebxo2
+         EUH/0otKy96MUqtVn5psEm7X2xxAzx9CxahQwseDmdQSVszAoIZ/BopAB5RZNpitb6I+
+         93at1oflQB313g06oHePzeuOCLarQfbmgWCsUECfyKYUD1D9FVRcGyZksje8/FIZP6Wt
+         7phdwNHCjYCEmQIj/AkKVhlLYGVoa93dQXyMtf1D+WTAZt9e76DUt2szRrLkYpAPQurU
+         AT1Q==
+X-Gm-Message-State: AOAM533cU4tLlVFyvVWdqp0QC/h1WbDMS5i1MWqrKrBpxo9o9bnuP2IX
+        +I4ijsD7aZ4j7tLMNuFNGHmT+nLFgvnV6x5cspX4Axz8vFbvYKMxdRwxlPWT4oYPtlYJSlthCb8
+        V+AC+JJg/YcoVDJaiABoxfBc5LxFequ2LwFw+d00=
+X-Received: by 2002:a5d:6750:: with SMTP id l16mr28083258wrw.174.1632144522869;
+        Mon, 20 Sep 2021 06:28:42 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz+pvMcumgoT0ttERKgbkMAho4kf5IhwJqGeJAFaoWilhZCuHSEktQza8Pbu9In5bxiX7pNmg==
+X-Received: by 2002:a5d:6750:: with SMTP id l16mr28083236wrw.174.1632144522688;
+        Mon, 20 Sep 2021 06:28:42 -0700 (PDT)
 Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id g1sm45429wmk.2.2021.09.20.06.28.39
+        by smtp.gmail.com with ESMTPSA id g1sm45429wmk.2.2021.09.20.06.28.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 06:28:40 -0700 (PDT)
+        Mon, 20 Sep 2021 06:28:42 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Richard Weinberger <richard@nod.at>,
@@ -67,9 +67,9 @@ To:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Conor Dooley <conor.dooley@microchip.com>,
         linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v2 4/5] riscv: dts: microchip: drop unused pinctrl-names
-Date:   Mon, 20 Sep 2021 15:28:29 +0200
-Message-Id: <20210920132830.152802-4-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 5/5] riscv: dts: microchip: use vendor compatible for Cadence SD4HC
+Date:   Mon, 20 Sep 2021 15:28:30 +0200
+Message-Id: <20210920132830.152802-5-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210920132830.152802-1-krzysztof.kozlowski@canonical.com>
 References: <20210920132830.152802-1-krzysztof.kozlowski@canonical.com>
@@ -79,46 +79,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pinctrl-names without pinctrl-0 does not have any sense:
-
-  arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: 'pinctrl-0' is a dependency of 'pinctrl-names'
+Licensed IP blocks should have their own vendor compatible.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
 ---
 
 Changes since v1:
-1. Add review.
+1. New patch
 ---
- Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 1 +
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi        | 1 -
- 2 files changed, 1 insertion(+), 1 deletion(-)
+ arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-index ed590d7c6e37..0db64ac7dc33 100644
---- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-+++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-@@ -33,6 +33,7 @@ properties:
-       - items:
-           - enum:
-               - issi,is25lp016d
-+              - issi,is25wp256
-               - micron,mt25qu02g
-               - mxicy,mx25r1635f
-               - mxicy,mx25u6435f
 diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index 83bc14860960..55d86b078c53 100644
+index 55d86b078c53..7948c4249de5 100644
 --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
 +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -267,7 +267,6 @@ mmc: mmc@20008000 {
+@@ -263,7 +263,7 @@ serial3: serial@20104000 {
+ 		};
+ 
+ 		mmc: mmc@20008000 {
+-			compatible = "cdns,sd4hc";
++			compatible = "microchip,mpfs-sd4hc", "cdns,sd4hc";
  			reg = <0x0 0x20008000 0x0 0x1000>;
  			interrupt-parent = <&plic>;
  			interrupts = <88>;
--			pinctrl-names = "default";
- 			clocks = <&clkcfg 6>;
- 			max-frequency = <200000000>;
- 			status = "disabled";
 -- 
 2.30.2
 
