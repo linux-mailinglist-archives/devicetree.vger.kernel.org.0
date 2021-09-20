@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F5BC4117E2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 17:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CABF4117E6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 17:09:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241292AbhITPLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 11:11:08 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:40000
+        id S241176AbhITPLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 11:11:20 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:40046
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241239AbhITPLG (ORCPT
+        by vger.kernel.org with ESMTP id S241200AbhITPLU (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 11:11:06 -0400
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+        Mon, 20 Sep 2021 11:11:20 -0400
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 94B8B3F4BE
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 15:09:38 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C01A53FE01
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 15:09:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632150578;
-        bh=O+npPoECYtJ/ZpzV1HLKddQ+EXO1NtYHdY0Cec4JU10=;
+        s=20210705; t=1632150592;
+        bh=zUv3tXHbbUqWbaVvQkKggzK/iHQTdWabfc1NCBtXKt8=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=XIurkENSealZOqZ6bS/XUG279wah9P+Uj8f5pzELO9T1UUJcknaGth809N3jPVkEj
-         y0n+hn55Ni1OJMtOYhyU5jYbQWQkMmqr0SNS0nJ7/X0Xi2o4Aza3TOXjBOgCsbaoea
-         4sJrAd739R/NNjFEROJA0h/XyIjSNqBIUukA6iebdubT0UHwpvaXiDMcgxK3QJ47GE
-         4X5ABGfL1Pe+WlmSM+gFPCqEicaiJIvjkSjnzimeTIGh6kJFbZ4xrjCLErQPvSaRaH
-         ufsxZ7QWxRjhKYUHNMDXbWagmfPvjMm98lItpokxlIfEhzAKipG/DBRCOg0+N1Wwsg
-         DCtq/JU5fQf/A==
-Received: by mail-wr1-f69.google.com with SMTP id x7-20020a5d6507000000b0015dada209b1so6339740wru.15
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 08:09:38 -0700 (PDT)
+        b=WUx+n0rTL1ND8eemSxyqF+F6WAqsNjGe6ANMG/wlSCu0rnm4EtFrpF4R58yJG0uMy
+         ekB9bU4AIQwysB8Pg0vcjYVlJeqQSQb4M1Sn4BZhzQFZLty1ippUI+N1KUczyEngaV
+         q4+Y7pwW+MamAh0PRfOyNjKNbxVIBFEBJzNjhJ8SS57jhjchB8SoagfkszTgecNpFe
+         /CTH3akQBCOptJfP4enmXCRSF8hGUJiNUw6jyYoYUNNX2L6LgO4ehap8b/bNNFagnb
+         H71nbO8igm4EQ3Qa2xI8Sw+F13roCsROX5YiY79N9sQiRPa/fUGjZt6Q2EIrnJY0K4
+         xHmLrS3+xPe1w==
+Received: by mail-wr1-f70.google.com with SMTP id i16-20020adfded0000000b001572ebd528eso6352200wrn.19
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 08:09:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=O+npPoECYtJ/ZpzV1HLKddQ+EXO1NtYHdY0Cec4JU10=;
-        b=UcCALAlTu5eu6hu/M6GrFoM8DLtaVCxPABPSSNOktOCQjQm8esqY/a7B1QWEhfaO4C
-         9JX61/e8+HfKLW8aQdncrgf6kba1cp2cjQICnEIYj8snfiouO7sWCKlI4frDM5X5Z0b4
-         I9Ql7QXD3dnbSSeV1oOh5j4dSe2fEHyLfVTtWIZJQ0TwQRNQQPqd3tpnKeTeVOjn1/e1
-         7iwFAL6xEIOu9DT8i0+smKm2teXOWS4+1tgCcSfBim6JZX1S9G6fIajGM9sPf6X3ybEJ
-         FIQpJI1mS9LBS29XrHGsktQXV1MJ5NjdWZ4H+v6/+FKAkPhxaEM8g8+OVlHbq8Cn/Iac
-         DwVw==
-X-Gm-Message-State: AOAM532qtU1M2QCrCcOW96AmxMKp8+M/L9XlNp/s0GXtLygxiqRT2UR3
-        PS8Or3Yy2PBhHS/nZbQCxfqbfzUut8Q0lvLhGswbrS3fJXIbHjx9JT6bCw+5c8nDw+rehF6gu0u
-        9Az7T6oyrd3cmg4RDTGkUvXenvyNYPpXvUlGrPaU=
-X-Received: by 2002:a5d:4d02:: with SMTP id z2mr29713718wrt.8.1632150578300;
-        Mon, 20 Sep 2021 08:09:38 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz8gNLJgi/hNpZH57Kj8vpJDclH4stPrZXvZVnMlKWrty7IW354pcwPOMxxaTmGpls2OU0c/g==
-X-Received: by 2002:a5d:4d02:: with SMTP id z2mr29713701wrt.8.1632150578154;
-        Mon, 20 Sep 2021 08:09:38 -0700 (PDT)
+        bh=zUv3tXHbbUqWbaVvQkKggzK/iHQTdWabfc1NCBtXKt8=;
+        b=YButHYm5xu+QqbUMdceSQr3OPbSkL+ytA7YEodicv050WUn4DUYVEWLbDU2utQIMqM
+         sO9c4gFtEVCS14ihsLeAfeHAe65CG8r+AMG1I/323SvqOmFwVglKIm5+oA3oxjruFqf5
+         Qn1trTugDGnJ2bVosXysIafO9b1dS9SCZJNqwDURKW2GS2t2OVAlClXjWeB0OAV8Z1R4
+         9EqFQzvNDm1Mu0wORp5aapaZZcEqn4pPs96NcIZK2/oF9bbQb5V/zjkQT7bDJkupintu
+         54NjH00zvVBilxfPZ7rcejg9yKeZi4fbhnQZiLcadFtRy94nh22HZI4V9WfXyg8mRtkJ
+         K9ww==
+X-Gm-Message-State: AOAM532Uz8aWuzGi8U0txWVBe5BbnZw+ip3W0BhrhZ5bwAZgELxWvdg1
+        XkqIqOHfXaBXNWEF4WfOIZeXGDgfnN16PBVk4hyP0vmlEcpGCXqxPkaGf57UQhMn1DNYm5EvSdh
+        p29P2A1IJOvcGl03jp6AFypjT4WfB8AawsKDUpVk=
+X-Received: by 2002:a1c:4d17:: with SMTP id o23mr23908197wmh.125.1632150592343;
+        Mon, 20 Sep 2021 08:09:52 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx4go/KWD2wwvaGed5Gp8/j8w76ab4Sbq/2+KvZVoBShQAqdwysUAi7NfERcQWEBk3pzLlFbw==
+X-Received: by 2002:a1c:4d17:: with SMTP id o23mr23908169wmh.125.1632150592140;
+        Mon, 20 Sep 2021 08:09:52 -0700 (PDT)
 Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id i2sm15803136wrq.78.2021.09.20.08.09.22
+        by smtp.gmail.com with ESMTPSA id i2sm15803136wrq.78.2021.09.20.08.09.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 08:09:30 -0700 (PDT)
+        Mon, 20 Sep 2021 08:09:41 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,9 +67,9 @@ To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Piotr Sroka <piotrs@cadence.com>, linux-mmc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: [PATCH v3 4/6] riscv: dts: microchip: drop duplicated MMC/SDHC node
-Date:   Mon, 20 Sep 2021 17:08:05 +0200
-Message-Id: <20210920150807.164673-4-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v3 5/6] riscv: dts: microchip: drop unused pinctrl-names
+Date:   Mon, 20 Sep 2021 17:08:06 +0200
+Message-Id: <20210920150807.164673-5-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210920150807.164673-1-krzysztof.kozlowski@canonical.com>
 References: <20210920150807.164673-1-krzysztof.kozlowski@canonical.com>
@@ -79,94 +79,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Devicetree source is a description of hardware and hardware has only one
-block @20008000 which can be configured either as eMMC or SDHC.  Having
-two node for different modes is an obscure, unusual and confusing way to
-configure it.  Instead the board file is supposed to customize the block
-to its needs, e.g. to SDHC mode.
+pinctrl-names without pinctrl-0 does not have any sense:
 
-This fixes dtbs_check warning:
-  arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: $nodename:0: 'sdhc@20008000' does not match '^mmc(@.*)?$'
+  arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: 'pinctrl-0' is a dependency of 'pinctrl-names'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
 ---
+
+Changes since v2:
+1. Drop some patch garbage from rebase, pointed by Geert.
 
 Changes since v1:
-1. Move also bus-width, suggested by Geert.
+1. Add review.
 ---
- .../microchip/microchip-mpfs-icicle-kit.dts   | 11 +++++++-
- .../boot/dts/microchip/microchip-mpfs.dtsi    | 28 +------------------
- 2 files changed, 11 insertions(+), 28 deletions(-)
+ arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-index 07f1f3cab686..fc1e5869df1b 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-@@ -51,8 +51,17 @@ &serial3 {
- 	status = "okay";
- };
- 
--&sdcard {
-+&mmc {
- 	status = "okay";
-+
-+	bus-width = <4>;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	card-detect-delay = <200>;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
- };
- 
- &emac0 {
 diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index 5084b93188f0..83bc14860960 100644
+index 83bc14860960..55d86b078c53 100644
 --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
 +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -262,39 +262,13 @@ serial3: serial@20104000 {
- 			status = "disabled";
- 		};
- 
--		emmc: mmc@20008000 {
--			compatible = "cdns,sd4hc";
--			reg = <0x0 0x20008000 0x0 0x1000>;
--			interrupt-parent = <&plic>;
--			interrupts = <88 89>;
--			pinctrl-names = "default";
--			clocks = <&clkcfg 6>;
--			bus-width = <4>;
--			cap-mmc-highspeed;
--			mmc-ddr-3_3v;
--			max-frequency = <200000000>;
--			non-removable;
--			no-sd;
--			no-sdio;
--			voltage-ranges = <3300 3300>;
--			status = "disabled";
--		};
--
--		sdcard: sdhc@20008000 {
-+		mmc: mmc@20008000 {
- 			compatible = "cdns,sd4hc";
+@@ -267,7 +267,6 @@ mmc: mmc@20008000 {
  			reg = <0x0 0x20008000 0x0 0x1000>;
  			interrupt-parent = <&plic>;
  			interrupts = <88>;
- 			pinctrl-names = "default";
+-			pinctrl-names = "default";
  			clocks = <&clkcfg 6>;
--			bus-width = <4>;
--			disable-wp;
--			cap-sd-highspeed;
--			card-detect-delay = <200>;
--			sd-uhs-sdr12;
--			sd-uhs-sdr25;
--			sd-uhs-sdr50;
--			sd-uhs-sdr104;
  			max-frequency = <200000000>;
  			status = "disabled";
- 		};
 -- 
 2.30.2
 
