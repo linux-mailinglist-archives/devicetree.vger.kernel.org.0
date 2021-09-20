@@ -2,95 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D2824113C9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 13:50:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E85FE4113CF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 13:52:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231391AbhITLvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 07:51:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58074 "EHLO mail.kernel.org"
+        id S231695AbhITLyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 07:54:06 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:49940 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236839AbhITLvY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 07:51:24 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AAE1E6108C;
-        Mon, 20 Sep 2021 11:49:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632138598;
-        bh=V6kgYgogW976xpByhMqKFGsk3ORwS5VxWZ+29DRMxHY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AlaozWlWlARDWspL5oZTclqYkhokylGOFqWGYdLdB02cO47tSDd7L0tudUYAx3dFf
-         txoMY4xg7OH8bq+ztj99ZgC8Kdaa4BeMHN2IR+8LKff3V/XnyRCOiX3nIr8n4WYsgO
-         wPii8/jg2yFfALwoeAkHFdW2J1A3Z82epJbqEX5sJZFIhoddEzzQt1xlAkrU8N+6JV
-         ALX+HYfiiIK9wg6jAUHh3l0F8m8maKsuO4amRpPX+xwq3B2TL58aWCkXlXsG0eYDQq
-         m3wPWMWnrVgQPWVMX+2NRvsUwSf6peLFQBTpbbfn2715FyElDuxOSeuoHl2dFob08F
-         Zz2N0RgiGWezg==
-Date:   Mon, 20 Sep 2021 12:49:14 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
-Message-ID: <20210920114914.GC4192@sirena.org.uk>
-References: <20210903231536.225540-1-frattaroli.nicolas@gmail.com>
- <42974939.Tn3hggVSkZ@archbook>
- <20210916122549.GF5048@sirena.org.uk>
- <2435067.tOv7cHfTnj@archbook>
+        id S230037AbhITLyF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 07:54:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=yGE8gpbmE7JEaUwJzRYJcDw6OeJj0fv2qAbkqApHilU=; b=v8ypol8CHDW+nq/kmj6lcE3eP5
+        IqSiooPJCsz5hzR9c7OrsObf4jclmAW9+rLtNr1Vea8nQaCEyfoXMLkfYzfDIRsjpQuNpP8n5IxjF
+        ba4WqRbR9MAKoZxT66EtLc569vI/AV0bbLjbyhC1iIzVgQ92D1F9StzFQOYn+ANSfxPo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mSHqA-007UX0-Ba; Mon, 20 Sep 2021 13:52:06 +0200
+Date:   Mon, 20 Sep 2021 13:52:06 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        linux@armlinux.org.uk, f.fainelli@gmail.com,
+        alexandre.belloni@bootlin.com, vladimir.oltean@nxp.com,
+        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [RFC PATCH net-next 01/12] net: mdio: mscc-miim: Fix the mdio
+ controller
+Message-ID: <YUh15ieAzBiCVeX9@lunn.ch>
+References: <20210920095218.1108151-1-horatiu.vultur@microchip.com>
+ <20210920095218.1108151-2-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZfOjI3PrQbgiZnxM"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2435067.tOv7cHfTnj@archbook>
-X-Cookie: diplomacy, n:
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210920095218.1108151-2-horatiu.vultur@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 20, 2021 at 11:52:07AM +0200, Horatiu Vultur wrote:
+> According to the documentation the second resource is optional. But the
+> blamed commit ignores that and if the resource is not there it just
+> fails.
+> 
+> This patch reverts that to still allow the second resource to be
+> optional because other SoC have the some MDIO controller and doesn't
+> need to second resource.
+> 
+> Fixes: 672a1c394950 ("net: mdio: mscc-miim: Make use of the helper function devm_platform_ioremap_resource()")
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 
---ZfOjI3PrQbgiZnxM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Moratiu
 
-On Sun, Sep 19, 2021 at 07:38:47PM +0200, Nicolas Frattaroli wrote:
+The script kiddies might come long and 'fix' this again. Maybe
+consider adding devm_platform_ioremap_resource_optional(), following
+the pattern of other _optional() API calls. Otherwise add a comment.
 
-> Going forward, what would be a solution that is acceptable for upstream? =
-As=20
-> far as I understand, the obvious route here is to drop the rockchip,fsync-
-> half-frame property and just always set this mode when we're using a TDM =
-bus=20
-> format. Is this correct?
-
-Yes.
-
-> According to the TRM, the register bit this sets only affects TDM modes.=
-=20
-> Though since TDM is not standardised in any way from what I've read onlin=
-e, it=20
-> is possible that there is hardware out there which expects the non-fsync-=
-half-
-> frame mode, but I am completely fine with only thinking about this hardwa=
-re=20
-> when it actually surfaces.
-
-Right, we can figure it out later.
-
---ZfOjI3PrQbgiZnxM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFIdToACgkQJNaLcl1U
-h9BGIAgAgRW0++RxUFblbEgs7rujuZ+mmldKzxR18cC+Os/498LvNXyA+iEO49w8
-uKcqHbz77yNSnVJj8aJhhLin6Xie6m755h+PFnlZ2IbjCRrfHT1QPP3sPmfJn3xW
-RrZHrQX3kKPb3Tbm8s9tdz0E1HgjkqnrlETHnGbXYL5RUv2/SzDQlAD40i153a1T
-vcaIhIvmIH5un/jbFoJSPlp11EQWsMN1dz1CvWaT4m+3AsU/oht57XdVeJHk53h1
-HjXefXq9ZE6bjHSwudceZtHvM4aFf+3IVmRM4i9ZKHF046mOYWxw+49Z3dTtA7Bi
-ipwsNPQOMZGPIfZTgZ8+ST/F4aJTlA==
-=xhRq
------END PGP SIGNATURE-----
-
---ZfOjI3PrQbgiZnxM--
+    Andrew
