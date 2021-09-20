@@ -2,114 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF17411786
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 16:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10695411779
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 16:50:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240940AbhITOwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 10:52:03 -0400
-Received: from mout.perfora.net ([74.208.4.194]:35957 "EHLO mout.perfora.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240894AbhITOwC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 10:52:02 -0400
-Received: from toolbox.cardiotech.int ([81.221.236.183]) by mrelay.perfora.net
- (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MsqQu-1mheXz1tWq-00tDdG;
- Mon, 20 Sep 2021 16:50:19 +0200
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Rob Herring <robh@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Oleksij Rempel <linux@rempel-privat.de>,
+        id S236444AbhITOvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 10:51:36 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:38854
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240521AbhITOv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 10:51:27 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 486FF4018F
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 14:50:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632149400;
+        bh=liJ7TqCiRENzp4AeNTdqrwOrt003yN4WGkD8VAmir74=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=VtXGmrVSPU0gNXtuBRXm3WnzkGyN8XsPDN+2QgO1iqUY73aviaO6Oxb7SUjIJFkB2
+         CIwvRUNvlwWszVg6GcCaeHAXxfcJD6Plf+NX3qtdf+91LrQ88WKzGf/jKgfrN5+hBJ
+         7mcyc6Nzmn8v4DHLlljOoim6EDAcMk7hGX39dSqFmcppXsEcl87LdcGl/Aor0jQyMC
+         laXc8M9Z94jLVOcSDvZ/ic34U44SnRsJFsoN513sDEkAIXOh3CQo4QUZi5ZbbTtmDk
+         uyWdC9QL2frMFqqFpPY2cv3wvTNTg9S/iAxNbXPRf1bK3C51AAv++mqBbLoNGjYts+
+         TYqH4JsOhGOMg==
+Received: by mail-wr1-f71.google.com with SMTP id c2-20020adfa302000000b0015e4260febdso4978188wrb.20
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 07:50:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=liJ7TqCiRENzp4AeNTdqrwOrt003yN4WGkD8VAmir74=;
+        b=jFKT9BevXO8F4uS6VFiyNhQ9JH54MGSLLGKSV2RC1t6yy0ClcAQyPW8Z1tY/NRlgvF
+         /3fqTZ6cZ0rI3j5nymVrdQ6ll8g7DT/x7mwkwh2HF3l4VCFB4gMnVFnZBDzDIA/3k3UU
+         9/2n/pCXqcZUV94UyBLIEGLA1BZsouCSp3e2Xrx2fUa3CjjJtYBmTTR7rJ2G3QJ2ZDMV
+         R9wE5YcdILqCOme2yHcyfIJWx02jdfmlXmgj1/4CV01eYIzNrmRMWkmQ7i5oignfgYBh
+         HNY8VxcMpASsO3qRnDQW+soxILZG6tFJVYAI0z4foxoeufhvjMGdioqWrWQdEUTnVosU
+         XmRg==
+X-Gm-Message-State: AOAM531SkwwVmhRX6EErPH/oqL16voDX5BJcrYnUSPa7vaWKLFyigPzS
+        DYXsJi9U41BzbmT5+3VZZNwdiWq+Yep6/CCiNQiQBmUEksm2mpuBgYRkoc2H5d4NzVvbBS8DdVQ
+        pNDTciQjeEgDI04DZ7b0x7Rqlqj6GVkFP0DJNQVQ=
+X-Received: by 2002:a05:6000:c3:: with SMTP id q3mr28794222wrx.361.1632149399914;
+        Mon, 20 Sep 2021 07:49:59 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwuV1/6C76PaS4ktI3Po8CjUMuAt+4cyKsUSOnJVyV0IOE5VYTpW96BNfhMsoz/jqg1evXxzg==
+X-Received: by 2002:a05:6000:c3:: with SMTP id q3mr28794197wrx.361.1632149399765;
+        Mon, 20 Sep 2021 07:49:59 -0700 (PDT)
+Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id g131sm14752780wme.22.2021.09.20.07.49.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 07:49:59 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 9/9] dt-bindings: arm: fsl: add toradex,colibri-imx6ull-emmc
-Date:   Mon, 20 Sep 2021 16:49:38 +0200
-Message-Id: <20210920144938.314588-10-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210920144938.314588-1-marcel@ziswiler.com>
-References: <20210920144938.314588-1-marcel@ziswiler.com>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Zong Li <zong.li@sifive.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: clock: fu740-prci: add reset-cells
+Date:   Mon, 20 Sep 2021 16:49:44 +0200
+Message-Id: <20210920144944.162431-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:r0p9Ay3FKFJ5nTU4Q7ipIDgx1pXFGwZ9N3PdSPzTjxCulbQ6c7s
- ozixSoB3ZnIRANKkaIKXxP1BqJU0jVbQt13YM5nYk7cDiQRsHbnV+y3OZS1HflZpcYJDRKr
- elXiRzNp3UIZhvYkwcU+y29g7hUYBtE1iHo03xUqlmjEsZHAwwD5cOJe5W8X4krE/qeEcRV
- TnHGsSR4O6YaWGFhOQMeg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:hoVqNw1Mx+M=:J2OHiFCjVi1nECQHolHV5r
- Q/tQxxT7awpHGVVZ92ArH6zLUzEYkpu9wjTI5lczv8ESOu/hv5SI3ypLmnxsGrrh1XYYlezga
- 6LQsL9xcBBA4xGS3gfTqntK72kASNk5BoI47a6m7NwHW2/fe8SsTuNZTfHwiCnJaXtDDTZC4O
- kARqjCjNKbNs7SeFkzJoil1jv0cvAiZHSq5z7rhe2oOebXxPK9TLhIr79jNWJCz2f8RAIDrnr
- am3mjViWMyOyflWu7XgWG5bQcEALimB8bot0+sAW708Tt1CJSMVrhqQRXCjLvndWwku6kh0NC
- x6NGb6pct51JmbW7DZJSvpPCmNMITbPYuw7dpnHnICKJq6iRhxRjoIatVw6BVG6uwIjvWAv/4
- VRWEDNo5jwNdrJrYphz3RYDjcuVDY/+yrdGcv6p4vnipDiWz9K1nJmRpg1sav0hUVNVZIP+bz
- no/SOWtlWeZRKjXWkP/nNBR3884LMRiFJc9xC6G0vG9eGnaXtYvuCRMnfrqaMcqQgy7YryoQ8
- MN5VqpXeKnym7AAZKoJTya6ft9UQHQevPB82Noys5R37bhjQC3F6QVqVOQY9oqYe5Cc99waq4
- X3SLNU0+ShahAr8aYwUVg0hwTpuZ51VcD5/c3CzJWtMy9JaJGeFRZonlRPVnltREyrEYFHDh/
- bgbXyrjK70H6cXBnd0ueHSNHPnnlXEGph01mdmBd3Yw+iB/MmWbq2s7Nip2eDY0+BPv2bOeb7
- jeCJxBXiid6OW65MaNR8S0wSonRq8DoWTnIfoQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+The SiFive FU740 Power Reset Clock Interrupt Controller is a reset line
+provider so add respective reset-cells property to fix:
 
-Add toradex,colibri-imx6ull-emmc for our new Colibri iMX6ULL 1GB (eMMC)
-Module and the carrier boards (so far only Colibri Evaluation Board) it
-may be mated in.
+  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml: clock-controller@10000000:
+    '#reset-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
-
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
+ .../devicetree/bindings/clock/sifive/fu740-prci.yaml          | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Changes in v4:
-- Fix dt_binding_check line too long warning as pointed out by Rob.
-
-Changes in v3:
-- Add Rob's ack. Thanks!
-- Add Fabio's reviewed-by. Thanks!
-
-Changes in v2:
-- New patch documenting dt-bindings.
-
- Documentation/devicetree/bindings/arm/fsl.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index f1a74f4bce245..23cbd0c6abfc3 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -581,6 +581,7 @@ properties:
-               - kontron,imx6ull-n6411-som # Kontron N6411 SOM
-               - myir,imx6ull-mys-6ulx-eval # MYiR Tech iMX6ULL Evaluation Board
-               - toradex,colibri-imx6ull      # Colibri iMX6ULL Modules
-+              - toradex,colibri-imx6ull-emmc # Colibri iMX6ULL 1GB (eMMC) Module
-               - toradex,colibri-imx6ull-wifi # Colibri iMX6ULL Wi-Fi / BT Modules
-           - const: fsl,imx6ull
+diff --git a/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml b/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml
+index e17143cac316..252085a0cf65 100644
+--- a/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml
++++ b/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml
+@@ -42,6 +42,9 @@ properties:
+   "#clock-cells":
+     const: 1
  
-@@ -606,6 +607,13 @@ properties:
-           - const: toradex,colibri-imx6ull        # Colibri iMX6ULL Module
-           - const: fsl,imx6dl
- 
-+      - description: i.MX6ULL Boards with Toradex Colibri iMX6ULL 1GB (eMMC) Module
-+        items:
-+          - enum:
-+              - toradex,colibri-imx6ull-emmc-eval # Colibri iMX6ULL 1GB (eMMC) M. on Colibri Evaluation Board
-+          - const: toradex,colibri-imx6ull-emmc   # Colibri iMX6ULL 1GB (eMMC) Module
-+          - const: fsl,imx6dl
++  "#reset-cells":
++    const: 1
 +
-       - description: i.MX6ULL Boards with Toradex Colibri iMX6ULL Wi-Fi / BT Modules
-         items:
-           - enum:
+ required:
+   - compatible
+   - reg
+@@ -57,4 +60,5 @@ examples:
+       reg = <0x10000000 0x1000>;
+       clocks = <&hfclk>, <&rtcclk>;
+       #clock-cells = <1>;
++      #reset-cells = <1>;
+     };
 -- 
-2.26.2
+2.30.2
 
