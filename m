@@ -2,134 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ABCC411045
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 09:37:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D815D411066
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 09:43:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230519AbhITHi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 03:38:59 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:42520 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229686AbhITHi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 03:38:58 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18JI7ko8023627;
-        Mon, 20 Sep 2021 09:37:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=csd/N6OvkHUOTLzbCFOq3jmgdTL8+pwIoA8AaVziblo=;
- b=0Wg+5TgbwkdmfSLmqJUQDTeaQcky65n1SdtJUWVI/MejZsuzCUR0ni8iJ7uvjgTRwwT3
- cjqPWsMYzqBfwFbzndmBwcIbc4fKHDuqRpCu4z2cz3cbgyPZT0JMjnYn44mernV2td57
- Fa+vqO5TgKiIpypQhBjU29cLKgjYxm3WAmtzFlmTxIhWMCLBTMD12Ie/LZV44TkRIgrx
- qWZS1Zpnt9TEeOmoiARFqj6mPl06BaQZOR1OZVg21Z3H8JlgvGtKnlDyEsbJbChCxSc/
- jYSCz1EAvwtzZ9ntYMLHR8mepwJ5zZrCtzxE/EsXC6pGVLIxa09/OFEce0D5EUcvFbp7 AQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3b6a76j7bk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 20 Sep 2021 09:37:10 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E9CE710002A;
-        Mon, 20 Sep 2021 09:37:08 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C04FB2128B6;
-        Mon, 20 Sep 2021 09:37:08 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.44) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 20 Sep
- 2021 09:37:08 +0200
-Subject: Re: [PATCH 0/7] Add STM32MP13 SoCs and discovery board support
-To:     Linus Walleij <linus.walleij@linaro.org>, <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>
-CC:     <linux-gpio@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-References: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <269e6f95-434c-7d55-0be5-5871298e194c@foss.st.com>
-Date:   Mon, 20 Sep 2021 09:37:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S231992AbhITHpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 03:45:02 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:52861 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231657AbhITHpB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 03:45:01 -0400
+Received: from [127.0.0.1] (ip-109-43-48-5.web.vodafone.de [109.43.48.5])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 2536522205;
+        Mon, 20 Sep 2021 09:43:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1632123810;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jG+FiHLnsnQBouOgKZIw3mJf4cZfLDOlFHAh4FbgyyE=;
+        b=oTr7dekHcylXJI3ctaSGGEIpcd+KbBzAu3ARkdt7wQG/GvZJ1N5wPBBQ3Ryklgg4KoDEwg
+        eEpQwfiIIQ3AzjIPbXL4SPTFdYJmmM8/6j5oPhvHZDbR2WOYLo9Zz2qxeDFFcqYzvIelbr
+        l/4gT0v9B1c9BzYsxl9v/5AAyup2k2s=
+Date:   Mon, 20 Sep 2021 09:43:23 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Heiko Thiery <heiko.thiery@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+CC:     devicetree@vger.kernel.org,
+        =?ISO-8859-1?Q?Guido_G=FCnther?= <agx@sigxcpu.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH=5D_arm64=3A_dts=3A_imx8mm-kontron-n8?= =?US-ASCII?Q?01x-som=3A_do_not_allow_to_switch_off_buck2?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <d618c505-43e6-01a7-4d2a-847dad33b43e@kontron.de>
+References: <20210915120325.20248-1-heiko.thiery@gmail.com> <7e7ee4244ababc0a46e0875222c7e37d@walle.cc> <898fd5e0-2073-3689-89b6-2c5071773786@kontron.de> <CAEyMn7ZbJr0_2Phc2rW7sDYQu4AABWPZ1F7xDgaS5U7ha7iqzA@mail.gmail.com> <9bcf7b749dca57d42aa2e7afd88b5a26f3eeff2a.camel@pengutronix.de> <CAEyMn7aa=-UKvUz4pWOWZJbPh7TTgzmDpmNKOTYM5g0G54xU2Q@mail.gmail.com> <d618c505-43e6-01a7-4d2a-847dad33b43e@kontron.de>
+Message-ID: <447B96FA-2B75-4C72-A72B-1C1D29137B2C@walle.cc>
 MIME-Version: 1.0
-In-Reply-To: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-20_03,2021-09-17_02,2020-04-07_01
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/23/21 3:28 PM, Alexandre Torgue wrote:
-> This series enhance the STM32 MPU family by adding STM32MP13 SoCs support.
-> It adds machine support and device tree diversity to support the whole
-> stm32mp13 family (STM32MP131/STM32MP133/STM32MP135, plus security feature
-> diversity).
-> 
-> Basically STM32MP13 SoCs embeds one Cortex A7, storage (SD/MMC/SDIO, QSPI FMC),
-> network (ETH, CAN), display (DCMIPP, LTDC, ...), audio(SAI, DFSDM, SPDIFRX),
-> com (USB EHCI/OHCI, USB OTG, I2C, SPI/I2S, U(S)ART).
-> 
-> This series also adds STM32MP135F Discovery board support (stm32mp135f-dk). It
-> embeds a STM32MP135f SOC with 512 MB of DDR3. Several connections are available
-> on this board:
->   - 4*USB2.0, 1*USB2.0 typeC DRD, SDcard, 2*RJ45, HDMI, Combo Wifi/BT, ...
-> 
-> Only SD card, uart4 (console) and watchdog IPs are enabled in this commit.
-> 
-> Note that file stm32mp135.dtsi doesn't define nodes but I add it now to ease adding
-> of new nodes in a (close) future.
-> 
-> regards
-> Alex
-> 
-> Alexandre Torgue (7):
->    dt-bindings: pinctrl: stm32: add new compatible for STM32MP135 SoC
->    pinctrl: stm32: Add STM32MP135 SoC support
->    docs: arm: stm32: introduce STM32MP13 SoCs
->    ARM: stm32: add initial support for STM32MP13 family
->    ARM: dts: stm32: add STM32MP13 SoCs support
->    dt-bindings: stm32: document stm32mp135f-dk board
->    ARM: dts: stm32: add initial support of stm32mp135f-dk board
-> 
->   Documentation/arm/index.rst                   |    1 +
->   .../arm/stm32/stm32mp13-overview.rst          |   37 +
->   .../devicetree/bindings/arm/stm32/stm32.yaml  |    4 +
->   .../bindings/pinctrl/st,stm32-pinctrl.yaml    |    1 +
->   arch/arm/boot/dts/Makefile                    |    1 +
->   arch/arm/boot/dts/stm32mp13-pinctrl.dtsi      |   64 +
->   arch/arm/boot/dts/stm32mp131.dtsi             |  283 +++
->   arch/arm/boot/dts/stm32mp133.dtsi             |   37 +
->   arch/arm/boot/dts/stm32mp135.dtsi             |   12 +
->   arch/arm/boot/dts/stm32mp135f-dk.dts          |   56 +
->   arch/arm/boot/dts/stm32mp13xc.dtsi            |   17 +
->   arch/arm/boot/dts/stm32mp13xf.dtsi            |   17 +
->   arch/arm/mach-stm32/Kconfig                   |    8 +
->   arch/arm/mach-stm32/board-dt.c                |    3 +
->   drivers/pinctrl/stm32/Kconfig                 |    6 +
->   drivers/pinctrl/stm32/Makefile                |    1 +
->   drivers/pinctrl/stm32/pinctrl-stm32mp135.c    | 1679 +++++++++++++++++
->   17 files changed, 2227 insertions(+)
->   create mode 100644 Documentation/arm/stm32/stm32mp13-overview.rst
->   create mode 100644 arch/arm/boot/dts/stm32mp13-pinctrl.dtsi
->   create mode 100644 arch/arm/boot/dts/stm32mp131.dtsi
->   create mode 100644 arch/arm/boot/dts/stm32mp133.dtsi
->   create mode 100644 arch/arm/boot/dts/stm32mp135.dtsi
->   create mode 100644 arch/arm/boot/dts/stm32mp135f-dk.dts
->   create mode 100644 arch/arm/boot/dts/stm32mp13xc.dtsi
->   create mode 100644 arch/arm/boot/dts/stm32mp13xf.dtsi
->   create mode 100644 drivers/pinctrl/stm32/pinctrl-stm32mp135.c
-> 
+Am 20=2E September 2021 09:31:20 MESZ schrieb Frieder Schrempf <frieder=2Es=
+chrempf@kontron=2Ede>:
+>On 17=2E09=2E21 18:10, Heiko Thiery wrote:
+>> Hi Lucas,
+>>=20
+>> Am Fr=2E, 17=2E Sept=2E 2021 um 13:44 Uhr schrieb Lucas Stach
+>> <l=2Estach@pengutronix=2Ede>:
+>>>
+>>> Am Freitag, dem 17=2E09=2E2021 um 09:28 +0200 schrieb Heiko Thiery:
+>>>> Hi Frieder,
+>>>>
+>>>> Am Mi=2E, 15=2E Sept=2E 2021 um 14:09 Uhr schrieb Frieder Schrempf
+>>>> <frieder=2Eschrempf@kontron=2Ede>:
+>>>>>
+>>>>> On 15=2E09=2E21 14:05, Michael Walle wrote:
+>>>>>> Am 2021-09-15 14:03, schrieb Heiko Thiery:
+>>>>>>> The buck2 output of the PMIC is the VDD core voltage of the cpu=2E
+>>>>>>> Switching off this will poweroff the CPU=2E Add the 'regulator-alw=
+ays-on'
+>>>>>>> property to avoid this=2E
+>>>>>>
+>>>>>> Mh, have this ever worked? Is there a commit which introduced a reg=
+ression?
+>>>>>
+>>>>> Yes, this did work before, even without 'regulator-always-on'=2E I
+>>>>> currently don't understand why this is needed=2E The regulator is
+>>>>> referenced in the CPU nodes as 'cpu-supply'=2E This should be enough=
+ to
+>>>>> not disable it as long as the CPU is up=2E
+>>>>
+>>>> I rechecked that with 5=2E11, 5=2E10 and 5=2E9 and I see on all of th=
+em the
+>>>> same issue:
+>>>>
+>>>> [ 31=2E716031] vdd-5v: disabling
+>>>> [ 31=2E719032] rst-usb-eth2: disabling
+>>>> [ 31=2E722553] buck2: disabling
+>>>>
+>>>> While on that I tried to compare with other boards and see that they
+>>>> also have the cpu-voltage marked as "regulator-always-on"=2E The only
+>>>> exception in dts/freescale is in imx8mq-librem5-devkit=2Edts [1] that
+>>>> has not set this property=2E
+>>>>
+>>>> I agree with you and don't understand why this is happening=2E Has
+>>>> anyone else an explanation?
+>>>>
+>>>> [1] https://eur04=2Esafelinks=2Eprotection=2Eoutlook=2Ecom/?url=3Dhtt=
+ps%3A%2F%2Felixir=2Ebootlin=2Ecom%2Flinux%2Flatest%2Fsource%2Farch%2Farm64%=
+2Fboot%2Fdts%2Ffreescale%2Fimx8mq-librem5-devkit=2Edts%23L319&amp;data=3D04=
+%7C01%7Cfrieder=2Eschrempf%40kontron=2Ede%7Cce9d266ad78a4d06721008d979f5aee=
+d%7C8c9d3c973fd941c8a2b1646f3942daf1%7C0%7C0%7C637674918380815550%7CUnknown=
+%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6=
+Mn0%3D%7C1000&amp;sdata=3DPsTKX4MXGwvvP6WxmQ1OWc8e32YI6Nsu%2FEkcNR4V8is%3D&=
+amp;reserved=3D0
+>>>>
+>>> Maybe your kernel config is missing the cpufreq driver, so you don't
+>>> have a consumer of the regulator?
+>>>
+>>> Marking the regulator as always-on seems like the right thing to do,
+>>> you don't want to depend on a consumer showing up to make sure that
+>>> your CPU voltage isn't cut=2E=2E=2E
+>>=20
+>> shouldn't it be that the node cpu-supply here is a consumer of the
+>> referenced voltage?
+>
+>Yes, but as Michael and Lucas noted, the consumer is only active if the
+>cpufreq driver is loaded and we don't want to depend on this=2E In my
+>config I always had this compiled into the kernel so I didn't notice
+>that the always-on property is missing=2E
 
-With minor changes (cryp@ to crypto@), patches 3 to 7 applied on stm32-next.
+Hm=2E So any cpu core voltage has to have the "always-on" property? On any=
+ SoC? Shouldn't there be some code to prevent the disabling of the voltage =
+if the cpu nodes have a cpu-supply phandle?
 
-Regards
-Alex
+-michael
+
