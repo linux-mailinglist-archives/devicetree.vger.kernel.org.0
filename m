@@ -2,95 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90CC441171D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 16:33:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F371B411763
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 16:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233235AbhITOe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 10:34:27 -0400
-Received: from mail-ua1-f45.google.com ([209.85.222.45]:33744 "EHLO
-        mail-ua1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237226AbhITOeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 10:34:13 -0400
-Received: by mail-ua1-f45.google.com with SMTP id r8so11330459uap.0;
-        Mon, 20 Sep 2021 07:32:46 -0700 (PDT)
+        id S237028AbhITOqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 10:46:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236917AbhITOqr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 10:46:47 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B3FC061574;
+        Mon, 20 Sep 2021 07:45:20 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id b15so50440996lfe.7;
+        Mon, 20 Sep 2021 07:45:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tuWyQBqXiUuLdjTaM4+1NWtk+RRPTol/u+OTKXZEEAY=;
+        b=oitbjIV4r+cBWkH8uYuxmdfenP8UlTJpPo0TfTMbhgJdYc2TbwElWgAbosJI4TXzjY
+         i6DaUpIqI0dSJD2+65Tpvvho3zD4Q4X0XnfqzbSOLgzuvZDHDaAgLVgGBLZ0pMCefTgZ
+         Cvw6uOXrAvAfJXoxiPLvtbTfH2xrisGIA6Eh6yc393WWrwU55BPP1T2IsTGRj1opgGlA
+         lEb0S2ONSc09GTiiqqCx3JPGraOGycK/D8eFVgFdiroBgBbLG9pG/sGmucWLwSFBpGTg
+         HECYyVroTzhNrxzfb/poWpH1+6atchPDdA1zjySS3ohE9H8hhEAyoi7kbUrL2C4QIXjS
+         9mBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=d1fA9sD4Re6cy9QvKdyaIPvjv83NrwqIwiME67fS8gw=;
-        b=OQdELAZnWArIcYY1p17tpR8mjxmnHq2ON9CKjz56wUzQJx/Xyxjfos4tIyBhFQ3Vp+
-         +wB+CmCMRT3LxQU0uqGMmoc7OEIX8JKsv/tJsAiqnkXpoBweaAvd1fxC7LzWA6EnAQg9
-         wcPNTDpkVLXBcIHdyGrwMWhTt0CqTs3f+t+25X88D6DImScN2gbKdI2YEXYDu7nHA96d
-         21L7Z1MNUckGZgQj3RxO24jCDrLjw4bAH/gueVr+EgwwHJ7Garl6Jt+gjNFjWez/BLIE
-         cW9f2TL6nVwAdAmEvgnpYH8MV4BeSJXn3Kzqa08FWgOa4u9JEIIHhD0sG2cIMiMjdPhc
-         7usg==
-X-Gm-Message-State: AOAM530VMaq9g7ji8RpGT+NTO5z+lmglEksWMhPa+FMx+9KmakI1XNBz
-        7/7wbVoc1zULqgdeWQba/tkfDEm4Lfj2He/FGEg=
-X-Google-Smtp-Source: ABdhPJyMCIfZZUlLRlGgiTjNjprimvUPIgx9dDOJ6a13gJeOJZt/lIf4W4G47j5QN8TUNgkF0wEBIumzqn+a8381x10=
-X-Received: by 2002:ab0:311a:: with SMTP id e26mr12181930ual.122.1632148366041;
- Mon, 20 Sep 2021 07:32:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210920132830.152802-1-krzysztof.kozlowski@canonical.com> <20210920132830.152802-4-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20210920132830.152802-4-krzysztof.kozlowski@canonical.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 20 Sep 2021 16:32:34 +0200
-Message-ID: <CAMuHMdX5vhihbKrXh4x_VyA2Cc=nR+53g_fZPHsuHVF56rBvMQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] riscv: dts: microchip: drop unused pinctrl-names
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tuWyQBqXiUuLdjTaM4+1NWtk+RRPTol/u+OTKXZEEAY=;
+        b=I7avxgW1/wKXW6Yd4zY+vUjLcnwsf+g1rSYcT2FtEAHkSh98T7QrTI0r40aSRyyvqE
+         owlRGcqnvnazqFnFPGz4eJvX1ntjLmY2VFBO4ugTqPxILURSX1wUhNOMLdry81tC758E
+         oogjcgnkb6YYG5ZCYVVdKEvPkcRSv+HedtTkwGMajk7Z0N0UVQobGqfacp2/OAHBuo4R
+         FTmFepXyEmkSXqOqhfW+Dz/d0voArHuzru+ErvG43sR4xx0YYVbHy631qnRx9zrOGq0I
+         vv1VzbCahG9IfkkmjWbo0RrdFdQbl5E/C2zbmbvc9C83RXbyst80tnieQgSWFNA/1JYw
+         Zshg==
+X-Gm-Message-State: AOAM532KHN7/1TQB0Zxf2UwqV0EqRWt6hkgQKIRE6ylSUSL1G3sqW3zf
+        b6uAAjhR4FQN5Gs/+uNAUds=
+X-Google-Smtp-Source: ABdhPJwK0I9hP+SKpzutXB8R+blwaxUiqjIYiFSudus+Eh+S13Gs3cj38UFOVT0hJkL6cK5oZ4MuKg==
+X-Received: by 2002:ac2:4c81:: with SMTP id d1mr19042396lfl.340.1632149047925;
+        Mon, 20 Sep 2021 07:44:07 -0700 (PDT)
+Received: from mobilestation ([95.79.127.110])
+        by smtp.gmail.com with ESMTPSA id y17sm1286651lfh.73.2021.09.20.07.44.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 07:44:07 -0700 (PDT)
+Date:   Mon, 20 Sep 2021 17:44:04 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Apurva Nandan <a-nandan@ti.com>
 Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Brown <broonie@kernel.org>, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, michael@walle.cc
+Subject: Re: [PATCH v2 2/2] dt-bindings: snps,dw-apb-ssi: Use 'flash' node
+ name instead of 'spi-flash' in example
+Message-ID: <20210920144404.5vhynfdfukabxgav@mobilestation>
+References: <20210920142713.129295-1-a-nandan@ti.com>
+ <20210920142713.129295-3-a-nandan@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210920142713.129295-3-a-nandan@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Mon, Sep 20, 2021 at 3:28 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
-> pinctrl-names without pinctrl-0 does not have any sense:
->
->   arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: 'pinctrl-0' is a dependency of 'pinctrl-names'
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
->
+On Mon, Sep 20, 2021 at 07:57:13PM +0530, Apurva Nandan wrote:
+> Change the nodename in the example with spi-nand from 'spi-flash@1'
+> to 'flash@1' to make the schema uniform with both spi-nand and spi-nor
+> flashes. jedec,spi-nor.yaml uses 'flash@' nodename for spi-nor flashes,
+> so make the spi-nand examples in dt-bindings use it too for uniformity.
+> 
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
 > ---
->
-> Changes since v1:
-> 1. Add review.
+>  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -33,6 +33,7 @@ properties:
->        - items:
->            - enum:
->                - issi,is25lp016d
-> +              - issi,is25wp256
->                - micron,mt25qu02g
->                - mxicy,mx25r1635f
->                - mxicy,mx25u6435f
+Seems reasonable.
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-This one looks like an accidental addition?
+-Sergey
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index ca91201a9926..d7e08b03e204 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -171,7 +171,7 @@ examples:
+>        cs-gpios = <&gpio0 13 0>,
+>                   <&gpio0 14 0>;
+>        rx-sample-delay-ns = <3>;
+> -      spi-flash@1 {
+> +      flash@1 {
+>          compatible = "spi-nand";
+>          reg = <1>;
+>          rx-sample-delay-ns = <7>;
+> -- 
+> 2.25.1
+> 
