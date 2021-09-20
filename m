@@ -2,112 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC03411069
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 09:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA8E04110AF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 10:10:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235174AbhITHpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 03:45:19 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:36798 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S235158AbhITHpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 03:45:15 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18K098xl022500;
-        Mon, 20 Sep 2021 09:43:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=oH4D/HPpaxuvzZMHzMZBaGtDooA6Q+t7sSJkEid2Q98=;
- b=nYJy/MWmrk2/0hZdrqkhcXqWUw4Go8I084uP5DybUyZxoMp8DpKHNr0sEjmO7Sib9tow
- PID399KTk0tKbfyr3GAWJtaZojcaup8EYUdyeKoao+rUFoDhsuMpNs7/rAxZu/bCilxP
- Xmir32mFK2WqizgICJaAhehcMI3tWCwE4klb0mTr9KkG+6xZcYwkTs3MfWwNgDXjrWzu
- UxxJRwCKCZ1csUcn9LvZNtBGMzf6PuoHq26esV7FGk6qx8jsKiMV0RLQ2h2PB2O389eB
- A8FM7xHzAsCIYBgGvDYE4ychRUA6HCYYP+6qVCXBAaW4kJhTjHCMugbQ10sPIllVxwyu Fg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3b6fgqhhv9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 20 Sep 2021 09:43:27 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 942FF10002A;
-        Mon, 20 Sep 2021 09:43:26 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8AD822128D5;
-        Mon, 20 Sep 2021 09:43:26 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.44) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 20 Sep
- 2021 09:43:26 +0200
-Subject: Re: [PATCH] ARM: dts: stm32: set the DCMI pins on stm32mp157c-odyssey
-To:     Grzegorz Szymaszek <gszymaszek@short.pl>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <YSepFyt8o+5lAsrA@nx64de-df6d00>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <0ac8725b-b3b9-7c9b-bb88-70e586092c09@foss.st.com>
-Date:   Mon, 20 Sep 2021 09:43:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S235349AbhITILj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 04:11:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48830 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233666AbhITILi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 04:11:38 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8ED4C061574
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 01:10:11 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mSENM-0008In-7n; Mon, 20 Sep 2021 10:10:08 +0200
+Message-ID: <9fae7a66f4d9c709897586fcf8f26e5863d01bf4.camel@pengutronix.de>
+Subject: Re: [PATCH] arm64: dts: imx8mm-kontron-n801x-som: do not allow to
+ switch off buck2
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Michael Walle <michael@walle.cc>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Heiko Thiery <heiko.thiery@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Date:   Mon, 20 Sep 2021 10:10:05 +0200
+In-Reply-To: <447B96FA-2B75-4C72-A72B-1C1D29137B2C@walle.cc>
+References: <20210915120325.20248-1-heiko.thiery@gmail.com>
+         <7e7ee4244ababc0a46e0875222c7e37d@walle.cc>
+         <898fd5e0-2073-3689-89b6-2c5071773786@kontron.de>
+         <CAEyMn7ZbJr0_2Phc2rW7sDYQu4AABWPZ1F7xDgaS5U7ha7iqzA@mail.gmail.com>
+         <9bcf7b749dca57d42aa2e7afd88b5a26f3eeff2a.camel@pengutronix.de>
+         <CAEyMn7aa=-UKvUz4pWOWZJbPh7TTgzmDpmNKOTYM5g0G54xU2Q@mail.gmail.com>
+         <d618c505-43e6-01a7-4d2a-847dad33b43e@kontron.de>
+         <447B96FA-2B75-4C72-A72B-1C1D29137B2C@walle.cc>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-In-Reply-To: <YSepFyt8o+5lAsrA@nx64de-df6d00>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-20_03,2021-09-17_02,2020-04-07_01
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Am Montag, dem 20.09.2021 um 09:43 +0200 schrieb Michael Walle:
+> Am 20. September 2021 09:31:20 MESZ schrieb Frieder Schrempf <frieder.schrempf@kontron.de>:
+> > On 17.09.21 18:10, Heiko Thiery wrote:
+> > > Hi Lucas,
+> > > 
+> > > Am Fr., 17. Sept. 2021 um 13:44 Uhr schrieb Lucas Stach
+> > > <l.stach@pengutronix.de>:
+> > > > 
+> > > > Am Freitag, dem 17.09.2021 um 09:28 +0200 schrieb Heiko Thiery:
+> > > > > Hi Frieder,
+> > > > > 
+> > > > > Am Mi., 15. Sept. 2021 um 14:09 Uhr schrieb Frieder Schrempf
+> > > > > <frieder.schrempf@kontron.de>:
+> > > > > > 
+> > > > > > On 15.09.21 14:05, Michael Walle wrote:
+> > > > > > > Am 2021-09-15 14:03, schrieb Heiko Thiery:
+> > > > > > > > The buck2 output of the PMIC is the VDD core voltage of the cpu.
+> > > > > > > > Switching off this will poweroff the CPU. Add the 'regulator-always-on'
+> > > > > > > > property to avoid this.
+> > > > > > > 
+> > > > > > > Mh, have this ever worked? Is there a commit which introduced a regression?
+> > > > > > 
+> > > > > > Yes, this did work before, even without 'regulator-always-on'. I
+> > > > > > currently don't understand why this is needed. The regulator is
+> > > > > > referenced in the CPU nodes as 'cpu-supply'. This should be enough to
+> > > > > > not disable it as long as the CPU is up.
+> > > > > 
+> > > > > I rechecked that with 5.11, 5.10 and 5.9 and I see on all of them the
+> > > > > same issue:
+> > > > > 
+> > > > > [ 31.716031] vdd-5v: disabling
+> > > > > [ 31.719032] rst-usb-eth2: disabling
+> > > > > [ 31.722553] buck2: disabling
+> > > > > 
+> > > > > While on that I tried to compare with other boards and see that they
+> > > > > also have the cpu-voltage marked as "regulator-always-on". The only
+> > > > > exception in dts/freescale is in imx8mq-librem5-devkit.dts [1] that
+> > > > > has not set this property.
+> > > > > 
+> > > > > I agree with you and don't understand why this is happening. Has
+> > > > > anyone else an explanation?
+> > > > > 
+> > > > > [1] https://eur04.safelinks.protection.outlook.com/?url=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Flatest%2Fsource%2Farch%2Farm64%2Fboot%2Fdts%2Ffreescale%2Fimx8mq-librem5-devkit.dts%23L319&amp;data=04%7C01%7Cfrieder.schrempf%40kontron.de%7Cce9d266ad78a4d06721008d979f5aeed%7C8c9d3c973fd941c8a2b1646f3942daf1%7C0%7C0%7C637674918380815550%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=PsTKX4MXGwvvP6WxmQ1OWc8e32YI6Nsu%2FEkcNR4V8is%3D&amp;reserved=0
+> > > > > 
+> > > > Maybe your kernel config is missing the cpufreq driver, so you don't
+> > > > have a consumer of the regulator?
+> > > > 
+> > > > Marking the regulator as always-on seems like the right thing to do,
+> > > > you don't want to depend on a consumer showing up to make sure that
+> > > > your CPU voltage isn't cut...
+> > > 
+> > > shouldn't it be that the node cpu-supply here is a consumer of the
+> > > referenced voltage?
+> > 
+> > Yes, but as Michael and Lucas noted, the consumer is only active if the
+> > cpufreq driver is loaded and we don't want to depend on this. In my
+> > config I always had this compiled into the kernel so I didn't notice
+> > that the always-on property is missing.
+> 
+> Hm. So any cpu core voltage has to have the "always-on" property? On
+> any SoC? Shouldn't there be some code to prevent the disabling of the
+> voltage if the cpu nodes have a cpu-supply phandle?
 
-On 8/26/21 4:45 PM, Grzegorz Szymaszek wrote:
-> The Seeed Odyssey-STM32MP157C board has a 20-pin DVP camera output. The
-> DCMI pins used on this output are defined in the pin state definition
-> &pinctrl/dcmi-1, AKA &dcmi_pins_b (added in mainline commit
-> 02814a41529a55dbfb9fbb2a3728e78e70646ea6). Set these pins as the default
-> pinctrl of the DCMI peripheral in the board device tree.
-> 
-> The pins are not used for any other purpose, so it seems safe to assume
-> most users will not need to override (delete) what this patch provides.
-> status defaults to "disabled", so the peripheral will not be
-> unnecessarily started. And the users who actually intend to make use of
-> a camera on the DVP port will have this little part of the configuration
-> ready.
-> 
-> Signed-off-by: Grzegorz Szymaszek <gszymaszek@short.pl>
-> ---
->   arch/arm/boot/dts/stm32mp157c-odyssey.dts | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey.dts b/arch/arm/boot/dts/stm32mp157c-odyssey.dts
-> index be1dd5e9e744..554f5d3bcdc3 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-odyssey.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-odyssey.dts
-> @@ -22,6 +22,12 @@ chosen {
->   	};
->   };
->   
-> +&dcmi {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&dcmi_pins_b>;
-> +	pinctrl-1 = <&dcmi_sleep_pins_b>;
-> +};
-> +
->   &ethernet0 {
->   	status = "okay";
->   	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
-> 
+Yes, all regulators that must not be shut down for proper system
+operation must be marked as always-on. Just because it is a CPU supply
+doesn't make it special in any way. Otherwise where would you stop with
+adding special code to keep supplies enabled without a consumer? Have
+code to keep the DDR memory regulators on when no DDR controller driver
+is loaded? Code to keep 3.3V for the board level peripherals enabled?
+Just mark those as always-on.
 
-Applied on stm32-next.
+Regards,
+Lucas
 
-Thanks
-Alex
