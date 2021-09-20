@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D572A412A64
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 03:39:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B0DC412A65
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 03:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233094AbhIUBky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 21:40:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58814 "EHLO
+        id S232357AbhIUBk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 21:40:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232357AbhIUBj3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 21:39:29 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82FCFC0430C9
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:52:00 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id c6-20020a9d2786000000b005471981d559so3684544otb.5
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:52:00 -0700 (PDT)
+        with ESMTP id S232376AbhIUBja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 21:39:30 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE277C0430D5
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:53:42 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id s69so18838614oie.13
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:53:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=QR+41d2CWnF6y8POX2yCYnotLJD1rZ1O8icCQ6F8e+Y=;
-        b=XuHIYliUFLKnsbgeeINNatgMmsCdIboPP8+sAg9LU+cvRVtTq7lOTS7H4haZNHxvM9
-         p1N88SB3352wydMgXNSFCzuDo1DZcDyV0oK/h/kEhNHzNJY4QOT/B0F4P7Or8YCoOR13
-         O91X05MpZ4Ws801ghrVoeaLbpMLQaIZh4DV4Q=
+        bh=1DxHtYBh4DzHUQ01KgUFLlooV5ZfuLGGb9gtdlSK5T8=;
+        b=oVUzKPQf3Dx+Ish9YbiDA6rmx4JK8gznqZ15XRqd1dK66S42rpOkuLnHCip24bG6tN
+         Kb6ll0czgwMocjwN/yauCrFg3hlkqytUJdDVSc2+K7mFNXl4WjdfUAW4gKt9ZqFbvQRO
+         YfV+Ey0wR+Ut7axwjG/USkB+P5lf6NBtOqqEA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=QR+41d2CWnF6y8POX2yCYnotLJD1rZ1O8icCQ6F8e+Y=;
-        b=Cf/kAS2AANTICjyF3Sz4a4AsYe0S/oWgjgAkuD+XbxH3yUQ0WWQGUMcSGiLpiPYc4Q
-         F3j7bYVz0kLNiZW7bsdrYUqmPNttj3zfnuYWTXhKQtt7IkEn2kKYiB08FmVii2REVzbO
-         x+m9GMk5EaXJuZPaj0cGQAucnk7oA3oBJoAHjKnOTkUaW3iDrjMFRa4lBi9uodUK+5nZ
-         WlrEgUXp9CO06JC0ohqZPmL275tILT/kMvGlSZm7DFu97pd027H40YkV+Mdb4Demkx/F
-         3evl+kAOlrnd4T8J+acdFfTPbKgWPrj7me/YxaejdUVNPjrrUcxA88B0J03HdCpGRrMw
-         uLXQ==
-X-Gm-Message-State: AOAM532qVQl1GWz83udTrc0gFhIbVcVIx2ukmwkUz76lwu4xkA+fS3eV
-        MEUcD4oUNAnM5N0Q5uRocQ0fyePqmjSKQ6n80y1ufA==
-X-Google-Smtp-Source: ABdhPJwtIzCWSMh71giNnyYDptJRLaxEGCqlnvwoau2/hKz6p8Jc9WJ7gdkc0BAR/4i0a9R3CQlqSIDvb9uYW+loKUw=
-X-Received: by 2002:a05:6830:1212:: with SMTP id r18mr21399600otp.159.1632167519891;
- Mon, 20 Sep 2021 12:51:59 -0700 (PDT)
+        bh=1DxHtYBh4DzHUQ01KgUFLlooV5ZfuLGGb9gtdlSK5T8=;
+        b=IbPgIj9TEO3CwaKSM3Z180vCuWS66Zx+wY6UMq9hAwluY2rufVFu1qoi0cX9+I71Le
+         szeGDxm4cgxegI19D6eJnvZ+v2m0KLm6IX9CQfNNrRZ+9eecrjpVLrGCO09JOgvilRKa
+         8AfEhZHUyFNmZ+AktiTSBYG6hvhqxnBGqAqMMqvxvIQhgW1TWvLRxGnr/3/E78wm315k
+         iRTEOLBwG8TnN/bbtfao9bvtiyZwXIMg8BQuDxilFh9f5MMkFRNxSaw/GlTFhQ/DVkeC
+         d1lMUaBz1B0B7xjctPvFqRstKHlMw0Ik74PEbqaxTLaSK/+R1Ftl8PfELyRp7nIe/fIw
+         27bA==
+X-Gm-Message-State: AOAM533XYnOcs/eSywtv3QQiMTXkTVOYnOaJ2w4Iz6ItituJL8KIR8Ju
+        NfnCEircW8v+9a4MLR8K7GjXPczOSsVtdxxK07kE2w==
+X-Google-Smtp-Source: ABdhPJzJSN3Q2nCHPr+PzZnQ71Bc+cOTt8uQg6u8yZOdsf4zxwJFblSLVn5oUvAQ1oeCgPIlgC/6LUu0BqWU3Rk4sjI=
+X-Received: by 2002:aca:1a11:: with SMTP id a17mr639799oia.164.1632167622190;
+ Mon, 20 Sep 2021 12:53:42 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 20 Sep 2021 12:51:59 -0700
+ HTTPREST; Mon, 20 Sep 2021 12:53:41 -0700
 MIME-Version: 1.0
-In-Reply-To: <1631898947-27433-4-git-send-email-pmaliset@codeaurora.org>
-References: <1631898947-27433-1-git-send-email-pmaliset@codeaurora.org> <1631898947-27433-4-git-send-email-pmaliset@codeaurora.org>
+In-Reply-To: <1631898947-27433-5-git-send-email-pmaliset@codeaurora.org>
+References: <1631898947-27433-1-git-send-email-pmaliset@codeaurora.org> <1631898947-27433-5-git-send-email-pmaliset@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Mon, 20 Sep 2021 12:51:59 -0700
-Message-ID: <CAE-0n53N-7wGgGmqep6ZTAt14dYObq43cTak_BWAjy6XS0Gnig@mail.gmail.com>
-Subject: Re: [PATCH v8 3/4] arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
+Date:   Mon, 20 Sep 2021 12:53:41 -0700
+Message-ID: <CAE-0n53d9wjc7-U2M6i5MzjAqOxu8oNUcihrxJv-HJnRX0TJHQ@mail.gmail.com>
+Subject: Re: [PATCH v8 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
+ init in SC7280
 To:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
         bhelgaas@google.com, bjorn.andersson@linaro.org,
         lorenzo.pieralisi@arm.com, robh+dt@kernel.org, svarbanov@mm-sol.com
@@ -62,76 +63,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prasad Malisetty (2021-09-17 10:15:46)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 99f9ee5..ee00df0 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -199,6 +199,39 @@
->         modem-init;
->  };
+Quoting Prasad Malisetty (2021-09-17 10:15:47)
+> On the SC7280, the clock source for gcc_pcie_1_pipe_clk_src
+> must be the TCXO while gdsc is enabled. After PHY init successful
+> clock source should switch to pipe clock for gcc_pcie_1_pipe_clk_src.
 >
-> +&pcie1 {
-> +       status = "okay";
-> +
-> +       perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
-> +       pinctrl-0 = <&pcie1_default_state &nvme_ldo_enable_pin>;
-> +};
-> +
-> +&pcie1_phy {
-> +       status = "okay";
-> +
-> +       vdda-phy-supply = <&vreg_l10c_0p8>;
-> +       vdda-pll-supply = <&vreg_l6b_1p2>;
-> +};
-> +
-> +&pcie1_default_state {
-> +       reset-n {
-> +               pins = "gpio2";
-> +               function = "gpio";
-> +
-> +               drive-strength = <16>;
-> +               output-low;
-> +               bias-disable;
-> +       };
-> +
-> +       wake-n {
-> +               pins = "gpio3";
-> +               function = "gpio";
-> +
-> +               drive-strength = <2>;
-> +               bias-pull-up;
-> +       };
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> ---
 
-I think the previous round of this series Bjorn was saying that these
-should be different nodes and tacked onto the pinctrl-0 list for the
-pcie1 device instead of adding them as subnodes of the "default state".
+One nit below
 
-> +};
-> +
->  &pmk8350_vadc {
->         pmk8350_die_temp {
->                 reg = <PMK8350_ADC7_DIE_TEMP>;
-> @@ -343,3 +376,10 @@
->                 bias-pull-up;
->         };
->  };
-> +
-> +&tlmm {
-> +       nvme_ldo_enable_pin: nvme_ldo_enable_pin {
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-Please use dashes where you use underscores in node names
+> @@ -1488,7 +1553,9 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>
+>         pcie->pci = pci;
+>
+> -       pcie->ops = of_device_get_match_data(dev);
+> +       pcie_cfg = of_device_get_match_data(dev);
+> +       pcie->ops = pcie_cfg->ops;
 
-       nvme_ldo_enable_pin: nvme-ldo-enable-pin {
+Maybe worth failing probe with if (!pcie->ops) just to be a little
+nicer here.
 
-> +               function = "gpio";
-> +               bias-pull-up;
-
-Of course with that said, the name of this node makes it sound like this
-is a gpio controlled regulator. Why not use that binding then and enable
-the regulator either by default with regulator properties like
-regulator-always-on and regulator-boot-enable and/or reference it from
-the pcie device somehow so that it can be turned off during suspend?
-
-> +       };
-> +};
+> +       pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
+>
+>         pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+>         if (IS_ERR(pcie->reset)) {
