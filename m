@@ -2,49 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 775E1411723
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 16:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5BD5411719
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 16:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237196AbhITOez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 10:34:55 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:55286 "EHLO gloria.sntech.de"
+        id S234732AbhITOdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 10:33:35 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:55254 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231952AbhITOes (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 10:34:48 -0400
-Received: from wf0416.dip.tu-dresden.de ([141.76.181.160] helo=phil.dip.tu-dresden.de)
+        id S231272AbhITOde (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 10:33:34 -0400
+Received: from wf0416.dip.tu-dresden.de ([141.76.181.160] helo=phil.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1mSKHs-0005O5-PI; Mon, 20 Sep 2021 16:28:52 +0200
+        id 1mSKKz-0005Rh-4o; Mon, 20 Sep 2021 16:32:05 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
 To:     Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+Cc:     tomm.merciai@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH] arm64: dts: rockchip: fix: PCI reg address is not configuration space
-Date:   Mon, 20 Sep 2021 16:28:48 +0200
-Message-Id: <163214478702.1547258.5943542169692932677.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
+Date:   Mon, 20 Sep 2021 16:32:04 +0200
+Message-ID: <4652194.GXAFRqVoOG@phil>
 In-Reply-To: <20210918164153.207146-1-tomm.merciai@gmail.com>
 References: <20210918164153.207146-1-tomm.merciai@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 18 Sep 2021 18:41:51 +0200, Tommaso Merciai wrote:
+Am Samstag, 18. September 2021, 18:41:51 CEST schrieb Tommaso Merciai:
 > Warning (pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not configuration space
+> 
+> Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
 
-Applied, thanks!
+applied for 5.16
 
-[1/1] arm64: dts: rockchip: fix: PCI reg address is not configuration space
-      commit: d146198a858ac54653be6d90e3282a7f788c1960
+thanks
+Heiko
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+
