@@ -2,137 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB0A441279D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 23:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF5B84127CB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 23:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235733AbhITVBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 17:01:35 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:35762 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237455AbhITU7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 16:59:34 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18KKvprO118661;
-        Mon, 20 Sep 2021 15:57:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632171471;
-        bh=OAlLenG3KBpsC940vecYGOKh/e9SP3yN0HVVeoPp9Pg=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=s3/TEeFBahX4ZVwqIXu3D+/5F6swSyeIX5/DpgZLuhSZkNwQP7cM6Wcxc4AzBJqb0
-         bM3Rw3mnB5I6O+JijNSeh+V8bZAEfLuh8M1O/ZBcUaeUOEGuSigdKC8lANEv+6b3Pw
-         4tmvo6G1nSutDeTbz6tgVVwBCOpcIBmT7wctbhS0=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18KKvoVW038268
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Sep 2021 15:57:51 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 20
- Sep 2021 15:57:50 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 20 Sep 2021 15:57:50 -0500
-Received: from [10.250.37.219] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18KKvo9j090764;
-        Mon, 20 Sep 2021 15:57:50 -0500
-Subject: Re: [PATCH V3] dt-bindings: hwlock: omap: Remove redundant binding
- example
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
+        id S234793AbhITVRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 17:17:25 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:43062 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235207AbhITVPZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 17:15:25 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1632172438; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=4ijXYlmqoMPuqo2n4/kMk/32yQvABM55JAadYGLqsTw=; b=S8We6wO/2PVGYxxzMyPWcX3DhcnhZvhbmwpjEgRXE4clYguYWdHaicaHiRvBVzvbQYQITRSD
+ j+jQbj76SUICXzrujoKaWGBtJR2iOpJGDciL6DxgEgm7NyQ6pqKj38HPz2Jl8t+cMgDDUGs6
+ qH70yjCSnrrBPCaMjQE8GGNR4JY=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 6148f99565c3cc8c63e8b319 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 20 Sep 2021 21:13:57
+ GMT
+Sender: wcheng=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 07FD0C43460; Mon, 20 Sep 2021 21:13:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.1.26] (075-140-094-099.biz.spectrum.com [75.140.94.99])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 835BAC43460;
+        Mon, 20 Sep 2021 21:13:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 835BAC43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: dwc3-qcom: tx-fifo-resize regression on Poco F1 (sdm845) with
+ v5.15-rc1
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-References: <20210920123152.32751-1-sinthu.raja@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <cfb1b8eb-327f-1f2b-9939-df06c9d5f692@ti.com>
-Date:   Mon, 20 Sep 2021 15:57:49 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Rob Herring <robh+dt@kernel.org>,
+        Jack Pham <jackp@codeaurora.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        John Stultz <john.stultz@linaro.org>,
+        linux-usb@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>
+References: <CAMi1Hd3k2snB4-=M57pVrMVom=a9_2a0DTFk-+Hzpubwk-Pr9Q@mail.gmail.com>
+From:   Wesley Cheng <wcheng@codeaurora.org>
+Message-ID: <64a2a428-8bb1-0078-2403-1ca8e28cf4b1@codeaurora.org>
+Date:   Mon, 20 Sep 2021 14:13:54 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210920123152.32751-1-sinthu.raja@ti.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <CAMi1Hd3k2snB4-=M57pVrMVom=a9_2a0DTFk-+Hzpubwk-Pr9Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/20/21 7:31 AM, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
-> 
-> The example includes a board-specific compatible property, this is wrong
-> as the example should be board agnostic and should represent the particular
-> binding. Also, the file includes two similar examples but with a different
-> compatible. So, drop the entire second example
-> 
-> Suggested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+Hi Amit,
 
-Acked-by: Suman Anna <s-anna@ti.com>
-
+On 9/20/2021 1:45 PM, Amit Pundir wrote:
+> Hi Wesley, All,
 > 
-> ---
+> I see a reboot loop on Xiaomi Pocophone F1 (sdm845) with TX FIFO
+> resize patches which landed in v5.15-rc1. Upstream commit cefdd52fa045
+> "usb: dwc3: dwc3-qcom: Enable tx-fifo-resize property by default" to
+> be specific, which switched on this feature by default.
 > 
-> Changes in V3:
-> Addressed review comment, that includes adding Suggested By: tag to the 
-> commit message
-> 
-> V2: https://lore.kernel.org/all/20210917170805.5079-1-sinthu.raja@ti.com/
-> V1: https://lore.kernel.org/all/20210917094740.18891-1-sinthu.raja@ti.com/
-> 
->  .../bindings/hwlock/ti,omap-hwspinlock.yaml   | 33 +------------------
->  1 file changed, 1 insertion(+), 32 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
-> index ae1b37dbee75..0a955c7b9706 100644
-> --- a/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
-> +++ b/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
-> @@ -39,39 +39,8 @@ additionalProperties: false
->  examples:
->  
->    - |
-> -    /* OMAP4 SoCs */
-> -    hwspinlock: spinlock@4a0f6000 {
-> +    spinlock@4a0f6000 {
->          compatible = "ti,omap4-hwspinlock";
->          reg = <0x4a0f6000 0x1000>;
->          #hwlock-cells = <1>;
->      };
-> -
-> -  - |
-> -    / {
-> -        /* K3 AM65x SoCs */
-> -        model = "Texas Instruments K3 AM654 SoC";
-> -        compatible = "ti,am654-evm", "ti,am654";
-> -        #address-cells = <2>;
-> -        #size-cells = <2>;
-> -
-> -        bus@100000 {
-> -            compatible = "simple-bus";
-> -            #address-cells = <2>;
-> -            #size-cells = <2>;
-> -            ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
-> -                     <0x00 0x30800000 0x00 0x30800000 0x00 0x0bc00000>; /* Main NavSS */
-> -
-> -            bus@30800000 {
-> -                compatible = "simple-mfd";
-> -                #address-cells = <2>;
-> -                #size-cells = <2>;
-> -                ranges = <0x00 0x30800000 0x00 0x30800000 0x00 0x0bc00000>;
-> -
-> -                spinlock@30e00000 {
-> -                    compatible = "ti,am654-hwspinlock";
-> -                    reg = <0x00 0x30e00000 0x00 0x1000>;
-> -                    #hwlock-cells = <1>;
-> -                };
-> -            };
-> -        };
-> -    };
+> At times the phone crashes into the fastboot mode after the reboot
+> loop, but mostly end up booting to UI after a while. This is what it
+> looks like https://people.linaro.org/~amit.pundir/beryllium-userdebug/PXL_20210920_162749483.mp4.
 > 
 
+I believe Android will attempt a number of bootup sequences and if it
+fails, it falls back to fastboot mode.  Are there any available logs you
+might be able to collect to see where the issue is?
+
+> PocoF1 does support TX fifo resizing as I can see that in the
+> downstream dts. So maybe it is the tx-fifo-max-num which need to be
+> adjusted for the device? I couldn't find the tx-fifo-max-num
+> equivalent in the downstream tree though
+> https://github.com/MiCode/Xiaomi_Kernel_OpenSource/tree/dipper-q-oss/
+> 
+
+I assume that you've already confirmed reverting that change resolves
+the constant reboots?
+
+> Curious if you had any ideas what might be going wrong? For now I'll
+> keep digging around tx-fifo-max-num, but I figured I'd ask just in
+> case it's obvious to you.
+> 
+
+The tx-fifo-max-num parameter should still be set to 6 for SDM845, which
+would be the same for more recent targets as well.
+
+Thanks
+Wesley Cheng
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
