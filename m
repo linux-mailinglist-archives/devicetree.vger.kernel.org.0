@@ -2,162 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86E554114BF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE0D4114EA
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:53:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235027AbhITMoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 08:44:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34836 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234162AbhITMoK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 08:44:10 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D905660F43;
-        Mon, 20 Sep 2021 12:42:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632141763;
-        bh=LJd326Onj4XtLEwt35NMphBK1paSjnbTcGe5Aoy65Mg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DeJ1xOEstl5+CzNf5BKwpkGnrbneFDGVk5At3W8ysipTWc8z+u9S1YNrQkNsV0TMQ
-         oZ2q5CrK92h44aq6/Lm8db0Pyk9wuAVYuYAyl4gqBhUhT7xS+bkHpq8COsHw33o8QK
-         aYO3l9R/XW5AnHhK+zuDV4Q2vX9D2C70wTOeDgE8aBWqXcgiWn5bl+GDG851KP00Gb
-         ndatDskBGCB87CDK8SsejrzEgTsvRw9MJxVpOHynCqsSWAIj++R/8ff6P1fcfPXMwn
-         GCrw8K7/eFZOxlJxz8aSwLaYfYesetfUVro0ijMII/5EQ/Lb3fuNHpe0+bcI012RSv
-         kBjlThj7ZBJyQ==
-Received: by mail-ed1-f41.google.com with SMTP id bx4so16080361edb.4;
-        Mon, 20 Sep 2021 05:42:43 -0700 (PDT)
-X-Gm-Message-State: AOAM532XEH6RvcE1qnczsi2PchEXyvXf8DkRbTvqX80OxfMKxJY2rYrB
-        roTmHAPhdq5gmtxGWX8Yr11sWsxegHBjvHlifg==
-X-Google-Smtp-Source: ABdhPJxe0pzq32S+O6qzUtsUF2LFq6WiPntxr4KAmr/C6XTVEYsfFTdYU9uZ2o/8Mg9Se/FqIR+u8ERaaUAWpNgzCo0=
-X-Received: by 2002:a17:906:7217:: with SMTP id m23mr27972643ejk.466.1632141762450;
- Mon, 20 Sep 2021 05:42:42 -0700 (PDT)
+        id S238665AbhITMyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 08:54:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57286 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237095AbhITMyh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 08:54:37 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E377C061760
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 05:53:10 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id i23so29426987wrb.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 05:53:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4q1a6gC+PswwD0+J0CMs3auxtQONFWFvuS/2KQHKStA=;
+        b=e1oLy2nRpOW/L1CUFb3fDLyzuY2TdkOMbFaWBe+KkP/DMrOrK55shgVLBnFshcTHmz
+         Ociyt1I4VGHETdbxJ2DH2UwaxzZMaqet3hN0o8MwU7Iip/R8iu84bek98GBnrfGPys8m
+         BZJlwEejmmCQBAi8RCFQzCoG4n8zGGGFce8qwu4zXV2g/Z3hbCTRyV5gUh5NfmKhVP5a
+         Qmqmvi3Wv4/DG5hezEjqwyeHpG7z3eu6AZx2GmDdKDAU7Fgd17/Far3tntk/gor9iSYx
+         R1g0tEJj1VcF4stLB1PGxVLWvzxu3ClVkvoR22TgC3m9k0eozx1mrEiF475vYWHGR2sv
+         L2hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4q1a6gC+PswwD0+J0CMs3auxtQONFWFvuS/2KQHKStA=;
+        b=npPOhNZOessb1k6sOfFdg0fCcqCMukbMtQbcjp8OD4AF7cG90HFg1X4NBbEORAvYZi
+         AsmtNpUJKq+efWk8mabDOzuCbmb3qZBzPmCUsWMFnvnd2z2g8OvkQYt5EaWEjcprkJ5x
+         EiJd3AF60VmdHe+vDp22Uf9mAhwmjo609jXJDzH1wBQ1+N6uQ9tiGn98eZy5enuUGUy4
+         tLqI5eruNQgFlTP4EBFJWntICCiLfDdMJydN9qebfqwzjkssNYOvt1mtt0tMy7BfAFmH
+         b1g3o/aiaQFePTiP3IhUrK1MgIOjyueT1AWwXiY7RRB0O+06F1rd3nxcKyiumV7xCrv3
+         nFyg==
+X-Gm-Message-State: AOAM533T1I9XyOfk1KwxXNECGOCqhffPs8Otx+3NxndsDoxw9XY7Hr/4
+        bvPrI2f1HveBhDYmiurtqa9s9A==
+X-Google-Smtp-Source: ABdhPJyiXXS2iyJts+E4JFgX1cnshJzO2RRbAbnC7W2egNKe6wx79xqI/0BqGk/Lmpa8aLXYHBUIGw==
+X-Received: by 2002:a5d:6ac7:: with SMTP id u7mr17540630wrw.219.1632142388947;
+        Mon, 20 Sep 2021 05:53:08 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:aa8a:ef22:59c5:1bf3])
+        by smtp.gmail.com with ESMTPSA id j21sm15791643wrd.48.2021.09.20.05.53.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 05:53:08 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     tony@atomide.com
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH 0/4] ARM: dts: dra7: enable BB2D module
+Date:   Mon, 20 Sep 2021 14:53:02 +0200
+Message-Id: <20210920125306.12347-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210916084714.311048-1-zhang.lyra@gmail.com> <20210916084714.311048-3-zhang.lyra@gmail.com>
- <YUNUyolr6ksEoZI3@robh.at.kernel.org> <CAAfSe-vYMUb8wGUJG7Fzehjkj8gAq1QOdgCdsTvcNyMuVeEW8g@mail.gmail.com>
-In-Reply-To: <CAAfSe-vYMUb8wGUJG7Fzehjkj8gAq1QOdgCdsTvcNyMuVeEW8g@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 20 Sep 2021 07:42:30 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKmznCOk+qHFccnG1b5xuoNHY2vmqyv=WAjB9d=0AW70Q@mail.gmail.com>
-Message-ID: <CAL_JsqKmznCOk+qHFccnG1b5xuoNHY2vmqyv=WAjB9d=0AW70Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: clk: sprd: Add bindings for ums512
- clock controller
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 17, 2021 at 3:41 AM Chunyan Zhang <zhang.lyra@gmail.com> wrote:
->
-> On Thu, 16 Sept 2021 at 22:29, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Thu, Sep 16, 2021 at 04:47:12PM +0800, Chunyan Zhang wrote:
-> > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > >
-> > > Add a new bindings to describe ums512 clock compatible strings.
-> > >
-> > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > > ---
-> > >  .../bindings/clock/sprd,ums512-clk.yaml       | 106 ++++++++++++++++++
-> > >  1 file changed, 106 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
-> > > new file mode 100644
-> > > index 000000000000..be3c37180279
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
-> > > @@ -0,0 +1,106 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +# Copyright 2019-2021 Unisoc Inc.
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/clock/sprd,ums512-clk.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: UMS512 Clock Control Unit Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Orson Zhai <orsonzhai@gmail.com>
-> > > +  - Baolin Wang <baolin.wang7@gmail.com>
-> > > +  - Chunyan Zhang <zhang.lyra@gmail.com>
-> > > +
-> > > +properties:
-> > > +  "#clock-cells":
-> > > +    const: 1
-> > > +
-> > > +  compatible:
-> > > +    enum:
-> > > +      - sprd,ums512-apahb-gate
-> > > +      - sprd,ums512-ap-clk
-> > > +      - sprd,ums512-aonapb-clk
-> > > +      - sprd,ums512-pmu-gate
-> > > +      - sprd,ums512-g0-pll
-> > > +      - sprd,ums512-g2-pll
-> > > +      - sprd,ums512-g3-pll
-> > > +      - sprd,ums512-gc-pll
-> > > +      - sprd,ums512-aon-gate
-> > > +      - sprd,ums512-audcpapb-gate
-> > > +      - sprd,ums512-audcpahb-gate
-> > > +      - sprd,ums512-gpu-clk
-> > > +      - sprd,ums512-mm-clk
-> > > +      - sprd,ums512-mm-gate-clk
-> > > +      - sprd,ums512-apapb-gate
-> > > +
-> > > +  clocks:
-> > > +    minItems: 1
-> > > +    maxItems: 4
-> > > +    description: |
-> > > +      The input parent clock(s) phandle for this clock, only list fixed
-> > > +      clocks which are declared in devicetree.
-> > > +
-> > > +  clock-names:
-> > > +    minItems: 1
-> > > +    maxItems: 4
-> > > +    items:
-> > > +      - const: ext-26m
-> > > +      - const: ext-32k
-> > > +      - const: ext-4m
-> > > +      - const: rco-100m
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - '#clock-cells'
-> > > +
-> > > +if:
-> > > +  properties:
-> > > +    compatible:
-> > > +      enum:
-> > > +        - sprd,ums512-ap-clk
-> > > +        - sprd,ums512-aonapb-clk
-> > > +        - sprd,ums512-mm-clk
-> > > +then:
-> > > +  required:
-> > > +    - reg
-> > > +
-> > > +else:
-> > > +  description: |
-> > > +    Other UMS512 clock nodes should be the child of a syscon node in
-> > > +    which compatible string should be:
-> > > +            "sprd,ums512-glbregs", "syscon", "simple-mfd"
-> > > +
-> > > +    The 'reg' property for the clock node is also required if there is a sub
-> > > +    range of registers for the clocks.
-> >
-> > In which cases is this not true?
->
-> Seems not needed, I will remove 'reg' property for this kind of cases.
+The DRA7 & variant SoCs contains a BB2D module which is a Vivante GC320 2D accelerator.
 
-Wrong direction. Please keep 'reg'. My question is why can't you
-always have it? That is the preference.
+This patchset adds the GPU node and enables it on the DRA7, DRA72 & AM57xx platforms.
 
-Rob
+This is a follow-up of [1] & [2] but:
+- using the vivante,gc bindings only
+- using ti,sysc instead of hwmod
+
+[1] https://lore.kernel.org/linux-arm-kernel/20161118024436.13447-1-robertcnelson@gmail.com/
+[2] https://lore.kernel.org/linux-arm-kernel/20161118024436.13447-1-robertcnelson@gmail.com/
+
+Gowtham Tammana (4):
+  ARM: dts: dra7: add entry for bb2d module
+  ARM: dts: dra7-evm: Enable BB2D node
+  ARM: dts: dra72-evm-common: Enable BB2D node
+  ARM: dts: am57xx-evm: Enable BB2D node
+
+ .../boot/dts/am57xx-beagle-x15-common.dtsi    |  4 ++++
+ arch/arm/boot/dts/am57xx-idk-common.dtsi      |  4 ++++
+ arch/arm/boot/dts/dra7-evm.dts                |  4 ++++
+ arch/arm/boot/dts/dra7.dtsi                   | 20 +++++++++++++++++++
+ arch/arm/boot/dts/dra72-evm-common.dtsi       |  4 ++++
+ 5 files changed, 36 insertions(+)
+
+-- 
+2.25.1
+
