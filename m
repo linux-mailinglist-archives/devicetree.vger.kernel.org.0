@@ -2,122 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47C66412646
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 20:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B7D341260B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 20:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355013AbhITS4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 14:56:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38112 "EHLO mail.kernel.org"
+        id S1353815AbhITSwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 14:52:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38250 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1385811AbhITSw2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 14:52:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 66A036137D;
-        Mon, 20 Sep 2021 17:39:57 +0000 (UTC)
+        id S1385894AbhITSwh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 14:52:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B4B0361264;
+        Mon, 20 Sep 2021 17:56:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632159597;
-        bh=903YqIP8EUw0vSLRBRcde8XjuLqF8cyeILPKV/3g0IM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bNkmkaKO2MkoLOBBQhWsGuHqS0WLUmeqxBLYI8gIcQnHv1DneU0wJFO9OgfZu0JMm
-         l7SACha1ruLKSF15gA+/snD/BJ5UtpZIQgLrOds5vzx6mG9J/fLy7eVSvCofRncu3M
-         gb+Tr5RmmEy0MGdDQQhphvJ2vfTyKbACg6JCqAC5CtCH0XozrLC7rw37ipbIEvrcQO
-         dhldO4XSvLuZ3EFl49YT8KB47oYI9am6zhF47TpVmlDc2ZqCufKYNUMqxzU179WIrb
-         yQ79cP0Sz15KId3dgZe7ONUExNMzncZthXbANFjw5QEUvzpWkAsi6+6Te+ovLGX/vu
-         xRUpUHIRSAb7Q==
-Received: by mail-ed1-f47.google.com with SMTP id eg28so41684068edb.1;
-        Mon, 20 Sep 2021 10:39:57 -0700 (PDT)
-X-Gm-Message-State: AOAM530KIM3c7ifXu/cdCRfK5++clGemTduuu9qd+JQfLfP7EsUfItFV
-        NSpZ6dr0/DJ09FKe0JMttqNLXMnuHbVvGh/Skg==
-X-Google-Smtp-Source: ABdhPJzjibJYMKA9ye+veIVFRD13W50GOvjJ1druj/8FcBQX6F7YnxBrkI7wbV2lKiSfaKJsvWwGHnH4O3sC7tCSpDk=
-X-Received: by 2002:a05:6402:b23:: with SMTP id bo3mr30686547edb.145.1632159595923;
- Mon, 20 Sep 2021 10:39:55 -0700 (PDT)
+        s=k20201202; t=1632160613;
+        bh=WosCvV1JmUK5ETxM63LC5LHc9UhJvmkbOb6SQ9HQRCY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Lp3JnVDw1ie0nEvoc6RjCG3ZSX8FmUH9p/imspF1stYQX8HxyIHinKZctWOAswonx
+         YiM07jJiuAEwguX0rlonIvqyGRHPjDwOndVZZ7GA6aq3+fkEOHHieDzUOYXoUBpNEf
+         T+aujHdp+VYjuxI3pQpw/An5IEAywA9OqGsLow3R/bkqbovuQSNxSrI5FtFZXzTJpx
+         U3h8J9HwRn5dnGsmHq2ptSIbJv4zsPc73BnIvELmPDZae6+E1VQnlj/MI9940LHJ8V
+         QiHAv+gxwpM4r3bNTYUzeTaB3tSOcJwBR+CrSBLYAp5t8Vj6tHyizdMwUGE1HR52JP
+         Bw1bCeX2qSEyQ==
+Received: by wens.tw (Postfix, from userid 1000)
+        id 73B285FC6F; Tue, 21 Sep 2021 01:56:51 +0800 (CST)
+From:   Chen-Yu Tsai <wens@kernel.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: nanopi4: decrease Bluetooth UART baud rate
+Date:   Tue, 21 Sep 2021 01:56:46 +0800
+Message-Id: <20210920175647.13008-1-wens@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210919125536.117743-1-marcel@ziswiler.com> <20210919125536.117743-8-marcel@ziswiler.com>
- <1632140917.871356.4136126.nullmailer@robh.at.kernel.org> <d0568e8c5c46ebc04530b09c14c500d9ae8d5e51.camel@toradex.com>
-In-Reply-To: <d0568e8c5c46ebc04530b09c14c500d9ae8d5e51.camel@toradex.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 20 Sep 2021 12:39:44 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJSR69YSSx7Gae+1Pof9DdkMYnaWF8U+YP13=2Zm9ujBA@mail.gmail.com>
-Message-ID: <CAL_JsqJSR69YSSx7Gae+1Pof9DdkMYnaWF8U+YP13=2Zm9ujBA@mail.gmail.com>
-Subject: Re: [PATCH v3 7/9] dt-bindings: arm: fsl: clean-up all toradex boards/modules
-To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Cc:     "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "leoyang.li@nxp.com" <leoyang.li@nxp.com>,
-        "linux@rempel-privat.de" <linux@rempel-privat.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "s.riedmueller@phytec.de" <s.riedmueller@phytec.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "tharvey@gateworks.com" <tharvey@gateworks.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "frowand.list@gmail.com" <frowand.list@gmail.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 20, 2021 at 9:19 AM Marcel Ziswiler
-<marcel.ziswiler@toradex.com> wrote:
->
-> Hi Rob
->
-> On Mon, 2021-09-20 at 07:28 -0500, Rob Herring wrote:
-> > On Sun, 19 Sep 2021 14:55:34 +0200, Marcel Ziswiler wrote:
-> > > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > >
-> > > Simplify and unify the distinction between modules and carrier boards.
-> > >
-> > > Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > > Acked-by: Rob Herring <robh@kernel.org>
-> > > Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> > >
-> > > ---
-> > >
-> > > Changes in v3:
-> > > - Add Fabio's reviewed-by. Thanks!
-> > > - Add Rob's ack. Thanks!
-> > >
-> > > Changes in v2:
-> > > - New patch cleaning-up dt-bindings documentation.
-> > >
-> > >  .../devicetree/bindings/arm/fsl.yaml          | 79 ++++++++++---------
-> > >  1 file changed, 41 insertions(+), 38 deletions(-)
-> > >
-> >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> > ./Documentation/devicetree/bindings/arm/fsl.yaml:475:111: [warning] line too long (113 > 110 characters)
-> > (line-length)
-> > ./Documentation/devicetree/bindings/arm/fsl.yaml:612:111: [warning] line too long (113 > 110 characters)
-> > (line-length)
-> >
-> > dtschema/dtc warnings/errors:
-> >
-> > doc reference errors (make refcheckdocs):
-> >
-> > See https://patchwork.ozlabs.org/patch/1529833
-> >
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> >
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> >
-> > pip3 install dtschema --upgrade
->
-> Strange, I have done all of that but I still can not convince dt_binding_check on my system to show me that
-> same yamllint warnings/errors on that fsl.yaml file. However, it otherwise seems to work as it shows dozens of
-> other issues throughout Documentation/devicetree/bindings but those are not for me to fix, at least not right
-> now (;-p).
+From: Chen-Yu Tsai <wens@csie.org>
 
-You shouldn't be seeing dozens of warnings unless you are on the
-current linux-next. linux-next shouldn't be the basis for your
-development as that's not a tree any maintainer applies patches to.
+The RK3399 does not seem to be able to properly generate the required
+64 MHz clock for the UART to operate at 4MBd.
 
-Rob
+Drop the baud rate down to 3MBd, which can be used as the clock
+controller is able to produce a 48 MHz clock.
+
+Fixes: 3e2f0bb72be3 ("arm64: dts: rockchip: Add nanopi4 bluetooth")
+Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
+index 8c0ff6c96e03..45ff053b119d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
+@@ -699,7 +699,7 @@ bluetooth {
+ 		device-wakeup-gpios = <&gpio2 RK_PD2 GPIO_ACTIVE_HIGH>;
+ 		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
+ 		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
+-		max-speed = <4000000>;
++		max-speed = <3000000>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bt_reg_on_h &bt_host_wake_l &bt_wake_l>;
+ 		vbat-supply = <&vcc3v3_sys>;
+-- 
+2.30.2
+
