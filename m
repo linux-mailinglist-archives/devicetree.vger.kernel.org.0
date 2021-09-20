@@ -2,144 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A75C4111DF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 11:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A11184111F6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 11:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231315AbhITJ1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 05:27:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37830 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230269AbhITJ1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 05:27:34 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B160FC061574;
-        Mon, 20 Sep 2021 02:26:07 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id c7so34848878qka.2;
-        Mon, 20 Sep 2021 02:26:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=au55GNjpfBfkdbCkHp9jPXoTXVquLSMkLM/GCREZpo0=;
-        b=ZQ6Km5pS4aZ+jKXmwtMjz5cU5HdmwC/LQMatHVfmvToefzsCxXzdC4opylr49dcEDK
-         aVTtu5upLFxpJj3pzQWu3zy+LKFvvqWRihwUWfqUzOhOD6ayi1/6EifX2xyTUeJKkelg
-         9FRFxJVr28TPZBb7fzJqB6/afv2ZRsMXRK60ZBh+GP5TupNFSNQ7vhPv8/2Vc8NNrovU
-         nn8Qc0MveyEavMN78nibOKgUwmVJ+g4lyMXCIWP3SDSbSOV8st7QcVQijzL8JINEj4XE
-         HjPIRRNLV99OUVh96tv2Niwh8X8Z8RW3vFWVIFbVxgHj73SgnyNcz07PStgJR08gixtG
-         0kFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=au55GNjpfBfkdbCkHp9jPXoTXVquLSMkLM/GCREZpo0=;
-        b=qg8977LomzU85iUL0m6hyDQIH2eKx5TNh/mrBxIS6QTgS7i6eZZSS4gC1A0O0fQYEp
-         U4k7Zi2cQEZfgY1cO2rXqd6jm0wYyscHDILdoZcjevW6Z5Zods05W37ahsijmFQvCviC
-         IouaLZb2iOHzr/xNtgAtPtDTk4vK/jRnHfeU5MhlWs9UziLzgUzbonfLY+Wz5c39CiaU
-         U9fzpINO0SgEQIv5IATrtkdUyEeEpBF4SdEEmNguDqEOLqWFUsEIO3v2WEigsJh6/ewT
-         ukj3rt3w9iv1YNwo89dFmjDBiH7wlsEvxwCvsk2Km6YYGvuePUZ2hC7dKTwyyK+4ldqH
-         PTCw==
-X-Gm-Message-State: AOAM5337mb24Pf8BKVhr4udqFR5fFGLzDEZvaMM/Gnu4BQLtdmZCMkfd
-        /4wBRcA1fAU1Wow/u7sS/GjNbzG6WWam5j6Lgsy1HgX8XVTARw==
-X-Google-Smtp-Source: ABdhPJzQhK7gME1s4V90C3jebKNsTrgkIgvpbRz5fREuKp7WJrO6DbSe9WTuRhqyXyR59mcWaEp0QhYZi33lnD8wvhM=
-X-Received: by 2002:a37:f909:: with SMTP id l9mr22993655qkj.512.1632129966520;
- Mon, 20 Sep 2021 02:26:06 -0700 (PDT)
+        id S234891AbhITJkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 05:40:09 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:63217 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229752AbhITJkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 05:40:07 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20210920093835euoutp02fb2e6067a7f324d174f5d4378988946f~mfj0bwTbq2710527105euoutp02a
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 09:38:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20210920093835euoutp02fb2e6067a7f324d174f5d4378988946f~mfj0bwTbq2710527105euoutp02a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1632130715;
+        bh=e6isLm0fq/xkM6oDTJGwHszCngzBJExBJzDBgTBtJs0=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=gY73qodFMczV/UcY49ke0m4z+xCE+Rv8rjrA0u+bzU/MsAftS411vhXbc7GiOS0Py
+         ANZ944mkId7EbwMozr4hvtrj3/CNTNpzUfLpQ1zYurshAx32PrArDpOKnkJfPakLmM
+         eLm94nC69CrvIvrybDMeu3x5C6EMmkpfjUCuAW1o=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20210920093835eucas1p1c9dda5ed24ec95143ab290b506c8f2b8~mfjz7AyFA0165601656eucas1p1n;
+        Mon, 20 Sep 2021 09:38:35 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 50.0F.42068.B9658416; Mon, 20
+        Sep 2021 10:38:35 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20210920093834eucas1p2a0187690220f466590d390b9775ced84~mfjzKw59e2473024730eucas1p2R;
+        Mon, 20 Sep 2021 09:38:34 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20210920093834eusmtrp2bcae9c6411b3f96dcbeba51ad7144439~mfjzJwm1L2829128291eusmtrp22;
+        Mon, 20 Sep 2021 09:38:34 +0000 (GMT)
+X-AuditID: cbfec7f4-c71ff7000002a454-e7-6148569bd40a
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 18.20.31287.A9658416; Mon, 20
+        Sep 2021 10:38:34 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20210920093833eusmtip24b53e66487ae49756c55d09b113c5c6e~mfjyXLVVq1258312583eusmtip2n;
+        Mon, 20 Sep 2021 09:38:33 +0000 (GMT)
+Subject: Re: [PATCH v2 0/3] devfreq: exynos-ppmu: conform to dt naming
+ convention
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Cc:     Sylwester Nawrocki <snawrocki@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <04270892-0952-49ca-d9b7-eb8406e283ff@samsung.com>
+Date:   Mon, 20 Sep 2021 11:38:32 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
+        Gecko/20100101 Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20210902214708.1776690-1-robimarko@gmail.com> <YUf3aKn78+41Cb/G@builder.lan>
-In-Reply-To: <YUf3aKn78+41Cb/G@builder.lan>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Mon, 20 Sep 2021 11:25:55 +0200
-Message-ID: <CAOX2RU5b46H7nqm6G4mHLSqEhGiWktwWjUKF5w10Ut+AdKea-A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: add SMEM support
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOKsWRmVeSWpSXmKPExsWy7djPc7qzwzwSDZ71ClhsnLGe1eL6l+es
+        FvOPnGO12Pj2B5PF2aY37BabHl9jtbi8aw6bxefeI4wWM87vY7K43biCzaJ17xF2i/anL5kd
+        eDxmNfSyeWxa1cnmsXlJvUffllWMHp83yQWwRnHZpKTmZJalFunbJXBlXJh8hbXgLkfFlT3N
+        7A2Mk9m7GDk5JARMJK7NmsHSxcjFISSwglHi34FeJgjnC6NEx95PzCBVQgKfGSUeTbCD6fi4
+        +gkbRNFyoPiLD4wQzkdGiYk3b7OAVAkLBEucXLsaLCEi8I9JYs/+BYwgCWaBVIn/D3vAxrIJ
+        GEp0ve1iA7F5Bewkmr73gjWzCKhKXP3ZCnagqECyxLS/TcwQNYISJ2c+AavhFHCXaDx+AWqm
+        vMT2t3OYIWxxiVtP5oP9ICHwg0PiTMMhJoi7XSSunN/ADGELS7w6vgUaAjIS/3fCNDQzSjw8
+        t5YdwulhlLjcNIMRospa4s65X0CncgCt0JRYv0sfIuwosWDhEkaQsIQAn8SNt4IQR/BJTNo2
+        nRkizCvR0SYEUa0mMev4Ori1By9cYp7AqDQLyWuzkLwzC8k7sxD2LmBkWcUonlpanJueWmyU
+        l1quV5yYW1yal66XnJ+7iRGYtk7/O/5lB+PyVx/1DjEycTAeYpTgYFYS4U194pYoxJuSWFmV
+        WpQfX1Sak1p8iFGag0VJnDdpy5p4IYH0xJLU7NTUgtQimCwTB6dUA5OxMV/3rL6NM+ZFrM8L
+        7QjgCwuWTK6IL7ylurr39+4nz7/O5PXKZVqpsHRJTFHan8jOs4EH03Q+TIhPZZPIl0+ZdVhW
+        QPv9JvHdN9vVPM66fGNIn6TL7WXLoPu4tsAseecMW4436z5/97apf3STKXyKVfePrWe3rrXp
+        udywwqLAXNT1ivx0dv2TMdsrjG7sFfmhmMUj/sNVjd+Y06Lza/L7O7/X/76ufPa8zJI/JssX
+        f1/oWVz43pV1YpnrOZPmvFWzpwn/DblWF1yel7F40baHNRcn7b0QrJWWsGRG1Zqd9V15tfcV
+        8iP5rM1/Xv13XeVG9eF8xTmHHdaZnAx8pDZ1/f3gv8kJLetyNqXVvFdiKc5INNRiLipOBACp
+        dacpygMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJIsWRmVeSWpSXmKPExsVy+t/xe7qzwjwSDXrmSVlsnLGe1eL6l+es
+        FvOPnGO12Pj2B5PF2aY37BabHl9jtbi8aw6bxefeI4wWM87vY7K43biCzaJ17xF2i/anL5kd
+        eDxmNfSyeWxa1cnmsXlJvUffllWMHp83yQWwRunZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY
+        6hkam8daGZkq6dvZpKTmZJalFunbJehlXJh8hbXgLkfFlT3N7A2Mk9m7GDk5JARMJD6ufsLW
+        xcjFISSwlFHiYsckZoiEjMTJaQ2sELawxJ9rXVBF7xklus78A+sWFgiWOLl2NSOILSLwj0ni
+        0VdDEJtZIFVi+sQP7BANsxgl7rz9CTaJTcBQoustyCRODl4BO4mm770sIDaLgKrE1Z+tYENF
+        BZIl3r7+zgRRIyhxcuYTsBpOAXeJxuMXGCEWmEnM2/yQGcKWl9j+dg6ULS5x68l8pgmMQrOQ
+        tM9C0jILScssJC0LGFlWMYqklhbnpucWG+oVJ+YWl+al6yXn525iBMbptmM/N+9gnPfqo94h
+        RiYOxkOMEhzMSiK8qU/cEoV4UxIrq1KL8uOLSnNSiw8xmgL9M5FZSjQ5H5go8kriDc0MTA1N
+        zCwNTC3NjJXEebfOXRMvJJCeWJKanZpakFoE08fEwSnVwHRI5pkaR6q8kamo8/UDF0KWXtwS
+        pVW7u3Tm+6o9dg0bpnmWbinYOD9HeetysU/6exx4NqlOVN89Syv/b9nSk3leb+fOOSEYGRZs
+        enJqTkBiUnHsJPEsnYAeRlFTCYFVBSFL/u3kDxVerquSvYyhgyUx1eWD4uROxf5H2w8KPhQq
+        yOzWfV3cltq4aE179+bfGz2NDXVsWTgvmU/j87fOYFTzWFzZwdW6mPP9J/b7vybKa75w/Kix
+        J0tswbHdv3gVc8MW7zQLqmLbo363kokvZGuETMb69/9XqBW0i/22OGLBOPWUq1nwbTHNmcd6
+        HXVcV0ywULVcekeiNL04xUf62J8srXD1b2y9dtzLgsSVWIozEg21mIuKEwHHLAXgXAMAAA==
+X-CMS-MailID: 20210920093834eucas1p2a0187690220f466590d390b9775ced84
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20210920071554eucas1p195184c73f79e7bc12ea83cb43e14adc5
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20210920071554eucas1p195184c73f79e7bc12ea83cb43e14adc5
+References: <CGME20210920071554eucas1p195184c73f79e7bc12ea83cb43e14adc5@eucas1p1.samsung.com>
+        <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Sept 2021 at 04:52, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
+On 20.09.2021 09:15, Krzysztof Kozlowski wrote:
+> My previous patch 3/3 (ARM: dts: exynos: align PPMU event node names
+> with dtschema) caused issues reported by Marek [1].
 >
-> On Thu 02 Sep 16:47 CDT 2021, Robert Marko wrote:
->
-> > IPQ8074 uses SMEM like other modern QCA SoC-s, so since its already
-> > supported by the kernel add the required DT nodes.
-> >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
->
-> Thanks for your patch Robert.
->
-> > ---
-> >  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 28 +++++++++++++++++++++++++++
-> >  1 file changed, 28 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> > index a620ac0d0b19..83e9243046aa 100644
-> > --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> > @@ -82,6 +82,29 @@ scm {
-> >               };
-> >       };
-> >
-> > +     reserved-memory {
-> > +             #address-cells = <2>;
-> > +             #size-cells = <2>;
-> > +             ranges;
-> > +
-> > +             smem_region: memory@4ab00000 {
-> > +                     no-map;
-> > +                     reg = <0x0 0x4ab00000 0x0 0x00100000>;
-> > +             };
-> > +     };
-> > +
-> > +     tcsr_mutex: hwlock {
-> > +             compatible = "qcom,tcsr-mutex";
-> > +             syscon = <&tcsr_mutex_regs 0 0x80>;
->
-> Since it's not okay to have a lone "syscon" and I didn't think it was
-> worth coming up with a binding for the TCSR mutex "syscon" I rewrote the
-> binding a while back. As such qcom,tcsr-mutex should now live in /soc
-> directly.
->
-> So can you please respin accordingly?
+> Tested on Exynos5422. Testing on Exynso5433 board would be very useful.
 
-Sure, can you just confirm that the:
-reg = <0x01905000 0x8000>;
+Works fine on both 5422 and 5433.
 
-Is the whole TCSR range as I don't have docs?
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
 
-Regards,
-Robert
+> Changes since v1:
+> 1. New patches 1/3 and 2/3.
+> 2. Patch 3/3: rename event-name to match node name.
 >
-> Thanks,
-> Bjorn
+> [1] https://lore.kernel.org/linux-samsung-soc/0212a402-1490-0f8f-005e-32bb6f636a13@canonical.com/T/#m570c0257204af553fe11f9122551311beb56c15e
 >
-> > +             #hwlock-cells = <1>;
-> > +     };
-> > +
-> > +     smem {
-> > +             compatible = "qcom,smem";
-> > +             memory-region = <&smem_region>;
-> > +             hwlocks = <&tcsr_mutex 0>;
-> > +     };
-> > +
-> >       soc: soc {
-> >               #address-cells = <0x1>;
-> >               #size-cells = <0x1>;
-> > @@ -293,6 +316,11 @@ gcc: gcc@1800000 {
-> >                       #reset-cells = <0x1>;
-> >               };
-> >
-> > +             tcsr_mutex_regs: syscon@1905000 {
-> > +                     compatible = "syscon";
-> > +                     reg = <0x01905000 0x8000>;
-> > +             };
-> > +
-> >               sdhc_1: sdhci@7824900 {
-> >                       compatible = "qcom,sdhci-msm-v4";
-> >                       reg = <0x7824900 0x500>, <0x7824000 0x800>;
-> > --
-> > 2.31.1
-> >
+> Best regards,
+> Krzysztof
+>
+>
+> Krzysztof Kozlowski (3):
+>    devfreq: exynos-ppmu: use node names with hyphens
+>    devfreq: exynos-ppmu: simplify parsing event-type from DT
+>    ARM: dts: exynos: align PPMU event node names with dtschema
+>
+>   arch/arm/boot/dts/exynos5420.dtsi   | 16 ++++++++--------
+>   drivers/devfreq/event/exynos-ppmu.c | 12 +++++++-----
+>   2 files changed, 15 insertions(+), 13 deletions(-)
+>
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
