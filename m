@@ -2,93 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A96E6411DFD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 19:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB5D3411F47
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 19:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345405AbhITR0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 13:26:24 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:49682
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1349743AbhITRYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 13:24:23 -0400
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 63B333F322
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 17:22:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632158574;
-        bh=Ib/7vEzqwK2uprJcTl5mNvdNQqfYMGseImnegUnlZu8=;
-        h=Subject:To:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=dLd8MA/vlcqNC3HrAtrI875zKeCi8Bj5TyKfQVMlOmehYclCpJFvYHT8iOU45/ZOw
-         +V85cFy1AePUZHdw96MT4YAe+8TWd/IlFW3qhSSe3Dmih2cJL5g12vKNdNi7gm9QNV
-         zQul0PZTa3iCxu/AqFoDOiKK9IEXdms4TI/lu6dGb/KQo5hR4jd6gC8QFGky77fFDe
-         vN8lRitT8/jcl/ynUCs+/eUGwfvP4Vf98hnC3w/i19x3sQeOCqmEaLwHx+FhLi1WUD
-         eOF8tpXqH3TGpWl9hDtClFGJoYRcl/3NSoEb/9eF4X3sPa/EtMb/tmASTPzNd/Wngf
-         biLCJ3ACbQqjg==
-Received: by mail-wr1-f70.google.com with SMTP id r7-20020a5d6947000000b0015e0f68a63bso6709326wrw.22
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 10:22:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Ib/7vEzqwK2uprJcTl5mNvdNQqfYMGseImnegUnlZu8=;
-        b=KAx+sqCiaGtcWE9TruohMQ8WNut1c5hmiSY+bVe+B9ug3ClV10hBRNOydo1cfnsVZE
-         gXc2HrnuO6rezV5+9EKGoYWMwQA68jUjsU/crOKMgo4NjognCy9Oc8ikJ/0wIwz3McIY
-         a9lkdbTvrN1dGOFJagdg131cj+0i8VR8bS5UGSBbganhoTgZY+sBPEI1RF4yKD5p6ksD
-         SyVzBITXLAtu3VPz3hQgWSWl2MLQ6bfhRN4YV7P4uEuTTb2de259ut27XUV8boZDCwNk
-         xG7WCFb6x2MgnAigDtL5ylffq+bHKMf7OSTJQFtdfRCkwat6ortYs4PyibL6Phbtjgvn
-         rRqA==
-X-Gm-Message-State: AOAM532GAQ1J3qn6IfVuNjwYurVKatUObxqdoXIVKv4gzV5GspBM16sd
-        au8lPdLfq3c4o/vnS3PFkH18hrijKD6FYHw74P/mIp225F7mruhh1X033X36GgK45/ljZf1zBgh
-        fK4OIPhZkpAaan3X9wmpFHTAygPHf3HcT8Ev2O64=
-X-Received: by 2002:adf:9dc6:: with SMTP id q6mr29119908wre.161.1632158574153;
-        Mon, 20 Sep 2021 10:22:54 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxwOXR3BGLGuHRY1saUVMJLa6t51fTX3CzldWDDLLRnhlJnRQKhpE+RtKpocM9bhIwyrYYE3Q==
-X-Received: by 2002:adf:9dc6:: with SMTP id q6mr29119894wre.161.1632158573938;
-        Mon, 20 Sep 2021 10:22:53 -0700 (PDT)
-Received: from [192.168.2.20] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id 4sm92158wmv.42.2021.09.20.10.22.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Sep 2021 10:22:53 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: hwmon: lm90: convert to dtschema
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210920140525.157013-1-krzysztof.kozlowski@canonical.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <9bd8a400-86da-04bf-8205-725794e62108@canonical.com>
-Date:   Mon, 20 Sep 2021 19:22:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S1348528AbhITRj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 13:39:58 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48390 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346366AbhITRh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 13:37:58 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18KHaIG1046675;
+        Mon, 20 Sep 2021 12:36:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1632159378;
+        bh=JehA/AdZ62AVPkLLoqCPDg/CoSo8j/lugoyiuCZiRnQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=elLuM0fsfzsZXoNfsPZJ0028D7v8svy0M1v3N4mDFayb5MTLhASXfrWpE2DcT/yoD
+         WGlkPW2v5JXRjlJ+8vSgrXy46vPhiVWP+gdmAj98X9HdZ/gy750TskcPWB4z95ngrz
+         xwvhFeKniuXdJWpfkPtVNklXp2F7FHxn83oJw1Vo=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18KHaIA1042167
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 20 Sep 2021 12:36:18 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 20
+ Sep 2021 12:36:17 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 20 Sep 2021 12:36:17 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18KHaGp4011525;
+        Mon, 20 Sep 2021 12:36:17 -0500
+Date:   Mon, 20 Sep 2021 23:06:15 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Serge Semin <fancer.lancer@gmail.com>
+CC:     Apurva Nandan <a-nandan@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <michael@walle.cc>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nand: Convert to DT schema
+ format
+Message-ID: <20210920173613.oqk6lnmipabkt25s@ti.com>
+References: <20210920142713.129295-1-a-nandan@ti.com>
+ <20210920142713.129295-2-a-nandan@ti.com>
+ <20210920150651.vvdhennblwhdi3jw@mobilestation>
 MIME-Version: 1.0
-In-Reply-To: <20210920140525.157013-1-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210920150651.vvdhennblwhdi3jw@mobilestation>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2021 16:05, Krzysztof Kozlowski wrote:
-> Convert the National LM90 hwmon sensor bindings to DT schema format.
+On 20/09/21 06:06PM, Serge Semin wrote:
+> Hello Apurva
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  .../devicetree/bindings/hwmon/lm90.txt        | 51 ------------
->  .../bindings/hwmon/national,lm90.yaml         | 79 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 80 insertions(+), 52 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/lm90.txt
->  create mode 100644 Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> On Mon, Sep 20, 2021 at 07:57:12PM +0530, Apurva Nandan wrote:
+> > Convert spi-nand.txt binding to YAML format with an added example.
+> > 
+> > Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> > ---
+> >  .../devicetree/bindings/mtd/spi-nand.txt      |  5 --
+> >  .../devicetree/bindings/mtd/spi-nand.yaml     | 62 +++++++++++++++++++
+> >  2 files changed, 62 insertions(+), 5 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
+[...]
 > 
+> > +  spi-max-frequency: true
+> > +  spi-rx-bus-width: true
+> > +  spi-tx-bus-width: true
+> > +  rx-sample-delay-ns: true
+> 
+> Since it's an SPI-client device there are more than these properties
+> could be set for it. See the SPI-controller bindings schema:
+> Documentation/devicetree/bindings/spi/spi-controller.yaml
+> So there is two possible ways to make it more generic:
+> 1) Detach the spi-client part from the spi-controller.yaml bindings
+> into a dedicated DT-schema file and refer to that new scheme from
+> here.
+> 2) Forget about these controller-specific properties and let the
+> parental SPI-controller bindings parsing them. Of course there must be
+> at least one of the next properties declared for it to work:
+> {unevaluatedProperties, additionalProperties}.
 
-I will send a v2 because few devices are on trivial-devices list.
+I proposed a patch series [0] to fix this for SPI NOR, which can be used 
+here as well. A re-roll is long overdue though. Let me see when I can 
+find time to get to it. In the meantime, this should be fine IMO.
 
-Best regards,
-Krzysztof
+[0] https://patchwork.kernel.org/project/spi-devel-general/list/?series=497129&state=%2A&archive=both
+
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
