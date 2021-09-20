@@ -2,143 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F2E64112F5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 12:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4934041131B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 12:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235970AbhITKhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 06:37:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53684 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230510AbhITKhh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 06:37:37 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F342C061760
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 03:36:11 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id t6so59436929edi.9
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 03:36:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=erT+KHY68UKYg3Gicz9ztxbOzi5bhYqhoRSUUgL2FBg=;
-        b=eBymerSrPoJeHhz5SlImhD5YfoMhRyAyW79bu1DzisqTBZS6BXkvbyQYSLsUyDsQXd
-         IO/FrjbxW3mfFqmWiEF0tPU+UDr8wrvfXcGvUMtoEY6VZI5kHx3ryrY/v2WZCUJl8n15
-         SN5S84yUooNPmz14/YyaLTxXNWCFfPsplq41PbNnqkqr8D91drYMcGhFg5a02KUtCNNB
-         iQstH6SF2iHcnMfPs2H3zqa5msSvyF+m9T1Z/jCuz7ZIOjiyqUExYVwbjdzGYiOP//5V
-         vnX6AkedQDxC4nS+fbZJdGSnUrE+0rScw2y+3wGzukzGsqngXnhzUiYtTAecjmFjtESA
-         HQtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=erT+KHY68UKYg3Gicz9ztxbOzi5bhYqhoRSUUgL2FBg=;
-        b=tgkZSvePwLl0/gcHEwF/Jbv+qptE+EvcyS13TkplgntZIBy0t0M0ExZXID76ZytfV0
-         +WuMrLWYcDjaM/nW2O55AdyyzYChy8qz0585YKakWJbAJCB2RiGXFuR6WvHv20ekw0tA
-         Mn5NFNS3GyABM995Xw4m4KxKzEtQOYQ54BlQtH2XnKg3sv/mNdOwc4FlWUXLMh+2NgKu
-         QPzTyS7qjxmKD3fv4WgwoEYWY/9rlI4GCBAkzvIx+Hq1rnpWTqDMDv+b/hZ2L8tip7Ro
-         YA+YFeyoniRohPrLcNHy3iRr7MykeZW8jJdWNLwRTZmmBxp/Xhc99qpyCQtixYlQy4r4
-         y7wg==
-X-Gm-Message-State: AOAM531fisxDHbEJR4XXZAHaRlyKhPvUZrvU80oi7WUS0NEmjxMaC3kF
-        gkpoxBpioMuYqIAFmiGS5QDDTQ==
-X-Google-Smtp-Source: ABdhPJxhz/eHwp5YtMV1ZI4iAe13qnk1FPRJb0UpJ2RtNekgoVm/5QPlqTp3TkuOmbszW5ZXMR+jJQ==
-X-Received: by 2002:aa7:d1d3:: with SMTP id g19mr27279440edp.103.1632134169639;
-        Mon, 20 Sep 2021 03:36:09 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id z3sm5838658eju.34.2021.09.20.03.36.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Sep 2021 03:36:09 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] nvmem: core: introduce cells parser
-To:     Vadym Kochan <vadym.kochan@plvision.eu>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>
-References: <20210608190327.22071-1-vadym.kochan@plvision.eu>
- <20210608190327.22071-2-vadym.kochan@plvision.eu>
- <43023500-dd6a-5180-057e-cecc1f1b6500@linaro.org>
- <20210616123356.GA9951@plvision.eu>
- <fea907ed-06ce-5c82-667d-d11f3e902616@linaro.org>
- <vrcxh2zgsnl841.fsf@plvision.eu>
- <7e6d75ed-cebc-597f-7062-34261d184968@linaro.org>
- <vrcxh2pmt3bl4h.fsf@plvision.eu>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <0e471789-fe29-b747-5153-75c9b4616c7f@linaro.org>
-Date:   Mon, 20 Sep 2021 11:36:08 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S231658AbhITKuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 06:50:35 -0400
+Received: from mout.gmx.net ([212.227.17.21]:45169 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229999AbhITKu3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 06:50:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1632134924;
+        bh=UE6JPDxLxhHS8QF+kGYS6SUXXeB3wiXl2OFGWk3OyGs=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=CPR7SYqbDnEIHf2IgQzx7mMO9xt0ZVNCmAoqCT8yTPy7AB+j/NgIWGZrS42PMIjlO
+         NGen88DHV1tnkKIXA2p98IcIz9vujw8ItkZlGPanHfn3y/kBIEH9bVDaMo0jYQjd4s
+         pUDfBtpkTeizRdrVCjo21Mpmn5+tJZ/uj58z5M+I=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.76.103] ([80.245.76.103]) by web-mail.gmx.net
+ (3c-app-gmx-bap08.server.lan [172.19.172.78]) (via HTTP); Mon, 20 Sep 2021
+ 12:48:44 +0200
 MIME-Version: 1.0
-In-Reply-To: <vrcxh2pmt3bl4h.fsf@plvision.eu>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Message-ID: <trinity-1d1646a2-6fb9-4a81-9edc-45c4d216a279-1632134924710@3c-app-gmx-bap08>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Sungbo Eo <mans0n@gorani.run>,
+        Matthias Brugger <matthias.bgg@kernel.org>
+Cc:     linux-mediatek@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bin Liu <b-liu@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sungbo Eo <mans0n@gorani.run>
+Subject: Aw: [PATCH v4 1/2] arm: dts: mt7623: add musb device nodes
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 20 Sep 2021 12:48:44 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20210830155903.13907-2-mans0n@gorani.run>
+References: <20210822041333.5264-1-mans0n@gorani.run>
+ <20210830155903.13907-1-mans0n@gorani.run>
+ <20210830155903.13907-2-mans0n@gorani.run>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:h+4u+2DNNQq/zFxGtQ+E9hroBIiOkc2j+6J/9LOROcecrSGZrwD7KyAje9UTcYe3Adrpf
+ wxLLX03FCB+UBYr2y+/6W9mCCXarLsqxkmuTjF27xwVAIzdc4mNtUqnJg3tLkcACjsvPtDueNAAU
+ uppDuW4tedE2jjUFJqZtgmf50QAZwbYVlJfS1dnwHK+5h6o4N/zn9Du38NIWLsQp1S84dq4UpgDF
+ jOXj5yhXjD0ZCrYfZbDR1QYLn1TjALN1nn0BeIS5Y1a14P4w2iDWXrOmZuRuTcOBX3Dt8jSU/4gN
+ pg=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:WPDNJBBn+AY=:MmMNvz3wrtvo0tCZoZfq1U
+ GzC4SCvrcWmYzVzP1xpiVVC/DvSfVyzXGrbWeqRx3WbjKyJYO6W/jwJFger6BR1S2drdXTGGq
+ C+yHRL4dVfI2tguqvSB7pkI5LbkgCRg8l97GJ5vmghM7Twc7PN/tYYQyojiBOHzY91/uihR3/
+ +YzZAg6v+y2aew8+7hmKNnu2qiDRwhEqfHc+eqWjyVQhgGv4dn9JtU10zLot1FhWG/MfVQQoq
+ DJNsu/pOrvH6P7asE05CjcDlGIm1ZtlgjcWjeyJQBNSFDgkx4kUSDiSIL5BE2BMWZbYPSOH+o
+ MTilrrmAflvhvUsdjZ6BGbsyiALTGxF1abplK3QD58LUkUxzaevUkieZMaXE0OPGnVoLjRZtT
+ xULn6UP81Yiyawhtvr5Zugv9iWXtvl/ygWxtSHS97iuObUkqhrQ2KqItNHkD8f9fQoWcehkRk
+ SL+7ssffFTOj3QaLf5TchQLWZOVvMYFwScZsG67JNXtF3hqFI0lJhQftXmFiLy9RldYiZDG7i
+ /KzV+iwp5cifrEwDl7BZXi3uLlo6SCZQadYi5WpyXaoD4i7NhhEf6pCjgWhZmGOUR716dMOZx
+ DaJKo3vMo1rshShJPkLpQSeX117rq5w55BJN33FUGAw347TOtk9l2bY6VOgcZwQQkrq+DYLxY
+ NrX3/6jD+2KAXXOAmD7yU6G3XQ9ztzkt6K/7DOweOonb0PfDnwXwb0gqS8NszQMu6BMSXOsnb
+ Xam5BBwfOBIpZvcrbMwm1DI84YTCTkK4IYS1XBZSCq+pn7A38qq7otG4+FkwEEgdsfFY99Uyw
+ +FVdSbM
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+just a gentle ping for this patch (second part is already merged to usb-tr=
+ee) and my followup for bpi-r2
+
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210830145958.1=
+08605-1-linux@fw-web.de/
+
+regards Frank
 
 
-On 20/09/2021 11:24, Vadym Kochan wrote:
->>>
->>> Probably this might be fixed by lookup nvmem device too ?
->> Honestly, this approach is a total hack to get it working.
->>
->> This is what Am thinking which should look like:
->>
->> ## DT ##
->> eeprom_at24: at24@56 {
->> 	compatible = "atmel,24c32";
->> 	/* Some way to identify that this is a TLV data */
->> 	nvmem-cell-parser-name = "onie-tlv-cells";
->> 	reg = <0x56>;
->>
->> 	mac_address: mac-address {
->> 		/* THIS REG is updated once TLV is parsed */
->> 		reg = <0 0x6>
->> 	};
-> I assume these cell nodes should be marked with some property that they
-> should be evaluated later, so the cell will be not read
-> in case it was not parsed because it may
-> exist in nvmem device optionally.
-No, we should hit that use case to start with.
-
-nvmem cells are parsed in the core during register path.
-Parser should parse the cells before this to keep it simple.
-
-> 
-> Or, treat cells with length "0" in a special way and allow to update
-> cell info later.you can update irrespective of the length, as long as this is done 
-before register.
-
-
-> 
->> };
->>
->> some_dev_node {
->> 	compatible = "xxx";
->> 	nvmem-cells = <&mac_address>;
->> 	nvmem-cell-names = "mac-address";
->> };
->>
->> == CODE ==
->> ret = of_get_mac_address(dev->of_node, base_mac);
->> ==========
->>
->>
->> If you notice the mac_address node reg is 0.
->> This node "reg" property should be updated ( using of_update_property())
->> by nvmem-provider driver while tlv parsing and by matching the node name
->> with tlv name.
->>
-> I assume parser driver can just invoke add_cell_table (with may be
-> by adding 'bool update' field to the cell_info struct) and core.c will just
-> update existing cells parsed from OF.
-> 
-
-Lets keep the core code clean for now, I would expect the provider 
-driver along with parser function to do update the nodes.
-
---srini
-
->> That way rest of the code will work as usual.
->>
->> If this work for you then we can ask Rob if he foresee any issues in
->> this approach. I already see similar usage in reserved-memory case.
+> Gesendet: Montag, 30. August 2021 um 17:59 Uhr
+> Von: "Sungbo Eo" <mans0n@gorani.run>
+> An: linux-mediatek@lists.infradead.org
+> Cc: "Rob Herring" <robh+dt@kernel.org>, "Matthias Brugger" <matthias.bgg=
+@gmail.com>, "Bin Liu" <b-liu@ti.com>, "Greg Kroah-Hartman" <gregkh@linuxf=
+oundation.org>, "Frank Wunderlich" <frank-w@public-files.de>, devicetree@v=
+ger.kernel.org, linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradea=
+d.org, linux-kernel@vger.kernel.org, "Sungbo Eo" <mans0n@gorani.run>
+> Betreff: [PATCH v4 1/2] arm: dts: mt7623: add musb device nodes
+>
+> MT7623 has an musb controller that is compatible with the one from MT270=
+1.
+>
+> Signed-off-by: Sungbo Eo <mans0n@gorani.run>
+> Tested-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+> v4:
+> * add tested by Frank
+>
+> v3:
+> * remove unnecessary status=3Dokay from u2port2
+>
+> v2:
+> * rename usb3 label to usb0
+> * move usb0 & u2phy1 nodes to the right sorted place
+> * disable u2phy1 by default
+> * correct u2port2 node name to match its reg address
+> ---
+>  arch/arm/boot/dts/mt7623.dtsi  | 33 +++++++++++++++++++++++++++++++++
+>  arch/arm/boot/dts/mt7623a.dtsi |  4 ++++
+>  2 files changed, 37 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/mt7623.dtsi b/arch/arm/boot/dts/mt7623.dt=
+si
+> index 3c11f7cfcc40..21c8a291b74e 100644
+> --- a/arch/arm/boot/dts/mt7623.dtsi
+> +++ b/arch/arm/boot/dts/mt7623.dtsi
+> @@ -585,6 +585,39 @@ spi2: spi@11017000 {
+>  		status =3D "disabled";
+>  	};
+>
+> +	usb0: usb@11200000 {
+> +		compatible =3D "mediatek,mt7623-musb",
+> +			     "mediatek,mtk-musb";
+> +		reg =3D <0 0x11200000 0 0x1000>;
+> +		interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupt-names =3D "mc";
+> +		phys =3D <&u2port2 PHY_TYPE_USB2>;
+> +		dr_mode =3D "otg";
+> +		clocks =3D <&pericfg CLK_PERI_USB0>,
+> +			 <&pericfg CLK_PERI_USB0_MCU>,
+> +			 <&pericfg CLK_PERI_USB_SLV>;
+> +		clock-names =3D "main","mcu","univpll";
+> +		power-domains =3D <&scpsys MT2701_POWER_DOMAIN_IFR_MSC>;
+> +		status =3D "disabled";
+> +	};
+> +
+> +	u2phy1: t-phy@11210000 {
+> +		compatible =3D "mediatek,mt7623-tphy",
+> +			     "mediatek,generic-tphy-v1";
+> +		reg =3D <0 0x11210000 0 0x0800>;
+> +		#address-cells =3D <2>;
+> +		#size-cells =3D <2>;
+> +		ranges;
+> +		status =3D "disabled";
+> +
+> +		u2port2: usb-phy@11210800 {
+> +			reg =3D <0 0x11210800 0 0x0100>;
+> +			clocks =3D <&topckgen CLK_TOP_USB_PHY48M>;
+> +			clock-names =3D "ref";
+> +			#phy-cells =3D <1>;
+> +		};
+> +	};
+> +
+>  	audsys: clock-controller@11220000 {
+>  		compatible =3D "mediatek,mt7623-audsys",
+>  			     "mediatek,mt2701-audsys",
+> diff --git a/arch/arm/boot/dts/mt7623a.dtsi b/arch/arm/boot/dts/mt7623a.=
+dtsi
+> index 0735a1fb8ad9..d304b62d24b5 100644
+> --- a/arch/arm/boot/dts/mt7623a.dtsi
+> +++ b/arch/arm/boot/dts/mt7623a.dtsi
+> @@ -35,6 +35,10 @@ &scpsys {
+>  	clock-names =3D "ethif";
+>  };
+>
+> +&usb0 {
+> +	power-domains =3D <&scpsys MT7623A_POWER_DOMAIN_IFR_MSC>;
+> +};
+> +
+>  &usb1 {
+>  	power-domains =3D <&scpsys MT7623A_POWER_DOMAIN_HIF>;
+>  };
+> --
+> 2.33.0
+>
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+>
