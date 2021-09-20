@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00D38412A60
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 03:39:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C24A1412A62
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 03:39:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231767AbhIUBkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 21:40:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59066 "EHLO
+        id S232482AbhIUBki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 21:40:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232131AbhIUBjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 21:39:17 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14793C01AE75
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:42:31 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso25194039otu.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:42:31 -0700 (PDT)
+        with ESMTP id S232184AbhIUBjU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 21:39:20 -0400
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E56C03D748
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:43:47 -0700 (PDT)
+Received: by mail-oo1-xc2f.google.com with SMTP id b5-20020a4ac285000000b0029038344c3dso6247055ooq.8
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:43:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=31Y8RGDRM54GvZccxUjy7D640zCG3GJz/MsvFpq1sGk=;
-        b=T+bhdSx+fkQrx0wmoqwLXoHORCofMgMY4j64Qg0OvSOJDYdg65p1F5Aj3o/0W5TeAC
-         BAPnBINSj6sCgzjMZe7b5hQXLIL7xjheHawntxuXD55Dba1d0aNx+pcYbkKre5PD3J6o
-         ynsdKou6pRWbrpDxbdd+PbTL59RwNEwGws4aQ=
+        bh=jZilAWTtlxib5UiTFHrd1oo5lANOqZ4zGoC3s+xI1Z0=;
+        b=c8K6bBkASy9LhBdg5fqDar23fZZpMZq79/5LTgHDq0MLd2uRbU0gbK7LGcsxQnXsKs
+         DHHQxTM+/VXWQmDr7vewoXfZj97vgARrJ9JYUl3Kjzn7wuTRkl+ivmsKoYbFZPmVMdI1
+         hNM/YX3sLKFUaqWXfXhprJgjEHUAVuGR7J2/k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=31Y8RGDRM54GvZccxUjy7D640zCG3GJz/MsvFpq1sGk=;
-        b=Iov/YAwG2b6h22YYeJPV5NUn3prf9wU6ZdAe4GNfz0bFuV13I80JJqxltej0dXEo02
-         xAb/BG2xfL+AZtVwENmnFnSp7syL1bSb4mmxezOQmpmY8mwwYEsRCh5LkhbMsrGJ1POq
-         J6sSfmipU2EUcAJ5sasDfqFfljkEEyNeaW2X8QWl0juUFd3W9OsBwcflv53hr6RwJ3gI
-         iQJ+LljZVU7j40fLyoyvNqAdnv9hkkAvxW/014Gj6Dvt2163D/EiFAE+ztClXxsVnNYH
-         RLWfXY/1XTgJ9YL6ZiX/VrqDsE86mW07I7iLG2SB/SHtGaqlKYkC8tFuMIXdm13IQZXz
-         1leA==
-X-Gm-Message-State: AOAM533jfWBDZlDcJ+wsZLLDN8XlwLY1IixRlKy/c43qbTxjbqcj00mL
-        YKGc9ntq6kgZZq5Aal8K2IyePU/x4Ii/JXfe0rcuMQ==
-X-Google-Smtp-Source: ABdhPJz9TSeFzGkaAs4U9Kc4IDE18llt1nIpqyPgF64HULcW28wGXTY8xoaB3pB7loYYD8w8mV0h0LxJ+Q1zjGks8IY=
-X-Received: by 2002:a05:6830:708:: with SMTP id y8mr2303306ots.77.1632166950435;
- Mon, 20 Sep 2021 12:42:30 -0700 (PDT)
+        bh=jZilAWTtlxib5UiTFHrd1oo5lANOqZ4zGoC3s+xI1Z0=;
+        b=CzIX3e+30VGfEgTbdkNM707l4PoUGKMUiAwvJ+QSYOdUyR6xI8CokSg/H3hUzhzhKP
+         MdfjauaAQwGVwHveDlXn44rdcaD6XqMLPHV1vCk2oEcbtZyOcbJxEAGzipetDE4lnINw
+         0wLYvey7rBUoKsbsMBkjAffn6mlX0dZlFDd2udygRR+Hhmj5sulRb43NbJUyr6ta8aib
+         l7tmAH3EQR4dHVnyj9t7qMRe7gG2UZUYHVFYXJTA6mpJFqNEwrgO4jMTeY6YOW/4DbpN
+         rQNy74lChjBNGOfC8Oaseu28Wu/DxGXScI7spMHnH1zlPhJBhWHYA+TnYB4wfWFIlZfO
+         GCfg==
+X-Gm-Message-State: AOAM533i1jnbx3UCqb3K4Pd1MWmITGcVtSqt8m+rJoEwinFs6ivB6FNg
+        wR35TpYdjyomnQKC2FR1+Hn8wNNc3pVn9FSzCTu9BA==
+X-Google-Smtp-Source: ABdhPJzJzusg5DvAffEXijW//YgVgAEw7k66hAc3zmtsDWl6cUtcCwqNtXZvRricLpDqAodbFZtg27A4gNFf88jXZM0=
+X-Received: by 2002:a4a:c3c2:: with SMTP id e2mr8183815ooq.8.1632167026504;
+ Mon, 20 Sep 2021 12:43:46 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 20 Sep 2021 12:42:30 -0700
+ HTTPREST; Mon, 20 Sep 2021 12:43:45 -0700
 MIME-Version: 1.0
-In-Reply-To: <1631872087-24416-5-git-send-email-rajpat@codeaurora.org>
-References: <1631872087-24416-1-git-send-email-rajpat@codeaurora.org> <1631872087-24416-5-git-send-email-rajpat@codeaurora.org>
+In-Reply-To: <1631872087-24416-6-git-send-email-rajpat@codeaurora.org>
+References: <1631872087-24416-1-git-send-email-rajpat@codeaurora.org> <1631872087-24416-6-git-send-email-rajpat@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Mon, 20 Sep 2021 12:42:30 -0700
-Message-ID: <CAE-0n51JdKDSDKhbhQSbF5w=cn5iQ_uRDG0-NMR+FPdGkuX4UA@mail.gmail.com>
-Subject: Re: [PATCH V8 4/8] arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
+Date:   Mon, 20 Sep 2021 12:43:45 -0700
+Message-ID: <CAE-0n53fVzeAo9ch60_BcfHUvqSRA2SEE-2c8zQhPJwcY7or6g@mail.gmail.com>
+Subject: Re: [PATCH V8 5/8] arm64: dts: sc7280: Update QUPv3 UART5 DT node
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rajesh Patil <rajpat@codeaurora.org>,
@@ -64,66 +64,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajesh Patil (2021-09-17 02:48:03)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 2fbcb0a..a2a4d7e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -536,24 +536,444 @@
->                 qupv3_id_0: geniqup@9c0000 {
->                         compatible = "qcom,geni-se-qup";
->                         reg = <0 0x009c0000 0 0x2000>;
-> -                       clock-names = "m-ahb", "s-ahb";
->                         clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
->                                  <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
-> +                       clock-names = "m-ahb", "s-ahb";
->                         #address-cells = <2>;
->                         #size-cells = <2>;
->                         ranges;
-> +                       iommus = <&apps_smmu 0x123 0x0>;
->                         status = "disabled";
+Quoting Rajesh Patil (2021-09-17 02:48:04)
+> From: Roja Rani Yarubandi <rojay@codeaurora.org>
 >
-> +                       qup_opp_table: qup-opp-table {
-
-Sorry to mislead you. I see now why it can't be here. qeniqup has
-address cells and size cells not equal to zero, which means that every
-child node of qeniqup should have a reg property. So this OPP table
-needs to be moved to the root again (ugh).
-
-> +                               compatible = "operating-points-v2";
-> +
-> +                               opp-75000000 {
-> +                                       opp-hz = /bits/ 64 <75000000>;
-> +                                       required-opps = <&rpmhpd_opp_low_svs>;
-> +                               };
-> +
-> +                               opp-100000000 {
-> +                                       opp-hz = /bits/ 64 <100000000>;
-> +                                       required-opps = <&rpmhpd_opp_svs>;
-> +                               };
-> +
-> +                               opp-128000000 {
-> +                                       opp-hz = /bits/ 64 <128000000>;
-> +                                       required-opps = <&rpmhpd_opp_nom>;
-> +                               };
-> +                       };
-> +
-> +                       i2c0: i2c@980000 {
-> +                               compatible = "qcom,geni-i2c";
-> +                               reg = <0 0x00980000 0 0x4000>;
-> +                               clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
-> +                               clock-names = "se";
-> +                               pinctrl-names = "default";
-[...]
+> Uart5 is treated as dedicated debug uart.Change the
+> compatible as "qcom,geni-uart" in SoC DT to make it generic
+> and later update it as "qcom,geni-debug-uart" in sc7280-idp
+> Add interconnects and power-domains. Split the pinctrl
+> functions and correct the gpio pins.
 >
->                 cnoc2: interconnect@1500000 {
-> @@ -1574,11 +1994,311 @@
->                                 function = "qspi_data";
-[...]
-> +
-> +                       qup_spi0_cs_gpio: qup-spi0-cs_gpio {
+> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
 
-Please make it "qup_spi0_cs_gpio: qup-spi0-cs-gpio" as node names should
-have dashes instead of underscores.
-
-> +                               pins = "gpio3";
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
