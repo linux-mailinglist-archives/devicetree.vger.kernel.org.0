@@ -2,108 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C99A4117E9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 17:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B1D941180D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 17:21:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233752AbhITPLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 11:11:32 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:44190
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241220AbhITPLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 11:11:31 -0400
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 01EDF4027C
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 15:10:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632150604;
-        bh=xU11jaLpUDnoKTVDhNl4Nnz5+4KkmeAKnf0UgxOYDK0=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=Jf/UVPasI7eCutuWqByRpqmH4O20YHfMxJBg6B1H5xnqCwzKZbTfPreuFqPdQQJca
-         C/QAQQXlcgNQgXyPNzTsLDea0w66Szg1jgPlXEsNmzUkhjmdpeLdrDGRZYuB1NKG/9
-         3ky1JV3QWZAQNXKjb5s7ZmWHFZaq8Q+By603/nkJuGxctmPcp2S3mKjHELEUJZmPMJ
-         dY+vboJjRukiJH3YV16HTu8hFjABERT8Ew0EpyMK9ZYunelSiliHxKUhBGjvJkiutC
-         4GmhNwjHAf5odIs9Q47TBPByRR4teQe16mx6rLPo7cV1PJITD/2nvBR4n1dJlKb0Qv
-         s6hagO9U4Stug==
-Received: by mail-wr1-f72.google.com with SMTP id f7-20020a5d50c7000000b0015e288741a4so6356225wrt.9
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 08:10:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xU11jaLpUDnoKTVDhNl4Nnz5+4KkmeAKnf0UgxOYDK0=;
-        b=4wiIk6X9e2x/1KkpTZvhanf9dxMbbAknbAzYoiiR9bSKPPbhSl9Uvo+l+woeirOvDz
-         OdqbBhuTN4kiWx9n6mMo1qM1GFvpL9r+A703f6lD0hL/vCVIl8tFcwEosVS6mvojKevS
-         w9lGrFq+pOYo9hsqoE9Pnw0WsCrtO4RnlEEqf1TSbe0c7Rz5/l4A0k3LWoAUJgb5NnUI
-         nFgxuVpfS5sdiin4NRpFzYotn5npmY4jLSPemSR3AGbEzV9lj3Nf2N1hY7UvUEN14Wdw
-         C6wDJa0tmSyfBhiPPdLADYwyyuiUL5XyiQreC5IGT4+oe1bCw41P69zMJUaHTZ+bd3BL
-         MMwg==
-X-Gm-Message-State: AOAM533a4AIz7BirJLR1Fw5/I3N998nVohgNOEsgT7iSZV/QQRVBIDMF
-        u+fPndWoTeGqzp0VygXX82Cha01q66UE8OEJIw3v+vrjaOVsJBZXBlx57FzhNWvf+yMaeEjP6Ta
-        4IysxVI4WoVDYLf5Vlt+bX01bB0cVZ1w3TwQcyug=
-X-Received: by 2002:adf:e44c:: with SMTP id t12mr30067250wrm.49.1632150603565;
-        Mon, 20 Sep 2021 08:10:03 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzBBPH6zennF6+WXOjRYxYRZdYGj6tYy+clID7FjBpMnrSmFriKiZD1slG3/cFHjNMZVecHAA==
-X-Received: by 2002:adf:e44c:: with SMTP id t12mr30067220wrm.49.1632150603368;
-        Mon, 20 Sep 2021 08:10:03 -0700 (PDT)
-Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id i2sm15803136wrq.78.2021.09.20.08.09.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 08:09:54 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        id S234636AbhITPWt convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Sep 2021 11:22:49 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:44183 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232933AbhITPWt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 11:22:49 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id EB1D74000C;
+        Mon, 20 Sep 2021 15:21:16 +0000 (UTC)
+Date:   Mon, 20 Sep 2021 17:21:15 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Piotr Sroka <piotrs@cadence.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH v3 6/6] riscv: dts: microchip: use vendor compatible for Cadence SD4HC
-Date:   Mon, 20 Sep 2021 17:08:07 +0200
-Message-Id: <20210920150807.164673-6-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210920150807.164673-1-krzysztof.kozlowski@canonical.com>
-References: <20210920150807.164673-1-krzysztof.kozlowski@canonical.com>
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
+        Tony Lindgren <tony@atomide.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Ryan Barnett <ryan.barnett@collins.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Jason Reeder <jreeder@ti.com>
+Subject: Re: [PATCH v3 28/47] mfd: ti_am335x_tscadc: Drop useless
+ definitions from the header
+Message-ID: <20210920172115.5b918e71@xps13>
+In-Reply-To: <20210918173154.70c0b04b@jic23-huawei>
+References: <20210915155908.476767-1-miquel.raynal@bootlin.com>
+        <20210915155908.476767-29-miquel.raynal@bootlin.com>
+        <20210918173154.70c0b04b@jic23-huawei>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Licensed IP blocks should have their own vendor compatible.
+Hi Jonathan,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+jic23@kernel.org wrote on Sat, 18 Sep 2021 17:31:54 +0100:
 
----
+> On Wed, 15 Sep 2021 17:58:49 +0200
+> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> 
+> > Drop unused and useless definitions from the header. Besides the STEP
+> > ENABLE register which is highly unclear (and not used), drop all the  
+> 
+> Agreed - I started trying to figure out what they were in the earlier patch!
+> 
+> > "masks" definitions which are only used by the following definition. It
+> > could be possible to got even further by removing these definitions
+> > entirely and use FIELD_PREP() macros from the code directly, but while I
+> > have no troubles making these changes in the header, changing the values
+> > in the code directly could IMHO darkening a bit the logic and
+> > furthermore hardening future git-blames.  
+> 
+> Hmm. Maybe on that...  I'm not that bothered either way but there is
+> definitely clarity in FIELD_PREP being used inline for writes to a device.
+> You can very clearly see what is going on.
+> 
+> Note that it only really works here because the driver only ever uses
+> the masks to 'set' the value, but never to read any of them back from the
+> hardware.
+> 
+> Your point about it making a messy history is true of almost any change :)
+> 
+> > 
+> > Certain macros are using GENMASK() to define the value of a particular
+> > field, while this is purely "by chance" that the value and the mask have
+> > the same value. In this case, drop the "mask" definition, use
+> > FIELD_PREP() and GENMASK() in the macro defining the field, and use the
+> > new macro to define the particular value by feeding directly the actual
+> > number advertised in the datasheet into that macro, as in:
+> > 	-#define STEPCONFIG_RFM_VREFN   GENMASK(24, 23)
+> > 	-#define STEPCONFIG_RFM(val)    FIELD_PREP(STEPCONFIG_RFM_VREFN, (val))
+> > 	+#define STEPCONFIG_RFM(val)    FIELD_PREP(GENMASK(24, 23), (val))
+> > 	+#define STEPCONFIG_RFM_VREFN   STEPCONFIG_RFM(3)  
+> 
+> This is indeed an improvement.
+> 
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>  
+> 
+> I'm a bit in two minds out about how you should handle the multiple patches
+> involved in cleaning these up.   Definitely not good to do modifications on
+> elements you are going to drop - so for those pull them out earlier.
+> 
+> The others are a little odd because you first introduce some of the GENMASK stuff
+> then rework it in this patch.  Perhaps this split is the best way to handle those.
 
-Changes since v1:
-1. New patch
----
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I must admit I got lazy, the ordering reflects the order of my
+decisions and once these made, it was too painful to rebase and move
+this patch earlier but I fully understand the request :) I will ping Lee
+in the cover letter to ask him what is his feedback over the entire
+series and if he agrees with the main idea I whish I could only respin
+these three patches in the right order in v4 and request him to take v3
+for all the other patches.
 
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index 55d86b078c53..7948c4249de5 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -263,7 +263,7 @@ serial3: serial@20104000 {
- 		};
- 
- 		mmc: mmc@20008000 {
--			compatible = "cdns,sd4hc";
-+			compatible = "microchip,mpfs-sd4hc", "cdns,sd4hc";
- 			reg = <0x0 0x20008000 0x0 0x1000>;
- 			interrupt-parent = <&plic>;
- 			interrupts = <88>;
--- 
-2.30.2
-
+Thanks,
+Miquèl
