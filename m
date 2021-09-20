@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8BC8410FE2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 09:15:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A21410FE8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 09:18:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234700AbhITHRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 03:17:21 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:49320
+        id S234734AbhITHT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 03:19:26 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:49422
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234571AbhITHRV (ORCPT
+        by vger.kernel.org with ESMTP id S234682AbhITHT0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 03:17:21 -0400
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        Mon, 20 Sep 2021 03:19:26 -0400
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1FDAB4018F
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 07:15:52 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EF8473FE02
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 07:17:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632122152;
-        bh=Wx09CSLf2BUcoT4i99Nl9tot/C6qmojAMi1r7QcpgsQ=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
-        b=kRqjRFjJ9cwxpJ6arJg+5euv7meAfcoXZjQV6R4bA/GvR4FPKgWCI1k6YDtv3rLwZ
-         gzDBg7vouIAEzY6ojpJ27H8aEuNF8K2H9y31sSBj/JDTqklZJD7qTrV9hrycWddYAi
-         z9fuoBEiQsVQYak22KUkL3Gv+48pJSroM41Oa1+nzyhB0UwqLK2Zg1xuxSSZph3xx6
-         bECwKL7M6QfTQ1b0U/O5SHAT3zOTXxXwQCiQQ1Hu3rzrTQhUSFIZ0mKxRHiW7EVpA/
-         Clrcc5iLuQ3jDg5m/c3/Rtx4Gl0R/4nV1E0AODWM/SzO2L8+5ohxWM56bE4OcG8W+d
-         2i6tife7044xg==
-Received: by mail-wr1-f71.google.com with SMTP id r9-20020a5d4989000000b0015d0fbb8823so5456212wrq.18
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 00:15:52 -0700 (PDT)
+        s=20210705; t=1632122278;
+        bh=K975uWTYLGkLbkETM9T3s7Y45GbdozAN4S3IGUhBhMo=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version;
+        b=BbbSf2IYQkzLy8pUdFju1wufZSgPWXMAomvadMGdNKyBBalbNIze4cHXOBvWrhknl
+         obcC3j4W6gpe8cvCaZ/5iqdoi7YWyjA5CpjLzs8TCr5DYVwVp6iPC5om1Z1XmJ+Fxj
+         tRZA2WBxJIQKDxdEpc8gX87DwGobbQTG6Zl14qJ/KYenVQ5o+o9PYzxklQCRkvVu9s
+         2hT27PIpwMdf4jiGqbsu/8HM26pVgvotkiXHvcU8n5ty/JfvrbhG5Yf7NTim+y+Buf
+         zTH+kHxefhvnCg4YlmLMh5xn/a3aTPbWbgyLxPVtdEy17dSExE96oej2ugdrLnpXsl
+         hruUlW7AYCL3w==
+Received: by mail-wr1-f72.google.com with SMTP id q14-20020a5d574e000000b00157b0978ddeso5460476wrw.5
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 00:17:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Wx09CSLf2BUcoT4i99Nl9tot/C6qmojAMi1r7QcpgsQ=;
-        b=fy00deqGMZrXhgaGTI3z3IescAJU8413/q7fLAxiqil5L2Uo1r6tNy2yvMVI+DtoR1
-         xZX7rdpq8euri+zcQOS+2/XCqn7w1TR7sm0Akn0Q8VLP/8YPZPyvD0kvLYn5xWhz0yhE
-         zFCV4XiAcvJklE+58IHuzL6PKFhK6E5JLUvbtFz+8myHmstaX6vd+N6XqDASAsIN8UES
-         cOxL8qvijgUQAC5IzuCxvzxnMjLKEyvaoamnRzY8k6nOXndWPYm40psvf6FX3pWHUfA+
-         IuPkZ6YUUwbzeHbpVI5lJnekF6fCqZv98Dmpr7udjYtTiMSVPDc51wX7tzH8pkmfTRd9
-         EVJw==
-X-Gm-Message-State: AOAM533uJRRZx2EH4DRnrrrTE8O9ekKVYzAHdWMXKeniO/5erFrY3EfE
-        qUePtA4aIueHXboIHJ1U0ije7oPutztp4VF0vDu5a4a7MTYTX7BYj8iuRdnV4YPbfwElBFQqm6b
-        YlZc5hJxlX8G6bUBPgetvqMdKnHemQhDdMpGJh5A=
-X-Received: by 2002:a1c:7e55:: with SMTP id z82mr262579wmc.95.1632122149468;
-        Mon, 20 Sep 2021 00:15:49 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy+/JWO4KawW9KMTN5QacKUh4LzdTsDtHGOI8eupCw/ohf4m9JVuD9eePbgGFUp8uXDjI5x6g==
-X-Received: by 2002:a1c:7e55:: with SMTP id z82mr262553wmc.95.1632122149216;
-        Mon, 20 Sep 2021 00:15:49 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=K975uWTYLGkLbkETM9T3s7Y45GbdozAN4S3IGUhBhMo=;
+        b=U14f/n2TDVj9VNOGSyPWlXtcN5gy7+4lWTaI85IPs8Ccf2J0f2faX1m3TVjdCYuewv
+         +H8/BfbiF8//8nwBtIMVZ+JtnRanaXGELZLeNcNxdkLuqdS+cSt4e8/zYkMhMJQEEacf
+         ZlIhHFnnKLhektGL5EaU8TWx6f0yVpWT1puzWYgnE5aHz5bTbKUwBFP5h6gHwHCMZIHn
+         VTglIk3JQ/VHZe9xYeQ+9pDcxzmK19T0n4Wd4oHX+u+nU2dLhL/2aBjsDtAE6bukqHHJ
+         vmWEy+e7b/KHJMryM+EA9jS69rKNYdaYTQ7CU3t9Tcez5QpeRb9xa+HX4W7lQBzw3p6l
+         7HGg==
+X-Gm-Message-State: AOAM531WMF5v+zfq9Ptn16Iqoi4Ga8D8QKvapWAdV+xkTJ0C4nkYGD16
+        Gtq8UdBm74fDoilXorkzupHWFyPpN8uXh/2ihSiA04ouE+xs7OnVVDyBvqHdunF5qwLsvPvIU4l
+        Fv0zRadumIIyIP4R3u+6oQEarGFopF+HnGvkoixE=
+X-Received: by 2002:a5d:668c:: with SMTP id l12mr25958810wru.436.1632122278652;
+        Mon, 20 Sep 2021 00:17:58 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzW4RCYsQAwDVi//vMFGQ0H5hMTUOpmow8nulLe+L4fg0CAxTaF+uxW5s557hhH8OPbHt+Sdw==
+X-Received: by 2002:a5d:668c:: with SMTP id l12mr25958797wru.436.1632122278512;
+        Mon, 20 Sep 2021 00:17:58 -0700 (PDT)
 Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id x5sm17456153wmk.32.2021.09.20.00.15.47
+        by smtp.gmail.com with ESMTPSA id a202sm6990798wmd.15.2021.09.20.00.17.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 00:15:48 -0700 (PDT)
+        Mon, 20 Sep 2021 00:17:57 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -65,42 +66,54 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Sylwester Nawrocki <snawrocki@kernel.org>,
         Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Subject: [PATCH v2 0/3] devfreq: exynos-ppmu: conform to dt naming convention
-Date:   Mon, 20 Sep 2021 09:15:37 +0200
-Message-Id: <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 1/3] devfreq: exynos-ppmu: use node names with hyphens
+Date:   Mon, 20 Sep 2021 09:17:51 +0200
+Message-Id: <20210920071753.38560-1-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
+References: <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Devicetree naming convention requires device node names to use hyphens
+instead of underscore, so Exynos5422 devfreq event name
+"ppmu-event3-dmc0_0" should be "ppmu-event3-dmc0-0".  Newly introduced
+dtschema enforces this, however the driver still expects old name with
+an underscore.
 
-My previous patch 3/3 (ARM: dts: exynos: align PPMU event node names
-with dtschema) caused issues reported by Marek [1].
+Add new events for Exynos5422 while still accepting old name for
+backwards compatibility.
 
-Tested on Exynos5422. Testing on Exynso5433 board would be very useful.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ drivers/devfreq/event/exynos-ppmu.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-Changes since v1:
-1. New patches 1/3 and 2/3.
-2. Patch 3/3: rename event-name to match node name.
-
-[1] https://lore.kernel.org/linux-samsung-soc/0212a402-1490-0f8f-005e-32bb6f636a13@canonical.com/T/#m570c0257204af553fe11f9122551311beb56c15e
-
-Best regards,
-Krzysztof
-
-
-Krzysztof Kozlowski (3):
-  devfreq: exynos-ppmu: use node names with hyphens
-  devfreq: exynos-ppmu: simplify parsing event-type from DT
-  ARM: dts: exynos: align PPMU event node names with dtschema
-
- arch/arm/boot/dts/exynos5420.dtsi   | 16 ++++++++--------
- drivers/devfreq/event/exynos-ppmu.c | 12 +++++++-----
- 2 files changed, 15 insertions(+), 13 deletions(-)
-
+diff --git a/drivers/devfreq/event/exynos-ppmu.c b/drivers/devfreq/event/exynos-ppmu.c
+index 17ed980d9099..541bd13ab61d 100644
+--- a/drivers/devfreq/event/exynos-ppmu.c
++++ b/drivers/devfreq/event/exynos-ppmu.c
+@@ -94,11 +94,16 @@ static struct __exynos_ppmu_events {
+ 	PPMU_EVENT(d1-general),
+ 	PPMU_EVENT(d1-rt),
+ 
+-	/* For Exynos5422 SoC */
++	/* For Exynos5422 SoC, deprecated (backwards compatible) */
+ 	PPMU_EVENT(dmc0_0),
+ 	PPMU_EVENT(dmc0_1),
+ 	PPMU_EVENT(dmc1_0),
+ 	PPMU_EVENT(dmc1_1),
++	/* For Exynos5422 SoC */
++	PPMU_EVENT(dmc0-0),
++	PPMU_EVENT(dmc0-1),
++	PPMU_EVENT(dmc1-0),
++	PPMU_EVENT(dmc1-1),
+ };
+ 
+ static int __exynos_ppmu_find_ppmu_id(const char *edev_name)
 -- 
 2.30.2
 
