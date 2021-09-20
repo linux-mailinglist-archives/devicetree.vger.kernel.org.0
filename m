@@ -2,177 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 240A6412C07
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 04:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5F08412C06
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 04:40:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352342AbhIUCmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1352343AbhIUCmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 20 Sep 2021 22:42:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35648 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241808AbhIUCDP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 22:03:15 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C666EC14093A;
-        Mon, 20 Sep 2021 11:12:48 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id x27so71302679lfu.5;
-        Mon, 20 Sep 2021 11:12:48 -0700 (PDT)
+        with ESMTP id S241538AbhIUCE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 22:04:56 -0400
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77482C143A48
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:17:22 -0700 (PDT)
+Received: by mail-oo1-xc33.google.com with SMTP id m14-20020a4ad50e000000b002912a944a47so6163806oos.12
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:17:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GkvxncHOY8DvHcvIZZ5ALhHomt+6uxaaFq6TQ6h+fMg=;
-        b=p3McJnvyBc+CTcDTD8UtxLeB2ZXB1zXQiJojH/qHQI+5HqAHT37cHQz005HKHfdxVE
-         O5NPRwSrWiPereIDxUCOlhMdGlhZ1mf5cKF6a2SFkX0vxia9sRMKTSQ5gLydM1CMcS8F
-         yJw1gWENo6zp4qFCQUhO1jkWZP4JGVldQtT7fsQt24tKafP7JwYkg5/+Au7n/iwRqbfk
-         EuiFM19Q+j0iN6hsP/f4GwFJ00a22XMJbRWlCcRFuLP2I1whhD+CsjkKEKF76UnaUrDe
-         UsdKa49Zh7Pzc+Km5NQ8khTlBHR3FdVXomkQqXK8J3Ut/ULtGWLfqg/yT5JCMzG/FuTB
-         YfCg==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=JjZwsjLoE1v3IYa2GVHYD3KilZhhQVThWYCXDu9nvYo=;
+        b=a63x+bgfAIdvw+z6zqMvEu6JrCNqun+9IqImsNVfxFsirapOdMZ+eBj0e2g1IRZA8g
+         AhQnWYI3S1LMtRTf3cyc5VHr2OowcGQUtv7/UympQw8t+7yyJIH+q8S1hc4KHM47rWK6
+         ICe0PLjGSWwqVqs4PwDznSR8RBSF3gFpTPQfI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GkvxncHOY8DvHcvIZZ5ALhHomt+6uxaaFq6TQ6h+fMg=;
-        b=DhaJZvRjq9X49yGdue0UwJVnZSnGZ/IHHoGUglQolhdMvbtR20VYXEpZNnj+w9Zuvj
-         J9JwszJJKGbTG3sCyZxwpiKcAnOuYww3YSr1q9Yybi5DEhIuxcnPRItB9juNgoEUUSYB
-         zNdmEZ/1mnrsLlxSFSy9CVvxf0wv1EApX/CqAoIy5u8zLJjvrSIkGY9gZqetFloO7vcQ
-         P8fKU//mUoPYQAn6fuHECGMmlmcaLv3r+d0d1e4IUOKyZZyUlBwaUcTd5gCcDQmH/mLn
-         XvXdx+8S70tXPRInr0rc8OMihtS9Dpyff/vc5T5+Z4dpi+mxND5+lYd1bkfwYDaZGRDK
-         PQ2A==
-X-Gm-Message-State: AOAM532xZgwt3zGt8Cojmfcvmer1tgymaQMiCMFyue8B72dfCsMsJlhO
-        zNvrXCux2JX8aD8BowCTYHo=
-X-Google-Smtp-Source: ABdhPJwlgGKO3aMXePQ47tKK8EPh05YbuveS/dXOiz7N8s1w1kaCmMJkGRQCBT7OqTJwUfNNaaLf2w==
-X-Received: by 2002:a2e:9f4f:: with SMTP id v15mr5075723ljk.468.1632161566073;
-        Mon, 20 Sep 2021 11:12:46 -0700 (PDT)
-Received: from localhost.localdomain (46-138-151-206.dynamic.spd-mgts.ru. [46.138.151.206])
-        by smtp.gmail.com with ESMTPSA id u3sm1775677lju.107.2021.09.20.11.12.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 11:12:45 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
-        linux-mmc@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Subject: [PATCH v12 35/35] ARM: tegra20/30: Disable unused host1x hardware
-Date:   Mon, 20 Sep 2021 21:11:45 +0300
-Message-Id: <20210920181145.19543-36-digetx@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210920181145.19543-1-digetx@gmail.com>
-References: <20210920181145.19543-1-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=JjZwsjLoE1v3IYa2GVHYD3KilZhhQVThWYCXDu9nvYo=;
+        b=uij/Rbw+QyhOcAynJlxEYvRZnHo7RkVkCDmCuV2jm/goXpQ7FePGasvuEmgmufTzvG
+         u24E8NX5+a/8uZmEZ+vJpZ0+Ef0wnLeO1l0plR0V+xT3WB6P5Ca7bAd2fUUU8qYkNGiZ
+         CwnASOsnYLmxI4HTcY9HQcXg/FZtFK+sFvf8GdTkfQhbKByHr4Vwrd5XbP1R0Mb+7c/j
+         PKrmeVx+alT+xKrM2x0TnwWpzlQFjnioh6BS//t9/XR3dzDoiESVB8H2IZlT+qBY8C7o
+         T1sJviG95llNEtqXH8E1QTHvysfQgAuZtbWbBG78/PA+ewRr0UB9OtmWWDSaeZUasS4u
+         QuQw==
+X-Gm-Message-State: AOAM532JF3TvXNME+is/94d4yyV9m6uPagMRR3yQUCMEVlkFibzIUZv2
+        jNyQSrb/ZIcam5Yfow+b9XzJpVS6fMQKTatCDnS37w==
+X-Google-Smtp-Source: ABdhPJwVjR/WftKlNJXp2AGVuRgbTEYRYkgthir6kT3bKkja1m6mMkzqMgaNf1nOTAkyliApojmA+4e7jQQ/i3tbxgo=
+X-Received: by 2002:a4a:c3c2:: with SMTP id e2mr7886842ooq.8.1632161840976;
+ Mon, 20 Sep 2021 11:17:20 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 20 Sep 2021 11:17:20 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1632123331-2425-2-git-send-email-srivasam@codeaurora.org>
+References: <1632123331-2425-1-git-send-email-srivasam@codeaurora.org> <1632123331-2425-2-git-send-email-srivasam@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Mon, 20 Sep 2021 11:17:20 -0700
+Message-ID: <CAE-0n51L7YSA4FDLv_2Q9U3nzxK1YY8hRtZ-G0cs42nomySMTA@mail.gmail.com>
+Subject: Re: [PATCH 1/7] ASoC: qcom: Add compatible names in va,wsa,rx,tx
+ codec drivers for sc7280
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
+        tiwai@suse.com
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MPE, VI, EPP and ISP were never used and we don't have drivers for them.
-Since these modules are enabled by default in a device-tree, a device is
-created for them, blocking voltage scaling because there is no driver to
-bind, and thus, state of PMC driver is never synced. Disable them.
+Quoting Srinivasa Rao Mandadapu (2021-09-20 00:35:25)
+> Add compatible names for sc7280 based targets in digital codec drivers
+> va,wsa,rx and tx.
+>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+>  sound/soc/codecs/lpass-rx-macro.c  | 1 +
+>  sound/soc/codecs/lpass-tx-macro.c  | 1 +
+>  sound/soc/codecs/lpass-va-macro.c  | 1 +
+>  sound/soc/codecs/lpass-wsa-macro.c | 1 +
+>  4 files changed, 4 insertions(+)
+>
+> diff --git a/sound/soc/codecs/lpass-rx-macro.c b/sound/soc/codecs/lpass-rx-macro.c
+> index 196b068..520c760 100644
+> --- a/sound/soc/codecs/lpass-rx-macro.c
+> +++ b/sound/soc/codecs/lpass-rx-macro.c
+> @@ -3578,6 +3578,7 @@ static int rx_macro_remove(struct platform_device *pdev)
+>
+>  static const struct of_device_id rx_macro_dt_match[] = {
+>         { .compatible = "qcom,sm8250-lpass-rx-macro" },
+> +       { .compatible = "qcom,sc7280-lpass-rx-macro" },
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- arch/arm/boot/dts/tegra20.dtsi | 4 ++++
- arch/arm/boot/dts/tegra30.dtsi | 8 ++++++++
- 2 files changed, 12 insertions(+)
+Please sort alphabetically on compatible string.
 
-diff --git a/arch/arm/boot/dts/tegra20.dtsi b/arch/arm/boot/dts/tegra20.dtsi
-index eb6e5518fb5f..05788c9cddc1 100644
---- a/arch/arm/boot/dts/tegra20.dtsi
-+++ b/arch/arm/boot/dts/tegra20.dtsi
-@@ -59,6 +59,7 @@ mpe@54040000 {
- 			reset-names = "mpe";
- 			operating-points-v2 = <&mpe_dvfs_opp_table>;
- 			power-domains = <&pd_mpe>;
-+			status = "disabled";
- 		};
- 
- 		vi@54080000 {
-@@ -70,6 +71,7 @@ vi@54080000 {
- 			reset-names = "vi";
- 			operating-points-v2 = <&vi_dvfs_opp_table>;
- 			power-domains = <&pd_venc>;
-+			status = "disabled";
- 		};
- 
- 		epp@540c0000 {
-@@ -81,6 +83,7 @@ epp@540c0000 {
- 			reset-names = "epp";
- 			operating-points-v2 = <&epp_dvfs_opp_table>;
- 			power-domains = <&pd_core>;
-+			status = "disabled";
- 		};
- 
- 		isp@54100000 {
-@@ -91,6 +94,7 @@ isp@54100000 {
- 			resets = <&tegra_car 23>;
- 			reset-names = "isp";
- 			power-domains = <&pd_venc>;
-+			status = "disabled";
- 		};
- 
- 		gr2d@54140000 {
-diff --git a/arch/arm/boot/dts/tegra30.dtsi b/arch/arm/boot/dts/tegra30.dtsi
-index 09cb1ab75312..f9613384a487 100644
---- a/arch/arm/boot/dts/tegra30.dtsi
-+++ b/arch/arm/boot/dts/tegra30.dtsi
-@@ -145,6 +145,8 @@ mpe@54040000 {
- 			power-domains = <&pd_mpe>;
- 
- 			iommus = <&mc TEGRA_SWGROUP_MPE>;
-+
-+			status = "disabled";
- 		};
- 
- 		vi@54080000 {
-@@ -158,6 +160,8 @@ vi@54080000 {
- 			power-domains = <&pd_venc>;
- 
- 			iommus = <&mc TEGRA_SWGROUP_VI>;
-+
-+			status = "disabled";
- 		};
- 
- 		epp@540c0000 {
-@@ -171,6 +175,8 @@ epp@540c0000 {
- 			power-domains = <&pd_heg>;
- 
- 			iommus = <&mc TEGRA_SWGROUP_EPP>;
-+
-+			status = "disabled";
- 		};
- 
- 		isp@54100000 {
-@@ -183,6 +189,8 @@ isp@54100000 {
- 			power-domains = <&pd_venc>;
- 
- 			iommus = <&mc TEGRA_SWGROUP_ISP>;
-+
-+			status = "disabled";
- 		};
- 
- 		gr2d@54140000 {
--- 
-2.32.0
-
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, rx_macro_dt_match);
