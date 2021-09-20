@@ -2,122 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7868B4117A5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 16:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A6E84117D5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 17:08:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236010AbhITOzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 10:55:37 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:43302
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235703AbhITOze (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 10:55:34 -0400
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B11D03F335
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 14:54:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632149646;
-        bh=V0X+3uidaeyp1K6mH5laK1N1lZeTwvHcyGOGgKbVfnY=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=iQ5jiAUZT3HUCVEfdHYiBjz5bV56hvPG0zI8zfqmetNVR57Cr+Y3N00m2IsbKKvtX
-         At9kUYO/rQDdEngpaLiuavnLbDbglkSwXYxDk0p3IgnQ1SUvb7PM/JwthLKWxkbhkv
-         2cMD5n0fyJt8AMytpHFxe7s+rbw+0s9k8QqH9TTtul4zGLIlK6xEQ5F+KHBeCSLE0/
-         1oOa0SVKTauQ23ZB0G5tkuewocRPW7hNtEjIxGu9CtDAcNQqG+A0Ea3iNtqk6Y6KoV
-         NYJWhHa9IXqCBYhyraxlMFXTkI9zrb924Wf9IxOa2pvf3yb9LOYo+2GCNygzG3S2wi
-         Q1+zdY9tjq47w==
-Received: by mail-wr1-f70.google.com with SMTP id v15-20020adff68f000000b0015df51efa18so6306663wrp.16
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 07:54:06 -0700 (PDT)
+        id S241113AbhITPKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 11:10:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32836 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235441AbhITPKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 11:10:12 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0AA8C061574;
+        Mon, 20 Sep 2021 08:08:43 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id g1so69621591lfj.12;
+        Mon, 20 Sep 2021 08:08:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=zHBcy62XBnwwIXR6J0uJZFxZPjvGorUc2wPW3wjD7m8=;
+        b=DO5x9hFYScnYzeAJQV+nm5mz3uSaWz+2uG8C6WGB09WCtCoEtj3VeVAULgoR7t4icc
+         l3cAnhjyZdjYexiF6AvgsxL6aSGoR1Wts5KS4UY/gRg1kopMBSHCt7rDFC9rX4WUHPff
+         vaJU04Zppn4ym8YDhHWpDIg1fxhHC9YxeujQoTRdw/vdOQT8nPYClU8JnTwfDn8+dB19
+         opjDk1x8kg0LrnI4u+QQMWt5FvDPc9dY0yChZyohWP+NvdToQlnnLmKmxtIuxcCUmz67
+         G7gynfWVZ1fyhZaCHLUza5XppEO/j6S03WiRZ2kbo6/B6rsm1rxYtBTu/HTTFZNROLzS
+         LdqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=V0X+3uidaeyp1K6mH5laK1N1lZeTwvHcyGOGgKbVfnY=;
-        b=uY7wknnrngXXzs7+lNdGjlUs9wNXc3sQJOKSEdkm4OL5RsJo1FBO2/6Vp0K2qSJTed
-         ewxBmGMW9kiPfjOwDo85luwFK4UHoLwhPJJai0yoMBKkWcHYwbeYa0k7xrWYZbsrhUwd
-         ZwSOuMk6E8Rocc0Mgkj2bwL7HA/h2wuyQoNLvlLPWLi5xgZ9Oc+PR1OO2YeXCKPLwdDv
-         AmCe+RKL+CW5nLUuSOz2IeKDCEfGoqNazfpfsXIZ+clKy/ZRSKb7aG5VSk+cf0wQ4REK
-         yM+HMTjjGcyzKDLxpzFbNAclWWVnHtALnT+fPPnCCXYvf8UzgE0kSeTa/L8TO3dvjm80
-         dR/g==
-X-Gm-Message-State: AOAM533wwKn40jRUfO+VZH5DexHYMKuKFARfz5fm7mKdz81hZHPqEEn3
-        oy/4VT+pC2tCBopiZ0i9ZKw815lY/8Phwbuu0qf6NUR6mYc3r73GtVip7MoMRsQ2egIMgDolasV
-        7Lgm7G5Gbm1u1QbIF77iJRYGYzx60uEEBs57GrDg=
-X-Received: by 2002:a7b:c142:: with SMTP id z2mr30489013wmi.10.1632149645732;
-        Mon, 20 Sep 2021 07:54:05 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwKtZyLQklhvFP4E8CIP8/HFnNPR2fRGO1PTaijQfdrYO28OItWxsrb7LXGbo8xKOP7lAiUbg==
-X-Received: by 2002:a7b:c142:: with SMTP id z2mr30488997wmi.10.1632149645581;
-        Mon, 20 Sep 2021 07:54:05 -0700 (PDT)
-Received: from [192.168.2.20] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id m18sm16064557wrn.85.2021.09.20.07.54.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Sep 2021 07:54:05 -0700 (PDT)
-Subject: Re: [PATCH v2 4/5] riscv: dts: microchip: drop unused pinctrl-names
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=zHBcy62XBnwwIXR6J0uJZFxZPjvGorUc2wPW3wjD7m8=;
+        b=BX1OScuPbMDeB5glkl8FbNNgYdKk8HBpImWR+e2NlJN+mQmxC+3t6ftv4NGfzODBGX
+         A915W3Fr0FOpRgLeGDX9ls3mtOxDXYMvwmapy5TMPAoUCsfkg9PbfTNQ9T6gMY2UV79u
+         4bYWCyiwIQ4GRl0iRDI71zh+BkNegyYkhwecom7a4+0p0Hi6fEAzJwMcvnCH0KfIfYIf
+         Db7lB4ZTIsaXAnbF3mFplvLJ3bTUoZvpREVspYNHEbS3MFC+Nfd7Z4K6fbKWq7egmQNC
+         C3NPs7UrTHVHkikpTL3fWfVFT4ooD6Q+fexYaS58l0jq/RSQ3P/cAPWmAFXKBQZRhjXR
+         kNrw==
+X-Gm-Message-State: AOAM531f+yNA2zHm/4LJs/xnLSB0wJzKv/2tcG7X7nVTsAdXOHdUoTPx
+        xEWymCW5OVZPQcHDipeteKdQ+I359DPUrQ==
+X-Google-Smtp-Source: ABdhPJy4OYzYqeDYcjPz6Mwx9k9+fK4xv1m5cyhQyXfKOeYKeK4hSfbYYvdWr5tpKKfZUg9/vzt5MQ==
+X-Received: by 2002:a2e:8e8f:: with SMTP id z15mr22868490ljk.121.1632150414239;
+        Mon, 20 Sep 2021 08:06:54 -0700 (PDT)
+Received: from mobilestation ([95.79.127.110])
+        by smtp.gmail.com with ESMTPSA id v26sm1319921ljv.77.2021.09.20.08.06.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 08:06:53 -0700 (PDT)
+Date:   Mon, 20 Sep 2021 18:06:51 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Apurva Nandan <a-nandan@ti.com>
 Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-References: <20210920132830.152802-1-krzysztof.kozlowski@canonical.com>
- <20210920132830.152802-4-krzysztof.kozlowski@canonical.com>
- <CAMuHMdX5vhihbKrXh4x_VyA2Cc=nR+53g_fZPHsuHVF56rBvMQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <ef5771df-86fa-524a-8a5c-c519e913330b@canonical.com>
-Date:   Mon, 20 Sep 2021 16:54:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Mark Brown <broonie@kernel.org>, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, michael@walle.cc
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nand: Convert to DT schema
+ format
+Message-ID: <20210920150651.vvdhennblwhdi3jw@mobilestation>
+References: <20210920142713.129295-1-a-nandan@ti.com>
+ <20210920142713.129295-2-a-nandan@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdX5vhihbKrXh4x_VyA2Cc=nR+53g_fZPHsuHVF56rBvMQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210920142713.129295-2-a-nandan@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/2021 16:32, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
-> 
-> On Mon, Sep 20, 2021 at 3:28 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->> pinctrl-names without pinctrl-0 does not have any sense:
->>
->>   arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: 'pinctrl-0' is a dependency of 'pinctrl-names'
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
->>
->> ---
->>
->> Changes since v1:
->> 1. Add review.
-> 
->> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->> @@ -33,6 +33,7 @@ properties:
->>        - items:
->>            - enum:
->>                - issi,is25lp016d
->> +              - issi,is25wp256
->>                - micron,mt25qu02g
->>                - mxicy,mx25r1635f
->>                - mxicy,mx25u6435f
-> 
-> This one looks like an accidental addition?
+Hello Apurva
 
-Thanks, I screwed up something during rebase... I'll send a v3.
+On Mon, Sep 20, 2021 at 07:57:12PM +0530, Apurva Nandan wrote:
+> Convert spi-nand.txt binding to YAML format with an added example.
+> 
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> ---
+>  .../devicetree/bindings/mtd/spi-nand.txt      |  5 --
+>  .../devicetree/bindings/mtd/spi-nand.yaml     | 62 +++++++++++++++++++
+>  2 files changed, 62 insertions(+), 5 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
+>  create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
 
-Best regards,
-Krzysztof
+Thanks for the bindings conversion patch. There are several comments
+below. But before addressing them it would be better to also get a
+response from Rob.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.txt b/Documentation/devicetree/bindings/mtd/spi-nand.txt
+> deleted file mode 100644
+> index 8b51f3b6d55c..000000000000
+> --- a/Documentation/devicetree/bindings/mtd/spi-nand.txt
+> +++ /dev/null
+> @@ -1,5 +0,0 @@
+> -SPI NAND flash
+> -
+> -Required properties:
+> -- compatible: should be "spi-nand"
+> -- reg: should encode the chip-select line used to access the NAND chip
+> diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.yaml b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
+> new file mode 100644
+> index 000000000000..601beba8d971
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SPI NAND flash
+> +
+> +maintainers:
+> +  - Apurva Nandan <a-nandan@ti.com>
+> +
+> +allOf:
+> +  - $ref: "mtd.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    const: spi-nand
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+
+> +  spi-max-frequency: true
+> +  spi-rx-bus-width: true
+> +  spi-tx-bus-width: true
+> +  rx-sample-delay-ns: true
+
+Since it's an SPI-client device there are more than these properties
+could be set for it. See the SPI-controller bindings schema:
+Documentation/devicetree/bindings/spi/spi-controller.yaml
+So there is two possible ways to make it more generic:
+1) Detach the spi-client part from the spi-controller.yaml bindings
+into a dedicated DT-schema file and refer to that new scheme from
+here.
+2) Forget about these controller-specific properties and let the
+parental SPI-controller bindings parsing them. Of course there must be
+at least one of the next properties declared for it to work:
+{unevaluatedProperties, additionalProperties}.
+
+It's up to Rob to decided which approach is better though...
+
+> +
+> +  '#address-cells': true
+> +  '#size-cells': true
+
+Aren't they always equal to 1?
+
+> +
+> +additionalProperties:
+> +  type: object
+
+I'd suggest to elaborate the way the partition sub-nodes looks
+like, for instance, the node names, supported compatible names,
+labels, etc.
+
+-Sergey
+
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        flash@6 {
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            compatible = "spi-nand";
+> +            reg = <0x6>;
+> +            spi-max-frequency = <42000000>;
+> +
+> +            partitions {
+> +                compatible = "fixed-partitions";
+> +                #address-cells = <1>;
+> +                #size-cells = <1>;
+> +
+> +                partition@0 {
+> +                    label = "boot";
+> +                    reg = <0 0x200000>;
+> +                };
+> +
+> +                partition@200000 {
+> +                    label = "rootfs";
+> +                    reg = <0x200000 0xce0000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.25.1
+> 
