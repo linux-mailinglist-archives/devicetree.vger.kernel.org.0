@@ -2,83 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4875411846
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 17:31:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 890F341185E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 17:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241578AbhITPdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 11:33:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57370 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241563AbhITPdT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 11:33:19 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 08B3A61107;
-        Mon, 20 Sep 2021 15:31:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632151912;
-        bh=kW5h4Wp87ZySDniC1nxTtzJqO7Y1LElsVScvvjvZqWM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=g/h5ImWaDriQyw1F6OxleG+ut1hQLVNC9avWfgfw6oWKtcC8Q+MdFWKr4q80PXpFN
-         bXU3gfXst8amN4xAFcfIh3P0k+ossMuvxriMTdNwrLuNZkc5E7klPkIXMIvBnrmoIn
-         f5Xnj+dYq+0uRH9c/9RyGOQzkPvfLZWemiQXYL1ZK5CgCegz5MiJAkI0jYeEPs6tIV
-         MeYHHPDettiCGGo8jV1X6kUmU723lau+S4QK88JK+x5EHYf2Dl/tFsB8X+Wkh+jojK
-         eb+9aw1XyYlwasdsbWUD7ieC8R+v2Yhp6YcCBwMAJ2zIN+FXKf0nsFNZvJEN5vk15w
-         ZzOVQnupicfiw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Derek Fang <derek.fang@realtek.com>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        alsa-devel@alsa-project.org
-Cc:     Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: rt5682s: correct several errors
-Date:   Mon, 20 Sep 2021 16:30:49 +0100
-Message-Id: <163215150720.38322.16264774156845282309.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210920112106.140918-1-krzysztof.kozlowski@canonical.com>
-References: <20210920112106.140918-1-krzysztof.kozlowski@canonical.com>
+        id S238083AbhITPjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 11:39:25 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:60066 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237313AbhITPjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 11:39:25 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18KFbXDV047343;
+        Mon, 20 Sep 2021 10:37:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1632152253;
+        bh=m8/oyTnbOL/hoQNXxgC/ec52PrS/GRlMDgPzmOaD8mg=;
+        h=From:To:CC:Subject:Date;
+        b=NJeYQd1srPBz066/+cvmDF9qcxhqHM9cCt6Vup4db+8ndZdj7k2RVzSbIOngOKea1
+         bn46E+8Xp/wiHFVhXCpId4BE2nNiczq/p8Oqtxionhl1vB2yMuyIdrZ/JihUy8oe2G
+         dSUEnqdww0RAu3lv6qJn6z7ePHMNAr+di04+W/+0=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18KFbW2N012097
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 20 Sep 2021 10:37:32 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 20
+ Sep 2021 10:37:32 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 20 Sep 2021 10:37:32 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18KFbPJi104098;
+        Mon, 20 Sep 2021 10:37:26 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Martin KaFai Lau <kafai@fb.com>,
+        Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <bpf@vger.kernel.org>
+Subject: [PATCH v3 0/6] CAN: Add support for CAN in AM65,J721e and AM64
+Date:   Mon, 20 Sep 2021 21:07:17 +0530
+Message-ID: <20210920153724.20203-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Sep 2021 13:21:06 +0200, Krzysztof Kozlowski wrote:
-> Correct several errors in rt5682s dtschema:
-> 1. The examples should be under "examples":
->     'example' is not one of ['$id', '$schema', 'title', 'description', 'examples', ...
-> 
-> 2. Missing type for vendor properties
-> 
-> 3. clock-names should be an array:
->     properties:clock-names:items: {'const': 'mclk'} is not of type 'array'
-> 
-> [...]
+The following series of patches add support for CAN in SoC's AM65, J721e
+and AM64.
 
-Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+The following series is dependent on,
+https://patchwork.kernel.org/project/netdevbpf/patch/20210920123344.2320-1-a-govindraju@ti.com/
 
-Thanks!
+changes since v2 -
+- correct the dtbs_check errors. clock names order and interrupts
+  property added in the dt bindings
+- added support for main mcan instances on common processor board
+  for j721e
+- rebased the series on top of latest linux-next head
 
-[1/1] ASoC: dt-bindings: rt5682s: correct several errors
-      commit: a7a18abbd26caf22e40165eb734e67d338735f5b
+changes since v1 -
+- changed the message ram configuration to use the maximum value
+  in each field, for better performance.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Aswath Govindraju (3):
+  arm64: dts: ti: am654-base-board/am65-iot2050-common: Disable mcan
+    nodes
+  arm64: dts: ti: k3-am64-main: Add support for MCAN
+  arm64: dts: ti: k3-am642-evm/sk: Add support for main domain mcan
+    nodes in EVM and disable them on SK
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Faiz Abbas (3):
+  arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
+  arm64: dts: ti: k3-j721e: Add support for MCAN nodes
+  arm64: dts: ti: k3-j721e-common-proc-board: Add support for mcu and
+    main mcan nodes
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |  28 +++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  40 ++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |   8 +
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |   8 +
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  30 +++
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |   8 +
+ .../dts/ti/k3-j721e-common-proc-board.dts     | 155 ++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 196 ++++++++++++++++++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  28 +++
+ 9 files changed, 501 insertions(+)
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+-- 
+2.17.1
 
-Thanks,
-Mark
