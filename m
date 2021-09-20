@@ -2,84 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07FE841175F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 16:45:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2DFD41178F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 16:51:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237901AbhITOq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 10:46:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39144 "EHLO mail.kernel.org"
+        id S241159AbhITOwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 10:52:32 -0400
+Received: from mout.perfora.net ([74.208.4.197]:50803 "EHLO mout.perfora.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237708AbhITOq2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 10:46:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 83BC760F6B;
-        Mon, 20 Sep 2021 14:45:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632149102;
-        bh=7cDcGS8H3dVH16lHnrmM5SjCWdPr+91GxGQ+fdE0o4o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=H4pyCnG33eGm6pwYU4CfGQyxRPxkIWjJD/Hl4BrjL+/FG3RuRGoXE3Vc4LmzOClR2
-         nZrdyOSYKZecUwPaJNfYA62XbP8KTgeNulG6YZwtCTeoYX490WAyUPt5dyolG4ShXF
-         UcYgwJRwcQUqqQGc4arypKSeP9MblRKHv+hBJaPZVEZA9sL8cUct0l6uYBIJ6O7oMW
-         fq1l7GzJnQoZ9rHzG1J3hK2CMSuMvgkZHTS4NnlxcXCSxffnMrifZ9jA1Cv5ohJUd9
-         EbYCMmd2fVmWsEycF5XI9bDl0xaNrqruag0dRfxYYwgkuvfdxy91Uf3lesM+sLK17k
-         Zj6909SBS+dBA==
-Date:   Mon, 20 Sep 2021 15:44:18 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Apurva Nandan <a-nandan@ti.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        id S240883AbhITOwQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 10:52:16 -0400
+Received: from toolbox.cardiotech.int ([81.221.236.183]) by mrelay.perfora.net
+ (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1Mlebm-1nAlzH1HYg-00iiwu;
+ Mon, 20 Sep 2021 16:49:53 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>, Marek Vasut <marex@denx.de>,
+        Martin KaFai Lau <kafai@fb.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Olof Johansson <olof@lixom.net>,
+        Otavio Salvador <otavio@ossystems.com.br>,
+        Pascal Zimmermann <pzimmermann@dh-electronics.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        michael@walle.cc
-Subject: Re: [PATCH v2 2/2] dt-bindings: snps,dw-apb-ssi: Use 'flash' node
- name instead of 'spi-flash' in example
-Message-ID: <20210920144418.GI4192@sirena.org.uk>
-References: <20210920142713.129295-1-a-nandan@ti.com>
- <20210920142713.129295-3-a-nandan@ti.com>
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Song Liu <songliubraving@fb.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Tim Harvey <tharvey@gateworks.com>, Yonghong Song <yhs@fb.com>,
+        bpf@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        soc@kernel.org
+Subject: [PATCH v4 0/9] ARM: prepare and add colibri imx6ull 1gb (emmc) support
+Date:   Mon, 20 Sep 2021 16:49:29 +0200
+Message-Id: <20210920144938.314588-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lrvsYIebpInmECXG"
-Content-Disposition: inline
-In-Reply-To: <20210920142713.129295-3-a-nandan@ti.com>
-X-Cookie: diplomacy, n:
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:W6WlD/PhwB5NKuiFUpbq9zYXddxkmRhEsbCoDh36Mxeat1DlEON
+ baYPgNMQaaOYRUD+sjfJeTz3qWJ01lWwfhmedyQgI81Cc9YzB8yAvWb8UxLBabvhAcu0Mkh
+ 6meI6GczvELssYAKhp0LPVMZ63JDbHWphKK8GMUEb4nYy6D/+Uiu3wv7ubFJQkwgXZB72L4
+ qHcmClI6P8P2DPy7I9raA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:0npW3v9eBkk=:KYQSawvhWHVPhlqfYWAzeX
+ zOK7+7ySLA9b0HdYea0hY+vHNh2EH5t5HAf1MJu/1luyhmjsFjmA4xAq7W1zpGSr7spPmyL57
+ HQEMrZVjI2pbEGKad6Z4kCr9OQdJ7X0WMUIva9GcogKlEcnCaEg1JSRJ2rCHfwRTN7unBbXW6
+ oK8M+z06biE7Lm0mfO2E/gBl8P8cU00HOLjN71NPhkndUW5avCXaAgnYzRqi1ovBr2Iqgbfkc
+ Tg9+aY2vlvt9eqbflEKgz8yvPo+dLkMp519Mm9eNLWFT9pw2EQTKorK0njhy8za/lxXEgp9EJ
+ 8BiwRdxscZnGPWRCbxk8395r7s1bsr5PU6bLl2wT9Xat3DGPPl3iIDiZhNYlk4K3hiMvxVPcR
+ X5Fpnx8qwtQZnj7UaOs8NFTcmGYsujamupIzkDRM6Q6MwivKVHNMAHbP86EbiNmrbPNmyn/pI
+ UIjHlASeWULAcRAuAUp14PUI53qHJ1A+qL5s7SUsfTUdP+lLzwvewTeYLbnLLIIgx1TjKSaDY
+ o9t8SHTUN44B49oBPo14yg/Qlzn7EzdnJrGCsU99Bjb5xkX5XkydumMuozCrRMYR3d6xM0rpF
+ Pr80aH4hPaqKVauv892c/i4zrAs/BWmjH92wL2JqFWACLrn2p7cyTUmstlwvSHVhZLo+0d13J
+ Oldr9nLrIGuGYakMSmIucmD7LGakCZshBNhj12D191do5ou0zQ9qBCs9mZdwPxpMuP+DM4Fd5
+ gTdElzTYNgYxaMJgPn+d8OgpgiawbszJbKIkVA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
---lrvsYIebpInmECXG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Mon, Sep 20, 2021 at 07:57:13PM +0530, Apurva Nandan wrote:
-> Change the nodename in the example with spi-nand from 'spi-flash@1'
-> to 'flash@1' to make the schema uniform with both spi-nand and spi-nor
-> flashes. jedec,spi-nor.yaml uses 'flash@' nodename for spi-nor flashes,
-> so make the spi-nand examples in dt-bindings use it too for uniformity.
+Clean-up imx_v6_v7_defconfig and then add support for the new Colibri
+iMX6ULL 1GB (eMMC) which builds on the success of the existing Colibri
+iMX6ULL SKUs using raw NAND but replaces this with more RAM (1 GB) and
+an eMMC (4 GB).
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Changes in v4:
+- Fix dt_binding_check line too long warnings as pointed out by Rob.
 
---lrvsYIebpInmECXG
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v3:
+- Add Fabio's reviewed-by. Thanks!
+- Added fixes tag as pointed out by Stefan and Fabio. Thanks!
+- Add Rob's ack. Thanks!
 
------BEGIN PGP SIGNATURE-----
+Changes in v2:
+- New patch cleaning-up dt-bindings documentation.
+- Fix indentation.
+- Use latest agreed upon SPDX-License-Identifier GPL-2.0+ OR MIT.
+- Drop AG in our copyright statement as recommended by our legal.
+- New patch documenting dt-bindings.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFInkEACgkQJNaLcl1U
-h9B3kgf8C0+e9onyf5hzlsH/Wy+bz8cm0v2pE7e7Jmbmb9T+l6SG5uVDV5XFg+hT
-TRA+OdGbxzmVJmozgcBeJW3rZHyfcv38uWuAJp7iQx6HjtOB5zRskChX76HvZUHE
-IlFilNB2KEW33E3eC+vBV8fzzwoG2Uu22OAHLAEIwZJmb+GdeQ5xPeGMuzjhdfva
-QCTEAOSopxfcphryTUeWGGLl5roXvR/8QCuySX/SOD7/5IIPmPnNo2mxmc+AdlfL
-rMAVTMBlzNvxY7MU2/zv75OEp2dgAixWaw+BhNKA5ns2HaNNTxGpJ1t3/oY0+3H7
-VXHvTG5vturPUxiDm/v7b9D5RDzHrw==
-=4fpd
------END PGP SIGNATURE-----
+Marcel Ziswiler (8):
+  ARM: imx_v6_v7_defconfig: enable mtd physmap
+  ARM: imx_v6_v7_defconfig: enable fb
+  ARM: imx_v6_v7_defconfig: change snd soc tlv320aic3x to i2c variant
+  ARM: imx_v6_v7_defconfig: rebuild default configuration
+  ARM: imx_v6_v7_defconfig: build imx sdma driver as module
+  ARM: imx_v6_v7_defconfig: enable bpf syscall and cgroup bpf
+  dt-bindings: arm: fsl: clean-up all toradex boards/modules
+  dt-bindings: arm: fsl: add toradex,colibri-imx6ull-emmc
 
---lrvsYIebpInmECXG--
+Max Krummenacher (1):
+  ARM: dts: colibri-imx6ull-emmc: add device tree
+
+ .../devicetree/bindings/arm/fsl.yaml          |  87 ++++----
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/imx6ull-colibri-emmc-eval-v3.dts |  17 ++
+ .../dts/imx6ull-colibri-emmc-nonwifi.dtsi     | 185 ++++++++++++++++++
+ arch/arm/boot/dts/imx6ull-colibri.dtsi        |  32 ++-
+ arch/arm/configs/imx_v6_v7_defconfig          |  46 ++---
+ 6 files changed, 299 insertions(+), 69 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-eval-v3.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-nonwifi.dtsi
+
+-- 
+2.26.2
+
