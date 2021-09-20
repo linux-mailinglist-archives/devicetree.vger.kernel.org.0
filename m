@@ -2,86 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B07741274D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 22:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59493412750
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 22:33:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbhITUdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 16:33:12 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:34791 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230176AbhITUbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 16:31:11 -0400
-Received: by mail-oi1-f178.google.com with SMTP id p2so26552242oif.1;
-        Mon, 20 Sep 2021 13:29:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AH19fZDa3RGD1bXp8KensKJGxcb/KKL33WSHbuvr/mU=;
-        b=RsTzGM/RHDUcfDk0n6rh6cdHqOzfTD0me4EqPjZKLDFx9r0imLpeEiAkJWft9N4z/8
-         Y+stkzXEaJJg272KDsu37pOIqiyWF1/BViLxq48hLhfR2DMnSTGsHXnKj3c4RGyde7qy
-         qqHGab1gGqyX7R1oQDcUi2fI+s/1tjf3wYDDGN6L1VngTgRELgZ0uef/3tImXeHZrqMY
-         K7NPdTSgr//3c216C0Bd0EB38tPFl/OkCxabnUn6HZT7qi2+MmJvtypLv0V80reIj3tE
-         iKLBBK7ytddY6ZOj9itRwBTbvho7yPej9eVYEItrF7KGex47cjrMi4bsJvtq1pXjLTwi
-         SK7Q==
-X-Gm-Message-State: AOAM532+quMTtKwchOjdHs7Wx/3hBOwFNGtImHapg3vJp+V5/V2fL5An
-        7GIEBYguD6SaLyJo5oh4jg==
-X-Google-Smtp-Source: ABdhPJxbK/iL/HBM5wgfss+lB7OVXLSTbwGo6rZFtSZ7S8wUZy7rjh4eYLbR2TGSaErAnOS1tB3eIw==
-X-Received: by 2002:a05:6808:1a29:: with SMTP id bk41mr733432oib.167.1632169784453;
-        Mon, 20 Sep 2021 13:29:44 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p21sm3431243oip.28.2021.09.20.13.29.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 13:29:43 -0700 (PDT)
-Received: (nullmailer pid 697302 invoked by uid 1000);
-        Mon, 20 Sep 2021 20:29:42 -0000
-Date:   Mon, 20 Sep 2021 15:29:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     thierry.reding@gmail.com, linux-tegra@vger.kernel.org,
-        airlied@linux.ie, robh+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
-        devicetree@vger.kernel.org, jonathanh@nvidia.com
-Subject: Re: [PATCH v6 1/3] dt-bindings: Add YAML bindings for NVDEC
-Message-ID: <YUjvNmsPEBZHVDw/@robh.at.kernel.org>
-References: <20210916145517.2047351-1-mperttunen@nvidia.com>
- <20210916145517.2047351-2-mperttunen@nvidia.com>
+        id S230002AbhITUez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 16:34:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51030 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230038AbhITUcz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 16:32:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B7039610A0;
+        Mon, 20 Sep 2021 20:31:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632169888;
+        bh=10ZL7PgHe9lbjtgAcJZmau9cDawPBD9XsDzRb/RyzN8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=V+/6CwVtDaudm8b/th6Nq7PIALw6HsqHtIajFBJVNKHbPDxgfLzRcp3lL7NXBH7FG
+         ZfIVcH8WEeQ+8fFj+T4ItZDL0Aerbwktyhe3LayI3SNOA9pAT9jdfVWQb4PPrtyXjU
+         C135f2loKqstaEwB28AiE5xL5Tq2QDidS5WrEBq1u2fOY/ThaG6v9SRPRRouc5T11b
+         rZLl5WpATkbnCLH6FlapL7Jb4r73M8dT5svcT0zlqqsKVsr93Gfbs7vn30IAqBxcWx
+         DBSUbDivrQRVnjJU9UJ4+H7BSgDWC5mFy3iVvOf9Kv6HqpIldaLoEyICZp+JJRWXYL
+         3kGBUVAaT4eLQ==
+Date:   Mon, 20 Sep 2021 13:31:26 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     <davem@davemloft.net>, <robh+dt@kernel.org>, <andrew@lunn.ch>,
+        <linux@armlinux.org.uk>, <f.fainelli@gmail.com>,
+        <alexandre.belloni@bootlin.com>, <vladimir.oltean@nxp.com>,
+        <UNGLinuxDriver@microchip.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-pm@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next 12/12] net: lan966x: add ethtool
+ configuration and statistics
+Message-ID: <20210920133126.642449aa@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20210920095218.1108151-13-horatiu.vultur@microchip.com>
+References: <20210920095218.1108151-1-horatiu.vultur@microchip.com>
+        <20210920095218.1108151-13-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210916145517.2047351-2-mperttunen@nvidia.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Sep 2021 17:55:15 +0300, Mikko Perttunen wrote:
-> Add YAML device tree bindings for NVDEC, now in a more appropriate
-> place compared to the old textual Host1x bindings.
-> 
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> ---
-> v6:
-> * Elaborated description for nvidia,host1x-class.
-> * Added default value for nvidia,host1x-class.
-> v5:
-> * Changed from nvidia,instance to nvidia,host1x-class optional
->   property.
-> * Added dma-coherent
-> v4:
-> * Fix incorrect compatibility string in 'if' condition
-> v3:
-> * Drop host1x bindings
-> * Change read2 to read-1 in interconnect names
-> v2:
-> * Fix issues pointed out in v1
-> * Add T194 nvidia,instance property
-> ---
->  .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 108 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> 
+On Mon, 20 Sep 2021 11:52:18 +0200 Horatiu Vultur wrote:
+> +static void lan966x_get_eth_mac_stats(struct net_device *dev,
+> +				      struct ethtool_eth_mac_stats *mac_stats)
 
-With the yamllint warning fixed,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Great to see this API used, please also consider adding RMON stats
+since the seem to be present.
