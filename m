@@ -2,108 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5D3411F47
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 19:38:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47C66412646
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 20:55:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348528AbhITRj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 13:39:58 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:48390 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346366AbhITRh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 13:37:58 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18KHaIG1046675;
-        Mon, 20 Sep 2021 12:36:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632159378;
-        bh=JehA/AdZ62AVPkLLoqCPDg/CoSo8j/lugoyiuCZiRnQ=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=elLuM0fsfzsZXoNfsPZJ0028D7v8svy0M1v3N4mDFayb5MTLhASXfrWpE2DcT/yoD
-         WGlkPW2v5JXRjlJ+8vSgrXy46vPhiVWP+gdmAj98X9HdZ/gy750TskcPWB4z95ngrz
-         xwvhFeKniuXdJWpfkPtVNklXp2F7FHxn83oJw1Vo=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18KHaIA1042167
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Sep 2021 12:36:18 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 20
- Sep 2021 12:36:17 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 20 Sep 2021 12:36:17 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18KHaGp4011525;
-        Mon, 20 Sep 2021 12:36:17 -0500
-Date:   Mon, 20 Sep 2021 23:06:15 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Serge Semin <fancer.lancer@gmail.com>
-CC:     Apurva Nandan <a-nandan@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <michael@walle.cc>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nand: Convert to DT schema
- format
-Message-ID: <20210920173613.oqk6lnmipabkt25s@ti.com>
-References: <20210920142713.129295-1-a-nandan@ti.com>
- <20210920142713.129295-2-a-nandan@ti.com>
- <20210920150651.vvdhennblwhdi3jw@mobilestation>
+        id S1355013AbhITS4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 14:56:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38112 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1385811AbhITSw2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 14:52:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 66A036137D;
+        Mon, 20 Sep 2021 17:39:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632159597;
+        bh=903YqIP8EUw0vSLRBRcde8XjuLqF8cyeILPKV/3g0IM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bNkmkaKO2MkoLOBBQhWsGuHqS0WLUmeqxBLYI8gIcQnHv1DneU0wJFO9OgfZu0JMm
+         l7SACha1ruLKSF15gA+/snD/BJ5UtpZIQgLrOds5vzx6mG9J/fLy7eVSvCofRncu3M
+         gb+Tr5RmmEy0MGdDQQhphvJ2vfTyKbACg6JCqAC5CtCH0XozrLC7rw37ipbIEvrcQO
+         dhldO4XSvLuZ3EFl49YT8KB47oYI9am6zhF47TpVmlDc2ZqCufKYNUMqxzU179WIrb
+         yQ79cP0Sz15KId3dgZe7ONUExNMzncZthXbANFjw5QEUvzpWkAsi6+6Te+ovLGX/vu
+         xRUpUHIRSAb7Q==
+Received: by mail-ed1-f47.google.com with SMTP id eg28so41684068edb.1;
+        Mon, 20 Sep 2021 10:39:57 -0700 (PDT)
+X-Gm-Message-State: AOAM530KIM3c7ifXu/cdCRfK5++clGemTduuu9qd+JQfLfP7EsUfItFV
+        NSpZ6dr0/DJ09FKe0JMttqNLXMnuHbVvGh/Skg==
+X-Google-Smtp-Source: ABdhPJzjibJYMKA9ye+veIVFRD13W50GOvjJ1druj/8FcBQX6F7YnxBrkI7wbV2lKiSfaKJsvWwGHnH4O3sC7tCSpDk=
+X-Received: by 2002:a05:6402:b23:: with SMTP id bo3mr30686547edb.145.1632159595923;
+ Mon, 20 Sep 2021 10:39:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210920150651.vvdhennblwhdi3jw@mobilestation>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210919125536.117743-1-marcel@ziswiler.com> <20210919125536.117743-8-marcel@ziswiler.com>
+ <1632140917.871356.4136126.nullmailer@robh.at.kernel.org> <d0568e8c5c46ebc04530b09c14c500d9ae8d5e51.camel@toradex.com>
+In-Reply-To: <d0568e8c5c46ebc04530b09c14c500d9ae8d5e51.camel@toradex.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 20 Sep 2021 12:39:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJSR69YSSx7Gae+1Pof9DdkMYnaWF8U+YP13=2Zm9ujBA@mail.gmail.com>
+Message-ID: <CAL_JsqJSR69YSSx7Gae+1Pof9DdkMYnaWF8U+YP13=2Zm9ujBA@mail.gmail.com>
+Subject: Re: [PATCH v3 7/9] dt-bindings: arm: fsl: clean-up all toradex boards/modules
+To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc:     "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "leoyang.li@nxp.com" <leoyang.li@nxp.com>,
+        "linux@rempel-privat.de" <linux@rempel-privat.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "s.riedmueller@phytec.de" <s.riedmueller@phytec.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/09/21 06:06PM, Serge Semin wrote:
-> Hello Apurva
-> 
-> On Mon, Sep 20, 2021 at 07:57:12PM +0530, Apurva Nandan wrote:
-> > Convert spi-nand.txt binding to YAML format with an added example.
-> > 
-> > Signed-off-by: Apurva Nandan <a-nandan@ti.com>
-> > ---
-> >  .../devicetree/bindings/mtd/spi-nand.txt      |  5 --
-> >  .../devicetree/bindings/mtd/spi-nand.yaml     | 62 +++++++++++++++++++
-> >  2 files changed, 62 insertions(+), 5 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
-> >  create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
-[...]
-> 
-> > +  spi-max-frequency: true
-> > +  spi-rx-bus-width: true
-> > +  spi-tx-bus-width: true
-> > +  rx-sample-delay-ns: true
-> 
-> Since it's an SPI-client device there are more than these properties
-> could be set for it. See the SPI-controller bindings schema:
-> Documentation/devicetree/bindings/spi/spi-controller.yaml
-> So there is two possible ways to make it more generic:
-> 1) Detach the spi-client part from the spi-controller.yaml bindings
-> into a dedicated DT-schema file and refer to that new scheme from
-> here.
-> 2) Forget about these controller-specific properties and let the
-> parental SPI-controller bindings parsing them. Of course there must be
-> at least one of the next properties declared for it to work:
-> {unevaluatedProperties, additionalProperties}.
+On Mon, Sep 20, 2021 at 9:19 AM Marcel Ziswiler
+<marcel.ziswiler@toradex.com> wrote:
+>
+> Hi Rob
+>
+> On Mon, 2021-09-20 at 07:28 -0500, Rob Herring wrote:
+> > On Sun, 19 Sep 2021 14:55:34 +0200, Marcel Ziswiler wrote:
+> > > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> > >
+> > > Simplify and unify the distinction between modules and carrier boards.
+> > >
+> > > Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> > > Acked-by: Rob Herring <robh@kernel.org>
+> > > Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> > >
+> > > ---
+> > >
+> > > Changes in v3:
+> > > - Add Fabio's reviewed-by. Thanks!
+> > > - Add Rob's ack. Thanks!
+> > >
+> > > Changes in v2:
+> > > - New patch cleaning-up dt-bindings documentation.
+> > >
+> > >  .../devicetree/bindings/arm/fsl.yaml          | 79 ++++++++++---------
+> > >  1 file changed, 41 insertions(+), 38 deletions(-)
+> > >
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> > ./Documentation/devicetree/bindings/arm/fsl.yaml:475:111: [warning] line too long (113 > 110 characters)
+> > (line-length)
+> > ./Documentation/devicetree/bindings/arm/fsl.yaml:612:111: [warning] line too long (113 > 110 characters)
+> > (line-length)
+> >
+> > dtschema/dtc warnings/errors:
+> >
+> > doc reference errors (make refcheckdocs):
+> >
+> > See https://patchwork.ozlabs.org/patch/1529833
+> >
+> > This check can fail if there are any dependencies. The base for a patch
+> > series is generally the most recent rc1.
+> >
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> >
+> > pip3 install dtschema --upgrade
+>
+> Strange, I have done all of that but I still can not convince dt_binding_check on my system to show me that
+> same yamllint warnings/errors on that fsl.yaml file. However, it otherwise seems to work as it shows dozens of
+> other issues throughout Documentation/devicetree/bindings but those are not for me to fix, at least not right
+> now (;-p).
 
-I proposed a patch series [0] to fix this for SPI NOR, which can be used 
-here as well. A re-roll is long overdue though. Let me see when I can 
-find time to get to it. In the meantime, this should be fine IMO.
+You shouldn't be seeing dozens of warnings unless you are on the
+current linux-next. linux-next shouldn't be the basis for your
+development as that's not a tree any maintainer applies patches to.
 
-[0] https://patchwork.kernel.org/project/spi-devel-general/list/?series=497129&state=%2A&archive=both
-
-
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Rob
