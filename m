@@ -2,95 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B04484113C7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 13:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D2824113C9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 13:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235696AbhITLvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 07:51:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58038 "EHLO mail.kernel.org"
+        id S231391AbhITLvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 07:51:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58074 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235132AbhITLvX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 07:51:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8792960FED;
-        Mon, 20 Sep 2021 11:49:55 +0000 (UTC)
+        id S236839AbhITLvY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 07:51:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AAE1E6108C;
+        Mon, 20 Sep 2021 11:49:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632138596;
-        bh=V+cmBJRSR3gf9oZ1kuR9sZl6koEX81Mz5k2mSytdilA=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=KVi60HGTp7mtplQ+bYfIsLc2QLkmJeu/k0QXTm3jQQ8JZ5WILN/8tY+R6HKa+nbr0
-         MMtgsZ/IBxT4zw3RknX8rUBJuyFrjT/Se4xpvq7SMgYcjvP9drAz+iYbXdn+3jtWPU
-         DjlEpiVzHvqWDLo5tSms/bO8VZNbzNwpq2n3gzOFfwKoL4u+rId2uSNCCU22U9/p9/
-         FOSs63radpcC3hB6XIp6vTRcNglcEsT0EDxfwGZnf7CKJIAVNZpjLLfTY4M6HWrZ5c
-         /x1T20oHOhauboJukxqYTwMTt43PNi+XIGPaVUcZdRfSb4UhilKyHl9mvpMHDzetdR
-         9xZL5FlAKgDTQ==
-References: <cover.1631871264.git.shubhrajyoti.datta@xilinx.com>
- <7341ed525f03f4593958bb3d1232660df23f838f.1631871264.git.shubhrajyoti.datta@xilinx.com>
-User-agent: mu4e 1.6.6; emacs 27.2
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        gregkh@linuxfoundation.org, shubhrajyoti.datta@gmail.com,
-        git@xilinx.com
-Subject: Re: [PATCH v2 1/2] usb: gadget: udc-xilinx: Add clock support
-Date:   Mon, 20 Sep 2021 14:48:52 +0300
-In-reply-to: <7341ed525f03f4593958bb3d1232660df23f838f.1631871264.git.shubhrajyoti.datta@xilinx.com>
-Message-ID: <87wnnbqxem.fsf@kernel.org>
+        s=k20201202; t=1632138598;
+        bh=V6kgYgogW976xpByhMqKFGsk3ORwS5VxWZ+29DRMxHY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AlaozWlWlARDWspL5oZTclqYkhokylGOFqWGYdLdB02cO47tSDd7L0tudUYAx3dFf
+         txoMY4xg7OH8bq+ztj99ZgC8Kdaa4BeMHN2IR+8LKff3V/XnyRCOiX3nIr8n4WYsgO
+         wPii8/jg2yFfALwoeAkHFdW2J1A3Z82epJbqEX5sJZFIhoddEzzQt1xlAkrU8N+6JV
+         ALX+HYfiiIK9wg6jAUHh3l0F8m8maKsuO4amRpPX+xwq3B2TL58aWCkXlXsG0eYDQq
+         m3wPWMWnrVgQPWVMX+2NRvsUwSf6peLFQBTpbbfn2715FyElDuxOSeuoHl2dFob08F
+         Zz2N0RgiGWezg==
+Date:   Mon, 20 Sep 2021 12:49:14 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
+Message-ID: <20210920114914.GC4192@sirena.org.uk>
+References: <20210903231536.225540-1-frattaroli.nicolas@gmail.com>
+ <42974939.Tn3hggVSkZ@archbook>
+ <20210916122549.GF5048@sirena.org.uk>
+ <2435067.tOv7cHfTnj@archbook>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZfOjI3PrQbgiZnxM"
+Content-Disposition: inline
+In-Reply-To: <2435067.tOv7cHfTnj@archbook>
+X-Cookie: diplomacy, n:
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Hi,
+--ZfOjI3PrQbgiZnxM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com> writes:
-> Currently the driver depends on the  bootloader to enable the clocks.
-> Add support for clocking. The patch enables the clock at  probe and
-> disables them at remove.
->
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> ---
->  drivers/usb/gadget/udc/udc-xilinx.c | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
->
-> diff --git a/drivers/usb/gadget/udc/udc-xilinx.c b/drivers/usb/gadget/udc/udc-xilinx.c
-> index fb4ffedd6f0d..30070a488c87 100644
-> --- a/drivers/usb/gadget/udc/udc-xilinx.c
-> +++ b/drivers/usb/gadget/udc/udc-xilinx.c
-> @@ -11,6 +11,7 @@
->   * USB peripheral controller (at91_udc.c).
->   */
->  
-> +#include <linux/clk.h>
->  #include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/dma-mapping.h>
-> @@ -171,6 +172,7 @@ struct xusb_ep {
->   * @addr: the usb device base address
->   * @lock: instance of spinlock
->   * @dma_enabled: flag indicating whether the dma is included in the system
-> + * @clk: pointer to struct clk
->   * @read_fn: function pointer to read device registers
->   * @write_fn: function pointer to write to device registers
->   */
-> @@ -188,6 +190,7 @@ struct xusb_udc {
->  	void __iomem *addr;
->  	spinlock_t lock;
->  	bool dma_enabled;
-> +	struct clk *clk;
->  
->  	unsigned int (*read_fn)(void __iomem *);
->  	void (*write_fn)(void __iomem *, u32, u32);
-> @@ -2092,6 +2095,26 @@ static int xudc_probe(struct platform_device *pdev)
->  	udc->gadget.ep0 = &udc->ep[XUSB_EP_NUMBER_ZERO].ep_usb;
->  	udc->gadget.name = driver_name;
->  
-> +	udc->clk = devm_clk_get(&pdev->dev, "s_axi_aclk");
-> +	if (IS_ERR(udc->clk)) {
+On Sun, Sep 19, 2021 at 07:38:47PM +0200, Nicolas Frattaroli wrote:
 
-might be a way idea to add a dev_warn() here in case you get
-ENOENT. This should let people that DTS has to be updated accordingly.
+> Going forward, what would be a solution that is acceptable for upstream? =
+As=20
+> far as I understand, the obvious route here is to drop the rockchip,fsync-
+> half-frame property and just always set this mode when we're using a TDM =
+bus=20
+> format. Is this correct?
 
--- 
-balbi
+Yes.
+
+> According to the TRM, the register bit this sets only affects TDM modes.=
+=20
+> Though since TDM is not standardised in any way from what I've read onlin=
+e, it=20
+> is possible that there is hardware out there which expects the non-fsync-=
+half-
+> frame mode, but I am completely fine with only thinking about this hardwa=
+re=20
+> when it actually surfaces.
+
+Right, we can figure it out later.
+
+--ZfOjI3PrQbgiZnxM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFIdToACgkQJNaLcl1U
+h9BGIAgAgRW0++RxUFblbEgs7rujuZ+mmldKzxR18cC+Os/498LvNXyA+iEO49w8
+uKcqHbz77yNSnVJj8aJhhLin6Xie6m755h+PFnlZ2IbjCRrfHT1QPP3sPmfJn3xW
+RrZHrQX3kKPb3Tbm8s9tdz0E1HgjkqnrlETHnGbXYL5RUv2/SzDQlAD40i153a1T
+vcaIhIvmIH5un/jbFoJSPlp11EQWsMN1dz1CvWaT4m+3AsU/oht57XdVeJHk53h1
+HjXefXq9ZE6bjHSwudceZtHvM4aFf+3IVmRM4i9ZKHF046mOYWxw+49Z3dTtA7Bi
+ipwsNPQOMZGPIfZTgZ8+ST/F4aJTlA==
+=xhRq
+-----END PGP SIGNATURE-----
+
+--ZfOjI3PrQbgiZnxM--
