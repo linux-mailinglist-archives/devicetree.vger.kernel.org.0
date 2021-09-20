@@ -2,95 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5F08412C06
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 04:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F500412C08
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 04:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352343AbhIUCmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1352346AbhIUCmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 20 Sep 2021 22:42:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36492 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241538AbhIUCE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 22:04:56 -0400
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77482C143A48
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:17:22 -0700 (PDT)
-Received: by mail-oo1-xc33.google.com with SMTP id m14-20020a4ad50e000000b002912a944a47so6163806oos.12
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:17:22 -0700 (PDT)
+        with ESMTP id S1346612AbhIUCSh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 22:18:37 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 084B1C09B191
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:39:26 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id k23so12672513pji.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:39:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=JjZwsjLoE1v3IYa2GVHYD3KilZhhQVThWYCXDu9nvYo=;
-        b=a63x+bgfAIdvw+z6zqMvEu6JrCNqun+9IqImsNVfxFsirapOdMZ+eBj0e2g1IRZA8g
-         AhQnWYI3S1LMtRTf3cyc5VHr2OowcGQUtv7/UympQw8t+7yyJIH+q8S1hc4KHM47rWK6
-         ICe0PLjGSWwqVqs4PwDznSR8RBSF3gFpTPQfI=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=frpV2KjL9O4b/2Y9jxZTDUyRJEQdHYp6on9tzVgeCIQ=;
+        b=ZWlVLl0edVPr49dYp31FiTmSJxyPEQx3iZqavs7jGQDcyh8VyIvlCT0X4dFACT5z2W
+         DqFzCiB/KBwo8feodMxGxSfPudZnnSjpPEy8wpl8IGJk59BSh9X/Mkb0mI0venyUcBn7
+         qNAcLIRrUwdbE4eh/ZtE++h9OWmKpvwVwJ5yA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=JjZwsjLoE1v3IYa2GVHYD3KilZhhQVThWYCXDu9nvYo=;
-        b=uij/Rbw+QyhOcAynJlxEYvRZnHo7RkVkCDmCuV2jm/goXpQ7FePGasvuEmgmufTzvG
-         u24E8NX5+a/8uZmEZ+vJpZ0+Ef0wnLeO1l0plR0V+xT3WB6P5Ca7bAd2fUUU8qYkNGiZ
-         CwnASOsnYLmxI4HTcY9HQcXg/FZtFK+sFvf8GdTkfQhbKByHr4Vwrd5XbP1R0Mb+7c/j
-         PKrmeVx+alT+xKrM2x0TnwWpzlQFjnioh6BS//t9/XR3dzDoiESVB8H2IZlT+qBY8C7o
-         T1sJviG95llNEtqXH8E1QTHvysfQgAuZtbWbBG78/PA+ewRr0UB9OtmWWDSaeZUasS4u
-         QuQw==
-X-Gm-Message-State: AOAM532JF3TvXNME+is/94d4yyV9m6uPagMRR3yQUCMEVlkFibzIUZv2
-        jNyQSrb/ZIcam5Yfow+b9XzJpVS6fMQKTatCDnS37w==
-X-Google-Smtp-Source: ABdhPJwVjR/WftKlNJXp2AGVuRgbTEYRYkgthir6kT3bKkja1m6mMkzqMgaNf1nOTAkyliApojmA+4e7jQQ/i3tbxgo=
-X-Received: by 2002:a4a:c3c2:: with SMTP id e2mr7886842ooq.8.1632161840976;
- Mon, 20 Sep 2021 11:17:20 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 20 Sep 2021 11:17:20 -0700
-MIME-Version: 1.0
-In-Reply-To: <1632123331-2425-2-git-send-email-srivasam@codeaurora.org>
-References: <1632123331-2425-1-git-send-email-srivasam@codeaurora.org> <1632123331-2425-2-git-send-email-srivasam@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Mon, 20 Sep 2021 11:17:20 -0700
-Message-ID: <CAE-0n51L7YSA4FDLv_2Q9U3nzxK1YY8hRtZ-G0cs42nomySMTA@mail.gmail.com>
-Subject: Re: [PATCH 1/7] ASoC: qcom: Add compatible names in va,wsa,rx,tx
- codec drivers for sc7280
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=frpV2KjL9O4b/2Y9jxZTDUyRJEQdHYp6on9tzVgeCIQ=;
+        b=pGcnLB8r5vt6dR0nC8dRS8dzP/MdthYIRwIYKMSgdBx7WMmWi9f1L5Ud+Oa6XP9G//
+         kwtW0l9ETCFiQ5j85e15WVJ5saqTsw6SpksQV8lVZu713CPUCZWXGcnjXYRGdViawDr7
+         zw/QyY27TCmOKt//zZTeid7cttGQ+JT3M+GljYi/rhezuYs23SUcstIRv9bs6vIvvtuJ
+         UmMlYsXQ9W5BUAUhn5Ip/jcFJETmGjFEoCylbAHEhmH19H0A3K6JCKIOpeTl42PMhnQg
+         6anH6pI6Ilpf6P9WnHYLHTk875RQpFW9Ys8MMuObudma8dXqb7imqpHdVncGY3TFIAyj
+         WB7A==
+X-Gm-Message-State: AOAM532Q/BUlwvvxXd24mylfyBmIa0M3w1esGyFEmlhj/GIh3XpC3I1F
+        kseum/1jjbyQm7Lz44BoKzqndw==
+X-Google-Smtp-Source: ABdhPJzgKvvf2bobtfDNd9fqzq1s9eSAWtu4TmcZ3I7Ye0dLz8rX8jFmO7/cGm/5Cq1p4QkF+MM/Dg==
+X-Received: by 2002:a17:902:7488:b0:13c:9740:3c13 with SMTP id h8-20020a170902748800b0013c97403c13mr23849037pll.76.1632163165487;
+        Mon, 20 Sep 2021 11:39:25 -0700 (PDT)
+Received: from sujitka-glaptop.hsd1.ca.comcast.net ([2601:646:8e00:b2f0:e1f3:7004:a225:f03a])
+        by smtp.gmail.com with ESMTPSA id b3sm14499075pfo.23.2021.09.20.11.39.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 11:39:24 -0700 (PDT)
+From:   Sujit Kautkar <sujitka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     swboyd@chromium.org, devicetree@vger.kernel.org, elder@linaro.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        Sujit Kautkar <sujitka@chromium.org>
+Subject: [PATCH v1] arm64: dts: qcom: sc7180-trogdor: Enable IPA on LTE only SKUs
+Date:   Mon, 20 Sep 2021 11:32:50 -0700
+Message-Id: <20210920113220.v1.1.I904da9664f294fcf222f6f378d37eaadd72ca92e@changeid>
+X-Mailer: git-send-email 2.31.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-09-20 00:35:25)
-> Add compatible names for sc7280 based targets in digital codec drivers
-> va,wsa,rx and tx.
->
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
->  sound/soc/codecs/lpass-rx-macro.c  | 1 +
->  sound/soc/codecs/lpass-tx-macro.c  | 1 +
->  sound/soc/codecs/lpass-va-macro.c  | 1 +
->  sound/soc/codecs/lpass-wsa-macro.c | 1 +
->  4 files changed, 4 insertions(+)
->
-> diff --git a/sound/soc/codecs/lpass-rx-macro.c b/sound/soc/codecs/lpass-rx-macro.c
-> index 196b068..520c760 100644
-> --- a/sound/soc/codecs/lpass-rx-macro.c
-> +++ b/sound/soc/codecs/lpass-rx-macro.c
-> @@ -3578,6 +3578,7 @@ static int rx_macro_remove(struct platform_device *pdev)
->
->  static const struct of_device_id rx_macro_dt_match[] = {
->         { .compatible = "qcom,sm8250-lpass-rx-macro" },
-> +       { .compatible = "qcom,sc7280-lpass-rx-macro" },
+Enable the IPA node for LTE and skip for wifi-only SKUs
 
-Please sort alphabetically on compatible string.
+Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
+---
 
->         { }
->  };
->  MODULE_DEVICE_TABLE(of, rx_macro_dt_match);
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi | 11 +++++++++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi         | 11 -----------
+ 2 files changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi
+index 469aad4e5948c..fd4b712037542 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi
+@@ -17,3 +17,14 @@ &remoteproc_mpss {
+ 	firmware-name = "qcom/sc7180-trogdor/modem/mba.mbn",
+ 			"qcom/sc7180-trogdor/modem/qdsp6sw.mbn";
+ };
++
++&ipa {
++	status = "okay";
++
++	/*
++	 * Trogdor doesn't have QHEE (Qualcomm's EL2 blob), so the
++	 * modem needs to cover certain init steps (GSI init), and
++	 * the AP needs to wait for it.
++	 */
++	modem-init;
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 6e96024a487cd..3d8b9c6b21a85 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -754,17 +754,6 @@ alc5682: codec@1a {
+ 	};
+ };
+ 
+-&ipa {
+-	status = "okay";
+-
+-	/*
+-	 * Trogdor doesn't have QHEE (Qualcomm's EL2 blob), so the
+-	 * modem needs to cover certain init steps (GSI init), and
+-	 * the AP needs to wait for it.
+-	 */
+-	modem-init;
+-};
+-
+ &lpass_cpu {
+ 	status = "okay";
+ 
+-- 
+2.31.0
+
