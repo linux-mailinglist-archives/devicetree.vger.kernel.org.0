@@ -2,115 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F500412C08
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 04:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF4D412C09
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 04:40:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352346AbhIUCmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 22:42:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39776 "EHLO
+        id S1352347AbhIUCmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 22:42:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346612AbhIUCSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 22:18:37 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 084B1C09B191
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:39:26 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id k23so12672513pji.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:39:26 -0700 (PDT)
+        with ESMTP id S238347AbhIUC02 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 22:26:28 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7F13C1E3251;
+        Mon, 20 Sep 2021 12:03:34 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id c22so65008126edn.12;
+        Mon, 20 Sep 2021 12:03:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=frpV2KjL9O4b/2Y9jxZTDUyRJEQdHYp6on9tzVgeCIQ=;
-        b=ZWlVLl0edVPr49dYp31FiTmSJxyPEQx3iZqavs7jGQDcyh8VyIvlCT0X4dFACT5z2W
-         DqFzCiB/KBwo8feodMxGxSfPudZnnSjpPEy8wpl8IGJk59BSh9X/Mkb0mI0venyUcBn7
-         qNAcLIRrUwdbE4eh/ZtE++h9OWmKpvwVwJ5yA=
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=o23tvqbeMHj1qDEUMi/8ydwOa2gB4JJoEnpgkeFEwlA=;
+        b=h1YrLcb5PocnjEZsPr2k3GDjzjtT5/qYhF/nssyKwKDrEda+NE/KwxYxK1x6CMTjcF
+         iQt4+gGmlwtdMKgOTZFV5DCP96ihL6Vju0rwZ5Vu/85Gj2sJVRuBiKOuhpMPBG4FNhUJ
+         adBjc3CJfr/IrHIYFo4Wgc5G86oB6CsRtt7BfU3d1fr7gJT/cixid9vLrscEvQPU45pv
+         mUSt46I/P1jyLwuedkdeP4XrkovhYPXIZSM3ATIzOG1ZSoS/0pLMcu7iTYdhmccVQjHd
+         iKeRYsqymPb3BLJF9ksKa9nx9+Dl64HwWWHy0Nv4E0fa3y08LMGak1h18bf0fc9j9+HL
+         Hdsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=frpV2KjL9O4b/2Y9jxZTDUyRJEQdHYp6on9tzVgeCIQ=;
-        b=pGcnLB8r5vt6dR0nC8dRS8dzP/MdthYIRwIYKMSgdBx7WMmWi9f1L5Ud+Oa6XP9G//
-         kwtW0l9ETCFiQ5j85e15WVJ5saqTsw6SpksQV8lVZu713CPUCZWXGcnjXYRGdViawDr7
-         zw/QyY27TCmOKt//zZTeid7cttGQ+JT3M+GljYi/rhezuYs23SUcstIRv9bs6vIvvtuJ
-         UmMlYsXQ9W5BUAUhn5Ip/jcFJETmGjFEoCylbAHEhmH19H0A3K6JCKIOpeTl42PMhnQg
-         6anH6pI6Ilpf6P9WnHYLHTk875RQpFW9Ys8MMuObudma8dXqb7imqpHdVncGY3TFIAyj
-         WB7A==
-X-Gm-Message-State: AOAM532Q/BUlwvvxXd24mylfyBmIa0M3w1esGyFEmlhj/GIh3XpC3I1F
-        kseum/1jjbyQm7Lz44BoKzqndw==
-X-Google-Smtp-Source: ABdhPJzgKvvf2bobtfDNd9fqzq1s9eSAWtu4TmcZ3I7Ye0dLz8rX8jFmO7/cGm/5Cq1p4QkF+MM/Dg==
-X-Received: by 2002:a17:902:7488:b0:13c:9740:3c13 with SMTP id h8-20020a170902748800b0013c97403c13mr23849037pll.76.1632163165487;
-        Mon, 20 Sep 2021 11:39:25 -0700 (PDT)
-Received: from sujitka-glaptop.hsd1.ca.comcast.net ([2601:646:8e00:b2f0:e1f3:7004:a225:f03a])
-        by smtp.gmail.com with ESMTPSA id b3sm14499075pfo.23.2021.09.20.11.39.23
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=o23tvqbeMHj1qDEUMi/8ydwOa2gB4JJoEnpgkeFEwlA=;
+        b=vv0MQpJMFzlgOqzurKmRd6l97PsK8YHqiPidV/kIOQ9B9Tvbl7KG7rsZyVTivfp9Eh
+         h3qp6RaMkYl9cVbs51M5nkUhoQ3tEXsfVQ23OduDSF6esp85pQ27uGuWL2sblxYI8bfK
+         psMFzcUrz1q/arZMC+eGe7LZDh6gO/6K5byuJM3M5cZczcNw3Q8r8v2oxX+FIa2q0yYF
+         JmjPU46BptS9dpyguL/a9yv0ApXaBUfGiDUaU/6D+IuIq/72hu8guNcVbzUBDMuxwaB8
+         sGCaUW0ux8B1CcLwLpTaihJuLjVMDk4uvIXP4MCrFjpAsIVqco/eSCoRymffTW0qmLnv
+         +hRQ==
+X-Gm-Message-State: AOAM532AF5uMvXTE3+SGm1wXuvo7YD6WuL2AGw/p8crrkRKov9n3n+UD
+        4sMK9uXCC7EaQNW09pFscDc=
+X-Google-Smtp-Source: ABdhPJx6rA7X1b39sQpaJioTLCSknE8y1KtajsuCK3X7B6AUNrG5u9KjQykJuwmxDJUAyjPgrpFxQw==
+X-Received: by 2002:a50:d8ce:: with SMTP id y14mr25040166edj.92.1632164613284;
+        Mon, 20 Sep 2021 12:03:33 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-67-254.ip85.fastwebnet.it. [93.42.67.254])
+        by smtp.gmail.com with ESMTPSA id k12sm6484046ejk.63.2021.09.20.12.03.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 11:39:24 -0700 (PDT)
-From:   Sujit Kautkar <sujitka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     swboyd@chromium.org, devicetree@vger.kernel.org, elder@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sujit Kautkar <sujitka@chromium.org>
-Subject: [PATCH v1] arm64: dts: qcom: sc7180-trogdor: Enable IPA on LTE only SKUs
-Date:   Mon, 20 Sep 2021 11:32:50 -0700
-Message-Id: <20210920113220.v1.1.I904da9664f294fcf222f6f378d37eaadd72ca92e@changeid>
-X-Mailer: git-send-email 2.31.0
+        Mon, 20 Sep 2021 12:03:32 -0700 (PDT)
+Date:   Mon, 20 Sep 2021 21:02:44 +0200
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH 1/2] drivers: net: dsa: qca8k: add support
+ for led config
+Message-ID: <YUja1JsFJNwh8hXr@Ansuel-xps.localdomain>
+References: <20210920180851.30762-1-ansuelsmth@gmail.com>
+ <YUjZNA1Swo6Bv3/Q@lunn.ch>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YUjZNA1Swo6Bv3/Q@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the IPA node for LTE and skip for wifi-only SKUs
+On Mon, Sep 20, 2021 at 08:55:48PM +0200, Andrew Lunn wrote:
+> On Mon, Sep 20, 2021 at 08:08:50PM +0200, Ansuel Smith wrote:
+> > Add support for led control and led toggle.
+> > qca8337 and qca8327 switch have various reg to control port leds.
+> > The current implementation permit to toggle them on/off and to declare
+> > their blink rules based on the entry in the dts.
+> > They can also be declared in userspace by the "control_rule" entry in
+> > the led sysfs. When hw_mode is active (set by default) the leds blink
+> > based on the control_rule. There are 6 total control rule.
+> > Control rule that applies to phy0-3 commonly used for lan port.
+> > Control rule that applies to phy4 commonly used for wan port.
+> > Each phy port (5 in total) can have a maximum of 3 different leds
+> > attached. Each led can be turned off, blink at 4hz, off or set to
+> > hw_mode and follow their respecitve control rule. The hw_mode can be
+> > toggled using the sysfs entry and will be disabled on brightness or
+> > blink set.
+> 
+> Hi Ansuel
+> 
+> It is great you are using the LED subsystem for this. But we need to
+> split the code up into a generic part which can shared by any
+> switch/PHY and a driver specific part.
+> 
+> There has been a lot of discussion on the list about this. Maybe you
+> can help get us to a generic solution which can be used by everybody.
+> 
+>     Andrew
 
-Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
----
+Yes, can you point me to the discussion?
+I post this as RFC for this exact reason... I read somehwere that there
+was a discussion on how to implementd leds for switch but never ever
+found it. Also i'm very confused on the node structure on how to define
+leds, I think my current implementation is very verbose and long.
+As you can see this switch have all the leds controllable with a special
+mode to apply some special rules (and actually blink by the switch)
+So yes I would like to propose some idea and describe how this switch
+works hoping other OEM does the same thing. (I'm very negative about
+this part)
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi | 11 +++++++++++
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi         | 11 -----------
- 2 files changed, 11 insertions(+), 11 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi
-index 469aad4e5948c..fd4b712037542 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi
-@@ -17,3 +17,14 @@ &remoteproc_mpss {
- 	firmware-name = "qcom/sc7180-trogdor/modem/mba.mbn",
- 			"qcom/sc7180-trogdor/modem/qdsp6sw.mbn";
- };
-+
-+&ipa {
-+	status = "okay";
-+
-+	/*
-+	 * Trogdor doesn't have QHEE (Qualcomm's EL2 blob), so the
-+	 * modem needs to cover certain init steps (GSI init), and
-+	 * the AP needs to wait for it.
-+	 */
-+	modem-init;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 6e96024a487cd..3d8b9c6b21a85 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -754,17 +754,6 @@ alc5682: codec@1a {
- 	};
- };
- 
--&ipa {
--	status = "okay";
--
--	/*
--	 * Trogdor doesn't have QHEE (Qualcomm's EL2 blob), so the
--	 * modem needs to cover certain init steps (GSI init), and
--	 * the AP needs to wait for it.
--	 */
--	modem-init;
--};
--
- &lpass_cpu {
- 	status = "okay";
- 
--- 
-2.31.0
 
