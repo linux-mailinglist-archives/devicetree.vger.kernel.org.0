@@ -2,184 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4934041131B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 12:49:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6559441136F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 13:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231658AbhITKuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 06:50:35 -0400
-Received: from mout.gmx.net ([212.227.17.21]:45169 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229999AbhITKu3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 06:50:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1632134924;
-        bh=UE6JPDxLxhHS8QF+kGYS6SUXXeB3wiXl2OFGWk3OyGs=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=CPR7SYqbDnEIHf2IgQzx7mMO9xt0ZVNCmAoqCT8yTPy7AB+j/NgIWGZrS42PMIjlO
-         NGen88DHV1tnkKIXA2p98IcIz9vujw8ItkZlGPanHfn3y/kBIEH9bVDaMo0jYQjd4s
-         pUDfBtpkTeizRdrVCjo21Mpmn5+tJZ/uj58z5M+I=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.245.76.103] ([80.245.76.103]) by web-mail.gmx.net
- (3c-app-gmx-bap08.server.lan [172.19.172.78]) (via HTTP); Mon, 20 Sep 2021
- 12:48:44 +0200
-MIME-Version: 1.0
-Message-ID: <trinity-1d1646a2-6fb9-4a81-9edc-45c4d216a279-1632134924710@3c-app-gmx-bap08>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Sungbo Eo <mans0n@gorani.run>,
-        Matthias Brugger <matthias.bgg@kernel.org>
-Cc:     linux-mediatek@lists.infradead.org,
+        id S236673AbhITLWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 07:22:40 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57824
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236665AbhITLWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 07:22:39 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id DE41C3F4BE
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:21:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632136870;
+        bh=I2Bl07vONbEfi9yEVzej1wYQPepaUboDztwjIRW5t6c=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=lk5VAaJPKUVU/saksmecmXNTBzXFLxfgVm6qVmu89g6oAX8RRvj9lrKleSlBtK6MJ
+         9eA2zFs4GGwxY9aLP/2QoeRe5/NlTOu29WueIl4aC2ZaztRT6RtoRwSKcKVkJPcVpX
+         ZXDtwPx6FLmSCAFT1fLLocFh3wEOOzX9ipdhTeKSPcPnF+Cft46t8Q8PqK98rLemKS
+         U+yeosYxnG9ADuRwSpGnG19FU0DIUNanuiRbSD6BGuw65Wtn12PalJpGaEihF9BUu6
+         httj/NXiLmRokInL7m443UsV4ASMZJX6/mxvAzMpdrzqQp3fxydUrAtQLIk52R/Dyc
+         N/9l1heIhilkw==
+Received: by mail-wr1-f71.google.com with SMTP id c2-20020adfa302000000b0015e4260febdso4469877wrb.20
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 04:21:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I2Bl07vONbEfi9yEVzej1wYQPepaUboDztwjIRW5t6c=;
+        b=KEEtgD4TWssTPSjLUxiYAUloY10kWWwuud+uGVoN5G0QPINzS2/eSuV43iEelQrQ49
+         A3htOQlxG1E8I1fwG2anKNbkNnTku0B9zG8NsmJep2l2n4sMOx8TcEvWVRNDhvuqlOxh
+         Oe1XMu1+LV0bqz5/mqN2+H2VbEEOcB5lDTg6kyaoVVecbhTlSCCOmayiOWdiisDms2b+
+         vpFbbkX0swTnxIAkrBHpzXVGgb38Ud7hcd6zyMzYR0j/CqzJVaYgRdvxjXm1/KTWTXIM
+         gwcr+NpC+YxRHWzlYn2CGUrZd/Cx92ZdvbBuC1paYQapYbtMTx1/lzlmLLtD2krgfeBM
+         bFMg==
+X-Gm-Message-State: AOAM530H0lq+ue+wXpOtjonXh5FMPe14hUKpD5GYvJMD5qqRuISW9ePQ
+        6OgMfvVL3VhSUtdRZjxjzOJo+79VyLoOKHCqDN/8WHqwQxkVDmqjw4rnRKFmKaHCE62WcpzDetQ
+        A3j4/rJRLDNvWjqqbs3xJt347hBWdinQkAIBHDBo=
+X-Received: by 2002:a7b:c848:: with SMTP id c8mr20697845wml.187.1632136870501;
+        Mon, 20 Sep 2021 04:21:10 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxKn0jNRJmIN+QLyVPFE4JlcLmEfhs0lY57DrjExIxaCNsxu3GXc7ms5w5ZEe76lcszwT1Ntw==
+X-Received: by 2002:a7b:c848:: with SMTP id c8mr20697831wml.187.1632136870345;
+        Mon, 20 Sep 2021 04:21:10 -0700 (PDT)
+Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id u25sm17199453wmm.5.2021.09.20.04.21.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 04:21:09 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bin Liu <b-liu@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sungbo Eo <mans0n@gorani.run>
-Subject: Aw: [PATCH v4 1/2] arm: dts: mt7623: add musb device nodes
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 20 Sep 2021 12:48:44 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20210830155903.13907-2-mans0n@gorani.run>
-References: <20210822041333.5264-1-mans0n@gorani.run>
- <20210830155903.13907-1-mans0n@gorani.run>
- <20210830155903.13907-2-mans0n@gorani.run>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:h+4u+2DNNQq/zFxGtQ+E9hroBIiOkc2j+6J/9LOROcecrSGZrwD7KyAje9UTcYe3Adrpf
- wxLLX03FCB+UBYr2y+/6W9mCCXarLsqxkmuTjF27xwVAIzdc4mNtUqnJg3tLkcACjsvPtDueNAAU
- uppDuW4tedE2jjUFJqZtgmf50QAZwbYVlJfS1dnwHK+5h6o4N/zn9Du38NIWLsQp1S84dq4UpgDF
- jOXj5yhXjD0ZCrYfZbDR1QYLn1TjALN1nn0BeIS5Y1a14P4w2iDWXrOmZuRuTcOBX3Dt8jSU/4gN
- pg=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:WPDNJBBn+AY=:MmMNvz3wrtvo0tCZoZfq1U
- GzC4SCvrcWmYzVzP1xpiVVC/DvSfVyzXGrbWeqRx3WbjKyJYO6W/jwJFger6BR1S2drdXTGGq
- C+yHRL4dVfI2tguqvSB7pkI5LbkgCRg8l97GJ5vmghM7Twc7PN/tYYQyojiBOHzY91/uihR3/
- +YzZAg6v+y2aew8+7hmKNnu2qiDRwhEqfHc+eqWjyVQhgGv4dn9JtU10zLot1FhWG/MfVQQoq
- DJNsu/pOrvH6P7asE05CjcDlGIm1ZtlgjcWjeyJQBNSFDgkx4kUSDiSIL5BE2BMWZbYPSOH+o
- MTilrrmAflvhvUsdjZ6BGbsyiALTGxF1abplK3QD58LUkUxzaevUkieZMaXE0OPGnVoLjRZtT
- xULn6UP81Yiyawhtvr5Zugv9iWXtvl/ygWxtSHS97iuObUkqhrQ2KqItNHkD8f9fQoWcehkRk
- SL+7ssffFTOj3QaLf5TchQLWZOVvMYFwScZsG67JNXtF3hqFI0lJhQftXmFiLy9RldYiZDG7i
- /KzV+iwp5cifrEwDl7BZXi3uLlo6SCZQadYi5WpyXaoD4i7NhhEf6pCjgWhZmGOUR716dMOZx
- DaJKo3vMo1rshShJPkLpQSeX117rq5w55BJN33FUGAw347TOtk9l2bY6VOgcZwQQkrq+DYLxY
- NrX3/6jD+2KAXXOAmD7yU6G3XQ9ztzkt6K/7DOweOonb0PfDnwXwb0gqS8NszQMu6BMSXOsnb
- Xam5BBwfOBIpZvcrbMwm1DI84YTCTkK4IYS1XBZSCq+pn7A38qq7otG4+FkwEEgdsfFY99Uyw
- +FVdSbM
-Content-Transfer-Encoding: quoted-printable
+        Derek Fang <derek.fang@realtek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH] ASoC: dt-bindings: rt5682s: correct several errors
+Date:   Mon, 20 Sep 2021 13:21:06 +0200
+Message-Id: <20210920112106.140918-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Correct several errors in rt5682s dtschema:
+1. The examples should be under "examples":
+    'example' is not one of ['$id', '$schema', 'title', 'description', 'examples', ...
 
-just a gentle ping for this patch (second part is already merged to usb-tr=
-ee) and my followup for bpi-r2
+2. Missing type for vendor properties
 
-https://patchwork.kernel.org/project/linux-mediatek/patch/20210830145958.1=
-08605-1-linux@fw-web.de/
+3. clock-names should be an array:
+    properties:clock-names:items: {'const': 'mclk'} is not of type 'array'
 
-regards Frank
+4. Example DTS should include headers:
+    [scripts/Makefile.lib:386: Documentation/devicetree/bindings/sound/realtek,rt5682s.example.dt.yaml] Error 1
 
+5. Node name in example DTS misses unit address and does not match DT
+   convention (generic name):
+    Warning (reg_format): /example-0/rt5682s:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
 
-> Gesendet: Montag, 30. August 2021 um 17:59 Uhr
-> Von: "Sungbo Eo" <mans0n@gorani.run>
-> An: linux-mediatek@lists.infradead.org
-> Cc: "Rob Herring" <robh+dt@kernel.org>, "Matthias Brugger" <matthias.bgg=
-@gmail.com>, "Bin Liu" <b-liu@ti.com>, "Greg Kroah-Hartman" <gregkh@linuxf=
-oundation.org>, "Frank Wunderlich" <frank-w@public-files.de>, devicetree@v=
-ger.kernel.org, linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradea=
-d.org, linux-kernel@vger.kernel.org, "Sungbo Eo" <mans0n@gorani.run>
-> Betreff: [PATCH v4 1/2] arm: dts: mt7623: add musb device nodes
->
-> MT7623 has an musb controller that is compatible with the one from MT270=
-1.
->
-> Signed-off-by: Sungbo Eo <mans0n@gorani.run>
-> Tested-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> v4:
-> * add tested by Frank
->
-> v3:
-> * remove unnecessary status=3Dokay from u2port2
->
-> v2:
-> * rename usb3 label to usb0
-> * move usb0 & u2phy1 nodes to the right sorted place
-> * disable u2phy1 by default
-> * correct u2port2 node name to match its reg address
-> ---
->  arch/arm/boot/dts/mt7623.dtsi  | 33 +++++++++++++++++++++++++++++++++
->  arch/arm/boot/dts/mt7623a.dtsi |  4 ++++
->  2 files changed, 37 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/mt7623.dtsi b/arch/arm/boot/dts/mt7623.dt=
-si
-> index 3c11f7cfcc40..21c8a291b74e 100644
-> --- a/arch/arm/boot/dts/mt7623.dtsi
-> +++ b/arch/arm/boot/dts/mt7623.dtsi
-> @@ -585,6 +585,39 @@ spi2: spi@11017000 {
->  		status =3D "disabled";
->  	};
->
-> +	usb0: usb@11200000 {
-> +		compatible =3D "mediatek,mt7623-musb",
-> +			     "mediatek,mtk-musb";
-> +		reg =3D <0 0x11200000 0 0x1000>;
-> +		interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-names =3D "mc";
-> +		phys =3D <&u2port2 PHY_TYPE_USB2>;
-> +		dr_mode =3D "otg";
-> +		clocks =3D <&pericfg CLK_PERI_USB0>,
-> +			 <&pericfg CLK_PERI_USB0_MCU>,
-> +			 <&pericfg CLK_PERI_USB_SLV>;
-> +		clock-names =3D "main","mcu","univpll";
-> +		power-domains =3D <&scpsys MT2701_POWER_DOMAIN_IFR_MSC>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	u2phy1: t-phy@11210000 {
-> +		compatible =3D "mediatek,mt7623-tphy",
-> +			     "mediatek,generic-tphy-v1";
-> +		reg =3D <0 0x11210000 0 0x0800>;
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <2>;
-> +		ranges;
-> +		status =3D "disabled";
-> +
-> +		u2port2: usb-phy@11210800 {
-> +			reg =3D <0 0x11210800 0 0x0100>;
-> +			clocks =3D <&topckgen CLK_TOP_USB_PHY48M>;
-> +			clock-names =3D "ref";
-> +			#phy-cells =3D <1>;
-> +		};
-> +	};
-> +
->  	audsys: clock-controller@11220000 {
->  		compatible =3D "mediatek,mt7623-audsys",
->  			     "mediatek,mt2701-audsys",
-> diff --git a/arch/arm/boot/dts/mt7623a.dtsi b/arch/arm/boot/dts/mt7623a.=
-dtsi
-> index 0735a1fb8ad9..d304b62d24b5 100644
-> --- a/arch/arm/boot/dts/mt7623a.dtsi
-> +++ b/arch/arm/boot/dts/mt7623a.dtsi
-> @@ -35,6 +35,10 @@ &scpsys {
->  	clock-names =3D "ethif";
->  };
->
-> +&usb0 {
-> +	power-domains =3D <&scpsys MT7623A_POWER_DOMAIN_IFR_MSC>;
-> +};
-> +
->  &usb1 {
->  	power-domains =3D <&scpsys MT7623A_POWER_DOMAIN_HIF>;
->  };
-> --
-> 2.33.0
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
->
+6. Node address should be in size-cells:0 block in example DTS:
+    Warning (reg_format): /example-0/codec@1a:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+
+Fixes: 50159fdb144b ("ASoC: dt-bindings: rt5682s: add bindings for rt5682s")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ .../bindings/sound/realtek,rt5682s.yaml       | 47 ++++++++++++-------
+ 1 file changed, 29 insertions(+), 18 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
+index fbf23696f1a7..7a5f1d0fd3e2 100644
+--- a/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
++++ b/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
+@@ -24,18 +24,21 @@ properties:
+     description: The CODEC's interrupt output.
+ 
+   realtek,dmic1-data-pin:
++    $ref: /schemas/types.yaml#/definitions/uint32
+     enum:
+       - 0 # dmic1 data is not used
+       - 1 # using GPIO2 pin as dmic1 data pin
+       - 2 # using GPIO5 pin as dmic1 data pin
+ 
+   realtek,dmic1-clk-pin:
++    $ref: /schemas/types.yaml#/definitions/uint32
+     enum:
+       - 0 # dmic1 clk is not used
+       - 1 # using GPIO1 pin as dmic1 clock pin
+       - 2 # using GPIO3 pin as dmic1 clock pin
+ 
+   realtek,jd-src:
++    $ref: /schemas/types.yaml#/definitions/uint32
+     enum:
+       - 0 # No JD is used
+       - 1 # using JD1 as JD source
+@@ -63,7 +66,7 @@ properties:
+ 
+   clock-names:
+     items:
+-      const: mclk
++      - const: mclk
+ 
+   "#clock-cells":
+     const: 1
+@@ -79,22 +82,30 @@ required:
+   - compatible
+   - reg
+ 
+-example:
++examples:
+   - |
+-    rt5682s {
+-        compatible = "realtek,rt5682s";
+-        reg = <0x1a>;
+-        interrupt-parent = <&gpio>;
+-        interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
+-        realtek,ldo1-en-gpios =
+-            <&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
+-        realtek,dmic1-data-pin = <1>;
+-        realtek,dmic1-clk-pin = <1>;
+-        realtek,jd-src = <1>;
+-
+-        #clock-cells = <1>;
+-        clock-output-names = "rt5682-dai-wclk", "rt5682-dai-bclk";
+-
+-        clocks = <&osc>;
+-        clock-names = "mclk";
++    #include <dt-bindings/gpio/tegra-gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@1a {
++            compatible = "realtek,rt5682s";
++            reg = <0x1a>;
++            interrupt-parent = <&gpio>;
++            interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
++            realtek,ldo1-en-gpios =
++                <&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
++            realtek,dmic1-data-pin = <1>;
++            realtek,dmic1-clk-pin = <1>;
++            realtek,jd-src = <1>;
++
++            #clock-cells = <1>;
++            clock-output-names = "rt5682-dai-wclk", "rt5682-dai-bclk";
++
++            clocks = <&osc>;
++            clock-names = "mclk";
++        };
+     };
+-- 
+2.30.2
+
