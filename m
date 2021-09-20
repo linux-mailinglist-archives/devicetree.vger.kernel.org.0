@@ -2,113 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A98BA411494
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A607C411498
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:35:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238430AbhITMgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 08:36:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52848 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233550AbhITMgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 08:36:20 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17757C061574;
-        Mon, 20 Sep 2021 05:34:53 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id b20so8506203lfv.3;
-        Mon, 20 Sep 2021 05:34:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HpQQkC1AOfzWHJl9ss8L2S0RA1Z9VdPx4YiHlvPnYPk=;
-        b=jW9QUFzX611Lorga+kmJBdS+JIGjVmywVW5bBnJGaBpp3+Anh2WycRQICKHYmqpVBN
-         U9FYZ1XWoTLI9CIjubM787kA6WYtphzt6V87poWVdLTvXbDTN/JRnFYuXYyt6gIcat3I
-         97ukMTN+9Ye/mhLgZQ3D4FcCIpAEJ/YSd8Y48HysBz5VKvMgC61FTfxHTG0nYg2mz1Y1
-         YuCgAXqLBLGBhYzz2pyT/PlDrt6qNHnJnPrCw4rYv0OA8bQ0bsmXxySabfg5j2WhLUk3
-         0eFius8QQdvVosYEjkrxqF6liOb6fOVjOS9zz6P45Feg0XKPcNoAS0iQnH1h5bvphZul
-         8vLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HpQQkC1AOfzWHJl9ss8L2S0RA1Z9VdPx4YiHlvPnYPk=;
-        b=JO6x0t4/IBOFzKrdgNojR935QBHg8jD6xAAgbK0AHUFOJdXMYo42OfDf1GIF/RL+D6
-         OawEyqDUYqKXXo8y2NIDh+BHBvfXZAXhVq31aJZoS/u3pwhasHAPieL+eOP2DGMw8gKf
-         Ef69pIhRhtQXTzXEE6T6E5IknxLSY3PO8Vf941cnv/uneikdgVAr+HZwzP3z6Fvc+NS/
-         6TzQimhMDTXSy67EpY9u+ZmhZhPQb6pf8yxRWOyrk2eJ4YYbiLLLDPDHi5YK8Pc+DzCB
-         2j7IYXlybGiXYwFEDYIuKnIZ3lGQkUeGopEFejKHpjdEWLRZiOxz/7NhPrV/nRk7k5B/
-         py6Q==
-X-Gm-Message-State: AOAM532531DbYOfvOuQw60ffzvS89j/VHI36xtSdd52Sa7RvKVRceKTv
-        x7Ef1K5s1SXi4znsu9oGvJ8=
-X-Google-Smtp-Source: ABdhPJxXbr1B932hVzp57IlvjUhWt3JLlpqlZgVyIKEKjcn7W0FHEUSKK3NsNtRsdaVL+hccgrvEiw==
-X-Received: by 2002:a05:6512:1049:: with SMTP id c9mr5237881lfb.283.1632141291208;
-        Mon, 20 Sep 2021 05:34:51 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id b26sm1748454lji.128.2021.09.20.05.34.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 05:34:49 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH net-next] net: bgmac: support MDIO described in DT
-Date:   Mon, 20 Sep 2021 14:34:41 +0200
-Message-Id: <20210920123441.9088-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
+        id S233887AbhITMgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 08:36:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57594 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233716AbhITMgw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 08:36:52 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2134A610A8;
+        Mon, 20 Sep 2021 12:35:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632141326;
+        bh=X6TmFKEMJ7r1hkXSfoYExkSnFh55gCMOKrgmsy914DI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=pLzZa5QmYpjLIjol6Ayc/MzKR4Hw27CIpiTujBs1vhNY2hPr3ddIyLLdAeqs3OHQ4
+         +M0H0MTN3skkGIAVvub1xrPkn9jUAKTJ8NOfFeuqYAWq0frdTzRyVZ1fxsqCZCBT8H
+         jmNbAtqOAKL3c8etMA5dvtkNsyILHsMdlCE55iIShzxtxlph9u0LRztL0/f2tfpfnR
+         045Zt9nIBEMIuJfOMW1krCSpZSmGZz8D70JSSv+9ZmGqfkBDXs5ojPGt2yrg2ZCAWo
+         p9H5d43YH4vLtXzr8KShm2jJOna8/eaGashadwhrHvZECZR1UYMMhnM/YseieDodcQ
+         PlSmNkex8H5ag==
+Received: by mail-ed1-f46.google.com with SMTP id v22so56390753edd.11;
+        Mon, 20 Sep 2021 05:35:26 -0700 (PDT)
+X-Gm-Message-State: AOAM530ZX4c+WkrD/2/Zoc7qIGiU/p7KqqeB05cE2QJgX1kzxtvJrzF9
+        +NRXiRZRvr2euCWFMEhUqG957RDMtoO55g2YIg==
+X-Google-Smtp-Source: ABdhPJwF88jQtPjfNvvL1nKjml4PuXc3iZMNOvFq0Gm0Ol5FfAgq3Zb8NcC/qYhD2qqpX1pKJGAY5SQWfgROQcdI244=
+X-Received: by 2002:a05:6402:b23:: with SMTP id bo3mr29186170edb.145.1632141324479;
+ Mon, 20 Sep 2021 05:35:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20210826211830.3311140-1-sean.anderson@seco.com>
+ <YS6M9jmTmy4EvB4k@robh.at.kernel.org> <eedf3b19-18be-50ca-783e-c9537498db4a@seco.com>
+In-Reply-To: <eedf3b19-18be-50ca-783e-c9537498db4a@seco.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 20 Sep 2021 07:35:12 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK+vfnGUpuQT=Bb3Zf0q7_M8aOUZao+e4icx+vtx5zssA@mail.gmail.com>
+Message-ID: <CAL_JsqK+vfnGUpuQT=Bb3Zf0q7_M8aOUZao+e4icx+vtx5zssA@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: pwm: Add Xilinx AXI Timer
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Linux PWM List <linux-pwm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Alvaro Gamez <alvaro.gamez@hazent.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, Sep 16, 2021 at 12:58 PM Sean Anderson <sean.anderson@seco.com> wrote:
+>
+>
+>
+> On 8/31/21 4:11 PM, Rob Herring wrote:
+> > On Thu, Aug 26, 2021 at 05:18:28PM -0400, Sean Anderson wrote:
+> >> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is a
+> >> "soft" block, so it has some parameters which would not be configurable in
+> >> most hardware. This binding is usually automatically generated by Xilinx's
+> >> tools, so the names and values of some properties should be kept as they
+> >> are, if possible. In addition, this binding is already in the kernel at
+> >> arch/microblaze/boot/dts/system.dts, and in user software such as QEMU.
+> >>
+> >> The existing driver uses the clock-frequency property, or alternatively the
+> >> /cpus/timebase-frequency property as its frequency input. Because these
+> >> properties are deprecated, they have not been included with this schema.
+> >> All new bindings should use the clocks/clock-names properties to specify
+> >> the parent clock.
+> >>
+> >> Because we need to init timer devices so early in boot, we determine if we
+> >> should use the PWM driver or the clocksource/clockevent driver by the
+> >> presence/absence, respectively, of #pwm-cells. Because both counters are
+> >> used by the PWM, there is no need for a separate property specifying which
+> >> counters are to be used for the PWM.
+> >>
+> >> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> >> ---
+> >>
+> >> Changes in v6:
+> >> - Fix incorrect schema id
+> >> - Enumerate possible counter widths
+> >>
+> >> Changes in v5:
+> >> - Update commit message to reflect revisions
+> >> - Fix indentation lint
+> >> - Add example for timer binding
+> >> - Remove xlnx,axi-timer-2.0 compatible string
+> >> - Move schema into the timer directory
+> >>
+> >> Changes in v4:
+> >> - Remove references to generate polarity so this can get merged
+> >> - Predicate PWM driver on the presence of #pwm-cells
+> >> - Make some properties optional for clocksource drivers
+> >>
+> >> Changes in v3:
+> >> - Mark all boolean-as-int properties as deprecated
+> >> - Add xlnx,pwm and xlnx,gen?-active-low properties.
+> >> - Make newer replacement properties mutually-exclusive with what they
+> >>   replace
+> >> - Add an example with non-deprecated properties only.
+> >>
+> >> Changes in v2:
+> >> - Use 32-bit addresses for example binding
+> >>
+> >>  .../bindings/timer/xlnx,xps-timer.yaml        | 90 +++++++++++++++++++
+> >>  1 file changed, 90 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml b/Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
+> >> new file mode 100644
+> >> index 000000000000..5be353a642aa
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
+> >> @@ -0,0 +1,90 @@
+> >> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/timer/xlnx,xps-timer.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Xilinx LogiCORE IP AXI Timer Device Tree Binding
+> >> +
+> >> +maintainers:
+> >> +  - Sean Anderson <sean.anderson@seco.com>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    contains:
+> >> +      const: xlnx,xps-timer-1.00.a
+> >> +
+> >> +  clocks:
+> >> +    maxItems: 1
+> >> +
+> >> +  clock-names:
+> >> +    const: s_axi_aclk
+> >> +
+> >> +  interrupts:
+> >> +    maxItems: 1
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  xlnx,count-width:
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    enum: [8, 16, 32]
+> >> +    default: 32
+> >> +    description:
+> >> +      The width of the counter(s), in bits.
+> >> +
+> >> +  xlnx,one-timer-only:
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    enum: [ 0, 1 ]
+> >> +    description:
+> >> +      Whether only one timer is present in this block.
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +  - xlnx,one-timer-only
+> >> +
+> >> +allOf:
+> >> +  - if:
+> >> +      required:
+> >> +        - '#pwm-cells'
+> >> +    then:
+> >> +      allOf:
+> >> +        - required:
+> >> +            - clocks
+> >> +        - properties:
+> >> +            xlnx,one-timer-only:
+> >> +              const: 0
+> >> +    else:
+> >> +      required:
+> >> +        - interrupts
+> >> +  - if:
+> >> +      required:
+> >> +        - clocks
+> >> +    then:
+> >> +      required:
+> >> +        - clock-names
+> >> +
+> >> +additionalProperties: true
+> >
+> > This needs to be false. What else do you expect to be present?
+>
+> I am going to leave this as true for the next revision to avoid the following error:
+>
+> arch/microblaze/boot/dts/system.dt.yaml: timer@83c00000: 'xlnx,family', 'xlnx,gen0-assert', 'xlnx,gen1-assert', 'xlnx,trig0-assert', 'xlnx,trig1-assert' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-Check ethernet controller DT node for "mdio" subnode and use it with
-of_mdiobus_register() when present. That allows specifying MDIO and its
-PHY devices in a standard DT based way.
+If I wasn't clear: NAK
 
-This is required for BCM53573 SoC support which has an MDIO attached
-switch.
+All properties must be documented or removed from .dts files if not needed.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c b/drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c
-index 6ce80cbcb48e..086739e4f40a 100644
---- a/drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c
-+++ b/drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c
-@@ -10,6 +10,7 @@
- 
- #include <linux/bcma/bcma.h>
- #include <linux/brcmphy.h>
-+#include <linux/of_mdio.h>
- #include "bgmac.h"
- 
- static bool bcma_mdio_wait_value(struct bcma_device *core, u16 reg, u32 mask,
-@@ -211,6 +212,7 @@ struct mii_bus *bcma_mdio_mii_register(struct bgmac *bgmac)
- {
- 	struct bcma_device *core = bgmac->bcma.core;
- 	struct mii_bus *mii_bus;
-+	struct device_node *np;
- 	int err;
- 
- 	mii_bus = mdiobus_alloc();
-@@ -229,7 +231,9 @@ struct mii_bus *bcma_mdio_mii_register(struct bgmac *bgmac)
- 	mii_bus->parent = &core->dev;
- 	mii_bus->phy_mask = ~(1 << bgmac->phyaddr);
- 
--	err = mdiobus_register(mii_bus);
-+	np = of_get_child_by_name(core->dev.of_node, "mdio");
-+
-+	err = of_mdiobus_register(mii_bus, np);
- 	if (err) {
- 		dev_err(&core->dev, "Registration of mii bus failed\n");
- 		goto err_free_bus;
--- 
-2.26.2
-
+Rob
