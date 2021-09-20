@@ -2,60 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5CAF410DA8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 00:43:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CBA1410E01
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 02:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232456AbhISWpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Sep 2021 18:45:01 -0400
-Received: from mx22.pku.edu.cn ([162.105.129.185]:37762 "EHLO pku.edu.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230007AbhISWpA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 19 Sep 2021 18:45:00 -0400
-X-Greylist: delayed 452 seconds by postgrey-1.27 at vger.kernel.org; Sun, 19 Sep 2021 18:45:00 EDT
+        id S231189AbhITAYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Sep 2021 20:24:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60180 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229565AbhITAYP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Sep 2021 20:24:15 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 827ECC061760
+        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 17:22:49 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id p2so22516503oif.1
+        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 17:22:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pku.edu.cn; s=dkim; h=Received:Content-Type:MIME-Version:
-        Content-Transfer-Encoding:Content-Description:Subject:To:From:
-        Date:Reply-To:Message-Id; bh=4SQycJvyJG7NkjsVBRzIWrjvnNLmkSeuS4r
-        QKL+iKW8=; b=dONEMYGQTG7ixVgsNhzP7ze5A4K5YwAkuLAFXE6CHHGdoj5/E1B
-        4jAVuxnRzXGJcgtFNkNGZyY7KX9T/702ntNzzZ9+1a3/VO197qlcXOxqLfOK36PM
-        z0DJqOo//zYsvwSprFJiAgnC3D6zG9skKdtb/EtETTe6dJBqXATkkxRc=
-Received: from info.mktr02mbhqeetpzgq4nubectta.syx.internal.cloudapp.net (unknown [20.196.195.140])
-        by front01 (Coremail) with SMTP id 5oFpogA3P489gkdh4tNJAA--.22611S2147;
-        Mon, 20 Sep 2021 06:35:15 +0800 (CST)
-Content-Type: text/plain; charset="iso-8859-1"
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=JA2O0tqf7sL9eIuWtE+kSmSgHrEDnom7oC3gmz/7Xyk=;
+        b=CJWxhZzIgbfuNcH22lzV1pX6+nRj7JkMlNggF+YKgTkCueUdH79pDLMurmh0xCpEst
+         RwQzyuRRMlh7iQ4GLy5ODiSGH75G5MzWIBzGZMjEBMXIhapkBHccy3HEl7Fyqw/PeCou
+         4AXTb7TFZRCQrlBcL9sMIx8+9WXjcMNmypZrLm/Tc1oVLv3qZEoI5k7hcA9pi1k7Aw6d
+         I6Bj3axtU9d4+CDWGsoHIsrq8un32WHhRdcKNoSXAgAYGVoMZSaHPZKdq9Vy52t4v+r2
+         jrHTCC5VVFlTPcrHbHmF+4APkOfb0K/a8vlIV2X/3MeqtIAxICFfjpoKCiBz7GIk1ENI
+         C+Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=JA2O0tqf7sL9eIuWtE+kSmSgHrEDnom7oC3gmz/7Xyk=;
+        b=ztOI/Fub5U/g74THpvQbEsygjaNnKRmnwegbh1Thdh+c+jopXquCUusdDe3bnrVrqF
+         0VOKof4GERVL9TqQcGpB0dAkuHhaGNwyHb5VFFst6ggLxxazF/V8B/idTwxFgUYOR67k
+         dJoJTm7jhalas6Wc6WqlBtOtSAaKZx5Krspr3hboWNvLsY4qJmlDZXyiyiVTv7k5uqbF
+         +VKL1QpHDQ64Fn/XEJZ1g6ZFydaYe/c2EyksoNXgfKhAwjHpDNGT+PuFv2bW52pylAKa
+         B/eVDRtz9qdPOrDMu7/ZeHlsTRl7CsqOqzyMO5VJAvIHP1tbxCBhEGJdDc+IYYMD/cV9
+         KQhQ==
+X-Gm-Message-State: AOAM532drOHTl7LWiY6UFPhk2lMSzWSb6KDrjm5ZZUhqOU/7C/Mt3FDd
+        xnBTMKBWxPDz+7gnBXoV0y/t6A==
+X-Google-Smtp-Source: ABdhPJzQedi3f92lIYBEL8kfICVGlImMKFL2gHXZze+USeuXgcJtLMo3OkGfKdV4KGSYx0BVN4j3Ug==
+X-Received: by 2002:aca:7c5:: with SMTP id 188mr11630121oih.60.1632097368754;
+        Sun, 19 Sep 2021 17:22:48 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id y18sm3227048ooy.7.2021.09.19.17.22.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Sep 2021 17:22:48 -0700 (PDT)
+Date:   Sun, 19 Sep 2021 17:23:33 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Alex Elder <elder@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm850-yoga: Reshuffle IPA memory
+ mappings
+Message-ID: <YUfUhSypxpq1PbA1@ripper>
+References: <20210916200554.2434439-1-amit.pundir@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: Hello
-To:     Recipients <xszzzx@pku.edu.cn>
-From:   "Ms. Reem A" <xszzzx@pku.edu.cn>
-Date:   Sun, 19 Sep 2021 22:35:02 +0000
-Reply-To: reem2744@yandex.com
-X-CM-TRANSID: 5oFpogA3P489gkdh4tNJAA--.22611S2147
-Message-Id: <6147BB24.12813B.22188@pku.edu.cn>
-Authentication-Results: front01; spf=neutral smtp.mail=xszzzx@pku.edu.
-        cn;
-X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-        VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRUUUUUUUUU
-        =
-X-CM-SenderInfo: hj0v66t2061yvxohv3gofq/1tbiAQMJECsxYiD0PAAzs4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210916200554.2434439-1-amit.pundir@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Thu 16 Sep 13:05 PDT 2021, Amit Pundir wrote:
 
-I have a reserved funds i intends to loan or invest in a lucrative business=
- in your country. I am only interested in a high yielding business with a m=
-inimum risk. My expected ROI(return on investment) is between 5-10% for a d=
-uration of 10 renewable years. I am also offering 3% annual remuneration to=
- any interested fund manager.
+> Upstream commit 2e01e0c21459 ("arm64: dts: qcom: sdm850-yoga:
+> Enable IPA") shuffled reserved memory regions in sdm845.dtsi
+> to make firmware loading succeed and enable the ipa device on
+> sdm845-yoga but it broke the other common users of those
+> memory regions like Xiaomi Pocophone F1.
+> 
+> So this patch effectively revert those upstream commit changes
+> and move all the relevant changes to sdm850-lenovo-yoga-c630.dts
+> instead.
+> 
+> Fixes: 2e01e0c21459 ("arm64: dts: qcom: sdm850-yoga: Enable IPA")
+> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 
-If you can handle this fund in a good investment or take it as a loan, repl=
-y to this email only: reem.alhashimi@yandex.com
+Thanks for the report and fix Amit, I verified that this works fine on
+my Yoga as well.
 
-I look forward to your favorable response.
+Tested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Best Regards,
-Ms. Reem
+Regards,
+Bjorn
 
+> ---
+> Smoke tested on PocoF1 and not on Yoga-C630.
+> 
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 21 +++++++-----
+>  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 34 +++++++++++++++++++
+>  2 files changed, 47 insertions(+), 8 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 6d7172e6f4c3..b3b911926184 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -128,23 +128,28 @@ camera_mem: memory@8bf00000 {
+>  			no-map;
+>  		};
+>  
+> -		wlan_msa_mem: memory@8c400000 {
+> -			reg = <0 0x8c400000 0 0x100000>;
+> +		ipa_fw_mem: memory@8c400000 {
+> +			reg = <0 0x8c400000 0 0x10000>;
+>  			no-map;
+>  		};
+>  
+> -		gpu_mem: memory@8c515000 {
+> -			reg = <0 0x8c515000 0 0x2000>;
+> +		ipa_gsi_mem: memory@8c410000 {
+> +			reg = <0 0x8c410000 0 0x5000>;
+>  			no-map;
+>  		};
+>  
+> -		ipa_fw_mem: memory@8c517000 {
+> -			reg = <0 0x8c517000 0 0x5a000>;
+> +		gpu_mem: memory@8c415000 {
+> +			reg = <0 0x8c415000 0 0x2000>;
+>  			no-map;
+>  		};
+>  
+> -		adsp_mem: memory@8c600000 {
+> -			reg = <0 0x8c600000 0 0x1a00000>;
+> +		adsp_mem: memory@8c500000 {
+> +			reg = <0 0x8c500000 0 0x1a00000>;
+> +			no-map;
+> +		};
+> +
+> +		wlan_msa_mem: memory@8df00000 {
+> +			reg = <0 0x8df00000 0 0x100000>;
+>  			no-map;
+>  		};
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> index 385e5029437d..2ba23aa582a1 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> @@ -16,6 +16,17 @@
+>  #include "sdm850.dtsi"
+>  #include "pm8998.dtsi"
+>  
+> +/*
+> + * Update following upstream (sdm845.dtsi) reserved
+> + * memory mappings for firmware loading to succeed
+> + * and enable the IPA device.
+> + */
+> +/delete-node/ &ipa_fw_mem;
+> +/delete-node/ &ipa_gsi_mem;
+> +/delete-node/ &gpu_mem;
+> +/delete-node/ &adsp_mem;
+> +/delete-node/ &wlan_msa_mem;
+> +
+>  / {
+>  	model = "Lenovo Yoga C630";
+>  	compatible = "lenovo,yoga-c630", "qcom,sdm845";
+> @@ -58,6 +69,29 @@ panel_in_edp: endpoint {
+>  		};
+>  	};
+>  
+> +	/* Reserved memory changes for IPA */
+> +	reserved-memory {
+> +		wlan_msa_mem: memory@8c400000 {
+> +			reg = <0 0x8c400000 0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		gpu_mem: memory@8c515000 {
+> +			reg = <0 0x8c515000 0 0x2000>;
+> +			no-map;
+> +		};
+> +
+> +		ipa_fw_mem: memory@8c517000 {
+> +			reg = <0 0x8c517000 0 0x5a000>;
+> +			no-map;
+> +		};
+> +
+> +		adsp_mem: memory@8c600000 {
+> +			reg = <0 0x8c600000 0 0x1a00000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+>  	sn65dsi86_refclk: sn65dsi86-refclk {
+>  		compatible = "fixed-clock";
+>  		#clock-cells = <0>;
+> -- 
+> 2.25.1
+> 
