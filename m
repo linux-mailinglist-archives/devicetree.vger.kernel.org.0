@@ -2,429 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3702410E0F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 02:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BCB8410E8A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 04:52:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231739AbhITAwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Sep 2021 20:52:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38026 "EHLO
+        id S233855AbhITCxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Sep 2021 22:53:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231520AbhITAwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Sep 2021 20:52:31 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80B66C061574
-        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 17:51:05 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id t189so10013500oie.7
-        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 17:51:05 -0700 (PDT)
+        with ESMTP id S229805AbhITCxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Sep 2021 22:53:52 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE11C061574
+        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 19:52:26 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id w206so11211588oiw.4
+        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 19:52:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=Z6iIwGZqo8KFJn+K0TUvoAOeMuSy61NsAakI2Z/4K8w=;
-        b=KvM71N8Dw/gWNX5mKKyv6VZ1nY6dwecJVnMPR5dWjRm+Y7rkXJrt/JN9cAX2LpM/fv
-         k8rzVabTBJ4LJtWma1/vWUhGNkJo6CKcwEQd7UGjEaxHHwl11MboslsmZMn90Ak0V/18
-         HIqm7nx8f81940o09Ud0t0epVRtUWvg5iBhUEdzCHcpgTNspdc3GgVndJJhRl8BecDUv
-         g0KcsGMDVOEc2BLKEJoM3Qc40jZZ9CQrstBpP/7laf9Cnkua6fsPl0CRVlZkkDp4M6ZR
-         kYdPjuQ1Jv6bMH63sWX/Xi5n5FIGGo5gewH8lEAm3VqHWzBIIRiihCkuXza4XNRUKhVG
-         70hA==
+        bh=hqgjeEmiczW8tyKT8Sr0WXeHexE/OvbKNC0oLWg2H/4=;
+        b=Whbs1pdjrgldXPCC3E9xYht+gLTTfEO6F/KlkdIHFWPDytj3dnYd1Youe6zJx0abCl
+         KjuM3AYBDO8YiphKuMA95nKlVpl5DxPN4c8ZrGVPaYy8VdjHFqT1kmHZWMncO4PGx+09
+         T9GMJzsVbhsjnt4lOoUzy684h+u9/Jd1xccQXr0SJfBN8+QDRwDdLC8N0lfh4BySy1CJ
+         cXfn/ozRipIvoaZwMzgzdn00wr/rA8s98KhoxKDD+7G/7iI2dvdSGFXNi3j2ZRlWh68d
+         NiFbP4lRzY7nnWliysPDPD/609sfrMwgjMCvMefn9azq5mGwrhss8TEFwbzZXVCROTc8
+         DjbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Z6iIwGZqo8KFJn+K0TUvoAOeMuSy61NsAakI2Z/4K8w=;
-        b=jMvLjCSOtw/Zgv6uf2z0jyeYzA0gZtKzJCG0RID+Ah9A8XTdY/oQn52amGUpe0zyJ8
-         iexfytrWfXUoZubAqKQ934gUQ5ipXbhofoj1btVZ1Be2j8HzO0Y0E29jxNQcHbpGYd6z
-         5hQ0XUfrUzTP2ONk/h5Ax7ePjshxkGRltw8V6T+CcwNW9YsqfxOAyg9JEFLOWCoLbDlN
-         i3n1OFrHhtdkwCaHdQlXDoFTQ8QXzruPROkzFRX0O0W6NxctSNFYLZRRmFHYkI9aA93g
-         EWqB1Py+/WAnvMHEavWE5mksS6A0Dk8uWCr36Kta/nAlpiH3qKrRsCt6OtA9LdEc0dwN
-         dBAA==
-X-Gm-Message-State: AOAM531IO5h1peqwBqr8cU37VCq7LRMwZgZeeJDPmoUP6q8YpoCu0gnX
-        TI3T2TcQ/8DBsxYSITenP7XbUA==
-X-Google-Smtp-Source: ABdhPJxSkAodcmoM2Y66MDLBhy46TWQ5FzcF1TGxUX/DMbwy5Gc50Wxz/JTxTF7zP5+eDbTsC1414g==
-X-Received: by 2002:aca:2218:: with SMTP id b24mr5017407oic.55.1632099064731;
-        Sun, 19 Sep 2021 17:51:04 -0700 (PDT)
+        bh=hqgjeEmiczW8tyKT8Sr0WXeHexE/OvbKNC0oLWg2H/4=;
+        b=pEuXNNXCI8ghl5VIIUEQl7r9ICiAD4Y85rCfekux5DNESi6ervMUf+an/CoD9r97M/
+         JM9HUj90j/mbQ5OKAzodISBjEsnBHtoJ4xcfK0d4Fnk4d3L1qHTaSSsNPzbwbeo9dTPS
+         AcqGD6Z6+o6HYzTKbGRkvDYkLrET27nii6Qdi1haukwE2C0G7UV5DLGkfOxhqMgFldOC
+         eKhHIc6x0GpGrAH0B+005ERI2K950aeFz2SfcRY7TIdc8gE9RK12KcpdXVMTYVckmSBw
+         /MNWK7AxUU0P0Y8N/Wb7MHvEFNSwIu0wDgUAmwsImpXt/204zR9inw5lVOv3BV+LhcP1
+         JkRg==
+X-Gm-Message-State: AOAM533nVEi11DmTFa3OhhqoYK4LweALFgcVv4z7CnxOhfcPHhUiARMB
+        2EPALbBFzGEMWHhW8S8QUnMQuY+ANSfy+w==
+X-Google-Smtp-Source: ABdhPJz+vQStpjHcJb+3SHr7KTaxn/yVv5tliVD+7gAyws+d8yNzvDFL8bsHY1dBoCmL1e0tFUIvIA==
+X-Received: by 2002:a05:6808:2026:: with SMTP id q38mr11668804oiw.15.1632106346279;
+        Sun, 19 Sep 2021 19:52:26 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id i1sm3182453ooo.15.2021.09.19.17.51.03
+        by smtp.gmail.com with ESMTPSA id l19sm419390otj.77.2021.09.19.19.52.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Sep 2021 17:51:04 -0700 (PDT)
-Date:   Sun, 19 Sep 2021 19:51:02 -0500
+        Sun, 19 Sep 2021 19:52:25 -0700 (PDT)
+Date:   Sun, 19 Sep 2021 21:52:24 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, jami.kettunen@somainline.org,
-        paul.bouchara@somainline.org, martin.botka@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht, jeffrey.l.hugo@gmail.com,
-        robh@kernel.org
-Subject: Re: [PATCH v7 2/6] dt-bindings: avs: cpr: Convert binding to YAML
- schema
-Message-ID: <YUfa9jF+F3ght1lN@builder.lan>
-References: <20210901155735.629282-1-angelogioacchino.delregno@somainline.org>
- <20210901155735.629282-3-angelogioacchino.delregno@somainline.org>
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: add SMEM support
+Message-ID: <YUf3aKn78+41Cb/G@builder.lan>
+References: <20210902214708.1776690-1-robimarko@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210901155735.629282-3-angelogioacchino.delregno@somainline.org>
+In-Reply-To: <20210902214708.1776690-1-robimarko@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 01 Sep 10:57 CDT 2021, AngeloGioacchino Del Regno wrote:
+On Thu 02 Sep 16:47 CDT 2021, Robert Marko wrote:
 
-> Convert the qcom,cpr.txt document to YAML schema and place it in the
-> appropriate directory, since this driver was moved from power/avs
-> to soc/qcom, but forgets to move the documentation.
+> IPQ8074 uses SMEM like other modern QCA SoC-s, so since its already
+> supported by the kernel add the required DT nodes.
 > 
-> Fixes: a7305e684fcf ("PM: AVS: qcom-cpr: Move the driver to the qcom specific drivers")
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 
-I don't see it to be a requirement that the DT binding structure follows
-the Linux implementation structure, so I think it's appropriate to keep
-it in power/avs and I don't think it deserves a fixes.
+Thanks for your patch Robert.
 
+> ---
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 28 +++++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> index a620ac0d0b19..83e9243046aa 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> @@ -82,6 +82,29 @@ scm {
+>  		};
+>  	};
+>  
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		smem_region: memory@4ab00000 {
+> +			no-map;
+> +			reg = <0x0 0x4ab00000 0x0 0x00100000>;
+> +		};
+> +	};
+> +
+> +	tcsr_mutex: hwlock {
+> +		compatible = "qcom,tcsr-mutex";
+> +		syscon = <&tcsr_mutex_regs 0 0x80>;
 
-I would like to merge this series, could you please address Rob's
-concerns on the binding?
+Since it's not okay to have a lone "syscon" and I didn't think it was
+worth coming up with a binding for the TCSR mutex "syscon" I rewrote the
+binding a while back. As such qcom,tcsr-mutex should now live in /soc
+directly.
 
-
-PS. If you did the YAML-ification as the last step I would have merged
-the other 5 patches...
+So can you please respin accordingly?
 
 Thanks,
 Bjorn
 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> ---
->  .../bindings/power/avs/qcom,cpr.txt           | 131 +-------------
->  .../bindings/soc/qcom/qcom,cpr.yaml           | 167 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 169 insertions(+), 131 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,cpr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/avs/qcom,cpr.txt b/Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
-> index ab0d5ebbad4e..2ada8cd08949 100644
-> --- a/Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
-> +++ b/Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
-> @@ -1,130 +1 @@
-> -QCOM CPR (Core Power Reduction)
-> -
-> -CPR (Core Power Reduction) is a technology to reduce core power on a CPU
-> -or other device. Each OPP of a device corresponds to a "corner" that has
-> -a range of valid voltages for a particular frequency. While the device is
-> -running at a particular frequency, CPR monitors dynamic factors such as
-> -temperature, etc. and suggests adjustments to the voltage to save power
-> -and meet silicon characteristic requirements.
-> -
-> -- compatible:
-> -	Usage: required
-> -	Value type: <string>
-> -	Definition: should be "qcom,qcs404-cpr", "qcom,cpr" for qcs404
-> -
-> -- reg:
-> -	Usage: required
-> -	Value type: <prop-encoded-array>
-> -	Definition: base address and size of the rbcpr register region
-> -
-> -- interrupts:
-> -	Usage: required
-> -	Value type: <prop-encoded-array>
-> -	Definition: should specify the CPR interrupt
-> -
-> -- clocks:
-> -	Usage: required
-> -	Value type: <prop-encoded-array>
-> -	Definition: phandle to the reference clock
-> -
-> -- clock-names:
-> -	Usage: required
-> -	Value type: <stringlist>
-> -	Definition: must be "ref"
-> -
-> -- vdd-apc-supply:
-> -	Usage: required
-> -	Value type: <phandle>
-> -	Definition: phandle to the vdd-apc-supply regulator
-> -
-> -- #power-domain-cells:
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: should be 0
-> -
-> -- operating-points-v2:
-> -	Usage: required
-> -	Value type: <phandle>
-> -	Definition: A phandle to the OPP table containing the
-> -		    performance states supported by the CPR
-> -		    power domain
-> -
-> -- acc-syscon:
-> -	Usage: optional
-> -	Value type: <phandle>
-> -	Definition: phandle to syscon for writing ACC settings
-> -
-> -- nvmem-cells:
-> -	Usage: required
-> -	Value type: <phandle>
-> -	Definition: phandle to nvmem cells containing the data
-> -		    that makes up a fuse corner, for each fuse corner.
-> -		    As well as the CPR fuse revision.
-> -
-> -- nvmem-cell-names:
-> -	Usage: required
-> -	Value type: <stringlist>
-> -	Definition: should be "cpr_quotient_offset1", "cpr_quotient_offset2",
-> -		    "cpr_quotient_offset3", "cpr_init_voltage1",
-> -		    "cpr_init_voltage2", "cpr_init_voltage3", "cpr_quotient1",
-> -		    "cpr_quotient2", "cpr_quotient3", "cpr_ring_osc1",
-> -		    "cpr_ring_osc2", "cpr_ring_osc3", "cpr_fuse_revision"
-> -		    for qcs404.
-> -
-> -Example:
-> -
-> -	cpr_opp_table: cpr-opp-table {
-> -		compatible = "operating-points-v2-qcom-level";
-> -
-> -		cpr_opp1: opp1 {
-> -			opp-level = <1>;
-> -			qcom,opp-fuse-level = <1>;
-> -		};
-> -		cpr_opp2: opp2 {
-> -			opp-level = <2>;
-> -			qcom,opp-fuse-level = <2>;
-> -		};
-> -		cpr_opp3: opp3 {
-> -			opp-level = <3>;
-> -			qcom,opp-fuse-level = <3>;
-> -		};
-> -	};
-> -
-> -	power-controller@b018000 {
-> -		compatible = "qcom,qcs404-cpr", "qcom,cpr";
-> -		reg = <0x0b018000 0x1000>;
-> -		interrupts = <0 15 IRQ_TYPE_EDGE_RISING>;
-> -		clocks = <&xo_board>;
-> -		clock-names = "ref";
-> -		vdd-apc-supply = <&pms405_s3>;
-> -		#power-domain-cells = <0>;
-> -		operating-points-v2 = <&cpr_opp_table>;
-> -		acc-syscon = <&tcsr>;
-> -
-> -		nvmem-cells = <&cpr_efuse_quot_offset1>,
-> -			<&cpr_efuse_quot_offset2>,
-> -			<&cpr_efuse_quot_offset3>,
-> -			<&cpr_efuse_init_voltage1>,
-> -			<&cpr_efuse_init_voltage2>,
-> -			<&cpr_efuse_init_voltage3>,
-> -			<&cpr_efuse_quot1>,
-> -			<&cpr_efuse_quot2>,
-> -			<&cpr_efuse_quot3>,
-> -			<&cpr_efuse_ring1>,
-> -			<&cpr_efuse_ring2>,
-> -			<&cpr_efuse_ring3>,
-> -			<&cpr_efuse_revision>;
-> -		nvmem-cell-names = "cpr_quotient_offset1",
-> -			"cpr_quotient_offset2",
-> -			"cpr_quotient_offset3",
-> -			"cpr_init_voltage1",
-> -			"cpr_init_voltage2",
-> -			"cpr_init_voltage3",
-> -			"cpr_quotient1",
-> -			"cpr_quotient2",
-> -			"cpr_quotient3",
-> -			"cpr_ring_osc1",
-> -			"cpr_ring_osc2",
-> -			"cpr_ring_osc3",
-> -			"cpr_fuse_revision";
-> -	};
-> +This file has been moved to ../../soc/qcom/qcom,cpr.yaml
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,cpr.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,cpr.yaml
-> new file mode 100644
-> index 000000000000..20f65427c762
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,cpr.yaml
-> @@ -0,0 +1,167 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,cpr.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +		#hwlock-cells = <1>;
+> +	};
 > +
-> +title: Qualcomm Core Power Reduction (CPR)
+> +	smem {
+> +		compatible = "qcom,smem";
+> +		memory-region = <&smem_region>;
+> +		hwlocks = <&tcsr_mutex 0>;
+> +	};
 > +
-> +description: |
-> +  CPR (Core Power Reduction) is a technology to reduce core power on a CPU
-> +  or other device. Each OPP of a device corresponds to a "corner" that has
-> +  a range of valid voltages for a particular frequency. While the device is
-> +  running at a particular frequency, CPR monitors dynamic factors such as
-> +  temperature, etc. and suggests adjustments to the voltage to save power
-> +  and meet silicon characteristic requirements.
-> +
-> +maintainers:
-> +  - Niklas Cassel <nks@flawful.org>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,qcs404-cpr
-> +      - const: qcom,cpr
-> +
-> +  reg:
-> +    description: Base address and size of the RBCPR register region
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref
-> +
-> +  clocks:
-> +    items:
-> +      - description: CPR reference clock
-> +
-> +  vdd-apc-supply:
-> +    description: Autonomous Phase Control (APC) power supply
-> +
-> +  '#power-domain-cells':
-> +    const: 0
-> +
-> +  acc-syscon:
-> +    description: phandle to syscon for writing ACC settings
-> +
-> +  nvmem-cells:
-> +    minItems: 9
-> +    maxItems: 32
-> +    description: Cells containing the fuse corners and revision data
-> +
-> +  nvmem-cell-names:
-> +    minItems: 9
-> +    maxItems: 32
-> +
-> +  operating-points-v2: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clock-names
-> +  - clocks
-> +  - vdd-apc-supply
-> +  - "#power-domain-cells"
-> +  - nvmem-cells
-> +  - nvmem-cell-names
-> +  - operating-points-v2
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    cpus {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        cpu@100 {
-> +            compatible = "arm,cortex-a53";
-> +            device_type = "cpu";
-> +            reg = <0x100>;
-> +            operating-points-v2 = <&cpu_opp_table>;
-> +            power-domains = <&cpr>;
-> +            power-domain-names = "cpr";
-> +        };
-> +    };
-> +
-> +    cpu_opp_table: opp-table-cpu {
-> +        compatible = "operating-points-v2-kryo-cpu";
-> +        opp-shared;
-> +
-> +        opp-1094400000 {
-> +            opp-hz = /bits/ 64 <1094400000>;
-> +            required-opps = <&cpr_opp1>;
-> +        };
-> +        opp-1248000000 {
-> +            opp-hz = /bits/ 64 <1248000000>;
-> +            required-opps = <&cpr_opp2>;
-> +        };
-> +        opp-1401600000 {
-> +            opp-hz = /bits/ 64 <1401600000>;
-> +            required-opps = <&cpr_opp3>;
-> +        };
-> +    };
-> +
-> +    cpr_opp_table: opp-table-cpr {
-> +        compatible = "operating-points-v2-qcom-level";
-> +
-> +        cpr_opp1: opp1 {
-> +            opp-level = <1>;
-> +            qcom,opp-fuse-level = <1>;
-> +        };
-> +        cpr_opp2: opp2 {
-> +            opp-level = <2>;
-> +            qcom,opp-fuse-level = <2>;
-> +        };
-> +        cpr_opp3: opp3 {
-> +            opp-level = <3>;
-> +            qcom,opp-fuse-level = <3>;
-> +        };
-> +    };
-> +
-> +    power-controller@b018000 {
-> +        compatible = "qcom,qcs404-cpr", "qcom,cpr";
-> +        reg = <0x0b018000 0x1000>;
-> +        interrupts = <0 15 IRQ_TYPE_EDGE_RISING>;
-> +        clocks = <&xo_board>;
-> +        clock-names = "ref";
-> +        vdd-apc-supply = <&pms405_s3>;
-> +        #power-domain-cells = <0>;
-> +        operating-points-v2 = <&cpr_opp_table>;
-> +        acc-syscon = <&tcsr>;
-> +
-> +        nvmem-cells = <&cpr_efuse_quot_offset1>,
-> +                      <&cpr_efuse_quot_offset2>,
-> +                      <&cpr_efuse_quot_offset3>,
-> +                      <&cpr_efuse_init_voltage1>,
-> +                      <&cpr_efuse_init_voltage2>,
-> +                      <&cpr_efuse_init_voltage3>,
-> +                      <&cpr_efuse_quot1>,
-> +                      <&cpr_efuse_quot2>,
-> +                      <&cpr_efuse_quot3>,
-> +                      <&cpr_efuse_ring1>,
-> +                      <&cpr_efuse_ring2>,
-> +                      <&cpr_efuse_ring3>,
-> +                      <&cpr_efuse_revision>;
-> +        nvmem-cell-names = "cpr0_quotient_offset1",
-> +                           "cpr0_quotient_offset2",
-> +                           "cpr0_quotient_offset3",
-> +                           "cpr0_init_voltage1",
-> +                           "cpr0_init_voltage2",
-> +                           "cpr0_init_voltage3",
-> +                           "cpr0_quotient1",
-> +                           "cpr0_quotient2",
-> +                           "cpr0_quotient3",
-> +                           "cpr0_ring_osc1",
-> +                           "cpr0_ring_osc2",
-> +                           "cpr0_ring_osc3",
-> +                           "cpr_fuse_revision";
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f58dad1a1922..90f1db301fae 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15490,7 +15490,7 @@ M:	Niklas Cassel <nks@flawful.org>
->  L:	linux-pm@vger.kernel.org
->  L:	linux-arm-msm@vger.kernel.org
->  S:	Maintained
-> -F:	Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
-> +F:	Documentation/devicetree/bindings/soc/qcom/qcom,cpr.yaml
->  F:	drivers/soc/qcom/cpr.c
+>  	soc: soc {
+>  		#address-cells = <0x1>;
+>  		#size-cells = <0x1>;
+> @@ -293,6 +316,11 @@ gcc: gcc@1800000 {
+>  			#reset-cells = <0x1>;
+>  		};
 >  
->  QUALCOMM CPUFREQ DRIVER MSM8996/APQ8096
+> +		tcsr_mutex_regs: syscon@1905000 {
+> +			compatible = "syscon";
+> +			reg = <0x01905000 0x8000>;
+> +		};
+> +
+>  		sdhc_1: sdhci@7824900 {
+>  			compatible = "qcom,sdhci-msm-v4";
+>  			reg = <0x7824900 0x500>, <0x7824000 0x800>;
 > -- 
-> 2.32.0
+> 2.31.1
 > 
