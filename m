@@ -2,73 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0838A412A5D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 03:39:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF0E412A61
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 03:39:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbhIUBkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 21:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58828 "EHLO
+        id S233059AbhIUBkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 21:40:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231808AbhIUBih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 21:38:37 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A0BC1260D4
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:44:38 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id c6-20020a9d2786000000b005471981d559so3657201otb.5
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:44:38 -0700 (PDT)
+        with ESMTP id S232234AbhIUBjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 21:39:23 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69154C03D753
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:45:35 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id s20so15105895ioa.4
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:45:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=A/kXMZfJhqt02ZS8GGmiL49TuAUrXKmTxuOnxlSxegU=;
-        b=iKHw2zpvbPtXA2P0qsFHYJgm0jk1RJiQJTLnDf3OoKbn4Vvoz+J34laKYpXAHyqzG5
-         c6XrpgLjq7/u6RZbPDTjQVL0okEkAeaZTQ4X7PONK5l+T/bJhQIAzbsmbyyxPM2Nn/kI
-         MkOsBWLni6VwWwuwevv3hfecll8QDOkGNUYtM=
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=N7n5x8sXHuAzu3+RIwr9lpXQmI9SOiXEYfpRq5wrut4=;
+        b=JqgTQlIWTovRoLk+BvUsk/awete9Lsf3s0uK7GhVO+TH3Rz+iie+EYRFU9ptMoSeF0
+         7fQGY9Qx/OamC+mP6z1l3HAkHTlNILXb4L2qCmoRVpYQqmUojC4uzBY7vK8nBxegThA3
+         goZovTiD2pJjGIKrjXjWlb9aTpF++C6Uxyir1hNZ8RKjN9o3GO/7XkqZpGhcltmPjzjQ
+         V10YpC5pWiLDeqbwO45upnu8RuA+od5MLhW062DiXWANTEWpnytIsh+pmrEGEaRLZU+b
+         Gr8Jw4Wa5OxeqIfjDm8ugaUeoZTn5f3HXu27Szv4txUKCZcb2AquCZ65bzsE7S7Og2w1
+         HUeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=A/kXMZfJhqt02ZS8GGmiL49TuAUrXKmTxuOnxlSxegU=;
-        b=A5otokDqIwA8LwChjyMRmS+L1V7pihvDgOU7P8raJEUkCmICMOriv4Gf5RJ2lKEuEP
-         ixJE3UjwOWgmCOPTxgDRmBKyEsjkhOPxxQu6qS9OmhGEOUnFYOmOcDQbhS61la2xoFm9
-         mRMA7y6lGHONsdgpxHnJ25+OaF3uQRWPt+lwbj9zHR05Dq8GxE6N/fCiuIPkClywv7r4
-         IcO8tVitP75Sy/A8DPiU/Udoi+BKrYrR7ewT5uiGWsPmBZ3EjtI96xm8+qvSKRlitMyk
-         IAsYuNN3oo7AntBody92syOIy6MnxBaL0iuVi2P1zYWhaW6N+yq7euxhzbNTjT2pdbzq
-         OrJQ==
-X-Gm-Message-State: AOAM530Jsr2G3vBPyTvU/ES5S42zZ4q2oKruPNnsIKadp/al4DO9k0d8
-        GDb4Urymetwq1Q8AkbF/4pdvH3Bx1WVScmdEJKCdLQ==
-X-Google-Smtp-Source: ABdhPJyqq0NHNKGjdhhgQelqooPrq6FF2LZaRIXFShWd5fjag4Kx6i4gemME+YY2Hq3J71L7khQN/6s0RHfdDLXyQhc=
-X-Received: by 2002:a05:6830:1212:: with SMTP id r18mr21376104otp.159.1632167078302;
- Mon, 20 Sep 2021 12:44:38 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 20 Sep 2021 12:44:37 -0700
-MIME-Version: 1.0
-In-Reply-To: <1631872087-24416-7-git-send-email-rajpat@codeaurora.org>
-References: <1631872087-24416-1-git-send-email-rajpat@codeaurora.org> <1631872087-24416-7-git-send-email-rajpat@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Mon, 20 Sep 2021 12:44:37 -0700
-Message-ID: <CAE-0n52QhzuzXRe_DHDdMXpdP7osmHCTHUaKpyBCBkWMrn3Apg@mail.gmail.com>
-Subject: Re: [PATCH V8 6/8] arm64: dts: sc7280: Configure uart7 to support
- bluetooth on sc7280-idp
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rajesh Patil <rajpat@codeaurora.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=N7n5x8sXHuAzu3+RIwr9lpXQmI9SOiXEYfpRq5wrut4=;
+        b=ZEsDTiKq14b18RhRh8f/ENDncXBpiPgEK8kAzVyOh3m4BRKFfVp9gDMMta86NKi/8e
+         IzgcxgQVFCGbculK60xxoRZaCbncbOARl4ZsqyOm7eozFjdtSOJdMm3n421yxOmdS1km
+         o+Y+l9aGg28kwZLOiBJm+fEtUA3aEHYHW/xgRL/VP4yL5dXmnvAkzsNFxzkWEHobBdAU
+         lSMNp2pkNOC7/KoYwMVsGRE5IHEcIA2s8H1ZHg4MzdwRhlGrnNsXxlYXolIjj0UHlwzX
+         cewuG8+qHT1NbDW6RHoXZRpPwTAo7QPHFwbK/veNZaLQOcfpOwD6vz1kv+JpNOLvwhiu
+         ZBRg==
+X-Gm-Message-State: AOAM5301p1Xud4O0PRGDl59aqYGRlOb/jWVE3h3N7czus5eq4vVxwpxh
+        124rZwdTsVXuY6oFEdjOAhyJUA==
+X-Google-Smtp-Source: ABdhPJypcjxV8kGKDIjn8BoxxMAFqbAhAglu2GGK/YeLbTIaWJLrqtR6Wu+A2QH/uxXLXLc8WtLthw==
+X-Received: by 2002:a02:19c9:: with SMTP id b192mr21061667jab.67.1632167134657;
+        Mon, 20 Sep 2021 12:45:34 -0700 (PDT)
+Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.googlemail.com with ESMTPSA id e13sm8942241iod.36.2021.09.20.12.45.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Sep 2021 12:45:34 -0700 (PDT)
+Subject: Re: [PATCH v1] arm64: dts: qcom: sc7180-trogdor: Enable IPA on LTE
+ only SKUs
+To:     Sujit Kautkar <sujitka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org, mka@chromium.org, dianders@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+Cc:     swboyd@chromium.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210920113220.v1.1.I904da9664f294fcf222f6f378d37eaadd72ca92e@changeid>
+From:   Alex Elder <elder@linaro.org>
+Message-ID: <9f94de2e-eb1b-225e-937d-55855d95a4ac@linaro.org>
+Date:   Mon, 20 Sep 2021 14:45:33 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210920113220.v1.1.I904da9664f294fcf222f6f378d37eaadd72ca92e@changeid>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajesh Patil (2021-09-17 02:48:05)
-> Add bluetooth uart pin configuration for sc7280-idp.
->
-> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
+On 9/20/21 1:32 PM, Sujit Kautkar wrote:
+> Enable the IPA node for LTE and skip for wifi-only SKUs
+> 
+> Signed-off-by: Sujit Kautkar <sujitka@chromium.org>
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Looks good to me.  Thanks Sujit.
+
+Reviewed-by: Alex Elder <elder@linaro.org>
+
+> ---
+> 
+>   arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi | 11 +++++++++++
+>   arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi         | 11 -----------
+>   2 files changed, 11 insertions(+), 11 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi
+> index 469aad4e5948c..fd4b712037542 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lte-sku.dtsi
+> @@ -17,3 +17,14 @@ &remoteproc_mpss {
+>   	firmware-name = "qcom/sc7180-trogdor/modem/mba.mbn",
+>   			"qcom/sc7180-trogdor/modem/qdsp6sw.mbn";
+>   };
+> +
+> +&ipa {
+> +	status = "okay";
+> +
+> +	/*
+> +	 * Trogdor doesn't have QHEE (Qualcomm's EL2 blob), so the
+> +	 * modem needs to cover certain init steps (GSI init), and
+> +	 * the AP needs to wait for it.
+> +	 */
+> +	modem-init;
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 6e96024a487cd..3d8b9c6b21a85 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -754,17 +754,6 @@ alc5682: codec@1a {
+>   	};
+>   };
+>   
+> -&ipa {
+> -	status = "okay";
+> -
+> -	/*
+> -	 * Trogdor doesn't have QHEE (Qualcomm's EL2 blob), so the
+> -	 * modem needs to cover certain init steps (GSI init), and
+> -	 * the AP needs to wait for it.
+> -	 */
+> -	modem-init;
+> -};
+> -
+>   &lpass_cpu {
+>   	status = "okay";
+>   
+> 
+
