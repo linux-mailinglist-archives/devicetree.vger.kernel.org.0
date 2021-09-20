@@ -2,91 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 390314126E2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 21:29:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B07741274D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 22:31:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237908AbhITTaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 15:30:25 -0400
-Received: from mail-oo1-f53.google.com ([209.85.161.53]:37567 "EHLO
-        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245515AbhITT2Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 15:28:24 -0400
-Received: by mail-oo1-f53.google.com with SMTP id h11-20020a4aa74b000000b002a933d156cbso2210712oom.4;
-        Mon, 20 Sep 2021 12:26:57 -0700 (PDT)
+        id S230075AbhITUdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 16:33:12 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:34791 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230176AbhITUbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 16:31:11 -0400
+Received: by mail-oi1-f178.google.com with SMTP id p2so26552242oif.1;
+        Mon, 20 Sep 2021 13:29:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=8RDZosyarrVHJMRIOrOYWRs07UC95UsBIK16bZM00bU=;
-        b=yBncfJSMrMGyW1lY0gWYCKnaxRMCcfsQvSlY4wkggkntOS6IBplpKy5ZcI8fSCysqr
-         MEANr3cv4zk9pfSkGevVPEquMJl5jp9CQg9tfcUPxtYM+9WULU3Ui3z79poxpN8zqY2e
-         xx+byLgTp46MC1DGIOcJjX+f07WYdNYh7VRUv+UQ4jcAMKsmlFPCL1zKABcUt6+6MUgz
-         LwsqYrfTBy+Wb2Q/W89cpFseqx5NSkPMh+ZWIxKFKC9eXcya376GWQTD1mvVZ0+uYlBH
-         G2oP3bvRjzZvPhDkf7yCw+MzVbM7SqhR7XR3LC0rejiyIxDNWu11LuNnXPcAjS6vUYpz
-         fq5A==
-X-Gm-Message-State: AOAM531aYlOWCXo/TDSzv+SwNytnDfeu8taSGB42qNhs9AjbGGOmPRsL
-        PxPVss+Cmo2+rgyXQVP/YQ==
-X-Google-Smtp-Source: ABdhPJxUCxd0cnnhBxoTHwKVzXGKJSzPZe/6gN7UIs+ewnpW2DHKak1OfYaEYrgDm+4SjMcJ3aAkMw==
-X-Received: by 2002:a4a:6412:: with SMTP id o18mr13727649ooc.79.1632166017034;
-        Mon, 20 Sep 2021 12:26:57 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=AH19fZDa3RGD1bXp8KensKJGxcb/KKL33WSHbuvr/mU=;
+        b=RsTzGM/RHDUcfDk0n6rh6cdHqOzfTD0me4EqPjZKLDFx9r0imLpeEiAkJWft9N4z/8
+         Y+stkzXEaJJg272KDsu37pOIqiyWF1/BViLxq48hLhfR2DMnSTGsHXnKj3c4RGyde7qy
+         qqHGab1gGqyX7R1oQDcUi2fI+s/1tjf3wYDDGN6L1VngTgRELgZ0uef/3tImXeHZrqMY
+         K7NPdTSgr//3c216C0Bd0EB38tPFl/OkCxabnUn6HZT7qi2+MmJvtypLv0V80reIj3tE
+         iKLBBK7ytddY6ZOj9itRwBTbvho7yPej9eVYEItrF7KGex47cjrMi4bsJvtq1pXjLTwi
+         SK7Q==
+X-Gm-Message-State: AOAM532+quMTtKwchOjdHs7Wx/3hBOwFNGtImHapg3vJp+V5/V2fL5An
+        7GIEBYguD6SaLyJo5oh4jg==
+X-Google-Smtp-Source: ABdhPJxbK/iL/HBM5wgfss+lB7OVXLSTbwGo6rZFtSZ7S8wUZy7rjh4eYLbR2TGSaErAnOS1tB3eIw==
+X-Received: by 2002:a05:6808:1a29:: with SMTP id bk41mr733432oib.167.1632169784453;
+        Mon, 20 Sep 2021 13:29:44 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bj27sm3222072oib.58.2021.09.20.12.26.55
+        by smtp.gmail.com with ESMTPSA id p21sm3431243oip.28.2021.09.20.13.29.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 12:26:56 -0700 (PDT)
-Received: (nullmailer pid 586175 invoked by uid 1000);
-        Mon, 20 Sep 2021 19:26:55 -0000
+        Mon, 20 Sep 2021 13:29:43 -0700 (PDT)
+Received: (nullmailer pid 697302 invoked by uid 1000);
+        Mon, 20 Sep 2021 20:29:42 -0000
+Date:   Mon, 20 Sep 2021 15:29:42 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Apurva Nandan <a-nandan@ti.com>
-Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        linux-mtd@lists.infradead.org, michael@walle.cc,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-In-Reply-To: <20210920142713.129295-2-a-nandan@ti.com>
-References: <20210920142713.129295-1-a-nandan@ti.com> <20210920142713.129295-2-a-nandan@ti.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nand: Convert to DT schema format
-Date:   Mon, 20 Sep 2021 14:26:55 -0500
-Message-Id: <1632166015.061759.586174.nullmailer@robh.at.kernel.org>
+To:     Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     thierry.reding@gmail.com, linux-tegra@vger.kernel.org,
+        airlied@linux.ie, robh+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+        devicetree@vger.kernel.org, jonathanh@nvidia.com
+Subject: Re: [PATCH v6 1/3] dt-bindings: Add YAML bindings for NVDEC
+Message-ID: <YUjvNmsPEBZHVDw/@robh.at.kernel.org>
+References: <20210916145517.2047351-1-mperttunen@nvidia.com>
+ <20210916145517.2047351-2-mperttunen@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210916145517.2047351-2-mperttunen@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Sep 2021 19:57:12 +0530, Apurva Nandan wrote:
-> Convert spi-nand.txt binding to YAML format with an added example.
+On Thu, 16 Sep 2021 17:55:15 +0300, Mikko Perttunen wrote:
+> Add YAML device tree bindings for NVDEC, now in a more appropriate
+> place compared to the old textual Host1x bindings.
 > 
-> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
 > ---
->  .../devicetree/bindings/mtd/spi-nand.txt      |  5 --
->  .../devicetree/bindings/mtd/spi-nand.yaml     | 62 +++++++++++++++++++
->  2 files changed, 62 insertions(+), 5 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
->  create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
+> v6:
+> * Elaborated description for nvidia,host1x-class.
+> * Added default value for nvidia,host1x-class.
+> v5:
+> * Changed from nvidia,instance to nvidia,host1x-class optional
+>   property.
+> * Added dma-coherent
+> v4:
+> * Fix incorrect compatibility string in 'if' condition
+> v3:
+> * Drop host1x bindings
+> * Change read2 to read-1 in interconnect names
+> v2:
+> * Fix issues pointed out in v1
+> * Add T194 nvidia,instance property
+> ---
+>  .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 108 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 109 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+With the yamllint warning fixed,
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.example.dt.yaml: spi-flash@1: $nodename:0: 'spi-flash@1' does not match '^flash(@.*)?$'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/spi-nand.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1530166
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
