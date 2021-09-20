@@ -2,172 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6CE41148F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:34:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A98BA411494
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238398AbhITMft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 08:35:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52710 "EHLO
+        id S238430AbhITMgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 08:36:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233066AbhITMft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 08:35:49 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DCC6C061574
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 05:34:22 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id v24so60729477eda.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 05:34:22 -0700 (PDT)
+        with ESMTP id S233550AbhITMgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 08:36:20 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17757C061574;
+        Mon, 20 Sep 2021 05:34:53 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id b20so8506203lfv.3;
+        Mon, 20 Sep 2021 05:34:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jmPHyk4ay/ug+Dxf4+OBmm2M/IVq6xdfv6z1kfmz6X4=;
-        b=k8POiYoVtFIC2ywK6xteMDKlWS/z/Mz/tjYABj28RnK7uRbtd9en4Yf34C8b91IRfp
-         veN9hiFOrMYFdYH1HQG9GYRfApmBEgjb/BhPAnyrxrE40OH9TaHuGul7xlGsWzWYrkUh
-         rrBkTrNJdMGJE6r5vPx1NtwAw8o5+K5V6gFBDdShItVby1LL+I2UKPtA7KRpGQuu2l1d
-         QtitFlBxuwNMcYFGD+6THPChlVqiyB5dMjehKIRto9+VEbBd8lRHG9VhAwx2MRF+3qkB
-         6IT0/h8PCkoRVkcxuqjgii2Sory/+RnQzHNpkLfthoWBtJn3jzwcK+RfmPOX3QY8kILf
-         +cIw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HpQQkC1AOfzWHJl9ss8L2S0RA1Z9VdPx4YiHlvPnYPk=;
+        b=jW9QUFzX611Lorga+kmJBdS+JIGjVmywVW5bBnJGaBpp3+Anh2WycRQICKHYmqpVBN
+         U9FYZ1XWoTLI9CIjubM787kA6WYtphzt6V87poWVdLTvXbDTN/JRnFYuXYyt6gIcat3I
+         97ukMTN+9Ye/mhLgZQ3D4FcCIpAEJ/YSd8Y48HysBz5VKvMgC61FTfxHTG0nYg2mz1Y1
+         YuCgAXqLBLGBhYzz2pyT/PlDrt6qNHnJnPrCw4rYv0OA8bQ0bsmXxySabfg5j2WhLUk3
+         0eFius8QQdvVosYEjkrxqF6liOb6fOVjOS9zz6P45Feg0XKPcNoAS0iQnH1h5bvphZul
+         8vLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=jmPHyk4ay/ug+Dxf4+OBmm2M/IVq6xdfv6z1kfmz6X4=;
-        b=NIOkWe9GKMOad0gMdf5r6IkiOIW3qm7zIykbZToVwIQoWqI5g4s62ZR0DsZn4A54Te
-         KEpdi8pJVgd2B4DaUkZmbCPr4rKRWNw0zGf6AY8NPA+fs9Xj2tjyY3YB08ywT/LA7/dt
-         Q5kd5rg97mOnP6cyodeS0Dzt31rzgQwtac5gbaPGfEc1/FotccAHvS2XSHc+Q/LuuyLt
-         1geh8PGGyHUrHY2IpCOVBBOSHWZuxKpreiI9K5UFFUyvxwNP5WWboWRYx03jb9u9sqaK
-         lJDf3U6Y80b2rhrbuGtqwobhlmvFs1J01ISDzAGaW+ddW8vplhTltgc2jNWGgkMxaFuO
-         Xoiw==
-X-Gm-Message-State: AOAM532rphJkiDQqn+751m/xaa4BXAOn6O3huNoh0Piei6v2H5qvlBfz
-        npmJmYl1kTBgheCMypMmjqF1Pg==
-X-Google-Smtp-Source: ABdhPJx9ibE/5me085lLqlYWvzrRpYL6jQR9T1y9R8f4AeYy1qh1vbHflSendDAZDYeXxlDl23hhow==
-X-Received: by 2002:a05:6402:1508:: with SMTP id f8mr28835441edw.255.1632141260774;
-        Mon, 20 Sep 2021 05:34:20 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id e22sm7209609edu.35.2021.09.20.05.34.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Sep 2021 05:34:20 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] nvmem: core: introduce cells parser
-To:     Vadym Kochan <vadym.kochan@plvision.eu>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>
-References: <20210608190327.22071-1-vadym.kochan@plvision.eu>
- <20210608190327.22071-2-vadym.kochan@plvision.eu>
- <43023500-dd6a-5180-057e-cecc1f1b6500@linaro.org>
- <20210616123356.GA9951@plvision.eu>
- <fea907ed-06ce-5c82-667d-d11f3e902616@linaro.org>
- <vrcxh2zgsnl841.fsf@plvision.eu>
- <7e6d75ed-cebc-597f-7062-34261d184968@linaro.org>
- <vrcxh2pmt3bl4h.fsf@plvision.eu>
- <0e471789-fe29-b747-5153-75c9b4616c7f@linaro.org>
- <vrcxh2o88nbias.fsf@plvision.eu>
- <1da03714-8f23-1004-e89a-891e4599e04a@linaro.org>
- <vrcxh2mto7bfcb.fsf@plvision.eu>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <1e146349-9fef-972b-9084-577f02d5168b@linaro.org>
-Date:   Mon, 20 Sep 2021 13:34:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        bh=HpQQkC1AOfzWHJl9ss8L2S0RA1Z9VdPx4YiHlvPnYPk=;
+        b=JO6x0t4/IBOFzKrdgNojR935QBHg8jD6xAAgbK0AHUFOJdXMYo42OfDf1GIF/RL+D6
+         OawEyqDUYqKXXo8y2NIDh+BHBvfXZAXhVq31aJZoS/u3pwhasHAPieL+eOP2DGMw8gKf
+         Ef69pIhRhtQXTzXEE6T6E5IknxLSY3PO8Vf941cnv/uneikdgVAr+HZwzP3z6Fvc+NS/
+         6TzQimhMDTXSy67EpY9u+ZmhZhPQb6pf8yxRWOyrk2eJ4YYbiLLLDPDHi5YK8Pc+DzCB
+         2j7IYXlybGiXYwFEDYIuKnIZ3lGQkUeGopEFejKHpjdEWLRZiOxz/7NhPrV/nRk7k5B/
+         py6Q==
+X-Gm-Message-State: AOAM532531DbYOfvOuQw60ffzvS89j/VHI36xtSdd52Sa7RvKVRceKTv
+        x7Ef1K5s1SXi4znsu9oGvJ8=
+X-Google-Smtp-Source: ABdhPJxXbr1B932hVzp57IlvjUhWt3JLlpqlZgVyIKEKjcn7W0FHEUSKK3NsNtRsdaVL+hccgrvEiw==
+X-Received: by 2002:a05:6512:1049:: with SMTP id c9mr5237881lfb.283.1632141291208;
+        Mon, 20 Sep 2021 05:34:51 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id b26sm1748454lji.128.2021.09.20.05.34.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 05:34:49 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH net-next] net: bgmac: support MDIO described in DT
+Date:   Mon, 20 Sep 2021 14:34:41 +0200
+Message-Id: <20210920123441.9088-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <vrcxh2mto7bfcb.fsf@plvision.eu>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Check ethernet controller DT node for "mdio" subnode and use it with
+of_mdiobus_register() when present. That allows specifying MDIO and its
+PHY devices in a standard DT based way.
 
-On 20/09/2021 13:29, Vadym Kochan wrote:
-> 
-> Srinivas Kandagatla <srinivas.kandagatla@linaro.org> writes:
-> 
->> On 20/09/2021 12:25, Vadym Kochan wrote:
->>>>> Or, treat cells with length "0" in a special way and allow to update
->>>>> cell info later.you can update irrespective of the length, as long as this is done
->>>> before register.
->>>>
->>>>
->>>>>> };
->>>>>>
->>>>>> some_dev_node {
->>>>>> 	compatible = "xxx";
->>>>>> 	nvmem-cells = <&mac_address>;
->>>>>> 	nvmem-cell-names = "mac-address";
->>>>>> };
->>>>>>
->>>>>> == CODE ==
->>>>>> ret = of_get_mac_address(dev->of_node, base_mac);
->>>>>> ==========
->>>>>>
->>>>>>
->>>>>> If you notice the mac_address node reg is 0.
->>>>>> This node "reg" property should be updated ( using of_update_property())
->>>>>> by nvmem-provider driver while tlv parsing and by matching the node name
->>>>>> with tlv name.
->>>>>>
->>>>> I assume parser driver can just invoke add_cell_table (with may be
->>>>> by adding 'bool update' field to the cell_info struct) and core.c will just
->>>>> update existing cells parsed from OF.
->>>>>
->>>> Lets keep the core code clean for now, I would expect the provider
->>>> driver along with parser function to do update the nodes.
->>>>
->>>> --srini
->>>>
->>> core.c sequence:
->>>
->>> 1) after cells parsed from OF:
->>>
->>> 2) lookup the parser
->>>
->>> 3) parser->cells_parse(ctx, table)
->>>
->>> 3.a) update existing cells matched by name from table
->>>
->>> 4) parser->cells_clean(ctx, table)
->>> /* to free cell's_info allocated by the parser driver */
->>>
->>> as alternative way, I think it would be more generic to
->>> provide nvmem-provider.h API to update the existing cell info,
->>> however it makes sense only when cells were parsed
->>> by the cell parser, in the other situations the
->>> cell should be well defined.
->>>
->>> with this approach the parser driver will be just called
->>> via parser->cells_parse(ctx) and will call nvmem_cell_info_update()
->>> for each parsed cells.
->>
->> TBH, This is an over kill.
->>
->> In nvmem provider driver probe you can parse the tlv data and update the
->> dt nodes before nvmem register.
->>
->> rest of the code should just work as it is.
->>
->> --srini
-> 
-> You mean to parse TLV in the particular nvmem provider driver (for
-> example in at24 driver) ? If so, then it will not allow to parse
-> this TLV format from the other kinds of nvmem.
+This is required for BCM53573 SoC support which has an MDIO attached
+switch.
 
-Why not?
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Can you also tell us which other nvmem providers are you going to test 
-this on?
+diff --git a/drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c b/drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c
+index 6ce80cbcb48e..086739e4f40a 100644
+--- a/drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c
++++ b/drivers/net/ethernet/broadcom/bgmac-bcma-mdio.c
+@@ -10,6 +10,7 @@
+ 
+ #include <linux/bcma/bcma.h>
+ #include <linux/brcmphy.h>
++#include <linux/of_mdio.h>
+ #include "bgmac.h"
+ 
+ static bool bcma_mdio_wait_value(struct bcma_device *core, u16 reg, u32 mask,
+@@ -211,6 +212,7 @@ struct mii_bus *bcma_mdio_mii_register(struct bgmac *bgmac)
+ {
+ 	struct bcma_device *core = bgmac->bcma.core;
+ 	struct mii_bus *mii_bus;
++	struct device_node *np;
+ 	int err;
+ 
+ 	mii_bus = mdiobus_alloc();
+@@ -229,7 +231,9 @@ struct mii_bus *bcma_mdio_mii_register(struct bgmac *bgmac)
+ 	mii_bus->parent = &core->dev;
+ 	mii_bus->phy_mask = ~(1 << bgmac->phyaddr);
+ 
+-	err = mdiobus_register(mii_bus);
++	np = of_get_child_by_name(core->dev.of_node, "mdio");
++
++	err = of_mdiobus_register(mii_bus, np);
+ 	if (err) {
+ 		dev_err(&core->dev, "Registration of mii bus failed\n");
+ 		goto err_free_bus;
+-- 
+2.26.2
 
-As long as you represent this parsing function as some library function, 
-I do not see any issue.
-If any exported symbol is available for this then any nvmem provider 
-could use it.
-
---srini
-
-
-> 
->>
->>
->>>
-> 
