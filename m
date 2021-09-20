@@ -2,182 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7C2C410F33
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 07:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 717DF410FB6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 09:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232284AbhITFKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 01:10:24 -0400
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:32664 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231550AbhITFKR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 01:10:17 -0400
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18JNT3bO017248;
-        Sun, 19 Sep 2021 22:08:45 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=qyV8+vEm4sZjB/wyqo1NOpKnxfPITMzCujbPuvHPUbY=;
- b=RBKFbwtndq4oVobqaTsLkoSzzucVGwxDGonuGfSOYhFsU5vywZWYAgJYf3fr3SkHgGIG
- 6zTmxwYQBO0vIJ5PsuB6QMOH9P+xDqZ7uZC0aSHZrNgi2kR9BhpnYdp8+1vcUsrAEviK
- MeS9cvW2oweywQvSbiY9IhkDL56KDgQDb4U5BEUvipgL8LiBRQgp7d2K2/RzT86yMKy6
- GB8peOANBDXr/5r+udO93+O0s3c0uyveGFXi0mdS3AyJKwC72y7zbcyIrtZi94N1vhJ+
- 7f9Opal3X2W0TjFZkenK4to+hCPTnZfPRoHh0VVW4Hy+qAA3lX3j7f2FJaZ/U01em3W/ XA== 
-Received: from dc5-exch01.marvell.com ([199.233.59.181])
-        by mx0b-0016f401.pphosted.com with ESMTP id 3b6ascgyt0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Sun, 19 Sep 2021 22:08:44 -0700
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Sun, 19 Sep
- 2021 22:08:42 -0700
-Received: from bbhushan2.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Sun, 19 Sep 2021 22:08:40 -0700
-From:   Bharat Bhushan <bbhushan2@marvell.com>
-To:     <will@kernel.org>, <mark.rutland@arm.com>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Bharat Bhushan <bbhushan2@marvell.com>
-Subject: [PATCH v4 4/4] perf/marvell: cn10k DDR perf event core ownership
-Date:   Mon, 20 Sep 2021 10:38:23 +0530
-Message-ID: <20210920050823.10853-5-bbhushan2@marvell.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210920050823.10853-1-bbhushan2@marvell.com>
-References: <20210920050823.10853-1-bbhushan2@marvell.com>
+        id S232807AbhITHBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 03:01:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32974 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229825AbhITHBZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 03:01:25 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1E7CC061574
+        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 23:59:58 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id y8so15320708pfa.7
+        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 23:59:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9f/uoH0k3kcTrJoBN4xkFEVn3LDPuL95GvB2FHHsCJY=;
+        b=nQh65a8mRcM96mOvKTtKO1GHdqpqYYHSImR7TUz+hO51elCwJPtoPE49ey40V++j4e
+         aD6Fedx+KRVpN9tWVWDID+dSoLEaetnh1EvRN/EPtownN/QN36JjkPcxmxCZIZgEiowu
+         KxUL90WiD2kvhEVM6dPEHYNZZ+H+U0hEiPZNGFANjaAym4WO7OvH+M5R+pYZKgktnNHV
+         xplrA8/u/fctvqjTuo0jOHjRLiKm6FENyWGqCF/wZIaKTApT9GYi9PpLa8eoBlPptHVa
+         iqlwPODsPUmiXmiStJ+ogWm2phq5vb2Glkkz9/oKfTLgphNBnfDMzIYkkNs409xOjW0x
+         QQnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9f/uoH0k3kcTrJoBN4xkFEVn3LDPuL95GvB2FHHsCJY=;
+        b=gPH+fPsD7sjpVQCtYz+5/A4TNLO4LpurvRVifyzwwyoCLBZIEwsOOmcUJ49Va6qps9
+         AZW6LmQ631ZCMZprzMS5ed7HI6dooB9l5sD0FummvlgzKzHgJANYEbff4p57/q6vSXJO
+         Gsyh7BQETDn00s4dk5ko2EYLdObL+DoapD2GXiRUdtip1JOH+8+Nan4I67gHB9+ka2en
+         1MJU4xHELpUf/aB6Ty5tqU+yniPo9dzs4L4Yem+9GgEtT6+9fJCxX56ZmqY/bggbIJEk
+         88CKJft8E2V+gHdZQ300nPKx43TVZWB8GopOxmL/tiFD2Z2j4vl2/a0XDJ98m/aBid1S
+         30lg==
+X-Gm-Message-State: AOAM530B6AF6UHgNx/2DGo35gGjVMHkbE/jcnXV8QCErjRPCsHbfGLBL
+        gJ9AJFakdjqt7axuOtdVA+/I
+X-Google-Smtp-Source: ABdhPJzynZnY3/+qUe0q4BQT2fPVEv59drurXiTSvxUmqHifbHPK84m7SA2qsr/ZcAe5w0hwoW7JIw==
+X-Received: by 2002:a65:6398:: with SMTP id h24mr21590975pgv.367.1632121198220;
+        Sun, 19 Sep 2021 23:59:58 -0700 (PDT)
+Received: from localhost.localdomain ([59.92.98.104])
+        by smtp.gmail.com with ESMTPSA id p15sm12768349pff.194.2021.09.19.23.59.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Sep 2021 23:59:57 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        robh@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        hemantk@codeaurora.org, bjorn.andersson@linaro.org,
+        sallenki@codeaurora.org, skananth@codeaurora.org,
+        vpernami@codeaurora.org, vbadigan@codeaurora.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v8 0/3] Add Qualcomm PCIe Endpoint driver support
+Date:   Mon, 20 Sep 2021 12:29:43 +0530
+Message-Id: <20210920065946.15090-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-GUID: XxBy1iX-jFzQTMzyOgl5lbnLflWkyjXB
-X-Proofpoint-ORIG-GUID: XxBy1iX-jFzQTMzyOgl5lbnLflWkyjXB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-20_01,2021-09-17_02,2020-04-07_01
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As DDR perf event counters are not per core, so they should be accessed
-only by one core at a time. Select new core when previously owning core
-is going offline.
+Hello,
 
-Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
----
-v1->v2->v3->v4:
- - No change
+This series adds support for Qualcomm PCIe Endpoint controller found
+in platforms like SDX55. The Endpoint controller is based on the designware
+core with additional Qualcomm wrappers around the core.
 
- drivers/perf/marvell_cn10k_ddr_pmu.c | 50 ++++++++++++++++++++++++++--
- include/linux/cpuhotplug.h           |  1 +
- 2 files changed, 49 insertions(+), 2 deletions(-)
+The driver is added separately unlike other Designware based drivers that
+combine RC and EP in a single driver. This is done to avoid complexity and
+to maintain this driver autonomously.
 
-diff --git a/drivers/perf/marvell_cn10k_ddr_pmu.c b/drivers/perf/marvell_cn10k_ddr_pmu.c
-index 21fccb9090c5..bef0cee3a46a 100644
---- a/drivers/perf/marvell_cn10k_ddr_pmu.c
-+++ b/drivers/perf/marvell_cn10k_ddr_pmu.c
-@@ -129,6 +129,7 @@ struct cn10k_ddr_pmu {
- 	int active_events;
- 	struct perf_event *events[DDRC_PERF_NUM_COUNTERS];
- 	struct hrtimer hrtimer;
-+	struct hlist_node node;
- };
- 
- #define to_cn10k_ddr_pmu(p)	container_of(p, struct cn10k_ddr_pmu, pmu)
-@@ -610,6 +611,24 @@ static enum hrtimer_restart cn10k_ddr_pmu_timer_handler(struct hrtimer *hrtimer)
- 	return HRTIMER_RESTART;
- }
- 
-+static int cn10k_ddr_pmu_offline_cpu(unsigned int cpu, struct hlist_node *node)
-+{
-+	struct cn10k_ddr_pmu *pmu = hlist_entry_safe(node, struct cn10k_ddr_pmu,
-+						     node);
-+	unsigned int target;
-+
-+	if (cpu != pmu->cpu)
-+		return 0;
-+
-+	target = cpumask_any_but(cpu_online_mask, cpu);
-+	if (target >= nr_cpu_ids)
-+		return 0;
-+
-+	perf_pmu_migrate_context(&pmu->pmu, cpu, target);
-+	pmu->cpu = target;
-+	return 0;
-+}
-+
- static int cn10k_ddr_perf_probe(struct platform_device *pdev)
- {
- 	struct cn10k_ddr_pmu *ddr_pmu;
-@@ -661,18 +680,31 @@ static int cn10k_ddr_perf_probe(struct platform_device *pdev)
- 	hrtimer_init(&ddr_pmu->hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
- 	ddr_pmu->hrtimer.function = cn10k_ddr_pmu_timer_handler;
- 
-+	cpuhp_state_add_instance_nocalls(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				&ddr_pmu->node);
-+
- 	ret = perf_pmu_register(&ddr_pmu->pmu, name, -1);
- 	if (ret)
--		return ret;
-+		goto error;
- 
- 	pr_info("CN10K DDR PMU Driver for ddrc@%llx\n", res->start);
- 	return 0;
-+error:
-+	cpuhp_state_remove_instance_nocalls(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				&ddr_pmu->node);
-+	return ret;
- }
- 
- static int cn10k_ddr_perf_remove(struct platform_device *pdev)
- {
- 	struct cn10k_ddr_pmu *ddr_pmu = platform_get_drvdata(pdev);
- 
-+	cpuhp_state_remove_instance_nocalls(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				&ddr_pmu->node);
-+
- 	perf_pmu_unregister(&ddr_pmu->pmu);
- 	return 0;
- }
-@@ -695,12 +727,26 @@ static struct platform_driver cn10k_ddr_pmu_driver = {
- 
- static int __init cn10k_ddr_pmu_init(void)
- {
--	return platform_driver_register(&cn10k_ddr_pmu_driver);
-+	int ret;
-+
-+	ret = cpuhp_setup_state_multi(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				"perf/marvell/cn10k/ddr:online", NULL,
-+				cn10k_ddr_pmu_offline_cpu);
-+	if (ret)
-+		return ret;
-+
-+	ret = platform_driver_register(&cn10k_ddr_pmu_driver);
-+	if (ret)
-+		cpuhp_remove_multi_state(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE);
-+	return ret;
- }
- 
- static void __exit cn10k_ddr_pmu_exit(void)
- {
- 	platform_driver_unregister(&cn10k_ddr_pmu_driver);
-+	cpuhp_remove_multi_state(CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE);
- }
- 
- module_init(cn10k_ddr_pmu_init);
-diff --git a/include/linux/cpuhotplug.h b/include/linux/cpuhotplug.h
-index 832d8a74fa59..a4b521f12b58 100644
---- a/include/linux/cpuhotplug.h
-+++ b/include/linux/cpuhotplug.h
-@@ -227,6 +227,7 @@ enum cpuhp_state {
- 	CPUHP_AP_PERF_ARM_QCOM_L3_ONLINE,
- 	CPUHP_AP_PERF_ARM_APM_XGENE_ONLINE,
- 	CPUHP_AP_PERF_ARM_CAVIUM_TX2_UNCORE_ONLINE,
-+	CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
- 	CPUHP_AP_PERF_POWERPC_NEST_IMC_ONLINE,
- 	CPUHP_AP_PERF_POWERPC_CORE_IMC_ONLINE,
- 	CPUHP_AP_PERF_POWERPC_THREAD_IMC_ONLINE,
+The driver has been validated with an out of tree MHI function driver on
+SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
+
+Thanks,
+Mani
+
+Changes in v8:
+
+* Added Reviewed-by tag from Rob for the driver patch
+* Rebased on top of v5.15-rc1
+
+Changes in v7:
+
+* Used existing naming convention for callback functions
+* Used active low state for PERST# gpio
+
+Changes in v6:
+
+* Removed status property in DT and added reviewed tag from Rob
+* Switched to _relaxed variants as suggested by Rob
+
+Changes in v5:
+
+* Removed the DBI register settings that are not needed
+* Used the standard definitions available in pci_regs.h
+* Added defines for all the register fields
+* Removed the left over code from previous iteration
+
+Changes in v4:
+
+* Removed the active_config settings needed for IPA integration
+* Switched to writel for couple of relaxed versions that sneaked in
+
+Changes in v3:
+
+* Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
+* Noticeable changes are:
+  - Got rid of _relaxed calls and used readl/writel
+  - Got rid of separate TCSR memory region and used syscon for getting the
+    register offsets for Perst registers
+  - Changed the wake gpio handling logic
+  - Added remove() callback and removed "suppress_bind_attrs"
+  - stop_link() callback now just disables PERST IRQ
+* Added MMIO region and doorbell interrupt to the binding
+* Added logic to write MMIO physicall address to MHI base address as it is
+  for the function driver to work
+
+Changes in v2:
+
+* Addressed the comments from Rob on bindings patch
+* Modified the driver as per binding change
+* Fixed the warnings reported by Kbuild bot
+* Removed the PERST# "enable_irq" call from probe()
+
+Manivannan Sadhasivam (3):
+  dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
+    controller
+  PCI: qcom-ep: Add Qualcomm PCIe Endpoint controller driver
+  MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
+
+ .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
+ MAINTAINERS                                   |  10 +-
+ drivers/pci/controller/dwc/Kconfig            |  10 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-qcom-ep.c     | 710 ++++++++++++++++++
+ 5 files changed, 888 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
+
 -- 
-2.17.1
+2.25.1
 
