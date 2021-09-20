@@ -2,200 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A607C411498
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:35:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DA574114B6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:42:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233887AbhITMgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 08:36:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57594 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233716AbhITMgw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 08:36:52 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2134A610A8;
-        Mon, 20 Sep 2021 12:35:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632141326;
-        bh=X6TmFKEMJ7r1hkXSfoYExkSnFh55gCMOKrgmsy914DI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pLzZa5QmYpjLIjol6Ayc/MzKR4Hw27CIpiTujBs1vhNY2hPr3ddIyLLdAeqs3OHQ4
-         +M0H0MTN3skkGIAVvub1xrPkn9jUAKTJ8NOfFeuqYAWq0frdTzRyVZ1fxsqCZCBT8H
-         jmNbAtqOAKL3c8etMA5dvtkNsyILHsMdlCE55iIShzxtxlph9u0LRztL0/f2tfpfnR
-         045Zt9nIBEMIuJfOMW1krCSpZSmGZz8D70JSSv+9ZmGqfkBDXs5ojPGt2yrg2ZCAWo
-         p9H5d43YH4vLtXzr8KShm2jJOna8/eaGashadwhrHvZECZR1UYMMhnM/YseieDodcQ
-         PlSmNkex8H5ag==
-Received: by mail-ed1-f46.google.com with SMTP id v22so56390753edd.11;
-        Mon, 20 Sep 2021 05:35:26 -0700 (PDT)
-X-Gm-Message-State: AOAM530ZX4c+WkrD/2/Zoc7qIGiU/p7KqqeB05cE2QJgX1kzxtvJrzF9
-        +NRXiRZRvr2euCWFMEhUqG957RDMtoO55g2YIg==
-X-Google-Smtp-Source: ABdhPJwF88jQtPjfNvvL1nKjml4PuXc3iZMNOvFq0Gm0Ol5FfAgq3Zb8NcC/qYhD2qqpX1pKJGAY5SQWfgROQcdI244=
-X-Received: by 2002:a05:6402:b23:: with SMTP id bo3mr29186170edb.145.1632141324479;
- Mon, 20 Sep 2021 05:35:24 -0700 (PDT)
+        id S234370AbhITMnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 08:43:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54576 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233874AbhITMnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 08:43:32 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C321C061760
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 05:42:05 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id b20so8604211lfv.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 05:42:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3Jyaaz7vsLz5usd/SRKYitd1GGLRRfy3n82omug9pAA=;
+        b=L/kr3gQxhCNlhY6qH1CLUHlheQzY/Uh+X/1bxbkbfOsRhN5fgPZdylx7AksknyVZx0
+         ZavNwA4iIjTf8EcdStQfTAE/CRJna1NdH2D1H7fxIYHEiQ+0MHOPC7853nFtRKP48Vb1
+         GJzyA8LSMUDfFgdLyXv74OeaA8br/7jymBKqKQKfeYRtMB2s0FkIFGGt5rTgnSKxV8mU
+         X4NlHShLxa3rlaPq+R/xlNlW86R+vVxLpXI2xSERkAr/iLu0cn1PCrZkVQlCaSVrLeQt
+         SndtPNzU3Ga5dMxXpv6OGJSxycuUZb6UBdv2g/0rC2zCOClhczAXcpdZBuLYOnmaI5kz
+         GHMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3Jyaaz7vsLz5usd/SRKYitd1GGLRRfy3n82omug9pAA=;
+        b=P3QjR9yAfDalQRiCl8mvYUv86DcLSw0Dgex51ChCffi7sN61xielHb4YFfxorzCEcc
+         dIb7iNnrLvNnslu+OKLOiVI1fYQopcipGnSb8CuCGTWAt2WFLiwBjo3tedx3xsZGMWTm
+         xay6fF89SJ4ef9ji396+3SNvrDlRfMjV15h2Bhvot3LeX75e/00Nb+8+pl+Rjb5EwbHb
+         DWyXBFJMJOF1N8SqFM5Rss4A4N98gVxKAusDA3+iNHpqLna8kFPS1afl/yfTqq4/A+pQ
+         OFxmWuX6c/MlceNlwaCsg/PsKkjWWVoUCItvVMm73xO8Gl5XO++lcr7+HPGXQ680+TMa
+         DuoA==
+X-Gm-Message-State: AOAM531c8zdMGR7lKGSDOjPcy4s/wgB44ZsKF0cR+2mRYWwLDGX6yGlC
+        D7cPwSRxoCDmUWAPQA3I5k9Gvg==
+X-Google-Smtp-Source: ABdhPJwptMV9N4Ai1/dhNdrr/uDN6aHZsMXxgGcaXehA6fzWLlCPes1ne4JSuGwqmkcUqu3FgLPPGw==
+X-Received: by 2002:a2e:501a:: with SMTP id e26mr20763529ljb.57.1632141723926;
+        Mon, 20 Sep 2021 05:42:03 -0700 (PDT)
+Received: from grasshopper.googchameleon.semihalf.net ([83.142.187.85])
+        by smtp.gmail.com with ESMTPSA id v1sm630944lfo.308.2021.09.20.05.42.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 05:42:03 -0700 (PDT)
+From:   =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        dinguyen@kernel.org, p.zabel@pengutronix.de
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        tn@semihalf.com, ka@semihalf.com, jam@semihalf.com,
+        =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
+Subject: [PATCH 0/3] Add support for the Mercury+ AA1 module
+Date:   Mon, 20 Sep 2021 14:41:38 +0200
+Message-Id: <20210920124141.1166544-1-pan@semihalf.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210826211830.3311140-1-sean.anderson@seco.com>
- <YS6M9jmTmy4EvB4k@robh.at.kernel.org> <eedf3b19-18be-50ca-783e-c9537498db4a@seco.com>
-In-Reply-To: <eedf3b19-18be-50ca-783e-c9537498db4a@seco.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 20 Sep 2021 07:35:12 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK+vfnGUpuQT=Bb3Zf0q7_M8aOUZao+e4icx+vtx5zssA@mail.gmail.com>
-Message-ID: <CAL_JsqK+vfnGUpuQT=Bb3Zf0q7_M8aOUZao+e4icx+vtx5zssA@mail.gmail.com>
-Subject: Re: [PATCH v6 1/3] dt-bindings: pwm: Add Xilinx AXI Timer
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Linux PWM List <linux-pwm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 16, 2021 at 12:58 PM Sean Anderson <sean.anderson@seco.com> wrote:
->
->
->
-> On 8/31/21 4:11 PM, Rob Herring wrote:
-> > On Thu, Aug 26, 2021 at 05:18:28PM -0400, Sean Anderson wrote:
-> >> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is a
-> >> "soft" block, so it has some parameters which would not be configurable in
-> >> most hardware. This binding is usually automatically generated by Xilinx's
-> >> tools, so the names and values of some properties should be kept as they
-> >> are, if possible. In addition, this binding is already in the kernel at
-> >> arch/microblaze/boot/dts/system.dts, and in user software such as QEMU.
-> >>
-> >> The existing driver uses the clock-frequency property, or alternatively the
-> >> /cpus/timebase-frequency property as its frequency input. Because these
-> >> properties are deprecated, they have not been included with this schema.
-> >> All new bindings should use the clocks/clock-names properties to specify
-> >> the parent clock.
-> >>
-> >> Because we need to init timer devices so early in boot, we determine if we
-> >> should use the PWM driver or the clocksource/clockevent driver by the
-> >> presence/absence, respectively, of #pwm-cells. Because both counters are
-> >> used by the PWM, there is no need for a separate property specifying which
-> >> counters are to be used for the PWM.
-> >>
-> >> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> >> ---
-> >>
-> >> Changes in v6:
-> >> - Fix incorrect schema id
-> >> - Enumerate possible counter widths
-> >>
-> >> Changes in v5:
-> >> - Update commit message to reflect revisions
-> >> - Fix indentation lint
-> >> - Add example for timer binding
-> >> - Remove xlnx,axi-timer-2.0 compatible string
-> >> - Move schema into the timer directory
-> >>
-> >> Changes in v4:
-> >> - Remove references to generate polarity so this can get merged
-> >> - Predicate PWM driver on the presence of #pwm-cells
-> >> - Make some properties optional for clocksource drivers
-> >>
-> >> Changes in v3:
-> >> - Mark all boolean-as-int properties as deprecated
-> >> - Add xlnx,pwm and xlnx,gen?-active-low properties.
-> >> - Make newer replacement properties mutually-exclusive with what they
-> >>   replace
-> >> - Add an example with non-deprecated properties only.
-> >>
-> >> Changes in v2:
-> >> - Use 32-bit addresses for example binding
-> >>
-> >>  .../bindings/timer/xlnx,xps-timer.yaml        | 90 +++++++++++++++++++
-> >>  1 file changed, 90 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml b/Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
-> >> new file mode 100644
-> >> index 000000000000..5be353a642aa
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
-> >> @@ -0,0 +1,90 @@
-> >> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/timer/xlnx,xps-timer.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Xilinx LogiCORE IP AXI Timer Device Tree Binding
-> >> +
-> >> +maintainers:
-> >> +  - Sean Anderson <sean.anderson@seco.com>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    contains:
-> >> +      const: xlnx,xps-timer-1.00.a
-> >> +
-> >> +  clocks:
-> >> +    maxItems: 1
-> >> +
-> >> +  clock-names:
-> >> +    const: s_axi_aclk
-> >> +
-> >> +  interrupts:
-> >> +    maxItems: 1
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  xlnx,count-width:
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    enum: [8, 16, 32]
-> >> +    default: 32
-> >> +    description:
-> >> +      The width of the counter(s), in bits.
-> >> +
-> >> +  xlnx,one-timer-only:
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    enum: [ 0, 1 ]
-> >> +    description:
-> >> +      Whether only one timer is present in this block.
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +  - xlnx,one-timer-only
-> >> +
-> >> +allOf:
-> >> +  - if:
-> >> +      required:
-> >> +        - '#pwm-cells'
-> >> +    then:
-> >> +      allOf:
-> >> +        - required:
-> >> +            - clocks
-> >> +        - properties:
-> >> +            xlnx,one-timer-only:
-> >> +              const: 0
-> >> +    else:
-> >> +      required:
-> >> +        - interrupts
-> >> +  - if:
-> >> +      required:
-> >> +        - clocks
-> >> +    then:
-> >> +      required:
-> >> +        - clock-names
-> >> +
-> >> +additionalProperties: true
-> >
-> > This needs to be false. What else do you expect to be present?
->
-> I am going to leave this as true for the next revision to avoid the following error:
->
-> arch/microblaze/boot/dts/system.dt.yaml: timer@83c00000: 'xlnx,family', 'xlnx,gen0-assert', 'xlnx,gen1-assert', 'xlnx,trig0-assert', 'xlnx,trig1-assert' do not match any of the regexes: 'pinctrl-[0-9]+'
+The following patches add support for the Mercury+ AA1 with an
+Arria 10 SoCFPGA, namely a device tree, and a fix regarding the
+Arria 10 reset manager driver.
 
-If I wasn't clear: NAK
+Paweł Anikiel (3):
+  dt-bindings: mtd: spi-nor: add n25q00 schema
+  dts: socfpga: Add Mercury+ AA1 devicetree
+  reset: socfpga: add empty driver allowing consumers to probe
 
-All properties must be documented or removed from .dts files if not needed.
+ .../bindings/mtd/jedec,spi-nor.yaml           |   2 +-
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/socfpga_arria10_mercury_aa1.dts  | 127 ++++++++++++++++++
+ drivers/reset/reset-socfpga.c                 |  26 ++++
+ 4 files changed, 155 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
 
-Rob
+-- 
+2.25.1
+
