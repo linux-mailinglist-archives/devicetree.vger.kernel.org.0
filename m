@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 627E6411575
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 15:25:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC0E411578
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 15:25:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232227AbhITN00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 09:26:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36552 "EHLO
+        id S239349AbhITN0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 09:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234318AbhITN0Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 09:26:25 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C13D9C061574
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 06:24:58 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id c21so60923440edj.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 06:24:58 -0700 (PDT)
+        with ESMTP id S239274AbhITN0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 09:26:35 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3206EC061760
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 06:25:08 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id v5so60631756edc.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 06:25:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zHVonDiIKOidenYlcCsevl+U2ckQNMnx2NKq+Q4lJ+4=;
-        b=xoT5NPcx8DInitXeB0UKu0hQHUwQU4lRfCwxIULDJvq+hMnb29LVCbXVnfaV9N530M
-         l51cSknPG8z/139JGdnHTbOQjJm4hYfoy/5SspTk5SsrTLW4IheL14qbnSqZtkpxhDKU
-         JHLMpNQmBEuLzpGeHRn16DIjkv/jdKnHMozXrSMQxpe8z4L5SXgLD1sI0mxMdNnK0epn
-         Gh3G2xwHQ6HRMNoLmTUOSW8c8QnrUfJlOYmolUR2sLyX8QBNS5QSZ1aFwxhANjRooA6T
-         G8RAOLIrpxifni7FmEG1xZRJuFMX/HjobycX+m8asCEKJnUs5v5YuYSTBmjuf13v0KX5
-         Lyeg==
+        bh=5Z/peYbs19scCEIFsnkY9ZT+Ng56kA6OzfkT1Vupsss=;
+        b=WpaAQKMbLMi8KUDY8D4vzykEZLpjiSzI1V9dR9E4Q6JgPva+/tb9cGXkDyncA8qetG
+         /mYUMpknYMbJ8/mj/wRyDOpDx8mrLsRM0WCZdxuH93MczwgYvHV4ia1HyMveZXxHRJIi
+         kIdYFXJFxdF4/n/VUmFwzkYDn4UVoaal8k7kJOITgxnGYleYhutubEcBzfrP5w2kowx5
+         +OW54W0unAVmY3jRlABJ/I6g/wZs4CsyniBO5CHJ5vhX+wGqR5VGF7ZeQ6o8He43bIlO
+         0ncTQQaNV7PdodS5VRqXZad+9j7UZEXAptZKVWC/MIKpcITILj1hbdpoWtO1QPQvDp8O
+         7gLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=zHVonDiIKOidenYlcCsevl+U2ckQNMnx2NKq+Q4lJ+4=;
-        b=z3ou/rW4H2WAw1HtcGQ0tHLWvsBCUtlu8oNWLlw73KuNHUNrk9/j84SekvXYiDn/wS
-         ubttRyjIbgkhSREpMfB0vc/xARp2o/d2TsrrO6azb7c5L7sInKfG83vsVSXy6tSl0z/0
-         yynRu81i/MIdDdVG7eAjHXKDn6W2XJfrgc3K1u/LDUc7sv/GHkqOHNwfdXBaXnRnXYzT
-         wxP4Kp3xr3xR5QTqoAkOwnG5iOahLBj6qKPKIDw8rfMKjJ4UOwvlGrynRUBDwD1kGi1I
-         40MBTzKuvBjadmA+W0h4NagjFO6tXqpPsPFVQ0YsOti+U5bS8RCDOR0+yu38IZ7MZFeW
-         CcLQ==
-X-Gm-Message-State: AOAM532qSXvQetzEb7cMQBV3GiHR8Ad8t54EUcMPJgBpljVBVg5LsPEA
-        HO6G7cz0DpJfBxhoEF1bztutnQ==
-X-Google-Smtp-Source: ABdhPJwjGdIItEsvSqiN7t+4FGcgarp0izJCucyWEMUojF95CxEnksKLGxBDs+NwjN0Mcqwpp0YLeA==
-X-Received: by 2002:a17:906:a18f:: with SMTP id s15mr29516593ejy.269.1632144292611;
-        Mon, 20 Sep 2021 06:24:52 -0700 (PDT)
+        bh=5Z/peYbs19scCEIFsnkY9ZT+Ng56kA6OzfkT1Vupsss=;
+        b=Lj82z1cHBCYe+jis5RvxN5J3fbvVaocOtS5PWRYo1rXql+4HA6qCI12QAvSuTnYj+4
+         swQtFHu0+2/5P6jU7JzDq9cgFixcUt9PvdLdj8gtqnAk1bkSjf6DjI42nZC7RHIP4mbh
+         HpahfM8iuRsmd6KGBi+MmtT13xSvwiYmhFmC1uMcAdKcfAEVKYzVhBFUzv3LyVoU+6z1
+         /WHR1rXZXuoByX9WHHIyuS/mnxhr6On5UCPrlBq2XxaW8Q0VHei7qIkzfwZX8Rqn/KRf
+         TKBAjTsq6zQsLntAIE8D9L1v46nghjD9wqmF53PJIlNhkzaYuRJF+eAOPG4rVav0lvA3
+         v4Nw==
+X-Gm-Message-State: AOAM532vnCNMw1KOUqmzre0NaF4OSaEHvANgKPSnbiwQvZ5NbiL3i1I5
+        X5NA22ysx8BEjGIk35vgB6gdjg==
+X-Google-Smtp-Source: ABdhPJzgF59K4i1R043ONbfVpeUA1ioxtRrNGTbbHkteOOznyAHryJjFhJRy7tPrvrsZ0DhF/JIFxg==
+X-Received: by 2002:a17:906:520b:: with SMTP id g11mr28539621ejm.502.1632144298580;
+        Mon, 20 Sep 2021 06:24:58 -0700 (PDT)
 Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id 19sm3042079ejw.31.2021.09.20.06.24.51
+        by smtp.googlemail.com with ESMTPSA id o7sm6960081edt.68.2021.09.20.06.24.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Sep 2021 06:24:52 -0700 (PDT)
-Subject: Re: [PATCH 2/7] ASoC: qcom: dt-bindings: Add compatible names for
- lpass sc7280 digital codecs
+        Mon, 20 Sep 2021 06:24:58 -0700 (PDT)
+Subject: Re: [PATCH 3/7] ASoC: codecs: tx-macro: Change mic control registers
+ to volatile
 To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
         agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
         broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
@@ -60,14 +60,14 @@ To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
         judyhsiao@chromium.org
 Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
 References: <1632123331-2425-1-git-send-email-srivasam@codeaurora.org>
- <1632123331-2425-3-git-send-email-srivasam@codeaurora.org>
+ <1632123331-2425-4-git-send-email-srivasam@codeaurora.org>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <7c12126d-99a8-4572-6e95-b63131cae300@linaro.org>
-Date:   Mon, 20 Sep 2021 14:24:50 +0100
+Message-ID: <c1c7b1e8-98f5-99a3-1374-11d1d61535b4@linaro.org>
+Date:   Mon, 20 Sep 2021 14:24:56 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <1632123331-2425-3-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <1632123331-2425-4-git-send-email-srivasam@codeaurora.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -78,89 +78,52 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 20/09/2021 08:35, Srinivasa Rao Mandadapu wrote:
-> Update compatible names in va, wsa, rx and tx macro codes for lpass sc7280
+> Update amic and dmic related tx macro control registers to volatile
+> 
+> Fixes: c39667ddcfc5 (ASoC: codecs: lpass-tx-macro: add support for lpass tx macro)
 > 
 > Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 > Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 > ---
->   Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml  | 4 +++-
->   Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml  | 4 +++-
->   Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml  | 4 +++-
->   Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml | 4 +++-
->   4 files changed, 12 insertions(+), 4 deletions(-)
+>   sound/soc/codecs/lpass-tx-macro.c | 13 +++++++++++++
+>   1 file changed, 13 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-> index 443d556..a4e767e 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-> @@ -11,7 +11,9 @@ maintainers:
->   
->   properties:
->     compatible:
-> -    const: qcom,sm8250-lpass-rx-macro
-> +    oneOf:
-> +      - const: qcom,sm8250-lpass-rx-macro
-> +      - const: qcom,sc7280-lpass-rx-macro
->   
-Recently Rob did tree wide change to use enum instead of oneOf for below 
-reason
-"
-'enum' is equivalent to 'oneOf' with a list of 'const' entries, but 
-'enum' is more concise and yields better error messages."
+> diff --git a/sound/soc/codecs/lpass-tx-macro.c b/sound/soc/codecs/lpass-tx-macro.c
+> index 9273724..e65b592 100644
+> --- a/sound/soc/codecs/lpass-tx-macro.c
+> +++ b/sound/soc/codecs/lpass-tx-macro.c
+> @@ -423,6 +423,13 @@ static bool tx_is_volatile_register(struct device *dev, unsigned int reg)
+>   	case CDC_TX_TOP_CSR_SWR_DMIC1_CTL:
+>   	case CDC_TX_TOP_CSR_SWR_DMIC2_CTL:
+>   	case CDC_TX_TOP_CSR_SWR_DMIC3_CTL:
+> +	case CDC_TX_TOP_CSR_SWR_AMIC0_CTL:
+> +	case CDC_TX_TOP_CSR_SWR_AMIC1_CTL:
+> +	case CDC_TX_CLK_RST_CTRL_MCLK_CONTROL:
+> +	case CDC_TX_CLK_RST_CTRL_FS_CNT_CONTROL:
+> +	case CDC_TX_CLK_RST_CTRL_SWR_CONTROL:
+> +	case CDC_TX_TOP_CSR_SWR_CTRL:
+> +	case CDC_TX0_TX_PATH_SEC7:
 
-So, can you move these to enums like:
-
-enum:
-   - qcom,sm8250-lpass-rx-macro
-   - qcom,sc7280-lpass-rx-macro
+Why are these marked as Volatile?
+Can you provide some details on the issue that you are seeing?
 
 --srini
 
->     reg:
->       maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
-> index 6b5ca02..cdec478 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
-> @@ -11,7 +11,9 @@ maintainers:
+
+>   		return true;
+>   	}
+>   	return false;
+> @@ -1674,6 +1681,12 @@ static int tx_macro_component_probe(struct snd_soc_component *comp)
 >   
->   properties:
->     compatible:
-> -    const: qcom,sm8250-lpass-tx-macro
-> +    oneOf:
-> +      - const: qcom,sm8250-lpass-tx-macro
-> +      - const: qcom,sc7280-lpass-tx-macro
+>   	snd_soc_component_update_bits(comp, CDC_TX0_TX_PATH_SEC7, 0x3F,
+>   				      0x0A);
+> +	snd_soc_component_update_bits(comp, CDC_TX_TOP_CSR_SWR_AMIC0_CTL, 0xFF, 0x00);
+> +	snd_soc_component_update_bits(comp, CDC_TX_TOP_CSR_SWR_AMIC1_CTL, 0xFF, 0x00);
+> +	snd_soc_component_update_bits(comp, CDC_TX_TOP_CSR_SWR_DMIC0_CTL, 0xFF, 0x00);
+> +	snd_soc_component_update_bits(comp, CDC_TX_TOP_CSR_SWR_DMIC1_CTL, 0xFF, 0x00);
+> +	snd_soc_component_update_bits(comp, CDC_TX_TOP_CSR_SWR_DMIC2_CTL, 0xFF, 0x00);
+> +	snd_soc_component_update_bits(comp, CDC_TX_TOP_CSR_SWR_DMIC3_CTL, 0xFF, 0x00);
 >   
->     reg:
->       maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> index 679b49c..e15bc05 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-> @@ -11,7 +11,9 @@ maintainers:
->   
->   properties:
->     compatible:
-> -    const: qcom,sm8250-lpass-va-macro
-> +    oneOf:
-> +      - const: qcom,sm8250-lpass-va-macro
-> +      - const: qcom,sc7280-lpass-va-macro
->   
->     reg:
->       maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
-> index 435b019..2dcccb5 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
-> @@ -11,7 +11,9 @@ maintainers:
->   
->   properties:
->     compatible:
-> -    const: qcom,sm8250-lpass-wsa-macro
-> +    oneOf:
-> +      - const: qcom,sm8250-lpass-wsa-macro
-> +      - const: qcom,sc7280-lpass-wsa-macro
->   
->     reg:
->       maxItems: 1
+>   	return 0;
+>   }
 > 
