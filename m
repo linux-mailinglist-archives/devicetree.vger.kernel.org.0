@@ -2,146 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A11184111F6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 11:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4513411206
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 11:45:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234891AbhITJkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 05:40:09 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:63217 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbhITJkH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 05:40:07 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20210920093835euoutp02fb2e6067a7f324d174f5d4378988946f~mfj0bwTbq2710527105euoutp02a
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 09:38:35 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20210920093835euoutp02fb2e6067a7f324d174f5d4378988946f~mfj0bwTbq2710527105euoutp02a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1632130715;
-        bh=e6isLm0fq/xkM6oDTJGwHszCngzBJExBJzDBgTBtJs0=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=gY73qodFMczV/UcY49ke0m4z+xCE+Rv8rjrA0u+bzU/MsAftS411vhXbc7GiOS0Py
-         ANZ944mkId7EbwMozr4hvtrj3/CNTNpzUfLpQ1zYurshAx32PrArDpOKnkJfPakLmM
-         eLm94nC69CrvIvrybDMeu3x5C6EMmkpfjUCuAW1o=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20210920093835eucas1p1c9dda5ed24ec95143ab290b506c8f2b8~mfjz7AyFA0165601656eucas1p1n;
-        Mon, 20 Sep 2021 09:38:35 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 50.0F.42068.B9658416; Mon, 20
-        Sep 2021 10:38:35 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20210920093834eucas1p2a0187690220f466590d390b9775ced84~mfjzKw59e2473024730eucas1p2R;
-        Mon, 20 Sep 2021 09:38:34 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20210920093834eusmtrp2bcae9c6411b3f96dcbeba51ad7144439~mfjzJwm1L2829128291eusmtrp22;
-        Mon, 20 Sep 2021 09:38:34 +0000 (GMT)
-X-AuditID: cbfec7f4-c71ff7000002a454-e7-6148569bd40a
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 18.20.31287.A9658416; Mon, 20
-        Sep 2021 10:38:34 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20210920093833eusmtip24b53e66487ae49756c55d09b113c5c6e~mfjyXLVVq1258312583eusmtip2n;
-        Mon, 20 Sep 2021 09:38:33 +0000 (GMT)
-Subject: Re: [PATCH v2 0/3] devfreq: exynos-ppmu: conform to dt naming
- convention
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Cc:     Sylwester Nawrocki <snawrocki@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <04270892-0952-49ca-d9b7-eb8406e283ff@samsung.com>
-Date:   Mon, 20 Sep 2021 11:38:32 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOKsWRmVeSWpSXmKPExsWy7djPc7qzwzwSDZ71ClhsnLGe1eL6l+es
-        FvOPnGO12Pj2B5PF2aY37BabHl9jtbi8aw6bxefeI4wWM87vY7K43biCzaJ17xF2i/anL5kd
-        eDxmNfSyeWxa1cnmsXlJvUffllWMHp83yQWwRnHZpKTmZJalFunbJXBlXJh8hbXgLkfFlT3N
-        7A2Mk9m7GDk5JARMJK7NmsHSxcjFISSwglHi34FeJgjnC6NEx95PzCBVQgKfGSUeTbCD6fi4
-        +gkbRNFyoPiLD4wQzkdGiYk3b7OAVAkLBEucXLsaLCEi8I9JYs/+BYwgCWaBVIn/D3vAxrIJ
-        GEp0ve1iA7F5Bewkmr73gjWzCKhKXP3ZCnagqECyxLS/TcwQNYISJ2c+AavhFHCXaDx+AWqm
-        vMT2t3OYIWxxiVtP5oP9ICHwg0PiTMMhJoi7XSSunN/ADGELS7w6vgUaAjIS/3fCNDQzSjw8
-        t5YdwulhlLjcNIMRospa4s65X0CncgCt0JRYv0sfIuwosWDhEkaQsIQAn8SNt4IQR/BJTNo2
-        nRkizCvR0SYEUa0mMev4Ori1By9cYp7AqDQLyWuzkLwzC8k7sxD2LmBkWcUonlpanJueWmyU
-        l1quV5yYW1yal66XnJ+7iRGYtk7/O/5lB+PyVx/1DjEycTAeYpTgYFYS4U194pYoxJuSWFmV
-        WpQfX1Sak1p8iFGag0VJnDdpy5p4IYH0xJLU7NTUgtQimCwTB6dUA5OxMV/3rL6NM+ZFrM8L
-        7QjgCwuWTK6IL7ylurr39+4nz7/O5PXKZVqpsHRJTFHan8jOs4EH03Q+TIhPZZPIl0+ZdVhW
-        QPv9JvHdN9vVPM66fGNIn6TL7WXLoPu4tsAseecMW4436z5/97apf3STKXyKVfePrWe3rrXp
-        udywwqLAXNT1ivx0dv2TMdsrjG7sFfmhmMUj/sNVjd+Y06Lza/L7O7/X/76ufPa8zJI/JssX
-        f1/oWVz43pV1YpnrOZPmvFWzpwn/DblWF1yel7F40baHNRcn7b0QrJWWsGRG1Zqd9V15tfcV
-        8iP5rM1/Xv13XeVG9eF8xTmHHdaZnAx8pDZ1/f3gv8kJLetyNqXVvFdiKc5INNRiLipOBACp
-        dacpygMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJIsWRmVeSWpSXmKPExsVy+t/xe7qzwjwSDXrmSVlsnLGe1eL6l+es
-        FvOPnGO12Pj2B5PF2aY37BabHl9jtbi8aw6bxefeI4wWM87vY7K43biCzaJ17xF2i/anL5kd
-        eDxmNfSyeWxa1cnmsXlJvUffllWMHp83yQWwRunZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY
-        6hkam8daGZkq6dvZpKTmZJalFunbJehlXJh8hbXgLkfFlT3N7A2Mk9m7GDk5JARMJD6ufsLW
-        xcjFISSwlFHiYsckZoiEjMTJaQ2sELawxJ9rXVBF7xklus78A+sWFgiWOLl2NSOILSLwj0ni
-        0VdDEJtZIFVi+sQP7BANsxgl7rz9CTaJTcBQoustyCRODl4BO4mm770sIDaLgKrE1Z+tYENF
-        BZIl3r7+zgRRIyhxcuYTsBpOAXeJxuMXGCEWmEnM2/yQGcKWl9j+dg6ULS5x68l8pgmMQrOQ
-        tM9C0jILScssJC0LGFlWMYqklhbnpucWG+oVJ+YWl+al6yXn525iBMbptmM/N+9gnPfqo94h
-        RiYOxkOMEhzMSiK8qU/cEoV4UxIrq1KL8uOLSnNSiw8xmgL9M5FZSjQ5H5go8kriDc0MTA1N
-        zCwNTC3NjJXEebfOXRMvJJCeWJKanZpakFoE08fEwSnVwHRI5pkaR6q8kamo8/UDF0KWXtwS
-        pVW7u3Tm+6o9dg0bpnmWbinYOD9HeetysU/6exx4NqlOVN89Syv/b9nSk3leb+fOOSEYGRZs
-        enJqTkBiUnHsJPEsnYAeRlFTCYFVBSFL/u3kDxVerquSvYyhgyUx1eWD4uROxf5H2w8KPhQq
-        yOzWfV3cltq4aE179+bfGz2NDXVsWTgvmU/j87fOYFTzWFzZwdW6mPP9J/b7vybKa75w/Kix
-        J0tswbHdv3gVc8MW7zQLqmLbo363kokvZGuETMb69/9XqBW0i/22OGLBOPWUq1nwbTHNmcd6
-        HXVcV0ywULVcekeiNL04xUf62J8srXD1b2y9dtzLgsSVWIozEg21mIuKEwHHLAXgXAMAAA==
-X-CMS-MailID: 20210920093834eucas1p2a0187690220f466590d390b9775ced84
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20210920071554eucas1p195184c73f79e7bc12ea83cb43e14adc5
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20210920071554eucas1p195184c73f79e7bc12ea83cb43e14adc5
-References: <CGME20210920071554eucas1p195184c73f79e7bc12ea83cb43e14adc5@eucas1p1.samsung.com>
-        <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
+        id S230239AbhITJqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 05:46:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35376 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229565AbhITJqr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 05:46:47 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6A7C560F6C;
+        Mon, 20 Sep 2021 09:45:20 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mSFrS-00BjKG-Bg; Mon, 20 Sep 2021 10:45:18 +0100
+Date:   Mon, 20 Sep 2021 10:45:18 +0100
+Message-ID: <87zgs7vavl.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org, tglx@linutronix.de,
+        linux-arm-kernel@lists.infradead.org, romain.perier@gmail.com
+Subject: Re: [PATCH 2/3] irqchip: SigmaStar SSD20xD gpi
+In-Reply-To: <20210914100415.1549208-3-daniel@0x0f.com>
+References: <20210914100415.1549208-1-daniel@0x0f.com>
+        <20210914100415.1549208-3-daniel@0x0f.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: daniel@0x0f.com, devicetree@vger.kernel.org, robh+dt@kernel.org, tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, romain.perier@gmail.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.09.2021 09:15, Krzysztof Kozlowski wrote:
-> My previous patch 3/3 (ARM: dts: exynos: align PPMU event node names
-> with dtschema) caused issues reported by Marek [1].
->
-> Tested on Exynos5422. Testing on Exynso5433 board would be very useful.
+On Tue, 14 Sep 2021 11:04:14 +0100,
+Daniel Palmer <daniel@0x0f.com> wrote:
+> 
+> Add support for the SigmaStar GPIO interrupt controller, gpi,
+> that is present in SSD201 and SSD202D SoCs.
+> 
+> This routes interrupts from many interrupts into a single
+> interrupt that is connected to the peripheral interrupt
+> controller.
+> 
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> ---
+>  MAINTAINERS                       |   1 +
+>  drivers/irqchip/Kconfig           |  11 ++
+>  drivers/irqchip/Makefile          |   2 +
+>  drivers/irqchip/irq-ssd20xd-gpi.c | 211 ++++++++++++++++++++++++++++++
+>  4 files changed, 225 insertions(+)
+>  create mode 100644 drivers/irqchip/irq-ssd20xd-gpi.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3004c0f735b6..487d5e62c287 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2248,6 +2248,7 @@ F:	arch/arm/boot/dts/mstar-*
+>  F:	arch/arm/mach-mstar/
+>  F:	drivers/clk/mstar/
+>  F:	drivers/gpio/gpio-msc313.c
+> +F:	drivers/irqchip/irq-ssd20xd-gpi.c
+>  F:	drivers/watchdog/msc313e_wdt.c
+>  F:	include/dt-bindings/clock/mstar-*
+>  F:	include/dt-bindings/gpio/msc313-gpio.h
+> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+> index 4d5924e9f766..8786aed7f776 100644
+> --- a/drivers/irqchip/Kconfig
+> +++ b/drivers/irqchip/Kconfig
+> @@ -582,6 +582,17 @@ config MST_IRQ
+>  	help
+>  	  Support MStar Interrupt Controller.
+>  
+> +config SSD20XD_GPI
+> +	bool "SigmaStar SSD20xD GPIO Interrupt Controller"
+> +	depends on ARCH_MSTARV7 || COMPILE_TEST
+> +	default ARCH_MSTARV7
+> +	select IRQ_DOMAIN
+> +	select IRQ_DOMAIN_HIERARCHY
+> +	select REGMAP
+> +	help
+> +	  Support for the SigmaStar GPIO interrupt controller
+> +	  found in SSD201, SSD202D and others.
+> +
+>  config WPCM450_AIC
+>  	bool "Nuvoton WPCM450 Advanced Interrupt Controller"
+>  	depends on ARCH_WPCM450
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index f88cbf36a9d2..1a6c3dbd67a8 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -116,3 +116,5 @@ obj-$(CONFIG_MACH_REALTEK_RTL)		+= irq-realtek-rtl.o
+>  obj-$(CONFIG_WPCM450_AIC)		+= irq-wpcm450-aic.o
+>  obj-$(CONFIG_IRQ_IDT3243X)		+= irq-idt3243x.o
+>  obj-$(CONFIG_APPLE_AIC)			+= irq-apple-aic.o
+> +obj-$(CONFIG_SSD20XD_GPI)		+= irq-ssd20xd-gpi.o
+> +
+> diff --git a/drivers/irqchip/irq-ssd20xd-gpi.c b/drivers/irqchip/irq-ssd20xd-gpi.c
+> new file mode 100644
+> index 000000000000..c34f41380717
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-ssd20xd-gpi.c
+> @@ -0,0 +1,211 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2021 Daniel Palmer <daniel@thingy.jp>
+> + */
+> +
+> +#include <linux/irq.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/regmap.h>
+> +#include <linux/interrupt.h>
+> +
+> +#define NUM_IRQ		76
+> +#define IRQS_PER_REG	16
+> +#define STRIDE		4
+> +
+> +#define REG_MASK	0x0
+> +#define REG_ACK		0x28
+> +#define REG_TYPE	0x40
+> +#define REG_STATUS	0xc0
+> +
+> +struct ssd20xd_gpi {
+> +	struct regmap *regmap;
+> +	struct irq_domain *domain;
+> +};
+> +
+> +#define REG_OFFSET(_hwirq) ((hwirq >> 4) * STRIDE)
+> +#define BIT_OFFSET(_hwirq) (1 << (hwirq & 0xf))
+> +
+> +static void ssd20xd_gpi_mask_irq(struct irq_data *data)
+> +{
+> +	irq_hw_number_t hwirq = irqd_to_hwirq(data);
+> +	struct ssd20xd_gpi *gpi = irq_data_get_irq_chip_data(data);
+> +	int offset_reg = REG_OFFSET(hwirq);
+> +	int offset_bit = BIT_OFFSET(hwirq);
+> +
+> +	regmap_update_bits(gpi->regmap, REG_MASK + offset_reg, offset_bit, offset_bit);
+> +}
+> +
+> +static void ssd20xd_gpi_unmask_irq(struct irq_data *data)
+> +{
+> +	irq_hw_number_t hwirq = irqd_to_hwirq(data);
+> +	struct ssd20xd_gpi *gpi = irq_data_get_irq_chip_data(data);
+> +	int offset_reg = REG_OFFSET(hwirq);
+> +	int offset_bit = BIT_OFFSET(hwirq);
+> +
+> +	regmap_update_bits(gpi->regmap, REG_MASK + offset_reg, offset_bit, 0);
 
-Works fine on both 5422 and 5433.
+Is this regmap call atomic? When running this, you are holding a
+raw_spinlock already. From what I can see, this is unlikely to work
+correctly with the current state of regmap.
 
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> +}
+> +
+> +static void ssd20xd_gpi_irq_eoi(struct irq_data *data)
+> +{
+> +	struct ssd20xd_gpi *gpi = irq_data_get_irq_chip_data(data);
+> +	irq_hw_number_t hwirq = irqd_to_hwirq(data);
+> +	int offset_reg = REG_OFFSET(hwirq);
+> +	int offset_bit = BIT_OFFSET(hwirq);
+> +
+> +	regmap_update_bits_base(gpi->regmap, REG_ACK + offset_reg,
+> +			offset_bit, offset_bit, NULL, false, true);
+> +}
+> +
+> +static int ssd20xd_gpi_set_type_irq(struct irq_data *data, unsigned int flow_type)
+> +{
+> +	irq_hw_number_t hwirq = irqd_to_hwirq(data);
+> +	struct ssd20xd_gpi *gpi = irq_data_get_irq_chip_data(data);
+> +	int offset_reg = REG_OFFSET(hwirq);
+> +	int offset_bit = BIT_OFFSET(hwirq);
+> +
+> +	switch (flow_type) {
+> +	case IRQ_TYPE_EDGE_FALLING:
+> +		regmap_update_bits(gpi->regmap, REG_TYPE + offset_reg, offset_bit, offset_bit);
+> +		break;
+> +	case IRQ_TYPE_EDGE_RISING:
+> +		regmap_update_bits(gpi->regmap, REG_TYPE + offset_reg, offset_bit, 0);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct irq_chip ssd20xd_gpi_chip = {
+> +	.name		= "GPI",
+> +	.irq_mask	= ssd20xd_gpi_mask_irq,
+> +	.irq_unmask	= ssd20xd_gpi_unmask_irq,
+> +	.irq_eoi	= ssd20xd_gpi_irq_eoi,
+> +	.irq_set_type	= ssd20xd_gpi_set_type_irq,
+> +};
+> +
+> +static int ssd20xd_gpi_domain_alloc(struct irq_domain *domain, unsigned int virq,
+> +				    unsigned int nr_irqs, void *arg)
+> +{
+> +	struct ssd20xd_gpi *intc = domain->host_data;
+> +	struct irq_fwspec *fwspec = arg;
+> +	int i;
+> +
+> +	for (i = 0; i < nr_irqs; i++)
+> +		irq_domain_set_info(domain, virq + i, fwspec->param[0] + i,
+> +				&ssd20xd_gpi_chip, intc, handle_fasteoi_irq, NULL, NULL);
+> +
+> +	return 0;
+> +}
+> +
+> +static void ssd20xd_gpi_domain_free(struct irq_domain *domain, unsigned int virq,
+> +				    unsigned int nr_irqs)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		struct irq_data *d = irq_domain_get_irq_data(domain, virq + i);
+> +
+> +		irq_set_handler(virq + i, NULL);
+> +		irq_domain_reset_irq_data(d);
+> +	}
+> +}
+> +
+> +static const struct irq_domain_ops ssd20xd_gpi_domain_ops = {
+> +	.alloc = ssd20xd_gpi_domain_alloc,
+> +	.free = ssd20xd_gpi_domain_free,
+> +};
+> +
+> +static const struct regmap_config ssd20xd_gpi_regmap_config = {
+> +	.reg_bits = 16,
+> +	.val_bits = 16,
+> +	.reg_stride = 4,
+> +};
+> +
+> +static void ssd20x_gpi_chainedhandler(struct irq_desc *desc)
+> +{
+> +	struct ssd20xd_gpi *intc = irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	unsigned int irqbit, hwirq, virq, status;
+> +	int i;
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	for (i = 0; i < NUM_IRQ / IRQS_PER_REG; i++) {
+> +		int offset_reg = STRIDE * i;
+> +		int offset_irq = IRQS_PER_REG * i;
+> +
+> +		regmap_read(intc->regmap, REG_STATUS + offset_reg, &status);
 
-> Changes since v1:
-> 1. New patches 1/3 and 2/3.
-> 2. Patch 3/3: rename event-name to match node name.
->
-> [1] https://lore.kernel.org/linux-samsung-soc/0212a402-1490-0f8f-005e-32bb6f636a13@canonical.com/T/#m570c0257204af553fe11f9122551311beb56c15e
->
-> Best regards,
-> Krzysztof
->
->
-> Krzysztof Kozlowski (3):
->    devfreq: exynos-ppmu: use node names with hyphens
->    devfreq: exynos-ppmu: simplify parsing event-type from DT
->    ARM: dts: exynos: align PPMU event node names with dtschema
->
->   arch/arm/boot/dts/exynos5420.dtsi   | 16 ++++++++--------
->   drivers/devfreq/event/exynos-ppmu.c | 12 +++++++-----
->   2 files changed, 15 insertions(+), 13 deletions(-)
->
-Best regards
+Does this act as an ACK in the HW?
+
+> +
+> +		while (status) {
+> +			irqbit = __ffs(status);
+> +			hwirq = offset_irq + irqbit;
+> +			virq = irq_find_mapping(intc->domain, hwirq);
+> +			if (virq)
+> +				generic_handle_irq(virq);
+
+Please replace this with generic_handle_domain_irq().
+
+> +			status &= ~BIT(irqbit);
+> +		}
+> +	}
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static int __init ssd20xd_gpi_of_init(struct device_node *node,
+> +				      struct device_node *parent)
+> +{
+> +	struct ssd20xd_gpi *intc;
+> +	void __iomem *base;
+> +	int irq, ret;
+> +
+> +	intc = kzalloc(sizeof(*intc), GFP_KERNEL);
+> +	if (!intc)
+> +		return -ENOMEM;
+> +
+> +	base = of_iomap(node, 0);
+> +	if (!base) {
+> +		ret = -ENODEV;
+> +		goto out_free;
+> +	}
+> +
+> +	intc->regmap = regmap_init_mmio(NULL, base, &ssd20xd_gpi_regmap_config);
+> +	if (IS_ERR(intc->regmap)) {
+> +		ret = PTR_ERR(intc->regmap);
+> +		goto out_unmap;
+> +	}
+> +
+> +	intc->domain = irq_domain_add_linear(node, NUM_IRQ, &ssd20xd_gpi_domain_ops, intc);
+> +	if (!intc->domain) {
+> +		ret = -ENOMEM;
+> +		goto out_free_regmap;
+> +	}
+> +
+> +	irq = of_irq_get(node, 0);
+> +	if (irq <= 0) {
+> +		ret = irq;
+> +		goto out_free_domain;
+> +	}
+> +
+> +	irq_set_chained_handler_and_data(irq, ssd20x_gpi_chainedhandler,
+> +			intc);
+> +
+> +	return 0;
+> +
+> +out_free_domain:
+> +	irq_domain_remove(intc->domain);
+> +out_free_regmap:
+> +	regmap_exit(intc->regmap);
+> +out_unmap:
+> +	iounmap(base);
+> +out_free:
+> +	kfree(intc);
+> +	return ret;
+> +}
+> +
+> +IRQCHIP_DECLARE(ssd20xd_gpi, "sstar,ssd20xd-gpi", ssd20xd_gpi_of_init);
+
+Is there any reason why this isn't a standard platform device? In
+general, irqchips that are not part of the root hierarchy shouldn't
+need this anymore.
+
+	M.
+
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+Without deviation from the norm, progress is not possible.
