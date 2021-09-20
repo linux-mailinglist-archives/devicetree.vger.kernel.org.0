@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ABF7412A5C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 03:39:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 176B8412A5E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 03:39:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbhIUBkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 21:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59118 "EHLO
+        id S229954AbhIUBkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 21:40:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231747AbhIUBic (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 21:38:32 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71FE5C122762
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:32:49 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id x124so2677540oix.9
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:32:49 -0700 (PDT)
+        with ESMTP id S231969AbhIUBjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 21:39:05 -0400
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90B06C01AE46
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:37:04 -0700 (PDT)
+Received: by mail-ot1-x32f.google.com with SMTP id w64-20020a9d3646000000b0054716b40005so4068949otb.4
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 12:37:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=RcfKZ8RQR7lkEDrRbmC3NNXvVvlQ4D4N2QPf10IkPsk=;
-        b=VIWhZSszUjwNbxpn1xKTaTCO8/eniwjzjZNSj9/SrcvTosNfs1c+KEAtHJ4aiAulyh
-         TSuSJ5ukOh0Dxqvn7SBlOsx1xNi/uKN4o0X+G08X/e+YM7hcASjH6n25jzrpmpokcp9E
-         dTAMQOvhKeFnwFTLyaBDEm2aDiLrBSmtCqXYE=
+        bh=Zsrlsd+FYG22wak0fSNc9tYLdNOZQjnNOfw0BjN2gWI=;
+        b=C6jBCxJuR5p9hjcAyOzJ10X1JxfuXVcVcIed41n30NVMz+CAEF+amueSIPWlVngxOl
+         9/H0nsuAY/V1ne5wLyLYeM07rRsBvbMSjAHlZ2BlAsRXm5Sh+lyqKow+wvoAi6mdKfPA
+         nqdkWbDDeVskdzARIrLtJOy+96E7DZdp2V570=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=RcfKZ8RQR7lkEDrRbmC3NNXvVvlQ4D4N2QPf10IkPsk=;
-        b=1i9/xxtUnvhPLPtGcAbq3CfAX0e++AoBeQ2Ln1h0loRGdDyKbjdo7CGg9Lb0ld6RVV
-         4i7proPgLG3uMJAWQiAvc08oCiQmqdjXOMtfnKzsXtO5N2YsLiCA6wAh12lmYWgnNk7R
-         282MIzJG3VLhtN51/jMvDwOd6z0huH83g5MluvbA+ijZ1raMBAqqWvYHEWClD4Tz479l
-         9insdMf7BX9R+IwAnux3+95pPrCvLk99TcZSVoq/oPsgG1tJmPqM7sCmWgQaiTBOxAGW
-         Y0FkhhCXDBEkEm4Grw0BfNMpvdjrKMqMU9w8g9Z7+BWdIF88RK7g9soMt7GFWxNdhIZo
-         X4iA==
-X-Gm-Message-State: AOAM533DuQcOxSvRp+N4w8HPiocoHjobbSPhQPEY/L9mi0MEen5mbFyf
-        fmXofFwaWUps3MxapwLkpLohN4zhee7UmScxrICKaw==
-X-Google-Smtp-Source: ABdhPJy5gNNMMyTTsHsOw5F7pEwhDmSOBb0xz/TedbZBQOomMd6+H6P35RPPrZR2q+09IXhthEvSnpFhcR2JLAAjhZ0=
-X-Received: by 2002:aca:3110:: with SMTP id x16mr587519oix.64.1632166368784;
- Mon, 20 Sep 2021 12:32:48 -0700 (PDT)
+        bh=Zsrlsd+FYG22wak0fSNc9tYLdNOZQjnNOfw0BjN2gWI=;
+        b=IIB/frs/92ETIbwJfwHd6LylBDgCZEQmX5gwMN72NEC5+qIA1WKP4bjs9t+hY9+veg
+         Os1hdqjqzgQvDuaDCSzmz0QFBt9/2BBg6UqlqKRZfwXcsBNB58ekDTQqIPnUQIOpFIzr
+         iC9T9cTb/0+x4qHtno0uxj8vPLLzYUfiOWpFvtLyDNhonLNdUK4RspEQBucD9TpTnhlS
+         DFJk8EyYN71eZz2oqUS+dGKdbRLHMInTZhM8XPKR3RyCfAKZS1EaVyy4zfcnuz0dmOhR
+         EUGXyyB5nu2bfobKa4VyqG29ifwbHlPt2r77GF4aS77VeXtig9OSmuIm497SYxQz435l
+         eOYA==
+X-Gm-Message-State: AOAM533MHEdr9EAOfFpw9mmaFhqvqdG97dZ+9plKW0dAsiYGqzBEX5Q1
+        u74KV0CXJzhG/S/VS0DfT7cz1DzE1IVHd3m6AMir8w==
+X-Google-Smtp-Source: ABdhPJwnFR6SOnH84wihZZfbfEvXF/mSh/RHHBaMrdPVwNokuSmK/intbopTA06gDnMPTgyHG0pm8TCjSRegHDJP+l0=
+X-Received: by 2002:a05:6830:1212:: with SMTP id r18mr21352018otp.159.1632166623978;
+ Mon, 20 Sep 2021 12:37:03 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 20 Sep 2021 12:32:48 -0700
+ HTTPREST; Mon, 20 Sep 2021 12:37:03 -0700
 MIME-Version: 1.0
-In-Reply-To: <1631875538-22473-2-git-send-email-skakit@codeaurora.org>
-References: <1631875538-22473-1-git-send-email-skakit@codeaurora.org> <1631875538-22473-2-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <1631875538-22473-5-git-send-email-skakit@codeaurora.org>
+References: <1631875538-22473-1-git-send-email-skakit@codeaurora.org> <1631875538-22473-5-git-send-email-skakit@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Mon, 20 Sep 2021 12:32:48 -0700
-Message-ID: <CAE-0n51Xrv54XVLJwz9ENTtOhtCKWG7WtQg2o2+SFEoru1M4VA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: pm8008: Add pm8008 regulator node
+Date:   Mon, 20 Sep 2021 12:37:03 -0700
+Message-ID: <CAE-0n53rto=_+9qtc0RL0tkDwBkd9HJL26TQV-m6Q8myiNSCVA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc7280: Add pm8008 regulators
+ support for sc7280-idp
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,29 +68,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2021-09-17 03:45:35)
-> Add pm8008-regulator node and example.
+Quoting Satya Priya (2021-09-17 03:45:38)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 52638e2..3b3af49 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -207,6 +207,97 @@
+>         };
+>  };
 >
-> Signed-off-by: Satya Priya <skakit@codeaurora.org>
-> ---
->  .../devicetree/bindings/mfd/qcom,pm8008.yaml       | 24 ++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> index ec3138c..de182f8 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> @@ -45,6 +45,10 @@ properties:
->      const: 0
->
->  patternProperties:
-> +  "^pm8008[a-z]?-regulator$":
-
-Shouldn't it be ^pm8008-regulator$ without the a-z optional letter?
-
-> +    type: object
-> +    $ref: "../regulator/qcom,pm8008-regulator.yaml#"
+> +&i2c1 {
+> +       #address-cells = <1>;
+> +       #size-cells = <0>;
+> +       status = "okay";
 > +
->    "^gpio@[0-9a-f]+$":
->      type: object
+> +       pm8008_chip: pm8008@8 {
+> +               compatible = "qcom,pm8008";
+> +               reg = <0x8>;
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&pm8008_active>;
+> +       };
+> +
+> +       pm8008_ldo: pm8008@9 {
+[...]
+> +
+> +                       pm8008_l7: regulator@4600 {
+> +                               reg = <0x4600>;
+> +                               regulator-name = "pm8008_l7";
+> +                               regulator-min-microvolt = <3000000>;
+> +                               regulator-max-microvolt = <3544000>;
+> +                               qcom,min-dropout-voltage = <96000>;
+
+Is this headroom? Is it actually configurable or is it merely a property
+of the hardware? If it's the latter then it should be in the driver and
+not in the DTS.
+
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+>  &qfprom {
+>         vcc-supply = <&vreg_l1c_1p8>;
+>  };
+> @@ -313,6 +404,18 @@
 >
+>  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
+>
+> +&pm8350c_gpios {
+> +       pm8008_reset {
+
+Is this a pinctrl node?
+
+> +               pm8008_active: pm8008_active {
+
+Please use dashes in node names wherever an underscore goes.
+
+> +                       pins = "gpio4";
+> +                       function = "normal";
+> +                       bias-disable;
+> +                       output-high;
+> +                       power-source = <0>;
+> +               };
+> +       };
+> +};
