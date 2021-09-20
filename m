@@ -2,88 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F05D9411456
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:25:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F362D411465
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 14:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235098AbhITM0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 08:26:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50416 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235204AbhITM0t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 08:26:49 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744F1C061574;
-        Mon, 20 Sep 2021 05:25:22 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id bx4so15864875edb.4;
-        Mon, 20 Sep 2021 05:25:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=sjxm2CPGEqNmN39+wQosQN0k3TqmDMi00hAHGOM6RNE=;
-        b=fVgTfxy4xKbk244lemHrnob7suMDKO7pI6DrClcXKn/xNCwgQT3gWmyOzkkvzYV84E
-         AhYt4SN5X7I9A5sAJRyfR4BrK34wxWfMfzUHEVGYO7hlLfUuf1aMeFQT9ujpqcSe5B25
-         34OPBbaNv3PHYaniRwckL6kFDy4qwABgx/h3io4aH358kkARlHiH9SMFqAzuH0x6Vtp/
-         T+BfRPdlOLQ6bD5/VbTTsENc0oaEhkaJjzLi2+B8YsyJQVW9QrdA7syjyskREc/+H0ry
-         6G4PynCZDUQct3N5QLELbAekJVZ1vojOmRTKG0dIKoB+1kTyDx6KErA0wepmaEJNpJ7u
-         IhSg==
+        id S231410AbhITMaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 08:30:07 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:37843 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233543AbhITMaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 08:30:07 -0400
+Received: by mail-oi1-f171.google.com with SMTP id w206so12835982oiw.4;
+        Mon, 20 Sep 2021 05:28:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=sjxm2CPGEqNmN39+wQosQN0k3TqmDMi00hAHGOM6RNE=;
-        b=2Zj9l89wwk0yVUnM2SIsAgBd+dfVEeS4pMff2ZAbcTljXb94KNeESmrPleM7ppR35g
-         URbmrLABq5wKqkBHGt1QOchDFe3+2rsUOaAxHo3btP/QmGsez9qvDMvqfoQR+ltv7iRf
-         osznc8RNx8bVwImM25YsVJrBzf2dX06bAscyakHJVdkTc3KgQpZABSM+Y1pJF/+JNGlq
-         vqj6TU6zehi5mJKMpkYZ0VciIQVoctE9TCSrL1igttXBC4y3TWpFBWh99a8hmtDrsydN
-         8CNrsOGmavt9A2bcGktUDWZqgktvN9T9qVrJLcHX2tO9Rf1y1mATa+GKJu8tM9Hbztq4
-         n+QQ==
-X-Gm-Message-State: AOAM531a4LjVs3UDZqSKPYnvJIhnFm6u2DsEXDEvH+ytQMKrD6aCh1m9
-        f5fYvr7bekMvJP1p8aFdVHZrjcbG0Ymam3IEjrvyzVMH
-X-Google-Smtp-Source: ABdhPJx5S6Yi9grI/kQVIAeFYNM7Y4/Re5oTX9gacZcOz39l62sjKv4qHUYWr3UN4tNOJMLi+sJTQkOEVApQrHMBAow=
-X-Received: by 2002:a17:906:e82:: with SMTP id p2mr27932667ejf.50.1632140720891;
- Mon, 20 Sep 2021 05:25:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210825122757.91133-1-aford173@gmail.com> <CAMuHMdV1Cd23aaVKq1PyXHrc6W9FyikKOCpD0-PZqkgbVFbA5Q@mail.gmail.com>
- <YUB8Z8ArmIbjI6i+@ninjato>
-In-Reply-To: <YUB8Z8ArmIbjI6i+@ninjato>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 20 Sep 2021 07:25:09 -0500
-Message-ID: <CAHCN7xJZ1+B+bo3EoBELvhx2OXkP5p8TsSC=_AcZEjpCjk15Jg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: beacon: Fix i2c2 speed calcuation
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Adam Ford <aford173@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=ozms2Ex7SIIZKhI4xCpLZMFP8jZ9XTQy36/jq76oesw=;
+        b=UvKQWsBYDGCFT0DOe2PUMpuwhmZAjYzCJMrD3qDTIb4BrBkJxFMlr91BI1SSB/YYvE
+         XHcilZKN/8TN0lOBrYHUuxx/iDekT+8DR98mRW8SCx12yJZnvq5pv9IBUqjMz90F49ED
+         ALYrgGB0EIoqqmTmAaGu9rBwXFsAbDWmpAvj9aQUB2k5qFZ9/s5AeYlEWzKeu8i3hc1l
+         V9gL76r8q5ZeVtSZ9LUTXmPSfPQFkPWIrMnEQGEdYyFOF8dy/dgmfm0Ib4eMICTi4E/q
+         oiOMX/BmOH3QWjah9RxgmrJQHppg8mnQHDrMgH7HNtHZR3UJR2gkmv552FVbk9URqCdQ
+         pGdQ==
+X-Gm-Message-State: AOAM533rn9iWJy2X4ZNnEq3dlouBMdFfl/kDQ3gi7a7ly8lHFhc+wFGQ
+        fGsJTs75kqcNo6/JkRWs6A==
+X-Google-Smtp-Source: ABdhPJygC6qxBmPoPi92lcSnNRII66oRcadqdO+MwP1z2M7krf7AnDxfvjaqqWwOKL1QoWzKbFkl6w==
+X-Received: by 2002:a54:4018:: with SMTP id x24mr22735687oie.125.1632140920117;
+        Mon, 20 Sep 2021 05:28:40 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q17sm3412265otc.28.2021.09.20.05.28.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 05:28:38 -0700 (PDT)
+Received: (nullmailer pid 4136127 invoked by uid 1000);
+        Mon, 20 Sep 2021 12:28:37 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Marcel Ziswiler <marcel@ziswiler.com>
+Cc:     devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+In-Reply-To: <20210919125536.117743-8-marcel@ziswiler.com>
+References: <20210919125536.117743-1-marcel@ziswiler.com> <20210919125536.117743-8-marcel@ziswiler.com>
+Subject: Re: [PATCH v3 7/9] dt-bindings: arm: fsl: clean-up all toradex boards/modules
+Date:   Mon, 20 Sep 2021 07:28:37 -0500
+Message-Id: <1632140917.871356.4136126.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 14, 2021 at 5:41 AM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> On Wed, Aug 25, 2021 at 02:47:21PM +0200, Geert Uytterhoeven wrote:
-> > CC Wolfram
-> >
-> > On Wed, Aug 25, 2021 at 2:28 PM Adam Ford <aford173@gmail.com> wrote:
-> > > The desired i2c2 speed is 400KHz, but when measured on a scope, it
-> > > is incorrect.  The driver can use the i2c-scl-rising-time-ns to help
-> > > calculate the proper setting to get exactly 400KHz.
->
-> The question for me is: Has it been measured that SCL rising time is
-> really 50ns or has it been measured that the bus clock is now exactly
-> 400kHz?
+On Sun, 19 Sep 2021 14:55:34 +0200, Marcel Ziswiler wrote:
+> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> 
+> Simplify and unify the distinction between modules and carrier boards.
+> 
+> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> 
+> ---
+> 
+> Changes in v3:
+> - Add Fabio's reviewed-by. Thanks!
+> - Add Rob's ack. Thanks!
+> 
+> Changes in v2:
+> - New patch cleaning-up dt-bindings documentation.
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          | 79 ++++++++++---------
+>  1 file changed, 41 insertions(+), 38 deletions(-)
+> 
 
-The person who originally reported this to me moved on, so I don't
-know if he measured both the rise time or just the clock speed.  I
-know originally, the clock speed was measured to be 426KHz instead of
-400KHz, and with the change to the rise time, the measured clock speed
-was exactly 400KHz.  I do not know if the measured rise time is really
-50ns or not.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-adam
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/fsl.yaml:475:111: [warning] line too long (113 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/arm/fsl.yaml:612:111: [warning] line too long (113 > 110 characters) (line-length)
 
+dtschema/dtc warnings/errors:
 
->
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1529833
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
