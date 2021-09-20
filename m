@@ -2,196 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A19A4115A3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 15:26:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E62844115AF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 15:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239335AbhITN1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 09:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36704 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239611AbhITN0w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 09:26:52 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED4FC061767
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 06:25:19 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id j13so61436286edv.13
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 06:25:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=fnQFPyNQnVgzXIVUEHXtp70eiyNNUDqOkLiOuvUzb64=;
-        b=PnuSR2v6OiCOGSzVEEKQpKpgIhXG5EoZ+Ev0QbiebTaL2dbwvVb3deWYVcwZM04o9S
-         fnriGnHJfqDSMvPQY8msyWKDE7s2Tal6Yd9DsyEurT/dPU5e/wceL2vMwXyMJ8zEdpmL
-         uAoFR28OgyGd9B7hbDUxKJms5KjQ4iswwzV044IUbEZ6HCIAKv7i7/Ml+fWaLMsoaTo+
-         0/TA3XArpGwBy7Scn/n2dQsVSbkXSMwcNxgpNuJJF2XH2Vcxr+6i5DIF5O7LGjlTENdq
-         TANahzgWrIu0T9dEIo/SvTufHoeMmqnnTzZ0s0r4ezSSsi6LVs/dw4CwEGAaMh2LS0Hs
-         R4WA==
+        id S239532AbhITN2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 09:28:40 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:34640
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240067AbhITN1a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 09:27:30 -0400
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id ECB3E4025C
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 13:26:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632144362;
+        bh=vJToJAd3e7XitzB+9QvxgrvOdQZu/cSSC1UlIYS41NQ=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=UG4VMLXiQwYBokcSCxAmyIBJgEdC2bsVwIIsX5qzfg22GLR8K5kxjtyrre8wmpqgc
+         1L8v4/1126STgfVd4Ehqg2yp8HaPE2p9RbTUVYVqQS6nssCBAASpl2wlLikXfJmFoV
+         MUhGRuxUO2XYH/Z8sgHM/pZApd6OlnyTAoik5Yz/lLosp8TDp+xVHFxeO4eCbDMlkf
+         6SRmn1ODduxN0mtDwp6k4z/3JpUodDjxCW5I+v14Tz7tTZrB682FOwbwgxxNgbgOgo
+         oLK/deo5iL/dNVid86ahz1QPOAvj3Xau/c+jF4pAuxfrgJ7oMYheru00elFTIkxVDJ
+         TNj7Smbu7c/DA==
+Received: by mail-wr1-f69.google.com with SMTP id c2-20020adfa302000000b0015e4260febdso4746439wrb.20
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 06:26:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=fnQFPyNQnVgzXIVUEHXtp70eiyNNUDqOkLiOuvUzb64=;
-        b=cgR8XZSVmTnd1v8/x6lYtpP/vSATwMfQs2nqnr9qA+McrCD6yI3DeZTMIU+sk/UnjQ
-         SyFHKjxM8xkxNIQGA0GxG7MKBFfTOw/qcYaE93IeFVBsKYuokUuQSHvC+8dWRAUU7bjt
-         RPl/Z+uxjRntDLZnOOI2xzPX5KpSJ4fQ2uNtgqEMWNzIpotRpSSFG8fHKsYAuDznWWQz
-         fPs3JTtQnf43PkZu1cnuNC6uOq1xh/tCntIWvh26WNHaTlYdHk6jtvok+Pv+99/2JAHk
-         nZSCtSZVnVFytk+69OSz9w/AMo2zEuSOEv/5On3gVGwIn9zaxAuALOqBO2BB6tQ4gB7b
-         /zzQ==
-X-Gm-Message-State: AOAM530yYeYQPafKM7DlACZYTH+nM7I3WlXd19PUy5+RO9QOAFhiZaXj
-        QY/bkDvs9ngTfFfKPNpLm90J6A==
-X-Google-Smtp-Source: ABdhPJwFRm04TtqLKziX/WoySMiRVV/jdimq1erlSAB7wjzNz7QWT/dYAeSUIh6enE0Nz39x24l/qA==
-X-Received: by 2002:a05:6402:c8b:: with SMTP id cm11mr28988017edb.368.1632144313857;
-        Mon, 20 Sep 2021 06:25:13 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id dn28sm7045619edb.76.2021.09.20.06.25.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Sep 2021 06:25:13 -0700 (PDT)
-Subject: Re: [PATCH 4/7] ASoC: codecs: lpass-va-macro: Change bulk voting to
- individual clock voting
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1632123331-2425-1-git-send-email-srivasam@codeaurora.org>
- <1632123331-2425-5-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <5f915592-0ca6-2839-43fc-6d9aef1484b7@linaro.org>
-Date:   Mon, 20 Sep 2021 14:25:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        bh=vJToJAd3e7XitzB+9QvxgrvOdQZu/cSSC1UlIYS41NQ=;
+        b=wTBO5QRNfgXExac59bROyqCwtvFIROSartfDmOG79ukyMds0MeHrEWX5ruMNVyk6Pc
+         lCxULycrRdj9WjDFfxao49yeS7ajBIwIn9NGsszzuncmsvEHcmIU4SUm0ICJ9VSpYpVT
+         aVQE3FqsfSi0oDd2X6r8uuQJnkhkdlc4Qf+508vLgPARySH5791y4JLSloI5LAkRR1Fs
+         duE41WjzRszC8TYrfCLEJp/UQGVWZRHR4MwdtGmxmBmVv4P4jc8J+1zH5/v3x9SyTSR6
+         smKLdcY3m1L6hrTpeIGd15/MrEqOPegL2Fz3cNyI198QrUaMziFjrWAtvvNaHW0okA0b
+         lyBQ==
+X-Gm-Message-State: AOAM531B0IEgV8+8ROfNgzT8jpFsBR2+juIPpYwRA4VZq1HQD1o5K4sO
+        GawUc/79rLkw9SPFBIPBaq4RkH8GDQHeS05EoAQAmUcmPk6f1PUaMSgasW26921L4BYc7wHPqoF
+        RiIMpC1+F1L4eBvJsQ7X+ndPMA2SKb7e7ukwqYwo=
+X-Received: by 2002:a05:6000:1287:: with SMTP id f7mr29033673wrx.221.1632144362274;
+        Mon, 20 Sep 2021 06:26:02 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJymf7l0CKsN1xSthBcoxGq3X4DmkxIw9o+QPMTz1O6EvUcCymMCo5tuwGlI5/sIFl5hOJNaIQ==
+X-Received: by 2002:a05:6000:1287:: with SMTP id f7mr29033647wrx.221.1632144362053;
+        Mon, 20 Sep 2021 06:26:02 -0700 (PDT)
+Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id y9sm23062787wmj.36.2021.09.20.06.26.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Sep 2021 06:26:01 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH] dt-bindings: riscv: correct e51 and u54-mc CPU bindings
+Date:   Mon, 20 Sep 2021 15:25:59 +0200
+Message-Id: <20210920132559.151678-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <1632123331-2425-5-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+All existing boards with sifive,e51 and sifive,u54-mc use it on top of
+sifive,rocket0 compatible:
 
+  arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: cpu@0: compatible: 'oneOf' conditional failed, one must be fixed:
+    ['sifive,e51', 'sifive,rocket0', 'riscv'] is too long
+    Additional items are not allowed ('riscv' was unexpected)
+    Additional items are not allowed ('sifive,rocket0', 'riscv' were unexpected)
+    'riscv' was expected
 
-On 20/09/2021 08:35, Srinivasa Rao Mandadapu wrote:
-> Change bulk clock frequency voting to individual voting.
-> 
-Can you please explain why do we need to move out using clk bulk apis?
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Am not seeing any thing obvious behavior changing as part of this patch, 
-more details please..
-> Fixes: 908e6b1df26e (ASoC: codecs: lpass-va-macro: Add support to VA Macro)
+---
 
-Why this has Fixes tag? Are we fixing any bug with this patch?
+Hi Rob,
 
-> 
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
->   sound/soc/codecs/lpass-va-macro.c | 46 ++++++++++++++++++++++++---------------
->   1 file changed, 28 insertions(+), 18 deletions(-)
-> 
-> diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-va-macro.c
-> index d312a14..0ea39ae 100644
-> --- a/sound/soc/codecs/lpass-va-macro.c
-> +++ b/sound/soc/codecs/lpass-va-macro.c
-> @@ -193,7 +193,10 @@ struct va_macro {
->   
->   	int dec_mode[VA_MACRO_NUM_DECIMATORS];
->   	struct regmap *regmap;
-> -	struct clk_bulk_data clks[VA_NUM_CLKS_MAX];
-> +	struct clk *mclk;
-> +	struct clk *macro;
-> +	struct clk *dcodec;
-> +
->   	struct clk_hw hw;
->   
->   	s32 dmic_0_1_clk_cnt;
-> @@ -1321,7 +1324,7 @@ static const struct clk_ops fsgen_gate_ops = {
->   
->   static int va_macro_register_fsgen_output(struct va_macro *va)
->   {
-> -	struct clk *parent = va->clks[2].clk;
-> +	struct clk *parent = va->mclk;
->   	struct device *dev = va->dev;
->   	struct device_node *np = dev->of_node;
->   	const char *parent_clk_name;
-> @@ -1404,15 +1407,18 @@ static int va_macro_probe(struct platform_device *pdev)
->   		return -ENOMEM;
->   
->   	va->dev = dev;
-> -	va->clks[0].id = "macro";
-> -	va->clks[1].id = "dcodec";
-> -	va->clks[2].id = "mclk";
->   
-> -	ret = devm_clk_bulk_get(dev, VA_NUM_CLKS_MAX, va->clks);
-> -	if (ret) {
-> -		dev_err(dev, "Error getting VA Clocks (%d)\n", ret);
-> -		return ret;
-> -	}
-> +	va->macro = devm_clk_get_optional(dev, "macro");
-> +	if (IS_ERR(va->macro))
-> +		return PTR_ERR(va->macro);
-> +
-> +	va->dcodec = devm_clk_get_optional(dev, "dcodec");
-> +	if (IS_ERR(va->dcodec))
-> +		return PTR_ERR(va->dcodec);
-> +
-> +	va->mclk = devm_clk_get(dev, "mclk");
-> +	if (IS_ERR(va->mclk))
-> +		return PTR_ERR(va->mclk);
->   
->   	ret = of_property_read_u32(dev->of_node, "qcom,dmic-sample-rate",
->   				   &sample_rate);
-> @@ -1426,10 +1432,11 @@ static int va_macro_probe(struct platform_device *pdev)
->   	}
->   
->   	/* mclk rate */
-> -	clk_set_rate(va->clks[1].clk, VA_MACRO_MCLK_FREQ);
-> -	ret = clk_bulk_prepare_enable(VA_NUM_CLKS_MAX, va->clks);
-> -	if (ret)
-> -		return ret;
-> +	clk_set_rate(va->mclk, VA_MACRO_MCLK_FREQ);
-> +
-> +	clk_prepare_enable(va->mclk);
-> +	clk_prepare_enable(va->macro);
-> +	clk_prepare_enable(va->dcodec);
->   
->   	base = devm_platform_ioremap_resource(pdev, 0);
->   	if (IS_ERR(base)) {
-> @@ -1457,8 +1464,9 @@ static int va_macro_probe(struct platform_device *pdev)
->   	return ret;
->   
->   err:
-> -	clk_bulk_disable_unprepare(VA_NUM_CLKS_MAX, va->clks);
-> -
-> +	clk_disable_unprepare(va->mclk);
-> +	clk_disable_unprepare(va->macro);
-> +	clk_disable_unprepare(va->dcodec);
->   	return ret;
->   }
->   
-> @@ -1466,8 +1474,10 @@ static int va_macro_remove(struct platform_device *pdev)
->   {
->   	struct va_macro *va = dev_get_drvdata(&pdev->dev);
->   
-> -	clk_bulk_disable_unprepare(VA_NUM_CLKS_MAX, va->clks);
-> -
-> +	of_clk_del_provider(pdev->dev.of_node);
+You previously acked this patch but I think it will be easier if you
+take it directly.
 
-fsgen clk is registered using devm_* variant of clk apis, so why do we 
-need this here?
+Best regards,
+Krzysztof
+---
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index e534f6a7cfa1..aa5fb64d57eb 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -31,9 +31,7 @@ properties:
+               - sifive,bullet0
+               - sifive,e5
+               - sifive,e7
+-              - sifive,e51
+               - sifive,e71
+-              - sifive,u54-mc
+               - sifive,u74-mc
+               - sifive,u54
+               - sifive,u74
+@@ -41,6 +39,12 @@ properties:
+               - sifive,u7
+               - canaan,k210
+           - const: riscv
++      - items:
++          - enum:
++              - sifive,e51
++              - sifive,u54-mc
++          - const: sifive,rocket0
++          - const: riscv
+       - const: riscv    # Simulator only
+     description:
+       Identifies that the hart uses the RISC-V instruction set
+-- 
+2.30.2
 
---srini
-> +	clk_disable_unprepare(va->mclk);
-> +	clk_disable_unprepare(va->macro);
-> +	clk_disable_unprepare(va->dcodec);
->   	return 0;
->   }
->   
-> 
