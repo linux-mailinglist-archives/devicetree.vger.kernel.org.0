@@ -2,138 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BCB8410E8A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 04:52:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01FE8410EBF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 05:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233855AbhITCxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Sep 2021 22:53:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36006 "EHLO
+        id S234993AbhITDMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Sep 2021 23:12:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbhITCxw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Sep 2021 22:53:52 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE11C061574
-        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 19:52:26 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id w206so11211588oiw.4
-        for <devicetree@vger.kernel.org>; Sun, 19 Sep 2021 19:52:26 -0700 (PDT)
+        with ESMTP id S231892AbhITDM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Sep 2021 23:12:29 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192B1C0617BD;
+        Sun, 19 Sep 2021 20:10:23 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id y8so14897803pfa.7;
+        Sun, 19 Sep 2021 20:10:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hqgjeEmiczW8tyKT8Sr0WXeHexE/OvbKNC0oLWg2H/4=;
-        b=Whbs1pdjrgldXPCC3E9xYht+gLTTfEO6F/KlkdIHFWPDytj3dnYd1Youe6zJx0abCl
-         KjuM3AYBDO8YiphKuMA95nKlVpl5DxPN4c8ZrGVPaYy8VdjHFqT1kmHZWMncO4PGx+09
-         T9GMJzsVbhsjnt4lOoUzy684h+u9/Jd1xccQXr0SJfBN8+QDRwDdLC8N0lfh4BySy1CJ
-         cXfn/ozRipIvoaZwMzgzdn00wr/rA8s98KhoxKDD+7G/7iI2dvdSGFXNi3j2ZRlWh68d
-         NiFbP4lRzY7nnWliysPDPD/609sfrMwgjMCvMefn9azq5mGwrhss8TEFwbzZXVCROTc8
-         DjbA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=kcXtoLmYt2phW1mwUUg+pkx0ARAiF/TyvXAFksE2SBQ=;
+        b=pFlrtsqNO9qXwFt7kVRJc3jd1jIT/rtb8ePyXwe1f5FtWfdxdXDUNIrPR50+7rYSyo
+         MfoiSV6RnhAsp7qzYXl7Ld1REg38NbZNBCfcbEfgH/KgDw5hE2i1MGbE0eQj6e7+XNhq
+         f1m9hWdjFYTOYFV7Y8dAkfTk3HT+8WQLcRfJOBfHZ8sIsdRvzVUepchC03JmcJ+b86zm
+         E7rM5LxE6urcvQBRCMITMWiuzvFDi62VwQUhhFqi5FfFd5xHsLdE8ARSPXmokNuKqXfO
+         d5bN4p6nDH/RkpJUfoqQZchoFoHz9aW8tA8Mwkpc2NvpOmsSxVtvNHMDHmTETLoyhTQl
+         TwGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hqgjeEmiczW8tyKT8Sr0WXeHexE/OvbKNC0oLWg2H/4=;
-        b=pEuXNNXCI8ghl5VIIUEQl7r9ICiAD4Y85rCfekux5DNESi6ervMUf+an/CoD9r97M/
-         JM9HUj90j/mbQ5OKAzodISBjEsnBHtoJ4xcfK0d4Fnk4d3L1qHTaSSsNPzbwbeo9dTPS
-         AcqGD6Z6+o6HYzTKbGRkvDYkLrET27nii6Qdi1haukwE2C0G7UV5DLGkfOxhqMgFldOC
-         eKhHIc6x0GpGrAH0B+005ERI2K950aeFz2SfcRY7TIdc8gE9RK12KcpdXVMTYVckmSBw
-         /MNWK7AxUU0P0Y8N/Wb7MHvEFNSwIu0wDgUAmwsImpXt/204zR9inw5lVOv3BV+LhcP1
-         JkRg==
-X-Gm-Message-State: AOAM533nVEi11DmTFa3OhhqoYK4LweALFgcVv4z7CnxOhfcPHhUiARMB
-        2EPALbBFzGEMWHhW8S8QUnMQuY+ANSfy+w==
-X-Google-Smtp-Source: ABdhPJz+vQStpjHcJb+3SHr7KTaxn/yVv5tliVD+7gAyws+d8yNzvDFL8bsHY1dBoCmL1e0tFUIvIA==
-X-Received: by 2002:a05:6808:2026:: with SMTP id q38mr11668804oiw.15.1632106346279;
-        Sun, 19 Sep 2021 19:52:26 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l19sm419390otj.77.2021.09.19.19.52.25
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=kcXtoLmYt2phW1mwUUg+pkx0ARAiF/TyvXAFksE2SBQ=;
+        b=xBTmMptq3rdLWnuD/zKE1pqRmh/RDGiyjFlGfZSU7jo2Ltn8nwCIVgDYLmT1mOupZJ
+         qSFSfaW/Ob5N4VMu4BOF+zUdobGkGl0zu5VQYpFsMcYVBSNgMI88OSKoOsdtq3fphrs1
+         Pwauohyl6maos8Yv7KOD0epo0SJi1Iyz3GJcr+zsvdVhs5ew55IVpxFdPZfItfEpHVKm
+         kuYVAT6G6QYk7D7RAmoW/gQbf1iTkyQTzAYq3b3c9eICYh2jePuPV2jB2+mkZQCLlKtn
+         PbBEa6F+3T/IW3ReZeE5yKAzYn1bQRH0XK+F24aE+qWxxTrqGk97cQCfBz2c57grLdBa
+         3T6g==
+X-Gm-Message-State: AOAM530/SX2DfVaT3wReLpxQ4vF1lxxfEo3rDrlJ3k9tc268sOfeA3/r
+        dTY00NPQ8O/CAhWApWJibe5bSWSDPeVuS+Zi
+X-Google-Smtp-Source: ABdhPJy+NEw+sEBgIWaA+ZDckq/1cv/4xFeVi9rF+KOct7Jo17tYOoW1t+YKJqTU2FMS6+04RcQxJg==
+X-Received: by 2002:a63:dd51:: with SMTP id g17mr21385975pgj.47.1632107422430;
+        Sun, 19 Sep 2021 20:10:22 -0700 (PDT)
+Received: from skynet-linux.local ([106.201.127.154])
+        by smtp.googlemail.com with ESMTPSA id l11sm16295065pjg.22.2021.09.19.20.10.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Sep 2021 19:52:25 -0700 (PDT)
-Date:   Sun, 19 Sep 2021 21:52:24 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: add SMEM support
-Message-ID: <YUf3aKn78+41Cb/G@builder.lan>
-References: <20210902214708.1776690-1-robimarko@gmail.com>
+        Sun, 19 Sep 2021 20:10:22 -0700 (PDT)
+From:   Sireesh Kodali <sireeshkodali1@gmail.com>
+To:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, elder@kernel.org
+Cc:     Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [RFC PATCH 17/17] dt-bindings: net: qcom,ipa: Add support for MSM8953 and MSM8996 IPA
+Date:   Mon, 20 Sep 2021 08:38:11 +0530
+Message-Id: <20210920030811.57273-18-sireeshkodali1@gmail.com>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210920030811.57273-1-sireeshkodali1@gmail.com>
+References: <20210920030811.57273-1-sireeshkodali1@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210902214708.1776690-1-robimarko@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 02 Sep 16:47 CDT 2021, Robert Marko wrote:
+MSM8996 uses IPA v2.5 and MSM8953 uses IPA v2.6l
 
-> IPQ8074 uses SMEM like other modern QCA SoC-s, so since its already
-> supported by the kernel add the required DT nodes.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+---
+ Documentation/devicetree/bindings/net/qcom,ipa.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thanks for your patch Robert.
+diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+index b8a0b392b24e..e857827bfa54 100644
+--- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
++++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+@@ -44,6 +44,8 @@ description:
+ properties:
+   compatible:
+     enum:
++      - qcom,msm8953-ipa
++      - qcom,msm8996-ipa
+       - qcom,msm8998-ipa
+       - qcom,sc7180-ipa
+       - qcom,sc7280-ipa
+-- 
+2.33.0
 
-> ---
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 28 +++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> index a620ac0d0b19..83e9243046aa 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> @@ -82,6 +82,29 @@ scm {
->  		};
->  	};
->  
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		smem_region: memory@4ab00000 {
-> +			no-map;
-> +			reg = <0x0 0x4ab00000 0x0 0x00100000>;
-> +		};
-> +	};
-> +
-> +	tcsr_mutex: hwlock {
-> +		compatible = "qcom,tcsr-mutex";
-> +		syscon = <&tcsr_mutex_regs 0 0x80>;
-
-Since it's not okay to have a lone "syscon" and I didn't think it was
-worth coming up with a binding for the TCSR mutex "syscon" I rewrote the
-binding a while back. As such qcom,tcsr-mutex should now live in /soc
-directly.
-
-So can you please respin accordingly?
-
-Thanks,
-Bjorn
-
-> +		#hwlock-cells = <1>;
-> +	};
-> +
-> +	smem {
-> +		compatible = "qcom,smem";
-> +		memory-region = <&smem_region>;
-> +		hwlocks = <&tcsr_mutex 0>;
-> +	};
-> +
->  	soc: soc {
->  		#address-cells = <0x1>;
->  		#size-cells = <0x1>;
-> @@ -293,6 +316,11 @@ gcc: gcc@1800000 {
->  			#reset-cells = <0x1>;
->  		};
->  
-> +		tcsr_mutex_regs: syscon@1905000 {
-> +			compatible = "syscon";
-> +			reg = <0x01905000 0x8000>;
-> +		};
-> +
->  		sdhc_1: sdhci@7824900 {
->  			compatible = "qcom,sdhci-msm-v4";
->  			reg = <0x7824900 0x500>, <0x7824000 0x800>;
-> -- 
-> 2.31.1
-> 
