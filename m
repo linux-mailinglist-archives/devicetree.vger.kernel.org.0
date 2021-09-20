@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 972B54110E2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 10:23:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38FF54110F1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 10:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235679AbhITIZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 04:25:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51954 "EHLO
+        id S235785AbhITIa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 04:30:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235667AbhITIZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 04:25:18 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36AA3C061760
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 01:23:51 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id q11so27349494wrr.9
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 01:23:51 -0700 (PDT)
+        with ESMTP id S231966AbhITIa3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Sep 2021 04:30:29 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFBFDC061760
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 01:29:02 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id g16so27378968wrb.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 01:29:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=subject:to:cc:references:from:organization:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=jA3PUfcB8IXDnqpW4ECqSitXcmSlkqlE5fXiosOJTOo=;
-        b=FaBXEgEx8+bjza3Q5tKipeVR8HxfZxSGKrtz34erCdsVUaddUBaUM5u7wf07thayrT
-         GLcm3wylnWpQD5S13RgvSlLyqi8xoTvHovPr+7f8eLw695aCraDhGx82gkE9zmzjLK2U
-         kELSfQIgQ2fvzWv2Bqa0Ppcz939SlHR7tnFKxRYJ09t1KaJXhYbKISVpbGytIPrRcpoB
-         B3IcP0EBQpYOcuaI8OSajxSyK9/LfCFjt+TdJns1/pfpHfjPZJujUbccOkHAnrCb6phd
-         mMIoD9a9ZgQbjz2zZBVhBtGbfy7p/IxgtXwzlM5gxk5RKtzA+ogoeYYkQKGTWvnY6LTB
-         S4SA==
+        bh=NmwufkRm5QXP0RAh9pBbo8ktk5iDLTsqfPbzEqZPusQ=;
+        b=ASztJaW6JLqDSrnzAc8sDk8rdLwza8sZQRFbsVufD7S6x99Hhl7BGV5YzttOZprJPR
+         A6TbTopEIqMinlR87Ykkzakz5iZ/O/5AuzDw4YkrqTEzes8j1K5NNjA2QOw3sTxJDGo1
+         XfwHT0hIyrbhKwUogGCw6ZC/OLu1RprMonZ9Yj7TzNFrcOJTTC+hFsqWWqbusTZVIns3
+         HIrSkjQ1/g2BaOGHXjp7iU8kmma/vSYLuYp3Ba7eGXib4bCsmpcwJYXGuSMU8W/KojWX
+         ehFVT2F7wWBmutG0rItwEPu77rY+Gr2IPyptA1Iz0a49hWLhllx3WS+WWU82s7eXfgZ+
+         197Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=jA3PUfcB8IXDnqpW4ECqSitXcmSlkqlE5fXiosOJTOo=;
-        b=OR8h3509gVbV0IE0FRuBsm4bKk2xLv1QsBMezuuQZzUcgs65Bykqjb/BneqEHo/kY1
-         gi8yamS+2dfpcKwMuGzpwFcP1tcT1r5bom6dhrCjbpcOa80n0YL/p9K5XL9puTOP8D4U
-         wt81SfjJsIm94FCj6NP+W+8e/oxx5hlWe/GUvKSlA0vxvb82kK3+gpqqik56j1c0+Hi9
-         D5WOEAw/ZnLW/HTnX5+cowDB3IW3vgW68OShMn9x+UME68kcUZIIZmEOqes3EMm1ysku
-         VT9P/4PUdVvxY3sg24qlKJn4ACduTKnXTa57G1ydkik0dcasulyK9WN8bWx8NVj2sXYV
-         yBrA==
-X-Gm-Message-State: AOAM531uocPlUCv+KUdfmbK3fDxXKSP6qkYmady/NJalF+GVALt4uQg1
-        kXCaFE9AKSBkLkIHXGpg0SiO9PURFlRwOA==
-X-Google-Smtp-Source: ABdhPJyySDfp0Tt9vPlhMutYIwWn7eTnlpMOdM8CIDq3Yb1eS7BY8LfohWnuU/6TFFPPEdPUsNTHow==
-X-Received: by 2002:a5d:64ab:: with SMTP id m11mr24719653wrp.343.1632126229497;
-        Mon, 20 Sep 2021 01:23:49 -0700 (PDT)
+        bh=NmwufkRm5QXP0RAh9pBbo8ktk5iDLTsqfPbzEqZPusQ=;
+        b=sCgV/4cunlBwLL9MRTcDfocBwwJgXT00FZ0CvLB8g9ihSvGZC3xBquKmJQN9LsN9Cx
+         3nA2mNH7FhOGtSYLJmmOE2apf8OfklpElrtGcaMpQ+3j57msSxTMgzcBzinm0FrKH/nG
+         FpZZw+R8ChBa2NmPjp47fdkOk2A9hBkxlMmeyTmP/cTwnjxj7H1riMw7o8iueTHiLQqb
+         iKfmHIp7eJreks7dryuogeosGW+uB0kqDFJOyCSUzzE93VIWsFCOXUFAASBgL3zgcbjm
+         C8BQXw4ho9jnVBi5R+zJ8uPIJsmTccwQhCAybEBlpSIrp0kU5VJJgxE3Qs3bpBnOEtBe
+         H+Og==
+X-Gm-Message-State: AOAM532moeyCb4yEkcVXNdI/Htd4znHGhkahjUCC32sr3sW1+S/Rmn7N
+        cyI5tdqOnNiKL51LaCRs6j3ZoP8iju7OEQ==
+X-Google-Smtp-Source: ABdhPJzuxaefHZvd38Fmw8Tt/MDEALuJp9Z/DsWNUXhTEtV7qyVR7JWj5ElkPT5QmeIyOw9MdlrDLw==
+X-Received: by 2002:adf:d1cf:: with SMTP id b15mr803908wrd.181.1632126541068;
+        Mon, 20 Sep 2021 01:29:01 -0700 (PDT)
 Received: from [172.20.10.7] ([37.169.24.17])
-        by smtp.gmail.com with ESMTPSA id y64sm11852384wmc.38.2021.09.20.01.23.47
+        by smtp.gmail.com with ESMTPSA id b16sm15249049wrp.82.2021.09.20.01.28.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Sep 2021 01:23:49 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: meson-g12b-odroid-n2: add 5v regulator gpio
+        Mon, 20 Sep 2021 01:29:00 -0700 (PDT)
+Subject: Re: [PATCHv2 0/3] Fix the pwm regulator supply properties
 To:     Anand Moon <linux.amoon@gmail.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
@@ -57,16 +57,17 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
         devicetree@vger.kernel.org
-References: <20210919213135.4928-1-linux.amoon@gmail.com>
+References: <20210919202918.3556-1-linux.amoon@gmail.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <c2487717-17e6-ec0b-9569-6f9a605d8fec@baylibre.com>
-Date:   Mon, 20 Sep 2021 10:23:47 +0200
+Message-ID: <9d759c05-c67f-1230-7f58-562dc9bb1224@baylibre.com>
+Date:   Mon, 20 Sep 2021 10:28:59 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210919213135.4928-1-linux.amoon@gmail.com>
+In-Reply-To: <20210919202918.3556-1-linux.amoon@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -76,41 +77,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On 19/09/2021 23:31, Anand Moon wrote:
-> As described in the Odroid-n2 & Odroid-n2-plus schematics,
-> the 5V regulator is controlled by GPIOH_8 and in Open Drain
-> since this GPIO doesn't support Push-Pull.
->
 
-Fixes: c35f6dc5c377 ("arm64: dts: meson: Add minimal support for Odroid-N2")
-Fixes: ef599f5f3e10 ("arm64: dts: meson: convert ODROID-N2 to dtsi")
-
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+On 19/09/2021 22:29, Anand Moon wrote:
+> Changes PWM supply properties help fix internal link of PWM to
+> main 12V supply as per the shematics.
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> index 4f33820aba1f..e8a00a2f8812 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> @@ -99,6 +99,8 @@ vcc_5v: regulator-vcc_5v {
->  		regulator-max-microvolt = <5000000>;
->  		regulator-always-on;
->  		vin-supply = <&main_12v>;
-> +		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-> +		enable-active-high;
->  	};
->  
->  	vcc_1v8: regulator-vcc_1v8 {
+> V1: https://lkml.org/lkml/2021/6/29/288
 > 
+> Thanks
+> -Anand
+> 
+> Anand Moon (3):
+>   arm64: dts: meson-g12a: Fix the pwm regulator supply properties
+>   arm64: dts: meson-g12b: Fix the pwm regulator supply properties
+>   arm64: dts: meson-sm1: Fix the pwm regulator supply properties
+> 
+>  arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts       | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts         | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts      | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi | 4 ++--
+>  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi   | 4 ++--
+>  arch/arm64/boot/dts/amlogic/meson-g12b-w400.dtsi        | 4 ++--
+>  arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts   | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts  | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi       | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts        | 2 +-
+>  10 files changed, 13 insertions(+), 13 deletions(-)
 
-Exact
+Thanks for fixing all the other boards !
 
-I wonder how I missed this....
+I'll let a few days for Martin to review, but it's ok for me.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Thanks,
 Neil
+
+
+> 
+> --
+> 2.33.0
+> 
+
