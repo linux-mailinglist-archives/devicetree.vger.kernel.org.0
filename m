@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 464884123BA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 20:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95B244123BE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 20:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378866AbhITS0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 14:26:51 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:51192
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1378516AbhITSYu (ORCPT
+        id S1348370AbhITS0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 14:26:54 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46984
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1378528AbhITSYv (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 14:24:50 -0400
+        Mon, 20 Sep 2021 14:24:51 -0400
 Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BCEEE402D8
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 18:21:27 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 608BE4025C
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 18:21:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632162087;
-        bh=Sbg5nOyZq9yC8Xn5SZzHESn4Mfz8fqz9QB4d6lh3mX0=;
+        s=20210705; t=1632162090;
+        bh=392DGrLNIruEKZ82iDFDDSFrn2e1XRvH9Fknb6uNRpM=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=e3aiq+ixAM2Ie0HdmtLyaOOqt14OFO/nLYAAWUiEM1hTyLoFEC0P37zsaXRCeTplV
-         /ySVcDj8Gdx92WtheWkoNj3FhQTbtHAr0rvF2KH+ZNslS/DCfGZmd4ZYyhbiIs1Pti
-         pqmrLPcvWPulG1ib4qbFquIDnQzsBf3dK3gnr6VBB1wVSwdbXSvvvNPLO+HXcpqxjH
-         EaCgEKo5jdZ8Tna0nwXUT39Xro+Ff8ejiyM4HS/u/DUUhM+IZZN6u0cRoM0vgZLFvN
-         Cz7hiRFIzj4XscmDA5eZnBr/Q8oqNaJj61BoggD6KaOKnUAZmtCetCgq2lKsKxLIQM
-         0EKY7BC5sSz5g==
-Received: by mail-wr1-f72.google.com with SMTP id e1-20020adfa741000000b0015e424fdd01so6337672wrd.11
-        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:21:27 -0700 (PDT)
+        b=GLHHW0VRdkRcmu2Qs7HQ5jZWIxdbH98MFu9kNEf8XIbb1KU6dnHt4yXv0IPRF++gN
+         cjJ8g30wZQQONwkIKAX4DmceORL4rvDypsjhpCByqPuWdxNDukFVmNgiv96e0RFs4L
+         cJqWq1YlIoR7pR/hjh8K8BlPZF7KlNZ6eR5dfzjujK9fL2xtwLM3U9uYKzqHyfR+mP
+         qffd1VCOh2jgWoXLtZG76ksoMz9CIxd40jrFDi8BypJfrj8NxyXjH3z8dJV5IISLsS
+         NHGea5dL4Ld+LQF44VUgnp4meAgRVA99cL0bdl8O1JTrzvWbqBMl0SKU9M47q4pBzi
+         mtr7nyn43L79g==
+Received: by mail-wr1-f72.google.com with SMTP id i4-20020a5d5224000000b0015b14db14deso6790983wra.23
+        for <devicetree@vger.kernel.org>; Mon, 20 Sep 2021 11:21:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Sbg5nOyZq9yC8Xn5SZzHESn4Mfz8fqz9QB4d6lh3mX0=;
-        b=1Z7NjuHnM5Pt+5oQPTgaED53C9JXFWDnrdvFYTbgz2ry4gTlka/FoqmytXyIXEx9c9
-         9SlebJSN9Lp52mKIQdYfOq7ojKS3B+3yooStMHopMq5jS1DyLcp7LhE1IZ/q5dsFNXzL
-         39fMeEoAo3fDvjv6w2kOuoYYWRTsCxBhsS1Qg3kGgv5FqDxvlW72StbqDjsKZ/NE7hLB
-         nCz39FjaeXN3Vbr0aCzO+0awkX5+IM9/DTzHcU5C5DiOwbGEkOJFcENCncA59k3slDzb
-         1ETIakLH+ruN1DNXDnr7jFSs6mp5bUQgZr/SNCIiKLa/kowhXCAJ8AtNfxkjq/eVyKYM
-         AdaQ==
-X-Gm-Message-State: AOAM530UEqE3lK1tv+Ogo7JftjtsHH0IOBZNWVjhiIJ3WCPJ31nnV0sl
-        Y3knekrojnoFYYNfDa9Vo8fLWVBIZ/0nmoKxuRF13LgIE1FVuVl08LlYqxCUfd9FRYHL5rMG8nK
-        0FulPBZ7xO3nrQmH7vvAk2lWr8rejfxct5GRdjlI=
-X-Received: by 2002:adf:f486:: with SMTP id l6mr29595566wro.375.1632162087329;
-        Mon, 20 Sep 2021 11:21:27 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzCPZmp493nU2KexX4DlFrxsQs3hL2yp6zsXResDTNt3qLAbLsP0MEP/RGzViC4mVOpx1uqbw==
-X-Received: by 2002:adf:f486:: with SMTP id l6mr29595549wro.375.1632162087156;
-        Mon, 20 Sep 2021 11:21:27 -0700 (PDT)
+        bh=392DGrLNIruEKZ82iDFDDSFrn2e1XRvH9Fknb6uNRpM=;
+        b=c9BCE/n5fYGY0Vk5ybCQ4YBhPij2npmZE5nwnXyg9D/ABo+IlR4hYkljag3Sm7zeg8
+         Y/GKBu8wlZGY0yUNkzQGAyWuSEAjqepoYFfZGOzWvfo1kj0z2rlzLTtzLvwI9uq0tR6o
+         EI42z+ue2Yyi1kv2Rjcgulyyw5wIa6bhnvFPy2tKzWtpIwvwokYOtLYhKgc8KmF1X0pQ
+         MMp7EGLcFPVujQNhgi1EL2bAuP3VeoB4Ty2U98aVbt9wiOVOe5V22wrFtaU80/8fNU5Z
+         4asgjne7eo3fuPhmPjKc7E6ngImu/7K0bHGnbmQ2c7WTtK4s8OjbWre2CJsSoYsvkdLK
+         w1rA==
+X-Gm-Message-State: AOAM5328eVDwNWDu+orjpUdq3w1WSULAq0Y3ckd2mcHcF0XaPoy1IutT
+        1ncKpNahkYfUhuGa1500bqOVE/2lVVabWdEqljnM3s3t2PqegvLaE0pZYLf0UaMbmFq7WKqKVjZ
+        UeS5BwZtJeAtjuAkpdR2Snlzf7IVKqaG+MNt693s=
+X-Received: by 2002:adf:f48e:: with SMTP id l14mr30940410wro.109.1632162088996;
+        Mon, 20 Sep 2021 11:21:28 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzRMPpAIRUuFY+N/fgxtfYjgdOXqjwE/V3P9AsXXFvbBbsggZfj/+s1dljcDHu9J4kwD+8IWQ==
+X-Received: by 2002:adf:f48e:: with SMTP id l14mr30940395wro.109.1632162088862;
+        Mon, 20 Sep 2021 11:21:28 -0700 (PDT)
 Received: from kozik-lap.lan (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id e5sm10515285wrd.1.2021.09.20.11.21.25
+        by smtp.gmail.com with ESMTPSA id e5sm10515285wrd.1.2021.09.20.11.21.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Sep 2021 11:21:26 -0700 (PDT)
+        Mon, 20 Sep 2021 11:21:28 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Jean Delvare <jdelvare@suse.com>,
         Guenter Roeck <linux@roeck-us.net>,
@@ -63,9 +63,9 @@ To:     Jean Delvare <jdelvare@suse.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 5/6] dt-bindings: hwmon: jedec,jc42: convert to dtschema
-Date:   Mon, 20 Sep 2021 20:21:13 +0200
-Message-Id: <20210920182114.339419-5-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 6/6] dt-bindings: hwmon: jedec,jc42: add nxp,se97b
+Date:   Mon, 20 Sep 2021 20:21:14 +0200
+Message-Id: <20210920182114.339419-6-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210920182114.339419-1-krzysztof.kozlowski@canonical.com>
 References: <20210920182114.339419-1-krzysztof.kozlowski@canonical.com>
@@ -75,157 +75,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Jedec JC-42.4 temperature sensor bindings to DT schema
-format.
+Document bindings for NXP SE97B, a DDR memory module temperature sensor
+with integrated SPD and EEPROM via Atmel's AT24 interface.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../devicetree/bindings/hwmon/jc42.txt        | 46 -------------
- .../devicetree/bindings/hwmon/jedec,jc42.yaml | 69 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 3 files changed, 70 insertions(+), 46 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/hwmon/jc42.txt
- create mode 100644 Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
+ Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/hwmon/jc42.txt b/Documentation/devicetree/bindings/hwmon/jc42.txt
-deleted file mode 100644
-index f569db58f64a..000000000000
---- a/Documentation/devicetree/bindings/hwmon/jc42.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--Properties for Jedec JC-42.4 compatible temperature sensors
--
--Required properties:
--- compatible: May include a device-specific string consisting of the
--	      manufacturer and the name of the chip. A list of supported
--	      chip names follows.
--	      Must include "jedec,jc-42.4-temp" for any Jedec JC-42.4
--	      compatible temperature sensor.
--
--	      Supported chip names:
--		adi,adt7408
--		atmel,at30ts00
--		atmel,at30tse004
--		onnn,cat6095
--		onnn,cat34ts02
--		maxim,max6604
--		microchip,mcp9804
--		microchip,mcp9805
--		microchip,mcp9808
--		microchip,mcp98243
--		microchip,mcp98244
--		microchip,mcp9843
--		nxp,se97
--		nxp,se98
--		st,stts2002
--		st,stts2004
--		st,stts3000
--		st,stts424
--		st,stts424e
--		idt,tse2002
--		idt,tse2004
--		idt,ts3000
--		idt,ts3001
--
--- reg: I2C address
--
--Optional properties:
--- smbus-timeout-disable: When set, the smbus timeout function will be disabled.
--			 This is not supported on all chips.
--
--Example:
--
--temp-sensor@1a {
--	compatible = "jedec,jc-42.4-temp";
--	reg = <0x1a>;
--};
 diff --git a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
-new file mode 100644
-index 000000000000..a7bb4e3a1c46
---- /dev/null
+index a7bb4e3a1c46..0e49b3901161 100644
+--- a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
 +++ b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/jedec,jc42.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Jedec JC-42.4 compatible temperature sensors
-+
-+maintainers:
-+  - Jean Delvare <jdelvare@suse.com>
-+  - Guenter Roeck <linux@roeck-us.net>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: jedec,jc-42.4-temp
-+      - items:
-+          - enum:
-+              - adi,adt7408
-+              - atmel,at30ts00
-+              - atmel,at30tse004
-+              - idt,tse2002
-+              - idt,tse2004
-+              - idt,ts3000
-+              - idt,ts3001
-+              - maxim,max6604
-+              - microchip,mcp9804
-+              - microchip,mcp9805
-+              - microchip,mcp9808
-+              - microchip,mcp98243
-+              - microchip,mcp98244
-+              - microchip,mcp9843
-+              - nxp,se97
-+              - nxp,se98
-+              - onnn,cat6095
-+              - onnn,cat34ts02
-+              - st,stts2002
-+              - st,stts2004
-+              - st,stts3000
-+              - st,stts424
-+              - st,stts424e
-+          - const: jedec,jc-42.4-temp
-+
-+  reg:
-+    maxItems: 1
-+
-+  smbus-timeout-disable:
-+    description: |
-+      When set, the smbus timeout function will be disabled. This is not
-+      supported on all chips.
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        temp-sensor@1a {
-+            compatible = "jedec,jc-42.4-temp";
-+            reg = <0x1a>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b07679009af2..15c4d3c809e8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10033,6 +10033,7 @@ JC42.4 TEMPERATURE SENSOR DRIVER
- M:	Guenter Roeck <linux@roeck-us.net>
- L:	linux-hwmon@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
- F:	Documentation/hwmon/jc42.rst
- F:	drivers/hwmon/jc42.c
+@@ -10,6 +10,14 @@ maintainers:
+   - Jean Delvare <jdelvare@suse.com>
+   - Guenter Roeck <linux@roeck-us.net>
  
++select:
++  properties:
++    compatible:
++      const: jedec,jc-42.4-temp
++
++  required:
++    - compatible
++
+ properties:
+   compatible:
+     oneOf:
+@@ -31,6 +39,7 @@ properties:
+               - microchip,mcp98244
+               - microchip,mcp9843
+               - nxp,se97
++              - nxp,se97b
+               - nxp,se98
+               - onnn,cat6095
+               - onnn,cat34ts02
 -- 
 2.30.2
 
