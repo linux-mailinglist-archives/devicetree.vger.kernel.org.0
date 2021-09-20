@@ -2,114 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1585412453
-	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 20:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52C5A412682
+	for <lists+devicetree@lfdr.de>; Mon, 20 Sep 2021 20:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380359AbhITSde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Sep 2021 14:33:34 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:14414 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1379474AbhITSbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Sep 2021 14:31:32 -0400
-X-IronPort-AV: E=Sophos;i="5.85,309,1624287600"; 
-   d="scan'208";a="94592978"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 21 Sep 2021 03:30:04 +0900
-Received: from localhost.localdomain (unknown [10.226.92.208])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 391EA40D357E;
-        Tue, 21 Sep 2021 03:30:02 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: rzg2l-smarc: Enable I2C{0,1,3} support
-Date:   Mon, 20 Sep 2021 19:29:55 +0100
-Message-Id: <20210920182955.13445-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210920182955.13445-1-biju.das.jz@bp.renesas.com>
-References: <20210920182955.13445-1-biju.das.jz@bp.renesas.com>
+        id S1346097AbhITS7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Sep 2021 14:59:34 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:50810 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1354075AbhITS5V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Sep 2021 14:57:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=jcJ8+PGAESQtnEaep3beg72gC2wG3+PVTH5vzFcM5i4=; b=eRycXmW08DR9G2IcUuJDYtWoZS
+        v336b1hI4iAwdh92tguEJztRrWMnqS+zBIZwPiliqeNN39kyktDjm/XzQ9aKJVb9aralydZEb0Ys/
+        QIb3BeQzdT6hq1Wb+S0Z7Et/Mm9XVmCa+qro3tt+g+blCZAXy7crYdzTMtGJ346F+dO8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mSOSC-007X3b-MK; Mon, 20 Sep 2021 20:55:48 +0200
+Date:   Mon, 20 Sep 2021 20:55:48 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH 1/2] drivers: net: dsa: qca8k: add support
+ for led config
+Message-ID: <YUjZNA1Swo6Bv3/Q@lunn.ch>
+References: <20210920180851.30762-1-ansuelsmth@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210920180851.30762-1-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable I2C{0,1,3} support on RZ/G2L SMARC EVK.
+On Mon, Sep 20, 2021 at 08:08:50PM +0200, Ansuel Smith wrote:
+> Add support for led control and led toggle.
+> qca8337 and qca8327 switch have various reg to control port leds.
+> The current implementation permit to toggle them on/off and to declare
+> their blink rules based on the entry in the dts.
+> They can also be declared in userspace by the "control_rule" entry in
+> the led sysfs. When hw_mode is active (set by default) the leds blink
+> based on the control_rule. There are 6 total control rule.
+> Control rule that applies to phy0-3 commonly used for lan port.
+> Control rule that applies to phy4 commonly used for wan port.
+> Each phy port (5 in total) can have a maximum of 3 different leds
+> attached. Each led can be turned off, blink at 4hz, off or set to
+> hw_mode and follow their respecitve control rule. The hw_mode can be
+> toggled using the sysfs entry and will be disabled on brightness or
+> blink set.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi | 39 ++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+Hi Ansuel
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-index 7ecd4a3f4175..8ecc5b45fc99 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-@@ -11,6 +11,9 @@
- / {
- 	aliases {
- 		serial0 = &scif0;
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c3 = &i2c3;
- 	};
- 
- 	chosen {
-@@ -45,6 +48,27 @@
- 	status = "okay";
- };
- 
-+&i2c0 {
-+	pinctrl-0 = <&i2c0_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	pinctrl-0 = <&i2c1_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-0 = <&i2c3_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
- &ohci0 {
- 	dr_mode = "otg";
- 	status = "okay";
-@@ -59,6 +83,21 @@
- };
- 
- &pinctrl {
-+	i2c0_pins: i2c0 {
-+		pins = "RIIC0_SDA", "RIIC0_SCL";
-+		input-enable;
-+	};
-+
-+	i2c1_pins: i2c1 {
-+		pins = "RIIC1_SDA", "RIIC1_SCL";
-+		input-enable;
-+	};
-+
-+	i2c3_pins: i2c3 {
-+		pinmux = <RZG2L_PORT_PINMUX(18, 0, 3)>, /* SDA */
-+			 <RZG2L_PORT_PINMUX(18, 1, 3)>; /* SCL */
-+	};
-+
- 	scif0_pins: scif0 {
- 		pinmux = <RZG2L_PORT_PINMUX(38, 0, 1)>,	/* TxD */
- 			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
--- 
-2.17.1
+It is great you are using the LED subsystem for this. But we need to
+split the code up into a generic part which can shared by any
+switch/PHY and a driver specific part.
 
+There has been a lot of discussion on the list about this. Maybe you
+can help get us to a generic solution which can be used by everybody.
+
+    Andrew
