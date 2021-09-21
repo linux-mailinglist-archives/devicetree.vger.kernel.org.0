@@ -2,175 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12188413A94
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 21:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFBDB413ABC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 21:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229913AbhIUTRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 15:17:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37912 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229912AbhIUTRp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 15:17:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 288CD61264;
-        Tue, 21 Sep 2021 19:16:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632251777;
-        bh=y7t65FuUj5M7zHUNcxaXF8xZfHxxqS+Py2uO/oFuGbM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BhMOi9IH4aXuRUEQvYaIyBPtIwepzEo1TnBdbKhE1sb1ceupjaKCfRTQS/jHX88Co
-         ih+iBXBmdLdkNx1t5uxAaXBnbQxlJmxO7wk/0TP8jhVr9vunmbtFb4gV2C5y5lQhaK
-         jDeUi8PCnXV6T1NhweJ2hnnGGbStXvmMHHvnq2Hm8ojn9MXWofIddPddcMaZuOPEcF
-         mvKOttk8GncAltKNYv8BM9MiDUw7HMLf93nONzOd2l30mYZfKKaTnOXYu6g8RHb2ds
-         18jw1q8+CAIdprMKqONGjgF9chmpPzSzpJ8CVPgvvqgYIJjEgE+2SQybS2WYnGUsku
-         VYnMuRJxfmIpw==
-Received: by mail-ed1-f54.google.com with SMTP id v5so531836edc.2;
-        Tue, 21 Sep 2021 12:16:17 -0700 (PDT)
-X-Gm-Message-State: AOAM531/8/noNY4DIIgl4Fbyvppw0yptEl/CdYj66kIbGb1qKGBGfQrY
-        mjcpd1oIdK6+OMf0A62djPBXa7j3f76MjR3XMQ==
-X-Google-Smtp-Source: ABdhPJzGJFcDleoc9cfu1inyaDPtLW0450eB/KUF4KeBvjL3Emzrqd9wTIf+OICoPmSMZNLiZJgjpxdrYOvYsVRyY4o=
-X-Received: by 2002:a50:e004:: with SMTP id e4mr37623631edl.164.1632251775461;
- Tue, 21 Sep 2021 12:16:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210920142713.129295-1-a-nandan@ti.com> <20210920142713.129295-2-a-nandan@ti.com>
- <20210920150651.vvdhennblwhdi3jw@mobilestation> <YUj6RUNYDoWA30Ln@robh.at.kernel.org>
- <3c03fcdd-b015-8fda-eadc-e1b6d24ba88d@ti.com>
-In-Reply-To: <3c03fcdd-b015-8fda-eadc-e1b6d24ba88d@ti.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 21 Sep 2021 14:16:02 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+sg7f4pJGBhU48a4=uR7cYQmXsoSjbrktovV94m3+qFw@mail.gmail.com>
-Message-ID: <CAL_Jsq+sg7f4pJGBhU48a4=uR7cYQmXsoSjbrktovV94m3+qFw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nand: Convert to DT schema format
-To:     Apurva Nandan <a-nandan@ti.com>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mark Brown <broonie@kernel.org>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Michael Walle <michael@walle.cc>
-Content-Type: text/plain; charset="UTF-8"
+        id S231982AbhIUTcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 15:32:08 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:18568 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229519AbhIUTcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 15:32:07 -0400
+X-IronPort-AV: E=Sophos;i="5.85,311,1624287600"; 
+   d="scan'208";a="94721283"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 22 Sep 2021 04:30:36 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 504CE40E82D7;
+        Wed, 22 Sep 2021 04:30:34 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [RFC PATCH v2 0/4] Renesas RZ/G2L IRQC support
+Date:   Tue, 21 Sep 2021 20:30:24 +0100
+Message-Id: <20210921193028.13099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 8:43 AM Apurva Nandan <a-nandan@ti.com> wrote:
->
-> Hi Rob,
->
-> On 21/09/21 2:46 am, Rob Herring wrote:
-> > On Mon, Sep 20, 2021 at 06:06:51PM +0300, Serge Semin wrote:
-> >> Hello Apurva
-> >>
-> >> On Mon, Sep 20, 2021 at 07:57:12PM +0530, Apurva Nandan wrote:
-> >>> Convert spi-nand.txt binding to YAML format with an added example.
-> >>>
-> >>> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
-> >>> ---
-> >>>   .../devicetree/bindings/mtd/spi-nand.txt      |  5 --
-> >>>   .../devicetree/bindings/mtd/spi-nand.yaml     | 62 +++++++++++++++++++
-> >>>   2 files changed, 62 insertions(+), 5 deletions(-)
-> >>>   delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
-> >>>   create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
-> >> Thanks for the bindings conversion patch. There are several comments
-> >> below. But before addressing them it would be better to also get a
-> >> response from Rob.
-> >>
-> >>> diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.txt b/Documentation/devicetree/bindings/mtd/spi-nand.txt
-> >>> deleted file mode 100644
-> >>> index 8b51f3b6d55c..000000000000
-> >>> --- a/Documentation/devicetree/bindings/mtd/spi-nand.txt
-> >>> +++ /dev/null
-> >>> @@ -1,5 +0,0 @@
-> >>> -SPI NAND flash
-> >>> -
-> >>> -Required properties:
-> >>> -- compatible: should be "spi-nand"
-> >>> -- reg: should encode the chip-select line used to access the NAND chip
-> >>> diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.yaml b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..601beba8d971
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
-> >>> @@ -0,0 +1,62 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: SPI NAND flash
-> >>> +
-> >>> +maintainers:
-> >>> +  - Apurva Nandan <a-nandan@ti.com>
-> >>> +
-> >>> +allOf:
-> >>> +  - $ref: "mtd.yaml#"
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: spi-nand
-> >>> +
-> >>> +  reg:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  spi-max-frequency: true
-> >>> +  spi-rx-bus-width: true
-> >>> +  spi-tx-bus-width: true
-> >>> +  rx-sample-delay-ns: true
-> >> Since it's an SPI-client device there are more than these properties
-> >> could be set for it. See the SPI-controller bindings schema:
-> >> Documentation/devicetree/bindings/spi/spi-controller.yaml
-> >> So there is two possible ways to make it more generic:
-> >> 1) Detach the spi-client part from the spi-controller.yaml bindings
-> >> into a dedicated DT-schema file and refer to that new scheme from
-> >> here.
-> > Yes, as mentioned there's patches doing this. But the above is fine.
-> > There's some value in defining here which properties are valid.
-> Yeah right
-> >> 2) Forget about these controller-specific properties and let the
-> >> parental SPI-controller bindings parsing them. Of course there must be
-> >> at least one of the next properties declared for it to work:
-> >> {unevaluatedProperties, additionalProperties}.
-> >>
-> >> It's up to Rob to decided which approach is better though...
-> >>
-> >>> +
-> >>> +  '#address-cells': true
-> >>> +  '#size-cells': true
-> >> Aren't they always equal to 1?
-> > No SPI nand devices >4GB?
-> Yeah, we have SPI NANDs >4GB, and "'#address-cells': true" allows those
-> sizes.
-> >
-> >>> +
-> >>> +additionalProperties:
-> >>> +  type: object
-> >> I'd suggest to elaborate the way the partition sub-nodes looks
-> >> like, for instance, the node names, supported compatible names,
-> >> labels, etc.
-> > That should probably all be in mtd.yaml. The question here is whether
-> > partitions are always under a 'partitions' node. Maybe this is new
-> > enough that only the new way has to be supported. Though if mtd.yaml
-> > supported both forms, allowing both all the time is okay IMO.
-> >
-> > Rob
->
-> I had added the "partition" node properties in the v1 patch, but as per
-> the reviews I removed it.
-> I think we can prefer having them in mtd.yaml if needed, in a separate
-> patch series.
-> Do you prefer the mtd.yaml changes as a part of this series or as a
-> separate patch?
->
-> Other than that, I don't find any need for a v3 patch re-roll, do you agree?
+Hi All,
 
-Yeah, I suppose not.
+The RZ/G2L Interrupt Controller is a front-end for the GIC found on
+Renesas RZ/G2L SoC's with below pins:
+- IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
+- GPIO pins used as external interrupt input pins out of GPIOINT0-122 a
+  maximum of only 32 can be mapped to 32 GIC SPI interrupts,
+- NMI edge select.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+                                                                _____________
+                                                                |    GIC     |
+                                                                |  ________  |
+                                         ____________           | |        | |
+NMI ------------------------------------>|          |  SPI0-479 | | GIC-600| |
+                _______                  |          |------------>|        | |
+                |      |                 |          |  PPI16-31 | |        | |
+                |      | IRQ0-IRQ8       |   IRQC   |------------>|        | |
+P0_P48_4 ------>| GPIO |---------------->|          |           | |________| |
+                |      |GPIOINT0-122     |          |           |            |
+                |      |---------------->| TINT0-31 |           |            |
+                |______|                 |__________|           |____________|
 
-And actually, it's Miquel that should apply these 2 rather than Mark.
+The proposed RFC patches, add the IRQ domains in GPIO (pinctrl driver) and the
+IRQC driver. The IRQC domain handles the actual SPI interrupt and upon reception
+of the interrupt it propagates to the GPIO IRQ domain to handle virq.
+Out of GPIOINT0-122 only 32 can be mapped to GIC SPI, this mapping is handled by
+the IRQC driver.
 
-Rob
+Current implementation only supports TINT interrupts.
+
+Cheers,
+Prabhakar
+
+Changes for v2:
+-> Re-structured the driver as a chained handler
+-> Moved gpio verification to pinctrl driver
+-> Added locks to protect read/write
+-> Fixed propagating of irq (v1 queried the pinctrl irq domain to propagate)
+-> To keep it simple dropped edge both support
+-> Used relaxed accessors
+-> Switched to use generic_handle_domain_irq()
+-> Used irq_domain_translate_twocell() instead of custom callback
+
+Lad Prabhakar (4):
+  dt-bindings: interrupt-controller: Add Renesas RZ/G2L Interrupt
+    Controller
+  irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+  pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to handle GPIO
+    interrupt
+  arm64: dts: renesas: r9a07g044: Add IRQC node to SoC DTSI
+
+ .../renesas,rzg2l-irqc.yaml                   | 130 ++++++
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  58 +++
+ drivers/irqchip/Kconfig                       |   9 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-renesas-rzg2l.c           | 393 ++++++++++++++++++
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 214 ++++++++++
+ drivers/soc/renesas/Kconfig                   |   1 +
+ 7 files changed, 806 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+ create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
+
+-- 
+2.17.1
+
