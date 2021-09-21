@@ -2,150 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5720B4130DE
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 11:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8664130E8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 11:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231380AbhIUJqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 05:46:12 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:28053 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231401AbhIUJqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 05:46:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1632217484; x=1663753484;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=OvI/X/RQ4jZpyc9yauoJDTSXYLNl8EhydRgfWIgTA4k=;
-  b=BA+lRceG0iYq2dy2j2qa6DwTksjwNS+JITmTfT8BaxHnquF+CDrJNw2/
-   JbNk9NNweqay10MH/GJaMDjQEiNw8NDfRhU850QEE5HtwAPJEXd7aLjlH
-   C1Brh24Snh+nfqyW/qUSA3M19d5VNbCsec3HTEsxbUl72U2jDJJuCiOX8
-   WzB1OKnNfIB5dgcnXz5h1ol7SlVmKBBHKXuIoJr507cCMh4AvaWRk5lN2
-   mJ+QneNrAnr8sJgkYsMWS/M7D7IX5f4q15i/M5EIbVmg6yeEegxO4xfq7
-   OTcg0XUyozrGqoc5Ji9RAC6/MBJMWSrht05Csd1/hfMn5olkis0zhX1Oc
-   g==;
-IronPort-SDR: a2k3kfz8B2RjtHaDpe8R1f3QLoBkPChzOMrLhmyqb4FyFkEeKVfLAL8u1pZJajwQZBDNwDIyr1
- zxzG0dq+y7PTrDDqft34jSj5AH6O9AJjqgcWDST8bB/FoPBUjqENxX/wkfOQbfVlX1sCheyVki
- xBYPvZ2tRW9Wi1Npi7A3+kY8ot3wKLJxIhLPOMJ7AzeonN8CDZ56B1bMGgIRQC8011GIXQ70Ab
- AdbUjfVKSkHGZSahA4AJkmFzqOCU823VdEtS1sD5IFFT1pENP8QK74i41GD6C2BsFFXwuhctjs
- 9Yibg0ijdnBGyKuIJtEr2lC5
-X-IronPort-AV: E=Sophos;i="5.85,310,1624345200"; 
-   d="scan'208";a="132558815"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Sep 2021 02:44:42 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 21 Sep 2021 02:44:41 -0700
-Received: from [10.171.246.85] (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Tue, 21 Sep 2021 02:44:39 -0700
-Subject: Re: [PATCH 2/2] ARM: at91: dts: at91-sama5d2_xplained: Add comments
- for sama5d29
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC:     <Ludovic.Desroches@microchip.com>, <robh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux@armlinux.org.uk>, <Hari.PrasathGE@microchip.com>
-References: <20210812140758.28273-1-Hari.PrasathGE@microchip.com>
- <20210812140758.28273-2-Hari.PrasathGE@microchip.com>
- <YRV13nfgpEEuOOxB@piout.net>
- <78b26b01-b66f-5779-9f67-fdd13e473dfc@microchip.com>
- <YR4+eUWdeHRCOMo3@piout.net>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <87f93ee9-83aa-6516-6deb-0880f64a6e4e@microchip.com>
-Date:   Tue, 21 Sep 2021 11:44:39 +0200
+        id S231392AbhIUJtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 05:49:03 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:37390
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231468AbhIUJtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 05:49:03 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C062F3FE02
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 09:47:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632217648;
+        bh=5rKGjzk2iJHCad2Wjp3hC0ji4eFCvwrD/+tacFrzJ8k=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=D6U1YzPUJyvRktvx0qc5DgBi07cE5qP9+aEK02BLNbsj/0zpyFZnBh5ZJoARcSJ2B
+         3n78XmxCTW64IE97aDR+EJfo0zsTmAssFOS2t3IS+fHW4vb25tjSZnPgE7kdftEzWA
+         +c+QUKP1SoHOanft1vPyt/6cat85p0oa40goOQUYYHHww/Hn64qGPu8LWtLFag6OXb
+         dnzvYKUIJT2NfzPzqyoDjbvQ5/w7JLak2qFnYoA8QNae+/mI2EHyDfDi/fB1iao4aW
+         dePIiD90EOouZCesC16nBXP6o8CYH8HFRu+D1zExlzNzfTLrcjl3y42lfkpqg5RQ9p
+         tGRHbYsoZcXqg==
+Received: by mail-wr1-f71.google.com with SMTP id v1-20020adfc401000000b0015e11f71e65so8356584wrf.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 02:47:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5rKGjzk2iJHCad2Wjp3hC0ji4eFCvwrD/+tacFrzJ8k=;
+        b=ucMtzMkKcOzZsuqbHr/nmPKqBSzKNvjN195A5TSF1mQEJqbLba5fCt0sqUoxBDR81G
+         M1FADwQa/6uN7M6AviFxJRlQt+87mSaVU4G/xzQRv1rkLMhBRdcF6Q0dDaiBg4jh+nge
+         cWahV6brvwc40KtedbxBt1j1yn/p6yT3SPiDbdwxuecp7Dq9vEJ3wToBBC9VyZAR5zl+
+         j8QdxT67wIHRV6OOusW+1+b9ZiNFo0+bLZiZ/SY89eOxqruQjyFReOIzWVZgKSMt1KVs
+         mciQsZDNymiPp2FPWra/bWfcunFPE0YeZPqcA36lqi0wlz59xmhle9qvkbn72fGrXDB0
+         8DQA==
+X-Gm-Message-State: AOAM530XhIk7sykwCNx/RJIson1qmoSmI9tB5q93q4MUvaHQS/1p9xNC
+        L4ONo0vB4EHymLh1YJF8X2NfIThLujAR7oPgRfsLanNoknSF0sB9LDuamXTnirGeyF1Y+x75piC
+        v3hcIAnmUE+z+I5UksBFw3D/dHqPLbp7Va30d5qA=
+X-Received: by 2002:a05:6000:1446:: with SMTP id v6mr22861371wrx.427.1632217648422;
+        Tue, 21 Sep 2021 02:47:28 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyXbt7WJCDbRxN7MmrFcZT05y5pNeN7cJzgv+q+PfXKrPjjdcyoJra4XLP1MTSr212NN2xIDA==
+X-Received: by 2002:a05:6000:1446:: with SMTP id v6mr22861355wrx.427.1632217648229;
+        Tue, 21 Sep 2021 02:47:28 -0700 (PDT)
+Received: from [192.168.0.134] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id s14sm18498932wrp.84.2021.09.21.02.47.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Sep 2021 02:47:26 -0700 (PDT)
+Subject: Re: [PATCH V1 3/3] dt-bindings: tegra: clock,memory,thermal: add
+ header Copyright
+To:     Bitan Biswas <bbiswas@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Ingo Molnar <mingo@redhat.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20210921094206.2632-1-bbiswas@nvidia.com>
+ <20210921094206.2632-4-bbiswas@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <de4ad32b-ab60-a4dd-793f-9bd520ed5a87@canonical.com>
+Date:   Tue, 21 Sep 2021 11:47:24 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <YR4+eUWdeHRCOMo3@piout.net>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+In-Reply-To: <20210921094206.2632-4-bbiswas@nvidia.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2021 at 13:20, Alexandre Belloni wrote:
-> On 19/08/2021 10:56:21+0000, Hari.PrasathGE@microchip.com wrote:
->> Hello,
->>
->> On 13/08/21 12:56 am, Alexandre Belloni wrote:
->>> Hello,
->>>
->>> On 12/08/2021 19:37:58+0530, Hari Prasath wrote:
->>>> Add comments for the end user for modifying the DTS file for
->>>> instantiating the sama5d29 SoC.
->>>>
->>>> Signed-off-by: Hari Prasath <Hari.PrasathGE@microchip.com>
->>>> ---
->>>>    arch/arm/boot/dts/at91-sama5d2_xplained.dts | 5 +++++
->>>>    1 file changed, 5 insertions(+)
->>>>
->>>> diff --git a/arch/arm/boot/dts/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
->>>> index 627b7bf88d83..faa30063d9a9 100644
->>>> --- a/arch/arm/boot/dts/at91-sama5d2_xplained.dts
->>>> +++ b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
->>>> @@ -6,6 +6,11 @@
->>>>     *                2015 Nicolas Ferre <nicolas.ferre@atmel.com>
->>>>     */
->>>>    /dts-v1/;
->>>> +/*
->>>> + * Replace the line below with "sama5d29.dtsi" in order to instantiate the
->>>> + * sama5d29 SoC of the sama5d2 family.Otherwise, leave it unchanged when
->>>> + * using sama5d27 SoC for instance.
->>>> + */
->>>
->>> I guess it would be better to have a at91-sama5d29_xplained.dts (and we
->>> should have had a at91-sama5d27_xplained.dts), else, you can't create an
->>> image that will support both variants.
->>>
->>>
->> The new SoC 'sama5d29' belongs to the same sama5d2 family. It is
->> essentially a new chip revision of the existing sama5d27 with a new GMAC
->> controller IP that addresses few silicon issues. There wouldn't be
->> separate evaluation boards that shall be made but we will be using the
->> existing sama5d2 XPlained boards itself but with the new SoC populated.
+On 21/09/2021 11:42, Bitan Biswas wrote:
+> Add Copyright for below Tegra dt-bindings headers:
+> 1. clock
+> 2. gpio
+> 3. mailbox
+> 4. memory
+> 5. thermal
+> 6. reset
+> 7. pinctrl
+
+Why? Please explain.
+
+These are trivial constants, so I doubt there is here any copyright value.
+
 > 
-> That's what I understood but a board with a different SoC is a
-> different board.
-
-The problem that we have right now is that the official board sama5d2 
-Xplained will never be officially released with a sama5d29 SoC. There's 
-basically no available board with this chip.
-
-We added this "hint" as a comment to our historical board but it's true 
-that it might be confusing.
-
-For now, I'm taking only the first patch of the series. If the need 
-arise, we'll create the proper board DTS file.
-
->> Hence we have taken this approach of having a separate DTSI file and
->> reuse the existing board specific DTS file.
->>
->> We don't want to create single image that will support both variants. In
->> fact, we don't want our customers to enable certain features that are
->> broken at the silicon level in the existing revision of the SoC i.e
->> sama5d27. Instead, they could do this change manually and use it in the
->> new SoC i.e sama5d29.
->>
+> Signed-off-by: Bitan Biswas <bbiswas@nvidia.com>
+> ---
+>  include/dt-bindings/clock/tegra114-car.h            | 4 ++++
+>  include/dt-bindings/clock/tegra124-car-common.h     | 4 ++++
+>  include/dt-bindings/clock/tegra124-car.h            | 4 ++++
+>  include/dt-bindings/clock/tegra186-clock.h          | 6 ++++++
+>  include/dt-bindings/clock/tegra20-car.h             | 4 ++++
+>  include/dt-bindings/clock/tegra210-car.h            | 4 ++++
+>  include/dt-bindings/clock/tegra30-car.h             | 4 ++++
+>  include/dt-bindings/gpio/tegra-gpio.h               | 4 ++++
+>  include/dt-bindings/gpio/tegra186-gpio.h            | 4 ++++
+>  include/dt-bindings/mailbox/tegra186-hsp.h          | 4 ++++
+>  include/dt-bindings/memory/tegra114-mc.h            | 6 ++++++
+>  include/dt-bindings/memory/tegra124-mc.h            | 6 ++++++
+>  include/dt-bindings/memory/tegra186-mc.h            | 6 ++++++
+>  include/dt-bindings/memory/tegra194-mc.h            | 6 ++++++
+>  include/dt-bindings/memory/tegra210-mc.h            | 6 ++++++
+>  include/dt-bindings/memory/tegra30-mc.h             | 6 ++++++
+>  include/dt-bindings/pinctrl/pinctrl-tegra-xusb.h    | 6 ++++++
+>  include/dt-bindings/reset/tegra124-car.h            | 4 ++++
+>  include/dt-bindings/reset/tegra210-car.h            | 4 ++++
+>  include/dt-bindings/thermal/tegra124-soctherm.h     | 4 ++++
+>  include/dt-bindings/thermal/tegra186-bpmp-thermal.h | 4 ++++
+>  include/dt-bindings/thermal/tegra194-bpmp-thermal.h | 4 ++++
+>  22 files changed, 104 insertions(+)
 > 
-> This will be confusing to your customers while you could make their
-> lives simpler by having the bootloader chose the proper dtb instead of
-> having them change that manually. They will then have to regenerate
-> images with that change, see how your customers struggle to do that:
-> 
-> https://stackoverflow.com/questions/68222619/update-custom-device-tree-on-yocto
-> https://stackoverflow.com/questions/37347808/how-to-use-an-own-device-tree-and-modified-kernel-config-in-yocto
-> https://stackoverflow.com/questions/63047955/overriding-defconfig-in-bbappend-file
-Yes, understood. The intention was not to create another different board 
-but to give a hint, should customer replace themselves the SoC on 
-official sama5d2 xplained board (like we did internally). Use case is 
-probably so unlikely that we might just forget about it (for now at least).
+
+(...)
+
+> @@ -1,5 +1,9 @@
+>  /* SPDX-License-Identifier: GPL-2.0 */
+>  /*
+> + * Copyright (c) 2016-2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+> + *
+> + * Author: Joseph Lo <josephl@nvidia.com>
+> + *
+>   * This header provides constants for binding nvidia,tegra186-hsp.
+>   */
+>  
+> diff --git a/include/dt-bindings/memory/tegra114-mc.h b/include/dt-bindings/memory/tegra114-mc.h
+> index dfe99c8a5ba5..1a2d16853847 100644
+> --- a/include/dt-bindings/memory/tegra114-mc.h
+> +++ b/include/dt-bindings/memory/tegra114-mc.h
+> @@ -1,4 +1,10 @@
+>  /* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2014-2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+> + *
+> + * Author: Thierry Reding <treding@nvidia.com>
+> + *
+> + */
+>  #ifndef DT_BINDINGS_MEMORY_TEGRA114_MC_H
+>  #define DT_BINDINGS_MEMORY_TEGRA114_MC_H
+>  
+> diff --git a/include/dt-bindings/memory/tegra124-mc.h b/include/dt-bindings/memory/tegra124-mc.h
+> index 7e73bb400eca..8a7abf2325b6 100644
+> --- a/include/dt-bindings/memory/tegra124-mc.h
+> +++ b/include/dt-bindings/memory/tegra124-mc.h
+> @@ -1,4 +1,10 @@
+>  /* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2014-2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+> + *
+> + * Author: Thierry Reding <treding@nvidia.com>
+> + *
+> + */
+>  #ifndef DT_BINDINGS_MEMORY_TEGRA124_MC_H
+>  #define DT_BINDINGS_MEMORY_TEGRA124_MC_H
+>  
+> diff --git a/include/dt-bindings/memory/tegra186-mc.h b/include/dt-bindings/memory/tegra186-mc.h
+> index be313d3790ae..283ea29bf426 100644
+> --- a/include/dt-bindings/memory/tegra186-mc.h
+> +++ b/include/dt-bindings/memory/tegra186-mc.h
+> @@ -1,4 +1,10 @@
+>  /* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2017-2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+> + *
+> + * Author: Thierry Reding <treding@nvidia.com>
+> + *
+> + */
+>  #ifndef DT_BINDINGS_MEMORY_TEGRA186_MC_H
+>  #define DT_BINDINGS_MEMORY_TEGRA186_MC_H
+>  
+> diff --git a/include/dt-bindings/memory/tegra194-mc.h b/include/dt-bindings/memory/tegra194-mc.h
+> index 16bb62bf8166..30182fd94f0f 100644
+> --- a/include/dt-bindings/memory/tegra194-mc.h
+> +++ b/include/dt-bindings/memory/tegra194-mc.h
+> @@ -1,4 +1,10 @@
+>  /* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2020-2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+> + *
+> + * Author: Thierry Reding <treding@nvidia.com>
+> + *
+> + */
+>  #ifndef DT_BINDINGS_MEMORY_TEGRA194_MC_H
+>  #define DT_BINDINGS_MEMORY_TEGRA194_MC_H
+>  
+> diff --git a/include/dt-bindings/memory/tegra210-mc.h b/include/dt-bindings/memory/tegra210-mc.h
+> index 5e082547f179..c4e3ba88f77b 100644
+> --- a/include/dt-bindings/memory/tegra210-mc.h
+> +++ b/include/dt-bindings/memory/tegra210-mc.h
+> @@ -1,4 +1,10 @@
+>  /* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2015-2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+> + *
+> + * Author: Thierry Reding <treding@nvidia.com>
+> + *
+> + */
+>  #ifndef DT_BINDINGS_MEMORY_TEGRA210_MC_H
+>  #define DT_BINDINGS_MEMORY_TEGRA210_MC_H
+>  
+> diff --git a/include/dt-bindings/memory/tegra30-mc.h b/include/dt-bindings/memory/tegra30-mc.h
+> index 930f708aca17..4972cf7e3cf2 100644
+> --- a/include/dt-bindings/memory/tegra30-mc.h
+> +++ b/include/dt-bindings/memory/tegra30-mc.h
+> @@ -1,4 +1,10 @@
+>  /* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2014-2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+> + *
+> + * Author: Thierry Reding <treding@nvidia.com>
+> + *
+
+I am sorry, but that's not entirely how it works. You cannot add only
+selected (stripped) copyrights backwards. If adding, please include all
+copyright holders.
+
 
 Best regards,
-   Nicolas
-
--- 
-Nicolas Ferre
+Krzysztof
