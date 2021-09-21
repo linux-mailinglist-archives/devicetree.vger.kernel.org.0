@@ -2,104 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C09C413C4C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 642D2413C75
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:30:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbhIUVXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 17:23:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47596 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbhIUVXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:23:08 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95A21C061574
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 14:21:39 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id u8so2831266lff.9
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 14:21:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=F5/6yk3bA4ZtAQhszFbIeecMs6OvspCWgR3vbaET4+Q=;
-        b=lLoRTNIwSbGGWZt6mWms0SyQCt8fR4wHbUp6H3PiG3lZ9P72e44etlAeaSl660sg7/
-         LyWLs8/IhHfl2n4Djw6Ok/bomHtm+QRTRQBFyRBVTenWAshQ6T+vVU48J5Y6hIGjFUif
-         NKCo8MiEN096dTUxmX0eAl+m98lKioMWCrJeLgPfBmYWv0pR0VxnftJ1lWQ9JYjPYfev
-         nCZILIT9zi6lmtTtFTr45ujb+Guup0gN1iLijAVJjsOA7oi6MLc2ihZp6yYl+qPuKI9Q
-         XsDpImY4J2JbfOwDu3vC1OBUDn4898VGnRiz9+P6lhaF32VutgGY7lmOSyGf431uZaLk
-         auaA==
+        id S235165AbhIUVby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 17:31:54 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:36448 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235066AbhIUVbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:31:53 -0400
+Received: by mail-oi1-f182.google.com with SMTP id y201so1258123oie.3;
+        Tue, 21 Sep 2021 14:30:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=F5/6yk3bA4ZtAQhszFbIeecMs6OvspCWgR3vbaET4+Q=;
-        b=oS11bQNGH6MgFaAKQRfwLlZjcFghZmm0RiSxEtDa0B8TE/BpRZZQcBGfCnRzvHR107
-         wO7godypgWwx3XUj3ir0ohjvQ0AuD/zvPP9j342JAfLOzOzibrbi0chQGXxMLe/aL7oh
-         g1aKIrLNnn+tsXf5SUzQ34NUBqXXgw/iiTS/lrhDTkILyMM+/eoUn3zknbBZ3Od24rbP
-         ldCCDYgM3k6SIG7Qxx4uCVeUEhfA9WjruZhd33QGyRE+jBpkbAMBdpiDPpPin2Y0VqL0
-         mkfs693PBstdiaTQp0B8Jl5kA/x8wTYzrfyPR1QMyNra/7d22UPTLwAKA+srrOfSWJUQ
-         OfyQ==
-X-Gm-Message-State: AOAM532sgSvW24QHhr/MtEPwyDI9NmiBrgZXRirlNWX510l7465jd/Jo
-        rk45UwXEOpWIKbjr4fYB1ICSvnS5WlAGBlmXWUDBkg==
-X-Google-Smtp-Source: ABdhPJyMdUbIh89MeY7Ny6Ll/yrl+HU+tUEAYTd6yW2P9M1xmauRxkyeoBdFZ1hL199mCvYLNrLhrYM4Q0/i+qUxKiQ=
-X-Received: by 2002:a05:651c:1408:: with SMTP id u8mr6243341lje.253.1632259297056;
- Tue, 21 Sep 2021 14:21:37 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qOUqyvLIqpAcRVLX2RVvyvruhXG3SDZlFXYRj/WyI+A=;
+        b=h74xsFjTl9M2p83G46LPcHNQfnlFnHOGIgevwJa/71dEdRnzGaWr+f3QtzKINDqC9b
+         G+vY2OLKWET4eNYvY/jm0JzNTJ4rHgIbJFZyPFgIRZPhzFFYAt/H5mpSRuWYqq5oyBO0
+         qszt5haO1Ls6YqzsHxCctjelzLY91V/tjVUBv/3oZtnpGxXYlNWh4rsqGQuLcuJcLsLE
+         ESS6lUYkizzvE8SUQcqBN5733J1Bj4BkuG9C8irakjy3EfCWp7cUm8u2TmMpyjiqT1EL
+         6Mmzoz3QI6XCHO5T3VTH2EPP0FZdZTT1j7jMjafsfR9+IQNVnY7Yu9/R15RWhfMs548R
+         zbow==
+X-Gm-Message-State: AOAM533FOMpRJDZAHogjnfYNnKD9N2Jyk0GzTQcKovxfpc3nIpMYC5ta
+        WVnrTRbj+N3s/Bg6ZKiCzQ==
+X-Google-Smtp-Source: ABdhPJx6mPka25mxnHJIqTy73LHD/zGaxTKelTzEk9vwTLT4TPPlzOHlBDhTD1mDL3ETYJK8xfsxPQ==
+X-Received: by 2002:aca:ba44:: with SMTP id k65mr5445250oif.131.1632259824589;
+        Tue, 21 Sep 2021 14:30:24 -0700 (PDT)
+Received: from robh.at.kernel.org (rrcs-192-154-179-36.sw.biz.rr.com. [192.154.179.36])
+        by smtp.gmail.com with ESMTPSA id 14sm43086otl.50.2021.09.21.14.30.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 14:30:24 -0700 (PDT)
+Received: (nullmailer pid 3356286 invoked by uid 1000);
+        Tue, 21 Sep 2021 21:30:22 -0000
+Date:   Tue, 21 Sep 2021 16:30:22 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4] arm64: zynqmp: Add support for Xilinx Kria SOM board
+Message-ID: <YUpO7j1kDJ2kmvsW@robh.at.kernel.org>
+References: <ed0e6aa670ac59eabbabe7552883416248ad6c89.1631697878.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6504:507a:0:0:0:0 with HTTP; Tue, 21 Sep 2021 14:21:36
- -0700 (PDT)
-In-Reply-To: <20210921205247.GA2363535@roeck-us.net>
-References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
- <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
- <YUkKCe7845uCqoy5@robh.at.kernel.org> <20210921125831.GB1864238@roeck-us.net>
- <CAL_JsqLo=inkKVKSU8N=_h90RfpDk6NNWPKdKyTXh-VvqXDCag@mail.gmail.com> <20210921205247.GA2363535@roeck-us.net>
-From:   Oskar Senft <osk@google.com>
-Date:   Tue, 21 Sep 2021 17:21:36 -0400
-Message-ID: <CABoTLcSt9TnmyC4uQOQU4Y563pF-Nhbt2NfZvK+c0FKwAJEMeQ@mail.gmail.com>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for tmp421
-To:     Guenter Roeck <linux@roeck-us.net>, rob@kernel.org
-Cc:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ed0e6aa670ac59eabbabe7552883416248ad6c89.1631697878.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On Wed, Sep 15, 2021 at 11:24:58AM +0200, Michal Simek wrote:
+> There are couple of revisions of SOMs (k26) and associated carrier cards
+> (kv260).
+> SOM itself has two major versions:
+> sm-k26 - SOM with EMMC
+> smk-k26 - SOM without EMMC used on starter kit with preprogrammed firmware
+> in QSPI.
+> 
+> SOMs are describing only devices available on the SOM or connections which
+> are described in specification (for example UART, fwuen).
+> 
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+> 
+> Changes in v4:
+> - Remove ina260 and usb5744 nodes
+> - Remove compatible string from overlays
+> 
+> Changes in v3:
+> - Fix led node name
+> - Fix compatible string for xlnx,zynqmp-sk-kv260-revA/Y/Z
+> - Fix headers alignment
+> - Move USB3 PHY properties from DWC3 node to USB node - reported by Manish
+>   Narani
+> - Change dtb names generated with dtbo
+> - Fix emmc comment style
+> 
+> Changes in v2:
+> - Use sugar syntax - reported by Geert
+> - Update copyright years
+> - Fix SD3.0 comment alignment
+> - Remove one newline from Makefile
+> 
+> https://www.xilinx.com/products/som/kria.html
+> Based on
+> https://lore.kernel.org/r/cover.1628244703.git.michal.simek@xilinx.com
+> 
+> ---
+>  .../devicetree/bindings/arm/xilinx.yaml       |  16 +
+>  arch/arm64/boot/dts/xilinx/Makefile           |  13 +
+>  .../boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts  | 315 ++++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts  | 298 +++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    | 289 ++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-smk-k26-revA.dts   |  21 ++
+>  6 files changed, 952 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/xilinx.yaml b/Documentation/devicetree/bindings/arm/xilinx.yaml
+> index a0b1ae6e3e71..4dc0e0195974 100644
+> --- a/Documentation/devicetree/bindings/arm/xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/arm/xilinx.yaml
+> @@ -116,6 +116,22 @@ properties:
+>            - const: xlnx,zynqmp-zcu111
+>            - const: xlnx,zynqmp
+>  
+> +      - description: Xilinx Kria SOMs
+> +        items:
+> +          - const: xlnx,zynqmp-sm-k26-rev1
+> +          - const: xlnx,zynqmp-sm-k26-revB
+> +          - const: xlnx,zynqmp-sm-k26-revA
+> +          - const: xlnx,zynqmp-sm-k26
+> +          - const: xlnx,zynqmp
+> +
+> +      - description: Xilinx Kria SOMs (starter)
+> +        items:
+> +          - const: xlnx,zynqmp-smk-k26-rev1
+> +          - const: xlnx,zynqmp-smk-k26-revB
+> +          - const: xlnx,zynqmp-smk-k26-revA
+> +          - const: xlnx,zynqmp-smk-k26
+> +          - const: xlnx,zynqmp
+> +
+>  additionalProperties: true
+>  
+>  ...
+> diff --git a/arch/arm64/boot/dts/xilinx/Makefile b/arch/arm64/boot/dts/xilinx/Makefile
+> index 083ed52337fd..4e159540d031 100644
+> --- a/arch/arm64/boot/dts/xilinx/Makefile
+> +++ b/arch/arm64/boot/dts/xilinx/Makefile
+> @@ -17,3 +17,16 @@ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revA.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revC.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu106-revA.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu111-revA.dtb
+> +
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-sm-k26-revA.dtb
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-smk-k26-revA.dtb
+> +
+> +sm-k26-revA-sck-kv-g-revA-dtbs := zynqmp-sm-k26-revA.dtb zynqmp-sck-kv-g-revA.dtbo
+> +sm-k26-revA-sck-kv-g-revB-dtbs := zynqmp-sm-k26-revA.dtb zynqmp-sck-kv-g-revB.dtbo
+> +smk-k26-revA-sm-k26-revA-sck-kv-g-revA-dtbs := zynqmp-smk-k26-revA.dtb zynqmp-sck-kv-g-revA.dtbo
+> +smk-k26-revA-sm-k26-revA-sck-kv-g-revB-dtbs := zynqmp-smk-k26-revA.dtb zynqmp-sck-kv-g-revB.dtbo
 
-> > > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 temperature-sensors {
-> > > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ltd {
-> > > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 statu=
-s =3D "disabled";
-> > > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 };
-> > > +
-> > > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rtd1 {
-> > > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 statu=
-s =3D "okay";
-> > > +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 type =
-=3D <4> /* thermistor */;
-> >
-> > 'type' is a bit generic. We don't want the same property name to
-> > possibly have multiple definitions.
-> >
-> How about sensor-type ?
+I assume there is some value in these being overlays? I probably asked 
+that already too, but don't remember. Please explain in the commit 
+message so we capture that.
 
-In the datasheet this is called "mode". I called it "type" since it's
-tempX_type in sysfs and I wanted to stay in sync with that.
-
-> > If it is how you address an instance of something which seems to be
-> > the case here, then 'reg' should be used.
-> >
-
-The reason I didn't do that is because you'd effectively have to
-duplicate the ID in both the name (e.g. sensor@1) and the reg property
-(e.g. reg =3D <1>). But maybe that's just what is is in device tree, I
-can live with that.
-
-However, we'd also have to find out whether the "local" sensor ("LTD")
-would simply be #4, as it is in sysfs today. I'd also be ok with that
-as it would keep sysfs and device tree "in sync" wrt. naming.
-
-Thanks
-Oskar.
+> +
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += sm-k26-revA-sck-kv-g-revA.dtb
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += sm-k26-revA-sck-kv-g-revB.dtb
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += smk-k26-revA-sm-k26-revA-sck-kv-g-revA.dtb
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += smk-k26-revA-sm-k26-revA-sck-kv-g-revB.dtb
