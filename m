@@ -2,72 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E77E4413C38
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68A51413C41
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235308AbhIUVS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 17:18:58 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:33462 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234963AbhIUVS6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:18:58 -0400
-Received: by mail-ot1-f44.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso528739otu.0;
-        Tue, 21 Sep 2021 14:17:29 -0700 (PDT)
+        id S229753AbhIUVVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 17:21:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47130 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229558AbhIUVVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:21:13 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5209C061574
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 14:19:44 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id g13-20020a17090a3c8d00b00196286963b9so2945439pjc.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 14:19:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=JosYfYc7Dzk2PkdGyWfTxwpaSQ3RPQRMmz5jvtOy2v8=;
+        b=fSZ4QwRTnCJEUbWr1o8EW28KLwI9K1gvjoXNg7VFro6UomwYjmncfIo5fYGCOt7WEn
+         ACRtTN/pCNhpvN3pYri0XIPr3bAlHxmvX6BwFIgfPB9olcIBRS0+rX/cjsLLUoM69u7D
+         t3a0JxPrCMpfdrJsFy6g6nh4nftCescBeRW2SNTNt2XLZJzzWBGSAwrc4QNo0hLcgZTd
+         Kr9L8H/znZ7T7ZjZw7tiFprtG4lJtKc+dzqRMLicY6pgG/uWby+uZ3YfujQp41uNEfhl
+         hs7/+xknD/fa+Ed/TnfirLaaOItjnYwzShdx4Q83ETDlAYY+stT9xQexgs919AzL3hOr
+         8atA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0Lsr93at0cWmNYp0eGkUmreJYYzq8CpkZ94/2p7LeqY=;
-        b=WsbU476SmyUL2kcDqOvnuRL7ENEnWQYYWM+G19KIDx49WtFprUS33Lzbj/oLE3faBQ
-         LsaUdcDl1QdRTPV5N6GZmstRHrgAwlRaF8oludraTgTdx2GIVzENeE9DDd4PMArl9s0n
-         E1zCft7xN4Ec2VTqlmpEC3OaYxHUPzRi50jXWkoGDo+mAQIyTUpudXU8ZZPHLC3zB+m/
-         DTcpCi8iscWdJZTH7cM6HFqhkoFMF+SGvCQ/WunCs9dDCaDMgnCn8AJ8Rj+roJ4mSb3f
-         aXH4D/ysCbxLKvOg5m90HTl8YrYF6V5QQ7dlQ4KJ2p8Sufl4Kg5VZPBRiQA3kCm6PT6F
-         Sa0A==
-X-Gm-Message-State: AOAM533koy9BDcYW4KEJBlp79eUCjzhWsA1BKkrJDcotCH3BI3L3KKCv
-        +JwLgZpVwKtjIqPuYhhujg==
-X-Google-Smtp-Source: ABdhPJwy9BH8rHjOx9Hn6xfioTu4ZfqPtlbLcr1Im/zzNbEh4d6wfDqVY6NT1n3SFuKzlx9+BZLs0Q==
-X-Received: by 2002:a9d:72c5:: with SMTP id d5mr28207200otk.212.1632259048920;
-        Tue, 21 Sep 2021 14:17:28 -0700 (PDT)
-Received: from robh.at.kernel.org (rrcs-192-154-179-36.sw.biz.rr.com. [192.154.179.36])
-        by smtp.gmail.com with ESMTPSA id k5sm39542oik.38.2021.09.21.14.17.28
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=JosYfYc7Dzk2PkdGyWfTxwpaSQ3RPQRMmz5jvtOy2v8=;
+        b=cxuE9hlds1P9JTJMoTE1e5PYhTwAPu2LWeH2H8lYUxUIrLGt5DtpGoXQUboDbdGia4
+         7lOyxIQKREF7VLQL4WcXTnhkHAeDA/RSperRCPtMJ4yTyODTy5O2aTpMccHQflb0Qh9F
+         CdouQ6yXxcWuY1W8VK81GN0RssjRzBD6ay29vtLNrB82C77B4JhF1obbO0j6mkAML5uW
+         /qtMV4EL3FPYAtwQ0LlHQcG+bEtjRnabWCV5fYrzDqYXY3llnVCezHHrR3sZsYzC6C8A
+         T6V2Rk2z0oIRX17VoP/9R8pDL3KWvAIRPOTH9ec9McRRasbCHWD3/A8CuyAYvj/aFPeY
+         AC/A==
+X-Gm-Message-State: AOAM532BFELLPbmYNP2XqDybj3k2cKI+/IANcGg+/CDyLpqphXiGkAfm
+        7d5OQyOz+mE/iR2PqiPwsEcABKYdEHg=
+X-Google-Smtp-Source: ABdhPJxDN8DEhRjZLjS3Y3+3tIFpNpkhhW2pvHU4vb4ON7qCey2NWB61kBhYfKiL+spYdA3la24DCw==
+X-Received: by 2002:a17:903:234a:b0:13c:9439:5cf1 with SMTP id c10-20020a170903234a00b0013c94395cf1mr29086287plh.2.1632259184113;
+        Tue, 21 Sep 2021 14:19:44 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id e7sm80344pfv.158.2021.09.21.14.19.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 14:17:28 -0700 (PDT)
-Received: (nullmailer pid 3339518 invoked by uid 1000);
-        Tue, 21 Sep 2021 21:17:27 -0000
-Date:   Tue, 21 Sep 2021 16:17:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Romain Perier <romain.perier@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] ARM: dts: mstar: Add the Wireless Tag
- IDO-SBC2D06-V1B-22W
-Message-ID: <YUpL54S16HXK/xkU@robh.at.kernel.org>
-References: <20210914184141.32700-1-romain.perier@gmail.com>
- <20210914184141.32700-4-romain.perier@gmail.com>
- <CAFr9PXmfhkrJHwp-wVTKakQsg71AmcOz6Cc=rh+=R+8L_SHb8w@mail.gmail.com>
+        Tue, 21 Sep 2021 14:19:43 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] ARM: dts: BCM53573: Describe on-SoC BCM53125 rev 4 switch
+Date:   Tue, 21 Sep 2021 14:19:42 -0700
+Message-Id: <20210921211942.3315211-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210920141024.1409-1-zajec5@gmail.com>
+References: <20210920141024.1409-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFr9PXmfhkrJHwp-wVTKakQsg71AmcOz6Cc=rh+=R+8L_SHb8w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 15, 2021 at 07:09:34PM +0900, Daniel Palmer wrote:
-> Hi Romain,
+On Mon, 20 Sep 2021 16:10:23 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> On Wed, 15 Sept 2021 at 03:42, Romain Perier <romain.perier@gmail.com> wrote:
-> > 1. http://linux-chenxing.org/infinity2/ido-sbc2d06
-> > 2. http://www.wireless-tag.com/portfolio/ido-som2d01
+> BCM53573 family SoC have Ethernet switch connected to the first Ethernet
+> controller (accessible over MDIO).
 > 
-> I think these should be Link: xxxx. I can fix this up if/when I put it
-> into the mstar dt for 5.16 branch though.
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-Not really. 'Link' is for the link to this patch in lore and sometimes 
-to a discussion leading to the patch.
-
-Rob
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
