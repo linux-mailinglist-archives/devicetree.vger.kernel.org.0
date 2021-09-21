@@ -2,146 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7496E412E11
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 06:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DCA7412E4A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 07:45:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229944AbhIUEwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 00:52:23 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:50737 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbhIUEwV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 00:52:21 -0400
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 20 Sep 2021 21:50:50 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 20 Sep 2021 21:50:48 -0700
-X-QCInternal: smtphost
-Received: from dikshita-linux.qualcomm.com ([10.204.65.237])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 21 Sep 2021 10:20:32 +0530
-Received: by dikshita-linux.qualcomm.com (Postfix, from userid 347544)
-        id 1C78721D93; Tue, 21 Sep 2021 10:20:31 +0530 (IST)
-From:   Dikshita Agarwal <dikshita@codeaurora.org>
-To:     andy.gross@linaro.org, david.brown@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        vgarodia@codeaurora.org, stanimir.varbanov@linaro.org,
-        Dikshita Agarwal <dikshita@codeaurora.org>,
-        Mansur Alisha Shaik <mansur@codeaurora.org>
-Subject: [RESEND PATCH v6] arm64: dts: qcom: sc7280: Add venus DT node
-Date:   Tue, 21 Sep 2021 10:20:29 +0530
-Message-Id: <1632199829-25686-1-git-send-email-dikshita@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S229645AbhIUFqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 01:46:33 -0400
+Received: from mx24.baidu.com ([111.206.215.185]:32972 "EHLO baidu.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229590AbhIUFqd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 01:46:33 -0400
+Received: from BC-Mail-Ex17.internal.baidu.com (unknown [172.31.51.11])
+        by Forcepoint Email with ESMTPS id 7568760FAF5DC17078C8;
+        Tue, 21 Sep 2021 13:28:30 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BC-Mail-Ex17.internal.baidu.com (172.31.51.11) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2242.12; Tue, 21 Sep 2021 13:28:30 +0800
+Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.14; Tue, 21 Sep 2021 13:28:29 +0800
+From:   Cai Huoqing <caihuoqing@baidu.com>
+To:     <caihuoqing@baidu.com>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "Sascha Hauer" <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 0/3] iio: imx8qxp-adc: Add driver support for NXP IMX8QXP ADC
+Date:   Tue, 21 Sep 2021 13:28:12 +0800
+Message-ID: <20210921052821.91-1-caihuoqing@baidu.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BC-Mail-Ex13.internal.baidu.com (172.31.51.53) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT entries for the sc7280 venus encoder/decoder.
+The NXP i.MX 8QuadXPlus SOC has a new ADC IP. These patches add
+driver support for this ADC.
 
-this patch depends on [1].
+dt-bindings: iio: adc:
+v1->v2:
+        *Fix some indentation issues.
+        *Mark status as okay.
+        *Change clock2 source.
+v3->v4:
+        *Remove 'status' from examples.
+        *Remove unused 'state'.
+        *Remove interrupts-parent.
+        *Change num of address/size-cells from 1 to 2.
+v4->v5:
+        *Remove unused properties
 
-[1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=529463
+iio: imx8qxp-adc:
+v1->v2:
+	*Squash patches 1, 2, 3, and 5 into a single patch.
+	*Add device specific prefix.
+	*Remove the brackets around individual numbers.
+	*Make use of FIELD_PREP() and FIELD_GET().
+	*Remove a lot of cache values.
+	*Replace mlock with adc->lock.
+	*Move adc->value read from isr to the completion.
+	*Set pm_runtime_disable/_put_noidle() before adc_disable.
+	*Add error handler-err_disable_reg/err_unprepare_clk.
+v2->v3:
+	*Add "return 0" to adc_runtime_resume().
+v3->v4:
+	*Sort header file declarations in alphabetical order.
+	*Remove explicitly cast from "void *".
+	*Make use of dev_err_probe().
+	*Add some blank lines to help readability.
+v4->v5:
+	*Update commit message.
+	*Remove unused headers.
+	*Wrap imx8qxp_adc_read_raw() at a shorter line length that helps readability.
+	*Deal with clock/regulator in probe/remove().
+	*Use ADC_DRIVER_NAME instead of dev_name(dev).
+	*Don't use dev_error_probe() without returning -PROBE_DEFER.
 
-Co-developed-by: Mansur Alisha Shaik <mansur@codeaurora.org>
-Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
-Signed-off-by: Mansur Alisha Shaik <mansur@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 75 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
+v1 link:
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210830172140.414-4-caihuoqing@baidu.com/
+v3 link:
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210907015724.1377-1-caihuoqing@baidu.com/
+v4 link:
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210912071334.1745-1-caihuoqing@baidu.com/
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index a8c274a..f171ababc 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -63,6 +63,11 @@
- 			no-map;
- 			reg = <0x0 0x80b00000 0x0 0x100000>;
- 		};
-+
-+		video_mem: memory@8b200000 {
-+			reg = <0x0 0x8b200000 0x0 0x500000>;
-+			no-map;
-+		};
- 	};
- 
- 	cpus {
-@@ -1063,6 +1068,76 @@
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		venus: video-codec@aa00000 {
-+			compatible = "qcom,sc7280-venus";
-+			reg = <0 0x0aa00000 0 0xd0600>;
-+			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
-+				 <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
-+				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
-+				 <&videocc VIDEO_CC_MVS0_CORE_CLK>,
-+				 <&videocc VIDEO_CC_MVS0_AXI_CLK>;
-+			clock-names = "core", "bus", "iface",
-+				      "vcodec_core", "vcodec_bus";
-+
-+			power-domains = <&videocc MVSC_GDSC>,
-+					<&videocc MVS0_GDSC>,
-+					<&rpmhpd SC7280_CX>;
-+			power-domain-names = "venus", "vcodec0", "cx";
-+			operating-points-v2 = <&venus_opp_table>;
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>,
-+					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "cpu-cfg", "video-mem";
-+
-+			iommus = <&apps_smmu 0x2180 0x20>,
-+				 <&apps_smmu 0x2184 0x20>;
-+			memory-region = <&video_mem>;
-+
-+			video-decoder {
-+				compatible = "venus-decoder";
-+			};
-+
-+			video-encoder {
-+				compatible = "venus-encoder";
-+			};
-+
-+			video-firmware {
-+				iommus = <&apps_smmu 0x21a2 0x0>;
-+			};
-+
-+			venus_opp_table: venus-opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-133330000 {
-+					opp-hz = /bits/ 64 <133330000>;
-+					required-opps = <&rpmhpd_opp_low_svs>;
-+				};
-+
-+				opp-240000000 {
-+					opp-hz = /bits/ 64 <240000000>;
-+					required-opps = <&rpmhpd_opp_svs>;
-+				};
-+
-+				opp-335000000 {
-+					opp-hz = /bits/ 64 <335000000>;
-+					required-opps = <&rpmhpd_opp_svs_l1>;
-+				};
-+
-+				opp-424000000 {
-+					opp-hz = /bits/ 64 <424000000>;
-+					required-opps = <&rpmhpd_opp_nom>;
-+				};
-+
-+				opp-460000048 {
-+					opp-hz = /bits/ 64 <460000048>;
-+					required-opps = <&rpmhpd_opp_turbo>;
-+				};
-+			};
-+
-+		};
-+
- 		videocc: clock-controller@aaf0000 {
- 			compatible = "qcom,sc7280-videocc";
- 			reg = <0 0xaaf0000 0 0x10000>;
+Cai Huoqing (3):
+  iio: imx8qxp-adc: Add driver support for NXP IMX8QXP ADC
+  iio: imx8qxp-adc: dt-bindings: iio: adc: Add binding documentation for
+     NXP IMX8QXP ADC
+  MAINTAINERS: Add the driver info of the NXP IMX8QXP
+
+ .../bindings/iio/adc/nxp,imx8qxp-adc.yaml     |  78 +++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/imx8qxp-adc.c                 | 492 ++++++++++++++++++
+ 5 files changed, 588 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+ create mode 100644 drivers/iio/adc/imx8qxp-adc.c
+
 -- 
-2.7.4
+2.25.1
 
