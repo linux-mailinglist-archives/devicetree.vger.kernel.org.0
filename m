@@ -2,304 +2,355 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9A9C413A51
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 20:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D218F413A52
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 20:50:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbhIUSvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 14:51:32 -0400
-Received: from mga17.intel.com ([192.55.52.151]:28464 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230521AbhIUSvc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 14:51:32 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10114"; a="203597624"
-X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; 
-   d="scan'208";a="203597624"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2021 11:50:03 -0700
-X-IronPort-AV: E=Sophos;i="5.85,311,1624345200"; 
-   d="scan'208";a="512431749"
-Received: from rudymgal-mobl1.amr.corp.intel.com (HELO [10.212.82.111]) ([10.212.82.111])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2021 11:50:02 -0700
-Subject: Re: [PATCH v7 18/22] ASoC: qdsp6: audioreach: add topology support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210921133709.4973-1-srinivas.kandagatla@linaro.org>
- <20210921133709.4973-19-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <7021cdec-382b-faa9-cf6c-ee06edbf19a7@linux.intel.com>
-Date:   Tue, 21 Sep 2021 13:44:14 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S231672AbhIUSvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 14:51:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41112 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230521AbhIUSvh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 14:51:37 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D38C061574
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 11:50:08 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id i25so1455165lfg.6
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 11:50:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KMbxJO3zOwv+duZ5IuR+6ZjICt4Z4s7ZUFMq1VCBLos=;
+        b=TsSMI6eFs+RMIquRD9Gigga3UXYwbEITTLawMWULvEyKsvyeMkXrnp5/vhWt1wA1eN
+         OeGcC9ZprJYyeCnnsW3MGb4DkuY3wQjiw+nMOomaCavRssXta7H5nlA05pduOcWk+cn4
+         ElFSGqODJ3nARUXumWhRINqv+8X/2O0lxjpSuzr6lpTX6ucTi73/0cwI1MmrRsIKQBIj
+         qNnRY334+jtDWld+mZboooDRc2eEQKS2rFwsvsiYaS30TpZiquQPBboI11YWPurib8rG
+         Cxg5uow1JopDeR5BPBlrvaPnlYO2csu/k4l8P9km4j2996T6ZGrI7l+4fBDa2W+V4zG6
+         B8iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KMbxJO3zOwv+duZ5IuR+6ZjICt4Z4s7ZUFMq1VCBLos=;
+        b=F75GQg91txbBUSuRUTuGw/1YQWU31/U/hS/3VOphtEj0EJIUJdbjQFJ6BXT9K8kGm8
+         sNP+6obL5SCnyJsXVw2IChvBoK/k5GsxIojcse1P99425DChMebkgDlfNqIjJIrfeQe6
+         Rlo099l+ZKQO50lj08n6xYqOVBGyKN5dGDiXfpqPFdB71RueabJLT8cgwzB08xqA4n77
+         v3mAaFcQYclsYHvUrlGG96nRH6xN1XAvQtJN2/cfQ/9H+6NrCdusm4YJecigoxIc7ARs
+         GuVdYCERouH4nBfOQqgHWtSq3xOOsIhIYNwTULGvlSZmp2Fiq3zN4npVsgOC2aUwJkEh
+         pdUQ==
+X-Gm-Message-State: AOAM530v9BtCuPFTHepDBNETt8Lw+z0tcPQSjzWvOIfh3u/qRBnHhyUp
+        dyEngUzsrn/VHsYOQNf3ubw8YQ==
+X-Google-Smtp-Source: ABdhPJzdZq8nwHpSkXDV8HvdteSr66qM57XixIqRr86/TpikNWEPnwaRNVr2EAtk9e5ls+PeL+PEww==
+X-Received: by 2002:a05:6512:22d5:: with SMTP id g21mr19214050lfu.270.1632250207111;
+        Tue, 21 Sep 2021 11:50:07 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id j10sm1637408ljh.9.2021.09.21.11.50.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 11:50:06 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: [PATCH 1/2 v3] dt-bindings: clock: u8500: Rewrite in YAML and extend
+Date:   Tue, 21 Sep 2021 20:48:02 +0200
+Message-Id: <20210921184803.1757916-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210921133709.4973-19-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This rewrites the ux500/u8500 clock bindings in YAML schema and extends them
+with the PRCC reset controller.
 
-> +static struct audioreach_module *audioreach_tplg_alloc_module(struct q6apm *apm,
-> +							      struct audioreach_container *cont,
-> +							      struct snd_soc_dapm_widget *w,
-> +							      uint32_t module_id, bool *found)
-> +{
-> +	struct audioreach_module *mod;
-> +	int ret;
-> +
-> +	mutex_lock(&apm->lock);
-> +	mod = idr_find(&apm->modules_idr, module_id);
-> +	mutex_unlock(&apm->lock);
-> +
-> +	if (mod) {
-> +		*found = true;
-> +		return mod;
-> +	}
-> +	*found = false;
-> +	mod = kzalloc(sizeof(*mod), GFP_KERNEL);
-> +	if (!mod)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	mutex_lock(&apm->lock);
-> +	if (!module_id) { /* alloc module id dynamically */
-> +		ret = idr_alloc_cyclic(&apm->modules_idr, mod,
-> +				       AR_MODULE_DYNAMIC_INSTANCE_ID_START,
-> +				       AR_MODULE_DYNAMIC_INSTANCE_ID_END, GFP_KERNEL);
-> +	} else {
-> +		ret = idr_alloc(&apm->modules_idr, mod, module_id, module_id + 1, GFP_KERNEL);
-> +	}
-> +	mutex_unlock(&apm->lock);
-> +
-> +	if (ret < 0) {
-> +		dev_err(apm->dev,
-> +			"Failed to allocate Module Instance ID (%x)\n", module_id);
-> +		kfree(mod);
-> +		return ERR_PTR(ret);
-> +	}
-> +
-> +	mod->instance_id = ret;
-> +	dev_err(apm->dev, "Module Instance ID (0x%08x) allocated\n", ret);
+The bindings are a bit idiomatic but it just reflects their age, the ux500
+platform was used as guinea pig for early device tree conversion of platforms
+in 2015. The new subnode for the reset controller follows the pattern of the
+old bindings and adds a node with reset-cells for this.
 
-dev_dbg?
+Cc: devicetree@vger.kernel.org
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v2->v3:
+- Collect Rob's and Ulf's review tags.
+ChangeLog v1->v2:
+- Use an enum for compatible.
+- Mark the reset controller as object (node)
+- Mandate 2 #reset-cells on the reset controller.
+- Small blurb that PRCC 4 does not exist.
+- Rebase on v5.14-rc1
+- Cc Philipp Zabel
+---
+ .../bindings/clock/stericsson,u8500-clks.yaml | 121 ++++++++++++++++++
+ .../devicetree/bindings/clock/ux500.txt       |  64 ---------
+ .../reset/stericsson,db8500-prcc-reset.h      |  51 ++++++++
+ 3 files changed, 172 insertions(+), 64 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/ux500.txt
+ create mode 100644 include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
 
-> +	/* add to module list */
-> +	list_add_tail(&mod->node, &cont->modules_list);
-> +	mod->container = cont;
-> +	mod->widget = w;
-> +	cont->num_modules++;
-> +
-> +	return mod;
-> +}
+diff --git a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+new file mode 100644
+index 000000000000..9bc95a308477
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+@@ -0,0 +1,121 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/stericsson,u8500-clks.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ST-Ericsson DB8500 (U8500) clocks
++
++maintainers:
++  - Ulf Hansson <ulf.hansson@linaro.org>
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: While named "U8500 clocks" these clocks are inside the
++  DB8500 digital baseband system-on-chip and its siblings such as
++  DB8520. These bindings consider the clocks present in the SoC
++  itself, not off-chip clocks. There are four different on-chip
++  clocks - RTC (32 kHz), CPU clock (SMP TWD), PRCMU (power reset and
++  control management unit) clocks and PRCC (peripheral reset and
++  clock controller) clocks. For some reason PRCC 4 does not exist so
++  the itemization can be a bit unintuitive.
++
++properties:
++  compatible:
++    enum:
++      - stericsson,u8500-clks
++      - stericsson,u8540-clks
++      - stericsson,u9540-clks
++
++  reg:
++    items:
++      - description: PRCC 1 register area
++      - description: PRCC 2 register area
++      - description: PRCC 3 register area
++      - description: PRCC 5 register area
++      - description: PRCC 6 register area
++
++  prcmu-clock:
++    description: A subnode with one clock cell for PRCMU (power, reset, control
++      management unit) clocks. The cell indicates which PRCMU clock in the
++      prcmu-clock node the consumer wants to use.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 1
++
++    additionalProperties: false
++
++  prcc-periph-clock:
++    description: A subnode with two clock cells for PRCC (peripheral
++      reset and clock controller) peripheral clocks. The first cell indicates
++      which PRCC block the consumer wants to use, possible values are 1, 2, 3,
++      5, 6. The second cell indicates which clock inside the PRCC block it
++      wants, possible values are 0 thru 31.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 2
++
++    additionalProperties: false
++
++  prcc-kernel-clock:
++    description: A subnode with two clock cells for PRCC (peripheral reset
++      and clock controller) kernel clocks. The first cell indicates which PRCC
++      block the consumer wants to use, possible values are 1, 2, 3, 5, 6. The
++      second cell indicates which clock inside the PRCC block it wants, possible
++      values are 0 thru 31.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 2
++
++    additionalProperties: false
++
++  prcc-reset-controller:
++    description: A subnode with two reset cells for the reset portions of the
++      PRCC (peripheral reset and clock controller). The first cell indicates
++      which PRCC block the consumer wants to use, possible values are 1, 2, 3
++      5 and 6. The second cell indicates which reset line inside the PRCC block
++      it wants to control, possible values are 0 thru 31.
++    type: object
++
++    properties:
++      '#reset-cells':
++        const: 2
++
++    additionalProperties: false
++
++  rtc32k-clock:
++    description: A subnode with zero clock cells for the 32kHz RTC clock.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 0
++
++    additionalProperties: false
++
++  smp-twd-clock:
++    description: A subnode for the ARM SMP Timer Watchdog cluster with zero
++      clock cells.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 0
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - prcmu-clock
++  - prcc-periph-clock
++  - prcc-kernel-clock
++  - rtc32k-clock
++  - smp-twd-clock
++
++additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/clock/ux500.txt b/Documentation/devicetree/bindings/clock/ux500.txt
+deleted file mode 100644
+index e52bd4b72348..000000000000
+--- a/Documentation/devicetree/bindings/clock/ux500.txt
++++ /dev/null
+@@ -1,64 +0,0 @@
+-Clock bindings for ST-Ericsson Ux500 clocks
+-
+-Required properties :
+-- compatible : shall contain only one of the following:
+-  "stericsson,u8500-clks"
+-  "stericsson,u8540-clks"
+-  "stericsson,u9540-clks"
+-- reg : shall contain base register location and length for
+-  CLKRST1, 2, 3, 5, and 6 in an array. Note the absence of
+-  CLKRST4, which does not exist.
+-
+-Required subnodes:
+-- prcmu-clock: a subnode with one clock cell for PRCMU (power,
+-  reset, control unit) clocks. The cell indicates which PRCMU
+-  clock in the prcmu-clock node the consumer wants to use.
+-- prcc-periph-clock: a subnode with two clock cells for
+-  PRCC (programmable reset- and clock controller) peripheral clocks.
+-  The first cell indicates which PRCC block the consumer
+-  wants to use, possible values are 1, 2, 3, 5, 6. The second
+-  cell indicates which clock inside the PRCC block it wants,
+-  possible values are 0 thru 31.
+-- prcc-kernel-clock: a subnode with two clock cells for
+-  PRCC (programmable reset- and clock controller) kernel clocks
+-  The first cell indicates which PRCC block the consumer
+-  wants to use, possible values are 1, 2, 3, 5, 6. The second
+-  cell indicates which clock inside the PRCC block it wants,
+-  possible values are 0 thru 31.
+-- rtc32k-clock: a subnode with zero clock cells for the 32kHz
+-  RTC clock.
+-- smp-twd-clock: a subnode for the ARM SMP Timer Watchdog cluster
+-  with zero clock cells.
+-
+-Example:
+-
+-clocks {
+-	compatible = "stericsson,u8500-clks";
+-	/*
+-	 * Registers for the CLKRST block on peripheral
+-	 * groups 1, 2, 3, 5, 6,
+-	 */
+-	reg = <0x8012f000 0x1000>, <0x8011f000 0x1000>,
+-	    <0x8000f000 0x1000>, <0xa03ff000 0x1000>,
+-	    <0xa03cf000 0x1000>;
+-
+-	prcmu_clk: prcmu-clock {
+-		#clock-cells = <1>;
+-	};
+-
+-	prcc_pclk: prcc-periph-clock {
+-		#clock-cells = <2>;
+-	};
+-
+-	prcc_kclk: prcc-kernel-clock {
+-		#clock-cells = <2>;
+-	};
+-
+-	rtc_clk: rtc32k-clock {
+-		#clock-cells = <0>;
+-	};
+-
+-	smp_twd_clk: smp-twd-clock {
+-		#clock-cells = <0>;
+-	};
+-};
+diff --git a/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h b/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
+new file mode 100644
+index 000000000000..ea906896c70f
+--- /dev/null
++++ b/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
+@@ -0,0 +1,51 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++
++#ifndef _DT_BINDINGS_STE_PRCC_RESET
++#define _DT_BINDINGS_STE_PRCC_RESET
++
++#define DB8500_PRCC_1				1
++#define DB8500_PRCC_2				2
++#define DB8500_PRCC_3				3
++#define DB8500_PRCC_6				6
++
++/* Reset lines on PRCC 1 */
++#define DB8500_PRCC_1_RESET_UART0		0
++#define DB8500_PRCC_1_RESET_UART1		1
++#define DB8500_PRCC_1_RESET_I2C1		2
++#define DB8500_PRCC_1_RESET_MSP0		3
++#define DB8500_PRCC_1_RESET_MSP1		4
++#define DB8500_PRCC_1_RESET_SDI0		5
++#define DB8500_PRCC_1_RESET_I2C2		6
++#define DB8500_PRCC_1_RESET_SPI3		7
++#define DB8500_PRCC_1_RESET_SLIMBUS0		8
++#define DB8500_PRCC_1_RESET_I2C4		9
++#define DB8500_PRCC_1_RESET_MSP3		10
++#define DB8500_PRCC_1_RESET_PER_MSP3		11
++#define DB8500_PRCC_1_RESET_PER_MSP1		12
++#define DB8500_PRCC_1_RESET_PER_MSP0		13
++#define DB8500_PRCC_1_RESET_PER_SLIMBUS		14
++
++/* Reset lines on PRCC 2 */
++#define DB8500_PRCC_2_RESET_I2C3		0
++#define DB8500_PRCC_2_RESET_PWL			1
++#define DB8500_PRCC_2_RESET_SDI4		2
++#define DB8500_PRCC_2_RESET_MSP2		3
++#define DB8500_PRCC_2_RESET_SDI1		4
++#define DB8500_PRCC_2_RESET_SDI3		5
++#define DB8500_PRCC_2_RESET_HSIRX		6
++#define DB8500_PRCC_2_RESET_HSITX		7
++#define DB8500_PRCC_1_RESET_PER_MSP2		8
++
++/* Reset lines on PRCC 3 */
++#define DB8500_PRCC_3_RESET_SSP0		1
++#define DB8500_PRCC_3_RESET_SSP1		2
++#define DB8500_PRCC_3_RESET_I2C0		3
++#define DB8500_PRCC_3_RESET_SDI2		4
++#define DB8500_PRCC_3_RESET_SKE			5
++#define DB8500_PRCC_3_RESET_UART2		6
++#define DB8500_PRCC_3_RESET_SDI5		7
++
++/* Reset lines on PRCC 6 */
++#define DB8500_PRCC_3_RESET_RNG			0
++
++#endif
+-- 
+2.31.1
 
-> +static struct audioreach_sub_graph *audioreach_parse_sg_tokens(struct q6apm *apm,
-> +						       struct snd_soc_tplg_private *private)
-> +{
-> +	struct snd_soc_tplg_vendor_value_elem *sg_elem;
-> +	struct snd_soc_tplg_vendor_array *sg_array;
-> +	struct audioreach_graph_info *info = NULL;
-> +	int graph_id, sub_graph_id, tkn_count = 0;
-> +	struct audioreach_sub_graph *sg;
-> +	bool found;
-> +
-> +	sg_array = audioreach_get_sg_array(private);
-> +	sg_elem = sg_array->value;
-> +
-> +	while (tkn_count <= (le32_to_cpu(sg_array->num_elems) - 1)) {
-> +		switch (le32_to_cpu(sg_elem->token)) {
-> +		case AR_TKN_U32_SUB_GRAPH_INSTANCE_ID:
-> +			sub_graph_id = le32_to_cpu(sg_elem->value);
-> +			sg = audioreach_tplg_alloc_sub_graph(apm, sub_graph_id, &found);
-> +			if (IS_ERR(sg)) {
-> +				return sg;
-> +			} else if (found) {
-> +				/* Already parsed data for this sub-graph */
-> +				return sg;
-> +			}
-> +			dev_err(apm->dev, "%s: New subgraph id : 0x%08x\n", __func__,
-> +				sub_graph_id);
-
-dev_dbg()
-
-> +			break;
-> +		case AR_TKN_DAI_INDEX:
-> +			/* Sub graph is associated with predefined graph */
-> +			graph_id = le32_to_cpu(sg_elem->value);
-> +			info = audioreach_tplg_alloc_graph_info(apm, graph_id, &found);
-> +			if (IS_ERR(info))
-> +				return ERR_CAST(info);
-> +			break;
-> +		case AR_TKN_U32_SUB_GRAPH_PERF_MODE:
-> +			sg->perf_mode = le32_to_cpu(sg_elem->value);
-> +			break;
-> +		case AR_TKN_U32_SUB_GRAPH_DIRECTION:
-> +			sg->direction = le32_to_cpu(sg_elem->value);
-> +			break;
-> +		case AR_TKN_U32_SUB_GRAPH_SCENARIO_ID:
-> +			sg->scenario_id = le32_to_cpu(sg_elem->value);
-> +			break;
-> +		default:
-> +			dev_err(apm->dev, "Not a valid token %d for graph\n",
-> +				sg_elem->token);
-> +			break;
-> +
-> +		}
-> +		tkn_count++;
-> +		sg_elem++;
-> +	}
-> +
-> +	/* Sub graph is associated with predefined graph */
-> +	if (info) {
-> +		dev_err(apm->dev, "%s: adding subgraph id : 0x%08x -> %d\n", __func__,
-> +		sub_graph_id, graph_id);
-
-dev_dbg
-
-> +
-> +		audioreach_tplg_add_sub_graph(sg, info);
-> +	}
-> +
-> +	return sg;
-> +}
-> +
-
-
-> +static int audioreach_widget_ready(struct snd_soc_component *component,
-> +				   int index, struct snd_soc_dapm_widget *w,
-> +				   struct snd_soc_tplg_dapm_widget *tplg_w)
-> +{
-> +	switch (w->id) {
-> +	case snd_soc_dapm_aif_in:
-> +	case snd_soc_dapm_aif_out:
-> +		audioreach_widget_load_buffer(component, index, w, tplg_w);
-> +		break;
-> +	case snd_soc_dapm_decoder:
-> +	case snd_soc_dapm_encoder:
-> +	case snd_soc_dapm_src:
-> +		audioreach_widget_load_enc_dec_cnv(component, index, w, tplg_w);
-> +		break;
-> +	case snd_soc_dapm_buffer:
-> +		audioreach_widget_load_buffer(component, index, w, tplg_w);
-> +		break;
-> +	case snd_soc_dapm_mixer:
-> +		return audioreach_widget_load_mixer(component, index, w, tplg_w);
-> +	case snd_soc_dapm_pga:
-> +		return audioreach_widget_load_pga(component, index, w, tplg_w);
-> +	case snd_soc_dapm_dai_link:
-> +	case snd_soc_dapm_scheduler:
-> +	case snd_soc_dapm_out_drv:
-> +	default:
-> +		dev_err(component->dev, "Widget type (0x%x) not yet supported\n", w->id);
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +
-
-spurious newline
-
-> +static int audioreach_widget_unload(struct snd_soc_component *scomp,
-> +				    struct snd_soc_dobj *dobj)
-> +{
-> +	struct snd_soc_dapm_widget *w = container_of(dobj, struct snd_soc_dapm_widget, dobj);
-> +	struct q6apm *apm = dev_get_drvdata(scomp->dev);
-> +	struct audioreach_container *cont;
-> +	struct audioreach_module *mod;
-> +
-> +	mod = dobj->private;
-> +	cont = mod->container;
-> +
-> +	if (w->id == snd_soc_dapm_mixer) {
-> +		/* virtual widget */
-> +		kfree(dobj->private);
-> +		return 0;
-> +	}
-> +
-> +	mutex_lock(&apm->lock);
-> +	idr_remove(&apm->modules_idr, mod->instance_id);
-> +	cont->num_modules--;
-> +
-> +	list_del(&mod->node);
-> +	kfree(mod);
-> +
-> +	if (list_empty(&cont->modules_list)) { /* remove container */
-> +		struct audioreach_sub_graph *sg = cont->sub_graph;
-> +
-> +		idr_remove(&apm->containers_idr, cont->container_id);
-> +		list_del(&cont->node);
-> +		sg->num_containers--;
-> +		kfree(cont);
-> +		if (list_empty(&sg->container_list)) { /* remove sg */
-> +			struct audioreach_graph_info *info = sg->info;
-> +
-> +			idr_remove(&apm->sub_graphs_idr, sg->sub_graph_id);
-> +			list_del(&sg->node);
-> +			info->num_sub_graphs--;
-> +			kfree(sg);
-> +			if (list_empty(&info->sg_list)) { /* remove graph info */
-> +				idr_remove(&apm->graph_info_idr, info->id);
-> +				kfree(info);
-> +			}
-> +		}
-> +	}
-
-It's not very clear if the nested removes actually free-up everything?
-You may want to add a comment on the hierarchy.
-
-> +
-> +	mutex_unlock(&apm->lock);
-> +
-> +	return 0;
-> +}
-> +
-
-> +int audioreach_tplg_init(struct snd_soc_component *component)
-> +{
-> +	struct snd_soc_card *card = component->card;
-> +	struct device *dev = component->dev;
-> +	const struct firmware *fw;
-> +	char tplg_fw_name[128];
-> +	int ret;
-> +
-> +	/* Inline with Qualcomm UCM configs and linux-firmware path */
-> +	snprintf(tplg_fw_name, sizeof(tplg_fw_name), "qcom/%s/%s-tplg.bin", card->driver_name,
-> +		 card->name);
-
-use kasprintf instead of fixed 128-char array?
-
-Also you should use a qcom/audioreach/ prefix to possible interference
-with other parts of qcom...
-
-> +
-> +	ret = request_firmware(&fw, tplg_fw_name, dev);
-> +	if (ret < 0) {
-> +		dev_info(dev, "loading %s failed %d, falling back to dfw-audioreach-tplg.bin\n",
-> +			 tplg_fw_name, ret);
-> +		/* default firmware */
-> +		ret = request_firmware(&fw, "dfw-audioreach-tplg.bin", dev);
-> +		if (ret < 0) {
-> +			dev_err(dev, "tplg fw dfw-audioreach-tplg.bin load failed with %d\n", ret);
-
-the dfw prefix isn't very helpful...Intel's example of "dfw_sst.bin" is
-a historical reference, not something you should reuse.
-
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = snd_soc_tplg_component_load(component, &audioreach_tplg_ops, fw);
-> +	if (ret < 0) {
-> +		dev_err(dev, "tplg component load failed%d\n", ret);
-> +		ret = -EINVAL;
-> +	}
-> +
-> +	release_firmware(fw);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(audioreach_tplg_init);
-> 
