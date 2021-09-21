@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11AEF413C94
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:35:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C21E413CEF
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230494AbhIUVhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 17:37:10 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:41822 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbhIUVhJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:37:09 -0400
-Received: by mail-ot1-f54.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso456335ota.8;
-        Tue, 21 Sep 2021 14:35:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=T4j5cvKZQ8N+YvWUCi17+Fr4x/Z3vE4XiOx0eKjk+tU=;
-        b=xSkYb9nz3PfC8r7zBi2uMr5z6JkP0cyrCubNZZBpdOPa9K04QEPgmtl/imufGXZkLy
-         QR2+5HuzoBRGSIfADTFOmicYMPIMoAhMKOsvS5EKnZAE7jRYVeZcrXQKZdfEXZaj1meY
-         GxwGEnI/TaZR3dB63i8joHXY3EEk1uCEu4t7G9UekxPg8wAMiyg3lyR7wumptS5u1dur
-         AxYTm+3caVDCTthfBd3a+T4JzEc5TBgtlxRaI8IxeYjapsiWK11jmtGE9qEPYqTsAgjS
-         geuUQ8wBJtiy3MGZCAiE6+RsG+OyAoM2Gnki1EvlyuX3ViX8nhEX313k8m9BVcys3Izb
-         jZcg==
-X-Gm-Message-State: AOAM532PIUum5r9DrEa009vEOgvT5M3WF9OlplQQcRc2V9skcM9/EQqr
-        FOeWEYqEiuJMaM+JynRUHQ==
-X-Google-Smtp-Source: ABdhPJxmma6JhoB5zdppHeGnccC3TREmxZ6BnGVfI08ib2UHUPXJUaOhty7Iqw6WCnvNBoQJGWSnpA==
-X-Received: by 2002:a9d:6206:: with SMTP id g6mr12495159otj.62.1632260140624;
-        Tue, 21 Sep 2021 14:35:40 -0700 (PDT)
-Received: from robh.at.kernel.org (rrcs-192-154-179-36.sw.biz.rr.com. [192.154.179.36])
-        by smtp.gmail.com with ESMTPSA id u12sm47768otq.20.2021.09.21.14.35.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 14:35:40 -0700 (PDT)
-Received: (nullmailer pid 3363560 invoked by uid 1000);
-        Tue, 21 Sep 2021 21:35:37 -0000
-Date:   Tue, 21 Sep 2021 16:35:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Chao Zeng <chao.zeng@siemens.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/6] dt-bindings: arm: ti: Add bindings for Siemens
- IOT2050 PG2 boards
-Message-ID: <YUpQKbl5OCVxoLbp@robh.at.kernel.org>
-References: <cover.1631708830.git.jan.kiszka@siemens.com>
- <336ade4715b3d2f5f83c3ed8f3fa2989f5699578.1631708830.git.jan.kiszka@siemens.com>
+        id S235631AbhIUVuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 17:50:32 -0400
+Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:34180 "EHLO
+        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234138AbhIUVub (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:50:31 -0400
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+        id 88C64F40B68; Tue, 21 Sep 2021 23:39:43 +0200 (CEST)
+From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+To:     linux-crypto@vger.kernel.org
+Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+        Ash Logan <ash@heyquark.com>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH 0/4] crypto: nintendo-aes - add a new AES driver
+Date:   Tue, 21 Sep 2021 23:39:26 +0200
+Message-Id: <20210921213930.10366-1-linkmauve@linkmauve.fr>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <336ade4715b3d2f5f83c3ed8f3fa2989f5699578.1631708830.git.jan.kiszka@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Sep 2021 14:27:08 +0200, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> Product Generation 2 (PG2) boards are based on SR2.x SoCs and will be
-> released soon.
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+This engine implements AES in CBC mode, using 128-bit keys only.  It is
+present on both the Wii and the Wii U, and is apparently identical in
+both consoles.
 
-Acked-by: Rob Herring <robh@kernel.org>
+The hardware is capable of firing an interrupt when the operation is
+done, but this driver currently uses a busy loop, I’m not too sure
+whether it would be preferable to switch, nor how to achieve that.
+
+It also supports a mode where no operation is done, and thus could be
+used as a DMA copy engine, but I don’t know how to expose that to the
+kernel or whether it would even be useful.
+
+In my testing, on a Wii U, this driver reaches 80.7 MiB/s, while the
+aes-generic driver only reaches 30.9 MiB/s, so it is a quite welcome
+speedup.
+
+This driver was written based on reversed documentation, see:
+https://wiibrew.org/wiki/Hardware/AES
+
+Emmanuel Gil Peyrot (4):
+  crypto: nintendo-aes - add a new AES driver
+  dt-bindings: nintendo-aes: Document the Wii and Wii U AES support
+  powerpc: wii.dts: Expose the AES engine on this platform
+  powerpc: wii_defconfig: Enable AES by default
+
+ .../bindings/crypto/nintendo-aes.yaml         |  34 +++
+ arch/powerpc/boot/dts/wii.dts                 |   7 +
+ arch/powerpc/configs/wii_defconfig            |   4 +-
+ drivers/crypto/Kconfig                        |  11 +
+ drivers/crypto/Makefile                       |   1 +
+ drivers/crypto/nintendo-aes.c                 | 273 ++++++++++++++++++
+ 6 files changed, 329 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/nintendo-aes.yaml
+ create mode 100644 drivers/crypto/nintendo-aes.c
+
+-- 
+2.33.0
+
