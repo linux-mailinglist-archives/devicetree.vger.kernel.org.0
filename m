@@ -2,73 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4C03413B2C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 22:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A64F413B31
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 22:21:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234032AbhIUUVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 16:21:16 -0400
-Received: from mail-oo1-f46.google.com ([209.85.161.46]:37539 "EHLO
-        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232644AbhIUUVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 16:21:16 -0400
-Received: by mail-oo1-f46.google.com with SMTP id h11-20020a4aa74b000000b002a933d156cbso93667oom.4
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 13:19:47 -0700 (PDT)
+        id S233420AbhIUUXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 16:23:04 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:35588 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230348AbhIUUXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 16:23:04 -0400
+Received: by mail-ot1-f46.google.com with SMTP id 77-20020a9d0ed3000000b00546e10e6699so261211otj.2;
+        Tue, 21 Sep 2021 13:21:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=zHCtkCJ+YU8sr1eqCh9RJWt6GKE+8RB1+mxyRXI5Y7Q=;
-        b=asZdV08Dmjq7ze/gqeS/63P+IRcnM/sLN2m4mZf19hoUOxvd+fL/JQfNtGfbtkvccP
-         GF/BuW+sKTBbPJMp2tFtO65EJKAba4D5kD+dlUIEG2lwxkQo75uKpJbeIfnQjZOyn5u6
-         gKcfmbqH7bdLWBXN5NjAgeN2NMG+mzxfZKmRU5NJgbkYmKxSYfkkzZZb0ukN/lHutKfo
-         PNGgauB6APyagNhQR3ka/RrprV7EKW0k7BKGaoeh8Ww2JbPfWkAiEaPUAsWI2gbjhv2L
-         iuDAixLOIIw4g8WNmcWttxXjxRXu1vzhy5yY9ihN5FoIhkLhu9yu7aMDoA9CyNIfACPU
-         DP8Q==
-X-Gm-Message-State: AOAM533KmbbTdviYyGB7DXZ5WyK9LUGmGIXTcK8v7gz2OOGlXBI4FyLI
-        zxo82pB/OswI9HgodztZcA==
-X-Google-Smtp-Source: ABdhPJz0GpQ1eMdu717vAcv6s3prw4o9Aw8b/FmW1Xen1J5SuIvOn0PDqKolr3ryK4+BR+PeW00P+Q==
-X-Received: by 2002:a4a:e297:: with SMTP id k23mr25908090oot.4.1632255587216;
-        Tue, 21 Sep 2021 13:19:47 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=zYcp/WS2dlftgb7wX8FVo6H8TAEkfNxUtmLYVyxn+ok=;
+        b=RprKemGGCQLlHqyA/ju61QIDJCAuKAYS8xAURpKEn+F8O2b+t9N2RpA0buwyzowVfS
+         0D7ZJHFVjbLpKccUukJVfeZA+gU7FawVbe4b+MPgY0fuL3XDwLBpdZnhMT7o2u9hMXOY
+         nzBwbr1JNlyFlPq953l2BZYASOo/Tf70PjhHiY0qGZUc/5jr5j6bPta1uPSVj3Ne6lhD
+         TI6NNViUaOTiXaKJIAUo6VUu63nu94npPS+QIIsrF3cbxAE7zkbDSF9rGHuGWctzyHzK
+         qpUMm1KQ1iJfUaaJfYUe0N2Ws2srQj9YE1CB8qQjUpMA7ZDZefcqiQU3/lBXsQyYlaat
+         R6kg==
+X-Gm-Message-State: AOAM530ZtEWVfWGxSuedrBWtKCSothLb+zSOkjMy5zYU6s0WRSlqdL8c
+        CdKaHMAHwnEcan3Xqj9PmS+N8YuwNw==
+X-Google-Smtp-Source: ABdhPJwZfRf4HZVYyQNHwZlAs5eEEA2WlBtn6r5mlMM604XVMZsL5d5Wkj2hjYzchyNtMhlJDzPq9w==
+X-Received: by 2002:a05:6830:19d2:: with SMTP id p18mr28085998otp.250.1632255695275;
+        Tue, 21 Sep 2021 13:21:35 -0700 (PDT)
 Received: from robh.at.kernel.org (rrcs-192-154-179-36.sw.biz.rr.com. [192.154.179.36])
-        by smtp.gmail.com with ESMTPSA id q24sm4210otf.52.2021.09.21.13.19.46
+        by smtp.gmail.com with ESMTPSA id j23sm7830oih.30.2021.09.21.13.21.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 13:19:46 -0700 (PDT)
-Received: (nullmailer pid 3262786 invoked by uid 1000);
-        Tue, 21 Sep 2021 20:19:45 -0000
-Date:   Tue, 21 Sep 2021 15:19:45 -0500
+        Tue, 21 Sep 2021 13:21:34 -0700 (PDT)
+Received: (nullmailer pid 3265187 invoked by uid 1000);
+        Tue, 21 Sep 2021 20:21:32 -0000
+Date:   Tue, 21 Sep 2021 15:21:32 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     linux-phy@lists.infradead.org,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: mfd: brcm,cru: add USB 2.0 PHY
-Message-ID: <YUo+YYTgholE/mkI@robh.at.kernel.org>
-References: <20210913080024.6951-1-zajec5@gmail.com>
- <20210913080024.6951-3-zajec5@gmail.com>
+To:     Jens Renner <renner@efe-gmbh.de>
+Cc:     linux-clk@vger.kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, devicetree@vger.kernel.org,
+        s.hauer@pengutronix.de, sebastian.hesselbarth@gmail.com
+Subject: Re: [PATCH 1/2] clk: si5351: Add DT property for phase offset
+Message-ID: <YUo+zFqul4TvamzM@robh.at.kernel.org>
+References: <20210913085138.116653-1-renner@efe-gmbh.de>
+ <20210913085241.116691-1-renner@efe-gmbh.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210913080024.6951-3-zajec5@gmail.com>
+In-Reply-To: <20210913085241.116691-1-renner@efe-gmbh.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Sep 2021 10:00:23 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, Sep 13, 2021 at 10:52:41AM +0200, Jens Renner wrote:
+> Add optional output clock DT property "clock-phase" to configure the
+> phase offset in degrees with respect to other clock outputs.
+> Add missing description for related optional output clock DT property
+> "clock-frequency".
 > 
-> Northstar's USB 2.0 PHY is part of the CRU MFD.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Jens Renner <renner@efe-gmbh.de>
 > ---
->  .../devicetree/bindings/mfd/brcm,cru.yaml         | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/clock/silabs,si5351.txt        | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/clock/silabs,si5351.txt b/Documentation/devicetree/bindings/clock/silabs,si5351.txt
+> index 8fe6f80afade..62adf0d0874b 100644
+> --- a/Documentation/devicetree/bindings/clock/silabs,si5351.txt
+> +++ b/Documentation/devicetree/bindings/clock/silabs,si5351.txt
+> @@ -50,11 +50,17 @@ Optional child node properties:
+>    divider.
+>  - silabs,pll-master: boolean, multisynth can change pll frequency.
+>  - silabs,pll-reset: boolean, clock output can reset its pll.
+> -- silabs,disable-state : clock output disable state, shall be
+> +- silabs,disable-state: clock output disable state, shall be
+>    0 = clock output is driven LOW when disabled
+>    1 = clock output is driven HIGH when disabled
+>    2 = clock output is FLOATING (HIGH-Z) when disabled
+>    3 = clock output is NEVER disabled
+> +- clock-frequency: integer in Hz, output frequency to generate (2500-200000000)
+> +  This defines the output frequency set during boot. It can be reprogrammed
+> +  duing runtime through the common clock framework.
+> +- clock-phase: integer, phase shift in degrees (0-359), using the multisynth
+> +  initial phase offset register (depends on the clock source / output ratio)
+> +  and the clock output inverter (180 deg. only).
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Not a standard property, needs a vendor prefix.
+
+>  
+>  ==Example==
+>  
+> @@ -111,7 +117,7 @@ i2c-master-node {
+>  			silabs,drive-strength = <4>;
+>  			silabs,multisynth-source = <1>;
+>  			silabs,clock-source = <0>;
+> -			pll-master;
+> +			silabs,pll-master;
+>  		};
+>  
+>  		/*
+> -- 
+> 2.33.0
+> 
+> 
