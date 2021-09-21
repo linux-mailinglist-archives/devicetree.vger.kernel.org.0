@@ -2,198 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53806413D67
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 00:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F127413DA5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 00:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235209AbhIUWQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 18:16:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60208 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233992AbhIUWQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 18:16:38 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C3DC061756
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 15:15:09 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id 77-20020a9d0ed3000000b00546e10e6699so672609otj.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 15:15:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=x94ioewznGOI6gQ5YIl2Sid87jK2fFCaelf+CMRDOF4=;
-        b=LQDy2v9QFGuKgGFzbnu14WqsNjNrgXyv9aqQStW0dN1rlBn6zqLA6wafLgrCdwonci
-         Vv9TZHEZOvDXcy27gpXabClErpN0tyQ9KTf+mfDBrm4qc05iSzbicIGjknVKq7kDPbf+
-         K0LuccmlXYwpWPBJSTadxC4N7OcU8WPOPPhlKX7VkefaaquWGLLPR/20fU4t+XFyB/Zt
-         cgkBQjI1x/rD0hopFATYcJLi/vRmU6Pw4jfIqOFeM+p8TGv9OAONpbKu+JBQvnl94sZW
-         eWXDawIUl0PMQc7D7YRB/qhPCLrH7QIX/LOj2m2jzrxx2RQlu2XODeHlPZLHgp3PuMfd
-         e1kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=x94ioewznGOI6gQ5YIl2Sid87jK2fFCaelf+CMRDOF4=;
-        b=rEBwdybUFchaIhAMz4uqyo5GUdC1BbXPSQmToEvgr3UUKiFmoEV89hwmUebRkxL10F
-         ZjD4GYXfEYt+crs3LFq5qu08ksi3dvig7S1XvBTFKTTJ52fccC4eM+CIxpBbY6G039Ul
-         1ggewb0d2sXedvlJ6VfImGQpqCofOtymVlv22KBX/LbRdim5NbNFhiZV9xnkO/AYpWkJ
-         85X/61H2ash4iM7pwapB7wp7NN7KeAkT038N1IBkAg+K5XlfnzBP5zPAYPY03sLWtI3A
-         tzKTDBISyMEeCBWRCRLy9fH7JhDI+KAnFw10AK1fBU1MP+EenFeVLgdJUmUfHcJSKW9g
-         4fpg==
-X-Gm-Message-State: AOAM533l6fFu/rj3pjW/8J1JsD61hBY9ntDkfhN3hCizSguUbwmh/uic
-        OjV15HGPFhy8iJCPDOQrfR7tKg==
-X-Google-Smtp-Source: ABdhPJwBlxa/coBdaEbNyj3pl6qZm1u0sr6cLsEoVWt9mrBrMs4sa3Qu4OYYNwIeGjc4Iht8aPIzBw==
-X-Received: by 2002:a9d:4702:: with SMTP id a2mr13819459otf.271.1632262507823;
-        Tue, 21 Sep 2021 15:15:07 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id d10sm90595ooj.24.2021.09.21.15.15.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 15:15:07 -0700 (PDT)
-Date:   Tue, 21 Sep 2021 17:15:05 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dikshita Agarwal <dikshita@codeaurora.org>
-Cc:     andy.gross@linaro.org, david.brown@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        vgarodia@codeaurora.org, stanimir.varbanov@linaro.org,
-        Mansur Alisha Shaik <mansur@codeaurora.org>
-Subject: Re: [RESEND PATCH v6] arm64: dts: qcom: sc7280: Add venus DT node
-Message-ID: <YUpZaQ42ldzEKtV/@builder.lan>
-References: <1632199829-25686-1-git-send-email-dikshita@codeaurora.org>
+        id S230407AbhIUWi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 18:38:56 -0400
+Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:34680 "EHLO
+        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230299AbhIUWiz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 18:38:55 -0400
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+        id 3274DF40B6D; Wed, 22 Sep 2021 00:37:25 +0200 (CEST)
+Date:   Wed, 22 Sep 2021 00:37:24 +0200
+From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+        linux-crypto@vger.kernel.org, Ash Logan <ash@heyquark.com>,
+        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH 0/4] crypto: nintendo-aes - add a new AES driver
+Message-ID: <20210921223724.ocxpdef6ptquprgz@luna>
+Jabber-ID: linkmauve@linkmauve.fr
+References: <20210921213930.10366-1-linkmauve@linkmauve.fr>
+ <YUpVyTN7MQbMShdf@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jii3ybjni5untti4"
 Content-Disposition: inline
-In-Reply-To: <1632199829-25686-1-git-send-email-dikshita@codeaurora.org>
+In-Reply-To: <YUpVyTN7MQbMShdf@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 20 Sep 23:50 CDT 2021, Dikshita Agarwal wrote:
 
-> Add DT entries for the sc7280 venus encoder/decoder.
-> 
-> this patch depends on [1].
-> 
-> [1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=529463
+--jii3ybjni5untti4
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The stuff you write here will be forever imprinted in the git history
-and it's already unnecessary, given that the patch you reference here is
-available in linux-next.
+On Tue, Sep 21, 2021 at 02:59:37PM -0700, Eric Biggers wrote:
+> On Tue, Sep 21, 2021 at 11:39:26PM +0200, Emmanuel Gil Peyrot wrote:
+> > This engine implements AES in CBC mode, using 128-bit keys only.  It is
+> > present on both the Wii and the Wii=C2=A0U, and is apparently identical=
+ in
+> > both consoles.
+> >=20
+> > The hardware is capable of firing an interrupt when the operation is
+> > done, but this driver currently uses a busy loop, I=E2=80=99m not too s=
+ure
+> > whether it would be preferable to switch, nor how to achieve that.
+> >=20
+> > It also supports a mode where no operation is done, and thus could be
+> > used as a DMA copy engine, but I don=E2=80=99t know how to expose that =
+to the
+> > kernel or whether it would even be useful.
+> >=20
+> > In my testing, on a Wii=C2=A0U, this driver reaches 80.7 MiB/s, while t=
+he
+> > aes-generic driver only reaches 30.9 MiB/s, so it is a quite welcome
+> > speedup.
+> >=20
+> > This driver was written based on reversed documentation, see:
+> > https://wiibrew.org/wiki/Hardware/AES
+> >=20
+> > Emmanuel Gil Peyrot (4):
+> >   crypto: nintendo-aes - add a new AES driver
+> >   dt-bindings: nintendo-aes: Document the Wii and Wii U AES support
+> >   powerpc: wii.dts: Expose the AES engine on this platform
+> >   powerpc: wii_defconfig: Enable AES by default
+>=20
+> Does this pass the self-tests, including the fuzz tests which are enabled=
+ by
+> CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=3Dy?
 
-Things you want to mention, but shouldn't go into the git history, put
-those below the '---' line.
+I wasn=E2=80=99t aware of those, and indeed it doesn=E2=80=99t pass them ye=
+t:
+[    0.680164] alg: skcipher: cbc-aes-nintendo encryption overran dst buffe=
+r on test vector 0, cfg=3D"out-of-place"
+[    0.680201] fbcon: Taking over console
+[    0.680219] ------------[ cut here ]------------
+[    0.680222] alg: self-tests for cbc-aes-nintendo (cbc(aes)) failed (rc=
+=3D-75)
 
-> 
-> Co-developed-by: Mansur Alisha Shaik <mansur@codeaurora.org>
-> Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
-> Signed-off-by: Mansur Alisha Shaik <mansur@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 75 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 75 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index a8c274a..f171ababc 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -63,6 +63,11 @@
->  			no-map;
->  			reg = <0x0 0x80b00000 0x0 0x100000>;
->  		};
-> +
-> +		video_mem: memory@8b200000 {
-> +			reg = <0x0 0x8b200000 0x0 0x500000>;
-> +			no-map;
-> +		};
->  	};
->  
->  	cpus {
-> @@ -1063,6 +1068,76 @@
->  			qcom,bcm-voters = <&apps_bcm_voter>;
->  		};
->  
-> +		venus: video-codec@aa00000 {
-> +			compatible = "qcom,sc7280-venus";
+I=E2=80=99ll try to figure out how to debug this and I=E2=80=99ll send a v2=
+, thanks for
+the hint!
 
-I do however now see this compatible defined in a binding in linux-next,
-so you definitely should have listed that patch as a dependency - and
-preferably held off sending me 6 versions (plus resend) of a patch that
-I can't merge.
+>=20
+> - Eric
 
-Please ping me once the binding is merged, so that I know when I can
-merge this patch.
+--=20
+Emmanuel Gil Peyrot
 
-Thanks,
-Bjorn
+--jii3ybjni5untti4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +			reg = <0 0x0aa00000 0 0xd0600>;
-> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
-> +				 <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
-> +				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
-> +				 <&videocc VIDEO_CC_MVS0_CORE_CLK>,
-> +				 <&videocc VIDEO_CC_MVS0_AXI_CLK>;
-> +			clock-names = "core", "bus", "iface",
-> +				      "vcodec_core", "vcodec_bus";
-> +
-> +			power-domains = <&videocc MVSC_GDSC>,
-> +					<&videocc MVS0_GDSC>,
-> +					<&rpmhpd SC7280_CX>;
-> +			power-domain-names = "venus", "vcodec0", "cx";
-> +			operating-points-v2 = <&venus_opp_table>;
-> +
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>,
-> +					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
-> +			interconnect-names = "cpu-cfg", "video-mem";
-> +
-> +			iommus = <&apps_smmu 0x2180 0x20>,
-> +				 <&apps_smmu 0x2184 0x20>;
-> +			memory-region = <&video_mem>;
-> +
-> +			video-decoder {
-> +				compatible = "venus-decoder";
-> +			};
-> +
-> +			video-encoder {
-> +				compatible = "venus-encoder";
-> +			};
-> +
-> +			video-firmware {
-> +				iommus = <&apps_smmu 0x21a2 0x0>;
-> +			};
-> +
-> +			venus_opp_table: venus-opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-133330000 {
-> +					opp-hz = /bits/ 64 <133330000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +				};
-> +
-> +				opp-240000000 {
-> +					opp-hz = /bits/ 64 <240000000>;
-> +					required-opps = <&rpmhpd_opp_svs>;
-> +				};
-> +
-> +				opp-335000000 {
-> +					opp-hz = /bits/ 64 <335000000>;
-> +					required-opps = <&rpmhpd_opp_svs_l1>;
-> +				};
-> +
-> +				opp-424000000 {
-> +					opp-hz = /bits/ 64 <424000000>;
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +				};
-> +
-> +				opp-460000048 {
-> +					opp-hz = /bits/ 64 <460000048>;
-> +					required-opps = <&rpmhpd_opp_turbo>;
-> +				};
-> +			};
-> +
-> +		};
-> +
->  		videocc: clock-controller@aaf0000 {
->  			compatible = "qcom,sc7280-videocc";
->  			reg = <0 0xaaf0000 0 0x10000>;
-> -- 
-> 2.7.4
-> 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEjrVT1SzTln43kCLJOWgfYkb2LpAFAmFKXqIACgkQOWgfYkb2
+LpCJcgf+IMfEy9fNYpEki4K7BmX/f4kKVOek3gLVkG3rrgZOTElYH5C9uOsdxHZ9
+27PsYcESnj9tI3G9t9RLmyPmxuMVPCVKTc0KaFbacwx1UMmQMBFa5s0WZMVHgZC9
+L7/JnU4G1rRPIxXaaYKnqBBYNzO2LuwVBd7V/0m9WBToXEWEtxabaGO6QuiKFAYX
+rv6T3ajdk40w8XQo3I031M3OxSq9prJBNCtkdkPPmqB4ZtP/E8uGM6ukTMYgR/ZU
+NA3w3V8BX95KNPt/uDKbZ3vdbsSH1PcFVgfPs7aqBKU+zddkdwcoEKfoyg8c4wUi
+cU30fGOI9fLKgdx83YZrWeu8x9Ty7w==
+=IlCT
+-----END PGP SIGNATURE-----
+
+--jii3ybjni5untti4--
