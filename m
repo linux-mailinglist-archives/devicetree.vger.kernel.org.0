@@ -2,104 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C22E9412DF9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 06:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7496E412E11
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 06:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230178AbhIUElf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 00:41:35 -0400
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:60749 "EHLO
-        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229988AbhIUEle (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 00:41:34 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.west.internal (Postfix) with ESMTP id BC2DB2B01433;
-        Tue, 21 Sep 2021 00:40:05 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Tue, 21 Sep 2021 00:40:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=UMFOw7vbwhDOl
-        T/6/dntbRu7oRn9RKWKLkg+EamTaYY=; b=R0T9Pb5SZ+4yxZc07SWcc2cgpW4Ei
-        GjRBNl5luMuLSwhYzK0M6b4O289/LCQp1YHlC1W2v3LQddoi8xObda/Y2niNBp5V
-        49NjstgoULPBXBGG4raqp7ZGi0WOLB1QinMIJjco4FEPiQF23tX8AYBU4uHqbJ+V
-        Y7OOMrRJybrTUutdYNN/Eha1NPKA3wCLg1S3Va8/7VPH8lv9rjrZpIZILWWAyGyq
-        deFa4Sfrt0hUTPR7xAX9m7Oi+wWq8j1wzQHa1sHU+byowM/jhZbmkjx9/Ix94rmt
-        joVqLmpMmure/uZsOj4Iinzxj9oWVG0iajwAwh7GblgnhjowH+QI43mXw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=UMFOw7vbwhDOlT/6/dntbRu7oRn9RKWKLkg+EamTaYY=; b=cP6M/PE0
-        +9ReKlONMlBaU4X07LBpC8imUWgWAK9IG8zLrxXudSrHJyk45CWJJlIC6GSTheja
-        ILwrsx2fV+f2rYMMOyHJ/9iXEA/eCs1AA8ENhiktkJJOTtY8E913vz0FPJr4lOl/
-        3doxcADRUGKCz5fSN6pmRs0NKFdHEYKkeT6vCEqZzIhhR6xRprclTwjyc2+fgq6k
-        FulVx6ZayP7FhtrjdAdAL+swUjsFq9ok9fLko7cXdRO5brAGvPuDb9c1eFuvg/HQ
-        0NuaOs8FZwZtDRDDln1CWHFlh44+zdDWe5C1YMIDFx33lFm4IkvIBPFM5cbln/n9
-        k1+IDCcCYiervw==
-X-ME-Sender: <xms:JGJJYb_Kwwv4eSON9kMtZgL4XlO-k9KVjFA_GBxA6jJ01IpFYnmH8A>
-    <xme:JGJJYXsJj7z-thxhTufz1LOe7G4gqyNLBLpOlvOVa3dlVTpq6FKsfcxWfysznQq6y
-    Z61OWF52fJiVH92Wg>
-X-ME-Received: <xmr:JGJJYZDjLyqMOsUmLsVP-bZxEwfwyqCiOUgn_vPs0C2tlEw-F1EMtOrlHC6wohm4R1qxsmtqtr15XD4WEdX2Ba-2G0ojaEGW0-sVbajYiwWqd9_Mi405OPIWCU4n8GKu>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudeifedgkeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegr
-    jhdrihgurdgruheqnecuggftrfgrthhtvghrnhepjefgvdevheetkeevgeegleelgfelte
-    etjeffleffvdduudevieffgeetleevhfetnecuvehluhhsthgvrhfuihiivgeptdenucfr
-    rghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:JGJJYXeweurpS3bg_med2GjX-hkOd-RGQsVJNTqGMedrftvykvTqqg>
-    <xmx:JGJJYQPRvyyFL5x-W5q3xP66PldTCvNzinPdpqwjbXtybc0BK96Gng>
-    <xmx:JGJJYZlMHy0zp36jc4j0EfiL5s4e_GTiTlg7dWVrymXEF0rJmFgYig>
-    <xmx:JWJJYRGqGEJw5XxS3fK35STFU730lNNhdDrCFz2M23SRYMA6N5UKk0Q-e2A>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 21 Sep 2021 00:40:00 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-leds@vger.kernel.org, linux-gpio@vger.kernel.org
-Cc:     clg@kaod.org, robh+dt@kernel.org, joel@jms.id.au, pavel@ucw.cz,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        andy.shevchenko@gmail.com
-Subject: [PATCH 2/2] leds: pca955x: Allow zero LEDs to be specified
-Date:   Tue, 21 Sep 2021 14:09:36 +0930
-Message-Id: <20210921043936.468001-3-andrew@aj.id.au>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210921043936.468001-1-andrew@aj.id.au>
-References: <20210921043936.468001-1-andrew@aj.id.au>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S229944AbhIUEwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 00:52:23 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:50737 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229923AbhIUEwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 00:52:21 -0400
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 20 Sep 2021 21:50:50 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 20 Sep 2021 21:50:48 -0700
+X-QCInternal: smtphost
+Received: from dikshita-linux.qualcomm.com ([10.204.65.237])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 21 Sep 2021 10:20:32 +0530
+Received: by dikshita-linux.qualcomm.com (Postfix, from userid 347544)
+        id 1C78721D93; Tue, 21 Sep 2021 10:20:31 +0530 (IST)
+From:   Dikshita Agarwal <dikshita@codeaurora.org>
+To:     andy.gross@linaro.org, david.brown@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        vgarodia@codeaurora.org, stanimir.varbanov@linaro.org,
+        Dikshita Agarwal <dikshita@codeaurora.org>,
+        Mansur Alisha Shaik <mansur@codeaurora.org>
+Subject: [RESEND PATCH v6] arm64: dts: qcom: sc7280: Add venus DT node
+Date:   Tue, 21 Sep 2021 10:20:29 +0530
+Message-Id: <1632199829-25686-1-git-send-email-dikshita@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It's valid to use the PCA955x devices just for GPIOs and not for LEDs.
-In this case, as PCA955X_TYPE_GPIO is now equivalent to
-PCA955X_TYPE_NONE, remove the test for whether we have any child nodes
-specified in the devicetree.
+Add DT entries for the sc7280 venus encoder/decoder.
 
-A consequence of this is it's now possible to bind the driver to a
-PCA955x device when dynamically instantiated through the I2C subsystem's
-`new_device` interface.
+this patch depends on [1].
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+[1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=529463
+
+Co-developed-by: Mansur Alisha Shaik <mansur@codeaurora.org>
+Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
+Signed-off-by: Mansur Alisha Shaik <mansur@codeaurora.org>
 ---
- drivers/leds/leds-pca955x.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 75 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
 
-diff --git a/drivers/leds/leds-pca955x.c b/drivers/leds/leds-pca955x.c
-index 77c0f461ab95..81aaf21212d7 100644
---- a/drivers/leds/leds-pca955x.c
-+++ b/drivers/leds/leds-pca955x.c
-@@ -429,7 +429,7 @@ pca955x_get_pdata(struct i2c_client *client, struct pca955x_chipdef *chip)
- 	int count;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index a8c274a..f171ababc 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -63,6 +63,11 @@
+ 			no-map;
+ 			reg = <0x0 0x80b00000 0x0 0x100000>;
+ 		};
++
++		video_mem: memory@8b200000 {
++			reg = <0x0 0x8b200000 0x0 0x500000>;
++			no-map;
++		};
+ 	};
  
- 	count = device_get_child_node_count(&client->dev);
--	if (!count || count > chip->bits)
-+	if (count > chip->bits)
- 		return ERR_PTR(-ENODEV);
+ 	cpus {
+@@ -1063,6 +1068,76 @@
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
  
- 	pdata = devm_kzalloc(&client->dev, sizeof(*pdata), GFP_KERNEL);
++		venus: video-codec@aa00000 {
++			compatible = "qcom,sc7280-venus";
++			reg = <0 0x0aa00000 0 0xd0600>;
++			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
++
++			clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
++				 <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
++				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
++				 <&videocc VIDEO_CC_MVS0_CORE_CLK>,
++				 <&videocc VIDEO_CC_MVS0_AXI_CLK>;
++			clock-names = "core", "bus", "iface",
++				      "vcodec_core", "vcodec_bus";
++
++			power-domains = <&videocc MVSC_GDSC>,
++					<&videocc MVS0_GDSC>,
++					<&rpmhpd SC7280_CX>;
++			power-domain-names = "venus", "vcodec0", "cx";
++			operating-points-v2 = <&venus_opp_table>;
++
++			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>,
++					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
++			interconnect-names = "cpu-cfg", "video-mem";
++
++			iommus = <&apps_smmu 0x2180 0x20>,
++				 <&apps_smmu 0x2184 0x20>;
++			memory-region = <&video_mem>;
++
++			video-decoder {
++				compatible = "venus-decoder";
++			};
++
++			video-encoder {
++				compatible = "venus-encoder";
++			};
++
++			video-firmware {
++				iommus = <&apps_smmu 0x21a2 0x0>;
++			};
++
++			venus_opp_table: venus-opp-table {
++				compatible = "operating-points-v2";
++
++				opp-133330000 {
++					opp-hz = /bits/ 64 <133330000>;
++					required-opps = <&rpmhpd_opp_low_svs>;
++				};
++
++				opp-240000000 {
++					opp-hz = /bits/ 64 <240000000>;
++					required-opps = <&rpmhpd_opp_svs>;
++				};
++
++				opp-335000000 {
++					opp-hz = /bits/ 64 <335000000>;
++					required-opps = <&rpmhpd_opp_svs_l1>;
++				};
++
++				opp-424000000 {
++					opp-hz = /bits/ 64 <424000000>;
++					required-opps = <&rpmhpd_opp_nom>;
++				};
++
++				opp-460000048 {
++					opp-hz = /bits/ 64 <460000048>;
++					required-opps = <&rpmhpd_opp_turbo>;
++				};
++			};
++
++		};
++
+ 		videocc: clock-controller@aaf0000 {
+ 			compatible = "qcom,sc7280-videocc";
+ 			reg = <0 0xaaf0000 0 0x10000>;
 -- 
-2.30.2
+2.7.4
 
