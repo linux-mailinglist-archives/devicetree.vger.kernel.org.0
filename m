@@ -2,68 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A41413BD7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 22:55:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B87E413C04
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:09:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235164AbhIUU5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 16:57:05 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:37571 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234707AbhIUU5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 16:57:05 -0400
-Received: by mail-oi1-f179.google.com with SMTP id w206so1107206oiw.4;
-        Tue, 21 Sep 2021 13:55:36 -0700 (PDT)
+        id S235241AbhIUVK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 17:10:29 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:36368 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235238AbhIUVK2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:10:28 -0400
+Received: by mail-oi1-f171.google.com with SMTP id y201so1178268oie.3;
+        Tue, 21 Sep 2021 14:08:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=sHoBdlJO01sxOMRM+J4Stj1FzbSZtHaqO294d5ta4QQ=;
-        b=bmEX71q5Q33d1sJwFv8lkrhAXODioXSVkMopi1g6h7Fuy9BRz6M9a2ukTdvANWNHj2
-         lCcXukUd3qjO9PEo4WxUAY+4099c/uas5X9qVaT83qMIq4+IPJ1rCcDp/mZKVDm0zrr2
-         +EwBIaLGL28icnHTGs9Rg4hwPdNFyvAiCzxDxhssI3W9wR46HnLQwnKPwqVNf88XtoAr
-         mVLIw8rNtpw6sPKmtATJRCHubBWcJvwVXxg5sz5dk4b0XwccdDY0f+aIoIAzzqYMZd38
-         7FLzWgc2RukWhHGklJ2Pkqp0sNa9zg/rrzAhv9gjnPRQcoc3ipKVHgSY6XiZe3+Og3Zl
-         mQiw==
-X-Gm-Message-State: AOAM533tFNYCHAqBZmLbbdY1STCc4lXCHN9UEM/yYUgGI7qIzoYYdwx1
-        /ekKxbmbnoRhpt7r8l0VZg==
-X-Google-Smtp-Source: ABdhPJzEj5QvACfG7FbAsfxxHQOz2neHdHjywbpPOexWfWS6iBsECUWogZBo4qSsJCCmSJqMGipTGg==
-X-Received: by 2002:a05:6808:618:: with SMTP id y24mr5377435oih.25.1632257736198;
-        Tue, 21 Sep 2021 13:55:36 -0700 (PDT)
+        bh=PB7mw84oWqMcTM8L33Z/mqiJNX2vqTIfyYp6vIibYpQ=;
+        b=pv5Uonr5OTyBh2ro0cq896BUghHzrOeg109cypv38nh8xdUBuw4Y0NoHhcRtiLl1vK
+         zNvH3PewPp4yi6HiBxCz/f23AmBem56k8Pk5VPL5l71i46mwsjyBqnR81tCN/QfJAB6a
+         oTjk8p50KXDU+3uMxyf1Et+dqgMrLto4p0MqAfxB5MTDC69d2GCWPmf9T2Rom1q/DO6h
+         1ptxleM93rPezIV3mTJvoo/Fu+VGRp91u+V06+bwLs1W81SmBBNC9apKnYkuQ0yUZ0MT
+         XnNok0JrEGqUFOie8TEILIo7C6FihuheQSurqO8cFoIttJAMUHBk01qbd7/dY7D97H3g
+         h3Hg==
+X-Gm-Message-State: AOAM533Nb227Kh6CMEuN2NHBjCPmFTllXooOA4YUQSHLqtnTYrPMnnBr
+        otcHH6a8Mta/Z/xYU+EvXrhx952gqQ==
+X-Google-Smtp-Source: ABdhPJxByD/gT2HO03lqHDDuqXU2J4bZP7al9mfky5LLkibhzk5AFWSWOQomZ1O5Dw3nMMFhFgp1aA==
+X-Received: by 2002:a54:4e1d:: with SMTP id a29mr5287079oiy.7.1632258539121;
+        Tue, 21 Sep 2021 14:08:59 -0700 (PDT)
 Received: from robh.at.kernel.org (rrcs-192-154-179-36.sw.biz.rr.com. [192.154.179.36])
-        by smtp.gmail.com with ESMTPSA id 14sm21514oiy.53.2021.09.21.13.55.35
+        by smtp.gmail.com with ESMTPSA id g23sm33684otl.23.2021.09.21.14.07.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 13:55:35 -0700 (PDT)
-Received: (nullmailer pid 3310957 invoked by uid 1000);
-        Tue, 21 Sep 2021 20:55:34 -0000
-Date:   Tue, 21 Sep 2021 15:55:34 -0500
+        Tue, 21 Sep 2021 14:08:58 -0700 (PDT)
+Received: (nullmailer pid 3326678 invoked by uid 1000);
+        Tue, 21 Sep 2021 21:07:39 -0000
+Date:   Tue, 21 Sep 2021 16:07:39 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Michael Heimpold <michael.heimpold@in-tech.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, jimmy.shen@vertexcom.com
-Subject: Re: [PATCH RFC 1/3] dt-bindings: add vendor Vertexcom
-Message-ID: <YUpGxqcFjcFJYCTm@robh.at.kernel.org>
+        jimmy.shen@vertexcom.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 3/3] net: vertexcom: Add MSE102x SPI support
+Message-ID: <YUpJm0G7X7DB3oKD@robh.at.kernel.org>
 References: <20210914151717.12232-1-stefan.wahren@i2se.com>
- <20210914151717.12232-2-stefan.wahren@i2se.com>
+ <20210914151717.12232-4-stefan.wahren@i2se.com>
+ <YUJi0cVawjyiteEx@lunn.ch>
+ <bfbbf816-f467-7e2e-12ca-fb2172ce93f9@i2se.com>
+ <YUM6HfDYX0Twe67+@lunn.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210914151717.12232-2-stefan.wahren@i2se.com>
+In-Reply-To: <YUM6HfDYX0Twe67+@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Sep 2021 17:17:15 +0200, Stefan Wahren wrote:
-> Add vendor prefix for Vertexcom Technologies, Inc [1].
+On Thu, Sep 16, 2021 at 02:35:41PM +0200, Andrew Lunn wrote:
+> > >> +	netif_carrier_off(mse->ndev);
+> > >> +	ndev->if_port = IF_PORT_10BASET;
+> > > That is not correct. Maybe you should add a IF_PORT_HOMEPLUG ?
 > 
-> [1] - http://www.vertexcom.com/
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> > There is already a driver (qca_spi, qcauart) for a similiar Homeplug
+> > device (QCA7000), which also uses IF_PORT_10BASET. Should i change this
+> > too or leave it because of resulting changes to userspace?
 > 
+> Technically, it would be an ABI change. But ifmap seems pretty loosely
+> defined. See man 7 netdevice:
+> 
+>        SIOCGIFMAP, SIOCSIFMAP
+>               Get or set the interface's hardware parameters using ifr_map.
+> 	      Setting the parameters is a privileged operation.
+> 
+>                   struct ifmap {
+>                       unsigned long   mem_start;
+>                       unsigned long   mem_end;
+>                       unsigned short  base_addr;
+>                       unsigned char   irq;
+>                       unsigned char   dma;
+>                       unsigned char   port;
+>                   };
+> 
+>               The interpretation of the ifmap structure depends on the device driver
+> 	      and the architecture.
+> 
+> The if_port value ends up in port. And i've no idea where it is
+> actually available in user space. iproute2 does not use it, nor
+> ethtool. So, i would say, submit a separate patch for the other
+> drivers, and we will see if anybody notices.
+> 
+> > >> +static const struct of_device_id mse102x_match_table[] = {
+> > >> +	{ .compatible = "vertexcom,mse1021" },
+> > >> +	{ .compatible = "vertexcom,mse1022" },
+> > > Is there an ID register you can read to determine what device you
+> > > actually have? If so, i suggest you verify the correct compatible is
+> > > used.
+> > 
+> > AFAIK the device doesn't have any kind of ID register.
+> 
+> Then i would suggest changing the compatible to "vertexcom,mse102x".
 
-Acked-by: Rob Herring <robh@kernel.org>
+Don't use wildcards in compatible strings.
+
+> 
+> If you cannot verify it, and it makes no actual difference, then 50%
+> of the boards will use the wrong one. Which means you can then later
+> not actually make use of it to enable features specific to a
+> compatible string.
+
+A wildcard doesn't help with this. If some boards are wrong, not any way 
+we can fix that short of a DT update. If you can update the DT, then you 
+can correct the string then.
+
+Rob
