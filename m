@@ -2,111 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 454EA413AFE
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 21:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96221413B20
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 22:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230139AbhIUTu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 15:50:28 -0400
-Received: from mo4-p00-ob.smtp.rzone.de ([81.169.146.220]:34408 "EHLO
-        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbhIUTu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 15:50:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632253549;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=dCirvFcy4YDwlUftw9ZMx+DsgpN7YelrcBP8Cpil+Rc=;
-    b=qPdDnIzF9j+cfLDyvgBvzK2A7Zs3cr6WMaAq0lRnW2WkP88sJeKKQqMM9dOSpyi+s5
-    jZUVXEMgyr/Wn7fEZofdHljyIh38DiiaZ3BvAGgRPHJ5jmKaN4uq2AquXGktc1QngSGo
-    0lpVSrFkQNx14Cegs8ItPvoKCyufhwHWuQlT+DveHa0hAbwdkbeqYi7sAyIEA4cUCVpb
-    lWkfi1wrbo2kSXVUHSv/HUJW6KdniqULnSRNk6nVRvlL3DFMRjxKLFPk7RlWXSAGVtrJ
-    m94p3iKdQfpOEPyABSPYjEb2kNXjNyxNGWTe4Lhd+xr81TXlZEi0d1E2e2wHvbtD/IGG
-    L2sg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4pWA9pbh"
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id 301038x8LJjmC4x
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 21 Sep 2021 21:45:48 +0200 (CEST)
-Date:   Tue, 21 Sep 2021 21:45:43 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: msm8916: Drop underscore in node
- name
-Message-ID: <YUo2ZzQktf2iSec/@gerhold.net>
-References: <20210921152120.6710-1-stephan@gerhold.net>
- <20210921152120.6710-2-stephan@gerhold.net>
- <CAE-0n51Ukr0FMhzHotrGnrJjE3=w2X_u4ukc1KC_HpjjsUdNfg@mail.gmail.com>
+        id S233669AbhIUUOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 16:14:37 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:46889 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229736AbhIUUOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 16:14:37 -0400
+Received: by mail-ot1-f47.google.com with SMTP id c8-20020a9d6c88000000b00517cd06302dso114413otr.13;
+        Tue, 21 Sep 2021 13:13:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uHUL6Iz8EXHQvPOcnqiZYyFyZ6VM6tNjGeJr0wxEX7E=;
+        b=BhlPiEJqmD0mExuYzMbbgGpkDszgabPw6p7nt0Ihaldc0L5unGldagC8st4epZgTNo
+         OBw2Pz5YeZO0r2GdXfdE0z8eLHhBlR9hA4hko/8ubCb0moCcRnidrWvv63wppWSxItgr
+         iKfvqgRqn45Q2iJvR0TUzDWhKdluiedVzWtdtck1h8OxpsP8EX/d9VaErOIqx7BS8hb2
+         ReRdC4L50Or0i3ht6MI+XZbRt67FHFRNyxj/xuTgTdR4Ku172fuvhu1yEvEqWIkYGqE1
+         w5UiNyEtfsiSZe2HQKgGx2JKZQJ5G54AErTLARlWjVr+YLe5II9gljYI3P5/moFAS5ay
+         PKFQ==
+X-Gm-Message-State: AOAM533s/+UZB+AWIBzVdCxprqWt/3vDrfqaA9Xkd6N+9i49hxYtQnk4
+        Ki6bGs2tmL3RL9yEnwHB3Q==
+X-Google-Smtp-Source: ABdhPJxPslvEjD7cgvwIQogk2+Y1wTDq7UrCFB2M1PkVz6HzMsaylWC1bJf3/seTJhFZ/5tUGJ7Avg==
+X-Received: by 2002:a9d:615c:: with SMTP id c28mr35002otk.381.1632255188349;
+        Tue, 21 Sep 2021 13:13:08 -0700 (PDT)
+Received: from robh.at.kernel.org (rrcs-192-154-179-36.sw.biz.rr.com. [192.154.179.36])
+        by smtp.gmail.com with ESMTPSA id q5sm21569ooa.1.2021.09.21.13.13.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 13:13:07 -0700 (PDT)
+Received: (nullmailer pid 3253929 invoked by uid 1000);
+        Tue, 21 Sep 2021 20:13:05 -0000
+Date:   Tue, 21 Sep 2021 15:13:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jens Renner <renner@efe-gmbh.de>
+Cc:     devicetree@vger.kernel.org, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org, sboyd@kernel.org
+Subject: Re: [PATCH] clk: si5351: Update datasheet references
+Message-ID: <YUo80QE+/n1I32eo@robh.at.kernel.org>
+References: <20210913074823.115212-1-renner@efe-gmbh.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAE-0n51Ukr0FMhzHotrGnrJjE3=w2X_u4ukc1KC_HpjjsUdNfg@mail.gmail.com>
+In-Reply-To: <20210913074823.115212-1-renner@efe-gmbh.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 11:20:18AM -0700, Stephen Boyd wrote:
-> Quoting Stephan Gerhold (2021-09-21 08:21:19)
-> > Using underscores in device tree nodes is not very common.
-> > Additionally, the _region suffix in "smem_region@..." is not really
-> > useful since it's obvious that it describes a reserved memory region.
-> >
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > ---
-> >  arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > index 5551dba2d5fd..95dea20cde75 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > @@ -41,7 +41,7 @@ tz-apps@86000000 {
-> >                         no-map;
-> >                 };
-> >
-> > -               smem_mem: smem_region@86300000 {
-> > +               smem_mem: smem@86300000 {
+On Mon, 13 Sep 2021 09:48:23 +0200, Jens Renner wrote:
+> Silicon Labs is now part of Skyworks Inc. so update the URLs to the
+> datasheet and application note.
 > 
-> Shouldn't that be smem_mem: memory@86300000? Node names should be
-> generic.
+> Signed-off-by: Jens Renner <renner@efe-gmbh.de>
+> ---
+>  Documentation/devicetree/bindings/clock/silabs,si5351.txt | 2 +-
+>  drivers/clk/clk-si5351.c                                  | 8 ++++----
+>  drivers/clk/clk-si5351.h                                  | 2 +-
+>  3 files changed, 6 insertions(+), 6 deletions(-)
 > 
 
-The way I read it, the DT schema [1] and device tree specification [2]
-interprets the generic name recommendation a bit different here:
-
-> Following the generic-names recommended practice, node names should
-> reflect the purpose of the node (ie. "framebuffer" or "dma-pool").
-
-"framebuffer" or "dma-pool" would also be "memory", yet they suggest
-a name reflecting the purpose instead. The purpose of the node is
-"smem", it's not just arbitrary "memory".
-
-However, my main problem with using memory@ here is that it actually
-causes new dtbs_check errors:
-
-apq8016-sbc.dt.yaml: memory@86000000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@86300000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@86400000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@86500000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@86680000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@86700000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@867e0000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@86800000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@89300000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@89900000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-apq8016-sbc.dt.yaml: memory@8ea00000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
-
-Looks like it thinks this is a definition of physical memory now.
-I would rather not add more errors. :)
-
-Stephan
-
-[1]: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-[2]: https://github.com/devicetree-org/devicetree-specification/blob/master/source/chapter3-devicenodes.rst#reserved-memory-child-nodes
+Acked-by: Rob Herring <robh@kernel.org>
