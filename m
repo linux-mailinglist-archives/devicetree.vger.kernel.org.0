@@ -2,104 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A64F413B31
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 22:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CA0F413B37
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 22:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233420AbhIUUXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 16:23:04 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:35588 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230348AbhIUUXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 16:23:04 -0400
-Received: by mail-ot1-f46.google.com with SMTP id 77-20020a9d0ed3000000b00546e10e6699so261211otj.2;
-        Tue, 21 Sep 2021 13:21:35 -0700 (PDT)
+        id S233612AbhIUUYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 16:24:03 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:33622 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230348AbhIUUYD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 16:24:03 -0400
+Received: by mail-ot1-f53.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso327363otu.0;
+        Tue, 21 Sep 2021 13:22:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=zYcp/WS2dlftgb7wX8FVo6H8TAEkfNxUtmLYVyxn+ok=;
-        b=RprKemGGCQLlHqyA/ju61QIDJCAuKAYS8xAURpKEn+F8O2b+t9N2RpA0buwyzowVfS
-         0D7ZJHFVjbLpKccUukJVfeZA+gU7FawVbe4b+MPgY0fuL3XDwLBpdZnhMT7o2u9hMXOY
-         nzBwbr1JNlyFlPq953l2BZYASOo/Tf70PjhHiY0qGZUc/5jr5j6bPta1uPSVj3Ne6lhD
-         TI6NNViUaOTiXaKJIAUo6VUu63nu94npPS+QIIsrF3cbxAE7zkbDSF9rGHuGWctzyHzK
-         qpUMm1KQ1iJfUaaJfYUe0N2Ws2srQj9YE1CB8qQjUpMA7ZDZefcqiQU3/lBXsQyYlaat
-         R6kg==
-X-Gm-Message-State: AOAM530ZtEWVfWGxSuedrBWtKCSothLb+zSOkjMy5zYU6s0WRSlqdL8c
-        CdKaHMAHwnEcan3Xqj9PmS+N8YuwNw==
-X-Google-Smtp-Source: ABdhPJwZfRf4HZVYyQNHwZlAs5eEEA2WlBtn6r5mlMM604XVMZsL5d5Wkj2hjYzchyNtMhlJDzPq9w==
-X-Received: by 2002:a05:6830:19d2:: with SMTP id p18mr28085998otp.250.1632255695275;
-        Tue, 21 Sep 2021 13:21:35 -0700 (PDT)
+        bh=BXxN/Tsfx5bmrn6IRFt7LP7UFNWkTcdd8J3Fel3tlCM=;
+        b=01KSvepbxz2IJYO0BUsC3OLSWsrrQVywTEaC0tPGUuk70gCuHmmD974g25HAz3dAfS
+         zi0PW2t/w6P7G7EGyJB3oAQ2ZCBYwYuSm9orA14r6ZYkCJ32vzC3n02UPYojq8dAD1vb
+         Z4T4r6v5yv3qQiOz0PmZq4MKflA/lEKpTJ1j1FlwmydmTKc+VkyM1BtT0lIA6iZ4CzHz
+         GMaQcSIfksWc1/s2uD6rMBD6Ti3B4+IrpvJEqJC0BkirY9yJB8QdeYpEBolFuRS16GLC
+         ztDgx154Yf0Ih9dut6NFszAYQD5/AJc9CMMNkRLJ49vQTvIla7eaUiqJhGuOgPslRGio
+         8/Xw==
+X-Gm-Message-State: AOAM533zYW2Su55UrPw/Fukbqtb7u0nPTaGZb07qf5iPLjXGJ6P1bAih
+        QtNCawkZhFeO83+5FzysSw==
+X-Google-Smtp-Source: ABdhPJzsEROHqcVPN+E7NmlIWG2PVc84xkEcMet/kB8kZAxVLmgiNTCM5aut56npYcGtdZVPAjAlXg==
+X-Received: by 2002:a9d:6398:: with SMTP id w24mr26957420otk.140.1632255754431;
+        Tue, 21 Sep 2021 13:22:34 -0700 (PDT)
 Received: from robh.at.kernel.org (rrcs-192-154-179-36.sw.biz.rr.com. [192.154.179.36])
-        by smtp.gmail.com with ESMTPSA id j23sm7830oih.30.2021.09.21.13.21.34
+        by smtp.gmail.com with ESMTPSA id k8sm21966oom.20.2021.09.21.13.22.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 13:21:34 -0700 (PDT)
-Received: (nullmailer pid 3265187 invoked by uid 1000);
-        Tue, 21 Sep 2021 20:21:32 -0000
-Date:   Tue, 21 Sep 2021 15:21:32 -0500
+        Tue, 21 Sep 2021 13:22:33 -0700 (PDT)
+Received: (nullmailer pid 3266694 invoked by uid 1000);
+        Tue, 21 Sep 2021 20:22:31 -0000
+Date:   Tue, 21 Sep 2021 15:22:31 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jens Renner <renner@efe-gmbh.de>
-Cc:     linux-clk@vger.kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, devicetree@vger.kernel.org,
-        s.hauer@pengutronix.de, sebastian.hesselbarth@gmail.com
-Subject: Re: [PATCH 1/2] clk: si5351: Add DT property for phase offset
-Message-ID: <YUo+zFqul4TvamzM@robh.at.kernel.org>
-References: <20210913085138.116653-1-renner@efe-gmbh.de>
- <20210913085241.116691-1-renner@efe-gmbh.de>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH] dt-bindings: iio: magnetometer: asahi-kasei,ak8975 add
+ vid reg
+Message-ID: <YUo/BzWUBQArrMkS@robh.at.kernel.org>
+References: <20210913181949.83179-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210913085241.116691-1-renner@efe-gmbh.de>
+In-Reply-To: <20210913181949.83179-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 13, 2021 at 10:52:41AM +0200, Jens Renner wrote:
-> Add optional output clock DT property "clock-phase" to configure the
-> phase offset in degrees with respect to other clock outputs.
-> Add missing description for related optional output clock DT property
-> "clock-frequency".
+On Mon, 13 Sep 2021 20:19:49 +0200, David Heidelberg wrote:
+> Driver and device-tree also use vid-supply regulator.
 > 
-> Signed-off-by: Jens Renner <renner@efe-gmbh.de>
+> Fixes: 7e000fbff7a0 ("dt-bindings: iio: magnetometer: ak8975: convert format to yaml, add maintainer")
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  .../devicetree/bindings/clock/silabs,si5351.txt        | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
+>  .../bindings/iio/magnetometer/asahi-kasei,ak8975.yaml        | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/silabs,si5351.txt b/Documentation/devicetree/bindings/clock/silabs,si5351.txt
-> index 8fe6f80afade..62adf0d0874b 100644
-> --- a/Documentation/devicetree/bindings/clock/silabs,si5351.txt
-> +++ b/Documentation/devicetree/bindings/clock/silabs,si5351.txt
-> @@ -50,11 +50,17 @@ Optional child node properties:
->    divider.
->  - silabs,pll-master: boolean, multisynth can change pll frequency.
->  - silabs,pll-reset: boolean, clock output can reset its pll.
-> -- silabs,disable-state : clock output disable state, shall be
-> +- silabs,disable-state: clock output disable state, shall be
->    0 = clock output is driven LOW when disabled
->    1 = clock output is driven HIGH when disabled
->    2 = clock output is FLOATING (HIGH-Z) when disabled
->    3 = clock output is NEVER disabled
-> +- clock-frequency: integer in Hz, output frequency to generate (2500-200000000)
-> +  This defines the output frequency set during boot. It can be reprogrammed
-> +  duing runtime through the common clock framework.
-> +- clock-phase: integer, phase shift in degrees (0-359), using the multisynth
-> +  initial phase offset register (depends on the clock source / output ratio)
-> +  and the clock output inverter (180 deg. only).
 
-Not a standard property, needs a vendor prefix.
-
->  
->  ==Example==
->  
-> @@ -111,7 +117,7 @@ i2c-master-node {
->  			silabs,drive-strength = <4>;
->  			silabs,multisynth-source = <1>;
->  			silabs,clock-source = <0>;
-> -			pll-master;
-> +			silabs,pll-master;
->  		};
->  
->  		/*
-> -- 
-> 2.33.0
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
