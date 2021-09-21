@@ -2,87 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E66C41361A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 17:23:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7072E413624
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 17:26:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233295AbhIUPYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 11:24:40 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:23636 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233837AbhIUPYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 11:24:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632237787;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=Mn6STB2mKFNw5lkE3KQV6CgCSU0VfjctWesLRX+6DBE=;
-    b=RE33oTpygs0xOUtNx4RhF7qHZs7gCpirkFNKgj4drZ96qExytbSbzU/hBpwiCfytI4
-    tzzyMFuzsOhUW2+EP1cBEHhffUAHEmBVUrHb8H8wCvxaBU97gIrEhRcHzKfGR4Bd5VPo
-    tpGR1dmzUT0CwN3MTe2DEw6pDkgGOHpDhiC1/3K0488ulgo0F8vs4Gq8TaiQjym5oBMk
-    0DbH5XYEZPNxH7OF2zEsz0WH49lTOCbqDuB999WeThB65Caq/m6OrD3MZ8jsFKzsP6wJ
-    KVChTpjyWISTMGYjEv7ujOOBnpqE07IU0gfMYM46zL9u51yS6uhk59CeKEjKfL+NbBlo
-    0hDA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXTbAOHjRHIhr2eFOATg=="
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id 301038x8LFN7ARN
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 21 Sep 2021 17:23:07 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8916: Add "qcom,msm8916-sdhci" compatible
-Date:   Tue, 21 Sep 2021 17:21:20 +0200
-Message-Id: <20210921152120.6710-3-stephan@gerhold.net>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210921152120.6710-1-stephan@gerhold.net>
-References: <20210921152120.6710-1-stephan@gerhold.net>
+        id S233964AbhIUP1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 11:27:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56026 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233853AbhIUP1Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 11:27:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1150661186;
+        Tue, 21 Sep 2021 15:25:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632237956;
+        bh=eyjTinIjeXPa0AJBKtnyfN91AZdFFxdTY14CTjIc1z4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=AhrcU4h4aLg7A2EytJTjpJEM09a6pqMyRT8ED0GB6up/+6EATWA+8nVai4ssH4+BW
+         kpVKSdI/4K4qd3SsPAibowc6tMgWg/aoJbX2rC8AAEoz/cvcfLnyrlrEHHjrujKmNg
+         phgcbYmsbbdTa4QPO2UrDifELAm8bgunxIHpcuI/puDKuUInqh9GGq+KIlFGcAnzgB
+         30OZU+RZqvy6DBHWLd1am79ZGWNvnqxffTaEPvb23fMlVsKimxfeJ4MrPpihJmsE2z
+         BhhZ9YKDCvJC3ORqhXyyrASOapxUeTOV4kp8E+JBPpx0WBsyedUiinpNZPWhAIvJ+W
+         ErXv+eq+mTlVQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-kernel@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, Apurva Nandan <a-nandan@ti.com>,
+        linux-spi@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+        Richard Weinberger <richard@nod.at>
+Cc:     Mark Brown <broonie@kernel.org>, michael@walle.cc
+Subject: Re: (subset) [PATCH v2 0/2] dt-bindings: mtd: spi-nand: Convert to DT schema
+Date:   Tue, 21 Sep 2021 16:25:07 +0100
+Message-Id: <163223675481.32536.11593084094057981568.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210920142713.129295-1-a-nandan@ti.com>
+References: <20210920142713.129295-1-a-nandan@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-a SoC specific compatible should be used in addition to the IP version
-compatible, but for some reason it was never added for MSM8916.
+On Mon, 20 Sep 2021 19:57:11 +0530, Apurva Nandan wrote:
+> Series to convert spi-nand.txt binding to YAML format and also fix up
+> snps-dw-apb-ssi for related dt_schema errors.
+> 
+> Changes in v2:
+> - Fixed dtschema erros in snps-dw-apb-ssi.
+> - Improved additionalProperties, reg, and compatible fields in
+>   spi-nand.yaml.
+> 
+> [...]
 
-Add the "qcom,msm8916-sdhci" compatible additionally to make the
-device tree match the documented bindings.
+Applied to
 
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 95dea20cde75..5879be0805b6 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1420,7 +1420,7 @@ lpass_codec: audio-codec@771c000 {
- 		};
- 
- 		sdhc_1: sdhci@7824000 {
--			compatible = "qcom,sdhci-msm-v4";
-+			compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0x07824900 0x11c>, <0x07824000 0x800>;
- 			reg-names = "hc_mem", "core_mem";
- 
-@@ -1438,7 +1438,7 @@ sdhc_1: sdhci@7824000 {
- 		};
- 
- 		sdhc_2: sdhci@7864000 {
--			compatible = "qcom,sdhci-msm-v4";
-+			compatible = "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0x07864900 0x11c>, <0x07864000 0x800>;
- 			reg-names = "hc_mem", "core_mem";
- 
--- 
-2.33.0
+Thanks!
 
+[2/2] dt-bindings: snps,dw-apb-ssi: Use 'flash' node name instead of 'spi-flash' in example
+      commit: d7a48e27b38a94bf73c973c236461234610256d5
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
