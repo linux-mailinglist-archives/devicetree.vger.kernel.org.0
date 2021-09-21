@@ -2,230 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8E714133A1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 14:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 060364133AA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 15:02:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbhIUNAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 09:00:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43248 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232406AbhIUNAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 09:00:02 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1BE8C061574;
-        Tue, 21 Sep 2021 05:58:34 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id w206so17888727oiw.4;
-        Tue, 21 Sep 2021 05:58:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=l7TfEGo3SQCWA01m9m4GXi8hl+WlD1BfbycKDHuTVoY=;
-        b=ivRnxr8IVb3eaYpIV+u2ILK9pqIQGpQZSF3FuKjylhGcOybTNGtm+DopZh6fZJ1LsB
-         6l74Q+K3IDpFzDvixVjxSErb2VK9r/Rh1jWOqDfM6eTKx2qef1VrrTM86vZmjzaPJDUK
-         xTETeLrTjPxlDkz53unZP+K3UoAlafzoz+zlgzhK0MaJEVU78Acp7Bv3B28vZk1LQ0sq
-         +JWe7sy9M0Xh1hFADf8wj8Ui9Y+KezAwV5M0z3wMVJoVkEeDnXZwBpVeAv73cOgmeMgE
-         FdHAMPekpw39DPVGmcWVed0M6dHFwzXazZ9fAL4cXkuNxw8MWvSB6vWip21p44rLzl7Y
-         anxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=l7TfEGo3SQCWA01m9m4GXi8hl+WlD1BfbycKDHuTVoY=;
-        b=OKf1Q6ZH0mCqdCYbbQBikYpegFpOauTyemL65NOMoRhWKB+R90yF5rJfImMwmtBzF3
-         Sv8jJdOnSaZQMoryihOZ1n25BrPp8Aj+JNQi4Fe5dUmjWYkCMQrF/rRRHIRHllJzpUB3
-         T6XCR8oZqXBpogf4j1U51O+q1f+FYQuzLvoXOlOiFbPH5diQ87gYcZKxods955xhiOYd
-         R5clfqv6x38d/0ee2rdqgA3LXDcR6AS6zPRi7wtrukOPnaw9o09nNCL7KWn6XogFnLGA
-         LTbDLgINumYhexVtwRI4hKNqVQ3gGcx3kIqvnVoqDGMADpBkb+1PlOLHESfLatnYvkry
-         qzRQ==
-X-Gm-Message-State: AOAM532fpI9Jz0fARXAEDxm1x6WeZ383D7rm2jONjGGroPQB765AMx/f
-        3JC4Qlqk7Sq2eEJaxKAXsnU=
-X-Google-Smtp-Source: ABdhPJwEUO10IhafCkkBJxVZ93t04XHpNYP2TvAIKcGbZYAiupSSwWezNx391W3z2/4Y47FBRBng7A==
-X-Received: by 2002:aca:a984:: with SMTP id s126mr3490513oie.150.1632229113942;
-        Tue, 21 Sep 2021 05:58:33 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id a8sm932983oos.46.2021.09.21.05.58.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 05:58:32 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 21 Sep 2021 05:58:31 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, Oskar Senft <osk@google.com>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for
- tmp421
-Message-ID: <20210921125831.GB1864238@roeck-us.net>
-References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
- <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
- <YUkKCe7845uCqoy5@robh.at.kernel.org>
+        id S231631AbhIUNEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 09:04:04 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:17064 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230052AbhIUNEE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 09:04:04 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1632229355; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=qH2l5wCnZnelf0eU2pGiDEZnMruL9bfu6QZc4HulXxE=; b=gDOFk4Zd3a1b7E91rLC6oyFPYy4lEMsdltfnMUtQ6dBOQLaZpF/IK6eBF9XuGbjboiNhBl/f
+ wnmbxmJtMmfNQlaeuo7ru1fWbWEPirb3qKPXh5bq2vqBiIz7sVSSCcrzPafLtCE2yReR7JPM
+ vRhs2wt/KvajY4NNgmgCbBCqHlg=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 6149d7ddec62f57c9a213e3f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 21 Sep 2021 13:02:21
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6C83CC43616; Tue, 21 Sep 2021 13:02:20 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.105] (unknown [157.48.153.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D3A5CC4338F;
+        Tue, 21 Sep 2021 13:02:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org D3A5CC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH 3/7] ASoC: codecs: tx-macro: Change mic control registers
+ to volatile
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1632123331-2425-1-git-send-email-srivasam@codeaurora.org>
+ <1632123331-2425-4-git-send-email-srivasam@codeaurora.org>
+ <c1c7b1e8-98f5-99a3-1374-11d1d61535b4@linaro.org>
+ <b442ee2b-622c-674d-3abe-b1fbbfa5aeb9@codeaurora.org>
+ <e87ef6e1-0c10-beaa-81ad-2c0ceae6bbcc@linaro.org>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <62c85130-df75-5aa6-8954-d1a55167827f@codeaurora.org>
+Date:   Tue, 21 Sep 2021 18:32:09 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YUkKCe7845uCqoy5@robh.at.kernel.org>
+In-Reply-To: <e87ef6e1-0c10-beaa-81ad-2c0ceae6bbcc@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 20, 2021 at 05:24:09PM -0500, Rob Herring wrote:
-> On Tue, Sep 07, 2021 at 03:46:14PM +0200, Krzysztof Adamski wrote:
-> > Add binding description for the per temperature channel configuration
-> > like labels and n-factor.
-> > 
-> > Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> > ---
-> >  .../devicetree/bindings/hwmon/tmp421.yaml     | 66 +++++++++++++++++++
-> >  1 file changed, 66 insertions(+)
-> 
-> I'd keep this separate...
-> 
-> > 
-> > diff --git a/Documentation/devicetree/bindings/hwmon/tmp421.yaml b/Documentation/devicetree/bindings/hwmon/tmp421.yaml
-> > index 53940e146ee6..56085fdf1b57 100644
-> > --- a/Documentation/devicetree/bindings/hwmon/tmp421.yaml
-> > +++ b/Documentation/devicetree/bindings/hwmon/tmp421.yaml
-> > @@ -24,12 +24,49 @@ properties:
-> >    reg:
-> >      maxItems: 1
-> >  
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> >  
-> >  additionalProperties: false
-> >  
-> > +patternProperties:
-> > +  "^input@([0-4])$":
-> > +    type: object
-> > +    description: |
-> > +      Represents channels of the device and their specific configuration.
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description: |
-> > +          The channel number. 0 is local channel, 1-4 are remote channels
-> > +        items:
-> > +          minimum: 0
-> > +          maximum: 4
-> > +
-> > +      label:
-> > +        description: |
-> > +          A descriptive name for this channel, like "ambient" or "psu".
-> > +
-> > +      n-factor:
-> 
-> ti,n-factor
 
-n-factor isn't just supported by TI sensors, though it isn't always called
-n-factor. Maxim (eg MAX6581) uses the term "ideality factor", though they
-also refer to the factor as "N" in the datasheet.
+On 9/21/2021 2:18 PM, Srinivas Kandagatla wrote:
+>
+>
+> On 21/09/2021 08:30, Srinivasa Rao Mandadapu wrote:
+>>
+>> On 9/20/2021 6:54 PM, Srinivas Kandagatla wrote:
+>> Thanks for your time Srini!!
+>>>
+>>> On 20/09/2021 08:35, Srinivasa Rao Mandadapu wrote:
+>>>> Update amic and dmic related tx macro control registers to volatile
+>>>>
+>>>> Fixes: c39667ddcfc5 (ASoC: codecs: lpass-tx-macro: add support for 
+>>>> lpass tx macro)
+>>>>
+>>>> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+>>>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>>>> ---
+>>>>   sound/soc/codecs/lpass-tx-macro.c | 13 +++++++++++++
+>>>>   1 file changed, 13 insertions(+)
+>>>>
+>>>> diff --git a/sound/soc/codecs/lpass-tx-macro.c 
+>>>> b/sound/soc/codecs/lpass-tx-macro.c
+>>>> index 9273724..e65b592 100644
+>>>> --- a/sound/soc/codecs/lpass-tx-macro.c
+>>>> +++ b/sound/soc/codecs/lpass-tx-macro.c
+>>>> @@ -423,6 +423,13 @@ static bool tx_is_volatile_register(struct 
+>>>> device *dev, unsigned int reg)
+>>>>       case CDC_TX_TOP_CSR_SWR_DMIC1_CTL:
+>>>>       case CDC_TX_TOP_CSR_SWR_DMIC2_CTL:
+>>>>       case CDC_TX_TOP_CSR_SWR_DMIC3_CTL:
+>>>> +    case CDC_TX_TOP_CSR_SWR_AMIC0_CTL:
+>>>> +    case CDC_TX_TOP_CSR_SWR_AMIC1_CTL:
+>>>> +    case CDC_TX_CLK_RST_CTRL_MCLK_CONTROL:
+>>>> +    case CDC_TX_CLK_RST_CTRL_FS_CNT_CONTROL:
+>>>> +    case CDC_TX_CLK_RST_CTRL_SWR_CONTROL:
+>>>> +    case CDC_TX_TOP_CSR_SWR_CTRL:
+>>>> +    case CDC_TX0_TX_PATH_SEC7:
+>>>
+>>> Why are these marked as Volatile?
+>>> Can you provide some details on the issue that you are seeing?
+>>>
+>>> --srini
+>>
+>> Without volatile these registers are not reflecting in Hardware and 
+>> playback and capture is not working.
+>>
+>> Will do recheck and keep only required registers as volatile.
+>
+> This sounds like a total hack to me,
+>
+> this might be happening in your case:
+>
+> The default values for this register are different to actual defaults.
+> Ex: CDC_TX_TOP_CSR_SWR_AMIC0_CTL default is 0x00
+> so writing 0x0 to this register will be no-op as there is no change in 
+> the register value as compared to default value as per regmap.
+>
+> In you case make sure the hardware default values are correctly 
+> reflected in tx_defaults array.
 
-So question is if we make this ti,n-factor and maxim,n-factor, or if we make
-it generic and define some kind of generic units. Thoughts ? My personal
-preference would be a generic definition, but is not a strong preference.
+The default values in tx_defaults are proper. But same value is not 
+reflecting in Hardware, but In Cache it's reflecting set value.
 
-In regard to units, the n-factor is, as the name says, a factor. Default
-value is 1.008. The value range for MAX6581 is 0.999 to 1.030. For TMP421
-it is 0.706542 to 1.747977. So the scondary question is if the value
-written should be the register value (as proposed here) or the absolute
-factor (eg in micro-units).
+>
+> Then setting the desired value should work.
+>
+>
+> --srini
+>
+>
+>
+>>
+>>>
+>>>
+>>>>           return true;
+>>>>       }
+>>>>       return false;
+>>>> @@ -1674,6 +1681,12 @@ static int tx_macro_component_probe(struct 
+>>>> snd_soc_component *comp)
+>>>>         snd_soc_component_update_bits(comp, CDC_TX0_TX_PATH_SEC7, 
+>>>> 0x3F,
+>>>>                         0x0A);
+>>>> +    snd_soc_component_update_bits(comp, 
+>>>> CDC_TX_TOP_CSR_SWR_AMIC0_CTL, 0xFF, 0x00);
+>>>> +    snd_soc_component_update_bits(comp, 
+>>>> CDC_TX_TOP_CSR_SWR_AMIC1_CTL, 0xFF, 0x00);
+>>>> +    snd_soc_component_update_bits(comp, 
+>>>> CDC_TX_TOP_CSR_SWR_DMIC0_CTL, 0xFF, 0x00);
+>>>> +    snd_soc_component_update_bits(comp, 
+>>>> CDC_TX_TOP_CSR_SWR_DMIC1_CTL, 0xFF, 0x00);
+>>>> +    snd_soc_component_update_bits(comp, 
+>>>> CDC_TX_TOP_CSR_SWR_DMIC2_CTL, 0xFF, 0x00);
+>>>> +    snd_soc_component_update_bits(comp, 
+>>>> CDC_TX_TOP_CSR_SWR_DMIC3_CTL, 0xFF, 0x00);
+>>>>         return 0;
+>>>>   }
+>>>>
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-> 
-> Needs a type reference too.
-> 
-> > +        description: |
-> > +          The value (two's complement) to be programmed in the channel specific N correction register.
-> > +          For remote channels only.
-> > +        items:
-> > +          minimum: 0
-> > +          maximum: 1
-> > +
-> > +    required:
-> > +      - reg
-> > +
-> > +    additionalProperties: false
-> > +
-> >  examples:
-> >    - |
-> >      i2c {
-> > @@ -41,3 +78,32 @@ examples:
-> >          reg = <0x4c>;
-> >        };
-> >      };
-> > +  - |
-> > +    i2c {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      sensor@4c {
-> > +        compatible = "ti,tmp422";
-> > +        reg = <0x4c>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        input@0 {
-> > +          reg = <0x0>;
-> > +          n-factor = <0x1>;
-> > +          label = "local";
-> > +        };
-
-In the context or other sensors, question here is if we can make the
-bindings generic. We have been discussing this for NCT7802Y. The main
-question for me is how to handle different sensor types. TMP421 is
-easy because it only has one type of sensors, but there are other
-devices which also have, for example, voltage and/or current sensors.
-NCT7802 is an example for that. We just had a set of bindings for that
-chip proposed at
-https://patchwork.kernel.org/project/linux-hwmon/patch/20210921004627.2786132-1-osk@google.com/
-
-Would it be possible to determine a generic scheme that works for all
-chips ? I can see two problems:
-- How to express sensor types. The NCT7802 submission proposes another level
-  of indirection, ie
-
-  temperature-sensors {
-> > +
-> > +        input@1 {
-> > +          reg = <0x1>;
-> > +          n-factor = <0x0>;
-> > +          label = "somelabel";
-> > +        };
-> > +
-> > +        input@2 {
-> > +          reg = <0x2>;
-> > +          status = "disabled";
-> > +        };
-> > +      };
-> > +    };
-    };
-
-The second question is how to express sensor index. One option is the solution
-suggested here, ie to use reg=<> as sensor index. The second is the solution
-suggested in the 7802 bindings, where the (chip specific) name is used as
-sensor index.
-
-+            temperature-sensors {
-+                ltd {
-+                  status = "disabled";
-+                };
-+
-+                rtd1 {
-+                  status = "okay";
-+                  type = <4> /* thermistor */;
-+                };
-+            };
-
-I personally don't have a strong opinion either way, but I would like to see
-a single solution for all sensor chips.
-
-Rob, do you have a preference ?
-
-Thanks,
-Guenter
