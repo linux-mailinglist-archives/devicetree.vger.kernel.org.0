@@ -2,230 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92B61413A82
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 21:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12188413A94
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 21:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234134AbhIUTIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 15:08:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33974 "EHLO mail.kernel.org"
+        id S229913AbhIUTRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 15:17:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37912 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232081AbhIUTIA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 15:08:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B1B3161242;
-        Tue, 21 Sep 2021 19:06:31 +0000 (UTC)
+        id S229912AbhIUTRp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 15:17:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 288CD61264;
+        Tue, 21 Sep 2021 19:16:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632251191;
-        bh=+QldbduaosRO+PTBglCfkUevcz4S7/oBJnQwk1MjMEU=;
+        s=k20201202; t=1632251777;
+        bh=y7t65FuUj5M7zHUNcxaXF8xZfHxxqS+Py2uO/oFuGbM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=it3PCaoOKtKcTIXEG1lxPPACYgVdx6HuYUzDAbZItwSFx5/0qyJPWOnCpXXoxOnEk
-         f/b/hvfw9fmR+lY2DnwJntsKckx/EuYplMJQ3lw3QOZHXQXHKa+3GQu6kgsxDH/iM3
-         npDiQiQiPhDlNUYjI0Jd1u0GL3PB58tNjWRnR9pblv8pM/3+q1yOl7eO+meaIxkEq5
-         v+OFqL0sqCjtjHi1GifwpHS/H8omG4vtm/6yqmiEqyTmfovAONop0E3yWODFFGWgcD
-         AFaN1u8aXmWpBk5D4gHe5uPNXoDKm3ka63cCznz6+iBvTjkxMp32ABIUL50rNqNMuK
-         HBHc6qDKF2xqg==
-Received: by mail-ed1-f43.google.com with SMTP id r5so246103edi.10;
-        Tue, 21 Sep 2021 12:06:31 -0700 (PDT)
-X-Gm-Message-State: AOAM5323hKR9OXZYGou1tCPrlKEZLSNaejST+26xz8omXRSmAEFuNu2U
-        IYR2Y5W6V9nvMeY8BlR9zJiRll+d7Ih9ElambA==
-X-Google-Smtp-Source: ABdhPJy7GkX7y7vN7XXiF8IRrrgzU6y7nz/JcckYVJV6YB7QzIfaEfGJM5IvtaJcBlUrDIhdpNyazD1906e0iMxSyAo=
-X-Received: by 2002:a17:907:33ce:: with SMTP id zk14mr36622589ejb.84.1632251190223;
- Tue, 21 Sep 2021 12:06:30 -0700 (PDT)
+        b=BhMOi9IH4aXuRUEQvYaIyBPtIwepzEo1TnBdbKhE1sb1ceupjaKCfRTQS/jHX88Co
+         ih+iBXBmdLdkNx1t5uxAaXBnbQxlJmxO7wk/0TP8jhVr9vunmbtFb4gV2C5y5lQhaK
+         jDeUi8PCnXV6T1NhweJ2hnnGGbStXvmMHHvnq2Hm8ojn9MXWofIddPddcMaZuOPEcF
+         mvKOttk8GncAltKNYv8BM9MiDUw7HMLf93nONzOd2l30mYZfKKaTnOXYu6g8RHb2ds
+         18jw1q8+CAIdprMKqONGjgF9chmpPzSzpJ8CVPgvvqgYIJjEgE+2SQybS2WYnGUsku
+         VYnMuRJxfmIpw==
+Received: by mail-ed1-f54.google.com with SMTP id v5so531836edc.2;
+        Tue, 21 Sep 2021 12:16:17 -0700 (PDT)
+X-Gm-Message-State: AOAM531/8/noNY4DIIgl4Fbyvppw0yptEl/CdYj66kIbGb1qKGBGfQrY
+        mjcpd1oIdK6+OMf0A62djPBXa7j3f76MjR3XMQ==
+X-Google-Smtp-Source: ABdhPJzGJFcDleoc9cfu1inyaDPtLW0450eB/KUF4KeBvjL3Emzrqd9wTIf+OICoPmSMZNLiZJgjpxdrYOvYsVRyY4o=
+X-Received: by 2002:a50:e004:: with SMTP id e4mr37623631edl.164.1632251775461;
+ Tue, 21 Sep 2021 12:16:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
- <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
- <YUkKCe7845uCqoy5@robh.at.kernel.org> <20210921125831.GB1864238@roeck-us.net>
-In-Reply-To: <20210921125831.GB1864238@roeck-us.net>
+References: <20210920142713.129295-1-a-nandan@ti.com> <20210920142713.129295-2-a-nandan@ti.com>
+ <20210920150651.vvdhennblwhdi3jw@mobilestation> <YUj6RUNYDoWA30Ln@robh.at.kernel.org>
+ <3c03fcdd-b015-8fda-eadc-e1b6d24ba88d@ti.com>
+In-Reply-To: <3c03fcdd-b015-8fda-eadc-e1b6d24ba88d@ti.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 21 Sep 2021 14:06:18 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLo=inkKVKSU8N=_h90RfpDk6NNWPKdKyTXh-VvqXDCag@mail.gmail.com>
-Message-ID: <CAL_JsqLo=inkKVKSU8N=_h90RfpDk6NNWPKdKyTXh-VvqXDCag@mail.gmail.com>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for tmp421
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        devicetree@vger.kernel.org, Oskar Senft <osk@google.com>
+Date:   Tue, 21 Sep 2021 14:16:02 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+sg7f4pJGBhU48a4=uR7cYQmXsoSjbrktovV94m3+qFw@mail.gmail.com>
+Message-ID: <CAL_Jsq+sg7f4pJGBhU48a4=uR7cYQmXsoSjbrktovV94m3+qFw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nand: Convert to DT schema format
+To:     Apurva Nandan <a-nandan@ti.com>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mark Brown <broonie@kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Michael Walle <michael@walle.cc>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 7:58 AM Guenter Roeck <linux@roeck-us.net> wrote:
+On Tue, Sep 21, 2021 at 8:43 AM Apurva Nandan <a-nandan@ti.com> wrote:
 >
-> On Mon, Sep 20, 2021 at 05:24:09PM -0500, Rob Herring wrote:
-> > On Tue, Sep 07, 2021 at 03:46:14PM +0200, Krzysztof Adamski wrote:
-> > > Add binding description for the per temperature channel configuration
-> > > like labels and n-factor.
-> > >
-> > > Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> > > ---
-> > >  .../devicetree/bindings/hwmon/tmp421.yaml     | 66 +++++++++++++++++++
-> > >  1 file changed, 66 insertions(+)
+> Hi Rob,
+>
+> On 21/09/21 2:46 am, Rob Herring wrote:
+> > On Mon, Sep 20, 2021 at 06:06:51PM +0300, Serge Semin wrote:
+> >> Hello Apurva
+> >>
+> >> On Mon, Sep 20, 2021 at 07:57:12PM +0530, Apurva Nandan wrote:
+> >>> Convert spi-nand.txt binding to YAML format with an added example.
+> >>>
+> >>> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> >>> ---
+> >>>   .../devicetree/bindings/mtd/spi-nand.txt      |  5 --
+> >>>   .../devicetree/bindings/mtd/spi-nand.yaml     | 62 +++++++++++++++++++
+> >>>   2 files changed, 62 insertions(+), 5 deletions(-)
+> >>>   delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
+> >>>   create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
+> >> Thanks for the bindings conversion patch. There are several comments
+> >> below. But before addressing them it would be better to also get a
+> >> response from Rob.
+> >>
+> >>> diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.txt b/Documentation/devicetree/bindings/mtd/spi-nand.txt
+> >>> deleted file mode 100644
+> >>> index 8b51f3b6d55c..000000000000
+> >>> --- a/Documentation/devicetree/bindings/mtd/spi-nand.txt
+> >>> +++ /dev/null
+> >>> @@ -1,5 +0,0 @@
+> >>> -SPI NAND flash
+> >>> -
+> >>> -Required properties:
+> >>> -- compatible: should be "spi-nand"
+> >>> -- reg: should encode the chip-select line used to access the NAND chip
+> >>> diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.yaml b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..601beba8d971
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
+> >>> @@ -0,0 +1,62 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: SPI NAND flash
+> >>> +
+> >>> +maintainers:
+> >>> +  - Apurva Nandan <a-nandan@ti.com>
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: "mtd.yaml#"
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: spi-nand
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  spi-max-frequency: true
+> >>> +  spi-rx-bus-width: true
+> >>> +  spi-tx-bus-width: true
+> >>> +  rx-sample-delay-ns: true
+> >> Since it's an SPI-client device there are more than these properties
+> >> could be set for it. See the SPI-controller bindings schema:
+> >> Documentation/devicetree/bindings/spi/spi-controller.yaml
+> >> So there is two possible ways to make it more generic:
+> >> 1) Detach the spi-client part from the spi-controller.yaml bindings
+> >> into a dedicated DT-schema file and refer to that new scheme from
+> >> here.
+> > Yes, as mentioned there's patches doing this. But the above is fine.
+> > There's some value in defining here which properties are valid.
+> Yeah right
+> >> 2) Forget about these controller-specific properties and let the
+> >> parental SPI-controller bindings parsing them. Of course there must be
+> >> at least one of the next properties declared for it to work:
+> >> {unevaluatedProperties, additionalProperties}.
+> >>
+> >> It's up to Rob to decided which approach is better though...
+> >>
+> >>> +
+> >>> +  '#address-cells': true
+> >>> +  '#size-cells': true
+> >> Aren't they always equal to 1?
+> > No SPI nand devices >4GB?
+> Yeah, we have SPI NANDs >4GB, and "'#address-cells': true" allows those
+> sizes.
 > >
-> > I'd keep this separate...
+> >>> +
+> >>> +additionalProperties:
+> >>> +  type: object
+> >> I'd suggest to elaborate the way the partition sub-nodes looks
+> >> like, for instance, the node names, supported compatible names,
+> >> labels, etc.
+> > That should probably all be in mtd.yaml. The question here is whether
+> > partitions are always under a 'partitions' node. Maybe this is new
+> > enough that only the new way has to be supported. Though if mtd.yaml
+> > supported both forms, allowing both all the time is okay IMO.
 > >
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/hwmon/tmp421.yaml b/Documentation/devicetree/bindings/hwmon/tmp421.yaml
-> > > index 53940e146ee6..56085fdf1b57 100644
-> > > --- a/Documentation/devicetree/bindings/hwmon/tmp421.yaml
-> > > +++ b/Documentation/devicetree/bindings/hwmon/tmp421.yaml
-> > > @@ -24,12 +24,49 @@ properties:
-> > >    reg:
-> > >      maxItems: 1
-> > >
-> > > +  '#address-cells':
-> > > +    const: 1
-> > > +
-> > > +  '#size-cells':
-> > > +    const: 0
-> > > +
-> > >  required:
-> > >    - compatible
-> > >    - reg
-> > >
-> > >  additionalProperties: false
-> > >
-> > > +patternProperties:
-> > > +  "^input@([0-4])$":
-> > > +    type: object
-> > > +    description: |
-> > > +      Represents channels of the device and their specific configuration.
-> > > +
-> > > +    properties:
-> > > +      reg:
-> > > +        description: |
-> > > +          The channel number. 0 is local channel, 1-4 are remote channels
-> > > +        items:
-> > > +          minimum: 0
-> > > +          maximum: 4
-> > > +
-> > > +      label:
-> > > +        description: |
-> > > +          A descriptive name for this channel, like "ambient" or "psu".
-> > > +
-> > > +      n-factor:
-> >
-> > ti,n-factor
+> > Rob
 >
-> n-factor isn't just supported by TI sensors, though it isn't always called
-> n-factor. Maxim (eg MAX6581) uses the term "ideality factor", though they
-> also refer to the factor as "N" in the datasheet.
+> I had added the "partition" node properties in the v1 patch, but as per
+> the reviews I removed it.
+> I think we can prefer having them in mtd.yaml if needed, in a separate
+> patch series.
+> Do you prefer the mtd.yaml changes as a part of this series or as a
+> separate patch?
 >
-> So question is if we make this ti,n-factor and maxim,n-factor, or if we make
-> it generic and define some kind of generic units. Thoughts ? My personal
-> preference would be a generic definition, but is not a strong preference.
+> Other than that, I don't find any need for a v3 patch re-roll, do you agree?
 
-generic if the units are generic. Though if the register value is
-opaque to s/w, then maybe register value is fine.
+Yeah, I suppose not.
 
-> In regard to units, the n-factor is, as the name says, a factor. Default
-> value is 1.008. The value range for MAX6581 is 0.999 to 1.030. For TMP421
-> it is 0.706542 to 1.747977. So the scondary question is if the value
-> written should be the register value (as proposed here) or the absolute
-> factor (eg in micro-units).
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-A range, but the register value can only be 0 or 1?
-
->
-> >
-> > Needs a type reference too.
-> >
-> > > +        description: |
-> > > +          The value (two's complement) to be programmed in the channel specific N correction register.
-> > > +          For remote channels only.
-> > > +        items:
-> > > +          minimum: 0
-> > > +          maximum: 1
-> > > +
-> > > +    required:
-> > > +      - reg
-> > > +
-> > > +    additionalProperties: false
-> > > +
-> > >  examples:
-> > >    - |
-> > >      i2c {
-> > > @@ -41,3 +78,32 @@ examples:
-> > >          reg = <0x4c>;
-> > >        };
-> > >      };
-> > > +  - |
-> > > +    i2c {
-> > > +      #address-cells = <1>;
-> > > +      #size-cells = <0>;
-> > > +
-> > > +      sensor@4c {
-> > > +        compatible = "ti,tmp422";
-> > > +        reg = <0x4c>;
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        input@0 {
-> > > +          reg = <0x0>;
-> > > +          n-factor = <0x1>;
-> > > +          label = "local";
-> > > +        };
->
-> In the context or other sensors, question here is if we can make the
-> bindings generic. We have been discussing this for NCT7802Y. The main
-> question for me is how to handle different sensor types. TMP421 is
-> easy because it only has one type of sensors, but there are other
-> devices which also have, for example, voltage and/or current sensors.
-> NCT7802 is an example for that. We just had a set of bindings for that
-> chip proposed at
-> https://patchwork.kernel.org/project/linux-hwmon/patch/20210921004627.2786132-1-osk@google.com/
->
-> Would it be possible to determine a generic scheme that works for all
-> chips ? I can see two problems:
-> - How to express sensor types. The NCT7802 submission proposes another level
->   of indirection, ie
->
->   temperature-sensors {
-> > > +
-> > > +        input@1 {
-> > > +          reg = <0x1>;
-> > > +          n-factor = <0x0>;
-> > > +          label = "somelabel";
-> > > +        };
-> > > +
-> > > +        input@2 {
-> > > +          reg = <0x2>;
-> > > +          status = "disabled";
-> > > +        };
-> > > +      };
-> > > +    };
->     };
-
-I think the function should be within the node. Otherwise, the
-addressing becomes weird (e.g. input@3 is under current-sensors or
-something) with seemingly separate address spaces.
-
-> The second question is how to express sensor index. One option is the solution
-> suggested here, ie to use reg=<> as sensor index. The second is the solution
-> suggested in the 7802 bindings, where the (chip specific) name is used as
-> sensor index.
->
-> +            temperature-sensors {
-> +                ltd {
-> +                  status = "disabled";
-> +                };
-> +
-> +                rtd1 {
-> +                  status = "okay";
-> +                  type = <4> /* thermistor */;
-
-'type' is a bit generic. We don't want the same property name to
-possibly have multiple definitions.
-
-> +                };
-> +            };
->
-> I personally don't have a strong opinion either way, but I would like to see
-> a single solution for all sensor chips.
->
-> Rob, do you have a preference ?
-
-If it is how you address an instance of something which seems to be
-the case here, then 'reg' should be used.
+And actually, it's Miquel that should apply these 2 rather than Mark.
 
 Rob
