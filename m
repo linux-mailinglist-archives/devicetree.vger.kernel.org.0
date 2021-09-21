@@ -2,163 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2421941318C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 12:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61BFF413197
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 12:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231974AbhIUKav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 06:30:51 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:38614
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231971AbhIUKaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 06:30:46 -0400
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 175444019A
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 10:29:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632220158;
-        bh=T3tR462VfAp1i1pzt2P4d077ekPtmSrX+PhUDbMpO4c=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=vd5lVmZnuloKToXNtCtM63iUdXSdZzHYwxo33zdR/tU/hLWErx6Uwf6GzRP33z77y
-         jykPcKSTerUWiu6/6wSG2CUAMhRUgcuhojirEDU4Ljqt5cJUZjFuDDqb0e32t6TXEP
-         W2Fsw7pKv4kRzehv2iyONWDo7+l2hZQ6rbqUTEJf3OqBx6pk3uOMJUsFz/stFFFgj1
-         Doi/uA6JNOBJblR32BCF7U2EwX3vIQ1RhKY+TzWe+cO0WmNcsewYIhzr1qMgLeq08r
-         DP37u9fMs0eSezSrV8xjKe08tqMheubbi6/y6mrDk042hBZvVi919BfHG+c8XxxM3s
-         NI/1rq1WD9T/g==
-Received: by mail-wr1-f70.google.com with SMTP id m18-20020adfe952000000b0015b0aa32fd6so8410109wrn.12
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 03:29:18 -0700 (PDT)
+        id S231853AbhIUKbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 06:31:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37720 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231713AbhIUKbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 06:31:35 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0F9C061574
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 03:30:07 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id t11so2517509plq.11
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 03:30:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=WeosI4bsNB+ziUPwMtuooYUswr2aPS9qI01+kb9jQYw=;
+        b=Tdw+2S7U2C9ohBVp05KLQocSAtt7F6fJK8amnravcHhnXuIQ8lY2LMNaZZpHwQWKmS
+         2xVGcuO0vg1+TeXwGqtCqny0Vx9X1jb3LOtDvXmFdSLIhsj4XK6P5OO5mctldyZoKyze
+         8MQMAxwUeo3k48+tpQ6bRe+RtMpLCButalqiqHFdquxcVZUJs8SV1i70bK7bPT87TobU
+         qhH0DyTIll8+4/sXZ/ZEiKL/YQzwxHj0YaVIProHVD7SiR42IBhPGD0hrybYU70ETQ6d
+         FNUFRor/Cf11aOG2K6giheXkdPpP5prCFY0AJnBDUvVMzySkK3beY1QHDDSd7gALdZWf
+         5uAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=T3tR462VfAp1i1pzt2P4d077ekPtmSrX+PhUDbMpO4c=;
-        b=bHNjlojwfUG+UG+4pKQKel+w0ExvqRBPSufikMbTYAqblJtvbJ2iweaG7xUIyBNe7n
-         z7+EAAQqYRIrzc5tvA2aQnWb5Yo0x/X7H+XLiyBX7iJJJU0PbW5+yZu0eifCb6yNbPLc
-         hGLO0y0zqY/3fWLEcoCl5SUPwDWgDfn7vDLYgcCFR4inEDgdZTSwbbF1pGBBlET9tMhD
-         HjYd0o7+iYHkPMSOQYJvZc42GNpV6nDIJFrZjtFCvj1flcJAobAKp8J41/03ntj/Xgm8
-         EnYjvK6twLoQaL8p0QnFC22yPIGzUBo54iOMBUs8T3RwhtltY55seLG0lOqzfr0OYiWv
-         qC+w==
-X-Gm-Message-State: AOAM532I7wnzHQFwKrTK1uAOq3NN2DBhwKXm2OHKeAfsMiARU1xvja+M
-        PhK0cCzig1V07+3DTo9GFYT5dDIzX77HUwQ1A27W6p6KRijSPqei7Z+mTf2JDlO1qmlK+jbpvPN
-        aaVNvII5h5f8lXPEAMEOG0bSdrTWDRwjXQvo2kCs=
-X-Received: by 2002:adf:e5c2:: with SMTP id a2mr33443265wrn.251.1632220157833;
-        Tue, 21 Sep 2021 03:29:17 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwnJvWL9Bi/X/lBFdqN24wBSMEKxNp9lhhc6jvJf/1Y8+u79SSxor7b8LphncTkeSWQrO5H5Q==
-X-Received: by 2002:adf:e5c2:: with SMTP id a2mr33443250wrn.251.1632220157648;
-        Tue, 21 Sep 2021 03:29:17 -0700 (PDT)
-Received: from localhost.localdomain (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id m29sm20072380wrb.89.2021.09.21.03.29.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 03:29:17 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiri Kosina <trivial@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] dt-bindings: hwmon: sensirion,sht15: convert to dtschema
-Date:   Tue, 21 Sep 2021 12:28:32 +0200
-Message-Id: <20210921102832.143352-6-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210921102832.143352-1-krzysztof.kozlowski@canonical.com>
-References: <20210921102832.143352-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=WeosI4bsNB+ziUPwMtuooYUswr2aPS9qI01+kb9jQYw=;
+        b=MZGlpMHcH/GcnIYs+LUZRpw9qNkWNqdg7Tn1AL1AxH81askO/kCSzLRFUu0G9z99+r
+         AoE0u8qVuI2tY/fAFXN5E1vIZfpzz8BApFW9/n7IDNCetUeli0iq5Cwbp2r5kKz7Yl2G
+         3jNhF/jpETXoRtmM+gI9bcaSMFzrXPYwY45EPRiwg/J62ervgUcruhmHBrDJ14qqaWud
+         RbWBnJdtYQ4pkUKgXVC4we2YdhYYGHYv+fjihpRgBOKgy8fWuTqvuZ+SUdkkaS5pYr7Y
+         pnkaa/FkqC+5a/F6CpOgt6iC/R4hlz9ksiVE6w5Dqau+cTAI5JK7SL6dT/wEXJKOW9DZ
+         FCiw==
+X-Gm-Message-State: AOAM5300U5dLymXZLUKYf3Qvhg+dTujMNQF/nLVx+CgljdAkkBCoA877
+        mRCPi7LaZ2P5kZNhey6pTAIfU7yRi83i0BQXrl8=
+X-Google-Smtp-Source: ABdhPJxOJYNSM6AxHOZl1sng+pxvPYVS4kl++0SubcFhtjT1vTfycv2+a9T461yrm0WkdM+dy8KYT0EbD/JQZ0+W+Pc=
+X-Received: by 2002:a17:902:7c90:b0:13d:9572:86b6 with SMTP id
+ y16-20020a1709027c9000b0013d957286b6mr18144982pll.72.1632220206374; Tue, 21
+ Sep 2021 03:30:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a05:6a10:1d86:0:0:0:0 with HTTP; Tue, 21 Sep 2021 03:30:05
+ -0700 (PDT)
+Reply-To: ayishagddafio@mail.ru
+From:   Aisha Gaddafi <bunny2320123@gmail.com>
+Date:   Tue, 21 Sep 2021 03:30:05 -0700
+Message-ID: <CA+z0umGVHcYm7_x_0Jhk+HpeXOEm5SJXwDsW4uybaUmpo3txow@mail.gmail.com>
+Subject: Liebster Freund,.?
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Sensirion SHT15 humidity sensor to DT schema format.
+Liebster Freund,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../bindings/hwmon/sensirion,sht15.yaml       | 43 +++++++++++++++++++
- .../devicetree/bindings/hwmon/sht15.txt       | 19 --------
- 2 files changed, 43 insertions(+), 19 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml
- delete mode 100644 Documentation/devicetree/bindings/hwmon/sht15.txt
+Im Namen Gottes, des gn=C3=A4digsten, barmherzigsten.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml b/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml
-new file mode 100644
-index 000000000000..4669217d01e1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/sensirion,sht15.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sensirion SHT15 humidity and temperature sensor
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+
-+properties:
-+  compatible:
-+    const: sensirion,sht15
-+
-+  clk-gpios:
-+    maxItems: 1
-+
-+  data-gpios:
-+    maxItems: 1
-+
-+  vcc-supply:
-+    description: regulator that drives the VCC pin
-+
-+required:
-+  - compatible
-+  - clk-gpios
-+  - data-gpios
-+  - vcc-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    sensor {
-+        compatible = "sensirion,sht15";
-+        clk-gpios = <&gpio4 12 0>;
-+        data-gpios = <&gpio4 13 0>;
-+        vcc-supply = <&reg_sht15>;
-+
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_sensor>;
-+    };
-diff --git a/Documentation/devicetree/bindings/hwmon/sht15.txt b/Documentation/devicetree/bindings/hwmon/sht15.txt
-deleted file mode 100644
-index 6a80277cc426..000000000000
---- a/Documentation/devicetree/bindings/hwmon/sht15.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Sensirion SHT15 Humidity and Temperature Sensor
--
--Required properties:
--
-- - "compatible": must be "sensirion,sht15".
-- - "data-gpios": GPIO connected to the data line.
-- - "clk-gpios": GPIO connected to the clock line.
-- - "vcc-supply": regulator that drives the VCC pin.
--
--Example:
--
--	sensor {
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_sensor>;
--		compatible = "sensirion,sht15";
--		clk-gpios = <&gpio4 12 0>;
--		data-gpios = <&gpio4 13 0>;
--		vcc-supply = <&reg_sht15>;
--	};
--- 
-2.30.2
+Friede sei mit dir und Barmherzigkeit sei mit dir und Segen sei mit dir.
+Ich habe die Summe von 27,5 Millionen USD f=C3=BCr Investitionen, ich
+interessiere mich f=C3=BCr Sie f=C3=BCr die Unterst=C3=BCtzung von
+Investitionsprojekten in Ihrem Land. Mein Name ist Aisha Gaddafi und
+lebe derzeit im Oman, ich bin eine Witwe und alleinerziehende Mutter
+mit drei Kindern, die einzige leibliche Tochter des verstorbenen
+libyschen Pr=C3=A4sidenten (dem verstorbenen Oberst Muammar Gaddafi) und
+stehe derzeit unter politischem Asylschutz der omanischen Regierung.
 
+Bitte antworten Sie dringend f=C3=BCr weitere Details.
+
+Vielen Dank
+Mit freundlichen Gr=C3=BC=C3=9Fen Aisha
