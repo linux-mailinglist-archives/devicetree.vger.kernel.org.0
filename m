@@ -2,68 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC1B41305F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 10:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E41D741306A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 10:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231288AbhIUIrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 04:47:48 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:8367 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231269AbhIUIrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 04:47:48 -0400
-X-IronPort-AV: E=Sophos;i="5.85,310,1624287600"; 
-   d="scan'208";a="94677100"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 21 Sep 2021 17:46:19 +0900
-Received: from localhost.localdomain (unknown [10.226.92.242])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E42364000A88;
-        Tue, 21 Sep 2021 17:46:17 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 4/4] arm64: dts: renesas: rzg2l-smarc: Add Mic routing
-Date:   Tue, 21 Sep 2021 09:46:05 +0100
-Message-Id: <20210921084605.16250-5-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210921084605.16250-1-biju.das.jz@bp.renesas.com>
-References: <20210921084605.16250-1-biju.das.jz@bp.renesas.com>
+        id S231330AbhIUIuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 04:50:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43002 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231310AbhIUIuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 04:50:04 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC887C061575
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 01:48:36 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id bx4so27056264edb.4
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 01:48:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=pUh98EEgZG2+uO+vlZkUsJ82k9SQPEJS3egqtCoQfL4=;
+        b=JidHcdbTA56g9QDi5/rHubK3yUC4vaq0Q1uH2W1sMozCl7XKea40FpA5+GO7W1pE27
+         uo/UXYDxhtRzZrcBFQN6HIjpA9kdWR6CeUE+KBvO5ut2PCb1R8bbqlY89qitsK1OLzeG
+         w2bFos4aXABG4zXHt6QDag0bPaCuZyUoRczIViiHIt/oqVWE9HM8q2YmdoRg7z2FyPLQ
+         qpjdvgNnQnLlc19nqORxpUDlRBDuE2S8L9DmrZbn5FkZOdaaSNPx/TMMmIG+Baph5OsF
+         h6k5gftIt1TCjCu66WfbKVtnd+BLzsBTunxdU5zsRKa/FSj1+nzkBqiA/oIKe0YZFAVs
+         n+Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pUh98EEgZG2+uO+vlZkUsJ82k9SQPEJS3egqtCoQfL4=;
+        b=jSnjlkazVoV3tVgb8ZVPtEE82XkOwmZ/PluvcvvJl/LQRP2MKN+LRJ7hQ/ufdMViUV
+         zzRSWOjcV5+OR8P/knFfO8+6v0E3AUXZY43RUvl33oOnbDlIX2MPalHLNqJcKO3YPSrK
+         x/nnVh51snbfWUshvKdOzMuP+Euexk3XNMgvOOBGmcmDowUxKnOM3qpWhDXTos1++Kcm
+         /u1KeRXp/aESVh6wafeQ1e+7RGfxwx4csBvvRjwzSe5EFzFeXqBAq2jmHzpTs3JAVm3i
+         uqx1v3O8CIGqn21ckwZPuX8BF6EIiPQiDBHWB9pnT+OJwvES7Vr39E2RvguzUBcJ2sif
+         ifzA==
+X-Gm-Message-State: AOAM533Qc+gqv2Ew9ySuSgw5ZvL9gvp1ZmuSg8q67CPrzWv5xJPWz+Ow
+        LChb6CTnwqiLRaNZASMJrybQKw==
+X-Google-Smtp-Source: ABdhPJxrQxE9ACVMOX6Sh5MbXYcHLRld4KwTJA0+3Vfku8/s36x38h1VCVUeBEctj8vgBsGMB9oXdA==
+X-Received: by 2002:a17:906:1945:: with SMTP id b5mr32587263eje.347.1632214115300;
+        Tue, 21 Sep 2021 01:48:35 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id o23sm8153195eds.75.2021.09.21.01.48.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Sep 2021 01:48:34 -0700 (PDT)
+Subject: Re: [PATCH 3/7] ASoC: codecs: tx-macro: Change mic control registers
+ to volatile
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1632123331-2425-1-git-send-email-srivasam@codeaurora.org>
+ <1632123331-2425-4-git-send-email-srivasam@codeaurora.org>
+ <c1c7b1e8-98f5-99a3-1374-11d1d61535b4@linaro.org>
+ <b442ee2b-622c-674d-3abe-b1fbbfa5aeb9@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <e87ef6e1-0c10-beaa-81ad-2c0ceae6bbcc@linaro.org>
+Date:   Tue, 21 Sep 2021 09:48:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <b442ee2b-622c-674d-3abe-b1fbbfa5aeb9@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add audio routing for Mic with bias to reduce noise when doing
-audio capture.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-index 1791c21dfe74..39e05169aaaa 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-@@ -47,6 +47,12 @@
- 		simple-audio-card,frame-master = <&cpu_dai>;
- 		simple-audio-card,mclk-fs = <256>;
- 
-+		simple-audio-card,widgets = "Microphone", "Microphone Jack";
-+		simple-audio-card,routing =
-+			    "L2", "Mic Bias",
-+			    "R2", "Mic Bias",
-+			    "Mic Bias", "Microphone Jack";
-+
- 		cpu_dai: simple-audio-card,cpu {
- 			sound-dai = <&ssi0>;
- 		};
--- 
-2.17.1
+On 21/09/2021 08:30, Srinivasa Rao Mandadapu wrote:
+> 
+> On 9/20/2021 6:54 PM, Srinivas Kandagatla wrote:
+> Thanks for your time Srini!!
+>>
+>> On 20/09/2021 08:35, Srinivasa Rao Mandadapu wrote:
+>>> Update amic and dmic related tx macro control registers to volatile
+>>>
+>>> Fixes: c39667ddcfc5 (ASoC: codecs: lpass-tx-macro: add support for 
+>>> lpass tx macro)
+>>>
+>>> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+>>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>>> ---
+>>>   sound/soc/codecs/lpass-tx-macro.c | 13 +++++++++++++
+>>>   1 file changed, 13 insertions(+)
+>>>
+>>> diff --git a/sound/soc/codecs/lpass-tx-macro.c 
+>>> b/sound/soc/codecs/lpass-tx-macro.c
+>>> index 9273724..e65b592 100644
+>>> --- a/sound/soc/codecs/lpass-tx-macro.c
+>>> +++ b/sound/soc/codecs/lpass-tx-macro.c
+>>> @@ -423,6 +423,13 @@ static bool tx_is_volatile_register(struct 
+>>> device *dev, unsigned int reg)
+>>>       case CDC_TX_TOP_CSR_SWR_DMIC1_CTL:
+>>>       case CDC_TX_TOP_CSR_SWR_DMIC2_CTL:
+>>>       case CDC_TX_TOP_CSR_SWR_DMIC3_CTL:
+>>> +    case CDC_TX_TOP_CSR_SWR_AMIC0_CTL:
+>>> +    case CDC_TX_TOP_CSR_SWR_AMIC1_CTL:
+>>> +    case CDC_TX_CLK_RST_CTRL_MCLK_CONTROL:
+>>> +    case CDC_TX_CLK_RST_CTRL_FS_CNT_CONTROL:
+>>> +    case CDC_TX_CLK_RST_CTRL_SWR_CONTROL:
+>>> +    case CDC_TX_TOP_CSR_SWR_CTRL:
+>>> +    case CDC_TX0_TX_PATH_SEC7:
+>>
+>> Why are these marked as Volatile?
+>> Can you provide some details on the issue that you are seeing?
+>>
+>> --srini
+> 
+> Without volatile these registers are not reflecting in Hardware and 
+> playback and capture is not working.
+> 
+> Will do recheck and keep only required registers as volatile.
 
+This sounds like a total hack to me,
+
+this might be happening in your case:
+
+The default values for this register are different to actual defaults.
+Ex: CDC_TX_TOP_CSR_SWR_AMIC0_CTL default is 0x00
+so writing 0x0 to this register will be no-op as there is no change in 
+the register value as compared to default value as per regmap.
+
+In you case make sure the hardware default values are correctly 
+reflected in tx_defaults array.
+
+Then setting the desired value should work.
+
+
+--srini
+
+
+
+> 
+>>
+>>
+>>>           return true;
+>>>       }
+>>>       return false;
+>>> @@ -1674,6 +1681,12 @@ static int tx_macro_component_probe(struct 
+>>> snd_soc_component *comp)
+>>>         snd_soc_component_update_bits(comp, CDC_TX0_TX_PATH_SEC7, 0x3F,
+>>>                         0x0A);
+>>> +    snd_soc_component_update_bits(comp, 
+>>> CDC_TX_TOP_CSR_SWR_AMIC0_CTL, 0xFF, 0x00);
+>>> +    snd_soc_component_update_bits(comp, 
+>>> CDC_TX_TOP_CSR_SWR_AMIC1_CTL, 0xFF, 0x00);
+>>> +    snd_soc_component_update_bits(comp, 
+>>> CDC_TX_TOP_CSR_SWR_DMIC0_CTL, 0xFF, 0x00);
+>>> +    snd_soc_component_update_bits(comp, 
+>>> CDC_TX_TOP_CSR_SWR_DMIC1_CTL, 0xFF, 0x00);
+>>> +    snd_soc_component_update_bits(comp, 
+>>> CDC_TX_TOP_CSR_SWR_DMIC2_CTL, 0xFF, 0x00);
+>>> +    snd_soc_component_update_bits(comp, 
+>>> CDC_TX_TOP_CSR_SWR_DMIC3_CTL, 0xFF, 0x00);
+>>>         return 0;
+>>>   }
+>>>
