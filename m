@@ -2,115 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A76534133EC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 15:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA5B413450
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 15:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232702AbhIUNTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 09:19:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47762 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231658AbhIUNTf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 09:19:35 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829FBC061574;
-        Tue, 21 Sep 2021 06:18:07 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso21295008ota.8;
-        Tue, 21 Sep 2021 06:18:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=zh1CgLOwhwyadJWHmM0DrwXsbBT3UEj5Mhn4XZFBPW8=;
-        b=N+ukJLXvy+PTzH1+7VHEG+VAL7LkMICe8u0hYa/yU8vjgmYUYunh/lLNmeRsj7Y2F/
-         tgd/wQI3f+M7xI96xv5DD36RCLUFQ4i6ynW5k3J6w5r0C0F2GZpfqaUAp4GSIvqyzslu
-         GXIBYKlpRgAEKJjlfGas96ktdFzgu7bIvxLqCeTRivOkK0r+HQLZsPd4+c3f6WWd4eHQ
-         kVEtYxs7fgXdyQb/W/oAxjfTxVNnVm1VEQYHIU4gpBMU/T5d3ClupHBbM3gtN7Z3ug7u
-         KkUfbNbCjpsAGmulknoAsukIsWIaqQ6X6z588eTKqnVaz1dbrbhvcf+LAe421RQGqxpk
-         fd0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=zh1CgLOwhwyadJWHmM0DrwXsbBT3UEj5Mhn4XZFBPW8=;
-        b=k0L3J1TFL0MsEbXy8zqXSEb+Iv41cmFxkolIS5YQL1pOyhJxePFPVqHVoZb7KFm7NN
-         QLDycziqt4sFUWroslAYJcisRCEzakDMln1ZjSFyDI4t+7nGKKZ0izAI4Fwlt1c5uyhV
-         EHkgUwWk2b8O4TvKyYYge3kofnzFNROKy3gURTuDLxN/7trL0AHMVcrReAcNnwG8rqk+
-         B5R/8Qp33ASzT8XC3FcrAE/UmBazy7CTAKgWNRYu98Ki4Jem7ptwL3/bXmiD1FcDXiVZ
-         07WTtc5OktZAPO8DlBIvEWecFWXb7HfGBOZWBHnaQb0wooFy/Ga0f2OABGxlSZ533Kpc
-         5RXg==
-X-Gm-Message-State: AOAM5308Z8mXF1x3yaIJDjoNIqVodDNIs9O0ZEMNJmlCtlHEbNRvfWCM
-        HQvfHMiBRedEX8TchRUfv7A=
-X-Google-Smtp-Source: ABdhPJxWsjTpLlmBEjcj2pGwkR89u6zRHNNky9SlLLtC4PaBq0ZGPKE0PLosGiRn6lmxHE/wsPy+gw==
-X-Received: by 2002:a05:6830:1d43:: with SMTP id p3mr6022224oth.80.1632230286881;
-        Tue, 21 Sep 2021 06:18:06 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n23sm3577623otj.70.2021.09.21.06.18.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 06:18:05 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 21 Sep 2021 06:18:04 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        Jiri Kosina <trivial@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/6] dt-bindings: hwmon: ibm,cffps: move to trivial
- devices
-Message-ID: <20210921131804.GC1864238@roeck-us.net>
-References: <20210921102832.143352-1-krzysztof.kozlowski@canonical.com>
- <20210921102832.143352-3-krzysztof.kozlowski@canonical.com>
- <20210921123025.GC1043608@roeck-us.net>
- <68fa27ae-4704-181f-e2f6-92635865798b@canonical.com>
+        id S233080AbhIUNgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 09:36:51 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:45528 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S233033AbhIUNgt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 09:36:49 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18L7AKhB006203;
+        Tue, 21 Sep 2021 15:35:09 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=9+Kwlm+L8H7YKY6mvIF1mdYOkB2nTTC9Hu8EuriSzrU=;
+ b=nXFMZrZzOSdm5R6DaTY7ZzSwgPRXY9EWeYurFmkxS0NtlCvAxgTFNo+je7p/46boFQLY
+ 2aR2dK1A2nw6CrlrGcIN7bAv4l9vuwO4FSBMBCF1YwcfQCliyOq6Ez8IniEL38fF8bVc
+ 7+J+cA1lCMwhp2ZSN4deoNSzKgzbynxD1HYFXwkYEsK8A96ETfSlZ81nZ/ZWeodev0oX
+ g8bAFVyhAAzDWC06Rx7lCBqtInkt8EBW/eilPjkOvfsiOxrUdo47FOo7m1quuhE4xvSE
+ P3ZhBl+okv+B4uUiuZJVrY83MOIgPREY938GUv8022FCzjfc8k20+pzyVj/eu0pkc71M gA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3b7as51u8n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Sep 2021 15:35:09 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A1364100034;
+        Tue, 21 Sep 2021 15:35:07 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9A44D244899;
+        Tue, 21 Sep 2021 15:35:07 +0200 (CEST)
+Received: from localhost (10.75.127.49) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 21 Sep 2021 15:35:04
+ +0200
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To:     <alexandre.torgue@foss.st.com>
+CC:     <robh+dt@kernel.org>, <amelie.delaunay@foss.st.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <fabrice.gasnier@foss.st.com>
+Subject: [PATCH] ARM: dts: stm32: fix STUSB1600 Type-C irq level on stm32mp15xx-dkx
+Date:   Tue, 21 Sep 2021 15:34:49 +0200
+Message-ID: <1632231289-18881-1-git-send-email-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <68fa27ae-4704-181f-e2f6-92635865798b@canonical.com>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-21_01,2021-09-20_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 02:45:42PM +0200, Krzysztof Kozlowski wrote:
-> On 21/09/2021 14:30, Guenter Roeck wrote:
-> > On Tue, Sep 21, 2021 at 12:28:29PM +0200, Krzysztof Kozlowski wrote:
-> >> The IBM Common Form Factor Power Supply Versions 1 and 2 bindings are
-> >> trivial, so they can be integrated into trivial devices bindings.
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > 
-> > I won't accept any of those "move to trivial devices" patches. In many cases
-> > the bindings are simply incomplete. I can not and will not make that call,
-> > and I always did and will leave it up to driver authors to decide if they
-> > want to add a device to trivial devices or provide explicit bindings.
-> > 
-> > Please stop sending those patches.
-> > 
-> 
-> Back in the older times, there were no trivial-devices and checkpatch
-> plus maintainers required documenting compatibles, so some of such
-> simple bindings were created.
-> 
+STUSB1600 IRQ (Alert pin) is active low (open drain). Interrupts may get
+lost currently, so fix the IRQ type.
 
-At the same time, as I said, the bindings for many chips are incomplete.
-For this driver, we can not make that call because the datasheet is not
-public. The same is true for dps650ab. For others, the datasheet is
-available, and a reasonable decision can be made if the chip may ever
-need more complete bindings.
+Fixes: 83686162c0eb ("ARM: dts: stm32: add STUSB1600 Type-C using I2C4 on stm32mp15xx-dkx")
 
-So, let's qualify my statement: I'll accept such patches if you can show,
-from the datasheet, that it is unlikely that explicit bindings will ever
-be needed. That would be the case for LM70, for example. That would need
-more than a statement that "bindings are trivial", though. It also require
-a statement along the line that you have confirmed, from to the datasheet,
-that there is nothing to configure for this chip that would ever require
-explicit bindings.
+Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+---
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks,
-Guenter
+diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+index 9a95489..878ea36 100644
+--- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
++++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+@@ -260,7 +260,7 @@
+ 	stusb1600@28 {
+ 		compatible = "st,stusb1600";
+ 		reg = <0x28>;
+-		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
++		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-parent = <&gpioi>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&stusb1600_pins_a>;
+-- 
+2.7.4
 
-> I understand however your point, fair enough. I'll stop sending such
-> patches.
-> 
-> Best regards,
-> Krzysztof
