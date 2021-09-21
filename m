@@ -2,81 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D864413C0F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:11:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EEC6413C14
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:11:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235318AbhIUVMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 17:12:36 -0400
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:45965 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235287AbhIUVM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:12:26 -0400
-Received: by mail-oi1-f173.google.com with SMTP id v10so1070922oic.12;
-        Tue, 21 Sep 2021 14:10:57 -0700 (PDT)
+        id S235341AbhIUVMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 17:12:51 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:33439 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235288AbhIUVMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:12:50 -0400
+Received: by mail-oi1-f181.google.com with SMTP id 24so1267578oix.0;
+        Tue, 21 Sep 2021 14:11:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jIz2G48SF2XThdMGQsfeQUy2tCLoDKrmydgjbV43nOk=;
-        b=QpJ0ARP+wALZvRtftGIdnz/AqNsLle1AH8XngMUkV/iOQkorCyKU8RB0D2/9S7/LbK
-         P5a52gpa0lWu3JrY5heZu+o9Rz2UXKzg8fPItGltX30IK/5Wscdq4PtqZXOh/+MpWQ55
-         yA0TcpfD+W3SfmrAhj5J+S9NBB4kYIuOYjVu0UcVXl+YLYBviZKQCKDzk//VLKBR43xz
-         bDbn4CGGqcXkBbCSZ3bQXoDAaJeM/v+cQk4JYy8X5JUWZK+cgJJK7qttjjhFQFWXc2hP
-         avzAWoLUZ98KA9M89YpP1QUmF4BNat+1W1pzZ5pS3BwkZFP0aOK97kC8JDjFdsuWVMoZ
-         7lrg==
-X-Gm-Message-State: AOAM532oGVXmqOfiad3dzichOdsK4LwI31N86uMLEc5dM+mcf4fQVjpm
-        xmBYRDsHvj98hs11SpckYg==
-X-Google-Smtp-Source: ABdhPJzVxcUKtkEaMTuDtJmU/GqAZYe5OyjA58+NTxsyuCgjp7qZKhxVm2JNoJ6jbd2cdujwTNJ7/Q==
-X-Received: by 2002:aca:eb83:: with SMTP id j125mr107354oih.47.1632258656807;
-        Tue, 21 Sep 2021 14:10:56 -0700 (PDT)
+        bh=hRXRuE1+8asJXNy5ZzL9E4nuBT3tipZBLbRPGxp4BLg=;
+        b=uXvjWTVenh2jrpwLmCS9HMOArDDN+YGnTrhGB577R7LQLgSE9OCSFvRlnXps9vB5fv
+         KbtueU8804X2zB+D9NX9dOlIr90SB2ZVmvFO5IGhabzIQfulwwwXsyOQQWcHJhv1mCPX
+         pLRjxlwJ+L5mekuSOFKNQkc/vB/ZaUoN9zsL2QApanPMr441mhniaIcqmazxpqpTimkS
+         HmE17DoBNFGc5j6u0pvHeG+SBKGjV85dZ3/4EN5e4EupVsQnDA/3xFPh580W3LtXPuYO
+         nZ4FHCRFNMp0j7g0a8eO+z0GHohvJCSx6UKgaIBQ0XO0njC7m9mssiL77+65yVy6RVYE
+         S8ww==
+X-Gm-Message-State: AOAM533QrwVyksneXZo2kHBprxCW7zCqlsonVZsgsGUHJCUKJeFduMF2
+        kAZXbKohgfJFiwHX4cieOw==
+X-Google-Smtp-Source: ABdhPJyQW2Koz8jAd+1kZk3ODPjulP75q4aqnYchN8Z4GaHg8ebHZAfcJEYJmGfJ1+vn9F+/nK3kHQ==
+X-Received: by 2002:a05:6808:35a:: with SMTP id j26mr5444088oie.140.1632258680931;
+        Tue, 21 Sep 2021 14:11:20 -0700 (PDT)
 Received: from robh.at.kernel.org (rrcs-192-154-179-36.sw.biz.rr.com. [192.154.179.36])
-        by smtp.gmail.com with ESMTPSA id s24sm35233oic.34.2021.09.21.14.10.55
+        by smtp.gmail.com with ESMTPSA id i25sm40330otf.31.2021.09.21.14.11.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 14:10:56 -0700 (PDT)
-Received: (nullmailer pid 3331030 invoked by uid 1000);
-        Tue, 21 Sep 2021 21:10:55 -0000
-Date:   Tue, 21 Sep 2021 16:10:55 -0500
+        Tue, 21 Sep 2021 14:11:20 -0700 (PDT)
+Received: (nullmailer pid 3331641 invoked by uid 1000);
+        Tue, 21 Sep 2021 21:11:19 -0000
+Date:   Tue, 21 Sep 2021 16:11:19 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-clk@vger.kernel.org, Amit Pundir <amit.pundir@linaro.org>,
-        Tom Gall <tom.gall@linaro.org>, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/6] dt-bindings: clock: Add bindings definitions for
- Exynos850 CMU
-Message-ID: <YUpKX+0nZNTvLUgH@robh.at.kernel.org>
-References: <20210914155607.14122-1-semen.protsenko@linaro.org>
- <20210914155607.14122-5-semen.protsenko@linaro.org>
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Daniel Palmer <daniel@0x0f.com>, Arnd Bergmann <arnd@arndb.de>,
+        linux-kernel@vger.kernel.org, Olof Johansson <olof@lixom.net>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: add vendor prefix for Wireless Tag
+Message-ID: <YUpKd4m776uEO5wO@robh.at.kernel.org>
+References: <20210914184141.32700-1-romain.perier@gmail.com>
+ <20210914184141.32700-3-romain.perier@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210914155607.14122-5-semen.protsenko@linaro.org>
+In-Reply-To: <20210914184141.32700-3-romain.perier@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Sep 2021 18:56:05 +0300, Sam Protsenko wrote:
-> Clock controller driver is designed to have separate instances for each
-> particular CMU. So clock IDs in this bindings header also start from 1
-> for each CMU.
+On Tue, 14 Sep 2021 20:41:40 +0200, Romain Perier wrote:
+> This adds a vendor prefix for wireless tag boards and SOMs.
 > 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Romain Perier <romain.perier@gmail.com>
 > ---
->  include/dt-bindings/clock/exynos850.h | 72 +++++++++++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 include/dt-bindings/clock/exynos850.h
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
