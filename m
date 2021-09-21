@@ -2,205 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6B3413007
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 10:14:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16145413025
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 10:27:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230414AbhIUIQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 04:16:15 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:58241 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230445AbhIUIQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 04:16:15 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1632212087; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=VYuQcjJgBCV5YB1/ZkmdBfsOPsqJ+sm51i8VCCVd5I8=; b=P4IWpjDJTjZkzvf4fiMN/1ZUCoFpRzv1LEWk60ER5WTh+30YoiH/MvhMwnYnhAZ1qI4AItDa
- OZ2XYcd3LTQG93o58Rsz5NrjYsfWI6fOhe+s+MxD94Idoqu33ayLSTTvArAirG4eTpxoiK4A
- S0L+18bAEqCtBHigIWaMxE9YEUA=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 61499465648642cc1c3609e7 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 21 Sep 2021 08:14:29
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 549EFC43618; Tue, 21 Sep 2021 08:14:29 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.204.90] (unknown [157.48.173.130])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S230496AbhIUI3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 04:29:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53650 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230488AbhIUI3D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 04:29:03 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 540C4C4338F;
-        Tue, 21 Sep 2021 08:14:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 540C4C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH 4/7] ASoC: codecs: lpass-va-macro: Change bulk voting to
- individual clock voting
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1632123331-2425-1-git-send-email-srivasam@codeaurora.org>
- <1632123331-2425-5-git-send-email-srivasam@codeaurora.org>
- <5f915592-0ca6-2839-43fc-6d9aef1484b7@linaro.org>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <2378b5b1-fe45-171d-f8f9-373f8cece37f@codeaurora.org>
-Date:   Tue, 21 Sep 2021 13:44:19 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <5f915592-0ca6-2839-43fc-6d9aef1484b7@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+        by mail.kernel.org (Postfix) with ESMTPSA id 2D89C61215;
+        Tue, 21 Sep 2021 08:27:35 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mSb7l-00C0DE-9X; Tue, 21 Sep 2021 09:27:33 +0100
+Date:   Tue, 21 Sep 2021 09:27:32 +0100
+Message-ID: <87lf3quydn.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Romain Perier <romain.perier@gmail.com>
+Subject: Re: [PATCH 2/3] irqchip: SigmaStar SSD20xD gpi
+In-Reply-To: <CAFr9PXmA07Up_wfJzzgZeYwE5ZrwnLqjBvLG3CERGHOLeay0Cg@mail.gmail.com>
+References: <20210914100415.1549208-1-daniel@0x0f.com>
+        <20210914100415.1549208-3-daniel@0x0f.com>
+        <87zgs7vavl.wl-maz@kernel.org>
+        <CAFr9PXnC4hQw5_0TtciKvqF7s=4axJ5Yrq80RXGcY4VvT1Ac2A@mail.gmail.com>
+        <87wnnbv6ac.wl-maz@kernel.org>
+        <CAFr9PXmA07Up_wfJzzgZeYwE5ZrwnLqjBvLG3CERGHOLeay0Cg@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: daniel@0x0f.com, linus.walleij@linaro.org, devicetree@vger.kernel.org, robh+dt@kernel.org, tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, romain.perier@gmail.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 21 Sep 2021 05:16:35 +0100,
+Daniel Palmer <daniel@0x0f.com> wrote:
 
-On 9/20/2021 6:55 PM, Srinivas Kandagatla wrote:
->
->
-Thanks for Your time Srini!!!
-> On 20/09/2021 08:35, Srinivasa Rao Mandadapu wrote:
->> Change bulk clock frequency voting to individual voting.
->>
-> Can you please explain why do we need to move out using clk bulk apis?
->
-> Am not seeing any thing obvious behavior changing as part of this 
-> patch, more details please..
++ Linus.
 
-In ADSP bypass use case, few clocks like macro and decode, are optional. 
-So is the main reason for move out.
+> So if I set irq_chip_ack_parent as the ack callback I get another explosion:
+> 
+> # gpiomon -r 0 44
+> [   22.370689] 8<--- cut here ---
+> [   22.373802] Unable to handle kernel NULL pointer dereference at
+> virtual address 00000018
+> [   22.381945] pgd = (ptrval)
+> [   22.384685] [00000018] *pgd=235cb835, *pte=00000000, *ppte=00000000
+> [   22.391038] Internal error: Oops: 17 [#1] SMP ARM
+> [   22.395776] Modules linked in:
+> [   22.398860] CPU: 1 PID: 193 Comm: gpiomon Not tainted 5.15.0-rc2+ #2566
+> [   22.405515] Hardware name: MStar/Sigmastar Armv7 (Device Tree)
+> [   22.411376] PC is at irq_chip_ack_parent+0x8/0x10
+> [   22.416120] LR is at __irq_do_set_handler+0x3c/0x11c
+> [   22.421119] pc : [<c017f498>]    lr : [<c018029c>]    psr: a0040093
+> [   22.427419] sp : c3505d68  ip : ffffe000  fp : 00000000
+> [   22.432673] r10: c0d592d4  r9 : 00000001  r8 : 00000000
+> [   22.437927] r7 : c3502618  r6 : 00000000  r5 : c017b9cc  r4 : c3502600
+> [   22.444489] r3 : 00000000  r2 : c10bb294  r1 : c10bb294  r0 : c26a3440
+> [   22.451053] Flags: NzCv  IRQs off  FIQs on  Mode SVC_32  ISA ARM
+> Segment user
+> [   22.458317] Control: 10c5387d  Table: 235b006a  DAC: 00000055
+> ---snip---
+> [   22.725196] [<c017f498>] (irq_chip_ack_parent) from [<c018029c>]
+> (__irq_do_set_handler+0x3c/0x11c)
+> [   22.734219] [<c018029c>] (__irq_do_set_handler) from [<c01803b4>]
+> (__irq_set_handler+0x38/0x50)
+> [   22.742976] [<c01803b4>] (__irq_set_handler) from [<c0181880>]
+> (irq_domain_set_info+0x34/0x48)
+> [   22.751649] [<c0181880>] (irq_domain_set_info) from [<c046f838>]
+> (gpiochip_hierarchy_irq_domain_alloc+0x104/0x228)
+> [   22.762069] [<c046f838>] (gpiochip_hierarchy_irq_domain_alloc) from
+> [<c0182c38>] (__irq_domain_alloc_irqs+0xd8/0x318)
+> [   22.772748] [<c0182c38>] (__irq_domain_alloc_irqs) from
+> [<c01832e8>] (irq_create_fwspec_mapping+0x22c/0x298)
+> [   22.782641] [<c01832e8>] (irq_create_fwspec_mapping) from
+> [<c0470124>] (gpiochip_to_irq+0x60/0x84)
+> [   22.791664] [<c0470124>] (gpiochip_to_irq) from [<c046ef18>]
+> (gpiod_to_irq+0x48/0x60)
+> [   22.799552] [<c046ef18>] (gpiod_to_irq) from [<c0477a48>]
+> (gpio_ioctl+0x1b4/0x420)
+> [   22.807178] [<c0477a48>] (gpio_ioctl) from [<c0262e4c>] (vfs_ioctl+0x20/0x38)
+> [   22.814371] [<c0262e4c>] (vfs_ioctl) from [<c0263708>] (sys_ioctl+0xb0/0x818)
+> [   22.821564] [<c0263708>] (sys_ioctl) from [<c0100060>]
+> (ret_fast_syscall+0x0/0x1c)
+> [   22.829190] Exception stack(0xc3505fa8 to 0xc3505ff0)
+> [   22.834273] 5fa0:                   ???????? ???????? ????????
+> ???????? ???????? ????????
+> [   22.842488] 5fc0: ???????? ???????? ???????? ???????? ????????
+> ???????? ???????? ????????
+> [   22.850701] 5fe0: ???????? ???????? ???????? ????????
+> [   22.855790] Code: e593301c e12fff13 e5900018 e5903010 (e5933018)
+> [   22.861919] ---[ end trace 10524aa06eced7e3 ]---
 
-And sometimes we are seeing bulk voting failed in Kodiak setup.
+This seems to be caused by your GPIO driver installing a flow handler
+(via irq_domain_set_info()), which is a bit odd. I would expect that
+only the root irqchip in the hierarchy would do that.
 
->> Fixes: 908e6b1df26e (ASoC: codecs: lpass-va-macro: Add support to VA 
->> Macro)
->
-> Why this has Fixes tag? Are we fixing any bug with this patch?
-Okay. As such we are not fixing any bug. Will remove this fixes tag on 
-your suggestion.
->
->>
->> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
->> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->> ---
->>   sound/soc/codecs/lpass-va-macro.c | 46 
->> ++++++++++++++++++++++++---------------
->>   1 file changed, 28 insertions(+), 18 deletions(-)
->>
->> diff --git a/sound/soc/codecs/lpass-va-macro.c 
->> b/sound/soc/codecs/lpass-va-macro.c
->> index d312a14..0ea39ae 100644
->> --- a/sound/soc/codecs/lpass-va-macro.c
->> +++ b/sound/soc/codecs/lpass-va-macro.c
->> @@ -193,7 +193,10 @@ struct va_macro {
->>         int dec_mode[VA_MACRO_NUM_DECIMATORS];
->>       struct regmap *regmap;
->> -    struct clk_bulk_data clks[VA_NUM_CLKS_MAX];
->> +    struct clk *mclk;
->> +    struct clk *macro;
->> +    struct clk *dcodec;
->> +
->>       struct clk_hw hw;
->>         s32 dmic_0_1_clk_cnt;
->> @@ -1321,7 +1324,7 @@ static const struct clk_ops fsgen_gate_ops = {
->>     static int va_macro_register_fsgen_output(struct va_macro *va)
->>   {
->> -    struct clk *parent = va->clks[2].clk;
->> +    struct clk *parent = va->mclk;
->>       struct device *dev = va->dev;
->>       struct device_node *np = dev->of_node;
->>       const char *parent_clk_name;
->> @@ -1404,15 +1407,18 @@ static int va_macro_probe(struct 
->> platform_device *pdev)
->>           return -ENOMEM;
->>         va->dev = dev;
->> -    va->clks[0].id = "macro";
->> -    va->clks[1].id = "dcodec";
->> -    va->clks[2].id = "mclk";
->>   -    ret = devm_clk_bulk_get(dev, VA_NUM_CLKS_MAX, va->clks);
->> -    if (ret) {
->> -        dev_err(dev, "Error getting VA Clocks (%d)\n", ret);
->> -        return ret;
->> -    }
->> +    va->macro = devm_clk_get_optional(dev, "macro");
->> +    if (IS_ERR(va->macro))
->> +        return PTR_ERR(va->macro);
->> +
->> +    va->dcodec = devm_clk_get_optional(dev, "dcodec");
->> +    if (IS_ERR(va->dcodec))
->> +        return PTR_ERR(va->dcodec);
->> +
->> +    va->mclk = devm_clk_get(dev, "mclk");
->> +    if (IS_ERR(va->mclk))
->> +        return PTR_ERR(va->mclk);
->>         ret = of_property_read_u32(dev->of_node, 
->> "qcom,dmic-sample-rate",
->>                      &sample_rate);
->> @@ -1426,10 +1432,11 @@ static int va_macro_probe(struct 
->> platform_device *pdev)
->>       }
->>         /* mclk rate */
->> -    clk_set_rate(va->clks[1].clk, VA_MACRO_MCLK_FREQ);
->> -    ret = clk_bulk_prepare_enable(VA_NUM_CLKS_MAX, va->clks);
->> -    if (ret)
->> -        return ret;
->> +    clk_set_rate(va->mclk, VA_MACRO_MCLK_FREQ);
->> +
->> +    clk_prepare_enable(va->mclk);
->> +    clk_prepare_enable(va->macro);
->> +    clk_prepare_enable(va->dcodec);
->>         base = devm_platform_ioremap_resource(pdev, 0);
->>       if (IS_ERR(base)) {
->> @@ -1457,8 +1464,9 @@ static int va_macro_probe(struct 
->> platform_device *pdev)
->>       return ret;
->>     err:
->> -    clk_bulk_disable_unprepare(VA_NUM_CLKS_MAX, va->clks);
->> -
->> +    clk_disable_unprepare(va->mclk);
->> +    clk_disable_unprepare(va->macro);
->> +    clk_disable_unprepare(va->dcodec);
->>       return ret;
->>   }
->>   @@ -1466,8 +1474,10 @@ static int va_macro_remove(struct 
->> platform_device *pdev)
->>   {
->>       struct va_macro *va = dev_get_drvdata(&pdev->dev);
->>   -    clk_bulk_disable_unprepare(VA_NUM_CLKS_MAX, va->clks);
->> -
->> +    of_clk_del_provider(pdev->dev.of_node);
->
-> fsgen clk is registered using devm_* variant of clk apis, so why do we 
-> need this here?
->
-Okay. Will remove it and post new patch.
->
-> --srini
->> +    clk_disable_unprepare(va->mclk);
->> +    clk_disable_unprepare(va->macro);
->> +    clk_disable_unprepare(va->dcodec);
->>       return 0;
->>   }
->>
+At the point where this is called, the hierarchy isn't fully populated
+(the irq_domain_alloc_irqs_parent() call comes after that), and
+irq_chip_ack_parent() explodes as above.
+
+Linus: is there a reason why the gpiolib insist on setting its own
+handler while building the hierarchy? I guess this could be worked
+around by swapping the calls to irq_domain_set_info and
+irq_domain_alloc_irqs_parent, but having two levels of the hierarchy
+competing for the flow handler looks a bit odd.
+
+Thanks,
+
+	M.
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+Without deviation from the norm, progress is not possible.
