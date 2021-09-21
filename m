@@ -2,68 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30CE6413B7A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 22:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC74413B7F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 22:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232287AbhIUUhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 16:37:34 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:40629 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234947AbhIUUhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 16:37:34 -0400
-Received: by mail-ot1-f48.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so248175otq.7
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 13:36:05 -0700 (PDT)
+        id S234926AbhIUUiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 16:38:14 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:36760 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234921AbhIUUiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 16:38:14 -0400
+Received: by mail-oi1-f181.google.com with SMTP id y201so1050813oie.3;
+        Tue, 21 Sep 2021 13:36:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ByrtFbrPl2Y6J8eEGz4qbI0N8sjhczFqDh16yLb9Hyo=;
-        b=d1Hk5NY/d7JQdwKxL0Hvf1JlLSOYLeJjycIw4C+kOT6uIIrxc30fHpMhbjZ6M7DVQS
-         eWKzABv8kXQSLYt3/tfIWmViJOO98vBP1TWZdeJM8CkkQuRPoF0cnW3CticiD0dKcATS
-         AM1cYrJ6ofg9Fsj7/LY5XGNLKLFGzffmP2NSfhZwzJYHdQ4o1RSuobd27mnLJN1b0MZ1
-         WynyBil/gm+joxJffFt4fUzttw0BD5y5BJ8cN0UIMIul0P8wiwAaXR4rTICus9QRhyDm
-         CGFsUbiY2XYAocO5aETms3HQ1BEv+maKM85UAKn3d7rHAQ9poXL/Z4bmileojEHSYfTd
-         xqlA==
-X-Gm-Message-State: AOAM530yLSwFFdi8gsSvutDflbs1ftYrN671bWJFMKWK5kYrOuPED3eM
-        xVh6+lhcOCjaHi4FcXXLdg==
-X-Google-Smtp-Source: ABdhPJxMcYaFH3l2V7hfw489I3sPUtyFBhheIhRj4pqe9XcIkyppSNTSacBFOxzHIHo9zUYHEaLACA==
-X-Received: by 2002:a9d:411:: with SMTP id 17mr10110662otc.239.1632256564469;
-        Tue, 21 Sep 2021 13:36:04 -0700 (PDT)
+        bh=74OhYUyeQYysi/TzRlJJ051fes4I/adprkYFLTi5Sdw=;
+        b=PEmfxGR2vC8ZC//3Nsi+rcK3BDGVjQ5PsAGM8SXIOSTFHICk/mYSSm1AhKiF4TT6Af
+         lQJC7k1N0M0/21F2B0AALtYvqAOHuXobowoqJd5Gyuv7RY/7qCmGqGb6qIxPSBr7/w6Z
+         CtZkKhhda9IkfLRqBn3UStMzhyyN36XnvVq+tap6IV0S70jzvmdKp5MFmmulXAhsajUS
+         RGmnwGIlm2Od90d5jfSW1Lxtgns8Nmz3MgeHxfGDBIbhtOqx+c8bZQsCByQVJN6dL9LC
+         hljnPzT603bTMxXUFI7bRAn9faQSt1hOeZa5vImId2i2xkgdN180soT1tCJzRWF0zoda
+         /n3Q==
+X-Gm-Message-State: AOAM533+rgVFv0H6GC48HHIqCrAYOogW8R0eSoUugwNjvXxJtaV6+WWE
+        7EstX4+mT2iee6DWVDdxNQ==
+X-Google-Smtp-Source: ABdhPJzpj/fzNJ7BMj74jnTQOWdAXExqWcupsGQA5m5n6ary5zeQWefviZyc6aAk8QOZVNYAsL3+Tg==
+X-Received: by 2002:a05:6808:1481:: with SMTP id e1mr5210840oiw.5.1632256605224;
+        Tue, 21 Sep 2021 13:36:45 -0700 (PDT)
 Received: from robh.at.kernel.org (rrcs-192-154-179-36.sw.biz.rr.com. [192.154.179.36])
-        by smtp.gmail.com with ESMTPSA id v24sm10362ote.66.2021.09.21.13.36.03
+        by smtp.gmail.com with ESMTPSA id v19sm16599oic.31.2021.09.21.13.36.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 13:36:03 -0700 (PDT)
-Received: (nullmailer pid 3284895 invoked by uid 1000);
-        Tue, 21 Sep 2021 20:36:01 -0000
-Date:   Tue, 21 Sep 2021 15:36:01 -0500
+        Tue, 21 Sep 2021 13:36:44 -0700 (PDT)
+Received: (nullmailer pid 3285894 invoked by uid 1000);
+        Tue, 21 Sep 2021 20:36:42 -0000
+Date:   Tue, 21 Sep 2021 15:36:42 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     maz@kernel.org, linux-arm-kernel@lists.infradead.org,
-        tglx@linutronix.de, romain.perier@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: interrupt-controller: Add SigmaStar
- SSD20xD gpi
-Message-ID: <YUpCMXjUh4JllX/Z@robh.at.kernel.org>
-References: <20210914100415.1549208-1-daniel@0x0f.com>
- <20210914100415.1549208-2-daniel@0x0f.com>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Ikjoon Jang <ikjn@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>, youlin.pei@mediatek.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, Joerg Roedel <joro@8bytes.org>,
+        linux-kernel@vger.kernel.org, yi.kuo@mediatek.com,
+        anan.sun@mediatek.com, Tomasz Figa <tfiga@chromium.org>,
+        ming-fan.chen@mediatek.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Will Deacon <will@kernel.org>, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
+        anthony.huang@mediatek.com, Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v4 02/13] dt-bindings: memory: mediatek: Add mt8195 smi
+ sub common
+Message-ID: <YUpCWib8Tpf0wfif@robh.at.kernel.org>
+References: <20210914113703.31466-1-yong.wu@mediatek.com>
+ <20210914113703.31466-3-yong.wu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210914100415.1549208-2-daniel@0x0f.com>
+In-Reply-To: <20210914113703.31466-3-yong.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Sep 2021 19:04:13 +0900, Daniel Palmer wrote:
-> Add a binding description for the SigmaStar GPIO interrupt
-> controller, gpi, found on the SSD201 and SSD202D.
+On Tue, 14 Sep 2021 19:36:52 +0800, Yong Wu wrote:
+> Add the binding for smi-sub-common. The SMI block diagram like this:
 > 
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+>         IOMMU
+>          |  |
+>       smi-common
+>   ------------------
+>   |      ....      |
+>  larb0           larb7   <-max is 8
+> 
+> The smi-common connects with smi-larb and IOMMU. The maximum larbs number
+> that connects with a smi-common is 8. If the engines number is over 8,
+> sometimes we use a smi-sub-common which is nearly same with smi-common.
+> It supports up to 8 input and 1 output(smi-common has 2 output)
+> 
+> Something like:
+> 
+>         IOMMU
+>          |  |
+>       smi-common
+>   ---------------------
+>   |      |          ...
+> larb0  sub-common   ...   <-max is 8
+>       -----------
+>        |    |    ...   <-max is 8 too.
+>      larb2 larb5
+> 
+> We don't need extra SW setting for smi-sub-common, only the sub-common has
+> special clocks need to enable when the engines access dram.
+> 
+> If it is sub-common, it should have a "mediatek,smi" phandle to point to
+> its smi-common. meanwhile the sub-common only has one gals clock.
+> 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 > ---
->  .../sstar,ssd20xd-gpi.yaml                    | 53 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sstar,ssd20xd-gpi.yaml
+> change note: add "else mediatek,smi: false".
+> ---
+>  .../mediatek,smi-common.yaml                  | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
