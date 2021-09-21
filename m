@@ -2,126 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54CE2412EC7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 08:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28686412EE6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 08:59:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbhIUGrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 02:47:22 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:55505 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbhIUGrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 02:47:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1632206754; x=1663742754;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=o6lZk7/5WF5P0l2QkPxsSgucPRrvLaW9ltnagGvs3Ts=;
-  b=nOrxSakIOFUsFuj9YihH/ubI/+iH3KOaIEsflIWeJiervmsy4wMCflpj
-   n6+8PweNtpMRxEeuOGVIVhOJ+IXqEyfpu6Gyq4xY6/nLu8ykEnvnEPTBH
-   Kmqjc/XZPegTDLMkdC0d6g6UZ4lXz3FaUrBX92ucvK8Qd6Bk9wUOj+mKy
-   9ASl243UF/+ILfCiKOqbO2A3RvsR/D2Ek2/xicm8pUNGq3gunJ8oSYan/
-   Ibq3zGxDyyIaSfbewiYwu52HI5SuL8KIZuxi6xpBvHkgQsliMDW+Ary18
-   nk93z05mPaQx7K7tni4lMZjkwxDqju9Zlv3yLAH9FVbfOTscVDGX5bCIL
-   w==;
-IronPort-SDR: DvFRNCRS0JnYcPmGrGwhRYqvK+jLwSSmsjpBF40qA+m9JSVloxHKzWsfa//4BL8rQ0d7H4DHrU
- ey8NVXketEc6YwcLVZUq04XY8Pmj+I2S2qtEz0yphYMJ8E/IJ6kNVJCRuPwONJIXUBblFQvFFS
- 6spEJ58exI5RFoJxjga6tobQUUKHb5Y7evTDJ4hDT70RlbCQzLvXAtzlLLdOuN77oqji3swl1n
- SDmDJdpUyue/fT0T1zTe1RK1y0ydvb3+d6riQwItU578LUvAbGInocKcsyboy4szKOmhrneAtY
- iaBvMqN68O8YqU4EUty9pzz+
-X-IronPort-AV: E=Sophos;i="5.85,310,1624345200"; 
-   d="scan'208";a="144928458"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Sep 2021 23:45:53 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 20 Sep 2021 23:45:53 -0700
-Received: from CHE-LT-I66125LX.amer.actel.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Mon, 20 Sep 2021 23:45:46 -0700
-From:   Durai Manickam KR <durai.manickamkr@microchip.com>
-To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <Hari.PrasathGE@microchip.com>
-CC:     Durai Manickam KR <durai.manickamkr@microchip.com>
-Subject: [PATCH] ARM: dts: at91-sama5d2_icp.dts: Added I2C bus recovery support
-Date:   Tue, 21 Sep 2021 12:13:44 +0530
-Message-ID: <20210921064344.889304-1-durai.manickamkr@microchip.com>
-X-Mailer: git-send-email 2.25.1
+        id S229988AbhIUHAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 03:00:55 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:58780 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229917AbhIUHAy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 03:00:54 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1632207567; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=mqWwXANTiQxXkA98c0p3Y/JczBb1em+X57YatmhzCkE=; b=tZAHYXK2EBniqqfzFgZy4RHf+zEP3JMhCSq2nl3euvKkAOs+FZ9fGlTlIMm9agGghx3ZBXAA
+ ppz9JFfX8iTF8PbtJqKWCDnZ8c0IoX3LR87vcK0TwE61wJiH1ZSkyhpdOhldhku7wPJ0ASJd
+ 0HSZZoKzAjSoxljESgwDP3DjSmE=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 614982c9648642cc1c139353 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 21 Sep 2021 06:59:21
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id CEA5DC43619; Tue, 21 Sep 2021 06:59:21 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.204.90] (unknown [157.48.173.130])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9DCBAC4338F;
+        Tue, 21 Sep 2021 06:59:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 9DCBAC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH 2/7] ASoC: qcom: dt-bindings: Add compatible names for
+ lpass sc7280 digital codecs
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1632123331-2425-1-git-send-email-srivasam@codeaurora.org>
+ <1632123331-2425-3-git-send-email-srivasam@codeaurora.org>
+ <7c12126d-99a8-4572-6e95-b63131cae300@linaro.org>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <3e8ea5bd-9301-2605-b7e9-02ddab076fc7@codeaurora.org>
+Date:   Tue, 21 Sep 2021 12:29:08 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <7c12126d-99a8-4572-6e95-b63131cae300@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SDA and SCL is configured as GPIO for I2C bus to recover during
-I2C bus malfunction.
 
-Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
----
- arch/arm/boot/dts/at91-sama5d2_icp.dts | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/at91-sama5d2_icp.dts b/arch/arm/boot/dts/at91-sama5d2_icp.dts
-index e06b58724ca8..806eb1d911d7 100644
---- a/arch/arm/boot/dts/at91-sama5d2_icp.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_icp.dts
-@@ -307,8 +307,11 @@ regulator-state-mem {
- };
- 
- &i2c0 { /* mikrobus i2c */
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_mikrobus_i2c>;
-+	pinctrl-1 = <&pinctrl_i2c0_gpio>;
-+	sda-gpios = <&pioA PIN_PD21 GPIO_ACTIVE_HIGH>;
-+	scl-gpios = <&pioA PIN_PD22 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	i2c-digital-filter;
- 	i2c-digital-filter-width-ns = <35>;
- 	status = "okay";
-@@ -316,8 +319,11 @@ &i2c0 { /* mikrobus i2c */
- 
- &i2c1 {
- 	dmas = <0>, <0>;
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c1_default>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	sda-gpios = <&pioA PIN_PD19 GPIO_ACTIVE_HIGH>;
-+	scl-gpios = <&pioA PIN_PD20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	i2c-digital-filter;
- 	i2c-digital-filter-width-ns = <35>;
- 	status = "okay";
-@@ -402,6 +408,12 @@ pinctrl_i2c1_default: i2c1_default {
- 		bias-disable;
- 	};
- 
-+	pinctrl_i2c1_gpio: i2c1_gpio {
-+                pinmux = <PIN_PD19__GPIO>,
-+                         <PIN_PD20__GPIO>;
-+                bias-disable;
-+        };
-+
- 	pinctrl_key_gpio_default: key_gpio_default {
- 		pinmux = <PIN_PD0__GPIO>;
- 		bias-pull-up;
-@@ -463,6 +475,12 @@ pinctrl_mikrobus_i2c: mikrobus_i2c {
- 		bias-disable;
- 	};
- 
-+	pinctrl_i2c0_gpio: i2c0_gpio {
-+		pinmux = <PIN_PD21__GPIO>,
-+			 <PIN_PD22__GPIO>;
-+		bias-disable;
-+	};
-+
- 	pinctrl_mikrobus1_an: mikrobus1_an {
- 		pinmux = <PIN_PD26__GPIO>;
- 		bias-disable;
+On 9/20/2021 6:54 PM, Srinivas Kandagatla wrote:
+Thanks for your time Srini!!
+>
+> On 20/09/2021 08:35, Srinivasa Rao Mandadapu wrote:
+>> Update compatible names in va, wsa, rx and tx macro codes for lpass 
+>> sc7280
+>>
+>> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> ---
+>> Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml | 4 
+>> +++-
+>> Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml | 4 
+>> +++-
+>> Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml | 4 
+>> +++-
+>> Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml | 4 
+>> +++-
+>>   4 files changed, 12 insertions(+), 4 deletions(-)
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml 
+>> b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+>> index 443d556..a4e767e 100644
+>> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+>> @@ -11,7 +11,9 @@ maintainers:
+>>     properties:
+>>     compatible:
+>> -    const: qcom,sm8250-lpass-rx-macro
+>> +    oneOf:
+>> +      - const: qcom,sm8250-lpass-rx-macro
+>> +      - const: qcom,sc7280-lpass-rx-macro
+> Recently Rob did tree wide change to use enum instead of oneOf for 
+> below reason
+> "
+> 'enum' is equivalent to 'oneOf' with a list of 'const' entries, but 
+> 'enum' is more concise and yields better error messages."
+>
+> So, can you move these to enums like:
+>
+> enum:
+>   - qcom,sm8250-lpass-rx-macro
+>   - qcom,sc7280-lpass-rx-macro
+>
+> --srini
+Okay. will change accordingly and post it.
+>
+>>     reg:
+>>       maxItems: 1
+>> diff --git 
+>> a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml 
+>> b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+>> index 6b5ca02..cdec478 100644
+>> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+>> @@ -11,7 +11,9 @@ maintainers:
+>>     properties:
+>>     compatible:
+>> -    const: qcom,sm8250-lpass-tx-macro
+>> +    oneOf:
+>> +      - const: qcom,sm8250-lpass-tx-macro
+>> +      - const: qcom,sc7280-lpass-tx-macro
+>>       reg:
+>>       maxItems: 1
+>> diff --git 
+>> a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml 
+>> b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+>> index 679b49c..e15bc05 100644
+>> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+>> @@ -11,7 +11,9 @@ maintainers:
+>>     properties:
+>>     compatible:
+>> -    const: qcom,sm8250-lpass-va-macro
+>> +    oneOf:
+>> +      - const: qcom,sm8250-lpass-va-macro
+>> +      - const: qcom,sc7280-lpass-va-macro
+>>       reg:
+>>       maxItems: 1
+>> diff --git 
+>> a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml 
+>> b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
+>> index 435b019..2dcccb5 100644
+>> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
+>> @@ -11,7 +11,9 @@ maintainers:
+>>     properties:
+>>     compatible:
+>> -    const: qcom,sm8250-lpass-wsa-macro
+>> +    oneOf:
+>> +      - const: qcom,sm8250-lpass-wsa-macro
+>> +      - const: qcom,sc7280-lpass-wsa-macro
+>>       reg:
+>>       maxItems: 1
+>>
 -- 
-2.25.1
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
