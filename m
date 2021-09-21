@@ -2,89 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B3AF41393C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 19:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0370A413943
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 19:53:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231705AbhIURxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 13:53:51 -0400
-Received: from sibelius.xs4all.nl ([83.163.83.176]:51995 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231153AbhIURxv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 13:53:51 -0400
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id eddbe515;
-        Tue, 21 Sep 2021 19:52:18 +0200 (CEST)
-Date:   Tue, 21 Sep 2021 19:52:18 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
-        kettenis@openbsd.org, tglx@linutronix.de, maz@kernel.org,
-        marcan@marcan.st, bhelgaas@google.com, jim2101024@gmail.com,
-        nsaenz@kernel.org, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        daire.mcnamara@microchip.com, nsaenzjulienne@suse.de,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
-In-Reply-To: <YS6cEkDn5IAVW/xQ@robh.at.kernel.org> (message from Rob Herring
-        on Tue, 31 Aug 2021 16:16:02 -0500)
-Subject: Re: [PATCH v4 2/4] dt-bindings: interrupt-controller: msi: Add
- msi-ranges property
-References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
- <20210827171534.62380-3-mark.kettenis@xs4all.nl> <YS6cEkDn5IAVW/xQ@robh.at.kernel.org>
-Message-ID: <56147407e10f61cb@bloch.sibelius.xs4all.nl>
+        id S231877AbhIURyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 13:54:53 -0400
+Received: from mail-vs1-f43.google.com ([209.85.217.43]:41644 "EHLO
+        mail-vs1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231153AbhIURyw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 13:54:52 -0400
+Received: by mail-vs1-f43.google.com with SMTP id az15so83775vsb.8;
+        Tue, 21 Sep 2021 10:53:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iyyeEHOVCNvs6CZwx6C5mr8cJQBkuMT85d26cHc7CJQ=;
+        b=mDCHk12gp5Bd6JoQRste5BQ3DCPwVodAmAbiYYHAbrQlHMlIKM0SYuhwB2RNsrLDw8
+         qUctL3tlDYPuYsfnO85kTtkou0JB6fAYHAMad9bSJq5gZOSamzkOSRuxLQpwfY4UB7g/
+         YjCL5G1EkbzFLMIqDoWlgwiXyrB84Af0KYFh76KyqKy1e3zhKqKFLiqa9zd1LeNGlWnS
+         iutfiqflrTKfWGmm0sFuBBPcRYPswAvrs+WeEmOJ1Zwv633VBDMdyEUKJt1w+TPzbkgA
+         I2YETmsIzsM8XklVhTsn7gXkLj8SOzt/Wxoh7mywr1p9bMg1cF1zcbcEJgL0VZUa64t0
+         aTSQ==
+X-Gm-Message-State: AOAM533RSo3skVKOU1B5s7sXJQ3cmLn7hdR/3LVu+A4ytVcrdwwgd6MP
+        yJ5RQI1WfX+D7KbAV4+QwJQRu2Fm9ID5u3qUsK0hBb4QWgs=
+X-Google-Smtp-Source: ABdhPJwxli5fsnZCcxIIYenKV2X5BerNuj73HIQ3fjV2MKWZadPDwTjcTelNzPxFb2Mp4J0YOm+9NQEgYfuvrDcytkI=
+X-Received: by 2002:a67:cc1c:: with SMTP id q28mr21188353vsl.37.1632246803736;
+ Tue, 21 Sep 2021 10:53:23 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210920182955.13445-1-biju.das.jz@bp.renesas.com> <20210920182955.13445-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210920182955.13445-2-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 21 Sep 2021 19:53:12 +0200
+Message-ID: <CAMuHMdU-e8nd2ooOWjomSOdh2mOuLUqzZOp5NeNc1K=OYQys7A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: rzg2l-smarc: Enable USB2.0 support
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Tue, 31 Aug 2021 16:16:02 -0500
-> From: Rob Herring <robh@kernel.org>
-> 
-> On Fri, Aug 27, 2021 at 07:15:27PM +0200, Mark Kettenis wrote:
-> > From: Mark Kettenis <kettenis@openbsd.org>
-> > 
-> > Update the MSI controller binding to add an msi-ranges property
-> > that specifies how MSIs map onto regular interrupts on some other
-> > interrupt controller.
-> > 
-> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> > ---
-> >  .../bindings/interrupt-controller/msi-controller.yaml     | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
-> > index 5ed6cd46e2e0..bf8b8a7dba09 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
-> > @@ -31,4 +31,12 @@ properties:
-> >        Identifies the node as an MSI controller.
-> >      $ref: /schemas/types.yaml#/definitions/flag
-> >  
-> > +  msi-ranges:
-> > +    description:
-> > +      A list of pairs <intid span>, where "intid" is the specification
-> 
-> It's not really 'pairs' and 'interrupt specifier' is the terminology the 
-> spec uses. How about:
-> 
-> A list of <phandle intspec span>, where "phandle" is parent interrupt 
-> controller, "intspec" is the starting/base interrupt specifier, and 
-> "span" is the size of that range (typically multiples of 32).
-> 
-> The 'multiples of 32' part is what Marc told me.
+On Mon, Sep 20, 2021 at 8:30 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Enable USB2.0 Host/Device support on RZ/G2L SMARC EVK.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Thanks Rob!  That sounds good.  But 32 is what's typical for the Apple
-hardware, and I expect that different hardware that might use this
-property will use a different value, so I left that last bit out.  I
-also kept the bit that states that multiple ranges are allowed.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.16.
 
-> > +      of the first interrupt (including the phandle for the interrupt
-> > +      controller) that can be used as an MSI, and "span" the size of
-> > +      that range. Multiple ranges can be provided.
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +
-> >  additionalProperties: true
-> > -- 
-> > 2.32.0
-> > 
-> > 
-> 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
