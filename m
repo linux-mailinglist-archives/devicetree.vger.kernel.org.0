@@ -2,171 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C483413167
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 12:19:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 290ED413181
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 12:29:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231609AbhIUKU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 06:20:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35210 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbhIUKU6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 06:20:58 -0400
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A504C061574
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 03:19:26 -0700 (PDT)
-Received: by mail-io1-xd2c.google.com with SMTP id m11so26195961ioo.6
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 03:19:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gxVjksGN/3yuclGhnmoWEQKT5gLNVLIOyY61uXcwmWI=;
-        b=vO46N99FpdRLkV1NF+gjE9qSMCIUZhOeIy/mhBx5gPsP926ONSii9PXt2deJ3DGL3e
-         NjIwdQOHkvYPd4Je03SklDs0b7KsYP4kBXjpK1TGDI3dgQe8P2djwcVqx5/y1K8c9zsB
-         mCX9S3NgX/2UoLP5azlPU7WExgd7yVRpONvUhrwD/09Hr+e9fRaQHJ8HnUJ715Znm7DN
-         Z7OHvsjM9YttYJcPUA485abYs9vP8yJ5zt5EJt7CuMP3zlnrxV8eEfWnhcLotbLwrXuk
-         sy1LU5Cz+yhgoFdFfChdHpOSm3m5AKYD4dNUes/f9eEjwCbOLNoyiziW05Z4RH7ftFJn
-         sEkg==
+        id S231849AbhIUKam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 06:30:42 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:42810
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231797AbhIUKak (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 06:30:40 -0400
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5287C3FE05
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 10:29:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632220151;
+        bh=ZNH+zxmaND7rR/DGahGvaHsh9Nt1sNcf9ALxvClhLkg=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=HN5VvmehAHiscpSf2dhdgOyEbpjuS5bvYJ/kSOtRW0YKtLMZAtyEpBqFN10ucNSte
+         7NOUwbzN1vyyUhSeu2UJr9lJ905ydJxgZEvjr0Lavnu/ln5pmm+IOC5/Dq0Bn9QIYs
+         BH/bXHKQdxSKBKOwr2da8RHIAmSvK4SPu26ut+tIyQtfFhd2sqsIE5vnAYs14t3jXF
+         izOUMt3w4R+K6W1IwRLTdi18MGnY29y8e3E5R66SswJm3bas+7nAY4P4UieWtJ/Ich
+         47HuofDexkSICFR8C6OOODoM3nXRLv58YfGENjzZ9M2J+7zXjVYrvySkn54Urupsld
+         Ol5zuz4OuuKMg==
+Received: by mail-wr1-f69.google.com with SMTP id e1-20020adfa741000000b0015e424fdd01so7962006wrd.11
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 03:29:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gxVjksGN/3yuclGhnmoWEQKT5gLNVLIOyY61uXcwmWI=;
-        b=pZ9nvrgC3yYUa7bX8F/L4RhbCd6492C/2UWc2F4NNcaM+T8lNJl/QXOnzwDQwUWKbB
-         r4EvhAJuIhFSmNOKiOgqh0PDULc9/UHpvHpAwPSkiMuFV2XrfTCNZa0V86HPr6jKFyV9
-         enhySrYuuEIm15zOZA2GJHtTThEEHYLiaIyn49sUuqbY6ZjWEKfFh84dkLiLvANa4BXf
-         AztLm15w/5btEIwes8bnFc3ZxrYej4Xb39UKUISC/cpMBbYnplCdck6INL6UMmEmSU1o
-         wDn6AYPxbbSWYSu20MapZwBIAToG0fnih7xle6cJG/g5QBo9eGL9QoRr6ZK+hC9fACrF
-         tdYQ==
-X-Gm-Message-State: AOAM531lfPWkKWNbhPAozBQSLsJeHwFe4jslksIDkNn1Dnxf4s8A+GP1
-        xWxwaN9wKkABWvdc+0YhB2HhI2jrlJEdMJ/lw1S0Rw==
-X-Google-Smtp-Source: ABdhPJz86aatVqFyHRCUhvImhsp2CKqHcGwOGrpQiGAsYeZo1977hFAgAenDq9K/oh27Yx/hhOzO2jV+sXZxluuCWfk=
-X-Received: by 2002:a02:908a:: with SMTP id x10mr23047196jaf.30.1632219565662;
- Tue, 21 Sep 2021 03:19:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAMi1Hd3k2snB4-=M57pVrMVom=a9_2a0DTFk-+Hzpubwk-Pr9Q@mail.gmail.com>
- <64a2a428-8bb1-0078-2403-1ca8e28cf4b1@codeaurora.org> <CAMi1Hd2MCxJgbHz9oGWe4L+MXNM3p+Xntpcg6t3TvZxwjJTy0Q@mail.gmail.com>
- <47a06078-dd41-7b3d-3de3-4e6c24211691@codeaurora.org>
-In-Reply-To: <47a06078-dd41-7b3d-3de3-4e6c24211691@codeaurora.org>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Tue, 21 Sep 2021 15:48:49 +0530
-Message-ID: <CAMi1Hd1UtTECaDROGm7hE377Dp5qLzZeqBowmxoQJpOm9uQFHw@mail.gmail.com>
-Subject: Re: dwc3-qcom: tx-fifo-resize regression on Poco F1 (sdm845) with v5.15-rc1
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZNH+zxmaND7rR/DGahGvaHsh9Nt1sNcf9ALxvClhLkg=;
+        b=4l7VWuRqS2DniRf08PnLz/rT4CWLLQYZCvIr0Yk2r2qWz7aHiVig3Nexrlpg0I1PqP
+         5zm8zr9Dmeq98S/St06A2YvsPRDx8EgYVZiM4umkEGS0u+1pZAn2U7+pRWqlQaYQoavg
+         x2a0bKpJ7xyPyLiHuBk9RB3yWKHh7cGfCJIcGZjcYQby+7ioEKu+TSNz4+vPPH2lmEQK
+         EYrskJCpMqvPZRBtW2OzP8aGkWH4F8ECQQn7KSw1RjgFFtWA3NIvZlATCwMlyUsAqaO+
+         GtBFmQsSBL1SRBpHGCoqpHoPXdfK6PiTcnFAETGZxkwbKiNzNBHocZY378imvwhRUAWe
+         p1QA==
+X-Gm-Message-State: AOAM5314u131plpK+itVUVDC4T+uUiWA58sozPikTWPXVbAFL8CzPmCe
+        kkdyjE3ImlzLgngfAOP8/GVFbqYT2MWH+9FSrZaEnBH1oD5s+VCKALMV8qvbe6vKJ2qH3M2093s
+        5Miq1s6ra+B7d0FwJ+l44bMBeyNIAD2g0ToFHst8=
+X-Received: by 2002:a5d:590a:: with SMTP id v10mr35069278wrd.87.1632220151042;
+        Tue, 21 Sep 2021 03:29:11 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzjs+OrN5dFclOS7GJVsxhqz5MGX6J2vh/0CGCqdjnmGePtDYf5XKuf5XnQlhbubwp1F7GrzQ==
+X-Received: by 2002:a5d:590a:: with SMTP id v10mr35069266wrd.87.1632220150919;
+        Tue, 21 Sep 2021 03:29:10 -0700 (PDT)
+Received: from localhost.localdomain (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id m29sm20072380wrb.89.2021.09.21.03.29.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 03:29:10 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Jack Pham <jackp@codeaurora.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        John Stultz <john.stultz@linaro.org>,
-        linux-usb@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jiri Kosina <trivial@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/6] dt-bindings: hwmon: ti,tmp108: convert to dtschema
+Date:   Tue, 21 Sep 2021 12:28:27 +0200
+Message-Id: <20210921102832.143352-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Sept 2021 at 13:00, Wesley Cheng <wcheng@codeaurora.org> wrote:
->
-> Hi Amit,
->
-> On 9/21/2021 12:04 AM, Amit Pundir wrote:
-> > Hi Wesley,
-> >
-> > On Tue, 21 Sept 2021 at 02:44, Wesley Cheng <wcheng@codeaurora.org> wrote:
-> >>
-> >> Hi Amit,
-> >>
-> >> On 9/20/2021 1:45 PM, Amit Pundir wrote:
-> >>> Hi Wesley, All,
-> >>>
-> >>> I see a reboot loop on Xiaomi Pocophone F1 (sdm845) with TX FIFO
-> >>> resize patches which landed in v5.15-rc1. Upstream commit cefdd52fa045
-> >>> "usb: dwc3: dwc3-qcom: Enable tx-fifo-resize property by default" to
-> >>> be specific, which switched on this feature by default.
-> >>>
-> >>> At times the phone crashes into the fastboot mode after the reboot
-> >>> loop, but mostly end up booting to UI after a while. This is what it
-> >>> looks like https://people.linaro.org/~amit.pundir/beryllium-userdebug/PXL_20210920_162749483.mp4.
-> >>>
-> >>
-> >> I believe Android will attempt a number of bootup sequences and if it
-> >> fails, it falls back to fastboot mode.  Are there any available logs you
-> >> might be able to collect to see where the issue is?
-> >
-> > It is a stock phone with no UART access, so I can't get early crash
-> > logs unless I'm booted up to adb shell. I can try getting some info
-> > using pstore-ramoops but warm reset support for sdm845 was not
-> > upstreamed when I tried using that the last time.
-> >
->
-> I see, can we maybe avoid the actual resizing by commenting out the
-> following writel() calls, but let the fifo resize logic calculate the EPs?
->
-> void dwc3_gadget_clear_tx_fifos(struct dwc3 *dwc)
-> {
-> ...
->                 /* Don't change TXFRAMNUM on usb31 version */
->                 size = DWC3_IP_IS(DWC3) ? 0 :
->                         dwc3_readl(dwc->regs, DWC3_GTXFIFOSIZ(num >> 1)) &
->                                    DWC31_GTXFIFOSIZ_TXFRAMNUM;
->                 /* Comment the dwc3_writel() */
->                 //dwc3_writel(dwc->regs, DWC3_GTXFIFOSIZ(num >> 1), size);
->
-> and
->
-> static int dwc3_gadget_resize_tx_fifos(struct dwc3_ep *dep)
-> {
-> ...
->         /* Comment the dwc3_writel() */
->         //dwc3_writel(dwc->regs, DWC3_GTXFIFOSIZ(dep->number >> 1), fifo_size);
->         dwc->num_ep_resized++;
->
-> Those 2 writel() would be the one that actually programs the TXFIFO
-> register.  I hope when commented out, no resize should actually happen
-> anymore.
->
-> With this, hopefully we can get some logs from the device at least :)
+Convert the TI TMP108 temperature sensor bindings to DT schema format.
 
-I can boot fine with above 2 writel() removed but I don't see EP
-counts being printed in the log anywhere and the only relevant
-message in dmesg I see is this:
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ .../devicetree/bindings/hwmon/ti,tmp108.yaml  | 50 +++++++++++++++++++
+ .../devicetree/bindings/hwmon/tmp108.txt      | 18 -------
+ 2 files changed, 50 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/tmp108.txt
 
-    Duplicate name in dwc3@a600000, renamed to "tx-fifo-resize#1"
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+new file mode 100644
+index 000000000000..eda55bbc172d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/ti,tmp108.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TMP108 temperature sensor
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,tmp108
++
++  interrupts:
++    items:
++      - description: alert interrupt
++
++  reg:
++    maxItems: 1
++
++  "#thermal-sensor-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        sensor@48 {
++            compatible = "ti,tmp108";
++            reg = <0x48>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&tmp_alrt>;
++            #thermal-sensor-cells = <0>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/hwmon/tmp108.txt b/Documentation/devicetree/bindings/hwmon/tmp108.txt
+deleted file mode 100644
+index 54d4beed4ee5..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/tmp108.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-TMP108 temperature sensor
+--------------------------
+-
+-This device supports I2C only.
+-
+-Requires node properties:
+-- compatible : "ti,tmp108"
+-- reg : the I2C address of the device. This is 0x48, 0x49, 0x4a, or 0x4b.
+-
+-Optional properties:
+-- interrupts: Reference to the TMP108 alert interrupt.
+-- #thermal-sensor-cells: should be set to 0.
+-
+-Example:
+-	tmp108@48 {
+-		compatible = "ti,tmp108";
+-		reg = <0x48>;
+-	};
+-- 
+2.30.2
 
-which is interesting because I don't see tx-fifo-resize property being
-set by any of the upstream sdm845 or relevant dtsi files.
-
-
->
-> >>
-> >>> PocoF1 does support TX fifo resizing as I can see that in the
-> >>> downstream dts. So maybe it is the tx-fifo-max-num which need to be
-> >>> adjusted for the device? I couldn't find the tx-fifo-max-num
-> >>> equivalent in the downstream tree though
-> >>> https://github.com/MiCode/Xiaomi_Kernel_OpenSource/tree/dipper-q-oss/
-> >>>
-> >>
-> >> I assume that you've already confirmed reverting that change resolves
-> >> the constant reboots?
-> >
-> > Yes reverting that change resolves the reboot loop issue. Speaking of
-> > which, since no other platform seem to be running into this issue and
-> > "tx-fifo-max-num" property is apparently not at fault either, is it
-> > reasonable to skip adding "tx-fifo-resize" property for PocoF1 using
-> > of_machine_is_compatible("xiaomi,beryllium") as a workaround?
-> >
->
-> Since SDM845 does technically support txfifo resize downstream, let me
-> see if I can figure out what is different on this particular device
-> after getting the logs.
->
-> Thanks
-> Wesley Cheng
->
-> --
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
