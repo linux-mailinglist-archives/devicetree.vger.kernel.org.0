@@ -2,177 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 060364133AA
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 15:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A76534133EC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 15:18:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231631AbhIUNEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 09:04:04 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:17064 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230052AbhIUNEE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 09:04:04 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1632229355; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=qH2l5wCnZnelf0eU2pGiDEZnMruL9bfu6QZc4HulXxE=; b=gDOFk4Zd3a1b7E91rLC6oyFPYy4lEMsdltfnMUtQ6dBOQLaZpF/IK6eBF9XuGbjboiNhBl/f
- wnmbxmJtMmfNQlaeuo7ru1fWbWEPirb3qKPXh5bq2vqBiIz7sVSSCcrzPafLtCE2yReR7JPM
- vRhs2wt/KvajY4NNgmgCbBCqHlg=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 6149d7ddec62f57c9a213e3f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 21 Sep 2021 13:02:21
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6C83CC43616; Tue, 21 Sep 2021 13:02:20 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.1.105] (unknown [157.48.153.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D3A5CC4338F;
-        Tue, 21 Sep 2021 13:02:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org D3A5CC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH 3/7] ASoC: codecs: tx-macro: Change mic control registers
- to volatile
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1632123331-2425-1-git-send-email-srivasam@codeaurora.org>
- <1632123331-2425-4-git-send-email-srivasam@codeaurora.org>
- <c1c7b1e8-98f5-99a3-1374-11d1d61535b4@linaro.org>
- <b442ee2b-622c-674d-3abe-b1fbbfa5aeb9@codeaurora.org>
- <e87ef6e1-0c10-beaa-81ad-2c0ceae6bbcc@linaro.org>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <62c85130-df75-5aa6-8954-d1a55167827f@codeaurora.org>
-Date:   Tue, 21 Sep 2021 18:32:09 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S232702AbhIUNTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 09:19:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47762 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231658AbhIUNTf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 09:19:35 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829FBC061574;
+        Tue, 21 Sep 2021 06:18:07 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso21295008ota.8;
+        Tue, 21 Sep 2021 06:18:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=zh1CgLOwhwyadJWHmM0DrwXsbBT3UEj5Mhn4XZFBPW8=;
+        b=N+ukJLXvy+PTzH1+7VHEG+VAL7LkMICe8u0hYa/yU8vjgmYUYunh/lLNmeRsj7Y2F/
+         tgd/wQI3f+M7xI96xv5DD36RCLUFQ4i6ynW5k3J6w5r0C0F2GZpfqaUAp4GSIvqyzslu
+         GXIBYKlpRgAEKJjlfGas96ktdFzgu7bIvxLqCeTRivOkK0r+HQLZsPd4+c3f6WWd4eHQ
+         kVEtYxs7fgXdyQb/W/oAxjfTxVNnVm1VEQYHIU4gpBMU/T5d3ClupHBbM3gtN7Z3ug7u
+         KkUfbNbCjpsAGmulknoAsukIsWIaqQ6X6z588eTKqnVaz1dbrbhvcf+LAe421RQGqxpk
+         fd0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=zh1CgLOwhwyadJWHmM0DrwXsbBT3UEj5Mhn4XZFBPW8=;
+        b=k0L3J1TFL0MsEbXy8zqXSEb+Iv41cmFxkolIS5YQL1pOyhJxePFPVqHVoZb7KFm7NN
+         QLDycziqt4sFUWroslAYJcisRCEzakDMln1ZjSFyDI4t+7nGKKZ0izAI4Fwlt1c5uyhV
+         EHkgUwWk2b8O4TvKyYYge3kofnzFNROKy3gURTuDLxN/7trL0AHMVcrReAcNnwG8rqk+
+         B5R/8Qp33ASzT8XC3FcrAE/UmBazy7CTAKgWNRYu98Ki4Jem7ptwL3/bXmiD1FcDXiVZ
+         07WTtc5OktZAPO8DlBIvEWecFWXb7HfGBOZWBHnaQb0wooFy/Ga0f2OABGxlSZ533Kpc
+         5RXg==
+X-Gm-Message-State: AOAM5308Z8mXF1x3yaIJDjoNIqVodDNIs9O0ZEMNJmlCtlHEbNRvfWCM
+        HQvfHMiBRedEX8TchRUfv7A=
+X-Google-Smtp-Source: ABdhPJxWsjTpLlmBEjcj2pGwkR89u6zRHNNky9SlLLtC4PaBq0ZGPKE0PLosGiRn6lmxHE/wsPy+gw==
+X-Received: by 2002:a05:6830:1d43:: with SMTP id p3mr6022224oth.80.1632230286881;
+        Tue, 21 Sep 2021 06:18:06 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id n23sm3577623otj.70.2021.09.21.06.18.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 06:18:05 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 21 Sep 2021 06:18:04 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Jiri Kosina <trivial@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: hwmon: ibm,cffps: move to trivial
+ devices
+Message-ID: <20210921131804.GC1864238@roeck-us.net>
+References: <20210921102832.143352-1-krzysztof.kozlowski@canonical.com>
+ <20210921102832.143352-3-krzysztof.kozlowski@canonical.com>
+ <20210921123025.GC1043608@roeck-us.net>
+ <68fa27ae-4704-181f-e2f6-92635865798b@canonical.com>
 MIME-Version: 1.0
-In-Reply-To: <e87ef6e1-0c10-beaa-81ad-2c0ceae6bbcc@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <68fa27ae-4704-181f-e2f6-92635865798b@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Sep 21, 2021 at 02:45:42PM +0200, Krzysztof Kozlowski wrote:
+> On 21/09/2021 14:30, Guenter Roeck wrote:
+> > On Tue, Sep 21, 2021 at 12:28:29PM +0200, Krzysztof Kozlowski wrote:
+> >> The IBM Common Form Factor Power Supply Versions 1 and 2 bindings are
+> >> trivial, so they can be integrated into trivial devices bindings.
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > 
+> > I won't accept any of those "move to trivial devices" patches. In many cases
+> > the bindings are simply incomplete. I can not and will not make that call,
+> > and I always did and will leave it up to driver authors to decide if they
+> > want to add a device to trivial devices or provide explicit bindings.
+> > 
+> > Please stop sending those patches.
+> > 
+> 
+> Back in the older times, there were no trivial-devices and checkpatch
+> plus maintainers required documenting compatibles, so some of such
+> simple bindings were created.
+> 
 
-On 9/21/2021 2:18 PM, Srinivas Kandagatla wrote:
->
->
-> On 21/09/2021 08:30, Srinivasa Rao Mandadapu wrote:
->>
->> On 9/20/2021 6:54 PM, Srinivas Kandagatla wrote:
->> Thanks for your time Srini!!
->>>
->>> On 20/09/2021 08:35, Srinivasa Rao Mandadapu wrote:
->>>> Update amic and dmic related tx macro control registers to volatile
->>>>
->>>> Fixes: c39667ddcfc5 (ASoC: codecs: lpass-tx-macro: add support for 
->>>> lpass tx macro)
->>>>
->>>> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
->>>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->>>> ---
->>>>   sound/soc/codecs/lpass-tx-macro.c | 13 +++++++++++++
->>>>   1 file changed, 13 insertions(+)
->>>>
->>>> diff --git a/sound/soc/codecs/lpass-tx-macro.c 
->>>> b/sound/soc/codecs/lpass-tx-macro.c
->>>> index 9273724..e65b592 100644
->>>> --- a/sound/soc/codecs/lpass-tx-macro.c
->>>> +++ b/sound/soc/codecs/lpass-tx-macro.c
->>>> @@ -423,6 +423,13 @@ static bool tx_is_volatile_register(struct 
->>>> device *dev, unsigned int reg)
->>>>       case CDC_TX_TOP_CSR_SWR_DMIC1_CTL:
->>>>       case CDC_TX_TOP_CSR_SWR_DMIC2_CTL:
->>>>       case CDC_TX_TOP_CSR_SWR_DMIC3_CTL:
->>>> +    case CDC_TX_TOP_CSR_SWR_AMIC0_CTL:
->>>> +    case CDC_TX_TOP_CSR_SWR_AMIC1_CTL:
->>>> +    case CDC_TX_CLK_RST_CTRL_MCLK_CONTROL:
->>>> +    case CDC_TX_CLK_RST_CTRL_FS_CNT_CONTROL:
->>>> +    case CDC_TX_CLK_RST_CTRL_SWR_CONTROL:
->>>> +    case CDC_TX_TOP_CSR_SWR_CTRL:
->>>> +    case CDC_TX0_TX_PATH_SEC7:
->>>
->>> Why are these marked as Volatile?
->>> Can you provide some details on the issue that you are seeing?
->>>
->>> --srini
->>
->> Without volatile these registers are not reflecting in Hardware and 
->> playback and capture is not working.
->>
->> Will do recheck and keep only required registers as volatile.
->
-> This sounds like a total hack to me,
->
-> this might be happening in your case:
->
-> The default values for this register are different to actual defaults.
-> Ex: CDC_TX_TOP_CSR_SWR_AMIC0_CTL default is 0x00
-> so writing 0x0 to this register will be no-op as there is no change in 
-> the register value as compared to default value as per regmap.
->
-> In you case make sure the hardware default values are correctly 
-> reflected in tx_defaults array.
+At the same time, as I said, the bindings for many chips are incomplete.
+For this driver, we can not make that call because the datasheet is not
+public. The same is true for dps650ab. For others, the datasheet is
+available, and a reasonable decision can be made if the chip may ever
+need more complete bindings.
 
-The default values in tx_defaults are proper. But same value is not 
-reflecting in Hardware, but In Cache it's reflecting set value.
+So, let's qualify my statement: I'll accept such patches if you can show,
+from the datasheet, that it is unlikely that explicit bindings will ever
+be needed. That would be the case for LM70, for example. That would need
+more than a statement that "bindings are trivial", though. It also require
+a statement along the line that you have confirmed, from to the datasheet,
+that there is nothing to configure for this chip that would ever require
+explicit bindings.
 
->
-> Then setting the desired value should work.
->
->
-> --srini
->
->
->
->>
->>>
->>>
->>>>           return true;
->>>>       }
->>>>       return false;
->>>> @@ -1674,6 +1681,12 @@ static int tx_macro_component_probe(struct 
->>>> snd_soc_component *comp)
->>>>         snd_soc_component_update_bits(comp, CDC_TX0_TX_PATH_SEC7, 
->>>> 0x3F,
->>>>                         0x0A);
->>>> +    snd_soc_component_update_bits(comp, 
->>>> CDC_TX_TOP_CSR_SWR_AMIC0_CTL, 0xFF, 0x00);
->>>> +    snd_soc_component_update_bits(comp, 
->>>> CDC_TX_TOP_CSR_SWR_AMIC1_CTL, 0xFF, 0x00);
->>>> +    snd_soc_component_update_bits(comp, 
->>>> CDC_TX_TOP_CSR_SWR_DMIC0_CTL, 0xFF, 0x00);
->>>> +    snd_soc_component_update_bits(comp, 
->>>> CDC_TX_TOP_CSR_SWR_DMIC1_CTL, 0xFF, 0x00);
->>>> +    snd_soc_component_update_bits(comp, 
->>>> CDC_TX_TOP_CSR_SWR_DMIC2_CTL, 0xFF, 0x00);
->>>> +    snd_soc_component_update_bits(comp, 
->>>> CDC_TX_TOP_CSR_SWR_DMIC3_CTL, 0xFF, 0x00);
->>>>         return 0;
->>>>   }
->>>>
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+Thanks,
+Guenter
 
+> I understand however your point, fair enough. I'll stop sending such
+> patches.
+> 
+> Best regards,
+> Krzysztof
