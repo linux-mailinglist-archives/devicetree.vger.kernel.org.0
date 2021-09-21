@@ -2,98 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24791413D40
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 00:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E93DC413D4D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 00:05:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235859AbhIUWFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 18:05:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234138AbhIUWFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 18:05:10 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A50C061574
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 15:03:41 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id x27so3413749lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 15:03:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3XNrN73gADSI7mOjilUcf947Qv8Mlwuoxr5Ui0NoXJc=;
-        b=OWj8Af0YyfiYyi4VGX9bDEuWcnZdEPeX/Lp0Kh2oOfcn8g9ZdwAB02qmDtQtls57ie
-         Ib0/aXpeju7/xyh4yywzQnMIER4uWSkXG40GU57rtJBfqQnUkYEJuS0aqfbpuHVcHjGc
-         iHh1CguSnrHaHh12VU87N+HuLXp/0KYimWc3CQwDS7CCZv/Tur0KqLbS6hmwikJuIJDP
-         BuSnY35/1cbMIlBW4iaujWcP18o9bMurkvqjRJSdhNVqL/qw+gx+XnWqDCao60Ol5+x6
-         eAUdmKrnzL+rn2TPYWs8ve3HjLJ5LfW6Sa+2tbX71rYy9gDKc1lHzi6gH8oMOyEZY8i3
-         WZmQ==
+        id S232850AbhIUWHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 18:07:25 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:41652 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231444AbhIUWHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 18:07:23 -0400
+Received: by mail-ot1-f54.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso566061ota.8;
+        Tue, 21 Sep 2021 15:05:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3XNrN73gADSI7mOjilUcf947Qv8Mlwuoxr5Ui0NoXJc=;
-        b=X2s16+zmQCPAFDFo5fm4mi/7tskLXeteJOO28aeQtg1SSTX3e4B0B4R5l50vKMQp8e
-         kWuEETBfxuY9VMQ7epbdmY/AbMC7VXcS/8w/FlrCvehrmyg5KNzLgkqHBO66WcIXNGk/
-         CXyh04uBv2XJwZR2cwL9iS1z4s6E6VHINSZqahsnn+cnV3AW42ySfa3zdWKzHy8aOn9b
-         3LUnvaMqWIgNH8OCl/KRGKxJe2PlmvyztFNz7BqlDtV1sf9zzvctERmYgH/Cqyf0PUa+
-         PspzwXb4g6kQopnLj60pu6HnjgNgizBp2T4MNmHPC7uLLZ7OxqJOIDiDX53ysHk8p18U
-         GTJA==
-X-Gm-Message-State: AOAM531yGs8HxWJwvKTh5QjcRFsXypKr968my5EcKGjHFAJ/XZRWMz7a
-        by96ITN6Z0VrdRqh38v8Fa8fmGHWgUjvjNlaj21Ktw==
-X-Google-Smtp-Source: ABdhPJy6FZaPttUotreE8q28PJYOwpbn07MmoEuf53wHMliLPSolvex9NmYzfcV/65CxXhI74w99CkkQVf26N+Llc/M=
-X-Received: by 2002:a2e:9c43:: with SMTP id t3mr19429726ljj.198.1632261819095;
- Tue, 21 Sep 2021 15:03:39 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7+0BIaFq4Mufw+X4fwjiZnjy2FpSNbaPobDYC/KM1Is=;
+        b=w21f7JDctkCRAQxB32HtlS+1fK3vvG3aFIJnpqezJnOy5RZDTOtnLvs/I8oLcMlj+5
+         HG1AwbFyQjiw5h17iUAPrIUXfVv/mveeUSWHeKuts8nEida5vd/Q7kLffCLEHPEa/gbk
+         djEKxx3pUjNIiNbk+DfqrtFZyEtxWlno9Ktx0uoV60v9xX+aD2rv1jl80cQ/1mh8UymA
+         FOEqDw78/6EDm4wQkinCwdrK+Zd6fpQoOkffeEppbixcCE5ESLy7kU9KJQBQmfZvM+Ig
+         lAlTpk05g46dByHLORbLjvkbZVvO+6Hkc7FY7ZrsVigSPVkEaV961NDZgjgtFNI/QQg6
+         DUUA==
+X-Gm-Message-State: AOAM530YBv4/d6OlvHoPjF8gEnU0GPYnnZO5d8hsIXyBSGL91hr3e7Sv
+        hQ8fytXamt9Celj0Rqkr81hx9Qj2JA==
+X-Google-Smtp-Source: ABdhPJwKDcKaJILJ1PXGaD/2XKWWnaSZ32BAg/HfHXwC6LLJTAk4Ytxo36oo6DoC3Fp/YcwgJr7jRg==
+X-Received: by 2002:a05:6830:788:: with SMTP id w8mr29151985ots.235.1632261954474;
+        Tue, 21 Sep 2021 15:05:54 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q31sm57076otv.57.2021.09.21.15.05.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 15:05:53 -0700 (PDT)
+Received: (nullmailer pid 3381606 invoked by uid 1000);
+        Tue, 21 Sep 2021 22:05:51 -0000
+Date:   Tue, 21 Sep 2021 17:05:51 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     kenchappa.demakkanavar@intel.com
+Cc:     furong.zhou@intel.com, dinguyen@kernel.org,
+        kris.pan@linux.intel.com, mgross@linux.intel.com, will@kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        kris.pan@intel.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, mark.gross@intel.com
+Subject: Re: [PATCH v3 2/3] dt-bindings: arm: Add Thunder Bay bindings
+Message-ID: <YUpXP3vdxHwaMIX9@robh.at.kernel.org>
+References: <1631771898-18702-1-git-send-email-kenchappa.demakkanavar@intel.com>
+ <1631771898-18702-3-git-send-email-kenchappa.demakkanavar@intel.com>
 MIME-Version: 1.0
-References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
- <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
- <YUkKCe7845uCqoy5@robh.at.kernel.org> <20210921125831.GB1864238@roeck-us.net>
- <CAL_JsqLo=inkKVKSU8N=_h90RfpDk6NNWPKdKyTXh-VvqXDCag@mail.gmail.com> <20210921205247.GA2363535@roeck-us.net>
-In-Reply-To: <20210921205247.GA2363535@roeck-us.net>
-From:   Oskar Senft <osk@google.com>
-Date:   Tue, 21 Sep 2021 18:03:22 -0400
-Message-ID: <CABoTLcQfOByG5VmhTKQ3ZCZ5NtPfFU49abtE-Zr7BDCNphThSg@mail.gmail.com>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for tmp421
-To:     Guenter Roeck <linux@roeck-us.net>, robh@kernel.org
-Cc:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1631771898-18702-3-git-send-email-kenchappa.demakkanavar@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Resend to Rob's correct email address. I'm sorry.
+On Thu, 16 Sep 2021 11:28:17 +0530, kenchappa.demakkanavar@intel.com wrote:
+> From: "Kenchappa, Demakkanavar" <kenchappa.demakkanavar@intel.com>
+> 
+> Document Intel Movidius SoC code-named Thunder Bay, along with the
+> Thunder Bay Full and Prime configuration board.
+> 
+> Add maintainers for the new Intel Movidius SoC code-named Thunder Bay.
+> 
+> Signed-off-by: Kris, Pan <kris.pan@intel.com>
+> Signed-off-by: Kenchappa, Demakkanavar <kenchappa.demakkanavar@intel.com>
+> ---
+>  .../devicetree/bindings/arm/intel,thunderbay.yaml  | 27 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++++
+>  2 files changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/intel,thunderbay.yaml
+> 
 
-> > > + temperature-sensors {
-> > > + ltd {
-> > > + status = "disabled";
-> > > + };
-> > > +
-> > > + rtd1 {
-> > > + status = "okay";
-> > > + type = <4> /* thermistor */;
-> >
-> > 'type' is a bit generic. We don't want the same property name to
-> > possibly have multiple definitions.
-> >
-> How about sensor-type ?
-
-In the datasheet this is called "mode". I called it "type" since it's
-tempX_type in sysfs and I wanted to stay in sync with that.
-
-> > If it is how you address an instance of something which seems to be
-> > the case here, then 'reg' should be used.
-> >
-
-The reason I didn't do that is because you'd effectively have to
-duplicate the ID in both the name (e.g. sensor@1) and the reg property
-(e.g. reg = <1>). But maybe that's just what is is in device tree, I
-can live with that.
-
-However, we'd also have to find out whether the "local" sensor ("LTD")
-would simply be #4, as it is in sysfs today. I'd also be ok with that
-as it would keep sysfs and device tree "in sync" wrt. naming.
-
-Thanks
-Oskar.
+Reviewed-by: Rob Herring <robh@kernel.org>
