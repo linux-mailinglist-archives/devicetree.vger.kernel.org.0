@@ -2,220 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D02CB413302
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 13:57:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33DED413315
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 14:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232295AbhIUL7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 07:59:01 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:40970
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232089AbhIUL7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 07:59:01 -0400
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 02DE84019A
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 11:57:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632225451;
-        bh=Edrk8YB/JSUDN6TkY8ir7fMmkzEbx6D96lPgLtCkIX0=;
-        h=To:References:From:Subject:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=Cy/5FWBEio25OmRFbS0sPzvy31x7+FHPY04xyXlvoKUBlqteL1iwhQnwNvdJZH/IV
-         4QTCpz1hQgI4pA5HAkinYEXv2T4ouxJaVWQbZ5DTb4E6hnSjkO7WHY3fiPkpD6gwS7
-         1+7vFe2skN0hg2ZQUKPmZ8a7fXRZ+Dg0vNS7RUt/ZWxK7YW3BHYsLvf4pCKNF18kYx
-         DWRh/U+zDz+8FbP45BMMj6os6nLko63k1J8iuty8b1mS5ByM5QqqjIe3NCzlXJeXHu
-         hykKfj0FwXW/KfqGyDFAyRNqYaLstKvORjFXw2lyLyZ94xNfztVb6K44aH665PhEYY
-         oA3nvoTuIktrg==
-Received: by mail-wr1-f72.google.com with SMTP id m1-20020a056000180100b0015e1ec30ac3so8592374wrh.8
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 04:57:31 -0700 (PDT)
+        id S232469AbhIUMDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 08:03:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58800 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232089AbhIUMDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 08:03:55 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AD82C061574;
+        Tue, 21 Sep 2021 05:02:27 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id b20so21749033lfv.3;
+        Tue, 21 Sep 2021 05:02:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ctNr/D5rTY85/Mtfv0uTalwkEbhm7HjmfEXl7IY2HrM=;
+        b=TSKZComt+DeQOLeUtlJWlCjouxYRzIIQU8ReSt08SsYHYx0NwKs1kQeOmN74RLYJ0Q
+         4PQrYsc57Ewxsz0Bg7CJ1WSharjgh5s7eEOGgshGpqk31QsBZzjRH8GSVax5hNyfyOjM
+         sSeW8XAUTZ7j40MqB/Osqr13Fb2GSztDV4ned9fraBSlvYwbR+dc+lp3foINE4Fb8rZT
+         h8K+sBCz2ASVr3cU5uSlw2gjsRiPNK5ZNIfam67NakbS0R4M3M2dqZperaf0Btm5kjmc
+         5jBqdW93Hk3UAeUs85Rk9+X+jypOqfHOQpwKN60NcSXqjprF5VqvKHhwgo7SFC3xHpgR
+         a+Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:to:references:from:subject:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Edrk8YB/JSUDN6TkY8ir7fMmkzEbx6D96lPgLtCkIX0=;
-        b=b4OcHaHE8uZhBYGceVMCKs85MiYTSiDvL+FzHRnWqrnFXloPLL7C4eAykZDuiuyA1h
-         hiXasV1BHJfrWmJ4flXuGGC4wHtl/xjV5NJGumH2zvSUzUrhslS+dSV4J+yc/SMzZ0l0
-         aUjsog1HcKzC4TGE01k/uFHNB2L/LK561U64xfqR9etGN7pktp9Ntv2iJ2Ii4HXFQi9L
-         +AOb//v/OzMQUetjGlIeLpBOMiv3QnvBj2MCxX+kQU6kQmueTs1td9TmPeTA+Yl7ppog
-         IZWkpDNHZ112dB2RivFQnpY9zz2TnJLaF9cxtLulpOXKUX4JnvTC1JX21tWi6gsVCKLx
-         P4cw==
-X-Gm-Message-State: AOAM5309a9cHjy8aGLFQenmGiMD86zO+ToK0oDOSWJhb6Lf3K8oDptWU
-        mRhJGlPKADaKq2qSFCfv3npVZ6X0UkxzShKAiAIIwtXSf3lamNIBmPwsFHpqjx66191nA9+j0SU
-        NSR+W1FcLlX38liFgFNrUzPfK6kHZ6kE/rgDwBr4=
-X-Received: by 2002:a5d:4b10:: with SMTP id v16mr34257866wrq.176.1632225450426;
-        Tue, 21 Sep 2021 04:57:30 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJywrtK6qK54rP6gUN9u5o1jj6AXZs8KZz+kX4eWk6zyX0PcrVcN3qgGUnuD3nSi/IKh/sHT2Q==
-X-Received: by 2002:a5d:4b10:: with SMTP id v16mr34257845wrq.176.1632225450222;
-        Tue, 21 Sep 2021 04:57:30 -0700 (PDT)
-Received: from [192.168.0.134] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id k4sm18725530wrv.24.2021.09.21.04.57.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Sep 2021 04:57:29 -0700 (PDT)
-To:     Conor.Dooley@microchip.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, geert@linux-m68k.org,
-        yamada.masahiro@socionext.com, piotrs@cadence.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20210920150807.164673-1-krzysztof.kozlowski@canonical.com>
- <20210920150807.164673-4-krzysztof.kozlowski@canonical.com>
- <b83355ee-cce3-0a7d-a048-147dcb44b012@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v3 4/6] riscv: dts: microchip: drop duplicated MMC/SDHC
- node
-Message-ID: <d79c4aee-2c57-91a8-3bc5-b8d989ed41e1@canonical.com>
-Date:   Tue, 21 Sep 2021 13:57:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        bh=ctNr/D5rTY85/Mtfv0uTalwkEbhm7HjmfEXl7IY2HrM=;
+        b=PHu9uAT4bn1QQkLH2VCTPn2aK/3wj5vF66d7gLj7pdaRXTSt7ziI6EOQrcc0voAw1a
+         lr4u++6YIgiZyn1SSY6s/jm9D4P00YNf54/OVLqUQxpVyvmse8T1UCC76CU5+joBDbXc
+         BGKKEZ96VozD+pElXkO0Xmytn9XaiCorAbkGM1hySIAutftG1mnbwfefCxnoQ7GRmZ5E
+         8qa8k950pepGRTNoyE7kjoz618xRzgB7YwVJy3hki9Tixrx5HTx03m15cervAouDjHV6
+         92H0tX70LPHiTVhVy0eODa8kOxzni8wKKP/xlwgqo3MvcYLKcHwdw4v1REpXK5b+qzaT
+         8lyg==
+X-Gm-Message-State: AOAM532Ikatsd/R02w+yGUnUs6c7EAFoBw0sewDFDpeIL/Bjsm9LGitl
+        nk553ZzY3dprXmi9WMBslgw06YuaR30=
+X-Google-Smtp-Source: ABdhPJwLu5o5L5YFnpYsCVVdTnPQpjucX7Hlz0Qygf5v5YvnmTmfWTkVTMkP8eeB0+iXxC8Wby/1fw==
+X-Received: by 2002:a05:651c:4d0:: with SMTP id e16mr28940871lji.498.1632225745426;
+        Tue, 21 Sep 2021 05:02:25 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id m17sm2097160ljp.80.2021.09.21.05.02.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 05:02:24 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Saravana Kannan <saravanak@google.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH RFC] net: bgmac: improve handling PHY
+Date:   Tue, 21 Sep 2021 14:02:15 +0200
+Message-Id: <20210921120215.27924-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <b83355ee-cce3-0a7d-a048-147dcb44b012@microchip.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2021 12:40, Conor.Dooley@microchip.com wrote:
-> On 20/09/2021 16:08, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> Devicetree source is a description of hardware and hardware has only one
->> block @20008000 which can be configured either as eMMC or SDHC.  Having
->> two node for different modes is an obscure, unusual and confusing way to
->> configure it.  Instead the board file is supposed to customize the block
->> to its needs, e.g. to SDHC mode.
->>
->> This fixes dtbs_check warning:
->>    arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: $nodename:0: 'sdhc@20008000' does not match '^mmc(@.*)?$'
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>
->> ---
->>
->> Changes since v1:
->> 1. Move also bus-width, suggested by Geert.
->> ---
->>   .../microchip/microchip-mpfs-icicle-kit.dts   | 11 +++++++-
->>   .../boot/dts/microchip/microchip-mpfs.dtsi    | 28 +------------------
->>   2 files changed, 11 insertions(+), 28 deletions(-)
->>
->> diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
->> index 07f1f3cab686..fc1e5869df1b 100644
->> --- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
->> +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
->> @@ -51,8 +51,17 @@ &serial3 {
->>          status = "okay";
->>   };
->>
->> -&sdcard {
->> +&mmc {
->>          status = "okay";
->> +
->> +       bus-width = <4>;
->> +       disable-wp;
->> +       cap-sd-highspeed;
->> +       card-detect-delay = <200>;
->> +       sd-uhs-sdr12;
->> +       sd-uhs-sdr25;
->> +       sd-uhs-sdr50;
->> +       sd-uhs-sdr104;
->>   };
->>
->>   &emac0 {
->> diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
->> index 5084b93188f0..83bc14860960 100644
->> --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
->> +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
->> @@ -262,39 +262,13 @@ serial3: serial@20104000 {
->>                          status = "disabled";
->>                  };
->>
->> -               emmc: mmc@20008000 {
->> -                       compatible = "cdns,sd4hc";
->> -                       reg = <0x0 0x20008000 0x0 0x1000>;
->> -                       interrupt-parent = <&plic>;
->> -                       interrupts = <88 89>;
->> -                       pinctrl-names = "default";
->> -                       clocks = <&clkcfg 6>;
->> -                       bus-width = <4>;
->> -                       cap-mmc-highspeed;
->> -                       mmc-ddr-3_3v;
->> -                       max-frequency = <200000000>;
->> -                       non-removable;
->> -                       no-sd;
->> -                       no-sdio;
->> -                       voltage-ranges = <3300 3300>;
->> -                       status = "disabled";
->> -               };
->> -
->> -               sdcard: sdhc@20008000 {
->> +               mmc: mmc@20008000 {
->>                          compatible = "cdns,sd4hc";
->>                          reg = <0x0 0x20008000 0x0 0x1000>;
->>                          interrupt-parent = <&plic>;
->>                          interrupts = <88>;
->>                          pinctrl-names = "default";
->>                          clocks = <&clkcfg 6>;
->> -                       bus-width = <4>;
->> -                       disable-wp;
->> -                       cap-sd-highspeed;
->> -                       card-detect-delay = <200>;
->> -                       sd-uhs-sdr12;
->> -                       sd-uhs-sdr25;
->> -                       sd-uhs-sdr50;
->> -                       sd-uhs-sdr104;
->>                          max-frequency = <200000000>;
->>                          status = "disabled";
->>                  };
->> --
->> 2.30.2
->>
-> Hi Krzysztof,
-> Seems I missed most of this series other than the new vendor name in the V1.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Unfortunately your name does not appear as maintainer for these files
-and get_maintainers.pl brings it only sometimes as a --git fallback.
-Also few addresses from that --git fallback are non working, so I am not
-always Cc-ing them. Sorry for that, I'll try to Cc you on next Microchip
-RISC-V submissions, however you should probably add a proper platform
-maintainer entry (similarly to ARM/ARM64 subarchitectures).
+1. Use info from DT if available
 
+It allows describing for example a fixed link. It's more accurate than
+just guessing there may be one (depending on a chipset).
 
-> 
-> We have been redoing the device tree for the mpfs/icicle kit partly dye 
-> to some changes we made to the design. Previously SD and eMMC were 
-> different FPGA designs but now both are in the same design and managed 
-> by the bootloader, depending on where it finds the image to boot from.
-> Since then we've just been using the following single entry in the .dtsi:
-> 
->          mmc: mmc@20008000 { /* Common node entry for emmc/sd */
->              compatible = "cdns,sd4hc";
->              reg = <0x0 0x20008000 0x0 0x1000>;
->              clocks = <&clkcfg CLK_MMC>;
->              interrupt-parent = <&plic>;
->              interrupts = <PLIC_INT_MMC_MAIN PLIC_INT_MMC_WAKEUP>;
+2. Verify PHY ID before trying to connect PHY
 
-I'll switch to 2 interrupts.
+PHY addr 0x1e (30) is special in Broadcom routers and means a switch
+connected as MDIO devices instead of a real PHY. Don't try connecting to
+it.
 
->              bus-width = <4>;
->              cap-mmc-highspeed;
->              cap-sd-highspeed;
->              no-1-8-v;
->              disable-wp;
->              max-frequency = <200000000>;
->              status = "disabled";
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ drivers/net/ethernet/broadcom/bgmac-bcma.c | 33 ++++++++++++++--------
+ 1 file changed, 21 insertions(+), 12 deletions(-)
 
-I understand you prefer then the mmc node to be active? Before the DT
-had SDHC one enable, so my patch did not introduce changes (except
-mentioned interrupt).
+diff --git a/drivers/net/ethernet/broadcom/bgmac-bcma.c b/drivers/net/ethernet/broadcom/bgmac-bcma.c
+index 85fa0ab7201c..e39361042aa1 100644
+--- a/drivers/net/ethernet/broadcom/bgmac-bcma.c
++++ b/drivers/net/ethernet/broadcom/bgmac-bcma.c
+@@ -11,6 +11,7 @@
+ #include <linux/bcma/bcma.h>
+ #include <linux/brcmphy.h>
+ #include <linux/etherdevice.h>
++#include <linux/of_mdio.h>
+ #include <linux/of_net.h>
+ #include "bgmac.h"
+ 
+@@ -86,17 +87,28 @@ static int bcma_phy_connect(struct bgmac *bgmac)
+ 	struct phy_device *phy_dev;
+ 	char bus_id[MII_BUS_ID_SIZE + 3];
+ 
++	/* DT info should be the most accurate */
++	phy_dev = of_phy_get_and_connect(bgmac->net_dev, bgmac->dev->of_node,
++					 bgmac_adjust_link);
++	if (phy_dev)
++		return 0;
++
+ 	/* Connect to the PHY */
+-	snprintf(bus_id, sizeof(bus_id), PHY_ID_FMT, bgmac->mii_bus->id,
+-		 bgmac->phyaddr);
+-	phy_dev = phy_connect(bgmac->net_dev, bus_id, bgmac_adjust_link,
+-			      PHY_INTERFACE_MODE_MII);
+-	if (IS_ERR(phy_dev)) {
+-		dev_err(bgmac->dev, "PHY connection failed\n");
+-		return PTR_ERR(phy_dev);
++	if (bgmac->mii_bus && bgmac->phyaddr != BGMAC_PHY_NOREGS) {
++		snprintf(bus_id, sizeof(bus_id), PHY_ID_FMT, bgmac->mii_bus->id,
++			 bgmac->phyaddr);
++		phy_dev = phy_connect(bgmac->net_dev, bus_id, bgmac_adjust_link,
++				      PHY_INTERFACE_MODE_MII);
++		if (IS_ERR(phy_dev)) {
++			dev_err(bgmac->dev, "PHY connection failed\n");
++			return PTR_ERR(phy_dev);
++		}
++
++		return 0;
+ 	}
+ 
+-	return 0;
++	/* Assume a fixed link to the switch port */
++	return bgmac_phy_connect_direct(bgmac);
+ }
+ 
+ static const struct bcma_device_id bgmac_bcma_tbl[] = {
+@@ -295,10 +307,7 @@ static int bgmac_probe(struct bcma_device *core)
+ 	bgmac->cco_ctl_maskset = bcma_bgmac_cco_ctl_maskset;
+ 	bgmac->get_bus_clock = bcma_bgmac_get_bus_clock;
+ 	bgmac->cmn_maskset32 = bcma_bgmac_cmn_maskset32;
+-	if (bgmac->mii_bus)
+-		bgmac->phy_connect = bcma_phy_connect;
+-	else
+-		bgmac->phy_connect = bgmac_phy_connect_direct;
++	bgmac->phy_connect = bcma_phy_connect;
+ 
+ 	err = bgmac_enet_probe(bgmac);
+ 	if (err)
+-- 
+2.26.2
 
-I can change it to mmc above with your explanation.
-
-
-Best regards,
-Krzysztof
