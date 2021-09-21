@@ -2,225 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46FF7413E08
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 01:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB1F413E13
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 01:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbhIUXcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 19:32:32 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:37676 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230233AbhIUXcc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 19:32:32 -0400
-Received: by mail-oi1-f171.google.com with SMTP id w206so1672576oiw.4;
-        Tue, 21 Sep 2021 16:31:03 -0700 (PDT)
+        id S230345AbhIUXio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 19:38:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230216AbhIUXin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 19:38:43 -0400
+Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10153C061575
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 16:37:15 -0700 (PDT)
+Received: by mail-oo1-xc31.google.com with SMTP id i26-20020a4ad09a000000b002a9d58c24f5so291806oor.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 16:37:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HHox+3frYK/cj9vGMME461IJwFwRKnkRBeAwyaPFbck=;
+        b=U99MTwQSaRGyP0snuEIpuuA7Nc9/RXbBjkz/V0svgvNlu+nBt72uTYR+ZQAM4EJiVq
+         ey0t3gCUDwQzjqlxfw5eGPi35N2Zc3Tu28JjBqPydx0Q4VlP5SWegxfs6U9fpN4n6exs
+         DY17Ms//tODSOQaTASuFzerKkFvgyuW2vKeRLOse2WAlGXZNkI86OcjxbxkVjnz/sHQi
+         heMD5z3mFvuBXGG5/LblKDkfgvf8qzJzTfF8LnaRMYWAZvl3pR3Im9X+Murl22XbXgh+
+         sCffEEWsfC3kHc3UWAaN2pry1PupZcA65wKf+3J3tfmnn65hvYgceYRyeJecSB5Eyxz4
+         AG0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=91XjStUm9Mm7b+X7wWYnPdiNJWHmz77cGzi9d45AgQ4=;
-        b=1Qme9P/HFjqzEBthG1iSsPJUdr5sk13kwg9Rl7yLjuyv3IsC/nNGeKxe5WLnanyuxw
-         SVIXErYfVqxSEjAMvRw3DR1qzQheaa6AR5zu9g1GFlfD83gSdgpjfyDAIYpWAkUwuexO
-         k8jv2+Zl6ai2KGAvOckJVT2TzQH/VF6SxROFjWgB84alDZsxsZt5xxQXIFPEa82ya9sM
-         uTvVkEEPynZCRzmc9WlaQwtia1NfMjtL6pJJU8WkGTvGWpzuh1Xw3jKCo0TWO1ClPR0K
-         5koYeKtX/28M5G5RYu4dG/U6mE7lrT0vZGhXZ4QZpQnwW2ntkSQFYemT3L8NUqwvTddx
-         UfMQ==
-X-Gm-Message-State: AOAM531Nid/k8tNqzY63ZSYf3HDoZuiM6kpH5UWh+plTFkh2an5an0zU
-        PhGl3hy+OjOfgJRqrIDcqRs8PZJj/A==
-X-Google-Smtp-Source: ABdhPJwi51R0O2WHxOG1+y7tiXHZwEPtrB0Wn4R5YqLt7MlciaKdW4ovO/cXJhdK8Q3qEq2T82QjoA==
-X-Received: by 2002:aca:2318:: with SMTP id e24mr5910510oie.173.1632267062982;
-        Tue, 21 Sep 2021 16:31:02 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w14sm110894oth.5.2021.09.21.16.31.01
+        bh=HHox+3frYK/cj9vGMME461IJwFwRKnkRBeAwyaPFbck=;
+        b=RfZnBfjCsbCVI1k8PsY0Ot8qTN6iIZxOBU8yd/sbE7G/aGgGHudndGpCgF+Ag3ByL7
+         43e3ix0jFlA8kJ1uXnEB6h6vsunJeuYcayX37J7owbuLyysBtqtz4dwi9SGlMqDkiL7s
+         3yofPRZ46+sPpK5/MgbA0foCbaRKNJeUiBPn1yxj0urF6NlGNldF5M4N3CK4uiE26Ohk
+         T9jDPaUwV8tXVRXvv6599QQ/VbWbeF16mE4Kc6LdStMYj2bo99rzbh2UfLqO3eBPXjph
+         zZPUvPClwIZkl7HNzn54LJrHzdhE6FrmLY113UJjqui4q973mt9+q5JFCg2Vt2Oy8sa+
+         QmTA==
+X-Gm-Message-State: AOAM531X1qEw6fRpe0IdsmfwMu/O5dKGQ9UW4S7JPlUT3ZsevoUn0hIE
+        hjvHlXRCHbBb0gxlaUau7m1tQw==
+X-Google-Smtp-Source: ABdhPJzyrewviRAr+CFCzHNmQfX8dxtRhAjh/vAi+gc7UBts/HmCcVxzPwTgCVpJbJU23PeDTX/bww==
+X-Received: by 2002:a4a:a9ce:: with SMTP id h14mr26503391oon.89.1632267434421;
+        Tue, 21 Sep 2021 16:37:14 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id u12sm108081otq.20.2021.09.21.16.37.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 16:31:02 -0700 (PDT)
-Received: (nullmailer pid 3493875 invoked by uid 1000);
-        Tue, 21 Sep 2021 23:31:01 -0000
-Date:   Tue, 21 Sep 2021 18:31:01 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jayesh Choudhary <j-choudhary@ti.com>
-Cc:     devicetree@vger.kernel.org, mpm@selenic.com,
-        herbert@gondor.apana.org.au, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rng: convert OMAP and Inside-Secure HWRNG
- to yaml schema
-Message-ID: <YUprNTzmTdZJOCLY@robh.at.kernel.org>
-References: <20210916185352.7919-1-j-choudhary@ti.com>
+        Tue, 21 Sep 2021 16:37:14 -0700 (PDT)
+Date:   Tue, 21 Sep 2021 16:37:56 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
+        mathieu.poirier@linaro.org, ohad@wizery.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS
+ support
+Message-ID: <YUps1JfGtf6JdbCx@ripper>
+References: <1631811353-503-1-git-send-email-pillair@codeaurora.org>
+ <1631811353-503-3-git-send-email-pillair@codeaurora.org>
+ <CAE-0n51KBYjZvwGNy06_okmEWjEfRLQO54CYaY6-JnbBk6kOhA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210916185352.7919-1-j-choudhary@ti.com>
+In-Reply-To: <CAE-0n51KBYjZvwGNy06_okmEWjEfRLQO54CYaY6-JnbBk6kOhA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 17, 2021 at 12:23:52AM +0530, Jayesh Choudhary wrote:
-> Converts the RNG bindings for OMAP SoCs and Inside-Secure
-> HWRNG modules to YAML schema.
+On Thu 16 Sep 23:25 PDT 2021, Stephen Boyd wrote:
+
+> Quoting Rakesh Pillai (2021-09-16 09:55:52)
+> > @@ -78,6 +84,10 @@ properties:
+> >        Phandle reference to a syscon representing TCSR followed by the
+> >        three offsets within syscon for q6, modem and nc halt registers.
+> >
+> > +  qcom,qmp:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: Reference to the AOSS side-channel message RAM.
+> > +
+> >    qcom,smem-states:
+> >      $ref: /schemas/types.yaml#/definitions/phandle-array
+> >      description: States used by the AP to signal the Hexagon core
+> > @@ -117,6 +127,33 @@ allOf:
+> >          compatible:
+> >            contains:
+> >              enum:
+> > +              - qcom,sc7280-wpss-pil
+> > +    then:
 > 
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
->  .../devicetree/bindings/rng/omap_rng.txt      | 38 --------
->  .../devicetree/bindings/rng/omap_rng.yaml     | 94 +++++++++++++++++++
->  2 files changed, 94 insertions(+), 38 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rng/omap_rng.txt
->  create mode 100644 Documentation/devicetree/bindings/rng/omap_rng.yaml
+> Honestly I find this if/else to be a huge tangle. Why not split the
+> binding so that each compatible is a different file? Then it is easier
+> to read and see what properties to set.
 > 
-> diff --git a/Documentation/devicetree/bindings/rng/omap_rng.txt b/Documentation/devicetree/bindings/rng/omap_rng.txt
-> deleted file mode 100644
-> index ea434ce50f36..000000000000
-> --- a/Documentation/devicetree/bindings/rng/omap_rng.txt
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -OMAP SoC and Inside-Secure HWRNG Module
-> -
-> -Required properties:
-> -
-> -- compatible : Should contain entries for this and backward compatible
-> -  RNG versions:
-> -  - "ti,omap2-rng" for OMAP2.
-> -  - "ti,omap4-rng" for OMAP4, OMAP5 and AM33XX.
-> -  - "inside-secure,safexcel-eip76" for SoCs with EIP76 IP block
-> -  Note that these two versions are incompatible.
-> -- ti,hwmods: Name of the hwmod associated with the RNG module
-> -- reg : Offset and length of the register set for the module
-> -- interrupts : the interrupt number for the RNG module.
-> -		Used for "ti,omap4-rng" and "inside-secure,safexcel-eip76"
-> -- clocks: the trng clock source. Only mandatory for the
-> -  "inside-secure,safexcel-eip76" compatible, the second clock is
-> -  needed for the Armada 7K/8K SoCs
-> -- clock-names: mandatory if there is a second clock, in this case the
-> -  name must be "core" for the first clock and "reg" for the second
-> -  one
-> -
-> -
-> -Example:
-> -/* AM335x */
-> -rng: rng@48310000 {
-> -	compatible = "ti,omap4-rng";
-> -	ti,hwmods = "rng";
-> -	reg = <0x48310000 0x2000>;
-> -	interrupts = <111>;
-> -};
-> -
-> -/* SafeXcel IP-76 */
-> -trng: rng@f2760000 {
-> -	compatible = "inside-secure,safexcel-eip76";
-> -	reg = <0xf2760000 0x7d>;
-> -	interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
-> -	clocks = <&cpm_syscon0 1 25>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/rng/omap_rng.yaml b/Documentation/devicetree/bindings/rng/omap_rng.yaml
-> new file mode 100644
-> index 000000000000..86bbc2c53e7d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rng/omap_rng.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
 
-GPL-2.0-only OR BSD-2-Clause
+Further more, the way we express the non-PAS properties in the PAS node
+in the dtsi and then switch the compatible in the non-PAS devices means
+that we're causing validation errors.
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rng/omap_rng.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OMAP SoC and Inside-Secure HWRNG Module
-> +
-> +maintainers:
-> +  - Jayesh Choudhary <j-choudhary@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,omap2-rng
-> +      - ti,omap4-rng
-> +      - inside-secure,safexcel-eip76
-> +
-> +  ti,hwmods:
-> +    const: rng
-> +    deprecated: true
-> +    description: Name of the hwmod associated with the RNG module
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      - description: EIP150 gatable clock
-> +      - description: Main gatable clock
-> +
-> +  clock-names:
-> +    oneOf:
-> +      - items:
-> +          - const: core
-> +          - const: reg
-> +      - const: core
+So we should explode this binding to get rid of the conditionals and to
+describe the "superset" of the PAS and non-PAS compatibles, for
+platforms where this is applicable.
 
-This is better expressed as:
+Regards,
+Bjorn
 
-minItems: 1
-items:
-  - const: core
-  - const: reg
-
-> +
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - ti,omap4-rng
-> +              - inside-secure,safexcel-eip76
-> +
-> +    then:
-> +      required:
-> +        - interrupts
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - inside-secure,safexcel-eip76
-> +
-> +    then:
-> +      required:
-> +        - clocks
-> +
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    /* AM335x */
-> +    rng: rng@48310000 {
-> +            compatible = "ti,omap4-rng";
-> +            ti,hwmods = "rng";
-> +            reg = <0x48310000 0x2000>;
-> +            interrupts = <111>;
-> +    };
-> +  - |
-> +    /* SafeXcel IP-76 */
-> +    trng: rng@f2760000 {
-> +            compatible = "inside-secure,safexcel-eip76";
-> +            reg = <0xf2760000 0x7d>;
-> +            interrupts = <0 59 4>;
-> +            clocks = <&cpm_syscon0 1 25>;
-> +    };
-> +
-> +...
-> -- 
-> 2.17.1
-> 
-> 
+> > +      properties:
+> > +        interrupts-extended:
+> > +          maxItems: 6
+> > +          items:
+> > +            - description: Watchdog interrupt
+> > +            - description: Fatal interrupt
+> > +            - description: Ready interrupt
