@@ -2,60 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8567E413CF3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:49:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F178C413D0A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 23:53:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235646AbhIUVud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 17:50:33 -0400
-Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:34190 "EHLO
-        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235622AbhIUVub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:50:31 -0400
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-        id 6E105F40B6C; Tue, 21 Sep 2021 23:39:51 +0200 (CEST)
-From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-To:     linuxppc-dev@lists.ozlabs.org
-Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-        Ash Logan <ash@heyquark.com>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
+        id S235578AbhIUVy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 17:54:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55114 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235759AbhIUVyz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 17:54:55 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D09C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 14:53:24 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id t189so1306080oie.7
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 14:53:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=i6tk9/R5e/Ojy6WWFzxM+f+lVDyX3vnnXj9ScwFQosA=;
+        b=iKwHVJeDUTwT7OoRAPKQahj97WQjqdqoLeQy2o0iK3/oDZZzglw6URXU53MAvCzhs7
+         1DCiY7elhL2tOG6hUN1E/+Xs98WB4S0j+0Z/Bxk7ueC1qtVy4+SXoQC+YHRTdADNBzFf
+         Jb6QbevDqyX/VTVNohTkAfRNq9TrDPUm2WdpxfU/dkJIi5dzrMIVJc/VxUUJ7df4JK3T
+         16wr7W7IDPyiNtbomZaIEKM531sKQxlJ5mQ7pU3iKWsBasXxrcAHR6By6ABt5N9lMZLn
+         KfMbEzoJrMxMSIsAkb1pvbUwT+hFVx/DhfgZR08jaGztY7Rr/w/ISgCY2lXF0qzldBcp
+         blZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=i6tk9/R5e/Ojy6WWFzxM+f+lVDyX3vnnXj9ScwFQosA=;
+        b=aJyMULpwdpWtniF9Vdgk/Ivw5QwMMT/N1qLmy0219SGNViXO6XaekzUVM487oKV72C
+         vi3fXkuE8VCHFgUqS4Qx0jwQgXB0JEahCaEDVjx3O9DimQff5jyxACPTgw2pw56yQzjX
+         lRT68+UaSnJm/v3jcJWpQq+23wqEUC8848JhU/NuERKQ5ZTiiwVBG2+Pem7zA5mWayhw
+         RBebvfm4X7frSULdOX6NN/Rlqz6rA0n+rgz73IH0ZQ6IIoYpgy8ATw16I+8yVZmNlxi8
+         IrWFktndJJkt57U00QV+yG2TQ5Qbpzu8FOSOKjkJZ3iitIAJX8xa/GUkCye6PCPseIx1
+         d27g==
+X-Gm-Message-State: AOAM532dlOnFSF46f4Vr7gqY1ZUZmG5MQX1eYxQTi4v5LjaA+1M0Jbad
+        cfBMDKotz3PECZiVpKeUwES1OA==
+X-Google-Smtp-Source: ABdhPJwSxP6PkEBnLKZoPP/NnDjm8RoIzCYd16aMYqUildhh0Jou3q1+0axbeUw+RYp3ae9YAVVq6Q==
+X-Received: by 2002:aca:b6d5:: with SMTP id g204mr5530134oif.29.1632261203217;
+        Tue, 21 Sep 2021 14:53:23 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id u27sm71423otj.6.2021.09.21.14.53.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 14:53:22 -0700 (PDT)
+Date:   Tue, 21 Sep 2021 16:53:21 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org
-Subject: [PATCH 4/4] powerpc: wii_defconfig: Enable AES by default
-Date:   Tue, 21 Sep 2021 23:39:30 +0200
-Message-Id: <20210921213930.10366-5-linkmauve@linkmauve.fr>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210921213930.10366-1-linkmauve@linkmauve.fr>
-References: <20210921213930.10366-1-linkmauve@linkmauve.fr>
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] pinctrl: qcom: spmi-gpio: add support to
+ enable/disable output
+Message-ID: <YUpUUdx9UJ+aL0Fu@builder.lan>
+References: <1631588246-4811-1-git-send-email-quic_subbaram@quicinc.com>
+ <1631588246-4811-3-git-send-email-quic_subbaram@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1631588246-4811-3-git-send-email-quic_subbaram@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This selects the nintendo-aes module when building for this platform.
+On Mon 13 Sep 21:57 CDT 2021, Subbaraman Narayanamurthy wrote:
 
-Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
----
- arch/powerpc/configs/wii_defconfig | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+> Currently, if the GPIO is configured as output in the bootloader
+> and user changes the mode to input in HLOS, it would end up
+> getting configured as input/output. Functionally, this is fine;
+> however, there may be some requirements where the output needs
+> to be disabled so that it can be used only for input.
+> 
+> Add support to enable/disable output mode through "output-enable"
+> or "output-disable" pinctrl properties.
+> 
+> Signed-off-by: Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
 
-diff --git a/arch/powerpc/configs/wii_defconfig b/arch/powerpc/configs/wii_defconfig
-index 379c171f3ddd..752e081d28d0 100644
---- a/arch/powerpc/configs/wii_defconfig
-+++ b/arch/powerpc/configs/wii_defconfig
-@@ -123,4 +123,6 @@ CONFIG_SCHED_TRACER=y
- CONFIG_BLK_DEV_IO_TRACE=y
- CONFIG_DMA_API_DEBUG=y
- CONFIG_PPC_EARLY_DEBUG=y
--# CONFIG_CRYPTO_HW is not set
-+CONFIG_CRYPTO_HW=y
-+CONFIG_CRYPTO_DEV_NINTENDO=y
-+CONFIG_CRYPTO_USER_API_SKCIPHER=y
--- 
-2.33.0
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
+Regards,
+Bjorn
+
+> ---
+>  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> index 98bf0e2..39a18aa 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2012-2014, 2021, The Linux Foundation. All rights reserved.
+>   */
+>  
+>  #include <linux/gpio/driver.h>
+> @@ -424,6 +424,9 @@ static int pmic_gpio_config_get(struct pinctrl_dev *pctldev,
+>  			return -EINVAL;
+>  		arg = 1;
+>  		break;
+> +	case PIN_CONFIG_OUTPUT_ENABLE:
+> +		arg = pad->output_enabled;
+> +		break;
+>  	case PIN_CONFIG_OUTPUT:
+>  		arg = pad->out_value;
+>  		break;
+> @@ -503,6 +506,9 @@ static int pmic_gpio_config_set(struct pinctrl_dev *pctldev, unsigned int pin,
+>  		case PIN_CONFIG_INPUT_ENABLE:
+>  			pad->input_enabled = arg ? true : false;
+>  			break;
+> +		case PIN_CONFIG_OUTPUT_ENABLE:
+> +			pad->output_enabled = arg ? true : false;
+> +			break;
+>  		case PIN_CONFIG_OUTPUT:
+>  			pad->output_enabled = true;
+>  			pad->out_value = arg;
+> -- 
+> 2.7.4
+> 
