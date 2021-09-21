@@ -2,105 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0119D413ADB
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 21:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A338C413AE7
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 21:45:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233389AbhIUTkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 15:40:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52164 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbhIUTj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 15:39:59 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CB7CC061574
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 12:38:31 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id v10so696272oic.12
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 12:38:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hxWj5q7swVty+YFYP6m27mJOeJh7UIopy7fIe7UTFO4=;
-        b=UVXAxP0uOhzDLmloqA8Kj/dSEX4Xs+hF2dDuRIBZMQikXY42XgBbF2I/pFCi610NCd
-         t0Ycu+rvHhzfNDiRfTGROlj1+5UYMnZV65LyhzOD2L02WFWOlrfXu0usjOXK/eeXPpc+
-         yvk51a2PZrAHQAHPJBLFiZovjkk3beJfbK+hEyK4x+qzjfgpEXeEU/+dVAnlxc+178qx
-         awxxxZFwZl8srpbxc7snPV7rFlGKPt2XiHw+eW4blbwyZ1mLcO8RFCeA7aoA7yjRjrer
-         gKsBbcu90JfI/pdvSCYdg8VnFLrgrvfLmKV+rj7BWZjR2BtCmdbFICyY2YKHhtk7V94x
-         qZdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hxWj5q7swVty+YFYP6m27mJOeJh7UIopy7fIe7UTFO4=;
-        b=iFzLtLi/6P1oYc/1KfE50HeVBle9WbPtKgXRoaUFAjRLmasH2dxNz3ExobyYIyEfVd
-         X3tmHx/g+x9QNzMntLWj0W6Pk0ZZAmbcRo5QYmUbT8XREBbHEjM02bdIBnY5Q9jwuMc3
-         AjJGFdifuo1uAAA8pjVl3BIm5M2hRiQdVCOj0dBbkRPOhZdyonzSqWcSkSqYPh2leK6o
-         uWHK/7VqCIRSFBEmj7lt5uxvyygUTelh55PwKkDxxusJLdlwamWYFB2sD6mBLcNj8+vR
-         6G2oXLlNqOnJdVCu6h5yy6pQenEOmgaNoYqeuwZihMfj+EEZdVYCn4D8IlR9hyywablr
-         xTog==
-X-Gm-Message-State: AOAM531/mVipznVSSdnT6tAEqRNwSQTWjPIy8esfIR+/Ol9JoA7HBsjB
-        JpBBtGnzYWEKeYoP8lynVeLWjHY8odlFiw==
-X-Google-Smtp-Source: ABdhPJxBAUpBmPVwAPJMJkbQBgvwTKS+BuQWlZyjmauCiwBkgDLRagF9IeJhCn6F97a8CuI9qL2sfw==
-X-Received: by 2002:a05:6808:302c:: with SMTP id ay44mr5211232oib.73.1632253109215;
-        Tue, 21 Sep 2021 12:38:29 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 186sm4318717ood.39.2021.09.21.12.38.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 12:38:28 -0700 (PDT)
-Date:   Tue, 21 Sep 2021 14:38:26 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: msm8916: Drop underscore in node
- name
-Message-ID: <YUo0suaIugOco1Vu@builder.lan>
-References: <20210921152120.6710-1-stephan@gerhold.net>
- <20210921152120.6710-2-stephan@gerhold.net>
- <CAE-0n51Ukr0FMhzHotrGnrJjE3=w2X_u4ukc1KC_HpjjsUdNfg@mail.gmail.com>
+        id S232327AbhIUTqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 15:46:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52942 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231468AbhIUTqf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 15:46:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8D87F6112F;
+        Tue, 21 Sep 2021 19:45:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632253506;
+        bh=TG/Sor91iMlLGQKzaFrGTL6wc9VnOoLST+DeZedZHa0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=omHIxpIW3eT4kf2aXXTpbZBkJtpwkJXWG6FiY3eVv5ZfRA5wx02Y0qmjlJaDRmF+E
+         SjVitdjtNLVqWQDHNQ2k4VW/LuQmMsmZ/fRU74xqrcmw0NRzbuK7U+JLAw9hBG2mhC
+         lpovLVsKZqW3CtV6AlLQ4q7m1y/iVr+hfSgpatHuSwo7GOf7xVeL7u3IUap6S/cNpI
+         8q6t7ReEsSBOsgGUekkxKZ74lKAYmlDr+ykmQPuh5KaqmezovKBN3gAF+/8MoEsT0U
+         Z/45mgoZfUWzdruBFzQRsrZtHYr16YAQZfNXhQzcfhLOLrS6O99CV2IOVh2iqWbI+9
+         Ymj8I5NmXNtTg==
+Received: by mail-ed1-f43.google.com with SMTP id ee50so525390edb.13;
+        Tue, 21 Sep 2021 12:45:06 -0700 (PDT)
+X-Gm-Message-State: AOAM532RwEEQjZq1j3EXbotb+e2hnMRFIfxwFuNMR8gmCybh9ujn0cSs
+        xB+cmd/tZG86s3ZyOcAQyC1mXEeOAFEpsA22mg==
+X-Google-Smtp-Source: ABdhPJztD14XM+ABXOQ8afWfcx03LpCn85LuBtodjgJNaa1df1UXoQ8GgYwkn75WV9713c6C+KbGt+a3JQIc3ibERr0=
+X-Received: by 2002:a05:6402:b23:: with SMTP id bo3mr38015381edb.145.1632253505043;
+ Tue, 21 Sep 2021 12:45:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n51Ukr0FMhzHotrGnrJjE3=w2X_u4ukc1KC_HpjjsUdNfg@mail.gmail.com>
+References: <20210906041424.115473-1-gshan@redhat.com>
+In-Reply-To: <20210906041424.115473-1-gshan@redhat.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 21 Sep 2021 14:44:53 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLccwTEhzonvdOOox+D6=3gHxbDbtsXTJpqtQfuxA4xvg@mail.gmail.com>
+Message-ID: <CAL_JsqLccwTEhzonvdOOox+D6=3gHxbDbtsXTJpqtQfuxA4xvg@mail.gmail.com>
+Subject: Re: [PATCH] Documentation, dt, numa: Add note to empty NUMA node
+To:     Gavin Shan <gshan@redhat.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-efi@vger.kernel.org,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        Randy Dunlap <rdunlap@infradead.org>, drjones@redhat.com,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>, shan.gavin@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 21 Sep 13:20 CDT 2021, Stephen Boyd wrote:
+On Sun, Sep 5, 2021 at 11:16 PM Gavin Shan <gshan@redhat.com> wrote:
+>
+> The empty memory nodes, where no memory resides in, are allowed.
+> For these empty memory nodes, the 'len' of 'reg' property is zero.
+> The NUMA node IDs are still valid and parsed, but memory may be
+> added to them through hotplug afterwards. Currently, QEMU fails
+> to boot when multiple empty memory nodes are specified. It's
+> caused by device-tree population failure and duplicated memory
+> node names.
 
-> Quoting Stephan Gerhold (2021-09-21 08:21:19)
-> > Using underscores in device tree nodes is not very common.
-> > Additionally, the _region suffix in "smem_region@..." is not really
-> > useful since it's obvious that it describes a reserved memory region.
-> >
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > ---
-> >  arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > index 5551dba2d5fd..95dea20cde75 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> > @@ -41,7 +41,7 @@ tz-apps@86000000 {
-> >                         no-map;
-> >                 };
-> >
-> > -               smem_mem: smem_region@86300000 {
-> > +               smem_mem: smem@86300000 {
-> 
-> Shouldn't that be smem_mem: memory@86300000? Node names should be
-> generic.
-> 
+I still don't like the fake addresses. I can't really give suggestions
+on alternative ways to fix this with you just presenting a solution.
 
-I agree, that seems better.
+What is the failure you see? Can we relax the kernel's expectations?
+What about UEFI boot as the memory nodes aren't used (or maybe they
+are for NUMA?) How does this work with ACPI?
 
-In the meantime, I've picked patch 1 and 3.
+> As device-tree specification indicates, the 'unit-address' of
+> these empty memory nodes, part of their names, are the equivalents
+> to 'base-address'. Unfortunately, I finds difficulty to get where
+> the assignment of 'base-address' is properly documented for these
+> empty memory nodes. So lets add a section for empty memory nodes
+> to cover this in NUMA binding document. The 'unit-address',
+> equivalent to 'base-address' in the 'reg' property of these empty
+> memory nodes is specified to be the summation of highest memory
+> address plus the NUMA node ID.
+>
+> Signed-off-by: Gavin Shan <gshan@redhat.com>
+> Acked-by: Randy Dunlap <rdunlap@infradead.org>
+> ---
+>  Documentation/devicetree/bindings/numa.txt | 60 +++++++++++++++++++++-
+>  1 file changed, 59 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+> index 21b35053ca5a..82f047bc8dd6 100644
+> --- a/Documentation/devicetree/bindings/numa.txt
+> +++ b/Documentation/devicetree/bindings/numa.txt
+> @@ -103,7 +103,65 @@ Example:
+>                 };
+>
+>  ==============================================================================
+> -4 - Example dts
+> +4 - Empty memory nodes
+> +==============================================================================
+> +
+> +Empty memory nodes, which no memory resides in, are allowed. The 'length'
+> +field of the 'reg' property is zero. However, the 'base-address' is a
+> +dummy and invalid address, which is the summation of highest memory address
+> +plus the NUMA node ID. The NUMA node IDs and distance maps are still valid
+> +and memory may be added into them through hotplug afterwards.
+> +
+> +Example:
+> +
+> +       memory@0 {
+> +               device_type = "memory";
+> +               reg = <0x0 0x0 0x0 0x80000000>;
+> +               numa-node-id = <0>;
+> +       };
+> +
+> +       memory@80000000 {
+> +               device_type = "memory";
+> +               reg = <0x0 0x80000000 0x0 0x80000000>;
+> +               numa-node-id = <1>;
+> +       };
+> +
+> +       /* Empty memory node */
+> +       memory@100000002 {
+> +               device_type = "memory";
+> +               reg = <0x1 0x2 0x0 0x0>;
+> +               numa-node-id = <2>;
+> +       };
+> +
+> +       /* Empty memory node */
+> +       memory@100000003 {
+> +               device_type = "memory";
+> +               reg = <0x1 0x3 0x0 0x0>;
+> +               numa-node-id = <3>;
+> +       };
 
-Regards,
-Bjorn
+Do you really need the memory nodes here or just some way to define
+numa node id's 2 and 3 as valid?
 
-> >                         reg = <0x0 0x86300000 0x0 0x100000>;
-> >                         no-map;
-> >                 };
+
+> +
+> +       distance-map {
+> +               compatible = "numa-distance-map-v1";
+> +               distance-matrix = <0 0  10>,
+> +                                 <0 1  20>,
+> +                                 <0 2  40>,
+> +                                 <0 3  20>,
+> +                                 <1 0  20>,
+> +                                 <1 1  10>,
+> +                                 <1 2  20>,
+> +                                 <1 3  40>,
+> +                                 <2 0  40>,
+> +                                 <2 1  20>,
+> +                                 <2 2  10>,
+> +                                 <2 3  20>,
+> +                                 <3 0  20>,
+> +                                 <3 1  40>,
+> +                                 <3 2  20>,
+> +                                 <3 3  10>;
+> +       };
+> +
+> +==============================================================================
+> +5 - Example dts
+>  ==============================================================================
+>
+>  Dual socket system consists of 2 boards connected through ccn bus and
+> --
+> 2.23.0
+>
