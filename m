@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D33F4139E5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 20:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59FF94139E7
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 20:18:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232675AbhIUSTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 14:19:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33600 "EHLO
+        id S232725AbhIUSUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 14:20:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232667AbhIUSTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 14:19:20 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB6FC061575
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 11:17:52 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id a3so432804oid.6
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 11:17:52 -0700 (PDT)
+        with ESMTP id S232709AbhIUSUI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 14:20:08 -0400
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886E5C061575
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 11:18:39 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so13127035ota.6
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 11:18:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=4ndnE3A6HWrWUQFEpLBibvZpS/DSj/u5RwWUUcBBIbY=;
-        b=M9q4eBksz0cSuyze2PDRWMN+/8AyzW1UW+oCWE+lKF8Z2CVt982CWqNfw6L8TSon+G
-         reiUZmoZkSto0CNjXNKzVt4n/s+cY04W/A2IknIZap7ojgmwmYkvM8JMbshrSzkLYeu7
-         VwQxIezIgtVR5pA6JAMYA2DsWYCdVUSfdFM/M=
+        bh=wRIT4s1i/ShcOgxfjk26/chTDGk5J7qcbPp6zKx8wL8=;
+        b=O/2eYurCO/RmjAPGB8JVzLIkW70Y7fAHFdWVq3FjQYPfJ74EUMPVH+s6by2pFUAiJh
+         hnAt2edp59tSX/Sfwq99Bn/jxK9pr0CS917pRSPuQMaWVcEEj2gyxIunGzJB1baLUrwr
+         dwnYo+QZQ/wZuSkPQcjSKCd5CrCZyMGlE36EA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=4ndnE3A6HWrWUQFEpLBibvZpS/DSj/u5RwWUUcBBIbY=;
-        b=Y/0nuQK6+bXRVXCfPoECEQ2puNQAQ+tci9ujZMv4C1kBsYeh1ERFmAXoqIRa/o7/KC
-         tEZpctHlDzpco7XMTQCL0mqF7PLq2yOiuIzFW0ATrApar7MESvzLcCvPPrLwpvmCtOg1
-         fpRbiIgUpEKHRpCmTu3WUp+k9OjOsKMJmkuu9iXjPRCMC7mJ6c9jozKYhqThCrJsC6s5
-         IHI8pi1cktr8+/0bLpPWgKiIi5rdFBcdLnxeFiwfnTlpU7CbeKYd1hE2YKXZdPUAPZNu
-         3Vmb09oVEK6vFPAXthuvv7nbn12DbilH3OhB6m5eQFK2OqIA7SNylcCrMputOG43KYjE
-         /1VQ==
-X-Gm-Message-State: AOAM533DDGmkDBE4zsmH/NC44fsOSKfqYWINZ1cXFVnKd93Kwq94XF3v
-        yLDKA4Z+Kx8ouNZiSqmcU78LEDfjql6pGhMg0yEUPA==
-X-Google-Smtp-Source: ABdhPJyKrRMRshM7mtWtkfA0FX6HRcL56w59GugrJ4C/D9fm74PkXOWGt8OszBdOXp7+Mf9Fje/hrhpk5ziklYlRqus=
-X-Received: by 2002:aca:3110:: with SMTP id x16mr4818312oix.64.1632248271650;
- Tue, 21 Sep 2021 11:17:51 -0700 (PDT)
+        bh=wRIT4s1i/ShcOgxfjk26/chTDGk5J7qcbPp6zKx8wL8=;
+        b=G3qHQtp1QBKQZmuEzQRs2HrUmb8WIMw5C4/50fJCWCrydr1+aCtesSqKSwO/w1OhTh
+         +MLTnCAc/3ITklzJHOuUnY65bWUUuDnsTKBvXMxIvzObHRVleS7t2vDvTD0DzidugssN
+         BZUVlS+orP5OCeoq5L+Pgs6BBpMBvS/vsYGj736ZUazt4m1NuJJ9nR/JeJTZf6/vREWb
+         OdnfyIDL25EBtpZ/bQeHKrWP/DN/k6TPDAM9Ukoctp/AHz658b1xS9UmyzAncvwArjR2
+         UY5noUZhQCKoIKlS2ZZwDx8W/i5dzWNsMdpvxx8ViECJqpGpZvbk1vhoNKyARrM0LwxK
+         MHfg==
+X-Gm-Message-State: AOAM5333Zv3O3o/fOK940ZLlI+OpqInoVzdmiu7guBV+YwiFZ8i7F5eB
+        9vFYcVWMbSivS9khamBCK7DfDYtxEXbCzOIu+F9fabB69i8=
+X-Google-Smtp-Source: ABdhPJw6e8geb8YL/7MJWKkTXO13qz7mPLMAUDCSnLFmjbkfJLLfy1WYN3WJ0fDFhBEaiOzeUbsjdhA6UmV7LoOP+as=
+X-Received: by 2002:a05:6830:1212:: with SMTP id r18mr25758184otp.159.1632248318469;
+ Tue, 21 Sep 2021 11:18:38 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 21 Sep 2021 11:17:51 -0700
+ HTTPREST; Tue, 21 Sep 2021 11:18:38 -0700
 MIME-Version: 1.0
-In-Reply-To: <1632220746-25943-5-git-send-email-rajpat@codeaurora.org>
-References: <1632220746-25943-1-git-send-email-rajpat@codeaurora.org> <1632220746-25943-5-git-send-email-rajpat@codeaurora.org>
+In-Reply-To: <1632220746-25943-8-git-send-email-rajpat@codeaurora.org>
+References: <1632220746-25943-1-git-send-email-rajpat@codeaurora.org> <1632220746-25943-8-git-send-email-rajpat@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Tue, 21 Sep 2021 11:17:51 -0700
-Message-ID: <CAE-0n53gvxkFEvGmX2TSPnrQsv-wnG4gZA6Z5cO8L7ChzAS0TA@mail.gmail.com>
-Subject: Re: [PATCH V9 4/8] arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
+Date:   Tue, 21 Sep 2021 11:18:38 -0700
+Message-ID: <CAE-0n50aP3u3ZgZXrTA2R1YuKghi8p0BwSsXsceKKxrz97xAVA@mail.gmail.com>
+Subject: Re: [PATCH V9 7/8] arm64: dts: sc7280: Add QUPv3 wrapper_1 nodes
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rajesh Patil <rajpat@codeaurora.org>,
@@ -64,67 +64,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajesh Patil (2021-09-21 03:39:02)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 2fbcb0a..b65c5da 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -536,24 +555,425 @@
->                 qupv3_id_0: geniqup@9c0000 {
->                         compatible = "qcom,geni-se-qup";
->                         reg = <0 0x009c0000 0 0x2000>;
-> -                       clock-names = "m-ahb", "s-ahb";
->                         clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
->                                  <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
-> +                       clock-names = "m-ahb", "s-ahb";
->                         #address-cells = <2>;
->                         #size-cells = <2>;
->                         ranges;
-> +                       iommus = <&apps_smmu 0x123 0x0>;
->                         status = "disabled";
+Quoting Rajesh Patil (2021-09-21 03:39:05)
+> From: Roja Rani Yarubandi <rojay@codeaurora.org>
 >
-> +                       i2c0: i2c@980000 {
-> +                               compatible = "qcom,geni-i2c";
-> +                               reg = <0 0x00980000 0 0x4000>;
-> +                               clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
-> +                               clock-names = "se";
-> +                               pinctrl-names = "default";
-> +                               pinctrl-0 = <&qup_i2c0_data_clk>;
-> +                               interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
-> +                                               <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_QUP_0 0>,
-> +                                               <&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
-> +                               interconnect-names = "qup-core", "qup-config",
-> +                                                       "qup-memory";
-> +                               status = "disabled";
-> +                       };
-> +
-> +                       spi0: spi@980000 {
-> +                               compatible = "qcom,geni-spi";
-> +                               reg = <0 0x00980000 0 0x4000>;
-> +                               clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
-> +                               clock-names = "se";
-> +                               pinctrl-names = "default";
-> +                               pinctrl-0 = <&qup_spi0_data_clk>, <&qup_spi0_cs>, <&qup_spi0_cs_gpio>;
+> Add QUPv3 wrapper_1 DT nodes for SC7280 SoC.
+>
+> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-This should only have qup_spi0_data_clk and qup_spi0_cs, not
-qup_spi0_cs_gpio. Both qup controlled and gpio controlled options are
-provided in case a board wants to use the qup version of chipselect, but
-having them both used by default leads to conflicts and confusion. This
-same comment applies to all spi pinctrl properties in this file. Please
-keep the cs_gpio variants though so that boards can use them if they
-want. They will be unused, but that's OK.
-
-> +                               interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               power-domains = <&rpmhpd SC7280_CX>;
-> +                               operating-points-v2 = <&qup_opp_table>;
-> +                               interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
-> +                                               <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_QUP_0 0>;
-> +                               interconnect-names = "qup-core", "qup-config";
-> +                               status = "disabled";
-> +                       };
-> +
+Same comment here. Please make the cs_gpio nodes unused.
