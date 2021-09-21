@@ -2,142 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAD7B413A33
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 20:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B80413A23
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 20:40:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233635AbhIUSng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 14:43:36 -0400
-Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28]:51397 "EHLO
-        lb2-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233600AbhIUSng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 14:43:36 -0400
-X-Greylist: delayed 431 seconds by postgrey-1.27 at vger.kernel.org; Tue, 21 Sep 2021 14:43:14 EDT
-Received: from cust-df1d398c ([IPv6:fc0c:c1f5:9ac0:c45f:1583:5c5b:91fa:2436])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id Skb8mlMr9pQdWSkbamYt73; Tue, 21 Sep 2021 20:34:58 +0200
-From:   Mark Kettenis <kettenis@openbsd.org>
-To:     devicetree@vger.kernel.org
-Cc:     maz@kernel.org, robin.murphy@arm.com, sven@svenpeter.dev,
-        alyssa@rosenzweig.io, Mark Kettenis <kettenis@openbsd.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Jim Quinlan <jim2101024@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
-Subject: [PATCH v5 4/4] arm64: apple: Add PCIe node
-Date:   Tue, 21 Sep 2021 20:34:15 +0200
-Message-Id: <20210921183420.436-5-kettenis@openbsd.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210921183420.436-1-kettenis@openbsd.org>
-References: <20210921183420.436-1-kettenis@openbsd.org>
+        id S233193AbhIUSmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 14:42:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229944AbhIUSmC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 14:42:02 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 189C9C061574;
+        Tue, 21 Sep 2021 11:40:34 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id g184so21569531pgc.6;
+        Tue, 21 Sep 2021 11:40:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=GCp9xMHVQ+O3KUUdN8kb66CJEPEYUuxTq59fEn3D1Xw=;
+        b=VtVgExXM18UyUnWVeN7shm+MbOosykIOq8AKWKZer9DFjD3EM4HcDY08YXMvL46qti
+         0J8xGCCK4OE1xJio9ponM6+PVnzVbyvXIXacLLJ4fDsa5BbEGdgKz8ruyQt9Na58zGSH
+         Oemx4S0r8zUbIE/4qxo5e42Hvsc6aWBQQpTvENeYTXqhJ4QMaW6iklcLhgzzfK9GoF4Z
+         Limnu++JlCy1ZeXamXxjhUyWA3Hyj7ADJf1j3YataNMQABrHPE88blvB88hK1TiCkkP3
+         DNytgFkwJE90wDdk7CDoWeQX1zzCKHsjBSCaKZYNScv+2GVJ1F5pUw+iDb5GbLP6KTmj
+         syjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=GCp9xMHVQ+O3KUUdN8kb66CJEPEYUuxTq59fEn3D1Xw=;
+        b=Yv1FuB4itVaupdY75jpWqNsTpOT7XYBa/NSUzn1dqfNmCd7rqyubyduKzzalf2TVZz
+         yb5naqw/bMg3GzXePcC7QKT7rBqTOWYqiVqEGmzlwA3irYY61ZS1jtAAZyYLRVEeiDc/
+         OP2uR9fs7k6n3n4oiXi7CAzkdLvLfbfH4rBkut0CaOQgwLhwwyWBmqgQGG5TlE6XuyfH
+         FAKJ7m2aUQ1CxIzjd+og9cFaAM97I/FoE41bpWmef891Z84F2clfmhRy+y6hL2r1/+Yn
+         MR3payP96//j2xha35F6fBVDLmXEbJ5mchqXP3QBGmAnzMLrqxF0dxTLdyCCV/+X0TOI
+         Ozyg==
+X-Gm-Message-State: AOAM532Dk0IdpmyWICdcaRrNepnYEIR6HbBhkq6Y36n6cgLLT8WuVAtz
+        MdRlUljge7ckGHDTzREEivw=
+X-Google-Smtp-Source: ABdhPJxH4DP+xJCpm5R0nOX3nc3kHOlfM3SnhUYB7ihjVvK4v/gg+I5iAvFjmjADsCJFXZuLKWkT8Q==
+X-Received: by 2002:a63:5663:: with SMTP id g35mr29371439pgm.368.1632249633523;
+        Tue, 21 Sep 2021 11:40:33 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id y126sm18173990pfy.88.2021.09.21.11.40.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Sep 2021 11:40:32 -0700 (PDT)
+Subject: Re: [PATCH RFC] net: bgmac: improve handling PHY
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        netdev@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Saravana Kannan <saravanak@google.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20210921120215.27924-1-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <5aeb4d43-14d2-da4c-6004-e9c2f4849d0d@gmail.com>
+Date:   Tue, 21 Sep 2021 11:40:30 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <20210921120215.27924-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfHhQZ6AJi25iA7HphsHmJwim8Jvgsd9KkIPWji3RvlBIC8jLZYr7rslO9k7z7tmQrrwWHesyulwaXXRZ6DAF/SK3svoW/pvrIQV/YXd1rGrJxcSDm2M0
- ZKHfHBR0+WX8j2SjgAf+twYv+Nb+sPTyX0fJsqa6oUJKE605ALB1YTdeCmbUAIk4XVQBMCva7mcAyf4ZgTSLQDmjmxpgC9b1WXqfIb3mYCIIu8o2eNrLhqyu
- h5hYAaycS/GcuGTqI5YP3dTTkhKdTWNpKcuVKKnMwNfAGhff3cCgYRPUlzvLlj8ys9AG8kjtXFxNmr3cfXRXMur+//WJOLxXwhiE8lLmN4DK3yeMdSudybAT
- oEO4pV9YQDiZWNjpAb7GexxGH+SRZXvZG8SfX86EDfY5yrbI+D+DhPejf5W/jMZGA2wZVo22m9zO5oKbFjNb68r204es1IzaErqdiM9J5sW8BqUUjrTcZqza
- hiNHZZdapii+cnn1hlOcJbWK+VMw0E2BkDdedpoZ2bLBS1nHkxz6sAfDHo16Ys5YgTZjWolIZqsXRW4WxiJ8tc+oZ02fzZcxTEDoWDS2GwOG/CzrCKXF3/r8
- aOHbA+Gt2TjNFJdwDpu4uJJpOMYOL9acSRO9j0mF/xBWPhECREFW6ubbvgi2XGLjNF8NHUdtviQ7Zbk5JfEADiSTdnZfGOp1foON9iOqyYp0TuO1LWvcFq7Z
- eMxjW2QypkBKzEIhYwXTQLv5SntPN2+SwT0STb+w2c0EdqB6PLFAOLPVnkBRG4khCvzIxOX8XWqJtBnwlQDQIltJ9cJfCxTz4W0nxmym6ru+F/eCK9XSRPPP
- P+N0uiSFw4nN4Rl7mqe0iHF2OugQSiNyss66Z9UyQ58SaYdevEz6HiD79pKbpQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add node corresponding to the apcie,t8103 node in the
-Apple device tree for the Mac mini (M1, 2020).
+On 9/21/21 5:02 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> 1. Use info from DT if available
+> 
+> It allows describing for example a fixed link. It's more accurate than
+> just guessing there may be one (depending on a chipset).
+> 
+> 2. Verify PHY ID before trying to connect PHY
+> 
+> PHY addr 0x1e (30) is special in Broadcom routers and means a switch
+> connected as MDIO devices instead of a real PHY. Don't try connecting to
+> it.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Power domain references and DART (IOMMU) references are left out
-at the moment and will be added once the appropriate bindings have
-been settled upon.
+Yes this does appear to be a better strategy, you would want to put that
+in the same patch set that adds support for the "mdio" node container to
+avoid regressions, thanks!
 
-Acked-by: Marc Zyngier <maz@kernel.org>
-Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
----
- arch/arm64/boot/dts/apple/t8103.dtsi | 63 ++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+> ---
+>  drivers/net/ethernet/broadcom/bgmac-bcma.c | 33 ++++++++++++++--------
+>  1 file changed, 21 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/broadcom/bgmac-bcma.c b/drivers/net/ethernet/broadcom/bgmac-bcma.c
+> index 85fa0ab7201c..e39361042aa1 100644
+> --- a/drivers/net/ethernet/broadcom/bgmac-bcma.c
+> +++ b/drivers/net/ethernet/broadcom/bgmac-bcma.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/bcma/bcma.h>
+>  #include <linux/brcmphy.h>
+>  #include <linux/etherdevice.h>
+> +#include <linux/of_mdio.h>
+>  #include <linux/of_net.h>
+>  #include "bgmac.h"
+>  
+> @@ -86,17 +87,28 @@ static int bcma_phy_connect(struct bgmac *bgmac)
+>  	struct phy_device *phy_dev;
+>  	char bus_id[MII_BUS_ID_SIZE + 3];
+>  
+> +	/* DT info should be the most accurate */
+> +	phy_dev = of_phy_get_and_connect(bgmac->net_dev, bgmac->dev->of_node,
+> +					 bgmac_adjust_link);
+> +	if (phy_dev)
+> +		return 0;
+> +
+>  	/* Connect to the PHY */
+> -	snprintf(bus_id, sizeof(bus_id), PHY_ID_FMT, bgmac->mii_bus->id,
+> -		 bgmac->phyaddr);
+> -	phy_dev = phy_connect(bgmac->net_dev, bus_id, bgmac_adjust_link,
+> -			      PHY_INTERFACE_MODE_MII);
+> -	if (IS_ERR(phy_dev)) {
+> -		dev_err(bgmac->dev, "PHY connection failed\n");
+> -		return PTR_ERR(phy_dev);
+> +	if (bgmac->mii_bus && bgmac->phyaddr != BGMAC_PHY_NOREGS) {
+> +		snprintf(bus_id, sizeof(bus_id), PHY_ID_FMT, bgmac->mii_bus->id,
+> +			 bgmac->phyaddr);
+> +		phy_dev = phy_connect(bgmac->net_dev, bus_id, bgmac_adjust_link,
+> +				      PHY_INTERFACE_MODE_MII);
+> +		if (IS_ERR(phy_dev)) {
+> +			dev_err(bgmac->dev, "PHY connection failed\n");
+> +			return PTR_ERR(phy_dev);
+> +		}
+> +
+> +		return 0;
+>  	}
+>  
+> -	return 0;
+> +	/* Assume a fixed link to the switch port */
+> +	return bgmac_phy_connect_direct(bgmac);
+>  }
+>  
+>  static const struct bcma_device_id bgmac_bcma_tbl[] = {
+> @@ -295,10 +307,7 @@ static int bgmac_probe(struct bcma_device *core)
+>  	bgmac->cco_ctl_maskset = bcma_bgmac_cco_ctl_maskset;
+>  	bgmac->get_bus_clock = bcma_bgmac_get_bus_clock;
+>  	bgmac->cmn_maskset32 = bcma_bgmac_cmn_maskset32;
+> -	if (bgmac->mii_bus)
+> -		bgmac->phy_connect = bcma_phy_connect;
+> -	else
+> -		bgmac->phy_connect = bgmac_phy_connect_direct;
+> +	bgmac->phy_connect = bcma_phy_connect;
+>  
+>  	err = bgmac_enet_probe(bgmac);
+>  	if (err)
+> 
 
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 503a76fc30e6..10956859b4bb 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -214,5 +214,68 @@ pinctrl_smc: pinctrl@23e820000 {
- 				     <AIC_IRQ 396 IRQ_TYPE_LEVEL_HIGH>,
- 				     <AIC_IRQ 397 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-+
-+		pcie0: pcie@690000000 {
-+			compatible = "apple,t8103-pcie", "apple,pcie";
-+			device_type = "pci";
-+
-+			reg = <0x6 0x90000000 0x0 0x1000000>,
-+			      <0x6 0x80000000 0x0 0x100000>,
-+			      <0x6 0x81000000 0x0 0x4000>,
-+			      <0x6 0x82000000 0x0 0x4000>,
-+			      <0x6 0x83000000 0x0 0x4000>;
-+			reg-names = "config", "rc", "port0", "port1", "port2";
-+
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 695 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 698 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 701 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			msi-controller;
-+			msi-parent = <&pcie0>;
-+			msi-ranges = <&aic AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
-+
-+			bus-range = <0 3>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			ranges = <0x43000000 0x6 0xa0000000 0x6 0xa0000000 0x0 0x20000000>,
-+				 <0x02000000 0x0 0xc0000000 0x6 0xc0000000 0x0 0x40000000>;
-+
-+			pinctrl-0 = <&pcie_pins>;
-+			pinctrl-names = "default";
-+
-+			pci@0,0 {
-+				device_type = "pci";
-+				reg = <0x0 0x0 0x0 0x0 0x0>;
-+				reset-gpios = <&pinctrl_ap 152 0>;
-+				max-link-speed = <2>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+
-+			pci@1,0 {
-+				device_type = "pci";
-+				reg = <0x800 0x0 0x0 0x0 0x0>;
-+				reset-gpios = <&pinctrl_ap 153 0>;
-+				max-link-speed = <2>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+
-+			pci@2,0 {
-+				device_type = "pci";
-+				reg = <0x1000 0x0 0x0 0x0 0x0>;
-+				reset-gpios = <&pinctrl_ap 33 0>;
-+				max-link-speed = <1>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+		};
- 	};
- };
+
 -- 
-2.33.0
-
+Florian
