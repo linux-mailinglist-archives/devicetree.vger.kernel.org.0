@@ -2,101 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ACB34132A1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 13:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91F5E4132B8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 13:40:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232429AbhIULg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 07:36:28 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:44474
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232424AbhIULg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 07:36:26 -0400
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4404640197
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 11:34:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632224097;
-        bh=3qq/eN4U25uXpOowfjqd2mOALCyRisNs/QeVz3su/sU=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=JCYq9Pvyp/J7JyM7sY/K3BGTs5uwveg8bVZYQ/Gf5jnbd5NjxkkC0VtFDsLpFgZk4
-         8Sactl8W7kztZ75eOl3GhO8WbEeiYY36IqWJr1n4zJzDi5Lugxlpc7xy1WDLPcCZIE
-         /rlmRa+0/T4ZbiGP7CwM1jBu1941wwA1clOuxZWL8mTIO+7I4teufTVKO7zPMUFCA4
-         VpYbbvk7x5J1oQu3L0eKTHgtkLCrqVHMHXbkgn9BbL0+5ATtu8IjU9NGmYRYsxJjil
-         bx+ohxXZlsS30YZRpS81C919J+TYQwWhOE2o6sSsPZI5DigbBvNux8/FPUMJXZN1nn
-         DSfBoQZEbbHEA==
-Received: by mail-wr1-f71.google.com with SMTP id m18-20020adfe952000000b0015b0aa32fd6so8548852wrn.12
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 04:34:57 -0700 (PDT)
+        id S232115AbhIULmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 07:42:24 -0400
+Received: from mail-vs1-f54.google.com ([209.85.217.54]:43969 "EHLO
+        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232386AbhIULmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 07:42:22 -0400
+Received: by mail-vs1-f54.google.com with SMTP id n17so19204386vsr.10;
+        Tue, 21 Sep 2021 04:40:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3qq/eN4U25uXpOowfjqd2mOALCyRisNs/QeVz3su/sU=;
-        b=bILwmMSIrwa5xo5yQf2mhK8OHTeLlHbm+UbBxbVGnZq0rBSn1LHuwCtYMDD5lfUIJ5
-         DHCbkbugFuII2Ami+pnxVjb2pdcG0Q8qEcpp6LwtaDrvKIrreF3Sti6yAQKWXmfh2QQT
-         3Ha220UMLQATLwenykNtmxJRhWCwqWf2lIHASPfD+A7cnkk7vidZHwenxqEUOasNQ5Bz
-         HTrfC8MCdp8tamGOLBwVPzaZs0C02M2x2xu2WXnFqANZFJvH9HdIqwTRs52M09h1ZbOF
-         SdyYk8DSeJ1MBVrCQdzDMgJfno9cUl+oaCbhWItc3bK07KwNKzSzKf4sojNuuGzJYpm3
-         kfeg==
-X-Gm-Message-State: AOAM531Ir9OFh89h7zQ6qOPpYulZhuy9XKCoBcUC7ZK6aDurSdw7pkGy
-        npD+OY9ekjsiNCCkj8rHA/pXIkEKunkeQ6psraL1/UWXjo/vpmTMG3OdLIXXYYcteiXK+ukrmSC
-        pVFvDpSJmyv/5d2iVLtmpFaMvFMHn2sSgFcOVm2g=
-X-Received: by 2002:a05:600c:225a:: with SMTP id a26mr4218685wmm.57.1632224096959;
-        Tue, 21 Sep 2021 04:34:56 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxp02VQL/BqP2bBl5NT9zOKeZStP0pv824t2d6ns4gFKUDtsZcT5G6OGk+kUxEE1DpGLt0jIg==
-X-Received: by 2002:a05:600c:225a:: with SMTP id a26mr4218662wmm.57.1632224096779;
-        Tue, 21 Sep 2021 04:34:56 -0700 (PDT)
-Received: from [192.168.0.134] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id y197sm3016215wmc.18.2021.09.21.04.34.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Sep 2021 04:34:56 -0700 (PDT)
-Subject: Re: [PATCH V1 1/3] dt-bindings: tegra: memory,bpmp-thermal: add SPDX
- license
-To:     Bitan Biswas <bbiswas@nvidia.com>, robh+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        rostedt@goodmis.org, mingo@redhat.com, jassisinghbrar@gmail.com,
-        p.zabel@pengutronix.de
-Cc:     skomatineni@nvidia.com, broonie@kernel.org,
-        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20210921112716.3007-1-bbiswas@nvidia.com>
- <20210921112716.3007-2-bbiswas@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <c2ec765c-f881-17ea-3f9c-cf83ea0313f5@canonical.com>
-Date:   Tue, 21 Sep 2021 13:34:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bOlfZTrSii7Nb14rl9dZd76xYIBrclWvgXtZcJh0XvM=;
+        b=oXivQnx3c3N7ZaGmzhlOGE+RN4ji6nIuRM1zJaGRXlBpVWeGk2wjJkwAhUjezUhe0D
+         n8M6mjXFZ2C64eWvnT63QZA1ccwZas7vyJ00DPDLFAHuPLtZLwTl4jT2irtxrgsqMgJP
+         H0ncqJTeHlkFy0Z/D5OwYk2yfepdwGlNbAR2Rcr8YFAc0CT9Nb1f6qYO+VuBz4gUXXCu
+         t31gnft4C6iMWwhnE5gq23FhOc4jbuANtJhHJvKyteh4OJ5bbouhqhVfuXGlhKZFE23N
+         5xLeoTBThieRPc8m6/CSEngZVKYOtP5RWIqpm7p+k7JeMvu3M5a3A3AWJ9b8rjvwm0tB
+         lG2Q==
+X-Gm-Message-State: AOAM531yGCOYYjR0ZmJdls7sCKrBlGhG0ZwH8Z2dLvwo8iIKiw4MM3fn
+        SKXIO/+qwRqdsRtMezxB2QhU1DdheibyGNIl3Yk=
+X-Google-Smtp-Source: ABdhPJwiN7fv8zkCxGRdSiJIiixTxoRHMRXiLr8T19X9+fGqcKipwyfkQQaXHbvVsTR6Cg4anMFHRjlYU50G8LO/Lys=
+X-Received: by 2002:a67:f147:: with SMTP id t7mr13834174vsm.41.1632224444687;
+ Tue, 21 Sep 2021 04:40:44 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210921112716.3007-2-bbiswas@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210920150807.164673-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210920150807.164673-1-krzysztof.kozlowski@canonical.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 21 Sep 2021 13:40:33 +0200
+Message-ID: <CAMuHMdU7HHEHAcn=vPqAPYPkgeywKqb-rL6YmDRH0+4XNw8CuA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: mmc: cdns: document Microchip MPFS
+ MMC/SDHCI controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Piotr Sroka <piotrs@cadence.com>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/09/2021 13:27, Bitan Biswas wrote:
-> Add Dual licensing SPDX license identifier for tegra186,tegra194
-> memory and bpmp-thermal headers.
-> 
-> Signed-off-by: Bitan Biswas <bbiswas@nvidia.com>
-> ---
->  include/dt-bindings/memory/tegra186-mc.h            | 1 +
->  include/dt-bindings/memory/tegra194-mc.h            | 1 +
->  include/dt-bindings/thermal/tegra186-bpmp-thermal.h | 1 +
->  include/dt-bindings/thermal/tegra194-bpmp-thermal.h | 1 +
->  4 files changed, 4 insertions(+)
-> 
+Hi Krzysztof,
 
-Hi,
+Thanks for your patch!
 
-It seems you sent the same patchset twice. I already responded to all
-three patches.
+On Mon, Sep 20, 2021 at 5:09 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+> The Microchip MPFS Icicle Kit uses Cadence SD/SDIO/eMMC Host Controller
 
-Best regards,
-Krzysztof
+Actually it's the SoC .dtsi
+
+> without any additional vendor compatible:
+>
+>   arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: mmc@20008000: compatible:0: 'cdns,sd4hc' is not one of ['socionext,uniphier-sd4hc']
+>   arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: mmc@20008000: compatible: ['cdns,sd4hc'] is too short
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+With the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
