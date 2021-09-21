@@ -2,117 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F127413DA5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 00:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37695413E01
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 01:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230407AbhIUWi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 18:38:56 -0400
-Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:34680 "EHLO
-        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230299AbhIUWiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 18:38:55 -0400
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-        id 3274DF40B6D; Wed, 22 Sep 2021 00:37:25 +0200 (CEST)
-Date:   Wed, 22 Sep 2021 00:37:24 +0200
-From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-        linux-crypto@vger.kernel.org, Ash Logan <ash@heyquark.com>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH 0/4] crypto: nintendo-aes - add a new AES driver
-Message-ID: <20210921223724.ocxpdef6ptquprgz@luna>
-Jabber-ID: linkmauve@linkmauve.fr
-References: <20210921213930.10366-1-linkmauve@linkmauve.fr>
- <YUpVyTN7MQbMShdf@gmail.com>
+        id S230149AbhIUXaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 19:30:12 -0400
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:37434 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230075AbhIUXaM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 19:30:12 -0400
+Received: by mail-oi1-f170.google.com with SMTP id w206so1664585oiw.4;
+        Tue, 21 Sep 2021 16:28:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mX4MyVarQHbsDS0fNboD+/UTeSysNDkSYI8gpVmRhho=;
+        b=UjNc0TZruiP1OlH5S7MYt5aTAn455/zeF9Lo9R0tx/nd9T9bXaD2HEYNIpJzPgoqWO
+         uqWCa7TjO9lU4d8VIai0A6fMVAFqzDneINMEJbUlj5QisLflUscw48noCuhWqLzncRHM
+         priPc5aY10dYwkLM+Y9XAAqovJQWOddN4MrsShBdlQ4wPV4YGCkSJdVPUBCrvKvFG+vN
+         KkvJLOM7xN79hlLL02nXh8nijhXg1sgji/UatoDSVnUNr4u19690qE0jBge5CCUVTxNG
+         BafmmbhpVFvkI5kAVpwIthnAhS6uEyhhcRlu3EKErjskZTlyEdQJCbepUHvPzhJuVJnO
+         XotA==
+X-Gm-Message-State: AOAM532/Upper8bHeD+1zNqu5c48C6EC8g07zyEBrUdUZGhgcmVBCb3Y
+        X2dxbSPYmUVUQD5HZbWs7w==
+X-Google-Smtp-Source: ABdhPJzm9I2oIccwmAK23kHxFcQ3g5TOILqQ06YApuPouuQc3JzPm7k0LC5fRK5xJ+R+Bcem6eUglA==
+X-Received: by 2002:a05:6808:690:: with SMTP id k16mr5826558oig.43.1632266923035;
+        Tue, 21 Sep 2021 16:28:43 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id v14sm125678ook.2.2021.09.21.16.28.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 16:28:42 -0700 (PDT)
+Received: (nullmailer pid 3490436 invoked by uid 1000);
+        Tue, 21 Sep 2021 23:28:41 -0000
+Date:   Tue, 21 Sep 2021 18:28:41 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        ohad@wizery.com, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org,
+        Rakesh Pillai <pillair@qti.qualcomm.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: remoteproc: qcom: adsp: Convert
+ binding to YAML
+Message-ID: <YUpqqezV3NYCihdE@robh.at.kernel.org>
+References: <1631811353-503-1-git-send-email-pillair@codeaurora.org>
+ <1631811353-503-2-git-send-email-pillair@codeaurora.org>
+ <CAE-0n52t_1GGsFfDnrnwTx7j8RFdFLqZ2EGQY84D3UMbTeG69g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jii3ybjni5untti4"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YUpVyTN7MQbMShdf@gmail.com>
+In-Reply-To: <CAE-0n52t_1GGsFfDnrnwTx7j8RFdFLqZ2EGQY84D3UMbTeG69g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 16, 2021 at 11:24:10PM -0700, Stephen Boyd wrote:
+> Quoting Rakesh Pillai (2021-09-16 09:55:51)
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml
+> > new file mode 100644
+> > index 0000000..051da43
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml
+> > @@ -0,0 +1,267 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/remoteproc/qcom,hexagon-v56.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Hexagon v56 Peripheral Image Loader
+> > +
+> > +maintainers:
+> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> > +
+> > +description:
+> > +  This document defines the binding for a component that loads and boots firmware
+> > +  on the Qualcomm Technology Inc. Hexagon v56 core.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qcom,qcs404-cdsp-pil
+> > +      - qcom,sdm845-adsp-pil
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description:
+> > +      The base address and size of the qdsp6ss register
+> > +
+> > +  interrupts-extended:
+> > +    minItems: 5
+> > +    items:
+> > +      - description: Watchdog interrupt
+> > +      - description: Fatal interrupt
+> > +      - description: Ready interrupt
+> > +      - description: Handover interrupt
+> > +      - description: Stop acknowledge interrupt
+> > +
+> > +  interrupt-names:
+> > +    minItems: 5
+> > +    items:
+> > +      - const: wdog
+> > +      - const: fatal
+> > +      - const: ready
+> > +      - const: handover
+> > +      - const: stop-ack
+> > +
+> > +  clocks:
+> > +    minItems: 7
+> > +    maxItems: 8
+> > +    description:
+> > +      List of phandles and clock specifier pairs for the Hexagon,
+> > +      per clock-names below.
+> > +
+> > +  clock-names:
+> > +    minItems: 7
+> > +    maxItems: 8
+> > +
+> > +  power-domains:
+> > +    minItems: 1
+> > +    items:
+> > +      - description: CX power domain
+> > +
+> > +  resets:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    description:
+> > +      reference to the list of resets for the Hexagon.
+> > +
+> > +  reset-names:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  memory-region:
+> > +    maxItems: 1
+> > +    description: Reference to the reserved-memory for the Hexagon core
+> > +
+> > +  qcom,halt-regs:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description:
+> > +      Phandle reference to a syscon representing TCSR followed by the
+> > +      three offsets within syscon for q6, modem and nc halt registers.
+> > +
+> > +  qcom,smem-states:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description: States used by the AP to signal the Hexagon core
+> > +    items:
+> > +      - description: Stop the modem
+> > +
+> > +  qcom,smem-state-names:
+> > +    $ref: /schemas/types.yaml#/definitions/string-array
+> > +    description: The names of the state bits used for SMP2P output
+> > +    items:
+> > +      - const: stop
+> > +
+> > +  glink-edge:
+> > +    type: object
+> > +    description:
+> > +      Qualcomm G-Link subnode which represents communication edge, channels
+> > +      and devices related to the ADSP.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts-extended
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - power-domains
+> > +  - qcom,halt-regs
+> > +  - memory-region
+> > +  - qcom,smem-states
+> > +  - qcom,smem-state-names
+> 
+> Is there some way to make sure that 'resets' and 'reset-names' is
+> present when the compatible that defines them is used and not required
+> otherwise?
 
---jii3ybjni5untti4
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, plenty of examples of that.
 
-On Tue, Sep 21, 2021 at 02:59:37PM -0700, Eric Biggers wrote:
-> On Tue, Sep 21, 2021 at 11:39:26PM +0200, Emmanuel Gil Peyrot wrote:
-> > This engine implements AES in CBC mode, using 128-bit keys only.  It is
-> > present on both the Wii and the Wii=C2=A0U, and is apparently identical=
- in
-> > both consoles.
-> >=20
-> > The hardware is capable of firing an interrupt when the operation is
-> > done, but this driver currently uses a busy loop, I=E2=80=99m not too s=
-ure
-> > whether it would be preferable to switch, nor how to achieve that.
-> >=20
-> > It also supports a mode where no operation is done, and thus could be
-> > used as a DMA copy engine, but I don=E2=80=99t know how to expose that =
-to the
-> > kernel or whether it would even be useful.
-> >=20
-> > In my testing, on a Wii=C2=A0U, this driver reaches 80.7 MiB/s, while t=
-he
-> > aes-generic driver only reaches 30.9 MiB/s, so it is a quite welcome
-> > speedup.
-> >=20
-> > This driver was written based on reversed documentation, see:
-> > https://wiibrew.org/wiki/Hardware/AES
-> >=20
-> > Emmanuel Gil Peyrot (4):
-> >   crypto: nintendo-aes - add a new AES driver
-> >   dt-bindings: nintendo-aes: Document the Wii and Wii U AES support
-> >   powerpc: wii.dts: Expose the AES engine on this platform
-> >   powerpc: wii_defconfig: Enable AES by default
->=20
-> Does this pass the self-tests, including the fuzz tests which are enabled=
- by
-> CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=3Dy?
+> 
+> > +
+> > +additionalProperties: false
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,sdm845-adsp-pil
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: XO clock
+> > +            - description: SWAY clock
+> > +            - description: LPASS AHBS AON clock
+> > +            - description: LPASS AHBM AON clock
+> > +            - description: QDSP6SS XO clock
+> > +            - description: QDSP6SS SLEEP clock
+> > +            - description: QDSP6SS CORE clock
+> > +        clock-names:
+> > +          items:
+> > +            - const: xo
+> > +            - const: sway_cbcr
+> > +            - const: lpass_ahbs_aon_cbcr
+> > +            - const: lpass_ahbm_aon_cbcr
+> > +            - const: qdsp6ss_xo
+> > +            - const: qdsp6ss_sleep
+> > +            - const: qdsp6ss_core
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,qcs404-cdsp-pil
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: XO clock
+> > +            - description: SWAY clock
+> > +            - description: TBU clock
+> > +            - description: BIMC clock
+> > +            - description: AHB AON clock
+> > +            - description: Q6SS SLAVE clock
+> > +            - description: Q6SS MASTER clock
+> > +            - description: Q6 AXIM clock
+> > +        clock-names:
+> > +          items:
+> > +            - const: xo
+> > +            - const: sway
+> > +            - const: tbu
+> > +            - const: bimc
+> > +            - const: ahb_aon
+> > +            - const: q6ss_slave
+> > +            - const: q6ss_master
+> > +            - const: q6_axim
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,sc7280-wpss-pil
+> 
+> This should be documented above in the compatible list?
+> 
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: GCC WPSS AHB BDG Master clock
+> > +            - description: GCC WPSS AHB clock
+> > +            - description: GCC WPSS RSCP clock
+> > +        clock-names:
+> > +          items:
+> > +            - const: gcc_wpss_ahb_bdg_mst_clk
+> > +            - const: gcc_wpss_ahb_clk
+> > +            - const: gcc_wpss_rscp_clk
+> 
+> Is the 'gcc_wpss' prefix important? It would be shorter if it wasn't
+> there.
 
-I wasn=E2=80=99t aware of those, and indeed it doesn=E2=80=99t pass them ye=
-t:
-[    0.680164] alg: skcipher: cbc-aes-nintendo encryption overran dst buffe=
-r on test vector 0, cfg=3D"out-of-place"
-[    0.680201] fbcon: Taking over console
-[    0.680219] ------------[ cut here ]------------
-[    0.680222] alg: self-tests for cbc-aes-nintendo (cbc(aes)) failed (rc=
-=3D-75)
+Yes, and adding this new platform should be a separate patch.
 
-I=E2=80=99ll try to figure out how to debug this and I=E2=80=99ll send a v2=
-, thanks for
-the hint!
-
->=20
-> - Eric
-
---=20
-Emmanuel Gil Peyrot
-
---jii3ybjni5untti4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEEjrVT1SzTln43kCLJOWgfYkb2LpAFAmFKXqIACgkQOWgfYkb2
-LpCJcgf+IMfEy9fNYpEki4K7BmX/f4kKVOek3gLVkG3rrgZOTElYH5C9uOsdxHZ9
-27PsYcESnj9tI3G9t9RLmyPmxuMVPCVKTc0KaFbacwx1UMmQMBFa5s0WZMVHgZC9
-L7/JnU4G1rRPIxXaaYKnqBBYNzO2LuwVBd7V/0m9WBToXEWEtxabaGO6QuiKFAYX
-rv6T3ajdk40w8XQo3I031M3OxSq9prJBNCtkdkPPmqB4ZtP/E8uGM6ukTMYgR/ZU
-NA3w3V8BX95KNPt/uDKbZ3vdbsSH1PcFVgfPs7aqBKU+zddkdwcoEKfoyg8c4wUi
-cU30fGOI9fLKgdx83YZrWeu8x9Ty7w==
-=IlCT
------END PGP SIGNATURE-----
-
---jii3ybjni5untti4--
+Rob
