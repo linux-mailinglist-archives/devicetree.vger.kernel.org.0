@@ -2,65 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E60413903
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 19:45:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B3AF41393C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 19:52:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231594AbhIURqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 13:46:44 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:38421 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231587AbhIURqk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 13:46:40 -0400
-Received: by mail-oi1-f180.google.com with SMTP id u22so291761oie.5;
-        Tue, 21 Sep 2021 10:45:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BPCfoCM1F77FKIJgOPAAqMaAIQkoOT5dw2aKLimvk3U=;
-        b=Dt5pXygOoR0hHQ2IM7ODLfFSKN+NExAl5r2juKN4nM3UkyAwiL8O4JFH2SQrwWD+pN
-         3FLh8XI+K2gkdKLiGoi5pCn0OiRIYHHiltktkKrDjO8hs/cdXAE9qZui6zlOoSKpVoxy
-         41IjDuQjn+RyQupIwCrl+DucroPqMbFnUMjbBT+6nb697U2y74lLj2rQ7WKNeIig+t7Q
-         OowSfgfDUKT4ZEsG7WRtX289P4GTv6qaYVI/zbkYV+59BVGwQmtt7qvhoR3yr6jl57vo
-         2QGvcjOeo/6zEu+hY57R5V0ieC2nWzEhNKhpI8CBui1jW3yt6bQDMQQiklwpITwRAQch
-         LkDw==
-X-Gm-Message-State: AOAM530e2Gp6UZAw811EfnVV/UcekJddF6mGIhs30JZepAkTnznnd3/1
-        oyPhSeQbP9ySY4gUyvKCLuT+P2kUtw==
-X-Google-Smtp-Source: ABdhPJziN+dX23OBHWWp2Sh5tDcknX8PwlnGu4aAbkxurvumjURn9ooaFoUgmjN1BDLf2cNhIM6WhA==
-X-Received: by 2002:aca:2218:: with SMTP id b24mr4631303oic.55.1632246311022;
-        Tue, 21 Sep 2021 10:45:11 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a9sm1023376otk.3.2021.09.21.10.45.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 10:45:10 -0700 (PDT)
-Received: (nullmailer pid 3026304 invoked by uid 1000);
-        Tue, 21 Sep 2021 17:45:09 -0000
-Date:   Tue, 21 Sep 2021 12:45:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        id S231705AbhIURxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 13:53:51 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:51995 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231153AbhIURxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 13:53:51 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id eddbe515;
+        Tue, 21 Sep 2021 19:52:18 +0200 (CEST)
+Date:   Tue, 21 Sep 2021 19:52:18 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
+        kettenis@openbsd.org, tglx@linutronix.de, maz@kernel.org,
+        marcan@marcan.st, bhelgaas@google.com, jim2101024@gmail.com,
+        nsaenz@kernel.org, f.fainelli@gmail.com,
+        bcm-kernel-feedback-list@broadcom.com,
+        daire.mcnamara@microchip.com, nsaenzjulienne@suse.de,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        tglx@linutronix.de, maz@kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: microchip,eic: add bindings
-Message-ID: <YUoaJTGF5zyLyOEY@robh.at.kernel.org>
-References: <20210910060656.1061234-1-claudiu.beznea@microchip.com>
- <20210910060656.1061234-2-claudiu.beznea@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210910060656.1061234-2-claudiu.beznea@microchip.com>
+        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+In-Reply-To: <YS6cEkDn5IAVW/xQ@robh.at.kernel.org> (message from Rob Herring
+        on Tue, 31 Aug 2021 16:16:02 -0500)
+Subject: Re: [PATCH v4 2/4] dt-bindings: interrupt-controller: msi: Add
+ msi-ranges property
+References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
+ <20210827171534.62380-3-mark.kettenis@xs4all.nl> <YS6cEkDn5IAVW/xQ@robh.at.kernel.org>
+Message-ID: <56147407e10f61cb@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Sep 2021 09:06:55 +0300, Claudiu Beznea wrote:
-> Add DT bindings for Microchip External Interrupt Controller.
+> Date: Tue, 31 Aug 2021 16:16:02 -0500
+> From: Rob Herring <robh@kernel.org>
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  .../interrupt-controller/microchip,eic.yaml   | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/microchip,eic.yaml
+> On Fri, Aug 27, 2021 at 07:15:27PM +0200, Mark Kettenis wrote:
+> > From: Mark Kettenis <kettenis@openbsd.org>
+> > 
+> > Update the MSI controller binding to add an msi-ranges property
+> > that specifies how MSIs map onto regular interrupts on some other
+> > interrupt controller.
+> > 
+> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> > ---
+> >  .../bindings/interrupt-controller/msi-controller.yaml     | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
+> > index 5ed6cd46e2e0..bf8b8a7dba09 100644
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
+> > @@ -31,4 +31,12 @@ properties:
+> >        Identifies the node as an MSI controller.
+> >      $ref: /schemas/types.yaml#/definitions/flag
+> >  
+> > +  msi-ranges:
+> > +    description:
+> > +      A list of pairs <intid span>, where "intid" is the specification
 > 
+> It's not really 'pairs' and 'interrupt specifier' is the terminology the 
+> spec uses. How about:
+> 
+> A list of <phandle intspec span>, where "phandle" is parent interrupt 
+> controller, "intspec" is the starting/base interrupt specifier, and 
+> "span" is the size of that range (typically multiples of 32).
+> 
+> The 'multiples of 32' part is what Marc told me.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thanks Rob!  That sounds good.  But 32 is what's typical for the Apple
+hardware, and I expect that different hardware that might use this
+property will use a different value, so I left that last bit out.  I
+also kept the bit that states that multiple ranges are allowed.
+
+> > +      of the first interrupt (including the phandle for the interrupt
+> > +      controller) that can be used as an MSI, and "span" the size of
+> > +      that range. Multiple ranges can be provided.
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +
+> >  additionalProperties: true
+> > -- 
+> > 2.32.0
+> > 
+> > 
+> 
