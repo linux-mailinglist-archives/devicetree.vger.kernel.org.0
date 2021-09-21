@@ -2,76 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7C6D413D58
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 00:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53806413D67
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 00:15:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232154AbhIUWJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 18:09:38 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:40764 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232126AbhIUWJh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 18:09:37 -0400
-Received: by mail-oi1-f179.google.com with SMTP id t189so1363166oie.7;
-        Tue, 21 Sep 2021 15:08:09 -0700 (PDT)
+        id S235209AbhIUWQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 18:16:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60208 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233992AbhIUWQi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 18:16:38 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C3DC061756
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 15:15:09 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id 77-20020a9d0ed3000000b00546e10e6699so672609otj.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 15:15:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=x94ioewznGOI6gQ5YIl2Sid87jK2fFCaelf+CMRDOF4=;
+        b=LQDy2v9QFGuKgGFzbnu14WqsNjNrgXyv9aqQStW0dN1rlBn6zqLA6wafLgrCdwonci
+         Vv9TZHEZOvDXcy27gpXabClErpN0tyQ9KTf+mfDBrm4qc05iSzbicIGjknVKq7kDPbf+
+         K0LuccmlXYwpWPBJSTadxC4N7OcU8WPOPPhlKX7VkefaaquWGLLPR/20fU4t+XFyB/Zt
+         cgkBQjI1x/rD0hopFATYcJLi/vRmU6Pw4jfIqOFeM+p8TGv9OAONpbKu+JBQvnl94sZW
+         eWXDawIUl0PMQc7D7YRB/qhPCLrH7QIX/LOj2m2jzrxx2RQlu2XODeHlPZLHgp3PuMfd
+         e1kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=d1ajkDzMxUdAsr+oENQBXBUU9C5k6BbB8KcPeHP1jeo=;
-        b=L1HvgG6mOopjeGM6UNwoovUlKBPnol/C30Inyb0M1CW7FYJP+hdGovwBmlBkT3bOKk
-         8bhbGqo/RoSorm7PSfI5JqUdDQRR1p0J93wqHiCP4Xs2NQmo6qG4UJVPb8WTOkRu9tXr
-         Jw2eMZGwmMNpKH4g06p2zl+A0gql3ou9FUnxbbAyVrK/as5zGp+vzZ0hbRk2H6tImn6g
-         zMJlXoiwCnoFlEgQlK2wMV6+ZQwHJzeP+Lkq9o2ZNFkxEvyLAEhgpENM9pc4yni0azwG
-         eEljp7w5/9UMKZNFVuVm9SKflef0mnGLbx+W/bFNVkasAcyaeTRn9kTJ8zv5yCv6QFyL
-         LY7Q==
-X-Gm-Message-State: AOAM533EbUgBhPzGjuW6zuX645WXcQ6e0vQB9aLZJOEN5JpEcXaHaL3s
-        xkUsugRs3B/gGsl378Srm4u8ujRGGQ==
-X-Google-Smtp-Source: ABdhPJx7tF4POtth2GJo+rtqsfDF4MRf8Z0WWJWNRcrexRKM690xE6BYi9mhaMgDXmw+Ufv4z/FUxw==
-X-Received: by 2002:a05:6808:2002:: with SMTP id q2mr5460957oiw.1.1632262088659;
-        Tue, 21 Sep 2021 15:08:08 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 9sm69296oir.10.2021.09.21.15.08.07
+        bh=x94ioewznGOI6gQ5YIl2Sid87jK2fFCaelf+CMRDOF4=;
+        b=rEBwdybUFchaIhAMz4uqyo5GUdC1BbXPSQmToEvgr3UUKiFmoEV89hwmUebRkxL10F
+         ZjD4GYXfEYt+crs3LFq5qu08ksi3dvig7S1XvBTFKTTJ52fccC4eM+CIxpBbY6G039Ul
+         1ggewb0d2sXedvlJ6VfImGQpqCofOtymVlv22KBX/LbRdim5NbNFhiZV9xnkO/AYpWkJ
+         85X/61H2ash4iM7pwapB7wp7NN7KeAkT038N1IBkAg+K5XlfnzBP5zPAYPY03sLWtI3A
+         tzKTDBISyMEeCBWRCRLy9fH7JhDI+KAnFw10AK1fBU1MP+EenFeVLgdJUmUfHcJSKW9g
+         4fpg==
+X-Gm-Message-State: AOAM533l6fFu/rj3pjW/8J1JsD61hBY9ntDkfhN3hCizSguUbwmh/uic
+        OjV15HGPFhy8iJCPDOQrfR7tKg==
+X-Google-Smtp-Source: ABdhPJwBlxa/coBdaEbNyj3pl6qZm1u0sr6cLsEoVWt9mrBrMs4sa3Qu4OYYNwIeGjc4Iht8aPIzBw==
+X-Received: by 2002:a9d:4702:: with SMTP id a2mr13819459otf.271.1632262507823;
+        Tue, 21 Sep 2021 15:15:07 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id d10sm90595ooj.24.2021.09.21.15.15.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 15:08:07 -0700 (PDT)
-Received: (nullmailer pid 3384758 invoked by uid 1000);
-        Tue, 21 Sep 2021 22:08:06 -0000
-Date:   Tue, 21 Sep 2021 17:08:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Mark Kettenis <kettenis@openbsd.org>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mailbox: Add Apple mailbox bindings
-Message-ID: <YUpXxgKFXI7uTWRw@robh.at.kernel.org>
-References: <20210916154911.3168-1-sven@svenpeter.dev>
- <20210916154911.3168-2-sven@svenpeter.dev>
+        Tue, 21 Sep 2021 15:15:07 -0700 (PDT)
+Date:   Tue, 21 Sep 2021 17:15:05 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dikshita Agarwal <dikshita@codeaurora.org>
+Cc:     andy.gross@linaro.org, david.brown@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        vgarodia@codeaurora.org, stanimir.varbanov@linaro.org,
+        Mansur Alisha Shaik <mansur@codeaurora.org>
+Subject: Re: [RESEND PATCH v6] arm64: dts: qcom: sc7280: Add venus DT node
+Message-ID: <YUpZaQ42ldzEKtV/@builder.lan>
+References: <1632199829-25686-1-git-send-email-dikshita@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210916154911.3168-2-sven@svenpeter.dev>
+In-Reply-To: <1632199829-25686-1-git-send-email-dikshita@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Sep 2021 17:49:10 +0200, Sven Peter wrote:
-> Apple mailbox controller are found on the M1 and are used for
-> communication with various co-processors.
-> 
-> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> ---
->  .../bindings/mailbox/apple,mailbox.yaml       | 84 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
-> 
+On Mon 20 Sep 23:50 CDT 2021, Dikshita Agarwal wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> Add DT entries for the sc7280 venus encoder/decoder.
+> 
+> this patch depends on [1].
+> 
+> [1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=529463
+
+The stuff you write here will be forever imprinted in the git history
+and it's already unnecessary, given that the patch you reference here is
+available in linux-next.
+
+Things you want to mention, but shouldn't go into the git history, put
+those below the '---' line.
+
+> 
+> Co-developed-by: Mansur Alisha Shaik <mansur@codeaurora.org>
+> Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
+> Signed-off-by: Mansur Alisha Shaik <mansur@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 75 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index a8c274a..f171ababc 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -63,6 +63,11 @@
+>  			no-map;
+>  			reg = <0x0 0x80b00000 0x0 0x100000>;
+>  		};
+> +
+> +		video_mem: memory@8b200000 {
+> +			reg = <0x0 0x8b200000 0x0 0x500000>;
+> +			no-map;
+> +		};
+>  	};
+>  
+>  	cpus {
+> @@ -1063,6 +1068,76 @@
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> +		venus: video-codec@aa00000 {
+> +			compatible = "qcom,sc7280-venus";
+
+I do however now see this compatible defined in a binding in linux-next,
+so you definitely should have listed that patch as a dependency - and
+preferably held off sending me 6 versions (plus resend) of a patch that
+I can't merge.
+
+Please ping me once the binding is merged, so that I know when I can
+merge this patch.
+
+Thanks,
+Bjorn
+
+> +			reg = <0 0x0aa00000 0 0xd0600>;
+> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
+> +				 <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
+> +				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0_CORE_CLK>,
+> +				 <&videocc VIDEO_CC_MVS0_AXI_CLK>;
+> +			clock-names = "core", "bus", "iface",
+> +				      "vcodec_core", "vcodec_bus";
+> +
+> +			power-domains = <&videocc MVSC_GDSC>,
+> +					<&videocc MVS0_GDSC>,
+> +					<&rpmhpd SC7280_CX>;
+> +			power-domain-names = "venus", "vcodec0", "cx";
+> +			operating-points-v2 = <&venus_opp_table>;
+> +
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>,
+> +					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
+> +			interconnect-names = "cpu-cfg", "video-mem";
+> +
+> +			iommus = <&apps_smmu 0x2180 0x20>,
+> +				 <&apps_smmu 0x2184 0x20>;
+> +			memory-region = <&video_mem>;
+> +
+> +			video-decoder {
+> +				compatible = "venus-decoder";
+> +			};
+> +
+> +			video-encoder {
+> +				compatible = "venus-encoder";
+> +			};
+> +
+> +			video-firmware {
+> +				iommus = <&apps_smmu 0x21a2 0x0>;
+> +			};
+> +
+> +			venus_opp_table: venus-opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-133330000 {
+> +					opp-hz = /bits/ 64 <133330000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +				};
+> +
+> +				opp-240000000 {
+> +					opp-hz = /bits/ 64 <240000000>;
+> +					required-opps = <&rpmhpd_opp_svs>;
+> +				};
+> +
+> +				opp-335000000 {
+> +					opp-hz = /bits/ 64 <335000000>;
+> +					required-opps = <&rpmhpd_opp_svs_l1>;
+> +				};
+> +
+> +				opp-424000000 {
+> +					opp-hz = /bits/ 64 <424000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +				};
+> +
+> +				opp-460000048 {
+> +					opp-hz = /bits/ 64 <460000048>;
+> +					required-opps = <&rpmhpd_opp_turbo>;
+> +				};
+> +			};
+> +
+> +		};
+> +
+>  		videocc: clock-controller@aaf0000 {
+>  			compatible = "qcom,sc7280-videocc";
+>  			reg = <0 0xaaf0000 0 0x10000>;
+> -- 
+> 2.7.4
+> 
