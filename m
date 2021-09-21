@@ -2,107 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD9844131B4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 12:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C95954131CA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Sep 2021 12:39:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231977AbhIUKgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 06:36:13 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:40763 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231823AbhIUKgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 06:36:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1632220484; x=1663756484;
-  h=from:subject:to:references:message-id:date:mime-version:
-   in-reply-to:content-transfer-encoding;
-  bh=Rx31vdd/RrSmlgTJVbNEqNylEl36VLncaM1cWWQr0L0=;
-  b=kg5BbN4zjr87SdLijGNeuKgdcEkmuuJBj3NjSsE0v9TiSLbhvSqTsvxL
-   8SaPu1kLIqOg8KTtw6A4OcZIq/Z2D2TDgeB3/teseiDcBIQg/k4+2La6y
-   UNjoscurc0Xw2vDTReoAB+9stoV5NM2eymZ5pKEX1JEAJSIdUXtdz+y8L
-   vzUJOrXclvAlofHLkZSipYUQTEJOCY3KlxmA/VIEhNGjh3UyG1vzCmUKq
-   7sJZaZaOayz/6fIbwuaDgMGB6Tk1TQNyJscKfAtpNil5OX2igClOaAL41
-   TtTdm+wHQjnOHDbwkHuglsondOBGh+X1qUpm0jwfASXrZKgP5cySMlNRY
-   Q==;
-IronPort-SDR: 40fZUBVLdVuEt+lsKbSQ6u5TBklpIcSqNwohDedZnHykZKO5DLOYZh/YhZcSncZ2RBobQiO8cv
- 4U6vjJgFv5kvSBlwObCEyqmZiHwNmaqizw9VuX6neoOqeCVdHsejGMb+TAXVMEk0CglLgaqAp1
- NXjE/wEjQwxCLxxe531fJEDIxfCX8mqTgulsCA1UrZQqnKtz6MZtucf/w0Ru9zJsw9Mivv6pEk
- pfJ6oM6Sip4ou+dsE/eXIrhrCsfNwj2H1OZsi5h/9gZgNODJyGwISU3nIivTeAFOhCrvVQVByL
- BZZM3ahEDTFUKUv6WRYZ7cU+
-X-IronPort-AV: E=Sophos;i="5.85,310,1624345200"; 
-   d="scan'208";a="137340616"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Sep 2021 03:34:44 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 21 Sep 2021 03:34:43 -0700
-Received: from [10.171.246.85] (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Tue, 21 Sep 2021 03:34:41 -0700
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Subject: Re: [PATCH 1/2] ARM: at91: dts: sama5d29: Add dtsi file for sama5d29
-To:     Hari Prasath <Hari.PrasathGE@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
-        <robh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux@armlinux.org.uk>
-References: <20210812140758.28273-1-Hari.PrasathGE@microchip.com>
-Organization: microchip
-Message-ID: <37ffc77b-5164-ead0-f162-bf31d2cfaa83@microchip.com>
-Date:   Tue, 21 Sep 2021 12:34:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210812140758.28273-1-Hari.PrasathGE@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S232140AbhIUKlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 06:41:13 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:33886 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232093AbhIUKlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 06:41:10 -0400
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 21 Sep 2021 03:39:42 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 21 Sep 2021 03:39:41 -0700
+X-QCInternal: smtphost
+Received: from rajpat-linux.qualcomm.com ([10.206.21.0])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 21 Sep 2021 16:09:16 +0530
+Received: by rajpat-linux.qualcomm.com (Postfix, from userid 2344945)
+        id C20E2215EE; Tue, 21 Sep 2021 16:09:15 +0530 (IST)
+From:   Rajesh Patil <rajpat@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org, sboyd@kernel.org, mka@chromium.org,
+        dianders@chromium.org, Rajesh Patil <rajpat@codeaurora.org>
+Subject: [PATCH V9 0/8] Add QSPI and QUPv3 DT nodes for SC7280 SoC
+Date:   Tue, 21 Sep 2021 16:08:58 +0530
+Message-Id: <1632220746-25943-1-git-send-email-rajpat@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2021 at 16:07, Hari Prasath wrote:
-> A new dtsi file for sama5d29 SoC is added which basically inherits the sama5d2
-> dtsi with the mac controller compatible property updated.
-> 
-> Signed-off-by: Hari Prasath <Hari.PrasathGE@microchip.com>
+Changes in V9:
+ - As per Stephen's comments, 
+   1. Moved back qup_opp_table from /soc@0/geniqup@9c0000 to /
+   2. changed node names to "qup_spi0_cs_gpio: qup-spi0-cs-gpio" because
+      node names should have dashes instead of underscores.
 
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-And added to our at91-dt branch for 5.16.
+Changes in V8:
+ - As per Matthias comments
+   Added back qup_spiN_cs_gpio nodes in all spi ports
 
-Best regards,
-    Nicolas
+ - As per Doug comments, Added "qcom,sc7280-qspi" compatible in qspi node
 
-> ---
->   arch/arm/boot/dts/sama5d29.dtsi | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
->   create mode 100644 arch/arm/boot/dts/sama5d29.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/sama5d29.dtsi b/arch/arm/boot/dts/sama5d29.dtsi
-> new file mode 100644
-> index 000000000000..e8cc73c0619f
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/sama5d29.dtsi
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * sama5d29.dtsi - Device Tree Include file for SAMA5D29 SoC of the SAMA5D2
-> + * family.
-> + *
-> + *  Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
-> + *
-> + *  Author: Hari Prasath <Hari.PrasathGE@microchip.com>
-> + *
-> + */
-> +
-> +#include "sama5d2.dtsi"
-> +
-> +&macb0 {
-> +compatible = "atmel,sama5d29-gem";
-> +};
-> 
+Changes in V7:
+ - As per Stephen's comments
+   1. Moved qup_opp_table under /soc@0/geniqup@9c0000
+   2. Removed qupv3_id_1 in sc7280-idp board file
+   3. Sorted alias names for i2c and spi as per alphabet order
 
+ - As per Matthias comment
+   Configuring cs pin with gpio (qup_spiN_cs_gpio) definitions are removed
+
+Changes in V6:
+ - As per Matthias' comments,
+   1. Squashed "Update QUPv3 UART5 DT node" and "Configure debug
+      uart for sc7280-idp"
+   2. Moved qup_opp_table from /soc to /
+   3. Changed convention "clocks" followed by "clock-names"
+
+ - As per Doug comments, added aliases for i2c and spi
+
+Changes in V5:
+ - As per Matthias' comments, I've split the patches as below:
+   1. Add QSPI node
+   2. Configure SPI-NOR FLASH for sc7280-idp
+   3. Add QUPv3 wrapper_0 nodes
+   4. Update QUPv3 UART5 DT node
+   5. Configure debug uart for sc7280-idp
+   6. Configure uart7 to support bluetooth on sc7280-idp
+   7. Add QUPv3 wrapper_1 nodes
+
+Changes in V4:
+ - As per Stephen's comment updated spi-max-frequency to 37.5MHz, moved
+   qspi_opp_table from /soc to / (root).
+ - As per Bjorn's comment, added QUP Wrapper_0 nodes
+   as separate patch and debug-uart node as separate patch.
+ - Dropped interconnect votes for wrapper_0 and wrapper_1 node
+ - Corrected QUP Wrapper_1 SE node's pin control functions like below
+        QUP Wrapper_0: SE0-SE7 uses qup00 - qup07 pin-cntrl functions.
+        QUP Wrapper_1: SE0-SE7 uses qup10 - qup17 pin-cntrl functions.
+
+Changes in V3:
+ - Broken the huge V2 patch into 3 smaller patches.
+   1. QSPI DT nodes
+   2. QUP wrapper_0 DT nodes
+   3. QUP wrapper_1 DT nodes
+
+Changes in V2:
+ - As per Doug's comments removed pinmux/pinconf subnodes.
+ - As per Doug's comments split of SPI, UART nodes has been done.
+ - Moved QSPI node before aps_smmu as per the order.
+
+
+Rajesh Patil (4):
+  dt-bindings: spi: Add sc7280 support
+  arm64: dts: sc7280: Configure SPI-NOR FLASH for sc7280-idp
+  arm64: dts: sc7280: Configure uart7 to support bluetooth on sc7280-idp
+  arm64: dts: sc7280: Add aliases for I2C and SPI
+
+Roja Rani Yarubandi (4):
+  arm64: dts: sc7280: Add QSPI node
+  arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
+  arm64: dts: sc7280: Update QUPv3 UART5 DT node
+  arm64: dts: sc7280: Add QUPv3 wrapper_1 nodes
+
+ .../bindings/spi/qcom,spi-qcom-qspi.yaml           |    5 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  125 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 3196 +++++++++++++++-----
+ 3 files changed, 2510 insertions(+), 816 deletions(-)
 
 -- 
-Nicolas Ferre
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
