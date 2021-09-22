@@ -2,130 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12114414336
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:05:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F215141433E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:08:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233379AbhIVIHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 04:07:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51206 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233336AbhIVIHU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 04:07:20 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDA0C061574;
-        Wed, 22 Sep 2021 01:05:51 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id f129so1875358pgc.1;
-        Wed, 22 Sep 2021 01:05:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3vgj0hW3KSHhJ1FNGvvnjMW3NitG36aDXcJz/7heGcA=;
-        b=FAkBVWugynwfJI5lWaQvYEy5zoZ/PcwxIzBamJjPUP+b2SJ39zuwELnOxZD4mWY7qI
-         VL+NRFb28mlUzCzMNFU8j2NXe+OzTklHCFA1mSE3MXf4GK+Sx65lA1keQKFwGlsrg9tU
-         tRonpRLFulMJRQa9KRODt+Cp+UQlzyTtiUHLtMgCsrKSVqTJbk4CqpICjwqwgiMymCpa
-         zVNq1/Yg3KD7mrkYF4M7le9Q4d3Gn8986+7TMsBcQHgo7Q+GySY6qjBPrwQu5mqiJ3iI
-         EdQMGVC+gVV9oJFAEklO3sPTpktjuuiE5r4+kATExB81e4C/gPw5qi069u7USlKJNEiM
-         KluQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3vgj0hW3KSHhJ1FNGvvnjMW3NitG36aDXcJz/7heGcA=;
-        b=e8HNrhaTTjfcmwLQai4PLyHPYmWL+nJCRjvEgVrZJ69awBa+Cd/HIaZ16ej5bdrxmy
-         ly3TF8SlPPOii48+fffczdK8Gnak98BlFm2hiRRaO2XUaDvcXpsiVaakaf7iFgplaQc4
-         q8B1fYFPVFHMx+5YCxQ7/FzKJf609WeSJN9suyrrECibDsdZhXrl83SMiaLM3A5Q5usn
-         OK472jpHgMhFyd8Bu2SUIuG+zt63Zc7oV9xi94/2ocMZXMxDSYstR0LsSE16UyQfMXi5
-         NYfA33KqGkE1IjFxLDA8s0d6tnjC2pZTyZzSJ9VrJf3oiE8Iu6QmR8Ju+ygWXoEFsPmf
-         a1YQ==
-X-Gm-Message-State: AOAM532AsEo0jmffvcWWnQhAEiB2z/65MQJLkOSilnrdxzGAx1q9aSdV
-        mtEkO3Df2JcCGVUlBaU5WoQ=
-X-Google-Smtp-Source: ABdhPJwdylx2gAkFtmU9FHajYgZBLBBYYbPpvbp7sGfAL2p7//GTWekKTYSd4s/OpU5ahmIuNorN4g==
-X-Received: by 2002:a62:7b14:0:b0:447:c4c9:ce3f with SMTP id w20-20020a627b14000000b00447c4c9ce3fmr12556780pfc.15.1632297950610;
-        Wed, 22 Sep 2021 01:05:50 -0700 (PDT)
-Received: from [172.30.1.2] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id c23sm1599245pgb.74.2021.09.22.01.05.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Sep 2021 01:05:50 -0700 (PDT)
-Subject: Re: [PATCH v2 2/3] devfreq: exynos-ppmu: simplify parsing event-type
- from DT
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        id S233336AbhIVIKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 04:10:13 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:32980 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233349AbhIVIKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 04:10:12 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 86491F1;
+        Wed, 22 Sep 2021 10:08:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1632298121;
+        bh=QKoxGIv+eKpVRsooVGP2/KqUDA8JcqOjmb8mxli6lAI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CTLPKwP8+WYzVC9hEnEhGojAE4ljAWOM2mEmjB61yZIq8pXUPCi5JXHsokpGnc8u+
+         mr2k1TbyyXdpsEcNe5IJH2tK+b7NETjkzxZdyUDEEpdTV0vAb0e+z9YV3a33JBrKuM
+         Zlf26FhMDwTbvTOx/mtXGAnoWoqDYtMbKPIMXlEY=
+Date:   Wed, 22 Sep 2021 11:08:40 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-References: <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
- <20210920071753.38560-2-krzysztof.kozlowski@canonical.com>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-Message-ID: <35ad437f-7527-e9b1-4819-8f4faa765e26@gmail.com>
-Date:   Wed, 22 Sep 2021 17:05:45 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [RESEND] [PATCH v2 1/2] dt-bindings: display: bridge: Add
+ binding for R-Car MIPI DSI/CSI-2 TX
+Message-ID: <YUrkiDnlDYabSi9T@pendragon.ideasonboard.com>
+References: <20210623135639.17125-1-laurent.pinchart+renesas@ideasonboard.com>
+ <YQGFP/cFoSksPyn+@pendragon.ideasonboard.com>
+ <CAMuHMdVmTcERvHhLLDrZyC_TDLPU89ksitn0WduJkKqpePCKdg@mail.gmail.com>
+ <YUqGWa6q+wYq2vAt@pendragon.ideasonboard.com>
+ <CAMuHMdXRhOmj4upp6Zsn3yb5bRdpg8hrgATWJCA6bSdvD=e1qw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210920071753.38560-2-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXRhOmj4upp6Zsn3yb5bRdpg8hrgATWJCA6bSdvD=e1qw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Geert,
 
-On 21. 9. 20. 오후 4:17, Krzysztof Kozlowski wrote:
-> When parsing devicetree, the function of_get_devfreq_events(), for each
-> device child node, iterates over array of possible events "ppmu_events"
-> till it finds one matching by node name.  When match is found the
-> ppmu_events[i] points to element having both the name of the event and
-> the counters ID.
+On Wed, Sep 22, 2021 at 08:43:57AM +0200, Geert Uytterhoeven wrote:
+> On Wed, Sep 22, 2021 at 3:27 AM Laurent Pinchart wrote:
+> > On Tue, Sep 21, 2021 at 05:53:52PM +0200, Geert Uytterhoeven wrote:
+> > > On Wed, Jul 28, 2021 at 6:26 PM Laurent Pinchart wrote:
+> > > > The R-Car MIPI DSI/CSI-2 TX is embedded in the Renesas R-Car V3U SoC. It
+> > > > can operate in either DSI or CSI-2 mode, with up to four data lanes.
+> > > >
+> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > > > Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > >
+> > > Thanks for your patch!
+> > >
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+> > > > @@ -0,0 +1,118 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/display/bridge/renesas,dsi-csi2-tx.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Renesas R-Car MIPI DSI/CSI-2 Encoder
+> > > > +
+> > > > +maintainers:
+> > > > +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > > > +
+> > > > +description: |
+> > > > +  This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
+> > > > +  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
+> > > > +  to four data lanes.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - renesas,r8a779a0-dsi-csi2-tx    # for V3U
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  clocks:
+> > > > +    items:
+> > > > +      - description: Functional clock
+> > > > +      - description: DSI (and CSI-2) functional clock
+> > > > +      - description: PLL reference clock
+> > > > +
+> > > > +  clock-names:
+> > > > +    items:
+> > > > +      - const: fck
+> > > > +      - const: dsi
+> > > > +      - const: pll
+> > >
+> > > No interrupts?
+> > > The hardware manual says there are 9 interrupts.
+> >
+> > Who comes up with such insanely high numbers of interrupts ? :-)
+> >
+> > What the hardware manual doesn't document is how interrupts are mapped.
+> > There's indeed 9 of them, and there are 9 interrupt sources, but that's
+> > all we know. I can easily add a
+> >
+> >   interrupts:
+> >     maxItems: 9
+> >
+> > but I can add interrupt names without additional information. It may be
+> > possible to deduce some of the interrupt mappings from experiments, but
+> > not all of them. What do you think would be a good way forward ? Leave
+> > the interrupts out for now as we don't have the information ? Only list
+> > the interrupts but not their names ? Something else ?
 > 
-> Each PPMU device child node might have an "event-name" property with the
-> name of the event, however due to the design of devfreq it must be the
-> same as the device node name.  If it is not the same, the devfreq client
-> won't be able to use it via devfreq_event_get_edev_by_phandle().
-> 
-> Since PPMU device child node name must be equal to the "event-name"
-> property (event-name == ppmu_events[i].name), there is no need to find
-> the counters ID by the "event-name".  Instead use ppmu_events[i].id
-> which must be equal to it.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->   drivers/devfreq/event/exynos-ppmu.c | 5 +----
->   1 file changed, 1 insertion(+), 4 deletions(-)
-> 
-> diff --git a/drivers/devfreq/event/exynos-ppmu.c b/drivers/devfreq/event/exynos-ppmu.c
-> index 541bd13ab61d..9b849d781116 100644
-> --- a/drivers/devfreq/event/exynos-ppmu.c
-> +++ b/drivers/devfreq/event/exynos-ppmu.c
-> @@ -566,13 +566,10 @@ static int of_get_devfreq_events(struct device_node *np,
->   			 * use default if not.
->   			 */
->   			if (info->ppmu_type == EXYNOS_TYPE_PPMU_V2) {
-> -				int id;
->   				/* Not all registers take the same value for
->   				 * read+write data count.
->   				 */
-> -				id = __exynos_ppmu_find_ppmu_id(desc[j].name);
-> -
-> -				switch (id) {
-> +				switch (ppmu_events[i].id) {
->   				case PPMU_PMNCNT0:
->   				case PPMU_PMNCNT1:
->   				case PPMU_PMNCNT2:
-> 
+> I think what we did in the past is not list the interrupts at all.
+> They can be added once we receive more documentation.
 
-Applied it. Thanks.
-
+Sounds good to me, as that's what this patch does already ;-) A R-b or
+A-b tag is welcome.
 
 -- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+Regards,
+
+Laurent Pinchart
