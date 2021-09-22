@@ -2,99 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D497C413F72
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 04:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 192E2413FCC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 04:56:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229727AbhIVCaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 22:30:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229465AbhIVCaz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 22:30:55 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51963C061574
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 19:29:26 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id j6so1397931pfa.4
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 19:29:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=n0F09JQNk9O6OQoYulA/8nbT18jFP5jIlNLcQ6DehAI=;
-        b=eCh8NNy5EXBaan9XkFEXLpaWkmK0YIAGpI+uXzjKNHTN9Zr9C9lmdXT00uW6vTMAqg
-         JnU+3Tz0bV7SqHc87YbREAHgLQjC3+7NyIJnsM7JCNS/NCzgxVEfGe+EEPHCDKhyo8m9
-         0xNMVDf9sYwVVS8A5FANBjLuk8ohxGVY+fuClHSWUPdxxqpZtyk4ZeXKOjMyUEnGJFCD
-         g6jBYQsUjn+JGlOcHuzM7GmRY3+Pajic8MW5sGlXj5vrmDQZXW2bWKiNJ/kmPQum/XZv
-         srdV52X68E0cXNpndaSgU0fUgK0hgAZBBjkd9UhEBDS/ActHmLwS8pV5QBpV1V+P7QpK
-         mF6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=n0F09JQNk9O6OQoYulA/8nbT18jFP5jIlNLcQ6DehAI=;
-        b=HaKTFUbpykMBFzJ8KkCpKuaghYTlMuVu0wjFVz5naZlMC1YI1tEbo8uP9ME75rjyvj
-         JooO+CqW+jRdt70PfD9r2pTvLLBeKXjd4Zte7GXhVD0jmnoj2YTchf2iD4e52dty9poJ
-         8QARMjhbuIe+T2CFRsUUAGEOdR7wrmwoe175Be7InX23WyzjUBcyNFL9O6fdggduceRg
-         jqGvITYFRJAM8ABDLAgIVlD5jmymyYmnq2TXbJ2Dd0I9ixDB2ENE98n9sqAEiQPtPfxz
-         wJDdEdfjmcru6gamcxKclDB5ZAbABqoyqpjmcuX6wpoMXCBPWKZfESbq1PEYzkVywuwn
-         24mg==
-X-Gm-Message-State: AOAM533pRgEe1P8ohJZ2jkqLfbp+C4gquwkXPlmFD2n7r4S5MfV2ksHm
-        L6XlzLqcMtbhUGbBnkThltUjKA==
-X-Google-Smtp-Source: ABdhPJyAsWJA4ToeLnlZz1RELPyAL8TYLeUKdGGe7s0kTB54NWyRVAgpIRl9yE+f/U00hkGDAEubAA==
-X-Received: by 2002:a63:4b4c:: with SMTP id k12mr30573227pgl.172.1632277765877;
-        Tue, 21 Sep 2021 19:29:25 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id 127sm422884pfw.10.2021.09.21.19.29.23
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 21 Sep 2021 19:29:25 -0700 (PDT)
-Date:   Wed, 22 Sep 2021 10:29:19 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] drm/panel: Add Sony Tulip Truly NT35521 driver
-Message-ID: <20210922022918.GA10718@dragon>
-References: <20210809051008.6172-1-shawn.guo@linaro.org>
- <20210809051008.6172-3-shawn.guo@linaro.org>
- <20210824025831.GB22595@dragon>
- <YSVPiBLrZMQDURPJ@ravnborg.org>
+        id S229945AbhIVC6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 22:58:14 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:33360 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229909AbhIVC6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 22:58:14 -0400
+X-UUID: eec432d6d11c4749a3d7f6409deede68-20210922
+X-UUID: eec432d6d11c4749a3d7f6409deede68-20210922
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 64861940; Wed, 22 Sep 2021 10:56:42 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 22 Sep 2021 10:56:41 +0800
+Received: from localhost.localdomain (10.17.3.154) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 22 Sep 2021 10:56:40 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <light.hsieh@mediatek.com>,
+        <biao.huang@mediatek.com>, <hongzhou.yang@mediatek.com>,
+        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v13 0/5] Mediatek pinctrl patch on mt8195
+Date:   Wed, 22 Sep 2021 10:56:35 +0800
+Message-ID: <20210922025640.11600-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YSVPiBLrZMQDURPJ@ravnborg.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 24, 2021 at 09:59:04PM +0200, Sam Ravnborg wrote:
-> On Tue, Aug 24, 2021 at 10:58:31AM +0800, Shawn Guo wrote:
-> > On Mon, Aug 09, 2021 at 01:10:08PM +0800, Shawn Guo wrote:
-> > > It adds a DRM panel driver for Sony Tulip Truly NT35521 5.24" 1280x720
-> > > DSI panel, which can be found on Sony Xperia M4 Aqua phone.  The panel
-> > > backlight is managed through DSI link.
-> > > 
-> > > The driver is built using linux-mdss-dsi-panel-driver-generator[1], and
-> > > additionally modeling the 5V control GPIOs with regulators and adding
-> > > Backlight GPIO support.
-> > > 
-> > > [1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
-> > > 
-> > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > 
-> > Sam, Stephan,
-> > 
-> > Thank you for the review comments on v1!  How does v2 look to you?
-> 
-> I will not have time until next week - sorry.
-> Please ping me if you have no feedback i one week from now.
+This series includes 5 patches:
+1.add rsel define.
+2.change pull up/down description
+3.fix coding style
+4.support rsel feature for common ICs
+5.add rsel setting on MT8195
 
-Sam,
+Changes in patch v13:
+1)change "-EOPNOTSUPP" to "-ENOTSUPP" in patch 4/5.
+2)fix description on 2/5.
 
-Could you help handle this patch now?  Thanks!
+Changes in patch v12:
+1)add "ack-by" on "rsel define" patch.
+2)add "change reason" in commit message and write a shema
+  on patch document patch 2/5.
+3)separate eint pm_ops fucntion support patch
+4)separate rsel patch, the common parts as patch 4/5 to support
+  common ICs. The mt8195 specific changes as patch 5/5.
+5)add fix coding style patch to fix Camel spelling to avoid checkpatch
+  warning in a following patch.
+6)remove unrelated changes in rsel patch.
+7)change ternary ops in resel patch
+8)add "rsel_is_unit" property on struct mtk_pinctrl, and itendify
+  "mediatek,rsel_resistance_in_si_unit" property in probe function.
+9)add explanation for "MTK_PULL_RSEL_TYPE" and "MTK_PULL_PU_PD_RSEL_TYPE".
+10) fix spell warning in rsel patch.
 
-Shawn
+Changes in patch v11:
+1)add pm_ops fucntion support
+2)change pull up/down description
+3)add resistance value feature support.
+
+Changes in patch v10:
+1)fix PARENTHESIS_ALIGNMENT of mtk_pinconf_bias_set_rsel
+2)fix LONG_LINE warning in 615 in pinctrl-paris.c.
+
+Changes in patch v9:
+1)fix "mtk_pinconf_bias_set_rsel" build warning.
+
+Changes in patch v8:
+1)add rsel define patch
+2)avoid  CamelCase
+3)add pinctrl rsel setting patch which is another resistance selection
+  solution for I2C on MT8195.
+
+Changes in patch v7:
+1)add version in patch and fix spelling mistakes.
+
+Changes in patch v6:
+1)add "pintcrl: mediatek" as prefix.
+
+Changes in patch v5:
+1)document and driver patch are apploed.
+2)change '-EOPNOTSUPP' to '-ENOTSUPP'
+
+Changes in patch v4:
+1)fix pinctrl-mt8195.yaml warning error.
+2)remove pinctrl device node patch which is based on "mt8195.dtsi".
+
+Changes in patch v3:
+1)change '^pins' to '-pins$'.
+2)change 'state_0_node_a' to 'gpio_pin' which is defined in dts.
+3)change 'state_0_node_b' to 'i2c0_pin' which is defined in dts.
+4)reorder this series patches. change pinctrl file and binding document
+together in one patch.
+
+There are no changes in v1 & v2.
+
+Zhiyong Tao (5):
+  dt-bindings: pinctrl: mt8195: add rsel define
+  dt-bindings: pinctrl: mt8195: change pull up/down description
+  pinctrl: mediatek: fix coding style
+  pinctrl: mediatek: support rsel feature
+  pinctrl: mediatek: add rsel setting on MT8195
+
+ .../bindings/pinctrl/pinctrl-mt8195.yaml      |  65 ++++-
+ drivers/pinctrl/mediatek/pinctrl-mt8195.c     | 133 ++++++++++
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  | 231 +++++++++++++++---
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |  45 ++++
+ drivers/pinctrl/mediatek/pinctrl-paris.c      |  68 ++++--
+ include/dt-bindings/pinctrl/mt65xx.h          |   9 +
+ 6 files changed, 497 insertions(+), 54 deletions(-)
+
+--
+2.18.0
+
+
