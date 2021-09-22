@@ -2,136 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 179ED414DF8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 18:18:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0DE4414E63
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 18:51:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233094AbhIVQUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 12:20:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52874 "EHLO mail.kernel.org"
+        id S236719AbhIVQwm convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Sep 2021 12:52:42 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:51050 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236478AbhIVQUX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 12:20:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E2E5561242;
-        Wed, 22 Sep 2021 16:18:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632327532;
-        bh=hBAsvrZV+yB9m6NQkJEZNKVRMGBNiMFtAVk+tAPOY9Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tvBDjXnxpOCJ0Q2yUYHVlM4RcUAK7bmcQrWaf8cpMP0CpMj4/OPX4tjAAbr01BJ6x
-         hgFDhOzlOqA/hPGrQBVZ2ZjI9u2NDeJMI9z+yYYStOmB5YlB8aaaQBcfZnEsTTwq20
-         BhW6M4sFyWb//tBKLuZ8vV/nTpl2f5hjQ4x7rq3g8qL4lQwsNG/AJVtoKTbG3C2BTg
-         lMLlVqkgoDP3ZMrOvMIIjJ5/JHJS6GL0kEPH0Tt9QItD9mWS3XLH3u9zhEsHFKNjfC
-         roXWTs2IpYgemMSg1fHCgnGhgewzQPuXb6AvhgzVSCmHiTtNXE2BNYcy2Hk3bdx3fS
-         nkHEsWWaYdU2A==
-Received: by mail-ed1-f45.google.com with SMTP id y89so1328712ede.2;
-        Wed, 22 Sep 2021 09:18:52 -0700 (PDT)
-X-Gm-Message-State: AOAM532b0IdGr/QkBpIGoOXzQgUO/Oy9HyJNPoEXu9SIfRX7WRVQHBdA
-        niKWDvq2TYuEuUOs+pfGCmaBo8Xmcx237n82OQ==
-X-Google-Smtp-Source: ABdhPJz8tVsKtk6yn9u+71rcMAgS0BuyzKIk3KLCLhFxiOLPm8SNwNUm1S5K8ylJ5RD8JjnCsHo+3ja0ifSpdXbFmNM=
-X-Received: by 2002:a17:906:3181:: with SMTP id 1mr455229ejy.388.1632327531346;
- Wed, 22 Sep 2021 09:18:51 -0700 (PDT)
+        id S236697AbhIVQwk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 12:52:40 -0400
+Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mT5Sf-0001QK-8r; Wed, 22 Sep 2021 18:51:09 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Liang Chen <cl@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Simon Xue <xxm@rock-chips.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: move aliases to rk356x dtsi
+Date:   Wed, 22 Sep 2021 18:51:08 +0200
+Message-ID: <8375423.X1v87zm6sT@diego>
+In-Reply-To: <ce3f2ece-4c30-ad01-fd51-8a3e46297234@pengutronix.de>
+References: <20210917110528.24454-1-michael.riesch@wolfvision.net> <2397289.mVTDCA6dLn@diego> <ce3f2ece-4c30-ad01-fd51-8a3e46297234@pengutronix.de>
 MIME-Version: 1.0
-References: <20210907083723.7725-1-granquet@baylibre.com> <20210907083723.7725-5-granquet@baylibre.com>
- <1631026304.913177.3958449.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1631026304.913177.3958449.nullmailer@robh.at.kernel.org>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Thu, 23 Sep 2021 00:18:40 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8dpL2q4H9wHOusCtODAHos_rL2_p8BGhsGEkAFLeV1FQ@mail.gmail.com>
-Message-ID: <CAAOTY_8dpL2q4H9wHOusCtODAHos_rL2_p8BGhsGEkAFLeV1FQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dt-bindings: display: mediatek: add MT8195 hdmi bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guillaume Ranquet <granquet@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        CK Hu <ck.hu@mediatek.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Guillaume:
+Hi Ahmad,
 
-Rob Herring <robh@kernel.org> =E6=96=BC 2021=E5=B9=B49=E6=9C=887=E6=97=A5 =
-=E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=8810:51=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Tue, 07 Sep 2021 10:37:21 +0200, Guillaume Ranquet wrote:
-> > Add Mediatek HDMI and HDMI-DDC bindings for MT8195 SoC.
+Am Mittwoch, 22. September 2021, 15:40:33 CEST schrieb Ahmad Fatoum:
+> Hello Heiko,
+> 
+> On 17.09.21 14:01, Heiko Stübner wrote:
+> > Hi Michael,
+> > 
+> > Am Freitag, 17. September 2021, 13:05:28 CEST schrieb Michael Riesch:
+> >> In order to ensure deterministic probe order over different boards,
+> >> move the aliases of on-SoC components to the corresponding dtsi
+> >> files.
+> > 
+> > please read the git history on the other Rockchip SoCs. We just moved
+> > the aliases on them _to_ the board-files, as requested by
+> > arm-soc maintainers ;-)
+> 
+> [Adding Arnd to CC]
+> 
+> For old boards, changing the aliases may introduce breakage that outweighs
+> the benefit of having consistent numbering. This doesn't seem to apply here:
+> rk3566.dtsi is a new device tree not yet in v5.15-rc2 and rk3568 is new in
+> v5.14 and has only one board partially supported, so if we were to do this
+> change we should do it now. Boards will still be free to override the aliases,
+> but those that don't will have consistent numbering regardless of whether
+> nodes are enabled, cards are detected or probe order.
 
-Move this patch before the driver patch which refer to this patch.
+the request from Arnd was actually to move things like mmc aliases _to_
+board files away from the soc-level dtsi. Supposedly to prevent holes in
+the numbering for example if the sdmmc is mmc0, emmc is mmc1,
+but sdmmc not used on a board, which would then leave mmc0 empty .
 
-> >
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > ---
-> >  .../mediatek/mediatek,mt8195-hdmi-ddc.yaml    | 46 +++++++++
-> >  .../mediatek/mediatek,mt8195-hdmi.yaml        | 99 +++++++++++++++++++
-> >  2 files changed, 145 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/mediatek/=
-mediatek,mt8195-hdmi-ddc.yaml
 
-I think this file should be merged into mediatek,hdmi-ddc.yaml [1].
+Heiko
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi-ddc.yaml?=
-h=3Dv5.15-rc2
 
-> >  create mode 100644 Documentation/devicetree/bindings/display/mediatek/=
-mediatek,mt8195-hdmi.yaml
 
-I think this file should be merged into mediatek,hdmi.yaml [2].
+> > Heiko
+> > 
+> > 
+> >>
+> >> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> >> ---
+> >>  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 6 ------
+> >>  arch/arm64/boot/dts/rockchip/rk3566.dtsi           | 4 ++++
+> >>  arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts   | 7 -------
+> >>  arch/arm64/boot/dts/rockchip/rk3568.dtsi           | 5 +++++
+> >>  arch/arm64/boot/dts/rockchip/rk356x.dtsi           | 2 ++
+> >>  5 files changed, 11 insertions(+), 13 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> >> index a244f7b87e38..156bbb8aa4c4 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> >> @@ -10,12 +10,6 @@
+> >>  	model = "Pine64 RK3566 Quartz64-A Board";
+> >>  	compatible = "pine64,quartz64-a", "rockchip,rk3566";
+> >>  
+> >> -	aliases {
+> >> -		ethernet0 = &gmac1;
+> >> -		mmc0 = &sdmmc0;
+> >> -		mmc1 = &sdhci;
+> >> -	};
+> >> -
+> >>  	chosen: chosen {
+> >>  		stdout-path = "serial2:1500000n8";
+> >>  	};
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+> >> index 3839eef5e4f7..c1b3841caa77 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+> >> @@ -4,6 +4,10 @@
+> >>  
+> >>  / {
+> >>  	compatible = "rockchip,rk3566";
+> >> +
+> >> +	aliases {
+> >> +		ethernet0 = &gmac1;
+> >> +	};
+> >>  };
+> >>  
+> >>  &power {
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+> >> index 184e2aa2416a..218f85af730c 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+> >> @@ -13,13 +13,6 @@
+> >>  	model = "Rockchip RK3568 EVB1 DDR4 V10 Board";
+> >>  	compatible = "rockchip,rk3568-evb1-v10", "rockchip,rk3568";
+> >>  
+> >> -	aliases {
+> >> -		ethernet0 = &gmac0;
+> >> -		ethernet1 = &gmac1;
+> >> -		mmc0 = &sdmmc0;
+> >> -		mmc1 = &sdhci;
+> >> -	};
+> >> -
+> >>  	chosen: chosen {
+> >>  		stdout-path = "serial2:1500000n8";
+> >>  	};
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> >> index 2fd313a295f8..dd0e800cf752 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> >> @@ -8,6 +8,11 @@
+> >>  / {
+> >>  	compatible = "rockchip,rk3568";
+> >>  
+> >> +	aliases {
+> >> +		ethernet0 = &gmac0;
+> >> +		ethernet1 = &gmac1;
+> >> +	};
+> >> +
+> >>  	qos_pcie3x1: qos@fe190080 {
+> >>  		compatible = "rockchip,rk3568-qos", "syscon";
+> >>  		reg = <0x0 0xfe190080 0x0 0x20>;
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> index e42fbac6147b..bb0540d3008c 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> @@ -29,6 +29,8 @@
+> >>  		i2c3 = &i2c3;
+> >>  		i2c4 = &i2c4;
+> >>  		i2c5 = &i2c5;
+> >> +		mmc0 = &sdmmc0;
+> >> +		mmc1 = &sdhci;
+> >>  		serial0 = &uart0;
+> >>  		serial1 = &uart1;
+> >>  		serial2 = &uart2;
+> >>
+> > 
+> > 
+> > 
+> > 
+> > 
+> > _______________________________________________
+> > linux-arm-kernel mailing list
+> > linux-arm-kernel@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> > 
+> 
+> 
+> 
 
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml?h=3D=
-v5.15-rc2
 
-Regards,
-Chun-Kuang.
 
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.e=
-xample.dts:19:18: fatal error: dt-bindings/clock/mt8195-clk.h: No such file=
- or directory
->    19 |         #include <dt-bindings/clock/mt8195-clk.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:379: Documentation/devicetree/bindings=
-/display/mediatek/mediatek,mt8195-hdmi.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1438: dt_binding_check] Error 2
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/patch/1525170
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
+
