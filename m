@@ -2,68 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 937CD41466C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 038C94146B7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:40:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235177AbhIVKeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 06:34:05 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:48990 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235115AbhIVKeC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:34:02 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 18MAB9WG012572;
-        Wed, 22 Sep 2021 18:11:09 +0800 (GMT-8)
-        (envelope-from chin-ting_kuo@aspeedtech.com)
-Received: from localhost.localdomain (192.168.10.9) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 22 Sep
- 2021 18:31:28 +0800
-From:   Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <adrian.hunter@intel.com>,
-        <linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <andrew@aj.id.au>
-CC:     <BMC-SW@aspeedtech.com>, <steven_lee@aspeedtech.com>
-Subject: [PATCH 10/10] dt-bindings: mmc: aspeed: Add a new compatible string
-Date:   Wed, 22 Sep 2021 18:31:16 +0800
-Message-ID: <20210922103116.30652-11-chin-ting_kuo@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com>
-References: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com>
+        id S235333AbhIVKlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 06:41:44 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:32844 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235325AbhIVKlM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:41:12 -0400
+Received: from ert768.prtnl (ert768.prtnl [192.168.224.11])
+        by sparta.prtnl (Postfix) with ESMTP id 1E0E544A024E;
+        Wed, 22 Sep 2021 12:39:36 +0200 (CEST)
+From:   Roan van Dijk <roan@protonic.nl>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, david@protonic.nl,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Roan van Dijk <roan@protonic.nl>
+Subject: [PATCH v3 0/4] iio: chemical: Add support for Sensirion SCD4x CO2 sensor
+Date:   Wed, 22 Sep 2021 12:39:21 +0200
+Message-Id: <20210922103925.2742362-1-roan@protonic.nl>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.10.9]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 18MAB9WG012572
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "aspeed,ast2600-emmc" compatible string for the sake of
-distinguishing between SD and eMMC device.
+This series adds support for the Sensirion SCD4x sensor.
 
-Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
----
- Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml | 1 +
- 1 file changed, 1 insertion(+)
+The driver supports continuous reads of temperature, relative humdity and CO2
+concentration. There is an interval of 5 seconds between readings. During
+this interval the drivers checks if the sensor has new data available.
 
-diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-index 5bb66849df65..41105cd104c6 100644
---- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-@@ -52,6 +52,7 @@ patternProperties:
-           - aspeed,ast2400-sdhci
-           - aspeed,ast2500-sdhci
-           - aspeed,ast2600-sdhci
-+          - aspeed,ast2600-emmc
-       reg:
-         maxItems: 1
-         description: The SDHCI registers
+The driver is based on the scd30 driver. However, The scd4x has become too
+different to just expand the scd30 driver. I made a new driver instead of
+expanding the scd30 driver. I hope I made the right choice by doing so?
+
+Changes since v3:
+scd4x.c
+  - Change read and write_and_fetch function parameter. CRC byte is now
+    hidden inside the function.
+  - Fix minor style issues
+  - Add calibration_forced_value_available attribute to the driver
+  - Remove including BUFFER_TRIGGERED
+  - Change calibbias to raw ADC readings rather than converting it to
+    milli degrees C.
+Documentation:
+  - Change description of driver attributes
+  - Add calibration_forced_value_available documentation
+
+Changes since v2:
+scd4x.c:
+  - Change boolean operations
+  - Document scope of lock
+  - Remove device *dev from struct
+  - Add goto block for errror handling
+  - Add function to read value per channel in read_raw
+  - Fix bug with lock in error paths
+  - Remove conversion of humidity and temperature values
+  - Add scale and offset to temperature channel
+  - Add scale to humidity channel
+  - Move memset out of locked section
+  - Remove unused irq functions
+  - Move device register at end of probe function
+Documentation:
+  - Copy content of sysfs-bus-iio-scd30 to sysfs-bus-iio
+  - Remove Documentation/ABI/testing/sysfs-bus-iio-scd30
+
+Changes since v1:
+dt-bindings:
+  - Separated compatible string for each sensor type
+scd4x.c:
+  - Changed probe, resume and suspend functions to static
+  - Added SIMPLE_DEV_PM_OPS function call for power management
+    operations.
+
+Roan van Dijk (4):
+  dt-bindings: iio: chemical: sensirion,scd4x: Add yaml description
+  MAINTAINERS: Add myself as maintainer of the scd4x driver
+  drivers: iio: chemical: Add support for Sensirion SCD4x CO2 sensor
+  iio: documentation: Document scd4x calibration use
+
+ Documentation/ABI/testing/sysfs-bus-iio       |  41 ++
+ Documentation/ABI/testing/sysfs-bus-iio-scd30 |  34 -
+ .../iio/chemical/sensirion,scd4x.yaml         |  46 ++
+ MAINTAINERS                                   |   6 +
+ drivers/iio/chemical/Kconfig                  |  13 +
+ drivers/iio/chemical/Makefile                 |   1 +
+ drivers/iio/chemical/scd4x.c                  | 694 ++++++++++++++++++
+ 7 files changed, 801 insertions(+), 34 deletions(-)
+ delete mode 100644 Documentation/ABI/testing/sysfs-bus-iio-scd30
+ create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd4x.yaml
+ create mode 100644 drivers/iio/chemical/scd4x.c
+
 -- 
-2.17.1
+2.30.2
 
