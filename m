@@ -2,114 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C14A41491D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 14:39:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8FAC41496A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 14:46:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235917AbhIVMk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 08:40:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58782 "EHLO
+        id S236039AbhIVMsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 08:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235834AbhIVMk6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 08:40:58 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB63EC061574;
-        Wed, 22 Sep 2021 05:39:28 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id z11so4248580oih.1;
-        Wed, 22 Sep 2021 05:39:28 -0700 (PDT)
+        with ESMTP id S236035AbhIVMsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 08:48:12 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F4CC061756
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 05:46:42 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id 72so9045154qkk.7
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 05:46:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=ATJeqTXclVnaTU6OlYKqpRsa99iDhu9c6SozT+medwI=;
-        b=G8q/gUm8xQW7IedlOjatTLgy3ls1E5RNm5KOrpb+goJ5Xk4YX3jkWnwEk4/BE8d9lI
-         yW03lXGwYnQoHw6o0m+s4teSD61iHXyio6vEgigWbFqLOIdWVVhxh9wIn/+N200eN8HT
-         D7CsHjnCrj4VXekkDBBAiz8Oec1IwNpDFxG+rTqJUSLhmaEvnfjUUWboK+HojPew/Rgl
-         kraWFLWYMp97bZhz0VOrxbhkiDmVPBj+Rh+wTlTPEZWvIvZqCXOCeE6E91wB2YjRPr/I
-         NqLuigF3/aO0juptgrjV4lL/pd+DtDJQAnTagZHWwiKcSpBv2Y7YWVQ3vHpLKI4KxyJp
-         x+3A==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JWVLXk0bW1n6vs3jcT9aY/C1O7KJx57lzY2TTe3JW5A=;
+        b=gGJbgnP4eCcWroX9W44Hm9lGT6j58J9JOSGTeNcq+Xx8GnM2kTNvQGeYzeolAcwpyD
+         AquDychphdIHB7NuTmxzraGY1i3MLTSHvrttGNrczJire6G4kj09hCfkjSUxWOoxusGH
+         nwAfQLtcEEjfFPNus1o7eswyWKpifeYg4YALK+YGWMt5uDFK4TmXlH3ndMia99vnjZEb
+         ecqRyClW4hnjXyA0tl0+ZJP8VSZ6XPhVYWrCvaIM2uY5y86rl5WYo6kCgV7mPOH2znkn
+         /qK1ZIesG3mHPzHvmeOMmdXh8NV61F/arODWtPO5LuSmFMTdkQ+ThyvsGlvlUsGi5Ths
+         YDiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to;
-        bh=ATJeqTXclVnaTU6OlYKqpRsa99iDhu9c6SozT+medwI=;
-        b=QaQF7quJ7zFJjjK5mLjgXXGxY4USMWKKEPgAIwLYUT2NOh0RHqpU9/gmQBoGclCJ2d
-         F5dI+pTBNA/vZ+WlRknEphdpnfNeuCA06U+eqf1Z7kd7hMhIlxKfqvy+tHaaWr0AwU/o
-         aiwC8mYqyDEEikMtTS4CUwrhgzCKDRMGqPpp522JPIFGzhSp8wpvh6nNGlUWoosMnA5O
-         2AzZg41landaDKX32NRfO7V8B92XRLibq0AbenoJk1cM4Rp4Wlfpumbbfitabkntdf/X
-         tplRX79RI/R7cU/VE1pQDBBOV4Co0Fer4OCwsiFke6Xc8chwGOVOYDg4LPl9JF48WAVJ
-         V6vA==
-X-Gm-Message-State: AOAM531EmlyjwOnDtTMHP5KIDuF+HDlScd9+RAkk+8J/uH8BCrZ1yHo5
-        dkhyek9vqTN4Tq9b8PUXATM=
-X-Google-Smtp-Source: ABdhPJxCm2PqeuEockuno6TIwl4nNORCwKB5Nnok6mZwsib7VZKpW+7JgEb2Rf3DGhiK8ufUgZWvAg==
-X-Received: by 2002:a05:6808:169f:: with SMTP id bb31mr8193671oib.18.1632314368122;
-        Wed, 22 Sep 2021 05:39:28 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l4sm456926oth.4.2021.09.22.05.39.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 05:39:27 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 22 Sep 2021 05:39:26 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>
-Cc:     Rob Herring <robh@kernel.org>, Jean Delvare <jdelvare@suse.com>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        Oskar Senft <osk@google.com>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for
- tmp421
-Message-ID: <20210922123926.GB3201379@roeck-us.net>
-References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
- <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
- <YUkKCe7845uCqoy5@robh.at.kernel.org>
- <20210921125831.GB1864238@roeck-us.net>
- <YUrRd3kTyLoCkLAt@localhost.localdomain>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JWVLXk0bW1n6vs3jcT9aY/C1O7KJx57lzY2TTe3JW5A=;
+        b=HTFylbzkv2QAnAJkGtBduW3DPvHqDWZW4ZfH7ushCPVNcnknIEDOsib5DrLondODp2
+         YfNKSb+8QRVOyQCHvE/U0tv/FzeSfPOMWekwMZgZRnB/Aowu7o8aNHAe+UkcFyiU7S1w
+         oq1feTOaVaagbXyru3K5ooAB87p99u39hbZ6/QRUhWDMsEwrM5UKPE9jinqhZue2pCTc
+         oxUBF6r9WVw8Yr9w27rYnmPg0qfb/Y0NaG4I3t1PXEPbrcIRzc1ivlHVx/dGzXEx+CXk
+         9fKaYLOYsPo0abBm/V0utO5A1IZSu7FHLNjH86d8eNAleGefNspJwPa/v/Gl1zekvhme
+         2j5Q==
+X-Gm-Message-State: AOAM532YfMHFiwTDM/4X77LzQZEnpQVLTUyTv9qqiDwIyzXqX9/dJ5FK
+        O2K4YbGbK5J927RHmDnV2EhZQSVMudiW/iawkoYk6w==
+X-Google-Smtp-Source: ABdhPJxirl32JTg1ALZKlLeE8BM4i7EQqgoZBA+2NZjzSl/xAxbokXvhBRpqqlGLMUTSBNo9fz6/cW08ckF/IP6wZ28=
+X-Received: by 2002:a25:cbc3:: with SMTP id b186mr43624072ybg.199.1632314801488;
+ Wed, 22 Sep 2021 05:46:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YUrRd3kTyLoCkLAt@localhost.localdomain>
+References: <20210906083020.6038-1-a-m1@ti.com> <422f7ccd-348b-8023-37db-803339684054@ti.com>
+ <CAMpxmJV_DJRtuHH7V86WOi+Rd5fZ0uOf=jNBY7XvJa_5f4h9bQ@mail.gmail.com> <91aa4468575143c9bb6a8b6a56ab2995@ti.com>
+In-Reply-To: <91aa4468575143c9bb6a8b6a56ab2995@ti.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 22 Sep 2021 14:46:30 +0200
+Message-ID: <CAMpxmJUam3ZQeizGWaswTy=ziYMh0R5cH+b5F2tdPgWKAuGTDA@mail.gmail.com>
+Subject: Re: [EXTERNAL] Re: [PATCH RESEND] dt-bindings: gpio: Convert TI
+ TPIC2810 GPIO Controller bindings to yaml
+To:     "M, Aparna" <a-m1@ti.com>
+Cc:     "Strashko, Grygorii" <grygorii.strashko@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Raghavendra, Vignesh" <vigneshr@ti.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 09:22:33AM +0200, Krzysztof Adamski wrote:
-> Dnia Tue, Sep 21, 2021 at 05:58:31AM -0700, Guenter Roeck napisał(a):
-> > > 
-> > > ti,n-factor
-> > 
-> > n-factor isn't just supported by TI sensors, though it isn't always called
-> > n-factor. Maxim (eg MAX6581) uses the term "ideality factor", though they
-> > also refer to the factor as "N" in the datasheet.
-> > 
-> > So question is if we make this ti,n-factor and maxim,n-factor, or if we make
-> > it generic and define some kind of generic units. Thoughts ? My personal
-> > preference would be a generic definition, but is not a strong preference.
-> 
-> That was exactly my way of thinking here - many sensors have n-factor
-> parameter and this is the name I see most often.
-> 
-> That being said, maybe it should be "nfactor" instead of "n-factor", as
-> this is what tmp513 is using?
-> 
-> > In regard to units, the n-factor is, as the name says, a factor. Default
-> > value is 1.008. The value range for MAX6581 is 0.999 to 1.030. For TMP421
-> > it is 0.706542 to 1.747977. So the scondary question is if the value
-> > written should be the register value (as proposed here) or the absolute
-> > factor (eg in micro-units).
-> 
-> Since expressing the fractional values in DT isn't well supported and
-> (at least here) hardware guys like to think in terms of register values
-> so this is what I proposed. Also, I just noticed that, for example,
-> TMP531 is using register values as well.
-> 
+On Wed, Sep 22, 2021 at 2:11 PM M, Aparna <a-m1@ti.com> wrote:
+>
+> Hi Bart,
+>
+> I have resent the patch.
+>
+> Regards,
+> Aparna
+>
 
-I never see "someone else does that" as valid argument. Also, DT does
-support fractional values, via units. It is perfectly valid to describe
-a voltage as micro-volt, for example.
+To which address? I still don't have it on both of my email addresses
+(not in spam too) and patchwork still doesn't see it.
 
-If the agreement is to use raw register values, I think the property name
-should be prefixed with the vendor name, since it won't be a standard
-property. I'll defer on Rob for that, though.
-
-Thanks,
-Guenter
+Bart
