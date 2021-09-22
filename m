@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9A43414FFE
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 20:37:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0219415066
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 21:19:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237065AbhIVSjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 14:39:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58788 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233210AbhIVSjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 14:39:01 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 417CFC061574
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 11:37:31 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id y4so3492124pfe.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 11:37:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ISf3e2qYPLYW8JjJMdTWnyQoJgdMb0DoM5KiRNPt3g0=;
-        b=LVeXUp/i9sFKPslqa3oFxRGAoZXRujwvKBxnOsefrScc4IcXG7pWZ5GbC3kctBZR7H
-         JacMYyfPyAI0UZLT10T2zdLEldqHUSd2hHQ778mU3I3Kjxw+RCzAsYFspFGwpTV7L1GA
-         otgHcPKkrn5Ax2/QZEU4zwBPLv6VDD7V2I2iTkpYuOUGQP2w8X4MbRGsq2WG3AZugePy
-         t5FwuZmnLk7dRLDGhIoOwmWNk0mHCOkS2Mxlr863+NeTDrd8ufQP2sve+j8q42n9HRSa
-         m5XelYtHN62QljPGbNIWOta2dHTLozXS3eFhYIkIfYfUqtb/wwNMch8aMmbsnCHaWPWa
-         3HAA==
+        id S236431AbhIVTUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 15:20:44 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:37639 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231967AbhIVTUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 15:20:44 -0400
+Received: by mail-ot1-f52.google.com with SMTP id w64-20020a9d3646000000b0054716b40005so5054543otb.4;
+        Wed, 22 Sep 2021 12:19:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ISf3e2qYPLYW8JjJMdTWnyQoJgdMb0DoM5KiRNPt3g0=;
-        b=LkXQS7AdF13lLHCP6QtUFVgWjDPP/9cfubLCAe92g89nlzFX6Avi/p1SkCjBEqKJCl
-         hTsx+Vc61WeCSSlUrUkfefaGg+zIOgE+3ihWrcT+qbAZ4fWWX9+5ZnbA3b9ruoa9Oz4o
-         6nLzlrl90hR3ryATCfPD8ztYZ3dmZl8h7/Iz0710r3pGpV6KEMexDFsUltt0giGtk8tA
-         BFeO987zcjpwlEvQAIyxvxqqXuMxBq8yreEQoaK4iKu/wfNwBTipVlhiEDlwYJekXlPE
-         ct4tlk2Se6hg8TIfqgTIyUm0cFZWRc2kIXVewDKzrO6gkuoUmWDSIDtOGssltFhbMxMG
-         Ty0A==
-X-Gm-Message-State: AOAM532H84/uuDZJJG98SbNRhX8jUKT0ilpzVKsUwObR2KazoUtBRQ5g
-        /u0J2CppjiZWv9Cz/v2oEtU=
-X-Google-Smtp-Source: ABdhPJz/Do4zlSrpJlbN1Qw7f3SkQvCNptrVecjqUxk3+fUG2LobBeTDIiC/gAz0P61t+ikjzMcZMQ==
-X-Received: by 2002:a63:184a:: with SMTP id 10mr300638pgy.149.1632335850661;
-        Wed, 22 Sep 2021 11:37:30 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id x19sm3102689pfn.105.2021.09.22.11.37.29
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2go1bBxyKUnvbgdrtTt2n0b0j8Fy5wjIbyGl0rGFlTg=;
+        b=eFBxUoxoQLNzMwZMkRzGmUU8Q/xIjw1eIqxuXEz4Rx3eYizFC9uk1Nnpv57ZrfH/gW
+         C5LHJG07keKQmIp6Rg19H/QPIiIxLFB2TbFIvJqo89P0psf0/mju04A2CPJKA1/HhbID
+         ozCIBrAHVAefJrJ4Tw7IE+3pDv/6QauSxeqKxrfdLdB9MSXmB4UGtjkAoDv0TPJwjisH
+         nDD5VWusPn4ADruwebKslkJnCxNDkzIu0cf7RcpiBErWCbovrULfVIvz9reu9j2gSUVk
+         Jyfc3/LiDkEdlEI9rhaaWt0ufGQ1i6tZEiui+N472JWyBI4M67jkX8IQsme/pDBreHaR
+         Z1dg==
+X-Gm-Message-State: AOAM533iYz0I3Y2dDDmD67FuWvdNcbiwL33p3cAUqkzQGyEs2HoXr46V
+        C/9UwP6UlM8uAP9jRdtQiw==
+X-Google-Smtp-Source: ABdhPJyc7dpH7FhP2T7xkrJePYFiN4EyyiITxz3pKUDeqQwDdXCpp+OhKr8/WXKWxm4hzqonvqjjKg==
+X-Received: by 2002:a9d:750d:: with SMTP id r13mr714816otk.264.1632338353655;
+        Wed, 22 Sep 2021 12:19:13 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id p9sm474331ots.66.2021.09.22.12.19.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 11:37:30 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-9?b?QXL9bucg3E5BTA==?= <arinc.unal@arinc9.com>
-Cc:     =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add DT for Asus RT-AC88U
-Date:   Wed, 22 Sep 2021 11:37:28 -0700
-Message-Id: <20210922183728.211597-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210921121901.24578-1-arinc.unal@arinc9.com>
-References: <20210921121901.24578-1-arinc.unal@arinc9.com>
+        Wed, 22 Sep 2021 12:19:12 -0700 (PDT)
+Received: (nullmailer pid 1133413 invoked by uid 1000);
+        Wed, 22 Sep 2021 19:19:12 -0000
+Date:   Wed, 22 Sep 2021 14:19:12 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
+        heiko@sntech.de, sre@kernel.org, maccraft123mc@gmail.com,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v4 RESEND 1/4] dt-bindings: Add Rockchip rk817 battery
+ charger support
+Message-ID: <YUuBsN1sjGI0Xc61@robh.at.kernel.org>
+References: <20210916194208.10387-1-macroalpha82@gmail.com>
+ <20210916194208.10387-2-macroalpha82@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210916194208.10387-2-macroalpha82@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Sep 2021 20:19:01 +0800, Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
-> Hardware Info
-> -------------
+On Thu, Sep 16, 2021 at 02:42:05PM -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Create dt-binding documentation to document rk817 battery and charger
+> usage. New device-tree properties have been added.
+> 
+> - rockchip,resistor-sense-micro-ohms: The value in microohms of the
+>                                       sample resistor.
+> - rockchip,sleep-enter-current-microamp: The value in microamps of the
+>                                          sleep enter current.
+> - rockchip,sleep-filter-current: The value in microamps of the sleep
+>                                  filter current.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> ---
+>  .../devicetree/bindings/mfd/rk808.txt         | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+You've also submitted converting this to schema. Please make the 
+dependencies explicit. 
+
+Rob
+
