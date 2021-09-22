@@ -2,80 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0219415066
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 21:19:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A2EA415072
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 21:25:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236431AbhIVTUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 15:20:44 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:37639 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231967AbhIVTUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 15:20:44 -0400
-Received: by mail-ot1-f52.google.com with SMTP id w64-20020a9d3646000000b0054716b40005so5054543otb.4;
-        Wed, 22 Sep 2021 12:19:14 -0700 (PDT)
+        id S237175AbhIVT1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 15:27:10 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:39693 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233678AbhIVT1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 15:27:10 -0400
+Received: by mail-ot1-f47.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so5055369ota.6;
+        Wed, 22 Sep 2021 12:25:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2go1bBxyKUnvbgdrtTt2n0b0j8Fy5wjIbyGl0rGFlTg=;
-        b=eFBxUoxoQLNzMwZMkRzGmUU8Q/xIjw1eIqxuXEz4Rx3eYizFC9uk1Nnpv57ZrfH/gW
-         C5LHJG07keKQmIp6Rg19H/QPIiIxLFB2TbFIvJqo89P0psf0/mju04A2CPJKA1/HhbID
-         ozCIBrAHVAefJrJ4Tw7IE+3pDv/6QauSxeqKxrfdLdB9MSXmB4UGtjkAoDv0TPJwjisH
-         nDD5VWusPn4ADruwebKslkJnCxNDkzIu0cf7RcpiBErWCbovrULfVIvz9reu9j2gSUVk
-         Jyfc3/LiDkEdlEI9rhaaWt0ufGQ1i6tZEiui+N472JWyBI4M67jkX8IQsme/pDBreHaR
-         Z1dg==
-X-Gm-Message-State: AOAM533iYz0I3Y2dDDmD67FuWvdNcbiwL33p3cAUqkzQGyEs2HoXr46V
-        C/9UwP6UlM8uAP9jRdtQiw==
-X-Google-Smtp-Source: ABdhPJyc7dpH7FhP2T7xkrJePYFiN4EyyiITxz3pKUDeqQwDdXCpp+OhKr8/WXKWxm4hzqonvqjjKg==
-X-Received: by 2002:a9d:750d:: with SMTP id r13mr714816otk.264.1632338353655;
-        Wed, 22 Sep 2021 12:19:13 -0700 (PDT)
+        bh=ROfX8dif1hOUK6DTEujZ26PCAYYwnvSwl8YAfygyhQw=;
+        b=wgibplAYi3nFyeUY0evfJIzSwwt6q48TsO08dOUBfBw09hCtpTtbELDFMuLkl2Z5d1
+         TrfPTX+jNMpsn/hgKruqBodnctEQ00abTMBDiyjJc1xK+NsWYh7siA627vTFDY7bTTz8
+         0qLWtnBAqRqsumD0vbjetrWUTCDTIdNp3zzZEIlhaMucl3bivaIHZbSSiOy+WkOPLqkV
+         lVXGhirNKy3X/qFxAhJL+Hw9osWcBucmsrx1GeJivzbzimO4Z2LpNPYFRcaHyaGQS3mu
+         Ojcbnvg6T+S6PL5CTT9QknR34RLDZwERwbNFU0aN9mjOBu8GY0qmO8vlSm51uA5dbXzC
+         KOPw==
+X-Gm-Message-State: AOAM532bHqLV42i5Io0d3Pmb1GS3v8qbOjKGk2JUppIUpNagZl3Vu6EK
+        5fOwbEjyxkWP6dn4v22/yw==
+X-Google-Smtp-Source: ABdhPJwZcbzkZsQL7s7jpvYc1l7WP+b15tHJqpXusBvQkj9+ALginWqlD3++GJrT2Tc8lFf6Q003vw==
+X-Received: by 2002:a9d:411e:: with SMTP id o30mr730096ote.97.1632338739773;
+        Wed, 22 Sep 2021 12:25:39 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p9sm474331ots.66.2021.09.22.12.19.12
+        by smtp.gmail.com with ESMTPSA id j8sm737011ooc.21.2021.09.22.12.25.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 12:19:12 -0700 (PDT)
-Received: (nullmailer pid 1133413 invoked by uid 1000);
-        Wed, 22 Sep 2021 19:19:12 -0000
-Date:   Wed, 22 Sep 2021 14:19:12 -0500
+        Wed, 22 Sep 2021 12:25:39 -0700 (PDT)
+Received: (nullmailer pid 1143320 invoked by uid 1000);
+        Wed, 22 Sep 2021 19:25:38 -0000
+Date:   Wed, 22 Sep 2021 14:25:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
-        heiko@sntech.de, sre@kernel.org, maccraft123mc@gmail.com,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v4 RESEND 1/4] dt-bindings: Add Rockchip rk817 battery
- charger support
-Message-ID: <YUuBsN1sjGI0Xc61@robh.at.kernel.org>
-References: <20210916194208.10387-1-macroalpha82@gmail.com>
- <20210916194208.10387-2-macroalpha82@gmail.com>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, kishon@ti.com, vkoul@kernel.org,
+        galak@kernel.crashing.org, shawnguo@kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: Re: [PATCH 1/4] dt-bindings: phy: phy-imx8-pcie: Add binding for the
+ pad modes of imx8 pcie phy
+Message-ID: <YUuDMjBGWfNsMf2n@robh.at.kernel.org>
+References: <1631845863-24249-1-git-send-email-hongxing.zhu@nxp.com>
+ <1631845863-24249-2-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210916194208.10387-2-macroalpha82@gmail.com>
+In-Reply-To: <1631845863-24249-2-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 16, 2021 at 02:42:05PM -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Fri, Sep 17, 2021 at 10:31:00AM +0800, Richard Zhu wrote:
+> Add binding for reference clock PAD modes of the i.MX8 PCIe PHY.
 > 
-> Create dt-binding documentation to document rk817 battery and charger
-> usage. New device-tree properties have been added.
-> 
-> - rockchip,resistor-sense-micro-ohms: The value in microohms of the
->                                       sample resistor.
-> - rockchip,sleep-enter-current-microamp: The value in microamps of the
->                                          sleep enter current.
-> - rockchip,sleep-filter-current: The value in microamps of the sleep
->                                  filter current.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 > ---
->  .../devicetree/bindings/mfd/rk808.txt         | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
+>  include/dt-bindings/phy/phy-imx8-pcie.h | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>  create mode 100644 include/dt-bindings/phy/phy-imx8-pcie.h
+> 
+> diff --git a/include/dt-bindings/phy/phy-imx8-pcie.h b/include/dt-bindings/phy/phy-imx8-pcie.h
+> new file mode 100644
+> index 000000000000..fe198a0cc12c
+> --- /dev/null
+> +++ b/include/dt-bindings/phy/phy-imx8-pcie.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-You've also submitted converting this to schema. Please make the 
-dependencies explicit. 
+Perhaps this should match the dts files license...
 
-Rob
-
+> +/*
+> + * This header provides constants for i.MX8 PCIe.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_IMX8_PCIE_H
+> +#define _DT_BINDINGS_IMX8_PCIE_H
+> +
+> +/* Reference clock PAD mode */
+> +#define IMX8_PCIE_REFCLK_PAD_NO_USED	0
+> +#define IMX8_PCIE_REFCLK_PAD_INPUT	1
+> +#define IMX8_PCIE_REFCLK_PAD_OUTPUT	2
+> +
+> +#endif /* _DT_BINDINGS_IMX8_PCIE_H */
+> -- 
+> 2.25.1
+> 
+> 
