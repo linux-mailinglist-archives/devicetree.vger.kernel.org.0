@@ -2,124 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60B884153FE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 01:40:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B57741541C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 01:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbhIVXll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 19:41:41 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:33010 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230145AbhIVXll (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 19:41:41 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0FF24E52;
-        Thu, 23 Sep 2021 01:40:09 +0200 (CEST)
+        id S238540AbhIVXtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 19:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45270 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238534AbhIVXtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 19:49:03 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B259EC061574;
+        Wed, 22 Sep 2021 16:47:32 -0700 (PDT)
+Received: from Monstersaurus.local (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F2BCC145A;
+        Thu, 23 Sep 2021 01:47:30 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1632354009;
-        bh=gJac9EwI/a236I+4gT7/6CxMN/VTnbwyibB6JDZnL5k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IH7gGoI1HkWPYu+ZzvtXd6P6WKWdHjwKBqPOasrNkpBFgZ37PWGr89J0owK0RhhGS
-         C0n6dHTLcqySJLeppWwOTW5Q8F+FsxMA9IkfyIXRUIHgAy/KjKsQ4OndXuWY9a0VwU
-         unPRjNs2CxMfTC1cb2AFPYZkj0D10Hwe5SNtGaLg=
-Date:   Thu, 23 Sep 2021 02:40:07 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        s=mail; t=1632354451;
+        bh=M4HzucTGDNc0rbM8YBR0NsFDpYNesyaYd4ql1va3lT4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=e5be3O8Hf6YsJFUT8zO4nFCLxMGH17jAwhmgjWsxi9qGMMbyeywaQrjUVluLVoFpR
+         Be3XGnuO2BwKXkxrzT/8KBYzi24HFmvlBkH2AHknbACTELJOTHUr7iEoo/chFER9ln
+         42SwvvpRKVqZU2cvQRaspt0jxbWzbgq+QVM2yjfI=
+From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
+To:     linux-renesas-soc@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: falcon-cpu: Add DSI display
- output
-Message-ID: <YUu+14+9DnQZM7SE@pendragon.ideasonboard.com>
-References: <20210901235330.1611086-1-kieran.bingham@ideasonboard.com>
- <20210901235330.1611086-4-kieran.bingham@ideasonboard.com>
- <CAMuHMdU5WzvdfeSqEESt0r7_7XX0Mc9jRNGCBHLtt_JCMCWZyw@mail.gmail.com>
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR RENESAS),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3 1/6] dt-bindings: display: renesas,du: Provide bindings for r8a779a0
+Date:   Thu, 23 Sep 2021 00:47:21 +0100
+Message-Id: <20210922234726.3337265-2-kieran.bingham@ideasonboard.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210922234726.3337265-1-kieran.bingham@ideasonboard.com>
+References: <20210922234726.3337265-1-kieran.bingham@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdU5WzvdfeSqEESt0r7_7XX0Mc9jRNGCBHLtt_JCMCWZyw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 
-On Tue, Sep 21, 2021 at 05:59:24PM +0200, Geert Uytterhoeven wrote:
-> On Thu, Sep 2, 2021 at 1:53 AM Kieran Bingham wrote:
-> > From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> >
-> > Provide the display output using the sn65dsi86 MIPI DSI bridge.
-> >
-> > Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> 
-> Thanks for your patch!
-> 
-> > --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-> > @@ -66,6 +66,15 @@ memory@700000000 {
-> >                 reg = <0x7 0x00000000 0x0 0x80000000>;
-> >         };
-> >
-> > +       reg_1p2v: regulator-1p2v {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-name = "fixed-1.2V";
-> > +               regulator-min-microvolt = <1800000>;
-> > +               regulator-max-microvolt = <1800000>;
-> > +               regulator-boot-on;
-> > +               regulator-always-on;
-> > +       };
-> > +
-> >         reg_1p8v: regulator-1p8v {
-> >                 compatible = "regulator-fixed";
-> >                 regulator-name = "fixed-1.8V";
-> > @@ -83,6 +92,46 @@ reg_3p3v: regulator-3p3v {
-> >                 regulator-boot-on;
-> >                 regulator-always-on;
-> >         };
-> > +
-> > +       mini-dp-con {
-> > +               compatible = "dp-connector";
-> > +               label = "CN5";
-> > +               type = "mini";
-> > +
-> > +               port {
-> > +                       mini_dp_con_in: endpoint {
-> > +                               remote-endpoint = <&sn65dsi86_out>;
-> > +                       };
-> > +               };
-> > +       };
-> > +
-> > +       sn65dsi86_refclk: sn65dsi86-refclk {
-> > +               compatible = "fixed-clock";
-> > +               #clock-cells = <0>;
-> > +               clock-frequency = <38400000>;
-> > +       };
-> > +};
-> > +
-> > +&dsi0 {
-> > +       status = "okay";
-> > +
-> > +       clocks = <&cpg CPG_MOD 415>,
-> > +                <&cpg CPG_CORE R8A779A0_CLK_DSI>,
-> > +                <&extal_clk>;
-> > +       clock-names = "fck", "dsi", "extal";
-> 
-> Ah, that's where the third clock was hiding ;-)
-> 
-> Is this hardwired to extal, or board-specific?
-> In case of the former, I think it should be moved to the .dtsi.
+Extend the Renesas DU display bindings to support the r8a779a0 V3U.
 
-I think this is actually incorrect. The clock name, according to the
-bindings, is "pll", and it's documented as a 16.66MHz PLL reference
-clock. It comes from the CPG, but I'm not sure which clock it actually
-is.
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 
+---
+v2:
+ - Collected Laurent's tag
+ - Remove clock-names requirement
+ - Specify only a single clock
+
+v3:
+ - Use clocknames: 'du.0' instead of 'du' to remain consistent
+
+ .../bindings/display/renesas,du.yaml          | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
+index e3ca5389c17d..6db6a3f15395 100644
+--- a/Documentation/devicetree/bindings/display/renesas,du.yaml
++++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+@@ -39,6 +39,7 @@ properties:
+       - renesas,du-r8a77980 # for R-Car V3H compatible DU
+       - renesas,du-r8a77990 # for R-Car E3 compatible DU
+       - renesas,du-r8a77995 # for R-Car D3 compatible DU
++      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
+ 
+   reg:
+     maxItems: 1
+@@ -773,6 +774,55 @@ allOf:
+         - reset-names
+         - renesas,vsps
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,du-r8a779a0
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Functional clock
++
++        clock-names:
++          maxItems: 1
++          items:
++            - const: du.0
++
++        interrupts:
++          maxItems: 2
++
++        resets:
++          maxItems: 1
++
++        reset-names:
++          items:
++            - const: du.0
++
++        ports:
++          properties:
++            port@0:
++              description: DSI 0
++            port@1:
++              description: DSI 1
++            port@2: false
++            port@3: false
++
++          required:
++            - port@0
++            - port@1
++
++        renesas,vsps:
++          minItems: 2
++
++      required:
++        - interrupts
++        - resets
++        - reset-names
++        - renesas,vsps
++
+ additionalProperties: false
+ 
+ examples:
 -- 
-Regards,
+2.30.2
 
-Laurent Pinchart
