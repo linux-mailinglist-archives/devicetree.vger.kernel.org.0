@@ -2,115 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADB1F413E13
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 01:37:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97578413EA9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 02:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbhIUXio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 19:38:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50394 "EHLO
+        id S229671AbhIVAgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 20:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230216AbhIUXin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 19:38:43 -0400
-Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10153C061575
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 16:37:15 -0700 (PDT)
-Received: by mail-oo1-xc31.google.com with SMTP id i26-20020a4ad09a000000b002a9d58c24f5so291806oor.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 16:37:15 -0700 (PDT)
+        with ESMTP id S229640AbhIVAgS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Sep 2021 20:36:18 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 418ADC061575
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 17:34:49 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id w206so1879671oiw.4
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 17:34:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=HHox+3frYK/cj9vGMME461IJwFwRKnkRBeAwyaPFbck=;
-        b=U99MTwQSaRGyP0snuEIpuuA7Nc9/RXbBjkz/V0svgvNlu+nBt72uTYR+ZQAM4EJiVq
-         ey0t3gCUDwQzjqlxfw5eGPi35N2Zc3Tu28JjBqPydx0Q4VlP5SWegxfs6U9fpN4n6exs
-         DY17Ms//tODSOQaTASuFzerKkFvgyuW2vKeRLOse2WAlGXZNkI86OcjxbxkVjnz/sHQi
-         heMD5z3mFvuBXGG5/LblKDkfgvf8qzJzTfF8LnaRMYWAZvl3pR3Im9X+Murl22XbXgh+
-         sCffEEWsfC3kHc3UWAaN2pry1PupZcA65wKf+3J3tfmnn65hvYgceYRyeJecSB5Eyxz4
-         AG0w==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=Lq1i3UmZIVXzbCnFsiSy3KOz8kbH/EuovVzUT4ns1D0=;
+        b=Yq/MH9PMZpBhvcQBvTOVQ0P4eSwOVVQsTvp44tfDweT6xI9jjYGAoeWQJyQPVtofuP
+         iFVfGLUL7fOTo4aLypTdN/BbJ0qiQYWBwffsaEU2F21Spa1ORUZXlKAjV3or6ta7Kwhv
+         YOF8ASsA5MmRVPbOGnRmba66su4Y2kksQo4cE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HHox+3frYK/cj9vGMME461IJwFwRKnkRBeAwyaPFbck=;
-        b=RfZnBfjCsbCVI1k8PsY0Ot8qTN6iIZxOBU8yd/sbE7G/aGgGHudndGpCgF+Ag3ByL7
-         43e3ix0jFlA8kJ1uXnEB6h6vsunJeuYcayX37J7owbuLyysBtqtz4dwi9SGlMqDkiL7s
-         3yofPRZ46+sPpK5/MgbA0foCbaRKNJeUiBPn1yxj0urF6NlGNldF5M4N3CK4uiE26Ohk
-         T9jDPaUwV8tXVRXvv6599QQ/VbWbeF16mE4Kc6LdStMYj2bo99rzbh2UfLqO3eBPXjph
-         zZPUvPClwIZkl7HNzn54LJrHzdhE6FrmLY113UJjqui4q973mt9+q5JFCg2Vt2Oy8sa+
-         QmTA==
-X-Gm-Message-State: AOAM531X1qEw6fRpe0IdsmfwMu/O5dKGQ9UW4S7JPlUT3ZsevoUn0hIE
-        hjvHlXRCHbBb0gxlaUau7m1tQw==
-X-Google-Smtp-Source: ABdhPJzyrewviRAr+CFCzHNmQfX8dxtRhAjh/vAi+gc7UBts/HmCcVxzPwTgCVpJbJU23PeDTX/bww==
-X-Received: by 2002:a4a:a9ce:: with SMTP id h14mr26503391oon.89.1632267434421;
-        Tue, 21 Sep 2021 16:37:14 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id u12sm108081otq.20.2021.09.21.16.37.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 16:37:14 -0700 (PDT)
-Date:   Tue, 21 Sep 2021 16:37:56 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
-        mathieu.poirier@linaro.org, ohad@wizery.com,
-        p.zabel@pengutronix.de, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
-        mpubbise@codeaurora.org, kuabhs@chromium.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS
- support
-Message-ID: <YUps1JfGtf6JdbCx@ripper>
-References: <1631811353-503-1-git-send-email-pillair@codeaurora.org>
- <1631811353-503-3-git-send-email-pillair@codeaurora.org>
- <CAE-0n51KBYjZvwGNy06_okmEWjEfRLQO54CYaY6-JnbBk6kOhA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=Lq1i3UmZIVXzbCnFsiSy3KOz8kbH/EuovVzUT4ns1D0=;
+        b=LgWVbrgYqQriZVf0Md5jDoU3ecRZHBJhnNe/hTLkvJI+OrhR3CK7hzoA6Slu2ESkB2
+         sgiJNL0zWVvjFogSCt8SMRnp0XWDrr+NRWU9vayiCgPOMCGA93UOEuJIubMkxylCA2Ta
+         Tg2aAa/cctPavkmyIJ8FWhZaU28mt1Phirlli61BrGLJ0THbo03NW5KciPRgterf1nnn
+         E1nn+oYqhJBiL4SeoVanQhCAwRiU3mm4/nIhZGCUyBGBBBFewwkpSkw3MYu6zVy+0Xm/
+         E9AkgdacXTWZKVEqarXrdhY9KSeGxraZIbQBfbDweAmekmj0pBHUzPXPYuVYElOnao7b
+         Gx5g==
+X-Gm-Message-State: AOAM530OOzmHd43HQ8sqmFooG957QvMmPHr2KubBP0aprMrzIOhwPAi/
+        DLnYUWJfFvqq0UqVObCdRPuUX/bEUiHSro1Zqrq190GwKOg=
+X-Google-Smtp-Source: ABdhPJwdLJjIONGn3D9JF8ZDXJrESI3tWOPGXojBwG3mX9Bh04SHpvBI8gxogahpMqIWmocDy2NKjT2f2BWQKICPDJA=
+X-Received: by 2002:aca:1a11:: with SMTP id a17mr5902958oia.164.1632270888594;
+ Tue, 21 Sep 2021 17:34:48 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 21 Sep 2021 17:34:48 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n51KBYjZvwGNy06_okmEWjEfRLQO54CYaY6-JnbBk6kOhA@mail.gmail.com>
+In-Reply-To: <YUo2ZzQktf2iSec/@gerhold.net>
+References: <20210921152120.6710-1-stephan@gerhold.net> <20210921152120.6710-2-stephan@gerhold.net>
+ <CAE-0n51Ukr0FMhzHotrGnrJjE3=w2X_u4ukc1KC_HpjjsUdNfg@mail.gmail.com> <YUo2ZzQktf2iSec/@gerhold.net>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Tue, 21 Sep 2021 17:34:48 -0700
+Message-ID: <CAE-0n50sQRDufGuLB-KgqSquzL84isPy+EeSMkDigg25DLT54Q@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: msm8916: Drop underscore in node name
+To:     Stephan Gerhold <stephan@gerhold.net>, robh+dt@kernel.org
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 16 Sep 23:25 PDT 2021, Stephen Boyd wrote:
-
-> Quoting Rakesh Pillai (2021-09-16 09:55:52)
-> > @@ -78,6 +84,10 @@ properties:
-> >        Phandle reference to a syscon representing TCSR followed by the
-> >        three offsets within syscon for q6, modem and nc halt registers.
+Quoting Stephan Gerhold (2021-09-21 12:45:43)
+> On Tue, Sep 21, 2021 at 11:20:18AM -0700, Stephen Boyd wrote:
+> > Quoting Stephan Gerhold (2021-09-21 08:21:19)
+> > > Using underscores in device tree nodes is not very common.
+> > > Additionally, the _region suffix in "smem_region@..." is not really
+> > > useful since it's obvious that it describes a reserved memory region.
+> > >
+> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > > index 5551dba2d5fd..95dea20cde75 100644
+> > > --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > > @@ -41,7 +41,7 @@ tz-apps@86000000 {
+> > >                         no-map;
+> > >                 };
+> > >
+> > > -               smem_mem: smem_region@86300000 {
+> > > +               smem_mem: smem@86300000 {
 > >
-> > +  qcom,qmp:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: Reference to the AOSS side-channel message RAM.
-> > +
-> >    qcom,smem-states:
-> >      $ref: /schemas/types.yaml#/definitions/phandle-array
-> >      description: States used by the AP to signal the Hexagon core
-> > @@ -117,6 +127,33 @@ allOf:
-> >          compatible:
-> >            contains:
-> >              enum:
-> > +              - qcom,sc7280-wpss-pil
-> > +    then:
-> 
-> Honestly I find this if/else to be a huge tangle. Why not split the
-> binding so that each compatible is a different file? Then it is easier
-> to read and see what properties to set.
-> 
+> > Shouldn't that be smem_mem: memory@86300000? Node names should be
+> > generic.
+> >
+>
+> The way I read it, the DT schema [1] and device tree specification [2]
+> interprets the generic name recommendation a bit different here:
+>
+> > Following the generic-names recommended practice, node names should
+> > reflect the purpose of the node (ie. "framebuffer" or "dma-pool").
+>
+> "framebuffer" or "dma-pool" would also be "memory", yet they suggest
+> a name reflecting the purpose instead. The purpose of the node is
+> "smem", it's not just arbitrary "memory".
 
-Further more, the way we express the non-PAS properties in the PAS node
-in the dtsi and then switch the compatible in the non-PAS devices means
-that we're causing validation errors.
+I don't think most people know what 'smem' means. Maybe if the node name
+was 'shared-memory' it would be OK.
 
-So we should explode this binding to get rid of the conditionals and to
-describe the "superset" of the PAS and non-PAS compatibles, for
-platforms where this is applicable.
+>
+> However, my main problem with using memory@ here is that it actually
+> causes new dtbs_check errors:
+>
+> apq8016-sbc.dt.yaml: memory@86000000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@86300000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@86400000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@86500000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@86680000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@86700000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@867e0000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@86800000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@89300000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@89900000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+> apq8016-sbc.dt.yaml: memory@8ea00000: 'device_type' is a required property (From schema: dtschema/schemas/memory.yaml)
+>
+> Looks like it thinks this is a definition of physical memory now.
+> I would rather not add more errors. :)
 
-Regards,
-Bjorn
-
-> > +      properties:
-> > +        interrupts-extended:
-> > +          maxItems: 6
-> > +          items:
-> > +            - description: Watchdog interrupt
-> > +            - description: Fatal interrupt
-> > +            - description: Ready interrupt
+Got it. Doesn't seem right that the schema is checking for memory node
+names anywhere except for in the root of the tree. Rob? I also see that
+the reserved memory binding could do with some YAML conversion.
