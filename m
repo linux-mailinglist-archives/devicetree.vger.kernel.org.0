@@ -2,352 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D25B41470B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:55:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C71ED414739
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 13:05:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235203AbhIVK5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 06:57:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56696 "EHLO mail.kernel.org"
+        id S235204AbhIVLGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 07:06:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60832 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235245AbhIVK5Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 06:57:16 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 335E06109F;
-        Wed, 22 Sep 2021 10:55:47 +0000 (UTC)
+        id S234760AbhIVLGw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 07:06:52 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9EBC361050;
+        Wed, 22 Sep 2021 11:05:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632308147;
-        bh=eAjFNRBpQJKeA1sNci8y8k2TEqXAjryf/cIS7pzJirs=;
+        s=k20201202; t=1632308722;
+        bh=lKxTtQAI2dVJN/lgVduhPktu2QvJtfw+Vyeet6Wg0kk=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QCEP+G1581rB04BPe3Ns/O394X5b8Ba7q+VHaQDL1b8X1BPSrfQpjPOcpBcLMCAuS
-         gv3UxVglS9UADktg5d3pisfzQ9vKKZGc7t5pPPs08u4GyHyMNSfpzcSyEm/fsw4Cw/
-         BjoNspbxfGjPbplbQYGWhVmno7s6G1dEiJDoiW8yq+0WSsjakT4P1o19UOmgXFrFhv
-         J+W46rfqta8Sd3hHgObFRVwEY9tXCqcjfoqo4xiXzNhJpPuBvjy4FhkZfEILWKbZuK
-         SMRvoAQ++tkJ9iI6nztBr/QY2zQ7Z0RdTojw/9AjLarMYai1HCdfcJcwP9JStfNUqJ
-         yU/qilyuLazgA==
-Received: by mail-ot1-f43.google.com with SMTP id h9-20020a9d2f09000000b005453f95356cso2819747otb.11;
-        Wed, 22 Sep 2021 03:55:47 -0700 (PDT)
-X-Gm-Message-State: AOAM532RltZ54NY8fQXfcN2oWmIwTRt80rSYr8nTRp4NDKPwKy/L8lK1
-        yiIxrJ80aEMyYhoDsb2FLRTUzlUtMNr/wj1h5LU=
-X-Google-Smtp-Source: ABdhPJykpzKGe8v1pBQ3CR/2JU5H8EOje8Gs9fBBAHsfXDt9bn4WoL7tIPW0f+zi7s4Ivo8L5iCPFwVLaWikTkzKmHU=
-X-Received: by 2002:a9d:12e2:: with SMTP id g89mr30492762otg.112.1632308146505;
- Wed, 22 Sep 2021 03:55:46 -0700 (PDT)
+        b=tx3ksSSLnT10rE/aRMTTfisLEWB1roDYi4W1eVYJ3mwNTPUcFc1xRdYUed30yNnAk
+         dqLWXreNv7I3qk+PvSQ2gJp3Z8h/PZgOn6XFkI0CAuxPn3TFxNrVu4C53+I9sDCGWo
+         TY++0NtH5Vn2od4tifHGGPAikKWCYnS7qIkUc9IIezTuyojt9DIZ0iPepxsvXmO5rM
+         Zz+KmNrft/j2XzhW/lJv+cfExHgPgu+WbV0k3HcAIZ+Rrl1+qrZtM1BByShI2pc7zl
+         +1//r9FPD7l0IX/VjD5lOMbC9gdvqF2+cLD1PAHXzpYNENAgDQ+myBQL8NQMuP9Tck
+         p4oqNIiezVLKw==
+Received: by mail-oi1-f170.google.com with SMTP id s24so1274538oij.8;
+        Wed, 22 Sep 2021 04:05:22 -0700 (PDT)
+X-Gm-Message-State: AOAM5304lahi6KLy6hrXnjUMdRAELWIr7dDQ5SFUsH/txqtTTrO+2tTt
+        Bry4yw2uCsqmF5D8kKZq6GVK2LAbzA4w3xVSnac=
+X-Google-Smtp-Source: ABdhPJyqRljhIu3cnaTtcTjBsYyXn04mQxYNKOI8lDMU6oo+6R/HRFtbw4XbqGArYlNafsVzssonf+JD+jJaDgbmRtw=
+X-Received: by 2002:a05:6808:15a2:: with SMTP id t34mr7416338oiw.47.1632308721925;
+ Wed, 22 Sep 2021 04:05:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210921213930.10366-1-linkmauve@linkmauve.fr>
- <20210921213930.10366-2-linkmauve@linkmauve.fr> <CAMj1kXF6RpaAsN2zUgkO0NW7gMwwhXMHEEM-wpQXxeNJbGJ79A@mail.gmail.com>
- <20210922104302.22pgaoy2vspranqj@luna>
-In-Reply-To: <20210922104302.22pgaoy2vspranqj@luna>
+References: <20210906041424.115473-1-gshan@redhat.com> <CAL_JsqLccwTEhzonvdOOox+D6=3gHxbDbtsXTJpqtQfuxA4xvg@mail.gmail.com>
+In-Reply-To: <CAL_JsqLccwTEhzonvdOOox+D6=3gHxbDbtsXTJpqtQfuxA4xvg@mail.gmail.com>
 From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Wed, 22 Sep 2021 12:55:34 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXFMVQDe_t3Y3yh_VCGsW9x_PuhN-A9ACX2qVZAXYhYxHQ@mail.gmail.com>
-Message-ID: <CAMj1kXFMVQDe_t3Y3yh_VCGsW9x_PuhN-A9ACX2qVZAXYhYxHQ@mail.gmail.com>
-Subject: Re: [PATCH 1/4] crypto: nintendo-aes - add a new AES driver
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        Ash Logan <ash@heyquark.com>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
+Date:   Wed, 22 Sep 2021 13:05:10 +0200
+X-Gmail-Original-Message-ID: <CAMj1kXFgnbuQzqf4rnpzn+Ez-sL3859q=1z_PkE1Mgd3SL19rA@mail.gmail.com>
+Message-ID: <CAMj1kXFgnbuQzqf4rnpzn+Ez-sL3859q=1z_PkE1Mgd3SL19rA@mail.gmail.com>
+Subject: Re: [PATCH] Documentation, dt, numa: Add note to empty NUMA node
+To:     Rob Herring <robh@kernel.org>
+Cc:     Gavin Shan <gshan@redhat.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:LINUX FOR POWERPC (32-BIT AND 64-BIT)" 
-        <linuxppc-dev@lists.ozlabs.org>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Andrew Jones <drjones@redhat.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>, shan.gavin@gmail.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Sept 2021 at 12:43, Emmanuel Gil Peyrot
-<linkmauve@linkmauve.fr> wrote:
+On Tue, 21 Sept 2021 at 21:45, Rob Herring <robh@kernel.org> wrote:
 >
-> On Wed, Sep 22, 2021 at 12:10:41PM +0200, Ard Biesheuvel wrote:
-> > On Tue, 21 Sept 2021 at 23:49, Emmanuel Gil Peyrot
-> > <linkmauve@linkmauve.fr> wrote:
-> > >
-> > > This engine implements AES in CBC mode, using 128-bit keys only.  It =
-is
-> > > present on both the Wii and the Wii U, and is apparently identical in
-> > > both consoles.
-> > >
-> > > The hardware is capable of firing an interrupt when the operation is
-> > > done, but this driver currently uses a busy loop, I=E2=80=99m not too=
- sure
-> > > whether it would be preferable to switch, nor how to achieve that.
-> > >
-> > > It also supports a mode where no operation is done, and thus could be
-> > > used as a DMA copy engine, but I don=E2=80=99t know how to expose tha=
-t to the
-> > > kernel or whether it would even be useful.
-> > >
-> > > In my testing, on a Wii U, this driver reaches 80.7 MiB/s, while the
-> > > aes-generic driver only reaches 30.9 MiB/s, so it is a quite welcome
-> > > speedup.
-> > >
-> > > This driver was written based on reversed documentation, see:
-> > > https://wiibrew.org/wiki/Hardware/AES
-> > >
-> > > Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-> > > Tested-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>  # on Wii U
+> On Sun, Sep 5, 2021 at 11:16 PM Gavin Shan <gshan@redhat.com> wrote:
 > >
-> > This is redundant - everybody should test the code they submit.
+> > The empty memory nodes, where no memory resides in, are allowed.
+> > For these empty memory nodes, the 'len' of 'reg' property is zero.
+> > The NUMA node IDs are still valid and parsed, but memory may be
+> > added to them through hotplug afterwards. Currently, QEMU fails
+> > to boot when multiple empty memory nodes are specified. It's
+> > caused by device-tree population failure and duplicated memory
+> > node names.
+
+Those memory regions are known in advance, right? So wouldn't it be
+better to use something like 'status = "disabled"' here?
+
 >
-> Indeed, except for the comment, as I haven=E2=80=99t been able to test on=
- the
-> Wii just yet and that=E2=80=99s kind of a call for doing exactly that. :)
+> I still don't like the fake addresses. I can't really give suggestions
+> on alternative ways to fix this with you just presenting a solution.
 >
+
+Agreed. Please try to explain what the problem is, and why this is the
+best way to solve it. Please include other solutions that were
+considered and rejected if any exist.
+
+> What is the failure you see? Can we relax the kernel's expectations?
+> What about UEFI boot as the memory nodes aren't used (or maybe they
+> are for NUMA?) How does this work with ACPI?
+>
+
+The EFI memory map only needs to describe the memory that was present
+at boot. More memory can be represented as ACPI objects, including
+coldplugged memory that is already present at boot. None of this
+involves the memory nodes in DT.
+
+> > As device-tree specification indicates, the 'unit-address' of
+> > these empty memory nodes, part of their names, are the equivalents
+> > to 'base-address'. Unfortunately, I finds difficulty to get where
+> > the assignment of 'base-address' is properly documented for these
+> > empty memory nodes. So lets add a section for empty memory nodes
+> > to cover this in NUMA binding document. The 'unit-address',
+> > equivalent to 'base-address' in the 'reg' property of these empty
+> > memory nodes is specified to be the summation of highest memory
+> > address plus the NUMA node ID.
 > >
-> > ...
-> > > +       /* TODO: figure out how to use interrupts here, this will pro=
-bably
-> > > +        * lower throughput but let the CPU do other things while the=
- AES
-> > > +        * engine is doing its work. */
+> > Signed-off-by: Gavin Shan <gshan@redhat.com>
+> > Acked-by: Randy Dunlap <rdunlap@infradead.org>
+> > ---
+> >  Documentation/devicetree/bindings/numa.txt | 60 +++++++++++++++++++++-
+> >  1 file changed, 59 insertions(+), 1 deletion(-)
 > >
-> > So is it worthwhile like this? How much faster is it to use this
-> > accelerator rather than the CPU?
->
-> As I mentioned above, on my hardware it reaches 80.7 MiB/s using this
-> busy loop instead of 30.9 MiB/s using aes-generic, measured using
-> `cryptsetup benchmark --cipher=3Daes --key-size=3D128`.  I expect the
-> difference would be even more pronounced on the Wii, with its CPU being
-> clocked lower.
->
-
-Ah apologies for not spotting that. This is a nice speedup.
-
-> I will give a try at using the interrupt, but I fully expect a lower
-> throughput alongside a lower CPU usage (for large requests).
->
-
-You should consider latency as well. Is it really necessary to disable
-interrupts as well? A scheduling blackout of ~1ms (for the worst case
-of 64k of input @ 80 MB/s) may be tolerable but keeping interrupts
-disabled for that long is probably not a great idea. (Just make sure
-you use spin_lock_bh() to prevent deadlocks that could occur if your
-code is called from softirq context)
-
-But using the interrupt is obviously preferred. What's wrong with it?
-
-Btw the crypto API does not permit AES-128 only - you will need to add
-a fallback for other key sizes as well.
-
-
+> > diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+> > index 21b35053ca5a..82f047bc8dd6 100644
+> > --- a/Documentation/devicetree/bindings/numa.txt
+> > +++ b/Documentation/devicetree/bindings/numa.txt
+> > @@ -103,7 +103,65 @@ Example:
+> >                 };
 > >
-> > > +       do {
-> > > +               status =3D ioread32be(base + AES_CTRL);
-> > > +               cpu_relax();
-> > > +       } while ((status & AES_CTRL_EXEC) && --counter);
-> > > +
-> > > +       /* Do we ever get called with dst =E2=89=A0 src?  If so we ha=
-ve to invalidate
-> > > +        * dst in addition to the earlier flush of src. */
-> > > +       if (unlikely(dst !=3D src)) {
-> > > +               for (i =3D 0; i < len; i +=3D 32)
-> > > +                       __asm__("dcbi 0, %0" : : "r" (dst + i));
-> > > +               __asm__("sync" : : : "memory");
-> > > +       }
-> > > +
-> > > +       return counter ? 0 : 1;
-> > > +}
-> > > +
-> > > +static void
-> > > +nintendo_aes_crypt(const void *src, void *dst, u32 len, u8 *iv, int =
-dir,
-> > > +                  bool firstchunk)
-> > > +{
-> > > +       u32 flags =3D 0;
-> > > +       unsigned long iflags;
-> > > +       int ret;
-> > > +
-> > > +       flags |=3D AES_CTRL_EXEC_INIT /* | AES_CTRL_IRQ */ | AES_CTRL=
-_ENA;
-> > > +
-> > > +       if (dir =3D=3D AES_DIR_DECRYPT)
-> > > +               flags |=3D AES_CTRL_DEC;
-> > > +
-> > > +       if (!firstchunk)
-> > > +               flags |=3D AES_CTRL_IV;
-> > > +
-> > > +       /* Start the critical section */
-> > > +       spin_lock_irqsave(&lock, iflags);
-> > > +
-> > > +       if (firstchunk)
-> > > +               writefield(AES_IV, iv);
-> > > +
-> > > +       ret =3D do_crypt(src, dst, len, flags);
-> > > +       BUG_ON(ret);
-> > > +
-> > > +       spin_unlock_irqrestore(&lock, iflags);
-> > > +}
-> > > +
-> > > +static int nintendo_setkey_skcipher(struct crypto_skcipher *tfm, con=
-st u8 *key,
-> > > +                                   unsigned int len)
-> > > +{
-> > > +       /* The hardware only supports AES-128 */
-> > > +       if (len !=3D AES_KEYSIZE_128)
-> > > +               return -EINVAL;
-> > > +
-> > > +       writefield(AES_KEY, key);
-> > > +       return 0;
-> > > +}
-> > > +
-> > > +static int nintendo_skcipher_crypt(struct skcipher_request *req, int=
- dir)
-> > > +{
-> > > +       struct skcipher_walk walk;
-> > > +       unsigned int nbytes;
-> > > +       int err;
-> > > +       char ivbuf[AES_BLOCK_SIZE];
-> > > +       unsigned int ivsize;
-> > > +
-> > > +       bool firstchunk =3D true;
-> > > +
-> > > +       /* Reset the engine */
-> > > +       iowrite32be(0, base + AES_CTRL);
-> > > +
-> > > +       err =3D skcipher_walk_virt(&walk, req, false);
-> > > +       ivsize =3D min(sizeof(ivbuf), walk.ivsize);
-> > > +
-> > > +       while ((nbytes =3D walk.nbytes) !=3D 0) {
-> > > +               unsigned int chunkbytes =3D round_down(nbytes, AES_BL=
-OCK_SIZE);
-> > > +               unsigned int ret =3D nbytes % AES_BLOCK_SIZE;
-> > > +
-> > > +               if (walk.total =3D=3D chunkbytes && dir =3D=3D AES_DI=
-R_DECRYPT) {
-> > > +                       /* If this is the last chunk and we're decryp=
-ting, take
-> > > +                        * note of the IV (which is the last cipherte=
-xt block)
-> > > +                        */
-> > > +                       memcpy(ivbuf, walk.src.virt.addr + walk.total=
- - ivsize,
-> > > +                              ivsize);
-> > > +               }
-> > > +
-> > > +               nintendo_aes_crypt(walk.src.virt.addr, walk.dst.virt.=
-addr,
-> > > +                                  chunkbytes, walk.iv, dir, firstchu=
-nk);
-> > > +
-> > > +               if (walk.total =3D=3D chunkbytes && dir =3D=3D AES_DI=
-R_ENCRYPT) {
-> > > +                       /* If this is the last chunk and we're encryp=
-ting, take
-> > > +                        * note of the IV (which is the last cipherte=
-xt block)
-> > > +                        */
-> > > +                       memcpy(walk.iv,
-> > > +                              walk.dst.virt.addr + walk.total - ivsi=
-ze,
-> > > +                              ivsize);
-> > > +               } else if (walk.total =3D=3D chunkbytes && dir =3D=3D=
- AES_DIR_DECRYPT) {
-> > > +                       memcpy(walk.iv, ivbuf, ivsize);
-> > > +               }
-> > > +
-> > > +               err =3D skcipher_walk_done(&walk, ret);
-> > > +               firstchunk =3D false;
-> > > +       }
-> > > +
-> > > +       return err;
-> > > +}
-> > > +
-> > > +static int nintendo_cbc_encrypt(struct skcipher_request *req)
-> > > +{
-> > > +       return nintendo_skcipher_crypt(req, AES_DIR_ENCRYPT);
-> > > +}
-> > > +
-> > > +static int nintendo_cbc_decrypt(struct skcipher_request *req)
-> > > +{
-> > > +       return nintendo_skcipher_crypt(req, AES_DIR_DECRYPT);
-> > > +}
-> > > +
-> > > +static struct skcipher_alg nintendo_alg =3D {
-> > > +       .base.cra_name          =3D "cbc(aes)",
-> > > +       .base.cra_driver_name   =3D "cbc-aes-nintendo",
-> > > +       .base.cra_priority      =3D 400,
-> > > +       .base.cra_flags         =3D CRYPTO_ALG_KERN_DRIVER_ONLY,
-> > > +       .base.cra_blocksize     =3D AES_BLOCK_SIZE,
-> > > +       .base.cra_alignmask     =3D 15,
-> > > +       .base.cra_module        =3D THIS_MODULE,
-> > > +       .setkey                 =3D nintendo_setkey_skcipher,
-> > > +       .encrypt                =3D nintendo_cbc_encrypt,
-> > > +       .decrypt                =3D nintendo_cbc_decrypt,
-> > > +       .min_keysize            =3D AES_KEYSIZE_128,
-> > > +       .max_keysize            =3D AES_KEYSIZE_128,
-> > > +       .ivsize                 =3D AES_BLOCK_SIZE,
-> > > +};
-> > > +
-> > > +static int nintendo_aes_remove(struct platform_device *pdev)
-> > > +{
-> > > +       struct device *dev =3D &pdev->dev;
-> > > +
-> > > +       crypto_unregister_skcipher(&nintendo_alg);
-> > > +       devm_iounmap(dev, base);
-> > > +       base =3D NULL;
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > > +static int nintendo_aes_probe(struct platform_device *pdev)
-> > > +{
-> > > +       struct device *dev =3D &pdev->dev;
-> > > +       struct resource *res;
-> > > +       int ret;
-> > > +
-> > > +       res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > > +       base =3D devm_ioremap_resource(dev, res);
-> > > +       if (IS_ERR(base))
-> > > +               return PTR_ERR(base);
-> > > +
-> > > +       spin_lock_init(&lock);
-> > > +
-> > > +       ret =3D crypto_register_skcipher(&nintendo_alg);
-> > > +       if (ret)
-> > > +               goto eiomap;
-> > > +
-> > > +       dev_notice(dev, "Nintendo Wii and Wii U AES engine enabled\n"=
-);
-> > > +       return 0;
-> > > +
-> > > + eiomap:
-> > > +       devm_iounmap(dev, base);
-> > > +
-> > > +       dev_err(dev, "Nintendo Wii and Wii U AES initialization faile=
-d\n");
-> > > +       return ret;
-> > > +}
-> > > +
-> > > +static const struct of_device_id nintendo_aes_of_match[] =3D {
-> > > +       { .compatible =3D "nintendo,hollywood-aes", },
-> > > +       { .compatible =3D "nintendo,latte-aes", },
-> > > +       {/* sentinel */},
-> > > +};
-> > > +MODULE_DEVICE_TABLE(of, nintendo_aes_of_match);
-> > > +
-> > > +static struct platform_driver nintendo_aes_driver =3D {
-> > > +       .driver =3D {
-> > > +               .name =3D "nintendo-aes",
-> > > +               .of_match_table =3D nintendo_aes_of_match,
-> > > +       },
-> > > +       .probe =3D nintendo_aes_probe,
-> > > +       .remove =3D nintendo_aes_remove,
-> > > +};
-> > > +
-> > > +module_platform_driver(nintendo_aes_driver);
-> > > +
-> > > +MODULE_AUTHOR("Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>");
-> > > +MODULE_DESCRIPTION("Nintendo Wii and Wii U Hardware AES driver");
-> > > +MODULE_LICENSE("GPL");
-> > > --
-> > > 2.33.0
-> > >
+> >  ==============================================================================
+> > -4 - Example dts
+> > +4 - Empty memory nodes
+> > +==============================================================================
+> > +
+> > +Empty memory nodes, which no memory resides in, are allowed. The 'length'
+> > +field of the 'reg' property is zero. However, the 'base-address' is a
+> > +dummy and invalid address, which is the summation of highest memory address
+> > +plus the NUMA node ID. The NUMA node IDs and distance maps are still valid
+> > +and memory may be added into them through hotplug afterwards.
+> > +
+> > +Example:
+> > +
+> > +       memory@0 {
+> > +               device_type = "memory";
+> > +               reg = <0x0 0x0 0x0 0x80000000>;
+> > +               numa-node-id = <0>;
+> > +       };
+> > +
+> > +       memory@80000000 {
+> > +               device_type = "memory";
+> > +               reg = <0x0 0x80000000 0x0 0x80000000>;
+> > +               numa-node-id = <1>;
+> > +       };
+> > +
+> > +       /* Empty memory node */
+> > +       memory@100000002 {
+> > +               device_type = "memory";
+> > +               reg = <0x1 0x2 0x0 0x0>;
+> > +               numa-node-id = <2>;
+> > +       };
+> > +
+> > +       /* Empty memory node */
+> > +       memory@100000003 {
+> > +               device_type = "memory";
+> > +               reg = <0x1 0x3 0x0 0x0>;
+> > +               numa-node-id = <3>;
+> > +       };
 >
-> --
-> Emmanuel Gil Peyrot
+> Do you really need the memory nodes here or just some way to define
+> numa node id's 2 and 3 as valid?
+>
+>
+> > +
+> > +       distance-map {
+> > +               compatible = "numa-distance-map-v1";
+> > +               distance-matrix = <0 0  10>,
+> > +                                 <0 1  20>,
+> > +                                 <0 2  40>,
+> > +                                 <0 3  20>,
+> > +                                 <1 0  20>,
+> > +                                 <1 1  10>,
+> > +                                 <1 2  20>,
+> > +                                 <1 3  40>,
+> > +                                 <2 0  40>,
+> > +                                 <2 1  20>,
+> > +                                 <2 2  10>,
+> > +                                 <2 3  20>,
+> > +                                 <3 0  20>,
+> > +                                 <3 1  40>,
+> > +                                 <3 2  20>,
+> > +                                 <3 3  10>;
+> > +       };
+> > +
+> > +==============================================================================
+> > +5 - Example dts
+> >  ==============================================================================
+> >
+> >  Dual socket system consists of 2 boards connected through ccn bus and
+> > --
+> > 2.23.0
+> >
