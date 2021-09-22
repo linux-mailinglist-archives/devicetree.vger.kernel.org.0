@@ -2,118 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D7CE414344
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F073414377
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:16:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233569AbhIVIMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 04:12:36 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46758
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233538AbhIVIMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 04:12:31 -0400
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 000D03F331
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 08:10:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632298258;
-        bh=P8Qe07F/xjMQdNLxVav+Rfl78SB2e9oBWelI8/7HSJc=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=ipSWKYeenn5tZF1Kr6wKaMcSRUat1u6CwmnYr4WrC02kROUQpYfZQ94ZsUcNSbi0u
-         wdYmBf7E0s0byAmRaICB23GqWBdCR9aXAoxnYZY4UQaIXZr2WO9JAWp6AOjs6JRqDt
-         amu4KBvhXWWpzuofD2OhpEaqVP4bhTUawHQL9TEBNW1cbupOsdnd4AZhN17dwdXh3f
-         oSolPb0ORahsiPfKshml0Z4fcu95pkYV3w5c7e4aS5d3GARLDAeLC8pXY3uBcSF0P/
-         fsVsFRTBQxonTseLnZ63acpk6etfaCPhQMuF3I5aZd/jjp3EcBp5CEnkIpD4WZ9Q88
-         WPE2S5xRcL0iw==
-Received: by mail-wr1-f71.google.com with SMTP id r9-20020a5d4989000000b0015d0fbb8823so1354309wrq.18
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 01:10:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=P8Qe07F/xjMQdNLxVav+Rfl78SB2e9oBWelI8/7HSJc=;
-        b=AmrXqsk6u5X6n0hqnhaFK2Z7tAcLAHMhv2a+yWptMS6qDr0Z4PUOtvnkhF3XeTzbHJ
-         FxyverrhtMEiAfwlBn50U7Ote6lqB1U+ARv+hRRR2HLPo+ggg00OmA16sRCamu/0qqxy
-         JEQlb8+iQeXAnPAO5qmb8P6Hr1H2RUwTmj0YU9xYfg7u03lqH7dDcn1pKxyna7hprnM0
-         hrtDroHlTGW1HpBTiEgmeQB7BiLlIqOYRWAOjMibWdNp7F9FKT2veLssCNDO/6AdibVA
-         1R1yEfKo/7AZ0O/q8yt3oe/4Z4MXLDYvL+LFl9WzQ+KOwBAU4g2WTXxjWlAECv5wLVgs
-         xSaw==
-X-Gm-Message-State: AOAM531ZZjrQJxTu6xKhn9XIgK6EulxW9CoVYNDgJZG6tBYYSD874wOJ
-        sZaENmeiuEPPQcw0XJvT3DVshrMF82RbU2HYxYjRNAkutlrJqX84YfgJyR9e3+DtTjg4quNmKyv
-        tx+Y/4lYS1VV5eaEb3W+RLlKKj3Hivp65S1n1iY8=
-X-Received: by 2002:a05:600c:3b89:: with SMTP id n9mr9113899wms.186.1632298258646;
-        Wed, 22 Sep 2021 01:10:58 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzb3Ljj7oUI5lHEYQz4nwFDjBGGdyp2FKjKpmWPv5gSTXpVI7LSRlWIyJA3WG9xT/pBfVR0VA==
-X-Received: by 2002:a05:600c:3b89:: with SMTP id n9mr9113885wms.186.1632298258458;
-        Wed, 22 Sep 2021 01:10:58 -0700 (PDT)
-Received: from [192.168.0.134] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id d24sm1174219wmb.35.2021.09.22.01.10.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Sep 2021 01:10:58 -0700 (PDT)
-Subject: Re: [RESEND PATCH v2 1/4] mfd: sec-irq: Do not enforce (incorrect)
- interrupt trigger type
-To:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-References: <20210602110445.33536-1-krzysztof.kozlowski@canonical.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <7ac677f1-2928-21de-a226-449e72b1bd10@canonical.com>
-Date:   Wed, 22 Sep 2021 10:10:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S233702AbhIVISP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 04:18:15 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:58167 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233438AbhIVISO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 04:18:14 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 18M7sbNa099780;
+        Wed, 22 Sep 2021 15:54:37 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 22 Sep
+ 2021 16:14:55 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <jic23@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+        <p.zabel@pengutronix.de>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [v7 00/11] Add support for ast2600 ADC
+Date:   Wed, 22 Sep 2021 16:15:09 +0800
+Message-ID: <20210922081520.30580-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210602110445.33536-1-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 18M7sbNa099780
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2021 13:04, Krzysztof Kozlowski wrote:
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> Interrupt line can be configured on different hardware in different way,
-> even inverted.  Therefore driver should not enforce specific trigger
-> type - edge falling - but instead rely on Devicetree to configure it.
-> 
-> The Samsung PMIC drivers are used only on Devicetree boards.
-> 
-> Additionally, the PMIC datasheets describe the interrupt line as active
-> low with a requirement of acknowledge from the CPU therefore the edge
-> falling is not correct.
-> 
-> Marek Szyprowski reports that together with DTS change (proper level in
-> DTS) it fixes RTC alarm failure that he observed from time to time on
-> TM2e board.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> 
-> ---
-> 
-> Rebased on https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=for-mfd-next
-> 
-> Changes since v1:
-> 1. Mention in commit msg that this fixes TM2e RTC alarm.
-> 2. Add Marek's tested-by.
-> ---
->  drivers/mfd/sec-irq.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
+This patch serials make aspeed_adc.c can support ast2600 and backward
+compatible.
 
-Dear Lee,
+Change since v6:
+aspeed_adc.c:
+ - Fix the parameter error for aspeed_adc_unregister_fixed_divider.
 
-This was already a resend. Any comments from your side?
+Change since v5:
+aspeed_adc.c:
+  - Use devm_clk_hw_register_divider()
+  - Enabling and setting the ADC to normal mode is a necessary flow, so
+  take it out of the condition.
 
-Best regards,
-Krzysztof
+Change since v4:
+dt-bindings:
+  - Add clocks maxItems.
+  - Rename the property to meet the property-units.yaml.
+  - Add the description for the difference between adc0 and adc1.
+aspeed_adc.c:
+  - Use new property name to get internal reference voltage: units from mv
+  to uv.
+  - Fix -Wnonnull warning caused by snprintf parameters.
+  - Add suffix mv to the vref parameters.
+  - Use ARRAY_SIZE instead of 32.
+  - Add a reset action for ADC power down and Use devm_iio_device_register.
+  - Fix typo error.
+  - Separate the offset interface of ch7 when battery sensing enable
+
+Change since v3:
+dt-bindings:
+  - Fix properties:aspeed,int_vref_mv type error.
+
+Change since v2:
+dt-bindings:
+  - Create a new dt-bindings for ast2600 adc
+aspeed_adc.c:
+  - Splits the patch for more details
+  - Remove version enum and use the flags in model data to distinguish
+  hardware feature
+  - Support trimming data get and set.
+  - Use devm_add_action_or_reset to simplify probe error handling.
+
+Changes since v1:
+dt-bindings:
+  - Fix the aspeed,adc.yaml check error.
+  - Add battery-sensing property.
+aspeed_adc.c:
+  - Change the init flow:
+    Clock and reference voltage setting should be completed before adc
+    engine enable.
+  - Change the default sampling rate to meet most user case.
+  - Add patch #8 to suppoert battery sensing mode.
+
+Billy Tsai (11):
+  iio: adc: aspeed: Keep model data to driver data.
+  iio: adc: aspeed: Restructure the model data
+  iio: adc: aspeed: Add vref config function
+  iio: adc: aspeed: Use model_data to set clk scaler.
+  iio: adc: aspeed: Use devm_add_action_or_reset.
+  iio: adc: aspeed: Support ast2600 adc.
+  iio: adc: aspeed: Fix the calculate error of clock.
+  iio: adc: aspeed: Add func to set sampling rate.
+  iio: adc: aspeed: Add compensation phase.
+  iio: adc: aspeed: Support battery sensing.
+  iio: adc: aspeed: Get and set trimming data.
+
+ drivers/iio/adc/aspeed_adc.c | 554 +++++++++++++++++++++++++++++------
+ 1 file changed, 459 insertions(+), 95 deletions(-)
+
+-- 
+2.25.1
+
