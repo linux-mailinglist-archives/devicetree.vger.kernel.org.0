@@ -2,101 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23A234145B3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:03:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0151D4145C1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:07:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234519AbhIVKEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 06:04:32 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:41944 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234585AbhIVKEb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:04:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1632304982; x=1663840982;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=o84MUAaAl22mDdS3oZhqYx+P4ZTe4XQ7zU9iNgirFVY=;
-  b=MLRqOUFT9kEO8oDbXwjM0fzdt0hwECAj5ObSh37H5Us6cf5z3Q3iGMle
-   WlWIw0Rcxq2hUxWgTcCUp6i4SyTnXHmqZmoaCqPCM8GHgoQvyuHO9AHiF
-   MDK/1dZYceHQVHKZ4Xo/+36pwFUVGDA2o8KzAxJdh3KreJUuq+peHea0R
-   TR2qj6eZgld+EqfdWqvQGa8NtLxwtTMc8zX1ooBt04I0q7Mj0TAPZ8WIY
-   H6Mh5miu4xBxZX7+zIHvxiUh9TNZ0saMPapGQ39WhiDrxR9RKn9+tolfe
-   IlHvXI0J4BUshk/P5snk3Jh7fFJiHMyKx42YVvd1UEIdeFkAiI+ttMwPz
-   g==;
-IronPort-SDR: ibErfwqDhJ2fywgCsuET4CuoS29yy35I7mKoyFBQW1zywnFbkk+Yr2ECx85/edn8JqYt9AP9kK
- TIKixxgFOCBk89BZNjDdZ3Egk9JxiA77bBYa50SQKGAy9nJl75iGTRv0nE8HYjAo5zBMcRDfBh
- DMNk6F3O86owaY9pjc6ZMRic1MTZYgcm2aVdLD/byVg1MkN81qvoGsxxVbYfFcunyQRADFnUHW
- tiPtl31s3soIxQJTwI7dVJPts1sEO4klwtaDI1+kDO5/Hp8Ea6rO4oiZZ3H+bG6f7vljcmDy28
- BkItikD+KqPesWVE6CDRB//W
-X-IronPort-AV: E=Sophos;i="5.85,313,1624345200"; 
-   d="scan'208";a="132710408"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Sep 2021 03:03:00 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 22 Sep 2021 03:03:00 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Wed, 22 Sep 2021 03:03:00 -0700
-Date:   Wed, 22 Sep 2021 12:04:29 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <andrew@lunn.ch>, <f.fainelli@gmail.com>,
-        <alexandre.belloni@bootlin.com>, <vladimir.oltean@nxp.com>,
-        <UNGLinuxDriver@microchip.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-pm@vger.kernel.org>
-Subject: Re: [RFC PATCH net-next 03/12] phy: Add lan966x ethernet serdes PHY
- driver
-Message-ID: <20210922100429.pjrd2s4y3jbxpjjt@soft-dev3-1.localhost>
-References: <20210920095218.1108151-1-horatiu.vultur@microchip.com>
- <20210920095218.1108151-4-horatiu.vultur@microchip.com>
- <YUiPqJjsoBg99VbR@shell.armlinux.org.uk>
+        id S234615AbhIVKIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 06:08:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51324 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234496AbhIVKIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:08:35 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E86EC061574
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:07:06 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id b65so7374525qkc.13
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:07:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ldwAzHK71icxaS5rR16QxFSnDnN4YhUOXCz2aEjnOT4=;
+        b=4M33rL8z3OkMOcelDHZhw9uy2kk4RlvK0rdRDJ2fpQimHq5WR7aJ2100ktxc/UFQtK
+         hCGc9kXvGckkeCieSz3D8EHn3r409ktSZyCGyikGbKu8NLoiGwHaabybzLdy6pnDDsDp
+         JcS3rNEAp21bn1kDWzquehwJYQn28efmM5ErQcOooz2c133WAu6yaBgaKbAyzRCNSVCb
+         RcPQ1jiEAgvOj3hfVz+nc79uLW2Pi9VSwRSaskXawoEC4rqoG2BCtAXYLMF0EGnkZKEv
+         ynIawupsOc757kURsYaXL/NOXoOdaOJePGnP3CTfx8SwQYV5bMy33i2r5X9sLodTSdL4
+         3/Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ldwAzHK71icxaS5rR16QxFSnDnN4YhUOXCz2aEjnOT4=;
+        b=cgoBxLXDD097An3rRWedeQbNKA90oq6AfoWxCQv7zjJHdy6V4ByerrOZV3exQSLs+I
+         Xb9VfwoqfjrtAiUm4VWRRYz3Mfwr4EXdVmM7y9W+OFVlSgRCATY4MqC/5JasXXGdc++O
+         d82Uv34x2DIbBO86EIrFwYF4OUhmc2J+qJUqyQZfyAEzxFzJ+Ye+atYO8bMR3+iWeEds
+         m7s2JoM8d5Iwad/TWgLSfFhgnBnyFcvMRB3qBuoLGkZABJ7NjagMJ7ves66TEc4N1Vd7
+         xrYdaTecMqe5PX8+3lBwC6nu4pdiry4ErZAVlPHHiTrrAFP2+FZoMAu15GDXlwEP7/4Q
+         herQ==
+X-Gm-Message-State: AOAM531OtNrCapnV+EuctsfIdOrQWqiDEAkFzXve5cYKmqLm4artkfif
+        FdYWGuNCg4Imn9s8ARsHnZ5zEb+MFwttzZVFbKot7w==
+X-Google-Smtp-Source: ABdhPJwdnSBU4vcm1TpBjGWt9uXXWL37muqZxa9DJnh+8nJN6e4TpZBy/9TsUZJCcwESpxQ6xfYVDnR16UcveMHpRs8=
+X-Received: by 2002:a25:12c4:: with SMTP id 187mr7921344ybs.312.1632305225267;
+ Wed, 22 Sep 2021 03:07:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <YUiPqJjsoBg99VbR@shell.armlinux.org.uk>
+References: <20210906083020.6038-1-a-m1@ti.com> <422f7ccd-348b-8023-37db-803339684054@ti.com>
+In-Reply-To: <422f7ccd-348b-8023-37db-803339684054@ti.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 22 Sep 2021 12:06:54 +0200
+Message-ID: <CAMpxmJV_DJRtuHH7V86WOi+Rd5fZ0uOf=jNBY7XvJa_5f4h9bQ@mail.gmail.com>
+Subject: Re: [PATCH RESEND] dt-bindings: gpio: Convert TI TPIC2810 GPIO
+ Controller bindings to yaml
+To:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Aparna M <a-m1@ti.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Vignesh R <vigneshr@ti.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 09/20/2021 14:42, Russell King (Oracle) wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> On Mon, Sep 20, 2021 at 11:52:09AM +0200, Horatiu Vultur wrote:
-> > +static int lan966x_calc_sd6g40_setup_lane(struct lan966x_sd6g40_setup_args config,
-> > +                                       struct lan966x_sd6g40_setup *ret_val)
-> > +{
-> > +     struct lan966x_sd6g40_mode_args sd6g40_mode;
-> > +     struct lan966x_sd6g40_mode_args *mode_args = &sd6g40_mode;
-> > +
-> > +     if (lan966x_sd6g40_get_conf_from_mode(config.mode, config.refclk125M,
-> > +                                           mode_args))
-> > +             return -1;
-> 
-> This needs fixing to be a real negative error number.
-> lan966x_sd6g40_setup_lane() propagates this functions non-zero
-> return value, which is then propagated through lan966x_sd6g40_setup(),
-> and then through serdes_set_mode() to the PHY layer.
-> 
-> In general, I would suggest that _all_ int-returning functions in the
-> kernel that return a negative failure value _should_ _always_ return a
-> negative error code, so that your reviewers don't have to chase code
-> paths to work out whether a mistake such as the above exists.
-> 
-> To put it another way: never use "return -1" in the kernel.
-
-Hi Russell,
-
-Thanks for the suggestion. I will fix this in the next version.
-
-> 
+On Wed, Sep 8, 2021 at 4:27 PM Grygorii Strashko
+<grygorii.strashko@ti.com> wrote:
+>
+>
+>
+> On 06/09/2021 11:30, Aparna M wrote:
+> > * Convert gpio-tpic2810 bindings to yaml format
+> > * Remove outdated gpio-tpic2810 bindings in .txt format
+> >
+> > Signed-off-by: Aparna M <a-m1@ti.com>
+> > ---
+> >   .../bindings/gpio/gpio-tpic2810.txt           | 16 --------
+> >   .../bindings/gpio/gpio-tpic2810.yaml          | 41 +++++++++++++++++++
+> >   2 files changed, 41 insertions(+), 16 deletions(-)
+> >   delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
+> >   create mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
+>
+> Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+>
 > --
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+> Best regards,
+> grygorii
 
--- 
-/Horatiu
+Hi Grigorii,
+
+I'm not sure what this is - I don't have this patch in my inbox and
+patchwork seems to have missed that.
+
+Aparna - could you please resend it with me in Cc?
+
+Bart
