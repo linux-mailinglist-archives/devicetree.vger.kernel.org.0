@@ -2,93 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AB5E414884
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 14:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DFE24148A7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 14:19:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235552AbhIVMNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 08:13:07 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:37938 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235422AbhIVMNH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 08:13:07 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18MCBYQL093120;
-        Wed, 22 Sep 2021 07:11:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632312694;
-        bh=/Nw90Xtv3zobHRZsSpQJf8r9AaiQofhoTfiADeHp+20=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=ra7c2e1fZCBigYIqwwe9TU4+GsBAqkz+uFvz9zlO7akQFwrippKbJXx/SfGQHWCmA
-         w8Teh3jZn+G3ygZGlb1cfa3JaHR5tMBZtplPvKLBXwTFa/SagOkTmPE6qNbnYnr4xL
-         wIjg7iDuxGCulL+L/gl/s+c/34YdWZL/svvi4MCE=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18MCBYkM083649
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 22 Sep 2021 07:11:34 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
- Sep 2021 07:11:33 -0500
-Received: from DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f]) by
- DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f%17]) with mapi id
- 15.01.2308.014; Wed, 22 Sep 2021 07:11:33 -0500
-From:   "M, Aparna" <a-m1@ti.com>
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "Strashko, Grygorii" <grygorii.strashko@ti.com>
-CC:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>
-Subject: RE: [EXTERNAL] Re: [PATCH RESEND] dt-bindings: gpio: Convert TI
- TPIC2810 GPIO Controller bindings to yaml
-Thread-Topic: [EXTERNAL] Re: [PATCH RESEND] dt-bindings: gpio: Convert TI
- TPIC2810 GPIO Controller bindings to yaml
-Thread-Index: AQHXovlyzsK14weibk+K/AlN3LkSD6uaiRCAgBW38gD//84LwA==
-Date:   Wed, 22 Sep 2021 12:11:33 +0000
-Message-ID: <91aa4468575143c9bb6a8b6a56ab2995@ti.com>
-References: <20210906083020.6038-1-a-m1@ti.com>
- <422f7ccd-348b-8023-37db-803339684054@ti.com>
- <CAMpxmJV_DJRtuHH7V86WOi+Rd5fZ0uOf=jNBY7XvJa_5f4h9bQ@mail.gmail.com>
-In-Reply-To: <CAMpxmJV_DJRtuHH7V86WOi+Rd5fZ0uOf=jNBY7XvJa_5f4h9bQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.235.184]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S235425AbhIVMUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 08:20:37 -0400
+Received: from mail-vs1-f47.google.com ([209.85.217.47]:37637 "EHLO
+        mail-vs1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235506AbhIVMUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 08:20:31 -0400
+Received: by mail-vs1-f47.google.com with SMTP id q66so2741739vsa.4;
+        Wed, 22 Sep 2021 05:19:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vrikb9Ho8VzljCpQHp0jCgoGt0Y/EwUBxEGEgOiz9Qs=;
+        b=pkZkZlUZqAp97A0cfHL59k1jzK0onWZCuOxF+SWoRqYPilHCrIvtuhL6n+IcX37uw2
+         DR6Y6WU4tEUi/ZWPN3sm5zBoRNDQ5FjBn3a4WjH1mFYu61Ph1+iPmn2pB6aiWxopCaTE
+         tzZHDLh5htiwxL/bf8Q64XF3CzE+rBnH/gTYC0vgwC+xBNjQjWNY4/eoRYCe+PTb9eqp
+         3qh+Gv2NasXVIoEYzKsoEf6ZQrEVcKamrnJPqZktTx2ihY3eI/E7cbnUoh2DzqNMs9zk
+         99O1u3jamw7BNawtlVYaAqaVm1AP8/CGQoeOP9eqJNkBnonbbQ7zY1gxQv5d95f8W7Mw
+         axyA==
+X-Gm-Message-State: AOAM530oV/hTfKM7bLzXIlbOUOCv0cDC+Zik5F0dMSvvxac4RMX2gy4X
+        6G/JnyOgldb0Le57o8JOpk6rFo2xnzfzjb0Eor0=
+X-Google-Smtp-Source: ABdhPJxkZMXzJnL39+Tvgy5FhIT6q5LXs0mqYPFDXOdsIrdfgkix7qdxUDpf6ZFzMVMx8gXnR3iwylK5SkOBpjnbfY0=
+X-Received: by 2002:a67:cc1c:: with SMTP id q28mr24720980vsl.37.1632313140297;
+ Wed, 22 Sep 2021 05:19:00 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210824124438.14519-1-luka.kovacic@sartura.hr>
+ <20210824124438.14519-3-luka.kovacic@sartura.hr> <YUsWeWlfanGMCpT8@kroah.com>
+In-Reply-To: <YUsWeWlfanGMCpT8@kroah.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 22 Sep 2021 14:18:49 +0200
+Message-ID: <CAMuHMdU9Mes_kyOeRbgzcvCRLLj0_N_na88REEqejdrhSuzByA@mail.gmail.com>
+Subject: Re: [PATCH v9 2/7] drivers: mfd: Add a driver for IEI WT61P803 PUZZLE MCU
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Luka Kovacic <luka.kovacic@sartura.hr>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-hwmon@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Max.Merchel@tq-group.com, Oleksij Rempel <linux@rempel-privat.de>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        pavo.banicevic@sartura.hr, Jonathan Corbet <corbet@lwn.net>,
+        Lee Jones <lee.jones@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, goran.medic@sartura.hr,
+        luka.perkov@sartura.hr, robert.marko@sartura.hr
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQmFydCwNCg0KSSBoYXZlIHJlc2VudCB0aGUgcGF0Y2guDQoNClJlZ2FyZHMsDQpBcGFybmEN
-Cg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEJhcnRvc3ogR29sYXN6ZXdza2kg
-PGJnb2xhc3pld3NraUBiYXlsaWJyZS5jb20+IA0KU2VudDogV2VkbmVzZGF5LCBTZXB0ZW1iZXIg
-MjIsIDIwMjEgMzozNyBQTQ0KVG86IFN0cmFzaGtvLCBHcnlnb3JpaSA8Z3J5Z29yaWkuc3RyYXNo
-a29AdGkuY29tPjsgTSwgQXBhcm5hIDxhLW0xQHRpLmNvbT4NCkNjOiBMaW51cyBXYWxsZWlqIDxs
-aW51cy53YWxsZWlqQGxpbmFyby5vcmc+OyBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3Jn
-PjsgUmFnaGF2ZW5kcmEsIFZpZ25lc2ggPHZpZ25lc2hyQHRpLmNvbT47IGxpbnV4LWRldmljZXRy
-ZWUgPGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnPjsgbGludXgtZ3BpbyA8bGludXgtZ3Bpb0B2
-Z2VyLmtlcm5lbC5vcmc+DQpTdWJqZWN0OiBbRVhURVJOQUxdIFJlOiBbUEFUQ0ggUkVTRU5EXSBk
-dC1iaW5kaW5nczogZ3BpbzogQ29udmVydCBUSSBUUElDMjgxMCBHUElPIENvbnRyb2xsZXIgYmlu
-ZGluZ3MgdG8geWFtbA0KDQpPbiBXZWQsIFNlcCA4LCAyMDIxIGF0IDQ6MjcgUE0gR3J5Z29yaWkg
-U3RyYXNoa28gPG1haWx0bzpncnlnb3JpaS5zdHJhc2hrb0B0aS5jb20+IHdyb3RlOg0KPg0KPg0K
-Pg0KPiBPbiAwNi8wOS8yMDIxIDExOjMwLCBBcGFybmEgTSB3cm90ZToNCj4gPiAqIENvbnZlcnQg
-Z3Bpby10cGljMjgxMCBiaW5kaW5ncyB0byB5YW1sIGZvcm1hdA0KPiA+ICogUmVtb3ZlIG91dGRh
-dGVkIGdwaW8tdHBpYzI4MTAgYmluZGluZ3MgaW4gLnR4dCBmb3JtYXQNCj4gPg0KPiA+IFNpZ25l
-ZC1vZmYtYnk6IEFwYXJuYSBNIDxtYWlsdG86YS1tMUB0aS5jb20+DQo+ID4gLS0tDQo+ID4gICAu
-Li4vYmluZGluZ3MvZ3Bpby9ncGlvLXRwaWMyODEwLnR4dCAgICAgICAgICAgfCAxNiAtLS0tLS0t
-LQ0KPiA+ICAgLi4uL2JpbmRpbmdzL2dwaW8vZ3Bpby10cGljMjgxMC55YW1sICAgICAgICAgIHwg
-NDEgKysrKysrKysrKysrKysrKysrKw0KPiA+ICAgMiBmaWxlcyBjaGFuZ2VkLCA0MSBpbnNlcnRp
-b25zKCspLCAxNiBkZWxldGlvbnMoLSkNCj4gPiAgIGRlbGV0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3Bpby9ncGlvLXRwaWMyODEwLnR4dA0KPiA+ICAg
-Y3JlYXRlIG1vZGUgMTAwNjQ0IA0KPiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9ncGlvL2dwaW8tdHBpYzI4MTAueWFtbA0KPg0KPiBSZXZpZXdlZC1ieTogR3J5Z29yaWkgU3Ry
-YXNoa28gPG1haWx0bzpncnlnb3JpaS5zdHJhc2hrb0B0aS5jb20+DQo+DQo+IC0tDQo+IEJlc3Qg
-cmVnYXJkcywNCj4gZ3J5Z29yaWkNCg0KSGkgR3JpZ29yaWksDQoNCkknbSBub3Qgc3VyZSB3aGF0
-IHRoaXMgaXMgLSBJIGRvbid0IGhhdmUgdGhpcyBwYXRjaCBpbiBteSBpbmJveCBhbmQgcGF0Y2h3
-b3JrIHNlZW1zIHRvIGhhdmUgbWlzc2VkIHRoYXQuDQoNCkFwYXJuYSAtIGNvdWxkIHlvdSBwbGVh
-c2UgcmVzZW5kIGl0IHdpdGggbWUgaW4gQ2M/DQoNCkJhcnQNCg==
+Hi Greg,
+
+On Wed, Sep 22, 2021 at 1:41 PM Greg KH <gregkh@linuxfoundation.org> wrote:
+> On Tue, Aug 24, 2021 at 02:44:33PM +0200, Luka Kovacic wrote:
+> > +++ b/drivers/mfd/iei-wt61p803-puzzle.c
+> > @@ -0,0 +1,908 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/* IEI WT61P803 PUZZLE MCU Driver
+> > + * System management microcontroller for fan control, temperature sensor reading,
+> > + * LED control and system identification on IEI Puzzle series ARM-based appliances.
+> > + *
+> > + * Copyright (C) 2020 Sartura Ltd.
+>
+> It is 2021 now :(
+
+IANAL, but if the driver was published first in 2020 (v1 of the patch),
+"2020" should be fine.
+
+It's not that Disney is allowed to increase the copyright year every time
+Snowy White is played in a movie theatre ;-)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
