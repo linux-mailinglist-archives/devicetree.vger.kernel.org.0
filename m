@@ -2,100 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7ADE4153EA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 01:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAAE74153F4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 01:34:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238418AbhIVXeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 19:34:19 -0400
-Received: from sibelius.xs4all.nl ([83.163.83.176]:56277 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238480AbhIVXeS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 19:34:18 -0400
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id f6097b85;
-        Thu, 23 Sep 2021 01:32:45 +0200 (CEST)
-Date:   Thu, 23 Sep 2021 01:32:45 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org,
-        lorenzo.pieralisi@arm.com, kw@linux.com, alyssa@rosenzweig.io,
-        stan@corellium.com, kettenis@openbsd.org, sven@svenpeter.dev,
-        marcan@marcan.st, Robin.Murphy@arm.com, kernel-team@android.com
-In-Reply-To: <20210922205458.358517-1-maz@kernel.org> (message from Marc
-        Zyngier on Wed, 22 Sep 2021 21:54:48 +0100)
-Subject: Re: [PATCH v4 00/10] PCI: Add support for Apple M1
-References: <20210922205458.358517-1-maz@kernel.org>
-Message-ID: <56147a3cb0fae762@bloch.sibelius.xs4all.nl>
+        id S238450AbhIVXgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 19:36:17 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:32954 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238464AbhIVXgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 19:36:17 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C5DFE52;
+        Thu, 23 Sep 2021 01:34:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1632353685;
+        bh=MIrVABDYWHCGJzB9/BmlbQLoUsEOutxAJ2L3tovFquI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uX2PgFISYiYkNDCrwsZWgsPcjsEv5FVRn1Mbn4otc7kLnG8yY1d3CbBlFPuWqVOIe
+         DrQ2qNMsr2zh7hbOULy1u2SSCbiQWufxfv4iqr2yGyY1gdD3fKpecHksLcUjEILluE
+         qCRyje+D9bjDQRzobVd/vv2p+ofhfNKUIzF7UVzk=
+Date:   Thu, 23 Sep 2021 02:34:44 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Geert Uytterhoeven <geert@glider.be>,
+        linux-renesas-soc@vger.kernel.org,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] arm64: dts: renesas: r8a779a0: Add DSI encoders
+Message-ID: <YUu9lKb0gdzk0ewN@pendragon.ideasonboard.com>
+References: <20210901235330.1611086-1-kieran.bingham@ideasonboard.com>
+ <20210901235330.1611086-3-kieran.bingham@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210901235330.1611086-3-kieran.bingham@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Marc Zyngier <maz@kernel.org>
-> Date: Wed, 22 Sep 2021 21:54:48 +0100
-> 
-> This is v4 of the series adding PCIe support for the M1 SoC. Not a lot
-> has changed this time around, and most of what I was saying in [1] is
-> still valid.
-> 
-> The most important change is that the driver now probes for the number
-> of RID-SID mapping registers instead of assuming 64 entries. The rest
-> is a bunch of limited cleanups and minor fixes.
-> 
-> This should now be in a state that makes it mergeable, although I
-> expect that some of the clock bits may have to be adapted (I haven't
-> followed the recent developments on that front).
+Hi Kieran,
 
-The current understanding is that the M1 SoC really only has power
-domains.  Fortunately power domains are handled automagically by the
-Linux kernel (and U-Boot) so this driver doesn't have to worry about
-this.
+Thank you for the patch.
 
-I already changed the 4/4 diff of my DT bindings series to add a
-"power-domains" property instead of a "clocks" property.  So once
-marcan's power manager driver lands everything should just work.  Some
-coordination on the patch that changes the DT itself is probably
-required.  But we could simply leave out the "power-domains" property
-until the power manager driver lands as m1n1 currently already turns
-on the power domain.
+On Thu, Sep 02, 2021 at 12:53:29AM +0100, Kieran Bingham wrote:
+> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> 
+> Provide the two MIPI DSI encoders on the V3U and connect them to the DU
+> accordingly.
+> 
+> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 
-Cheers,
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Mark
+> 
+> ---
+> v2
+>  - Fixup indentation
+> 
+>  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 60 +++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> index 3241f7e7c01e..1ce9884ea527 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> @@ -1161,12 +1161,72 @@ ports {
+>  				port@0 {
+>  					reg = <0>;
+>  					du_out_dsi0: endpoint {
+> +						remote-endpoint = <&dsi0_in>;
+>  					};
+>  				};
+>  
+>  				port@1 {
+>  					reg = <1>;
+>  					du_out_dsi1: endpoint {
+> +						remote-endpoint = <&dsi1_in>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		dsi0: dsi-encoder@fed80000 {
+> +			compatible = "renesas,r8a779a0-dsi-csi2-tx";
+> +			reg = <0 0xfed80000 0 0x10000>;
+> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 415>,
+> +				 <&cpg CPG_CORE R8A779A0_CLK_DSI>;
+> +			clock-names = "fck", "dsi";
+> +			resets = <&cpg 415>;
+> +			status = "disabled";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					dsi0_in: endpoint {
+> +						remote-endpoint = <&du_out_dsi0>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					dsi0_out: endpoint {
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		dsi1: dsi-encoder@fed90000 {
+> +			compatible = "renesas,r8a779a0-dsi-csi2-tx";
+> +			reg = <0 0xfed90000 0 0x10000>;
+> +			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+> +			clocks = <&cpg CPG_MOD 416>,
+> +				 <&cpg CPG_CORE R8A779A0_CLK_DSI>;
+> +			clock-names = "fck", "dsi";
+> +			resets = <&cpg 416>;
+> +			status = "disabled";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					dsi1_in: endpoint {
+> +						remote-endpoint = <&du_out_dsi1>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					dsi1_out: endpoint {
+>  					};
+>  				};
+>  			};
 
-> As always, comments welcome.
-> 
-> [1] https://lore.kernel.org/r/20210913182550.264165-1-maz@kernel.org
-> 
-> Alyssa Rosenzweig (2):
->   PCI: apple: Add initial hardware bring-up
->   PCI: apple: Set up reference clocks when probing
-> 
-> Marc Zyngier (8):
->   irqdomain: Make of_phandle_args_to_fwspec generally available
->   of/irq: Allow matching of an interrupt-map local to an interrupt
->     controller
->   PCI: of: Allow matching of an interrupt-map local to a PCI device
->   PCI: apple: Add INTx and per-port interrupt support
->   arm64: apple: t8103: Add root port interrupt routing
->   PCI: apple: Implement MSI support
->   iommu/dart: Exclude MSI doorbell from PCIe device IOVA range
->   PCI: apple: Configure RID to SID mapper on device addition
-> 
->  MAINTAINERS                          |   7 +
->  arch/arm64/boot/dts/apple/t8103.dtsi |  33 +-
->  drivers/iommu/apple-dart.c           |  27 +
->  drivers/of/irq.c                     |  17 +-
->  drivers/pci/controller/Kconfig       |  17 +
->  drivers/pci/controller/Makefile      |   1 +
->  drivers/pci/controller/pcie-apple.c  | 826 +++++++++++++++++++++++++++
->  drivers/pci/of.c                     |  10 +-
->  include/linux/irqdomain.h            |   4 +
->  kernel/irq/irqdomain.c               |   6 +-
->  10 files changed, 935 insertions(+), 13 deletions(-)
->  create mode 100644 drivers/pci/controller/pcie-apple.c
-> 
-> -- 
-> 2.30.2
-> 
-> 
+-- 
+Regards,
+
+Laurent Pinchart
