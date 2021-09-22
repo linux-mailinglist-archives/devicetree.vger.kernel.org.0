@@ -2,84 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE69D414AA3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 15:37:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D03E414AE2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 15:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbhIVNis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 09:38:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53696 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230512AbhIVNis (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 09:38:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7E86F60F6E;
-        Wed, 22 Sep 2021 13:37:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1632317838;
-        bh=ioDw3nm6uVfM2mfqhojI8XOMaKV3Y3t43sTlhOH3H6U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AyIu204zsdbhMSLA8GeyrhDapBueEtvfURBrRmavoJzm679deOvXz5Ku1kicuL+uU
-         /fiZqedJa5WUr4Ggl+s2aynrLICibnx7xus8UTlUe4Y0sEtNIozaIfZuqeOuRBA+wE
-         OrY3+oGe0oAVS6y69G/PC7zmT9eQT8/p7sibsUkA=
-Date:   Wed, 22 Sep 2021 15:37:15 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Luka Kovacic <luka.kovacic@sartura.hr>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-hwmon@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Max.Merchel@tq-group.com, Oleksij Rempel <linux@rempel-privat.de>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        pavo.banicevic@sartura.hr, Jonathan Corbet <corbet@lwn.net>,
-        Lee Jones <lee.jones@linaro.org>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, goran.medic@sartura.hr,
-        luka.perkov@sartura.hr, robert.marko@sartura.hr
-Subject: Re: [PATCH v9 2/7] drivers: mfd: Add a driver for IEI WT61P803
- PUZZLE MCU
-Message-ID: <YUsxi2KbS8lY0b9q@kroah.com>
-References: <20210824124438.14519-1-luka.kovacic@sartura.hr>
- <20210824124438.14519-3-luka.kovacic@sartura.hr>
- <YUsWeWlfanGMCpT8@kroah.com>
- <CAMuHMdU9Mes_kyOeRbgzcvCRLLj0_N_na88REEqejdrhSuzByA@mail.gmail.com>
+        id S232425AbhIVNmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 09:42:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46032 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234228AbhIVNmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 09:42:22 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A01C4C061757
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 06:40:52 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1mT2UI-0004uK-1E; Wed, 22 Sep 2021 15:40:38 +0200
+Subject: Re: [PATCH] arm64: dts: rockchip: move aliases to rk356x dtsi
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Arnd Bergmann <arnd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Liang Chen <cl@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Simon Xue <xxm@rock-chips.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20210917110528.24454-1-michael.riesch@wolfvision.net>
+ <2397289.mVTDCA6dLn@diego>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <ce3f2ece-4c30-ad01-fd51-8a3e46297234@pengutronix.de>
+Date:   Wed, 22 Sep 2021 15:40:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdU9Mes_kyOeRbgzcvCRLLj0_N_na88REEqejdrhSuzByA@mail.gmail.com>
+In-Reply-To: <2397289.mVTDCA6dLn@diego>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 02:18:49PM +0200, Geert Uytterhoeven wrote:
-> Hi Greg,
+Hello Heiko,
+
+On 17.09.21 14:01, Heiko Stübner wrote:
+> Hi Michael,
 > 
-> On Wed, Sep 22, 2021 at 1:41 PM Greg KH <gregkh@linuxfoundation.org> wrote:
-> > On Tue, Aug 24, 2021 at 02:44:33PM +0200, Luka Kovacic wrote:
-> > > +++ b/drivers/mfd/iei-wt61p803-puzzle.c
-> > > @@ -0,0 +1,908 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/* IEI WT61P803 PUZZLE MCU Driver
-> > > + * System management microcontroller for fan control, temperature sensor reading,
-> > > + * LED control and system identification on IEI Puzzle series ARM-based appliances.
-> > > + *
-> > > + * Copyright (C) 2020 Sartura Ltd.
-> >
-> > It is 2021 now :(
+> Am Freitag, 17. September 2021, 13:05:28 CEST schrieb Michael Riesch:
+>> In order to ensure deterministic probe order over different boards,
+>> move the aliases of on-SoC components to the corresponding dtsi
+>> files.
 > 
-> IANAL, but if the driver was published first in 2020 (v1 of the patch),
-> "2020" should be fine.
+> please read the git history on the other Rockchip SoCs. We just moved
+> the aliases on them _to_ the board-files, as requested by
+> arm-soc maintainers ;-)
 
-THis is a v9, the odds that this file has not been touched at all since
-2020 is probably pretty low.
+[Adding Arnd to CC]
 
-At the least, it better be changed after my review of it :)
+For old boards, changing the aliases may introduce breakage that outweighs
+the benefit of having consistent numbering. This doesn't seem to apply here:
+rk3566.dtsi is a new device tree not yet in v5.15-rc2 and rk3568 is new in
+v5.14 and has only one board partially supported, so if we were to do this
+change we should do it now. Boards will still be free to override the aliases,
+but those that don't will have consistent numbering regardless of whether
+nodes are enabled, cards are detected or probe order.
 
-thanks,
 
-greg k-h
+Cheers,
+Ahmad
+
+> 
+> 
+> Heiko
+> 
+> 
+>>
+>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 6 ------
+>>  arch/arm64/boot/dts/rockchip/rk3566.dtsi           | 4 ++++
+>>  arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts   | 7 -------
+>>  arch/arm64/boot/dts/rockchip/rk3568.dtsi           | 5 +++++
+>>  arch/arm64/boot/dts/rockchip/rk356x.dtsi           | 2 ++
+>>  5 files changed, 11 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+>> index a244f7b87e38..156bbb8aa4c4 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+>> @@ -10,12 +10,6 @@
+>>  	model = "Pine64 RK3566 Quartz64-A Board";
+>>  	compatible = "pine64,quartz64-a", "rockchip,rk3566";
+>>  
+>> -	aliases {
+>> -		ethernet0 = &gmac1;
+>> -		mmc0 = &sdmmc0;
+>> -		mmc1 = &sdhci;
+>> -	};
+>> -
+>>  	chosen: chosen {
+>>  		stdout-path = "serial2:1500000n8";
+>>  	};
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+>> index 3839eef5e4f7..c1b3841caa77 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+>> @@ -4,6 +4,10 @@
+>>  
+>>  / {
+>>  	compatible = "rockchip,rk3566";
+>> +
+>> +	aliases {
+>> +		ethernet0 = &gmac1;
+>> +	};
+>>  };
+>>  
+>>  &power {
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+>> index 184e2aa2416a..218f85af730c 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+>> @@ -13,13 +13,6 @@
+>>  	model = "Rockchip RK3568 EVB1 DDR4 V10 Board";
+>>  	compatible = "rockchip,rk3568-evb1-v10", "rockchip,rk3568";
+>>  
+>> -	aliases {
+>> -		ethernet0 = &gmac0;
+>> -		ethernet1 = &gmac1;
+>> -		mmc0 = &sdmmc0;
+>> -		mmc1 = &sdhci;
+>> -	};
+>> -
+>>  	chosen: chosen {
+>>  		stdout-path = "serial2:1500000n8";
+>>  	};
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>> index 2fd313a295f8..dd0e800cf752 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>> @@ -8,6 +8,11 @@
+>>  / {
+>>  	compatible = "rockchip,rk3568";
+>>  
+>> +	aliases {
+>> +		ethernet0 = &gmac0;
+>> +		ethernet1 = &gmac1;
+>> +	};
+>> +
+>>  	qos_pcie3x1: qos@fe190080 {
+>>  		compatible = "rockchip,rk3568-qos", "syscon";
+>>  		reg = <0x0 0xfe190080 0x0 0x20>;
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> index e42fbac6147b..bb0540d3008c 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> @@ -29,6 +29,8 @@
+>>  		i2c3 = &i2c3;
+>>  		i2c4 = &i2c4;
+>>  		i2c5 = &i2c5;
+>> +		mmc0 = &sdmmc0;
+>> +		mmc1 = &sdhci;
+>>  		serial0 = &uart0;
+>>  		serial1 = &uart1;
+>>  		serial2 = &uart2;
+>>
+> 
+> 
+> 
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
