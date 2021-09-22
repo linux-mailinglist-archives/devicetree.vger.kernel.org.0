@@ -2,83 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0486041543A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 01:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5134415449
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 01:56:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238597AbhIVXwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 19:52:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
+        id S238555AbhIVX5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 19:57:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238569AbhIVXwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 19:52:36 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDAC9C061757
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 16:51:05 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id i25so19092843lfg.6
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 16:51:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=X6DdH0xnghaB9Dt/aDxkwOs5ayvQ920sKlagKXTBlV0=;
-        b=iUpf03D4/FlCV4qFLHKa1g+SmrJe1teeAzesCA3+8k69/vwBegVS8voipKW99acdJd
-         4Zfw0jdQ9EV7+e7gEr8950niZxnpnzf0Y53qOL+fTgP57jc3xvhQ4NKBVQfaouDK21k+
-         masfKB7xBMPIKbp3er5DSVV37LhvrjmdyB5vQI/JTSUDMFthVo+/HtiJgSEH73sVrNww
-         a3TJrmrQD8zgbeUR0TSiTKbr5JKaOZDaMz/973V0Df6pnU158KgKaRRw14OZ+S0clp59
-         DGw10xpNF8dkxCRwE/MD8InhywHNsS8zmOnf5PBctLEYsUnFdtDsFVW/3oGwXRJo2Zwf
-         Q7vA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X6DdH0xnghaB9Dt/aDxkwOs5ayvQ920sKlagKXTBlV0=;
-        b=U8/16FNyzM24Ayj0kloDin51JiX/17PAd/kPrcnan3i/8Q/7IIhoijdTyz3kPua15A
-         WRq4atoOVruloU/GXqHNWwv3n3fBPcV/bsKqUtoZRofvL5d/T2l213IIhoL1oLdqbyQl
-         IvVDyJkRBJlRh3vhr4tFyvVroo89SDbLtPKU911enTaDh6sCRcR0glpog6bIcSdjRBCS
-         dJmSh+FE3xBTdsZ/4TzkNDc7ncLNJdATD6HgV+e6FcFvfdHJWsOVWpTbOYR2QsGrbDDg
-         v0qYLcf8axY+Cpz8vgRB+lPsVXIF6V42s2oC3ki4HLJQe/uXPGm+eRQSHV+7WGoQOFFk
-         ef8g==
-X-Gm-Message-State: AOAM531wKSJMYB7RYIfFbighURdXEtF9Zeaebio8Hmqlwkij1uataPqI
-        Iqk20ij3S/gdJRZJOMjM6OfFcgjsx7Dx3gVA1zOhDQ==
-X-Google-Smtp-Source: ABdhPJwP0jQYm2qHzZkkETLwbgCuF3BpNy8NQFc9OF4emblJl1PauuJ9+IpNO3fApqvvgiNo+eSll9OtWwFQZ38MSdA=
-X-Received: by 2002:a05:6512:e82:: with SMTP id bi2mr1479994lfb.95.1632354664167;
- Wed, 22 Sep 2021 16:51:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210717045627.1739959-1-daniel@0x0f.com> <CACRpkdbE+_DJFhBCmtz5JwJupf7QkkWZhXrgf1KG_3rPqvEm0w@mail.gmail.com>
- <CAFr9PXmFHanrx4Frg3hQwo-RbAY-UXxC=FOAj++cshSHa99z3g@mail.gmail.com>
- <CAMpxmJUoG7qPhy2CxapCn1M=w_AssOQsEmyvXO18OpedM6hBjw@mail.gmail.com>
- <CAHp75VdU52rwKY3AA0Nxt3VGOFr71XtjCDqZbSxR4GNczSqihQ@mail.gmail.com> <CAMpxmJUSvBSa=T1a1Bq_YhAGib9BcXf4xYMSOfyprHbG0t_QWw@mail.gmail.com>
-In-Reply-To: <CAMpxmJUSvBSa=T1a1Bq_YhAGib9BcXf4xYMSOfyprHbG0t_QWw@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 23 Sep 2021 01:50:53 +0200
-Message-ID: <CACRpkdZSdCuA59O5CYjb9FvXA_+ZSBcrp2tc2Hu5=gzCrFBnEg@mail.gmail.com>
-Subject: Re: [PATCH 00/10] gpio: msc313: Add gpio support for ssd20xd
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Daniel Palmer <daniel@0x0f.com>,
+        with ESMTP id S238505AbhIVX5e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 19:57:34 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDFFEC061574;
+        Wed, 22 Sep 2021 16:56:03 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 12089E52;
+        Thu, 23 Sep 2021 01:56:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1632354962;
+        bh=xt5a5frTZ4VAbHQhcId47xRLhbugeZ/AH58yn8Mv6WI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ATlK6e8eiFcYih2LQ4zAt7/OpHq+sg+QloUakcdgqNcZ/K+mDJdUwq/4MB5VZb9ou
+         6FgW1Houaap1QzJE9nbvhFrG5cTx51D4OWFvQu1n0ga6l/uw+6lllDtkol18liubBU
+         v6fhHan+4Gtya6+VUZzrVF97bwtW5zozhYFiYLDM=
+Date:   Thu, 23 Sep 2021 02:56:00 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Geert Uytterhoeven <geert@glider.be>,
+        linux-renesas-soc@vger.kernel.org,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Romain Perier <romain.perier@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: falcon-cpu: Add DSI display
+ output
+Message-ID: <YUvCkA57x1VncKAV@pendragon.ideasonboard.com>
+References: <20210901235330.1611086-1-kieran.bingham@ideasonboard.com>
+ <20210901235330.1611086-4-kieran.bingham@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210901235330.1611086-4-kieran.bingham@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 2:50 PM Bartosz Golaszewski
-<bgolaszewski@baylibre.com> wrote:
-> On Wed, Sep 22, 2021 at 12:52 PM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
+Hi Kieran,
 
-> > Have you tried to use the `b4` tool? It is capable of getting
-> > everything from the lore archive.
->
-> I haven't tried it because I have never heard of it. :) Thanks for the heads-up.
+Thank you for the patch.
 
-I use this all the time, it is awesome.
+On Thu, Sep 02, 2021 at 12:53:30AM +0100, Kieran Bingham wrote:
+> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> 
+> Provide the display output using the sn65dsi86 MIPI DSI bridge.
+> 
+> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> ---
+>  .../boot/dts/renesas/r8a779a0-falcon-cpu.dtsi | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> index a0a1a1da0d87..5530bb82de6b 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> @@ -66,6 +66,15 @@ memory@700000000 {
+>  		reg = <0x7 0x00000000 0x0 0x80000000>;
+>  	};
+>  
+> +	reg_1p2v: regulator-1p2v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "fixed-1.2V";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
 
-Yours,
-Linus Walleij
+1.8V is a weird voltage for a 1.2V regulator :-)
+
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+>  	reg_1p8v: regulator-1p8v {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "fixed-1.8V";
+> @@ -83,6 +92,46 @@ reg_3p3v: regulator-3p3v {
+>  		regulator-boot-on;
+>  		regulator-always-on;
+>  	};
+> +
+> +	mini-dp-con {
+> +		compatible = "dp-connector";
+> +		label = "CN5";
+> +		type = "mini";
+> +
+> +		port {
+> +			mini_dp_con_in: endpoint {
+> +				remote-endpoint = <&sn65dsi86_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	sn65dsi86_refclk: sn65dsi86-refclk {
+
+I'd name the node x6-clk after the components on the board (or clk-x6).
+The label can stay the same, up to you.
+
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <38400000>;
+> +	};
+> +};
+> +
+> +&dsi0 {
+> +	status = "okay";
+> +
+> +	clocks = <&cpg CPG_MOD 415>,
+> +		 <&cpg CPG_CORE R8A779A0_CLK_DSI>,
+> +		 <&extal_clk>;
+> +	clock-names = "fck", "dsi", "extal";
+
+As discussed separately, this should go to r8a79a0.dtsi, and the last
+clock should be named "pll".
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +
+> +	ports {
+> +		port@1 {
+> +			endpoint {
+> +				remote-endpoint = <&sn65dsi86_in>;
+> +				data-lanes = <1 2 3 4>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&du {
+> +	status = "okay";
+>  };
+>  
+>  &extal_clk {
+> @@ -114,6 +163,41 @@ &i2c1 {
+>  
+>  	status = "okay";
+>  	clock-frequency = <400000>;
+> +
+> +	sn65dsi86@2c {
+> +		compatible = "ti,sn65dsi86";
+> +		reg = <0x2c>;
+> +
+> +		clocks = <&sn65dsi86_refclk>;
+> +		clock-names = "refclk";
+> +
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <24 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		vccio-supply = <&reg_1p8v>;
+> +		vpll-supply = <&reg_1p8v>;
+> +		vcca-supply = <&reg_1p2v>;
+> +		vcc-supply = <&reg_1p2v>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				sn65dsi86_in: endpoint {
+> +					remote-endpoint = <&dsi0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				sn65dsi86_out: endpoint {
+> +					remote-endpoint = <&mini_dp_con_in>;
+> +				};
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &i2c6 {
+
+-- 
+Regards,
+
+Laurent Pinchart
