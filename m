@@ -2,154 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C97A415134
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EA3B415139
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237367AbhIVUMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 16:12:38 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:35547 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237325AbhIVUMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 16:12:38 -0400
-Received: by mail-oi1-f177.google.com with SMTP id r26so6313668oij.2;
-        Wed, 22 Sep 2021 13:11:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oh1GCZM5dUTph3yDqFQtj2T4C/Cn9j3K4e4lsvOCfK8=;
-        b=rLJPVkIYXx7D2MzJengMVKBnR5sBMOQGaZva0KzPjVW3zT0SjrebU9YAEFTR0F6X9B
-         wcFe26h5XXVSMQGmDo3G+3s4UXYF76NIe/LWPYDqjDXD9T+YhYnvKJDBuXKGet0ge9Yi
-         OAqev3lqdvWgfuq4784Ve9px5QrtAO2PLpGDocRCI31cHlvJTFxfMQCORyTIb8U4kkiR
-         K2EKXj3uAudh0aZyxq/D77eISP25A0/K54TGI6JXyW+aRsQ9vkcvnEpt00w5ZObIBWLs
-         Tw0zNpRXWtRdySeBXoQ4mhIoO0A0ZMBKmDskJ8yTtiQv/s8+Sqo50/TvQCtXgNqordCj
-         nAKA==
-X-Gm-Message-State: AOAM530Mud5ZHwzVadeLvUudc9s+1EWVRI8P5wUhoptxHNj9RNTYSSJc
-        UfWU6Wk0IyZVBcLVgG25qQ==
-X-Google-Smtp-Source: ABdhPJxB04SrAr3My4MhjbJhQuOo63xON3evPknQzkXmjb1Lubg7ZrL6tNv4aaW7+wLfUENPGGPcuA==
-X-Received: by 2002:aca:1215:: with SMTP id 21mr9845091ois.141.1632341467793;
-        Wed, 22 Sep 2021 13:11:07 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p21sm762115oip.28.2021.09.22.13.11.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 13:11:07 -0700 (PDT)
-Received: (nullmailer pid 1210651 invoked by uid 1000);
-        Wed, 22 Sep 2021 20:11:06 -0000
-Date:   Wed, 22 Sep 2021 15:11:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        Eugen.Hristev@microchip.com, Manohar.Puri@microchip.com
-Subject: Re: [PATCH v5 2/3] dt-bindings: clock: lan966x: Add LAN966X Clock
- Controller
-Message-ID: <YUuN2o1G1ETkf/Zx@robh.at.kernel.org>
-References: <20210917135142.9689-1-kavyasree.kotagiri@microchip.com>
- <20210917135142.9689-3-kavyasree.kotagiri@microchip.com>
+        id S237334AbhIVUOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 16:14:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52492 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237309AbhIVUOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 16:14:50 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EDADC061574;
+        Wed, 22 Sep 2021 13:13:20 -0700 (PDT)
+Received: from Monstersaurus.local (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7E235F1;
+        Wed, 22 Sep 2021 22:13:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1632341597;
+        bh=tShOERH5sXTbHEmaYtqdH8O9acS6wGB/gI0B1DU9AW0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=n1g/ZHGyHehukt2il8bU4JR59+2o1URCa6CL3VWBz9CbDiaPEiwiCB1dvb3dNsPwS
+         kx6LS1qvRGhZ0jd9KbfBaPsj+fMIzqWe1pPdGJ6DMCOtiKdU4bJLzwm9F8mI//ad4R
+         3Zl5YoclF56cB/AO65TwgCHEknh/sbsqnjce4Kz0=
+From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
+To:     linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert@glider.be>
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2] arm64: dts: renesas: r8a779a0: falcon-cpu: Add SW47-SW49 support
+Date:   Wed, 22 Sep 2021 21:13:13 +0100
+Message-Id: <20210922201314.3205674-1-kieran.bingham@ideasonboard.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210917135142.9689-3-kavyasree.kotagiri@microchip.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 17, 2021 at 07:21:41PM +0530, Kavyasree Kotagiri wrote:
-> This adds the DT bindings documentation for lan966x SoC
-> generic clock controller.
-> 
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> ---
-> v4 -> v5:
-> - In v4 dt-bindings, missed adding "clock-names" in required
->   properties and example. So, added them.
-> 
-> v3 -> v4:
-> - Updated "clocks" description.
-> - Added "clock-names".
-> 
-> v2 -> v3:
-> - Fixed dt_binding_check errors.
-> 
-> v1 -> v2:
-> - Updated example provided for clk controller DT node.
-> 
->  .../bindings/clock/microchip,lan966x-gck.yaml | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml b/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
-> new file mode 100644
-> index 000000000000..e6b4ed3b0c88
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/microchip,lan966x-gck.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip LAN966X Generic Clock Controller
-> +
-> +maintainers:
-> +  - Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> +
-> +description: |
-> +  The LAN966X Generic clock controller contains 3 PLLs - cpu_clk,
-> +  ddr_clk and sys_clk. This clock controller generates and supplies
-> +  clock to various peripherals within the SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,lan966x-gck
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: CPU clock source
-> +      - description: DDR clock source
-> +      - description: System clock source
-> +
-> +  clock-names:
-> +    items:
-> +      - const: cpu_clk
-> +      - const: ddr_clk
-> +      - const: sys_clk
+Add support for SW47, SW48 and SW49 via "gpio-keys" on the R-Car V3U
+Falcon board.
 
-'_clk' is redundant. Drop.
+Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
-With that,
+---
+Apologies, I sent out v1 with locally staged changes that didn't get sqaushed
+in.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+v2:
+ - add wakeup-source to key-1
+ - make line ordering consistent across each key
 
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clks: clock-controller@e00c00a8 {
-> +        compatible = "microchip,lan966x-gck";
-> +        #clock-cells = <1>;
-> +        clocks = <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
-> +        clock-names = "cpu_clk", "ddr_clk", "sys_clk";
-> +        reg = <0xe00c00a8 0x38>;
-> +    };
-> +...
-> -- 
-> 2.17.1
-> 
-> 
+ .../boot/dts/renesas/r8a779a0-falcon-cpu.dtsi | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+index a0a1a1da0d87..d595fbad4589 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+@@ -6,6 +6,7 @@
+  */
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
+ #include <dt-bindings/leds/common.h>
+ 
+ #include "r8a779a0.dtsi"
+@@ -45,6 +46,37 @@ led-3 {
+ 		};
+ 	};
+ 
++	keys {
++		compatible = "gpio-keys";
++
++		pinctrl-0 = <&keys_pins>;
++		pinctrl-names = "default";
++
++		key-1 {
++			gpios = <&gpio6 18 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_1>;
++			label = "SW47";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++
++		key-2 {
++			gpios = <&gpio6 19 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_2>;
++			label = "SW48";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++
++		key-3 {
++			gpios = <&gpio6 20 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_3>;
++			label = "SW49";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++	};
++
+ 	memory@48000000 {
+ 		device_type = "memory";
+ 		/* first 128MB is reserved for secure area. */
+@@ -160,6 +192,11 @@ i2c6_pins: i2c6 {
+ 		function = "i2c6";
+ 	};
+ 
++	keys_pins: keys {
++		pins = "GP_6_18", "GP_6_19", "GP_6_20";
++		bias-pull-up;
++	};
++
+ 	mmc_pins: mmc {
+ 		groups = "mmc_data8", "mmc_ctrl", "mmc_ds";
+ 		function = "mmc";
+-- 
+2.30.2
+
