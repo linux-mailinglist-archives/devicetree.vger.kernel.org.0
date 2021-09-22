@@ -2,135 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 719FB414CE9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 17:23:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22513414D1B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 17:35:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236390AbhIVPYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 11:24:50 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:53728 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232318AbhIVPYt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 11:24:49 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18MFNFhR038602;
-        Wed, 22 Sep 2021 10:23:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632324195;
-        bh=gIbemJ+kywr0NJwH0hZD9O0Ys2noMM7/Eq9Bx7iJ8QM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=xM99oYcYNdc28qoQpm8sht76OjTnlscceA4FzroL5d/DA+kt0v7vpfIXYBs6ohrYq
-         QU4MdOXIUAX1n4s5ufrmefRn/AsELv2y1F20PlRHKeKM9qfsyswiI1ZMKLJq6i3ob3
-         nU5aYfPIy2KEY2Crq93RiYWUs7KgFC2hOWnnflWY=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18MFNFSe038491
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 22 Sep 2021 10:23:15 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
- Sep 2021 10:23:14 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 22 Sep 2021 10:23:14 -0500
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18MFNAIq028062;
-        Wed, 22 Sep 2021 10:23:11 -0500
-Subject: Re: [PATCH 5/5] mmc: sdhci-omap: Configure optional wakeirq
-To:     Tony Lindgren <tony@atomide.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-CC:     Adrian Hunter <adrian.hunter@intel.com>,
-        Chunyan Zhang <zhang.chunyan@linaro.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        <linux-mmc@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-References: <20210921111600.24577-1-tony@atomide.com>
- <20210921111600.24577-6-tony@atomide.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <eafa3743-1f73-8a6e-bcb4-d97405dcdb11@ti.com>
-Date:   Wed, 22 Sep 2021 18:23:10 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S236468AbhIVPgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 11:36:45 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:46428 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236437AbhIVPgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 11:36:44 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18MFFasJ027607;
+        Wed, 22 Sep 2021 17:34:53 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=Lr0bM1q7p7A5V6d2HWR0Wdwxxfx2AsBqJVanDijXVaU=;
+ b=8JFMPNj051qtIXybDMir4IW0t6Hld7JhMJfomvr85W6yevjLExIJl+b4xlkJiNDHCbvh
+ ZNkxfYySN+Lams9JxtMN2U+AtICg44Xh6LnCQ66eGjaDonZAj0qBYN5CAXYy6xYjYub1
+ /jpd2pZB5DkAP2u5xPp11de+wIoFkhN5e6ubaq+tTyZXTpJvuuxJIF0dQwYjt/TPKmJb
+ OGzX7ALuNW3pu5urwlpxE6x4yOskQWa4it6v/pFUspdSf4ZdEp7rBRiWE8iQFrX9Uf+T
+ KTqlYBHqvYzCyDriumcyuytRUDYYRebG6LZV1/5+ubfkHxkfNtZvt0AlXXV55JIwyzQg pg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3b8347svge-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Sep 2021 17:34:53 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 764C210002A;
+        Wed, 22 Sep 2021 17:34:52 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6DAD524187A;
+        Wed, 22 Sep 2021 17:34:52 +0200 (CEST)
+Received: from localhost (10.75.127.49) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 22 Sep 2021 17:34:51
+ +0200
+From:   Olivier Moysan <olivier.moysan@foss.st.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "Lars-Peter Clausen" <lars@metafoo.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH v2 0/7] iio: adc: stm32-adc: add internal channels support
+Date:   Wed, 22 Sep 2021 17:34:11 +0200
+Message-ID: <20210922153418.21033-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210921111600.24577-6-tony@atomide.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-22_06,2021-09-22_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds support of ADC2 internal channels VDDCORE, VREFINT and VBAT
+on STM32MP15x SoCs. The generic IIO channel bindings is also introduced here
+to provide this feature. The legacy channel binding is kept for backward compatibility.
 
+Changes in v2:
+- Add 'deprecated' to channels legacy properties in ADC bindings
+- Add set/clr service for common registers, to make code more generic in
+  internal channels enable/disable services.
+- Expose vrefint channel as a processed channel to return
+  the actual value of vrefp.
+- Minor code improvements
 
-On 21/09/2021 14:16, Tony Lindgren wrote:
-> Configure optional wakeirq. This may be optionally configured for SDIO
-> dat1 pin for wake-up events for SoCs that support deeper idle states.
-> 
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->   drivers/mmc/host/sdhci-omap.c | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-omap.c b/drivers/mmc/host/sdhci-omap.c
-> --- a/drivers/mmc/host/sdhci-omap.c
-> +++ b/drivers/mmc/host/sdhci-omap.c
-> @@ -12,8 +12,10 @@
->   #include <linux/module.h>
->   #include <linux/of.h>
->   #include <linux/of_device.h>
-> +#include <linux/of_irq.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_runtime.h>
-> +#include <linux/pm_wakeirq.h>
->   #include <linux/regulator/consumer.h>
->   #include <linux/pinctrl/consumer.h>
->   #include <linux/sys_soc.h>
-> @@ -117,6 +119,7 @@ struct sdhci_omap_host {
->   
->   	struct pinctrl		*pinctrl;
->   	struct pinctrl_state	**pinctrl_state;
-> +	int			wakeirq;
->   	unsigned long		context_valid:1;
->   	unsigned long		is_runtime_suspended:1;
->   	unsigned long		needs_resume:1;
-> @@ -1360,6 +1363,21 @@ static int sdhci_omap_probe(struct platform_device *pdev)
->   	sdhci_omap_context_save(omap_host);
->   	omap_host->context_valid = 1;
->   
-> +	of_irq_get_byname(dev->of_node, "wakeup");
+Olivier Moysan (7):
+  dt-bindings: iio: stm32-adc: add generic channel binding
+  dt-bindings: iio: stm32-adc: add nvmem support for vrefint internal
+    channel
+  iio: adc: stm32-adc: split channel init into several routines
+  iio: adc: stm32-adc: add support of generic channels binding
+  iio: adc: stm32-adc: add support of internal channels
+  iio: adc: stm32-adc: add vrefint calibration support
+  iio: adc: stm32-adc: use generic binding for sample-time
 
-No assign to omap_host->wakeirq
-
-> +	if (omap_host->wakeirq == -EPROBE_DEFER) {
-> +		ret = -EPROBE_DEFER;
-> +		goto err_cleanup_host;
-> +	}
-> +	if (omap_host->wakeirq > 0) {
-> +		device_init_wakeup(dev, true);
-> +		ret = dev_pm_set_dedicated_wake_irq(dev, omap_host->wakeirq);
-> +		if (ret) {
-> +			device_init_wakeup(dev, false);
-> +			goto err_cleanup_host;
-> +		}
-> +		host->mmc->pm_caps |= MMC_PM_WAKE_SDIO_IRQ;
-> +	}
-> +
->   	pm_runtime_put_sync(dev);
->   
->   	return 0;
-> @@ -1385,6 +1403,7 @@ static int sdhci_omap_remove(struct platform_device *pdev)
->   
->   	pm_runtime_get_sync(dev);
->   	sdhci_remove_host(host, true);
-> +	dev_pm_clear_wake_irq(dev);
->   	pm_runtime_put_sync(dev);
->   	pm_runtime_disable(dev);
->   	sdhci_pltfm_free(pdev);
-> 
+ .../bindings/iio/adc/st,stm32-adc.yaml        | 108 ++++-
+ drivers/iio/adc/stm32-adc-core.h              |   8 +
+ drivers/iio/adc/stm32-adc.c                   | 424 ++++++++++++++++--
+ 3 files changed, 485 insertions(+), 55 deletions(-)
 
 -- 
-Best regards,
-grygorii
+2.17.1
+
