@@ -2,110 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C32FD414B2F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 15:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA27C414B6D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 16:10:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232281AbhIVN4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 09:56:35 -0400
-Received: from pegase2.c-s.fr ([93.17.235.10]:44439 "EHLO pegase2.c-s.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232213AbhIVN4e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 09:56:34 -0400
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-        by localhost (Postfix) with ESMTP id 4HF0D76Byhz9sSc;
-        Wed, 22 Sep 2021 15:55:03 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-        by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Hao_HVFbY-Ej; Wed, 22 Sep 2021 15:55:03 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase2.c-s.fr (Postfix) with ESMTP id 4HF0D75Qbdz9sSS;
-        Wed, 22 Sep 2021 15:55:03 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id A63228B775;
-        Wed, 22 Sep 2021 15:55:03 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id qnJexAkC8nr1; Wed, 22 Sep 2021 15:55:03 +0200 (CEST)
-Received: from PO20335.IDSI0.si.c-s.fr (unknown [172.25.230.108])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 6638D8B763;
-        Wed, 22 Sep 2021 15:55:03 +0200 (CEST)
-Subject: Re: [RESEND PATCH 2/2] powerpc/powermac: constify device_node in
- of_irq_parse_oldworld()
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
+        id S235503AbhIVOLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 10:11:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53078 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235346AbhIVOLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 10:11:43 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF81AC061757
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 07:10:12 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id u18so7254315wrg.5
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 07:10:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=316eM28pK/8Y6ZPFwh3V4osKtYsZzbtNOZjPZ78hW2o=;
+        b=qgeTRI7MZLWaVeFQzGXTpSsFcyvmu7kjfYlSc+NPJCrhsXvE1fEn07XHZl63akX/A9
+         yQbXdXADzwP00MT27Hew7Q5+BXqnTnHMX2GPMy8eew9d5u8RXyglhqDuge9gsmwXrD8R
+         HAvFLaIw6+HC5YglZjYxDz9U1L+MwF/UV+iop1VTv+4b+TeLv+YtgqdgDzTRzzxMdQBi
+         kVYSpNyYlR+kdCs44djZFix4hbr60HjdLscIRa4b55RCcwpz1lxAKHoewcClaR6+Bjai
+         CEDO1S4JoEByQsW1f8EyZ+aN8rL1sGz/bP6WNU3H2x5Jzjl6OhYQ9HBAhlyBspTGsysg
+         sLHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=316eM28pK/8Y6ZPFwh3V4osKtYsZzbtNOZjPZ78hW2o=;
+        b=Nr6LS1GD/0A5BB1MAejkiJSGUfMWxisDNweGY2ULkmVq5TQL/LajgB2+lJeILFQ/X7
+         sTZAdgBXRdxZz2R1OmL/5spcqSL8T6gkwNeL6C3Zb1O3uxvh0pbH8EWtYpz3tsORG6V/
+         5XJDNMpFBfQBWheAu/9XsZyVp87lv6tKvHt7vU1Mmg7vCLSW7e8AOE71Z9pcY64QbVKR
+         X5dhtgcMOhTiTG31iqmaB/AYrbPwRm5aagAESVY6F3zWuXpvSe3Goi2ScODqs33KmSzN
+         IPic4YxgT1yiVA4D4wOfUTUZf+kd15hKBubo5SJ08E58tATQhUu/YnizodtmzES8WXC/
+         zoLQ==
+X-Gm-Message-State: AOAM532T0/8ME12TnuHtz/litPF8wQAt+S/etKRJZ8xlY9rRDg7Vrbe+
+        dgj6xfM8iyK335iWB1UB7/P6Ww==
+X-Google-Smtp-Source: ABdhPJwPWyPwb8fFPniP4WALIolIXo/0F86m+aaMDJzd9oMldjmXMowgEbhBdLf2fAEhdwOQkl2WeQ==
+X-Received: by 2002:a5d:64cd:: with SMTP id f13mr41907210wri.419.1632319811428;
+        Wed, 22 Sep 2021 07:10:11 -0700 (PDT)
+Received: from google.com ([95.148.6.233])
+        by smtp.gmail.com with ESMTPSA id i203sm5875577wma.7.2021.09.22.07.10.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Sep 2021 07:10:10 -0700 (PDT)
+Date:   Wed, 22 Sep 2021 15:10:08 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210922084415.18269-1-krzysztof.kozlowski@canonical.com>
- <20210922084415.18269-2-krzysztof.kozlowski@canonical.com>
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-Message-ID: <a33f0978-b617-6a07-7240-ec011f894680@csgroup.eu>
-Date:   Wed, 22 Sep 2021 15:55:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Robert Marko <robert.marko@sartura.hr>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 1/4] dt-bindings: mfd: qcom,tcsr: document ipq6018
+ compatible
+Message-ID: <YUs5QAeQnPijfp7z@google.com>
+References: <5c95bcf62a9d08208a7da19f0b1cec0689502b9a.1630323987.git.baruch@tkos.co.il>
 MIME-Version: 1.0
-In-Reply-To: <20210922084415.18269-2-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: fr-FR
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <5c95bcf62a9d08208a7da19f0b1cec0689502b9a.1630323987.git.baruch@tkos.co.il>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 30 Aug 2021, Baruch Siach wrote:
 
-
-Le 22/09/2021 à 10:44, Krzysztof Kozlowski a écrit :
-> The of_irq_parse_oldworld() does not modify passed device_node so make
-> it a pointer to const for safety.
-
-AFAIKS this patch is unrelated to previous one so you should send them 
-out separately instead of sending as a series.
-
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
 > ---
->   arch/powerpc/platforms/powermac/pic.c | 2 +-
->   include/linux/of_irq.h                | 4 ++--
->   2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/powerpc/platforms/powermac/pic.c b/arch/powerpc/platforms/powermac/pic.c
-> index 4921bccf0376..af5ca1f41bb1 100644
-> --- a/arch/powerpc/platforms/powermac/pic.c
-> +++ b/arch/powerpc/platforms/powermac/pic.c
-> @@ -384,7 +384,7 @@ static void __init pmac_pic_probe_oldstyle(void)
->   #endif
->   }
->   
-> -int of_irq_parse_oldworld(struct device_node *device, int index,
-> +int of_irq_parse_oldworld(const struct device_node *device, int index,
->   			struct of_phandle_args *out_irq)
->   {
->   	const u32 *ints = NULL;
-> diff --git a/include/linux/of_irq.h b/include/linux/of_irq.h
-> index aaf219bd0354..6074fdf51f0c 100644
-> --- a/include/linux/of_irq.h
-> +++ b/include/linux/of_irq.h
-> @@ -20,12 +20,12 @@ typedef int (*of_irq_init_cb_t)(struct device_node *, struct device_node *);
->   #if defined(CONFIG_PPC32) && defined(CONFIG_PPC_PMAC)
->   extern unsigned int of_irq_workarounds;
->   extern struct device_node *of_irq_dflt_pic;
-> -extern int of_irq_parse_oldworld(struct device_node *device, int index,
-> +extern int of_irq_parse_oldworld(const struct device_node *device, int index,
->   			       struct of_phandle_args *out_irq);
+>  Documentation/devicetree/bindings/mfd/qcom,tcsr.txt | 1 +
+>  1 file changed, 1 insertion(+)
 
-Please remove 'extern' which is useless for prototypes.
+Applied, thanks.
 
->   #else /* CONFIG_PPC32 && CONFIG_PPC_PMAC */
->   #define of_irq_workarounds (0)
->   #define of_irq_dflt_pic (NULL)
-> -static inline int of_irq_parse_oldworld(struct device_node *device, int index,
-> +static inline int of_irq_parse_oldworld(const struct device_node *device, int index,
->   				      struct of_phandle_args *out_irq)
->   {
->   	return -EINVAL;
-> 
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
