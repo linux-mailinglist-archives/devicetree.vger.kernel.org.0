@@ -2,165 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AAB4414440
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E1E414459
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234132AbhIVIzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 04:55:13 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:35664 "EHLO m43-7.mailgun.net"
+        id S234147AbhIVJAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 05:00:10 -0400
+Received: from www.zeus03.de ([194.117.254.33]:53406 "EHLO mail.zeus03.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234113AbhIVIzM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 04:55:12 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1632300822; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=id+uOqWXqh1BzsspNKQReK/0+hKAUXpygQ1iBVBGuvw=; b=Pm1QvnFiXAXUmcVSpNqJHjrlEx+va/hToQTMmfRz8UedKvq+ofO4X9o8d21WOk5+oHahxxY5
- 1xOQgWYYFC9nDFTfpGSQIPATcYul/YBG4kIbrLBjq9Oqw/EIBc3fDKP99OlMR8uBOnSy5df/
- PUEowwtO5uJQqurutqesY7XsDFs=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 614aef08b585cc7d2461cdf0 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 22 Sep 2021 08:53:28
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 03754C43617; Wed, 22 Sep 2021 08:53:28 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.1.6] (cpe-75-80-185-151.san.res.rr.com [75.80.185.151])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 36681C43460;
-        Wed, 22 Sep 2021 08:53:26 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 36681C43460
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: dwc3-qcom: tx-fifo-resize regression on Poco F1 (sdm845) with
- v5.15-rc1
-To:     Amit Pundir <amit.pundir@linaro.org>
-Cc:     Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S234069AbhIVJAJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 05:00:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=k1; bh=osqkEL04gXUl8YRqyvybu9tCRfM
+        382bMRBjSuF/SsqA=; b=3+X3n8SPMDon+7XqQ1f9lzyDPI3bynZaP0AImlqIcLc
+        LgJyitM9jCgtWCGCaSCgID+zDqxN1i8BC8W1nIOkxCavHa8U2KSFtj3Gzt1Z9RWj
+        eQCpbLvkZJJ+eLFJ3BZEbtYmNJdrV6yYSR+krzDaIixpG71AYtjCc3E92YEg3Pyg
+        =
+Received: (qmail 3167013 invoked from network); 22 Sep 2021 10:58:38 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Sep 2021 10:58:38 +0200
+X-UD-Smtp-Session: l3s3148p1@yUgTuJHMWKcgAwDPXwr6APB8KsyQBt5d
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jack Pham <jackp@codeaurora.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        John Stultz <john.stultz@linaro.org>,
-        linux-usb@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>
-References: <CAMi1Hd3k2snB4-=M57pVrMVom=a9_2a0DTFk-+Hzpubwk-Pr9Q@mail.gmail.com>
- <64a2a428-8bb1-0078-2403-1ca8e28cf4b1@codeaurora.org>
- <CAMi1Hd2MCxJgbHz9oGWe4L+MXNM3p+Xntpcg6t3TvZxwjJTy0Q@mail.gmail.com>
- <47a06078-dd41-7b3d-3de3-4e6c24211691@codeaurora.org>
- <CAMi1Hd1UtTECaDROGm7hE377Dp5qLzZeqBowmxoQJpOm9uQFHw@mail.gmail.com>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <a126f6f3-1313-64f9-98bf-fcb7984220cd@codeaurora.org>
-Date:   Wed, 22 Sep 2021 01:53:25 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: rpc: renesas-rpc-if: Add support for the R8A779A0 RPC-IF
+Date:   Wed, 22 Sep 2021 10:58:31 +0200
+Message-Id: <20210922085831.5375-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <CAMi1Hd1UtTECaDROGm7hE377Dp5qLzZeqBowmxoQJpOm9uQFHw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Amit,
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
+ .../devicetree/bindings/memory-controllers/renesas,rpc-if.yaml   | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 9/21/2021 3:18 AM, Amit Pundir wrote:
-> On Tue, 21 Sept 2021 at 13:00, Wesley Cheng <wcheng@codeaurora.org> wrote:
->>
->> Hi Amit,
->>
->> On 9/21/2021 12:04 AM, Amit Pundir wrote:
->>> Hi Wesley,
->>>
->>> On Tue, 21 Sept 2021 at 02:44, Wesley Cheng <wcheng@codeaurora.org> wrote:
->>>>
->>>> Hi Amit,
->>>>
->>>> On 9/20/2021 1:45 PM, Amit Pundir wrote:
->>>>> Hi Wesley, All,
->>>>>
->>>>> I see a reboot loop on Xiaomi Pocophone F1 (sdm845) with TX FIFO
->>>>> resize patches which landed in v5.15-rc1. Upstream commit cefdd52fa045
->>>>> "usb: dwc3: dwc3-qcom: Enable tx-fifo-resize property by default" to
->>>>> be specific, which switched on this feature by default.
->>>>>
->>>>> At times the phone crashes into the fastboot mode after the reboot
->>>>> loop, but mostly end up booting to UI after a while. This is what it
->>>>> looks like https://people.linaro.org/~amit.pundir/beryllium-userdebug/PXL_20210920_162749483.mp4.
->>>>>
->>>>
->>>> I believe Android will attempt a number of bootup sequences and if it
->>>> fails, it falls back to fastboot mode.  Are there any available logs you
->>>> might be able to collect to see where the issue is?
->>>
->>> It is a stock phone with no UART access, so I can't get early crash
->>> logs unless I'm booted up to adb shell. I can try getting some info
->>> using pstore-ramoops but warm reset support for sdm845 was not
->>> upstreamed when I tried using that the last time.
->>>
->>
->> I see, can we maybe avoid the actual resizing by commenting out the
->> following writel() calls, but let the fifo resize logic calculate the EPs?
->>
->> void dwc3_gadget_clear_tx_fifos(struct dwc3 *dwc)
->> {
->> ...
->>                 /* Don't change TXFRAMNUM on usb31 version */
->>                 size = DWC3_IP_IS(DWC3) ? 0 :
->>                         dwc3_readl(dwc->regs, DWC3_GTXFIFOSIZ(num >> 1)) &
->>                                    DWC31_GTXFIFOSIZ_TXFRAMNUM;
->>                 /* Comment the dwc3_writel() */
->>                 //dwc3_writel(dwc->regs, DWC3_GTXFIFOSIZ(num >> 1), size);
->>
->> and
->>
->> static int dwc3_gadget_resize_tx_fifos(struct dwc3_ep *dep)
->> {
->> ...
->>         /* Comment the dwc3_writel() */
->>         //dwc3_writel(dwc->regs, DWC3_GTXFIFOSIZ(dep->number >> 1), fifo_size);
->>         dwc->num_ep_resized++;
->>
->> Those 2 writel() would be the one that actually programs the TXFIFO
->> register.  I hope when commented out, no resize should actually happen
->> anymore.
->>
->> With this, hopefully we can get some logs from the device at least :)
-> 
-> I can boot fine with above 2 writel() removed but I don't see EP
-> counts being printed in the log anywhere and the only relevant
-> message in dmesg I see is this:
-> 
->     Duplicate name in dwc3@a600000, renamed to "tx-fifo-resize#1"
-> 
-> which is interesting because I don't see tx-fifo-resize property being
-> set by any of the upstream sdm845 or relevant dtsi files.
-> 
-> 
-Thanks for testing.  What is the current composition the device is
-exposing to the host?
-
-Can we get a ftrace log w/ the DWC3 events enabled, as well as the
-kernel log? (if not at boot up then maybe a plug in/out)  This will at
-least help us identify when the DWC3 ep enable is being called (which
-triggers the resize routine)
-
-Thanks
-Wesley Cheng
-
+diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+index 990489fdd2ac..b15992ad3613 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+@@ -33,6 +33,7 @@ properties:
+           - renesas,r8a77970-rpc-if       # R-Car V3M
+           - renesas,r8a77980-rpc-if       # R-Car V3H
+           - renesas,r8a77995-rpc-if       # R-Car D3
++          - renesas,r8a779a0-rpc-if       # R-Car V3U
+       - const: renesas,rcar-gen3-rpc-if   # a generic R-Car gen3 or RZ/G2 device
+ 
+   reg:
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.30.2
+
