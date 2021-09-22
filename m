@@ -2,109 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FD024150B3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 21:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F94F4150D0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 21:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237193AbhIVTxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 15:53:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47262 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbhIVTxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 15:53:47 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A3CC061574;
-        Wed, 22 Sep 2021 12:52:17 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id c7so14071234qka.2;
-        Wed, 22 Sep 2021 12:52:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=zLTAvh/qTdiRs4eWmGep1vOuuKWt6ejXUVBUMtYvUec=;
-        b=lYHp4nIlkfDdsAKs95SiTh6sURggwWS64NWrdEvp7M2/EeH1lz1l1X8pzw0sYDeR91
-         RQdEw+hthuhVCnqQNqGRR+Bwe3Us2DfyCMYSHcJvQOYKbGrXQdTO/vsX0bTX7DyQMFIU
-         TE5nnYWVuK71E2xg+pEyzgRB5ed+rP7kfgEH+pqntFCsSYlO31/PqBDVmtEpRmotZO8z
-         11YZrd8su0+K6gly3WtPTNm562xr6wnRagc7KBfFPR21f/dZ3fTKjylxR66T45jnIih3
-         irqPGXTAaPDUTOo4Hw2g1m6innYVGN76f7eWblpBi/1J6KAPcCodvEEYDuldkkWn8X7X
-         2mqw==
+        id S237269AbhIVT66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 15:58:58 -0400
+Received: from mail-oo1-f46.google.com ([209.85.161.46]:34647 "EHLO
+        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230384AbhIVT65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 15:58:57 -0400
+Received: by mail-oo1-f46.google.com with SMTP id g4-20020a4ab044000000b002900bf3b03fso1349453oon.1;
+        Wed, 22 Sep 2021 12:57:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=zLTAvh/qTdiRs4eWmGep1vOuuKWt6ejXUVBUMtYvUec=;
-        b=u9m+6yNNdErYYK9uxsN7nIo8ghMvMK0BqDPtKfwRobXDIFUCXIJIdyOoZ3+F3LNgtd
-         SOrJ/zNeygSCJCILrSIsmppZdtIqyASi/TASogpPYTgWWh1AEjyrbFa4xczzrZScGhtW
-         0jdniJYfp0uVSCXeKLkiHVPj7a11arDwVC2wICTU5xKYLgsdtMd1I+1A82olh6v2+i2i
-         1u9ZIzX++Z+Ib1e+4zfzK572KmuMPvX5l2iF3eX7tFvB+ThKV1piiNx3gdqmQUmj6wnd
-         RFdTLLVmGOv8v4g02TSQdTdoMnal+q+pawjuuOK8E6RoJqlumymvvWKwzRBiTC5Yerv/
-         6J2g==
-X-Gm-Message-State: AOAM532TLqLntb5QyUvi7UDAlBXCLwuRICJUmuQXM2ApQDlVeIaArXIz
-        AiYzgRz2CwnY1PQd/hbwoBOVtHHLGM8=
-X-Google-Smtp-Source: ABdhPJyFQO2z00KfzoiF2B7YRGN+Fw1NoorTnPMAf+YY+yPMiNg6xPczBycvf/b2a9YxfCjPfbQkDQ==
-X-Received: by 2002:ae9:df07:: with SMTP id t7mr1105861qkf.95.1632340336630;
-        Wed, 22 Sep 2021 12:52:16 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14c:485:504a:51af:67d8:b2b6:725f])
-        by smtp.gmail.com with ESMTPSA id l195sm2654895qke.98.2021.09.22.12.52.14
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xft0saWjNw8nsQUuw1gHXg9mUcTNl9llqFY3UzXKk8g=;
+        b=majYIghlRzo5rHZniNormKUEZf94lncCEWVCC0KMzRyq5mozyaJo7FqnFajrpKihJm
+         Iuj6bfgzyUn3Pd6N+Nnps8jgQSw+uoKPAquvSfaRzZo5YF+uEINSRKYP6Pms10J7CjNg
+         uo+hqMJrXVXk+LUt7+Tt5zOzGlgY9LjgwZy4AlNQD3EMM0RMkW8oyzEn1BjUdwGojXjw
+         PICvRzglc0e1WTiO4cZx9WnQn9rUo54CBbhildu30qDHEVYdAGDoCpXOK6DzkGBxUXUV
+         WOxbK0lhXj3o1CzMzafbGyZeWQOJXT/Qtaqwrd0AycHRKBe4Q5bH/7GVjjk6IUh55cHB
+         Taag==
+X-Gm-Message-State: AOAM5329hiShoppp4UF3sVr/asbv0b+11xfMkhdjNHswUxaBDqs2/2y9
+        GD79l4Vhwp7Lh9+batoEdA==
+X-Google-Smtp-Source: ABdhPJzis4qCxnYCRpy8rJW5UXLy9i0EOkptzpuVPk6fLIbuh8UtHe1adN037ZvedAQRbpNfYq//gQ==
+X-Received: by 2002:a4a:ded2:: with SMTP id w18mr582209oou.77.1632340646845;
+        Wed, 22 Sep 2021 12:57:26 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id r18sm750612ooc.27.2021.09.22.12.57.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 12:52:16 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     bjorn.andersson@linaro.org
-Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        martin.botka@somainline.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH] arm64: dts: sm6125: Remove leading zeroes
-Date:   Wed, 22 Sep 2021 16:52:08 -0300
-Message-Id: <20210922195208.1734936-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        Wed, 22 Sep 2021 12:57:26 -0700 (PDT)
+Received: (nullmailer pid 1190943 invoked by uid 1000);
+        Wed, 22 Sep 2021 19:57:25 -0000
+Date:   Wed, 22 Sep 2021 14:57:25 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chanho Park <chanho61.park@samsung.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bean Huo <beanhuo@micron.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Can Guo <cang@codeaurora.org>,
+        Jaegeuk Kim <jaegeuk@kernel.org>,
+        Gyunghoon Kwon <goodjob.kwon@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 05/17] dt-bindings: ufs: exynos-ufs: add sysreg regmap
+ property
+Message-ID: <YUuKpSPgdKl2CiSy@robh.at.kernel.org>
+References: <20210917065436.145629-1-chanho61.park@samsung.com>
+ <CGME20210917065523epcas2p3ff66daa15c8c782f839422756c388d93@epcas2p3.samsung.com>
+ <20210917065436.145629-6-chanho61.park@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210917065436.145629-6-chanho61.park@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dtc complains about the leading zeroes:
+On Fri, Sep 17, 2021 at 03:54:24PM +0900, Chanho Park wrote:
+> Add "sysreg" regmap phandle property to control io coherency setting.
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  .../devicetree/bindings/ufs/samsung,exynos-ufs.yaml          | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+> index b9ca8ef4f2be..c3f14f81d4b7 100644
+> --- a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
+> @@ -54,6 +54,11 @@ properties:
+>    phy-names:
+>      const: ufs-phy
+>  
+> +  sysreg:
 
-arch/arm64/boot/dts/qcom/sm6125.dtsi:497.19-503.6: Warning (unit_address_format): /soc/timer@f120000/frame@0f121000: unit name should not have leading 0s
-arch/arm64/boot/dts/qcom/sm6125.dtsi:505.19-510.6: Warning (unit_address_format): /soc/timer@f120000/frame@0f123000: unit name should not have leading 0s
-arch/arm64/boot/dts/qcom/sm6125.dtsi:512.19-517.6: Warning (unit_address_format): /soc/timer@f120000/frame@0f124000: unit name should not have leading 0
+Needs a vendor prefix.
 
-Remove them.
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> +    description: phandle for FSYS sysreg interface, used to control
+> +                 sysreg register bit for UFS IO Coherency
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- arch/arm64/boot/dts/qcom/sm6125.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Is there more than 1 FSYS? If not, you can just get the node by its 
+compatible. 
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-index 2b37ce6a9f9c..0c1057456597 100644
---- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-@@ -494,7 +494,7 @@ timer@f120000 {
- 			reg = <0x0f120000 0x1000>;
- 			clock-frequency = <19200000>;
- 
--			frame@0f121000 {
-+			frame@f121000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
- 						<GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-@@ -502,14 +502,14 @@ frame@0f121000 {
- 				      <0x0f122000 0x1000>;
- 			};
- 
--			frame@0f123000 {
-+			frame@f123000 {
- 				frame-number = <1>;
- 				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x0f123000 0x1000>;
- 				status = "disabled";
- 			};
- 
--			frame@0f124000 {
-+			frame@f124000 {
- 				frame-number = <2>;
- 				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x0f124000 0x1000>;
--- 
-2.25.1
+Also, what about 'dma-coherent' property? The driver core needs to know.
 
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.33.0
+> 
+> 
