@@ -2,32 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A48F241424C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 09:07:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFBDE414265
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 09:12:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233126AbhIVHId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 03:08:33 -0400
-Received: from [185.61.187.140] ([185.61.187.140]:49056 "EHLO
+        id S233022AbhIVHO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 03:14:26 -0400
+Received: from [185.61.187.140] ([185.61.187.140]:34606 "EHLO
         server8.equinoxes.fr" rhost-flags-FAIL-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S233163AbhIVHIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 03:08:31 -0400
-X-Greylist: delayed 374 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 Sep 2021 03:08:31 EDT
+        with ESMTP id S232946AbhIVHOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 03:14:25 -0400
 Received: from localhost (localhost.localdomain [127.0.0.1])
-        by server8.equinoxes.fr (Postfix) with ESMTP id E85F84A769A
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 08:59:53 +0200 (CEST)
+        by server8.equinoxes.fr (Postfix) with ESMTP id B698D4A7C0F
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 09:10:57 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at server8.equinoxes.fr
 Received: from server8.equinoxes.fr ([127.0.0.1])
         by localhost (server8.equinoxes.fr [127.0.0.1]) (amavisd-new, port 10024)
-        with LMTP id Pn1M5cr7w1qM for <devicetree@vger.kernel.org>;
-        Wed, 22 Sep 2021 08:59:53 +0200 (CEST)
+        with LMTP id mSygpbadFd7T for <devicetree@vger.kernel.org>;
+        Wed, 22 Sep 2021 09:10:57 +0200 (CEST)
 Received: by server8.equinoxes.fr (Postfix, from userid 5023)
-        id 0A1064A7EB1; Wed, 22 Sep 2021 08:54:51 +0200 (CEST)
+        id 01E884A801E; Wed, 22 Sep 2021 09:06:41 +0200 (CEST)
 To:     devicetree@vger.kernel.org
 Subject: General Sales Enquiries
-Date:   Wed, 22 Sep 2021 08:54:50 +0200
+Date:   Wed, 22 Sep 2021 09:06:41 +0200
 From:   Robert Bounds <robert.bounds@mailfence.com>
 Reply-To: purchasing@tamu-edu.com
-Message-ID: <8be6eef6f96ef3a807a7c8f8d89fe79d@choquenet.com>
+Message-ID: <8a5ab7dbd1e7e4f17e0525b93a0feee2@choquenet.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
