@@ -2,153 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DECA415303
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 23:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4A90415340
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 00:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238186AbhIVVrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 17:47:24 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:59694 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238221AbhIVVrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 17:47:24 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0FE23F1;
-        Wed, 22 Sep 2021 23:45:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1632347152;
-        bh=75gjKcF/l55W9tKhyejhtHXgZe7VCUjb2G8jIAsM/nM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BgJuCGGKkkWz0BWu6Mk8ATzDLDPjqU/xb/s+gr0aYy4Iu/fCtlxi9jcgfXyWoxacB
-         vWdXACqaOFe1XvymiqFgtXUEvkrtfLpZVTrJnf8cDSpcHZl8QVQZpLtjq1mg+Mry2a
-         vv/VN7FW9Ld45MWbAXga4aiBaWXGtFZgaB65P4X4=
-Date:   Thu, 23 Sep 2021 00:45:50 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "open list:DRM DRIVERS FOR RENESAS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        id S238242AbhIVWTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 18:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53302 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238220AbhIVWTu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 18:19:50 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D40C061757
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 15:18:19 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id c6-20020a9d2786000000b005471981d559so5742497otb.5
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 15:18:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=rBQLrqQ+KVrMj7fI2R/owDobCXRWVkWx/vRkv7LGFv0=;
+        b=AFhy04WiYMhTL2ya7NSlhkdl4XJYIDnrrjCxOnvCwBFEUxoSxxtonPBPLvy1yVWZ4b
+         wOOGsFDKesuntaE1ScrL6JyGr4mDgf/BR2lQYDKBYU7vbDkHsSqll0Ml6O56xSHchHRL
+         uU9YhzW/rGle7VmlurGCb0yCwxA/ZU4sY6GppoayQ0hFLKuSNWziWmCxMxfRVSml4Iah
+         hPt1AaGN/cd402CSMyiLyHeOplWn7e0ikkJDNcZHuI0Bc464TrULAWmCqXXDLuKZFFv/
+         mj/lXQR8NYR6gxvYJDVX03DMFVjY2wGb8d8Qs4ZD+7nOQpHV7IHS4SKW6T4Wy6Zltld1
+         OqEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rBQLrqQ+KVrMj7fI2R/owDobCXRWVkWx/vRkv7LGFv0=;
+        b=vYFDWCJVwkww5FpMLqCTWjwUiUOB1VtSwyWOvg81ZOIjjNlNFCFUVXRzzi5Fmrezr+
+         tqoDa6movChx3E+cCvT/Yxqo3q8JDHaNg6+vzD8KLwWBf7H1qArHp6UGHs9IBZZ2iH8n
+         BDAfoR3WjkRp6OGp+hm3kXqYxBEkEZE7/9P7MFqGiNGUF0pPNnlUS2SdDZVK1D19gEp6
+         zn1ksdXtP4ho11BDTKmXQ0lZt54St2YdGNg5qzeeFL23y+4mzBypHEn3NgD+cKvBROdk
+         SQG7sTHkYUITtJ0/E46VG9H7Ge98ibZ83GC8HgjO1RdKqY3E0CZBZqfJxO0KeY5D4HBE
+         vyuw==
+X-Gm-Message-State: AOAM532Fmm35Rt2ucN6dSJxcS5Su/mxvOyXc4TjGPLXOTdy0n9Ih8OAR
+        ctCqaFE6zj8pm8/nIO++jNh3Ag==
+X-Google-Smtp-Source: ABdhPJy+4BXIDvwRt9LTmAgaXrtG7A3sWrl0VnQlfW9eRWJs9w89u7AZX7jEgp95UZrOL/CJwQMmzA==
+X-Received: by 2002:a05:6830:40ca:: with SMTP id h10mr1317634otu.187.1632349098826;
+        Wed, 22 Sep 2021 15:18:18 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id r23sm784159otu.54.2021.09.22.15.18.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Sep 2021 15:18:18 -0700 (PDT)
+Date:   Wed, 22 Sep 2021 17:18:16 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Robert Marko <robimarko@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Kathiravan T <kathirav@codeaurora.org>, agross@kernel.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
         open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: display: renesas,du: Provide bindings
- for r8a779a0
-Message-ID: <YUukDlMKo4+RjzUS@pendragon.ideasonboard.com>
-References: <20210901233655.1602308-1-kieran.bingham@ideasonboard.com>
- <CAMuHMdXHAfg3_VoeXUBT2-QceLR9KQ3pWjz+5=-wK1QRxK14bw@mail.gmail.com>
- <YTezLHrRt/YpOlJZ@robh.at.kernel.org>
- <CAMuHMdXGK=+W=C3c9GV8br9ZvQpAhj4ePiq7m1N8YBo1vzZjvQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: add SMEM support
+Message-ID: <YUurqDL/S15RziCQ@builder.lan>
+References: <20210902214708.1776690-1-robimarko@gmail.com>
+ <YUf3aKn78+41Cb/G@builder.lan>
+ <CAOX2RU5b46H7nqm6G4mHLSqEhGiWktwWjUKF5w10Ut+AdKea-A@mail.gmail.com>
+ <632a7d28c23a8497d35ea009bfe89883@codeaurora.org>
+ <CAOX2RU5+jeXiqz8oss8Sd-BWa059uAv5xu=7nx_YF4RYpG2S6w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdXGK=+W=C3c9GV8br9ZvQpAhj4ePiq7m1N8YBo1vzZjvQ@mail.gmail.com>
+In-Reply-To: <CAOX2RU5+jeXiqz8oss8Sd-BWa059uAv5xu=7nx_YF4RYpG2S6w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello everybody,
+On Wed 22 Sep 15:23 CDT 2021, Robert Marko wrote:
 
-On Tue, Sep 07, 2021 at 09:17:31PM +0200, Geert Uytterhoeven wrote:
-> On Tue, Sep 7, 2021 at 8:45 PM Rob Herring wrote:
-> > On Mon, Sep 06, 2021 at 10:13:07AM +0200, Geert Uytterhoeven wrote:
-> > > On Thu, Sep 2, 2021 at 1:39 AM Kieran Bingham wrote:
-> > > > From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > > >
-> > > > Extend the Renesas DU display bindings to support the r8a779a0 V3U.
-> > > >
-> > > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > > > ---
-> > > > v2:
-> > > >  - Collected Laurent's tag
-> > > >  - Remove clock-names requirement
-> > > >  - Specify only a single clock
-> > >
-> > > Thanks for the update!
-> > >
-> > > > --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > > > @@ -39,6 +39,7 @@ properties:
-> > > >        - renesas,du-r8a77980 # for R-Car V3H compatible DU
-> > > >        - renesas,du-r8a77990 # for R-Car E3 compatible DU
-> > > >        - renesas,du-r8a77995 # for R-Car D3 compatible DU
-> > > > +      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
-> > > >
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > @@ -773,6 +774,55 @@ allOf:
-> > > >          - reset-names
-> > > >          - renesas,vsps
-> > > >
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            enum:
-> > > > +              - renesas,du-r8a779a0
-> > > > +    then:
-> > > > +      properties:
-> > > > +        clocks:
-> > > > +          items:
-> > > > +            - description: Functional clock
-> > > > +
-> > > > +        clock-names:
-> > > > +          maxItems: 1
-> > > > +          items:
-> > > > +            - const: du
-> > > > +
-> > > > +        interrupts:
-> > > > +          maxItems: 2
-> > > > +
-> > > > +        resets:
-> > > > +          maxItems: 1
-> > > > +
-> > > > +        reset-names:
-> > > > +          items:
-> > > > +            - const: du.0
-> > >
-> > > This is now inconsistent with clock-names, which doesn't use a suffix.
+> On Tue, 21 Sept 2021 at 08:24, Kathiravan T <kathirav@codeaurora.org> wrote:
 > >
-> > But it is consistent with all the other cases of 'reset-names'. The
-> > problem is 'clock-names' is not consistent and should be 'du.0'.
+> > On 2021-09-20 14:55, Robert Marko wrote:
+> > > On Mon, 20 Sept 2021 at 04:52, Bjorn Andersson
+> > > <bjorn.andersson@linaro.org> wrote:
+> > >>
+> > >> On Thu 02 Sep 16:47 CDT 2021, Robert Marko wrote:
+> > >>
+> > >> > IPQ8074 uses SMEM like other modern QCA SoC-s, so since its already
+> > >> > supported by the kernel add the required DT nodes.
+> > >> >
+> > >> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > >>
+> > >> Thanks for your patch Robert.
+> > >>
+> > >> > ---
+> > >> >  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 28 +++++++++++++++++++++++++++
+> > >> >  1 file changed, 28 insertions(+)
+> > >> >
+> > >> > diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> > >> > index a620ac0d0b19..83e9243046aa 100644
+> > >> > --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> > >> > +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> > >> > @@ -82,6 +82,29 @@ scm {
+> > >> >               };
+> > >> >       };
+> > >> >
+> > >> > +     reserved-memory {
+> > >> > +             #address-cells = <2>;
+> > >> > +             #size-cells = <2>;
+> > >> > +             ranges;
+> > >> > +
+> > >> > +             smem_region: memory@4ab00000 {
+> > >> > +                     no-map;
+> > >> > +                     reg = <0x0 0x4ab00000 0x0 0x00100000>;
+> > >> > +             };
+> > >> > +     };
+> > >> > +
+> > >> > +     tcsr_mutex: hwlock {
+> > >> > +             compatible = "qcom,tcsr-mutex";
+> > >> > +             syscon = <&tcsr_mutex_regs 0 0x80>;
+> > >>
+> > >> Since it's not okay to have a lone "syscon" and I didn't think it was
+> > >> worth coming up with a binding for the TCSR mutex "syscon" I rewrote
+> > >> the
+> > >> binding a while back. As such qcom,tcsr-mutex should now live in /soc
+> > >> directly.
+> > >>
+> > >> So can you please respin accordingly?
+> > >
+> > > Sure, can you just confirm that the:
+> > > reg = <0x01905000 0x8000>;
+> > >
+> > > Is the whole TCSR range as I don't have docs?
+> >
+> > Robert,
+> >
+> > TCSR_MUTEX block starts from 0x01905000 and has size 0x20000 (128KB)
 > 
-> True.
-
-Looks fine to me. The only other SoC that has a similar shared clock
-architecture is H1 (R8A7779), and we use du.0 there.
-
-> > Ideally, the if/them schemas should not be defining the names. That
-> > should be at the top level and the if/them schema just limits the number
-> > of entries. That's not always possible, but I think is for clocks and
-> > resets in this case.
+> Thanks, Kathiravan,
+> TSCR mutex with MMIO reg under it works, but there is some weird probe
+> ordering issue.
 > 
-> It's a bit tricky.
-> For clocks, there's usually one clock per channel, but not always.
-> Plus clocks for external inputs, if present.
+> For whatever reason, SMEM will get probed only after MTD does and this
+> will cause issues
+> if SMEM parser is used as it will return -EPROBE_DEFER but the MTD
+> core does not really
+> handle it correctly and causes the device to reboot after failed parsing.
+> 
+> Now, I have no idea why does this variant which uses MMIO regmap probe
+> so much later?
+> 
 
-Yes, it's mostly the external clocks that mess things up here. Each DU
-channel typically has one internal clock and one optional external
-clock, but not always.
+Mani, do you have any input related to the probe deferral of the SMEM
+partition parser, because SMEM not yet probed?
 
-> For resets, there's one reset for a group of channels, with the number
-> of channels in a group depending on the SoC family.
-> And then there's the special casing for SoCs where there's a gap in
-> the channel numbering...
-
-For resets, H1 and M3-N are indeed special cases. H1 has no reset-names,
-while M3-N has du.0 and du.3 due to a gap in hardware channel numbering.
-All other SoCs have du.0 and optionally du.2.
-
-> Still wondering if it would be better to have one device node per
-> channel, and companion links...
-
-The hardware design would make that too messy. There are too many
-cross-channel dependencies.
-
--- 
-Regards,
-
-Laurent Pinchart
+Thanks,
+Bjorn
