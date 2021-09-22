@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4164147F9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 13:40:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 013CB414801
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 13:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235782AbhIVLlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 07:41:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45206 "EHLO
+        id S235814AbhIVLmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 07:42:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbhIVLlg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 07:41:36 -0400
+        with ESMTP id S235796AbhIVLmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 07:42:22 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ABDAC061574
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 04:40:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE745C061574
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 04:40:52 -0700 (PDT)
 Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <a.fatoum@pengutronix.de>)
-        id 1mT0bb-0006ak-Qj; Wed, 22 Sep 2021 13:40:03 +0200
-Subject: Re: [PATCH 5/6] arm64: dts: imx8mm: add "cell-type" property for
- mac-address
+        id 1mT0cL-0006mg-9x; Wed, 22 Sep 2021 13:40:49 +0200
+Subject: Re: [PATCH 6/6] arm64: dts: imx8m: remove unused "nvmem_macaddr_swap"
+ property for FEC
 To:     Joakim Zhang <qiangqing.zhang@nxp.com>,
         srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
         shawnguo@kernel.org
 Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com,
         kernel@pengutronix.de, linux-kernel@vger.kernel.org
 References: <20210908100257.17833-1-qiangqing.zhang@nxp.com>
- <20210908100257.17833-6-qiangqing.zhang@nxp.com>
+ <20210908100257.17833-7-qiangqing.zhang@nxp.com>
 From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <d24cdd9f-9498-fd3a-7650-91756a8c2227@pengutronix.de>
-Date:   Wed, 22 Sep 2021 13:40:02 +0200
+Message-ID: <30969cc2-f091-6493-8b4d-ef8f2dd866b5@pengutronix.de>
+Date:   Wed, 22 Sep 2021 13:40:49 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210908100257.17833-6-qiangqing.zhang@nxp.com>
+In-Reply-To: <20210908100257.17833-7-qiangqing.zhang@nxp.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -46,115 +46,68 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08.09.21 12:02, Joakim Zhang wrote:
-> Add "cell-type" property for mac-address nvmem cell to supporting mac
-> address reverse byte.
-
-s/imx8mm/imx8m/ in commit message title.
-Do you intend to do this for older i.MX as well?
-
+> Remove unused "nvmem_macaddr_swap" property for FEC, there is no info in both
+> dt-binding and driver, so it's safe to remove it.
 > 
 > Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+
+Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+
 > ---
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 ++
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 ++
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 9 +++++++++
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 ++
->  4 files changed, 15 insertions(+)
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 1 -
+>  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 1 -
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 1 -
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 1 -
+>  4 files changed, 4 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index e7648c3b8390..fb14be932386 100644
+> index fb14be932386..2210cfda4e60 100644
 > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
 > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/nvmem/nvmem.h>
->  #include <dt-bindings/thermal/thermal.h>
->  
->  #include "imx8mm-pinfunc.h"
-> @@ -539,6 +540,7 @@
->  
->  				fec_mac_address: mac-address@90 {
->  					reg = <0x90 6>;
-> +					cell-type = <NVMEM_CELL_TYPE_MAC_ADDRESS>;
->  				};
->  			};
->  
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> index d4231e061403..0a994e6edc0b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/nvmem/nvmem.h>
->  #include <dt-bindings/thermal/thermal.h>
->  
->  #include "imx8mn-pinfunc.h"
-> @@ -544,6 +545,7 @@
->  
->  				fec_mac_address: mac-address@90 {
->  					reg = <0x90 6>;
-> +					cell-type = <NVMEM_CELL_TYPE_MAC_ADDRESS>;
->  				};
->  			};
->  
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 9f7c7f587d38..37188ff07f21 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/nvmem/nvmem.h>
->  #include <dt-bindings/thermal/thermal.h>
->  
->  #include "imx8mp-pinfunc.h"
-> @@ -358,6 +359,12 @@
->  
->  				eth_mac1: mac-address@90 {
->  					reg = <0x90 6>;
-> +					cell-type = <NVMEM_CELL_TYPE_MAC_ADDRESS>;
-> +				};
-> +
-> +				eth_mac2: mac-address@96 {
-> +					reg = <0x96 6>;
-> +					cell-type = <NVMEM_CELL_TYPE_MAC_ADDRESS>;
->  				};
->  			};
->  
-> @@ -836,6 +843,8 @@
->  							 <&clk IMX8MP_SYS_PLL2_100M>,
->  							 <&clk IMX8MP_SYS_PLL2_125M>;
->  				assigned-clock-rates = <0>, <100000000>, <125000000>;
-> +				nvmem-cells = <&eth_mac2>;
-> +				nvmem-cell-names = "mac-address";
->  				intf_mode = <&gpr 0x4>;
+> @@ -948,7 +948,6 @@
+>  				fsl,num-rx-queues = <3>;
+>  				nvmem-cells = <&fec_mac_address>;
+>  				nvmem-cell-names = "mac-address";
+> -				nvmem_macaddr_swap;
+>  				fsl,stop-mode = <&gpr 0x10 3>;
 >  				status = "disabled";
 >  			};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 91df9c5350ae..1cb211e470ae 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include "dt-bindings/input/input.h"
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/nvmem/nvmem.h>
->  #include <dt-bindings/thermal/thermal.h>
->  #include <dt-bindings/interconnect/imx8mq.h>
->  #include "imx8mq-pinfunc.h"
-> @@ -570,6 +571,7 @@
->  
->  				fec_mac_address: mac-address@90 {
->  					reg = <0x90 6>;
-> +					cell-type = <NVMEM_CELL_TYPE_MAC_ADDRESS>;
->  				};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> index 0a994e6edc0b..408024426315 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> @@ -951,7 +951,6 @@
+>  				fsl,num-rx-queues = <3>;
+>  				nvmem-cells = <&fec_mac_address>;
+>  				nvmem-cell-names = "mac-address";
+> -				nvmem_macaddr_swap;
+>  				fsl,stop-mode = <&gpr 0x10 3>;
+>  				status = "disabled";
+>  			};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 37188ff07f21..cb7867791d05 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -821,7 +821,6 @@
+>  				nvmem-cells = <&eth_mac1>;
+>  				nvmem-cell-names = "mac-address";
+>  				fsl,stop-mode = <&gpr 0x10 3>;
+> -				nvmem_macaddr_swap;
+>  				status = "disabled";
 >  			};
 >  
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index 1cb211e470ae..dc4e39ef9d39 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -1191,7 +1191,6 @@
+>  				fsl,num-rx-queues = <3>;
+>  				nvmem-cells = <&fec_mac_address>;
+>  				nvmem-cell-names = "mac-address";
+> -				nvmem_macaddr_swap;
+>  				fsl,stop-mode = <&iomuxc_gpr 0x10 3>;
+>  				status = "disabled";
+>  			};
 > 
 
 
