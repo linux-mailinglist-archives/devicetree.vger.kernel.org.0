@@ -2,216 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 376D4414CA4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 17:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2546C414CC6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 17:13:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236352AbhIVPD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 11:03:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37336 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236303AbhIVPD0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 11:03:26 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A925C061574
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 08:01:56 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id q11so7695464wrr.9
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 08:01:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=e/8vlf6ZJGgT0nFK3H9I5QV9du1gDdHD92jDJeZbQnc=;
-        b=MrlCvM9fTVPK8UCQ3ZxglrH5BVRHqFmwHH7UebhoEibKMzIZsiLnkPD0iV3IkXJ2Lu
-         fhBXkvjUdg5gu40HiSHO+iwclKd92Rpp5NPeFExco+d9VFcte+3WhPmVbYmavZ1kSt7b
-         dwf4uxU1tMuTISLUpHeiaMQviDQ5UVW7awBdvuGWiOpj/lFSR8wDmkXYE7zrK+9r7p3q
-         LKVJy/sMWgy58vzyNFzJ2E8IdmGV1a/LE0c/ceQ2TnJhN5KPXzj9qecT8ghg//a2pSpF
-         UbdKpjfeKu3topNapIKUrSkejYg7LTtonUC/oJOrgnfuFinh90yS774S2xvQGqAYlKjb
-         OmOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=e/8vlf6ZJGgT0nFK3H9I5QV9du1gDdHD92jDJeZbQnc=;
-        b=kFSBXTQPW4AknGHeJedC8lnYRcolOcfLmSMhDpUS08f6kWyHVGyu7OhsEzCdEg8FC9
-         nuzC2RGla4EwS0+1zMoIZjleiW8pH7bQR6O7myvh/B3PIkI955xIAcnVCHTTtRpJC/Lz
-         +HHz06zik0Z93U9AS6I17Yj9pq6zWipNpIdrEOQ4YxzcySjchRIiWavcgiAzu4DV2xxi
-         YeDM/A45KQujQO2FRmnQv8VkfaBgbiByzb0mDVSCzQ3jXCQpm61pHHK3gvtWq+6JDvBc
-         zgBAuVlBniLrlfF5AfEtB5D/9h3t/Qv8miUWLGmABGT6P2dW5Ufpq84tnLrqkxelgg5Z
-         tWlg==
-X-Gm-Message-State: AOAM530f5hGYLwK8s/qFCXOqVasiNvzlimgmWPhlm+YYRXce69ACjAdW
-        H04ZxNS/CFXDSAC86RzMt55NNQ==
-X-Google-Smtp-Source: ABdhPJy8lhd5Xbf6p0Cw8bQC6TWALcWr6/FiKINfo9OvwSibxVc/vVq99NAlmqvZoMQd5Mb+BoI0xw==
-X-Received: by 2002:a05:600c:22d6:: with SMTP id 22mr11062985wmg.17.1632322914822;
-        Wed, 22 Sep 2021 08:01:54 -0700 (PDT)
-Received: from google.com ([95.148.6.233])
-        by smtp.gmail.com with ESMTPSA id k6sm5942844wmo.37.2021.09.22.08.01.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 08:01:53 -0700 (PDT)
-Date:   Wed, 22 Sep 2021 16:01:51 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        bcousson@baylibre.com, Tony Lindgren <tony@atomide.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Ryan Barnett <ryan.barnett@collins.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Jason Reeder <jreeder@ti.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v3 17/47] mfd: ti_am335x_tscadc: Use driver data
-Message-ID: <YUtFX/6I4VuBHXgf@google.com>
-References: <20210915155908.476767-1-miquel.raynal@bootlin.com>
- <20210915155908.476767-18-miquel.raynal@bootlin.com>
+        id S232274AbhIVPOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 11:14:49 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:52234 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232148AbhIVPOt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 11:14:49 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18MDOEjt004854;
+        Wed, 22 Sep 2021 17:12:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=/afVz4BYbCv1QBc7A6yEnhYY48kiqJk/gkkg2SsTPoU=;
+ b=rPsZh9FRAIAbjdVkSwuhlpCcsfhRNaBrstADCAP7i+ckqHaUBe2qvmZ+XdQfscGtnmzX
+ G8XDwnEc/t1MIc890hMJ/v6w9qhOHgO6yrQReBJ6y3KTtZ1DkRD5r0NxiCC0Y+UizQef
+ KfR7qA3D5qicszQe77pPzRwb3UI/SvnVkbh3cO3IYQYX9nLAWIpU5QV3c6RYVDEA7Pxa
+ 8WMYTMeYjuz9bTY6Z7xSf5aENFb4ea2j4ZlGe0s0TrLnQNJufgYCLFqqK5hyTygzXAlF
+ 6aQBN1LtEF3IzbWdf+azLH6n9cfbg5/vor3SMN1Ld4GGWH4Oz4K5GAeSpN+6xRyFvDtn dA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3b81gs28u1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Sep 2021 17:12:54 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 97FEE10002A;
+        Wed, 22 Sep 2021 17:12:52 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8ECBD240A33;
+        Wed, 22 Sep 2021 17:12:52 +0200 (CEST)
+Received: from lmecxl0995.lme.st.com (10.75.127.44) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 22 Sep
+ 2021 17:12:51 +0200
+Subject: Re: [PATCH 2/3] dt-bindings: phy: phy-stm32-usbphyc: add
+ st,phy-tuning optional property
+To:     Rob Herring <robh@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20210914145256.243869-1-amelie.delaunay@foss.st.com>
+ <20210914145256.243869-3-amelie.delaunay@foss.st.com>
+ <YUpGr5riT3+YpWDv@robh.at.kernel.org>
+From:   Amelie DELAUNAY <amelie.delaunay@foss.st.com>
+Message-ID: <059578c4-1930-5fcb-55ef-f9b3b514ed56@foss.st.com>
+Date:   Wed, 22 Sep 2021 17:12:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210915155908.476767-18-miquel.raynal@bootlin.com>
+In-Reply-To: <YUpGr5riT3+YpWDv@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-22_05,2021-09-22_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Sep 2021, Miquel Raynal wrote:
+Hi Rob,
 
-> So far every sub-cell parameter in this driver was hardcoded: cell name,
-> cell compatible, specific clock name and desired clock frequency.
+On 9/21/21 10:55 PM, Rob Herring wrote:
+> On Tue, Sep 14, 2021 at 04:52:55PM +0200, Amelie Delaunay wrote:
+>> This patch adds the description of a new optional property for usbphyc phy
 > 
-> As we are about to introduce support for ADC1/magnetic reader, we need a
-> bit of flexibility. Let's add a driver data structure which will contain
-> these information.
+> Looks like a lot more than a property.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> ---
->  drivers/mfd/ti_am335x_tscadc.c       | 25 +++++++++++++++++++------
->  include/linux/mfd/ti_am335x_tscadc.h |  9 +++++++++
->  2 files changed, 28 insertions(+), 6 deletions(-)
+>> sub nodes. st,phy-tuning contains all phy tuning parameters to apply on the
+>> phy.
+>>
+>> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+>> ---
+>>   .../bindings/phy/phy-stm32-usbphyc.yaml       | 68 +++++++++++++++++++
+>>   1 file changed, 68 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
+>> index 3329f1d33a4f..0fa184ea54db 100644
+>> --- a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
+>> @@ -81,6 +81,60 @@ patternProperties:
+>>           properties:
+>>             vbus-supply: true
+>>   
+>> +      st,phy-tuning:
+>> +        $ref: /schemas/types.yaml#/definitions/phandle
 > 
-> diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
-> index ba821109e98b..fbc8e338188a 100644
-> --- a/drivers/mfd/ti_am335x_tscadc.c
-> +++ b/drivers/mfd/ti_am335x_tscadc.c
-> @@ -137,6 +137,8 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  		return -EINVAL;
->  	}
->  
-> +	tscadc->data = of_device_get_match_data(&pdev->dev);
-> +
->  	node = of_get_child_by_name(pdev->dev.of_node, "tsc");
->  	of_property_read_u32(node, "ti,wires", &tsc_wires);
->  	of_property_read_u32(node, "ti,coordiante-readouts", &readouts);
-> @@ -212,7 +214,7 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  		goto err_disable_clk;
->  	}
->  
-> -	tscadc->clk_div = (clk_get_rate(clk) / ADC_CLK) - 1;
-> +	tscadc->clk_div = (clk_get_rate(clk) / tscadc->data->target_clk_rate) - 1;
->  	regmap_write(tscadc->regmap, REG_CLKDIV, tscadc->clk_div);
->  
->  	/* Set the control register bits */
-> @@ -241,8 +243,8 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  	if (tsc_wires > 0) {
->  		tscadc->tsc_cell = tscadc->used_cells;
->  		cell = &tscadc->cells[tscadc->used_cells++];
-> -		cell->name = "TI-am335x-tsc";
-> -		cell->of_compatible = "ti,am3359-tsc";
-> +		cell->name = tscadc->data->name_tscmag;
-> +		cell->of_compatible = tscadc->data->compat_tscmag;
->  		cell->platform_data = &tscadc;
->  		cell->pdata_size = sizeof(tscadc);
->  	}
-> @@ -251,8 +253,8 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  	if (adc_channels > 0) {
->  		tscadc->adc_cell = tscadc->used_cells;
->  		cell = &tscadc->cells[tscadc->used_cells++];
-> -		cell->name = "TI-am335x-adc";
-> -		cell->of_compatible = "ti,am3359-adc";
-> +		cell->name = tscadc->data->name_adc;
-> +		cell->of_compatible = tscadc->data->compat_adc;
->  		cell->platform_data = &tscadc;
->  		cell->pdata_size = sizeof(tscadc);
->  	}
-> @@ -338,8 +340,19 @@ static int __maybe_unused tscadc_resume(struct device *dev)
->  
->  static SIMPLE_DEV_PM_OPS(tscadc_pm_ops, tscadc_suspend, tscadc_resume);
->  
-> +static const struct ti_tscadc_data tscdata = {
-> +	.name_tscmag = "TI-am335x-tsc",
-> +	.compat_tscmag = "ti,am3359-tsc",
-> +	.name_adc = "TI-am335x-adc",
-> +	.compat_adc = "ti,am3359-adc",
-> +	.target_clk_rate = ADC_CLK,
-> +};
-> +
->  static const struct of_device_id ti_tscadc_dt_ids[] = {
-> -	{ .compatible = "ti,am3359-tscadc", },
-> +	{
-> +		.compatible = "ti,am3359-tscadc",
-> +		.data = &tscdata,
-> +	},
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, ti_tscadc_dt_ids);
-> diff --git a/include/linux/mfd/ti_am335x_tscadc.h b/include/linux/mfd/ti_am335x_tscadc.h
-> index ffc091b77633..0f581c15d95a 100644
-> --- a/include/linux/mfd/ti_am335x_tscadc.h
-> +++ b/include/linux/mfd/ti_am335x_tscadc.h
-> @@ -162,11 +162,20 @@
->  
->  #define TSCADC_CELLS		2
->  
-> +struct ti_tscadc_data {
-> +	char *name_tscmag;
-> +	char *compat_tscmag;
-> +	char *name_adc;
-> +	char *compat_adc;
+> Looks like a node to me (type: object). But why is a node needed here?
+> 
 
-I think these names should be improved.
+stm32-usbphyc has two phy/child nodes and each phy can be individually 
+tuned.
 
-What is tscmag?
+Depending on the board layout, the tuning can be the same for each phy. 
+The node here avoid to duplicate the tuning parameter in each phy/child 
+node.
 
-Does that represent both the Magnetic Reader and the Touchscreen?
+I was inspired by Documentation/devicetree/bindings/net/snps,dwmac.yaml, 
+snps,axi-config for example.
 
-If so, I'd prefer that you split them.  If not, I need more info.
+>> +        description:
+>> +          It can be necessary to adjust the PHY settings to compensate parasitics, which can be due
+>> +          to USB connector/receptacle, routing, ESD protection component,... Here is the list of
+>> +          all optional parameters to tune the interface of the PHY (HS for High-Speed, FS for Full-
+>> +          Speed, LS for Low-Speed)
+>> +            * st,current-boost, <1> current boosting of 1mA
+>> +                                <2> current boosting of 2mA
+> 
+> Use standard unit suffix.
+> 
 
-For readability, I suggest;
+Ok.
 
-  touchscreen_name
-  touchscreen_compatible
-  mag_reader_name
-  mag_reader_compatible
-  adc_name
-  adc_compatible
-  etc
+> All these need to be a schema, not free form text.
+>
 
-What is a magnetic reader anyway?
+I'm not familiar with schema, could you please point me an example to 
+follow?
 
-Does it read the magnetic stripe on a payment card?
+>> +            * st,no-lsfs-fb-cap, disables the LS/FS feedback capacitor
+>> +            * st,hs-slew-ctrl, slows the HS driver slew rate by 10%
+> 
+> Name the property such that it is self describing. 'slew control'
+> doesn't say what it does to slew rate.
+> 
 
-> +	unsigned int target_clk_rate;
-> +};
-> +
->  struct ti_tscadc_dev {
->  	struct device *dev;
->  	struct regmap *regmap;
->  	void __iomem *tscadc_base;
->  	phys_addr_t tscadc_phys_base;
-> +	const struct ti_tscadc_data *data;
->  	int irq;
->  	int used_cells;	/* 1-2 */
->  	int tsc_wires;
+Ok.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>> +            * st,hs-dc-level, <0> = decreases the HS driver DC level by 5 to 7mV
+>> +                              <1> = increases the HS driver DC level by 5 to 7mV
+>> +                              <2> = increases the HS driver DC level by 10 to 14mV
+>> +            * st,fs-rftime-tuning, enables the FS rise/fall tuning option
+>> +            * st,hs-rftime-reduction, enables the HS rise/fall reduction feature
+>> +            * st,hs-current-trim, controls HS driver current trimming for choke
+>> +                                  <0> = 18.87 mA target current / nominal + 0%
+>> +                                  <1> = 19.165 mA target current / nominal + 1.56%
+>> +                                  <2> = 19.46 mA target current / nominal + 3.12%
+>> +                                  <3> = 19.755 mA target current / nominal + 4.68%
+>> +                                  <4> = 20.05 mA target current / nominal + 6.24%
+>> +                                  <5> = 20.345 mA target current / nominal + 7.8%
+>> +                                  <6> = 20.64 mA target current / nominal + 9.36%
+>> +                                  <7> = 20.935 mA target current / nominal + 10.92%
+>> +                                  <8> = 21.23 mA target current / nominal + 12.48%
+>> +                                  <9> = 21.525 mA target current / nominal + 14.04%
+>> +                                  <10> = 21.82 mA target current / nominal + 15.6%
+>> +                                  <11> = 22.115 mA target current / nominal + 17.16%
+>> +                                  <12> = 22.458 mA target current / nominal + 19.01%
+>> +                                  <13> = 22.755 mA target current / nominal + 20.58%
+>> +                                  <14> = 23.052 mA target current / nominal + 22.16%
+>> +                                  <15> = 23.348 mA target current / nominal + 23.73%
+>> +            * st,hs-impedance-trim, controls HS driver impedance tuning for choke
+>> +                                    <0> = no impedance offset
+>> +                                    <1> = reduces the impedance by 2 ohms
+>> +                                    <2> = reduces the impedance by 4 ohms
+>> +                                    <3> = reduces the impedance by 6 ohms
+>> +            * st,squelch-level, adjusts the squelch DC threshold value
+>> +                                <0> = no shift in threshold
+>> +                                <1> = threshold shift by +7 mV
+>> +                                <2> = threshold shift by -5 mV
+>> +                                <3> = threshold shift by +14 mV
+>> +            * st,hs-rx-gain-eq, enables the HS Rx gain equalizer
+>> +            * st,hs-rx-offset, adjusts the HS Rx offset
+>> +                               <0> = no offset
+>> +                               <1> = offset of +5 mV
+>> +                               <2> = offset of +10 mV
+>> +                               <3> = offset of -5 mV
+>> +            * st,no-hs-ftime-ctrl, disables the HS fall time control of single ended signals
+>> +                                   during pre-emphasis
+>> +            * st,no-lsfs-sc, disables the short circuit protection in LS/FS driver
+>> +            * st,hs-tx-staggering, enables the basic staggering in HS Tx mode
+>> +
+>>       allOf:
+>>         - if:
+>>             properties:
+>> @@ -122,6 +176,18 @@ examples:
+>>     - |
+>>       #include <dt-bindings/clock/stm32mp1-clks.h>
+>>       #include <dt-bindings/reset/stm32mp1-resets.h>
+>> +
+>> +    usb_phy_tuning: usb-phy-tuning {
+>> +        st,hs-dc-level = <2>;
+>> +        st,fs-rftime-tuning;
+>> +        st,hs-rftime-reduction;
+>> +        st,hs-current-trim = <15>;
+>> +        st,hs-impedance-trim = <1>;
+>> +        st,squelch-level = <3>;
+>> +        st,hs-rx-offset = <2>;
+>> +        st,no-lsfs-sc;
+>> +    };
+>> +
+>>       usbphyc: usbphyc@5a006000 {
+>>           compatible = "st,stm32mp1-usbphyc";
+>>           reg = <0x5a006000 0x1000>;
+>> @@ -137,6 +203,7 @@ examples:
+>>               reg = <0>;
+>>               phy-supply = <&vdd_usb>;
+>>               #phy-cells = <0>;
+>> +            st,phy-tuning = <&usb_phy_tuning>;
+> 
+> Just add all the properties here.
+> 
+
+If I add all the properties here...
+
+>>               connector {
+>>                   compatible = "usb-a-connector";
+>>                   vbus-supply = <&vbus_sw>;
+>> @@ -147,6 +214,7 @@ examples:
+>>               reg = <1>;
+>>               phy-supply = <&vdd_usb>;
+>>               #phy-cells = <1>;
+>> +            st,phy-tuning = <&usb_phy_tuning>;
+>>           };
+
+... I have to duplicate them also here (because on this example the 
+layout is the same for both phys.
+That's why st,phy-tuning was a node.
+
+Please advise.
+
+Regards,
+Amelie
+
+>>       };
+>>   ...
+>> -- 
+>> 2.25.1
+>>
+>>
