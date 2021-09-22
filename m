@@ -2,68 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3FB04151B6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AC5A415204
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237738AbhIVUzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 16:55:17 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:46970 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233797AbhIVUzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 16:55:16 -0400
-Received: by mail-oi1-f171.google.com with SMTP id s69so6372796oie.13;
-        Wed, 22 Sep 2021 13:53:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7UQgPbHiiI5fROteq8Hvll/XjdnlIJK9D0aOFIIzhqQ=;
-        b=t3WnURjeSCIuh/rkvI/L1RqKNy4BtXL50wSDruLx5jDk6Lsp0mlPUUQOV1Vcd3VIac
-         sm3EM+vDrbJZjKgCSUb/I3Q1vWrR74gIyIJWD1Pop7rw0TOHiSaWQNF3E7SZg/VC1rws
-         2NLE/8T1dwXRYQi52NImWDAbd1Gxh7OH1T1w71sh4DP0PBJD25/WU5I+4PMZi/T4z1gd
-         SbyNqrZM7HFTjOP3f0LTndUa2jR7ou30OJPk/vMUHuo1V+LkF8ugSbnyJRI33RU62afi
-         zo8EiicNymqxnHxtztD3qLUsHDmyRzfkwRrGouWlWHT9JMqaV5bCVb1rDhOIjRGGHnO7
-         bj3A==
-X-Gm-Message-State: AOAM5300fDxa8LDQSxdYygzIG5y8AtFsff5nVG/M5lfBG4DSzObW1ewJ
-        P/HMpOI98LU+ADXFGkod0Q==
-X-Google-Smtp-Source: ABdhPJwS6+PnDPVLGjmSDm2lajZEue3vo99r/gZh6GWIc5NC9a7fkexwjqMNrK2Fvx+5LHXUA+TFPw==
-X-Received: by 2002:a05:6808:aaa:: with SMTP id r10mr6338506oij.75.1632344026237;
-        Wed, 22 Sep 2021 13:53:46 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id y83sm780487oia.47.2021.09.22.13.53.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 13:53:45 -0700 (PDT)
-Received: (nullmailer pid 1275452 invoked by uid 1000);
-        Wed, 22 Sep 2021 20:53:44 -0000
-Date:   Wed, 22 Sep 2021 15:53:44 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Loic Poulain <loic.poulain@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qusb2: Add compatible for
- QCM2290
-Message-ID: <YUuX2KBf7+6YFcVA@robh.at.kernel.org>
-References: <20210919031110.25064-1-shawn.guo@linaro.org>
- <20210919031110.25064-2-shawn.guo@linaro.org>
+        id S237931AbhIVU45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 16:56:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55352 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237850AbhIVU4t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 16:56:49 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B018B611C4;
+        Wed, 22 Sep 2021 20:55:18 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.lan)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mT9Gu-00CP8z-Mg; Wed, 22 Sep 2021 21:55:16 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Robin Murphy <Robin.Murphy@arm.com>, kernel-team@android.com
+Subject: [PATCH v4 00/10] PCI: Add support for Apple M1
+Date:   Wed, 22 Sep 2021 21:54:48 +0100
+Message-Id: <20210922205458.358517-1-maz@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210919031110.25064-2-shawn.guo@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, kw@linux.com, alyssa@rosenzweig.io, stan@corellium.com, kettenis@openbsd.org, sven@svenpeter.dev, marcan@marcan.st, Robin.Murphy@arm.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 19 Sep 2021 11:11:09 +0800, Shawn Guo wrote:
-> Add compatible for QUSB2 PHY on QCM2290 platform.
-> 
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+This is v4 of the series adding PCIe support for the M1 SoC. Not a lot
+has changed this time around, and most of what I was saying in [1] is
+still valid.
 
-Acked-by: Rob Herring <robh@kernel.org>
+The most important change is that the driver now probes for the number
+of RID-SID mapping registers instead of assuming 64 entries. The rest
+is a bunch of limited cleanups and minor fixes.
+
+This should now be in a state that makes it mergeable, although I
+expect that some of the clock bits may have to be adapted (I haven't
+followed the recent developments on that front).
+
+As always, comments welcome.
+
+[1] https://lore.kernel.org/r/20210913182550.264165-1-maz@kernel.org
+
+Alyssa Rosenzweig (2):
+  PCI: apple: Add initial hardware bring-up
+  PCI: apple: Set up reference clocks when probing
+
+Marc Zyngier (8):
+  irqdomain: Make of_phandle_args_to_fwspec generally available
+  of/irq: Allow matching of an interrupt-map local to an interrupt
+    controller
+  PCI: of: Allow matching of an interrupt-map local to a PCI device
+  PCI: apple: Add INTx and per-port interrupt support
+  arm64: apple: t8103: Add root port interrupt routing
+  PCI: apple: Implement MSI support
+  iommu/dart: Exclude MSI doorbell from PCIe device IOVA range
+  PCI: apple: Configure RID to SID mapper on device addition
+
+ MAINTAINERS                          |   7 +
+ arch/arm64/boot/dts/apple/t8103.dtsi |  33 +-
+ drivers/iommu/apple-dart.c           |  27 +
+ drivers/of/irq.c                     |  17 +-
+ drivers/pci/controller/Kconfig       |  17 +
+ drivers/pci/controller/Makefile      |   1 +
+ drivers/pci/controller/pcie-apple.c  | 826 +++++++++++++++++++++++++++
+ drivers/pci/of.c                     |  10 +-
+ include/linux/irqdomain.h            |   4 +
+ kernel/irq/irqdomain.c               |   6 +-
+ 10 files changed, 935 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/pci/controller/pcie-apple.c
+
+-- 
+2.30.2
+
