@@ -2,82 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D54A4150D5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 21:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24EBC4150E7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:01:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237282AbhIVT7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 15:59:35 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:45616 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbhIVT7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 15:59:34 -0400
-Received: by mail-ot1-f45.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso5127096otv.12;
-        Wed, 22 Sep 2021 12:58:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iaPd+QHHmiMvOvCvDzF4J+PjNGw7QzM9uEOdU0ijBx0=;
-        b=lmSUzZwKLoJbi3rV8b14ueTzvSARIS4af4soLPNuuJhDc27EYAF4AQCEwxM9qG4Ldh
-         SNblY3E+Ti5x5q51TdLKUvqQI0QJJm2QI5dEG3h6sLV1pRn1FfIBfmH1dQnExZkjNaWy
-         EyK1kNhtZk8C3U3APKnabrQCrmpQBaD7IXZOVfnLZwUJtwjktLZPVCZGIRqn06lJ9jw0
-         ZRYKwZgjFp0JKPUHctXJldMcUq65m/H4988xC2qM5PjKqTwrMci6CKtIl53xUltQ6iki
-         c9xd1xgB1hIgaKTw4/4rx0dj1YHIIRI/XzN3Uxq42D42uZwLk6t9THC87ZttVLIL55J3
-         moxw==
-X-Gm-Message-State: AOAM530WnV3Nb1xYiEUoSZc0iRzm3zsRmEi/QfJOsLdjYfhWCKyev3cM
-        AJaDvQSv73T9JUfsmQWRVQ==
-X-Google-Smtp-Source: ABdhPJxYtpvzhIoY0PLePCkbi+/RqQbnPjHxc6x38GmKt2lT/UdKaSb/wKAdy90Adwnkh1e3vG2yCw==
-X-Received: by 2002:a9d:6092:: with SMTP id m18mr817222otj.215.1632340684146;
-        Wed, 22 Sep 2021 12:58:04 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q133sm244494oia.55.2021.09.22.12.58.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 12:58:03 -0700 (PDT)
-Received: (nullmailer pid 1191863 invoked by uid 1000);
-        Wed, 22 Sep 2021 19:58:02 -0000
-Date:   Wed, 22 Sep 2021 14:58:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     devicetree@vger.kernel.org, Bean Huo <beanhuo@micron.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Gyunghoon Kwon <goodjob.kwon@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Jaegeuk Kim <jaegeuk@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-scsi@vger.kernel.org, Can Guo <cang@codeaurora.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-samsung-soc@vger.kernel.org,
-        "Martin K . Petersen" <martin.petersen@oracle.com>
-Subject: Re: [PATCH v3 17/17] dt-bindings: ufs: exynos-ufs: add exynosautov9
- compatible
-Message-ID: <YUuKysgLBtB5jQv1@robh.at.kernel.org>
-References: <20210917065436.145629-1-chanho61.park@samsung.com>
- <CGME20210917065524epcas2p455b2900227b6a20994bec4816248f2bf@epcas2p4.samsung.com>
- <20210917065436.145629-18-chanho61.park@samsung.com>
+        id S237274AbhIVUC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 16:02:58 -0400
+Received: from mo4-p00-ob.smtp.rzone.de ([85.215.255.24]:30551 "EHLO
+        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237341AbhIVUCk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 16:02:40 -0400
+X-Greylist: delayed 87309 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 Sep 2021 16:02:40 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632340852;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=tj9hav2P35+GuDckfzJk3R5QgnH8BuC8JGWAe6zUaf4=;
+    b=eayHNoTtR6c/ev/4/Rz3+8eSqsoeXa98di2dg4xhqYQgFgkGocKwRrZ8jEbbmh7HP5
+    fmM0WbWLPQDhzeB6Sn9B0K20Hnnnh1nX728XVbkyKavJjMLh7IReiGpHjzJi6KgbXhye
+    uJ0cVFv1uASj0Lsz7k6AzLPvRLgjWVPOgILa2az+le0kWq/Z9g8uei4EcvWVFM1ZHZvp
+    J5YhvlyFokG1rzJTZxviUZ4P7IleNRdP679Z/q5T9SPntebpTuyMr+B2GnDrXRe0BES7
+    p4C9lp7k4nUtSQz9XuSYqEwJTZw2p3ZDSbKqMKScSV4K6oDriqQlW+hhS2hrXth7zSln
+    2Lrg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXTbAOHjRHIhr2eFSIIYI="
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
+    with ESMTPSA id 301038x8MK0pJjd
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 22 Sep 2021 22:00:51 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH] arm64: dts: qcom: apq8016-sbc: Clarify firmware-names
+Date:   Wed, 22 Sep 2021 21:58:53 +0200
+Message-Id: <20210922195853.95574-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210917065436.145629-18-chanho61.park@samsung.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Sep 2021 15:54:36 +0900, Chanho Park wrote:
-> Below two compatibles can be used for exynosautov9 SoC UFS controller.
-> 
-> - samsung,exynosautov9-ufs: ExynosAutov9 UFS Physical Host
-> - samsung,exynosautov9-ufs-vh: ExynosAutov9 UFS Virtual Host
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
->  Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Commit 0f6b380d580c ("arm64: dts: qcom: apq8016-sbc: Update modem and WiFi
+firmware path") added "firmware-name"s to the APQ8016 SBC (DB410c) device
+tree to separate the (test key)-signed firmware from other devices.
 
-Acked-by: Rob Herring <robh@kernel.org>
+However, the added names are a bit confusing. The "modem" firmware used by
+DB410c is actually a simplified version for APQ8016 that lacks most of the
+modem functionality (phone calls, SMS etc) that is available on MSM8916.
+Placing it in "qcom/msm8916/modem.mbn" suggests that it supports all
+functionality for MSM and not just the reduced functionality for APQ.
+
+Request the firmware from "qcom/apq8016/modem.mbn" instead to clarify this.
+Do the same for "wcnss.mbn" for consistency (although the WCNSS firmware
+works just fine on MSM8916).
+
+Finally, add a "_sbc" suffix to the WCNSS_qcom_wlan_nv.bin firmware file.
+It seems like the nv.bin firmware is somewhat board specific and can
+therefore vary a bit from device to device. This makes it more clear
+which board it is intended to be used for.
+
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+The new "firmware-name"s have not been in a kernel release yet and
+have also not been submitted for linux-firmware yet so I think it is
+still fine to change this.
+
+I realized this while starting to make some packaging changes for this
+and I think the new names are a bit clearer than the current ones. :)
+---
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+index 351c68d29afb..0e4a1f004021 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+@@ -308,7 +308,7 @@ &mdss {
+ &mpss {
+ 	status = "okay";
+ 
+-	firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mbn";
++	firmware-name = "qcom/apq8016/mba.mbn", "qcom/apq8016/modem.mbn";
+ };
+ 
+ &pm8916_resin {
+@@ -319,7 +319,7 @@ &pm8916_resin {
+ &pronto {
+ 	status = "okay";
+ 
+-	firmware-name = "qcom/msm8916/wcnss.mbn";
++	firmware-name = "qcom/apq8016/wcnss.mbn";
+ };
+ 
+ &sdhc_1 {
+@@ -403,7 +403,7 @@ &wcd_codec {
+ };
+ 
+ &wcnss_ctrl {
+-	firmware-name = "qcom/msm8916/WCNSS_qcom_wlan_nv.bin";
++	firmware-name = "qcom/apq8016/WCNSS_qcom_wlan_nv_sbc.bin";
+ };
+ 
+ /* Enable CoreSight */
+-- 
+2.33.0
+
