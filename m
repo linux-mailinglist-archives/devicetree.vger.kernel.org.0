@@ -2,127 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F215141433E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D7CE414344
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:11:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233336AbhIVIKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 04:10:13 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:32980 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233349AbhIVIKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 04:10:12 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 86491F1;
-        Wed, 22 Sep 2021 10:08:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1632298121;
-        bh=QKoxGIv+eKpVRsooVGP2/KqUDA8JcqOjmb8mxli6lAI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CTLPKwP8+WYzVC9hEnEhGojAE4ljAWOM2mEmjB61yZIq8pXUPCi5JXHsokpGnc8u+
-         mr2k1TbyyXdpsEcNe5IJH2tK+b7NETjkzxZdyUDEEpdTV0vAb0e+z9YV3a33JBrKuM
-         Zlf26FhMDwTbvTOx/mtXGAnoWoqDYtMbKPIMXlEY=
-Date:   Wed, 22 Sep 2021 11:08:40 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [RESEND] [PATCH v2 1/2] dt-bindings: display: bridge: Add
- binding for R-Car MIPI DSI/CSI-2 TX
-Message-ID: <YUrkiDnlDYabSi9T@pendragon.ideasonboard.com>
-References: <20210623135639.17125-1-laurent.pinchart+renesas@ideasonboard.com>
- <YQGFP/cFoSksPyn+@pendragon.ideasonboard.com>
- <CAMuHMdVmTcERvHhLLDrZyC_TDLPU89ksitn0WduJkKqpePCKdg@mail.gmail.com>
- <YUqGWa6q+wYq2vAt@pendragon.ideasonboard.com>
- <CAMuHMdXRhOmj4upp6Zsn3yb5bRdpg8hrgATWJCA6bSdvD=e1qw@mail.gmail.com>
+        id S233569AbhIVIMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 04:12:36 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46758
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233538AbhIVIMb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 04:12:31 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 000D03F331
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 08:10:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632298258;
+        bh=P8Qe07F/xjMQdNLxVav+Rfl78SB2e9oBWelI8/7HSJc=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=ipSWKYeenn5tZF1Kr6wKaMcSRUat1u6CwmnYr4WrC02kROUQpYfZQ94ZsUcNSbi0u
+         wdYmBf7E0s0byAmRaICB23GqWBdCR9aXAoxnYZY4UQaIXZr2WO9JAWp6AOjs6JRqDt
+         amu4KBvhXWWpzuofD2OhpEaqVP4bhTUawHQL9TEBNW1cbupOsdnd4AZhN17dwdXh3f
+         oSolPb0ORahsiPfKshml0Z4fcu95pkYV3w5c7e4aS5d3GARLDAeLC8pXY3uBcSF0P/
+         fsVsFRTBQxonTseLnZ63acpk6etfaCPhQMuF3I5aZd/jjp3EcBp5CEnkIpD4WZ9Q88
+         WPE2S5xRcL0iw==
+Received: by mail-wr1-f71.google.com with SMTP id r9-20020a5d4989000000b0015d0fbb8823so1354309wrq.18
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 01:10:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=P8Qe07F/xjMQdNLxVav+Rfl78SB2e9oBWelI8/7HSJc=;
+        b=AmrXqsk6u5X6n0hqnhaFK2Z7tAcLAHMhv2a+yWptMS6qDr0Z4PUOtvnkhF3XeTzbHJ
+         FxyverrhtMEiAfwlBn50U7Ote6lqB1U+ARv+hRRR2HLPo+ggg00OmA16sRCamu/0qqxy
+         JEQlb8+iQeXAnPAO5qmb8P6Hr1H2RUwTmj0YU9xYfg7u03lqH7dDcn1pKxyna7hprnM0
+         hrtDroHlTGW1HpBTiEgmeQB7BiLlIqOYRWAOjMibWdNp7F9FKT2veLssCNDO/6AdibVA
+         1R1yEfKo/7AZ0O/q8yt3oe/4Z4MXLDYvL+LFl9WzQ+KOwBAU4g2WTXxjWlAECv5wLVgs
+         xSaw==
+X-Gm-Message-State: AOAM531ZZjrQJxTu6xKhn9XIgK6EulxW9CoVYNDgJZG6tBYYSD874wOJ
+        sZaENmeiuEPPQcw0XJvT3DVshrMF82RbU2HYxYjRNAkutlrJqX84YfgJyR9e3+DtTjg4quNmKyv
+        tx+Y/4lYS1VV5eaEb3W+RLlKKj3Hivp65S1n1iY8=
+X-Received: by 2002:a05:600c:3b89:: with SMTP id n9mr9113899wms.186.1632298258646;
+        Wed, 22 Sep 2021 01:10:58 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzb3Ljj7oUI5lHEYQz4nwFDjBGGdyp2FKjKpmWPv5gSTXpVI7LSRlWIyJA3WG9xT/pBfVR0VA==
+X-Received: by 2002:a05:600c:3b89:: with SMTP id n9mr9113885wms.186.1632298258458;
+        Wed, 22 Sep 2021 01:10:58 -0700 (PDT)
+Received: from [192.168.0.134] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id d24sm1174219wmb.35.2021.09.22.01.10.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Sep 2021 01:10:58 -0700 (PDT)
+Subject: Re: [RESEND PATCH v2 1/4] mfd: sec-irq: Do not enforce (incorrect)
+ interrupt trigger type
+To:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+References: <20210602110445.33536-1-krzysztof.kozlowski@canonical.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <7ac677f1-2928-21de-a226-449e72b1bd10@canonical.com>
+Date:   Wed, 22 Sep 2021 10:10:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <20210602110445.33536-1-krzysztof.kozlowski@canonical.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXRhOmj4upp6Zsn3yb5bRdpg8hrgATWJCA6bSdvD=e1qw@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On Wed, Sep 22, 2021 at 08:43:57AM +0200, Geert Uytterhoeven wrote:
-> On Wed, Sep 22, 2021 at 3:27 AM Laurent Pinchart wrote:
-> > On Tue, Sep 21, 2021 at 05:53:52PM +0200, Geert Uytterhoeven wrote:
-> > > On Wed, Jul 28, 2021 at 6:26 PM Laurent Pinchart wrote:
-> > > > The R-Car MIPI DSI/CSI-2 TX is embedded in the Renesas R-Car V3U SoC. It
-> > > > can operate in either DSI or CSI-2 mode, with up to four data lanes.
-> > > >
-> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > > > Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-> > > > @@ -0,0 +1,118 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/display/bridge/renesas,dsi-csi2-tx.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Renesas R-Car MIPI DSI/CSI-2 Encoder
-> > > > +
-> > > > +maintainers:
-> > > > +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > > > +
-> > > > +description: |
-> > > > +  This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
-> > > > +  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
-> > > > +  to four data lanes.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - renesas,r8a779a0-dsi-csi2-tx    # for V3U
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    items:
-> > > > +      - description: Functional clock
-> > > > +      - description: DSI (and CSI-2) functional clock
-> > > > +      - description: PLL reference clock
-> > > > +
-> > > > +  clock-names:
-> > > > +    items:
-> > > > +      - const: fck
-> > > > +      - const: dsi
-> > > > +      - const: pll
-> > >
-> > > No interrupts?
-> > > The hardware manual says there are 9 interrupts.
-> >
-> > Who comes up with such insanely high numbers of interrupts ? :-)
-> >
-> > What the hardware manual doesn't document is how interrupts are mapped.
-> > There's indeed 9 of them, and there are 9 interrupt sources, but that's
-> > all we know. I can easily add a
-> >
-> >   interrupts:
-> >     maxItems: 9
-> >
-> > but I can add interrupt names without additional information. It may be
-> > possible to deduce some of the interrupt mappings from experiments, but
-> > not all of them. What do you think would be a good way forward ? Leave
-> > the interrupts out for now as we don't have the information ? Only list
-> > the interrupts but not their names ? Something else ?
+On 02/06/2021 13:04, Krzysztof Kozlowski wrote:
+> From: Krzysztof Kozlowski <krzk@kernel.org>
 > 
-> I think what we did in the past is not list the interrupts at all.
-> They can be added once we receive more documentation.
+> Interrupt line can be configured on different hardware in different way,
+> even inverted.  Therefore driver should not enforce specific trigger
+> type - edge falling - but instead rely on Devicetree to configure it.
+> 
+> The Samsung PMIC drivers are used only on Devicetree boards.
+> 
+> Additionally, the PMIC datasheets describe the interrupt line as active
+> low with a requirement of acknowledge from the CPU therefore the edge
+> falling is not correct.
+> 
+> Marek Szyprowski reports that together with DTS change (proper level in
+> DTS) it fixes RTC alarm failure that he observed from time to time on
+> TM2e board.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> 
+> ---
+> 
+> Rebased on https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/log/?h=for-mfd-next
+> 
+> Changes since v1:
+> 1. Mention in commit msg that this fixes TM2e RTC alarm.
+> 2. Add Marek's tested-by.
+> ---
+>  drivers/mfd/sec-irq.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 
-Sounds good to me, as that's what this patch does already ;-) A R-b or
-A-b tag is welcome.
+Dear Lee,
 
--- 
-Regards,
+This was already a resend. Any comments from your side?
 
-Laurent Pinchart
+Best regards,
+Krzysztof
