@@ -2,120 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 045B14143FB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:44:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A57414437
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 10:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234030AbhIVIqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 04:46:23 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:48102
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234022AbhIVIqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 04:46:22 -0400
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5514D3F320
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 08:44:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632300292;
-        bh=z8fZpvZ//AsliWlBk6ZI/8MtJW2aVmSD5QrohcqQ3Yg=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=Yv+TYoT/vfF6FFIa9Wd6PsSFGharJyKvrM22BnVqpFtZ9zqZVglPMuY9zEE3tvDcI
-         5z9hMpu0i+cB8nfDUotXlba9kgOtX1tPEdcw067fJy2W2QQoMH56I1o7N4lfHVqb7Y
-         TiRF+55OT1Ju4EDdiGeaa8S4vdLtJdgFuxI1v7a7Qm4+ZIANAcGuQxYCFeYsrEtcgO
-         p2vilOLY/BjLJB3F1MKhgsxkbxryq6EzAgGzwWdhutEunhJp4AHL2cf9CDzmE8VWe4
-         02vb531iodh4Yay2b5fFfHPRsgxV+9ryC0A9XfKbwJgK3f8Ip0uoDZRAaLXJTXHC4c
-         27WxRQm/v2tEQ==
-Received: by mail-wr1-f71.google.com with SMTP id x7-20020a5d6507000000b0015dada209b1so1446916wru.15
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 01:44:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=z8fZpvZ//AsliWlBk6ZI/8MtJW2aVmSD5QrohcqQ3Yg=;
-        b=nidlyE36GCR9v4k1FlCgXTto/KDs6NMKuFIILLoOUiw/ReknRIgZLEIaXimIdVi70F
-         CLGatg39blvKSPhxsW0Alvk6vWk3C8xOZre9dJUeZ06lBM920bT99zGyUB9/K8ddZCSv
-         njl1iXcrSCVpATrIr5PAb+PkPuiwE7irlQ4jknCSXWDlPKknyt5Ci2Rs8dKgRWBRykAj
-         vgLc6YERvl46YBVdn2lrDVMMI8ou74GBjH4d3dCnBMbA5rtXCXK8kVoNu+ZffC/blxVI
-         FZX4U0/aQGHjs1YBbndeqC4yfJ6T0zGqHwaXZal/W8JCftqhV0HJZPwcCUjfzfxmBIHK
-         Vvqg==
-X-Gm-Message-State: AOAM531gUMetW2pRHZWqH3gTqimQFGsoCZ9Cx0+m1MAiZ6pljmhHrdzA
-        cHtgwfRKfh83gDLLnnzuWQgyO22h8LMQ7ZffV2kFwCIFBYth3ERcLzzalYJ6H+xUXIKPQfNVjLs
-        WiauSmIhK2WxCWmSC6TTV2DgzxzGzwtZPvLXUGWU=
-X-Received: by 2002:adf:8b19:: with SMTP id n25mr43049480wra.216.1632300291858;
-        Wed, 22 Sep 2021 01:44:51 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwOzt5CWBoWaHmRLpJDmTWsqixtsWYMLhwi8nFJSalUAu/s/IlJpD6Al6BX4ejH9Ir7BxkZGA==
-X-Received: by 2002:adf:8b19:: with SMTP id n25mr43049468wra.216.1632300291674;
-        Wed, 22 Sep 2021 01:44:51 -0700 (PDT)
-Received: from localhost.localdomain (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id o7sm1851490wro.45.2021.09.22.01.44.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 01:44:51 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [RESEND PATCH 2/2] powerpc/powermac: constify device_node in of_irq_parse_oldworld()
-Date:   Wed, 22 Sep 2021 10:44:15 +0200
-Message-Id: <20210922084415.18269-2-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210922084415.18269-1-krzysztof.kozlowski@canonical.com>
-References: <20210922084415.18269-1-krzysztof.kozlowski@canonical.com>
+        id S234067AbhIVIxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 04:53:46 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:53134 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233741AbhIVIxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 04:53:46 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18M8q6Po021078;
+        Wed, 22 Sep 2021 03:52:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1632300726;
+        bh=3ODZ7diwGfUhZsRFHWYGQCSqBqy2RAbSXekmn7aQ/3w=;
+        h=From:To:CC:Subject:Date;
+        b=p0RD7oGcS9rnKaTR1wDdgAooqq4LoHy2hnNwkygEe9Xp/+td3P7347wJ6AzLefUtF
+         7l6ifNvGlC38cI+J7REpfztCGQiE+r5lcxjK1f3q2CaBzY7uwL5mbyuBBD1daRRpKS
+         FtfWm97PD7RxxiFooPVma1kYTY7eM7CmRPaLzsrQ=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18M8q6rl090009
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 Sep 2021 03:52:06 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
+ Sep 2021 03:52:06 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 22 Sep 2021 03:52:06 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18M8q3oN067889;
+        Wed, 22 Sep 2021 03:52:05 -0500
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <devicetree@vger.kernel.org>
+CC:     <mpm@selenic.com>, <herbert@gondor.apana.org.au>,
+        <robh+dt@kernel.org>, <j-choudhary@ti.com>,
+        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2] dt-bindings: rng: convert OMAP and Inside-Secure HWRNG to yaml schema
+Date:   Wed, 22 Sep 2021 14:22:03 +0530
+Message-ID: <20210922085203.2547-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The of_irq_parse_oldworld() does not modify passed device_node so make
-it a pointer to const for safety.
+Converts the RNG bindings for OMAP SoCs and Inside-Secure
+HWRNG modules to YAML schema.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 ---
- arch/powerpc/platforms/powermac/pic.c | 2 +-
- include/linux/of_irq.h                | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+Changelog:
+v2:
+- modified the license-identifier
+- modified 'clock-names' property
 
-diff --git a/arch/powerpc/platforms/powermac/pic.c b/arch/powerpc/platforms/powermac/pic.c
-index 4921bccf0376..af5ca1f41bb1 100644
---- a/arch/powerpc/platforms/powermac/pic.c
-+++ b/arch/powerpc/platforms/powermac/pic.c
-@@ -384,7 +384,7 @@ static void __init pmac_pic_probe_oldstyle(void)
- #endif
- }
- 
--int of_irq_parse_oldworld(struct device_node *device, int index,
-+int of_irq_parse_oldworld(const struct device_node *device, int index,
- 			struct of_phandle_args *out_irq)
- {
- 	const u32 *ints = NULL;
-diff --git a/include/linux/of_irq.h b/include/linux/of_irq.h
-index aaf219bd0354..6074fdf51f0c 100644
---- a/include/linux/of_irq.h
-+++ b/include/linux/of_irq.h
-@@ -20,12 +20,12 @@ typedef int (*of_irq_init_cb_t)(struct device_node *, struct device_node *);
- #if defined(CONFIG_PPC32) && defined(CONFIG_PPC_PMAC)
- extern unsigned int of_irq_workarounds;
- extern struct device_node *of_irq_dflt_pic;
--extern int of_irq_parse_oldworld(struct device_node *device, int index,
-+extern int of_irq_parse_oldworld(const struct device_node *device, int index,
- 			       struct of_phandle_args *out_irq);
- #else /* CONFIG_PPC32 && CONFIG_PPC_PMAC */
- #define of_irq_workarounds (0)
- #define of_irq_dflt_pic (NULL)
--static inline int of_irq_parse_oldworld(struct device_node *device, int index,
-+static inline int of_irq_parse_oldworld(const struct device_node *device, int index,
- 				      struct of_phandle_args *out_irq)
- {
- 	return -EINVAL;
+ .../devicetree/bindings/rng/omap_rng.txt      | 38 --------
+ .../devicetree/bindings/rng/omap_rng.yaml     | 93 +++++++++++++++++++
+ 2 files changed, 93 insertions(+), 38 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rng/omap_rng.txt
+ create mode 100644 Documentation/devicetree/bindings/rng/omap_rng.yaml
+
+diff --git a/Documentation/devicetree/bindings/rng/omap_rng.txt b/Documentation/devicetree/bindings/rng/omap_rng.txt
+deleted file mode 100644
+index ea434ce50f36..000000000000
+--- a/Documentation/devicetree/bindings/rng/omap_rng.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-OMAP SoC and Inside-Secure HWRNG Module
+-
+-Required properties:
+-
+-- compatible : Should contain entries for this and backward compatible
+-  RNG versions:
+-  - "ti,omap2-rng" for OMAP2.
+-  - "ti,omap4-rng" for OMAP4, OMAP5 and AM33XX.
+-  - "inside-secure,safexcel-eip76" for SoCs with EIP76 IP block
+-  Note that these two versions are incompatible.
+-- ti,hwmods: Name of the hwmod associated with the RNG module
+-- reg : Offset and length of the register set for the module
+-- interrupts : the interrupt number for the RNG module.
+-		Used for "ti,omap4-rng" and "inside-secure,safexcel-eip76"
+-- clocks: the trng clock source. Only mandatory for the
+-  "inside-secure,safexcel-eip76" compatible, the second clock is
+-  needed for the Armada 7K/8K SoCs
+-- clock-names: mandatory if there is a second clock, in this case the
+-  name must be "core" for the first clock and "reg" for the second
+-  one
+-
+-
+-Example:
+-/* AM335x */
+-rng: rng@48310000 {
+-	compatible = "ti,omap4-rng";
+-	ti,hwmods = "rng";
+-	reg = <0x48310000 0x2000>;
+-	interrupts = <111>;
+-};
+-
+-/* SafeXcel IP-76 */
+-trng: rng@f2760000 {
+-	compatible = "inside-secure,safexcel-eip76";
+-	reg = <0xf2760000 0x7d>;
+-	interrupts = <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
+-	clocks = <&cpm_syscon0 1 25>;
+-};
+diff --git a/Documentation/devicetree/bindings/rng/omap_rng.yaml b/Documentation/devicetree/bindings/rng/omap_rng.yaml
+new file mode 100644
+index 000000000000..6198311d9f72
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rng/omap_rng.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rng/omap_rng.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OMAP SoC and Inside-Secure HWRNG Module
++
++maintainers:
++  - Jayesh Choudhary <j-choudhary@ti.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,omap2-rng
++      - ti,omap4-rng
++      - inside-secure,safexcel-eip76
++
++  ti,hwmods:
++    const: rng
++    deprecated: true
++    description: Name of the hwmod associated with the RNG module
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++    items:
++      - description: EIP150 gatable clock
++      - description: Main gatable clock
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: core
++      - const: reg
++
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ti,omap4-rng
++              - inside-secure,safexcel-eip76
++
++    then:
++      required:
++        - interrupts
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - inside-secure,safexcel-eip76
++
++    then:
++      required:
++        - clocks
++
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    /* AM335x */
++    rng: rng@48310000 {
++            compatible = "ti,omap4-rng";
++            ti,hwmods = "rng";
++            reg = <0x48310000 0x2000>;
++            interrupts = <111>;
++    };
++  - |
++    /* SafeXcel IP-76 */
++    trng: rng@f2760000 {
++            compatible = "inside-secure,safexcel-eip76";
++            reg = <0xf2760000 0x7d>;
++            interrupts = <0 59 4>;
++            clocks = <&cpm_syscon0 1 25>;
++    };
++
++...
 -- 
-2.30.2
+2.17.1
 
