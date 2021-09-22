@@ -2,53 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE45A414115
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 07:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C251F414133
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 07:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231929AbhIVFLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 01:11:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49362 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231791AbhIVFLm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 01:11:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 57354611C6;
-        Wed, 22 Sep 2021 05:10:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632287412;
-        bh=JQnSd+cAl/5+FLE07eY8U96T+jHtRzYG7q1o4fBOIJQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gMCwmEPoJPOG4ufOwf/BJcbKXCiZInwpgES0ZC1Pi9y5xzRRSmExagGv2mKdEuBh2
-         oHxliWpSvrfYLfUlnuZlkXUMDVwU/f+wymo2V/Bv0AC2C4g+sFRqLnDbut3vv3O0Au
-         SZSONNC2r2ihTIdJjVH8Ejo9yfIXtV8NqTuCFUwoMQlx0Bj3vaUudHZqxwb0tDUqxN
-         Hby+eTUMZB3dyHJ8vB8JaaHjBl4tKAdtHuA/f8zLxKv2pD2DVe/rTIMrBx0nk2JLZb
-         U3c+5PfudDJHJTcxSFNm+bNvEFILBBk5j+Amw1T9ipZfB2CtKWQMy4N8iNgC79LJmx
-         A/vI2ns3MXfwQ==
-Date:   Wed, 22 Sep 2021 13:10:07 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>
-Subject: Re: [PATCH 1/2] arm64: dts: freescale: fix arm,sp805 compatible
- string
-Message-ID: <20210922051006.GC13480@dragon>
-References: <20210826123529.737398-1-michael@walle.cc>
+        id S231901AbhIVF1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 01:27:20 -0400
+Received: from forward106j.mail.yandex.net ([5.45.198.249]:52170 "EHLO
+        forward106j.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231896AbhIVF1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 01:27:20 -0400
+X-Greylist: delayed 838 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 Sep 2021 01:27:19 EDT
+Received: from myt6-43c1316fdabf.qloud-c.yandex.net (myt6-43c1316fdabf.qloud-c.yandex.net [IPv6:2a02:6b8:c12:370d:0:640:43c1:316f])
+        by forward106j.mail.yandex.net (Yandex) with ESMTP id 7BDD5136A87F;
+        Wed, 22 Sep 2021 08:25:48 +0300 (MSK)
+Received: from myt5-cceafa914410.qloud-c.yandex.net (myt5-cceafa914410.qloud-c.yandex.net [2a02:6b8:c12:3b23:0:640:ccea:fa91])
+        by myt6-43c1316fdabf.qloud-c.yandex.net (mxback/Yandex) with ESMTP id aeAFcq1fO2-PlD8hGMN;
+        Wed, 22 Sep 2021 08:25:48 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1632288348;
+        bh=T51rUNPVohQf+3lV1GDaVcNQ8Jynk/Br7M1fk9sxHeQ=;
+        h=Message-ID:Subject:To:From:In-Reply-To:Cc:References:Date;
+        b=kVVNjrWLABjth60iiq6/rI7wNDsrf8wtQE3jiJFWN9IFfl9wKMwY/ObWvd9xSbBI7
+         T0XiwT2WbKtYQXJBIIYi1w6iPJc2QTdnd9q/IdsspgQlv2oHDAdEDHPPIL2S5QcEuh
+         YAGM5Guw/vkXQCG9YolVo+ZNkJsCJ+Mwub7Rf47M=
+Authentication-Results: myt6-43c1316fdabf.qloud-c.yandex.net; dkim=pass header.i=@maquefel.me
+Received: by myt5-cceafa914410.qloud-c.yandex.net (smtp/Yandex) with ESMTPSA id Me1tdhdSba-Pkxqs8sr;
+        Wed, 22 Sep 2021 08:25:46 +0300
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client certificate not present)
+Date:   Wed, 22 Sep 2021 08:25:43 +0300
+From:   Nikita Shubin <nikita.shubin@maquefel.me>
+To:     Atish Patra <atish.patra@wdc.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        "Darrick J. Wong" <djwong@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Jiri Olsa <jolsa@redhat.com>,
+        John Garry <john.garry@huawei.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vincent Chen <vincent.chen@sifive.com>
+Subject: Re: [v3 01/10] RISC-V: Remove the current perf implementation
+Message-ID: <20210922082543.71fc5619@redslave.neermore.group>
+In-Reply-To: <238571632287002@mail.yandex.ru>
+References: <20210910192757.2309100-1-atish.patra@wdc.com>
+        <20210910192757.2309100-2-atish.patra@wdc.com>
+        <238571632287002@mail.yandex.ru>
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210826123529.737398-1-michael@walle.cc>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 26, 2021 at 02:35:28PM +0200, Michael Walle wrote:
-> According to Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-> the compatible is:
->   compatible = "arm,sp805", "arm,primecell";
-> 
-> The current compatible string doesn't exist at all. Fix it.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
+On Wed, 22 Sep 2021 08:11:44 +0300
+nikita.shubin@maquefel.me wrote:
 
-Applied, thanks!
+> Hello Atish.
+> =C2=A0
+> 10.09.2021, 22:28, "Atish Patra" <atish.patra@wdc.com>:
+>=20
+> > The current perf implementation in RISC-V is not very useful as it
+> > can not count any events other than cycle/instructions. Moreover,
+> > perf record can not be used or the events can not be started or
+> > stopped.
+> >=20
+> > Remove the implementation now for a better platform driver in future
+> > that will implement most of the missing functionality.
+> Your v3 version still breaks the build with CONFIG_BPF_SYSCALL
+> enabled:=20
+> kernel/events/core.c: In function 'bpf_overflow_handler':
+> kernel/events/core.c:9914:18: error: assignment to
+> 'bpf_user_pt_regs_t *' {aka 'struct user_regs_struct *'} from
+> incompatible pointer type 'struct pt_regs *'
+> [-Werror=3Dincompatible-pointer-types] 9914 | =C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ctx.regs =3D
+> perf_arch_bpf_user_pt_regs(regs); | =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0^=20
+
+Sorry for the noise.
+
+Everything complies fine - i mistaken and applied older version again.=20
+
+> Yours,
+> Nikita Shubin.
+>=20
+
