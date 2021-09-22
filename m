@@ -2,124 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E8564142FA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 09:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26595414319
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 09:57:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233404AbhIVH5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 03:57:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48812 "EHLO
+        id S233396AbhIVH7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 03:59:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233303AbhIVH5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 03:57:11 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39BF5C061574;
-        Wed, 22 Sep 2021 00:55:42 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id lb1-20020a17090b4a4100b001993f863df2so1615514pjb.5;
-        Wed, 22 Sep 2021 00:55:42 -0700 (PDT)
+        with ESMTP id S233394AbhIVH7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 03:59:06 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59986C061574
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 00:57:36 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id t18so4320990wrb.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 00:57:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=a4LVEfaLq327oC+OuEdH7ELI4IIn+exl8gSPSV42DbE=;
-        b=DWmJa+DLG5+58msZw2eol35HwBKnYSQ7t02TLOj6y7kQuax03g9P17nczPrnLMeZ7z
-         3sV0IwuR+61tJIjidNpyn2DIZkYiT8wnQLxkzgVir/0kRS+p3CPni+wg/rV+ywpzeydM
-         G6PgM3M9JIZENg/tHQAUiEO4hzKKj9XEmfOstaWucgBiOgOd4yL1vEJHRESuqkajqhHU
-         xXlTNa42T8o0Hvt334nWGwN64pd36MIqzhFPHlnN2GfOznadFxq047OjLsw2n4/gqCa+
-         iLGPuOD7esCH/C+3dxb6kF5Po1ylFMbEOwmPyIy+qdMEnHf3lUpH9fxWPTvQHlj95XWq
-         0McQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=fGXl0KeIjcoM5s5bRzzdyi1aRveqH8tZqcXcxjtKyJs=;
+        b=iYe8BPNL2kyGirvgQnm/X0Y/XhTSprHlKfUERs6a5402Vdth73+NESFvf3JhHEQhJn
+         8La3QDQ79in72RQRrxokSyALYTpLdUqeWTE89Qzo85XxC5ERrNp6ToEIKLsIrwt+kSgm
+         xy8fQJzEj37RH0Z9xgj0Y/q3CZ99K+m2Q2u+ciLJ2AKrLQAe9GLOT3Cpv0Cdct8TPyIW
+         Em85M8ennpRBWzwF8RDK8ESpQBplUD3keFSQcyvBDUVYMdksSDvdF2cb+GNuykFDtJvM
+         JprN0A+nYc54SLif/45hJ0fN926VcdHlcIMHW1da8C17mccT+gYd+wf8v/dtVVi7XTrY
+         6S3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=a4LVEfaLq327oC+OuEdH7ELI4IIn+exl8gSPSV42DbE=;
-        b=cmLbtrJ7RUUvd/xxecI9zlxZZ07Qy9bpaHxsVsR/8Q5noCFAmn+rgj4pkO5MUkEdzZ
-         ypTnf3WbaiPSpjvXNLKAobfsN1q1BPSPoEaZ8oKwmGkY4mjgGpqd7qRm93RdCHMkyMe1
-         4MP1r/dKE3JmWlR5zV9iW8U37i4ll6p13h4PKhdGERCrFykllE4fHmD2Gn/wjppF/ZOG
-         IDKLlJaqFIsilclRivv6fcTYHJ2WL/QrfUzsHjvFA9Yy65tM6JiCffDuj++lzZ04vh4V
-         aBXou4AMmC9H8pNtaFJHPGHJEZRu5PPTGVpD0ILMQQC57IKFYXJ/wrB+tBAlrZpP/aqB
-         7ESg==
-X-Gm-Message-State: AOAM531zju8WB1Xl8vIEZUtl1t0OA7ZSJSXnYHGXyZ2mHvpNDrmIaEmc
-        WLipjcu2UUtPLpZs2SXSx+fwK2NLSnA=
-X-Google-Smtp-Source: ABdhPJxrg2xQum3vEzcdb8t6ZMjs25UcmhqVGJerQo4ZN/JiJ7Y3MAG2gCKgEruTaH5l6KhsofKj6w==
-X-Received: by 2002:a17:90a:d516:: with SMTP id t22mr9821382pju.208.1632297341658;
-        Wed, 22 Sep 2021 00:55:41 -0700 (PDT)
-Received: from [172.30.1.2] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id d3sm1438903pfn.156.2021.09.22.00.55.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Sep 2021 00:55:40 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] devfreq: exynos-ppmu: use node names with hyphens
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=fGXl0KeIjcoM5s5bRzzdyi1aRveqH8tZqcXcxjtKyJs=;
+        b=7IHgU2ws2jvJKbAGCVphezg9rchxP3tWbTXbEy8qwcmxhXHF71gQ4jDfZLp1LfEGce
+         HTAzmbUkMWOXyehVRHKwzG16E8oI0PCrNUEhSJKOWV6AL0p1YhQl+tCWfjrFTHZhB665
+         O+s0tKbI+y+tLmSNdbab/nxTCqsajw5msLaE8+dDKSU/SCqYKpyd0RY56Ly1NznEhYcI
+         pRurY0Q+oDzIxK10nBPuMBNvdL+ti0S3V5C36xJxE5Fyqut7zpDxmOYxFg5A8WjDFE4o
+         Vqaqro3F+USnczqJQ6210AUuvos9zGWa/xyKaxp+cjqDuncgkpLAGDkxXn671PaAZc+I
+         7nqQ==
+X-Gm-Message-State: AOAM532/mNQXeCVNdccsdlTEMG56rMnmNYYb0F3wHG93qfnbTWRyTjiM
+        YfVr9+GTG/isf74rZhJ8fyraIQ==
+X-Google-Smtp-Source: ABdhPJwkICQgfJ7bWJwiuTYm+f+/7r28Cdl77ODCGFT7Pc9HRYSxuz9HKikTFnqTpprmjU2cabXvxA==
+X-Received: by 2002:a05:6000:d2:: with SMTP id q18mr16952300wrx.4.1632297454866;
+        Wed, 22 Sep 2021 00:57:34 -0700 (PDT)
+Received: from google.com ([95.148.6.233])
+        by smtp.gmail.com with ESMTPSA id p6sm1308202wrq.47.2021.09.22.00.57.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Sep 2021 00:57:34 -0700 (PDT)
+Date:   Wed, 22 Sep 2021 08:57:32 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-References: <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
- <20210920071753.38560-1-krzysztof.kozlowski@canonical.com>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-Message-ID: <83206dd4-c779-1090-9394-2519d4747206@gmail.com>
-Date:   Wed, 22 Sep 2021 16:55:37 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        linux-phy@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        devicetree@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: brcm,cru: add clkset syscon
+Message-ID: <YUrh7A0ZPBhHjy2d@google.com>
+References: <20210913080024.6951-1-zajec5@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210920071753.38560-1-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210913080024.6951-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Mon, 13 Sep 2021, Rafał Miłecki wrote:
 
-On 21. 9. 20. 오후 4:17, Krzysztof Kozlowski wrote:
-> Devicetree naming convention requires device node names to use hyphens
-> instead of underscore, so Exynos5422 devfreq event name
-> "ppmu-event3-dmc0_0" should be "ppmu-event3-dmc0-0".  Newly introduced
-> dtschema enforces this, however the driver still expects old name with
-> an underscore.
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Add new events for Exynos5422 while still accepting old name for
-> backwards compatibility.
+> CRU has a shared register that is used e.g. to control USB 2.0 PHY block
+> access. It's a single 32 b register. Document it as syscon so it can be
+> used with a regmap.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->   drivers/devfreq/event/exynos-ppmu.c | 7 ++++++-
->   1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/devfreq/event/exynos-ppmu.c b/drivers/devfreq/event/exynos-ppmu.c
-> index 17ed980d9099..541bd13ab61d 100644
-> --- a/drivers/devfreq/event/exynos-ppmu.c
-> +++ b/drivers/devfreq/event/exynos-ppmu.c
-> @@ -94,11 +94,16 @@ static struct __exynos_ppmu_events {
->   	PPMU_EVENT(d1-general),
->   	PPMU_EVENT(d1-rt),
->   
-> -	/* For Exynos5422 SoC */
-> +	/* For Exynos5422 SoC, deprecated (backwards compatible) */
->   	PPMU_EVENT(dmc0_0),
->   	PPMU_EVENT(dmc0_1),
->   	PPMU_EVENT(dmc1_0),
->   	PPMU_EVENT(dmc1_1),
-> +	/* For Exynos5422 SoC */
-> +	PPMU_EVENT(dmc0-0),
-> +	PPMU_EVENT(dmc0-1),
-> +	PPMU_EVENT(dmc1-0),
-> +	PPMU_EVENT(dmc1-1),
->   };
->   
->   static int __exynos_ppmu_find_ppmu_id(const char *edev_name)
-> 
+>  Documentation/devicetree/bindings/mfd/brcm,cru.yaml | 8 ++++++++
+>  Documentation/devicetree/bindings/mfd/syscon.yaml   | 1 +
+>  2 files changed, 9 insertions(+)
 
-Applied it. Thanks.
+Applied, thanks.
 
 -- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
