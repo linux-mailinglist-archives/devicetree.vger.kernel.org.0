@@ -2,365 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA7974146EA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8CEE4146E4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234798AbhIVKq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 06:46:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60404 "EHLO
+        id S235017AbhIVKpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 06:45:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235171AbhIVKqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:46:19 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD03C061757
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:44:48 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id eg28so8314774edb.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:44:48 -0700 (PDT)
+        with ESMTP id S234900AbhIVKpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:45:23 -0400
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A640CC061757
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:43:53 -0700 (PDT)
+Received: by mail-vs1-xe35.google.com with SMTP id f18so2478909vsp.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:43:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=4Q8/Q6MLgTcscHegRcSc+UbOB0cyHVp/rZ/oZGT2UHY=;
-        b=XkJcsTa9xEX1C5ZsyR+px+QMlI5l/VMX5nNFekS9bGdP8BDlby4udykB8i88HGJPg/
-         X5bav7LyKjU0nk0rjfdTjPsX8jphUQ4W2Yd3b5x6peR2DDvdox+z03pvzP84J1QAZRbZ
-         r2HP0IplLfdtmkCQzxwVK3i8acrNyQYq8FAVOX9s1TRGZvWjm00x/1ZvWwg6I93G8Z1R
-         tdh0PgyME0EakKd0jLWFvB6F1EkGvTkXLvU5Sr0RrSJAiZD/J+seXDtYPv1rMi4ZBakC
-         Pqe5vrNRCk6axZ38pgLvoS2yPRzBHIQWEGlbl7Zd4g6Zr4dfUFV8cWnHrrJbfZyhy/NU
-         wUGA==
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Qo78C9hpTaUZzshSE3JqG8ok1Cx6hErSNU/DUKP7eFk=;
+        b=oAitpk7+hwMaSzXiFoweF6+l6LfDs62vtoxg8zfF1Brb15BUTYk0A3vw7YvX0PqHzx
+         L4Y/1RMN6CUwiDmNgPLuzuz0kCe9a8KNFrR9e6uq0s/rAbH0FASu9fzwqqrYY6SNOxN2
+         o7W9NfSNODqb+axmlIUsYV9UlFO6bLMt+5v4s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=4Q8/Q6MLgTcscHegRcSc+UbOB0cyHVp/rZ/oZGT2UHY=;
-        b=4tMlAZMXCl2bfDChi2V6BPz6rHJfXIl4JzwN76EqXpBos9OqkOt9jor5VpuUxtfvH3
-         gjFA8fPW/JEiV5JnPDDc1J8sSRsrkDIKiiylp19/iF0LcRFoPJ5IobHdsymmqjNe3kNi
-         r0S1JvrW19G36Xf7ZR8viiGyjbrmi6UtYjrAVwwLGu+H0+5YxnzD35XRtsuEQI2+Hs6m
-         qs94AVFuj4ldIAfnscLRPBvPpYPyefRnJ7XOSUz0NXyCqKvg+RpVkHzEsDUk4mPgXH7o
-         bNl0Cxl3PTt+8JiNsgUjE2ORYdTzzA1sKy2p6Z16EjzVYEJFEeXbaqiMYacE4zf0v1gb
-         N09w==
-X-Gm-Message-State: AOAM532DQxHgl4eMZx2jgHZ9tGn1miveg5yYm47bQaRUr0icPkYsInMf
-        SGsshjTHCkwKGVD1S2JjrfTqZQ==
-X-Google-Smtp-Source: ABdhPJyFkQeFzfvMShtzb6VwPZ+D3NtASIOxyFZN8x0FMk+CJE4FsMk+JC7tiO3Gp/UJxwomkaLBPg==
-X-Received: by 2002:a17:906:9241:: with SMTP id c1mr41355385ejx.125.1632307487290;
-        Wed, 22 Sep 2021 03:44:47 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id yd3sm917042ejb.6.2021.09.22.03.44.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Sep 2021 03:44:46 -0700 (PDT)
-Subject: Re: [PATCH v7 15/22] ASoC: qdsp6: audioreach: add q6apm support
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210921133709.4973-1-srinivas.kandagatla@linaro.org>
- <20210921133709.4973-16-srinivas.kandagatla@linaro.org>
- <fdb5cd4d-4b8b-3dea-872a-f225a5c90d1f@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <8dd1aff9-b837-a563-7466-62a45bb4ec74@linaro.org>
-Date:   Wed, 22 Sep 2021 11:44:45 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Qo78C9hpTaUZzshSE3JqG8ok1Cx6hErSNU/DUKP7eFk=;
+        b=xDyabBxKn+f4Imw83YlTeDlk4VEaNM0rjUa2WXkpz+sLKcYbpBTTJ0pMihufInN2QM
+         CRdYk8hXD55TzhjUDUMJfMbAu1kG9TiNKjNG12ppspPiztSgzWuDcfD0chJ0cfvFOv4h
+         9vdDFEVBbcrnUyOP6pyHrhJTwx66VSKxBYJjOuESYAGlIU0jk9bAY2WrHolNZ+bgNbVd
+         xD0CnDnw4MbvRAdNE6nTIVCFK7D/A+GXpG0bFIsgCOtmTHNTi6xDzBqNw9EFnOq4rBFn
+         Qbt21+T71+mIsNox5sZAJps4CUFCQat7ypX3YjhJR32S/WkDCYcD65Xz4m8wSWQCPbnw
+         yVXg==
+X-Gm-Message-State: AOAM530NbyllBqaTImvpGbT3QxZqCHZa2z/Ko9GLy2mGyYmvmSUT+w3g
+        oVyTlsGAP9AMMHTj4vfGJUOldFnssRHN3UNkTHbnrQ==
+X-Google-Smtp-Source: ABdhPJwPF6z5EYCd61rZYdUMIeZzdf+8Q0cyOmNAUaIoUh0BCayeTwfyb8i9gArK7fN+eXHN7cvjsRzmQx2wAsZ8Pbk=
+X-Received: by 2002:a67:c01b:: with SMTP id v27mr11715890vsi.45.1632307432766;
+ Wed, 22 Sep 2021 03:43:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <fdb5cd4d-4b8b-3dea-872a-f225a5c90d1f@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210717045627.1739959-1-daniel@0x0f.com> <CACRpkdbE+_DJFhBCmtz5JwJupf7QkkWZhXrgf1KG_3rPqvEm0w@mail.gmail.com>
+ <CAFr9PXmFHanrx4Frg3hQwo-RbAY-UXxC=FOAj++cshSHa99z3g@mail.gmail.com> <CAMpxmJUoG7qPhy2CxapCn1M=w_AssOQsEmyvXO18OpedM6hBjw@mail.gmail.com>
+In-Reply-To: <CAMpxmJUoG7qPhy2CxapCn1M=w_AssOQsEmyvXO18OpedM6hBjw@mail.gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Wed, 22 Sep 2021 19:46:01 +0900
+Message-ID: <CAFr9PXmCygArTf6njAwOz9b_j6J6vZvQXz3MHT=3gNZy6hU+5g@mail.gmail.com>
+Subject: Re: [PATCH 00/10] gpio: msc313: Add gpio support for ssd20xd
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Romain Perier <romain.perier@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Bart,
 
 
-On 21/09/2021 18:05, Pierre-Louis Bossart wrote:
-> 
->> +static void apm_populate_connection_obj(struct apm_module_conn_obj *obj,
->> +					struct audioreach_module *module)
->> +{
->> +	obj->src_mod_inst_id = module->src_mod_inst_id;
->> +	obj->src_mod_op_port_id = module->src_mod_op_port_id;
->> +	obj->dst_mod_inst_id = module->instance_id;
->> +	obj->dst_mod_ip_port_id =	module->in_port;
-> 
-> alignment seems off?
+On Wed, 22 Sept 2021 at 19:20, Bartosz Golaszewski
+<bgolaszewski@baylibre.com> wrote:
+> I only have a part of this series in my inbox and patchwork doesn't
+> have it at all - can you resend it with me in Cc?
 
-Its fixed in next version.
-> 
-> 
->> +void *audioreach_alloc_graph_pkt(struct q6apm *apm, struct list_head *sg_list, int graph_id)
->> +{
->> +	void *p;
-> 
-> move this as last declaration to have a nice reverse christmas tree style?
-Done.
+Sure. I want to do some fixes to the DTS bits at the end of the series
+so I will send it as a v2. The gpio code parts will be unchanged.
 
-> 
->> +	int payload_size, sg_sz, cont_sz, ml_sz, mp_sz, mc_sz;
->> +	struct apm_module_param_data  *param_data;
->> +	struct audioreach_container *container;
->> +	struct apm_graph_open_params params;
->> +	struct audioreach_sub_graph *sgs;
->> +	struct audioreach_module *module;
->> +	int num_modules_per_list;
->> +	int num_connections = 0;
->> +	int num_containers = 0;
->> +	int num_sub_graphs = 0;
->> +	int num_modules = 0;
->> +	int num_modules_list;
->> +	struct gpr_pkt *pkt;
-> 
-> [...]
-> 
->> +static struct audioreach_graph *q6apm_get_audioreach_graph(struct q6apm *apm, uint32_t graph_id)
->> +{
->> +	struct audioreach_graph_info *info;
->> +	struct audioreach_graph *graph;
->> +
->> +	mutex_lock(&apm->lock);
->> +	graph = idr_find(&apm->graph_idr, graph_id);
->> +	mutex_unlock(&apm->lock);
->> +
->> +	if (graph) {
->> +		kref_get(&graph->refcount);
->> +		return graph;
->> +	}
->> +
->> +	info = idr_find(&apm->graph_info_idr, graph_id);
->> +
->> +	if (!info)
->> +		return ERR_PTR(-ENODEV);
->> +
->> +	graph = kzalloc(sizeof(*graph), GFP_KERNEL);
->> +	if (!graph)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	graph->apm = apm;
->> +	graph->info = info;
->> +	graph->id = graph_id;
->> +
->> +	graph->graph = audioreach_alloc_graph_pkt(apm, &info->sg_list, graph_id);
->> +	if (IS_ERR(graph->graph)) {
->> +		kfree(graph);
->> +		return ERR_PTR(-ENOMEM);
-> 
-> why not return graph->graph (store and return the value before freeing
-> graph)?
-Updated something like this now:
-	if (IS_ERR(graph->graph)) {
-		void *err = graph->graph;
+Cheers,
 
-		kfree(graph);
-		return ERR_CAST(err);
-	}
-
-
-
-> 
->> +	}
->> +
->> +	mutex_lock(&apm->lock);
->> +	if (idr_alloc(&apm->graph_idr, graph, graph_id, graph_id + 1, GFP_KERNEL) < 0) {
->> +		dev_err(apm->dev, "Unable to allocate graph id (%d)\n", graph_id);
->> +		kfree(graph);
->> +		mutex_unlock(&apm->lock);
->> +		return ERR_PTR(-ENOMEM);
->> +	}
->> +	mutex_unlock(&apm->lock);
->> +
->> +	kref_init(&graph->refcount);
->> +
->> +	q6apm_send_cmd_sync(apm, graph->graph, 0);
->> +
->> +	return graph;
->> +}
-> 
->> +static int graph_callback(struct gpr_resp_pkt *data, void *priv, int op)
->> +{
->> +	struct data_cmd_rsp_rd_sh_mem_ep_data_buffer_done_v2 *rd_done;
->> +	struct data_cmd_rsp_wr_sh_mem_ep_data_buffer_done_v2 *done;
->> +	struct apm_cmd_rsp_shared_mem_map_regions *rsp;
->> +	struct gpr_ibasic_rsp_result_t *result;
->> +	struct q6apm_graph *graph = priv;
->> +	struct gpr_hdr *hdr = &data->hdr;
->> +	struct device *dev = graph->dev;
->> +	uint32_t client_event;
->> +	int ret = -EINVAL;
->> +	phys_addr_t phys;
->> +	int token;
->> +
->> +	result = data->payload;
->> +
->> +	switch (hdr->opcode) {
->> +	case DATA_CMD_RSP_WR_SH_MEM_EP_DATA_BUFFER_DONE_V2:
->> +		client_event = APM_CLIENT_EVENT_DATA_WRITE_DONE;
->> +		mutex_lock(&graph->lock);
->> +		token = hdr->token & APM_WRITE_TOKEN_MASK;
->> +
->> +		done = data->payload;
->> +		phys = graph->rx_data.buf[token].phys;
->> +
->> +		if (lower_32_bits(phys) != done->buf_addr_lsw ||
->> +		    upper_32_bits(phys) != done->buf_addr_msw) {
->> +			dev_err(dev, "WR BUFF Unexpected addr %08x-%08x\n",
->> +				done->buf_addr_lsw, done->buf_addr_msw);
->> +			ret = -EINVAL;
-> 
-> since you don't return here you might invoke graph->cb() below, is this
-> desired?
-> 
-
-No, it does not make sense to do the cb() for un-expected/error response.
-
-TBH, rethinking on this..
-returning error from these callbacks is totally useless as the apr-bus 
-will not do anything about this. Only reporting it as dev_err and caller 
-receiving a command timeout on error is the right thing to do.
-
-This callback will now only return 0 irrespective of error response or 
-not. CMD will Timeout for the caller in error cases.
-
-
---srini
-
->> +		} else {
->> +			ret = 0;
->> +			graph->result.opcode = hdr->opcode;
->> +			graph->result.status = done->status;
->> +		}
->> +		mutex_unlock(&graph->lock);
->> +		if (graph->cb)
->> +			graph->cb(client_event, hdr->token, data->payload,
->> +				  graph->priv);
->> +
->> +		break;
->> +	case APM_CMD_RSP_SHARED_MEM_MAP_REGIONS:
->> +		graph->result.opcode = hdr->opcode;
->> +		graph->result.status = 0;
->> +		rsp = data->payload;
->> +
->> +		if (hdr->token == SNDRV_PCM_STREAM_PLAYBACK)
->> +			graph->rx_data.mem_map_handle = rsp->mem_map_handle;
->> +		else
->> +			graph->tx_data.mem_map_handle = rsp->mem_map_handle;
->> +
->> +		wake_up(&graph->cmd_wait);
->> +		ret = 0;
->> +		break;
->> +	case DATA_CMD_RSP_RD_SH_MEM_EP_DATA_BUFFER_V2:
->> +		client_event = APM_CLIENT_EVENT_DATA_READ_DONE;
->> +		mutex_lock(&graph->lock);
->> +		rd_done = data->payload;
->> +		phys = graph->tx_data.buf[hdr->token].phys;
->> +		if (upper_32_bits(phys) != rd_done->buf_addr_msw ||
->> +		    lower_32_bits(phys) != rd_done->buf_addr_lsw) {
->> +			dev_err(dev, "RD BUFF Unexpected addr %08x-%08x\n",
->> +				rd_done->buf_addr_lsw, rd_done->buf_addr_msw);
->> +			ret = -EINVAL;
-> 
-> same here, you will call wake_up and conditionally the callback.
-> 
->> +		} else {
->> +			ret = 0;
->> +		}
->> +		mutex_unlock(&graph->lock);
->> +		wake_up(&graph->cmd_wait);
->> +
->> +		if (graph->cb)
->> +			graph->cb(client_event, hdr->token, data->payload,
->> +				  graph->priv);
->> +		break;
->> +	case DATA_CMD_WR_SH_MEM_EP_EOS_RENDERED:
->> +		break;
->> +	case GPR_BASIC_RSP_RESULT:
->> +		switch (result->opcode) {
->> +		case APM_CMD_SHARED_MEM_UNMAP_REGIONS:
->> +			graph->result.opcode = result->opcode;
->> +			graph->result.status = 0;
->> +			if (hdr->token == SNDRV_PCM_STREAM_PLAYBACK)
->> +				graph->rx_data.mem_map_handle = 0;
->> +			else
->> +				graph->tx_data.mem_map_handle = 0;
->> +
->> +			wake_up(&graph->cmd_wait);
->> +			ret = 0;
->> +			break;
->> +		case APM_CMD_SHARED_MEM_MAP_REGIONS:
->> +		case DATA_CMD_WR_SH_MEM_EP_MEDIA_FORMAT:
->> +		case APM_CMD_SET_CFG:
->> +			graph->result.opcode = result->opcode;
->> +			graph->result.status = result->status;
->> +			if (result->status) {
->> +				dev_err(dev, "Error (%d) Processing 0x%08x cmd\n",
->> +					result->status, result->opcode);
->> +				ret = -EINVAL;
-> 
-> and here as well.
-> 
->> +			} else {
->> +				ret = 0;
->> +			}
->> +			wake_up(&graph->cmd_wait);
->> +			break;
->> +		default:
->> +			break;
->> +		}
->> +		break;
->> +	default:
->> +		break;
->> +	}
->> +
->> +	return ret;
->> +}
-> 
->> +static int apm_callback(struct gpr_resp_pkt *data, void *priv, int op)
->> +{
->> +	gpr_device_t *gdev = priv;
->> +	struct q6apm *apm = dev_get_drvdata(&gdev->dev);
->> +	struct device *dev = &gdev->dev;
->> +	struct gpr_ibasic_rsp_result_t *result;
->> +	struct gpr_hdr *hdr = &data->hdr;
->> +	int ret = 0;
->> +
->> +	result = data->payload;
->> +
->> +	switch (hdr->opcode) {
->> +	case APM_CMD_RSP_GET_SPF_STATE:
->> +		apm->result.opcode = hdr->opcode;
->> +		apm->result.status = 0;
->> +		/* First word of result it state */
->> +		apm->state = result->opcode;
->> +		wake_up(&apm->wait);
->> +		break;
->> +	case GPR_BASIC_RSP_RESULT:
->> +		switch (result->opcode) {
->> +		case APM_CMD_GRAPH_START:
->> +		case APM_CMD_GRAPH_OPEN:
->> +		case APM_CMD_GRAPH_PREPARE:
->> +		case APM_CMD_GRAPH_CLOSE:
->> +		case APM_CMD_GRAPH_FLUSH:
->> +		case APM_CMD_GRAPH_STOP:
->> +		case APM_CMD_SET_CFG:
->> +			apm->result.opcode = result->opcode;
->> +			apm->result.status = result->status;
->> +			if (result->status) {
->> +				dev_err(dev, "Error (%d) Processing 0x%08x cmd\n",
->> +					result->status, result->opcode);
->> +				ret = -EINVAL;
-> 
-> same pattern, you will call wake_up even on an error?
-> 
->> +			}
->> +			wake_up(&apm->wait);
->> +			break;
->> +		default:
->> +			break;
->> +		}
->> +		break;
->> +	default:
->> +		break;
->> +	}
->> +
->> +	return ret;
->> +}
-> 
+Daniel
