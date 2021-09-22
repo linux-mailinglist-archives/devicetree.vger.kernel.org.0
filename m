@@ -2,70 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37DC5413FEB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 05:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E26F9413FEE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 05:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230452AbhIVDLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 23:11:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35280 "EHLO mail.kernel.org"
+        id S230138AbhIVDOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 23:14:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35830 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230054AbhIVDLm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 23:11:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 338E06115A;
-        Wed, 22 Sep 2021 03:10:11 +0000 (UTC)
+        id S230054AbhIVDOF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 23:14:05 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8870D60F26;
+        Wed, 22 Sep 2021 03:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632280213;
-        bh=J1psIMGqDoCGY/wA/7a4LXaG/x8eaRWB1lWYLAav++I=;
+        s=k20201202; t=1632280356;
+        bh=BGWZYKUOoJZ81ptD+3jlPIWYi7w46ro5hqlbInTfqdk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=a+UMh2xk81CUjeCVM+L3g/s11gHMu6F9WSOyAAJ0BM29EdMUmsbCLaG/aCAMO+KLv
-         Hi7bmdA/s2YMay0sOGwLjzYEeQWZv1YdeRb+2izwJ2a04r8W5qb4VFq6kilNeJpYBy
-         3/oBF1HtlwQZ2zZ94+CGHWInxdvJwGKDhXJEYx0XmHKiYLWKao96RHqL+d4fWWkiz1
-         +lrOqAavkH9xeDbMIOuYEH32G1POzpmaWoUHCW7Cp7FEWSDnDALz+CslEHgtg4wkT5
-         X62IL+BzxPZQ+nJfAuTX+NlRdGwHlFlxfXB/mO+pupMEy7qhi2HNnEBmjhiyFpcKtz
-         uyp2dd44VnmTA==
-Date:   Wed, 22 Sep 2021 11:10:07 +0800
+        b=XzNB8b56/KlHc9o+Iaoqy1FlrE45ICjaBiGN5x6YNmMO3cxfQrYJ9ImDJoRAtACfo
+         0Obt43fLbzmoIOrguKMcZFq777uyZeaZEp6K2s9D/MGIxoeWEZAl/9kkM+juiN4S2t
+         0ljCQDkz4JLZi2D8lE9kbohk0YkK+lUnkCEGrx0wHbIOANpujZv8b0KotKlRbeUtt4
+         OpJozZQ4PDy7hVN9usEXqTG7dgxzlRiDhE2+yzeGrKbqEpF0dAO6N5J2/RAIdPp5S9
+         0xVdRamNsY4ARnNFZcBhITQXl2MyM/xG8waMYTWMznozhRhC+r/C/jk/VMb2Nry8Ab
+         SA8CRBxHtyjng==
+Date:   Wed, 22 Sep 2021 11:12:31 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH 1/2] ARM: dts: imx6dl-yapp4: Fix lp5562 LED driver probe
-Message-ID: <20210922031006.GH10217@dragon>
-References: <20210818070209.1540451-1-michal.vokac@ysoft.com>
+To:     haibo.chen@nxp.com
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: imx8qm: minor fix for schema dts check
+Message-ID: <20210922031230.GI10217@dragon>
+References: <1629272675-7142-1-git-send-email-haibo.chen@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210818070209.1540451-1-michal.vokac@ysoft.com>
+In-Reply-To: <1629272675-7142-1-git-send-email-haibo.chen@nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 18, 2021 at 09:02:08AM +0200, Michal Vokáč wrote:
-> Since the LED multicolor framework support was added in commit
-> 92a81562e695 ("leds: lp55xx: Add multicolor framework support to lp55xx")
-> LEDs on this platform stopped working.
+On Wed, Aug 18, 2021 at 03:44:35PM +0800, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
 > 
-> Author of the framework attempted to accommodate this DT to the
-> framework in commit b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property
-> to the lp5562 channel node") but that is not sufficient. A color property
-> is now required even if the multicolor framework is not used, otherwise
-> the driver probe fails:
+> Add minor fix to pass schema dts check.
 > 
->   lp5562: probe of 1-0030 failed with error -22
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  .../arm64/boot/dts/freescale/imx8-ss-conn.dtsi | 18 +++++++++---------
+>  .../boot/dts/freescale/imx8qm-ss-conn.dtsi     |  4 ++--
+>  2 files changed, 11 insertions(+), 11 deletions(-)
 > 
-> Add the color property to fix this.
-> 
-> Fixes: 92a81562e695 ("leds: lp55xx: Add multicolor framework support to lp55xx")
-> Cc: <stable@vger.kernel.org>
-> Cc: linux-leds@vger.kernel.org
-> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+> index a79f42a9618e..639220dbff00 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+> @@ -38,9 +38,9 @@ conn_subsys: bus@5b000000 {
+>  		interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
+>  		reg = <0x5b010000 0x10000>;
+>  		clocks = <&sdhc0_lpcg IMX_LPCG_CLK_4>,
+> -			 <&sdhc0_lpcg IMX_LPCG_CLK_5>,
+> -			 <&sdhc0_lpcg IMX_LPCG_CLK_0>;
+> -		clock-names = "ipg", "per", "ahb";
+> +			 <&sdhc0_lpcg IMX_LPCG_CLK_0>,
+> +			 <&sdhc0_lpcg IMX_LPCG_CLK_5>;
+> +		clock-names = "ipg", "ahb", "per";
+>  		power-domains = <&pd IMX_SC_R_SDHC_0>;
+>  		status = "disabled";
+>  	};
+> @@ -49,9 +49,9 @@ conn_subsys: bus@5b000000 {
+>  		interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
+>  		reg = <0x5b020000 0x10000>;
+>  		clocks = <&sdhc1_lpcg IMX_LPCG_CLK_4>,
+> -			 <&sdhc1_lpcg IMX_LPCG_CLK_5>,
+> -			 <&sdhc1_lpcg IMX_LPCG_CLK_0>;
+> -		clock-names = "ipg", "per", "ahb";
+> +			 <&sdhc1_lpcg IMX_LPCG_CLK_0>,
+> +			 <&sdhc1_lpcg IMX_LPCG_CLK_5>;
+> +		clock-names = "ipg", "ahb", "per";
+>  		power-domains = <&pd IMX_SC_R_SDHC_1>;
+>  		fsl,tuning-start-tap = <20>;
+>  		fsl,tuning-step= <2>;
+> @@ -62,9 +62,9 @@ conn_subsys: bus@5b000000 {
+>  		interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
+>  		reg = <0x5b030000 0x10000>;
+>  		clocks = <&sdhc2_lpcg IMX_LPCG_CLK_4>,
+> -			 <&sdhc2_lpcg IMX_LPCG_CLK_5>,
+> -			 <&sdhc2_lpcg IMX_LPCG_CLK_0>;
+> -		clock-names = "ipg", "per", "ahb";
+> +			 <&sdhc2_lpcg IMX_LPCG_CLK_0>,
+> +			 <&sdhc2_lpcg IMX_LPCG_CLK_5>;
+> +		clock-names = "ipg", "ahb", "per";
+>  		power-domains = <&pd IMX_SC_R_SDHC_2>;
+>  		status = "disabled";
+>  	};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
+> index 42637a45701c..17bbe2e16126 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
+> @@ -13,9 +13,9 @@
+>  };
+>  
+>  &usdhc1 {
+> -	compatible = "fsl,imx8qm-usdhc", "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
+> +	compatible = "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
 
-Applied both, thanks!
+We should document "fsl,imx8qm-usdhc" instead?
+
+Shawn
+
+>  };
+>  
+>  &usdhc2 {
+> -	compatible = "fsl,imx8qm-usdhc", "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
+> +	compatible = "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
+>  };
+> -- 
+> 2.17.1
+> 
