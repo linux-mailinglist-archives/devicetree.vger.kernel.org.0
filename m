@@ -2,91 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51B79415171
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:33:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A03415177
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:36:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237309AbhIVUfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 16:35:01 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:44838 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236860AbhIVUfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 16:35:01 -0400
-Received: by mail-ot1-f47.google.com with SMTP id h9-20020a9d2f09000000b005453f95356cso5293013otb.11;
-        Wed, 22 Sep 2021 13:33:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+032e70i08NosH2L550S84MiHmrCemoO0aT5S55a2io=;
-        b=ln7yeQ7ZeyzO3TCgXUPSB/TU1Zy3pANk5OncXmfJl2MbpzosM0IghbmK4asrrR67qt
-         C50zqE5oPLLWRSOwrRvWSWAB9YBIf9KrEWrhFOqJ83V0wEGO+kIs1m6m45VKUQmGDBC8
-         8rcbEOiFketPfb4IkwswBJaC3vYtgDu6WGJ5rC2U5/h00FgYOKdjXqgruyT6IPSbGRxN
-         k0T/hi3BoIH2oLKcaHigkkyNyiAtxVGRBRBzlTr1bE1miiSbl+HFBmntLOq5THZ8KkCO
-         r6yJEP9EaXLlL2lsZ1NKzK0KzROEG4KVW/ZzdhY5cgIo+pEa3JrerekBHBvH/bpcak3V
-         IMaA==
-X-Gm-Message-State: AOAM532UV80AL0+ZUStQKWH1qWyeh+fKNsdec5Ti4St8iY5LtSAB1kSO
-        9R/b5lrmrUvuOPb6NwLrv0Mn6PQ02Q==
-X-Google-Smtp-Source: ABdhPJwyarhLCtwCbuT0tc1bP/7Weinth8Z3MeaqDXGNOlb+i4cGzU+1NGVt4tYnSZrMKE0vaK9oHg==
-X-Received: by 2002:a9d:721b:: with SMTP id u27mr1030029otj.214.1632342810619;
-        Wed, 22 Sep 2021 13:33:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bk40sm789475oib.8.2021.09.22.13.33.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 13:33:30 -0700 (PDT)
-Received: (nullmailer pid 1243882 invoked by uid 1000);
-        Wed, 22 Sep 2021 20:33:29 -0000
-Date:   Wed, 22 Sep 2021 15:33:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH] dt-bindings: net: wireless: qca,ath9k: convert to the
- json-schema
-Message-ID: <YUuTGXk0EvuaYdqk@robh.at.kernel.org>
-References: <20210917164636.120658-1-chunkeey@gmail.com>
+        id S237657AbhIVUhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 16:37:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45290 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236860AbhIVUhi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 16:37:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7B8B260FC1;
+        Wed, 22 Sep 2021 20:36:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632342967;
+        bh=C+ju3SHP5Uenov8Y+HFErFOymkbRCzcFMjsRizW1tuo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=UYJpJfe8LoqYQafTaViwHocFDGKv9jOi4IAv7hs7ev2QdVGQPtOPvfQ1Qw9NTOxVp
+         83w+r3ic455kujmPS5fBxIOIHbTRNtV8PtLsi3gTbEM6Ft0KzUedwPGqFhoMx4+IHI
+         3Hy73EnahX+p9RZKs9CnC3yfjHzFQTEuMELUZJpT/T7khIiIfoayfdAvUR8TbKc7DU
+         bXXoLQJevnvYol1GSNc55oZCnXCSTLnRJqHTye7WXLb4BNKV8p+uegADCzPKSFFgCx
+         HW7DKz4JJMOCeDIdVBWzdSsLLDAgGe/V1dx/YcOSFeEQR9ekOAR0pQdjIy07tKhHO0
+         tUW0THZ+E1dMQ==
+Received: by mail-qk1-f182.google.com with SMTP id 194so14043661qkj.11;
+        Wed, 22 Sep 2021 13:36:07 -0700 (PDT)
+X-Gm-Message-State: AOAM530oIuduZ4Lew46TLc6n0krwRpLxq8wCP/2Bg2q0cbD3+z4cYd3h
+        4wPA8LlVKfAxgb957u8bCLbJ5FbY9V3fm4Uqgg==
+X-Google-Smtp-Source: ABdhPJzAfTw2IrpOPx8N93ujEb5kXuu/0Cl68qtcrEnIqLUY1n/tKaEJHldLo8YsiQqRKDd9IykEerH1GuxKSU0JbW4=
+X-Received: by 2002:a05:620a:1911:: with SMTP id bj17mr1295518qkb.202.1632342966710;
+ Wed, 22 Sep 2021 13:36:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210917164636.120658-1-chunkeey@gmail.com>
+References: <20210916084714.311048-1-zhang.lyra@gmail.com> <20210916084714.311048-3-zhang.lyra@gmail.com>
+ <YUNUyolr6ksEoZI3@robh.at.kernel.org> <CAAfSe-vYMUb8wGUJG7Fzehjkj8gAq1QOdgCdsTvcNyMuVeEW8g@mail.gmail.com>
+ <CAL_JsqKmznCOk+qHFccnG1b5xuoNHY2vmqyv=WAjB9d=0AW70Q@mail.gmail.com> <CAAfSe-sruhCCZopyserimaTYnxGmXv87nkd+T4v1uzbjCz1C7A@mail.gmail.com>
+In-Reply-To: <CAAfSe-sruhCCZopyserimaTYnxGmXv87nkd+T4v1uzbjCz1C7A@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 22 Sep 2021 15:35:55 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ6u-teqZRgu3x9iJAuAKimdmu9s2GfkFwMO0GEtq1kMw@mail.gmail.com>
+Message-ID: <CAL_JsqJ6u-teqZRgu3x9iJAuAKimdmu9s2GfkFwMO0GEtq1kMw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: clk: sprd: Add bindings for ums512
+ clock controller
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 17, 2021 at 06:46:36PM +0200, Christian Lamparter wrote:
-> This replaces the existing .txt binding file. Furthermore, this
-> also helps with validating DTS files.
-> 
-> Introduced binding changes:
->  1. added inherited mac-address nvmem property
->  2. added inherited ieee80211-freq-limit property
->  3. added new calibration nvmem property
-> 
-> Added binding .yaml to MAINTAINERS.
-> 
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-> ---
-> 
-> Q: Is there a way to encode the pci-id device value to the
-> specific chip? This is because the qca,ath9k.txt had this
-> nice list:
->                   - 002e for AR9287
->                   - 0030 for AR9380, AR9381 and AR9382
->                   - 0032 for AR9485
+On Tue, Sep 21, 2021 at 10:33 PM Chunyan Zhang <zhang.lyra@gmail.com> wrote:
+>
+> On Mon, 20 Sept 2021 at 20:42, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Fri, Sep 17, 2021 at 3:41 AM Chunyan Zhang <zhang.lyra@gmail.com> wrote:
+> > >
+> > > On Thu, 16 Sept 2021 at 22:29, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Thu, Sep 16, 2021 at 04:47:12PM +0800, Chunyan Zhang wrote:
+> > > > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > > >
+> > > > > Add a new bindings to describe ums512 clock compatible strings.
+> > > > >
+> > > > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > > > ---
+> > > > >  .../bindings/clock/sprd,ums512-clk.yaml       | 106 ++++++++++++++++++
+> > > > >  1 file changed, 106 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..be3c37180279
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> > > > > @@ -0,0 +1,106 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +# Copyright 2019-2021 Unisoc Inc.
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: "http://devicetree.org/schemas/clock/sprd,ums512-clk.yaml#"
+> > > > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > > > > +
+> > > > > +title: UMS512 Clock Control Unit Device Tree Bindings
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Orson Zhai <orsonzhai@gmail.com>
+> > > > > +  - Baolin Wang <baolin.wang7@gmail.com>
+> > > > > +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> > > > > +
+> > > > > +properties:
+> > > > > +  "#clock-cells":
+> > > > > +    const: 1
+> > > > > +
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - sprd,ums512-apahb-gate
+> > > > > +      - sprd,ums512-ap-clk
+> > > > > +      - sprd,ums512-aonapb-clk
+> > > > > +      - sprd,ums512-pmu-gate
+> > > > > +      - sprd,ums512-g0-pll
+> > > > > +      - sprd,ums512-g2-pll
+> > > > > +      - sprd,ums512-g3-pll
+> > > > > +      - sprd,ums512-gc-pll
+> > > > > +      - sprd,ums512-aon-gate
+> > > > > +      - sprd,ums512-audcpapb-gate
+> > > > > +      - sprd,ums512-audcpahb-gate
+> > > > > +      - sprd,ums512-gpu-clk
+> > > > > +      - sprd,ums512-mm-clk
+> > > > > +      - sprd,ums512-mm-gate-clk
+> > > > > +      - sprd,ums512-apapb-gate
+> > > > > +
+> > > > > +  clocks:
+> > > > > +    minItems: 1
+> > > > > +    maxItems: 4
+> > > > > +    description: |
+> > > > > +      The input parent clock(s) phandle for this clock, only list fixed
+> > > > > +      clocks which are declared in devicetree.
+> > > > > +
+> > > > > +  clock-names:
+> > > > > +    minItems: 1
+> > > > > +    maxItems: 4
+> > > > > +    items:
+> > > > > +      - const: ext-26m
+> > > > > +      - const: ext-32k
+> > > > > +      - const: ext-4m
+> > > > > +      - const: rco-100m
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - '#clock-cells'
+> > > > > +
+> > > > > +if:
+> > > > > +  properties:
+> > > > > +    compatible:
+> > > > > +      enum:
+> > > > > +        - sprd,ums512-ap-clk
+> > > > > +        - sprd,ums512-aonapb-clk
+> > > > > +        - sprd,ums512-mm-clk
+> > > > > +then:
+> > > > > +  required:
+> > > > > +    - reg
+> > > > > +
+> > > > > +else:
+> > > > > +  description: |
+> > > > > +    Other UMS512 clock nodes should be the child of a syscon node in
+> > > > > +    which compatible string should be:
+> > > > > +            "sprd,ums512-glbregs", "syscon", "simple-mfd"
+> > > > > +
+> > > > > +    The 'reg' property for the clock node is also required if there is a sub
+> > > > > +    range of registers for the clocks.
+> > > >
+> > > > In which cases is this not true?
+> > >
+> > > Seems not needed, I will remove 'reg' property for this kind of cases.
+> >
+> > Wrong direction. Please keep 'reg'. My question is why can't you
+> > always have it? That is the preference.
+>
+> Ok. I will address. BTW, do we need 'reg' even though the driver
+> doesn't read this property? Does that because DT should reflect
+> hardware topology?
 
-You can add a comment after each compatible value.
+Yes and yes.
 
-> 
-> I would like to preserve this information.
-> 
-> Thanks,
-> Christian
-> 
-> ---
->  .../bindings/net/wireless/qca,ath9k.txt       | 48 -----------
->  .../bindings/net/wireless/qca,ath9k.yaml      | 82 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  3 files changed, 83 insertions(+), 48 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/wireless/qca,ath9k.txt
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Rob
