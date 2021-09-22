@@ -2,102 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F038A4149E1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 14:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5383F4149E6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 14:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231238AbhIVM7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 08:59:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35302 "EHLO
+        id S229609AbhIVM7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 08:59:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbhIVM67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 08:58:59 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C35C061574;
-        Wed, 22 Sep 2021 05:57:29 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id ee50so9360393edb.13;
-        Wed, 22 Sep 2021 05:57:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IYMQ9ACrEdRDsP2K3+6jWRI3Aj2dDIsmUqKI8f05xR8=;
-        b=B94zVtSl/4XPrmp+3vx398rxdnqQD93JAYM4ExI0UFq5/39S492j+WAAgEjjL7+gJ6
-         65lITQ7hTdaTT3WdpE0fNoaKQM0Z+KH5wcRwa38R6IN6pxVlF5+usI9Ogkg9Xh1Xz+9F
-         rIdJ20hbMhORDoE+USy7dFVp/pJjVTrx0U2FpMv4Jgiw5eCx3ZaCamdj3WLhT2w41kZd
-         vvXD18EpkK9TFaaie6g1R4XuTJKBwTRkY379jXBewGuCuNgbhkRRD8ja3/js9MDjGQCv
-         CvG9ZEPf1EjZ4tDqJbs1VNE9RhMZXEHwnqXvE0HTHD3yvpGBtOO2BwfbCCvnyZc/tVPW
-         nWww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IYMQ9ACrEdRDsP2K3+6jWRI3Aj2dDIsmUqKI8f05xR8=;
-        b=KGP3fDoHZ0HHC7yqHMzxhitxUjbQ7ZvKLpV7TqcX3ujYbMeRAjJ9HL90QlrDVE221n
-         wnnPiW+MKfkLVI1w0rRg3Gi4W/mxTh1M/ugJjoqLSf/lqp1aI75MjNGESzHJWBt2aqCM
-         Fr2Tz3xodcC7lo4yTeaQypgPTNUF3ymSRgwPEUzpMh2XU1dgiTlExeyt+gcUVHYC8c7e
-         VKQu8PaHd+rb3sDzREpE3DON4XikmYMax6syMOxsCa/KTYs5ngDkjsyYAeW8liuxn7wT
-         On1dhmB/H1xeMzKlL+XxLU8n2NkZf5nQR8/RA2rIrMDrDUzifuT3SaPo2xOD5WfkiGcY
-         dXQA==
-X-Gm-Message-State: AOAM532Xde+ntzPTGIEK6vXouvn25JNp1ZgmAwNZYbwmsnomv1p9YooN
-        GDaCkuxcjwd+2TPWMMyXxdE08ha04+j+vW4m5zs=
-X-Google-Smtp-Source: ABdhPJxGl8p6R2D/QhplhuwCR3GnVZLv/adsUEK33kvmOajwVnZPjv3UmTMwMbgMY0JVIztDkgEKOltkik5fa223DCk=
-X-Received: by 2002:a05:6402:358a:: with SMTP id y10mr41135079edc.238.1632315448101;
- Wed, 22 Sep 2021 05:57:28 -0700 (PDT)
+        with ESMTP id S229948AbhIVM7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 08:59:48 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B56EC061756
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 05:58:19 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1mT1pI-0007Q2-Lw; Wed, 22 Sep 2021 14:58:16 +0200
+Subject: Re: [PATCH 1/6] dt-bindings: nvmem: add cell-type to nvmem cells
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org,
+        =?UTF-8?Q?Jan_L=c3=bcbbe?= <jlu@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org
+References: <20210908100257.17833-1-qiangqing.zhang@nxp.com>
+ <20210908100257.17833-2-qiangqing.zhang@nxp.com>
+ <6d91d833-08cc-7ce2-4fe5-3d843a8b31ae@pengutronix.de>
+ <181c4037-3c34-0f71-6bb7-a9c11b173064@linaro.org>
+ <dbd1c20c-e3be-6c92-52a8-2ad76d0092d0@pengutronix.de>
+ <8fc0a5e2-18c0-fa81-3eed-a6d596361633@linaro.org>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <d580dd06-8bc8-91c9-262b-f6f276b033c2@pengutronix.de>
+Date:   Wed, 22 Sep 2021 14:58:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20210717045627.1739959-1-daniel@0x0f.com> <CACRpkdbE+_DJFhBCmtz5JwJupf7QkkWZhXrgf1KG_3rPqvEm0w@mail.gmail.com>
- <CAFr9PXmFHanrx4Frg3hQwo-RbAY-UXxC=FOAj++cshSHa99z3g@mail.gmail.com>
- <CAMpxmJUoG7qPhy2CxapCn1M=w_AssOQsEmyvXO18OpedM6hBjw@mail.gmail.com>
- <CAHp75VdU52rwKY3AA0Nxt3VGOFr71XtjCDqZbSxR4GNczSqihQ@mail.gmail.com> <CAMpxmJUSvBSa=T1a1Bq_YhAGib9BcXf4xYMSOfyprHbG0t_QWw@mail.gmail.com>
-In-Reply-To: <CAMpxmJUSvBSa=T1a1Bq_YhAGib9BcXf4xYMSOfyprHbG0t_QWw@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 22 Sep 2021 15:56:50 +0300
-Message-ID: <CAHp75Vct29uVYYTVVpuNbpEwZRsGJ+BBMNWBQbLDaof5o2neGg@mail.gmail.com>
-Subject: Re: [PATCH 00/10] gpio: msc313: Add gpio support for ssd20xd
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Romain Perier <romain.perier@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <8fc0a5e2-18c0-fa81-3eed-a6d596361633@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 3:50 PM Bartosz Golaszewski
-<bgolaszewski@baylibre.com> wrote:
-> On Wed, Sep 22, 2021 at 12:52 PM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Wed, Sep 22, 2021 at 1:21 PM Bartosz Golaszewski
-> > <bgolaszewski@baylibre.com> wrote:
-> > > On Wed, Aug 25, 2021 at 1:50 PM Daniel Palmer <daniel@0x0f.com> wrote:
+Hi Srini,
 
-...
+On 22.09.21 14:49, Srinivas Kandagatla wrote:
+> 
+> 
+> On 22/09/2021 13:31, Ahmad Fatoum wrote:
+>>>>
+>>>> On 08.09.21 12:02, Joakim Zhang wrote:
+>>>>> From: Srinivas Kandagatla<srinivas.kandagatla@linaro.org>
+>>>>>
+>>>>> Some of the nvmem providers encode data for certain type of nvmem cell,
+>>>>> example mac-address is stored in ascii or with delimiter or in reverse order.
+>>>>>
+>>>>> This is much specific to vendor, so having a cell-type would allow nvmem
+>>>>> provider drivers to post-process this before using it.
+>>>> I don't agree with this assessment. Users of the OCOTP so far
+>>>> used this specific encoding. Bootloaders decode the OCOTP this way, but this
+>>>> encoding isn't really an inherent attribute of the OCOTP. A new NXP SoC
+>>>> with a different OTP IP will likely use the same format. Users may even
+>>>> use the same format on an EEPROM to populate a second off-SoC interface, .. etc.
+>>>>
+>>> That is okay.
+>> How would you go about using this same format on an EEPROM?
+> 
+> Am guessing that by the time there are more users for such formats, those post-processing functions should be converted into some library functions.
 
-> > > I only have a part of this series in my inbox and patchwork doesn't
-> > > have it at all - can you resend it with me in Cc?
-> >
-> > Have you tried to use the `b4` tool? It is capable of getting
-> > everything from the lore archive.
->
-> I haven't tried it because I have never heard of it. :) Thanks for the heads-up.
+User A wants to reverse bytes in MAC address. User B stores it in ASCII.
+Both use the exact same EEPROM. How could this ever work when the
+encoding decision is left to the EEPROM driver?
 
-You're welcome!
-
-> At the same time - is it too much to ask of people to just use
-> scripts/get_maintainer.pl? It's so much easier to just actually get
-> the patches in my inbox than to have to look for them manually.
-
-Of course not. I completely agree with you on the point.
-Btw, I advertise a script I wrote [1] exactly due to misses of this in the past.
-
-[1]: https://github.com/andy-shev/home-bin-tools/blob/master/ge2maintainer.sh
+> 
+> --srini
+> 
+>>
+>>>> I'd thus prefer to not make this specific to the OCOTP as all:
+>>>>
+>>>>     * #define NVMEM_CELL_ENCODING_MAC_ADDRESS_IMX    /* ... */
+> 
 
 
---
-With Best Regards,
-Andy Shevchenko
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
