@@ -2,169 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57695415130
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:11:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C97A415134
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:11:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237372AbhIVUML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 16:12:11 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53674 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237402AbhIVUMK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 16:12:10 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18MKAcV8016902;
-        Wed, 22 Sep 2021 15:10:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632341438;
-        bh=HwsQ1px6ElVAM7E7RMWeh+ei1nZgXj6vInZm6WaZNw8=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=YPVkgH20ROH3+t8VxnCiy/LKUh9/64L6wI6Gl66Nz9s3aRtUj7huPfD62/X+b+p55
-         P98NzFFSnqThEGDmBaAXyyC+YRvgn6cPFj2aCvWGGmSXd7VBzZMIcvT+qDD6OAXvFV
-         gIX81trDCc8J1nfpeX8ZuyUnZkViqKfqCgz5ITf8=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18MKAcEX034008
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 22 Sep 2021 15:10:38 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
- Sep 2021 15:10:37 -0500
-Received: from DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f]) by
- DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f%17]) with mapi id
- 15.01.2308.014; Wed, 22 Sep 2021 15:10:37 -0500
-From:   "M, Aparna" <a-m1@ti.com>
-To:     "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "Govindraju, Aswath" <a-govindraju@ti.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        "Strashko, Grygorii" <grygorii.strashko@ti.com>
-Subject: RE: [PATCH RESEND] dt-bindings: gpio: Convert TI TPIC2810 GPIO
- Controller bindings to yaml
-Thread-Topic: [PATCH RESEND] dt-bindings: gpio: Convert TI TPIC2810 GPIO
- Controller bindings to yaml
-Thread-Index: AQHXr6pP3EiJdIl1NkOu403Qgaj9n6uwezcw
-Date:   Wed, 22 Sep 2021 20:10:37 +0000
-Message-ID: <90c368f366e440a58928e222e1683139@ti.com>
-References: <20210922120631.21948-1-a-m1@ti.com>
-In-Reply-To: <20210922120631.21948-1-a-m1@ti.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.235.184]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S237367AbhIVUMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 16:12:38 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:35547 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237325AbhIVUMi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 16:12:38 -0400
+Received: by mail-oi1-f177.google.com with SMTP id r26so6313668oij.2;
+        Wed, 22 Sep 2021 13:11:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oh1GCZM5dUTph3yDqFQtj2T4C/Cn9j3K4e4lsvOCfK8=;
+        b=rLJPVkIYXx7D2MzJengMVKBnR5sBMOQGaZva0KzPjVW3zT0SjrebU9YAEFTR0F6X9B
+         wcFe26h5XXVSMQGmDo3G+3s4UXYF76NIe/LWPYDqjDXD9T+YhYnvKJDBuXKGet0ge9Yi
+         OAqev3lqdvWgfuq4784Ve9px5QrtAO2PLpGDocRCI31cHlvJTFxfMQCORyTIb8U4kkiR
+         K2EKXj3uAudh0aZyxq/D77eISP25A0/K54TGI6JXyW+aRsQ9vkcvnEpt00w5ZObIBWLs
+         Tw0zNpRXWtRdySeBXoQ4mhIoO0A0ZMBKmDskJ8yTtiQv/s8+Sqo50/TvQCtXgNqordCj
+         nAKA==
+X-Gm-Message-State: AOAM530Mud5ZHwzVadeLvUudc9s+1EWVRI8P5wUhoptxHNj9RNTYSSJc
+        UfWU6Wk0IyZVBcLVgG25qQ==
+X-Google-Smtp-Source: ABdhPJxB04SrAr3My4MhjbJhQuOo63xON3evPknQzkXmjb1Lubg7ZrL6tNv4aaW7+wLfUENPGGPcuA==
+X-Received: by 2002:aca:1215:: with SMTP id 21mr9845091ois.141.1632341467793;
+        Wed, 22 Sep 2021 13:11:07 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id p21sm762115oip.28.2021.09.22.13.11.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Sep 2021 13:11:07 -0700 (PDT)
+Received: (nullmailer pid 1210651 invoked by uid 1000);
+        Wed, 22 Sep 2021 20:11:06 -0000
+Date:   Wed, 22 Sep 2021 15:11:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, UNGLinuxDriver@microchip.com,
+        Eugen.Hristev@microchip.com, Manohar.Puri@microchip.com
+Subject: Re: [PATCH v5 2/3] dt-bindings: clock: lan966x: Add LAN966X Clock
+ Controller
+Message-ID: <YUuN2o1G1ETkf/Zx@robh.at.kernel.org>
+References: <20210917135142.9689-1-kavyasree.kotagiri@microchip.com>
+ <20210917135142.9689-3-kavyasree.kotagiri@microchip.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210917135142.9689-3-kavyasree.kotagiri@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bart,
+On Fri, Sep 17, 2021 at 07:21:41PM +0530, Kavyasree Kotagiri wrote:
+> This adds the DT bindings documentation for lan966x SoC
+> generic clock controller.
+> 
+> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> ---
+> v4 -> v5:
+> - In v4 dt-bindings, missed adding "clock-names" in required
+>   properties and example. So, added them.
+> 
+> v3 -> v4:
+> - Updated "clocks" description.
+> - Added "clock-names".
+> 
+> v2 -> v3:
+> - Fixed dt_binding_check errors.
+> 
+> v1 -> v2:
+> - Updated example provided for clk controller DT node.
+> 
+>  .../bindings/clock/microchip,lan966x-gck.yaml | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml b/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
+> new file mode 100644
+> index 000000000000..e6b4ed3b0c88
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/microchip,lan966x-gck.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip LAN966X Generic Clock Controller
+> +
+> +maintainers:
+> +  - Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> +
+> +description: |
+> +  The LAN966X Generic clock controller contains 3 PLLs - cpu_clk,
+> +  ddr_clk and sys_clk. This clock controller generates and supplies
+> +  clock to various peripherals within the SoC.
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,lan966x-gck
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: CPU clock source
+> +      - description: DDR clock source
+> +      - description: System clock source
+> +
+> +  clock-names:
+> +    items:
+> +      - const: cpu_clk
+> +      - const: ddr_clk
+> +      - const: sys_clk
 
-This is the latest patch resend. I'm not sure why patchwork has not been ab=
-le to pick it up.
+'_clk' is redundant. Drop.
 
+With that,
 
-Regards,
-Aparna
+Reviewed-by: Rob Herring <robh@kernel.org>
 
------Original Message-----
-From: M, Aparna=20
-Sent: Wednesday, September 22, 2021 5:37 PM
-To: Govindraju, Aswath <a-govindraju@ti.com>; linus.walleij@linaro.org; rob=
-h+dt@kernel.org; Raghavendra, Vignesh <vigneshr@ti.com>; Strashko, Grygorii=
- <grygorii.strashko@ti.com>
-Cc: devicetree@vger.kernel.org; linux-gpio@vger.kernel.org; bgolaszewski@ba=
-ylibre.com; M, Aparna <a-m1@ti.com>
-Subject: [PATCH RESEND] dt-bindings: gpio: Convert TI TPIC2810 GPIO Control=
-ler bindings to yaml
-
-* Convert gpio-tpic2810 bindings to yaml format
-* Remove outdated gpio-tpic2810 bindings in .txt format
-
-Signed-off-by: Aparna M <a-m1@ti.com>
----
- .../bindings/gpio/gpio-tpic2810.txt           | 16 --------
- .../bindings/gpio/gpio-tpic2810.yaml          | 41 +++++++++++++++++++
- 2 files changed, 41 insertions(+), 16 deletions(-)  delete mode 100644 Doc=
-umentation/devicetree/bindings/gpio/gpio-tpic2810.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.ya=
-ml
-
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt b/Doc=
-umentation/devicetree/bindings/gpio/gpio-tpic2810.txt
-deleted file mode 100644
-index 1afc2de7a537..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--TPIC2810 GPIO controller bindings
--
--Required properties:
-- - compatible		: Should be "ti,tpic2810".
-- - reg			: The I2C address of the device
-- - gpio-controller	: Marks the device node as a GPIO controller.
-- - #gpio-cells		: Should be two. For consumer use see gpio.txt.
--
--Example:
--
--	gpio@60 {
--		compatible =3D "ti,tpic2810";
--		reg =3D <0x60>;
--		gpio-controller;
--		#gpio-cells =3D <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml b/Do=
-cumentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-new file mode 100644
-index 000000000000..64f475eb4278
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/gpio-tpic2810.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TPIC2810 GPIO controller bindings
-+
-+maintainers:
-+   - Aswath Govindraju <a-govindraju@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tpic2810
-+
-+  reg:
-+    maxItems: 1
-+    description: The I2C address of the device
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+required:
-+    - compatible
-+    - reg
-+    - gpio-controller
-+    - "#gpio-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio1: gpio@60 {
-+        compatible =3D "ti,tpic2810";
-+        reg =3D <0x60>;
-+        gpio-controller;
-+        #gpio-cells =3D <2>;
-+    };
---
-2.17.1
-
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clks: clock-controller@e00c00a8 {
+> +        compatible = "microchip,lan966x-gck";
+> +        #clock-cells = <1>;
+> +        clocks = <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
+> +        clock-names = "cpu_clk", "ddr_clk", "sys_clk";
+> +        reg = <0xe00c00a8 0x38>;
+> +    };
+> +...
+> -- 
+> 2.17.1
+> 
+> 
