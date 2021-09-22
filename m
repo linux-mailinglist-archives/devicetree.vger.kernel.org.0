@@ -2,79 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8FAC41496A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 14:46:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9EE741499C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 14:49:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236039AbhIVMsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 08:48:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60582 "EHLO
+        id S235991AbhIVMu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 08:50:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236035AbhIVMsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 08:48:12 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F4CC061756
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 05:46:42 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id 72so9045154qkk.7
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 05:46:42 -0700 (PDT)
+        with ESMTP id S235914AbhIVMu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 08:50:57 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DF8C061574
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 05:49:27 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id dj4so9486851edb.5
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 05:49:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JWVLXk0bW1n6vs3jcT9aY/C1O7KJx57lzY2TTe3JW5A=;
-        b=gGJbgnP4eCcWroX9W44Hm9lGT6j58J9JOSGTeNcq+Xx8GnM2kTNvQGeYzeolAcwpyD
-         AquDychphdIHB7NuTmxzraGY1i3MLTSHvrttGNrczJire6G4kj09hCfkjSUxWOoxusGH
-         nwAfQLtcEEjfFPNus1o7eswyWKpifeYg4YALK+YGWMt5uDFK4TmXlH3ndMia99vnjZEb
-         ecqRyClW4hnjXyA0tl0+ZJP8VSZ6XPhVYWrCvaIM2uY5y86rl5WYo6kCgV7mPOH2znkn
-         /qK1ZIesG3mHPzHvmeOMmdXh8NV61F/arODWtPO5LuSmFMTdkQ+ThyvsGlvlUsGi5Ths
-         YDiA==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=hDXxF8ENyyHbZZXP3MAIipEvf4FVhC7e66GLAXCcBJ0=;
+        b=nNllZFvaQJc5GOkDMTfNXyvDbhDJtEyVUcSBRDcQoSbJpq9cQvbaIADUVGcKXWVdQj
+         2SjqWXoZix953IAEiZeJjmGvk1N22UyEwoVYVZmjoCH0FwbpRjcPniMOyJujOiewM+KC
+         Ly09Zeig3LgY1xTIFr2GhcXVYPoMh/GvSzIfz4CV2NsLa0i18YcuTzkjrtIDBb/DQ9XM
+         +Njt1SpDw4gweXuYbpBu5a9wKMuc0S7UiAoJuUT2Zb2nrFTO8SjFR5J9upYtlXSCOV6f
+         c17Ncfd4SX6bxg9IOXt7r9ytqKqZ8jJC8c488JxvBDIQCp9hiqehq3C5r+FKRCrWWX+w
+         pm8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JWVLXk0bW1n6vs3jcT9aY/C1O7KJx57lzY2TTe3JW5A=;
-        b=HTFylbzkv2QAnAJkGtBduW3DPvHqDWZW4ZfH7ushCPVNcnknIEDOsib5DrLondODp2
-         YfNKSb+8QRVOyQCHvE/U0tv/FzeSfPOMWekwMZgZRnB/Aowu7o8aNHAe+UkcFyiU7S1w
-         oq1feTOaVaagbXyru3K5ooAB87p99u39hbZ6/QRUhWDMsEwrM5UKPE9jinqhZue2pCTc
-         oxUBF6r9WVw8Yr9w27rYnmPg0qfb/Y0NaG4I3t1PXEPbrcIRzc1ivlHVx/dGzXEx+CXk
-         9fKaYLOYsPo0abBm/V0utO5A1IZSu7FHLNjH86d8eNAleGefNspJwPa/v/Gl1zekvhme
-         2j5Q==
-X-Gm-Message-State: AOAM532YfMHFiwTDM/4X77LzQZEnpQVLTUyTv9qqiDwIyzXqX9/dJ5FK
-        O2K4YbGbK5J927RHmDnV2EhZQSVMudiW/iawkoYk6w==
-X-Google-Smtp-Source: ABdhPJxirl32JTg1ALZKlLeE8BM4i7EQqgoZBA+2NZjzSl/xAxbokXvhBRpqqlGLMUTSBNo9fz6/cW08ckF/IP6wZ28=
-X-Received: by 2002:a25:cbc3:: with SMTP id b186mr43624072ybg.199.1632314801488;
- Wed, 22 Sep 2021 05:46:41 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hDXxF8ENyyHbZZXP3MAIipEvf4FVhC7e66GLAXCcBJ0=;
+        b=r/+JmfvBRul7k+0jHQgFzagSWZ+FIbB3hR3L6cj+FrG/Tx0B5eGAfzrMT6cT6oTOsv
+         r8USkC4t59q/0e4V5AmzDiN1HmAcHDzwNQduT3xbS59xb2tO72MxIfYf5jUTWpVEjwQ7
+         HMzrCLxCRJFCwQuzCl4tQc4YbTy68sWskALQGu+9BOsZ7NGGQ5RtAbRV07Sc3vFZbyeO
+         GyU6ZJd2tD480G2OcuWDTIAse4i+dGvd/FZaqrZ0La8q4qjqmlLY3AQon97iF0wc0b/q
+         vh7ccVuNcJAmGsnEqviXvcgVHgCibXT8d8BuLnRybo3Vcqf5AHARXZAZId5nhLZJUgjf
+         WJUA==
+X-Gm-Message-State: AOAM531dYso4QNoUC/6IpG4WOcjUi0nBJCloTtktzOJbzGusiCjEtUOX
+        sRyZ9Kx7dLLCvBY3+UKd8z64Eg==
+X-Google-Smtp-Source: ABdhPJwICO2rgY0XkCSnQajdPYkPExG20tbDuE61wiWF5tLtG/ihTxkfIu1eNZYmw67DU1Tjv7ya9A==
+X-Received: by 2002:a17:906:7311:: with SMTP id di17mr40454001ejc.517.1632314966073;
+        Wed, 22 Sep 2021 05:49:26 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id 6sm1024081ejx.82.2021.09.22.05.49.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Sep 2021 05:49:25 -0700 (PDT)
+Subject: Re: [PATCH 1/6] dt-bindings: nvmem: add cell-type to nvmem cells
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org,
+        =?UTF-8?Q?Jan_L=c3=bcbbe?= <jlu@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org
+References: <20210908100257.17833-1-qiangqing.zhang@nxp.com>
+ <20210908100257.17833-2-qiangqing.zhang@nxp.com>
+ <6d91d833-08cc-7ce2-4fe5-3d843a8b31ae@pengutronix.de>
+ <181c4037-3c34-0f71-6bb7-a9c11b173064@linaro.org>
+ <dbd1c20c-e3be-6c92-52a8-2ad76d0092d0@pengutronix.de>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <8fc0a5e2-18c0-fa81-3eed-a6d596361633@linaro.org>
+Date:   Wed, 22 Sep 2021 13:49:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210906083020.6038-1-a-m1@ti.com> <422f7ccd-348b-8023-37db-803339684054@ti.com>
- <CAMpxmJV_DJRtuHH7V86WOi+Rd5fZ0uOf=jNBY7XvJa_5f4h9bQ@mail.gmail.com> <91aa4468575143c9bb6a8b6a56ab2995@ti.com>
-In-Reply-To: <91aa4468575143c9bb6a8b6a56ab2995@ti.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Wed, 22 Sep 2021 14:46:30 +0200
-Message-ID: <CAMpxmJUam3ZQeizGWaswTy=ziYMh0R5cH+b5F2tdPgWKAuGTDA@mail.gmail.com>
-Subject: Re: [EXTERNAL] Re: [PATCH RESEND] dt-bindings: gpio: Convert TI
- TPIC2810 GPIO Controller bindings to yaml
-To:     "M, Aparna" <a-m1@ti.com>
-Cc:     "Strashko, Grygorii" <grygorii.strashko@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <dbd1c20c-e3be-6c92-52a8-2ad76d0092d0@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 2:11 PM M, Aparna <a-m1@ti.com> wrote:
->
-> Hi Bart,
->
-> I have resent the patch.
->
-> Regards,
-> Aparna
->
 
-To which address? I still don't have it on both of my email addresses
-(not in spam too) and patchwork still doesn't see it.
 
-Bart
+On 22/09/2021 13:31, Ahmad Fatoum wrote:
+>>>
+>>> On 08.09.21 12:02, Joakim Zhang wrote:
+>>>> From: Srinivas Kandagatla<srinivas.kandagatla@linaro.org>
+>>>>
+>>>> Some of the nvmem providers encode data for certain type of nvmem cell,
+>>>> example mac-address is stored in ascii or with delimiter or in reverse order.
+>>>>
+>>>> This is much specific to vendor, so having a cell-type would allow nvmem
+>>>> provider drivers to post-process this before using it.
+>>> I don't agree with this assessment. Users of the OCOTP so far
+>>> used this specific encoding. Bootloaders decode the OCOTP this way, but this
+>>> encoding isn't really an inherent attribute of the OCOTP. A new NXP SoC
+>>> with a different OTP IP will likely use the same format. Users may even
+>>> use the same format on an EEPROM to populate a second off-SoC interface, .. etc.
+>>>
+>> That is okay.
+> How would you go about using this same format on an EEPROM?
+
+Am guessing that by the time there are more users for such formats, 
+those post-processing functions should be converted into some library 
+functions.
+
+--srini
+
+> 
+>>> I'd thus prefer to not make this specific to the OCOTP as all:
+>>>
+>>>     * #define NVMEM_CELL_ENCODING_MAC_ADDRESS_IMX    /* ... */
