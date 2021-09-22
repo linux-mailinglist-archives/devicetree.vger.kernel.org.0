@@ -2,135 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0EFD414218
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 08:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F9441421A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 08:44:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232798AbhIVGpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 02:45:39 -0400
-Received: from mail-vs1-f53.google.com ([209.85.217.53]:41691 "EHLO
-        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232770AbhIVGpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 02:45:38 -0400
-Received: by mail-vs1-f53.google.com with SMTP id az15so1883435vsb.8;
-        Tue, 21 Sep 2021 23:44:09 -0700 (PDT)
+        id S232874AbhIVGqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 02:46:10 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:48198
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232799AbhIVGqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 02:46:10 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 86C75402DE
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 06:44:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632293079;
+        bh=PHpWlL5286L9Vy7vwwtJJDOqUvt0lVJtNPWSRo8nnkI=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=X2tPR+GdMJEYpgN/lUT3nmnkcPVIYTt3aKblh1AYZR++NEA0fisxxTNEBo/xlggv+
+         lPbS2lVmNuPPzXA/hLNj1pLCfhqLSAeyJYBmz3WuBPZ3SAmTsSnOH2MzVdiCljIlVc
+         6zwToe9Mb4hckB429xPBWIJQY3MzGhteM3SXMY33sz8I9COX1AYafL6xHVCCY55aow
+         qXGpoakfdhJ3D4t55/vo83PSgyq9QnhPZ+AEeI5u/NKWmfyBLNPu60LQySzYml9uXK
+         jmkJstHdpkgSf9koyCKB6GqJvaZ02RAiSXaTF1SfNjgd5o3PHEneyLKBSl3EfoEgLJ
+         3tEGlHxEbvTUA==
+Received: by mail-wr1-f71.google.com with SMTP id m1-20020a056000180100b0015e1ec30ac3so1177037wrh.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Sep 2021 23:44:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i2pUM5brNJqaej4iEqyIsIxjV6XIoFcwAAQ7Oqy6DEk=;
-        b=zZ/VjtNJmEGWGWzWXntVXzcPdRka/SRQ8VwsH8haHFjnquiVTr2cnYccpNvUnsV7GC
-         gE7kqMmF5O6s5Ke7mUKrT+MbzLGCuBKlZNH/CU327Q7vBEIPIQzXNO7JvlE1dSTVayx+
-         287Xt/d7v0d7wgi1cd9GA/GWeO6LX8sFLUB4E/SkaezWUDKoF/kOSpoff9fjaHqNeQYM
-         JlMVH6S3o5l287tQBeMwoXKBIT9T/ha6OxIdAJ/PxHoQsSuXsQl/NO7h9qAvspgyNOT5
-         e38DvsccFz+5rSCHUPer6MdAusR++HnYiSoDV7dh63m3DKunLcoU1gBfI8F9QoD38YCE
-         qMfQ==
-X-Gm-Message-State: AOAM530R8JIQx/8VxiVvki8tmPRcymyNmATx/ZfDQy/kedglI2iLSklo
-        M2SJToxl03VcnMFimrSHNIasDq0wJrEIDuB+XXyTzvw+
-X-Google-Smtp-Source: ABdhPJwKxJBZAXv/SC7mdaGufQfqAQXm0UqBb5rpyK8VQIckPSoy5NjMixQOSxEm1nfiSw2knEhc9WDFntv0vlUHgXM=
-X-Received: by 2002:a67:cc1c:: with SMTP id q28mr23885496vsl.37.1632293048964;
- Tue, 21 Sep 2021 23:44:08 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=PHpWlL5286L9Vy7vwwtJJDOqUvt0lVJtNPWSRo8nnkI=;
+        b=QQmuUuvg5L77I/Ii1jMbb9/5/nn0H6hWZ2UHuTJ4WigNikwPu8JhJgM/oP61yR8IkW
+         SqXfks+Oglcbo+il0ehsF5HcSMmzFSbZzVBf2qlfNzPYGWK4zdob65v5oYDtgYcED2xW
+         7K8B5M2ETcF8/cfKG7QBgOuvAezJgEjN/hCgAF8Q3cjh/rzl229Vmu8nzULZc/ubWPBR
+         VR4HjkgdnHfY2Ox0g9Nkmv6h1Kc7Zv5hGejM9lc0Rp8PMATlmRExlWLSkpYraMjl9NKy
+         XDSXt8SbvjV70UqkFtbKYj8b+4y454LrKXkWUS0UjrwF5VQSV0FuKE9E29EfHxR9JLww
+         HEIA==
+X-Gm-Message-State: AOAM532fQEU9/Vlws8ts6dUXwUCMv4ISDREVlB/CipF8k8r7J+HPy4Ly
+        93d2vmVNX3FQhZhKnodryZUGSZ240jXFFxACmD1Y5saeDrj76Fq5XnbIkFUVN1Yj1dWo+oLrwpJ
+        ZBiJA4kA5RFBWLY3awIkMo9CmlpG47o3k6WCVp8U=
+X-Received: by 2002:adf:a3c3:: with SMTP id m3mr40411582wrb.237.1632293079013;
+        Tue, 21 Sep 2021 23:44:39 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy7X/xE8BOJMFBcSLMZa3NNLNdKake1etQzDd7PnPQEF6xSjGfjlZkAQpczOFislXeA7hs9uQ==
+X-Received: by 2002:adf:a3c3:: with SMTP id m3mr40411555wrb.237.1632293078867;
+        Tue, 21 Sep 2021 23:44:38 -0700 (PDT)
+Received: from localhost.localdomain (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id g2sm1244554wrb.20.2021.09.21.23.44.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Sep 2021 23:44:38 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>, youlin.pei@mediatek.com,
+        srv_heupstream@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, anan.sun@mediatek.com,
+        devicetree@vger.kernel.org, yi.kuo@mediatek.com,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        ming-fan.chen@mediatek.com, iommu@lists.linux-foundation.org,
+        Ikjoon Jang <ikjn@chromium.org>, anthony.huang@mediatek.com
+Subject: Re: [PATCH v4 00/13] MT8195 SMI support
+Date:   Wed, 22 Sep 2021 08:44:01 +0200
+Message-Id: <163229303729.7874.4095337797772755570.b4-ty@canonical.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210914113703.31466-1-yong.wu@mediatek.com>
+References: <20210914113703.31466-1-yong.wu@mediatek.com>
 MIME-Version: 1.0
-References: <20210623135639.17125-1-laurent.pinchart+renesas@ideasonboard.com>
- <YQGFP/cFoSksPyn+@pendragon.ideasonboard.com> <CAMuHMdVmTcERvHhLLDrZyC_TDLPU89ksitn0WduJkKqpePCKdg@mail.gmail.com>
- <YUqGWa6q+wYq2vAt@pendragon.ideasonboard.com>
-In-Reply-To: <YUqGWa6q+wYq2vAt@pendragon.ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 22 Sep 2021 08:43:57 +0200
-Message-ID: <CAMuHMdXRhOmj4upp6Zsn3yb5bRdpg8hrgATWJCA6bSdvD=e1qw@mail.gmail.com>
-Subject: Re: [RESEND] [PATCH v2 1/2] dt-bindings: display: bridge: Add binding
- for R-Car MIPI DSI/CSI-2 TX
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On Tue, 14 Sep 2021 19:36:50 +0800, Yong Wu wrote:
+> This patchset mainly adds SMI support for mt8195.
+> 
+> Comparing with the previous version, add two new functions:
+> a) add smi sub common
+> b) add initial setting for smi-common and smi-larb.
+> 
+> Change note:
+> v4:1) base on v5.15-rc1
+>    2) In the dt-binding:
+>       a. add "else mediatek,smi: false." in the yaml.
+>       b. Remove mediatek,smi_sub_common. since we have only 2 level currently,
+>       It should be smi-sub-common if that node has "mediatek,smi". otherwise,
+>       it is smi-common.
+> 
+> [...]
 
-On Wed, Sep 22, 2021 at 3:27 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Tue, Sep 21, 2021 at 05:53:52PM +0200, Geert Uytterhoeven wrote:
-> > On Wed, Jul 28, 2021 at 6:26 PM Laurent Pinchart wrote:
-> > > The R-Car MIPI DSI/CSI-2 TX is embedded in the Renesas R-Car V3U SoC. It
-> > > can operate in either DSI or CSI-2 mode, with up to four data lanes.
-> > >
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > > Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> >
-> > Thanks for your patch!
-> >
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-> > > @@ -0,0 +1,118 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/bridge/renesas,dsi-csi2-tx.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Renesas R-Car MIPI DSI/CSI-2 Encoder
-> > > +
-> > > +maintainers:
-> > > +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > > +
-> > > +description: |
-> > > +  This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
-> > > +  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
-> > > +  to four data lanes.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - renesas,r8a779a0-dsi-csi2-tx    # for V3U
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: Functional clock
-> > > +      - description: DSI (and CSI-2) functional clock
-> > > +      - description: PLL reference clock
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: fck
-> > > +      - const: dsi
-> > > +      - const: pll
-> >
-> > No interrupts?
-> > The hardware manual says there are 9 interrupts.
->
-> Who comes up with such insanely high numbers of interrupts ? :-)
->
-> What the hardware manual doesn't document is how interrupts are mapped.
-> There's indeed 9 of them, and there are 9 interrupt sources, but that's
-> all we know. I can easily add a
->
->   interrupts:
->     maxItems: 9
->
-> but I can add interrupt names without additional information. It may be
-> possible to deduce some of the interrupt mappings from experiments, but
-> not all of them. What do you think would be a good way forward ? Leave
-> the interrupts out for now as we don't have the information ? Only list
-> the interrupts but not their names ? Something else ?
+Applied, thanks!
 
-I think what we did in the past is not list the interrupts at all.
-They can be added once we receive more documentation.
+[01/13] dt-bindings: memory: mediatek: Add mt8195 smi binding
+        commit: b01065eee432b3ae91a2c0aaab66c2cae2e9812d
+[02/13] dt-bindings: memory: mediatek: Add mt8195 smi sub common
+        commit: 599e681a31a2dfa7359b8e420a1157ed015f840b
+[03/13] memory: mtk-smi: Use clk_bulk clock ops
+        commit: 0e14917c57f9d8b9b7d4f41813849a29659447b3
+[04/13] memory: mtk-smi: Rename smi_gen to smi_type
+        commit: a5c18986f404206fdbc27f208620dc13bffb5657
+[05/13] memory: mtk-smi: Adjust some code position
+        commit: 534e0ad2ed4f9296a8c7ccb1a393bc4d5000dbad
+[06/13] memory: mtk-smi: Add error handle for smi_probe
+        commit: 30b869e77a1c626190bbbe6b4e5f5382b0102ac3
+[07/13] memory: mtk-smi: Add device link for smi-sub-common
+        commit: 47404757702ec8aa5c8310cdf58a267081f0ce6c
+[08/13] memory: mtk-smi: Add clocks for smi-sub-common
+        commit: 3e4f74e0ea5a6a6d6d825fd7afd8a10afbd1152c
+[09/13] memory: mtk-smi: Use devm_platform_ioremap_resource
+        commit: 912fea8bf8d854aef967c82a279ffd20be0326d7
+[10/13] memory: mtk-smi: mt8195: Add smi support
+        commit: cc4f9dcd9c1543394d6ee0d635551a2bd96bcacb
+[11/13] memory: mtk-smi: mt8195: Add initial setting for smi-common
+        commit: 431e9cab7097b5d5eb3cf2b04d4b12d272df85e0
+[12/13] memory: mtk-smi: mt8195: Add initial setting for smi-larb
+        commit: fe6dd2a4017d3dfbf4a530d95270a1d498a16a4c
+[13/13] MAINTAINERS: Add entry for MediaTek SMI
+        commit: 93403ede5aa4edeec2c63541b185d9c4fc9ae1e4
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
