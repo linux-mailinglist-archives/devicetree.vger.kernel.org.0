@@ -2,234 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BDF8414D99
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 17:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DBED414D9E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 18:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236323AbhIVQA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 12:00:26 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:56984 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236478AbhIVQAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 12:00:25 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18MFwiw6054321;
-        Wed, 22 Sep 2021 10:58:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632326324;
-        bh=yOcYshpy9NXbBhUxW7buhVqSE8u9TAcg9tbSZimEaSY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=k2ZpW0a/786iPLnhuQgUsrQB4pO9UI4TWUWRg0z7rcD00mh3JavkkpmilogSXWB7r
-         OonnGhu1PnG3GzSejEEryy2tvTuFGKuBpNUcTGypzrvd+KIgGeNFg8IX83q2PBXgl9
-         sZcjvQy82PsecxGbYz36i9eleh0o+e0l29Wr5/Hc=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18MFwiZQ126892
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 22 Sep 2021 10:58:44 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
- Sep 2021 10:58:43 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 22 Sep 2021 10:58:43 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18MFwhIN093009;
-        Wed, 22 Sep 2021 10:58:43 -0500
-Date:   Wed, 22 Sep 2021 10:58:43 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-Subject: Re: [PATCH v4 6/6] arm64: dts: ti: iot2050: Add support for product
- generation 2 boards
-Message-ID: <20210922155843.gjn5aezf4lmgtn3d@undecided>
-References: <cover.1631708830.git.jan.kiszka@siemens.com>
- <a4d6ab1dd1f5582b940ac25395eb878e683b3a38.1631708830.git.jan.kiszka@siemens.com>
+        id S229954AbhIVQBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 12:01:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50736 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231764AbhIVQBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 12:01:54 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603E4C061757
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 09:00:24 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id i23so8420782wrb.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 09:00:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=DitKZE2YmWLcJhuWMyY4UnlFA8GEl2HgFvdNE+mZ/C0=;
+        b=V5kxa8UE7c9SriJCPTT4HCGoH4VIBUBl3t+jA75xR9sbHvoJgrdWmSFn24hkGvG4LG
+         P0gzNWfw2nlSWY3IWetSvxo6hj3PYUPJwi8U/hkoXcSp0PaOR2THLJ27rAKQXsYav0kJ
+         SN/edZWj4koqLN/qFzKHESyyE85E4SsiXghhKayI8WeEc+g+/QJJM6arUklfpVnDMhbK
+         0BFW3XDFTb3vC9485ykByHDD2zFaT6gn98GEZ5FQMDQak9OeD+88GQy4drcGxK3Uf9J/
+         +k9N8FFlL8U3dZlZS41mRClk/IW7Q+iySTtAOCJCEMEK7lEBqEC8UHP00/5SH7MPvhKF
+         K3gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=DitKZE2YmWLcJhuWMyY4UnlFA8GEl2HgFvdNE+mZ/C0=;
+        b=LPKJjAjqaqiz/LbpLxWiKYDyQYhE+Lwa6bMQNK33v9iDRl50mhv/hZCUhXprehNtz1
+         Su8bTrS/hmWqCETKytwqYjrI6O0e/COsXSH1eADZ5YAUwkzq9+U3glC2l78QkED7kyF5
+         +eZN2f6uxbCIn4LiAb064tg2KBEEkfveIASOKUagAlXlXBWefaqGr5nio8cw8ddoW1gQ
+         5/iChW94SbedrX0XluNjhuWQp22hBs7AxD8NTK9bqY0r2sZfpEgOfLnqN+I6ZubKmGQt
+         A9t0buIhSJSvOec9qavelZZcY7Ndv0Gpl4FI/A5MpuxhYV50bK/f0Kj3ox8KzU99JW2F
+         evAg==
+X-Gm-Message-State: AOAM53026rRix9H1KXHDabFusreKaTVOP1sNI8CLHCF52P0Y/etaDt39
+        UCdKVGc9XsG/k/EYIPFr1xyojQ==
+X-Google-Smtp-Source: ABdhPJxbMEbMQjPi/IqDVryc7t9gwWZEDQkQ2K+3oGZELjX7u7znm2vKuef1dzJuZV4acI1825kGIg==
+X-Received: by 2002:a1c:149:: with SMTP id 70mr11141227wmb.187.1632326422787;
+        Wed, 22 Sep 2021 09:00:22 -0700 (PDT)
+Received: from google.com ([95.148.6.233])
+        by smtp.gmail.com with ESMTPSA id f19sm2407217wmf.11.2021.09.22.09.00.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Sep 2021 09:00:22 -0700 (PDT)
+Date:   Wed, 22 Sep 2021 17:00:20 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        bcousson@baylibre.com, Tony Lindgren <tony@atomide.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Ryan Barnett <ryan.barnett@collins.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Jason Reeder <jreeder@ti.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v3 35/47] mfd: ti_am335x_tscadc: Add ADC1/magnetic reader
+ support
+Message-ID: <YUtTFEv1YFOMeuEb@google.com>
+References: <20210915155908.476767-1-miquel.raynal@bootlin.com>
+ <20210915155908.476767-36-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <a4d6ab1dd1f5582b940ac25395eb878e683b3a38.1631708830.git.jan.kiszka@siemens.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210915155908.476767-36-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:27-20210915, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
+On Wed, 15 Sep 2021, Miquel Raynal wrote:
+
+> Introduce a new compatible that has another set of driver data,
+> targeting am437x SoCs with a magnetic reader instead of the
+> touchscreen and a more featureful set of registers.
 > 
-> This adds the devices trees for IOT2050 Product Generation 2 (PG2)
-> boards. We have Basic and an Advanced variants again, differing in
-> number of cores, RAM size, availability of eMMC and further details.
-> The major difference to PG1 is the used silicon revision (SR2.x on
-> PG2).
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > ---
->  arch/arm64/boot/dts/ti/Makefile               |  2 +
->  .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    | 51 +++++++++++++++++++
->  .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    | 24 +++++++++
->  .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts | 29 +++++++++++
->  4 files changed, 106 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
+>  drivers/mfd/ti_am335x_tscadc.c       | 41 ++++++++++++++++++++++++----
+>  include/linux/mfd/ti_am335x_tscadc.h |  7 +++++
+>  2 files changed, 42 insertions(+), 6 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index d56c742f5a10..41a4bc96e6bd 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -8,7 +8,9 @@
+> diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
+> index 65c0fa735a71..155a8ed879b3 100644
+> --- a/drivers/mfd/ti_am335x_tscadc.c
+> +++ b/drivers/mfd/ti_am335x_tscadc.c
+> @@ -121,11 +121,11 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>  	struct mfd_cell *cell;
+>  	struct property *prop;
+>  	const __be32 *cur;
+> -	bool use_tsc = false;
+> +	bool use_tsc = false, use_mag = false;
+>  	u32 val;
+>  	int err;
+>  	int tscmag_wires = 0, adc_channels = 0, cell_idx = 0, total_channels;
+> -	int readouts = 0;
+> +	int readouts = 0, mag_tracks = 0;
 >  
->  dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
+>  	/* Allocate memory for device */
+>  	tscadc = devm_kzalloc(&pdev->dev, sizeof(*tscadc), GFP_KERNEL);
+> @@ -148,6 +148,16 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>  		of_node_put(node);
+>  		if (tscmag_wires)
+>  			use_tsc = true;
+> +	} else {
+> +		/*
+> +		 * When adding support for the magnetic reader, here is the
+> +		 * place to look for the number of tracks used from device tree.
+> +		 * Let's default to 0 for now.
+> +		 */
+> +		mag_tracks = 0;
+> +		tscmag_wires = mag_tracks * 2;
+> +		if (tscmag_wires)
+> +			use_mag = true;
+>  	}
 >  
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
+>  	node = of_get_child_by_name(pdev->dev.of_node, "adc");
+> @@ -209,8 +219,9 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>  	 * The TSC_ADC_Subsystem has 2 clock domains: OCP_CLK and ADC_CLK.
+>  	 * ADCs produce a 12-bit sample every 15 ADC_CLK cycles.
+>  	 * am33xx ADCs expect to capture 200ksps.
+> -	 * We need the ADC clocks to run at 3MHz.
+> -	 * This frequency is valid since TSC_ADC_SS controller design
+> +	 * am47xx ADCs expect to capture 867ksps.
+> +	 * We need ADC clocks respectively running at 3MHz and 13MHz.
+> +	 * These frequencies are valid since TSC_ADC_SS controller design
+>  	 * assumes the OCP clock is at least 6x faster than the ADC clock.
+>  	 */
+>  	clk = devm_clk_get(&pdev->dev, NULL);
+> @@ -238,6 +249,9 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>  			else
+>  				tscadc->ctrl |= CNTRLREG_TSC_4WIRE;
+>  		}
+> +	} else {
+> +		tscadc->ctrl |= CNTRLREG_MAG_PREAMP_PWRDOWN |
+> +				CNTRLREG_MAG_PREAMP_BYPASS;
+>  	}
+>  	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl);
 >  
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-> new file mode 100644
-> index 000000000000..c25bce7339b7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-> @@ -0,0 +1,51 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) Siemens AG, 2021
-> + *
-> + * Authors:
-> + *   Chao Zeng <chao.zeng@siemens.com>
-> + *   Jan Kiszka <jan.kiszka@siemens.com>
-> + *
-> + * Common bits of the IOT2050 Basic and Advanced variants, PG2
-> + */
-> +
-> +&main_pmx0 {
-> +	cp2102n_reset_pin_default: cp2102n-reset-pin-default {
-> +		pinctrl-single,pins = <
-> +			/* (AF12) GPIO1_24, used as cp2102 reset */
-> +			AM65X_IOPAD(0x01e0, PIN_OUTPUT, 7)
-> +		>;
-> +	};
-> +};
-> +
-> +&main_gpio1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&cp2102n_reset_pin_default>;
-> +	gpio-line-names =
-> +		"", "", "", "", "", "", "", "", "", "",
-> +		"", "", "", "", "", "", "", "", "", "",
-> +		"", "", "", "", "CP2102N-RESET";
-> +};
-> +
-> +&dss {
-> +	/* Workaround needed to get DP clock of 154Mhz */
-> +	assigned-clocks = <&k3_clks 67 0>;
-> +};
-> +
-> +&serdes0 {
-> +	assigned-clocks = <&k3_clks 153 4>, <&serdes0 AM654_SERDES_CMU_REFCLK>;
-> +	assigned-clock-parents = <&k3_clks 153 7>, <&k3_clks 153 4>;
-> +};
-> +
-> +&dwc3_0 {
-> +	assigned-clock-parents = <&k3_clks 151 4>,  /* set REF_CLK to 20MHz i.e. PER0_PLL/48 */
-> +				 <&k3_clks 151 8>;  /* set PIPE3_TXB_CLK to WIZ8B2M4VSB */
-> +	phys = <&serdes0 PHY_TYPE_USB3 0>;
-> +	phy-names = "usb3-phy";
-> +};
-> +
-> +&usb0_phy {
-> +	maximum-speed = "super-speed";
-> +	snps,dis-u1-entry-quirk;
-> +	snps,dis-u2-entry-quirk;
+> @@ -246,7 +260,7 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>  	/* Enable the TSC module enable bit */
+>  	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl | CNTRLREG_SSENB);
+>  
+> -	/* TSC Cell */
+> +	/* TSC or MAG Cell */
+>  	if (tscmag_wires > 0) {
+>  		cell = &tscadc->cells[cell_idx++];
+>  		cell->name = tscadc->data->name_tscmag;
+> @@ -334,6 +348,7 @@ static SIMPLE_DEV_PM_OPS(tscadc_pm_ops, tscadc_suspend, tscadc_resume);
+>  
+>  static const struct ti_tscadc_data tscdata = {
+>  	.has_tsc = true,
+> +	.has_mag = false,
+>  	.name_tscmag = "TI-am335x-tsc",
+>  	.compat_tscmag = "ti,am3359-tsc",
+>  	.name_adc = "TI-am335x-adc",
+> @@ -341,11 +356,25 @@ static const struct ti_tscadc_data tscdata = {
+>  	.target_clk_rate = TSC_ADC_CLK,
+>  };
+>  
+> +static const struct ti_tscadc_data magdata = {
+> +	.has_tsc = false,
+> +	.has_mag = true,
 
-^^
-	did you mean &usb0?
-usb0_phy uses Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
-usb0 uses Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+Why 2 bools?
 
-am i missing a "maximum-speed" there? quirks look like belonging to the
-controller ?
+Better to have a single u8:
 
+  MODE_TOUCHSCREEN
+  MODE_MAG_STRING
+  MODE_NONE
 
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-> new file mode 100644
-> index 000000000000..c62549a4b436
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-> @@ -0,0 +1,24 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) Siemens AG, 2018-2021
-> + *
-> + * Authors:
-> + *   Le Jin <le.jin@siemens.com>
-> + *   Jan Kiszka <jan.kiszka@siemens.com>
-> + *
-> + * AM6528-based (dual-core) IOT2050 Basic variant, Product Generation 2
-> + * 1 GB RAM, no eMMC, main_uart0 on connector X30
-> + *
-> + * Product homepage:
-> + * https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "k3-am6528-iot2050-basic-common.dtsi"
-> +#include "k3-am65-iot2050-common-pg2.dtsi"
-> +
-> +/ {
-> +	compatible = "siemens,iot2050-basic-pg2", "ti,am654";
-> +	model = "SIMATIC IOT2050 Basic PG2";
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-> new file mode 100644
-> index 000000000000..f00dc86d01b9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-> @@ -0,0 +1,29 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) Siemens AG, 2018-2021
-> + *
-> + * Authors:
-> + *   Le Jin <le.jin@siemens.com>
-> + *   Jan Kiszka <jan.kiszka@siemens.com>
-> + *
-> + * AM6548-based (quad-core) IOT2050 Advanced variant, Product Generation 2
-> + * 2 GB RAM, 16 GB eMMC, USB-serial converter on connector X30
-> + *
-> + * Product homepage:
-> + * https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "k3-am6548-iot2050-advanced-common.dtsi"
-> +#include "k3-am65-iot2050-common-pg2.dtsi"
-> +
-> +/ {
-> +	compatible = "siemens,iot2050-advanced-pg2", "ti,am654";
-> +	model = "SIMATIC IOT2050 Advanced PG2";
+> +	.name_tscmag = "TI-am43xx-mag",
+> +	.compat_tscmag = "ti,am4372-mag",
+> +	.name_adc = "TI-am43xx-adc",
+> +	.compat_adc = "ti,am4372-adc",
+> +	.target_clk_rate = MAG_ADC_CLK,
 > +};
 > +
-> +&mcu_r5fss0 {
-> +	/* lock-step mode not supported on this board */
-> +	ti,cluster-mode = <0>;
-> +};
-> -- 
-> 2.31.1
-> 
+>  static const struct of_device_id ti_tscadc_dt_ids[] = {
+>  	{
+>  		.compatible = "ti,am3359-tscadc",
+>  		.data = &tscdata,
+>  	},
+> +	{
+> +		.compatible = "ti,am4372-magadc",
+> +		.data = &magdata,
+> +	},
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, ti_tscadc_dt_ids);
+> @@ -363,6 +392,6 @@ static struct platform_driver ti_tscadc_driver = {
+>  
+>  module_platform_driver(ti_tscadc_driver);
+>  
+> -MODULE_DESCRIPTION("TI touchscreen / ADC MFD controller driver");
+> +MODULE_DESCRIPTION("TI touchscreen/magnetic reader/ADC MFD controller driver");
+
+Magnetic what?  Tape, disk, stripe?
+
+>  MODULE_AUTHOR("Rachna Patil <rachna@ti.com>");
+>  MODULE_LICENSE("GPL");
+> diff --git a/include/linux/mfd/ti_am335x_tscadc.h b/include/linux/mfd/ti_am335x_tscadc.h
+> index 467b3bec4335..9a412e6d764b 100644
+> --- a/include/linux/mfd/ti_am335x_tscadc.h
+> +++ b/include/linux/mfd/ti_am335x_tscadc.h
+> @@ -106,6 +106,11 @@
+>  #define CNTRLREG_TSC_8WIRE	CNTRLREG_TSC_AFE_CTRL(3)
+>  #define CNTRLREG_TSC_ENB	BIT(7)
+>  
+> +/*Control registers bitfields  for MAGADC IP */
+> +#define CNTRLREG_MAGADCENB      BIT(0)
+> +#define CNTRLREG_MAG_PREAMP_PWRDOWN BIT(5)
+> +#define CNTRLREG_MAG_PREAMP_BYPASS  BIT(6)
+> +
+>  /* FIFO READ Register */
+>  #define FIFOREAD_DATA_MASK	GENMASK(11, 0)
+>  #define FIFOREAD_CHNLID_MASK	GENMASK(19, 16)
+> @@ -119,6 +124,7 @@
+>  #define CHARGE_STEP		0x11
+>  
+>  #define TSC_ADC_CLK		(3 * HZ_PER_MHZ)
+> +#define MAG_ADC_CLK		(13 * HZ_PER_MHZ)
+>  #define TOTAL_STEPS		16
+>  #define TOTAL_CHANNELS		8
+>  #define FIFO1_THRESHOLD		19
+> @@ -141,6 +147,7 @@
+>  
+>  struct ti_tscadc_data {
+>  	bool has_tsc;
+> +	bool has_mag;
+>  	char *name_tscmag;
+>  	char *compat_tscmag;
+>  	char *name_adc;
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
