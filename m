@@ -2,113 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24EBC4150E7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D714150E1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 22:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237274AbhIVUC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 16:02:58 -0400
-Received: from mo4-p00-ob.smtp.rzone.de ([85.215.255.24]:30551 "EHLO
-        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237341AbhIVUCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 16:02:40 -0400
-X-Greylist: delayed 87309 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 Sep 2021 16:02:40 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632340852;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=tj9hav2P35+GuDckfzJk3R5QgnH8BuC8JGWAe6zUaf4=;
-    b=eayHNoTtR6c/ev/4/Rz3+8eSqsoeXa98di2dg4xhqYQgFgkGocKwRrZ8jEbbmh7HP5
-    fmM0WbWLPQDhzeB6Sn9B0K20Hnnnh1nX728XVbkyKavJjMLh7IReiGpHjzJi6KgbXhye
-    uJ0cVFv1uASj0Lsz7k6AzLPvRLgjWVPOgILa2az+le0kWq/Z9g8uei4EcvWVFM1ZHZvp
-    J5YhvlyFokG1rzJTZxviUZ4P7IleNRdP679Z/q5T9SPntebpTuyMr+B2GnDrXRe0BES7
-    p4C9lp7k4nUtSQz9XuSYqEwJTZw2p3ZDSbKqMKScSV4K6oDriqQlW+hhS2hrXth7zSln
-    2Lrg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXTbAOHjRHIhr2eFSIIYI="
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id 301038x8MK0pJjd
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Wed, 22 Sep 2021 22:00:51 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH] arm64: dts: qcom: apq8016-sbc: Clarify firmware-names
-Date:   Wed, 22 Sep 2021 21:58:53 +0200
-Message-Id: <20210922195853.95574-1-stephan@gerhold.net>
-X-Mailer: git-send-email 2.33.0
+        id S237268AbhIVUCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 16:02:05 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:44929 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237233AbhIVUCE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 16:02:04 -0400
+Received: by mail-ot1-f54.google.com with SMTP id h9-20020a9d2f09000000b005453f95356cso5152618otb.11;
+        Wed, 22 Sep 2021 13:00:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EwBtizBwYUS7ds9KbiJKHwz7O9MWVtZfiCvZdAqS+uk=;
+        b=VuXzDACnevhmDPBQoI/TwhhctMErwb4fzPn8zlCOG6RIyi2LclTnaN9t5mytvgr5ED
+         kgxdJ6PCqyUJaivZskuGUhZz56+4ZjJuverAjCM6qplRO4ZdCttDEBJZdhmPBPhfB2oK
+         2tsHB8cX8HzdyhlURUoSye7whBKahSctd0o3Gk4eAhcPIwTSBydSg1dY4VNzyFEPQL+K
+         CDG3/QZkAg/ZK6v1wtvH/Zi41mBWp6yrhqAUlO3p5B8geTyPoZBu/ADsbgj4z1NKgeC8
+         4A00HK8WaKA0keyPOOWjxb+bkHA4EJwbO8T5r4bVRhbaf9aBvES9dVsP9XBBSabIj/z/
+         Si1g==
+X-Gm-Message-State: AOAM531bFa+hc8d2zUXvo4gGH4IzbPuf5Jn5NcQlblpkfG6ouAQG0x5i
+        0CSjto8LTz6ULQKYHUyLLA==
+X-Google-Smtp-Source: ABdhPJzUAr6u0Xn03mzSpKdylE62vYd8oWZvINoGA3ySF7D2xFE/n6+0zdLvOEr98D5q7f3DARAiAw==
+X-Received: by 2002:a05:6830:165a:: with SMTP id h26mr839089otr.301.1632340833970;
+        Wed, 22 Sep 2021 13:00:33 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id i4sm730564otj.9.2021.09.22.13.00.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Sep 2021 13:00:33 -0700 (PDT)
+Received: (nullmailer pid 1195318 invoked by uid 1000);
+        Wed, 22 Sep 2021 20:00:32 -0000
+Date:   Wed, 22 Sep 2021 15:00:32 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
+Cc:     Suman Anna <s-anna@ti.com>, linux-kernel@vger.kernel.org,
+        Sinthu Raja <sinthu.raja@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, Nishanth Menon <nm@ti.com>
+Subject: Re: [PATCH V3 1/2] dt-bindings: remoteproc: k3-r5f: Remove
+ board-specific compatible from DT example
+Message-ID: <YUuLYOLVIWzNFzg3@robh.at.kernel.org>
+References: <20210917095426.19277-1-sinthu.raja@ti.com>
+ <20210917095426.19277-2-sinthu.raja@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210917095426.19277-2-sinthu.raja@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 0f6b380d580c ("arm64: dts: qcom: apq8016-sbc: Update modem and WiFi
-firmware path") added "firmware-name"s to the APQ8016 SBC (DB410c) device
-tree to separate the (test key)-signed firmware from other devices.
+On Fri, 17 Sep 2021 15:24:25 +0530, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> The example includes a board-specific compatible property, this is
+> wrong as the example should be board agnostic. Replace the same with a
+> generic soc node.
+> 
+> Fixes: 5ee79c2ed5bd ("dt-bindings: remoteproc: Add bindings for R5F subsystem on TI K3 SoCs")
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> ---
+> 
+> Changes in V3: new patch in the series.
+> 
+>  .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml       | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
 
-However, the added names are a bit confusing. The "modem" firmware used by
-DB410c is actually a simplified version for APQ8016 that lacks most of the
-modem functionality (phone calls, SMS etc) that is available on MSM8916.
-Placing it in "qcom/msm8916/modem.mbn" suggests that it supports all
-functionality for MSM and not just the reduced functionality for APQ.
-
-Request the firmware from "qcom/apq8016/modem.mbn" instead to clarify this.
-Do the same for "wcnss.mbn" for consistency (although the WCNSS firmware
-works just fine on MSM8916).
-
-Finally, add a "_sbc" suffix to the WCNSS_qcom_wlan_nv.bin firmware file.
-It seems like the nv.bin firmware is somewhat board specific and can
-therefore vary a bit from device to device. This makes it more clear
-which board it is intended to be used for.
-
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
-The new "firmware-name"s have not been in a kernel release yet and
-have also not been submitted for linux-firmware yet so I think it is
-still fine to change this.
-
-I realized this while starting to make some packaging changes for this
-and I think the new names are a bit clearer than the current ones. :)
----
- arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-index 351c68d29afb..0e4a1f004021 100644
---- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-+++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-@@ -308,7 +308,7 @@ &mdss {
- &mpss {
- 	status = "okay";
- 
--	firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mbn";
-+	firmware-name = "qcom/apq8016/mba.mbn", "qcom/apq8016/modem.mbn";
- };
- 
- &pm8916_resin {
-@@ -319,7 +319,7 @@ &pm8916_resin {
- &pronto {
- 	status = "okay";
- 
--	firmware-name = "qcom/msm8916/wcnss.mbn";
-+	firmware-name = "qcom/apq8016/wcnss.mbn";
- };
- 
- &sdhc_1 {
-@@ -403,7 +403,7 @@ &wcd_codec {
- };
- 
- &wcnss_ctrl {
--	firmware-name = "qcom/msm8916/WCNSS_qcom_wlan_nv.bin";
-+	firmware-name = "qcom/apq8016/WCNSS_qcom_wlan_nv_sbc.bin";
- };
- 
- /* Enable CoreSight */
--- 
-2.33.0
-
+Acked-by: Rob Herring <robh@kernel.org>
