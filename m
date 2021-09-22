@@ -2,337 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F02694146E0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:43:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA8B4146E6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235523AbhIVKoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 06:44:55 -0400
-Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:41196 "EHLO
-        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235277AbhIVKoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:44:39 -0400
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-        id E2B92F40B68; Wed, 22 Sep 2021 12:43:02 +0200 (CEST)
-Date:   Wed, 22 Sep 2021 12:43:02 +0200
-From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-To:     Ard Biesheuvel <ardb@kernel.org>
-Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        Ash Logan <ash@heyquark.com>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:LINUX FOR POWERPC (32-BIT AND 64-BIT)" 
-        <linuxppc-dev@lists.ozlabs.org>
-Subject: Re: [PATCH 1/4] crypto: nintendo-aes - add a new AES driver
-Message-ID: <20210922104302.22pgaoy2vspranqj@luna>
-Jabber-ID: linkmauve@linkmauve.fr
-References: <20210921213930.10366-1-linkmauve@linkmauve.fr>
- <20210921213930.10366-2-linkmauve@linkmauve.fr>
- <CAMj1kXF6RpaAsN2zUgkO0NW7gMwwhXMHEEM-wpQXxeNJbGJ79A@mail.gmail.com>
+        id S234995AbhIVKqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 06:46:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60306 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234825AbhIVKqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:46:01 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 597F3C061574
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:44:31 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id c22so8006993edn.12
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:44:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wBxn+2k6RvEYUK7AfFHOy4KNBTZBFkuipAkF57OjMHg=;
+        b=MNn+5ujsin8JBNMdMT9MAhT94AyYH4CZK+5+Doaefq3skVf1bnqZPuRPX6EH5u5ViZ
+         wY7HKQXXRCnBgVdMD0+I8S5Z/PyTxOxydrp8EJqqSykcsQO3CzhuM1/sv2ApEvOro7yT
+         mcdqzvkZpQN9kfUO9D/7pCPFAthzq39nF4gFKdiIuoYPHRKlzVBXNOD6uyx248+rcjWM
+         5gqLy2qg52F1J2Z8LEvGpI1gl6rBtraslfVOtzRG1/NT0jt2V+LFLSeKpk9d5QnvCaj2
+         GWFpzfhBM4PRll7bCByEOaZg17MpjjkHxKQzckCcstQFHxOjDEjlMfwaXa0sOlhId4Cl
+         ow7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wBxn+2k6RvEYUK7AfFHOy4KNBTZBFkuipAkF57OjMHg=;
+        b=QHn4hq8uuaIkAEY4dvGW/gU6iSAmBPzx+zaUf4kHUS/H5s4V/Iszfv14jsEKIkYvxm
+         Ik/m8GDZCQigWgrwri3Q8JRLAnPoCOxBni1hRmrvKXZZabWTD45AxxA3Qk5Pf1885Nrk
+         i6Z1W/SnNZLce4JUfEf4AQPN7+un0IcGjussDmBwagjIyeyBS4TRhlNtqjZc5FOxFx1S
+         ACWjIb7ktbiP+6L4miBsj887iTg64QWPK9Lp3MWctcJOjytumfXtZSS/hrTYriryBlpU
+         uVMMbFDXRS5p4lSc11Cdp2WMhzhE6k2LKwJzyV8jUt7LgCBXclU+2iw+3AjE4whScuxc
+         p8YQ==
+X-Gm-Message-State: AOAM533/1mh1ttd0U50mYFKnvzsZFymN4u6O21Ev9Dc2/KZB/D2Pm7Ue
+        iLnwhU2mVnpbgS8zkw7XZw7p9g==
+X-Google-Smtp-Source: ABdhPJxF24aaYxRmvcxGoVQJQ5ToT6GoLi39f9ASs2RYkHoWH6AGJjBBgDp9hzVv8dhA5qQT5rWjBQ==
+X-Received: by 2002:a17:906:f0d4:: with SMTP id dk20mr41189221ejb.199.1632307469899;
+        Wed, 22 Sep 2021 03:44:29 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id m13sm887573ejn.3.2021.09.22.03.44.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Sep 2021 03:44:29 -0700 (PDT)
+Subject: Re: [PATCH v7 18/22] ASoC: qdsp6: audioreach: add topology support
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+References: <20210921133709.4973-1-srinivas.kandagatla@linaro.org>
+ <20210921133709.4973-19-srinivas.kandagatla@linaro.org>
+ <7021cdec-382b-faa9-cf6c-ee06edbf19a7@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <9ea759db-f2ae-8b26-eff9-8557267803d2@linaro.org>
+Date:   Wed, 22 Sep 2021 11:44:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="vea675oaejr3mtdt"
-Content-Disposition: inline
-In-Reply-To: <CAMj1kXF6RpaAsN2zUgkO0NW7gMwwhXMHEEM-wpQXxeNJbGJ79A@mail.gmail.com>
+In-Reply-To: <7021cdec-382b-faa9-cf6c-ee06edbf19a7@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thanks Pierre for quick review,
 
---vea675oaejr3mtdt
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 21/09/2021 19:44, Pierre-Louis Bossart wrote:
+> 
+>> +static struct audioreach_module *audioreach_tplg_alloc_module(struct q6apm *apm,
+>> +							      struct audioreach_container *cont,
+>> +							      struct snd_soc_dapm_widget *w,
+>> +							      uint32_t module_id, bool *found)
+>> +{
+>> +	struct audioreach_module *mod;
+>> +	int ret;
+>> +
+>> +	mutex_lock(&apm->lock);
+>> +	mod = idr_find(&apm->modules_idr, module_id);
+>> +	mutex_unlock(&apm->lock);
+>> +
+>> +	if (mod) {
+>> +		*found = true;
+>> +		return mod;
+>> +	}
+>> +	*found = false;
+>> +	mod = kzalloc(sizeof(*mod), GFP_KERNEL);
+>> +	if (!mod)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	mutex_lock(&apm->lock);
+>> +	if (!module_id) { /* alloc module id dynamically */
+>> +		ret = idr_alloc_cyclic(&apm->modules_idr, mod,
+>> +				       AR_MODULE_DYNAMIC_INSTANCE_ID_START,
+>> +				       AR_MODULE_DYNAMIC_INSTANCE_ID_END, GFP_KERNEL);
+>> +	} else {
+>> +		ret = idr_alloc(&apm->modules_idr, mod, module_id, module_id + 1, GFP_KERNEL);
+>> +	}
+>> +	mutex_unlock(&apm->lock);
+>> +
+>> +	if (ret < 0) {
+>> +		dev_err(apm->dev,
+>> +			"Failed to allocate Module Instance ID (%x)\n", module_id);
+>> +		kfree(mod);
+>> +		return ERR_PTR(ret);
+>> +	}
+>> +
+>> +	mod->instance_id = ret;
+>> +	dev_err(apm->dev, "Module Instance ID (0x%08x) allocated\n", ret);
+> 
+> dev_dbg?
+> 
 
-On Wed, Sep 22, 2021 at 12:10:41PM +0200, Ard Biesheuvel wrote:
-> On Tue, 21 Sept 2021 at 23:49, Emmanuel Gil Peyrot
-> <linkmauve@linkmauve.fr> wrote:
-> >
-> > This engine implements AES in CBC mode, using 128-bit keys only.  It is
-> > present on both the Wii and the Wii U, and is apparently identical in
-> > both consoles.
-> >
-> > The hardware is capable of firing an interrupt when the operation is
-> > done, but this driver currently uses a busy loop, I=E2=80=99m not too s=
-ure
-> > whether it would be preferable to switch, nor how to achieve that.
-> >
-> > It also supports a mode where no operation is done, and thus could be
-> > used as a DMA copy engine, but I don=E2=80=99t know how to expose that =
-to the
-> > kernel or whether it would even be useful.
-> >
-> > In my testing, on a Wii U, this driver reaches 80.7 MiB/s, while the
-> > aes-generic driver only reaches 30.9 MiB/s, so it is a quite welcome
-> > speedup.
-> >
-> > This driver was written based on reversed documentation, see:
-> > https://wiibrew.org/wiki/Hardware/AES
-> >
-> > Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-> > Tested-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>  # on Wii U
->=20
-> This is redundant - everybody should test the code they submit.
+Sure, I removed these in next version.
+>> +	/* add to module list */
+>> +	list_add_tail(&mod->node, &cont->modules_list);
+>> +	mod->container = cont;
+>> +	mod->widget = w;
+>> +	cont->num_modules++;
+>> +
+>> +	return mod;
+>> +}
+> 
+> 
+> 
+>> +static int audioreach_widget_ready(struct snd_soc_component *component,
+>> +				   int index, struct snd_soc_dapm_widget *w,
+>> +				   struct snd_soc_tplg_dapm_widget *tplg_w)
+>> +{
+>> +	switch (w->id) {
+>> +	case snd_soc_dapm_aif_in:
+>> +	case snd_soc_dapm_aif_out:
+>> +		audioreach_widget_load_buffer(component, index, w, tplg_w);
+>> +		break;
+>> +	case snd_soc_dapm_decoder:
+>> +	case snd_soc_dapm_encoder:
+>> +	case snd_soc_dapm_src:
+>> +		audioreach_widget_load_enc_dec_cnv(component, index, w, tplg_w);
+>> +		break;
+>> +	case snd_soc_dapm_buffer:
+>> +		audioreach_widget_load_buffer(component, index, w, tplg_w);
+>> +		break;
+>> +	case snd_soc_dapm_mixer:
+>> +		return audioreach_widget_load_mixer(component, index, w, tplg_w);
+>> +	case snd_soc_dapm_pga:
+>> +		return audioreach_widget_load_pga(component, index, w, tplg_w);
+>> +	case snd_soc_dapm_dai_link:
+>> +	case snd_soc_dapm_scheduler:
+>> +	case snd_soc_dapm_out_drv:
+>> +	default:
+>> +		dev_err(component->dev, "Widget type (0x%x) not yet supported\n", w->id);
+>> +		break;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +
+> 
+> spurious newline
+> 
+>> +static int audioreach_widget_unload(struct snd_soc_component *scomp,
+>> +				    struct snd_soc_dobj *dobj)
+>> +{
+>> +	struct snd_soc_dapm_widget *w = container_of(dobj, struct snd_soc_dapm_widget, dobj);
+>> +	struct q6apm *apm = dev_get_drvdata(scomp->dev);
+>> +	struct audioreach_container *cont;
+>> +	struct audioreach_module *mod;
+>> +
+>> +	mod = dobj->private;
+>> +	cont = mod->container;
+>> +
+>> +	if (w->id == snd_soc_dapm_mixer) {
+>> +		/* virtual widget */
+>> +		kfree(dobj->private);
+>> +		return 0;
+>> +	}
+>> +
+>> +	mutex_lock(&apm->lock);
+>> +	idr_remove(&apm->modules_idr, mod->instance_id);
+>> +	cont->num_modules--;
+>> +
+>> +	list_del(&mod->node);
+>> +	kfree(mod);
+>> +
+>> +	if (list_empty(&cont->modules_list)) { /* remove container */
+>> +		struct audioreach_sub_graph *sg = cont->sub_graph;
+>> +
+>> +		idr_remove(&apm->containers_idr, cont->container_id);
+>> +		list_del(&cont->node);
+>> +		sg->num_containers--;
+>> +		kfree(cont);
+>> +		if (list_empty(&sg->container_list)) { /* remove sg */
+>> +			struct audioreach_graph_info *info = sg->info;
+>> +
+>> +			idr_remove(&apm->sub_graphs_idr, sg->sub_graph_id);
+>> +			list_del(&sg->node);
+>> +			info->num_sub_graphs--;
+>> +			kfree(sg);
+>> +			if (list_empty(&info->sg_list)) { /* remove graph info */
+>> +				idr_remove(&apm->graph_info_idr, info->id);
+>> +				kfree(info);
+>> +			}
+>> +		}
+>> +	}
+> 
+> It's not very clear if the nested removes actually free-up everything?
+> You may want to add a comment on the hierarchy.
+I will remove the module and check if the container is empty and then 
+remove the container and checks if sub-graph is empty and then removes 
+subgraphs.
+Hierarchy was mentioned in cover letter, but I will add some comment 
+here for more clarity to readers.
+> 
+>> +
+>> +	mutex_unlock(&apm->lock);
+>> +
+>> +	return 0;
+>> +}
+>> +
+> 
+>> +int audioreach_tplg_init(struct snd_soc_component *component)
+>> +{
+>> +	struct snd_soc_card *card = component->card;
+>> +	struct device *dev = component->dev;
+>> +	const struct firmware *fw;
+>> +	char tplg_fw_name[128];
+>> +	int ret;
+>> +
+>> +	/* Inline with Qualcomm UCM configs and linux-firmware path */
+>> +	snprintf(tplg_fw_name, sizeof(tplg_fw_name), "qcom/%s/%s-tplg.bin", card->driver_name,
+>> +		 card->name);
+> 
+> use kasprintf instead of fixed 128-char array?
+I moved this to kasprintf in next version.
 
-Indeed, except for the comment, as I haven=E2=80=99t been able to test on t=
-he
-Wii just yet and that=E2=80=99s kind of a call for doing exactly that. :)
+> 
+> Also you should use a qcom/audioreach/ prefix to possible interference
+> with other parts of qcom...
+> 
 
->=20
-> ...
-> > +       /* TODO: figure out how to use interrupts here, this will proba=
-bly
-> > +        * lower throughput but let the CPU do other things while the A=
-ES
-> > +        * engine is doing its work. */
->=20
-> So is it worthwhile like this? How much faster is it to use this
-> accelerator rather than the CPU?
+So Qualcomm linux-firmwares are arranged something like
 
-As I mentioned above, on my hardware it reaches 80.7=C2=A0MiB/s using this
-busy loop instead of 30.9=C2=A0MiB/s using aes-generic, measured using
-`cryptsetup benchmark --cipher=3Daes --key-size=3D128`.  I expect the
-difference would be even more pronounced on the Wii, with its CPU being
-clocked lower.
+qcom/sdm845/*
+qcom/sm8250/*
+qcom/sm8150/*
 
-I will give a try at using the interrupt, but I fully expect a lower
-throughput alongside a lower CPU usage (for large requests).
+and UCM something like 
+this:Qualcomm/sm8250/Qualcomm-RB5-WSA8815-Speakers-DMIC0.conf
 
->=20
-> > +       do {
-> > +               status =3D ioread32be(base + AES_CTRL);
-> > +               cpu_relax();
-> > +       } while ((status & AES_CTRL_EXEC) && --counter);
-> > +
-> > +       /* Do we ever get called with dst =E2=89=A0 src?  If so we have=
- to invalidate
-> > +        * dst in addition to the earlier flush of src. */
-> > +       if (unlikely(dst !=3D src)) {
-> > +               for (i =3D 0; i < len; i +=3D 32)
-> > +                       __asm__("dcbi 0, %0" : : "r" (dst + i));
-> > +               __asm__("sync" : : : "memory");
-> > +       }
-> > +
-> > +       return counter ? 0 : 1;
-> > +}
-> > +
-> > +static void
-> > +nintendo_aes_crypt(const void *src, void *dst, u32 len, u8 *iv, int di=
-r,
-> > +                  bool firstchunk)
-> > +{
-> > +       u32 flags =3D 0;
-> > +       unsigned long iflags;
-> > +       int ret;
-> > +
-> > +       flags |=3D AES_CTRL_EXEC_INIT /* | AES_CTRL_IRQ */ | AES_CTRL_E=
-NA;
-> > +
-> > +       if (dir =3D=3D AES_DIR_DECRYPT)
-> > +               flags |=3D AES_CTRL_DEC;
-> > +
-> > +       if (!firstchunk)
-> > +               flags |=3D AES_CTRL_IV;
-> > +
-> > +       /* Start the critical section */
-> > +       spin_lock_irqsave(&lock, iflags);
-> > +
-> > +       if (firstchunk)
-> > +               writefield(AES_IV, iv);
-> > +
-> > +       ret =3D do_crypt(src, dst, len, flags);
-> > +       BUG_ON(ret);
-> > +
-> > +       spin_unlock_irqrestore(&lock, iflags);
-> > +}
-> > +
-> > +static int nintendo_setkey_skcipher(struct crypto_skcipher *tfm, const=
- u8 *key,
-> > +                                   unsigned int len)
-> > +{
-> > +       /* The hardware only supports AES-128 */
-> > +       if (len !=3D AES_KEYSIZE_128)
-> > +               return -EINVAL;
-> > +
-> > +       writefield(AES_KEY, key);
-> > +       return 0;
-> > +}
-> > +
-> > +static int nintendo_skcipher_crypt(struct skcipher_request *req, int d=
-ir)
-> > +{
-> > +       struct skcipher_walk walk;
-> > +       unsigned int nbytes;
-> > +       int err;
-> > +       char ivbuf[AES_BLOCK_SIZE];
-> > +       unsigned int ivsize;
-> > +
-> > +       bool firstchunk =3D true;
-> > +
-> > +       /* Reset the engine */
-> > +       iowrite32be(0, base + AES_CTRL);
-> > +
-> > +       err =3D skcipher_walk_virt(&walk, req, false);
-> > +       ivsize =3D min(sizeof(ivbuf), walk.ivsize);
-> > +
-> > +       while ((nbytes =3D walk.nbytes) !=3D 0) {
-> > +               unsigned int chunkbytes =3D round_down(nbytes, AES_BLOC=
-K_SIZE);
-> > +               unsigned int ret =3D nbytes % AES_BLOCK_SIZE;
-> > +
-> > +               if (walk.total =3D=3D chunkbytes && dir =3D=3D AES_DIR_=
-DECRYPT) {
-> > +                       /* If this is the last chunk and we're decrypti=
-ng, take
-> > +                        * note of the IV (which is the last ciphertext=
- block)
-> > +                        */
-> > +                       memcpy(ivbuf, walk.src.virt.addr + walk.total -=
- ivsize,
-> > +                              ivsize);
-> > +               }
-> > +
-> > +               nintendo_aes_crypt(walk.src.virt.addr, walk.dst.virt.ad=
-dr,
-> > +                                  chunkbytes, walk.iv, dir, firstchunk=
-);
-> > +
-> > +               if (walk.total =3D=3D chunkbytes && dir =3D=3D AES_DIR_=
-ENCRYPT) {
-> > +                       /* If this is the last chunk and we're encrypti=
-ng, take
-> > +                        * note of the IV (which is the last ciphertext=
- block)
-> > +                        */
-> > +                       memcpy(walk.iv,
-> > +                              walk.dst.virt.addr + walk.total - ivsize,
-> > +                              ivsize);
-> > +               } else if (walk.total =3D=3D chunkbytes && dir =3D=3D A=
-ES_DIR_DECRYPT) {
-> > +                       memcpy(walk.iv, ivbuf, ivsize);
-> > +               }
-> > +
-> > +               err =3D skcipher_walk_done(&walk, ret);
-> > +               firstchunk =3D false;
-> > +       }
-> > +
-> > +       return err;
-> > +}
-> > +
-> > +static int nintendo_cbc_encrypt(struct skcipher_request *req)
-> > +{
-> > +       return nintendo_skcipher_crypt(req, AES_DIR_ENCRYPT);
-> > +}
-> > +
-> > +static int nintendo_cbc_decrypt(struct skcipher_request *req)
-> > +{
-> > +       return nintendo_skcipher_crypt(req, AES_DIR_DECRYPT);
-> > +}
-> > +
-> > +static struct skcipher_alg nintendo_alg =3D {
-> > +       .base.cra_name          =3D "cbc(aes)",
-> > +       .base.cra_driver_name   =3D "cbc-aes-nintendo",
-> > +       .base.cra_priority      =3D 400,
-> > +       .base.cra_flags         =3D CRYPTO_ALG_KERN_DRIVER_ONLY,
-> > +       .base.cra_blocksize     =3D AES_BLOCK_SIZE,
-> > +       .base.cra_alignmask     =3D 15,
-> > +       .base.cra_module        =3D THIS_MODULE,
-> > +       .setkey                 =3D nintendo_setkey_skcipher,
-> > +       .encrypt                =3D nintendo_cbc_encrypt,
-> > +       .decrypt                =3D nintendo_cbc_decrypt,
-> > +       .min_keysize            =3D AES_KEYSIZE_128,
-> > +       .max_keysize            =3D AES_KEYSIZE_128,
-> > +       .ivsize                 =3D AES_BLOCK_SIZE,
-> > +};
-> > +
-> > +static int nintendo_aes_remove(struct platform_device *pdev)
-> > +{
-> > +       struct device *dev =3D &pdev->dev;
-> > +
-> > +       crypto_unregister_skcipher(&nintendo_alg);
-> > +       devm_iounmap(dev, base);
-> > +       base =3D NULL;
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int nintendo_aes_probe(struct platform_device *pdev)
-> > +{
-> > +       struct device *dev =3D &pdev->dev;
-> > +       struct resource *res;
-> > +       int ret;
-> > +
-> > +       res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +       base =3D devm_ioremap_resource(dev, res);
-> > +       if (IS_ERR(base))
-> > +               return PTR_ERR(base);
-> > +
-> > +       spin_lock_init(&lock);
-> > +
-> > +       ret =3D crypto_register_skcipher(&nintendo_alg);
-> > +       if (ret)
-> > +               goto eiomap;
-> > +
-> > +       dev_notice(dev, "Nintendo Wii and Wii U AES engine enabled\n");
-> > +       return 0;
-> > +
-> > + eiomap:
-> > +       devm_iounmap(dev, base);
-> > +
-> > +       dev_err(dev, "Nintendo Wii and Wii U AES initialization failed\=
-n");
-> > +       return ret;
-> > +}
-> > +
-> > +static const struct of_device_id nintendo_aes_of_match[] =3D {
-> > +       { .compatible =3D "nintendo,hollywood-aes", },
-> > +       { .compatible =3D "nintendo,latte-aes", },
-> > +       {/* sentinel */},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, nintendo_aes_of_match);
-> > +
-> > +static struct platform_driver nintendo_aes_driver =3D {
-> > +       .driver =3D {
-> > +               .name =3D "nintendo-aes",
-> > +               .of_match_table =3D nintendo_aes_of_match,
-> > +       },
-> > +       .probe =3D nintendo_aes_probe,
-> > +       .remove =3D nintendo_aes_remove,
-> > +};
-> > +
-> > +module_platform_driver(nintendo_aes_driver);
-> > +
-> > +MODULE_AUTHOR("Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>");
-> > +MODULE_DESCRIPTION("Nintendo Wii and Wii U Hardware AES driver");
-> > +MODULE_LICENSE("GPL");
-> > --
-> > 2.33.0
-> >
+Qualcomm/sm8250/Qualcomm-RB5-WSA8815-Speakers-DMIC0.conf
 
---=20
-Emmanuel Gil Peyrot
 
---vea675oaejr3mtdt
-Content-Type: application/pgp-signature; name="signature.asc"
+Atleast in Qualcomm soundcard case we have driver name set to SoC name 
+and we tend to reuse this driver across multiple platforms.
 
------BEGIN PGP SIGNATURE-----
+second part card name actually is from model device tree property, in 
+this case which is "Qualcomm-RB5-WSA8815-Speakers-DMIC0"
 
-iQEzBAABCAAdFiEEjrVT1SzTln43kCLJOWgfYkb2LpAFAmFLCLMACgkQOWgfYkb2
-LpBfJgf7BY7Zqe1if2b1NeTahrk2Y9jpro4a0pqR8DWdmNrcqrIscPXqWyT9lA4L
-xfI9vYPgrlLsdY3AUHmcGEb7RG+knxhIsqgRzp+z8bM6MGOYoQmwKx2+/OQpVlfz
-zOFWL6kUqdlKmyOCeVy2mtbhhVc+dVLBDsozYvsMZmchpQoIh61+nlG2AASZZ0xn
-W0qcIZM+tBmer2A4WbGT0ef7/ARH+3vqP7yNaeYQYVwTkgjyCLC/R9c8+Tcxhi8/
-NQ9GeICpH+mTYso9zOqQy0QeEuLCRObF9Oa7ntCRDkzn3d+6YJ/vAbWVFOJ3g3UN
-HSk3v05XiCj0SAhKwLSxDitRxRqQ9g==
-=ZiKk
------END PGP SIGNATURE-----
+so we will endup looking for
+/lib/firmare/qcom/sm8250/Qualcomm-RB5-WSA8815-Speakers-DMIC0-tplg.bin
 
---vea675oaejr3mtdt--
+AFAIU, it should not interface with any other qcom parts.
+
+for Other qcom parts this model will change so the topology file name.
+
+
+>> +
+>> +	ret = request_firmware(&fw, tplg_fw_name, dev);
+>> +	if (ret < 0) {
+>> +		dev_info(dev, "loading %s failed %d, falling back to dfw-audioreach-tplg.bin\n",
+>> +			 tplg_fw_name, ret);
+>> +		/* default firmware */
+>> +		ret = request_firmware(&fw, "dfw-audioreach-tplg.bin", dev);
+>> +		if (ret < 0) {
+>> +			dev_err(dev, "tplg fw dfw-audioreach-tplg.bin load failed with %d\n", ret);
+> 
+> the dfw prefix isn't very helpful...Intel's example of "dfw_sst.bin" is
+> a historical reference, not something you should reuse.
+
+Rethinking on this once again, Am not sure if it even makes sense to 
+support this default setup. It will be very hard to get a working 
+defalut tplg on every platform. So am planning to remove this in next 
+version.
+
+Do you see any issues?
+
+--srini
+> 
+>> +			return ret;
+>> +		}
+>> +	}
+>> +
+>> +	ret = snd_soc_tplg_component_load(component, &audioreach_tplg_ops, fw);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "tplg component load failed%d\n", ret);
+>> +		ret = -EINVAL;
+>> +	}
+>> +
+>> +	release_firmware(fw);
+>> +	return ret;
+>> +}
+>> +EXPORT_SYMBOL_GPL(audioreach_tplg_init);
+>>
