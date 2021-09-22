@@ -2,296 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CABA7415401
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 01:41:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60B884153FE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 01:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238455AbhIVXmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 19:42:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43840 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230145AbhIVXmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 19:42:46 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13CB5C061756
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 16:41:15 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id m3so18947926lfu.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 16:41:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=tbU0hF6KjrMXh6B9EQL4M/UeujZDZAs/KRl3XEOsTVQ=;
-        b=TwKEKME8zXqo5VQGwQYgaslGhOrdbqXLT4Q52kd3yQGMTnBYYiQ6CywQUWqHnNAstI
-         zwFmXsXdDmwbvh+NSS4FSIHznOvbBN74jeNVXdH57wNCJi7Z49oXOczEe9mrtBJ9MP3T
-         zivhAetMiPhGftfLMnxsUKl0250IH+i5ghDYgMqPPC4YWDG/83ojFg4jEJAzE0OQCglr
-         rNWYu6S6KfBb4g6LqFp6Zo2QwNgQGqRHbxGm0AkPq2cQyQhUAh0Da0449rEIWZQZv+VP
-         OXea4/BaGvHB6jAnNYtd8rLXNNxGKdGwV2KuERrxvX1vw/7jMo8L5ATrBHnCn/bn6sfk
-         8o+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=tbU0hF6KjrMXh6B9EQL4M/UeujZDZAs/KRl3XEOsTVQ=;
-        b=5NlVecs1yFIVnOPaKBpq3dD/Gzjzvb+GMySeuaAkZp/sEWDIW7OwnFnxij5H3Yy6uB
-         CV/4QGCd0N6zvE5babfFfCvQ/RIIBf5sNTZ0rxdbAwdHJPmm4Fjk9ioOIJWfGwW6qoHB
-         hw6qAmgkV4tre2i94JHHn9Wfz1Z800+EgWSBO9UyNvPt4j/ZFF1Xub0UW4vTtTs8GL1Y
-         j3OrIdFEngyGXnVqOSWBiSXu0mZHVgWTI4SM3y+aq5xuQxMPpKv1E9Ie0Bo/rryECVda
-         kIuGyHD/EySmQvwiYaLSPf+TewzOmZTMHGpLzx8z/VMrJYVELJcvm0nWkRdwVKxleTxK
-         ZeUA==
-X-Gm-Message-State: AOAM530FYXZ8fuMsw6azmok+unBp7YBrogY+1Q7E0RdDYzOT8+UPJhSS
-        2F2lgFDhXCN92MVpnqm7rYy/ow==
-X-Google-Smtp-Source: ABdhPJw1iXZ8g+GU1UnsPLWFBvIEjG8I4d2XR8vdW39CAxmHIApUq/b0YtCi2StviYoEWiivm2hiFA==
-X-Received: by 2002:a2e:b7c8:: with SMTP id p8mr2095104ljo.154.1632354073447;
-        Wed, 22 Sep 2021 16:41:13 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id f10sm295145ljp.55.2021.09.22.16.41.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 16:41:12 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Johannes Pointner <johannes.pointner@gmail.com>,
-        Peter Rosin <peda@axentia.se>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: hwmon: Convert NTC thermistor to YAML
-Date:   Thu, 23 Sep 2021 01:39:01 +0200
-Message-Id: <20210922233901.1871274-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
+        id S230319AbhIVXll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 19:41:41 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:33010 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230145AbhIVXll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 19:41:41 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0FF24E52;
+        Thu, 23 Sep 2021 01:40:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1632354009;
+        bh=gJac9EwI/a236I+4gT7/6CxMN/VTnbwyibB6JDZnL5k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IH7gGoI1HkWPYu+ZzvtXd6P6WKWdHjwKBqPOasrNkpBFgZ37PWGr89J0owK0RhhGS
+         C0n6dHTLcqySJLeppWwOTW5Q8F+FsxMA9IkfyIXRUIHgAy/KjKsQ4OndXuWY9a0VwU
+         unPRjNs2CxMfTC1cb2AFPYZkj0D10Hwe5SNtGaLg=
+Date:   Thu, 23 Sep 2021 02:40:07 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: falcon-cpu: Add DSI display
+ output
+Message-ID: <YUu+14+9DnQZM7SE@pendragon.ideasonboard.com>
+References: <20210901235330.1611086-1-kieran.bingham@ideasonboard.com>
+ <20210901235330.1611086-4-kieran.bingham@ideasonboard.com>
+ <CAMuHMdU5WzvdfeSqEESt0r7_7XX0Mc9jRNGCBHLtt_JCMCWZyw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdU5WzvdfeSqEESt0r7_7XX0Mc9jRNGCBHLtt_JCMCWZyw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the NTC thermistor DT bindings to YAML. Some care had to
-be taken since I had to add some illustrations to make the connection
-layouts graspable.
+Hello,
 
-Cc: Javier Martinez Canillas <javier@dowhile0.org>
-Cc: Johannes Pointner <johannes.pointner@gmail.com>
-Cc: Peter Rosin <peda@axentia.se>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Rebase on v5.15-rc1
-- Drop comment reference to thermal-sensor.yaml
-- Keep the oneOf rather than using an enum for the compatible:
-  I can't figure out how to make deprecated work for enums?
-  https://lore.kernel.org/linux-hwmon/CACRpkdZDLSA5YJtc3XCkfPZUNqo1MOWLBwVDGQ4vN8cDXD3aYg@mail.gmail.com/
-ChangeLog v1->v2:
-- Realize I need to CC devicetree@vger.kernel.org on this.
-- Fix Javier's mail address.
-- Drop Naveen's mail (bouncing)
----
- .../bindings/hwmon/ntc-thermistor.yaml        | 141 ++++++++++++++++++
- .../bindings/hwmon/ntc_thermistor.txt         |  44 ------
- 2 files changed, 141 insertions(+), 44 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
- delete mode 100644 Documentation/devicetree/bindings/hwmon/ntc_thermistor.txt
+On Tue, Sep 21, 2021 at 05:59:24PM +0200, Geert Uytterhoeven wrote:
+> On Thu, Sep 2, 2021 at 1:53 AM Kieran Bingham wrote:
+> > From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> >
+> > Provide the display output using the sn65dsi86 MIPI DSI bridge.
+> >
+> > Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> 
+> Thanks for your patch!
+> 
+> > --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> > @@ -66,6 +66,15 @@ memory@700000000 {
+> >                 reg = <0x7 0x00000000 0x0 0x80000000>;
+> >         };
+> >
+> > +       reg_1p2v: regulator-1p2v {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "fixed-1.2V";
+> > +               regulator-min-microvolt = <1800000>;
+> > +               regulator-max-microvolt = <1800000>;
+> > +               regulator-boot-on;
+> > +               regulator-always-on;
+> > +       };
+> > +
+> >         reg_1p8v: regulator-1p8v {
+> >                 compatible = "regulator-fixed";
+> >                 regulator-name = "fixed-1.8V";
+> > @@ -83,6 +92,46 @@ reg_3p3v: regulator-3p3v {
+> >                 regulator-boot-on;
+> >                 regulator-always-on;
+> >         };
+> > +
+> > +       mini-dp-con {
+> > +               compatible = "dp-connector";
+> > +               label = "CN5";
+> > +               type = "mini";
+> > +
+> > +               port {
+> > +                       mini_dp_con_in: endpoint {
+> > +                               remote-endpoint = <&sn65dsi86_out>;
+> > +                       };
+> > +               };
+> > +       };
+> > +
+> > +       sn65dsi86_refclk: sn65dsi86-refclk {
+> > +               compatible = "fixed-clock";
+> > +               #clock-cells = <0>;
+> > +               clock-frequency = <38400000>;
+> > +       };
+> > +};
+> > +
+> > +&dsi0 {
+> > +       status = "okay";
+> > +
+> > +       clocks = <&cpg CPG_MOD 415>,
+> > +                <&cpg CPG_CORE R8A779A0_CLK_DSI>,
+> > +                <&extal_clk>;
+> > +       clock-names = "fck", "dsi", "extal";
+> 
+> Ah, that's where the third clock was hiding ;-)
+> 
+> Is this hardwired to extal, or board-specific?
+> In case of the former, I think it should be moved to the .dtsi.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml b/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
-new file mode 100644
-index 000000000000..9e77cee07dbc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
-@@ -0,0 +1,141 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+---
-+$id: http://devicetree.org/schemas/hwmon/ntc-thermistor.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NTC thermistor temperature sensors
-+
-+maintainers:
-+  - Naveen Krishna Chatradhi <ch.naveen@samsung.com>
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  Thermistors with negative temperature coefficient (NTC) are resistors that
-+  vary in resistance in an often non-linear way in relation to temperature.
-+  The negative temperature coefficient means that the resistance decreases
-+  as the temperature rises. Since the relationship between resistance and
-+  temperature is non-linear, software drivers most often need to use a look
-+  up table and interpolation to get from resistance to temperature.
-+
-+  When used in practice, a thermistor is often connected between ground, a
-+  pull-up resistor or/and a pull-down resistor and a fixed voltage like this:
-+
-+      + e.g. 5V = pull-up voltage (puv)
-+      |
-+     +-+
-+     | |
-+     | | Pull-up resistor
-+     | | (puo)
-+     +-+
-+      |-------------------------o
-+     +-+ |                      ^
-+     | |/                       |
-+     | /                        |
-+     |/| Thermistor             | Measured voltage (mv)
-+     / |                        | "connected ground"
-+    /| |                        |
-+     +-+                        |
-+      |-------------------------o
-+     +-+                        ^
-+     | |                        |
-+     | | Pull-down resistor     | Measured voltage (mv)
-+     | | (pdo)                  | "connected positive"
-+     +-+                        |
-+      |                         |
-+      |                         v
-+      + GND                     GND
-+
-+  The arrangements of where we measure the voltage over the thermistor are
-+  called "connected ground" and "connected positive" and shall be understood as
-+  the cases when either pull-up or pull-down resistance is zero.
-+
-+  If the pull-up resistance is 0 one end of the thermistor is connected to the
-+  positive voltage and we get the thermistor on top of a pull-down resistor
-+  and we take the measure between the thermistor and the pull-down resistor.
-+
-+  Conversely if the pull-down resistance is zero, one end of the thermistor is
-+  connected to ground and we get the thermistor under the pull-up resistor
-+  and we take the measure between the pull-up resistor and the thermistor.
-+
-+  We can use both pull-up and pull-down resistors at the same time, and then
-+  the figure illustrates where the voltage will be measured for the "connected
-+  ground" and "connected positive" cases.
-+
-+properties:
-+  $nodename:
-+    pattern: "^thermistor(.*)?$"
-+
-+  compatible:
-+    oneOf:
-+      - const: epcos,b57330v2103
-+      - const: epcos,b57891s0103
-+      - const: murata,ncp15wb473
-+      - const: murata,ncp18wb473
-+      - const: murata,ncp21wb473
-+      - const: murata,ncp03wb473
-+      - const: murata,ncp15wl333
-+      - const: murata,ncp03wf104
-+      - const: murata,ncp15xh103
-+      # Deprecated "ntp," compatible strings
-+      - const: ntc,ncp15wb473
-+        deprecated: true
-+      - const: ntc,ncp18wb473
-+        deprecated: true
-+      - const: ntc,ncp21wb473
-+        deprecated: true
-+      - const: ntc,ncp03wb473
-+        deprecated: true
-+      - const: ntc,ncp15wl333
-+        deprecated: true
-+
-+  "#thermal-sensor-cells":
-+    description: Thermal sensor cells if used for thermal sensoring.
-+    const: 0
-+
-+  pullup-uv:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Pull-up voltage in micro volts. Must always be specified.
-+
-+  pullup-ohm:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Pull-up resistance in ohms. Must always be specified, even
-+      if zero.
-+
-+  pulldown-ohm:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Pull-down resistance in ohms. Must always be specified, even
-+      if zero.
-+
-+  connected-positive:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: Indicates how the thermistor is connected in series with
-+      a pull-up and/or a pull-down resistor. See the description above for
-+      an illustration. If this flag is NOT specified, the thermistor is assumed
-+      to be connected-ground, which usually means a pull-down resistance of
-+      zero but complex arrangements are possible.
-+
-+  # See /schemas/iio/adc/adc.yaml
-+  io-channels:
-+    maxItems: 1
-+    description: IIO ADC channel to read the voltage over the resistor. Must
-+      always be specified.
-+
-+required:
-+  - compatible
-+  - pullup-uv
-+  - pullup-ohm
-+  - pulldown-ohm
-+  - io-channels
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    thermistor0 {
-+      compatible = "murata,ncp18wb473";
-+      io-channels = <&gpadc 0x06>;
-+      pullup-uv = <1800000>;
-+      pullup-ohm = <220000>;
-+      pulldown-ohm = <0>;
-+      #thermal-sensor-cells = <0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/hwmon/ntc_thermistor.txt b/Documentation/devicetree/bindings/hwmon/ntc_thermistor.txt
-deleted file mode 100644
-index 4c5c3712970e..000000000000
---- a/Documentation/devicetree/bindings/hwmon/ntc_thermistor.txt
-+++ /dev/null
-@@ -1,44 +0,0 @@
--NTC Thermistor hwmon sensors
---------------------------------
--
--Requires node properties:
--- "compatible" value : one of
--	"epcos,b57330v2103"
--	"epcos,b57891s0103"
--	"murata,ncp15wb473"
--	"murata,ncp18wb473"
--	"murata,ncp21wb473"
--	"murata,ncp03wb473"
--	"murata,ncp15wl333"
--	"murata,ncp03wf104"
--	"murata,ncp15xh103"
--
--/* Usage of vendor name "ntc" is deprecated */
--<DEPRECATED>	"ntc,ncp15wb473"
--<DEPRECATED>	"ntc,ncp18wb473"
--<DEPRECATED>	"ntc,ncp21wb473"
--<DEPRECATED>	"ntc,ncp03wb473"
--<DEPRECATED>	"ntc,ncp15wl333"
--
--- "pullup-uv"	Pull up voltage in micro volts
--- "pullup-ohm"	Pull up resistor value in ohms
--- "pulldown-ohm" Pull down resistor value in ohms
--- "connected-positive" Always ON, If not specified.
--		Status change is possible.
--- "io-channels"	Channel node of ADC to be used for
--		conversion.
--
--Optional node properties:
--- "#thermal-sensor-cells" Used to expose itself to thermal fw.
--
--Read more about iio bindings at
--	https://github.com/devicetree-org/dt-schema/blob/master/schemas/iio/
--
--Example:
--	ncp15wb473@0 {
--		compatible = "murata,ncp15wb473";
--		pullup-uv = <1800000>;
--		pullup-ohm = <47000>;
--		pulldown-ohm = <0>;
--		io-channels = <&adc 3>;
--	};
+I think this is actually incorrect. The clock name, according to the
+bindings, is "pll", and it's documented as a 16.66MHz PLL reference
+clock. It comes from the CPG, but I'm not sure which clock it actually
+is.
+
 -- 
-2.31.1
+Regards,
 
+Laurent Pinchart
