@@ -2,63 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6494B41460B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1888E41460C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 12:20:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234673AbhIVKVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 06:21:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54416 "EHLO
+        id S234694AbhIVKWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 06:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234499AbhIVKVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:21:37 -0400
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DE79C061574
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:20:07 -0700 (PDT)
-Received: by mail-io1-xd35.google.com with SMTP id d18so2570410iof.13
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:20:07 -0700 (PDT)
+        with ESMTP id S234499AbhIVKWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 06:22:03 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BEE3C061756
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:20:33 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id 73so7911955qki.4
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 03:20:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=MiHXH3XVpCeHG6VB4sSYVX/xBxlpSLYCN9BEvrIAKpk=;
-        b=YJsFuWEFd2Wf5k9SxKbjA2Yu3pleXopWSWARg5NaT3dtuimCeccWkMiMp5gq/0U1/0
-         C9VcmYMJpxcEBV4DVJspLEC8c2Q8di/z6mys2hc1zje3RNy8MrF3DiXJmRzaCYxn0FMT
-         EXMYbU97htei+tQtdeF1+eXQ4IyJPv3KHi/5sX0k4upXHbbXyYgVnIBZ+CHV/ZQZ4NyQ
-         EaSGhm4fxEDOYI/gLe2z8S87dza8HonJ3UneKB4VSZAaTT5QTsI5On7PWEj/VHqFEO9D
-         8k8L629pWKRfFLzDRFggGSTrbv7UKNilmmhXARnKNaKnZOHrU/chcVYE7GH4AByeMlye
-         4pTg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XJKyuUo2cdSRgXWfPtF0UIR+koPgLUlkrvvmEUF334g=;
+        b=EHagsB4VKGNEf68iLliTBnVZFaSLCT5+qRa69PdjB5hw7F7wX7FQKprU0O748XQiRe
+         UYWFzxeLKiqtHyQJWs5z4A+jfwnrrXRjF1dc67BHoWWnFUwq/q96hh8W+oK1VSlu/NH8
+         ktQEnBLA5ilAsnXO6nYMXrJ+UjCZ9wHgx+PVqH2Mx/XE3OMZWbO2GsGnxSUc600DAawN
+         lgzHo4UbhSym3kfOr6U96u2JLmgdQgVgzfcOsIi5G4TuLnQQ1juDQ4v7QVel/KLGgVS4
+         fsms+Sq/IXWuPc8mKn1ipD5lDcohMDWLCB9Fa2gDrjfWPGFkRyPP5Xi0JvcehWdNJUrS
+         O2kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to:content-transfer-encoding;
-        bh=MiHXH3XVpCeHG6VB4sSYVX/xBxlpSLYCN9BEvrIAKpk=;
-        b=EUPMAIoCl6rkuTfcuhLe9UJJgaoybqzgX2dPKeSHNP0ENK5Fn9elZCU1n6a88lkSIw
-         XQWn44d3JJ/NZxN46c3KrFq6qrOn2XE3K4mjUKWY3JLD98icS/ScXXyvD6hUwUjTFI45
-         hICJkjb3u1gppsFFv7C3wAXsJPku1WSXOUxKW+Wq/62cY9pPY8uera2hdpEIwLpEuNK3
-         /2ydnIEMkNZuts3NBWyuBW6iA11mX0yfk3CWGjWSFdFKd1JJH0g2FBJiSSfbJVRq4qSs
-         TSQPdZdAhSK+kSw2oyjb7/g3UHAsDuncs/rbGkmND57LkGwQs+aIPMH/Ullug3U4TpTp
-         8g4A==
-X-Gm-Message-State: AOAM532D+I/JbqQGLCoARiY0NSG6KPyUfa0pO0ulnEAzE6hk7uL0rhnY
-        NdVuRrS8sXE2FuZuoUYLzkLPMd/XJeWo/soXQ90=
-X-Google-Smtp-Source: ABdhPJzSKl/Qox4nphR7wPJbGM1vx5VgWgVRJ11gAHSTC2fv1g5ekdWZfrQ8gLwEgQ3jrFNImOkyH7OW4p/1NFoojg0=
-X-Received: by 2002:a05:6638:2393:: with SMTP id q19mr4085453jat.109.1632306007155;
- Wed, 22 Sep 2021 03:20:07 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XJKyuUo2cdSRgXWfPtF0UIR+koPgLUlkrvvmEUF334g=;
+        b=L2hZjmFMRbLk8Nj6Kkrk9nqYkfGT9dq23fLB3NpyVLOBYgkSHomNDd3l+PSfbpW0wd
+         GcsaZi5uWoQxGXqm1wrNSbsRG8nv9Uvc/EUHLC8UIPJBwTgnV/HoIkQEd4aq+WEZMAML
+         IQqzhPGYfjOjNB5eItTY6spzSsySWgooZ3L/3GC7e0DcO7oRmezdnLQ5vcg0pyG12Iqo
+         4ApA9CKqJ6ZKRHIIi/vRSKtZcxEdebe1jPEwyPVJozvj+5nCM0meXmV+d3cS9l5ZvanE
+         Ytw8GVePkWl+xBm3VdGYRETI1N316VD7jYq9fB07kTixw/10+xh59dKFmrAPO97BKw/W
+         KaVQ==
+X-Gm-Message-State: AOAM5318/cD4FNvOwSIPk4DhVMjJbeC4H3ax5FvSRKzJ0WeiWHDFWT+g
+        RN/He51WBrJBrIBnkbRhFQjEdVjd3Zzmlgr2XDxx6w==
+X-Google-Smtp-Source: ABdhPJwcR9hONH14/tIOQaEzKtYwof3QggJr6ydYypXbFaTw48vYpEYA5ppNEBfTij+28tygr8MBNi49A8wWTZO9C6w=
+X-Received: by 2002:a25:7146:: with SMTP id m67mr43831164ybc.353.1632306032671;
+ Wed, 22 Sep 2021 03:20:32 -0700 (PDT)
 MIME-Version: 1.0
-Sender: nonyeric777@gmail.com
-Received: by 2002:a05:6638:4125:0:0:0:0 with HTTP; Wed, 22 Sep 2021 03:20:06
- -0700 (PDT)
-From:   Malinda Andrew <malindaandrew46@gmail.com>
-Date:   Wed, 22 Sep 2021 03:20:06 -0700
-X-Google-Sender-Auth: TOoCA_98I2CtO-ew7qp8Osh6HoU
-Message-ID: <CAEx8jzqo8GqVZ7Om4LJpCO5gn-KVT7B9jQ6k73gYzJ+hkA=xeQ@mail.gmail.com>
-Subject: Hello my dear.
-To:     undisclosed-recipients:;
+References: <20210717045627.1739959-1-daniel@0x0f.com> <CACRpkdbE+_DJFhBCmtz5JwJupf7QkkWZhXrgf1KG_3rPqvEm0w@mail.gmail.com>
+ <CAFr9PXmFHanrx4Frg3hQwo-RbAY-UXxC=FOAj++cshSHa99z3g@mail.gmail.com>
+In-Reply-To: <CAFr9PXmFHanrx4Frg3hQwo-RbAY-UXxC=FOAj++cshSHa99z3g@mail.gmail.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 22 Sep 2021 12:20:22 +0200
+Message-ID: <CAMpxmJUoG7qPhy2CxapCn1M=w_AssOQsEmyvXO18OpedM6hBjw@mail.gmail.com>
+Subject: Re: [PATCH 00/10] gpio: msc313: Add gpio support for ssd20xd
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Romain Perier <romain.perier@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello my dear greetings to you, I want to know if you didn=E2=80=99t receiv=
-ed
-my previous mail?
+On Wed, Aug 25, 2021 at 1:50 PM Daniel Palmer <daniel@0x0f.com> wrote:
+>
+> + Bartosz
+>
+> Hi Linus, Bartosz,
+>
+> On Fri, 30 Jul 2021 at 19:12, Linus Walleij <linus.walleij@linaro.org> wrote:
+> > I suppose Bartosz can just merge the 4 first patches into the
+> > GPIO tree and you can take the rest into the SoC tree?
+> >
+> > Yours,
+> > Linus Walleij
+>
+> I just noticed I hadn't to'd Bartosz about these. Is there anything I
+> need to do for the first patches?
+>
+> Cheers,
+>
+> Daniel
+
+I only have a part of this series in my inbox and patchwork doesn't
+have it at all - can you resend it with me in Cc?
+
+Bart
