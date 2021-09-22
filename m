@@ -2,97 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF75A414576
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 11:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF964145A5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 11:57:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234271AbhIVJqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 05:46:15 -0400
-Received: from mail.bugwerft.de ([46.23.86.59]:57802 "EHLO mail.bugwerft.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234233AbhIVJqO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 05:46:14 -0400
-Received: from [192.168.178.106] (p57bc9a45.dip0.t-ipconnect.de [87.188.154.69])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id 5EDCC3ADF23;
-        Wed, 22 Sep 2021 09:44:43 +0000 (UTC)
-Subject: Re: [PATCH v5 0/9] clk: cs2000-cp: add dynamic mode and more features
-To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, kuninori.morimoto.gx@renesas.com,
-        mturquette@baylibre.com, sboyd@kernel.org
-References: <20210901093631.1403278-1-daniel@zonque.org>
-From:   Daniel Mack <daniel@zonque.org>
-Message-ID: <72d37dde-f50a-df89-57c7-243e7f287680@zonque.org>
-Date:   Wed, 22 Sep 2021 11:44:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S234616AbhIVJ7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 05:59:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234413AbhIVJ7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 05:59:21 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55115C061757
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 02:57:51 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id x27so9668965lfu.5
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 02:57:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5zPFLKdwxEQ81o/wg7gBk+tb/obGKRy8ThoN2UKg148=;
+        b=FgS4Cst9PhmI+ylUCDv/S8Jwho3iMZN6S7wLDxLWtfTUVEOcGUs9EqWASkMndVYxwU
+         /IoGAqAowTA2uVRKJ3ZR7G6mIOOx3vJL7C2XLeL45qX4o7yRu6zeW32VsITeT0Ugwnju
+         vbi+j/UbmDeRoGap7sFoCSh/Y3Mji5RCPczOQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5zPFLKdwxEQ81o/wg7gBk+tb/obGKRy8ThoN2UKg148=;
+        b=kVxlJC6iWLj+2kDGEVeA88VA1GY5V+KMFJC4JLbelwK/sZ3TDzFARYQh0Xg0gRHmsY
+         6S7ZqhzXyqT6m5NI4wUXx55IYS7r3tJYE6+nCPApjf1okCXQTT0XZWnf1QlstbJoypdL
+         G9qtFbBrhLwMyNmj1XpKjNVUqOTsA8gy60+xWWvpRqFbQeavrFtB8Kibu1bVisHWSoHl
+         shvL3ZLqdjiOa5BPdlLG1bLyAS4kGQjvFH3sfUlH4GKw1uVTEi8w2jIgM4Xap2Whg5RF
+         cAGwrM9ou8en+9UmpL157yEpqkdxn7b7M3O82GScoztc9oBk7aqn5PL8Ia+jV/BUG3Eh
+         rSPQ==
+X-Gm-Message-State: AOAM53079C/cY7bjPGi8/cAXEW6eXjEO0QaDnDlAJnMRcKGpmY0eaE6u
+        EGf7xdonHS8OxMiAP83V3X5unZh13o5gCtYBKaJTRLpmIiM=
+X-Google-Smtp-Source: ABdhPJwZLSMZ4vH/uiWlXM/0D55iZGTePsjP293/G8LySD8PaTBNULi2fm0jDPKEeSDfde0cJX66xJG5b1IxF1qccqM=
+X-Received: by 2002:a2e:4b09:: with SMTP id y9mr27182090lja.201.1632304669689;
+ Wed, 22 Sep 2021 02:57:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210901093631.1403278-1-daniel@zonque.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210922025640.11600-1-zhiyong.tao@mediatek.com> <20210922025640.11600-6-zhiyong.tao@mediatek.com>
+In-Reply-To: <20210922025640.11600-6-zhiyong.tao@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 22 Sep 2021 17:57:38 +0800
+Message-ID: <CAGXv+5Fs696ZM2+QEUf8+zoxrh1e4n8Ke5xoijJWDu0_xWOr7A@mail.gmail.com>
+Subject: Re: [PATCH v13 5/5] pinctrl: mediatek: add rsel setting on MT8195
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        hui.liu@mediatek.com, Light Hsieh <light.hsieh@mediatek.com>,
+        Biao Huang <biao.huang@mediatek.com>,
+        Hongzhou Yang <hongzhou.yang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mike, Stephen,
+On Wed, Sep 22, 2021 at 11:07 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
+>
+> I2C pins's resistance value can be controlled by rsel register.
+> This patch provides rsel (resistance selection) setting on MT8195
+>
+> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
 
-Is there a chance to get this series reviewed and potentially queued for
-5.16?
-
-We have clearance for the devicetree side, and the functional changes of
-the driver are all guarded by new feature flags, so my patches shouldn't
-break existing setups.
-
-
-Thanks a lot,
-Daniel
-
-
-On 9/1/21 11:36 AM, Daniel Mack wrote:
-> This patch series adds support for dynamic mode, configurable clock
-> skip settings and a tranisition to regmap.
-> 
-> The most significant change is the additional support for dynamic mode.
-> Currently, the driver only supports static mode in which the (currently
-> mandatory) CLK_IN clock input is not used by the hardware.
-> 
-> Unlike v3 of this series, the patch stack now maintains full
-> compatibility with existing bindings. Rather than infering the mode of
-> operation through the presence of an optional clock, the driver now
-> parses a new DT property to enable the dynamic mode.
-> 
-> Thanks,
-> Daniel
-> 
-> Changelog:
-> 
-> v4 -> v5:
-> 	* Fixed a regression for static mode configurations
-> 	* Added Rob's Acked-by signatures
-> 
-> v3 -> v4:
-> 	* Introduced cirrus,dynamic-mode in favor of making CLK_IN
-> 	  optional
-> 
-> 
-> Daniel Mack (9):
->   dt-bindings: clock: convert cs2000-cp bindings to yaml
->   dt-bindings: clock: cs2000-cp: document aux-output-source
->   dt-bindings: clock: cs2000-cp: document cirrus,clock-skip flag
->   dt-bindings: clock: cs2000-cp: document cirrus,dynamic-mode
->   clk: cs2000-cp: Make aux output function controllable
->   clk: cs2000-cp: add support for dynamic mode
->   clk: cs2000-cp: make clock skip setting configurable
->   clk: cs2000-cp: freeze config during register fiddling
->   clk: cs2000-cp: convert driver to regmap
-> 
->  .../bindings/clock/cirrus,cs2000-cp.yaml      |  91 +++++++
->  .../devicetree/bindings/clock/cs2000-cp.txt   |  22 --
->  drivers/clk/Kconfig                           |   1 +
->  drivers/clk/clk-cs2000-cp.c                   | 240 +++++++++++-------
->  include/dt-bindings/clock/cirrus,cs2000-cp.h  |  14 +
->  5 files changed, 261 insertions(+), 107 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
->  delete mode 100644 Documentation/devicetree/bindings/clock/cs2000-cp.txt
->  create mode 100644 include/dt-bindings/clock/cirrus,cs2000-cp.h
-> 
-
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
