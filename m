@@ -2,287 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276C2414A51
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 15:15:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D35A414A79
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 15:23:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbhIVNQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 09:16:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43448 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229923AbhIVNQc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 09:16:32 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D8882611B0;
-        Wed, 22 Sep 2021 13:15:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632316502;
-        bh=fvgA8XINho8vGBBk9z1aRVPxssLDZgs/yX8lhx2dLi8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NPVEMz4VEPZ65mNZJN9Mq3JqFSFnInl7+YdUHC0pX+Fr+YzxUKrgewY+OPMPhsC1z
-         ME0+ZRHRHtvpBtUQWsjYkZb81ouIttJmx+U/sMpxCUmuFJnJpdg0xkVilNevxeO7jJ
-         Z55zNMM7+2NKVQD1/oFjDZQy5ED7Pk9aZOjpgtUdlI/Jw3jpVlgXfS01ZL2eKzIfi5
-         xx662r3wG6IniaGEUS9joGw/D9Fux1zpB6MggdAtEmkqe+O8HQWgVgmBpwlV/z4ir9
-         NM/ziZ5HanmCsltgBKYwyxWE3IxqjDsgrH4asOZ4Gg0U1QCMVIJF4sMy5MLl6sE8l6
-         UV/F+vu1OvmsQ==
-Received: by mail-ed1-f42.google.com with SMTP id v24so9866043eda.3;
-        Wed, 22 Sep 2021 06:15:02 -0700 (PDT)
-X-Gm-Message-State: AOAM533JjmD5qDB9ILrIusZVfSvUgRy180GMCL71MBAUJqZlxjqshvr8
-        hTrHbIXUvhsAeDBxA2mAMaqzhYNUswwZZTHvkQ==
-X-Google-Smtp-Source: ABdhPJwdaKILi3zd33J2b62f/WwpWQQoXc2IYi7vZkPZb+WlR+hIWBW3Ih8Ifo+f201UknRAu99cm4yQZugpg4ZHc1I=
-X-Received: by 2002:a05:6402:b23:: with SMTP id bo3mr42719931edb.145.1632316501345;
- Wed, 22 Sep 2021 06:15:01 -0700 (PDT)
+        id S231919AbhIVNZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 09:25:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42034 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231940AbhIVNZH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 09:25:07 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 010C0C061574
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 06:23:36 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id ee50so9690537edb.13
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 06:23:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=veAVIUcvulmbyocALxu8MRu16Y5GNwlWCCE/HdmaHbU=;
+        b=PynfDNoli9R8CTKMVkBUYx5Dt5NcK8/cA2XdifmDetZMm0+d5C+vIkNU29t+v37iai
+         CKVACdsoI77zcTWFlNPBomiIfcgJe3IguBKuCZdH3eZKyme8yCQzaH6/4y0JvVYRCeCk
+         FduaEKb/wrjQTi2SoogK1FuKeXlx1cDWDiYgbAHHQku0atNlwVHgCWinMN7kT3uAW3tz
+         sSYVWvot/DOj9i0gn2Y0wZI4ML4rdOCb9KM3Maq6Yb04o+eJZiuqB59VWtv0DC1DlD6+
+         zSH7Le699edaZ97EFMTZAJz5LzoEp1VQCCieKNCJJASEsV8G2OOGogtJXpAhCjg++EiZ
+         7YqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=veAVIUcvulmbyocALxu8MRu16Y5GNwlWCCE/HdmaHbU=;
+        b=qgLRzQI+90cVMQTupSPQ7Ad+wMnKTM2sukfVsLgjs+SNylS6+k6ph9ORbSW20dk0B+
+         7X2ku4wI7H4Eq591WXv+KVhkl56GV7t9BcNtv8qshcAHfUv5cMXqfom91GhyUb2QgCru
+         D2gv7HlKcSUmzp6uSwSdF18k0ZGxKcWcen8k1E7BmAW84W/1Vbq5s9zrXGnnaokNJtkc
+         32jlws0QLD6ulr8ckQ3+LW1w4xMmH3576ylePgnityAEdgwhgwauopFBWDf/4wRn42L5
+         4ifvLYsiW1DT3UjSFIu/pMouc5nhfqW824lF2uVYrDWSqXWS2X2lrHjPxTg6H8MTsNfh
+         aJBw==
+X-Gm-Message-State: AOAM532zVGEu0O9BUw06CV6EqRjr2k4Fy31Xaq03n+9scWJRFis9yM3z
+        JeG2r7fWIsaRA3z+TSCGYW4HM1XzzXUeEg==
+X-Google-Smtp-Source: ABdhPJyhw+s2ZvrfpcJ9lUMVHtmkcu4aLySx5j4Q1qO7Zc4vt7M/q3frPKqUgEJxtCCjZ3mCvYI4Jg==
+X-Received: by 2002:aa7:c150:: with SMTP id r16mr41507353edp.388.1632317015571;
+        Wed, 22 Sep 2021 06:23:35 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id k4sm1201038edq.92.2021.09.22.06.23.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Sep 2021 06:23:35 -0700 (PDT)
+Subject: Re: [PATCH 1/6] dt-bindings: nvmem: add cell-type to nvmem cells
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org,
+        =?UTF-8?Q?Jan_L=c3=bcbbe?= <jlu@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org
+References: <20210908100257.17833-1-qiangqing.zhang@nxp.com>
+ <20210908100257.17833-2-qiangqing.zhang@nxp.com>
+ <6d91d833-08cc-7ce2-4fe5-3d843a8b31ae@pengutronix.de>
+ <181c4037-3c34-0f71-6bb7-a9c11b173064@linaro.org>
+ <dbd1c20c-e3be-6c92-52a8-2ad76d0092d0@pengutronix.de>
+ <8fc0a5e2-18c0-fa81-3eed-a6d596361633@linaro.org>
+ <d580dd06-8bc8-91c9-262b-f6f276b033c2@pengutronix.de>
+ <53fd9335-baca-fb52-42f1-2af3b08b5f1f@linaro.org>
+ <89b4a2d6-1966-7fcb-d476-f69e88293ea0@pengutronix.de>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <18c0d9c0-bee8-41fa-8fe8-26a0ceda1ecd@linaro.org>
+Date:   Wed, 22 Sep 2021 14:23:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210922073241.14119-1-chiawei_wang@aspeedtech.com> <20210922073241.14119-2-chiawei_wang@aspeedtech.com>
-In-Reply-To: <20210922073241.14119-2-chiawei_wang@aspeedtech.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 22 Sep 2021 08:14:48 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLDztZpw9wWfCCKn8rBZxKcsh_idc903kEUDAuh_31OQw@mail.gmail.com>
-Message-ID: <CAL_JsqLDztZpw9wWfCCKn8rBZxKcsh_idc903kEUDAuh_31OQw@mail.gmail.com>
-Subject: Re: [PATCH v6 1/4] dt-bindings: mfd: aspeed-lpc: Convert to YAML schema
-To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Oskar Senft <osk@google.com>, yulei.sh@bytedance.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <89b4a2d6-1966-7fcb-d476-f69e88293ea0@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 2:32 AM Chia-Wei Wang
-<chiawei_wang@aspeedtech.com> wrote:
->
-> Convert the bindings of Aspeed LPC from text file into YAML schema.
->
-> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> ---
->  .../devicetree/bindings/mfd/aspeed-lpc.txt    | 157 ---------------
->  .../devicetree/bindings/mfd/aspeed-lpc.yaml   | 187 ++++++++++++++++++
->  2 files changed, 187 insertions(+), 157 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-
-This has lots of warnings with 'make dtbs_check':
-
-/builds/robherring/linux-dt-review/arch/arm/boot/dts/aspeed-ast2500-evb.dt.yaml:
-lpc@1e789000: 'ibt@140', 'kcs@114', 'kcs@24', 'kcs@28', 'kcs@2c',
-'lhc@a0', 'reg-io-width' do not match any of the regexes:
-'^lpc-ctrl@[0-9a-f]+$', '^lpc-snoop@[0-9a-f]+$',
-'^reset-controller@[0-9a-f]+$', 'pinctrl-[0-9]+'
-From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-
-Is 'reg-io-width' valid?
-
-You can quiet all the child nodes with:
-
-additionalProperties:
-  type: object
-
-(They will still warn about undocumented compatibles, so we don't lose
-any todo list).
 
 
-> diff --git a/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml b/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-> new file mode 100644
-> index 000000000000..9c66795a1fb6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-> @@ -0,0 +1,187 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# # Copyright (c) 2021 Aspeed Tehchnology Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aspeed Low Pin Count (LPC) Bus Controller
-> +
-> +maintainers:
-> +  - Andrew Jeffery <andrew@aj.id.au>
-> +  - Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> +
-> +description:
+On 22/09/2021 14:08, Ahmad Fatoum wrote:
+> Hi,
+> 
+> On 22.09.21 15:03, Srinivas Kandagatla wrote:
+>>
+>>
+>> On 22/09/2021 13:58, Ahmad Fatoum wrote:
+>>> Hi Srini,
+>>>
+>>> On 22.09.21 14:49, Srinivas Kandagatla wrote:
+>>>>
+>>>>
+>>>> On 22/09/2021 13:31, Ahmad Fatoum wrote:
+>>>>>>>
+>>>>>>> On 08.09.21 12:02, Joakim Zhang wrote:
+>>>>>>>> From: Srinivas Kandagatla<srinivas.kandagatla@linaro.org>
+>>>>>>>>
+>>>>>>>> Some of the nvmem providers encode data for certain type of nvmem cell,
+>>>>>>>> example mac-address is stored in ascii or with delimiter or in reverse order.
+>>>>>>>>
+>>>>>>>> This is much specific to vendor, so having a cell-type would allow nvmem
+>>>>>>>> provider drivers to post-process this before using it.
+>>>>>>> I don't agree with this assessment. Users of the OCOTP so far
+>>>>>>> used this specific encoding. Bootloaders decode the OCOTP this way, but this
+>>>>>>> encoding isn't really an inherent attribute of the OCOTP. A new NXP SoC
+>>>>>>> with a different OTP IP will likely use the same format. Users may even
+>>>>>>> use the same format on an EEPROM to populate a second off-SoC interface, .. etc.
+>>>>>>>
+>>>>>> That is okay.
+>>>>> How would you go about using this same format on an EEPROM?
+>>>>
+>>>> Am guessing that by the time there are more users for such formats, those post-processing functions should be converted into some library functions.
+>>>
+>>> User A wants to reverse bytes in MAC address. User B stores it in ASCII.
+>>> Both use the exact same EEPROM. How could this ever work when the
+>>> encoding decision is left to the EEPROM driver?
+>>
+>> User A and B should mention about this encoding information in there NVMEM provider bindings.
+>>
+>> Based on that specific post-processing should be selected.
+> 
+> So instead of just compatible = "atmel,at24c16"; there will be
+> 
+>    compatible = "user-A,my-eeprom", "atmel,at24c16";
+> 
+> and
+> 
+>    compatible = "user-B,my-eeprom", "atmel,at24c16";
 
-You need '|' to preserve paragraphs.
+It will depend how you specify encoding information.
 
-> +  The LPC bus is a means to bridge a host CPU to a number of low-bandwidth
-> +  peripheral devices, replacing the use of the ISA bus in the age of PCI[0]. The
-> +  primary use case of the Aspeed LPC controller is as a slave on the bus
-> +  (typically in a Baseboard Management Controller SoC), but under certain
-> +  conditions it can also take the role of bus master.
-> +
-> +  The LPC controller is represented as a multi-function device to account for the
-> +  mix of functionality, which includes, but is not limited to
-> +
-> +  * An IPMI Block Transfer[2] Controller
-> +
-> +  * An LPC Host Interface Controller manages functions exposed to the host such
-> +    as LPC firmware hub cycles, configuration of the LPC-to-AHB mapping, UART
-> +    management and bus snoop configuration.
-> +
-> +  * A set of SuperIO[3] scratch registers enableing implementation of e.g. custom
-> +    hardware management protocols for handover between the host and baseboard
-> +    management controller.
-> +
-> +  Additionally the state of the LPC controller influences the pinmux
-> +  configuration, therefore the host portion of the controller is exposed as a
-> +  syscon as a means to arbitrate access.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - aspeed,ast2400-lpc-v2
-> +          - aspeed,ast2500-lpc-v2
-> +          - aspeed,ast2600-lpc-v2
-> +      - const: simple-mfd
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^lpc-ctrl@[0-9a-f]+$":
-> +    type: object
-> +
-> +    description:
-> +      The LPC Host Interface Controller manages functions exposed to the host such as
-> +      LPC firmware hub cycles, configuration of the LPC-to-AHB mapping, UART management
-> +      and bus snoop configuration.
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - enum:
-> +              - aspeed,ast2400-lpc-ctrl
-> +              - aspeed,ast2500-lpc-ctrl
-> +              - aspeed,ast2600-lpc-ctrl
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      clocks:
-> +        maxItems: 1
-> +
-> +      memory-region:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
+The issue with making this encoding information generic is that the 
+combinations are endless and nvmem core bindings is definitely not the 
+right place for this.
 
-Already has a type. Needs how many entries (maxItems: 1).
+ex:
+If I remember correctly we have mac-address stored in various formats:
+from old thread I can see
 
-> +        description: A reserved_memory region to be used for the LPC to AHB mapping
-> +
-> +      flash:
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +        description: The SPI flash controller containing the flash to be exposed over the LPC to AHB mapping
-> +
-> +    required:
-> +      - compatible
-> +      - clocks
-> +
-> +  "^reset-controller@[0-9a-f]+$":
-> +    type: object
-> +
-> +    description:
-> +      The UARTs present in the ASPEED SoC can have their resets tied to the reset
-> +      state of the LPC bus. Some systems may chose to modify this configuration
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - enum:
-> +              - aspeed,ast2400-lpc-reset
-> +              - aspeed,ast2500-lpc-reset
-> +              - aspeed,ast2600-lpc-reset
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +
-> +  "^lpc-snoop@[0-9a-f]+$":
-> +    type: object
-> +
-> +    description:
-> +      The LPC snoop interface allows the BMC to listen on and record the data
-> +      bytes written by the Host to the targeted LPC I/O pots.
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - enum:
-> +              - aspeed,ast2400-lpc-snoop
-> +              - aspeed,ast2500-lpc-snoop
-> +              - aspeed,ast2600-lpc-snoop
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      snoop-ports:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        description: The LPC I/O ports to snoop
-> +
-> +    required:
-> +      - compatible
-> +      - interrupts
-> +      - snoop-ports
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/ast2600-clock.h>
-> +
-> +    lpc: lpc@1e789000 {
-> +        compatible = "aspeed,ast2600-lpc-v2", "simple-mfd", "syscon";
-> +        reg = <0x1e789000 0x1000>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0x0 0x1e789000 0x1000>;
-> +
-> +        lpc_ctrl: lpc-ctrl@80 {
-> +            compatible = "aspeed,ast2600-lpc-ctrl";
-> +            reg = <0x80 0x80>;
-> +            clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
-> +            memory-region = <&flash_memory>;
-> +            flash = <&spi>;
-> +        };
-> +
-> +        lpc_reset: reset-controller@98 {
-> +            compatible = "aspeed,ast2600-lpc-reset";
-> +            reg = <0x98 0x4>;
-> +            #reset-cells = <1>;
-> +        };
-> +
-> +        lpc_snoop: lpc-snoop@90 {
-> +            compatible = "aspeed,ast2600-lpc-snoop";
-> +            reg = <0x90 0x8>;
-> +            interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-> +            snoop-ports = <0x80>;
-> +        };
-> +    };
-> --
-> 2.17.1
->
+Type 1: Octets in ASCII without delimiters. (Swapped/non-Swapped)
+
+Type 2: Octets in ASCII with delimiters like (":", ",", ".", "-"... so 
+on) (Swapped/non-Swapped)
+
+Type 3: Is the one which stores mac address in Type1/2 but this has to
+be incremented to be used on other instances of eth.
+
+Type 4: Octets as bytes/u8, swapped/non-swapped
+
+This list can be endless and its not just the cell-type property you 
+have to deal with, new properties keep popping up.
+
+
+--srini
+
+
+
+> 
+> and they each need to patch the at24 driver to call one of the
+> common library functions?
+> 
+>>
+>> --srini
+>>>
+>>
+>>>>
+>>>> --srini
+>>>>
+>>>>>
+>>>>>>> I'd thus prefer to not make this specific to the OCOTP as all:
+>>>>>>>
+>>>>>>>       * #define NVMEM_CELL_ENCODING_MAC_ADDRESS_IMX    /* ... */
+>>>>
+>>>
+>>>
+>>
+> 
+> 
