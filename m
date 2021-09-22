@@ -2,122 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 807C241417C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 08:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0EFD414218
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 08:44:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232333AbhIVGGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 02:06:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51804 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231908AbhIVGGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 02:06:14 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 616FFC061574;
-        Tue, 21 Sep 2021 23:04:45 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id w17so3273128wrv.10;
-        Tue, 21 Sep 2021 23:04:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=E8PWpzGE4nXx9yLcpibeowYfrua7uZ6eTJJKaxClepM=;
-        b=S1fWqCKTc+U3XKV5MShwR46eahJQSdbw+NMA8XAWaqVGE4gxmVvz/ieJJpTPvygGB+
-         NNN5aTQCiy5LkLq8A9yKOgrmXJlT3dt1rY51hmAS9BwwbIGAmyUshJArA5LNHHbEqGG6
-         vpMogiWPbwy7kMJ/XJta/8xaIXkqvkd5SlmkQmn852FfcsPb1bj9sfRgfVakG8YEmd28
-         OhxgMrpK7MglhTkJqlaS3vCa5Vn4cXfJ2pmqYfjihzGZEeYcM92zU/EhXXMCPetBA/kc
-         9yQ+S8F6dX/34PidSe5ZanAPHXbo5xw4HI+KcwnVlFAYllBy+RA01+pglKkhtXw0Ejzm
-         ssMQ==
+        id S232798AbhIVGpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 02:45:39 -0400
+Received: from mail-vs1-f53.google.com ([209.85.217.53]:41691 "EHLO
+        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232770AbhIVGpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 02:45:38 -0400
+Received: by mail-vs1-f53.google.com with SMTP id az15so1883435vsb.8;
+        Tue, 21 Sep 2021 23:44:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=E8PWpzGE4nXx9yLcpibeowYfrua7uZ6eTJJKaxClepM=;
-        b=uX8MH3NvH6BKFjlNF7jVnzAIW86aq0+Qhwds7asLOaEd0knm1TlZ5uk2kOsPSdvaVB
-         HiOPy/QHduUmDeyt+4xWLvF5ahfpXYnF7nphozPj4mh+VUsxtaccVq6PsHjYOYuiDD53
-         3WsknmnP6eJAmj3dNJa0lRyeDXlNJBn7dhkXjV3bR+vz8QXmdNL5a5YP+zM9Ymo7/6iA
-         vRVesDix/xk5Lazee1Vt3/gaIMvV7eKPzvH/yUb4tnFBeSk5dEIezQEvtd2cC9te0Ao2
-         SB/9mF9EPPmXFvtal1InKGW8qFEP9DZjRHYm8nUiESakq6/heRmjD438Sxdlt1VXb6pa
-         m2OA==
-X-Gm-Message-State: AOAM531viWYQCs6zI5S/LJX86Za4hYxFjppWckv5IAEeIB1GoV3XBfDb
-        aKB9Uv3UjD3Y7I5XfDBlGQY=
-X-Google-Smtp-Source: ABdhPJy/Oa9kivCqfNjj4Wo8JUjtuGYaGVP7hcDPKnWoCziHCeeoiDjTZzPckMOtTD3xk6YWepI41Q==
-X-Received: by 2002:adf:a745:: with SMTP id e5mr28523356wrd.406.1632290683592;
-        Tue, 21 Sep 2021 23:04:43 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id o1sm1071032wru.91.2021.09.21.23.04.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Sep 2021 23:04:43 -0700 (PDT)
-Date:   Wed, 22 Sep 2021 08:04:39 +0200
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     linux-crypto@vger.kernel.org, Ash Logan <ash@heyquark.com>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.ne@posteo.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH 1/4] crypto: nintendo-aes - add a new AES driver
-Message-ID: <YUrHdxY4EyanC9KR@Red>
-References: <20210921213930.10366-1-linkmauve@linkmauve.fr>
- <20210921213930.10366-2-linkmauve@linkmauve.fr>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i2pUM5brNJqaej4iEqyIsIxjV6XIoFcwAAQ7Oqy6DEk=;
+        b=zZ/VjtNJmEGWGWzWXntVXzcPdRka/SRQ8VwsH8haHFjnquiVTr2cnYccpNvUnsV7GC
+         gE7kqMmF5O6s5Ke7mUKrT+MbzLGCuBKlZNH/CU327Q7vBEIPIQzXNO7JvlE1dSTVayx+
+         287Xt/d7v0d7wgi1cd9GA/GWeO6LX8sFLUB4E/SkaezWUDKoF/kOSpoff9fjaHqNeQYM
+         JlMVH6S3o5l287tQBeMwoXKBIT9T/ha6OxIdAJ/PxHoQsSuXsQl/NO7h9qAvspgyNOT5
+         e38DvsccFz+5rSCHUPer6MdAusR++HnYiSoDV7dh63m3DKunLcoU1gBfI8F9QoD38YCE
+         qMfQ==
+X-Gm-Message-State: AOAM530R8JIQx/8VxiVvki8tmPRcymyNmATx/ZfDQy/kedglI2iLSklo
+        M2SJToxl03VcnMFimrSHNIasDq0wJrEIDuB+XXyTzvw+
+X-Google-Smtp-Source: ABdhPJwKxJBZAXv/SC7mdaGufQfqAQXm0UqBb5rpyK8VQIckPSoy5NjMixQOSxEm1nfiSw2knEhc9WDFntv0vlUHgXM=
+X-Received: by 2002:a67:cc1c:: with SMTP id q28mr23885496vsl.37.1632293048964;
+ Tue, 21 Sep 2021 23:44:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210921213930.10366-2-linkmauve@linkmauve.fr>
+References: <20210623135639.17125-1-laurent.pinchart+renesas@ideasonboard.com>
+ <YQGFP/cFoSksPyn+@pendragon.ideasonboard.com> <CAMuHMdVmTcERvHhLLDrZyC_TDLPU89ksitn0WduJkKqpePCKdg@mail.gmail.com>
+ <YUqGWa6q+wYq2vAt@pendragon.ideasonboard.com>
+In-Reply-To: <YUqGWa6q+wYq2vAt@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 22 Sep 2021 08:43:57 +0200
+Message-ID: <CAMuHMdXRhOmj4upp6Zsn3yb5bRdpg8hrgATWJCA6bSdvD=e1qw@mail.gmail.com>
+Subject: Re: [RESEND] [PATCH v2 1/2] dt-bindings: display: bridge: Add binding
+ for R-Car MIPI DSI/CSI-2 TX
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Tue, Sep 21, 2021 at 11:39:27PM +0200, Emmanuel Gil Peyrot a écrit :
-> This engine implements AES in CBC mode, using 128-bit keys only.  It is
-> present on both the Wii and the Wii U, and is apparently identical in
-> both consoles.
-> 
-> The hardware is capable of firing an interrupt when the operation is
-> done, but this driver currently uses a busy loop, I’m not too sure
-> whether it would be preferable to switch, nor how to achieve that.
-> 
-> It also supports a mode where no operation is done, and thus could be
-> used as a DMA copy engine, but I don’t know how to expose that to the
-> kernel or whether it would even be useful.
-> 
-> In my testing, on a Wii U, this driver reaches 80.7 MiB/s, while the
-> aes-generic driver only reaches 30.9 MiB/s, so it is a quite welcome
-> speedup.
-> 
-> This driver was written based on reversed documentation, see:
-> https://wiibrew.org/wiki/Hardware/AES
-> 
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-> Tested-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>  # on Wii U
+Hi Laurent,
 
-[...]
+On Wed, Sep 22, 2021 at 3:27 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Tue, Sep 21, 2021 at 05:53:52PM +0200, Geert Uytterhoeven wrote:
+> > On Wed, Jul 28, 2021 at 6:26 PM Laurent Pinchart wrote:
+> > > The R-Car MIPI DSI/CSI-2 TX is embedded in the Renesas R-Car V3U SoC. It
+> > > can operate in either DSI or CSI-2 mode, with up to four data lanes.
+> > >
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > > Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+> > > @@ -0,0 +1,118 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/display/bridge/renesas,dsi-csi2-tx.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Renesas R-Car MIPI DSI/CSI-2 Encoder
+> > > +
+> > > +maintainers:
+> > > +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > > +
+> > > +description: |
+> > > +  This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
+> > > +  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
+> > > +  to four data lanes.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - renesas,r8a779a0-dsi-csi2-tx    # for V3U
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: Functional clock
+> > > +      - description: DSI (and CSI-2) functional clock
+> > > +      - description: PLL reference clock
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: fck
+> > > +      - const: dsi
+> > > +      - const: pll
+> >
+> > No interrupts?
+> > The hardware manual says there are 9 interrupts.
+>
+> Who comes up with such insanely high numbers of interrupts ? :-)
+>
+> What the hardware manual doesn't document is how interrupts are mapped.
+> There's indeed 9 of them, and there are 9 interrupt sources, but that's
+> all we know. I can easily add a
+>
+>   interrupts:
+>     maxItems: 9
+>
+> but I can add interrupt names without additional information. It may be
+> possible to deduce some of the interrupt mappings from experiments, but
+> not all of them. What do you think would be a good way forward ? Leave
+> the interrupts out for now as we don't have the information ? Only list
+> the interrupts but not their names ? Something else ?
 
-> +static int
-> +do_crypt(const void *src, void *dst, u32 len, u32 flags)
-> +{
-> +	u32 blocks = ((len >> 4) - 1) & AES_CTRL_BLOCK;
-> +	u32 status;
-> +	u32 counter = OP_TIMEOUT;
-> +	u32 i;
-> +
-> +	/* Flush out all of src, we can’t know whether any of it is in cache */
-> +	for (i = 0; i < len; i += 32)
-> +		__asm__("dcbf 0, %0" : : "r" (src + i));
-> +	__asm__("sync" : : : "memory");
-> +
-> +	/* Set the addresses for DMA */
-> +	iowrite32be(virt_to_phys((void *)src), base + AES_SRC);
-> +	iowrite32be(virt_to_phys(dst), base + AES_DEST);
+I think what we did in the past is not list the interrupts at all.
+They can be added once we receive more documentation.
 
-Hello
+Gr{oetje,eeting}s,
 
-Since you do DMA operation, I think you should use the DMA-API and call dma_map_xxx()
-This will prevent the use of __asm__ and virt_to_phys().
+                        Geert
 
-Regards
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
