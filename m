@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E26F9413FEE
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 05:12:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9C0C413FF0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 05:14:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbhIVDOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Sep 2021 23:14:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35830 "EHLO mail.kernel.org"
+        id S230207AbhIVDQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Sep 2021 23:16:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36814 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230054AbhIVDOF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Sep 2021 23:14:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8870D60F26;
-        Wed, 22 Sep 2021 03:12:34 +0000 (UTC)
+        id S230054AbhIVDQV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Sep 2021 23:16:21 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D8A9261159;
+        Wed, 22 Sep 2021 03:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632280356;
-        bh=BGWZYKUOoJZ81ptD+3jlPIWYi7w46ro5hqlbInTfqdk=;
+        s=k20201202; t=1632280490;
+        bh=LJ5nh8MQ3DdHna5aIVr3f3YwvtbLGtOL+8CrOm0x2Kk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XzNB8b56/KlHc9o+Iaoqy1FlrE45ICjaBiGN5x6YNmMO3cxfQrYJ9ImDJoRAtACfo
-         0Obt43fLbzmoIOrguKMcZFq777uyZeaZEp6K2s9D/MGIxoeWEZAl/9kkM+juiN4S2t
-         0ljCQDkz4JLZi2D8lE9kbohk0YkK+lUnkCEGrx0wHbIOANpujZv8b0KotKlRbeUtt4
-         OpJozZQ4PDy7hVN9usEXqTG7dgxzlRiDhE2+yzeGrKbqEpF0dAO6N5J2/RAIdPp5S9
-         0xVdRamNsY4ARnNFZcBhITQXl2MyM/xG8waMYTWMznozhRhC+r/C/jk/VMb2Nry8Ab
-         SA8CRBxHtyjng==
-Date:   Wed, 22 Sep 2021 11:12:31 +0800
+        b=dMYmkZTOxNtq6jyO4L8aRFSbsdK9HnP/Xj0IaLaMKxO78vFn0yt5McFrA9CCzVHdc
+         O9jbgE3FBCkaAI2tEzKGqH1xzJlZbevbLwo3kk5sOne0y+2KnOYC575+j1EzPoVF4S
+         KgjNgAr8ybacwT91+bRUO0DKWUIoKL+3dQ9tC1gBTRmz1qYL8SxJOZf1MQh+1wi6XG
+         7WLKXGv5Ys0rZBZT1HLhnZFEWwdF8YlrHJ1kfNbcaBjQ6qvroennOoQwd/qkL/djTs
+         TXocHsclPsZ5/jzX6h2LnakcLk9PG5EUvt0iRkhPj+YYdd4jT0KfxcPQav1E/UmZQ8
+         xfzF/gTy6HfgQ==
+Date:   Wed, 22 Sep 2021 11:14:45 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     haibo.chen@nxp.com
 Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
         festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Subject: Re: [PATCH] arm64: dts: imx8qm: minor fix for schema dts check
-Message-ID: <20210922031230.GI10217@dragon>
+Message-ID: <20210922031444.GJ10217@dragon>
 References: <1629272675-7142-1-git-send-email-haibo.chen@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -45,6 +45,12 @@ On Wed, Aug 18, 2021 at 03:44:35PM +0800, haibo.chen@nxp.com wrote:
 > From: Haibo Chen <haibo.chen@nxp.com>
 > 
 > Add minor fix to pass schema dts check.
+
+Please have separate patch for clock and compatible changes.  Also
+provide schema check warning/error messages in commit log.
+
+Shawn
+
 > 
 > Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 > ---
@@ -105,11 +111,6 @@ On Wed, Aug 18, 2021 at 03:44:35PM +0800, haibo.chen@nxp.com wrote:
 >  &usdhc1 {
 > -	compatible = "fsl,imx8qm-usdhc", "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
 > +	compatible = "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
-
-We should document "fsl,imx8qm-usdhc" instead?
-
-Shawn
-
 >  };
 >  
 >  &usdhc2 {
