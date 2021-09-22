@@ -2,118 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 226C4414DFB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 18:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29C9E414DB4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Sep 2021 18:05:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236478AbhIVQUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 12:20:46 -0400
-Received: from mga04.intel.com ([192.55.52.120]:29169 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236627AbhIVQUq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Sep 2021 12:20:46 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10115"; a="221747139"
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; 
-   d="scan'208";a="221747139"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2021 09:18:05 -0700
-X-IronPort-AV: E=Sophos;i="5.85,314,1624345200"; 
-   d="scan'208";a="702313896"
-Received: from kjgomez-mobl1.amr.corp.intel.com (HELO [10.209.164.106]) ([10.209.164.106])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2021 09:18:03 -0700
-Subject: Re: [PATCH v7 18/22] ASoC: qdsp6: audioreach: add topology support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210921133709.4973-1-srinivas.kandagatla@linaro.org>
- <20210921133709.4973-19-srinivas.kandagatla@linaro.org>
- <7021cdec-382b-faa9-cf6c-ee06edbf19a7@linux.intel.com>
- <9ea759db-f2ae-8b26-eff9-8557267803d2@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <c03cedad-971d-2eee-a1a5-7f2d6c105682@linux.intel.com>
-Date:   Wed, 22 Sep 2021 10:40:16 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S236417AbhIVQGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 12:06:46 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:39672
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231712AbhIVQGp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Sep 2021 12:06:45 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C44E53F320
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 16:05:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632326714;
+        bh=am6HvhYMUQG0l4YQDLjqW15GPRKaMpXA2sBsBZSwSw8=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version:Content-Type;
+        b=BSKFbjKQJu2MGLI2h5Lc5HSvbmoyHWs7vsNhZc+55vnCUaknkiRodo+IRwrfr4iw0
+         2voceXrgKFCbAPDFiwURdf1mtTV453NwO7Wprc8QiV2Zr7Jl22YhYMTgvYyPQT539u
+         Pqd1UtwlatksZT3nbPWZXcUVBppuJZpIEsubkDyQjU57a95IF6EFizSv2kIYSwSPkH
+         PC9wqHWz27lQD/WF/tCYBBHhBDKp6EcEqMgr6yacH0lpM36fYHONC+FUv4FehquCSb
+         fb1Isx8xxVZqmZOekmmoo7o/62zgb2N0QDXYCWUK9YbgM8OYDL2SaFcVwJUgsefpEe
+         P7GOD1dpQ9ygQ==
+Received: by mail-ed1-f71.google.com with SMTP id z6-20020a50cd06000000b003d2c2e38f1fso3649605edi.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 09:05:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=am6HvhYMUQG0l4YQDLjqW15GPRKaMpXA2sBsBZSwSw8=;
+        b=CLE5Z1SHIECJ/AXwDRp0Wk0gkAN7QuUR5CewqhmrbYeL3L71VfSKy7AhV6VIhX0+dq
+         40jk1MFyGu8Qr0t7E9ujDzlSbXA7O0y4VValgNBpvD03l9h/qoh1zG4pPStiLBb9Cmz/
+         uUEtYIcHAFTE11Duss+txB6XeNfH1/9gnyR5liWIuthLs6HKPp6RQTn6VY3XVBuYkinI
+         LRmwcTWDFkfF4sATsOxjEGcgFLqGrLfxCe+tMA8nX8Ofs2auuJiV0TOcM5dcR+5s+lP3
+         SLK+3bi5SkvCubtvkHSjN/rhILcAOYtbxs1HmE1kKVDqP+BJQcarYNehRjK4YO4uiBLw
+         yK+w==
+X-Gm-Message-State: AOAM533C5l3tvlP8/Q7+Biaign+jeXlCIHIBJEOXNZ1mtZO0oNlNT/5U
+        2nTpfGig6pTKIA3ze2DWApJdv5RCG+9qBuEFRKD/LqZESpqeVUY3hcxQs9dYc1ekIjG6W5+9MUL
+        th1u2fSRLSKBk4ZXP6VptT4I6RVPPrhUrP1O4XIc=
+X-Received: by 2002:a17:906:718e:: with SMTP id h14mr302541ejk.365.1632326713300;
+        Wed, 22 Sep 2021 09:05:13 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx8bDWBvCoh+uqmD+95itTH1Ems+DKgL3XEMXBSbfrZ0KQf/4dDkPPwClcn682BfTFNhzCFcw==
+X-Received: by 2002:a17:906:718e:: with SMTP id h14mr302524ejk.365.1632326713104;
+        Wed, 22 Sep 2021 09:05:13 -0700 (PDT)
+Received: from localhost.localdomain (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id l7sm1511135edb.26.2021.09.22.09.05.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Sep 2021 09:05:12 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] powerpc/powermac: add missing g5_phy_disable_cpu1() declaration
+Date:   Wed, 22 Sep 2021 18:04:35 +0200
+Message-Id: <20210922160436.130931-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <9ea759db-f2ae-8b26-eff9-8557267803d2@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+g5_phy_disable_cpu1() is used outside of platforms/powermac/feature.c,
+so it should have a declaration to fix W=1 warning:
 
+  arch/powerpc/platforms/powermac/feature.c:1533:6:
+    error: no previous prototype for ‘g5_phy_disable_cpu1’ [-Werror=missing-prototypes]
 
->>> +    /* Inline with Qualcomm UCM configs and linux-firmware path */
->>> +    snprintf(tplg_fw_name, sizeof(tplg_fw_name),
->>> "qcom/%s/%s-tplg.bin", card->driver_name,
->>> +         card->name);
->>
->> use kasprintf instead of fixed 128-char array?
-> I moved this to kasprintf in next version.
-> 
->>
->> Also you should use a qcom/audioreach/ prefix to possible interference
->> with other parts of qcom...
->>
-> 
-> So Qualcomm linux-firmwares are arranged something like
-> 
-> qcom/sdm845/*
-> qcom/sm8250/*
-> qcom/sm8150/*
-> 
-> and UCM something like
-> this:Qualcomm/sm8250/Qualcomm-RB5-WSA8815-Speakers-DMIC0.conf
-> 
-> Qualcomm/sm8250/Qualcomm-RB5-WSA8815-Speakers-DMIC0.conf
-> 
-> 
-> Atleast in Qualcomm soundcard case we have driver name set to SoC name
-> and we tend to reuse this driver across multiple platforms.
-> 
-> second part card name actually is from model device tree property, in
-> this case which is "Qualcomm-RB5-WSA8815-Speakers-DMIC0"
-> 
-> so we will endup looking for
-> /lib/firmare/qcom/sm8250/Qualcomm-RB5-WSA8815-Speakers-DMIC0-tplg.bin
-> 
-> AFAIU, it should not interface with any other qcom parts.
-> 
-> for Other qcom parts this model will change so the topology file name.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-that should be fine.
+---
 
->>> +
->>> +    ret = request_firmware(&fw, tplg_fw_name, dev);
->>> +    if (ret < 0) {
->>> +        dev_info(dev, "loading %s failed %d, falling back to
->>> dfw-audioreach-tplg.bin\n",
->>> +             tplg_fw_name, ret);
->>> +        /* default firmware */
->>> +        ret = request_firmware(&fw, "dfw-audioreach-tplg.bin", dev);
->>> +        if (ret < 0) {
->>> +            dev_err(dev, "tplg fw dfw-audioreach-tplg.bin load
->>> failed with %d\n", ret);
->>
->> the dfw prefix isn't very helpful...Intel's example of "dfw_sst.bin" is
->> a historical reference, not something you should reuse.
-> 
-> Rethinking on this once again, Am not sure if it even makes sense to
-> support this default setup. It will be very hard to get a working
-> defalut tplg on every platform. So am planning to remove this in next
-> version.
-> 
-> Do you see any issues?
+Changes since v1:
+1. Drop declaration in powermac/smp.c
+---
+ arch/powerpc/include/asm/pmac_feature.h | 4 ++++
+ arch/powerpc/platforms/powermac/smp.c   | 2 --
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-No, I don't think it's practical to use this default name either. We
-don't have it for SOF.
+diff --git a/arch/powerpc/include/asm/pmac_feature.h b/arch/powerpc/include/asm/pmac_feature.h
+index e08e829261b6..7703e5bf1203 100644
+--- a/arch/powerpc/include/asm/pmac_feature.h
++++ b/arch/powerpc/include/asm/pmac_feature.h
+@@ -143,6 +143,10 @@
+  */
+ struct device_node;
+ 
++#ifdef CONFIG_PPC64
++void g5_phy_disable_cpu1(void);
++#endif /* CONFIG_PPC64 */
++
+ static inline long pmac_call_feature(int selector, struct device_node* node,
+ 					long param, long value)
+ {
+diff --git a/arch/powerpc/platforms/powermac/smp.c b/arch/powerpc/platforms/powermac/smp.c
+index 3256a316e884..5d0626f432d5 100644
+--- a/arch/powerpc/platforms/powermac/smp.c
++++ b/arch/powerpc/platforms/powermac/smp.c
+@@ -875,8 +875,6 @@ static int smp_core99_cpu_online(unsigned int cpu)
+ 
+ static void __init smp_core99_bringup_done(void)
+ {
+-	extern void g5_phy_disable_cpu1(void);
+-
+ 	/* Close i2c bus if it was used for tb sync */
+ 	if (pmac_tb_clock_chip_host)
+ 		pmac_i2c_close(pmac_tb_clock_chip_host);
+-- 
+2.30.2
 
-Even for developers who modify a default, it's better to place a new
-topology with the same name in /lib/firmware/updates/qcom and let
-request_firmware() find the updated file with the existing paths [1]
-
-[1]
-https://www.kernel.org/doc/html/latest/driver-api/firmware/fw_search_path.html
