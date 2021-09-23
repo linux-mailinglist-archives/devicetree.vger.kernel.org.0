@@ -2,178 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D93415D98
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 14:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3B43415D7D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 14:01:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240742AbhIWMEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 08:04:02 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:53808 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S240902AbhIWMD7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 08:03:59 -0400
-X-UUID: d14e2240ecf5477fa5f88ec2107b2f67-20210923
-X-UUID: d14e2240ecf5477fa5f88ec2107b2f67-20210923
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 589877884; Thu, 23 Sep 2021 20:02:24 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 23 Sep 2021 20:02:23 +0800
-Received: from localhost.localdomain (10.17.3.154) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 23 Sep 2021 20:02:22 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, <anan.sun@mediatek.com>,
-        <chao.hao@mediatek.com>, <yen-chang.chen@mediatek.com>
-Subject: [PATCH v3 21/33] iommu/mediatek: Add infra iommu support
-Date:   Thu, 23 Sep 2021 19:58:28 +0800
-Message-ID: <20210923115840.17813-22-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210923115840.17813-1-yong.wu@mediatek.com>
-References: <20210923115840.17813-1-yong.wu@mediatek.com>
+        id S240856AbhIWMDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 08:03:17 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:25586 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240869AbhIWMDI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Sep 2021 08:03:08 -0400
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18NAdUcU003364;
+        Thu, 23 Sep 2021 08:01:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=date : from : to : cc :
+ subject : message-id : references : mime-version : content-type :
+ content-transfer-encoding : in-reply-to; s=pp1;
+ bh=pXzEf65A4Oe5+XzfRr8terVnfyIyuO6PQs0+F8aXgGc=;
+ b=ZCv5VVg5Axl96NC4/j5oW2leA+TyRu7PTszC85LX7OnyuvdR/QPrxFJvHee6+ph9/1Ah
+ rUd/1Dr4tZ5yXYAiKoNA4l0g4riJzCer09eV4KmKCsnovao7Ujg6/MQzQ6IVb2C5LRSL
+ 6WitPRreJzNPlii4WW55mXNNAxhzlImWjS7TBI5y3E9CuYqxTL+hR1eRpZFENX5WHVgo
+ 3bzeScRRqqA6eAdFzB/5aWdZYhNxC/HkliRolmuo1Xv4pKsUbXkIzU8GEpyYBQunYUKJ
+ 0M08Qqduz9x2e5o+taGQrQG0ce7A7g963Zzijz3wHvEhl/y43e2FXQI9OwpYg11CHmgU 9g== 
+Received: from ppma06fra.de.ibm.com (48.49.7a9f.ip4.static.sl-reverse.com [159.122.73.72])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 3b8p4dcmbn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 23 Sep 2021 08:01:14 -0400
+Received: from pps.filterd (ppma06fra.de.ibm.com [127.0.0.1])
+        by ppma06fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 18NBvwov029624;
+        Thu, 23 Sep 2021 12:01:11 GMT
+Received: from b06cxnps4074.portsmouth.uk.ibm.com (d06relay11.portsmouth.uk.ibm.com [9.149.109.196])
+        by ppma06fra.de.ibm.com with ESMTP id 3b7q6ps42c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 23 Sep 2021 12:01:11 +0000
+Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com [9.149.105.58])
+        by b06cxnps4074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 18NC18Jk56885734
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 23 Sep 2021 12:01:08 GMT
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 810B04C08B;
+        Thu, 23 Sep 2021 12:01:08 +0000 (GMT)
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 64DD54C089;
+        Thu, 23 Sep 2021 12:01:06 +0000 (GMT)
+Received: from linux.ibm.com (unknown [9.145.159.121])
+        by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTPS;
+        Thu, 23 Sep 2021 12:01:06 +0000 (GMT)
+Date:   Thu, 23 Sep 2021 15:01:04 +0300
+From:   Mike Rapoport <rppt@linux.ibm.com>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Mike Rapoport <rppt@kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-efi@vger.kernel.org,
+        kvm@vger.kernel.org, linux-s390@vger.kernel.org,
+        linux-sh@vger.kernel.org, linux-um@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kasan-dev@googlegroups.com,
+        linux-mips@vger.kernel.org, linux-mm@kvack.org,
+        iommu@lists.linux-foundation.org, linux-usb@vger.kernel.org,
+        linux-alpha@vger.kernel.org, sparclinux@vger.kernel.org,
+        xen-devel@lists.xenproject.org,
+        Andrew Morton <akpm@linux-foundation.org>,
+        linux-snps-arc@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+        linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/3] memblock: cleanup memblock_free interface
+Message-ID: <YUxsgN/uolhn1Ok+@linux.ibm.com>
+References: <20210923074335.12583-1-rppt@kernel.org>
+ <20210923074335.12583-4-rppt@kernel.org>
+ <1101e3c7-fcb7-a632-8e22-47f4a01ea02e@csgroup.eu>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1101e3c7-fcb7-a632-8e22-47f4a01ea02e@csgroup.eu>
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: fe2SFaLdoxw706nrVmE8bleSLkHdGrzC
+X-Proofpoint-ORIG-GUID: fe2SFaLdoxw706nrVmE8bleSLkHdGrzC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-23_04,2021-09-23_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ lowpriorityscore=0 phishscore=0 clxscore=1011 bulkscore=0 spamscore=0
+ mlxlogscore=613 impostorscore=0 priorityscore=1501 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2109200000 definitions=main-2109230076
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The infra iommu enable bits in mt8195 is in the pericfg register segment,
-use regmap to update it.
+On Thu, Sep 23, 2021 at 11:47:48AM +0200, Christophe Leroy wrote:
+> 
+> 
+> Le 23/09/2021 à 09:43, Mike Rapoport a écrit :
+> > From: Mike Rapoport <rppt@linux.ibm.com>
+> > 
+> > For ages memblock_free() interface dealt with physical addresses even
+> > despite the existence of memblock_alloc_xx() functions that return a
+> > virtual pointer.
+> > 
+> > Introduce memblock_phys_free() for freeing physical ranges and repurpose
+> > memblock_free() to free virtual pointers to make the following pairing
+> > abundantly clear:
+> > 
+> > 	int memblock_phys_free(phys_addr_t base, phys_addr_t size);
+> > 	phys_addr_t memblock_phys_alloc(phys_addr_t base, phys_addr_t size);
+> > 
+> > 	void *memblock_alloc(phys_addr_t size, phys_addr_t align);
+> > 	void memblock_free(void *ptr, size_t size);
+> > 
+> > Replace intermediate memblock_free_ptr() with memblock_free() and drop
+> > unnecessary aliases memblock_free_early() and memblock_free_early_nid().
+> > 
+> > Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
+> > Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
+> > ---
+> 
+> > diff --git a/arch/s390/kernel/smp.c b/arch/s390/kernel/smp.c
+> > index 1a04e5bdf655..37826d8c4f74 100644
+> > --- a/arch/s390/kernel/smp.c
+> > +++ b/arch/s390/kernel/smp.c
+> > @@ -723,7 +723,7 @@ void __init smp_save_dump_cpus(void)
+> >   			/* Get the CPU registers */
+> >   			smp_save_cpu_regs(sa, addr, is_boot_cpu, page);
+> >   	}
+> > -	memblock_free(page, PAGE_SIZE);
+> > +	memblock_phys_free(page, PAGE_SIZE);
+> >   	diag_amode31_ops.diag308_reset();
+> >   	pcpu_set_smt(0);
+> >   }
+> > @@ -880,7 +880,7 @@ void __init smp_detect_cpus(void)
+> >   	/* Add CPUs present at boot */
+> >   	__smp_rescan_cpus(info, true);
+> > -	memblock_free_early((unsigned long)info, sizeof(*info));
+> > +	memblock_free(info, sizeof(*info));
+> >   }
+> >   /*
+> 
+> I'm a bit lost. IIUC memblock_free_early() and memblock_free() where
+> identical.
 
-If infra iommu master translation fault, It don't have the larbid/portid,
-thus print out the whole register value.
+Yes, they were, but all calls to memblock_free_early() were using
+__pa(vaddr) because they had a virtual address at hand.
 
-Since regmap_update_bits may fail, add return value for mtk_iommu_config.
+> In the first hunk memblock_free() gets replaced by memblock_phys_free()
+> In the second hunk memblock_free_early() gets replaced by memblock_free()
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/iommu/mtk_iommu.c | 36 +++++++++++++++++++++++++++++-------
- drivers/iommu/mtk_iommu.h |  2 ++
- 2 files changed, 31 insertions(+), 7 deletions(-)
+In the first hunk the memory is allocated with memblock_phys_alloc() and we
+have a physical range to free. In the second hunk the memory is allocated
+with memblock_alloc() and we are freeing a virtual pointer.
+ 
+> I think it would be easier to follow if you could split it in several
+> patches:
 
-diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index d103e4f33078..37d6dfb4feab 100644
---- a/drivers/iommu/mtk_iommu.c
-+++ b/drivers/iommu/mtk_iommu.c
-@@ -112,6 +112,8 @@
- 
- #define MTK_PROTECT_PA_ALIGN			256
- 
-+#define PERICFG_IOMMU_1				0x714
-+
- #define HAS_4GB_MODE			BIT(0)
- /* HW will use the EMI clock if there isn't the "bclk". */
- #define HAS_BCLK			BIT(1)
-@@ -324,8 +326,8 @@ static irqreturn_t mtk_iommu_isr(int irq, void *dev_id)
- 			       write ? IOMMU_FAULT_WRITE : IOMMU_FAULT_READ)) {
- 		dev_err_ratelimited(
- 			data->dev,
--			"fault type=0x%x iova=0x%llx pa=0x%llx larb=%d port=%d layer=%d %s\n",
--			int_state, fault_iova, fault_pa, fault_larb, fault_port,
-+			"fault type=0x%x iova=0x%llx pa=0x%llx master=0x%x(larb=%d port=%d) layer=%d %s\n",
-+			int_state, fault_iova, fault_pa, regval, fault_larb, fault_port,
- 			layer, write ? "write" : "read");
- 	}
- 
-@@ -369,14 +371,15 @@ static int mtk_iommu_get_domain_id(struct device *dev,
- 	return -EINVAL;
- }
- 
--static void mtk_iommu_config(struct mtk_iommu_data *data, struct device *dev,
--			     bool enable, unsigned int domid)
-+static int mtk_iommu_config(struct mtk_iommu_data *data, struct device *dev,
-+			    bool enable, unsigned int domid)
- {
- 	struct mtk_smi_larb_iommu    *larb_mmu;
- 	unsigned int                 larbid, portid;
- 	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
- 	const struct mtk_iommu_iova_region *region;
--	int i;
-+	u32 peri_mmuen, peri_mmuen_msk;
-+	int i, ret = 0;
- 
- 	for (i = 0; i < fwspec->num_ids; ++i) {
- 		larbid = MTK_M4U_TO_LARB(fwspec->ids[i]);
-@@ -396,8 +399,19 @@ static void mtk_iommu_config(struct mtk_iommu_data *data, struct device *dev,
- 				larb_mmu->mmu |= MTK_SMI_MMU_EN(portid);
- 			else
- 				larb_mmu->mmu &= ~MTK_SMI_MMU_EN(portid);
-+		} else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA)) {
-+			peri_mmuen_msk = BIT(portid);
-+			peri_mmuen = enable ? peri_mmuen_msk : 0;
-+
-+			ret = regmap_update_bits(data->pericfg, PERICFG_IOMMU_1,
-+						 peri_mmuen_msk, peri_mmuen);
-+			if (ret)
-+				dev_err(dev, "%s iommu(%s) inframaster 0x%x fail(%d).\n",
-+					enable ? "enable" : "disable",
-+					dev_name(data->dev), peri_mmuen_msk, ret);
- 		}
- 	}
-+	return ret;
- }
- 
- static int mtk_iommu_domain_finalise(struct mtk_iommu_domain *dom,
-@@ -504,8 +518,7 @@ static int mtk_iommu_attach_device(struct iommu_domain *domain,
- 		pm_runtime_put(m4udev);
- 	}
- 
--	mtk_iommu_config(data, dev, true, domid);
--	return 0;
-+	return mtk_iommu_config(data, dev, true, domid);
- }
- 
- static void mtk_iommu_detach_device(struct iommu_domain *domain,
-@@ -921,6 +934,15 @@ static int mtk_iommu_probe(struct platform_device *pdev)
- 		ret = mtk_iommu_mm_dts_parse(dev, &match, data);
- 		if (ret)
- 			goto out_runtime_disable;
-+	} else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA) &&
-+		   data->plat_data->pericfg_comp_str) {
-+		infracfg = syscon_regmap_lookup_by_compatible(data->plat_data->pericfg_comp_str);
-+		if (IS_ERR(infracfg)) {
-+			ret = PTR_ERR(infracfg);
-+			goto out_runtime_disable;
-+		}
-+
-+		data->pericfg = infracfg;
- 	}
- 
- 	platform_set_drvdata(pdev, data);
-diff --git a/drivers/iommu/mtk_iommu.h b/drivers/iommu/mtk_iommu.h
-index 5b32277fee99..d83c79bf800a 100644
---- a/drivers/iommu/mtk_iommu.h
-+++ b/drivers/iommu/mtk_iommu.h
-@@ -55,6 +55,7 @@ struct mtk_iommu_plat_data {
- 	u32                 flags;
- 	u32                 inv_sel_reg;
- 
-+	char					*pericfg_comp_str;
- 	struct list_head			*hw_list;
- 	unsigned int				iova_region_nr;
- 	const struct mtk_iommu_iova_region	*iova_region;
-@@ -80,6 +81,7 @@ struct mtk_iommu_data {
- 	struct device			*smicomm_dev;
- 
- 	struct dma_iommu_mapping	*mapping; /* For mtk_iommu_v1.c */
-+	struct regmap			*pericfg;
- 
- 	/*
- 	 * In the sharing pgtable case, list data->list to the global list like m4ulist.
+It was an explicit request from Linus to make it a single commit:
+
+  but the actual commit can and should be just a single commit that just
+  fixes 'memblock_free()' to have sane interfaces.
+
+I don't feel strongly about splitting it (except my laziness really
+objects), but I don't think doing the conversion in several steps worth the
+churn.
+
+> - First patch: Create memblock_phys_free() and change all relevant
+> memblock_free() to memblock_phys_free() - Or change memblock_free() to
+> memblock_phys_free() and make memblock_free() an alias of it.
+> - Second patch: Make memblock_free_ptr() become memblock_free() and change
+> all remaining callers to the new semantics (IIUC memblock_free(__pa(ptr))
+> becomes memblock_free(ptr) and make memblock_free_ptr() an alias of
+> memblock_free()
+> - Fourth patch: Replace and drop memblock_free_ptr()
+> - Fifth patch: Drop memblock_free_early() and memblock_free_early_nid() (All
+> users should have been upgraded to memblock_free_phys() in patch 1 or
+> memblock_free() in patch 2)
+> 
+> Christophe
+
 -- 
-2.18.0
-
+Sincerely yours,
+Mike.
