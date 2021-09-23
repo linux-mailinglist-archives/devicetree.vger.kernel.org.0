@@ -2,102 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E88B41665A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 22:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4C0416668
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 22:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243074AbhIWUHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 16:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41698 "EHLO
+        id S243079AbhIWUOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 16:14:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242979AbhIWUHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 16:07:47 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46891C061574
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 13:06:15 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id u18so20558657wrg.5
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 13:06:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=+fr9Gy1AQEubiTK5cHPDCJrxGwSlissv4q4mqqhp4ls=;
-        b=WsfssnVldxNLG/cAcrkuCW5oovIGpRMiOEeOfQ/1RAD+iVH2X35FG098OmMS/FzoJl
-         uCmS9rweN/VUqtwntLV386eXFMaYDIfObDUx/I5cJBMloSSEj0jeB+9WZqfGwBIXVIHl
-         w6nIUmRSVaWYZNANx9Q3iJswpBeQsMZg3XPKgfWx5ISirs90dCVU6ifNSLm4jke5dRsk
-         nzWdMVKezJHYoOyW/ekgzRcdX1PyOIzmkRZtxVywP10AePlOuuQBUWqPMQIP5JjxZE6D
-         U40vjDeH41H0AvqEkczNmYLko2CPKtZCaINLc6PHQoQOV2NeighKqG390nF83s6U5FOM
-         QOZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+fr9Gy1AQEubiTK5cHPDCJrxGwSlissv4q4mqqhp4ls=;
-        b=423pWE/qAK447ddAyXEj6H0CQe3snjlQ88F9YyIb/VDO3FTUHtikP6ZcFyxqk7lGSx
-         iil6gtNhq90pQNGkELnuvePyeKOePV4hjHdVPkdwhdnMYOngaoxUnyGUKNpFCyUYN+C8
-         iXV0e3SD/glaqRGlDYn7rU2KSFbU3dHidPEsc2ZMo1syuQLCmHRB2+C0KTQ64nwpBtQb
-         t5HzbNaRjomoVeAvnHI2XJ/LLNjfXoMPHqgYDrZE7Rm09T1m2qX6E618noLXQr2CfnPs
-         l/ShW1s//klkJhlyRbjORBdwxbxt1ltNB2/CspKdrZ2G6CXiND775Dae/4KBZHCm3i1E
-         2l9g==
-X-Gm-Message-State: AOAM531ciX/CfQ2h+UDLJoG1D+ab3f1moIMbO7/Wc7MiM3SOMAgKjUCr
-        nwtzQ7iLVE50dfDceEF9UX5d1A==
-X-Google-Smtp-Source: ABdhPJwGuflioho+kw1LeePLr5Wotw/ASdcSJIOLrT/gJMjicmoFxsvl6fBQPE1J+ytwi/9v7eKwPg==
-X-Received: by 2002:a7b:cd0d:: with SMTP id f13mr18103521wmj.183.1632427573456;
-        Thu, 23 Sep 2021 13:06:13 -0700 (PDT)
-Received: from google.com ([95.148.6.233])
-        by smtp.gmail.com with ESMTPSA id h15sm6061862wrc.19.2021.09.23.13.06.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 13:06:13 -0700 (PDT)
-Date:   Thu, 23 Sep 2021 21:06:10 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        devicetree@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 3/4] dt-bindings: mfd: brcm,cru: add USB 2.0 PHY
-Message-ID: <YUzeMqVTw62dM/6R@google.com>
-References: <20210913080024.6951-1-zajec5@gmail.com>
- <20210913080024.6951-3-zajec5@gmail.com>
- <YUriBVIH/n0p2H+D@google.com>
- <CAL_Jsq+a9nKvMwzTPxCvF421cGw7CtAqHZxT=E6oO1twJ41d5Q@mail.gmail.com>
+        with ESMTP id S242982AbhIWUOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 16:14:34 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34ADCC061574;
+        Thu, 23 Sep 2021 13:13:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=dkrWxEsW4i3mM5zRCfYCAlO+mQ3S7GYgXqDqy1zH55k=; b=JKUDnU7veaXXnjJwTP4Q68bxgl
+        JHcIKCfuBVjnMOrZBCsTamqsj4V3sGRWWKj9PaLLhT5vj+3xIqHZBivR2v9oZF6+3BjkcEbhw8Zzf
+        Aime8BmibuJwUP0scYpbHI7SxGdYM5Gg94sua4FANcs9d7SUR/QK9se+HiRGwFCuAFGk=;
+Received: from p200300ccff12c8001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff12:c800:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mTV5W-00028b-6r; Thu, 23 Sep 2021 22:12:58 +0200
+Received: from andi by aktux with local (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mTV5V-00AYlA-MQ; Thu, 23 Sep 2021 22:12:57 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH 0/5] ARM: dts: imx6sl / imx6sll: dtbs_check errors
+Date:   Thu, 23 Sep 2021 22:12:33 +0200
+Message-Id: <20210923201238.2516844-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_Jsq+a9nKvMwzTPxCvF421cGw7CtAqHZxT=E6oO1twJ41d5Q@mail.gmail.com>
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Sep 2021, Rob Herring wrote:
+Fix some errors found by make dtbs_check during adding of new device trees.
+These are not all errors, just the ones which seem clear to me now.
 
-> On Wed, Sep 22, 2021 at 2:58 AM Lee Jones <lee.jones@linaro.org> wrote:
-> >
-> > On Mon, 13 Sep 2021, Rafał Miłecki wrote:
-> >
-> > > From: Rafał Miłecki <rafal@milecki.pl>
-> > >
-> > > Northstar's USB 2.0 PHY is part of the CRU MFD.
-> > >
-> > > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> > > ---
-> > >  .../devicetree/bindings/mfd/brcm,cru.yaml         | 15 ++++++++++++++-
-> > >  1 file changed, 14 insertions(+), 1 deletion(-)
-> >
-> > Applied, thanks.
-> 
-> Hopefully this works without patch 2???
+Andreas Kemnade (5):
+  ARM: dts: imx: e60k02: correct led node name
+  ARM: dts: imx6sl: fixup of operating points
+  ARM: dts: imx6sll: fixup of operating points
+  ARM: dts: imx6sl: fix mmc compatibles
+  ARM: dts: imx6sll: fix mmc compatibles
 
-What do you mean by 'works'?
-
-It's documentation.
+ arch/arm/boot/dts/e60k02.dtsi  |  2 +-
+ arch/arm/boot/dts/imx6sl.dtsi  | 26 ++++++++++++--------------
+ arch/arm/boot/dts/imx6sll.dtsi | 28 +++++++++++++---------------
+ 3 files changed, 26 insertions(+), 30 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.30.2
+
