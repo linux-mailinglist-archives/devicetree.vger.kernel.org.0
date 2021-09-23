@@ -2,361 +2,350 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56420416426
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 19:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52038416432
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 19:16:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242305AbhIWRPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 13:15:03 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:51985 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242672AbhIWROl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 13:14:41 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1632417188; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
- To: From: Sender; bh=t12LN+auGI7Arv82FZVp1Ofzyzc2dN9VIovd2p44XXU=; b=V5+4HKf+exMU6LFsCO0CfXP9UqwV2115f3HT2eyVpbrzd251Fo5KeaPuvHHFy+nNxVz4Sql0
- 5iNamZXUndnMjojgq+FvU+XMASj2Lqmp0FYuBVoLkc7KtmfZr33awozhInS7YDsmd/iTkwIf
- uFoYFMEpQzto4U5HFNIqyVZ77YM=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 614cb58bb585cc7d245ca0f7 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 23 Sep 2021 17:12:43
- GMT
-Sender: pillair=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 43F25C43637; Thu, 23 Sep 2021 17:12:43 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from PILLAIR1 (unknown [103.155.222.105])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 24B08C4361C;
-        Thu, 23 Sep 2021 17:12:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 24B08C4361C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   <pillair@codeaurora.org>
-To:     "'Rob Herring'" <robh+dt@kernel.org>
-Cc:     "'Gross, Andy'" <agross@kernel.org>,
-        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
-        "'Ohad Ben-Cohen'" <ohad@wizery.com>,
-        "'Mathieu Poirier'" <mathieu.poirier@linaro.org>,
-        "'Philipp Zabel'" <p.zabel@pengutronix.de>,
-        "'Stephen Boyd'" <swboyd@chromium.org>,
-        "'linux-arm-msm'" <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "'sibis'" <sibis@codeaurora.org>, <mpubbise@codeaurora.org>,
-        <kuabhs@chromium.org>
-References: <1631874941-5262-1-git-send-email-pillair@codeaurora.org> <1631874941-5262-2-git-send-email-pillair@codeaurora.org> <CAL_Jsq+khyhbwJ5-GPZ5ZGkY4nX_obq4t92Z0V6sZH3Oyj4Fow@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+khyhbwJ5-GPZ5ZGkY4nX_obq4t92Z0V6sZH3Oyj4Fow@mail.gmail.com>
-Subject: RE: [PATCH v4 1/2] dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
-Date:   Thu, 23 Sep 2021 22:42:30 +0530
-Message-ID: <004601d7b09e$35ff63d0$a1fe2b70$@codeaurora.org>
+        id S242301AbhIWRQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 13:16:48 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:45921 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242279AbhIWRQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 13:16:48 -0400
+Received: by mail-oi1-f181.google.com with SMTP id v10so10564179oic.12;
+        Thu, 23 Sep 2021 10:15:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=W/zoLBVYWYLAtQZXuGopwcFe9NOYRSnJw/clVnUsFws=;
+        b=U6PDtOcYhQe7d6cF7i58v19YsNuJpu6Cb53q5sDXDsNfEOB72AFwLyihmTTPQmOx6J
+         gHWvBjJjkWyeHiqBSeM/I+t8vON20sdirzZuQ9OqmYY2dv9NvRKkAi1oPFCugksX4EZ9
+         E+tKDNpnOkqsfe3ZEypV2oNjYoKucLQK0MGvBzNB/7arKdOADj295uAZI8fSg+DlRgh4
+         dWG+tLNbZVh6gDUM/DTRppUf6P2FTmUtwhqiNahUxE3dUNLZRI+PRQAvNI9bZmFPkHH8
+         2yMvodZcpeRwPYKcszwB0SmgaqaaWnObglgR56V7BIs8ztqptrCqzWCT380wBjcMc4JN
+         1nCg==
+X-Gm-Message-State: AOAM5332dsC0rSzc2kc84FZkChTkK3N3MZ2WOoDGcHBJ5paG/Djl9GYk
+        N430XrHC1uKq5pkBCpXO+Q==
+X-Google-Smtp-Source: ABdhPJxsPme0f+zK3Xd121B7VN662M2+ciakkuDqc+YkX/kl4uyVjyJITFOqneN0tIkPDIVoD/MX/Q==
+X-Received: by 2002:a05:6808:494:: with SMTP id z20mr13439028oid.103.1632417315848;
+        Thu, 23 Sep 2021 10:15:15 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 14sm1428384oiy.53.2021.09.23.10.15.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Sep 2021 10:15:15 -0700 (PDT)
+Received: (nullmailer pid 3191243 invoked by uid 1000);
+        Thu, 23 Sep 2021 17:15:14 -0000
+Date:   Thu, 23 Sep 2021 12:15:14 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH 2/2] Documentation: devicetree: net: dsa:
+ qca8k: document configurable led support
+Message-ID: <YUy2Ikol0dzO6Epp@robh.at.kernel.org>
+References: <20210920180851.30762-1-ansuelsmth@gmail.com>
+ <20210920180851.30762-2-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQF0eSZL6xbdu6QNcc0QXvoTc0aaAwNauk2NAmrNx3usSh1b4A==
-Content-Language: en-us
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210920180851.30762-2-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 20, 2021 at 08:08:51PM +0200, Ansuel Smith wrote:
+> Document binding for configurable led. Ports led can now be set on/off
+> and the blink/on rules can be configured using the "qca,led_rules"
+> binding. Refer to the Documentation on how to configure them.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  .../devicetree/bindings/net/dsa/qca8k.txt     | 249 ++++++++++++++++++
+>  1 file changed, 249 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> index 8c73f67c43ca..233f02cd9e98 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> @@ -29,6 +29,45 @@ the mdio MASTER is used as communication.
+>  Don't use mixed external and internal mdio-bus configurations, as this is
+>  not supported by the hardware.
+>  
+> +A leds subnode can be declared to configure leds port behaviour.
+> +The leds subnode must declare the port with the mdio reg that will have the
+> +attached led. Each port can have a max of 3 different leds. (Refer to example)
+> +A led can have 4 different settings:
+> +- Always off
+> +- Always on
+> +- Blink at 4hz
+> +- Hw_mode: This special mode follow control_rule rules and blink based on switch
+> +event.
+> +A sysfs entry for control_rule and hw_mode is provided for each led.
+> +Control rule for phy0-3 are shared and refer to the same reg. That means that
+> +phy0-3 will blink based on the same rules. Phy4 have its dedicated control_rules.
+> +
+> +Each led can have the following binding:
+> +The binding "default-state" can be declared to set them off by default or to
+> +follow leds control_rule using the keep value. By default hw_mode is set as it's
+> +the default switch setting.
+> +The binding "qca,led_rules" can be used to declare the control_rule set on
+> +switch setup. The following rules can be applied decalred in an array of string
+> +in the dts:
+> +- tx-blink: Led blink on tx traffic for the port
+> +- rx-blink: Led blink on rx traffic for the port
+> +- collision-blink: Led blink when a collision is detected for the port
+> +- link-10M: Led is turned on when a link of 10M is detected for the port
+> +- link-100M: Led is turned on when a link of 100M is detected for the port
+> +- link-1000M: Led is turned on when a link of 1000M is detected for the port
+> +- half-duplex: Led is turned on when a half-duplex link is detected for the port
+> +- full-duplex: Led is turned on when a full-duplex link is detected for the port
+> +- linkup-over: Led blinks only when the linkup led is on, ignore blink otherwise
+> +- power-on-reset: Reset led on switch reset
+> +- One of
+> +	- blink-2hz: Led blinks at 2hz frequency
+> +	- blink-4hz: Led blinks at 4hz frequency
+> +	- blink-8hz: Led blinks at 8hz frequency
+> +	- blink-auto: Led blinks at 2hz frequency with 10M, 4hz with 100M, 8hz
+> +	  with 1000M
+> +Due to the phy0-3 limitation, multiple use of 'qca8k_led_rules' will result in
+> +the last defined one to be applied.
+> +
 
+Too big a change for plain text. This needs to be a schema (and also 
+common most likely).
 
-> -----Original Message-----
-> From: Rob Herring <robh+dt@kernel.org>
-> Sent: Wednesday, September 22, 2021 10:59 PM
-> To: Rakesh Pillai <pillair@codeaurora.org>
-> Cc: Gross, Andy <agross@kernel.org>; Bjorn Andersson
-> <bjorn.andersson@linaro.org>; Ohad Ben-Cohen <ohad@wizery.com>;
-> Mathieu Poirier <mathieu.poirier@linaro.org>; Philipp Zabel
-> <p.zabel@pengutronix.de>; Stephen Boyd <swboyd@chromium.org>; linux-
-> arm-msm <linux-arm-msm@vger.kernel.org>; devicetree@vger.kernel.org;
-> linux-kernel@vger.kernel.org; sibis <sibis@codeaurora.org>;
-> mpubbise@codeaurora.org; kuabhs@chromium.org
-> Subject: Re: [PATCH v4 1/2] dt-bindings: remoteproc: qcom: Add SC7280
-> WPSS support
->=20
-> On Fri, Sep 17, 2021 at 5:36 AM Rakesh Pillai <pillair@codeaurora.org> =
-wrote:
-> >
-> > Add WPSS PIL loading support for SC7280 SoCs.
-> >
-> > Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> > ---
-> >  .../bindings/remoteproc/qcom,sc7280-wpss-pil.yaml  | 198
-> > +++++++++++++++++++++
-> >  1 file changed, 198 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-
-> pil.yaml
->=20
-> What happened to converting the existing binding? Given you already =
-did
-> that, please don't drop it.
+>  The CPU port of this switch is always port 0.
+>  
+>  A CPU port node has the following optional node:
+> @@ -213,3 +252,213 @@ for the internal master mdio-bus configuration:
+>  			};
+>  		};
+>  	};
+> +
+> +for the leds declaration example:
+> +
+> +#include <dt-bindings/leds/common.h>
+> +
+> +	&mdio0 {
+> +		switch@10 {
+> +			compatible = "qca,qca8337";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
+> +			reg = <0x10>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					label = "cpu";
+> +					ethernet = <&gmac1>;
+> +					phy-mode = "rgmii";
+> +					fixed-link {
+> +						speed = 1000;
+> +						full-duplex;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					label = "lan1";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port1>;
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +					label = "lan2";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port2>;
+> +				};
+> +
+> +				port@3 {
+> +					reg = <3>;
+> +					label = "lan3";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port3>;
+> +				};
+> +
+> +				port@4 {
+> +					reg = <4>;
+> +					label = "lan4";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port4>;
+> +				};
+> +
+> +				port@5 {
+> +					reg = <5>;
+> +					label = "wan";
+> +					phy-mode = "internal";
+> +					phy-handle = <&phy_port5>;
+> +				};
+> +			};
+> +
+> +			mdio {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				phy_port1: phy@0 {
+> +					reg = <0>;
+> +				};
+> +
+> +				phy_port2: phy@1 {
+> +					reg = <1>;
+> +				};
+> +
+> +				phy_port3: phy@2 {
+> +					reg = <2>;
+> +				};
+> +
+> +				phy_port4: phy@3 {
+> +					reg = <3>;
+> +				};
+> +
+> +				phy_port5: phy@4 {
+> +					reg = <4>;
+> +				};
+> +			};
+> +
+> +			leds {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				phy@0 {
 
-Hi Rob,
-Thanks for the review.
-Sure, let me post v5 with other comments on this patch-series addressed.
-I will also include the yaml conversion for existing dt-bindings.
+Duplicating the phy's here? LEDs are a function of the phy, so they 
+should be under the actual phy node. So this should be a 'leds' node 
+under the mdio/phy@0 node.
 
-Thanks,
-Rakesh Pillai.
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					reg = <0>;
+> +
+> +					led@0 {
+> +						reg = <0>;
+> +						color = <LED_COLOR_ID_GREEN>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_LAN;
+> +						function-enumerator = <1>;
+> +					};
+> +
+> +					led@1 {
+> +						reg = <1>;
+> +						color = <LED_COLOR_ID_AMBER>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_LAN;
+> +						function-enumerator = <1>;
+> +					};
+> +				};
+> +
+> +				phy@1 {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					reg = <1>;
+> +
+> +					led@0 {
+> +						reg = <0>;
+> +						color = <LED_COLOR_ID_GREEN>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_LAN;
+> +						function-enumerator = <2>;
+> +					};
+> +
+> +					led@1 {
+> +						reg = <1>;
+> +						color = <LED_COLOR_ID_AMBER>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_LAN;
+> +						function-enumerator = <2>;
+> +					};
+> +				};
+> +
+> +				phy@2 {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					reg = <2>;
+> +
+> +					led@0 {
+> +						reg = <0>;
+> +						color = <LED_COLOR_ID_GREEN>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_LAN;
+> +						function-enumerator = <3>;
+> +					};
+> +
+> +					led@1 {
+> +						reg = <1>;
+> +						color = <LED_COLOR_ID_AMBER>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_LAN;
+> +						function-enumerator = <3>;
+> +					};
+> +				};
+> +
+> +				phy@3 {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					reg = <3>;
+> +
+> +					led@0 {
+> +						reg = <0>;
+> +						color = <LED_COLOR_ID_GREEN>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_LAN;
+> +						function-enumerator = <4>;
+> +					};
+> +
+> +					led@1 {
+> +						reg = <1>;
+> +						color = <LED_COLOR_ID_AMBER>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_LAN;
+> +						function-enumerator = <4>;
+> +					};
+> +				};
+> +
+> +				phy@4 {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					reg = <4>;
+> +
+> +					led@0 {
+> +						reg = <0>;
+> +						color = <LED_COLOR_ID_GREEN>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_WAN;
+> +						qca,led_rules = "tx-blink", "rx-blink", "link-1000M", "full-duplex", "linkup-over", "blink-8hz";
+> +					};
+> +
+> +					led@1 {
+> +						reg = <1>;
+> +						color = <LED_COLOR_ID_AMBER>;
+> +						default-state = "keep";
+> +						function = LED_FUNCTION_WAN;
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> \ No newline at end of file
 
+Fix this.
 
->=20
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-
-> pil.ya
-> > ml
-> > b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-
-> pil.ya
-> > ml
-> > new file mode 100644
-> > index 0000000..896d5f47
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-
-> wpss-pi
-> > +++ l.yaml
-> > @@ -0,0 +1,198 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +$id:
-> > +http://devicetree.org/schemas/remoteproc/qcom,sc7280-wpss-pil.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm SC7280 WPSS Peripheral Image Loader
-> > +
-> > +maintainers:
-> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> > +
-> > +description:
-> > +  This document defines the binding for a component that loads and
-> > +boots firmware
-> > +  on the Qualcomm Technology Inc. WPSS.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - qcom,sc7280-wpss-pil
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description:
-> > +      The base address and size of the qdsp6ss register
-> > +
-> > +  interrupts-extended:
->=20
-> Use 'interrupts'. The tooling supports either.
->=20
-> > +    minItems: 6
->=20
-> Don't need minItems unless it is less than 'items' length.
->=20
-> > +    items:
-> > +      - description: Watchdog interrupt
-> > +      - description: Fatal interrupt
-> > +      - description: Ready interrupt
-> > +      - description: Handover interrupt
-> > +      - description: Stop acknowledge interrupt
-> > +      - description: Shutdown acknowledge interrupt
-> > +
-> > +  interrupt-names:
-> > +    minItems: 6
-> > +    items:
-> > +      - const: wdog
-> > +      - const: fatal
-> > +      - const: ready
-> > +      - const: handover
-> > +      - const: stop-ack
-> > +      - const: shutdown-ack
-> > +
-> > +  clocks:
-> > +    minItems: 4
-> > +    items:
-> > +      - description: GCC WPSS AHB BDG Master clock
-> > +      - description: GCC WPSS AHB clock
-> > +      - description: GCC WPSS RSCP clock
-> > +      - description: XO clock
-> > +
-> > +  clock-names:
-> > +    minItems: 4
-> > +    items:
-> > +      - const: gcc_wpss_ahb_bdg_mst_clk
-> > +      - const: gcc_wpss_ahb_clk
-> > +      - const: gcc_wpss_rscp_clk
->=20
-> ahb_bdg, ahb, rscp is sufficient. Or use the same names as prior =
-versions (did
-> the h/w clocks change?).
->=20
-> > +      - const: xo
-> > +
-> > +  power-domains:
-> > +    minItems: 2
-> > +    items:
-> > +      - description: CX power domain
-> > +      - description: MX power domain
-> > +
-> > +  power-domain-names:
-> > +    minItems: 2
-> > +    items:
-> > +      - const: cx
-> > +      - const: mx
-> > +
-> > +  resets:
-> > +    minItems: 2
-> > +    items:
-> > +      - description: AOSS restart
-> > +      - description: PDC SYNC
-> > +
-> > +  reset-names:
-> > +    minItems: 2
-> > +    items:
-> > +      - const: restart
-> > +      - const: pdc_sync
-> > +
-> > +  memory-region:
-> > +    maxItems: 1
-> > +    description: Reference to the reserved-memory for the Hexagon
-> > + core
-> > +
-> > +  qcom,halt-regs:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description:
-> > +      Phandle reference to a syscon representing TCSR followed by =
-the
-> > +      three offsets within syscon for q6, modem and nc halt =
-registers.
-> > +
-> > +  qcom,qmp:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: Reference to the AOSS side-channel message RAM.
-> > +
-> > +  qcom,smem-states:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: States used by the AP to signal the Hexagon core
-> > +    items:
-> > +      - description: Stop the modem
-> > +
-> > +  qcom,smem-state-names:
-> > +    $ref: /schemas/types.yaml#/definitions/string-array
->=20
-> string or string-array?
->=20
-> > +    description: The names of the state bits used for SMP2P output
-> > +    items:
-> > +      - const: stop
->=20
-> This says only 1 entry, so 'string'.
->=20
-> > +
-> > +  glink-edge:
-> > +    type: object
-> > +    description:
-> > +      Qualcomm G-Link subnode which represents communication edge,
-> channels
-> > +      and devices related to the ADSP.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts-extended
-> > +  - interrupt-names
-> > +  - clocks
-> > +  - clock-names
-> > +  - power-domains
-> > +  - power-domain-names
-> > +  - reset
-> > +  - reset-names
-> > +  - qcom,halt-regs
-> > +  - memory-region
-> > +  - qcom,qmp
-> > +  - qcom,smem-states
-> > +  - qcom,smem-state-names
-> > +  - glink-edge
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
-> > +    #include <dt-bindings/clock/qcom,rpmh.h>
-> > +    #include <dt-bindings/power/qcom-rpmpd.h>
-> > +    #include <dt-bindings/reset/qcom,sdm845-aoss.h>
-> > +    #include <dt-bindings/reset/qcom,sdm845-pdc.h>
-> > +    #include <dt-bindings/mailbox/qcom-ipcc.h>
-> > +    remoteproc@8a00000 {
-> > +        compatible =3D "qcom,sc7280-wpss-pil";
-> > +        reg =3D <0x08a00000 0x10000>;
-> > +
-> > +        interrupts-extended =3D <&intc GIC_SPI 587 =
-IRQ_TYPE_EDGE_RISING>,
-> > +                              <&wpss_smp2p_in 0 =
-IRQ_TYPE_EDGE_RISING>,
-> > +                              <&wpss_smp2p_in 1 =
-IRQ_TYPE_EDGE_RISING>,
-> > +                              <&wpss_smp2p_in 2 =
-IRQ_TYPE_EDGE_RISING>,
-> > +                              <&wpss_smp2p_in 3 =
-IRQ_TYPE_EDGE_RISING>,
-> > +                              <&wpss_smp2p_in 7 =
-IRQ_TYPE_EDGE_RISING>;
-> > +        interrupt-names =3D "wdog", "fatal", "ready", "handover",
-> > +                          "stop-ack", "shutdown-ack";
-> > +
-> > +        clocks =3D <&gcc GCC_WPSS_AHB_BDG_MST_CLK>,
-> > +                 <&gcc GCC_WPSS_AHB_CLK>,
-> > +                 <&gcc GCC_WPSS_RSCP_CLK>,
-> > +                 <&rpmhcc RPMH_CXO_CLK>;
-> > +        clock-names =3D "gcc_wpss_ahb_bdg_mst_clk",
-> > +                      "gcc_wpss_ahb_clk",
-> > +                      "gcc_wpss_rscp_clk",
-> > +                      "xo";
-> > +
-> > +        power-domains =3D <&rpmhpd SC7280_CX>,
-> > +                        <&rpmhpd SC7280_MX>;
-> > +        power-domain-names =3D "cx", "mx";
-> > +
-> > +        memory-region =3D <&wpss_mem>;
-> > +
-> > +        qcom,qmp =3D <&aoss_qmp>;
-> > +
-> > +        qcom,smem-states =3D <&wpss_smp2p_out 0>;
-> > +        qcom,smem-state-names =3D "stop";
-> > +
-> > +        resets =3D <&aoss_reset AOSS_CC_WCSS_RESTART>,
-> > +                 <&pdc_reset PDC_WPSS_SYNC_RESET>;
-> > +        reset-names =3D "restart", "pdc_sync";
-> > +
-> > +        qcom,halt-regs =3D <&tcsr_mutex 0x37000>;
-> > +
-> > +        status =3D "disabled";
-> > +
-> > +        glink-edge {
-> > +            interrupts-extended =3D <&ipcc IPCC_CLIENT_WPSS
-> > +                                         =
-IPCC_MPROC_SIGNAL_GLINK_QMP
-> > +                                         IRQ_TYPE_EDGE_RISING>;
-> > +            mboxes =3D <&ipcc IPCC_CLIENT_WPSS
-> > +                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> > +
-> > +            label =3D "wpss";
-> > +            qcom,remote-pid =3D <13>;
-> > +        };
-> > +    };
-> > --
-> > 2.7.4
-> >
-
+> -- 
+> 2.32.0
+> 
+> 
