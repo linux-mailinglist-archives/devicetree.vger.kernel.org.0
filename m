@@ -2,75 +2,361 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED7644163EA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 19:10:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56420416426
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 19:13:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242439AbhIWRLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 13:11:31 -0400
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:42722 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242239AbhIWRLa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 13:11:30 -0400
-Received: by mail-oo1-f49.google.com with SMTP id u15-20020a4a970f000000b0029aed4b0e4eso2352158ooi.9;
-        Thu, 23 Sep 2021 10:09:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=aRKOgb/IptW6U1Mvub3XjCFxU2/8lUJIfk6QZum3jmM=;
-        b=4xCLeJ6u/hLAL6mGgnQMNNJpk6UEZQLEISjlJIButE+VmzNpVaH9OVId7sz1weaeo4
-         rWD5crJ0kL7tERIu0GxyERejOnkD/T6+AnOXz76ufqdUv5JCHCIP38UAME9lxwgj3D9X
-         Jnihg3t40LB+acQq1j/mMPRjxWRmEuv/2+0DwsXkXHGvmE5aVL5/fOVJX4vKmM5LY0gZ
-         byf4ykttEuY2f4TvSlMgBTqAgcikekw3yMJjIvXL48XsoLIGt3dI7N1hTjVAYtQ4fRdC
-         Gi08CBKtcl++6wQQt7GaWu2RQu4T1QZoeowT0hUEB4e9MOvN/WFEIjsJp8Q97dnD8eCh
-         +6kA==
-X-Gm-Message-State: AOAM532ho7mnee1TxBDl5gBeZF/tZBTyFqG/cRzifOvcrt1kAJWPQ45a
-        Z5XiVXL88BEAJL+8oM16Z//3ztFioQ==
-X-Google-Smtp-Source: ABdhPJw676lPJ7r9WEiBbldf9ALqBQhp0Wdivqz9FvDU+aldnL2DEOFeYcGq580EGuIyBGC7VXj2ZA==
-X-Received: by 2002:a4a:ba90:: with SMTP id d16mr2406809oop.31.1632416998498;
-        Thu, 23 Sep 2021 10:09:58 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v16sm1453551oiv.23.2021.09.23.10.09.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 10:09:57 -0700 (PDT)
-Received: (nullmailer pid 3183978 invoked by uid 1000);
-        Thu, 23 Sep 2021 17:09:56 -0000
-Date:   Thu, 23 Sep 2021 12:09:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Kalle Valo <kvalo@codeaurora.org>, netdev@vger.kernel.org,
-        =?iso-8859-1?B?Suly9G1l?= Pouiller <jerome.pouiller@silabs.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        devel@driverdev.osuosl.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-wireless@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 02/24] dt-bindings: introduce silabs,wfx.yaml
-Message-ID: <YUy05Kn2iCCBC6AF@robh.at.kernel.org>
-References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
- <20210920161136.2398632-3-Jerome.Pouiller@silabs.com>
+        id S242305AbhIWRPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 13:15:03 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:51985 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242672AbhIWROl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 13:14:41 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1632417188; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
+ To: From: Sender; bh=t12LN+auGI7Arv82FZVp1Ofzyzc2dN9VIovd2p44XXU=; b=V5+4HKf+exMU6LFsCO0CfXP9UqwV2115f3HT2eyVpbrzd251Fo5KeaPuvHHFy+nNxVz4Sql0
+ 5iNamZXUndnMjojgq+FvU+XMASj2Lqmp0FYuBVoLkc7KtmfZr33awozhInS7YDsmd/iTkwIf
+ uFoYFMEpQzto4U5HFNIqyVZ77YM=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 614cb58bb585cc7d245ca0f7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 23 Sep 2021 17:12:43
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 43F25C43637; Thu, 23 Sep 2021 17:12:43 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from PILLAIR1 (unknown [103.155.222.105])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 24B08C4361C;
+        Thu, 23 Sep 2021 17:12:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 24B08C4361C
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   <pillair@codeaurora.org>
+To:     "'Rob Herring'" <robh+dt@kernel.org>
+Cc:     "'Gross, Andy'" <agross@kernel.org>,
+        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
+        "'Ohad Ben-Cohen'" <ohad@wizery.com>,
+        "'Mathieu Poirier'" <mathieu.poirier@linaro.org>,
+        "'Philipp Zabel'" <p.zabel@pengutronix.de>,
+        "'Stephen Boyd'" <swboyd@chromium.org>,
+        "'linux-arm-msm'" <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "'sibis'" <sibis@codeaurora.org>, <mpubbise@codeaurora.org>,
+        <kuabhs@chromium.org>
+References: <1631874941-5262-1-git-send-email-pillair@codeaurora.org> <1631874941-5262-2-git-send-email-pillair@codeaurora.org> <CAL_Jsq+khyhbwJ5-GPZ5ZGkY4nX_obq4t92Z0V6sZH3Oyj4Fow@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+khyhbwJ5-GPZ5ZGkY4nX_obq4t92Z0V6sZH3Oyj4Fow@mail.gmail.com>
+Subject: RE: [PATCH v4 1/2] dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
+Date:   Thu, 23 Sep 2021 22:42:30 +0530
+Message-ID: <004601d7b09e$35ff63d0$a1fe2b70$@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210920161136.2398632-3-Jerome.Pouiller@silabs.com>
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQF0eSZL6xbdu6QNcc0QXvoTc0aaAwNauk2NAmrNx3usSh1b4A==
+Content-Language: en-us
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Sep 2021 18:11:14 +0200, Jerome Pouiller wrote:
-> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> 
-> Prepare the inclusion of the wfx driver in the kernel.
-> 
-> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> ---
->  .../bindings/net/wireless/silabs,wfx.yaml     | 133 ++++++++++++++++++
->  1 file changed, 133 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+> -----Original Message-----
+> From: Rob Herring <robh+dt@kernel.org>
+> Sent: Wednesday, September 22, 2021 10:59 PM
+> To: Rakesh Pillai <pillair@codeaurora.org>
+> Cc: Gross, Andy <agross@kernel.org>; Bjorn Andersson
+> <bjorn.andersson@linaro.org>; Ohad Ben-Cohen <ohad@wizery.com>;
+> Mathieu Poirier <mathieu.poirier@linaro.org>; Philipp Zabel
+> <p.zabel@pengutronix.de>; Stephen Boyd <swboyd@chromium.org>; linux-
+> arm-msm <linux-arm-msm@vger.kernel.org>; devicetree@vger.kernel.org;
+> linux-kernel@vger.kernel.org; sibis <sibis@codeaurora.org>;
+> mpubbise@codeaurora.org; kuabhs@chromium.org
+> Subject: Re: [PATCH v4 1/2] dt-bindings: remoteproc: qcom: Add SC7280
+> WPSS support
+>=20
+> On Fri, Sep 17, 2021 at 5:36 AM Rakesh Pillai <pillair@codeaurora.org> =
+wrote:
+> >
+> > Add WPSS PIL loading support for SC7280 SoCs.
+> >
+> > Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+> > ---
+> >  .../bindings/remoteproc/qcom,sc7280-wpss-pil.yaml  | 198
+> > +++++++++++++++++++++
+> >  1 file changed, 198 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-
+> pil.yaml
+>=20
+> What happened to converting the existing binding? Given you already =
+did
+> that, please don't drop it.
+
+Hi Rob,
+Thanks for the review.
+Sure, let me post v5 with other comments on this patch-series addressed.
+I will also include the yaml conversion for existing dt-bindings.
+
+Thanks,
+Rakesh Pillai.
+
+
+>=20
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-
+> pil.ya
+> > ml
+> > b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-
+> pil.ya
+> > ml
+> > new file mode 100644
+> > index 0000000..896d5f47
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-
+> wpss-pi
+> > +++ l.yaml
+> > @@ -0,0 +1,198 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
+> > +http://devicetree.org/schemas/remoteproc/qcom,sc7280-wpss-pil.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm SC7280 WPSS Peripheral Image Loader
+> > +
+> > +maintainers:
+> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> > +
+> > +description:
+> > +  This document defines the binding for a component that loads and
+> > +boots firmware
+> > +  on the Qualcomm Technology Inc. WPSS.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qcom,sc7280-wpss-pil
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description:
+> > +      The base address and size of the qdsp6ss register
+> > +
+> > +  interrupts-extended:
+>=20
+> Use 'interrupts'. The tooling supports either.
+>=20
+> > +    minItems: 6
+>=20
+> Don't need minItems unless it is less than 'items' length.
+>=20
+> > +    items:
+> > +      - description: Watchdog interrupt
+> > +      - description: Fatal interrupt
+> > +      - description: Ready interrupt
+> > +      - description: Handover interrupt
+> > +      - description: Stop acknowledge interrupt
+> > +      - description: Shutdown acknowledge interrupt
+> > +
+> > +  interrupt-names:
+> > +    minItems: 6
+> > +    items:
+> > +      - const: wdog
+> > +      - const: fatal
+> > +      - const: ready
+> > +      - const: handover
+> > +      - const: stop-ack
+> > +      - const: shutdown-ack
+> > +
+> > +  clocks:
+> > +    minItems: 4
+> > +    items:
+> > +      - description: GCC WPSS AHB BDG Master clock
+> > +      - description: GCC WPSS AHB clock
+> > +      - description: GCC WPSS RSCP clock
+> > +      - description: XO clock
+> > +
+> > +  clock-names:
+> > +    minItems: 4
+> > +    items:
+> > +      - const: gcc_wpss_ahb_bdg_mst_clk
+> > +      - const: gcc_wpss_ahb_clk
+> > +      - const: gcc_wpss_rscp_clk
+>=20
+> ahb_bdg, ahb, rscp is sufficient. Or use the same names as prior =
+versions (did
+> the h/w clocks change?).
+>=20
+> > +      - const: xo
+> > +
+> > +  power-domains:
+> > +    minItems: 2
+> > +    items:
+> > +      - description: CX power domain
+> > +      - description: MX power domain
+> > +
+> > +  power-domain-names:
+> > +    minItems: 2
+> > +    items:
+> > +      - const: cx
+> > +      - const: mx
+> > +
+> > +  resets:
+> > +    minItems: 2
+> > +    items:
+> > +      - description: AOSS restart
+> > +      - description: PDC SYNC
+> > +
+> > +  reset-names:
+> > +    minItems: 2
+> > +    items:
+> > +      - const: restart
+> > +      - const: pdc_sync
+> > +
+> > +  memory-region:
+> > +    maxItems: 1
+> > +    description: Reference to the reserved-memory for the Hexagon
+> > + core
+> > +
+> > +  qcom,halt-regs:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description:
+> > +      Phandle reference to a syscon representing TCSR followed by =
+the
+> > +      three offsets within syscon for q6, modem and nc halt =
+registers.
+> > +
+> > +  qcom,qmp:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: Reference to the AOSS side-channel message RAM.
+> > +
+> > +  qcom,smem-states:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description: States used by the AP to signal the Hexagon core
+> > +    items:
+> > +      - description: Stop the modem
+> > +
+> > +  qcom,smem-state-names:
+> > +    $ref: /schemas/types.yaml#/definitions/string-array
+>=20
+> string or string-array?
+>=20
+> > +    description: The names of the state bits used for SMP2P output
+> > +    items:
+> > +      - const: stop
+>=20
+> This says only 1 entry, so 'string'.
+>=20
+> > +
+> > +  glink-edge:
+> > +    type: object
+> > +    description:
+> > +      Qualcomm G-Link subnode which represents communication edge,
+> channels
+> > +      and devices related to the ADSP.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts-extended
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - power-domains
+> > +  - power-domain-names
+> > +  - reset
+> > +  - reset-names
+> > +  - qcom,halt-regs
+> > +  - memory-region
+> > +  - qcom,qmp
+> > +  - qcom,smem-states
+> > +  - qcom,smem-state-names
+> > +  - glink-edge
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+> > +    #include <dt-bindings/clock/qcom,rpmh.h>
+> > +    #include <dt-bindings/power/qcom-rpmpd.h>
+> > +    #include <dt-bindings/reset/qcom,sdm845-aoss.h>
+> > +    #include <dt-bindings/reset/qcom,sdm845-pdc.h>
+> > +    #include <dt-bindings/mailbox/qcom-ipcc.h>
+> > +    remoteproc@8a00000 {
+> > +        compatible =3D "qcom,sc7280-wpss-pil";
+> > +        reg =3D <0x08a00000 0x10000>;
+> > +
+> > +        interrupts-extended =3D <&intc GIC_SPI 587 =
+IRQ_TYPE_EDGE_RISING>,
+> > +                              <&wpss_smp2p_in 0 =
+IRQ_TYPE_EDGE_RISING>,
+> > +                              <&wpss_smp2p_in 1 =
+IRQ_TYPE_EDGE_RISING>,
+> > +                              <&wpss_smp2p_in 2 =
+IRQ_TYPE_EDGE_RISING>,
+> > +                              <&wpss_smp2p_in 3 =
+IRQ_TYPE_EDGE_RISING>,
+> > +                              <&wpss_smp2p_in 7 =
+IRQ_TYPE_EDGE_RISING>;
+> > +        interrupt-names =3D "wdog", "fatal", "ready", "handover",
+> > +                          "stop-ack", "shutdown-ack";
+> > +
+> > +        clocks =3D <&gcc GCC_WPSS_AHB_BDG_MST_CLK>,
+> > +                 <&gcc GCC_WPSS_AHB_CLK>,
+> > +                 <&gcc GCC_WPSS_RSCP_CLK>,
+> > +                 <&rpmhcc RPMH_CXO_CLK>;
+> > +        clock-names =3D "gcc_wpss_ahb_bdg_mst_clk",
+> > +                      "gcc_wpss_ahb_clk",
+> > +                      "gcc_wpss_rscp_clk",
+> > +                      "xo";
+> > +
+> > +        power-domains =3D <&rpmhpd SC7280_CX>,
+> > +                        <&rpmhpd SC7280_MX>;
+> > +        power-domain-names =3D "cx", "mx";
+> > +
+> > +        memory-region =3D <&wpss_mem>;
+> > +
+> > +        qcom,qmp =3D <&aoss_qmp>;
+> > +
+> > +        qcom,smem-states =3D <&wpss_smp2p_out 0>;
+> > +        qcom,smem-state-names =3D "stop";
+> > +
+> > +        resets =3D <&aoss_reset AOSS_CC_WCSS_RESTART>,
+> > +                 <&pdc_reset PDC_WPSS_SYNC_RESET>;
+> > +        reset-names =3D "restart", "pdc_sync";
+> > +
+> > +        qcom,halt-regs =3D <&tcsr_mutex 0x37000>;
+> > +
+> > +        status =3D "disabled";
+> > +
+> > +        glink-edge {
+> > +            interrupts-extended =3D <&ipcc IPCC_CLIENT_WPSS
+> > +                                         =
+IPCC_MPROC_SIGNAL_GLINK_QMP
+> > +                                         IRQ_TYPE_EDGE_RISING>;
+> > +            mboxes =3D <&ipcc IPCC_CLIENT_WPSS
+> > +                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> > +
+> > +            label =3D "wpss";
+> > +            qcom,remote-pid =3D <13>;
+> > +        };
+> > +    };
+> > --
+> > 2.7.4
+> >
+
