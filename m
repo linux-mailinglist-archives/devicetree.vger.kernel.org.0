@@ -2,65 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8953C41675D
+	by mail.lfdr.de (Postfix) with ESMTP id CA38141675F
 	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:22:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243313AbhIWVYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 17:24:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59426 "EHLO
+        id S243310AbhIWVYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 17:24:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243301AbhIWVYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:24:08 -0400
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7824C061756
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:22:36 -0700 (PDT)
-Received: by mail-ot1-x334.google.com with SMTP id c6-20020a9d2786000000b005471981d559so10418360otb.5
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:22:36 -0700 (PDT)
+        with ESMTP id S243311AbhIWVYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:24:09 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C04C061756
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:22:37 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id x33-20020a9d37a4000000b0054733a85462so10409582otb.10
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:22:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=MUk9cQnhiL3Zkl8SZPCyCUqEll5PCUu2UZfL3NWv9rk=;
-        b=p6xVunDlOfkTJazQbadWMPPC6xtrVTuBgikipt3QXOK8psdrpoQIAEkU08aDR/88XY
-         RuF98Yz/C0AHxKpUCrA/SbOS1oP1rnuTPdBWGuYm4PYcuzU+Gw3MoVzvtqVr0BiI4xyr
-         QvMUMEpEXlz6FevC1u1NIcY9gh5drGmPgjcHF6u4tRHOOLWCMjUfgrZKnvdpONLgk0rh
-         kI1wFGv+C4YZDpsnIEPXRFd5y7ol4CX/CLJwLOZt6vDMiJBqZHPo/4BWlk1zBThSaxIf
-         3JS5QdwIt1o2CjumcXZD7aaRHvyTqdFLn6k6jF8QMmJx55hgyZQASXt0WcAefpp2tuoE
-         UlZg==
+        bh=PNc03WntMHltar98IQXNaOEr4ocp4Ko7bP2GtS5B5+E=;
+        b=zxobRb9I2u607sNWX34uw3V7DrFe5hlimKl1vglXqbIyRHHwiiJqHplGPNteyqYM4a
+         xjmn3q+Nvvq0ZHuaVh1dL+z+fLXdkD9RJVbheWNjqObezBTRXvM4WU9AqOxHllASdWG4
+         aATlfoMwSqwI9p/TLa1DgRJgKR7rcC+fXPyXhrsDdeMONz8m2ZBgHX6++Bq+si0p5bnI
+         4T7UZYhnJ5R38dgiKrd7kYFT6fsw+tGIcGjQWX2fqVGD4WVxWgeEg2RJQX0IiITKVDo/
+         SYS0azz6uBIkSs8Z4rmKgI1FHhg7k8A9Sz20e00GT+eXSnR7SUg65SbKtoaGas/xIfyd
+         owjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=MUk9cQnhiL3Zkl8SZPCyCUqEll5PCUu2UZfL3NWv9rk=;
-        b=5xdUSJeG1o9zh5rToiMyf7CWiHcfc8lF/c/VBzohD59QGY5VATyRs4O9Us3iTImmQz
-         ZmHlWOMOkEEVDpUksqxnBp89/1lE+G/Aeo07i082DHS/o+kJclt8W/rHpRYNJ74dytJI
-         QW3aNeS0MTM+jihf+DKjq/kBlScdcl0TOqO5CE5PiQDKnd9dcj8i1zdk27ML66Sp77Hi
-         7eV1In9FlczHW/czlQlxkbqlglTlamvwjzxAdGB3e9ougzOS4sJHHVCGaFBcOysPmq5A
-         sR2Rx4Kv+uvA1pc/n2mtnmNgJsYp8HzUssU4Zx3Lq9RCqStm6LqlKQHMdCakaXjonoaq
-         43GQ==
-X-Gm-Message-State: AOAM532XiMvDmvWQ+k1v+EFSJ/ZEd/xR8mD5uylYSCMN4FaS39jPlLLg
-        wIk+h5DGnm7jI4jNAJGsG7NilQ==
-X-Google-Smtp-Source: ABdhPJyS4o0vA69A7MO/A7du8ZidoqH6SCBNKw9Qn3lQFXKzBh8O1oUF5gV8lMGSBzAypRVpYaHn0A==
-X-Received: by 2002:a9d:6a43:: with SMTP id h3mr813709otn.142.1632432155920;
-        Thu, 23 Sep 2021 14:22:35 -0700 (PDT)
+        bh=PNc03WntMHltar98IQXNaOEr4ocp4Ko7bP2GtS5B5+E=;
+        b=lcbMh10fiEd+vn6br49rRHhXJPKmrcnL6FBPQa+LYRxc235wk2xHWbERFm1v93ypRU
+         pKVcBNb0huNxt4Ix7U8NQpE79rRAMtKMj/byXjEhhvAPqShD70Ek6pkhQOJkZxuJ8t67
+         nWPOV2faGXwHAdSIG9E7I1RfCzT5m0OAlnLJHx1CsbFGHhPMX9F+BmVo7Kc3j1U0DCjf
+         qOFVzcHXJ566FtEN4z1GtDK4k9MkG5zW5VCdWBc4W5IVQMVb0YYEl3Xq1WquGF6iOmtq
+         lmzdhDswDia9GxcnvllQ2iYkX3BYL1vEgPVZ9OJNNwOuXgQYYL2MLCwFyjxN9vZqZzK5
+         Cm7w==
+X-Gm-Message-State: AOAM530FSUqXhpjh1dvsGw6c6riIuId5Akia0ilC1zHJJLVfQcXDGrF1
+        fEt5pPpejGZ3XLfig/Wy/Xv3Jw==
+X-Google-Smtp-Source: ABdhPJyf1LTxlgk2XjXKCL76EdnMX9E/fiLyKS/GDsWDWOM7YxkZkZHaubP93N8qcu4ZRw0hldHHww==
+X-Received: by 2002:a9d:7d8d:: with SMTP id j13mr791717otn.220.1632432156748;
+        Thu, 23 Sep 2021 14:22:36 -0700 (PDT)
 Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e16sm1586820oie.17.2021.09.23.14.22.35
+        by smtp.gmail.com with ESMTPSA id e16sm1586820oie.17.2021.09.23.14.22.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 14:22:35 -0700 (PDT)
+        Thu, 23 Sep 2021 14:22:36 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Zhang Rui <rui.zhang@intel.com>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
         Amit Kucheria <amitk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Thara Gopinath <thara.gopinath@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/4] thermal/drivers/qcom/spmi-adc-tm5: Add support for HC variant
-Date:   Thu, 23 Sep 2021 14:23:09 -0700
-Message-Id: <20210923212311.2877048-3-bjorn.andersson@linaro.org>
+Subject: [PATCH v2 3/4] arm64: dts: qcom: pm8998: Add ADC Thermal Monitor node
+Date:   Thu, 23 Sep 2021 14:23:10 -0700
+Message-Id: <20210923212311.2877048-4-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210923212311.2877048-1-bjorn.andersson@linaro.org>
 References: <20210923212311.2877048-1-bjorn.andersson@linaro.org>
@@ -70,9 +70,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The variant of the ADC Thermal Monitor block found in e.g. PM8998 is
-"HC", add support for this variant to the ADC TM5 driver in order to
-support using VADC channels as thermal_zones on SDM845 et al.
+Add a node for the ADC Thermal Monitor found in the PM8998 PMIC. This is
+used to connect thermal zones with ADC channels.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
@@ -80,91 +79,30 @@ Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Changes since v1:
 - New patch
 
- drivers/thermal/qcom/qcom-spmi-adc-tm5.c | 43 +++++++++++++++++++++++-
- 1 file changed, 42 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/pm8998.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-index 8494cc04aa21..7fe5cf28ae15 100644
---- a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-+++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-@@ -82,6 +82,7 @@ struct adc_tm5_data {
- 	const u32	full_scale_code_volt;
- 	unsigned int	*decimation;
- 	unsigned int	*hw_settle;
-+	bool		is_hc;
- };
+diff --git a/arch/arm64/boot/dts/qcom/pm8998.dtsi b/arch/arm64/boot/dts/qcom/pm8998.dtsi
+index 6f5bb6b37ec2..d09f2954b6f9 100644
+--- a/arch/arm64/boot/dts/qcom/pm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8998.dtsi
+@@ -84,6 +84,16 @@ adc-chan@6 {
+ 			};
+ 		};
  
- enum adc_tm5_cal_method {
-@@ -146,6 +147,14 @@ static const struct adc_tm5_data adc_tm5_data_pmic = {
- 					 64000, 128000 },
- };
- 
-+static const struct adc_tm5_data adc_tm_hc_data_pmic = {
-+	.full_scale_code_volt = 0x70e4,
-+	.decimation = (unsigned int []) { 256, 512, 1024 },
-+	.hw_settle = (unsigned int []) { 0, 100, 200, 300, 400, 500, 600, 700,
-+					 1000, 2000, 4000, 6000, 8000, 10000 },
-+	.is_hc = true,
-+};
++		pm8998_adc_tm: adc-tm@3400 {
++			compatible = "qcom,spmi-adc-tm-hc";
++			reg = <0x3400>;
++			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
++			#thermal-sensor-cells = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
 +
- static int adc_tm5_read(struct adc_tm5_chip *adc_tm, u16 offset, u8 *data, int len)
- {
- 	return regmap_bulk_read(adc_tm->regmap, adc_tm->base + offset, data, len);
-@@ -375,6 +384,31 @@ static int adc_tm5_register_tzd(struct adc_tm5_chip *adc_tm)
- 	return 0;
- }
- 
-+static int adc_tm_hc_init(struct adc_tm5_chip *chip)
-+{
-+	unsigned int i;
-+	u8 buf[2];
-+	int ret;
-+
-+	for (i = 0; i < chip->nchannels; i++) {
-+		if (chip->channels[i].channel >= ADC_TM5_NUM_CHANNELS) {
-+			dev_err(chip->dev, "Invalid channel %d\n", chip->channels[i].channel);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	buf[0] = chip->decimation;
-+	buf[1] = chip->avg_samples | ADC_TM5_FAST_AVG_EN;
-+
-+	ret = adc_tm5_write(chip, ADC_TM5_ADC_DIG_PARAM, buf, sizeof(buf));
-+	if (ret) {
-+		dev_err(chip->dev, "block write failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return ret;
-+}
-+
- static int adc_tm5_init(struct adc_tm5_chip *chip)
- {
- 	u8 buf[4], channels_available;
-@@ -591,7 +625,10 @@ static int adc_tm5_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	ret = adc_tm5_init(adc_tm);
-+	if (adc_tm->data->is_hc)
-+		ret = adc_tm_hc_init(adc_tm);
-+	else
-+		ret = adc_tm5_init(adc_tm);
- 	if (ret) {
- 		dev_err(dev, "adc-tm init failed\n");
- 		return ret;
-@@ -612,6 +649,10 @@ static const struct of_device_id adc_tm5_match_table[] = {
- 		.compatible = "qcom,spmi-adc-tm5",
- 		.data = &adc_tm5_data_pmic,
- 	},
-+	{
-+		.compatible = "qcom,spmi-adc-tm-hc",
-+		.data = &adc_tm_hc_data_pmic,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, adc_tm5_match_table);
+ 		rtc@6000 {
+ 			compatible = "qcom,pm8941-rtc";
+ 			reg = <0x6000>, <0x6100>;
 -- 
 2.29.2
 
