@@ -2,21 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 193B5416306
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 18:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75AB1416314
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 18:23:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242265AbhIWQYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 12:24:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46378 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242176AbhIWQYS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 12:24:18 -0400
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A905C0613D5
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 09:22:22 -0700 (PDT)
+        id S242101AbhIWQYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 12:24:33 -0400
+Received: from m-r2.th.seeweb.it ([5.144.164.171]:35089 "EHLO
+        m-r2.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242135AbhIWQYT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 12:24:19 -0400
 Received: from localhost.localdomain (83.6.166.81.neoplus.adsl.tpnet.pl [83.6.166.81])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 54A863F688;
-        Thu, 23 Sep 2021 18:22:20 +0200 (CEST)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 451B03F5F8;
+        Thu, 23 Sep 2021 18:22:21 +0200 (CEST)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     ~postmarketos/upstreaming@lists.sr.ht
 Cc:     martin.botka@somainline.org,
@@ -28,9 +25,9 @@ Cc:     martin.botka@somainline.org,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 09/17] arm64: dts: qcom: sm6350: Add TSENS nodes
-Date:   Thu, 23 Sep 2021 18:21:55 +0200
-Message-Id: <20210923162204.21752-9-konrad.dybcio@somainline.org>
+Subject: [PATCH v3 10/17] arm64: dts: qcom: sm6350: Add AOSS_QMP
+Date:   Thu, 23 Sep 2021 18:21:56 +0200
+Message-Id: <20210923162204.21752-10-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210923162204.21752-1-konrad.dybcio@somainline.org>
 References: <20210923162204.21752-1-konrad.dybcio@somainline.org>
@@ -40,41 +37,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes required for TSENS block using the common qcom,tsens-v2 binding.
+Add a node for AOSS_QMP in preparation for remote processor enablement.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 582915d2b4f0..2e9701f2f276 100644
+index 2e9701f2f276..c2c5cc30307b 100644
 --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -513,6 +513,28 @@ pdc: interrupt-controller@b220000 {
- 			interrupt-controller;
+@@ -535,6 +535,17 @@ tsens1: thermal-sensor@c265000 {
+ 			#thermal-sensor-cells = <1>;
  		};
  
-+		tsens0: thermal-sensor@c263000 {
-+			compatible = "qcom,sm6350-tsens", "qcom,tsens-v2";
-+			reg = <0 0x0c263000 0 0x1ff>, /* TM */
-+			      <0 0x0c222000 0 0x8>; /* SROT */
-+			#qcom,sensors = <16>;
-+			interrupts = <&pdc 26 IRQ_TYPE_LEVEL_HIGH>,
-+				     <&pdc 28 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow", "critical";
-+			#thermal-sensor-cells = <1>;
-+		};
++		aoss_qmp: power-controller@c300000 {
++			compatible = "qcom,sm6350-aoss-qmp", "qcom,aoss-qmp";
++			reg = <0 0x0c300000 0 0x1000>;
++			interrupts-extended = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP
++						     IRQ_TYPE_EDGE_RISING>;
++			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
 +
-+		tsens1: thermal-sensor@c265000 {
-+			compatible = "qcom,sm6350-tsens", "qcom,tsens-v2";
-+			reg = <0 0x0c265000 0 0x1ff>, /* TM */
-+			      <0 0x0c223000 0 0x8>; /* SROT */
-+			#qcom,sensors = <16>;
-+			interrupts = <&pdc 27 IRQ_TYPE_LEVEL_HIGH>,
-+				     <&pdc 29 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow", "critical";
-+			#thermal-sensor-cells = <1>;
++			#clock-cells = <0>;
++			#power-domain-cells = <1>;
 +		};
 +
  		tlmm: pinctrl@f100000 {
