@@ -2,128 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D962A415DD9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 14:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E39C415E08
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 14:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240700AbhIWMHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 08:07:44 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:56604 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240769AbhIWMHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 08:07:15 -0400
-Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 80BA745E;
-        Thu, 23 Sep 2021 14:05:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1632398743;
-        bh=wumMJjGSoh/Q5099IMcv3lMgAskRHGNIdxF7TvawJVU=;
-        h=From:To:Cc:References:Subject:Date:In-Reply-To:From;
-        b=axXBtEfQnE+VtwQ6zVq0PwkccBZSk1g+QVmEHAD15DNAnW7C2YbzYt9r8EzEPfaXE
-         zCOJDLWFP16vfJgZzH4owXwH3AqH72ssmV/uTZMJ7px+l7x95m9K6GhYcwTBBsu31e
-         8hQ22QouC4yqNSp2tKmL0vX3XHwv7B8pgSvyZQ6A=
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210923010402.3418555-1-kieran.bingham@ideasonboard.com>
- <20210923010402.3418555-2-kieran.bingham@ideasonboard.com>
- <CAMuHMdUTYYoZawgMhpTr56v88-mrKWPpgMwC-9KPeYhS6R2AzQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] arm64: dts: renesas: r8a779a0: Add DU support
-Message-ID: <40831759-6827-ea6d-399e-7f27f3669013@ideasonboard.com>
-Date:   Thu, 23 Sep 2021 13:05:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <CAMuHMdUTYYoZawgMhpTr56v88-mrKWPpgMwC-9KPeYhS6R2AzQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+        id S240884AbhIWMS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 08:18:29 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:64549 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240751AbhIWMSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 08:18:24 -0400
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 23 Sep 2021 05:16:51 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 23 Sep 2021 05:16:49 -0700
+X-QCInternal: smtphost
+Received: from rajpat-linux.qualcomm.com ([10.206.21.0])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 23 Sep 2021 17:46:24 +0530
+Received: by rajpat-linux.qualcomm.com (Postfix, from userid 2344945)
+        id BBF7D2160A; Thu, 23 Sep 2021 17:46:22 +0530 (IST)
+From:   Rajesh Patil <rajpat@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org, sboyd@kernel.org, mka@chromium.org,
+        dianders@chromium.org, Rajesh Patil <rajpat@codeaurora.org>
+Subject: [PATCH V10 0/8] Add QSPI and QUPv3 DT nodes for SC7280 SoC
+Date:   Thu, 23 Sep 2021 17:46:10 +0530
+Message-Id: <1632399378-12229-1-git-send-email-rajpat@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Changes in V10:
+ - As per Stephen's comments, Removed <&qup_spiN_cs_gpio> in all spi ports.
+ - Added "&qupv3_id_1" in sc7280-idp.dtsi file  because EC and TPM
+   are using "qupv3_id_1" node.
 
-On 23/09/2021 08:00, Geert Uytterhoeven wrote:
-> Hi Kieran,
-> 
-> On Thu, Sep 23, 2021 at 3:04 AM Kieran Bingham
-> <kieran.bingham@ideasonboard.com> wrote:
->> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
->> Provide the device nodes for the DU on the V3U platforms.
->>
->> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
->> ---
->> v2
->>  - Use a single clock specification for the whole DU.
->>
->> v3:
->>  - Use 'du.0' clock name instead of 'du'
-> 
-> Thanks for the update!
-> 
->> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
->> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
->> @@ -1251,6 +1251,36 @@ vspd1: vsp@fea28000 {
->>                         renesas,fcp = <&fcpvd1>;
->>                 };
->>
->> +               du: display@feb00000 {
->> +                       compatible = "renesas,du-r8a779a0";
->> +                       reg = <0 0xfeb00000 0 0x40000>;
->> +                       interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
->> +                                    <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
->> +                       clocks = <&cpg CPG_MOD 411>;
->> +                       clock-names = "du.0";
->> +                       power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
->> +                       resets = <&cpg 411>;
-> 
-> You missed reset-names.
+Changes in V9:
+ - As per Stephen's comments,
+   1. Moved back qup_opp_table from /soc@0/geniqup@9c0000 to /
+   2. changed node names to "qup_spi0_cs_gpio: qup-spi0-cs-gpio" because
+      node names should have dashes instead of underscores.
 
-Adding it in now.
+Changes in V8:
+ - As per Matthias comments
+   Added back qup_spiN_cs_gpio nodes in all spi ports
 
-Sorry I must get the dtchecks automated in my builds...
+ - As per Doug comments, Added "qcom,sc7280-qspi" compatible in qspi node
 
---
-Kieran
+Changes in V7:
+ - As per Stephen's comments
+   1. Moved qup_opp_table under /soc@0/geniqup@9c0000
+   2. Removed qupv3_id_1 in sc7280-idp board file
+   3. Sorted alias names for i2c and spi as per alphabet order
+
+ - As per Matthias comment
+   Configuring cs pin with gpio (qup_spiN_cs_gpio) definitions are removed
+
+Changes in V6:
+ - As per Matthias' comments,
+   1. Squashed "Update QUPv3 UART5 DT node" and "Configure debug
+      uart for sc7280-idp"
+   2. Moved qup_opp_table from /soc to /
+   3. Changed convention "clocks" followed by "clock-names"
+
+ - As per Doug comments, added aliases for i2c and spi
+
+Changes in V5:
+ - As per Matthias' comments, I've split the patches as below:
+   1. Add QSPI node
+   2. Configure SPI-NOR FLASH for sc7280-idp
+   3. Add QUPv3 wrapper_0 nodes
+   4. Update QUPv3 UART5 DT node
+   5. Configure debug uart for sc7280-idp
+   6. Configure uart7 to support bluetooth on sc7280-idp
+   7. Add QUPv3 wrapper_1 nodes
+
+Changes in V4:
+ - As per Stephen's comment updated spi-max-frequency to 37.5MHz, moved
+   qspi_opp_table from /soc to / (root).
+ - As per Bjorn's comment, added QUP Wrapper_0 nodes
+   as separate patch and debug-uart node as separate patch.
+ - Dropped interconnect votes for wrapper_0 and wrapper_1 node
+ - Corrected QUP Wrapper_1 SE node's pin control functions like below
+        QUP Wrapper_0: SE0-SE7 uses qup00 - qup07 pin-cntrl functions.
+        QUP Wrapper_1: SE0-SE7 uses qup10 - qup17 pin-cntrl functions.
+
+Changes in V3:
+ - Broken the huge V2 patch into 3 smaller patches.
+   1. QSPI DT nodes
+   2. QUP wrapper_0 DT nodes
+   3. QUP wrapper_1 DT nodes
+
+Changes in V2:
+ - As per Doug's comments removed pinmux/pinconf subnodes.
+ - As per Doug's comments split of SPI, UART nodes has been done.
+ - Moved QSPI node before aps_smmu as per the order.
 
 
-> 
->> +                       vsps = <&vspd0 0>, <&vspd1 0>;
->> +                       status = "disabled";
->> +
->> +                       ports {
->> +                               #address-cells = <1>;
->> +                               #size-cells = <0>;
->> +
->> +                               port@0 {
->> +                                       reg = <0>;
->> +                                       du_out_dsi0: endpoint {
->> +                                       };
->> +                               };
->> +
->> +                               port@1 {
->> +                                       reg = <1>;
->> +                                       du_out_dsi1: endpoint {
->> +                                       };
->> +                               };
->> +                       };
->> +               };
->> +
->>                 prr: chipid@fff00044 {
->>                         compatible = "renesas,prr";
->>                         reg = <0 0xfff00044 0 4>;
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
+Rajesh Patil (4):
+  dt-bindings: spi: Add sc7280 support
+  arm64: dts: sc7280: Configure SPI-NOR FLASH for sc7280-idp
+  arm64: dts: sc7280: Configure uart7 to support bluetooth on sc7280-idp
+  arm64: dts: sc7280: Add aliases for I2C and SPI
+
+Roja Rani Yarubandi (4):
+  arm64: dts: sc7280: Add QSPI node
+  arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
+  arm64: dts: sc7280: Update QUPv3 UART5 DT node
+  arm64: dts: sc7280: Add QUPv3 wrapper_1 nodes
+
+ .../bindings/spi/qcom,spi-qcom-qspi.yaml           |    5 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  129 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 3196 +++++++++++++++-----
+ 3 files changed, 2514 insertions(+), 816 deletions(-)
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
