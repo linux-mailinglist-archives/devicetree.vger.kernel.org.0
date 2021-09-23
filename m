@@ -2,78 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC01B416789
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:34:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98C1A416790
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:37:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243355AbhIWVg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 17:36:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34138 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243346AbhIWVgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:36:23 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD134C061574
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:34:50 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id z24so32268380lfu.13
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:34:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hwjuFFEYUw6qLa4G4t6xm8xsFy3ftvS5x0wrGV04jCI=;
-        b=jZRRTpXoykphrWtGlmCGTQm7+dQBcpLvtXMU5q9RLQM0B7ggtcFJa3+gDaU0MTRjXb
-         qrf8++lzMfJ9Su9/48gHLCX+Xkj05jEIg6OM1kHpfLvAYl0CM6ADq1aMAY91cVUxdaOn
-         teJAnWphmD6obyQ58pohl3myJKlJuw+X7RTja2JlOKjLePie59S9v83OuJpbvxgJOvGi
-         cLV2/2rmV04Z7cOrtT7m1lM7q1zvh2DpQcH4FRVIWf8GEuo1zaI2QM4fyaP2y4PwuNGl
-         fpAlC0iafp/00PEmOMRggaojTHb+O94Coa1B1TOkuCpsl4jYpyVH6W/eFHj/wzzR+WM/
-         KTrw==
+        id S243314AbhIWViy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 17:38:54 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:39615 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243232AbhIWViv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:38:51 -0400
+Received: by mail-ot1-f43.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so10487347ota.6;
+        Thu, 23 Sep 2021 14:37:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hwjuFFEYUw6qLa4G4t6xm8xsFy3ftvS5x0wrGV04jCI=;
-        b=F7RAbUUY+4Hlx1VnFhtAk1RvYKsiEZ7hP9ImfWCX50xudc5fTi1Ij2rDVfig4mSnBo
-         OIanPJBkxoTiNfuXJ2Of1y6oA1Pk3etvYvG+DbNKMDobMH3dRZ+T/Vrmozd9DJ5loway
-         kKEe5WXBxXENEgCkEY3PaspjisltDk7bWb8ktGy7K02QLtOMX1Wo3n5ZjmUQP160PHV1
-         gEi8kh3dED1ntBC0eECz06aEPnXqZIhbQPKbczGLN1JyP+artZNDVBTQYlle0tw6btRK
-         8S9++ZOVgNv5isqCsvurA07R6b+CWdQVLIgQfs4Qcsd7TamAt6rKgzneLlRxQriKce9h
-         D3EQ==
-X-Gm-Message-State: AOAM5312FoR0cS6tl+XcoaYVfzwXa2+VPaJPpbjFV0mbSxq3PSMAr0Bd
-        8//qCB0PeB9jtuyoH2WY73mLjHMJi2Ec80Hrtyj2Rw==
-X-Google-Smtp-Source: ABdhPJyZtA3tDkqn1sMYlY6x+GteCF64qDi14tvZqfNnSjwpru/kvnvXoFyvMmItzPeo5xawCArcnw1gMI5lGq9oC0c=
-X-Received: by 2002:a05:651c:4ca:: with SMTP id e10mr7854021lji.259.1632432887920;
- Thu, 23 Sep 2021 14:34:47 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hbjFCOlJlbx4SbaGurKbZs2byZ6bHJqMjwDwtqafseo=;
+        b=FlLKG9X+eqjM7P9iLB+tI6i0KXrlSf+XjUs0PhprNvY1faNiVQcmkz8kebju821Jai
+         W76nJaQdBinXWH8DQKRQlYHB7hMTWqy0lwMIC2A+/uzkg0JxLxXo75A52Ga3JA6oKFJ3
+         pdiPEqxy+YU1n3nyLM08RZ2VrXSVZG0TLaoagTX337/uJoK29r542X/2GZHEnFvzlxeW
+         AL/LHDVTqMIj6mTZx/PDA2gkeeKfFuvcJGbtgwusmpnpFKKYhBEEze/BtuetA+Mj3g1I
+         zQRAGpS9KjOs3yXvmXfLhka5xICQjAiLdqI1dOO/KnurPcqk7PX4ylG8AJOrpVa4Dp8v
+         2xWQ==
+X-Gm-Message-State: AOAM533MXikHI8IF9DIDa15i1NsOlAuAvHdaiRcXtfM7KGdjRWAY/CJd
+        wnjTtq7VulfxBYJLuwiqTA==
+X-Google-Smtp-Source: ABdhPJw9O910RBB8A8n+sNR/MsA9Mhom39GmnQpb8UhkS6Adr5dy3tU9MjBf9Q4AZZ6ab2VkDe4ejA==
+X-Received: by 2002:a9d:615c:: with SMTP id c28mr768898otk.381.1632433039231;
+        Thu, 23 Sep 2021 14:37:19 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id y12sm1536267otu.11.2021.09.23.14.37.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Sep 2021 14:37:18 -0700 (PDT)
+Received: (nullmailer pid 3568677 invoked by uid 1000);
+        Thu, 23 Sep 2021 21:37:17 -0000
+Date:   Thu, 23 Sep 2021 16:37:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Oskar Senft <osk@google.com>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add nct7802 bindings
+Message-ID: <YUzzjYMwNKwMFGSr@robh.at.kernel.org>
+References: <20210921004627.2786132-1-osk@google.com>
 MIME-Version: 1.0
-References: <1631588246-4811-1-git-send-email-quic_subbaram@quicinc.com> <1631588246-4811-2-git-send-email-quic_subbaram@quicinc.com>
-In-Reply-To: <1631588246-4811-2-git-send-email-quic_subbaram@quicinc.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 23 Sep 2021 23:34:37 +0200
-Message-ID: <CACRpkdYiK+KPjz8RZKcS6sgTk6-RgB=zVtbim6vaQyVszhhk7A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom-pmic-gpio: Add
- output-{enable,disable} properties
-To:     Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210921004627.2786132-1-osk@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 14, 2021 at 4:57 AM Subbaraman Narayanamurthy
-<quic_subbaram@quicinc.com> wrote:
+On Mon, Sep 20, 2021 at 08:46:26PM -0400, Oskar Senft wrote:
+> Document bindings for the Nuvoton NCT7802Y driver.
+> 
+> Signed-off-by: Oskar Senft <osk@google.com>
+> ---
+>  .../bindings/hwmon/nuvoton,nct7802.yaml       | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+> new file mode 100644
+> index 000000000000..7512acbc9d1a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/nuvoton,nct7802.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton NCT7802Y Hardware Monitoring IC
+> +
+> +maintainers:
+> +  - Guenter Roeck <linux@roeck-us.net>
 
-> Add support for the pinconf DT property output-enable, output-disable
-> so that output can be enabled/disabled.
->
-> Signed-off-by: Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
+Should be someone that cares about this h/w, not who applies patches.
 
-Both patches applied! Thanks!
+> +
+> +description: |
+> +  The NCT7802Y is a hardware monitor IC which supports one on-die and up to
+> +  5 remote temperature sensors with SMBus interface.
+> +
+> +  Datasheets:
+> +    https://www.nuvoton.com/export/resource-files/Nuvoton_NCT7802Y_Datasheet_V12.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,nct7802
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  temperature-sensors:
+> +    type: object
+> +    description:
+> +      |
 
-Yours,
-Linus Walleij
+Drop. Not needed if formatting is not needed to be maintained. (Also 
+belongs on the prior line.)
+
+> +      Configuration for temperature sensors. If temperature-sensors
+> +      is not provided at all, the internal temperature sensor will be
+> +      enabled. If temperature-sensors is provided, only the listed
+> +      sensors will be configured as specified. The runtime configuration
+> +      for un-listed sensors will not be touched in the chip. This allows
+> +      sensors to be configured at power-up time from an EEPROM connected
+> +      to the chip and at the sime time allows to override these settings
+> +      using device tree configuration.
+> +
+> +    properties:
+> +      ltd:
+> +        type: object
+> +        description: Internal Temperature Sensor ("LTD")
+
+No child properties?
+
+> +
+> +      rtd3:
+> +        type: object
+> +        description:
+> +          |
+> +          Remote Temperature Sensor ("RTD3"). This sensor only supports
+> +          thermistor mode.
+
+No child properties?
+
+> +
+> +    patternProperties:
+> +      "^rtd[1-2]$":
+> +        type: object
+> +        description: Remote Temperature Sensor ("RTDx")
+> +        properties:
+> +          "type":
+
+Don't need quotes.
+
+> +            description: Sensor type (3=thermal diode, 4=thermistor).
+
+2nd time I've seen this property this week[1]. Needs to be more specific 
+than just 'type'.
+
+> +            allOf:
+
+Don't need allOf.
+
+> +              - $ref: "http://devicetree.org/schemas/types.yaml#/definitions/uint32"
+> +              - items:
+> +                  - enum: [ 3, 4 ]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        nct7802@28 {
+> +            compatible = "nuvoton,nct7802";
+> +            reg = <0x28>;
+> +
+> +            temperature-sensors {
+> +                ltd {
+> +                  status = "disabled";
+
+Don't show status in examples.
+
+> +                };
+> +
+> +                rtd1 {
+> +                  status = "okay";
+> +                  type = <4> /* thermistor */;
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+
+[1] https://lore.kernel.org/all/CAL_Jsq+NXuF+F7OE3vyEbTUj6sxyMHVWHXbCuPPoFaKjpyZREQ@mail.gmail.com/
