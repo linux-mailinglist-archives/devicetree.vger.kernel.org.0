@@ -2,96 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F3CB416780
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC01B416789
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:34:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243308AbhIWVdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 17:33:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33396 "EHLO
+        id S243355AbhIWVg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 17:36:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243301AbhIWVdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:33:10 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEC78C061757
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:31:37 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id z24so32237403lfu.13
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:31:37 -0700 (PDT)
+        with ESMTP id S243346AbhIWVgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:36:23 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD134C061574
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:34:50 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id z24so32268380lfu.13
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:34:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=rSGexge/yTWailPe6Hp1VQxkjzvMXlLhdnN0SKm1jgk=;
-        b=sHXkka97oocc/Avp1+G2WMg9/Kqe44NKcVXC8YurMm1Q5arTOo5d7SR2gd6B1r8KGQ
-         u/j2JVVDjd7ly5+7pexUjhyoYw3zCMTNN52V8f/V4vvVFsLVZsvA6g/ApYzKnvyLyT3t
-         wYJoedt+57XP5OjI9uDm3fzhHhOVPCXmbOZJUkYJ6fXWAOnwi+QCCYi10flo+mOzSS8S
-         5DDRevo5UgdPYGZgjQyhPBVeVHY2UqrDzMR6bTYXos0netmhu+Nx4SdZZG501lTgi3QX
-         ZBRqucDMnx8uDcnfDk5sLD3v7M+mWcBAuosQEmQmNGGhAzRWVFiFacjPHmn42MSpnvJJ
-         zGKA==
+        bh=hwjuFFEYUw6qLa4G4t6xm8xsFy3ftvS5x0wrGV04jCI=;
+        b=jZRRTpXoykphrWtGlmCGTQm7+dQBcpLvtXMU5q9RLQM0B7ggtcFJa3+gDaU0MTRjXb
+         qrf8++lzMfJ9Su9/48gHLCX+Xkj05jEIg6OM1kHpfLvAYl0CM6ADq1aMAY91cVUxdaOn
+         teJAnWphmD6obyQ58pohl3myJKlJuw+X7RTja2JlOKjLePie59S9v83OuJpbvxgJOvGi
+         cLV2/2rmV04Z7cOrtT7m1lM7q1zvh2DpQcH4FRVIWf8GEuo1zaI2QM4fyaP2y4PwuNGl
+         fpAlC0iafp/00PEmOMRggaojTHb+O94Coa1B1TOkuCpsl4jYpyVH6W/eFHj/wzzR+WM/
+         KTrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=rSGexge/yTWailPe6Hp1VQxkjzvMXlLhdnN0SKm1jgk=;
-        b=QnOMMjySULTnPnCo46MBFFG0AM8+rLGvJgN0pHsLorv00SGZuNGlcrhfWVnDSQ8INj
-         GGV9rpIGKCuK0uMuVT5by+mNr3X+BBD2hmQ7iMrlUxzcWA3YyPLlWxBEY+XItuWV4Oyz
-         Yp0TW5VEM5E1sED5dk44CRJXJqO91lDVRsitlAXGyt4BQUwhpFwdeuPkt3BDkQXrFVPW
-         MXTdzQeQRm8xq8RtFcx1H4LJzJLHfhmbaiBzDQ6aXMJ29xkS+GUX7UoLlkarUo47RCmt
-         RQ/foU/siE1Pnzp2f6umEGM7phk2DnPFX5XMpgV/dwkA5aOrea3fPwHrR/09TRixAgai
-         CkDA==
-X-Gm-Message-State: AOAM531rVDMiol6RVDfCUMwfUOhe8hq30Ixljjygp0TMhMMzteio5dQz
-        cmxZ0fqU+WHQ1D26/nu7rahvqgTIxwWx8sBS7q1/sA==
-X-Google-Smtp-Source: ABdhPJy2mfR57uNliZEcdzZTcs5ysF9NDOwlJSo6qcE2nsS01XTmcffsKxwYrHi5ZVuTy9LqrP5bV2aG6k/zenW3gho=
-X-Received: by 2002:ac2:4651:: with SMTP id s17mr6179225lfo.584.1632432696061;
- Thu, 23 Sep 2021 14:31:36 -0700 (PDT)
+        bh=hwjuFFEYUw6qLa4G4t6xm8xsFy3ftvS5x0wrGV04jCI=;
+        b=F7RAbUUY+4Hlx1VnFhtAk1RvYKsiEZ7hP9ImfWCX50xudc5fTi1Ij2rDVfig4mSnBo
+         OIanPJBkxoTiNfuXJ2Of1y6oA1Pk3etvYvG+DbNKMDobMH3dRZ+T/Vrmozd9DJ5loway
+         kKEe5WXBxXENEgCkEY3PaspjisltDk7bWb8ktGy7K02QLtOMX1Wo3n5ZjmUQP160PHV1
+         gEi8kh3dED1ntBC0eECz06aEPnXqZIhbQPKbczGLN1JyP+artZNDVBTQYlle0tw6btRK
+         8S9++ZOVgNv5isqCsvurA07R6b+CWdQVLIgQfs4Qcsd7TamAt6rKgzneLlRxQriKce9h
+         D3EQ==
+X-Gm-Message-State: AOAM5312FoR0cS6tl+XcoaYVfzwXa2+VPaJPpbjFV0mbSxq3PSMAr0Bd
+        8//qCB0PeB9jtuyoH2WY73mLjHMJi2Ec80Hrtyj2Rw==
+X-Google-Smtp-Source: ABdhPJyZtA3tDkqn1sMYlY6x+GteCF64qDi14tvZqfNnSjwpru/kvnvXoFyvMmItzPeo5xawCArcnw1gMI5lGq9oC0c=
+X-Received: by 2002:a05:651c:4ca:: with SMTP id e10mr7854021lji.259.1632432887920;
+ Thu, 23 Sep 2021 14:34:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210922025640.11600-1-zhiyong.tao@mediatek.com> <CACRpkdYASy3KMm4VXPrMyvVpONK78gwRn6kthK534pjWb5mhvA@mail.gmail.com>
-In-Reply-To: <CACRpkdYASy3KMm4VXPrMyvVpONK78gwRn6kthK534pjWb5mhvA@mail.gmail.com>
+References: <1631588246-4811-1-git-send-email-quic_subbaram@quicinc.com> <1631588246-4811-2-git-send-email-quic_subbaram@quicinc.com>
+In-Reply-To: <1631588246-4811-2-git-send-email-quic_subbaram@quicinc.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 23 Sep 2021 23:31:25 +0200
-Message-ID: <CACRpkdbM3hoAxMSaoGDzF84rxmawghHFcSdibs9wANxWn0iynQ@mail.gmail.com>
-Subject: Re: [PATCH v13 0/5] Mediatek pinctrl patch on mt8195
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
+Date:   Thu, 23 Sep 2021 23:34:37 +0200
+Message-ID: <CACRpkdYiK+KPjz8RZKcS6sgTk6-RgB=zVtbim6vaQyVszhhk7A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom-pmic-gpio: Add
+ output-{enable,disable} properties
+To:     Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 23, 2021 at 11:27 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Wed, Sep 22, 2021 at 4:56 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
->
-> > This series includes 5 patches:
-> > 1.add rsel define.
-> > 2.change pull up/down description
-> > 3.fix coding style
-> > 4.support rsel feature for common ICs
-> > 5.add rsel setting on MT8195
->
-> It appears we have consensus so I have applied this patch set for v5.16!
+On Tue, Sep 14, 2021 at 4:57 AM Subbaraman Narayanamurthy
+<quic_subbaram@quicinc.com> wrote:
 
-Speaking too soon! It appears there was still comments on patch 4.
-I blame my gmail.
+> Add support for the pinconf DT property output-enable, output-disable
+> so that output can be enabled/disabled.
+>
+> Signed-off-by: Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
 
-I backed the patches out for now but this is starting to look really
-good, try to make sure the patches also applies on the "devel"
-branch in the pinctrl tree so I don't do any mistakes when merging!
+Both patches applied! Thanks!
 
 Yours,
 Linus Walleij
