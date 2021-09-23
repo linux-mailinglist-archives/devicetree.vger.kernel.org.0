@@ -2,126 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DE684167A9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 342644167B1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:48:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243386AbhIWVoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 17:44:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36046 "EHLO
+        id S243382AbhIWVuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 17:50:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243396AbhIWVoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:44:38 -0400
+        with ESMTP id S243365AbhIWVuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:50:17 -0400
 Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C54C061574
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:43:06 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id i25so32100559lfg.6
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:43:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897E1C06175F
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:48:45 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id u8so31046825lff.9
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:48:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=bv5z7TKeM3MrY4Op135K+ZHXfXdxQ7r37AdQq608Www=;
-        b=UmulNDV0sB0n6qTn+9RDNXe/2gQ15OeGrZbI8ZVLlU9QO1Jmdikq3IPOx5dg8gfNZ4
-         VV0bCYkZKR7szrW9SgwXoOMCxEUPSG9Q7mBtOS/ic27S76BEq4TUSqVvdi8Dv0m0Xoiz
-         SiQZDmRW1mOIYx5Y5GAywbckmFrDtlEsrb0WbfPPS8hEhLBVl57EmNl85Hyh7kJJzUQn
-         /gsqPKnw7RucVOL3WSu7RniCQefof4SubCPhjxdsSQvytCID2JHOfYVd1luY+TtcRmPw
-         lLNcNOhyMIOSZXvItX6Rbr11ITnopRZrWAK0C5cTX2kD0DPaYMEFQB3nlatUj2Ucy7uT
-         8IKA==
+        bh=7FkpkRmKHqmPvFFREorMPwFdCCRcl6RFgYu4s9yiDfM=;
+        b=V3EyYY2zZCCc3qurGlNx4ZlXLarvbqI9nr5hfYuyzB4wEmeUbF40YeZ3zAtxzDXEcK
+         +t5/DnvFsnyMuYCa0KlgKwbFNuhL50Gpr8mdzijTcgutDXFE8abM1gVoeNcMkWT6A7M+
+         zR3JSdoEhJTF6qk/WRbDbkWp2sivoJ0Vg/y2RUPkzfSl45P12ZAAvJ+sqOxFGNsL0AYo
+         Krfq3aM1bvkTXIgCS4kQp0fC1yJ80UuOvRa2DRcDQcI/4cin9bTM3aaX/4jS+vY/3xcd
+         FASXGIMHKWi8CBviYumU8po1T4UYtss2mOxNyBo69a20/Ue2KN/RAyTlIpJqolLOWZfK
+         Q6JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=bv5z7TKeM3MrY4Op135K+ZHXfXdxQ7r37AdQq608Www=;
-        b=vzGff9v07SDcfgHGuX91dS10zj26X4ZAE4A9pKUQKoEP1iZVVINhJPeBjk7FS32Tl1
-         uvQPK3K7LApPf1sryTOt2judJicSmmoPDUmV5PXP278NwhOVTSt+4ZoK64oX+ZjMn+a8
-         DTTPnXC1aDSKx64MEV8TxAJ8ApEY6HHMDrHweJNg1d2v5ATXzg+L65ifZJ4oGheg8rs/
-         AxVUjBrenfNZnwBWRHQbO6ZwlWHS2dDVsG11hU69sETe6rau4kWa3k7S1F/0AxVEaqzW
-         0DaYn94osYkh/tFcdZugwQEr8m+wPpHs79v4n1xAoHVcPnVc50JmoMybTuQjdi3i27/X
-         rGDg==
-X-Gm-Message-State: AOAM532yywHH8XN7D69wfL7yx461ep3KGlHqEDSfgLDa+3rrWrxf8nlU
-        tpcDak6f7p5YlODfFpp4mJotkRH6tCCrVawQ3hnIwWNlWSHXbg==
-X-Google-Smtp-Source: ABdhPJwRwz/kz0/X1e4yF2JwXSsml2lz7kj3xT83695Gx0Qd6T1bZdtQb4LSjXt0NKoKTGNzxTttdxL7oXaPxuQ+BMw=
-X-Received: by 2002:a05:651c:4ca:: with SMTP id e10mr7891549lji.259.1632433384674;
- Thu, 23 Sep 2021 14:43:04 -0700 (PDT)
+        bh=7FkpkRmKHqmPvFFREorMPwFdCCRcl6RFgYu4s9yiDfM=;
+        b=RXDJpLSsfsG1B0MRbfzs7S8XytTM88WF4OwOQ6R5WGanQLMCwFwFag8DQptGxCFqtP
+         oF3rL0UUXc06ay17VmkO0GPhpVJW3Q7ID/1+FBqUelGULVx56J/4+IKD3ykKqMdZ+RIt
+         ISLnoYaCVl7E41RVtzDLcFa4dcscUT82FIs0gmsMDzRu/yK8RD0JjHwddKaS9b6xSqyA
+         nPHmWMLFctogXTgHNab+MsVNutjVtdrHi8LUu+4OZF/Op8cJxsEab0j3o115lBFmUXei
+         UdWpBWIGCLziU/RUdFAmcecAqbnz8mRj6GH70m7luXl656bZNTNJO2tqP0/S0YwhoT7a
+         bzNg==
+X-Gm-Message-State: AOAM531EnlA373s5nGLgDsocvk/yVS2FzAoNC5Ff7wisgmFTQxidedVA
+        ooN8Y54AWvS0O0tgHYl17VGxdEtqCWO+aK6qxIgzPA==
+X-Google-Smtp-Source: ABdhPJzRJ6lk2udBuzr9FrKwJZvK0C0NBFG8pHIWz3jIt1r/+I+/7dijGUv6MSez/cEvzFz71CddyZXKEEOMFuxPPL0=
+X-Received: by 2002:a05:651c:4d2:: with SMTP id e18mr7656983lji.432.1632433723807;
+ Thu, 23 Sep 2021 14:48:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210921193028.13099-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210921193028.13099-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210921193028.13099-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210921043936.468001-1-andrew@aj.id.au>
+In-Reply-To: <20210921043936.468001-1-andrew@aj.id.au>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 23 Sep 2021 23:42:53 +0200
-Message-ID: <CACRpkdZLosCHy2=Vn0EsaLVuFtdQ2yrhqcXOx4UzU5X8xskC=w@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 1/4] dt-bindings: interrupt-controller: Add Renesas
- RZ/G2L Interrupt Controller
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
+Date:   Thu, 23 Sep 2021 23:48:33 +0200
+Message-ID: <CACRpkdYxNKXuL7w0BhAig3Hr8oHP2+Eqn94ABdaX4mxfxLy+=g@mail.gmail.com>
+Subject: Re: [PATCH 0/2] leds: pca955x: Expose GPIOs for all pins
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>, Pavel Machek <pavel@ucw.cz>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        Andy Shevchenko <andy.shevchenko@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 9:30 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+On Tue, Sep 21, 2021 at 6:39 AM Andrew Jeffery <andrew@aj.id.au> wrote:
 
-> Add DT bindings for the Renesas RZ/G2L Interrupt Controller.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-(...)
-> +            interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 455 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 457 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 471 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 475 IRQ_TYPE_LEVEL_HIGH>;
+> 1. Contains no (ab)use of pinctrl
+> 2. Always exposes all pins as GPIOs
+> 3. Internally tracks the active pins
 
-It is not custom to code all the interrupts into the device tree if this
-a one-to-one mapping, instead the hardware driver is supposed to
-know which IRQs to pick in the 1-to-1 map based on the compatible
-string, which should be unique per-SoC.
+Looks good to me!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
