@@ -2,172 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1EEA4159B3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 10:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C90D4159C6
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 10:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239746AbhIWIDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 04:03:50 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:49480 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233651AbhIWIDQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 04:03:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1632384105; x=1663920105;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WYny+JtM14LGY8ybiycqCdBduZdzBrvRWNVNMawq9uo=;
-  b=N13o7zjOJ0LGMSi+CWTue1/2WoGKzA08/Wg8LOCWMnNN+LNDsokdb8XR
-   IF28skOd7JDb3TVpkz3PZg52lvYLqk98TTUU/D9/gVPRUkhSYdNQNaZHL
-   ZkSDEybmw4UVQbIemydiIU5ssM2/KYByowqqUcmHa66iA4e+PK7cCnZ1A
-   grahQ8+0WwXzVmJV2J1T/r2jItI1GIF9PVj+RaskRgf6Syc1mOpXK9Es5
-   92HJzVHGbGfcudlR1BNx6EWU0udWkai8E2HdKUXyZu/OMdvmt83a59/fA
-   C3bUmqLc+QCfmwX+PlaLeWxKbufUTK2wGBcILtN0HSvxFW+XJuKBSARvr
-   g==;
-IronPort-SDR: 8TQx98vnj7J6asqOL3DMtxQAVE6uI+QpIf/19c+/I5MxgRCG0Sd+QDGwV7jPbMaK+704azDPP8
- uboc08sNjV05bqX72tFSVNUTIy3LycPf6HQJ3xGroq447wJWMfBdM5Tnq0FY2+YRUWy4l9uoKR
- Yb9lJvTdeFdkWlyI3bAyDv8Yznji4nGq698fNOsV4j0+Bo8/wKojZUARNAXyJYgASyTjgpu77M
- Nibn/AuWuZpqkk9G12g40lrnbYiyJKM25bdKBlSAGe4VYP3O47Tw38kcTs1d2gm8NNqGFDP+jr
- rZ7ffdvJkdd5rjVyWBKBtKlr
-X-IronPort-AV: E=Sophos;i="5.85,316,1624345200"; 
-   d="scan'208";a="137634402"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Sep 2021 01:01:07 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 23 Sep 2021 01:01:07 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Thu, 23 Sep 2021 01:01:07 -0700
-Date:   Thu, 23 Sep 2021 10:02:36 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <andrew@lunn.ch>, <f.fainelli@gmail.com>,
-        <alexandre.belloni@bootlin.com>, <vladimir.oltean@nxp.com>,
-        <UNGLinuxDriver@microchip.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-pm@vger.kernel.org>
-Subject: Re: [RFC PATCH net-next 10/12] net: lan966x: add port module support
-Message-ID: <20210923080236.mqnb7shs2x6rzmh2@soft-dev3-1.localhost>
-References: <20210920095218.1108151-1-horatiu.vultur@microchip.com>
- <20210920095218.1108151-11-horatiu.vultur@microchip.com>
- <YUiSkpRvvL0fvija@shell.armlinux.org.uk>
+        id S235988AbhIWILg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 04:11:36 -0400
+Received: from smtp-out1.suse.de ([195.135.220.28]:48608 "EHLO
+        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232435AbhIWILg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 04:11:36 -0400
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id 1ED1B221D4;
+        Thu, 23 Sep 2021 08:10:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+        t=1632384603; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=yCmYQKyQ1CegwpuFA1biRZgl2wD61Tp1f0chBfFWd8E=;
+        b=Zo9jK3BESoN14AcEe1BU9TlyBOM5vIu7qEY3xWT70OoJZfYRozRIjKKOglOdiFf+TrLBEk
+        4Qe+Daxrgzlk9cBOtPI08MTMcWVKBHZOyBtMsEY1ZNIOMoFLH5eYd3sSKzrfEDby3x/F+o
+        VQfB1yri9FWEgzsgQNNNznPuWHkZIp4=
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 82C6313DC7;
+        Thu, 23 Sep 2021 08:10:02 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id hYWfHlo2TGGbEgAAMHmgww
+        (envelope-from <jgross@suse.com>); Thu, 23 Sep 2021 08:10:02 +0000
+Subject: Re: [PATCH 2/3] xen/x86: free_p2m_page: use memblock_free_ptr() to
+ free a virtual pointer
+To:     Mike Rapoport <rppt@kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        kasan-dev@googlegroups.com, kvm@vger.kernel.org,
+        linux-alpha@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-efi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-mm@kvack.org,
+        linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+        linux-sh@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+        linux-um@lists.infradead.org, linux-usb@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, sparclinux@vger.kernel.org,
+        xen-devel@lists.xenproject.org, Mike Rapoport <rppt@linux.ibm.com>
+References: <20210923074335.12583-1-rppt@kernel.org>
+ <20210923074335.12583-3-rppt@kernel.org>
+From:   Juergen Gross <jgross@suse.com>
+Message-ID: <69c60441-d6d0-96e2-a04e-5bdf87241b4b@suse.com>
+Date:   Thu, 23 Sep 2021 10:10:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <YUiSkpRvvL0fvija@shell.armlinux.org.uk>
+In-Reply-To: <20210923074335.12583-3-rppt@kernel.org>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="Ou4UW1xPRLuVMrznu7nRrBvD9qxXwPwpI"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 09/20/2021 14:54, Russell King (Oracle) wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--Ou4UW1xPRLuVMrznu7nRrBvD9qxXwPwpI
+Content-Type: multipart/mixed; boundary="Opwz8FSwCRvDNIt0szi2Ea4VaFO0qhLYD";
+ protected-headers="v1"
+From: Juergen Gross <jgross@suse.com>
+To: Mike Rapoport <rppt@kernel.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>, devicetree@vger.kernel.org,
+ iommu@lists.linux-foundation.org, kasan-dev@googlegroups.com,
+ kvm@vger.kernel.org, linux-alpha@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-efi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org, linux-um@lists.infradead.org,
+ linux-usb@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ sparclinux@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Mike Rapoport <rppt@linux.ibm.com>
+Message-ID: <69c60441-d6d0-96e2-a04e-5bdf87241b4b@suse.com>
+Subject: Re: [PATCH 2/3] xen/x86: free_p2m_page: use memblock_free_ptr() to
+ free a virtual pointer
+References: <20210923074335.12583-1-rppt@kernel.org>
+ <20210923074335.12583-3-rppt@kernel.org>
+In-Reply-To: <20210923074335.12583-3-rppt@kernel.org>
 
-Hi Russell,
+--Opwz8FSwCRvDNIt0szi2Ea4VaFO0qhLYD
+Content-Type: multipart/mixed;
+ boundary="------------7FABCF9287BBEACE094F562B"
+Content-Language: en-US
 
-> 
-> On Mon, Sep 20, 2021 at 11:52:16AM +0200, Horatiu Vultur wrote:
-> > +static void lan966x_cleanup_ports(struct lan966x *lan966x)
-> > +{
-> > +     struct lan966x_port *port;
-> > +     int portno;
-> > +
-> > +     for (portno = 0; portno < lan966x->num_phys_ports; portno++) {
-> > +             port = lan966x->ports[portno];
-> > +             if (!port)
-> > +                     continue;
-> > +
-> > +             if (port->phylink) {
-> > +                     rtnl_lock();
-> > +                     lan966x_port_stop(port->dev);
-> > +                     rtnl_unlock();
-> > +                     port->phylink = NULL;
-> 
-> This leaks the phylink structure. You need to call phylink_destroy().
-> 
-> >  static int lan966x_probe_port(struct lan966x *lan966x, u8 port,
-> >                             phy_interface_t phy_mode)
-> >  {
-> >       struct lan966x_port *lan966x_port;
-> > +     struct phylink *phylink;
-> > +     struct net_device *dev;
-> > +     int err;
-> >
-> >       if (port >= lan966x->num_phys_ports)
-> >               return -EINVAL;
-> >
-> > -     lan966x_port = devm_kzalloc(lan966x->dev, sizeof(*lan966x_port),
-> > -                                 GFP_KERNEL);
-> > +     dev = devm_alloc_etherdev_mqs(lan966x->dev,
-> > +                                   sizeof(struct lan966x_port), 8, 1);
-> > +     if (!dev)
-> > +             return -ENOMEM;
-> >
-> > +     SET_NETDEV_DEV(dev, lan966x->dev);
-> > +     lan966x_port = netdev_priv(dev);
-> > +     lan966x_port->dev = dev;
-> >       lan966x_port->lan966x = lan966x;
-> >       lan966x_port->chip_port = port;
-> >       lan966x_port->pvid = PORT_PVID;
-> >       lan966x->ports[port] = lan966x_port;
-> >
-> > +     dev->max_mtu = ETH_MAX_MTU;
-> > +
-> > +     dev->netdev_ops = &lan966x_port_netdev_ops;
-> > +     dev->needed_headroom = IFH_LEN * sizeof(u32);
-> > +
-> > +     err = register_netdev(dev);
-> > +     if (err) {
-> > +             dev_err(lan966x->dev, "register_netdev failed\n");
-> > +             goto err_register_netdev;
-> > +     }
-> 
-> register_netdev() publishes the network device.
-> 
-> > +
-> > +     lan966x_port->phylink_config.dev = &lan966x_port->dev->dev;
-> > +     lan966x_port->phylink_config.type = PHYLINK_NETDEV;
-> > +     lan966x_port->phylink_config.pcs_poll = true;
-> > +
-> > +     phylink = phylink_create(&lan966x_port->phylink_config,
-> > +                              lan966x_port->fwnode,
-> > +                              phy_mode,
-> > +                              &lan966x_phylink_mac_ops);
-> 
-> phylink_create() should always be called _prior_ to the network device
-> being published. In any case...
-> 
-> > +     if (IS_ERR(phylink))
-> > +             return PTR_ERR(phylink);
-> 
-> If this fails, this function returns an error, but leaves the network
-> device published - which is a bug in itself.
+This is a multi-part message in MIME format.
+--------------7FABCF9287BBEACE094F562B
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-If this fails it should eventually call lan966x_cleaup_ports where the
-net_device will be unregister. But first I will need to make
-phylink_create() be called prior the network device.
+On 23.09.21 09:43, Mike Rapoport wrote:
+> From: Mike Rapoport <rppt@linux.ibm.com>
+>=20
+> free_p2m_page() wrongly passes a virtual pointer to memblock_free() tha=
+t
+> treats it as a physical address.
+>=20
+> Call memblock_free_ptr() instead that gets a virtual address to free th=
+e
+> memory.
+>=20
+> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
 
-> 
-> > +static void lan966x_phylink_mac_link_down(struct phylink_config *config,
-> > +                                       unsigned int mode,
-> > +                                       phy_interface_t interface)
-> > +{
-> 
-> Hmm? Shouldn't this do something?
+Reviewed-by: Juergen Gross <jgross@suse.com>
 
-I don't think I need to do anything here. The current setup is that
-there is a PHY in front of the MAC.
-So when the link partner goes down, the PHY will go down and the MAC
-will still be up. Is this a problem?
-When we force the port to be set down, then in the function
-lan966x_port_stop we actually shutdown the port.
 
-> 
-> --
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Juergen
 
--- 
-/Horatiu
+--------------7FABCF9287BBEACE094F562B
+Content-Type: application/pgp-keys;
+ name="OpenPGP_0xB0DE9DD628BF132F.asc"
+Content-Transfer-Encoding: quoted-printable
+Content-Description: OpenPGP public key
+Content-Disposition: attachment;
+ filename="OpenPGP_0xB0DE9DD628BF132F.asc"
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xsBNBFOMcBYBCACgGjqjoGvbEouQZw/ToiBg9W98AlM2QHV+iNHsEs7kxWhKMjrioyspZKOBy=
+cWx
+w3ie3j9uvg9EOB3aN4xiTv4qbnGiTr3oJhkB1gsb6ToJQZ8uxGq2kaV2KL9650I1SJvedYm8O=
+f8Z
+d621lSmoKOwlNClALZNew72NjJLEzTalU1OdT7/i1TXkH09XSSI8mEQ/ouNcMvIJNwQpd369y=
+9bf
+IhWUiVXEK7MlRgUG6MvIj6Y3Am/BBLUVbDa4+gmzDC9ezlZkTZG2t14zWPvxXP3FAp2pkW0xq=
+G7/
+377qptDmrk42GlSKN4z76ELnLxussxc7I2hx18NUcbP8+uty4bMxABEBAAHNHEp1ZXJnZW4gR=
+3Jv
+c3MgPGpnQHBmdXBmLm5ldD7CwHkEEwECACMFAlOMcBYCGwMHCwkIBwMCAQYVCAIJCgsEFgIDA=
+QIe
+AQIXgAAKCRCw3p3WKL8TL0KdB/93FcIZ3GCNwFU0u3EjNbNjmXBKDY4FUGNQH2lvWAUy+dnyT=
+hpw
+dtF/jQ6j9RwE8VP0+NXcYpGJDWlNb9/JmYqLiX2Q3TyevpB0CA3dbBQp0OW0fgCetToGIQrg0=
+MbD
+1C/sEOv8Mr4NAfbauXjZlvTj30H2jO0u+6WGM6nHwbh2l5O8ZiHkH32iaSTfN7Eu5RnNVUJbv=
+oPH
+Z8SlM4KWm8rG+lIkGurqqu5gu8q8ZMKdsdGC4bBxdQKDKHEFExLJK/nRPFmAuGlId1E3fe10v=
+5QL
++qHI3EIPtyfE7i9Hz6rVwi7lWKgh7pe0ZvatAudZ+JNIlBKptb64FaiIOAWDCx1SzR9KdWVyZ=
+2Vu
+IEdyb3NzIDxqZ3Jvc3NAc3VzZS5jb20+wsB5BBMBAgAjBQJTjHCvAhsDBwsJCAcDAgEGFQgCC=
+QoL
+BBYCAwECHgECF4AACgkQsN6d1ii/Ey/HmQf/RtI7kv5A2PS4RF7HoZhPVPogNVbC4YA6lW7Dr=
+Wf0
+teC0RR3MzXfy6pJ+7KLgkqMlrAbN/8Dvjoz78X+5vhH/rDLa9BuZQlhFmvcGtCF8eR0T1v0nC=
+/nu
+AFVGy+67q2DH8As3KPu0344TBDpAvr2uYM4tSqxK4DURx5INz4ZZ0WNFHcqsfvlGJALDeE0Lh=
+ITT
+d9jLzdDad1pQSToCnLl6SBJZjDOX9QQcyUigZFtCXFst4dlsvddrxyqT1f17+2cFSdu7+ynLm=
+XBK
+7abQ3rwJY8SbRO2iRulogc5vr/RLMMlscDAiDkaFQWLoqHHOdfO9rURssHNN8WkMnQfvUewRz=
+80h
+SnVlcmdlbiBHcm9zcyA8amdyb3NzQG5vdmVsbC5jb20+wsB5BBMBAgAjBQJTjHDXAhsDBwsJC=
+AcD
+AgEGFQgCCQoLBBYCAwECHgECF4AACgkQsN6d1ii/Ey8PUQf/ehmgCI9jB9hlgexLvgOtf7PJn=
+FOX
+gMLdBQgBlVPO3/D9R8LtF9DBAFPNhlrsfIG/SqICoRCqUcJ96Pn3P7UUinFG/I0ECGF4EvTE1=
+jnD
+kfJZr6jrbjgyoZHiw/4BNwSTL9rWASyLgqlA8u1mf+c2yUwcGhgkRAd1gOwungxcwzwqgljf0=
+N51
+N5JfVRHRtyfwq/ge+YEkDGcTU6Y0sPOuj4Dyfm8fJzdfHNQsWq3PnczLVELStJNdapwPOoE+l=
+otu
+fe3AM2vAEYJ9rTz3Cki4JFUsgLkHFqGZarrPGi1eyQcXeluldO3m91NK/1xMI3/+8jbO0tsn1=
+tqS
+EUGIJi7ox80eSnVlcmdlbiBHcm9zcyA8amdyb3NzQHN1c2UuZGU+wsB5BBMBAgAjBQJTjHDrA=
+hsD
+BwsJCAcDAgEGFQgCCQoLBBYCAwECHgECF4AACgkQsN6d1ii/Ey+LhQf9GL45eU5vOowA2u5N3=
+g3O
+ZUEBmDHVVbqMtzwlmNC4k9Kx39r5s2vcFl4tXqW7g9/ViXYuiDXb0RfUpZiIUW89siKrkzmQ5=
+dM7
+wRqzgJpJwK8Bn2MIxAKArekWpiCKvBOB/Cc+3EXE78XdlxLyOi/NrmSGRIov0karw2RzMNOu5=
+D+j
+LRZQd1Sv27AR+IP3I8U4aqnhLpwhK7MEy9oCILlgZ1QZe49kpcumcZKORmzBTNh30FVKK1Evm=
+V2x
+AKDoaEOgQB4iFQLhJCdP1I5aSgM5IVFdn7v5YgEYuJYx37IoN1EblHI//x/e2AaIHpzK5h88N=
+Eaw
+QsaNRpNSrcfbFmAg987ATQRTjHAWAQgAyzH6AOODMBjgfWE9VeCgsrwH3exNAU32gLq2xvjpW=
+nHI
+s98ndPUDpnoxWQugJ6MpMncr0xSwFmHEgnSEjK/PAjppgmyc57BwKII3sV4on+gDVFJR6Y8ZR=
+wgn
+BC5mVM6JjQ5xDk8WRXljExRfUX9pNhdE5eBOZJrDRoLUmmjDtKzWaDhIg/+1Hzz93X4fCQkNV=
+bVF
+LELU9bMaLPBG/x5q4iYZ2k2ex6d47YE1ZFdMm6YBYMOljGkZKwYde5ldM9mo45mmwe0icXKLk=
+pEd
+IXKTZeKDO+Hdv1aqFuAcccTg9RXDQjmwhC3yEmrmcfl0+rPghO0Iv3OOImwTEe4co3c1mwARA=
+QAB
+wsBfBBgBAgAJBQJTjHAWAhsMAAoJELDendYovxMvQ/gH/1ha96vm4P/L+bQpJwrZ/dneZcmEw=
+Tbe
+8YFsw2V/Buv6Z4Mysln3nQK5ZadD534CF7TDVft7fC4tU4PONxF5D+/tvgkPfDAfF77zy2AH1=
+vJz
+Q1fOU8lYFpZXTXIHb+559UqvIB8AdgR3SAJGHHt4RKA0F7f5ipYBBrC6cyXJyyoprT10EMvU8=
+VGi
+wXvTyJz3fjoYsdFzpWPlJEBRMedCot60g5dmbdrZ5DWClAr0yau47zpWj3enf1tLWaqcsuylW=
+svi
+uGjKGw7KHQd3bxALOknAp4dN3QwBYCKuZ7AddY9yjynVaD5X7nF9nO5BjR/i1DG86lem3iBDX=
+zXs
+ZDn8R38=3D
+=3D2wuH
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------7FABCF9287BBEACE094F562B--
+
+--Opwz8FSwCRvDNIt0szi2Ea4VaFO0qhLYD--
+
+--Ou4UW1xPRLuVMrznu7nRrBvD9qxXwPwpI
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEhRJncuj2BJSl0Jf3sN6d1ii/Ey8FAmFMNlkFAwAAAAAACgkQsN6d1ii/Ey/u
+jwf/Wc7bKSwtYpm6kgk3TsHmpeJbPgh0Zpv1wT9MtIr5veUKbFZsg/Ji0X/gETRJ/GzFem6QpjrD
+qfZjjrHW84FjHmrikrdzulZV8SZVqYLSdZWQRL4dja5oWLHT7nPkOtdmNelKufQ3CxAmy1JmVzVb
+Mx6gmnvelfR4gvjcbXXvmtdNZvJIKIQ3zLsqDK8z5H0AA3wt7EG/6FFaIZD/lYSqQAmpBXhbvdZe
+EmLrt4FExY741RXXb6HIT7WjiQ+iFHRiGgNjAF7OZlY2xzR14fRVqNF56oq8GYvMSJU1knueE60N
+Y+1NbMVNCzWoYzBjFB95UGbdvzgBy6XOzZ21ar2IPQ==
+=DYUR
+-----END PGP SIGNATURE-----
+
+--Ou4UW1xPRLuVMrznu7nRrBvD9qxXwPwpI--
