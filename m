@@ -2,211 +2,349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC7474155D8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 05:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A73BC41560E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 05:31:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239016AbhIWDOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 23:14:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34518 "EHLO
+        id S239052AbhIWDck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 23:32:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239007AbhIWDOC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 23:14:02 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A7DC061574
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 20:12:31 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id u22so7698830oie.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 20:12:31 -0700 (PDT)
+        with ESMTP id S239042AbhIWDck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 23:32:40 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B5E6C061757
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 20:31:09 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id w19so7703309oik.10
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 20:31:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=W/Ez8scEz6/K5eNZimYSZZsXj3bWHo8bMYwOs77bLjw=;
-        b=gBCG3Y+roiTJ/VSQ5e85qQy++BzCQcYk/U7tvn346ohUMK4ddVmV7OIwd8v72kyQqT
-         D3y/UuMnOIwcSe+JIljcO+iejjshkQpu5SDVRkCgKUoSRMGz09kVaIoOiuZSU4ti2dbL
-         9bygLMgplxeHqd4QoC1t/WQHZ33IjJI2QiZYIDJPgEFLkCYlwjjXmUlqnRddfEp9nNFT
-         wVCf85KZLO7aiZ3ztrdoO6ssJj9GWjZ4WbpYvFz/9abzFlsJ4xU2gCyzv+Y+UaK/5loi
-         H3Ucq1qHJ2bEBQn4RKueG6SHAU+azEwm6rjRQIbFFfevoI8F+xuGOdHiLIjc1iVuMtLd
-         3v3A==
+        bh=WZnkbDqe35agx+YRdoGtlkEIS1vsNJiYQTbIpjWyLqg=;
+        b=P3kClDnLsxyd8P5md1GK2izJhbgXFpqpxbnKHA/qDWSDqZ1P9e4S93LBbgYC62Yq8T
+         R9UaBvr71Hsdw9Qj0ogvmHgPrs9nA1wIHDSmQSuCmI5BXq1lFS+SXlcuuJMu87sN//ts
+         uoAPab1EJfLPjXzcHCtyOod6MCr36/JsjZGHXkrS08VftM1XbrMnc3oaxktFgmfo0vMJ
+         t3zsbSBGmyNFg8GpXBD4sDxGxAGUUstl+bhic/DrGsf1M8oshxwuxGJQR4jQBkF6tgbQ
+         9K8Mc5CYg7yqg3huKD7lL3thxynHYPVd6unTn3tlAVKYNZOFsjTVusdqhsqsmGe5Tnii
+         M9Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=W/Ez8scEz6/K5eNZimYSZZsXj3bWHo8bMYwOs77bLjw=;
-        b=SuBM0V9KFyq3V/5w7vPrcESDDL7aF5iv4vzononGocKxLmg8b9TFBRGktmuDkIBkSw
-         2oGleCJHBqIZPxfA3cOHqG1Qk1TMZ+YvGoizhOjIxHa6kejxEGo1ajZQNMCCSkipdqt8
-         WrBzxCDYtfjaAAZHY3ROiFLAgpSqA0Pg8NO+cUJmbZ6FcRLhu0drNJZKEvqf9FAsUk3T
-         O7zwYmiefY3ZvDxJfsJKHLeVT21ctgdPWx7Q1M3nlJTwxegpdARo0i1kzz5wnHoL5rBu
-         3vfZaiPlRkqDg/5jbqO+9iGTT3WVAVt9g+538e1EBTd8rgyF/z3biVT8RfneDhhVRMam
-         yggw==
-X-Gm-Message-State: AOAM533vbdtpuZZ8D62sweLIUrrpQCrlprTurZl2ws2ysjOv90vmuWrl
-        nMSeKf6zO1By7hNbnDEpVcI9RA==
-X-Google-Smtp-Source: ABdhPJxmUyPBV0fs8n3TPS/s0zyQOrZZj4hTOEnmtPkqh4H6GhLYCfcLrOD8kh0CLslETG1Vv2LQdg==
-X-Received: by 2002:a54:4383:: with SMTP id u3mr10604350oiv.149.1632366750822;
-        Wed, 22 Sep 2021 20:12:30 -0700 (PDT)
+        bh=WZnkbDqe35agx+YRdoGtlkEIS1vsNJiYQTbIpjWyLqg=;
+        b=PYVSvAGUhP3mrymXzNeoF56QAuG+p7AsvPmknq5HcX3MhyKDL9a/WsIQe7UtgvoWj1
+         yK1jok3m1PfFitAWhSOj2BAqc3lFZtUJHE2ylfo/i5RCh1rli579mKu3dlBiPOlBWNev
+         +rlT+JZi3qgcWKvW5tIW3rjFnP/3WBXPl/fE4gAMvlwjOsHqsO/K+8FLtvGmPwUC8JQt
+         1HdfCvd6Nc4PLRK3GEkFHZyyYmKEqOeVHwpeMXXs26tqYUoIkAtzbzoF7dMoNaksug5K
+         7STmhRNiCV043FT17ePDpxqaxyC7tpoe9wl+dsSUxK/D5SWoXCnvuSP9ZTyvGKgeCxca
+         Xenw==
+X-Gm-Message-State: AOAM533HgsOxvfjGa09NZ67+CyuNWrATco5WWTPJ/aRC9DM/mJpprbrc
+        OeUWXVZ4u9W2FeI9TiX+p5dUAw==
+X-Google-Smtp-Source: ABdhPJyEqCFgpzYG5stN1XffFzyyUS7C0XaZxoEnwmEkDrixdgCQQ6CDVf7BYB8h73LGP9V2OIFLXA==
+X-Received: by 2002:a05:6808:618:: with SMTP id y24mr1978169oih.179.1632367868718;
+        Wed, 22 Sep 2021 20:31:08 -0700 (PDT)
 Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r31sm955087otv.45.2021.09.22.20.12.29
+        by smtp.gmail.com with ESMTPSA id bf6sm1051367oib.0.2021.09.22.20.31.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 20:12:30 -0700 (PDT)
-Date:   Wed, 22 Sep 2021 22:12:28 -0500
+        Wed, 22 Sep 2021 20:31:08 -0700 (PDT)
+Date:   Wed, 22 Sep 2021 22:31:06 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: Add QCM2290 pinctrl
- bindings
-Message-ID: <YUvwnOncE54n821z@yoga>
-References: <20210923030102.29148-1-shawn.guo@linaro.org>
- <20210923030102.29148-2-shawn.guo@linaro.org>
+To:     Alexandre Bailon <abailon@baylibre.com>
+Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, maarten.lankhorst@linux.intel.com,
+        mripard@kernel.org, tzimmermann@suse.de, ohad@wizery.com,
+        mathieu.poirier@linaro.org, sumit.semwal@linaro.org,
+        christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-media@vger.kernel.org,
+        linaro-mm-sig@lists.linaro.org, khilman@baylibre.com,
+        gpain@baylibre.com
+Subject: Re: [RFC PATCH 3/4] rpmsg: Add support of AI Processor Unit (APU)
+Message-ID: <YUv0+jQ/91QdydkR@yoga>
+References: <20210917125945.620097-1-abailon@baylibre.com>
+ <20210917125945.620097-4-abailon@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210923030102.29148-2-shawn.guo@linaro.org>
+In-Reply-To: <20210917125945.620097-4-abailon@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 22 Sep 22:01 CDT 2021, Shawn Guo wrote:
+On Fri 17 Sep 07:59 CDT 2021, Alexandre Bailon wrote:
 
-> Add device tree bindings for QCM2290 pinctrl.
+> Some Mediatek SoC provides hardware accelerator for AI / ML.
+> This driver use the DRM driver to manage the shared memory,
+> and use rpmsg to execute jobs on the APU.
 > 
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
 > ---
->  .../pinctrl/qcom,qcm2290-pinctrl.yaml         | 186 ++++++++++++++++++
->  1 file changed, 186 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-pinctrl.yaml
+>  drivers/rpmsg/Kconfig     |  10 +++
+>  drivers/rpmsg/Makefile    |   1 +
+>  drivers/rpmsg/apu_rpmsg.c | 184 ++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 195 insertions(+)
+>  create mode 100644 drivers/rpmsg/apu_rpmsg.c
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..714ec245aa7c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-pinctrl.yaml
-> @@ -0,0 +1,186 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,qcm2290-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. QCM2290 TLMM block
-> +
-> +maintainers:
-> +  - Shawn Guo <shawn.guo@linaro.org>
-> +
-> +description:
-> +  This binding describes the Top Level Mode Multiplexer block found in the
-> +  QCM2290 platform.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,qcm2290-tlmm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: Specifies the TLMM summary IRQ
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    description:
-> +      Specifies the PIN numbers and Flags, as defined in defined in
-> +      include/dt-bindings/interrupt-controller/irq.h
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description: Specifying the pin number and flags, as defined in
-> +      include/dt-bindings/gpio/gpio.h
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  wakeup-parent:
-> +    maxItems: 1
-> +
-> +#PIN CONFIGURATION NODES
-> +patternProperties:
-> +  '-state$':
-> +    oneOf:
-> +      - $ref: "#/$defs/qcom-qcm2290-tlmm-state"
-> +      - patternProperties:
-> +          ".*":
-> +            $ref: "#/$defs/qcom-qcm2290-tlmm-state"
-> +
-> +'$defs':
-> +  qcom-qcm2290-tlmm-state:
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-6])$"
-> +            - enum: [ sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data,
-> +                      sdc2_clk, sdc2_cmd, sdc2_data ]
-> +        minItems: 1
-> +        maxItems: 36
-> +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +
-> +        enum: [ qup0, gpio, ddr_bist, phase_flag0, qdss_gpio8, atest_tsens,
-> +                mpm_pwr, m_voc, phase_flag1, qdss_gpio9, atest_tsens2,
-> +                phase_flag2, qdss_gpio10, dac_calib0, atest_usb10, phase_flag3,
-> +                qdss_gpio11, dac_calib1, atest_usb11, qup1, CRI_TRNG0,
-> +                phase_flag4, dac_calib2, atest_usb12, CRI_TRNG1, phase_flag5,
-> +                dac_calib3, atest_usb13, qup2, phase_flag6, dac_calib4,
-> +                atest_usb1, qup3, pbs_out, PLL_BIST, qdss_gpio, tsense_pwm,
-> +                AGERA_PLL, pbs0, qdss_gpio0, pbs1, qdss_gpio1, qup4, tgu_ch0,
-> +                tgu_ch1, qup5, tgu_ch2, phase_flag7, qdss_gpio4, dac_calib5,
-> +                tgu_ch3, phase_flag8, qdss_gpio5, dac_calib6, phase_flag9,
-> +                qdss_gpio6, dac_calib7, phase_flag10, qdss_gpio7, dac_calib8,
-> +                SDC2_TB, CRI_TRNG, pbs2, qdss_gpio2, pwm_0, SDC1_TB, pbs3,
-> +                qdss_gpio3, cam_mclk, pbs4, adsp_ext, pbs5, cci_i2c, prng_rosc,
-> +                pbs6, phase_flag11, dac_calib9, atest_usb20, pbs7, phase_flag12,
-> +                dac_calib10, atest_usb21, CCI_TIMER1, GCC_GP1, pbs8,
-> +                phase_flag13, dac_calib11, atest_usb22, cci_async, CCI_TIMER0,
-> +                pbs9, phase_flag14, dac_calib12, atest_usb23, pbs10,
-> +                phase_flag15, dac_calib13, atest_usb2, vsense_trigger, qdss_cti,
-> +                CCI_TIMER2, pwm_1, phase_flag16, dac_calib14, atest_char,
-> +                phase_flag17, dac_calib15, atest_char0, GP_PDM0, phase_flag18,
-> +                dac_calib16, atest_char1, CCI_TIMER3, GP_PDM1, phase_flag19,
-> +                dac_calib17, atest_char2, GP_PDM2, phase_flag20, dac_calib18,
-> +                atest_char3, phase_flag21, phase_flag22, char_exec, NAV_GPIO,
-> +                phase_flag23, phase_flag24, phase_flag25, pbs14, qdss_gpio14,
-> +                vfr_1, pbs15, qdss_gpio15, PA_INDICATOR, pwm_2, gsm1_tx,
-> +                SSBI_WTR1, pll_bypassnl, pll_reset, phase_flag26, ddr_pxi0,
-> +                gsm0_tx, phase_flag27, GCC_GP2, qdss_gpio12, ddr_pxi1, GCC_GP3,
-> +                qdss_gpio13, dbg_out, uim2_data, pwm_3, uim2_clk, uim2_reset,
-> +                pwm_4, uim2_present, pwm_5, uim1_data, uim1_clk, uim1_reset,
-> +                uim1_present, dac_calib19, mdp_vsync, mdp_vsync_out_0,
-> +                mdp_vsync_out_1, dac_calib20, dac_calib21, pwm_6, atest_bbrx1,
-> +                pbs11, usb_phy, atest_bbrx0, pwm_7, mss_lte, pbs12, pbs13,
-> +                wlan1_adc0, wlan1_adc1, sd_write, JITTER_BIST,
-> +                atest_gpsadc_dtest0_native, atest_gpsadc_dtest1_native,
-> +                phase_flag28, dac_calib22, ddr_pxi2, phase_flag29, dac_calib23,
-> +                phase_flag30, dac_calib24, ddr_pxi3, pwm_8, phase_flag31,
-> +                dac_calib25, pwm_9 ]
+> diff --git a/drivers/rpmsg/Kconfig b/drivers/rpmsg/Kconfig
+> index 0b4407abdf138..fc1668f795004 100644
+> --- a/drivers/rpmsg/Kconfig
+> +++ b/drivers/rpmsg/Kconfig
+> @@ -73,4 +73,14 @@ config RPMSG_VIRTIO
+>  	select RPMSG_NS
+>  	select VIRTIO
+>  
+> +config RPMSG_APU
+> +	tristate "APU RPMSG driver"
+> +	select REMOTEPROC
+> +	select RPMSG_VIRTIO
+> +	select DRM_APU
+> +	help
+> +	  This provides a RPMSG driver that provides some facilities to
+> +	  communicate with an accelerated processing unit (APU).
+> +	  This Uses the APU DRM driver to manage memory and job scheduling.
 
-I'm afraid that you forgot to update this list when you squashed the
-functions in the driver.
+Similar to how a driver for e.g. an I2C device doesn't live in
+drivers/i2c, this doesn't belong in drivers/rpmsg. Probably rather
+directly in the DRM driver.
+
+> +
+>  endmenu
+> diff --git a/drivers/rpmsg/Makefile b/drivers/rpmsg/Makefile
+> index 8d452656f0ee3..8b336b9a817c1 100644
+> --- a/drivers/rpmsg/Makefile
+> +++ b/drivers/rpmsg/Makefile
+> @@ -9,3 +9,4 @@ obj-$(CONFIG_RPMSG_QCOM_GLINK_RPM) += qcom_glink_rpm.o
+>  obj-$(CONFIG_RPMSG_QCOM_GLINK_SMEM) += qcom_glink_smem.o
+>  obj-$(CONFIG_RPMSG_QCOM_SMD)	+= qcom_smd.o
+>  obj-$(CONFIG_RPMSG_VIRTIO)	+= virtio_rpmsg_bus.o
+> +obj-$(CONFIG_RPMSG_APU)		+= apu_rpmsg.o
+> diff --git a/drivers/rpmsg/apu_rpmsg.c b/drivers/rpmsg/apu_rpmsg.c
+> new file mode 100644
+> index 0000000000000..7e504bd176a4d
+> --- /dev/null
+> +++ b/drivers/rpmsg/apu_rpmsg.c
+> @@ -0,0 +1,184 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// Copyright 2020 BayLibre SAS
+> +
+> +#include <asm/cacheflush.h>
+> +
+> +#include <linux/cdev.h>
+> +#include <linux/dma-buf.h>
+> +#include <linux/dma-map-ops.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/iommu.h>
+> +#include <linux/iova.h>
+> +#include <linux/mm.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/remoteproc.h>
+> +#include <linux/rpmsg.h>
+> +#include <linux/slab.h>
+> +#include <linux/types.h>
+> +
+> +#include <drm/apu_drm.h>
+> +
+> +#include "rpmsg_internal.h"
+> +
+> +#define APU_RPMSG_SERVICE_MT8183 "rpmsg-mt8183-apu0"
+> +
+> +struct rpmsg_apu {
+> +	struct apu_core *core;
+> +	struct rpmsg_device *rpdev;
+> +};
+> +
+> +static int apu_rpmsg_callback(struct rpmsg_device *rpdev, void *data, int count,
+> +			      void *priv, u32 addr)
+> +{
+> +	struct rpmsg_apu *apu = dev_get_drvdata(&rpdev->dev);
+> +	struct apu_core *apu_core = apu->core;
+> +
+> +	return apu_drm_callback(apu_core, data, count);
+> +}
+> +
+> +static int apu_rpmsg_send(struct apu_core *apu_core, void *data, int len)
+> +{
+> +	struct rpmsg_apu *apu = apu_drm_priv(apu_core);
+> +	struct rpmsg_device *rpdev = apu->rpdev;
+> +
+> +	return rpmsg_send(rpdev->ept, data, len);
+
+The rpmsg API is exposed outside drivers/rpmsg, so as I said above, just
+implement this directly in your driver, no need to lug around a dummy
+wrapper for things like this.
+
+> +}
+> +
+> +static struct apu_drm_ops apu_rpmsg_ops = {
+> +	.send = apu_rpmsg_send,
+> +};
+> +
+> +static int apu_init_iovad(struct rproc *rproc, struct rpmsg_apu *apu)
+> +{
+> +	struct resource_table *table;
+> +	struct fw_rsc_carveout *rsc;
+> +	int i;
+> +
+> +	if (!rproc->table_ptr) {
+> +		dev_err(&apu->rpdev->dev,
+> +			"No resource_table: has the firmware been loaded ?\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	table = rproc->table_ptr;
+> +	for (i = 0; i < table->num; i++) {
+> +		int offset = table->offset[i];
+> +		struct fw_rsc_hdr *hdr = (void *)table + offset;
+> +
+> +		if (hdr->type != RSC_CARVEOUT)
+> +			continue;
+> +
+> +		rsc = (void *)hdr + sizeof(*hdr);
+> +		if (apu_drm_reserve_iova(apu->core, rsc->da, rsc->len)) {
+> +			dev_err(&apu->rpdev->dev,
+> +				"failed to reserve iova\n");
+> +			return -ENOMEM;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct rproc *apu_get_rproc(struct rpmsg_device *rpdev)
+> +{
+> +	/*
+> +	 * To work, the APU RPMsg driver need to get the rproc device.
+> +	 * Currently, we only use virtio so we could use that to find the
+> +	 * remoteproc parent.
+> +	 */
+> +	if (!rpdev->dev.parent && rpdev->dev.parent->bus) {
+> +		dev_err(&rpdev->dev, "invalid rpmsg device\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	if (strcmp(rpdev->dev.parent->bus->name, "virtio")) {
+> +		dev_err(&rpdev->dev, "unsupported bus\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	return vdev_to_rproc(dev_to_virtio(rpdev->dev.parent));
+> +}
+> +
+> +static int apu_rpmsg_probe(struct rpmsg_device *rpdev)
+> +{
+> +	struct rpmsg_apu *apu;
+> +	struct rproc *rproc;
+> +	int ret;
+> +
+> +	apu = devm_kzalloc(&rpdev->dev, sizeof(*apu), GFP_KERNEL);
+> +	if (!apu)
+> +		return -ENOMEM;
+> +	apu->rpdev = rpdev;
+> +
+> +	rproc = apu_get_rproc(rpdev);
+
+I believe that you can replace apu_get_rproc() with:
+
+	rproc = rproc_get_by_child(&rpdev->dev);
+
+> +	if (IS_ERR_OR_NULL(rproc))
+> +		return PTR_ERR(rproc);
+> +
+> +	/* Make device dma capable by inheriting from parent's capabilities */
+> +	set_dma_ops(&rpdev->dev, get_dma_ops(rproc->dev.parent));
+> +
+> +	ret = dma_coerce_mask_and_coherent(&rpdev->dev,
+> +					   dma_get_mask(rproc->dev.parent));
+> +	if (ret)
+> +		goto err_put_device;
+> +
+> +	rpdev->dev.iommu_group = rproc->dev.parent->iommu_group;
+
+Would it be better or you if we have a device_node, so that you could
+specify the iommus property for this compute device?
+
+I'm asking because I've seen cases where multi-purpose remoteproc
+firmware operate using multiple different iommu streams...
+
+> +
+> +	apu->core = apu_drm_register_core(rproc, &apu_rpmsg_ops, apu);
+> +	if (!apu->core) {
+> +		ret = -ENODEV;
+> +		goto err_put_device;
+> +	}
+> +
+> +	ret = apu_init_iovad(rproc, apu);
+> +
+> +	dev_set_drvdata(&rpdev->dev, apu);
+> +
+> +	return ret;
+> +
+> +err_put_device:
+
+This label looks misplaced, and sure enough, if apu_init_iovad() fails
+you're not apu_drm_unregister_core().
+
+But on that note, don't you want to apu_init_iovad() before you
+apu_drm_register_core()?
+
+> +	devm_kfree(&rpdev->dev, apu);
+
+The reason for using devm_kzalloc() is that once you return
+unsuccessfully from probe, or from remove the memory is freed.
+
+So devm_kfree() should go in both cases.
+
+> +
+> +	return ret;
+> +}
+> +
+> +static void apu_rpmsg_remove(struct rpmsg_device *rpdev)
+> +{
+> +	struct rpmsg_apu *apu = dev_get_drvdata(&rpdev->dev);
+> +
+> +	apu_drm_unregister_core(apu);
+> +	devm_kfree(&rpdev->dev, apu);
+
+No need to explicitly free devm resources.
 
 Regards,
 Bjorn
+
+> +}
+> +
+> +static const struct rpmsg_device_id apu_rpmsg_match[] = {
+> +	{ APU_RPMSG_SERVICE_MT8183 },
+> +	{}
+> +};
+> +
+> +static struct rpmsg_driver apu_rpmsg_driver = {
+> +	.probe = apu_rpmsg_probe,
+> +	.remove = apu_rpmsg_remove,
+> +	.callback = apu_rpmsg_callback,
+> +	.id_table = apu_rpmsg_match,
+> +	.drv  = {
+> +		.name  = "apu_rpmsg",
+> +	},
+> +};
+> +
+> +static int __init apu_rpmsg_init(void)
+> +{
+> +	return register_rpmsg_driver(&apu_rpmsg_driver);
+> +}
+> +arch_initcall(apu_rpmsg_init);
+> +
+> +static void __exit apu_rpmsg_exit(void)
+> +{
+> +	unregister_rpmsg_driver(&apu_rpmsg_driver);
+> +}
+> +module_exit(apu_rpmsg_exit);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("APU RPMSG driver");
+> -- 
+> 2.31.1
+> 
