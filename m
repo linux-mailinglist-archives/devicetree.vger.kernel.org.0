@@ -2,79 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 342644167B1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:48:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76D994167CE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 00:04:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243382AbhIWVuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 17:50:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37306 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243365AbhIWVuR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:50:17 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897E1C06175F
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:48:45 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id u8so31046825lff.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:48:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7FkpkRmKHqmPvFFREorMPwFdCCRcl6RFgYu4s9yiDfM=;
-        b=V3EyYY2zZCCc3qurGlNx4ZlXLarvbqI9nr5hfYuyzB4wEmeUbF40YeZ3zAtxzDXEcK
-         +t5/DnvFsnyMuYCa0KlgKwbFNuhL50Gpr8mdzijTcgutDXFE8abM1gVoeNcMkWT6A7M+
-         zR3JSdoEhJTF6qk/WRbDbkWp2sivoJ0Vg/y2RUPkzfSl45P12ZAAvJ+sqOxFGNsL0AYo
-         Krfq3aM1bvkTXIgCS4kQp0fC1yJ80UuOvRa2DRcDQcI/4cin9bTM3aaX/4jS+vY/3xcd
-         FASXGIMHKWi8CBviYumU8po1T4UYtss2mOxNyBo69a20/Ue2KN/RAyTlIpJqolLOWZfK
-         Q6JQ==
+        id S234815AbhIWWFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 18:05:52 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:36610 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234737AbhIWWFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 18:05:51 -0400
+Received: by mail-ot1-f53.google.com with SMTP id 5-20020a9d0685000000b0054706d7b8e5so10606094otx.3;
+        Thu, 23 Sep 2021 15:04:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7FkpkRmKHqmPvFFREorMPwFdCCRcl6RFgYu4s9yiDfM=;
-        b=RXDJpLSsfsG1B0MRbfzs7S8XytTM88WF4OwOQ6R5WGanQLMCwFwFag8DQptGxCFqtP
-         oF3rL0UUXc06ay17VmkO0GPhpVJW3Q7ID/1+FBqUelGULVx56J/4+IKD3ykKqMdZ+RIt
-         ISLnoYaCVl7E41RVtzDLcFa4dcscUT82FIs0gmsMDzRu/yK8RD0JjHwddKaS9b6xSqyA
-         nPHmWMLFctogXTgHNab+MsVNutjVtdrHi8LUu+4OZF/Op8cJxsEab0j3o115lBFmUXei
-         UdWpBWIGCLziU/RUdFAmcecAqbnz8mRj6GH70m7luXl656bZNTNJO2tqP0/S0YwhoT7a
-         bzNg==
-X-Gm-Message-State: AOAM531EnlA373s5nGLgDsocvk/yVS2FzAoNC5Ff7wisgmFTQxidedVA
-        ooN8Y54AWvS0O0tgHYl17VGxdEtqCWO+aK6qxIgzPA==
-X-Google-Smtp-Source: ABdhPJzRJ6lk2udBuzr9FrKwJZvK0C0NBFG8pHIWz3jIt1r/+I+/7dijGUv6MSez/cEvzFz71CddyZXKEEOMFuxPPL0=
-X-Received: by 2002:a05:651c:4d2:: with SMTP id e18mr7656983lji.432.1632433723807;
- Thu, 23 Sep 2021 14:48:43 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1Yn/zKfY1e+OALBtmnxl+pt+aoAA40VXrdqikSMZ29s=;
+        b=GEsXRuCWzoHymPTn1WP4eyHxUm4e6fM/O4px8YNYwoPsFwPlhVkmWxgyh2gaRIduhr
+         Ipq0shlBrJ4qZssK4kzgmzRDCHTdRiUXQEuYQxM/R5cacGLn4dsjvIGotry58klXS37K
+         7p6WHC0SnKHuFqFYYKbQxk0BuJs0gwPyW3MhZofDXmm+C0NQnH4epK3Ip5fWvTVOm2G0
+         FTeTOhXVEUpmzyOa7xL+F96a0Rj6J1J6iujunVWpiLPBke+tZvdkvspTF0DWmJTGfR0G
+         Fu2MWZDBV4k/u9+CQ3DUjYxfpA4Z6oU5ggO4D5CXmBuZRN8kPlLgw2GZ2S1BiQFtZfUz
+         77HA==
+X-Gm-Message-State: AOAM53316dFLjq9+6cqKw3hn7e0cDwbeWwIwosYLuQO3Lm8Z6Z8Ox8ZI
+        40hBonflpHXp141lFAnvrE5gvIRkFA==
+X-Google-Smtp-Source: ABdhPJzqiFPHmVyFkh2YZAtU90uejrnAT37LFonxYP0a0NeDFHNro0hOUYwnziZsZ7vbJQN+MlC7uw==
+X-Received: by 2002:a05:6830:40cb:: with SMTP id h11mr937856otu.176.1632434659372;
+        Thu, 23 Sep 2021 15:04:19 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id c10sm1653247ooi.11.2021.09.23.15.04.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Sep 2021 15:04:18 -0700 (PDT)
+Received: (nullmailer pid 3607140 invoked by uid 1000);
+        Thu, 23 Sep 2021 22:04:17 -0000
+Date:   Thu, 23 Sep 2021 17:04:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Cai Huoqing <caihuoqing@baidu.com>
+Cc:     linux-iio@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 2/3] iio: imx8qxp-adc: dt-bindings: iio: adc: Add
+ binding documentation for  NXP IMX8QXP ADC
+Message-ID: <YUz54Uv+Mh/9j+rY@robh.at.kernel.org>
+References: <20210921052821.91-1-caihuoqing@baidu.com>
+ <20210921052821.91-3-caihuoqing@baidu.com>
 MIME-Version: 1.0
-References: <20210921043936.468001-1-andrew@aj.id.au>
-In-Reply-To: <20210921043936.468001-1-andrew@aj.id.au>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 23 Sep 2021 23:48:33 +0200
-Message-ID: <CACRpkdYxNKXuL7w0BhAig3Hr8oHP2+Eqn94ABdaX4mxfxLy+=g@mail.gmail.com>
-Subject: Re: [PATCH 0/2] leds: pca955x: Expose GPIOs for all pins
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, Pavel Machek <pavel@ucw.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210921052821.91-3-caihuoqing@baidu.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 6:39 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+On Tue, 21 Sep 2021 13:28:14 +0800, Cai Huoqing wrote:
+> The NXP i.MX 8QuadXPlus SOC a new ADC IP, so add
+> binding documentation for NXP IMX8QXP ADC.
+> 
+> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+> ---
+> v1->v2:
+>         *Fix some indentation issues.
+>         *Mark status as okay.
+>         *Change clock2 source.
+> v3->v4:
+>         *Remove 'status' from examples.
+>         *Remove unused 'state'.
+>         *Remove interrupts-parent.
+>         *Change num of address/size-cells from 1 to 2.
+> v4->v5:
+>         *Remove unused properties
+> v1 link:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210830172140.414-5-caihuoqing@baidu.com/
+> v3 link:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210907015724.1377-3-caihuoqing@baidu.com/
+> v4 link:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210912071334.1745-3-caihuoqing@baidu.com/
+> 
+>  .../bindings/iio/adc/nxp,imx8qxp-adc.yaml     | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> 
 
-> 1. Contains no (ab)use of pinctrl
-> 2. Always exposes all pins as GPIOs
-> 3. Internally tracks the active pins
-
-Looks good to me!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+Reviewed-by: Rob Herring <robh@kernel.org>
