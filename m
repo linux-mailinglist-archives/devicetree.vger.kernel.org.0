@@ -2,67 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6886C415A66
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 10:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97D4F415A9F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 11:11:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239991AbhIWI44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 04:56:56 -0400
-Received: from mail-vk1-f170.google.com ([209.85.221.170]:34566 "EHLO
-        mail-vk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239986AbhIWI4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 04:56:55 -0400
-Received: by mail-vk1-f170.google.com with SMTP id z202so2313822vkd.1;
-        Thu, 23 Sep 2021 01:55:23 -0700 (PDT)
+        id S240096AbhIWJM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 05:12:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240091AbhIWJMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 05:12:52 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30B90C061757
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 02:11:17 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id t8so15181488wrq.4
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 02:11:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=12EQr3ZLzKhK5ETv63IZ0Tjj44UHMvHzw6pTaaaVejk=;
+        b=oZ1AjSVrUD/dVn2FpE7IzgZHVXx3Zr4Db8ttahRB4jS+mvtQ6lJmu64c1fZj2L0XYu
+         Nk+knP4iBIw+WEFCm8uK9ym2pVOIFRjk8U2jiudtBwtfAEg/sUN4FraMC/Z3PjwoIw1y
+         0wdGMV2l4/3+LTtaWsQLAA4r3wtejkmbb03UVP9otgbKU7goQToYMh48VOJn21QmlYnt
+         CaGMVQ3dQqusilc79T/CqAsAqWw8bu4BvrwNjnJmMCQmyZQDK3JYW593p4QdT+FR+S11
+         uNEwUNSBbbm5oXJKbPtL+aOXT/4NJoK7/CEYK6vVzHV7e3/aRiFHT0Ia1u08Hc090MHR
+         9J7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Pn3d8p5WEmjlwHUyeMcb4ZqHn6KLoL3cOsy+Hfcg6Hc=;
-        b=GxAC4hGm3cLdncpa7QsByQ7D/kPBK1fEROLDdktoc5R0MqzVU3QtPwiLOZ9Xy7DCEw
-         CP0GLIB3r8wrdNfwGY92f2weHVMM5dAyiv4zUXVBBNCBks2pNXPCDHSJKGctvT3kB88J
-         7Wx50bLr67tVEHiMOKEU9WXfKHBWXC5deXRCJ5wUtXCUHMcFz8F4FFUyZ2ZqGyoWJVGI
-         VYoEC230MgjmCJfdlQDJrQZ0KoGedFz9D/da0zAKqTuOXpBX8xqdL2tsNbwAIOJJCuhi
-         4K3Xl5JCuaEYrK3Ck5KuX2QbkaBvr2N6C0r0qI3Ur59Cz7mcgwwqkiwFKOY4S0kdQZ8a
-         14Mw==
-X-Gm-Message-State: AOAM532oqrS5hrUXs9fi3y5kE3yCHXvQHucX0qpTT6RsULnZ+KmE9mgn
-        r0ot3S8Kfon8f6J5ZqHJ8ljrbMYENqXJlFkTlzM=
-X-Google-Smtp-Source: ABdhPJy6mWvufMatGi7BXpFlQVW0DHT6LYg0vfeDZyBjF9wvKy+uQsuOXJohw5MaXtg+csS8iEsDZ1sf21Dw0BhoRu0=
-X-Received: by 2002:a1f:9187:: with SMTP id t129mr2450912vkd.15.1632387323519;
- Thu, 23 Sep 2021 01:55:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210922085831.5375-1-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20210922085831.5375-1-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 23 Sep 2021 10:55:12 +0200
-Message-ID: <CAMuHMdWACcp8qzcDfQrUQLOYaE+M_6J7LC8vR-yrKKJCrXDf1A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: rpc: renesas-rpc-if: Add support for the
- R8A779A0 RPC-IF
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=12EQr3ZLzKhK5ETv63IZ0Tjj44UHMvHzw6pTaaaVejk=;
+        b=Ej3oOfhtfDdSVqN7SExO1xKs2+NpcRcBmIZVn5Ba4IpmSB++WTGqX2vBp/a2lW2ju9
+         fwbyRuQTq+YrqS7MEnkc9acjfl7C3bxAMQCAW/7wcixjW97vC2GSN54QEFR7zNl0e7Yl
+         umhVBv0dycd5V0donzwSp/J5qhRNtkK8TOmxVPl1YEBoI1dxbN3XAtJAw1+1YI8fIsba
+         1U2AnoJkeMTW6tahZZcn1bKbqu5l+nI1iWYuUlnzen1dAletiZ4ET2iK0s66drt2RgmA
+         IkTQy6OTKylyr9rSEkXJXuw135ULyOs1DaVor3xz6R4cR6OFUyUsJuWNodTmfepbU3L2
+         Bbsw==
+X-Gm-Message-State: AOAM531psKqPv0nOuYfW5aely3hwFAEgpOn/HjAEOTnfHHA/xoCdWsYs
+        nmlyQAFRGzwItHt/x7YevReJxSo5WIkvFQ==
+X-Google-Smtp-Source: ABdhPJzsZyxJPiWcYgyjEaAxZQmGBvHDVjGMpwzVh6RVfLuFHlx9uWt9U3zqfL7XJ1MZkxFm98ajBQ==
+X-Received: by 2002:a1c:7714:: with SMTP id t20mr14740503wmi.163.1632388275609;
+        Thu, 23 Sep 2021 02:11:15 -0700 (PDT)
+Received: from google.com ([95.148.6.233])
+        by smtp.gmail.com with ESMTPSA id c7sm4890729wmq.13.2021.09.23.02.11.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Sep 2021 02:11:15 -0700 (PDT)
+Date:   Thu, 23 Sep 2021 10:11:13 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        bcousson@baylibre.com, Tony Lindgren <tony@atomide.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Ryan Barnett <ryan.barnett@collins.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Jason Reeder <jreeder@ti.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v3 36/47] mfd: ti_am335x_tscadc: Support the correctly
+ spelled DT property
+Message-ID: <YUxEsfOvn7Vr8F2c@google.com>
+References: <20210915155908.476767-1-miquel.raynal@bootlin.com>
+ <20210915155908.476767-37-miquel.raynal@bootlin.com>
+ <YUtSVo9HBAiomswv@google.com>
+ <20210923101922.2c108d2b@xps13>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210923101922.2c108d2b@xps13>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 10:59 AM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On Thu, 23 Sep 2021, Miquel Raynal wrote:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Hi Lee,
+> 
+> lee.jones@linaro.org wrote on Wed, 22 Sep 2021 16:57:10 +0100:
+> 
+> > On Wed, 15 Sep 2021, Miquel Raynal wrote:
+> > 
+> > > There was in the past a typo in the coordinate readouts property. The
+> > > bindings have been updated, the touchscreen driver as well and now
+> > > supports both. However, the MFD driver that is in charge of verifying
+> > > the validity of the property only checks the bogus one. Add support for
+> > > the correctly spelled DT property.
+> > > 
+> > > Fixes: c9aeb249bf72 ("Input: ti_am335x_tsc - fix spelling mistake in TSC/ADC DT binding")
+> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > ---
+> > >  drivers/mfd/ti_am335x_tscadc.c | 8 +++++++-
+> > >  1 file changed, 7 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
+> > > index 155a8ed879b3..aa46ed669016 100644
+> > > --- a/drivers/mfd/ti_am335x_tscadc.c
+> > > +++ b/drivers/mfd/ti_am335x_tscadc.c
+> > > @@ -144,8 +144,14 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+> > >  	if (tscadc->data->has_tsc) {
+> > >  		node = of_get_child_by_name(pdev->dev.of_node, "tsc");
+> > >  		of_property_read_u32(node, "ti,wires", &tscmag_wires);
+> > > -		of_property_read_u32(node, "ti,coordiante-readouts", &readouts);
+> > > +		err = of_property_read_u32(node, "ti,coordinate-readouts",
+> > > +					   &readouts);
+> > > +		if (err < 0)
+> > > +			of_property_read_u32(node, "ti,coordiante-readouts",
+> > > +					     &readouts);
+> > > +  
+> > 
+> > How long are you proposing that we support this churn?
+> 
+> Well, I am not proposing anything, I am just "fixing" the driver so
+> that it fits the bindings :) Given the fact that at the end of this
+> series there is a patch that changes the "coordiante" typo to
+> "coordinate" in a device tree source file, I believe it is still too
+> soon...
 
-Gr{oetje,eeting}s,
+If this is something you're changing in this set, please reconsider.
 
-                        Geert
+I'd rather have a slightly misspelled documented property than being
+forced to support 2 for any length of time.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
