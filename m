@@ -2,142 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B75415F22
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:02:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C9BA415F3B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:09:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241109AbhIWNDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 09:03:49 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:33198 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241132AbhIWNDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:03:44 -0400
-Received: from Monstersaurus.local (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2ACDE58B;
-        Thu, 23 Sep 2021 15:02:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1632402131;
-        bh=05rjp5WSR/1Bxv5/2/vCD/16x9TmSWIbQAcYFhs85QA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Tjdwski2OSJLN/jQhgWMIgRH5YZB+fUH7DGeS9i2yYEC9zD7gvFPipIIIluhF+t3f
-         8jyF25BwbY4U9ca5nFzv7s2FpzNWPqg2YzXbujzY9p4lZgRxTk1f+e2LrxD6v8yKqy
-         aVvyu2UNSqG1DJXuJ/chgSgp5htjS9yiJTDlPUgU=
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-To:     linux-renesas-soc@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert@glider.be>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR RENESAS),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3.1] dt-bindings: display: renesas,du: Provide bindings for r8a779a0
-Date:   Thu, 23 Sep 2021 14:01:38 +0100
-Message-Id: <20210923130138.67552-1-kieran.bingham@ideasonboard.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210922234726.3337265-2-kieran.bingham@ideasonboard.com>
-References: <20210922234726.3337265-2-kieran.bingham@ideasonboard.com>
+        id S241114AbhIWNLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 09:11:00 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:42578 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232333AbhIWNLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:11:00 -0400
+Received: by mail-ot1-f50.google.com with SMTP id 67-20020a9d0449000000b00546e5a8062aso8371807otc.9;
+        Thu, 23 Sep 2021 06:09:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=P+k54S/P1ruPyomATuQ9wpcwPryDuiOzPX+x0uQYZM8=;
+        b=1xzLiOlQIjfL9bj3IExlYyUod8Xy4zBH5Emp6indRSvcgQhRasb7FNOc4IQt6Lakaz
+         CeyD+221GwCgor87H990SRlBfEI5Y01pE7pLXRsHbioz+qKIYR4kB/S3ubBlykMos61h
+         TOe/+o7bsX6LzHJAz9sRIc/7YMMTHS+jy/p4TRthkW4w7GgDHLQn09+G0nmYNcAkexjc
+         Fr9z0LqRrf2Q4WZzPOQer2N0N9nzKYboRvgacB6sntpopY42cWkK1P5zYil9lINugIxu
+         xj7WYYs64i5WU9GkSLTC7B2VCYWqH5EJN1dFu8U4kE5NOXmYOENaSuRV08rsz4JtvGye
+         28Ew==
+X-Gm-Message-State: AOAM531mgmHeBcQtwuLjza2hfucEWVGoScp+XwnMchdzJrNCcqf877o1
+        KvYdu2iGBHmB1/HYChovqA==
+X-Google-Smtp-Source: ABdhPJymvzXngT2wLrig0Tguwcl6rfrs40bQiUrF56ZPa2rCMEXIw+KK1Xc2LiYxMkPV+mz4mNng7A==
+X-Received: by 2002:a9d:a47:: with SMTP id 65mr3860534otg.133.1632402568692;
+        Thu, 23 Sep 2021 06:09:28 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id y84sm1329579oie.16.2021.09.23.06.09.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Sep 2021 06:09:28 -0700 (PDT)
+Received: (nullmailer pid 2858849 invoked by uid 1000);
+        Thu, 23 Sep 2021 13:09:27 -0000
+Date:   Thu, 23 Sep 2021 08:09:27 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
+Cc:     linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        Suman Anna <s-anna@ti.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Ohad Ben-Cohen <ohad@wizery.com>, Nishanth Menon <nm@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH V3] dt-bindings: hwlock: omap: Remove redundant binding
+ example
+Message-ID: <YUx8h0MTHg+TMG3z@robh.at.kernel.org>
+References: <20210920123152.32751-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210920123152.32751-1-sinthu.raja@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+On Mon, 20 Sep 2021 18:01:52 +0530, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> The example includes a board-specific compatible property, this is wrong
+> as the example should be board agnostic and should represent the particular
+> binding. Also, the file includes two similar examples but with a different
+> compatible. So, drop the entire second example
+> 
+> Suggested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> ---
+> 
+> Changes in V3:
+> Addressed review comment, that includes adding Suggested By: tag to the
+> commit message
+> 
+> V2: https://lore.kernel.org/all/20210917170805.5079-1-sinthu.raja@ti.com/
+> V1: https://lore.kernel.org/all/20210917094740.18891-1-sinthu.raja@ti.com/
+> 
+>  .../bindings/hwlock/ti,omap-hwspinlock.yaml   | 33 +------------------
+>  1 file changed, 1 insertion(+), 32 deletions(-)
+> 
 
-Extend the Renesas DU display bindings to support the r8a779a0 V3U.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-
----
-v2:
- - Collected Laurent's tag
- - Remove clock-names requirement
- - Specify only a single clock
-
-v3:
- - Use clocknames: 'du.0' instead of 'du' to remain consistent
-
-v3.1:
- - Require clock-names
- - Collect Geert's tag
-
- .../bindings/display/renesas,du.yaml          | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
-index e3ca5389c17d..13efea574584 100644
---- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-+++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-@@ -39,6 +39,7 @@ properties:
-       - renesas,du-r8a77980 # for R-Car V3H compatible DU
-       - renesas,du-r8a77990 # for R-Car E3 compatible DU
-       - renesas,du-r8a77995 # for R-Car D3 compatible DU
-+      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
- 
-   reg:
-     maxItems: 1
-@@ -773,6 +774,56 @@ allOf:
-         - reset-names
-         - renesas,vsps
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,du-r8a779a0
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Functional clock
-+
-+        clock-names:
-+          maxItems: 1
-+          items:
-+            - const: du.0
-+
-+        interrupts:
-+          maxItems: 2
-+
-+        resets:
-+          maxItems: 1
-+
-+        reset-names:
-+          items:
-+            - const: du.0
-+
-+        ports:
-+          properties:
-+            port@0:
-+              description: DSI 0
-+            port@1:
-+              description: DSI 1
-+            port@2: false
-+            port@3: false
-+
-+          required:
-+            - port@0
-+            - port@1
-+
-+        renesas,vsps:
-+          minItems: 2
-+
-+      required:
-+        - clock-names
-+        - interrupts
-+        - resets
-+        - reset-names
-+        - renesas,vsps
-+
- additionalProperties: false
- 
- examples:
--- 
-2.30.2
-
+Reviewed-by: Rob Herring <robh@kernel.org>
