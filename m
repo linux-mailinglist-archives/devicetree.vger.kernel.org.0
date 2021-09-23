@@ -2,102 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9260A416590
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 20:59:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 915CA41661D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 21:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231830AbhIWTBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 15:01:25 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:47346 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232331AbhIWTBZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 15:01:25 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18NIx6kg010807;
-        Thu, 23 Sep 2021 13:59:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632423546;
-        bh=8FiQ79nvdAQVZ3eveOp9w7xiAk/Itwx8l0UKnlfYlmA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=e7qCP915ren9z/q/L9tgu8Vs16nvaLUsLjq0sVTkqwUcRNBbKvlB7sEeNdaoA92eu
-         RB1u9rsFDnGrwAAgfz7Xt5XA4cuwKPfeAUomnAa6PIXckGjEZMGIGG4p5+la3Xx7mQ
-         qO+Q46S7Ti0lQxki4/iTQlX5J3+snw9n36EPxSvY=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18NIx6NA045820
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 23 Sep 2021 13:59:06 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 23
- Sep 2021 13:59:06 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 23 Sep 2021 13:59:06 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18NIx5BM002948;
-        Thu, 23 Sep 2021 13:59:05 -0500
-Date:   Fri, 24 Sep 2021 00:29:04 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     =?utf-8?B?UGF3ZcWC?= Anikiel <pan@semihalf.com>
-CC:     <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <robh+dt@kernel.org>, <arnd@arndb.de>, <olof@lixom.net>,
-        <soc@kernel.org>, <dinguyen@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <tn@semihalf.com>,
-        <ka@semihalf.com>, <jam@semihalf.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mtd: spi-nor: add n25q00 schema
-Message-ID: <20210923185902.6wgkuz4jcelcawrq@ti.com>
-References: <20210920124141.1166544-1-pan@semihalf.com>
- <20210920124141.1166544-2-pan@semihalf.com>
+        id S242941AbhIWTro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 15:47:44 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:10952 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S242861AbhIWTrn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Sep 2021 15:47:43 -0400
+Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18NJW36f031236;
+        Thu, 23 Sep 2021 15:45:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=date : from : to : cc :
+ subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=pp1; bh=OlfxwL5SxCQJGsEygNnP+Bd9S5CycoibyIwI1T9qbFQ=;
+ b=o2g9xUdg4iWokOSpifGukNkZK7jrG3PCnBFvuz4C7oP+gzjHDglARWvYTHBDYKWgrmUN
+ nywTanPgUpTOTd5/xMfhi1L+mJwrCvVoKxej3UCLp5sG7C25GVynwAmr4q0nxjw5T5YF
+ XfSS+haqO/MAAWW7EoLHEph+pIjpH8koxcOuzA2lkqyOwZ+Lt0jX5schDBGsmjxT7nCn
+ nj0KpCKZ1MAIxT1dHKe+ArroeI/VY7R10b19vbUGLmbRaxdWWrC+tHtvcRU2gpGyiZee
+ fQz965XLLMlLTgvc9SCxBhiIocufoeoMuCL9s+OrHLUbKOqWsHzC5EoSrMfU3XKh1xK9 Bg== 
+Received: from ppma03fra.de.ibm.com (6b.4a.5195.ip4.static.sl-reverse.com [149.81.74.107])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 3b8wkuupat-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 23 Sep 2021 15:45:58 -0400
+Received: from pps.filterd (ppma03fra.de.ibm.com [127.0.0.1])
+        by ppma03fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 18NJRuDe003688;
+        Thu, 23 Sep 2021 19:45:56 GMT
+Received: from b06cxnps3075.portsmouth.uk.ibm.com (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
+        by ppma03fra.de.ibm.com with ESMTP id 3b7q6kd587-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 23 Sep 2021 19:45:56 +0000
+Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com [9.149.105.58])
+        by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 18NJjrxv44106172
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 23 Sep 2021 19:45:53 GMT
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id A19734C04A;
+        Thu, 23 Sep 2021 19:45:53 +0000 (GMT)
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 903DC4C05A;
+        Thu, 23 Sep 2021 19:45:51 +0000 (GMT)
+Received: from linux.ibm.com (unknown [9.145.159.121])
+        by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTPS;
+        Thu, 23 Sep 2021 19:45:51 +0000 (GMT)
+Date:   Thu, 23 Sep 2021 22:45:49 +0300
+From:   Mike Rapoport <rppt@linux.ibm.com>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Mike Rapoport <rppt@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        iommu <iommu@lists.linux-foundation.org>,
+        kasan-dev <kasan-dev@googlegroups.com>,
+        KVM list <kvm@vger.kernel.org>,
+        alpha <linux-alpha@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        Linux-MM <linux-mm@kvack.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-s390 <linux-s390@vger.kernel.org>,
+        Linux-sh list <linux-sh@vger.kernel.org>,
+        "open list:SYNOPSYS ARC ARCHITECTURE" 
+        <linux-snps-arc@lists.infradead.org>,
+        linux-um <linux-um@lists.infradead.org>,
+        linux-usb@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        linux-sparc <sparclinux@vger.kernel.org>,
+        xen-devel@lists.xenproject.org
+Subject: Re: [PATCH 0/3] memblock: cleanup memblock_free interface
+Message-ID: <YUzZberbgZE+7HEo@linux.ibm.com>
+References: <20210923074335.12583-1-rppt@kernel.org>
+ <CAHk-=wiJB8H5pZz-AKaSJ7ViRtdxQGJT7eOByp8DJx2OwZSYwA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210920124141.1166544-2-pan@semihalf.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAHk-=wiJB8H5pZz-AKaSJ7ViRtdxQGJT7eOByp8DJx2OwZSYwA@mail.gmail.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: NmcKtlYbna1qS7iyZ4wr-YnA7UP6mwwQ
+X-Proofpoint-ORIG-GUID: NmcKtlYbna1qS7iyZ4wr-YnA7UP6mwwQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-23_06,2021-09-23_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 mlxscore=0 malwarescore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 clxscore=1015 suspectscore=0
+ mlxlogscore=691 adultscore=0 phishscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.12.0-2109200000
+ definitions=main-2109230115
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Tudor
+Hi Linus,
 
-On 20/09/21 02:41PM, Paweł Anikiel wrote:
-> Add schema for the n25q00 NOR flash memory.
+On Thu, Sep 23, 2021 at 09:01:46AM -0700, Linus Torvalds wrote:
+> On Thu, Sep 23, 2021 at 12:43 AM Mike Rapoport <rppt@kernel.org> wrote:
+> >
+> You need to be a LOT more careful.
 > 
-> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
-> ---
->  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> From a trivial check - exactly because I looked at doing it with a
+> script, and decided it's not so easy - I found cases like this:
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> index ed590d7c6e37..efb3c5e05c5a 100644
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -18,7 +18,7 @@ properties:
->        - items:
->            - pattern: "^((((micron|spansion|st),)?\
->                (m25p(40|80|16|32|64|128)|\
-> -              n25q(32b|064|128a11|128a13|256a|512a|164k)))|\
-> +              n25q(00|32b|064|128a11|128a13|256a|512a|164k)))|\
+> -               memblock_free(__pa(paca_ptrs) + new_ptrs_size,
+> +               memblock_free(paca_ptrs + new_ptrs_size,
+> 
+> which is COMPLETELY wrong.
 
-IIUC this is supposed to only be for legacy/old flashes that started out 
-using flash-specific compatibles. Any new flashes should simply use 
-jedec,spi-nor unless there is a legitimate reason to do so.
+I did use a coccinelle script that's slightly more robust that a sed you've
+sent, but then I did a manual review, hence the two small patches with
+fixes. Indeed I missed this one, so to be on the safe side I'll rename only
+the obvious cases where coccinelle can be used reliably and leave all the
+rest as it's now. If somebody cares enough they can update it later.
+ 
+> And no, making the scripting just replace '__pa(x)' with '(void *)(x)'
 
-Until you justify that reason,
-
-Nacked-by: Pratyush Yadav <p.yadav@ti.com>
-
->                atmel,at25df(321a|641|081a)|\
->                everspin,mr25h(10|40|128|256)|\
->                (mxicy|macronix),mx25l(4005a|1606e|6405d|8005|12805d|25635e)|\
-> -- 
-> 2.25.1
+These were actually manual and they are required for variables that
+used as virtual addresses but have unsigned long type, like e.g.
+initrd_start. So it's either __pa(x) or (void *).
 
 -- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Sincerely yours,
+Mike.
