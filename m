@@ -2,72 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A76741619B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 17:01:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 946F84161AC
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 17:04:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241764AbhIWPDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 11:03:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55670 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241734AbhIWPDH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Sep 2021 11:03:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7904E60E05
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 15:01:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632409295;
-        bh=UKPoJ1KZE1z8ljuJANQ6+sZBWeEk8dHbYbTuzdUR2ww=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WdXupnGG8P/SY1GhKPxEK4BV+u9r2DxJ4MGqxxQMCW95xdYvFzOGmfLKsK71+/UFz
-         snf1DKnhKmvigjn3OUG79I/0fa0BbwSYyxgLpLKd4qY1qAYVjQzwEeAURUwnYHetSh
-         PvdEF8DmmRpRE4oTO8fKOz3NWyXoD0pnexlXZzkqt4G7dT1hRj/Wx+hx0+tyVJIqZ/
-         qn+ldXxySO7c+2oIKRSpJqkO6wmJl1GkmCtdYZAKjCRY3BP4so1i3vvgOQvFhzU0+3
-         5iIk+p47AeqLu3GCuzYx/IezKkc8ZtADNtKDRwBZn2bK7fAQiY9MZM4PJ5dbVFYcFd
-         RHJkQEiSa0bMQ==
-Received: by mail-ed1-f47.google.com with SMTP id v10so20186061edj.10
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 08:01:35 -0700 (PDT)
-X-Gm-Message-State: AOAM531l+RDPxQvljhavNoacDaUIsQCKWcimHrHdizcU12iNjb2XIFWD
-        P1Ywqa92Kp/tc5BztAfdzq/8xfcoYGGb9h7GdQ==
-X-Google-Smtp-Source: ABdhPJwz3cvRPhk3j1bboE+QzjGu9L+JPMytRrsRcFKcPa7XTZo0ubf39qz2rIVfw8AMAHTTNj4aJeUftfPkDZLKP+s=
-X-Received: by 2002:a17:906:abd1:: with SMTP id kq17mr5338261ejb.390.1632409276680;
- Thu, 23 Sep 2021 08:01:16 -0700 (PDT)
+        id S241904AbhIWPFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 11:05:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56368 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241870AbhIWPFf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 11:05:35 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7E1C061756
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 08:04:04 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id g62-20020a9d2dc4000000b0054752cfbc59so3201947otb.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 08:04:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n99BUgoHnMCoEPxOhcp9LGegqDHiYuqfxJkhhRVvExs=;
+        b=UTPrb+fiXjsf5mEl41UjIo1i3V3rhi3Z60Zm0dr+pCW/ysLFmtAiRlHYJT/VkE4W00
+         jzhiytM2R2I6boM967PGJemYBW/U98w7W0E+0xSM5wUWHTp7o+YIWX6mfpUnMkVoUGmg
+         6Q1yuMtq30crpVPM2zb0e1xGg5vmumw0EiK7tKzNBc3EdGaG/TQv96axydwVo/frVUhH
+         utPCHtwWw5Git42T+3ZLKcAsFue6r6Mivx0kn/YepjXftgtnCm+8bj+TZPOASiLhnCdl
+         /q3HdMyJtokd8cNi87F3mAoVC6ab3sNddTYEceEMs6WhGwjyHz14MJpE2KfODwezbrdj
+         wHVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n99BUgoHnMCoEPxOhcp9LGegqDHiYuqfxJkhhRVvExs=;
+        b=TUoqWtV3p3+FaIGuCAVHG2zcVWx39UerDssdLdQ+sbLWZ2DLXwFH7FEhs7cYCuPHtk
+         TTgxVBvht/7TyyQCrDo2BMdGKmuTeQQnXdwKZcEYmtCqYR96L6XQ4Xj2OXRgm8QOLX6m
+         tWLuianlYkWaIDSApsMwPjqSSfVEHc1Fu5JlZL1YG0a3817rXRXJlI+vWB3XnHgdx7dB
+         rv4h0lytoGX5vDGA6gVyFdRBvPNYw8MDvcbkw7Zs3UnwVlg0LJtcA/sluuJ+yUIgOnKs
+         /uS8OslMEccX7n8MJXynYqah/QE9Orppcw5opw4vnEDu2i4+WmODiRio8dGAuShcCrJm
+         XRlg==
+X-Gm-Message-State: AOAM532JjTtJuFyyie0P9aPn+w5cKgQNYQ9wcsuL8HahOzuZLibWwzxV
+        MquxyyJurx+O+lzgNOvIUPMOAg==
+X-Google-Smtp-Source: ABdhPJw2Ehvj6quxBELFlvg6Vn3bA7DsrbQr8GXGJ8MaKkvRxnHIOW7/C4X8MsAPrtNsjyXJLkpQqw==
+X-Received: by 2002:a05:6830:1f11:: with SMTP id u17mr525356otg.151.1632409443530;
+        Thu, 23 Sep 2021 08:04:03 -0700 (PDT)
+Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id a11sm1329657oiw.36.2021.09.23.08.04.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Sep 2021 08:04:02 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thara Gopinath <thara.gopinath@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sdm845: mtp: Add vadc channels
+Date:   Thu, 23 Sep 2021 08:04:40 -0700
+Message-Id: <20210923150440.2726049-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210913080024.6951-1-zajec5@gmail.com> <20210913080024.6951-3-zajec5@gmail.com>
- <YUriBVIH/n0p2H+D@google.com>
-In-Reply-To: <YUriBVIH/n0p2H+D@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 23 Sep 2021 10:01:05 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+a9nKvMwzTPxCvF421cGw7CtAqHZxT=E6oO1twJ41d5Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+a9nKvMwzTPxCvF421cGw7CtAqHZxT=E6oO1twJ41d5Q@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: mfd: brcm,cru: add USB 2.0 PHY
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        devicetree@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 2:58 AM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Mon, 13 Sep 2021, Rafa=C5=82 Mi=C5=82ecki wrote:
->
-> > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> >
-> > Northstar's USB 2.0 PHY is part of the CRU MFD.
-> >
-> > Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> > ---
-> >  .../devicetree/bindings/mfd/brcm,cru.yaml         | 15 ++++++++++++++-
-> >  1 file changed, 14 insertions(+), 1 deletion(-)
->
-> Applied, thanks.
+Downstream defines four ADC channels related to thermal sensors external
+to the PM8998 and two channels for internal voltage measurements. Add
+these to the upstream SDM845 MTP as well.
 
-Hopefully this works without patch 2???
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 34 +++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-Rob
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+index 52dd7a858231..28a2f5d46db7 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+@@ -10,6 +10,8 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sdm845.dtsi"
++#include "pm8998.dtsi"
++#include "pmi8998.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. SDM845 MTP";
+@@ -469,6 +471,38 @@ &mss_pil {
+ 	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mbn";
+ };
+ 
++&pm8998_adc {
++	adc-chan@4c {
++		reg = <ADC5_XO_THERM_100K_PU>;
++		label = "xo_therm";
++	};
++
++	adc-chan@4d {
++		reg = <ADC5_AMUX_THM1_100K_PU>;
++		label = "msm_therm";
++	};
++
++	adc-chan@4f {
++		reg = <ADC5_AMUX_THM3_100K_PU>;
++		label = "pa_therm1";
++	};
++
++	adc-chan@51 {
++		reg = <ADC5_AMUX_THM5_100K_PU>;
++		label = "quiet_therm";
++	};
++
++	adc-chan@83 {
++		reg = <ADC5_VPH_PWR>;
++		label = "vph_pwr";
++	};
++
++	adc-chan@85 {
++		reg = <ADC5_VCOIN>;
++		label = "vcoin";
++	};
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
+-- 
+2.29.2
+
