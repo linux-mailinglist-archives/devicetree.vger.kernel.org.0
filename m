@@ -2,90 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 806F3415F42
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80B98415F88
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:22:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241218AbhIWNMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 09:12:31 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:45755 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238588AbhIWNM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:12:29 -0400
-Received: by mail-ot1-f53.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso8353404otv.12;
-        Thu, 23 Sep 2021 06:10:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=cFspYBLeURdfYGcovqZnYm0YSY7LeEP/BmbI4nCU0mU=;
-        b=bTjHAvg7WugVnMOfxjH1AtHQF8aXac9RwivmZNXnwWit+zJ3CzEbDfvf+ZsYZyQQzz
-         EDFcATkv6CtbzpCREmPwJ/Af14XIqZNmeccojIykA3pOv0CO8xslocIXN830eYXf8vqF
-         3gAMSVlPhY8e+qMt12J8DPUOok8reC3rNtu7w0118ELW4+l8is9f28k5654fwcwu6Ec2
-         GRAr77zjVTU8HQ4thxTgLiax3U2ZsEXlZT1b1GKJZmdRS1okQ1ONDj3S8YOrYTyArSGb
-         9fzEvT2lOdpzCP5z5IyB2hIyBuj6SymTgkFKy/+qA90HC2okGKQi9HYnETocrzMsT+H2
-         mkmg==
-X-Gm-Message-State: AOAM532ukkdJuRfMx+FAe7JL5ToYklXXWFnw3nShPjW1UmMUKPi6kW+f
-        1lvv+e0fbyLs5+H6fH31NaUmzfUCsQ==
-X-Google-Smtp-Source: ABdhPJybDJ7Lb8fIZU10sfK8nNbiDimDfC7u+ouNEMJmW0a2CScZ5nkLpcBFkUpNYos99iZlSTkXAA==
-X-Received: by 2002:a9d:4604:: with SMTP id y4mr4229176ote.79.1632402657391;
-        Thu, 23 Sep 2021 06:10:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p8sm1262495oti.15.2021.09.23.06.10.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 06:10:56 -0700 (PDT)
-Received: (nullmailer pid 2861278 invoked by uid 1000);
-        Thu, 23 Sep 2021 13:10:53 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Dikshita Agarwal <dikshita@codeaurora.org>
-Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        stanimir.varbanov@linaro.org, mchehab@kernel.org,
-        devicetree@vger.kernel.org, vgarodia@codeaurora.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        agross@kernel.org, linux-media@vger.kernel.org
-In-Reply-To: <1632377309-25148-1-git-send-email-dikshita@codeaurora.org>
-References: <1632377309-25148-1-git-send-email-dikshita@codeaurora.org>
-Subject: Re: [RESEND PATCH v3] dt-bindings: media: venus: Add sc7280 dt schema
-Date:   Thu, 23 Sep 2021 08:10:53 -0500
-Message-Id: <1632402653.567694.2861277.nullmailer@robh.at.kernel.org>
+        id S241423AbhIWNXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 09:23:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59862 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241436AbhIWNXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:23:32 -0400
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79536C0613E7;
+        Thu, 23 Sep 2021 06:21:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1632403312;
+        bh=YGLTlXsTmeC/x5gt7oNUb0JVpJkVpjrf1XIfaJ9iQq8=;
+        h=From:To:Subject:In-Reply-To:References:Date:From;
+        b=kkrV52lerYc1pOJLVEpmCPb/uZrrlw8BPBXkwAegYneegU3Us4L6S7zTyTAbDRazU
+         py2mDwHGeGFoTCZy+NpK7zGyuvdKjZ6MtsE1kr48LNbGiuI8FkDYdU90O/PyfFAAua
+         zK35mAP1KO4523+yPIc55jToSddItCIDHR29tpOinElSDxPdXFodxfqVIracFrvhiQ
+         wF8YYDsutjyp+3/52W8UHoyTUgFFfv7M7NuEXuwzy2vIKriAFqqvf4i/JHLa+RnBZp
+         bhkIJ53g7ASDmOHx+Zl2RBCPC6AiaAfVO8LlGUQ9VfOkhWysrlm77e0FmMMpAAiDfM
+         YaflrnMoMJCRQ==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4HFbRK63bNz9sX3;
+        Thu, 23 Sep 2021 23:21:49 +1000 (AEST)
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] powerpc/powermac: add missing
+ g5_phy_disable_cpu1() declaration
+In-Reply-To: <20210922160436.130931-1-krzysztof.kozlowski@canonical.com>
+References: <20210922160436.130931-1-krzysztof.kozlowski@canonical.com>
+Date:   Thu, 23 Sep 2021 23:21:49 +1000
+Message-ID: <87v92rl95e.fsf@mpe.ellerman.id.au>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Sep 2021 11:38:29 +0530, Dikshita Agarwal wrote:
-> Add a schema description for the venus video encoder/decoder on the sc7280.
-> 
-> Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> writes:
+> g5_phy_disable_cpu1() is used outside of platforms/powermac/feature.c,
+> so it should have a declaration to fix W=3D1 warning:
+>
+>   arch/powerpc/platforms/powermac/feature.c:1533:6:
+>     error: no previous prototype for =E2=80=98g5_phy_disable_cpu1=E2=80=
+=99 [-Werror=3Dmissing-prototypes]
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>
 > ---
->  .../bindings/media/qcom,sc7280-venus.yaml          | 159 +++++++++++++++++++++
->  1 file changed, 159 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-> 
+>
+> Changes since v1:
+> 1. Drop declaration in powermac/smp.c
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Sorry I missed v1, so I'm going to ask for more changes :}
 
-yamllint warnings/errors:
+>  arch/powerpc/include/asm/pmac_feature.h | 4 ++++
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/media/qcom,sc7280-venus.example.dts:24.31-32 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/media/qcom,sc7280-venus.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1441: dt_binding_check] Error 2
+Putting it here exposes it to the whole kernel, but it's only needed
+inside arch/powerpc/platforms/powermac.
 
-doc reference errors (make refcheckdocs):
+The right place for the prototype is arch/powerpc/platforms/powermac/pmac.h,
+which is for platform internal prototypes.
 
-See https://patchwork.ozlabs.org/patch/1531553
+>  arch/powerpc/platforms/powermac/smp.c   | 2 --
+>  2 files changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/powerpc/include/asm/pmac_feature.h b/arch/powerpc/inclu=
+de/asm/pmac_feature.h
+> index e08e829261b6..7703e5bf1203 100644
+> --- a/arch/powerpc/include/asm/pmac_feature.h
+> +++ b/arch/powerpc/include/asm/pmac_feature.h
+> @@ -143,6 +143,10 @@
+>   */
+>  struct device_node;
+>=20=20
+> +#ifdef CONFIG_PPC64
+> +void g5_phy_disable_cpu1(void);
+> +#endif /* CONFIG_PPC64 */
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+The ifdef around the prototype doesn't gain much, and is extra visual
+noise, so I'd rather without it.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+cheers
