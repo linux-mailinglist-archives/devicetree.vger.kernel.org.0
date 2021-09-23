@@ -2,127 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 915CA41661D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 21:46:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD4DF416630
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 21:49:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242941AbhIWTro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 15:47:44 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:10952 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S242861AbhIWTrn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Sep 2021 15:47:43 -0400
-Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18NJW36f031236;
-        Thu, 23 Sep 2021 15:45:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=date : from : to : cc :
- subject : message-id : references : mime-version : content-type :
- in-reply-to; s=pp1; bh=OlfxwL5SxCQJGsEygNnP+Bd9S5CycoibyIwI1T9qbFQ=;
- b=o2g9xUdg4iWokOSpifGukNkZK7jrG3PCnBFvuz4C7oP+gzjHDglARWvYTHBDYKWgrmUN
- nywTanPgUpTOTd5/xMfhi1L+mJwrCvVoKxej3UCLp5sG7C25GVynwAmr4q0nxjw5T5YF
- XfSS+haqO/MAAWW7EoLHEph+pIjpH8koxcOuzA2lkqyOwZ+Lt0jX5schDBGsmjxT7nCn
- nj0KpCKZ1MAIxT1dHKe+ArroeI/VY7R10b19vbUGLmbRaxdWWrC+tHtvcRU2gpGyiZee
- fQz965XLLMlLTgvc9SCxBhiIocufoeoMuCL9s+OrHLUbKOqWsHzC5EoSrMfU3XKh1xK9 Bg== 
-Received: from ppma03fra.de.ibm.com (6b.4a.5195.ip4.static.sl-reverse.com [149.81.74.107])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3b8wkuupat-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 23 Sep 2021 15:45:58 -0400
-Received: from pps.filterd (ppma03fra.de.ibm.com [127.0.0.1])
-        by ppma03fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 18NJRuDe003688;
-        Thu, 23 Sep 2021 19:45:56 GMT
-Received: from b06cxnps3075.portsmouth.uk.ibm.com (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
-        by ppma03fra.de.ibm.com with ESMTP id 3b7q6kd587-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 23 Sep 2021 19:45:56 +0000
-Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com [9.149.105.58])
-        by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 18NJjrxv44106172
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 23 Sep 2021 19:45:53 GMT
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id A19734C04A;
-        Thu, 23 Sep 2021 19:45:53 +0000 (GMT)
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 903DC4C05A;
-        Thu, 23 Sep 2021 19:45:51 +0000 (GMT)
-Received: from linux.ibm.com (unknown [9.145.159.121])
-        by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTPS;
-        Thu, 23 Sep 2021 19:45:51 +0000 (GMT)
-Date:   Thu, 23 Sep 2021 22:45:49 +0300
-From:   Mike Rapoport <rppt@linux.ibm.com>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Mike Rapoport <rppt@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        iommu <iommu@lists.linux-foundation.org>,
-        kasan-dev <kasan-dev@googlegroups.com>,
-        KVM list <kvm@vger.kernel.org>,
-        alpha <linux-alpha@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux-MM <linux-mm@kvack.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-s390 <linux-s390@vger.kernel.org>,
-        Linux-sh list <linux-sh@vger.kernel.org>,
-        "open list:SYNOPSYS ARC ARCHITECTURE" 
-        <linux-snps-arc@lists.infradead.org>,
-        linux-um <linux-um@lists.infradead.org>,
-        linux-usb@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        linux-sparc <sparclinux@vger.kernel.org>,
-        xen-devel@lists.xenproject.org
-Subject: Re: [PATCH 0/3] memblock: cleanup memblock_free interface
-Message-ID: <YUzZberbgZE+7HEo@linux.ibm.com>
-References: <20210923074335.12583-1-rppt@kernel.org>
- <CAHk-=wiJB8H5pZz-AKaSJ7ViRtdxQGJT7eOByp8DJx2OwZSYwA@mail.gmail.com>
+        id S242985AbhIWTul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 15:50:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37864 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242979AbhIWTul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 15:50:41 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C0BC061756
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 12:49:09 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1mTUiF-0000Qq-7x; Thu, 23 Sep 2021 21:48:55 +0200
+Subject: Re: [PATCH] arm64: dts: rockchip: move aliases to rk356x dtsi
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Arnd Bergmann <arnd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Liang Chen <cl@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Simon Xue <xxm@rock-chips.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20210917110528.24454-1-michael.riesch@wolfvision.net>
+ <2397289.mVTDCA6dLn@diego>
+ <ce3f2ece-4c30-ad01-fd51-8a3e46297234@pengutronix.de>
+ <8375423.X1v87zm6sT@diego>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <8a775b61-dc70-aba7-8d23-888851af29a6@pengutronix.de>
+Date:   Thu, 23 Sep 2021 21:48:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHk-=wiJB8H5pZz-AKaSJ7ViRtdxQGJT7eOByp8DJx2OwZSYwA@mail.gmail.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: NmcKtlYbna1qS7iyZ4wr-YnA7UP6mwwQ
-X-Proofpoint-ORIG-GUID: NmcKtlYbna1qS7iyZ4wr-YnA7UP6mwwQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-23_06,2021-09-23_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 mlxscore=0 malwarescore=0 spamscore=0
- priorityscore=1501 bulkscore=0 clxscore=1015 suspectscore=0
- mlxlogscore=691 adultscore=0 phishscore=0 classifier=spam adjust=0
- reason=mlx scancount=1 engine=8.12.0-2109200000
- definitions=main-2109230115
+In-Reply-To: <8375423.X1v87zm6sT@diego>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Hello Heiko,
 
-On Thu, Sep 23, 2021 at 09:01:46AM -0700, Linus Torvalds wrote:
-> On Thu, Sep 23, 2021 at 12:43 AM Mike Rapoport <rppt@kernel.org> wrote:
-> >
-> You need to be a LOT more careful.
+On 22.09.21 18:51, Heiko Stübner wrote:
+> Hi Ahmad,
 > 
-> From a trivial check - exactly because I looked at doing it with a
-> script, and decided it's not so easy - I found cases like this:
+> Am Mittwoch, 22. September 2021, 15:40:33 CEST schrieb Ahmad Fatoum:
+>> Hello Heiko,
+>>
+>> On 17.09.21 14:01, Heiko Stübner wrote:
+>>> Hi Michael,
+>>>
+>>> Am Freitag, 17. September 2021, 13:05:28 CEST schrieb Michael Riesch:
+>>>> In order to ensure deterministic probe order over different boards,
+>>>> move the aliases of on-SoC components to the corresponding dtsi
+>>>> files.
+>>>
+>>> please read the git history on the other Rockchip SoCs. We just moved
+>>> the aliases on them _to_ the board-files, as requested by
+>>> arm-soc maintainers ;-)
+>>
+>> [Adding Arnd to CC]
+>>
+>> For old boards, changing the aliases may introduce breakage that outweighs
+>> the benefit of having consistent numbering. This doesn't seem to apply here:
+>> rk3566.dtsi is a new device tree not yet in v5.15-rc2 and rk3568 is new in
+>> v5.14 and has only one board partially supported, so if we were to do this
+>> change we should do it now. Boards will still be free to override the aliases,
+>> but those that don't will have consistent numbering regardless of whether
+>> nodes are enabled, cards are detected or probe order.
 > 
-> -               memblock_free(__pa(paca_ptrs) + new_ptrs_size,
-> +               memblock_free(paca_ptrs + new_ptrs_size,
-> 
-> which is COMPLETELY wrong.
+> the request from Arnd was actually to move things like mmc aliases _to_
+> board files away from the soc-level dtsi.
 
-I did use a coccinelle script that's slightly more robust that a sed you've
-sent, but then I did a manual review, hence the two small patches with
-fixes. Indeed I missed this one, so to be on the safe side I'll rename only
-the obvious cases where coccinelle can be used reliably and leave all the
-rest as it's now. If somebody cares enough they can update it later.
- 
-> And no, making the scripting just replace '__pa(x)' with '(void *)(x)'
+Yes, I understood that. But I think for new SoCs, there is a convincing
+case for having them in the SoC dtsi.
 
-These were actually manual and they are required for variables that
-used as virtual addresses but have unsigned long type, like e.g.
-initrd_start. So it's either __pa(x) or (void *).
+> Supposedly to prevent holes in
+> the numbering for example if the sdmmc is mmc0, emmc is mmc1,
+> but sdmmc not used on a board, which would then leave mmc0 empty .
+
+Without aliases, the numbering of the MMC devices in Linux can't be relied
+on. partuuids don't work when you have the same image on e.g. eMMC and SD
+and initramfs may be overkill. I'd thus say it's recommended to have aliases
+for every MMC described in a device tree.
+
+Arguably, the majority of people are fine with the numbering used by the
+SoC vendor and having any numbering will prevent scripts from breaking after
+updates. Board vendors that mind the holes or want to renumber the MMCs can
+just override the aliases on board level.
+
+Cheers,
+Ahmad
+
+> 
+> 
+> Heiko
+> 
+> 
+> 
+>>> Heiko
+>>>
+>>>
+>>>>
+>>>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+>>>> ---
+>>>>  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 6 ------
+>>>>  arch/arm64/boot/dts/rockchip/rk3566.dtsi           | 4 ++++
+>>>>  arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts   | 7 -------
+>>>>  arch/arm64/boot/dts/rockchip/rk3568.dtsi           | 5 +++++
+>>>>  arch/arm64/boot/dts/rockchip/rk356x.dtsi           | 2 ++
+>>>>  5 files changed, 11 insertions(+), 13 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+>>>> index a244f7b87e38..156bbb8aa4c4 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+>>>> @@ -10,12 +10,6 @@
+>>>>  	model = "Pine64 RK3566 Quartz64-A Board";
+>>>>  	compatible = "pine64,quartz64-a", "rockchip,rk3566";
+>>>>  
+>>>> -	aliases {
+>>>> -		ethernet0 = &gmac1;
+>>>> -		mmc0 = &sdmmc0;
+>>>> -		mmc1 = &sdhci;
+>>>> -	};
+>>>> -
+>>>>  	chosen: chosen {
+>>>>  		stdout-path = "serial2:1500000n8";
+>>>>  	};
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+>>>> index 3839eef5e4f7..c1b3841caa77 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+>>>> @@ -4,6 +4,10 @@
+>>>>  
+>>>>  / {
+>>>>  	compatible = "rockchip,rk3566";
+>>>> +
+>>>> +	aliases {
+>>>> +		ethernet0 = &gmac1;
+>>>> +	};
+>>>>  };
+>>>>  
+>>>>  &power {
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+>>>> index 184e2aa2416a..218f85af730c 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+>>>> @@ -13,13 +13,6 @@
+>>>>  	model = "Rockchip RK3568 EVB1 DDR4 V10 Board";
+>>>>  	compatible = "rockchip,rk3568-evb1-v10", "rockchip,rk3568";
+>>>>  
+>>>> -	aliases {
+>>>> -		ethernet0 = &gmac0;
+>>>> -		ethernet1 = &gmac1;
+>>>> -		mmc0 = &sdmmc0;
+>>>> -		mmc1 = &sdhci;
+>>>> -	};
+>>>> -
+>>>>  	chosen: chosen {
+>>>>  		stdout-path = "serial2:1500000n8";
+>>>>  	};
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>>>> index 2fd313a295f8..dd0e800cf752 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>>>> @@ -8,6 +8,11 @@
+>>>>  / {
+>>>>  	compatible = "rockchip,rk3568";
+>>>>  
+>>>> +	aliases {
+>>>> +		ethernet0 = &gmac0;
+>>>> +		ethernet1 = &gmac1;
+>>>> +	};
+>>>> +
+>>>>  	qos_pcie3x1: qos@fe190080 {
+>>>>  		compatible = "rockchip,rk3568-qos", "syscon";
+>>>>  		reg = <0x0 0xfe190080 0x0 0x20>;
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>> index e42fbac6147b..bb0540d3008c 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>> @@ -29,6 +29,8 @@
+>>>>  		i2c3 = &i2c3;
+>>>>  		i2c4 = &i2c4;
+>>>>  		i2c5 = &i2c5;
+>>>> +		mmc0 = &sdmmc0;
+>>>> +		mmc1 = &sdhci;
+>>>>  		serial0 = &uart0;
+>>>>  		serial1 = &uart1;
+>>>>  		serial2 = &uart2;
+>>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> linux-arm-kernel mailing list
+>>> linux-arm-kernel@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>>>
+>>
+>>
+>>
+> 
+> 
+> 
+> 
+> 
+
 
 -- 
-Sincerely yours,
-Mike.
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
