@@ -2,292 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22705415FBE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3A39415FF3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:32:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241258AbhIWN33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 09:29:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33206 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241240AbhIWN3Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:29:24 -0400
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CBC8C061757
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 06:27:52 -0700 (PDT)
-Received: by mail-qv1-xf2e.google.com with SMTP id a12so4108524qvz.4
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 06:27:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=pE+kUqL2PlpkB8tQauFk5qMrInUsMZVJSIrm21iK2iU=;
-        b=4m/+LebjmmnGicS8Pd8sJRVPobVe1maXDDWoaAVFwieN1i6hw3Kp9kzoGbTkRh1UhT
-         9swqVq7r06t6/o3wKxFUtITIzYtdh4I6mbtYxcaZzQB8SsFg2Yj5FAlfBenAI3FCBVss
-         JgPPrEdGP+MPtcCxGYjv5Fe4eOPgRTxDV8CmdMgcxCP+4f/cb9uK5JETc9krKJG2i90a
-         XUWLLzBJ89cEwHNJaYz66VxPz9Qh8lt9RBo6paGaFlENnZXZSlOgui8AtP8tOu3H8DZb
-         1mwKzcdJQaY9ctAYR6Qg1hLsPzWOb0qtEpw8TJe9fCLPboN9syR6mOZkX/UT+fKurtoD
-         uOKQ==
+        id S241285AbhIWNdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 09:33:38 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:44564
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232333AbhIWNdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Sep 2021 09:33:38 -0400
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2B39E40293
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 13:32:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632403926;
+        bh=biNupszeS11Ffqm/B+oAmn3pnoiB+8ke0AHaHHLBLkQ=;
+        h=Subject:To:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=d5f/NGLidvtffGQIvIb3PCjQobjb2RLnV5FyLztye7H1wBOQmoWMDpKd3gFQOYj4w
+         b4N+J5tzXFFskfCRtY8oX2AsyXkNFOa2NyCsvzjp8xfd2dUlG1C1cWimYlta4GID9C
+         k2RAQMvaoHsOG7a8yc+0sGdYJ5gYkwgOPdf5Zp2cAPoUC/ImV6jAK8JWSo/X+gVzvH
+         r+89/+I85seoWR/0aZfBCS06ETl2zZCCS3y9JbcpUMygECWzKbaO4pS80+SkB6lts2
+         jMwfWlUw8CiC1RNQ7Ok6y9jywYi7OI0t8+MZRsmKYL0VqZ0HmhIXeQk0xMoRXH4D1x
+         Ysmx+gq3W9sjg==
+Received: by mail-wr1-f69.google.com with SMTP id x2-20020a5d54c2000000b0015dfd2b4e34so5152952wrv.6
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 06:32:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=pE+kUqL2PlpkB8tQauFk5qMrInUsMZVJSIrm21iK2iU=;
-        b=LWRtB4m3Kkl9BMjGspqB/g3dYI0CCYTSTxU7q0zGPYVCTTH4cuVVH72t1uv8gZdMtv
-         cj3VuK+O4eQ4Yc9MGstTBV3f5NGfgKU9ef1+jsFClYQE2PANZKkMCiQLxL6PbeXpUEO0
-         WAIMCzXk/1TxFk0k8tZYFxCQQEXSWzG+ehGgCi4eUrUJLVaYFa5Exig0TEtUaO3SQbsU
-         S6QAW9ZJN0qmK78CAKUKODtaNaLEGZklDUwzhHlqQkuddWEHTMN+C6vnBziLoznOFFnG
-         tLOz7zykQLoVqkEn5EQWQwDYU49+EBhyK8GjZFlA8gzZ/P9K6sel1YDQO7ImmjaEffAE
-         LwaQ==
-X-Gm-Message-State: AOAM533uJjaFxl/ieNEJaA3cOO/gADqjgmj8T71aYn494/OKnbRfW3yp
-        Iddm1xhRm3xyh8f1TQBLg+NeDg==
-X-Google-Smtp-Source: ABdhPJxKcZBa8xwy3niKjd2dWmWxuN3nSTVdqXmBmAojwo39fnitZFTHCIiwJ4VmaelURDWAHx6F6Q==
-X-Received: by 2002:ad4:55b3:: with SMTP id f19mr4555417qvx.16.1632403671727;
-        Thu, 23 Sep 2021 06:27:51 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id l3sm2755097qtu.47.2021.09.23.06.27.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 06:27:51 -0700 (PDT)
-Message-ID: <c3d05d4bdd26ea7a2098b53251cefcc4d1f6b589.camel@ndufresne.ca>
-Subject: Re: [EXT] Re: [PATCH v9 11/13] ARM64: dts: freescale: imx8q: add
- imx vpu codec entries
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Ming Qian <ming.qian@nxp.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 23 Sep 2021 09:27:49 -0400
-In-Reply-To: <AM6PR04MB63418DC3AB2CF38DCA63AA25E7A39@AM6PR04MB6341.eurprd04.prod.outlook.com>
-References: <cover.1631521295.git.ming.qian@nxp.com>
-         <620081ca2f6441de6307792dbb7797da148cf04c.1631521295.git.ming.qian@nxp.com>
-         <1a454107661fced1adfd8a76a20a819d75b882d4.camel@ndufresne.ca>
-         <AM6PR04MB63418DC3AB2CF38DCA63AA25E7A39@AM6PR04MB6341.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=biNupszeS11Ffqm/B+oAmn3pnoiB+8ke0AHaHHLBLkQ=;
+        b=lcvtNGOnpfLsZTzkBgioPbOPIs1OAgqnH7x5/94pzNqwnNe4M6/4+tUE16MIXUocd4
+         fYOJQsQG0F3RyW9iYkzRHEo4NY21vRS7KxvzZrpI7kgRl3RG4ylUDQdbT/VrNCk6Y5Mw
+         fDkSyaCTVNF8XyCzZ5cBWagH/jFttsLdPDzwpcQU2SopRqFFpEpU3/aY0fmTTRamTvxW
+         TcfECPpdjMW0PFz01yqQc1S67w4DRcAOSFldednLWYGtdsnGOhaqLVEgRM6IgNkW9H4F
+         +zq7XNepqQjjX4pJfZxFCQwpyOL4MT8hqkEJ40z4jTxOlqgFYh4tDDboub43DWdiuQSa
+         6z+w==
+X-Gm-Message-State: AOAM533pgo7wifkVID8qnptBYzV1963fpbB7SvKJYapwJwdvTQpCdvIw
+        aqn7E0m3toPv3yF9SXzHWUwEteoY3kr9FUSypDArMVomeThxZWG9lWvGvSJFyeBLxgWvjONZqjs
+        ovdopUb21c7Unp1t5BpG7uxUyl8ixE4Js8VgATrw=
+X-Received: by 2002:a05:6000:2af:: with SMTP id l15mr5158642wry.129.1632403925640;
+        Thu, 23 Sep 2021 06:32:05 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz5tlOMKjo3eto+NuBuyW5Olj/sQBjkgJBO9qLihHpCc1YBmYn+8lzfFTbdBPPGXM5Q8neptw==
+X-Received: by 2002:a05:6000:2af:: with SMTP id l15mr5158617wry.129.1632403925481;
+        Thu, 23 Sep 2021 06:32:05 -0700 (PDT)
+Received: from [192.168.0.134] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id i9sm9728035wmi.44.2021.09.23.06.32.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Sep 2021 06:32:04 -0700 (PDT)
+Subject: Re: [PATCH v2 1/2] powerpc/powermac: add missing
+ g5_phy_disable_cpu1() declaration
+To:     Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20210922160436.130931-1-krzysztof.kozlowski@canonical.com>
+ <87v92rl95e.fsf@mpe.ellerman.id.au>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <008b61ee-ddc1-ad99-a660-2e0e6c3ae533@canonical.com>
+Date:   Thu, 23 Sep 2021 15:32:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <87v92rl95e.fsf@mpe.ellerman.id.au>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeudi 23 septembre 2021 à 10:31 +0000, Ming Qian a écrit :
-> > -----Original Message-----
-> > From: Nicolas Dufresne [mailto:nicolas@ndufresne.ca]
-> > Sent: Wednesday, September 22, 2021 8:55 PM
-> > To: Ming Qian <ming.qian@nxp.com>; mchehab@kernel.org;
-> > shawnguo@kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
-> > Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de; festevam@gmail.com;
-> > dl-linux-imx <linux-imx@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
-> > linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> > Subject: [EXT] Re: [PATCH v9 11/13] ARM64: dts: freescale: imx8q: add imx
-> > vpu
-> > codec entries
-> > 
-> > Caution: EXT Email
-> > 
-> > Hi Ming,
-> > 
-> > Le lundi 13 septembre 2021 à 17:11 +0800, Ming Qian a écrit :
-> > > Add the Video Processing Unit node for IMX8Q SoC.
-> > 
-> > Just to let you know that this patch no longer apply on 5.15-rc2. Please let
-> > us
-> > know which was your base.
+On 23/09/2021 15:21, Michael Ellerman wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> writes:
+>> g5_phy_disable_cpu1() is used outside of platforms/powermac/feature.c,
+>> so it should have a declaration to fix W=1 warning:
+>>
+>>   arch/powerpc/platforms/powermac/feature.c:1533:6:
+>>     error: no previous prototype for ‘g5_phy_disable_cpu1’ [-Werror=missing-prototypes]
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>>
+>> ---
+>>
+>> Changes since v1:
+>> 1. Drop declaration in powermac/smp.c
 > 
-> Hi Nicolas,
->    The base commit I used is 9c3a0f285248899dfa81585bc5d5bc9ebdb8fead.
->    It's recorded in the conver
+> Sorry I missed v1, so I'm going to ask for more changes :}
+> 
+>>  arch/powerpc/include/asm/pmac_feature.h | 4 ++++
+> 
+> Putting it here exposes it to the whole kernel, but it's only needed
+> inside arch/powerpc/platforms/powermac.
+> 
+> The right place for the prototype is arch/powerpc/platforms/powermac/pmac.h,
+> which is for platform internal prototypes.
 
-Ah, of course, now that you mention I see it, sorry about the noise.
+I'll fix it up.
 
 > 
-> > 
-> > > 
-> > > Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> > > Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
-> > > Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
-> > > ---
-> > >  .../arm64/boot/dts/freescale/imx8-ss-vpu.dtsi | 72
-> > > +++++++++++++++++++  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > > 17 +++++
-> > >  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 24 +++++++
-> > >  3 files changed, 113 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
-> > > b/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
-> > > new file mode 100644
-> > > index 000000000000..f2dde6d14ca3
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
-> > > @@ -0,0 +1,72 @@
-> > > +// SPDX-License-Identifier: GPL-2.0+
-> > > +/*
-> > > + * Copyright 2021 NXP
-> > > + *   Dong Aisheng <aisheng.dong@nxp.com>
-> > > + */
-> > > +
-> > > +vpu: vpu@2c000000 {
-> > > +     #address-cells = <1>;
-> > > +     #size-cells = <1>;
-> > > +     ranges = <0x2c000000 0x0 0x2c000000 0x2000000>;
-> > > +     reg = <0 0x2c000000 0 0x1000000>;
-> > > +     power-domains = <&pd IMX_SC_R_VPU>;
-> > > +     status = "disabled";
-> > > +
-> > > +     mu_m0: mailbox@2d000000 {
-> > > +             compatible = "fsl,imx6sx-mu";
-> > > +             reg = <0x2d000000 0x20000>;
-> > > +             interrupts = <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
-> > > +             #mbox-cells = <2>;
-> > > +             power-domains = <&pd IMX_SC_R_VPU_MU_0>;
-> > > +             status = "okay";
-> > > +     };
-> > > +
-> > > +     mu1_m0: mailbox@2d020000 {
-> > > +             compatible = "fsl,imx6sx-mu";
-> > > +             reg = <0x2d020000 0x20000>;
-> > > +             interrupts = <GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>;
-> > > +             #mbox-cells = <2>;
-> > > +             power-domains = <&pd IMX_SC_R_VPU_MU_1>;
-> > > +             status = "okay";
-> > > +     };
-> > > +
-> > > +     mu2_m0: mailbox@2d040000 {
-> > > +             compatible = "fsl,imx6sx-mu";
-> > > +             reg = <0x2d040000 0x20000>;
-> > > +             interrupts = <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>;
-> > > +             #mbox-cells = <2>;
-> > > +             power-domains = <&pd IMX_SC_R_VPU_MU_2>;
-> > > +             status = "disabled";
-> > > +     };
-> > > +
-> > > +     vpu_core0: vpu_core@2d080000 {
-> > > +             reg = <0x2d080000 0x10000>;
-> > > +             compatible = "nxp,imx8q-vpu-decoder";
-> > > +             power-domains = <&pd IMX_SC_R_VPU_DEC_0>;
-> > > +             mbox-names = "tx0", "tx1", "rx";
-> > > +             mboxes = <&mu_m0 0 0>,
-> > > +                     <&mu_m0 0 1>,
-> > > +                     <&mu_m0 1 0>;
-> > > +             status = "disabled";
-> > > +     };
-> > > +     vpu_core1: vpu_core@2d090000 {
-> > > +             reg = <0x2d090000 0x10000>;
-> > > +             compatible = "nxp,imx8q-vpu-encoder";
-> > > +             power-domains = <&pd IMX_SC_R_VPU_ENC_0>;
-> > > +             mbox-names = "tx0", "tx1", "rx";
-> > > +             mboxes = <&mu1_m0 0 0>,
-> > > +                     <&mu1_m0 0 1>,
-> > > +                     <&mu1_m0 1 0>;
-> > > +             status = "disabled";
-> > > +     };
-> > > +     vpu_core2: vpu_core@2d0a0000 {
-> > > +             reg = <0x2d0a0000 0x10000>;
-> > > +             compatible = "nxp,imx8q-vpu-encoder";
-> > > +             power-domains = <&pd IMX_SC_R_VPU_ENC_1>;
-> > > +             mbox-names = "tx0", "tx1", "rx";
-> > > +             mboxes = <&mu2_m0 0 0>,
-> > > +                     <&mu2_m0 0 1>,
-> > > +                     <&mu2_m0 1 0>;
-> > > +             status = "disabled";
-> > > +     };
-> > > +};
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > > b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > > index 863232a47004..05495b60beb8 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-> > > @@ -196,6 +196,23 @@ &usdhc2 {
-> > >       status = "okay";
-> > >  };
-> > > 
-> > > +&vpu {
-> > > +     compatible = "nxp,imx8qxp-vpu";
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&vpu_core0 {
-> > > +     reg = <0x2d040000 0x10000>;
-> > > +     memory-region = <&decoder_boot>, <&decoder_rpc>;
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&vpu_core1 {
-> > > +     reg = <0x2d050000 0x10000>;
-> > > +     memory-region = <&encoder_boot>, <&encoder_rpc>;
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > >  &iomuxc {
-> > >       pinctrl_fec1: fec1grp {
-> > >               fsl,pins = <
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> > > b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> > > index 1e6b4995091e..6b421cfa5534 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> > > @@ -46,6 +46,9 @@ aliases {
-> > >               serial1 = &lpuart1;
-> > >               serial2 = &lpuart2;
-> > >               serial3 = &lpuart3;
-> > > +             vpu_core0 = &vpu_core0;
-> > > +             vpu_core1 = &vpu_core1;
-> > > +             vpu_core2 = &vpu_core2;
-> > >       };
-> > > 
-> > >       cpus {
-> > > @@ -134,10 +137,30 @@ reserved-memory {
-> > >               #size-cells = <2>;
-> > >               ranges;
-> > > 
-> > > +             decoder_boot: decoder-boot@84000000 {
-> > > +                     reg = <0 0x84000000 0 0x2000000>;
-> > > +                     no-map;
-> > > +             };
-> > > +
-> > > +             encoder_boot: encoder-boot@86000000 {
-> > > +                     reg = <0 0x86000000 0 0x200000>;
-> > > +                     no-map;
-> > > +             };
-> > > +
-> > > +             decoder_rpc: decoder-rpc@0x92000000 {
-> > > +                     reg = <0 0x92000000 0 0x100000>;
-> > > +                     no-map;
-> > > +             };
-> > > +
-> > >               dsp_reserved: dsp@92400000 {
-> > >                       reg = <0 0x92400000 0 0x2000000>;
-> > >                       no-map;
-> > >               };
-> > > +
-> > > +             encoder_rpc: encoder-rpc@0x94400000 {
-> > > +                     reg = <0 0x94400000 0 0x700000>;
-> > > +                     no-map;
-> > > +             };
-> > >       };
-> > > 
-> > >       pmu {
-> > > @@ -258,6 +281,7 @@ map0 {
-> > >       };
-> > > 
-> > >       /* sorted in register address */
-> > > +     #include "imx8-ss-vpu.dtsi"
-> > >       #include "imx8-ss-adma.dtsi"
-> > >       #include "imx8-ss-conn.dtsi"
-> > >       #include "imx8-ss-ddr.dtsi"
-> > 
+>>  arch/powerpc/platforms/powermac/smp.c   | 2 --
+>>  2 files changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/powerpc/include/asm/pmac_feature.h b/arch/powerpc/include/asm/pmac_feature.h
+>> index e08e829261b6..7703e5bf1203 100644
+>> --- a/arch/powerpc/include/asm/pmac_feature.h
+>> +++ b/arch/powerpc/include/asm/pmac_feature.h
+>> @@ -143,6 +143,10 @@
+>>   */
+>>  struct device_node;
+>>  
+>> +#ifdef CONFIG_PPC64
+>> +void g5_phy_disable_cpu1(void);
+>> +#endif /* CONFIG_PPC64 */
 > 
+> The ifdef around the prototype doesn't gain much, and is extra visual
+> noise, so I'd rather without it.
 
 
+Sure.
+
+
+Best regards,
+Krzysztof
