@@ -2,85 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D4A415F40
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:11:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 806F3415F42
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:11:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232874AbhIWNM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 09:12:27 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:33602 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232333AbhIWNM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:12:27 -0400
-Received: by mail-ot1-f47.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso8525813otu.0;
-        Thu, 23 Sep 2021 06:10:55 -0700 (PDT)
+        id S241218AbhIWNMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 09:12:31 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:45755 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238588AbhIWNM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:12:29 -0400
+Received: by mail-ot1-f53.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso8353404otv.12;
+        Thu, 23 Sep 2021 06:10:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=lZyIUxf6Lbe5KXI6O5k0X1qWDOUUH9A99p9KDIfbJII=;
-        b=N0NxQwMsCRa+3xAIo+Gd3uKanQKiO8TJvD9D+u7vxz29hlteOHnuBKlU/SRRFsUz0p
-         j5ztad6rvsD+Ksrby9T/hVKbz7LMi/3ou9xUtoQfmkz7hI/vjxBLmnUzA2397jDVi0FE
-         En5a5iBL+Q7x/ps6vs5RcOSHNm/pkpk10hi1BlbzHR73EycfP6n9PKfXIsnpQWec7JdT
-         XVd5nEtrofNzUKS2OaCSFQb17Vyu0vCRz5XgqrkZeCm5U+R5tZvPBuTwrGSsWnW0kUJ2
-         C5wCcUDZqMOz8MulSGmzBBNZNa71xGkQ5HJa9QJc1CItwcainEwyie6Ke0IQye2HT5UV
-         Oo1w==
-X-Gm-Message-State: AOAM533bjJZIUR9DOyg/9RIEK2uhFlJEtitffURBWJkI2Dcnm4yeybDT
-        9xtrOiSOAqa+LhYqoqE0Mg==
-X-Google-Smtp-Source: ABdhPJyVuulxabDlg3uru1GRD3XQ0SIFmj++TrmUPohVTwFPZ50EHA4FeCgJq1h1B+7Ha+psk47b9w==
-X-Received: by 2002:a05:6830:2445:: with SMTP id x5mr4354977otr.10.1632402655206;
-        Thu, 23 Sep 2021 06:10:55 -0700 (PDT)
+        bh=cFspYBLeURdfYGcovqZnYm0YSY7LeEP/BmbI4nCU0mU=;
+        b=bTjHAvg7WugVnMOfxjH1AtHQF8aXac9RwivmZNXnwWit+zJ3CzEbDfvf+ZsYZyQQzz
+         EDFcATkv6CtbzpCREmPwJ/Af14XIqZNmeccojIykA3pOv0CO8xslocIXN830eYXf8vqF
+         3gAMSVlPhY8e+qMt12J8DPUOok8reC3rNtu7w0118ELW4+l8is9f28k5654fwcwu6Ec2
+         GRAr77zjVTU8HQ4thxTgLiax3U2ZsEXlZT1b1GKJZmdRS1okQ1ONDj3S8YOrYTyArSGb
+         9fzEvT2lOdpzCP5z5IyB2hIyBuj6SymTgkFKy/+qA90HC2okGKQi9HYnETocrzMsT+H2
+         mkmg==
+X-Gm-Message-State: AOAM532ukkdJuRfMx+FAe7JL5ToYklXXWFnw3nShPjW1UmMUKPi6kW+f
+        1lvv+e0fbyLs5+H6fH31NaUmzfUCsQ==
+X-Google-Smtp-Source: ABdhPJybDJ7Lb8fIZU10sfK8nNbiDimDfC7u+ouNEMJmW0a2CScZ5nkLpcBFkUpNYos99iZlSTkXAA==
+X-Received: by 2002:a9d:4604:: with SMTP id y4mr4229176ote.79.1632402657391;
+        Thu, 23 Sep 2021 06:10:57 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v2sm1356923ooh.28.2021.09.23.06.10.53
+        by smtp.gmail.com with ESMTPSA id p8sm1262495oti.15.2021.09.23.06.10.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 06:10:54 -0700 (PDT)
-Received: (nullmailer pid 2861275 invoked by uid 1000);
+        Thu, 23 Sep 2021 06:10:56 -0700 (PDT)
+Received: (nullmailer pid 2861278 invoked by uid 1000);
         Thu, 23 Sep 2021 13:10:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Peter Rosin <peda@axentia.se>, Jean Delvare <jdelvare@suse.com>,
-        devicetree@vger.kernel.org,
-        Johannes Pointner <johannes.pointner@gmail.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-hwmon@vger.kernel.org,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-In-Reply-To: <20210922233901.1871274-1-linus.walleij@linaro.org>
-References: <20210922233901.1871274-1-linus.walleij@linaro.org>
-Subject: Re: [PATCH v3] dt-bindings: hwmon: Convert NTC thermistor to YAML
+To:     Dikshita Agarwal <dikshita@codeaurora.org>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        stanimir.varbanov@linaro.org, mchehab@kernel.org,
+        devicetree@vger.kernel.org, vgarodia@codeaurora.org,
+        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, linux-media@vger.kernel.org
+In-Reply-To: <1632377309-25148-1-git-send-email-dikshita@codeaurora.org>
+References: <1632377309-25148-1-git-send-email-dikshita@codeaurora.org>
+Subject: Re: [RESEND PATCH v3] dt-bindings: media: venus: Add sc7280 dt schema
 Date:   Thu, 23 Sep 2021 08:10:53 -0500
-Message-Id: <1632402653.551768.2861274.nullmailer@robh.at.kernel.org>
+Message-Id: <1632402653.567694.2861277.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Sep 2021 01:39:01 +0200, Linus Walleij wrote:
-> This converts the NTC thermistor DT bindings to YAML. Some care had to
-> be taken since I had to add some illustrations to make the connection
-> layouts graspable.
+On Thu, 23 Sep 2021 11:38:29 +0530, Dikshita Agarwal wrote:
+> Add a schema description for the venus video encoder/decoder on the sc7280.
 > 
-> Cc: Javier Martinez Canillas <javier@dowhile0.org>
-> Cc: Johannes Pointner <johannes.pointner@gmail.com>
-> Cc: Peter Rosin <peda@axentia.se>
-> Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
-> ChangeLog v2->v3:
-> - Rebase on v5.15-rc1
-> - Drop comment reference to thermal-sensor.yaml
-> - Keep the oneOf rather than using an enum for the compatible:
->   I can't figure out how to make deprecated work for enums?
->   https://lore.kernel.org/linux-hwmon/CACRpkdZDLSA5YJtc3XCkfPZUNqo1MOWLBwVDGQ4vN8cDXD3aYg@mail.gmail.com/
-> ChangeLog v1->v2:
-> - Realize I need to CC devicetree@vger.kernel.org on this.
-> - Fix Javier's mail address.
-> - Drop Naveen's mail (bouncing)
-> ---
->  .../bindings/hwmon/ntc-thermistor.yaml        | 141 ++++++++++++++++++
->  .../bindings/hwmon/ntc_thermistor.txt         |  44 ------
->  2 files changed, 141 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/ntc_thermistor.txt
+>  .../bindings/media/qcom,sc7280-venus.yaml          | 159 +++++++++++++++++++++
+>  1 file changed, 159 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -89,12 +68,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.example.dt.yaml: ncp15wb473: $nodename:0: 'ncp15wb473' does not match '^thermistor(.*)?$'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
+Error: Documentation/devicetree/bindings/media/qcom,sc7280-venus.example.dts:24.31-32 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/media/qcom,sc7280-venus.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1441: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1531471
+See https://patchwork.ozlabs.org/patch/1531553
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
