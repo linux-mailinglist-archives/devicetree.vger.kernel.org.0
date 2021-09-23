@@ -2,74 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E07A416727
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D66241672D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 23:11:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243188AbhIWVMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 17:12:42 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:42732 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243189AbhIWVMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:12:41 -0400
-Received: by mail-oi1-f172.google.com with SMTP id x124so11546367oix.9;
-        Thu, 23 Sep 2021 14:11:09 -0700 (PDT)
+        id S243282AbhIWVM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 17:12:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243270AbhIWVMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 17:12:54 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80BEDC061757
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:11:22 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id g41so31320722lfv.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 14:11:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=j2kl8h+4ATUGvv+z4Ez87ArKkPHKBbbEw0WTQVzieXs=;
+        b=jOWtkKpqc7S5Kn1C3py8QN/jT0FuGCpokXxnWw98ZKH4rLwU57UPGk0+slHElmjqBE
+         hGu63FF+1bDgx13Lrhy96S60ckNSOs2CYRLWbx7E0Ir0HBIFBVNIor1IPtUE1xiA9CGo
+         VY8YDBkiLa6jJSDmH1ipdcmqxXtZFQKvTC+lm90OwligXVJ4/u1iNV5AILz5sTYOI2op
+         ZSM7mmXtSj2JKvGgmsXnfsU1oc+pSmQwuvjdWhuUsp9YIz6EZNZbPfkGCjXUH2GP/aLu
+         ZnTFq9D0hvW/u31qafRGq/+yuKcsSW2dw5gOkr+LEZdjPI5SI6AQpx25XKr0XYiqufhP
+         qSNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=r/+C4RWfXuf4J4PV+1A5NzCm+2F6V6un9scbYMc9KVM=;
-        b=MFumNC9W2x9EoAVGU1xXPsDmsx62KFMMNGRPw1wH4P1futGVReHq6Pi3Gc4q7qPDIF
-         FzrIg07hNHd2MPxwEtYLCSaAUNOsRipCuUZk54qEoah66WKcLUjJL7jZRQmRHyqisF5D
-         o3s5WT6mdQcJJWjRk6G6EEpOkw35MthPH9OWomCMLTBzorTDEPlEE6arMRPKcQ2/4Lx9
-         LaVlIixgMi0BIVtHK5RY8oHDBAF4c1HyS3P1z4Pfio1mT4TdymKmsHuzzdCaEf4yfwCw
-         cBIO86UDJbyW5O2VOWZnYpuOBfo4h7lBdlIo+u3iuH+OExox6cYBMT6eaabN+qSbIHmv
-         9d1g==
-X-Gm-Message-State: AOAM530USWWrAVKhZi8Shxco4G4PlquwnUmRdeYj40q4z9w8yXwD0kdq
-        /o+gsT/mxv4rBVi6OSCpc3WaYGfDsw==
-X-Google-Smtp-Source: ABdhPJx4blJeDBUA0kv+vZLi6rvu+cXm1eK7P8e/5xXdDDWK068ZBGzVfg/UJl1LM3nPNi29EzYZYQ==
-X-Received: by 2002:a05:6808:287:: with SMTP id z7mr5436354oic.8.1632431469304;
-        Thu, 23 Sep 2021 14:11:09 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id u12sm1609760otq.20.2021.09.23.14.11.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 14:11:08 -0700 (PDT)
-Received: (nullmailer pid 3529913 invoked by uid 1000);
-        Thu, 23 Sep 2021 21:11:08 -0000
-Date:   Thu, 23 Sep 2021 16:11:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: lm90: convert to dtschema
-Message-ID: <YUztbEMVqAFGyWER@robh.at.kernel.org>
-References: <20210920181913.338772-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j2kl8h+4ATUGvv+z4Ez87ArKkPHKBbbEw0WTQVzieXs=;
+        b=waXNpB7ZbUs6obZJP5TG46KlIG7XKzmZLrNVVJazF5+qYdlTIWFZiWqbcmrvTpZZhq
+         A4S8w3nYCNZQzs+sUM1tf8WCI/wo5f7vOaRLm7yciRxyS/BTV4F1HSOWCnBdb622dXgz
+         0RkTJ7T66omDRqmQjDropnKMS/SlWtXgS0aqUv2yKK+I5qIIKLv2AbvQ5OL5IWwPnS/+
+         a9KhYuBNTSuGznQ2PubPQS0C/FUxH9xL7UP1aLA+7iMW9r6wE7kKYxlqSvXyo2f+kksO
+         XY8LLAD5IiQ96JNZh/s+7vE5/MDhKBPfQzQcTVll/VapBhUHO2g/q94c2C63AXHksAHZ
+         LzbQ==
+X-Gm-Message-State: AOAM5301nbnNV5sdr8DW1/BLWje8oEmZpix0hNqWZHCjuxtdjYB9d513
+        PXF7Aw3v1G/dUzLWjihqOtwEOAzbhl8Ew1wtMHn5Q0Q6e9I=
+X-Google-Smtp-Source: ABdhPJy9hTS9GoHoGmMxbglABqy5TnI8Hc6XNBF5d2W/i3muZBAgBEGKdj5ik2uZqliBCGCi/EaM1fHMnx+/0ay0elE=
+X-Received: by 2002:ac2:4d03:: with SMTP id r3mr6421581lfi.339.1632431480892;
+ Thu, 23 Sep 2021 14:11:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210920181913.338772-1-krzysztof.kozlowski@canonical.com>
+References: <20210923161450.15278-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20210923161450.15278-1-konrad.dybcio@somainline.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 23 Sep 2021 23:11:09 +0200
+Message-ID: <CACRpkdYugrxY3z08tv=_yBb3+h4RggUSWjEakuM6W=kLsbx=QQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add SM6350 pinctrl bindings
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        Martin Botka <martin.botka@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Sep 2021 20:19:12 +0200, Krzysztof Kozlowski wrote:
-> Convert the National LM90 hwmon sensor bindings to DT schema format.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> 
-> ---
-> 
-> Changes since v1:
-> 1. Drop adi,adt7461 from trivial-devices.
-> ---
->  .../devicetree/bindings/hwmon/lm90.txt        | 51 ------------
->  .../bindings/hwmon/national,lm90.yaml         | 79 +++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |  4 -
->  MAINTAINERS                                   |  2 +-
->  4 files changed, 80 insertions(+), 56 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/lm90.txt
->  create mode 100644 Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-> 
+On Thu, Sep 23, 2021 at 6:15 PM Konrad Dybcio
+<konrad.dybcio@somainline.org> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> Add device tree binding Documentation details for Qualcomm SM6350
+> pinctrl driver.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Patch applied for v5.16!
+
+Yours,
+Linus Walleij
