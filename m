@@ -2,488 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7B8141592A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 09:36:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9690C415939
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 09:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234343AbhIWHhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 03:37:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36312 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233033AbhIWHhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 03:37:33 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41829C061757
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 00:36:02 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id u8so22368038lff.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 00:36:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+cC8xLRJRWGZD+7uLcE09Frc3fOq9euGoUEJen8E9co=;
-        b=j0nw7L4/BMsPxeqXknHfUZiRTM18E3iaQ7Zd/S1kr8QhKn2zhsDclGDJr6Xp1nTleh
-         qIeM0YzJ3rR0P9utml9LCoEfM1kmaY9Dy2MUjob0KrF5+4izT203pvcC8JeL1trcdUzn
-         zfHYlJCx1t1Y+w4LxFBuuASLkF05zz2uqaxCM=
+        id S239666AbhIWHov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 03:44:51 -0400
+Received: from mail-vs1-f48.google.com ([209.85.217.48]:38615 "EHLO
+        mail-vs1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239619AbhIWHou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 03:44:50 -0400
+Received: by mail-vs1-f48.google.com with SMTP id y141so5631437vsy.5;
+        Thu, 23 Sep 2021 00:43:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+cC8xLRJRWGZD+7uLcE09Frc3fOq9euGoUEJen8E9co=;
-        b=XgEztrZUrXmt1zBwY//avWLprk33XhCkSRNxigAv2uS4afg4u/UKZzUp4whJZoOdnw
-         BUElSB0i9lu0G7kyEpgWzjMHRnEUn3CNSiqk8UsktwZINBFf+3Pvlh8nH18jbhNO/vxj
-         cYCj0RwHF87gu1grTdhf6r/8gxxqRQKhyhAuSGrz18FkfKTO2W1mBTHH5mOgwXOD8fuI
-         +eVGILTxY+VnY43KAHr5ql/+Cwfje6Lw9tzgaWihZ5vn/5FQtY39H2LuAh9tvbVl7NuD
-         3YCDcpY1TAM0TQLAeF7OnejIe4lPg4JTyE12l/rGo0rHTkTRFeHSSOD/rBl1GhknqImb
-         S90g==
-X-Gm-Message-State: AOAM5306W4MorQfdHpLt+qVPR8LrsyZHAW9CuyUGgA1ns2SKNx6Vabdz
-        VTp8VYUkP1pMYw83Qp1EREGgAchS/dKa2On0K7NQmQ==
-X-Google-Smtp-Source: ABdhPJyeVUu8+Bb/z+yTmjSJR1LlSnBy3H6YcTKdJ9lsnUD6e6FwatPmis30FrQM5bEc9hLx5hfyL7pA6qYaucUFuDg=
-X-Received: by 2002:ac2:4e0f:: with SMTP id e15mr2807538lfr.308.1632382560340;
- Thu, 23 Sep 2021 00:36:00 -0700 (PDT)
+        bh=/Ha/wlFhpE3wzhxqsYVFhc8UhMgQgIXbZ52hSCO/LZU=;
+        b=m4IFBW2LxqIWtnTecaw+YIqcsGQdwAVme+7Twydb5eax83BSXgMt8qyCupNcLKfFjX
+         UquFvnsKgcRuapXSpUETG2Xj2B0gI7c0c4eBLwlkTpoY8g5Yzb3FbL0P4jWPFIlErPs8
+         M2qhu81e5l9W/uXen7p6lHSGYBk7BW5TS9Qh4+4xIm8WcSyKm7Empmrvk3Cb4+Z/fbih
+         pYpumLEK+Mks07eJgmxG5H2TGeawbTJJWook3Wpuj+1WGos6SizzxoD9JyfGJYL7+hqp
+         M/OrXDFh/836dpeXctIBw1FIcllPH5iMISi+x4L90t3xlfJW3hToygPt8FSPlckehlkz
+         gq3Q==
+X-Gm-Message-State: AOAM530b3xwAUgPOCFqTOAvOXcIwygqz2M+ZHVHSF5WmPSer4kt0vtsr
+        5nKHON7ye2aHS/oMmt1i5a9ITtlKuJ0WgBq4QjAOmBT3
+X-Google-Smtp-Source: ABdhPJzKQLsa6lAVIiUAQaqshZfD+cCmfuMpwO2GNU/H/yzPZqKWK1YyaY9bVHDLIhvsPRJM5ycaxYEJFPxbKcq0wx4=
+X-Received: by 2002:a67:cb0a:: with SMTP id b10mr3048824vsl.9.1632382998923;
+ Thu, 23 Sep 2021 00:43:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210922025640.11600-1-zhiyong.tao@mediatek.com> <20210922025640.11600-5-zhiyong.tao@mediatek.com>
-In-Reply-To: <20210922025640.11600-5-zhiyong.tao@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 23 Sep 2021 15:35:49 +0800
-Message-ID: <CAGXv+5Fp0coJn1zVHZU_TWQyqtuc0EEPU4a7uaEsjX6u6EEhzA@mail.gmail.com>
-Subject: Re: [PATCH v13 4/5] pinctrl: mediatek: support rsel feature
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+References: <20210922234726.3337265-1-kieran.bingham@ideasonboard.com> <20210922234726.3337265-2-kieran.bingham@ideasonboard.com>
+In-Reply-To: <20210922234726.3337265-2-kieran.bingham@ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 23 Sep 2021 09:43:07 +0200
+Message-ID: <CAMuHMdWfcxb+5uOnPMiB2Z9rUfnRAg2Pzz--H16fOoVoASP=Kw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: display: renesas,du: Provide bindings
+ for r8a779a0
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM DRIVERS FOR RENESAS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Kieran,
 
-On Wed, Sep 22, 2021 at 10:59 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
+On Thu, Sep 23, 2021 at 1:47 AM Kieran Bingham
+<kieran.bingham@ideasonboard.com> wrote:
+> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 >
-> This patch supports rsel(resistance selection) feature for I2C pins.
-> It provides more resistance selection solution in different ICs.
-> It provides rsel define and si unit solution by identifying
-> "mediatek,rsel_resistance_in_si_unit" property in pio dtsi node.
+> Extend the Renesas DU display bindings to support the r8a779a0 V3U.
 >
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>
 > ---
->  .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  | 231 +++++++++++++++---
->  .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |  45 ++++
->  drivers/pinctrl/mediatek/pinctrl-paris.c      |  60 +++--
->  3 files changed, 288 insertions(+), 48 deletions(-)
+> v2:
+>  - Collected Laurent's tag
+>  - Remove clock-names requirement
+>  - Specify only a single clock
 >
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> index 5b3b048725cc..e84001923aaf 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> @@ -661,6 +661,181 @@ static int mtk_pinconf_bias_set_pupd_r1_r0(struct mtk_pinctrl *hw,
->         return err;
->  }
+> v3:
+>  - Use clocknames: 'du.0' instead of 'du' to remain consistent
+
+Thanks for the update!
+
+> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> @@ -39,6 +39,7 @@ properties:
+>        - renesas,du-r8a77980 # for R-Car V3H compatible DU
+>        - renesas,du-r8a77990 # for R-Car E3 compatible DU
+>        - renesas,du-r8a77995 # for R-Car D3 compatible DU
+> +      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
 >
-> +static int mtk_hw_pin_rsel_lookup(struct mtk_pinctrl *hw,
-> +                                 const struct mtk_pin_desc *desc,
-> +                                 u32 pullup, u32 arg, u32 *rsel_val)
-> +{
-> +       const struct mtk_pin_rsel *rsel;
-> +       int check;
-> +       bool found = false;
+>    reg:
+>      maxItems: 1
+> @@ -773,6 +774,55 @@ allOf:
+>          - reset-names
+>          - renesas,vsps
+>
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,du-r8a779a0
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: Functional clock
 > +
-> +       rsel = hw->soc->pin_rsel;
+> +        clock-names:
+> +          maxItems: 1
+> +          items:
+> +            - const: du.0
 > +
-> +       for (check = 0; check <= hw->soc->npin_rsel - 1; check++) {
-> +               if (desc->number >= rsel[check].s_pin &&
-> +                   desc->number <= rsel[check].e_pin) {
-> +                       if (pullup) {
-> +                               if (rsel[check].up_rsel == arg) {
-> +                                       found = true;
-> +                                       *rsel_val = rsel[check].rsel_index;
-> +                                       break;
-
-The code could simply `return 0` after setting *rsel_val, then we don't have
-to have the `found` variable.
-
-Unless your goal is to use the last matching value in the case of duplicates,
-instead of the first. If that is the case you should add a comment stating
-so along with the reason,
-
-And the structure could be written as
-
-    if (pin not in range)
-        continue;
-
-    ... check value ...
-
-which would decrease the nesting level. Mostly stylistic though.
-
-> +                               }
-> +                       } else {
-> +                               if (rsel[check].down_rsel == arg) {
-> +                                       found = true;
-> +                                       *rsel_val = rsel[check].rsel_index;
-> +                                       break;
-> +                               }
-> +                       }
-> +               }
-> +       }
+> +        interrupts:
+> +          maxItems: 2
 > +
-> +       if (!found) {
-> +               dev_err(hw->dev, "Not support rsel value %d Ohm for pin = %d (%s)\n",
-> +                       arg, desc->number, desc->name);
-> +               return -ENOTSUPP;
-> +       }
+> +        resets:
+> +          maxItems: 1
 > +
-> +       return 0;
-> +}
+> +        reset-names:
+> +          items:
+> +            - const: du.0
 > +
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DSI 0
+> +            port@1:
+> +              description: DSI 1
+> +            port@2: false
+> +            port@3: false
+> +
+> +          required:
+> +            - port@0
+> +            - port@1
+> +
+> +        renesas,vsps:
+> +          minItems: 2
+> +
+> +      required:
+> +        - interrupts
+> +        - resets
+> +        - reset-names
+> +        - renesas,vsps
 
-[...]
-
-> +static int mtk_pinconf_bias_get_rsel(struct mtk_pinctrl *hw,
-> +                                    const struct mtk_pin_desc *desc,
-> +                                    u32 *pullup, u32 *enable)
-> +{
-> +       int pu, pd, rsel, err;
-> +
-> +       err = mtk_hw_get_value(hw, desc, PINCTRL_PIN_REG_RSEL, &rsel);
-> +       if (err)
-> +               goto out;
-> +
-> +       err = mtk_hw_get_value(hw, desc, PINCTRL_PIN_REG_PU, &pu);
-> +       if (err)
-> +               goto out;
-> +
-> +       err = mtk_hw_get_value(hw, desc, PINCTRL_PIN_REG_PD, &pd);
-
-mtk_pinconf_bias_get_pu_pd() couldn't be reused?
+clock-names, for consistency?
 
 > +
-> +       if (pu == 0 && pd == 0) {
-> +               *pullup = 0;
-> +               *enable = MTK_DISABLE;
-> +       } else if (pu == 1 && pd == 0) {
-> +               *pullup = 1;
-> +               if (hw->rsel_si_unit)
-> +                       mtk_rsel_get_si_unit(hw, desc, *pullup, rsel, enable);
-> +               else
-> +                       *enable = rsel + MTK_PULL_SET_RSEL_000;
-> +       } else if (pu == 0 && pd == 1) {
-> +               *pullup = 0;
-> +               if (hw->rsel_si_unit)
-> +                       mtk_rsel_get_si_unit(hw, desc, *pullup, rsel, enable);
-> +               else
-> +                       *enable = rsel + MTK_PULL_SET_RSEL_000;
-> +       } else {
-> +               err = -EINVAL;
-> +               goto out;
-> +       }
-> +
-> +out:
-> +       return err;
-> +}
-> +
->  static int mtk_pinconf_bias_get_pu_pd(struct mtk_pinctrl *hw,
->                                 const struct mtk_pin_desc *desc,
->                                 u32 *pullup, u32 *enable)
-> @@ -742,44 +917,40 @@ static int mtk_pinconf_bias_get_pupd_r1_r0(struct mtk_pinctrl *hw,
->         return err;
->  }
+>  additionalProperties: false
 >
-> -int mtk_pinconf_bias_set_combo(struct mtk_pinctrl *hw,
-> -                               const struct mtk_pin_desc *desc,
-> -                               u32 pullup, u32 arg)
-> -{
-> -       int err;
-> -
-> -       err = mtk_pinconf_bias_set_pu_pd(hw, desc, pullup, arg);
-> -       if (!err)
-> -               goto out;
-> -
-> -       err = mtk_pinconf_bias_set_pullsel_pullen(hw, desc, pullup, arg);
-> -       if (!err)
-> -               goto out;
-> -
-> -       err = mtk_pinconf_bias_set_pupd_r1_r0(hw, desc, pullup, arg);
-> -
-> -out:
-> -       return err;
-> -}
-> -EXPORT_SYMBOL_GPL(mtk_pinconf_bias_set_combo);
-> -
->  int mtk_pinconf_bias_get_combo(struct mtk_pinctrl *hw,
->                               const struct mtk_pin_desc *desc,
->                               u32 *pullup, u32 *enable)
->  {
-> -       int err;
-> +       int err = -ENOTSUPP;
-> +       u32 try_all_type;
->
-> -       err = mtk_pinconf_bias_get_pu_pd(hw, desc, pullup, enable);
-> -       if (!err)
-> -               goto out;
-> +       if (hw->soc->pull_type)
-> +               try_all_type = hw->soc->pull_type[desc->number];
-> +       else
-> +               try_all_type = MTK_PULL_TYPE_MASK;
->
-> -       err = mtk_pinconf_bias_get_pullsel_pullen(hw, desc, pullup, enable);
-> -       if (!err)
-> -               goto out;
-> +       if (try_all_type & MTK_PULL_RSEL_TYPE) {
-> +               err = mtk_pinconf_bias_get_rsel(hw, desc, pullup, enable);
-> +               if (!err)
-> +                       return err;
-> +       }
->
-> -       err = mtk_pinconf_bias_get_pupd_r1_r0(hw, desc, pullup, enable);
-> +       if (try_all_type & MTK_PULL_PU_PD_TYPE) {
-> +               err = mtk_pinconf_bias_get_pu_pd(hw, desc, pullup, enable);
-> +               if (!err)
-> +                       return err;
-> +       }
-> +
-> +       if (try_all_type & MTK_PULL_PULLSEL_TYPE) {
-> +               err = mtk_pinconf_bias_get_pullsel_pullen(hw, desc,
-> +                                                         pullup, enable);
-> +               if (!err)
-> +                       return err;
-> +       }
-> +
-> +       if (try_all_type & MTK_PULL_PUPD_R1R0_TYPE)
-> +               err = mtk_pinconf_bias_get_pupd_r1_r0(hw, desc, pullup, enable);
->
-> -out:
->         return err;
->  }
->  EXPORT_SYMBOL_GPL(mtk_pinconf_bias_get_combo);
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> index a6f1bdb2083b..4908c7aedbe0 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> @@ -17,6 +17,22 @@
->  #define MTK_ENABLE     1
->  #define MTK_PULLDOWN   0
->  #define MTK_PULLUP     1
-> +#define MTK_PULL_PU_PD_TYPE            BIT(0)
-> +#define MTK_PULL_PULLSEL_TYPE          BIT(1)
-> +#define MTK_PULL_PUPD_R1R0_TYPE                BIT(2)
-> +/* MTK_PULL_RSEL_TYPE can select resistance and can be
-> + * turned on/off itself. But it can't be selected pull up/down
-> + */
-> +#define MTK_PULL_RSEL_TYPE             BIT(3)
-> +/* MTK_PULL_PU_PD_RSEL_TYPE is a type which is controlled by
-> + * MTK_PULL_PU_PD_TYPE and MTK_PULL_RSEL_TYPE.
-> + */
-> +#define MTK_PULL_PU_PD_RSEL_TYPE       (MTK_PULL_PU_PD_TYPE \
-> +                                       | MTK_PULL_RSEL_TYPE)
-> +#define MTK_PULL_TYPE_MASK     (MTK_PULL_PU_PD_TYPE |\
-> +                                MTK_PULL_PULLSEL_TYPE |\
-> +                                MTK_PULL_PUPD_R1R0_TYPE |\
-> +                                MTK_PULL_RSEL_TYPE)
->
->  #define EINT_NA        U16_MAX
->  #define NO_EINT_SUPPORT        EINT_NA
-> @@ -42,6 +58,14 @@
->         PIN_FIELD_CALC(_s_pin, _e_pin, 0, _s_addr, _x_addrs, _s_bit,    \
->                        _x_bits, 32, 1)
->
-> +#define PIN_RSEL(_s_pin, _e_pin, _rsel_index, _up_resl, _down_rsel) {  \
-> +               .s_pin = _s_pin,                                        \
-> +               .e_pin = _e_pin,                                        \
-> +               .rsel_index = _rsel_index,                              \
-> +               .up_rsel = _up_resl,                                    \
-> +               .down_rsel = _down_rsel,                                \
-> +       }
-> +
->  /* List these attributes which could be modified for the pin */
->  enum {
->         PINCTRL_PIN_REG_MODE,
-> @@ -67,6 +91,7 @@ enum {
->         PINCTRL_PIN_REG_DRV_E0,
->         PINCTRL_PIN_REG_DRV_E1,
->         PINCTRL_PIN_REG_DRV_ADV,
-> +       PINCTRL_PIN_REG_RSEL,
->         PINCTRL_PIN_REG_MAX,
->  };
->
-> @@ -129,6 +154,21 @@ struct mtk_pin_field_calc {
->         u8  fixed;
->  };
->
-> +/* struct mtk_pin_rsel - the structure that provides bias resistance selection.
+>  examples:
 
-Since you went through the trouble of documenting all the fields, would
-you consider changing this to a kernel-doc style comment? It is similar
-to Java-doc, and would be like:
+With the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-/**
- * struct mtk_pin_rsel ......
- * @s_pin: ....
- * ...
- */
+Gr{oetje,eeting}s,
 
-Only the start of the comment block needs to be changed.
-See Documentation/doc-guide/kernel-doc.rst if you are unsure.
+                        Geert
 
-> + * @s_pin:             the start pin within the rsel range
-> + * @e_pin:             the end pin within the rsel range
-> + * @rsel_index:        the rsel bias resistance index
-> + * @up_rsel:   the pullup rsel bias resistance value
-> + * @down_rsel: the pulldown rsel bias resistance value
-> + */
-> +struct mtk_pin_rsel {
-> +       u16 s_pin;
-> +       u16 e_pin;
-> +       u16 rsel_index;
-> +       u32 up_rsel;
-> +       u32 down_rsel;
-> +};
-> +
->  /* struct mtk_pin_reg_calc - the structure that holds all ranges used to
->   *                          determine which register the pin would make use of
->   *                          for certain pin attribute.
-> @@ -206,6 +246,9 @@ struct mtk_pin_soc {
->         bool                            ies_present;
->         const char * const              *base_names;
->         unsigned int                    nbase_names;
-> +       const unsigned int              *pull_type;
-> +       const struct mtk_pin_rsel       *pin_rsel;
-> +       unsigned int                    npin_rsel;
->
->         /* Specific pinconfig operations */
->         int (*bias_disable_set)(struct mtk_pinctrl *hw,
-> @@ -254,6 +297,8 @@ struct mtk_pinctrl {
->         const char          **grp_names;
->         /* lock pin's register resource to avoid multiple threads issue*/
->         spinlock_t lock;
-> +       /* identify rsel setting by si unit or rsel define in dts node */
-> +       bool rsel_si_unit;
->  };
->
->  void mtk_rmw(struct mtk_pinctrl *pctl, u8 i, u32 reg, u32 mask, u32 set);
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-paris.c b/drivers/pinctrl/mediatek/pinctrl-paris.c
-> index 38aec0177d15..d4e02c5d74a8 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-paris.c
-> +++ b/drivers/pinctrl/mediatek/pinctrl-paris.c
-> @@ -579,8 +579,9 @@ static int mtk_hw_get_value_wrap(struct mtk_pinctrl *hw, unsigned int gpio, int
->  ssize_t mtk_pctrl_show_one_pin(struct mtk_pinctrl *hw,
->         unsigned int gpio, char *buf, unsigned int buf_len)
->  {
-> -       int pinmux, pullup, pullen, len = 0, r1 = -1, r0 = -1;
-> +       int pinmux, pullup, pullen, len = 0, r1 = -1, r0 = -1, rsel = -1;
->         const struct mtk_pin_desc *desc;
-> +       u32 try_all_type;
->
->         if (gpio >= hw->soc->npins)
->                 return -EINVAL;
-> @@ -591,24 +592,39 @@ ssize_t mtk_pctrl_show_one_pin(struct mtk_pinctrl *hw,
->                 pinmux -= hw->soc->nfuncs;
->
->         mtk_pinconf_bias_get_combo(hw, desc, &pullup, &pullen);
-> -       if (pullen == MTK_PUPD_SET_R1R0_00) {
-> -               pullen = 0;
-> -               r1 = 0;
-> -               r0 = 0;
-> -       } else if (pullen == MTK_PUPD_SET_R1R0_01) {
-> -               pullen = 1;
-> -               r1 = 0;
-> -               r0 = 1;
-> -       } else if (pullen == MTK_PUPD_SET_R1R0_10) {
-> -               pullen = 1;
-> -               r1 = 1;
-> -               r0 = 0;
-> -       } else if (pullen == MTK_PUPD_SET_R1R0_11) {
-> +
-> +       if (hw->soc->pull_type)
-> +               try_all_type = hw->soc->pull_type[desc->number];
-> +
-> +       if (hw->rsel_si_unit && (try_all_type & MTK_PULL_RSEL_TYPE)) {
-> +               rsel = pullen;
->                 pullen = 1;
-> -               r1 = 1;
-> -               r0 = 1;
-> -       } else if (pullen != MTK_DISABLE && pullen != MTK_ENABLE) {
-> -               pullen = 0;
-> +       } else {
-> +               /* Case for: R1R0 */
-> +               if (pullen == MTK_PUPD_SET_R1R0_00) {
-> +                       pullen = 0;
-> +                       r1 = 0;
-> +                       r0 = 0;
-> +               } else if (pullen == MTK_PUPD_SET_R1R0_01) {
-> +                       pullen = 1;
-> +                       r1 = 0;
-> +                       r0 = 1;
-> +               } else if (pullen == MTK_PUPD_SET_R1R0_10) {
-> +                       pullen = 1;
-> +                       r1 = 1;
-> +                       r0 = 0;
-> +               } else if (pullen == MTK_PUPD_SET_R1R0_11) {
-> +                       pullen = 1;
-> +                       r1 = 1;
-> +                       r0 = 1;
-> +               }
-> +
-> +               /* Case for: RSEL */
-> +               if (pullen >= MTK_PULL_SET_RSEL_000 &&
-> +                   pullen <= MTK_PULL_SET_RSEL_111) {
-> +                       rsel = pullen - MTK_PULL_SET_RSEL_000;
-> +                       pullen = 1;
-> +               }
->         }
->         len += scnprintf(buf + len, buf_len - len,
->                         "%03d: %1d%1d%1d%1d%02d%1d%1d%1d%1d",
-> @@ -626,6 +642,8 @@ ssize_t mtk_pctrl_show_one_pin(struct mtk_pinctrl *hw,
->         if (r1 != -1) {
->                 len += scnprintf(buf + len, buf_len - len, " (%1d %1d)\n",
->                         r1, r0);
-> +       } else if (rsel != -1) {
-> +               len += scnprintf(buf + len, buf_len - len, " (%1d)\n", rsel);
->         } else {
->                 len += scnprintf(buf + len, buf_len - len, "\n");
->         }
-> @@ -970,6 +988,12 @@ int mtk_paris_pinctrl_probe(struct platform_device *pdev,
->
->         hw->nbase = hw->soc->nbase_names;
->
-> +       if (of_find_property(hw->dev->of_node,
-> +                            "mediatek,rsel_resistance_in_si_unit", NULL))
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-This new property should be documented in the bindings.
-
-
-Regards
-ChenYu
-
-
-
-
-> +               hw->rsel_si_unit = true;
-> +       else
-> +               hw->rsel_si_unit = false;
-> +
->         spin_lock_init(&hw->lock);
->
->         err = mtk_pctrl_build_state(pdev);
-> --
-> 2.25.1
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
