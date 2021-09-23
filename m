@@ -2,82 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D7F0415DC8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 14:04:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D962A415DD9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 14:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240999AbhIWMFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 08:05:34 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:55896 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S241001AbhIWMF3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 08:05:29 -0400
-X-UUID: d698e36c4f574aafa073f6012dcfb7b3-20210923
-X-UUID: d698e36c4f574aafa073f6012dcfb7b3-20210923
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1303560306; Thu, 23 Sep 2021 20:03:55 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 23 Sep 2021 20:03:53 +0800
-Received: from localhost.localdomain (10.17.3.154) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 23 Sep 2021 20:03:53 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, <anan.sun@mediatek.com>,
-        <chao.hao@mediatek.com>, <yen-chang.chen@mediatek.com>
-Subject: [PATCH v3 33/33] iommu/mediatek: mt8195: Enable multi banks for infra iommu
-Date:   Thu, 23 Sep 2021 19:58:40 +0800
-Message-ID: <20210923115840.17813-34-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210923115840.17813-1-yong.wu@mediatek.com>
-References: <20210923115840.17813-1-yong.wu@mediatek.com>
+        id S240700AbhIWMHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 08:07:44 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:56604 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240769AbhIWMHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 08:07:15 -0400
+Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 80BA745E;
+        Thu, 23 Sep 2021 14:05:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1632398743;
+        bh=wumMJjGSoh/Q5099IMcv3lMgAskRHGNIdxF7TvawJVU=;
+        h=From:To:Cc:References:Subject:Date:In-Reply-To:From;
+        b=axXBtEfQnE+VtwQ6zVq0PwkccBZSk1g+QVmEHAD15DNAnW7C2YbzYt9r8EzEPfaXE
+         zCOJDLWFP16vfJgZzH4owXwH3AqH72ssmV/uTZMJ7px+l7x95m9K6GhYcwTBBsu31e
+         8hQ22QouC4yqNSp2tKmL0vX3XHwv7B8pgSvyZQ6A=
+From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20210923010402.3418555-1-kieran.bingham@ideasonboard.com>
+ <20210923010402.3418555-2-kieran.bingham@ideasonboard.com>
+ <CAMuHMdUTYYoZawgMhpTr56v88-mrKWPpgMwC-9KPeYhS6R2AzQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] arm64: dts: renesas: r8a779a0: Add DU support
+Message-ID: <40831759-6827-ea6d-399e-7f27f3669013@ideasonboard.com>
+Date:   Thu, 23 Sep 2021 13:05:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <CAMuHMdUTYYoZawgMhpTr56v88-mrKWPpgMwC-9KPeYhS6R2AzQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the multi-bank functions for infra-iommu. We put PCIE in bank0
-and USB in the last bank(bank4). and we don't use the other banks
-currently, disable them.
+Hi Geert,
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/iommu/mtk_iommu.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+On 23/09/2021 08:00, Geert Uytterhoeven wrote:
+> Hi Kieran,
+> 
+> On Thu, Sep 23, 2021 at 3:04 AM Kieran Bingham
+> <kieran.bingham@ideasonboard.com> wrote:
+>> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>> Provide the device nodes for the DU on the V3U platforms.
+>>
+>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>> ---
+>> v2
+>>  - Use a single clock specification for the whole DU.
+>>
+>> v3:
+>>  - Use 'du.0' clock name instead of 'du'
+> 
+> Thanks for the update!
+> 
+>> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+>> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+>> @@ -1251,6 +1251,36 @@ vspd1: vsp@fea28000 {
+>>                         renesas,fcp = <&fcpvd1>;
+>>                 };
+>>
+>> +               du: display@feb00000 {
+>> +                       compatible = "renesas,du-r8a779a0";
+>> +                       reg = <0 0xfeb00000 0 0x40000>;
+>> +                       interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                    <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
+>> +                       clocks = <&cpg CPG_MOD 411>;
+>> +                       clock-names = "du.0";
+>> +                       power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+>> +                       resets = <&cpg 411>;
+> 
+> You missed reset-names.
 
-diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index 3cb18ed28132..90be8ebbc98a 100644
---- a/drivers/iommu/mtk_iommu.c
-+++ b/drivers/iommu/mtk_iommu.c
-@@ -1273,8 +1273,11 @@ static const struct mtk_iommu_plat_data mt8195_data_infra = {
- 	.flags            = WR_THROT_EN | DCM_DISABLE |
- 			    MTK_IOMMU_TYPE_INFRA | IFA_IOMMU_PCIe_SUPPORT,
- 	.pericfg_comp_str = "mediatek,mt8195-pericfg_ao",
--	.bank_nr	  = 1,
--	.bank_enable      = {true},
-+	.bank_nr	  = 5,
-+	.bank_enable      = {true, false, false, false, true},
-+	.bank_portmsk     = {[0] = GENMASK(19, 16),     /* PCIe */
-+			     [4] = GENMASK(31, 20),     /* USB */
-+			    },
- 	.inv_sel_reg      = REG_MMU_INV_SEL_GEN2,
- 	.iova_region      = single_domain,
- 	.iova_region_nr   = ARRAY_SIZE(single_domain),
--- 
-2.18.0
+Adding it in now.
 
+Sorry I must get the dtchecks automated in my builds...
+
+--
+Kieran
+
+
+> 
+>> +                       vsps = <&vspd0 0>, <&vspd1 0>;
+>> +                       status = "disabled";
+>> +
+>> +                       ports {
+>> +                               #address-cells = <1>;
+>> +                               #size-cells = <0>;
+>> +
+>> +                               port@0 {
+>> +                                       reg = <0>;
+>> +                                       du_out_dsi0: endpoint {
+>> +                                       };
+>> +                               };
+>> +
+>> +                               port@1 {
+>> +                                       reg = <1>;
+>> +                                       du_out_dsi1: endpoint {
+>> +                                       };
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>>                 prr: chipid@fff00044 {
+>>                         compatible = "renesas,prr";
+>>                         reg = <0 0xfff00044 0 4>;
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
