@@ -2,117 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C44415C54
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 12:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B8FD415C59
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 12:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240403AbhIWKzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 06:55:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53148 "EHLO
+        id S236762AbhIWK5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 06:57:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236762AbhIWKzm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 06:55:42 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325C8C061574;
-        Thu, 23 Sep 2021 03:54:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=mA5+4BDnTOddExtuUZSpetH01FEjK2I5iqrBG1DRuY4=; b=EomRy8M8ikbQVvqHHM31purJHv
-        2QgzmAnILS9egknTlTlvl3HUdSEDyh2LH048iKg20y7KOG+KkDiDrwAuL3h//1PdlXp8ayhp46Tgm
-        fI2J6o/MRhlexAfpTO5Ig9wbJPuA0btTMzc1RRKLduVKc+fOYIU338bxJEr2JzvAwq/I=;
-Received: from p200300ccff12c8001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff12:c800:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1mTMMf-0001ke-6C; Thu, 23 Sep 2021 12:54:05 +0200
-Date:   Thu, 23 Sep 2021 12:54:04 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     robh+dt@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, leoyang.li@nxp.com,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/4] ARM: dts: imx: add devicetree for Kobo Libra H2O
-Message-ID: <20210923125404.0b367fb2@aktux>
-In-Reply-To: <CAJKOXPeRBCXBAgaFTtuEFZV=HfcATSFRhGtgJxoSBfFU=Y8g5Q@mail.gmail.com>
-References: <20210918141627.2142457-1-andreas@kemnade.info>
-        <20210918141627.2142457-4-andreas@kemnade.info>
-        <CAJKOXPfQrfOm=LWh97tq6q16v6aGXazksYF+kYxj5ghd0x7LUg@mail.gmail.com>
-        <20210922223847.5efe6471@aktux>
-        <CAJKOXPeRBCXBAgaFTtuEFZV=HfcATSFRhGtgJxoSBfFU=Y8g5Q@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S240451AbhIWK5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 06:57:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21CD2C061757
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 03:56:22 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1mTMOp-0005l1-7d; Thu, 23 Sep 2021 12:56:19 +0200
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1mTMOo-0006Uu-Aq; Thu, 23 Sep 2021 12:56:18 +0200
+Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1mTMOo-001X68-9o; Thu, 23 Sep 2021 12:56:18 +0200
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        p.zabel@pengutronix.de, kernel@pengutronix.de,
+        Michael Tretter <m.tretter@pengutronix.de>
+Subject: [PATCH v4 0/3] media: i2c: isl7998x: Add driver for Intersil ISL7998x
+Date:   Thu, 23 Sep 2021 12:56:15 +0200
+Message-Id: <20210923105618.365513-1-m.tretter@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello,
 
-On Thu, 23 Sep 2021 08:26:58 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+This is v4 of the series to for adding the isl7998x driver [0]
 
-> On Wed, 22 Sept 2021 at 22:38, Andreas Kemnade <andreas@kemnade.info> wrote:
-> >
-> > Hi,
-> >
-> > On Wed, 22 Sep 2021 09:41:39 +0200
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > [...]  
-> > > > +       pinctrl_usdhc1_100mhz: usdhc1grp_100mhz {  
-> > >
-> > > Thanks for the patch.
-> > >
-> > > This does not look like passing the schema validation. Please run
-> > > dtbs_check. The node names should use hyphens and end with "grp"
-> > > suffix. This remark applies to other cases below.
-> > >  
-> > dtbs_check reports a lot of errors originating from imx6sll.dtsi and
-> > friends. But nothing added by me. But yes, node names should use
-> > hyphens, that is documented. I will fix that.
-> >
-> > But having -grp at the end for these things with a frequency in the
-> > name is uncommon.
-> > $ grep -R :.*100mhz arch/arm/boot/dts/imx6s*.dts
-> > arch/arm/boot/dts/imx6sl-evk.dts:               pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-> > arch/arm/boot/dts/imx6sl-evk.dts:               pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-> > arch/arm/boot/dts/imx6sl-evk.dts:               pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-> > arch/arm/boot/dts/imx6sll-evk.dts:      pinctrl_usdhc1_100mhz: usdhc1grp_100mhz {
-> > arch/arm/boot/dts/imx6sll-evk.dts:      pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
-> > arch/arm/boot/dts/imx6sll-kobo-clarahd.dts:     pinctrl_usdhc2_100mhz: usdhc2grp-100mhz {
-> > arch/arm/boot/dts/imx6sll-kobo-clarahd.dts:     pinctrl_usdhc3_100mhz: usdhc3grp-100mhz {
-> > arch/arm/boot/dts/imx6sll-kobo-librah2o.dts:    pinctrl_usdhc1_100mhz: usdhc1grp-100mhz {
-> > arch/arm/boot/dts/imx6sll-kobo-librah2o.dts:    pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
-> > arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts:   pinctrl_usdhc2_100mhz: usdhc2grp-100mhz {
-> > arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts:   pinctrl_usdhc3_100mhz: usdhc3grp-100mhz {
-> > arch/arm/boot/dts/imx6sl-tolino-shine3.dts:     pinctrl_usdhc2_100mhz: usdhc2grp-100mhz {
-> > arch/arm/boot/dts/imx6sl-tolino-shine3.dts:     pinctrl_usdhc3_100mhz: usdhc3grp-100mhz {
-> > arch/arm/boot/dts/imx6sl-tolino-vision5.dts:    pinctrl_usdhc1_100mhz: usdhc1grp-100mhz {
-> > arch/arm/boot/dts/imx6sl-tolino-vision5.dts:    pinctrl_usdhc3_100mhz: usdhc3grp-100mhz {
-> > arch/arm/boot/dts/imx6sl-warp.dts:              pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-> > arch/arm/boot/dts/imx6sl-warp.dts:              pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-> > arch/arm/boot/dts/imx6sx-nitrogen6sx.dts:       pinctrl_usdhc4_100mhz: usdhc4-100mhzgrp {
-> > arch/arm/boot/dts/imx6sx-sabreauto.dts: pinctrl_usdhc3_100mhz: usdhc3grp-100mhz {
-> > arch/arm/boot/dts/imx6sx-softing-vining-2000.dts:       pinctrl_usdhc2_100mhz: usdhc2grp-100mhz {
-> > arch/arm/boot/dts/imx6sx-softing-vining-2000.dts:       pinctrl_usdhc4_100mhz: usdhc4-100mhz {  
-> 
-> I was fixing primarily arm64 boards and did not touch that many of armv7:
-> grep -R :.*100mhz.*grp arch/arm64/boot/dts/freescale/* | wc -l
-> 46
->
-I will send a v2 with the 100mhz style used there. I will not clean up
-dtbs_check issues originating from imx6sl[l].dtsi in this series. That
-would be an issue for a separate series. 
+The isl7998x is an analog video to MIPI CSI-2 or BT.656 converter. The dt
+binding describes only the isl79987 chip, which supports MIPI CSI-2. The
+driver could be extended to handle isl79988 (for BT.656), too, but this isn't
+implemented.
 
-Regards,
-Andreas
+In v4, I added a patch for the imx6-mipi-csi2 to use the
+pre_streamon/post_streamoff call to set the MIPI CSI-2 transmitter into LP11
+mode, which is required by its startup sequence. The isl7998x implements the
+callbacks to power up the decoder.
+
+Furthermore, I updated the driver following the review feedback of v3, rebased
+the series on media/master based on 5.15-rc2, and cleaned up the logging. I
+tried to fix lines with a length of over 80 characters, but I had to skip a
+few locations, where it made things worse. The full changelog is in the
+respective patches.
+
+Michael
+
+[0] https://lore.kernel.org/linux-media/20190520201812.7937-1-marex@denx.de/
+
+Changelog:
+
+v4:
+
+- add patch for imx6-mipi-csi2 to request LP-11 mode
+- update isl7998x driver with review feedback on v3
+
+v3:
+
+- rename pd-gpios property to powerdown-gpios
+- reference graph.yaml for port/ports property
+- remove reference to video-interfaces.txt
+
+v2:
+
+- convert dt binding to yaml
+- change binding to ISL79987 only
+- general driver cleanup
+- convert driver to pm_runtime
+- use ports in device tree for specifying inputs
+- add reset gpio
+
+
+Marek Vasut (2):
+  media: dt-bindings: Add Intersil ISL79987 DT bindings
+  media: i2c: isl7998x: Add driver for Intersil ISL7998x
+
+Michael Tretter (1):
+  media: imx6-mipi-csi2: use pre_streamon callback to set sensor into
+    LP11
+
+ .../bindings/media/i2c/isil,isl79987.yaml     |  100 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |    9 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/isl7998x.c                  | 1416 +++++++++++++++++
+ drivers/staging/media/imx/imx6-mipi-csi2.c    |    9 +-
+ 6 files changed, 1542 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+ create mode 100644 drivers/media/i2c/isl7998x.c
+
+-- 
+2.30.2
 
