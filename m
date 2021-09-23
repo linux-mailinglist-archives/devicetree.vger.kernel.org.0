@@ -2,140 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A213E415B01
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 11:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C82415B47
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 11:47:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240179AbhIWJeu convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 23 Sep 2021 05:34:50 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:44503 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240158AbhIWJeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 05:34:50 -0400
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id B80B2E0011;
-        Thu, 23 Sep 2021 09:33:13 +0000 (UTC)
-Date:   Thu, 23 Sep 2021 11:33:12 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        bcousson@baylibre.com, Tony Lindgren <tony@atomide.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Ryan Barnett <ryan.barnett@collins.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Jason Reeder <jreeder@ti.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v3 36/47] mfd: ti_am335x_tscadc: Support the correctly
- spelled DT property
-Message-ID: <20210923113312.14fc9027@xps13>
-In-Reply-To: <YUxEsfOvn7Vr8F2c@google.com>
-References: <20210915155908.476767-1-miquel.raynal@bootlin.com>
-        <20210915155908.476767-37-miquel.raynal@bootlin.com>
-        <YUtSVo9HBAiomswv@google.com>
-        <20210923101922.2c108d2b@xps13>
-        <YUxEsfOvn7Vr8F2c@google.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S240187AbhIWJt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 05:49:27 -0400
+Received: from pegase2.c-s.fr ([93.17.235.10]:52743 "EHLO pegase2.c-s.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240175AbhIWJt0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Sep 2021 05:49:26 -0400
+Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
+        by localhost (Postfix) with ESMTP id 4HFVhS1HTcz9sTZ;
+        Thu, 23 Sep 2021 11:47:52 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+        by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id N2iojAvTUjrW; Thu, 23 Sep 2021 11:47:52 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase2.c-s.fr (Postfix) with ESMTP id 4HFVhS0G8Vz9sTX;
+        Thu, 23 Sep 2021 11:47:52 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id E65698B775;
+        Thu, 23 Sep 2021 11:47:51 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id HEg50hnqH7U5; Thu, 23 Sep 2021 11:47:51 +0200 (CEST)
+Received: from PO20335.IDSI0.si.c-s.fr (unknown [192.168.202.200])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 224928B763;
+        Thu, 23 Sep 2021 11:47:50 +0200 (CEST)
+Subject: Re: [PATCH 3/3] memblock: cleanup memblock_free interface
+To:     Mike Rapoport <rppt@kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     devicetree@vger.kernel.org, linux-efi@vger.kernel.org,
+        Mike Rapoport <rppt@linux.ibm.com>, kvm@vger.kernel.org,
+        linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+        linux-um@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kasan-dev@googlegroups.com, linux-mips@vger.kernel.org,
+        linux-mm@kvack.org, iommu@lists.linux-foundation.org,
+        linux-usb@vger.kernel.org, linux-alpha@vger.kernel.org,
+        sparclinux@vger.kernel.org, xen-devel@lists.xenproject.org,
+        Andrew Morton <akpm@linux-foundation.org>,
+        linux-snps-arc@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+        linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20210923074335.12583-1-rppt@kernel.org>
+ <20210923074335.12583-4-rppt@kernel.org>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+Message-ID: <1101e3c7-fcb7-a632-8e22-47f4a01ea02e@csgroup.eu>
+Date:   Thu, 23 Sep 2021 11:47:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20210923074335.12583-4-rppt@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr-FR
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
 
-lee.jones@linaro.org wrote on Thu, 23 Sep 2021 10:11:13 +0100:
 
-> On Thu, 23 Sep 2021, Miquel Raynal wrote:
+Le 23/09/2021 à 09:43, Mike Rapoport a écrit :
+> From: Mike Rapoport <rppt@linux.ibm.com>
 > 
-> > Hi Lee,
-> > 
-> > lee.jones@linaro.org wrote on Wed, 22 Sep 2021 16:57:10 +0100:
-> >   
-> > > On Wed, 15 Sep 2021, Miquel Raynal wrote:
-> > >   
-> > > > There was in the past a typo in the coordinate readouts property. The
-> > > > bindings have been updated, the touchscreen driver as well and now
-> > > > supports both. However, the MFD driver that is in charge of verifying
-> > > > the validity of the property only checks the bogus one. Add support for
-> > > > the correctly spelled DT property.
-> > > > 
-> > > > Fixes: c9aeb249bf72 ("Input: ti_am335x_tsc - fix spelling mistake in TSC/ADC DT binding")
-> > > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > > ---
-> > > >  drivers/mfd/ti_am335x_tscadc.c | 8 +++++++-
-> > > >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
-> > > > index 155a8ed879b3..aa46ed669016 100644
-> > > > --- a/drivers/mfd/ti_am335x_tscadc.c
-> > > > +++ b/drivers/mfd/ti_am335x_tscadc.c
-> > > > @@ -144,8 +144,14 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
-> > > >  	if (tscadc->data->has_tsc) {
-> > > >  		node = of_get_child_by_name(pdev->dev.of_node, "tsc");
-> > > >  		of_property_read_u32(node, "ti,wires", &tscmag_wires);
-> > > > -		of_property_read_u32(node, "ti,coordiante-readouts", &readouts);
-> > > > +		err = of_property_read_u32(node, "ti,coordinate-readouts",
-> > > > +					   &readouts);
-> > > > +		if (err < 0)
-> > > > +			of_property_read_u32(node, "ti,coordiante-readouts",
-> > > > +					     &readouts);
-> > > > +    
-> > > 
-> > > How long are you proposing that we support this churn?  
-> > 
-> > Well, I am not proposing anything, I am just "fixing" the driver so
-> > that it fits the bindings :) Given the fact that at the end of this
-> > series there is a patch that changes the "coordiante" typo to
-> > "coordinate" in a device tree source file, I believe it is still too
-> > soon...  
+> For ages memblock_free() interface dealt with physical addresses even
+> despite the existence of memblock_alloc_xx() functions that return a
+> virtual pointer.
 > 
-> If this is something you're changing in this set, please reconsider.
+> Introduce memblock_phys_free() for freeing physical ranges and repurpose
+> memblock_free() to free virtual pointers to make the following pairing
+> abundantly clear:
 > 
-> I'd rather have a slightly misspelled documented property than being
-> forced to support 2 for any length of time.
+> 	int memblock_phys_free(phys_addr_t base, phys_addr_t size);
+> 	phys_addr_t memblock_phys_alloc(phys_addr_t base, phys_addr_t size);
+> 
+> 	void *memblock_alloc(phys_addr_t size, phys_addr_t align);
+> 	void memblock_free(void *ptr, size_t size);
+> 
+> Replace intermediate memblock_free_ptr() with memblock_free() and drop
+> unnecessary aliases memblock_free_early() and memblock_free_early_nid().
+> 
+> Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
+> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
+> ---
 
-I am not suggesting anything here:
-- "coordiante" was introduced back in 2014.
-- "coordinate" was introduced shortly later.
-- "coordiante" was considered part of the "stable API" back in 2014 and
-  even though the right spelling got introduced very shortly after, DT
-  stability rules wanted us to support it forever.
-- The touchscreen driver has immediately be fixed to support both but
-  not the MFD driver, and this does not make any sense!
+> diff --git a/arch/s390/kernel/smp.c b/arch/s390/kernel/smp.c
+> index 1a04e5bdf655..37826d8c4f74 100644
+> --- a/arch/s390/kernel/smp.c
+> +++ b/arch/s390/kernel/smp.c
+> @@ -723,7 +723,7 @@ void __init smp_save_dump_cpus(void)
+>   			/* Get the CPU registers */
+>   			smp_save_cpu_regs(sa, addr, is_boot_cpu, page);
+>   	}
+> -	memblock_free(page, PAGE_SIZE);
+> +	memblock_phys_free(page, PAGE_SIZE);
+>   	diag_amode31_ops.diag308_reset();
+>   	pcpu_set_smt(0);
+>   }
+> @@ -880,7 +880,7 @@ void __init smp_detect_cpus(void)
+>   
+>   	/* Add CPUs present at boot */
+>   	__smp_rescan_cpus(info, true);
+> -	memblock_free_early((unsigned long)info, sizeof(*info));
+> +	memblock_free(info, sizeof(*info));
+>   }
+>   
+>   /*
 
-We *should* either support only one property (1) or support both in the
-two drivers (2), but supporting the two in one driver and supporting
-only one in the other one does not make any sense (given the fact that
-these two drives are tied together, the touchscreen driver does not
-exist without the MFD driver). That is what I am fixing here.
+I'm a bit lost. IIUC memblock_free_early() and memblock_free() where 
+identical.
 
-Is #1 valid? Theoretically it's the best scenario. In practice it is
-not (yet) possible because the two versions are still used in the
-mainline device trees:
-$ git grep coordiante-readouts -- arch/arm/boot/dts/ | wc -l
-1
-$ git grep coordinate-readouts -- arch/arm/boot/dts/ | wc -l
-5
+In the first hunk memblock_free() gets replaced by memblock_phys_free()
+In the second hunk memblock_free_early() gets replaced by memblock_free()
 
-So in this series I am fixing the MFD driver to be sure it handles
-correctly the correctly spelled DT property which is used by 5 boards
-since at least 6 years and I am also updating the remaining DT to use
-the correctly spelled property as well.
+I think it would be easier to follow if you could split it in several 
+patches:
+- First patch: Create memblock_phys_free() and change all relevant 
+memblock_free() to memblock_phys_free() - Or change memblock_free() to 
+memblock_phys_free() and make memblock_free() an alias of it.
+- Second patch: Make memblock_free_ptr() become memblock_free() and 
+change all remaining callers to the new semantics (IIUC 
+memblock_free(__pa(ptr)) becomes memblock_free(ptr) and make 
+memblock_free_ptr() an alias of memblock_free()
+- Fourth patch: Replace and drop memblock_free_ptr()
+- Fifth patch: Drop memblock_free_early() and memblock_free_early_nid() 
+(All users should have been upgraded to memblock_free_phys() in patch 1 
+or memblock_free() in patch 2)
 
-I suppose we could propose to drop support for the "coordiante"
-version of that property in a few years but if we decide to do it right
-now we're definitely gonna break users.
-
-Thanks,
-Miquèl
+Christophe
