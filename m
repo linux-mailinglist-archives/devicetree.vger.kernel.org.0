@@ -2,190 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17C0041561F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 05:34:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C267415795
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 06:34:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239007AbhIWDfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 23:35:53 -0400
-Received: from pi.codeconstruct.com.au ([203.29.241.158]:59534 "EHLO
-        codeconstruct.com.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235623AbhIWDfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 23:35:53 -0400
-Received: by codeconstruct.com.au (Postfix, from userid 10001)
-        id 2D7F120165; Thu, 23 Sep 2021 11:34:16 +0800 (AWST)
-From:   Matt Johnston <matt@codeconstruct.com.au>
-To:     devicetree@vger.kernel.org
-Cc:     linux-i2c@vger.kernel.org, Jeremy Kerr <jk@codeconstruct.com.au>
-Subject: [PATCH v4] dt-bindings: net: New binding mctp-i2c-controller
-Date:   Thu, 23 Sep 2021 11:34:06 +0800
-Message-Id: <20210923033406.3166902-1-matt@codeconstruct.com.au>
-X-Mailer: git-send-email 2.30.2
+        id S231262AbhIWEfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 00:35:34 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59286 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229504AbhIWEfd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 00:35:33 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18N4Xp8h080818;
+        Wed, 22 Sep 2021 23:33:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1632371631;
+        bh=PEu1m0OtQZTIGJy7M0ri4vULRx7aaNibAq8x1p3ykys=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=xU0q1WSYv4UZuKeHK3get+fip2OY+Kq9GofTMfKAmFEpSMBoAOVKphjWSglrhb45i
+         P33cbunfqZzZdsBL/zXtbzq9JdwIJtWxZAhxUQqnDWhH9hMIhWqoztEiUD6uByFPLA
+         rt6QRV9i/PT5oVdsafjEyR4xXOUfdffqImz3cdDo=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18N4Xpa5052074
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 Sep 2021 23:33:51 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
+ Sep 2021 23:33:50 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 22 Sep 2021 23:33:50 -0500
+Received: from [10.250.234.35] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18N4XkHc080721;
+        Wed, 22 Sep 2021 23:33:47 -0500
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: ti,j721e: Add bindings to
+ specify legacy interrupts
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Tom Joseph <tjoseph@cadence.com>, <linux-omap@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+References: <20210804132912.30685-1-kishon@ti.com>
+ <20210804132912.30685-2-kishon@ti.com> <YRapMFNb63MSPJ1E@robh.at.kernel.org>
+ <d0f83129-4c9a-d9ff-380a-cab37a86e29e@ti.com>
+Message-ID: <220bbd3c-304a-ba6a-d20e-634f23f4eed2@ti.com>
+Date:   Thu, 23 Sep 2021 10:03:45 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <d0f83129-4c9a-d9ff-380a-cab37a86e29e@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Used to define a local endpoint to communicate with MCTP peripherals
-attached to an I2C bus. This I2C endpoint can communicate with remote
-MCTP devices on the I2C bus.
+Hi Rob,
 
-In the example I2C topology below (matching the second yaml example) we
-have MCTP devices on busses i2c1 and i2c6. MCTP-supporting busses are
-indicated by the 'mctp-controller' DT property on an I2C bus node.
+On 18/08/21 7:28 pm, Kishon Vijay Abraham I wrote:
+> Hi Rob,
+> 
+> On 13/08/21 10:47 pm, Rob Herring wrote:
+>> On Wed, Aug 04, 2021 at 06:59:10PM +0530, Kishon Vijay Abraham I wrote:
+>>> Add bindings to specify interrupt controller for legacy interrupts.
+>>>
+>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>>> ---
+>>>  .../bindings/pci/ti,j721e-pci-host.yaml           | 15 +++++++++++++++
+>>>  1 file changed, 15 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+>>> index cc900202df29..f461d7b4c0cc 100644
+>>> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+>>> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+>>> @@ -74,6 +74,11 @@ properties:
+>>>  
+>>>    msi-map: true
+>>>  
+>>> +patternProperties:
+>>> +  "interrupt-controller":
+>>
+>> Not a pattern unless you meant for foo-interrupt-controller-bar to be 
+>> valid.
+>>
+>> Anything is allowed in the node?
+> 
+> It's same as whatever is defined in schemas/interrupt-controller.yaml,
+> just that it should be a subnode of pcie@. Should I add whatever is
+> present in schemas/interrupt-controller.yaml here?
 
-A mctp-i2c-controller I2C client DT node is placed at the top of the
-mux topology, since only the root I2C adapter will support I2C slave
-functionality.
-                                               .-------.
-                                               |eeprom |
-    .------------.     .------.               /'-------'
-    | adapter    |     | mux  --@0,i2c5------'
-    | i2c1       ----.*|      --@1,i2c6--.--.
-    |............|    \'------'           \  \  .........
-    | mctp-i2c-  |     \                   \  \ .mctpB  .
-    | controller |      \                   \  '.0x30   .
-    |            |       \  .........        \  '.......'
-    | 0x50       |        \ .mctpA  .         \ .........
-    '------------'         '.0x1d   .          '.mctpC  .
-                            '.......'          '.0x31   .
-                                                '.......'
-(mctpX boxes above are remote MCTP devices not included in the DT at
-present, they can be hotplugged/probed at runtime. A DT binding for
-specific fixed MCTP devices could be added later if required)
-
-Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
----
-
-Changes:
-
-v3->v4:
-Formatting and YAML syntax fixes, rename .yaml file to match
-
-v2->v3:
-Change the MCTP indicator to being a property on the I2C bus node.
+Can you suggest how to include this?
 
 Thanks,
-Matt
+Kishon
 
- Documentation/devicetree/bindings/i2c/i2c.txt |  4 +
- .../bindings/net/mctp-i2c-controller.yaml     | 92 +++++++++++++++++++
- 2 files changed, 96 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
-index b864916e087f..fc3dd7ec0445 100644
---- a/Documentation/devicetree/bindings/i2c/i2c.txt
-+++ b/Documentation/devicetree/bindings/i2c/i2c.txt
-@@ -95,6 +95,10 @@ wants to support one of the below features, it should adapt these bindings.
- - smbus-alert
- 	states that the optional SMBus-Alert feature apply to this bus.
- 
-+- mctp-controller
-+	indicates that the system is accessible via this bus as an endpoint for
-+	MCTP over I2C transport.
-+
- Required properties (per child device)
- --------------------------------------
- 
-diff --git a/Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml b/Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
-new file mode 100644
-index 000000000000..afd11c9422fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/mctp-i2c-controller.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MCTP I2C transport binding
-+
-+maintainers:
-+  - Matt Johnston <matt@codeconstruct.com.au>
-+
-+description: |
-+  An mctp-i2c-controller defines a local MCTP endpoint on an I2C controller.
-+  MCTP I2C is specified by DMTF DSP0237.
-+
-+  An mctp-i2c-controller must be attached to an I2C adapter which supports
-+  slave functionality. I2C busses (either directly or as subordinate mux
-+  busses) are attached to the mctp-i2c-controller with a 'mctp-controller'
-+  property on each used bus. Each mctp-controller I2C bus will be presented
-+  to the host system as a separate MCTP I2C instance.
-+
-+properties:
-+  compatible:
-+    const: mctp-i2c-controller
-+
-+  reg:
-+    minimum: 0x40000000
-+    maximum: 0x4000007f
-+    description: |
-+      7 bit I2C address of the local endpoint.
-+      I2C_OWN_SLAVE_ADDRESS (1<<30) flag must be set.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    // Basic case of a single I2C bus
-+    #include <dt-bindings/i2c/i2c.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      mctp-controller;
-+
-+      mctp@30 {
-+        compatible = "mctp-i2c-controller";
-+        reg = <(0x30 | I2C_OWN_SLAVE_ADDRESS)>;
-+      };
-+    };
-+
-+  - |
-+    // Mux topology with multiple MCTP-handling busses under
-+    // a single mctp-i2c-controller.
-+    // i2c1 and i2c6 can have MCTP devices, i2c5 does not.
-+    #include <dt-bindings/i2c/i2c.h>
-+
-+    i2c1: i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      mctp-controller;
-+
-+      mctp@50 {
-+        compatible = "mctp-i2c-controller";
-+        reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
-+      };
-+    };
-+
-+    i2c-mux {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      i2c-parent = <&i2c1>;
-+
-+      i2c5: i2c@0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <0>;
-+        eeprom@33 {
-+          reg = <0x33>;
-+        };
-+      };
-+
-+      i2c6: i2c@1 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <1>;
-+        mctp-controller;
-+      };
-+    };
--- 
-2.30.2
-
+> 
+> Thanks
+> Kishon
+>>
+>>> +    type: object
+>>> +    description: interrupt controller to handle legacy interrupts.
+>>> +
+>>>  required:
+>>>    - compatible
+>>>    - reg
+>>> @@ -97,6 +102,8 @@ unevaluatedProperties: false
+>>>  
+>>>  examples:
+>>>    - |
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>      #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>>>      #include <dt-bindings/gpio/gpio.h>
+>>>  
+>>> @@ -131,5 +138,13 @@ examples:
+>>>              ranges = <0x01000000 0x0 0x10001000  0x00 0x10001000  0x0 0x0010000>,
+>>>                       <0x02000000 0x0 0x10011000  0x00 0x10011000  0x0 0x7fef000>;
+>>>              dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
+>>> +
+>>> +
+>>> +            pcie0_intc: interrupt-controller {
+>>> +                    interrupt-controller;
+>>> +                    #interrupt-cells = <1>;
+>>> +                    interrupt-parent = <&gic500>;
+>>> +                    interrupts = <GIC_SPI 312 IRQ_TYPE_EDGE_RISING>;
+>>> +            };
+>>>          };
+>>>      };
+>>> -- 
+>>> 2.17.1
+>>>
+>>>
