@@ -2,224 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE07415534
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 03:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00794415551
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 04:01:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238839AbhIWBtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 21:49:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43924 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238177AbhIWBtm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 21:49:42 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE017C061574;
-        Wed, 22 Sep 2021 18:48:11 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id f2so3295850qvx.2;
-        Wed, 22 Sep 2021 18:48:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vHchXl8mrU0hcMLr2GF0n33FKRG61T38fqwkdg1AY/Q=;
-        b=iObpCcVfEXOR1qFpSmNg/dL3bBP7IDkI30qoSfwYqrmjrAOA/S7zkogrnLZMUN2kgG
-         KEspLpaVXS8WFLxOjMwPwM3VF+S1fKUMgO7FsnihdnY8yr4VkevWYFFjdR04eICgk7jB
-         PZLTv42hrFGGc2irzQ/LRbtwtbdCyoGAMufnl6nUdmlbe/MAvl5OzKUwCQTt1kWMOA6F
-         /5g1HWDpM7IaNC196Sg6TvEys43fDTdEbMTWjVSosB/anzCMhZYsL7bD2uDdpkFOQwin
-         xZQqTPI4u82z8pfdGDgeyjd8FJ25JNijINchot8wru0ULxm5RlbSDY8zMp6EsshlEMEI
-         3PDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vHchXl8mrU0hcMLr2GF0n33FKRG61T38fqwkdg1AY/Q=;
-        b=aRVsqvgBYqrtp9G4OOcMWTJFYjbP1FM+EwgqNpBpXO0bPZWPrgi6oDpnueTX0eRBjx
-         itdkYjub1nIV8yrLiippeSqzjZcNr4Z7QewWqFZim3O78v53gJcgigPvuAY0RuqJHoUU
-         Gn3v47EmWoftaIZaE7/oGGbJguz49XofwVhVd9gH4vscm1JK2f2z/RYLfsMajeaGZKCm
-         WitA6WbGDuJ1Eg1WW0qjGney27PPykzCX+nVW42CWqhrty+xSMhlfq41aL3bcEbAI29g
-         WB/CXlV9VQzjOvYK0s5sVsyXF087Dwb4OanP65yp98JFAE7+1mH55X4+OFzCgmlTiWSF
-         7nsA==
-X-Gm-Message-State: AOAM530qMlM8MSmpSNvh3nmYrQI27tx6rvycdx3tXEAt0gTqQt/AuWdb
-        teyL01f1Wqm89OZSADOmBhzQS19LrYGLOhTSO8g=
-X-Google-Smtp-Source: ABdhPJxXcDiICkp9V2vpdhBV3Rs+efwY7tasjR5Y6NoCT15J86mqXDDAPpkCgJ8PW42HNo54E8b27JVnfg4ntU5zyuc=
-X-Received: by 2002:a05:6214:584:: with SMTP id bx4mr2261885qvb.40.1632361691038;
- Wed, 22 Sep 2021 18:48:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
- <1631092255-25150-4-git-send-email-shengjiu.wang@nxp.com> <20210915161624.GA1770838@p14s>
- <CAA+D8AO0c+jk_k7j=ZvNFsVvC-p_zMLPJDS3qmLjNbJ+U0E9Cg@mail.gmail.com>
- <20210916165957.GA1825273@p14s> <CAA+D8AN_ni_XmEFNfY0Z0qLAJX00XFSUP1RkJdNQd-MVY6pd4g@mail.gmail.com>
- <CAA+D8AMaszzT5q8oGhXOtE3W5Ue9S3r=es2sTp2uJ7RwjX8Bzg@mail.gmail.com>
- <20210917152236.GA1878943@p14s> <CAA+D8ANwXZdXheMkV8VHJ90JT8o+9YXFuE-EjTejijGUa4YALw@mail.gmail.com>
- <20210922175521.GA2157824@p14s>
-In-Reply-To: <20210922175521.GA2157824@p14s>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Thu, 23 Sep 2021 09:48:00 +0800
-Message-ID: <CAA+D8AOXF_0qeg0H8zeSkz5bj8VQT95B1yMo98jSxxHUooYViw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] remoteproc: imx_dsp_rproc: Add remoteproc driver
- for DSP on i.MX
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Ohad Ben Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S238842AbhIWCDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 22:03:00 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:38900 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238177AbhIWCC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 22:02:59 -0400
+Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20210923020126epoutp031dd25f9c05d9e44197bc750ebc8d0ff1~nUQiEc4xj1427814278epoutp03x
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 02:01:26 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20210923020126epoutp031dd25f9c05d9e44197bc750ebc8d0ff1~nUQiEc4xj1427814278epoutp03x
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1632362487;
+        bh=htrpPC8RyjK4PpLp5m+xJVpuwzY4lLsGwaLErTEO478=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=Gh767eFbUpPprUSDkEi6RPUUj1/G+ngui9k50LURVnamV2UuoW60Q14NrDTaktJBh
+         5gIXTp2YnhNUgjbV24kafpg1wB7nSYEbrQOrjP0R+JoEtT30YXvLy6JTGNWVBUmppq
+         DkVQfV+Ct+YE5wPwOUFICppV69jafHlck4w0nqfQ=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20210923020126epcas1p1d74005ffae2176b488fc05c3f51e560b~nUQhRAeEj1706017060epcas1p1N;
+        Thu, 23 Sep 2021 02:01:26 +0000 (GMT)
+Received: from epsmges1p4.samsung.com (unknown [182.195.38.237]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4HFJL43cXJz4x9Q0; Thu, 23 Sep
+        2021 02:01:16 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmges1p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        47.D2.62504.AEFDB416; Thu, 23 Sep 2021 11:01:14 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
+        20210923020112epcas1p3552159d3e948679fc1f2ceaec1a3ab75~nUQUx7GL00794907949epcas1p3b;
+        Thu, 23 Sep 2021 02:01:12 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20210923020112epsmtrp11e09141904c2fe342f713f0202762a7c~nUQUxIN1E2429924299epsmtrp1Q;
+        Thu, 23 Sep 2021 02:01:12 +0000 (GMT)
+X-AuditID: b6c32a38-79bff7000002f428-26-614bdfeace90
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        42.D6.08750.8EFDB416; Thu, 23 Sep 2021 11:01:12 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20210923020112epsmtip26d1b8ad9375c4306ba47a5fe14a2a640~nUQUi184h1897118971epsmtip2_;
+        Thu, 23 Sep 2021 02:01:12 +0000 (GMT)
+Subject: Re: [PATCH v2 3/3] ARM: dts: exynos: align PPMU event node names
+ with dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <a7a4e1d3-77a7-a48e-4cbf-36cb06435e9c@samsung.com>
+Date:   Thu, 23 Sep 2021 11:22:20 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
+MIME-Version: 1.0
+In-Reply-To: <20210920071753.38560-3-krzysztof.kozlowski@canonical.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrEJsWRmVeSWpSXmKPExsWy7bCmge6r+96JBu/WS1lsnLGe1WL+kXOs
+        Fhvf/mCyONv0ht1i0+NrrBaXd81hs/jce4TRYsb5fUwWa4/cZbe43biCzaJ17xF2i/anL5kd
+        eDxmNfSyeWxa1cnmsXlJvUffllWMHp83yQWwRmXbZKQmpqQWKaTmJeenZOal2yp5B8c7x5ua
+        GRjqGlpamCsp5CXmptoqufgE6Lpl5gCdp6RQlphTChQKSCwuVtK3synKLy1JVcjILy6xVUot
+        SMkpMC3QK07MLS7NS9fLSy2xMjQwMDIFKkzIzmje0cVWsF2w4sSex8wNjHt5uxg5OCQETCTm
+        /+TqYuTiEBLYwShx8ccfJgjnE6PE74P/WSGcz4wS91+uZexi5ATrmHZlMiNEYhejxKzz09kh
+        nPeMEvtaWplAqoQFIiU+zdkJlhARuMYkcWTBSbDBzAKTGCWO/F7OBlLFJqAlsf/FDTCbX0BR
+        4uqPx2A7eAXsJNqP3gSLswioSpz/MZEFxBYVCJM4ua0FqkZQ4uTMJ2BxTgF3ibkTH7KD2MwC
+        4hK3nsxngrDlJba/ncMMslhC4AiHxPx5n9ghnnCR2Lf1C5QtLPHq+BYoW0riZX8blF0tsfLk
+        ETaI5g5GiS37L7BCJIwl9i+dzAQKP2YBTYn1u/QhwooSO3/PZYRYzCfx7msPKySIeSU62oQg
+        SpQlLj+4ywRhS0osbu9km8CoNAvJO7OQvDALyQuzEJYtYGRZxSiWWlCcm55abFhgAo/v5Pzc
+        TYzgxKtlsYNx7tsPeocYmTgYDzFKcDArifB+vuGVKMSbklhZlVqUH19UmpNafIjRFBjAE5ml
+        RJPzgak/ryTe0MTSwMTMyNjEwtDMUEmc99hry0QhgfTEktTs1NSC1CKYPiYOTqkGJuc+iyup
+        v9u7f3cZ7GX5ycu3yP9R9BduvgzhQmVB+ynXl/4+MLlN8O+0V3YKvolJlvM1ZkeeUc9WPzHV
+        8rZFoHfJTskZxzUN1rkrKehP+/ImfqPsLvGm26Xilzomyfzm8mKQaJz88uCFObJnTwnUSu9e
+        vXtvbTrz3uuhMcu+VO7ym++bKXP/Q1nCqlch/TEiyk3tl287F1+q+SyqmR2udUlRt/hCxYvg
+        4pevivxP35Q/cktinhZfmYbLl7fcBW17NG1KJl7ZGqzxau9Ni5VBzBEsBu8O/li7ZcKxTbuW
+        Zsuym/7Ytf6aQtuXgk3ck8Kjn+smLZtf/mmP78cfMjPOyTwz/VXMJCC4oEuT+7nTayWW4oxE
+        Qy3mouJEABd8waJFBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDIsWRmVeSWpSXmKPExsWy7bCSvO6L+96JBtOeqVhsnLGe1WL+kXOs
+        Fhvf/mCyONv0ht1i0+NrrBaXd81hs/jce4TRYsb5fUwWa4/cZbe43biCzaJ17xF2i/anL5kd
+        eDxmNfSyeWxa1cnmsXlJvUffllWMHp83yQWwRnHZpKTmZJalFunbJXBlNO/oYivYLlhxYs9j
+        5gbGvbxdjJwcEgImEtOuTGbsYuTiEBLYwShxfdM6VoiEpMS0i0eZuxg5gGxhicOHiyFq3jJK
+        XGx9wQhSIywQKbHkyCU2kISIwDUmiZ4ta5hBEswCUxglNl3XgOi4zigxb8dsdpAEm4CWxP4X
+        N9hAbH4BRYmrPx6DTeIVsJNoP3oTLM4ioCpx/sdEFhBbVCBMYueSx0wQNYISJ2c+AYtzCrhL
+        zJ34kB1imbrEn3mXoBaLS9x6Mp8JwpaX2P52DvMERuFZSNpnIWmZhaRlFpKWBYwsqxglUwuK
+        c9Nziw0LjPJSy/WKE3OLS/PS9ZLzczcxgiNQS2sH455VH/QOMTJxMB5ilOBgVhLh/XzDK1GI
+        NyWxsiq1KD++qDQntfgQozQHi5I474Wuk/FCAumJJanZqakFqUUwWSYOTqkGJnmei4ejpN9d
+        athbamKoKP/ELVGBf3Kkhh9/cKzmzMYlNlF2EfG3w46kqkupd7x9wnqk1/Ro2CvprDePWmpO
+        HeKeK2v0vUZspshlw7iFydkbD7PvL3nmzNpsc6ZVvn1r5dpOH6NNh9nan5/a7e8w4ebk0qYy
+        7wvn3N+7bDFev9+j/+ZvPeuvl26J+H79tSrTsGr+xQBeqykRZqsf67g/e+LgPyNFJ6UhSU0+
+        +HX4r59SU0y5Fi3aVfycIe3kqvq7mza2rYti/1c4Z3Vw/u6GfWtarz/dPf/DnAMMeT8UTS58
+        XN54LHf9c+71JtHv1s+/cyCuj+lXlfcUQVGT55anD+2Tut/bF3/ilcWR72d3rFdiKc5INNRi
+        LipOBABygoQfLwMAAA==
+X-CMS-MailID: 20210923020112epcas1p3552159d3e948679fc1f2ceaec1a3ab75
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210920071811epcas1p1729f8a9c04531be71e305cebda3b84bf
+References: <20210920071540.38337-1-krzysztof.kozlowski@canonical.com>
+        <CGME20210920071811epcas1p1729f8a9c04531be71e305cebda3b84bf@epcas1p1.samsung.com>
+        <20210920071753.38560-3-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 23, 2021 at 1:55 AM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
->
-> On Wed, Sep 22, 2021 at 09:35:54AM +0800, Shengjiu Wang wrote:
-> > Hi Mathieu
-> >
-> > On Fri, Sep 17, 2021 at 11:22 PM Mathieu Poirier
-> > <mathieu.poirier@linaro.org> wrote:
-> > >
-> > > On Fri, Sep 17, 2021 at 05:44:44PM +0800, Shengjiu Wang wrote:
-> > > > On Fri, Sep 17, 2021 at 1:20 PM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
-> > > > >
-> > > > > On Fri, Sep 17, 2021 at 1:00 AM Mathieu Poirier
-> > > > > <mathieu.poirier@linaro.org> wrote:
-> > > > > >
-> > > > > > [...]
-> > > > > >
-> > > > > > > > > +
-> > > > > > > > > +/**
-> > > > > > > > > + * imx_dsp_rproc_elf_load_segments() - load firmware segments to memory
-> > > > > > > > > + * @rproc: remote processor which will be booted using these fw segments
-> > > > > > > > > + * @fw: the ELF firmware image
-> > > > > > > > > + *
-> > > > > > > > > + * This function specially checks if memsz is zero or not, otherwise it
-> > > > > > > > > + * is mostly same as rproc_elf_load_segments().
-> > > > > > > > > + */
-> > > > > > > > > +static int imx_dsp_rproc_elf_load_segments(struct rproc *rproc,
-> > > > > > > > > +                                        const struct firmware *fw)
-> > > > > > > > > +{
-> > > > > > > > > +     struct device *dev = &rproc->dev;
-> > > > > > > > > +     u8 class = fw_elf_get_class(fw);
-> > > > > > > > > +     u32 elf_phdr_get_size = elf_size_of_phdr(class);
-> > > > > > > > > +     const u8 *elf_data = fw->data;
-> > > > > > > > > +     const void *ehdr, *phdr;
-> > > > > > > > > +     int i, ret = 0;
-> > > > > > > > > +     u16 phnum;
-> > > > > > > > > +
-> > > > > > > > > +     ehdr = elf_data;
-> > > > > > > > > +     phnum = elf_hdr_get_e_phnum(class, ehdr);
-> > > > > > > > > +     phdr = elf_data + elf_hdr_get_e_phoff(class, ehdr);
-> > > > > > > > > +
-> > > > > > > > > +     /* go through the available ELF segments */
-> > > > > > > > > +     for (i = 0; i < phnum; i++, phdr += elf_phdr_get_size) {
-> > > > > > > > > +             u64 da = elf_phdr_get_p_paddr(class, phdr);
-> > > > > > > > > +             u64 memsz = elf_phdr_get_p_memsz(class, phdr);
-> > > > > > > > > +             u64 filesz = elf_phdr_get_p_filesz(class, phdr);
-> > > > > > > > > +             u64 offset = elf_phdr_get_p_offset(class, phdr);
-> > > > > > > > > +             u32 type = elf_phdr_get_p_type(class, phdr);
-> > > > > > > > > +             void *ptr;
-> > > > > > > > > +             bool is_iomem;
-> > > > > > > > > +
-> > > > > > > > > +             if (type != PT_LOAD || !memsz)
-> > > > > > > >
-> > > > > > > > You did a really good job with adding comments but this part is undocumented...
-> > > > > > > > If I read this correctly you need to check for !memsz because some part of
-> > > > > > > > the program segment may have a header but its memsz is zero, in which case it can
-> > > > > > > > be safely skipped.  So why is that segment in the image to start with, and why
-> > > > > > > > is it marked PT_LOAD if it is not needed?  This is very puzzling...
-> > > > > > >
-> > > > > > > Actually I have added comments in the header of this function.
-> > > > > >
-> > > > > > Indeed there is a mention of memsz in the function's header but it doesn't
-> > > > > > mention _why_ this is needed, and that is what I'm looking for.
-> > > > > >
-> > > > > > >
-> > > > > > > memsz= 0 with PT_LOAD issue, I have asked the toolchain's vendor,
-> > > > > > > they said that this case is allowed by elf spec...
-> > > > > > >
-> > > > > > > And in the "pru_rproc.c" and "mtk_scp.c", seems they met same problem
-> > > > > > > they also check the filesz in their internal xxx_elf_load_segments() function.
-> > > > > >
-> > > > > > In both cases they are skipping PT_LOAD sections where "filesz" is '0', which
-> > > > > > makes sense because we don't know how many bytes to copy.  But here you are
-> > > > > > skipping over a PT_LOAD section with a potentially valid filesz, and that is the
-> > > > > > part I don't understand.
-> > > > >
-> > > > > Ok, I can use filesz instead. For my case, filesz = memsz = 0,
-> > > > > it is the same result I want.
-> > >
-> > > If that is the case then rproc_elf_load_segments() should work, i.e it won't
-> > > copy anything.  If rproc_elf_load_segments() doesn't work for you then there are
-> > > corner cases you haven't told me about.
-> > >
-> > > > >
-> > > > > The reason why I use "memsz '' is because there is  "if (filesz > memsz) "
-> > > > > check after this,  if memsz is zero, then "filesz" should be zero too, other
-> > > > > values are not allowed.
-> > > >
-> > > > But I still think checking "!memsz" is better than filesz,  because
-> > > > memsz > filesz is allowed (filesz = 0),  the code below can be executed.
-> > > > filesz > memsz is not allowed.
->
-> The question remains the same - have you seen instances where memsz > filesz?
-> Also, can you point me to the reference where it is said that memsz is allowed?
-> And if it is allowed than how do we know that this program section has valid
-> data, because after all, filesz is 0?
+Hi Krzysztof,
 
-https://refspecs.linuxbase.org/elf/elf.pdf
+On 9/20/21 4:17 PM, Krzysztof Kozlowski wrote:
+> Use hyphen instead of underscore and align the PPMU event node name with
+> dtschema.  The event-name property must match the node name, by the
+> design of devfreq events and PPMU driver.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  arch/arm/boot/dts/exynos5420.dtsi | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/exynos5420.dtsi b/arch/arm/boot/dts/exynos5420.dtsi
+> index e23e8ffb093f..b2f30bea96ce 100644
+> --- a/arch/arm/boot/dts/exynos5420.dtsi
+> +++ b/arch/arm/boot/dts/exynos5420.dtsi
+> @@ -302,8 +302,8 @@ ppmu_dmc0_0: ppmu@10d00000 {
+>  			clocks = <&clock CLK_PCLK_PPMU_DREX0_0>;
+>  			clock-names = "ppmu";
+>  			events {
+> -				ppmu_event3_dmc0_0: ppmu-event3-dmc0_0 {
+> -					event-name = "ppmu-event3-dmc0_0";
+> +				ppmu_event3_dmc0_0: ppmu-event3-dmc0-0 {
+> +					event-name = "ppmu-event3-dmc0-0";
+>  				};
+>  			};
+>  		};
+> @@ -314,8 +314,8 @@ ppmu_dmc0_1: ppmu@10d10000 {
+>  			clocks = <&clock CLK_PCLK_PPMU_DREX0_1>;
+>  			clock-names = "ppmu";
+>  			events {
+> -				ppmu_event3_dmc0_1: ppmu-event3-dmc0_1 {
+> -					event-name = "ppmu-event3-dmc0_1";
+> +				ppmu_event3_dmc0_1: ppmu-event3-dmc0-1 {
+> +					event-name = "ppmu-event3-dmc0-1";
+>  				};
+>  			};
+>  		};
+> @@ -326,8 +326,8 @@ ppmu_dmc1_0: ppmu@10d60000 {
+>  			clocks = <&clock CLK_PCLK_PPMU_DREX1_0>;
+>  			clock-names = "ppmu";
+>  			events {
+> -				ppmu_event3_dmc1_0: ppmu-event3-dmc1_0 {
+> -					event-name = "ppmu-event3-dmc1_0";
+> +				ppmu_event3_dmc1_0: ppmu-event3-dmc1-0 {
+> +					event-name = "ppmu-event3-dmc1-0";
+>  				};
+>  			};
+>  		};
+> @@ -338,8 +338,8 @@ ppmu_dmc1_1: ppmu@10d70000 {
+>  			clocks = <&clock CLK_PCLK_PPMU_DREX1_1>;
+>  			clock-names = "ppmu";
+>  			events {
+> -				ppmu_event3_dmc1_1: ppmu-event3-dmc1_1 {
+> -					event-name = "ppmu-event3-dmc1_1";
+> +				ppmu_event3_dmc1_1: ppmu-event3-dmc1-1 {
+> +					event-name = "ppmu-event3-dmc1-1";
+>  				};
+>  			};
+>  		};
+> 
 
-This is the specification. page 40,  p_filesz and p_memsz can be zero.
+Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
 
-p_filesz This member gives the number of bytes in the file image of
-the segment; it may be
-zero.
-p_memsz This member gives the number of bytes in the memory image of
-the segment; it
-may be zero.
-
-And page 41,  p_memsz can > p_filesz.
-
-PT_LOAD The array element specifies a loadable segment, described by
-p_filesz and
-p_memsz. The bytes from the file are mapped to the beginning of the memory
-segment. If the segment's memory size (p_memsz) is larger than the file size
-(p_filesz), the "extra'' bytes are defined to hold the value 0 and to follow the
-segment's initialized area. The file size may not be larger than the
-memory size.
-Loadable segment entries in the program header table appear in ascending order,
-sorted on the p_vaddr member
-
-
-best regards
-wang shengjiu
-
->
-> > > >
-> > > > What do you think?
-> > >
-> > > I don't see a need to add a custom implementation for things that _may_ happen.
-> > > If using the default rproc_elf_load_segments() works than go with that.  We can deal
-> > > with problems if/when there is a need for it.
-> > >
-> >
-> > The default rproc_elf_load_segments() with filesz = memsz = 0, then the
-> > rproc_da_to_va() return ptr=NULL, then rproc_elf_load_segments() will return
-> > with error.  So this is the reason to add a custom implementation.
->
-> Ok, I see about rproc_da_to_va() returning NULL and failing everything from
-> there one.
->
-> >
-> > best regards
-> > wang shengjiu
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
