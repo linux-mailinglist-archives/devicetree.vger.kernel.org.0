@@ -2,131 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F37415C65
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 13:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11610415C67
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 13:01:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240449AbhIWLBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 07:01:55 -0400
-Received: from mail-ua1-f54.google.com ([209.85.222.54]:38520 "EHLO
-        mail-ua1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240442AbhIWLBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 07:01:54 -0400
-Received: by mail-ua1-f54.google.com with SMTP id 42so3984623uar.5;
-        Thu, 23 Sep 2021 04:00:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fgarIMV3d2Y0uwFmShy8IL/1sLsQ5s6li7/ed4hIYHE=;
-        b=vNCt0tctQuBgoPu79HfPx1vxj2ucdoymrVexqM5hc1vjNND9DP30a4qVrOKpjVuFfB
-         YIvycye8zAtn17fUktRNRZHRcBLQtzfz2jmoQtURWmg21Ig7pT2sOqP6imyov8PCrs5O
-         BN6YhSxFcjdh4u+ErF5nYTxPvtKt3EZpYFa1ylA5hZBMqWnSVei55LILs9k7QzuJ7qIY
-         LLVh7wPX6WS1U4RifZPimz9Tl4w/+vmRSHX8A2KwT8+95k7CZViNdqmUVkA5PmejQL+W
-         WkZQk5ForElxAEAUYv4IkuXGnsWFxsXrL1VHYgtgNNaMNTFbZuKzYWlhcAEECW3lBqVB
-         doDw==
-X-Gm-Message-State: AOAM532aYfCBSH2cJkr0TtbgvLBgLzDwXEE1bj3jax+PZmBTRlabm5oN
-        2K8wTuwyNh9QpgmIEG/c0AAjwGZTb+i39Jhqq4s=
-X-Google-Smtp-Source: ABdhPJzNWqI9ro9lFSqVuKoYP6xDJJtX9u6Rm1mWrFuto2PRgg1nm5xAY9/c30ZfqBFTvHFQ07vhKKJ438C3DRVONmA=
-X-Received: by 2002:a9f:30d8:: with SMTP id k24mr3267164uab.89.1632394822739;
- Thu, 23 Sep 2021 04:00:22 -0700 (PDT)
+        id S240468AbhIWLCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 07:02:39 -0400
+Received: from mail-eopbgr40051.outbound.protection.outlook.com ([40.107.4.51]:63491
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S240442AbhIWLCj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Sep 2021 07:02:39 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fQKPEKqwigzGfyil5U0KIcrOOsmQ7XGQGjLPmNXn0DQigZ2VdIqA53q2MmQf9I7yQ1wSV6SfZA3XWcvX4WUc47ck5WfB1tb0cdb8M4qXAc4EuvPtgCNn+Oo6R1jsQDpo6hqugdzlfanc0zJfN3kSHbpHjIBAPV4rYBBKP2pukFVHA9r7/z+KNFBqSMjJkiouJiTJZFuBAEcUO2qZg2Xyn5KAd1s7hhTnckm/tiuuv558J3Po/RyMAEATDBaOr0NmjcNPakSgwChBzQHo7jyaaZoJAVGXp4sLWJUG4cZMQchhfgH2lw31fJ+Y03/QR51+Pgp+AfyKczwFt+3246MAFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=eXMxwad/4aufHoxMR2JCHSvtQnYlSf2k8/KA7DgTbMs=;
+ b=K+UzD/8Luj+it1ivYscQ5rRh7uc7P2+/vp5vJg3KSoEDWWC2kPnoyTl23I+njG0VP7YftPkxptiGz3y6q2V1pcOEGYu07M4Eqgpy50xHsJiRap8a9ca932YUJ508L1FCBq5JI5GKUntBCsCWrh9ravOkuIY3RqCqBtdRAEikF6sM3608tbl4ZbS8QHVZS7s6MO+nULlBImxGnm2n3ToDonIeLslAilTa+6EFtNOOrnnYt8lWFX7bQk20OOu7Xy3KaaLVKfxVeDAUmmiKoPphxASHi9C+NxHrDx1YAX/VVcSAvuVAyXpHZISewTSr1uAG0v6ughKQLb8koiZ8HP/zxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eXMxwad/4aufHoxMR2JCHSvtQnYlSf2k8/KA7DgTbMs=;
+ b=n03wPVk9Rqs0bHN1ZMfmEPEGua1IMGIom+aouC+oSBMZUKjflr6hrDCal2uc2t4Bvc7lydHc7HKhFbxaK6KZb9DRcmEtFRJ8ubAo0bWoo4HCMG5GWTOSvxH4G400E+HKza8VKG/LdrDur7kfrYHJPgXrGb1d0iocgTqZjDIc1WM=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DBBPR04MB7836.eurprd04.prod.outlook.com (2603:10a6:10:1f3::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Thu, 23 Sep
+ 2021 11:01:06 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::5d5a:30b0:2bc2:312f]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::5d5a:30b0:2bc2:312f%9]) with mapi id 15.20.4544.013; Thu, 23 Sep 2021
+ 11:01:05 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, a.fatoum@pengutronix.de
+Cc:     kernel@pengutronix.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: [PATCH V2 0/6] nvmem: add "cell-type" property to support mac-address
+Date:   Thu, 23 Sep 2021 19:01:03 +0800
+Message-Id: <20210923110109.29785-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0004.apcprd02.prod.outlook.com
+ (2603:1096:3:17::16) To DB8PR04MB6795.eurprd04.prod.outlook.com
+ (2603:10a6:10:fa::15)
 MIME-Version: 1.0
-References: <cover.1631174218.git.geert+renesas@glider.be>
-In-Reply-To: <cover.1631174218.git.geert+renesas@glider.be>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 23 Sep 2021 13:00:11 +0200
-Message-ID: <CAMuHMdU6Mrfina3+2iW+RKaujk57JSRtmixRPn1b0d2w5dZ3eA@mail.gmail.com>
-Subject: Re: [PATCH 0/9] renesas: Add compatible properties to Ethernet PHY nodes
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Adam Ford <aford173@gmail.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"
+Received: from localhost.localdomain (119.31.174.71) by SG2PR02CA0004.apcprd02.prod.outlook.com (2603:1096:3:17::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13 via Frontend Transport; Thu, 23 Sep 2021 11:01:03 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9a224513-73ef-47e7-2b2e-08d97e81709f
+X-MS-TrafficTypeDiagnostic: DBBPR04MB7836:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBBPR04MB78360613EE136A2D0D166EFDE6A39@DBBPR04MB7836.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:289;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: i2lkzF1si+MVccuaDgAblhUYg/6Rf+Zs8h59u4lt3DuCdmz44BWsEFQpIb6f3SiQQ83osTQA/sqMLOA/y1oARo2+ala3MY8Jd78KG439cp39eMjf4tTNeDtbEfrxElXDzWOSGCSqARdDzGZ+dvXkL5G1J94RIc7LS2WsVnd14IUijgVd/50H7VWy7Xe9Q7RYkAhCnhlAhJ7UIsVqcYlHQE7xM78OejsRdLwWqIT7F5uyyWORiRdNOZyzSHSslo8meh2YbqDVCRtwpZGe/3yMeDN/7aHUVwUOZOh97rRu0FhZnh3HUDmrPqazq+jB7E+sxKzbUTtYDw037D19vywJ0kBoArqUz/z6/adj8PZtkB22p1vM3IJm26bOID4OVximV8sGYh1g8xfsIyyMVVNZSqVcucy70kFpsfuUPVUNRZZSTP5dzGJ+JZ7FB2e229XhaGGh8HKq6eFxYVPkKagHdBxEJtK9jfylm233/4bjyIc3cQyi+17X+wIGnUOiZNU+F50O2v4wRJhPvxp39MDyURppKBAJ5vF7hK0lw+NY14aHOJ+rCl9ZhwpKKMaoto+qQgU3ECgbOpjM+0fu3peE6JLChTEyTAhnttX/xLuBynExyjXorlykuckZ/2HuqbuvRWpgS4TJrpdLOK/uANMeqI/rp++8U1E/7pzoRkKP5ITcyZN67J2oFaTwFIJB0Mzzee1LwWBKzcUsm/6oCdTXcQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6486002)(1076003)(36756003)(8936002)(86362001)(186003)(66946007)(2906002)(6512007)(38100700002)(38350700002)(26005)(8676002)(66476007)(6506007)(5660300002)(66556008)(508600001)(2616005)(316002)(83380400001)(956004)(4326008)(52116002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4vtnElT00qJXVlgKdVuRIWywm9ldoEFmcBbDMUqOTXdrwjqlq6j6EmIrbMTK?=
+ =?us-ascii?Q?Nh1XNP1Jlc+U3lRq5d++iC0FYDeHCGGqwjOj5P2gAtmbn1pDI0D/c2WS8AiV?=
+ =?us-ascii?Q?XFb0rNheDIZFcwWGQJ9fRXLnYWlvGSDscDo71i+koGqAiHMlj1JBl6WtZLpt?=
+ =?us-ascii?Q?2mQQYcDlo8Ngp7hlI1LARRlzKHRY9ls564gibMaeBInnksye8SKYS6uQo1zR?=
+ =?us-ascii?Q?V1vnkTAQQcj/gP4F5b6XxsMNW5r5W9cOYEa/lXf14NtLo1bhi3NxD5YYODVc?=
+ =?us-ascii?Q?QHpHTs5SQk8d3utlsJT/JyeLAq613GGYbvHfNxQh3K9WKPOONFb2aNEVv0fP?=
+ =?us-ascii?Q?2T++J34AmlaoyUmdpEiBABg2Cu2UZQ5K245cl6ALl+FEFTpnEKSZDTFi+wfq?=
+ =?us-ascii?Q?YcWov0scr7qc0lqyQzw3G6ubc+qBsgv0SdVC7UAJIpgYEROovxv6vV/dQY/s?=
+ =?us-ascii?Q?84tjUCfPnHD7r+ETUQmw47+uUWs1kCeuQB/gS5HDRk0tC31dyUuAwe2zNlXF?=
+ =?us-ascii?Q?fE5fzSWf3ZlfiAYADXfIko6ShWqUeT/rdAHlJ4xklvpwHD7EApjoXP3Z3B8k?=
+ =?us-ascii?Q?fINjFXVAdR6Df+RxyudV4abWafT3JyfAU+fHKO0kquafuqKU8d/8zsP0kWP2?=
+ =?us-ascii?Q?NpqPD9hvch+3g+/mo2Duy8L0f1Uk7HWPMV6LILfXpD3XdiyPEbd4MYLCsBpW?=
+ =?us-ascii?Q?90FAyjOehDYAE5ES1o/H4ZTxz8MzSX4CWOStFxKW/QPeo3pCvgWqThlj8Y5w?=
+ =?us-ascii?Q?GWRyfOlY0Kto4f5KqDtVAlc9hSEe4i2QfO+XMhKOmEy+q+qr7vBXQ4G+8T8x?=
+ =?us-ascii?Q?EN2VP3NJy50lwGHjBpJdVuevrbAHPMgKVqpypVutS3wUBLDNZ013uRwRaQKF?=
+ =?us-ascii?Q?fxjomlirEq2LyCUX9HsaYEf9F4sFD9Ap1Z7KPWFZQisVBbfLrsvwhpdZSUXc?=
+ =?us-ascii?Q?ZaSgSOrTEkERFS5/ZrF5XUCYCJb2SSsuFt12Nozxs/IIBWweInrDBN3nXxgX?=
+ =?us-ascii?Q?v2slNooVIIByi0COX4TIC9mcvNe0AEeV6efj51qIKVEVZKGjnZPqEfsGLbtb?=
+ =?us-ascii?Q?FCE98BHb5o0FtWnqtHWm55aGwfoZl+UBzBKST3zaZe3/pdk9SSZ72qVDQPNJ?=
+ =?us-ascii?Q?rRhfnigbWEQN4wcbSUp0xcKxczs/dtWYA518QobMeYgf5TT0AwwhYIiK57Es?=
+ =?us-ascii?Q?Kjyy0NZnQlMwQoDFmNbz/i+/oyncvoUSKl7GvfIRPAx3Ka0dEEDvibgx5GnW?=
+ =?us-ascii?Q?EI9NZw6LxfijnrTWj/wf/QB5ldnkFogKxA7rzoiu5EOtt0mWdHUfdt+b8GIU?=
+ =?us-ascii?Q?RRZZWKwntgD+nycs0SnY8BB1?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a224513-73ef-47e7-2b2e-08d97e81709f
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2021 11:01:05.8182
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +Kikb60bHYan0W4sLojtk0neRBJ2i5MlAg2zkef5Y94vp5Q8i23KPQkCxHbRP6Syu27G80tcxPw7VeCepPbCIw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7836
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 9, 2021 at 10:49 AM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> If an Ethernet PHY reset is asserted when the Ethernet driver is
-> initialized, the PHY cannot be probed:
->
->     mdio_bus ee700000.ethernet-ffffffff: MDIO device at address 1 is missing
->
-> This happens because the Linux PHY subsystem tries to read the PHY
-> Identifier registers before handling PHY reset.  Hence if the PHY reset
-> was asserted before, identification fails.
->
-> An easy way to reproduce this issue is by using kexec to launch a new
-> kernel (the PHY reset will be asserted before starting the new kernel),
-> or by unbinding and rebinding the Ethernet driver (the PHY reset will be
-> asserted during unbind), e.g. on koelsch:
->
->     echo ee700000.ethernet > /sys/bus/platform/drivers/sh-eth/unbind
->     $ echo ee700000.ethernet > /sys/bus/platform/drivers/sh-eth/bind
->
-> The recommended approach[1][2] seems to be working around this issue by
-> adding compatible values to all ethernet-phy nodes, so Linux can
-> identify the PHY at any time, without reading the PHY ID from the
-> device, and regardless of the state of the PHY reset line.
->
-> Hence this patch series adds such compatible values to all Ethernet PHY
-> subnodes representing PHYs on all boards with Renesas ARM and ARM64
-> SoCs.  For easier review, I have split the series in one patch per PHY
-> model.
->
-> On most boards, I could verify the actual PHY ID at runtime[3], on other
-> boards I had to resort to schematics.
->
-> Kexec and Ethernet driver rebind have been tested on Koelsch and
-> Salvator-XS.
->
-> I plan to queue these in renesas-devel for v5.16.
->
-> Thanks for your comments!
+This patch set adds "cell-type" property to parse mac address, take i.MX
+as an example, which need reverse byte for mac address.
 
-I'd be very grateful for comments (e.g. Acked-by) from the Ethernet
-PHY people.
-Thanks again!
+ChangeLogs:
+V1->V2:
+	* correct comments: @cell_read_callback -> @cell_post_process
+	* s/imx8mm/imx8m/ in commit message title
+	* add reviewed-by tags
 
-> [1] "Re: [PATCH] RFC: net: phy: of phys probe/reset issue"
->     https://lore.kernel.org/r/ade12434-adf2-6ea7-24ce-ce45ad2e1b5e@gmail.com/
-> [2] "PHY reset may still be asserted during MDIO probe"
->     https://lore.kernel.org/r/CAMuHMdXno2OUHqsAfO0z43JmGkFehD+FJ2dEjEsr_P53oAAPxA@mail.gmail.com
-> [3] The easiest way to obtain the PHY ID is by adding a debug print to
->     drivers/net/phy/phy_device.c:get_phy_c22_id(), _before_ applying
->     this patch.
->
-> Geert Uytterhoeven (9):
->   ARM: dts: renesas: Add compatible properties to KSZ8041 Ethernet PHYs
->   ARM: dts: renesas: Add compatible properties to KSZ8081 Ethernet PHYs
->   ARM: dts: renesas: Add compatible properties to KSZ9031 Ethernet PHYs
->   iARM: dts: renesas: Add compatible properties to LAN8710A Ethernet
->     PHYs
->   ARM: dts: renesas: Add compatible properties to RTL8201FL Ethernet
->     PHYs
->   ARM: dts: renesas: Add compatible properties to uPD6061x Ethernet PHYs
->   arm64: dts: renesas: Add compatible properties to AR8031 Ethernet PHYs
->   arm64: dts: renesas: Add compatible properties to KSZ9031 Ethernet
->     PHYs
->   arm64: dts: renesas: Add compatible properties to RTL8211E Ethernet
->     PHYs
+Joakim Zhang (2):
+  arm64: dts: imx8m: add "cell-type" property for mac-address
+  arm64: dts: imx8m: remove unused "nvmem_macaddr_swap" property for FEC
 
-Gr{oetje,eeting}s,
+Srinivas Kandagatla (4):
+  dt-bindings: nvmem: add cell-type to nvmem cells
+  nvmem: core: parse nvmem cell-type from device tree
+  nvmem: core: add nvmem cell post processing callback
+  nvmem: imx-ocotp: add support for post porcessing.
 
-                        Geert
+ .../devicetree/bindings/nvmem/nvmem.yaml      | 11 +++++++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  3 +-
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     |  3 +-
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 10 ++++++-
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  3 +-
+ drivers/nvmem/core.c                          | 12 ++++++++
+ drivers/nvmem/imx-ocotp.c                     | 30 +++++++++++++++++++
+ include/dt-bindings/nvmem/nvmem.h             |  8 +++++
+ include/linux/nvmem-provider.h                |  5 ++++
+ 9 files changed, 81 insertions(+), 4 deletions(-)
+ create mode 100644 include/dt-bindings/nvmem/nvmem.h
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
