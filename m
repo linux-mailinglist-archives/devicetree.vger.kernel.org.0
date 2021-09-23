@@ -2,230 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1E8E41545B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 02:02:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A12B7415467
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 02:08:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238541AbhIWAEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 20:04:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48792 "EHLO
+        id S238588AbhIWAKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 20:10:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230414AbhIWAEB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 20:04:01 -0400
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A28AC061574;
-        Wed, 22 Sep 2021 17:02:30 -0700 (PDT)
-Received: by mail-qv1-xf33.google.com with SMTP id gs10so3112674qvb.13;
-        Wed, 22 Sep 2021 17:02:30 -0700 (PDT)
+        with ESMTP id S232944AbhIWAKW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 20:10:22 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D32D5C061574
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 17:08:51 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id g41so18924964lfv.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Sep 2021 17:08:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=6za8hvNiMknZJLAQShJVN9k8ISMwqJs16dYb7Dbhy5I=;
-        b=axUK3TKinPUn6A14DlJ5l75sUiHUS4zA4aiWlQb2xZNI7d/ZObmdqIZAwSJF6Qcx3X
-         Bxveue63eavt8VkKBEHVhr5BP/mpZ4LxgbBBPS+If5Unl9y8AL15Fby7WugMV7wAbGrh
-         53pH+8O1hJDpwkBoww1i77rp+yHIn34Ss/oGc=
+        bh=c61zkWeyMKH6LL6icsQDLy8x0upVKK9C7hT0bg7V0+0=;
+        b=a3bNOYwHCLWdW+uqIZMVyLPdTmYFfQZhZmd3R+ig/T+TGpkI56Mz3an74YjRDGlRNz
+         4OMn2AggkvbmO9CcqQfZHCvjZE49E4yUXJVgznbBxZ6Qg+OEBop5fGwIIel7kSDiaAO8
+         iJsU3iWZiFA8pAMYgEYTEjVx8HbxxGrYNfPm4r0ed6K+9mrKpELqbgtgzuMfiI/KlX6M
+         8U3pVpD4hosSgSFiNBcGAERmiOabbMaV0nBih9Tc3n0CxT2/vW9P4Lzk5uVgqyYL+i3t
+         3qpP4z2hoMnrKgdSKhfI7Az6HoUgVH02p6NXReo4R1I3n0dyRAD23M9ot2Wigemntxzj
+         1/dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=6za8hvNiMknZJLAQShJVN9k8ISMwqJs16dYb7Dbhy5I=;
-        b=b8wGX0nxwfKkdKgGGNBjnlfHNCCurM5bB91wv8zWss1CjFD6QpxPc/2vwX7iSBM+bD
-         4s8wSC/Lv3wjxygpF1bBwJ9XgMTJHq+DfX4GSQAEcY8PzC17NEIPsFkuOVv1tIyRVWcr
-         xxeLZK/YCa8q1ZSL5BB4jIK95CQSc2ttnTSvirOpOxs+zhRDxVlenF6ybcMwmtzSufFj
-         qn5Way7olLyUPy2FFia/+j8cQksIW7t5lkOUfLLjfYJPjvEDettFGu/R2HoBIVIfS2qU
-         pCzsUiTjeCb7PqeTE2cHTT1/yOXICmlG7lp7RAMbtPiBCgqT7MWkfZjXaiPiMDd5rN7Y
-         7P7Q==
-X-Gm-Message-State: AOAM532U2LDwLKqpT3gFSgCTPe8JbT9T8SME2iqQGHpM0Max+PpA50kK
-        xHkn2FbYuUDwGnOGgm8+p72j8V3t+bJ77XEG4/OOrTR37RMDfQ==
-X-Google-Smtp-Source: ABdhPJwXwTQ1XjK5fncsWgEeP1jfN7ZYA6DFOZN7Q3GRnYZd8PBPLFUInicZnO0NAukPfyU/GXMHGGR33J3eFlRlg9s=
-X-Received: by 2002:ad4:54c6:: with SMTP id j6mr1959081qvx.17.1632355349480;
- Wed, 22 Sep 2021 17:02:29 -0700 (PDT)
+        bh=c61zkWeyMKH6LL6icsQDLy8x0upVKK9C7hT0bg7V0+0=;
+        b=zsAvQ2wioYRD+eVkwQ+rwu1jgQeNFgR2e86MSx0zVU9NfvatxE9SMReP3Wsk8ZGGrm
+         trLEJgAycv+Yn1pHaH6z4qUvS/XdJy9hSYvWy790h0HjsrZG88DkeiIkK+aOEe/+cQD8
+         pWTzbXN3LeMBaNvsOoVwIvJXICBN4SFBgZw1yP698ieVty8yz2RZ4k31zq8AtF3hu3gD
+         lJ8jJsQ+RVKGXCxUcN0nVRD0OcHNylhqBYo2+LKEI3bw8/39ltty1vTtl1wVZDcGG+8A
+         6Sie1fT6Uf0PcvNkfgsXkkiRKOqU7lnNiiiOcvBRDaYpL8w8gGBjeBRVNtEKNWEfYVVc
+         rHLQ==
+X-Gm-Message-State: AOAM53342vg0K7bSXKhFlM+/mqCxB+++wDpwLM7ymLm20JoxG//Dfjrq
+        PH1re5unkA9N5WdyJVKFDhUfu2M0cT65nlBXeCs/V5HVbwQ=
+X-Google-Smtp-Source: ABdhPJz4Ci6g8dCkCq4XBU9PsIJJ1SdIpTHPhKpirwmfjE1wusAbSTN0oycwv5f7LjI5SDD/W2sq6wAKPAFhkFqsWBw=
+X-Received: by 2002:a05:6512:10cb:: with SMTP id k11mr1649114lfg.72.1632355730261;
+ Wed, 22 Sep 2021 17:08:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com> <20210922103116.30652-2-chin-ting_kuo@aspeedtech.com>
-In-Reply-To: <20210922103116.30652-2-chin-ting_kuo@aspeedtech.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 23 Sep 2021 00:02:17 +0000
-Message-ID: <CACPK8XeeEeQb52ZHYaN49r_Vso-xUHamDyrA+bFvP4_ESQs9dA@mail.gmail.com>
-Subject: Re: [PATCH 01/10] clk: aspeed: ast2600: Porting sdhci clock source
-To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
+References: <0de07021e49ac26a8f9386f62f3e15e947d0f6d0.1631709384.git.geert+renesas@glider.be>
+In-Reply-To: <0de07021e49ac26a8f9386f62f3e15e947d0f6d0.1631709384.git.geert+renesas@glider.be>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 23 Sep 2021 02:08:39 +0200
+Message-ID: <CACRpkdZzz5_oVSXPwuwpqMDYvzwTkHvmy6ua6yoJqOOSuZb4xg@mail.gmail.com>
+Subject: Re: [PATCH v6] ARM: uncompress: Parse "linux,usable-memory-range" DT property
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Lukasz Stelmach <l.stelmach@samsung.com>,
+        Simon Horman <horms@verge.net.au>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, Andrew Jeffery <andrew@aj.id.au>,
-        BMC-SW <BMC-SW@aspeedtech.com>,
-        Steven Lee <steven_lee@aspeedtech.com>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        kexec@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Sept 2021 at 10:31, Chin-Ting Kuo
-<chin-ting_kuo@aspeedtech.com> wrote:
+On Wed, Sep 15, 2021 at 3:20 PM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+
+> Add support for parsing the "linux,usable-memory-range" DT property.
+> This property is used to describe the usable memory reserved for the
+> crash dump kernel, and thus makes the memory reservation explicit.
+> If present, Linux no longer needs to mask the program counter, and rely
+> on the "mem=" kernel parameter to obtain the start and size of usable
+> memory.
 >
-> - There are two clock sources used to generate
->   SD/SDIO clock, APLL clock and HCLK (200MHz).
->   User can select which clock source should be used
->   by configuring SCU310[8].
-> - The SD/SDIO clock divider selection table SCU310[30:28]
->   is different between AST2600-A1 and AST2600-A2/A3.
->   For AST2600-A1, 200MHz SD/SDIO clock cannot be
->   gotten by the dividers in SCU310[30:28] if APLL
->   is not the multiple of 200MHz and HCLK is 200MHz.
->   For AST2600-A2/A3, a new divider, "1", is added and
->   200MHz SD/SDIO clock can be obtained by adopting HCLK
->   as clock source and setting SCU310[30:28] to 3b'111.
+> For backwards compatibility, the traditional method to derive the start
+> of memory is still used if "linux,usable-memory-range" is absent.
 >
-> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-> ---
->  drivers/clk/clk-ast2600.c | 69 ++++++++++++++++++++++++++++++++++-----
->  1 file changed, 61 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/clk/clk-ast2600.c b/drivers/clk/clk-ast2600.c
-> index bc3be5f3eae1..a6778c18274a 100644
-> --- a/drivers/clk/clk-ast2600.c
-> +++ b/drivers/clk/clk-ast2600.c
-> @@ -168,6 +168,30 @@ static const struct clk_div_table ast2600_div_table[] = {
->         { 0 }
->  };
->
-> +static const struct clk_div_table ast2600_sd_div_a1_table[] = {
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Let's put the revision next to the ast2600 like the other tables:
+Very nice patch!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-ast2600_a1_sd_div_table
-
-> +       { 0x0, 2 },
-> +       { 0x1, 4 },
-> +       { 0x2, 6 },
-> +       { 0x3, 8 },
-> +       { 0x4, 10 },
-> +       { 0x5, 12 },
-> +       { 0x6, 14 },
-> +       { 0x7, 16 },
-> +       { 0 }
-> +};
-> +
-> +static const struct clk_div_table ast2600_sd_div_a2_table[] = {
-
-For naming; can I propose we omit the revision for the A2/A3+ case? So
-this one would be called:
-
-ast2600_sd_div_table
-
-> +       { 0x0, 2 },
-> +       { 0x1, 4 },
-> +       { 0x2, 6 },
-> +       { 0x3, 8 },
-> +       { 0x4, 10 },
-> +       { 0x5, 12 },
-> +       { 0x6, 14 },
-> +       { 0x7, 1 },
-> +       { 0 }
-> +};
-> +
->  /* For hpll/dpll/epll/mpll */
->  static struct clk_hw *ast2600_calc_pll(const char *name, u32 val)
->  {
-> @@ -424,6 +448,11 @@ static const char *const emmc_extclk_parent_names[] = {
->         "mpll",
->  };
->
-> +static const char *const sd_extclk_parent_names[] = {
-> +       "hclk",
-> +       "apll",
-> +};
-> +
->  static const char * const vclk_parent_names[] = {
->         "dpll",
->         "d1pll",
-> @@ -523,18 +552,42 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
->                 return PTR_ERR(hw);
->         aspeed_g6_clk_data->hws[ASPEED_CLK_EMMC] = hw;
->
-> -       /* SD/SDIO clock divider and gate */
-> -       hw = clk_hw_register_gate(dev, "sd_extclk_gate", "hpll", 0,
-> -                       scu_g6_base + ASPEED_G6_CLK_SELECTION4, 31, 0,
-> -                       &aspeed_g6_clk_lock);
-> +       clk_hw_register_fixed_rate(NULL, "hclk", NULL, 0, 200000000);
-> +
-> +       regmap_read(map, 0x310, &val);
-
-Use the #defines for the register number.
-
-> +       hw = clk_hw_register_mux(dev, "sd_extclk_mux",
-> +                                sd_extclk_parent_names,
-> +                                ARRAY_SIZE(sd_extclk_parent_names), 0,
-> +                                scu_g6_base + ASPEED_G6_CLK_SELECTION4, 8, 1,
-> +                                0, &aspeed_g6_clk_lock);
->         if (IS_ERR(hw))
->                 return PTR_ERR(hw);
-> -       hw = clk_hw_register_divider_table(dev, "sd_extclk", "sd_extclk_gate",
-> -                       0, scu_g6_base + ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
-> -                       ast2600_div_table,
-> -                       &aspeed_g6_clk_lock);
-> +
-> +       hw = clk_hw_register_gate(dev, "sd_extclk_gate", "sd_extclk_mux",
-> +                                 0, scu_g6_base + ASPEED_G6_CLK_SELECTION4,
-> +                                 31, 0, &aspeed_g6_clk_lock);
->         if (IS_ERR(hw))
->                 return PTR_ERR(hw);
-> +
-> +       regmap_read(map, 0x14, &val);
-> +       /* AST2600-A2/A3 clock divisor is different from AST2600-A1 */
-> +       if (((val & GENMASK(23, 16)) >> 16) >= 2) {
-
-I've got a little patch that I recommend you base your series on (feel
-free to include it in your series when posting v2 to make it
-self-contained):
-
-https://lore.kernel.org/all/20210922235449.213631-1-joel@jms.id.au/
-
-With this one you can do:
-
-const struct clk_div_table* table;
-
- if (soc_rev >= 2)
-   table = ast2600_sd_div_table;
-else
-   table = ast2600_a1_sd_div_table;
-
-Then you don't need to duplicate the registration for each case:
-
-               hw = clk_hw_register_divider_table(dev, "sd_extclk",
-"sd_extclk_gate",
-                                       0, scu_g6_base +
-ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
-                                       table,
-                                       &aspeed_g6_clk_lock);
-               if (IS_ERR(hw))
-                       return PTR_ERR(hw);
-
-> +               /* AST2600-A2/A3 */
-> +               hw = clk_hw_register_divider_table(dev, "sd_extclk", "sd_extclk_gate",
-> +                                       0, scu_g6_base + ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
-> +                                       ast2600_sd_div_a2_table,
-> +                                       &aspeed_g6_clk_lock);
-> +               if (IS_ERR(hw))
-> +                       return PTR_ERR(hw);
-> +       } else {
-> +               /* AST2600-A1 */
-> +               hw = clk_hw_register_divider_table(dev, "sd_extclk", "sd_extclk_gate",
-> +                                       0, scu_g6_base + ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
-> +                                       ast2600_sd_div_a1_table,
-> +                                       &aspeed_g6_clk_lock);
-> +               if (IS_ERR(hw))
-> +                       return PTR_ERR(hw);
-> +       }
->         aspeed_g6_clk_data->hws[ASPEED_CLK_SDIO] = hw;
->
->         /* MAC1/2 RMII 50MHz RCLK */
-> --
-> 2.17.1
->
+Yours,
+Linus Walleij
