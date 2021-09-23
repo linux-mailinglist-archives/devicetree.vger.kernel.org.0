@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CAE5415E8D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 14:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4EB415E99
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 14:42:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241089AbhIWMmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 08:42:19 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:33433 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241138AbhIWMlj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 08:41:39 -0400
-Received: by mail-oi1-f178.google.com with SMTP id 24so9549729oix.0;
-        Thu, 23 Sep 2021 05:40:08 -0700 (PDT)
+        id S241121AbhIWMna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 08:43:30 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:42968 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241140AbhIWMnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 08:43:21 -0400
+Received: by mail-oi1-f180.google.com with SMTP id x124so9434466oix.9;
+        Thu, 23 Sep 2021 05:41:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WYkrVIwTVfi0B/G+QlIDJ19fU254VtZt4fJs98aiwMk=;
-        b=UcCeFH3kukwvGMNgyMbDQXRI/C+hy9obhaVjv5xFtHmBNfo1NyRFeJjOv0N6hyc5ZK
-         Q3u+gNtEPECX9fcfy4LAEEKsbHi9RjEaJI3ZaOK49y7eCOgfZ4XJ1lZgV/USzdP8eT9Q
-         vKkdJB3Q0BLEkL0M1Z9So89hKwveytwRxZPa+ivlQT4ocYW1VjHK7N+4oYROH174ah8N
-         rVi2IPUWgnmML72Wo20UCwNdm90WFoIZ0NGmO0k/PnWb4ezb7P0ALIfdbRPvlaO2WHJU
-         aTJPg1Xd/gPePvZVOsh8GkmRp7VKw9tuxGOqUYSWiHuO+boxy8+8nmn1uTSCIbPO2sfE
-         c/pA==
-X-Gm-Message-State: AOAM530ii/+VMj8SK3eAialicSnskyVapTrc2e+Nv9v4ScX88EY5Rr2F
-        2TufGyV9kVTZE1MS2c1gyMgbt5yAQg==
-X-Google-Smtp-Source: ABdhPJzCbTvqWS/umEcE/Qmf3EqDkOoOWsc61D+8vG4fpK4P3YOBwib0gVA3vwjTgMEp3J3d8sZwxg==
-X-Received: by 2002:a54:4489:: with SMTP id v9mr12255483oiv.148.1632400807398;
-        Thu, 23 Sep 2021 05:40:07 -0700 (PDT)
+        bh=KG4pqRTbZiSxeF9UzbCNdTXffoBAP6x2dhHFJLQTFSg=;
+        b=kyT/pM3HNOsak5HvOUJWxDSFLk2PqdR50saRfH/dpg0QNexJTRdLiTlUw99GagPuDV
+         Y94Y9sAE9JKbKSIza25xJPiClYG8hM/IlkmjRe+Wuaaf/mrNytde6uIIv6Zqz221ok3N
+         55ZiuZtY2kPgsyCR0xknAYoCBLAGqoE7Wv0HGwBDlt8Wov1PEQNlN5NYCHY0bgc929RU
+         7AGiGZYUDyKjkNdaHMksJYGXpuGYhDfXm6auoem74RR69yq4+neyD+eyXttm+tY/TwpT
+         ZeDEAeIafB78h8VLp+kxE2ZCGV4cIf5X3EV7Ljqt3cWp2xasRsDcwMli4TzOTGO+22PO
+         v+jA==
+X-Gm-Message-State: AOAM530rmcicBcaXnqVm+jiAS1wYnX2wy4v8o4GUbpfyOAHBPcE94g+f
+        109dDXmdV6T5CTX2v2k+E4QbKJ152g==
+X-Google-Smtp-Source: ABdhPJzpvygmxfnppFk2EvQsbK6e8v1Nf9zyIv0ZPZVH1OD8OeLYHlWQqh0LsFCJ0ZLrHcSI2Ty7DQ==
+X-Received: by 2002:aca:c641:: with SMTP id w62mr9392577oif.102.1632400909768;
+        Thu, 23 Sep 2021 05:41:49 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i25sm1291459otf.31.2021.09.23.05.40.06
+        by smtp.gmail.com with ESMTPSA id i4sm1259115otj.9.2021.09.23.05.41.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 05:40:06 -0700 (PDT)
-Received: (nullmailer pid 2814913 invoked by uid 1000);
-        Thu, 23 Sep 2021 12:40:04 -0000
-Date:   Thu, 23 Sep 2021 07:40:04 -0500
+        Thu, 23 Sep 2021 05:41:49 -0700 (PDT)
+Received: (nullmailer pid 2817731 invoked by uid 1000);
+        Thu, 23 Sep 2021 12:41:48 -0000
+Date:   Thu, 23 Sep 2021 07:41:48 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Parshuram Thombare <pthombar@cadence.com>
-Cc:     broonie@kernel.org, lukas@wunner.de, linux-spi@vger.kernel.org,
-        jpawar@cadence.com, robh+dt@kernel.org,
-        Konrad Kociolek <konrad@cadence.com>,
-        linux-kernel@vger.kernel.org, mparab@cadence.com, p.yadav@ti.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] spi: cadence: add dt-bindings documentation for
- Cadence XSPI controller
-Message-ID: <YUx1pLA/QZ6VrD0c@robh.at.kernel.org>
-References: <1632038668-23756-1-git-send-email-pthombar@cadence.com>
- <1632038705-23805-1-git-send-email-pthombar@cadence.com>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Devajith V S <devajithvs@gmail.com>,
+        Robert Yang <decatf@gmail.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: kionix,kxcjk1013: driver support
+ interrupts
+Message-ID: <YUx2DII/y3FVNF04@robh.at.kernel.org>
+References: <20210919203656.119742-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1632038705-23805-1-git-send-email-pthombar@cadence.com>
+In-Reply-To: <20210919203656.119742-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 19 Sep 2021 10:05:05 +0200, Parshuram Thombare wrote:
-> Add DT binding for Cadence's XSPI controller driver.
-> 
-> Signed-off-by: Konrad Kociolek <konrad@cadence.com>
-> Signed-off-by: Jayshri Pawar <jpawar@cadence.com>
-> Signed-off-by: Parshuram Thombare <pthombar@cadence.com>
-> ---
->  .../devicetree/bindings/spi/cdns,xspi.yaml         | 77 ++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> 
+On Sun, Sep 19, 2021 at 10:36:56PM +0200, David Heidelberg wrote:
+> Driver has interrupts support, which description was missing in the bindings.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+You mean the h/w has interrupts which was missing?
+
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  .../devicetree/bindings/iio/accel/kionix,kxcjk1013.yaml        | 3 +++
+>  1 file changed, 3 insertions(+)
+
+Acked-by: Rob Herring <robh@kernel.org>
