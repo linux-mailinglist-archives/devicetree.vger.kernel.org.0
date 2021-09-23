@@ -2,144 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02A394154B6
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 02:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78F434154D0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 02:47:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238694AbhIWAkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Sep 2021 20:40:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56954 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238631AbhIWAkK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 20:40:10 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E235EC061574;
-        Wed, 22 Sep 2021 17:38:39 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id o66so7176535oib.11;
-        Wed, 22 Sep 2021 17:38:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=i6zSFlSggOZgk0+XF49/fBLOG6TWufrBNoMVsILPLYs=;
-        b=A74/UzKAG7wYWTCp7sX4yVcKOp3wdHnRrBYRT/xUGymi4URYEcO++JbX+LjbLzmIa9
-         8IFtgTZS+vxvSWLETzN/BkuWvNzcOvaI3DDdZhVj6TTXZ6m6WkVfXYdjZKLw5cxhZkwH
-         E3eD8d73ksoCuT1SAwg8oJfRxTSFHZmtjHoJg3NVY95V+N2UXSIMbYCQ/o0IthJEuwuM
-         YrsMC+SrpROKf617tKkFMWxyw8NLNzIKLjp28Dv3f93PvUDgFONW2X7PyJhTmiJ4zcOp
-         NgSDoWp6EaCwZ2F9YUDPxsd5fYeAf4pCumzi9uutSb+mVRyMBY6AJtaMJeKyzFtAbPje
-         TqjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to;
-        bh=i6zSFlSggOZgk0+XF49/fBLOG6TWufrBNoMVsILPLYs=;
-        b=Xa0qMYfzf49rECA37dHXIN7dfNNRXeImQQUQq3h+UHqCxHf0E0ewgwUdjQ/026NSJ0
-         Bx+k8kQngOZDEaljRjH/noACHcwYWpdpNt7VcB4v13gg3wBxqC/nLl/Q8qo7BUXuoY6d
-         FKGHrcIwu8PkTNSS6rZSnelcFeqGLNC6Y4kvDCDqn5uT8108hL6nAe9dRVE6bwMQ7NHS
-         p37Ihy9T8tFpUtCFVmzBVJxh+vWlxSAG1kUqdnz4hVdm3YStpFI+GxIZ5pbC6eXLt888
-         dWHN3BtJv2Mu2O0f3H/Cy9X+uq6DIHyZ7PTOR75Vc6FV8XSnYvhmkOP8/psMi9Tu2rP7
-         nawA==
-X-Gm-Message-State: AOAM531fDp6k2kLabYOcbC4JBBKp/FnDCFrddVyJHTH7Z6JhIKoF8JG0
-        8MNgtb4dxIWm+avG8JIiobE=
-X-Google-Smtp-Source: ABdhPJz21Alh38vFhDTHuXa2gbiCmlogP1ppbWw2wTYPOyeXQVBdNfTzLF0maypnG/enK4QUEZx7Yw==
-X-Received: by 2002:a05:6808:107:: with SMTP id b7mr1613262oie.146.1632357519230;
-        Wed, 22 Sep 2021 17:38:39 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id i25sm920708oto.26.2021.09.22.17.38.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Sep 2021 17:38:38 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 22 Sep 2021 17:38:36 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>
-Cc:     Rob Herring <robh@kernel.org>, Jean Delvare <jdelvare@suse.com>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        Oskar Senft <osk@google.com>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for
- tmp421
-Message-ID: <20210923003836.GA3214968@roeck-us.net>
-References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
- <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
- <YUkKCe7845uCqoy5@robh.at.kernel.org>
- <20210921125831.GB1864238@roeck-us.net>
- <YUrRd3kTyLoCkLAt@localhost.localdomain>
- <20210922123926.GB3201379@roeck-us.net>
- <YUt2oD6sUKYvZLDB@localhost.localdomain>
+        id S238706AbhIWAtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Sep 2021 20:49:21 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:45830 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238631AbhIWAtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Sep 2021 20:49:21 -0400
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20210923004749epoutp032a7dd6facb2d8d01bcb7fe40b7613df1~nTQPu4UDl0234202342epoutp03a
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 00:47:49 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20210923004749epoutp032a7dd6facb2d8d01bcb7fe40b7613df1~nTQPu4UDl0234202342epoutp03a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1632358069;
+        bh=MyB6OdmybLyf267TIf7iS1VVSqdpAxqYVcIPXV9QST0=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=ecTlr0BqRfili271w58R3gTb4GbyQhSvE7xCJJahMqCJ1VmXRd4qKJ3YJZvvDAcpu
+         dSC8Rd/cqdqPv9cC+eXPZRHlXekBeaUyX5RbUqvUnyYsYwUGxqku3ZwEJpFSwvVBVb
+         viYKfxPhLdyRWAGJyisSZspEqOA8lPVNPM0xMUCE=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20210923004748epcas2p3af0e7eb1c7b3648af2b191f95ec63c9e~nTQPM4s5s0497604976epcas2p3u;
+        Thu, 23 Sep 2021 00:47:48 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.40.183]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4HFGjG1tDnz4x9Q6; Thu, 23 Sep
+        2021 00:47:46 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        E2.D7.09816.1BECB416; Thu, 23 Sep 2021 09:47:45 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+        20210923004744epcas2p2bbff0cfc43afad8dd60f5df925d66b92~nTQLeQfkk0159401594epcas2p2q;
+        Thu, 23 Sep 2021 00:47:44 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20210923004744epsmtrp1c7867154491897d6dacca8b9d5dab0c0~nTQLNE5KE0894208942epsmtrp1E;
+        Thu, 23 Sep 2021 00:47:44 +0000 (GMT)
+X-AuditID: b6c32a46-63bff70000002658-22-614bceb12f49
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1D.6B.09091.0BECB416; Thu, 23 Sep 2021 09:47:44 +0900 (KST)
+Received: from KORCO039056 (unknown [10.229.8.156]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20210923004744epsmtip2077dfb36bb1ac3af73be9c2647ee6dd6~nTQK8uJzL0448804488epsmtip2z;
+        Thu, 23 Sep 2021 00:47:44 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Rob Herring'" <robh@kernel.org>
+Cc:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        "'Avri Altman'" <avri.altman@wdc.com>,
+        "'James E . J . Bottomley'" <jejb@linux.ibm.com>,
+        "'Martin K . Petersen'" <martin.petersen@oracle.com>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        "'Bean Huo'" <beanhuo@micron.com>,
+        "'Bart Van Assche'" <bvanassche@acm.org>,
+        "'Adrian Hunter'" <adrian.hunter@intel.com>,
+        "'Christoph Hellwig'" <hch@infradead.org>,
+        "'Can Guo'" <cang@codeaurora.org>,
+        "'Jaegeuk Kim'" <jaegeuk@kernel.org>,
+        "'Gyunghoon Kwon'" <goodjob.kwon@samsung.com>,
+        <linux-samsung-soc@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+In-Reply-To: <YUuKpSPgdKl2CiSy@robh.at.kernel.org>
+Subject: RE: [PATCH v3 05/17] dt-bindings: ufs: exynos-ufs: add sysreg
+ regmap property
+Date:   Thu, 23 Sep 2021 09:47:44 +0900
+Message-ID: <000801d7b014$9ed9fe40$dc8dfac0$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YUt2oD6sUKYvZLDB@localhost.localdomain>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: ko
+Thread-Index: AQKr0ifVbQZWZSl2xwEUfL3y5isNhQLrZ3V1AdZHg9YCn30eDqnNeWNQ
+X-Brightmail-Tracker: H4sIAAAAAAAAA01TfUwbZRzOe9dej0GXWwH3ikHqbZOP8dVuLQcBQdbgCcyRLEYx03qDCyUr
+        bdMDv7I/uk4YpWOAGqAVNlYVlI0QaoVuorJChDmGyTbcVjOdWnQ1Yw7YYJAItj1U/nt+H8/7
+        PL/f+744KvFhMXilrpo16hgtiW0SDI4mKlIGpoqY9MtWEXXRdxajbp8cxCj/8jRGXfjFIqBa
+        7y+j1Hx/t5A6NTYlpI6f20NdanYglK/fjlKOG4MINTD7CKHav/8aoazX3RjVM76KUGvDblEe
+        QV+9VkTbTY0YffVEI0J//mkS/dGwH6GdvRaMbnaMAHqpvx6j52a8AvqEqxfQC84n6WMjVqQk
+        4hVttoZlylmjlNWV6csrdRU5ZNF+9R61QpkuS5FlUhmkVMdUsTmkqrgkpaBSG5iJlL7BaGsC
+        qRKG48i0Z7KN+ppqVqrRc9U5JGso1xpkMkMqx1RxNbqK1DJ9VZYsPV2uCHS+rtWYOt1CQ5/w
+        reFbGhOoFTSAMBwSu2H78CLaADbhEsIN4He2swI+mAfQN2PD+GARwMY/vP9RGoZ/RoNYQnwF
+        4FH783zTHQDvrS0LgwWMSIP++sEQjiJ2QLP9duhYlLAIocPnCRXCCDm0ei6JgjiSeBk2zXcG
+        5HBcECBYJjOCaTGRCTssXhGPt8CLNl/IBErEwaHZDpQ3JIXLM91CPh8FP7TUobxuAfxsvDuk
+        CwlrGGwZuIDxBBW87voE4XEk/HPcJeJxDPQ31YnWCQDW/rq2XjgDoOVIMY9z4UqbSxg0ihKJ
+        sP98WhBCYhsc86572wzrR/8W8WkxrK+T8MR4ODLUtr7DWGjtWBA2A9K+YTL7hsnsG6ax/6/V
+        BQS94DHWwFVVsJzcIN94104Qeu5JBW7wwez9VA9AcOABEEfJKPHCjUJGIi5n3n6HNerVxhot
+        y3mAIrDqFjQmukwf+C+6arVMIVcq0zMVlEIpp8it4s7VfEZCVDDV7CGWNbDGf3kIHhZjQiyt
+        5XPKra5vSruas/uXonOvWetezYse0kfv246ZVWXmgXBfbPGBldpn7YXec/OzPZdzR5Yjtn27
+        snly8qD/inmnM7G28i6e/GZX053w5Ex8i21f49wLfS1eXStnfvEHm7+g8ejvnlWH77imNPYp
+        1YOS5EPxvjSJEz8ifW91Il/tn+r64oH04EKcKvFdpOjLR6jtr7zDMQmOmoTw7mNZO3efarny
+        MOJkT+T4/vMDI6NVv926qXpph2n14eG+uN5SwxOnf/wp/qYowdW+N6OkY1flPfVzj3+snN5b
+        OjG9pH3/6QOixXyzVlQ7N7Hr7gQ6tljY5nP3vWYak7r86JmO0bKswsEuUsBpGFkSauSYfwDo
+        dJcOdwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDIsWRmVeSWpSXmKPExsWy7bCSvO6Gc96JBjdn8FucfLKGzeLBvG1s
+        Fi9/XmWzOPiwk8Vi2oefzBaf1i9jtZh/5ByrRc9OZ4vTExYxWTxZP4vZYtGNbUwWG9/+YLKY
+        cX4fk0X39R1sFsuP/2Oy+L9nB7uDgMflK94esxp62Twu9/UyeWxeoeWxeM9LJo9NqzrZPCYs
+        OsDo8X19B5vHx6e3WDz6tqxi9Pi8Sc6j/UA3UwBPFJdNSmpOZllqkb5dAldGw9wdrAVrWSv2
+        3M1oYGxl6WLk5JAQMJHo2nOfGcQWEtjNKPFrNztEXFbi2bsdULawxP2WI6xdjFxANc8YJX5P
+        vQ3WzCagL/GyYxsriC0ioCrRNOsBC0gRs8BkVon9q9oYITpeM0rs2TuFCaSKU8BIovvQaaCx
+        HBzCAmES+3fYgZgsQM2dZ8xBKngFLCXmdN5ih7AFJU7OfMICUsIsoCfRtpERJMwsIC+x/e0c
+        ZojbFCR+Pl3GChEXkZjd2cYMcY6bxMrjy1gmMArPQjJpFsKkWUgmzULSvYCRZRWjZGpBcW56
+        brFhgWFearlecWJucWleul5yfu4mRnCEa2nuYNy+6oPeIUYmDsZDjBIczEoivJ9veCUK8aYk
+        VlalFuXHF5XmpBYfYpTmYFES573QdTJeSCA9sSQ1OzW1ILUIJsvEwSnVwLTF/bvu1a2z4q/3
+        6l+wnBD55PyS55O1fj2ZPCfyz6rFVtvlWUpKL9VMDzha8UdowzdTPbYJnEqTPBPfvLwjMys2
+        Id4/5tipz467NggI9UiveNn4xtM6bOmaR6zBdR7Xj1o7npzTMrfSXcIn3l0w+nrd9mM7dXKf
+        NNqrKXzI9E3rdHX5svxo//beVbl63qxKLN9eTprI//Fbxa+zzjs3GWimpfK2TlZecLpuX/CZ
+        X77Nx1dOmjH/65lUM+d1LasteG+sXvfg4eu4IxHMM1clyYu/ePWVY++UbcL33vd+c3x0/mrR
+        mplNvmee19i4BVX7rZH4dcXvgx9nDufXp8xbTsh+v/bYYbbQD62ZFycwrb/ZpMRSnJFoqMVc
+        VJwIAIaKxEZfAwAA
+X-CMS-MailID: 20210923004744epcas2p2bbff0cfc43afad8dd60f5df925d66b92
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210917065523epcas2p3ff66daa15c8c782f839422756c388d93
+References: <20210917065436.145629-1-chanho61.park@samsung.com>
+        <CGME20210917065523epcas2p3ff66daa15c8c782f839422756c388d93@epcas2p3.samsung.com>
+        <20210917065436.145629-6-chanho61.park@samsung.com>
+        <YUuKpSPgdKl2CiSy@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 08:32:00PM +0200, Krzysztof Adamski wrote:
-> Dnia Wed, Sep 22, 2021 at 05:39:26AM -0700, Guenter Roeck napisał(a):
-> > On Wed, Sep 22, 2021 at 09:22:33AM +0200, Krzysztof Adamski wrote:
-> > > Dnia Tue, Sep 21, 2021 at 05:58:31AM -0700, Guenter Roeck napisał(a):
-> > > > >
-> > > > > ti,n-factor
-> > > >
-> > > > n-factor isn't just supported by TI sensors, though it isn't always called
-> > > > n-factor. Maxim (eg MAX6581) uses the term "ideality factor", though they
-> > > > also refer to the factor as "N" in the datasheet.
-> > > >
-> > > > So question is if we make this ti,n-factor and maxim,n-factor, or if we make
-> > > > it generic and define some kind of generic units. Thoughts ? My personal
-> > > > preference would be a generic definition, but is not a strong preference.
-> > > 
-> > > That was exactly my way of thinking here - many sensors have n-factor
-> > > parameter and this is the name I see most often.
-> > > 
-> > > That being said, maybe it should be "nfactor" instead of "n-factor", as
-> > > this is what tmp513 is using?
-> > > 
-> > > > In regard to units, the n-factor is, as the name says, a factor. Default
-> > > > value is 1.008. The value range for MAX6581 is 0.999 to 1.030. For TMP421
-> > > > it is 0.706542 to 1.747977. So the scondary question is if the value
-> > > > written should be the register value (as proposed here) or the absolute
-> > > > factor (eg in micro-units).
-> > > 
-> > > Since expressing the fractional values in DT isn't well supported and
-> > > (at least here) hardware guys like to think in terms of register values
-> > > so this is what I proposed. Also, I just noticed that, for example,
-> > > TMP531 is using register values as well.
-> > > 
-> > 
-> > I never see "someone else does that" as valid argument.
+> > +  sysreg:
 > 
-> It is not an argument for "so I should be allowed too" but more like "so
-> it is generic enough to make sense for more than a single case" :)
-> 
-> > Also, DT does support fractional values, via units. It is perfectly
-> > valid to describe a voltage as micro-volt, for example.
-> 
-> True. But doing so for unit-less values isn't as obvious. For real
-> fractions we don't even know what the resolution should be and then we
-> also may have those rounding errors etc (while with register values we
-> know precisely what we get). As usual, we have some pros and
-> cons of both approaches. While I agree raw values are not perfect, I
-> still think it makes more sense so I vote for them. But my vote,
-> obviously, isn't that important here so I'll let you guys decide.
-> 
+> Needs a vendor prefix.
 
-I really have to pass on this one, and leave it up to Rob to decide.
-Personally I really really really dislike raw values, but I understand
-that this makes me biased. I do realize that converting from a fractional
-value to a register value is inherently complex and open to interpretation.
-For example. if we define fractional values, what should 1.007000 translate
-to ? It would either be 1.008 or 1.004641. Using the register value (0xff,
-or -1 for 1.004641) would definitely be simpler and avoid calculations and
-rounding.
+Thanks. I'll use "samsung,sysreg-phandle".
 
-Guenter
+> 
+> > +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> > +    description: phandle for FSYS sysreg interface, used to control
+> > +                 sysreg register bit for UFS IO Coherency
+> 
+> Is there more than 1 FSYS? If not, you can just get the node by its
+> compatible.
 
-> > If the agreement is to use raw register values, I think the property name
-> > should be prefixed with the vendor name, since it won't be a standard
-> > property. I'll defer on Rob for that, though.
+The phandle can be differed each exynos SoCs, AFAIK. I think other exynos
+SoCs since exnos7 will need this but not upstreamed yet...
+
 > 
-> Fair enough. If we go that route, we should use "ti,nfactor" (without
-> dash) to be consistent with ti513?
-> 
-> Krzysztof
+> Also, what about 'dma-coherent' property? The driver core needs to know.
+
+Yes. 'dma-coherent' should be listed as well.
+
+Best Regards,
+Chanho Park
+
