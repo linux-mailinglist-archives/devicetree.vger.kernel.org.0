@@ -2,350 +2,471 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52038416432
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 19:16:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DAF241646A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 19:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242301AbhIWRQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 13:16:48 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:45921 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242279AbhIWRQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 13:16:48 -0400
-Received: by mail-oi1-f181.google.com with SMTP id v10so10564179oic.12;
-        Thu, 23 Sep 2021 10:15:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=W/zoLBVYWYLAtQZXuGopwcFe9NOYRSnJw/clVnUsFws=;
-        b=U6PDtOcYhQe7d6cF7i58v19YsNuJpu6Cb53q5sDXDsNfEOB72AFwLyihmTTPQmOx6J
-         gHWvBjJjkWyeHiqBSeM/I+t8vON20sdirzZuQ9OqmYY2dv9NvRKkAi1oPFCugksX4EZ9
-         E+tKDNpnOkqsfe3ZEypV2oNjYoKucLQK0MGvBzNB/7arKdOADj295uAZI8fSg+DlRgh4
-         dWG+tLNbZVh6gDUM/DTRppUf6P2FTmUtwhqiNahUxE3dUNLZRI+PRQAvNI9bZmFPkHH8
-         2yMvodZcpeRwPYKcszwB0SmgaqaaWnObglgR56V7BIs8ztqptrCqzWCT380wBjcMc4JN
-         1nCg==
-X-Gm-Message-State: AOAM5332dsC0rSzc2kc84FZkChTkK3N3MZ2WOoDGcHBJ5paG/Djl9GYk
-        N430XrHC1uKq5pkBCpXO+Q==
-X-Google-Smtp-Source: ABdhPJxsPme0f+zK3Xd121B7VN662M2+ciakkuDqc+YkX/kl4uyVjyJITFOqneN0tIkPDIVoD/MX/Q==
-X-Received: by 2002:a05:6808:494:: with SMTP id z20mr13439028oid.103.1632417315848;
-        Thu, 23 Sep 2021 10:15:15 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 14sm1428384oiy.53.2021.09.23.10.15.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 10:15:15 -0700 (PDT)
-Received: (nullmailer pid 3191243 invoked by uid 1000);
-        Thu, 23 Sep 2021 17:15:14 -0000
-Date:   Thu, 23 Sep 2021 12:15:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH 2/2] Documentation: devicetree: net: dsa:
- qca8k: document configurable led support
-Message-ID: <YUy2Ikol0dzO6Epp@robh.at.kernel.org>
-References: <20210920180851.30762-1-ansuelsmth@gmail.com>
- <20210920180851.30762-2-ansuelsmth@gmail.com>
+        id S238674AbhIWRaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 13:30:30 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:47366 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242288AbhIWRa3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 13:30:29 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: gtucker)
+        with ESMTPSA id 5E6351F44619
+Subject: Re: next/master bisection: baseline.login on qemu_arm-vexpress-a9
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>
+References: <614ad319.1c69fb81.2a0c1.4782@mx.google.com>
+From:   Guillaume Tucker <guillaume.tucker@collabora.com>
+Cc:     "kernelci-results@groups.io" <kernelci-results@groups.io>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        linux-kernel@vger.kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Message-ID: <8d6223d2-8ca7-0373-bb49-b62894e5fad7@collabora.com>
+Date:   Thu, 23 Sep 2021 18:28:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210920180851.30762-2-ansuelsmth@gmail.com>
+In-Reply-To: <614ad319.1c69fb81.2a0c1.4782@mx.google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 20, 2021 at 08:08:51PM +0200, Ansuel Smith wrote:
-> Document binding for configurable led. Ports led can now be set on/off
-> and the blink/on rules can be configured using the "qca,led_rules"
-> binding. Refer to the Documentation on how to configure them.
-> 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> ---
->  .../devicetree/bindings/net/dsa/qca8k.txt     | 249 ++++++++++++++++++
->  1 file changed, 249 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> index 8c73f67c43ca..233f02cd9e98 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> @@ -29,6 +29,45 @@ the mdio MASTER is used as communication.
->  Don't use mixed external and internal mdio-bus configurations, as this is
->  not supported by the hardware.
->  
-> +A leds subnode can be declared to configure leds port behaviour.
-> +The leds subnode must declare the port with the mdio reg that will have the
-> +attached led. Each port can have a max of 3 different leds. (Refer to example)
-> +A led can have 4 different settings:
-> +- Always off
-> +- Always on
-> +- Blink at 4hz
-> +- Hw_mode: This special mode follow control_rule rules and blink based on switch
-> +event.
-> +A sysfs entry for control_rule and hw_mode is provided for each led.
-> +Control rule for phy0-3 are shared and refer to the same reg. That means that
-> +phy0-3 will blink based on the same rules. Phy4 have its dedicated control_rules.
-> +
-> +Each led can have the following binding:
-> +The binding "default-state" can be declared to set them off by default or to
-> +follow leds control_rule using the keep value. By default hw_mode is set as it's
-> +the default switch setting.
-> +The binding "qca,led_rules" can be used to declare the control_rule set on
-> +switch setup. The following rules can be applied decalred in an array of string
-> +in the dts:
-> +- tx-blink: Led blink on tx traffic for the port
-> +- rx-blink: Led blink on rx traffic for the port
-> +- collision-blink: Led blink when a collision is detected for the port
-> +- link-10M: Led is turned on when a link of 10M is detected for the port
-> +- link-100M: Led is turned on when a link of 100M is detected for the port
-> +- link-1000M: Led is turned on when a link of 1000M is detected for the port
-> +- half-duplex: Led is turned on when a half-duplex link is detected for the port
-> +- full-duplex: Led is turned on when a full-duplex link is detected for the port
-> +- linkup-over: Led blinks only when the linkup led is on, ignore blink otherwise
-> +- power-on-reset: Reset led on switch reset
-> +- One of
-> +	- blink-2hz: Led blinks at 2hz frequency
-> +	- blink-4hz: Led blinks at 4hz frequency
-> +	- blink-8hz: Led blinks at 8hz frequency
-> +	- blink-auto: Led blinks at 2hz frequency with 10M, 4hz with 100M, 8hz
-> +	  with 1000M
-> +Due to the phy0-3 limitation, multiple use of 'qca8k_led_rules' will result in
-> +the last defined one to be applied.
-> +
+Hi Rob,
 
-Too big a change for plain text. This needs to be a schema (and also 
-common most likely).
+Please see the bisection report below about a boot failure on ARM
+Versatile Express.
 
->  The CPU port of this switch is always port 0.
->  
->  A CPU port node has the following optional node:
-> @@ -213,3 +252,213 @@ for the internal master mdio-bus configuration:
->  			};
->  		};
+Reports aren't automatically sent to the public while we're
+trialing new bisection features on kernelci.org but this one
+looks valid.
+
+Some more details can be found here, for Cortex A9:
+
+  https://linux.kernelci.org/test/case/id/614c36cf0c427f123799a2db/
+
+The same issue appears to be reproducible with A15:
+
+  https://linux.kernelci.org/test/case/id/614c3693c63eb30bb799a2f7/
+
+Please let us know if you need help debugging the issue or if you
+have a fix to try.
+
+Best wishes,
+Guillaume
+
+
+GitHub: https://github.com/kernelci/kernelci-project/issues/56
+
+
+On 22/09/2021 07:54, kernelci.org bot wrote:
+> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+> * This automated bisection report was sent to you on the basis  *
+> * that you may be involved with the breaking commit it has      *
+> * found.  No manual investigation has been done to verify it,   *
+> * and the root cause of the problem may be somewhere else.      *
+> *                                                               *
+> * If you do send a fix, please include this trailer:            *
+> *   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
+> *                                                               *
+> * Hope this helps!                                              *
+> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+> 
+> next/master bisection: baseline.login on qemu_arm-vexpress-a9
+> 
+> Summary:
+>   Start:      83fa5857d812b Add linux-next specific files for 20210921
+>   Plain log:  https://storage.kernelci.org/next/master/next-20210921/arm/vexpress_defconfig/gcc-8/lab-baylibre/baseline-qemu_arm-vexpress-a9.txt
+>   HTML log:   https://storage.kernelci.org/next/master/next-20210921/arm/vexpress_defconfig/gcc-8/lab-baylibre/baseline-qemu_arm-vexpress-a9.html
+>   Result:     078fb7aa6a830 arm: dts: vexpress: Fix addressing issues with 'motherboard-bus' nodes
+> 
+> Checks:
+>   revert:     PASS
+>   verify:     PASS
+> 
+> Parameters:
+>   Tree:       next
+>   URL:        https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+>   Branch:     master
+>   Target:     qemu_arm-vexpress-a9
+>   CPU arch:   arm
+>   Lab:        lab-baylibre
+>   Compiler:   gcc-8
+>   Config:     vexpress_defconfig
+>   Test case:  baseline.login
+> 
+> Breaking commit found:
+> 
+> -------------------------------------------------------------------------------
+> commit 078fb7aa6a8305bce09cdfbe77b4c987934442ba
+> Author: Rob Herring <robh@kernel.org>
+> Date:   Thu Aug 19 13:42:39 2021 -0500
+> 
+>     arm: dts: vexpress: Fix addressing issues with 'motherboard-bus' nodes
+>     
+>     The 'motherboard-bus' node in Arm Ltd boards fails schema checks as
+>     'simple-bus' child nodes must have a unit-address. The 'ranges' handling is
+>     also wrong (or at least strange) as the mapping of SMC chip selects should
+>     be in the 'arm,vexpress,v2m-p1' node rather than a generic 'simple-bus'
+>     node. Either there's 1 too many levels of 'simple-bus' nodes or 'ranges'
+>     should be moved down a level. The latter change is more simple, so let's do
+>     that. As the 'ranges' value doesn't vary for a given motherboard instance,
+>     we can move 'ranges' into the motherboard dtsi files.
+>     
+>     Link: https://lore.kernel.org/r/20210819184239.1192395-6-robh@kernel.org
+>     Cc: Andre Przywara <andre.przywara@arm.com>
+>     Cc: Sudeep Holla <sudeep.holla@arm.com>
+>     Cc: Linus Walleij <linus.walleij@linaro.org>
+>     Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>     Signed-off-by: Rob Herring <robh@kernel.org>
+>     Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> 
+> diff --git a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+> index f58e8e17120d8..75927a052f8f7 100644
+> --- a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+> +++ b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
+> @@ -101,13 +101,22 @@
 >  	};
+>  
+>  	bus@8000000 {
+> -		motherboard-bus {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
 > +
-> +for the leds declaration example:
+> +		motherboard-bus@8000000 {
+>  			arm,hbi = <0x190>;
+>  			arm,vexpress,site = <0>;
+>  			compatible = "arm,vexpress,v2m-p1", "simple-bus";
+>  			#address-cells = <2>; /* SMB chipselect number and offset */
+>  			#size-cells = <1>;
+> -			ranges;
+> +			ranges = <0 0 0x08000000 0x04000000>,
+> +				 <1 0 0x14000000 0x04000000>,
+> +				 <2 0 0x18000000 0x04000000>,
+> +				 <3 0 0x1c000000 0x04000000>,
+> +				 <4 0 0x0c000000 0x04000000>,
+> +				 <5 0 0x10000000 0x04000000>;
+>  
+>  			nor_flash: flash@0 {
+>  				compatible = "arm,vexpress-flash", "cfi-flash";
+> diff --git a/arch/arm/boot/dts/vexpress-v2m.dtsi b/arch/arm/boot/dts/vexpress-v2m.dtsi
+> index 0819d112de123..0547f633764fa 100644
+> --- a/arch/arm/boot/dts/vexpress-v2m.dtsi
+> +++ b/arch/arm/boot/dts/vexpress-v2m.dtsi
+> @@ -20,13 +20,23 @@
+>  
+>  / {
+>  	bus@40000000 {
+> -		motherboard {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x40000000 0x40000000 0x10000000>,
+> +			 <0x10000000 0x10000000 0x00020000>;
 > +
-> +#include <dt-bindings/leds/common.h>
+> +		motherboard-bus@40000000 {
+>  			arm,hbi = <0x190>;
+>  			arm,vexpress,site = <0>;
+>  			compatible = "arm,vexpress,v2m-p1", "simple-bus";
+>  			#address-cells = <2>; /* SMB chipselect number and offset */
+>  			#size-cells = <1>;
+> -			ranges;
+> +			ranges = <0 0 0x40000000 0x04000000>,
+> +				 <1 0 0x44000000 0x04000000>,
+> +				 <2 0 0x48000000 0x04000000>,
+> +				 <3 0 0x4c000000 0x04000000>,
+> +				 <7 0 0x10000000 0x00020000>;
+>  
+>  			flash@0,00000000 {
+>  				compatible = "arm,vexpress-flash", "cfi-flash";
+> diff --git a/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts b/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts
+> index e63c5c0bfb43f..7fb387a7f81bd 100644
+> --- a/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts
+> +++ b/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts
+> @@ -237,16 +237,7 @@
+>  	};
+>  
+>  	bus@8000000 {
+> -		compatible = "simple-bus";
+> -
+> -		#address-cells = <2>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0 0x08000000 0x04000000>,
+> -			 <1 0 0 0x14000000 0x04000000>,
+> -			 <2 0 0 0x18000000 0x04000000>,
+> -			 <3 0 0 0x1c000000 0x04000000>,
+> -			 <4 0 0 0x0c000000 0x04000000>,
+> -			 <5 0 0 0x10000000 0x04000000>;
+> +		ranges = <0x8000000 0 0x8000000 0x18000000>;
+>  
+>  		#interrupt-cells = <1>;
+>  		interrupt-map-mask = <0 0 63>;
+> diff --git a/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts b/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
+> index 012d40a7228c1..f81d147532732 100644
+> --- a/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
+> +++ b/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
+> @@ -609,16 +609,7 @@
+>  	};
+>  
+>  	smb: bus@8000000 {
+> -		compatible = "simple-bus";
+> -
+> -		#address-cells = <2>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0 0x08000000 0x04000000>,
+> -			 <1 0 0 0x14000000 0x04000000>,
+> -			 <2 0 0 0x18000000 0x04000000>,
+> -			 <3 0 0 0x1c000000 0x04000000>,
+> -			 <4 0 0 0x0c000000 0x04000000>,
+> -			 <5 0 0 0x10000000 0x04000000>;
+> +		ranges = <0x8000000 0 0x8000000 0x18000000>;
+>  
+>  		#interrupt-cells = <1>;
+>  		interrupt-map-mask = <0 0 63>;
+> diff --git a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
+> index 7aa64ae257798..42dbf606b1e27 100644
+> --- a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
+> +++ b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
+> @@ -207,16 +207,7 @@
+>  	};
+>  
+>  	smb: bus@8000000 {
+> -		compatible = "simple-bus";
+> -
+> -		#address-cells = <2>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0x08000000 0x04000000>,
+> -			 <1 0 0x14000000 0x04000000>,
+> -			 <2 0 0x18000000 0x04000000>,
+> -			 <3 0 0x1c000000 0x04000000>,
+> -			 <4 0 0x0c000000 0x04000000>,
+> -			 <5 0 0x10000000 0x04000000>;
+> +		ranges = <0 0x8000000 0x18000000>;
+>  
+>  		#interrupt-cells = <1>;
+>  		interrupt-map-mask = <0 0 63>;
+> diff --git a/arch/arm/boot/dts/vexpress-v2p-ca9.dts b/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+> index 1317f0f58d53d..99b2f339cc04c 100644
+> --- a/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+> +++ b/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+> @@ -296,16 +296,6 @@
+>  	};
+>  
+>  	smb: bus@40000000 {
+> -		compatible = "simple-bus";
+> -
+> -		#address-cells = <2>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0x40000000 0x04000000>,
+> -			 <1 0 0x44000000 0x04000000>,
+> -			 <2 0 0x48000000 0x04000000>,
+> -			 <3 0 0x4c000000 0x04000000>,
+> -			 <7 0 0x10000000 0x00020000>;
+> -
+>  		#interrupt-cells = <1>;
+>  		interrupt-map-mask = <0 0 63>;
+>  		interrupt-map = <0 0  0 &gic 0  0 4>,
+> diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+> index 2732d8e5bb5da..269b649934b5a 100644
+> --- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+> +++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+> @@ -195,17 +195,6 @@
+>  	};
+>  
+>  	bus@8000000 {
+> -		compatible = "simple-bus";
+> -
+> -		#address-cells = <2>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0 0x08000000 0x04000000>,
+> -			 <1 0 0 0x14000000 0x04000000>,
+> -			 <2 0 0 0x18000000 0x04000000>,
+> -			 <3 0 0 0x1c000000 0x04000000>,
+> -			 <4 0 0 0x0c000000 0x04000000>,
+> -			 <5 0 0 0x10000000 0x04000000>;
+> -
+>  		#interrupt-cells = <1>;
+>  		interrupt-map-mask = <0 0 63>;
+>  		interrupt-map = <0 0  0 &gic 0 0 GIC_SPI  0 IRQ_TYPE_LEVEL_HIGH>,
+> diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
+> index e4fea639731ed..6288e104a0893 100644
+> --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
+> +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+> @@ -802,16 +802,6 @@
+>  	};
+>  
+>  	bus@8000000 {
+> -		compatible = "simple-bus";
+> -		#address-cells = <2>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0 0x08000000 0x04000000>,
+> -			 <1 0 0 0x14000000 0x04000000>,
+> -			 <2 0 0 0x18000000 0x04000000>,
+> -			 <3 0 0 0x1c000000 0x04000000>,
+> -			 <4 0 0 0x0c000000 0x04000000>,
+> -			 <5 0 0 0x10000000 0x04000000>;
+> -
+>  		#interrupt-cells = <1>;
+>  		interrupt-map-mask = <0 0 15>;
+>  		interrupt-map = <0 0  0 &gic 0 GIC_SPI  68 IRQ_TYPE_LEVEL_HIGH>,
+> diff --git a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
+> index 4e124d955c8e7..fefd2b5f01762 100644
+> --- a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
+> +++ b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
+> @@ -92,11 +92,21 @@
+>  	};
+>  
+>  	bus@8000000 {
+> -		motherboard-bus {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <1>;
+> +		ranges = <0 0x8000000 0 0x8000000 0x18000000>;
 > +
-> +	&mdio0 {
-> +		switch@10 {
-> +			compatible = "qca,qca8337";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
+> +		motherboard-bus@8000000 {
+>  			compatible = "arm,vexpress,v2p-p1", "simple-bus";
+>  			#address-cells = <2>;  /* SMB chipselect number and offset */
+>  			#size-cells = <1>;
+> -			ranges;
+> +			ranges = <0 0 0 0x08000000 0x04000000>,
+> +				 <1 0 0 0x14000000 0x04000000>,
+> +				 <2 0 0 0x18000000 0x04000000>,
+> +				 <3 0 0 0x1c000000 0x04000000>,
+> +				 <4 0 0 0x0c000000 0x04000000>,
+> +				 <5 0 0 0x10000000 0x04000000>;
+>  			arm,hbi = <0x252>;
+>  			arm,vexpress,site = <0>;
+>  
+> diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
+> index 3050f45bade4a..258991ad7cc0a 100644
+> --- a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
+> +++ b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
+> @@ -133,17 +133,6 @@
+>  	};
+>  
+>  	bus@8000000 {
+> -		compatible = "simple-bus";
+> -
+> -		#address-cells = <2>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0 0x08000000 0x04000000>,
+> -			 <1 0 0 0x14000000 0x04000000>,
+> -			 <2 0 0 0x18000000 0x04000000>,
+> -			 <3 0 0 0x1c000000 0x04000000>,
+> -			 <4 0 0 0x0c000000 0x04000000>,
+> -			 <5 0 0 0x10000000 0x04000000>;
+> -
+>  		#interrupt-cells = <1>;
+>  		interrupt-map-mask = <0 0 63>;
+>  		interrupt-map = <0 0  0 &gic GIC_SPI  0 IRQ_TYPE_LEVEL_HIGH>,
+> diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
+> index b917d9d3f1c4c..33182d9e58267 100644
+> --- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
+> +++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard-rs2.dtsi
+> @@ -6,7 +6,7 @@
+>   */
+>  / {
+>  	bus@8000000 {
+> -		motherboard-bus {
+> +		motherboard-bus@8000000 {
+>  			arm,v2m-memory-map = "rs2";
+>  
+>  			iofpga-bus@300000000 {
+> diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
+> index d4c5528307432..5f6cab668aa07 100644
+> --- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
+> +++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
+> @@ -77,11 +77,21 @@
+>  	};
+>  
+>  	bus@8000000 {
+> -		motherboard-bus {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <1>;
+> +		ranges = <0 0x8000000 0 0x8000000 0x18000000>;
 > +
-> +			reset-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
-> +			reg = <0x10>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					label = "cpu";
-> +					ethernet = <&gmac1>;
-> +					phy-mode = "rgmii";
-> +					fixed-link {
-> +						speed = 1000;
-> +						full-duplex;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					label = "lan1";
-> +					phy-mode = "internal";
-> +					phy-handle = <&phy_port1>;
-> +				};
-> +
-> +				port@2 {
-> +					reg = <2>;
-> +					label = "lan2";
-> +					phy-mode = "internal";
-> +					phy-handle = <&phy_port2>;
-> +				};
-> +
-> +				port@3 {
-> +					reg = <3>;
-> +					label = "lan3";
-> +					phy-mode = "internal";
-> +					phy-handle = <&phy_port3>;
-> +				};
-> +
-> +				port@4 {
-> +					reg = <4>;
-> +					label = "lan4";
-> +					phy-mode = "internal";
-> +					phy-handle = <&phy_port4>;
-> +				};
-> +
-> +				port@5 {
-> +					reg = <5>;
-> +					label = "wan";
-> +					phy-mode = "internal";
-> +					phy-handle = <&phy_port5>;
-> +				};
-> +			};
-> +
-> +			mdio {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				phy_port1: phy@0 {
-> +					reg = <0>;
-> +				};
-> +
-> +				phy_port2: phy@1 {
-> +					reg = <1>;
-> +				};
-> +
-> +				phy_port3: phy@2 {
-> +					reg = <2>;
-> +				};
-> +
-> +				phy_port4: phy@3 {
-> +					reg = <3>;
-> +				};
-> +
-> +				phy_port5: phy@4 {
-> +					reg = <4>;
-> +				};
-> +			};
-> +
-> +			leds {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				phy@0 {
-
-Duplicating the phy's here? LEDs are a function of the phy, so they 
-should be under the actual phy node. So this should be a 'leds' node 
-under the mdio/phy@0 node.
-
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					reg = <0>;
-> +
-> +					led@0 {
-> +						reg = <0>;
-> +						color = <LED_COLOR_ID_GREEN>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_LAN;
-> +						function-enumerator = <1>;
-> +					};
-> +
-> +					led@1 {
-> +						reg = <1>;
-> +						color = <LED_COLOR_ID_AMBER>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_LAN;
-> +						function-enumerator = <1>;
-> +					};
-> +				};
-> +
-> +				phy@1 {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					reg = <1>;
-> +
-> +					led@0 {
-> +						reg = <0>;
-> +						color = <LED_COLOR_ID_GREEN>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_LAN;
-> +						function-enumerator = <2>;
-> +					};
-> +
-> +					led@1 {
-> +						reg = <1>;
-> +						color = <LED_COLOR_ID_AMBER>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_LAN;
-> +						function-enumerator = <2>;
-> +					};
-> +				};
-> +
-> +				phy@2 {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					reg = <2>;
-> +
-> +					led@0 {
-> +						reg = <0>;
-> +						color = <LED_COLOR_ID_GREEN>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_LAN;
-> +						function-enumerator = <3>;
-> +					};
-> +
-> +					led@1 {
-> +						reg = <1>;
-> +						color = <LED_COLOR_ID_AMBER>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_LAN;
-> +						function-enumerator = <3>;
-> +					};
-> +				};
-> +
-> +				phy@3 {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					reg = <3>;
-> +
-> +					led@0 {
-> +						reg = <0>;
-> +						color = <LED_COLOR_ID_GREEN>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_LAN;
-> +						function-enumerator = <4>;
-> +					};
-> +
-> +					led@1 {
-> +						reg = <1>;
-> +						color = <LED_COLOR_ID_AMBER>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_LAN;
-> +						function-enumerator = <4>;
-> +					};
-> +				};
-> +
-> +				phy@4 {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					reg = <4>;
-> +
-> +					led@0 {
-> +						reg = <0>;
-> +						color = <LED_COLOR_ID_GREEN>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_WAN;
-> +						qca,led_rules = "tx-blink", "rx-blink", "link-1000M", "full-duplex", "linkup-over", "blink-8hz";
-> +					};
-> +
-> +					led@1 {
-> +						reg = <1>;
-> +						color = <LED_COLOR_ID_AMBER>;
-> +						default-state = "keep";
-> +						function = LED_FUNCTION_WAN;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> \ No newline at end of file
-
-Fix this.
-
-> -- 
-> 2.32.0
+> +		motherboard-bus@8000000 {
+>  			compatible = "arm,vexpress,v2m-p1", "simple-bus";
+>  			#address-cells = <2>; /* SMB chipselect number and offset */
+>  			#size-cells = <1>;
+> -			ranges;
+> +			ranges = <0 0 0 0x08000000 0x04000000>,
+> +				 <1 0 0 0x14000000 0x04000000>,
+> +				 <2 0 0 0x18000000 0x04000000>,
+> +				 <3 0 0 0x1c000000 0x04000000>,
+> +				 <4 0 0 0x0c000000 0x04000000>,
+> +				 <5 0 0 0x10000000 0x04000000>;
+>  
+>  			flash@0 {
+>  				compatible = "arm,vexpress-flash", "cfi-flash";
+> diff --git a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
+> index d859914500a70..5f6a5951adef7 100644
+> --- a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
+> +++ b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
+> @@ -145,17 +145,7 @@
+>  	};
+>  
+>  	smb: bus@8000000 {
+> -		compatible = "simple-bus";
+> -
+> -		#address-cells = <2>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0 0x08000000 0x04000000>,
+> -			 <1 0 0 0x14000000 0x04000000>,
+> -			 <2 0 0 0x18000000 0x04000000>,
+> -			 <3 0 0 0x1c000000 0x04000000>,
+> -			 <4 0 0 0x0c000000 0x04000000>,
+> -			 <5 0 0 0x10000000 0x04000000>;
+> -
+> +		ranges = <0x8000000 0 0x8000000 0x18000000>;
+>  		#interrupt-cells = <1>;
+>  		interrupt-map-mask = <0 0 63>;
+>  		interrupt-map = <0 0  0 &gic GIC_SPI  0 IRQ_TYPE_LEVEL_HIGH>,
+> -------------------------------------------------------------------------------
 > 
 > 
+> Git bisection log:
+> 
+> -------------------------------------------------------------------------------
+> git bisect start
+> # good: [4c17ca27923c16fd73bbb9ad033c7d749c3bcfcc] Merge tag 'spi-fix-v5.15-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi
+> git bisect good 4c17ca27923c16fd73bbb9ad033c7d749c3bcfcc
+> # bad: [83fa5857d812b46010841c677a90a3f858c2c838] Add linux-next specific files for 20210921
+> git bisect bad 83fa5857d812b46010841c677a90a3f858c2c838
+> # bad: [e3d55aba26023f58316d5f09972e078a7062fbbe] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git
+> git bisect bad e3d55aba26023f58316d5f09972e078a7062fbbe
+> # bad: [ce9cef713f919ce3c0920a090f9d2cf9193d5b31] Merge branch 'fscache-next' of git://git.kernel.org/pub/scm/linux/kernel/git/dhowells/linux-fs.git
+> git bisect bad ce9cef713f919ce3c0920a090f9d2cf9193d5b31
+> # good: [df0148f671633f6c0bd0a7648c46bcbace96329a] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+> git bisect good df0148f671633f6c0bd0a7648c46bcbace96329a
+> # bad: [5e678fcdf3c5a8c03ae89695c638911c3a6daf42] Merge branch 'sunxi/for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git
+> git bisect bad 5e678fcdf3c5a8c03ae89695c638911c3a6daf42
+> # good: [6092ed8fe34ac73f16a7dfa50f0ec0732e594962] Merge branch 'v5.16-clk/next' into for-next
+> git bisect good 6092ed8fe34ac73f16a7dfa50f0ec0732e594962
+> # good: [a56098cf11bf42f0037c77b8664fef98370e9671] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git
+> git bisect good a56098cf11bf42f0037c77b8664fef98370e9671
+> # good: [bb289f4c0b2bb10c7ecd51b6799cd9d1b9c409aa] Merge branches 'sunxi/clk-for-5.16', 'sunxi/core-for-5.16', 'sunxi/drivers-for-5.16', 'sunxi/dt-for-5.16' and 'sunxi/fixes-for-5.15' into sunxi/for-next
+> git bisect good bb289f4c0b2bb10c7ecd51b6799cd9d1b9c409aa
+> # bad: [34eae8520c886bca0ca43c2cbe3ddf1a24cc2e04] Merge branch 'for-next/juno' of git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux into for-linux-next
+> git bisect bad 34eae8520c886bca0ca43c2cbe3ddf1a24cc2e04
+> # good: [55c71dc69ecb328e6212ac5154099c4230d0b83f] arm: dts: vexpress: Drop unused properties from motherboard node
+> git bisect good 55c71dc69ecb328e6212ac5154099c4230d0b83f
+> # good: [849dca7fbdcc589764dde874b3c2d6c99ea277c4] Merge branch 'for-next/scmi' of git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux into for-linux-next
+> git bisect good 849dca7fbdcc589764dde874b3c2d6c99ea277c4
+> # bad: [078fb7aa6a8305bce09cdfbe77b4c987934442ba] arm: dts: vexpress: Fix addressing issues with 'motherboard-bus' nodes
+> git bisect bad 078fb7aa6a8305bce09cdfbe77b4c987934442ba
+> # good: [2e9edc07df2ec6f835222151fa4e536e9e54856a] arm: dts: vexpress-v2p-ca9: Fix the SMB unit-address
+> git bisect good 2e9edc07df2ec6f835222151fa4e536e9e54856a
+> # first bad commit: [078fb7aa6a8305bce09cdfbe77b4c987934442ba] arm: dts: vexpress: Fix addressing issues with 'motherboard-bus' nodes
+> -------------------------------------------------------------------------------
+> 
+
