@@ -2,578 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB791416059
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BCD5416076
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 16:00:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241514AbhIWN4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 09:56:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241521AbhIWN4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:56:33 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B24A0C061574
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 06:55:01 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id v10so19324053edj.10
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 06:55:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=74wY1AuEF/7lmscli+ZkehN0wJXzXidKqpSPopJphNY=;
-        b=3uKwoy07S/vU5B/qlN4jNSilv+DWwmfN6+ztHq4Ovwgurh5RWbyJJ1oZYgePcqXWIX
-         gSma6CgjldJHhLIXmPCMuYDsZauX43pa++mqyv+oEj1aCsGxLMoUxBZU7bFEC5TcF2Ic
-         NVhG9O6/UmH6HGEggXdLE4BdjFeTCN9b/J4chacIa4O1q/f6iYQp/5Tt6tM0EbQc3eQg
-         bzIEvw7Fu6mPkdQaQMxbDNtqFRGlidRWgprMSe8u1CeDoLS5Ahky3BtcEQttURcc+/sE
-         vKPjHDGNTP1absFt2M/WtPfuIutRsbAMWSMGo/ofYCIbGBGgnfAIUH8Kyh/uRbzzV0Xl
-         DFFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=74wY1AuEF/7lmscli+ZkehN0wJXzXidKqpSPopJphNY=;
-        b=OBobfE90Tkpi8h4FGAZaq43HQZ8fdxUX3zqwtgAE67Qng8u4yvC3phYqsqfAbEgQZ0
-         olfvY7Mgw24UabkgEz/XUqq35dUTwqq0XyQ3ULKdGfrIjAFe8IcTxHqPyCAHpBQ71SAK
-         clYTEAFfGVXQaN79FmqthVYefrYTxh31fXYca46rirmTeJx0aEuMAVF3e0WbPQPBmB2T
-         fv9UBjKPWrsHHIM7ZFoLp4z2swQfaC+zhBIEwpnl6QVmjyuTJVGJO40g7NMjVHVIaJkh
-         Qe46L672NR8iY7I0tSU914hhFChveSTue1L4qwz6CVVZU5n4MSsz6F4coUBRtVCI6/pw
-         XfXw==
-X-Gm-Message-State: AOAM533+cNpK60Tg8h2UwnHdGpnfaJWCz4wnpqB+z91xkOYaqC8yKH2r
-        cjqNctiDgD/F/sGV6e9/TbrUPQ==
-X-Google-Smtp-Source: ABdhPJxPaPg4zlGAKqJiqMFI3OiNY/mHycx+rafGR9DgY4HIWdJL+rMvrjy8ZQPMhgUMK2lVwvkcBA==
-X-Received: by 2002:aa7:db85:: with SMTP id u5mr5578162edt.234.1632405300024;
-        Thu, 23 Sep 2021 06:55:00 -0700 (PDT)
-Received: from fedora.. (cpezg-94-253-144-162-cbl.xnet.hr. [94.253.144.162])
-        by smtp.googlemail.com with ESMTPSA id y8sm3104970ejm.104.2021.09.23.06.54.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 06:54:59 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     robh+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH] arm64: dts: marvell: add Globalscale MOCHAbin
-Date:   Thu, 23 Sep 2021 15:54:54 +0200
-Message-Id: <20210923135454.2967198-1-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.31.1
+        id S241289AbhIWOCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 10:02:15 -0400
+Received: from mail-eopbgr10125.outbound.protection.outlook.com ([40.107.1.125]:18083
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S241215AbhIWOCO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Sep 2021 10:02:14 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GgpbWhqAYVM9E7w0xRkIgQqAer50CaY/Tfgg+Wsr06uiV9mPh41DyEWgiU0Wxdt9zDDrln9i6qdBv2tJsZflOLup/ZXW185nvxyWquQ38lJzM2iPHt0vsZ3AdmWFYOC9iar+lskv5LpZFuWd2EvK/f/lsXGOECmf39RrJ6/PglwAIERAtD3ZMOxNa1wlWeNlNVvavVBfeVpUozGrqR+mpryHJuz+f4iWs52UYcbajWWqCZHhMmXQRL7gYeXDaUPPnifjGEvnBPKMBKL1wZbV9MlSpnJmME3K8W06roBwk6MX5kyCZGE6R2bSaLdQoeHgxMKxF9hYacEHopiZw/CBXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=DPG9JFDQmg1ow3oR0CLXZwFqQbt8JGrSiXVFvFEy2S4=;
+ b=k1NE7de8HOJ6e6BJ7MHV9zyvfFw/eomG06azy01r6jzgEQ5oL6uX0YOjKKSi5W8AUiDjsO9hyCY30MLyEXCQ0PoTkZW31xZ6003nPNmYrmS8efjPUiLV3noXFWL5EsKlQ1IG8o70z5wYn5/IN5wT2KnkSfFEJzNzjR00r9QTYvg6RHQLceqS5u+0+a8QX0i+8U2PtSHj3MVX+a940tclvvUiWfIvNYykxtt9oyt/zfQLMXQKT/8oTdLdHg6UTgDOdp22V5sJcO2hhplwGqdulIW14z4sys9vuatgkDc3G2XjZfMpb6GdvSZAiRbeEl0qBsNUulRs8mYtAnhkEM/Exw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DPG9JFDQmg1ow3oR0CLXZwFqQbt8JGrSiXVFvFEy2S4=;
+ b=dpR5z0YBr9qbUHAQKHtxJ/kk/XPb4B1HoYtS0/+XeWCpx4pbx0cf4aV0W2WsYYx/O2lyYjc6+z0y+Lc5H9niFbpoIDrVhEMCT3n5Krk/DqB4SG6FmwAnY1K7vhan4MiyusKXOXwWU+NEwMWi0ljzFYbJX52MX6hfTZYKUO5WzO4=
+Authentication-Results: roeck-us.net; dkim=none (message not signed)
+ header.d=none;roeck-us.net; dmarc=none action=none header.from=nokia.com;
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
+ by DU2PR07MB8303.eurprd07.prod.outlook.com (2603:10a6:10:27c::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.14; Thu, 23 Sep
+ 2021 14:00:39 +0000
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::c47f:b569:ac76:9feb]) by DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::c47f:b569:ac76:9feb%6]) with mapi id 15.20.4478.014; Thu, 23 Sep 2021
+ 14:00:39 +0000
+Date:   Thu, 23 Sep 2021 16:00:24 +0200
+From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Przemyslaw Cencner <przemyslaw.cencner@nokia.com>
+Subject: [PATCH v2 00/10] Add per channel properies support in tmp421
+Message-ID: <cover.1632402191.git.krzysztof.adamski@nokia.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-ClientProxiedBy: MA1PR0101CA0069.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:20::31) To DU2PR07MB8110.eurprd07.prod.outlook.com
+ (2603:10a6:10:239::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Received: from localhost.localdomain (131.228.2.4) by MA1PR0101CA0069.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:20::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13 via Frontend Transport; Thu, 23 Sep 2021 14:00:34 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2694ff00-c934-4261-f403-08d97e9a863b
+X-MS-TrafficTypeDiagnostic: DU2PR07MB8303:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DU2PR07MB83031BA3E7FB10D9B2C011C7EFA39@DU2PR07MB8303.eurprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: UBysyvz755ISWx5tUJtlP9g8QWxUr2ruzz2jm2w8j/IcRnLMJvg4UlnQvGR2EpM/HV5b5YxOEHvY7IUzmDyytHR6//R/WHnMZ8ro/40oSgTWvjBLdG/qIZbAl3fTZyhsmeaXT/kRHZRox+AHo9Dd8/aqtl3bpeLFANc6iHWtKHyRsBB3PwDs8fd2DgLYoQVgot7ULqVgN2znvhmNortyAxD1BVzNMLeigyJQRQJSlYfKz6rMEXdxzZJ96fyrbNL4C4j6wYD623erXr8FqX6KDeccjzq3XYgcH1Ou1/nug8zdjL1iwrUzaC+h3Y14rEj7k/VpOMmV5yKyEyq2BcJVwX8Wtd8Hdq7r83crlHek+QNRBFjKQK9wsMUgZFWRi0iDTnGURdjruSPtLfNd7BSbralL6M0kknsJM28yrJRY7qVIEnXntMRGSsoUYG09i7iOCdZ+DN6XmV6GWjXwB5PCz0bNqn51Bpa5slJ/rKmuyp/RFNMPTJguEOgaBAw6603lgs2gqAO97cWXzQiMnm4UyXBqCGSDnk9eDEGeY4u/D/pn4D+F2pQZlwzrCOKl7hJihVOU9POhQfzcN3uoptqDe72VhqQJMExJWz0BVt9jHFRpWrUbeI+eYHI/+vCZEIXIvQXIki7KDgJL/jAvqpkE5VGHu5q7i5LHmZjq2QWjsWpkJ4dYgBqnioDl3CCVDYXIMXNMEJDMRrqHC3N6snlF5Jw/2qj/GGH5lj25om4+OThGttuuUpJ0t3OioHUwDKdirnicv1QztUugXODzBa6jW4iuW90uLp6Lg4cZgMD0ZrA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66946007)(83380400001)(38350700002)(44832011)(6666004)(107886003)(966005)(26005)(66476007)(316002)(38100700002)(2616005)(52116002)(8676002)(508600001)(6512007)(956004)(54906003)(5660300002)(2906002)(110136005)(6486002)(36756003)(4326008)(8936002)(66556008)(6506007)(186003)(86362001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kPb+dStp5S1srYd0bJ2XIkxuDOl8e4NW0JtdsQ+96gZKw5nqKA5uJVrGUhqG?=
+ =?us-ascii?Q?PNxEjOlu3b+WLHnIyGqdMR2lChP5Am2Zx/xqGnLyO20HjNv723y5bABxHLLI?=
+ =?us-ascii?Q?oeNwURXFwo+qc7U4vMzTGvP3+p/zrknp/6Oiu34hpPnYIQltJWRq7M5Wubh2?=
+ =?us-ascii?Q?zEZdGp8kB2ofXuxz0saZCHb5goOX85E22Rkotqd1U5kPePJuGTCvQBUfhWyf?=
+ =?us-ascii?Q?mSmfklHwIOj5mGb+OWK8QHYFGVcvfjs/auta5Can3JahZbFq8BOp1RMl9eld?=
+ =?us-ascii?Q?VLCn+EvwKyzW2c8ltTcVFwPq1jytSsSNocGJ36h8VFBfECyM+UxtbtBFDgdL?=
+ =?us-ascii?Q?b2w9ys1HkSu87z94E7uUkbF+i1reHelzkn/iQqkr0dyozne71HCPOg9FsL5a?=
+ =?us-ascii?Q?fCd6hm5FtJf/pmDFXja4K7PlaM3pJbnBCGTueYk7RcaG3roKCwqYIVy9mumJ?=
+ =?us-ascii?Q?NlWpcAkbyiRXQNDxJq+e126RoEGR1qQL/AimLVW+aBtnPKYtSn7rxkfnf2wC?=
+ =?us-ascii?Q?sYtKI/i2jVCYZzkRnp1ZlihRasrMRJUns9PRp1lpObIt2lxoX5Jb6FVRnxz3?=
+ =?us-ascii?Q?ZBuVpxzv5GOQLEsjYD9+9E6cDZwMMqiH6BKHBY3uvfbgkKB1E0+ooXLsjfBZ?=
+ =?us-ascii?Q?oAK1xqieSgM7wDU9IxHDCuElbNeDKypL5nxFgGMX+dqtp1um9hw5HEChzL39?=
+ =?us-ascii?Q?i+E+8GcTqyJakfzthoUEKW4xylxdbPngrZn7Iq+2J+BCiYYBypT4qttecvoM?=
+ =?us-ascii?Q?kXmVNPFJuC7w6PxwXZPEw/oRgrdCQ+mx0efk9EN7xYaiDDjwNe39kmpoqxW5?=
+ =?us-ascii?Q?LlO9O9AQ53U+o8Vng/GXxg46JRbzAy8YmT+8wSKEKw1Xg0HgqmTEOsyA0g/2?=
+ =?us-ascii?Q?IAxTxkVFzH0WRXAEvOW10q5dwxnpmYFOyGVv3+d/C+MpjzKmYOVY7I3lLHAE?=
+ =?us-ascii?Q?DAuq/WdlFyPqLYGPyBWtN2ejPaEYQrNz6EQi2G2JrmoWGtlmZzCtgOccnMbe?=
+ =?us-ascii?Q?zmihZvI4EvGf1TLezzLSByHVluUVJSnyv3ambEptAebFpGHv/9yQiLLratht?=
+ =?us-ascii?Q?fAX8j8KBYK+5kAP1wfol6ntpuq6ur8LT0bIfLvF5dAkw7tnRYdZu9awFcpBg?=
+ =?us-ascii?Q?2W3gV6SdEC9JKM1isxrQtxltlXABT9CGcYzbDTjbw64TDWCgKivjOFCyxxbG?=
+ =?us-ascii?Q?+2F5K9IYzTuzP7FtbtUdQsUJUCn9iL1beIcxisSZNWBQYBXlvNh4llnGxgUF?=
+ =?us-ascii?Q?J3JxQT+bM4v8zXfEJzWtUk49lOz/vFE757U4gU7BCRSYLdXq/8i6xUDKn6hJ?=
+ =?us-ascii?Q?tbgvGvtvEHAL3NjL5Ktkcs5o?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2694ff00-c934-4261-f403-08d97e9a863b
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2021 14:00:39.3756
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zlPfJs2hCavxLtV3DHUsyUgGVYT37RoPT8SwS082GgEkrk1PtAlsyQTZtvSjnnxRAqPaggoe6xiF+Cg+eZo8dXHrsa1q2nMTQkQ1tW/5wJs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR07MB8303
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Globalscale MOCHAbin is a Armada 7040 based development board.
+Hi,
 
-Specifications:
-* Armada 7040 Quad core ARMv8 Cortex A-72 @ 1.4GHz
-* 2 / 4 / 8 GB of DDR4 DRAM
-* 16 GB eMMC
-* 4MB SPI-NOR (Bootloader)
-* 1x M.2-2280 B-key socket (for SSD expansion, SATA3 only)
-* 1x M.2-2250 B-key socket (for modems, USB2.0 and I2C only)
-* 1x Mini-PCIe 3.0 (x1, USB2.0 and I2C)
-* 1x SATA 7+15 socket (SATA3)
-* 1x 16-pin (2×8) MikroBus Connector
-* 1x SIM card slot (Connected to the mini-PCIe and both M.2 slots)
-* 2x USB3.0 Type-A ports via SMSC USB5434B hub
-* Cortex 2x5 JTAG
-* microUSB port for UART (PL2303GL/PL2303SA onboard)
-* 1x 10G SFP+
-* 1x 1G SFP (Connected to 88E1512 PHY)
-* 1x 1G RJ45 with PoE PD (Connected to 88E1512 PHY)
-* 4x 1G RJ45 ports via Topaz 88E6141 switch
-* RTC with battery holder (SoC provided, requires CR2032 battery)
-* 1x 12V DC IN
-* 1x Power switch
-* 1x 12V fan header (3-pin, power only)
-* 1x mini-PCIe LED header (2x0.1" pins)
-* 1x M.2-2280 LED header (2x0.1" pins)
-* 6x Bootstrap jumpers
-* 1x Power LED (Green)
-* 3x Tri-color RGB LEDs (Controllable)
-* 1x Microchip ATECC608B secure element
+This series adds support for defining per-channel properies (like
+n-factor and label) to the TMP421 driver. It starts by adding the
+missing DT binding for tmp421, in the form that was there before any of
+my changes. Then I do the changes to the driver and finally adjust the
+bindings to my changes.
 
-Note that 1G SFP and 1G WAN cannot be used at the same time as they are in
-parallel connected to the same PHY.
+The precedence for this case is:
+[PATCH v9 2/2] hwmon: (ina3221) Read channel input source info from DT
+Which can be found here:
+https://lkml.org/lkml/2018/10/2/136
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
- arch/arm64/boot/dts/marvell/Makefile          |   1 +
- .../boot/dts/marvell/armada-7040-mochabin.dts | 452 ++++++++++++++++++
- 2 files changed, 453 insertions(+)
- create mode 100644 arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+My patches does similar thing but to tmp422 - we need a way to define
+the labels for specific channels as well as to define the n-factor (that
+is board specific as it depends on the diodes used for remote sensing).
+A possibility to disable unused channels seems like a good idea too.
 
-diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-index 34efe0fb6f37..4d3a2ae9adbd 100644
---- a/arch/arm64/boot/dts/marvell/Makefile
-+++ b/arch/arm64/boot/dts/marvell/Makefile
-@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-uDPU.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-db.dtb
-+dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-mochabin.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-clearfog-gt-8k.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-db.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-mcbin.dtb
-diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-new file mode 100644
-index 000000000000..12d7c55ed00a
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-@@ -0,0 +1,452 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Device Tree file for Globalscale MOCHAbin
-+ * Copyright (C) 2019 Globalscale technologies, Inc.
-+ * Copyright (C) 2021 Sartura Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "armada-7040.dtsi"
-+
-+/ {
-+	model = "Globalscale MOCHAbin";
-+	compatible = "globalscale,mochabin", "marvell,armada7040",
-+		     "marvell,armada-ap806-quad", "marvell,armada-ap806";
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	aliases {
-+		ethernet0 = &cp0_eth0;
-+		ethernet1 = &cp0_eth1;
-+		ethernet2 = &cp0_eth2;
-+		ethernet3 = &swport1;
-+		ethernet4 = &swport2;
-+		ethernet5 = &swport3;
-+		ethernet6 = &swport4;
-+	};
-+
-+	/* SFP+ 10G */
-+	sfp_eth0: sfp-eth0 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&cp0_i2c1>;
-+		los-gpio = <&sfp_gpio 3 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpio = <&sfp_gpio 2 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpio = <&sfp_gpio 1 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpio  = <&sfp_gpio 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	/* SFP 1G */
-+	sfp_eth2: sfp-eth2 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&cp0_i2c0>;
-+		los-gpio = <&sfp_gpio 7 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpio = <&sfp_gpio 6 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpio = <&sfp_gpio 5 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpio  = <&sfp_gpio 4 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+/* microUSB UART console */
-+&uart0 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&uart0_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* eMMC */
-+&ap_sdhci0 {
-+	status = "okay";
-+
-+	bus-width = <4>;
-+	non-removable;
-+	/delete-property/ marvell,xenon-phy-slow-mode;
-+	no-1-8-v;
-+};
-+
-+&cp0_pinctrl {
-+	cp0_uart0_pins: cp0-uart0-pins {
-+		marvell,pins = "mpp6", "mpp7";
-+		marvell,function = "uart0";
-+	};
-+
-+	cp0_spi0_pins: cp0-spi0-pins {
-+		marvell,pins = "mpp56", "mpp57", "mpp58", "mpp59";
-+		marvell,function = "spi0";
-+	};
-+
-+	cp0_spi1_pins: cp0-spi1-pins {
-+		marvell,pins = "mpp13", "mpp14", "mpp15", "mpp16";
-+		marvell,function = "spi1";
-+	};
-+
-+	cp0_i2c0_pins: cp0-i2c0-pins {
-+		marvell,pins = "mpp37", "mpp38";
-+		marvell,function = "i2c0";
-+	};
-+
-+	cp0_i2c1_pins: cp0-i2c1-pins {
-+		marvell,pins = "mpp2", "mpp3";
-+		marvell,function = "i2c1";
-+	};
-+
-+	pca9554_int_pins: pca9554-int-pins {
-+		marvell,pins = "mpp27";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_rgmii1_pins: cp0-rgmii1-pins {
-+		marvell,pins = "mpp44", "mpp45", "mpp46", "mpp47", "mpp48", "mpp49",
-+			       "mpp50", "mpp51", "mpp52", "mpp53", "mpp54", "mpp55";
-+		marvell,function = "ge1";
-+	};
-+
-+	is31_sdb_pins: is31-sdb-pins {
-+		marvell,pins = "mpp30";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_pcie_reset_pins: cp0-pcie-reset-pins {
-+		marvell,pins = "mpp9";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_switch_pins: cp0-switch-pins {
-+		marvell,pins = "mpp0", "mpp1";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_phy_pins: cp0-phy-pins {
-+		marvell,pins = "mpp12";
-+		marvell,function = "gpio";
-+	};
-+};
-+
-+/* mikroBUS UART */
-+&cp0_uart0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_uart0_pins>;
-+};
-+
-+/* mikroBUS SPI */
-+&cp0_spi0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_spi0_pins>;
-+};
-+
-+/* SPI-NOR */
-+&cp0_spi1{
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_spi1_pins>;
-+
-+	spi-flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <20000000>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "u-boot";
-+				reg = <0x0 0x3e0000>;
-+				read-only;
-+			};
-+
-+			partition@3e0000 {
-+				label = "hw-info";
-+				reg = <0x3e0000 0x10000>;
-+				read-only;
-+			};
-+
-+			partition@3f0000 {
-+				label = "u-boot-env";
-+				reg = <0x3f0000 0x10000>;
-+			};
-+		};
-+	};
-+};
-+
-+/* mikroBUS, 1G SFP and GPIO expander */
-+&cp0_i2c0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_i2c0_pins>;
-+	clock-frequency = <100000>;
-+
-+	sfp_gpio: pca9554@39 {
-+		compatible = "nxp,pca9554";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pca9554_int_pins>;
-+		reg = <0x39>;
-+
-+		interrupt-parent = <&cp0_gpio1>;
-+		interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		/*
-+		 * IO0_0: SFP+_TX_FAULT
-+		 * IO0_1: SFP+_TX_DISABLE
-+		 * IO0_2: SFP+_PRSNT
-+		 * IO0_3: SFP+_LOSS
-+		 * IO0_4: SFP_TX_FAULT
-+		 * IO0_5: SFP_TX_DISABLE
-+		 * IO0_6: SFP_PRSNT
-+		 * IO0_7: SFP_LOSS
-+		 */
-+	};
-+};
-+
-+/* IS31FL3199, mini-PCIe and 10G SFP+ */
-+&cp0_i2c1 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_i2c1_pins>;
-+	clock-frequency = <100000>;
-+
-+	leds@64 {
-+		compatible = "issi,is31fl3199";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&is31_sdb_pins>;
-+		shutdown-gpios = <&cp0_gpio1 30 GPIO_ACTIVE_HIGH>;
-+		reg = <0x64>;
-+
-+		led1_red: led@1 {
-+			label = "led1:red";
-+			reg = <1>;
-+			led-max-microamp = <20000>;
-+		};
-+
-+		led1_green: led@2 {
-+			label = "led1:green";
-+			reg = <2>;
-+		};
-+
-+		led1_blue: led@3 {
-+			label = "led1:blue";
-+			reg = <3>;
-+		};
-+
-+		led2_red: led@4 {
-+			label = "led2:red";
-+			reg = <4>;
-+		};
-+
-+		led2_green: led@5 {
-+			label = "led2:green";
-+			reg = <5>;
-+		};
-+
-+		led2_blue: led@6 {
-+			label = "led2:blue";
-+			reg = <6>;
-+		};
-+
-+		led3_red: led@7 {
-+			label = "led3:red";
-+			reg = <7>;
-+		};
-+
-+		led3_green: led@8 {
-+			label = "led3:green";
-+			reg = <8>;
-+		};
-+
-+		led3_blue: led@9 {
-+			label = "led3:blue";
-+			reg = <9>;
-+		};
-+	};
-+};
-+
-+&cp0_mdio {
-+	status = "okay";
-+
-+	/* 88E1512 PHY */
-+	eth2phy: ethernet-phy@1 {
-+		reg = <1>;
-+		sfp = <&sfp_eth2>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cp0_phy_pins>;
-+		reset-gpios = <&cp0_gpio1 12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	/* 88E6141 Topaz switch */
-+	switch: switch@3 {
-+		compatible = "marvell,mv88e6085";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cp0_switch_pins>;
-+		reset-gpios = <&cp0_gpio1 0 GPIO_ACTIVE_LOW>;
-+
-+		interrupt-parent = <&cp0_gpio1>;
-+		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			swport1: port@1 {
-+				reg = <1>;
-+				label = "lan0";
-+				phy-handle = <&swphy1>;
-+			};
-+
-+			swport2: port@2 {
-+				reg = <2>;
-+				label = "lan1";
-+				phy-handle = <&swphy2>;
-+			};
-+
-+			swport3: port@3 {
-+				reg = <3>;
-+				label = "lan2";
-+				phy-handle = <&swphy3>;
-+			};
-+
-+			swport4: port@4 {
-+				reg = <4>;
-+				label = "lan3";
-+				phy-handle = <&swphy4>;
-+			};
-+
-+			port@5 {
-+				reg = <5>;
-+				label = "cpu";
-+				ethernet = <&cp0_eth1>;
-+				phy-mode = "2500base-x";
-+				managed = "in-band-status";
-+			};
-+		};
-+
-+		mdio {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			swphy1: swphy1@17 {
-+				reg = <17>;
-+			};
-+
-+			swphy2: swphy2@18 {
-+				reg = <18>;
-+			};
-+
-+			swphy3: swphy3@19 {
-+				reg = <19>;
-+			};
-+
-+			swphy4: swphy4@20 {
-+				reg = <20>;
-+			};
-+		};
-+	};
-+};
-+
-+&cp0_ethernet {
-+	status = "okay";
-+};
-+
-+/* 10G SFP+ */
-+&cp0_eth0 {
-+	status = "okay";
-+
-+	phy-mode = "10gbase-kr";
-+	phys = <&cp0_comphy4 0>;
-+	managed = "in-band-status";
-+	sfp = <&sfp_eth0>;
-+};
-+
-+/* Topaz switch uplink */
-+&cp0_eth1 {
-+	status = "okay";
-+
-+	phy-mode = "2500base-x";
-+	phys = <&cp0_comphy0 1>;
-+
-+	fixed-link {
-+		speed = <2500>;
-+		full-duplex;
-+	};
-+};
-+
-+/* 1G SFP or 1G RJ45 */
-+&cp0_eth2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_rgmii1_pins>;
-+
-+	phy = <&eth2phy>;
-+	phy-mode = "rgmii-id";
-+};
-+
-+&cp0_utmi {
-+	status = "okay";
-+};
-+
-+/* SMSC USB5434B hub */
-+&cp0_usb3_0 {
-+	status = "okay";
-+
-+	phys = <&cp0_comphy1 0>, <&cp0_utmi0>;
-+	phy-names = "cp0-usb3h0-comphy", "utmi";
-+};
-+
-+/* miniPCI-E USB */
-+&cp0_usb3_1 {
-+	status = "okay";
-+};
-+
-+&cp0_sata0 {
-+	status = "okay";
-+
-+	/* 7 + 12 SATA connector (J24) */
-+	sata-port@0 {
-+		phys = <&cp0_comphy2 0>;
-+		phy-names = "cp0-sata0-0-phy";
-+	};
-+
-+	/* M.2-2250 B-key (J39) */
-+	sata-port@1 {
-+		phys = <&cp0_comphy3 1>;
-+		phy-names = "cp0-sata0-1-phy";
-+	};
-+};
-+
-+/* miniPCI-E (J5) */
-+&cp0_pcie2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_pcie_reset_pins>;
-+	phys = <&cp0_comphy5 2>;
-+	phy-names = "cp0-pcie2-x1-phy";
-+	reset-gpio = <&cp0_gpio1 9 GPIO_ACTIVE_LOW>;
-+};
+Here comes V2. Changes compared to v1:
+- fixed sparse warnings about making function declarations static
+- changed the policy for broken DT - in case of errors, the probe will
+  return an error instead of continuing
+- in addition to disabling the channels specified in DT, the probe
+  function will also enable all the others in case they were disabled by
+  some other code earlier
+  NOTE: this may be a backwards incompatible change - if some channels
+  were disabled by some bootloader code previously the channels would
+  stay like that and now they would be enabled during probe, even if
+  nothing is specified in DT. Is this what we want?
+- added support for HWMON_T_ENABLE
+- updated documentation
+- NOTE: I haven't changed anything related to DT as the discussion has
+  no clear conclusion yet.
+
+Krzysztof Adamski (10):
+  dt-bindings: hwmon: add missing tmp421 binding
+  hwmon: (tmp421) introduce MAX_CHANNELS define
+  hwmon: (tmp421) introduce a channel struct
+  hwmon: (tmp421) add support for defining labels from DT
+  hwmon: (tmp421) support disabling channels from DT
+  hwmon: (tmp421) support specifying n-factor via DT
+  hwmon: (tmp421) really disable channels
+  hwmon: (tmp421) support HWMON_T_ENABLE
+  dt-bindings: hwmon: allow specifying channels for tmp421
+  hwmon: (tmp421) update documentation
+
+ .../devicetree/bindings/hwmon/tmp421.yaml     | 109 +++++++++++
+ Documentation/hwmon/tmp421.rst                |  10 +
+ drivers/hwmon/tmp421.c                        | 172 ++++++++++++++++--
+ 3 files changed, 280 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/tmp421.yaml
+
 -- 
 2.31.1
 
