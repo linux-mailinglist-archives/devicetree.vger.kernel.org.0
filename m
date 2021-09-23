@@ -2,18 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5FD24162EF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 18:22:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA6E54162F1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 18:22:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242094AbhIWQXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 12:23:48 -0400
-Received: from m-r2.th.seeweb.it ([5.144.164.171]:58989 "EHLO
-        m-r2.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242075AbhIWQXs (ORCPT
+        id S242118AbhIWQXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 12:23:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46354 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242098AbhIWQXs (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 12:23:48 -0400
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256B0C061574
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 09:22:17 -0700 (PDT)
 Received: from localhost.localdomain (83.6.166.81.neoplus.adsl.tpnet.pl [83.6.166.81])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id CA20F3F679;
-        Thu, 23 Sep 2021 18:22:13 +0200 (CEST)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id F335B3F67F;
+        Thu, 23 Sep 2021 18:22:14 +0200 (CEST)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     ~postmarketos/upstreaming@lists.sr.ht
 Cc:     martin.botka@somainline.org,
@@ -25,9 +28,9 @@ Cc:     martin.botka@somainline.org,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 03/17] arm64: dts: qcom: sm6350: Add LLCC node
-Date:   Thu, 23 Sep 2021 18:21:49 +0200
-Message-Id: <20210923162204.21752-3-konrad.dybcio@somainline.org>
+Subject: [PATCH v3 04/17] arm64: dts: qcom: sm6350: Add RPMHCC node
+Date:   Thu, 23 Sep 2021 18:21:50 +0200
+Message-Id: <20210923162204.21752-4-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210923162204.21752-1-konrad.dybcio@somainline.org>
 References: <20210923162204.21752-1-konrad.dybcio@somainline.org>
@@ -37,31 +40,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node for LLCC with SM6350-specific compatible.
+Add RPMHCC node to allow for referencing RPMH-controlled clocks in other
+nodes.
 
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index d718ecf7d74e..5442c088cf37 100644
+index 5442c088cf37..555ae0bbba18 100644
 --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -372,6 +372,12 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
-+		system-cache-controller@9200000 {
-+			compatible = "qcom,sm6350-llcc";
-+			reg = <0 0x09200000 0 0x50000>, <0 0x09600000 0 0x50000>;
-+			reg-names = "llcc_base", "llcc_broadcast_base";
-+		};
+@@ -477,6 +477,13 @@ apps_rsc: rsc@18200000 {
+ 			qcom,drv-id = <2>;
+ 			qcom,tcs-config = <ACTIVE_TCS 2>, <SLEEP_TCS 3>,
+ 					  <WAKE_TCS 3>, <CONTROL_TCS 1>;
 +
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sm6350-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x64>;
++			rpmhcc: clock-controller {
++				compatible = "qcom,sm6350-rpmh-clk";
++				#clock-cells = <1>;
++				clock-names = "xo";
++				clocks = <&xo_board>;
++			};
+ 		};
+ 	};
+ 
 -- 
 2.33.0
 
