@@ -2,84 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C9BA415F3B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91D4A415F40
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:11:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241114AbhIWNLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 09:11:00 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:42578 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232333AbhIWNLA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:11:00 -0400
-Received: by mail-ot1-f50.google.com with SMTP id 67-20020a9d0449000000b00546e5a8062aso8371807otc.9;
-        Thu, 23 Sep 2021 06:09:29 -0700 (PDT)
+        id S232874AbhIWNM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 09:12:27 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:33602 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232333AbhIWNM1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:12:27 -0400
+Received: by mail-ot1-f47.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso8525813otu.0;
+        Thu, 23 Sep 2021 06:10:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=P+k54S/P1ruPyomATuQ9wpcwPryDuiOzPX+x0uQYZM8=;
-        b=1xzLiOlQIjfL9bj3IExlYyUod8Xy4zBH5Emp6indRSvcgQhRasb7FNOc4IQt6Lakaz
-         CeyD+221GwCgor87H990SRlBfEI5Y01pE7pLXRsHbioz+qKIYR4kB/S3ubBlykMos61h
-         TOe/+o7bsX6LzHJAz9sRIc/7YMMTHS+jy/p4TRthkW4w7GgDHLQn09+G0nmYNcAkexjc
-         Fr9z0LqRrf2Q4WZzPOQer2N0N9nzKYboRvgacB6sntpopY42cWkK1P5zYil9lINugIxu
-         xj7WYYs64i5WU9GkSLTC7B2VCYWqH5EJN1dFu8U4kE5NOXmYOENaSuRV08rsz4JtvGye
-         28Ew==
-X-Gm-Message-State: AOAM531mgmHeBcQtwuLjza2hfucEWVGoScp+XwnMchdzJrNCcqf877o1
-        KvYdu2iGBHmB1/HYChovqA==
-X-Google-Smtp-Source: ABdhPJymvzXngT2wLrig0Tguwcl6rfrs40bQiUrF56ZPa2rCMEXIw+KK1Xc2LiYxMkPV+mz4mNng7A==
-X-Received: by 2002:a9d:a47:: with SMTP id 65mr3860534otg.133.1632402568692;
-        Thu, 23 Sep 2021 06:09:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=lZyIUxf6Lbe5KXI6O5k0X1qWDOUUH9A99p9KDIfbJII=;
+        b=N0NxQwMsCRa+3xAIo+Gd3uKanQKiO8TJvD9D+u7vxz29hlteOHnuBKlU/SRRFsUz0p
+         j5ztad6rvsD+Ksrby9T/hVKbz7LMi/3ou9xUtoQfmkz7hI/vjxBLmnUzA2397jDVi0FE
+         En5a5iBL+Q7x/ps6vs5RcOSHNm/pkpk10hi1BlbzHR73EycfP6n9PKfXIsnpQWec7JdT
+         XVd5nEtrofNzUKS2OaCSFQb17Vyu0vCRz5XgqrkZeCm5U+R5tZvPBuTwrGSsWnW0kUJ2
+         C5wCcUDZqMOz8MulSGmzBBNZNa71xGkQ5HJa9QJc1CItwcainEwyie6Ke0IQye2HT5UV
+         Oo1w==
+X-Gm-Message-State: AOAM533bjJZIUR9DOyg/9RIEK2uhFlJEtitffURBWJkI2Dcnm4yeybDT
+        9xtrOiSOAqa+LhYqoqE0Mg==
+X-Google-Smtp-Source: ABdhPJyVuulxabDlg3uru1GRD3XQ0SIFmj++TrmUPohVTwFPZ50EHA4FeCgJq1h1B+7Ha+psk47b9w==
+X-Received: by 2002:a05:6830:2445:: with SMTP id x5mr4354977otr.10.1632402655206;
+        Thu, 23 Sep 2021 06:10:55 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id y84sm1329579oie.16.2021.09.23.06.09.27
+        by smtp.gmail.com with ESMTPSA id v2sm1356923ooh.28.2021.09.23.06.10.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 06:09:28 -0700 (PDT)
-Received: (nullmailer pid 2858849 invoked by uid 1000);
-        Thu, 23 Sep 2021 13:09:27 -0000
-Date:   Thu, 23 Sep 2021 08:09:27 -0500
+        Thu, 23 Sep 2021 06:10:54 -0700 (PDT)
+Received: (nullmailer pid 2861275 invoked by uid 1000);
+        Thu, 23 Sep 2021 13:10:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
-Cc:     linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        Suman Anna <s-anna@ti.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Ohad Ben-Cohen <ohad@wizery.com>, Nishanth Menon <nm@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH V3] dt-bindings: hwlock: omap: Remove redundant binding
- example
-Message-ID: <YUx8h0MTHg+TMG3z@robh.at.kernel.org>
-References: <20210920123152.32751-1-sinthu.raja@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210920123152.32751-1-sinthu.raja@ti.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Peter Rosin <peda@axentia.se>, Jean Delvare <jdelvare@suse.com>,
+        devicetree@vger.kernel.org,
+        Johannes Pointner <johannes.pointner@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-hwmon@vger.kernel.org,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+In-Reply-To: <20210922233901.1871274-1-linus.walleij@linaro.org>
+References: <20210922233901.1871274-1-linus.walleij@linaro.org>
+Subject: Re: [PATCH v3] dt-bindings: hwmon: Convert NTC thermistor to YAML
+Date:   Thu, 23 Sep 2021 08:10:53 -0500
+Message-Id: <1632402653.551768.2861274.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Sep 2021 18:01:52 +0530, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
+On Thu, 23 Sep 2021 01:39:01 +0200, Linus Walleij wrote:
+> This converts the NTC thermistor DT bindings to YAML. Some care had to
+> be taken since I had to add some illustrations to make the connection
+> layouts graspable.
 > 
-> The example includes a board-specific compatible property, this is wrong
-> as the example should be board agnostic and should represent the particular
-> binding. Also, the file includes two similar examples but with a different
-> compatible. So, drop the entire second example
-> 
-> Suggested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> 
+> Cc: Javier Martinez Canillas <javier@dowhile0.org>
+> Cc: Johannes Pointner <johannes.pointner@gmail.com>
+> Cc: Peter Rosin <peda@axentia.se>
+> Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> 
-> Changes in V3:
-> Addressed review comment, that includes adding Suggested By: tag to the
-> commit message
-> 
-> V2: https://lore.kernel.org/all/20210917170805.5079-1-sinthu.raja@ti.com/
-> V1: https://lore.kernel.org/all/20210917094740.18891-1-sinthu.raja@ti.com/
-> 
->  .../bindings/hwlock/ti,omap-hwspinlock.yaml   | 33 +------------------
->  1 file changed, 1 insertion(+), 32 deletions(-)
+> ChangeLog v2->v3:
+> - Rebase on v5.15-rc1
+> - Drop comment reference to thermal-sensor.yaml
+> - Keep the oneOf rather than using an enum for the compatible:
+>   I can't figure out how to make deprecated work for enums?
+>   https://lore.kernel.org/linux-hwmon/CACRpkdZDLSA5YJtc3XCkfPZUNqo1MOWLBwVDGQ4vN8cDXD3aYg@mail.gmail.com/
+> ChangeLog v1->v2:
+> - Realize I need to CC devicetree@vger.kernel.org on this.
+> - Fix Javier's mail address.
+> - Drop Naveen's mail (bouncing)
+> ---
+>  .../bindings/hwmon/ntc-thermistor.yaml        | 141 ++++++++++++++++++
+>  .../bindings/hwmon/ntc_thermistor.txt         |  44 ------
+>  2 files changed, 141 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/ntc_thermistor.txt
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.example.dt.yaml: ncp15wb473: $nodename:0: 'ncp15wb473' does not match '^thermistor(.*)?$'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1531471
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
