@@ -2,510 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B306415FFF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCCE541604F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 15:54:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234515AbhIWNfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 09:35:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34812 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241236AbhIWNfb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 09:35:31 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB593C061756
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 06:33:58 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id w17so6131794qta.9
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 06:33:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=az5dtnTKt8wXBRvHgluiZUyI7/WHxEpTmi90AFdYYys=;
-        b=EsPxWD8K8aXYaJY7CdiZKaSIfheHENnaFUHCkQE9/SDaWdbOX7+tds0M9UeRh4ptRB
-         8PmJsx2jv6vxjB5t9cV5PMMNBd9WZ4yMdABd3Veub61ISiznqb9qZ8OKUSgss1+6j1qt
-         N5JOc21t4Nw+WxBsxJrFYzUlmJTlXs/fW77tZukViLPED2E4xL4P5Qb9I+AvDyxPod5O
-         YvrWHZJls52QUaODAzoOsrI47uCwuMzSeEXeATPA56dpN4JUdXWaLZIoS1cvG5YgaVbK
-         qtXXG4eV1lIMBKocH4X0P2Cqb3J3k9G0650ReFo9wjQsgDW76Htx3q+vdau3nY7D/424
-         MapA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=az5dtnTKt8wXBRvHgluiZUyI7/WHxEpTmi90AFdYYys=;
-        b=B/APYT3+tHHzgwpIuhWfGbTZN+9xyw3MFCOu/KZt8/Ta749kFlIm9Gqz5c3wWKtB7B
-         n4ktHfPmh2tFnQA6/gcajhhnJudnZaj11Ub631sS9OaWH0TAbPrX0FfPHx8vD1MlYv0r
-         EcqOktwfG8oZDOC4+RtFCdZniib8fgioIUVMDAhXpdt8DZQqcyqdlCS0ys8BmQE8Bf2m
-         7ThkVm5EC6AzKDGBmi+pIenPZVjpFgfhpeC9HKPXdqWUDxGfYLKB5QpaYjXUFQydmlqC
-         eB5oSkOgF3CBIloofbEX6RNTxfJARcugdzLiCTGuIF1CYHrh73V9Nvd8+IsfFA9+FZZ0
-         IIpA==
-X-Gm-Message-State: AOAM531J8jgUz+sG2pabnYWivkd462FSBK1wdI57Dzts/xTDPRIIwqkK
-        YZBNtHE8CIqWn2VklrpbE+7LbA==
-X-Google-Smtp-Source: ABdhPJw428/5fv3zH5tnuAZMy+QFH/r8pP0A2mBpjPGnjGMET4l/QGHI2xLbw9vnwIeJcWJAz2K51w==
-X-Received: by 2002:ac8:67c2:: with SMTP id r2mr4655055qtp.201.1632404037883;
-        Thu, 23 Sep 2021 06:33:57 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id d13sm3438366qtm.32.2021.09.23.06.33.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 06:33:57 -0700 (PDT)
-Message-ID: <27ec66639de79216e9b887ee6977f35906e33a43.camel@ndufresne.ca>
-Subject: Re: [EXT] Re: [PATCH v9 00/13] amphion video decoder/encoder driver
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Ming Qian <ming.qian@nxp.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 23 Sep 2021 09:33:55 -0400
-In-Reply-To: <AM6PR04MB6341879E600E5673FB94F71AE7A39@AM6PR04MB6341.eurprd04.prod.outlook.com>
-References: <cover.1631521295.git.ming.qian@nxp.com>
-         <7591d62b4aedb0ad789f09d90695c700c65df53d.camel@ndufresne.ca>
-         <AM6PR04MB6341879E600E5673FB94F71AE7A39@AM6PR04MB6341.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S232680AbhIWN4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 09:56:24 -0400
+Received: from pegase2.c-s.fr ([93.17.235.10]:32845 "EHLO pegase2.c-s.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231974AbhIWN4Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Sep 2021 09:56:24 -0400
+Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
+        by localhost (Postfix) with ESMTP id 4HFc9P5sHPz9sV7;
+        Thu, 23 Sep 2021 15:54:49 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+        by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id xdm1Ouzf8XXu; Thu, 23 Sep 2021 15:54:49 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase2.c-s.fr (Postfix) with ESMTP id 4HFc9P4lm1z9sV4;
+        Thu, 23 Sep 2021 15:54:49 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 8BA938B776;
+        Thu, 23 Sep 2021 15:54:49 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id i24VgXHaAF2s; Thu, 23 Sep 2021 15:54:49 +0200 (CEST)
+Received: from PO20335.IDSI0.si.c-s.fr (unknown [192.168.202.200])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id ACF658B763;
+        Thu, 23 Sep 2021 15:54:47 +0200 (CEST)
+Subject: Re: [PATCH 3/3] memblock: cleanup memblock_free interface
+To:     Mike Rapoport <rppt@linux.ibm.com>
+Cc:     Mike Rapoport <rppt@kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-efi@vger.kernel.org,
+        kvm@vger.kernel.org, linux-s390@vger.kernel.org,
+        linux-sh@vger.kernel.org, linux-um@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kasan-dev@googlegroups.com,
+        linux-mips@vger.kernel.org, linux-mm@kvack.org,
+        iommu@lists.linux-foundation.org, linux-usb@vger.kernel.org,
+        linux-alpha@vger.kernel.org, sparclinux@vger.kernel.org,
+        xen-devel@lists.xenproject.org,
+        Andrew Morton <akpm@linux-foundation.org>,
+        linux-snps-arc@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+        linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20210923074335.12583-1-rppt@kernel.org>
+ <20210923074335.12583-4-rppt@kernel.org>
+ <1101e3c7-fcb7-a632-8e22-47f4a01ea02e@csgroup.eu>
+ <YUxsgN/uolhn1Ok+@linux.ibm.com>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+Message-ID: <96e3da9f-70ff-e5c0-ef2e-cf0b636e5695@csgroup.eu>
+Date:   Thu, 23 Sep 2021 15:54:46 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <YUxsgN/uolhn1Ok+@linux.ibm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr-FR
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeudi 23 septembre 2021 à 10:45 +0000, Ming Qian a écrit :
-> > -----Original Message-----
-> > From: Nicolas Dufresne [mailto:nicolas@ndufresne.ca]
-> > Sent: Wednesday, September 22, 2021 10:14 PM
-> > To: Ming Qian <ming.qian@nxp.com>; mchehab@kernel.org;
-> > shawnguo@kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
-> > Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de; festevam@gmail.com;
-> > dl-linux-imx <linux-imx@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
-> > linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> > Subject: [EXT] Re: [PATCH v9 00/13] amphion video decoder/encoder driver
-> > 
-> > Caution: EXT Email
-> > 
-> > Hi Ming,
-> > 
-> > Le lundi 13 septembre 2021 à 17:11 +0800, Ming Qian a écrit :
-> > > Hi all,
-> > > 
-> > > This patch series adds support for
-> > > the amphion video encoder and decoder
-> > > via the VPU block present in imx8q platforms.
-> > > Currently, support for IMX8QXP and IMX8QM is included.
-> > 
-> > I've been trying to test this driver, based it on mainline 5.15-rc2 in
-> > absence of
-> > recommendation here. There seems to be poor mainline support for this board,
-> > notably only 1 CPU come up. Finally, I could not test anything as the driver
-> > failed to boot the decoders and encoder cores:
-> > 
-> > [   30.766160] [VPU CORE][0] decoder boot
-> > [   31.873175] [VPU CORE][0] decoder boot timeout
-> > [   31.878057] [VPU V4L2]there is no core for decoder
-> > [ 1766.495963] [VPU CORE][1] encoder boot [ 1767.524957] [VPU CORE][1]
-> > encoder boot timeout [ 1767.529724] [VPU V4L2]there is no core for encoder
-> > 
-> > Please, let me know how I can get passed these issues. I have used firmwares
-> > referenced in Yocto tree:
-> > 
-> > 
-> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.n
-> > xp.com%2Flgfiles%2FNMG%2FMAD%2FYOCTO%2Ffirmware-imx-7.9.bin&amp
-> > ;data=04%7C01%7Cming.qian%40nxp.com%7Ce50ac93addb444f7cd9b08d97
-> > dd33c6e%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63767916
-> > 8483236134%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIj
-> > oiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=cM3%2F
-> > Go0MxD0RSDmS5ELr6yCdNe4EH%2FeTAFtcAcBArRo%3D&amp;reserved=0
-> > 
-> > Firmware for this driver will also be a subject to tackle. In an ideal
-> > world, the
-> > "self extracted" script requirement to accept your EULA would need to be
-> > waved, and distribution of the firmware should go into linux-firmwares. I
-> > believe firmwares are still allowed to have some user agreement, but I
-> > suppose
-> > there must be guidelines, best is to ask there directly.
-> > 
-> > regards,
-> > Nicolas
-> > 
+
+
+Le 23/09/2021 à 14:01, Mike Rapoport a écrit :
+> On Thu, Sep 23, 2021 at 11:47:48AM +0200, Christophe Leroy wrote:
+>>
+>>
+>> Le 23/09/2021 à 09:43, Mike Rapoport a écrit :
+>>> From: Mike Rapoport <rppt@linux.ibm.com>
+>>>
+>>> For ages memblock_free() interface dealt with physical addresses even
+>>> despite the existence of memblock_alloc_xx() functions that return a
+>>> virtual pointer.
+>>>
+>>> Introduce memblock_phys_free() for freeing physical ranges and repurpose
+>>> memblock_free() to free virtual pointers to make the following pairing
+>>> abundantly clear:
+>>>
+>>> 	int memblock_phys_free(phys_addr_t base, phys_addr_t size);
+>>> 	phys_addr_t memblock_phys_alloc(phys_addr_t base, phys_addr_t size);
+>>>
+>>> 	void *memblock_alloc(phys_addr_t size, phys_addr_t align);
+>>> 	void memblock_free(void *ptr, size_t size);
+>>>
+>>> Replace intermediate memblock_free_ptr() with memblock_free() and drop
+>>> unnecessary aliases memblock_free_early() and memblock_free_early_nid().
+>>>
+>>> Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
+>>> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
+>>> ---
+>>
+>>> diff --git a/arch/s390/kernel/smp.c b/arch/s390/kernel/smp.c
+>>> index 1a04e5bdf655..37826d8c4f74 100644
+>>> --- a/arch/s390/kernel/smp.c
+>>> +++ b/arch/s390/kernel/smp.c
+>>> @@ -723,7 +723,7 @@ void __init smp_save_dump_cpus(void)
+>>>    			/* Get the CPU registers */
+>>>    			smp_save_cpu_regs(sa, addr, is_boot_cpu, page);
+>>>    	}
+>>> -	memblock_free(page, PAGE_SIZE);
+>>> +	memblock_phys_free(page, PAGE_SIZE);
+>>>    	diag_amode31_ops.diag308_reset();
+>>>    	pcpu_set_smt(0);
+>>>    }
+>>> @@ -880,7 +880,7 @@ void __init smp_detect_cpus(void)
+>>>    	/* Add CPUs present at boot */
+>>>    	__smp_rescan_cpus(info, true);
+>>> -	memblock_free_early((unsigned long)info, sizeof(*info));
+>>> +	memblock_free(info, sizeof(*info));
+>>>    }
+>>>    /*
+>>
+>> I'm a bit lost. IIUC memblock_free_early() and memblock_free() where
+>> identical.
 > 
-> Seems you use the wrong firmware, I will send the firmware to you.
-> My commit base is 9c3a0f285248899dfa81585bc5d5bc9ebdb8fead, 
-> You can find it in the bottom of this cover.
-> 
-> Would you please explain the linux-firmware issue in detail
+> Yes, they were, but all calls to memblock_free_early() were using
+> __pa(vaddr) because they had a virtual address at hand.
 
-I believe that to merge a driver (non staging) that depends on a firmware (I'll
-let Hans and others confirm), you need to submit this firmware, along with a
-non-interactive licence to be included in the linux-firmware project.
-
-NXP notably have an SDMA firmware in there, with a licence file. Perhaps these
-developers can assist in this regard. Often that takes time due to legal
-requirement of moving from an interactive EULA to a licence file.
-
-In later version, it would be nice to explain in the cover later the status of
-firmware distribution, and how to obtain the correct version of (specially if
-not yet in linux-firmware).
-
-Thanks for sending me the firmwares, I will see if I can do more tests.
+I'm still not following. In the above memblock_free_early() was taking 
+(unsigned long)info . Was it a bug ? It looks odd to hide bug fixes in 
+such a big patch, should that bug fix go in patch 2 ?
 
 > 
-> > > 
-> > > It features decoding for the following formats:
-> > > - H.264
-> > > - HEVC
-> > > - MPEG4
-> > > - MPEG2
-> > > - VC1
-> > > - VP8
-> > > 
-> > > It features encoding for the following formats:
-> > > - H.264
-> > > 
-> > > The driver creates a separate device node for the encoder and decoder.
-> > > 
-> > > Changelog:
-> > > 
-> > > v9
-> > > - drop V4L2_BUF_FLAG_CODECCONFIG
-> > > - drop V4L2_EVENT_CODEC_ERROR
-> > > - drop V4L2_EVENT_SKIP
-> > > - use the v4l2_buffer.sequence counter
-> > > - fix some build warnings with W=1 reported by kernel test robot
-> > > 
-> > > v8
-> > > - move driver from driver/media/platform/imx/vpu-8q to
-> > >   driver/media/platform/amphion
-> > > - rename driver name to amphion
-> > > - remove imx_vpu.h
-> > > - move the definition of V4L2_EVENT_CODEC_ERROR to videodev2.h
-> > > - move the definition of V4L2_EVENT_SKIP to videodev2.h
-> > > 
-> > > v7
-> > > - fix build warnings with W=1 reported by kernel test robot
-> > > 
-> > > v6:
-> > > - rename V4L2_PIX_FMT_NT8 to V4L2_PIX_FMT_NV12_8L128
-> > > - rename V4L2_PIX_FMT_NT10 to V4L2_PIX_FMT_NV12_10BE_8L128
-> > > 
-> > > v5:
-> > > - move some definition from imx_vph.h to videodev2.h
-> > > - remove some unnecessary content
-> > > - add some documentation descriptions
-> > > - pass the lateset v4l2-compliance test
-> > > 
-> > > v4:
-> > > - redefine the memory-region in devicetree bindings documentation
-> > > - use v4l2's mechanism to implement synchronize queuing ioctl
-> > > - remove the unnecessary mutex ioctl_sync
-> > > - don't notify source change event if the parameters are same as
-> > > previously established
-> > > - add flag V4L2_FMT_FLAG_DYN_RESOLUTION to decoder's capture format
-> > > 
-> > > v3:
-> > > - don't make vpu device node a simple-bus
-> > > - trigger probing vpu core in the driver
-> > > - remove unnecessary vpu core index property
-> > > 
-> > > v2:
-> > > - fix dt bindings build error
-> > > - split driver patch into several parts to avoid exceeding bytes limit
-> > > 
-> > > Compliance
-> > > ==========
-> > > # v4l2-compliance -d /dev/video0
-> > > v4l2-compliance 1.21.0-4838, 64 bits, 64-bit time_t v4l2-compliance
-> > > SHA: 22466798f9a9 2021-08-25 11:05:21
-> > > 
-> > > Compliance test for amphion-vpu device /dev/video0:
-> > > 
-> > > Driver Info:
-> > >       Driver name      : amphion-vpu
-> > >       Card type        : amphion vpu decoder
-> > >       Bus info         : platform: amphion-vpu
-> > >       Driver version   : 5.14.0
-> > >       Capabilities     : 0x84204000
-> > >               Video Memory-to-Memory Multiplanar
-> > >               Streaming
-> > >               Extended Pix Format
-> > >               Device Capabilities
-> > >       Device Caps      : 0x04204000
-> > >               Video Memory-to-Memory Multiplanar
-> > >               Streaming
-> > >               Extended Pix Format
-> > >       Detected Stateful Decoder
-> > > 
-> > > Required ioctls:
-> > >       test VIDIOC_QUERYCAP: OK
-> > >       test invalid ioctls: OK
-> > > 
-> > > Allow for multiple opens:
-> > >       test second /dev/video0 open: OK
-> > >       test VIDIOC_QUERYCAP: OK
-> > >       test VIDIOC_G/S_PRIORITY: OK
-> > >       test for unlimited opens: OK
-> > > 
-> > > Debug ioctls:
-> > >       test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-> > >       test VIDIOC_LOG_STATUS: OK (Not Supported)
-> > > 
-> > > Input ioctls:
-> > >       test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> > >       test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> > >       test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> > >       test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> > >       test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-> > >       test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> > >       Inputs: 0 Audio Inputs: 0 Tuners: 0
-> > > 
-> > > Output ioctls:
-> > >       test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> > >       test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> > >       test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-> > >       test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-> > >       test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-> > >       Outputs: 0 Audio Outputs: 0 Modulators: 0
-> > > 
-> > > Input/Output configuration ioctls:
-> > >       test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-> > >       test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-> > >       test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-> > >       test VIDIOC_G/S_EDID: OK (Not Supported)
-> > > 
-> > > Control ioctls:
-> > >       test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
-> > >       test VIDIOC_QUERYCTRL: OK
-> > >       test VIDIOC_G/S_CTRL: OK
-> > >       test VIDIOC_G/S/TRY_EXT_CTRLS: OK
-> > >       test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
-> > >       test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-> > >       Standard Controls: 3 Private Controls: 0
-> > > 
-> > > Format ioctls:
-> > >       test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-> > >       test VIDIOC_G/S_PARM: OK (Not Supported)
-> > >       test VIDIOC_G_FBUF: OK (Not Supported)
-> > >       test VIDIOC_G_FMT: OK
-> > >       test VIDIOC_TRY_FMT: OK
-> > >       test VIDIOC_S_FMT: OK
-> > >       test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-> > >       test Cropping: OK (Not Supported)
-> > >       test Composing: OK
-> > >       test Scaling: OK (Not Supported)
-> > > 
-> > > Codec ioctls:
-> > >       test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-> > >       test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-> > >       test VIDIOC_(TRY_)DECODER_CMD: OK
-> > > 
-> > > Buffer ioctls:
-> > >       test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-> > >       test VIDIOC_EXPBUF: OK
-> > >       test Requests: OK (Not Supported)
-> > > 
-> > > Total for amphion-vpu device /dev/video0: 45, Succeeded: 45, Failed:
-> > > 0, Warnings: 0
-> > > 
-> > > # v4l2-compliance -d /dev/video1
-> > > v4l2-compliance 1.21.0-4838, 64 bits, 64-bit time_t v4l2-compliance
-> > > SHA: 22466798f9a9 2021-08-25 11:05:21
-> > > 
-> > > Compliance test for amphion-vpu device /dev/video1:
-> > > 
-> > > Driver Info:
-> > >       Driver name      : amphion-vpu
-> > >       Card type        : amphion vpu encoder
-> > >       Bus info         : platform: amphion-vpu
-> > >       Driver version   : 5.14.0
-> > >       Capabilities     : 0x84204000
-> > >               Video Memory-to-Memory Multiplanar
-> > >               Streaming
-> > >               Extended Pix Format
-> > >               Device Capabilities
-> > >       Device Caps      : 0x04204000
-> > >               Video Memory-to-Memory Multiplanar
-> > >               Streaming
-> > >               Extended Pix Format
-> > >       Detected Stateful Encoder
-> > > 
-> > > Required ioctls:
-> > >       test VIDIOC_QUERYCAP: OK
-> > >       test invalid ioctls: OK
-> > > 
-> > > Allow for multiple opens:
-> > >       test second /dev/video1 open: OK
-> > >       test VIDIOC_QUERYCAP: OK
-> > >       test VIDIOC_G/S_PRIORITY: OK
-> > >       test for unlimited opens: OK
-> > > 
-> > > Debug ioctls:
-> > >       test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-> > >       test VIDIOC_LOG_STATUS: OK (Not Supported)
-> > > 
-> > > Input ioctls:
-> > >       test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> > >       test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> > >       test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> > >       test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> > >       test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-> > >       test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> > >       Inputs: 0 Audio Inputs: 0 Tuners: 0
-> > > 
-> > > Output ioctls:
-> > >       test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> > >       test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> > >       test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-> > >       test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-> > >       test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-> > >       Outputs: 0 Audio Outputs: 0 Modulators: 0
-> > > 
-> > > Input/Output configuration ioctls:
-> > >       test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-> > >       test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-> > >       test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-> > >       test VIDIOC_G/S_EDID: OK (Not Supported)
-> > > 
-> > > Control ioctls:
-> > >       test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
-> > >       test VIDIOC_QUERYCTRL: OK
-> > >       test VIDIOC_G/S_CTRL: OK
-> > >       test VIDIOC_G/S/TRY_EXT_CTRLS: OK
-> > >       test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
-> > >       test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-> > >       Standard Controls: 20 Private Controls: 0
-> > > 
-> > > Format ioctls:
-> > >       test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-> > >       test VIDIOC_G/S_PARM: OK
-> > >       test VIDIOC_G_FBUF: OK (Not Supported)
-> > >       test VIDIOC_G_FMT: OK
-> > >       test VIDIOC_TRY_FMT: OK
-> > >       test VIDIOC_S_FMT: OK
-> > >       test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-> > >       test Cropping: OK
-> > >       test Composing: OK (Not Supported)
-> > >       test Scaling: OK (Not Supported)
-> > > 
-> > > Codec ioctls:
-> > >       test VIDIOC_(TRY_)ENCODER_CMD: OK
-> > >       test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-> > >       test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> > > 
-> > > Buffer ioctls:
-> > >       test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-> > >       test VIDIOC_EXPBUF: OK
-> > >       test Requests: OK (Not Supported)
-> > > 
-> > > Total for amphion-vpu device /dev/video1: 45, Succeeded: 45, Failed:
-> > > 0, Warnings: 0
-> > > 
-> > > Ming Qian (13):
-> > >   dt-bindings: media: amphion: add amphion video codec bindings
-> > >   media:Add nt8 and nt10 video format.
-> > >   media: amphion: add amphion vpu device driver
-> > >   media: amphion: add vpu core driver
-> > >   media: amphion: implement vpu core communication based on mailbox
-> > >   media: amphion: add vpu v4l2 m2m support
-> > >   media: amphion: add v4l2 m2m vpu encoder stateful driver
-> > >   media: amphion: add v4l2 m2m vpu decoder stateful driver
-> > >   media: amphion: implement windsor encoder rpc interface
-> > >   media: amphion: implement malone decoder rpc interface
-> > >   ARM64: dts: freescale: imx8q: add imx vpu codec entries
-> > >   firmware: imx: scu-pd: imx8q: add vpu mu resources
-> > >   MAINTAINERS: add AMPHION VPU CODEC V4L2 driver entry
-> > > 
-> > >  .../bindings/media/amphion,vpu.yaml           |  178 ++
-> > >  .../media/v4l/pixfmt-yuv-planar.rst           |   15 +
-> > >  MAINTAINERS                                   |    9 +
-> > >  .../arm64/boot/dts/freescale/imx8-ss-vpu.dtsi |   72 +
-> > >  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |   17 +
-> > >  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |   24 +
-> > >  drivers/firmware/imx/scu-pd.c                 |    4 +
-> > >  drivers/media/platform/Kconfig                |   19 +
-> > >  drivers/media/platform/Makefile               |    2 +
-> > >  drivers/media/platform/amphion/Makefile       |   23 +
-> > >  drivers/media/platform/amphion/vdec.c         | 1652
-> > ++++++++++++++++
-> > >  drivers/media/platform/amphion/venc.c         | 1382
-> > ++++++++++++++
-> > >  drivers/media/platform/amphion/vpu.h          |  333 ++++
-> > >  drivers/media/platform/amphion/vpu_cmds.c     |  435 +++++
-> > >  drivers/media/platform/amphion/vpu_cmds.h     |   25 +
-> > >  drivers/media/platform/amphion/vpu_codec.h    |   68 +
-> > >  drivers/media/platform/amphion/vpu_color.c    |  192 ++
-> > >  drivers/media/platform/amphion/vpu_core.c     |  901 +++++++++
-> > >  drivers/media/platform/amphion/vpu_core.h     |   16 +
-> > >  drivers/media/platform/amphion/vpu_dbg.c      |  496 +++++
-> > >  drivers/media/platform/amphion/vpu_defs.h     |  186 ++
-> > >  .../media/platform/amphion/vpu_dev_imx8q.c    |   72 +
-> > >  drivers/media/platform/amphion/vpu_drv.c      |  215 +++
-> > >  drivers/media/platform/amphion/vpu_helpers.c  |  453 +++++
-> > >  drivers/media/platform/amphion/vpu_helpers.h  |   72 +
-> > >  drivers/media/platform/amphion/vpu_imx8q.c    |  218 +++
-> > >  drivers/media/platform/amphion/vpu_imx8q.h    |  116 ++
-> > >  drivers/media/platform/amphion/vpu_log.h      |   44 +
-> > >  drivers/media/platform/amphion/vpu_malone.c   | 1683
-> > +++++++++++++++++
-> > >  drivers/media/platform/amphion/vpu_malone.h   |   42 +
-> > >  drivers/media/platform/amphion/vpu_mbox.c     |  126 ++
-> > >  drivers/media/platform/amphion/vpu_mbox.h     |   16 +
-> > >  drivers/media/platform/amphion/vpu_msgs.c     |  413 ++++
-> > >  drivers/media/platform/amphion/vpu_msgs.h     |   14 +
-> > >  drivers/media/platform/amphion/vpu_rpc.c      |  263 +++
-> > >  drivers/media/platform/amphion/vpu_rpc.h      |  463 +++++
-> > >  drivers/media/platform/amphion/vpu_v4l2.c     |  625 ++++++
-> > >  drivers/media/platform/amphion/vpu_v4l2.h     |   53 +
-> > >  drivers/media/platform/amphion/vpu_windsor.c  | 1244 ++++++++++++
-> > >  drivers/media/platform/amphion/vpu_windsor.h  |   39 +
-> > >  drivers/media/v4l2-core/v4l2-ioctl.c          |    2 +
-> > >  include/uapi/linux/videodev2.h                |    4 +
-> > >  42 files changed, 12226 insertions(+)  create mode 100644
-> > > Documentation/devicetree/bindings/media/amphion,vpu.yaml
-> > >  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
-> > >  create mode 100644 drivers/media/platform/amphion/Makefile
-> > >  create mode 100644 drivers/media/platform/amphion/vdec.c
-> > >  create mode 100644 drivers/media/platform/amphion/venc.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_cmds.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_cmds.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_codec.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_color.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_core.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_core.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_dbg.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_defs.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_dev_imx8q.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_drv.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_helpers.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_helpers.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_imx8q.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_imx8q.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_log.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_malone.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_malone.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_mbox.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_mbox.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_msgs.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_msgs.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_rpc.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_rpc.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_v4l2.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_v4l2.h
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_windsor.c
-> > >  create mode 100644 drivers/media/platform/amphion/vpu_windsor.h
-> > > 
-> > > 
-> > > base-commit: 9c3a0f285248899dfa81585bc5d5bc9ebdb8fead
-> > 
+>> In the first hunk memblock_free() gets replaced by memblock_phys_free()
+>> In the second hunk memblock_free_early() gets replaced by memblock_free()
 > 
+> In the first hunk the memory is allocated with memblock_phys_alloc() and we
+> have a physical range to free. In the second hunk the memory is allocated
+> with memblock_alloc() and we are freeing a virtual pointer.
+>   
+>> I think it would be easier to follow if you could split it in several
+>> patches:
+> 
+> It was an explicit request from Linus to make it a single commit:
+> 
+>    but the actual commit can and should be just a single commit that just
+>    fixes 'memblock_free()' to have sane interfaces.
+> 
+> I don't feel strongly about splitting it (except my laziness really
+> objects), but I don't think doing the conversion in several steps worth the
+> churn.
 
+The commit is quite big (55 files changed, approx 100 lines modified).
 
+If done in the right order the change should be minimal.
+
+It is rather not-easy to follow and review when a function that was 
+existing (namely memblock_free() ) disappears and re-appears in the same 
+commit but to do something different.
+
+You do:
+- memblock_free() ==> memblock_phys_free()
+- memblock_free_ptr() ==> memblock_free()
+
+At least you could split in two patches, the advantage would be that 
+between first and second patch memblock() doesn't exist anymore so you 
+can check you really don't have anymore user.
+
+> 
+>> - First patch: Create memblock_phys_free() and change all relevant
+>> memblock_free() to memblock_phys_free() - Or change memblock_free() to
+>> memblock_phys_free() and make memblock_free() an alias of it.
+>> - Second patch: Make memblock_free_ptr() become memblock_free() and change
+>> all remaining callers to the new semantics (IIUC memblock_free(__pa(ptr))
+>> becomes memblock_free(ptr) and make memblock_free_ptr() an alias of
+>> memblock_free()
+>> - Fourth patch: Replace and drop memblock_free_ptr()
+>> - Fifth patch: Drop memblock_free_early() and memblock_free_early_nid() (All
+>> users should have been upgraded to memblock_free_phys() in patch 1 or
+>> memblock_free() in patch 2)
+>>
+>> Christophe
+> 
