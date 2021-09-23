@@ -2,69 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1018741681D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 00:36:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE5D6416820
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 00:37:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236502AbhIWWiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 18:38:04 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:44700 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236363AbhIWWiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 18:38:03 -0400
-Received: by mail-ot1-f51.google.com with SMTP id h9-20020a9d2f09000000b005453f95356cso10604393otb.11;
-        Thu, 23 Sep 2021 15:36:30 -0700 (PDT)
+        id S243464AbhIWWjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 18:39:17 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:41739 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243435AbhIWWjR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 18:39:17 -0400
+Received: by mail-ot1-f43.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso10640698ota.8;
+        Thu, 23 Sep 2021 15:37:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LZZHj6SzZYVGQv23sf5FhNuoeSPgog8iA7xK5TOLtVs=;
-        b=SRu0d3vT/k6NNHOFhKLXpnIeM0DurbFp3huDF/DHB3SrNChgob3d9D6RP6zXK3q6fQ
-         QYiwqdi1tgEUxYSf/21Hypw7LSjWbHR5g6RoAehaFk0Fd0ZIeXufxMgco5z41VcfdwA8
-         qcgrF97ddEspuSrtHeshfPUvuarkv9THE0osP6zomkOZZGGeM99IOGO8VESjUCe3MTIZ
-         50VdfG/VHIsxFGOnb96kHrGjxn0z43Xd2VI+jGYFJhUCQDwzZvtNVJJrov2j0xY2YWiQ
-         WiCkgu0OHADY/8UKhBcwv8jz8Sx4tYQaz8HWve+rszY7Ak9ye8ua7loTeQ8XX3LtyNej
-         i1VQ==
-X-Gm-Message-State: AOAM531GN7p27wF2FUyQsarAgr/VUMLF8YKo+8Yh1Mm28YdslLY2kqHu
-        N5Gek8BL9y+PNv3Zb7thZA==
-X-Google-Smtp-Source: ABdhPJzWjXrhi1fJWFn2yjUbAQyd5QSTzmV/cXD+yZR3O2o/nmNPh/iuuqk+7cWJrJsRx1a+0NViyA==
-X-Received: by 2002:a9d:ba8:: with SMTP id 37mr1006553oth.249.1632436590557;
-        Thu, 23 Sep 2021 15:36:30 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=UUg+xdONDeTpHdeqNZwfSRiohr9VRPnz8eYVI07uERI=;
+        b=66axoZfA5LrHLpL2/SB3joFkBMET6+sUcJOZ5If0+vI7hPG0m4e/Ht7Fqr5smJlmA8
+         wpd/ZQUQPE7U2AQ/hLgqvp2fhd8MH9WVMYhXj4yARiwhsG+vDASh+v0f9YJo6fgUZwUG
+         JdcdbnIZnGMprm3KtlgkT50SI+R+boaNiGjf+W/cXuOanlI6Ma7kzWrIN+/O8/hbr07v
+         8roLCCj+x+EQeAnQkg7ZIub47a0DGNBOqjRzqyEOvhI7J7cqSii13HM1JEeaC/YGMYgY
+         F7sGQdcp8/srjVd6WIRJU6P3Jex/e4Y/37xdJyAZe91pAkjq0Tl2HHBy7sf0AdnFI1RV
+         xmtA==
+X-Gm-Message-State: AOAM533/D392BFSpEZMyE07bUyt9Pubrd/IMldEglBTGNZfAJ9QZem1c
+        RugQgJO6wcaGoe6a8vEP/g==
+X-Google-Smtp-Source: ABdhPJyZ8hoIBge0ZaeV70lQTJxCI4FfxoE0mXxAaQE8jnnAmXa18YCoM0BMlHe9eQAboEEkj6arXw==
+X-Received: by 2002:a05:6830:358:: with SMTP id h24mr954358ote.159.1632436664563;
+        Thu, 23 Sep 2021 15:37:44 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r18sm1269369ote.28.2021.09.23.15.36.29
+        by smtp.gmail.com with ESMTPSA id t80sm1722423oie.9.2021.09.23.15.37.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 15:36:30 -0700 (PDT)
-Received: (nullmailer pid 3650743 invoked by uid 1000);
-        Thu, 23 Sep 2021 22:36:29 -0000
-Date:   Thu, 23 Sep 2021 17:36:29 -0500
+        Thu, 23 Sep 2021 15:37:44 -0700 (PDT)
+Received: (nullmailer pid 3653403 invoked by uid 1000);
+        Thu, 23 Sep 2021 22:37:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Bitan Biswas <bbiswas@nvidia.com>
-Cc:     krzysztof.kozlowski@canonical.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, rostedt@goodmis.org, mingo@redhat.com,
-        jassisinghbrar@gmail.com, p.zabel@pengutronix.de,
-        skomatineni@nvidia.com, broonie@kernel.org,
-        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH V1 0/3] Add tegra header license and dt-bindings Copyright
-Message-ID: <YU0Bbc4lqtENJ5WF@robh.at.kernel.org>
-References: <20210921174434.4839-1-bbiswas@nvidia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210921174434.4839-1-bbiswas@nvidia.com>
+To:     Christian Lamparter <chunkeey@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org
+In-Reply-To: <20210923202029.575660-1-chunkeey@gmail.com>
+References: <20210923202029.575660-1-chunkeey@gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: net: wireless: qca,ath9k: convert to the json-schema
+Date:   Thu, 23 Sep 2021 17:37:43 -0500
+Message-Id: <1632436663.364411.3653402.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 10:44:31AM -0700, Bitan Biswas wrote:
-> Few Tegra header file are missing license text.
-> Some Tegra dt-bindings header do not have Copyright.
-> Add license and Copyright for such Tegra header files.
+On Thu, 23 Sep 2021 22:20:29 +0200, Christian Lamparter wrote:
+> This replaces the existing .txt binding file. Furthermore, this
+> also helps with validating DTS files.
+> 
+> Introduced binding changes:
+>  1. added inherited mac-address nvmem property
+>  2. added inherited ieee80211-freq-limit property
+>  3. added new calibration nvmem property
+>  4. added second example (taken from the Netgear WNDR3700v2)
+>     Reason: Setting qca,no-eeprom; takes presedence over
+>     nvmem-cells. I think a different example is needed,
+>     because the driver can only reads from one calibration
+>     source per device.
+>  5. (re-added) chip list (based on data from ath9k's pci.c)
+> 
+> Added binding .yaml to MAINTAINERS.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+> 
+> ---
+> v1 -> v2:
+> 	- added second example (pci device - AR9220)
+> 	- added commented chip list from the qca,ath9k.txt+ath9k's pci.c
+> 
+> v2 -> v3:
+> 	- forgot to include patch version in tag. Oops.
+> 	  (Please ignore the v2 with the missing v2 I just sent.)
+> 
+> (I hope my changes didn't invalidate Rob's review there.
+> I did run "make dt_binding_check" and no warning/error
+> came up.)
+> ---
+>  .../bindings/net/wireless/qca,ath9k.txt       | 48 ----------
+>  .../bindings/net/wireless/qca,ath9k.yaml      | 90 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 91 insertions(+), 48 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/wireless/qca,ath9k.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
+> 
 
-Who do you expect to merge this? Tegra maintainers or I can apply 
-patches 1 and 3.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Series should be for 1 maintainer clearly, separate series per 
-maintainer if there's no dependencies (this case), or clearly state who 
-you think should take a series if it has cross tree dependencies.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml:23:21: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
-Rob
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1531944
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
