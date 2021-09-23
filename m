@@ -2,100 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFAAD41616E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 16:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A76741619B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Sep 2021 17:01:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241672AbhIWOwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 10:52:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53134 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241661AbhIWOwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 10:52:14 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A68C061756
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 07:50:41 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1mTQ3c-0003Uh-1S; Thu, 23 Sep 2021 16:50:40 +0200
-Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1mTQ3b-0002Ru-Kk; Thu, 23 Sep 2021 16:50:39 +0200
-Date:   Thu, 23 Sep 2021 16:50:39 +0200
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v4 1/3] media: imx6-mipi-csi2: use pre_streamon callback
- to set sensor into LP11
-Message-ID: <20210923145039.GD30905@pengutronix.de>
-Mail-Followup-To: Michael Tretter <m.tretter@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>, kernel@pengutronix.de
-References: <20210923105618.365513-1-m.tretter@pengutronix.de>
- <20210923105618.365513-2-m.tretter@pengutronix.de>
- <b26ba662abc999394a7381d4d412fc28fdf6aa39.camel@pengutronix.de>
+        id S241764AbhIWPDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 11:03:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55670 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241734AbhIWPDH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Sep 2021 11:03:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7904E60E05
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 15:01:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632409295;
+        bh=UKPoJ1KZE1z8ljuJANQ6+sZBWeEk8dHbYbTuzdUR2ww=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WdXupnGG8P/SY1GhKPxEK4BV+u9r2DxJ4MGqxxQMCW95xdYvFzOGmfLKsK71+/UFz
+         snf1DKnhKmvigjn3OUG79I/0fa0BbwSYyxgLpLKd4qY1qAYVjQzwEeAURUwnYHetSh
+         PvdEF8DmmRpRE4oTO8fKOz3NWyXoD0pnexlXZzkqt4G7dT1hRj/Wx+hx0+tyVJIqZ/
+         qn+ldXxySO7c+2oIKRSpJqkO6wmJl1GkmCtdYZAKjCRY3BP4so1i3vvgOQvFhzU0+3
+         5iIk+p47AeqLu3GCuzYx/IezKkc8ZtADNtKDRwBZn2bK7fAQiY9MZM4PJ5dbVFYcFd
+         RHJkQEiSa0bMQ==
+Received: by mail-ed1-f47.google.com with SMTP id v10so20186061edj.10
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 08:01:35 -0700 (PDT)
+X-Gm-Message-State: AOAM531l+RDPxQvljhavNoacDaUIsQCKWcimHrHdizcU12iNjb2XIFWD
+        P1Ywqa92Kp/tc5BztAfdzq/8xfcoYGGb9h7GdQ==
+X-Google-Smtp-Source: ABdhPJwz3cvRPhk3j1bboE+QzjGu9L+JPMytRrsRcFKcPa7XTZo0ubf39qz2rIVfw8AMAHTTNj4aJeUftfPkDZLKP+s=
+X-Received: by 2002:a17:906:abd1:: with SMTP id kq17mr5338261ejb.390.1632409276680;
+ Thu, 23 Sep 2021 08:01:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <b26ba662abc999394a7381d4d412fc28fdf6aa39.camel@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 16:46:04 up 217 days, 18:09, 114 users,  load average: 0.26, 0.24,
- 0.20
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210913080024.6951-1-zajec5@gmail.com> <20210913080024.6951-3-zajec5@gmail.com>
+ <YUriBVIH/n0p2H+D@google.com>
+In-Reply-To: <YUriBVIH/n0p2H+D@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 23 Sep 2021 10:01:05 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+a9nKvMwzTPxCvF421cGw7CtAqHZxT=E6oO1twJ41d5Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+a9nKvMwzTPxCvF421cGw7CtAqHZxT=E6oO1twJ41d5Q@mail.gmail.com>
+Subject: Re: [PATCH 3/4] dt-bindings: mfd: brcm,cru: add USB 2.0 PHY
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Sep 2021 16:37:31 +0200, Philipp Zabel wrote:
-> On Thu, 2021-09-23 at 12:56 +0200, Michael Tretter wrote:
-> > Step 5 expects that the sensor is in LP11 mode. Use the new
-> > pre_streamon callback to signal the sensor that it should switch into
-> > LP11.
-> > 
-> > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+On Wed, Sep 22, 2021 at 2:58 AM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Mon, 13 Sep 2021, Rafa=C5=82 Mi=C5=82ecki wrote:
+>
+> > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >
+> > Northstar's USB 2.0 PHY is part of the CRU MFD.
+> >
+> > Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 > > ---
-> > Changelog:
-> > 
-> > v4:
-> > 
-> > - new patch
-> > ---
-> >  drivers/staging/media/imx/imx6-mipi-csi2.c | 9 ++++++++-
-> >  1 file changed, 8 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/staging/media/imx/imx6-mipi-csi2.c b/drivers/staging/media/imx/imx6-mipi-csi2.c
-> > index 9de0ebd439dc..4f19e2bce4bb 100644
-> > --- a/drivers/staging/media/imx/imx6-mipi-csi2.c
-> > +++ b/drivers/staging/media/imx/imx6-mipi-csi2.c
-> > @@ -382,13 +382,17 @@ static int csi2_start(struct csi2_dev *csi2)
-> >  	csi2_enable(csi2, true);
-> >  
-> >  	/* Step 5 */
-> > +	ret = v4l2_subdev_call(csi2->src_sd, video, pre_streamon,
-> > +			       V4L2_SUBDEV_PRE_STREAMON_FL_MANUAL_LP);
-> > +	if (ret)
-> > +		goto err_assert_reset;
-> 
-> I think this should check for (ret && ret != -ENOIOCTLCMD) to avoid
-> breaking drivers that are still missing pre_streamon implementation.
+> >  .../devicetree/bindings/mfd/brcm,cru.yaml         | 15 ++++++++++++++-
+> >  1 file changed, 14 insertions(+), 1 deletion(-)
+>
+> Applied, thanks.
 
-Thanks. You are correct. I will wait for further comments on the other patches
-of the series and fix it in the next version.
+Hopefully this works without patch 2???
 
-Michael
+Rob
