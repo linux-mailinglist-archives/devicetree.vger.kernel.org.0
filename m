@@ -2,80 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A21D34171FA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 14:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1670F41724B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 14:48:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343539AbhIXMjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 08:39:00 -0400
-Received: from mail-vk1-f177.google.com ([209.85.221.177]:39811 "EHLO
-        mail-vk1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245265AbhIXMi7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 08:38:59 -0400
-Received: by mail-vk1-f177.google.com with SMTP id f73so3879605vkf.6;
-        Fri, 24 Sep 2021 05:37:26 -0700 (PDT)
+        id S1343790AbhIXMr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 08:47:27 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:35499 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343918AbhIXMqf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 08:46:35 -0400
+Received: by mail-ot1-f46.google.com with SMTP id 77-20020a9d0ed3000000b00546e10e6699so13019630otj.2;
+        Fri, 24 Sep 2021 05:45:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=42I/j7EJUoe1na+qCjbWLO26DRP+d7+Jsq/Q0zLHtDU=;
-        b=INxlBNIn5lroFdad63+AY9HCzb7+gW3EbwvlS0wa7yHSj19RRtvvXqexDl0+H2Quc5
-         NEDJgLJgpLit0vHx8IKPzRw3otOqf4Y4/QDTzQdaZFjSCSDGtOCNIkqdu25uoVt/+zMe
-         NtZL2wZUUw5S/nfHBIteupayuXmYu8LWKKEkM5kWmQ5pRIPrqriQbBL4BYvaqPhHCr/9
-         2EbYtPM4Vk+XjhUIuNXxb5yznqPKnaq4mOZSaOW6lwkTaE22K3Joned+c6KrgEnOhtBO
-         8iuRpeIj9Xwl3h1+WNQFPRf2jcsyeRxQjlHXpV8t9kd3m+30Dzc045lz2lhlV/voeV4C
-         eZqQ==
-X-Gm-Message-State: AOAM531GvFxqybDYEMW/WDZFyJcasjNBazZ/VGcC78dirVUoJc4QGSSH
-        mTQHTWdHqFLqXncefzOp/IK43+IGm7RwbsAQV8U=
-X-Google-Smtp-Source: ABdhPJyDLWMp4EQ2iv6EKC6E6I1Rf7GeNbzBrcz8iYtLmWXuBOn5YU+PcZnZqUd4X/n5/jjpEJnGnJ+041+EGAbSq/w=
-X-Received: by 2002:a1f:3a4b:: with SMTP id h72mr7384734vka.19.1632487046079;
- Fri, 24 Sep 2021 05:37:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <08f73c2aa0d4e580303357dfae107d084d962835.1632486753.git.geert+renesas@glider.be>
-In-Reply-To: <08f73c2aa0d4e580303357dfae107d084d962835.1632486753.git.geert+renesas@glider.be>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 24 Sep 2021 14:37:14 +0200
-Message-ID: <CAMuHMdXQ5vv2rxWsd8EGJWufe4UwnvOoiSEXTSDWj7mUDqy+vA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: drm/bridge: ti-sn65dsi86: Fix reg value
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Wgucp1DOQ+C8sAHydAqEv0e8F52E/8/b99g6HgdyWA8=;
+        b=Ri+pyGAOncz4MZHEFlFfjK/YTOARhV3MvFuEl3FHizD8VmqcLD68B8CX+k58oTSKyW
+         cX9T0vdE6eNmlDTcLDhAKlRYYcUkbOTXibj62UDnW8b6s6mdS3nk5Cos0DsJUelIM83e
+         65OhgEnlNlC/IPQ1QgRpnHir37/FI46Wud4LLpg9tvPWoPt1tCg3JUPkRl4thDtwfTev
+         2qUNEF4IMynb+CQg2OQOhvl9zJCI+q1w0m3FER80uKq+o046iOo4+UVoyKvQIMz0LbSZ
+         AyjfhsIzjLK/WAOIh/J1bPi3abhtDeWZp/ku8F+RrX+jH9eTV2Bs2QFzdANkDshbiOgA
+         6HhQ==
+X-Gm-Message-State: AOAM533RsCQjI1zY0OrQhe2yLQvNXpwVhobK+bJtD9sQqgkxspePy2un
+        hDHbjYslQg2VDAKrHBSmLa90qSZsIA==
+X-Google-Smtp-Source: ABdhPJwHj5im+dsOBMltHXyxc2CaQdih0Og7bXfdaZODIyDl1+uQCBjvHxYFnLiyKbeuMZzIcoC+QQ==
+X-Received: by 2002:a9d:5a81:: with SMTP id w1mr3646212oth.307.1632487501913;
+        Fri, 24 Sep 2021 05:45:01 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id z10sm1986010otq.64.2021.09.24.05.45.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Sep 2021 05:45:01 -0700 (PDT)
+Received: (nullmailer pid 1091569 invoked by uid 1000);
+        Fri, 24 Sep 2021 12:45:00 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>
+Cc:     devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Guenter Roeck <linux@roeck-us.net>,
+        Przemyslaw Cencner <przemyslaw.cencner@nokia.com>
+In-Reply-To: <cad7ca2084491b58d7f5d72e43f9b6dc9ec0fd69.1632473318.git.krzysztof.adamski@nokia.com>
+References: <cover.1632473318.git.krzysztof.adamski@nokia.com> <cad7ca2084491b58d7f5d72e43f9b6dc9ec0fd69.1632473318.git.krzysztof.adamski@nokia.com>
+Subject: Re: [PATCH v2 01/10] dt-bindings: hwmon: add missing tmp421 binding
+Date:   Fri, 24 Sep 2021 07:45:00 -0500
+Message-Id: <1632487500.109276.1091568.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 24, 2021 at 2:35 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> make dtbs_check:
->
->     arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml: bridge@2c: reg:0:0: 45 was expected
->
-> According to the datasheet, the I2C address can be either 0x2c or 0x2d,
-> depending on the ADDR control input.
->
-> Fixes: e3896e6dddf0b821 ("dt-bindings: drm/bridge: Document sn65dsi86 bridge bindings")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Fri, 24 Sep 2021 11:38:50 +0200, Krzysztof Adamski wrote:
+> Add basic description of the tmp421 driver DT bindings.
+> 
+> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
 > ---
-> Also seen with the in-flight Falcon DSI display output patch:
->
->     arch/arm64/boot/dts/renesas/r8a779a0-falcon.dt.yaml: sn65dsi86@2c: reg:0:0: 45 was expected
-> ---
->  .../devicetree/bindings/display/bridge/ti,sn65dsi86.yaml        | 2 +-
+>  .../devicetree/bindings/hwmon/ti,tmp421.yaml  | 43 +++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
+> 
 
-And the email address of this file's maintainer bounces.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Gr{oetje,eeting}s,
+yamllint warnings/errors:
 
-                        Geert
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/hwmon/ti,tmp421.yaml#
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+doc reference errors (make refcheckdocs):
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+See https://patchwork.ozlabs.org/patch/1532139
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
