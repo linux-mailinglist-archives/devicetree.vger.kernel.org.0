@@ -2,74 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE6144169A8
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 03:53:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26A104169AA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 03:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243805AbhIXBym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 21:54:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35438 "EHLO
+        id S243795AbhIXBzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 21:55:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243795AbhIXBym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 21:54:42 -0400
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD35C061574
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 18:53:10 -0700 (PDT)
-Received: by mail-il1-x12e.google.com with SMTP id x2so8740798ilm.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 18:53:10 -0700 (PDT)
+        with ESMTP id S243793AbhIXBzv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 21:55:51 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B8F8C061574;
+        Thu, 23 Sep 2021 18:54:19 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id 67-20020a9d0449000000b00546e5a8062aso11132836otc.9;
+        Thu, 23 Sep 2021 18:54:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=dgpwPCQznEmVXGZRT9a+ot3RVGNTTHbl31G3nps7wKQ=;
-        b=arvsYTBmsr+YHmga28r4yVzGHN9o+5321t2FfClFRnyeiZ1gqD6ESM7fU0qmoTl5yi
-         zE8enuduoyy9yTxddi6w7hFOaJdxmNTlrg28DQ0dyRcrn7TtLz4Jo52S5YWpWxg3k/QW
-         j4SJHYjhhzR2DHwiAuADb9cKNdNY69Zi7z1hcpUC6wDqHMcSAdSq8KUhA2HdP5bEYV2M
-         kvmgqtQc9WvZGpMF6rnxDRABBQm/97fkylMBlpQp4RmJWh6uqReZaqvw8mrJmY26l8jm
-         w5XH4hNdJuaBhLBsX2/6agkOHAB6Jq+xXpgNr2zRncOorkUZupDj9p0ZVTxCfLSUcYei
-         4Inw==
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=eZ7iH6Q8l67sPv3mVUusPpqoviodZTEfInAFFD0to5g=;
+        b=bmJOJ8D4fN5cUpbZE+wUjqNj6kd0TMsZG5DjBjwGT/U831siTueRpCF8CsqTFR6NXP
+         QsJiw7JcNm5+xH+ZCnJhC4CO2Mop1bIz0/RPTDqEzYtlhfTXDtwRPlvfpZsH/nPr81Tq
+         MYcSdOFY9cRV9zb5ufjPjeZoVC+UiNZW+WGLDTumczpylNokKHAnoFQFlTBhXXnYJ+rf
+         s1AQCYTOm2r43XVjcKZ8qLLvlOyGsitgtsnGX2BI8+3SxCAxXPkTm8sMyBsqU4q7X+p2
+         eLKeDnvtbox0NKdBqcGBi7F+cuqffJ7ciHBsp6B08uBlluNFGPRpW8rtQWtCAHhdgbZ6
+         bkfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=dgpwPCQznEmVXGZRT9a+ot3RVGNTTHbl31G3nps7wKQ=;
-        b=Kgw+6/RrrRRyfjm4TDoIBKyk24HopM/4ersEgFYHDe3mWmpJr+YBNvB3O9e4OFNcIC
-         g0CXNbacssNmVZingRudK3YgA0Tgjr1Y0qfY0HFWPs1VnCLv4jmezXbBjguHOtBC08d5
-         v4AlOQNXcidyyZbkCsUt/KWMu8Y4U+rbSdmRkZ13nP/UrOOEV/2zr/NdmHJJEofW1eTL
-         go9Eng5Vh0w6YBYBvpo4/6IBqO2Px7TjdYwnLCzq94rbCFOHDzEZWRiDmiEaY6XsTGo9
-         0HXw/D+R5ArXTqA+b0ntgjcqV3dYRSFMPFvD6SXbrmqdCduySgkf+OACZp+X6Af+G4DD
-         8XeQ==
-X-Gm-Message-State: AOAM533iA2MlHj9QQPnmd/8Ktn6OTi8KKYcaTahFWyRl+ogQcgtPM2Oz
-        L+wvzFo9aSrXtkRign+FN1804NtF3KpPoafnbpY=
-X-Google-Smtp-Source: ABdhPJzXRQnFdXW0Z/GucsAg/vvBd+iIGFFcz0O2uDPREIhpnBEk3nSC9Q+GOqGrTpCFwVhOGeEtymnrpo8Su9NYbo4=
-X-Received: by 2002:a92:1a07:: with SMTP id a7mr5350955ila.196.1632448389128;
- Thu, 23 Sep 2021 18:53:09 -0700 (PDT)
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=eZ7iH6Q8l67sPv3mVUusPpqoviodZTEfInAFFD0to5g=;
+        b=iAq7fSU8QbKT+CQDIYA6UEiSNp1Q0Y2G0mYQlo+K4uAF6okZoslt6nESMp1nmCxosX
+         2Ci/RR12e0z5INUIejf8nxgjSWN8RfzcMcd5VJ6MMFKpcKdHQTGqO6t1GnMRP7EKeUxN
+         FKBJiHozN5qitwZTcyXjCr/Ak/L5WSGpKWbYae+khWHupifHu5FDalugPiVHMM5Bl1Sl
+         /TE0yrZAuXxrajijmgNog6nqWIwbPoBzYoeWoIsGdnfGebf14RtkG60fe6/+/tI338EI
+         u3bOxCD8OBhzbrbiD53jXsRL+o5w+IGBSvhd7CGqN62pwQMdSCNneuvhPfwgm/VoAE1V
+         6IKw==
+X-Gm-Message-State: AOAM5329kM5qbMYVpreMiyy3/Rgf4GvljVIsLDCrL/keKK/bGR+uoqzD
+        xJaEWJEkYQpsE/g4pgTNZnc=
+X-Google-Smtp-Source: ABdhPJxsZno9TR1s7LghbC1zEKNP9FZnT5qe3iCwsqU5kygZ+JaJaV7hAWJ85B/ytaGZa7apn468lw==
+X-Received: by 2002:a9d:719a:: with SMTP id o26mr1713249otj.278.1632448458901;
+        Thu, 23 Sep 2021 18:54:18 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id g23sm1697785otl.23.2021.09.23.18.54.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Sep 2021 18:54:18 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 23 Sep 2021 18:54:17 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Jiri Kosina <trivial@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: hwmon: ti,tmp102: add bindings and
+ remove from trivial devices
+Message-ID: <20210924015417.GA3030874@roeck-us.net>
+References: <20210921102832.143352-1-krzysztof.kozlowski@canonical.com>
+ <20210921102832.143352-2-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Received: by 2002:a6b:b281:0:0:0:0:0 with HTTP; Thu, 23 Sep 2021 18:53:05
- -0700 (PDT)
-Reply-To: michaelrachid7@gmail.com
-From:   Michael Rachid <felixfernando.6500@gmail.com>
-Date:   Fri, 24 Sep 2021 02:53:05 +0100
-Message-ID: <CAA6riO3+mHzCfz=wgtsTYsnEcCqOy=+QZ8P5vYnDS66F5Zj4pA@mail.gmail.com>
-Subject: =?UTF-8?B?7KCc7JWIIGplYW4vUHJvcG9zYWw=?=
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210921102832.143352-2-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-7Lmc6rWs7JeQ6rKMLA0KDQrrgpjripQg64u57Iug6rO8IO2VqOq7mCDsspjrpqztlZjqs6Ag7Iu2
-7J2AIOyCrOyXhSDsoJzslYjsl5Ag64yA7ZW0IOyVjOumrOq4sCDsnITtlbQg6riA7J2EIOyUgeuL
-iOuLpC4NCjXsspzrp4wg64us65+s6rCAIO2IrOyeheuQqeuLiOuLpC4g66qo65OgIOqyg+ydtCDt
-lanrspXsoIHsnbTqs6Ag7JyE7ZeY7ZWY7KeAIOyViuycvOuLiCDslYjsi6ztlZjsi63si5zsmKQu
-DQrqtIDsi6zsnYQg7ZGc7Iuc7ZW0IOyjvOyLreyLnOyYpC4NCg0K66eI7J207YG0IOudvOyLnOuT
-nC4NCg0KY2hpbmd1ZWdlLA0KDQpuYW5ldW4gZGFuZ3Npbmd3YSBoYW1ra2UgY2hlb2xpaGFnbyBz
-aXAtZXVuIHNhLWVvYiBqZWFuLWUgZGFlaGFlDQphbGxpZ2kgd2loYWUgZ2V1bC1ldWwgc3NldWJu
-aWRhLg0KNWNoZW9ubWFuIGRhbGxlb2dhIHR1LWliZG9lYm5pZGEuIG1vZGV1biBnZW9zLWkgaGFi
-YmVvYmplb2ctaWdvDQp3aWhlb21oYWppIGFuaC1ldW5pIGFuc2ltaGFzaWJzaW8uDQpnd2Fuc2lt
-LWV1bCBweW9zaWhhZSBqdXNpYnNpby4NCg0KbWFpa2V1bCBsYXNpZGV1Lg0KDQoNCkRlYXIgZnJp
-ZW5kLA0KDQpJIHdyaXRlIHRvIGluZm9ybSB5b3UgYWJvdXQgYSBidXNpbmVzcyBwcm9wb3NhbCBJ
-IGhhdmUgd2hpY2ggSSB3b3VsZA0KbGlrZSB0byBoYW5kbGUgd2l0aCB5b3UuDQpGaWZ0eSBtaWxs
-aW9uIGRvbGxhcnMgaXMgaW52b2x2ZWQuIEJlIHJlc3QgYXNzdXJlZCB0aGF0IGV2ZXJ5dGhpbmcg
-aXMNCmxlZ2FsIGFuZCByaXNrIGZyZWUuDQpLaW5kbHkgaW5kaWNhdGUgeW91ciBpbnRlcmVzdC4N
-Cg0KTWljaGFlbCBSYWNoaWQuDQo=
+On Tue, Sep 21, 2021 at 12:28:28PM +0200, Krzysztof Kozlowski wrote:
+> The TI TMP102 temperature sensor does not fit into trivial devices
+> bindings due to additional properties.  Add separate bindings for it.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Applied.
+
+Thanks,
+Guenter
+
+> ---
+>  .../devicetree/bindings/hwmon/ti,tmp102.yaml  | 47 +++++++++++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |  2 -
+>  2 files changed, 47 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
+> new file mode 100644
+> index 000000000000..d3eff4fac107
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/ti,tmp102.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TMP102 temperature sensor
+> +
+> +maintainers:
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tmp102
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        sensor@48 {
+> +            compatible = "ti,tmp102";
+> +            reg = <0x48>;
+> +            interrupt-parent = <&gpio7>;
+> +            interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+> +            #thermal-sensor-cells = <1>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index c9333fb81fdf..6ad0628741cf 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -317,8 +317,6 @@ properties:
+>              # I2C Touch-Screen Controller
+>            - ti,tsc2003
+>              # Low Power Digital Temperature Sensor with SMBUS/Two Wire Serial Interface
+> -          - ti,tmp102
+> -            # Low Power Digital Temperature Sensor with SMBUS/Two Wire Serial Interface
+>            - ti,tmp103
+>              # Thermometer with SPI interface
+>            - ti,tmp121
