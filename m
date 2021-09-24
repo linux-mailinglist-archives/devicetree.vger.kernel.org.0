@@ -2,101 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6BB5417D38
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 23:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82D4A417D3A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 23:48:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231542AbhIXVuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 17:50:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55024 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230238AbhIXVuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 17:50:11 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 118ADC061571;
-        Fri, 24 Sep 2021 14:48:38 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id m70so8741062ybm.5;
-        Fri, 24 Sep 2021 14:48:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=E0zLyeg+HnNBHyfJ2Gaj3wqhdcjSDpgrhHMZdzYFdWo=;
-        b=dREPaIGedrp9Bi9YwYuDZlKU0x0rlsrMnnAkEXsyxtC/KrOpA+KS/THhI5dAHo5fO5
-         ZK1L3JBu2G/n6M+W6yOSttpEDQtBW3QpE/dMjxnlRfUKjhbfPpzJWY/9YpP9Z2rrIpce
-         MFM7xzX5VlLyw74Zcx/2PYKt0Edu4GHsulSqrZGyMoAERUYeGcVSKbI+ZjEIdY0HlMMS
-         ed768LJgxeiIFX3f7/eZT6z8e2l/Wvu9DCwupAGKURECFCpo5DdX7+d3LdpmHHAfgvJP
-         xSLJGpvHRAn7zpNqM3E0Nz8VPcS4E5ww2u61tnvZ9nTeQBvmJ75LI6dFpNnFfEe3PLLO
-         X5Pg==
+        id S230238AbhIXVuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 17:50:20 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:43889 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235048AbhIXVuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 17:50:20 -0400
+Received: by mail-oi1-f175.google.com with SMTP id w19so16355081oik.10
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 14:48:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=E0zLyeg+HnNBHyfJ2Gaj3wqhdcjSDpgrhHMZdzYFdWo=;
-        b=2oPTTie0rFMMpq36YVOZ/YIcP4GtyR2dnDOcaxOQlmAXnokyfzfzV62nICtyreVD1E
-         2yfrz47ia2VUP9t8DSTfPIuDXPyQ1B8yQuQme8BYl8pBxmxYg1v6QNdvUVL0QRApbNvn
-         Qiupaf5fBTMxeWktkyH5Y8KAkR2TFEsOu6m9cT04QQuLNdZRI9TitCnAb3/ebmTe5RMI
-         qQW9BJvPsN+T+wBFSq8Ah+1Yn9oRTsrcHZjCr5ABGr8CFYgfuNDdRdGBBYwVmeWo6wJl
-         D998/asKV95ky6JAQd8H58GKdStyaLmyfKO0C+aBkgzlMEcaYYPgBDPehbBCNVdWneqm
-         vTtg==
-X-Gm-Message-State: AOAM531DdGztUAvp6KQI8UsvH4JxWbFnbU4aXkBz/hbR8oH5vxsNBy0J
-        VG7Q0dA8DLjBbhVIUpuYFRuhWXolBf1AWYX24uU=
-X-Google-Smtp-Source: ABdhPJym5K5Lberhm0ErZvNZ6SaJ/2TXK5RyQ6zIvMsi8uqby8nWjDIYoWpz7qZqidvQx/qEVYAEVDTdmVpv7h9vEYo=
-X-Received: by 2002:a25:2492:: with SMTP id k140mr15464219ybk.254.1632520117288;
- Fri, 24 Sep 2021 14:48:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EqB/107ryJNK8IwVLNIcwTeFh3xrVqVT6kfeO/feeU8=;
+        b=U8jzfWkKS9vRnmPFAo7vbVkj1iC1f8jzBWdfgiZe+MMGH/2da3Xoz1032qB4HmIf7z
+         WzrS61tphnZ3/G+nCUf7lEiKJmVQ2igBinRJ0gIe4dAQm9LvdwlUqArwLf1uTfrTEA5T
+         jFR2yt5dU7bgVYj0CADF1E8DmUHbGliNOFHtLDNU9xlYt+cN1tsm2Q02Uo/Tnfr9P2mG
+         5n3+FzuZxBTytMLDaZ7upXbRIQmcjbPVeIEuT72QgsqiJKYy2IMSQ+BLicCW65qyTJf1
+         Ik3cgPJbk9zxedEb5CvLp7D9vawfWNIjYiDCUiShIMOYtzHfS6AXbJNfHgCX/mHfTt9b
+         rsfA==
+X-Gm-Message-State: AOAM533EqDwUd5qOibK6XTx96nI++cCgcdknEAON8SqLALWwoIE2VsI7
+        NmWcBY9mewCwKnoUQtt9DQio/pzVwA==
+X-Google-Smtp-Source: ABdhPJxe7F0OWG/DIar2q7i89R+dVko0XmssiHHsoP6kHTJtSVh7Upp6xn5FRQGUjLpQfOXm4KUxGA==
+X-Received: by 2002:a05:6808:2113:: with SMTP id r19mr3191993oiw.69.1632520126389;
+        Fri, 24 Sep 2021 14:48:46 -0700 (PDT)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id d23sm2441909ook.47.2021.09.24.14.48.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Sep 2021 14:48:45 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     devicetree@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [RFC PATCH] arm: dts: vexpress: Set chosen 'stdout-path'
+Date:   Fri, 24 Sep 2021 16:48:44 -0500
+Message-Id: <20210924214844.1890478-1-robh@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210921193028.13099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210921193028.13099-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CACRpkdaJk-G0YE63uvH9C=G3n7k2gZqf9QrwGfAZC2O4hhps=A@mail.gmail.com>
-In-Reply-To: <CACRpkdaJk-G0YE63uvH9C=G3n7k2gZqf9QrwGfAZC2O4hhps=A@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 24 Sep 2021 22:48:11 +0100
-Message-ID: <CA+V-a8sBfFgnh1sL5ueLO0b+XeWqeiwg4ACv6yOz3JJ14pdzLg@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/4] pinctrl: renesas: pinctrl-rzg2l: Add IRQ
- domain to handle GPIO interrupt
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Using chosen 'stdout-path' is the preferred way to set the console, but
+several Arm, Ltd. platforms don't set it. Set it to the 1st serial port.
 
-Thank you for the review.
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+RFC because I don't have any idea what the baud rate is for real boards. 
+If anyone knows, please comment and I'll add it.
 
-On Thu, Sep 23, 2021 at 10:38 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Tue, Sep 21, 2021 at 9:30 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> > Add IRQ domian to RZ/G2L pinctrl driver to handle GPIO interrupt.
-> >
-> > GPIO0-GPIO122 pins can be used as IRQ lines but only 32 pins can be
-> > used as IRQ lines at given time. Selection of pins as IRQ lines
-> > is handled by IA55 (which is the IRQC block) which sits in between the
-> > GPIO and GIC.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Why can't you just use the hierarchical IRQ domain handling inside
-> gpiolib?
->
-Will do that in the next version.
+ arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts | 4 +++-
+ arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts  | 4 +++-
+ arch/arm/boot/dts/vexpress-v2p-ca5s.dts     | 4 +++-
+ arch/arm/boot/dts/vexpress-v2p-ca9.dts      | 4 +++-
+ arch/arm64/boot/dts/arm/foundation-v8.dtsi  | 4 +++-
+ arch/arm64/boot/dts/arm/fvp-base-revc.dts   | 4 +++-
+ arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts  | 4 +++-
+ 7 files changed, 21 insertions(+), 7 deletions(-)
 
-> See for example drivers/gpio/gpio-ixp4xx.c for an example of how this
-> is used.
->
-Thank you for the pointer.
+diff --git a/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts b/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts
+index 679537e17ff5..c296a3677447 100644
+--- a/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts
++++ b/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts
+@@ -20,7 +20,9 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+diff --git a/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts b/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
+index 511e87cc2bc5..7b7c1ec2f542 100644
+--- a/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
++++ b/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
+@@ -20,7 +20,9 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+diff --git a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
+index 3b88209bacea..9b70ae1d3e35 100644
+--- a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
++++ b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
+@@ -20,7 +20,9 @@ / {
+ 	#address-cells = <1>;
+ 	#size-cells = <1>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+diff --git a/arch/arm/boot/dts/vexpress-v2p-ca9.dts b/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+index 5916e4877eac..4eef3db16b3d 100644
+--- a/arch/arm/boot/dts/vexpress-v2p-ca9.dts
++++ b/arch/arm/boot/dts/vexpress-v2p-ca9.dts
+@@ -20,7 +20,9 @@ / {
+ 	#address-cells = <1>;
+ 	#size-cells = <1>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+diff --git a/arch/arm64/boot/dts/arm/foundation-v8.dtsi b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
+index fbf13f7c2baf..6eb14717cb4d 100644
+--- a/arch/arm64/boot/dts/arm/foundation-v8.dtsi
++++ b/arch/arm64/boot/dts/arm/foundation-v8.dtsi
+@@ -18,7 +18,9 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+index 5f519affe728..a6165a472a7b 100644
+--- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
++++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+@@ -24,7 +24,9 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
+index 258991ad7cc0..f8dee952cefc 100644
+--- a/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
++++ b/arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts
+@@ -23,7 +23,9 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	chosen { };
++	chosen {
++		stdout-path = "serial0";
++	};
+ 
+ 	aliases {
+ 		serial0 = &v2m_serial0;
+-- 
+2.30.2
 
-Cheers,
-Prabhakar
