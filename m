@@ -2,96 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44BF44170F0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 13:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 292D7417104
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 13:41:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343514AbhIXLho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 07:37:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46936 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244439AbhIXLhn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 07:37:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 48BDF61241;
-        Fri, 24 Sep 2021 11:36:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1632483370;
-        bh=GVK5jCV+2GJ3l9xXZf3QHWw2lsE24mYjuokUNEhn5jk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=U4faQon7fKlxX0nkUG5z8vcWUYqa1p+3n5KLHLD1J69CN72oyLLrlk+q7UBz2pm3X
-         FqZfEJfMat4qISWxH78KWsi9GOQLTKGnLj1Yd/75rlMkhQJkU/ja8bVrTyQxMa/Tts
-         JJqGFTqmryihFozCOEcgOxH4XqXsl38q7B0dWR3g=
-Date:   Fri, 24 Sep 2021 13:36:08 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        git@xilinx.com, saikrishna12468@gmail.com,
-        Arnd Bergmann <arnd@arndb.de>,
-        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: Re: [PATCH 1/4] firmware: xilinx: Add OSPI Mux selection support
-Message-ID: <YU24KEoXQOw/1uZV@kroah.com>
-References: <1632478031-12242-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1632478031-12242-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+        id S1343546AbhIXLme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 07:42:34 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:43376 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S244321AbhIXLmc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 07:42:32 -0400
+X-UUID: 7962f5f4ad3e4869b5981a4d187a8b80-20210924
+X-UUID: 7962f5f4ad3e4869b5981a4d187a8b80-20210924
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <sam.shih@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 720220876; Fri, 24 Sep 2021 19:40:55 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 24 Sep 2021 19:40:54 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 24 Sep 2021 19:40:54 +0800
+From:   Sam Shih <sam.shih@mediatek.com>
+To:     <matthias.bgg@gmail.com>
+CC:     <Ryder.Lee@mediatek.com>, <devicetree@vger.kernel.org>,
+        <enric.balletbo@collabora.com>, <fparent@baylibre.com>,
+        <gregkh@linuxfoundation.org>, <herbert@gondor.apana.org.au>,
+        <hsinyi@chromium.org>, <john@phrozen.org>,
+        <linus.walleij@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-serial@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <linux@roeck-us.net>, <mpm@selenic.com>, <mturquette@baylibre.com>,
+        <robh+dt@kernel.org>, <sam.shih@mediatek.com>, <sboyd@kernel.org>,
+        <sean.wang@kernel.org>, <seiya.wang@mediatek.com>,
+        <wim@linux-watchdog.org>
+Subject: [v3,7/9] dt-bindings: arm64: dts: mediatek: Add mt7986 series
+Date:   Fri, 24 Sep 2021 19:40:46 +0800
+Message-ID: <20210924114046.26070-1-sam.shih@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <9552b0dc-337f-7edc-2997-50603dfe8bcd@gmail.com>
+References: <9552b0dc-337f-7edc-2997-50603dfe8bcd@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1632478031-12242-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 24, 2021 at 03:37:08PM +0530, Sai Krishna Potthuri wrote:
-> Add OSPI Mux selection API support to select the AXI interface to OSPI.
-> 
-> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-> ---
->  drivers/firmware/xilinx/zynqmp.c     | 17 +++++++++++++++++
->  include/linux/firmware/xlnx-zynqmp.h | 12 ++++++++++++
->  2 files changed, 29 insertions(+)
-> 
-> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
-> index 15b138326ecc..43c3b5a9eef7 100644
-> --- a/drivers/firmware/xilinx/zynqmp.c
-> +++ b/drivers/firmware/xilinx/zynqmp.c
-> @@ -647,6 +647,23 @@ int zynqmp_pm_sd_dll_reset(u32 node_id, u32 type)
->  }
->  EXPORT_SYMBOL_GPL(zynqmp_pm_sd_dll_reset);
->  
-> +/**
-> + * zynqmp_pm_ospi_mux_select() - OSPI Mux selection
-> + *
-> + * @dev_id:	Device Id of the OSPI device.
-> + * @select:	OSPI Mux select value.
-> + *
-> + * This function select the OSPI Mux.
-> + *
-> + * Return:	Returns status, either success or error+reason
-> + */
-> +int zynqmp_pm_ospi_mux_select(u32 dev_id, u32 select)
-> +{
-> +	return zynqmp_pm_invoke_fn(PM_IOCTL, dev_id, IOCTL_OSPI_MUX_SELECT,
-> +				   select, 0, NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_ospi_mux_select);
-> +
->  /**
->   * zynqmp_pm_write_ggs() - PM API for writing global general storage (ggs)
->   * @index:	GGS register index
-> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
-> index 9d1a5c175065..6979a79f553a 100644
-> --- a/include/linux/firmware/xlnx-zynqmp.h
-> +++ b/include/linux/firmware/xlnx-zynqmp.h
-> @@ -119,6 +119,7 @@ enum pm_ioctl_id {
->  	IOCTL_READ_PGGS = 15,
->  	/* Set healthy bit value */
->  	IOCTL_SET_BOOT_HEALTH_STATUS = 17,
-> +	IOCTL_OSPI_MUX_SELECT = 21,
+MT7986 series is Mediatek's new 4-core SoC, which is mainly for
+wifi-router application. The difference between mt7986a and mt7986b
+is that some pins do not exist on mt7986b.
 
-Why the gap?  What are the commands in the middle for?
+Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+Acked-by: Rob Herring <robh@kernel.org>
 
-thanks,
+---
+v3: changed 'MT7986' to 'MT7986 series' in the commit message
+v2: added an Acked-by tag
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-greg k-h
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 80a05f6fee85..a9a778269684 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -76,6 +76,14 @@ properties:
+           - enum:
+               - mediatek,mt7629-rfb
+           - const: mediatek,mt7629
++      - items:
++          - enum:
++              - mediatek,mt7986a-rfb
++          - const: mediatek,mt7986a
++      - items:
++          - enum:
++              - mediatek,mt7986b-rfb
++          - const: mediatek,mt7986b
+       - items:
+           - enum:
+               - mediatek,mt8127-moose
+-- 
+2.29.2
+
