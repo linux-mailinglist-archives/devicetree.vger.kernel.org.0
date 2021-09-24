@@ -2,137 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1A56417669
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 15:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CEA541768C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 16:07:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346267AbhIXOBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 10:01:19 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:34728 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346576AbhIXOA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 10:00:58 -0400
-Received: by mail-ot1-f43.google.com with SMTP id g62-20020a9d2dc4000000b0054752cfbc59so7550139otb.1;
-        Fri, 24 Sep 2021 06:59:24 -0700 (PDT)
+        id S1346536AbhIXOIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 10:08:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33054 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231683AbhIXOIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 10:08:31 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E93F3C061571
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 07:06:58 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id j15so5126647plh.7
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 07:06:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vH2YhvPec36tzF9CqFvv48FWCLMK8cS6dcfU+nnIHyY=;
+        b=MULBtZwJXLYw882PNkC1wdIC6xsntlfC3Jqk68hXwFyDrHTB+5MPik7dimveBvicK9
+         czoHkx9kG9TCx/Q0u/mXNOVOnge0HpxCKoo9h1TN4Th3MREoijDCtzjsI9IzhTeV8JJL
+         vRiuoKD8opz3Gwxmjxn7QjH6rynmXpiiqOlLM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=WcWh55mrnHlrmpS4bF3C6RTmMv+GgWp8tjxqVJlKmm8=;
-        b=h2myBCc2FwFUN06kisWSp/YQ0aVRvz+hEb5xr9ECMZuoxMh92+MKS5mJP3gDL66i3l
-         Bs8LQR/BrxNedoDcR/ztIG49Zw564F1W7vfgO7HEl/J7W1VIDZtQn//0FGsPLljrTAzY
-         doITC9ItLvksSN64wEl7A5Vvs4Ei5U7BN4lvoxGQVXVGDNKh+UedE6+lmgt8KL7e8TXB
-         EAQnSIhA54GDUAm5jNqY4O4SR4S7NqPHVO7AGf8WuuTMEBig8T8sK12JSr3rsaoWUtgT
-         rMyw3T0c5sg6w+WvYBK2dKtW1lWkXZun2rYn047Y6OqNR+0DLL8sWGL4GSfXd8HkVwFY
-         iPkw==
-X-Gm-Message-State: AOAM532ZChB0NhmEBJYrXQ8JZkdkyRgvaOovQ7y7o6we6eVXHZ8u9fC3
-        IXYbvcFqfopwKGdR8sn++g==
-X-Google-Smtp-Source: ABdhPJwu5vf62gkghKqrJp812TiqZCJ5L14q4YY1lFn4pkmkXKCEkfSFSlIERBrP2Win5Yi3GNO6Sw==
-X-Received: by 2002:a9d:4a83:: with SMTP id i3mr4246791otf.385.1632491964290;
-        Fri, 24 Sep 2021 06:59:24 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d26sm2075540oij.49.2021.09.24.06.59.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 06:59:23 -0700 (PDT)
-Received: (nullmailer pid 1195979 invoked by uid 1000);
-        Fri, 24 Sep 2021 13:59:21 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sam Shih <sam.shih@mediatek.com>
-Cc:     matthias.bgg@gmail.com, linux-clk@vger.kernel.org,
-        Ryder.Lee@mediatek.com, fparent@baylibre.com,
-        linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        seiya.wang@mediatek.com, sean.wang@kernel.org, robh+dt@kernel.org,
-        enric.balletbo@collabora.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        gregkh@linuxfoundation.org, wim@linux-watchdog.org,
-        linux-mediatek@lists.infradead.org, herbert@gondor.apana.org.au,
-        mturquette@baylibre.com, linux-watchdog@vger.kernel.org,
-        linux-serial@vger.kernel.org, mpm@selenic.com, linux@roeck-us.net,
-        john@phrozen.org, sboyd@kernel.org, hsinyi@chromium.org,
-        linus.walleij@linaro.org
-In-Reply-To: <20210924114459.28664-1-sam.shih@mediatek.com>
-References: <9aa66a93-4d0c-176e-ea35-b5aa33751d51@gmail.com> <20210924114459.28664-1-sam.shih@mediatek.com>
-Subject: Re: [v4,5/9] dt-bindings: pinctrl: update bindings for MT7986 SoC
-Date:   Fri, 24 Sep 2021 08:59:21 -0500
-Message-Id: <1632491961.645727.1195978.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vH2YhvPec36tzF9CqFvv48FWCLMK8cS6dcfU+nnIHyY=;
+        b=gh9yqgK5shHRYAtAyjnxNfLrtO6ttUUANGMVRKl+GW1Y1J2w+8r8ebD0z1Z6K0pd3b
+         bFmbOVR1jK6x5Uc2HsYvI35Cg3px9AHVsNUaIwqWdNSBCYzz4IhQIagcRaG1+JmgVpHq
+         POvsQLgPR//Pcn06tBlxdv1PWgv7bZxaVvOXnarkfdJqr5HtRE4PJOZEs4FsXko0eW0Q
+         Z0fYQRzIyyLxaeWMr3D6UOxKWZltXONncs4oLzgATSuHGH4RAxCSTEvytdGijZaBLzw3
+         pL8nx6+TDxlo8R/BGuH8BZd+ZU4UMuCh7LvYQL8QRpuc4T85wrns7LNFRbep+objt7NP
+         bTqQ==
+X-Gm-Message-State: AOAM530yh7DLxIoB+wyOnKgrY3lq+rUeAT7BguW7TS9n6s130jMnXdCf
+        A/G9aOYQWCQL/1U5nwN5Koxy2LgFwZzRcQ==
+X-Google-Smtp-Source: ABdhPJwNj7D94xAznF40emOiBHDXQUsBfikVG4cb+KWBlAaNvsIJXPI2EJTCBpk0MvMWo2ecKKGJig==
+X-Received: by 2002:a17:90a:7782:: with SMTP id v2mr2465319pjk.9.1632492418304;
+        Fri, 24 Sep 2021 07:06:58 -0700 (PDT)
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com. [209.85.215.180])
+        by smtp.gmail.com with ESMTPSA id d12sm6674123pgf.19.2021.09.24.07.06.58
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Sep 2021 07:06:58 -0700 (PDT)
+Received: by mail-pg1-f180.google.com with SMTP id e7so9995898pgk.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 07:06:58 -0700 (PDT)
+X-Received: by 2002:a05:6e02:1bad:: with SMTP id n13mr8008800ili.142.1632491957963;
+ Fri, 24 Sep 2021 06:59:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210914202202.1702601-1-dianders@chromium.org>
+ <CACRpkdaTb4_UfFzCqw=fiAnQhHD+1sDDua529KdGQbgMVfjYBw@mail.gmail.com>
+ <CAD=FV=VPgFRBLgOGvt4a4afDr80aQL64L7=H3kqeRf2ffiusPg@mail.gmail.com>
+ <CGME20210924080417eucas1p209819b105dc64faf1f2a7140c5c1389b@eucas1p2.samsung.com>
+ <874kaabdt5.fsf@intel.com> <68c3f798-a18d-fe8d-2925-2686716a985b@samsung.com>
+In-Reply-To: <68c3f798-a18d-fe8d-2925-2686716a985b@samsung.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 24 Sep 2021 06:59:05 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XEb-jx81inK8hGvdJeRqTLmmBKz7U-m+9=CHbNRSa16g@mail.gmail.com>
+Message-ID: <CAD=FV=XEb-jx81inK8hGvdJeRqTLmmBKz7U-m+9=CHbNRSa16g@mail.gmail.com>
+Subject: Re: [PATCH v5 00/15] eDP: Support probing eDP panels dynamically
+ instead of hardcoding
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Jani Nikula <jani.nikula@linux.intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Emil Velikov <emil.velikov@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Will Deacon <will@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+        smyakam@microsoft.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Sep 2021 19:44:59 +0800, Sam Shih wrote:
-> This updates bindings for MT7986 pinctrl driver. The
-> difference of pinctrl between mt7986a and mt7986b is that pin-41 to pin-65
-> do not exist on mt7986b
-> 
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> 
-> ---
-> v4 : used yaml format instead of txt format document
-> v3 : make mt7986 pinctrl bindings as a separate file
-> v2 : deleted the redundant description of mt7986a/mt7986b
-> ---
->  .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 350 ++++++++++++++++++
->  1 file changed, 350 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-> 
+Hi,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Fri, Sep 24, 2021 at 2:10 AM Andrzej Hajda <a.hajda@samsung.com> wrote:
+>
+> Hi
+>
+> removed most cc, due to server limitation
+>
+>
+> W dniu 24.09.2021 o 10:03, Jani Nikula pisze:
+> > On Mon, 20 Sep 2021, Doug Anderson <dianders@chromium.org> wrote:
+> >> Pushed all 15 to drm-misc-next.
+> > ...
+> >> e8de4d55c259 drm/edid: Use new encoded panel id style for quirks matching
+> >> d9f91a10c3e8 drm/edid: Allow querying/working with the panel ID from
+> >> the EDID
+> > Hi Doug, Stan's reporting "initializer element is not constant" issues
+> > here that were discussed before [1]. I wonder what gives, you said you'd
+> > hit them on a draft version, but not with what was merged, and I can't
+> > reproduce this either. Curious.
+>
+>
+> Apparently this is grey area of unclear specification.
+>
+> gcc version below 8 reports error, above 8.1+ should work [1]. I am not
+> sure if there is nice workaround for older gcc.
+>
+>
+> [1]: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=69960#c18
 
-yamllint warnings/errors:
+So I think the only solution is to go back to the character-at-a-time
+version. It's slightly uglier but functionality trumps form.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: 'pin_group_table' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select']
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-up-adv: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-up-adv: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-up-adv: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-down-adv: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-down-adv: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-down-adv: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-Error: Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dts:37.27-28 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1441: dt_binding_check] Error 2
+I'll post something today though it might need to wait a few hours
+before I can manage it.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1532240
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-Doug
