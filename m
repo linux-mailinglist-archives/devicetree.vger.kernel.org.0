@@ -2,118 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93D18417DEC
-	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 00:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC97D417E1F
+	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 01:23:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344178AbhIXWst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 18:48:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40184 "EHLO
+        id S1343843AbhIXXYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 19:24:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343663AbhIXWss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 18:48:48 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1B4C061613
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 15:47:14 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id g62-20020a9d2dc4000000b0054752cfbc59so9490662otb.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 15:47:14 -0700 (PDT)
+        with ESMTP id S1343742AbhIXXYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 19:24:49 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F493C061613
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 16:23:15 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id y201so16711679oie.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 16:23:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=I9u2fLn+ZPe8iK9QXUAKNTnuENv/p85Wj7jzDDXa8Ro=;
-        b=fPbsej9cE3BqE1NW/7GZazdBAIpJwyAnhohBgNJHjwEdAHac9NTh6nM6TR4x79S5MK
-         /0PYK9wFKzqykqfyWqrF62XB3kxLqXNEOy5ei0gsdA/aNtq15xzY8Z5EMpPh0Z9U0VQv
-         sZshNrNE0C9/m80SX3l+XU/qg68zpjt+/2cIBbhwukI0kFK9gxMHkm6ZKTLJZyS29Q8b
-         FaKABMPZN66sHRF2SXm4na4tzZF5uYjvghSXAQYoandYhEc7n+XUrhS5r94ITVK+oCgv
-         KKiJ1RSS7+AR6NUy5EO9doo4U7q1A0HoYmdIASbCfA2y766CywAOxNRSoiG8MzQ/YcJA
-         PUvQ==
+        bh=I+3/OaDuhI5pjIMPop3s/uZ1XCPBr1j1NL0ouxoZ0gM=;
+        b=S91I40xC00oQdUpaFG4GcBFUQyEUVCQHyAuv9yqrOusPXyyxN7+SgE3pw+PTWMV47S
+         UvsrUT8r9g+fuvWcYxjERKY9b68GqYPAm4jrzbfZrQVLXKa0KSDfDA8fRpR3mFZTr0IH
+         1lRR4pnjinWbUq2QUiqucVBQIoRkVztYIG5B3WkBWrV33eYSr8C4HRnpGX3+kefxhjNT
+         yY/XPZYJXLhxJoBOciADz6DT1UVPgd5zb72+L+OOewv4rjXr7cu6lJn6Oe3d8CrBoiCT
+         s0Yktyw3tyw6rP4D/tDREaRBjrztNF6o4gyQve2f3yjVUkA4b4nNr9g0ChThgseFXK1R
+         fuZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=I9u2fLn+ZPe8iK9QXUAKNTnuENv/p85Wj7jzDDXa8Ro=;
-        b=xBptGy14/aPX1x5EcbZfVVoPr6ChtXRiqRjucN7eYnxAjecboHiVRegxRGGt2HNhrR
-         4eWFKk4Sj+jSG7NP4eywxcAa/VeEgMBztrpnhoGMwxuyF8HFAt3QPzl3bic7rvgtoH4w
-         Qi9Pk+gSVjRM2T1E4G49kggiIebZqdxl7AQqj0dhnEyjCx/pf/nFBl90lED11fXGiWBw
-         G5ZTsbRWPVQ2wcLBXFFeiknU1z0ua/8rVR6YHqeBKgVJ7WJ7HlX8oQrsUV++E8wJvTvX
-         LMzuBBG7ESMjTE60+55CWvV6OPyiFyBZXc5UbhM/KkxejbTwyhogE+GUKSG6ax/mYuh8
-         pUwA==
-X-Gm-Message-State: AOAM530PzgHKrI0OVxSSvEmo5nhjYA/MmIZNadCrS1EPPDT+I4JGj98x
-        +kEqblMUcEBspEKfL3K99snscg==
-X-Google-Smtp-Source: ABdhPJzaanlkMWDf2F1GBLhbn1IwvShqjljYe0iALC2MB/ERVkmZ0/QlCQ/n1F/2VtloHzpVaytvOQ==
-X-Received: by 2002:a05:6830:805:: with SMTP id r5mr6147337ots.209.1632523632492;
-        Fri, 24 Sep 2021 15:47:12 -0700 (PDT)
+        bh=I+3/OaDuhI5pjIMPop3s/uZ1XCPBr1j1NL0ouxoZ0gM=;
+        b=1bzTh6vUJV+K7nsGkloSBgXR/zeoNDbMlc+TVOW4RQoqs6pmjDpo7+7Gl6ntAz07tM
+         9Tyytx5iIJrHmefJAPlS8IAgKgfujxSxKkXYNMK6BYTdSKa4/sjL8vdjG2wGr8xYSqkZ
+         A8csQB610AiYpxeQTzwu0+uxNJjNpTx6/D+g3/OkzO6jjGz9yrOHpj4k2hV6T/+NbzUL
+         0MivhIz8AZpt7xZICIT+bUJHTS40wQ8pAxbSzaYrZEBYHhYxlfSRdBF80Im3p95ZnJBw
+         dcFfHJ3uVngoRZR4DDkheWn3A7BDRMTxaxEtkOzejBIYMoovaHruZwJpKADknp6fVKef
+         cdDw==
+X-Gm-Message-State: AOAM532p8bPqf1DJBBNBwQo5zwZp/fianBqXyNjpzgUZ8GMsT3u3qlEb
+        /jgv5DhzqQkTc+PGBpPWR0wnAQ==
+X-Google-Smtp-Source: ABdhPJylGhExA23SHB9J+GJqA01IVv93OAddQoG2deBurYRJPBnEjud1LmbKzO47llhrTZt1JFlGzw==
+X-Received: by 2002:aca:abc7:: with SMTP id u190mr3459765oie.159.1632525794724;
+        Fri, 24 Sep 2021 16:23:14 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id v16sm2462663oiv.23.2021.09.24.15.47.11
+        by smtp.gmail.com with ESMTPSA id k23sm2661698ook.45.2021.09.24.16.23.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 15:47:12 -0700 (PDT)
-Date:   Fri, 24 Sep 2021 17:47:10 -0500
+        Fri, 24 Sep 2021 16:23:14 -0700 (PDT)
+Date:   Fri, 24 Sep 2021 18:23:12 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rajesh Patil <rajpat@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Maulik Shah <mkshah@codeaurora.org>
+Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org, sboyd@kernel.org, mka@chromium.org,
-        dianders@chromium.org
-Subject: Re: [PATCH V10 1/8] dt-bindings: spi: Add sc7280 support
-Message-ID: <YU5VbmVdSuFE9syi@builder.lan>
-References: <1632399378-12229-1-git-send-email-rajpat@codeaurora.org>
- <1632399378-12229-2-git-send-email-rajpat@codeaurora.org>
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>
+Subject: Re: [PATCH v9 1/5] dt-bindings: Introduce SoC sleep stats bindings
+Message-ID: <YU5d4PhKRvF3wzGX@builder.lan>
+References: <1630906083-32194-1-git-send-email-mkshah@codeaurora.org>
+ <1630906083-32194-2-git-send-email-mkshah@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1632399378-12229-2-git-send-email-rajpat@codeaurora.org>
+In-Reply-To: <1630906083-32194-2-git-send-email-mkshah@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 23 Sep 07:16 CDT 2021, Rajesh Patil wrote:
+On Mon 06 Sep 00:27 CDT 2021, Maulik Shah wrote:
 
-> Add compatible for sc7280 SoC.
+> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
 > 
-> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> Reviewed-by: Doug Anderson <dianders@chromium.org>
+> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+> SoC sleep stats driver. The driver is used for displaying SoC sleep
+> statistic maintained by Always On Processor or Resource Power Manager.
+> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>  .../bindings/soc/qcom/soc-sleep-stats.yaml         | 48 ++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> new file mode 100644
+> index 0000000..4161156
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/qcom/soc-sleep-stats.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. (QTI) SoC sleep stats bindings
+> +
+> +maintainers:
+> +  - Maulik Shah <mkshah@codeaurora.org>
+> +  - Lina Iyer <ilina@codeaurora.org>
 
-Can you please pick up Rob's review tag and send this patch out again,
-this time including the SPI maintainer (Mark Brown <broonie@kernel.org>)
-among the recipients.
+Lina's address is no longer valid.
 
-Thanks,
+> +
+> +description:
+> +  Always On Processor/Resource Power Manager maintains statistics of the SoC
+> +  sleep modes involving powering down of the rails and oscillator clock.
+> +
+> +  Statistics includes SoC sleep mode type, number of times low power mode were
+> +  entered, time of last entry, time of last exit and accumulated sleep duration.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,rpmh-sleep-stats
+> +      - qcom,rpm-sleep-stats
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Example of rpmh sleep stats
+> +  - |
+> +    aop_msgram@c3f0048 {
+> +      compatible = "qcom,rpmh-sleep-stats";
+> +      reg = <0x0c3f0048 0x400>;
+
+As I tested this series I did find it quite odd that the start address
+of this block is $48 bytes into a page and still the length is an even
+$400.
+
+Is there any single platform where qcom,rpmh-sleep-stats doesn't start
+at an offset of $48 from the beginning of its msgram? Could we move this
+number to the driver?
+
+Regards,
 Bjorn
 
-> ---
-> Change in V10:
->  - As per Stephen's comments,
->    sorted compatible names in alphabet order
-> 
-> Changes in V9:
->  - No changes
-> 
-> Changes in V8:
->  - As per Doug's comments, added "qcom,sc7280-qspi" compatible
-> 
->  Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-> index ef5698f..09aa955 100644
-> --- a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
-> @@ -21,7 +21,10 @@ allOf:
->  properties:
->    compatible:
->      items:
-> -      - const: qcom,sdm845-qspi
-> +      - enum:
-> +          - qcom,sc7280-qspi
-> +          - qcom,sdm845-qspi
-> +
->        - const: qcom,qspi-v1
->  
->    reg:
+> +    };
+> +  # Example of rpm sleep stats
+> +  - |
+> +    rpm_msgram@4690000 {
+> +      compatible = "qcom,rpm-sleep-stats";
+> +      reg = <0x04690000 0x400>;
+> +    };
+> +...
 > -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
 > of Code Aurora Forum, hosted by The Linux Foundation
 > 
