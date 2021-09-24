@@ -2,123 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27AC5416A2D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 04:53:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AED10416A81
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 05:39:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243955AbhIXCyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 22:54:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48992 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233314AbhIXCyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 22:54:31 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40D49C061574
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 19:52:57 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id r43-20020a05683044ab00b0054716b40005so4405507otv.4
-        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 19:52:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Z5H0XLELueIUq22VyYpvWjmTSY+HWirMAmpHQiZbtt0=;
-        b=KfQY+XdQQ5rGbeJ4SrNgZ5yn2hr7Juk7CkagW7z6MOZR1ykhHY8vNnRocZzGmpd38+
-         garU7llqLgWA2g+wrV7U+dtIGDbRpYZ//89GM+95RWVWDvtpRxhyl41D0kgRLDxud3AF
-         mZfpyMdj7PQ4NRqp3eEU9MyoimCQGhrfL7zH3XXOzEzCEBw1JZ5IoZsCoWpthhJR/Zfh
-         OTRWg5lfBTu4ECbqJzxe1koailZxTqpFjemQBSoU+dWLeAYp+M188Sr9nVNYUAJ417yA
-         tQIDOoy5BPHIiTSqjNK8UsRNsEzCDDxlRYXNEAF5Xi8HcezMJZWHaVG6TGqWeQ5zzRIV
-         LzZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Z5H0XLELueIUq22VyYpvWjmTSY+HWirMAmpHQiZbtt0=;
-        b=bFky/quX08UxS3+0jhhW1LPK7g8SlLSiEJMPlGBCICwdkSG/puYxOLZXtsZWK/OhQ0
-         bVWBi887YS2KPE07MEU6EfNZD4E16kOlnoATw3aLGTRsirfjMrvtr/gT6gABCfA4X4HS
-         GBcAB7xKh79AYaCq2e4DoEnlDL7kpcjvZCMM7HrKZpr+bPFYLhWMKeWfUvEKP7G20XYl
-         l5SJOrO17evGiLgmFvlZvx0YdXaP/DCyWR3Wsb5VcAQdouxwHmDtNE52nKNC4laaug6q
-         I6tekbKuSxqUt7JzvmkT9qt/G8zDMo5gcx7EYVmtlxnEoggQj2UwZ02Eqi6ILfuj0zwV
-         rB5w==
-X-Gm-Message-State: AOAM533usS7ygKIys7/XyvRhtOVIxFc6V4xfGzLqbhDBJJj3AREsEoyq
-        0IbvjcWiJFChnIP4S7nIwwwUyQ==
-X-Google-Smtp-Source: ABdhPJxIwS3izl7ado4d5drafKPm6wnR1jEgK7TuvbCvGIJyLz7upETMyT8dQ/mAG21qTaKCyKUqlw==
-X-Received: by 2002:a9d:7093:: with SMTP id l19mr1818165otj.15.1632451977127;
-        Thu, 23 Sep 2021 19:52:57 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s24sm1773640otp.36.2021.09.23.19.52.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Sep 2021 19:52:56 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: c630: Move panel to aux-bus
-Date:   Thu, 23 Sep 2021 21:52:55 -0500
-Message-Id: <20210924025255.853906-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.32.0
+        id S237084AbhIXDlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 23:41:17 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:46956 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S244042AbhIXDlP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 23:41:15 -0400
+X-UUID: f41acd261c1349da9bb366197fbd01c0-20210924
+X-UUID: f41acd261c1349da9bb366197fbd01c0-20210924
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 632914846; Fri, 24 Sep 2021 11:39:39 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 24 Sep 2021 11:39:37 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 24 Sep 2021 11:39:37 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     <ohad@wizery.com>, <bjorn.andersson@linaro.org>,
+        <mathieu.poirier@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+Subject: [PATCH v7 0/6] Mediatek MT8195 SCP support
+Date:   Fri, 24 Sep 2021 11:39:29 +0800
+Message-ID: <20210924033935.2127-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.15.GIT
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With the newly introduced aux-bus under the TI SN65DSI86 the panel
-node should be described as a child instead of a standalone node, move
-it there.
+Change since v6:
+- no change (rebased to 5.15-rc1)
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 27 +++++++++----------
- 1 file changed, 13 insertions(+), 14 deletions(-)
+Change since v5:
+- Drop adding new vendor-prefix
+- Rename rpmsg property from "mtk," to "mediatek," to use the name
+  defined in 
+  vendor-prefix.yaml for Mediatek Co.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index bd22352b6c7a..4818ca6d820d 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -56,20 +56,6 @@ mode {
- 		};
- 	};
- 
--	panel {
--		compatible = "boe,nv133fhm-n61";
--		no-hpd;
--		backlight = <&backlight>;
--
--		ports {
--			port {
--				panel_in_edp: endpoint {
--					remote-endpoint = <&sn65dsi86_out>;
--				};
--			};
--		};
--	};
--
- 	/* Reserved memory changes for IPA */
- 	reserved-memory {
- 		wlan_msa_mem: memory@8c400000 {
-@@ -441,6 +427,19 @@ sn65dsi86_out: endpoint {
- 				};
- 			};
- 		};
-+
-+		aux-bus {
-+			panel: panel {
-+				compatible = "boe,nv133fhm-n61";
-+				backlight = <&backlight>;
-+
-+				port {
-+					panel_in_edp: endpoint {
-+						remote-endpoint = <&sn65dsi86_out>;
-+					};
-+				};
-+			};
-+		};
- 	};
- };
- 
+Changes since v4:
+- Move clock acquirement to mtk_scp_of_data
+- Add new vendor-prefix for Mediatek SCP
+- Refine mtk,scp.yaml
+  - Remove '|' in 'description'
+  - Add 'items' to replace 'description' in reg-names property
+  - Add 'const' to replace 'description' in clock-names property
+  - Add required property for mt8183 and mt8192
+  - Rewrite 'patternProperties' by 'additionalProperties'
+  - Rewrite example with 1 address and size-cell.
+  - Drop dts label from example 
+
+Changes since v3:
+- Add missing patch version in mail subject
+- No change to patches.
+
+Changes since v2:
+- Add compatible for mt8192
+- Convert mtk,scp.txt to mtk,scp.yaml 
+- Refine clock checking method
+
+Changes since v1:
+- Fix missing 'compatible' line in binding document
+
+Tinghan Shen (6):
+  dt-bindings: remoteproc: mediatek: Add binding for mt8195 scp
+  dt-bindings: remoteproc: mediatek: Add binding for mt8192 scp
+  dt-bindings: remoteproc: mediatek: Convert mtk,scp to json-schema
+  remoteproc: mediatek: Support mt8195 scp
+  rpmsg: change naming of mediatek rpmsg property
+  arm64: dts: mt8183: change rpmsg property name
+
+ .../bindings/remoteproc/mtk,scp.txt           | 36 --------
+ .../bindings/remoteproc/mtk,scp.yaml          | 92 +++++++++++++++++++
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  2 +-
+ drivers/remoteproc/mtk_common.h               |  1 +
+ drivers/remoteproc/mtk_scp.c                  | 48 +++++++++-
+ drivers/rpmsg/mtk_rpmsg.c                     |  2 +-
+ 6 files changed, 138 insertions(+), 43 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+
 -- 
-2.32.0
+2.18.0
 
