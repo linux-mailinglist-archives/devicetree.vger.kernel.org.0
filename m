@@ -2,85 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 102F9417DE8
-	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 00:44:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93D18417DEC
+	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 00:47:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345514AbhIXWp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 18:45:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39548 "EHLO
+        id S1344178AbhIXWst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 18:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345619AbhIXWp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 18:45:56 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C27FC06161E
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 15:44:23 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id a3so16561335oid.6
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 15:44:23 -0700 (PDT)
+        with ESMTP id S1343663AbhIXWss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 18:48:48 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1B4C061613
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 15:47:14 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id g62-20020a9d2dc4000000b0054752cfbc59so9490662otb.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 15:47:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=aT6PGCkfFncvQ02pWWpD+cjAoPpE7N0nwI03xARf6nc=;
-        b=PCmlVYezCc+6GF3Gbr0DDg+qJ5lEqnrovDEBcz52iwgdJ4j5VSzh6amczofyFKSVI/
-         NrRCKDI1ZYOjO8Dl6hMlDkZdicT7c3XB5RVQ2LYPz5WB8OTSMg5m0Nq94H6yLNQ78FFq
-         h3OQfQqprhSCoxJUj8p8///J+n4e47B95WsF5ToKLIEWhWSxQPADViwn5RSkGe0uEJRC
-         4KuWWmvQcj72DzCsbGGBPeQI7z3peJ+3nAfMfUWI8LHfr5G8IalTM0e7HJ1CTPRs4XZG
-         p1bTOZ+/McfFVZA10tBdZcMEE5fkLaXQg+Ff0km20CxK7BVCIxHu2xREEaHl3t5nFtFk
-         lV0w==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=I9u2fLn+ZPe8iK9QXUAKNTnuENv/p85Wj7jzDDXa8Ro=;
+        b=fPbsej9cE3BqE1NW/7GZazdBAIpJwyAnhohBgNJHjwEdAHac9NTh6nM6TR4x79S5MK
+         /0PYK9wFKzqykqfyWqrF62XB3kxLqXNEOy5ei0gsdA/aNtq15xzY8Z5EMpPh0Z9U0VQv
+         sZshNrNE0C9/m80SX3l+XU/qg68zpjt+/2cIBbhwukI0kFK9gxMHkm6ZKTLJZyS29Q8b
+         FaKABMPZN66sHRF2SXm4na4tzZF5uYjvghSXAQYoandYhEc7n+XUrhS5r94ITVK+oCgv
+         KKiJ1RSS7+AR6NUy5EO9doo4U7q1A0HoYmdIASbCfA2y766CywAOxNRSoiG8MzQ/YcJA
+         PUvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aT6PGCkfFncvQ02pWWpD+cjAoPpE7N0nwI03xARf6nc=;
-        b=WGI1Y9SObDyKXICl7ZkUDZ6VqZ/8vu5np8GCaJUNuvWndZzXm8R4PpKAfGMrnJKiyi
-         elxdgJhYIL0J9/IGTkZivowSWWvxdmUQ3wpABmuZyrXvdTbADeg3HqieZs2VIOgPK+N1
-         BDomq/RC6aMdDg/m2jtQ/whYAjWWjVJ3nCqUM+bvv3HM68YO/P/ULzEpnzjtj0cGZii/
-         pGYiI7Xbj+6isAj+DCAkcLlS3cwt2/VjiDMemSw6mGiYZhTdfYy/r9fCt/wWmtN42jHn
-         Iq7DdhLV8VuqKjXPU+oM1yCDWzEg+Z/NnXz035sVSAxsb+1CUANZdx0VhMK7bDIyrznC
-         E04w==
-X-Gm-Message-State: AOAM533WBnHJykqgjIqvJiTcvO6KhW3C42hDiAZ0n9ZNHkMpz8MGx3OH
-        X4mnTbdriev2nav4Rk5mnknyYD2+i5N8PQ==
-X-Google-Smtp-Source: ABdhPJzR8TfKHOJ9wfri+64aYAbQV0HcxwGNIVS0ipSncoBUjvD1yYrHw9IuohW36CdYMMqjt/83Cw==
-X-Received: by 2002:aca:e002:: with SMTP id x2mr3454614oig.19.1632523462457;
-        Fri, 24 Sep 2021 15:44:22 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=I9u2fLn+ZPe8iK9QXUAKNTnuENv/p85Wj7jzDDXa8Ro=;
+        b=xBptGy14/aPX1x5EcbZfVVoPr6ChtXRiqRjucN7eYnxAjecboHiVRegxRGGt2HNhrR
+         4eWFKk4Sj+jSG7NP4eywxcAa/VeEgMBztrpnhoGMwxuyF8HFAt3QPzl3bic7rvgtoH4w
+         Qi9Pk+gSVjRM2T1E4G49kggiIebZqdxl7AQqj0dhnEyjCx/pf/nFBl90lED11fXGiWBw
+         G5ZTsbRWPVQ2wcLBXFFeiknU1z0ua/8rVR6YHqeBKgVJ7WJ7HlX8oQrsUV++E8wJvTvX
+         LMzuBBG7ESMjTE60+55CWvV6OPyiFyBZXc5UbhM/KkxejbTwyhogE+GUKSG6ax/mYuh8
+         pUwA==
+X-Gm-Message-State: AOAM530PzgHKrI0OVxSSvEmo5nhjYA/MmIZNadCrS1EPPDT+I4JGj98x
+        +kEqblMUcEBspEKfL3K99snscg==
+X-Google-Smtp-Source: ABdhPJzaanlkMWDf2F1GBLhbn1IwvShqjljYe0iALC2MB/ERVkmZ0/QlCQ/n1F/2VtloHzpVaytvOQ==
+X-Received: by 2002:a05:6830:805:: with SMTP id r5mr6147337ots.209.1632523632492;
+        Fri, 24 Sep 2021 15:47:12 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a23sm2374956otp.44.2021.09.24.15.44.21
+        by smtp.gmail.com with ESMTPSA id v16sm2462663oiv.23.2021.09.24.15.47.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 15:44:22 -0700 (PDT)
+        Fri, 24 Sep 2021 15:47:12 -0700 (PDT)
+Date:   Fri, 24 Sep 2021 17:47:10 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Shawn Guo <shawn.guo@linaro.org>, Georgi Djakov <djakov@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        linux-arm-msm@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-pm@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 3/3] arm64: dts: qcom: sdm630: Add missing a2noc qos clocks
-Date:   Fri, 24 Sep 2021 17:44:20 -0500
-Message-Id: <163252328671.1213592.16008455401574085015.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210824043435.23190-4-shawn.guo@linaro.org>
-References: <20210824043435.23190-1-shawn.guo@linaro.org> <20210824043435.23190-4-shawn.guo@linaro.org>
+To:     Rajesh Patil <rajpat@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org, sboyd@kernel.org, mka@chromium.org,
+        dianders@chromium.org
+Subject: Re: [PATCH V10 1/8] dt-bindings: spi: Add sc7280 support
+Message-ID: <YU5VbmVdSuFE9syi@builder.lan>
+References: <1632399378-12229-1-git-send-email-rajpat@codeaurora.org>
+ <1632399378-12229-2-git-send-email-rajpat@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1632399378-12229-2-git-send-email-rajpat@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Aug 2021 12:34:35 +0800, Shawn Guo wrote:
-> It adds the missing a2noc clocks required for QoS registers programming
-> per downstream kernel[1].
-> 
-> [1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
-> 
-> 
+On Thu 23 Sep 07:16 CDT 2021, Rajesh Patil wrote:
 
-Applied, thanks!
+> Add compatible for sc7280 SoC.
+> 
+> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
+> Reviewed-by: Doug Anderson <dianders@chromium.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-[3/3] arm64: dts: qcom: sdm630: Add missing a2noc qos clocks
-      commit: 1878f4b7ec9ed013da8a7efb63fed1fbae0215ae
+Can you please pick up Rob's review tag and send this patch out again,
+this time including the SPI maintainer (Mark Brown <broonie@kernel.org>)
+among the recipients.
 
-Best regards,
--- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+Thanks,
+Bjorn
+
+> ---
+> Change in V10:
+>  - As per Stephen's comments,
+>    sorted compatible names in alphabet order
+> 
+> Changes in V9:
+>  - No changes
+> 
+> Changes in V8:
+>  - As per Doug's comments, added "qcom,sc7280-qspi" compatible
+> 
+>  Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
+> index ef5698f..09aa955 100644
+> --- a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
+> @@ -21,7 +21,10 @@ allOf:
+>  properties:
+>    compatible:
+>      items:
+> -      - const: qcom,sdm845-qspi
+> +      - enum:
+> +          - qcom,sc7280-qspi
+> +          - qcom,sdm845-qspi
+> +
+>        - const: qcom,qspi-v1
+>  
+>    reg:
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
