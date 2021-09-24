@@ -2,191 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E53D6416CD1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 09:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8437D416CD5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 09:31:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbhIXH3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 03:29:47 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:57875 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237142AbhIXH3h (ORCPT
+        id S231190AbhIXHcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 03:32:42 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:42439 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231921AbhIXHcm (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 03:29:37 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 93105580F3A;
-        Fri, 24 Sep 2021 03:28:04 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Fri, 24 Sep 2021 03:28:04 -0400
+        Fri, 24 Sep 2021 03:32:42 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 37A6B5C00CF;
+        Fri, 24 Sep 2021 03:31:09 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Fri, 24 Sep 2021 03:31:09 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=42KPiA9o6F1jM
-        s8b/YN0eR5v0rC8lVUlITBUqZ+gpAk=; b=30UmSNETnSA1rVkshReILd/ybGt/d
-        o+tPZnDH10SbNaZCyi5UEeEF4I981p5InBGJ12W8DJNgOCfSv3Z63GVevDZIX62Z
-        q2izQsWkX+p18jgtWArbHeIQfdIhA/DdfFGiq9DmPtPpkNnk8Z1dDWgQ/I6nyhPM
-        /DPn8rjiY4dlPG7zPfw+H9nG8R4/xBFpFfB06P6p6dFTZmBf1MEpbpZMCcfzp6QW
-        EBebQH7k4Y6iCtwwLACfxFlw76YIgQKTdumWOP1JulIG0r8eGO1AyXAuCMnDUYF/
-        wNCvbUJ8rtpML9rtTSmaWGA17gki7RKa2Yxf7YqUCoedmP1gHrmPB3ZiA==
+        :mime-version:content-type:content-transfer-encoding; s=fm3; bh=
+        WRE4Vc8es5gBLC69CH2rv/GotbTtWvdm553PxD4y3N0=; b=ncAUJ2uWWrB1I/9U
+        AhxGaInplJFQGALBrZIoJEckkOeCe9bWz0u6/DrYeJD8DqVGgcBg1WPxRpfcW/uF
+        8/E+TDy1aW+nqd+BtCjbUlwzLYJdUvDt0ikcVWEs8ybDt2T4qs4uMHbLjp9FvkmL
+        F7CnaSLYiUCGaZJad0aLBiyZLUuymUkPRahSiy2ZIZY4WEeHtjGPV0jPp4X+aOYD
+        6I0Yh3HaSIAELYHVNQ/oEPbeZJN8YeNNee+C+nm7U9wBJJ3VQ0Cjv40I/iUuUu3b
+        7pj7/7kaoTYHbCTw2oYphc/sEymf+dAmLubSN40N0HfrSCgRHk3MNJK3RuTRN5o1
+        zaJjAA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=42KPiA9o6F1jMs8b/YN0eR5v0rC8lVUlITBUqZ+gpAk=; b=b60VlNH0
-        5vIDtx7ZaYWKOb+kZF06HYyyfBLshe9d3Ez7KwaOoVQ0JO4DVq5/IfDA0xzUXGL0
-        sl1qVerjyxSs7EUjVlSe5kalur9zZVOnrD1fsZv07pNQguYm5b+NtZjJRhUOMB2w
-        bAAbfHM5J/sGbOa1jLaTgnr7AqndmMmf5yCQmUKXA1ZcQXVxRG5OML7YQeIokGXZ
-        reuHtx4jLPVyD08M4HJyLUBoAIhKWF/xvWGmUxOUy7UYzjvA+TtEj1Mj6y03NrIg
-        CJFhEvuNIkCQw/FQYmFq+vG1JT4GcAac5yQbvYnUHgKlco1SVNly6oFIhEXhx3lW
-        OTTeLtUxAMngPg==
-X-ME-Sender: <xms:BH5NYR0lnb2tWfs1pGlM1FZE1JoufhXT-oYPUY0QuwldNhGBkCXJZg>
-    <xme:BH5NYYH38o8E62AntUj9-rq2kbb5rcchDhYphZ5Wdr5kw8F6HcDIXzj9GfIqDdPNW
-    0wP3rW7q8FNw6OyQns>
-X-ME-Received: <xmr:BH5NYR6gHZXSzj0N-dppSbTIzSjDaAoETmR9I9aVVc_Etry3fmYgV9a-koX5VYo5jClmlZk6PBId-WL6yo_4IByVmLYJ8Osdigmx>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudejtddguddujecutefuodetggdotefrod
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=WRE4Vc8es5gBLC69CH2rv/GotbTtWvdm553PxD4y3
+        N0=; b=Qpit1ne4KVJlVFy46eMfvI/eZF5G/J60h+XFmmt2L9QdnOhJOte35PPbF
+        EifcOfBx8C+I5SQOGMx+UtNGOVoJmvdKaieQCCfk5+OD+uuPUT6ac2AQFufv458H
+        Oezd2LZIBZ6iyNV2VVF0N6cr6raUf1CCygt6G9oHiOBSzWeUHD9/Alf4I2svO8UC
+        8xFUmmG6fDzglG2af5+LiaRelOhCCVrYUOogC10FL750vHtLpiXViXc0Jg0HGSu2
+        BFX/iw8NRy++4FYrLIiAGlPIkDJzrbUhTbYJN+ql8WmWFIfga0hQ9AWrenJiWXri
+        Zv4eu475jFgaAYpcVaaYSCUqoVUjg==
+X-ME-Sender: <xms:vX5NYctPEdzqsbwiDXaDC96_ErtrPx7F3Pnb2VIo2QJxiTWxIHdaHw>
+    <xme:vX5NYZd3KSK1uJINw9lH0thmnMuZ1-n5IcoSuc9jKnrnBr4vURhRN5QOLDKwppDO6
+    bArh1c2WU5env0auAk>
+X-ME-Received: <xmr:vX5NYXztrfX4RRHmWqHopmzSmpxAAZw0uKIsHX7yH45JWnqscqSITB9meyC4UY0spz_ZEiLrq8RV5M-Yamc8uByfb8uWM55T5Wt9>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudejtddguddukecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enogevohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffo
-    jghfggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomh
-    grgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhepveejieejtdev
-    gfffgfejuefggfeutdelteekgeetueeftddutddtgfffhffgueffnecuffhomhgrihhnpe
-    guvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgr
-    mhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:BH5NYe2MAwDRWAG4flVu1h4_lOzu5sJtkZHjZCkhIsCRP4wZMo_0VA>
-    <xmx:BH5NYUGz397XGoshxw3qHfLvwBq1HSgjpbwFPQuTUB-ZbT13NT-prw>
-    <xmx:BH5NYf9UHv8iLcYqOtWz58UV59aqjEkBHMlPK2HY1jD-Q3b8mhV1eg>
-    <xmx:BH5NYYG3ggfJF6IP6l7KgYEKN939MckgiZ-RnN93BfA416qz7sIzLA>
+    enucfjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgig
+    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
+    grthhtvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfef
+    geeikeeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:vX5NYfPxnpmezvNHCxoyHzVQeM66CUXVnxMo2_P7Kr3EikHuxk_ncg>
+    <xmx:vX5NYc8aVTjC32YXqFYEEXFm2_7Laz5elzS4D01VA1ZGvdjfGNsaiQ>
+    <xmx:vX5NYXUADSw0lFGtMmJGp78IDGFr5fisUh2bC98xn3i1rv7-N7jn9Q>
+    <xmx:vX5NYQQt4xCzgaeZ0tvzf_7Mp3XjVlpsjRwPN8OU4oQg4lwIhmrXPQ>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 24 Sep 2021 03:28:03 -0400 (EDT)
+ 24 Sep 2021 03:31:08 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
-        =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev,
-        "David S. Miller" <davem@davemloft.net>,
-        de Goede <hdegoede@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND v2 4/4] dt-bindings: net: wireless: Convert ESP ESP8089 binding to a schema
-Date:   Fri, 24 Sep 2021 09:27:56 +0200
-Message-Id: <20210924072756.869731-4-maxime@cerno.tech>
+To:     roucaries.bastien@gmail.com, Chen-Yu Tsai <wens@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        =?UTF-8?q?Bastien=20Roucari=C3=A8s?= <rouca@debian.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Salvatore Bonaccorso <carnil@debian.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH] [PATCH] ARM: dts: sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode
+Date:   Fri, 24 Sep 2021 09:31:00 +0200
+Message-Id: <163246857205.870206.2699530855804252485.b4-ty@cerno.tech>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210924072756.869731-1-maxime@cerno.tech>
-References: <20210924072756.869731-1-maxime@cerno.tech>
+In-Reply-To: <20210916081721.237137-1-rouca@debian.org>
+References: <20210916081721.237137-1-rouca@debian.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ESP8089 Wireless Chip is supported by Linux (through an out-of-tree
-driver) thanks to its device tree binding.
+On Thu, 16 Sep 2021 08:17:21 +0000, roucaries.bastien@gmail.com wrote:
+> From: Bastien Roucariès <rouca@debian.org>
+> 
+> Commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay
+> config") sets the RX/TX delay according to the phy-mode property in the
+> device tree. For the A20-olinuxino-lime2 board this is "rgmii", which is the
+> wrong setting.
+> 
+> [...]
 
-Now that we have the DT validation in place, let's convert the device
-tree bindings for that driver over to a YAML schema.
+Applied, thanks!
 
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: de Goede <hdegoede@redhat.com>
-Cc: Jakub Kicinski <kuba@kernel.org>
-Cc: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org
-Cc: netdev@vger.kernel.org
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- .../bindings/net/wireless/esp,esp8089.txt     | 30 -------------
- .../bindings/net/wireless/esp,esp8089.yaml    | 43 +++++++++++++++++++
- 2 files changed, 43 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/wireless/esp,esp8089.txt
- create mode 100644 Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml
+[1/1] ARM: dts: sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode
+      commit: 55dd7e059098ce4bd0a55c251cb78e74604abb57
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/esp,esp8089.txt b/Documentation/devicetree/bindings/net/wireless/esp,esp8089.txt
-deleted file mode 100644
-index 6830c4786f8a..000000000000
---- a/Documentation/devicetree/bindings/net/wireless/esp,esp8089.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Espressif ESP8089 wireless SDIO devices
--
--This node provides properties for controlling the ESP8089 wireless device.
--The node is expected to be specified as a child node to the SDIO controller
--that connects the device to the system.
--
--Required properties:
--
-- - compatible : Should be "esp,esp8089".
--
--Optional properties:
-- - esp,crystal-26M-en: Integer value for the crystal_26M_en firmware parameter
--
--Example:
--
--&mmc1 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
--	vmmc-supply = <&reg_dldo1>;
--	mmc-pwrseq = <&wifi_pwrseq>;
--	bus-width = <4>;
--	non-removable;
--
--	esp8089: sdio_wifi@1 {
--		compatible = "esp,esp8089";
--		reg = <1>;
--		esp,crystal-26M-en = <2>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml b/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml
-new file mode 100644
-index 000000000000..284ef45add99
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/wireless/esp,esp8089.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Espressif ESP8089 Device Tree Bindings
-+
-+maintainers:
-+  - Hans de Goede <hdegoede@redhat.com>
-+
-+properties:
-+  compatible:
-+    const: esp,esp8089
-+
-+  reg:
-+    maxItems: 1
-+
-+  esp,crystal-26M-en:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: >
-+      Value for the crystal_26M_en firmware parameter
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+      mmc {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          wifi@1 {
-+              compatible = "esp,esp8089";
-+              reg = <1>;
-+              esp,crystal-26M-en = <2>;
-+          };
-+      };
-+
-+...
+Best regards,
 -- 
-2.31.1
-
+Maxime Ripard <maxime@cerno.tech>
