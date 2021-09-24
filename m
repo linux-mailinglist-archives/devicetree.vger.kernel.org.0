@@ -2,121 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AB0041775D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 17:18:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D010417763
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 17:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347071AbhIXPTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 11:19:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49354 "EHLO
+        id S231429AbhIXPU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 11:20:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347059AbhIXPTn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 11:19:43 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A634AC06161E
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:18:09 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id g41so41642857lfv.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:18:09 -0700 (PDT)
+        with ESMTP id S1347036AbhIXPUz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 11:20:55 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C75FC061571
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:19:22 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so13561135otq.7
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:19:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5E7t/WszXkQagFRXOLaF8gaxoWgE1XNb8TlegVhlV6M=;
-        b=g5Fb87d3LH2CS17A/kJMtdePbqm35JkHVHlr+BeS1W6eBK9wAjT4FuQiN3z+DB+uLu
-         V/D3ND4TgGBdQz9Bw7Ns4NbFqcjKkazyKQOras6GZKPP94qMlfeB+5YNQ5XTJrWlWuqy
-         VgLTi0E1xtYqHEV9H7vzJFmNioTA9UfGiE6La+XUS1ildHaqoybMy5DH9wVYTReWfx4U
-         wMlyPo1DHNzVjofBWAj213d0iSP7e+O1KAnRHZdeFrEl55/2iVszbi/XH8zBI6ezXbUl
-         Y1ir8LIZyEQwD4EM39I7nTefOcBS/9yE3Eq98he7ntgpxs8WCdMvxFMJuuaQrn1jbiWF
-         Sp+Q==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=FPuGLXyf4GhSufJtTJPE2zMV0i7GqU53SMkQ5L/me9Q=;
+        b=f/iKq4FEp3LEXigAZZ11zXCgcDuCmdMdOyDEgV6ybsY5fbnKvDWEZsgf/jeXsl0fcJ
+         ESsqyytRG+8Yzcbx8ws72ASSAZu+x4U1Q+4faH4oMc0XAMOQR5sG4JjEyMCZhOObOg5u
+         eNCzhqERrT5pRMc7PGNHr8RTiQr80VjVp/2vhfsGfZslJDQMvlezmCHYUNzL/jKAqG9H
+         AukSJFJi/UQRixGLRygUevm4Y8k+IfecrNwl0ZDwd/ixhHZGWwm2XL/b1VF/HnYd+x8V
+         r/s9DPuXpSTRRMK+dCtOAU92kPIqlLANQRqXVDvxQGbMsFNAHuJouRzexUadSbu8cfGR
+         GSpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5E7t/WszXkQagFRXOLaF8gaxoWgE1XNb8TlegVhlV6M=;
-        b=R4bFBzJRAo9qGPA4vKtXNoL9SFOAYnvCpdz9h+Qr6ra7OfHVM86aO68PYVDK2YZ9be
-         gTxLNoXwj+chvto6lbw9sd4VZS/L7WASL472PZd3bM+tu1LvY1elUw9ji6lT/TAoqWrV
-         iuiqLTtKUKPOxdNKVC3gp5EYnuM6wX/ThEXkBlwXUB9OmJPOsJqgEw0g9D61YGczHhz0
-         WBvh90ux0WUWEStgMu3u3gWf6BPj2nTP5VeaJkGfM/qBWQ1jSbOUZ5gYwuKCMqW8YS+L
-         +V1UKZqOCHNerfzQNuGrYc+Bflgr/JoHmE3s029KWCK+1yoD3CthOoFS0xcouHzlJpjq
-         HWNg==
-X-Gm-Message-State: AOAM53049uMxMjUgDXYNwdQn5Os5IaByJyjUs2Ikf7zY+xLJ55lab3ax
-        C7O+euHn1ImfjCzEKZHmrjLlmNA/CB/hK8l12Rqqkg==
-X-Google-Smtp-Source: ABdhPJzhVp/rRQIVKo/1Zx4nJNd19zn5n9JUPphrqT/hrSpbTbi4oeJS7Ph5KVwmUJSY+F2SEeevp7xltZ7tsI1iKWY=
-X-Received: by 2002:a05:6512:3e1e:: with SMTP id i30mr9807008lfv.273.1632496687675;
- Fri, 24 Sep 2021 08:18:07 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FPuGLXyf4GhSufJtTJPE2zMV0i7GqU53SMkQ5L/me9Q=;
+        b=TD9aNVmiUDGjuWtLnlgQb2llo+UNGrVWhr+bZrSlR6ViIHgIHbXPuTXStq/fIcNK07
+         Z3jLjCaIlalN6i7KAgovQW/hjh4KLwH3MqoQ37y00xJQhbsUZXVRnWMGCG2Rt4cuN0nV
+         IzR+SFY1ozFdiz/x3fAh6iMsVybQECuUoWTxopwZgcWSR7Sq/5lLWU0Lkga32gTBMjfP
+         d+6EzK2kmtgQDI0bt8lVYYDy/iKipH8+S5nFSX1khmFyFOIYiXBWUgdlQZc3W6fI2JqY
+         e8qHfcuoFqtEEDUOx17ChPVRSpm7wxYFyxe7JV2nH6bTxmvDsmMOh/pAEc/8hMQaHVcV
+         /YGA==
+X-Gm-Message-State: AOAM531bL6+k+unAilvCGlXWGU7hr1qyKdVIqcvcOxCxEyk03cJtgsJx
+        gl9QU0KFGVp333fQORrKRzXjMtk1kPzJtQ==
+X-Google-Smtp-Source: ABdhPJwppbzTnd5V1quAynG3XkKUBXIK0hPAtxhhdSVQJJOEo57BZuYRHSwufDJQKlS6onACToGjxQ==
+X-Received: by 2002:a9d:6206:: with SMTP id g6mr4588442otj.62.1632496761890;
+        Fri, 24 Sep 2021 08:19:21 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e2sm1815335ooa.20.2021.09.24.08.19.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Sep 2021 08:19:21 -0700 (PDT)
+Date:   Fri, 24 Sep 2021 08:20:00 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Georgi Djakov <djakov@kernel.org>
+Cc:     Shawn Guo <shawn.guo@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] interconnect: qcom: sdm660: Add missing a2noc qos
+ clocks
+Message-ID: <YU3soCSg7nbywpGw@ripper>
+References: <20210824043435.23190-1-shawn.guo@linaro.org>
+ <20210824043435.23190-3-shawn.guo@linaro.org>
+ <YU3hoXHap5DsjTOm@builder.lan>
+ <9b660924-1f07-8723-b66c-182ca06629d2@kernel.org>
 MIME-Version: 1.0
-References: <20210921004627.2786132-1-osk@google.com> <YUzzjYMwNKwMFGSr@robh.at.kernel.org>
-In-Reply-To: <YUzzjYMwNKwMFGSr@robh.at.kernel.org>
-From:   Oskar Senft <osk@google.com>
-Date:   Fri, 24 Sep 2021 11:17:51 -0400
-Message-ID: <CABoTLcRpSuUUu-x-S8yTLUJCiN4RERi2kd8XATP_n3ZTRpAWDg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add nct7802 bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9b660924-1f07-8723-b66c-182ca06629d2@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
+On Fri 24 Sep 07:58 PDT 2021, Georgi Djakov wrote:
 
-> > +maintainers:
-> > +  - Guenter Roeck <linux@roeck-us.net>
->
-> Should be someone that cares about this h/w, not who applies patches.
+> On 24.09.21 17:33, Bjorn Andersson wrote:
+> > On Mon 23 Aug 23:34 CDT 2021, Shawn Guo wrote:
+> > 
+> > > It adds the missing a2noc clocks required for QoS registers programming
+> > > per downstream kernel[1].  Otherwise, qcom_icc_noc_set_qos_priority()
+> > > call on mas_ufs or mas_usb_hs node will simply result in a hardware hang
+> > > on SDM660 SoC.
+> > > 
+> > > [1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
+> > > 
+> > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> > > Tested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > 
+> > Georgi, do you intend to pull this patch in for v5.15-rc?
+> > 
+> > I.e. should I pick up the dts change for v5.15 as well.
+> 
+> Yes, i have just sent a pull request with this included, so please
+> pull the dts change as a fix for v5.15-rc. Sorry for not mentioning
+> it explicitly.
+> I assume that not all bootloaders are leaving the qos clocks enabled,
+> so if this is fixing a hardware hang, should we also backport it into
+> stable? This is probably more of a question to the people actively
+> using this board?
+> 
 
-Hmm, ok. After talking with Guenter, I thought that would be him. But
-I can add myself, too, since we're obviously using that HW. Is that
-what you mean?
+Devices that needed this change wouldn't boot on that older kernel
+anyways, so I think it's safe to assume that we don't have any users on
+an old kernel that would benefit from this change.
 
-> > +    properties:
-> > +      ltd:
-> > +        type: object
-> > +        description: Internal Temperature Sensor ("LTD")
->
-> No child properties?
+So v5.15 is probably sufficient.
 
-Yes. We really just want the ability to enable / disable that sensor.
-What's the correct way in the YAML to describe that? Same for RTD3.
+Regards,
+Bjorn
 
-> > +          "type":
-> > +            description: Sensor type (3=thermal diode, 4=thermistor).
->
-> 2nd time I've seen this property this week[1]. Needs to be more specific
-> than just 'type'.
-
-Ha yes, the example in [1] came from this patch. I went with this name
-to stay in-line with the sysfs name, being "tempX_type". In the
-hardware this would be called "mode".
-
-My original proposal [2] was to have this property a string list named
-"nuvoton,rtd-modes" with a set of accepted values, i.e. basically an
-enum. Splitting this string list into individual sensors makes sense.
-
-The other question that remains open (at least in my view), is whether
-naming the sensors "ltd, rtd1, rtd2, rtd3" is the right approach or if
-we should really go to naming them "sensor@X" with a reg property set
-to X. Note that ltd and rtd3 do not accept any additional
-configuration beyond "is enabled" (i.e. "status").
-
-> > +            temperature-sensors {
-> > +                ltd {
-> > +                  status = "disabled";
->
-> Don't show status in examples.
-Hmm, ok. I found it useful to make clear that a sensor can be
-disabled, but maybe that's just always the case?
-
-I appreciate your other comments and will fix them in the next version
-of the patch. But I'd like to get clarity wrt. recommended sensor and
-property naming in the device tree before sending that.
-
-Thoughts?
-
-Thanks
-Oskar.
-
-> [1] https://lore.kernel.org/all/CAL_Jsq+NXuF+F7OE3vyEbTUj6sxyMHVWHXbCuPPoFaKjpyZREQ@mail.gmail.com/
-[2] https://lore.kernel.org/all/20210910130337.2025426-1-osk@google.com/
+> Thanks,
+> Georgi
+> 
+> > Regards,
+> > Bjorn
+> > 
+> > > ---
+> > >   drivers/interconnect/qcom/sdm660.c | 14 ++++++++++++++
+> > >   1 file changed, 14 insertions(+)
+> > > 
+> > > diff --git a/drivers/interconnect/qcom/sdm660.c b/drivers/interconnect/qcom/sdm660.c
+> > > index c89c991a80a0..661eb3635d21 100644
+> > > --- a/drivers/interconnect/qcom/sdm660.c
+> > > +++ b/drivers/interconnect/qcom/sdm660.c
+> > > @@ -174,6 +174,16 @@ static const struct clk_bulk_data bus_mm_clocks[] = {
+> > >   	{ .id = "iface" },
+> > >   };
+> > > +static const struct clk_bulk_data bus_a2noc_clocks[] = {
+> > > +	{ .id = "bus" },
+> > > +	{ .id = "bus_a" },
+> > > +	{ .id = "ipa" },
+> > > +	{ .id = "ufs_axi" },
+> > > +	{ .id = "aggre2_ufs_axi" },
+> > > +	{ .id = "aggre2_usb3_axi" },
+> > > +	{ .id = "cfg_noc_usb2_axi" },
+> > > +};
+> > > +
+> > >   /**
+> > >    * struct qcom_icc_provider - Qualcomm specific interconnect provider
+> > >    * @provider: generic interconnect provider
+> > > @@ -811,6 +821,10 @@ static int qnoc_probe(struct platform_device *pdev)
+> > >   		qp->bus_clks = devm_kmemdup(dev, bus_mm_clocks,
+> > >   					    sizeof(bus_mm_clocks), GFP_KERNEL);
+> > >   		qp->num_clks = ARRAY_SIZE(bus_mm_clocks);
+> > > +	} else if (of_device_is_compatible(dev->of_node, "qcom,sdm660-a2noc")) {
+> > > +		qp->bus_clks = devm_kmemdup(dev, bus_a2noc_clocks,
+> > > +					    sizeof(bus_a2noc_clocks), GFP_KERNEL);
+> > > +		qp->num_clks = ARRAY_SIZE(bus_a2noc_clocks);
+> > >   	} else {
+> > >   		if (of_device_is_compatible(dev->of_node, "qcom,sdm660-bimc"))
+> > >   			qp->is_bimc_node = true;
+> > > -- 
+> > > 2.17.1
+> > > 
+> 
