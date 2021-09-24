@@ -2,70 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA015416D59
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 10:06:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CC4C416D5F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 10:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244517AbhIXIHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 04:07:02 -0400
-Received: from mail-vs1-f54.google.com ([209.85.217.54]:37600 "EHLO
-        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244495AbhIXIHB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 04:07:01 -0400
-Received: by mail-vs1-f54.google.com with SMTP id q66so9174756vsa.4;
-        Fri, 24 Sep 2021 01:05:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OYUDHwYw1h4gP3Mb0ddjLCH65TqjAubVcrA3PqEmy1s=;
-        b=f708hWepBPkF5Jv4KIKWeDLv/RS9kOC/LKOjUVmY4qXAOi7QT7ahvREWO+8sQvqP4o
-         PhT0t1Hr7IanuEGNVVEIdRB01GqeRE+43h761SH34v48Q2yHeZi7zVLkWnFrW2RbgLdR
-         ZxcR2mLAfNsG0vQd0STKc3Zei0P9zFxqFdk60mMUltzUgMmJWbh8v5qVvXdMTXYR7lBL
-         uooxTx8fyu6rJR8Aa6ZcOm2Fkycz2aHCz1IqHHB5sb6qrfOjeUGc6XrYqFcVIeduOMuh
-         BqgfPh0Priz8JIhRTeBldGPtvwB4TEsICkKvmGxwKkBKxvMsg9sK2KPJHRfavY5ftr6J
-         7WoQ==
-X-Gm-Message-State: AOAM530A/uNaiQJZjbha9sO8UcJJaUo49JywXd17EHB4Yd2M68eRAjOB
-        NzIGgcXpsHaxl9CHDGHsIivPBIBHIFchDws8sQosrJ6H
-X-Google-Smtp-Source: ABdhPJxa3G4sYuZksM/AQwNv0yboNG4QZgHza2cE5ZVeBmnm3ZJU5AYqKXvH1ybc22Xtd+R49aeV10/k9dsf8nMk94Q=
-X-Received: by 2002:a67:cc1c:: with SMTP id q28mr7949368vsl.37.1632470727654;
- Fri, 24 Sep 2021 01:05:27 -0700 (PDT)
+        id S244546AbhIXIIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 04:08:23 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:53652 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S237965AbhIXIIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 04:08:22 -0400
+X-UUID: 2b071b8f61d24529ba1c1b5f85e63a0b-20210924
+X-UUID: 2b071b8f61d24529ba1c1b5f85e63a0b-20210924
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1855317345; Fri, 24 Sep 2021 16:06:45 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 24 Sep 2021 16:06:44 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 24 Sep 2021 16:06:43 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <light.hsieh@mediatek.com>,
+        <biao.huang@mediatek.com>, <hongzhou.yang@mediatek.com>,
+        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v14 0/5] Mediatek pinctrl patch on mt8195 
+Date:   Fri, 24 Sep 2021 16:06:27 +0800
+Message-ID: <20210924080632.28410-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210921084605.16250-1-biju.das.jz@bp.renesas.com> <20210921084605.16250-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20210921084605.16250-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 24 Sep 2021 10:05:16 +0200
-Message-ID: <CAMuHMdV-cU3B--iAV2ed5HT_jgMcFSy3X+xf9f1NfxvsrhX-LQ@mail.gmail.com>
-Subject: Re: [PATCH 2/4] arm64: dts: renesas: rzg2l-smarc: Add WM8978 sound codec
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 10:46 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add WM8978 sound codec node to RZ/G2L SMARC EVK.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This series includes 5 patches:
+1.add rsel define.
+2.change pull up/down description
+3.fix coding style
+4.support rsel feature for common ICs
+5.add rsel setting on MT8195
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.16.
+Changes in patch v14:
+1)add a schema and new property "mediatek, rsel_resistance_in_si_unit"
+  on patch 2/5.
+2)fix kernel-doc style comment on patch 4/5.
+3)add review-by on patch 3/5 and 5/5.
 
-Gr{oetje,eeting}s,
+Changes in patch v13:
+1)change "-EOPNOTSUPP" to "-ENOTSUPP" in patch 4/5.
+2)fix description on 2/5.
 
-                        Geert
+Changes in patch v12:
+1)add "ack-by" on "rsel define" patch.
+2)add "change reason" in commit message and write a shema
+  on patch document patch 2/5.
+3)separate eint pm_ops fucntion support patch
+4)separate rsel patch, the common parts as patch 4/5 to support
+  common ICs. The mt8195 specific changes as patch 5/5.
+5)add fix coding style patch to fix Camel spelling to avoid checkpatch
+  warning in a following patch.
+6)remove unrelated changes in rsel patch.
+7)change ternary ops in resel patch
+8)add "rsel_is_unit" property on struct mtk_pinctrl, and itendify
+  "mediatek,rsel_resistance_in_si_unit" property in probe function.
+9)add explanation for "MTK_PULL_RSEL_TYPE" and "MTK_PULL_PU_PD_RSEL_TYPE".
+10) fix spell warning in rsel patch.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Changes in patch v11:
+1)add pm_ops fucntion support
+2)change pull up/down description
+3)add resistance value feature support.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Changes in patch v10:
+1)fix PARENTHESIS_ALIGNMENT of mtk_pinconf_bias_set_rsel
+2)fix LONG_LINE warning in 615 in pinctrl-paris.c.
+
+Changes in patch v9:
+1)fix "mtk_pinconf_bias_set_rsel" build warning.
+
+Changes in patch v8:
+1)add rsel define patch
+2)avoid  CamelCase
+3)add pinctrl rsel setting patch which is another resistance selection
+  solution for I2C on MT8195.
+
+Changes in patch v7:
+1)add version in patch and fix spelling mistakes.
+
+Changes in patch v6:
+1)add "pintcrl: mediatek" as prefix.
+
+Changes in patch v5:
+1)document and driver patch are apploed.
+2)change '-EOPNOTSUPP' to '-ENOTSUPP'
+
+Changes in patch v4:
+1)fix pinctrl-mt8195.yaml warning error.
+2)remove pinctrl device node patch which is based on "mt8195.dtsi".
+
+Changes in patch v3:
+1)change '^pins' to '-pins$'.
+2)change 'state_0_node_a' to 'gpio_pin' which is defined in dts.
+3)change 'state_0_node_b' to 'i2c0_pin' which is defined in dts.
+4)reorder this series patches. change pinctrl file and binding document
+together in one patch.
+
+There are no changes in v1 & v2.
+
+Zhiyong Tao (5):
+  dt-bindings: pinctrl: mt8195: add rsel define
+  dt-bindings: pinctrl: mt8195: change pull up/down description
+  pinctrl: mediatek: fix coding style
+  pinctrl: mediatek: support rsel feature
+  pinctrl: mediatek: add rsel setting on MT8195
+
+ .../bindings/pinctrl/pinctrl-mt8195.yaml      |  86 ++++++-
+ drivers/pinctrl/mediatek/pinctrl-mt8195.c     | 133 ++++++++++
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  | 231 +++++++++++++++---
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |  46 ++++
+ drivers/pinctrl/mediatek/pinctrl-paris.c      |  68 ++++--
+ include/dt-bindings/pinctrl/mt65xx.h          |   9 +
+ 6 files changed, 519 insertions(+), 54 deletions(-)
+
+--
+2.18.0
+
+
