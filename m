@@ -2,111 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4946C4176C4
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 16:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE7D4176CF
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 16:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344801AbhIXOYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 10:24:51 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:51202 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234673AbhIXOYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 10:24:50 -0400
-Received: from Monstersaurus.local (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0B55B45E;
-        Fri, 24 Sep 2021 16:23:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1632493396;
-        bh=8LcEGdbSmtRYEPsC+d5uv6J9CY8dZmia3c0G11qaJjE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=a2R3LZQGqa0sLDRoahCjX/G07QgY51YfYlbm5xkTtGjPHZS7j2P01n5w8zSeiWNap
-         s63kd2EIyXVlZ4KqFXWKTuFDzddkG6omq0RshejjLOUhFXkcni0LLbdIJ+F9IMe5G+
-         FM76WtA6PvnbtYVZoLwFXlgBko2TL2lyc3L2Oo0E=
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-To:     linux-renesas-soc@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert@glider.be>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3.1 1/3] arm64: dts: renesas: r8a779a0: Add DU support
-Date:   Fri, 24 Sep 2021 15:23:10 +0100
-Message-Id: <20210924142310.200377-1-kieran.bingham@ideasonboard.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210923010402.3418555-2-kieran.bingham@ideasonboard.com>
-References: <20210923010402.3418555-2-kieran.bingham@ideasonboard.com>
+        id S1346777AbhIXOeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 10:34:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346775AbhIXOel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 10:34:41 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B5F7C06161E
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 07:33:08 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id z11so14739651oih.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 07:33:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=EVKtmk5fBSvxocw/4c3PneyHCHQ/Ke8LwLjraEOfCgE=;
+        b=r8shDB5kcdH2mWfYFNTBoTNsLl9VHom16IuYb+VWwDkq95RrO1UIgYQiZivyR2ebzH
+         S5re1C1mziTAbSSkIbyQxWYjdjIA9T78kC5MJoYxAV9LSgTmicGYHwAJHREjqYrwl0qM
+         njFf+zhkzlkaCaZirh6SlGzySPBmNy0CIFOd85PyoliyBDteCGRdEWb8JbEhwouzgpfV
+         s0PvHy/Sx4ikuNQldkdoDdAwXl3JlOnbuzSYSs8wZPbo13wlVZ1lpAiEP+EnjVwMP3oK
+         PJezQXP4rAgUvr0P0Qy2wSbGmA79tiAFq8jW57aUdyXoPkOov4A/piRW3XWPU/ZQzMhr
+         h/Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EVKtmk5fBSvxocw/4c3PneyHCHQ/Ke8LwLjraEOfCgE=;
+        b=GDaX+Aj5wuAUr2Wz3d74LwOzYo8gy3veR8FXjcvxXlrhFYyPfWz2zThgt7clsHeoCU
+         Z2AACWfsPvqB7rR6P7cah2ezznKfYR+G35/tHhoVqljl4Vn/DcUYqK0r2FVyUHJHfqui
+         K9JhlQNb9OlJ5syMG0BAQ1ceRQVG1SLh7nu+AdvQEqk1ylebh2YszNMe7y2MzFrIm1TU
+         1573tcRS5HfbYmOT3TyIZB93yA4zh4yhdYAoSu8VCglouTvO5ZJlW63d9L1ShmBpWvMw
+         tC/f/3BT0c1aan2f0rN9nCGhRWd3HZm61r97xA5xmMdoOrk2IVw/B3rdMmD5IB+8FdXP
+         RsMw==
+X-Gm-Message-State: AOAM532uIANV9pUCL/dVRQ/rt2a6VTvnEMtSEiWZxaP57SdNv7sGFYHD
+        TygGeXsVZuLwvRUH3+cuSzVJdw==
+X-Google-Smtp-Source: ABdhPJxsTh42uysxhsqrNLxBtGLV9qZL0XsTEjgFCxY2DowoZ4U4bS+G356YSkUPhSK0MQpjHoCyfw==
+X-Received: by 2002:a54:4d8f:: with SMTP id y15mr1690580oix.122.1632493987643;
+        Fri, 24 Sep 2021 07:33:07 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id y9sm2177902ooe.10.2021.09.24.07.33.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Sep 2021 07:33:07 -0700 (PDT)
+Date:   Fri, 24 Sep 2021 09:33:05 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Shawn Guo <shawn.guo@linaro.org>, Georgi Djakov <djakov@kernel.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] interconnect: qcom: sdm660: Add missing a2noc qos
+ clocks
+Message-ID: <YU3hoXHap5DsjTOm@builder.lan>
+References: <20210824043435.23190-1-shawn.guo@linaro.org>
+ <20210824043435.23190-3-shawn.guo@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210824043435.23190-3-shawn.guo@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+On Mon 23 Aug 23:34 CDT 2021, Shawn Guo wrote:
 
-Provide the device nodes for the DU on the V3U platforms.
+> It adds the missing a2noc clocks required for QoS registers programming
+> per downstream kernel[1].  Otherwise, qcom_icc_noc_set_qos_priority()
+> call on mas_ufs or mas_usb_hs node will simply result in a hardware hang
+> on SDM660 SoC.
+> 
+> [1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
+> 
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> Tested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
----
-v2
- - Use a single clock specification for the whole DU.
+Georgi, do you intend to pull this patch in for v5.15-rc?
 
-v3:
- - Use 'du.0' clock name instead of 'du'
+I.e. should I pick up the dts change for v5.15 as well.
 
-v3.1:
- - Add in missing reset-names (at last)
- - Use full renesas,vsps
----
- arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 32 +++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+Regards,
+Bjorn
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-index f9a882b34f82..4312597bf315 100644
---- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-@@ -1251,6 +1251,38 @@ vspd1: vsp@fea28000 {
- 			renesas,fcp = <&fcpvd1>;
- 		};
- 
-+		du: display@feb00000 {
-+			compatible = "renesas,du-r8a779a0";
-+			reg = <0 0xfeb00000 0 0x40000>;
-+			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 411>;
-+			clock-names = "du.0";
-+			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-+			resets = <&cpg 411>;
-+			reset-names = "du.0";
-+			renesas,vsps = <&vspd0 0>, <&vspd1 0>;
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					du_out_dsi0: endpoint {
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					du_out_dsi1: endpoint {
-+					};
-+				};
-+			};
-+		};
-+
- 		prr: chipid@fff00044 {
- 			compatible = "renesas,prr";
- 			reg = <0 0xfff00044 0 4>;
--- 
-2.30.2
-
+> ---
+>  drivers/interconnect/qcom/sdm660.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/drivers/interconnect/qcom/sdm660.c b/drivers/interconnect/qcom/sdm660.c
+> index c89c991a80a0..661eb3635d21 100644
+> --- a/drivers/interconnect/qcom/sdm660.c
+> +++ b/drivers/interconnect/qcom/sdm660.c
+> @@ -174,6 +174,16 @@ static const struct clk_bulk_data bus_mm_clocks[] = {
+>  	{ .id = "iface" },
+>  };
+>  
+> +static const struct clk_bulk_data bus_a2noc_clocks[] = {
+> +	{ .id = "bus" },
+> +	{ .id = "bus_a" },
+> +	{ .id = "ipa" },
+> +	{ .id = "ufs_axi" },
+> +	{ .id = "aggre2_ufs_axi" },
+> +	{ .id = "aggre2_usb3_axi" },
+> +	{ .id = "cfg_noc_usb2_axi" },
+> +};
+> +
+>  /**
+>   * struct qcom_icc_provider - Qualcomm specific interconnect provider
+>   * @provider: generic interconnect provider
+> @@ -811,6 +821,10 @@ static int qnoc_probe(struct platform_device *pdev)
+>  		qp->bus_clks = devm_kmemdup(dev, bus_mm_clocks,
+>  					    sizeof(bus_mm_clocks), GFP_KERNEL);
+>  		qp->num_clks = ARRAY_SIZE(bus_mm_clocks);
+> +	} else if (of_device_is_compatible(dev->of_node, "qcom,sdm660-a2noc")) {
+> +		qp->bus_clks = devm_kmemdup(dev, bus_a2noc_clocks,
+> +					    sizeof(bus_a2noc_clocks), GFP_KERNEL);
+> +		qp->num_clks = ARRAY_SIZE(bus_a2noc_clocks);
+>  	} else {
+>  		if (of_device_is_compatible(dev->of_node, "qcom,sdm660-bimc"))
+>  			qp->is_bimc_node = true;
+> -- 
+> 2.17.1
+> 
