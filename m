@@ -2,119 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 045E54177EC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 17:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DF4141781F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 18:03:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347156AbhIXPiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 11:38:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53878 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233132AbhIXPiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 11:38:55 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2433C061571
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:37:21 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id b15so41027318lfe.7
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:37:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WIiXg3KWNaaiadXRiJALyTJvpk2NlOpsDMLooSBe0Uo=;
-        b=SXmJjR1n5wGvVPsrifQ2Jio7TAw9SW+N1v34qSobYed1m5T7cHjTMDI+G7VW1c3sNP
-         a4YdsMHoSpgoG1aXNjtzkA11KaW0L15W9Tykm7EhCZBKZUZMxI9m1/qV8aLIoaqWRu5H
-         MDM4VibqWSmSuf0FWvQUOH4ttjLkBHJQsFWLLSxYQCwrHCoFeAVM7KGXrB+lc/n0gkdU
-         1QxzXepRD/6foOX0P/ItJo882340UfIr0S89TDu47mVRGVaAfrcwjWmFucySgibFH4o1
-         24NY+Qzv352XkbHqCmB+vTEX/EzJFY7XbqKfE2jJOpiu5CHXtXI6C2lSXHkl/1NefcvL
-         l1ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WIiXg3KWNaaiadXRiJALyTJvpk2NlOpsDMLooSBe0Uo=;
-        b=t5fhrCeXldSm82sE1i82YVHhJo1bBGgXPQbks20eEfvdsC24b3POZcNF7NqNN9WcK4
-         n/JJN1PECa5LQQmf1JqMuNVnGGv9+4JiCGAnwbkdnq/6XyWlLXxNaR5YsDi4nABHfiV1
-         kOiP3qQHA0WP9bzu/Lho11iKC/zFEPp1JmTvLv7tvGrKEE6W7ErrmoFizjmgiOhHFRUp
-         0g+qYWWBtrhC3TLTqf9IkA9hQ6hDPaM1maT+rP+0OKAD470q7xXfEP38tFsMJ0t23c3x
-         4Wo5naatobVkfXY71S0g1oB6DZ4p278s10rvhJuEaMX0O0orxbWPMeG+BrOMVIFskaOp
-         E7VA==
-X-Gm-Message-State: AOAM531BBV80VuLnoonpKphVt1iFBp0zMKcig+Btgens6pgX+FqGjjii
-        SInqU+Yh/XKLYmMiKyl3XKqHs5qfwAsodJAgjlfqGA==
-X-Google-Smtp-Source: ABdhPJxnIuFkBBR/oG3fA3A1Sqyr0X/E+ybkFh48ZTX9iQb69fKdVYVuH/Eh2PqTNZ+krPCdDyaRZmtnlGiHZ2nQaCE=
-X-Received: by 2002:a05:651c:178e:: with SMTP id bn14mr12222808ljb.521.1632497836908;
- Fri, 24 Sep 2021 08:37:16 -0700 (PDT)
+        id S1347183AbhIXQEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 12:04:50 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:47246 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1347186AbhIXQEq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Sep 2021 12:04:46 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18ODc9KP008309;
+        Fri, 24 Sep 2021 18:03:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=AWpwaT6zwq0p8d48eBkmNfSbiQBcZtL8hSkteXSX24Y=;
+ b=QNN4faaNsVJz3n4qRPICMPs3NzQE20qXbekI+Uf6ss0E63zQt3lAo+E3+e3islST9urk
+ MJbnrkPz9O+VWh9he0WnKK1Ti4Xp3GWMDSJdv7YcMnkLKn/PuRXDrfxq6H5UasXfC/xd
+ Pyh865u+Dj2jVcmdVBRL6bJDz4abmEco9sFjATtJesrQSVwIfos+KdJbK3TLSax3YexJ
+ yGkyzhg/2ExGqAwR3HLwL7CObTSkafl3IVx0jewpwYv0GdV994pvRNorBaik5iz/j807
+ rmiXxGSG7Gz+mRVNqgHUjtS6re3sb6Q4NOws1cW8y0sPUB6cxT/JcTTL34Io9cObve8N YQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3b9fqxrp4p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 24 Sep 2021 18:03:01 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B503810002A;
+        Fri, 24 Sep 2021 18:03:00 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AD5BE22ADCC;
+        Fri, 24 Sep 2021 18:03:00 +0200 (CEST)
+Received: from localhost (10.75.127.51) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 24 Sep 2021 18:03:00
+ +0200
+From:   Olivier Moysan <olivier.moysan@foss.st.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Olivier Moysan <olivier.moysan@st.com>,
+        "Rob Herring" <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: [PATCH] ARM: dts: stm32: fix SAI sub nodes register range
+Date:   Fri, 24 Sep 2021 18:02:21 +0200
+Message-ID: <20210924160221.13287-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
- <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
- <YUkKCe7845uCqoy5@robh.at.kernel.org> <20210921125831.GB1864238@roeck-us.net>
- <CAL_JsqLo=inkKVKSU8N=_h90RfpDk6NNWPKdKyTXh-VvqXDCag@mail.gmail.com>
- <20210921205247.GA2363535@roeck-us.net> <CAL_Jsq+NXuF+F7OE3vyEbTUj6sxyMHVWHXbCuPPoFaKjpyZREQ@mail.gmail.com>
- <20210924002951.GA3027924@roeck-us.net> <YU2D7L7QMgCJZUeb@localhost.localdomain>
- <20210924114636.GB2694238@roeck-us.net>
-In-Reply-To: <20210924114636.GB2694238@roeck-us.net>
-From:   Oskar Senft <osk@google.com>
-Date:   Fri, 24 Sep 2021 11:37:00 -0400
-Message-ID: <CABoTLcQYHZbsgzXN7XXKQdDn8S-YsuE+ks9WShAEKcBJojEfcQ@mail.gmail.com>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for tmp421
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Adamski <krzysztof.adamski@nokia.com>
-Cc:     Rob Herring <robh@kernel.org>, Jean Delvare <jdelvare@suse.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-24_05,2021-09-24_02,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > In many cases the channels are "shared" - we have 3 voltage, 3 current and 3
-> > power sensors but in fact they are not separate sensors but 3 channels
-> > each able to measure 3 different things and they may share some common
-> > properties in each channel (so current, voltage and power may be
-> > calculated bases on the same shunt resistor or correction factor). An
-> > example being adi,ltc2992.  In those cases it doesn't make sense to have
-> > two levels as how would you describe the shared parent? Call it generic
-> > "channels"?
+The STM32 SAI subblocks registers offsets are in the range
+0x0004 (SAIx_CR1) to 0x0020 (SAIx_DR).
+The corresponding range length is 0x20 instead of 0x1c.
+Change reg property accordingly.
 
-So in that case (e.g. for the nct7802, see [1]) do we want just
-1-level, maybe like this:
+Fixes: 5afd65c3a060 ("ARM: dts: stm32: add sai support on stm32mp157c")
 
-nct7802@28 {
-    compatible = "nuvoton,nct7802";
-    reg = <0x28>;
+Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+---
+ arch/arm/boot/dts/stm32mp151.dtsi | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-    sensor@1 { /* RTD1 */
-         reg = <0x1>;
-         status = "okay";
-         mode = "thermistor"; /* Any of "thermistor", "thermal-diode",
-"voltage" */
-    };
+diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+index bd289bf5d269..6992a4b0ba79 100644
+--- a/arch/arm/boot/dts/stm32mp151.dtsi
++++ b/arch/arm/boot/dts/stm32mp151.dtsi
+@@ -824,7 +824,7 @@
+ 				#sound-dai-cells = <0>;
+ 
+ 				compatible = "st,stm32-sai-sub-a";
+-				reg = <0x4 0x1c>;
++				reg = <0x4 0x20>;
+ 				clocks = <&rcc SAI1_K>;
+ 				clock-names = "sai_ck";
+ 				dmas = <&dmamux1 87 0x400 0x01>;
+@@ -834,7 +834,7 @@
+ 			sai1b: audio-controller@4400a024 {
+ 				#sound-dai-cells = <0>;
+ 				compatible = "st,stm32-sai-sub-b";
+-				reg = <0x24 0x1c>;
++				reg = <0x24 0x20>;
+ 				clocks = <&rcc SAI1_K>;
+ 				clock-names = "sai_ck";
+ 				dmas = <&dmamux1 88 0x400 0x01>;
+@@ -855,7 +855,7 @@
+ 			sai2a: audio-controller@4400b004 {
+ 				#sound-dai-cells = <0>;
+ 				compatible = "st,stm32-sai-sub-a";
+-				reg = <0x4 0x1c>;
++				reg = <0x4 0x20>;
+ 				clocks = <&rcc SAI2_K>;
+ 				clock-names = "sai_ck";
+ 				dmas = <&dmamux1 89 0x400 0x01>;
+@@ -865,7 +865,7 @@
+ 			sai2b: audio-controller@4400b024 {
+ 				#sound-dai-cells = <0>;
+ 				compatible = "st,stm32-sai-sub-b";
+-				reg = <0x24 0x1c>;
++				reg = <0x24 0x20>;
+ 				clocks = <&rcc SAI2_K>;
+ 				clock-names = "sai_ck";
+ 				dmas = <&dmamux1 90 0x400 0x01>;
+@@ -886,7 +886,7 @@
+ 			sai3a: audio-controller@4400c004 {
+ 				#sound-dai-cells = <0>;
+ 				compatible = "st,stm32-sai-sub-a";
+-				reg = <0x04 0x1c>;
++				reg = <0x04 0x20>;
+ 				clocks = <&rcc SAI3_K>;
+ 				clock-names = "sai_ck";
+ 				dmas = <&dmamux1 113 0x400 0x01>;
+@@ -896,7 +896,7 @@
+ 			sai3b: audio-controller@4400c024 {
+ 				#sound-dai-cells = <0>;
+ 				compatible = "st,stm32-sai-sub-b";
+-				reg = <0x24 0x1c>;
++				reg = <0x24 0x20>;
+ 				clocks = <&rcc SAI3_K>;
+ 				clock-names = "sai_ck";
+ 				dmas = <&dmamux1 114 0x400 0x01>;
+@@ -1271,7 +1271,7 @@
+ 			sai4a: audio-controller@50027004 {
+ 				#sound-dai-cells = <0>;
+ 				compatible = "st,stm32-sai-sub-a";
+-				reg = <0x04 0x1c>;
++				reg = <0x04 0x20>;
+ 				clocks = <&rcc SAI4_K>;
+ 				clock-names = "sai_ck";
+ 				dmas = <&dmamux1 99 0x400 0x01>;
+@@ -1281,7 +1281,7 @@
+ 			sai4b: audio-controller@50027024 {
+ 				#sound-dai-cells = <0>;
+ 				compatible = "st,stm32-sai-sub-b";
+-				reg = <0x24 0x1c>;
++				reg = <0x24 0x20>;
+ 				clocks = <&rcc SAI4_K>;
+ 				clock-names = "sai_ck";
+ 				dmas = <&dmamux1 100 0x400 0x01>;
+-- 
+2.17.1
 
-    sensor@2 { /* RTD2 */
-         reg = <0x2>;
-         status = "okay";
-         mode = "thermal-diode"; /* Any of "thermistor",
-"thermal-diode", "voltage" */
-    };
-
-    sensor@3 { /* RTD3 */
-         reg = <0x3>;
-         status = "okay";
-         mode = "voltage"; /* Any of "thermistor", "voltage" */
-    };
-
-    sensor@4 { /* LTD */
-        reg = <0x4>; /* using the same number as in sysfs */
-        status = "okay";
-        /* No mode configuration for LTD */
-    };
-};
-
-In this example, RTD1, RTD2 and LTD would be temperature sensors and
-RTD3 would be a voltage sensor.
-
-Would that make more sense? Is the use of strings acceptable?
-
-Thanks
-Oskar.
-
-[1] https://lore.kernel.org/all/20210921004627.2786132-1-osk@google.com/
