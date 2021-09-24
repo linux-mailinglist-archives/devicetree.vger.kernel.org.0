@@ -2,115 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AC8E4176FE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 16:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5D3417705
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 16:46:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346781AbhIXOrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 10:47:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42030 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231627AbhIXOrR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 10:47:17 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDF77C061571;
-        Fri, 24 Sep 2021 07:45:43 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id t8so28396643wri.1;
-        Fri, 24 Sep 2021 07:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Av3zDDdFclAJ+F3cYjMxG9S2t2QZDbTVI1TKO+ZOq0U=;
-        b=qzTQPLx2pQ7IPYH1fZk3RYVZ3m7w1uxl01fD8LeZpjwMoKzjli/RQialtHZFNgDBiT
-         9iSSG91zp0kgluN17z8mmZd/TkYJ9O1MzEbgOWZmz0tuBJWn7Eu+wlVqUW11+walr7y9
-         knysK4Xj+CyJbap2IbmEEphC0Oxs+Gm8pLTND5/hgt6gsPVmMr1nuoWBATURPSjBM8PA
-         0hu1wtLgIXJUuMCUtE7hN/Gov6jAAGyY9gnnb+J5L5xTxwCZqZUVVX2oYv3Am6Jx/ElD
-         +crwwzJg3koza9y7be5aDwo5iDch8I4Rdczd8PrdmA8IlUNPdfKNuvTkzVmCXZZN2OXB
-         2ACQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Av3zDDdFclAJ+F3cYjMxG9S2t2QZDbTVI1TKO+ZOq0U=;
-        b=0R6xeQw+fLa3fY5Kf/qmcnw7AUA0cgNR1QBBlN7+/v6Lykjgl2yI0QELoSM/l7MQPj
-         Nug0jwcs30OifJC5iQ/p/Njl4JiADmIvK5+7qXHunfk/uEobDyBr1kdXzWtGjAANR9j9
-         lSiM5Y7WUDbw7fkttb6tEu+Y/DVzrQ3Qfc6sZeK+na5A6yyc1Iu1uTVwdjEqu4udGZN3
-         KYC9BHxfyLhUlCW4mramaYOQDyKhpOO2Q9WHDF4Kuo2YT7nMceLfPkRglV40S9yDCu1f
-         33yS/X4ji9wVIYAdwn3M1RsIlYF0FTevjIgOFRf1d8lL1K0yWZ1lEoDE8Q7uLkYOntyb
-         174g==
-X-Gm-Message-State: AOAM530XCzJBsNQFCwBVU1rhky87i1wYsq6qE7TzhNI8W9QXRFcHzzql
-        wN0+YZsVsSYtpz2A4PboNxU=
-X-Google-Smtp-Source: ABdhPJwHjtoFD+Em8zF6DgZZeR4AHAuHQ16zsehQw1pH91pQnp/t+obC1c5ieSc6Ox36UZ4ogR2Z+g==
-X-Received: by 2002:a05:6000:1889:: with SMTP id a9mr12076973wri.300.1632494742467;
-        Fri, 24 Sep 2021 07:45:42 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id 131sm12249784wmc.20.2021.09.24.07.45.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 07:45:41 -0700 (PDT)
-Date:   Fri, 24 Sep 2021 16:45:40 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     robh+dt@kernel.org, jonathanh@nvidia.com,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Audio support on Jetson TX2 NX
-Message-ID: <YU3klOTbfIeUzw6W@orome.fritz.box>
-References: <1629809770-7456-1-git-send-email-spujar@nvidia.com>
+        id S1346784AbhIXOsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 10:48:04 -0400
+Received: from mga12.intel.com ([192.55.52.136]:51674 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1346185AbhIXOsE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Sep 2021 10:48:04 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="203580780"
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; 
+   d="scan'208";a="203580780"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2021 07:46:31 -0700
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; 
+   d="scan'208";a="551835095"
+Received: from bordone-mobl1.amr.corp.intel.com (HELO [10.209.164.235]) ([10.209.164.235])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2021 07:46:30 -0700
+Subject: Re: [PATCH 1/2] ASoC: mediatek: mt8195: add machine driver with
+ mt6359, rt1011 and rt5682
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        tiwai@suse.com, robh+dt@kernel.org, matthias.bgg@gmail.com
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        aaronyu@google.com, linux-arm-kernel@lists.infradead.org
+References: <20210910104405.11420-1-trevor.wu@mediatek.com>
+ <20210910104405.11420-2-trevor.wu@mediatek.com>
+ <10fc49fa-9791-0225-365d-e3074680596c@linux.intel.com>
+ <4d703c5f7cf27ddc8b9886b111ffeeba0c4aa08b.camel@mediatek.com>
+ <1d7fe7455a054819daf05d41ab3658afdc1caced.camel@mediatek.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <c34d03ff-f349-724e-0dcf-7893f3622cd9@linux.intel.com>
+Date:   Fri, 24 Sep 2021 09:46:27 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dVMhuQ+ZlCXbwm9U"
-Content-Disposition: inline
-In-Reply-To: <1629809770-7456-1-git-send-email-spujar@nvidia.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+In-Reply-To: <1d7fe7455a054819daf05d41ab3658afdc1caced.camel@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---dVMhuQ+ZlCXbwm9U
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>>>> +/* Module information */
+>>>> +MODULE_DESCRIPTION("MT8195-MT6359-RT1011-RT5682 ALSA SoC machine
+>>>> driver");
+>>>> +MODULE_AUTHOR("Trevor Wu <trevor.wu@mediatek.com>");
+>>>> +MODULE_LICENSE("GPL v2");
+>>>
+>>> "GPL" is enough
+>>>
+>>
+>> I see many projects use GPL v2 here, and all mediatek projects use
+>> GPL
+>> v2, too.
+>> I'm not sure which one is better.
+>> Do I need to modify this?
 
-On Tue, Aug 24, 2021 at 06:26:08PM +0530, Sameer Pujar wrote:
-> Add support for APE (Audio Processing Engine) audio on Jetson TX2 NX.
-> As part of this exposed I/O interfaces of I2S and DMIC are enabled.
-> Similar to previous generations of Jetson platforms, audio-graph based
-> sound card driver is used.
->=20
-> HDA sound card is already enaled. Update the sound card name as part
-> of this series to be consistent with other Jetson platforms.
->=20
-> Sameer Pujar (2):
->   arm64: tegra: Audio graph sound card for Jetson TX2 NX
->   arm64: tegra: Update HDA card name on TX2 NX
->=20
->  .../dts/nvidia/tegra186-p3509-0000+p3636-0001.dts  | 506 +++++++++++++++=
-+++++-
->  1 file changed, 505 insertions(+), 1 deletion(-)
+See
+https://www.kernel.org/doc/html/latest/process/license-rules.html?highlight=module_license#id1
 
-Both patches applied, thanks.
+Loadable kernel modules also require a MODULE_LICENSE() tag. This tag is
+neither a replacement for proper source code license information
+(SPDX-License-Identifier) nor in any way relevant for expressing or
+determining the exact license under which the source code of the module
+is provided.
 
-Thierry
+“GPL”
 
---dVMhuQ+ZlCXbwm9U
-Content-Type: application/pgp-signature; name="signature.asc"
+Module is licensed under GPL version 2. This does not express any
+distinction between GPL-2.0-only or GPL-2.0-or-later. The exact license
+information can only be determined via the license information in the
+corresponding source files.
 
------BEGIN PGP SIGNATURE-----
+“GPL v2”
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmFN5JMACgkQ3SOs138+
-s6HPUg//bpmXGozlR4xs+n2kA19SbxK0oc7LsiYh7o9c6R81QMedLmRfdDo3Sb7r
-XvwpXBdxTG5BWUmnmlMwIg8gmHACZQ9lZKj1sk3HeuNMhezdmrkVGquybFSMP4Vh
-5B1DiSQdaQLX0rRgDKnQLYWDiIOXI5PvOUAeLP01CW9Hg2I8c+hxcb9I1Dg/ldNx
-YXNbCS4Mm3JKuIBTRjCsa6F+OafjzwPXh0g/gBO6VyZ7+dzJHEO8AbB2UEeEjde5
-o0r/dxA6RhCAvFr9GxioLYNo8j13nqpJ14y6l3mLj5HjeWLZ7Z6K3eDzMPMxNvcZ
-5CxQ74OqO8dALV/JPlQkGQR1q1vqxwVe35aCvGzGygzJ0nuGendU9XstuwpON3Qf
-J0kmJIf10WyTmVmJ5uI9kBK0Kx4A5ejEdwse5JXSeHWoYLSwv4i8AcAl5iZraQuR
-6/tVrjrw7LMqn+nt0cGmauK06qoSYWed1dbN6SqPEePw9PGMccj60nwD0OR5EY2B
-WZ6/D4m7qF3gB6DDcsf3P9lx5ZTdrW2QFqtQW/FfdZGAIZ6uAZZpBqEekuMLHz3/
-wXCyZvz1xia/KogCZZsIxs6X1+LGKEUj4ah96S8g3kpseobyJ/EJeAzlRB4Cjr1C
-NeqUkuHGpVDNKz1hwxklJY+cVuhC7XXF70KqyH+JyOILlYU1jM8=
-=ImHS
------END PGP SIGNATURE-----
+Same as “GPL”. It exists for historic reasons.
 
---dVMhuQ+ZlCXbwm9U--
+So "GPL v2" is not incorrect but for new contributions you might as well
+use the recommended tag.
