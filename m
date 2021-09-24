@@ -2,249 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F1554172E9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 14:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2469C41739B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 14:58:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344613AbhIXMwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 08:52:24 -0400
-Received: from mail-bn8nam11on2052.outbound.protection.outlook.com ([40.107.236.52]:3168
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        id S1345134AbhIXM7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 08:59:13 -0400
+Received: from mail-eopbgr60118.outbound.protection.outlook.com ([40.107.6.118]:34783
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1344338AbhIXMvA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 08:51:00 -0400
+        id S1345145AbhIXM4R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Sep 2021 08:56:17 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i7ACMsrikQ1zKRVWd31w+nLaQeh7/xjvPrv57phwKk3elGuZV3ngNMebg3NJKVTlN48RRSP9C9+U29qkW2mVB9fcNHBICRUDOr7X2fK6z1dM4xxNguEUROeH/p4E0HeJYVaqjMoKaMQuWT8Vl2StiGvQJWw2l7RcCZb9NA/wlvf3E9MZcixQNozcU/H4sHOufIMqiGsSg2OJtG1tyVVeYwr1JQJO1pLMHG/UJdatTuVuaaMPTUxE02I/QfjYk/YMdIqoCXzIHHVHo27o2B7t3X1X8fsl1R80sceatmfVQCF1BtCWx2VBRb6INJnvERxoNJIMpw5Cfbv5LeHTWR0rfw==
+ b=clfqhA7MErkUyZ8LJ0a4TbVyKLxn+znl9yVttYQCFuDUpVlKXhfBDv7GRKmLGHWSYn4EUsoS0gYQhUkQe2s1vGHRiuF1sMHgd2O/P/vr4XJoTo5Ml9XWtwl7p4zvkT5qzy+5pI7fIIvh0zkjmPmJiwt3nvVwjnvYwtMOwGQsF1cA76lNwT51olOp9ZiUPUSHsUheLIoLg2WroSL5ztucq+Hvv8xFnBWy8lVqgOcW6H+ggZgPzdWyBS+9czKSHc61EQ0arhtE3lWwyOo+O2hcvnJC1oANOUWGTz4tuNdZ51iRVU6dYCRGoLjcULHG3jtYlWEr9GfELASMwPGkiOMWoA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=fbv2O8pr/+EyAUNEurRPCQ/oIo1ql9LxpTamT8leQpg=;
- b=LhGvDbn1ny1wylCfCTVlXN/xfAhJD/+KfwNTnKpZXHuAZcTy5T+w3DJmfE2CteNirOArkxdymsGC1Ka1XUxeDUPYrH4hoyDp141STdf06/Uy/h13K0ljM5lJR2l+H/qcjhs5lr7c6H1iug1j/M/ufoTIOE74naRPXm74aRNnXRFv8J4L6p3LuOWqmkoG8u8FQQ24OzqhCBV4UAAQKaQTihzik2Xv9Nd8vIrBKQ4kEm65dn31D33SvHj9r/+jwtSOeLqbKNRqodm/TStyEGNCx4gMnOBUiZTYEA6GxaVBBlKVLXbCQP/pl7ixRr37Z0jKeP0gMN4Zf+WRUqS1ujj//w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=nigauri.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HUtQp5UJfoZQfNLtbA+deEmoPYQid+r8dqp9hFOIKzM=;
+ b=AxTWeHAbymDylv1nmvEeOvCA8W1RzBz+GDssDT1+9xajlfZx9eOyCGq3tye8FMsdNBotT6Slk3bdtit37jb6wNsTGyncOR8Lle/uJ9g05UVKwlKTzuXvz0JHhbKMgLPXslce8liE0YJNVKcyagRUQW4CPjQ5DwJ714gpzI+it/KJJn0KQK8jCr4Am822SsMkyVORBlqmqfTz0x1ExQPdnkDQF0ICAVH8UiiYguYCCAxF+PRlIA92GrfN9DTjeMp89hB357d+egC9v0PS/wo/r/TFkEfCUmPKpvyABOoA+3n/3Lu6UTzG+9g9YrTnfrDGjAWW7Q4RxJe1bHgZQ6q6bA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fbv2O8pr/+EyAUNEurRPCQ/oIo1ql9LxpTamT8leQpg=;
- b=TKkzBDAx6v8fj6uczrgwghST9lLDyAPxKWTpQyKfrRAwSLV5uTsYnTScR3BXEfWR95d+Vlron76qoBcRET/0J/uisk169U8oLPbAmx4Z8UsBXDQbHxb0Xapb2SOC/hFZq2fd5LEZI5sgk5AJWWqBgHZ2mHmhnEofy4uu1gpDJPo=
-Received: from DM5PR21CA0033.namprd21.prod.outlook.com (2603:10b6:3:ed::19) by
- MWHPR02MB2431.namprd02.prod.outlook.com (2603:10b6:300:3f::20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4544.18; Fri, 24 Sep 2021 12:49:24 +0000
-Received: from DM3NAM02FT056.eop-nam02.prod.protection.outlook.com
- (2603:10b6:3:ed:cafe::12) by DM5PR21CA0033.outlook.office365.com
- (2603:10b6:3:ed::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.0 via Frontend
- Transport; Fri, 24 Sep 2021 12:49:24 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; nigauri.org; dkim=none (message not signed)
- header.d=none;nigauri.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT056.mail.protection.outlook.com (10.13.4.177) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4544.13 via Frontend Transport; Fri, 24 Sep 2021 12:49:24 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Fri, 24 Sep 2021 05:49:14 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Fri, 24 Sep 2021 05:49:14 -0700
-Envelope-to: git@xilinx.com,
- iwamatsu@nigauri.org,
- arnd@arndb.de,
- saikrishna12468@gmail.com,
- linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- p.yadav@ti.com,
- robh+dt@kernel.org,
- broonie@kernel.org,
- gregkh@linuxfoundation.org
-Received: from [10.254.241.49] (port=33344)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1mTkdc-000GdM-VZ; Fri, 24 Sep 2021 05:49:13 -0700
-Subject: Re: [PATCH 1/4] firmware: xilinx: Add OSPI Mux selection support
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Mark Brown <broonie@kernel.org>,
+ bh=HUtQp5UJfoZQfNLtbA+deEmoPYQid+r8dqp9hFOIKzM=;
+ b=qdfTuBu6BBrdsSWbupNUsf9dOdr9dXPdZQ3K/gikT6Er3w7tcTSnR+qWebeou8rMqqRbA0dO2mKNa1el+stNP9e1U8uSaaUO2XT5wxodK3dxyhyzU94wMzx435hxEK7CnZyRALyuhzxRIgRv9+ISan683FvzrZngcXIV15adT8Y=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nokia.com;
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
+ by DU2PR07MB8077.eurprd07.prod.outlook.com (2603:10a6:10:2b6::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.11; Fri, 24 Sep
+ 2021 12:54:42 +0000
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::c47f:b569:ac76:9feb]) by DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::c47f:b569:ac76:9feb%6]) with mapi id 15.20.4478.014; Fri, 24 Sep 2021
+ 12:54:42 +0000
+Date:   Fri, 24 Sep 2021 14:54:33 +0200
+From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <git@xilinx.com>,
-        <saikrishna12468@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
-        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-References: <1632478031-12242-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1632478031-12242-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <YU24KEoXQOw/1uZV@kroah.com>
- <c588c9c4-df4b-a617-35d1-23c32654d5ff@xilinx.com>
- <YU3C7y833i9f0+yB@kroah.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <18d730a5-cec1-d699-a7cc-da8270a5dfe6@xilinx.com>
-Date:   Fri, 24 Sep 2021 14:49:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        Guenter Roeck <linux@roeck-us.net>,
+        Przemyslaw Cencner <przemyslaw.cencner@nokia.com>
+Subject: Re: [PATCH v2 01/10] dt-bindings: hwmon: add missing tmp421 binding
+Message-ID: <YU3KiePwjPPF+KPT@localhost.localdomain>
+References: <cover.1632473318.git.krzysztof.adamski@nokia.com>
+ <cad7ca2084491b58d7f5d72e43f9b6dc9ec0fd69.1632473318.git.krzysztof.adamski@nokia.com>
+ <1632487500.109276.1091568.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1632487500.109276.1091568.nullmailer@robh.at.kernel.org>
+X-ClientProxiedBy: HE1PR05CA0147.eurprd05.prod.outlook.com
+ (2603:10a6:7:28::34) To DU2PR07MB8110.eurprd07.prod.outlook.com
+ (2603:10a6:10:239::15)
 MIME-Version: 1.0
-In-Reply-To: <YU3C7y833i9f0+yB@kroah.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
+Received: from localhost.localdomain (131.228.2.1) by HE1PR05CA0147.eurprd05.prod.outlook.com (2603:10a6:7:28::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14 via Frontend Transport; Fri, 24 Sep 2021 12:54:41 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f9c37bb5-10d9-468b-1e3b-08d97f59bcb2
-X-MS-TrafficTypeDiagnostic: MWHPR02MB2431:
-X-Microsoft-Antispam-PRVS: <MWHPR02MB24312A9E445FA280651097DFC6A49@MWHPR02MB2431.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Office365-Filtering-Correlation-Id: d6419c1a-0d2c-4c7a-a4ce-08d97f5a7a51
+X-MS-TrafficTypeDiagnostic: DU2PR07MB8077:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DU2PR07MB80778DB9EAAE8B3D3D793D55EFA49@DU2PR07MB8077.eurprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NynRwZJqWGxHkICFEIDjHxMRDCetU1R/Nm7rgQ6i9wJiWYraisjXFubd9wxT0Q1e81rOnTdmPuv7lmcyuW/fNtlZmILmzfp2TLM9XrZ1lqLdqo8tE0H54ct+/eZU8KT2bAt5gGdJfjAemENeb/fPI3x+5gkC17+x8LqqzWaoNQPapVWkp+RGeYtPTTYpFQM/4wAFm0Tr6eVcKUCmsj2AO4XClk1hhdLLfMxkXbKm1GNUiXLvF65t/qUzIEtM9+ZxdR3gJ4fAPkbh1Q3sk0B58BKpyLDQH0I2zGyZF5i4kY4sTzoTgZYq4tjKQMRQj6mU7EO51qBGsPaCMXFjv3NUhi8po+ljNAfVpIYBQQyHM2FZmXFzPCxA8X08XzS9s8TrkRw+gl44duv2YWYmdevl2oj6KMKY5v6gV6SAlTCqIyiBMmNeCs4jsA77nFNWsccE7iWbUR0xPiAc4exAapWRgSbN8oqgNWnBY2Awew8Cd1lU5P+dDBiUdSlMglJBE1qgyp0ZzkM2Du0XcuOKW+ZGvOMWLS+1RHfnG7pEKLgLwn6ic7s7X52Wm4PPsjaT67E17zs2YgCd/HjPi4Mozs3tkBLmKc6ooLcpHaL9bWFtqfGu7VHme4oI2/8jy5kvdGhwcL2gdlz36o1HQi2E/8KDCu0PZTgSV3vmi3ChDDxOzbKVjAtGeVsBLnsZ9kp9+uGVyegdIxMfqbzyp0VGqZYIxwTmVGFXisdiaa5ZDWlUmsI15TI6s8Q23mVLt/ti7KTT
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(36840700001)(46966006)(4326008)(6666004)(7416002)(31696002)(53546011)(9786002)(2906002)(186003)(70586007)(70206006)(8676002)(336012)(44832011)(82310400003)(47076005)(26005)(36860700001)(31686004)(7636003)(2616005)(426003)(36756003)(8936002)(508600001)(5660300002)(83380400001)(316002)(110136005)(54906003)(36906005)(356005)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 12:49:24.3342
+X-Microsoft-Antispam-Message-Info: QTcWfMJuPUBdkioYiJM9W+3YL29aeV9vIVgcbZxkxfXhPoATjGKQf+qH2L2vlha17XpPzGm1vugTz6vBKZl+Hkk63++Fk4cVtFxrVLwqMzpqYp76wYWsE4/bd3lGT8H8BA7CAfGZh1Tytf2v+RucJoJ4NlYeboCM8X33CcuuFBnsukE73jWUgyT8va0qVEhnIH1ewcQuiGN8JJ9YUAHE2jEw6bMCR3Fncg4T6oFt/x5MFn95cloSFKb/91+b1FNMk1+wOzGMkcdy4qzIzD89Wzm76sJYdtt6ekYnQmKkNnU6Nj6E4diKNUGR6tU1Z3SVv+LG26Kw6xu7JS9gm9UxKJw01o5W+O5lynvKGmXfaVNVRu+LSzFZ5+XelfoeWEJWoC7czgO48ZGO6BsyWo73ChBwRiKrZN/Apv/inVP92x3VPQvt61WuhCgM26HOOb736sxPmEntg9nZ9mmb6an1PnwAHkv5ALuBHR/89+ejxKiLxDEyijiKeSKbV4ZUOjsmB10gQe5mFKdW7+aG0cd/QdwvwfuEzJWvF2kyMvqIM2u+ng9h3BWtfu53Rcn7MaFqsExEvoGC4KntcdArNgRKatVSj5AESDgzj3LYw/7K6uFfbNKgEGxDFrBtsHz0XXW+FU1b3bqgbJxISpUUUWuDyD4g9/8YywyWb0nFb26CxcMW0piATRUerWsRQq7gsy06+vFiywOVJcQt0KHZqBPltpMt3PFeOah+UawOG/HdkSPKpS7EJHhFvstaVbhB7wpUSfGitiH1qU5K4ToISEtcp4MPaI/le04dpnpfuQhdSEz40PC9ulEIeHnpZvp88dr1
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6506007)(8936002)(52116002)(7696005)(26005)(186003)(83380400001)(38350700002)(966005)(6916009)(8676002)(508600001)(4326008)(66476007)(9686003)(86362001)(55016002)(956004)(107886003)(6666004)(44832011)(54906003)(66556008)(5660300002)(66946007)(316002)(2906002)(38100700002)(67856001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eWovbUl2VEtMQk4wZkVpSmJhV2EwNWZvTnN4T3Zyc0VrV3BxVTlqTFR2WEVH?=
+ =?utf-8?B?OElsUUZpL1Q5V0krOWtBd3VvOVZqdEtKem5pQmZrMmVxUWtBSTVyRS9TVWZI?=
+ =?utf-8?B?TU91anUyQ1Bzak1PTDJwNXNhTm9yNlJneEFDSFhlRExuSG43TGVETkFJWmRG?=
+ =?utf-8?B?RW9yWGFpQzFHVzRmaVIyTW9mc0krZDUxTmYydFJOOEphdUJHVHMrWWVyWWNH?=
+ =?utf-8?B?VEZlRVhNRFdXRTlSSUZQZUlPa0szd0tZeVFadVdzZzZURlZVcXEwRVhlUWN6?=
+ =?utf-8?B?NTZDeUR6dGpKanIySTVPczV1blQ2TXNnQjdnbVhqcURXQzJaWkQ2V3pTb3Fl?=
+ =?utf-8?B?c2pZL2l2dFBTcXhFYi95UG84TkZaOU55b0xwUXdGQXNnTFhLckdGN3dyM0Ev?=
+ =?utf-8?B?b09vVDZJTUI1dW1ZQjdIRTFxa2cyZGphV283WjBTenkxZ1VkeDBJTFhHZ1FY?=
+ =?utf-8?B?ZjltVjBPLzdkOUJFa0hORnh3WEJTamxEZXkzVEFYSi9ITHB5d21iMG1UKy9s?=
+ =?utf-8?B?R3hGdnA0ZDJtSGRsSmEwT3NMN1F0K1hKeXFlejdqVkczK05EN3dBeUVveW1s?=
+ =?utf-8?B?KzJZSHJZNnpWSkFPQjFRZ1pjUHFGU2IvZXZCWmpRVWp0d1FMWXI0TUtnMGZt?=
+ =?utf-8?B?Y3lUTTQwYmwwRDFrakxxcm5obE1Qc1Y0WFFnR2VqeVluVTJ5NFo1V1lFSHRP?=
+ =?utf-8?B?SDhyR1BlMDczWS9ZRGJFSUVJNzU5NUpxU2JmalFTSk44ZXU5a2hUREw3SnJB?=
+ =?utf-8?B?STlVTTUrQ0M3bFgyMFVISzhxN3dFS0VrbGZJVlBsUEYzQXhlZm5CSmdVOERp?=
+ =?utf-8?B?bzVXREZpSTloSE1oa0JTNnZTZFgvN3BhSTM2SUZkNnVhRlJrV0JOZE1ZVWRx?=
+ =?utf-8?B?b0t6NWU5VStEZjVzcHRYajFFcGpWRUVZRk1KdWpPSGIrM0Q1dWdaak0wdXRm?=
+ =?utf-8?B?b3BZQ3V4dUVjc3JITlBudVdoL0pNVUhMU01aR1luejNoWlNMTXFqbG1Ya0Mr?=
+ =?utf-8?B?TlVvYmpEQnJJNFBPUkZqdkZZeGFOYUs2WGVLTE9RSkcwdVIvVmZwcjdHYk9y?=
+ =?utf-8?B?RzdLbzdDd1RDVTgvVDg1dDRxZHJMZC9JMk00TzFST1VTTytoTXRXVnBoLzZo?=
+ =?utf-8?B?VXl6Z3lrMG96R1VXaHNSQ0hLNGgyaFJ2L3R0NGFrWlNKaS9OZGtZNnFieTRD?=
+ =?utf-8?B?dHFtcnU3R1VURjRFTUhQcCtaOFJmZE1TQTcwMTFMNFlWckhIdTBWZFNCc2xZ?=
+ =?utf-8?B?Q2tpbDJscU14MmhNUE1tcnVWSWtOWjhsbDhHcVZ6N1RZQTZJUURBUHVsbTFK?=
+ =?utf-8?B?dnNQZ0tPY1RiN0xLTTdHQ0NtKzQrZytTeXJrdk9rbkFyYmFjL0Q4c1NJQlA3?=
+ =?utf-8?B?eWc4UkdUbnhXanowa1JSVEs0ZXZtY0J4OVdISDBEbFlLYTdOazd1TWYzOG9m?=
+ =?utf-8?B?V0Nlc2N3cVpYOUt5R3QzWnVKNEljb1FFZ04rZDYxQThHbE5iNHc0TGQyMFFT?=
+ =?utf-8?B?L2VLd25OSG8zU2REdlRzQ0Yvd2g3UTdKeTV5eXlNejNPaTQwU1BYZjVLR2xN?=
+ =?utf-8?B?eXpLZmdhNVZ6ZzQ4clF1eUxHb3RkMGo1YW43WGZpQnV3OGxRUFgwYjBSYVlx?=
+ =?utf-8?B?THpmSVdsbDNQTFJta3daRFZzTnQzYWcyTkFHUXRjVVRmVjlYaGRpc2UyeDdh?=
+ =?utf-8?B?dmVZTGRUYldSQUxtZVJlbW9ITmN5U3ZTM0h0U0d2cXJIUHVBWk1KZmQ3SnZq?=
+ =?utf-8?Q?041/sjdBGN2WOrt4Jk7Y45pXfn/feyWDqzMypNt?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6419c1a-0d2c-4c7a-a4ce-08d97f5a7a51
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 12:54:42.7343
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9c37bb5-10d9-468b-1e3b-08d97f59bcb2
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT056.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2431
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: R8dFe5NlsqLxHzi7e2NrcPrqm2dfuWKzrq//+XYme2THsT/M6Ti7qGWPTuPjwwMp/4IpVDLkwrAHIRlYY56XDG+n/ekEn2yKO9F15kwAgHc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR07MB8077
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dnia Fri, Sep 24, 2021 at 07:45:00AM -0500, Rob Herring napisał(a):
+>On Fri, 24 Sep 2021 11:38:50 +0200, Krzysztof Adamski wrote:
+>> Add basic description of the tmp421 driver DT bindings.
+>>
+>> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+>> ---
+>>  .../devicetree/bindings/hwmon/ti,tmp421.yaml  | 43 +++++++++++++++++++
+>>  1 file changed, 43 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
+>>
+>
+>My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+>yamllint warnings/errors:
+>
+>dtschema/dtc warnings/errors:
+>./Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml: $id: relative path/filename doesn't match actual path or filename
+>	expected: http://devicetree.org/schemas/hwmon/ti,tmp421.yaml#
+>
+>doc reference errors (make refcheckdocs):
+>
+>See https://patchwork.ozlabs.org/patch/1532139
+>
+>This check can fail if there are any dependencies. The base for a patch
+>series is generally the most recent rc1.
+>
+>If you already ran 'make dt_binding_check' and didn't see the above
+>error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>date:
+>
+>pip3 install dtschema --upgrade
+>
+>Please check and re-submit.
+>
 
+Hi,
 
-On 9/24/21 2:22 PM, Greg Kroah-Hartman wrote:
-> On Fri, Sep 24, 2021 at 02:12:55PM +0200, Michal Simek wrote:
->>
->>
->> On 9/24/21 1:36 PM, Greg Kroah-Hartman wrote:
->>> On Fri, Sep 24, 2021 at 03:37:08PM +0530, Sai Krishna Potthuri wrote:
->>>> Add OSPI Mux selection API support to select the AXI interface to OSPI.
->>>>
->>>> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
->>>> ---
->>>>  drivers/firmware/xilinx/zynqmp.c     | 17 +++++++++++++++++
->>>>  include/linux/firmware/xlnx-zynqmp.h | 12 ++++++++++++
->>>>  2 files changed, 29 insertions(+)
->>>>
->>>> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
->>>> index 15b138326ecc..43c3b5a9eef7 100644
->>>> --- a/drivers/firmware/xilinx/zynqmp.c
->>>> +++ b/drivers/firmware/xilinx/zynqmp.c
->>>> @@ -647,6 +647,23 @@ int zynqmp_pm_sd_dll_reset(u32 node_id, u32 type)
->>>>  }
->>>>  EXPORT_SYMBOL_GPL(zynqmp_pm_sd_dll_reset);
->>>>  
->>>> +/**
->>>> + * zynqmp_pm_ospi_mux_select() - OSPI Mux selection
->>>> + *
->>>> + * @dev_id:	Device Id of the OSPI device.
->>>> + * @select:	OSPI Mux select value.
->>>> + *
->>>> + * This function select the OSPI Mux.
->>>> + *
->>>> + * Return:	Returns status, either success or error+reason
->>>> + */
->>>> +int zynqmp_pm_ospi_mux_select(u32 dev_id, u32 select)
->>>> +{
->>>> +	return zynqmp_pm_invoke_fn(PM_IOCTL, dev_id, IOCTL_OSPI_MUX_SELECT,
->>>> +				   select, 0, NULL);
->>>> +}
->>>> +EXPORT_SYMBOL_GPL(zynqmp_pm_ospi_mux_select);
->>>> +
->>>>  /**
->>>>   * zynqmp_pm_write_ggs() - PM API for writing global general storage (ggs)
->>>>   * @index:	GGS register index
->>>> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
->>>> index 9d1a5c175065..6979a79f553a 100644
->>>> --- a/include/linux/firmware/xlnx-zynqmp.h
->>>> +++ b/include/linux/firmware/xlnx-zynqmp.h
->>>> @@ -119,6 +119,7 @@ enum pm_ioctl_id {
->>>>  	IOCTL_READ_PGGS = 15,
->>>>  	/* Set healthy bit value */
->>>>  	IOCTL_SET_BOOT_HEALTH_STATUS = 17,
->>>> +	IOCTL_OSPI_MUX_SELECT = 21,
->>>
->>> Why the gap?  What are the commands in the middle for?
->>
->> Below is the full list. Not everything has been upstream yet. There was
->> an attempt on AFI which one colleague is working on and should send new
->> version soon. I don't think anybody has started with upstreaming probe
->> counters.
->> Every part has different owner with unfortunately own upstreaming plan.
->>
->> Thanks,
->> Michal
->>
->> enum pm_ioctl_id {
->> 	IOCTL_GET_RPU_OPER_MODE = 0,
->> 	IOCTL_SET_RPU_OPER_MODE = 1,
->> 	IOCTL_RPU_BOOT_ADDR_CONFIG = 2,
->> 	IOCTL_TCM_COMB_CONFIG = 3,
->> 	IOCTL_SET_TAPDELAY_BYPASS = 4,
->> 	IOCTL_SET_SGMII_MODE = 5,
->> 	IOCTL_SD_DLL_RESET = 6,
->> 	IOCTL_SET_SD_TAPDELAY = 7,
->> 	IOCTL_SET_PLL_FRAC_MODE = 8,
->> 	IOCTL_GET_PLL_FRAC_MODE = 9,
->> 	IOCTL_SET_PLL_FRAC_DATA = 10,
->> 	IOCTL_GET_PLL_FRAC_DATA = 11,
->> 	IOCTL_WRITE_GGS = 12,
->> 	IOCTL_READ_GGS = 13,
->> 	IOCTL_WRITE_PGGS = 14,
->> 	IOCTL_READ_PGGS = 15,
->> 	/* IOCTL for ULPI reset */
->> 	IOCTL_ULPI_RESET = 16,
->> 	/* Set healthy bit value */
->> 	IOCTL_SET_BOOT_HEALTH_STATUS = 17,
->> 	IOCTL_AFI = 18,
->> 	/* Probe counter read/write */
->> 	IOCTL_PROBE_COUNTER_READ = 19,
->> 	IOCTL_PROBE_COUNTER_WRITE = 20,
->> 	IOCTL_OSPI_MUX_SELECT = 21,
->> 	/* IOCTL for USB power request */
->> 	IOCTL_USB_SET_STATE = 22,
->> 	/* IOCTL to get last reset reason */
->> 	IOCTL_GET_LAST_RESET_REASON = 23,
->> 	/* AI engine NPI ISR clear */
->> 	IOCTL_AIE_ISR_CLEAR = 24,
->> 	/* Register SGI to ATF */
->> 	IOCTL_REGISTER_SGI = 25,
->> 	/* Runtime feature configuration */
->> 	IOCTL_SET_FEATURE_CONFIG = 26,
->> 	IOCTL_GET_FEATURE_CONFIG = 27,
->> };
-> 
-> Odd mix of comments and no comments...
-> 
-> Anyway, that's fine, just curious as to why there was a gap.  No real
-> reason why you can't just add them all now right?
+Makes sense, after seeing the series of patches converting the old .txt
+style binding documentation on hwmon-next, I realised the file should
+not be called tmp421.yaml but ti,tmp421.yaml and I renamed it but
+forgout about the $id.
 
-Code is firstly integrated to soc tree and then upstream. I would love
-to see this happen vise versa but still marketing wants to deliver
-features first to customers. On the other hand customers care about
-getting features on the first place and they are fine with not having
-upstream solution first.
-Back to your comment. It can also happen while upstreaming that some
-numbers are simply not used because design is changed. That's why that
-numbers can be skipped because it was just temporary solution or not
-proper design.
-It doesn't mean that these numbers can't be listed but on the other hand
-why they should be listed if they shouldn't/can't be used.
-That's why over time we are just adding number which are used by that
-patchset.
-I can't see any problem to send all of them if that's fine for you.
+I'll resubmit the fixed version soon, but I will first make sure my
+system can also catch those errors too.
 
-Thanks,
-Michal
+Krzysztof
