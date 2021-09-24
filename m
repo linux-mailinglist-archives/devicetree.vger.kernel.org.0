@@ -2,506 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3BA7417D13
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 23:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 576BF417D16
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 23:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343960AbhIXVn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 17:43:58 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:43720 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344112AbhIXVn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 17:43:58 -0400
-Received: by mail-ot1-f43.google.com with SMTP id x33-20020a9d37a4000000b0054733a85462so14997062otb.10
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 14:42:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+/fvQg20iBFDiPz9bOlXZXEzpE1Xs1+ILaT2iSh2gFc=;
-        b=Px2JW7sNRGeqXPIPZ+KOPe2tAu05F6LsIbLIZYXAFOnwAgXTxrVimpEQlqtFGcKV6M
-         hEsIb+kv0ctbLOixD71cANuL/86wURMjwXKTXymBi2XyTy3COWP6Mfs+BeVQLHAPakL3
-         15cws/nTF6Qzh057fRJ8Rb2Y4EpjXd4NvJi7VQEnu7hOZwm1QsGQJ+ZjGmT89OnaamZk
-         AW3Usum0z27pauUoB90kFqbOfq+uXa7SGd94MRPUgeluHSrZW9XsODBvs9yeaBGZkmpL
-         wzy5spXv+tEI9ne/GkoQEiDwe+VzLy0sNXQE0O8jZgV7b+UMLy//mFW6fmvCSYn4O5Mw
-         9Vhg==
-X-Gm-Message-State: AOAM530JtmpCPQ0HkFvs33bMPdBVtA5Y7y+NCgrv4HQnYZ9ic/ZHgj/s
-        s0wotD4LHe2nXLKX8I8sww==
-X-Google-Smtp-Source: ABdhPJx1W2Y2tF4H1uvlymq8s0AqGX2e6hiULRU5lq5SUI3XeBl01ijgBFP27QqDSBqhm81P4/JbPw==
-X-Received: by 2002:a9d:72d5:: with SMTP id d21mr6263981otk.181.1632519743104;
-        Fri, 24 Sep 2021 14:42:23 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id d14sm2341799otq.65.2021.09.24.14.42.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 14:42:22 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     devicetree@vger.kernel.org,
-        Guillaume Tucker <guillaume.tucker@collabora.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm: dts: vexpress: Fix motherboard bus 'interrupt-map'
-Date:   Fri, 24 Sep 2021 16:42:21 -0500
-Message-Id: <20210924214221.1877686-1-robh@kernel.org>
-X-Mailer: git-send-email 2.30.2
+        id S1344258AbhIXVqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 17:46:05 -0400
+Received: from mail-dm3nam07on2044.outbound.protection.outlook.com ([40.107.95.44]:45024
+        "EHLO NAM02-DM3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1343895AbhIXVqE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Sep 2021 17:46:04 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GfaQAWZh8euq30BvMCMlm/H+Tyw6YADWkwvgXWEI8ze+hZweRVXn+Iqx3b6e+/H5zg5RqSoeCRGFvCRCGoQur1blqvjWfjwzPlmzpTxn0Cgz2kAfXYHHxsNAl2g6jcKf/PWLKD6qohEl8I/4Zio98Xkb9Js12i7CJbco6xGaaOffmvkUCozxTRuBX+tCNlB7aRgnVaAOgfsb+VLjkl47GyZLAMchBKphKCA5pQP3p1E7Op81BX9TvywCPtB9SngIq91hcYFOAgICPSWDvl4C0/Knl//Ewq3BEAIMKU0EJkVAPhZvX6k7tv1shPv6RFL36pp4+rNfHwYmFx9KPxcgIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=8lx5Ee07THZfYVWNyqKXKJQPuEnJYJNp9MNFBasPd6E=;
+ b=ILbYDSj30unFKZA0Ma1YxNk7T6ahlZbkXRwOD1x0VHU+8gSjHT75S4M8lY4Uf8Hj0ttz2QlZ/D/5Qs6K1Zj8Z96zWVgzLiTiQ7R3PjFbe3lMMAcS5ZXJXybgt5FCr/4Od4J0RuzmbZsoimWe2x++5MidQXTLR58X45p9D1cJBI99vIh0lp5UchnjTwhuwm5NYms+evc8XXA7oREKeS2e97qVrMqSgfYG7fJHntqrkAfemr4v40Xs7oVmH5hXJQ+6TizUdQCUPEw9vswH8cN8pnOr+Zk1FwuIJ+idCf7ALr/xoIm5rG5V34oBOCapegl/EtaCl+mww+oLk2ymCuPfLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.35) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8lx5Ee07THZfYVWNyqKXKJQPuEnJYJNp9MNFBasPd6E=;
+ b=oRWYVYibRx0eEZsgQl15ztatQC48BOSaCNKOhzqa86elVNDdyXPCKGUN3QQqGAz71PgOUcQDsBfHURd3xZFWmL1tWG407QlG8fAVk2dvKTjY/8IQ9WVNSIsQad8JFRS8+3l+Ir7X5P1x2su48iyuMqJhcVHdBtDQfwyQQBytuB7sYNRSdCxJkpTth0jKLX4stxxM2VNlgYEdXpC9d3crvduoZWfQ+nLUsagpQffVwu4VVDCYqL5kWCH1ACk464wI3Rzv5y1c0Y4WvVq+7NuAVV/qHmOEywYxe5KN+eNUHKorgRwB6oDA0uH8cZQRJJpRqI/wTvcObe6NZtNI9gKi8g==
+Received: from MWHPR22CA0026.namprd22.prod.outlook.com (2603:10b6:300:69::12)
+ by DM5PR12MB1914.namprd12.prod.outlook.com (2603:10b6:3:109::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Fri, 24 Sep
+ 2021 21:44:29 +0000
+Received: from CO1NAM11FT013.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:69:cafe::3b) by MWHPR22CA0026.outlook.office365.com
+ (2603:10b6:300:69::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13 via Frontend
+ Transport; Fri, 24 Sep 2021 21:44:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.35)
+ smtp.mailfrom=nvidia.com; linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.35 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.35; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.35) by
+ CO1NAM11FT013.mail.protection.outlook.com (10.13.174.227) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4544.13 via Frontend Transport; Fri, 24 Sep 2021 21:44:29 +0000
+Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 24 Sep
+ 2021 21:44:28 +0000
+Received: from [10.19.66.38] (172.20.187.6) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 24 Sep
+ 2021 21:44:23 +0000
+Subject: Re: [PATCH V1 3/3] dt-bindings: tegra: clock,memory,thermal: add
+ header Copyright
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "Jonathan Hunter" <jonathanh@nvidia.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        "Ingo Molnar" <mingo@redhat.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>
+CC:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <digetx@gmail.com>,
+        <mturquette@linaro.org>, <abrestic@chromium.org>
+References: <20210921094206.2632-1-bbiswas@nvidia.com>
+ <20210921094206.2632-4-bbiswas@nvidia.com>
+ <de4ad32b-ab60-a4dd-793f-9bd520ed5a87@canonical.com>
+From:   Bitan Biswas <bbiswas@nvidia.com>
+Message-ID: <d9329dac-9eba-3657-9e51-8129d9cbbf61@nvidia.com>
+Date:   Fri, 24 Sep 2021 14:43:51 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <de4ad32b-ab60-a4dd-793f-9bd520ed5a87@canonical.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.20.187.6]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ DRHQMAIL107.nvidia.com (10.27.9.16)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 64ace6b1-2943-46f8-d17d-08d97fa47cb6
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1914:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB19144EC25925D5F141C4E670D7A49@DM5PR12MB1914.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bIdtGGSlSMw/mBafE9Rk7WkcxctJW//1SCk93pa9OnhIpOmCK+sIGNcStIKJ1NwkwCwejtIbQpYYXGdy0qaa6dlPBRGFSGjqPaMe/M8LoApT3zB+0HZ4e/Xemcve1pXHgiJujG4CxziC1Kkmlj8cCp0SNRYFKYIgmInNh9GSHCnJfe6QruvenzDih6BOl39jUNvHf4Z3A5Ns/7xz3jdHg1ei6deS0QJTJdfOr65BM9JTjw1nG7NC12vZWAsjEm723YC77kIR4uUlvW1vAHcTvQa52sohz6ZqC4uQ4w05LLjtOm9tZVAgWS+4OE9fVsQLv6/XFJe7UOIIB1vp2d4sIHz2oZmdyux1j6uUYfY4a/pHcmhYYmtWhd2izdnE0zn6bVTQDphREm1GaA6eNH0r2SJz3SB0T2nARZtfls3WggDBVQUPBQlCWc/4eZY015qinKKLccwPrLl3PJfdXgyWLVWF3AV5S4vWGj7NsHAZQXWD95+c82TUkc11CCOT/6yxSeuOfQc3zGUsbXRkeA1cjf9hNLEeZYzgp+LBDdsZlxwWbkmPfX3rER4lIAmtnEUL1s5QuczDOG91/2WSUmw/kmjYQ82PjracnUOtAOGNN1IhlPOag3p/qVicAQi3ECkAQSzO8CMyRrJ53wPevtClreyGIKx/Z9H6L/fBWwgevsFlPSBw7xzAbrDaW7nmPM+UOe95VxfqPse1dPfoUetcnnSqtnFGDeRv8/OxpjBOeqc=
+X-Forefront-Antispam-Report: CIP:216.228.112.35;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid02.nvidia.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(26005)(31696002)(36906005)(508600001)(316002)(54906003)(86362001)(36860700001)(82310400003)(16576012)(83380400001)(5660300002)(2906002)(336012)(7636003)(53546011)(426003)(8676002)(31686004)(4326008)(6666004)(110136005)(186003)(70206006)(2616005)(36756003)(7416002)(47076005)(70586007)(8936002)(356005)(16526019)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 21:44:29.2216
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64ace6b1-2943-46f8-d17d-08d97fa47cb6
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.35];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT013.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1914
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 078fb7aa6a83 ("arm: dts: vexpress: Fix addressing issues with
-'motherboard-bus' nodes") broke booting on a couple of 32-bit VExpress
-boards. The problem is #address-cells size changed, but interrupt-map
-was not updated. This results in the timer interrupt (and all the
-other motherboard interrupts) not getting mapped.
+Hi Krzysztof,
 
-As the 'interrupt-map' properties are all just duplicates across boards,
-just move them into vexpress-v2m.dtsi and vexpress-v2m-rs1.dtsi.
-Strictly speaking, 'interrupt-map' is dependent on the parent
-interrupt controller, but it's not likely we'll ever have a different
-parent than GICv2 on these old platforms. If there was one,
-'interrupt-map' can still be overridden.
+On 9/21/21 2:47 AM, Krzysztof Kozlowski wrote:
+> External email: Use caution opening links or attachments
+> 
+> 
+> On 21/09/2021 11:42, Bitan Biswas wrote:
+>> Add Copyright for below Tegra dt-bindings headers:
+>> 1. clock
+>> 2. gpio
+>> 3. mailbox
+>> 4. memory
+>> 5. thermal
+>> 6. reset
+>> 7. pinctrl
+> 
+> Why? Please explain.
+> 
+> These are trivial constants, so I doubt there is here any copyright value.
+> 
+You may see I was adding the missing Copyright of files created by 
+Nvidia developers in past. I have not evaluated the copyright value of 
+the contents added in the initial check-in. As suggested, I plan to drop 
+this patch in any further revisions of patches from this list.
 
-Fixes: 078fb7aa6a83 ("arm: dts: vexpress: Fix addressing issues with 'motherboard-bus' nodes")
-Reported-by: Reported-by: "kernelci.org bot" <bot@kernelci.org>
-Cc: Guillaume Tucker <guillaume.tucker@collabora.com>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-I tested this on QEMU VExpress CA9. I also added a check to dtc for 
-'interrupt-map' to catch this kind of error. I need to run it on the 
-rest of the tree and upstream it before enabling in the kernel.
+>>   include/dt-bindings/reset/tegra210-car.h            | 4 ++++
+>>   include/dt-bindings/thermal/tegra124-soctherm.h     | 4 ++++
+>>   include/dt-bindings/thermal/tegra186-bpmp-thermal.h | 4 ++++
+>>   include/dt-bindings/thermal/tegra194-bpmp-thermal.h | 4 ++++
+>>   22 files changed, 104 insertions(+)
+>>
+> 
+> (...)
+> 
+>> diff --git a/include/dt-bindings/memory/tegra30-mc.h b/include/dt-bindings/memory/tegra30-mc.h
+>> index 930f708aca17..4972cf7e3cf2 100644
+>> --- a/include/dt-bindings/memory/tegra30-mc.h
+>> +++ b/include/dt-bindings/memory/tegra30-mc.h
+>> @@ -1,4 +1,10 @@
+>>   /* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Copyright (c) 2014-2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+>> + *
+>> + * Author: Thierry Reding <treding@nvidia.com>
+>> + *
+> 
+> I am sorry, but that's not entirely how it works. You cannot add only
+> selected (stripped) copyrights backwards. If adding, please include all
+> copyright holders.
+> 
 
-Rob
+I had emailed the authors(outside Nvidia) asking about additional 
+Copyright to add, but did not get response from all. One author was fine 
+with adding the Nvidia Copyright. I see now Copyright backwards needs us 
+to follow above approach. As mentioned above in my reply to your 
+comments I am planning to drop this patch if sending subsequent 
+revisions in this patch list.
 
- arch/arm/boot/dts/vexpress-v2m-rs1.dtsi       | 47 ++++++++++++++++++
- arch/arm/boot/dts/vexpress-v2m.dtsi           | 47 ++++++++++++++++++
- arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts   | 46 ------------------
- arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts    | 46 ------------------
- arch/arm/boot/dts/vexpress-v2p-ca5s.dts       | 46 ------------------
- arch/arm/boot/dts/vexpress-v2p-ca9.dts        | 48 -------------------
- .../boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts | 45 -----------------
- 7 files changed, 94 insertions(+), 231 deletions(-)
+Thanks for the inputs.
 
-diff --git a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
-index fba456bb741a..16cb54c21aef 100644
---- a/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
-+++ b/arch/arm/boot/dts/vexpress-v2m-rs1.dtsi
-@@ -17,6 +17,7 @@
-  * TAKE CARE WHEN MAINTAINING THIS FILE TO PROPAGATE ANY RELEVANT
-  * CHANGES TO vexpress-v2m.dtsi!
-  */
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
- 
- / {
- 	v2m_fixed_3v3: fixed-regulator-0 {
-@@ -105,6 +106,52 @@ bus@8000000 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 63>;
-+		interrupt-map = <0  0 &gic GIC_SPI  0 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  1 &gic GIC_SPI  1 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  2 &gic GIC_SPI  2 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  3 &gic GIC_SPI  3 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  4 &gic GIC_SPI  4 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  5 &gic GIC_SPI  5 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  6 &gic GIC_SPI  6 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  7 &gic GIC_SPI  7 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  8 &gic GIC_SPI  8 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  9 &gic GIC_SPI  9 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 10 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 11 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 12 &gic GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 13 &gic GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 14 &gic GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 15 &gic GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 16 &gic GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 17 &gic GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 18 &gic GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 19 &gic GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 20 &gic GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 21 &gic GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 22 &gic GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 23 &gic GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 24 &gic GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 25 &gic GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 26 &gic GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 27 &gic GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 28 &gic GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 29 &gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 30 &gic GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 31 &gic GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 32 &gic GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 33 &gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 34 &gic GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 35 &gic GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 36 &gic GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 37 &gic GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 38 &gic GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 39 &gic GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 40 &gic GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 41 &gic GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 42 &gic GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+
- 		motherboard-bus@8000000 {
- 			arm,hbi = <0x190>;
- 			arm,vexpress,site = <0>;
-diff --git a/arch/arm/boot/dts/vexpress-v2m.dtsi b/arch/arm/boot/dts/vexpress-v2m.dtsi
-index 0547f633764f..f434fe5cf4a1 100644
---- a/arch/arm/boot/dts/vexpress-v2m.dtsi
-+++ b/arch/arm/boot/dts/vexpress-v2m.dtsi
-@@ -17,6 +17,7 @@
-  * TAKE CARE WHEN MAINTAINING THIS FILE TO PROPAGATE ANY RELEVANT
-  * CHANGES TO vexpress-v2m-rs1.dtsi!
-  */
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
- 
- / {
- 	bus@40000000 {
-@@ -26,6 +27,52 @@ bus@40000000 {
- 		ranges = <0x40000000 0x40000000 0x10000000>,
- 			 <0x10000000 0x10000000 0x00020000>;
- 
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 63>;
-+		interrupt-map = <0  0 &gic GIC_SPI  0 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  1 &gic GIC_SPI  1 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  2 &gic GIC_SPI  2 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  3 &gic GIC_SPI  3 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  4 &gic GIC_SPI  4 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  5 &gic GIC_SPI  5 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  6 &gic GIC_SPI  6 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  7 &gic GIC_SPI  7 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  8 &gic GIC_SPI  8 IRQ_TYPE_LEVEL_HIGH>,
-+				<0  9 &gic GIC_SPI  9 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 10 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 11 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 12 &gic GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 13 &gic GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 14 &gic GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 15 &gic GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 16 &gic GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 17 &gic GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 18 &gic GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 19 &gic GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 20 &gic GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 21 &gic GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 22 &gic GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 23 &gic GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 24 &gic GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 25 &gic GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 26 &gic GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 27 &gic GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 28 &gic GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 29 &gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 30 &gic GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 31 &gic GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 32 &gic GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 33 &gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 34 &gic GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 35 &gic GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 36 &gic GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 37 &gic GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 38 &gic GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 39 &gic GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 40 &gic GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 41 &gic GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-+				<0 42 &gic GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+
- 		motherboard-bus@40000000 {
- 			arm,hbi = <0x190>;
- 			arm,vexpress,site = <0>;
-diff --git a/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts b/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts
-index 7fb387a7f81b..679537e17ff5 100644
---- a/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts
-+++ b/arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts
-@@ -238,52 +238,6 @@ energy {
- 
- 	bus@8000000 {
- 		ranges = <0x8000000 0 0x8000000 0x18000000>;
--
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0 0 63>;
--		interrupt-map = <0 0  0 &gic 0  0 4>,
--				<0 0  1 &gic 0  1 4>,
--				<0 0  2 &gic 0  2 4>,
--				<0 0  3 &gic 0  3 4>,
--				<0 0  4 &gic 0  4 4>,
--				<0 0  5 &gic 0  5 4>,
--				<0 0  6 &gic 0  6 4>,
--				<0 0  7 &gic 0  7 4>,
--				<0 0  8 &gic 0  8 4>,
--				<0 0  9 &gic 0  9 4>,
--				<0 0 10 &gic 0 10 4>,
--				<0 0 11 &gic 0 11 4>,
--				<0 0 12 &gic 0 12 4>,
--				<0 0 13 &gic 0 13 4>,
--				<0 0 14 &gic 0 14 4>,
--				<0 0 15 &gic 0 15 4>,
--				<0 0 16 &gic 0 16 4>,
--				<0 0 17 &gic 0 17 4>,
--				<0 0 18 &gic 0 18 4>,
--				<0 0 19 &gic 0 19 4>,
--				<0 0 20 &gic 0 20 4>,
--				<0 0 21 &gic 0 21 4>,
--				<0 0 22 &gic 0 22 4>,
--				<0 0 23 &gic 0 23 4>,
--				<0 0 24 &gic 0 24 4>,
--				<0 0 25 &gic 0 25 4>,
--				<0 0 26 &gic 0 26 4>,
--				<0 0 27 &gic 0 27 4>,
--				<0 0 28 &gic 0 28 4>,
--				<0 0 29 &gic 0 29 4>,
--				<0 0 30 &gic 0 30 4>,
--				<0 0 31 &gic 0 31 4>,
--				<0 0 32 &gic 0 32 4>,
--				<0 0 33 &gic 0 33 4>,
--				<0 0 34 &gic 0 34 4>,
--				<0 0 35 &gic 0 35 4>,
--				<0 0 36 &gic 0 36 4>,
--				<0 0 37 &gic 0 37 4>,
--				<0 0 38 &gic 0 38 4>,
--				<0 0 39 &gic 0 39 4>,
--				<0 0 40 &gic 0 40 4>,
--				<0 0 41 &gic 0 41 4>,
--				<0 0 42 &gic 0 42 4>;
- 	};
- 
- 	site2: hsb@40000000 {
-diff --git a/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts b/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
-index f81d14753273..511e87cc2bc5 100644
---- a/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
-+++ b/arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
-@@ -610,52 +610,6 @@ etm2_out_port: endpoint {
- 
- 	smb: bus@8000000 {
- 		ranges = <0x8000000 0 0x8000000 0x18000000>;
--
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0 0 63>;
--		interrupt-map = <0 0  0 &gic 0  0 4>,
--				<0 0  1 &gic 0  1 4>,
--				<0 0  2 &gic 0  2 4>,
--				<0 0  3 &gic 0  3 4>,
--				<0 0  4 &gic 0  4 4>,
--				<0 0  5 &gic 0  5 4>,
--				<0 0  6 &gic 0  6 4>,
--				<0 0  7 &gic 0  7 4>,
--				<0 0  8 &gic 0  8 4>,
--				<0 0  9 &gic 0  9 4>,
--				<0 0 10 &gic 0 10 4>,
--				<0 0 11 &gic 0 11 4>,
--				<0 0 12 &gic 0 12 4>,
--				<0 0 13 &gic 0 13 4>,
--				<0 0 14 &gic 0 14 4>,
--				<0 0 15 &gic 0 15 4>,
--				<0 0 16 &gic 0 16 4>,
--				<0 0 17 &gic 0 17 4>,
--				<0 0 18 &gic 0 18 4>,
--				<0 0 19 &gic 0 19 4>,
--				<0 0 20 &gic 0 20 4>,
--				<0 0 21 &gic 0 21 4>,
--				<0 0 22 &gic 0 22 4>,
--				<0 0 23 &gic 0 23 4>,
--				<0 0 24 &gic 0 24 4>,
--				<0 0 25 &gic 0 25 4>,
--				<0 0 26 &gic 0 26 4>,
--				<0 0 27 &gic 0 27 4>,
--				<0 0 28 &gic 0 28 4>,
--				<0 0 29 &gic 0 29 4>,
--				<0 0 30 &gic 0 30 4>,
--				<0 0 31 &gic 0 31 4>,
--				<0 0 32 &gic 0 32 4>,
--				<0 0 33 &gic 0 33 4>,
--				<0 0 34 &gic 0 34 4>,
--				<0 0 35 &gic 0 35 4>,
--				<0 0 36 &gic 0 36 4>,
--				<0 0 37 &gic 0 37 4>,
--				<0 0 38 &gic 0 38 4>,
--				<0 0 39 &gic 0 39 4>,
--				<0 0 40 &gic 0 40 4>,
--				<0 0 41 &gic 0 41 4>,
--				<0 0 42 &gic 0 42 4>;
- 	};
- 
- 	site2: hsb@40000000 {
-diff --git a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
-index 42dbf606b1e2..3b88209bacea 100644
---- a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
-+++ b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
-@@ -208,52 +208,6 @@ temp-dcc {
- 
- 	smb: bus@8000000 {
- 		ranges = <0 0x8000000 0x18000000>;
--
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0 0 63>;
--		interrupt-map = <0 0  0 &gic 0  0 4>,
--				<0 0  1 &gic 0  1 4>,
--				<0 0  2 &gic 0  2 4>,
--				<0 0  3 &gic 0  3 4>,
--				<0 0  4 &gic 0  4 4>,
--				<0 0  5 &gic 0  5 4>,
--				<0 0  6 &gic 0  6 4>,
--				<0 0  7 &gic 0  7 4>,
--				<0 0  8 &gic 0  8 4>,
--				<0 0  9 &gic 0  9 4>,
--				<0 0 10 &gic 0 10 4>,
--				<0 0 11 &gic 0 11 4>,
--				<0 0 12 &gic 0 12 4>,
--				<0 0 13 &gic 0 13 4>,
--				<0 0 14 &gic 0 14 4>,
--				<0 0 15 &gic 0 15 4>,
--				<0 0 16 &gic 0 16 4>,
--				<0 0 17 &gic 0 17 4>,
--				<0 0 18 &gic 0 18 4>,
--				<0 0 19 &gic 0 19 4>,
--				<0 0 20 &gic 0 20 4>,
--				<0 0 21 &gic 0 21 4>,
--				<0 0 22 &gic 0 22 4>,
--				<0 0 23 &gic 0 23 4>,
--				<0 0 24 &gic 0 24 4>,
--				<0 0 25 &gic 0 25 4>,
--				<0 0 26 &gic 0 26 4>,
--				<0 0 27 &gic 0 27 4>,
--				<0 0 28 &gic 0 28 4>,
--				<0 0 29 &gic 0 29 4>,
--				<0 0 30 &gic 0 30 4>,
--				<0 0 31 &gic 0 31 4>,
--				<0 0 32 &gic 0 32 4>,
--				<0 0 33 &gic 0 33 4>,
--				<0 0 34 &gic 0 34 4>,
--				<0 0 35 &gic 0 35 4>,
--				<0 0 36 &gic 0 36 4>,
--				<0 0 37 &gic 0 37 4>,
--				<0 0 38 &gic 0 38 4>,
--				<0 0 39 &gic 0 39 4>,
--				<0 0 40 &gic 0 40 4>,
--				<0 0 41 &gic 0 41 4>,
--				<0 0 42 &gic 0 42 4>;
- 	};
- 
- 	site2: hsb@40000000 {
-diff --git a/arch/arm/boot/dts/vexpress-v2p-ca9.dts b/arch/arm/boot/dts/vexpress-v2p-ca9.dts
-index 99b2f339cc04..5916e4877eac 100644
---- a/arch/arm/boot/dts/vexpress-v2p-ca9.dts
-+++ b/arch/arm/boot/dts/vexpress-v2p-ca9.dts
-@@ -295,54 +295,6 @@ power-vd10-s3 {
- 		};
- 	};
- 
--	smb: bus@40000000 {
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0 0 63>;
--		interrupt-map = <0 0  0 &gic 0  0 4>,
--				<0 0  1 &gic 0  1 4>,
--				<0 0  2 &gic 0  2 4>,
--				<0 0  3 &gic 0  3 4>,
--				<0 0  4 &gic 0  4 4>,
--				<0 0  5 &gic 0  5 4>,
--				<0 0  6 &gic 0  6 4>,
--				<0 0  7 &gic 0  7 4>,
--				<0 0  8 &gic 0  8 4>,
--				<0 0  9 &gic 0  9 4>,
--				<0 0 10 &gic 0 10 4>,
--				<0 0 11 &gic 0 11 4>,
--				<0 0 12 &gic 0 12 4>,
--				<0 0 13 &gic 0 13 4>,
--				<0 0 14 &gic 0 14 4>,
--				<0 0 15 &gic 0 15 4>,
--				<0 0 16 &gic 0 16 4>,
--				<0 0 17 &gic 0 17 4>,
--				<0 0 18 &gic 0 18 4>,
--				<0 0 19 &gic 0 19 4>,
--				<0 0 20 &gic 0 20 4>,
--				<0 0 21 &gic 0 21 4>,
--				<0 0 22 &gic 0 22 4>,
--				<0 0 23 &gic 0 23 4>,
--				<0 0 24 &gic 0 24 4>,
--				<0 0 25 &gic 0 25 4>,
--				<0 0 26 &gic 0 26 4>,
--				<0 0 27 &gic 0 27 4>,
--				<0 0 28 &gic 0 28 4>,
--				<0 0 29 &gic 0 29 4>,
--				<0 0 30 &gic 0 30 4>,
--				<0 0 31 &gic 0 31 4>,
--				<0 0 32 &gic 0 32 4>,
--				<0 0 33 &gic 0 33 4>,
--				<0 0 34 &gic 0 34 4>,
--				<0 0 35 &gic 0 35 4>,
--				<0 0 36 &gic 0 36 4>,
--				<0 0 37 &gic 0 37 4>,
--				<0 0 38 &gic 0 38 4>,
--				<0 0 39 &gic 0 39 4>,
--				<0 0 40 &gic 0 40 4>,
--				<0 0 41 &gic 0 41 4>,
--				<0 0 42 &gic 0 42 4>;
--	};
--
- 	site2: hsb@e0000000 {
- 		compatible = "simple-bus";
- 		#address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-index 5f6a5951adef..5b6d9d8e934d 100644
---- a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-+++ b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-@@ -146,50 +146,5 @@ temp-fpga {
- 
- 	smb: bus@8000000 {
- 		ranges = <0x8000000 0 0x8000000 0x18000000>;
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0 0 63>;
--		interrupt-map = <0 0  0 &gic GIC_SPI  0 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0  1 &gic GIC_SPI  1 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0  2 &gic GIC_SPI  2 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0  3 &gic GIC_SPI  3 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0  4 &gic GIC_SPI  4 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0  5 &gic GIC_SPI  5 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0  6 &gic GIC_SPI  6 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0  7 &gic GIC_SPI  7 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0  8 &gic GIC_SPI  8 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0  9 &gic GIC_SPI  9 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 10 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 11 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 12 &gic GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 13 &gic GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 14 &gic GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 15 &gic GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 16 &gic GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 17 &gic GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 18 &gic GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 19 &gic GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 20 &gic GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 21 &gic GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 22 &gic GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 23 &gic GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 24 &gic GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 25 &gic GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 26 &gic GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 27 &gic GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 28 &gic GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 29 &gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 30 &gic GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 31 &gic GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 32 &gic GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 33 &gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 34 &gic GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 35 &gic GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 36 &gic GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 37 &gic GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 38 &gic GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 39 &gic GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 40 &gic GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 41 &gic GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
--				<0 0 42 &gic GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- };
--- 
-2.30.2
+-regards,
+  Bitan
 
