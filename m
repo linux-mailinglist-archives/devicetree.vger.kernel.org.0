@@ -2,188 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1E7341693F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 03:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64FB9416943
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 03:11:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243692AbhIXBLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 21:11:38 -0400
-Received: from mailout2.samsung.com ([203.254.224.25]:27462 "EHLO
-        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243678AbhIXBLi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 21:11:38 -0400
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20210924011004epoutp02ef959ef6f7dd2f8e6b23454b4537b1aa~nnM9WAZeb0648306483epoutp02O
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 01:10:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20210924011004epoutp02ef959ef6f7dd2f8e6b23454b4537b1aa~nnM9WAZeb0648306483epoutp02O
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1632445804;
-        bh=V0HZSHUZzy9kK6+ysd/jd9GqpM44S84Cd2QYn8LsPxE=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=g6ZgVWnJ6bNLL25y1s5HD5Zx6qG5uolGyMIjIAnZUrvIPzinan95YSdI5cWUkwh0k
-         x3AqSq/E5CRilFBdgGXXhkkDs+vl5Ocy6TEg6SvJPQ/H6kurURPb1l/K+7mzXR2wVX
-         lx5TPQV0TqllorywDhy6Q6z0p/bmR7DlhsHglYsI=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-        20210924011003epcas2p1c46d517bf83bd54a2e36602b4fe2efa4~nnM8pDo0S2085120851epcas2p1B;
-        Fri, 24 Sep 2021 01:10:03 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.40.181]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4HFv8T5KKGz4x9Q4; Fri, 24 Sep
-        2021 01:10:01 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D1.1B.09816.9652D416; Fri, 24 Sep 2021 10:10:01 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-        20210924011001epcas2p2942a0366238ce6e5a02a3759f39ba0bd~nnM6hx28l1833718337epcas2p2H;
-        Fri, 24 Sep 2021 01:10:01 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20210924011001epsmtrp29a5916da3a0e49b9f46adc23fbb6ddbf~nnM6gT6u50274302743epsmtrp2Q;
-        Fri, 24 Sep 2021 01:10:01 +0000 (GMT)
-X-AuditID: b6c32a46-625ff70000002658-3a-614d25696691
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        2F.C7.08750.9652D416; Fri, 24 Sep 2021 10:10:01 +0900 (KST)
-Received: from KORCO039056 (unknown [10.229.8.156]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20210924011000epsmtip1e7f2de16570cd271581e0bb1bf80763c~nnM6QQ8A50905209052epsmtip1O;
-        Fri, 24 Sep 2021 01:10:00 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Rob Herring'" <robh@kernel.org>
-Cc:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        "'Avri Altman'" <avri.altman@wdc.com>,
-        "'James E . J . Bottomley'" <jejb@linux.ibm.com>,
-        "'Martin K . Petersen'" <martin.petersen@oracle.com>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
-        "'Bean Huo'" <beanhuo@micron.com>,
-        "'Bart Van Assche'" <bvanassche@acm.org>,
-        "'Adrian Hunter'" <adrian.hunter@intel.com>,
-        "'Christoph Hellwig'" <hch@infradead.org>,
-        "'Can Guo'" <cang@codeaurora.org>,
-        "'Jaegeuk Kim'" <jaegeuk@kernel.org>,
-        "'Gyunghoon Kwon'" <goodjob.kwon@samsung.com>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-In-Reply-To: <YUx1bp8a/hhnlwl0@robh.at.kernel.org>
-Subject: RE: [PATCH v3 05/17] dt-bindings: ufs: exynos-ufs: add sysreg
- regmap property
-Date:   Fri, 24 Sep 2021 10:10:00 +0900
-Message-ID: <000901d7b0e0$e618b220$b24a1660$@samsung.com>
+        id S243715AbhIXBNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 21:13:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54430 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240863AbhIXBNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 21:13:19 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA7DCC061574;
+        Thu, 23 Sep 2021 18:11:47 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id r43-20020a05683044ab00b0054716b40005so4162362otv.4;
+        Thu, 23 Sep 2021 18:11:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=MxDtpUjEKo8kqRtDSEa0VC2kT6csU3vX3PxoHUzEVys=;
+        b=lZTsLyBURwTrxfoxlaW7/mmme2DMEm99v2X6w3AAheJUt4IunbUdpap+0UIDLa1JpM
+         0+EPTA+zjtAHOqudXy9pFULZGl09euwo7KIb+7UOSL+nlCmkWoBq1niqhEfwJrC40BfB
+         tE8iwHj8deuk0WxTKLv8swzmuij9yVGbMWLdMzUVm4on9hU8/KVX3r3wv6yfQMvje0TI
+         1pwLHuj9clwSytLoHt6tivu422KXtD+Urh2JsxE2I+LKEJJg7PGAPLy5/Y3YbND5T98x
+         HZOCK+ShctvovNX63qhXsVx4rrVEWsXPBoR0o3oFfQQslmFWKaA2q9LrbmupV7ZeiPbF
+         Q3sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=MxDtpUjEKo8kqRtDSEa0VC2kT6csU3vX3PxoHUzEVys=;
+        b=RQktmV/TYCnFTIu2DkMOARYQjb4X9whkN2qBQrR0ZyLIYUtrvc0JPWvFgzxL+vp+MY
+         x6mpsIflrYPzc6Z2ipJuOcWHT5N5kBHu+HkJ+ivltglM2FJP+jWcKO5jwuBZZ68Pqq+p
+         JE3ROTLvtL8Ij2lZJcSF/jVksw1j/OrPBXwql8Y5aw/ohejt6qVVYH/s825/Q87KqOok
+         0Jklu2jtuL6+3BfN9pf7KZkqUh1p6Q6j5lKcHs0BZSky37M08R6eypNF+dgZolePDQIY
+         3nE1VAHPl2CCYOpgH+0uiKC/FB/AHqsV8a+Yg/XgfdedeccYMQov8JyBJK0Df1gxcy1J
+         VJcg==
+X-Gm-Message-State: AOAM532dhCig/bXEcxq0kSMuHXbEsGili9JsxC9g09ndqXlJ/zQba65a
+        nazsT5TerTR/aeWbewGddlC9UKrVXa0=
+X-Google-Smtp-Source: ABdhPJxvotrPgXwqvtRlLvXAmLpc9dwM10hhD7EcF5PrtnaXw6b7a8CYuf5T0ywOYZdL0JMB8PHYbw==
+X-Received: by 2002:a9d:289:: with SMTP id 9mr1416129otl.213.1632445907180;
+        Thu, 23 Sep 2021 18:11:47 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id h17sm1768476ooc.18.2021.09.23.18.11.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Sep 2021 18:11:46 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 23 Sep 2021 18:11:45 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: lm90: convert to dtschema
+Message-ID: <20210924011145.GA3029785@roeck-us.net>
+References: <20210920181913.338772-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKr0ifVbQZWZSl2xwEUfL3y5isNhQLrZ3V1AdZHg9YCn30eDgG0vbDVAc/JwHCpsu1osA==
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA02TbUxTZxTH89zb3hYVci3InrC4NXcyJ6PQFosPDtwQNXeTTczMNMtivYM7
-        2q20XS9lkw8LbNFRCohxUSwwNtzAgEmldhQYAiuMl5m5OKCKCwqsTljGa4MOjLK2FzO+/c45
-        /5Nz/s+LGJd4iSixVp/LmvSMjiLWCZq7tyXKtNFvMvI560towHuJQGNfNxNoammYQD+NWwTo
-        7NwSjhbsdUJU03NdiEpa09C18loMee02HNXeasZQ0/S/GKr4rQND1pstBKrve4KhlfYW0Wsk
-        PTi0n7YVlBL0YFkpRl+5GENfaJ/CaEeDhaDLa7sA/dBeRNDz924L6DJnA6B9jufoL7usWMaG
-        d3XJGpbJYk1SVp9pyNLqs1Oo/W+r09SqRLlCpkhCOyipnslhU6g96RmyfVqd3xMlzWN0Zn8q
-        g+E4Kn5XsslgzmWlGgOXm0KxxiydUaEwxnFMDmfWZ8dlGnJ2KuRypcqvPKbT1E+cwowW8tML
-        7lpRAWjaUAxCxJDcDkfu1GDFYJ1YQrYAWNo7uBosADjrsIgCKgnpA9D784tPO1of/SrkRW0A
-        fr94V8AHkwAu37wrDKgIMh5OFTUHOYKMhp/bxoIinLQI4YJtkAgUQkglHO4cCXI4eQSeWqgO
-        ssDfMPq4HgtwKJkEuzuGRDxvhAPnvYIA4+Tz0DVdhfMrSeHSvTr/MLF/2DvwviuWl0TASsvJ
-        VYk1BDp6GJ73wMbSVhHP4fDvPucqR0HfzFUisKdfD+CJiZXVQiOAlsJ0nl+Fy+ecwVk4uQ3a
-        2+IDCMkXYM/t1c3CYFH3YxGfDoVFJyV841bY5Ton4HkztFb5hOWAsq3xZVvjy7bGgO3/Wd8A
-        QQOIZI1cTjbLKY3KtXftAMHnHrOvBXw1PRfnBpgYuAEU41REqO/WG4wkNIs5ns+aDGqTWcdy
-        bqDyn/RpPGpTpsH/X/S5aoVKmZgoT1IhVaISUc+EVj/ZzUjIbCaX/YhljazpaR8mDokqwL5j
-        X/f8KW+6+KCtk4k8NFy55fLYwdGOBFA8nfDt6IRxqKR3tu7KgDpsca76yEzISI1xh+wDJ3Yp
-        9neD/rPUZ2cXmsbv7433VpQdbv3ni3wTt/nqsbxeafJY+C/L78/H7pzEUat9fb4yw40iJ7eC
-        QhUnF45ZVM7DU0VnXab1874OV3GmoPHOmbdAVafvkYzzPPxEc6I7WQal580zNQnj0SMxsWkl
-        KxUdJarLKamF5qkfslNzDvUzsWfUP24Je/notVGPZ7Zb2dN1PO897Yc30Ma+9hvsTFuldlHj
-        OrjsOWDalZIe5UaevcKSnk3X+62jER9zB/7o1+7e/uDoK6f/aicpAadhFDG4iWP+A30SxZx3
-        BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHIsWRmVeSWpSXmKPExsWy7bCSnG6mqm+iwcunrBYnn6xhs3gwbxub
-        xcufV9ksDj7sZLGY9uEns8Wn9ctYLeYfOcdq0bPT2eL0hEVMFk/Wz2K2WHRjG5PFxrc/mCxm
-        nN/HZNF9fQebxfLj/5gs/u/Zwe4g4HH5irfHrIZeNo/Lfb1MHptXaHks3vOSyWPTqk42jwmL
-        DjB6fF/fwebx8ektFo++LasYPT5vkvNoP9DNFMATxWWTkpqTWZZapG+XwJWx/FE/U0GnQMXi
-        Q4vYGxg38nQxcnJICJhI7Px9lrWLkYtDSGAHo8T/WZcYIRKyEs/e7WCHsIUl7rccgSp6xihx
-        aNo/VpAEm4C+xMuObWC2iICqRNOsBywgRcwCk1kljp4/zQLRsZ9J4sG7frAqTgEjiav7b7J1
-        MXJwCAuESezfYQcSZgFqvvt3OROIzStgKXF43xV2CFtQ4uTMJywg5cwCehJtG8GOYxaQl9j+
-        dg4zxHEKEj+fLmMFKREBmvh8uw5EiYjE7M425gmMwrOQDJqFMGgWkkGzkHQsYGRZxSiZWlCc
-        m55bbFhglJdarlecmFtcmpeul5yfu4kRHOVaWjsY96z6oHeIkYmD8RCjBAezkgjv5xteiUK8
-        KYmVValF+fFFpTmpxYcYpTlYlMR5L3SdjBcSSE8sSc1OTS1ILYLJMnFwSjUwbeuMUM8LvfMi
-        KGvaTM7YiPteigbajGuuctXma7d+2aCY4en2Pt2uJWF23ZL0gOkT9FZe2/bR9vPnmXwKV7J+
-        xfGtWusoG/PU8O2l2d/0Lhde2dW+fVFd361U8Vkvc4r/XJ8cVPBAvXxOQ8Xdv/PXcv6YF8jK
-        dv7rvIiosttSZ0PkgtYJfctVyXZrYjh/MnhBxJlH0xo9K87NlD2ts9nzybdjty0KBXbpRZX1
-        PX4iPCX0/JmUOwu1Two2nvO+LO39Vv7lL5tGxbOBTodMFr9Zc5OxdH76HnGOvNTerhO+dapL
-        /c/cvjcn9YSHbfTVixo+UyRfl8Uxte2ddF31Tm6YdNRyJzbGII3b7JdzY+pXKbEUZyQaajEX
-        FScCAG4D2mJhAwAA
-X-CMS-MailID: 20210924011001epcas2p2942a0366238ce6e5a02a3759f39ba0bd
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20210917065523epcas2p3ff66daa15c8c782f839422756c388d93
-References: <20210917065436.145629-1-chanho61.park@samsung.com>
-        <CGME20210917065523epcas2p3ff66daa15c8c782f839422756c388d93@epcas2p3.samsung.com>
-        <20210917065436.145629-6-chanho61.park@samsung.com>
-        <YUuKpSPgdKl2CiSy@robh.at.kernel.org>
-        <000801d7b014$9ed9fe40$dc8dfac0$@samsung.com>
-        <YUx1bp8a/hhnlwl0@robh.at.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210920181913.338772-1-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > > +  sysreg:
-> > >
-> > > Needs a vendor prefix.
-> >
-> > Thanks. I'll use "samsung,sysreg-phandle".
+On Mon, Sep 20, 2021 at 08:19:12PM +0200, Krzysztof Kozlowski wrote:
+> Convert the National LM90 hwmon sensor bindings to DT schema format.
 > 
-> No '-phandle'.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Will use "samsung,sysreg" next patch series.
+Applied.
 
+Thanks,
+Guenter
+
+> ---
 > 
-> >
-> > >
-> > > > +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> > > > +    description: phandle for FSYS sysreg interface, used to control
-> > > > +                 sysreg register bit for UFS IO Coherency
-> > >
-> > > Is there more than 1 FSYS? If not, you can just get the node by its
-> > > compatible.
-> >
-> > The phandle can be differed each exynos SoCs, AFAIK. I think other
-> > exynos SoCs since exnos7 will need this but not upstreamed yet...
+> Changes since v1:
+> 1. Drop adi,adt7461 from trivial-devices.
+> ---
+>  .../devicetree/bindings/hwmon/lm90.txt        | 51 ------------
+>  .../bindings/hwmon/national,lm90.yaml         | 79 +++++++++++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |  4 -
+>  MAINTAINERS                                   |  2 +-
+>  4 files changed, 80 insertions(+), 56 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/lm90.txt
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/national,lm90.yaml
 > 
-> That's still fine. You really only need a phandle if there is more than
-> 1 instance on a given platform.
-> 
-> Of course you could end up with multiple compatible strings to deal with,
-> but you might need that anyway as the registers are likely to be
-different.
-> That can sometimes be mitigated by putting register offsets into the DT
-> property (something to consider here).  This is the problem with drivers
-> directly twiddling bits in  other h/w blocks and why we have common
-> interfaces for clocks, resets, etc.
-
-Regarding ufs-exynos, it can have multiple instances (ufs_0/1/22). I'm also
-preparing to support ufs_1 for exynosautov9 SoC but not yet finished due to
-ufs phy control. Each instances has their own sysreg offset. To support
-secondary ufs, I need to rework this patch and add the offset field as DT
-propery.
-
-+#define UFS_SHAREABILITY_OFFSET        0x710
-
-For UFS1, this should be 0x714.
-
-> 
-> I leave it to you to decide how you want to do it.
-> 
-> BTW, If you want to see another way to handle the same problem, see
-> highbank_platform_notifier(). Notifiers aren't great either, but it keeps
-> some SoC specifics out of the driver.
-> 
-
-I checked highbank_platform_notifier() implementation but I need to keep
-this way to have further support multiple ufs instances and can be used for
-exynos8/9 SoCs as well.
-
-Best Regards,
-Chanho Park
-
+> diff --git a/Documentation/devicetree/bindings/hwmon/lm90.txt b/Documentation/devicetree/bindings/hwmon/lm90.txt
+> deleted file mode 100644
+> index 398dcb965751..000000000000
+> --- a/Documentation/devicetree/bindings/hwmon/lm90.txt
+> +++ /dev/null
+> @@ -1,51 +0,0 @@
+> -* LM90 series thermometer.
+> -
+> -Required node properties:
+> -- compatible: manufacturer and chip name, one of
+> -		"adi,adm1032"
+> -		"adi,adt7461"
+> -		"adi,adt7461a"
+> -		"gmt,g781"
+> -		"national,lm90"
+> -		"national,lm86"
+> -		"national,lm89"
+> -		"national,lm99"
+> -		"dallas,max6646"
+> -		"dallas,max6647"
+> -		"dallas,max6649"
+> -		"dallas,max6657"
+> -		"dallas,max6658"
+> -		"dallas,max6659"
+> -		"dallas,max6680"
+> -		"dallas,max6681"
+> -		"dallas,max6695"
+> -		"dallas,max6696"
+> -		"onnn,nct1008"
+> -		"winbond,w83l771"
+> -		"nxp,sa56004"
+> -		"ti,tmp451"
+> -
+> -- reg: I2C bus address of the device
+> -
+> -- vcc-supply: vcc regulator for the supply voltage.
+> -
+> -Optional properties:
+> -- interrupts: Contains a single interrupt specifier which describes the
+> -              LM90 "-ALERT" pin output.
+> -              See interrupt-controller/interrupts.txt for the format.
+> -
+> -- #thermal-sensor-cells: should be set to 1. See thermal/thermal-sensor.yaml
+> -	      for details. See <include/dt-bindings/thermal/lm90.h> for the
+> -	      definition of the local, remote and 2nd remote sensor index
+> -	      constants.
+> -
+> -Example LM90 node:
+> -
+> -temp-sensor {
+> -	compatible = "onnn,nct1008";
+> -	reg = <0x4c>;
+> -	vcc-supply = <&palmas_ldo6_reg>;
+> -	interrupt-parent = <&gpio>;
+> -	interrupts = <TEGRA_GPIO(O, 4) IRQ_TYPE_LEVEL_LOW>;
+> -	#thermal-sensor-cells = <1>;
+> -}
+> diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> new file mode 100644
+> index 000000000000..e712117da3df
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/national,lm90.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LM90 series thermometer
+> +
+> +maintainers:
+> +  - Jean Delvare <jdelvare@suse.com>
+> +  - Guenter Roeck <linux@roeck-us.net>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adm1032
+> +      - adi,adt7461
+> +      - adi,adt7461a
+> +      - dallas,max6646
+> +      - dallas,max6647
+> +      - dallas,max6649
+> +      - dallas,max6657
+> +      - dallas,max6658
+> +      - dallas,max6659
+> +      - dallas,max6680
+> +      - dallas,max6681
+> +      - dallas,max6695
+> +      - dallas,max6696
+> +      - gmt,g781
+> +      - national,lm86
+> +      - national,lm89
+> +      - national,lm90
+> +      - national,lm99
+> +      - nxp,sa56004
+> +      - onnn,nct1008
+> +      - ti,tmp451
+> +      - winbond,w83l771
+> +
+> +
+> +  interrupts:
+> +    items:
+> +      - description: |
+> +          Single interrupt specifier which describes the LM90 "-ALERT" pin
+> +          output.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+> +  vcc-supply:
+> +    description: phandle to the regulator that provides the +VCC supply
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vcc-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/tegra-gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        sensor@4c {
+> +            compatible = "onnn,nct1008";
+> +            reg = <0x4c>;
+> +            vcc-supply = <&palmas_ldo6_reg>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <TEGRA_GPIO(O, 4) IRQ_TYPE_LEVEL_LOW>;
+> +            #thermal-sensor-cells = <1>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 1e4b3464d734..1eb4ce7dcdfd 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -41,10 +41,6 @@ properties:
+>            - adi,adp5585-02
+>              # Analog Devices ADP5589 Keypad Decoder and I/O Expansion
+>            - adi,adp5589
+> -            # +/-1C TDM Extended Temp Range I.C
+> -          - adi,adt7461
+> -            # +/-1C TDM Extended Temp Range I.C
+> -          - adt7461
+>              # AMS iAQ-Core VOC Sensor
+>            - ams,iaq-core
+>              # i2c serial eeprom  (24cxx)
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2b990794ec35..b07679009af2 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10928,7 +10928,7 @@ LM90 HARDWARE MONITOR DRIVER
+>  M:	Jean Delvare <jdelvare@suse.com>
+>  L:	linux-hwmon@vger.kernel.org
+>  S:	Maintained
+> -F:	Documentation/devicetree/bindings/hwmon/lm90.txt
+> +F:	Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+>  F:	Documentation/hwmon/lm90.rst
+>  F:	drivers/hwmon/lm90.c
+>  F:	include/dt-bindings/thermal/lm90.h
