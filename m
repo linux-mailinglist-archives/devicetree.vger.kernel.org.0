@@ -2,61 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A06C416CE1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 09:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3BB2416CF3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 09:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237142AbhIXHgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 03:36:18 -0400
-Received: from muru.com ([72.249.23.125]:36814 "EHLO muru.com"
+        id S244405AbhIXHmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 03:42:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50946 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231921AbhIXHgS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 03:36:18 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 99D6580EE;
-        Fri, 24 Sep 2021 07:35:11 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Chunyan Zhang <zhang.chunyan@linaro.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-mmc@vger.kernel.org, linux-omap@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: sdhci-omap: Document ti,non-removable property as deprecated
-Date:   Fri, 24 Sep 2021 10:34:41 +0300
-Message-Id: <20210924073441.7835-1-tony@atomide.com>
-X-Mailer: git-send-email 2.33.0
+        id S244166AbhIXHmR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Sep 2021 03:42:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B026E61241;
+        Fri, 24 Sep 2021 07:40:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632469244;
+        bh=KGRj7zaejQRrquDHEGdmDBrND00o4l+yU9h0flV46Z4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=dgu/0u00F3ZN/pGr1CoFex5HXIH7CJSuYbqxOiBI3lA5kJxwmhWb9zk4H8oyEcYV5
+         tfCn4wfZCl2pL53xc+7W+4Qv/1I9Z/tGDBIfw2PJ3RDMHLhWhuthpvw887k/854D2M
+         Tq24/Dvw0RbH4tjnKy+bAOM/y24qiNCepcrwNtOXrpGzteBFT/KkazNbgpPWQY7wOB
+         63qMvkaUUT5TVmFUqt35Cv8irliOSigoIIgWwKa1EyCditTS8uPN1YjHxR+1KUOYOP
+         cWOG3WaznesWD6ajPPK9RQmUMISCC4hnICGafGRk0KVZwjmR1bWjvgrcnrA1ykHE8M
+         yERY4Sk7uacIQ==
+Received: by mail-pf1-f173.google.com with SMTP id w14so8194999pfu.2;
+        Fri, 24 Sep 2021 00:40:44 -0700 (PDT)
+X-Gm-Message-State: AOAM531Nq1QEO6UPdn5W++kOVqd6Dp9cQ4hcFIPqR/Si+PLrd2d3y/1Z
+        sxpfiC9DmecWvHZ+lxub5MUuYfrOCRm9PYEyWWU=
+X-Google-Smtp-Source: ABdhPJwVgzUBS1jHmBlN/QYv+cZQGCKyob4lgApPFYtL28AzyMCWAHFnBA9HQ+3su5wUoPJk+PurbKDWJIV+pEY/PuQ=
+X-Received: by 2002:a62:ce0d:0:b0:438:71f1:4442 with SMTP id
+ y13-20020a62ce0d000000b0043871f14442mr8511406pfg.21.1632469244329; Fri, 24
+ Sep 2021 00:40:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210921174434.4839-1-bbiswas@nvidia.com> <YU0Bbc4lqtENJ5WF@robh.at.kernel.org>
+In-Reply-To: <YU0Bbc4lqtENJ5WF@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Fri, 24 Sep 2021 09:40:32 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPfVb0WybiF4T4cEh4ukCQWTB2+qwbOBAhCSyp+w1uBdiQ@mail.gmail.com>
+Message-ID: <CAJKOXPfVb0WybiF4T4cEh4ukCQWTB2+qwbOBAhCSyp+w1uBdiQ@mail.gmail.com>
+Subject: Re: [PATCH V1 0/3] Add tegra header license and dt-bindings Copyright
+To:     Rob Herring <robh@kernel.org>
+Cc:     Bitan Biswas <bbiswas@nvidia.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        rostedt@goodmis.org, mingo@redhat.com, jassisinghbrar@gmail.com,
+        p.zabel@pengutronix.de, skomatineni@nvidia.com, broonie@kernel.org,
+        linus.walleij@linaro.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nowadays the standard non-removable property should be used, but we
-still need to parse the ti,non-removable too. Let's document it as a
-deprecated property.
+On Fri, 24 Sept 2021 at 00:36, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Sep 21, 2021 at 10:44:31AM -0700, Bitan Biswas wrote:
+> > Few Tegra header file are missing license text.
+> > Some Tegra dt-bindings header do not have Copyright.
+> > Add license and Copyright for such Tegra header files.
+>
+> Who do you expect to merge this? Tegra maintainers or I can apply
+> patches 1 and 3.
+>
+> Series should be for 1 maintainer clearly, separate series per
+> maintainer if there's no dependencies (this case), or clearly state who
+> you think should take a series if it has cross tree dependencies.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Suggested-by: Ulf Hansson <ulf.hansson@linaro.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- Documentation/devicetree/bindings/mmc/sdhci-omap.txt | 3 +++
- 1 file changed, 3 insertions(+)
+Please wait with applying these. I had comments for patches 1 and 3,
+but the set was sent three times, so maybe you don't see my questions
+in this thread.
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
---- a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-@@ -28,6 +28,9 @@ Optional properties:
- 		DMA specifiers listed in dmas. The string naming is to be "tx"
- 		and "rx" for TX and RX DMA requests, respectively.
- 
-+Deprecated properties:
-+- ti,non-removable: Compatible with the generic non-removable property
-+
- Example:
- 	mmc1: mmc@4809c000 {
- 		compatible = "ti,dra7-sdhci";
--- 
-2.33.0
+Best regards,
+Krzysztof
