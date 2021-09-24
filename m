@@ -2,66 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01FD8417E2A
+	by mail.lfdr.de (Postfix) with ESMTP id CBC2D417E2C
 	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 01:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233437AbhIXX23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1344685AbhIXX23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 24 Sep 2021 19:28:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48926 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344504AbhIXX22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 19:28:28 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05492C06161E
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 16:26:54 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id c6-20020a9d2786000000b005471981d559so15276153otb.5
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 16:26:54 -0700 (PDT)
+        with ESMTP id S1344636AbhIXX23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 19:28:29 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96EE7C061613
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 16:26:55 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id 77-20020a9d0ed3000000b00546e10e6699so15355302otj.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 16:26:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=3XQFTBr5XEn3EXyMt66fx2XwGJnL26+A55+hz8LaDd8=;
-        b=DzlJwWWIjFdTnGfmcu3m+5f+Hv5b37y1M6GtT1H+OypKqT2szhIS12Oteh+ABJf9IJ
-         EPJCzr+z7+h8TvlxpFdkbBDDAwnFkGM9B9KZhxXBXI2dsXVNJop+yKKpjrjMbYOwKdrq
-         +SuGl9+i+jlAvgFibBJJ4wL8HBL3tPdziLEb8KgCBN+2hlHp7K1jM+/yHgxw7JaffIFA
-         onJuP2Hz+c0Xmne/AaKhwGWBTv9P0RzYY/IldBQMM8m15q/tWRiBlcrrhxI6ul6w20H2
-         noBLy4jDcJ1CjO8RAv3PEIsji61SOhrKIG+MumNk5FQJRs4Pg0GBdIZXHTmZHEb+zgwM
-         KD6A==
+        bh=QaBL9mgrH18wT/kZPzIDoOYW9qBhE7CRSbFs2BsGdMI=;
+        b=q6S01e2hMlAvQR7CWmTYUc9az8w9EjtXfJiYIXhRS0PcYn3RZ/UNjHuQoQtz49GpXj
+         EQCC+yleN4Ypuo/rVWcvi+IfHG11jUCjpNFQsvbzAYOpHtYFOcLeZc9At5jE1GxpcGVl
+         9pxUOkq+YrzfLH2gftkoytbeKjdwuqjfpJJbtk4QiH4QhWjbuTiV49dEkvWaeOjDbAhj
+         qkNbh+WzwUul8/YiM4kE4TWTj2XDRF08NqB3UFVd7Pl3wN7xfdnzM8MUnyPXyqQEanwJ
+         kq7KXXv5udvwo/+w4LPtjcQtZgDxyTU8CCWUcK9aubTYNsSj3R83DMkJ4OpgQfEdSoeT
+         UPwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=3XQFTBr5XEn3EXyMt66fx2XwGJnL26+A55+hz8LaDd8=;
-        b=IelTO9GonSEjoTbUm0A8PUxls1T+J1TnwwIhB9AkqnK17SRCaD412UIpHOPrgOY8++
-         gx6attXyX0bQXRboMUqFsi8TS1gWJiyA8/R14+mQ9AnMV1xfd+R3LQcpBWCZMhJJET4g
-         aujZWtyNaADobiz7JZl4B45FphwRA3QQn1BfaZrcrjtoA9tHtoahhx0ycXxIRmfkRJgU
-         n51tdMBQ2HA6SEvIJy+9KKRZUDJa9tkKV4hetSNlxHbrRlR15tzvd5Px1PGP05KkqeIa
-         uBJMqoF5JHsX0KIoA5zg6uEFLaw2FVvQA9zG7OBEmG/1wN4AjsmuJ/2ApsMMGOJPadjv
-         Rjuw==
-X-Gm-Message-State: AOAM531FGDFN+gu5b9XIkfB2/PHaWkafA8LSF9dwjE9NxwM3hsCD3QWS
-        VzrsvY/sYBF8cZAqmVciYsJoug==
-X-Google-Smtp-Source: ABdhPJywyIzsSfWMZIv2gVaYNQ82uQ/h9mZsmNn3XnVY2AOC6Rc5g6ecLAE3qspEjOIqNTTVCunC+g==
-X-Received: by 2002:a9d:7146:: with SMTP id y6mr6566854otj.17.1632526014241;
-        Fri, 24 Sep 2021 16:26:54 -0700 (PDT)
+        bh=QaBL9mgrH18wT/kZPzIDoOYW9qBhE7CRSbFs2BsGdMI=;
+        b=CAqSpx3BLRuUckE8kx/XaRjvsX+WljmBLRw/vFGaJ/pdq8QcyIX8Kl3PpaWEsVCRpP
+         1XQly4qvbVFqSu3xi3pX4lyiC0FIwROE+7aIq0zqnOvTBLXiB9Pnpbd4UM9/kHI8MJqK
+         b9kQS7oWrR8urC+X5Wzweyhoe5o81M9VapnzoeqG9XsrJcYOxcUowZzXUZ26vHsfA63I
+         SU8v7OBCAKGf/2zJP94e1isSPZ6A6jGLZgcj/is7VAD/tX2fKN8ITlCj8hz+pzPbsNa6
+         +4ZVglHzjw4ws4zmB0LTIGBpx80b1B/Fy8e/CfEv2QHVFAaujkSm7ulOOgAX71oe5i2V
+         QowA==
+X-Gm-Message-State: AOAM533/6f33YjcifWbCWmhWizhzkjIfZOjR4yKAE2PHwaNRAP8xTj3T
+        qqTo15xA/3aiyolAkuElUYdXCw==
+X-Google-Smtp-Source: ABdhPJwKJ6OJGjMq+imsF0+PiNm3JnVxp3DxqbfpZHYtBOVXgkcg3NeQJZ7REXpWrzot3BodPQSO0Q==
+X-Received: by 2002:a9d:72db:: with SMTP id d27mr6271691otk.279.1632526015004;
+        Fri, 24 Sep 2021 16:26:55 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t21sm1409102otr.13.2021.09.24.16.26.53
+        by smtp.gmail.com with ESMTPSA id t21sm1409102otr.13.2021.09.24.16.26.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 16:26:53 -0700 (PDT)
+        Fri, 24 Sep 2021 16:26:54 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, phone-devel@vger.kernel.org,
-        marijn.suijten@somainline.org, paul.bouchara@somainline.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, martin.botka@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 1/7] arm64: dts: qcom: Introduce support for MSM8998 Sony Yoshino platform
-Date:   Fri, 24 Sep 2021 18:26:52 -0500
-Message-Id: <163252599406.1220936.17367661716505828954.b4-ty@linaro.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [PATCH] arm64: dts: qcom: pm660: Add reboot mode support
+Date:   Fri, 24 Sep 2021 18:26:53 -0500
+Message-Id: <163252599406.1220936.12274440544806263057.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210909123733.367248-1-angelogioacchino.delregno@somainline.org>
-References: <20210909123733.367248-1-angelogioacchino.delregno@somainline.org>
+In-Reply-To: <20210824021918.17271-1-shawn.guo@linaro.org>
+References: <20210824021918.17271-1-shawn.guo@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -69,36 +67,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 9 Sep 2021 14:37:27 +0200, AngeloGioacchino Del Regno wrote:
-> This commit introduces support for the Sony Yoshino platform, using
-> the MSM8998 SoC, including:
-> - Sony Xperia XZ1 (codename Poplar),
-> - Sony Xperia XZ1 Compact (codename Lilac),
-> - Sony Xperia XZ Premium (codename Maple).
+On Tue, 24 Aug 2021 10:19:18 +0800, Shawn Guo wrote:
+> It turns out that the pm660 PON is a GEN2 device.  Update the compatible
+> to "qcom,pm8998-pon" and add reboot mode support, so that devices can be
+> rebooted into bootloader and recovery mode.  Tested on Xiaomi Redmi Note
+> 7 phone.
 > 
-> All of the three aforementioned smartphones are sharing a 99%
-> equal board configuration, with very small differences between
-> each other, which is the reason for the introduction of a common
-> msm8998-sony-xperia-yoshino DT.
+> While at it, drop the unnecessary newline between 'compatible' and 'reg'
+> property.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/7] arm64: dts: qcom: Introduce support for MSM8998 Sony Yoshino platform
-      commit: 390883af89d2ed653c3f7eefc06368241d422a38
-[2/7] arm64: dts: qcom: msm8998-xperia: Add RMI4 touchscreen support
-      commit: ebe0932e4fe5a5a0eb197f1de50442a2bf2d7b08
-[3/7] arm64: dts: qcom: msm8998-xperia: Add support for wcn3990 Bluetooth
-      commit: 58ba4efabc150f85ba3c80a31c37e03adebd5135
-[4/7] arm64: dts: qcom: msm8998-xperia: Add support for gpio vibrator
-      commit: 4de9700d0332f21d12ffec7ba67733ea9a6581a5
-[5/7] arm64: dts: qcom: msm8998-xperia: Configure display boost regulators
-      commit: 67372ee2c0bca8bfb1e16e961e9f3969d434f978
-[6/7] arm64: dts: qcom: msm8998-xperia: Add camera regulators
-      commit: a5fde059398b5d985a3fcfea06f75cce2a88081f
-[7/7] arm64: dts: qcom: msm8998-xperia: Add audio clock and its pin
-      commit: 6cadaa14f290a0b7c2f3b2b7afd3192c5b49473f
+[1/1] arm64: dts: qcom: pm660: Add reboot mode support
+      commit: 36730a8f5f4561d4c3682dd3f310a2dbe6cf23f8
 
 Best regards,
 -- 
