@@ -2,162 +2,354 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7087A416B37
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 07:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30530416B63
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 08:02:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244126AbhIXFeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 01:34:20 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:51076 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S243369AbhIXFeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 01:34:20 -0400
-Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18O4TxLE003727;
-        Fri, 24 Sep 2021 01:32:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=date : from : to : cc :
- subject : message-id : references : content-type : in-reply-to :
- content-transfer-encoding : mime-version; s=pp1;
- bh=LcclFexTC3W4CGWQ05F30N7TENmKQs3CWJF8lIJhAyA=;
- b=fM5r0pOd7rJd2mnURChsSfJfJrX/C+3BofObflhTYGzVXv/HEJS9Aw8BgIC//ggGIR4j
- CZ5JxdcP59VcALFL5IzVij2oY4zwlRyWWbJs8bYZFXoi5eLF6aEHqAyx0sRU0twQi+Nx
- uTzT35Ud5rz3mMLTSHcDte6njyO8gAKbwGxAXdnivxmbV3hoFkXGse9K5ImTnY3FP/yx
- Dcg6IMAClTzZSYBturZR2pFZSHk8drui/RqjiPVFtbOoDuEmvxDYqAtOWfweNAxqZrTZ
- HQI3Eeh+Tf3jj5APaqHV6+/E8KJV71sFQyUh51zWXPgx91EVjartcf89ESTdpFpWq0zU zQ== 
-Received: from ppma03ams.nl.ibm.com (62.31.33a9.ip4.static.sl-reverse.com [169.51.49.98])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 3b97px199p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 24 Sep 2021 01:32:30 -0400
-Received: from pps.filterd (ppma03ams.nl.ibm.com [127.0.0.1])
-        by ppma03ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 18O5WBU3010032;
-        Fri, 24 Sep 2021 05:32:28 GMT
-Received: from b06avi18878370.portsmouth.uk.ibm.com (b06avi18878370.portsmouth.uk.ibm.com [9.149.26.194])
-        by ppma03ams.nl.ibm.com with ESMTP id 3b93gb1yvs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 24 Sep 2021 05:32:28 +0000
-Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com [9.149.105.58])
-        by b06avi18878370.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 18O5RWr150528586
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 24 Sep 2021 05:27:32 GMT
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id A77234C04E;
-        Fri, 24 Sep 2021 05:32:25 +0000 (GMT)
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 26CB04C050;
-        Fri, 24 Sep 2021 05:32:23 +0000 (GMT)
-Received: from linux.ibm.com (unknown [9.145.159.121])
-        by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTPS;
-        Fri, 24 Sep 2021 05:32:23 +0000 (GMT)
-Date:   Fri, 24 Sep 2021 08:32:21 +0300
-From:   Mike Rapoport <rppt@linux.ibm.com>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Mike Rapoport <rppt@kernel.org>,
-        Linus Torvalds <torvalds@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-efi@vger.kernel.org,
-        kvm@vger.kernel.org, linux-s390@vger.kernel.org,
-        linux-sh@vger.kernel.org, linux-um@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kasan-dev@googlegroups.com,
-        linux-mips@vger.kernel.org, linux-mm@kvack.org,
-        iommu@lists.linux-foundation.org, linux-usb@vger.kernel.org,
-        linux-alpha@vger.kernel.org, sparclinux@vger.kernel.org,
-        xen-devel@lists.xenproject.org,
-        Andrew Morton <akpm@linux-foundation.org>,
-        linux-snps-arc@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-        linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/3] memblock: cleanup memblock_free interface
-Message-ID: <YU1i5YyldfS1HH0j@linux.ibm.com>
-References: <20210923074335.12583-1-rppt@kernel.org>
- <20210923074335.12583-4-rppt@kernel.org>
- <1101e3c7-fcb7-a632-8e22-47f4a01ea02e@csgroup.eu>
- <YUxsgN/uolhn1Ok+@linux.ibm.com>
- <96e3da9f-70ff-e5c0-ef2e-cf0b636e5695@csgroup.eu>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-In-Reply-To: <96e3da9f-70ff-e5c0-ef2e-cf0b636e5695@csgroup.eu>
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: EYYWPQtbK60SNKLXoEtnrAemGAQvCJn5
-X-Proofpoint-GUID: EYYWPQtbK60SNKLXoEtnrAemGAQvCJn5
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+        id S244108AbhIXGEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 02:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34170 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230452AbhIXGEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 02:04:21 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCCE0C061574
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 23:02:48 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id b78so5863444iof.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Sep 2021 23:02:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8EJ8DYKndFK+5So2UKuINw0ckdpPba90RU7+1mo4Kbs=;
+        b=goM+/0IhsvZrgtKeDDt9Vf1dhntj9ubEcOhxssAViO9HXfNYHBiR2kxsdKngsoJbO/
+         sam8qudQ26QM/0N1lAudAKMR9Ude3eGQ9LeUR5xodwMVVkGX4re5b1Zzz9sZyzBfiMKb
+         aZlnk4uX4VQR5+6mto1fM38ZynAE1pRX52Niw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8EJ8DYKndFK+5So2UKuINw0ckdpPba90RU7+1mo4Kbs=;
+        b=u25pE6RcFHBeYwuIVwOBe+ciAq4N1a2JBLuF+QKjvkjszv2agxFuE2U0vPivnLWASx
+         uRukAMcp8EXD0EVIykTsg2JllRRTu9CI2RuBYAc2PNfjnZUkvarRBrZsChIqpAATZsme
+         n3uO83rp++Ju3lWYJpw8WfeeSY/af6MpdasP7luZZlbTk173o1Ivz/62n8brlwDC3uTD
+         zsNu5AsGnG2mCdklqoKB3k2AhR/Lv+6HZs55192M5uRxKF1lSb9D+NBn5OVBQ3PvPEFX
+         bTIuEqqCnE/snu2Bw0tvUb972sfjg6iXg2c7FpOxqrhZlvBIWllGlFmvZcZHIpkokcNH
+         NRFQ==
+X-Gm-Message-State: AOAM530Wq6cnqd2jgBpT1borZ2KOhJI/z9OE7DIMaRguNWTm53qFcxbn
+        xqH/CWUxNLoxDx7vPrnopd9uGqGnG4K/4VPIum6xnw==
+X-Google-Smtp-Source: ABdhPJxUsO5lNgbt/bn3O3IzyVReZBGY0xZnLoXmOtAktRYLOyTdzdcKibiIFq5TZwe27oZ3V2EJI4+RTaoqcsq75eA=
+X-Received: by 2002:a05:6602:180e:: with SMTP id t14mr7228927ioh.204.1632463368083;
+ Thu, 23 Sep 2021 23:02:48 -0700 (PDT)
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-24_01,2021-09-23_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 mlxscore=0 lowpriorityscore=0 bulkscore=0 spamscore=0
- clxscore=1015 mlxlogscore=856 adultscore=0 phishscore=0 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2109230001 definitions=main-2109240031
+References: <20210702102304.3346429-1-hsinyi@chromium.org>
+In-Reply-To: <20210702102304.3346429-1-hsinyi@chromium.org>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Fri, 24 Sep 2021 14:02:22 +0800
+Message-ID: <CAJMQK-h090rkRJdzfq_4YkRqwwaU7Wn-p3i0Zc+8-7hVzx+8sA@mail.gmail.com>
+Subject: Re: [PATCH v5 RESEND 1/3] dt-bindings: mediatek: convert mtk jpeg
+ decoder/encoder to yaml
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 23, 2021 at 03:54:46PM +0200, Christophe Leroy wrote:
-> 
-> Le 23/09/2021 à 14:01, Mike Rapoport a écrit :
-> > On Thu, Sep 23, 2021 at 11:47:48AM +0200, Christophe Leroy wrote:
-> > > 
-> > > 
-> > > Le 23/09/2021 à 09:43, Mike Rapoport a écrit :
-> > > > From: Mike Rapoport <rppt@linux.ibm.com>
-> > > > 
-> > > > For ages memblock_free() interface dealt with physical addresses even
-> > > > despite the existence of memblock_alloc_xx() functions that return a
-> > > > virtual pointer.
-> > > > 
-> > > > Introduce memblock_phys_free() for freeing physical ranges and repurpose
-> > > > memblock_free() to free virtual pointers to make the following pairing
-> > > > abundantly clear:
-> > > > 
-> > > > 	int memblock_phys_free(phys_addr_t base, phys_addr_t size);
-> > > > 	phys_addr_t memblock_phys_alloc(phys_addr_t base, phys_addr_t size);
-> > > > 
-> > > > 	void *memblock_alloc(phys_addr_t size, phys_addr_t align);
-> > > > 	void memblock_free(void *ptr, size_t size);
-> > > > 
-> > > > Replace intermediate memblock_free_ptr() with memblock_free() and drop
-> > > > unnecessary aliases memblock_free_early() and memblock_free_early_nid().
-> > > > 
-> > > > Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
-> > > > Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
-> > > > ---
-> > > 
-> > > > diff --git a/arch/s390/kernel/smp.c b/arch/s390/kernel/smp.c
-> > > > index 1a04e5bdf655..37826d8c4f74 100644
-> > > > --- a/arch/s390/kernel/smp.c
-> > > > +++ b/arch/s390/kernel/smp.c
-> > > > @@ -723,7 +723,7 @@ void __init smp_save_dump_cpus(void)
-> > > >    			/* Get the CPU registers */
-> > > >    			smp_save_cpu_regs(sa, addr, is_boot_cpu, page);
-> > > >    	}
-> > > > -	memblock_free(page, PAGE_SIZE);
-> > > > +	memblock_phys_free(page, PAGE_SIZE);
-> > > >    	diag_amode31_ops.diag308_reset();
-> > > >    	pcpu_set_smt(0);
-> > > >    }
-> > > > @@ -880,7 +880,7 @@ void __init smp_detect_cpus(void)
-> > > >    	/* Add CPUs present at boot */
-> > > >    	__smp_rescan_cpus(info, true);
-> > > > -	memblock_free_early((unsigned long)info, sizeof(*info));
-> > > > +	memblock_free(info, sizeof(*info));
-> > > >    }
-> > > >    /*
-> > > 
-> > > I'm a bit lost. IIUC memblock_free_early() and memblock_free() where
-> > > identical.
-> > 
-> > Yes, they were, but all calls to memblock_free_early() were using
-> > __pa(vaddr) because they had a virtual address at hand.
-> 
-> I'm still not following. In the above memblock_free_early() was taking
-> (unsigned long)info . Was it a bug ? 
+On Fri, Jul 2, 2021 at 6:23 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> Convert mediatek jpeg decoder and encoder bindings to yaml.
+>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Not really because s390 has pa == va:
+Kindly ping on these patches.
 
-https://elixir.bootlin.com/linux/latest/source/arch/s390/include/asm/page.h#L169
-
-
--- 
-Sincerely yours,
-Mike.
+> ---
+>  .../bindings/media/mediatek-jpeg-decoder.txt  | 38 --------
+>  .../bindings/media/mediatek-jpeg-decoder.yaml | 89 +++++++++++++++++++
+>  .../bindings/media/mediatek-jpeg-encoder.txt  | 35 --------
+>  .../bindings/media/mediatek-jpeg-encoder.yaml | 80 +++++++++++++++++
+>  4 files changed, 169 insertions(+), 73 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+> deleted file mode 100644
+> index 39c1028b2dfb4..0000000000000
+> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -* Mediatek JPEG Decoder
+> -
+> -Mediatek JPEG Decoder is the JPEG decode hardware present in Mediatek SoCs
+> -
+> -Required properties:
+> -- compatible : must be one of the following string:
+> -       "mediatek,mt8173-jpgdec"
+> -       "mediatek,mt7623-jpgdec", "mediatek,mt2701-jpgdec"
+> -       "mediatek,mt2701-jpgdec"
+> -- reg : physical base address of the jpeg decoder registers and length of
+> -  memory mapped region.
+> -- interrupts : interrupt number to the interrupt controller.
+> -- clocks: device clocks, see
+> -  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> -- clock-names: must contain "jpgdec-smi" and "jpgdec".
+> -- power-domains: a phandle to the power domain, see
+> -  Documentation/devicetree/bindings/power/power_domain.txt for details.
+> -- mediatek,larb: must contain the local arbiters in the current Socs, see
+> -  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> -  for details.
+> -- iommus: should point to the respective IOMMU block with master port as
+> -  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> -  for details.
+> -
+> -Example:
+> -       jpegdec: jpegdec@15004000 {
+> -               compatible = "mediatek,mt2701-jpgdec";
+> -               reg = <0 0x15004000 0 0x1000>;
+> -               interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
+> -               clocks =  <&imgsys CLK_IMG_JPGDEC_SMI>,
+> -                         <&imgsys CLK_IMG_JPGDEC>;
+> -               clock-names = "jpgdec-smi",
+> -                             "jpgdec";
+> -               power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
+> -               mediatek,larb = <&larb2>;
+> -               iommus = <&iommu MT2701_M4U_PORT_JPGDEC_WDMA>,
+> -                        <&iommu MT2701_M4U_PORT_JPGDEC_BSDMA>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+> new file mode 100644
+> index 0000000000000..9b87f036f1785
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek-jpeg-decoder.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek JPEG Decoder Device Tree Bindings
+> +
+> +maintainers:
+> +  - Xia Jiang <xia.jiang@mediatek.com>
+> +
+> +description: |-
+> +  Mediatek JPEG Decoder is the JPEG decode hardware present in Mediatek SoCs
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8173-jpgdec
+> +              - mediatek,mt2701-jpgdec
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt7623-jpgdec
+> +          - const: mediatek,mt2701-jpgdec
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+> +    minItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: jpgdec-smi
+> +      - const: jpgdec
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  mediatek,larb:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> +    description: |
+> +      Must contain the local arbiters in the current Socs, see
+> +      Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> +      for details.
+> +
+> +  iommus:
+> +    maxItems: 2
+> +    description: |
+> +      Points to the respective IOMMU block with master port as argument, see
+> +      Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for details.
+> +      Ports are according to the HW.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - mediatek,larb
+> +  - iommus
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt2701-clk.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/mt2701-larb-port.h>
+> +    #include <dt-bindings/power/mt2701-power.h>
+> +    jpegdec: jpegdec@15004000 {
+> +      compatible = "mediatek,mt2701-jpgdec";
+> +      reg = <0x15004000 0x1000>;
+> +      interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
+> +      clocks =  <&imgsys CLK_IMG_JPGDEC_SMI>,
+> +                <&imgsys CLK_IMG_JPGDEC>;
+> +      clock-names = "jpgdec-smi",
+> +                    "jpgdec";
+> +      power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
+> +      mediatek,larb = <&larb2>;
+> +      iommus = <&iommu MT2701_M4U_PORT_JPGDEC_WDMA>,
+> +               <&iommu MT2701_M4U_PORT_JPGDEC_BSDMA>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+> deleted file mode 100644
+> index 5e53c6ab52d01..0000000000000
+> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+> +++ /dev/null
+> @@ -1,35 +0,0 @@
+> -* MediaTek JPEG Encoder
+> -
+> -MediaTek JPEG Encoder is the JPEG encode hardware present in MediaTek SoCs
+> -
+> -Required properties:
+> -- compatible : "mediatek,mt2701-jpgenc"
+> -  followed by "mediatek,mtk-jpgenc"
+> -- reg : physical base address of the JPEG encoder registers and length of
+> -  memory mapped region.
+> -- interrupts : interrupt number to the interrupt controller.
+> -- clocks: device clocks, see
+> -  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> -- clock-names: must contain "jpgenc". It is the clock of JPEG encoder.
+> -- power-domains: a phandle to the power domain, see
+> -  Documentation/devicetree/bindings/power/power_domain.txt for details.
+> -- mediatek,larb: must contain the local arbiters in the current SoCs, see
+> -  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> -  for details.
+> -- iommus: should point to the respective IOMMU block with master port as
+> -  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> -  for details.
+> -
+> -Example:
+> -       jpegenc: jpegenc@1500a000 {
+> -               compatible = "mediatek,mt2701-jpgenc",
+> -                            "mediatek,mtk-jpgenc";
+> -               reg = <0 0x1500a000 0 0x1000>;
+> -               interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_LOW>;
+> -               clocks =  <&imgsys CLK_IMG_VENC>;
+> -               clock-names = "jpgenc";
+> -               power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
+> -               mediatek,larb = <&larb2>;
+> -               iommus = <&iommu MT2701_M4U_PORT_JPGENC_RDMA>,
+> -                        <&iommu MT2701_M4U_PORT_JPGENC_BSDMA>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+> new file mode 100644
+> index 0000000000000..5e35ecfd21f1b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek-jpeg-encoder.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek JPEG Encoder Device Tree Bindings
+> +
+> +maintainers:
+> +  - Xia Jiang <xia.jiang@mediatek.com>
+> +
+> +description: |-
+> +  MediaTek JPEG Encoder is the JPEG encode hardware present in MediaTek SoCs
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt2701-jpgenc
+> +      - const: mediatek,mtk-jpgenc
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: jpgenc
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  mediatek,larb:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> +    description: |
+> +      Must contain the local arbiters in the current Socs, see
+> +      Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> +      for details.
+> +
+> +  iommus:
+> +    maxItems: 2
+> +    description: |
+> +      Points to the respective IOMMU block with master port as argument, see
+> +      Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for details.
+> +      Ports are according to the HW.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - mediatek,larb
+> +  - iommus
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt2701-clk.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/mt2701-larb-port.h>
+> +    #include <dt-bindings/power/mt2701-power.h>
+> +    jpegenc: jpegenc@1500a000 {
+> +      compatible = "mediatek,mt2701-jpgenc",
+> +                   "mediatek,mtk-jpgenc";
+> +      reg = <0x1500a000 0x1000>;
+> +      interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_LOW>;
+> +      clocks =  <&imgsys CLK_IMG_VENC>;
+> +      clock-names = "jpgenc";
+> +      power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
+> +      mediatek,larb = <&larb2>;
+> +      iommus = <&iommu MT2701_M4U_PORT_JPGENC_RDMA>,
+> +               <&iommu MT2701_M4U_PORT_JPGENC_BSDMA>;
+> +    };
+> --
+> 2.32.0.93.g670b81a890-goog
+>
