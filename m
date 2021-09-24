@@ -2,136 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E9C1417832
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 18:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AD79417880
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 18:28:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233588AbhIXQMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 12:12:34 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:54652 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233752AbhIXQM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 12:12:26 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18OGAhPV102811;
-        Fri, 24 Sep 2021 11:10:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632499843;
-        bh=9Pop6oXiHVPFX2sciva/YG9DSuUyCmsf/YRPoCW7xjw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=YtkIYS+011vlOBa52SP5+7lT3ZV6uxBHBh5TXBo5GPudnXjq/+jPcqyl4vJg79BQr
-         CtTOA1OwZ/WEZt13z3y5+eAUC8Q4qOnQzRHBdyZ2Vt6DtYCbcBeQr/DxXpPSa2g0CE
-         CTEj+m9arI82s79NY60Yjt1Oc3mKDOFCxwPO87nw=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18OGAhNF116842
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 24 Sep 2021 11:10:43 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 24
- Sep 2021 11:10:42 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 24 Sep 2021 11:10:42 -0500
-Received: from [10.250.37.219] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18OGAglw000461;
-        Fri, 24 Sep 2021 11:10:42 -0500
-Subject: Re: [PATCH V3 2/2] dt-bindings: remoteproc: k3-dsp: Remove
- board-specific compatible from DT example
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>
+        id S245099AbhIXQaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 12:30:02 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:56515 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244892AbhIXQaC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 12:30:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1632500909; x=1664036909;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=IJkLJsJGwbgzv0QK4qWxc6FaUK3E3ErcvZ2DRfDDe+I=;
+  b=H4MXTf8A9HSagfqTYp9BsvP4b9/sOYpExd47v3x4zwHhHwq9NMSkIco2
+   qwSHpVX9bUIfs4xpQBtLteLie0pai0S80wIRH0u3Ed5u/g7IuDSj4cE8k
+   GvP4e4ZBl42hu5oNbccwW9H9RjSwX8ZDJKEZSBEOZQFQlXxa1VN/2qhrt
+   6D0dKQbNSF6nnG3kfqbyELwWivWa1WpqSfvlbSydTLlcovrmdVydgsNCj
+   tC5+Ur77CYs6C7SgbuaRm/Gmb5TadwPAT1pzf6yjmW6kPdWCT0MYoCXok
+   ylKwQ+BmrB24ZUxhy57iZgrxA4lcKaE9sze/N+vYkSCA682yrQd9MPUo2
+   Q==;
+IronPort-SDR: HE+vvrvtj6qHpqypN+sPHxM9P3Cp2aDDAfEnhPJg+DGjv6OFSk+je/t9I7nwmhFydftAtZstTN
+ Dv8Ii0im64DPGEHYeMuGbk6RBXkSA/sqRUwOiA8NB0yiePdvQtMt/YQp2C1cfMSwPvoJpf6OxK
+ 1YGsecW2QRBVWhyxdvMUmZZ4joFOldwnl9gEXVyLsm6ixbHnPvxpblK781BKuIjoKm4y3JVqjx
+ kPfAznqIAYxrLOk2O/+ctreVO3LibAx9AmAkz7BOZeLTMP+HXDiBnlEeC6Cu90cAMpQN+3PPhg
+ 93JjqfMvSdt+Sj88ElyKGy4h
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; 
+   d="scan'208";a="133102006"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Sep 2021 09:28:28 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 24 Sep 2021 09:28:27 -0700
+Received: from rob-dk-mpu01.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 24 Sep 2021 09:28:25 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>
 CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, Nishanth Menon <nm@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>,
-        "Nagalla, Hari" <hnagalla@ti.com>
-References: <20210917095426.19277-1-sinthu.raja@ti.com>
- <20210917095426.19277-3-sinthu.raja@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <4d43e927-3998-e9a9-87a6-6036b769a975@ti.com>
-Date:   Fri, 24 Sep 2021 11:10:42 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v3 0/2] irqchip/mchp-eic: add driver for Microchip EIC
+Date:   Fri, 24 Sep 2021 19:28:15 +0300
+Message-ID: <20210924162817.2135056-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <20210917095426.19277-3-sinthu.raja@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sinthu,
+Hi,
 
-On 9/17/21 4:54 AM, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
-> 
-> The example includes a board-specific compatible property, this is
-> wrong as the example should be board agnostic and gets in the way of
-> additions for newer platforms. Replace the same with a generic soc
-> node.
+This series adds support for Microchip External Interrupt Controller
+present on SAMA7G5. The controller supports for 2 external interrupt
+lines and is connected to GIC as follows:
 
-What board specific property? This description looks wrong.
+pinX   +------+ EXT_IRQ0 +------+ int 153 (for pinX) +------+
+------>|      |--------->|      |------------------->|      |
+pinY   | PIO  | EXT_IRQ1 | EIC  | int 154 (for pinY) | GIC  |
+------>|      |--------->|      |------------------->|      |
+       +------+          +------+                    +------+
 
-> 
-> Fixes: 2a2180206ab6 ("dt-bindings: remoteproc: Add bindings for C66x DSPs on TI K3 SoCs")
+where PIO is the pin controller.
 
-What error are you trying to fix exactly? The example used below is actually how
-it exactly appears in the J721E dts files, and there are no errors with
-dt_binding_check.
+Thank you,
+Claudiu Beznea
 
-This is more a cleanup than a fix.  You can look through the original binding
-submission patches to see why it is done like this.
+Changes in v3:
+- use irq_domain_translate_twocell() instead of mchp_eic_domain_translate()
+  from v2
+- use IRQCHIP_PLATFORM_DRIVER_BEGIN(), IRQCHIP_MATCH(),
+  IRQCHIP_PLATFORM_DRIVER_END() instead of builtin_platform_driver()
+- register suspend/resume functins via syscore_ops; along with this
+  driver private data structure (of type struct mchp_eic has been declared
+  as static: struct mchp_eic *eic;)
+- collected tags
 
-If this is triggered by the changes you are making to k3.yaml file as part of
-the J721E EAIK changes, then you probably may want to look at how you are doing
-that again. Looks like the k3.yaml file is being modified now to enforce
-"board-compatible", "soc-compatible" which may have triggered an error in this file.
+Changes in v2:
+- fix compilation warning on bindings
 
-Please evaluate if you need to modify it to support just the "soc-compatible" as
-one of the items.
+Changes in v2:
+- s/mchp/microchip in bindings
+- get rid of glitch filter settings
+- use s/eic@/interrupt-controller@ in bindings
+- removed '' around interrupts in bindings as proposed by Rob
+- removed glitch filter settings
+- switched to hierarchical irqchip driver
+- addressed review comments
+- use builtin_platform_driver instead of module_platform_driver
 
+Claudiu Beznea (2):
+  dt-bindings: microchip,eic: add bindings
+  irqchip/mchp-eic: add support
 
-> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> ---
-> 
-> Changes since V2:
-> * review comment updates, including simplifying the changes, commit
->   message and $subject updates.
-> 
-> V2: https://lore.kernel.org/all/20210818074030.1877-1-sinthu.raja@ti.com/
-> V1: https://lore.kernel.org/all/20210817152005.21575-1-sinthu.raja@ti.com/
-> 
->  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml       | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> index 6070456a7b67..5ec6505ac408 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> @@ -133,9 +133,7 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> -    / {
-> -        model = "Texas Instruments K3 J721E SoC";
-> -        compatible = "ti,j721e";
-> +    soc {
+ .../interrupt-controller/microchip,eic.yaml   |  73 +++++
+ MAINTAINERS                                   |   6 +
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-mchp-eic.c                | 280 ++++++++++++++++++
+ 5 files changed, 368 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/microchip,eic.yaml
+ create mode 100644 drivers/irqchip/irq-mchp-eic.c
 
-While this may be resolving the dt_bindings_check you might be seeing with the
-modified k3.yaml, note that "soc" property is not used on K3 dts files, you
-might be creating confusion for people who look at this example and the actual
-usage.
-
-regards
-Suman
-
->          #address-cells = <2>;
->          #size-cells = <2>;
->  
-> 
+-- 
+2.25.1
 
