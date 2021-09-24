@@ -2,179 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64BFC41761B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 15:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1A56417669
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 15:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344437AbhIXNpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 09:45:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53010 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231174AbhIXNpi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 09:45:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0159C6103B;
-        Fri, 24 Sep 2021 13:44:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1632491045;
-        bh=MkaD2FygRcZx0Rg+MtxQ5EnHT9a/ENSlx57cMPZCWvo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KyTUrrEPkNrwx7i6/ut93jV5izltrshVLEmAuBRY2rXYWkwFdgoeiqfWyAoNvnr2p
-         UvwCFGIhvpkf6DcoBnK/IT3hhYoFJNYBce/7QNTY4cGwaKKPRMkYgQwnPWnOQdvUHW
-         d5TCeCiKf3Az6omtWaVXQOPqq2m/QJrlp6sGheks=
-Date:   Fri, 24 Sep 2021 15:44:03 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        git@xilinx.com, saikrishna12468@gmail.com,
-        Arnd Bergmann <arnd@arndb.de>,
-        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: Re: [PATCH 1/4] firmware: xilinx: Add OSPI Mux selection support
-Message-ID: <YU3WIzwzFIiGCikA@kroah.com>
-References: <1632478031-12242-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1632478031-12242-2-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <YU24KEoXQOw/1uZV@kroah.com>
- <c588c9c4-df4b-a617-35d1-23c32654d5ff@xilinx.com>
- <YU3C7y833i9f0+yB@kroah.com>
- <18d730a5-cec1-d699-a7cc-da8270a5dfe6@xilinx.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <18d730a5-cec1-d699-a7cc-da8270a5dfe6@xilinx.com>
+        id S1346267AbhIXOBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 10:01:19 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:34728 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346576AbhIXOA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 10:00:58 -0400
+Received: by mail-ot1-f43.google.com with SMTP id g62-20020a9d2dc4000000b0054752cfbc59so7550139otb.1;
+        Fri, 24 Sep 2021 06:59:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=WcWh55mrnHlrmpS4bF3C6RTmMv+GgWp8tjxqVJlKmm8=;
+        b=h2myBCc2FwFUN06kisWSp/YQ0aVRvz+hEb5xr9ECMZuoxMh92+MKS5mJP3gDL66i3l
+         Bs8LQR/BrxNedoDcR/ztIG49Zw564F1W7vfgO7HEl/J7W1VIDZtQn//0FGsPLljrTAzY
+         doITC9ItLvksSN64wEl7A5Vvs4Ei5U7BN4lvoxGQVXVGDNKh+UedE6+lmgt8KL7e8TXB
+         EAQnSIhA54GDUAm5jNqY4O4SR4S7NqPHVO7AGf8WuuTMEBig8T8sK12JSr3rsaoWUtgT
+         rMyw3T0c5sg6w+WvYBK2dKtW1lWkXZun2rYn047Y6OqNR+0DLL8sWGL4GSfXd8HkVwFY
+         iPkw==
+X-Gm-Message-State: AOAM532ZChB0NhmEBJYrXQ8JZkdkyRgvaOovQ7y7o6we6eVXHZ8u9fC3
+        IXYbvcFqfopwKGdR8sn++g==
+X-Google-Smtp-Source: ABdhPJwu5vf62gkghKqrJp812TiqZCJ5L14q4YY1lFn4pkmkXKCEkfSFSlIERBrP2Win5Yi3GNO6Sw==
+X-Received: by 2002:a9d:4a83:: with SMTP id i3mr4246791otf.385.1632491964290;
+        Fri, 24 Sep 2021 06:59:24 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id d26sm2075540oij.49.2021.09.24.06.59.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Sep 2021 06:59:23 -0700 (PDT)
+Received: (nullmailer pid 1195979 invoked by uid 1000);
+        Fri, 24 Sep 2021 13:59:21 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sam Shih <sam.shih@mediatek.com>
+Cc:     matthias.bgg@gmail.com, linux-clk@vger.kernel.org,
+        Ryder.Lee@mediatek.com, fparent@baylibre.com,
+        linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        seiya.wang@mediatek.com, sean.wang@kernel.org, robh+dt@kernel.org,
+        enric.balletbo@collabora.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        gregkh@linuxfoundation.org, wim@linux-watchdog.org,
+        linux-mediatek@lists.infradead.org, herbert@gondor.apana.org.au,
+        mturquette@baylibre.com, linux-watchdog@vger.kernel.org,
+        linux-serial@vger.kernel.org, mpm@selenic.com, linux@roeck-us.net,
+        john@phrozen.org, sboyd@kernel.org, hsinyi@chromium.org,
+        linus.walleij@linaro.org
+In-Reply-To: <20210924114459.28664-1-sam.shih@mediatek.com>
+References: <9aa66a93-4d0c-176e-ea35-b5aa33751d51@gmail.com> <20210924114459.28664-1-sam.shih@mediatek.com>
+Subject: Re: [v4,5/9] dt-bindings: pinctrl: update bindings for MT7986 SoC
+Date:   Fri, 24 Sep 2021 08:59:21 -0500
+Message-Id: <1632491961.645727.1195978.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 24, 2021 at 02:49:09PM +0200, Michal Simek wrote:
+On Fri, 24 Sep 2021 19:44:59 +0800, Sam Shih wrote:
+> This updates bindings for MT7986 pinctrl driver. The
+> difference of pinctrl between mt7986a and mt7986b is that pin-41 to pin-65
+> do not exist on mt7986b
 > 
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
 > 
-> On 9/24/21 2:22 PM, Greg Kroah-Hartman wrote:
-> > On Fri, Sep 24, 2021 at 02:12:55PM +0200, Michal Simek wrote:
-> >>
-> >>
-> >> On 9/24/21 1:36 PM, Greg Kroah-Hartman wrote:
-> >>> On Fri, Sep 24, 2021 at 03:37:08PM +0530, Sai Krishna Potthuri wrote:
-> >>>> Add OSPI Mux selection API support to select the AXI interface to OSPI.
-> >>>>
-> >>>> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
-> >>>> ---
-> >>>>  drivers/firmware/xilinx/zynqmp.c     | 17 +++++++++++++++++
-> >>>>  include/linux/firmware/xlnx-zynqmp.h | 12 ++++++++++++
-> >>>>  2 files changed, 29 insertions(+)
-> >>>>
-> >>>> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
-> >>>> index 15b138326ecc..43c3b5a9eef7 100644
-> >>>> --- a/drivers/firmware/xilinx/zynqmp.c
-> >>>> +++ b/drivers/firmware/xilinx/zynqmp.c
-> >>>> @@ -647,6 +647,23 @@ int zynqmp_pm_sd_dll_reset(u32 node_id, u32 type)
-> >>>>  }
-> >>>>  EXPORT_SYMBOL_GPL(zynqmp_pm_sd_dll_reset);
-> >>>>  
-> >>>> +/**
-> >>>> + * zynqmp_pm_ospi_mux_select() - OSPI Mux selection
-> >>>> + *
-> >>>> + * @dev_id:	Device Id of the OSPI device.
-> >>>> + * @select:	OSPI Mux select value.
-> >>>> + *
-> >>>> + * This function select the OSPI Mux.
-> >>>> + *
-> >>>> + * Return:	Returns status, either success or error+reason
-> >>>> + */
-> >>>> +int zynqmp_pm_ospi_mux_select(u32 dev_id, u32 select)
-> >>>> +{
-> >>>> +	return zynqmp_pm_invoke_fn(PM_IOCTL, dev_id, IOCTL_OSPI_MUX_SELECT,
-> >>>> +				   select, 0, NULL);
-> >>>> +}
-> >>>> +EXPORT_SYMBOL_GPL(zynqmp_pm_ospi_mux_select);
-> >>>> +
-> >>>>  /**
-> >>>>   * zynqmp_pm_write_ggs() - PM API for writing global general storage (ggs)
-> >>>>   * @index:	GGS register index
-> >>>> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
-> >>>> index 9d1a5c175065..6979a79f553a 100644
-> >>>> --- a/include/linux/firmware/xlnx-zynqmp.h
-> >>>> +++ b/include/linux/firmware/xlnx-zynqmp.h
-> >>>> @@ -119,6 +119,7 @@ enum pm_ioctl_id {
-> >>>>  	IOCTL_READ_PGGS = 15,
-> >>>>  	/* Set healthy bit value */
-> >>>>  	IOCTL_SET_BOOT_HEALTH_STATUS = 17,
-> >>>> +	IOCTL_OSPI_MUX_SELECT = 21,
-> >>>
-> >>> Why the gap?  What are the commands in the middle for?
-> >>
-> >> Below is the full list. Not everything has been upstream yet. There was
-> >> an attempt on AFI which one colleague is working on and should send new
-> >> version soon. I don't think anybody has started with upstreaming probe
-> >> counters.
-> >> Every part has different owner with unfortunately own upstreaming plan.
-> >>
-> >> Thanks,
-> >> Michal
-> >>
-> >> enum pm_ioctl_id {
-> >> 	IOCTL_GET_RPU_OPER_MODE = 0,
-> >> 	IOCTL_SET_RPU_OPER_MODE = 1,
-> >> 	IOCTL_RPU_BOOT_ADDR_CONFIG = 2,
-> >> 	IOCTL_TCM_COMB_CONFIG = 3,
-> >> 	IOCTL_SET_TAPDELAY_BYPASS = 4,
-> >> 	IOCTL_SET_SGMII_MODE = 5,
-> >> 	IOCTL_SD_DLL_RESET = 6,
-> >> 	IOCTL_SET_SD_TAPDELAY = 7,
-> >> 	IOCTL_SET_PLL_FRAC_MODE = 8,
-> >> 	IOCTL_GET_PLL_FRAC_MODE = 9,
-> >> 	IOCTL_SET_PLL_FRAC_DATA = 10,
-> >> 	IOCTL_GET_PLL_FRAC_DATA = 11,
-> >> 	IOCTL_WRITE_GGS = 12,
-> >> 	IOCTL_READ_GGS = 13,
-> >> 	IOCTL_WRITE_PGGS = 14,
-> >> 	IOCTL_READ_PGGS = 15,
-> >> 	/* IOCTL for ULPI reset */
-> >> 	IOCTL_ULPI_RESET = 16,
-> >> 	/* Set healthy bit value */
-> >> 	IOCTL_SET_BOOT_HEALTH_STATUS = 17,
-> >> 	IOCTL_AFI = 18,
-> >> 	/* Probe counter read/write */
-> >> 	IOCTL_PROBE_COUNTER_READ = 19,
-> >> 	IOCTL_PROBE_COUNTER_WRITE = 20,
-> >> 	IOCTL_OSPI_MUX_SELECT = 21,
-> >> 	/* IOCTL for USB power request */
-> >> 	IOCTL_USB_SET_STATE = 22,
-> >> 	/* IOCTL to get last reset reason */
-> >> 	IOCTL_GET_LAST_RESET_REASON = 23,
-> >> 	/* AI engine NPI ISR clear */
-> >> 	IOCTL_AIE_ISR_CLEAR = 24,
-> >> 	/* Register SGI to ATF */
-> >> 	IOCTL_REGISTER_SGI = 25,
-> >> 	/* Runtime feature configuration */
-> >> 	IOCTL_SET_FEATURE_CONFIG = 26,
-> >> 	IOCTL_GET_FEATURE_CONFIG = 27,
-> >> };
-> > 
-> > Odd mix of comments and no comments...
-> > 
-> > Anyway, that's fine, just curious as to why there was a gap.  No real
-> > reason why you can't just add them all now right?
+> ---
+> v4 : used yaml format instead of txt format document
+> v3 : make mt7986 pinctrl bindings as a separate file
+> v2 : deleted the redundant description of mt7986a/mt7986b
+> ---
+>  .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 350 ++++++++++++++++++
+>  1 file changed, 350 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
 > 
-> Code is firstly integrated to soc tree and then upstream. I would love
-> to see this happen vise versa but still marketing wants to deliver
-> features first to customers. On the other hand customers care about
-> getting features on the first place and they are fine with not having
-> upstream solution first.
-> Back to your comment. It can also happen while upstreaming that some
-> numbers are simply not used because design is changed. That's why that
-> numbers can be skipped because it was just temporary solution or not
-> proper design.
-> It doesn't mean that these numbers can't be listed but on the other hand
-> why they should be listed if they shouldn't/can't be used.
-> That's why over time we are just adding number which are used by that
-> patchset.
 
-Ok, that makes sense to keep this in sync with the newly added features,
-that way you don't have the "temporary number" problem.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-thanks,
+yamllint warnings/errors:
 
-greg k-h
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: 'pin_group_table' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-up-adv: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-up-adv: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-up-adv: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-down-adv: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-down-adv: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: patternProperties:-[0-9]+$:patternProperties:conf:properties:mediatek,pull-down-adv: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
+Error: Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dts:37.27-28 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1441: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1532240
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
