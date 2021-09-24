@@ -2,154 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DF4141781F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 18:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E9C1417832
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 18:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347183AbhIXQEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 12:04:50 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:47246 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1347186AbhIXQEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 12:04:46 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18ODc9KP008309;
-        Fri, 24 Sep 2021 18:03:01 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=selector1;
- bh=AWpwaT6zwq0p8d48eBkmNfSbiQBcZtL8hSkteXSX24Y=;
- b=QNN4faaNsVJz3n4qRPICMPs3NzQE20qXbekI+Uf6ss0E63zQt3lAo+E3+e3islST9urk
- MJbnrkPz9O+VWh9he0WnKK1Ti4Xp3GWMDSJdv7YcMnkLKn/PuRXDrfxq6H5UasXfC/xd
- Pyh865u+Dj2jVcmdVBRL6bJDz4abmEco9sFjATtJesrQSVwIfos+KdJbK3TLSax3YexJ
- yGkyzhg/2ExGqAwR3HLwL7CObTSkafl3IVx0jewpwYv0GdV994pvRNorBaik5iz/j807
- rmiXxGSG7Gz+mRVNqgHUjtS6re3sb6Q4NOws1cW8y0sPUB6cxT/JcTTL34Io9cObve8N YQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3b9fqxrp4p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 24 Sep 2021 18:03:01 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B503810002A;
-        Fri, 24 Sep 2021 18:03:00 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AD5BE22ADCC;
-        Fri, 24 Sep 2021 18:03:00 +0200 (CEST)
-Received: from localhost (10.75.127.51) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 24 Sep 2021 18:03:00
- +0200
-From:   Olivier Moysan <olivier.moysan@foss.st.com>
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        "Rob Herring" <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
+        id S233588AbhIXQMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 12:12:34 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:54652 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233752AbhIXQM0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 12:12:26 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18OGAhPV102811;
+        Fri, 24 Sep 2021 11:10:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1632499843;
+        bh=9Pop6oXiHVPFX2sciva/YG9DSuUyCmsf/YRPoCW7xjw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=YtkIYS+011vlOBa52SP5+7lT3ZV6uxBHBh5TXBo5GPudnXjq/+jPcqyl4vJg79BQr
+         CtTOA1OwZ/WEZt13z3y5+eAUC8Q4qOnQzRHBdyZ2Vt6DtYCbcBeQr/DxXpPSa2g0CE
+         CTEj+m9arI82s79NY60Yjt1Oc3mKDOFCxwPO87nw=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18OGAhNF116842
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 24 Sep 2021 11:10:43 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 24
+ Sep 2021 11:10:42 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 24 Sep 2021 11:10:42 -0500
+Received: from [10.250.37.219] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18OGAglw000461;
+        Fri, 24 Sep 2021 11:10:42 -0500
+Subject: Re: [PATCH V3 2/2] dt-bindings: remoteproc: k3-dsp: Remove
+ board-specific compatible from DT example
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: [PATCH] ARM: dts: stm32: fix SAI sub nodes register range
-Date:   Fri, 24 Sep 2021 18:02:21 +0200
-Message-ID: <20210924160221.13287-1-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.17.1
+        <linux-remoteproc@vger.kernel.org>, Nishanth Menon <nm@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>,
+        "Nagalla, Hari" <hnagalla@ti.com>
+References: <20210917095426.19277-1-sinthu.raja@ti.com>
+ <20210917095426.19277-3-sinthu.raja@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <4d43e927-3998-e9a9-87a6-6036b769a975@ti.com>
+Date:   Fri, 24 Sep 2021 11:10:42 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-24_05,2021-09-24_02,2020-04-07_01
+In-Reply-To: <20210917095426.19277-3-sinthu.raja@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The STM32 SAI subblocks registers offsets are in the range
-0x0004 (SAIx_CR1) to 0x0020 (SAIx_DR).
-The corresponding range length is 0x20 instead of 0x1c.
-Change reg property accordingly.
+Hi Sinthu,
 
-Fixes: 5afd65c3a060 ("ARM: dts: stm32: add sai support on stm32mp157c")
+On 9/17/21 4:54 AM, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> The example includes a board-specific compatible property, this is
+> wrong as the example should be board agnostic and gets in the way of
+> additions for newer platforms. Replace the same with a generic soc
+> node.
 
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+What board specific property? This description looks wrong.
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index bd289bf5d269..6992a4b0ba79 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -824,7 +824,7 @@
- 				#sound-dai-cells = <0>;
- 
- 				compatible = "st,stm32-sai-sub-a";
--				reg = <0x4 0x1c>;
-+				reg = <0x4 0x20>;
- 				clocks = <&rcc SAI1_K>;
- 				clock-names = "sai_ck";
- 				dmas = <&dmamux1 87 0x400 0x01>;
-@@ -834,7 +834,7 @@
- 			sai1b: audio-controller@4400a024 {
- 				#sound-dai-cells = <0>;
- 				compatible = "st,stm32-sai-sub-b";
--				reg = <0x24 0x1c>;
-+				reg = <0x24 0x20>;
- 				clocks = <&rcc SAI1_K>;
- 				clock-names = "sai_ck";
- 				dmas = <&dmamux1 88 0x400 0x01>;
-@@ -855,7 +855,7 @@
- 			sai2a: audio-controller@4400b004 {
- 				#sound-dai-cells = <0>;
- 				compatible = "st,stm32-sai-sub-a";
--				reg = <0x4 0x1c>;
-+				reg = <0x4 0x20>;
- 				clocks = <&rcc SAI2_K>;
- 				clock-names = "sai_ck";
- 				dmas = <&dmamux1 89 0x400 0x01>;
-@@ -865,7 +865,7 @@
- 			sai2b: audio-controller@4400b024 {
- 				#sound-dai-cells = <0>;
- 				compatible = "st,stm32-sai-sub-b";
--				reg = <0x24 0x1c>;
-+				reg = <0x24 0x20>;
- 				clocks = <&rcc SAI2_K>;
- 				clock-names = "sai_ck";
- 				dmas = <&dmamux1 90 0x400 0x01>;
-@@ -886,7 +886,7 @@
- 			sai3a: audio-controller@4400c004 {
- 				#sound-dai-cells = <0>;
- 				compatible = "st,stm32-sai-sub-a";
--				reg = <0x04 0x1c>;
-+				reg = <0x04 0x20>;
- 				clocks = <&rcc SAI3_K>;
- 				clock-names = "sai_ck";
- 				dmas = <&dmamux1 113 0x400 0x01>;
-@@ -896,7 +896,7 @@
- 			sai3b: audio-controller@4400c024 {
- 				#sound-dai-cells = <0>;
- 				compatible = "st,stm32-sai-sub-b";
--				reg = <0x24 0x1c>;
-+				reg = <0x24 0x20>;
- 				clocks = <&rcc SAI3_K>;
- 				clock-names = "sai_ck";
- 				dmas = <&dmamux1 114 0x400 0x01>;
-@@ -1271,7 +1271,7 @@
- 			sai4a: audio-controller@50027004 {
- 				#sound-dai-cells = <0>;
- 				compatible = "st,stm32-sai-sub-a";
--				reg = <0x04 0x1c>;
-+				reg = <0x04 0x20>;
- 				clocks = <&rcc SAI4_K>;
- 				clock-names = "sai_ck";
- 				dmas = <&dmamux1 99 0x400 0x01>;
-@@ -1281,7 +1281,7 @@
- 			sai4b: audio-controller@50027024 {
- 				#sound-dai-cells = <0>;
- 				compatible = "st,stm32-sai-sub-b";
--				reg = <0x24 0x1c>;
-+				reg = <0x24 0x20>;
- 				clocks = <&rcc SAI4_K>;
- 				clock-names = "sai_ck";
- 				dmas = <&dmamux1 100 0x400 0x01>;
--- 
-2.17.1
+> 
+> Fixes: 2a2180206ab6 ("dt-bindings: remoteproc: Add bindings for C66x DSPs on TI K3 SoCs")
+
+What error are you trying to fix exactly? The example used below is actually how
+it exactly appears in the J721E dts files, and there are no errors with
+dt_binding_check.
+
+This is more a cleanup than a fix.  You can look through the original binding
+submission patches to see why it is done like this.
+
+If this is triggered by the changes you are making to k3.yaml file as part of
+the J721E EAIK changes, then you probably may want to look at how you are doing
+that again. Looks like the k3.yaml file is being modified now to enforce
+"board-compatible", "soc-compatible" which may have triggered an error in this file.
+
+Please evaluate if you need to modify it to support just the "soc-compatible" as
+one of the items.
+
+
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> ---
+> 
+> Changes since V2:
+> * review comment updates, including simplifying the changes, commit
+>   message and $subject updates.
+> 
+> V2: https://lore.kernel.org/all/20210818074030.1877-1-sinthu.raja@ti.com/
+> V1: https://lore.kernel.org/all/20210817152005.21575-1-sinthu.raja@ti.com/
+> 
+>  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml       | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> index 6070456a7b67..5ec6505ac408 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> @@ -133,9 +133,7 @@ unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+> -    / {
+> -        model = "Texas Instruments K3 J721E SoC";
+> -        compatible = "ti,j721e";
+> +    soc {
+
+While this may be resolving the dt_bindings_check you might be seeing with the
+modified k3.yaml, note that "soc" property is not used on K3 dts files, you
+might be creating confusion for people who look at this example and the actual
+usage.
+
+regards
+Suman
+
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+>  
+> 
 
