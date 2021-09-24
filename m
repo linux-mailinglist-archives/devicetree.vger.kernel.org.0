@@ -2,102 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA750417D18
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 23:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E890417D19
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 23:45:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348048AbhIXVqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 17:46:17 -0400
-Received: from sender4-op-o14.zoho.com ([136.143.188.14]:17454 "EHLO
-        sender4-op-o14.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348569AbhIXVqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 17:46:11 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1632519853; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=g6Pk+mLZ+Hk48IwX4FdZc68yxHBUPsR4Vnr9YFJfy2och6pxFgUGiF1dZJmM+8go8lziOyTVt8FBmJ1qpdzslyk9RWoeUugRW9IPkt1n5HFUI8J/pbj93x5fXWBM0SAvE9LvdR2Yv/SSGkrFW1XYXpTHOOa+wPVvi4MCZ5BPISQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1632519853; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=fwm3BiQGjEUbCDITnzJmHZFcgXcpPQZO/0aZxcyTLOE=; 
-        b=WnBTC2YQ2DcyvXHQ8zL//IjuWTpunQGLEdkpiTs8icd9sjajpJe1wdJLvNW7rcVbxC++cz8q+4fXeJRUm+00lQrGMSe4wvThvg7OY8ABlevNZu50H8wt4dKRMUVWYQZGF0xH4mW1djNuEVymFLZNZGC0hSHwnelHCDINtuWxWzQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1632519853;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-        bh=fwm3BiQGjEUbCDITnzJmHZFcgXcpPQZO/0aZxcyTLOE=;
-        b=eSi4+vUIErQG5jSR+NPrN5DOS9KcsgAlnzZPYNryLVVp0I/UtRgVODFEup5tSzQa
-        31OB8ZNAmTgX1/JuM2Bqtj4Xp3qnakA6p9D9ciW8by8jzoVX78+KUmmRy+CLwiv7qMa
-        oIX25B5AuSdRmqYEdb8EymnvIsdME7x5Z7HksasA=
-Received: from [10.10.10.216] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1632519850838164.7657285152792; Fri, 24 Sep 2021 14:44:10 -0700 (PDT)
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add DT for Asus RT-AC88U
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
+        id S1348049AbhIXVqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 17:46:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54094 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343895AbhIXVqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 17:46:36 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D368DC061571;
+        Fri, 24 Sep 2021 14:45:02 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id t1so11124958pgv.3;
+        Fri, 24 Sep 2021 14:45:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=Uv269OeTJg43AaEPwcf5zcDpdZuLffPrpQspT2ye6xU=;
+        b=GDRkBLmdWxaRhCXbBu7YhAYbfeYGcttFcqZQUt4XlBxNUK35YdxbQMwpUalFFLPftH
+         Npc4pW8vwy2T0BUtB9pnp8eJ1Go3CeniD143fA19dgSaDVrKgakxqr02gpM0ABF94Epo
+         ugCS6I49c5dluUva4M873P7YRlcsrt+u7TmzTOOBOTlcmd0VodEXJ262iat5DD1UKMXw
+         xsRwnWYl492lGYSigCXYojczyGTF6DjE0VQMPttEUwPzTCCJvUDQwVlFR6dGy09ioG7i
+         CHaFaSPF1Oyi/g0YhR7QngZ1GewB0EIUwp7Xlsg5wj8jQrGGeHTjIX7raIwL9LsdQR/a
+         tu3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Uv269OeTJg43AaEPwcf5zcDpdZuLffPrpQspT2ye6xU=;
+        b=tlSMb5uJu1ay+E/f2y6kZZD47C/ZSbXaY+t00cGsr4KwYt8XVRxStkxW3NaegxljlM
+         m9G12QoXif18VQp0UkDFUSSboB00fGgfkg24jrMO+4vI5WqNhfkUDy2n6WwZMQZGT++2
+         nlj8xzR3dOuwMxrm4O5AOLuJpqd8ZESrMzwC5b9PP9K22hPn7L4Lhb5X474E8VLl6bWm
+         J6FVQdIN7ySt0mNCn8NSK3xs6ciBVi6AcxL7PO6ZApPJFAYBfjVG+2iKP3kcM/WqeUN/
+         ViHWPDn899Lklv9t+utdjzpo7C1WHg9XfGj3ejYU9THuO0ocfWbGecqVp0KzRlMW1fuD
+         jXYQ==
+X-Gm-Message-State: AOAM5339CDkvL+9fdwxWhoMCEvyczB2sqqc02JUh8/DhfeTkuGk9Sypo
+        yETzrVaCq3MRoMPQUchjgA4/eEPAXR/zTQ==
+X-Google-Smtp-Source: ABdhPJwDrhd5pnOFu92NgEERf8Zbyl9RvTTpSJvTXTv8hkVyuO2rcisRSR+OExbhjh244F0cDZqWNg==
+X-Received: by 2002:a63:155d:: with SMTP id 29mr5600716pgv.118.1632519901868;
+        Fri, 24 Sep 2021 14:45:01 -0700 (PDT)
+Received: from stbirv-lnx-2.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id n66sm9842029pfn.142.2021.09.24.14.44.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 Sep 2021 14:45:01 -0700 (PDT)
+From:   Justin Chen <justinpopo6@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Justin Chen <justinpopo6@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>
-References: <20210921121901.24578-1-arinc.unal@arinc9.com>
- <b695c272-b718-f702-8890-e098eee7e093@gmail.com>
- <50b7d44c-614e-bf3a-00bc-bc8a1c5d353a@arinc9.com>
- <b26b86d9-a2d2-70b5-c06f-b4edba75de13@gmail.com>
- <36707d63-2aa7-4e08-5df9-abd9c398439a@arinc9.com>
- <9ba1d9f6-354a-f8e6-7633-d629d7f9c62a@gmail.com>
- <6b2aed0e-8c03-ce15-e33a-5d1d15d1b9a6@arinc9.com>
- <90eac7d8-c0b6-e8f2-a7b5-9c959b43e431@gmail.com>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Message-ID: <104c2482-e638-ece0-96d6-2669b8eb8a2f@arinc9.com>
-Date:   Sat, 25 Sep 2021 00:44:07 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <90eac7d8-c0b6-e8f2-a7b5-9c959b43e431@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+        Doug Berger <opendmb@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Michael Chan <michael.chan@broadcom.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list),
+        linux-media@vger.kernel.org (open list:DMA BUFFER SHARING FRAMEWORK),
+        dri-devel@lists.freedesktop.org (open list:DMA BUFFER SHARING FRAMEWORK),
+        linaro-mm-sig@lists.linaro.org (moderated list:DMA BUFFER SHARING
+        FRAMEWORK)
+Subject: [PATCH net-next 0/5] brcm ASP 2.0 Ethernet controller
+Date:   Fri, 24 Sep 2021 14:44:46 -0700
+Message-Id: <1632519891-26510-1-git-send-email-justinpopo6@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2021 00:20, Florian Fainelli wrote:
-> On 9/24/21 2:02 PM, Arınç ÜNAL wrote:
->> Quoting Documentation/devicetree/bindings/net/dsa/realtek-smi.txt for
->> further reference.
->>
->>> Realtek SMI-based Switches
->>> ==========================
->>>
->>> The SMI "Simple Management Interface" is a two-wire protocol using
->>> bit-banged GPIO that while it reuses the MDIO lines MCK and MDIO does
->>> not use the MDIO protocol. This binding defines how to specify the
->>> SMI-based Realtek devices.
-> 
-> Ah this is the key here, using the MDIO controller won't work sorry
-> about misleading you. I suppose you will have to go back to the previous
-> Device Tree representation you had, but change the dsa,member property
-> and then you should be in business baring additional bugs/features.
-> 
+This patch set adds support for Broadcom's ASP 2.0 Ethernet controller.
 
-All good. After fixing "dsa,member" on the original specification, the 
-log slightly changed. I'm going to see if I can switch to the net-next 
-kernel on OpenWrt to test the driver further. Something might be wrong 
-with my backport.
+Florian Fainelli (1):
+  dt-bindings: net: Brcm ASP 2.0 Ethernet controller
 
-[    1.377530] realtek-smi switch@1: failed to get RESET GPIO
----
-[    2.759267] realtek-smi switch@1: deasserted RESET
-[    2.764927] realtek-smi switch@1: found an RTL8365MB-VC switch 
-(ver=0x0040)
-[    2.771956] realtek-smi switch@1: unable to register switch ret = -517
----
-[    3.149262] realtek-smi switch@1: deasserted RESET
-[    3.154906] realtek-smi switch@1: found an RTL8365MB-VC switch 
-(ver=0x0040)
-[    3.287052] realtek-smi switch@1: failed to get parent irq: -22
-[    3.293060] realtek-smi switch@1: no interrupt support
-[    3.298211] realtek-smi switch@1: no MDIO bus node
-[    3.303025] realtek-smi switch@1: could not set up MDIO bus
-[    3.308648] realtek-smi switch@1: unable to register switch ret = -19
+Justin Chen (4):
+  dt-bindings: net: brcm,unimac-mdio: Add asp-v2.0
+  net: bcmasp: Add support for ASP2.0 Ethernet controller
+  net: phy: mdio-bcm-unimac: Add asp v2.0 support
+  MAINTAINERS: ASP 2.0 Ethernet driver maintainers
+
+ .../devicetree/bindings/net/brcm,asp-v2.0.yaml     |  147 ++
+ .../devicetree/bindings/net/brcm,unimac-mdio.yaml  |    1 +
+ MAINTAINERS                                        |    9 +
+ drivers/net/ethernet/broadcom/Kconfig              |   11 +
+ drivers/net/ethernet/broadcom/Makefile             |    1 +
+ drivers/net/ethernet/broadcom/asp2/Makefile        |    2 +
+ drivers/net/ethernet/broadcom/asp2/bcmasp.c        | 1351 +++++++++++++++++++
+ drivers/net/ethernet/broadcom/asp2/bcmasp.h        |  565 ++++++++
+ .../net/ethernet/broadcom/asp2/bcmasp_ethtool.c    |  628 +++++++++
+ drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c   | 1414 ++++++++++++++++++++
+ .../net/ethernet/broadcom/asp2/bcmasp_intf_defs.h  |  187 +++
+ drivers/net/mdio/mdio-bcm-unimac.c                 |    1 +
+ 12 files changed, 4317 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/Makefile
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp.c
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp.h
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp_ethtool.c
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp_intf_defs.h
+
+-- 
+2.7.4
+
