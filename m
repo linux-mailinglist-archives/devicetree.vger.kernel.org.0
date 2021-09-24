@@ -2,85 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F5D3417705
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 16:46:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE89417712
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 16:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346784AbhIXOsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 10:48:04 -0400
-Received: from mga12.intel.com ([192.55.52.136]:51674 "EHLO mga12.intel.com"
+        id S231627AbhIXOwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 10:52:00 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:58734 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1346185AbhIXOsE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 10:48:04 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10116"; a="203580780"
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; 
-   d="scan'208";a="203580780"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2021 07:46:31 -0700
-X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; 
-   d="scan'208";a="551835095"
-Received: from bordone-mobl1.amr.corp.intel.com (HELO [10.209.164.235]) ([10.209.164.235])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2021 07:46:30 -0700
-Subject: Re: [PATCH 1/2] ASoC: mediatek: mt8195: add machine driver with
- mt6359, rt1011 and rt5682
-To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
-        tiwai@suse.com, robh+dt@kernel.org, matthias.bgg@gmail.com
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        aaronyu@google.com, linux-arm-kernel@lists.infradead.org
-References: <20210910104405.11420-1-trevor.wu@mediatek.com>
- <20210910104405.11420-2-trevor.wu@mediatek.com>
- <10fc49fa-9791-0225-365d-e3074680596c@linux.intel.com>
- <4d703c5f7cf27ddc8b9886b111ffeeba0c4aa08b.camel@mediatek.com>
- <1d7fe7455a054819daf05d41ab3658afdc1caced.camel@mediatek.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <c34d03ff-f349-724e-0dcf-7893f3622cd9@linux.intel.com>
-Date:   Fri, 24 Sep 2021 09:46:27 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S1346847AbhIXOv7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Sep 2021 10:51:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=5TIp+jvOSKncRqk5PW16MyMZMoU58Ut9aKPAaTdYe2I=; b=GG
+        D5LoUwPkC0fmN1cwGJgWlBkTtYXaOtmfeVUQES1tCDz+jkUw9sx2mmkRF8adU4T3VRl4Q/kdJZAxM
+        EMCy6yMympATD3URl3jIbmE7vSahrm6Px6AYI6TaqQ8GOsFb+6c10xu/c5huZAGHyDb+vQV4ri52k
+        ynZsocV3zgn68u0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mTmWq-0086fH-11; Fri, 24 Sep 2021 16:50:20 +0200
+Date:   Fri, 24 Sep 2021 16:50:20 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     robh+dt@kernel.org, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3] arm64: dts: marvell: add Globalscale MOCHAbin
+Message-ID: <YU3lrIbRKLU21z/F@lunn.ch>
+References: <20210923181830.3449602-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
-In-Reply-To: <1d7fe7455a054819daf05d41ab3658afdc1caced.camel@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210923181830.3449602-1-robert.marko@sartura.hr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 23, 2021 at 08:18:30PM +0200, Robert Marko wrote:
+> Globalscale MOCHAbin is a Armada 7040 based development board.
+> 
+> Specifications:
+> * Armada 7040 Quad core ARMv8 Cortex A-72 @ 1.4GHz
+> * 2 / 4 / 8 GB of DDR4 DRAM
+> * 16 GB eMMC
+> * 4MB SPI-NOR (Bootloader)
+> * 1x M.2-2280 B-key socket (for SSD expansion, SATA3 only)
+> * 1x M.2-2250 B-key socket (for modems, USB2.0 and I2C only)
+> * 1x Mini-PCIe 3.0 (x1, USB2.0 and I2C)
+> * 1x SATA 7+15 socket (SATA3)
+> * 1x 16-pin (2�8) MikroBus Connector
+> * 1x SIM card slot (Connected to the mini-PCIe and both M.2 slots)
+> * 2x USB3.0 Type-A ports via SMSC USB5434B hub
+> * Cortex 2x5 JTAG
+> * microUSB port for UART (PL2303GL/PL2303SA onboard)
+> * 1x 10G SFP+
+> * 1x 1G SFP (Connected to 88E1512 PHY)
+> * 1x 1G RJ45 with PoE PD (Connected to 88E1512 PHY)
+> * 4x 1G RJ45 ports via Topaz 88E6141 switch
+> * RTC with battery holder (SoC provided, requires CR2032 battery)
+> * 1x 12V DC IN
+> * 1x Power switch
+> * 1x 12V fan header (3-pin, power only)
+> * 1x mini-PCIe LED header (2x0.1" pins)
+> * 1x M.2-2280 LED header (2x0.1" pins)
+> * 6x Bootstrap jumpers
+> * 1x Power LED (Green)
+> * 3x Tri-color RGB LEDs (Controllable)
+> * 1x Microchip ATECC608B secure element
+> 
+> Note that 1G SFP and 1G WAN cannot be used at the same time as they are in
+> parallel connected to the same PHY.
+> 
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 
->>>> +/* Module information */
->>>> +MODULE_DESCRIPTION("MT8195-MT6359-RT1011-RT5682 ALSA SoC machine
->>>> driver");
->>>> +MODULE_AUTHOR("Trevor Wu <trevor.wu@mediatek.com>");
->>>> +MODULE_LICENSE("GPL v2");
->>>
->>> "GPL" is enough
->>>
->>
->> I see many projects use GPL v2 here, and all mediatek projects use
->> GPL
->> v2, too.
->> I'm not sure which one is better.
->> Do I need to modify this?
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-See
-https://www.kernel.org/doc/html/latest/process/license-rules.html?highlight=module_license#id1
-
-Loadable kernel modules also require a MODULE_LICENSE() tag. This tag is
-neither a replacement for proper source code license information
-(SPDX-License-Identifier) nor in any way relevant for expressing or
-determining the exact license under which the source code of the module
-is provided.
-
-“GPL”
-
-Module is licensed under GPL version 2. This does not express any
-distinction between GPL-2.0-only or GPL-2.0-or-later. The exact license
-information can only be determined via the license information in the
-corresponding source files.
-
-“GPL v2”
-
-Same as “GPL”. It exists for historic reasons.
-
-So "GPL v2" is not incorrect but for new contributions you might as well
-use the recommended tag.
+    Andrew
