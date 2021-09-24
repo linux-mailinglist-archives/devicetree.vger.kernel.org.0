@@ -2,206 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D2C8416F64
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 11:45:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26281417008
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 12:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245269AbhIXJqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 05:46:35 -0400
-Received: from mail-eopbgr80110.outbound.protection.outlook.com ([40.107.8.110]:7294
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        id S245252AbhIXKK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 06:10:56 -0400
+Received: from mail-dm6nam10on2061.outbound.protection.outlook.com ([40.107.93.61]:60929
+        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S245228AbhIXJqe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 05:46:34 -0400
+        id S245341AbhIXKKz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Sep 2021 06:10:55 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LJM9AeogeRxu9sANW/yw5ewuSDQH0C6XnmtZDqnaKHghGPW2s3DGUOeZq25MvWlTFVyKfSdO3PLafdXhxvNZb2Lo7tqQNR071f5a29/LzLFVbNdrYF4UU7xWZWCKo67RLkJ0uFrmcxwsgIST8MpyByZ0nKT1MCGwPS854T3qJ2dGd5bYuXdwaIJZXRzhtx3CeQS0gR6VJJ11W3G9d7sEuhK2rerpu4NsUGpTvFEZtqM0MH3U36ePSdLFeN2BNqMOuPJgwUl0b+aB2TXeDEMMNwzdHI/eRQOTToUVNyFIoobRb/7PppQNWSuSs38cz4u1Ay7Ja1N2C/WnhXgo2VZuug==
+ b=knkzR4oIRfMckcMSQTzCsffErYemE2rHlLrMHjSIhGBYdOUg6lVExC9Tyid1iEnNJrwhbx0ffQfp4GW3qd3RSEa9E7tXcleTiTuMLk2XyCAw+j/6C5LW3sByUCXLI+1R+EZrSdnAva+e7NyNmP7i3X+eVjqmny+MAp50OigVKKwwud8YNscsBqqmPb7jfzlObDNbHrldh9YwRDmtyJsnfZxygvFgya5z+4u905UEUww1QNczxuoa17YMa46R4BmCLZxb7iGbKgyPpOtrIJoHsfk+wYUm9YPO2nWXfSmzsezbPlPUPiX2Dw6rb509wYaSAM7eBtEqvTf1330yPFmWBQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=0yhSzASC/VKpgGnNgroHuzLNcwRoDr2rbQkb61n1Cr8=;
+ b=kNxxQ2/qLzVYr4jr7k04u8yUjZdi+mJzNM55AqjBe2G0Bw/131anv57WsOeQ6XtxoNMWPL4B8MH7cPy5LIwebw+1gCxGUYdomHEhJyi3APBL9C4muEdqHf4PMiwjT2AvlyE+ukJ3k/CZ7fIS/nmvu2a8qRuSL7t7Dt4gz8yhihZgQHKNDHUYu0gdbu82xbAHCExMbKORVIBsNSKXMqm3aBcVhcl18tehLBftrPKFy7gzl2iLQ58KUwf6WMKWiJAwlFzMP6Lm8A9yNgzpOASmQJQNmlAHdLXsZAuq9Icn4O6Ht7zA3EQHG4s5BxyWolODkqCtN/M5Nnw48enZuSgy+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=arndb.de smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xFwXBbyk7KPlXQGiYvswXycuWcxwp+jDEbZnCLi9muc=;
- b=WfX4UYZR0bHnKDzH77bbtjI34C46OXSi79blKeagDImjbb+BdgeJmDZo1jliIB392UXSMcujApXrJFv1M0Q4knHN4vCSltoef5ZR1Y6kGfPmVqxRDFPtqZcLZd0bH0mMTVqwAUDi9m0RJ+SYDlWY449sxKCzLNZe6dDL78zjQ5S2w0fFGkiB50pgHikWy0uZaqt0yaRviehYzYCmTiDs75dr2lQi8/EWKeCb09DZOocI1qtnCn3KB1H92Ws+nHu55TPlyx5Qn0P2G+Gexi1JBA45zsuMVUgy8p5u/oIXYUX7nPwH5s2OYCnpC33KLxtpci3/vRxVDl+s640xf3LL0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
- dkim=pass header.d=nokia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
- s=selector1-nokia-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xFwXBbyk7KPlXQGiYvswXycuWcxwp+jDEbZnCLi9muc=;
- b=xXmdeq3ifax4wna8DQQXjdObRp9yCtYPp/R6KRcqQHq6lQYk1iuMaGosexzsEnZDdJIPgEDhrWH2lCX+MhhpXc2NLKwRu4Kb7/3LAxLbQAoKkuHtwsLaVkFIMNDA45398HyPT4+tKgLEn4sZLNd0KK0loePfHJXW85cp8FCilig=
-Authentication-Results: roeck-us.net; dkim=none (message not signed)
- header.d=none;roeck-us.net; dmarc=none action=none header.from=nokia.com;
-Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
- by DU2PR07MB8151.eurprd07.prod.outlook.com (2603:10a6:10:274::20) with
+ bh=0yhSzASC/VKpgGnNgroHuzLNcwRoDr2rbQkb61n1Cr8=;
+ b=W4aVK0YVUuGNyfqj4rtcXp+WKy3dVXsVs0zoikgpYLvuXriNphAtiSh79aJ4TiYR+KoVi/ymfR8Zi8tdwwowCNDM2M/C6swE4NTIZKfnqA93higHWVQ26OOx8Kmz6Sb4BZdt1Fu2WiuZs5PRhbXocEuFSS4RT7yjcWpW8QuA+Ro=
+Received: from BN9PR03CA0018.namprd03.prod.outlook.com (2603:10b6:408:fa::23)
+ by BN7PR02MB4243.namprd02.prod.outlook.com (2603:10b6:406:fe::25) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.14; Fri, 24 Sep
- 2021 09:44:59 +0000
-Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
- ([fe80::c47f:b569:ac76:9feb]) by DU2PR07MB8110.eurprd07.prod.outlook.com
- ([fe80::c47f:b569:ac76:9feb%6]) with mapi id 15.20.4478.014; Fri, 24 Sep 2021
- 09:44:59 +0000
-Date:   Fri, 24 Sep 2021 11:44:40 +0200
-From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Przemyslaw Cencner <przemyslaw.cencner@nokia.com>
-Subject: [PATCH v2 10/10] dt-bindings: hwmon: allow specifying channels for
- tmp421
-Message-ID: <582639597503c27409b432a5ed9576cc1b447480.1632473318.git.krzysztof.adamski@nokia.com>
-References: <cover.1632473318.git.krzysztof.adamski@nokia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1632473318.git.krzysztof.adamski@nokia.com>
-X-ClientProxiedBy: HE1PR05CA0133.eurprd05.prod.outlook.com
- (2603:10a6:7:28::20) To DU2PR07MB8110.eurprd07.prod.outlook.com
- (2603:10a6:10:239::15)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.16; Fri, 24 Sep
+ 2021 10:09:20 +0000
+Received: from BN1NAM02FT014.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:408:fa:cafe::52) by BN9PR03CA0018.outlook.office365.com
+ (2603:10b6:408:fa::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15 via Frontend
+ Transport; Fri, 24 Sep 2021 10:09:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; arndb.de; dkim=none (message not signed)
+ header.d=none;arndb.de; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ BN1NAM02FT014.mail.protection.outlook.com (10.13.2.131) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4544.13 via Frontend Transport; Fri, 24 Sep 2021 10:09:20 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 24 Sep 2021 03:09:18 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 24 Sep 2021 03:09:18 -0700
+Envelope-to: git@xilinx.com,
+ arnd@arndb.de,
+ saikrishna12468@gmail.com,
+ broonie@kernel.org,
+ robh+dt@kernel.org,
+ gregkh@linuxfoundation.org,
+ linux-arm-kernel@lists.infradead.org,
+ iwamatsu@nigauri.org,
+ p.yadav@ti.com,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org
+Received: from [172.23.63.68] (port=39484 helo=xhdvnc208.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <lakshmi.sai.krishna.potthuri@xilinx.com>)
+        id 1mTi8r-0003Y4-36; Fri, 24 Sep 2021 03:09:17 -0700
+Received: by xhdvnc208.xilinx.com (Postfix, from userid 14964)
+        id 4263720633; Fri, 24 Sep 2021 15:39:16 +0530 (IST)
+From:   Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <git@xilinx.com>,
+        <saikrishna12468@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>,
+        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+Subject: [PATCH 0/4] spi: cadence-quadspi: Add Xilinx Versal OSPI support
+Date:   Fri, 24 Sep 2021 15:37:07 +0530
+Message-ID: <1632478031-12242-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+X-Mailer: git-send-email 2.1.1
 MIME-Version: 1.0
-Received: from localhost.localdomain (131.228.2.1) by HE1PR05CA0133.eurprd05.prod.outlook.com (2603:10a6:7:28::20) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15 via Frontend Transport; Fri, 24 Sep 2021 09:44:58 +0000
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d0273b0e-5c7b-48a8-58b0-08d97f3ff973
-X-MS-TrafficTypeDiagnostic: DU2PR07MB8151:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DU2PR07MB815190C145BDD3E0CE87C918EFA49@DU2PR07MB8151.eurprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Office365-Filtering-Correlation-Id: 52bf69c4-5eaf-4048-a18c-08d97f436044
+X-MS-TrafficTypeDiagnostic: BN7PR02MB4243:
+X-Microsoft-Antispam-PRVS: <BN7PR02MB424306CB1A61ADE927442A77BDA49@BN7PR02MB4243.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: G6b48GlZJq43jltR6j2iYv95faW0XvwnE1KUDCPvTRRdTVMQNh+dhSDNXkJW5EGC7A/RCwxs24kmCbWl1J0wZ14wYmyfmFfPaHeo6nowP5tCuH3IMFVVnD2UN2liupl9EPMmhrD5prHw/iQ7x636k+g4souy4A5qnSCu7egL1XcaMitKq3mkppIBoG3Wb07L6oBmMvP/1HKxYgrnEsloXN5Yc0BFqAHVKmKd7DlM0fpJ5bzWtabp9kQpQ5WZnekHUQWWpEKbQvyvxcQtGgBIK4weizq4Q0ifYFNaNvmBOoUZp/59FO0gEMr6ggqfaMW8doHCe8qKxGtxPB5gbPX03Ir95V3ikpwTfdQLmNZkSQGRMVONlA0VRwISyKaFiPxa23DdsdKLiHtViqgARhokdSmGav3EHpRGJTrxicrzFun9ujTUoS16lRcawL6qAHbpOyWSBWP2YC+pyA/E2ZhHe/PJ6qObZZbkWQuvYf2ABibHUJDzX/cvmJekBHv2Uv0qr5JdFWZa+UbI6vMke95bhcQfB6dCdbY9sVakFc4fcus+Uakj5EKqewoUz1Wkx3Uj3zTn2FXJFgQqpIzTmbi7Fy6FZhlap5VH8UP/YdmTUfbUC7YS7fjKueyjaS9v5yHi5DvY3VOaV52O9kH3K9sZjCODRE71eLyfv9YVHDNwcbeiWRJvihCHc03tyPosDVmwZTvZYmgDQyNWiHXqu9dDlw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6666004)(6486002)(52116002)(66946007)(4326008)(107886003)(8676002)(66476007)(508600001)(8936002)(5660300002)(316002)(54906003)(110136005)(6512007)(2906002)(956004)(66556008)(44832011)(26005)(186003)(86362001)(36756003)(38350700002)(6506007)(83380400001)(38100700002)(2616005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?h2SBYVeCCy54uArFQ32wJssSz5tHNMcc7C3SrGilpIPZl7nMXP3Tfh8ZSDcu?=
- =?us-ascii?Q?X2IbG+vO8en1HycaDVpqL17yYvU8EzYBe6NI3ERYT1WbyxbmMuBd3o7fnlgb?=
- =?us-ascii?Q?r1SxFg6o014A58lHdCrZtC6xGBPiGWllg778lxsEUFKsBQbY/c8biiY7b7PT?=
- =?us-ascii?Q?Dww3C1fmX7zN0f/cNPtKI8Zt7OvNEJJb1yx3KfKGBV8cFMx2g9CvAP5UoqQj?=
- =?us-ascii?Q?EDyM84CmMDhkssO7wMbMvQNXJqJIi2YK1iVmKOuY6x7TqqOUWxjpHdN+WLsQ?=
- =?us-ascii?Q?BV2shPpnnE1VjOdHoU81UfyYIwHC6ZijerkBTExgS9XyASVobwIuSusVpWwo?=
- =?us-ascii?Q?e2aMfCIYTqWtc23BZ6Rj7NAzquRP7ng0T/Mv/Frox4e3HSZSfy/I2xExu/DM?=
- =?us-ascii?Q?pTHFX1o7ztGNJsy/GfANnhagUHKXv0Zj8oCjaFNpOsd6lO73tR39lA2ZG+6T?=
- =?us-ascii?Q?RuAr9GqJJI9HAG8xqysqgiab6n86gW9Wg20i65gMXuDRAnan5y9FfhW8jR6g?=
- =?us-ascii?Q?sdN5ZAI4gxdjBMsbibeX+DgQ2PHqAlM2ds7ecH4tUnHqRFvj16vqcbVILSrE?=
- =?us-ascii?Q?mcdWF168z+u5MwsBvrQRnRxvgEOz1xOneAa6VXACLEW6pugS8Ry2LiSxmqXr?=
- =?us-ascii?Q?dcT0KH81+wxOMTNxQY9EewED+F0wfMsfxvke+REkzYfLVSPz0KeinUZkMyux?=
- =?us-ascii?Q?AfRsjVYHLHpJoNEW6AGZOO+W5Zjg9h7gvUHHYB6tXcUMC6nhs83LrXRsF651?=
- =?us-ascii?Q?w40JQe7SN3NrHTBLLtOSp8sbAiL2k+JovlOHALJcMPcEyftscPCiZoqVnldx?=
- =?us-ascii?Q?lDpLq2Nv9HC7Lczcvti1sZlky3TUb+X+/z96bMws/YqiOcv5U1CbLQJ1sauA?=
- =?us-ascii?Q?dn9p/+xL4MhRGds9MpBIDr93KpI/75Q9AeA8fX1CVSKJQartBBET2oHB2P3F?=
- =?us-ascii?Q?RRbPvPML8CcbwQrF1MfuYheoRHhyeHcNETzVnzRmFhXcUl/iDOiXRhqtDb4L?=
- =?us-ascii?Q?bVRPiDy+K5zYbMfjUw8FQMLY41ccimmeW5XYYeH9hJVTSe1jyu+XLlQCPaP7?=
- =?us-ascii?Q?AQqj5G+5o5lorivuSgpZOgCmNiF5dporaxKpZUKRUMoVDgfmEAzlG1Ex9IMO?=
- =?us-ascii?Q?VqoTv627YoOxjrwI61glxoqMCmd5XC8y+rTnGTmsqwpcipQGsF2EFbpHaBDO?=
- =?us-ascii?Q?pmrjt5anaCTcowzaJS0LdpIJlIohYPJPeC0U2xW6vDvLDqy/W/MczI+2kFHh?=
- =?us-ascii?Q?c5zX4UG7Ny0Z12lT+o+dF7WmwqZxpMG3ntJAgqfbUE+pl4FTMzREvE0cds69?=
- =?us-ascii?Q?iOsvcytuUDTIexrYdWmpzUCL?=
-X-OriginatorOrg: nokia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0273b0e-5c7b-48a8-58b0-08d97f3ff973
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 09:44:59.7575
+X-Microsoft-Antispam-Message-Info: 3vOIT8Du0Wdl0NZQox3wtV2gyw6UWtvVLIGkqcPtUKfaAxCGzLAwFs5pZaJddopA12M83/QU//HUIvlfOjKRMy58AE6KLT85cQZCR+ZFotZJVDhYWLvYc4w0SUghRGWvP3goR9bf/1hnEzcEmFiWeiWf/pzm8utk05avdFKdoBa+/AQShyA0SMk6p3uYJcUCtSDYD/+QPYxLSuoYsNOthwAKy0BmwMd2YnB5sjFPyQLWypWiHFEmnLPE0GNGT5xONyBDUqzjP99twZce5CiAmVIMq0pz4dBcMR84Y5OJQFyE5VLvN1d1s9+WwdFpR2BTWjw99wZrXpJVDx6kP9w/cLCikNtzCpHKA+yk4AyH9BHNcz2ehA86t5rT3waLAyfX9oFhewFMLmrJ4ux4mb5YzBZSYLyiGJcKJLrtBwMT08Zj2k3WNCZPr0Uo0PgRHunJoPSsvv63ZHupPYaFKdZWOoTgiRGD+rL6WLhja1nQWACY+eyecg8ETahe2MhKerg0JeNGHRDpAO0hlsCodqEtYPRooeUGNaS6DZAHRfsGOLTS36xbvmPLgn1LYb6KmBj2owtM3k655Vl/7wmySC2FOZv/rA3qfliQT7/v+K9F9dXR4J4yugy42odPmEQmn03XI581TCc/bN83G40Bx9V7LnqJNH2g6KMEGDioxafPBYn3LY4OygTGowytRc0t7Ni5YdNKYNm3OFe4Nga4m5wEJLEjiqbYwZ1hkYIymUGl0Iw=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(36840700001)(46966006)(2616005)(36860700001)(83380400001)(356005)(82310400003)(6266002)(8936002)(107886003)(110136005)(7416002)(508600001)(7636003)(4326008)(2906002)(186003)(6666004)(47076005)(426003)(36756003)(26005)(42186006)(316002)(36906005)(8676002)(336012)(5660300002)(70206006)(70586007)(54906003)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 10:09:20.2963
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FapOQAsVFLBkY/NemZqjxQ3C2acCgTGI+wX3Tpwx1HSZH3ID4DxVID5FPHYNHIrrwVKLn4BnOzSiy8K+8lWDxOVbg9R7/DapHCbYI98EALE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR07MB8151
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52bf69c4-5eaf-4048-a18c-08d97f436044
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT014.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR02MB4243
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding description for the per temperature channel configuration
-like labels and n-factor.
+Add Octal SPI(OSPI) controller support for Xilinx Versal SoC.
+Update the binding to add Xilinx Versal compatible string, also add
+'power-domains' property and made as required for Xilinx Versal SoCs.
+Add API in xilinx firmware for configuring OSPI Mux, which is
+required to change the interface to OSPI. Xilinx Versal SoC
+has external DMA support, so by using the OSPI MUX selection, interface
+to the OSPI will be selected (either DMA interface or AXI slave interface).
+Xilinx Versal OSPI external DMA:
+Xilinx Versal OSPI DMA module is integrated to the Cadence OSPI Controller
+with the DMA write channel. Cadence OSPI Controller which reads the data
+from the Flash and stores in its internal SRAM and Xilinx Versal OSPI DMA
+which reads the data from the SRAM in the Cadence OSPI Controller using
+the DMA SRC channel and then the DMA DST channel initiates a write DMA
+transfer into the destined address location.
 
-Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
----
- .../devicetree/bindings/hwmon/ti,tmp421.yaml  | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
+Sai Krishna Potthuri (4):
+  firmware: xilinx: Add OSPI Mux selection support
+  dt-bindings: spi: cadence-quadspi: Add support for Xilinx Versal OSPI
+  spi: cadence-quadspi: Add OSPI support for Xilinx Versal SoC
+  spi: cadence-quadspi: Add Xilinx Versal external DMA support
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-index 53940e146ee6..56085fdf1b57 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-@@ -24,12 +24,49 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
- required:
-   - compatible
-   - reg
- 
- additionalProperties: false
- 
-+patternProperties:
-+  "^input@([0-4])$":
-+    type: object
-+    description: |
-+      Represents channels of the device and their specific configuration.
-+
-+    properties:
-+      reg:
-+        description: |
-+          The channel number. 0 is local channel, 1-4 are remote channels
-+        items:
-+          minimum: 0
-+          maximum: 4
-+
-+      label:
-+        description: |
-+          A descriptive name for this channel, like "ambient" or "psu".
-+
-+      n-factor:
-+        description: |
-+          The value (two's complement) to be programmed in the channel specific N correction register.
-+          For remote channels only.
-+        items:
-+          minimum: 0
-+          maximum: 1
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
- examples:
-   - |
-     i2c {
-@@ -41,3 +78,32 @@ examples:
-         reg = <0x4c>;
-       };
-     };
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      sensor@4c {
-+        compatible = "ti,tmp422";
-+        reg = <0x4c>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        input@0 {
-+          reg = <0x0>;
-+          n-factor = <0x1>;
-+          label = "local";
-+        };
-+
-+        input@1 {
-+          reg = <0x1>;
-+          n-factor = <0x0>;
-+          label = "somelabel";
-+        };
-+
-+        input@2 {
-+          reg = <0x2>;
-+          status = "disabled";
-+        };
-+      };
-+    };
+ .../bindings/spi/cdns,qspi-nor.yaml           |  12 +
+ drivers/firmware/xilinx/zynqmp.c              |  17 ++
+ drivers/spi/spi-cadence-quadspi.c             | 214 ++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |  12 +
+ 4 files changed, 255 insertions(+)
+
 -- 
-2.31.1
+2.17.1
 
