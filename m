@@ -2,111 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 614C3417039
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 12:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B76C8417043
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 12:23:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238808AbhIXKXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 06:23:06 -0400
-Received: from comms.puri.sm ([159.203.221.185]:35400 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229436AbhIXKWw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 06:22:52 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id A6EB5E119D;
-        Fri, 24 Sep 2021 03:21:19 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id wtAukYPPuay0; Fri, 24 Sep 2021 03:21:18 -0700 (PDT)
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     abel.vesa@nxp.com
-Cc:     a.fatoum@pengutronix.de, adrian.hunter@intel.com,
-        aisheng.dong@nxp.com, catalin.marinas@arm.com,
-        cw00.choi@samsung.com, devicetree@vger.kernel.org,
-        djakov@kernel.org, festevam@gmail.com, kernel@pengutronix.de,
-        kyungmin.park@samsung.com, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-serial@vger.kernel.org,
-        myungjoo.ham@samsung.com, robh@kernel.org, s.hauer@pengutronix.de,
-        shawnguo@kernel.org, ulf.hansson@linaro.org, will.deacon@arm.com,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: Re: [RFC 00/19] Add interconnect and devfreq support for i.MX8MQ
-Date:   Fri, 24 Sep 2021 12:20:26 +0200
-Message-Id: <20210924102026.2679952-1-martin.kepplinger@puri.sm>
-In-Reply-To: <1631554694-9599-1-git-send-email-abel.vesa@nxp.com>
-References: <1631554694-9599-1-git-send-email-abel.vesa@nxp.com>
-Content-Transfer-Encoding: 8bit
+        id S236299AbhIXKZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 06:25:19 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:4596 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229911AbhIXKZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Sep 2021 06:25:19 -0400
+X-IronPort-AV: E=Sophos;i="5.85,319,1624287600"; 
+   d="scan'208";a="94920609"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 24 Sep 2021 19:23:44 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D21AF401070E;
+        Fri, 24 Sep 2021 19:23:42 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] arm64: dts: renesas: rzg2l-smarc: Enable CANFD
+Date:   Fri, 24 Sep 2021 11:23:38 +0100
+Message-Id: <20210924102338.11595-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi Abel,
+Enable CANFD on RZ/G2L SMARC platform.
 
-thank you for the update (this is actually v2 of this RFC right?)!
-
-all in all this runs fine on the imx8mq (Librem 5 and devkit) I use. For all
-the pl301 nodes I'm not yet sure what I can actually test / switch frequencies.
-
-But I still have one problem: lcdif/mxfb already has the interconnect dram
-DT property and I use the following call to request bandwidth:
-https://source.puri.sm/martin.kepplinger/linux-next/-/commit/d690e4c021293f938eb2253607f92f5a64f15688
-(mainlining this is on our todo list).
-
-With your patchset, I get:
-
-[    0.792960] genirq: Flags mismatch irq 30. 00000004 (mxsfb-drm) vs. 00000004 (mxsfb-drm)
-[    0.801143] mxsfb 30320000.lcd-controller: Failed to install IRQ handler
-[    0.808058] mxsfb: probe of 30320000.lcd-controller failed with error -16
-
-so the main devfreq user (mxsfb) is not there :) why?
-
-and when I remove the interconnect property from the lcdif DT node, mxsfb
-probes again, but of course it doesn't lower dram freq as needed.
-
-Do I do the icc calls wrong in mxsfb despite it working without your
-patchset, or may there be something wrong on your side that breaks
-the mxsfb IRQ?
-
-again thanks a lot for working on this! I'm always happy to test.
-
-                          martin
-
-
-
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- .../boot/dts/freescale/imx8mq-librem5.dtsi    | 20 -------------------
- 1 file changed, 20 deletions(-)
+v2:
+-> Corrected STB pin states
+---
+ arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi | 40 ++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index 6fac6676f412..8496a90f23bf 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -381,26 +381,6 @@ &A53_3 {
- 	cpu-supply = <&buck2_reg>;
+diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+index e895f6e7fa28..a02784fab46a 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+@@ -80,6 +80,20 @@
+ 	clock-frequency = <12288000>;
  };
  
--&ddrc {
--	operating-points-v2 = <&ddrc_opp_table>;
--
--	ddrc_opp_table: ddrc-opp-table {
--		compatible = "operating-points-v2";
--
--		opp-25M {
--			opp-hz = /bits/ 64 <25000000>;
--		};
--
--		opp-100M {
--			opp-hz = /bits/ 64 <100000000>;
--		};
--
--		opp-800M {
--			opp-hz = /bits/ 64 <800000000>;
--		};
--	};
--};
--
- &dphy {
++&canfd {
++	pinctrl-0 = <&can0_pins &can1_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	channel0 {
++		status = "okay";
++	};
++
++	channel1 {
++		status = "okay";
++	};
++};
++
+ &ehci0 {
+ 	dr_mode = "otg";
  	status = "okay";
- };
+@@ -139,6 +153,32 @@
+ 	pinctrl-0 = <&sound_clk_pins>;
+ 	pinctrl-names = "default";
+ 
++	can0_pins: can0 {
++		pinmux = <RZG2L_PORT_PINMUX(10, 1, 2)>, /* TX */
++			 <RZG2L_PORT_PINMUX(11, 0, 2)>; /* RX */
++	};
++
++	/* SW7 should be at position 2->3 so that GPIO8_CAN0_STB line is activated */
++	can0-stb {
++		gpio-hog;
++		gpios = <RZG2L_GPIO(42, 2) GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "can0_stb";
++	};
++
++	can1_pins: can1 {
++		pinmux = <RZG2L_PORT_PINMUX(12, 1, 2)>, /* TX */
++			 <RZG2L_PORT_PINMUX(13, 0, 2)>; /* RX */
++	};
++
++	/* SW8 should be at position 2->3 so that GPIO9_CAN1_STB line is activated */
++	can1-stb {
++		gpio-hog;
++		gpios = <RZG2L_GPIO(42, 3) GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "can1_stb";
++	};
++
+ 	i2c0_pins: i2c0 {
+ 		pins = "RIIC0_SDA", "RIIC0_SCL";
+ 		input-enable;
 -- 
-2.30.2
+2.17.1
 
