@@ -2,126 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E996141717C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 14:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B09041718D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 14:12:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244993AbhIXMGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 08:06:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33114 "EHLO
+        id S244925AbhIXMOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 08:14:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244854AbhIXMGi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 08:06:38 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE91EC061574;
-        Fri, 24 Sep 2021 05:05:05 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id 5-20020a9d0685000000b0054706d7b8e5so12863673otx.3;
-        Fri, 24 Sep 2021 05:05:05 -0700 (PDT)
+        with ESMTP id S239965AbhIXMOM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 08:14:12 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AB6AC061574;
+        Fri, 24 Sep 2021 05:12:39 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id a3so14176649oid.6;
+        Fri, 24 Sep 2021 05:12:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=sender:date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=KTNvo2NdVXJ8RYqiPChVUPh+6+QMgCZl/OPc8G3+r+M=;
-        b=pOuzplGH1UebXGKaqbRVizrKfvvsH2H3DtpqVqXN7GY6fI0O/qfByuCl5TegnqOvEY
-         gTDUbDwFxttybN7Ley4oBCLW/TCxqlovl8MbOK+oQM9MB987yq3SfOQM7w5FmsPwJ+2Z
-         hwAtcKzDKruldZjRz2RrlSTAXaVPStvEW2YColwrzaYFSHy/JMnxUeyRAT8G3W1xr8U/
-         TevSGPW8BDAN8YqBfnO3I9L5ALSpM0zptNI3pF12CvzI5eOlCOpznXbJV/YI6tKZZ/xV
-         hT9eugmi6xgduiuKIXO2nBpVnoFKmUZWAk5HnYuW2dITdYPECdy3MrlsNyHjSMbUGfBL
-         ah4Q==
+        bh=MfuNxsVZjMbrYtzb+zu+X2t59R08maojWh/sO2fR7HQ=;
+        b=RemtayfwLWfgph6yWPECqfo11JpLvrPifE4PwmCubhrr+eSJmW6PRqchyNFxIBKWWx
+         Ely93OOR5Qn4tqB8943V4pTtFjQPrdHnF2nLXJV/SGtJWe7YVYRxXZ0VhcMANpfj7MVB
+         dJTKkCuEE+Pii01nfLwn4wYe++Ub+Jf7BMl9htjkwoqGJAGPK3ugJ/+vSsFLalROHY+Y
+         RhUxfXqmgldlwSYgjWuBuvmhbrNDhZt35ASf+V4844DBdFOsCEcqjB5birAkBsdBmxBo
+         hq0METDVcCshL1BOQzth/74B7MQ+Q81k5YIVvuusWXY1D7o0L4Ul5gTRgVD+g+fUb8T8
+         tSfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
          :references:mime-version:content-disposition:in-reply-to;
-        bh=KTNvo2NdVXJ8RYqiPChVUPh+6+QMgCZl/OPc8G3+r+M=;
-        b=B29eZx7UJHgzzkqUjz8S/Wud331wZCkB7GRR4ccuq9Sr+AWlC8rRyyrEkePymq5rvw
-         W+ahaSaMArKZ58QYC11o17OOco9muMokxHlH5b2VQh79VnQpmpwAHWQPUrakTyZDsgQc
-         blRAdR8KiKzDE5pqxv9KyaswRmsWifiGve6EROiFZsKHTVe3eXfaxWlDx19SBz6jk25C
-         2xufGxAFTpiwOJuj125BZHYKEjlDD38n7cjMfD+Sdtrp1QDJe3dBGYQB/ETiqQzTl50S
-         C3E5KROoZDCc6rPTqdulWWpOv/Wui5fCLPL7bwcm/BYEyh1VoSYxy/y8h9rpag/gCUPE
-         YBMg==
-X-Gm-Message-State: AOAM531GugAFtkzgnglTyJqQtjCWfdHE8bCwFsdwEXsvQpBAWSUjzKpp
-        9pybX9YWPRM+rg9NG/iIvT8=
-X-Google-Smtp-Source: ABdhPJzwmE2sy8QgRbLaC3bmRdP5T7F787v0KP2GlgouUSUscZWsFkad64d9yUqbzRKL6kDVlO5utA==
-X-Received: by 2002:a9d:6143:: with SMTP id c3mr3598235otk.124.1632485105326;
-        Fri, 24 Sep 2021 05:05:05 -0700 (PDT)
+        bh=MfuNxsVZjMbrYtzb+zu+X2t59R08maojWh/sO2fR7HQ=;
+        b=jTQKR+HK5B63NSMcplOfHH86scu+oFiakZYXf67Un6JWJf9/Vjw2F/RNqmKNs2m9LU
+         Hial+afMBMKBM9SDHKeItuGTBPdCGaG3l+lyaLBF0JhfMJcupnqFWzPY9RawlFsuFqiV
+         0fcExdEtUDUKntmTdE9cWH827GiNRNz0f7kfIbg8llfCia7sqvfEQhmi3jW7aZL8HSo6
+         rkIrDU6q3ylGwmXMngAJp+zB8yBd6WJraxhoIqrmxKsRi21uhVo5A2AtvlZJ6VE3j6/O
+         9e7omJu4nZxMgIfpxxnKmllmJgTtgl8Ir2vGGCWNvQID06O6H26ByfyTDYJy4Awecj4o
+         +GeQ==
+X-Gm-Message-State: AOAM532Yh9GoF1FSWEL8SdScdP7EkmLEUQrtt2kn4AFr4fk7Xk+dDh9n
+        bwl5tff0lF5hKXWI2mYSWIA=
+X-Google-Smtp-Source: ABdhPJzVxGIp6FvOhHgYaTHTqBooCG5zOc2kNsd3iZ64gbhngfCl+ZmodhjUlKlRpytpOvsB64zSAA==
+X-Received: by 2002:a54:4e84:: with SMTP id c4mr1227334oiy.106.1632485558434;
+        Fri, 24 Sep 2021 05:12:38 -0700 (PDT)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f17sm2171229ook.9.2021.09.24.05.05.04
+        by smtp.gmail.com with ESMTPSA id b19sm2006331otk.75.2021.09.24.05.12.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 05:05:04 -0700 (PDT)
+        Fri, 24 Sep 2021 05:12:37 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 24 Sep 2021 05:05:03 -0700
+Date:   Fri, 24 Sep 2021 05:12:35 -0700
 From:   Guenter Roeck <linux@roeck-us.net>
 To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>
 Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
         linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
         Przemyslaw Cencner <przemyslaw.cencner@nokia.com>
-Subject: Re: [PATCH v2 02/10] hwmon: (tmp421) introduce MAX_CHANNELS define
-Message-ID: <20210924120503.GA2696341@roeck-us.net>
+Subject: Re: [PATCH v2 07/10] hwmon: (tmp421) really disable channels
+Message-ID: <20210924121235.GA2696513@roeck-us.net>
 References: <cover.1632473318.git.krzysztof.adamski@nokia.com>
- <abc1a213a25b890b799b35ad94bb543a2ade7fc8.1632473318.git.krzysztof.adamski@nokia.com>
+ <1553ef3db09cfa166b26b77c958f5c13576dfbaf.1632473318.git.krzysztof.adamski@nokia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <abc1a213a25b890b799b35ad94bb543a2ade7fc8.1632473318.git.krzysztof.adamski@nokia.com>
+In-Reply-To: <1553ef3db09cfa166b26b77c958f5c13576dfbaf.1632473318.git.krzysztof.adamski@nokia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 24, 2021 at 11:39:06AM +0200, Krzysztof Adamski wrote:
-> There are few places where the maximal number of channels is used define
-> the size of arrays but when raw number is used it is not clear that they
-> really related to this quantity.
-> This commit introduces MAX_CHANNELS define and uses it those places to
-> give some context to the number.
+On Fri, Sep 24, 2021 at 11:42:40AM +0200, Krzysztof Adamski wrote:
+> Recent patch added possibility to disable selected channels. That would
+> only make sure that the ENODATA is returned for those channels but would
+> not configure the actual hardware.
+> 
+> With this patch, the config register is written to make sure the
+> channels are disabled also at hardware level.
 > 
 > Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-
-Applied to hwmon-next, no need to resend.
-
-Thanks,
-Guenter
-
 > ---
->  drivers/hwmon/tmp421.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+>  drivers/hwmon/tmp421.c | 34 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
 > 
 > diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
-> index ede66ea6a730..2c9ba5fe5f2a 100644
+> index 0fa4c02f5808..4934ce13afb4 100644
 > --- a/drivers/hwmon/tmp421.c
 > +++ b/drivers/hwmon/tmp421.c
-> @@ -29,6 +29,7 @@ static const unsigned short normal_i2c[] = { 0x2a, 0x4c, 0x4d, 0x4e, 0x4f,
->  
->  enum chips { tmp421, tmp422, tmp423, tmp441, tmp442 };
->  
-> +#define MAX_CHANNELS				4
+> @@ -33,6 +33,9 @@ enum chips { tmp421, tmp422, tmp423, tmp441, tmp442 };
 >  /* The TMP421 registers */
 >  #define TMP421_STATUS_REG			0x08
 >  #define TMP421_CONFIG_REG_1			0x09
-> @@ -36,8 +37,8 @@ enum chips { tmp421, tmp422, tmp423, tmp441, tmp442 };
+> +#define TMP421_CONFIG_REG_2			0x0A
+> +#define TMP421_CONFIG_REG_REN(x)		(BIT(3 + (x)))
+> +#define TMP421_CONFIG_REG_REN_MASK		(BIT(3)|BIT(4)|BIT(5)|BIT(6))
+
+GENMASK() would probably be better here.
+
+>  #define TMP421_CONVERSION_RATE_REG		0x0B
+>  #define TMP421_N_FACTOR_REG_1			0x21
 >  #define TMP421_MANUFACTURER_ID_REG		0xFE
->  #define TMP421_DEVICE_ID_REG			0xFF
+> @@ -155,6 +158,33 @@ static struct tmp421_data *tmp421_update_device(struct device *dev)
+>  	return data;
+>  }
 >  
-> -static const u8 TMP421_TEMP_MSB[4]		= { 0x00, 0x01, 0x02, 0x03 };
-> -static const u8 TMP421_TEMP_LSB[4]		= { 0x10, 0x11, 0x12, 0x13 };
-> +static const u8 TMP421_TEMP_MSB[MAX_CHANNELS]	= { 0x00, 0x01, 0x02, 0x03 };
-> +static const u8 TMP421_TEMP_LSB[MAX_CHANNELS]	= { 0x10, 0x11, 0x12, 0x13 };
+> +static int tmp421_enable_channels(struct tmp421_data *data)
+> +{
+> +	int err;
+> +	struct i2c_client *client = data->client;
+> +	struct device *dev = &client->dev;
+> +	int cfg = i2c_smbus_read_byte_data(client, TMP421_CONFIG_REG_2);
+> +	int i;
+> +
+> +	if (cfg < 0) {
+> +		dev_err(dev,
+> +			"error reading register, can't disable channels\n");
+
+Unnecessary line break
+
+> +		return err;
+
+		return cfg;
+
+> +	}
+> +
+> +	cfg &= ~TMP421_CONFIG_REG_REN_MASK;
+> +	for (i = 0; i < data->channels; i++)
+> +		if (data->channel[i].enabled)
+> +			cfg |= TMP421_CONFIG_REG_REN(i);
+> +
+> +	err = i2c_smbus_write_byte_data(client, TMP421_CONFIG_REG_2, cfg);
+> +	if (err < 0)
+> +		dev_err(dev,
+> +			"error writing register, can't disable channels\n");
+
+Unnecessary line break
+
+> +
+> +	return err;
+> +}
+> +
+>  static int tmp421_read(struct device *dev, enum hwmon_sensor_types type,
+>  		       u32 attr, int channel, long *val)
+>  {
+> @@ -395,6 +425,10 @@ static int tmp421_probe(struct i2c_client *client)
+>  	if (err)
+>  		return err;
 >  
->  /* Flags */
->  #define TMP421_CONFIG_SHUTDOWN			0x40
-> @@ -89,7 +90,7 @@ MODULE_DEVICE_TABLE(of, tmp421_of_match);
->  struct tmp421_data {
->  	struct i2c_client *client;
->  	struct mutex update_lock;
-> -	u32 temp_config[5];
-> +	u32 temp_config[MAX_CHANNELS + 1];
->  	struct hwmon_channel_info temp_info;
->  	const struct hwmon_channel_info *info[2];
->  	struct hwmon_chip_info chip;
-> @@ -97,7 +98,7 @@ struct tmp421_data {
->  	unsigned long last_updated;
->  	unsigned long channels;
->  	u8 config;
-> -	s16 temp[4];
-> +	s16 temp[MAX_CHANNELS];
->  };
+> +	err = tmp421_enable_channels(data);
+> +	if (err)
+> +		return err;
+
+This should really be called from tmp421_init_client(). After all, that is what
+the function is for.
+
+> +
+>  	data->chip.ops = &tmp421_ops;
+>  	data->chip.info = data->info;
 >  
->  static int temp_from_s16(s16 reg)
