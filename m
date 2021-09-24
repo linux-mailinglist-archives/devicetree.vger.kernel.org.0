@@ -2,104 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B59A416A9E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 05:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8907416AA4
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 05:54:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244044AbhIXDur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Sep 2021 23:50:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33266 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244019AbhIXDuq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 23:50:46 -0400
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C689C061574;
-        Thu, 23 Sep 2021 20:49:14 -0700 (PDT)
-Received: by mail-qt1-x834.google.com with SMTP id e16so5746717qts.4;
-        Thu, 23 Sep 2021 20:49:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aeqPl8lRAJi/jngCXcVyekAXBb4CJKVOEfw9KCRibJE=;
-        b=bL87uALhnZQ7xyPEXWDW+jMNYZp8S1nxJnEOCde4kDE2gW+iIKz1JpNCa8ITDhxB4+
-         vxSC6lBz8iFjEU1lWVimNSvB70bTO+uHyq/8juHZ2lM9KnsmHh+ntXKCa9cowFJ7mciB
-         gKG7YAO2bN9c2+K1TtAvImHkI6wTRX8tVt7pM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aeqPl8lRAJi/jngCXcVyekAXBb4CJKVOEfw9KCRibJE=;
-        b=kIpC0SBcacuOl+gwWKyYmMdt+I6ieYmCwNVv5gSDFBXAL1sIrf9xkpQr+Jo3huBKyw
-         mPi8rwO2ZMWPTBvFjLy51CXF86XNI2sZgODUYqIN40nUyHWIr3aVlYJiOvfJ/9mvVxFE
-         MmYIMQmnHUyo54LSv/Top9Q6OEYAlzrkIavYDIhEr/uCfWCOzXJCHRuoQ33dCfuxbiEF
-         kEgtoP/ATekzUANQn3hNA4tnqJIyD/l53ogcqdUhH/1eoSQH954AUV53FcjhyM+FKxg9
-         YLFvxi5jyZtZ6Op+LuRuJe4I0GQPvsDso/K6MDcEs/EQMAoL495fKOVcqB2/kdAEdXH2
-         Il1g==
-X-Gm-Message-State: AOAM532ouypu7V3Yno0EfGpNegMtXJawkMJkOlUJmoN0wHFgS+QVAFZ5
-        mx2y7uDXHR657I7G2Al+L8k4p44IpAmWEmFVeVI=
-X-Google-Smtp-Source: ABdhPJxpnTgNiXHwv0NhWyHlGgi4NFqri8IWBT5HGvaXlbmezTaEoOzlqXTHAWdP3EPM4UyatB9FeyfhDIuRLao8CAU=
-X-Received: by 2002:a05:622a:45:: with SMTP id y5mr2109484qtw.145.1632455352824;
- Thu, 23 Sep 2021 20:49:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210921043936.468001-1-andrew@aj.id.au>
-In-Reply-To: <20210921043936.468001-1-andrew@aj.id.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Fri, 24 Sep 2021 03:49:01 +0000
-Message-ID: <CACPK8XdTCfXVqDnBHcmbp4Zy=UKW5pZGAi1eiiDsUwu6=_+sig@mail.gmail.com>
-Subject: Re: [PATCH 0/2] leds: pca955x: Expose GPIOs for all pins
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-leds@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
-        Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
+        id S244019AbhIXD42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Sep 2021 23:56:28 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:42624 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S244018AbhIXD42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Sep 2021 23:56:28 -0400
+X-UUID: b851e1b912fa409f8efbb1af59898d1b-20210924
+X-UUID: b851e1b912fa409f8efbb1af59898d1b-20210924
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 74977654; Fri, 24 Sep 2021 11:54:51 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 24 Sep 2021 11:54:50 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 24 Sep
+ 2021 11:54:49 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 24 Sep 2021 11:54:49 +0800
+Message-ID: <1d7fe7455a054819daf05d41ab3658afdc1caced.camel@mediatek.com>
+Subject: Re: [PATCH 1/2] ASoC: mediatek: mt8195: add machine driver with
+ mt6359, rt1011 and rt5682
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <aaronyu@google.com>,
+        <linux-arm-kernel@lists.infradead.org>, <trevor.wu@mediatek.com>
+Date:   Fri, 24 Sep 2021 11:54:49 +0800
+In-Reply-To: <4d703c5f7cf27ddc8b9886b111ffeeba0c4aa08b.camel@mediatek.com>
+References: <20210910104405.11420-1-trevor.wu@mediatek.com>
+         <20210910104405.11420-2-trevor.wu@mediatek.com>
+         <10fc49fa-9791-0225-365d-e3074680596c@linux.intel.com>
+         <4d703c5f7cf27ddc8b9886b111ffeeba0c4aa08b.camel@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Sept 2021 at 04:39, Andrew Jeffery <andrew@aj.id.au> wrote:
->
-> Hello,
->
-> This is a rework of a Rube Goldberg-inspired RFC I posted previously:
->
-> https://lore.kernel.org/lkml/20210723075858.376378-1-andrew@aj.id.au/
->
-> This time around there's a lot less Rube - the series:
->
-> 1. Contains no (ab)use of pinctrl
-> 2. Always exposes all pins as GPIOs
-> 3. Internally tracks the active pins
->
-> Without these patches the driver limits the number of pins exposed on
-> the gpiochip to the number of pins specified as GPIO in the devicetree,
-> but doesn't map between the GPIO and pin number spaces. The result is
-> that specifying offset or interleaved GPIOs in the devicetree gives
-> unexpected behaviour in userspace.
->
-> By always exposing all pins as GPIOs the patches resolve the lack of
-> mapping between GPIO offsets and pins on the package in the driver by
-> ensuring we always have a 1-to-1 mapping.
->
-> The issue is primarily addressed by patch 1/2. Patch 2/2 makes it
-> possible to not expose any pins as LEDs (and therefore make them all
-> accessible as GPIOs). This has a follow-on effect of allowing the driver
-> to bind to a device instantiated at runtime without requiring a
-> description in the devicetree.
->
-> I've tested the series under qemu to inspect the various interactions
-> between LEDs vs GPIOs as well as conflicting GPIO requests.
->
-> Please review!
+Hi Pierre-Louis,
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+On Mon, 2021-09-13 at 18:24 +0800, Trevor Wu wrote:
+> On Fri, 2021-09-10 at 11:47 -0500, Pierre-Louis Bossart wrote:
+> > > 
+> 
+> > > +
+> > > +	param->mtkaif_calibration_ok = false;
+> > > +	for (i = 0; i < MT8195_MTKAIF_MISO_NUM; i++) {
+> > > +		param->mtkaif_chosen_phase[i] = -1;
+> > > +		param->mtkaif_phase_cycle[i] = 0;
+> > > +		mtkaif_chosen_phase[i] = -1;
+> > > +		mtkaif_phase_cycle[i] = 0;
+> > > +	}
+> > > +
+> > > +	if (IS_ERR(afe_priv->topckgen)) {
+> > > +		dev_info(afe->dev, "%s() Cannot find topckgen
+> > > controller\n",
+> > > +			 __func__);
+> > > +		return 0;
+> > 
+> > is this not an error? Why not dev_err() and return -EINVAL or
+> > something?
+> > 
+> 
+> Should I still return an error, even if the caller didn't check it?
+> 
+> Based on my understanding, the calibration function is used to make
+> the
+> signal more stable. 
+> Most of the time, mtkaif still works, even though the calibration
+> fails.
+> I guess that's why the caller(I refered to the implementation of
+> mt8192.) didn't check the return value of calibration function.
+> 
+> 
+> > > +	}
+> > > +
+> > > +	pm_runtime_get_sync(afe->dev);
+> > 
+> > test if this worked?
+> > 
+> 
+> Yes, if I didn't add pm_runtime_get_sync here, the calibration
+> failed.
+> 
+> > > +	mt6359_mtkaif_calibration_enable(cmpnt_codec);
+> > > +
+> > > 
+[...]
+> > > +	mt6359_set_mtkaif_calibration_phase(cmpnt_codec,
+> > > +					    chosen_phase_1,
+> > > +					    chosen_phase_2,
+> > > +					    chosen_phase_3);
+> > > +
+> > > +	mt6359_mtkaif_calibration_disable(cmpnt_codec);
+> > > +	pm_runtime_put(afe->dev);
+> > > +
+> > > +	param->mtkaif_calibration_ok = mtkaif_calibration_ok;
+> > > +	param->mtkaif_chosen_phase[MT8195_MTKAIF_MISO_0] =
+> > > chosen_phase_1;
+> > > +	param->mtkaif_chosen_phase[MT8195_MTKAIF_MISO_1] =
+> > > chosen_phase_2;
+> > > +	param->mtkaif_chosen_phase[MT8195_MTKAIF_MISO_2] =
+> > > chosen_phase_3;
+> > > +	for (i = 0; i < MT8195_MTKAIF_MISO_NUM; i++)
+> > > +		param->mtkaif_phase_cycle[i] = mtkaif_phase_cycle[i];
+> > > +
+> > > +	dev_info(afe->dev, "%s(), end, calibration ok %d\n",
+> > > +		 __func__, param->mtkaif_calibration_ok);
+> > 
+> > dev_dbg?
+> > 
+> 
+> Because we don't regard calibration failure as an error, it is a hint
+> to show the calibration result.
+> I prefer to keep dev_info here.
+> Is it OK?
+> 
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int mt8195_hdmitx_dptx_startup(struct snd_pcm_substream
+> > > *substream)
+> > > +{
+> > > +	static const unsigned int rates[] = {
+> > > +		48000
+> > > +	};
+> > > +	static const unsigned int channels[] = {
+> > > +		2, 4, 6, 8
+> > > +	};
+> > > +	static const struct snd_pcm_hw_constraint_list
+> > > constraints_rates = {
+> > > +		.count = ARRAY_SIZE(rates),
+> > > +		.list  = rates,
+> > > +		.mask = 0,
+> > > +	};
+> > > +	static const struct snd_pcm_hw_constraint_list
+> > > constraints_channels = {
+> > > +		.count = ARRAY_SIZE(channels),
+> > > +		.list  = channels,
+> > > +		.mask = 0,
+> > > +	};
+> > 
+> > you use the same const tables several times, move to a higher scope
+> > and
+> > reuse?
+> > 
+> 
+> There is little difference in channels between these startup ops.
+> 
+> > > +	struct snd_soc_pcm_runtime *rtd =
+> > > asoc_substream_to_rtd(substream);
+> > > +	struct snd_pcm_runtime *runtime = substream->runtime;
+> > > +	int ret;
+> > > +
+> > > +	ret = snd_pcm_hw_constraint_list(runtime, 0,
+> > > +					 SNDRV_PCM_HW_PARAM_RATE,
+> > > +					 &constraints_rates);
+> > > +	if (ret < 0) {
+> > > +		dev_err(rtd->dev, "hw_constraint_list rate failed\n");
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	ret = snd_pcm_hw_constraint_list(runtime, 0,
+> > > +					 SNDRV_PCM_HW_PARAM_CHANNELS,
+> > > +					 &constraints_channels);
+> > > +	if (ret < 0) {
+> > > +		dev_err(rtd->dev, "hw_constraint_list channel
+> > > failed\n");
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > 
+> > > +
+> > > +static struct platform_driver mt8195_mt6359_rt1011_rt5682_driver
+> > > =
+> > > {
+> > > +	.driver = {
+> > > +		.name = "mt8195_mt6359_rt1011_rt5682",
+> > > +#ifdef CONFIG_OF
+> > > +		.of_match_table = mt8195_mt6359_rt1011_rt5682_dt_match,
+> > > +#endif
+> > > +		.pm = &mt8195_mt6359_rt1011_rt5682_pm_ops,
+> > > +	},
+> > > +	.probe = mt8195_mt6359_rt1011_rt5682_dev_probe,
+> > > +};
+> > > +
+> > > +module_platform_driver(mt8195_mt6359_rt1011_rt5682_driver);
+> > > +
+> > > +/* Module information */
+> > > +MODULE_DESCRIPTION("MT8195-MT6359-RT1011-RT5682 ALSA SoC machine
+> > > driver");
+> > > +MODULE_AUTHOR("Trevor Wu <trevor.wu@mediatek.com>");
+> > > +MODULE_LICENSE("GPL v2");
+> > 
+> > "GPL" is enough
+> > 
+> 
+> I see many projects use GPL v2 here, and all mediatek projects use
+> GPL
+> v2, too.
+> I'm not sure which one is better.
+> Do I need to modify this?
+> 
 
-Cheers,
+> 
+> > > +MODULE_ALIAS("mt8195_mt6359_rt1011_rt5682 soc card");
+> > > 
 
-Joel
+Gentle ping.
+
+Thanks,
+Trevor
+
