@@ -2,280 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 701344178C3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 18:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD71B4178CF
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 18:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240917AbhIXQes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 12:34:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38462 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347679AbhIXQeA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 12:34:00 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A2D6C0613E7
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 09:32:16 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id j15so5421266plh.7
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 09:32:16 -0700 (PDT)
+        id S1348127AbhIXQfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 12:35:20 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:64558 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343651AbhIXQeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 12:34:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1632501154; x=1664037154;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=m4oVUSt2cjF66a6GM6GMZgXeCyOfb//vokkHkKd1YFo=;
+  b=FgL3kaLkwUQFdAjNj/eb3zDJNc55Ruby6PofO1C58KkaLgJhREqn0Dm6
+   gpDDZ/bXgIj68sFiRxO2n3tZx2MLBEo3u3fJRdrD4s2gMCDOjzW+LGut0
+   mwDBcDJDycDAmDcuBUvwqYNELJ+RzqrhSlpbTKf5m/y3eaqKPfJ9rjr/n
+   l4yXfy0CHzj9S5VMHeTD9uF1bXXe3KY8doG1YLzopUv2nQ4rzlmoWcF7V
+   9zs7yizLhnk8M4Ep36XdYC+LREPsQ9jha8hIFsHJXEg34grxmXJvRnm0r
+   2cHNkVs8m62SeFECym7nnnD7svISC7lWP6dHdiZdj2ZWcrBe3NAu8rlBF
+   Q==;
+IronPort-SDR: VnT2WTT6laVLDzvUZ2jvEwrHrNgX/0l33tIRT+YeyiqpA1ontMpilJhfj6PtY0cwM41MAQMcZs
+ 6PUd95kTAqS5qyOpeMfCJtO4zxkUiBPejM+9sWuxdE/HEoGoSOTkFfFomm4yzM35CJOlIsVlT+
+ 0Zbnz4bhywd/zW4hyIyuVAgW821K+t0CoduQPpF/b3tzzjsyV+tnX13+rJOywa/UbkhVlMqIje
+ UTOYmNZ/D86WZsmVGMd6AhKPsxcg4Wc8iVLDYUjq1/OkPxFP//sg7gHM7I0LHlVqJ1wbEKBnp+
+ QSiYv5g8jAWxQpbkMCk9tto1
+X-IronPort-AV: E=Sophos;i="5.85,320,1624345200"; 
+   d="scan'208";a="130590253"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Sep 2021 09:32:34 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 24 Sep 2021 09:32:33 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14 via Frontend Transport; Fri, 24 Sep 2021 09:32:33 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dAT+IKqzJDlRUBm9nfjKL6x4c0zQN6m6BAoOQtMSVBRu1TKfONigQXkb0pfIi+A07qxtQBBAMdEAyYrC14DT0H/1zSNVIzXD0ZUKrOnrY6udfafZSdYLu0H6rrf5o2wbCR2L56IpyZQtUXSwzUioFDLJcX2YNb1U5agmPprel+6TuUsdO7VJYarvSJY/M9WsPTXyxVgQdgwzM2kOzs/pMu2sKgJmNLUZo7jiFy52BA0UvyLqJAvffcRIBO5M/sWO2ZNJ20Qhhpnsn51/F8N6B6jw9iAk5FlHvDlwsnWwJflVXT3u9tCuCYz0qOtmI5rwQWCT8yKG291R6JqIVSewzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=m4oVUSt2cjF66a6GM6GMZgXeCyOfb//vokkHkKd1YFo=;
+ b=hpMjgztdanbp0x5J4e+oFRlFvUNlZ87Q+r9UUvpXBYsMy/WUbuuZc+PFw9FQie1lMuhcpTvg5kykqCJSHWgtYdqR4Zm2Zy0qRakLSWEj08TOYZZkacFtnbLtWxFchZA1rl4O6C3D08ec1cxhenYnahmGmT5oPgA0VtOl+SxvCSA7r+JobP5KoBdpdvsBcRVy7Y7dmJcznpxn11QGU8iWkaRO3TowivJaAF907/K74GVtk4SgJ5M82k0t7nrlahrVAe6taijDy1EmApX61CSgR8NkM/G6IY2WPK7zcjx5z3CDgaU5Kt2EzqT8n49wtnf39/RdvfEDkRA04+6cMFZ1ng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ooU/jJWFe3/6v4xrTo5YWaprT3XVZqJ+ZhUSaOnFf9w=;
-        b=Lx/kZBME9h+pD1jmCIgUUos8CmRza0AHTLoSOY7ONzMcm6yfTgniHR99vQJaJ23+8a
-         vAJwGDOGuAtBYfaRBn/1iO9QQRrjbs50jkYhVs2FkZerRkzJssOOyRVs90pZMYm5sViA
-         s8vxLMAAPOIQoVbe5C6tN3uY+ImNj25rfz35eWhUjPbZ8fPlXODh6gYY5Scj/yCafInZ
-         oZMetvwCbQTXuTLwoLp4NMIHYgNLCKmLIiOPP3Sy+rL+9gXfkQpYwM3ZlzF/9PJVhljw
-         tBSDMuplMj6uGA+CI77HkTlvsfbM1oke69wOCdPZWPvm1Z+LB7bRaA3ZkF8qwp7Rj8zq
-         el0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ooU/jJWFe3/6v4xrTo5YWaprT3XVZqJ+ZhUSaOnFf9w=;
-        b=mKr5g++CTHkjb3nZr8bDz8ioJ7kfULMOYY/vfLajZMPRZxZK1V5vzTPN/geu6/y3TU
-         0k/ld484xlUgEwmFkU4eaiQTcjzl7I8dlOZ8YkJbDSKmIf0aYKywJVLw7QFtdfNNkOXl
-         AKx4zfRrKqzQXt4G6thULalnzcv0zD7Pk1BLFait0dVQFvfv1oiEzQznJiSN8nF5U304
-         58ifJU0sfIqIROJPnOuruuooXXCsIakLvY4QlkR0iQH+12kG4FMBYqU+TBSV7mDJ0dOe
-         GgPrURF9ZVTJva4wWlFJxMexx0jnBVBt0ZcnOG9rJcHt2X8GK+2eqtr+LiPsgbRp1Pot
-         NyJQ==
-X-Gm-Message-State: AOAM530fdn/xIqTqf7bsmVyaO1V53HFH4eIEEqYuUxQn3lakDcRbYFkQ
-        br+sGGjR8NJ9a5XtR6/r8vU=
-X-Google-Smtp-Source: ABdhPJxT24pflcpRIRX6nFj6oL1ibiUdB/2mFp3sMYC1MXkRkiuQXwyaArbt3XAIQaDjJAZMPr8JYg==
-X-Received: by 2002:a17:90b:1e11:: with SMTP id pg17mr3311256pjb.144.1632501135901;
-        Fri, 24 Sep 2021 09:32:15 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id u24sm10312835pfm.81.2021.09.24.09.32.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Sep 2021 09:32:15 -0700 (PDT)
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add DT for Asus RT-AC88U
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>
-References: <20210921121901.24578-1-arinc.unal@arinc9.com>
- <b695c272-b718-f702-8890-e098eee7e093@gmail.com>
- <50b7d44c-614e-bf3a-00bc-bc8a1c5d353a@arinc9.com>
- <b26b86d9-a2d2-70b5-c06f-b4edba75de13@gmail.com>
- <36707d63-2aa7-4e08-5df9-abd9c398439a@arinc9.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <9ba1d9f6-354a-f8e6-7633-d629d7f9c62a@gmail.com>
-Date:   Fri, 24 Sep 2021 09:32:10 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <36707d63-2aa7-4e08-5df9-abd9c398439a@arinc9.com>
-Content-Type: text/plain; charset=utf-8
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m4oVUSt2cjF66a6GM6GMZgXeCyOfb//vokkHkKd1YFo=;
+ b=rAL66LVKGHQti0YBNBIYwausSjrmJ+N73H7SuKTvASKgpfuVy2kp9WqziRjst2pmiDnee5eTBN91PzZuc2ropdSpsBWNHMtuV3TzxChfoblzi07Jax3RrFCCAgsIWo0ZdLJlIKJtN9UuMRSb/hHoYYhvjUvARMPy0JAJVIrWyxA=
+Received: from CO1PR11MB4769.namprd11.prod.outlook.com (2603:10b6:303:91::21)
+ by MW3PR11MB4553.namprd11.prod.outlook.com (2603:10b6:303:2c::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15; Fri, 24 Sep
+ 2021 16:32:32 +0000
+Received: from CO1PR11MB4769.namprd11.prod.outlook.com
+ ([fe80::c929:4928:894d:8b5a]) by CO1PR11MB4769.namprd11.prod.outlook.com
+ ([fe80::c929:4928:894d:8b5a%6]) with mapi id 15.20.4544.018; Fri, 24 Sep 2021
+ 16:32:32 +0000
+From:   <Claudiu.Beznea@microchip.com>
+To:     <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 0/2] irqchip/mchp-eic: add driver for Microchip EIC
+Thread-Topic: [PATCH v3 0/2] irqchip/mchp-eic: add driver for Microchip EIC
+Thread-Index: AQHXsWHFVu7AaI6kdkKTgJptNdQs8g==
+Date:   Fri, 24 Sep 2021 16:32:32 +0000
+Message-ID: <68755c28-946a-a526-21b1-e40dd4fc5722@microchip.com>
+References: <20210924162817.2135056-1-claudiu.beznea@microchip.com>
+In-Reply-To: <20210924162817.2135056-1-claudiu.beznea@microchip.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+authentication-results: linutronix.de; dkim=none (message not signed)
+ header.d=none;linutronix.de; dmarc=none action=none
+ header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7b653238-aff2-42eb-baab-08d97f78e893
+x-ms-traffictypediagnostic: MW3PR11MB4553:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MW3PR11MB455345DD240FF5C9D75185D387A49@MW3PR11MB4553.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5236;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: AFchkfg6SO8NlRtawFgMve1yedBOSnaIN3UtTT12U6xEq9MZCOxJ78ZX6w+VXLjOP1ZZJqs9jv6ZVVPA88ygitrHiS1vYs8KXlUQGyX+qB0p3MFjGAhdfCvUANvOIqMsA36NGo3bWYygB0SQ/unKPBvWFgVFx/0vjeI9PsbH5mQywISfoFjVSLEXCFAhLpCw9o1/bna4z5+rrhm00m3eIndnSKRtFSpaH7lg8cKt9cdeioVYulPVRSEpWhGqc6xMFAXJZAaeC9KdBzNpd/N+6op0NyjItmJ5HYd2V/yh5cDGw/zmiceNX/aBSSm0HZLPAd1gKjUFE5etKA2YUReHqkIlMo4h4JoBOXdEVkQksse/Wnh5CKQecxDq9/yVr2K9DPl1rxXOtW3fsL6WVWoz/+u4iYrnc0vPK2spp3VIRM+VeC5kJIkkMdIx0j5tfGz7RWlwtG9YFv0QI4eUnDGrVjsYtndQ4QyL7T1gxuR51w2IcXUz7CBwRgna7xvrbzsYcE2lFoCM4oxe+OfKydti1rz/BPf1M2AJbpop46DIAKqKZOOLpsW3E5UecXU7UegZYn7RsI0FHMS0nKXVf3te6zyfI3Z7a7I024FD5QZHDK6+sZ2vnZs6aNAn5WDb5wSM5N68O9Wz5B04TZFQxTzz+NhNm62v+ooRg38Ibor21hZr2KxhjHF5xqC8088SxsOYUyBrToc95FuX374OBpRQFNUGKCdRffMy9nFaYv/mWms6YqOI4p7oUoCrM2wyOlrqFF2V3EjApnH27rD6g9qSjg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4769.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(6512007)(4326008)(66946007)(66446008)(64756008)(31696002)(66556008)(66476007)(76116006)(36756003)(91956017)(6486002)(83380400001)(54906003)(86362001)(8936002)(110136005)(316002)(8676002)(2906002)(71200400001)(31686004)(38070700005)(53546011)(6506007)(5660300002)(2616005)(508600001)(26005)(38100700002)(122000001)(186003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b0wrTkhNMUpRK3VmTE13ZEgyRUhFQitNcFpMYUdMd3hKbkw2NWtEUmhWZnEy?=
+ =?utf-8?B?SVowR0QzNUZxa1JHQURYQTZ5dkZNazFYV041YjZ6QmMyRzZYbUxLc0d6eVNI?=
+ =?utf-8?B?K3hNYkhCdXduMlQxL3hVTHJPcmVaTUx3M1d5VDJUdlk0SHZHc1AxNUxtWmtD?=
+ =?utf-8?B?aUxMaHRnOUxFTklXT0dxUGo5OGw2Qi84d0J5Y0FkUVdYaDlJL01aQUJURXJT?=
+ =?utf-8?B?eEFmNTFkL1BrUkJOS1QrZ0p3aFEwNnBVamJrZ1E3andZY3FQNEY3MHRJVkYy?=
+ =?utf-8?B?cmhQc0FlUmI4bUpkS2U0OGNFdEMrLzZmSzJKSnlQbU1DbEtWTTcrT24wZGxV?=
+ =?utf-8?B?aDhlL0todG1pYlZCeWZGNmhqWGtIS0dMNDBDWVNwY2Q3eGpkRGFiYXZtZWpP?=
+ =?utf-8?B?MXRUelM2MVB1eUVjMGlXZWNJUzNZRnIyWmFURC9HZWl3SU44R09kMlN3bURF?=
+ =?utf-8?B?SDl5RTZwUHFHZUdweTBUMktKdWJFcmhhNW1qUEpMRzFXcXhpazJyWHpnMGVn?=
+ =?utf-8?B?Skl6VUttZStHYjBHNDRwL0Q5Z1FwRzJhK2xvZ085SDBYN2FBeHR5UThhK1N4?=
+ =?utf-8?B?dVpPaEk0NjN3RExRVVN3Um5wMWVUc0hhMzg2dXpBTXhFRUNiVG9mYksya3FH?=
+ =?utf-8?B?NjFDalVKdGdXVEcyL2lKNnF0VU96N2FBcGMydEJSc0pFYnU3c0VlZDdXdXFE?=
+ =?utf-8?B?ZVdWQXhIaEFiSjRGTFF5VUFwUVcrM1Z6OHRTaEJLVjE4MjBSVTQ4YWp6cnkx?=
+ =?utf-8?B?Q0d5b2lKVHBnQnNXbnNyVW55WDRZNE5seEhLVXdCTEVsdGdBNE1TUFZrRm53?=
+ =?utf-8?B?bkJockVVc1IwOG9JSmk2cDZKQkZjUHRpQjhrbTlVN1pYVEx4S25tUHBvMyt6?=
+ =?utf-8?B?N3c2cXBLN3hpVU1TajV1Vnljc2RsZnpKZ09Nay91OU9zWWpNTlFDT0liQUw1?=
+ =?utf-8?B?bmZFc0xjTk1Vb0ZBejBlSkNtcWJmOVRlZktZU2pqclRkTkVOcGZDeWRSOTV4?=
+ =?utf-8?B?QkZ0azYwbzZMWkFsQmM3UThvK0NnVlY4K0h5SzV0SDNES05uRkFTOEx6Sy9U?=
+ =?utf-8?B?RUVkUStGMFFEZ3NJMjdaYnhNYU9FbG45ZGk0a2Ryc3hIempzbWNqN3ZiQmpm?=
+ =?utf-8?B?M1EyaXBHQXdPZU5ldEVmZW0ybkVDamdNQlFHT0tyWU0xa2x3RldNZzc1L3VM?=
+ =?utf-8?B?MDRjb1V3NWl1U2ZnUXFzUFdKVURJTEtZSmZDN1NKbVBPWGFSdGdMamhsZXhZ?=
+ =?utf-8?B?c0hEaXNBbU8zUlloT1RCNmRObkhMc3d1U1VwR1BNbk43MFFoM0lHMDFSQS9z?=
+ =?utf-8?B?WHpReDRBTGQwQXM0SjhTNU5FMTlkRHVjcEFtdEtMemlGaURqeXR0SXpWVmE3?=
+ =?utf-8?B?Q3JlRUVWWTIwa29wTElFcFR0M2lZTnMvM3E3dndwQ0FnSDRmbU5mV2JPRkV3?=
+ =?utf-8?B?OTZHY0kxcVF1NEZSNU56Uksyd0JJc3F2bE53YmYrZm95STJLbE9JYU53RXBw?=
+ =?utf-8?B?QXlhWG5XWHVSRW5aQ1lxYnNUSFBLWElHa0tyeUprQ3FqYi85aVNPb2JrL3JG?=
+ =?utf-8?B?dWpINjBCTEpEbkg1Y043NlJ4VXNDUmdYSjFpTGNPaHlPNDNQYm53MG1kdysy?=
+ =?utf-8?B?MzVhdGgzWjNZS2FUaXgzaDhJTFRreGJURmlWSy9kNHpFcFVIZzgzWTV6TWJJ?=
+ =?utf-8?B?OG04YlQ1MThuVkg0TmV6djVqNXEwSEZabndUMXlibnZFeWtwMTVFdFhMNnBM?=
+ =?utf-8?Q?sjIVIQf/4sd0UBP1EU=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <71E58FA30255834D976F0E4904025768@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4769.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b653238-aff2-42eb-baab-08d97f78e893
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2021 16:32:32.2861
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Kz+oXGB6BRaEc/M2hOTa/Lr7bW388K/gIiPs62xLxvCspTBRGNZB5liIb4dlvKuwBmWDsZOOZUjjZ35ODy94oFsdCl43ErOhUZxHStyxeYs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4553
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/24/21 1:50 AM, Arınç ÜNAL wrote:
-> On 23/09/2021 03:22, Florian Fainelli wrote:
->>
->>
->> On 9/22/2021 3:26 PM, Arınç ÜNAL wrote:
->>> On 22/09/2021 21:15, Florian Fainelli wrote:
->>>> On 9/21/21 5:19 AM, Arınç ÜNAL wrote:
->>>>> Hardware Info
->>>>> -------------
->>>>>
->>>>> Processor    - Broadcom BCM4709C0KFEBG dual-core @ 1.4 GHz
->>>>> Switch        - BCM53012 in BCM4709C0KFEBG & external RTL8365MB
->>>>
->>>> There is no Device Tree description of the RTL8365MB switch, can it be
->>>> driven/controlled via MDIO, SPI or GPIOs by any chance? This is not a
->>>> show stopper for accepting the patch, just wondering if you are somehow
->>>> trying to get that switch controlled by the rtl8366 DSA driver as well?
->>>>
->>> There's a v1 patch on net-next adding DSA support for RTL8365MB by
->>> Alvin Šipraga, CC'ing them. There's also a v2 patch coming.
->>> https://lore.kernel.org/netdev/20210822193145.1312668-1-alvin@pqrs.dk/
->>>
->>> I've been mailing Alvin to figure out how to define it on the device
->>> tree. They have provided very useful information. Quoting a few:
->>>
->>>  >> I'm trying to write the device tree to support this switch. I'm
->>> not sure
->>>  >> whether the default GPIO IDs of mdc-gpios, mdio-gpios, reset-gpios &
->>>  >> interrupts on realtek-smi.txt kernel documentation are correct.
->>>  >>
->>> https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/net/dsa/realtek-smi.txt
->>>
->>>  >
->>>  > These gpios are just an example. It really depends how your board is
->>>  > wired up. You have to figure out which SoC pad is wired to the MDC,
->>>  > MDIO, and RESET pins on the RTL8365MB. Then you have to make sure the
->>>  > pinmux is set up correctly so that these pads correspond to some GPIO
->>>  > with a given ID, and then pick the right GPIO controller
->>> (&chipcommon?)
->>>  > and put the ID after that. It will not necessarily be 21, 22, 14.
->>>
->>>  > In summary:
->>>  >
->>>  > - figure out which pads are wired to MDC, MDIO, RESET
->>>  > - figure out pinmux to make them into gpios
->>>  > - figure out gpio ID and describe that in the device tree
->>>  >
->>>
->>> I have backported the v1 patch to kernel 5.10 and tried an example
->>> definition on the device tree to test it out on RT-AC88U. It's on
->>> this branch:
->>> https://github.com/arinc9/openwrt/commits/realtek-work-asus_rt-ac88u
->>
->> Your dsa,member proper looks reversed, you would want it to be:
->>
->> dsa,member = <1 0>;
-> 
-> Thanks!
-> 
->>
->> to indicate that these are indeed disjoint DSA trees with the tree
->> being 1 and the switch being member 0 (the one and only). This part of
->> the driver/binding looks a bit weird too:
->>
->>      switch@1 {
->> +        compatible = "realtek,rtl8365mb";
->> +        /* 22 = MDIO (has input reads), 21 = MDC (clock, output only) */
->> +        mdc-gpios = <&chipcommon 6 GPIO_ACTIVE_HIGH>;
->> +        mdio-gpios = <&chipcommon 7 GPIO_ACTIVE_HIGH>;
->> +        reset-gpios = <&chipcommon 14 GPIO_ACTIVE_LOW>;
->>
->> this is clearly a MDIO-attached switch, so it should be a children of
->> the GPIO controller node. There is a hardware MDIO controller on the
->> BCM5301X so you should be able to avoid using bit-banging here and
->> instead using the BCM5301X's MDIO controller proper.
-> 
-> I took linksys panamera device tree as an example, this device is very
-> similar to Asus RT-AC88U.
-> https://github.com/Broadcom/stblinux/blob/devicetree/next/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-> 
-> 
-> I commented out the "reg" property on switch@1 so we can see if it finds
-> the switch while scanning PHY addresses on mdio 200.
-> 
-> I don't know if the default "interrupt-controller" and "compatible =
-> "realtek,smi-mdio", "dsa-mdio";" specification is correct, so I took
-> them out for now.
-> 
->     mdio-mux@18003000 {
-> 
->         /* BIT(9) = 1 => external mdio */
->         mdio@200 {
->             reg = <0x200>;
->             #address-cells = <1>;
->             #size-cells = <0>;
-> 
->             switch@1 {
->                 compatible = "realtek,rtl8365mb";
->                 #address-cells = <1>;
->                 #size-cells = <0>;
->                 reset-gpios = <&chipcommon 10 GPIO_ACTIVE_LOW>;
->                 reset-names = "robo_reset";
-> /*                reg = <0>;*/
->                 dsa,member = <1 0>;
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&pinmux_mdio>;
-> 
->                 ports {
->                     #address-cells = <1>;
->                     #size-cells = <0>;
-> 
->                     port@0 {
->                         reg = <0>;
->                         label = "lan8";
->                     };
-> 
->                     port@1 {
->                         reg = <1>;
->                         label = "lan7";
->                     };
-> 
->                     port@2 {
->                         reg = <2>;
->                         label = "lan6";
->                     };
-> 
->                     port@3 {
->                         reg = <3>;
->                         label = "lan5";
->                     };
-> 
->                     port@4 {
->                         reg = <4>;
->                         label = "cpu";
->                         ethernet = <&sw0_p5>;
->                         phy-mode = "rgmii";
-> 
->                         fixed-link {
->                             speed = <1000>;
->                             full-duplex;
->                         };
->                     };
->                 };
->             };
->         };
->     };
-> 
-> Here's relevant part of the bootlog. Full bootlog is in the attachments.
-> 
-> [    2.027843] bcm_iproc 18029200.spi: using bspi-mspi mode
-> [    2.034744] libphy: Fixed MDIO Bus: probed
-> [    2.039638] libphy: iProc MDIO bus: probed
-> [    2.043764] iproc-mdio 18003000.mdio: Broadcom iProc MDIO bus registered
-> [    2.051215] libphy: mdio_mux: probed
-> [    2.055587] libphy: mdio_mux: probed
-> [    2.059196] mdio_bus 0.200: switch@1 has invalid PHY address
-> [    2.064894] mdio_bus 0.200: scan phy switch at address 0
-> [    2.070231] mdio_bus 0.200: scan phy switch at address 1
-> [    2.075554] mdio_bus 0.200: scan phy switch at address 2
-> [    2.080894] mdio_bus 0.200: scan phy switch at address 3
-> [    2.086217] mdio_bus 0.200: scan phy switch at address 4
-> [    2.091549] mdio_bus 0.200: scan phy switch at address 5
-> [    2.096870] mdio_bus 0.200: scan phy switch at address 6
-> [    2.102202] mdio_bus 0.200: scan phy switch at address 7
-> [    2.107523] mdio_bus 0.200: scan phy switch at address 8
-> [    2.112864] mdio_bus 0.200: scan phy switch at address 9
-> [    2.118186] mdio_bus 0.200: scan phy switch at address 10
-> [    2.123608] mdio_bus 0.200: scan phy switch at address 11
-> [    2.129022] mdio_bus 0.200: scan phy switch at address 12
-> [    2.134442] mdio_bus 0.200: scan phy switch at address 13
-> [    2.139858] mdio_bus 0.200: scan phy switch at address 14
-> [    2.145274] mdio_bus 0.200: scan phy switch at address 15
-> [    2.150697] mdio_bus 0.200: scan phy switch at address 16
-> [    2.156110] mdio_bus 0.200: scan phy switch at address 17
-> [    2.161528] mdio_bus 0.200: scan phy switch at address 18
-> [    2.166937] mdio_bus 0.200: scan phy switch at address 19
-> [    2.172355] mdio_bus 0.200: scan phy switch at address 20
-> [    2.177764] mdio_bus 0.200: scan phy switch at address 21
-> [    2.183183] mdio_bus 0.200: scan phy switch at address 22
-> [    2.188592] mdio_bus 0.200: scan phy switch at address 23
-> [    2.194011] mdio_bus 0.200: scan phy switch at address 24
-> [    2.199427] mdio_bus 0.200: scan phy switch at address 25
-> [    2.204834] mdio_bus 0.200: scan phy switch at address 26
-> [    2.210253] mdio_bus 0.200: scan phy switch at address 27
-> [    2.215662] mdio_bus 0.200: scan phy switch at address 28
-> [    2.221080] mdio_bus 0.200: scan phy switch at address 29
-> [    2.226490] mdio_bus 0.200: scan phy switch at address 30
-> [    2.231914] mdio_bus 0.200: scan phy switch at address 31
-> [    2.237939] b53-srab-switch 18007000.ethernet-switch: found switch:
-> BCM53012, rev 0
-> [    2.245957] bgmac_bcma: Broadcom 47xx GBit MAC driver loaded
-> 
-> Looks like the switch is not on 0x200, what else can we try?
-
-0x200 is not the address of the Realtek switch on the MDIO bus, 0x200 is
-the offset with mdio mux that needs to be toggled (bit 9). You still
-need to provide the Ethernet switch's address on the MDIO bus which
-appears to be 0.
-
-Auto-probing of devices only works for Ethernet PHYs, not for "pure"
-MDIO devices such as Ethernet switches.
--- 
-Florian
+U29ycnksIHRoaXMgaGFkIHRvIGJlIHY0LiBJJ2xsIGZpeCB0aGUgdmVyc2lvbmluZyBhbmQgcmUt
+cG9zdC4NCg0KVGhhbmsgeW91LA0KQ2xhdWRpdSBCZXpuZWENCg0KT24gMjQuMDkuMjAyMSAxOToy
+OCwgQ2xhdWRpdSBCZXpuZWEgd3JvdGU6DQo+IEhpLA0KPiANCj4gVGhpcyBzZXJpZXMgYWRkcyBz
+dXBwb3J0IGZvciBNaWNyb2NoaXAgRXh0ZXJuYWwgSW50ZXJydXB0IENvbnRyb2xsZXINCj4gcHJl
+c2VudCBvbiBTQU1BN0c1LiBUaGUgY29udHJvbGxlciBzdXBwb3J0cyBmb3IgMiBleHRlcm5hbCBp
+bnRlcnJ1cHQNCj4gbGluZXMgYW5kIGlzIGNvbm5lY3RlZCB0byBHSUMgYXMgZm9sbG93czoNCj4g
+DQo+IHBpblggICArLS0tLS0tKyBFWFRfSVJRMCArLS0tLS0tKyBpbnQgMTUzIChmb3IgcGluWCkg
+Ky0tLS0tLSsNCj4gLS0tLS0tPnwgICAgICB8LS0tLS0tLS0tPnwgICAgICB8LS0tLS0tLS0tLS0t
+LS0tLS0tLT58ICAgICAgfA0KPiBwaW5ZICAgfCBQSU8gIHwgRVhUX0lSUTEgfCBFSUMgIHwgaW50
+IDE1NCAoZm9yIHBpblkpIHwgR0lDICB8DQo+IC0tLS0tLT58ICAgICAgfC0tLS0tLS0tLT58ICAg
+ICAgfC0tLS0tLS0tLS0tLS0tLS0tLS0+fCAgICAgIHwNCj4gICAgICAgICstLS0tLS0rICAgICAg
+ICAgICstLS0tLS0rICAgICAgICAgICAgICAgICAgICArLS0tLS0tKw0KPiANCj4gd2hlcmUgUElP
+IGlzIHRoZSBwaW4gY29udHJvbGxlci4NCj4gDQo+IFRoYW5rIHlvdSwNCj4gQ2xhdWRpdSBCZXpu
+ZWENCj4gDQo+IENoYW5nZXMgaW4gdjM6DQo+IC0gdXNlIGlycV9kb21haW5fdHJhbnNsYXRlX3R3
+b2NlbGwoKSBpbnN0ZWFkIG9mIG1jaHBfZWljX2RvbWFpbl90cmFuc2xhdGUoKQ0KPiAgIGZyb20g
+djINCj4gLSB1c2UgSVJRQ0hJUF9QTEFURk9STV9EUklWRVJfQkVHSU4oKSwgSVJRQ0hJUF9NQVRD
+SCgpLA0KPiAgIElSUUNISVBfUExBVEZPUk1fRFJJVkVSX0VORCgpIGluc3RlYWQgb2YgYnVpbHRp
+bl9wbGF0Zm9ybV9kcml2ZXIoKQ0KPiAtIHJlZ2lzdGVyIHN1c3BlbmQvcmVzdW1lIGZ1bmN0aW5z
+IHZpYSBzeXNjb3JlX29wczsgYWxvbmcgd2l0aCB0aGlzDQo+ICAgZHJpdmVyIHByaXZhdGUgZGF0
+YSBzdHJ1Y3R1cmUgKG9mIHR5cGUgc3RydWN0IG1jaHBfZWljIGhhcyBiZWVuIGRlY2xhcmVkDQo+
+ICAgYXMgc3RhdGljOiBzdHJ1Y3QgbWNocF9laWMgKmVpYzspDQo+IC0gY29sbGVjdGVkIHRhZ3MN
+Cj4gDQo+IENoYW5nZXMgaW4gdjI6DQo+IC0gZml4IGNvbXBpbGF0aW9uIHdhcm5pbmcgb24gYmlu
+ZGluZ3MNCj4gDQo+IENoYW5nZXMgaW4gdjI6DQo+IC0gcy9tY2hwL21pY3JvY2hpcCBpbiBiaW5k
+aW5ncw0KPiAtIGdldCByaWQgb2YgZ2xpdGNoIGZpbHRlciBzZXR0aW5ncw0KPiAtIHVzZSBzL2Vp
+Y0AvaW50ZXJydXB0LWNvbnRyb2xsZXJAIGluIGJpbmRpbmdzDQo+IC0gcmVtb3ZlZCAnJyBhcm91
+bmQgaW50ZXJydXB0cyBpbiBiaW5kaW5ncyBhcyBwcm9wb3NlZCBieSBSb2INCj4gLSByZW1vdmVk
+IGdsaXRjaCBmaWx0ZXIgc2V0dGluZ3MNCj4gLSBzd2l0Y2hlZCB0byBoaWVyYXJjaGljYWwgaXJx
+Y2hpcCBkcml2ZXINCj4gLSBhZGRyZXNzZWQgcmV2aWV3IGNvbW1lbnRzDQo+IC0gdXNlIGJ1aWx0
+aW5fcGxhdGZvcm1fZHJpdmVyIGluc3RlYWQgb2YgbW9kdWxlX3BsYXRmb3JtX2RyaXZlcg0KPiAN
+Cj4gQ2xhdWRpdSBCZXpuZWEgKDIpOg0KPiAgIGR0LWJpbmRpbmdzOiBtaWNyb2NoaXAsZWljOiBh
+ZGQgYmluZGluZ3MNCj4gICBpcnFjaGlwL21jaHAtZWljOiBhZGQgc3VwcG9ydA0KPiANCj4gIC4u
+Li9pbnRlcnJ1cHQtY29udHJvbGxlci9taWNyb2NoaXAsZWljLnlhbWwgICB8ICA3MyArKysrKw0K
+PiAgTUFJTlRBSU5FUlMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA2ICsN
+Cj4gIGRyaXZlcnMvaXJxY2hpcC9LY29uZmlnICAgICAgICAgICAgICAgICAgICAgICB8ICAgOCAr
+DQo+ICBkcml2ZXJzL2lycWNoaXAvTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAgfCAgIDEg
+Kw0KPiAgZHJpdmVycy9pcnFjaGlwL2lycS1tY2hwLWVpYy5jICAgICAgICAgICAgICAgIHwgMjgw
+ICsrKysrKysrKysrKysrKysrKw0KPiAgNSBmaWxlcyBjaGFuZ2VkLCAzNjggaW5zZXJ0aW9ucygr
+KQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy9pbnRlcnJ1cHQtY29udHJvbGxlci9taWNyb2NoaXAsZWljLnlhbWwNCj4gIGNyZWF0ZSBtb2Rl
+IDEwMDY0NCBkcml2ZXJzL2lycWNoaXAvaXJxLW1jaHAtZWljLmMNCj4gDQoNCg==
