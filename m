@@ -2,82 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE89417712
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 16:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CE56417720
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 16:56:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231627AbhIXOwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 10:52:00 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:58734 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1346847AbhIXOv7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 10:51:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=5TIp+jvOSKncRqk5PW16MyMZMoU58Ut9aKPAaTdYe2I=; b=GG
-        D5LoUwPkC0fmN1cwGJgWlBkTtYXaOtmfeVUQES1tCDz+jkUw9sx2mmkRF8adU4T3VRl4Q/kdJZAxM
-        EMCy6yMympATD3URl3jIbmE7vSahrm6Px6AYI6TaqQ8GOsFb+6c10xu/c5huZAGHyDb+vQV4ri52k
-        ynZsocV3zgn68u0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mTmWq-0086fH-11; Fri, 24 Sep 2021 16:50:20 +0200
-Date:   Fri, 24 Sep 2021 16:50:20 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     robh+dt@kernel.org, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3] arm64: dts: marvell: add Globalscale MOCHAbin
-Message-ID: <YU3lrIbRKLU21z/F@lunn.ch>
-References: <20210923181830.3449602-1-robert.marko@sartura.hr>
+        id S1346805AbhIXO5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 10:57:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44424 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346920AbhIXO5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 10:57:41 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D747BC061613
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 07:56:08 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id x2so10699115ilm.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 07:56:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BTzhRmtCWqSMLNXYgMz/A9yGJztHmzn9VR2FvTuT1X0=;
+        b=SKj11i9J4weHpWL5gca5C27GtKyeqnzkCdtcpOIE6SIBamXV+/M7CCgWI59YoHaNnN
+         iSF1u8VJNmzdE20M16uM0tZzJoOCJvjCiAKadITYS8Nm4YpI6rE0IFZKalF9NOxRcEoO
+         HNl464XYupmzvQxjt3QsQLi35uS7yBRNytTbM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BTzhRmtCWqSMLNXYgMz/A9yGJztHmzn9VR2FvTuT1X0=;
+        b=InP8ZquMLi8b2RWjANeKpsSPyRhFNNYfX+wVgI+QkhWoI7ftdJDNi8wXTZAEtgWpfA
+         cSp/Wm75rA8aBxPwQFz6PUBwShp7ko9Dq1QpPqWQwGdSIhxc4j5VG0glG3qPAcXN4wvn
+         NkwLIaXrslmrK0SmIV/eiCIH0vYcyt/ARY47xwfE0JA8O5zJEL008Td759paA87cVSz4
+         6wWVL0m8ztGw0TNEaeWY/StvKMN0OxemHRmFZ0lgUu/NtgpkQ8g63UH0LEb8C/pCCHFM
+         HNorrZDf7MiEa1EKCiP94OdHF8Vb15lUcq18IEr/A/Pcw/0zMdmSWThmMNcNRzSVpkrI
+         E8KQ==
+X-Gm-Message-State: AOAM530cMkKhJ8EKE7/h9utnJdjjbB1q/AXCdt0muBjFtBusQXVLazFE
+        tgYT6S50qHxwJ1ti/tEQs5TnREDf9bdYEQ==
+X-Google-Smtp-Source: ABdhPJwpfR7QRd+PLqIWtFyQqNtGK0QwXSAGKpaeAxkoKF3aEDSOphOdnsefGa3OdHU6HVCyLF1eew==
+X-Received: by 2002:a92:c56d:: with SMTP id b13mr8526911ilj.86.1632495368005;
+        Fri, 24 Sep 2021 07:56:08 -0700 (PDT)
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com. [209.85.166.48])
+        by smtp.gmail.com with ESMTPSA id e204sm3983327iof.39.2021.09.24.07.56.07
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Sep 2021 07:56:07 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id s20so12991580ioa.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 07:56:07 -0700 (PDT)
+X-Received: by 2002:a6b:3f02:: with SMTP id m2mr9047097ioa.136.1632495366689;
+ Fri, 24 Sep 2021 07:56:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210923181830.3449602-1-robert.marko@sartura.hr>
+References: <20210914202202.1702601-1-dianders@chromium.org>
+ <CACRpkdaTb4_UfFzCqw=fiAnQhHD+1sDDua529KdGQbgMVfjYBw@mail.gmail.com>
+ <CAD=FV=VPgFRBLgOGvt4a4afDr80aQL64L7=H3kqeRf2ffiusPg@mail.gmail.com>
+ <CGME20210924080417eucas1p209819b105dc64faf1f2a7140c5c1389b@eucas1p2.samsung.com>
+ <874kaabdt5.fsf@intel.com> <68c3f798-a18d-fe8d-2925-2686716a985b@samsung.com> <CAD=FV=XEb-jx81inK8hGvdJeRqTLmmBKz7U-m+9=CHbNRSa16g@mail.gmail.com>
+In-Reply-To: <CAD=FV=XEb-jx81inK8hGvdJeRqTLmmBKz7U-m+9=CHbNRSa16g@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 24 Sep 2021 07:55:54 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V7V0MLy9XeA=vb_dpMS6ZBKkrGS_dC8uMeAxOeok5C3g@mail.gmail.com>
+Message-ID: <CAD=FV=V7V0MLy9XeA=vb_dpMS6ZBKkrGS_dC8uMeAxOeok5C3g@mail.gmail.com>
+Subject: Re: [PATCH v5 00/15] eDP: Support probing eDP panels dynamically
+ instead of hardcoding
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Jani Nikula <jani.nikula@linux.intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Emil Velikov <emil.velikov@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Will Deacon <will@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+        Srikanth Myakam <smyakam@microsoft.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 23, 2021 at 08:18:30PM +0200, Robert Marko wrote:
-> Globalscale MOCHAbin is a Armada 7040 based development board.
-> 
-> Specifications:
-> * Armada 7040 Quad core ARMv8 Cortex A-72 @ 1.4GHz
-> * 2 / 4 / 8 GB of DDR4 DRAM
-> * 16 GB eMMC
-> * 4MB SPI-NOR (Bootloader)
-> * 1x M.2-2280 B-key socket (for SSD expansion, SATA3 only)
-> * 1x M.2-2250 B-key socket (for modems, USB2.0 and I2C only)
-> * 1x Mini-PCIe 3.0 (x1, USB2.0 and I2C)
-> * 1x SATA 7+15 socket (SATA3)
-> * 1x 16-pin (2×8) MikroBus Connector
-> * 1x SIM card slot (Connected to the mini-PCIe and both M.2 slots)
-> * 2x USB3.0 Type-A ports via SMSC USB5434B hub
-> * Cortex 2x5 JTAG
-> * microUSB port for UART (PL2303GL/PL2303SA onboard)
-> * 1x 10G SFP+
-> * 1x 1G SFP (Connected to 88E1512 PHY)
-> * 1x 1G RJ45 with PoE PD (Connected to 88E1512 PHY)
-> * 4x 1G RJ45 ports via Topaz 88E6141 switch
-> * RTC with battery holder (SoC provided, requires CR2032 battery)
-> * 1x 12V DC IN
-> * 1x Power switch
-> * 1x 12V fan header (3-pin, power only)
-> * 1x mini-PCIe LED header (2x0.1" pins)
-> * 1x M.2-2280 LED header (2x0.1" pins)
-> * 6x Bootstrap jumpers
-> * 1x Power LED (Green)
-> * 3x Tri-color RGB LEDs (Controllable)
-> * 1x Microchip ATECC608B secure element
-> 
-> Note that 1G SFP and 1G WAN cannot be used at the same time as they are in
-> parallel connected to the same PHY.
-> 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Hi,
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On Fri, Sep 24, 2021 at 6:59 AM Doug Anderson <dianders@chromium.org> wrote:
+>
+> Hi,
+>
+> On Fri, Sep 24, 2021 at 2:10 AM Andrzej Hajda <a.hajda@samsung.com> wrote:
+> >
+> > Hi
+> >
+> > removed most cc, due to server limitation
+> >
+> >
+> > W dniu 24.09.2021 o 10:03, Jani Nikula pisze:
+> > > On Mon, 20 Sep 2021, Doug Anderson <dianders@chromium.org> wrote:
+> > >> Pushed all 15 to drm-misc-next.
+> > > ...
+> > >> e8de4d55c259 drm/edid: Use new encoded panel id style for quirks matching
+> > >> d9f91a10c3e8 drm/edid: Allow querying/working with the panel ID from
+> > >> the EDID
+> > > Hi Doug, Stan's reporting "initializer element is not constant" issues
+> > > here that were discussed before [1]. I wonder what gives, you said you'd
+> > > hit them on a draft version, but not with what was merged, and I can't
+> > > reproduce this either. Curious.
+> >
+> >
+> > Apparently this is grey area of unclear specification.
+> >
+> > gcc version below 8 reports error, above 8.1+ should work [1]. I am not
+> > sure if there is nice workaround for older gcc.
+> >
+> >
+> > [1]: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=69960#c18
+>
+> So I think the only solution is to go back to the character-at-a-time
+> version. It's slightly uglier but functionality trumps form.
+>
+> I'll post something today though it might need to wait a few hours
+> before I can manage it.
 
-    Andrew
+I managed to squeeze it in before my other obligations:
+
+https://lore.kernel.org/all/20210924075317.1.I1e58d74d501613f1fe7585958f451160d11b8a98@changeid
+
+I didn't CC everyone here but dri-devel and LKML are copied so
+hopefully if I missed someone it should still be accessible.
+
+-Doug
