@@ -2,128 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E26DE417086
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 12:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40BE44170B8
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 13:16:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245689AbhIXK7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 06:59:19 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:53984
+        id S245213AbhIXLST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 07:18:19 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:54752
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S245680AbhIXK7Q (ORCPT
+        by vger.kernel.org with ESMTP id S245205AbhIXLST (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 06:59:16 -0400
+        Fri, 24 Sep 2021 07:18:19 -0400
 Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C9C9A40848
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 10:57:41 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id F220440264
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 11:16:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632481061;
-        bh=JVVwsOf7X0M/+qlOsF+1zUq32C7aF6kWbgyKr7RQdek=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=dhLOQ8V7F4wVe75i3PP2WCguFKDr6BjyNVv5ua9EHpsxQ1BlMFCYvRQd3O85uqBUA
-         cnb6WqfLCe680LwJR2RFNeUhI1PFNGxQmKWiz3E07Rv4vYMqaNQbmS1BAE3dIKXFJR
-         HbRUnLeDviteJ/Ce4NuJh6i9mGan0LOi+wn57RWVfgufBC8sRisGFCqAwn17/FrOyr
-         YAv2pXqMWjqJQiXad8KOtHc9l+msV98PkaY9c2bTmS3WvA5iqOZe8bt/6CGdYjt6kr
-         eAGxBuEA2tLvsMI216Cn8tt/q0svwZG5o0CDApg8AxRXb46Ps3sk//WrQHcoScIA2G
-         CJMF7J18rY6CA==
-Received: by mail-wr1-f71.google.com with SMTP id v15-20020adff68f000000b0015df51efa18so7694677wrp.16
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 03:57:41 -0700 (PDT)
+        s=20210705; t=1632482205;
+        bh=aiCG4TKCxB5pDlfBPhlfyfaq05mK5AFrA1zDk3YN3Zk=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=Z4UIyPdvy8C71nOFxy/9l2EumujKA1qpP6ICrGl/BXUQzp+oSl9eNfk9CHxHMrMh/
+         ch7gwPHJ1W1qbwSQ4NdTRiTx1qWKshrq80WMeckWpimU3loYSpvDCmQWnf79xnnymH
+         5OdgAFc45Izcn31222YhluaWGWUBDCHT5y4g+wIAK/0irRC18hxOWSVHZEa8LvI2tG
+         5cdRk9wk+smixrLahQWx9rdH0npXQJYQJ074Z/zF708YGQWmzCRtMsAEnZiGx89+c/
+         UDmjBvSN/dOnQh8qqhxTYk+YiMVxa1ZUzOIFhIpxr4Pbk07bQuJjagMlr05A9vordV
+         tmVEvAvjmxOXA==
+Received: by mail-wr1-f71.google.com with SMTP id a17-20020adfed11000000b00160525e875aso236073wro.23
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 04:16:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JVVwsOf7X0M/+qlOsF+1zUq32C7aF6kWbgyKr7RQdek=;
-        b=ysZirCmohfrNtUqTMpFtZq895Et/YZzS5gHAvhyyfxL31HOzb+qSymww8c555F2v+9
-         UrRwU5ETsvIcDltm/qy5ALiysjHZvGX7DIQTpkXh21xQgMmUuQeJrUmE+vbjR+dK2V0Q
-         Ne+hMFgv9tQF9BVibzx58UTo5zHB/KE56qw3bZMgf/UEnXrsif89HwaGG3BOWSdxnLaT
-         GCqXGBIfVGTwn5fHmjMoS2L+uvAtzKBCqKTn250M8DELNfAim/qwyH3CMtXTFTsSfd7Z
-         CoLnTg0a530LCsf5X7k5dt/BB91OfUUgjSYtX6m6/sPZsh+UTiKWjk20A0wq7SrXHjw/
-         uYcQ==
-X-Gm-Message-State: AOAM531JXDdGie5NlQd8I/XAZ84YT5Aw1pZKu4gKGRcWCArXYCB7kdfb
-        BqbN4j4ionzQ32YOHDTPdHSvj09RnwLzGzNR5t0gDcdrF58A1JdfIKIeHdEBYNWgB2b95JYqvVj
-        CF07cyMQutBtwip6KX2KrjiQSRIIaQgpex+11dmw=
-X-Received: by 2002:a05:6000:1a85:: with SMTP id f5mr10982714wry.25.1632481061424;
-        Fri, 24 Sep 2021 03:57:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwLYvzxMc9tP9qdmx2NxdiK+8VdwTUT+JMDAWIj2fLS9fniGFXTFwHyxW2JGc/QJ7sNrnQG5A==
-X-Received: by 2002:a05:6000:1a85:: with SMTP id f5mr10982699wry.25.1632481061305;
-        Fri, 24 Sep 2021 03:57:41 -0700 (PDT)
-Received: from localhost.localdomain (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
-        by smtp.gmail.com with ESMTPSA id x17sm8188836wrc.51.2021.09.24.03.57.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 03:57:40 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Mackerras <paulus@samba.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=aiCG4TKCxB5pDlfBPhlfyfaq05mK5AFrA1zDk3YN3Zk=;
+        b=UxZGOHQEd/BWF8EO21IAn2/qAAXsMWqK1SUVsvHR6r7deXytedDmOMbcOqMNJstEQl
+         UMJxbi+u4TnDgoq8aNBqT3v6RJMkVLOO4i3sWHWkjOc6A2v18C2C/wpf/rjr3APy6csx
+         kUUKEDzPzB+pLW8u56PWt9kURkoaHLSAWx8SDRF5OxLBzsgakn3aPvjVq5iE5W99C56h
+         m95TynSj55tVI9+eGNXUsL2x4a2glVpjpIaEL4ieqF1im+Hj0Mmq5CGTnwnLKBJglJDD
+         2u2q1RwJ52hMVfhLCffBRjFSy0Enh1jrB5jusac0zfxOjKwiHIrlqnJ7z8QDlbAL5/l9
+         gltA==
+X-Gm-Message-State: AOAM5301EPmvDHuYhTUThLqeoDb+cmpO24RnTGuEqwB9QkyVeRBtI7nv
+        0vnV4Jtjt1Aij+9TT6rRjrj+x0EgsqC/i/vkhSOu9tjsgGlERorbZs8UjfTm1nCfx5z21Ak7i3t
+        NHQu2JXsg8oFIj7+mh3umZGZNZ2iOQ4zmlNKhck0=
+X-Received: by 2002:a7b:cc96:: with SMTP id p22mr1445591wma.83.1632482205430;
+        Fri, 24 Sep 2021 04:16:45 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw+ZIBTe1TLhsLs5L6B4mgKWTfR95aGpSX0d+JQJIY6OfeZcyVoHaFWVremJOS2a55z2/0e4Q==
+X-Received: by 2002:a7b:cc96:: with SMTP id p22mr1445571wma.83.1632482205225;
+        Fri, 24 Sep 2021 04:16:45 -0700 (PDT)
+Received: from [192.168.0.134] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id o7sm9958016wro.45.2021.09.24.04.16.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Sep 2021 04:16:44 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: rpc: renesas-rpc-if: Add support for the
+ R8A779A0 RPC-IF
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-kernel@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
         devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] powerpc/powermac: constify device_node in of_irq_parse_oldworld()
-Date:   Fri, 24 Sep 2021 12:56:53 +0200
-Message-Id: <20210924105653.46963-2-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210924105653.46963-1-krzysztof.kozlowski@canonical.com>
-References: <20210924105653.46963-1-krzysztof.kozlowski@canonical.com>
+References: <20210922085831.5375-1-wsa+renesas@sang-engineering.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <75713e8e-f675-240e-b503-99618d07afda@canonical.com>
+Date:   Fri, 24 Sep 2021 13:16:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210922085831.5375-1-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The of_irq_parse_oldworld() does not modify passed device_node so make
-it a pointer to const for safety.  Drop the extern while modifying the
-line.
+On 22/09/2021 10:58, Wolfram Sang wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Please write a short sentence after commit title.
 
----
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>  .../devicetree/bindings/memory-controllers/renesas,rpc-if.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> index 990489fdd2ac..b15992ad3613 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> @@ -33,6 +33,7 @@ properties:
+>            - renesas,r8a77970-rpc-if       # R-Car V3M
+>            - renesas,r8a77980-rpc-if       # R-Car V3H
+>            - renesas,r8a77995-rpc-if       # R-Car D3
+> +          - renesas,r8a779a0-rpc-if       # R-Car V3U
+>        - const: renesas,rcar-gen3-rpc-if   # a generic R-Car gen3 or RZ/G2 device
 
-Changes since v1:
-1. Drop extern.
----
- arch/powerpc/platforms/powermac/pic.c | 2 +-
- include/linux/of_irq.h                | 6 +++---
- 2 files changed, 4 insertions(+), 4 deletions(-)
+Where is the driver or DTS using these compatibles? The bindings can
+come even without users, but are you sure this is what you want?
+Changing them later, if ever needed, will be more difficult.
 
-diff --git a/arch/powerpc/platforms/powermac/pic.c b/arch/powerpc/platforms/powermac/pic.c
-index 4921bccf0376..af5ca1f41bb1 100644
---- a/arch/powerpc/platforms/powermac/pic.c
-+++ b/arch/powerpc/platforms/powermac/pic.c
-@@ -384,7 +384,7 @@ static void __init pmac_pic_probe_oldstyle(void)
- #endif
- }
- 
--int of_irq_parse_oldworld(struct device_node *device, int index,
-+int of_irq_parse_oldworld(const struct device_node *device, int index,
- 			struct of_phandle_args *out_irq)
- {
- 	const u32 *ints = NULL;
-diff --git a/include/linux/of_irq.h b/include/linux/of_irq.h
-index aaf219bd0354..83fccd0c9bba 100644
---- a/include/linux/of_irq.h
-+++ b/include/linux/of_irq.h
-@@ -20,12 +20,12 @@ typedef int (*of_irq_init_cb_t)(struct device_node *, struct device_node *);
- #if defined(CONFIG_PPC32) && defined(CONFIG_PPC_PMAC)
- extern unsigned int of_irq_workarounds;
- extern struct device_node *of_irq_dflt_pic;
--extern int of_irq_parse_oldworld(struct device_node *device, int index,
--			       struct of_phandle_args *out_irq);
-+int of_irq_parse_oldworld(const struct device_node *device, int index,
-+			  struct of_phandle_args *out_irq);
- #else /* CONFIG_PPC32 && CONFIG_PPC_PMAC */
- #define of_irq_workarounds (0)
- #define of_irq_dflt_pic (NULL)
--static inline int of_irq_parse_oldworld(struct device_node *device, int index,
-+static inline int of_irq_parse_oldworld(const struct device_node *device, int index,
- 				      struct of_phandle_args *out_irq)
- {
- 	return -EINVAL;
--- 
-2.30.2
 
+Best regards,
+Krzysztof
