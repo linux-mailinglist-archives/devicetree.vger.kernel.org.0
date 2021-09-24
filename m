@@ -2,72 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19E6F416E51
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 10:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19EF8416E5C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 10:58:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244692AbhIXI6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 04:58:42 -0400
-Received: from mail-ua1-f42.google.com ([209.85.222.42]:36803 "EHLO
-        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244621AbhIXI6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 04:58:41 -0400
-Received: by mail-ua1-f42.google.com with SMTP id u11so6122973uaw.3;
-        Fri, 24 Sep 2021 01:57:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yWBwxApblMDF3q6kdl/4edYZKWCSaPmrZg+7mZ5l+5Q=;
-        b=ABkCeJUTvYdbCg7m2sL6nJwDoIK5/CMczQvhh2m2RazuMuumQulQlAcOI9Wp77mNhr
-         ThuRvGdQUrWp5lqqKwSfXB9Aqffk3/yCjFWFx7+35UmNBFnP3C3CsEGusvW1N0radyzn
-         z1MXWZ2thKMBN/Ck+jt/vEJiDg0YvO88s+GT6I4I5MbGSuQcyKhVrBho84GnX5Ld6csX
-         3mZzAm8XGzpfmHyLMlTWUBkpBfwbNcEYLqcgkY7EYuK01B1TkD11dUijwv0I5/MpEXWw
-         QNHpgK5S7Sm5OVKKdKW0M62LYr93PtGQs2pn5SXwKmMtUj5FWBjHYeJsslmfErwCFURj
-         dHHQ==
-X-Gm-Message-State: AOAM530OsJxHW4m11IQtAaWKj8dGU14s1v6JLU/7oOZHRiucY0LW744x
-        UVfy9dp9IyqRurxuOUR+hcDOHk3BqgLC1lvY802HZwtK
-X-Google-Smtp-Source: ABdhPJxjeRLUeN9s2JqLiyWKVJRtNyDjyERsX01iahUcov2OctU+fHFjhrW1xlohzh5mnWr/pAyNyuZq7PjLeBPkdhw=
-X-Received: by 2002:ab0:7d5:: with SMTP id d21mr8319253uaf.78.1632473828287;
- Fri, 24 Sep 2021 01:57:08 -0700 (PDT)
+        id S245037AbhIXJAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 05:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46434 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244621AbhIXJAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 05:00:16 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290F4C061574;
+        Fri, 24 Sep 2021 01:58:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=SI/cOAtE1Wcg3NmVZ4SKRLLHEGol1UY9HS1ApBErzyE=; b=Vv512Iu7hpYDJYSUgY2Sy7rBtf
+        vVMq70xpGjXddxlKc/aQjgMI9dYNmWfyF+0pwwWqYJiCVnsCs++rYYe0cZAR+8ARv8mOamTPFKZK/
+        Dhs/F3QGrlvMvT311rbRt03ySId27bHByuGwtwwPJoksRfeKaC9Fi4c0i1/9Bp3bncRs=;
+Received: from p200300ccff0ce8001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0c:e800:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mTh2R-00024c-29; Fri, 24 Sep 2021 10:58:35 +0200
+Received: from andi by aktux with local (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mTh2Q-00Ak4I-Jz; Fri, 24 Sep 2021 10:58:34 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     robh+dt@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, krzk@kernel.org,
+        leoyang.li@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v2 0/4] ARM: dts: add E70K02 based eBook readers
+Date:   Fri, 24 Sep 2021 10:58:28 +0200
+Message-Id: <20210924085832.2560317-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210922212049.19851-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210922212049.19851-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210922212049.19851-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 24 Sep 2021 10:56:57 +0200
-Message-ID: <CAMuHMdVgqyYkNxW+gWeS9NYAXCGqN_r4NMt8gJRZAmnzyhQABw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: renesas: rzg2l-smarc-som: Enable ADC on
- SMARC platform
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 11:21 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Enable the ADC which is present on RZ/G2L SMARC SOM.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+Add devicetrees for E70K02 based ebook readers. 
+Name on mainboard is: 37NB-E70K0M+6A3
+Serials start with: E70K02 (a number also seen in vendor kernel
+sources).
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.16.
+These boards are found in the Kobo Libra H2O with an i.MX6SLL and
+in the Tolino Vision 5 with an i.MX6SL.
 
-Gr{oetje,eeting}s,
+Work is based on code from the vendor kernel at
+https://github.com/kobolabs/Kobo-Reader/blob/master/hw/imx6sll-librah2o/kernel.tar.bz2
+but things need to be heavily reworked due to
+incompatible bindings.
 
-                        Geert
+Changes in v2:
+
+Node names style cleanup, mainly mmc stuff, s/_/-/
+
+Andreas Kemnade (4):
+  dt-bindings: arm: fsl: Add E70K02 based ebook readers
+  ARM: dts: add Netronix E70K02 board common file
+  ARM: dts: imx: add devicetree for Kobo Libra H2O
+  ARM: dts: imx: add devicetree for Tolino Vision 5
+
+ .../devicetree/bindings/arm/fsl.yaml          |   2 +
+ arch/arm/boot/dts/Makefile                    |   4 +-
+ arch/arm/boot/dts/e70k02.dtsi                 | 320 ++++++++++++++++
+ arch/arm/boot/dts/imx6sl-tolino-vision5.dts   | 349 ++++++++++++++++++
+ arch/arm/boot/dts/imx6sll-kobo-librah2o.dts   | 339 +++++++++++++++++
+ 5 files changed, 1013 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/e70k02.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6sl-tolino-vision5.dts
+ create mode 100644 arch/arm/boot/dts/imx6sll-kobo-librah2o.dts
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
