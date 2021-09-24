@@ -2,154 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D010417763
-	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 17:19:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 045E54177EC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Sep 2021 17:37:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbhIXPU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 11:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
+        id S1347156AbhIXPiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 11:38:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347036AbhIXPUz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 11:20:55 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C75FC061571
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:19:22 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so13561135otq.7
-        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:19:22 -0700 (PDT)
+        with ESMTP id S233132AbhIXPiz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Sep 2021 11:38:55 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2433C061571
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:37:21 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id b15so41027318lfe.7
+        for <devicetree@vger.kernel.org>; Fri, 24 Sep 2021 08:37:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=FPuGLXyf4GhSufJtTJPE2zMV0i7GqU53SMkQ5L/me9Q=;
-        b=f/iKq4FEp3LEXigAZZ11zXCgcDuCmdMdOyDEgV6ybsY5fbnKvDWEZsgf/jeXsl0fcJ
-         ESsqyytRG+8Yzcbx8ws72ASSAZu+x4U1Q+4faH4oMc0XAMOQR5sG4JjEyMCZhOObOg5u
-         eNCzhqERrT5pRMc7PGNHr8RTiQr80VjVp/2vhfsGfZslJDQMvlezmCHYUNzL/jKAqG9H
-         AukSJFJi/UQRixGLRygUevm4Y8k+IfecrNwl0ZDwd/ixhHZGWwm2XL/b1VF/HnYd+x8V
-         r/s9DPuXpSTRRMK+dCtOAU92kPIqlLANQRqXVDvxQGbMsFNAHuJouRzexUadSbu8cfGR
-         GSpg==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WIiXg3KWNaaiadXRiJALyTJvpk2NlOpsDMLooSBe0Uo=;
+        b=SXmJjR1n5wGvVPsrifQ2Jio7TAw9SW+N1v34qSobYed1m5T7cHjTMDI+G7VW1c3sNP
+         a4YdsMHoSpgoG1aXNjtzkA11KaW0L15W9Tykm7EhCZBKZUZMxI9m1/qV8aLIoaqWRu5H
+         MDM4VibqWSmSuf0FWvQUOH4ttjLkBHJQsFWLLSxYQCwrHCoFeAVM7KGXrB+lc/n0gkdU
+         1QxzXepRD/6foOX0P/ItJo882340UfIr0S89TDu47mVRGVaAfrcwjWmFucySgibFH4o1
+         24NY+Qzv352XkbHqCmB+vTEX/EzJFY7XbqKfE2jJOpiu5CHXtXI6C2lSXHkl/1NefcvL
+         l1ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FPuGLXyf4GhSufJtTJPE2zMV0i7GqU53SMkQ5L/me9Q=;
-        b=TD9aNVmiUDGjuWtLnlgQb2llo+UNGrVWhr+bZrSlR6ViIHgIHbXPuTXStq/fIcNK07
-         Z3jLjCaIlalN6i7KAgovQW/hjh4KLwH3MqoQ37y00xJQhbsUZXVRnWMGCG2Rt4cuN0nV
-         IzR+SFY1ozFdiz/x3fAh6iMsVybQECuUoWTxopwZgcWSR7Sq/5lLWU0Lkga32gTBMjfP
-         d+6EzK2kmtgQDI0bt8lVYYDy/iKipH8+S5nFSX1khmFyFOIYiXBWUgdlQZc3W6fI2JqY
-         e8qHfcuoFqtEEDUOx17ChPVRSpm7wxYFyxe7JV2nH6bTxmvDsmMOh/pAEc/8hMQaHVcV
-         /YGA==
-X-Gm-Message-State: AOAM531bL6+k+unAilvCGlXWGU7hr1qyKdVIqcvcOxCxEyk03cJtgsJx
-        gl9QU0KFGVp333fQORrKRzXjMtk1kPzJtQ==
-X-Google-Smtp-Source: ABdhPJwppbzTnd5V1quAynG3XkKUBXIK0hPAtxhhdSVQJJOEo57BZuYRHSwufDJQKlS6onACToGjxQ==
-X-Received: by 2002:a9d:6206:: with SMTP id g6mr4588442otj.62.1632496761890;
-        Fri, 24 Sep 2021 08:19:21 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e2sm1815335ooa.20.2021.09.24.08.19.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Sep 2021 08:19:21 -0700 (PDT)
-Date:   Fri, 24 Sep 2021 08:20:00 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Georgi Djakov <djakov@kernel.org>
-Cc:     Shawn Guo <shawn.guo@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] interconnect: qcom: sdm660: Add missing a2noc qos
- clocks
-Message-ID: <YU3soCSg7nbywpGw@ripper>
-References: <20210824043435.23190-1-shawn.guo@linaro.org>
- <20210824043435.23190-3-shawn.guo@linaro.org>
- <YU3hoXHap5DsjTOm@builder.lan>
- <9b660924-1f07-8723-b66c-182ca06629d2@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WIiXg3KWNaaiadXRiJALyTJvpk2NlOpsDMLooSBe0Uo=;
+        b=t5fhrCeXldSm82sE1i82YVHhJo1bBGgXPQbks20eEfvdsC24b3POZcNF7NqNN9WcK4
+         n/JJN1PECa5LQQmf1JqMuNVnGGv9+4JiCGAnwbkdnq/6XyWlLXxNaR5YsDi4nABHfiV1
+         kOiP3qQHA0WP9bzu/Lho11iKC/zFEPp1JmTvLv7tvGrKEE6W7ErrmoFizjmgiOhHFRUp
+         0g+qYWWBtrhC3TLTqf9IkA9hQ6hDPaM1maT+rP+0OKAD470q7xXfEP38tFsMJ0t23c3x
+         4Wo5naatobVkfXY71S0g1oB6DZ4p278s10rvhJuEaMX0O0orxbWPMeG+BrOMVIFskaOp
+         E7VA==
+X-Gm-Message-State: AOAM531BBV80VuLnoonpKphVt1iFBp0zMKcig+Btgens6pgX+FqGjjii
+        SInqU+Yh/XKLYmMiKyl3XKqHs5qfwAsodJAgjlfqGA==
+X-Google-Smtp-Source: ABdhPJxnIuFkBBR/oG3fA3A1Sqyr0X/E+ybkFh48ZTX9iQb69fKdVYVuH/Eh2PqTNZ+krPCdDyaRZmtnlGiHZ2nQaCE=
+X-Received: by 2002:a05:651c:178e:: with SMTP id bn14mr12222808ljb.521.1632497836908;
+ Fri, 24 Sep 2021 08:37:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9b660924-1f07-8723-b66c-182ca06629d2@kernel.org>
+References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
+ <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
+ <YUkKCe7845uCqoy5@robh.at.kernel.org> <20210921125831.GB1864238@roeck-us.net>
+ <CAL_JsqLo=inkKVKSU8N=_h90RfpDk6NNWPKdKyTXh-VvqXDCag@mail.gmail.com>
+ <20210921205247.GA2363535@roeck-us.net> <CAL_Jsq+NXuF+F7OE3vyEbTUj6sxyMHVWHXbCuPPoFaKjpyZREQ@mail.gmail.com>
+ <20210924002951.GA3027924@roeck-us.net> <YU2D7L7QMgCJZUeb@localhost.localdomain>
+ <20210924114636.GB2694238@roeck-us.net>
+In-Reply-To: <20210924114636.GB2694238@roeck-us.net>
+From:   Oskar Senft <osk@google.com>
+Date:   Fri, 24 Sep 2021 11:37:00 -0400
+Message-ID: <CABoTLcQYHZbsgzXN7XXKQdDn8S-YsuE+ks9WShAEKcBJojEfcQ@mail.gmail.com>
+Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for tmp421
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Adamski <krzysztof.adamski@nokia.com>
+Cc:     Rob Herring <robh@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+        Linux HWMON List <linux-hwmon@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 24 Sep 07:58 PDT 2021, Georgi Djakov wrote:
+> > In many cases the channels are "shared" - we have 3 voltage, 3 current and 3
+> > power sensors but in fact they are not separate sensors but 3 channels
+> > each able to measure 3 different things and they may share some common
+> > properties in each channel (so current, voltage and power may be
+> > calculated bases on the same shunt resistor or correction factor). An
+> > example being adi,ltc2992.  In those cases it doesn't make sense to have
+> > two levels as how would you describe the shared parent? Call it generic
+> > "channels"?
 
-> On 24.09.21 17:33, Bjorn Andersson wrote:
-> > On Mon 23 Aug 23:34 CDT 2021, Shawn Guo wrote:
-> > 
-> > > It adds the missing a2noc clocks required for QoS registers programming
-> > > per downstream kernel[1].  Otherwise, qcom_icc_noc_set_qos_priority()
-> > > call on mas_ufs or mas_usb_hs node will simply result in a hardware hang
-> > > on SDM660 SoC.
-> > > 
-> > > [1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
-> > > 
-> > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > > Tested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > 
-> > Georgi, do you intend to pull this patch in for v5.15-rc?
-> > 
-> > I.e. should I pick up the dts change for v5.15 as well.
-> 
-> Yes, i have just sent a pull request with this included, so please
-> pull the dts change as a fix for v5.15-rc. Sorry for not mentioning
-> it explicitly.
-> I assume that not all bootloaders are leaving the qos clocks enabled,
-> so if this is fixing a hardware hang, should we also backport it into
-> stable? This is probably more of a question to the people actively
-> using this board?
-> 
+So in that case (e.g. for the nct7802, see [1]) do we want just
+1-level, maybe like this:
 
-Devices that needed this change wouldn't boot on that older kernel
-anyways, so I think it's safe to assume that we don't have any users on
-an old kernel that would benefit from this change.
+nct7802@28 {
+    compatible = "nuvoton,nct7802";
+    reg = <0x28>;
 
-So v5.15 is probably sufficient.
+    sensor@1 { /* RTD1 */
+         reg = <0x1>;
+         status = "okay";
+         mode = "thermistor"; /* Any of "thermistor", "thermal-diode",
+"voltage" */
+    };
 
-Regards,
-Bjorn
+    sensor@2 { /* RTD2 */
+         reg = <0x2>;
+         status = "okay";
+         mode = "thermal-diode"; /* Any of "thermistor",
+"thermal-diode", "voltage" */
+    };
 
-> Thanks,
-> Georgi
-> 
-> > Regards,
-> > Bjorn
-> > 
-> > > ---
-> > >   drivers/interconnect/qcom/sdm660.c | 14 ++++++++++++++
-> > >   1 file changed, 14 insertions(+)
-> > > 
-> > > diff --git a/drivers/interconnect/qcom/sdm660.c b/drivers/interconnect/qcom/sdm660.c
-> > > index c89c991a80a0..661eb3635d21 100644
-> > > --- a/drivers/interconnect/qcom/sdm660.c
-> > > +++ b/drivers/interconnect/qcom/sdm660.c
-> > > @@ -174,6 +174,16 @@ static const struct clk_bulk_data bus_mm_clocks[] = {
-> > >   	{ .id = "iface" },
-> > >   };
-> > > +static const struct clk_bulk_data bus_a2noc_clocks[] = {
-> > > +	{ .id = "bus" },
-> > > +	{ .id = "bus_a" },
-> > > +	{ .id = "ipa" },
-> > > +	{ .id = "ufs_axi" },
-> > > +	{ .id = "aggre2_ufs_axi" },
-> > > +	{ .id = "aggre2_usb3_axi" },
-> > > +	{ .id = "cfg_noc_usb2_axi" },
-> > > +};
-> > > +
-> > >   /**
-> > >    * struct qcom_icc_provider - Qualcomm specific interconnect provider
-> > >    * @provider: generic interconnect provider
-> > > @@ -811,6 +821,10 @@ static int qnoc_probe(struct platform_device *pdev)
-> > >   		qp->bus_clks = devm_kmemdup(dev, bus_mm_clocks,
-> > >   					    sizeof(bus_mm_clocks), GFP_KERNEL);
-> > >   		qp->num_clks = ARRAY_SIZE(bus_mm_clocks);
-> > > +	} else if (of_device_is_compatible(dev->of_node, "qcom,sdm660-a2noc")) {
-> > > +		qp->bus_clks = devm_kmemdup(dev, bus_a2noc_clocks,
-> > > +					    sizeof(bus_a2noc_clocks), GFP_KERNEL);
-> > > +		qp->num_clks = ARRAY_SIZE(bus_a2noc_clocks);
-> > >   	} else {
-> > >   		if (of_device_is_compatible(dev->of_node, "qcom,sdm660-bimc"))
-> > >   			qp->is_bimc_node = true;
-> > > -- 
-> > > 2.17.1
-> > > 
-> 
+    sensor@3 { /* RTD3 */
+         reg = <0x3>;
+         status = "okay";
+         mode = "voltage"; /* Any of "thermistor", "voltage" */
+    };
+
+    sensor@4 { /* LTD */
+        reg = <0x4>; /* using the same number as in sysfs */
+        status = "okay";
+        /* No mode configuration for LTD */
+    };
+};
+
+In this example, RTD1, RTD2 and LTD would be temperature sensors and
+RTD3 would be a voltage sensor.
+
+Would that make more sense? Is the use of strings acceptable?
+
+Thanks
+Oskar.
+
+[1] https://lore.kernel.org/all/20210921004627.2786132-1-osk@google.com/
