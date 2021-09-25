@@ -2,169 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C3FF418296
-	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 16:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B30FC4182B0
+	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 16:26:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245622AbhIYOUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Sep 2021 10:20:20 -0400
-Received: from relay02.th.seeweb.it ([5.144.164.163]:57735 "EHLO
-        relay02.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238275AbhIYOUU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Sep 2021 10:20:20 -0400
-Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 7BDD31F698;
-        Sat, 25 Sep 2021 16:18:42 +0200 (CEST)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1343621AbhIYO1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Sep 2021 10:27:38 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:59944 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233738AbhIYO1i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 25 Sep 2021 10:27:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=GIoIFS8oysAVK606odyYm+NnfqhL/RtH/bn53TX3cfE=; b=HjJrUTCk9nfyUdYrqlQER55LNl
+        bK2GVwXRCiVF31kumJrOs6gqHBB9/PeEy7NrtM+93p77z4KxBGYzcZd/+ztTlel9UkRm55pZnVzod
+        d1irtnX0sGeuaFuLvHsE/w3/uvC0CvWl/pLbFP+c5opalejgRY1E0Vk3jnwAMDD0NweU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mU8cR-008DSx-Pv; Sat, 25 Sep 2021 16:25:35 +0200
+Date:   Sat, 25 Sep 2021 16:25:35 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Justin Chen <justinpopo6@gmail.com>
+Cc:     netdev@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm6125: Improve indentation of multiline properties
-Date:   Sat, 25 Sep 2021 16:18:41 +0200
-Message-Id: <20210925141841.407257-1-marijn.suijten@somainline.org>
-X-Mailer: git-send-email 2.33.0
+        Doug Berger <opendmb@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Michael Chan <michael.chan@broadcom.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:DMA BUFFER SHARING FRAMEWORK" 
+        <linux-media@vger.kernel.org>,
+        "open list:DMA BUFFER SHARING FRAMEWORK" 
+        <dri-devel@lists.freedesktop.org>,
+        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
+        <linaro-mm-sig@lists.linaro.org>
+Subject: Re: [PATCH net-next 0/5] brcm ASP 2.0 Ethernet controller
+Message-ID: <YU8xX0fUWAoEnmRR@lunn.ch>
+References: <1632519891-26510-1-git-send-email-justinpopo6@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1632519891-26510-1-git-send-email-justinpopo6@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some multiline properties (spread out over multiple lines to keep length
-in check) were not indented properly, leading to misalignment with the
-items above.  The DT file is still small enough to address this early in
-the process.
+On Fri, Sep 24, 2021 at 02:44:46PM -0700, Justin Chen wrote:
+> This patch set adds support for Broadcom's ASP 2.0 Ethernet controller.
 
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-Reviewed-by: Martin Botka <martin.botka@somainline.org>
----
- arch/arm64/boot/dts/qcom/sm6125.dtsi | 46 ++++++++++++++--------------
- 1 file changed, 23 insertions(+), 23 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-index 2b37ce6a9f9c..e92fab5a2484 100644
---- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-@@ -326,8 +326,8 @@ tcsr_mutex: hwlock@340000 {
- 		tlmm: pinctrl@500000 {
- 			compatible = "qcom,sm6125-tlmm";
- 			reg = <0x00500000 0x400000>,
--				<0x00900000 0x400000>,
--				<0x00d00000 0x400000>;
-+			      <0x00900000 0x400000>,
-+			      <0x00d00000 0x400000>;
- 			reg-names = "west", "south", "east";
- 			interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
- 			gpio-controller;
-@@ -391,12 +391,12 @@ sdhc_1: sdhci@4744000 {
- 			reg-names = "hc", "core";
- 
- 			interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
--				<GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
-+				     <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "hc_irq", "pwr_irq";
- 
- 			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
--				<&gcc GCC_SDCC1_APPS_CLK>,
--				<&xo_board>;
-+				 <&gcc GCC_SDCC1_APPS_CLK>,
-+				 <&xo_board>;
- 			clock-names = "iface", "core", "xo";
- 			bus-width = <8>;
- 			non-removable;
-@@ -409,12 +409,12 @@ sdhc_2: sdhci@4784000 {
- 			reg-names = "hc";
- 
- 			interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
--				<GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-+				     <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "hc_irq", "pwr_irq";
- 
- 			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
--				<&gcc GCC_SDCC2_APPS_CLK>,
--				<&xo_board>;
-+				 <&gcc GCC_SDCC2_APPS_CLK>,
-+				 <&xo_board>;
- 			clock-names = "iface", "core", "xo";
- 
- 			pinctrl-0 = <&sdc2_state_on>;
-@@ -433,11 +433,11 @@ usb3: usb@4ef8800 {
- 			ranges;
- 
- 			clocks = <&gcc GCC_USB30_PRIM_MASTER_CLK>,
--				<&gcc GCC_SYS_NOC_USB3_PRIM_AXI_CLK>,
--				<&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
--				<&gcc GCC_USB3_PRIM_CLKREF_CLK>,
--				<&gcc GCC_USB30_PRIM_SLEEP_CLK>,
--				<&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>;
-+				 <&gcc GCC_SYS_NOC_USB3_PRIM_AXI_CLK>,
-+				 <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
-+				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-+				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
-+				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>;
- 
- 			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
- 					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
-@@ -462,11 +462,11 @@ usb3_dwc3: usb@4e00000 {
- 
- 		spmi_bus: spmi@1c40000 {
- 			compatible = "qcom,spmi-pmic-arb";
--			reg =	<0x01c40000 0x1100>,
--				<0x01e00000 0x2000000>,
--				<0x03e00000 0x100000>,
--				<0x03f00000 0xa0000>,
--				<0x01c0a000 0x26000>;
-+			reg = <0x01c40000 0x1100>,
-+			      <0x01e00000 0x2000000>,
-+			      <0x03e00000 0x100000>,
-+			      <0x03f00000 0xa0000>,
-+			      <0x01c0a000 0x26000>;
- 			reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
- 			interrupt-names = "periph_irq";
- 			interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
-@@ -497,7 +497,7 @@ timer@f120000 {
- 			frame@0f121000 {
- 				frame-number = <0>;
- 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
--						<GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+					     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x0f121000 0x1000>,
- 				      <0x0f122000 0x1000>;
- 			};
-@@ -548,7 +548,7 @@ frame@f128000 {
- 		intc: interrupt-controller@f200000 {
- 			compatible = "arm,gic-v3";
- 			reg = <0x0f200000 0x20000>,
--				<0x0f300000 0x100000>;
-+			      <0x0f300000 0x100000>;
- 			#interrupt-cells = <3>;
- 			interrupt-controller;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-@@ -558,9 +558,9 @@ intc: interrupt-controller@f200000 {
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 1 0xf08
--				GIC_PPI 2 0xf08
--				GIC_PPI 3 0xf08
--				GIC_PPI 0 0xf08>;
-+			      GIC_PPI 2 0xf08
-+			      GIC_PPI 3 0xf08
-+			      GIC_PPI 0 0xf08>;
- 		clock-frequency = <19200000>;
- 	};
- };
--- 
-2.33.0
+Hi Justin
 
+Does the hardware support L2 switching between the two ports? I'm just
+wondering if later this is going to be modified into a switchdev
+driver?
+
+	Andrew
