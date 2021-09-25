@@ -2,135 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C685B41825E
-	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 15:37:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C3FF418296
+	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 16:18:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245112AbhIYNif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Sep 2021 09:38:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34842 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239261AbhIYNif (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Sep 2021 09:38:35 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E09C061570;
-        Sat, 25 Sep 2021 06:37:00 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id t189so18677898oie.7;
-        Sat, 25 Sep 2021 06:37:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hOZ6JIcb8uf4b9WKGfs+BDqn+pjUAFeDvp/C9XwGPuU=;
-        b=Nx642B3chumpXp5giHidtUzTIaZz4pCgMsv7p555+KwRIOlVpJCnvSfxy13wvTNgps
-         2kukFPj5EoS4Zfx/jvClpnoOtunim1FlBBcobImF4y8kQtHYqsSElDgGzYDXiTxg7WyM
-         swXz5B75hZb+KqXtRPzvuiNjkbRRvTVZaf55Hem1UrbSayuV1CM316rqEuF1IsOv/EC4
-         bZeGJFEWC5xClMJ/f3MBny7HUjmMM168bZXA3W68X/7kz+fRgQdXjdkt456bHKyaIk/R
-         SkIjfXy6rRe0yAecvJxxU8o09RBwHtmEFr3WcjoGhgPyURvkgWc/LSJ1O0nY4cJGXt+O
-         6XPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=hOZ6JIcb8uf4b9WKGfs+BDqn+pjUAFeDvp/C9XwGPuU=;
-        b=2m8VfWyKx9QPKk/4Y7h+3RCMoLSqR4EJh4XAuvXMkRDihVVQZ+ON3XinwOqVhF2js7
-         qwOSHiKy3R52KLUdZi6HHicDglod4ZZl9I9cWmyaUGNxHSA8LJM99Q3PgkFjRtUQxTMn
-         y9riUm3lPLCqpyRrR3fduuaXrz2GJaVpsbHgn+YA9SxtKs2dWQ2LboiNcryLjDtVZZ8X
-         GSmiota730vDqbwcpH/Rg8xmyn0tBisOuhQAaRVe8USgjUo1QuTCXO0h9IEdhARzsGuv
-         9y9kIloylsZvTRJJbkRkrY4KAb5Sx7iCYBMVdJF67pXVBp1QhXZv4BEyeLMJ1nzYk9eU
-         45jQ==
-X-Gm-Message-State: AOAM533wEYS5XpLhW+fgjdMwfDdalxEOFvPp9K1V7lS7yrRZpXlmyxjg
-        ANFIVXCf+/ul1HKX/DhHce4=
-X-Google-Smtp-Source: ABdhPJwlVIMztVT8P9TBXddRQKENy4FyJ74MNxgPiEAOAlw18RmnN+dI+7lvL1tl9iQ5j451CcfkpA==
-X-Received: by 2002:a54:4692:: with SMTP id k18mr789280oic.145.1632577019791;
-        Sat, 25 Sep 2021 06:36:59 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f13sm2869616oto.49.2021.09.25.06.36.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Sep 2021 06:36:59 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 25 Sep 2021 06:36:58 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Oskar Senft <osk@google.com>
-Cc:     Rob Herring <robh@kernel.org>, Jean Delvare <jdelvare@suse.com>,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add nct7802 bindings
-Message-ID: <20210925133658.GA1740158@roeck-us.net>
-References: <20210921004627.2786132-1-osk@google.com>
- <YUzzjYMwNKwMFGSr@robh.at.kernel.org>
- <CABoTLcRpSuUUu-x-S8yTLUJCiN4RERi2kd8XATP_n3ZTRpAWDg@mail.gmail.com>
+        id S245622AbhIYOUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Sep 2021 10:20:20 -0400
+Received: from relay02.th.seeweb.it ([5.144.164.163]:57735 "EHLO
+        relay02.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238275AbhIYOUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Sep 2021 10:20:20 -0400
+Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 7BDD31F698;
+        Sat, 25 Sep 2021 16:18:42 +0200 (CEST)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm6125: Improve indentation of multiline properties
+Date:   Sat, 25 Sep 2021 16:18:41 +0200
+Message-Id: <20210925141841.407257-1-marijn.suijten@somainline.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CABoTLcRpSuUUu-x-S8yTLUJCiN4RERi2kd8XATP_n3ZTRpAWDg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 24, 2021 at 11:17:51AM -0400, Oskar Senft wrote:
-> Hi Rob
-> 
-> > > +maintainers:
-> > > +  - Guenter Roeck <linux@roeck-us.net>
-> >
-> > Should be someone that cares about this h/w, not who applies patches.
-> 
-> Hmm, ok. After talking with Guenter, I thought that would be him. But
-> I can add myself, too, since we're obviously using that HW. Is that
-> what you mean?
+Some multiline properties (spread out over multiple lines to keep length
+in check) were not indented properly, leading to misalignment with the
+items above.  The DT file is still small enough to address this early in
+the process.
 
-FWIW, this happens to be one of the cases where I am also the driver 
-author, and I still have a test board with the chip.
+Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+Reviewed-by: Martin Botka <martin.botka@somainline.org>
+---
+ arch/arm64/boot/dts/qcom/sm6125.dtsi | 46 ++++++++++++++--------------
+ 1 file changed, 23 insertions(+), 23 deletions(-)
 
-Guenter
+diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+index 2b37ce6a9f9c..e92fab5a2484 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+@@ -326,8 +326,8 @@ tcsr_mutex: hwlock@340000 {
+ 		tlmm: pinctrl@500000 {
+ 			compatible = "qcom,sm6125-tlmm";
+ 			reg = <0x00500000 0x400000>,
+-				<0x00900000 0x400000>,
+-				<0x00d00000 0x400000>;
++			      <0x00900000 0x400000>,
++			      <0x00d00000 0x400000>;
+ 			reg-names = "west", "south", "east";
+ 			interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+ 			gpio-controller;
+@@ -391,12 +391,12 @@ sdhc_1: sdhci@4744000 {
+ 			reg-names = "hc", "core";
+ 
+ 			interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
+-				<GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
++				     <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+ 
+ 			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+-				<&gcc GCC_SDCC1_APPS_CLK>,
+-				<&xo_board>;
++				 <&gcc GCC_SDCC1_APPS_CLK>,
++				 <&xo_board>;
+ 			clock-names = "iface", "core", "xo";
+ 			bus-width = <8>;
+ 			non-removable;
+@@ -409,12 +409,12 @@ sdhc_2: sdhci@4784000 {
+ 			reg-names = "hc";
+ 
+ 			interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
+-				<GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
++				     <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "hc_irq", "pwr_irq";
+ 
+ 			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+-				<&gcc GCC_SDCC2_APPS_CLK>,
+-				<&xo_board>;
++				 <&gcc GCC_SDCC2_APPS_CLK>,
++				 <&xo_board>;
+ 			clock-names = "iface", "core", "xo";
+ 
+ 			pinctrl-0 = <&sdc2_state_on>;
+@@ -433,11 +433,11 @@ usb3: usb@4ef8800 {
+ 			ranges;
+ 
+ 			clocks = <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+-				<&gcc GCC_SYS_NOC_USB3_PRIM_AXI_CLK>,
+-				<&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
+-				<&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+-				<&gcc GCC_USB30_PRIM_SLEEP_CLK>,
+-				<&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>;
++				 <&gcc GCC_SYS_NOC_USB3_PRIM_AXI_CLK>,
++				 <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
++				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
++				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
++				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>;
+ 
+ 			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+ 					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
+@@ -462,11 +462,11 @@ usb3_dwc3: usb@4e00000 {
+ 
+ 		spmi_bus: spmi@1c40000 {
+ 			compatible = "qcom,spmi-pmic-arb";
+-			reg =	<0x01c40000 0x1100>,
+-				<0x01e00000 0x2000000>,
+-				<0x03e00000 0x100000>,
+-				<0x03f00000 0xa0000>,
+-				<0x01c0a000 0x26000>;
++			reg = <0x01c40000 0x1100>,
++			      <0x01e00000 0x2000000>,
++			      <0x03e00000 0x100000>,
++			      <0x03f00000 0xa0000>,
++			      <0x01c0a000 0x26000>;
+ 			reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
+ 			interrupt-names = "periph_irq";
+ 			interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
+@@ -497,7 +497,7 @@ timer@f120000 {
+ 			frame@0f121000 {
+ 				frame-number = <0>;
+ 				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+-						<GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
++					     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x0f121000 0x1000>,
+ 				      <0x0f122000 0x1000>;
+ 			};
+@@ -548,7 +548,7 @@ frame@f128000 {
+ 		intc: interrupt-controller@f200000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x0f200000 0x20000>,
+-				<0x0f300000 0x100000>;
++			      <0x0f300000 0x100000>;
+ 			#interrupt-cells = <3>;
+ 			interrupt-controller;
+ 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+@@ -558,9 +558,9 @@ intc: interrupt-controller@f200000 {
+ 	timer {
+ 		compatible = "arm,armv8-timer";
+ 		interrupts = <GIC_PPI 1 0xf08
+-				GIC_PPI 2 0xf08
+-				GIC_PPI 3 0xf08
+-				GIC_PPI 0 0xf08>;
++			      GIC_PPI 2 0xf08
++			      GIC_PPI 3 0xf08
++			      GIC_PPI 0 0xf08>;
+ 		clock-frequency = <19200000>;
+ 	};
+ };
+-- 
+2.33.0
 
-> 
-> > > +    properties:
-> > > +      ltd:
-> > > +        type: object
-> > > +        description: Internal Temperature Sensor ("LTD")
-> >
-> > No child properties?
-> 
-> Yes. We really just want the ability to enable / disable that sensor.
-> What's the correct way in the YAML to describe that? Same for RTD3.
-> 
-> > > +          "type":
-> > > +            description: Sensor type (3=thermal diode, 4=thermistor).
-> >
-> > 2nd time I've seen this property this week[1]. Needs to be more specific
-> > than just 'type'.
-> 
-> Ha yes, the example in [1] came from this patch. I went with this name
-> to stay in-line with the sysfs name, being "tempX_type". In the
-> hardware this would be called "mode".
-> 
-> My original proposal [2] was to have this property a string list named
-> "nuvoton,rtd-modes" with a set of accepted values, i.e. basically an
-> enum. Splitting this string list into individual sensors makes sense.
-> 
-> The other question that remains open (at least in my view), is whether
-> naming the sensors "ltd, rtd1, rtd2, rtd3" is the right approach or if
-> we should really go to naming them "sensor@X" with a reg property set
-> to X. Note that ltd and rtd3 do not accept any additional
-> configuration beyond "is enabled" (i.e. "status").
-> 
-> > > +            temperature-sensors {
-> > > +                ltd {
-> > > +                  status = "disabled";
-> >
-> > Don't show status in examples.
-> Hmm, ok. I found it useful to make clear that a sensor can be
-> disabled, but maybe that's just always the case?
-> 
-> I appreciate your other comments and will fix them in the next version
-> of the patch. But I'd like to get clarity wrt. recommended sensor and
-> property naming in the device tree before sending that.
-> 
-> Thoughts?
-> 
-> Thanks
-> Oskar.
-> 
-> > [1] https://lore.kernel.org/all/CAL_Jsq+NXuF+F7OE3vyEbTUj6sxyMHVWHXbCuPPoFaKjpyZREQ@mail.gmail.com/
-> [2] https://lore.kernel.org/all/20210910130337.2025426-1-osk@google.com/
