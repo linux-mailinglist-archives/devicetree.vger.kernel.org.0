@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 448D3417F45
-	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 04:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D840417F51
+	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 04:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347378AbhIYCTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Sep 2021 22:19:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53812 "EHLO mail.kernel.org"
+        id S1347469AbhIYCYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Sep 2021 22:24:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56492 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1343760AbhIYCTG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Sep 2021 22:19:06 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0DC4461251;
-        Sat, 25 Sep 2021 02:17:33 +0000 (UTC)
+        id S1343687AbhIYCYZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Sep 2021 22:24:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 40D976105A;
+        Sat, 25 Sep 2021 02:22:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632536253;
-        bh=D6mVq6Ws5LARrt0i89PJK+aDRPrFBg+LXJD8hpN1g/g=;
+        s=k20201202; t=1632536571;
+        bh=iC6T0DpgPQkNthlfRd9HIITiQDWjQJziefXuN46+sU4=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CViJisyPwkv5aUHbjwT60mL3x9qr1cZjSx1lpiNW8fc46hl26wDvn3hwTH0s+KQ9c
-         txfOWQkvAjBtURVkGR4ZjryyWIceDcWsucyiUlxMDvl508YHexoHy90OLwRVl8gM8l
-         9GPIChPhvYNDHP00usmTuRefu1vYliyayBzpFmFDhEy6ttTGLo8uUd97PheGMy0Vvt
-         HGIFndGKjusR3hsiAtKoYJQroKz9GiNUEmbYqynCOb77nOjxEEqsmMJh8avv/DRhaU
-         Ja/TMzNE48rwBRoV+oI0+aJdhkQNQlTGgHazEuGxmbUzmgd8kUMzbKCiQmwq0r202s
-         FjTkTPIJLKJSA==
-Received: by mail-ed1-f43.google.com with SMTP id bx4so43316973edb.4;
-        Fri, 24 Sep 2021 19:17:32 -0700 (PDT)
-X-Gm-Message-State: AOAM532RCLuJKfOMwhxVW0fRqFE1g5Av8XcrNRh0qeBXGtQgX2K7ZeJ1
-        D4X+jCENny4fNHpp9QhC8UVLL22LYZnQAHDkEg==
-X-Google-Smtp-Source: ABdhPJy43x5ohkW8Db2PjWu46qMaTH2NqNO+cakkPZW/c2xsys2gf6YB/Ly9CvD7M2qmWakZbvEMWap8f0ltaHgNkUA=
-X-Received: by 2002:aa7:c617:: with SMTP id h23mr8737188edq.357.1632536251531;
- Fri, 24 Sep 2021 19:17:31 -0700 (PDT)
+        b=kmg+frBhpG5jEZ6Npg8a8kvwXfwUYmxqBBEgsZFJgH/c8fHmw68iPKapvO0k0V9wu
+         vDxlj2+qwDeONU2yJ4CuhUFrShYzEO8lcIegPwWJl2uKEr5pVMYDchE4n3ovVTpZFM
+         W5HBgSbTp+JDqisd7CPf/apRTY7yokuFB+w92+gxVYo27jPCWnb7+PL6DD5KvGYjXm
+         xKvrSrxmKbMnztSX25lh8UVx+n5tHjU8jkKi3DBNhOQBVQbQ1w05c0jRMIPpwpAEAR
+         96DgnKfSFmsg+9Brwhs3iMg7pLttZf9OycH6Alb11g2VM5N5JIM3ibT/+cs20VHpAQ
+         x19EbFJGRrifQ==
+Received: by mail-ed1-f53.google.com with SMTP id y89so32450876ede.2;
+        Fri, 24 Sep 2021 19:22:51 -0700 (PDT)
+X-Gm-Message-State: AOAM533Jj12cU1dw8r8KsciRbbPsMBCBZwwPoi0rXfGo6CMzX2XhBCCG
+        yHhFVAp6ISxv37iaJbYn17oAPVcp8tIPrYjmYw==
+X-Google-Smtp-Source: ABdhPJxS1P+giv9UtV7KMyZeRiSNnMTZ5XzQt2hoMoEP1zCq6SArgoS8BxyStv1KptPUUbvLjJOus6Ot6M1cAGAERys=
+X-Received: by 2002:a17:907:995a:: with SMTP id kl26mr15504212ejc.6.1632536569784;
+ Fri, 24 Sep 2021 19:22:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210921155218.10387-1-jason-jh.lin@mediatek.com> <20210921155218.10387-6-jason-jh.lin@mediatek.com>
-In-Reply-To: <20210921155218.10387-6-jason-jh.lin@mediatek.com>
+References: <20210921155218.10387-1-jason-jh.lin@mediatek.com> <20210921155218.10387-8-jason-jh.lin@mediatek.com>
+In-Reply-To: <20210921155218.10387-8-jason-jh.lin@mediatek.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 25 Sep 2021 10:17:20 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__VZ4Q5RsA4eiSfgLdwxg3HGV1-YEMa0L2LHHRdE73koQ@mail.gmail.com>
-Message-ID: <CAAOTY__VZ4Q5RsA4eiSfgLdwxg3HGV1-YEMa0L2LHHRdE73koQ@mail.gmail.com>
-Subject: Re: [PATCH v11 05/16] dt-bindings: display: mediatek: merge: add
- additional prop for mt8195
+Date:   Sat, 25 Sep 2021 10:22:38 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_86H0KPdsmdeZL3gSW-7GFrtpe3akG4O_1Z-EnsoAjiAg@mail.gmail.com>
+Message-ID: <CAAOTY_86H0KPdsmdeZL3gSW-7GFrtpe3akG4O_1Z-EnsoAjiAg@mail.gmail.com>
+Subject: Re: [PATCH v11 07/16] dt-bindings: arm: mediatek: move common module
+ from display folder
 To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
@@ -73,83 +73,214 @@ jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B49=E6=9C=882=
 1=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=8811:52=E5=AF=AB=E9=81=93=EF=
 =BC=9A
 >
-> add MERGE additional properties description for mt8195:
-> 1. async clock
-> 2. fifo setting enable
-> 3. reset controller
+> AAL, COLOR, CCORR, MUTEX, WDMA could be used by other modules,
+> such as MDP, so move their binding document into the common folder.
+
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+
 >
 > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
 > ---
->  .../display/mediatek/mediatek,merge.yaml      | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
+>  .../{display =3D> arm}/mediatek/mediatek,aal.yaml      |  9 ++++-----
+>  .../{display =3D> arm}/mediatek/mediatek,ccorr.yaml    |  9 ++++-----
+>  .../{display =3D> arm}/mediatek/mediatek,color.yaml    | 11 +++++------
+>  .../{display =3D> arm}/mediatek/mediatek,mutex.yaml    | 12 +++++-------
+>  .../{display =3D> arm}/mediatek/mediatek,wdma.yaml     |  9 ++++-----
+>  5 files changed, 22 insertions(+), 28 deletions(-)
+>  rename Documentation/devicetree/bindings/{display =3D> arm}/mediatek/med=
+iatek,aal.yaml (88%)
+>  rename Documentation/devicetree/bindings/{display =3D> arm}/mediatek/med=
+iatek,ccorr.yaml (87%)
+>  rename Documentation/devicetree/bindings/{display =3D> arm}/mediatek/med=
+iatek,color.yaml (86%)
+>  rename Documentation/devicetree/bindings/{display =3D> arm}/mediatek/med=
+iatek,mutex.yaml (85%)
+>  rename Documentation/devicetree/bindings/{display =3D> arm}/mediatek/med=
+iatek,wdma.yaml (90%)
 >
 > diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,me=
-rge.yaml
-> index 75beeb207ceb..542dd7137d3b 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
-aml
-> @@ -38,6 +38,19 @@ properties:
->    clocks:
->      items:
->        - description: MERGE Clock
-> +      - description: MERGE Async Clock
-> +          Controlling the synchronous process between MERGE and other di=
-splay
-> +          function blocks cross clock domain.
-> +
-> +  mediatek,merge-fifo-en:
-> +    description:
-> +      The setting of merge fifo is mainly provided for the display laten=
-cy
-> +      buffer to ensure that the back-end panel display data will not be
-> +      underrun, a little more data is needed in the fifo.
-> +      According to the merge fifo settings, when the water level is dete=
-cted
-> +      to be insufficient, it will trigger RDMA sending ultra and preulra
-> +      command to SMI to speed up the data rate.
-> +    type: boolean
+aal.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,aal.yaml
+> similarity index 88%
+> rename from Documentation/devicetree/bindings/display/mediatek/mediatek,a=
+al.yaml
+> rename to Documentation/devicetree/bindings/arm/mediatek/mediatek,aal.yam=
+l
+> index 311bbf05a967..ab6eb9b550a4 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yam=
+l
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,aal.yaml
+> @@ -1,17 +1,16 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/display/mediatek/mediatek,aal.yaml#
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,aal.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
 >
->    mediatek,gce-client-reg:
->      description:
-> @@ -50,6 +63,11 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      maxItems: 1
+> -title: Mediatek display adaptive ambient light processor
+> +title: MediaTek adaptive ambient light processor
 >
-> +  resets:
-> +    description: reset controller
-> +      See Documentation/devicetree/bindings/reset/reset.txt for details.
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> @@ -67,3 +85,16 @@ examples:
->          power-domains =3D <&spm MT8173_POWER_DOMAIN_MM>;
->          clocks =3D <&mmsys CLK_MM_DISP_MERGE>;
->      };
-> +
-> +    merge5: disp_vpp_merge5@1c110000 {
-> +        compatible =3D "mediatek,mt8195-disp-merge";
-> +        reg =3D <0 0x1c110000 0 0x1000>;
-> +        interrupts =3D <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        clocks =3D <&vdosys1 CLK_VDO1_VPP_MERGE4>,
-> +                 <&vdosys1 CLK_VDO1_MERGE4_DL_ASYNC>;
-> +        clock-names =3D "merge","merge_async";
-
-Define clock-names first.
-
-Regards,
-Chun-Kuang.
-
-> +        power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-> +        mediatek,gce-client-reg =3D <&gce1 SUBSYS_1c11XXXX 0x0000 0x1000=
->;
-> +        mediatek,merge-fifo-en =3D <1>;
-> +        resets =3D <&vdosys1 MT8195_VDOSYS1_SW0_RST_B_MERGE4_DL_ASYNC>;
-> +    };
+>  maintainers:
+> -  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> -  - Philipp Zabel <p.zabel@pengutronix.de>
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>
+>  description: |
+> -  Mediatek display adaptive ambient light processor, namely AAL,
+> +  MediaTek adaptive ambient light processor, namely AAL,
+>    is responsible for backlight power saving and sunlight visibility impr=
+oving.
+>    AAL device node must be siblings to the central MMSYS_CONFIG node.
+>    For a description of the MMSYS_CONFIG binding, see
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+ccorr.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,ccorr.=
+yaml
+> similarity index 87%
+> rename from Documentation/devicetree/bindings/display/mediatek/mediatek,c=
+corr.yaml
+> rename to Documentation/devicetree/bindings/arm/mediatek/mediatek,ccorr.y=
+aml
+> index 60752ce45d49..de86e9ae35f3 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.y=
+aml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,ccorr.yaml
+> @@ -1,17 +1,16 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/display/mediatek/mediatek,ccorr.yaml#
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,ccorr.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+> -title: Mediatek display color correction
+> +title: MediaTek color correction
+>
+>  maintainers:
+> -  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> -  - Philipp Zabel <p.zabel@pengutronix.de>
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>
+>  description: |
+> -  Mediatek display color correction, namely CCORR, reproduces correct co=
+lor
+> +  MediaTek color correction, namely CCORR, reproduces correct color
+>    on panels with different color gamut.
+>    CCORR device node must be siblings to the central MMSYS_CONFIG node.
+>    For a description of the MMSYS_CONFIG binding, see
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+color.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,color.=
+yaml
+> similarity index 86%
+> rename from Documentation/devicetree/bindings/display/mediatek/mediatek,c=
+olor.yaml
+> rename to Documentation/devicetree/bindings/arm/mediatek/mediatek,color.y=
+aml
+> index f6636869909c..73be301b50d2 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.y=
+aml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,color.yaml
+> @@ -1,18 +1,17 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/display/mediatek/mediatek,color.yaml#
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,color.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+> -title: Mediatek display color processor
+> +title: MediaTek color processor
+>
+>  maintainers:
+> -  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> -  - Philipp Zabel <p.zabel@pengutronix.de>
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>
+>  description: |
+> -  Mediatek display color processor, namely COLOR, provides hue, luma and
+> -  saturation adjustments to get better picture quality and to have one p=
+anel
+> +  MediaTek color processor, namely COLOR, provides hue, luma and saturat=
+ion
+> +  adjustments to get better picture quality and to have one panel
+>    resemble the other in their output characteristics.
+>    COLOR device node must be siblings to the central MMSYS_CONFIG node.
+>    For a description of the MMSYS_CONFIG binding, see
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+mutex.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mutex.=
+yaml
+> similarity index 85%
+> rename from Documentation/devicetree/bindings/display/mediatek/mediatek,m=
+utex.yaml
+> rename to Documentation/devicetree/bindings/arm/mediatek/mediatek,mutex.y=
+aml
+> index 6eca525eced0..713c7485e11a 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.y=
+aml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mutex.yaml
+> @@ -1,19 +1,17 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/display/mediatek/mediatek,mutex.yaml#
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mutex.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+> -title: Mediatek mutex
+> +title: MediaTek mutex
+>
+>  maintainers:
+> -  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> -  - Philipp Zabel <p.zabel@pengutronix.de>
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>
+>  description: |
+> -  Mediatek mutex, namely MUTEX, is used to send the triggers signals cal=
+led
+> -  Start Of Frame (SOF) / End Of Frame (EOF) to each sub-modules on the d=
+isplay
+> -  data path or MDP data path.
+> +  MediaTek mutex, namely MUTEX, is used to send the triggers signals cal=
+led
+> +  Start Of Frame(SOF) / End Of Frame(EOF) to each sub-modules on the dat=
+a path.
+>    In some SoC, such as mt2701, MUTEX could be a hardware mutex which pro=
+tects
+>    the shadow register.
+>    MUTEX device node must be siblings to the central MMSYS_CONFIG node.
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+wdma.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,wdma.ya=
+ml
+> similarity index 90%
+> rename from Documentation/devicetree/bindings/display/mediatek/mediatek,w=
+dma.yaml
+> rename to Documentation/devicetree/bindings/arm/mediatek/mediatek,wdma.ya=
+ml
+> index 25f9a63fe7af..5222535d98c6 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.ya=
+ml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,wdma.yaml
+> @@ -1,17 +1,16 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/display/mediatek/mediatek,wdma.yaml#
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,wdma.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+> -title: Mediatek display WDMA
+> +title: MediaTek WDMA
+>
+>  maintainers:
+> -  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> -  - Philipp Zabel <p.zabel@pengutronix.de>
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>
+>  description: |
+> -  Mediatek display WDMA stands for Write Direct Memory Access.
+> +  MediaTek WDMA stands for Write Direct Memory Access.
+>    It can write the data in display pipeline into DRAM.
+>    WDMA device node must be siblings to the central MMSYS_CONFIG node.
+>    For a description of the MMSYS_CONFIG binding, see
 > --
 > 2.18.0
 >
