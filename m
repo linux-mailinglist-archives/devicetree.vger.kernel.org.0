@@ -2,38 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F090418324
-	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 17:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20DBC41835E
+	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 18:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343958AbhIYPQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Sep 2021 11:16:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47006 "EHLO mail.kernel.org"
+        id S229468AbhIYQU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Sep 2021 12:20:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49704 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240972AbhIYPQ4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 25 Sep 2021 11:16:56 -0400
+        id S229454AbhIYQU4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 25 Sep 2021 12:20:56 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 44ACD610F7;
-        Sat, 25 Sep 2021 15:15:18 +0000 (UTC)
-Date:   Sat, 25 Sep 2021 16:19:07 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id 6C89561076;
+        Sat, 25 Sep 2021 16:19:19 +0000 (UTC)
+Date:   Sat, 25 Sep 2021 17:23:07 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     "hui.liu" <hui.liu@mediatek.com>
-Cc:     <robh+dt@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
-        <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
-        <chun-hung.wu@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <seiya.wang@mediatek.com>, <ben.tseng@mediatek.com>,
-        <matthias.bgg@gmail.com>, <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-iio@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
-Subject: Re: [PATCH] iio: mtk-auxadc: update case IIO_CHAN_INFO_PROCESSED
-Message-ID: <20210925161907.29a58288@jic23-huawei>
-In-Reply-To: <87915f14d20aa780566338e83e2bc0c49c202a22.camel@mediatek.com>
-References: <20210914130901.1716-1-hui.liu@mediatek.com>
-        <20210914130901.1716-2-hui.liu@mediatek.com>
-        <20210918192059.4c13d157@jic23-huawei>
-        <87915f14d20aa780566338e83e2bc0c49c202a22.camel@mediatek.com>
+To:     Roan van Dijk <roan@protonic.nl>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, david@protonic.nl,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v3 3/4] drivers: iio: chemical: Add support for
+ Sensirion SCD4x CO2 sensor
+Message-ID: <20210925172307.305be961@jic23-huawei>
+In-Reply-To: <20210922103925.2742362-4-roan@protonic.nl>
+References: <20210922103925.2742362-1-roan@protonic.nl>
+        <20210922103925.2742362-4-roan@protonic.nl>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -42,125 +38,167 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Sep 2021 16:30:09 +0800
-hui.liu <hui.liu@mediatek.com> wrote:
+On Wed, 22 Sep 2021 12:39:24 +0200
+Roan van Dijk <roan@protonic.nl> wrote:
 
-> Hi Jonathan,
+> This is a driver for the SCD4x CO2 sensor from Sensirion. The sensor is
+> able to measure CO2 concentration, temperature and relative humdity.
+> The sensor uses a photoacoustic principle for measuring CO2 concentration.
+> An I2C interface is supported by this driver in order to communicate with
+> the sensor.
 > 
-> In the previous mail(maybe 2021/08/15), we want to support two case in
-> our driver: _RAW and _SCALE. In _SCALE case:
+> Signed-off-by: Roan van Dijk <roan@protonic.nl>
 
-_RAW and _PROCESSED I think?  (scale is something else entirely)
+Hi Roan,
 
-> 	*val = *val * VOLTAGE_FULL_RANGE;
-> 	*val2 = AUXADC_PRECISE;
-> 	return IIO_VAL_FRACTIONAL_LOG2;
-> 
-> If user call read_raw, will get raw data; If user call read_processed,
-> will get processed voltage.
-> 
-> What's your opinion?
+Only thing in here of significance is that the format for available attribute
+is wrong + it needs adding to the ABI docs.
 
-I'm sorry, but I don't understand the question.
-
-I looked back at that earlier discussion and the discussion was about also
-adding _RAW.  I think we concluded that, as we already had _PROCESSED and
-generally do not support both, we would just continue to have processed.
-
-The suggestion in this review is to use a different choice from the various
-ways that IIO can represent values in order to potentially maintain slightly
-higher precision.  Whether that actually helps depends a bit of how the
-value is being used in your out of tree driver.  If that driver wants
-a different scaling (perhaps micro volts rather than millivolts) then,
-if I recall correctly slightly higher precision is maintained
-https://elixir.bootlin.com/linux/latest/source/drivers/iio/inkern.c#L625
-
-If you prefer to keep the code as is, just address the request for a little
-more information in the patch description.
+Given we are going to have a v4, I noted a few other minor things to tidy up.
 
 Thanks,
 
 Jonathan
- 
 
 
-> 
-> Thanks.
-> 
-> 
-> On Sat, 2021-09-18 at 19:20 +0100, Jonathan Cameron wrote:
-> > On Tue, 14 Sep 2021 21:09:01 +0800
-> > Hui Liu <hui.liu@mediatek.com> wrote:
-> >   
-> > > Convert raw data to processed data.
-> > > 
-> > > Fixes: ace4cdfe67be ("iio: adc: mt2701: Add Mediatek auxadc driver
-> > > for
-> > > mt2701.")
-> > > Signed-off-by: Hui Liu <hui.liu@mediatek.com>  
-> > 
-> > Hi Hui Liu
-> > 
-> > This fix is obviously correct but I think we can improve it a little.
-> > 
-> > 1) Add a bit more detail to the patch description.  Perhaps change it
-> > to something like
-> > Previously the driver did not apply the scaling necessary to take the
-> > voltage range of this ADC into account. 
-> > 
-> > 2) If you change to
-> > 
-> > 	*val = *val * VOLTAGE_FULL_RANGE;
-> > 	*val2 = 12;
-> > 	return IIO_VAL_FRACTIONAL_LOG2;
-> > 
-> > then you should get a more precise answer.  (Please check that
-> > though!)
-> > This might be an issue if you have consumers drivers though that can
-> > not
-> > cope with this particular type.  If so please state that in the patch
-> > description
-> > and add a comment to the code to say that so we don't end up
-> > 'improving' this
-> > in future without taking those consumers into account.
-> > 
-> > Thanks,
-> > 
-> > Jonathan
-> >   
-> > > ---
-> > >  drivers/iio/adc/mt6577_auxadc.c | 8 ++++++++
-> > >  1 file changed, 8 insertions(+)
-> > > 
-> > > diff --git a/drivers/iio/adc/mt6577_auxadc.c
-> > > b/drivers/iio/adc/mt6577_auxadc.c
-> > > index 79c1dd68b909..d4fccd52ef08 100644
-> > > --- a/drivers/iio/adc/mt6577_auxadc.c
-> > > +++ b/drivers/iio/adc/mt6577_auxadc.c
-> > > @@ -82,6 +82,10 @@ static const struct iio_chan_spec
-> > > mt6577_auxadc_iio_channels[] = {
-> > >  	MT6577_AUXADC_CHANNEL(15),
-> > >  };
-> > >  
-> > > +/* For Voltage calculation */
-> > > +#define VOLTAGE_FULL_RANGE  1500	/* VA voltage */
-> > > +#define AUXADC_PRECISE      4096	/* 12 bits */
-> > > +
-> > >  static int mt_auxadc_get_cali_data(int rawdata, bool enable_cali)
-> > >  {
-> > >  	return rawdata;
-> > > @@ -191,6 +195,10 @@ static int mt6577_auxadc_read_raw(struct
-> > > iio_dev *indio_dev,
-> > >  		}
-> > >  		if (adc_dev->dev_comp->sample_data_cali)
-> > >  			*val = mt_auxadc_get_cali_data(*val, true);
-> > > +
-> > > +		/* Convert adc raw data to voltage: 0 - 1500 mV */
-> > > +		*val = *val * VOLTAGE_FULL_RANGE / AUXADC_PRECISE;
-> > > +
-> > >  		return IIO_VAL_INT;
-> > >  
-> > >  	default:  
-> > 
-> >   
+> +static int scd4x_read(struct scd4x_state *state, enum scd4x_cmd cmd,
+> +			void *response, int response_sz)
+> +{
+> +	struct i2c_client *client = state->client;
+> +	char buf[SCD4X_READ_BUF_SIZE];
+> +	char *rsp = response;
+> +	int i, ret;
+> +	char crc;
+> +
+> +	/*
+> +	 * Measurement needs to be stopped before sending commands.
+> +	 * Except for reading measurement and data ready command.
+> +	 */
+> +	if ((cmd != CMD_GET_DATA_READY) && (cmd != CMD_READ_MEAS)) {
+> +		ret = scd4x_send_command(state, CMD_STOP_MEAS);
+> +		if (ret)
+> +			return ret;
+> +
+> +		/* execution time for stopping measurement */
+> +		msleep_interruptible(500);
+> +	}
+> +
+> +	/*CRC byte for every 2 bytes of data */
 
+/* CRC..
+
+Please check for similar as otherwise we'll get 'cleanup' patches the moment various
+scripts hit this new code and it'll waste our time!
+
+> +	response_sz += response_sz / 2;
+> +
+> +	put_unaligned_be16(cmd, buf);
+> +	ret = scd4x_i2c_xfer(state, buf, 2, buf, response_sz);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < response_sz; i += 3) {
+> +		crc = crc8(scd4x_crc8_table, buf + i, 2, CRC8_INIT_VALUE);
+> +		if (crc != buf[i + 2]) {
+> +			dev_err(&client->dev, "CRC error\n");
+> +			return -EIO;
+> +		}
+> +
+> +		*rsp++ = buf[i];
+> +		*rsp++ = buf[i + 1];
+> +	}
+> +
+> +	/* start measurement */
+> +	if ((cmd != CMD_GET_DATA_READY) && (cmd != CMD_READ_MEAS)) {
+> +		ret = scd4x_send_command(state, CMD_START_MEAS);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
+...
+
+> +
+> +static IIO_DEVICE_ATTR_RW(calibration_auto_enable, 0);
+> +static IIO_DEVICE_ATTR_WO(calibration_forced_value, 0);
+> +
+> +static IIO_CONST_ATTR(calibration_forced_value_available,
+> +	       __stringify(SCD4X_FRC_MIN_PPM 1 SCD4X_FRC_MAX_PPM));
+
+Ah, I wasn't completely clear on this.  See the main ABI doc for
+_available
+
+Format for this needs to include brackets to indicate it's a range
+rather than 3 numbers 
+"[MIN 1  MAX]"
+
+
+Having added this it also needs to be in the ABI documentation.
+Whilst somewhat trivial, all ABI should be documented there.
+
+> +
+> +static struct attribute *scd4x_attrs[] = {
+> +	&iio_dev_attr_calibration_auto_enable.dev_attr.attr,
+> +	&iio_dev_attr_calibration_forced_value.dev_attr.attr,
+> +	&iio_const_attr_calibration_forced_value_available.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group scd4x_attr_group = {
+> +	.attrs = scd4x_attrs,
+> +};
+> +
+> +static const struct iio_info scd4x_info = {
+> +	.attrs = &scd4x_attr_group,
+> +	.read_raw = scd4x_read_raw,
+> +	.write_raw = scd4x_write_raw,
+> +};
+> +
+
+...
+
+> +
+> +static irqreturn_t scd4x_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct scd4x_state *state = iio_priv(indio_dev);
+> +	struct {
+> +		uint16_t data[3];
+> +		int64_t ts __aligned(8);
+> +	} scan;
+> +	int ret;
+> +	uint16_t buf[3];
+> +
+> +	mutex_lock(&state->lock);
+> +	ret = scd4x_read_poll(state, buf);
+> +	mutex_unlock(&state->lock);
+> +	if (ret)
+> +		goto out;
+> +
+> +	memset(&scan, 0, sizeof(scan));
+> +	memcpy(scan.data, buf, sizeof(buf));
+
+I missed this before, but why not do the scd4x_read_poll() directly into scan->data after
+you've done the memset?  That way you avoid the need for a memcpy.
+
+i.e.
+
+	memset(&scan, 0, sizeof(scan));
+	mutex_lock(&state->lock)
+	ret = scd4x_read_poll(state, scan->data);
+	mutex_unlock(&state->lock);
+	if (ret)
+	...
+
+
+> +
+> +	iio_push_to_buffers_with_timestamp(indio_dev, &scan, iio_get_time_ns(indio_dev));
+> +out:
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +	return IRQ_HANDLED;
+> +}
+> +
