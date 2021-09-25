@@ -2,200 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AFF74182D5
-	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 16:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CECFA4182E5
+	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 16:52:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343787AbhIYOss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Sep 2021 10:48:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50272 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343783AbhIYOss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Sep 2021 10:48:48 -0400
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653EBC061714
-        for <devicetree@vger.kernel.org>; Sat, 25 Sep 2021 07:47:13 -0700 (PDT)
-Received: by mail-io1-xd2e.google.com with SMTP id q3so16428839iot.3
-        for <devicetree@vger.kernel.org>; Sat, 25 Sep 2021 07:47:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UtpI8bkA4DIUDYf0Om9w5i1QkTs/FeOohDrQdIrJOwY=;
-        b=wiOATbyh/UTsI9zK+GX4w+Bn9cXCcYCoCkdO5cOCwwwjD54jJ0VLTjLtMyDJHiUsdM
-         FSIKW5mEc6U0CSB68rACNzOeXbf5jMPuofnCof87JGXXhwz4WMpaRS+Hc2vgSA2BslGg
-         esDk4y+/C3Sf/T6vUipwwSVqNsHKMRNgOIP9EYMg5/qDEMpYSz9j6jAx7tSJUTsg+ZWf
-         M104/jvSSedx/7rFpD0AGXyAQ8MFh+yC46Dw5ciuDzOuvcu6bFeI9bf9fo1aqwwfSXAD
-         0nsUVI4crQdsYHlMqHe4mIAylOkcu1SN0maYGkWP2uiQvRoNZl1XJBsy3/126LYJBf97
-         4TxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UtpI8bkA4DIUDYf0Om9w5i1QkTs/FeOohDrQdIrJOwY=;
-        b=LjyjzSbLVlVKVXDV2iBUSE3R9OV0E4aH9BfP+4KEChnZ62LMPt+MixHACP3c0Uj7D3
-         CMOlXd9/pXtOTVXV8Zs3FB9DoHypjbrioUa0kOBTBPm8f3DsCDp61HkVFcU3b5Cg8tqC
-         W98Pk1xvcu7AFD2wnJjVryhikBV6ipSTgl0/nFCVLBkyKBBS1q6zDchwQf7Capag6PvT
-         onf0pdtbikjZ/UHHl+gNWx4kFSNB1zr6qiVesOPWVAYW++5UdELQmt2NbrU/Ie/hAp0C
-         DDYDk9kNQBhnMbkbVlDrsMNss5ZsFOe2loqg4dHgaaauI4UKnpGXU9kXlhhjvL7RpHXt
-         RyfQ==
-X-Gm-Message-State: AOAM530c8cqDYMyl0sWcM01FJ+mPxYQMR5j9JT3OrMcmfA8FXfrAhea3
-        RFW8UfB4DoHRBs9QYDAc77ONGF3CJEESzY7QHwv78w==
-X-Google-Smtp-Source: ABdhPJxYlMVqhTHmXIeFSA26uPZxn8sqEZoUBpak5MOZjsz61Ohz12gpQcsOh3K5Oa+01TS/+X0S8m9QldsXTehpDLQ=
-X-Received: by 2002:a02:710d:: with SMTP id n13mr13686326jac.31.1632581232663;
- Sat, 25 Sep 2021 07:47:12 -0700 (PDT)
+        id S235877AbhIYOyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Sep 2021 10:54:20 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:49924 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234173AbhIYOyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Sep 2021 10:54:19 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18PEqYs2015433;
+        Sat, 25 Sep 2021 09:52:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1632581554;
+        bh=uJ7DvnEmGCuz4FVCDrHQuDOi+qqLDfXdcIzC2WTH42o=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=PA7N5/5P964G7xnovC9ZGpoJD4Oe9P2C7PzJX9CEjGrbL8gKUVyUSiUBRbOD97HG2
+         JKtyR1TaSasVgKyp4HmJa1z1qm+YPofgZkZ1lxo0IPD2WRhZbhjcEXcNFH8m0mgf3x
+         fBZAzdb8qGG2xx6U1WdoND00Xj+bRBVTRjT5i0IM=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18PEqYSR101790
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 25 Sep 2021 09:52:34 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sat, 25
+ Sep 2021 09:52:33 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Sat, 25 Sep 2021 09:52:33 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18PEqXfY085824;
+        Sat, 25 Sep 2021 09:52:33 -0500
+Date:   Sat, 25 Sep 2021 09:52:33 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>,
+        "Nagalla, Hari" <hnagalla@ti.com>
+Subject: Re: [PATCH V3 2/2] dt-bindings: remoteproc: k3-dsp: Remove
+ board-specific compatible from DT example
+Message-ID: <20210925145233.vczhgui6cchkih5m@oxidize>
+References: <20210917095426.19277-1-sinthu.raja@ti.com>
+ <20210917095426.19277-3-sinthu.raja@ti.com>
+ <4d43e927-3998-e9a9-87a6-6036b769a975@ti.com>
+ <20210924162920.mvnzcibfm7s265us@boxing>
+ <dcb0b95f-92a9-a5f5-ee91-1b1d7123bd8d@ti.com>
+ <6a6a0d3a-522c-d01c-d3b8-a13488d0c736@ti.com>
 MIME-Version: 1.0
-References: <20210607123317.3242031-1-robert.marko@sartura.hr>
- <20210607123317.3242031-5-robert.marko@sartura.hr> <CA+HBbNH7wcpfQOX2=vZmW78GoWy_WL3Pz-dMKe0N0ebZDp+oUw@mail.gmail.com>
- <20210713222528.GA952399@robh.at.kernel.org> <CA+HBbNFj5+6sLKxmL8XtsZQ48ch8OjTbJ1bwkDC8dfRiOyWY1Q@mail.gmail.com>
- <20210719225906.GA2769608@robh.at.kernel.org> <CACRpkdbq6Jow6AT9OpsR7Q0JVCWVMcmamh9KHPXMtUnkoe7ZFw@mail.gmail.com>
- <CA+HBbNFEs-=5XTK7PUL+LsgBCcPfwHsCPe4v6byK0x=O_7TRPA@mail.gmail.com>
- <CACRpkdZfZLQMgpMAF2FwSVt1YAzhQJ9ZWkVUjVc2xpmWL7yEvQ@mail.gmail.com>
- <CA+HBbNHZyYnnyz9=4Hgav96ZH8-R-nYoi300j2x3fgei8aa4zQ@mail.gmail.com> <CA+HBbNE_U3dbnWh-8QasaxfQrQHS4YK8TEr0YebH9mCJsc0JTQ@mail.gmail.com>
-In-Reply-To: <CA+HBbNE_U3dbnWh-8QasaxfQrQHS4YK8TEr0YebH9mCJsc0JTQ@mail.gmail.com>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Sat, 25 Sep 2021 16:47:02 +0200
-Message-ID: <CA+HBbNH5Bybts2n6S3DrigNa_ZA-7_rgSZVgHZtoS27W9ZCtig@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <6a6a0d3a-522c-d01c-d3b8-a13488d0c736@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 7, 2021 at 11:02 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> On Tue, Aug 24, 2021 at 10:03 AM Robert Marko <robert.marko@sartura.hr> wrote:
-> >
-> > On Wed, Aug 11, 2021 at 2:17 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > >
-> > > On Tue, Aug 3, 2021 at 9:23 PM Robert Marko <robert.marko@sartura.hr> wrote:
-> > >
-> > > > The pins that this driver wants to expose are used for SFP-s only,
-> > > > they are provided by the Lattice CPLD which also does other things.
-> > > >
-> > > > Linux has a generic SFP driver which is used to manage these SFP
-> > > > ports, but it only supports GPIO-s, it has no concept of anything else.
-> > > > Since the driver is fully generic, I have no idea how could one extend it
-> > > > to effectively handle these pins internally, especially since I have more
-> > > > switches that use the CPLD for SFP-s as well, even for 48 ports and 192
-> > > > pins for them.
-> > >
-> > > Which file is this driver in so I can look?
-> >
-> > Hi Linus,
-> > Sorry for the late reply.
-> >
-> > Sure, here is the generic Linux driver that is used for SFP handling:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/sfp.c?h=v5.14-rc7
-> >
-> > >
-> > > Maybe it is not a good idea to look for generic code just because
-> > > it is convenient? I have had this problem before with GPIO, along
-> > > the lines "lemme just do this dirty thing this one time because it
-> > > is so convenient for me" (more or less) and the answer is still
-> > > "no".
-> > >
-> > > Can you either augment the driver to handle a regmap with bit indices
-> > > instead or write a new similar driver for that or refactor it some other
-> > > way?
-> > >
-> > > It is not a simple solution to your problem, but it might be the right
-> > > solution even if it means some more work.
-> >
-> > I understand your position, believe me, I spend some time looking at
-> > what would be the logical way for these switches.
-> > But I see no way how could the SFP driver be extended in a generic way
-> > that would allow supporting different register layouts when it comes to pins.
-> >
-> > >
-> > > > GPIO regmap works perfectly for this as its generic enough to cover all of
-> > > > these cases.
-> > >
-> > > Yeah but it might be the wrong thing to do even if it is simple
-> > > to use and works.
-> > >
-> > > > CPLD also provides pins to test the port LED-s per color as well,
-> > > > but I have chosen not to expose them so far.
-> > >
-> > > Have you considered
-> > > Documentation/devicetree/bindings/leds/register-bit-led.txt
-> >
-> > Yeah, but unfortunately in this case it wont work as the LED-s
-> > are for debugging/test purposes only and you first need to switch
-> > the CPLD out of it interpreting the LED state with a BIT flip.
-> >
-> > Regards,
-> > Robert
-> > >
-> > > > > If it is a regmap in Linux then that is fine, just pass the regmap
-> > > > > around inside the kernel, OK finished. But really that is an OS
-> > > > > detail.
-> > > >
-> > > > Yes, its regmap but I cant really pass it to the SFP driver as I don't have
-> > > > special driver handling the SFP but rather the generic kernel one.
-> > > > It only knows how to handle GPIO-s.
-> > >
-> > > Of course you have to program it. If I know which driver it
-> > > is it is easier to provide architecture ideas.
-> > >
-> > > Yours,
-> > > Linus Walleij
->
-> Linus,
->
-> can I offer some further explanation?
->
-> Regards,
-> Robert
-
-Hi Linus,
-
-I would really like to move forward with this somehow.
-
-I have multiple switches depending on the outcome of this series.
-
-Regards,
-Robert
-> >
-> >
-> >
-> > --
-> > Robert Marko
-> > Staff Embedded Linux Engineer
-> > Sartura Ltd.
-> > Lendavska ulica 16a
-> > 10000 Zagreb, Croatia
-> > Email: robert.marko@sartura.hr
-> > Web: www.sartura.hr
->
->
->
-> --
-> Robert Marko
-> Staff Embedded Linux Engineer
-> Sartura Ltd.
-> Lendavska ulica 16a
-> 10000 Zagreb, Croatia
-> Email: robert.marko@sartura.hr
-> Web: www.sartura.hr
+On 12:54-20210924, Suman Anna wrote:
+> Hi Sinthu,
+> 
+> On 9/24/21 12:25 PM, Suman Anna wrote:
+> > On 9/24/21 11:29 AM, Nishanth Menon wrote:
+> >> On 11:10-20210924, Suman Anna wrote:
+> >>> Hi Sinthu,
+> >>>
+> >>> On 9/17/21 4:54 AM, Sinthu Raja wrote:
+> >>>> From: Sinthu Raja <sinthu.raja@ti.com>
+> >>>>
+> >>>> The example includes a board-specific compatible property, this is
+> >>>> wrong as the example should be board agnostic and gets in the way of
+> >>>> additions for newer platforms. Replace the same with a generic soc
+> >>>> node.
+> >>>
+> >>> What board specific property? This description looks wrong.
+> 
+> Can you please repost dropping the Fixes line, and modifying the patch
+> description as follows:
+> 
+> dt-bindings: remoteproc: k3-dsp: Cleanup SoC compatible from DT example
+> 
+> The K3 DSP binding example used the root-node with a SoC compatible
+> property originally to address the dt_binding_check warnings resulting
+> from using a value of 2 for #address-cells and #size-cells as per most
+> common usage on K3 SoCs. Clean this up and replace it with a generic soc
+> node to keep it agnostic of the SoC or board compatibles that are outside
+> the scope of this binding.
 
 
+This looks good to me as well. Thanks.
 
 -- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
