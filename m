@@ -2,92 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B58D241844B
-	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 22:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3929141848D
+	for <lists+devicetree@lfdr.de>; Sat, 25 Sep 2021 23:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbhIYUQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Sep 2021 16:16:22 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45092 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229899AbhIYUQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Sep 2021 16:16:22 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18PKEY8p106719;
-        Sat, 25 Sep 2021 15:14:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632600874;
-        bh=QNBHi5+0FNCIPxmxLfNSiYlxzhsum00YH6IaFTLHtOk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=iVCcaZpFPoaXv7V2b6flgmgEWMy3aQTe2ZMFbpmwHs3dulsqogpTgg0DCzVXXgPrV
-         Tq2YTJ9xcMeSYhwChg7VaFxuTejHu/Icy6TFJ2AWStKec/Nqgn1Ip68AVaqxFenOFM
-         R/8i00XxUb23CNzleavOtj/dozWL63fl+FkyZqdQ=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18PKEYfE130222
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 25 Sep 2021 15:14:34 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sat, 25
- Sep 2021 15:14:34 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Sat, 25 Sep 2021 15:14:34 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18PKEYmD075489;
-        Sat, 25 Sep 2021 15:14:34 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>,
-        Hari Nagalla <hnagalla@ti.com>,
-        Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH V2 4/4] arm64: dts: ti: k3-j7200-common-proc-board: Add j7200-evm compatible
-Date:   Sat, 25 Sep 2021 15:14:30 -0500
-Message-ID: <20210925201430.11678-5-nm@ti.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210925201430.11678-1-nm@ti.com>
-References: <20210925201430.11678-1-nm@ti.com>
+        id S229965AbhIYVBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Sep 2021 17:01:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46726 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229842AbhIYVBk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Sep 2021 17:01:40 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987BAC061570;
+        Sat, 25 Sep 2021 14:00:05 -0700 (PDT)
+From:   Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1632603603;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=OqJbVc4PIkymdexYtCAgR5HPDd/Rii+ka465iyNfbT8=;
+        b=17gAUXwaAhZ2CO+nNGbNkCTPFMKm+VW1yCZuwdbvIQ2oukZjdFGnJwRYdxyYHh2YPixMzo
+        SAwQlb94yQKH+ydYtnfFtXHi1sf6FFgtr/Lx62zBgE3R3hj9agl8rmBpM7lmdLZ/BxuCvi
+        sE5Aht6E3ZS/pFaVVnWAbsH9thQxn1bZ0YYWF0D3zDUSDpdrvZncWPK8cr1nc9SuHz2Cg1
+        ToQQuEz7eA2JgkMb8DD6jubGmUN7zea4a7gs5lLHGGW2qdsXls6ySJAh3GohuyG6yqEb8m
+        /3AMGdvdU6ckvZOOdOQdEaAUQFDLXY9x0ewhndhQbLOqlvM+I5YjLR47igA+EQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1632603603;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=OqJbVc4PIkymdexYtCAgR5HPDd/Rii+ka465iyNfbT8=;
+        b=/0Gpe0hIKdMNR/SsUg0H+azUWSxbSDChe7GSX5Xpfgqab86WMqTQ0i0YSmYRl5ZpcgLVP1
+        fNrzWdOWqpSyxIAg==
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Mike Rapoport <rppt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrey Konovalov <andreyknvl@gmail.com>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Ingo Molnar <mingo@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        "moderated list:ARM PORT" <linux-arm-kernel@lists.infradead.org>,
+        "open list:SUPERH" <linux-sh@vger.kernel.org>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <linux-mips@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 02/11] genirq: Export irq_to_desc() again to modules
+In-Reply-To: <20210924170546.805663-3-f.fainelli@gmail.com>
+References: <20210924170546.805663-1-f.fainelli@gmail.com>
+ <20210924170546.805663-3-f.fainelli@gmail.com>
+Date:   Sat, 25 Sep 2021 23:00:02 +0200
+Message-ID: <87wnn4cqwd.ffs@tglx>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add j7200-evm compatible to the board to allow the board to distinguish
-itself from other platforms that may be added in the future.
+On Fri, Sep 24 2021 at 10:05, Florian Fainelli wrote:
+> In order to build drivers/irqchip/irq-bcm7038-l1.c as a module (for use
+> in GKI), we need to export_to_desc() which is used in this snippet of
+> code:
+>
+> 	irqd_set_single_target(irq_desc_get_irq_data(irq_to_desc(virq)));
+>
+> This effectively reverts 64a1b95bb9fe ("genirq: Restrict export of
+> irq_to_desc()").
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
+No. I'm not reexporting this. We've spent quite some time to prevent all
+kind of drivers for fiddle with irq descriptors and I'm not going
+to reopen that can of worms.
 
-Changes in V2:
-* no change
+irq_get_irq_data() is exported and provides you what you need.
 
-V1: https://lore.kernel.org/all/20210915121937.27702-4-nm@ti.com/
+Thanks,
 
- arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index d14f3c18b65f..121975dc8239 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -12,6 +12,9 @@
- #include <dt-bindings/phy/phy.h>
- 
- / {
-+	compatible = "ti,j7200-evm", "ti,j7200";
-+	model = "Texas Instruments J7200 EVM";
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
--- 
-2.32.0
-
+        tglx
