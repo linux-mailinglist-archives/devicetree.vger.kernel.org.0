@@ -2,124 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E90041885E
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 13:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A326418875
+	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 13:58:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230339AbhIZLj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 07:39:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36150 "EHLO mail.kernel.org"
+        id S231246AbhIZL7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 07:59:42 -0400
+Received: from mout.web.de ([217.72.192.78]:41241 "EHLO mout.web.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230200AbhIZLj0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Sep 2021 07:39:26 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C1ED061038;
-        Sun, 26 Sep 2021 11:37:47 +0000 (UTC)
-Date:   Sun, 26 Sep 2021 12:41:37 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cai Huoqing <caihuoqing@baidu.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "Sascha Hauer" <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 1/3] iio: imx8qxp-adc: Add driver support for NXP
- IMX8QXP ADC
-Message-ID: <20210926124137.0121a68d@jic23-huawei>
-In-Reply-To: <20210925020555.129-2-caihuoqing@baidu.com>
-References: <20210925020555.129-1-caihuoqing@baidu.com>
-        <20210925020555.129-2-caihuoqing@baidu.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S230200AbhIZL7m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Sep 2021 07:59:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+        s=dbaedf251592; t=1632657470;
+        bh=J4qoTt6C/OONDAY5IjSYz0lPj7Auvzjy0GBoisQgE8M=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=Yl6uwEROqfriSQbyzGBfetI2dTB/WwLL+ZRGnbNeeqJTvi6+x52cDZDMHaojdvC//
+         kj1BVHfYDyPkvZIt6aWKUVWNqpnMx3/gwjX4HPCkNm/LVtyCjuhnhxy5vMhDNUuaY0
+         t7OezRYIJfl0E/RFKmtV/ys+kYRc/XxTxL454yMo=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.178.20] ([94.217.148.121]) by smtp.web.de (mrweb102
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0MYeuk-1mHjLg0w2E-00VSI5; Sun, 26
+ Sep 2021 13:57:50 +0200
+Subject: Re: [PATCH v4 6/6] arm64: dts: ti: iot2050: Add support for product
+ generation 2 boards
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
+        Chao Zeng <chao.zeng@siemens.com>
+References: <cover.1631708830.git.jan.kiszka@siemens.com>
+ <a4d6ab1dd1f5582b940ac25395eb878e683b3a38.1631708830.git.jan.kiszka@siemens.com>
+ <20210922155843.gjn5aezf4lmgtn3d@undecided>
+From:   Jan Kiszka <jan.kiszka@web.de>
+Message-ID: <f6933a10-4fa9-1abc-fd3f-583a462eb306@web.de>
+Date:   Sun, 26 Sep 2021 13:57:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20210922155843.gjn5aezf4lmgtn3d@undecided>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:E5Fz6ZE82zMpdm1ViHQmq9kNh6Wmi6mWUy79jsOhXxe86wbyxWB
+ fpHfbJZygFCAPcE0InT9At7/y3HScb+Bic3VGC/s+ktgCo9DP4Qrkw+fCD1ssFZg4tV01q6
+ mIxYye78jIEl8y/EKjDC2YED+2YHdc+8WwOfgHeyORcLLUhlClaK6kBZp5xoWgv5XYoQk6D
+ PzRO82dSgPzUuF26GgwpA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:1r+CAaYzQBY=:b8EwiE2S1eg81LufvSneUJ
+ sNtQayMBz2HrW3m2s6X5vhItFUWGk9dbl9ySf22NF8iDErmLkMZRbpyRhfhoziG0950GRn/s2
+ QPSAitGHmJTrke+njBApRyVxrs3RlBDdvFor/M+pitYhXeLOy+siEYBBxwxVF9hwJ1G+Ha1Q2
+ 9777g4zrsZ9T3sU2w6hbK09Wl+fmcJdkW+xdT2DcSYlcrZubzoUcwQIDEjiigQmRg57h9m+/c
+ WzgT8yQXq9wa4kKDRPbmxumDTb2BwCekZoCUN5kTZbzZDoYtkngs6cBC2y/hlOfoUzKpTQrAQ
+ mGhz6hHqWLmQBXD1jLi/KnXaDMzxyGD2lKiase9G7m63ZUEEv3cvIdEbn3H16LUF8C+GVzz0v
+ ahyNRnctj6NrhYoPVjos2jzn8B58Cpxpel/HnrU0QRUhKwCKSkIBgpNaqdshCEynq64qQGisi
+ QOibgjv7NzZxbcQ00hlTayaM9VyhugHRANekPhEJnkoF/lQ5QSLiooUhu2SI3dwn+JYH/Qk93
+ Q2iGjBdCPkRWPC8uB0E7n2xZ8oSjiX9u7KEYL6l+mhM5OBp8Ev7GKbgSwoiAbYbBmXcwJ+y/r
+ /Hy0lcIMU6+l0Q2+RCpfSUH6N3sNqR/0c4S9mRgue5ng/3nMCWdUcMeUmSx0IqL12fG0psPbS
+ PPAaI9gxI6pHIoylXt7UVFF2ka9TzWkoMXHUstDOxCCTFZiEBrUzYTYhuHoUIZZmz8DZ/1bFS
+ UO/xE8OTXmS14WmzpkyHZXjjTuj624aTK1g07O+5+ZrIZMvsOixV56Hiodac9e0G7XTt2pjwo
+ TBS+gatEJ3Pu1nqkzN3XNfzG+GMgO+3RHbMdcxvdTOwmO8cbBgh75N11SWpfESM7ucOvWvnOt
+ ci9+9YNRl8GgrT6BG3fGJUDUEdTPEtFuLSnhnicAYwop6JaANzaIPCq8T4vwtShLDRgjk51mz
+ SUz3LHUf46Vuo/J9eRkp82PMikT3RTA2BVlaE6eKNENzFx17c5LcVtQbr6SewUNgPUvofTL4W
+ 70ca5KQxcPPws8zFoodvPRCyM92GReMWEfZJvXOsBdjPUxk+tWLhnW/1xHYAHnGE3dpGISlpX
+ Pu+wWFZXmhxgjI=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Sep 2021 10:05:45 +0800
-Cai Huoqing <caihuoqing@baidu.com> wrote:
+On 22.09.21 17:58, Nishanth Menon wrote:
+> On 14:27-20210915, Jan Kiszka wrote:
+>> From: Jan Kiszka <jan.kiszka@siemens.com>
+>>
+>> This adds the devices trees for IOT2050 Product Generation 2 (PG2)
+>> boards. We have Basic and an Advanced variants again, differing in
+>> number of cores, RAM size, availability of eMMC and further details.
+>> The major difference to PG1 is the used silicon revision (SR2.x on
+>> PG2).
+>>
+>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/Makefile               |  2 +
+>>  .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    | 51 +++++++++++++++++++
+>>  .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    | 24 +++++++++
+>>  .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts | 29 +++++++++++
+>>  4 files changed, 106 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.d=
+tsi
+>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.=
+dts
+>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-p=
+g2.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/M=
+akefile
+>> index d56c742f5a10..41a4bc96e6bd 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -8,7 +8,9 @@
+>>
+>>  dtb-$(CONFIG_ARCH_K3) +=3D k3-am654-base-board.dtb
+>>  dtb-$(CONFIG_ARCH_K3) +=3D k3-am6528-iot2050-basic.dtb
+>> +dtb-$(CONFIG_ARCH_K3) +=3D k3-am6528-iot2050-basic-pg2.dtb
+>>  dtb-$(CONFIG_ARCH_K3) +=3D k3-am6548-iot2050-advanced.dtb
+>> +dtb-$(CONFIG_ARCH_K3) +=3D k3-am6548-iot2050-advanced-pg2.dtb
+>>
+>>  dtb-$(CONFIG_ARCH_K3) +=3D k3-j721e-common-proc-board.dtb
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi b/a=
+rch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
+>> new file mode 100644
+>> index 000000000000..c25bce7339b7
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
+>> @@ -0,0 +1,51 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) Siemens AG, 2021
+>> + *
+>> + * Authors:
+>> + *   Chao Zeng <chao.zeng@siemens.com>
+>> + *   Jan Kiszka <jan.kiszka@siemens.com>
+>> + *
+>> + * Common bits of the IOT2050 Basic and Advanced variants, PG2
+>> + */
+>> +
+>> +&main_pmx0 {
+>> +	cp2102n_reset_pin_default: cp2102n-reset-pin-default {
+>> +		pinctrl-single,pins =3D <
+>> +			/* (AF12) GPIO1_24, used as cp2102 reset */
+>> +			AM65X_IOPAD(0x01e0, PIN_OUTPUT, 7)
+>> +		>;
+>> +	};
+>> +};
+>> +
+>> +&main_gpio1 {
+>> +	pinctrl-names =3D "default";
+>> +	pinctrl-0 =3D <&cp2102n_reset_pin_default>;
+>> +	gpio-line-names =3D
+>> +		"", "", "", "", "", "", "", "", "", "",
+>> +		"", "", "", "", "", "", "", "", "", "",
+>> +		"", "", "", "", "CP2102N-RESET";
+>> +};
+>> +
+>> +&dss {
+>> +	/* Workaround needed to get DP clock of 154Mhz */
+>> +	assigned-clocks =3D <&k3_clks 67 0>;
+>> +};
+>> +
+>> +&serdes0 {
+>> +	assigned-clocks =3D <&k3_clks 153 4>, <&serdes0 AM654_SERDES_CMU_REFC=
+LK>;
+>> +	assigned-clock-parents =3D <&k3_clks 153 7>, <&k3_clks 153 4>;
+>> +};
+>> +
+>> +&dwc3_0 {
+>> +	assigned-clock-parents =3D <&k3_clks 151 4>,  /* set REF_CLK to 20MHz=
+ i.e. PER0_PLL/48 */
+>> +				 <&k3_clks 151 8>;  /* set PIPE3_TXB_CLK to WIZ8B2M4VSB */
+>> +	phys =3D <&serdes0 PHY_TYPE_USB3 0>;
+>> +	phy-names =3D "usb3-phy";
+>> +};
+>> +
+>> +&usb0_phy {
+>> +	maximum-speed =3D "super-speed";
+>> +	snps,dis-u1-entry-quirk;
+>> +	snps,dis-u2-entry-quirk;
+>
+> ^^
+> 	did you mean &usb0?
+> usb0_phy uses Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml
+> usb0 uses Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>
+> am i missing a "maximum-speed" there? quirks look like belonging to the
+> controller ?
+>
 
-> The NXP i.MX 8QuadXPlus SOC has a new ADC IP, so add
-> driver support for this ADC.
-> 
-> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
-Hi Cai Huoqing,
+Yes, this was probably just a typo, must be "usb0" indeed. Colleagues
+confirmed this as well. I'll send an update.
 
-Having had a 'final' read through of the driver, I am basically happy
-to merge this after Fabio has had time for another look (plus anyone else
-who wishes to of course!) 
+Jan
 
-There were a few minor things inline though that I'll tidy up whilst applying.
-If you do a v7 for some other reason please sort these out as well.
-
-Thanks,
-
-Jonathan
-
-...
-
-> +#define IMX8QXP_ADR_ADC_TCTRL(tid)	(0xc0 + tid * 4)
-> +#define IMX8QXP_ADR_ADC_CMDH(cid)	(0x100 + cid * 8)
-> +#define IMX8QXP_ADR_ADC_CMDL(cid)	(0x104 + cid * 8)
-
-In macros, it is always a good idea to put brackets around
-any use of parameters so as to avoid potential odd issues
-due to operator precedence.
-
-(0xc0 + (tid) * 4)
-
-> +#define IMX8QXP_ADR_ADC_RESFIFO		0x300
-> +#define IMX8QXP_ADR_ADC_TST		0xffc
-
-...
-
-> +
-> +struct imx8qxp_adc {
-> +	struct device *dev;
-> +	void __iomem *regs;
-> +	struct clk *clk;
-> +	struct clk *ipg_clk;
-> +	struct regulator *vref;
-> +	struct mutex lock;
-
-A lock should have documentation to identify what it's precise scope is.
-I can add
-
-/* Serialise ADC channel reads */
-above the lock definition whilst applying if you aren't doing a v7 for
-other reasons.
-
-> +	struct completion completion;
-> +};
-...
-
-
-> +
-> +static irqreturn_t imx8qxp_adc_isr(int irq, void *dev_id)
-> +{
-> +	struct imx8qxp_adc *adc = dev_id;
-> +
-
-Really minor, but the blank line here doesn't help readability much and
-is inconsistent with the rest of the driver.  I might remove this whilst
-applying if nothing else comes up.
-
-> +	u32 fifo_count;
-> +
-> +	fifo_count = FIELD_GET(IMX8QXP_ADC_FCTRL_FCOUNT_MASK,
-> +			       readl(adc->regs + IMX8QXP_ADR_ADC_FCTRL));
-> +
-> +	if (fifo_count)
-> +		complete(&adc->completion);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-...
