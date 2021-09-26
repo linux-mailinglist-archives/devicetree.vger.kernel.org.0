@@ -2,112 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC4C41871E
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 09:22:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71E5641872A
+	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 09:30:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231166AbhIZHX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 03:23:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40566 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbhIZHX6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 03:23:58 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C20CC061575
-        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 00:22:23 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id w8so14596660pgf.5
-        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 00:22:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=Rgzg8J8HaCNFTJCTGijijfBBizgKVxNjDBbx5SerjSo=;
-        b=h78cLKrUR6Fb/xtNUx6PCdVVKnn5W7uMJStZi70Y9JENKFlY26/2ixdCW5EK3FgMm1
-         KbvNnwhitCaOwyQiieKP12ooNHwi8nV3SeNwX1Hib4Al3UXf1o7mB509hC3mHB5QlGm/
-         fhXMq53cu+7DPXm0BYYwL0okd6DiV6AYiny4WbSOy3am++uT26rZKvzdQVLcxz5zGbkE
-         Ulg+sTJyOyCLcK5d9DMAStm8LJP4/PJanmqSHrFsEU3L5oknkI+MMaah1u7qGdnRT3wY
-         ibCnC9pEUUJIleFWTs8lOVQVfehm6K5vT5GX2iRnxRx2ZQUn99Bp49ZHs5rIjr3YYDmJ
-         0Oeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=Rgzg8J8HaCNFTJCTGijijfBBizgKVxNjDBbx5SerjSo=;
-        b=O+E6vJW16OQ397sTFzQUKiQ7SHPT7fXL1u+4Zzn0FCnhotPhdfp5ISRXRTo8KK3xoj
-         FEbeushvUKi0Od/f062G78WhRxvgegvvPw2mZaCBbhys1gUzMxHYPYbKJgD0994PeYy0
-         sQW1VGZzYzSm/7xm8/Hhhzckdd/OoZeGznZUrs++dvMSb1+kdydef5zEAUdqNhnYU+F0
-         oCuf/g8I9CBFMZRND8dGsyc3o2JddY8sgf2lgG4CVlnRybUswLQnDJ6yJ3LN1wy4ydJQ
-         uj9Q5csvyNA333uff3vsFNjg3I9pW+FrgG8Pp5+esruSwvBaRA02RE1/lDPXLoKNvami
-         iF3Q==
-X-Gm-Message-State: AOAM533ByXMjeAG21lzFuWF7ltwITciMtxf7Fs4yMCyBGiEn991c7Rpc
-        Q0Bi79uSB2h6B78lcyOakJ+dVw==
-X-Google-Smtp-Source: ABdhPJxJPbYclGRZxLMxE8I0Lz/Tqb8XX7PcHF2w9ObUbbmB7upkWAO18lmwCdPWkqYAYOL2Zc/y8w==
-X-Received: by 2002:a63:ea58:: with SMTP id l24mr11397356pgk.334.1632640942653;
-        Sun, 26 Sep 2021 00:22:22 -0700 (PDT)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id p13sm13359704pff.73.2021.09.26.00.22.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Sep 2021 00:22:22 -0700 (PDT)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sdm630-nile: Correct regulator label name
-Date:   Sun, 26 Sep 2021 15:22:15 +0800
-Message-Id: <20210926072215.27517-1-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        id S231278AbhIZHcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 03:32:10 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:34466 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231267AbhIZHcJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 03:32:09 -0400
+X-UUID: 78c49c1f3edb4520978a70b0f7d85e52-20210926
+X-UUID: 78c49c1f3edb4520978a70b0f7d85e52-20210926
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <hui.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 58730484; Sun, 26 Sep 2021 15:30:30 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sun, 26 Sep 2021 15:30:28 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 26 Sep 2021 15:30:27 +0800
+From:   Hui-Liu Liu <hui.liu@mediatek.com>
+To:     <robh+dt@kernel.org>, <jic23@kernel.org>, <lars@metafoo.de>,
+        <pmeerw@pmeerw.net>
+CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
+        <zhiyong.tao@mediatek.com>, <chun-hung.wu@mediatek.com>,
+        <yingjoe.chen@mediatek.com>, <seiya.wang@mediatek.com>,
+        <ben.tseng@mediatek.com>, <matthias.bgg@gmail.com>,
+        <s.hauer@pengutronix.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-iio@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v4 0/1] AUXADC: Mediatek auxadc driver
+Date:   Sun, 26 Sep 2021 15:30:27 +0800
+Message-ID: <20210926073028.11045-1-hui.liu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-29.5V (29p5) is obviously wrong for regulator l4 and l5.  Correct them
-to be 2.95V (2p95).  No functional change.
+This series includes one patch:
+1. fix case IIO_CHAN_INFO_PROCESSED: change readback value from raw data to voltage.
 
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Changes in patch v4:
+1)add inforamtion in patch description.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-index 849900e8b80e..11d0a8c1cf35 100644
---- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-@@ -308,7 +308,7 @@
- 			regulator-allow-set-load;
- 		};
- 
--		vreg_l4b_29p5: l4 {
-+		vreg_l4b_2p95: l4 {
- 			regulator-min-microvolt = <2944000>;
- 			regulator-max-microvolt = <2952000>;
- 			regulator-enable-ramp-delay = <250>;
-@@ -327,7 +327,7 @@
- 		 * Tighten the range to 1.8-3.328 (closest to 3.3) to
- 		 * make the mmc driver happy.
- 		 */
--		vreg_l5b_29p5: l5 {
-+		vreg_l5b_2p95: l5 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <3328000>;
- 			regulator-enable-ramp-delay = <250>;
-@@ -559,14 +559,14 @@
- 	mmc-hs400-1_8v;
- 	mmc-hs400-enhanced-strobe;
- 
--	vmmc-supply = <&vreg_l4b_29p5>;
-+	vmmc-supply = <&vreg_l4b_2p95>;
- 	vqmmc-supply = <&vreg_l8a_1p8>;
- };
- 
- &sdhc_2 {
- 	status = "okay";
- 
--	vmmc-supply = <&vreg_l5b_29p5>;
-+	vmmc-supply = <&vreg_l5b_2p95>;
- 	vqmmc-supply = <&vreg_l2b_2p95>;
- };
- 
--- 
-2.17.1
+Changes in patch v3:
+1)add Fixes tags inforamtion.
+
+Changes in patch v2:
+1)abandon support case IIO_CHAN_INFO_RAW.
+
+Changes in patch v1:
+1)fix typo covert to convert in patch 2/2 description.
+
+Hui Liu (1):
+  iio: mtk-auxadc: fix case IIO_CHAN_INFO_PROCESSED
+
+ drivers/iio/adc/mt6577_auxadc.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+--
+2.18.0
+
 
