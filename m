@@ -2,231 +2,415 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEB74418884
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 14:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03C8C41888C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 14:05:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231380AbhIZMHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 08:07:18 -0400
-Received: from mout.web.de ([217.72.192.78]:46495 "EHLO mout.web.de"
+        id S231463AbhIZMHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 08:07:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53172 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231367AbhIZMHR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Sep 2021 08:07:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
-        s=dbaedf251592; t=1632657928;
-        bh=TEEjgedS2noV5Dy6L5x12ddie7wICTatEiDhvSv7+eA=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=WucMhGkLO7LECQcJKoYHoxhoHjh5yhWn/HfUbIZ3gyLRAnBYFVWcj1e/P87Haivba
-         JcI+Rgu/HJxbi/fUANKmBlf8RZU/gXDbRihzw/yKbWzUpIHFHZDGDKRHbgXcHzyyQ/
-         3XxpL92ujCN/ssKQFRDvZ0SVqvr9TUk4bSNNRZ+A=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from md1f2u6c.fritz.box ([94.217.148.121]) by smtp.web.de (mrweb101
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0Lo0V2-1n1cw42Ubw-00g0a2; Sun, 26
- Sep 2021 14:05:28 +0200
-From:   Jan Kiszka <jan.kiszka@web.de>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-Subject: [PATCH v5 6/6] arm64: dts: ti: iot2050: Add support for product generation 2 boards
-Date:   Sun, 26 Sep 2021 14:05:17 +0200
-Message-Id: <cc868da8264324bde2c87d0c01d4763e3678c706.1632657917.git.jan.kiszka@web.de>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1632657916.git.jan.kiszka@web.de>
-References: <cover.1632657916.git.jan.kiszka@web.de>
+        id S231486AbhIZMH1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Sep 2021 08:07:27 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1AC8360F45;
+        Sun, 26 Sep 2021 12:05:47 +0000 (UTC)
+Date:   Sun, 26 Sep 2021 13:09:36 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Olivier MOYSAN <olivier.moysan@foss.st.com>
+Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [PATCH 6/7] iio: adc: stm32-adc: add vrefint calibration
+ support
+Message-ID: <20210926130936.6a8a3b5a@jic23-huawei>
+In-Reply-To: <3284242f-b85f-3f96-c165-bf12325136c3@foss.st.com>
+References: <20210908155452.25458-1-olivier.moysan@foss.st.com>
+        <20210908155452.25458-7-olivier.moysan@foss.st.com>
+        <20210911172834.401cf4c8@jic23-huawei>
+        <865e35a2-47c1-336a-641a-365b7db8213a@foss.st.com>
+        <20210918194149.546a5189@jic23-huawei>
+        <3284242f-b85f-3f96-c165-bf12325136c3@foss.st.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:LDeOLWnB228a0DiYu0vVS6BtsTyd1apM5nO0wjm/O4W/nibRoNW
- 0tUJuSvJxaC0k3GjbGzm9tofI7C4YZE9HF5jI+V+rsr1uCoTpYfRILaWg7OaEXVzzYAt2x0
- QD+GDvdofkar6h+1Tr9Vd3my84sE3aRlODKhC8E8S8N1DgTwhY2gCCq8k2s8Zru+s0/pwld
- 9fViY9t85ug6V4e1v1frQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:gnxw1G9QzlI=:CYEHUqGZy1658i4ARIaSo0
- y+Pxh2amWZRiyDDxYsrLxPffCp9F7oWudU746B7X50Km9nopPNq9uFkevmEqqZ1J/Bw0axB2V
- q+b7Zx5CP8/LgXfGX5NtzUyAwVw9nuFM6rlEgrzaxPMhCawBbTzddTIJA3nyXZANG2B445EM0
- L6sti1sEIHVtvMzSr1deikCqt9cMzTGRAYsEUWrXt4hthnqCIAAO00sM93lwr2vRQGBQif4YC
- Mlv1/ov/khHl+DvHAaicpZ1L5PSUkbAHTR2gQlSvWv0xyzFVuPAFlZqmz4JpAasFv23Df1pkr
- 9PTXGxU6VTyWeiPkyZoHgJT83H2AQ0oxdnUsugFj8Sax7a//LtmFMfAQVNMK8vtZ2zhggdEYu
- Cy/ynhpBHZk6UTHsePQdf0YSKjxH9nw1Lr4LjVTscQSlko7cz18RQobxtSZAc8tv2jmk4lByS
- KPPh5GveobeokPBHiR0Ptmn48ovb3OCQ1leFoCIZ911NKtJkIQEM8QPeDg/yuDhhDVTmuA8Nt
- PA90+yNpkAk1POxOpLph9gPzW3DZqa0jucocH72H3Rowk6EGSLMQ4gtpAdSq63KBNHHVjGYyN
- NeqlB3155P+lroSEwmCoAu1xwbc2js8ZGmBU9+Q6qDDuD2/t0GgRPBXcEpHFAiT86pi1fKQ8C
- RO2byUHfqavcl22PFFM+sZRujp6xSHDoQB3WS+N8S2XgBQSQ79/LmNMMmde1M6TApfYKjjv2v
- ydKb4XZ3IKORGaFVn0odPB46+IuN5Hca3KcJKZz/Oo88j1QLt2bC6ZqZ7ghj8eGqbm0eSCfeT
- vetjFIaf8uWkAprIBYouB1ZhnbckD3aB9DeT50+htAwKkUgA1fYapAbXWHz/Paabq3VpxbmeO
- AlryXncHs03CESGtFNV0z/+naVq+h1b0bCilCVE68TAJZL0zah62TCL9Ug03q2x3wcP7I5AMl
- Zf2qjVp20+hDWZSnU9Puh0DosByCOuDzXasKQ/Ql5b2BKpkHBb09lE2ML6jlCyLllPrKEUs2O
- HYMpObiK6+QlB4uwSq2uruCVlVbovBusEpzcuzyWxCpe8WoMTZVl9vITtvcO/HCAL8suK0NcS
- vCOnq8aGxWVzps=
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
+On Wed, 22 Sep 2021 09:53:58 +0200
+Olivier MOYSAN <olivier.moysan@foss.st.com> wrote:
 
-This adds the devices trees for IOT2050 Product Generation 2 (PG2)
-boards. We have Basic and an Advanced variants again, differing in
-number of cores, RAM size, availability of eMMC and further details.
-The major difference to PG1 is the used silicon revision (SR2.x on
-PG2).
+> Hi Jonathan,
+> 
+> On 9/18/21 8:42 PM, Jonathan Cameron wrote:
+> > On Wed, 15 Sep 2021 12:02:45 +0200
+> > Olivier MOYSAN <olivier.moysan@foss.st.com> wrote:
+> >   
+> >> Hi Jonathan,
+> >>
+> >> On 9/11/21 6:28 PM, Jonathan Cameron wrote:  
+> >>> On Wed, 8 Sep 2021 17:54:51 +0200
+> >>> Olivier Moysan <olivier.moysan@foss.st.com> wrote:
+> >>>      
+> >>>> Add support of vrefint calibration.
+> >>>> If a channel is labeled as vrefint, get vrefint calibration
+> >>>> from non volatile memory for this channel.
+> >>>> A conversion on vrefint channel allows to update scale
+> >>>> factor according to vrefint deviation, compared to vrefint
+> >>>> calibration value.  
+> >>>
+> >>> As I mention inline, whilst technically the ABI doesn't demand it
+> >>> the expectation of much of userspace software is that _scale is
+> >>> pseudo constant - that is it doesn't tend to change very often and when
+> >>> it does it's normally because someone deliberately made it change.
+> >>> As such most software reads it just once.
+> >>>
+> >>> Normally we work around this by applying the maths in kernel and
+> >>> not exposing the scale at all. Is this something that could be done here?
+> >>>
+> >>> Jonathan
+> >>>      
+> >>>>
+> >>>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> >>>> ---
+> >>>>    drivers/iio/adc/stm32-adc.c | 88 ++++++++++++++++++++++++++++++++++---
+> >>>>    1 file changed, 82 insertions(+), 6 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/iio/adc/stm32-adc.c b/drivers/iio/adc/stm32-adc.c
+> >>>> index ef3d2af98025..9e52a7de9b16 100644
+> >>>> --- a/drivers/iio/adc/stm32-adc.c
+> >>>> +++ b/drivers/iio/adc/stm32-adc.c
+> >>>> @@ -21,6 +21,7 @@
+> >>>>    #include <linux/io.h>
+> >>>>    #include <linux/iopoll.h>
+> >>>>    #include <linux/module.h>
+> >>>> +#include <linux/nvmem-consumer.h>
+> >>>>    #include <linux/platform_device.h>
+> >>>>    #include <linux/pm_runtime.h>
+> >>>>    #include <linux/of.h>
+> >>>> @@ -42,6 +43,7 @@
+> >>>>    #define STM32_ADC_TIMEOUT	(msecs_to_jiffies(STM32_ADC_TIMEOUT_US / 1000))
+> >>>>    #define STM32_ADC_HW_STOP_DELAY_MS	100
+> >>>>    #define STM32_ADC_CHAN_NONE		-1
+> >>>> +#define STM32_ADC_VREFINT_VOLTAGE	3300
+> >>>>    
+> >>>>    #define STM32_DMA_BUFFER_SIZE		PAGE_SIZE
+> >>>>    
+> >>>> @@ -79,6 +81,7 @@ enum stm32_adc_extsel {
+> >>>>    };
+> >>>>    
+> >>>>    enum stm32_adc_int_ch {
+> >>>> +	STM32_ADC_INT_CH_NONE = -1,
+> >>>>    	STM32_ADC_INT_CH_VDDCORE,
+> >>>>    	STM32_ADC_INT_CH_VREFINT,
+> >>>>    	STM32_ADC_INT_CH_VBAT,
+> >>>> @@ -137,6 +140,16 @@ struct stm32_adc_regs {
+> >>>>    	int shift;
+> >>>>    };
+> >>>>    
+> >>>> +/**
+> >>>> + * struct stm32_adc_vrefint - stm32 ADC internal reference voltage data
+> >>>> + * @vrefint_cal:	vrefint calibration value from nvmem
+> >>>> + * @vrefint_data:	vrefint actual value
+> >>>> + */
+> >>>> +struct stm32_adc_vrefint {
+> >>>> +	u32 vrefint_cal;
+> >>>> +	u32 vrefint_data;
+> >>>> +};
+> >>>> +
+> >>>>    /**
+> >>>>     * struct stm32_adc_regspec - stm32 registers definition
+> >>>>     * @dr:			data register offset
+> >>>> @@ -186,6 +199,7 @@ struct stm32_adc;
+> >>>>     * @unprepare:		optional unprepare routine (disable, power-down)
+> >>>>     * @irq_clear:		routine to clear irqs
+> >>>>     * @smp_cycles:		programmable sampling time (ADC clock cycles)
+> >>>> + * @ts_vrefint_ns:	vrefint minimum sampling time in ns
+> >>>>     */
+> >>>>    struct stm32_adc_cfg {
+> >>>>    	const struct stm32_adc_regspec	*regs;
+> >>>> @@ -199,6 +213,7 @@ struct stm32_adc_cfg {
+> >>>>    	void (*unprepare)(struct iio_dev *);
+> >>>>    	void (*irq_clear)(struct iio_dev *indio_dev, u32 msk);
+> >>>>    	const unsigned int *smp_cycles;
+> >>>> +	const unsigned int ts_vrefint_ns;
+> >>>>    };
+> >>>>    
+> >>>>    /**
+> >>>> @@ -223,6 +238,7 @@ struct stm32_adc_cfg {
+> >>>>     * @pcsel:		bitmask to preselect channels on some devices
+> >>>>     * @smpr_val:		sampling time settings (e.g. smpr1 / smpr2)
+> >>>>     * @cal:		optional calibration data on some devices
+> >>>> + * @vrefint:		internal reference voltage data
+> >>>>     * @chan_name:		channel name array
+> >>>>     * @num_diff:		number of differential channels
+> >>>>     * @int_ch:		internal channel indexes array
+> >>>> @@ -248,6 +264,7 @@ struct stm32_adc {
+> >>>>    	u32			pcsel;
+> >>>>    	u32			smpr_val[2];
+> >>>>    	struct stm32_adc_calib	cal;
+> >>>> +	struct stm32_adc_vrefint vrefint;
+> >>>>    	char			chan_name[STM32_ADC_CH_MAX][STM32_ADC_CH_SZ];
+> >>>>    	u32			num_diff;
+> >>>>    	int			int_ch[STM32_ADC_INT_CH_NB];
+> >>>> @@ -1331,15 +1348,35 @@ static int stm32_adc_read_raw(struct iio_dev *indio_dev,
+> >>>>    			ret = stm32_adc_single_conv(indio_dev, chan, val);
+> >>>>    		else
+> >>>>    			ret = -EINVAL;
+> >>>> +
+> >>>> +		/* If channel mask corresponds to vrefint, store data */
+> >>>> +		if (adc->int_ch[STM32_ADC_INT_CH_VREFINT] == chan->channel)
+> >>>> +			adc->vrefint.vrefint_data = *val;
+> >>>> +
+> >>>>    		iio_device_release_direct_mode(indio_dev);
+> >>>>    		return ret;
+> >>>>    
+> >>>>    	case IIO_CHAN_INFO_SCALE:
+> >>>>    		if (chan->differential) {
+> >>>> -			*val = adc->common->vref_mv * 2;
+> >>>> +			if (adc->vrefint.vrefint_data &&
+> >>>> +			    adc->vrefint.vrefint_cal) {
+> >>>> +				*val = STM32_ADC_VREFINT_VOLTAGE * 2 *
+> >>>> +				       adc->vrefint.vrefint_cal /
+> >>>> +				       adc->vrefint.vrefint_data;  
+> >>>
+> >>> Ah.. Dynamic scale.  This is always awkward when it occurs.
+> >>> Given most / possibly all userspace software assumes a pseudo static scale
+> >>> (not data dependent) we normally hide this by doing the maths internal to the
+> >>> driver - sometimes meaning we need to present the particular channel as processed
+> >>> not raw.
+> >>>
+> >>> Is the expectation here that vrefint_data is actually very nearly constant? If
+> >>> so then what you have here may be fine as anyone not aware the scale might change
+> >>> will get very nearly the right value anyway.
+> >>>      
+> >>
+> >> The need here is to compare the measured value of vrefint with the
+> >> calibrated value saved in non volatile memory. The ratio between these
+> >> two values can be used as a correction factor for the acquisitions on
+> >> all other channels.
+> >>
+> >> The vrefint data is expected to be close to the saved vrefint
+> >> calibration value, and it should not vary strongly over time.
+> >> So, yes, we can indeed consider the scale as a pseudo constant. If the
+> >> scale is not updated, the deviation with actual value should remain
+> >> limited, as well.  
+> > 
+> > Ok, so in that case we could probably get away with having it as you have
+> > here, though for maximum precision we'd need userspace to occasionally check
+> > the scale.
+> >   
+> >>
+> >> You suggest above to hide scale tuning through processed channels.
+> >> If I follow this logic, when vrefint channel is available, all channels
+> >> should be defined as processed channels (excepted vrefint channel)
+> >> In this case no scale is exposed for these channels, and the vrefint
+> >> calibration ratio can be used to provide converted data directly.
+> >> Do you prefer this implementation ?  
+> >   
+> >>
+> >> In this case I wonder how buffered data have to be managed. These data
+> >> are still provided as raw data, but the scale factor is not more
+> >> available to convert them. I guess that these data have to be converted
+> >> internally also, either in dma callback or irq handler.
+> >> Is this correct ?  
+> > 
+> > This is one of the holes in what IIO does today.  Without meta data in the
+> > buffer (which is hard to define in a clean fashion) it is hard to have
+> > a compact representation of the data in the presence of dynamic scaling.
+> > The vast majority of devices don't inherently support such scaling so
+> > this is only occasionally a problem.
+> > 
+> > To support this at the moment you would indeed need to scale the data
+> > before pushing it to the buffer which is obviously really ugly.
+> > 
+> > My gut feeling here is there are three possible approaches.
+> > 
+> > 1) Ignore the dynamic nature of the calibration and pretend it's static.
+> > 2) Add an explicit 'calibration' sysfs attribute.
+> >     This is a fairly common model for other sensor types which don't do
+> >     dynamic calibration but instead require to you to start some special
+> >     calibration sequence.
+> >     As the calibration is not updated, except on explicit userspace action
+> >     we can assume that the scale is static unless userspace is aware of
+> >     the dynamic aspect.
+> > 3) Add a userspace control to turn on dynamic calibration.  That makes it
+> >     opt in.  Everything will work reasonably well without it turned on
+> >     as we'll hopefully have a static estimate of scale which is good enough.
+> >     If aware software is using the device, it can enable this mode and
+> >     sample the scale as often as it wants to.
+> > 
+> > I slightly favour option 3.  What do you think?  If we ever figure out
+> > the meta data question for buffered case then we can make that work on top
+> > of this.
+> > 
+> > Jonathan  
+> 
+> This discussion made me revisit the calibration aspects in the ADC driver.
+> 
+> We have three types of calibration in ADC:
+> 
+> - Linear calibration: this calibration is not voltage or temperature 
+> dependent. So, it can be done once at boot time, as this is done currently.
+> 
+> - offset calibration: this calibration has a voltage and temperature 
+> dependency. This calibration is currently done once at boot. But it 
+> would be relevant to allow application to request a new offset 
+> calibration, when supply or temperature change over time.
+> Here the 'calibration' sysfs attribute you suggested in option 2, would 
+> be convenient I think. I plan to submit this improvement in a separate 
+> patch.
+> 
+> - vref compensation: the vrefint channel offers a way to evaluate vref 
+> deviation. Here I need to change a bit the logic. I think that putting 
+> intelligence in the driver is not the best way at the end. This hides 
+> voltage deviation information, where it could be useful to check if an 
+> offset calibration is needed. Moreover we get a lack of consistency 
+> between raw and buffered data.
+> It looks that processed type is the good way to expose vrefint channel. 
+> This allows to provide the actual vref voltage. And we can let the 
+> application decide how to manage this information. (trigger offset 
+> calibration / compensate raw data)
+> I'm going to send a v2 serie with this change for vrefint support
+> (plus the corrections for other comments)
 
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-=2D--
- arch/arm64/boot/dts/ti/Makefile               |  2 +
- .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    | 51 +++++++++++++++++++
- .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    | 24 +++++++++
- .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts | 29 +++++++++++
- 4 files changed, 106 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.=
-dts
+Sounds like a good compromise solution to me.  It's not great that we
+end up with a 'somewhat' device specific solution, but as I've not previously
+seen this particular form of calibration I am not that bothered by it
+being device specific.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Make=
-file
-index d56c742f5a10..41a4bc96e6bd 100644
-=2D-- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -8,7 +8,9 @@
+As ever, these stm32 parts continue to cut a new trail!
 
- dtb-$(CONFIG_ARCH_K3) +=3D k3-am654-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) +=3D k3-am6528-iot2050-basic.dtb
-+dtb-$(CONFIG_ARCH_K3) +=3D k3-am6528-iot2050-basic-pg2.dtb
- dtb-$(CONFIG_ARCH_K3) +=3D k3-am6548-iot2050-advanced.dtb
-+dtb-$(CONFIG_ARCH_K3) +=3D k3-am6548-iot2050-advanced-pg2.dtb
+Thanks,
 
- dtb-$(CONFIG_ARCH_K3) +=3D k3-j721e-common-proc-board.dtb
+Jonathan
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi b/arch=
-/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-new file mode 100644
-index 000000000000..e73458ca6900
-=2D-- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2021
-+ *
-+ * Authors:
-+ *   Chao Zeng <chao.zeng@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * Common bits of the IOT2050 Basic and Advanced variants, PG2
-+ */
-+
-+&main_pmx0 {
-+	cp2102n_reset_pin_default: cp2102n-reset-pin-default {
-+		pinctrl-single,pins =3D <
-+			/* (AF12) GPIO1_24, used as cp2102 reset */
-+			AM65X_IOPAD(0x01e0, PIN_OUTPUT, 7)
-+		>;
-+	};
-+};
-+
-+&main_gpio1 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&cp2102n_reset_pin_default>;
-+	gpio-line-names =3D
-+		"", "", "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "", "", "",
-+		"", "", "", "", "CP2102N-RESET";
-+};
-+
-+&dss {
-+	/* Workaround needed to get DP clock of 154Mhz */
-+	assigned-clocks =3D <&k3_clks 67 0>;
-+};
-+
-+&serdes0 {
-+	assigned-clocks =3D <&k3_clks 153 4>, <&serdes0 AM654_SERDES_CMU_REFCLK>=
-;
-+	assigned-clock-parents =3D <&k3_clks 153 7>, <&k3_clks 153 4>;
-+};
-+
-+&dwc3_0 {
-+	assigned-clock-parents =3D <&k3_clks 151 4>,  /* set REF_CLK to 20MHz i.=
-e. PER0_PLL/48 */
-+				 <&k3_clks 151 8>;  /* set PIPE3_TXB_CLK to WIZ8B2M4VSB */
-+	phys =3D <&serdes0 PHY_TYPE_USB3 0>;
-+	phy-names =3D "usb3-phy";
-+};
-+
-+&usb0 {
-+	maximum-speed =3D "super-speed";
-+	snps,dis-u1-entry-quirk;
-+	snps,dis-u2-entry-quirk;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts b/arch=
-/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-new file mode 100644
-index 000000000000..c62549a4b436
-=2D-- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2018-2021
-+ *
-+ * Authors:
-+ *   Le Jin <le.jin@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * AM6528-based (dual-core) IOT2050 Basic variant, Product Generation 2
-+ * 1 GB RAM, no eMMC, main_uart0 on connector X30
-+ *
-+ * Product homepage:
-+ * https://new.siemens.com/global/en/products/automation/pc-based/iot-gat=
-eways/simatic-iot2050.html
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am6528-iot2050-basic-common.dtsi"
-+#include "k3-am65-iot2050-common-pg2.dtsi"
-+
-+/ {
-+	compatible =3D "siemens,iot2050-basic-pg2", "ti,am654";
-+	model =3D "SIMATIC IOT2050 Basic PG2";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts b/a=
-rch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-new file mode 100644
-index 000000000000..f00dc86d01b9
-=2D-- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2018-2021
-+ *
-+ * Authors:
-+ *   Le Jin <le.jin@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * AM6548-based (quad-core) IOT2050 Advanced variant, Product Generation =
-2
-+ * 2 GB RAM, 16 GB eMMC, USB-serial converter on connector X30
-+ *
-+ * Product homepage:
-+ * https://new.siemens.com/global/en/products/automation/pc-based/iot-gat=
-eways/simatic-iot2050.html
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am6548-iot2050-advanced-common.dtsi"
-+#include "k3-am65-iot2050-common-pg2.dtsi"
-+
-+/ {
-+	compatible =3D "siemens,iot2050-advanced-pg2", "ti,am654";
-+	model =3D "SIMATIC IOT2050 Advanced PG2";
-+};
-+
-+&mcu_r5fss0 {
-+	/* lock-step mode not supported on this board */
-+	ti,cluster-mode =3D <0>;
-+};
-=2D-
-2.31.1
+> 
+> Regards
+> Olivier
+> 
+> >>
+> >> Regards
+> >> Olivier
+> >>  
+> >>>> +			} else {
+> >>>> +				*val = adc->common->vref_mv * 2;
+> >>>> +			}
+> >>>>    			*val2 = chan->scan_type.realbits;
+> >>>>    		} else {
+> >>>> -			*val = adc->common->vref_mv;
+> >>>> +			/* Use vrefint data if available */
+> >>>> +			if (adc->vrefint.vrefint_data &&
+> >>>> +			    adc->vrefint.vrefint_cal) {
+> >>>> +				*val = STM32_ADC_VREFINT_VOLTAGE *
+> >>>> +				       adc->vrefint.vrefint_cal /
+> >>>> +				       adc->vrefint.vrefint_data;
+> >>>> +			} else {
+> >>>> +				*val = adc->common->vref_mv;
+> >>>> +			}
+> >>>>    			*val2 = chan->scan_type.realbits;
+> >>>>    		}
+> >>>>    		return IIO_VAL_FRACTIONAL_LOG2;
+> >>>> @@ -1907,6 +1944,35 @@ static int stm32_adc_legacy_chan_init(struct iio_dev *indio_dev,
+> >>>>    	return scan_index;
+> >>>>    }
+> >>>>    
+> >>>> +static int stm32_adc_get_int_ch(struct iio_dev *indio_dev, const char *ch_name,
+> >>>> +				int chan)  
+> >>>
+> >>> Naming would suggest to me that it would return a channel rather than setting it
+> >>> inside adc->int_ch[i]  Perhaps something like st32_adc_populate_int_ch() ?
+> >>>
+> >>>      
+> >>>> +{
+> >>>> +	struct stm32_adc *adc = iio_priv(indio_dev);
+> >>>> +	u16 vrefint;
+> >>>> +	int i, ret;
+> >>>> +
+> >>>> +	for (i = 0; i < STM32_ADC_INT_CH_NB; i++) {
+> >>>> +		if (!strncmp(stm32_adc_ic[i].name, ch_name, STM32_ADC_CH_SZ)) {
+> >>>> +			adc->int_ch[i] = chan;
+> >>>> +			/* If channel is vrefint get calibration data. */
+> >>>> +			if (stm32_adc_ic[i].idx == STM32_ADC_INT_CH_VREFINT) {  
+> >>>
+> >>> I would reduce indentation by reversing the logic.
+> >>>
+> >>> 			if (stm32_adc_ic[i].idx != STM32_ADC_INT_CH_VREFINT)
+> >>> 				continue;
+> >>>
+> >>> 			ret =  
+> >>>> +				ret = nvmem_cell_read_u16(&indio_dev->dev, "vrefint", &vrefint);
+> >>>> +				if (ret && ret != -ENOENT && ret != -EOPNOTSUPP) {
+> >>>> +					dev_err(&indio_dev->dev, "nvmem access error %d\n", ret);
+> >>>> +					return ret;
+> >>>> +				}
+> >>>> +				if (ret == -ENOENT)
+> >>>> +					dev_dbg(&indio_dev->dev,
+> >>>> +						"vrefint calibration not found\n");
+> >>>> +				else
+> >>>> +					adc->vrefint.vrefint_cal = vrefint;
+> >>>> +			}
+> >>>> +		}
+> >>>> +	}
+> >>>> +
+> >>>> +	return 0;
+> >>>> +}
+> >>>> +
+> >>>>    static int stm32_adc_generic_chan_init(struct iio_dev *indio_dev,
+> >>>>    				       struct stm32_adc *adc,
+> >>>>    				       struct iio_chan_spec *channels)
+> >>>> @@ -1938,10 +2004,9 @@ static int stm32_adc_generic_chan_init(struct iio_dev *indio_dev,
+> >>>>    				return -EINVAL;
+> >>>>    			}
+> >>>>    			strncpy(adc->chan_name[val], name, STM32_ADC_CH_SZ);
+> >>>> -			for (i = 0; i < STM32_ADC_INT_CH_NB; i++) {
+> >>>> -				if (!strncmp(stm32_adc_ic[i].name, name, STM32_ADC_CH_SZ))
+> >>>> -					adc->int_ch[i] = val;
+> >>>> -			}
+> >>>> +			ret = stm32_adc_get_int_ch(indio_dev, name, val);
+> >>>> +			if (ret)
+> >>>> +				goto err;
+> >>>>    		} else if (ret != -EINVAL) {
+> >>>>    			dev_err(&indio_dev->dev, "Invalid label %d\n", ret);
+> >>>>    			goto err;
+> >>>> @@ -2044,6 +2109,16 @@ static int stm32_adc_chan_of_init(struct iio_dev *indio_dev, bool timestamping)
+> >>>>    		 */
+> >>>>    		of_property_read_u32_index(node, "st,min-sample-time-nsecs",
+> >>>>    					   i, &smp);
+> >>>> +
+> >>>> +		/*
+> >>>> +		 * For vrefint channel, ensure that the sampling time cannot
+> >>>> +		 * be lower than the one specified in the datasheet
+> >>>> +		 */
+> >>>> +		if (channels[i].channel == adc->int_ch[STM32_ADC_INT_CH_VREFINT] &&
+> >>>> +		    smp < adc->cfg->ts_vrefint_ns) {
+> >>>> +			smp = adc->cfg->ts_vrefint_ns;
+> >>>> +		}  
+> >>>
+> >>> 		if (channels[i].channel == adc->int_ch[STM32_ADC_INT_CH_VREFINT])
+> >>> 			smp = max(smp, adc->cfg->ts_vrefint_ns);
+> >>>      
+> >>>> +
+> >>>>    		/* Prepare sampling time settings */
+> >>>>    		stm32_adc_smpr_init(adc, channels[i].channel, smp);
+> >>>>    	}
+> >>>> @@ -2350,6 +2425,7 @@ static const struct stm32_adc_cfg stm32mp1_adc_cfg = {
+> >>>>    	.unprepare = stm32h7_adc_unprepare,
+> >>>>    	.smp_cycles = stm32h7_adc_smp_cycles,
+> >>>>    	.irq_clear = stm32h7_adc_irq_clear,
+> >>>> +	.ts_vrefint_ns = 4300,
+> >>>>    };
+> >>>>    
+> >>>>    static const struct of_device_id stm32_adc_of_match[] = {  
+> >>>      
+> >   
 
