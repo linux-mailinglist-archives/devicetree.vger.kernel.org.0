@@ -2,92 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A054418926
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 15:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A15A1418931
+	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 15:58:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbhIZNyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 09:54:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40934 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231743AbhIZNyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 09:54:31 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B688C061570;
-        Sun, 26 Sep 2021 06:52:54 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id e15so64144718lfr.10;
-        Sun, 26 Sep 2021 06:52:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JxJ72FcMdSH92d2FNKqbZnLbX5VbUeijKpG1xPwvjMU=;
-        b=jarbjZcJDaXtDYmpZgQDQJGEMw182TJW8z/2Ek/YhIB+A7iepkU6b+X5AuVkqO8QN3
-         g75BHG5Xa+gNf8pmGaXra9Icsz9Bl5HAiFFNWbSJ8fSzRCIUcnljGsxhdHqetPHW6ENm
-         EnwfvLu28jXiKHcwi2TY+y6zUnw3RUq+CnBWJ8QibEXsl31aumaDSS53sL9p0KFErPeM
-         FYi8uLc0ULxx9hDOrztHXBH4AbD3zxpzGopBvfGBAg9gmhfBjEg9yYDNCLsQYcH6SgPx
-         eurPREIItz0OzBp35MrBLbjgmUL6Y6+1lntM6zlduw0rA4Ki6EaVcS5ciqwn1V+F9OUQ
-         jxTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JxJ72FcMdSH92d2FNKqbZnLbX5VbUeijKpG1xPwvjMU=;
-        b=LT9ETOtxxFk77ixkvTRwS+96nhV+jRrHvubqw452vm+Woaj0x1V+D9On7REhxTCvZZ
-         +eBtPOJnHN+WAATUnXtuOTKHw2Dgq8GnvWlbNMVpbZtZCtQFy/ha4THzp/65+C6qkVAh
-         vmpevAoG43DTNq1FjbUgIR+8x6PJWqfzYDI94lwKVqJrfNeSSylAkd/MqvYo2troLdx7
-         mbTCLYQtLGdL+ShKrSk985KvKS5adHYkjJCCA+txTBxkQsGBM49c61tIzNSgdMt70p9a
-         h/8QBiObM072LpR5PIKP13ah+lf5Ami/8htiprDr2ftyFCaBlImNilbWoWdRqD+vDqbd
-         jJgA==
-X-Gm-Message-State: AOAM5320tckxIPuYxVLxz0e/xAhb5yFJEY+Yk2kR6nD0Kirdd96ZoNrC
-        gInePCEY/fHtKLJ538XUh7yTRG76pEjCAAqFag8NxS/Y
-X-Google-Smtp-Source: ABdhPJylo9nH+WiaUcYvnkU640a5uADvMYHCuXNZ++jcY3Ss55V+7pp6ppOLzAaXrDk6tLprjPh0+3qEA66hLf7G8ak=
-X-Received: by 2002:ac2:4bc1:: with SMTP id o1mr19264813lfq.113.1632664372764;
- Sun, 26 Sep 2021 06:52:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210925020555.129-1-caihuoqing@baidu.com> <20210925020555.129-2-caihuoqing@baidu.com>
- <20210926124137.0121a68d@jic23-huawei>
-In-Reply-To: <20210926124137.0121a68d@jic23-huawei>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sun, 26 Sep 2021 10:52:41 -0300
-Message-ID: <CAOMZO5C9vGNus4AeCNA_qadC3UBKZCJGeSnUVBE9zEBgQyjBvQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/3] iio: imx8qxp-adc: Add driver support for NXP
- IMX8QXP ADC
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Cai Huoqing <caihuoqing@baidu.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        id S231791AbhIZOAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 10:00:31 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:60840 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231777AbhIZOAa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Sep 2021 10:00:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=HjivBkUchm6JkPW5fbVo3EwXigbe6lkdP6wwmdWVHlI=; b=RwGCs+IqoHQ39s/L8ivaNLfIMT
+        szIKmvdRaeuZmcGYEVS/T7r3RAVDntYMkasIMgVELoebCQc01I7zlSvI7e+6JGibBAevDlt1h6lw8
+        vCS3GkxRFw04ADKyfK0xGeJ6xtZ/Yra4aG/GusMl7QEXan93UFq0qWmcricQr0NDH5oA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mUUfZ-008Jwy-P3; Sun, 26 Sep 2021 15:58:17 +0200
+Date:   Sun, 26 Sep 2021 15:58:17 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Justin Chen <justinpopo6@gmail.com>, netdev@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-iio@vger.kernel.org,
+        Doug Berger <opendmb@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Michael Chan <michael.chan@broadcom.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:DMA BUFFER SHARING FRAMEWORK" 
+        <linux-media@vger.kernel.org>,
+        "open list:DMA BUFFER SHARING FRAMEWORK" 
+        <dri-devel@lists.freedesktop.org>,
+        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
+        <linaro-mm-sig@lists.linaro.org>
+Subject: Re: [PATCH net-next 3/5] net: bcmasp: Add support for ASP2.0
+ Ethernet controller
+Message-ID: <YVB8ef3aMpJTEvgF@lunn.ch>
+References: <1632519891-26510-1-git-send-email-justinpopo6@gmail.com>
+ <1632519891-26510-4-git-send-email-justinpopo6@gmail.com>
+ <YU9SHpn4ZJrjqNuF@lunn.ch>
+ <c66c8bd1-940a-bf9d-ce33-5a39635e9f5b@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c66c8bd1-940a-bf9d-ce33-5a39635e9f5b@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
+> > > +static int bcmasp_set_priv_flags(struct net_device *dev, u32 flags)
+> > > +{
+> > > +	struct bcmasp_intf *intf = netdev_priv(dev);
+> > > +
+> > > +	intf->wol_keep_rx_en = flags & BCMASP_WOL_KEEP_RX_EN ? 1 : 0;
+> > > +
+> > > +	return 0;
+> > 
+> > Please could you explain this some more. How can you disable RX and
+> > still have WoL working?
+> 
+> Wake-on-LAN using Magic Packets and network filters requires keeping the
+> UniMAC's receiver turned on, and then the packets feed into the Magic Packet
+> Detector (MPD) block or the network filter block. In that mode DRAM is in
+> self refresh and there is local matching of frames into a tiny FIFO however
+> in the case of magic packets the packets leading to a wake-up are dropped as
+> there is nowhere to store them. In the case of a network filter match (e.g.:
+> matching a multicast IP address plus protocol, plus source/destination
+> ports) the packets are also discarded because the receive DMA was shut down.
+> 
+> When the wol_keep_rx_en flag is set, the above happens but we also allow the
+> packets that did match a network filter to reach the small FIFO (Justin
+> would know how many entries are there) that is used to push the packets to
+> DRAM. The packet contents are held in there until the system wakes up which
+> is usually just a few hundreds of micro seconds after we received a packet
+> that triggered a wake-up. Once we overflow the receive DMA FIFO capacity
+> subsequent packets get dropped which is fine since we are usually talking
+> about very low bit rates, and we only try to push to DRAM the packets of
+> interest, that is those for which we have a network filter.
+> 
+> This is convenient in scenarios where you want to wake-up from multicast DNS
+> (e.g.: wake on Googlecast, Bonjour etc.) because then the packet that
+> resulted in the system wake-up is not discarded but is then delivered to the
+> network stack.
 
-On Sun, Sep 26, 2021 at 8:37 AM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Sat, 25 Sep 2021 10:05:45 +0800
-> Cai Huoqing <caihuoqing@baidu.com> wrote:
->
-> > The NXP i.MX 8QuadXPlus SOC has a new ADC IP, so add
-> > driver support for this ADC.
-> >
-> > Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
-> Hi Cai Huoqing,
->
-> Having had a 'final' read through of the driver, I am basically happy
-> to merge this after Fabio has had time for another look (plus anyone else
-> who wishes to of course!)
+Thanks for the explanation. It would be easier for the user if you
+automate this. Enable is by default for WoL types which have user
+content?
 
-It looks good to me:
+> > > +	/* Per ch */
+> > > +	intf->tx_spb_dma = priv->base + TX_SPB_DMA_OFFSET(intf);
+> > > +	intf->res.tx_spb_ctrl = priv->base + TX_SPB_CTRL_OFFSET(intf);
+> > > +	/*
+> > > +	 * Stop gap solution. This should be removed when 72165a0 is
+> > > +	 * deprecated
+> > > +	 */
+> > 
+> > Is that an internal commit?
+> 
+> Yes this is a revision of the silicon that is not meant to see the light of
+> day.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+So this can all be removed?
+
+   Andrew
