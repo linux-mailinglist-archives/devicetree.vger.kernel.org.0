@@ -2,90 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92207418897
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 14:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ECAB418913
+	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 15:42:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231295AbhIZMVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 08:21:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59408 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230160AbhIZMVD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Sep 2021 08:21:03 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0CB1760F4B;
-        Sun, 26 Sep 2021 12:19:23 +0000 (UTC)
-Date:   Sun, 26 Sep 2021 13:23:13 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Olivier Moysan <olivier.moysan@foss.st.com>
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>,
-        "Lars-Peter Clausen" <lars@metafoo.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        id S231737AbhIZNoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 09:44:06 -0400
+Received: from mx22.baidu.com ([220.181.50.185]:42616 "EHLO baidu.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231723AbhIZNoE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Sep 2021 09:44:04 -0400
+Received: from BC-Mail-Ex21.internal.baidu.com (unknown [172.31.51.15])
+        by Forcepoint Email with ESMTPS id E044879521FF6EFDDC9A;
+        Sun, 26 Sep 2021 21:42:24 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BC-Mail-Ex21.internal.baidu.com (172.31.51.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2242.12; Sun, 26 Sep 2021 21:42:24 +0800
+Received: from localhost (172.31.63.8) by BJHW-MAIL-EX27.internal.baidu.com
+ (10.127.64.42) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sun, 26
+ Sep 2021 21:42:24 +0800
+Date:   Sun, 26 Sep 2021 21:42:23 +0800
+From:   Cai Huoqing <caihuoqing@baidu.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+CC:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH v3 0/7] iio: adc: stm32-adc: add internal channels
- support
-Message-ID: <20210926132313.16c7a356@jic23-huawei>
-In-Reply-To: <20210924083410.12332-1-olivier.moysan@foss.st.com>
-References: <20210924083410.12332-1-olivier.moysan@foss.st.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 1/3] iio: imx8qxp-adc: Add driver support for NXP
+ IMX8QXP ADC
+Message-ID: <20210926134223.GA605@LAPTOP-UKSR4ENP.internal.baidu.com>
+References: <20210925020555.129-1-caihuoqing@baidu.com>
+ <20210925020555.129-2-caihuoqing@baidu.com>
+ <20210926124137.0121a68d@jic23-huawei>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210926124137.0121a68d@jic23-huawei>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BJHW-Mail-Ex10.internal.baidu.com (10.127.64.33) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Sep 2021 10:34:03 +0200
-Olivier Moysan <olivier.moysan@foss.st.com> wrote:
+On 26 9月 21 12:41:37, Jonathan Cameron wrote:
+> On Sat, 25 Sep 2021 10:05:45 +0800
+> Cai Huoqing <caihuoqing@baidu.com> wrote:
+> 
+> > The NXP i.MX 8QuadXPlus SOC has a new ADC IP, so add
+> > driver support for this ADC.
+> > 
+> > Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+Hi Jonathan
+Thanks for your feedback.
+> Hi Cai Huoqing,
+> 
+> Having had a 'final' read through of the driver, I am basically happy
+> to merge this after Fabio has had time for another look (plus anyone else
+> who wishes to of course!) 
+> 
+> There were a few minor things inline though that I'll tidy up whilst applying.
+Feel free to fix these directly.
+> If you do a v7 for some other reason please sort these out as well.
+Sure, if v7 is needed for other issue, I will add these changes BTW.
 
-> This patchset adds support of ADC2 internal channels VDDCORE, VREFINT and VBAT
-> on STM32MP15x SoCs. The generic IIO channel bindings is also introduced here
-> to provide this feature. The legacy channel binding is kept for backward compatibility.
-
-Hi Olivier,
-
-I had a read through and am happy with how this looks now.
-I'll leave it on the list for a while longer because Rob may well want to take
-a final look at patch 1.
-
-Obviously input from other people also welcome!
-
-If it looks like I have forgotten it in a few weeks feel free to poke me.
-
-Thanks,
-
-Jonathan
+Many thanks,
+Cai
 
 > 
-> Changes in v2:
-> - Add 'deprecated' to channels legacy properties in ADC bindings
-> - Add set/clr service for common registers, to make code more generic in
->   internal channels enable/disable services.
-> - Expose vrefint channel as a processed channel to return
->   the actual value of vrefp.
-> - Minor code improvements
+> Thanks,
 > 
-> Changes in v3:
-> - fix vrefint sampling time check.
+> Jonathan
 > 
-> Olivier Moysan (7):
->   dt-bindings: iio: stm32-adc: add generic channel binding
->   dt-bindings: iio: stm32-adc: add nvmem support for vrefint internal
->     channel
->   iio: adc: stm32-adc: split channel init into several routines
->   iio: adc: stm32-adc: add support of generic channels binding
->   iio: adc: stm32-adc: add support of internal channels
->   iio: adc: stm32-adc: add vrefint calibration support
->   iio: adc: stm32-adc: use generic binding for sample-time
+> ...
 > 
->  .../bindings/iio/adc/st,stm32-adc.yaml        | 108 ++++-
->  drivers/iio/adc/stm32-adc-core.h              |   8 +
->  drivers/iio/adc/stm32-adc.c                   | 426 ++++++++++++++++--
->  3 files changed, 487 insertions(+), 55 deletions(-)
+> > +#define IMX8QXP_ADR_ADC_TCTRL(tid)	(0xc0 + tid * 4)
+> > +#define IMX8QXP_ADR_ADC_CMDH(cid)	(0x100 + cid * 8)
+> > +#define IMX8QXP_ADR_ADC_CMDL(cid)	(0x104 + cid * 8)
 > 
-
+> In macros, it is always a good idea to put brackets around
+> any use of parameters so as to avoid potential odd issues
+> due to operator precedence.
+> 
+> (0xc0 + (tid) * 4)
+> 
+> > +#define IMX8QXP_ADR_ADC_RESFIFO		0x300
+> > +#define IMX8QXP_ADR_ADC_TST		0xffc
+> 
+> ...
+> 
+> > +
+> > +struct imx8qxp_adc {
+> > +	struct device *dev;
+> > +	void __iomem *regs;
+> > +	struct clk *clk;
+> > +	struct clk *ipg_clk;
+> > +	struct regulator *vref;
+> > +	struct mutex lock;
+> 
+> A lock should have documentation to identify what it's precise scope is.
+> I can add
+> 
+> /* Serialise ADC channel reads */
+> above the lock definition whilst applying if you aren't doing a v7 for
+> other reasons.
+> 
+> > +	struct completion completion;
+> > +};
+> ...
+> 
+> 
+> > +
+> > +static irqreturn_t imx8qxp_adc_isr(int irq, void *dev_id)
+> > +{
+> > +	struct imx8qxp_adc *adc = dev_id;
+> > +
+> 
+> Really minor, but the blank line here doesn't help readability much and
+> is inconsistent with the rest of the driver.  I might remove this whilst
+> applying if nothing else comes up.
+> 
+> > +	u32 fifo_count;
+> > +
+> > +	fifo_count = FIELD_GET(IMX8QXP_ADC_FCTRL_FCOUNT_MASK,
+> > +			       readl(adc->regs + IMX8QXP_ADR_ADC_FCTRL));
+> > +
+> > +	if (fifo_count)
+> > +		complete(&adc->completion);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> ...
