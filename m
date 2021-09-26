@@ -2,454 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF75418542
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 02:10:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86E3041858F
+	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 04:21:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbhIZALw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Sep 2021 20:11:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59868 "EHLO
+        id S230262AbhIZCWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Sep 2021 22:22:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbhIZALv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Sep 2021 20:11:51 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 292D2C061570
-        for <devicetree@vger.kernel.org>; Sat, 25 Sep 2021 17:10:16 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id y26so18505493lfa.11
-        for <devicetree@vger.kernel.org>; Sat, 25 Sep 2021 17:10:16 -0700 (PDT)
+        with ESMTP id S230205AbhIZCWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Sep 2021 22:22:52 -0400
+Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E60AC061570;
+        Sat, 25 Sep 2021 19:21:16 -0700 (PDT)
+Received: by mail-qv1-xf2d.google.com with SMTP id 11so8899766qvd.11;
+        Sat, 25 Sep 2021 19:21:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9Ydw7cFm82v3feh8M9SitYRC0CaJtT192C7bPabJQAc=;
-        b=jGJNwp6Qq4pYAN6r8QEa7DzcmdGX0jLWojbgNTtz5JJ+uaFfInMEf+0IYAzutM+jym
-         zL4dcCBC3wHHQ9bDb9/O2ZV8UblDJEZX0jEi5xDLBH8QKtvkK+GtW0Bc1keNHla83HGw
-         M72020Lmj26FwcPgt0SWoP8hYkLYCEghhyTKffUvf1B9EUIPLINEb3czH+QSQ8Jkmaq8
-         YpacwJ7fR3xSibLVANMMRmntJnY8JibXMcus1GmTCKlMphO7MvpFoNfusc5442OWgVIv
-         5YLe0kGBRuQrJx3jr2lTafhnSFGmx68RfXq0gZVQ5ON5RWwI28QJMZumZz30F7cH2b9d
-         gdvw==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=GIx+rSjxW/q6WpBhwC+tPZq1+myuly18nCZ9De5udkw=;
+        b=VOVxynHNZM9TAKcgH7Kr1qWH7M/LZZzUAhyQwgkZUn5BhYAkqpXbREgMimJy345ouJ
+         xvsIkI/CR+KRLvJN+nkjaT4xuXTb7lt6pQ3awRP3Dy/eR/i8w1DSVwQSaaxkD8NezEl5
+         80Sk+go1id7FmEP7L0vzlN8Sk2aPEThV77Uvji/gINo8ra/pXw7BYgCB1nHJu6SxglPO
+         QIRtalXAe/J9mX8KrwWizuczMN9zJRqXjtnmcL/FeL2eyvYgGhZoGL/7PEZRxKblavBT
+         QRAaq5hW4V8g7kHxtSQS6X5F8FS18o4q1A5zkKheOpso3jiUZrsNf9euFcIggfdi4c8p
+         WRWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9Ydw7cFm82v3feh8M9SitYRC0CaJtT192C7bPabJQAc=;
-        b=tHx8FUXHg05ggf9L7NIiCgezkJTEN7JheU7X1i1GRtFJA1+rCkNY+Xl/wQVkOCOF8z
-         74WzfcOLnXez7pzACOLEbVEbJRIjYJWpwWfgI6kFOmbQz+x9QCcFRjI1tv0d7ajv8EOT
-         RIb0b471Xry1pVr9LDPTqPXbyPD98njzPCcgpBgu7qksWm2GnrlYiDp9V9wut+a7nVP/
-         22EvYqCfjhNtlvn7G8h2ggMqyNZdXWj3iwKSyAJ/sQYSW8XuPSt/br80C/XZnr5JbCjf
-         Ea3SvAaMSTKOtXNgwDzBNWwqwWQ8tW2UGGMCdKAG1GsQ0Y89xNl/k8unnyEzU5cTfOvT
-         fR9Q==
-X-Gm-Message-State: AOAM530vyGXEBq0XwCVXsVcZ6216M3aLu/3igKqq3gU97qUGJCWNjsJF
-        UQR0T5recHn3twLYlOHWBfvZG85nk9Vyhw==
-X-Google-Smtp-Source: ABdhPJwx+sq35eCuTY6gI8u9KehpWjNkm/ahOOC+cT1mIjbsv0jX5zBPgHn6wlMMde7Lu4KvJjnX7A==
-X-Received: by 2002:a2e:3c0e:: with SMTP id j14mr19437966lja.109.1632615014482;
-        Sat, 25 Sep 2021 17:10:14 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s7sm1261878lfi.130.2021.09.25.17.10.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Sep 2021 17:10:14 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] drm/panel: Add support for Sharp LS060T1SX01 panel
-Date:   Sun, 26 Sep 2021 03:10:05 +0300
-Message-Id: <20210926001005.3442668-3-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210926001005.3442668-1-dmitry.baryshkov@linaro.org>
-References: <20210926001005.3442668-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=GIx+rSjxW/q6WpBhwC+tPZq1+myuly18nCZ9De5udkw=;
+        b=y7ymFLJbixtgT8bDzGbweJNnRQ2IIN2rJ9aqQ0j9ZCdcygJxIw9kIPVg5M6Xps+svF
+         L4FYs1+rmFNOWRgni8h0paIzgz4LgL1RSeqli0CMY8PASQ8EemopYO7bwa+aRsKrdBmx
+         DpfCbdKODkIkvTVUFs9OAo8uUuArgQUotHq2rOu0ZASArXWgRuogpP5+eYh5rNn1Pily
+         UWz30GXPz9z5VY+Zw+BM+wI3Ssk3ajknC6h0pizhvtnKXZ13oqhbEbdWxuqSQOWmckC6
+         S0ZemIkwPCsAJFtaKF8qKZc5S0IpTvSVfq5H7miZV+U7rbZnkPLDCyurkQMgsOJWSA1U
+         ie0Q==
+X-Gm-Message-State: AOAM532mrqrLhLi4I+593R7ZPDtBvs+Z4rTXyt+f4dN6ziAv1yVnv2cW
+        03M4wdkKUwz/f2IJiHdO09k=
+X-Google-Smtp-Source: ABdhPJxE3HUPH44ibMZCt4AsnUMO2FTSWl3D0M1gK68DrjOEvF+0Bi4RxBMz9jj0vkMdIBeaUGmycA==
+X-Received: by 2002:a05:6214:3ac:: with SMTP id m12mr17851616qvy.9.1632622875721;
+        Sat, 25 Sep 2021 19:21:15 -0700 (PDT)
+Received: from ?IPV6:2600:1700:dfe0:49f0:a90f:da5:ff6e:aa3e? ([2600:1700:dfe0:49f0:a90f:da5:ff6e:aa3e])
+        by smtp.gmail.com with ESMTPSA id g19sm9315384qki.58.2021.09.25.19.21.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Sep 2021 19:21:15 -0700 (PDT)
+Message-ID: <05f4baaf-24cc-da1a-a23d-7f033ba528f1@gmail.com>
+Date:   Sat, 25 Sep 2021 19:21:12 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.1
+Subject: Re: [PATCH 1/2] net: bgmac-platform: handle mac-address deferral
+Content-Language: en-US
+To:     Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Christian Lamparter <chunkeey@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20210925113628.1044111-1-mnhagan88@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20210925113628.1044111-1-mnhagan88@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver to support Sharp LS06T1SX01 FullHD panel. The panel uses
-nt35695 driver IC. For example this LCD module can be found in the
-kwaek.ca Dragonboard Display Adapter Bundle.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/gpu/drm/panel/Kconfig                 |  10 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../gpu/drm/panel/panel-sharp-ls060t1sx01.c   | 332 ++++++++++++++++++
- 3 files changed, 343 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index beb581b96ecd..f00886085e5c 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -496,6 +496,16 @@ config DRM_PANEL_SHARP_LS043T1LE01
- 	  Say Y here if you want to enable support for Sharp LS043T1LE01 qHD
- 	  (540x960) DSI panel as found on the Qualcomm APQ8074 Dragonboard
- 
-+config DRM_PANEL_SHARP_LS060T1SX01
-+	tristate "Sharp LS060T1SX01 FullHD video mode panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for Sharp LS060T1SX01 6.0"
-+	  FullHD (1080x1920) DSI panel as found in Dragonboard Display Adapter
-+	  Bundle.
-+
- config DRM_PANEL_SITRONIX_ST7701
- 	tristate "Sitronix ST7701 panel driver"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index c8132050bcec..7dc6fa340cf5 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -51,6 +51,7 @@ obj-$(CONFIG_DRM_PANEL_SEIKO_43WVF1G) += panel-seiko-43wvf1g.o
- obj-$(CONFIG_DRM_PANEL_SHARP_LQ101R1SX01) += panel-sharp-lq101r1sx01.o
- obj-$(CONFIG_DRM_PANEL_SHARP_LS037V7DW01) += panel-sharp-ls037v7dw01.o
- obj-$(CONFIG_DRM_PANEL_SHARP_LS043T1LE01) += panel-sharp-ls043t1le01.o
-+obj-$(CONFIG_DRM_PANEL_SHARP_LS060T1SX01) += panel-sharp-ls060t1sx01.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += panel-sitronix-st7701.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
-diff --git a/drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c b/drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c
-new file mode 100644
-index 000000000000..1049810d1f10
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c
-@@ -0,0 +1,332 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (c) 2021 Linaro Ltd.
-+// Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
-+//   Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+struct sharp_ls060 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct regulator *vddi_supply;
-+	struct regulator *vddh_supply;
-+	struct regulator *avdd_supply;
-+	struct regulator *avee_supply;
-+	struct gpio_desc *reset_gpio;
-+	bool prepared;
-+};
-+
-+static inline struct sharp_ls060 *to_sharp_ls060(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct sharp_ls060, panel);
-+}
-+
-+#define dsi_dcs_write_seq(dsi, seq...) ({				\
-+		static const u8 d[] = { seq };				\
-+									\
-+		mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d));	\
-+	})
-+
-+static void sharp_ls060_reset(struct sharp_ls060 *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+}
-+
-+static int sharp_ls060_on(struct sharp_ls060 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	ret = dsi_dcs_write_seq(dsi, 0xbb, 0x13);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to send command: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_MEMORY_START);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to send command: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(120);
-+
-+	ret = mipi_dsi_dcs_set_display_on(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display on: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(50);
-+
-+	return 0;
-+}
-+
-+static int sharp_ls060_off(struct sharp_ls060 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_set_display_off(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display off: %d\n", ret);
-+		return ret;
-+	}
-+	usleep_range(2000, 3000);
-+
-+	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(121);
-+
-+	return 0;
-+}
-+
-+static int sharp_ls060_prepare(struct drm_panel *panel)
-+{
-+	struct sharp_ls060 *ctx = to_sharp_ls060(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (ctx->prepared)
-+		return 0;
-+
-+	ret = regulator_enable(ctx->vddi_supply);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = regulator_enable(ctx->avdd_supply);
-+	if (ret < 0)
-+		goto err_avdd;
-+
-+	msleep(1);
-+
-+	ret = regulator_enable(ctx->avee_supply);
-+	if (ret < 0)
-+		goto err_avee;
-+
-+	msleep(10);
-+
-+	ret = regulator_enable(ctx->vddh_supply);
-+	if (ret < 0)
-+		goto err_vddh;
-+
-+	msleep(10);
-+
-+	sharp_ls060_reset(ctx);
-+
-+	ret = sharp_ls060_on(ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		goto err_on;
-+	}
-+
-+	ctx->prepared = true;
-+
-+	return 0;
-+
-+err_on:
-+	regulator_disable(ctx->vddh_supply);
-+
-+	msleep(10);
-+
-+err_vddh:
-+	regulator_disable(ctx->avee_supply);
-+
-+err_avee:
-+	regulator_disable(ctx->avdd_supply);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+
-+err_avdd:
-+	regulator_disable(ctx->vddi_supply);
-+
-+	return ret;
-+}
-+
-+static int sharp_ls060_unprepare(struct drm_panel *panel)
-+{
-+	struct sharp_ls060 *ctx = to_sharp_ls060(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (!ctx->prepared)
-+		return 0;
-+
-+	ret = sharp_ls060_off(ctx);
-+	if (ret < 0)
-+		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-+
-+	regulator_disable(ctx->vddh_supply);
-+
-+	msleep(10);
-+
-+	regulator_disable(ctx->avee_supply);
-+	regulator_disable(ctx->avdd_supply);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+
-+	regulator_disable(ctx->vddi_supply);
-+
-+	ctx->prepared = false;
-+	return 0;
-+}
-+
-+static const struct drm_display_mode sharp_ls060_mode = {
-+	.clock = (1080 + 96 + 16 + 64) * (1920 + 4 + 1 + 16) * 60 / 1000,
-+	.hdisplay = 1080,
-+	.hsync_start = 1080 + 96,
-+	.hsync_end = 1080 + 96 + 16,
-+	.htotal = 1080 + 96 + 16 + 64,
-+	.vdisplay = 1920,
-+	.vsync_start = 1920 + 4,
-+	.vsync_end = 1920 + 4 + 1,
-+	.vtotal = 1920 + 4 + 1 + 16,
-+	.width_mm = 75,
-+	.height_mm = 132,
-+};
-+
-+static int sharp_ls060_get_modes(struct drm_panel *panel,
-+				 struct drm_connector *connector)
-+{
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(connector->dev, &sharp_ls060_mode);
-+	if (!mode)
-+		return -ENOMEM;
-+
-+	drm_mode_set_name(mode);
-+
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	connector->display_info.width_mm = mode->width_mm;
-+	connector->display_info.height_mm = mode->height_mm;
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1;
-+}
-+
-+static const struct drm_panel_funcs sharp_ls060_panel_funcs = {
-+	.prepare = sharp_ls060_prepare,
-+	.unprepare = sharp_ls060_unprepare,
-+	.get_modes = sharp_ls060_get_modes,
-+};
-+
-+static int sharp_ls060_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct sharp_ls060 *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->vddi_supply = devm_regulator_get(dev, "vddi");
-+	if (IS_ERR(ctx->vddi_supply))
-+		return PTR_ERR(ctx->vddi_supply);
-+
-+	ctx->vddh_supply = devm_regulator_get(dev, "vddh");
-+	if (IS_ERR(ctx->vddh_supply))
-+		return PTR_ERR(ctx->vddh_supply);
-+
-+	ctx->avdd_supply = devm_regulator_get(dev, "avdd");
-+	if (IS_ERR(ctx->avdd_supply))
-+		return PTR_ERR(ctx->avdd_supply);
-+
-+	ctx->avee_supply = devm_regulator_get(dev, "avee");
-+	if (IS_ERR(ctx->avee_supply))
-+		return PTR_ERR(ctx->avee_supply);
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+			  MIPI_DSI_MODE_EOT_PACKET |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+
-+	drm_panel_init(&ctx->panel, dev, &sharp_ls060_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+
-+	ret = drm_panel_of_backlight(&ctx->panel);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-+		drm_panel_remove(&ctx->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int sharp_ls060_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct sharp_ls060 *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ctx->panel);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id sharp_ls060t1sx01_of_match[] = {
-+	{ .compatible = "sharp,ls060t1sx01" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, sharp_ls060t1sx01_of_match);
-+
-+static struct mipi_dsi_driver sharp_ls060_driver = {
-+	.probe = sharp_ls060_probe,
-+	.remove = sharp_ls060_remove,
-+	.driver = {
-+		.name = "panel-sharp-ls060t1sx01",
-+		.of_match_table = sharp_ls060t1sx01_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(sharp_ls060_driver);
-+
-+MODULE_AUTHOR("Dmitry Baryshkov <dmitry.baryshkov@linaro.org>");
-+MODULE_DESCRIPTION("DRM driver for Sharp LS060T1SX01 1080p video mode dsi panel");
-+MODULE_LICENSE("GPL v2");
+On 9/25/2021 4:36 AM, Matthew Hagan wrote:
+> This patch is a replication of Christian Lamparter's "net: bgmac-bcma:
+> handle deferred probe error due to mac-address" patch for the
+> bgmac-platform driver [1].
+> 
+> As is the case with the bgmac-bcma driver, this change is to cover the
+> scenario where the MAC address cannot yet be discovered due to reliance
+> on an nvmem provider which is yet to be instantiated, resulting in a
+> random address being assigned that has to be manually overridden.
+> 
+> [1] https://lore.kernel.org/netdev/20210919115725.29064-1-chunkeey@gmail.com
+> 
+> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-2.33.0
-
+Florian
