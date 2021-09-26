@@ -2,76 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B2654189E7
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 17:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB53418A01
+	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 17:38:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231994AbhIZPRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 11:17:38 -0400
-Received: from mail-ua1-f50.google.com ([209.85.222.50]:38410 "EHLO
-        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231993AbhIZPRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 11:17:37 -0400
-Received: by mail-ua1-f50.google.com with SMTP id b15so4718068uaj.5
-        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 08:16:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=766FS/HzGzDEonfiPt4V52EBMkKW9u1/0R9KsOBkyeQ=;
-        b=PaGh6+mGKIVv0soZa1gRRpbZ7ugA/IlqRJKVOHTU4rTdQFIgnJ2UiMkMqk8wzjPKqg
-         42yS4tK8LH+3RxpjSzknBSZi0e5A7P3oS4TMdDWbJEA1EiBuC01E+N2wc6wAD6Y83p9X
-         ICC1nNsH7qV9lRAg3X65GYj4y/2/BfmdRh73QP3st90OZ3XNeoKJ2AWMyuwkypk1wpt1
-         /FIPmYDYcE3bB4UFLvVbBE/7forUO3iMX/NDMfGFvGkBzpycoCKwTAdih2GHtqQdaqVh
-         Df36k9Zjh/Pt8/FOadOAFHWxLh0Ux40wZeqIi8rAbr0D5qTmXHqBNMMXXu00kwDXRC1u
-         r4xg==
-X-Gm-Message-State: AOAM531eMjMDFemX2TU/iLFcCJATTVyVOgUZ8W3Kk1ryUwJL4ywRbin7
-        1CMsBdmJEO14FkFMRZkVel7eDWZRdAarFA==
-X-Google-Smtp-Source: ABdhPJz+yYE+BeydhjnlmiVN/hou9PSt9qF0vDUcHI1JHnKb9WcsP5HNKcWfFXraghbNJmD/8CzM0g==
-X-Received: by 2002:ab0:4751:: with SMTP id i17mr16179097uac.86.1632669360198;
-        Sun, 26 Sep 2021 08:16:00 -0700 (PDT)
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
-        by smtp.gmail.com with ESMTPSA id c21sm810439vkn.21.2021.09.26.08.15.59
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Sep 2021 08:15:59 -0700 (PDT)
-Received: by mail-vs1-f51.google.com with SMTP id 188so14369238vsv.0
-        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 08:15:59 -0700 (PDT)
-X-Received: by 2002:a05:6102:3a0c:: with SMTP id b12mr9373742vsu.13.1632669359580;
- Sun, 26 Sep 2021 08:15:59 -0700 (PDT)
+        id S232016AbhIZPkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 11:40:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42296 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232009AbhIZPkc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Sep 2021 11:40:32 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 39F0A60F9C;
+        Sun, 26 Sep 2021 15:38:53 +0000 (UTC)
+Date:   Sun, 26 Sep 2021 16:42:42 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Dipen Patel <dipenp@nvidia.com>
+Cc:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linus.walleij@linaro.org>,
+        <bgolaszewski@baylibre.com>, <warthog618@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <robh+dt@kernel.org>
+Subject: Re: [RFC 02/11] drivers: Add HTE subsystem
+Message-ID: <20210926164242.7447c0e2@jic23-huawei>
+In-Reply-To: <91744e4f-b1b8-399a-b521-aba0215a5dc4@nvidia.com>
+References: <20210625235532.19575-1-dipenp@nvidia.com>
+        <20210625235532.19575-3-dipenp@nvidia.com>
+        <20210704211525.4efb6ba0@jic23-huawei>
+        <52ecf0a6-07a6-ec43-4b1e-fb341ad969b6@nvidia.com>
+        <20210801171304.6e8d70d9@jic23-huawei>
+        <91744e4f-b1b8-399a-b521-aba0215a5dc4@nvidia.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210924071614.868307-1-maxime@cerno.tech> <20210924071614.868307-3-maxime@cerno.tech>
-In-Reply-To: <20210924071614.868307-3-maxime@cerno.tech>
-Reply-To: wens@csie.org
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Sun, 26 Sep 2021 23:15:48 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65JmoLJvX9pVg7FS6U-dG0rBhpsJ=ZUeSkX-iqRgaqy6A@mail.gmail.com>
-Message-ID: <CAGb2v65JmoLJvX9pVg7FS6U-dG0rBhpsJ=ZUeSkX-iqRgaqy6A@mail.gmail.com>
-Subject: Re: [RESEND v2 3/3] dt-bindings: mfd: Convert X-Powers AC100 binding
- to a schema
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-sunxi@lists.linux.dev, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 24, 2021 at 3:16 PM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> The X-Powers AC100 hybrid devices are supported by Linux thanks to its
-> device tree binding.
->
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
->
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Acked-by: Chen-Yu Tsai <wens@csie.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+On Mon, 13 Sep 2021 22:43:02 -0700
+Dipen Patel <dipenp@nvidia.com> wrote:
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+> Hi Jonathan,
+> 
+> I got some time to implement RFC version 2 while doing so I have a follow up comment
+> 
+> inline regarding clock source comment of yours.
+> 
+> Best Regards,
+> 
+> Dipen Patel
+> 
+...
+
+> >>>> +/**
+> >>>> + * struct hte_clk_info - Clock source info that HTE provider uses.
+> >>>> + * The provider uses hardware clock as a source to timestamp real time. This
+> >>>> + * structure presents the clock information to consumers. 
+> >>>> + *
+> >>>> + * @hz: Clock rate in HZ, for example 1KHz clock = 1000.
+> >>>> + * @type: Clock type. CLOCK_* types.    
+> >>> So this is something we got a it wrong in IIO. It's much better to define
+> >>> a subset of clocks that can be potentially used.  There are some that make
+> >>> absolutely no sense and consumers really don't want to have to deal with them.    
+> >> Is there anything I have to change here?  
+> > Yes - specify which clocks would make sense.  You might not need to explicitly
+> > allow only those, but that might also be worthwhile. Otherwise, the chances are
+> > you'll end up with a bunch of special purpose code in consumers on the basis
+> > they might get CLOCK_TAI or similar and have to deal with it.
+> > As for exactly which clocks do make sense, that's one which may take some figuring
+> > out. Probably REALTIME, MONOTONIC and BOOTTIME depending on whether you care
+> > what happens when the time of the system gets adjusted, or whether it carries
+> > on measuring time across suspend.   Very application dependent but there are some
+> > you can definitely rule out. Don't repeat my mistake of leaving it vague
+> > (which incidentally was a follow up to picking a silly clock to use for timestamps
+> >  before we allowed it to be configured).  
+> 
+> I believe your comment is under assumption that providers have choice in selecting
+> 
+> clock source to timestamp in turns clients have it as well. For now, the provider
+> 
+> I have implemented has single clock source and hence I only implemented get_clock*
+> 
+> hook that provider implement and client can retrieve that information. I guess I can
+> 
+> always implement set_clock* hook as well for the future providers which support
+> 
+> multiple clock sources. Please let me if I missed your point.
+
+I'll be honest I can't really remember :(  too many sleeps.
+
+Sorry - if it is still relevant perhaps it'll come back to me on v2.
+
+Thanks,
+
+Jonathan
