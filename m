@@ -2,115 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFBA94186CB
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 08:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DC4C41871E
+	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 09:22:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231184AbhIZG4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 02:56:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34370 "EHLO
+        id S231166AbhIZHX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 03:23:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbhIZG4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 02:56:20 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0878C061570
-        for <devicetree@vger.kernel.org>; Sat, 25 Sep 2021 23:54:44 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1mUO3a-0007cq-0A; Sun, 26 Sep 2021 08:54:38 +0200
-Subject: Re: [PATCH v2 4/5] ARM: dts: imx6sl: fix mmc compatibles
-To:     Andreas Kemnade <andreas@kemnade.info>, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Lucas Stach <lst@pengutronix.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-References: <20210924091439.2561931-1-andreas@kemnade.info>
- <20210924091439.2561931-5-andreas@kemnade.info>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <a5ec87f2-7e72-9c23-e13a-75498287b451@pengutronix.de>
-Date:   Sun, 26 Sep 2021 08:54:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20210924091439.2561931-5-andreas@kemnade.info>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        with ESMTP id S230035AbhIZHX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 03:23:58 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C20CC061575
+        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 00:22:23 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id w8so14596660pgf.5
+        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 00:22:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=Rgzg8J8HaCNFTJCTGijijfBBizgKVxNjDBbx5SerjSo=;
+        b=h78cLKrUR6Fb/xtNUx6PCdVVKnn5W7uMJStZi70Y9JENKFlY26/2ixdCW5EK3FgMm1
+         KbvNnwhitCaOwyQiieKP12ooNHwi8nV3SeNwX1Hib4Al3UXf1o7mB509hC3mHB5QlGm/
+         fhXMq53cu+7DPXm0BYYwL0okd6DiV6AYiny4WbSOy3am++uT26rZKvzdQVLcxz5zGbkE
+         Ulg+sTJyOyCLcK5d9DMAStm8LJP4/PJanmqSHrFsEU3L5oknkI+MMaah1u7qGdnRT3wY
+         ibCnC9pEUUJIleFWTs8lOVQVfehm6K5vT5GX2iRnxRx2ZQUn99Bp49ZHs5rIjr3YYDmJ
+         0Oeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Rgzg8J8HaCNFTJCTGijijfBBizgKVxNjDBbx5SerjSo=;
+        b=O+E6vJW16OQ397sTFzQUKiQ7SHPT7fXL1u+4Zzn0FCnhotPhdfp5ISRXRTo8KK3xoj
+         FEbeushvUKi0Od/f062G78WhRxvgegvvPw2mZaCBbhys1gUzMxHYPYbKJgD0994PeYy0
+         sQW1VGZzYzSm/7xm8/Hhhzckdd/OoZeGznZUrs++dvMSb1+kdydef5zEAUdqNhnYU+F0
+         oCuf/g8I9CBFMZRND8dGsyc3o2JddY8sgf2lgG4CVlnRybUswLQnDJ6yJ3LN1wy4ydJQ
+         uj9Q5csvyNA333uff3vsFNjg3I9pW+FrgG8Pp5+esruSwvBaRA02RE1/lDPXLoKNvami
+         iF3Q==
+X-Gm-Message-State: AOAM533ByXMjeAG21lzFuWF7ltwITciMtxf7Fs4yMCyBGiEn991c7Rpc
+        Q0Bi79uSB2h6B78lcyOakJ+dVw==
+X-Google-Smtp-Source: ABdhPJxJPbYclGRZxLMxE8I0Lz/Tqb8XX7PcHF2w9ObUbbmB7upkWAO18lmwCdPWkqYAYOL2Zc/y8w==
+X-Received: by 2002:a63:ea58:: with SMTP id l24mr11397356pgk.334.1632640942653;
+        Sun, 26 Sep 2021 00:22:22 -0700 (PDT)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id p13sm13359704pff.73.2021.09.26.00.22.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Sep 2021 00:22:22 -0700 (PDT)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sdm630-nile: Correct regulator label name
+Date:   Sun, 26 Sep 2021 15:22:15 +0800
+Message-Id: <20210926072215.27517-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andreas,
+29.5V (29p5) is obviously wrong for regulator l4 and l5.  Correct them
+to be 2.95V (2p95).  No functional change.
 
-On 24.09.21 11:14, Andreas Kemnade wrote:
-> Binding specification only allows one compatible here.
+Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-This same change was NACKed by Lucas here:
-https://lore.kernel.org/linux-devicetree/72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de/
-
-I also think the schema should be fixed instead.
-
-Cheers,
-Ahmad
-
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  arch/arm/boot/dts/imx6sl.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx6sl.dtsi b/arch/arm/boot/dts/imx6sl.dtsi
-> index c7d907c5c352..887d2a80a335 100644
-> --- a/arch/arm/boot/dts/imx6sl.dtsi
-> +++ b/arch/arm/boot/dts/imx6sl.dtsi
-> @@ -856,7 +856,7 @@ fec: ethernet@2188000 {
->  			};
->  
->  			usdhc1: mmc@2190000 {
-> -				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-> +				compatible = "fsl,imx6sl-usdhc";
->  				reg = <0x02190000 0x4000>;
->  				interrupts = <0 22 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SL_CLK_USDHC1>,
-> @@ -868,7 +868,7 @@ usdhc1: mmc@2190000 {
->  			};
->  
->  			usdhc2: mmc@2194000 {
-> -				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-> +				compatible = "fsl,imx6sl-usdhc";
->  				reg = <0x02194000 0x4000>;
->  				interrupts = <0 23 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SL_CLK_USDHC2>,
-> @@ -880,7 +880,7 @@ usdhc2: mmc@2194000 {
->  			};
->  
->  			usdhc3: mmc@2198000 {
-> -				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-> +				compatible = "fsl,imx6sl-usdhc";
->  				reg = <0x02198000 0x4000>;
->  				interrupts = <0 24 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SL_CLK_USDHC3>,
-> @@ -892,7 +892,7 @@ usdhc3: mmc@2198000 {
->  			};
->  
->  			usdhc4: mmc@219c000 {
-> -				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-> +				compatible = "fsl,imx6sl-usdhc";
->  				reg = <0x0219c000 0x4000>;
->  				interrupts = <0 25 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SL_CLK_USDHC4>,
-> 
-
-
+diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+index 849900e8b80e..11d0a8c1cf35 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+@@ -308,7 +308,7 @@
+ 			regulator-allow-set-load;
+ 		};
+ 
+-		vreg_l4b_29p5: l4 {
++		vreg_l4b_2p95: l4 {
+ 			regulator-min-microvolt = <2944000>;
+ 			regulator-max-microvolt = <2952000>;
+ 			regulator-enable-ramp-delay = <250>;
+@@ -327,7 +327,7 @@
+ 		 * Tighten the range to 1.8-3.328 (closest to 3.3) to
+ 		 * make the mmc driver happy.
+ 		 */
+-		vreg_l5b_29p5: l5 {
++		vreg_l5b_2p95: l5 {
+ 			regulator-min-microvolt = <1800000>;
+ 			regulator-max-microvolt = <3328000>;
+ 			regulator-enable-ramp-delay = <250>;
+@@ -559,14 +559,14 @@
+ 	mmc-hs400-1_8v;
+ 	mmc-hs400-enhanced-strobe;
+ 
+-	vmmc-supply = <&vreg_l4b_29p5>;
++	vmmc-supply = <&vreg_l4b_2p95>;
+ 	vqmmc-supply = <&vreg_l8a_1p8>;
+ };
+ 
+ &sdhc_2 {
+ 	status = "okay";
+ 
+-	vmmc-supply = <&vreg_l5b_29p5>;
++	vmmc-supply = <&vreg_l5b_2p95>;
+ 	vqmmc-supply = <&vreg_l2b_2p95>;
+ };
+ 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.17.1
+
