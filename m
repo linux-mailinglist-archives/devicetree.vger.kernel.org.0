@@ -2,92 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94F83418B48
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 23:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D22E418B72
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 00:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230202AbhIZVm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 17:42:59 -0400
-Received: from Galois.linutronix.de ([193.142.43.55]:53182 "EHLO
-        galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230200AbhIZVm6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 17:42:58 -0400
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1632692480;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=McPaBmx0MlHP0vrqs5ivo0lVfd3a5w6d950MyZytiPI=;
-        b=xDc+/QBGaVeUhXi+I0llsdxnSGLrKcdRYkutef68E1XjgoSibk5Hx/JYcJc/6s5vRzNDQY
-        L+OQyOx50jEnT7LKQlDtn4uofYo/PgJHT+85m8uf/0VKD7qi7C3m/lcxbYzP1O6o/Hd5tn
-        gYwp/Cz4zzicS6sI0a9swmM22Q5CFtLZoowl0e+C+pxg/Cy6xzsOQkSTpZSgljU9+2h5Si
-        7099nccYpVojjuxUNa96+RgrA192pPHIbdlPwFyBcwOfwOZqmJ6WxgKw0NRUjJGnaoUdUe
-        MoGEGZ6/A7TCX8N4XRE1IP4RBmvR9Pvu0hokPGl41R6X4+y2EVB3WaGYXuFyBQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1632692480;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=McPaBmx0MlHP0vrqs5ivo0lVfd3a5w6d950MyZytiPI=;
-        b=24HCp5V6NALHAxeQGbOYfIhtmgxwwE/FFtNkKeDWwPyDH0jb7bz7DdayfOW23bPh/opZ3D
-        E29+lWlY1DhvThBw==
-To:     shruthi.sanil@intel.com, daniel.lezcano@linaro.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     andriy.shevchenko@linux.intel.com, kris.pan@linux.intel.com,
-        mgross@linux.intel.com, srikanth.thokala@intel.com,
-        lakshmi.bai.raja.subramanian@intel.com,
-        mallikarjunappa.sangannavar@intel.com, shruthi.sanil@intel.com
-Subject: Re: [PATCH v6 2/2] clocksource: Add Intel Keem Bay timer support
-In-Reply-To: <20210906183621.21075-3-shruthi.sanil@intel.com>
-References: <20210906183621.21075-1-shruthi.sanil@intel.com>
- <20210906183621.21075-3-shruthi.sanil@intel.com>
-Date:   Sun, 26 Sep 2021 23:41:20 +0200
-Message-ID: <87lf3jaubj.ffs@tglx>
+        id S230360AbhIZWe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 18:34:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41200 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230331AbhIZWe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 18:34:56 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1760C061570;
+        Sun, 26 Sep 2021 15:33:19 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id v18so25851343edc.11;
+        Sun, 26 Sep 2021 15:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Wk/Y/R5VR5GDX1mBfmj5o+efAe8gDibSjLgM5RqrMNk=;
+        b=KCm9fD3ZbVm4AXFVJQ5IgVVriJbzc+9nNnE/JGhHoBMu3wmmP1c4E4RngZS3iNvygi
+         zfR7T4vbrm5bKez/OfYKGzDj1HjsfvB6+TlXbsJtGLXgfp9izgyACRZlvq3YhKxFfHhm
+         AaVkKTkKkipaJKk0C7qRllsc3oLmkekVyXMc3GXSqkRrKsHLUsBxoO+bBMT0gZ+GhrHV
+         BWJHjM+Ga0umsazS2Tbb/dmeUPfpnwjMGrQrPatcH2oNHnScSoRfKtfXq7ap67bQHoi5
+         ouS9k94ty8SLnmxEo/riO0Darm2uaKbWs9YqnYO/6se1FpK4g6DAoXN0Orc7vqBRXyzW
+         hSKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Wk/Y/R5VR5GDX1mBfmj5o+efAe8gDibSjLgM5RqrMNk=;
+        b=q+T+lWJNs1ZnqR2hUVmbiwPjcOyrdamStTaasZQTjEuj8eFCyqdl6yMaK+We+QGpNL
+         8s5PzxoBLv0hEctYYahJzxbgL8alB7aQ1WErC7NyW0PHZPLG0MDdTyE1MAQHkaFPH01t
+         OmOkgWwpPD+4Hn9xACeAy/juxNjE//jz8I7PcfVJ+7Q8swWSILU9PiLjsKtJlHJ2qNtM
+         sxm0UPS+ugomJ3baUsdccVM8+DQjPIj6JtncPwxh7nwW+0/tWOx5ZUwZcGanpf1NoXq5
+         P8lJTUAAPMUdreszxw9pjL7oRxcdM9zf3qDxsZL6HcRpAU8JCKaTtlxWuOO7bH4OpIa1
+         a5Fw==
+X-Gm-Message-State: AOAM531OLmcfhnHF8y21G0/w+RHdbQgJLbOG6KXz7P1yYR2fA0U9hJDh
+        HA35tg+6WpWwtjWVtvEeWlk=
+X-Google-Smtp-Source: ABdhPJwPuYe57o4R2vwPquxA9kJ9P7bMaowKjZvNpGHgJsYh874p5HBTAhpWAQE/PFBALYYKYLM2xw==
+X-Received: by 2002:a17:906:7754:: with SMTP id o20mr24629870ejn.475.1632695598513;
+        Sun, 26 Sep 2021 15:33:18 -0700 (PDT)
+Received: from tom-desktop (net-93-71-218-228.cust.vodafonedsl.it. [93.71.218.228])
+        by smtp.gmail.com with ESMTPSA id l23sm204684ejn.15.2021.09.26.15.33.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Sep 2021 15:33:17 -0700 (PDT)
+Date:   Mon, 27 Sep 2021 00:33:15 +0200
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     nicolas saenz julienne <nsaenz@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: bcm2711-rpi-4-b: Fix pcie0, pci warning.
+Message-ID: <20210926223315.GA39851@tom-desktop>
+References: <20210918143542.146060-1-tomm.merciai@gmail.com>
+ <408e5e27fae24f22a408afdaf538702858cc324c.camel@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <408e5e27fae24f22a408afdaf538702858cc324c.camel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 07 2021 at 00:06, shruthi sanil wrote:
-> +
-> +/* Provides a unique ID for each timer */
-> +static DEFINE_IDA(keembay_timer_ida);
+On Mon, Sep 20, 2021 at 10:21:46AM +0200, nicolas saenz julienne wrote:
+> Hi Tommaso,
+> 
+> On Sat, 2021-09-18 at 16:35 +0200, Tommaso Merciai wrote:
+> > Fix the following warning:
+> > 
+> > ./scripts/dtc/include-prefixes/arm/bcm2711-rpi-4-b.dts:220.10-231.4:
+> > Warning (pci_device_reg):
+> > /scb/pcie@7d500000/pci@1,0: PCI unit address format error, expected "0,0"
+> > 
+> > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> > ---
+> 
+> This issue was already addressed here:
+> https://lore.kernel.org/all/20210831125843.1233488-2-nsaenzju@redhat.com/
+> 
+> It's available in linux-next and will eventually show up upstream.
+> 
+> Regards,
+> Nicolas
+>
+  Hi Nicolas,
+  Thanks for your feedback.
 
-> +
-> +	timer_id = ida_alloc(&keembay_timer_ida, GFP_KERNEL);
-> +	if (timer_id < 0) {
-> +		ret = timer_id;
-> +		goto err_keembay_ce_to_free;
-> +	}
-
-May I ask what the purpose of the IDA, which is backed by a full blown
-xarray, is here?
-
-AFAICT all you want is a unique number for the timer name for up to 8
-timers.
-
-> +	timer_name = kasprintf(GFP_KERNEL, "keembay_timer%d", timer_id);
-
-So what's wrong about:
-
-static unsigned int keembay_timer_id;
-
-	timer_name = kasprintf(GFP_KERNEL, "keembay_timer%d", keembay_timer_id++);
-
-Hmm?
-
-> +
-> +	clockevents_config_and_register(&keembay_ce_to->clkevt,
-> +					timer_of_rate(keembay_ce_to),
-> +					1,
-> +					U32_MAX);
-
-Aside of that what's the point of registering more than one of those
-timers as clock event? The core will only use one and the rest is just
-going to use memory for no value.
-
-Thanks,
-
-        tglx
+  Tommaso
