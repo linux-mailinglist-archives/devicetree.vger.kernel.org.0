@@ -2,120 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A15A1418931
-	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 15:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6922E41894F
+	for <lists+devicetree@lfdr.de>; Sun, 26 Sep 2021 16:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231791AbhIZOAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 10:00:31 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:60840 "EHLO vps0.lunn.ch"
+        id S231777AbhIZOKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 10:10:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36358 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231777AbhIZOAa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Sep 2021 10:00:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=HjivBkUchm6JkPW5fbVo3EwXigbe6lkdP6wwmdWVHlI=; b=RwGCs+IqoHQ39s/L8ivaNLfIMT
-        szIKmvdRaeuZmcGYEVS/T7r3RAVDntYMkasIMgVELoebCQc01I7zlSvI7e+6JGibBAevDlt1h6lw8
-        vCS3GkxRFw04ADKyfK0xGeJ6xtZ/Yra4aG/GusMl7QEXan93UFq0qWmcricQr0NDH5oA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mUUfZ-008Jwy-P3; Sun, 26 Sep 2021 15:58:17 +0200
-Date:   Sun, 26 Sep 2021 15:58:17 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Justin Chen <justinpopo6@gmail.com>, netdev@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S231743AbhIZOKY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 26 Sep 2021 10:10:24 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BCC6460724;
+        Sun, 26 Sep 2021 14:08:45 +0000 (UTC)
+Date:   Sun, 26 Sep 2021 15:12:34 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cai Huoqing <caihuoqing@baidu.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Doug Berger <opendmb@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Michael Chan <michael.chan@broadcom.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:DMA BUFFER SHARING FRAMEWORK" 
-        <linux-media@vger.kernel.org>,
-        "open list:DMA BUFFER SHARING FRAMEWORK" 
-        <dri-devel@lists.freedesktop.org>,
-        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
-        <linaro-mm-sig@lists.linaro.org>
-Subject: Re: [PATCH net-next 3/5] net: bcmasp: Add support for ASP2.0
- Ethernet controller
-Message-ID: <YVB8ef3aMpJTEvgF@lunn.ch>
-References: <1632519891-26510-1-git-send-email-justinpopo6@gmail.com>
- <1632519891-26510-4-git-send-email-justinpopo6@gmail.com>
- <YU9SHpn4ZJrjqNuF@lunn.ch>
- <c66c8bd1-940a-bf9d-ce33-5a39635e9f5b@gmail.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        "Sascha Hauer" <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 1/3] iio: imx8qxp-adc: Add driver support for NXP
+ IMX8QXP ADC
+Message-ID: <20210926151234.2b7b728b@jic23-huawei>
+In-Reply-To: <20210925020555.129-2-caihuoqing@baidu.com>
+References: <20210925020555.129-1-caihuoqing@baidu.com>
+        <20210925020555.129-2-caihuoqing@baidu.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c66c8bd1-940a-bf9d-ce33-5a39635e9f5b@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +static int bcmasp_set_priv_flags(struct net_device *dev, u32 flags)
-> > > +{
-> > > +	struct bcmasp_intf *intf = netdev_priv(dev);
-> > > +
-> > > +	intf->wol_keep_rx_en = flags & BCMASP_WOL_KEEP_RX_EN ? 1 : 0;
-> > > +
-> > > +	return 0;
-> > 
-> > Please could you explain this some more. How can you disable RX and
-> > still have WoL working?
-> 
-> Wake-on-LAN using Magic Packets and network filters requires keeping the
-> UniMAC's receiver turned on, and then the packets feed into the Magic Packet
-> Detector (MPD) block or the network filter block. In that mode DRAM is in
-> self refresh and there is local matching of frames into a tiny FIFO however
-> in the case of magic packets the packets leading to a wake-up are dropped as
-> there is nowhere to store them. In the case of a network filter match (e.g.:
-> matching a multicast IP address plus protocol, plus source/destination
-> ports) the packets are also discarded because the receive DMA was shut down.
-> 
-> When the wol_keep_rx_en flag is set, the above happens but we also allow the
-> packets that did match a network filter to reach the small FIFO (Justin
-> would know how many entries are there) that is used to push the packets to
-> DRAM. The packet contents are held in there until the system wakes up which
-> is usually just a few hundreds of micro seconds after we received a packet
-> that triggered a wake-up. Once we overflow the receive DMA FIFO capacity
-> subsequent packets get dropped which is fine since we are usually talking
-> about very low bit rates, and we only try to push to DRAM the packets of
-> interest, that is those for which we have a network filter.
-> 
-> This is convenient in scenarios where you want to wake-up from multicast DNS
-> (e.g.: wake on Googlecast, Bonjour etc.) because then the packet that
-> resulted in the system wake-up is not discarded but is then delivered to the
-> network stack.
+On Sat, 25 Sep 2021 10:05:45 +0800
+Cai Huoqing <caihuoqing@baidu.com> wrote:
 
-Thanks for the explanation. It would be easier for the user if you
-automate this. Enable is by default for WoL types which have user
-content?
-
-> > > +	/* Per ch */
-> > > +	intf->tx_spb_dma = priv->base + TX_SPB_DMA_OFFSET(intf);
-> > > +	intf->res.tx_spb_ctrl = priv->base + TX_SPB_CTRL_OFFSET(intf);
-> > > +	/*
-> > > +	 * Stop gap solution. This should be removed when 72165a0 is
-> > > +	 * deprecated
-> > > +	 */
-> > 
-> > Is that an internal commit?
+> The NXP i.MX 8QuadXPlus SOC has a new ADC IP, so add
+> driver support for this ADC.
 > 
-> Yes this is a revision of the silicon that is not meant to see the light of
-> day.
+> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
 
-So this can all be removed?
+Hi.  My local build tests throw up a "set but unused" warning which made me take
+another look.  I've fixed as commented below.  Shout if that was not the right fix!
 
-   Andrew
+
+
+> +
+> +static void imx8qxp_adc_reg_config(struct imx8qxp_adc *adc, int channel)
+> +{
+> +	u32 adc_cfg, adc_tctrl, adc_cmdl, adc_cmdh;
+> +
+> +	/* ADC configuration */
+> +	adc_cfg = FIELD_PREP(IMX8QXP_ADC_CFG_PWREN_MASK, 1) |
+> +		  FIELD_PREP(IMX8QXP_ADC_CFG_PUDLY_MASK, 0x80)|
+> +		  FIELD_PREP(IMX8QXP_ADC_CFG_REFSEL_MASK, 0) |
+> +		  FIELD_PREP(IMX8QXP_ADC_CFG_PWRSEL_MASK, 3) |
+> +		  FIELD_PREP(IMX8QXP_ADC_CFG_TPRICTRL_MASK, 0);
+> +	writel(adc_cfg, adc->regs + IMX8QXP_ADR_ADC_CFG);
+> +
+> +	/* config the trigger control */
+> +	adc_tctrl = FIELD_PREP(IMX8QXP_ADC_TCTRL_TCMD_MASK, 1) |
+> +		    FIELD_PREP(IMX8QXP_ADC_TCTRL_TDLY_MASK, 0) |
+> +		    FIELD_PREP(IMX8QXP_ADC_TCTRL_TPRI_MASK, IMX8QXP_ADC_TCTRL_TPRI_PRIORITY_HIGH) |
+> +		    FIELD_PREP(IMX8QXP_ADC_TCTRL_HTEN_MASK, IMX8QXP_ADC_TCTRL_HTEN_HW_TIRG_DIS);
+> +	writel(adc_cfg, adc->regs + IMX8QXP_ADR_ADC_TCTRL(0));
+adc_tctrl I assume?  I've changed it to that so shout if that was not what was intented.
+
+> +
+> +	/* config the cmd */
+> +	adc_cmdl = FIELD_PREP(IMX8QXP_ADC_CMDL_CSCALE_MASK, IMX8QXP_ADC_CMDL_CHANNEL_SCALE_FULL) |
+> +		   FIELD_PREP(IMX8QXP_ADC_CMDL_MODE_MASK, IMX8QXP_ADC_CMDL_STANDARD_RESOLUTION) |
+> +		   FIELD_PREP(IMX8QXP_ADC_CMDL_DIFF_MASK, IMX8QXP_ADC_CMDL_MODE_SINGLE) |
+> +		   FIELD_PREP(IMX8QXP_ADC_CMDL_ABSEL_MASK, IMX8QXP_ADC_CMDL_SEL_A_A_B_CHANNEL) |
+> +		   FIELD_PREP(IMX8QXP_ADC_CMDL_ADCH_MASK, channel);
+> +	writel(adc_cmdl, adc->regs + IMX8QXP_ADR_ADC_CMDL(0));
+> +
+> +	adc_cmdh = FIELD_PREP(IMX8QXP_ADC_CMDH_NEXT_MASK, 0) |
+> +		   FIELD_PREP(IMX8QXP_ADC_CMDH_LOOP_MASK, 0) |
+> +		   FIELD_PREP(IMX8QXP_ADC_CMDH_AVGS_MASK, 7) |
+> +		   FIELD_PREP(IMX8QXP_ADC_CMDH_STS_MASK, 0) |
+> +		   FIELD_PREP(IMX8QXP_ADC_CMDH_LWI_MASK, IMX8QXP_ADC_CMDH_LWI_INCREMENT_DIS) |
+> +		   FIELD_PREP(IMX8QXP_ADC_CMDH_CMPEN_MASK, IMX8QXP_ADC_CMDH_CMPEN_DIS);
+> +	writel(adc_cmdh, adc->regs + IMX8QXP_ADR_ADC_CMDH(0));
+> +}
+> +
