@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B9F5419ED7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 21:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60A9F419EEB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 21:08:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236063AbhI0TE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 15:04:28 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:34693 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236225AbhI0TE0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 15:04:26 -0400
-Received: by mail-ot1-f46.google.com with SMTP id g62-20020a9d2dc4000000b0054752cfbc59so20072362otb.1;
-        Mon, 27 Sep 2021 12:02:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ecI1ixxbKoKDjkuufNK1un3yapogUK+2LTUIo0suHRo=;
-        b=uy6AnneKjSvgKW/6uydQk0vRfbpWSR9lR3VoxD0et1B1JaOg+fpziWpPi7bdtBkNgx
-         2JERm312576fRPjgCmRNEX6nmXjnPX5QrhsLCVaSZHCKqwb4qv8za5tVnuaqkNfpjXo6
-         yjzb4ZV2f3uFOFPXhjbreiwPbA8BylanCRJXdNCTNZ8vjylY60ck1+LDuGCCuKdL7tja
-         8qSvFvNMgX4/tJmnou32n+h4/QILgClynEWTzkWBaGN5p4KCXtt1Rtby2+e795JqJijB
-         o529BZJ7qyu3B3Zh1Te02MDB9HconW1a4I9r3j6V4SZK9ls4Dbwp1K+par34r5CW4s7i
-         QhIw==
-X-Gm-Message-State: AOAM533ErCcXhG3GCj8FHSdiTtQPnoQZ6lCo/xXmsl2yJ7muAMATAZFO
-        wvT7c3GcBzz0AhyoYoqiRI25C/LZdw==
-X-Google-Smtp-Source: ABdhPJzWI4YFPrUorXsb67HfNc56meek1ROVVXpyhfeQT8tGHPkCoXTpWYrYRcBY1lsmuVqMUoutVw==
-X-Received: by 2002:a05:6830:11c7:: with SMTP id v7mr1359183otq.355.1632769368132;
-        Mon, 27 Sep 2021 12:02:48 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w1sm4181986ote.41.2021.09.27.12.02.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 12:02:47 -0700 (PDT)
-Received: (nullmailer pid 3672458 invoked by uid 1000);
-        Mon, 27 Sep 2021 19:02:46 -0000
-Date:   Mon, 27 Sep 2021 14:02:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Matt Johnston <matt@codeconstruct.com.au>
-Cc:     devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Jeremy Kerr <jk@codeconstruct.com.au>
-Subject: Re: [PATCH v4] dt-bindings: net: New binding mctp-i2c-controller
-Message-ID: <YVIVVkgGtlXBVizP@robh.at.kernel.org>
-References: <20210923033406.3166902-1-matt@codeconstruct.com.au>
+        id S236310AbhI0TKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 15:10:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37588 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235964AbhI0TKS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Sep 2021 15:10:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id ED0B960EB4;
+        Mon, 27 Sep 2021 19:08:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632769720;
+        bh=uAf1MxpYFlugCZ2GjmaYasvI1ecxPIYOvcmMPqvCgyU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=M8cvOU29aUIHD4Gxeit43bR8aYDIts/QfKUTt8inLrZG8MjzFdaB7z88JWbl2tjJh
+         ha1jvlcY9f+M5q/wwRlXPrVu8AUXV0divn/vtOwSmWP7xwZpJ3mV/KM1k4SRiKIq28
+         zoUI4SyXfHjihWNxT7FnZPw8cEDYhQV9DxQ3ZeqnLTbulcf69DBM3EqNqS9vDy3+3H
+         KgUTviLDykIjp2C4+tH9ClhevE78CTmswErHdxy9ygk2B/A4kuhCe8c4AupJQ7a/bX
+         CfNbkUVvlOYjGf0MEE3PosxCWYULybJTIuLu11U+jN+SMCEYqYjOxGi+7Ehkp4vzGJ
+         3CLlERv10KHwg==
+Received: by mail-ed1-f51.google.com with SMTP id bd28so11924358edb.9;
+        Mon, 27 Sep 2021 12:08:39 -0700 (PDT)
+X-Gm-Message-State: AOAM532p3HHPiq+Le6x3CYdo7v828oKvNFrYXVAyJP+BlNW+dKvw6oY+
+        GTutXW5JCrZWpgSJy4xDrSHBYLMo7MMYNW80kA==
+X-Google-Smtp-Source: ABdhPJzy0nrFvTF1zgTVDH7QhyNMnLVtlp6yk8P68bqrNroyMF0EvlSnFg9GNH01lPElsTH2BpfVglkOgIUv37T40n0=
+X-Received: by 2002:a50:8163:: with SMTP id 90mr1681708edc.271.1632769718534;
+ Mon, 27 Sep 2021 12:08:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210923033406.3166902-1-matt@codeconstruct.com.au>
+References: <20210924170546.805663-1-f.fainelli@gmail.com> <20210924170546.805663-8-f.fainelli@gmail.com>
+In-Reply-To: <20210924170546.805663-8-f.fainelli@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 27 Sep 2021 14:08:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLSiCb7-tHW3VTOTdMt=qahAij77zF2us-CZqXYAi0jmg@mail.gmail.com>
+Message-ID: <CAL_JsqLSiCb7-tHW3VTOTdMt=qahAij77zF2us-CZqXYAi0jmg@mail.gmail.com>
+Subject: Re: [PATCH 07/11] of/irq: Export of_irq_count to drivers
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Mike Rapoport <rppt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrey Konovalov <andreyknvl@gmail.com>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Ingo Molnar <mingo@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        "moderated list:ARM PORT" <linux-arm-kernel@lists.infradead.org>,
+        "open list:SUPERH" <linux-sh@vger.kernel.org>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <linux-mips@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Sep 2021 11:34:06 +0800, Matt Johnston wrote:
-> Used to define a local endpoint to communicate with MCTP peripherals
-> attached to an I2C bus. This I2C endpoint can communicate with remote
-> MCTP devices on the I2C bus.
-> 
-> In the example I2C topology below (matching the second yaml example) we
-> have MCTP devices on busses i2c1 and i2c6. MCTP-supporting busses are
-> indicated by the 'mctp-controller' DT property on an I2C bus node.
-> 
-> A mctp-i2c-controller I2C client DT node is placed at the top of the
-> mux topology, since only the root I2C adapter will support I2C slave
-> functionality.
->                                                .-------.
->                                                |eeprom |
->     .------------.     .------.               /'-------'
->     | adapter    |     | mux  --@0,i2c5------'
->     | i2c1       ----.*|      --@1,i2c6--.--.
->     |............|    \'------'           \  \  .........
->     | mctp-i2c-  |     \                   \  \ .mctpB  .
->     | controller |      \                   \  '.0x30   .
->     |            |       \  .........        \  '.......'
->     | 0x50       |        \ .mctpA  .         \ .........
->     '------------'         '.0x1d   .          '.mctpC  .
->                             '.......'          '.0x31   .
->                                                 '.......'
-> (mctpX boxes above are remote MCTP devices not included in the DT at
-> present, they can be hotplugged/probed at runtime. A DT binding for
-> specific fixed MCTP devices could be added later if required)
-> 
-> Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
+On Fri, Sep 24, 2021 at 12:07 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>
+> In order to build drivers/irqchip/irq-bcm7120-l2.c as a module, we will
+> need to have of_irq_count() exported to modules.
+>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 > ---
-> 
-> Changes:
-> 
-> v3->v4:
-> Formatting and YAML syntax fixes, rename .yaml file to match
-> 
-> v2->v3:
-> Change the MCTP indicator to being a property on the I2C bus node.
-> 
-> Thanks,
-> Matt
-> 
->  Documentation/devicetree/bindings/i2c/i2c.txt |  4 +
->  .../bindings/net/mctp-i2c-controller.yaml     | 92 +++++++++++++++++++
->  2 files changed, 96 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
-> 
+>  drivers/of/irq.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> index 352e14b007e7..949b9d1f8729 100644
+> --- a/drivers/of/irq.c
+> +++ b/drivers/of/irq.c
+> @@ -440,6 +440,7 @@ int of_irq_count(struct device_node *dev)
+>
+>         return nr;
+>  }
+> +EXPORT_SYMBOL_GPL(of_irq_count);
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Please convert to use platform_irq_count() instead.
+
+Rob
