@@ -2,63 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CEB8419263
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 12:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF12D419261
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 12:42:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233876AbhI0Koi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 06:44:38 -0400
-Received: from foss.arm.com ([217.140.110.172]:40662 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233800AbhI0Koi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 06:44:38 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 47181ED1;
-        Mon, 27 Sep 2021 03:43:00 -0700 (PDT)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 3D7193F70D;
-        Mon, 27 Sep 2021 03:42:59 -0700 (PDT)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
-        Guillaume Tucker <guillaume.tucker@collabora.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH] arm: dts: vexpress: Fix motherboard bus 'interrupt-map'
-Date:   Mon, 27 Sep 2021 11:42:49 +0100
-Message-Id: <163273927824.3582969.18151016257119813398.b4-ty@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210924214221.1877686-1-robh@kernel.org>
-References: <20210924214221.1877686-1-robh@kernel.org>
+        id S233837AbhI0Koe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 06:44:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233787AbhI0Kod (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 06:44:33 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B59CC061575
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 03:42:56 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 205-20020a1c01d6000000b0030cd17ffcf8so79373wmb.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 03:42:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=bl3l80PLJwDnjPoaNYbvG3Z+vfpuSPjJGAmYGrPl1Y4=;
+        b=kDhQYXhctmPax8BWT4MUKhzXGoZ8mPx8LMLOINhqUYV3MUr4X0A/ZLvxTikNd6/CA8
+         WvBFrCd1W/Wnl0wf9u1H9Tb1Yb/C0Ud0C1JWmey+IcaZvCuAjJc2M5GgPuIFR8H5YcI0
+         6f9L6Y5scExb76lRh4gJt+2rp52cbmlZWbogJQIm78QLF17Jbek0MGib2KUpFkoDG7MR
+         4oIxmxM+E5kEO1zKdYS0ZcOyjoFfON66Jnpww5Q6aSWfebCLXkkicXZbwG3tbGUvEbgJ
+         VCqOT21vRQoqaUULj/6I5NLuv90AGBsvVxhpsgN3rkKqM8puquBoZOANORH09LfxsiRl
+         i5jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=bl3l80PLJwDnjPoaNYbvG3Z+vfpuSPjJGAmYGrPl1Y4=;
+        b=mkXcRYTVBA5L07YWZOfZCnZms5viDyWJRamDnFMrsYf552B9j0fMjKYV2BVpuzTxER
+         mK94foXVzqzhsRaP6Kch7RBHSJxuIRpGznKnjd5BrxlVukkP+zDmkq0fG9/hOibLuJej
+         79VSrRUp61li5EVOI1zdFBicaOjvZuw7Es0FPLGwjVffuevpzn71UcyNPlcNY7pgjpZT
+         njg8yzanthVui3RW6iAWSPx/AyYNKktthEF4KrFLcqWq0Xa5a4H9XsSq93+XDEkC0qR0
+         UqWlN5Lh8bMBYr3Dl6Txq9+OXxymVljWpIKTUI4n2ucV7O+IKZ9oGiribLrmantdIEoV
+         kz6w==
+X-Gm-Message-State: AOAM533+3/pohfOqPpRVWln5kpQwvPZRcpD55qpbB48Kt0yfOcxnVHtV
+        gwH4PZChrYt4GtSj61FAIkI42A==
+X-Google-Smtp-Source: ABdhPJyPrHcwo/l44zFRoQnD/3cTUE6JBsBv7AeTjSfz3ViSTlBXNAeTSvaNS50OEFWy78/iNPp4+w==
+X-Received: by 2002:a7b:c8da:: with SMTP id f26mr15176884wml.109.1632739374619;
+        Mon, 27 Sep 2021 03:42:54 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id i18sm16528281wrn.64.2021.09.27.03.42.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Sep 2021 03:42:54 -0700 (PDT)
+Subject: Re: [PATCH v2 4/5] ASoC: codecs: tx-macro: Update tx default values
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <agross@kernel.org; bjorn.andersson@linaro.org;
+ lgirdwood@gmail.com; broonie@kernel.org;robh+dt@kernel.org;
+ plai@codeaurora.org; bgoswami@codeaurora.org; perex@perex.cz;
+ tiwai@suse.com;srinivas.kandagatla@linaro.org; rohitkr@codeaurora.org;
+ linux-arm-msm@vger.kernel.org; alsa-devel@alsa-project.org;
+ devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+ swboyd@chromium.org; judyhsiao@chromium.org;>
+ <1632313878-12089-1-git-send-email-srivasam@codeaurora.org>
+ <1632313878-12089-5-git-send-email-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <e65c77f4-766c-a5ce-9cbd-f1697c1be28c@linaro.org>
+Date:   Mon, 27 Sep 2021 11:42:52 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1632313878-12089-5-git-send-email-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Sep 2021 16:42:21 -0500, Rob Herring wrote:
-> Commit 078fb7aa6a83 ("arm: dts: vexpress: Fix addressing issues with
-> 'motherboard-bus' nodes") broke booting on a couple of 32-bit VExpress
-> boards. The problem is #address-cells size changed, but interrupt-map
-> was not updated. This results in the timer interrupt (and all the
-> other motherboard interrupts) not getting mapped.
+
+
+On 22/09/2021 13:31, Srinivasa Rao Mandadapu wrote:
+> Update mic control register default values to hardware reset values
 > 
-> As the 'interrupt-map' properties are all just duplicates across boards,
-> just move them into vexpress-v2m.dtsi and vexpress-v2m-rs1.dtsi.
-> Strictly speaking, 'interrupt-map' is dependent on the parent
-> interrupt controller, but it's not likely we'll ever have a different
-> parent than GICv2 on these old platforms. If there was one,
-> 'interrupt-map' can still be overridden.
+> Fixes: c39667ddcfc5 (ASoC: codecs: lpass-tx-macro: add support for lpass tx macro)
 > 
-> [...]
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+>   sound/soc/codecs/lpass-tx-macro.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/sound/soc/codecs/lpass-tx-macro.c b/sound/soc/codecs/lpass-tx-macro.c
+> index e980b2e..66c39fb 100644
+> --- a/sound/soc/codecs/lpass-tx-macro.c
+> +++ b/sound/soc/codecs/lpass-tx-macro.c
+> @@ -279,7 +279,7 @@ static const struct reg_default tx_defaults[] = {
+>   	{ CDC_TX_CLK_RST_CTRL_SWR_CONTROL, 0x00},
+>   	{ CDC_TX_TOP_CSR_TOP_CFG0, 0x00},
+>   	{ CDC_TX_TOP_CSR_ANC_CFG, 0x00},
+> -	{ CDC_TX_TOP_CSR_SWR_CTRL, 0x00},
+> +	{ CDC_TX_TOP_CSR_SWR_CTRL, 0x60},
 
-Applied to sudeep.holla/linux (for-next/juno), thanks!
+This does not make sense as this register only has one bit to control.
+Why do we even need to change this, can you please explain what happens 
+if we do not change this?
 
-[1/1] arm: dts: vexpress: Fix motherboard bus 'interrupt-map'
-      https://git.kernel.org/sudeep.holla/c/319aeaf69c
+>   	{ CDC_TX_TOP_CSR_FREQ_MCLK, 0x00},
+>   	{ CDC_TX_TOP_CSR_DEBUG_BUS, 0x00},
+>   	{ CDC_TX_TOP_CSR_DEBUG_EN, 0x00},
+> @@ -290,8 +290,8 @@ static const struct reg_default tx_defaults[] = {
+>   	{ CDC_TX_TOP_CSR_SWR_DMIC1_CTL, 0x00},
+>   	{ CDC_TX_TOP_CSR_SWR_DMIC2_CTL, 0x00},
+>   	{ CDC_TX_TOP_CSR_SWR_DMIC3_CTL, 0x00},
+> -	{ CDC_TX_TOP_CSR_SWR_AMIC0_CTL, 0x00},
+> -	{ CDC_TX_TOP_CSR_SWR_AMIC1_CTL, 0x00},
+> +	{ CDC_TX_TOP_CSR_SWR_AMIC0_CTL, 0x0E},
+> +	{ CDC_TX_TOP_CSR_SWR_AMIC1_CTL, 0x0E},
 
---
-Regards,
-Sudeep
+These two registers should have default value of 0x06 as this has only 
+one clk selection field with bits 2:1.
 
+-srini
+
+
+>   	{ CDC_TX_INP_MUX_ADC_MUX0_CFG0, 0x00},
+>   	{ CDC_TX_INP_MUX_ADC_MUX0_CFG1, 0x00},
+>   	{ CDC_TX_INP_MUX_ADC_MUX1_CFG0, 0x00},
+> 
