@@ -2,41 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C9ED419D64
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 19:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 719E4419D6A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 19:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235946AbhI0Rtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 13:49:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58826 "EHLO mail.kernel.org"
+        id S236209AbhI0RuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 13:50:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59284 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236737AbhI0Rt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 13:49:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0B27960F4F;
-        Mon, 27 Sep 2021 17:47:48 +0000 (UTC)
+        id S236230AbhI0Rtu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Sep 2021 13:49:50 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3B49D6101A;
+        Mon, 27 Sep 2021 17:48:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632764869;
-        bh=uVl5ACrfcIN4ooLozQqnr+TxY/foOGM8sxO3/2FeKmA=;
+        s=k20201202; t=1632764891;
+        bh=qNtI6u1oaPUxSEX1LWZuJEskpXnJO/H93H1clSrhl3g=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QNQMvYyrlucLrAj/mojcJ6teenH0XIbkgaKGCP5hU+C/SM/xyIahSoUV5YTjZJrby
-         fhC5CpftHyxMt63kjp9F90FdWcMgCdlrZQ7bMqqOfATdTTumlnaDqxdAAuPJl6tXEq
-         FCQLaljGKLGz70ozWu3avec/jSJqTeY+VXr+MUCkT63wr1bUaTSBNlUQ0S2jHn46Fg
-         5KG+hDTfhIKS8ZuBLI/Pgx8mgeA+q+i96ZHJm/ituutWJUQz6Ch9kjDSMEpUp255IP
-         ZTOz4gMAY1McPbRH33GNldBwXkW4Mm3ztaoPAU2LpwnMQQfsK4mNecoW8NeiXO81In
-         fs8yUL1jH4QTQ==
+        b=CdvhoOlwGIliU/l2Tvifg0nlQ80Khm/nUQ02TQ0Apk/bMHksfxi2zJCoZvN46d3CA
+         QODFeoxFY2/jIOjdO91WrKh1AzHYI297nD3KJtyYDUJnLP/n2KDFOgfvmRElXd6GR7
+         3GGtjgjvEiTGmniw4FAfUX4u2ZeV+pn7GKwpivnAILXL+JLPdfHt4eYwOLp5+bn9S+
+         bFouOk2V1ueSUaMHFcT7pUjMxE1GNlb6+iWqj4tIsqN3jWfpXW/IKuBoC6FhXhKZZO
+         BFkzdSb5kWIx6o4pIpGkquWVj1WX7udK4uZidJrVcdk/9KNAnIRbTQQWcG5qVxJ5BU
+         bqnU4YtXsh3Ig==
 From:   Mark Brown <broonie@kernel.org>
 To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
+        Liam Girdwood <lgirdwood@gmail.com>
 Cc:     Mark Brown <broonie@kernel.org>,
         Charles Keepax <ckeepax@opensource.cirrus.com>,
         alsa-devel@alsa-project.org, Maxime Ripard <maxime@cerno.tech>,
         patches@opensource.cirrus.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] ASoC: dt-bindings: wlf,wm8978: Fix I2C address in example
-Date:   Mon, 27 Sep 2021 18:45:41 +0100
-Message-Id: <163276442023.18200.16335825617425254658.b4-ty@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8978: Fix I2C address in example
+Date:   Mon, 27 Sep 2021 18:45:49 +0100
+Message-Id: <163276442023.18200.17825655146761674998.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <c99fc865e3fca6ea623661c52de7dc6a3c36c8b4.1632487554.git.geert+renesas@glider.be>
-References: <c99fc865e3fca6ea623661c52de7dc6a3c36c8b4.1632487554.git.geert+renesas@glider.be>
+In-Reply-To: <0409470fbe6bba69ec74a3f30681b5fe93a372ba.1632470464.git.geert+renesas@glider.be>
+References: <0409470fbe6bba69ec74a3f30681b5fe93a372ba.1632470464.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -44,7 +43,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Sep 2021 14:47:32 +0200, Geert Uytterhoeven wrote:
+On Fri, 24 Sep 2021 10:02:50 +0200, Geert Uytterhoeven wrote:
 > According to the WM8978 datasheet, the address of the device is fixed as
 > 0011010 in 2-wire mode.
 > 
