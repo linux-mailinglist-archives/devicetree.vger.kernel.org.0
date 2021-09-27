@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72ED54190CE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 10:27:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B005E4190E2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 10:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233511AbhI0I3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 04:29:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58448 "EHLO
+        id S233440AbhI0IeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 04:34:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233418AbhI0I3B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 04:29:01 -0400
+        with ESMTP id S233417AbhI0IeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 04:34:24 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D68C061575
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 01:27:24 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66876C061575
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 01:32:47 -0700 (PDT)
 Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1mUlyj-0004CN-SC; Mon, 27 Sep 2021 10:27:13 +0200
-Message-ID: <c653181970092c27fc98fbb5dcebe21ebf29d887.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/4] dt-bindings: phy: phy-imx8-pcie: Add binding for
- the pad modes of imx8 pcie phy
+        id 1mUm40-00050w-Hi; Mon, 27 Sep 2021 10:32:40 +0200
+Message-ID: <f421d1c8079d6c6694972af04ec95318d3399152.camel@pengutronix.de>
+Subject: Re: [PATCH v2 2/4] dt-bindings: phy: add imx8 pcie phy driver
+ support
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Richard Zhu <hongxing.zhu@nxp.com>, kishon@ti.com,
         vkoul@kernel.org, robh@kernel.org, galak@kernel.crashing.org,
@@ -29,10 +29,10 @@ To:     Richard Zhu <hongxing.zhu@nxp.com>, kishon@ti.com,
 Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         kernel@pengutronix.de, linux-imx@nxp.com
-Date:   Mon, 27 Sep 2021 10:27:10 +0200
-In-Reply-To: <1632641983-1455-2-git-send-email-hongxing.zhu@nxp.com>
+Date:   Mon, 27 Sep 2021 10:32:39 +0200
+In-Reply-To: <1632641983-1455-3-git-send-email-hongxing.zhu@nxp.com>
 References: <1632641983-1455-1-git-send-email-hongxing.zhu@nxp.com>
-         <1632641983-1455-2-git-send-email-hongxing.zhu@nxp.com>
+         <1632641983-1455-3-git-send-email-hongxing.zhu@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
@@ -46,40 +46,96 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Am Sonntag, dem 26.09.2021 um 15:39 +0800 schrieb Richard Zhu:
-> Add binding for reference clock PAD modes of the i.MX8 PCIe PHY.
+> Add dt-binding for the standalone i.MX8 PCIe PHY driver.
 > 
 > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 > ---
->  include/dt-bindings/phy/phy-imx8-pcie.h | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->  create mode 100644 include/dt-bindings/phy/phy-imx8-pcie.h
+>  .../bindings/phy/fsl,imx8-pcie-phy.yaml       | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
 > 
-> diff --git a/include/dt-bindings/phy/phy-imx8-pcie.h b/include/dt-bindings/phy/phy-imx8-pcie.h
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
 > new file mode 100644
-> index 000000000000..59ed322f8d6c
+> index 000000000000..fd08897fef82
 > --- /dev/null
-> +++ b/include/dt-bindings/phy/phy-imx8-pcie.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-
-This should be (GPL-2.0+ OR MIT) to be compatible with the license of
-the DTSI file it is included in.
-
-> +/*
-> + * This header provides constants for i.MX8 PCIe.
-> + */
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,imx8-pcie-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#ifndef _DT_BINDINGS_IMX8_PCIE_H
-> +#define _DT_BINDINGS_IMX8_PCIE_H
+> +title: Freescale i.MX8 SoC series PCIe PHY Device Tree Bindings
 > +
-> +/* Reference clock PAD mode */
-> +#define IMX8_PCIE_REFCLK_PAD_NO_USED	0
-
-I think _UNUSED would be the more idiomatic way to call this.
-
-> +#define IMX8_PCIE_REFCLK_PAD_INPUT	1
-> +#define IMX8_PCIE_REFCLK_PAD_OUTPUT	2
+> +maintainers:
+> +  - Richard Zhu <hongxing.zhu@nxp.com>
 > +
-> +#endif /* _DT_BINDINGS_IMX8_PCIE_H */
+> +properties:
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mm-pcie-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: PHY module clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: phy
+
+The clock name should describe what it is used for in the hardware
+block described by the DT node. So I would think this should be called
+"ref" or something like this, as I believe this clock is really only
+used as the reference clock and can be disabled when the refclock is
+supplied via the pad, right?
+ 
+> +
+> +  fsl,refclk-pad-mode:
+> +    description: |
+> +      Specifies the mode of the refclk pad used. It can be NO_USED(PHY
+> +      refclock is derived from SoC internal source), INPUT(PHY refclock
+> +      is provided externally via the refclk pad) or OUTPUT(PHY refclock
+> +      is derived from SoC internal source and provided on the refclk pad).
+> +      Refer include/dt-bindings/phy/phy-imx8-pcie.h for the constants
+> +      to be used.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1, 2 ]
+> +
+> +required:
+> +  - "#phy-cells"
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - fsl,refclk-pad-mode
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8mm-clock.h>
+> +
+> +    pcie_phy: pcie-phy@32f00000 {
+> +            compatible = "fsl,imx8mm-pcie-phy";
+> +            reg = <0x32f00000 0x10000>;
+> +            clocks = <&clk IMX8MM_CLK_PCIE1_PHY>;
+> +            clock-names = "phy";
+> +            assigned-clocks = <&clk IMX8MM_CLK_PCIE1_PHY>;
+> +            assigned-clock-rates = <100000000>;
+> +            assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_100M>;
+> +            fsl,refclk-pad-mode = <1>;
+
+Include the new header added in patch 1 and use the enum.
+
+> +            #phy-cells = <0>;
+> +    };
+> +...
 
 
