@@ -2,98 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB40E4199E1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 19:02:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92AF84199FB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 19:04:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235648AbhI0RE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 13:04:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37526 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235687AbhI0RE0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 13:04:26 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 786A4C061604
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 10:02:47 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id 73so37637464qki.4
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 10:02:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tNPetvOupXqRGUiN551DEoj5v4Vq3J9M2I/AbCZn9/s=;
-        b=DaJH5fJcZaPTWSS82pjbCuzrmgUbbbI8rDumgBGUwFhl/oYhvIG/pZqFDRqj3etyng
-         gynjZU/qESEM03OCs4i9F0KxLfb9njtq1177Zhh6o5nIU4Ak6ZFaHDvNbgLrAZMWuX+7
-         /vo8yFf6ik5YAvsKvs/gkABlt5Fb5DP5jWTCc=
+        id S235885AbhI0RFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 13:05:54 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:46686 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235770AbhI0RFi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 13:05:38 -0400
+Received: by mail-ot1-f52.google.com with SMTP id o59-20020a9d2241000000b0054745f28c69so23250560ota.13;
+        Mon, 27 Sep 2021 10:03:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tNPetvOupXqRGUiN551DEoj5v4Vq3J9M2I/AbCZn9/s=;
-        b=kJd8bXEtb0h9OJ7ilegKBnun1hC2Ydzq2IdLexF/2En7uK1mJBJo5T5CRaS9TiC87J
-         7/ldMBXke6MRp1zBs9epS5PkK/4NKNRwk3bnQQcyQeBTAQcqHe1a0jK6gY1H2XM/WM4x
-         vD/tsTm/cA7t5crmrbli14WDDsusenVc8v3C2+JXCg+1VsvjMUFMHULglH3WXIClD3dt
-         ZC8kSumgKIk3FyHP1bmypEppNJnrZguS7bcpuJP1tiz3EVTsR58w5dky3MXvYvi5W1XP
-         abPtJ+Sg0umMCr/q3CU2yGyFsGU61v7dh1EjpXWjlSKVPtYGO5shFfR7/byypI4u+RBa
-         B0rg==
-X-Gm-Message-State: AOAM533opNbjup9cZVogCeZjSAeL/eezX3Juvl0acVqYL95mVtClwi2X
-        arGN/hpjk8yetDD5rIgg3nd1fstsJkv+CiGZHrVwsQ==
-X-Google-Smtp-Source: ABdhPJwBRvTBeyV1410Jpc8AMLHK25Pf6f0uExAdgdt+d7oQNAG2MpwCW4ToDnxi98Sln0HasYsHB8qhK0klEJITwTM=
-X-Received: by 2002:a37:a087:: with SMTP id j129mr979840qke.253.1632762166561;
- Mon, 27 Sep 2021 10:02:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210901083215.25984-1-yunfei.dong@mediatek.com>
- <CAAEAJfDOt_GyDPojcj5P6Wou9HC2GC8YzRt2wYyqdrCOjfeOog@mail.gmail.com>
- <3b9463e88d88ce85205da08f8263252da7726ade.camel@mediatek.com>
- <aba7fb4ffe6e45ac90869b5017468386bce64d28.camel@mediatek.com>
- <b7ed8b71578a98704e9b8ca29cac63c67cc14b3f.camel@mediatek.com> <CAAEAJfCHEBFc8B7C0bu7UxtJdffvDarqgA-rset1wPjLOiV01A@mail.gmail.com>
-In-Reply-To: <CAAEAJfCHEBFc8B7C0bu7UxtJdffvDarqgA-rset1wPjLOiV01A@mail.gmail.com>
-From:   Steve Cho <stevecho@chromium.org>
-Date:   Mon, 27 Sep 2021 10:02:36 -0700
-Message-ID: <CAC-pXoMR=mOwnKqP5SFAfF3Ka5UrG0F8Mj=sJuEziU=uOKftoA@mail.gmail.com>
-Subject: Re: [PATCH v6, 00/15] Using component framework to support multi
- hardware decode
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=C/jjeb5V5zArlx4eFPn95hjOtyLhzqqErbP7ergc4K8=;
+        b=6euDN4uIryCPprIqM2GN3L9NGiz1QbhZg9dKh8oXuZc44dO1L2w2lnnnmFKtGnwH75
+         hauBud+tlYDKjEmafsX4oFIUYccNZQiS+AmT09qCs0HimAkRFL67+LDd/kbQWUBZ00Qn
+         gGvy8ErQzNE24BCw3aGs/xvrGMmNSkZewHjS2ayyIZ77f7NpQvFTbuchJgZvf61wcMX7
+         mGP2luFe8asvitkPERZPtFB9mGW61I1BVg3ZlRpGm6duZsHb+25tUGJKhq5919WEoxEP
+         g5HH389Q8FxsvIVGLBI8CWod/b7/ZvRs12B59M0gGIDUBiRI4PsKPJ4zIz2KsGLTf7z0
+         Y3XQ==
+X-Gm-Message-State: AOAM532AIVh0uv7gnZlm352reNjlVj7vVrqRcqKHzVSPz2/7J4C6Naxd
+        r2e+JVmgyS1XUZ4jk33FmA==
+X-Google-Smtp-Source: ABdhPJwDYK9CtDPFvmcT9FbrW/OuLYcWgNoxrp02aOQ2qkD80fHL9UlbaDaUsTRVgLJ+/kJljMlS6A==
+X-Received: by 2002:a05:6830:2b0e:: with SMTP id l14mr904793otv.201.1632762239188;
+        Mon, 27 Sep 2021 10:03:59 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g4sm311981ooa.44.2021.09.27.10.03.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Sep 2021 10:03:58 -0700 (PDT)
+Received: (nullmailer pid 3472455 invoked by uid 1000);
+        Mon, 27 Sep 2021 17:03:57 -0000
+Date:   Mon, 27 Sep 2021 12:03:57 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Mark Kettenis <kettenis@openbsd.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>,
+        Saenz Julienne <nsaenzjulienne@suse.de>, maz@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+        Jim Quinlan <jim2101024@gmail.com>,
+        linux-rpi-kernel@lists.infradead.org, robin.murphy@arm.com,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        alyssa@rosenzweig.io, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        linux-pci@vger.kernel.org, sven@svenpeter.dev
+Subject: Re: [PATCH v5 3/4] dt-bindings: pci: Add DT bindings for apple,pcie
+Message-ID: <YVH5fZeIJBRQbU4O@robh.at.kernel.org>
+References: <20210921183420.436-1-kettenis@openbsd.org>
+ <20210921183420.436-4-kettenis@openbsd.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210921183420.436-4-kettenis@openbsd.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ezequiel,
+On Tue, 21 Sep 2021 20:34:14 +0200, Mark Kettenis wrote:
+> The Apple PCIe host controller is a PCIe host controller with
+> multiple root ports present in Apple ARM SoC platforms, including
+> various iPhone and iPad devices and the "Apple Silicon" Macs.
+> 
+> Acked-by: Marc Zyngier <maz@kernel.org>
+> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> ---
+>  .../devicetree/bindings/pci/apple,pcie.yaml   | 161 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 162 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> 
 
-Thank you for reviewing these series from Yunfei!
-This series is one of the main obstacles for us at the moment for MTK
-so please continue to help & support reviewing this series.
-
-> > According to google's suggestion, it's better not to use v4l2 async
-> > also.
->
-> Hum? I haven't seen such objection on the mailing list.
-Maybe coming from Tzung-Bi?
-Yunfei, please let us know.
-
-Steve
+Applied, thanks!
