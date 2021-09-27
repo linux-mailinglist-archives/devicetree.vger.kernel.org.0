@@ -2,87 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E8824198B7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 18:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6325D4198DC
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 18:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235330AbhI0QRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 12:17:11 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:54790 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235337AbhI0QRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 12:17:10 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: gtucker)
-        with ESMTPSA id C8AD61F42FE9
-Subject: Re: next/master bisection: baseline.login on qemu_arm-vexpress-a9
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "kernelci-results@groups.io" <kernelci-results@groups.io>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        linux-kernel@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-References: <614ad319.1c69fb81.2a0c1.4782@mx.google.com>
- <8d6223d2-8ca7-0373-bb49-b62894e5fad7@collabora.com>
- <CAL_JsqJ9fDXkVgcXTiO+NM9T7OKO+p43NGmJPRvvLi3-_Bd4dQ@mail.gmail.com>
-From:   Guillaume Tucker <guillaume.tucker@collabora.com>
-Message-ID: <1e8409b3-0649-5d7c-da3f-911880b15c2e@collabora.com>
-Date:   Mon, 27 Sep 2021 18:15:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S235437AbhI0Q3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 12:29:46 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:46913 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235338AbhI0Q3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 12:29:46 -0400
+Received: by mail-oi1-f182.google.com with SMTP id s69so26224009oie.13;
+        Mon, 27 Sep 2021 09:28:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BmWdHyal2+SAHogeOgo0XQ9pH2xwWnNqoDfQ+wehmWo=;
+        b=rdQEEtUsZ+u9JhSBcCUJa+6kha44MrqAABmYuUOq9Rv/n108FErChN7PPbrGiQlsvV
+         EysGWoYLp34q9GFNltO7fuZHX4fHQWEAvpFhss4B4SWOv06XUO+srRgWmC9/dfE2mx7F
+         nFU78NBeXGvvXFF1nXAVkNEA4/Dcyj8UVMV+wT6TzMLV72Kz+BzWxL/i94yqsWuwmSDB
+         r1/7BAW8Vd4lfSRRpM4EaDe509UL10rSBRG5alG/uvxEw6evsOZq44px78hyJa/xq3Ga
+         JesaPHvdWGRaEX5ppOfAq6adiHcNFtZOtu77dgY7+aL8vtCgm7UgpaEd5OJbTwozcdrA
+         0QIg==
+X-Gm-Message-State: AOAM530fkjqT9e7SxoLq/XPgOqr+10U1cNNUyPMwZ3GAJpVON4KNS6dp
+        WeHIP1Dmsi3xcY0aZ2FlDg==
+X-Google-Smtp-Source: ABdhPJwGdhDClDb3vx6+dSGGvZMneq43UC63vBSpI5SCNr93JTU4B/eovY4asckQV5LoOl/TcM56Ow==
+X-Received: by 2002:a05:6808:14c9:: with SMTP id f9mr591378oiw.163.1632760087687;
+        Mon, 27 Sep 2021 09:28:07 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id o126sm3961971oig.21.2021.09.27.09.28.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Sep 2021 09:28:06 -0700 (PDT)
+Received: (nullmailer pid 3419976 invoked by uid 1000);
+        Mon, 27 Sep 2021 16:28:06 -0000
+Date:   Mon, 27 Sep 2021 11:28:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jiri Kosina <trivial@kernel.org>
+Subject: Re: [PATCH 3/6] dt-bindings: hwmon: ibm,cffps: move to trivial
+ devices
+Message-ID: <YVHxFkb/9VwkQaA+@robh.at.kernel.org>
+References: <20210921102832.143352-1-krzysztof.kozlowski@canonical.com>
+ <20210921102832.143352-3-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJ9fDXkVgcXTiO+NM9T7OKO+p43NGmJPRvvLi3-_Bd4dQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210921102832.143352-3-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/09/2021 21:05, Rob Herring wrote:
-> On Thu, Sep 23, 2021 at 12:28 PM Guillaume Tucker
-> <guillaume.tucker@collabora.com> wrote:
->>
->> Hi Rob,
->>
->> Please see the bisection report below about a boot failure on ARM
->> Versatile Express.
->>
->> Reports aren't automatically sent to the public while we're
->> trialing new bisection features on kernelci.org but this one
->> looks valid.
+On Tue, 21 Sep 2021 12:28:29 +0200, Krzysztof Kozlowski wrote:
+> The IBM Common Form Factor Power Supply Versions 1 and 2 bindings are
+> trivial, so they can be integrated into trivial devices bindings.
 > 
-> Have you considered given you have the commit, if there's a Link tag,
-> sending this as a reply to the original patch? That would be a bit
-> easier to find IMO.
-
-Absolutely, in fact it's also possible to search in Lore for the
-original thread if there's no Link: trailer in the commit.  Then
-if subsequent bisections get run, the bot could reply to
-say "still failing" with new kernel revisions until it's fixed
-and then reply to confirm it is.  That's the plan, there's still
-a bit of work to do to have it all automated though.
-
->> Some more details can be found here, for Cortex A9:
->>
->>   https://linux.kernelci.org/test/case/id/614c36cf0c427f123799a2db/
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  .../devicetree/bindings/hwmon/ibm,cffps1.txt  | 26 -------------------
+>  .../devicetree/bindings/trivial-devices.yaml  |  6 +++++
+>  MAINTAINERS                                   |  1 -
+>  3 files changed, 6 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/ibm,cffps1.txt
 > 
-> I should have remembered there's a qemu model... Anyways, sending out
-> a fix in a moment.
-> 
-> The log here was empty. Any reason 'earlycon' is not set here? I also
-> noticed stdout-path is not set on many of the Arm Ltd boards. I'll
-> send a patch for that, too. You really shouldn't have to set the
-> console on the cmdline nowadays unless you want the non-default.
 
-I believe earlycon is not set because it requires specific
-options on different platforms, so there's some configuration
-overhead involved here.  But it's a very good point that has been
-raised in the past, I guess someone needs to take the time to
-look into enabling it properly.  It shouldn't be that hard.
-
-Thanks for the feedback and the quick fix!
-
-Guillaume
+Reviewed-by: Rob Herring <robh@kernel.org>
