@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59751419658
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 16:27:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2906D41965C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 16:27:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234869AbhI0O3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 10:29:10 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:43412 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234819AbhI0O3K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 10:29:10 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18REROHn023854;
-        Mon, 27 Sep 2021 09:27:24 -0500
+        id S234801AbhI0O32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 10:29:28 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:41148 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234881AbhI0O31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 10:29:27 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18REReXv015040;
+        Mon, 27 Sep 2021 09:27:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632752844;
-        bh=0iqsvxPp8QBtCV2wE/2VVRWlk7xjyfyApisV+VMQkzk=;
+        s=ti-com-17Q1; t=1632752860;
+        bh=FJWLNYViwTUWu9K8VtFGQXKFiwr+leS4+2POVpUO7xs=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=lf3v7flGmpHSn0e+jLS0ToQgJC13wUGdCNcmZT4JXkbLD867BgZQ9Ofel0gOORsfn
-         a6Pto+Ca7AUikMEmZjL43YRVQoSTmYHJ3r6RcVHVlB499IA2TlDzXXUGHEfeiKHT5Z
-         OqXoysfZSm6ti4MsV+2aY55Y4R/R9Xx5xBdLNZMo=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18RERO4V044603
+        b=BV1RXuvE6Jdbq/U1qVlqrJdvUP02B67QAP4lp4Cm3g9mA4e2W+lawAmJwniVLTarZ
+         JJT4e27k7vFzogVfwfhIttWj/Ws9dDLnjwzBW7yFyGBJUxwMLf+E0UifnX+YMqP+Ym
+         MuqfM0qnTTEUib0RI27br/VGDzIpPTHju+BTyPZg=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18RERevk041578
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 27 Sep 2021 09:27:24 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 27 Sep 2021 09:27:40 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 27
- Sep 2021 09:27:24 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2021 09:27:40 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 27 Sep 2021 09:27:24 -0500
+ Frontend Transport; Mon, 27 Sep 2021 09:27:40 -0500
 Received: from [10.250.37.219] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18REROtl058589;
-        Mon, 27 Sep 2021 09:27:24 -0500
-Subject: Re: [PATCH V2 3/4] arm64: dts: ti: k3-j721e-common-proc-board: Add
- j721e-evm compatible
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18REReeH005855;
+        Mon, 27 Sep 2021 09:27:40 -0500
+Subject: Re: [PATCH V2 4/4] arm64: dts: ti: k3-j7200-common-proc-board: Add
+ j7200-evm compatible
 To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
 CC:     Tero Kristo <kristo@kernel.org>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -48,14 +48,14 @@ CC:     Tero Kristo <kristo@kernel.org>,
         Sinthu Raja <sinthu.raja@mistralsolutions.com>,
         Jan Kiszka <jan.kiszka@siemens.com>
 References: <20210925201430.11678-1-nm@ti.com>
- <20210925201430.11678-4-nm@ti.com>
+ <20210925201430.11678-5-nm@ti.com>
 From:   Suman Anna <s-anna@ti.com>
-Message-ID: <a8001155-11f6-0708-12c6-7f1a4254da1f@ti.com>
-Date:   Mon, 27 Sep 2021 09:27:24 -0500
+Message-ID: <dded6ab1-7d99-77ee-6865-046a4f45c82b@ti.com>
+Date:   Mon, 27 Sep 2021 09:27:40 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210925201430.11678-4-nm@ti.com>
+In-Reply-To: <20210925201430.11678-5-nm@ti.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -65,8 +65,8 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 9/25/21 3:14 PM, Nishanth Menon wrote:
-> Add j721e-evm compatible to the board to allow the board to distinguish
-> itself from other platforms that are pending to be added.
+> Add j7200-evm compatible to the board to allow the board to distinguish
+> itself from other platforms that may be added in the future.
 > 
 > Signed-off-by: Nishanth Menon <nm@ti.com>
 
@@ -77,21 +77,21 @@ Acked-by: Suman Anna <s-anna@ti.com>
 > Changes in V2:
 > * no change
 > 
-> V1: https://lore.kernel.org/all/20210915121937.27702-3-nm@ti.com/
+> V1: https://lore.kernel.org/all/20210915121937.27702-4-nm@ti.com/
 > 
->  arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 3 +++
+>  arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 3 +++
 >  1 file changed, 3 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> index 8bd02d9e28ad..dc2bc67f9f48 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> index d14f3c18b65f..121975dc8239 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
 > @@ -12,6 +12,9 @@
->  #include <dt-bindings/phy/phy-cadence.h>
+>  #include <dt-bindings/phy/phy.h>
 >  
 >  / {
-> +	compatible = "ti,j721e-evm", "ti,j721e";
-> +	model = "Texas Instruments J721e EVM";
+> +	compatible = "ti,j7200-evm", "ti,j7200";
+> +	model = "Texas Instruments J7200 EVM";
 > +
 >  	chosen {
 >  		stdout-path = "serial2:115200n8";
