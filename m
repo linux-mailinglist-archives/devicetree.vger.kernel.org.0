@@ -2,132 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4635B41920C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 12:12:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1E7419219
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 12:18:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233803AbhI0KON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 06:14:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54004 "EHLO
+        id S233778AbhI0KTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 06:19:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233794AbhI0KOM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 06:14:12 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2B6C061604
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 03:12:35 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id d21so50771961wra.12
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 03:12:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tTB44XcgmdEQUzd6FNCFDzDAK4JcfXYFGMzJ5hVTb7Y=;
-        b=Xl8Mru0fpR9vxtEKAZjxOE6TJyNjJa09s+lSiEmHcFBhuDw1SGPDG1anpt9fiDOpVw
-         8r9QZltfQg3f+2QOnhNuD17rnda9VjUJ1yVk3Q8jpqiE9FpgCS7IFFGwJdAqfug6ZYoC
-         YGHwoMEbRQDRPpbequ2z+6gczIPOOBoHShkB0udVAj7RohLi6E9T7W2QO2IWwmyFaJru
-         OphejVaSrIW2IwlfYfvPXSGus151S4TpVHm+8NAjVpskEsx18rSTSZXJNaJROdCTjkEH
-         4R4mW9qItIxDOHJEqEMBqrMg1AFRGTeoDm3+MBnGXxHHYU7CUj/cbUxjHXMt6tGb1VHh
-         fGvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tTB44XcgmdEQUzd6FNCFDzDAK4JcfXYFGMzJ5hVTb7Y=;
-        b=vlwLcCxbqz2/C0GrTqxjtpENhJYMyAE3bCXkoTVW0fxnbfNDFnZ79gme3S07UaF/xe
-         Y4k/COiUqUeSlSPWcYlhHDDvFGfKG8WsYYf6K99115VFYoD9hzVnR6EqhKV7XSY2eWdm
-         fyl7+QFQ2mXQlBr2aQotYJc0O8Q6IwxOeRBFP84FDzrpkUs7+HEozGQ4BuCtCrOVf4lF
-         I60V33CDssptHspKg5znNTSeqQJvyaKI0GvaqJwoTDhZqmkTwc1hNWSx3KhH0bKqxOk3
-         1Y6wYmlL0hMmaBWQQmuJfTkCb41VfIdhlWPYz4FN1ux3UanFgvOsf+wULDmirsC3cnJI
-         a0IQ==
-X-Gm-Message-State: AOAM530A82qev+RWxWFk2dsFgtMnKToH3tc+rybBhfuAuwEkIMP+tOhP
-        UWvszzbZsS7xgLlclDdxmfCPmQ==
-X-Google-Smtp-Source: ABdhPJzpGZliXWKayiz+97fDqfwNPwktVa8ZlC5EYUsorACL0ru0EtWqKB2t85/rpTiKXb0p+LvMJg==
-X-Received: by 2002:a5d:47a4:: with SMTP id 4mr26435987wrb.274.1632737553638;
-        Mon, 27 Sep 2021 03:12:33 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id 8sm8930867wmj.18.2021.09.27.03.12.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Sep 2021 03:12:33 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] nvmem: core: introduce cells parser
-To:     John Thomson <john@johnthomson.fastmail.com.au>,
-        Vadym Kochan <vadym.kochan@plvision.eu>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>
-References: <20210608190327.22071-1-vadym.kochan@plvision.eu>
- <20210608190327.22071-2-vadym.kochan@plvision.eu>
- <43023500-dd6a-5180-057e-cecc1f1b6500@linaro.org>
- <20210616123356.GA9951@plvision.eu>
- <fea907ed-06ce-5c82-667d-d11f3e902616@linaro.org>
- <vrcxh2zgsnl841.fsf@plvision.eu>
- <7e6d75ed-cebc-597f-7062-34261d184968@linaro.org>
- <vrcxh2pmt3bl4h.fsf@plvision.eu>
- <0e471789-fe29-b747-5153-75c9b4616c7f@linaro.org>
- <vrcxh2o88nbias.fsf@plvision.eu>
- <1da03714-8f23-1004-e89a-891e4599e04a@linaro.org>
- <vrcxh2mto7bfcb.fsf@plvision.eu>
- <1e146349-9fef-972b-9084-577f02d5168b@linaro.org>
- <vrcxh2lf3rbcjc.fsf@plvision.eu>
- <169d3f36-4297-32a3-3d23-824989625b26@linaro.org>
- <77b11bf7-3003-483f-b91e-bd93576eaae1@www.fastmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <65df8099-28a0-fe95-57fc-11c9e90af835@linaro.org>
-Date:   Mon, 27 Sep 2021 11:12:32 +0100
+        with ESMTP id S233757AbhI0KTs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 06:19:48 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9440C061575;
+        Mon, 27 Sep 2021 03:18:10 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: gtucker)
+        with ESMTPSA id B21C91F427CE
+Subject: Re: [PATCH v8 9/9] pinctrl/rockchip: drop the gpio related codes
+To:     Jianqun Xu <jay.xu@rock-chips.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>
+References: <20210816011948.1118959-1-jay.xu@rock-chips.com>
+ <20210816012146.1119289-1-jay.xu@rock-chips.com>
+From:   Guillaume Tucker <guillaume.tucker@collabora.com>
+Message-ID: <f13ff971-8af2-be9b-fa5d-7913c0ff1351@collabora.com>
+Date:   Mon, 27 Sep 2021 12:18:04 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <77b11bf7-3003-483f-b91e-bd93576eaae1@www.fastmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210816012146.1119289-1-jay.xu@rock-chips.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jianqun,
 
-
-On 21/09/2021 06:50, John Thomson wrote:
->>> Currently I can test only on at24 devices. From the:
->>>
->>> https://opencomputeproject.github.io/onie/design-spec/hw_requirements.html
->>>
->>> "
->>> Each ONIE system must include non-volatile storage which contains vital
->>> product data assigned by the manufacturer. The non-volatile storage
->>> could take the form of an EEPROM, a NOR-flash sector, a NAND-flash
->>> sector or any other non-volatile storage medium.
->>> "
->>>
->>> I am not aware about other nvmem devices which are used for existing
->>> ONIE supported boards.
->>>
->>>> As long as you represent this parsing function as some library function,
->>>> I do not see any issue.
->>>> If any exported symbol is available for this then any nvmem provider
->>>> could use it.
->>>>
->>>> --srini
->>>>
-> Hi Srinivas,
+On 16/08/2021 02:21, Jianqun Xu wrote:
+> With the patch to separate the gpio driver from the pinctrl driver, now
+> the pinctrl-rockchip can drop the gpio related codes now.
 > 
-> Can I note here that I would like to parse
-> TLV data from an SPI-NOR device to NVMEM cells.
-> The same general use case (getting mac-address from OEM data).
+> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+> ---
+> v8:
+>  - none
+> v7:
+>  - none, from v1
 > 
-> Was planning to base my work on this series, as well as
-> https://lore.kernel.org/all/20210908100257.17833-1-qiangqing.zhang@nxp.com/
+>  drivers/pinctrl/pinctrl-rockchip.c | 645 +----------------------------
+>  1 file changed, 17 insertions(+), 628 deletions(-)
 
-This series is for post-processing nvmem cell data before it gets to 
-consumers.
-Are you referring to parsing nvmem cell information (offset, name) in 
-your usecase like: 
-https://opencomputeproject.github.io/onie/design-spec/hw_requirements.html
+[...]
 
-Or
-Are you referring to post-processing nvmem cell data ?
+Please see the bisection report below about a boot failure on
+rk3288-veyron-jaq which is pointing to this patch.  The issue
+appears to be present on mainline but not on linux-next as of
+next-20210924.
+
+Reports aren't automatically sent to the public while we're
+trialing new bisection features on kernelci.org but this one
+looks valid.
+
+Some more details can be found here:
+
+  https://linux.kernelci.org/test/case/id/614f19a33f5497c2bc99a2df/
+
+Please let us know if you need help debugging the issue or if you
+have a fix to try.
+
+Best wishes,
+Guillaume
 
 
---srini
-> (thanks for pointing that out Srinivas)
-> 
-> Cheers,
-> -- John Thomson
+GitHub: https://github.com/kernelci/kernelci-project/issues/58
+
+-------------------------------------------------------------------------------
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* This automated bisection report was sent to you on the basis  *
+* that you may be involved with the breaking commit it has      *
+* found.  No manual investigation has been done to verify it,   *
+* and the root cause of the problem may be somewhere else.      *
+*                                                               *
+* If you do send a fix, please include this trailer:            *
+*   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
+*                                                               *
+* Hope this helps!                                              *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+mainline/master bisection: baseline.login on rk3288-veyron-jaq
+
+Summary:
+  Start:      7d42e9818258 Merge tag 'gpio-fixes-for-v5.15-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux
+  Plain log:  https://storage.kernelci.org/mainline/master/v5.15-rc2-159-g7d42e9818258/arm/multi_v7_defconfig+CONFIG_EFI=y+CONFIG_ARM_LPAE=y/gcc-8/lab-collabora/baseline-rk3288-veyron-jaq.txt
+  HTML log:   https://storage.kernelci.org/mainline/master/v5.15-rc2-159-g7d42e9818258/arm/multi_v7_defconfig+CONFIG_EFI=y+CONFIG_ARM_LPAE=y/gcc-8/lab-collabora/baseline-rk3288-veyron-jaq.html
+  Result:     9ce9a02039de pinctrl/rockchip: drop the gpio related codes
+
+Checks:
+  revert:     PASS
+  verify:     PASS
+
+Parameters:
+  Tree:       mainline
+  URL:        https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+  Branch:     master
+  Target:     rk3288-veyron-jaq
+  CPU arch:   arm
+  Lab:        lab-collabora
+  Compiler:   gcc-8
+  Config:     multi_v7_defconfig+CONFIG_EFI=y+CONFIG_ARM_LPAE=y
+  Test case:  baseline.login
+
+Breaking commit found:
+
+-------------------------------------------------------------------------------
+commit 9ce9a02039de72ec8af1bd4bff14f1780337ffcc
+Author: Jianqun Xu <jay.xu@rock-chips.com>
+Date:   Mon Aug 16 09:21:46 2021 +0800
+
+    pinctrl/rockchip: drop the gpio related codes
+    
+    With the patch to separate the gpio driver from the pinctrl driver, now
+    the pinctrl-rockchip can drop the gpio related codes now.
+    
+    Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+    Link: https://lore.kernel.org/r/20210816012146.1119289-1-jay.xu@rock-chips.com
+    Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
