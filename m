@@ -2,99 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2906D41965C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 16:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A81D4196B5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 16:49:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234801AbhI0O32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 10:29:28 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:41148 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234881AbhI0O31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 10:29:27 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18REReXv015040;
-        Mon, 27 Sep 2021 09:27:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632752860;
-        bh=FJWLNYViwTUWu9K8VtFGQXKFiwr+leS4+2POVpUO7xs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=BV1RXuvE6Jdbq/U1qVlqrJdvUP02B67QAP4lp4Cm3g9mA4e2W+lawAmJwniVLTarZ
-         JJT4e27k7vFzogVfwfhIttWj/Ws9dDLnjwzBW7yFyGBJUxwMLf+E0UifnX+YMqP+Ym
-         MuqfM0qnTTEUib0RI27br/VGDzIpPTHju+BTyPZg=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18RERevk041578
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 27 Sep 2021 09:27:40 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 27
- Sep 2021 09:27:40 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 27 Sep 2021 09:27:40 -0500
-Received: from [10.250.37.219] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18REReeH005855;
-        Mon, 27 Sep 2021 09:27:40 -0500
-Subject: Re: [PATCH V2 4/4] arm64: dts: ti: k3-j7200-common-proc-board: Add
- j7200-evm compatible
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
-CC:     Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Sinthu Raja <sinthu.raja@ti.com>,
-        Hari Nagalla <hnagalla@ti.com>,
-        Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>
-References: <20210925201430.11678-1-nm@ti.com>
- <20210925201430.11678-5-nm@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <dded6ab1-7d99-77ee-6865-046a4f45c82b@ti.com>
-Date:   Mon, 27 Sep 2021 09:27:40 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S234828AbhI0OvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 10:51:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48048 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234819AbhI0OvV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Sep 2021 10:51:21 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 526FB60FC2;
+        Mon, 27 Sep 2021 14:49:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632754183;
+        bh=nlm+GXqBOJFgPGuqH4ktEyVp0rZXsByzVCpaKGKn9Pw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CtSY0hs0nhLxHyr6ErsvWuAR1cv3yUK5t2GqYnY79ud/jOLtgMBvrFATh1DTQk5Wr
+         emdDTnPAPoArKZsQl3de5W+/e+Ei/O8rV7O0zRGuu/hG2q+3r5n400glzNY3fMncfY
+         bSsFfTIP/pPxAJ9T2baDtHFfCMU6qXpUwXfEghNuIyrGlhOP79telufsEH0MrhRfuR
+         Uon1rEsEJDFbGdqfsvYSUDQgTmmfQCqiOuqp47yPXAUHLS0DodF2zvxGFADDNU45P8
+         6QyNaDEy01x74UUZCCMh3Joul+V3W09gvDMPW/qq0YTwZdYKRkrNasv7R6CLNsnUDn
+         QI/RyzqUaefig==
+Received: by mail-ed1-f44.google.com with SMTP id v18so35111970edc.11;
+        Mon, 27 Sep 2021 07:49:43 -0700 (PDT)
+X-Gm-Message-State: AOAM531Ko2UvvAP8b06FLyk0UhnaNVgl9vvAEyNyBWdA5Sj4GRWIZbjy
+        aGjFR69yOPiCNg6h5FCCDiJakN4BsikI+46fag==
+X-Google-Smtp-Source: ABdhPJwAdi6VamHHELYSAbPUEIJOXg9VYm6jMbUqTQD67z8h2BqyDUn/kOFm4ji2hkz/vqnJ2ZIn0ddX0WT5DJGrUCg=
+X-Received: by 2002:a17:906:7250:: with SMTP id n16mr449630ejk.147.1632754181882;
+ Mon, 27 Sep 2021 07:49:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210925201430.11678-5-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210927064119.127285-1-gshan@redhat.com> <20210927064119.127285-3-gshan@redhat.com>
+In-Reply-To: <20210927064119.127285-3-gshan@redhat.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 27 Sep 2021 09:49:30 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL8+_Q690-c3J4TS6LBF-mCUBxbhTfr994=Fwffqab0_w@mail.gmail.com>
+Message-ID: <CAL_JsqL8+_Q690-c3J4TS6LBF-mCUBxbhTfr994=Fwffqab0_w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of, numa: Fetch empty NUMA node ID from distance map
+To:     Gavin Shan <gshan@redhat.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>, Marc Zyngier <maz@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, shan.gavin@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/25/21 3:14 PM, Nishanth Menon wrote:
-> Add j7200-evm compatible to the board to allow the board to distinguish
-> itself from other platforms that may be added in the future.
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+On Mon, Sep 27, 2021 at 1:42 AM Gavin Shan <gshan@redhat.com> wrote:
+>
+> There is no device node for the empty NUMA node. However, the
+> corresponding NUMA node ID and distance map is still valid in
+> "numa-distance-map-v1" compatible device node.
+>
+> This fetches the NUMA node ID and distance map for these empty
+> NUMA node from "numa-distance-map-v1" compatible device node.
 
-Acked-by: Suman Anna <s-anna@ti.com>
+This is much nicer.
 
+> Signed-off-by: Gavin Shan <gshan@redhat.com>
 > ---
-> 
-> Changes in V2:
-> * no change
-> 
-> V1: https://lore.kernel.org/all/20210915121937.27702-4-nm@ti.com/
-> 
->  arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> index d14f3c18b65f..121975dc8239 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> @@ -12,6 +12,9 @@
->  #include <dt-bindings/phy/phy.h>
->  
->  / {
-> +	compatible = "ti,j7200-evm", "ti,j7200";
-> +	model = "Texas Instruments J7200 EVM";
+>  drivers/of/of_numa.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
+> index fe6b13608e51..5949829a1b00 100644
+> --- a/drivers/of/of_numa.c
+> +++ b/drivers/of/of_numa.c
+> @@ -111,6 +111,8 @@ static int __init of_numa_parse_distance_map_v1(struct device_node *map)
+>                         return -EINVAL;
+>                 }
+>
+> +               node_set(nodea, numa_nodes_parsed);
 > +
->  	chosen {
->  		stdout-path = "serial2:115200n8";
->  		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-> 
 
+With this, couldn't we remove of_numa_parse_cpu_nodes() as the only
+thing it does is node_set()?
+
+>                 numa_set_distance(nodea, nodeb, distance);
+>
+>                 /* Set default distance of node B->A same as A->B */
+> --
+> 2.23.0
+>
