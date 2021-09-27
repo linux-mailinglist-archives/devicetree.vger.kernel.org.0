@@ -2,137 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D1E7419219
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 12:18:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 487EA41923F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 12:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233778AbhI0KTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 06:19:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55250 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233757AbhI0KTs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 06:19:48 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9440C061575;
-        Mon, 27 Sep 2021 03:18:10 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: gtucker)
-        with ESMTPSA id B21C91F427CE
-Subject: Re: [PATCH v8 9/9] pinctrl/rockchip: drop the gpio related codes
-To:     Jianqun Xu <jay.xu@rock-chips.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>
-References: <20210816011948.1118959-1-jay.xu@rock-chips.com>
- <20210816012146.1119289-1-jay.xu@rock-chips.com>
-From:   Guillaume Tucker <guillaume.tucker@collabora.com>
-Message-ID: <f13ff971-8af2-be9b-fa5d-7913c0ff1351@collabora.com>
-Date:   Mon, 27 Sep 2021 12:18:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S233794AbhI0Ke7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 06:34:59 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:40066 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233787AbhI0Ke7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 06:34:59 -0400
+X-UUID: 98fe2ad69e914c89ae096200ea39a7dc-20210927
+X-UUID: 98fe2ad69e914c89ae096200ea39a7dc-20210927
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1472071810; Mon, 27 Sep 2021 18:33:17 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 27 Sep 2021 18:33:16 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 27 Sep 2021 18:33:16 +0800
+Message-ID: <03494ad08689e43358d554bbc48936118a63fd45.camel@mediatek.com>
+Subject: Re: [PATCH 1/2] ASoC: mediatek: mt8195: add machine driver with
+ mt6359, rt1011 and rt5682
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <aaronyu@google.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Mon, 27 Sep 2021 18:33:16 +0800
+In-Reply-To: <c34d03ff-f349-724e-0dcf-7893f3622cd9@linux.intel.com>
+References: <20210910104405.11420-1-trevor.wu@mediatek.com>
+         <20210910104405.11420-2-trevor.wu@mediatek.com>
+         <10fc49fa-9791-0225-365d-e3074680596c@linux.intel.com>
+         <4d703c5f7cf27ddc8b9886b111ffeeba0c4aa08b.camel@mediatek.com>
+         <1d7fe7455a054819daf05d41ab3658afdc1caced.camel@mediatek.com>
+         <c34d03ff-f349-724e-0dcf-7893f3622cd9@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <20210816012146.1119289-1-jay.xu@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jianqun,
-
-On 16/08/2021 02:21, Jianqun Xu wrote:
-> With the patch to separate the gpio driver from the pinctrl driver, now
-> the pinctrl-rockchip can drop the gpio related codes now.
+On Fri, 2021-09-24 at 09:46 -0500, Pierre-Louis Bossart wrote:
+> > > > > +/* Module information */
+> > > > > +MODULE_DESCRIPTION("MT8195-MT6359-RT1011-RT5682 ALSA SoC
+> > > > > machine
+> > > > > driver");
+> > > > > +MODULE_AUTHOR("Trevor Wu <trevor.wu@mediatek.com>");
+> > > > > +MODULE_LICENSE("GPL v2");
+> > > > 
+> > > > "GPL" is enough
+> > > > 
+> > > 
+> > > I see many projects use GPL v2 here, and all mediatek projects
+> > > use
+> > > GPL
+> > > v2, too.
+> > > I'm not sure which one is better.
+> > > Do I need to modify this?
 > 
-> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
-> ---
-> v8:
->  - none
-> v7:
->  - none, from v1
+> See
 > 
->  drivers/pinctrl/pinctrl-rockchip.c | 645 +----------------------------
->  1 file changed, 17 insertions(+), 628 deletions(-)
+https://urldefense.com/v3/__https://www.kernel.org/doc/html/latest/process/license-rules.html?highlight=module_license*id1__;Iw!!CTRNKA9wMg0ARbw!0xwqsodizM7jFI4lwpT7_h2bk6xHtdNb32YDo2lneZ9u-cs5hAqqdqTci89qK8FwLg$
+>  
+> 
+> Loadable kernel modules also require a MODULE_LICENSE() tag. This tag
+> is
+> neither a replacement for proper source code license information
+> (SPDX-License-Identifier) nor in any way relevant for expressing or
+> determining the exact license under which the source code of the
+> module
+> is provided.
+> 
+> “GPL”
+> 
+> Module is licensed under GPL version 2. This does not express any
+> distinction between GPL-2.0-only or GPL-2.0-or-later. The exact
+> license
+> information can only be determined via the license information in the
+> corresponding source files.
+> 
+> “GPL v2”
+> 
+> Same as “GPL”. It exists for historic reasons.
+> 
+> So "GPL v2" is not incorrect but for new contributions you might as
+> well
+> use the recommended tag.
 
-[...]
 
-Please see the bisection report below about a boot failure on
-rk3288-veyron-jaq which is pointing to this patch.  The issue
-appears to be present on mainline but not on linux-next as of
-next-20210924.
+Got it.
+Thanks for your detailed explanation.
+I will correct it in V2.
 
-Reports aren't automatically sent to the public while we're
-trialing new bisection features on kernelci.org but this one
-looks valid.
+Trevor
 
-Some more details can be found here:
-
-  https://linux.kernelci.org/test/case/id/614f19a33f5497c2bc99a2df/
-
-Please let us know if you need help debugging the issue or if you
-have a fix to try.
-
-Best wishes,
-Guillaume
-
-
-GitHub: https://github.com/kernelci/kernelci-project/issues/58
-
--------------------------------------------------------------------------------
-
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* This automated bisection report was sent to you on the basis  *
-* that you may be involved with the breaking commit it has      *
-* found.  No manual investigation has been done to verify it,   *
-* and the root cause of the problem may be somewhere else.      *
-*                                                               *
-* If you do send a fix, please include this trailer:            *
-*   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
-*                                                               *
-* Hope this helps!                                              *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-mainline/master bisection: baseline.login on rk3288-veyron-jaq
-
-Summary:
-  Start:      7d42e9818258 Merge tag 'gpio-fixes-for-v5.15-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux
-  Plain log:  https://storage.kernelci.org/mainline/master/v5.15-rc2-159-g7d42e9818258/arm/multi_v7_defconfig+CONFIG_EFI=y+CONFIG_ARM_LPAE=y/gcc-8/lab-collabora/baseline-rk3288-veyron-jaq.txt
-  HTML log:   https://storage.kernelci.org/mainline/master/v5.15-rc2-159-g7d42e9818258/arm/multi_v7_defconfig+CONFIG_EFI=y+CONFIG_ARM_LPAE=y/gcc-8/lab-collabora/baseline-rk3288-veyron-jaq.html
-  Result:     9ce9a02039de pinctrl/rockchip: drop the gpio related codes
-
-Checks:
-  revert:     PASS
-  verify:     PASS
-
-Parameters:
-  Tree:       mainline
-  URL:        https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-  Branch:     master
-  Target:     rk3288-veyron-jaq
-  CPU arch:   arm
-  Lab:        lab-collabora
-  Compiler:   gcc-8
-  Config:     multi_v7_defconfig+CONFIG_EFI=y+CONFIG_ARM_LPAE=y
-  Test case:  baseline.login
-
-Breaking commit found:
-
--------------------------------------------------------------------------------
-commit 9ce9a02039de72ec8af1bd4bff14f1780337ffcc
-Author: Jianqun Xu <jay.xu@rock-chips.com>
-Date:   Mon Aug 16 09:21:46 2021 +0800
-
-    pinctrl/rockchip: drop the gpio related codes
-    
-    With the patch to separate the gpio driver from the pinctrl driver, now
-    the pinctrl-rockchip can drop the gpio related codes now.
-    
-    Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
-    Link: https://lore.kernel.org/r/20210816012146.1119289-1-jay.xu@rock-chips.com
-    Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
