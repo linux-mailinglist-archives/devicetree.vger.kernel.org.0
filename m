@@ -2,123 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CAF24197B8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 17:21:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C069419814
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 17:42:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235221AbhI0PXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 11:23:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59532 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235071AbhI0PWy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 11:22:54 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 19C496101A;
-        Mon, 27 Sep 2021 15:21:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632756076;
-        bh=lziEkEubRhQ8bUn3J/w10f68TYGQ6OOJ1Pje7Mukmfg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=oa63i8VPgbR/i0K+fCW78NepaYaTvW4XN1lfw0k/hOQDM6fEdvoVdmQEpymaq0Bzk
-         EcEFepe/KcmJfwqPN/QeyAstkPQepskOY9QLTn+8XReXv0r7/Q35xeCNufUS2ro/9B
-         L0ZVoOwVxeJFzH8+Lhav95WJqxpHQUxgYedDpYYJzVtxkCFu6dOlG5vc4uI2KLoHoL
-         rzfJY8VIYkHK/ZppPiqgH7jq6OQWLsOC+RuTQDC3SfrBjn6qUylc7fijeZaaThHTXV
-         T9at8VWMk4SMtkbuw/IlR81XmRZ9CKfK/ph1JKdiRwTlpn25yW977TWhnkKaefUYE8
-         tCK6J5JkiQHIQ==
-Received: by mail-ed1-f52.google.com with SMTP id v10so66318914edj.10;
-        Mon, 27 Sep 2021 08:21:16 -0700 (PDT)
-X-Gm-Message-State: AOAM533669dpdPb3Ok9qb+VpTbzeVfENe6gnmWyjarl2YT5S7b5DDlnJ
-        N8zet01K3dIS/7ixUZJaoPLcgXLfhjbMQo6YXQ==
-X-Google-Smtp-Source: ABdhPJz4BwEe1PEy9tCxSr5MzZ4tPnhFsOF47oRWoerA4LsvnEnjdK3MsOsWhDOXvjskiH1Oatv4Pe5QuoYcS07OFSo=
-X-Received: by 2002:a17:906:ae83:: with SMTP id md3mr721524ejb.84.1632756074643;
- Mon, 27 Sep 2021 08:21:14 -0700 (PDT)
+        id S235149AbhI0Pnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 11:43:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46466 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234500AbhI0Pnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 11:43:45 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E0D0C061575
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 08:42:07 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id dm26so36917715edb.12
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 08:42:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yixeTS4IcK7qbNDVmCuUdTLJjmWoVoD+wqJwXLkptEA=;
+        b=JUGS/SuwdzthkpSr16fC4keLiCCyozxTUSlv4SnVHjAXsJpGfpRlk8tSX6kI5Dmqpr
+         Bh6bU6N8M+VeA8/WSEgqSZc+yqMNg++YcBTtu7EIXmrz8T2EzjXhauj6B+U8ifgkxKsq
+         ioy22b8pB2ZY31eLaewiMgnAPSk8CHUWsx2sAsw8KcghKjJtkwEGeTqVH5sKQMLBZH0r
+         LDFtQBvN3WDEj77Be714jsF5ysApHaniuAm8EuL741t0UevYtC+oglli2zGzLHhNVHkJ
+         izYEGoCXPE2BttIjbWMa3tnfz7PpW7TgGqg46j6/meTqyFNkXH7h6PyY/9RMV4R45vqN
+         r85A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yixeTS4IcK7qbNDVmCuUdTLJjmWoVoD+wqJwXLkptEA=;
+        b=XCCz42ISFIVfCxbi2nX8og4htLGO6pERPd+/aePj52AiM6EpunpgcLUJ/5llcH6FxO
+         tTwhrqhlI/+GSLNiL55rh6YY3DgpuR+KHTvFjvIZeuYLL4i6IL5Kf4qyLbO7ysykdE5B
+         HLsfmzjHfhrzesc9L4dDGXFe2pUIQntKqpBiQnk96iblv5bBXTzzHZsG15U7pDPeDtxy
+         +rUc4J5Y+3cmzAGUAGWwdbSIMGkTduXE7idZ6hBwOpb37Ua8NQlgBL93AieG2MOY6eVK
+         RiCl68EjfPApHoS+y9CIWMlq2F2LYFbosN2fi8p7+e6wM4hye6pDXgrpd4Jb4Fp75ywV
+         HYYw==
+X-Gm-Message-State: AOAM530q0JCSFrVkv9/aqGFkzP6MP7FcbI8inFNrKHFSxQWxnRj1OOxf
+        zFx8Bi8TbiNNKElKjTxrvzcdfw==
+X-Google-Smtp-Source: ABdhPJyWXfQm6sHYMrxwCK2DoebLIaIwTL5p70SfDwucjWuThxcPxpwLss7p71g6/LNBDUCkjArSqg==
+X-Received: by 2002:a17:906:39cd:: with SMTP id i13mr734388eje.227.1632757325745;
+        Mon, 27 Sep 2021 08:42:05 -0700 (PDT)
+Received: from fedora.. (dh207-96-123.xnet.hr. [88.207.96.123])
+        by smtp.googlemail.com with ESMTPSA id n16sm10768025edd.10.2021.09.27.08.42.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Sep 2021 08:42:05 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH 1/4] arm64: dts: marvell: espressobin-ultra: enable UART output by default
+Date:   Mon, 27 Sep 2021 17:41:56 +0200
+Message-Id: <20210927154159.2168500-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210921004627.2786132-1-osk@google.com> <YUzzjYMwNKwMFGSr@robh.at.kernel.org>
- <CABoTLcRpSuUUu-x-S8yTLUJCiN4RERi2kd8XATP_n3ZTRpAWDg@mail.gmail.com>
-In-Reply-To: <CABoTLcRpSuUUu-x-S8yTLUJCiN4RERi2kd8XATP_n3ZTRpAWDg@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 27 Sep 2021 10:21:03 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ+hqKfLDzbMpzPks+wJaNuwU6kodqnqWjkOb8aDf92ZQ@mail.gmail.com>
-Message-ID: <CAL_JsqJ+hqKfLDzbMpzPks+wJaNuwU6kodqnqWjkOb8aDf92ZQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add nct7802 bindings
-To:     Oskar Senft <osk@google.com>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 24, 2021 at 10:18 AM Oskar Senft <osk@google.com> wrote:
->
-> Hi Rob
->
-> > > +maintainers:
-> > > +  - Guenter Roeck <linux@roeck-us.net>
-> >
-> > Should be someone that cares about this h/w, not who applies patches.
->
-> Hmm, ok. After talking with Guenter, I thought that would be him. But
-> I can add myself, too, since we're obviously using that HW. Is that
-> what you mean?
+Since Espressobin Ultra board has a microUSB port
+with the onboard USB to UART connected to it to be
+used as a debug UART it makes no sense to require
+the bootloader to pass console args to the kernel in
+order to get console working.
 
-Okay, seems it is Guenter in this case.
+So, use the "stdout-path" property to enable the UART
+output on the microUSB port by default.
 
->
-> > > +    properties:
-> > > +      ltd:
-> > > +        type: object
-> > > +        description: Internal Temperature Sensor ("LTD")
-> >
-> > No child properties?
->
-> Yes. We really just want the ability to enable / disable that sensor.
-> What's the correct way in the YAML to describe that? Same for RTD3.
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+---
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Okay, you need a 'additionalProperties: false' in the schema. (status
-will automagically be allowed)
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+index c5eb3604dd5b..c1770ceff3c1 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+@@ -15,6 +15,10 @@ / {
+ 	compatible = "globalscale,espressobin-ultra", "marvell,armada3720",
+ 		     "marvell,armada3710";
+ 
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
+ 	aliases {
+ 		/* ethernet1 is WAN port */
+ 		ethernet1 = &switch0port5;
+-- 
+2.31.1
 
->
-> > > +          "type":
-> > > +            description: Sensor type (3=thermal diode, 4=thermistor).
-> >
-> > 2nd time I've seen this property this week[1]. Needs to be more specific
-> > than just 'type'.
->
-> Ha yes, the example in [1] came from this patch. I went with this name
-> to stay in-line with the sysfs name, being "tempX_type". In the
-> hardware this would be called "mode".
->
-> My original proposal [2] was to have this property a string list named
-> "nuvoton,rtd-modes" with a set of accepted values, i.e. basically an
-> enum. Splitting this string list into individual sensors makes sense.
->
-> The other question that remains open (at least in my view), is whether
-> naming the sensors "ltd, rtd1, rtd2, rtd3" is the right approach or if
-> we should really go to naming them "sensor@X" with a reg property set
-> to X. Note that ltd and rtd3 do not accept any additional
-> configuration beyond "is enabled" (i.e. "status").
-
-If X is not made up numbering (i.e. corresponds to something in the
-datasheet), then using addresses and generic node names are preferred.
-Alignment with other similar h/w is also preferred.
-
-> > > +            temperature-sensors {
-> > > +                ltd {
-> > > +                  status = "disabled";
-> >
-> > Don't show status in examples.
-> Hmm, ok. I found it useful to make clear that a sensor can be
-> disabled, but maybe that's just always the case?
-
-Yeah, this case is a bit special. The node not being present also disables it.
-
-The problem is generally we don't want disabled examples as that turns
-off some validation. I have a check for this that I plan to add, but I
-don't have a way to have exceptions.
-
-What you could do is just comment out the node. Then you show it, but
-don't compile it.
-
-Rob
