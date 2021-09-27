@@ -2,432 +2,529 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6B0E418DC3
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 04:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC538418DCC
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 04:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232459AbhI0CgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 22:36:18 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:33018 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229767AbhI0CgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 22:36:17 -0400
-X-UUID: 87f3da82a1554e1880ad2c666154fc28-20210927
-X-UUID: 87f3da82a1554e1880ad2c666154fc28-20210927
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1219206350; Mon, 27 Sep 2021 10:34:34 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 27 Sep 2021 10:34:33 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 27 Sep 2021 10:34:32 +0800
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     <robh@kernel.org>
-CC:     <Ryder.Lee@mediatek.com>, <devicetree@vger.kernel.org>,
-        <enric.balletbo@collabora.com>, <fparent@baylibre.com>,
-        <gregkh@linuxfoundation.org>, <herbert@gondor.apana.org.au>,
-        <hsinyi@chromium.org>, <john@phrozen.org>,
-        <linus.walleij@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-serial@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        <linux@roeck-us.net>, <matthias.bgg@gmail.com>, <mpm@selenic.com>,
-        <mturquette@baylibre.com>, <robh+dt@kernel.org>,
-        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
-        <sean.wang@kernel.org>, <seiya.wang@mediatek.com>,
-        <wim@linux-watchdog.org>
-Subject: [v5,5/9] dt-bindings: pinctrl: update bindings for MT7986 SoC
-Date:   Mon, 27 Sep 2021 10:34:19 +0800
-Message-ID: <20210927023419.17994-1-sam.shih@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <1632491961.645727.1195978.nullmailer@robh.at.kernel.org>
-References: <1632491961.645727.1195978.nullmailer@robh.at.kernel.org>
+        id S232496AbhI0CpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 22:45:04 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:53575 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229473AbhI0CpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 22:45:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1632710607; x=1664246607;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=G19ZawGl4yA+d518Ao44C1Pd5HIVXMPeFBssvKZTTck=;
+  b=Kavl3pBlBfd2ay+aXRu1SR+zSpdGRPAs3Nsyq988NRumjR7+o7zROfHG
+   gazeMGly9DK9JNVWq8yveaNvAQXfg6HBUCCQ++jPXE5u6xNmaDc2rtKU1
+   d2LcTfOX5COr29CcqrDpg3aUC6Y3yuVcUVQJb0ce9x5j/ZQPe0v3HfgcO
+   A=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 26 Sep 2021 19:43:27 -0700
+X-QCInternal: smtphost
+Received: from nalasex01c.na.qualcomm.com ([10.47.97.35])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2021 19:43:26 -0700
+Received: from taozha-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7;
+ Sun, 26 Sep 2021 19:43:20 -0700
+From:   Tao Zhang <quic_taozha@quicinc.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Mao Jinlong <quic_jinlmao@quicinc.com>,
+        "Yuanfang Zhang" <quic_yuanfang@quicinc.com>
+Subject: [PATCH v2 2/2] arm64: dts: qcom: sm8250: Add Coresight support
+Date:   Mon, 27 Sep 2021 10:43:01 +0800
+Message-ID: <1632710581-11896-1-git-send-email-quic_taozha@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 Content-Type: text/plain
-X-MTK:  N
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This updates bindings for MT7986 pinctrl driver. The
-difference of pinctrl between mt7986a and mt7986b is that pin-41 to pin-65
-do not exist on mt7986b
+Add the basic coresight components found on Qualcomm SM8250 Soc. The
+basic coresight components include ETF, ETMs,STM and the related
+funnels.
+ETM verification and use of Coresight components need Coresight
+support in this device tree. Since the ETR sink needs SMMU support,
+and SMMU has not been enabled on RB5. ETR is not added to this patch,
+and it will be added once SMMU is enabled on RB5. ETF sink has been
+added to the device tree for RB5.
 
-Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-
+Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
 ---
-v5 : fixed yamllint warnings/errors
-v4 : used yaml format instead of txt format document
-v3 : make mt7986 pinctrl bindings as a separate file
-v2 : deleted the redundant description of mt7986a/mt7986b
----
- .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 353 ++++++++++++++++++
- 1 file changed, 353 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 439 +++++++++++++++++++++++++++++++
+ 1 file changed, 439 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-new file mode 100644
-index 000000000000..51a13129bcb8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-@@ -0,0 +1,353 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/mediatek,mt7986-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index 5f41de2..1e1579a 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -223,6 +223,445 @@
+ 		regulator-max-microvolt = <1800000>;
+ 		regulator-always-on;
+ 	};
 +
-+title: Mediatek MT7986 Pin Controller Device Tree Bindings
++	stm@6002000 {
++		compatible = "arm,coresight-stm", "arm,primecell";
++		reg = <0 0x06002000 0 0x1000>,
++		      <0 0x16280000 0 0x180000>;
++		reg-names = "stm-base", "stm-stimulus-base";
 +
-+maintainers:
-+  - Sean Wang <sean.wang@kernel.org>
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
 +
-+description: |+
-+  The MediaTek's MT7986 Pin controller is used to control SoC pins.
++		out-ports {
++			port {
++				stm_out: endpoint {
++					remote-endpoint =
++					  <&funnel0_in7>;
++				};
++			};
++		};
++	};
 +
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt7986a-pinctrl
-+      - mediatek,mt7986b-pinctrl
++	funnel@6041000 {
++		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++		reg = <0 0x06041000 0 0x1000>;
 +
-+  reg:
-+    minItems: 8
-+    maxItems: 8
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
 +
-+  reg-names:
-+    items:
-+      - const: gpio_base
-+      - const: iocfg_rt_base
-+      - const: iocfg_rb_base
-+      - const: iocfg_lt_base
-+      - const: iocfg_lb_base
-+      - const: iocfg_tr_base
-+      - const: iocfg_tl_base
-+      - const: eint
++		out-ports {
++			port {
++				funnel0_out: endpoint {
++					remote-endpoint =
++					  <&merge_funnel_in0>;
++				};
++			};
++		};
 +
-+  gpio-controller: true
++		in-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+  "#gpio-cells":
-+    const: 2
-+    description: |
-+      Number of cells in GPIO specifier. Since the generic GPIO
-+      binding is used, the amount of cells must be specified as 2. See the below
-+      mentioned gpio binding representation for description of particular cells.
++			port@7 {
++				reg = <7>;
++				funnel0_in7: endpoint {
++					remote-endpoint = <&stm_out>;
++				};
++			};
++		};
++	};
 +
-+  interrupt-controller: true
++	funnel@6042000 {
++		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++		reg = <0 0x06042000 0 0x1000>;
 +
-+  interrupts:
-+    maxItems: 1
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
 +
-+  "#interrupt-cells":
-+    const: 2
++		out-ports {
++			port {
++				funnel2_out: endpoint {
++					remote-endpoint =
++					  <&merge_funnel_in2>;
++				};
++			};
++		};
 +
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - gpio-controller
-+  - "#gpio-cells"
++		in-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+patternProperties:
-+  '-[0-9]+$':
-+    type: object
-+    additionalProperties: false
++			port@4 {
++				reg = <4>;
++				funnel2_in5: endpoint {
++					remote-endpoint =
++					  <&apss_merge_funnel_out>;
++				};
++			};
++		};
++	};
 +
-+    patternProperties:
-+      'mux':
-+        type: object
-+        additionalProperties: false
-+        description: |
-+          pinmux configuration nodes.
++	funnel@6b04000 {
++		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++		arm,primecell-periphid = <0x000bb908>;
 +
-+          Valid value	      function    pins (in pin#)
-+          ---------------------------------------------------------------------
-+          "watchdog"        "watchdog"  0
-+          "wifi_led"        "led"       1, 2
-+          "i2c"             "i2c"       3, 4
-+          "uart1_0"         "uart"      7, 8, 9, 10
-+          "pcie_clk"        "pcie"      9
-+          "pcie_wake"       "pcie"      10
-+          "spi1_0"          "spi"       11, 12, 13, 14
-+          "pwm1_1"          "pwm"       20,
-+          "pwm0"            "pwm"       21,
-+          "pwm1_0"          "pwm"       22,
-+          "snfi"            "flash"     23, 24, 25, 26, 27, 28
-+          "spi1_2"          "spi"       29, 30, 31, 32
-+          "emmc_45"         "emmc"      22, 23, 24, 25, 26, 27, 28, 29, 30,
-+                                        31, 32
-+          "spi1_1"          "spi"       23, 24, 25, 26
-+          "uart1_2"         "uart"      29, 30, 31, 32
-+          "uart1_1"         "uart"      23, 24, 25, 26
-+          "uart2_0"         "uart"      29, 30, 31, 32
-+          "spi0"            "spi"       33, 34, 35, 36
-+          "spi0_wp_hold"    "spi"       37, 38
-+          "uart1_3_rx_tx"   "uart"      35, 36
-+          "uart1_3_cts_rts" "uart"      37, 38
-+          "uart2_1"         "uart"      33, 34, 35, 36
-+          "spi1_3"          "spi"       33, 34, 35, 36
-+          "uart0"           "uart"      39, 40
-+          "pcie_pereset"    "pcie"      41
-+          "uart1"           "uart"      42, 43, 44, 45
-+          "uart2"           "uart"      46, 47, 48, 49
-+          "emmc_51"         "emmc"      50, 51, 52, 53, 54, 55, 56, 57, 57,
-+                                        59, 60, 61
-+          "pcm"             "audio"     62, 63, 64, 65
-+          "i2s"             "audio"     62, 63, 64, 65
-+          "switch_int"      "eth"       66
-+          "mdc_mdio"        "eth"       67
++		reg = <0 0x6b04000 0 0x1000>;
++		reg-names = "funnel-base";
 +
-+        $ref: "/schemas/pinctrl/pinmux-node.yaml"
-+        properties:
-+          function:
-+            description: |
-+              A string containing the name of the function to mux to the group.
-+              There is no "audio", "pcie" functions on mt7986b, you can only use
-+              those functions on mt7986a.
-+            enum: [audio, emmc, eth, i2c, led, flash, pcie, pwm, spi, uart,
-+                   watchdog, wifi]
-+          groups:
-+            description: |
-+              An array of strings. Each string contains the name of a group.
-+              There is no "pcie_pereset", "uart1", "uart2" "emmc_51", "pcm",
-+              and "i2s" groups on mt7986b, you can only use those groups on
-+              mt7986a.
-+        required:
-+          - function
-+          - groups
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
 +
-+        allOf:
-+          - if:
-+              properties:
-+                function:
-+                  const: audio
-+            then:
-+              properties:
-+                groups:
-+                  enum: [pcm, i2s]
-+          - if:
-+              properties:
-+                function:
-+                  const: emmc
-+            then:
-+              properties:
-+                groups:
-+                  enum: [emmc, emmc_rst]
-+          - if:
-+              properties:
-+                function:
-+                  const: eth
-+            then:
-+              properties:
-+                groups:
-+                  enum: [switch_int, mdc_mdio]
-+          - if:
-+              properties:
-+                function:
-+                  const: i2c
-+            then:
-+              properties:
-+                groups:
-+                  enum: [i2c]
-+          - if:
-+              properties:
-+                function:
-+                  const: led
-+            then:
-+              properties:
-+                groups:
-+                  enum: [wifi_led]
-+          - if:
-+              properties:
-+                function:
-+                  const: flash
-+            then:
-+              properties:
-+                groups:
-+                  enum: [snfi]
-+          - if:
-+              properties:
-+                function:
-+                  const: pcie
-+            then:
-+              properties:
-+                groups:
-+                  enum: [pcie_clk, pcie_wake, pcie_pereset]
-+          - if:
-+              properties:
-+                function:
-+                  const: pwm
-+            then:
-+              properties:
-+                groups:
-+                  enum: [pwm0, pwm1_0, pwm1_1]
-+          - if:
-+              properties:
-+                function:
-+                  const: spi
-+            then:
-+              properties:
-+                groups:
-+                  enum: [spi0, spi0_wp_hold, spi1_0, spi1_1, spi1_2, spi1_3]
-+          - if:
-+              properties:
-+                function:
-+                  const: uart
-+            then:
-+              properties:
-+                groups:
-+                  enum: [uart1_0, uart1_1, uart1_2, uart1_3_rx_tx,
-+                         uart1_3_cts_rts, uart2_0, uart2_1, uart0, uart1, uart2]
-+          - if:
-+              properties:
-+                function:
-+                  const: watchdog
-+            then:
-+              properties:
-+                groups:
-+                  enum: [watchdog]
-+          - if:
-+              properties:
-+                function:
-+                  const: wifi
-+            then:
-+              properties:
-+                groups:
-+                  enum: [wf_2g, wf_5g, wf_dbdc]
-+      'conf':
-+        type: object
-+        additionalProperties: false
-+        description: |
-+          pinconf configuration nodes.
-+        $ref: "/schemas/pinctrl/pincfg-node.yaml"
++		out-ports {
++			port {
++				merge_funnel_out: endpoint {
++					remote-endpoint =
++						<&etf_in>;
++				};
++			};
++		};
 +
-+        properties:
-+          pins:
-+            description: |
-+              An array of strings. Each string contains the name of a pin.
-+              There is no PIN 41 to PIN 65 above on mt7686b, you can only use
-+              those pins on mt7986a.
-+            enum: [SYS_WATCHDOG, WF2G_LED, WF5G_LED, I2C_SCL, I2C_SDA, GPIO_0,
-+                   GPIO_1, GPIO_2, GPIO_3, GPIO_4, GPIO_5, GPIO_6, GPIO_7,
-+                   GPIO_8, GPIO_9, GPIO_10, GPIO_11, GPIO_12, GPIO_13, GPIO_14,
-+                   GPIO_15, PWM0, PWM1, SPI0_CLK, SPI0_MOSI, SPI0_MISO, SPI0_CS,
-+                   SPI0_HOLD, SPI0_WP, SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS,
-+                   SPI2_CLK, SPI2_MOSI, SPI2_MISO, SPI2_CS, SPI2_HOLD, SPI2_WP,
-+                   UART0_RXD, UART0_TXD, PCIE_PERESET_N, UART1_RXD, UART1_TXD,
-+                   UART1_CTS, UART1_RTS, UART2_RXD, UART2_TXD, UART2_CTS,
-+                   UART2_RTS, EMMC_DATA_0, EMMC_DATA_1, EMMC_DATA_2,
-+                   EMMC_DATA_3, EMMC_DATA_4, EMMC_DATA_5, EMMC_DATA_6,
-+                   EMMC_DATA_7, EMMC_CMD, EMMC_CK, EMMC_DSL, EMMC_RSTB, PCM_DTX,
-+                   PCM_DRX, PCM_CLK, PCM_FS, MT7531_INT, SMI_MDC, SMI_MDIO,
-+                   WF0_DIG_RESETB, WF0_CBA_RESETB, WF0_XO_REQ, WF0_TOP_CLK,
-+                   WF0_TOP_DATA, WF0_HB1, WF0_HB2, WF0_HB3, WF0_HB4, WF0_HB0,
-+                   WF0_HB0_B, WF0_HB5, WF0_HB6, WF0_HB7, WF0_HB8, WF0_HB9,
-+                   WF0_HB10, WF1_DIG_RESETB, WF1_CBA_RESETB, WF1_XO_REQ,
-+                   WF1_TOP_CLK, WF1_TOP_DATA, WF1_HB1, WF1_HB2, WF1_HB3,
-+                   WF1_HB4, WF1_HB0, WF1_HB0_B, WF1_HB5, WF1_HB6, WF1_HB7,
-+                   WF1_HB8]
++		in-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+          bias-disable: true
++			port@7 {
++				reg = <7>;
++				swao_funnel_in7: endpoint {
++					slave-mode;
++					remote-endpoint=
++						<&merg_funnel_out>;
++				};
++			};
++		};
 +
-+          bias-pull-up: true
++	};
 +
-+          bias-pull-down: true
++	funnel@6045000 {
++		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++		reg = <0 0x06045000 0 0x1000>;
 +
-+          input-enable: true
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
 +
-+          input-disable: true
++		out-ports {
++			port {
++				merg_funnel_out: endpoint {
++					remote-endpoint = <&swao_funnel_in7>;
++				};
++			};
++		};
 +
-+          output-enable: true
++		in-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+          output-low: true
++			port@0 {
++				reg = <0>;
++				merge_funnel_in0: endpoint {
++					remote-endpoint =
++					  <&funnel0_out>;
++				};
++			};
 +
-+          output-high: true
++			port@1 {
++				reg = <1>;
++				merge_funnel_in2: endpoint {
++					remote-endpoint =
++					  <&funnel2_out>;
++				};
++			};
++		};
++	};
 +
-+          input-schmitt-enable: true
++	etf@6b05000 {
++		compatible = "arm,coresight-tmc", "arm,primecell";
++		reg = <0 0x06b05000 0 0x1000>;
 +
-+          input-schmitt-disable: true
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
 +
-+          drive-strength:
-+            enum: [2, 4, 6, 8, 10, 12, 14, 16]
++		in-ports {
++			port {
++				etf_in: endpoint {
++					remote-endpoint =
++					  <&merge_funnel_out>;
++				};
++			};
++		};
++	};
 +
-+          mediatek,pull-up-adv:
-+            description: |
-+              Valid arguments for 'mediatek,pull-up-adv' are '0', '1', '2', '3'
-+              Pull up setings for 2 pull resistors, R0 and R1. Valid arguments
-+              are described as below:
-+              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-+              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-+              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-+              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            enum: [0, 1, 2, 3]
++	etm@7040000 {
++		compatible = "arm,coresight-etm4x", "arm,primecell";
++		reg = <0 0x07040000 0 0x1000>;
 +
-+          mediatek,pull-down-adv:
-+            description: |
-+              Valid arguments for 'mediatek,pull-up-adv' are '0', '1', '2', '3'
-+              Pull down setings for 2 pull resistors, R0 and R1. Valid arguments
-+              are described as below:
-+              0: (R1, R0) = (0, 0) which means R1 disabled and R0 disabled.
-+              1: (R1, R0) = (0, 1) which means R1 disabled and R0 enabled.
-+              2: (R1, R0) = (1, 0) which means R1 enabled and R0 disabled.
-+              3: (R1, R0) = (1, 1) which means R1 enabled and R0 enabled.
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            enum: [0, 1, 2, 3]
++		cpu = <&CPU0>;
 +
-+        required:
-+          - pins
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++		arm,coresight-loses-context-with-cpu;
 +
-+additionalProperties: false
++		out-ports {
++			port {
++				etm0_out: endpoint {
++					remote-endpoint =
++					  <&apss_funnel_in0>;
++				};
++			};
++		};
++	};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
++	etm@7140000 {
++		compatible = "arm,coresight-etm4x", "arm,primecell";
++		reg = <0 0x07140000 0 0x1000>;
 +
-+    soc {
-+      pio: pinctrl@1001f000 {
-+        compatible = "mediatek,mt7986a-pinctrl";
-+        reg = <0 0x1001f000 0 0x1000>,
-+              <0 0x11c30000 0 0x1000>,
-+              <0 0x11c40000 0 0x1000>,
-+              <0 0x11e20000 0 0x1000>,
-+              <0 0x11e30000 0 0x1000>,
-+              <0 0x11f00000 0 0x1000>,
-+              <0 0x11f10000 0 0x1000>,
-+              <0 0x1000b000 0 0x1000>;
-+        reg-names = "gpio_base", "iocfg_rt_base", "iocfg_rb_base",
-+              "iocfg_lt_base", "iocfg_lb_base", "iocfg_tr_base",
-+              "iocfg_tl_base", "eint";
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        gpio-ranges = <&pio 0 0 100>;
-+        interrupt-controller;
-+        interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-parent = <&gic>;
-+        #interrupt-cells = <2>;
++		cpu = <&CPU1>;
 +
-+        uart1_pins: uart1-pins-42-to-45 {
-+          mux {
-+            function = "uart";
-+            groups = "uart1";
-+          };
-+        };
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++		arm,coresight-loses-context-with-cpu;
 +
-+        uart2_pins: uart1-pins-46-to-49 {
-+          mux {
-+            function = "uart";
-+            groups = "uart2";
-+          };
-+        };
++		out-ports {
++			port {
++				etm1_out: endpoint {
++					remote-endpoint =
++					  <&apss_funnel_in1>;
++				};
++			};
++		};
++	};
 +
-+      };
-+    };
++	etm@7240000 {
++		compatible = "arm,coresight-etm4x", "arm,primecell";
++		reg = <0 0x07240000 0 0x1000>;
++
++		cpu = <&CPU2>;
++
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++		arm,coresight-loses-context-with-cpu;
++
++		out-ports {
++			port {
++				etm2_out: endpoint {
++					remote-endpoint =
++					  <&apss_funnel_in2>;
++				};
++			};
++		};
++	};
++
++	etm@7340000 {
++		compatible = "arm,coresight-etm4x", "arm,primecell";
++		reg = <0 0x07340000 0 0x1000>;
++
++		cpu = <&CPU3>;
++
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++		arm,coresight-loses-context-with-cpu;
++
++		out-ports {
++			port {
++				etm3_out: endpoint {
++					remote-endpoint =
++					  <&apss_funnel_in3>;
++				};
++			};
++		};
++	};
++
++	etm@7440000 {
++		compatible = "arm,coresight-etm4x", "arm,primecell";
++		reg = <0 0x07440000 0 0x1000>;
++
++		cpu = <&CPU4>;
++
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++		arm,coresight-loses-context-with-cpu;
++
++		out-ports {
++			port {
++				etm4_out: endpoint {
++					remote-endpoint =
++					  <&apss_funnel_in4>;
++				};
++			};
++		};
++	};
++
++	etm@7540000 {
++		compatible = "arm,coresight-etm4x", "arm,primecell";
++		reg = <0 0x07540000 0 0x1000>;
++
++		cpu = <&CPU5>;
++
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++		arm,coresight-loses-context-with-cpu;
++
++		out-ports {
++			port {
++				etm5_out: endpoint {
++					remote-endpoint =
++					  <&apss_funnel_in5>;
++				};
++			};
++		};
++	};
++
++	etm@7640000 {
++		compatible = "arm,coresight-etm4x", "arm,primecell";
++		reg = <0 0x07640000 0 0x1000>;
++
++		cpu = <&CPU6>;
++
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++		arm,coresight-loses-context-with-cpu;
++
++		out-ports {
++			port {
++				etm6_out: endpoint {
++					remote-endpoint =
++					  <&apss_funnel_in6>;
++				};
++			};
++		};
++	};
++
++	etm@7740000 {
++		compatible = "arm,coresight-etm4x", "arm,primecell";
++		reg = <0 0x07740000 0 0x1000>;
++
++		cpu = <&CPU7>;
++
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++		arm,coresight-loses-context-with-cpu;
++
++		out-ports {
++			port {
++				etm7_out: endpoint {
++					remote-endpoint =
++					  <&apss_funnel_in7>;
++				};
++			};
++		};
++	};
++
++	funnel@7800000 {
++		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++		reg = <0 0x07800000 0 0x1000>;
++
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++
++		out-ports {
++			port {
++				apss_funnel_out: endpoint {
++					remote-endpoint =
++					  <&apss_merge_funnel_in>;
++				};
++			};
++		};
++
++		in-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				apss_funnel_in0: endpoint {
++					remote-endpoint =
++					  <&etm0_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++				apss_funnel_in1: endpoint {
++					remote-endpoint =
++					  <&etm1_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++				apss_funnel_in2: endpoint {
++					remote-endpoint =
++					  <&etm2_out>;
++				};
++			};
++
++			port@3 {
++				reg = <3>;
++				apss_funnel_in3: endpoint {
++					remote-endpoint =
++					  <&etm3_out>;
++				};
++			};
++
++			port@4 {
++				reg = <4>;
++				apss_funnel_in4: endpoint {
++					remote-endpoint =
++					  <&etm4_out>;
++				};
++			};
++
++			port@5 {
++				reg = <5>;
++				apss_funnel_in5: endpoint {
++					remote-endpoint =
++					  <&etm5_out>;
++				};
++			};
++
++			port@6 {
++				reg = <6>;
++				apss_funnel_in6: endpoint {
++					remote-endpoint =
++					  <&etm6_out>;
++				};
++			};
++
++			port@7 {
++				reg = <7>;
++				apss_funnel_in7: endpoint {
++					remote-endpoint =
++					  <&etm7_out>;
++				};
++			};
++		};
++	};
++
++	funnel@7810000 {
++		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++		reg = <0 0x07810000 0 0x1000>;
++
++		clocks = <&aoss_qmp>;
++		clock-names = "apb_pclk";
++
++		out-ports {
++			port {
++				apss_merge_funnel_out: endpoint {
++					remote-endpoint =
++					  <&funnel2_in5>;
++				};
++			};
++		};
++
++		in-ports {
++			port {
++				apss_merge_funnel_in: endpoint {
++					remote-endpoint =
++					  <&apss_funnel_out>;
++				};
++			};
++		};
++	};
+ };
+ 
+ &adsp {
 -- 
-2.29.2
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
