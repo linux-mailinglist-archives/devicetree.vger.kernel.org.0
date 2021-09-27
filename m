@@ -2,112 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D725A419F5A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 21:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8229D419F68
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 21:48:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236590AbhI0Tpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 15:45:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48744 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236610AbhI0Tpi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 15:45:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0D36661041;
-        Mon, 27 Sep 2021 19:44:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632771840;
-        bh=8GrvKu/IUbzbbcM+kL2hJO4c/ubmgYOvUvLZLycF9Vk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FCmXzIZyGDB0q81LQrHgBYVc22gJNKM4XS2kS49NDNIjzpQox4jTqNwDUUoUgqISc
-         tAEeY3XkNfhf2j4NldvO4CBl5YyI2dqSc2qS1LnjiFYzNn7mQrJ34jPre0xGOMTLfK
-         ShgtDMYy6WlfhbNpnly/x9Nn2+ums+zAhkZaPKioT9U7byyFEENU0HIMIE/xej+hPJ
-         6rDOq9+39HVadw2KsYSDBbbYJA6H64cPz3YQlYVG2JFPaNCIJi2JLubUlxxQhWBvsX
-         V9In+EXzzWZobxD1bB5nrlOlr5NtODACdm6y/B7qIKoBuhDT2SchJR8r9/wK2OBM3P
-         YdUqbY2txNJ+g==
-Received: by mail-ed1-f45.google.com with SMTP id ee50so73824957edb.13;
-        Mon, 27 Sep 2021 12:43:59 -0700 (PDT)
-X-Gm-Message-State: AOAM532UskswrjJxcs6O0GTWFodRRjPgqogXJu35Bl/c0XYmcvM7+5yt
-        PyJEiBri+m71yqtCYTWkvvXsHDAl958VpdzDVQ==
-X-Google-Smtp-Source: ABdhPJw0CYw78V/Ve0LRrStC/Z1ltF3mBSTTa+t2nz9TbflXF/Q5qk+QdRrlblPLEiSKsEprKHUdoxnZXde7l3xfk+s=
-X-Received: by 2002:a17:906:a294:: with SMTP id i20mr2146924ejz.128.1632771838384;
- Mon, 27 Sep 2021 12:43:58 -0700 (PDT)
+        id S235732AbhI0TuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 15:50:10 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:46741 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235711AbhI0TuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 15:50:08 -0400
+Received: by mail-oi1-f182.google.com with SMTP id s69so26996821oie.13;
+        Mon, 27 Sep 2021 12:48:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=AuxQQJbmAE0wiMu8TirI3HoWUSXRi8ZVxX3PpApnFpo=;
+        b=W4nTIH82Rw6OuskxfvgZwK8XgpLwK8kq8wWpEf6GhiyuTK+Es+8IwE0K2MgWPpgFHq
+         lL8Gji3YwKhI/SWyeZKPi0r6LTTojrhVAud+Ooq50VlRK8gPjLZYutM04w85UMRDCCrO
+         LXNN9CCOlkMUpwbhX5x2sAsJzqx2Zo++Z9jpDUxuQakeR/jt1pkbwTV813fzEgXRha/z
+         Yl6Y5CF/TXcHWdxX9THE70GmNtpVGvOiTGr76YMY13mL15est8VEAKkLqqPc/3KtK+/8
+         Su7qs/+l+CgIemhH7/OH9fQQIqH04p4sNKwGYU96BSQXOvvwQNbrqxP+p4VYeaKwWwvk
+         J9hg==
+X-Gm-Message-State: AOAM530wm1MpeQmQfv9BaTyew6zOLXFzmDA9eyDdOwHeTsZI0RpmoD73
+        Lq+MEK+czb/oRI7nKhZRoBBAjbc3Lw==
+X-Google-Smtp-Source: ABdhPJzwmRdrLzZJ/rSFTm3SzH5EAk/9FKnL+MykIjYhuIQqKRHRYbhGK84jXFVSn7CrCrXr+hhUCQ==
+X-Received: by 2002:a54:4688:: with SMTP id k8mr688267oic.70.1632772110031;
+        Mon, 27 Sep 2021 12:48:30 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bg36sm1253267oib.2.2021.09.27.12.48.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Sep 2021 12:48:29 -0700 (PDT)
+Received: (nullmailer pid 3765977 invoked by uid 1000);
+        Mon, 27 Sep 2021 19:48:28 -0000
+Date:   Mon, 27 Sep 2021 14:48:28 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Orson Zhai <orsonzhai@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
+        linux-clk@vger.kernel.org,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: clk: sprd: Add bindings for ums512
+ clock controller
+Message-ID: <YVIgDNbesvIC4SE1@robh.at.kernel.org>
+References: <20210923064137.60722-1-zhang.lyra@gmail.com>
+ <20210923064137.60722-2-zhang.lyra@gmail.com>
 MIME-Version: 1.0
-References: <20210924170546.805663-1-f.fainelli@gmail.com> <20210924170546.805663-8-f.fainelli@gmail.com>
- <CAL_JsqLSiCb7-tHW3VTOTdMt=qahAij77zF2us-CZqXYAi0jmg@mail.gmail.com> <b9bf844c-b6c0-9277-07e0-7592527ce4e4@gmail.com>
-In-Reply-To: <b9bf844c-b6c0-9277-07e0-7592527ce4e4@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 27 Sep 2021 14:43:47 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLv+RrmtDPTuMxtjbqAbGvEeAY_oOE5GqrPdP9ZpNGzqw@mail.gmail.com>
-Message-ID: <CAL_JsqLv+RrmtDPTuMxtjbqAbGvEeAY_oOE5GqrPdP9ZpNGzqw@mail.gmail.com>
-Subject: Re: [PATCH 07/11] of/irq: Export of_irq_count to drivers
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Mike Rapoport <rppt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrey Konovalov <andreyknvl@gmail.com>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Ingo Molnar <mingo@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        "moderated list:ARM PORT" <linux-arm-kernel@lists.infradead.org>,
-        "open list:SUPERH" <linux-sh@vger.kernel.org>,
-        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
-        <linux-mips@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210923064137.60722-2-zhang.lyra@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 27, 2021 at 2:28 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> On 9/27/21 12:08 PM, Rob Herring wrote:
-> > On Fri, Sep 24, 2021 at 12:07 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
-> >>
-> >> In order to build drivers/irqchip/irq-bcm7120-l2.c as a module, we will
-> >> need to have of_irq_count() exported to modules.
-> >>
-> >> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> >> ---
-> >>  drivers/of/irq.c | 1 +
-> >>  1 file changed, 1 insertion(+)
-> >>
-> >> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> >> index 352e14b007e7..949b9d1f8729 100644
-> >> --- a/drivers/of/irq.c
-> >> +++ b/drivers/of/irq.c
-> >> @@ -440,6 +440,7 @@ int of_irq_count(struct device_node *dev)
-> >>
-> >>         return nr;
-> >>  }
-> >> +EXPORT_SYMBOL_GPL(of_irq_count);
-> >
-> > Please convert to use platform_irq_count() instead.
->
-> That requires a platform_device to be passed to platform_irq_count(),
-> will that work even when the drivers remain built into the kernel and
-> get initialized early on?
+On Thu, 23 Sep 2021 14:41:34 +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> 
+> Add a new bindings to describe ums512 clock compatible strings.
+> 
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> ---
+>  .../bindings/clock/sprd,ums512-clk.yaml       | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> 
 
-No, does your irqchip using this do both? Looks to me like it is
-always a platform_device.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
