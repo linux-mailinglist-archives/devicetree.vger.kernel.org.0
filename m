@@ -2,90 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90F30419EC7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 20:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11DEF419ECB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 21:00:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235779AbhI0TAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 15:00:52 -0400
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:42515 "EHLO
+        id S235722AbhI0TC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 15:02:26 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:39609 "EHLO
         mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235745AbhI0TAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 15:00:52 -0400
-Received: by mail-oi1-f175.google.com with SMTP id x124so26857337oix.9;
-        Mon, 27 Sep 2021 11:59:14 -0700 (PDT)
+        with ESMTP id S235693AbhI0TC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 15:02:26 -0400
+Received: by mail-oi1-f175.google.com with SMTP id a3so26910042oid.6;
+        Mon, 27 Sep 2021 12:00:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=eV+PRo6a2MRz/DpkFNL4n5kAGNJtpr9EpyO3zFy3ARk=;
-        b=JvGBmHO1v82cyGWfwYDSeTFralz1O2RFM3ucncP3Qs252oT8lQ9qpgE7Zv5se5lF6k
-         5D7OfG44y+kLhbZkngH8dQg8V4yhXlXmQPLLTEpCYov9mV+r+dGxLIMTFg+xaYJnIUWV
-         7ssNC9EtZ01uOwL0Zzvi7ybOxd0sY75imno1i0LX91/qqvqM+hz0edomUFlVVRwkotet
-         Xkhk69w6CtOesQkfxoOiNCW8nwJTHnKEcvSieimRkYRPEGJ2TIAzhHSlhVRO8PZLKBJi
-         IfHxr+xIdYdoNSaG0i/pWQeTxw6CJU72XZ5JK4BBrrr59qD9AwNoSurn2qtB6EViWmVN
-         wcCA==
-X-Gm-Message-State: AOAM532VvaJt9VLE0+cBFHC9pGZTtCjlNncvQ9CAaR2fuRKFw5RlJGLc
-        KBOkbGB5uT8+Sa+Q0nP86w==
-X-Google-Smtp-Source: ABdhPJwMJelZ7z1gOyM6KU2hxuI5UxVhhaZKlukjtCf2pvupYDr2rXhjepC7YZIdsEs7BDBH3vdEvw==
-X-Received: by 2002:aca:604:: with SMTP id 4mr520177oig.8.1632769152914;
-        Mon, 27 Sep 2021 11:59:12 -0700 (PDT)
+        bh=3ZLzcZefcsSNoUH8+eqz/u6GfOHxaYYcKo55P/iMgSE=;
+        b=jLT617AaRUMaQoggtczbLncKluPZ34b/wLHpHou/r8bhsEJ1ntc3uVjRpguVUdqFcg
+         Jxh99Xw0/sRs9hDS2xrAI29zkFBppbnc+yhxiUDgvG6NVDpUJQQhBL3hrZIGEeVvXNF7
+         cU+MFhhRBldN72FwV2swdfzLATMoMA2mmbALJgvopvXs32qpj0yDyqBzs57W9cYRUnZh
+         /0VUxKagJmnF7crufQVO5rPCxzhJfbsjM1nhbLuMz2y3OAmMt/UQEl2RTj2rsaJoHBPn
+         mZQF4biNp6rhfD/VdYGcCYPlMAzC34wV7ABePiDoW/RYp8hxQe5rz0iJWrhxOPS2GvZ+
+         +stw==
+X-Gm-Message-State: AOAM5313nNWBEklIo8c8hL6cn1vEAsLxD96/YImp4rPFs4s+P5Omr5MO
+        4BY7eLRu4rZvUCNuoc6VFQ==
+X-Google-Smtp-Source: ABdhPJztunahmm91WjGv8lkmKizseoxUnp9C/P7jH+iQr6pg93ZYYrZLchm7E3kGvDHuGwh0LtGg4Q==
+X-Received: by 2002:aca:d6cc:: with SMTP id n195mr510866oig.116.1632769247699;
+        Mon, 27 Sep 2021 12:00:47 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p64sm4054025oih.29.2021.09.27.11.59.11
+        by smtp.gmail.com with ESMTPSA id a19sm2850790oic.25.2021.09.27.12.00.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 11:59:12 -0700 (PDT)
-Received: (nullmailer pid 3666744 invoked by uid 1000);
-        Mon, 27 Sep 2021 18:59:11 -0000
-Date:   Mon, 27 Sep 2021 13:59:11 -0500
+        Mon, 27 Sep 2021 12:00:47 -0700 (PDT)
+Received: (nullmailer pid 3669168 invoked by uid 1000);
+        Mon, 27 Sep 2021 19:00:46 -0000
+Date:   Mon, 27 Sep 2021 14:00:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Cc:     joel@jms.id.au, mturquette@baylibre.com, sboyd@kernel.org,
-        adrian.hunter@intel.com, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        andrew@aj.id.au, BMC-SW@aspeedtech.com, steven_lee@aspeedtech.com
-Subject: Re: [PATCH 10/10] dt-bindings: mmc: aspeed: Add a new compatible
- string
-Message-ID: <YVIUf7/4ukMcrOb9@robh.at.kernel.org>
-References: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com>
- <20210922103116.30652-11-chin-ting_kuo@aspeedtech.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org, shubhrajyoti.datta@gmail.com,
+        git@xilinx.com
+Subject: Re: [PATCH v3 1/2] dt-binding: usb: xilinx: Add clocking node
+Message-ID: <YVIU3gnpGe8JVdz/@robh.at.kernel.org>
+References: <cover.1632307026.git.shubhrajyoti.datta@xilinx.com>
+ <625a34188da7fcc4132b8717afd3d69e6bdc3316.1632307026.git.shubhrajyoti.datta@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210922103116.30652-11-chin-ting_kuo@aspeedtech.com>
+In-Reply-To: <625a34188da7fcc4132b8717afd3d69e6bdc3316.1632307026.git.shubhrajyoti.datta@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 06:31:16PM +0800, Chin-Ting Kuo wrote:
-> Add "aspeed,ast2600-emmc" compatible string for the sake of
-> distinguishing between SD and eMMC device.
-
-Why?
-
-Is the h/w block different? We already have properties to handle some of 
-the eMMC specifics. Also, you can have a child node for the eMMC device 
-if you need that.
-
+On Wed, Sep 22, 2021 at 04:41:25PM +0530, Shubhrajyoti Datta wrote:
+> Add a clocking node for xilinx udc.
 > 
-> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 > ---
->  Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/usb/xlnx,usb2.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> index 5bb66849df65..41105cd104c6 100644
-> --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> @@ -52,6 +52,7 @@ patternProperties:
->            - aspeed,ast2400-sdhci
->            - aspeed,ast2500-sdhci
->            - aspeed,ast2600-sdhci
-> +          - aspeed,ast2600-emmc
->        reg:
->          maxItems: 1
->          description: The SDHCI registers
+> diff --git a/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml b/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> index b8acc415eaf1..39213806ac79 100644
+> --- a/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> @@ -24,6 +24,14 @@ properties:
+>        If present, hardware has dma capability.
+>      type: boolean
+>  
+> +  clocks:
+> +    minItems: 1
+> +
+> +  clock-name:
+
+I think you meant 'clock-names'.
+
+> +    const: "s_axi_aclk"
+
+Don't need quotes.
+
+> +    description: |
+> +      Input clock name.
+
+That's every 'clock-names'. You can drop description.
+
+> +
+>  required:
+>    - compatible
+>    - reg
 > -- 
-> 2.17.1
+> 2.25.1
 > 
 > 
