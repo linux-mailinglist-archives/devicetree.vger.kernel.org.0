@@ -2,222 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 999AD419436
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 14:28:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F19CB419443
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 14:30:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234297AbhI0MaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 08:30:04 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:36622 "EHLO
-        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234283AbhI0MaE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 08:30:04 -0400
-Received: from [192.168.224.11] (ert768.prtnl [192.168.224.11])
-        by sparta.prtnl (Postfix) with ESMTP id 4D95C44A024E;
-        Mon, 27 Sep 2021 14:28:24 +0200 (CEST)
-Subject: Re: [PATCH v3 3/4] drivers: iio: chemical: Add support for Sensirion
- SCD4x CO2 sensor
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, david@protonic.nl,
-        Lars-Peter Clausen <lars@metafoo.de>
-References: <20210922103925.2742362-1-roan@protonic.nl>
- <20210922103925.2742362-4-roan@protonic.nl>
- <20210925172307.305be961@jic23-huawei>
-From:   Roan van Dijk <roan@protonic.nl>
-Message-ID: <b9cffd75-0b86-544c-4832-070d12606de4@protonic.nl>
-Date:   Mon, 27 Sep 2021 14:28:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S234372AbhI0McN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 08:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57868 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234317AbhI0McM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 08:32:12 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 093F5C061575
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 05:30:35 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id g184so17673415pgc.6
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 05:30:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=8f4/mkuvOY8+rGJAhfbTZe+oZ+Vy38+/mmlJel9bTCg=;
+        b=AXX7QOP2Q1nvRSGiamW6NPuaVbis6ad1FY2R1IvUfyzLRQfw5H4803mnONI0YGAezk
+         AmJzdh6ytzxtzm1ZOM59WVbDyf8pTs70hWD9VGDyLFQHl+hZlG8M5RFWplYqBn7YkQAo
+         ZnZ7gld/iTXdh6q9yEelauiOg7Qrj9sop0PiYSGmh9easDH0xWqyqhBfIA7zOpsz5EW7
+         0oNeIBz5O3aJsMLRhF5SdiauxhaWySzi51Rqh4YNBOlDuw1ohR2LF70tl3JgDBq1tToF
+         F2O7sxl1FPn1Sl1vZHK+5ZErQQis64cJpA5vg3UUrMrKITSFPU7QpVVET+eYfh8A9jig
+         Kp9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8f4/mkuvOY8+rGJAhfbTZe+oZ+Vy38+/mmlJel9bTCg=;
+        b=Nm5nCkuUM2QNNZWg4s7VpjLrAx9TyFuTc89V9Ov5F38Z7nv8wRFIXtXuW/WgmnTKDk
+         yf9zkiqM36xAKolA4ub3SNHeyBnGLo2uamK9QKv4E956pVMqiQmTjT6aqPSPJt0DLTZl
+         TSG8SihFnR/2RXtDM/vDWyK+mNKMOxbmOkrT1LIKsWgqZF7PxvooU8gCt1t+BG1IYvLz
+         gSD4Icax3mkXshGVW290YvWUa2wVtiPIrSOTUBl0NMeznijbandiUqeLx58OM2+RQIu6
+         /V+T+z658CfVS9dKILD20BuDbPVmgCnleOjrSgri+jjvWGH4qZE+XeKQHiDYWJr1GQcj
+         tqiw==
+X-Gm-Message-State: AOAM530jrWO9E0bdV4ctqpX0FOUPjoFSUb39ByK9u2wPfOS+5i96cL3f
+        RBILTn5jQhVf5gIi78ED28XfZg==
+X-Google-Smtp-Source: ABdhPJz8hwwjXyEE+3UAgO2auOFQcmt/X+FhXQFqDRBK1CeNhUWk0j5jHZXuOBEPwkUjIzirW3Ns7w==
+X-Received: by 2002:a65:6187:: with SMTP id c7mr16325588pgv.317.1632745834548;
+        Mon, 27 Sep 2021 05:30:34 -0700 (PDT)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id w1sm7208159pfj.147.2021.09.27.05.30.31
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 27 Sep 2021 05:30:34 -0700 (PDT)
+Date:   Mon, 27 Sep 2021 20:30:27 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Manu Gautam <mgautam@codeaurora.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Jami Kettunen <jamipkettunen@gmail.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,qusb2: Add missing vdd-supply
+Message-ID: <20210927123026.GG9901@dragon>
+References: <20210927044824.30246-1-shawn.guo@linaro.org>
+ <20210927044824.30246-2-shawn.guo@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20210925172307.305be961@jic23-huawei>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: nl
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210927044824.30246-2-shawn.guo@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 27, 2021 at 12:48:22PM +0800, Shawn Guo wrote:
+> Besides vdda-pll and vdda-phy-dpdm, vdd-supply is a required supply for
+> PHY digital circuit operation.  Add it for correctness and completeness.
+> 
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
+> index 48ae604b2194..96e31f582fc9 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
+> @@ -51,6 +51,10 @@ properties:
+>        - const: ref
+>        - const: iface
+>  
+> +  vdda-supply:
 
+Oops, it should be `vdd-supply`.  Will fix it in v2.
 
-On 25-09-2021 18:23, Jonathan Cameron wrote:
-> On Wed, 22 Sep 2021 12:39:24 +0200
-> Roan van Dijk <roan@protonic.nl> wrote:
-> 
->> This is a driver for the SCD4x CO2 sensor from Sensirion. The sensor is
->> able to measure CO2 concentration, temperature and relative humdity.
->> The sensor uses a photoacoustic principle for measuring CO2 concentration.
->> An I2C interface is supported by this driver in order to communicate with
->> the sensor.
->>
->> Signed-off-by: Roan van Dijk <roan@protonic.nl>
-> 
-> Hi Roan,
-> 
-> Only thing in here of significance is that the format for available attribute
-> is wrong + it needs adding to the ABI docs.
-> 
-> Given we are going to have a v4, I noted a few other minor things to tidy up.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
+Shawn
 
-Thank you for your feedback. I will make a new patch with these fixes.
-
-The documentation for the _available and the fixes you suggested, have 
-already been added in patch [PATCH v3 4/4]. Do I still need to add 
-something to the ABI documentation or is it fine like this?
-
-However, I will change the KernelVersion to 5.15 of the _available 
-description in patch v4. I left this at 5.8 and that's not right, 
-because this information is newly added.
-
-Thanks,
-
-Roan
-
+> +    description:
+> +      Phandle to 0.9V regulator supply to PHY digital circuit.
+> +
+>    vdda-pll-supply:
+>      description:
+>        Phandle to 1.8V regulator supply to PHY refclk pll block.
+> @@ -157,6 +161,7 @@ required:
+>    - "#phy-cells"
+>    - clocks
+>    - clock-names
+> +  - vdd-supply
+>    - vdda-pll-supply
+>    - vdda-phy-dpdm-supply
+>    - resets
+> @@ -175,6 +180,7 @@ examples:
+>                   <&gcc GCC_RX1_USB2_CLKREF_CLK>;
+>          clock-names = "cfg_ahb", "ref";
+>  
+> +        vdd-supply = <&pm8994_l28>;
+>          vdda-pll-supply = <&pm8994_l12>;
+>          vdda-phy-dpdm-supply = <&pm8994_l24>;
+>  
+> -- 
+> 2.17.1
 > 
->> +static int scd4x_read(struct scd4x_state *state, enum scd4x_cmd cmd,
->> +			void *response, int response_sz)
->> +{
->> +	struct i2c_client *client = state->client;
->> +	char buf[SCD4X_READ_BUF_SIZE];
->> +	char *rsp = response;
->> +	int i, ret;
->> +	char crc;
->> +
->> +	/*
->> +	 * Measurement needs to be stopped before sending commands.
->> +	 * Except for reading measurement and data ready command.
->> +	 */
->> +	if ((cmd != CMD_GET_DATA_READY) && (cmd != CMD_READ_MEAS)) {
->> +		ret = scd4x_send_command(state, CMD_STOP_MEAS);
->> +		if (ret)
->> +			return ret;
->> +
->> +		/* execution time for stopping measurement */
->> +		msleep_interruptible(500);
->> +	}
->> +
->> +	/*CRC byte for every 2 bytes of data */
-> 
-> /* CRC..
-> 
-> Please check for similar as otherwise we'll get 'cleanup' patches the moment various
-> scripts hit this new code and it'll waste our time!
-> 
->> +	response_sz += response_sz / 2;
->> +
->> +	put_unaligned_be16(cmd, buf);
->> +	ret = scd4x_i2c_xfer(state, buf, 2, buf, response_sz);
->> +	if (ret)
->> +		return ret;
->> +
->> +	for (i = 0; i < response_sz; i += 3) {
->> +		crc = crc8(scd4x_crc8_table, buf + i, 2, CRC8_INIT_VALUE);
->> +		if (crc != buf[i + 2]) {
->> +			dev_err(&client->dev, "CRC error\n");
->> +			return -EIO;
->> +		}
->> +
->> +		*rsp++ = buf[i];
->> +		*rsp++ = buf[i + 1];
->> +	}
->> +
->> +	/* start measurement */
->> +	if ((cmd != CMD_GET_DATA_READY) && (cmd != CMD_READ_MEAS)) {
->> +		ret = scd4x_send_command(state, CMD_START_MEAS);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
-> 
-> ...
-> 
->> +
->> +static IIO_DEVICE_ATTR_RW(calibration_auto_enable, 0);
->> +static IIO_DEVICE_ATTR_WO(calibration_forced_value, 0);
->> +
->> +static IIO_CONST_ATTR(calibration_forced_value_available,
->> +	       __stringify(SCD4X_FRC_MIN_PPM 1 SCD4X_FRC_MAX_PPM));
-> 
-> Ah, I wasn't completely clear on this.  See the main ABI doc for
-> _available
-> 
-> Format for this needs to include brackets to indicate it's a range
-> rather than 3 numbers
-> "[MIN 1  MAX]"
-> 
-> 
-> Having added this it also needs to be in the ABI documentation.
-> Whilst somewhat trivial, all ABI should be documented there.
-> 
->> +
->> +static struct attribute *scd4x_attrs[] = {
->> +	&iio_dev_attr_calibration_auto_enable.dev_attr.attr,
->> +	&iio_dev_attr_calibration_forced_value.dev_attr.attr,
->> +	&iio_const_attr_calibration_forced_value_available.dev_attr.attr,
->> +	NULL
->> +};
->> +
->> +static const struct attribute_group scd4x_attr_group = {
->> +	.attrs = scd4x_attrs,
->> +};
->> +
->> +static const struct iio_info scd4x_info = {
->> +	.attrs = &scd4x_attr_group,
->> +	.read_raw = scd4x_read_raw,
->> +	.write_raw = scd4x_write_raw,
->> +};
->> +
-> 
-> ...
-> 
->> +
->> +static irqreturn_t scd4x_trigger_handler(int irq, void *p)
->> +{
->> +	struct iio_poll_func *pf = p;
->> +	struct iio_dev *indio_dev = pf->indio_dev;
->> +	struct scd4x_state *state = iio_priv(indio_dev);
->> +	struct {
->> +		uint16_t data[3];
->> +		int64_t ts __aligned(8);
->> +	} scan;
->> +	int ret;
->> +	uint16_t buf[3];
->> +
->> +	mutex_lock(&state->lock);
->> +	ret = scd4x_read_poll(state, buf);
->> +	mutex_unlock(&state->lock);
->> +	if (ret)
->> +		goto out;
->> +
->> +	memset(&scan, 0, sizeof(scan));
->> +	memcpy(scan.data, buf, sizeof(buf));
-> 
-> I missed this before, but why not do the scd4x_read_poll() directly into scan->data after
-> you've done the memset?  That way you avoid the need for a memcpy.
-> 
-> i.e.
-> 
-> 	memset(&scan, 0, sizeof(scan));
-> 	mutex_lock(&state->lock)
-> 	ret = scd4x_read_poll(state, scan->data);
-> 	mutex_unlock(&state->lock);
-> 	if (ret)
-> 	...
-> 
-> 
->> +
->> +	iio_push_to_buffers_with_timestamp(indio_dev, &scan, iio_get_time_ns(indio_dev));
->> +out:
->> +	iio_trigger_notify_done(indio_dev->trig);
->> +	return IRQ_HANDLED;
->> +}
->> +
