@@ -2,82 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A278418F1D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 08:42:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FEBC418F41
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 08:48:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233029AbhI0GoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 02:44:15 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:55324 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233036AbhI0GoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 02:44:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1632724957;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=A7XJHc0p1FnNm1Yats8TDvDF65ghYHfrSmniJKe3ULQ=;
-        b=cKVgivoHRsvbr7xNufHfrbmieP7Uf7mHOSqf2UVpN1k9VoNlgHHX7UeWD3un8jIjiR5GEY
-        gpuq3TN8Ba/ryZK4B8NnlsMRSOuNHJtnGJkO4pHV7KWHY1yP7pdx4Bp5Y1XLWlPq9GHEf9
-        v2cAnuhtzJshzJImY4S1MoeEMdDE1Kc=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-313-T6Ky4i-5M0mFA2scRJonRQ-1; Mon, 27 Sep 2021 02:42:33 -0400
-X-MC-Unique: T6Ky4i-5M0mFA2scRJonRQ-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com [10.5.11.13])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        id S233019AbhI0Gtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 02:49:36 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:49031 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233077AbhI0Gta (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Sep 2021 02:49:30 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1632725273; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=bkmmAT/PYJf9tgrBIaq+U6iMVFmoceMJO/CB/WHLr8I=;
+ b=k75PIZZgKIFA94Lu2QtwW3uUaSD1DhXqxD4gO70FxruaE5+exxRrwLVH8/QtE7sBP2qf9hMe
+ 75AG9pfmDYDerA4I5d0Nt1/+RZ2Q9ePuROwVkRuwrPkXIlkTCUY2G6Hvi0sQHraDjIRnJ8XU
+ BA3FFruhL1cslPRma0T0MRz9O3M=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 61516913519bd8dcf0aa334c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 27 Sep 2021 06:47:47
+ GMT
+Sender: rajpat=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C64F1C43616; Mon, 27 Sep 2021 06:47:46 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 698F3802935;
-        Mon, 27 Sep 2021 06:42:31 +0000 (UTC)
-Received: from gshan.redhat.com (vpn2-54-16.bne.redhat.com [10.64.54.16])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 3499960936;
-        Mon, 27 Sep 2021 06:42:26 +0000 (UTC)
-From:   Gavin Shan <gshan@redhat.com>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kvmarm@lists.cs.columbia.edu,
-        robh@kernel.org, maz@kernel.org, rdunlap@infradead.org,
-        catalin.marinas@arm.com, will@kernel.org, shan.gavin@gmail.com
-Subject: [PATCH v2 2/2] of, numa: Fetch empty NUMA node ID from distance map
-Date:   Mon, 27 Sep 2021 14:41:19 +0800
-Message-Id: <20210927064119.127285-3-gshan@redhat.com>
-In-Reply-To: <20210927064119.127285-1-gshan@redhat.com>
-References: <20210927064119.127285-1-gshan@redhat.com>
+        (Authenticated sender: rajpat)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 096B2C4338F;
+        Mon, 27 Sep 2021 06:47:45 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 27 Sep 2021 12:17:45 +0530
+From:   rajpat@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org, sboyd@kernel.org, mka@chromium.org,
+        dianders@chromium.org
+Subject: Re: [PATCH V10 1/8] dt-bindings: spi: Add sc7280 support
+In-Reply-To: <YU5VbmVdSuFE9syi@builder.lan>
+References: <1632399378-12229-1-git-send-email-rajpat@codeaurora.org>
+ <1632399378-12229-2-git-send-email-rajpat@codeaurora.org>
+ <YU5VbmVdSuFE9syi@builder.lan>
+Message-ID: <6ddcf763af213e5d1dbdf3ada1e30888@codeaurora.org>
+X-Sender: rajpat@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no device node for the empty NUMA node. However, the
-corresponding NUMA node ID and distance map is still valid in
-"numa-distance-map-v1" compatible device node.
+On 2021-09-25 04:17, Bjorn Andersson wrote:
+> On Thu 23 Sep 07:16 CDT 2021, Rajesh Patil wrote:
+> 
+>> Add compatible for sc7280 SoC.
+>> 
+>> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
+>> Reviewed-by: Doug Anderson <dianders@chromium.org>
+>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> 
+> Can you please pick up Rob's review tag and send this patch out again,
+> this time including the SPI maintainer (Mark Brown 
+> <broonie@kernel.org>)
+> among the recipients.
+> 
+> Thanks,
+> Bjorn
 
-This fetches the NUMA node ID and distance map for these empty
-NUMA node from "numa-distance-map-v1" compatible device node.
+Okay.
 
-Signed-off-by: Gavin Shan <gshan@redhat.com>
----
- drivers/of/of_numa.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
-index fe6b13608e51..5949829a1b00 100644
---- a/drivers/of/of_numa.c
-+++ b/drivers/of/of_numa.c
-@@ -111,6 +111,8 @@ static int __init of_numa_parse_distance_map_v1(struct device_node *map)
- 			return -EINVAL;
- 		}
- 
-+		node_set(nodea, numa_nodes_parsed);
-+
- 		numa_set_distance(nodea, nodeb, distance);
- 
- 		/* Set default distance of node B->A same as A->B */
--- 
-2.23.0
-
+> 
+>> ---
+>> Change in V10:
+>>  - As per Stephen's comments,
+>>    sorted compatible names in alphabet order
+>> 
+>> Changes in V9:
+>>  - No changes
+>> 
+>> Changes in V8:
+>>  - As per Doug's comments, added "qcom,sc7280-qspi" compatible
+>> 
+>>  Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml | 5 
+>> ++++-
+>>  1 file changed, 4 insertions(+), 1 deletion(-)
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml 
+>> b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
+>> index ef5698f..09aa955 100644
+>> --- a/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-qcom-qspi.yaml
+>> @@ -21,7 +21,10 @@ allOf:
+>>  properties:
+>>    compatible:
+>>      items:
+>> -      - const: qcom,sdm845-qspi
+>> +      - enum:
+>> +          - qcom,sc7280-qspi
+>> +          - qcom,sdm845-qspi
+>> +
+>>        - const: qcom,qspi-v1
+>> 
+>>    reg:
+>> --
+>> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+>> member
+>> of Code Aurora Forum, hosted by The Linux Foundation
+>> 
