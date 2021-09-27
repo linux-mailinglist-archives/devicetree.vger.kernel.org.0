@@ -2,113 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F6041995D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 18:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F2C4199A4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 18:50:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235472AbhI0QmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 12:42:16 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:35632 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235463AbhI0QmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 12:42:15 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18RAccN9016754;
-        Mon, 27 Sep 2021 18:40:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=3cUaM13ESIaimd9wicHJ6CmL5u8o5wVuRy7GsckzHkI=;
- b=Rhe/st5cXpwbNhNGonO107ZDod1wya4ZWYrLBd8zipZ+F2FziOwCzcQig9+UISeRbx5d
- WobWAtYSh2LuYPH1Pu44iF74wWu2wo6jgEF0+lI11hcyXG2iP1C9Rb49KVw0lbvZsCiY
- o8/UIHflStKEqe2ljuvHeWYYiyElaLj+baJxTei7unOBUemah7aqJhCJKMQrxdWlzaIY
- mp6rBTzs6gpH/p+LlkFmLv9xKt2WXzU/7AHD/XEYo6B5zIuCILYO3uOIi5jnB6ftOnOo
- RNWx1ynxmlg7pNnvItwXYGJ3UXU3C2ITywlsItNXTKXWA43V7sGCUroJNU8509DGPgkd 8w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3bbau5294a-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 27 Sep 2021 18:40:18 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D73BD10002A;
-        Mon, 27 Sep 2021 18:40:17 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CE4782C4213;
-        Mon, 27 Sep 2021 18:40:17 +0200 (CEST)
-Received: from [10.211.13.71] (10.75.127.47) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 27 Sep
- 2021 18:40:16 +0200
-Subject: Re: [PATCH v3 0/7] iio: adc: stm32-adc: add internal channels support
-To:     Olivier Moysan <olivier.moysan@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20210924083410.12332-1-olivier.moysan@foss.st.com>
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Message-ID: <6948e726-1a1c-7143-dd36-710e8396c63b@foss.st.com>
-Date:   Mon, 27 Sep 2021 18:40:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S235536AbhI0QwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 12:52:08 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.171]:21926 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235381AbhI0QwI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 12:52:08 -0400
+X-Greylist: delayed 343 seconds by postgrey-1.27 at vger.kernel.org; Mon, 27 Sep 2021 12:52:07 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632761070;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=jRPgRBm1X+FuZv7hOzaWpG6lEhu0WS+NKYO9s9BLpfc=;
+    b=AG1GEOc6tKVfQEL1PmD3dkQnT6JWvNaRPm+CFRQvE1hmb86TRDfFstrkkRbgxkKfoE
+    2a3Y1vRvqkm4DmVOeSxVK69IrrQ0siyq+PAhrks0oNqq79F7wBT9rMEPrHEKGJHGjMvt
+    asgTJZ+P6pDyXwhIg4CvqsfIzu2Gjumdj+QcH+gVhw5yJtNaoPBvZ950F9Tua7oSUIh9
+    2cKO/+JB84mIslyRBv/WFMd9UHzcUUy9GuZIw4Yirh/iPkabFwwtRIGMNn1fY1zvudAz
+    op3OwSyRJaMijbIRvzqqPDOhpDUy6kknO5WCAKeLMsyaoGkAl+MMgyiAqlvfMtSvEk3V
+    lA/Q==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1KHeBQyh+ITDDFrDb4="
+X-RZG-CLASS-ID: mo00
+Received: from iMac.fritz.box
+    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
+    with ESMTPSA id I01f74x8RGiTav8
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 27 Sep 2021 18:44:29 +0200 (CEST)
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH v4 00/10] MIPS: JZ4780 and CI20 HDMI
+Date:   Mon, 27 Sep 2021 18:44:18 +0200
+Message-Id: <cover.1632761067.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210924083410.12332-1-olivier.moysan@foss.st.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-27_06,2021-09-24_02,2020-04-07_01
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/24/21 10:34 AM, Olivier Moysan wrote:
-> This patchset adds support of ADC2 internal channels VDDCORE, VREFINT and VBAT
-> on STM32MP15x SoCs. The generic IIO channel bindings is also introduced here
-> to provide this feature. The legacy channel binding is kept for backward compatibility.
-> 
-> Changes in v2:
-> - Add 'deprecated' to channels legacy properties in ADC bindings
-> - Add set/clr service for common registers, to make code more generic in
->   internal channels enable/disable services.
-> - Expose vrefint channel as a processed channel to return
->   the actual value of vrefp.
-> - Minor code improvements
-> 
-> Changes in v3:
-> - fix vrefint sampling time check.
-> 
-> Olivier Moysan (7):
->   dt-bindings: iio: stm32-adc: add generic channel binding
->   dt-bindings: iio: stm32-adc: add nvmem support for vrefint internal
->     channel
->   iio: adc: stm32-adc: split channel init into several routines
->   iio: adc: stm32-adc: add support of generic channels binding
->   iio: adc: stm32-adc: add support of internal channels
+- fix setting output_port = 1 (issue found by paul@crapouillou.net)
+- ci20.dts: convert to use hdmi-connector (by hns@goldelico.com)
+- add a hdmi-regulator to control +5V power (by hns@goldelico.com)
+- added a fix to dw-hdmi to call drm_kms_helper_hotplug_event on plugin event detection (by hns@goldelico.com)
+- always allocate extended descriptor but initialize only for jz4780 (by hns@goldelico.com)
+- updated to work on top of "[PATCH v3 0/6] drm/ingenic: Various improvements v3" (by paul@crapouillou.net)
+- rebased to v5.13-rc3
+
+PATCH V3 2021-08-08 07:10:50:
+This series adds HDMI support for JZ4780 and CI20 board (and fixes one IPU related issue in registration error path)
+- [patch 1/8] switched from mode_fixup to atomic_check (suggested by robert.foss@linaro.org)
+  - the call to the dw-hdmi specialization is still called mode_fixup
+- [patch 3/8] diverse fixes for ingenic-drm-drv (suggested by paul@crapouillou.net)
+  - factor out some non-HDMI features of the jz4780 into a separate patch
+  - multiple fixes around max height
+  - do not change regmap config but a copy on stack
+  - define some constants
+  - factor out fixing of drm_init error path for IPU into separate patch
+  - use FIELD_PREP()
+- [patch 8/8] conversion to component framework dropped (suggested by Laurent.pinchart@ideasonboard.com and paul@crapouillou.net)
+
+PATCH V2 2021-08-05 16:08:05:
+This series adds HDMI support for JZ4780 and CI20 board
+
+V2:
+- code and commit messages revisited for checkpatch warnings
+- rebased on v5.14-rc4
+- include (failed, hence RFC 8/8) attempt to convert to component framework
+  (was suggested by Paul Cercueil <paul@crapouillou.net> a while ago)
 
 
-Hi Olivier,
+H. Nikolaus Schaller (2):
+  drm/bridge: synopsis: Fix to properly handle HPD
+  MIPS: defconfig: CI20: configure for DRM_DW_HDMI_JZ4780
 
-I've one remark on patch "... add support of internal channels".
+Paul Boddie (7):
+  drm/ingenic: Fix drm_init error path if IPU was registered
+  drm/ingenic: Add support for JZ4780 and HDMI output
+  drm/bridge: synopsis: Add mode_fixup and bridge timings support
+  drm/ingenic: Add dw-hdmi driver for jz4780
+  MIPS: DTS: jz4780: Account for Synopsys HDMI driver and LCD
+    controllers
+  MIPS: DTS: CI20: Add DT nodes for HDMI setup
+  drm/ingenic: add some jz4780 specific features
 
-For the other patches, you can add my
-Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Sam Ravnborg (1):
+  dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
 
-Thanks!
-Fabrice
+ .../bindings/display/ingenic-jz4780-hdmi.yaml |  85 +++++++++++
+ arch/mips/boot/dts/ingenic/ci20.dts           |  67 +++++++++
+ arch/mips/boot/dts/ingenic/jz4780.dtsi        |  45 ++++++
+ arch/mips/configs/ci20_defconfig              |   6 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |   9 ++
+ drivers/gpu/drm/ingenic/Kconfig               |   9 ++
+ drivers/gpu/drm/ingenic/Makefile              |   1 +
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c     | 135 ++++++++++++++++-
+ drivers/gpu/drm/ingenic/ingenic-drm.h         |  42 ++++++
+ drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c     | 142 ++++++++++++++++++
+ include/drm/bridge/dw_hdmi.h                  |   5 +
+ 11 files changed, 540 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.yaml
+ create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
 
->   iio: adc: stm32-adc: add vrefint calibration support
->   iio: adc: stm32-adc: use generic binding for sample-time>
->  .../bindings/iio/adc/st,stm32-adc.yaml        | 108 ++++-
->  drivers/iio/adc/stm32-adc-core.h              |   8 +
->  drivers/iio/adc/stm32-adc.c                   | 426 ++++++++++++++++--
->  3 files changed, 487 insertions(+), 55 deletions(-)
-> 
+-- 
+2.31.1
+
