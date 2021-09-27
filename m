@@ -2,95 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0460418D94
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 04:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E814418DA9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 04:31:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232386AbhI0CCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Sep 2021 22:02:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232369AbhI0CCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 22:02:01 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EDE4C061604
-        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 19:00:24 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id h3so16290063pgb.7
-        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 19:00:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=fRhfaZIMy0eMtR+WN6XwxZ3efkveVfiLx2hy6oKGqxQ=;
-        b=dfcbR4kDhZ0gl4NR+Wc6aGJZHUXpkXjkImsqmPR3LqcilVOqtSdfDPG8Wa9sNm6uiZ
-         g/iD5AHm5/10gZfKrT1xzPHrsSRcNIj7PDUAKbYzH9rwBC25Iz5G9jCl5MwBOxGuLsMs
-         u2aUgSgoRzXcMBoduqJVxy6QMRYt21hn77PGH+3F5r7h+llUjtq2K4e655HmpuTlBICp
-         S0QmHxdm3o/BPdWrkpYG02P+l2/gZ23DAUbTdgWMSroRAqLi9RRmlXymH4chRkJvuGYv
-         Q8ZKHx/+heDK78gsarabaSYNobLd6Sg7JXPpQuNl2Ocz9PHiNawsNfxJKajVx5yJebKU
-         r0qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=fRhfaZIMy0eMtR+WN6XwxZ3efkveVfiLx2hy6oKGqxQ=;
-        b=EET5kedTXbFKKjU285T5h03hOL0VQ99t2K6P1T2V+ewlzxJg5zuiViqGnUV7r3cqp5
-         LBh+xhzQoggcHToAlpbEy7iuYV/rcIp9MmJdVpOdWGRxA6W0HJts1xYk0MzGwKGYsaTt
-         tYKjqiKMEEmGX3MxZGdAEQe82GI7OKHyEuIjQsPxjxzdKuN9PNTx6V4rmuXya19hEuhc
-         ZqwPK4HIRMAuoAo/sdxIwIso2pj4j6V6LyNwWPRCIR19ba93Hvsojt2/UvrkoSdpjy8Q
-         joGX3sx58aiQ5gJzRbk5bV8Zu3mosB5bVZMPyzcxoIPufJVGmkWXHXpCRvoKP07T5sfH
-         ilhg==
-X-Gm-Message-State: AOAM531BhKJ7oA4j4PNZMDv4G463LTn9vPHGmShKfu9wHEmcUySRX2wg
-        olE3t57tmLQ9XaFnaps3f1n8Eg==
-X-Google-Smtp-Source: ABdhPJz4jMv+ZFKHUgilpdzHEejF4xPeD0JX5Z31RfTCjSg8tVRfIxlzuVybruG/dRHHjmGAg4u3yg==
-X-Received: by 2002:a63:ea44:: with SMTP id l4mr14464843pgk.210.1632708023631;
-        Sun, 26 Sep 2021 19:00:23 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id x5sm8658762pfq.136.2021.09.26.19.00.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 26 Sep 2021 19:00:23 -0700 (PDT)
-Date:   Mon, 27 Sep 2021 10:00:08 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: Drop vdd-supply from qusb2-phy devices
-Message-ID: <20210927020007.GF9901@dragon>
-References: <20210926075951.28034-1-shawn.guo@linaro.org>
- <c8d61171-225f-ca1c-db9e-7ed3f91365b8@somainline.org>
- <20210927000715.GD9901@dragon>
+        id S229811AbhI0Ccl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Sep 2021 22:32:41 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:60459 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229752AbhI0Cck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Sep 2021 22:32:40 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 18R2AIXn038748;
+        Mon, 27 Sep 2021 10:10:18 +0800 (GMT-8)
+        (envelope-from chiawei_wang@aspeedtech.com)
+Received: from ChiaWeiWang-PC.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 27 Sep
+ 2021 10:30:55 +0800
+From:   Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <openbmc@lists.ozlabs.org>
+CC:     <osk@google.com>
+Subject: [PATCH v7 0/5] arm: aspeed: Add UART routing support
+Date:   Mon, 27 Sep 2021 10:30:48 +0800
+Message-ID: <20210927023053.6728-1-chiawei_wang@aspeedtech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210927000715.GD9901@dragon>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-Originating-IP: [192.168.2.66]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 18R2AIXn038748
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 27, 2021 at 08:07:16AM +0800, Shawn Guo wrote:
-> On Mon, Sep 27, 2021 at 12:58:19AM +0200, Konrad Dybcio wrote:
-> > 
-> > On 26.09.2021 09:59, Shawn Guo wrote:
-> > > Looking at qcom,qusb2-phy.yaml bindings and qusb2_phy_vreg_names[] in
-> > > qusb2-phy driver, vdd-supply is not a supported/valid property.  Drop it
-> > > from qusb2-phy devices on various boards.
-> > >
-> > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > 
-> > Why not add it to the regulators list instead? It's a valid regulator for this hw.
-> 
-> I do not have enough information to be sure.  Could you cook up a patch to
-> update bindings and driver, if you think that's the case?  I will be
-> happy as long as that DTS, bindings and driver are on the same page.
+Add UART routing driver and the device tree nodes.
 
-Aha, I checked downstream kernel and vdd is indeed a valid supply for
-qusb2_phy.  Please disregard this patch, and I will update bindings and
-driver instead.  Thanks, Konrad!
+v7:
+ - Drop unused 'reg-io-width' properties from LPC nodes
+ - Revise LPC bindgins as suggested by Rob
 
-Shawn
+v6:
+ - Fix another typo in YAML file
+ - Move sysfs description from bindings to ABI document
+
+v5:
+ - Fix typo in YAML file to solve the compatible string not found error
+
+v4:
+ - Convert aspeed-lpc bindings to YAML schema to resolve dependecy issues
+
+v3:
+ - Add individual bindings in YAML
+ - Add support for AST24xx (AST25xx shares the same design)
+ - Add more explanation for the sysfs ABI
+
+v2:
+ - Add dt-bindings
+ - Add ABI documents for the exported sysfs interface
+ - Revise driver implementation suggested by Joel
+
+Chia-Wei Wang (5):
+  ARM: dts: aspeed: Drop reg-io-width from LPC nodes
+  dt-bindings: mfd: aspeed-lpc: Convert to YAML schema
+  dt-bindings: aspeed: Add UART routing controller
+  soc: aspeed: Add UART routing support
+  ARM: dts: aspeed: Add uart routing to device tree
+
+ .../testing/sysfs-driver-aspeed-uart-routing  |  27 +
+ .../devicetree/bindings/mfd/aspeed-lpc.txt    | 157 -----
+ .../devicetree/bindings/mfd/aspeed-lpc.yaml   | 192 ++++++
+ .../bindings/soc/aspeed/uart-routing.yaml     |  56 ++
+ arch/arm/boot/dts/aspeed-g4.dtsi              |   7 +-
+ arch/arm/boot/dts/aspeed-g5.dtsi              |   7 +-
+ arch/arm/boot/dts/aspeed-g6.dtsi              |   7 +-
+ drivers/soc/aspeed/Kconfig                    |  10 +
+ drivers/soc/aspeed/Makefile                   |   9 +-
+ drivers/soc/aspeed/aspeed-uart-routing.c      | 603 ++++++++++++++++++
+ 10 files changed, 911 insertions(+), 164 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-aspeed-uart-routing
+ delete mode 100644 Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/aspeed/uart-routing.yaml
+ create mode 100644 drivers/soc/aspeed/aspeed-uart-routing.c
+
+-- 
+2.17.1
+
