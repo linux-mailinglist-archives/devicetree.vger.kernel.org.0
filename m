@@ -2,111 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DEE641941D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 14:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 999AD419436
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 14:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234235AbhI0MZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 08:25:00 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:38909 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234181AbhI0MY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 08:24:59 -0400
-Received: by mail-ot1-f47.google.com with SMTP id c6-20020a9d2786000000b005471981d559so24141917otb.5;
-        Mon, 27 Sep 2021 05:23:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=M1JxjeIOmKat6HvCouZk2WyJoVDL3ELYlgAx1y+djF4=;
-        b=7Dr0bB4vGoaJvaSBAUBkx9KtKsSxZfB/vn4GVTjzd3CfOSl5Iwqp/Hh5IuMRBL06d+
-         uTcMftoEpr91DfDdp7SVYLnnLLM484w+tDj9V8zrObYSZwSIAsKw0IdSgq5/f0N3BX7l
-         S0/O0Y5/luYHWHqCj8v/e5FNzpbY65175L0QUhY/C5JCjyUU5yFFadzqjtfHuryQahIm
-         7/AcyukH2XgWHg6HqoUFRMjWGKv2st+fUmTng2WHuP2G2WogBgV/QzYqMcKs+orklLg7
-         BuLlDGHtxxhlhnm0wzUxNExE9ymhzOboEXHr35l4Gy1tYNa4/iJzHoPV6ZcQROWKergD
-         VHDQ==
-X-Gm-Message-State: AOAM532DbWgQuNY4xsZ7Yz305Qgr2HmuLmISGFgBArR3tWazJEkdyZR8
-        /88d6n4zDBKM8r/I0B/VXw==
-X-Google-Smtp-Source: ABdhPJxPboMBJ7atlf4V2758iIymolXl+RlULWf5ZVJnB5v+aaNUyKh+KewyhDhEFZ50jt9f77a3wA==
-X-Received: by 2002:a9d:27a4:: with SMTP id c33mr17216398otb.283.1632745401264;
-        Mon, 27 Sep 2021 05:23:21 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o126sm3844592oig.21.2021.09.27.05.23.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 05:23:20 -0700 (PDT)
-Received: (nullmailer pid 3097152 invoked by uid 1000);
-        Mon, 27 Sep 2021 12:23:19 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sam Shih <sam.shih@mediatek.com>
-Cc:     herbert@gondor.apana.org.au, linux-serial@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux@roeck-us.net,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, hsinyi@chromium.org,
-        mpm@selenic.com, seiya.wang@mediatek.com,
-        enric.balletbo@collabora.com, fparent@baylibre.com,
-        john@phrozen.org, sboyd@kernel.org, devicetree@vger.kernel.org,
-        linux-crypto@vger.kernel.org, gregkh@linuxfoundation.org,
-        mturquette@baylibre.com, linux-watchdog@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
-        wim@linux-watchdog.org, robh+dt@kernel.org,
-        linus.walleij@linaro.org, sean.wang@kernel.org,
-        Ryder.Lee@mediatek.com
-In-Reply-To: <20210927023419.17994-1-sam.shih@mediatek.com>
-References: <1632491961.645727.1195978.nullmailer@robh.at.kernel.org> <20210927023419.17994-1-sam.shih@mediatek.com>
-Subject: Re: [v5,5/9] dt-bindings: pinctrl: update bindings for MT7986 SoC
-Date:   Mon, 27 Sep 2021 07:23:19 -0500
-Message-Id: <1632745399.256353.3097151.nullmailer@robh.at.kernel.org>
+        id S234297AbhI0MaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 08:30:04 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:36622 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234283AbhI0MaE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 08:30:04 -0400
+Received: from [192.168.224.11] (ert768.prtnl [192.168.224.11])
+        by sparta.prtnl (Postfix) with ESMTP id 4D95C44A024E;
+        Mon, 27 Sep 2021 14:28:24 +0200 (CEST)
+Subject: Re: [PATCH v3 3/4] drivers: iio: chemical: Add support for Sensirion
+ SCD4x CO2 sensor
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, david@protonic.nl,
+        Lars-Peter Clausen <lars@metafoo.de>
+References: <20210922103925.2742362-1-roan@protonic.nl>
+ <20210922103925.2742362-4-roan@protonic.nl>
+ <20210925172307.305be961@jic23-huawei>
+From:   Roan van Dijk <roan@protonic.nl>
+Message-ID: <b9cffd75-0b86-544c-4832-070d12606de4@protonic.nl>
+Date:   Mon, 27 Sep 2021 14:28:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20210925172307.305be961@jic23-huawei>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: nl
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Sep 2021 10:34:19 +0800, Sam Shih wrote:
-> This updates bindings for MT7986 pinctrl driver. The
-> difference of pinctrl between mt7986a and mt7986b is that pin-41 to pin-65
-> do not exist on mt7986b
+
+
+On 25-09-2021 18:23, Jonathan Cameron wrote:
+> On Wed, 22 Sep 2021 12:39:24 +0200
+> Roan van Dijk <roan@protonic.nl> wrote:
 > 
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+>> This is a driver for the SCD4x CO2 sensor from Sensirion. The sensor is
+>> able to measure CO2 concentration, temperature and relative humdity.
+>> The sensor uses a photoacoustic principle for measuring CO2 concentration.
+>> An I2C interface is supported by this driver in order to communicate with
+>> the sensor.
+>>
+>> Signed-off-by: Roan van Dijk <roan@protonic.nl>
 > 
-> ---
-> v5 : fixed yamllint warnings/errors
-> v4 : used yaml format instead of txt format document
-> v3 : make mt7986 pinctrl bindings as a separate file
-> v2 : deleted the redundant description of mt7986a/mt7986b
-> ---
->  .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 353 ++++++++++++++++++
->  1 file changed, 353 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
+> Hi Roan,
+> 
+> Only thing in here of significance is that the format for available attribute
+> is wrong + it needs adding to the ABI docs.
+> 
+> Given we are going to have a v4, I noted a few other minor things to tidy up.
+> 
+> Thanks,
+> 
+> Jonathan
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thank you for your feedback. I will make a new patch with these fixes.
 
-yamllint warnings/errors:
+The documentation for the _available and the fixes you suggested, have 
+already been added in patch [PATCH v3 4/4]. Do I still need to add 
+something to the ABI documentation or is it fine like this?
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dts:25.13-32.43: Warning (reg_format): /example-0/soc/pinctrl@1001f000:reg: property has invalid length (128 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dts:23.33-58.13: Warning (avoid_default_addr_size): /example-0/soc/pinctrl@1001f000: Relying on default #address-cells value
-Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dts:23.33-58.13: Warning (avoid_default_addr_size): /example-0/soc/pinctrl@1001f000: Relying on default #size-cells value
-Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dt.yaml: pinctrl@1001f000: 'gpio-ranges' does not match any of the regexes: '-[0-9]+$', 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
+However, I will change the KernelVersion to 5.15 of the _available 
+description in patch v4. I left this at 5.8 and that's not right, 
+because this information is newly added.
 
-doc reference errors (make refcheckdocs):
+Thanks,
 
-See https://patchwork.ozlabs.org/patch/1533169
+Roan
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> 
+>> +static int scd4x_read(struct scd4x_state *state, enum scd4x_cmd cmd,
+>> +			void *response, int response_sz)
+>> +{
+>> +	struct i2c_client *client = state->client;
+>> +	char buf[SCD4X_READ_BUF_SIZE];
+>> +	char *rsp = response;
+>> +	int i, ret;
+>> +	char crc;
+>> +
+>> +	/*
+>> +	 * Measurement needs to be stopped before sending commands.
+>> +	 * Except for reading measurement and data ready command.
+>> +	 */
+>> +	if ((cmd != CMD_GET_DATA_READY) && (cmd != CMD_READ_MEAS)) {
+>> +		ret = scd4x_send_command(state, CMD_STOP_MEAS);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		/* execution time for stopping measurement */
+>> +		msleep_interruptible(500);
+>> +	}
+>> +
+>> +	/*CRC byte for every 2 bytes of data */
+> 
+> /* CRC..
+> 
+> Please check for similar as otherwise we'll get 'cleanup' patches the moment various
+> scripts hit this new code and it'll waste our time!
+> 
+>> +	response_sz += response_sz / 2;
+>> +
+>> +	put_unaligned_be16(cmd, buf);
+>> +	ret = scd4x_i2c_xfer(state, buf, 2, buf, response_sz);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	for (i = 0; i < response_sz; i += 3) {
+>> +		crc = crc8(scd4x_crc8_table, buf + i, 2, CRC8_INIT_VALUE);
+>> +		if (crc != buf[i + 2]) {
+>> +			dev_err(&client->dev, "CRC error\n");
+>> +			return -EIO;
+>> +		}
+>> +
+>> +		*rsp++ = buf[i];
+>> +		*rsp++ = buf[i + 1];
+>> +	}
+>> +
+>> +	/* start measurement */
+>> +	if ((cmd != CMD_GET_DATA_READY) && (cmd != CMD_READ_MEAS)) {
+>> +		ret = scd4x_send_command(state, CMD_START_MEAS);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+> 
+> ...
+> 
+>> +
+>> +static IIO_DEVICE_ATTR_RW(calibration_auto_enable, 0);
+>> +static IIO_DEVICE_ATTR_WO(calibration_forced_value, 0);
+>> +
+>> +static IIO_CONST_ATTR(calibration_forced_value_available,
+>> +	       __stringify(SCD4X_FRC_MIN_PPM 1 SCD4X_FRC_MAX_PPM));
+> 
+> Ah, I wasn't completely clear on this.  See the main ABI doc for
+> _available
+> 
+> Format for this needs to include brackets to indicate it's a range
+> rather than 3 numbers
+> "[MIN 1  MAX]"
+> 
+> 
+> Having added this it also needs to be in the ABI documentation.
+> Whilst somewhat trivial, all ABI should be documented there.
+> 
+>> +
+>> +static struct attribute *scd4x_attrs[] = {
+>> +	&iio_dev_attr_calibration_auto_enable.dev_attr.attr,
+>> +	&iio_dev_attr_calibration_forced_value.dev_attr.attr,
+>> +	&iio_const_attr_calibration_forced_value_available.dev_attr.attr,
+>> +	NULL
+>> +};
+>> +
+>> +static const struct attribute_group scd4x_attr_group = {
+>> +	.attrs = scd4x_attrs,
+>> +};
+>> +
+>> +static const struct iio_info scd4x_info = {
+>> +	.attrs = &scd4x_attr_group,
+>> +	.read_raw = scd4x_read_raw,
+>> +	.write_raw = scd4x_write_raw,
+>> +};
+>> +
+> 
+> ...
+> 
+>> +
+>> +static irqreturn_t scd4x_trigger_handler(int irq, void *p)
+>> +{
+>> +	struct iio_poll_func *pf = p;
+>> +	struct iio_dev *indio_dev = pf->indio_dev;
+>> +	struct scd4x_state *state = iio_priv(indio_dev);
+>> +	struct {
+>> +		uint16_t data[3];
+>> +		int64_t ts __aligned(8);
+>> +	} scan;
+>> +	int ret;
+>> +	uint16_t buf[3];
+>> +
+>> +	mutex_lock(&state->lock);
+>> +	ret = scd4x_read_poll(state, buf);
+>> +	mutex_unlock(&state->lock);
+>> +	if (ret)
+>> +		goto out;
+>> +
+>> +	memset(&scan, 0, sizeof(scan));
+>> +	memcpy(scan.data, buf, sizeof(buf));
+> 
+> I missed this before, but why not do the scd4x_read_poll() directly into scan->data after
+> you've done the memset?  That way you avoid the need for a memcpy.
+> 
+> i.e.
+> 
+> 	memset(&scan, 0, sizeof(scan));
+> 	mutex_lock(&state->lock)
+> 	ret = scd4x_read_poll(state, scan->data);
+> 	mutex_unlock(&state->lock);
+> 	if (ret)
+> 	...
+> 
+> 
+>> +
+>> +	iio_push_to_buffers_with_timestamp(indio_dev, &scan, iio_get_time_ns(indio_dev));
+>> +out:
+>> +	iio_trigger_notify_done(indio_dev->trig);
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
