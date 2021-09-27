@@ -2,105 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F0DD419D2E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 19:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E133A419D3E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 19:46:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237672AbhI0Rpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 13:45:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46400 "EHLO
+        id S237427AbhI0Rrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 13:47:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237739AbhI0RpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 13:45:25 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 974A3C0180C2
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 10:24:00 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id k24so18440848pgh.8
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 10:24:00 -0700 (PDT)
+        with ESMTP id S237271AbhI0Rro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 13:47:44 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28146C043968
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 10:31:55 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id a13so17372005qtw.10
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 10:31:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5P3OrPu6+56qmlhZPoJJstlv8IRrXnOuHuYMrmMX4NI=;
-        b=n6L1AnuX/V+OuWLh5rssxLOAbc5rjEkkrwklXwK0ceoJvbKg/ttagXWHWY7DH0QY3C
-         rKB0DivqGj4OSONgSx5QkCyfcYab9Cf2ENkcYSoyAVCqUqxiJNGkFhLxeqE3C3cJxzwB
-         oDAYOGn8zq2HzyTfn5H82EWDCuxqVbGXO9yM5b3lcG41HAwl1Bcd0XffvVyZLzuEOVJg
-         Lq1ummIEoJWm3AO8x5LDWpRQyw/EMQ/LenKdTtHU4CfU26ykYvxAJl/Gpr81IgOqGPVb
-         JyCrWZ5UbrP12894aHYua7c/mFkSs1nQS7y9ZSpmLL2BLDnsD9PWfpW4ja+DNnyIe+VL
-         GYSQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Q25abHd9wgNegk3LUcOidVwBOafJNu1U9ST62KJXKh8=;
+        b=Ny6AIsS9MNvI6ERmgppnjGwYp+CeoJRk0IArqfNnE6eticiIdzNtufGZQts0fxRfaa
+         2La6isn8ClLdLGvpKcRN7Ws+5DbB2alushQpd5Mgdc9x0R4XjR8obr6bX67RKTuetBaA
+         VnxeAY+0ch/n5c2/oqU2Ri+Wkk5YXe/CnUMzo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5P3OrPu6+56qmlhZPoJJstlv8IRrXnOuHuYMrmMX4NI=;
-        b=pDACo/zOrtAESd91hsE2fYQvMRe3lyFXadf6EEYOJiPb1AsOtciBBvj6nn3ZtFOo/A
-         dgRaSVDN25d6oyy0VBswhSdXogBU/agrg4l0GIvz8oZiT10dqjSMamXH4rlUz0iRnkhI
-         LhTfjVB9MqLWS+9bwISOC6fBTo1ZJSNV78W2HG6bXMafy6khDIlbNFbHnDuHkD3XcpQa
-         HZ0tQA0GU2cvGJIdt/OQrgppjjLyHJ+ZO+KdsfuDpzpa5BJYrcga1nPxjbRsuQnXFqZx
-         IJ8YoanlYyQyBtJbLvQ7p8Xh9DOidcauAkSWZjAPdlxK4aTTECh91GFbnwGWGFnnTVT3
-         fVsA==
-X-Gm-Message-State: AOAM533tcl1wfHmEUHqUMw5feqWU6GEtTqSq/NR1klH4iWpTVzDpW57T
-        ALjzL8d1WtF4wH4TdWxzI+uThOre4xiXbw==
-X-Google-Smtp-Source: ABdhPJxFTFDsHgeCr6HVxvBjtijyCpBs6vjOVIWRqOO6IwwMSot6hv9oSpOisZRYBLUuHFzxloLRqg==
-X-Received: by 2002:a63:5902:: with SMTP id n2mr672051pgb.305.1632763439002;
-        Mon, 27 Sep 2021 10:23:59 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id l9sm57170pjz.55.2021.09.27.10.23.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 10:23:58 -0700 (PDT)
-Date:   Mon, 27 Sep 2021 11:23:56 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
-Cc:     Suman Anna <s-anna@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, Nishanth Menon <nm@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Subject: Re: [PATCH V4 0/2] dt-bindings: remoteproc: k3-r5f|dsp: Remove
-Message-ID: <20210927172356.GC2837840@p14s>
-References: <20210927103811.11222-1-sinthu.raja@ti.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Q25abHd9wgNegk3LUcOidVwBOafJNu1U9ST62KJXKh8=;
+        b=sczXxdvhrgx7vXHghPR8WX+4hwNKF0Yer0LCh8ksmpz/mMWk7cSXStUZRWRWDaVTO7
+         WgDBnsAPXTyJAQTvtZkx+pANUIMtHb/UsFsKnUsFQc3PPEKhiepyYdFLcE9mELrWlklE
+         t6VI5ZT+jhNpPDggEmueto/h5Mj8GbLqvzyBWF1QAm/ctK4810M1cghpmhoKqOsblULA
+         xJcZnws+CmCoX8EkcQWC+J2Uuo+2tsybhHxnIQED3VkkZ7/x6fHGtTL8Hn8S2lBmDDvi
+         vT7FzLn3aedwUpGxd9JkNf+jd9vv0ovyoe9r/QL1LEjl2ZQiQZL1Z6so/U15jEZDrvMa
+         InyA==
+X-Gm-Message-State: AOAM532BSDEzmw32jNXY3dBj1jOsiP+7WUtAFhj5/uHdMh14w+5XfpuM
+        oK8fubjH183QF0rcpHMmHNgACtAa9IbC0n8t95jL6E7VN8oHrYHh
+X-Google-Smtp-Source: ABdhPJx1KC2Sf4WzHgUQwWyPdWRuSlZoOLnjiZdGnYaexNZXkvQiCqTpJJd5W5gO70e5CRvJBsLepizgX3kZwngK+r4=
+X-Received: by 2002:ac8:4089:: with SMTP id p9mr1016844qtl.363.1632763914260;
+ Mon, 27 Sep 2021 10:31:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210927103811.11222-1-sinthu.raja@ti.com>
+References: <20210901083215.25984-1-yunfei.dong@mediatek.com> <CAC-pXoNT8AFA2j1DiD9M_uGb92fVcukTGDKVURaGjwpPstcwqQ@mail.gmail.com>
+In-Reply-To: <CAC-pXoNT8AFA2j1DiD9M_uGb92fVcukTGDKVURaGjwpPstcwqQ@mail.gmail.com>
+From:   Steve Cho <stevecho@chromium.org>
+Date:   Mon, 27 Sep 2021 10:31:43 -0700
+Message-ID: <CAC-pXoPrOO8W2Le_-WdgX3_=D-Qde8ut_TAzC++EyGCkdoOoPQ@mail.gmail.com>
+Subject: Re: [PATCH v6, 00/15] Using component framework to support multi
+ hardware decode
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 27, 2021 at 04:08:09PM +0530, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
-> 
-> Hi All,
-> The series of patches are meant to help make the rproc bindings for K3
-> r5f and dsp support independent of board/platform involved.
-> 
-> Changes in V4:
-> Addressed review comments:
-> - Removed Fixes tags from the commit descriptions.
-> - Updated subject and commit description to emphasis on cleaning up of the 
->   example to address the dt_binding_check warnings.
-> 
-> 
-> V3: https://lore.kernel.org/all/20210917095426.19277-1-sinthu.raja@ti.com/
-> V2: https://lore.kernel.org/all/20210818074030.1877-1-sinthu.raja@ti.com/
-> V1: https://lore.kernel.org/all/20210817152005.21575-1-sinthu.raja@ti.com/
-> 
-> Sinthu Raja (2):
->   dt-bindings: remoteproc: k3-r5f: Cleanup SoC compatible from DT
->     example
->   dt-bindings: remoteproc: k3-dsp: Cleanup SoC compatible from DT
->     example
-> 
->  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml       | 4 +---
->  .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml       | 4 +---
->  2 files changed, 2 insertions(+), 6 deletions(-)
+> > [1]https://patchwork.linuxtv.org/project/linux-media/list/?series=5826
+> This link seems to be no longer available.
 
-I have applied this set.
+It is probably because the default state is "Action Required", and
+this series was accepted recently afterwards.
 
-Thanks,
-Mathieu
+I can see the series with the below link.
+https://patchwork.linuxtv.org/project/linux-media/list/?series=5826&state=*
 
-> 
-> -- 
-> 2.31.1
-> 
+Sorry for the confusion.
+
+Steve
