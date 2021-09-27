@@ -2,95 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF48741A0FA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 23:02:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8937D41A11E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 23:05:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237071AbhI0VD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 17:03:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37454 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237044AbhI0VD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 17:03:58 -0400
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B258C061575
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 14:02:20 -0700 (PDT)
-Received: by mail-il1-x142.google.com with SMTP id b6so20897764ilv.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 14:02:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=/jfyDf2uGQ0G4PkhWSUViq4lngXtqzf19oHYgswwn6Y=;
-        b=Li/DdL7s2QTVYqG7WowdgIrG41cMphsleGNKbvDXd/pCbKMQtrskbdKRtlYzkWlU0o
-         W2oj8uWii+b4ZXK76m5jalXDhuy1QeAWAS/NBhfiQkSujnngBI0p4T4x5f4C0EdC9W9E
-         FDUQm4AJm1zEOLuRzu/G0mxZlZlrSvjASsOXGv6m3H53c9npMQtMo9TxIe57czm8UtbY
-         QlaizMYeRBkpKwH/SjDESplZfcVuvcL4/CDVLn50U6oAoNBWGtTm6JvFwoS98fRHn4m0
-         I6vBAmWVuy0X1Cxt39XtNmk5wFnIC6rNRqDjKXHW+lhIzDX8VbEi3tDINikFsI+mzQPa
-         vCZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=/jfyDf2uGQ0G4PkhWSUViq4lngXtqzf19oHYgswwn6Y=;
-        b=V8/fLm5hsjSV0OmndFGU3/Mb1X/G77UQjvT/OgkMPEzhZndj8UMns6POLBuWQOpCxC
-         L490C1HtKVzCm5hg8wfQvAh7wyZjMYkb/ARAQJt1OjBNorSmluonj4EeAuVvunHcYbI1
-         82iL7Vr+7M2b/qnFXbXWrfogalzuEapKR/klXfmY2Iajd09Q+FGL3ktDJC/un+mka01I
-         IG1j06BSmm+7kQ5JkE3+K38/MuHDr8oYX7P11BTYfT2aj7vAkkjOn4xCaw5IFnnHMSkl
-         qPdVUZcVRJvnjdswk+zYByqpA1owWOpWBC7buK1+7yCrYJtnAd5dZ5xHQK1iaTITIq5X
-         6hHg==
-X-Gm-Message-State: AOAM530kAj7NGFJ56X4sphcoe2VrMjgG4q9fCzQbpf8ogBvHSoaVUCE2
-        oqR3a4M4AJPOsx2JOT5r3Bwq5gngR0wW+IYLfoU=
-X-Google-Smtp-Source: ABdhPJwSU/kI8n0P80wDJBUgI1wxpCOPfn+SFJHNBjLccV7s6gOpXZJv3/hxFL9988OHr/USlkAcx1OJWCmE4jgNJdg=
-X-Received: by 2002:a05:6e02:1b04:: with SMTP id i4mr1488440ilv.221.1632776539947;
- Mon, 27 Sep 2021 14:02:19 -0700 (PDT)
+        id S237248AbhI0VGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 17:06:16 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:42970 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237235AbhI0VGP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Sep 2021 17:06:15 -0400
+Received: from user91-192-32-221.grape.cz ([91.192.32.221] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mUxnb-00057F-JB; Mon, 27 Sep 2021 23:04:31 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Jianqun Xu <jay.xu@rock-chips.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Guillaume Tucker <guillaume.tucker@collabora.com>
+Cc:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Subject: Re: [PATCH v8 9/9] pinctrl/rockchip: drop the gpio related codes
+Date:   Mon, 27 Sep 2021 23:04:26 +0200
+Message-ID: <46772783.fMDQidcC6G@phil>
+In-Reply-To: <f13ff971-8af2-be9b-fa5d-7913c0ff1351@collabora.com>
+References: <20210816011948.1118959-1-jay.xu@rock-chips.com> <20210816012146.1119289-1-jay.xu@rock-chips.com> <f13ff971-8af2-be9b-fa5d-7913c0ff1351@collabora.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6602:1581:0:0:0:0 with HTTP; Mon, 27 Sep 2021 14:02:19
- -0700 (PDT)
-Reply-To: ahmadmustafa.7800@gmail.com
-From:   Ahmad Mustafa <sergef550@gmail.com>
-Date:   Mon, 27 Sep 2021 22:02:19 +0100
-Message-ID: <CAHL_+puiBe=shn5rR4K5_yjsJtDcj_ZbM0Mo=Pyi0S9huRgZzA@mail.gmail.com>
-Subject: =?UTF-8?B?64yA7LacIOuwjyDtiKzsnpAgZGFlY2h1bCBtaWNoIHR1amEvTE9BTiBBTkQgSU5WRVNUTQ==?=
-        =?UTF-8?B?RU5U?=
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Sir,
+Hi Guillaume,
 
-Aseel Islamic finance PJSC is private joint stock company that was
-established in 2006 and has built a leading market position for itself
-in the UAE's Islamic finance market which specializes in loan finance
-and investment activities in real estate, hospitality, industrial &
-sustainable technologies, strategic financial investments, specialized
-education, healthcare services, agriculture, manufacturing,
-mining,energy and additional environmentally sustainable projects.
+Am Montag, 27. September 2021, 12:18:04 CEST schrieb Guillaume Tucker:
+> On 16/08/2021 02:21, Jianqun Xu wrote:
+> > With the patch to separate the gpio driver from the pinctrl driver, now
+> > the pinctrl-rockchip can drop the gpio related codes now.
+> > 
+> > Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+> > ---
+> > v8:
+> >  - none
+> > v7:
+> >  - none, from v1
+> > 
+> >  drivers/pinctrl/pinctrl-rockchip.c | 645 +----------------------------
+> >  1 file changed, 17 insertions(+), 628 deletions(-)
+> 
+> [...]
+> 
+> Please see the bisection report below about a boot failure on
+> rk3288-veyron-jaq which is pointing to this patch.  The issue
+> appears to be present on mainline but not on linux-next as of
+> next-20210924.
+> 
+> Reports aren't automatically sent to the public while we're
+> trialing new bisection features on kernelci.org but this one
+> looks valid.
+> 
+> Some more details can be found here:
+> 
+>   https://linux.kernelci.org/test/case/id/614f19a33f5497c2bc99a2df/
+> 
+> Please let us know if you need help debugging the issue or if you
+> have a fix to try.
 
-My name is Mr. Ibn Ahmad Mustafa . Do you have projects that require
-funding? We have finance available for your projects with over 2
-trillion private and corporate investment portfolios.  Aseel Islamic
-finance PJSC is looking for equity partners, entrepreneur, fund
-raisers and portfolio managers who will pay up to 4.5% interest and/or
-part equity position with a 5 to 10 year hold. In 2030, we plan on
-acquiring up to 2 trillion in high-quality, low risk assets and
-investments to capitalize on the current market cycle.
+This is probably the issue I had on veyron-pinky as well, pinctrl-hogs
+grabbing things with output-enable configs before the gpio driver are
+probed. I've already submitted a fix series for this and all patches
+have at least reached maintainer trees.
 
-Aseel Islamic finance PJSC is acting as a lender and the fund will be
-disbursed on a clear interest rate of 3.5% annually to the equity
-partners and entrepreneurs for their investment projects. We also give
-a 2% commission to brokers, who bring project owners for finance or
-other opportunities.
+See https://lore.kernel.org/all/20210913224926.1260726-1-heiko@sntech.de/
+for reference.
 
-For further details, kindly send us your business plans or project summary.
-
-Regards,
+So in theory that issue should go away with hopefully the next -rc kernek.
 
 
-Mr. Ibn Ahmad Mustafa
-International Business Coordinator
-Aseel Islamic Finance PJSC
-Al Mankhool, Dubai C2 Tower,
-Ground floor,P.O 94669 Dubai, UAE
-Abu Dhabi - United Arab Emirates
-Email : ahmadmustafa.7800@gmail.com
+Heiko
+
+
+> 
+> Best wishes,
+> Guillaume
+> 
+> 
+> GitHub: https://github.com/kernelci/kernelci-project/issues/58
+> 
+> -------------------------------------------------------------------------------
+> 
+> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+> * This automated bisection report was sent to you on the basis  *
+> * that you may be involved with the breaking commit it has      *
+> * found.  No manual investigation has been done to verify it,   *
+> * and the root cause of the problem may be somewhere else.      *
+> *                                                               *
+> * If you do send a fix, please include this trailer:            *
+> *   Reported-by: "kernelci.org bot" <bot@kernelci.org>          *
+> *                                                               *
+> * Hope this helps!                                              *
+> * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+> 
+> mainline/master bisection: baseline.login on rk3288-veyron-jaq
+> 
+> Summary:
+>   Start:      7d42e9818258 Merge tag 'gpio-fixes-for-v5.15-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux
+>   Plain log:  https://storage.kernelci.org/mainline/master/v5.15-rc2-159-g7d42e9818258/arm/multi_v7_defconfig+CONFIG_EFI=y+CONFIG_ARM_LPAE=y/gcc-8/lab-collabora/baseline-rk3288-veyron-jaq.txt
+>   HTML log:   https://storage.kernelci.org/mainline/master/v5.15-rc2-159-g7d42e9818258/arm/multi_v7_defconfig+CONFIG_EFI=y+CONFIG_ARM_LPAE=y/gcc-8/lab-collabora/baseline-rk3288-veyron-jaq.html
+>   Result:     9ce9a02039de pinctrl/rockchip: drop the gpio related codes
+> 
+> Checks:
+>   revert:     PASS
+>   verify:     PASS
+> 
+> Parameters:
+>   Tree:       mainline
+>   URL:        https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+>   Branch:     master
+>   Target:     rk3288-veyron-jaq
+>   CPU arch:   arm
+>   Lab:        lab-collabora
+>   Compiler:   gcc-8
+>   Config:     multi_v7_defconfig+CONFIG_EFI=y+CONFIG_ARM_LPAE=y
+>   Test case:  baseline.login
+> 
+> Breaking commit found:
+> 
+> -------------------------------------------------------------------------------
+> commit 9ce9a02039de72ec8af1bd4bff14f1780337ffcc
+> Author: Jianqun Xu <jay.xu@rock-chips.com>
+> Date:   Mon Aug 16 09:21:46 2021 +0800
+> 
+>     pinctrl/rockchip: drop the gpio related codes
+>     
+>     With the patch to separate the gpio driver from the pinctrl driver, now
+>     the pinctrl-rockchip can drop the gpio related codes now.
+>     
+>     Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+>     Link: https://lore.kernel.org/r/20210816012146.1119289-1-jay.xu@rock-chips.com
+>     Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> 
+
+
+
+
