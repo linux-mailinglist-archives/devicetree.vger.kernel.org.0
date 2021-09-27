@@ -2,92 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D5741A3B1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 01:14:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A64FE41A400
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 01:59:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238171AbhI0XPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 19:15:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39522 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238193AbhI0XPh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 19:15:37 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C8ABC061769
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 16:13:59 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id d12-20020a05683025cc00b0054d8486c6b8so4593953otu.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 16:13:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KVuMZMqVV04eQ3Tb7rVw7n5uLN5vqLDGlsaVhkH6vzk=;
-        b=oVP0g4qMd5qWo3M3F1aW6UU+Ws0NL+zn9GuNUtkm6RsR4uqiTMi3g3YqRTqyptXGQC
-         vAITBe77HANeeI+WXUGpLn8e5rMaxWhiWaKHudhs27TGC2+x/U62jU1zzX79Qo2ngNTN
-         Ht1555PUyM6wUfdasdj4CFh/JvAkbVKg7wEYwlD2LNHN3MnPdKvF1cFJwsIItnIS583L
-         /Lir38FwWD6RWFZ9c6NEec8fwYR3/0fuS3uHDTgr7DtR14esDfjiBKvr5UKkDbmyDQPh
-         t4ZOBFZBvIAYO7YsfA7ObZUCNAPj26+6LoqvyO43V0HD1MD06PKkGAHJgI9tzF84EztC
-         BibA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KVuMZMqVV04eQ3Tb7rVw7n5uLN5vqLDGlsaVhkH6vzk=;
-        b=fEam/uvUCzWh6T3mUkCuqlpXqlBuX1bEiT77HFZtMKWU03eL8Em6QpVrbG6sAvfAoM
-         arP8onFpb9zj1nUB8o85wfsdxVX9keR0Dr2/tXfrtk2+Y8XWk3Ug4GUOVM8UuoiXbPn+
-         cYXtFZ1HYUNd/BSUO6pCTNMy8/yB01+v2QclURPxw9MGIRxUQUDb4NLWLZGxo++ySPAJ
-         EOo4BaXZNpKY3LmRfciZrdaFfUiLx7Lt/HEcn+uWZZAutaZiZ57jX5nYvoWD1M09XHT4
-         rbzTVC0EGygBLwVaxJb1QRbsuOCDDStv9ss+nF+xwQRoX9A4LbNZXEGwkAsEGHF8ybEp
-         EzxQ==
-X-Gm-Message-State: AOAM533WHAkbdgn99v/VqAvHk1wEt50GCqo/jXR+QS1UmH5r+LSZUrE9
-        QY5xsArJ/vNXA/pQhvDDmgdDMQ==
-X-Google-Smtp-Source: ABdhPJzaEwRSbrKNt2Ihwn79FZaMrmiL6jA1t5+oKfxg1X5E05wzeb3V31yxVtzsdzgCZAQLTBqEkQ==
-X-Received: by 2002:a05:6830:12cf:: with SMTP id a15mr2283847otq.296.1632784438533;
-        Mon, 27 Sep 2021 16:13:58 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id p21sm4162268oip.28.2021.09.27.16.13.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 16:13:58 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>
-Cc:     Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: Re: (subset) [PATCH v2 2/5] remoteproc: qcom: pas: Use the same init resources for MSM8996 and MSM8998
-Date:   Mon, 27 Sep 2021 18:13:53 -0500
-Message-Id: <163278440375.1524647.6708298654473355392.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210926190555.278589-3-y.oudjana@protonmail.com>
-References: <20210926190555.278589-1-y.oudjana@protonmail.com> <20210926190555.278589-3-y.oudjana@protonmail.com>
+        id S238257AbhI1ABT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 20:01:19 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:38788 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231674AbhI1ABT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Sep 2021 20:01:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1632787180;
+        h=from:from:reply-to:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=RWuQbjjw7d6RpnrVRV+KE6JwsTnLJqx5vfaAKc+bH9Y=;
+        b=fB/QHw+EQ3M5PyU/eWNe75ESzOtrTlKiaQHxwen8MRyfxIHGb11/RsXTLjco5R8Y/RsM4i
+        iXUiudyVZbY/tPBzZyTTJdYdr843Y8i43zy3D+FEykhDEBTmpXV2BfgmSe1HeHwHyZoaEV
+        MJBMsqYRw9PwP+XNhchkQylqWnULNgQ=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-200-FOpKJpTdN6GVc0BnQsUYZw-1; Mon, 27 Sep 2021 19:59:36 -0400
+X-MC-Unique: FOpKJpTdN6GVc0BnQsUYZw-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com [10.5.11.11])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D1527835DE0;
+        Mon, 27 Sep 2021 23:59:34 +0000 (UTC)
+Received: from [10.64.54.16] (vpn2-54-16.bne.redhat.com [10.64.54.16])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 390D560657;
+        Mon, 27 Sep 2021 23:59:29 +0000 (UTC)
+Reply-To: Gavin Shan <gshan@redhat.com>
+Subject: Re: [PATCH v2 2/2] of, numa: Fetch empty NUMA node ID from distance
+ map
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>, Marc Zyngier <maz@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, shan.gavin@gmail.com
+References: <20210927064119.127285-1-gshan@redhat.com>
+ <20210927064119.127285-3-gshan@redhat.com>
+ <CAL_JsqL8+_Q690-c3J4TS6LBF-mCUBxbhTfr994=Fwffqab0_w@mail.gmail.com>
+From:   Gavin Shan <gshan@redhat.com>
+Message-ID: <c101363f-1de7-1d56-a8d9-243f003b48c1@redhat.com>
+Date:   Tue, 28 Sep 2021 09:59:25 +1000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqL8+_Q690-c3J4TS6LBF-mCUBxbhTfr994=Fwffqab0_w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Sep 2021 19:06:22 +0000, Yassine Oudjana wrote:
-> The resources for MSM8996 are missing power domains, and adding them
-> makes the resources identical to the MSM8998 ones.
-> Rename msm8998_adsp_resource to msm8996_adsp_resource then use it
-> for both chips. Also add power domains to slpi_resource_init and use
-> it for both chips.
+Hi Rob,
+
+On 9/28/21 12:49 AM, Rob Herring wrote:
+> On Mon, Sep 27, 2021 at 1:42 AM Gavin Shan <gshan@redhat.com> wrote:
+>>
+>> There is no device node for the empty NUMA node. However, the
+>> corresponding NUMA node ID and distance map is still valid in
+>> "numa-distance-map-v1" compatible device node.
+>>
+>> This fetches the NUMA node ID and distance map for these empty
+>> NUMA node from "numa-distance-map-v1" compatible device node.
 > 
+> This is much nicer.
 > 
-> [...]
 
-Applied, thanks!
+Indeed, thanks for your suggestions :)
 
-[2/5] remoteproc: qcom: pas: Use the same init resources for MSM8996 and MSM8998
-      commit: 0e235460be2e8c9b08e567c839641395a8ca68d9
+>> Signed-off-by: Gavin Shan <gshan@redhat.com>
+>> ---
+>>   drivers/of/of_numa.c | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
+>> index fe6b13608e51..5949829a1b00 100644
+>> --- a/drivers/of/of_numa.c
+>> +++ b/drivers/of/of_numa.c
+>> @@ -111,6 +111,8 @@ static int __init of_numa_parse_distance_map_v1(struct device_node *map)
+>>                          return -EINVAL;
+>>                  }
+>>
+>> +               node_set(nodea, numa_nodes_parsed);
+>> +
+> 
+> With this, couldn't we remove of_numa_parse_cpu_nodes() as the only
+> thing it does is node_set()?
+> 
 
-Best regards,
--- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+I don't think so for couple of reasons:
+
+(1) With problematic device-tree, the distance map node might be missed
+     or incomplete. In this case, of_numa_parse_cpu_nodes() still helps.
+
+(2) @numa_nodes_parsed is also updated when the memory nodes are iterated
+     in of_numa_parse_memory_nodes() and numa_add_memblk().
+
+So @numa_nodes_parsed, which is synchronized to @node_possible_map afterwards,
+is the gathering output of CPU nodes, memory nodes and distance map node.
+
+>>                  numa_set_distance(nodea, nodeb, distance);
+>>
+>>                  /* Set default distance of node B->A same as A->B */
+
+Thanks,
+Gavin
+
