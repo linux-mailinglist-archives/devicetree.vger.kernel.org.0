@@ -2,81 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8510A41A34F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 00:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52ED741A361
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 00:56:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237934AbhI0WvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 18:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33834 "EHLO
+        id S237835AbhI0W57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 18:57:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238012AbhI0WvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 18:51:17 -0400
-Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A402EC061765
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 15:49:38 -0700 (PDT)
-Received: by mail-ua1-x936.google.com with SMTP id 2so13178488uav.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 15:49:38 -0700 (PDT)
+        with ESMTP id S237771AbhI0W57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 18:57:59 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C184EC061740
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 15:56:20 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id 5-20020a9d0685000000b0054706d7b8e5so26591358otx.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 15:56:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=l3Govj1Ggv6fnK3dXfFXh4R4w4mAAKZUo/5Lt6qGfhI=;
-        b=Iq5vAXCv2EMz7F+Lo3dTfVrteNUNq7v81PHVhbhOsX5XpUjjgXfRLR72Oozo+4Rd28
-         avv9yUHE6tuOtdTZvzc9WXaYi+m9yRhkz0esk2t4hBvj2j9/iNMEYnDKiLQv27KlzGnU
-         KNtCEtConX/KW5Z8fpL4XbTssq9e8C35PemeE=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=c8jgVmQNcFDWtF6veEP52V7GWP5AdrcQkm6o+zqx+QM=;
+        b=iCcPOuB0wdBLeVfK03OQ+I2/QBZKT1Ekr6KqJTGnv3Y90/ysCa0c7t9CYCUczUwtq6
+         CVk7jFBOCRosDTmCai+Tp3xaqMw//4ZzKXyW9KgyYk1BqTqSiqLrIIVI+kq8esQ+GEJj
+         geBaL48TkRwrLztWSV5M4NqkamvaLJmNW37ZUw0mFcg5BGbC+Z7xAB6XNq3fUlsZlhGY
+         /xsWbUNRnzfaRBIVVsyyVBHa/EJYIrZOOB/XkXalNOgSYISDMEeQvn1IWaTKvTMbxcrE
+         1uHPQFbf8p7CwavOLGgwgdIPJVB2unSISDKmBmf8OdLzA8X+4uDLrNfBUXnJ/SIWDUTS
+         4hCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=l3Govj1Ggv6fnK3dXfFXh4R4w4mAAKZUo/5Lt6qGfhI=;
-        b=pM47UM5eixqMZ1/v5BGY23E5g44DmckukM6nppGCwbE/vmXD13EJTe3q7FILlmww0D
-         r6V5XFIth704YQpCNJhywzWBLLQZgSgX8uGJ3LeP6qKVHKCHXDVAXPFu85z1+cvuWKPM
-         cOlaMcupbe+1bZng5yR5eUbN6++dZsoxiat2Fdd1vBwvSPT2txlxPSnVWBkYOS4mrFdc
-         6BuX+xAad7JFGjORrfPh1q51aR9ZhNS+lqaXEnd2kNv/bChq97tV3kOoTcBkIBV2nKEL
-         Il7n7NP6YTMqhvIIGgDT/s2SOKP57VviT/1LTC2Xt+UR0W22zmlO/uDspt3aSwfaD34z
-         D5mw==
-X-Gm-Message-State: AOAM5312YdktWeshEH5VuS/kXEHebEjrFd91hYK6Tw/6eVJIzPipt86k
-        4rWrJBj5mVqtXN48TxNi6RNC21d1wBYBnTxiU0eniw==
-X-Google-Smtp-Source: ABdhPJw93xHWEfPQbedVUspaJQ+Kpz4lDjxMsiLCz9VQF0pLxWLXngzwY9I3WjVpCLk0lSx8d9/HMX6++hBMj4ge2eY=
-X-Received: by 2002:ab0:8c1:: with SMTP id o1mr2454160uaf.113.1632782977502;
- Mon, 27 Sep 2021 15:49:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=c8jgVmQNcFDWtF6veEP52V7GWP5AdrcQkm6o+zqx+QM=;
+        b=v8N/0zHwaRtNqpXgf7nOuKOUIs+Blb02SQ2geKp5POqAhnzCQVjHMvImhvFl3GnPzb
+         4EoyEQqBwzHdKZ1eybHXfzld8yNg2Q4QdIzNFiLDaGS6ATviQIdGFlGGQITQPfbkNvP6
+         Fyb+VlxrrHTu3C1ixY4B1T10j1bZZFH9K3zCizdei8gmkMdIUqNkQrsmE1XPvLuyC58i
+         mzBjfd+l8Qurvh5JEjI1YJEJcJ5L81SM8vLKfX/EbAmnjQt1KffLiapeC4Jzb1jWXZ3e
+         eZgMTDOCTZou5nBfHalxiOuP3COfp14Doqy9H6U9bOuViRGJUr5Dfm9PqZt30nxfBm1O
+         D39A==
+X-Gm-Message-State: AOAM5318bxVQg1UPR+C4Cav2EAyobr1lDT5HoHYiEjggtnn1AkEnGNmm
+        Px+bxz3xGBDZuHIlXmlfvyWw7Q==
+X-Google-Smtp-Source: ABdhPJy2USL2Zay74EzMCoQ6e0ManJiErKIbs6F5qYoQqId+2KJ4HbuUrJyJdcNMQMpuBTYFHlw5rQ==
+X-Received: by 2002:a05:6830:1d71:: with SMTP id l17mr2303452oti.10.1632783380023;
+        Mon, 27 Sep 2021 15:56:20 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id w184sm4231084oie.35.2021.09.27.15.56.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Sep 2021 15:56:19 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, paul.bouchara@somainline.org,
+        phone-devel@vger.kernel.org, konrad.dybcio@somainline.org,
+        devicetree@vger.kernel.org, agross@kernel.org
+Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: Add support for MSM8998 F(x)tec Pro1 QX1000
+Date:   Mon, 27 Sep 2021 17:56:13 -0500
+Message-Id: <163278329751.1522839.14517246670065767128.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210909123823.368199-1-angelogioacchino.delregno@somainline.org>
+References: <20210909123823.368199-1-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-References: <20210923065500.2284347-1-daniel@0x0f.com> <20210923065500.2284347-4-daniel@0x0f.com>
- <YVIhEJCJ9lr3ZKzM@robh.at.kernel.org>
-In-Reply-To: <YVIhEJCJ9lr3ZKzM@robh.at.kernel.org>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Tue, 28 Sep 2021 07:51:40 +0900
-Message-ID: <CAFr9PXnowBM-jAh4cnnngR00eJtB+dXArpircntEth0TU0UnjQ@mail.gmail.com>
-Subject: Re: [PATCH v2 03/11] dt-bindings: leds: Document "activity" trigger
-To:     Rob Herring <robh@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-leds@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>, pavel@ucw.cz,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Thu, 9 Sep 2021 14:38:20 +0200, AngeloGioacchino Del Regno wrote:
+> Add device tree support for the F(x)tec Pro 1 (QX1000) smartphone;
+> this is a minimal configuration to boot to serial console.
+> 
+> 
 
-On Tue, 28 Sept 2021 at 04:52, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Sep 23, 2021 at 03:54:52PM +0900, Daniel Palmer wrote:
-> > The "activity" trigger can be used as the default but it's currently
-> > undocumented so validating a devicetree that uses it causes a warning.
->
-> It is preferred to use 'function' and LED_FUNCTION_CPU. Is there some
-> reason that can't be used?
+Applied, thanks!
 
-LED_FUNCTION_CPU seems to be tied to
-drivers/leds/trigger/ledtrig-cpu.c which I think serves the same
-purpose but does it a slightly different way.
-Would adding LED_FUNCTION_ACTIVITY work?
+[1/4] arm64: dts: qcom: Add support for MSM8998 F(x)tec Pro1 QX1000
+      commit: 122d2c5f31b6e668a9c01bd023949b0f39954c76
+[2/4] arm64: dts: qcom: msm8998-fxtec-pro1: Add physical keyboard leds
+      commit: 946c9a2cf8b02a21275e83f0d75826856c223eae
+[3/4] arm64: dts: qcom: msm8998-fxtec-pro1: Add Goodix GT9286 touchscreen
+      commit: f66ea51f0e477b8a8ceff3a6257df163c54af478
+[4/4] arm64: dts: qcom: msm8998-fxtec-pro1: Add tlmm keyboard keys
+      commit: cea83511353d896be613a69ccee1c464e68686f6
 
-Thanks,
-
-Daniel
+Best regards,
+-- 
+Bjorn Andersson <bjorn.andersson@linaro.org>
