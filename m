@@ -2,83 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2159D419188
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 11:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C91D34191CA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 11:49:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233648AbhI0JcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 05:32:07 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:35712 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233587AbhI0JcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 05:32:06 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18R9URIn037673;
-        Mon, 27 Sep 2021 04:30:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1632735027;
-        bh=kQY6nvv6nW8S8liam7cExP+iV05+kCnTvAYyAy/GMr0=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=RGvX3TKzU7OMVgdBTZhZ4l+pWOsZDVOKuOUY1zWJQW5pjmjMIsw7sUJ8Qc2ExAsx4
-         tTNVgI+iv1sHuVnGMqfaNXHFW1r7t5XMZgACclnd6trnPJ+0pL1SIjvm23eDGMWliE
-         UnT7SB6dbRAHN9CpfBLtFq9SGopuNca0na82wxFs=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18R9UQus086374
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 27 Sep 2021 04:30:27 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 27
- Sep 2021 04:30:26 -0500
-Received: from DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f]) by
- DFLE111.ent.ti.com ([fe80::6c89:b1ca:ee8f:1a6f%17]) with mapi id
- 15.01.2308.014; Mon, 27 Sep 2021 04:30:26 -0500
-From:   "M, Aparna" <a-m1@ti.com>
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
-CC:     "Strashko, Grygorii" <grygorii.strashko@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>
-Subject: RE: [EXTERNAL] Re: [PATCH RESEND] dt-bindings: gpio: Convert TI
- TPIC2810 GPIO Controller bindings to yaml
-Thread-Topic: [EXTERNAL] Re: [PATCH RESEND] dt-bindings: gpio: Convert TI
- TPIC2810 GPIO Controller bindings to yaml
-Thread-Index: AQHXovlyzsK14weibk+K/AlN3LkSD6uaiRCAgBW38gD//84LwIAAXowAgAdQzPA=
-Date:   Mon, 27 Sep 2021 09:30:26 +0000
-Message-ID: <b3780494775c44f092f35b62789b157d@ti.com>
-References: <20210906083020.6038-1-a-m1@ti.com>
- <422f7ccd-348b-8023-37db-803339684054@ti.com>
- <CAMpxmJV_DJRtuHH7V86WOi+Rd5fZ0uOf=jNBY7XvJa_5f4h9bQ@mail.gmail.com>
- <91aa4468575143c9bb6a8b6a56ab2995@ti.com>
- <CAMpxmJUam3ZQeizGWaswTy=ziYMh0R5cH+b5F2tdPgWKAuGTDA@mail.gmail.com>
-In-Reply-To: <CAMpxmJUam3ZQeizGWaswTy=ziYMh0R5cH+b5F2tdPgWKAuGTDA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.232.178]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S233698AbhI0Jv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 05:51:29 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:58892 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S233680AbhI0Jv3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Sep 2021 05:51:29 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18R5w8Tw023123;
+        Mon, 27 Sep 2021 04:49:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=pOBThfl8krBPbYHuGaRhDAIksQ2f9g1tQS1+l5OEcLE=;
+ b=od+VUAW36mZpuzes8lKpkLbaBRWtmuXLghCyd1h67OAu1U/KNk4rWbNATfT23HIm/16Z
+ V0rgfztish+TuzaXzb4QvCucUGeJ/zqUD0dbKZAnVandFMvBpArDVA0xph0s1oE1dqI4
+ oyZJCPswAyRRZVoagsFXq/XdJh0AsDynlYMlaIRAY9Glz4HBcFVho7Ukbtw6ypDpi3pH
+ Jt7Ti648LSY3Ryx7EC9kkM+Pr1gWKP9vE9MzcEtA7PcUScsiSKFYm8aS/MoOIM00LQt1
+ fUOsfXRxEJ53R5RsQprg4leh2EC/gsTITu2V2qJCr9w42BDdLv4w3baWcAtLTouRTdf/ Hg== 
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0a-001ae601.pphosted.com with ESMTP id 3batd20q8r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Mon, 27 Sep 2021 04:49:37 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Mon, 27 Sep
+ 2021 10:49:35 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2242.12 via Frontend
+ Transport; Mon, 27 Sep 2021 10:49:35 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 43E09B12;
+        Mon, 27 Sep 2021 09:49:35 +0000 (UTC)
+Date:   Mon, 27 Sep 2021 09:49:35 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8978: Fix I2C address in example
+Message-ID: <20210927094935.GD9223@ediswmail.ad.cirrus.com>
+References: <0409470fbe6bba69ec74a3f30681b5fe93a372ba.1632470464.git.geert+renesas@glider.be>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0409470fbe6bba69ec74a3f30681b5fe93a372ba.1632470464.git.geert+renesas@glider.be>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-ORIG-GUID: jXzsdFyUasTvIfrQPkBP6TMfP485Th33
+X-Proofpoint-GUID: jXzsdFyUasTvIfrQPkBP6TMfP485Th33
+X-Proofpoint-Spam-Reason: safe
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhpcyBvbmUgOiBiZ29sYXN6ZXdza2lAYmF5bGlicmUuY29tDQoNCkkgc2VudCBhIHBpbmcgb24g
-dGhlIG1haWwsIG5vdCBzdXJlIHdoeSB0aGlzIGlzIGhhcHBlbmluZy4NCg0KLS0tLS1PcmlnaW5h
-bCBNZXNzYWdlLS0tLS0NCkZyb206IEJhcnRvc3ogR29sYXN6ZXdza2kgPGJnb2xhc3pld3NraUBi
-YXlsaWJyZS5jb20+IA0KU2VudDogV2VkbmVzZGF5LCBTZXB0ZW1iZXIgMjIsIDIwMjEgNjoxNyBQ
-TQ0KVG86IE0sIEFwYXJuYSA8YS1tMUB0aS5jb20+DQpDYzogU3RyYXNoa28sIEdyeWdvcmlpIDxn
-cnlnb3JpaS5zdHJhc2hrb0B0aS5jb20+OyBMaW51cyBXYWxsZWlqIDxsaW51cy53YWxsZWlqQGxp
-bmFyby5vcmc+OyBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3JnPjsgUmFnaGF2ZW5kcmEs
-IFZpZ25lc2ggPHZpZ25lc2hyQHRpLmNvbT47IGxpbnV4LWRldmljZXRyZWUgPGRldmljZXRyZWVA
-dmdlci5rZXJuZWwub3JnPjsgbGludXgtZ3BpbyA8bGludXgtZ3Bpb0B2Z2VyLmtlcm5lbC5vcmc+
-DQpTdWJqZWN0OiBSZTogW0VYVEVSTkFMXSBSZTogW1BBVENIIFJFU0VORF0gZHQtYmluZGluZ3M6
-IGdwaW86IENvbnZlcnQgVEkgVFBJQzI4MTAgR1BJTyBDb250cm9sbGVyIGJpbmRpbmdzIHRvIHlh
-bWwNCg0KT24gV2VkLCBTZXAgMjIsIDIwMjEgYXQgMjoxMSBQTSBNLCBBcGFybmEgPGEtbTFAdGku
-Y29tPiB3cm90ZToNCj4NCj4gSGkgQmFydCwNCj4NCj4gSSBoYXZlIHJlc2VudCB0aGUgcGF0Y2gu
-DQo+DQo+IFJlZ2FyZHMsDQo+IEFwYXJuYQ0KPg0KDQpUbyB3aGljaCBhZGRyZXNzPyBJIHN0aWxs
-IGRvbid0IGhhdmUgaXQgb24gYm90aCBvZiBteSBlbWFpbCBhZGRyZXNzZXMgKG5vdCBpbiBzcGFt
-IHRvbykgYW5kIHBhdGNod29yayBzdGlsbCBkb2Vzbid0IHNlZSBpdC4NCg0KQmFydA0K
+On Fri, Sep 24, 2021 at 10:02:50AM +0200, Geert Uytterhoeven wrote:
+> According to the WM8978 datasheet, the address of the device is fixed as
+> 0011010 in 2-wire mode.
+> 
+> Fixes: 5bd5699c494f42a3 ("ASoC: dt-bindings: Add WM8978 Binding")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+
+Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+
+Thanks,
+Charles
