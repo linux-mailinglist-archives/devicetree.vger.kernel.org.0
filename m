@@ -2,73 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29452419E6B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 20:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65802419E75
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 20:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236174AbhI0Sjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 14:39:53 -0400
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:35557 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236169AbhI0Sjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 14:39:52 -0400
-Received: by mail-oo1-f41.google.com with SMTP id v17-20020a4ae051000000b002b5a56e3da3so1867787oos.2;
-        Mon, 27 Sep 2021 11:38:14 -0700 (PDT)
+        id S236275AbhI0Sme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 14:42:34 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:45603 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236238AbhI0Sme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 14:42:34 -0400
+Received: by mail-ot1-f52.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso25622787otv.12;
+        Mon, 27 Sep 2021 11:40:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=bzE3NFQakBtNDfzrxu6kIodjRxQ5ysRHLsV7DCjs9zk=;
-        b=KMV0Hj9JMSiCvlPI+NTTRcnosJVcay0KFiml7pNG1lPdCaaFR+x05Y6H9baK8JjT+r
-         1CtxRavTm3lDh7nHdGLk6QVSnBdxCI2k7OYcAiU9nSE3HbgH85vwWiNeRw9adeEBVEFn
-         NWZfZvrcXkoO/fwN3iPYq0csWfnBCYbFbzfnPBO+bBSlkVbuzMZXkhbdkHMKxTRIAr5T
-         vpip0Ns7g+6tpN0q20jg81cVsoDP/qArX7ucjSNqKP2GTSz7CzxBlRbCO10V2HrKJAxZ
-         wa3H5EAgkVfRgKFEAdd4RhQ3c9cLUrvdnpu6QpqdtTc7cBlric9ovF0680+QsuKJ6x7D
-         jzUg==
-X-Gm-Message-State: AOAM533/8IZPoAEECUWA4hno5iCvDxx0eaoTMogs+1XRikhHOcKukVNE
-        sCkEfV6WwDIGjYmFoEMlvc6ygbNJdw==
-X-Google-Smtp-Source: ABdhPJxvwVQpqQm1RaOFMgo+Y51ooncOgu46oOLE54vosi342Afm1UxnSbqBuXtY1g89Z5wISLkBfA==
-X-Received: by 2002:a4a:bd8a:: with SMTP id k10mr1147640oop.41.1632767894213;
-        Mon, 27 Sep 2021 11:38:14 -0700 (PDT)
+        bh=aT74sA8N2lUocgMluPhJs3Gm7SxBOR0E9ip/6duvBVU=;
+        b=i+MIo9YmnFVKvwH3u1OS/hEw6x9vNy/kIuPsKgeky/H+l8oi2HaD8MpIJ0J36KgCcQ
+         ZN3mAMbsRxbpzwd+PI5wvBna/0jLMeECzDFDc6z4uHG64VBtXEs3fTyOlnrS9tns0SCQ
+         nQUHpPi7MlMBJHP4y4EkQ1AFV22Uw/Rn2qciT3nT0m8q0rqOCO+lNCDaNywWjROReQKF
+         r/vTg7Y5p2vjVcw2aeSZxSZLpKK+LEdohZL7NKrMFwYN/hKXUTNtR1jF3mscwgU78wdL
+         L2YCbmrB3GUhmtW650/H6WZceWBXZnTIn6IZNim8XPBBdKjgFe862VAghsb8cL35dENz
+         Xbig==
+X-Gm-Message-State: AOAM530F3SO7+UNak+BScS9JRkmzoES5bmBacfL75cfQwcK7qJAHz46t
+        gLF3PjfXl2xhJsLWTnw42Q==
+X-Google-Smtp-Source: ABdhPJxYyVnhkkXpCnNCYmWcKTble598kdOQWM1WnmFBNHS1MKlFJTW46Jl/GPLx0rfmdruXu7as7Q==
+X-Received: by 2002:a9d:27a4:: with SMTP id c33mr1308181otb.283.1632768054214;
+        Mon, 27 Sep 2021 11:40:54 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f17sm4430383ook.9.2021.09.27.11.38.13
+        by smtp.gmail.com with ESMTPSA id r18sm4245072ooc.27.2021.09.27.11.40.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 11:38:13 -0700 (PDT)
-Received: (nullmailer pid 3612549 invoked by uid 1000);
-        Mon, 27 Sep 2021 18:38:12 -0000
-Date:   Mon, 27 Sep 2021 13:38:12 -0500
+        Mon, 27 Sep 2021 11:40:53 -0700 (PDT)
+Received: (nullmailer pid 3622187 invoked by uid 1000);
+        Mon, 27 Sep 2021 18:40:52 -0000
+Date:   Mon, 27 Sep 2021 13:40:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jayesh Choudhary <j-choudhary@ti.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        linux-crypto@vger.kernel.org, mpm@selenic.com,
-        herbert@gondor.apana.org.au, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: rng: convert OMAP and Inside-Secure
- HWRNG to yaml schema
-Message-ID: <YVIPlJ6jlpnDOEUF@robh.at.kernel.org>
-References: <20210922085203.2547-1-j-choudhary@ti.com>
+To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Cc:     joel@jms.id.au, mturquette@baylibre.com, sboyd@kernel.org,
+        adrian.hunter@intel.com, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        andrew@aj.id.au, BMC-SW@aspeedtech.com, steven_lee@aspeedtech.com
+Subject: Re: [PATCH 09/10] dt-bindings: mmc: aspeed: Add max-tap-delay
+ property
+Message-ID: <YVIQNPbbnhIqTSuu@robh.at.kernel.org>
+References: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com>
+ <20210922103116.30652-10-chin-ting_kuo@aspeedtech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210922085203.2547-1-j-choudhary@ti.com>
+In-Reply-To: <20210922103116.30652-10-chin-ting_kuo@aspeedtech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Sep 2021 14:22:03 +0530, Jayesh Choudhary wrote:
-> Converts the RNG bindings for OMAP SoCs and Inside-Secure
-> HWRNG modules to YAML schema.
+On Wed, Sep 22, 2021 at 06:31:15PM +0800, Chin-Ting Kuo wrote:
+> Add max-tap-delay proptery in order to record the maximum
+> tap delay on different platforms.
 > 
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
 > ---
-> Changelog:
-> v2:
-> - modified the license-identifier
-> - modified 'clock-names' property
+>  Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
->  .../devicetree/bindings/rng/omap_rng.txt      | 38 --------
->  .../devicetree/bindings/rng/omap_rng.yaml     | 93 +++++++++++++++++++
->  2 files changed, 93 insertions(+), 38 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rng/omap_rng.txt
->  create mode 100644 Documentation/devicetree/bindings/rng/omap_rng.yaml
-> 
+> diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> index 987b287f3bff..5bb66849df65 100644
+> --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> @@ -37,6 +37,9 @@ properties:
+>    clocks:
+>      maxItems: 1
+>      description: The SD/SDIO controller clock gate
+> +  max-tap-delay:
+> +    maxItems: 1
 
-Applied, thanks!
+An array?
+
+> +    description: The maximum delay in picosecond for SD/SDIO controller
+
+Properties with a unit should have a standard unit suffix.
+
+Should be common property? If not, needs a vendor prefix.
+
+>  
+>  patternProperties:
+>    "^sdhci@[0-9a-f]+$":
+> -- 
+> 2.17.1
+> 
+> 
