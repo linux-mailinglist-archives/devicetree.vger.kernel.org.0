@@ -2,121 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15488419D9C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 19:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13827419DC1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 20:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235721AbhI0Rzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 13:55:50 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.83]:28387 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235703AbhI0Rzt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 13:55:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632765228;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=w//vFYEZnxTum3oiC96KTe2k9/YaQVGD+Not1CPpUgQ=;
-    b=L0SdEDxbo5agL6Fy09vB6MOldp4Mjs98+LPBizamqg8+6JNKqLxygF+0RB7Q5LO2Ei
-    3wapHPd0mvxB50ntV+iRGEXkX1o1Z3dDqORxyc/mQBKRivl79uPR9OJl+Q3rivL9Q361
-    YY+QgnINPL2a6yd/wfDgAbriDcNUgi/PXEmYhAWyLVpSDvoJ1WjMYZxy/wVHRUNcaRbw
-    gZtOTDzIYnRlZue/Z5USLxxUArSuAjZ0snqmAf22qvNDuDWVeDKqcAjDzoWswUAQwjtk
-    VJMwr4PO7BZTx4dk54cslg9L8Fd7QSvjdnDTw+ds5JWBmrWNqEw37K1Zt7jVYbBSToAr
-    1I1Q==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3i8QW3w=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id I01f74x8RHrjb3c
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Mon, 27 Sep 2021 19:53:45 +0200 (CEST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v4 05/10] drm/bridge: synopsis: Fix to properly handle HPD
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20210927170034.mhv5r2r5gcojc7yn@gilmour>
-Date:   Mon, 27 Sep 2021 19:53:45 +0200
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <FBF48545-3509-42AA-AED5-A89BB5B1D9CD@goldelico.com>
-References: <cover.1632761067.git.hns@goldelico.com>
- <dd2356790b774c7885afecc9d29783cb51a26e6d.1632761068.git.hns@goldelico.com>
- <20210927170034.mhv5r2r5gcojc7yn@gilmour>
-To:     Maxime Ripard <maxime@cerno.tech>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S235367AbhI0SCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 14:02:41 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:46770 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235757AbhI0SCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 14:02:41 -0400
+Received: by mail-ot1-f42.google.com with SMTP id o59-20020a9d2241000000b0054745f28c69so23472781ota.13;
+        Mon, 27 Sep 2021 11:01:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bk6IEL1uZf2s3dmk9m5afP7AhxL2b1kO1A39LyNaXkM=;
+        b=fp+/51zeajmpv0BBka8cdE+n0Xgn5zR7QvehDlgPBEhL+/FSJkkaG5vWheNLVLxm8j
+         m4SN081RkafWUMqyr3jbxbnS/L4bD/9bGdJjGyXkmg2LyV68ukezFMh5vhSPczrs31jr
+         kWKQZG/1Bqf15V+8EvxAzjH06wKTxOViA/p1/MHfV+AsXPtHki+Q537JatHF6sWEbLuK
+         flbMAo5A7jMVXIY8E/hjLxUCvUjyOf03OgHHuCr/nRFxaWbJ5hglp/yGE//UqDAFyZ3e
+         4Kv01SD1TnfUsb8Ss6qOJgKv+OnYG0EWjQOdOfN5WXsuFzIW4yFxb/z5iriwOMPnjuXV
+         qf4w==
+X-Gm-Message-State: AOAM530iqDbUGZfBPbW26Y/Gcslt/Fc+N/MJRMZRmYDRJ662Z/m7ZLCL
+        4cRIMkv4dlRjRntrO+aNeA==
+X-Google-Smtp-Source: ABdhPJy1u1047PO9kAE4IDPov+AHa+ZWbRS+2hfY06WstvUKSl+QP0r+E7Y8mYsUq1/d7F3I8OpOWw==
+X-Received: by 2002:a05:6830:2f2:: with SMTP id r18mr1223863ote.228.1632765662725;
+        Mon, 27 Sep 2021 11:01:02 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g23sm4108432otl.23.2021.09.27.11.01.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Sep 2021 11:01:02 -0700 (PDT)
+Received: (nullmailer pid 3555843 invoked by uid 1000);
+        Mon, 27 Sep 2021 18:01:01 -0000
+Date:   Mon, 27 Sep 2021 13:01:01 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc:     devicetree@vger.kernel.org, Ash Logan <ash@heyquark.com>,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.ne@posteo.net>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-crypto@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: nintendo-aes: Document the Wii and Wii
+ U AES support
+Message-ID: <YVIG3aOWt7jqtZIl@robh.at.kernel.org>
+References: <20210921213930.10366-1-linkmauve@linkmauve.fr>
+ <20210921213930.10366-3-linkmauve@linkmauve.fr>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210921213930.10366-3-linkmauve@linkmauve.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Sep 21, 2021 at 11:39:28PM +0200, Emmanuel Gil Peyrot wrote:
+> Both of these consoles use the exact same AES engine, which only
+> supports CBC mode with 128-bit keys.
+> 
+> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> ---
+>  .../bindings/crypto/nintendo-aes.yaml         | 34 +++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/nintendo-aes.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/nintendo-aes.yaml b/Documentation/devicetree/bindings/crypto/nintendo-aes.yaml
+> new file mode 100644
+> index 000000000000..e62a2bfc571c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/nintendo-aes.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
+Dual license new bindings. checkpatch.pl will tell you this.
 
-> Am 27.09.2021 um 19:00 schrieb Maxime Ripard <maxime@cerno.tech>:
->=20
-> Hi,
->=20
-> On Mon, Sep 27, 2021 at 06:44:23PM +0200, H. Nikolaus Schaller wrote:
->> It appears that dw-hdmi plugin detection is not properly
->> propagated unless we call drm_kms_helper_hotplug_event().
->>=20
->> Maybe drm_bridge_hpd_notify should have been setup to
->> call this.
->>=20
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> ---
->> drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 2 ++
->> 1 file changed, 2 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c =
-b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> index f082e14320e1..edea04f80576 100644
->> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> @@ -3018,6 +3018,8 @@ static irqreturn_t dw_hdmi_irq(int irq, void =
-*dev_id)
->> 		if (hdmi->bridge.dev) {
->> 			drm_helper_hpd_irq_event(hdmi->bridge.dev);
->> 			drm_bridge_hpd_notify(&hdmi->bridge, status);
->> +
->> +			drm_kms_helper_hotplug_event(hdmi->bridge.dev);
->=20
-> drm_kms_helper_hotplug_event is already called from =
-drm_helper_hpd_irq_event
-
-Ah, now I see. It should be called but is not for some unkown
-condition (poll disabled? changed =3D false?).
-
-It may also be a leftover from the attempt to make it work with
-the builtin dw-hdmi connector.
-
-Will check for v5.
-
-BR and thanks,
-Nikolaus
-
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/crypto/nintendo-aes.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nintendo Wii and Wii U AES engine
+> +
+> +maintainers:
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +description: |+
+> +  The AES engine in the Nintendo Wii and Wii U supports the following:
+> +  -- Advanced Encryption Standard (AES) in CBC mode, with 128-bit keys
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: nintendo,hollywood-aes
+> +      - const: nintendo,latte-aes
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: Not supported yet.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> -- 
+> 2.33.0
+> 
+> 
