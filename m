@@ -2,90 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A81D4196B5
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 16:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD74419754
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 17:08:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234828AbhI0OvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 10:51:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48048 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234819AbhI0OvV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 10:51:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 526FB60FC2;
-        Mon, 27 Sep 2021 14:49:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632754183;
-        bh=nlm+GXqBOJFgPGuqH4ktEyVp0rZXsByzVCpaKGKn9Pw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CtSY0hs0nhLxHyr6ErsvWuAR1cv3yUK5t2GqYnY79ud/jOLtgMBvrFATh1DTQk5Wr
-         emdDTnPAPoArKZsQl3de5W+/e+Ei/O8rV7O0zRGuu/hG2q+3r5n400glzNY3fMncfY
-         bSsFfTIP/pPxAJ9T2baDtHFfCMU6qXpUwXfEghNuIyrGlhOP79telufsEH0MrhRfuR
-         Uon1rEsEJDFbGdqfsvYSUDQgTmmfQCqiOuqp47yPXAUHLS0DodF2zvxGFADDNU45P8
-         6QyNaDEy01x74UUZCCMh3Joul+V3W09gvDMPW/qq0YTwZdYKRkrNasv7R6CLNsnUDn
-         QI/RyzqUaefig==
-Received: by mail-ed1-f44.google.com with SMTP id v18so35111970edc.11;
-        Mon, 27 Sep 2021 07:49:43 -0700 (PDT)
-X-Gm-Message-State: AOAM531Ko2UvvAP8b06FLyk0UhnaNVgl9vvAEyNyBWdA5Sj4GRWIZbjy
-        aGjFR69yOPiCNg6h5FCCDiJakN4BsikI+46fag==
-X-Google-Smtp-Source: ABdhPJwAdi6VamHHELYSAbPUEIJOXg9VYm6jMbUqTQD67z8h2BqyDUn/kOFm4ji2hkz/vqnJ2ZIn0ddX0WT5DJGrUCg=
-X-Received: by 2002:a17:906:7250:: with SMTP id n16mr449630ejk.147.1632754181882;
- Mon, 27 Sep 2021 07:49:41 -0700 (PDT)
+        id S234969AbhI0PJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 11:09:53 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:54422 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234976AbhI0PJx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 11:09:53 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18RF89R3042957;
+        Mon, 27 Sep 2021 10:08:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1632755289;
+        bh=bEegF4afA1bvapjzNS3QbQh/0LbycubKms/39orBhoc=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=VdCMKDgdhO+efvFQQHTh2wMcArbIjohHOrZVYhbATB1QKxell4V6Ces/gnDNEAadf
+         khlMsNZJB7rEsBo0ivYM6YJrqSlqIi2H0zzcCKTzKnT7dIlu5WpEyY8m9cBFGVwYJe
+         EjkrKsJRWj8GonBDg7WWWm0uSKQE1SHR1fEOmZcc=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18RF89b8098136
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 27 Sep 2021 10:08:09 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 27
+ Sep 2021 10:08:08 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 27 Sep 2021 10:08:08 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18RF88Lw002298;
+        Mon, 27 Sep 2021 10:08:08 -0500
+Date:   Mon, 27 Sep 2021 10:08:08 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
+CC:     Suman Anna <s-anna@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Subject: Re: [PATCH V4 0/2] dt-bindings: remoteproc: k3-r5f|dsp: Remove
+Message-ID: <20210927150808.rnkmeww5uciuafmc@underpay>
+References: <20210927103811.11222-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
-References: <20210927064119.127285-1-gshan@redhat.com> <20210927064119.127285-3-gshan@redhat.com>
-In-Reply-To: <20210927064119.127285-3-gshan@redhat.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 27 Sep 2021 09:49:30 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL8+_Q690-c3J4TS6LBF-mCUBxbhTfr994=Fwffqab0_w@mail.gmail.com>
-Message-ID: <CAL_JsqL8+_Q690-c3J4TS6LBF-mCUBxbhTfr994=Fwffqab0_w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] of, numa: Fetch empty NUMA node ID from distance map
-To:     Gavin Shan <gshan@redhat.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>, Marc Zyngier <maz@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, shan.gavin@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210927103811.11222-1-sinthu.raja@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 27, 2021 at 1:42 AM Gavin Shan <gshan@redhat.com> wrote:
->
-> There is no device node for the empty NUMA node. However, the
-> corresponding NUMA node ID and distance map is still valid in
-> "numa-distance-map-v1" compatible device node.
->
-> This fetches the NUMA node ID and distance map for these empty
-> NUMA node from "numa-distance-map-v1" compatible device node.
+On 16:08-20210927, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> Hi All,
+> The series of patches are meant to help make the rproc bindings for K3
+> r5f and dsp support independent of board/platform involved.
+> 
+> Changes in V4:
+> Addressed review comments:
+> - Removed Fixes tags from the commit descriptions.
+> - Updated subject and commit description to emphasis on cleaning up of the 
+>   example to address the dt_binding_check warnings.
+> 
+> 
+> V3: https://lore.kernel.org/all/20210917095426.19277-1-sinthu.raja@ti.com/
+> V2: https://lore.kernel.org/all/20210818074030.1877-1-sinthu.raja@ti.com/
+> V1: https://lore.kernel.org/all/20210817152005.21575-1-sinthu.raja@ti.com/
+> 
+> Sinthu Raja (2):
+>   dt-bindings: remoteproc: k3-r5f: Cleanup SoC compatible from DT
+>     example
+>   dt-bindings: remoteproc: k3-dsp: Cleanup SoC compatible from DT
+>     example
+> 
 
-This is much nicer.
 
-> Signed-off-by: Gavin Shan <gshan@redhat.com>
-> ---
->  drivers/of/of_numa.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
-> index fe6b13608e51..5949829a1b00 100644
-> --- a/drivers/of/of_numa.c
-> +++ b/drivers/of/of_numa.c
-> @@ -111,6 +111,8 @@ static int __init of_numa_parse_distance_map_v1(struct device_node *map)
->                         return -EINVAL;
->                 }
->
-> +               node_set(nodea, numa_nodes_parsed);
-> +
+Reviewed-by: Nishanth Menon <nm@ti.com>
 
-With this, couldn't we remove of_numa_parse_cpu_nodes() as the only
-thing it does is node_set()?
-
->                 numa_set_distance(nodea, nodeb, distance);
->
->                 /* Set default distance of node B->A same as A->B */
-> --
-> 2.23.0
->
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
