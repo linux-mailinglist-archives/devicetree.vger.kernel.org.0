@@ -2,293 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE50E419ACC
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 19:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F0DD419D2E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 19:43:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236257AbhI0RMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 13:12:31 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:38009 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235829AbhI0RK0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 13:10:26 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id B3C7E580864;
-        Mon, 27 Sep 2021 13:08:47 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Mon, 27 Sep 2021 13:08:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=Gc0OP4pkuNL0HpjTn0pMbStUFsK
-        Lcwk3ItWg/iSQqKQ=; b=tOFra5OmYrdnmso9/4ldxTcd+rGglneKEcnJh4DvT+J
-        pQFBIZEZ4lmwqvOn9MSgpIqj7aqYrGllfW6E3LGTZFrMY7CjXVE6F/OXKTsBwKAH
-        s6lwUGJpZiHghEVJtveTmCAl0jsSfTTvR07pT0AZyRyYvVn4Fh9s6rK16DH+x+Gk
-        P6uIa7DZkt2wW56bCUo0ai4m20MAlGkJ6vfBdlodrhzMyiWgAdRbabzHNKhtTozd
-        nlc+ik4tNER0wY8RiJU7I4CQh8yc7in3lJy3rtX+FG0DRdLKKPq+i5TvsoUb3bAB
-        K6eeOIV4Zln79BAUfMwAJHg87Y2MA7gwDmeYwQPd1TQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Gc0OP4
-        pkuNL0HpjTn0pMbStUFsKLcwk3ItWg/iSQqKQ=; b=mbm2RvGjIMVzM3fXhiJfd/
-        M4n69dpEOJii76wgfb1QL68YQVBVNTGp1XThbqrc95ecSIsIBsqzSOV9gIomg498
-        4IlrUqjIBqaBguvrbynLSpyYoPYpMOrOrEkyagWSMUZGIZHrUyq0ufcZfMI8QqTB
-        0ENrryvmAsuSZsCHHNKR3uxAhf3xclOSl5b2UXlkJx5jWgXWZeJiukKqRHxp4w3s
-        v19pdYwemZzcCuYuQFCKf3gtMlb7JgaikJ4i/k6hp3CzlfycWpahtk7YbJW3lN3I
-        RL/nA8VCX8McxNK4hqDNasChvt7fGcKAesqHhUvYQkNkayJ/qvaQ8W4IK+Cw3jPw
-        ==
-X-ME-Sender: <xms:n_pRYeNOb3NkPocXRdkdTdvMIN8nF-vudjZibReTUSmZb2HiVO_kXA>
-    <xme:n_pRYc-kfgLkCjVMc7uMaOy7TfKQcrkIZcWao3EiG1jHOT1d6hSLxiB2jo-5bXn_Z
-    XfUxWF0qM6NASG_tRg>
-X-ME-Received: <xmr:n_pRYVR-MkCwHsB-nO3hj9PDyHIEiKFTuHr3Rg8t5a0JgDIc_LfbsVAGSuZDkn9lg8GBD2C_bioshgSnTvKwn8kMl6gGztMinaWaCgZV>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudejkedguddtkecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
-    heegudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:n_pRYeutUkWpSxPxXF3HYInkOnmta1VQ-8AhqLNI6UEecITdSr5Vkg>
-    <xmx:n_pRYWfzXCdaTBVfUED8csGIcWfC6enimEJfSY8JXpl3WaKxCqiysA>
-    <xmx:n_pRYS3JHHv9Q9gvc-GpITSxFTeqJxmImlYB02nezGCyeyl3G-GTgg>
-    <xmx:n_pRYXMQpNw9EBRq2fhBXQen3JRmbhXk_Ak8Kj9Vv0Qq2hcV4qsjPA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 27 Sep 2021 13:08:47 -0400 (EDT)
-Date:   Mon, 27 Sep 2021 19:08:46 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 06/10] drm/ingenic: Add dw-hdmi driver for jz4780
-Message-ID: <20210927170846.srsfzbq7lsli4vwj@gilmour>
-References: <cover.1632761067.git.hns@goldelico.com>
- <cecd7ae2e21f6547f23c125b2f7767b0090277bc.1632761068.git.hns@goldelico.com>
+        id S237672AbhI0Rpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 13:45:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46400 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237739AbhI0RpZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 13:45:25 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 974A3C0180C2
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 10:24:00 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id k24so18440848pgh.8
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 10:24:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5P3OrPu6+56qmlhZPoJJstlv8IRrXnOuHuYMrmMX4NI=;
+        b=n6L1AnuX/V+OuWLh5rssxLOAbc5rjEkkrwklXwK0ceoJvbKg/ttagXWHWY7DH0QY3C
+         rKB0DivqGj4OSONgSx5QkCyfcYab9Cf2ENkcYSoyAVCqUqxiJNGkFhLxeqE3C3cJxzwB
+         oDAYOGn8zq2HzyTfn5H82EWDCuxqVbGXO9yM5b3lcG41HAwl1Bcd0XffvVyZLzuEOVJg
+         Lq1ummIEoJWm3AO8x5LDWpRQyw/EMQ/LenKdTtHU4CfU26ykYvxAJl/Gpr81IgOqGPVb
+         JyCrWZ5UbrP12894aHYua7c/mFkSs1nQS7y9ZSpmLL2BLDnsD9PWfpW4ja+DNnyIe+VL
+         GYSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5P3OrPu6+56qmlhZPoJJstlv8IRrXnOuHuYMrmMX4NI=;
+        b=pDACo/zOrtAESd91hsE2fYQvMRe3lyFXadf6EEYOJiPb1AsOtciBBvj6nn3ZtFOo/A
+         dgRaSVDN25d6oyy0VBswhSdXogBU/agrg4l0GIvz8oZiT10dqjSMamXH4rlUz0iRnkhI
+         LhTfjVB9MqLWS+9bwISOC6fBTo1ZJSNV78W2HG6bXMafy6khDIlbNFbHnDuHkD3XcpQa
+         HZ0tQA0GU2cvGJIdt/OQrgppjjLyHJ+ZO+KdsfuDpzpa5BJYrcga1nPxjbRsuQnXFqZx
+         IJ8YoanlYyQyBtJbLvQ7p8Xh9DOidcauAkSWZjAPdlxK4aTTECh91GFbnwGWGFnnTVT3
+         fVsA==
+X-Gm-Message-State: AOAM533tcl1wfHmEUHqUMw5feqWU6GEtTqSq/NR1klH4iWpTVzDpW57T
+        ALjzL8d1WtF4wH4TdWxzI+uThOre4xiXbw==
+X-Google-Smtp-Source: ABdhPJxFTFDsHgeCr6HVxvBjtijyCpBs6vjOVIWRqOO6IwwMSot6hv9oSpOisZRYBLUuHFzxloLRqg==
+X-Received: by 2002:a63:5902:: with SMTP id n2mr672051pgb.305.1632763439002;
+        Mon, 27 Sep 2021 10:23:59 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id l9sm57170pjz.55.2021.09.27.10.23.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Sep 2021 10:23:58 -0700 (PDT)
+Date:   Mon, 27 Sep 2021 11:23:56 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
+Cc:     Suman Anna <s-anna@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, Nishanth Menon <nm@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Subject: Re: [PATCH V4 0/2] dt-bindings: remoteproc: k3-r5f|dsp: Remove
+Message-ID: <20210927172356.GC2837840@p14s>
+References: <20210927103811.11222-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3axagvyhgirwaxbf"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cecd7ae2e21f6547f23c125b2f7767b0090277bc.1632761068.git.hns@goldelico.com>
+In-Reply-To: <20210927103811.11222-1-sinthu.raja@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 27, 2021 at 04:08:09PM +0530, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> Hi All,
+> The series of patches are meant to help make the rproc bindings for K3
+> r5f and dsp support independent of board/platform involved.
+> 
+> Changes in V4:
+> Addressed review comments:
+> - Removed Fixes tags from the commit descriptions.
+> - Updated subject and commit description to emphasis on cleaning up of the 
+>   example to address the dt_binding_check warnings.
+> 
+> 
+> V3: https://lore.kernel.org/all/20210917095426.19277-1-sinthu.raja@ti.com/
+> V2: https://lore.kernel.org/all/20210818074030.1877-1-sinthu.raja@ti.com/
+> V1: https://lore.kernel.org/all/20210817152005.21575-1-sinthu.raja@ti.com/
+> 
+> Sinthu Raja (2):
+>   dt-bindings: remoteproc: k3-r5f: Cleanup SoC compatible from DT
+>     example
+>   dt-bindings: remoteproc: k3-dsp: Cleanup SoC compatible from DT
+>     example
+> 
+>  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml       | 4 +---
+>  .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml       | 4 +---
+>  2 files changed, 2 insertions(+), 6 deletions(-)
 
---3axagvyhgirwaxbf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I have applied this set.
 
-On Mon, Sep 27, 2021 at 06:44:24PM +0200, H. Nikolaus Schaller wrote:
-> From: Paul Boddie <paul@boddie.org.uk>
->=20
-> A specialisation of the generic Synopsys HDMI driver is employed for JZ47=
-80
-> HDMI support. This requires a new driver, plus device tree and configurat=
-ion
-> modifications.
->=20
-> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> ---
->  drivers/gpu/drm/ingenic/Kconfig           |   9 ++
->  drivers/gpu/drm/ingenic/Makefile          |   1 +
->  drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c | 142 ++++++++++++++++++++++
->  3 files changed, 152 insertions(+)
->  create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
->=20
-> diff --git a/drivers/gpu/drm/ingenic/Kconfig b/drivers/gpu/drm/ingenic/Kc=
-onfig
-> index 3b57f8be007c..4c7d311fbeff 100644
-> --- a/drivers/gpu/drm/ingenic/Kconfig
-> +++ b/drivers/gpu/drm/ingenic/Kconfig
-> @@ -25,4 +25,13 @@ config DRM_INGENIC_IPU
-> =20
->  	  The Image Processing Unit (IPU) will appear as a second primary plane.
-> =20
-> +config DRM_INGENIC_DW_HDMI
-> +	bool "Ingenic specific support for Synopsys DW HDMI"
-> +	depends on MACH_JZ4780
-> +	select DRM_DW_HDMI
-> +	help
-> +	  Choose this option to enable Synopsys DesignWare HDMI based driver.
-> +	  If you want to enable HDMI on Ingenic JZ4780 based SoC, you should
-> +	  select this option..
-> +
->  endif
-> diff --git a/drivers/gpu/drm/ingenic/Makefile b/drivers/gpu/drm/ingenic/M=
-akefile
-> index d313326bdddb..3db9888a6c04 100644
-> --- a/drivers/gpu/drm/ingenic/Makefile
-> +++ b/drivers/gpu/drm/ingenic/Makefile
-> @@ -1,3 +1,4 @@
->  obj-$(CONFIG_DRM_INGENIC) +=3D ingenic-drm.o
->  ingenic-drm-y =3D ingenic-drm-drv.o
->  ingenic-drm-$(CONFIG_DRM_INGENIC_IPU) +=3D ingenic-ipu.o
-> +ingenic-drm-$(CONFIG_DRM_INGENIC_DW_HDMI) +=3D ingenic-dw-hdmi.o
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c b/drivers/gpu/drm/=
-ingenic/ingenic-dw-hdmi.c
-> new file mode 100644
-> index 000000000000..dd9c94ae842e
-> --- /dev/null
-> +++ b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> @@ -0,0 +1,142 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/* Copyright (C) 2011-2013 Freescale Semiconductor, Inc.
-> + * Copyright (C) 2019, 2020 Paul Boddie <paul@boddie.org.uk>
-> + *
-> + * Derived from dw_hdmi-imx.c with i.MX portions removed.
-> + * Probe and remove operations derived from rcar_dw_hdmi.c.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <drm/bridge/dw_hdmi.h>
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_print.h>
-> +
-> +static const struct dw_hdmi_mpll_config ingenic_mpll_cfg[] =3D {
-> +	{ 45250000,  { { 0x01e0, 0x0000 }, { 0x21e1, 0x0000 }, { 0x41e2, 0x0000=
- } } },
-> +	{ 92500000,  { { 0x0140, 0x0005 }, { 0x2141, 0x0005 }, { 0x4142, 0x0005=
- } } },
-> +	{ 148500000, { { 0x00a0, 0x000a }, { 0x20a1, 0x000a }, { 0x40a2, 0x000a=
- } } },
-> +	{ 216000000, { { 0x00a0, 0x000a }, { 0x2001, 0x000f }, { 0x4002, 0x000f=
- } } },
-> +	{ ~0UL,      { { 0x0000, 0x0000 }, { 0x0000, 0x0000 }, { 0x0000, 0x0000=
- } } }
-> +};
-> +
-> +static const struct dw_hdmi_curr_ctrl ingenic_cur_ctr[] =3D {
-> +	/*pixelclk     bpp8    bpp10   bpp12 */
-> +	{ 54000000,  { 0x091c, 0x091c, 0x06dc } },
-> +	{ 58400000,  { 0x091c, 0x06dc, 0x06dc } },
-> +	{ 72000000,  { 0x06dc, 0x06dc, 0x091c } },
-> +	{ 74250000,  { 0x06dc, 0x0b5c, 0x091c } },
-> +	{ 118800000, { 0x091c, 0x091c, 0x06dc } },
-> +	{ 216000000, { 0x06dc, 0x0b5c, 0x091c } },
-> +	{ ~0UL,      { 0x0000, 0x0000, 0x0000 } },
-> +};
-> +
-> +/*
-> + * Resistance term 133Ohm Cfg
-> + * PREEMP config 0.00
-> + * TX/CK level 10
-> + */
-> +static const struct dw_hdmi_phy_config ingenic_phy_config[] =3D {
-> +	/*pixelclk   symbol   term   vlev */
-> +	{ 216000000, 0x800d, 0x0005, 0x01ad},
-> +	{ ~0UL,      0x0000, 0x0000, 0x0000}
-> +};
-> +
-> +static enum drm_mode_status
-> +ingenic_dw_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
-> +			   const struct drm_display_info *info,
-> +			   const struct drm_display_mode *mode)
-> +{
-> +	if (mode->clock < 13500)
-> +		return MODE_CLOCK_LOW;
-> +	/* FIXME: Hardware is capable of 270MHz, but setup data is missing. */
-> +	if (mode->clock > 216000)
-> +		return MODE_CLOCK_HIGH;
-> +
-> +	return MODE_OK;
-> +}
-> +
-> +static bool
-> +ingenic_dw_hdmi_mode_fixup(struct drm_bridge *bridge,
-> +			   const struct drm_display_mode *mode,
-> +			   struct drm_display_mode *adjusted_mode)
-> +{
-> +	adjusted_mode->flags |=3D (DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC);
-> +	adjusted_mode->flags &=3D ~(DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC=
-);
-> +
-> +	return true;
-> +}
-> +
-> +static const struct drm_bridge_timings ingenic_dw_hdmi_timings =3D {
-> +	.input_bus_flags =3D DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
-> +};
-> +
-> +static struct dw_hdmi_plat_data ingenic_dw_hdmi_plat_data =3D {
-> +	.mpll_cfg   =3D ingenic_mpll_cfg,
-> +	.cur_ctr    =3D ingenic_cur_ctr,
-> +	.phy_config =3D ingenic_phy_config,
-> +	.mode_valid =3D ingenic_dw_hdmi_mode_valid,
-> +	.mode_fixup =3D ingenic_dw_hdmi_mode_fixup,
-> +	.timings    =3D &ingenic_dw_hdmi_timings,
-> +	.output_port	=3D 1,
-> +};
-> +
-> +static const struct of_device_id ingenic_dw_hdmi_dt_ids[] =3D {
-> +	{ .compatible =3D "ingenic,jz4780-dw-hdmi" },
-> +	{ /* Sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, ingenic_dw_hdmi_dt_ids);
-> +
-> +static int ingenic_dw_hdmi_probe(struct platform_device *pdev)
-> +{
-> +	struct dw_hdmi *hdmi;
-> +	struct regulator *regulator;
-> +	int ret;
-> +
-> +	hdmi =3D dw_hdmi_probe(pdev, &ingenic_dw_hdmi_plat_data);
-> +	if (IS_ERR(hdmi))
-> +		return PTR_ERR(hdmi);
-> +
-> +	platform_set_drvdata(pdev, hdmi);
-> +
-> +	regulator =3D devm_regulator_get_optional(&pdev->dev, "hdmi-5v");
-> +
-> +	if (IS_ERR(regulator)) {
-> +		ret =3D PTR_ERR(regulator);
-> +
-> +		DRM_DEV_ERROR(&pdev->dev, "failed to get hpd regulator: %s (%d)\n",
-> +			      "hdmi-5v", ret);
-> +		return ret;
-> +	}
+Thanks,
+Mathieu
 
-This doesn't match your binding
-
-Maxime
-
---3axagvyhgirwaxbf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYVH6ngAKCRDj7w1vZxhR
-xWk2AQDiNT8TeIhED/oxK4Vw8clujvOWDBYc9gga1C/Y8xXzIAD9GYcYgqFW9jBq
-m8WbTXVCnn79tn9Rd/Ja9fiwVE8MDA0=
-=fDtM
------END PGP SIGNATURE-----
-
---3axagvyhgirwaxbf--
+> 
+> -- 
+> 2.31.1
+> 
