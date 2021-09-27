@@ -2,163 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E120B4190CC
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 10:27:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72ED54190CE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 10:27:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233442AbhI0I27 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 Sep 2021 04:28:59 -0400
-Received: from mslow1.mail.gandi.net ([217.70.178.240]:34945 "EHLO
-        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233418AbhI0I26 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 04:28:58 -0400
-Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id 75CDAC3151;
-        Mon, 27 Sep 2021 08:19:43 +0000 (UTC)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id C4D80FF805;
-        Mon, 27 Sep 2021 08:19:07 +0000 (UTC)
-Date:   Mon, 27 Sep 2021 10:18:54 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        bcousson@baylibre.com, Tony Lindgren <tony@atomide.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Ryan Barnett <ryan.barnett@collins.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Jason Reeder <jreeder@ti.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v3 36/47] mfd: ti_am335x_tscadc: Support the correctly
- spelled DT property
-Message-ID: <20210927101854.5df3ac6f@xps13>
-In-Reply-To: <YVF8PDl54lpUc+6S@google.com>
-References: <20210915155908.476767-1-miquel.raynal@bootlin.com>
-        <20210915155908.476767-37-miquel.raynal@bootlin.com>
-        <YUtSVo9HBAiomswv@google.com>
-        <20210923101922.2c108d2b@xps13>
-        <YUxEsfOvn7Vr8F2c@google.com>
-        <20210923113312.14fc9027@xps13>
-        <YVF8PDl54lpUc+6S@google.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S233511AbhI0I3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 04:29:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58448 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233418AbhI0I3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 04:29:01 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D68C061575
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 01:27:24 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mUlyj-0004CN-SC; Mon, 27 Sep 2021 10:27:13 +0200
+Message-ID: <c653181970092c27fc98fbb5dcebe21ebf29d887.camel@pengutronix.de>
+Subject: Re: [PATCH v2 1/4] dt-bindings: phy: phy-imx8-pcie: Add binding for
+ the pad modes of imx8 pcie phy
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Richard Zhu <hongxing.zhu@nxp.com>, kishon@ti.com,
+        vkoul@kernel.org, robh@kernel.org, galak@kernel.crashing.org,
+        shawnguo@kernel.org
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Date:   Mon, 27 Sep 2021 10:27:10 +0200
+In-Reply-To: <1632641983-1455-2-git-send-email-hongxing.zhu@nxp.com>
+References: <1632641983-1455-1-git-send-email-hongxing.zhu@nxp.com>
+         <1632641983-1455-2-git-send-email-hongxing.zhu@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
-
-lee.jones@linaro.org wrote on Mon, 27 Sep 2021 09:09:32 +0100:
-
-> On Thu, 23 Sep 2021, Miquel Raynal wrote:
+Am Sonntag, dem 26.09.2021 um 15:39 +0800 schrieb Richard Zhu:
+> Add binding for reference clock PAD modes of the i.MX8 PCIe PHY.
 > 
-> > Hi Lee,
-> > 
-> > lee.jones@linaro.org wrote on Thu, 23 Sep 2021 10:11:13 +0100:
-> >   
-> > > On Thu, 23 Sep 2021, Miquel Raynal wrote:
-> > >   
-> > > > Hi Lee,
-> > > > 
-> > > > lee.jones@linaro.org wrote on Wed, 22 Sep 2021 16:57:10 +0100:
-> > > >     
-> > > > > On Wed, 15 Sep 2021, Miquel Raynal wrote:
-> > > > >     
-> > > > > > There was in the past a typo in the coordinate readouts property. The
-> > > > > > bindings have been updated, the touchscreen driver as well and now
-> > > > > > supports both. However, the MFD driver that is in charge of verifying
-> > > > > > the validity of the property only checks the bogus one. Add support for
-> > > > > > the correctly spelled DT property.
-> > > > > > 
-> > > > > > Fixes: c9aeb249bf72 ("Input: ti_am335x_tsc - fix spelling mistake in TSC/ADC DT binding")
-> > > > > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > > > > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > > > > ---
-> > > > > >  drivers/mfd/ti_am335x_tscadc.c | 8 +++++++-
-> > > > > >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
-> > > > > > index 155a8ed879b3..aa46ed669016 100644
-> > > > > > --- a/drivers/mfd/ti_am335x_tscadc.c
-> > > > > > +++ b/drivers/mfd/ti_am335x_tscadc.c
-> > > > > > @@ -144,8 +144,14 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
-> > > > > >  	if (tscadc->data->has_tsc) {
-> > > > > >  		node = of_get_child_by_name(pdev->dev.of_node, "tsc");
-> > > > > >  		of_property_read_u32(node, "ti,wires", &tscmag_wires);
-> > > > > > -		of_property_read_u32(node, "ti,coordiante-readouts", &readouts);
-> > > > > > +		err = of_property_read_u32(node, "ti,coordinate-readouts",
-> > > > > > +					   &readouts);
-> > > > > > +		if (err < 0)
-> > > > > > +			of_property_read_u32(node, "ti,coordiante-readouts",
-> > > > > > +					     &readouts);
-> > > > > > +      
-> > > > > 
-> > > > > How long are you proposing that we support this churn?    
-> > > > 
-> > > > Well, I am not proposing anything, I am just "fixing" the driver so
-> > > > that it fits the bindings :) Given the fact that at the end of this
-> > > > series there is a patch that changes the "coordiante" typo to
-> > > > "coordinate" in a device tree source file, I believe it is still too
-> > > > soon...    
-> > > 
-> > > If this is something you're changing in this set, please reconsider.
-> > > 
-> > > I'd rather have a slightly misspelled documented property than being
-> > > forced to support 2 for any length of time.  
-> > 
-> > I am not suggesting anything here:
-> > - "coordiante" was introduced back in 2014.
-> > - "coordinate" was introduced shortly later.
-> > - "coordiante" was considered part of the "stable API" back in 2014 and
-> >   even though the right spelling got introduced very shortly after, DT
-> >   stability rules wanted us to support it forever.
-> > - The touchscreen driver has immediately be fixed to support both but
-> >   not the MFD driver, and this does not make any sense!
-> > 
-> > We *should* either support only one property (1) or support both in the
-> > two drivers (2), but supporting the two in one driver and supporting
-> > only one in the other one does not make any sense (given the fact that
-> > these two drives are tied together, the touchscreen driver does not
-> > exist without the MFD driver). That is what I am fixing here.
-> > 
-> > Is #1 valid? Theoretically it's the best scenario. In practice it is
-> > not (yet) possible because the two versions are still used in the
-> > mainline device trees:
-> > $ git grep coordiante-readouts -- arch/arm/boot/dts/ | wc -l
-> > 1
-> > $ git grep coordinate-readouts -- arch/arm/boot/dts/ | wc -l
-> > 5
-> > 
-> > So in this series I am fixing the MFD driver to be sure it handles
-> > correctly the correctly spelled DT property which is used by 5 boards
-> > since at least 6 years and I am also updating the remaining DT to use
-> > the correctly spelled property as well.
-> > 
-> > I suppose we could propose to drop support for the "coordiante"
-> > version of that property in a few years but if we decide to do it right
-> > now we're definitely gonna break users.  
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  include/dt-bindings/phy/phy-imx8-pcie.h | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>  create mode 100644 include/dt-bindings/phy/phy-imx8-pcie.h
 > 
-> It's a shame that the misspelled one is still in use.  If they were
-> all changed over at the start, there would be a strong case for
-> dropping support for it.
+> diff --git a/include/dt-bindings/phy/phy-imx8-pcie.h b/include/dt-bindings/phy/phy-imx8-pcie.h
+> new file mode 100644
+> index 000000000000..59ed322f8d6c
+> --- /dev/null
+> +++ b/include/dt-bindings/phy/phy-imx8-pcie.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
 
-It is, clearly. I believe all DT got changed in one go, but a
-contributor at the same time proposed a new DT with the legacy
-property "copy-pasted" from the "existing" device trees and this went
-off the radar...
+This should be (GPL-2.0+ OR MIT) to be compatible with the license of
+the DTSI file it is included in.
 
-Anyway, I'll send a v4 soon with all your suggestions taken into
-account.
+> +/*
+> + * This header provides constants for i.MX8 PCIe.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_IMX8_PCIE_H
+> +#define _DT_BINDINGS_IMX8_PCIE_H
+> +
+> +/* Reference clock PAD mode */
+> +#define IMX8_PCIE_REFCLK_PAD_NO_USED	0
 
-Thanks,
-Miquèl
+I think _UNUSED would be the more idiomatic way to call this.
+
+> +#define IMX8_PCIE_REFCLK_PAD_INPUT	1
+> +#define IMX8_PCIE_REFCLK_PAD_OUTPUT	2
+> +
+> +#endif /* _DT_BINDINGS_IMX8_PCIE_H */
+
+
