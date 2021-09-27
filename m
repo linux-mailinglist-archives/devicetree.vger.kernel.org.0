@@ -2,118 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13827419DC1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 20:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC8A419F83
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 21:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235367AbhI0SCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 14:02:41 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:46770 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235757AbhI0SCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 14:02:41 -0400
-Received: by mail-ot1-f42.google.com with SMTP id o59-20020a9d2241000000b0054745f28c69so23472781ota.13;
-        Mon, 27 Sep 2021 11:01:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bk6IEL1uZf2s3dmk9m5afP7AhxL2b1kO1A39LyNaXkM=;
-        b=fp+/51zeajmpv0BBka8cdE+n0Xgn5zR7QvehDlgPBEhL+/FSJkkaG5vWheNLVLxm8j
-         m4SN081RkafWUMqyr3jbxbnS/L4bD/9bGdJjGyXkmg2LyV68ukezFMh5vhSPczrs31jr
-         kWKQZG/1Bqf15V+8EvxAzjH06wKTxOViA/p1/MHfV+AsXPtHki+Q537JatHF6sWEbLuK
-         flbMAo5A7jMVXIY8E/hjLxUCvUjyOf03OgHHuCr/nRFxaWbJ5hglp/yGE//UqDAFyZ3e
-         4Kv01SD1TnfUsb8Ss6qOJgKv+OnYG0EWjQOdOfN5WXsuFzIW4yFxb/z5iriwOMPnjuXV
-         qf4w==
-X-Gm-Message-State: AOAM530iqDbUGZfBPbW26Y/Gcslt/Fc+N/MJRMZRmYDRJ662Z/m7ZLCL
-        4cRIMkv4dlRjRntrO+aNeA==
-X-Google-Smtp-Source: ABdhPJy1u1047PO9kAE4IDPov+AHa+ZWbRS+2hfY06WstvUKSl+QP0r+E7Y8mYsUq1/d7F3I8OpOWw==
-X-Received: by 2002:a05:6830:2f2:: with SMTP id r18mr1223863ote.228.1632765662725;
-        Mon, 27 Sep 2021 11:01:02 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g23sm4108432otl.23.2021.09.27.11.01.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 11:01:02 -0700 (PDT)
-Received: (nullmailer pid 3555843 invoked by uid 1000);
-        Mon, 27 Sep 2021 18:01:01 -0000
-Date:   Mon, 27 Sep 2021 13:01:01 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     devicetree@vger.kernel.org, Ash Logan <ash@heyquark.com>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.ne@posteo.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-crypto@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: nintendo-aes: Document the Wii and Wii
- U AES support
-Message-ID: <YVIG3aOWt7jqtZIl@robh.at.kernel.org>
-References: <20210921213930.10366-1-linkmauve@linkmauve.fr>
- <20210921213930.10366-3-linkmauve@linkmauve.fr>
+        id S236391AbhI0Ty2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 15:54:28 -0400
+Received: from mga17.intel.com ([192.55.52.151]:16937 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236243AbhI0Ty1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Sep 2021 15:54:27 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="204703939"
+X-IronPort-AV: E=Sophos;i="5.85,327,1624345200"; 
+   d="scan'208";a="204703939"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Sep 2021 12:52:49 -0700
+X-IronPort-AV: E=Sophos;i="5.85,327,1624345200"; 
+   d="scan'208";a="486267985"
+Received: from asen4-mobl2.amr.corp.intel.com (HELO [10.212.27.2]) ([10.212.27.2])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Sep 2021 12:52:44 -0700
+Subject: Re: [PATCH v8 14/22] ASoC: qdsp6: audioreach: add basic pkt alloc
+ support
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+References: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
+ <20210927135559.738-15-srinivas.kandagatla@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <ebfe1e31-778d-852a-20bf-ac8fe860dcc2@linux.intel.com>
+Date:   Mon, 27 Sep 2021 11:08:15 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210921213930.10366-3-linkmauve@linkmauve.fr>
+In-Reply-To: <20210927135559.738-15-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 11:39:28PM +0200, Emmanuel Gil Peyrot wrote:
-> Both of these consoles use the exact same AES engine, which only
-> supports CBC mode with 128-bit keys.
-> 
-> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-> ---
->  .../bindings/crypto/nintendo-aes.yaml         | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/nintendo-aes.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/nintendo-aes.yaml b/Documentation/devicetree/bindings/crypto/nintendo-aes.yaml
-> new file mode 100644
-> index 000000000000..e62a2bfc571c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/nintendo-aes.yaml
-> @@ -0,0 +1,34 @@
-> +# SPDX-License-Identifier: GPL-2.0
 
-Dual license new bindings. checkpatch.pl will tell you this.
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/nintendo-aes.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +struct apm_sub_graph_params  {
+> +	struct apm_module_param_data param_data;
+> +	uint32_t num_sub_graphs;
+> +	struct apm_sub_graph_data sg_cfg[];
+> +} __packed;
+
+The style you use is num_foobar and later foobar[]
+
+> +/* container config */
+> +struct apm_container_obj  {
+> +	struct apm_container_cfg container_cfg;
+> +	/* Capability ID list */
+> +	struct apm_prop_data cap_data;
+> +	uint32_t num_capability_id;
+> +	uint32_t capability_id;
+
+but here you have both a num_capability_id and capability_id
+
+It's not very clear what they mean, or if there is a dependency?
+
+> +	/* Container graph Position */
+> +	struct apm_prop_data pos_data;
+> +	struct apm_cont_prop_id_graph_pos pos;
 > +
-> +title: Nintendo Wii and Wii U AES engine
+> +	/* Container Stack size */
+> +	struct apm_prop_data stack_data;
+> +	struct apm_cont_prop_id_stack_size stack;
 > +
-> +maintainers:
-> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +	/* Container proc domain id */
+> +	struct apm_prop_data domain_data;
+> +	struct apm_cont_prop_id_domain domain;
+> +} __packed;
+
+> +/* Module IDs */
+> +#define MODULE_ID_WR_SHARED_MEM_EP	0x07001000
+> +#define MODULE_ID_RD_SHARED_MEM_EP	0x07001001
+> +#define MODULE_ID_GAIN			0x07001002
+> +#define MODULE_ID_PCM_CNV		0x07001003
+> +#define MODULE_ID_PCM_ENC		0x07001004
+> +#define MODULE_ID_PCM_DEC		0x07001005
+> +#define MODULE_ID_CODEC_DMA_SINK	0x07001023
+> +#define MODULE_ID_CODEC_DMA_SOURCE	0x07001024
+> +#define MODULE_ID_I2S_SINK		0x0700100A
+> +#define MODULE_ID_I2S_SOURCE		0x0700100b
+> +#define MODULE_ID_DATA_LOGGING		0x0700101A
 > +
-> +description: |+
-> +  The AES engine in the Nintendo Wii and Wii U supports the following:
-> +  -- Advanced Encryption Standard (AES) in CBC mode, with 128-bit keys
+> +#define APM_CMD_GET_SPF_STATE		0x01001021
+> +#define APM_CMD_RSP_GET_SPF_STATE	0x02001007
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: nintendo,hollywood-aes
-> +      - const: nintendo,latte-aes
+> +#define APM_MODULE_INSTANCE_ID		0x00000001
+> +#define PRM_MODULE_INSTANCE_ID		0x00000002
+> +#define AMDB_MODULE_INSTANCE_ID		0x00000003
+> +#define VCPM_MODULE_INSTANCE_ID		0x00000004
+> +#define AR_MODULE_INSTANCE_ID_START	0x00006000
+> +#define AR_MODULE_INSTANCE_ID_END	0x00007000
+> +#define AR_MODULE_DYNAMIC_INSTANCE_ID_START	0x00007000
+> +#define AR_MODULE_DYNAMIC_INSTANCE_ID_END	0x00008000
+> +#define AR_CONT_INSTANCE_ID_START	0x00005000
+> +#define AR_CONT_INSTANCE_ID_END		0x00006000
+> +#define AR_SG_INSTANCE_ID_START		0x00004000
 > +
-> +  reg:
-> +    maxItems: 1
+> +#define APM_CMD_GRAPH_OPEN			0x01001000
+> +#define APM_CMD_GRAPH_PREPARE			0x01001001
+> +#define APM_CMD_GRAPH_START			0x01001002
+> +#define APM_CMD_GRAPH_STOP			0x01001003
+> +#define APM_CMD_GRAPH_CLOSE			0x01001004
+> +#define APM_CMD_GRAPH_FLUSH			0x01001005
+> +#define APM_CMD_SET_CFG				0x01001006
+> +#define APM_CMD_GET_CFG				0x01001007
+> +#define APM_CMD_SHARED_MEM_MAP_REGIONS		0x0100100c
+> +#define APM_CMD_SHARED_MEM_UNMAP_REGIONS	0x0100100d
+> +#define APM_CMD_RSP_SHARED_MEM_MAP_REGIONS	0x02001001
+> +#define APM_CMD_RSP_GET_CFG			0x02001000
+> +#define APM_CMD_CLOSE_ALL			0x01001013
+> +#define APM_CMD_REGISTER_SHARED_CFG		0x0100100A
+
+> +/* APM module */
+> +#define APM_PARAM_ID_SUB_GRAPH_LIST		0x08001005
 > +
-> +  interrupts:
-> +    description: Not supported yet.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> -- 
-> 2.33.0
-> 
+> +#define APM_PARAM_ID_MODULE_LIST		0x08001002
+
+> +#define APM_PARAM_ID_MODULE_PROP		0x08001003
+
+It seems like those definition follow a pattern, e.g. bits 28..32 a type
+and bits 0..15 a token?
+
+
 > 
