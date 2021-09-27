@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AFD6419584
+	by mail.lfdr.de (Postfix) with ESMTP id 48420419583
 	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 15:56:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234655AbhI0N6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 09:58:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49638 "EHLO
+        id S234661AbhI0N6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 09:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234673AbhI0N6O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 09:58:14 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F22F4C061575
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 06:56:36 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id r23so26783056wra.6
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 06:56:36 -0700 (PDT)
+        with ESMTP id S234690AbhI0N6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 09:58:16 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DCB1C061575
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 06:56:38 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id d6so51970965wrc.11
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 06:56:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=9YgQAwfsHYGw3pkeh45zX4H7BHeA95W/JO4mlxHpR+Y=;
-        b=HM4lD++DERLPUcT0LYswDzq749m+tez+jvO3uq7JmFn0uRtuk4CA9K/g8ssUv9He1v
-         XoL2dPwBz4g77cde1ef2pl/u5Nch9Y1U6YkHT9gqLeaKe7qcBOS5dVNvJaH5HhuDDB7a
-         h9Q66CNkiQx+iKX7JLTfyqWXQA5Xat++WL2KWVFe0K0ZInQBa3Bwhvyrl7gjSwyzrWY9
-         xppHiDCWNc6scK6zsZu5yKz/53elqgXF2mAfSf4xGuGSgxXTVoljz4HZo2fSqwJPoc/v
-         ZXfq6SLA57NiC75nhtssaPPGQLkq8XGCKKcz9ftb5BbbauOEngsHC6HUlLUR0x8zOO/p
-         vMyw==
+        bh=0TebeQ0TXJpETl5yyZtrFs6HbXMx9cchKOW5rtUhE/g=;
+        b=aD4CvHR+ZQkz5XAu0OSPF4jHMzIIAjOJIpI8+E8VvLfsjwiXTzETWzSI/VPbF4rfJi
+         2tBr0a6hoMbGlToBypfkItdLKZxgP9xUtudU3R0mwRZf+L0s5XiOC+Dcp3sxBxWQnTJL
+         5Yx6mx0SRoyPv4Ndx9OCVjlXdQjLK7EGoMuh9wEu/ytPwTStgJ4b2+GhsM+EBaLeD0H6
+         DdmULyIUp+LNh7i3C86ViHINrXtqg+gp7gbeBRk9TSo7ve9VBWahdsdI7pU7TbAlLLgy
+         WAO5pUV00ePKVxD5vU4i63aBsswUDHOPuGoyVcQmIf1ENrx08eowXb4Een4XbTIbKymY
+         q2nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=9YgQAwfsHYGw3pkeh45zX4H7BHeA95W/JO4mlxHpR+Y=;
-        b=DoHM9nuDt5haSH0I1aNmoJ32q8Bzz4dJxWEJuSKBPtJnKcQdV+CjwzpzcZJA3fp0aq
-         xwOUISzZynXct7TdZQ5qQ8CDyseDBFE28mA/Zcod3gjPIpknbrsjlXQvhdnfVphQeh8U
-         NpyBKh7FN1JzrLgY2lRU+xooY7DlDSXpT3kqnRhh0zdyMyhOv7xPdanKyWwlzZ2+fKpm
-         g5kL2RK/AtY3uaMojlmHDHRFnLcJ10x3NkT9FzvDgK2cVE5K7ALC8/EEs3Um4PQPG3Gl
-         vH2bGk0ghfXF6YrJ4uz11mUVvNSoTyLzVNTcL82tKXctviLmCb5ykYvj4B9Q6iPKxzVz
-         28ZA==
-X-Gm-Message-State: AOAM530LMTaOznx7HaxLkdT1uU5K1R1KjRMEjmpeLOosMpCHZQYUxU38
-        BS1k7uE+IE6LMCJEiY0T75PpXA==
-X-Google-Smtp-Source: ABdhPJzb2E6/DGwY0O869DIZZNKiLIc6f3bL34U5OfuM3kD+YXovkb4Tqdi3btfCmtBrpMNrBCx/YA==
-X-Received: by 2002:adf:e583:: with SMTP id l3mr12036294wrm.390.1632750995586;
-        Mon, 27 Sep 2021 06:56:35 -0700 (PDT)
+        bh=0TebeQ0TXJpETl5yyZtrFs6HbXMx9cchKOW5rtUhE/g=;
+        b=VXTWVLFdOKIOClD6pwHP2qioazpvnfAYmbv3FOa2zqXmz3a68dWVBigzYdjBohIvfP
+         PZQ8/6n+tFJT7/1LdHTAfewLnOLwkKtjFuU2qFqwL+TTUhiWqIQE77AeenZpw5l2z9S8
+         NG6lODGUpPDR57PENNGNW/KIOodTi4RYUYHEKOkWeXj9qwHhhaji/A6DKHrHLZXqXZ0+
+         sGWi7OBTrxG/5+jP+ebjK5D6lZyAtj+rtlplEcew9Iwr+jI7Y37elgxkfmyVuacGNdi3
+         8ZKW3Oi40ZIZ7wJD7KG2EKL0y3P5Q5VpRqu/L5J2sJOyY8FhDvvzE2EcU3UqgdXXG4df
+         ro6Q==
+X-Gm-Message-State: AOAM531Nz/Cc40OHgsjyUQvy7E8nYGlXxvyHWWlCTAJzXE89+dPygX0c
+        42y9COMycceojOAz1qNtXNReVErmyKHC5A==
+X-Google-Smtp-Source: ABdhPJy1lXMT8mdMnx+FjqmzrE3eXkoohZj4XsTJEzS6wy4nlayEvgd2GitTbf6qsZ+5junzUxljyw==
+X-Received: by 2002:adf:ea45:: with SMTP id j5mr15408688wrn.291.1632750996922;
+        Mon, 27 Sep 2021 06:56:36 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id b7sm20485606wrm.9.2021.09.27.06.56.34
+        by smtp.gmail.com with ESMTPSA id b7sm20485606wrm.9.2021.09.27.06.56.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 06:56:34 -0700 (PDT)
+        Mon, 27 Sep 2021 06:56:36 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
 Cc:     plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
@@ -54,9 +54,9 @@ Cc:     plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
         alsa-devel@alsa-project.org, lgirdwood@gmail.com,
         bgoswami@codeaurora.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v8 10/22] ASoC: qdsp6: q6afe-clocks: move audio-clocks to common file
-Date:   Mon, 27 Sep 2021 14:55:47 +0100
-Message-Id: <20210927135559.738-11-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v8 11/22] ASoC: dt-bindings: q6dsp: add q6apm-lpass-dai compatible
+Date:   Mon, 27 Sep 2021 14:55:48 +0100
+Message-Id: <20210927135559.738-12-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
 References: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
@@ -66,492 +66,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move common parts of  q6afe-clocks to q6dsp-lpass-clocks so that we could
-reuse most of the driver for new Q6DSP audio frameworks.
-
-This is to make the code reuseable for new Q6DSP AudioReach framework.
+on AudioReach audio Framework access to LPASS ports is via
+Q6APM(Audio Process Manager) service, so add a dedicated compatible
+string for this.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- sound/soc/qcom/qdsp6/Makefile             |   2 +-
- sound/soc/qcom/qdsp6/q6afe-clocks.c       | 187 ++--------------------
- sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c | 186 +++++++++++++++++++++
- sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h |  30 ++++
- 4 files changed, 232 insertions(+), 173 deletions(-)
- create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c
- create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h
+ .../sound/qcom,q6dsp-lpass-ports.yaml         | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/sound/soc/qcom/qdsp6/Makefile b/sound/soc/qcom/qdsp6/Makefile
-index 11e8705bbc5c..a4191d395557 100644
---- a/sound/soc/qcom/qdsp6/Makefile
-+++ b/sound/soc/qcom/qdsp6/Makefile
-@@ -1,5 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-only
--snd-q6dsp-common-objs := q6dsp-common.o q6dsp-lpass-ports.o
-+snd-q6dsp-common-objs := q6dsp-common.o q6dsp-lpass-ports.o q6dsp-lpass-clocks.o
+diff --git a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml
+index e6148c17419b..dc7fba7b92d5 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml
+@@ -16,6 +16,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,q6afe-dais
++      - qcom,q6apm-lpass-dais
  
- obj-$(CONFIG_SND_SOC_QDSP6_COMMON) += snd-q6dsp-common.o
- obj-$(CONFIG_SND_SOC_QDSP6_CORE) += q6core.o
-diff --git a/sound/soc/qcom/qdsp6/q6afe-clocks.c b/sound/soc/qcom/qdsp6/q6afe-clocks.c
-index 9431656283cd..1ccab64ff00b 100644
---- a/sound/soc/qcom/qdsp6/q6afe-clocks.c
-+++ b/sound/soc/qcom/qdsp6/q6afe-clocks.c
-@@ -7,115 +7,18 @@
- #include <linux/module.h>
- #include <linux/device.h>
- #include <linux/platform_device.h>
--#include <linux/of.h>
--#include <linux/slab.h>
-+#include "q6dsp-lpass-clocks.h"
- #include "q6afe.h"
+   reg:
+     maxItems: 1
+@@ -169,6 +170,32 @@ examples:
+               #size-cells = <0>;
+               #sound-dai-cells = <1>;
  
- #define Q6AFE_CLK(id) {					\
- 		.clk_id	= id,				\
--		.afe_clk_id	= Q6AFE_##id,		\
-+		.q6dsp_clk_id	= Q6AFE_##id,		\
- 		.name = #id,				\
- 		.rate = 19200000,			\
- 	}
- 
--#define Q6AFE_VOTE_CLK(id, blkid, n) {			\
--		.clk_id	= id,				\
--		.afe_clk_id = blkid,			\
--		.name = n,				\
--	}
--
--struct q6afe_clk_init {
--	int clk_id;
--	int afe_clk_id;
--	char *name;
--	int rate;
--};
--
--struct q6afe_clk {
--	struct device *dev;
--	int afe_clk_id;
--	int attributes;
--	int rate;
--	uint32_t handle;
--	struct clk_hw hw;
--};
--
--#define to_q6afe_clk(_hw) container_of(_hw, struct q6afe_clk, hw)
--
--struct q6afe_cc {
--	struct device *dev;
--	struct q6afe_clk *clks[Q6AFE_MAX_CLK_ID];
--};
--
--static int clk_q6afe_prepare(struct clk_hw *hw)
--{
--	struct q6afe_clk *clk = to_q6afe_clk(hw);
--
--	return q6afe_set_lpass_clock(clk->dev, clk->afe_clk_id, clk->attributes,
--				     Q6AFE_LPASS_CLK_ROOT_DEFAULT, clk->rate);
--}
--
--static void clk_q6afe_unprepare(struct clk_hw *hw)
--{
--	struct q6afe_clk *clk = to_q6afe_clk(hw);
--
--	q6afe_set_lpass_clock(clk->dev, clk->afe_clk_id, clk->attributes,
--			      Q6AFE_LPASS_CLK_ROOT_DEFAULT, 0);
--}
--
--static int clk_q6afe_set_rate(struct clk_hw *hw, unsigned long rate,
--			      unsigned long parent_rate)
--{
--	struct q6afe_clk *clk = to_q6afe_clk(hw);
--
--	clk->rate = rate;
--
--	return 0;
--}
--
--static unsigned long clk_q6afe_recalc_rate(struct clk_hw *hw,
--					   unsigned long parent_rate)
--{
--	struct q6afe_clk *clk = to_q6afe_clk(hw);
--
--	return clk->rate;
--}
--
--static long clk_q6afe_round_rate(struct clk_hw *hw, unsigned long rate,
--				 unsigned long *parent_rate)
--{
--	return rate;
--}
--
--static const struct clk_ops clk_q6afe_ops = {
--	.prepare	= clk_q6afe_prepare,
--	.unprepare	= clk_q6afe_unprepare,
--	.set_rate	= clk_q6afe_set_rate,
--	.round_rate	= clk_q6afe_round_rate,
--	.recalc_rate	= clk_q6afe_recalc_rate,
--};
--
--static int clk_vote_q6afe_block(struct clk_hw *hw)
--{
--	struct q6afe_clk *clk = to_q6afe_clk(hw);
--
--	return q6afe_vote_lpass_core_hw(clk->dev, clk->afe_clk_id,
--					clk_hw_get_name(&clk->hw), &clk->handle);
--}
- 
--static void clk_unvote_q6afe_block(struct clk_hw *hw)
--{
--	struct q6afe_clk *clk = to_q6afe_clk(hw);
--
--	q6afe_unvote_lpass_core_hw(clk->dev, clk->afe_clk_id, clk->handle);
--}
--
--static const struct clk_ops clk_vote_q6afe_ops = {
--	.prepare	= clk_vote_q6afe_block,
--	.unprepare	= clk_unvote_q6afe_block,
--};
--
--static const struct q6afe_clk_init q6afe_clks[] = {
-+static const struct q6dsp_clk_init q6afe_clks[] = {
- 	Q6AFE_CLK(LPASS_CLK_ID_PRI_MI2S_IBIT),
- 	Q6AFE_CLK(LPASS_CLK_ID_PRI_MI2S_EBIT),
- 	Q6AFE_CLK(LPASS_CLK_ID_SEC_MI2S_IBIT),
-@@ -176,88 +79,28 @@ static const struct q6afe_clk_init q6afe_clks[] = {
- 	Q6AFE_CLK(LPASS_CLK_ID_RX_CORE_MCLK),
- 	Q6AFE_CLK(LPASS_CLK_ID_RX_CORE_NPL_MCLK),
- 	Q6AFE_CLK(LPASS_CLK_ID_VA_CORE_2X_MCLK),
--	Q6AFE_VOTE_CLK(LPASS_HW_AVTIMER_VOTE,
-+	Q6DSP_VOTE_CLK(LPASS_HW_AVTIMER_VOTE,
- 		       Q6AFE_LPASS_CORE_AVTIMER_BLOCK,
- 		       "LPASS_AVTIMER_MACRO"),
--	Q6AFE_VOTE_CLK(LPASS_HW_MACRO_VOTE,
-+	Q6DSP_VOTE_CLK(LPASS_HW_MACRO_VOTE,
- 		       Q6AFE_LPASS_CORE_HW_MACRO_BLOCK,
- 		       "LPASS_HW_MACRO"),
--	Q6AFE_VOTE_CLK(LPASS_HW_DCODEC_VOTE,
-+	Q6DSP_VOTE_CLK(LPASS_HW_DCODEC_VOTE,
- 		       Q6AFE_LPASS_CORE_HW_DCODEC_BLOCK,
- 		       "LPASS_HW_DCODEC"),
- };
- 
--static struct clk_hw *q6afe_of_clk_hw_get(struct of_phandle_args *clkspec,
--					  void *data)
--{
--	struct q6afe_cc *cc = data;
--	unsigned int idx = clkspec->args[0];
--	unsigned int attr = clkspec->args[1];
--
--	if (idx >= Q6AFE_MAX_CLK_ID || attr > LPASS_CLK_ATTRIBUTE_COUPLE_DIVISOR) {
--		dev_err(cc->dev, "Invalid clk specifier (%d, %d)\n", idx, attr);
--		return ERR_PTR(-EINVAL);
--	}
--
--	if (cc->clks[idx]) {
--		cc->clks[idx]->attributes = attr;
--		return &cc->clks[idx]->hw;
--	}
--
--	return ERR_PTR(-ENOENT);
--}
--
--static int q6afe_clock_dev_probe(struct platform_device *pdev)
--{
--	struct q6afe_cc *cc;
--	struct device *dev = &pdev->dev;
--	int i, ret;
--
--	cc = devm_kzalloc(dev, sizeof(*cc), GFP_KERNEL);
--	if (!cc)
--		return -ENOMEM;
--
--	cc->dev = dev;
--	for (i = 0; i < ARRAY_SIZE(q6afe_clks); i++) {
--		unsigned int id = q6afe_clks[i].clk_id;
--		struct clk_init_data init = {
--			.name =  q6afe_clks[i].name,
--		};
--		struct q6afe_clk *clk;
--
--		clk = devm_kzalloc(dev, sizeof(*clk), GFP_KERNEL);
--		if (!clk)
--			return -ENOMEM;
--
--		clk->dev = dev;
--		clk->afe_clk_id = q6afe_clks[i].afe_clk_id;
--		clk->rate = q6afe_clks[i].rate;
--		clk->hw.init = &init;
--
--		if (clk->rate)
--			init.ops = &clk_q6afe_ops;
--		else
--			init.ops = &clk_vote_q6afe_ops;
--
--		cc->clks[id] = clk;
--
--		ret = devm_clk_hw_register(dev, &clk->hw);
--		if (ret)
--			return ret;
--	}
--
--	ret = devm_of_clk_add_hw_provider(dev, q6afe_of_clk_hw_get, cc);
--	if (ret)
--		return ret;
--
--	dev_set_drvdata(dev, cc);
--
--	return 0;
--}
-+static const struct q6dsp_clk_desc q6dsp_clk_q6afe __maybe_unused = {
-+	.clks = q6afe_clks,
-+	.num_clks = ARRAY_SIZE(q6afe_clks),
-+	.lpass_set_clk = q6afe_set_lpass_clock,
-+	.lpass_vote_clk = q6afe_vote_lpass_core_hw,
-+	.lpass_unvote_clk = q6afe_unvote_lpass_core_hw,
-+};
- 
- #ifdef CONFIG_OF
- static const struct of_device_id q6afe_clock_device_id[] = {
--	{ .compatible = "qcom,q6afe-clocks" },
-+	{ .compatible = "qcom,q6afe-clocks", .data = &q6dsp_clk_q6afe },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, q6afe_clock_device_id);
-@@ -268,7 +111,7 @@ static struct platform_driver q6afe_clock_platform_driver = {
- 		.name = "q6afe-clock",
- 		.of_match_table = of_match_ptr(q6afe_clock_device_id),
- 	},
--	.probe = q6afe_clock_dev_probe,
-+	.probe = q6dsp_clock_dev_probe,
- };
- module_platform_driver(q6afe_clock_platform_driver);
- 
-diff --git a/sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c b/sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c
-new file mode 100644
-index 000000000000..4613867d1133
---- /dev/null
-+++ b/sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c
-@@ -0,0 +1,186 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2020, Linaro Limited
++              dai@22 {
++                reg = <QUATERNARY_MI2S_RX>;
++                qcom,sd-lines = <0 1 2 3>;
++              };
++            };
++        };
++      };
++  - |
++    #include <dt-bindings/soc/qcom,gpr.h>
++    gpr {
++        compatible = "qcom,gpr";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        qcom,domain = <GPR_DOMAIN_ID_ADSP>;
++        service@1 {
++            compatible = "qcom,q6apm";
++            reg = <GPR_APM_MODULE_IID>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++            q6apmdai@1 {
++              compatible = "qcom,q6apm-lpass-dais";
++              reg = <1>;
++              #address-cells = <1>;
++              #size-cells = <0>;
++              #sound-dai-cells = <1>;
 +
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/clk-provider.h>
-+#include <linux/module.h>
-+#include <linux/device.h>
-+#include <linux/platform_device.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/slab.h>
-+#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
-+#include "q6dsp-lpass-clocks.h"
-+
-+#define Q6DSP_MAX_CLK_ID			104
-+#define Q6DSP_LPASS_CLK_ROOT_DEFAULT		0
-+
-+
-+struct q6dsp_clk {
-+	struct device *dev;
-+	int q6dsp_clk_id;
-+	int attributes;
-+	int rate;
-+	uint32_t handle;
-+	struct clk_hw hw;
-+};
-+
-+#define to_q6dsp_clk(_hw) container_of(_hw, struct q6dsp_clk, hw)
-+
-+struct q6dsp_cc {
-+	struct device *dev;
-+	struct q6dsp_clk *clks[Q6DSP_MAX_CLK_ID];
-+	const struct q6dsp_clk_desc *desc;
-+};
-+
-+static int clk_q6dsp_prepare(struct clk_hw *hw)
-+{
-+	struct q6dsp_clk *clk = to_q6dsp_clk(hw);
-+	struct q6dsp_cc *cc = dev_get_drvdata(clk->dev);
-+
-+	return cc->desc->lpass_set_clk(clk->dev, clk->q6dsp_clk_id, clk->attributes,
-+				     Q6DSP_LPASS_CLK_ROOT_DEFAULT, clk->rate);
-+}
-+
-+static void clk_q6dsp_unprepare(struct clk_hw *hw)
-+{
-+	struct q6dsp_clk *clk = to_q6dsp_clk(hw);
-+	struct q6dsp_cc *cc = dev_get_drvdata(clk->dev);
-+
-+	cc->desc->lpass_set_clk(clk->dev, clk->q6dsp_clk_id, clk->attributes,
-+			      Q6DSP_LPASS_CLK_ROOT_DEFAULT, 0);
-+}
-+
-+static int clk_q6dsp_set_rate(struct clk_hw *hw, unsigned long rate,
-+			      unsigned long parent_rate)
-+{
-+	struct q6dsp_clk *clk = to_q6dsp_clk(hw);
-+
-+	clk->rate = rate;
-+
-+	return 0;
-+}
-+
-+static unsigned long clk_q6dsp_recalc_rate(struct clk_hw *hw,
-+					   unsigned long parent_rate)
-+{
-+	struct q6dsp_clk *clk = to_q6dsp_clk(hw);
-+
-+	return clk->rate;
-+}
-+
-+static long clk_q6dsp_round_rate(struct clk_hw *hw, unsigned long rate,
-+				 unsigned long *parent_rate)
-+{
-+	return rate;
-+}
-+
-+static const struct clk_ops clk_q6dsp_ops = {
-+	.prepare	= clk_q6dsp_prepare,
-+	.unprepare	= clk_q6dsp_unprepare,
-+	.set_rate	= clk_q6dsp_set_rate,
-+	.round_rate	= clk_q6dsp_round_rate,
-+	.recalc_rate	= clk_q6dsp_recalc_rate,
-+};
-+
-+static int clk_vote_q6dsp_block(struct clk_hw *hw)
-+{
-+	struct q6dsp_clk *clk = to_q6dsp_clk(hw);
-+	struct q6dsp_cc *cc = dev_get_drvdata(clk->dev);
-+
-+	return cc->desc->lpass_vote_clk(clk->dev, clk->q6dsp_clk_id,
-+				  clk_hw_get_name(&clk->hw), &clk->handle);
-+}
-+
-+static void clk_unvote_q6dsp_block(struct clk_hw *hw)
-+{
-+	struct q6dsp_clk *clk = to_q6dsp_clk(hw);
-+	struct q6dsp_cc *cc = dev_get_drvdata(clk->dev);
-+
-+	cc->desc->lpass_unvote_clk(clk->dev, clk->q6dsp_clk_id, clk->handle);
-+}
-+
-+static const struct clk_ops clk_vote_q6dsp_ops = {
-+	.prepare	= clk_vote_q6dsp_block,
-+	.unprepare	= clk_unvote_q6dsp_block,
-+};
-+
-+
-+static struct clk_hw *q6dsp_of_clk_hw_get(struct of_phandle_args *clkspec,
-+					  void *data)
-+{
-+	struct q6dsp_cc *cc = data;
-+	unsigned int idx = clkspec->args[0];
-+	unsigned int attr = clkspec->args[1];
-+
-+	if (idx >= Q6DSP_MAX_CLK_ID || attr > LPASS_CLK_ATTRIBUTE_COUPLE_DIVISOR) {
-+		dev_err(cc->dev, "Invalid clk specifier (%d, %d)\n", idx, attr);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (cc->clks[idx]) {
-+		cc->clks[idx]->attributes = attr;
-+		return &cc->clks[idx]->hw;
-+	}
-+
-+	return ERR_PTR(-ENOENT);
-+}
-+
-+int q6dsp_clock_dev_probe(struct platform_device *pdev)
-+{
-+	struct q6dsp_cc *cc;
-+	struct device *dev = &pdev->dev;
-+	const struct q6dsp_clk_init *q6dsp_clks;
-+	const struct q6dsp_clk_desc *desc;
-+	int i, ret;
-+
-+	cc = devm_kzalloc(dev, sizeof(*cc), GFP_KERNEL);
-+	if (!cc)
-+		return -ENOMEM;
-+
-+	desc = of_device_get_match_data(&pdev->dev);
-+	if (!desc)
-+		return -EINVAL;
-+
-+	cc->desc = desc;
-+	cc->dev = dev;
-+	q6dsp_clks = desc->clks;
-+
-+	for (i = 0; i < desc->num_clks; i++) {
-+		unsigned int id = q6dsp_clks[i].clk_id;
-+		struct clk_init_data init = {
-+			.name =  q6dsp_clks[i].name,
-+		};
-+		struct q6dsp_clk *clk;
-+
-+		clk = devm_kzalloc(dev, sizeof(*clk), GFP_KERNEL);
-+		if (!clk)
-+			return -ENOMEM;
-+
-+		clk->dev = dev;
-+		clk->q6dsp_clk_id = q6dsp_clks[i].q6dsp_clk_id;
-+		clk->rate = q6dsp_clks[i].rate;
-+		clk->hw.init = &init;
-+
-+		if (clk->rate)
-+			init.ops = &clk_q6dsp_ops;
-+		else
-+			init.ops = &clk_vote_q6dsp_ops;
-+
-+		cc->clks[id] = clk;
-+
-+		ret = devm_clk_hw_register(dev, &clk->hw);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = devm_of_clk_add_hw_provider(dev, q6dsp_of_clk_hw_get, cc);
-+	if (ret)
-+		return ret;
-+
-+	dev_set_drvdata(dev, cc);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(q6dsp_clock_dev_probe);
-diff --git a/sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h b/sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h
-new file mode 100644
-index 000000000000..3770d81f2bd6
---- /dev/null
-+++ b/sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h
-@@ -0,0 +1,30 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef __Q6DSP_AUDIO_CLOCKS_H__
-+#define __Q6DSP_AUDIO_CLOCKS_H__
-+
-+struct q6dsp_clk_init {
-+	int clk_id;
-+	int q6dsp_clk_id;
-+	char *name;
-+	int rate;
-+};
-+
-+#define Q6DSP_VOTE_CLK(id, blkid, n) {			\
-+		.clk_id	= id,				\
-+		.q6dsp_clk_id = blkid,			\
-+		.name = n,				\
-+	}
-+
-+struct q6dsp_clk_desc {
-+	const struct q6dsp_clk_init *clks;
-+	size_t num_clks;
-+	int (*lpass_set_clk)(struct device *dev, int clk_id, int attr,
-+			      int root_clk, unsigned int freq);
-+	int (*lpass_vote_clk)(struct device *dev, uint32_t hid, const char *n, uint32_t *h);
-+	int (*lpass_unvote_clk)(struct device *dev, uint32_t hid, uint32_t h);
-+};
-+
-+int q6dsp_clock_dev_probe(struct platform_device *pdev);
-+
-+#endif  /* __Q6DSP_AUDIO_CLOCKS_H__ */
+               dai@22 {
+                 reg = <QUATERNARY_MI2S_RX>;
+                 qcom,sd-lines = <0 1 2 3>;
 -- 
 2.21.0
 
