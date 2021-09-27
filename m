@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32B30419497
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 14:51:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0121741949A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 14:51:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234477AbhI0Mwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 08:52:34 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:46160
+        id S234472AbhI0Mwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 08:52:36 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:46126
         "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234431AbhI0Mwd (ORCPT
+        by vger.kernel.org with ESMTP id S234443AbhI0Mwe (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 08:52:33 -0400
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        Mon, 27 Sep 2021 08:52:34 -0400
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 126CB40817
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 12:50:55 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2AE684027C
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 12:50:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632747055;
-        bh=gL2n73HFUZMgICxi9XxH4YAlloJV26Mt1lAxrRgunho=;
+        s=20210705; t=1632747056;
+        bh=HyJUjHjlK3mirIZ1mWbxEOM/yJgRijm4GthGtGsI3+o=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=TCZ///ZrfcpnDDQseefV70MsTmEnDALNte4Y4xSI34M5CXNSWMWyadEfrN48wV13f
-         A9tEUpbiduIRT7oxJuygjMtOSLM9dEtHox+Wx6ydzE0b+UI0jbzDWSudcTzddvI/QA
-         jjhkYhsg61IkckWApeU8KUzn/CmGbyl2EbiPPbs7CrSwvDL+yWLYjTaYGGKiMuDPq0
-         VBAyQgPWW3i0pHbuH377ZOqLvyufT39Nh4131MFrSsv4Kv3HRytqX1hh8bQlWD2W4/
-         3USpQhl4ANvS98pljEOADAp7rpcd00cBjHkmgVG8vJjuaY57SA500A/in8bdlVxOt+
-         zwrS4raMwvAaQ==
-Received: by mail-lf1-f71.google.com with SMTP id bp11-20020a056512158b00b003fc7d722819so15786704lfb.7
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 05:50:55 -0700 (PDT)
+        b=sTaluSXJlk/YFnoSrKgHjFenPfTHMyatRl1VIaMgceJas6GzTFkJAty97NuE03G7b
+         q6wkrHkUATYOs/awOSEWY/Q5rXuCY7exEplpcYBhtesvKgiUES25XJYtgiN5385f7F
+         +8a10ACBxqR4vIhPJW/LCZHF1CMqPNo9a4Nfv4coPBGCTSkPUuan0w5PsltEP9uOBN
+         /FQYkwzl7wEciAHfRd16PiPSw06CwLhKopZj7RbdnreF7MEdXqY3NwReEU/SiXGvbb
+         4RLRCaZa4Lb4eAgVIE82jgkYLIBMb/9Fj0+FRKjnWID5zoc4fA2w/h2KWlwa3AciUu
+         gj7loYYpE3ZGw==
+Received: by mail-lf1-f70.google.com with SMTP id h27-20020a0565123c9b00b003fca9e11144so14625185lfv.19
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 05:50:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=gL2n73HFUZMgICxi9XxH4YAlloJV26Mt1lAxrRgunho=;
-        b=FhCxtVBw0ugMqYFzZXsQLa38N9iEWrZUTXkyJ9ciV3HLT0/QxXB0fl/JCCe9U+Jwae
-         pNBxRq/B9uozVwiEGRSLEZHExMpf2tf/cffCAURCZCFWCs2gouD89kTu8cr4Jv6FVOGW
-         kdlR9NdMlh6NTqQ1nrBxA4lVoRLYwDvOCpBjP0cILwXpxD9LF/s0iYJc08lHnOuIzWZa
-         sX+GelpoSiT8cKL4SZF7q5gH213qc87g8odtRBmsQdEMOGhU4QLaCZyhQqRzdfv2E8lu
-         A1uphnAiBw89hX3U85SPAHnyeJidsnJNomZZoPDBqheGjaY0aEl1Ld/oiTsXFZWmZhUC
-         l3gw==
-X-Gm-Message-State: AOAM530vlTxbbfHyaCPXG84503e/nPecFVbQcDmKqB+Kp9VBaCrtItvu
-        JBdjbr/e4nquA9rYwUF1AtUV+IzIoHBGbS0j2YkTjg88LySBEq1j7TilC2yx9VsLSc4djUd0vjs
-        /rfEj2s55bk6W3foc6yxBrzn1/mZU6shh9mv76Jk=
-X-Received: by 2002:ac2:4d22:: with SMTP id h2mr24000843lfk.429.1632747054380;
-        Mon, 27 Sep 2021 05:50:54 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyyk4pwmdGw/4Ofbnvsd28i4hCYWPZtzP5PsR1gIz62OdaiPMEFoxgoIwLu67WJig5byBmk5g==
-X-Received: by 2002:ac2:4d22:: with SMTP id h2mr24000825lfk.429.1632747054225;
-        Mon, 27 Sep 2021 05:50:54 -0700 (PDT)
+        bh=HyJUjHjlK3mirIZ1mWbxEOM/yJgRijm4GthGtGsI3+o=;
+        b=Tb3gErEfowqphU+8oWy6NU/MNZTt4SexJVBVocdkEdmL6+iewphNB1Dui6J4HyrZYg
+         ZkkBvyllDGrrni8uiyqU0Qbhs2N9ykUvwe5QuSMYr9WnCMHFoYnOGrR3EbFgcntFtXuU
+         l0X6o3EhJuB40skXIzeVg4bzXCBAxYPLs9UkqdCvBMCdi4F5HwawbpJ1AqvH7Ql8wLpR
+         f3QdKLG9EweBkmc/aQQYYygbn16lOf5lZD2xR2ob59ompuIojzijB+fMCEyn5rDEIb3o
+         Ma0m/Q7vrXM91TMiNMXrGXxg/w/tSboKboYuPL418FmbcBF5havcvuTw+8E84M3LhArU
+         EdJw==
+X-Gm-Message-State: AOAM531m0nUYcE7xdVrko60uBS8F9JtTTwX7c542XX5KikYPlYy4TtR2
+        lRVQvbqzalTsqoMIthobafMBdUFuyXaNlpUkqdBYBn5gokKXf3vsBJT/u7AZLkXsd9A0JEMm/SY
+        7u3x313OXIKxlh5sRkRTLw9fqKCpw1Tl6Os1UQSA=
+X-Received: by 2002:a05:6512:150b:: with SMTP id bq11mr24378577lfb.495.1632747055577;
+        Mon, 27 Sep 2021 05:50:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxub5gxPd0btgj0850I+iTNBnTY40Um3nPH4TVM4BxueRLq1HcvaTKOdlAvhZ1R1kGJjV++gQ==
+X-Received: by 2002:a05:6512:150b:: with SMTP id bq11mr24378555lfb.495.1632747055433;
+        Mon, 27 Sep 2021 05:50:55 -0700 (PDT)
 Received: from localhost.localdomain (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v28sm1592102lfi.22.2021.09.27.05.50.52
+        by smtp.gmail.com with ESMTPSA id v28sm1592102lfi.22.2021.09.27.05.50.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 05:50:53 -0700 (PDT)
+        Mon, 27 Sep 2021 05:50:55 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,9 +67,9 @@ To:     Ulf Hansson <ulf.hansson@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-riscv@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH v4 5/6] riscv: dts: microchip: drop unused pinctrl-names
-Date:   Mon, 27 Sep 2021 14:50:43 +0200
-Message-Id: <20210927125044.20046-5-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v4 6/6] riscv: dts: microchip: use vendor compatible for Cadence SD4HC
+Date:   Mon, 27 Sep 2021 14:50:44 +0200
+Message-Id: <20210927125044.20046-6-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210927125044.20046-1-krzysztof.kozlowski@canonical.com>
 References: <20210927125044.20046-1-krzysztof.kozlowski@canonical.com>
@@ -79,36 +79,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pinctrl-names without pinctrl-0 does not have any sense:
-
-  arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: 'pinctrl-0' is a dependency of 'pinctrl-names'
+Licensed IP blocks should have their own vendor compatible.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
 ---
 
-Changes since v2:
-1. Drop some patch garbage from rebase, pointed by Geert.
+Changes since v3:
+1. Add tags.
 
 Changes since v1:
-1. Add review.
+1. New patch.
 ---
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index b15e93d1702b..63984e53c0b3 100644
+index 63984e53c0b3..c9f6d205d2ba 100644
 --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
 +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -268,7 +268,6 @@ mmc: mmc@20008000 {
+@@ -264,7 +264,7 @@ serial3: serial@20104000 {
+ 
+ 		/* Common node entry for emmc/sd */
+ 		mmc: mmc@20008000 {
+-			compatible = "cdns,sd4hc";
++			compatible = "microchip,mpfs-sd4hc", "cdns,sd4hc";
  			reg = <0x0 0x20008000 0x0 0x1000>;
  			interrupt-parent = <&plic>;
  			interrupts = <88 89>;
--			pinctrl-names = "default";
- 			clocks = <&clkcfg 6>;
- 			max-frequency = <200000000>;
- 			status = "disabled";
 -- 
 2.30.2
 
