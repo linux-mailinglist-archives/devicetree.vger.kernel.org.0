@@ -2,106 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 487EA41923F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 12:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FCC141924D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 12:38:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233794AbhI0Ke7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 06:34:59 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:40066 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233787AbhI0Ke7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 06:34:59 -0400
-X-UUID: 98fe2ad69e914c89ae096200ea39a7dc-20210927
-X-UUID: 98fe2ad69e914c89ae096200ea39a7dc-20210927
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1472071810; Mon, 27 Sep 2021 18:33:17 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 27 Sep 2021 18:33:16 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 27 Sep 2021 18:33:16 +0800
-Message-ID: <03494ad08689e43358d554bbc48936118a63fd45.camel@mediatek.com>
-Subject: Re: [PATCH 1/2] ASoC: mediatek: mt8195: add machine driver with
- mt6359, rt1011 and rt5682
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <aaronyu@google.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Mon, 27 Sep 2021 18:33:16 +0800
-In-Reply-To: <c34d03ff-f349-724e-0dcf-7893f3622cd9@linux.intel.com>
-References: <20210910104405.11420-1-trevor.wu@mediatek.com>
-         <20210910104405.11420-2-trevor.wu@mediatek.com>
-         <10fc49fa-9791-0225-365d-e3074680596c@linux.intel.com>
-         <4d703c5f7cf27ddc8b9886b111ffeeba0c4aa08b.camel@mediatek.com>
-         <1d7fe7455a054819daf05d41ab3658afdc1caced.camel@mediatek.com>
-         <c34d03ff-f349-724e-0dcf-7893f3622cd9@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S233813AbhI0KkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 06:40:00 -0400
+Received: from egress-ip33b.ess.de.barracuda.com ([18.185.115.237]:41102 "EHLO
+        egress-ip33b.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233787AbhI0KkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Sep 2021 06:40:00 -0400
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199]) by mx-outbound23-74.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 27 Sep 2021 10:38:19 +0000
+Received: by mail-pf1-f199.google.com with SMTP id a188-20020a627fc5000000b004446be17615so11348391pfd.7
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 03:38:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p76vO38lP42vKSvVTlZjl6ogRnpGJnVTAURe7DbLNkY=;
+        b=J9t1M0Y3lar2Zm0toksTFZlqMFRNIYO+HUJ/JJNwyImt1r4B64TWR8Pz5IQzZW4m0L
+         VcqU1jCTWxdjlzLiQq+9O8ItLkayX+mB+trs3PetHBUZdTq2WRsRXqGcetO3vkxMAf+i
+         eR0FoEst0NY0+To6v3t0lVfhb8x9vKXtpU01Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p76vO38lP42vKSvVTlZjl6ogRnpGJnVTAURe7DbLNkY=;
+        b=EO2D2dFhOKU5EUqmqJgiZcUi8fwg2ZhwZDFP+0MU1iEwZPINbeBnb+KDFW0hhewDI6
+         d66qIDOMFrtuLDWjbgcyvqMahVwRxC9O/v2YHaxq3ALuu1XCLcemXYahBL1m30RmajXc
+         qj6mNB8S0DZSG5eWJkibaEquX2C25XCU8AuKdpndwKj1DagHUifZOe8cYTq0k0BKgejo
+         Pa7VYP+D78AwjTpo/J2I814nL1IRffGBsZbQP1rEyBLVDOFxXKdOrY/uGn05DoveiohK
+         6mgMz5sO79Scw29TmvGhAVqPpHXNejdHmuiHJirlVO7j1e7/4pykcjDgexexMREagXtb
+         1GYw==
+X-Gm-Message-State: AOAM531+j/i1861Dsa/+wsXvu7GixkNG3403SJywb8DSzw7d2qmI+Sdy
+        j9h5e74oXBwsNdm8WRxsAXZZQqjKjTAMkuujd9o6jd/Jok5HTWji4LpIiwvzznknVwCJlT4VcRL
+        gjjUsKcuTy7vaR8jiYpcMKlbl9r2diwKyyqzLUtanPPpWpa1/kvPy68kd7Q==
+X-Received: by 2002:a63:4464:: with SMTP id t36mr15950962pgk.4.1632739098417;
+        Mon, 27 Sep 2021 03:38:18 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyPvl9zDSO8xOMaDvu7fZO/wrBNF6HH9FdoyajHTFW7U9Lihp4AqMlhBOHiinSjGPKUQ8/LRg==
+X-Received: by 2002:a63:4464:: with SMTP id t36mr15950947pgk.4.1632739098139;
+        Mon, 27 Sep 2021 03:38:18 -0700 (PDT)
+Received: from LAP568U.mistral.in ([106.51.227.150])
+        by smtp.gmail.com with ESMTPSA id t68sm18030894pgc.59.2021.09.27.03.38.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Sep 2021 03:38:17 -0700 (PDT)
+From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
+To:     Suman Anna <s-anna@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, Nishanth Menon <nm@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Subject: [PATCH V4 0/2] dt-bindings: remoteproc: k3-r5f|dsp: Remove
+Date:   Mon, 27 Sep 2021 16:08:09 +0530
+Message-Id: <20210927103811.11222-1-sinthu.raja@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-MTK:  N
+X-BESS-ID: 1632739098-305962-5442-832-1
+X-BESS-VER: 2019.1_20210921.2035
+X-BESS-Apparent-Source-IP: 209.85.210.199
+X-BESS-Outbound-Spam-Score: 0.20
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.234758 [from 
+        cloudscan12-45.eu-central-1a.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+        0.20 PR0N_SUBJECT           META: Subject has letters around special characters (pr0n) 
+X-BESS-Outbound-Spam-Status: SCORE=0.20 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_BESS_OUTBOUND, PR0N_SUBJECT
+X-BESS-BRTS-Status: 1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-09-24 at 09:46 -0500, Pierre-Louis Bossart wrote:
-> > > > > +/* Module information */
-> > > > > +MODULE_DESCRIPTION("MT8195-MT6359-RT1011-RT5682 ALSA SoC
-> > > > > machine
-> > > > > driver");
-> > > > > +MODULE_AUTHOR("Trevor Wu <trevor.wu@mediatek.com>");
-> > > > > +MODULE_LICENSE("GPL v2");
-> > > > 
-> > > > "GPL" is enough
-> > > > 
-> > > 
-> > > I see many projects use GPL v2 here, and all mediatek projects
-> > > use
-> > > GPL
-> > > v2, too.
-> > > I'm not sure which one is better.
-> > > Do I need to modify this?
-> 
-> See
-> 
-https://urldefense.com/v3/__https://www.kernel.org/doc/html/latest/process/license-rules.html?highlight=module_license*id1__;Iw!!CTRNKA9wMg0ARbw!0xwqsodizM7jFI4lwpT7_h2bk6xHtdNb32YDo2lneZ9u-cs5hAqqdqTci89qK8FwLg$
->  
-> 
-> Loadable kernel modules also require a MODULE_LICENSE() tag. This tag
-> is
-> neither a replacement for proper source code license information
-> (SPDX-License-Identifier) nor in any way relevant for expressing or
-> determining the exact license under which the source code of the
-> module
-> is provided.
-> 
-> “GPL”
-> 
-> Module is licensed under GPL version 2. This does not express any
-> distinction between GPL-2.0-only or GPL-2.0-or-later. The exact
-> license
-> information can only be determined via the license information in the
-> corresponding source files.
-> 
-> “GPL v2”
-> 
-> Same as “GPL”. It exists for historic reasons.
-> 
-> So "GPL v2" is not incorrect but for new contributions you might as
-> well
-> use the recommended tag.
+From: Sinthu Raja <sinthu.raja@ti.com>
+
+Hi All,
+The series of patches are meant to help make the rproc bindings for K3
+r5f and dsp support independent of board/platform involved.
+
+Changes in V4:
+Addressed review comments:
+- Removed Fixes tags from the commit descriptions.
+- Updated subject and commit description to emphasis on cleaning up of the 
+  example to address the dt_binding_check warnings.
 
 
-Got it.
-Thanks for your detailed explanation.
-I will correct it in V2.
+V3: https://lore.kernel.org/all/20210917095426.19277-1-sinthu.raja@ti.com/
+V2: https://lore.kernel.org/all/20210818074030.1877-1-sinthu.raja@ti.com/
+V1: https://lore.kernel.org/all/20210817152005.21575-1-sinthu.raja@ti.com/
 
-Trevor
+Sinthu Raja (2):
+  dt-bindings: remoteproc: k3-r5f: Cleanup SoC compatible from DT
+    example
+  dt-bindings: remoteproc: k3-dsp: Cleanup SoC compatible from DT
+    example
+
+ .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml       | 4 +---
+ .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml       | 4 +---
+ 2 files changed, 2 insertions(+), 6 deletions(-)
+
+-- 
+2.31.1
 
