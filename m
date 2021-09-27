@@ -2,113 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 414FF418E5B
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 06:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EC84418E70
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 06:49:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231299AbhI0E2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 00:28:23 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:16699 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229921AbhI0E2X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Sep 2021 00:28:23 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1632716806; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=U7xwWG86NJbZVo9kJK4fvbMP5O7Q8h2IyIEICsOkjnA=;
- b=rk6uT67Ak2X0lahOU4+2Ho9G9+A8aqOsiJqW20SPC/N46BRtO7pNe4BvlzogfieHzw2L75vF
- BfE2vxRIoDFq8ury0I1zDEIpKCuuCGdv3A+L5R5OTXPsTCW4Wa3xVo5ae9dWw8vgKldJ76t+
- LdF3wlxo8W6JiadIkuBaatCGKvA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 615148001abbf21d3478e026 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 27 Sep 2021 04:26:40
- GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9BF9AC4361A; Mon, 27 Sep 2021 04:26:39 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B3177C4338F;
-        Mon, 27 Sep 2021 04:26:38 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 27 Sep 2021 09:56:38 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Tao Zhang <quic_taozha@quicinc.com>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Mao Jinlong <quic_jinlmao@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sm8250: Add Coresight support
-In-Reply-To: <1632710581-11896-1-git-send-email-quic_taozha@quicinc.com>
-References: <1632710581-11896-1-git-send-email-quic_taozha@quicinc.com>
-Message-ID: <8ff1838f88670cc401a35dc43cc43feb@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        id S232579AbhI0Eun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 00:50:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232340AbhI0Eun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 00:50:43 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB64BC061575
+        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 21:49:05 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id x4so3413344pln.5
+        for <devicetree@vger.kernel.org>; Sun, 26 Sep 2021 21:49:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=VCLJxOMghD8RaVbA5dWN+yrWOdqhM/FitAV43QdnWcA=;
+        b=v4HWkol1Zq2VhH4qtQtAVKhBp7KIbVoceST9LFQCBxkv5ECnN3dX4CfY7bPWod1Rtq
+         tKg77idmeZtxwyenmots5LLnqoUaHUaBhc+7ctWVnzBaOLr6HcH0Oixi2feVWeQdbaE1
+         NxvHcpNxWWbjTJ0THXDepb6qIDTtiG3VLVglRMPB4fs3eGiD8t32VSZom1cohHRDOQzB
+         ttJI6ckSJVfTGaPAUbCRnQ9uhTc9vu0h9r8GV1vRcM/TrBZCrUDKIF+i6fYajSYdnpgk
+         KhYC8xqA0DqP0QymE8eRlf875rb16Ib6/FpRj6Vt9Gbyp+xXWifPabTnoADgG67KoLpy
+         Nlhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=VCLJxOMghD8RaVbA5dWN+yrWOdqhM/FitAV43QdnWcA=;
+        b=4ReT13bhX3+uHvSXty+okYpdvoDk3q/ioXTphOODGUZbUOF2fa/IqVM6eZhWrc2b5r
+         MxG5R56++SFW3RCHvBCxTXBFHtVtJL4HNv83ppTlsjvowxiF0GZ/nqArnqQjZQkDkMli
+         Wf5EG0U6gNCs8rP880KEKlUyvPdrBaFje0LE1+bh4v7Wen3XhDUeHGuSX4XhnYRplRaP
+         FpgGgRNId/rrYDdwCxbayn/bYjjQCTuJVNVvcaR+4R/hjFECuXculRmSVKMsP5PaLyiO
+         UpoqsPQzfV12Ilom50wMT9Pl5tAAXDCas7r736l0s778FbAr0fNrftTx77NwiaEZuTJ4
+         KsbA==
+X-Gm-Message-State: AOAM5330MhTHS1zITKRmrrzs+lma3K3+hLzj3hpTFBQ/THfQCM7LGsSf
+        LmRo6+9VRgzOlPtOJ+dltbLi5A==
+X-Google-Smtp-Source: ABdhPJwYodALpHMpng2H+jCiibiIx/t6qGhMZwNj8Bl+wKK+zEAM+9zWZtFnqmIdlCoxV1/V66vOZA==
+X-Received: by 2002:a17:90a:b382:: with SMTP id e2mr11819780pjr.119.1632718145282;
+        Sun, 26 Sep 2021 21:49:05 -0700 (PDT)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id o8sm14550651pjh.19.2021.09.26.21.49.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Sep 2021 21:49:04 -0700 (PDT)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Manu Gautam <mgautam@codeaurora.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Jami Kettunen <jamipkettunen@gmail.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH 0/3] Add missing vdd-supply for QUSB2 PHY
+Date:   Mon, 27 Sep 2021 12:48:21 +0800
+Message-Id: <20210927044824.30246-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tao,
+The series adds missing vdd-supply for QUSB2 PHY which is required for
+digital circuit.  The driver works right now likely because firmware
+already sets it up.  Add it to bindings, driver and DTS that miss the
+supply.
 
-On 2021-09-27 08:13, Tao Zhang wrote:
-> Add the basic coresight components found on Qualcomm SM8250 Soc. The
-> basic coresight components include ETF, ETMs,STM and the related
-> funnels.
-> ETM verification and use of Coresight components need Coresight
-> support in this device tree. Since the ETR sink needs SMMU support,
-> and SMMU has not been enabled on RB5. ETR is not added to this patch,
-> and it will be added once SMMU is enabled on RB5. ETF sink has been
-> added to the device tree for RB5.
-> 
+It should not cause problem for existing DTBs:
+- SC7180, SDM630, SDM845 based platforms already specified vdd-supply
+  in the DTBs.
+- MSM8996 and MSM8998 platform DTBs miss vdd-supply, but dummy regulator
+  will ensure QUSB2 PHY driver works as before on these platforms.
 
-RB5 board is based on SM8250 SoC and coresight is a SoC level IP (won't
-change per board, although can be disabled per board) and as such these
-coresight dt nodes should be in sm8250.dtsi (please look at other 
-examples
-in SM8150/SC7180/SC7280).
 
-Similarly SMMU support is not per board (RB5), it's already supported
-for SM8250 long time back (check for apps_smmu in sm8250.dtsi), so you
-can add ETR support when you post v3 (note this patch which you have
-posted should have been v3 as v2 was your previous version). You can 
-just
-post one patch with the coresight dt entries as the ETM driver patch is
-already queued by Suzuki in coresight tree. You can use the following 
-qcom
-tree [1] when posting DT for QCOM devices (branch: for-next), also 
-please
-remember to *sort the nodes by address*.
+Shawn Guo (3):
+  dt-bindings: phy: qcom,qusb2: Add missing vdd-supply
+  phy: qcom-qusb2: Add missing vdd supply
+  arm64: dts: qcom: Add missing vdd-supply for QUSB2 PHY
 
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/?h=for-next
-
-Thanks,
-Sai
+ Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml | 6 ++++++
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi              | 2 ++
+ arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi    | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi           | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi      | 1 +
+ drivers/phy/qualcomm/phy-qcom-qusb2.c                     | 2 +-
+ 6 files changed, 12 insertions(+), 1 deletion(-)
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.17.1
+
