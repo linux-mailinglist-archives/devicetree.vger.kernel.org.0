@@ -2,79 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CB794199BF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 18:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE9BA4199C2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Sep 2021 18:56:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235543AbhI0Q4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 12:56:47 -0400
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:38775 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235316AbhI0Q4q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 12:56:46 -0400
-Received: by mail-oo1-f41.google.com with SMTP id z11-20020a4ad1ab000000b0029f085f5f64so6210470oor.5;
-        Mon, 27 Sep 2021 09:55:08 -0700 (PDT)
+        id S235546AbhI0Q6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 12:58:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36034 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235454AbhI0Q6A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 12:58:00 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AEEEC061714
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 09:56:22 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id t2so10725637qtx.8
+        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 09:56:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LxG4HPV4FXiyd9Nx3Il3K8msxXap3JQb5VLOGuZR7VY=;
+        b=lg1n7FUxcNqWTq5zo6ikpYbbg1qh5zQzLTJ8zwUneGdbsMi0M8mPV5zE8+Xcnd4HAQ
+         gP4NyCqJ20CSOR+CPqKX/7qhd/sNzEYzCKw4BD4XJoCDHPDw+ma36rX2v5+8bAAdsQXE
+         1U8inMUrBNXMZLxmcTjggGzHf9MKW1SPst+Sw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cKeUlYWx7gYOxJFwzzxufj8ho82oLKqCVAmN/2oSozE=;
-        b=BBfIn/5+14XtblFFZZ/tGmAdiVxa34lzWsaOBZ7AWe59W7cBxPm5lUH8euiV5vlyLA
-         9RkRCIE1YcP3qNQOpsaJjSh2uJudMg9OrEi2fhHG2N4dpNM54pec8Kf8L1p5AgHU2sI8
-         vqgR/r3Fgs3MhRzh6MGaG91knxCwES0T/LZsEEdx9vNOzMYK8/0M/T9XeAVmWj1x25QA
-         U5/UhjBCwjNcZghArRC7xwPyRm5cWy0POZ9ZYsRh6Zxxdh5CYqMdKttq0iEutvhd322E
-         df/06jPLn+n5DR6wvpW7ynPrJJjixDBN5AzEI3dh9mis1pRcSfQZqonKjJPz98I+BAhW
-         7KRg==
-X-Gm-Message-State: AOAM532IO/Mj7i5hDZsw+J6ZJh4gUILYFQzTFyTHWJzOdfe1YgA7J7Ch
-        rjGez/YoKfNy/TCQHA9PLQ==
-X-Google-Smtp-Source: ABdhPJyZnCW9Dx5S4p0+DLUXG85OrY65XDrqMa/LWNACAtx1+qxhk+yRoMpQ8gz9n3tLjK9voIiZ1g==
-X-Received: by 2002:a4a:c80b:: with SMTP id s11mr764319ooq.65.1632761708018;
-        Mon, 27 Sep 2021 09:55:08 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p64sm3984945oih.29.2021.09.27.09.55.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 09:55:07 -0700 (PDT)
-Received: (nullmailer pid 3458393 invoked by uid 1000);
-        Mon, 27 Sep 2021 16:55:06 -0000
-Date:   Mon, 27 Sep 2021 11:55:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mark Kettenis <kettenis@openbsd.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Saenz Julienne <nsaenzjulienne@suse.de>, sven@svenpeter.dev,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, maz@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        linux-kernel@vger.kernel.org, alyssa@rosenzweig.io,
-        robin.murphy@arm.com, Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Jim Quinlan <jim2101024@gmail.com>,
-        Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v5 2/4] dt-bindings: interrupt-controller: msi: Add
- msi-ranges property
-Message-ID: <YVH3as0y2gt+z+5/@robh.at.kernel.org>
-References: <20210921183420.436-1-kettenis@openbsd.org>
- <20210921183420.436-3-kettenis@openbsd.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LxG4HPV4FXiyd9Nx3Il3K8msxXap3JQb5VLOGuZR7VY=;
+        b=dVgYurwMW8RdGmsfIAKKH3c/heu5NkFigSjoAc8IZZfQaWrWzJ7/ppEaJySlaoE29r
+         egbcGPVAuE8uN6VYwjr1ecofxGt8k/6DksC0MFZpSG3GFZuJ2c3NIXfgGqhV/7DNWYVh
+         GI++LfWlBEhnDzP/oI5G4DQsT2HqP1XT+FvcrNpu2NWXVHqAOD+BvxqwRzSEsB0jiqwR
+         HL9YlxJq6biUhsWvZguBFgqyqJ98oeN3vejY0pJJu/VKH5+kUBtiIOpty7xRq/+8wf9h
+         y3zyEnRmaglwgPof2y9zeC4wVMEWd20dazjV9cvQWC65vI9Mc3Y54iVVK+GQBbjxj4Kg
+         qZvA==
+X-Gm-Message-State: AOAM530sG6grYcavtSm9bCeYUjwz2tTX6OO9npoBQkCEklLg3zCToP2t
+        /GcDCTn03Lbe0Vn1R/dfBS3qlDaQjmgAKnfhyFSOzw==
+X-Google-Smtp-Source: ABdhPJxks+ildD0Q8dRhHE4wWhlya4id4tdrl9iWX9N3kBCiqQIO9AuMcdOLdKpmnSNIRpILzZVNT9+rwNTdRNHeUGM=
+X-Received: by 2002:ac8:1c6:: with SMTP id b6mr855002qtg.221.1632761781171;
+ Mon, 27 Sep 2021 09:56:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210921183420.436-3-kettenis@openbsd.org>
+References: <20210901083215.25984-1-yunfei.dong@mediatek.com>
+In-Reply-To: <20210901083215.25984-1-yunfei.dong@mediatek.com>
+From:   Steve Cho <stevecho@chromium.org>
+Date:   Mon, 27 Sep 2021 09:56:10 -0700
+Message-ID: <CAC-pXoNT8AFA2j1DiD9M_uGb92fVcukTGDKVURaGjwpPstcwqQ@mail.gmail.com>
+Subject: Re: [PATCH v6, 00/15] Using component framework to support multi
+ hardware decode
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Sep 2021 20:34:13 +0200, Mark Kettenis wrote:
-> Update the MSI controller binding to add an msi-ranges property
-> that specifies how MSIs map onto regular interrupts on some other
-> interrupt controller.
-> 
-> Acked-by: Marc Zyngier <maz@kernel.org>
-> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> ---
->  .../bindings/interrupt-controller/msi-controller.yaml     | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
+Hi Yunfei,
 
-Applied, thanks!
+> This patch dependents on : "media: mtk-vcodec: support for MT8183 decoder"[1] and
+> "Mediatek MT8192 clock support"[2].
+>
+> 1: Multi hardware decode is based on stateless decoder, MT8183 is the first time
+> to add stateless decoder. Otherwise it will cause conflict. This patch will be
+> accepted in 5.15[1].
+Just a few basic questions. What kind of "conflict" are you expecting here?
+Are you referring to kernel "5.15" here?
+Probably not. If yes, then that sounds strange to me considering our
+current kernel uprev plans and current kernel used for MT8183.
+
+> 2: The definition of decoder clocks are in mt8192-clk.h, this patch already in clk tree[2].
+>
+> [1]https://patchwork.linuxtv.org/project/linux-media/list/?series=5826
+This link seems to be no longer available.
+
+> [2]https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/commit/?h=clk-next&id=f35f1a23e0e12e3173e9e9dedbc150d139027189
