@@ -2,113 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6F5641B24C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 16:44:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A244541B262
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 16:52:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241342AbhI1OqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 10:46:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56060 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241152AbhI1OqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 10:46:02 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B62B3C061745
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 07:44:22 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id f78-20020a1c1f51000000b0030cdb3d6079so2936131wmf.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 07:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=TrLAUwrfZydcABJFcjBv4tGcG5sEz91K/jBljcklsAc=;
-        b=UfileZT6VmIcod7N6O9fk2FNKlrMl9laobT1u64Q3AisEo3gFxRtkvyHWu6/NPUgl4
-         GwI51NR2AYBTYWRWXSTPTevE6tvd8ArA7Zx3hrSnG8jw1mwgawJLuPMwHAprtJ7NBxKF
-         R6KFp1H+ZAB0tVfZi9TgMG/TxpMNpUFzc13h0lgVebH7i6PMXpcw/5ykB2GUQ9z3FcbK
-         Bl8DVS0v9afL5UhPBCkrzwGg48sge+mc40grnDUwHGMoS15A29DHb1BEMlMyOw8eahbV
-         rYd6HlOLSU5JRpivARjRpARpUaT5pU5lm6bUoiYHDA1f9pDh9Jp1IFrccCyZ4txB9XeO
-         8Q6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=TrLAUwrfZydcABJFcjBv4tGcG5sEz91K/jBljcklsAc=;
-        b=gR4nWMc3qxfcWVYN8XsEER+22kHOjyM+2Gjj64Ha72tJwAYo/TkSLvR6Cg42Joskad
-         eOvYYGGdw56OVVG2rn2ROnZXoCBFCMr8QV1qjTkJ8zFFNLTQJbqcPQctYINoAB+QtiGH
-         UgssLmU/LeXwu5xcbTz9FZrRsuAiHTsZNHut1JChDCz4eZUQGoBnoMBgtBnmRVe/4ZVt
-         EcXm5Uf1o4JlqUvNq2/mW3jBhqlnGl5kyA5f8qjpsPtg4RHmGPhSNj13JGmmU0bj/4A0
-         SPwuxAK9IliQAKIXSL6xfPmzvj+ZPNQIzxXyhuACPHfLeVMxF1SwZxpfumkbY39+Vm7O
-         pXFA==
-X-Gm-Message-State: AOAM5316RzuA0vT1JSxTnFUNN1B+AKhcBhU8qS9D9k2UKT+CRsAyiDSS
-        vwst7HQvhBksDlzLr8H++qbDrw==
-X-Google-Smtp-Source: ABdhPJyCzpqOtMBCC1LyDZ8lpsNKxlm5+8ChFU8yojs3ZwwqE3MyLYWdMGSwSaUIS6X1GlodnxtVfA==
-X-Received: by 2002:a05:600c:41d6:: with SMTP id t22mr5146675wmh.59.1632840261191;
-        Tue, 28 Sep 2021 07:44:21 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id w18sm4604555wrt.79.2021.09.28.07.44.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Sep 2021 07:44:20 -0700 (PDT)
-Subject: Re: [PATCH V2 0/6] nvmem: add "cell-type" property to support
- mac-address
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>, robh+dt@kernel.org,
-        shawnguo@kernel.org, a.fatoum@pengutronix.de
-Cc:     kernel@pengutronix.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-References: <20210923110109.29785-1-qiangqing.zhang@nxp.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <2194172f-a362-a328-993b-45ebec539f9d@linaro.org>
-Date:   Tue, 28 Sep 2021 15:44:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S241379AbhI1Oy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 10:54:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32960 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241294AbhI1Oy1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 10:54:27 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 295F960F24;
+        Tue, 28 Sep 2021 14:52:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632840768;
+        bh=EjAj38R6MzpC/IJoRNuUzACYBXlnF5xx5+AhIZAZq1I=;
+        h=From:To:Cc:Subject:Date:From;
+        b=n86tKqPDoTvDHsrfXJeU5CQbucGAePlnHYIembVwPk1okFJ6lPVbcmdIkBSwtutzL
+         mTrxFo+BOuWt8RYzCLQvF9mATxeuYoApZLEdCBJommD+5p9OUrE1trRDqizELQfo9e
+         JVIaT9Nq85hXIDNoQrSY4Mw85X9LWWDj3HTNCeIitLtjIpYM/CuHYWMTfozO0H9HBy
+         gUEJrveYqs9FC0vSMofirXWgZebHMdVPPgV4WVYadrX9R0JB81Ihp+9KJRyGzRd9sO
+         FcWcP1SBrrEOpZbE3b91ZWwN4kPvMUxAAdZU1n3dv1oKuBtxhlvIO6b+jE9BvQJdXs
+         pKX+sBB/wwpMg==
+From:   Arnd Bergmann <arnd@kernel.org>
+To:     Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: [PATCH] [SUBMITTED 20210721] fbdev: simplefb: fix Kconfig dependencies
+Date:   Tue, 28 Sep 2021 16:52:10 +0200
+Message-Id: <20210928145243.1098064-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20210923110109.29785-1-qiangqing.zhang@nxp.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joakim,
+From: Arnd Bergmann <arnd@arndb.de>
 
+Configurations with both CONFIG_FB_SIMPLE=y and CONFIG_DRM_SIMPLEDRM=m
+are allowed by Kconfig because the 'depends on !DRM_SIMPLEDRM' dependency
+does not disallow FB_SIMPLE as long as SIMPLEDRM is not built-in. This
+can however result in a build failure when cfb_fillrect() etc are then
+also in loadable modules:
 
-I pushed some WIP changes to 
-https://git.kernel.org/pub/scm/linux/kernel/git/srini/nvmem.git/log/?h=topic/post-processing
-with Rob's feedback,
+x86_64-linux-ld: drivers/video/fbdev/simplefb.o:(.rodata+0x1f8): undefined reference to `cfb_fillrect'
+x86_64-linux-ld: drivers/video/fbdev/simplefb.o:(.rodata+0x200): undefined reference to `cfb_copyarea'
+x86_64-linux-ld: drivers/video/fbdev/simplefb.o:(.rodata+0x208): undefined reference to `cfb_imageblit'
 
-Do you think you could try it out and see if this works for you?
+To work around this, change FB_SIMPLE to be a 'tristate' symbol,
+which still allows both to be =m together, but not one of them to
+be =y if the other one is =m. If a distro kernel picks this
+configuration, it can be determined by local policy which of
+the two modules gets loaded. The 'of_chosen' export is needed
+as this is the first loadable module referencing it.
 
---srini
+Alternatively, the Kconfig dependency could be changed to
+'depends on DRM_SIMPLEDRM=n', which would forbid the configuration
+with both drivers.
 
-On 23/09/2021 12:01, Joakim Zhang wrote:
-> This patch set adds "cell-type" property to parse mac address, take i.MX
-> as an example, which need reverse byte for mac address.
-> 
-> ChangeLogs:
-> V1->V2:
-> 	* correct comments: @cell_read_callback -> @cell_post_process
-> 	* s/imx8mm/imx8m/ in commit message title
-> 	* add reviewed-by tags
-> 
-> Joakim Zhang (2):
->    arm64: dts: imx8m: add "cell-type" property for mac-address
->    arm64: dts: imx8m: remove unused "nvmem_macaddr_swap" property for FEC
-> 
-> Srinivas Kandagatla (4):
->    dt-bindings: nvmem: add cell-type to nvmem cells
->    nvmem: core: parse nvmem cell-type from device tree
->    nvmem: core: add nvmem cell post processing callback
->    nvmem: imx-ocotp: add support for post porcessing.
-> 
->   .../devicetree/bindings/nvmem/nvmem.yaml      | 11 +++++++
->   arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  3 +-
->   arch/arm64/boot/dts/freescale/imx8mn.dtsi     |  3 +-
->   arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 10 ++++++-
->   arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  3 +-
->   drivers/nvmem/core.c                          | 12 ++++++++
->   drivers/nvmem/imx-ocotp.c                     | 30 +++++++++++++++++++
->   include/dt-bindings/nvmem/nvmem.h             |  8 +++++
->   include/linux/nvmem-provider.h                |  5 ++++
->   9 files changed, 81 insertions(+), 4 deletions(-)
->   create mode 100644 include/dt-bindings/nvmem/nvmem.h
-> 
+Fixes: 11e8f5fd223b ("drm: Add simpledrm driver")
+Acked-by: Rob Herring <robh@kernel.org> # for drivers/of/
+Link: https://lore.kernel.org/all/20210721151839.2484245-1-arnd@kernel.org/
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/of/base.c           | 1 +
+ drivers/video/fbdev/Kconfig | 5 +++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index f720c0d246f2..0ac17256258d 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -36,6 +36,7 @@ LIST_HEAD(aliases_lookup);
+ struct device_node *of_root;
+ EXPORT_SYMBOL(of_root);
+ struct device_node *of_chosen;
++EXPORT_SYMBOL(of_chosen);
+ struct device_node *of_aliases;
+ struct device_node *of_stdout;
+ static const char *of_stdout_options;
+diff --git a/drivers/video/fbdev/Kconfig b/drivers/video/fbdev/Kconfig
+index b26b79dfcac9..6ed5e608dd04 100644
+--- a/drivers/video/fbdev/Kconfig
++++ b/drivers/video/fbdev/Kconfig
+@@ -2193,8 +2193,9 @@ config FB_HYPERV
+ 	  This framebuffer driver supports Microsoft Hyper-V Synthetic Video.
+ 
+ config FB_SIMPLE
+-	bool "Simple framebuffer support"
+-	depends on (FB = y) && !DRM_SIMPLEDRM
++	tristate "Simple framebuffer support"
++	depends on FB
++	depends on !DRM_SIMPLEDRM
+ 	select FB_CFB_FILLRECT
+ 	select FB_CFB_COPYAREA
+ 	select FB_CFB_IMAGEBLIT
+-- 
+2.29.2
+
