@@ -2,360 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A34C741B59D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 20:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D7641B5D8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 20:22:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242157AbhI1SEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 14:04:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45752 "EHLO
+        id S241995AbhI1SYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 14:24:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242141AbhI1SEB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 14:04:01 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBF8C061746
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 11:02:22 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id l13so20749929qtv.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 11:02:22 -0700 (PDT)
+        with ESMTP id S241488AbhI1SYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 14:24:01 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E740FC06161C;
+        Tue, 28 Sep 2021 11:22:21 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id r2so22090216pgl.10;
+        Tue, 28 Sep 2021 11:22:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=poorly.run; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=+5VWjy8Fq49Y0oU4GhrpcO9PkvbYY7ylHg6qCcFlNQY=;
-        b=eimnEcu76/8gwkbirAOwKdMz3jEr/ek9Rn3wgqGFS5KtD7/LzEviTI8GNdrtjEIRJi
-         PvnosJ6FN0ZATtaPxt3iJtyDI/uqObtWoPcCEKQxHtDyZC2mzC0siHRmpjMM7ncfafXv
-         YRHBjHRR868f0U+udlwV4zoWOaJrYxr/cCaumckeqC6iCFiwghuy48+vFnYYdcwhnLoA
-         UcNTPXHfvj0WUs2whlz5+YtJ7b11JVL2Fip5pxE/YFJ8Fh/gYrMwZnsmcF/URctxKhA8
-         /yQHrmlXXQ4UPetNvMoqEJXfIcgYuSSOv22h1QFrrinucUbUBxgtBf65oqpuJs0MNaOc
-         Joxw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wzjuC9MK57NdGhsmL0/fukugcevUgitff7Z6GFPU/co=;
+        b=Z/7OXpyv48Km4EWco0kS+9jL/fhj9B2LOTcklrKlw8AlcK7WmvXQyhQrvBd0Qe4q3M
+         sgSMnwgzpm/WY9B2KBcmoiUA+dQw/iMI/dC0CIM7VOiBt1CsYLebhIB7ZCVbggRITJTN
+         VJbZ4soPZwUqVyhXpd69kE2y9SRmib+4RwLHR4zvlvgySX14YklDZ2TQ9WOkO8Rso0Ac
+         2iLKfM7Bd4EoieHITId2esrSTaenxt7R9VzYcUBVpC4s8AjeBsOJ11+fRun088VyEiSg
+         6LW9CbFXJJXsywtk+J7Q2gLKJ5eJA18izMl4ttGCg8PRRa1aVbt7CiAPO0JwD7pRzKnj
+         8AdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+5VWjy8Fq49Y0oU4GhrpcO9PkvbYY7ylHg6qCcFlNQY=;
-        b=V/obkd7XpEs8pYKVCI0dEdfCAWkFkBE8t9NUyVZsL6sP/CymW30sqrzDB7DAuO5RzU
-         /A+k29rjRnBBJgv7DslLFYSw4qVUXFkNKPAb1dBiIzp13mjI3oN3dowBsEsIg11kgueI
-         vKmeLxxjjNaz8a1k65CPnXL8JPcsc4kwnm6bBT4PD9egQio82kIuJDNWb9KQYEdqDPZH
-         1zP7RAv7hbI3shfn/hssIL/ppU3ieZiWKSvTzxvcADVROsBr6CVUSaGtaP5zx3P/unnu
-         +q7BHUgUbBn14z8jr1uQuYYkDKB9SKZaIUif3kHlsdKA2C3c0H3RYxv4DXuDcQ0OLvnd
-         2U5g==
-X-Gm-Message-State: AOAM530k001JiA8Ness1tX7F3wH3yFbHjDQ0FgC5lB59RRjtZ5UYxoa0
-        YmGHzmmSlbBUfOwvLmCjldGzCA==
-X-Google-Smtp-Source: ABdhPJzAGQ/PYJu3J6jKA9b5zZX9OsSADRbPsHiih2zie0XDgmtPFecNprS98M1n9dgcfUOY51mAig==
-X-Received: by 2002:a05:622a:1712:: with SMTP id h18mr7011365qtk.389.1632852141272;
-        Tue, 28 Sep 2021 11:02:21 -0700 (PDT)
-Received: from localhost ([167.100.64.199])
-        by smtp.gmail.com with ESMTPSA id m139sm16416558qke.18.2021.09.28.11.02.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 28 Sep 2021 11:02:20 -0700 (PDT)
-Date:   Tue, 28 Sep 2021 14:02:19 -0400
-From:   Sean Paul <sean@poorly.run>
-To:     abhinavk@codeaurora.org
-Cc:     Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        swboyd@chromium.org, Sean Paul <seanpaul@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wzjuC9MK57NdGhsmL0/fukugcevUgitff7Z6GFPU/co=;
+        b=C7g9y+kKY9Pd8vyx4irV2dJk/6La9PnWXg4ChfNgtdXuG+FmxlOfFgQdZZs5YWVPfr
+         g2cVAW8TjgmUh7HmYC4hXG6V16Pu/DbdJ0QtCImCf9wMTFICGT6IJcDOsV+WYJ4QLYx8
+         coTgkvLYy3Mrvrtv/aWJDMrWyljIWi7M6zWWEiDfs5r3rK/z4PcE+K9rXYc/C2TU5YpP
+         k6ndkZYoEKd4pV9uQbhtR1nSL3bIwX9Hot2nbhq5I0TnderB4Ztq4fwoaoCug9ItwDrf
+         j0JKaDy3SPdhGS2FWLW04vj2VMINr42Uuh4ot6kZoEDAQPgTYk8k9U5MxOxePeXCALQc
+         RQaQ==
+X-Gm-Message-State: AOAM533uafLiOEgC6YYLDjYkIQDzTEjFle2RXMPOhGcs4eckDXj4LWOC
+        MSRK0LLCd0r/JLPiya69ytk/951QQm0=
+X-Google-Smtp-Source: ABdhPJwBzY0xo9qskBBGj9uXqE3Fzh3r0jSY28mP6BSvovQo8jxNn+2Y+ODRxEd2SuKKL+GLpPhx5g==
+X-Received: by 2002:a62:7a8e:0:b0:447:df71:48b2 with SMTP id v136-20020a627a8e000000b00447df7148b2mr6875148pfc.22.1632853340854;
+        Tue, 28 Sep 2021 11:22:20 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id x19sm20855288pfn.105.2021.09.28.11.22.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Sep 2021 11:22:20 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM
+        BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE...),
+        Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [Freedreno] [PATCH v2 13/13] drm/msm: Implement HDCP 1.x using
- the new drm HDCP helpers
-Message-ID: <20210928180219.GT2515@art_vandelay>
-References: <20210915203834.1439-1-sean@poorly.run>
- <20210915203834.1439-14-sean@poorly.run>
- <2486179cbd76c34a9c085dfff98448e5@codeaurora.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM
+        SUB-ARCHITECTURES), linux-mips@vger.kernel.org (open list:MIPS),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE)
+Subject: [PATCH v3 00/14] Modular Broadcom irqchip drivers
+Date:   Tue, 28 Sep 2021 11:21:25 -0700
+Message-Id: <20210928182139.652896-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2486179cbd76c34a9c085dfff98448e5@codeaurora.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 07:25:41PM -0700, abhinavk@codeaurora.org wrote:
-> On 2021-09-15 13:38, Sean Paul wrote:
-> > From: Sean Paul <seanpaul@chromium.org>
-> > 
-> > This patch adds HDCP 1.x support to msm DP connectors using the new HDCP
-> > helpers.
-> > 
-> > Cc: Stephen Boyd <swboyd@chromium.org>
-> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > Link:
-> > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run
-> > #v1
-> > 
-> > Changes in v2:
-> > -Squash [1] into this patch with the following changes (Stephen)
-> >   -Update the sc7180 dtsi file
-> >   -Remove resource names and just use index (Stephen)
-> > 
-> 
-> 
-> > [1]
-> > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-14-sean@poorly.run
-> > ---
+Hi Thomas, Marc,
 
-/snip
+This patch series aims at allowing the 3 interrupt controller drivers
+used on Broadcom STB platforms to be built as modules in order for those
+to be shipped in a GKI enabled system (Android).
 
-> > diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
-> > index 904535eda0c4..98731fd262d6 100644
-> > --- a/drivers/gpu/drm/msm/Makefile
-> > +++ b/drivers/gpu/drm/msm/Makefile
-> > @@ -109,6 +109,7 @@ msm-$(CONFIG_DRM_MSM_DP)+= dp/dp_aux.o \
-> >  	dp/dp_ctrl.o \
-> >  	dp/dp_display.o \
-> >  	dp/dp_drm.o \
-> > +	dp/dp_hdcp.o \
-> >  	dp/dp_hpd.o \
-> >  	dp/dp_link.o \
-> >  	dp/dp_panel.o \
-> > diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c
-> > b/drivers/gpu/drm/msm/dp/dp_debug.c
-> > index 2f6247e80e9d..de16fca8782a 100644
-> > --- a/drivers/gpu/drm/msm/dp/dp_debug.c
-> > +++ b/drivers/gpu/drm/msm/dp/dp_debug.c
+The irq-bcm7038-l1 requires us to export a number of symbols, which is
+not great, but there are not obvious solutions other than adding
+accessor functions to get the same information.
 
-/snip
+Assuming you are happy with the changes though, please do take the last
+two changes as well through your tree.
 
-> > +static ssize_t dp_hdcp_key_write(struct file *file, const char __user
-> > *ubuf,
-> > +				 size_t len, loff_t *offp)
-> > +{
-> > +	char *input_buffer;
-> > +	int ret = 0;
-> > +	struct dp_debug_private *debug = file->private_data;
-> > +	struct drm_device *dev;
-> > +
-> > +	dev = debug->drm_dev;
-> > +
-> > +	if (len != (DRM_HDCP_KSV_LEN + DP_HDCP_NUM_KEYS * DP_HDCP_KEY_LEN))
-> > +		return -EINVAL;
-> > +
-> > +	if (!debug->hdcp)
-> > +		return -ENOENT;
-> > +
-> > +	input_buffer = memdup_user_nul(ubuf, len);
-> > +	if (IS_ERR(input_buffer))
-> > +		return PTR_ERR(input_buffer);
-> > +
-> > +	ret = dp_hdcp_ingest_key(debug->hdcp, input_buffer, len);
-> > +
-> > +	kfree(input_buffer);
-> > +	if (ret < 0) {
-> > +		DRM_ERROR("Could not ingest HDCP key, ret=%d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	*offp += len;
-> > +	return len;
-> > +}
-> 
-> It seems like the HDCP keys written using debugfs, just for my
-> understanding,
-> are you storing this in some secure partition and the usermode reads from it
-> and writes them here?
-> 
+Thanks!
 
-We have not sorted out the userspace side of HDCP enablement yet, so it remains
-to be seen whether the keys will be injected via debugfs/firmware file/property.
+Changes in v3:
 
-/snip
+- avoid the use of the cpu_logical_map array for platforms other than
+  MIPS
+- removed the bogus irq_set_affinity callback for platforms other than
+  MIPS
+- bring-back the export of irq_gc_noop() lost in the v2
 
-> > +static int dp_connector_atomic_check(struct drm_connector *connector,
-> > +				     struct drm_atomic_state *state)
-> > +{
-> > +	struct drm_connector_state *conn_state;
-> > +	struct dp_connector_state *dp_state;
-> > +
-> > +	conn_state = drm_atomic_get_new_connector_state(state, connector);
-> > +	dp_state = to_dp_connector_state(conn_state);
-> > +
-> > +	dp_state->hdcp_transition = drm_hdcp_atomic_check(connector, state);
-> 
-> I have a general question related to the transition flag and overall tying
-> the HDCP
-> enable and authentication to the commit.
-> So lets say there is a case where the driver needs to disable HDCP. It could
-> be due
-> to link integrity failure OR some other error condition which usermode is
-> not aware of.
-> In that case, we will set this hdcp_transition to true but in the next
-> commit we will
-> actually do the authentication. What if usermode doesnt issue a new frame?
-> This question arises because currently the link intergrity check is done
-> using SW polling
-> in the previous patchset. But as I had commented there, this occurs in HW
-> for us.
-> I dont see that isr itself in this patchset. So wanted to understand if
-> thats part of this
-> approach to still tie it with commit.
-> 
-> So if we go with the HW polling based approach which is the preferred
-> method, we need to
-> untie this from the commit.
-> 
+Changes in v2:
 
-In the case of error, the worker will detect it and try to re-authenticate. If
-the re-authentication is successful, userspace will continue to be unaware and
-everything will keep working. If re-authentication is unsuccessful, the worker
-will update the property value and issue a uevent to userspace. So HDCP
-enablement is only tied to commits when the property value is changing as a
-result of userspace.
+- avoid using irq_to_desc() and use irq_get_irq_data() instead
+- re-order patches to avoid linking failure for irq-brcmstb-l2
+- removed the use of .irq_cpu_offline() and converted BMIPS to use
+  irq_migrate_all_off_this_cpu()
+- avoid exporting of_irq_count() and use a platform device passed
+  down from the irqchip platform driver registration code instead
+- added kernel-doc fix
 
-Regarding SW vs HW link checks, I don't think there's any difference in efficacy
-between them. If HW can be relied on to issue an interrupt in failure cases, a
-follow-up set allowing for this seems like a great idea.
+Florian Fainelli (14):
+  MIPS: BMIPS: Remove use of irq_cpu_offline
+  irqchip/irq-bcm7038-l1: Remove .irq_cpu_offline()
+  irqchip/irq-bcm7038-l1: Use irq_get_irq_data()
+  irqchip/irq-bcm7038-l1: Gate use of CPU logical map to MIPS
+  irqchip/irq-bcm7038-l1: Restrict affinity setting to MIPS
+  irqchip/irq-bcm7038-l1: Switch to IRQCHIP_PLATFORM_DRIVER
+  genirq: Export irq_gc_{unmask_enable,mask_disable}_reg
+  irqchip/irq-brcmstb-l2: Switch to IRQCHIP_PLATFORM_DRIVER
+  irqchip: Provide platform_device to of_irq_init_cb_t
+  genirq: Export irq_gc_noop()
+  irqchip/irq-bcm7120-l2: Switch to IRQCHIP_PLATFORM_DRIVER
+  arm64: broadcom: Removed forced select of interrupt controllers
+  ARM: bcm: Removed forced select of interrupt controllers
+  irqchip: Fix kernel-doc parameter typo for IRQCHIP_DECLARE
 
-> > +
-> > +	return 0;
-> > +}
-
-/snip
-
-> > +static int dp_hdcp_load_keys(struct drm_connector *connector)
-> > +{
-> > +	struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> > +	struct dp_hdcp_key *key;
-> > +	int i, ret = 0;
-> > +
-> > +	mutex_lock(&hdcp->key_lock);
-> > +
-> > +	key = hdcp->key;
-> > +
-> > +	if (!key->valid) {
-> > +		ret = -ENOENT;
-> > +		goto out;
-> > +	}
-> > +
-> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_SW_LOWER_AKSV, key->ksv.words[0]);
-> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_SW_UPPER_AKSV, key->ksv.words[1]);
-> > +
-> > +	for (i = 0; i < DP_HDCP_NUM_KEYS; i++) {
-> > +		dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_LSB(i),
-> > +				   key->keys[i].words[0]);
-> > +		dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_MSB(i),
-> > +				   key->keys[i].words[1]);
-> > +	}
-> > +
-> > +	dp_hdcp_write_hdcp(hdcp, DP_HDCP_KEY_VALID, DP_HDCP_SW_KEY_VALID);
-> 
-> I think all of these are TZ_*** registers. So the separation of write_hdcp()
-> Vs write_hdcp_tz()
-> is not very clear to me.
-> Maybe change the write APIs to something like dp_hdcp_write_hdcp_tz() for
-> the first address space
-> and dp_hdcp_write_hdcp_tz_hlos() for the other one?
-> 
-
-Will do in v3, thank you for the suggestion.
-
-> > +	wmb();
-> > +
-> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_ENTROPY_CTRL0, get_random_u32());
-> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_ENTROPY_CTRL1, get_random_u32());
-> > +	wmb();
-> > +
-> > +out:
-> > +	mutex_unlock(&hdcp->key_lock);
-> > +	return ret;
-> > +}
-> > +
-> > +static int dp_hdcp_hdcp2_capable(struct drm_connector *connector,
-> > bool *capable)
-> > +{
-> > +	*capable = false;
-> > +	return 0;
-> > +}
-> > +
-> > +static int dp_hdcp_hdcp1_read_an_aksv(struct drm_connector *connector,
-> > +				      u32 *an, u32 *aksv)
-> > +{
-> > +	struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> > +	bool keys_valid;
-> > +	int ret;
-> > +	u32 val;
-> > +
-> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_CTRL, 1);
-> > +
-> > +	ret = read_poll_timeout(dp_hdcp_are_keys_valid, keys_valid,
-> > keys_valid,
-> > +				20 * 1000, 10 * 1000, false, connector);
-> > +	if (ret) {
-> > +		drm_err(hdcp->dev, "HDCP keys invalid %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	/* Clear AInfo */
-> > +	dp_hdcp_write_dp(hdcp, DP_HDCP_RCVPORT_DATA4, 0);
-> > +
-> > +	aksv[0] = dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA3);
-> > +	aksv[1] = GENMASK(7, 0) & dp_hdcp_read_dp(hdcp,
-> > DP_HDCP_RCVPORT_DATA4);
-> > +
-> > +	ret = read_poll_timeout(dp_hdcp_read_dp, val,
-> > +				(val & DP_HDCP_AN_READY_MASK) == DP_HDCP_AN_READY_MASK,
-> > +				100, 10 * 1000, false, hdcp, DP_HDCP_STATUS);
-> > +	if (ret) {
-> > +		drm_err(hdcp->dev, "AN failed to become ready %x/%d\n", val, ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	/*
-> > +	 * Get An from hardware, for unknown reasons we need to read the reg
-> > +	 * twice to get valid data.
-> > +	 */
-> > +	dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA5);
-> > +	an[0] = dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA5);
-> > +
-> > +	dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA6);
-> > +	an[1] = dp_hdcp_read_dp(hdcp, DP_HDCP_RCVPORT_DATA6);
-> 
-> Yes its true, but we also have a 1 microsec delay between the first and
-> second one.
-> So I would certainly preserve that.
-
-Will do in v3, thank you for the suggestion.
-
-> 
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dp_hdcp_hdcp1_store_receiver_info(struct drm_connector
-> > *connector,
-> > +					     u32 *ksv, u32 status, u8 bcaps,
-> > +					     bool is_repeater)
-> > +{
-> > +	struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> > +	u32 val;
-> > +
-> > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA0,
-> > +			 ksv[0]);
-> > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA1,
-> > +			 ksv[1]);
-> > +
-> > +	val = ((status & GENMASK(15, 0)) << 8) | (bcaps & GENMASK(7, 0));
-> > +
-> > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA12,
-> > val);
-> > +
-> 
-> Cant this entire API be skipped for non-repeater cases from the hdcp lib
-> layer?
-> You can write the bcaps to this earlier and write the bstatus only if its a
-> repeater.
-
-Could you expand on the benefits of this?
-
-> 
-> > +	return 0;
-> > +}
-
-/snip
+ arch/arm/mach-bcm/Kconfig        |  4 ---
+ arch/arm64/Kconfig.platforms     |  3 --
+ arch/mips/Kconfig                |  1 +
+ arch/mips/kernel/smp-bmips.c     |  3 +-
+ drivers/irqchip/Kconfig          | 12 ++++++--
+ drivers/irqchip/irq-bcm7038-l1.c | 47 ++++++++------------------------
+ drivers/irqchip/irq-bcm7120-l2.c | 28 +++++++++++--------
+ drivers/irqchip/irq-brcmstb-l2.c | 16 ++++++-----
+ drivers/irqchip/irqchip.c        |  2 +-
+ drivers/of/irq.c                 |  2 +-
+ include/linux/irqchip.h          |  2 +-
+ include/linux/of_irq.h           |  5 +++-
+ kernel/irq/generic-chip.c        |  3 ++
+ 13 files changed, 58 insertions(+), 70 deletions(-)
 
 -- 
-Sean Paul, Software Engineer, Google / Chromium OS
+2.25.1
+
