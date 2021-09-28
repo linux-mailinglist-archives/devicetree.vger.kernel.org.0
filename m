@@ -2,106 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A244541B262
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 16:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0589B41B2B2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 17:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241379AbhI1Oy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 10:54:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32960 "EHLO mail.kernel.org"
+        id S241492AbhI1PPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 11:15:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46126 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241294AbhI1Oy1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 10:54:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 295F960F24;
-        Tue, 28 Sep 2021 14:52:45 +0000 (UTC)
+        id S241392AbhI1PPa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 11:15:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B419F6101E;
+        Tue, 28 Sep 2021 15:13:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632840768;
-        bh=EjAj38R6MzpC/IJoRNuUzACYBXlnF5xx5+AhIZAZq1I=;
-        h=From:To:Cc:Subject:Date:From;
-        b=n86tKqPDoTvDHsrfXJeU5CQbucGAePlnHYIembVwPk1okFJ6lPVbcmdIkBSwtutzL
-         mTrxFo+BOuWt8RYzCLQvF9mATxeuYoApZLEdCBJommD+5p9OUrE1trRDqizELQfo9e
-         JVIaT9Nq85hXIDNoQrSY4Mw85X9LWWDj3HTNCeIitLtjIpYM/CuHYWMTfozO0H9HBy
-         gUEJrveYqs9FC0vSMofirXWgZebHMdVPPgV4WVYadrX9R0JB81Ihp+9KJRyGzRd9sO
-         FcWcP1SBrrEOpZbE3b91ZWwN4kPvMUxAAdZU1n3dv1oKuBtxhlvIO6b+jE9BvQJdXs
-         pKX+sBB/wwpMg==
-From:   Arnd Bergmann <arnd@kernel.org>
-To:     Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: [PATCH] [SUBMITTED 20210721] fbdev: simplefb: fix Kconfig dependencies
-Date:   Tue, 28 Sep 2021 16:52:10 +0200
-Message-Id: <20210928145243.1098064-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.29.2
+        s=k20201202; t=1632842030;
+        bh=9W+NZwnA2OzBhJ20rRTXExWsHLn9LLXH115/Fe1t9Ms=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MhL/Wcl1jpPJL0ypEjPfiT1QuOuJ4DHSaRxkv7efNrx9SaTBhDrZWl78bIu8TRimp
+         +xsqHNqqXmqacW1EXEzqUbCfzGd/3jttHGQzrWccQhO1ROdhnSd2zL5o0tVUR//h2E
+         r0/69TRzltdOWYQt00aEKqZPJx4igAHPxxyXp7VQsp7veX9zpM413Etr8iQgUh55fp
+         WuYPXjzrgwQKW/dnjIMQBXHVPb5CHQt0PtmOVR1GnA4BnjYDpf8KqnKvblOxJA6dQh
+         CLle/vwyDnOk7kOE0G/hYdLJfxoeug7zPvP9cs3uoeWRMoMK+42xE6hyca8su5Osfr
+         bYsBEAJM5aW+w==
+Received: by pali.im (Postfix)
+        id 620EB7E1; Tue, 28 Sep 2021 17:13:48 +0200 (CEST)
+Date:   Tue, 28 Sep 2021 17:13:48 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] arm64: dts: marvell: espressobin-ultra: enable UART
+ output by default
+Message-ID: <20210928151348.cqgy6uuxs3owxaug@pali>
+References: <20210927154159.2168500-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210927154159.2168500-1-robert.marko@sartura.hr>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Arnd Bergmann <arnd@arndb.de>
+On Monday 27 September 2021 17:41:56 Robert Marko wrote:
+> Since Espressobin Ultra board has a microUSB port
+> with the onboard USB to UART connected to it to be
+> used as a debug UART it makes no sense to require
+> the bootloader to pass console args to the kernel in
+> order to get console working.
+> 
+> So, use the "stdout-path" property to enable the UART
+> output on the microUSB port by default.
+> 
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> ---
+>  arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> index c5eb3604dd5b..c1770ceff3c1 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> @@ -15,6 +15,10 @@ / {
+>  	compatible = "globalscale,espressobin-ultra", "marvell,armada3720",
+>  		     "marvell,armada3710";
+>  
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
 
-Configurations with both CONFIG_FB_SIMPLE=y and CONFIG_DRM_SIMPLEDRM=m
-are allowed by Kconfig because the 'depends on !DRM_SIMPLEDRM' dependency
-does not disallow FB_SIMPLE as long as SIMPLEDRM is not built-in. This
-can however result in a build failure when cfb_fillrect() etc are then
-also in loadable modules:
+This code is duplication of common espressobin code from
+armada-3720-espressobin.dtsi file:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
 
-x86_64-linux-ld: drivers/video/fbdev/simplefb.o:(.rodata+0x1f8): undefined reference to `cfb_fillrect'
-x86_64-linux-ld: drivers/video/fbdev/simplefb.o:(.rodata+0x200): undefined reference to `cfb_copyarea'
-x86_64-linux-ld: drivers/video/fbdev/simplefb.o:(.rodata+0x208): undefined reference to `cfb_imageblit'
-
-To work around this, change FB_SIMPLE to be a 'tristate' symbol,
-which still allows both to be =m together, but not one of them to
-be =y if the other one is =m. If a distro kernel picks this
-configuration, it can be determined by local policy which of
-the two modules gets loaded. The 'of_chosen' export is needed
-as this is the first loadable module referencing it.
-
-Alternatively, the Kconfig dependency could be changed to
-'depends on DRM_SIMPLEDRM=n', which would forbid the configuration
-with both drivers.
-
-Fixes: 11e8f5fd223b ("drm: Add simpledrm driver")
-Acked-by: Rob Herring <robh@kernel.org> # for drivers/of/
-Link: https://lore.kernel.org/all/20210721151839.2484245-1-arnd@kernel.org/
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/of/base.c           | 1 +
- drivers/video/fbdev/Kconfig | 5 +++--
- 2 files changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index f720c0d246f2..0ac17256258d 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -36,6 +36,7 @@ LIST_HEAD(aliases_lookup);
- struct device_node *of_root;
- EXPORT_SYMBOL(of_root);
- struct device_node *of_chosen;
-+EXPORT_SYMBOL(of_chosen);
- struct device_node *of_aliases;
- struct device_node *of_stdout;
- static const char *of_stdout_options;
-diff --git a/drivers/video/fbdev/Kconfig b/drivers/video/fbdev/Kconfig
-index b26b79dfcac9..6ed5e608dd04 100644
---- a/drivers/video/fbdev/Kconfig
-+++ b/drivers/video/fbdev/Kconfig
-@@ -2193,8 +2193,9 @@ config FB_HYPERV
- 	  This framebuffer driver supports Microsoft Hyper-V Synthetic Video.
- 
- config FB_SIMPLE
--	bool "Simple framebuffer support"
--	depends on (FB = y) && !DRM_SIMPLEDRM
-+	tristate "Simple framebuffer support"
-+	depends on FB
-+	depends on !DRM_SIMPLEDRM
- 	select FB_CFB_FILLRECT
- 	select FB_CFB_COPYAREA
- 	select FB_CFB_IMAGEBLIT
--- 
-2.29.2
-
+>  	aliases {
+>  		/* ethernet1 is WAN port */
+>  		ethernet1 = &switch0port5;
+> -- 
+> 2.31.1
+> 
