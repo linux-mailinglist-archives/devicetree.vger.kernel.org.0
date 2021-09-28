@@ -2,228 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B629F41A455
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 02:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE51441A47F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 03:11:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238393AbhI1A55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 20:57:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34042 "EHLO
+        id S238379AbhI1BNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 21:13:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238403AbhI1A55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 20:57:57 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CBF7C061575
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 17:56:18 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id u18so83872486lfd.12
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 17:56:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lC52cuIyhysmon3FmA4ZHryvBqfp0OdO4554JVWx3pA=;
-        b=uFTatvFZmp14sUa3nTYziriLbjac4lAK7Yy3RZFbP0lL1QXDB0acxxhyw5Q8n7ZeAO
-         koOX9qc4H1Lve7XU45ByctJIqSu7qhJwx31vEZLwgyOGQv9Ui5PBdSUDKZyAd40jKt7E
-         OwvrNEAsnXelX3kC76vXKcJ4f7RfnZsyp3heMv8/NqGajKSRcqsTPrwiyVYIczmFxV8D
-         RZJ7FRXp+h7pMk7QQzGMosMbVi0p9gACrqjQUx2iNjf4hFEzqP/+jhNqn5mIijdG9vVT
-         5AYBGPvXuoONWOBz6mHm3TgeknSS8eQTGehEupwyAv4b4i4jJBGzOrthjljH0Klzs/A0
-         iyjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lC52cuIyhysmon3FmA4ZHryvBqfp0OdO4554JVWx3pA=;
-        b=J+M8WJXsonKD1jTBl+r71luhzAE8k8Uv7t2lOIIAHjE9yrTKTPNLkCRpWmu/1aOYdV
-         DTHvhBK5ZzbLd6P9ob9lBReYrbL0APPjP++XFvOqzpV/IHyC3jVRN/AOh06ef9i0CyDg
-         LnATqHvC6stRj7GSzjqBMlFyZ5nSiOPQ5TKO+U+emwHxLoAYrvrOV245o1qortHS6xHq
-         OUKSQIcs5EfDGgYmY6HrwRXFgXHO74njvh5F9nc7kHlUggX3MMKluI9zRUyfPVcSABIs
-         WjEpt60KPoj1lCUqdIydeq5t1teg3EznERkebGmmJBkPn7AXqaWG2Ztolyxynh1UVEa9
-         WYjw==
-X-Gm-Message-State: AOAM530lsnQF1a1BQRbUralZ0dLfFyeITzedwZEgNrJuj+HiEa5vwVCg
-        MpHgtlHorg244749vTn4XHs89Q==
-X-Google-Smtp-Source: ABdhPJxJrJbxhxKcogHRALa7l7VZTa87ZfS1oLhn4Xs2Gj22eJ6GMC8KF3knrc9Albd5LA3YGd3udg==
-X-Received: by 2002:a2e:5046:: with SMTP id v6mr3019932ljd.368.1632790576577;
-        Mon, 27 Sep 2021 17:56:16 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id b15sm1752076lfp.221.2021.09.27.17.56.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Sep 2021 17:56:16 -0700 (PDT)
-Subject: Re: [PATCH] Revert "of: property: fw_devlink: Add support for
- remote-endpoint"
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229942AbhI1BNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 21:13:30 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2F58C061575;
+        Mon, 27 Sep 2021 18:11:51 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 38CBF3F1;
+        Tue, 28 Sep 2021 03:11:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1632791508;
+        bh=UwUX/PlPzYMUbHTHRTLSsvN1z9n+AldtWKTAxW1LiJc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=elmybGLG8cVXzHZEEPUWoArcm1GPZfOKoF/P4+Xb5B88UjX3L9i5f4ytQ/8bSGTTq
+         Ai/UAXv3PPd4kVSZ/JA+y0sJLtw4mlNUCfqsjWbBJI3KMNjb8sxL7spa/zHsyor9vn
+         vnyP71ST+8oPlW0d5W8ZCSCLHIslIolMHYmtv3Q4=
+Date:   Tue, 28 Sep 2021 04:11:41 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert@glider.be>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20210927204830.4018624-1-dmitry.baryshkov@linaro.org>
- <CAGETcx-3Y3rOSoXu3SbDa6BP_jcT8uSQA+MV55QCY4b0Oe7L-A@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <11fe1793-1455-ae44-b213-9afe47dfa370@linaro.org>
-Date:   Tue, 28 Sep 2021 03:56:15 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        David Airlie <airlied@linux.ie>,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        dri-devel@lists.freedesktop.org,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v3.1] dt-bindings: display: renesas,du: Provide bindings
+ for r8a779a0
+Message-ID: <YVJrzaQS+XBQO4Xg@pendragon.ideasonboard.com>
+References: <20210922234726.3337265-2-kieran.bingham@ideasonboard.com>
+ <20210923130138.67552-1-kieran.bingham@ideasonboard.com>
+ <YVIwPnRxxO0Txm2G@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAGETcx-3Y3rOSoXu3SbDa6BP_jcT8uSQA+MV55QCY4b0Oe7L-A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YVIwPnRxxO0Txm2G@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[Adding Stephen and linux-arm-msm to the CC list, missed on the patch Cc 
-list]
-
-On 28/09/2021 00:58, Saravana Kannan wrote:
-> On Mon, Sep 27, 2021 at 1:48 PM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
->>
->> Since the commit f7514a663016 ("of: property: fw_devlink: Add support
->> for remote-endpoint") Linux kernel started parsing and adding devlinks
->> for the remote-endpoint properties. However this brings more harm than
->> good.
->>
->> For all the remote-endpoints in the graph two links are created. Thus
->> each and every remote-endpoint ends up in the cyclic graph (instead of
->> the original intent of catching a cycle of graph + non-graph link):
+On Mon, Sep 27, 2021 at 03:57:34PM -0500, Rob Herring wrote:
+> On Thu, 23 Sep 2021 14:01:38 +0100, Kieran Bingham wrote:
+> > From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > 
+> > Extend the Renesas DU display bindings to support the r8a779a0 V3U.
+> > 
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > 
+> > ---
+> > v2:
+> >  - Collected Laurent's tag
+> >  - Remove clock-names requirement
+> >  - Specify only a single clock
+> > 
+> > v3:
+> >  - Use clocknames: 'du.0' instead of 'du' to remain consistent
+> > 
+> > v3.1:
+> >  - Require clock-names
+> >  - Collect Geert's tag
+> > 
+> >  .../bindings/display/renesas,du.yaml          | 51 +++++++++++++++++++
+> >  1 file changed, 51 insertions(+)
 > 
-> Yes, I'm well aware of this. I even called this out in the commit
-> text. This creating of cycles and then catching and relaxing it is
-> intentional.
-> https://lore.kernel.org/all/20210330185056.1022008-1-saravanak@google.com/
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-What would be the reason two always create a cycle which gives no 
-additional information? Maybe I'm just misunderstanding this piece of code.
-
-Regarding your commit message. Even if there is a non-remote-endpoint 
-dependency, it will be hidden by the remote-endpoint cycle.
-
-And another consequence of remote-endpoint loops.
-
-Consider this part part of dmesg. One warning is correct (real cyclic 
-dependency). Others are remote-endpoint spam. Can you spot, which ones?
-
-[    7.032225] platform 1d87000.phy: Fixing up cyclic dependency with 
-1d84000.ufshc
-[   21.760326] platform c440000.spmi:pmic@2:typec@1500: Fixing up cyclic 
-dependency with c440000.spmi:pmic@2:pmic-tcpm
-[   21.944849] platform c440000.spmi:pmic@2:pdphy@1700: Fixing up cyclic 
-dependency with c440000.spmi:pmic@2:pmic-tcpm
-[   23.541968] platform a600000.usb: Fixing up cyclic dependency with 
-c440000.spmi:pmic@2:pmic-tcpm
-[   30.354170] i2c 5-002b: Fixing up cyclic dependency with hdmi-out
-
-
->>
->> [    0.381057] OF: remote-endpoint linking /soc@0/geniqup@9c0000/i2c@994000/hdmi-bridge@2b to /soc@0/mdss@ae00000/dsi@ae94000/ports/port@1/endpoint
->> [    0.394421] OF: remote-endpoint linking /soc@0/geniqup@9c0000/i2c@994000/hdmi-bridge@2b to /hdmi-out/port/endpoint
->> [    0.407007] OF: remote-endpoint linking /soc@0/phy@88e9000 to /soc@0/spmi@c440000/pmic@2/pmic-tcpm/connector/ports/port@0/endpoint@0
->> [    0.419648] OF: remote-endpoint linking /soc@0/usb@a6f8800/usb@a600000 to /soc@0/spmi@c440000/pmic@2/pmic-tcpm/ports/port@2/endpoint@0
->> [    0.432578] OF: remote-endpoint linking /soc@0/cci@ac4f000/i2c-bus@1/cam1@c0 to /soc@0/camss@ac6a000/ports/port@1/endpoint
->> [    0.444450] OF: remote-endpoint linking /soc@0/camss@ac6a000 to /soc@0/cci@ac4f000/i2c-bus@1/cam1@c0/port/endpoint
->> [    0.455292] OF: remote-endpoint linking /soc@0/mdss@ae00000/mdp@ae01000 to /soc@0/mdss@ae00000/dsi@ae94000/ports/port@0/endpoint
->> [    0.467210] OF: remote-endpoint linking /soc@0/mdss@ae00000/mdp@ae01000 to /soc@0/mdss@ae00000/dsi@ae96000/ports/port@0/endpoint
->> [    0.479239] OF: remote-endpoint linking /soc@0/mdss@ae00000/dsi@ae94000 to /soc@0/mdss@ae00000/mdp@ae01000/ports/port@0/endpoint
->> [    0.491147] OF: remote-endpoint linking /soc@0/mdss@ae00000/dsi@ae94000 to /soc@0/geniqup@9c0000/i2c@994000/hdmi-bridge@2b/ports/port@0/endpoint
->> [    0.504979] OF: remote-endpoint linking /soc@0/spmi@c440000/pmic@2/typec@1500 to /soc@0/spmi@c440000/pmic@2/pmic-tcpm/ports/port@0/endpoint
->> [    0.517958] OF: remote-endpoint linking /soc@0/spmi@c440000/pmic@2/pdphy@1700 to /soc@0/spmi@c440000/pmic@2/pmic-tcpm/ports/port@1/endpoint
->> [    0.565326] OF: remote-endpoint linking /hdmi-out to /soc@0/geniqup@9c0000/i2c@994000/hdmi-bridge@2b/ports/port@2/endpoint
->>
->> Under some conditions the device can become it's own supplier,
->> preventing this device to be probed at all:
-> 
-> I'm not sure this analysis is correct -- this shouldn't be happening.
-> If you go to the device link folder and cat "sync_state_only", I
-> expect it to be "1" in this case. Can you confirm that?
-
-It is "1".
-
-> Which means it won't block probing. Yes, the link itself is useless
-> and it'll get auto deleted once mdss probes and it's easy to not
-> create it in the first place. But this is definitely not your issue.
-> 
->> $ ls -l /sys/bus/platform/devices/ae00000.mdss/
->> lrwxrwxrwx    1 root     root             0 Aug  4 15:13 consumer:platform:ae00000.mdss -> ../../../virtual/devlink/platform:ae00000.mdss--platform:ae00000.mdss
->>
->> I think that until of_link can be tought to handle bi-directional links
->> on its own, we should not parse remote-endpoint properties. Thus the
->> aforementioned commit should be reverted.
-> 
-> Nak. remote-endpoint parsing is working as intended. I don't think the
-> analysis is correct.
-> 
-> Can you please enable the logs in all these functions and attach the
-> log so we can see why it's not probing mdss?
-> device_link_add
-> device_links_check_suppliers
-> func fw_devlink_relax_link
-> fw_devlink_create_devlink
-
-After doing the analysis, I can confirm that I was too quick regarding 
-the mdss links preventing it from being probed. Sorry about that.
-
-It all went up to the DP phy having a link with usb-c-connector. I was 
-running the kernel 5.15-rc1, so your tcpm fix is already present. 
-However my colleague has disabled the tcpm device (which I did not 
-notice). So the driver did not call fw_devlink_purge_absent_suppliers().
-The devlink still exists:
-
-[   53.426446] platform 88e9000.phy: probe deferral - wait for supplier 
-connector
-
-However it is not present in the sysfs:
-
-root@qcom-armv8a:~# ls -l /sys/bus/platform/devices/88e9000.phy/
-lrwxrwxrwx    1 root     root             0 Aug  4 15:13 
-consumer:platform:a600000.usb -> 
-../../../virtual/devlink/platform:88e9000.phy--platform:a600000.usb
-lrwxrwxrwx    1 root     root             0 Aug  4 15:13 
-consumer:platform:af00000.clock-controller -> 
-../../../virtual/devlink/platform:88e9000.phy--platform:af00000.clock-controller
--rw-r--r--    1 root     root          4096 Aug  4 15:13 driver_override
--r--r--r--    1 root     root          4096 Aug  4 15:13 modalias
-lrwxrwxrwx    1 root     root             0 Aug  4 15:13 of_node -> 
-../../../../firmware/devicetree/base/soc@0/phy@88e9000
-drwxr-xr-x    2 root     root             0 Aug  4 15:13 power
-lrwxrwxrwx    1 root     root             0 Aug  4 15:10 subsystem -> 
-../../../../bus/platform
-lrwxrwxrwx    1 root     root             0 Aug  4 15:13 
-supplier:platform:100000.clock-controller -> 
-../../../virtual/devlink/platform:100000.clock-controller--platform:88e9000.phy
-lrwxrwxrwx    1 root     root             0 Aug  4 15:13 
-supplier:platform:18200000.rsc:clock-controller -> 
-../../../virtual/devlink/platform:18200000.rsc:clock-controller--platform:88e9000.phy
-lrwxrwxrwx    1 root     root             0 Aug  4 15:13 
-supplier:platform:18200000.rsc:pm8150-rpmh-regulators -> 
-../../../virtual/devlink/platform:18200000.rsc:pm8150-rpmh-regulators--platform:88e9000.phy
--rw-r--r--    1 root     root          4096 Aug  4 15:10 uevent
--r--r--r--    1 root     root          4096 Aug  4 15:13 
-waiting_for_supplier
-
-Thus it is not possible to spot this device link without 
-CONFIG_DEBUG_DRIVER=y (or any similar debugging technique).
-
-If I re-enabled tcpm device or if I reverted remote-endpoint parsing, DP 
-PHY probing would go fine. The DP PHY does not really depend on the 
-connector (or TCPM) being present in the system. The driver will 
-continue working w/o it. However it does not have a change to declare that.
-
-Furthermore I went back to the original case that caused you to add 
-remote-endpoint support. The DSI-eDP bridge and eDP panel using the GPIO 
-provided by that bridge. I think the proper fix for the original problem 
-was implemented by the commit bf73537f411b ("drm/bridge: ti-sn65dsi86: 
-Break GPIO and MIPI-to-eDP bridge into sub-drivers"). It split the 
-DSI-eDP bridge driver into functional parts (devices), so that GPIO part 
-and eDP parts are independent, thus breaking this cyclic dependency in a 
-functional way. The remote-endpoint parsing is no longer necessary in 
-this case (Stephen, please correct me if I'm wrong).
-
-
-I still think that remote endpoint parsing does more harm and noise than 
-good and thus should be reverted.
+Thank you Rob, that was the missing piece for a pull request :-)
 
 -- 
-With best wishes
-Dmitry
+Regards,
+
+Laurent Pinchart
