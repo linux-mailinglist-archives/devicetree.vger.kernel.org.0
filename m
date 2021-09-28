@@ -2,141 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E65C41AFD5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:18:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE70F41AFE4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:19:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240827AbhI1NT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 09:19:58 -0400
-Received: from mail-lf1-f54.google.com ([209.85.167.54]:36615 "EHLO
-        mail-lf1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240659AbhI1NT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:19:58 -0400
-Received: by mail-lf1-f54.google.com with SMTP id b20so92896022lfv.3;
-        Tue, 28 Sep 2021 06:18:18 -0700 (PDT)
+        id S240928AbhI1NV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 09:21:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35770 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240933AbhI1NV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:21:28 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ABD3C061740;
+        Tue, 28 Sep 2021 06:19:49 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id k24so21176133pgh.8;
+        Tue, 28 Sep 2021 06:19:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mbGOZOb5Aj7io+E29ChYb6CsUDD7dFSCNT86GCOGyck=;
+        b=R7bth3A5PT5PURiz5K18ZdI8YpdB/N/YEwZjer13k7Y2rT3iHQ54V7L/b9h7GZ8WC0
+         geKEtD8C26cUfX1heBMp82a4JGKbon62qNGokbEkBCfJ394ZkJX6oa9A0+1i4MvOGkGc
+         k6kGHIqUw7YekI8FsJ4tYJtu0BxY11Gh34GNMQZkhtmIpMv02SqZ/wIby4tT3JnObHg2
+         KXQbJairfQfI0GajqHashVmAhgGtBPOXD5rlkPR1/8JY17q/tHe7kqTRsXyt50YH/RoF
+         zkFn0IpysG5VGVeSTTn7K/XZ+vTUUnLCNixiB27h6z5UXRfjaiIb5AXbGyFcEEUI+5bR
+         SXUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=i/lR6NwimiIzuHfvOiHLk3GhSnmADt6zy4H/L/R1gHo=;
-        b=N8ugTcAgxxx9YYY7OBA7HKbpofGOAYT0xQsQ4cd2IWt4LBpBwIzDCvoIaTwRVK+Xfz
-         K3MJxCC7KVUkTJN6A4qo9IklisLuruJHVP06jxvL+EZyai5hlB27qTEPd4WzlqGF4pcA
-         0QzIuu12wwYnfO4D2Nqx3P7zrv330hskpeCaTw8IhxBO45Vw4PoriVXKkF27FdgyFw/J
-         Whr/ibwbb17bydH8zo63CS8CuzBhPUEThXpQt6lKrYj2x3qgBFg8TgsN44KXkpylRfkx
-         Kxt2VH4I8cSfa3+awl9LxhHmgLyARd1517qpoRzB9yvcvVe6PCGjEBlACTV8DShyyYwF
-         OwiA==
-X-Gm-Message-State: AOAM5304/D4XiMSonyI9l6Fxq11eJjryMbn+G3s+XtdlgPEXKBsVEP+3
-        WzegoCg0J55ayCKroA1kziU=
-X-Google-Smtp-Source: ABdhPJw3ztTksAhFbPw0+WdjRo5UpgolYMK9FwsHpRW9NEpgUFDLv8wW1sdKbIuYchR7KWak4R+v9w==
-X-Received: by 2002:ac2:4c4e:: with SMTP id o14mr5917896lfk.482.1632835097454;
-        Tue, 28 Sep 2021 06:18:17 -0700 (PDT)
-Received: from fedora (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
-        by smtp.gmail.com with ESMTPSA id n9sm1915364lfe.188.2021.09.28.06.18.16
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mbGOZOb5Aj7io+E29ChYb6CsUDD7dFSCNT86GCOGyck=;
+        b=d8fkO/ovrQuL2vmek2Re9kqSuexZq4WQT1HcZK0H1nznUwMOj2ANBTky5WX/+7dI1W
+         m/xWCeh2fMSdkiJ7Pht7V/sPndwbbD07L8dUpW4SqUtHttPaR6MoTUzj2k8SJJJHDQIS
+         f6hhyZiaELyrtIC48L+sM0roKdy/DbvLRW6THjwnWSDrdeIqI/67gNZaz2+q7ts+LrV1
+         JCazBy5KVc8HOFO39Z8A8NlGzMJ2SOmcXpLXSa6xwHwaEaDcIgXuY9pSxuz93EuWlsS2
+         AfBAZi8nGwuf7kQpua97RZylCm9n4YUML4hJt2L4dEhFaOSOatRtcGdobFOrkx+JTu//
+         JjWQ==
+X-Gm-Message-State: AOAM5338k3I0ZE2bkGeMGSz0gCSnwZnIQygiEced+Hss3h78bMKoeI60
+        PBLsjHdom+LqYoMtoF4T2OzWa0SzGRzzenMRALU=
+X-Google-Smtp-Source: ABdhPJwaObiI2BOknhU4lQ+z3pJBh4NFUuZcJXyQl1hfKKpwnY4tJs+iDCyZ149gdxsP9MGtH/9Acg==
+X-Received: by 2002:a63:8c42:: with SMTP id q2mr4583519pgn.325.1632835188631;
+        Tue, 28 Sep 2021 06:19:48 -0700 (PDT)
+Received: from skynet-linux.local ([122.162.197.175])
+        by smtp.googlemail.com with ESMTPSA id h13sm22063964pgf.14.2021.09.28.06.19.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 06:18:16 -0700 (PDT)
-Date:   Tue, 28 Sep 2021 16:18:10 +0300
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     matti.vaittinen@fi.rohmeurope.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-power@fi.rohmeurope.com,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        lukas.bulwahn@gmail.com
-Subject: [PATCH 4/4] MAINTAINERS: bd70528: Drop ROHM BD70528 drivers
-Message-ID: <63213170d8b2a481879bd67b2fac4d9784dd7d55.1632833622.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1632833622.git.matti.vaittinen@fi.rohmeurope.com>
+        Tue, 28 Sep 2021 06:19:48 -0700 (PDT)
+From:   Sireesh Kodali <sireeshkodali1@gmail.com>
+To:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Sireesh Kodali <sireeshkodali1@gmail.com>
+Subject: [PATCH v3 0/3] MSM8953 MDP/DSI PHY enablement
+Date:   Tue, 28 Sep 2021 18:49:26 +0530
+Message-Id: <20210928131929.18567-1-sireeshkodali1@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="drLU7DZbqH3AMVuR"
-Content-Disposition: inline
-In-Reply-To: <cover.1632833622.git.matti.vaittinen@fi.rohmeurope.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds support for the MDP and DSI PHY as found on the
+MSM8953 platform (APQ8053, SDM450, SDA450, SDM625, SDM626). All the SoCs
+on this platform use the adreno 506 GPU.
 
---drLU7DZbqH3AMVuR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v2:
+- Changed dt-bindings to use enum instead of oneOf
 
-The only known BD70528 use-cases are such that the PMIC is controlled
-=66rom separate MCU which is not running Linux. I am not aware of
-any Linux driver users. Furthermore, it seems there is no demand for
-this IC.
+Changes since v1:
+- Split the dsi phy doc changes into a separate commit
+- Add Reviewed-by tag to patch 2
 
-Ease the maintenance burden and drop the driver.
+Sireesh Kodali (1):
+  dt-bindings: msm: dsi: Add MSM8953 dsi phy
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
- MAINTAINERS | 8 --------
- 1 file changed, 8 deletions(-)
+Vladimir Lypak (2):
+  drm/msm/dsi: Add phy configuration for MSM8953
+  drm/msm/mdp5: Add configuration for MDP v1.16
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5b33791bb8e9..22c30775b218 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16166,27 +16166,19 @@ ROHM POWER MANAGEMENT IC DEVICE DRIVERS
- R:	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
- L:	linux-power@fi.rohmeurope.com
- S:	Supported
--F:	Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
--F:	Documentation/devicetree/bindings/regulator/rohm,bd70528-regulator.txt
- F:	drivers/clk/clk-bd718x7.c
--F:	drivers/gpio/gpio-bd70528.c
- F:	drivers/gpio/gpio-bd71815.c
- F:	drivers/gpio/gpio-bd71828.c
--F:	drivers/mfd/rohm-bd70528.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
- F:	drivers/mfd/rohm-bd9576.c
--F:	drivers/power/supply/bd70528-charger.c
--F:	drivers/regulator/bd70528-regulator.c
- F:	drivers/regulator/bd71815-regulator.c
- F:	drivers/regulator/bd71828-regulator.c
- F:	drivers/regulator/bd718x7-regulator.c
- F:	drivers/regulator/bd9576-regulator.c
- F:	drivers/regulator/rohm-regulator.c
- F:	drivers/rtc/rtc-bd70528.c
--F:	drivers/watchdog/bd70528_wdt.c
- F:	drivers/watchdog/bd9576_wdt.c
--F:	include/linux/mfd/rohm-bd70528.h
- F:	include/linux/mfd/rohm-bd71815.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
---=20
-2.31.1
+ .../bindings/display/msm/dsi-phy-14nm.yaml    |  1 +
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c      | 89 +++++++++++++++++++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         |  2 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |  1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c    | 21 +++++
+ 5 files changed, 114 insertions(+)
 
+-- 
+2.33.0
 
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---drLU7DZbqH3AMVuR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmFTFhIACgkQeFA3/03a
-ocW7fAgAlMZaa9eYvTBvF/WFaeGADRyXKe1gEYIrcUZJtIEEmgIQAAIbTLIoSYy+
-37QBku/fC81dBN0ruNvU3oUhrEHRXyWm/2aKejSLgNjAv1dvCj0EEHJDvoe6O2uC
-H73AhxVqdqd+XxOvf46K+LUVC4WE18bIx4Rxdt2XpYJf3L9LJrvml9FVqqYPF9xQ
-SU5y52W2D1UEcbGofU2ebI8ZvNnm/UcyMunFjyZri6b3Zp7FNIG87vypVUByPD7x
-NfrjnvlBN8Xqs5P+7REnwtKu3OyaiZg2sh2OlZWi4QJQH9fXw4RxVCcXKLeXcmBP
-w7f8ODshEAwswcatUUGeXG2acXQvuw==
-=7Sn6
------END PGP SIGNATURE-----
-
---drLU7DZbqH3AMVuR--
