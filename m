@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DF9641B8BB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 22:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56B7941B8D1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 22:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242790AbhI1U4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 16:56:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57542 "EHLO
+        id S242834AbhI1VAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 17:00:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242755AbhI1U4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 16:56:07 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A44C5C061745
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 13:54:27 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id d12-20020a05683025cc00b0054d8486c6b8so193130otu.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 13:54:27 -0700 (PDT)
+        with ESMTP id S235775AbhI1VAA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 17:00:00 -0400
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8953FC06161C
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 13:58:20 -0700 (PDT)
+Received: by mail-ot1-x32f.google.com with SMTP id d12-20020a05683025cc00b0054d8486c6b8so205220otu.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 13:58:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=xv0aAGE5pADH0iB1mtL8/0AzpzK5WiYw7HycOHRo6qk=;
-        b=hWMyj4swmETDbFT2TTJtKNP29AOWP2M4nuPVQLPgnLgp15KRXGy0asFZp/RBSPFsqD
-         FvOoTQWIoSs30yIvhkgD90OhxO89jOsAT3uh92F4FZjJRi7QPzPj/BVnrDsZpVe5aSuZ
-         mHutseh9cIYuupbYb2NGL0rc5Bp6Mc3SvNbDU=
+        bh=JxCbOz9qgttDGSSzA1A+6uSJW6TvZefvlJJb7t5kz1o=;
+        b=duC8iY3GkRQ5Nob6TY8qS1K8UBtaDRxsgpLtkJ0Yvh/yjxWmMoaKqrdC9Ny+iT0jeD
+         +9BBeke8Ciy45JL2dmx6DioP1WSAZ/CsoO1fPDb7g/OMWcPbzk77sB/Ud0uR5tnDufJG
+         PyCu+7w2tKMdXDXsvmm5/t8oQ+os+tLRfI1Gg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=xv0aAGE5pADH0iB1mtL8/0AzpzK5WiYw7HycOHRo6qk=;
-        b=C1JG15GQlCPyddrOk7l6a9FrDVgFUOpgk5efEgTqXtLW9fTaceFEH4z9OJhkQEqfVM
-         ujdYUOeYs89rVBX/X4pRUo8dXlk2c8ut5vzcnmchIDsZ9mqKXv+6K05UCkGCDz72pdMN
-         +UcFKybx0NjcWli/2JikFWBf1bBAqiRz4Rkg6g/A3OXw7ddWuCRnuztviwigv1cOIULT
-         QxzET8R2D4YKexJJ0qNLA4OemD9IFBEBmFwEGZlIJ6tQ6MtqN4U2+5zODKc6laIEh5zD
-         3pnjn9PvtOY9XdiiRyPCLgq1QAuG/ewe0hAwyX7snTyJU7ZeBDwlSh4IXlV1nv65/LzI
-         CDkA==
-X-Gm-Message-State: AOAM533HM97SA0xf2viAuLSapk7QK8tOXerogzPilA1GYUXcfBoTlgnr
-        LBcti8664nNkZEVP7xSiQC8b6xEKrWYdRZXqLnWGtA==
-X-Google-Smtp-Source: ABdhPJx4hWeVlhQnSZqv1x3P26gHXeqCB8PnjGZ5cB1QP9XvecnwMKMNBh0Wi8TKUOsSzbzxP40VeMX9sIBE+cK89Pw=
-X-Received: by 2002:a05:6830:358:: with SMTP id h24mr6676714ote.159.1632862467044;
- Tue, 28 Sep 2021 13:54:27 -0700 (PDT)
+        bh=JxCbOz9qgttDGSSzA1A+6uSJW6TvZefvlJJb7t5kz1o=;
+        b=0RuKXIhbI1x+aTZE15XwKePsqTo14mTC2H+zeDPH0qiCbNFhRm+FpYznBdGTB4BKzY
+         TpS8jOJ89r1SZ/xgblevENHxf04ZEzRii74OvlBbk/Mrs0QmenEloew/OEp+lV937ZU1
+         krGZWy8CpkLvIf5XBqK6GRgo8oCYZmiYl4QN8SZLRdqidg3thW5VDvmxSiK2kf8NHskf
+         yMHJCBRYdDfBFKy3aGbQYtNF3l/P/ESs+scmo8DzRAOtaQLaOTn14/WLmC8MUrlp0w/9
+         99WTDb1SHQwUzv5QK4PxPCkSZBsRnsLGj5tT8OROvZ40qSKRP3gOHOm5PswpGgIW935H
+         d39Q==
+X-Gm-Message-State: AOAM533rpnoiw4bdVKfNcafjaVEcQOlS7IYA9bPb8A2c8yo1Rwp+hXYT
+        dPHpgABd9f0ERJJlN4+F15eVf92fWb1+qy5xfVUNOw==
+X-Google-Smtp-Source: ABdhPJyx8L7PGpIsF51ydfQYJSyJeg2xs9b0R4HUjdFcklP5svjYgwTs03pQUYw6ANvsHBi68B0ohEcyCtS45Xeg568=
+X-Received: by 2002:a05:6830:358:: with SMTP id h24mr6688222ote.159.1632862699941;
+ Tue, 28 Sep 2021 13:58:19 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 28 Sep 2021 13:54:26 -0700
+ HTTPREST; Tue, 28 Sep 2021 13:58:19 -0700
 MIME-Version: 1.0
-In-Reply-To: <20210927184858.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
+In-Reply-To: <20210927184858.2.I651eec59ce3cd1c4bdd64de31f9c3531f501b3a8@changeid>
 References: <20210927184858.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
+ <20210927184858.2.I651eec59ce3cd1c4bdd64de31f9c3531f501b3a8@changeid>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Tue, 28 Sep 2021 13:54:26 -0700
-Message-ID: <CAE-0n506JaDYzX_AXnL_eq9hDSPF1Lfxyd7chr=uYkxFkJHy6w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: sc7180: Factor out ti-sn65dsi86 support
+Date:   Tue, 28 Sep 2021 13:58:19 -0700
+Message-ID: <CAE-0n51kTvv-UENH-jZPX-cJu-BCF8HGkCgVBUc3kkxrcUPy9Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: sc7180: Support Parade ps8640 edp bridge
 To:     LKML <linux-kernel@vger.kernel.org>,
         Philip Chen <philipchen@chromium.org>
 Cc:     dianders@chromium.org, Andy Gross <agross@kernel.org>,
@@ -61,34 +62,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Philip Chen (2021-09-27 18:49:39)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+Quoting Philip Chen (2021-09-27 18:49:40)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
 > new file mode 100644
-> index 000000000000..7b1034a5a8e9
+> index 000000000000..647afb3a7c6a
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
-> @@ -0,0 +1,87 @@
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
+> @@ -0,0 +1,105 @@
 > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
-> + * Google Trogdor dts fragment for the boards with TI sn65dsi86 edp bridge
+> + * Google Trogdor dts fragment for the boards with Parade ps8640 edp bridge
 > + *
 > + * Copyright 2021 Google LLC.
 > + */
 > +
-> +&dsi0_out {
-> +       remote-endpoint = <&sn65dsi86_in>;
-> +       data-lanes = <0 1 2 3>;
+> +/ {
+> +       pp3300_brij_ps8640: pp3300-brij-ps8640 {
+> +               compatible = "regulator-fixed";
+> +               status = "okay";
+> +               regulator-name = "pp3300_brij_ps8640";
+> +
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +
+> +               gpio = <&tlmm 32 GPIO_ACTIVE_HIGH>;
+> +
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&en_pp3300_edp_brij_ps8640>;
+> +
+> +               vin-supply = <&pp3300_a>;
+> +       };
 > +};
 > +
-> +&edp_brij_i2c {
-> +       sn65dsi86_bridge: bridge@2d {
-> +               compatible = "ti,sn65dsi86";
-> +               reg = <0x2d>;
+> +&dsi0_out {
+> +       remote-endpoint = <&ps8640_in>;
+> +};
+> +
+> +&i2c2 {
+> +       ps8640_bridge: edp-bridge@8 {
+> +               compatible = "parade,ps8640";
+> +               reg = <0x8>;
+> +
+> +               powerdown-gpios = <&tlmm 104 GPIO_ACTIVE_LOW>;
+> +               reset-gpios = <&tlmm 11 GPIO_ACTIVE_LOW>;
+> +
 > +               pinctrl-names = "default";
-> +               pinctrl-0 = <&edp_brij_en>, <&edp_brij_irq>;
+> +               pinctrl-0 = <&edp_brij_en>, <&edp_brij_ps8640_rst>;
 
-I still don't see edp_brij_en used in the second patch so why didn't
-this pinctrl node move to this file like edp_brij_irq did?
+Ah here it is. Ignore my concern on patch #1.
 
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
+> +
+> +               vdd12-supply = <&pp1200_brij>;
+> +               vdd33-supply = <&pp3300_brij_ps8640>;
+> +
+> +               ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +
+> +                       port@0 {
+> +                               reg = <0>;
+> +                               ps8640_in: endpoint {
+> +                                       remote-endpoint = <&dsi0_out>;
+> +                               };
+> +                       };
+> +
+> +                       port@1 {
+> +                               reg = <1>;
+> +                               ps8640_out: endpoint {
+> +                                       remote-endpoint = <&panel_in_edp>;
+> +                               };
+> +                       };
+> +               };
+> +
+> +               aux_bus: aux-bus {
+
+The parade,ps8640 binding needs an update for aux-bus. Is that somewhere
+in linux-next or on the list?
+
+> +                       panel: panel {
+> +                               /* Compatible will be filled in per-board */
+> +                               power-supply = <&pp3300_dx_edp>;
+> +                               backlight = <&backlight>;
+> +
+> +                               port {
+> +                                       panel_in_edp: endpoint {
+> +                                               remote-endpoint = <&ps8640_out>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +};
