@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 784D941AAFF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 10:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36FFB41AB04
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 10:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239734AbhI1Ivk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 04:51:40 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:48236
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239718AbhI1Ivj (ORCPT
+        id S239754AbhI1Ivu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 04:51:50 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:53230
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239739AbhI1Ivl (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 04:51:39 -0400
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        Tue, 28 Sep 2021 04:51:41 -0400
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 27DD640844
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 08:49:59 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9DA363F31E
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 08:50:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632818999;
-        bh=AbbCj9W6fgvQ0YX3UCQV/nDvOLaUQu6puIQCBSTWMLI=;
+        s=20210705; t=1632819001;
+        bh=PsCkcyaCEnAXm38y0vJxGzfoUxQhj4fpVQ0zBS6vTGo=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=KSkHaKao8CFwiePIvhYKxXcjRZzWtn6WUBEEnTF0mzJVelM0vXnbsTlejMn+R2wnu
-         qAcvqNW1Lwtiud93VHCNU3UbIdJmiYZOcxVVYEFqKGrSxnHclz1RWBqEj9zMKhuylF
-         5eApVZhGiNFpmS56sG6lrGs8bpYloY7/bKSr62GPBIToXlohsLy2XmiSZST0ztfWfl
-         b3M4oY0NlH8j/rdk7qTCZj6Ss5QKhg6ucXu4bStr2Ue4mRuSb+KSZG7PGN7aeRSkCU
-         7/6VyvjY0Qmrkvcw9Nm7O0exeHRq2Zn4a6AG0yZzNNrQSWvJTKlaURj0v/4yxLhAkm
-         aF/89HTM5mY/w==
-Received: by mail-lf1-f70.google.com with SMTP id o4-20020a056512230400b003fc39bb96c7so18669735lfu.8
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 01:49:59 -0700 (PDT)
+        b=vqTFgDrRRrRrfnl9+nhOPE+bmtxGcY0l9wkOtSzOgpxtyWe0ivZEn/qleFY9hdy12
+         lypqK0aXPQsejWfK6143yZokahCnWHzT8LKB0npMoyTpvRtZJQK3yTOF0md+VlgFfG
+         v2lXOozAdIUXpTllsx0LGeWuB3wD2KbGG3mPxdF4GwlPPi/W0Nqog1mRN+B+oNhJOj
+         gVkIfhshilXMItpmZfVsiFHMg2njOFfAMHb8KAqn8MOp/mNbmulYmK5FygCQmGeSji
+         ItmH2FUat7oEvfd3w7cQVyK9cyz8wkEfbV4MU3wAANnCqnHRNjk4Lh01nr8WC1gjMR
+         aHw/eN3FB026Q==
+Received: by mail-lf1-f71.google.com with SMTP id e9-20020ac25469000000b003fcfe6c574fso1040412lfn.23
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 01:50:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=AbbCj9W6fgvQ0YX3UCQV/nDvOLaUQu6puIQCBSTWMLI=;
-        b=0zhXoS3mqL+pYgScS7AlYz1KJ2m/9Zn+al09SLE4Zp8sJzFl3D4MqEvkAX2wlc3bMe
-         5aqYM+QqPu0R5j6l8DSfrzPsxnYO34Ie2qDLSFA4h0mG/dyMvkuVpHRmEi95vPsqpYpB
-         XuGtOuosrEI02XrB2AMNpesHL/CYPLtAREGPwormv+kdm7uyrtPPMgePMz77kAeSsBe4
-         4UBnkw/G+3F/Kt5Z1Yr4LTleJZ2UEQWFR4apVU79MNB3DMaIbPLeE/nWuCJnxVH3+SOS
-         JqlEE0r3/quvvYy5WV0oxi2vVC3HmePaclBzKiCq5w0FLG9hNRLsc05FeHjF0+z50nDV
-         YSCA==
-X-Gm-Message-State: AOAM532/i1wTn4AHekb5bUi0wJvzaI8RfsrKRpcYtq5FHYpWAIjcL1rK
-        UcVjdw+KdRee2J6UTGGtcT7TjynWrAznuzd2H80dr+UvkI98peweXdlZaGienVxnn54MtB7hb2J
-        mCLfO7mvMx18cMCXKZ2mBIWHRcFr+1/kyCSBHG5g=
-X-Received: by 2002:a2e:9b07:: with SMTP id u7mr5004441lji.67.1632818998544;
-        Tue, 28 Sep 2021 01:49:58 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz+jmZuGlOMWLwSCGqG5ZxzPv7RzpU3AVMuSPcDXWUcDo+lOv1Q5DFIJD0PwCq6hiQcDUSsnA==
-X-Received: by 2002:a2e:9b07:: with SMTP id u7mr5004414lji.67.1632818998387;
-        Tue, 28 Sep 2021 01:49:58 -0700 (PDT)
+        bh=PsCkcyaCEnAXm38y0vJxGzfoUxQhj4fpVQ0zBS6vTGo=;
+        b=Lm9qNdViN/cOXWDGpomsQoaR0X47LnXOyROTxdUMIYEKPkTMpQ6a1Kfa4kXd02E0yn
+         dje/QzURKDQ6rtFzjb9Z40msLRu2ZwwRii3G2XJjYb/PFDRkFKHA0+4W7BERHH22iMIa
+         FjcaH+idGSkBPXCp5KABHnoK8OXS+9hepRTiS3FkV4fcg62iv2T/UHxKR6YQJZ1WS0B8
+         ZgJxDIWXU8ioMql3jc+yJtocfqyBf2Sbs9RRPVADu6nloCzv/p4Rtl7dk7oooYkaxtwz
+         sG3vZI6/LGOYrDuPqME4gIFvqDUe2FdCXffzpWz+CzwAm/vhQrapFGF3/qhfOvKoj7o5
+         8XDA==
+X-Gm-Message-State: AOAM530r80A3BXvHPZnL0I3z+R2EkA/5qWk5jmWa3/tMrgBuHvVRs2sF
+        BLJcm1wQmrGtYE3kVL2iq4cK8WD2AtZI3/YtIF6DaqzAPKwFKYmGboHlHkdhjBUP5D7WkHDsJe0
+        169SrJSCRAPLkGdiy7jQ3jqwsURaPGk4XSxqAxuI=
+X-Received: by 2002:a2e:22c5:: with SMTP id i188mr4517930lji.0.1632819001003;
+        Tue, 28 Sep 2021 01:50:01 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyqR+1LKPp5eRSM9B7lfLIEG2DqnbHilBtRtf1VO9LlnNQe8kcJyNJ/qXNTyPwrsz9BZ9Nw+A==
+X-Received: by 2002:a2e:22c5:: with SMTP id i188mr4517915lji.0.1632819000791;
+        Tue, 28 Sep 2021 01:50:00 -0700 (PDT)
 Received: from localhost.localdomain (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h13sm1848419lfl.205.2021.09.28.01.49.57
+        by smtp.gmail.com with ESMTPSA id h13sm1848419lfl.205.2021.09.28.01.49.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 01:49:57 -0700 (PDT)
+        Tue, 28 Sep 2021 01:49:59 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -70,11 +70,10 @@ To:     Michael Turquette <mturquette@baylibre.com>,
         linux-samsung-soc@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        stable@vger.kernel.org
-Subject: [PATCH 02/12] regulator: dt-bindings: samsung,s5m8767: correct s5m8767,pmic-buck-default-dvs-idx property
-Date:   Tue, 28 Sep 2021 10:49:39 +0200
-Message-Id: <20210928084949.27939-3-krzysztof.kozlowski@canonical.com>
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Subject: [PATCH 03/12] clock: dt-bindings: samsung,s2mps11: convert to dtschema
+Date:   Tue, 28 Sep 2021 10:49:40 +0200
+Message-Id: <20210928084949.27939-4-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210928084949.27939-1-krzysztof.kozlowski@canonical.com>
 References: <20210928084949.27939-1-krzysztof.kozlowski@canonical.com>
@@ -84,29 +83,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver was always parsing "s5m8767,pmic-buck-default-dvs-idx", not
-"s5m8767,pmic-buck234-default-dvs-idx".
+Convert the clock provider of Samsung S2MPS11 family of PMICs to DT
+schema format.
 
-Cc: <stable@vger.kernel.org>
-Fixes: 26aec009f6b6 ("regulator: add device tree support for s5m8767")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/clock/samsung,s2mps11.txt        | 49 -------------------
+ .../bindings/clock/samsung,s2mps11.yaml       | 45 +++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 46 insertions(+), 50 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/samsung,s2mps11.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
 
-diff --git a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt
-index d9cff1614f7a..6cd83d920155 100644
---- a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt
-+++ b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt
-@@ -39,7 +39,7 @@ Optional properties of the main device node (the parent!):
- 
- Additional properties required if either of the optional properties are used:
- 
-- - s5m8767,pmic-buck234-default-dvs-idx: Default voltage setting selected from
-+ - s5m8767,pmic-buck-default-dvs-idx: Default voltage setting selected from
-    the possible 8 options selectable by the dvs gpios. The value of this
-    property should be between 0 and 7. If not specified or if out of range, the
-    default value of this property is set to 0.
+diff --git a/Documentation/devicetree/bindings/clock/samsung,s2mps11.txt b/Documentation/devicetree/bindings/clock/samsung,s2mps11.txt
+deleted file mode 100644
+index 2726c1d58a79..000000000000
+--- a/Documentation/devicetree/bindings/clock/samsung,s2mps11.txt
++++ /dev/null
+@@ -1,49 +0,0 @@
+-Binding for Samsung S2M and S5M family clock generator block
+-============================================================
+-
+-This is a part of device tree bindings for S2M and S5M family multi-function
+-devices.
+-More information can be found in bindings/mfd/sec-core.txt file.
+-
+-The S2MPS11/13/15 and S5M8767 provide three(AP/CP/BT) buffered 32.768 kHz
+-outputs. The S2MPS14 provides two (AP/BT) buffered 32.768 KHz outputs.
+-
+-To register these as clocks with common clock framework instantiate under
+-main device node a sub-node named "clocks".
+-
+-It uses the common clock binding documented in:
+- - Documentation/devicetree/bindings/clock/clock-bindings.txt
+-
+-
+-Required properties of the "clocks" sub-node:
+- - #clock-cells: should be 1.
+- - compatible: Should be one of: "samsung,s2mps11-clk", "samsung,s2mps13-clk",
+-               "samsung,s2mps14-clk", "samsung,s5m8767-clk"
+-   The S2MPS15 uses the same compatible as S2MPS13, as both provides similar
+-   clocks.
+-
+-
+-Each clock is assigned an identifier and client nodes use this identifier
+-to specify the clock which they consume.
+-    Clock               ID           Devices
+-    ----------------------------------------------------------
+-    32KhzAP		0            S2MPS11/13/14/15, S5M8767
+-    32KhzCP		1            S2MPS11/13/15, S5M8767
+-    32KhzBT		2            S2MPS11/13/14/15, S5M8767
+-
+-Include dt-bindings/clock/samsung,s2mps11.h file to use preprocessor defines
+-in device tree sources.
+-
+-
+-Example:
+-
+-	s2mps11_pmic@66 {
+-		compatible = "samsung,s2mps11-pmic";
+-		reg = <0x66>;
+-
+-		s2m_osc: clocks {
+-			compatible = "samsung,s2mps11-clk";
+-			#clock-cells = <1>;
+-			clock-output-names = "xx", "yy", "zz";
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml b/Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
+new file mode 100644
+index 000000000000..1410c51e0e7d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/samsung,s2mps11.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung S2M and S5M family clock generator block
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
++
++description: |
++  This is a part of device tree bindings for S2M and S5M family of Power
++  Management IC (PMIC).
++
++  The S2MPS11/13/15 and S5M8767 provide three(AP/CP/BT) buffered 32.768 kHz
++  outputs. The S2MPS14 provides two (AP/BT) buffered 32.768 KHz outputs.
++
++  All available clocks are defined as preprocessor macros in
++  dt-bindings/clock/samsung,s2mps11.h header.
++
++  See also Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml for
++  additional information and example.
++
++properties:
++  compatible:
++    enum:
++      - samsung,s2mps11-clk
++      - samsung,s2mps13-clk # S2MPS13 and S2MPS15
++      - samsung,s2mps14-clk
++      - samsung,s5m8767-clk
++
++  "#clock-cells":
++    const: 1
++
++  clock-output-names:
++    minItems: 3
++    maxItems: 3
++    description: Names for AP, CP and BT clocks.
++
++required:
++  - compatible
++  - "#clock-cells"
++
++additionalProperties: false
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 0f28fb4b4e5c..241fe78a3282 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -16599,7 +16599,7 @@ M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+ L:	linux-kernel@vger.kernel.org
+ L:	linux-samsung-soc@vger.kernel.org
+ S:	Supported
+-F:	Documentation/devicetree/bindings/clock/samsung,s2mps11.txt
++F:	Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
+ F:	Documentation/devicetree/bindings/mfd/samsung,sec-core.txt
+ F:	Documentation/devicetree/bindings/regulator/samsung,s2m*.txt
+ F:	Documentation/devicetree/bindings/regulator/samsung,s5m*.txt
 -- 
 2.30.2
 
