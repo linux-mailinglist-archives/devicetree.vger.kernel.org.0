@@ -2,171 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C131A41B12E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:51:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E78C941B151
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:56:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240988AbhI1NxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 09:53:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43440 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241112AbhI1NxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:53:05 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A26C061604
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 06:51:26 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id d21so58067153wra.12
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 06:51:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Mr2XW/ExcapYxP/Bo4qXwpJMhGFNi4fgDwMu2/rJrI0=;
-        b=ewnHE/tgkUjMvexYV183LLT3n8rtLClqvwmklt30vsDGsH8tqJ5y61zXyv15nUUN4b
-         cMDZzKiREL9qF83rYKrt/iW9E3uiXL5JRKVjKJvgbaHyNofO1LPNxuCXWgdUp7HvRA0D
-         dxFoM21AnRLPgO/KoKN1meyELOTpcl9oYfz7/aFAhTIDOSNhMEh8KzHuRjc7dMTBYNAf
-         bOOkAXBvkbEeIZSsC8LEh9uQBCivo20VUsFiXaZ4Tsaxm80VOZs/l5SQazRUuKx7oQem
-         0v+kHMSbt2Fd1Jgbj4825V3ArXcGRep6VYz5C2nCK7NnE0bpc9eSqFasPNuca9X8/uuk
-         MeCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Mr2XW/ExcapYxP/Bo4qXwpJMhGFNi4fgDwMu2/rJrI0=;
-        b=kzPrUFpOCythr/h5XcUH9C9qhnXqzkyU+e+HapYtT9ddrdCb/CicDFRd9duL1GZWdN
-         iHUEmNy3O9Fgq+rZSCWYiRw+AmPbg8nSf7L1SWkixrqJimlUY0/kdyjPioBS4LlE2g7p
-         NgYG9Ksy4JFg9vDCPL0WmrksTbgEslo9XPeRwiiUIaINnzzC9tG8R6kPvdPR4XEKg1Ih
-         gJvXnJTA+lajvL6j8qSq023Rn4lZmJJp1nNq9ydU4760UiigqDoBh8KFmcZIJAWG9ecq
-         85iE0JTF12Jxll7lCWyU00zMGgXvHRtFlQmW9Yu9yy75Z1z01aSjFrsL9vt5pxcq8TVR
-         A6HA==
-X-Gm-Message-State: AOAM530iG4+aDKiVnkCIRyN7nlF44lkA+YVAMNzdswjoMKydvhodHAAV
-        +0QgMZhZw4tdv/ba0D0BS2iT2A==
-X-Google-Smtp-Source: ABdhPJztboiKRs3oQxSHpFkZq5VbHxMvwwnjnApD67goEFd4tgtXRrAnkDVGbYH0U181PZXZgsLkGA==
-X-Received: by 2002:a05:6000:362:: with SMTP id f2mr82981wrf.197.1632837084740;
-        Tue, 28 Sep 2021 06:51:24 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id e5sm19777680wrd.1.2021.09.28.06.51.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Sep 2021 06:51:24 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] nvmem: core: introduce cells parser
-To:     Vadym Kochan <vadym.kochan@plvision.eu>
-Cc:     John Thomson <john@johnthomson.fastmail.com.au>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>
-References: <20210608190327.22071-1-vadym.kochan@plvision.eu>
- <20210608190327.22071-2-vadym.kochan@plvision.eu>
- <43023500-dd6a-5180-057e-cecc1f1b6500@linaro.org>
- <20210616123356.GA9951@plvision.eu>
- <fea907ed-06ce-5c82-667d-d11f3e902616@linaro.org>
- <vrcxh2zgsnl841.fsf@plvision.eu>
- <7e6d75ed-cebc-597f-7062-34261d184968@linaro.org>
- <vrcxh2pmt3bl4h.fsf@plvision.eu>
- <0e471789-fe29-b747-5153-75c9b4616c7f@linaro.org>
- <vrcxh2o88nbias.fsf@plvision.eu>
- <1da03714-8f23-1004-e89a-891e4599e04a@linaro.org>
- <vrcxh2mto7bfcb.fsf@plvision.eu>
- <1e146349-9fef-972b-9084-577f02d5168b@linaro.org>
- <vrcxh2lf3rbcjc.fsf@plvision.eu>
- <169d3f36-4297-32a3-3d23-824989625b26@linaro.org>
- <77b11bf7-3003-483f-b91e-bd93576eaae1@www.fastmail.com>
- <vrcxh2y27ia23n.fsf@plvision.eu>
- <56fb5c64-4142-03ef-2ea8-fc586fd239e1@linaro.org>
- <vrcxh2tui4akta.fsf@plvision.eu>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <cbff6b53-d751-0a44-c3de-d31c26ed3d5c@linaro.org>
-Date:   Tue, 28 Sep 2021 14:51:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <vrcxh2tui4akta.fsf@plvision.eu>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S241170AbhI1N5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 09:57:44 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:53418 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241115AbhI1N5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:57:44 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1632837365; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=+3xXXzc009IxecDeBe7hyMKaiYwYiM2uughQvgQkNZI=; b=kQYHlqEFoL+KpoL/Ab0Qjdl9c+bFIazr/nX8lTJsW84tvRSQS05THd/8P1I81RTR7MOyMUaH
+ /yVAdupdzO/95+pP9QHO57L/aXnVm9Hm5aG+msYDpADbujFYKIaE7/66zdFkRaJMecRd/83M
+ CGV77dAvI9GCL7F5LlDXEqwJS5w=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 61531ef43cc3a01f26bc661f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 28 Sep 2021 13:56:04
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 3A433C43619; Tue, 28 Sep 2021 13:56:04 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B8A4FC4338F;
+        Tue, 28 Sep 2021 13:55:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B8A4FC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
+        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org,
+        Prasad Malisetty <pmaliset@codeaurora.org>
+Subject: [PATCH v9 0/4] Add DT bindings and DT nodes for PCIe and PHY in SC7280
+Date:   Tue, 28 Sep 2021 19:25:46 +0530
+Message-Id: <1632837350-12100-1-git-send-email-pmaliset@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes added in v9:
+    * Added fixed regulator entry for nvme.suggested by Stephen Boyd
+    * Added NULL pointer check before accessing ops in pcie probe
+      Suggested by Stephen Boyd
 
+Changes added in v8:
 
-On 28/09/2021 14:31, Vadym Kochan wrote:
->>>> Can I note here that I would like to parse
->>>> TLV data from an SPI-NOR device to NVMEM cells.
->>>> The same general use case (getting mac-address from OEM data).
->>>>
->>>> Was planning to base my work on this series, as well as
->>>> https://lore.kernel.org/all/20210908100257.17833-1-qiangqing.zhang@nxp.com/
->>>> (thanks for pointing that out Srinivas)
->>>>
->>>> Cheers,
->>> What about at least to have just one call in core.c to make it a bit
->>> de-coupled, like:
->> Why do you want to decouple this? the provider driver should be very
->> well aware of the format the data layout.
->>
-> In my understanding nvmem device should not aware about the data layout
-> (in case it does not rely on device's specific characteristics). Same
-> cells layout (TLV, etc) might exist on other nvmem devices.
-> 
-How would provider driver parse this without even knowing data layout?
+    * Added seperate pinctrl state for NVMe LDO enable pin [v8 P3/4]
+    * Removed pointer initialization for pcie_cfg [v8 P4/4]
+    * Replaced bool pcie_pipe_clk_src with unsigned int:1 [v8 P4/4]
+    * Changed gcc_pcie_1_pipe_clk_src to pipe_clk_src
 
+Changes added in v7:
 
->> Its fine to an extent to adding parse_cells() callback in nvmem_config.
->>
-> OK, in that case it will require small change in the core.
-> 
->>> core.c
->>>
->>> struct nvmem_device *nvmem_register(const struct nvmem_config *config)
->>> {
->>> ...
->>>            rval = nvmem_add_cells_from_table(nvmem);
->>>            if (rval)
->>>                    goto err_remove_cells;
->>>
->>> +        rval = nvmem_parse_cells(nvmem, of);
->>> +        if (rval) {
->>> +        /* err handling */
->>> +        }
->>> +
->>>            rval = nvmem_add_cells_from_of(nvmem);
->>>            if (rval)
->>>                    goto err_remove_cells;
->>>
->>>            blocking_notifier_call_chain(&nvmem_notifier, NVMEM_ADD, nvmem);
->>>
->>>            return nvmem;
->>>
->>> ...
->>>
->>> }
->>>
->>> somewhere in nvmem-parser.c:
->> However this is totally over kill.
->>
->>> /* retreive parser name from of_node and call appropriate function to parse
->>>      non-fixed cells and update via of_update */
->> This is completely provider drivers job, nothing nvmem core should worry
->> about.
->>
->> If you have concern of having code duplicated then we could make some of
->> the common functions as library functions, But it still is within the
->> scope of provider drivers.
->>
-> Do I understand correctly that this parser function should be exported
-> from at24.c (in case of ONIE) and not from a separate C module ? Or
-> it just means that if there will be more users of this parsing function
-> then it might be moved to separate C module ?
-yes.
-For now am not really sure how many users are for such parsing function.
+        * Removed two fallbacks qcom,pcie-sm8250 and snps,dw-pcie.
+        * Replaced compatible method in get_resources_2_7_0 with
+            flag approach suggested by Bjorn Helgaas .
+        * Setting gcc_pcie_1_clk_src as XO in init_2_7_0 for
+          gdsc enable.
+        * Added specific NVMe GPIO entries for SKU1 and SKU2 support
+          in idp.dts and idp2.dts respectively.
+        * Moved pcie_1 and pcie_1_phy board specific entries into common
+          board file sc7280-idp.dtsi file.
 
-> 
->> --srini
->>
-> BTW, what if such change will be declined by particular nvmem driver
-> maintainer ?
+Changes in v6:
 
-You would need some changes to provider driver to be able to flag that 
-there is some kind of parsing required anyway.
+    * Removed platform check while setting gcc_pcie_1_pipe_clk_src
+          as clk_set_parent will return 0 with nop if platform doesn't
+          need to switch pipe clk source.
+        * Moved wake-n gpio to board specific file sc7280-idp.dtsi
+        * Sorted gpio.h header entry in sc7280.dtsi file
 
---srini
-> 
+Changes in v5:
+
+        * Re ordered PCIe, PHY nodes in Soc and board specific dtsi files.
+        * Removed ref_clk entry in current patch [PATCH v4 P4/4].
+        * I will add ref clk entry in suspend/ resume commits.
+        * Added boolean flag in Soc specific dtsi file to differentiate
+          SM8250 and SC7280 platforms. based on boolean flag, platforms will handle
+          the pipe clk handling.
+
+Changes in v4 as suggested by Bjorn:
+
+        * Changed pipe clk mux name as gcc_pcie_1_pipe_clk_src.
+        * Changed pipe_ext_src as phy_pipe_clk.
+        * Updated commit message for [PATCH v4 4/4].
+
+Changes in v3:
+        * Changed pipe clock names in dt bindings as pipe_mux and phy_pipe.
+        * Moved reset and NVMe GPIO pin configs into board specific file.
+        * Updated pipe clk mux commit message.
+
+Changes in v2:
+        * Moved pcie pin control settings into IDP file.
+        * Replaced pipe_clk_src with pipe_clk_mux in pcie driver
+        * Included pipe clk mux setting change set in this series
+
+Prasad Malisetty (4):
+  dt-bindings: pci: qcom: Document PCIe bindings for SC7280
+  arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
+  arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
+  PCI: qcom: Switch pcie_1_pipe_clk_src after PHY init in SC7280
+
+ .../devicetree/bindings/pci/qcom,pcie.txt          |  17 +++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            |   9 ++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  54 ++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp2.dts           |   9 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 119 +++++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom.c             |  94 ++++++++++++++--
+ 6 files changed, 291 insertions(+), 11 deletions(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
