@@ -2,263 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C652241B1D1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 16:14:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7775141B23D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 16:40:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241251AbhI1OQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 10:16:18 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:39438
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241119AbhI1OQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 10:16:15 -0400
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 93F39402F6
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 14:14:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632838475;
-        bh=+u9e9bwlpa3QEn7ZpV3nxWHDHqijGY7KQgiYf/eMfqQ=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=opvg4dejQao0ht7a2/d6cvt3dw4WUqVkskAD8AE5nahrdNdOVngBVqNGdyPBMzqBp
-         lqeeTBWV1xzdatX75ol5LdwvbnPH1Jv+vWxIpKdPg108g9tc/T58gTFfmuxUiT9QOJ
-         S1IWIq1WZ+QoWeuBEnA9w6g3trjgv/9wjWFi9Gwt+1pjSUR1WXUuB39G6pQ4s+dHrH
-         DZMpjIeNwz5YIof3MpSLOyS+grZccSDUvMB1tSa1uhOfyU6zCYP8vz628xr0YYCzK/
-         MZvnRoIK3nroCe/YueBLUUqWIg1K9yN7SBzCrog5DdPf/ViW0XIPyy6e59UrGjJzo1
-         WkbEEwA6UzBwA==
-Received: by mail-lf1-f72.google.com with SMTP id s28-20020a056512203c00b003f42015e912so19465082lfs.4
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 07:14:35 -0700 (PDT)
+        id S241307AbhI1Olk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 10:41:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241278AbhI1Olk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 10:41:40 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 973ADC061745
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 07:40:00 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id v17so15066221wrv.9
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 07:40:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=pxJvMhOt0xNvz+afkkMlplB8Oci4FMpO0XMdkB5w8X0=;
+        b=bGDPnEFT0YYGPPbCwa2hLR4rp2POsu8kr4eRpAgtNxcMCLoA+eEvvpr/fMYLKK+DyS
+         JBsOWHuw5b3iQTLluqwniDe8k4TJt5NbQNP93jNgY7fxXZghBMdr4AXVlAeN6BcKLhYf
+         6l0eqwPwwSTufHyvWhAH/rIDXzEqX8+p63B6gH0cvzCbrkXsgBcOm69ScXqmPiAcuyk7
+         8SOaJ0TVny0vzT4ImFQWuR1DP4Ocz6VO7rvsiC44hSjHdbLN1PcvvUETxp/Vof+vN6dH
+         KniP2UA3LsLm3lf2VwnTLYpThoBLVf3kzhaE9zsiqNGMzR8MjrvUcOjN/rJYUpc598B9
+         fC5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+u9e9bwlpa3QEn7ZpV3nxWHDHqijGY7KQgiYf/eMfqQ=;
-        b=ha7lKez5u/m3F1UqqABDsbCD1Q0uaOOgIW1gTSZ9ImbPMSTv+EDrdhqtrW5VjKNVxY
-         idNGF285Gij3hs797WIcUkd4SNMJXZe7WksCn0HrElTfim0ONnjancMa++f1pWjRUs9w
-         g3PvMYq+U6Z4GMOAVRvhwqfGEaYKo3HE0giAmfKRE1rOylj8wKl7ltvN+f1gIJING6mz
-         9Bj1ofuskzfc8EpJjRPpxhovwnCEMGDTNVGR/qug1WCJuPKc6qMgDtwhW654JIlEj6DX
-         JEgB1Hw026jCt8LeQA5wamLq+rG9CX2TCZvcyUBzA+lRaEr6AIcowb02kEqlBEay6t3X
-         EmJw==
-X-Gm-Message-State: AOAM530lCf1Mq/aQuRxlDv2JjP4H0N7PDeuIhCUY1XBXmZwEr8n0aguE
-        mRFD7jPtG1GjksoLne1lbiOs0hHc7k/eEgv4FazOmIxaHbZ6+0/7AigbCO7ZdnLyWfwdAvpIMnV
-        FDZlEDmDa+EnPEwVZHxrAIS4olLpSX5SpvBmhWn0=
-X-Received: by 2002:a2e:9b98:: with SMTP id z24mr169482lji.339.1632838474628;
-        Tue, 28 Sep 2021 07:14:34 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy8qCBxFQ0ZmWvVx3GC1DXy3kNBYRZrME05hprWXzIZFzCVtG4bMX+nu3zFeqtYgSiSRE0EbQ==
-X-Received: by 2002:a2e:9b98:: with SMTP id z24mr169454lji.339.1632838474384;
-        Tue, 28 Sep 2021 07:14:34 -0700 (PDT)
-Received: from localhost.localdomain (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w19sm2353241ljd.110.2021.09.28.07.14.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 07:14:33 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] mfd: dt-bindings: maxim,max77686: convert to dtschema
-Date:   Tue, 28 Sep 2021 16:13:53 +0200
-Message-Id: <20210928141353.112619-3-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210928141353.112619-1-krzysztof.kozlowski@canonical.com>
-References: <20210928141353.112619-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pxJvMhOt0xNvz+afkkMlplB8Oci4FMpO0XMdkB5w8X0=;
+        b=LTUyudUL9XwrPep+l9T4nS4CtvJPaws+jV3u92Ux/sjxVIhMIa8bcH2wORCNLBxc7W
+         sKZjrnRYCsXI7Ubrb88GWGX+cgDnY6xx8immb4d7jOnbiNv6eNsfM6a7vXCcrclcpntJ
+         Mt8qq5yG7CIuCqXf0ZTl/j/c7BGs6ZWymsKsaeq9cXE81fTLJu8zA2mXi9IzhImicO9r
+         uOx/0NO0ilBCmGO0IWp94y0upaqs+8SCmk7i2koz6J3Yn3dP1a2f9b6I/a3fK3+pFOKJ
+         9HqqkekY5J3ri3zk8z3OjkMD0m6diqz7J3Cf6s9/ZXZNZg+gr+T4CO/rh9KnSLNV0yaO
+         uvgA==
+X-Gm-Message-State: AOAM533p3PUG1gzZsjSpLGNtFGwbcC+QC5fHpCasTcG/C94MTZttZE2r
+        aSpWfip/0jjPP2RJo+BYSN1M6Q==
+X-Google-Smtp-Source: ABdhPJwYaoMk69aNBi050qin8Z7NDTuOfRgeHvZjtJ9CBZO6MquRr+YgM/9Gg5p8dUgXom0RMKMC9w==
+X-Received: by 2002:adf:f64d:: with SMTP id x13mr463234wrp.360.1632839998940;
+        Tue, 28 Sep 2021 07:39:58 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id s85sm3036041wme.20.2021.09.28.07.39.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Sep 2021 07:39:57 -0700 (PDT)
+Subject: Re: [PATCH v2 1/3] nvmem: core: introduce cells parser
+To:     Vadym Kochan <vadym.kochan@plvision.eu>
+Cc:     John Thomson <john@johnthomson.fastmail.com.au>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>
+References: <20210608190327.22071-1-vadym.kochan@plvision.eu>
+ <20210608190327.22071-2-vadym.kochan@plvision.eu>
+ <43023500-dd6a-5180-057e-cecc1f1b6500@linaro.org>
+ <20210616123356.GA9951@plvision.eu>
+ <fea907ed-06ce-5c82-667d-d11f3e902616@linaro.org>
+ <vrcxh2zgsnl841.fsf@plvision.eu>
+ <7e6d75ed-cebc-597f-7062-34261d184968@linaro.org>
+ <vrcxh2pmt3bl4h.fsf@plvision.eu>
+ <0e471789-fe29-b747-5153-75c9b4616c7f@linaro.org>
+ <vrcxh2o88nbias.fsf@plvision.eu>
+ <1da03714-8f23-1004-e89a-891e4599e04a@linaro.org>
+ <vrcxh2mto7bfcb.fsf@plvision.eu>
+ <1e146349-9fef-972b-9084-577f02d5168b@linaro.org>
+ <vrcxh2lf3rbcjc.fsf@plvision.eu>
+ <169d3f36-4297-32a3-3d23-824989625b26@linaro.org>
+ <77b11bf7-3003-483f-b91e-bd93576eaae1@www.fastmail.com>
+ <vrcxh2y27ia23n.fsf@plvision.eu>
+ <56fb5c64-4142-03ef-2ea8-fc586fd239e1@linaro.org>
+ <vrcxh2tui4akta.fsf@plvision.eu>
+ <cbff6b53-d751-0a44-c3de-d31c26ed3d5c@linaro.org>
+ <vrcxh2sfxoaiyc.fsf@plvision.eu>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <c19ba35d-68b3-5044-bca2-92627c810efa@linaro.org>
+Date:   Tue, 28 Sep 2021 15:39:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <vrcxh2sfxoaiyc.fsf@plvision.eu>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the MFD part of Maxim MAX77686 PMIC to DT schema format.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../devicetree/bindings/mfd/max77686.txt      |  26 ----
- .../bindings/mfd/maxim,max77686.yaml          | 124 ++++++++++++++++++
- MAINTAINERS                                   |   1 -
- 3 files changed, 124 insertions(+), 27 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/max77686.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77686.yaml
 
-diff --git a/Documentation/devicetree/bindings/mfd/max77686.txt b/Documentation/devicetree/bindings/mfd/max77686.txt
-deleted file mode 100644
-index 42968b7144e0..000000000000
---- a/Documentation/devicetree/bindings/mfd/max77686.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Maxim MAX77686 multi-function device
--
--MAX77686 is a Multifunction device with PMIC, RTC and Charger on chip. It is
--interfaced to host controller using i2c interface. PMIC and Charger submodules
--are addressed using same i2c slave address whereas RTC submodule uses
--different i2c slave address,presently for which we are statically creating i2c
--client while probing.This document describes the binding for mfd device and
--PMIC submodule.
--
--Bindings for the built-in 32k clock generator block and
--regulators are defined in ../clk/maxim,max77686.txt and
--../regulator/max77686.txt respectively.
--
--Required properties:
--- compatible : Must be "maxim,max77686";
--- reg : Specifies the i2c slave address of PMIC block.
--- interrupts : This i2c device has an IRQ line connected to the main SoC.
--
--Example:
--
--	max77686: pmic@9 {
--		compatible = "maxim,max77686";
--		interrupt-parent = <&wakeup_eint>;
--		interrupts = <26 0>;
--		reg = <0x09>;
--	};
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77686.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77686.yaml
-new file mode 100644
-index 000000000000..2296a16038b7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max77686.yaml
-@@ -0,0 +1,124 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/maxim,max77686.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim MAX77686 Power Management IC
-+
-+maintainers:
-+  - Chanwoo Choi <cw00.choi@samsung.com>
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+
-+description: |
-+  This is a part of device tree bindings for Maxim MAX77686 Power Management
-+  Integrated Circuit (PMIC).
-+
-+  The Maxim MAX77686 is a Power Management IC which includes voltage and
-+  current regulators, RTC and clock outputs.
-+
-+  The MAX77686 provides three 32.768khz clock outputs that can be controlled
-+  (gated/ungated) over I2C.  The clock IDs are defined as preprocessor macros
-+  in dt-bindings/clock/maxim,max77686.h.
-+
-+properties:
-+  compatible:
-+    const: maxim,max77686
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  voltage-regulators:
-+    $ref: ../regulator/maxim,max77686.yaml
-+    description:
-+      List of child nodes that specify the regulators.
-+
-+  wakeup-source: true
-+
-+required:
-+  - compatible
-+  - '#clock-cells'
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        max77686: pmic@9 {
-+            compatible = "maxim,max77686";
-+            reg = <0x09>;
-+
-+            interrupt-parent = <&gpx0>;
-+            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+            pinctrl-0 = <&max77686_irq>;
-+            pinctrl-names = "default";
-+            wakeup-source;
-+            #clock-cells = <1>;
-+
-+            voltage-regulators {
-+                LDO1 {
-+                    regulator-name = "VALIVE_1.0V_AP";
-+                    regulator-min-microvolt = <1000000>;
-+                    regulator-max-microvolt = <1000000>;
-+                    regulator-always-on;
-+                };
-+
-+                LDO2 {
-+                    regulator-name = "VM1M2_1.2V_AP";
-+                    regulator-min-microvolt = <1200000>;
-+                    regulator-max-microvolt = <1200000>;
-+                    regulator-always-on;
-+                    maxim,ena-gpios = <&gpm0 3 GPIO_ACTIVE_HIGH>;
-+                    regulator-state-mem {
-+                        regulator-on-in-suspend;
-+                    };
-+                };
-+
-+                // ...
-+
-+                BUCK1 {
-+                    regulator-name = "VDD_MIF";
-+                    regulator-min-microvolt = <850000>;
-+                    regulator-max-microvolt = <1100000>;
-+                    regulator-always-on;
-+                    regulator-boot-on;
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                    };
-+                };
-+
-+                BUCK2 {
-+                    regulator-name = "VDD_ARM";
-+                    regulator-min-microvolt = <850000>;
-+                    regulator-max-microvolt = <1500000>;
-+                    regulator-always-on;
-+                    regulator-boot-on;
-+                    regulator-state-mem {
-+                        regulator-on-in-suspend;
-+                    };
-+                };
-+
-+                // ...
-+
-+                BUCK9 {
-+                    regulator-name = "CAM_ISP_CORE_1.2V";
-+                    regulator-min-microvolt = <1000000>;
-+                    regulator-max-microvolt = <1200000>;
-+                    maxim,ena-gpios = <&gpm0 3 GPIO_ACTIVE_HIGH>;
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 32b55f9ab76a..04e8554f4f5b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11468,7 +11468,6 @@ M:	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
- M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
- L:	linux-kernel@vger.kernel.org
- S:	Supported
--F:	Documentation/devicetree/bindings/*/max77686.txt
- F:	Documentation/devicetree/bindings/*/maxim,max77686.yaml
- F:	Documentation/devicetree/bindings/clock/maxim,max77686.txt
- F:	Documentation/devicetree/bindings/mfd/max14577.txt
--- 
-2.30.2
+On 28/09/2021 15:11, Vadym Kochan wrote:
+> Srinivas Kandagatla<srinivas.kandagatla@linaro.org>  writes:
+> 
+>> On 28/09/2021 14:31, Vadym Kochan wrote:
+>>>>>> Can I note here that I would like to parse
+>>>>>> TLV data from an SPI-NOR device to NVMEM cells.
+>>>>>> The same general use case (getting mac-address from OEM data).
+>>>>>>
+>>>>>> Was planning to base my work on this series, as well as
+>>>>>> https://lore.kernel.org/all/20210908100257.17833-1-qiangqing.zhang@nxp.com/
+>>>>>> (thanks for pointing that out Srinivas)
+>>>>>>
+>>>>>> Cheers,
+>>>>> What about at least to have just one call in core.c to make it a bit
+>>>>> de-coupled, like:
+>>>> Why do you want to decouple this? the provider driver should be very
+>>>> well aware of the format the data layout.
+>>>>
+>>> In my understanding nvmem device should not aware about the data layout
+>>> (in case it does not rely on device's specific characteristics). Same
+>>> cells layout (TLV, etc) might exist on other nvmem devices.
+>>>
+>> How would provider driver parse this without even knowing data layout?
+>>
+>>
+>>>> Its fine to an extent to adding parse_cells() callback in nvmem_config.
+>>>>
+>>> OK, in that case it will require small change in the core.
+>>>
+>>>>> core.c
+>>>>>
+>>>>> struct nvmem_device *nvmem_register(const struct nvmem_config *config)
+>>>>> {
+>>>>> ...
+>>>>>             rval = nvmem_add_cells_from_table(nvmem);
+>>>>>             if (rval)
+>>>>>                     goto err_remove_cells;
+>>>>>
+>>>>> +        rval = nvmem_parse_cells(nvmem, of);
+>>>>> +        if (rval) {
+>>>>> +        /* err handling */
+>>>>> +        }
+>>>>> +
+>>>>>             rval = nvmem_add_cells_from_of(nvmem);
+>>>>>             if (rval)
+>>>>>                     goto err_remove_cells;
+>>>>>
+>>>>>             blocking_notifier_call_chain(&nvmem_notifier, NVMEM_ADD, nvmem);
+>>>>>
+>>>>>             return nvmem;
+>>>>>
+>>>>> ...
+>>>>>
+>>>>> }
+>>>>>
+>>>>> somewhere in nvmem-parser.c:
+>>>> However this is totally over kill.
+>>>>
+>>>>> /* retreive parser name from of_node and call appropriate function to parse
+>>>>>       non-fixed cells and update via of_update */
+>>>> This is completely provider drivers job, nothing nvmem core should worry
+>>>> about.
+>>>>
+>>>> If you have concern of having code duplicated then we could make some of
+>>>> the common functions as library functions, But it still is within the
+>>>> scope of provider drivers.
+>>>>
+>>> Do I understand correctly that this parser function should be exported
+>>> from at24.c (in case of ONIE) and not from a separate C module ? Or
+>>> it just means that if there will be more users of this parsing function
+>>> then it might be moved to separate C module ?
+>> yes.
+>> For now am not really sure how many users are for such parsing function.
+>>
+>>>> --srini
+>>>>
+>>> BTW, what if such change will be declined by particular nvmem driver
+>>> maintainer ?
+>> You would need some changes to provider driver to be able to flag that
+>> there is some kind of parsing required anyway.
+>>
+> It might be some new property in device-tree which can be used also
+> for the other providers.
 
+But this new binding will still belong to the provider driver that you 
+want to support parsing.
+
+
+--srini
+> 
