@@ -2,95 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7CB641B505
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 19:21:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D92141B50D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 19:22:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229776AbhI1RXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 13:23:32 -0400
-Received: from mo4-p03-ob.smtp.rzone.de ([81.169.146.174]:9000 "EHLO
-        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242040AbhI1RXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 13:23:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632849695;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=S9w5GiKQ2oy3NSyTEw/qOS43AM2R39Tjvw3qTBO3Zj4=;
-    b=be9uUQxmVeU8gYqHprkIP23lqdRMsBKz0LStw88fX1W5jg5bI+r5xvDsxMYHtuDmwj
-    D08hnopCwRGwFzJyOGGfb8JXT7yKkjp18c1OlZo3UECID/nc3263q6H6iLxrN6u3Mzab
-    KGLmrLTirnzlQjAep27OsaLl9Pl7FxHRE2a2fOOLxr+hsCxomhlGQux32IYEi+/VuuB9
-    6IKfsmdvXf7RMgYcRZ1uOiEcFpNwaeG//FQd8JxywLLkCYQb2J+L3nhdXjsxM5CP4LyK
-    tmH6DYJZTvPSB5kbt+9kjNcKHm1vhPpUH2nwvFonxJ4xR2eH4oU5LFLWsOC8Bb21Pr0S
-    QsOA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXTbAOHjRHIhr3eFSKSxc="
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id 301038x8SHLYoBV
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 28 Sep 2021 19:21:34 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 15/15] ARM: dts: qcom: msm8916-samsung-serranove: Include dts from arm64
-Date:   Tue, 28 Sep 2021 19:12:31 +0200
-Message-Id: <20210928171231.12766-16-stephan@gerhold.net>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210928171231.12766-1-stephan@gerhold.net>
-References: <20210928171231.12766-1-stephan@gerhold.net>
+        id S242050AbhI1RYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 13:24:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56118 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241995AbhI1RYF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 13:24:05 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A36BD610E6;
+        Tue, 28 Sep 2021 17:22:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632849744;
+        bh=p1omdo8J0LTck4weGVlceL1bR9p0Zh2+XitDJiT9QIA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=W7e95aYScYjgBzh8nhBa4jglUt8uT5Zyk76gaF3/yQ2D7s4KfcgYaBrWJ08Di0zNM
+         xIPk5nMpNO+l1I1rJqvfXavCgeKI7pZrYDKcn+K0Ow7yydL6PVo1D8LU08ZUUPbyxT
+         z7LNpN16o03DwF5wNkf3JK4/9fSa7zr+c3P6s0CDlnAQC5qjSgztQiGpOCd+WCvH21
+         VF4/BDYQyzA47h0+zDtfcSpIY+jqbzTXXk0BQxdX0asWQs52o6ouIMuci+2HyvAhz3
+         RIcZz/mcKPFNrolrlRy4bkjyW/8JltpIC8U9AFRaxCfWhP+KMJYgTin09XgLGOhJ22
+         rc0zGUJIMW/4w==
+Received: by mail-ed1-f43.google.com with SMTP id bd28so24496787edb.9;
+        Tue, 28 Sep 2021 10:22:24 -0700 (PDT)
+X-Gm-Message-State: AOAM531lVz1zLn3+S1vuaykDvjFw5yfS3el2+sSdxGlaGyD9f4bkZrby
+        Ww2GJcmbDnLZITTyI4tq8eDPDWXixwAZ3h1Sdw==
+X-Google-Smtp-Source: ABdhPJyYj6eZo+4rVJU4CYW255+Mc68GtlF90gxDfm5SHY/AXdUWRENNY4sqvr/w1Y6jnQWE59TZVZjjORVMXH70how=
+X-Received: by 2002:a17:906:a294:: with SMTP id i20mr8026916ejz.128.1632849740003;
+ Tue, 28 Sep 2021 10:22:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210927064119.127285-1-gshan@redhat.com> <20210927064119.127285-3-gshan@redhat.com>
+ <CAL_JsqL8+_Q690-c3J4TS6LBF-mCUBxbhTfr994=Fwffqab0_w@mail.gmail.com> <c101363f-1de7-1d56-a8d9-243f003b48c1@redhat.com>
+In-Reply-To: <c101363f-1de7-1d56-a8d9-243f003b48c1@redhat.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 28 Sep 2021 12:22:08 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJtckde=Ngfhr7u3f_xsccavo+4Pt-v9o_nGHTX+wD91w@mail.gmail.com>
+Message-ID: <CAL_JsqJtckde=Ngfhr7u3f_xsccavo+4Pt-v9o_nGHTX+wD91w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of, numa: Fetch empty NUMA node ID from distance map
+To:     Gavin Shan <gshan@redhat.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>, Marc Zyngier <maz@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, shan.gavin@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After adding all necessary support for MSM8916 SMP/cpuidle without PSCI
-on ARM32, build the Samsung Galaxy S4 Mini VE device tree from the arm64
-tree together with the ARM32 include to allow booting this device on ARM32.
+On Mon, Sep 27, 2021 at 6:59 PM Gavin Shan <gshan@redhat.com> wrote:
+>
+> Hi Rob,
+>
+> On 9/28/21 12:49 AM, Rob Herring wrote:
+> > On Mon, Sep 27, 2021 at 1:42 AM Gavin Shan <gshan@redhat.com> wrote:
+> >>
+> >> There is no device node for the empty NUMA node. However, the
+> >> corresponding NUMA node ID and distance map is still valid in
+> >> "numa-distance-map-v1" compatible device node.
+> >>
+> >> This fetches the NUMA node ID and distance map for these empty
+> >> NUMA node from "numa-distance-map-v1" compatible device node.
+> >
+> > This is much nicer.
+> >
+>
+> Indeed, thanks for your suggestions :)
+>
+> >> Signed-off-by: Gavin Shan <gshan@redhat.com>
+> >> ---
+> >>   drivers/of/of_numa.c | 2 ++
+> >>   1 file changed, 2 insertions(+)
+> >>
+> >> diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
+> >> index fe6b13608e51..5949829a1b00 100644
+> >> --- a/drivers/of/of_numa.c
+> >> +++ b/drivers/of/of_numa.c
+> >> @@ -111,6 +111,8 @@ static int __init of_numa_parse_distance_map_v1(struct device_node *map)
+> >>                          return -EINVAL;
+> >>                  }
+> >>
+> >> +               node_set(nodea, numa_nodes_parsed);
+> >> +
+> >
+> > With this, couldn't we remove of_numa_parse_cpu_nodes() as the only
+> > thing it does is node_set()?
+> >
+>
+> I don't think so for couple of reasons:
+>
+> (1) With problematic device-tree, the distance map node might be missed
+>      or incomplete. In this case, of_numa_parse_cpu_nodes() still helps.
 
-The approach to include device tree files from other architectures is
-inspired from e.g. the Raspberry Pi (bcm2711-rpi-4-b.dts) where this is
-used to build the device tree for both ARM32 and ARM64.
+It's not the kernel's job to validate the DT (if it was, it is doing a
+terrible job). I would suggest writing some checks for dtc if we're
+worried about correctness. (The schemas don't work too well for cross
+node checks.)
 
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
-I'm not sure what's the best way to apply this patch...
-It might be easiest to apply the two ARM32 dts patches to the arm64 branch.
-(It does not seem to cause any conflicts at the moment...)
----
- arch/arm/boot/dts/Makefile                           | 1 +
- arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dts | 3 +++
- 2 files changed, 4 insertions(+)
- create mode 100644 arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dts
+> (2) @numa_nodes_parsed is also updated when the memory nodes are iterated
+>      in of_numa_parse_memory_nodes() and numa_add_memblk().
+>
+> So @numa_nodes_parsed, which is synchronized to @node_possible_map afterwards,
+> is the gathering output of CPU nodes, memory nodes and distance map node.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 8cb859728bd9..0a53bbd9d7b1 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -960,6 +960,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-ipq8064-rb3011.dtb \
- 	qcom-msm8226-samsung-s3ve3g.dtb \
- 	qcom-msm8660-surf.dtb \
-+	qcom-msm8916-samsung-serranove.dtb \
- 	qcom-msm8960-cdp.dtb \
- 	qcom-msm8974-fairphone-fp2.dtb \
- 	qcom-msm8974-lge-nexus5-hammerhead.dtb \
-diff --git a/arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dts b/arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dts
-new file mode 100644
-index 000000000000..dee2c20af355
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dts
-@@ -0,0 +1,3 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+#include "arm64/qcom/msm8916-samsung-serranove.dts"
-+#include "qcom-msm8916-smp.dtsi"
--- 
-2.33.0
+Is it valid to have node id's that are not in the distance map?
 
+Rob
