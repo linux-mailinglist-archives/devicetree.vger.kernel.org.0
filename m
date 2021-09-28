@@ -2,157 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A3B41B0F6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5307541B12D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:51:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241019AbhI1Ni1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 09:38:27 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:27295 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241248AbhI1NiX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 09:38:23 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1632836204; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=RXIq/K2ohsUwqQm35SM1S19TmqC+YjwzpoMV/xptKiU=;
- b=OP57Tb0tLNzJsmvUF1KTU2owrW7Wuq9lfJN9+mujcOpdeNRgGAoEts0kqTko+Zs5ElcL4hLm
- OskhQe2tDXtS0sOiXC5w4+fJmYVaSvsYgxCMYuo9YD+IcW/VKzmnKPKi06xjlHIrvNNW/6zD
- P84PA4h9aLmR0JZx6UjLpJjrCZo=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 61531a6b9ffb4131497e37ba (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 28 Sep 2021 13:36:43
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A0C30C447A3; Tue, 28 Sep 2021 13:36:42 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BFACEC4338F;
-        Tue, 28 Sep 2021 13:36:41 +0000 (UTC)
+        id S240979AbhI1NxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 09:53:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43420 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241074AbhI1NxC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:53:02 -0400
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB05C061740
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 06:51:22 -0700 (PDT)
+Received: by mail-io1-xd2f.google.com with SMTP id y197so27360125iof.11
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 06:51:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=HKmUBYKkmxLc/TQFOxL2iefPA5qDNLeHYL0ZcbBCnHI=;
+        b=VNK2hdE2jrCYnyHrG9BpLIY/htLAFvMK0KpQCIn4GK1RDUUkZarMnoDUOKF5IJnYcm
+         aBoWw3PR+N8sbt9tiT/kW9JPBKvbrT+h6373qJuuiTnArwQSKjPzLl1NtS93KBpdINB5
+         LraiAbT2w+Nu4aNhpMEF+aQiX6VK+1ub1BpWIkMasMUjXC6p+8M5kZzYdSZKl0Sw+0oV
+         sUoHgYMvAbg5ORmBGb+QUbs3wBzzFAM5y2PRAPsh1to24UOV67FCS08ey+IBNW8nepEk
+         CFSVnWek5HZlXQvnbjNTtWLK0PiT168HxroTmj/LkoVGSYE8bDvTT5Icdwng6GGJLshR
+         wkOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=HKmUBYKkmxLc/TQFOxL2iefPA5qDNLeHYL0ZcbBCnHI=;
+        b=VhbMVbay0RAqySUG7eA0YRAQrzLDpkmBkQgudhuwBz6gl3mU4Immv4TzhsX8YccLbb
+         XzPjoRMxI6SGcO4nraVvrU+6lorvGB+owKYKVJ984iYZzuZ2cb6YKM1wo8cb4tJrEZeN
+         IdgL2ckyWdiIF8Qt3OuL9ZDhn+E8AATmNWU2OjAY9is/jBtIe/4YYX/idIwB3jGZdqzL
+         57iGxZLn+M+fcFpxFM0QGE2LCGEUhH7k2PX5dzytyW0p74J+2U9VDJfhqXL6rcBz5tns
+         +HTUIgrH1/g4ZXTMbHJ0qT6PyaG4VpIp/UlqAzY/rvPM0bVJeJkD85D0F2/B0dxRyQ9Q
+         eGiw==
+X-Gm-Message-State: AOAM532mBJMriz8VZrcWAkEldKENSD6RTY5M0u7VGqP4IghNxHnzSBYe
+        JUn9aGtCSDAU1ANw7IiHpZ17AP5l2Evlucf4CM0=
+X-Google-Smtp-Source: ABdhPJyMWxmy2toIr0XGIVOJjr+r9i0vi5iIx/1P7J83e0rQJlG7g0K16Bc6AikwYsnEG+tlAbzPNaNq6bsu7QwCqIc=
+X-Received: by 2002:a02:7f4a:: with SMTP id r71mr4700939jac.132.1632837082177;
+ Tue, 28 Sep 2021 06:51:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 28 Sep 2021 19:06:41 +0530
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     agross@kernel.org, bhelgaas@google.com, bjorn.andersson@linaro.org,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
-        manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v8 3/4] arm64: dts: qcom: sc7280: Add PCIe nodes for IDP
- board
-In-Reply-To: <CAE-0n53N-7wGgGmqep6ZTAt14dYObq43cTak_BWAjy6XS0Gnig@mail.gmail.com>
-References: <1631898947-27433-1-git-send-email-pmaliset@codeaurora.org>
- <1631898947-27433-4-git-send-email-pmaliset@codeaurora.org>
- <CAE-0n53N-7wGgGmqep6ZTAt14dYObq43cTak_BWAjy6XS0Gnig@mail.gmail.com>
-Message-ID: <5677240b6391d3e9a2d9a629505b9bf6@codeaurora.org>
-X-Sender: pmaliset@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Sender: chidiebereemetu@gmail.com
+Received: by 2002:a02:9643:0:0:0:0:0 with HTTP; Tue, 28 Sep 2021 06:51:21
+ -0700 (PDT)
+From:   Mrs Aisha Al-Qaddafi <mrsaishag6555@gmail.com>
+Date:   Tue, 28 Sep 2021 06:51:21 -0700
+X-Google-Sender-Auth: HH2-aqFNES2MkvrmTPoYqu5ZiDA
+Message-ID: <CAM3QqqeKSQfkRhJM_HaOMdFHO6xEtcx2-cWirkm_gBQkEP=RMQ@mail.gmail.com>
+Subject: hello dear
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-09-21 01:21, Stephen Boyd wrote:
-> Quoting Prasad Malisetty (2021-09-17 10:15:46)
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> index 99f9ee5..ee00df0 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> @@ -199,6 +199,39 @@
->>         modem-init;
->>  };
->> 
->> +&pcie1 {
->> +       status = "okay";
->> +
->> +       perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
->> +       pinctrl-0 = <&pcie1_default_state &nvme_ldo_enable_pin>;
->> +};
->> +
->> +&pcie1_phy {
->> +       status = "okay";
->> +
->> +       vdda-phy-supply = <&vreg_l10c_0p8>;
->> +       vdda-pll-supply = <&vreg_l6b_1p2>;
->> +};
->> +
->> +&pcie1_default_state {
->> +       reset-n {
->> +               pins = "gpio2";
->> +               function = "gpio";
->> +
->> +               drive-strength = <16>;
->> +               output-low;
->> +               bias-disable;
->> +       };
->> +
->> +       wake-n {
->> +               pins = "gpio3";
->> +               function = "gpio";
->> +
->> +               drive-strength = <2>;
->> +               bias-pull-up;
->> +       };
-> 
-> I think the previous round of this series Bjorn was saying that these
-> should be different nodes and tacked onto the pinctrl-0 list for the
-> pcie1 device instead of adding them as subnodes of the "default state".
-> 
+Hello Dear ,
+Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh
+I came across your e-mail contact prior a private search while in need
+of your assistance. I am Aisha Al-Qaddafi, the only biological
+Daughter of Former President of Libya Col. Muammar Al-Qaddafi. Am a
+single Mother and a Widow with three Children.
 
-Hi Stephen,
+I have investment funds worth Twenty Seven Million Five Hundred
+Thousand United State Dollar ($27.500.000.00 ) and i need a trusted
+investment Manager/Partner because of my current refugee status,
+however, I am interested in you for investment project assistance in
+your country, may be from there, we can build business relationship in
+the nearest future.
 
-Here NVMe gpio entry is endpoint related where as wake-n and reset-n are 
-PCIe controller gpio's. I think Bjorn was saying keep endpoint related 
-gpio (NVMe) in separate state entry in pinctrl-0 list.
+I am willing to negotiate investment/business profit sharing ratio
+with you base on the future investment earning profits.
+If you are willing to handle this project on my behalf kindly reply
+urgent to enable me provide you more information about the investment
+funds.
 
-Thanks
--Prasad.
-
->> +};
->> +
->>  &pmk8350_vadc {
->>         pmk8350_die_temp {
->>                 reg = <PMK8350_ADC7_DIE_TEMP>;
->> @@ -343,3 +376,10 @@
->>                 bias-pull-up;
->>         };
->>  };
->> +
->> +&tlmm {
->> +       nvme_ldo_enable_pin: nvme_ldo_enable_pin {
-> 
-> Please use dashes where you use underscores in node names
-> 
->        nvme_ldo_enable_pin: nvme-ldo-enable-pin {
-> 
->> +               function = "gpio";
->> +               bias-pull-up;
-> 
-> Of course with that said, the name of this node makes it sound like 
-> this
-> is a gpio controlled regulator. Why not use that binding then and 
-> enable
-> the regulator either by default with regulator properties like
-> regulator-always-on and regulator-boot-enable and/or reference it from
-> the pcie device somehow so that it can be turned off during suspend?
-> 
-Agree, I will add in next patch series.
-
->> +       };
->> +};
+Your Urgent Reply Will Be Appreciated
+Best Regards
+Mrs Aisha Al-Qaddafi
