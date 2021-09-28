@@ -2,184 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB7D641ABF7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 11:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67C3941ABFA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 11:34:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239769AbhI1JfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 05:35:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38394 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239724AbhI1JfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 05:35:01 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5B3CC061575
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 02:33:21 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id t8so56977035wri.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 02:33:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=UFWLjB0W2jsMi2ZnH6ymwZl3bjSBnAe186vh+OeB0WU=;
-        b=vVUBSuUmwZNQZQMQuWoFG0MCX8iygaH4nDSZ3bBuoSYm1eryM+fPHk3LPc3yJRifM6
-         cnhmlP4XWb1o1y0ABTaQxGumsQqdxeUefWzlLCMhGcOQG1JLgPKoEBOqZpOMZIWdWgLt
-         9jpiUMtY8jt4fXiH9uEf/9wkkBv3f9LzszdJL6HAhhrbJcm3yWP/Dd+PkK/Bl9qOqaSt
-         zkFrKOcNJQ5GW+GMx/MgteKtzTIagHxmlCOhAexpCjBo2y3vXaVR5idqUxLwr+lfrgIx
-         mWpYq5iRY9ptJd7TqHnRL6h1LxOvJknBqfhj1tTSQmfoS1SmYS/YrmTcUbYIa10pGKah
-         gB7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UFWLjB0W2jsMi2ZnH6ymwZl3bjSBnAe186vh+OeB0WU=;
-        b=jWfdgnODlv6EFy4LUjfIRSR2NTRdHojuH5Z+AfhAR2gsBSg/DsQee4e3CcVX4FCijE
-         0Se9QbASS48qeUDsZ7xrHeQxsgihuJEl2KfxJl0bebo6YnwWBEDYvmU00ijlQY5KG7CK
-         2ZqUsKDcCdzqxV30dORX+H+jqcOPBOs9zwsHQVKRvrbGyLx92JuqVa7EYXnIV+C4gtMZ
-         01gvqYZByVhIBtLsARkiOgIkPHA+6XnbIZ4iUwRDrrg3mjtouc05DxkcitzC76NI78Ei
-         B+eXrUcrcdGsGX38U2ICuiYy2BE4Qz9O76Mgaqmhmd9c2f4VJa2HBm434mgqi5oXLIj+
-         7TWA==
-X-Gm-Message-State: AOAM532ApzsbcondQ1uzhk4WU2FDMmPkUPFjNvBolYuE3yAdN40ipg4/
-        CU8WmAuk0DOyBWSMEYO2cRwrhQ==
-X-Google-Smtp-Source: ABdhPJyv/THNOKdhlB1LmnC9UxX4hlZiTSiUuFLuzeCFWMaqw7PSUijQmKwiWgKSY9IOP4ZWuehsXw==
-X-Received: by 2002:a5d:6c67:: with SMTP id r7mr5202503wrz.29.1632821600565;
-        Tue, 28 Sep 2021 02:33:20 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id w14sm18892145wro.8.2021.09.28.02.33.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Sep 2021 02:33:20 -0700 (PDT)
-Subject: Re: [PATCH v8 19/22] ASoC: qdsp6: audioreach: add q6apm-dai support
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
- <20210927135559.738-20-srinivas.kandagatla@linaro.org>
- <20605122-e6b4-1b5f-003a-96a74306f984@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <c12ac2f5-bc53-ac0c-6ed0-f748a62015ac@linaro.org>
-Date:   Tue, 28 Sep 2021 10:33:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20605122-e6b4-1b5f-003a-96a74306f984@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S239832AbhI1JgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 05:36:11 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:15561 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239724AbhI1JgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 05:36:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632821663;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=p7neOckUGIWhTkuByC2fKtTN9WxFIHR4euOV8huQSmo=;
+    b=bYNMzj18HJaqxWA/saFk7BWwrm0PqFh4Vp4GmrSZIGSGWkrdZCwztrEWnrLuboepbg
+    lvgQOkJUj/UO7P5zVsxss5DyiRW+QGu+AyNkp4H/euY3+miTwh4T/TTJeQiILsbFMnOr
+    ofC5An/1vNVYgPEPxgsG0RW++JSCSLEYgUfi7LlBfq2dWvnk7wqs+h1l+O1+oBK8HuvY
+    Iyk8gYi/YF7xDckmxCA96gysdiUA4SMXgbG6oiBD/sUYLsxU3WlexQqG8cA7fbCf5uhi
+    kTpFmXuVYj/i2nOuvZNWghhai5jFAdOwa45z40ihlk3M2p7XIcrZkBqgQsj78n3f0iJ6
+    w/pw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43sT7Q="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
+    with ESMTPSA id I01f74x8S9YMdLm
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Tue, 28 Sep 2021 11:34:22 +0200 (CEST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v4 03/10] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
+ DT Schema
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20210928091807.xgqxemjizlobpcxy@gilmour>
+Date:   Tue, 28 Sep 2021 11:34:22 +0200
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <A17F7F48-5A3E-4F23-8C40-156275F5AEEE@goldelico.com>
+References: <cover.1632761067.git.hns@goldelico.com>
+ <6c8b72a03703de54fa02b29c1a53c84ca0889e50.1632761067.git.hns@goldelico.com>
+ <20210927170702.on243lp24fcfdhbj@gilmour>
+ <C529DB99-709A-4C24-B647-3A2004CBFE18@goldelico.com>
+ <20210928091807.xgqxemjizlobpcxy@gilmour>
+To:     Maxime Ripard <maxime@cerno.tech>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 27/09/2021 17:25, Pierre-Louis Bossart wrote:
-> 
->> +static int q6apm_dai_prepare(struct snd_soc_component *component,
->> +			     struct snd_pcm_substream *substream)
->> +{
->> +	struct snd_pcm_runtime *runtime = substream->runtime;
->> +	struct q6apm_dai_rtd *prtd = runtime->private_data;
->> +	struct audioreach_module_config cfg;
->> +	struct device *dev = component->dev;
->> +	struct q6apm_dai_data *pdata;
->> +	int ret;
->> +
->> +	pdata = snd_soc_component_get_drvdata(component);
->> +	if (!pdata)
->> +		return -EINVAL;
->> +
->> +	if (!prtd || !prtd->graph) {
->> +		dev_err(dev, "%s: private data null or audio client freed\n", __func__);
->> +		return -EINVAL;
->> +	}
->> +
->> +	cfg.direction = substream->stream;
->> +	cfg.sample_rate = runtime->rate;
->> +	cfg.num_channels = runtime->channels;
->> +	cfg.bit_width = prtd->bits_per_sample;
->> +
->> +	prtd->pcm_count = snd_pcm_lib_period_bytes(substream);
->> +	prtd->pos = 0;
->> +	/* rate and channels are sent to audio driver */
->> +	ret = q6apm_graph_media_format_shmem(prtd->graph, &cfg);
->> +	if (ret < 0) {
->> +		dev_err(dev, "%s: q6apm_open_write failed\n", __func__);
->> +		return ret;
->> +	}
->> +
->> +	ret = q6apm_graph_media_format_pcm(prtd->graph, &cfg);
->> +	if (ret < 0)
->> +		dev_err(dev, "%s: CMD Format block failed\n", __func__);
->> +
->> +	ret = q6apm_map_memory_regions(prtd->graph, substream->stream, prtd->phys,
->> +				       (prtd->pcm_size / prtd->periods), prtd->periods);
->> +
->> +	if (ret < 0) {
->> +		dev_err(dev, "Audio Start: Buffer Allocation failed rc = %d\n",	ret);
->> +		return -ENOMEM;
->> +	}
->> +
->> +	ret = q6apm_graph_prepare(prtd->graph);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to prepare Graph %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = q6apm_graph_start(prtd->graph);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to Start Graph %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE) {
->> +		int i;
->> +		/* Queue the buffers for Capture ONLY after graph is started */
->> +		for (i = 0; i < runtime->periods; i++)
->> +			q6apm_read(prtd->graph);
->> +
->> +	}
->> +
->> +	prtd->state = Q6APM_STREAM_RUNNING;
-> 
-> you should probably explain why a stream moves to the 'RUNNING' state in
-> a .prepare() callback, instead of TRIGGER_START?
+> Am 28.09.2021 um 11:18 schrieb Maxime Ripard <maxime@cerno.tech>:
+>=20
+> On Tue, Sep 28, 2021 at 10:59:45AM +0200, H. Nikolaus Schaller wrote:
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    items:
+>>>> +      - const: ingenic,jz4780-dw-hdmi
+>>>=20
+>>> This can just be a const, there's no need for the items
+>>=20
+>> Maybe starting with an enum is better if more compatible strings are =
+to be added.
+>=20
+> it's still fairly easy to change if needed, there's no need to confuse
+> anyone.
+>=20
+>>>=20
+>>>> +  reg-io-width:
+>>>> +    const: 4
+>>>=20
+>>> If it's fixed, why do you need it in the first place?
+>>=20
+>> There is a fixed default of 1 if not specified.
+>=20
+> My point was more about why do you need to have that property at all?
+> Can't you just drop it and assume that the register width is 32 bits =
+if
+> it's all you will ever run on?
 
-Sure, will add a comment,
+No, please see bridge/synopsys,dw-hdmi.yaml where it is derived from:
 
---srini
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static int q6apm_dai_trigger(struct snd_soc_component *component,
->> +			     struct snd_pcm_substream *substream, int cmd)
->> +{
->> +	struct snd_pcm_runtime *runtime = substream->runtime;
->> +	struct q6apm_dai_rtd *prtd = runtime->private_data;
->> +	int ret = 0;
->> +
->> +	switch (cmd) {
->> +	case SNDRV_PCM_TRIGGER_START:
->> +	case SNDRV_PCM_TRIGGER_RESUME:
->> +	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
->> +		 /* start writing buffers for playback only as we already queued capture buffers */
->> +		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
->> +			ret = q6apm_write_async(prtd->graph, prtd->pcm_count, 0, 0, 0);
->> +		break;
->> +	case SNDRV_PCM_TRIGGER_STOP:
->> +		/* TODO support be handled via SoftPause Module */
->> +		prtd->state = Q6APM_STREAM_STOPPED;
->> +		break;
->> +	case SNDRV_PCM_TRIGGER_SUSPEND:
->> +	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
->> +		break;
->> +	default:
->> +		ret = -EINVAL;
->> +		break;
->> +	}
->> +
->> +	return ret;
->> +}
-> 
+  reg-io-width:
+    description:
+      Width (in bytes) of the registers specified by the reg property.
+    allOf:
+      - $ref: /schemas/types.yaml#/definitions/uint32
+      - enum: [1, 4]
+    default: 1
+
+Other bindings define it explicitly to be 4, e.g.
+
+Documentation//devicetree/bindings/display/intel,keembay-msscam.yaml:  =
+reg-io-width:
+=
+Documentation//devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml:=
+  reg-io-width:
+
+Therefore I'd assume that a regmap is not properly set up
+if we don't require the DTS to include it with const: 4.
+
+>=20
+>>>> +  clocks:
+>>>> +    maxItems: 2
+>>>> +    description: Clock specifiers for isrf and iahb clocks
+>>>=20
+>>> This can be defined as
+>>>=20
+>>> clocks:
+>>> items:
+>>>   - description: isrf
+>>>   - description: iahb
+>>>=20
+>>> A better description about what these clocks are would be nice as =
+well
+>>=20
+>> Generally I see that this all is nowadays not independent of
+>>=20
+>> =
+Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+>>=20
+>> where there is already a description.
+>=20
+> Ok, good then
+>=20
+>> On the other hand every SoC specialization runs its own copy. e.g.
+>>=20
+>> Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
+>> =
+Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yam
+>>=20
+>>>=20
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: isfr
+>>>=20
+>>> Is it isfr or isrf?
+>>=20
+>> isfr. Seems to be a typo in the description. See
+>> bridge/synopsys,dw-hdmi.yaml#
+>>=20
+>> One question to the yaml specialists:
+>>=20
+>> since ../bridge/synopsys,dw-hdmi.yaml# already defines this, do we
+>> have to repeat? Or can we reduce to just the changes?
+>=20
+> If you add the ref you mentionned above, you don't have to repeat
+
+Nice. It defines:
+
+  clocks:
+    minItems: 2
+    maxItems: 5
+    items:
+      - description: The bus clock for either AHB and APB
+      - description: The internal register configuration clock
+    additionalItems: true
+
+> yourself indeed. You can just put clock-names: true
+
+Or should we do
+
+  clocks:
+    maxItems: 2
+    additionalItems: false
+
+>=20
+>> [I am still not familiar enough with the yaml stuff to understand if
+>> it has sort of inheritance like device tree include files, so that =
+you
+>> just have to change relevant properties]
+>=20
+> Kind of, but not entirely. schemas are all applied separately, unlike =
+DT
+> includes that will just expand to one big DT. In practice, it means =
+that
+> your device must validate against all the schemas, not just the sum of
+> them.
+>=20
+> For example, if you have a generic schema that has:
+>=20
+> properties:
+>  compatible:
+>    const: vendor,my-generic-compatible
+>=20
+>=20
+> and your schema that extends the generic binding, with a ref to the
+> generic one that has:
+>=20
+> properties:
+>  compatible:
+>    items:
+>      - const: other-vendor,my-device-compatible
+>      - const: vendor,my-generic-compatible
+>=20
+>=20
+> It will still fail since the generic schema expects only a single
+> compatible, whereas your device would have two.
+
+Ok, I see. it is not a simple "overwrite" rule.
+
+>=20
+>>>=20
+>>>> +      - const: iahb
+>>=20
+>> would it make sense to add additionalItems: false here?
+>>=20
+>> In the jz4780 case there are just two clocks while other =
+specializations
+>> use more and synopsys,dw-hdmi.yaml# defines additionalItems: true.
+>=20
+> If you want to refine the generic one, and it's all the clocks you =
+ever
+> expect then there's no need for additionalItems
+
+Ok.
+
+>=20
+>>>=20
+>>>> +    description: An I2C interface if the internal DDC I2C driver =
+is not to be used
+>>>> +  ports: true
+>>>=20
+>>> If there's a single port, you don't need ports
+>>=20
+>> There can be two ports - one for input from LCDC and one
+>> for output (HDMI connector). But explicitly defining an output
+>> port is optional to some extent (depending on driver structure).
+>=20
+> This needs to be defined then (and port@0 made mandatory)
+
+Ok. I'll try to make the best out of it for v5 series. Maybe
+it is still not perfect by then, but close...
+
+>=20
+> Maxime
+
+BR and thanks,
+Nikolaus
+
