@@ -2,245 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3981941AC9C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 12:06:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05B5D41ACA5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 12:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240095AbhI1KIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 06:08:18 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.171]:29697 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240063AbhI1KIR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 06:08:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632823591;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=DyJsQy6DBgEboRxYZDiRbGkfeA7thSMpO532KcupjQE=;
-    b=ajexmnBSbqidqvIr0mE4XgsuXEE30n2YlrUmM1vqtlXyOPNQGjfb+Wdkg3y6h4jWol
-    lDv7uxlRFc6R3+QYUTrI4q699N+JW1mkJff3BRqR5sJJ/UmCD9E7paGxkN4CxxWhHmwv
-    DzbMaVIlKSTMvzneDXhyA9c0rXkAeKGnBymrzDA56P4RPdUGtNvmJyV//QPb9bqo6FK6
-    tVBDeLmHHa+NnCGujT5JQDhuGTAPDF6MizjsF4EyLOJ9PMnpNNWJUxndKtJJdHWGhiXj
-    jtghRe/AFwjZMcUKOky1d6Igdldt6RlgmAHYZfio6Drz0QaQUX8xk7a7CgELkEuTIuhZ
-    dRHQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43sT7Q="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id I01f74x8SA6TdXv
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Tue, 28 Sep 2021 12:06:29 +0200 (CEST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v4 10/10] drm/ingenic: add some jz4780 specific features
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <AE250R.2UXAKOURL8O52@crapouillou.net>
-Date:   Tue, 28 Sep 2021 12:06:28 +0200
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <E40D4D33-536F-4218-BEDD-C64539F15D40@goldelico.com>
-References: <cover.1632761067.git.hns@goldelico.com>
- <8cbfba68ce45e10106eb322d622cb7ac64c0e4d4.1632761068.git.hns@goldelico.com>
- <AE250R.2UXAKOURL8O52@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S240117AbhI1KMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 06:12:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47208 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240056AbhI1KMP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 06:12:15 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D770C061575
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 03:10:36 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id u18so57089740wrg.5
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 03:10:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=VRYyjAJqzt+oGd/XIZ5uVDcZC/sKLm2kGO/Eia5PR48=;
+        b=CY+3n/OoUgJ33VHpMXzl38AWXNiKoEOa6EbAeHPbPKGTdKHJ6sz9MajJRffs3mAHV+
+         jFJv79HSJrF1BR4M78ECqWsT/h98n9SxGGQbdxSts7ENFy1MUVXa84jPbYW4ju6hcgfg
+         IkCJHNH+Iz3TXVzIxlobhrNy16mRxiYgiKDtex1rPkWZyNd1SF0pyV2sBa33auOsgLfk
+         DuAP+Ie0DR7qthOh1WmdNU/DSQl0f3/zd1CBhpupRPYj5cYfy1XqUOFwPLjBHXe0qzrR
+         36NgS/xo3vGI5bnx3xIxnsxqUrZ50PeS3JVnSf+koXbu61JWFeLEtqgYOsnD9iYgjr+0
+         ms0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=VRYyjAJqzt+oGd/XIZ5uVDcZC/sKLm2kGO/Eia5PR48=;
+        b=L8p2BqJcnZ3qdiIbcHI0nNfIT0i3gfjyEqOOEJXipyFZXVRufXBvw6xRgsYxJWx5nd
+         24uZhdSff2byfD0BlHj3gDSfg3+xxHOSuqR7HNT932Q3zmsVJl1l/VclKi9KSwOBwHX4
+         lbAcMRydmzH4oFYquQD5yAAjgFzadtEL+rc6WfMBJcGlmF378R8U17BPyKbeT6JYtYL6
+         zPAn+epRwQdhiwaQif5bGT5Q6X3vqWOYBvn0k8cgvPVFyCrS1EBGdlAkZJ8IJcZdxNLc
+         zPgeuucUMwcvXrdHk/enkckxsJMqy5iZSgBAJ9tW57rjeXoTZgBXe84p3jUdgXCiK4yM
+         6Dww==
+X-Gm-Message-State: AOAM531oIsfddAYIhu2a7tVsx/vGv5RSE61c4puR6iQu+rTbDXPx/0jK
+        Fo/PGyGNvdTMoheLD8NeHk1pwFBnZOTy2A==
+X-Google-Smtp-Source: ABdhPJz/u8z6imIBMwGvamngpy6HMxJyniXUvL/1f3PWBZNUlRmeNIQhJH5pU11SAugxMcVvjzTpxA==
+X-Received: by 2002:adf:ee4d:: with SMTP id w13mr5088754wro.223.1632823834677;
+        Tue, 28 Sep 2021 03:10:34 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id o5sm7932803wrf.85.2021.09.28.03.10.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Sep 2021 03:10:34 -0700 (PDT)
+Subject: Re: [PATCH v8 14/22] ASoC: qdsp6: audioreach: add basic pkt alloc
+ support
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+References: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
+ <20210927135559.738-15-srinivas.kandagatla@linaro.org>
+ <ebfe1e31-778d-852a-20bf-ac8fe860dcc2@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <d96a7337-c594-c64a-46f9-73d7d6ad77b7@linaro.org>
+Date:   Tue, 28 Sep 2021 11:10:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <ebfe1e31-778d-852a-20bf-ac8fe860dcc2@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
 
-> Am 28.09.2021 um 11:58 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
-> Hi,
->=20
-> Le lun., sept. 27 2021 at 18:44:28 +0200, H. Nikolaus Schaller =
-<hns@goldelico.com> a =C3=A9crit :
->> From: Paul Boddie <paul@boddie.org.uk>
->> The jz4780 has some features which need initialization
->> according to the vendor kernel.
->> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> ---
->> drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 39 =
-+++++++++++++++++++++++
->> 1 file changed, 39 insertions(+)
->> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c =
-b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
->> index e2df4b085905..605549b316b5 100644
->> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
->> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
->> @@ -66,6 +66,10 @@ struct jz_soc_info {
->> 	bool needs_dev_clk;
->> 	bool has_osd;
->> 	bool map_noncoherent;
->> +	bool has_alpha;
->> +	bool has_pcfg;
->> +	bool has_recover;
->> +	bool has_rgbc;
->> 	bool use_extended_hwdesc;
->> 	unsigned int max_width, max_height;
->> 	const u32 *formats_f0, *formats_f1;
->> @@ -732,6 +736,9 @@ static void =
-ingenic_drm_encoder_atomic_mode_set(struct drm_encoder *encoder,
->> 		    | JZ_LCD_CFG_SPL_DISABLE | JZ_LCD_CFG_REV_DISABLE;
->> 	}
->> +	if (priv->soc_info->has_recover)
->> +		cfg |=3D JZ_LCD_CFG_RECOVER_FIFO_UNDERRUN;
->=20
-> Did you actually test this? I know that in theory it sounds like =
-something we'd want, but unless there is a proven use for it, it's =
-better to keep it disabled.
->=20
+
+On 27/09/2021 17:08, Pierre-Louis Bossart wrote:
+> 
+> 
+>> +struct apm_sub_graph_params  {
+>> +	struct apm_module_param_data param_data;
+>> +	uint32_t num_sub_graphs;
+>> +	struct apm_sub_graph_data sg_cfg[];
+>> +} __packed;
+> 
+> The style you use is num_foobar and later foobar[]
+> 
+>> +/* container config */
+>> +struct apm_container_obj  {
+>> +	struct apm_container_cfg container_cfg;
+>> +	/* Capability ID list */
+>> +	struct apm_prop_data cap_data;
+>> +	uint32_t num_capability_id;
+>> +	uint32_t capability_id;
+> 
+> but here you have both a num_capability_id and capability_id
+> 
+> It's not very clear what they mean, or if there is a dependency?
+
+DSP supports multiple capabilities for a container, however for now this 
+version of patches only support 1 capability for a container.
+
+I will add multiple capabilities once am in a position to test it.
+
+> 
+>> +	/* Container graph Position */
+>> +	struct apm_prop_data pos_data;
+>> +	struct apm_cont_prop_id_graph_pos pos;
 >> +
->> 	/* set use of the 8-word descriptor and OSD foreground usage. */
->> 	if (priv->soc_info->use_extended_hwdesc)
->> 		cfg |=3D JZ_LCD_CFG_DESCRIPTOR_8;
->> @@ -1321,6 +1328,25 @@ static int ingenic_drm_bind(struct device =
-*dev, bool has_components)
->> 	if (soc_info->has_osd)
->> 		regmap_set_bits(priv->map, JZ_REG_LCD_OSDC, =
-JZ_LCD_OSDC_OSDEN);
->> +	if (soc_info->has_alpha)
->> +		regmap_set_bits(priv->map, JZ_REG_LCD_OSDC, =
-JZ_LCD_OSDC_ALPHAEN);
->=20
-> I remember you saying that OSD mode was not yet working on the JZ4780. =
-So I can't see how you could have tested this.
-
-Basically this is all stuff from the vendor kernel under the assumption =
-that they know better than everyone of us.
-On the other hand this whole patch is sort of optional and we know that =
-the basic milestone to get HDMI working
-is reached without it. So if you prefer we can drop it for the moment in =
-v5 and leave it for further analysis later.
-
->=20
+>> +	/* Container Stack size */
+>> +	struct apm_prop_data stack_data;
+>> +	struct apm_cont_prop_id_stack_size stack;
 >> +
->> +	/* Magic values from the vendor kernel for the priority =
-thresholds. */
->> +	if (soc_info->has_pcfg)
->> +		regmap_write(priv->map, JZ_REG_LCD_PCFG,
->> +			     JZ_LCD_PCFG_PRI_MODE |
->> +			     JZ_LCD_PCFG_HP_BST_16 |
->> +			     (511 << JZ_LCD_PCFG_THRESHOLD2_OFFSET) |
->> +			     (400 << JZ_LCD_PCFG_THRESHOLD1_OFFSET) |
->> +			     (256 << JZ_LCD_PCFG_THRESHOLD0_OFFSET));
->=20
-> Unless you add a big comment that explains what these values do and =
-why we do want them, I don't want magic values in here. The fact that =
-the kernel vendor sets this doesn't mean it's needed and/or wanted.
-
-Well, who has a contact within Ingenic?
-
->=20
+>> +	/* Container proc domain id */
+>> +	struct apm_prop_data domain_data;
+>> +	struct apm_cont_prop_id_domain domain;
+>> +} __packed;
+> 
+>> +/* Module IDs */
+>> +#define MODULE_ID_WR_SHARED_MEM_EP	0x07001000
+>> +#define MODULE_ID_RD_SHARED_MEM_EP	0x07001001
+>> +#define MODULE_ID_GAIN			0x07001002
+>> +#define MODULE_ID_PCM_CNV		0x07001003
+>> +#define MODULE_ID_PCM_ENC		0x07001004
+>> +#define MODULE_ID_PCM_DEC		0x07001005
+>> +#define MODULE_ID_CODEC_DMA_SINK	0x07001023
+>> +#define MODULE_ID_CODEC_DMA_SOURCE	0x07001024
+>> +#define MODULE_ID_I2S_SINK		0x0700100A
+>> +#define MODULE_ID_I2S_SOURCE		0x0700100b
+>> +#define MODULE_ID_DATA_LOGGING		0x0700101A
 >> +
->> +	/* RGB output control may be superfluous. */
->> +	if (soc_info->has_rgbc)
->> +		regmap_write(priv->map, JZ_REG_LCD_RGBC,
->> +			     JZ_LCD_RGBC_RGB_FORMAT_ENABLE |
->> +			     JZ_LCD_RGBC_ODD_RGB |
->> +			     JZ_LCD_RGBC_EVEN_RGB);
->=20
-> ingenic-drm only supports RGB output right now, so I guess the =
-RGB_FORMAT_ENABLE bit needs to be set in patch [2/10], otherwise patch =
-[2/10] cannot state that it adds support for the JZ4780, if it doesn't =
-actually work.
->=20
-> The other two bits can be dropped, they are already set in =
-ingenic_drm_encoder_atomic_mode_set().
-
-Ok.
-
->=20
+>> +#define APM_CMD_GET_SPF_STATE		0x01001021
+>> +#define APM_CMD_RSP_GET_SPF_STATE	0x02001007
 >> +
->> 	mutex_init(&priv->clk_mutex);
->> 	priv->clock_nb.notifier_call =3D ingenic_drm_update_pixclk;
->> @@ -1484,6 +1510,9 @@ static const struct jz_soc_info jz4740_soc_info =
-=3D {
->> 	.needs_dev_clk =3D true,
->> 	.has_osd =3D false,
->> 	.map_noncoherent =3D false,
->> +	.has_pcfg =3D false,
->> +	.has_recover =3D false,
->> +	.has_rgbc =3D false,
->> 	.max_width =3D 800,
->> 	.max_height =3D 600,
->> 	.formats_f1 =3D jz4740_formats,
->> @@ -1496,6 +1525,9 @@ static const struct jz_soc_info =
-jz4725b_soc_info =3D {
->> 	.needs_dev_clk =3D false,
->> 	.has_osd =3D true,
->> 	.map_noncoherent =3D false,
->> +	.has_pcfg =3D false,
->> +	.has_recover =3D false,
->> +	.has_rgbc =3D false,
->=20
-> This is wrong, the JZ4725B and JZ4770 SoCs both have the RGBC register =
-and the RECOVER bit.
+>> +#define APM_MODULE_INSTANCE_ID		0x00000001
+>> +#define PRM_MODULE_INSTANCE_ID		0x00000002
+>> +#define AMDB_MODULE_INSTANCE_ID		0x00000003
+>> +#define VCPM_MODULE_INSTANCE_ID		0x00000004
+>> +#define AR_MODULE_INSTANCE_ID_START	0x00006000
+>> +#define AR_MODULE_INSTANCE_ID_END	0x00007000
+>> +#define AR_MODULE_DYNAMIC_INSTANCE_ID_START	0x00007000
+>> +#define AR_MODULE_DYNAMIC_INSTANCE_ID_END	0x00008000
+>> +#define AR_CONT_INSTANCE_ID_START	0x00005000
+>> +#define AR_CONT_INSTANCE_ID_END		0x00006000
+>> +#define AR_SG_INSTANCE_ID_START		0x00004000
+>> +
+>> +#define APM_CMD_GRAPH_OPEN			0x01001000
+>> +#define APM_CMD_GRAPH_PREPARE			0x01001001
+>> +#define APM_CMD_GRAPH_START			0x01001002
+>> +#define APM_CMD_GRAPH_STOP			0x01001003
+>> +#define APM_CMD_GRAPH_CLOSE			0x01001004
+>> +#define APM_CMD_GRAPH_FLUSH			0x01001005
+>> +#define APM_CMD_SET_CFG				0x01001006
+>> +#define APM_CMD_GET_CFG				0x01001007
+>> +#define APM_CMD_SHARED_MEM_MAP_REGIONS		0x0100100c
+>> +#define APM_CMD_SHARED_MEM_UNMAP_REGIONS	0x0100100d
+>> +#define APM_CMD_RSP_SHARED_MEM_MAP_REGIONS	0x02001001
+>> +#define APM_CMD_RSP_GET_CFG			0x02001000
+>> +#define APM_CMD_CLOSE_ALL			0x01001013
+>> +#define APM_CMD_REGISTER_SHARED_CFG		0x0100100A
+> 
+>> +/* APM module */
+>> +#define APM_PARAM_ID_SUB_GRAPH_LIST		0x08001005
+>> +
+>> +#define APM_PARAM_ID_MODULE_LIST		0x08001002
+> 
+>> +#define APM_PARAM_ID_MODULE_PROP		0x08001003
+> 
+> It seems like those definition follow a pattern, e.g. bits 28..32 a type
+> and bits 0..15 a token?
+Yes, it does have a pattern, each Opcode is divided in to 3 fields.
 
-Ok, good to know! Will change.
+GUID OWNER 31:28
+GUID Type 27:24
+MAIN GUID 23:0
 
-BR and thanks,
-Nikolaus
+--srini
 
->=20
-> Cheers,
-> -Paul
->=20
->> 	.max_width =3D 800,
->> 	.max_height =3D 600,
->> 	.formats_f1 =3D jz4725b_formats_f1,
->> @@ -1509,6 +1541,9 @@ static const struct jz_soc_info jz4770_soc_info =
-=3D {
->> 	.needs_dev_clk =3D false,
->> 	.has_osd =3D true,
->> 	.map_noncoherent =3D true,
->> +	.has_pcfg =3D false,
->> +	.has_recover =3D false,
->> +	.has_rgbc =3D false,
->> 	.max_width =3D 1280,
->> 	.max_height =3D 720,
->> 	.formats_f1 =3D jz4770_formats_f1,
->> @@ -1521,6 +1556,10 @@ static const struct jz_soc_info =
-jz4770_soc_info =3D {
->> static const struct jz_soc_info jz4780_soc_info =3D {
->> 	.needs_dev_clk =3D true,
->> 	.has_osd =3D true,
->> +	.has_alpha =3D true,
->> +	.has_pcfg =3D true,
->> +	.has_recover =3D true,
->> +	.has_rgbc =3D true,
->> 	.use_extended_hwdesc =3D true,
->> 	.max_width =3D 4096,
->> 	.max_height =3D 2048,
->> --
->> 2.31.1
 
+> 
+> 
+>>
