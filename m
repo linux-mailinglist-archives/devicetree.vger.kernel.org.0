@@ -2,182 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 080D441AA5D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 10:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7052741AA73
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 10:10:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239313AbhI1IGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 04:06:08 -0400
-Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:59529 "EHLO
-        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239372AbhI1IFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 04:05:37 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.west.internal (Postfix) with ESMTP id 2E50F2B01620;
-        Tue, 28 Sep 2021 04:03:57 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 28 Sep 2021 04:03:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=MZr1ROPsa7huk
-        ZlSBuo6Lot+29g5/AyZ+XRVJeB1+z0=; b=uE/MuVjV8S+Y5a7yePJbasPwcE/uY
-        1T26aIR1rxCiWu5feWUc+7e76u6EGYlwPwEvSbR1upjFnq7QeNBxMEs/hirHpggS
-        rVVO3xcvHfWoGOwbBA86XTRHoBAddX7n0Pwcg7iQ4LW9erTb16A5r6ae+zPGdp5m
-        N+U1M99CFgpzOV3uE69IoFuACjIfRRKcTKJ8qMr98dr5xmxgjbgtWH0CJuIn3hsz
-        pKRq2whWz1lV7OEhTHdZjYeQijiLI4lgYYf7x5DtF84ODTFPVbUH34P1bB0hXVEf
-        jyG5TPMaTwNntnk2DFdKATPJqeuyE4L7YXobSg9Ids7mRLFMgh3Sv8QoQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=MZr1ROPsa7hukZlSBuo6Lot+29g5/AyZ+XRVJeB1+z0=; b=QDH/DdCA
-        OyRWaJABYJaWLRlwsGkbGakKqlJDi+6QtosbTMOLOG/O70T4pCuN42eyM1dQRT2I
-        WMupQSPEU2pvGCmOKh22J5uXZM/MAcdQesnCDFMLfDSMs1ix2C/y1iJ6mG8HrrGA
-        ucyxuMrdfWgmvTLxbl0j6IgPXVUMzyop9jniJdnZuRhAPWS8pu0+elGyWn9c9/Qa
-        qwP1g5EpxkuBSq18j5p68aPV1FoucSdvHeEUuuJG0by8phR62UfQNE0CaMWbMPpH
-        Nq90qXo/q96nQGI+CKJPYRc+Lhu00odvJ5slb5VP4ILDZNw7egyVUWqcOYfSzwvL
-        rLFiCVREhd2M4g==
-X-ME-Sender: <xms:bMxSYe2iMM7HK9hfvhLuVwOtYuBoU-1GAOU81XDkmaR_dyTuV8hYLQ>
-    <xme:bMxSYRFpiH3WnHo3Mxp93ys9Lu4Wd7h8uCNVk2bpx235G2rlm_pxuwbCs6ozCGM93
-    Evqvj7sVO0GwZeVxQ>
-X-ME-Received: <xmr:bMxSYW5ahpKNdikqoO8GId0F135MEhe8haNDmv-I3nbmWpA6k3OextC_210TyuzhFRTWyvyaKYS6eKUdpZI5RWX6jbX5NwM4OiO2rvVfEU9r7IDAhlNMVWIjHcN7rKFWWgcEfQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudejledguddvfecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepudfhjeefvdfhgfefheetgffhieeigfefhefgvddvveefgeejheej
-    vdfgjeehueeinecuvehluhhsthgvrhfuihiivgepvdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:bMxSYf3Avh56HFfNYmPz_LRkT4emcQ2sArV1NTgC-6rItD0_jXdc9g>
-    <xmx:bMxSYRE-GwQAelDGacPXFMjJ1JTQsCF9EXsQhYLoN5_Pnod5EpuMpg>
-    <xmx:bMxSYY9P769JUpt9jTPpGdOAO36W_Es99YK9ForUHXsld2ty8pND4w>
-    <xmx:bMxSYZGAJhmVNXSUbjWKc5czldz-uXC76Az2j_r5999p13qa0b0zMvsSsmo>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 28 Sep 2021 04:03:56 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v2 9/9] [DO NOT MERGE] clk: sunxi-ng: sun6i-rtc: Add support for T5
-Date:   Tue, 28 Sep 2021 03:03:35 -0500
-Message-Id: <20210928080335.36706-10-samuel@sholland.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210928080335.36706-1-samuel@sholland.org>
-References: <20210928080335.36706-1-samuel@sholland.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S239287AbhI1IMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 04:12:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40418 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239043AbhI1IMR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 04:12:17 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CD42560F9B;
+        Tue, 28 Sep 2021 08:10:37 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mV8CB-00DRl2-M2; Tue, 28 Sep 2021 09:10:35 +0100
+Date:   Tue, 28 Sep 2021 09:10:34 +0100
+Message-ID: <87pmstt91h.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Mike Rapoport <rppt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrey Konovalov <andreyknvl@gmail.com>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Ingo Molnar <mingo@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        "moderated list:ARM PORT" <linux-arm-kernel@lists.infradead.org>,
+        "open list:SUPERH" <linux-sh@vger.kernel.org>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <linux-mips@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 07/11] of/irq: Export of_irq_count to drivers
+In-Reply-To: <ec13207a-08b4-cbc4-7f29-1ce25ce1ebd0@gmail.com>
+References: <20210924170546.805663-1-f.fainelli@gmail.com>
+        <20210924170546.805663-8-f.fainelli@gmail.com>
+        <CAL_JsqLSiCb7-tHW3VTOTdMt=qahAij77zF2us-CZqXYAi0jmg@mail.gmail.com>
+        <b9bf844c-b6c0-9277-07e0-7592527ce4e4@gmail.com>
+        <CAL_JsqLv+RrmtDPTuMxtjbqAbGvEeAY_oOE5GqrPdP9ZpNGzqw@mail.gmail.com>
+        <ec13207a-08b4-cbc4-7f29-1ce25ce1ebd0@gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: f.fainelli@gmail.com, robh+dt@kernel.org, linux-kernel@vger.kernel.org, linux@armlinux.org.uk, rjui@broadcom.com, sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com, catalin.marinas@arm.com, will@kernel.org, ysato@users.sourceforge.jp, dalias@libc.org, tglx@linutronix.de, frowand.list@gmail.com, ardb@kernel.org, rppt@kernel.org, linus.walleij@linaro.org, akpm@linux-foundation.org, geert+renesas@glider.be, arnd@arndb.de, linux@roeck-us.net, wangkefeng.wang@huawei.com, mark.rutland@arm.com, andreyknvl@gmail.com, anshuman.khandual@arm.com, valentin.schneider@arm.com, mingo@kernel.org, peterz@infradead.org, linux-arm-kernel@lists.infradead.org, linux-sh@vger.kernel.org, linux-mips@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The T5 RTC is similar to the H616 RTC (no rtc-32k mux, pll-32k as the
-second fanout input), except that it adds the ext-osc32k input.
+On Mon, 27 Sep 2021 20:49:46 +0100,
+Florian Fainelli <f.fainelli@gmail.com> wrote:
+> 
+> On 9/27/21 12:43 PM, Rob Herring wrote:
+> > On Mon, Sep 27, 2021 at 2:28 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+> >>
+> >> On 9/27/21 12:08 PM, Rob Herring wrote:
+> >>> On Fri, Sep 24, 2021 at 12:07 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+> >>>>
+> >>>> In order to build drivers/irqchip/irq-bcm7120-l2.c as a module, we will
+> >>>> need to have of_irq_count() exported to modules.
+> >>>>
+> >>>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> >>>> ---
+> >>>>  drivers/of/irq.c | 1 +
+> >>>>  1 file changed, 1 insertion(+)
+> >>>>
+> >>>> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> >>>> index 352e14b007e7..949b9d1f8729 100644
+> >>>> --- a/drivers/of/irq.c
+> >>>> +++ b/drivers/of/irq.c
+> >>>> @@ -440,6 +440,7 @@ int of_irq_count(struct device_node *dev)
+> >>>>
+> >>>>         return nr;
+> >>>>  }
+> >>>> +EXPORT_SYMBOL_GPL(of_irq_count);
+> >>>
+> >>> Please convert to use platform_irq_count() instead.
+> >>
+> >> That requires a platform_device to be passed to platform_irq_count(),
+> >> will that work even when the drivers remain built into the kernel and
+> >> get initialized early on?
+> > 
+> > No, does your irqchip using this do both? Looks to me like it is
+> > always a platform_device.
+> 
+> On ARM/ARM64 not using GKI as well as MIPS, we would want the module to
+> be built into the kernel image, however when using GKI that driver would
+> become a module. How do you suggest reconciling both usages?
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- drivers/clk/sunxi-ng/ccu-sun6i-rtc.c | 45 ++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+I don't see what GKI has to do with anything. Either the driver can be
+built as a module (and it is in this case a platform device at all
+times, built-in or not), or it cannot, and it falls into the
+IRQCHIP_DECLARE() category (and there is no export problem).
 
-diff --git a/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c b/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c
-index f742f6569f6c..88946c990b61 100644
---- a/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun6i-rtc.c
-@@ -240,6 +240,15 @@ static SUNXI_CCU_GATE_HW(osc32k_fanout_gate_clk, "osc32k-fanout",
- static SUNXI_CCU_M_FW_WITH_GATE(rtc_spi_clk, "rtc-spi", "ahb",
- 				0x310, 0, 5, BIT(31), 0);
- 
-+static struct ccu_common *sun8i_t5_rtc_ccu_clks[] = {
-+	&iosc_clk,
-+	&iosc_32k_clk,
-+	&ext_osc32k_gate_clk.common,
-+	&osc32k_clk.common,
-+	&osc24M_32k_clk.common,
-+	&osc32k_fanout_clk.common,
-+};
-+
- static struct ccu_common *sun50i_h6_rtc_ccu_clks[] = {
- 	&iosc_clk,
- 	&iosc_32k_clk,
-@@ -269,6 +278,21 @@ static struct ccu_common *sun50i_r329_rtc_ccu_clks[] = {
- 	&rtc_spi_clk.common,
- };
- 
-+static struct clk_hw_onecell_data sun8i_t5_rtc_ccu_hw_clks = {
-+	.num = CLK_NUMBER,
-+	.hws = {
-+		[CLK_OSC32K]		= &osc32k_clk.common.hw,
-+		[CLK_OSC32K_FANOUT]	= &osc32k_fanout_clk.common.hw,
-+		[CLK_IOSC]		= &iosc_clk.hw,
-+
-+		[CLK_IOSC_32K]		= &iosc_32k_clk.hw,
-+		[CLK_EXT_OSC32K_GATE]	= &ext_osc32k_gate_clk.common.hw,
-+		[CLK_OSC24M_32K]	= &osc24M_32k_clk.common.hw,
-+		[CLK_RTC_32K]		= &rtc_32k_fixed_clk.hw,
-+		[CLK_RTC_SPI]		= NULL,
-+	},
-+};
-+
- static struct clk_hw_onecell_data sun50i_h6_rtc_ccu_hw_clks = {
- 	.num = CLK_NUMBER,
- 	.hws = {
-@@ -314,6 +338,13 @@ static struct clk_hw_onecell_data sun50i_r329_rtc_ccu_hw_clks = {
- 	},
- };
- 
-+static const struct sunxi_ccu_desc sun8i_t5_rtc_ccu_desc = {
-+	.ccu_clks	= sun8i_t5_rtc_ccu_clks,
-+	.num_ccu_clks	= ARRAY_SIZE(sun8i_t5_rtc_ccu_clks),
-+
-+	.hw_clks	= &sun8i_t5_rtc_ccu_hw_clks,
-+};
-+
- static const struct sunxi_ccu_desc sun50i_h6_rtc_ccu_desc = {
- 	.ccu_clks	= sun50i_h6_rtc_ccu_clks,
- 	.num_ccu_clks	= ARRAY_SIZE(sun50i_h6_rtc_ccu_clks),
-@@ -335,6 +366,11 @@ static const struct sunxi_ccu_desc sun50i_r329_rtc_ccu_desc = {
- 	.hw_clks	= &sun50i_r329_rtc_ccu_hw_clks,
- };
- 
-+static void sun8i_t5_rtc_ccu_setup(void)
-+{
-+	have_iosc_calib = 1;
-+}
-+
- static void sun50i_h6_rtc_ccu_setup(void)
- {
- 	have_iosc_calib = 1;
-@@ -357,6 +393,11 @@ static void sun50i_r329_rtc_ccu_setup(void)
- 	};
- }
- 
-+static const struct sun6i_rtc_match_data sun8i_t5_rtc_ccu_data = {
-+	.desc	= &sun8i_t5_rtc_ccu_desc,
-+	.setup	= sun8i_t5_rtc_ccu_setup,
-+};
-+
- static const struct sun6i_rtc_match_data sun50i_h6_rtc_ccu_data = {
- 	.desc	= &sun50i_h6_rtc_ccu_desc,
- 	.setup	= sun50i_h6_rtc_ccu_setup,
-@@ -373,6 +414,10 @@ static const struct sun6i_rtc_match_data sun50i_r329_rtc_ccu_data = {
- };
- 
- static const struct of_device_id sun6i_rtc_ccu_match[] = {
-+	{
-+		.compatible	= "allwinner,sun8i-t5-rtc",
-+		.data		= &sun8i_t5_rtc_ccu_data,
-+	},
- 	{
- 		.compatible	= "allwinner,sun50i-h6-rtc",
- 		.data		= &sun50i_h6_rtc_ccu_data,
+Pick your poison!
+
+Thanks,
+
+	M.
+
 -- 
-2.31.1
-
+Without deviation from the norm, progress is not possible.
