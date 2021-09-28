@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A628741A5C5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 04:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 242FA41A5C8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 04:57:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238711AbhI1C7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 22:59:10 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:43006 "EHLO
+        id S238725AbhI1C7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 22:59:21 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:33038 "EHLO
         twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238673AbhI1C7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 22:59:09 -0400
+        with ESMTP id S238673AbhI1C7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 22:59:20 -0400
 Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 18S2aUKl072690;
-        Tue, 28 Sep 2021 10:36:30 +0800 (GMT-8)
+        by twspam01.aspeedtech.com with ESMTP id 18S2aVAJ072697;
+        Tue, 28 Sep 2021 10:36:31 +0800 (GMT-8)
         (envelope-from tommy_huang@aspeedtech.com)
 Received: from tommy0527-VirtualBox.aspeedtech.com (192.168.2.141) by
  TWMBX02.aspeed.com (192.168.0.24) with Microsoft SMTP Server (TLS) id
@@ -26,9 +26,9 @@ To:     <joel@jms.id.au>, <airlied@linux.ie>, <daniel@ffwll.ch>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>
 CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH 5/6] HACK: drm/aspeed: Paramterise modes
-Date:   Tue, 28 Sep 2021 10:57:02 +0800
-Message-ID: <20210928025703.10909-6-tommy_huang@aspeedtech.com>
+Subject: [PATCH 6/6] dt-bindings: gpu: Add ASPEED GFX bindings document
+Date:   Tue, 28 Sep 2021 10:57:03 +0800
+Message-ID: <20210928025703.10909-7-tommy_huang@aspeedtech.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210928025703.10909-1-tommy_huang@aspeedtech.com>
 References: <20210928025703.10909-1-tommy_huang@aspeedtech.com>
@@ -38,54 +38,30 @@ X-Originating-IP: [192.168.2.141]
 X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
  (192.168.0.24)
 X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 18S2aUKl072690
+X-MAIL: twspam01.aspeedtech.com 18S2aVAJ072697
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Joel Stanley <joel@jms.id.au>
+Add ast2600-gfx description for gfx driver.
 
-The AST2600 will run at 1024x868.
-
-Signed-off-by: Joel Stanley <joel@jms.id.au>
 Signed-off-by: tommy-huang <tommy_huang@aspeedtech.com>
 ---
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/gpu/aspeed-gfx.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-index 33095477cc03..11a44b08bd3f 100644
---- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-+++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-@@ -99,7 +99,7 @@ static const struct drm_mode_config_funcs aspeed_gfx_mode_config_funcs = {
- 	.atomic_commit		= drm_atomic_helper_commit,
- };
- 
--static int aspeed_gfx_setup_mode_config(struct drm_device *drm)
-+static int aspeed_gfx_setup_mode_config(struct drm_device *drm, int width, int height)
- {
- 	int ret;
- 
-@@ -109,8 +109,8 @@ static int aspeed_gfx_setup_mode_config(struct drm_device *drm)
- 
- 	drm->mode_config.min_width = 0;
- 	drm->mode_config.min_height = 0;
--	drm->mode_config.max_width = 800;
--	drm->mode_config.max_height = 600;
-+	drm->mode_config.max_width = width;
-+	drm->mode_config.max_height = height;
- 	drm->mode_config.funcs = &aspeed_gfx_mode_config_funcs;
- 
- 	return ret;
-@@ -201,7 +201,7 @@ static int aspeed_gfx_load(struct drm_device *drm)
- 	writel(0, priv->base + CRT_CTRL1);
- 	writel(0, priv->base + CRT_CTRL2);
- 
--	ret = aspeed_gfx_setup_mode_config(drm);
-+	ret = aspeed_gfx_setup_mode_config(drm, 800, 600);
- 	if (ret < 0)
- 		return ret;
- 
+diff --git a/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt b/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
+index 958bdf962339..29ecf119cef2 100644
+--- a/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
++++ b/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
+@@ -3,6 +3,7 @@ Device tree configuration for the GFX display device on the ASPEED SoCs
+ Required properties:
+   - compatible
+     * Must be one of the following:
++      + aspeed,ast2600-gfx
+       + aspeed,ast2500-gfx
+       + aspeed,ast2400-gfx
+     * In addition, the ASPEED pinctrl bindings require the 'syscon' property to
 -- 
 2.17.1
 
