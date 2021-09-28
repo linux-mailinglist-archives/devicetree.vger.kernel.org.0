@@ -2,121 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C82141B354
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 17:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD48941B364
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 17:59:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241713AbhI1P5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 11:57:02 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:46195 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241514AbhI1P5B (ORCPT
+        id S241553AbhI1QAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 12:00:51 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:31766 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S241523AbhI1QAu (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 11:57:01 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 96434580C24;
-        Tue, 28 Sep 2021 11:55:21 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Tue, 28 Sep 2021 11:55:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=iEV8ydA3V+61q
-        tB26+TqR77mGD10Kt8vZjivysugJU8=; b=c840B/y/OheuY+uzVpRWr2ruwIsGU
-        u0fBoBA4X8SlpwbKvewW12BOwG1F3SMjhMd0rHgO/xGe5KhHhEur5/jBjgNv1yk4
-        P5S1z5+5XqiEXKN7FF1YqbWWufxy8t7xJOVKU5N/LxPTdd27c0rTfptmbPdzFjZM
-        +VAOnMVh+J+KLYCUQ6oKDC2zWDJxrJWhIbxUxCvXx5nnLdqJKBiphF0/thpvzs/x
-        lCzZ3PQ++eECks2ZWLFBCJ8+/hH70XnSPkm92XdOqi5FZAu98kmgGLC9oKnYk+Jx
-        CE77sOa8fvvskWVORnsT3OIVt0XqzqdnR8PnhQUNRPKDoyfLbPvf89UUA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=iEV8ydA3V+61qtB26+TqR77mGD10Kt8vZjivysugJU8=; b=FtcsFRij
-        Q3Lg9OHHPijQAI7s7PoFKB0jpabNPhqlYuSrFMCj1es6vGmbgPjiFvuTOVmox3xN
-        JOeS/qit3k1O7YS7O5IPUbmKUwXGAFN8lyIzlniylDrjJD1ljU17V0lv6uQGPJIN
-        duy7QDy0rnuDNVzxu+FbjdXUdvcgR9EHcjv8UgJp3rHKkeAHKd/jRINaO10aZusE
-        ihlSXotvJwc2GlZQTjRoObeL9OZx/zwFqwUCvYfYaED2tiURQhb/MeU1xckuplNa
-        S1gySrd60kluOij0QVvMhfaZGCj+MYgN8BTjc0WDfIY97xHL9a/HpebrzxSH/SnD
-        Ok9QW8g3NcqdBQ==
-X-ME-Sender: <xms:6TpTYcPWxNNwq4UO8scxo958sseD9_29ycYvTTlgg78wHKvXaAZVOw>
-    <xme:6TpTYS-_fGHQ3M3gULflMvhtTK9UUUerpRwqdZQDBvIehF4euMZ2NU2iaVmdTtEZT
-    LgNuSDAbglxIgWoBY8>
-X-ME-Received: <xmr:6TpTYTT5lY4lLRSNto7ZvbYGENvL4BaBSyeNbF1Kj9c3_s9I7_IUk2SYRVIeASwPFb5KJrOb8ebCD5n8Rl0zkay9zUGWHKM8H0XdEPJUu2Ngxbm-fhHVWG8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudektddgledtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcu
-    rfgvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvg
-    hrnheptedvkeetleeuffffhfekteetffeggffgveehieelueefvddtueffveevlefhfeej
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvg
-    hnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:6TpTYUs_k4xCdy7OOq43l2h1c9eoHqdVT3ORvtYbOTMZJX2rPlP0vw>
-    <xmx:6TpTYUcZ98TFSnoLDuEcGWb_xRyzIhXAL38pjiqgxOrLpuSTSo7vEQ>
-    <xmx:6TpTYY0pRj62-eP2pXCb_UVxKVuK5pzclcGaI6-EuwFHuqkfBuJIBg>
-    <xmx:6TpTYf1uLq_yOl8k6ldCZCWmq9I_2hJLqhuAMq7IZq0Ik0EYS7JBBg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 28 Sep 2021 11:55:19 -0400 (EDT)
-From:   Sven Peter <sven@svenpeter.dev>
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Alexander Graf <graf@amazon.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 1/6] dt-bindings: usb: tps6598x: Add Apple CD321x compatible
-Date:   Tue, 28 Sep 2021 17:54:57 +0200
-Message-Id: <20210928155502.71372-2-sven@svenpeter.dev>
-X-Mailer: git-send-email 2.30.1 (Apple Git-130)
-In-Reply-To: <20210928155502.71372-1-sven@svenpeter.dev>
-References: <20210928155502.71372-1-sven@svenpeter.dev>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Tue, 28 Sep 2021 12:00:50 -0400
+X-IronPort-AV: E=Sophos;i="5.85,329,1624287600"; 
+   d="scan'208";a="95442504"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 29 Sep 2021 00:59:09 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 850AF4015A2B;
+        Wed, 29 Sep 2021 00:59:06 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: r9a07g044: Add SPI Multi I/O Bus controller node
+Date:   Tue, 28 Sep 2021 16:58:52 +0100
+Message-Id: <20210928155852.32569-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A variant of the TI TPS 6598x Type-C Port Switch and Power Delivery
-controller known as Apple CD321x is present on boards with Apple SoCs
-such as the M1. Add its compatible to the device tree binding.
+Add SPI Multi I/O Bus controller node to R9A07G044 (RZ/G2L) SoC DTSI.
 
-Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
-no changes since v2
+Note, patch is dependent on driver changes [1].
 
-changes since v1:
-  - added robh's ack and alyssa's rb
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+---
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
- Documentation/devicetree/bindings/usb/ti,tps6598x.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-index f6819bf2a3b5..a4c53b1f1af3 100644
---- a/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-+++ b/Documentation/devicetree/bindings/usb/ti,tps6598x.yaml
-@@ -12,10 +12,14 @@ maintainers:
- description: |
-   Texas Instruments 6598x Type-C Port Switch and Power Delivery controller
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index 4d4a23367529..1f01737d2def 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -358,6 +358,23 @@
+ 			};
+ 		};
  
-+  A variant of this controller known as Apple CD321x or Apple ACE is also
-+  present on hardware with Apple SoCs such as the M1.
++		sbc: spi@10060000 {
++			compatible = "renesas,r9a07g044-rpc-if",
++				     "renesas,rzg2l-rpc-if";
++			reg = <0 0x10060000 0 0x10000>,
++			      <0 0x20000000 0 0x10000000>,
++			      <0 0x10070000 0 0x10000>;
++			reg-names = "regs", "dirmap", "wbuf";
++			interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A07G044_SPI_CLK2>,
++				 <&cpg CPG_MOD R9A07G044_SPI_CLK>;
++			resets = <&cpg R9A07G044_SPI_RST>;
++			power-domains = <&cpg>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
 +
- properties:
-   compatible:
-     enum:
-       - ti,tps6598x
-+      - apple,cd321x
-   reg:
-     maxItems: 1
- 
+ 		cpg: clock-controller@11010000 {
+ 			compatible = "renesas,r9a07g044-cpg";
+ 			reg = <0 0x11010000 0 0x10000>;
 -- 
-2.25.1
+2.17.1
 
