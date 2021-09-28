@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7D7D41A508
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 04:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94C9F41A509
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 04:01:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238479AbhI1CDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Sep 2021 22:03:25 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:37414 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238453AbhI1CDZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 22:03:25 -0400
-Received: by mail-oi1-f181.google.com with SMTP id w206so28182175oiw.4;
-        Mon, 27 Sep 2021 19:01:46 -0700 (PDT)
+        id S238535AbhI1CD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Sep 2021 22:03:29 -0400
+Received: from mail-oo1-f42.google.com ([209.85.161.42]:43610 "EHLO
+        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238494AbhI1CD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Sep 2021 22:03:29 -0400
+Received: by mail-oo1-f42.google.com with SMTP id n4-20020a4aa7c4000000b002adb4997965so5018933oom.10;
+        Mon, 27 Sep 2021 19:01:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=z7LkJ54STHoZgT24nai7QroD7JpjVvJEeE869Va8hFE=;
-        b=DelPhj74/Gjo+RLUJ/s0QqZ9bkvl2jZQAPxC7TSGVca3R5uwFgNb3w/ROPAA3s/pXA
-         eOTLgyGjo8YtqOjDp1kwAfJGcPdaiHbdx+w8SDWwdu1PJZqR0n1Q8SIakz4h0NPbEeb5
-         2frm5kzBb8pF2h1zmzqF35KI6ZPPbyl0h893ULl+tMOjwgcMPVNYN4Bpvu2qfE+JZbkf
-         6/8YQ0vOu0eUvkRv3ru/qq9Heit7APnZajcx/IeMZf24M9VOChow2sfuAYNyZm6I9TJI
-         RdBLw8NhTKI/8vskmbmy1cOCYItgsBjElXbpUqc45KuKO0vXiVWMFA9yQ1x9YVUDTx31
-         reWQ==
-X-Gm-Message-State: AOAM530COwAyWnpiroghevsUyD/pHWUOK8QnovQEfr/R7g/JT66msfWI
-        9KDqtCnudx+BNou3G7ZG4g==
-X-Google-Smtp-Source: ABdhPJyCMWGDbvqiS9nwWzfhWA5a57/txmRASQZ2f4MCmLjXY7b1HMd8PZIgZ0PzLbyprVdf5An5Rw==
-X-Received: by 2002:a54:4f12:: with SMTP id e18mr1688421oiy.77.1632794504095;
-        Mon, 27 Sep 2021 19:01:44 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=HBjpaa7sxaSk6yNv0m4ThUeRnu+WwigFczsXL34g8Z4=;
+        b=dmj8kM3rk0C3ULo0KJIq/65ReQIjpLM9G558OUnLi7NmnwiECeZhlDTnoE91KKc5Uu
+         yB6FK9PUBYiK910vMLMmtV3mb9QcNkFOPUZZeGypGwERQzxXqMgw4cu/QLul+mbtHTNP
+         v0ost2MZiZbr3Gf3DPw2lEGKBVqRsLD5H51UtaosZtpzZ7IYDPBAp6fvs0ntX/D/Bubs
+         pMxTscz21I/h9i5fNgp2zu8Y+mh94gZBv+jRdVxf5GObkEOlY5Vm6fm09Y9bntc12X9V
+         45n7vr68OMSIewBQ/El/L2iXvogHqNiGQinEZZd0Bu6gPrWS7LtSXCqsOseBDVcoaF8e
+         sQpg==
+X-Gm-Message-State: AOAM530ujZ5fa75XrsYtBcsGk5arSJpcTGek+1M85grDyxkrhJ6F3jtj
+        9H7BeBqcl/04/tBHYqKXxQ==
+X-Google-Smtp-Source: ABdhPJyiFGpnEaZEJQKQQpvbx8njRVXh5MqJbBRik+vr588di/y93ljmuPTKon6CFW2WQmK11to7cA==
+X-Received: by 2002:a4a:c292:: with SMTP id b18mr2723202ooq.64.1632794509836;
+        Mon, 27 Sep 2021 19:01:49 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l19sm4352815otj.77.2021.09.27.19.01.43
+        by smtp.gmail.com with ESMTPSA id l28sm4454679oof.30.2021.09.27.19.01.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 19:01:43 -0700 (PDT)
-Received: (nullmailer pid 83974 invoked by uid 1000);
-        Tue, 28 Sep 2021 02:01:42 -0000
-Date:   Mon, 27 Sep 2021 21:01:42 -0500
+        Mon, 27 Sep 2021 19:01:49 -0700 (PDT)
+Received: (nullmailer pid 84114 invoked by uid 1000);
+        Tue, 28 Sep 2021 02:01:48 -0000
+Date:   Mon, 27 Sep 2021 21:01:48 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Florian Boor <florian.boor@kernelconcepts.de>
-Cc:     jic23@kernel.org, Michael.Hennerich@analog.com,
-        linux-iio@vger.kernel.org, Jonathan.Cameron@huawei.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: iio: ad779x: Add binding document
-Message-ID: <YVJ3hqCrw0I3spGo@robh.at.kernel.org>
-References: <20210927104841.2256295-1-florian.boor@kernelconcepts.de>
- <20210927104841.2256295-2-florian.boor@kernelconcepts.de>
+To:     Dikshita Agarwal <dikshita@codeaurora.org>
+Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-media@vger.kernel.org, stanimir.varbanov@linaro.org,
+        bjorn.andersson@linaro.org, linux-kernel@vger.kernel.org,
+        vgarodia@codeaurora.org, mchehab@kernel.org, agross@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: media: venus: Add sc7280 dt schema
+Message-ID: <YVJ3jFKGP6KfSUfM@robh.at.kernel.org>
+References: <1632743197-32291-1-git-send-email-dikshita@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210927104841.2256295-2-florian.boor@kernelconcepts.de>
+In-Reply-To: <1632743197-32291-1-git-send-email-dikshita@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Sep 2021 12:48:41 +0200, Florian Boor wrote:
-> New binding documentation for AD799x series of I²C ADC ICs.
+On Mon, 27 Sep 2021 17:16:37 +0530, Dikshita Agarwal wrote:
+> Add a schema description for the venus video encoder/decoder on the sc7280.
 > 
-> Signed-off-by: Florian Boor <florian.boor@kernelconcepts.de>
+> Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/iio/adc/adi,ad799x.yaml          | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml
+> change since v3:
+>     Added missing dependency.
+> 
+>  .../bindings/media/qcom,sc7280-venus.yaml          | 160 +++++++++++++++++++++
+>  1 file changed, 160 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -71,23 +74,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml: title: 'Analog Devices AD7991, AD7992, AD7993, AD7994, AD7995, AD7997, AD7998, AD7999 and similar analog to digital converters' is too long
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml: ignoring, error in schema: title
-warning: no schema found in file: ./Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml
-Documentation/devicetree/bindings/iio/adc/adi,ad799x.example.dts:20.17-30: Warning (reg_format): /example-0/ad7991@28:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/iio/adc/adi,ad799x.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/adi,ad799x.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/adi,ad799x.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/adi,ad799x.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/adi,ad799x.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad799x.example.dt.yaml: example-0: ad7991@28:reg:0: [40] is too short
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-Documentation/devicetree/bindings/iio/adc/adi,ad799x.example.dt.yaml:0:0: /example-0/ad7991@28: failed to match any schema with compatible: ['adi,ad7991']
+Error: Documentation/devicetree/bindings/media/qcom,sc7280-venus.example.dts:37.33-34 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/media/qcom,sc7280-venus.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1441: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1533263
+See https://patchwork.ozlabs.org/patch/1533296
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
