@@ -2,147 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D5141B7C8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 21:51:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 375BD41B82F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 22:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242574AbhI1Txd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 15:53:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60338 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242563AbhI1TxZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 15:53:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 68A296103E;
-        Tue, 28 Sep 2021 19:51:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632858705;
-        bh=SjDYQzWDjKOwjfImJL7iQfN9MdtQUXwvsFSbuo+RNqg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tk2uFeNnUAdeOGzco23aq+nTJTPINVhAQnzmLmGlreOqixJRkHyr+NHArROil6Z8R
-         0KAth4gsGuQTM+ecpkRnfaJQJ4EYyn9AxSv6uNd836MjNfCg3Bq4GIq6XiHNF3w/OA
-         A3dWadUlkcf/WYK1nr8hjrV5I4JtkBusooRyA0TZvHhIRMCU7n75TVAa8dZQSRrJNy
-         T39hm6QLa4REe5kLsSj47UWvq+7xA34nBWFRH36Dup9MtS+JUzPJpbUEBWuRY4ItPA
-         tT/VKjyJTSKX/Ae0AxT8TaroUn6vncSBoW+ApPv5opWfFO1nk6tjoKYytzrCZdn5HB
-         9f9FGu3gwOkZg==
-Received: by mail-ed1-f52.google.com with SMTP id v18so51859553edc.11;
-        Tue, 28 Sep 2021 12:51:45 -0700 (PDT)
-X-Gm-Message-State: AOAM532rWT+rmXtqHsRxgAYd0Vlef07iQjWZACfK/eVhESxWVM4yx5eF
-        W1/QWPqQnUFyMjzqYBh77IZXuXisX/23TO0gow==
-X-Google-Smtp-Source: ABdhPJyxRBVFyaU8SVKi4VHd95iYVErnmRqvpKwICUfcsGPsp7mvtI8rENxaMQAi3CXbEtJkGd9Jn01YS6EPf4mUqIo=
-X-Received: by 2002:a17:906:fa8a:: with SMTP id lt10mr8817374ejb.320.1632858703968;
- Tue, 28 Sep 2021 12:51:43 -0700 (PDT)
+        id S242612AbhI1UOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 16:14:11 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:56209 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S242609AbhI1UOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 16:14:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1632859951;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=3BRf/BoVQQhGwaFtZ+fvHSqHQV1racwbJknBUgVnbCI=;
+        b=iIvjH+8BY5CyJ6X18PJYSeP4P9phZks1k1e36fmhWpieeyhwQ6M53MzIvnjB0JuYzl0aKA
+        cYgRiXkIMe5W14pm01Omxi1/T1OmF0CE+yhEyvBAHNWgpu8Ia7bayv2ps87tWKEkhzj5pj
+        t1owmcPjl02WJtKyyvRLw434H9ZO/GA=
+Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
+ [209.85.210.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-456-7bl4Ymy1Nm-JXPWZJh8GYA-1; Tue, 28 Sep 2021 16:12:29 -0400
+X-MC-Unique: 7bl4Ymy1Nm-JXPWZJh8GYA-1
+Received: by mail-ot1-f70.google.com with SMTP id h15-20020a056830034f00b00547597245c2so19823253ote.19
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 13:12:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3BRf/BoVQQhGwaFtZ+fvHSqHQV1racwbJknBUgVnbCI=;
+        b=UBrHQ10TXugR6alBnGiDNymnKnJaV4T9MEVlh8hHcnyG/jQI0zRP+S57GlHwkplOJX
+         FB28GeI5IGQ3oledw4YDQifI51YVUgdGchTfCEMhrGw5MH+lmQ5oKLojPCx0KrYPqb/v
+         oUPw7p64+m+egFTupazPOEiFZAeGAEXNxSUsjDcNlmgvIgq+b5pc7oRVxnY2nA4UmeNM
+         tEZrkFad4OA0GSIiBojWIEKKPS7IGW2/188ZKkC74eRiXwnFXNUWuYAYXSedgFu54WB1
+         a8wS0w7QyZiAIUL9laIAN/r10Mrk4P7kt9dSjiRmPF5+DZ8G3o0MWj7rr+cxXB+sWrbC
+         3+xQ==
+X-Gm-Message-State: AOAM531YyH8qY/amYUT/OPVmTtspGTmHC9WQ+n8vS3A1UUwQVCnkWP41
+        HFt1/BkeDK1Htyq4kVrA0rQFKLTIk7lLWTEraxwsH476mEgbJZcORajdoaFmmSX39aaZUOIYrIv
+        rSVD1cv7PzzRRhmHRlNXn/A==
+X-Received: by 2002:a9d:7751:: with SMTP id t17mr6823667otl.276.1632859949030;
+        Tue, 28 Sep 2021 13:12:29 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz4Aj9jK75RLkBh3LSiNl3n/TgPSKPaDUroxVKiDxiaDWymphftid12DXqezUM3wGC8T8cNCQ==
+X-Received: by 2002:a9d:7751:: with SMTP id t17mr6823656otl.276.1632859948835;
+        Tue, 28 Sep 2021 13:12:28 -0700 (PDT)
+Received: from localhost.localdomain.com (075-142-250-213.res.spectrum.com. [75.142.250.213])
+        by smtp.gmail.com with ESMTPSA id z83sm30895oiz.41.2021.09.28.13.12.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Sep 2021 13:12:28 -0700 (PDT)
+From:   trix@redhat.com
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Tom Rix <trix@redhat.com>
+Subject: [PATCH] of: remove duplicate declaration of of_iomap()
+Date:   Tue, 28 Sep 2021 13:12:14 -0700
+Message-Id: <20210928201214.294737-1-trix@redhat.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-References: <20210928044546.4111223-1-bjorn.andersson@linaro.org>
- <YVLszZ7U7D91oIH2@gerhold.net> <CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com>
- <YVNVj68WjBBXef3h@yoga>
-In-Reply-To: <YVNVj68WjBBXef3h@yoga>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 28 Sep 2021 14:51:32 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+pLhWMeObzbq2xQVK3+vVLqd3L0BNGd=CCZmhVZM8dDw@mail.gmail.com>
-Message-ID: <CAL_Jsq+pLhWMeObzbq2xQVK3+vVLqd3L0BNGd=CCZmhVZM8dDw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: soc: smem: Make indirection optional
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Andy Gross <agross@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 28, 2021 at 12:49 PM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Tue 28 Sep 12:34 CDT 2021, Rob Herring wrote:
->
-> > On Tue, Sep 28, 2021 at 5:22 AM Stephan Gerhold <stephan@gerhold.net> wrote:
-> > >
-> > > On Mon, Sep 27, 2021 at 09:45:44PM -0700, Bjorn Andersson wrote:
-> > > > In the olden days the Qualcomm shared memory (SMEM) region consisted of
-> > > > multiple chunks of memory, so SMEM was described as a standalone node
-> > > > with references to its various memory regions.
-> > > >
-> > > > But practically all modern Qualcomm platforms has a single reserved memory
-> > > > region used for SMEM. So rather than having to use two nodes to describe
-> > > > the one SMEM region, update the binding to allow the reserved-memory
-> > > > region alone to describe SMEM.
-> > > >
-> > > > The olden format is preserved as valid, as this is widely used already.
-> > > >
-> > > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > > ---
-> > > >  .../bindings/soc/qcom/qcom,smem.yaml          | 34 ++++++++++++++++---
-> > > >  1 file changed, 30 insertions(+), 4 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> > > > index f7e17713b3d8..4149cf2b66be 100644
-> > > > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> > > > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> > > > [...]
-> > > > @@ -43,6 +55,20 @@ examples:
-> > > >          #size-cells = <1>;
-> > > >          ranges;
-> > > >
-> > > > +        smem@fa00000 {
-> > >
-> > > I think this is a good opportunity to make a decision which node name
-> > > should be used here. :)
-> >
-> > reserved-memory node names are kind of a mess, so I haven't tried for
-> > any standard... It needs to be solved globally.
-> >
->
-> I'd be happy to paint the shed any color you decide :)
+From: Tom Rix <trix@redhat.com>
 
-I didn't ask for it to be painted. Unless it is for everyone, I don't
-care unless there's some clear pattern used already.
+A ranconfig produces this linker error
+irq-al-fic.c:252: undefined reference to `of_iomap'
 
-> That said, the binding itself doesn't mandate any node name, so it's
-> just the example here that would be "wrong" - and just as wrong as it
-> currently is.
+The declaration of of_iomap() is dependent on OF
+The definition of of_iomap() is dependent on OF_ADDRESS
+These should match.  There are duplicate declarations
+of of_iomap(), remove of_iomap() and the
+of_address_to_resource() duplicate.
 
-The example is right. The dts is wrong.
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+ include/linux/of_address.h | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
-Perhaps we need a schema for 'any node name that doesn't match already
-defined ones'.
+diff --git a/include/linux/of_address.h b/include/linux/of_address.h
+index 45598dbec269..a190996b4b0b 100644
+--- a/include/linux/of_address.h
++++ b/include/linux/of_address.h
+@@ -122,13 +122,7 @@ static inline bool of_dma_is_coherent(struct device_node *np)
+ {
+ 	return false;
+ }
+-#endif /* CONFIG_OF_ADDRESS */
+ 
+-#ifdef CONFIG_OF
+-extern int of_address_to_resource(struct device_node *dev, int index,
+-				  struct resource *r);
+-void __iomem *of_iomap(struct device_node *node, int index);
+-#else
+ static inline int of_address_to_resource(struct device_node *dev, int index,
+ 					 struct resource *r)
+ {
+@@ -139,7 +133,7 @@ static inline void __iomem *of_iomap(struct device_node *device, int index)
+ {
+ 	return NULL;
+ }
+-#endif
++#endif /* CONFIG_OF_ADDRESS */
+ #define of_range_parser_init of_pci_range_parser_init
+ 
+ static inline const __be32 *of_get_address(struct device_node *dev, int index,
+-- 
+2.26.3
 
-> > > You use smem@ here but mentioned before that you think using the generic
-> > > memory@ would be better [1]. And you use memory@ in PATCH 3/3:
-> > >
-> > > -               smem_mem: memory@86000000 {
-> > > +               memory@86000000 {
-> > > +                       compatible = "qcom,smem";
-> > >                         reg = <0x0 0x86000000 0 0x200000>;
-> > >                         no-map;
-> > > +                       hwlocks = <&tcsr_mutex 3>;
-> > >                 };
-> > >
-> > > However, if you would use memory@ as example in this DT schema,
-> > > Rob's bot would complain with the same error that I mentioned earlier [2]:
-> > >
-> > > soc/qcom/qcom,smem.example.dt.yaml: memory@fa00000: 'device_type' is a required property
-> > >         From schema: dtschema/schemas/memory.yaml
-> > >
-> > > We should either fix the error when using memory@ or start using some
-> > > different node name (Stephen Boyd suggested shared-memory@ for example).
-> > > Otherwise we'll just keep introducing more and more dtbs_check errors
-> > > for the Qualcomm device trees.
-> >
-> > A different node name. A node name should only have 1 meaning and
-> > 'memory' is already defined.
-> >
-> > The main issue here is what to name nodes with only a size and no address.
-> >
->
-> This particular node has both address and size (as does all of the other
-> reserved-memory regions we use upstream today)...
-
-I'm not talking about *just* QCom. If we define something here, it's
-got to cover everyone.
-
-In summary, you can't use 'memory' or anything other established,
-standard node name.
-
-Rob
