@@ -2,110 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BD4E41A6BD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 06:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DA3841A6EB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 07:09:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238895AbhI1Eq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 00:46:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57024 "EHLO
+        id S234033AbhI1FLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 01:11:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238910AbhI1Eqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 00:46:55 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 766BCC061765
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 21:45:16 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id q16so807141oiw.10
-        for <devicetree@vger.kernel.org>; Mon, 27 Sep 2021 21:45:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jKrFYQbVmIe+dhzGAjc1VtNM8uE4C6GnX/epkEN2A2w=;
-        b=mtcq60eptWxV634R2t+ONfOuSk3sV5WKjNRaRBnasymHVuxUlS02osiUxKMHS/GKQG
-         LMR+K0TLil8QYlfufI6nhfe00nVHfoM6znSmkatnHN1EX2u8WOEZK+Iecszvh0dXmlIg
-         F8KUXUT2yZdhv4RGsNwTPY+/Lxe80QYeBaLq3h8mIRf3sqfsNxbDt8Ax+gPnVCpYrCpF
-         Xs3JB3u7fvTeUyGhYLdQLp1bkniE9JoPK1WlX/u1w96uf5+FqthQ9T/lSAhTaMKdE7XT
-         AAJZmVa8p3ylIOmg0+M+MwF5j3acNx4CLk30NVaf9mxUZbrv5i8xoVxN+d0x6QBbFHYQ
-         tFaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jKrFYQbVmIe+dhzGAjc1VtNM8uE4C6GnX/epkEN2A2w=;
-        b=kp9vgt5wY+JcWU8BQzRogGfIg3RnLsBBAClPTpzwJvcz1qtzWYUtgfW2Ln02RyEM0V
-         ihoIRxIvqEk6vGxHP+0u+h5qxxoyFRl91AuVy+FL5SKwuqLBM0nj1h5Fv/CATkH3yVNG
-         6sRp/eo5OoE/qmU97LLMOzxaDVBM6kmkiGdRF33HW0tW2kBTxNl2Jf+60gaTiyPXZt0C
-         ZadJjycgXoihXW3LUUjj7XXsDVLqTA4jpQGT8m6/B3BurWOd3ut6Z39NjkZe9JiPTC8t
-         zUsxB8mDfJQm9L3RrHciGwVtq8n3WU885F/X3/D266F1WBTz0DL8ldAD1nFCmqWWkjK2
-         LFyA==
-X-Gm-Message-State: AOAM533XcOtpmAB5vZlbMV8mA4SrJg5ae+110vj3WS3GyKYp0IS19A1Z
-        lgscaRkiXuvigKBGLJS6P8Tq0w==
-X-Google-Smtp-Source: ABdhPJz/3hdsDNYQscFjm7jGLKZgf/J7BYyEvihJDaD+7+SAAJ6EC/wMmTlVr48xgAMqu4ANAzKlow==
-X-Received: by 2002:a05:6808:11c8:: with SMTP id p8mr2155127oiv.72.1632804315874;
-        Mon, 27 Sep 2021 21:45:15 -0700 (PDT)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id x29sm2553341oox.18.2021.09.27.21.45.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Sep 2021 21:45:15 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S229493AbhI1FLa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 01:11:30 -0400
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3DEC061575;
+        Mon, 27 Sep 2021 22:09:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=oOd9LxoociUm+XQt9zv+ciORRiD3WJaBIAs9vhJ/RBU=; b=QEti/cNOWw+cTSUuHKYv5niedv
+        OTE+5bQlj2w39HoDBdfnfzLOSKu3EaUm7Uqwg6U53WWuCvTB+l9Wr1XV7dfgAJfLqlK9hDJl9wW1q
+        kEV2OpRJabiiPgPlsptDYH2oN85MbCfbHnm56jZD4kw0ZoGv+k6luGN2seSqXnQnsexa9JiHqlO44
+        qqz4L4UZUi/24mUjAqJfskHIrxCGp46f2SpYytuhL0YpYSSJpkk3zq0cwCMlT1RCWMI7Db9NtC8p6
+        PqkdY0xfj1B0qU8f2iFHlK14HB7hq0PHB7GrLJPeLXI8/2Qliro4TT6O06ecWmzeIpgz4uGrR6ni3
+        38wNVRIQ==;
+Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mV5MJ-00AVbC-Nz; Tue, 28 Sep 2021 05:09:00 +0000
+Date:   Tue, 28 Sep 2021 06:08:51 +0100
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: sdm845: Drop standalone smem node
-Date:   Mon, 27 Sep 2021 21:45:46 -0700
-Message-Id: <20210928044546.4111223-3-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210928044546.4111223-1-bjorn.andersson@linaro.org>
-References: <20210928044546.4111223-1-bjorn.andersson@linaro.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Mike Rapoport <rppt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrey Konovalov <andreyknvl@gmail.com>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Ingo Molnar <mingo@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        "moderated list:ARM PORT" <linux-arm-kernel@lists.infradead.org>,
+        "open list:SUPERH" <linux-sh@vger.kernel.org>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <linux-mips@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 01/12] arch: Export cpu_logical_map to modules
+Message-ID: <YVKjYxf5bzJzWJDb@infradead.org>
+References: <20210928022715.369160-1-f.fainelli@gmail.com>
+ <20210928022715.369160-2-f.fainelli@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210928022715.369160-2-f.fainelli@gmail.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by casper.infradead.org. See http://www.infradead.org/rpr.html
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that the SMEM binding and driver allows the SMEM node to be
-described in the reserved-memory region directly, move the compatible
-and hwlock properties to the reserved-memory node and drop the
-standadlone node.
+On Mon, Sep 27, 2021 at 07:27:04PM -0700, Florian Fainelli wrote:
+> In order to allow drivers/irqchip/irq-bcm7038-l1.c to be built as a
+> module and usable in GKI, export cpu_logical_map or __cpu_logical_map
+> towards the modules. This follows what MIPS has been doing since
+> 2dc2ae344e0e ("MIPS: Export __cpu_number_map and __cpu_logical_map.")
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index beee57087d05..2800eae61910 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -99,9 +99,11 @@ aop_cmd_db_mem: memory@85fe0000 {
- 			no-map;
- 		};
- 
--		smem_mem: memory@86000000 {
-+		memory@86000000 {
-+			compatible = "qcom,smem";
- 			reg = <0x0 0x86000000 0 0x200000>;
- 			no-map;
-+			hwlocks = <&tcsr_mutex 3>;
- 		};
- 
- 		tz_mem: memory@86200000 {
-@@ -941,12 +943,6 @@ tcsr_mutex: hwlock {
- 		#hwlock-cells = <1>;
- 	};
- 
--	smem {
--		compatible = "qcom,smem";
--		memory-region = <&smem_mem>;
--		hwlocks = <&tcsr_mutex 3>;
--	};
--
- 	smp2p-cdsp {
- 		compatible = "qcom,smp2p";
- 		qcom,smem = <94>, <432>;
--- 
-2.29.2
-
+This seems like a pretty bad idea.  For one you should export an
+accessor instead of the data structure.  And this probably should be an
+EXPORT_SYMBOL_GPL.
