@@ -2,185 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD06841B9DF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 00:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2A4341BA5A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 00:28:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243019AbhI1WIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 18:08:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242994AbhI1WIe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 18:08:34 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D6CC061745
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 15:06:54 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id a3so346007oid.6
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 15:06:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=effDV9d5OmNZrGxqUk8CTE8A/T/EuPuDDVYR8FNgEWs=;
-        b=GVgM+nTmQ6QV3mkHwerkjmCVPFjCuhYNJDSHq+HtUS/F6QXGGPzOwrllVC7bQhSahx
-         mRIuwE3gSs3CiI/LyuCtHzuAnDd7Z39xeQHCQSW1xXbqW0NoJ9z0nTHTS1DR773wEAac
-         rDy6JhftuOid5NmknNq+yoIYWCZVfISrsCeiKh70NYOK/sy48zfPumNfSHm7iZHPyVWI
-         JX2DxSDse7/L6J8LCp0jWWLJG5GmqodrD5iKY43djCy/T6ukXyB4+PBr3PQuCc+FJHrn
-         UCACOOdqqePDEln7m/T9oZRFzP9CVc3vsLFYGnRDlWy2GwD2gvrcXyvyFeCk0B76Buoj
-         mowg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=effDV9d5OmNZrGxqUk8CTE8A/T/EuPuDDVYR8FNgEWs=;
-        b=XQ+Vwbs0FZp+OD/Wp/OncEdpVjNeWo8bl0ids3t36/w5G3lXsfIU/CziZy3dkTv902
-         cZ6wuK+EwRoEMg+47JRZVauaKVRDfbBTXHayB/j/QbS31tTZskuW4fxDMOFmn9Yj0CvA
-         1HRhLkdPYTX4io0HT9wMuZsG3ONCXmCQiFyK6K4RWccbKCXyodrr4MbX9Hs8NOp8R9yy
-         qg+GBVpMLrImQO8g21CGRq7Jr2SIs4fH2gl8dev4ip9syWtnBJ0DzYM9tZBg1oryf28h
-         PLHtfVQuoeevfSK+VM0jc6A3XReRD22ccROVgC8dm6HDDO/bw8jz8RnQcXr6IJFlDA6v
-         KTuQ==
-X-Gm-Message-State: AOAM530V+K+sQx2PO2H3KhQayTZLF/f8yGFVn4gf8hobv2vIpU/GLRYP
-        mSFr3FqNyrp3S33rUujeVjp7CQ==
-X-Google-Smtp-Source: ABdhPJzdy8rmbIC41Eu3O5T5PBIiLcjLW+4W8uW3AewciBlIgGdKG2BGfC2z0QapA5TW34hFez55BA==
-X-Received: by 2002:aca:6283:: with SMTP id w125mr5509711oib.133.1632866813979;
-        Tue, 28 Sep 2021 15:06:53 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h5sm76192oti.58.2021.09.28.15.06.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 15:06:53 -0700 (PDT)
-Date:   Tue, 28 Sep 2021 17:06:51 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Andy Gross <agross@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: soc: smem: Make indirection optional
-Message-ID: <YVOR+/xfdRUwGt5D@builder.lan>
-References: <20210928044546.4111223-1-bjorn.andersson@linaro.org>
- <YVLszZ7U7D91oIH2@gerhold.net>
- <CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com>
- <YVNVj68WjBBXef3h@yoga>
- <CAL_Jsq+pLhWMeObzbq2xQVK3+vVLqd3L0BNGd=CCZmhVZM8dDw@mail.gmail.com>
+        id S243078AbhI1WaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 18:30:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57442 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S243072AbhI1WaU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 18:30:20 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4A502613A0;
+        Tue, 28 Sep 2021 22:28:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632868120;
+        bh=CpoB/AQaiB5lLCqB8ho11PEAW2+8Qw4aT/GKC1JnWBs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NWHhMqyqu5ZeEo7veyI0DPB8sfx/QCj+Q6/4ri8A+3eKcgUBjZ2OSX1rCewPb226Y
+         IzDq987TbzOv2e1SuaxsSPVI4471heZdrf3Yu1oJHcUukxwQXqv7v2Z/Via9w5kfG8
+         c2D3Pt6Tk9p/qwZDK1kSi6Fdr9/FpF0CZrmHLDeE1xI9neyG3KgK2rAwo3Mf/A/x6q
+         jpMcuhdfzW2xeHYcHLMWmHHnJ+2fFXEF/aeZTtLIfn+Reb0S8q4/fru1L3wKcvo2kN
+         sRB6UvFq1i2+o/tmhodQdcJFeA8cfLTvsQ3H5hSAomDnY5QVoiR4xnXE0EA+l9EOz5
+         S0Amq1sMI7KzA==
+Received: by mail-ed1-f54.google.com with SMTP id v18so842755edc.11;
+        Tue, 28 Sep 2021 15:28:40 -0700 (PDT)
+X-Gm-Message-State: AOAM5327P3KjnrP/IK8jq45xlur3TnDrPhzuwsJ0xoOo5QnogXUEPdzr
+        lN0roiMtVTtQ9lnsQdXRULlu+siTz53qGyw92Q==
+X-Google-Smtp-Source: ABdhPJwf3T2vDvRzn1kn4EttNExbUJlEkqp3unlYwOfhx9E5xNV/zF/ODC8gDrpuUojJrEloyRNMxi7elthKPR3Tgus=
+X-Received: by 2002:a50:d903:: with SMTP id t3mr10809492edj.70.1632868118869;
+ Tue, 28 Sep 2021 15:28:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+pLhWMeObzbq2xQVK3+vVLqd3L0BNGd=CCZmhVZM8dDw@mail.gmail.com>
+References: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com>
+ <20210922103116.30652-11-chin-ting_kuo@aspeedtech.com> <YVIUf7/4ukMcrOb9@robh.at.kernel.org>
+ <HK0PR06MB2786DAAA2D6E58EA2E2FCB6BB2A89@HK0PR06MB2786.apcprd06.prod.outlook.com>
+In-Reply-To: <HK0PR06MB2786DAAA2D6E58EA2E2FCB6BB2A89@HK0PR06MB2786.apcprd06.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 28 Sep 2021 17:28:27 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+TZFXrvfJTjofVcnT6jJat-3SvWj+jAq0QST8ndfeUMA@mail.gmail.com>
+Message-ID: <CAL_Jsq+TZFXrvfJTjofVcnT6jJat-3SvWj+jAq0QST8ndfeUMA@mail.gmail.com>
+Subject: Re: [PATCH 10/10] dt-bindings: mmc: aspeed: Add a new compatible string
+To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Cc:     "joel@jms.id.au" <joel@jms.id.au>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        BMC-SW <BMC-SW@aspeedtech.com>,
+        Steven Lee <steven_lee@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 28 Sep 14:51 CDT 2021, Rob Herring wrote:
-
-> On Tue, Sep 28, 2021 at 12:49 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
+On Mon, Sep 27, 2021 at 9:51 PM Chin-Ting Kuo
+<chin-ting_kuo@aspeedtech.com> wrote:
+>
+> Hi Rob,
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Tuesday, September 28, 2021 2:59 AM
+> > To: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+> > Subject: Re: [PATCH 10/10] dt-bindings: mmc: aspeed: Add a new compatible
+> > string
 > >
-> > On Tue 28 Sep 12:34 CDT 2021, Rob Herring wrote:
+> > On Wed, Sep 22, 2021 at 06:31:16PM +0800, Chin-Ting Kuo wrote:
+> > > Add "aspeed,ast2600-emmc" compatible string for the sake of
+> > > distinguishing between SD and eMMC device.
 > >
-> > > On Tue, Sep 28, 2021 at 5:22 AM Stephan Gerhold <stephan@gerhold.net> wrote:
-> > > >
-> > > > On Mon, Sep 27, 2021 at 09:45:44PM -0700, Bjorn Andersson wrote:
-> > > > > In the olden days the Qualcomm shared memory (SMEM) region consisted of
-> > > > > multiple chunks of memory, so SMEM was described as a standalone node
-> > > > > with references to its various memory regions.
-> > > > >
-> > > > > But practically all modern Qualcomm platforms has a single reserved memory
-> > > > > region used for SMEM. So rather than having to use two nodes to describe
-> > > > > the one SMEM region, update the binding to allow the reserved-memory
-> > > > > region alone to describe SMEM.
-> > > > >
-> > > > > The olden format is preserved as valid, as this is widely used already.
-> > > > >
-> > > > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > > > ---
-> > > > >  .../bindings/soc/qcom/qcom,smem.yaml          | 34 ++++++++++++++++---
-> > > > >  1 file changed, 30 insertions(+), 4 deletions(-)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> > > > > index f7e17713b3d8..4149cf2b66be 100644
-> > > > > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> > > > > [...]
-> > > > > @@ -43,6 +55,20 @@ examples:
-> > > > >          #size-cells = <1>;
-> > > > >          ranges;
-> > > > >
-> > > > > +        smem@fa00000 {
-> > > >
-> > > > I think this is a good opportunity to make a decision which node name
-> > > > should be used here. :)
-> > >
-> > > reserved-memory node names are kind of a mess, so I haven't tried for
-> > > any standard... It needs to be solved globally.
-> > >
+> > Why?
 > >
-> > I'd be happy to paint the shed any color you decide :)
-> 
-> I didn't ask for it to be painted. Unless it is for everyone, I don't
-> care unless there's some clear pattern used already.
-> 
+> > Is the h/w block different? We already have properties to handle some of the
+> > eMMC specifics. Also, you can have a child node for the eMMC device if you
+> > need that.
+>
+> There are two SD/SDIO controllers in a AST2600 SoC.
+> One is for SD card and the other is for eMMC.
+> Although both of them are embedded in the same SoC, the design of delay cell and
+> the manufacture process are different. The delay phase is definitely different and, thus,
+> we need a flag, compatible, to distinguish the device, SD or eMMC.
+>
+> Without "aspeed,ast2600-emmc" compatible, of course, eMMC device can work with original
+> sdhci driver and device tree setting. But, for ultra-speed or HS200 case, AST2600 SoC needs some
+> phase delay which (maximum) value is different between SD and eMMC device.
 
-As Stephan indicated, I feel that I'll set precedence when I change
-"memory" -> "smem" in the last patch.
+This is quite common as tweaking the timing is also need per board.
+Look at what other bindings have done. A property is more appropriate
+here.
 
-> > That said, the binding itself doesn't mandate any node name, so it's
-> > just the example here that would be "wrong" - and just as wrong as it
-> > currently is.
-> 
-> The example is right. The dts is wrong.
-> 
-
-But I can't both not paint the node and resolve the fact that the dts is
-wrong. So which one should I go with?
-
-Should we leave the node name as is until we've decided what to do with
-the reserved-memory children? Or should I start accepting patches that
-changes "memory" to a list of non-generic names?
-
-> Perhaps we need a schema for 'any node name that doesn't match already
-> defined ones'.
-> 
-> > > > You use smem@ here but mentioned before that you think using the generic
-> > > > memory@ would be better [1]. And you use memory@ in PATCH 3/3:
-> > > >
-> > > > -               smem_mem: memory@86000000 {
-> > > > +               memory@86000000 {
-> > > > +                       compatible = "qcom,smem";
-> > > >                         reg = <0x0 0x86000000 0 0x200000>;
-> > > >                         no-map;
-> > > > +                       hwlocks = <&tcsr_mutex 3>;
-> > > >                 };
-> > > >
-> > > > However, if you would use memory@ as example in this DT schema,
-> > > > Rob's bot would complain with the same error that I mentioned earlier [2]:
-> > > >
-> > > > soc/qcom/qcom,smem.example.dt.yaml: memory@fa00000: 'device_type' is a required property
-> > > >         From schema: dtschema/schemas/memory.yaml
-> > > >
-> > > > We should either fix the error when using memory@ or start using some
-> > > > different node name (Stephen Boyd suggested shared-memory@ for example).
-> > > > Otherwise we'll just keep introducing more and more dtbs_check errors
-> > > > for the Qualcomm device trees.
-> > >
-> > > A different node name. A node name should only have 1 meaning and
-> > > 'memory' is already defined.
-> > >
-> > > The main issue here is what to name nodes with only a size and no address.
-> > >
-> >
-> > This particular node has both address and size (as does all of the other
-> > reserved-memory regions we use upstream today)...
-> 
-> I'm not talking about *just* QCom. If we define something here, it's
-> got to cover everyone.
-> 
-> In summary, you can't use 'memory' or anything other established,
-> standard node name.
-> 
-
-I know that "memory" is wrong, but I'm not sure about what you're asking
-me to do.
-
-Regards,
-Bjorn
+Rob
