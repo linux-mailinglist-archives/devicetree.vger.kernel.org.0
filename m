@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E30E41B1B7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 16:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F089C41B1B9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 16:09:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241202AbhI1OL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 10:11:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47974 "EHLO
+        id S241240AbhI1OLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 10:11:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241227AbhI1OL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 10:11:26 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 710D8C061755
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 07:09:47 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id e7so21356906pgk.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 07:09:47 -0700 (PDT)
+        with ESMTP id S241228AbhI1OLa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 10:11:30 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7833C061745
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 07:09:50 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id j15so12841615plh.7
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 07:09:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=+zsmMrRAzfRipxgVfK7O26W9c5/MJYDdunC8ZqBcMWg=;
-        b=t9hVfVM9wBiX9IM06S4O9HxmSCryQxvobN4emzHC9Z/XPjvCChP9aUEeG9Qg35/BVY
-         jioMqnc+iXmLWxpEK2oom/vbg4pdogZWRxbDPmXmviB3RejC2oI6nVpHr2XSJBAdb2PV
-         m8QmSUxtr/Q0mURjN0A+ucQ3j+Tx7c53gSe40j4x+Ur2kSzFIKUHrpI0hJChVtbWr+vI
-         ZHy7Z32sTXYJu1nnCRmtj+lABwP2MgEQ3HpiejukxFnSjOlNQGG5t5f6jWA758LZ8HwE
-         m0dXvRBlx9BLc4EFKtNrpKENURIlrowJZqqun05J/LpadF/qoUqgVxamGHYYp6RBRf6c
-         bqew==
+        bh=e6lM+hhK/m+urfAtZGkPcFyDFl9j9yUWbcgtPEkj/iQ=;
+        b=Dt9ouw+JdZulu+bRiOV4Lp9X3ScPrdsjO2Qv+L+u+V3rPvU7+03porVjdXfZyuZRxD
+         mCkJRt03j/D9QWSq7dmPtUGlFPtUrL6BuOOJLvcnmvZKJkL/n4J+Wi0zo/AetMs73FCI
+         6nKmBrPXY5m2RyWZAmpzCKKGCIbFd514ENjGCLux2lskkaIn3CGvA+/8renkxtYLHhUr
+         vMDWfnyhKF3BqIRqmWr/wIsrCExEbx9Y/mA09kVm0w4waduxzu4XG5xtArvjrn9A6pp1
+         T410f5BSXZ1IHT2CZrtrUj/pnil1ryDeLe4j6morrpm0cRCE7HkQX9j9tC8lCdTaijjj
+         KAFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=+zsmMrRAzfRipxgVfK7O26W9c5/MJYDdunC8ZqBcMWg=;
-        b=U2UMHOOXduF/aLVJ8FZCcQ/CLGZpdQpckoYmlzQgGoWfRN4DGq8JtNkeKbF5Q0SK2b
-         fWMX+mWXYH3LpHNNMTp/x7kj4HLhopAXPp+sk5axCQbYsYIG/LJtuKQGTBwBb02/zJMk
-         Lxyb2uiJ6An9IDT0L5+czTekyhfSO8dKxAWEk65SsnQKabNmUEkmkScrbVc0T93zqK71
-         hcAWyjK1U03lpnzWhOWgnPu53PxyiWQs+ZqP4aItT0XL9rQHOaeSNPvYgFzDyqH+ZO+u
-         2M1cd6N83L3EVScenHJY5wuUmXjMNneXxE4XNSNe4/4e72IAH6VBWuEcfRoPzxU2PdAp
-         UpuA==
-X-Gm-Message-State: AOAM531YSAusoRmyLApykejpOgTJT21XZb1epCGNim3P7vWOJDzAr7k6
-        jqNpnM6cXse82p7/58v77ce7gYuskDJShA==
-X-Google-Smtp-Source: ABdhPJzjzbIhwvhJzd89ynHYRzjm4NVqbJOdI5Gk2z364qkUH9PuH6E3OpbNp1mqvYD9n49YhzpeyQ==
-X-Received: by 2002:a62:7f58:0:b0:44b:5ea6:9fb6 with SMTP id a85-20020a627f58000000b0044b5ea69fb6mr5735276pfd.19.1632838186962;
-        Tue, 28 Sep 2021 07:09:46 -0700 (PDT)
+        bh=e6lM+hhK/m+urfAtZGkPcFyDFl9j9yUWbcgtPEkj/iQ=;
+        b=Uxluvdx3kqDCdMYHTYYFexFZpvGe63jd+1GjcRa426NoP7luasddB8rO20E+FDQ36l
+         mcEkKng0NH0KyNvPU1dxl6RuCrg4ILVrZFMdCKH+6W49J11Lf0BYhgGnzA0yqhFR0usW
+         TUM+TjWHza5voPCQoCfqAk7jjN5UR2P6oqzbsXMtN2EPs+97lwxrecfjCCY1/X2nMhqP
+         eNrK45YpJqnhrOCDTbCDrFLnzrHsxT+l9axz33ZBINpJt6l0BM/tj1YkltrKEha4OH0H
+         rRBwAqcTdBggd3QVRXeVwHqVg+h7p8DtdTryUaOJslHYfzXu/29qglfz81KDh3KKOnP/
+         JYyQ==
+X-Gm-Message-State: AOAM531t72prIornK6sN+XuTHsDF6gQWO2Yi0vRy6RXhd8PVAaa/1ivP
+        WjfrrVFqhBrcF1mBXxbi9F1BRA==
+X-Google-Smtp-Source: ABdhPJz25zUnloDPoCMgJVlwXtuTN4jaKyfS/PLdPZwxMzx6ZmLttqESRJXv7/5UfNvMt/igoW30vw==
+X-Received: by 2002:a17:90a:154b:: with SMTP id y11mr202534pja.116.1632838190147;
+        Tue, 28 Sep 2021 07:09:50 -0700 (PDT)
 Received: from localhost.localdomain.name ([122.161.49.251])
-        by smtp.gmail.com with ESMTPSA id ch7sm2704578pjb.44.2021.09.28.07.09.43
+        by smtp.gmail.com with ESMTPSA id ch7sm2704578pjb.44.2021.09.28.07.09.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 07:09:46 -0700 (PDT)
+        Tue, 28 Sep 2021 07:09:49 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         vkoul@kernel.org, robh+dt@kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: [PATCH 1/2] arm64: dts: qcom: sm8150: Add fastproc nodes
-Date:   Tue, 28 Sep 2021 19:39:28 +0530
-Message-Id: <20210928140929.2549459-2-bhupesh.sharma@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: sa8155p-adp: Enable remoteproc capabilities
+Date:   Tue, 28 Sep 2021 19:39:29 +0530
+Message-Id: <20210928140929.2549459-3-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210928140929.2549459-1-bhupesh.sharma@linaro.org>
 References: <20210928140929.2549459-1-bhupesh.sharma@linaro.org>
@@ -65,158 +65,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add fastrpc nodes for sDSP, cDSP, and aDSP.
+Enable two remoteprocs found on SA8155p ADP
+platform - 'audio and compute'. Also add firmware for them.
 
 Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 119 +++++++++++++++++++++++++++
- 1 file changed, 119 insertions(+)
+ arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index ef0232c2cf45..4895923097d7 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -1746,6 +1746,33 @@ glink-edge {
- 				label = "dsps";
- 				qcom,remote-pid = <3>;
- 				mboxes = <&apss_shared 24>;
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "sdsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@1 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <1>;
-+						iommus = <&apps_smmu 0x05a1 0x0>;
-+					};
-+
-+					compute-cb@2 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <2>;
-+						iommus = <&apps_smmu 0x05a2 0x0>;
-+					};
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x05a3 0x0>;
-+						/* note: shared-cb = <4> in downstream */
-+					};
-+				};
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+index 5ae2ddc65f7e..7b703a8e0cd7 100644
+--- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
++++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+@@ -307,6 +307,16 @@ &qupv3_id_1 {
+ 	status = "okay";
+ };
  
-@@ -2961,6 +2988,72 @@ glink-edge {
- 				label = "cdsp";
- 				qcom,remote-pid = <5>;
- 				mboxes = <&apss_shared 4>;
++&remoteproc_adsp {
++	status = "okay";
++	firmware-name = "qcom/sa8155p/adsp.mdt";
++};
 +
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "cdsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
++&remoteproc_cdsp {
++	status = "okay";
++	firmware-name = "qcom/sa8155p/cdsp.mdt";
++};
 +
-+					compute-cb@1 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <1>;
-+						iommus = <&apps_smmu 0x1401 0x2040>,
-+							 <&apps_smmu 0x1421 0x0>,
-+							 <&apps_smmu 0x2001 0x420>,
-+							 <&apps_smmu 0x2041 0x0>;
-+					};
-+
-+					compute-cb@2 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <2>;
-+						iommus = <&apps_smmu 0x2 0x3440>,
-+							 <&apps_smmu 0x22 0x3400>;
-+					};
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x3 0x3440>,
-+							 <&apps_smmu 0x1423 0x0>,
-+							 <&apps_smmu 0x2023 0x0>;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x4 0x3440>,
-+							 <&apps_smmu 0x24 0x3400>;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x5 0x3440>,
-+							 <&apps_smmu 0x25 0x3400>;
-+					};
-+
-+					compute-cb@6 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <6>;
-+						iommus = <&apps_smmu 0x6 0x3460>;
-+					};
-+
-+					compute-cb@7 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <7>;
-+						iommus = <&apps_smmu 0x7 0x3460>;
-+					};
-+
-+					compute-cb@8 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <8>;
-+						iommus = <&apps_smmu 0x8 0x3460>;
-+					};
-+
-+					/* note: secure cb9 in downstream */
-+				};
- 			};
- 		};
- 
-@@ -3337,6 +3430,32 @@ glink-edge {
- 				label = "lpass";
- 				qcom,remote-pid = <2>;
- 				mboxes = <&apss_shared 8>;
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "adsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x1b23 0x0>;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x1b24 0x0>;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x1b25 0x0>;
-+					};
-+				};
- 			};
- 		};
- 
+ &uart2 {
+ 	status = "okay";
+ };
 -- 
 2.31.1
 
