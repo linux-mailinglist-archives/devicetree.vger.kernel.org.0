@@ -2,591 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 228E441B3A5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 18:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45B5C41B3B8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 18:21:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241700AbhI1QUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 12:20:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49882 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241523AbhI1QUk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 12:20:40 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA88C06161C
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 09:19:00 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id dn26so8396184edb.13
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 09:19:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=BDNtxwMVAWvBzZey8Nx0zpc2ApUlLL018ipSoCc2Oyw=;
-        b=Td/KVUz9prEly7Q7RHCc80OykqZ9wb5tRYoC0HHDj9UJIXCyMivEwe2MrLXW07PiZW
-         knL2hABExhPGIPe5KZgs6ftTyEOqUk3rAw5RLcLqnrkLIR49+WMdbH2DU75nOmXW6qFf
-         Mz7InOmRuOrGPbTT815aOQBlGZXZb/d+koDIOOYwmmVnCG7rhcLmUIxznTL2ELpCZSnC
-         ZBqengbrVwHY/0dUIn0srvZIeaSiDLdf0KewReVyUh3wS8a5wkeZhcUWP9hSZTLz3fAT
-         7hVybk/LsLe8p2sHBZYY0fJ23FWzUeDldNBVaPcKYRkmZ8FtJx85qJbpVKBopt9D0qm1
-         pZzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=BDNtxwMVAWvBzZey8Nx0zpc2ApUlLL018ipSoCc2Oyw=;
-        b=XnZ1hFjImNcnmo0ktVInksy2Dsj1h6QLtgJz2LH25BKpGgoFcWD+HX4ZbpnkRpKQu2
-         /KWCohR8Nb6pAbxTecksQiq1zvQufnvRr8ssMbGl8hLRyaQR6IllpCUZaAz0jOj0wJFw
-         zx0KlNkBpw92GTTpAArhi4qU3eTeJFwbF0vpXiYObl6UP6EcpmqzkRwVFkYLhO+MhZZM
-         U9j0n7b2QqzInYwKqS4emBQlGPtLtyxZOnUX8QPYkgQXr1x60ocaTdwV9ghL7OE/qyuu
-         FgNjNJKQ05ec9Nxp6i/BJmQeU6Rg/wmvwvyF+nGMY4AYKIbdVUn5nyFojssZYaRK6Mh3
-         8v2Q==
-X-Gm-Message-State: AOAM533MT6sVyxwVHYpRdhxUMrb5xrCOzgcWYMkxMVZh48G4Fk7dA2jp
-        IQ6w6ZuFrIKTcS+ozem4B1cRpQ==
-X-Google-Smtp-Source: ABdhPJw19Y9wOFxkxb1Ft6H265ixbFK9axj6cjMv4VQWA73g8qYcAKT1u7N37vjkB1G0qcPHy0wz+w==
-X-Received: by 2002:a17:906:1f49:: with SMTP id d9mr7867526ejk.150.1632845938862;
-        Tue, 28 Sep 2021 09:18:58 -0700 (PDT)
-Received: from fedora.. (dh207-96-123.xnet.hr. [88.207.96.123])
-        by smtp.googlemail.com with ESMTPSA id p26sm7380908eds.58.2021.09.28.09.18.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 09:18:58 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     robh+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        pali@kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH v4] arm64: dts: marvell: add Globalscale MOCHAbin
-Date:   Tue, 28 Sep 2021 18:18:51 +0200
-Message-Id: <20210928161851.685499-1-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.31.1
+        id S241821AbhI1QXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 12:23:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56472 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241662AbhI1QXa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 12:23:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 136C660F5B;
+        Tue, 28 Sep 2021 16:21:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632846110;
+        bh=pMo9KK5doUM7+rvpr+8DStF/6cDzZLGEDqhBIksnBAQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=ee30XMTJzmJ1Ftatpaxcg4q3jAMMSRDOc8lPLaCJQxAToLAS94K6U9ENweBWVt14q
+         5So91pbyf1uxyWPdlrnpc1yAUIMFf7Yu/sEzRZffwEmRAh7cF5+i5+CTzlnZ7IrPuG
+         dQ9EI0fxgC1qDuF+l1gHAVXdKyEZ256oQfemwVyY7GLAYW5ByeLv70gP6b35UFUmkL
+         NezpBoDwasqRDcYg59nnhwXmRi9dhAvMvBn7V+u0+viHC4wcIGsXq754MviH5sfg5E
+         OzTRIEJQXnP2TLNVuA8rE+qBdlznwVwYpXDxot7R6/NPcuFbFrRr1rLmeu1I1+DB3k
+         UX4wiMUpNIGYQ==
+Date:   Tue, 28 Sep 2021 11:21:48 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Prasad Malisetty <pmaliset@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
+        manivannan.sadhasivam@linaro.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v9 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
+ init in SC7280
+Message-ID: <20210928162148.GA701581@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1632837350-12100-5-git-send-email-pmaliset@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Globalscale MOCHAbin is a Armada 7040 based development board.
+[+cc linux-pci; please cc drivers/pci changes there]
 
-Specifications:
-* Armada 7040 Quad core ARMv8 Cortex A-72 @ 1.4GHz
-* 2 / 4 / 8 GB of DDR4 DRAM
-* 16 GB eMMC
-* 4MB SPI-NOR (Bootloader)
-* 1x M.2-2280 B-key socket (for SSD expansion, SATA3 only)
-* 1x M.2-2250 B-key socket (for modems, USB2.0 and I2C only)
-* 1x Mini-PCIe 3.0 (x1, USB2.0 and I2C)
-* 1x SATA 7+15 socket (SATA3)
-* 1x 16-pin (2×8) MikroBus Connector
-* 1x SIM card slot (Connected to the mini-PCIe and both M.2 slots)
-* 2x USB3.0 Type-A ports via SMSC USB5434B hub
-* Cortex 2x5 JTAG
-* microUSB port for UART (PL2303GL/PL2303SA onboard)
-* 1x 10G SFP+
-* 1x 1G SFP (Connected to 88E1512 PHY)
-* 1x 1G RJ45 with PoE PD (Connected to 88E1512 PHY)
-* 4x 1G RJ45 ports via Topaz 88E6141 switch
-* RTC with battery holder (SoC provided, requires CR2032 battery)
-* 1x 12V DC IN
-* 1x Power switch
-* 1x 12V fan header (3-pin, power only)
-* 1x mini-PCIe LED header (2x0.1" pins)
-* 1x M.2-2280 LED header (2x0.1" pins)
-* 6x Bootstrap jumpers
-* 1x Power LED (Green)
-* 3x Tri-color RGB LEDs (Controllable)
-* 1x Microchip ATECC608B secure element
+On Tue, Sep 28, 2021 at 07:25:50PM +0530, Prasad Malisetty wrote:
+> On the SC7280, the clock source for gcc_pcie_1_pipe_clk_src
+> must be the TCXO while gdsc is enabled. After PHY init successful
+> clock source should switch to pipe clock for gcc_pcie_1_pipe_clk_src.
 
-Note that 1G SFP and 1G WAN cannot be used at the same time as they are in
-parallel connected to the same PHY.
+This looks good.  Ideally the commit log would say what the patch
+*does*.  I know it's in the subject, but it's nice to have it both
+places so the body is complete in itself.
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
-Changes in v4:
-* Rename the "u-boot" partition to "firmware" which is more appropriate
-as it a concatenation of mv-ddr + TF-A + U-boot
+Again in an ideal world, I would split this into two patches:
 
-Changes in v3:
-* Use IRQ_TYPE_LEVEL_LOW instead of IRQ_TYPE_EDGE_FALLING as both the
-PCA9554 and Topaz switch have an active LOW IRQ signal.
+  1) Do the boilerplate conversions to struct qcom_pcie_cfg and
+  updates of qcom_pcie_match[].  This patch would have no functional
+  change.
 
-Changes in v2:
-* Use "10gbase-r" instead of "10gbase-kr"
----
- arch/arm64/boot/dts/marvell/Makefile          |   1 +
- .../boot/dts/marvell/armada-7040-mochabin.dts | 452 ++++++++++++++++++
- 2 files changed, 453 insertions(+)
- create mode 100644 arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+  2) Add the code to deal with pcie_1_pipe_clk_src, which should be a
+  much smaller patch.
 
-diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-index 34efe0fb6f37..4d3a2ae9adbd 100644
---- a/arch/arm64/boot/dts/marvell/Makefile
-+++ b/arch/arm64/boot/dts/marvell/Makefile
-@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-uDPU.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-db.dtb
-+dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-mochabin.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-clearfog-gt-8k.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-db.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-mcbin.dtb
-diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-new file mode 100644
-index 000000000000..edd0df5e9ffd
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
-@@ -0,0 +1,452 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Device Tree file for Globalscale MOCHAbin
-+ * Copyright (C) 2019 Globalscale technologies, Inc.
-+ * Copyright (C) 2021 Sartura Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "armada-7040.dtsi"
-+
-+/ {
-+	model = "Globalscale MOCHAbin";
-+	compatible = "globalscale,mochabin", "marvell,armada7040",
-+		     "marvell,armada-ap806-quad", "marvell,armada-ap806";
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	aliases {
-+		ethernet0 = &cp0_eth0;
-+		ethernet1 = &cp0_eth1;
-+		ethernet2 = &cp0_eth2;
-+		ethernet3 = &swport1;
-+		ethernet4 = &swport2;
-+		ethernet5 = &swport3;
-+		ethernet6 = &swport4;
-+	};
-+
-+	/* SFP+ 10G */
-+	sfp_eth0: sfp-eth0 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&cp0_i2c1>;
-+		los-gpio = <&sfp_gpio 3 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpio = <&sfp_gpio 2 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpio = <&sfp_gpio 1 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpio  = <&sfp_gpio 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	/* SFP 1G */
-+	sfp_eth2: sfp-eth2 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&cp0_i2c0>;
-+		los-gpio = <&sfp_gpio 7 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpio = <&sfp_gpio 6 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpio = <&sfp_gpio 5 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpio  = <&sfp_gpio 4 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+/* microUSB UART console */
-+&uart0 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&uart0_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* eMMC */
-+&ap_sdhci0 {
-+	status = "okay";
-+
-+	bus-width = <4>;
-+	non-removable;
-+	/delete-property/ marvell,xenon-phy-slow-mode;
-+	no-1-8-v;
-+};
-+
-+&cp0_pinctrl {
-+	cp0_uart0_pins: cp0-uart0-pins {
-+		marvell,pins = "mpp6", "mpp7";
-+		marvell,function = "uart0";
-+	};
-+
-+	cp0_spi0_pins: cp0-spi0-pins {
-+		marvell,pins = "mpp56", "mpp57", "mpp58", "mpp59";
-+		marvell,function = "spi0";
-+	};
-+
-+	cp0_spi1_pins: cp0-spi1-pins {
-+		marvell,pins = "mpp13", "mpp14", "mpp15", "mpp16";
-+		marvell,function = "spi1";
-+	};
-+
-+	cp0_i2c0_pins: cp0-i2c0-pins {
-+		marvell,pins = "mpp37", "mpp38";
-+		marvell,function = "i2c0";
-+	};
-+
-+	cp0_i2c1_pins: cp0-i2c1-pins {
-+		marvell,pins = "mpp2", "mpp3";
-+		marvell,function = "i2c1";
-+	};
-+
-+	pca9554_int_pins: pca9554-int-pins {
-+		marvell,pins = "mpp27";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_rgmii1_pins: cp0-rgmii1-pins {
-+		marvell,pins = "mpp44", "mpp45", "mpp46", "mpp47", "mpp48", "mpp49",
-+			       "mpp50", "mpp51", "mpp52", "mpp53", "mpp54", "mpp55";
-+		marvell,function = "ge1";
-+	};
-+
-+	is31_sdb_pins: is31-sdb-pins {
-+		marvell,pins = "mpp30";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_pcie_reset_pins: cp0-pcie-reset-pins {
-+		marvell,pins = "mpp9";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_switch_pins: cp0-switch-pins {
-+		marvell,pins = "mpp0", "mpp1";
-+		marvell,function = "gpio";
-+	};
-+
-+	cp0_phy_pins: cp0-phy-pins {
-+		marvell,pins = "mpp12";
-+		marvell,function = "gpio";
-+	};
-+};
-+
-+/* mikroBUS UART */
-+&cp0_uart0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_uart0_pins>;
-+};
-+
-+/* mikroBUS SPI */
-+&cp0_spi0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_spi0_pins>;
-+};
-+
-+/* SPI-NOR */
-+&cp0_spi1{
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_spi1_pins>;
-+
-+	spi-flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <20000000>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "firmware";
-+				reg = <0x0 0x3e0000>;
-+				read-only;
-+			};
-+
-+			partition@3e0000 {
-+				label = "hw-info";
-+				reg = <0x3e0000 0x10000>;
-+				read-only;
-+			};
-+
-+			partition@3f0000 {
-+				label = "u-boot-env";
-+				reg = <0x3f0000 0x10000>;
-+			};
-+		};
-+	};
-+};
-+
-+/* mikroBUS, 1G SFP and GPIO expander */
-+&cp0_i2c0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_i2c0_pins>;
-+	clock-frequency = <100000>;
-+
-+	sfp_gpio: pca9554@39 {
-+		compatible = "nxp,pca9554";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pca9554_int_pins>;
-+		reg = <0x39>;
-+
-+		interrupt-parent = <&cp0_gpio1>;
-+		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		/*
-+		 * IO0_0: SFP+_TX_FAULT
-+		 * IO0_1: SFP+_TX_DISABLE
-+		 * IO0_2: SFP+_PRSNT
-+		 * IO0_3: SFP+_LOSS
-+		 * IO0_4: SFP_TX_FAULT
-+		 * IO0_5: SFP_TX_DISABLE
-+		 * IO0_6: SFP_PRSNT
-+		 * IO0_7: SFP_LOSS
-+		 */
-+	};
-+};
-+
-+/* IS31FL3199, mini-PCIe and 10G SFP+ */
-+&cp0_i2c1 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_i2c1_pins>;
-+	clock-frequency = <100000>;
-+
-+	leds@64 {
-+		compatible = "issi,is31fl3199";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&is31_sdb_pins>;
-+		shutdown-gpios = <&cp0_gpio1 30 GPIO_ACTIVE_HIGH>;
-+		reg = <0x64>;
-+
-+		led1_red: led@1 {
-+			label = "led1:red";
-+			reg = <1>;
-+			led-max-microamp = <20000>;
-+		};
-+
-+		led1_green: led@2 {
-+			label = "led1:green";
-+			reg = <2>;
-+		};
-+
-+		led1_blue: led@3 {
-+			label = "led1:blue";
-+			reg = <3>;
-+		};
-+
-+		led2_red: led@4 {
-+			label = "led2:red";
-+			reg = <4>;
-+		};
-+
-+		led2_green: led@5 {
-+			label = "led2:green";
-+			reg = <5>;
-+		};
-+
-+		led2_blue: led@6 {
-+			label = "led2:blue";
-+			reg = <6>;
-+		};
-+
-+		led3_red: led@7 {
-+			label = "led3:red";
-+			reg = <7>;
-+		};
-+
-+		led3_green: led@8 {
-+			label = "led3:green";
-+			reg = <8>;
-+		};
-+
-+		led3_blue: led@9 {
-+			label = "led3:blue";
-+			reg = <9>;
-+		};
-+	};
-+};
-+
-+&cp0_mdio {
-+	status = "okay";
-+
-+	/* 88E1512 PHY */
-+	eth2phy: ethernet-phy@1 {
-+		reg = <1>;
-+		sfp = <&sfp_eth2>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cp0_phy_pins>;
-+		reset-gpios = <&cp0_gpio1 12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	/* 88E6141 Topaz switch */
-+	switch: switch@3 {
-+		compatible = "marvell,mv88e6085";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cp0_switch_pins>;
-+		reset-gpios = <&cp0_gpio1 0 GPIO_ACTIVE_LOW>;
-+
-+		interrupt-parent = <&cp0_gpio1>;
-+		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			swport1: port@1 {
-+				reg = <1>;
-+				label = "lan0";
-+				phy-handle = <&swphy1>;
-+			};
-+
-+			swport2: port@2 {
-+				reg = <2>;
-+				label = "lan1";
-+				phy-handle = <&swphy2>;
-+			};
-+
-+			swport3: port@3 {
-+				reg = <3>;
-+				label = "lan2";
-+				phy-handle = <&swphy3>;
-+			};
-+
-+			swport4: port@4 {
-+				reg = <4>;
-+				label = "lan3";
-+				phy-handle = <&swphy4>;
-+			};
-+
-+			port@5 {
-+				reg = <5>;
-+				label = "cpu";
-+				ethernet = <&cp0_eth1>;
-+				phy-mode = "2500base-x";
-+				managed = "in-band-status";
-+			};
-+		};
-+
-+		mdio {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			swphy1: swphy1@17 {
-+				reg = <17>;
-+			};
-+
-+			swphy2: swphy2@18 {
-+				reg = <18>;
-+			};
-+
-+			swphy3: swphy3@19 {
-+				reg = <19>;
-+			};
-+
-+			swphy4: swphy4@20 {
-+				reg = <20>;
-+			};
-+		};
-+	};
-+};
-+
-+&cp0_ethernet {
-+	status = "okay";
-+};
-+
-+/* 10G SFP+ */
-+&cp0_eth0 {
-+	status = "okay";
-+
-+	phy-mode = "10gbase-r";
-+	phys = <&cp0_comphy4 0>;
-+	managed = "in-band-status";
-+	sfp = <&sfp_eth0>;
-+};
-+
-+/* Topaz switch uplink */
-+&cp0_eth1 {
-+	status = "okay";
-+
-+	phy-mode = "2500base-x";
-+	phys = <&cp0_comphy0 1>;
-+
-+	fixed-link {
-+		speed = <2500>;
-+		full-duplex;
-+	};
-+};
-+
-+/* 1G SFP or 1G RJ45 */
-+&cp0_eth2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_rgmii1_pins>;
-+
-+	phy = <&eth2phy>;
-+	phy-mode = "rgmii-id";
-+};
-+
-+&cp0_utmi {
-+	status = "okay";
-+};
-+
-+/* SMSC USB5434B hub */
-+&cp0_usb3_0 {
-+	status = "okay";
-+
-+	phys = <&cp0_comphy1 0>, <&cp0_utmi0>;
-+	phy-names = "cp0-usb3h0-comphy", "utmi";
-+};
-+
-+/* miniPCI-E USB */
-+&cp0_usb3_1 {
-+	status = "okay";
-+};
-+
-+&cp0_sata0 {
-+	status = "okay";
-+
-+	/* 7 + 12 SATA connector (J24) */
-+	sata-port@0 {
-+		phys = <&cp0_comphy2 0>;
-+		phy-names = "cp0-sata0-0-phy";
-+	};
-+
-+	/* M.2-2250 B-key (J39) */
-+	sata-port@1 {
-+		phys = <&cp0_comphy3 1>;
-+		phy-names = "cp0-sata0-1-phy";
-+	};
-+};
-+
-+/* miniPCI-E (J5) */
-+&cp0_pcie2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp0_pcie_reset_pins>;
-+	phys = <&cp0_comphy5 2>;
-+	phy-names = "cp0-pcie2-x1-phy";
-+	reset-gpio = <&cp0_gpio1 9 GPIO_ACTIVE_LOW>;
-+};
--- 
-2.31.1
+This makes it easier to see the important part of dealing with
+pcie_1_pipe_clk_src and makes any future bisect much more specific.
 
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 94 ++++++++++++++++++++++++++++++----
+>  1 file changed, 83 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 8a7a300..7896a86 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
+>  	struct regulator_bulk_data supplies[2];
+>  	struct reset_control *pci_reset;
+>  	struct clk *pipe_clk;
+> +	struct clk *pipe_clk_src;
+> +	struct clk *phy_pipe_clk;
+> +	struct clk *ref_clk_src;
+>  };
+>  
+>  union qcom_pcie_resources {
+> @@ -189,6 +192,11 @@ struct qcom_pcie_ops {
+>  	int (*config_sid)(struct qcom_pcie *pcie);
+>  };
+>  
+> +struct qcom_pcie_cfg {
+> +	const struct qcom_pcie_ops *ops;
+> +	unsigned int pipe_clk_need_muxing:1;
+> +};
+> +
+>  struct qcom_pcie {
+>  	struct dw_pcie *pci;
+>  	void __iomem *parf;			/* DT parf */
+> @@ -197,6 +205,7 @@ struct qcom_pcie {
+>  	struct phy *phy;
+>  	struct gpio_desc *reset;
+>  	const struct qcom_pcie_ops *ops;
+> +	unsigned int pipe_clk_need_muxing:1;
+>  };
+>  
+>  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
+> @@ -1167,6 +1176,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	if (pcie->pipe_clk_need_muxing) {
+> +		res->pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+> +		if (IS_ERR(res->pipe_clk_src))
+> +			return PTR_ERR(res->pipe_clk_src);
+> +
+> +		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
+> +		if (IS_ERR(res->phy_pipe_clk))
+> +			return PTR_ERR(res->phy_pipe_clk);
+> +
+> +		res->ref_clk_src = devm_clk_get(dev, "ref");
+> +		if (IS_ERR(res->ref_clk_src))
+> +			return PTR_ERR(res->ref_clk_src);
+> +	}
+> +
+>  	res->pipe_clk = devm_clk_get(dev, "pipe");
+>  	return PTR_ERR_OR_ZERO(res->pipe_clk);
+>  }
+> @@ -1185,6 +1208,10 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
+>  		return ret;
+>  	}
+>  
+> +	/* Set TCXO as clock source for pcie_pipe_clk_src */
+> +	if (pcie->pipe_clk_need_muxing)
+> +		clk_set_parent(res->pipe_clk_src, res->ref_clk_src);
+> +
+>  	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
+>  	if (ret < 0)
+>  		goto err_disable_regulators;
+> @@ -1256,6 +1283,10 @@ static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>  {
+>  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+>  
+> +	/* Set pipe clock as clock source for pcie_pipe_clk_src */
+> +	if (pcie->pipe_clk_need_muxing)
+> +		clk_set_parent(res->pipe_clk_src, res->phy_pipe_clk);
+> +
+>  	return clk_prepare_enable(res->pipe_clk);
+>  }
+>  
+> @@ -1456,6 +1487,39 @@ static const struct qcom_pcie_ops ops_1_9_0 = {
+>  	.config_sid = qcom_pcie_config_sid_sm8250,
+>  };
+>  
+> +static const struct qcom_pcie_cfg apq8084_cfg = {
+> +	.ops = &ops_1_0_0,
+> +};
+> +
+> +static const struct qcom_pcie_cfg ipq8064_cfg = {
+> +	.ops = &ops_2_1_0,
+> +};
+> +
+> +static const struct qcom_pcie_cfg msm8996_cfg = {
+> +	.ops = &ops_2_3_2,
+> +};
+> +
+> +static const struct qcom_pcie_cfg ipq8074_cfg = {
+> +	.ops = &ops_2_3_3,
+> +};
+> +
+> +static const struct qcom_pcie_cfg ipq4019_cfg = {
+> +	.ops = &ops_2_4_0,
+> +};
+> +
+> +static const struct qcom_pcie_cfg sdm845_cfg = {
+> +	.ops = &ops_2_7_0,
+> +};
+> +
+> +static const struct qcom_pcie_cfg sm8250_cfg = {
+> +	.ops = &ops_1_9_0,
+> +};
+> +
+> +static const struct qcom_pcie_cfg sc7280_cfg = {
+> +	.ops = &ops_1_9_0,
+> +	.pipe_clk_need_muxing = true,
+> +};
+> +
+>  static const struct dw_pcie_ops dw_pcie_ops = {
+>  	.link_up = qcom_pcie_link_up,
+>  	.start_link = qcom_pcie_start_link,
+> @@ -1467,6 +1531,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  	struct pcie_port *pp;
+>  	struct dw_pcie *pci;
+>  	struct qcom_pcie *pcie;
+> +	const struct qcom_pcie_cfg *pcie_cfg;
+>  	int ret;
+>  
+>  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+> @@ -1488,7 +1553,13 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  
+>  	pcie->pci = pci;
+>  
+> -	pcie->ops = of_device_get_match_data(dev);
+> +	pcie_cfg = of_device_get_match_data(dev);
+> +	pcie->ops = pcie_cfg->ops;
+> +	if (!pcie->ops) {
+> +		dev_err(dev, "Invalid platform data\n");
+> +		return -EINVAL;
+> +	}
+> +	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
+>  
+>  	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+>  	if (IS_ERR(pcie->reset)) {
+> @@ -1545,16 +1616,17 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id qcom_pcie_match[] = {
+> -	{ .compatible = "qcom,pcie-apq8084", .data = &ops_1_0_0 },
+> -	{ .compatible = "qcom,pcie-ipq8064", .data = &ops_2_1_0 },
+> -	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ops_2_1_0 },
+> -	{ .compatible = "qcom,pcie-apq8064", .data = &ops_2_1_0 },
+> -	{ .compatible = "qcom,pcie-msm8996", .data = &ops_2_3_2 },
+> -	{ .compatible = "qcom,pcie-ipq8074", .data = &ops_2_3_3 },
+> -	{ .compatible = "qcom,pcie-ipq4019", .data = &ops_2_4_0 },
+> -	{ .compatible = "qcom,pcie-qcs404", .data = &ops_2_4_0 },
+> -	{ .compatible = "qcom,pcie-sdm845", .data = &ops_2_7_0 },
+> -	{ .compatible = "qcom,pcie-sm8250", .data = &ops_1_9_0 },
+> +	{ .compatible = "qcom,pcie-apq8084", .data = &apq8084_cfg },
+> +	{ .compatible = "qcom,pcie-ipq8064", .data = &ipq8064_cfg },
+> +	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ipq8064_cfg },
+> +	{ .compatible = "qcom,pcie-apq8064", .data = &ipq8064_cfg },
+> +	{ .compatible = "qcom,pcie-msm8996", .data = &msm8996_cfg },
+> +	{ .compatible = "qcom,pcie-ipq8074", .data = &ipq8074_cfg },
+> +	{ .compatible = "qcom,pcie-ipq4019", .data = &ipq4019_cfg },
+> +	{ .compatible = "qcom,pcie-qcs404", .data = &ipq4019_cfg },
+> +	{ .compatible = "qcom,pcie-sdm845", .data = &sdm845_cfg },
+> +	{ .compatible = "qcom,pcie-sm8250", .data = &sm8250_cfg },
+> +	{ .compatible = "qcom,pcie-sc7280", .data = &sc7280_cfg },
+>  	{ }
+>  };
+>  
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
