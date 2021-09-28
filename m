@@ -2,94 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7164941B4BE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 19:09:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 656FB41B4EA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 19:21:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241964AbhI1RLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 13:11:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241967AbhI1RLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 13:11:08 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C2AC061753
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 10:09:28 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id ba1so28004911edb.4
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 10:09:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=aZK50rgSRHZQcRqY8tXdmJANbhQZl2eXtIuEyFm2xBo=;
-        b=p0qI1ttJLpR80NCXOaI+kGOK+YMfIIB7tHLhbzpVu8ykE0BmvqCbQlt/mUcQ3hLCGu
-         oiUjYZ5s6vU9PzXq4FyWfoo2ptDOI2DVDx4rXN2lJ2c9Ruj46HfbjbX2p3pdWronHYkn
-         iZafES4mn56y8ChKaB55Ftz2IwlqGHHl0gN5WK79KF5iZNidez7LdO88weLGQFDPGJy4
-         jhFk1v2TWEF0n76qRfjgXW9yWoQpe1g6iYOypx1hZHSgP1ZQ0P097XaLcVFbRipQIgjc
-         GADrcMOtuz38SdRyz5/qBTjRLrEnVBT3pgsvXU0UMxfUwhRbiViPjERkvTCPiLDawH6C
-         rBGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aZK50rgSRHZQcRqY8tXdmJANbhQZl2eXtIuEyFm2xBo=;
-        b=bx9rGadZLqsuL7mGqoL2otg6+Qpm//D4hqlFuGlPrcDZftoBcvu/9r6T+Lr8He5xFj
-         cP3J+i0LFVT1TF15DmwK8dWzyVlxXnNcQkYaNhgnVsIis+noZNSA1467TeLLkjKilc0t
-         s/bYcb0tKS2I8tPl30HXF15brXyXoeJClw5u44OU6qu72NHkaSGKQrTEPN8WKU0tsPLV
-         0m3oLLvzCByya7dTl/64873j9ihOLC+DB5RITCakcEMNygutUNTgU/aKSYEOg5vU6ar4
-         SmOhl4mU9znvmpaVA95TiK1C9jaQNG9wdUtDUB3E0fV2gbNaUtDKV/Lmmeemb1FMkzVF
-         +zog==
-X-Gm-Message-State: AOAM530Pk9Lw4hnMoPIFVgflaNOAaKXbWive73GcbH0JCUjD9NRcotlm
-        NnjvEiP7ThlNDyaZtQ2tP+iZqg==
-X-Google-Smtp-Source: ABdhPJymT3YOYPRu80o+Dk4PLwba8nkVBFvoSnZEq5bcWFN9vIm7CfRa2aF8CuYuYjay5M66WPnc3w==
-X-Received: by 2002:a17:906:f15:: with SMTP id z21mr7808803eji.177.1632848967075;
-        Tue, 28 Sep 2021 10:09:27 -0700 (PDT)
-Received: from fedora.. (cpezg-94-253-144-231-cbl.xnet.hr. [94.253.144.231])
-        by smtp.googlemail.com with ESMTPSA id bj21sm10806129ejb.42.2021.09.28.10.09.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 10:09:26 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, pali@kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH v3 3/3] arm64: dts: marvell: espressobin-ultra: enable front USB3 port
-Date:   Tue, 28 Sep 2021 19:09:19 +0200
-Message-Id: <20210928170919.691845-3-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210928170919.691845-1-robert.marko@sartura.hr>
-References: <20210928170919.691845-1-robert.marko@sartura.hr>
+        id S241983AbhI1RXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 13:23:16 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:19552 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241944AbhI1RXP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 13:23:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632849686;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=iZkfpNBWYReD8ezAsvLsyYoZARZX4Qr9pg/R65pM3x0=;
+    b=fCXM9jhXxFeJk/cJdMHmrKpYZaMFexNp7CtXEYHrOmiyqW+6QWKanRGmFoOwGOZz69
+    qqy3dLEoeGKQ0Pn1HvcSP/d1koX1bpLqsEfkGwGuMuFIgmeNJiRFPTFfqDuBN2coWtGp
+    KiKVox9UyVVu7XdLojEf33/FnEvzawGEpfJhwvphBQ4EIQVaiLOsi58RVHLn7svxkpE9
+    htFAttFcx633uILZ10BKK+SCg+k7y+ydQzDbGjFC4BV32PaHsttp53LwKquQJh/A1Y3r
+    1GD6FMoWggUtpf/wiE/uhcH9vtXlrovLpTjuuTgMiPQaGz9M2EfFv1ZYiHa6NKPGs5+R
+    bk2w==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXTbAOHjRHIhr3eFSKSxc="
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
+    with ESMTPSA id 301038x8SHLQoBG
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 28 Sep 2021 19:21:26 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: [PATCH 00/15] Add support for Samsung Galaxy S4 Mini Value Edition
+Date:   Tue, 28 Sep 2021 19:12:16 +0200
+Message-Id: <20210928171231.12766-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Espressobin Ultra has a front panel USB3.0 Type-A port which works
-just fine so enable it.
-I dont see a reason why it was disabled in the first place anyway.
+This series adds support for booting mainline Linux on the Samsung Galaxy
+S4 Mini Value Edition. The device is based on the Qualcomm MSM8916 SoC and quite
+similar to the already supported Samsung Galaxy A3/A5. With some additional
+patches it is almost fully functional, including display, touch screen, GPU,
+audio, modem (voice calls, SMS, mobile data) and sensors.
 
-Fixes: 3404fe15a60f ("arm64: dts: marvell: add DT for ESPRESSObin-Ultra")
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
-Changes in v2:
-* Add Fixes tag
----
- arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts | 1 -
- 1 file changed, 1 deletion(-)
+I made most of the patches almost 2 years ago but I was long unsure if I should
+submit them upstream. This is because the device has one big limitation:
+Samsung released it with a signed 32-bit-only TrustZone firmware which is not
+able to boot ARM64 Linux. This means the device can actually only boot ARM32.
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-index 7c786d218f1b..070725b81be5 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-@@ -108,7 +108,6 @@ rtc@51 {
- 
- &usb3 {
- 	usb-phy = <&usb3_phy>;
--	status = "disabled";
- };
- 
- &mdio {
+However, since device trees are independent of the kernel architecture and all
+the necessary drivers compile on ARM32 as well it is actually extremely
+straightforward to build an ARM32 kernel for MSM8916 (which is normally arm64).
+
+The only necessary additions are for SMP/cpuidle without PSCI on ARM32. However,
+the diffstat below makes it quite obvious that the maintenance overhead for this
+is absolutely negligible. The SoC is almost identical to previous 32-bit SoCs
+like MSM8226, so it is pretty much just adding new definitions/compatibles for
+already existing code.
+
+Being able to boot ARM32 Linux on MSM8916 might be also a possible opportunity
+for CI systems. At the moment, 32-bit Qualcomm platforms are not very well
+represented there. Booting ARM32 on MSM8916/APQ8016 would allow re-using the
+DragonBoard 410c which is often already used for automated CI testing.
+
+Lina Iyer (1):
+  soc: qcom: spm: Add 8916 SPM register data
+
+Stephan Gerhold (14):
+  arm64: dts: qcom: Add device tree for Samsung Galaxy S4 Mini Value
+    Edition
+  arm64: dts: qcom: msm8916-samsung-serranove: Add touch screen
+  arm64: dts: qcom: msm8916-samsung-serranove: Add touch key
+  arm64: dts: qcom: msm8916-samsung-serranove: Add IMU
+  arm64: dts: qcom: msm8916-samsung-serranove: Add rt5033 battery
+  arm64: dts: qcom: msm8916-samsung-serranove: Add NFC
+  ARM: qcom: Add ARCH_MSM8916 for MSM8916 on ARM32
+  dt-bindings: arm: cpus: Document qcom,msm8916-smp enable-method
+  ARM: qcom: Add qcom,msm8916-smp enable-method identical to MSM8226
+  dt-bindings: soc: qcom: spm: Document qcom,msm8916-saw2-v3.0-cpu
+  firmware: qcom: scm: Add support for MC boot address API
+  arm64: dts: qcom: msm8916: Add CPU ACC and SAW/SPM
+  ARM: dts: qcom: msm8916: Add include for SMP without PSCI on ARM32
+  ARM: dts: qcom: msm8916-samsung-serranove: Include dts from arm64
+
+ .../devicetree/bindings/arm/cpus.yaml         |   4 +-
+ .../bindings/soc/qcom/qcom,spm.yaml           |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/qcom-msm8916-samsung-serranove.dts    |   3 +
+ arch/arm/boot/dts/qcom-msm8916-smp.dtsi       |  62 ++
+ arch/arm/mach-qcom/Kconfig                    |  10 +
+ arch/arm/mach-qcom/platsmp.c                  |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../dts/qcom/msm8916-samsung-serranove.dts    | 534 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |  56 ++
+ drivers/firmware/qcom_scm.c                   |  84 ++-
+ drivers/firmware/qcom_scm.h                   |   4 +
+ drivers/soc/qcom/spm.c                        |  21 +
+ 13 files changed, 764 insertions(+), 18 deletions(-)
+ create mode 100644 arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dts
+ create mode 100644 arch/arm/boot/dts/qcom-msm8916-smp.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
+
 -- 
-2.31.1
+2.33.0
 
