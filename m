@@ -2,109 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB3E941ADDE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 13:31:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09BF841AE1E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 13:50:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240448AbhI1Ldh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 07:33:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60152 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240425AbhI1LdZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 07:33:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 129296054F;
-        Tue, 28 Sep 2021 11:31:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632828706;
-        bh=1KQFI2M5uykNU1IsQH9vq6SitjQwbZIOudUgWmw3N0Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=apU8FFwBBHCE9hufbHg4XBkUvnrdRLDP77cwA+lQHTL6oKbbXC1+D8SChAV1TliR4
-         7lU1ERUYcmj890j+RjJsXCcbYmS7SeiJ5wn1zLKAJdM3LEqLcKH4w78tsNtUW+mlYw
-         lmklvOzRQZnHstvunsgSdlnG4pXlu0EwnbPxgrVXv0+8UfxzpXkgJNELm3LQ+lIDfT
-         VajDEnkRBQiu3oEKpB1aRvtGvuudAr/7Rrt7Oaru17MxIT15f+hGm16ii8X7P2cm/G
-         AhAw6tjQ9ZXvYxnEep6xkfp7sLl4uF0CH7aA/mb/V3IYiNDbHCFiLcOoU357Cw9hW6
-         R5TDlpUn0FDMA==
-Date:   Tue, 28 Sep 2021 12:30:57 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] regulator: Add Unisoc's SC2730 regulator driver
-Message-ID: <20210928113057.GJ4199@sirena.org.uk>
-References: <20210928073609.198975-1-zhang.lyra@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2VXyA7JGja7B50zs"
-Content-Disposition: inline
-In-Reply-To: <20210928073609.198975-1-zhang.lyra@gmail.com>
-X-Cookie: 98% lean.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S240423AbhI1LwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 07:52:14 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:9000 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240368AbhI1LwM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 07:52:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632829815;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=YTEFE85q1lzsLsryEhw+wFNrRWWN7xnJQaSGDFtVJl4=;
+    b=llHwgcd407FNOA8AI2maCSIaPdmB4dmrx3OYc5rQeFsr8JLh2WHuQbu1l/+DuXGD9+
+    kKgAtpjFCnHHlW3P9HZiJZDCoKEv2n+4XeCmFLaZrkWjl0UJkEHVEX0E6DZWV8Kw3r+O
+    oDm5VRBtTrbpP5lOvY7nQjrsjTiN55EFZvTMMcjzkn/mEf+0lLg0ndOmP27ZnYTgcOCd
+    2t/zEEhU0utFqfubdLFGh2dn4KnGw85xVUBuiWAmynQPDAHeuEq3cP/Lqn1ld5dukkTP
+    ubiIJuvYqWFXVeHMK39M1A3zmZ4m/XjWwvhIWO3BPEPgt0Dfz1+Xbpgx1TiVZ/Sl5ZQh
+    7wsw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43sT7Q="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
+    with ESMTPSA id I01f74x8SBoDe6N
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Tue, 28 Sep 2021 13:50:13 +0200 (CEST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v4 10/10] drm/ingenic: add some jz4780 specific features
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <E40D4D33-536F-4218-BEDD-C64539F15D40@goldelico.com>
+Date:   Tue, 28 Sep 2021 13:50:13 +0200
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <5A763511-72C8-4CDE-AF1F-8F1A04390BAE@goldelico.com>
+References: <cover.1632761067.git.hns@goldelico.com>
+ <8cbfba68ce45e10106eb322d622cb7ac64c0e4d4.1632761068.git.hns@goldelico.com>
+ <AE250R.2UXAKOURL8O52@crapouillou.net>
+ <E40D4D33-536F-4218-BEDD-C64539F15D40@goldelico.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---2VXyA7JGja7B50zs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Tue, Sep 28, 2021 at 03:36:08PM +0800, Chunyan Zhang wrote:
+> Am 28.09.2021 um 12:06 schrieb H. Nikolaus Schaller =
+<hns@goldelico.com>:
+>=20
+>>>=20
+>>> +
+>>> +	/* RGB output control may be superfluous. */
+>>> +	if (soc_info->has_rgbc)
+>>> +		regmap_write(priv->map, JZ_REG_LCD_RGBC,
+>>> +			     JZ_LCD_RGBC_RGB_FORMAT_ENABLE |
+>>> +			     JZ_LCD_RGBC_ODD_RGB |
+>>> +			     JZ_LCD_RGBC_EVEN_RGB);
+>>=20
+>> ingenic-drm only supports RGB output right now, so I guess the =
+RGB_FORMAT_ENABLE bit needs to be set in patch [2/10], otherwise patch =
+[2/10] cannot state that it adds support for the JZ4780, if it doesn't =
+actually work.
 
-> +++ b/drivers/regulator/sc2730-regulator.c
-> @@ -0,0 +1,502 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2018-2021 Unisoc Inc.
-> + */
+interestingly it works without setting anything in this register.
 
-Please make the entire comment a C++ one so things look more
-intentional.
+>>=20
+>> The other two bits can be dropped, they are already set in =
+ingenic_drm_encoder_atomic_mode_set().
+>=20
+> Ok.
 
-> +static int debugfs_enable_get(void *data, u64 *val)
-> +{
-> +	struct regulator_dev *rdev = data;
-> +
+Setting it manually doesn't change anything visible:
 
-> +static int debugfs_enable_set(void *data, u64 val)
-> +{
-> +	struct regulator_dev *rdev = data;
-> +
+root@letux:~# devmem2 0x13050090
+/dev/mem opened.
+Memory mapped at address 0x77e14000.
+Value at address 0x13050090 (0x77e14090): 0x0
+root@letux:~# devmem2 0x13050090 w 0x80
+/dev/mem opened.
+Memory mapped at address 0x77e38000.
+Value at address 0x13050090 (0x77e38090): 0x0
+Written 0x80; readback 0x80
+root@letux:~#=20
 
-> +static int debugfs_voltage_get(void *data, u64 *val)
-> +{
+Same for 0x130A0090. Maybe this lcdc register
+is not used at all - at least for HDMI?
 
-> +static int debugfs_voltage_set(void *data, u64 val)
-> +{
+So I'd suggest to drop this whole patch from v5.
 
-If these were to be implemented they should be in the core as there's
-nothing device specific about them (the read side is there), please
-remove them from the driver.
+BR and thanks,
+Nikolaus
 
-> +static const struct of_device_id sc2730_regulator_match[] = {
-> +	{ .compatible = "sprd,sc2730-regulator" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, sc2730_regulator_match);
-
-Since this is a part of a MFD I'd not expect it to have a compatible
-string?
-
---2VXyA7JGja7B50zs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFS/PAACgkQJNaLcl1U
-h9AWpwf7B8JVyUAhlLUaJqdBrpEnFv79LScK1o7PYr11vt5lemlbHg+au3eCHCyF
-4yPmlVbXRjwWhScMTN87gEcjEVCZjocw5aR7GKKhRWG9GozrbXYZCc4x9TS5tDkD
-3e74xS9jjHKAV8Tk9nlbtgbXtIqIecVXwhCbGpBzxy/8V04/vTy4/0AIilO3Z92S
-fZJ5Oc+FqA7TN6RnrgdOvva1leLeqCMCOheW53cWtoG/GoWk+m9RY0I8tezTo+H7
-4BNMxgFhDOwIUYy7RRnKVyhmsoO+F6WSr9mHtgYo2ui1UWeLjKC92jo4Lglhuu/Z
-qBnFDD+t0kMEfbs4m2cZZ/iKZoVHPA==
-=jmQh
------END PGP SIGNATURE-----
-
---2VXyA7JGja7B50zs--
