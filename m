@@ -2,221 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 970E341AA84
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 10:23:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 639E641AA87
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 10:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239332AbhI1IYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 04:24:54 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:49109 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239292AbhI1IYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 04:24:54 -0400
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 28 Sep 2021 01:23:15 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 28 Sep 2021 01:23:13 -0700
-X-QCInternal: smtphost
-Received: from dikshita-linux.qualcomm.com ([10.204.65.237])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 28 Sep 2021 13:52:57 +0530
-Received: by dikshita-linux.qualcomm.com (Postfix, from userid 347544)
-        id AB7DC21DD5; Tue, 28 Sep 2021 13:52:56 +0530 (IST)
-From:   Dikshita Agarwal <dikshita@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mchehab@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        vgarodia@codeaurora.org, stanimir.varbanov@linaro.org,
-        Dikshita Agarwal <dikshita@codeaurora.org>
-Subject: [PATCH v5] dt-bindings: media: venus: Add sc7280 dt schema
-Date:   Tue, 28 Sep 2021 13:52:53 +0530
-Message-Id: <1632817373-25755-1-git-send-email-dikshita@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S239558AbhI1IZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 04:25:15 -0400
+Received: from mga06.intel.com ([134.134.136.31]:43648 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239292AbhI1IZO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 04:25:14 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="285661087"
+X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; 
+   d="scan'208";a="285661087"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2021 01:23:35 -0700
+X-IronPort-AV: E=Sophos;i="5.85,329,1624345200"; 
+   d="scan'208";a="561974715"
+Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.237.12.65]) ([10.237.12.65])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2021 01:23:32 -0700
+Subject: Re: [PATCH v8 15/22] ASoC: qdsp6: audioreach: add q6apm support
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, lgirdwood@gmail.com, tiwai@suse.de,
+        plai@codeaurora.org, pierre-louis.bossart@linux.intel.com
+References: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
+ <20210927135559.738-16-srinivas.kandagatla@linaro.org>
+From:   =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?= 
+        <amadeuszx.slawinski@linux.intel.com>
+Message-ID: <f5cad020-9d36-d700-df14-95e72a8357fd@linux.intel.com>
+Date:   Tue, 28 Sep 2021 10:23:30 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210927135559.738-16-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a schema description for the venus video encoder/decoder on the sc7280.
+On 9/27/2021 3:55 PM, Srinivas Kandagatla wrote:
+> Add support to q6apm (Audio Process Manager) component which is
+> core Audioreach service running in the DSP.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
 
-Signed-off-by: Dikshita Agarwal <dikshita@codeaurora.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
-changes since v4:
-    fixed missing dependencies.
+(...)
 
- .../bindings/media/qcom,sc7280-venus.yaml          | 162 +++++++++++++++++++++
- 1 file changed, 162 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+> +++ b/sound/soc/qcom/qdsp6/q6apm.c
+> @@ -0,0 +1,597 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2020, Linaro Limited
+> +
+> +#include <dt-bindings/soc/qcom,gpr.h>
+> +#include <linux/delay.h>
+> +#include <linux/jiffies.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/sched.h>
+> +#include <linux/slab.h>
+> +#include <linux/soc/qcom/apr.h>
+> +#include <linux/wait.h>
+> +#include <sound/soc.h>
+> +#include <sound/soc-dapm.h>
+> +#include <sound/pcm.h>
+> +#include "audioreach.h"
+> +#include "q6apm.h"
+> +
+> +/* Graph Management */
+> +struct apm_graph_mgmt_cmd {
+> +	struct apm_module_param_data param_data;
+> +	uint32_t num_sub_graphs;
+> +	uint32_t sub_graph_id_list[];
+> +} __packed;
+> +
+> +#define APM_GRAPH_MGMT_PSIZE(n) ALIGN(sizeof(struct apm_graph_mgmt_cmd) + \
+> +				      n * sizeof(uint32_t), 8)
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-new file mode 100644
-index 0000000..fa54c56
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-@@ -0,0 +1,162 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/qcom,sc7280-venus.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm Venus video encode and decode accelerators
-+
-+maintainers:
-+  - Stanimir Varbanov <stanimir.varbanov@linaro.org>
-+
-+description: |
-+  The Venus Iris2 IP is a video encode and decode accelerator present
-+  on Qualcomm platforms
-+
-+properties:
-+  compatible:
-+    const: qcom,sc7280-venus
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  power-domains:
-+    minItems: 2
-+    maxItems: 3
-+
-+  power-domain-names:
-+    minItems: 2
-+    maxItems: 3
-+    items:
-+      - const: venus
-+      - const: vcodec0
-+      - const: cx
-+
-+  clocks:
-+    maxItems: 5
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: bus
-+      - const: iface
-+      - const: vcodec_core
-+      - const: vcodec_bus
-+
-+  iommus:
-+    maxItems: 2
-+
-+  memory-region:
-+    maxItems: 1
-+
-+  interconnects:
-+    maxItems: 2
-+
-+  interconnect-names:
-+    items:
-+      - const: cpu-cfg
-+      - const: video-mem
-+
-+  video-decoder:
-+    type: object
-+
-+    properties:
-+      compatible:
-+        const: venus-decoder
-+
-+    required:
-+      - compatible
-+
-+    additionalProperties: false
-+
-+  video-encoder:
-+    type: object
-+
-+    properties:
-+      compatible:
-+        const: venus-encoder
-+
-+    required:
-+      - compatible
-+
-+    additionalProperties: false
-+
-+  video-firmware:
-+    type: object
-+
-+    description: |
-+      Firmware subnode is needed when the platform does not
-+      have TrustZone.
-+
-+    properties:
-+      iommus:
-+        maxItems: 1
-+
-+    required:
-+      - iommus
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - power-domains
-+  - power-domain-names
-+  - clocks
-+  - clock-names
-+  - iommus
-+  - memory-region
-+  - video-decoder
-+  - video-encoder
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+        #include <dt-bindings/interrupt-controller/arm-gic.h>
-+        #include <dt-bindings/clock/qcom,videocc-sc7280.h>
-+        #include <dt-bindings/interconnect/qcom,sc7280.h>
-+        #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+        venus: video-codec@aa00000 {
-+                compatible = "qcom,sc7280-venus";
-+                reg = <0x0aa00000 0xd0600>;
-+                interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-+
-+                clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
-+                         <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
-+                         <&videocc VIDEO_CC_VENUS_AHB_CLK>,
-+                         <&videocc VIDEO_CC_MVS0_CORE_CLK>,
-+                         <&videocc VIDEO_CC_MVS0_AXI_CLK>;
-+                clock-names = "core", "bus", "iface",
-+                              "vcodec_core", "vcodec_bus";
-+
-+                power-domains = <&videocc MVSC_GDSC>,
-+                                <&videocc MVS0_GDSC>,
-+                                <&rpmhpd SC7280_CX>;
-+                power-domain-names = "venus", "vcodec0", "cx";
-+
-+                interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>,
-+                                <&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
-+                interconnect-names = "cpu-cfg", "video-mem";
-+
-+                iommus = <&apps_smmu 0x2180 0x20>,
-+                         <&apps_smmu 0x2184 0x20>;
-+
-+                memory-region = <&video_mem>;
-+
-+                video-decoder {
-+                        compatible = "venus-decoder";
-+                };
-+
-+                video-encoder {
-+                        compatible = "venus-encoder";
-+                };
-+
-+                video-firmware {
-+                        iommus = <&apps_smmu 0x21a2 0x0>;
-+                };
-+        };
--- 
-2.7.4
+Possible struct_size again
 
+> +
+> +int q6apm_send_cmd_sync(struct q6apm *apm, struct gpr_pkt *pkt,	uint32_t rsp_opcode)
+
+There seems to be 'tab' in argument list?
+
+> +{
+> +	gpr_device_t *gdev = apm->gdev;
+> +
+> +	return audioreach_send_cmd_sync(&gdev->dev, gdev, &apm->result, &apm->lock,
+> +					NULL, &apm->wait, pkt, rsp_opcode);
+> +}
+> +
+
+(...)
