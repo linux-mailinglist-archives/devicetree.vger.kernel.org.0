@@ -2,133 +2,387 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EBBC41AFC5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AC0341AFCE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240895AbhI1NSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 09:18:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34924 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240882AbhI1NSO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:18:14 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC6CBC061604
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 06:16:34 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id g16so58007916wrb.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 06:16:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=mTy8p1FX9+52bZQjKRfzWopRlURae3gGJlw1jmoFHv8=;
-        b=XW5F8YTXIshTrJRRmHPKLAH1WY0udi50bVo8C+w9H//C81wqcNN4N7h3wA0XA+wv4n
-         svvOOjboDWloSRedXg/h5ngPkkK3rtVv/BJAXTIMU1YGKt9MAsvw1E9lZy3cZCK7yb9s
-         F90Kr0X36aWSieu6mUPT8estmLI5B4uukt2itKtCqutBXErDapQw8aIe4zfuzs7M+I19
-         gIV10j9MVsJMEmrM17qXlBEjhTjEK2XgA359bZCmKCG1cbDOBv6MeAzphzQvP/l850xX
-         7ZvXYL2pfrObqddGk2Bn5O2vxdOcADlhSIjNJLUmaN4v7jF8BAotyUYWBoXLa/gOogqr
-         UEWA==
+        id S240887AbhI1NSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 09:18:50 -0400
+Received: from mail-lf1-f43.google.com ([209.85.167.43]:44625 "EHLO
+        mail-lf1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240790AbhI1NSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:18:49 -0400
+Received: by mail-lf1-f43.google.com with SMTP id y26so53163488lfa.11;
+        Tue, 28 Sep 2021 06:17:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=mTy8p1FX9+52bZQjKRfzWopRlURae3gGJlw1jmoFHv8=;
-        b=6yBYQtxfdFbPLWqOV2bH4rh3qX1NBfX6zOivDrcPvOPcOdmXu+e6VKK1Z1ujhhuVyh
-         TvVW1aYwbd9xbN0EBgDy/Fz/27nXCoGM4Bau+JFi5hHZSzzUdHwQQKzvWET9vBbH3sGx
-         Y9GeQ6JhVmM2wFSgIIjoYeaiY5BcF3Lwu2oxByvSKJEkxLFuxVPNtoC2NTGKmdFSDhbQ
-         SiYIF98B2FJyo8glPXGeQhavjAPyBpN+KYWQivxWQ68zq86kaltoe+HtlBfbrtU1QfB4
-         Esfxm78fpXXnXxcmhy5W2K45uEOuxJ0AxPn8kP7FQNAVqqt9zR/RX1UVf5PNmpjwam7F
-         +CxA==
-X-Gm-Message-State: AOAM532z/K5VxGYRaw+KBnSLEajnRMSjRCBYrRuXbW6TT3hTHfncZ26C
-        p40AIk8m1omdSpUbOGQK83TofQ==
-X-Google-Smtp-Source: ABdhPJyXR9JiZ5AHF8bdJC7ezb76OdWc45UKcupfrQGAIiBT/OiPOP6QDIynGQXNx1a3yrE69MQmIQ==
-X-Received: by 2002:a05:6000:1865:: with SMTP id d5mr6698460wri.248.1632834993434;
-        Tue, 28 Sep 2021 06:16:33 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id g12sm3171123wmh.36.2021.09.28.06.16.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Sep 2021 06:16:32 -0700 (PDT)
-Subject: Re: [PATCH V2 1/6] dt-bindings: nvmem: add cell-type to nvmem cells
-To:     Rob Herring <robh@kernel.org>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     shawnguo@kernel.org, a.fatoum@pengutronix.de,
-        kernel@pengutronix.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-References: <20210923110109.29785-1-qiangqing.zhang@nxp.com>
- <20210923110109.29785-2-qiangqing.zhang@nxp.com>
- <YVIsq7JJ2A1NhB/w@robh.at.kernel.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <110991f8-13e8-665e-0cc7-c102b55cda0e@linaro.org>
-Date:   Tue, 28 Sep 2021 14:16:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VsUpYZ/d67fk+7kKkghsixVBVKoRn1ks4toBwFv62PI=;
+        b=temJSi46qXJP9VPpa34ntZuNLDCmaagRj0qx62J/0ixSIkAVPLQnf1IuZnbyOl40Fy
+         JzV7YrYGdLvTlZfw3U/rBMQtqQQyEsV64sBKYjFT/HvfcHov4YHhCgztfTT4VkA+RLcb
+         HuD1Nn1CZPN47+rYmW0LD8qcfLtzXqYqBY7T2WySe0zBqHbwDPeJJ+T2fhL369xg0ti4
+         uqWq7dW8e5X4w5fwX/sPm0DHsnY5Ug9Qju+9P+S1lywdx99hv5UUDZwL61IP6/0aEL+E
+         94Aq4vR5ZhQLOXF0TGhgBfIhKrHgL94+4RvKRPpfTaorFyIcSzMZ1DJb3udZdFqr+Xh1
+         upbQ==
+X-Gm-Message-State: AOAM533YzkR6haZ7+8X2MiiuzL3KwFnrJpliPetG8QKJOlxdw7h0OxLL
+        8XfE6jBWC1PljmOPgFzIi4g=
+X-Google-Smtp-Source: ABdhPJxLNmZkGhN13EIyWcIWOnyEkTaoC3cH/oTNeuyjiOgRgF/QkDX7O/4iUCwGZ8f+AXbNjae5oA==
+X-Received: by 2002:a2e:85cb:: with SMTP id h11mr6149986ljj.111.1632835027247;
+        Tue, 28 Sep 2021 06:17:07 -0700 (PDT)
+Received: from fedora (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
+        by smtp.gmail.com with ESMTPSA id g4sm594309ljk.64.2021.09.28.06.17.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Sep 2021 06:17:06 -0700 (PDT)
+Date:   Tue, 28 Sep 2021 16:17:00 +0300
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     matti.vaittinen@fi.rohmeurope.com
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-power@fi.rohmeurope.com,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: [PATCH 2/4] gpio: bd70528 Drop BD70528 support
+Message-ID: <c4d24c4829de63af0e778ef509ca818517ef47ea.1632833622.git.matti.vaittinen@fi.rohmeurope.com>
+References: <cover.1632833622.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-In-Reply-To: <YVIsq7JJ2A1NhB/w@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6aMtRLAKoktAGKKM"
+Content-Disposition: inline
+In-Reply-To: <cover.1632833622.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--6aMtRLAKoktAGKKM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 27/09/2021 21:42, Rob Herring wrote:
-> On Thu, Sep 23, 2021 at 07:01:04PM +0800, Joakim Zhang wrote:
->> From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>
->> Some of the nvmem providers encode data for certain type of nvmem cell,
->> example mac-address is stored in ascii or with delimiter or in reverse order.
->>
->> This is much specific to vendor, so having a cell-type would allow nvmem
->> provider drivers to post-process this before using it.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
->> ---
->>   Documentation/devicetree/bindings/nvmem/nvmem.yaml | 11 +++++++++++
->>   include/dt-bindings/nvmem/nvmem.h                  |  8 ++++++++
->>   2 files changed, 19 insertions(+)
->>   create mode 100644 include/dt-bindings/nvmem/nvmem.h
->>
->> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
->> index b8dc3d2b6e92..8cf6c7e72b0a 100644
->> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
->> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
->> @@ -60,6 +60,11 @@ patternProperties:
->>               - minimum: 1
->>                 description:
->>                   Size in bit within the address range specified by reg.
->> +      cell-type:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        maxItems: 1
->> +        description:
->> +          Type of nvmem, Use defines in dt-bindings/nvmem/nvmem.h.
-> 
-> I don't think magic numbers are the right approach here. Actually, I
-> don't think we need any DT additions.
-> 
-> Why not just have the consumer side just tell the nvmem provider what
-> the data is and to translate it. The consumer side already has a name
-> (e.g. mac-address) which defines what the data is and I think is pretty
-> standard. If that name is standard, then you could pass it to the nvmem
-> core. If not, define some kernel internal types to use.
+The only known BD70528 use-cases are such that the PMIC is controlled
+=66rom separate MCU which is not running Linux. I am not aware of
+any Linux driver users. Furthermore, it seems there is no demand for
+this IC. Let's ease the maintenance burden and drop the driver. We can
+always add it back if there is sudden need for it.
 
-Thanks Rob for the inputs,
+Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+---
+ drivers/gpio/Kconfig        |  11 --
+ drivers/gpio/Makefile       |   1 -
+ drivers/gpio/gpio-bd70528.c | 230 ------------------------------------
+ 3 files changed, 242 deletions(-)
+ delete mode 100644 drivers/gpio/gpio-bd70528.c
 
-There are potentially two sources for this information.
+diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+index fae5141251e5..ca6d71fe7185 100644
+--- a/drivers/gpio/Kconfig
++++ b/drivers/gpio/Kconfig
+@@ -1120,17 +1120,6 @@ config GPIO_ARIZONA
+ 	help
+ 	  Support for GPIOs on Wolfson Arizona class devices.
+=20
+-config GPIO_BD70528
+-	tristate "ROHM BD70528 GPIO support"
+-	depends on MFD_ROHM_BD70528
+-	help
+-	  Support for GPIOs on ROHM BD70528 PMIC. There are four GPIOs
+-	  available on the ROHM PMIC in total. The GPIOs can also
+-	  generate interrupts.
+-
+-	  This driver can also be built as a module. If so, the module
+-	  will be called gpio-bd70528.
+-
+ config GPIO_BD71815
+ 	tristate "ROHM BD71815 PMIC GPIO support"
+ 	depends on MFD_ROHM_BD71828
+diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+index fbcda637d5e1..dd62fd6e60d2 100644
+--- a/drivers/gpio/Makefile
++++ b/drivers/gpio/Makefile
+@@ -38,7 +38,6 @@ obj-$(CONFIG_GPIO_ASPEED_SGPIO)		+=3D gpio-aspeed-sgpio.o
+ obj-$(CONFIG_GPIO_ATH79)		+=3D gpio-ath79.o
+ obj-$(CONFIG_GPIO_BCM_KONA)		+=3D gpio-bcm-kona.o
+ obj-$(CONFIG_GPIO_BCM_XGS_IPROC)	+=3D gpio-xgs-iproc.o
+-obj-$(CONFIG_GPIO_BD70528)		+=3D gpio-bd70528.o
+ obj-$(CONFIG_GPIO_BD71815)		+=3D gpio-bd71815.o
+ obj-$(CONFIG_GPIO_BD71828)		+=3D gpio-bd71828.o
+ obj-$(CONFIG_GPIO_BD9571MWV)		+=3D gpio-bd9571mwv.o
+diff --git a/drivers/gpio/gpio-bd70528.c b/drivers/gpio/gpio-bd70528.c
+deleted file mode 100644
+index 397a50d6bc65..000000000000
+--- a/drivers/gpio/gpio-bd70528.c
++++ /dev/null
+@@ -1,230 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0
+-// Copyright (C) 2018 ROHM Semiconductors
+-// gpio-bd70528.c ROHM BD70528MWV gpio driver
+-
+-#include <linux/gpio/driver.h>
+-#include <linux/mfd/rohm-bd70528.h>
+-#include <linux/module.h>
+-#include <linux/platform_device.h>
+-#include <linux/regmap.h>
+-
+-#define GPIO_IN_REG(offset) (BD70528_REG_GPIO1_IN + (offset) * 2)
+-#define GPIO_OUT_REG(offset) (BD70528_REG_GPIO1_OUT + (offset) * 2)
+-
+-struct bd70528_gpio {
+-	struct regmap *regmap;
+-	struct device *dev;
+-	struct gpio_chip gpio;
+-};
+-
+-static int bd70528_set_debounce(struct bd70528_gpio *bdgpio,
+-				unsigned int offset, unsigned int debounce)
+-{
+-	u8 val;
+-
+-	switch (debounce) {
+-	case 0:
+-		val =3D BD70528_DEBOUNCE_DISABLE;
+-		break;
+-	case 1 ... 15000:
+-		val =3D BD70528_DEBOUNCE_15MS;
+-		break;
+-	case 15001 ... 30000:
+-		val =3D BD70528_DEBOUNCE_30MS;
+-		break;
+-	case 30001 ... 50000:
+-		val =3D BD70528_DEBOUNCE_50MS;
+-		break;
+-	default:
+-		dev_err(bdgpio->dev,
+-			"Invalid debounce value %u\n", debounce);
+-		return -EINVAL;
+-	}
+-	return regmap_update_bits(bdgpio->regmap, GPIO_IN_REG(offset),
+-				 BD70528_DEBOUNCE_MASK, val);
+-}
+-
+-static int bd70528_get_direction(struct gpio_chip *chip, unsigned int offs=
+et)
+-{
+-	struct bd70528_gpio *bdgpio =3D gpiochip_get_data(chip);
+-	int val, ret;
+-
+-	/* Do we need to do something to IRQs here? */
+-	ret =3D regmap_read(bdgpio->regmap, GPIO_OUT_REG(offset), &val);
+-	if (ret) {
+-		dev_err(bdgpio->dev, "Could not read gpio direction\n");
+-		return ret;
+-	}
+-	if (val & BD70528_GPIO_OUT_EN_MASK)
+-		return GPIO_LINE_DIRECTION_OUT;
+-
+-	return GPIO_LINE_DIRECTION_IN;
+-}
+-
+-static int bd70528_gpio_set_config(struct gpio_chip *chip, unsigned int of=
+fset,
+-				   unsigned long config)
+-{
+-	struct bd70528_gpio *bdgpio =3D gpiochip_get_data(chip);
+-
+-	switch (pinconf_to_config_param(config)) {
+-	case PIN_CONFIG_DRIVE_OPEN_DRAIN:
+-		return regmap_update_bits(bdgpio->regmap,
+-					  GPIO_OUT_REG(offset),
+-					  BD70528_GPIO_DRIVE_MASK,
+-					  BD70528_GPIO_OPEN_DRAIN);
+-		break;
+-	case PIN_CONFIG_DRIVE_PUSH_PULL:
+-		return regmap_update_bits(bdgpio->regmap,
+-					  GPIO_OUT_REG(offset),
+-					  BD70528_GPIO_DRIVE_MASK,
+-					  BD70528_GPIO_PUSH_PULL);
+-		break;
+-	case PIN_CONFIG_INPUT_DEBOUNCE:
+-		return bd70528_set_debounce(bdgpio, offset,
+-					    pinconf_to_config_argument(config));
+-		break;
+-	default:
+-		break;
+-	}
+-	return -ENOTSUPP;
+-}
+-
+-static int bd70528_direction_input(struct gpio_chip *chip, unsigned int of=
+fset)
+-{
+-	struct bd70528_gpio *bdgpio =3D gpiochip_get_data(chip);
+-
+-	/* Do we need to do something to IRQs here? */
+-	return regmap_update_bits(bdgpio->regmap, GPIO_OUT_REG(offset),
+-				 BD70528_GPIO_OUT_EN_MASK,
+-				 BD70528_GPIO_OUT_DISABLE);
+-}
+-
+-static void bd70528_gpio_set(struct gpio_chip *chip, unsigned int offset,
+-			     int value)
+-{
+-	int ret;
+-	struct bd70528_gpio *bdgpio =3D gpiochip_get_data(chip);
+-	u8 val =3D (value) ? BD70528_GPIO_OUT_HI : BD70528_GPIO_OUT_LO;
+-
+-	ret =3D regmap_update_bits(bdgpio->regmap, GPIO_OUT_REG(offset),
+-				 BD70528_GPIO_OUT_MASK, val);
+-	if (ret)
+-		dev_err(bdgpio->dev, "Could not set gpio to %d\n", value);
+-}
+-
+-static int bd70528_direction_output(struct gpio_chip *chip, unsigned int o=
+ffset,
+-				    int value)
+-{
+-	struct bd70528_gpio *bdgpio =3D gpiochip_get_data(chip);
+-
+-	bd70528_gpio_set(chip, offset, value);
+-	return regmap_update_bits(bdgpio->regmap, GPIO_OUT_REG(offset),
+-				 BD70528_GPIO_OUT_EN_MASK,
+-				 BD70528_GPIO_OUT_ENABLE);
+-}
+-
+-#define GPIO_IN_STATE_MASK(offset) (BD70528_GPIO_IN_STATE_BASE << (offset))
+-
+-static int bd70528_gpio_get_o(struct bd70528_gpio *bdgpio, unsigned int of=
+fset)
+-{
+-	int ret;
+-	unsigned int val;
+-
+-	ret =3D regmap_read(bdgpio->regmap, GPIO_OUT_REG(offset), &val);
+-	if (!ret)
+-		ret =3D !!(val & BD70528_GPIO_OUT_MASK);
+-	else
+-		dev_err(bdgpio->dev, "GPIO (out) state read failed\n");
+-
+-	return ret;
+-}
+-
+-static int bd70528_gpio_get_i(struct bd70528_gpio *bdgpio, unsigned int of=
+fset)
+-{
+-	unsigned int val;
+-	int ret;
+-
+-	ret =3D regmap_read(bdgpio->regmap, BD70528_REG_GPIO_STATE, &val);
+-
+-	if (!ret)
+-		ret =3D !(val & GPIO_IN_STATE_MASK(offset));
+-	else
+-		dev_err(bdgpio->dev, "GPIO (in) state read failed\n");
+-
+-	return ret;
+-}
+-
+-static int bd70528_gpio_get(struct gpio_chip *chip, unsigned int offset)
+-{
+-	int ret;
+-	struct bd70528_gpio *bdgpio =3D gpiochip_get_data(chip);
+-
+-	/*
+-	 * There is a race condition where someone might be changing the
+-	 * GPIO direction after we get it but before we read the value. But
+-	 * application design where GPIO direction may be changed just when
+-	 * we read GPIO value would be pointless as reader could not know
+-	 * whether the returned high/low state is caused by input or output.
+-	 * Or then there must be other ways to mitigate the issue. Thus
+-	 * locking would make no sense.
+-	 */
+-	ret =3D bd70528_get_direction(chip, offset);
+-	if (ret =3D=3D GPIO_LINE_DIRECTION_OUT)
+-		ret =3D bd70528_gpio_get_o(bdgpio, offset);
+-	else if (ret =3D=3D GPIO_LINE_DIRECTION_IN)
+-		ret =3D bd70528_gpio_get_i(bdgpio, offset);
+-	else
+-		dev_err(bdgpio->dev, "failed to read GPIO direction\n");
+-
+-	return ret;
+-}
+-
+-static int bd70528_probe(struct platform_device *pdev)
+-{
+-	struct device *dev =3D &pdev->dev;
+-	struct bd70528_gpio *bdgpio;
+-	int ret;
+-
+-	bdgpio =3D devm_kzalloc(dev, sizeof(*bdgpio), GFP_KERNEL);
+-	if (!bdgpio)
+-		return -ENOMEM;
+-	bdgpio->dev =3D dev;
+-	bdgpio->gpio.parent =3D dev->parent;
+-	bdgpio->gpio.label =3D "bd70528-gpio";
+-	bdgpio->gpio.owner =3D THIS_MODULE;
+-	bdgpio->gpio.get_direction =3D bd70528_get_direction;
+-	bdgpio->gpio.direction_input =3D bd70528_direction_input;
+-	bdgpio->gpio.direction_output =3D bd70528_direction_output;
+-	bdgpio->gpio.set_config =3D bd70528_gpio_set_config;
+-	bdgpio->gpio.can_sleep =3D true;
+-	bdgpio->gpio.get =3D bd70528_gpio_get;
+-	bdgpio->gpio.set =3D bd70528_gpio_set;
+-	bdgpio->gpio.ngpio =3D 4;
+-	bdgpio->gpio.base =3D -1;
+-#ifdef CONFIG_OF_GPIO
+-	bdgpio->gpio.of_node =3D dev->parent->of_node;
+-#endif
+-	bdgpio->regmap =3D dev_get_regmap(dev->parent, NULL);
+-	if (!bdgpio->regmap)
+-		return -ENODEV;
+-
+-	ret =3D devm_gpiochip_add_data(dev, &bdgpio->gpio, bdgpio);
+-	if (ret)
+-		dev_err(dev, "gpio_init: Failed to add bd70528-gpio\n");
+-
+-	return ret;
+-}
+-
+-static struct platform_driver bd70528_gpio =3D {
+-	.driver =3D {
+-		.name =3D "bd70528-gpio"
+-	},
+-	.probe =3D bd70528_probe,
+-};
+-
+-module_platform_driver(bd70528_gpio);
+-
+-MODULE_AUTHOR("Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>");
+-MODULE_DESCRIPTION("BD70528 voltage regulator driver");
+-MODULE_LICENSE("GPL");
+-MODULE_ALIAS("platform:bd70528-gpio");
+--=20
+2.31.1
 
-1> nvmem cell node name itself.
 
-2> "nvmem-cell-names"
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
 
-I think nvmem-cell-names is much more consistent w.r.t naming, which 
-should help us determine pretty much similar information.
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
 
-This might need bit of rework in core driver to be able to pass to 
-provider drivers.
+--6aMtRLAKoktAGKKM
+Content-Type: application/pgp-signature; name="signature.asc"
 
---srini
-> 
-> Rob
-> 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmFTFcsACgkQeFA3/03a
+ocVN1wf6AiDjmuMihM8dhDMTdovfeRdyNwR7kHDqK4LlaOAc+j00OLgVEFMnC7Qu
+F573EWUI7Jnpyxe/ppfGvKJm1pZl4FPur4abOn/I8uy6ebs8eCZzSlKEFCybYheV
+Ot/l4my2Sy7WiaTxT7YOWiK2/WjWCrLAgSpfU2dTdMAi4zsmYI3Jaa8ouhdwczF9
+TRq1x/5JeZ56oxNZlJ6XCBssYNLvlpd7DYkCfyc9LaOEgkxIRUWc2MC7ypWHjN1y
+WePuaqfWAqCP4j57vN3htvDNZFEHUZq7dkZk/WSVQ6/132phmp50n/4WBV1RGEoQ
+KCLSwHKj7dX6PR1TyPLWqce1BYNvAw==
+=cVBV
+-----END PGP SIGNATURE-----
+
+--6aMtRLAKoktAGKKM--
