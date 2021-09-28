@@ -2,298 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE04841AF98
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DE0D41AFBD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240855AbhI1NEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 09:04:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59766 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240852AbhI1NEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:04:14 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD44C061575
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 06:02:34 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id s24so3428872wmh.4
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 06:02:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tR2TQX+kVW0rYrRfEEQg7WRnq2clbEFfqF4BNcuxvaQ=;
-        b=xwh+oTfqAoZAVf+C975YtjHcHNtJ9zw8T+99kEppazEhQ9Vl5ssftS152FY6vNegm3
-         k+OsjszbH8DC4d1hsrvAoKjYC36oFCuQp+C+wkbUqFLSfXiDXuZBfNIJWzEOHW/gXMpg
-         ChxjbhiD2REH5LsuC4feYLP3d4Ud4fLZpSw+BfJ9A+tkuKExrb68TE/4z3LD+boJudXb
-         gtsjM0oG6dF3opnyolwkIayRbV9ziEAukPrsKo96OguWWzMnBZWzMfJBbDlgxwIvYh1c
-         I6gsf04tAnIIjJngzcxGbkmongAtMTuAgVeXyWdaSmdAcQ/TzA65csd+Z/Rj59DwQylO
-         lJhA==
+        id S240602AbhI1NRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 09:17:38 -0400
+Received: from mail-lf1-f45.google.com ([209.85.167.45]:42753 "EHLO
+        mail-lf1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240816AbhI1NRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:17:37 -0400
+Received: by mail-lf1-f45.google.com with SMTP id x27so7713705lfa.9;
+        Tue, 28 Sep 2021 06:15:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=tR2TQX+kVW0rYrRfEEQg7WRnq2clbEFfqF4BNcuxvaQ=;
-        b=SYxobq40OVHRkqSbHTlY5734Ol1suzVLYJcxQOfj8KtG2BnoSuieJkC10TaYvupnpy
-         6Jv1p45Me3bjt+EF+Zf8Eb2cXizup7wMUDGvjCnT0H5tvBqG4ysdjKLpLIsJrGNUp0+g
-         fotpcwn+P22CYtIpUqBrX4YPIYndewCTsdtMZtBZmsh3MdoIUeTk0jcXipo4MxPkzsWW
-         jlNxP87lN51SiddYNQg9znSyYyOs3HbzEgV9OjcbkVTKwTRiKT2o0i/VeTBtTrj0DUwV
-         hLf5RoEimnOkcmGtZ0YV0ANf/4tU7S8al+qTAsk2F2A39Bj7TlkuZJJtnoltEL+BWf2b
-         vqMw==
-X-Gm-Message-State: AOAM5320ett/qxngb8QvtpIHD6LQSLzl1L6I7avNKKJI6Dt8aHsfT7GN
-        KWkqa5NA4DCl41p8WjP9QQOMKQ==
-X-Google-Smtp-Source: ABdhPJxEbicmcy5wEkUCRews8l61o9FWFWXKUSbuqqlQ6A3D1PbsMXtnxpHP0J+Grnc6jP0i9g5enQ==
-X-Received: by 2002:a05:600c:40c4:: with SMTP id m4mr4619005wmh.64.1632834152799;
-        Tue, 28 Sep 2021 06:02:32 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:af32:f180:8ede:d9da? ([2001:861:44c0:66c0:af32:f180:8ede:d9da])
-        by smtp.gmail.com with ESMTPSA id o7sm24611367wro.45.2021.09.28.06.02.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Sep 2021 06:02:32 -0700 (PDT)
-Subject: Re: [PATCH v4 06/10] drm/ingenic: Add dw-hdmi driver for jz4780
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=J70y0RcekLuAThWi+dMOpKgCkAPkQ5ZoKIWdISoAhmM=;
+        b=H1LdWtp+87xuT59Q5ZsyClNzGL5zjXKtMrBXvUaQAPHgGeibDg2knbk+pHzR5oZ61q
+         PmqcSjV3/1fqf3/Rs7FGE07SN8yDLGHFNXLUPRn34jjBPTKrl9EqzficebUDxP98BdKg
+         Nkkfv5ce54VLz+wydOifNM6iFgd5O8QTKv7gOX8C1R6DKYjqi9rertubRwCHnlvVkhAV
+         IhU9sm07N5MqTtGIuYWkAV9MjC3KjSy/QxTzBJZOx/8A427CX0edVA3U/0NreUjAhkxn
+         aarSSIsZqUp5K5SZ38bsl8ig+hlrrW1kycABf2wMUOrutc6SDuiW5qwyYnEnAdoV9f3g
+         X3Ag==
+X-Gm-Message-State: AOAM530LYfXuUOwQQTRP6kpsK8W6mdAN9Ss1unfE4XBB5tSGj3yE+RvI
+        pw8XTAA5mDKRAU6W4wZ/NX8=
+X-Google-Smtp-Source: ABdhPJw0sAVm7KJEpvXwDoIfUK771x4WbMBMxoJ/RcfrNGY5B2To4ZQWDsqiYmVd2pCEADL6ASKenA==
+X-Received: by 2002:a05:651c:4ca:: with SMTP id e10mr6000344lji.259.1632834956475;
+        Tue, 28 Sep 2021 06:15:56 -0700 (PDT)
+Received: from fedora (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
+        by smtp.gmail.com with ESMTPSA id p8sm1739774lft.242.2021.09.28.06.15.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Sep 2021 06:15:55 -0700 (PDT)
+Date:   Tue, 28 Sep 2021 16:15:48 +0300
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     matti.vaittinen@fi.rohmeurope.com
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-References: <cover.1632761067.git.hns@goldelico.com>
- <cecd7ae2e21f6547f23c125b2f7767b0090277bc.1632761068.git.hns@goldelico.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <86c61519-697f-9ca8-4257-074173656c38@baylibre.com>
-Date:   Tue, 28 Sep 2021 15:02:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-power@fi.rohmeurope.com,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        lukas.bulwahn@gmail.com
+Subject: [PATCH 0/4] Drop ROHM BD70528 support
+Message-ID: <cover.1632833622.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-In-Reply-To: <cecd7ae2e21f6547f23c125b2f7767b0090277bc.1632761068.git.hns@goldelico.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="1XNZ1F0Pgb03K+Pi"
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/09/2021 18:44, H. Nikolaus Schaller wrote:
-> From: Paul Boddie <paul@boddie.org.uk>
-> 
-> A specialisation of the generic Synopsys HDMI driver is employed for JZ4780
-> HDMI support. This requires a new driver, plus device tree and configuration
-> modifications.
-> 
-> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> ---
->  drivers/gpu/drm/ingenic/Kconfig           |   9 ++
->  drivers/gpu/drm/ingenic/Makefile          |   1 +
->  drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c | 142 ++++++++++++++++++++++
->  3 files changed, 152 insertions(+)
->  create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> 
-> diff --git a/drivers/gpu/drm/ingenic/Kconfig b/drivers/gpu/drm/ingenic/Kconfig
-> index 3b57f8be007c..4c7d311fbeff 100644
-> --- a/drivers/gpu/drm/ingenic/Kconfig
-> +++ b/drivers/gpu/drm/ingenic/Kconfig
-> @@ -25,4 +25,13 @@ config DRM_INGENIC_IPU
->  
->  	  The Image Processing Unit (IPU) will appear as a second primary plane.
->  
-> +config DRM_INGENIC_DW_HDMI
-> +	bool "Ingenic specific support for Synopsys DW HDMI"
-> +	depends on MACH_JZ4780
-> +	select DRM_DW_HDMI
-> +	help
-> +	  Choose this option to enable Synopsys DesignWare HDMI based driver.
-> +	  If you want to enable HDMI on Ingenic JZ4780 based SoC, you should
-> +	  select this option..
-> +
->  endif
-> diff --git a/drivers/gpu/drm/ingenic/Makefile b/drivers/gpu/drm/ingenic/Makefile
-> index d313326bdddb..3db9888a6c04 100644
-> --- a/drivers/gpu/drm/ingenic/Makefile
-> +++ b/drivers/gpu/drm/ingenic/Makefile
-> @@ -1,3 +1,4 @@
->  obj-$(CONFIG_DRM_INGENIC) += ingenic-drm.o
->  ingenic-drm-y = ingenic-drm-drv.o
->  ingenic-drm-$(CONFIG_DRM_INGENIC_IPU) += ingenic-ipu.o
-> +ingenic-drm-$(CONFIG_DRM_INGENIC_DW_HDMI) += ingenic-dw-hdmi.o
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> new file mode 100644
-> index 000000000000..dd9c94ae842e
-> --- /dev/null
-> +++ b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> @@ -0,0 +1,142 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/* Copyright (C) 2011-2013 Freescale Semiconductor, Inc.
-> + * Copyright (C) 2019, 2020 Paul Boddie <paul@boddie.org.uk>
-> + *
-> + * Derived from dw_hdmi-imx.c with i.MX portions removed.
-> + * Probe and remove operations derived from rcar_dw_hdmi.c.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <drm/bridge/dw_hdmi.h>
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_print.h>
-> +
-> +static const struct dw_hdmi_mpll_config ingenic_mpll_cfg[] = {
-> +	{ 45250000,  { { 0x01e0, 0x0000 }, { 0x21e1, 0x0000 }, { 0x41e2, 0x0000 } } },
-> +	{ 92500000,  { { 0x0140, 0x0005 }, { 0x2141, 0x0005 }, { 0x4142, 0x0005 } } },
-> +	{ 148500000, { { 0x00a0, 0x000a }, { 0x20a1, 0x000a }, { 0x40a2, 0x000a } } },
-> +	{ 216000000, { { 0x00a0, 0x000a }, { 0x2001, 0x000f }, { 0x4002, 0x000f } } },
-> +	{ ~0UL,      { { 0x0000, 0x0000 }, { 0x0000, 0x0000 }, { 0x0000, 0x0000 } } }
-> +};
-> +
-> +static const struct dw_hdmi_curr_ctrl ingenic_cur_ctr[] = {
-> +	/*pixelclk     bpp8    bpp10   bpp12 */
-> +	{ 54000000,  { 0x091c, 0x091c, 0x06dc } },
-> +	{ 58400000,  { 0x091c, 0x06dc, 0x06dc } },
-> +	{ 72000000,  { 0x06dc, 0x06dc, 0x091c } },
-> +	{ 74250000,  { 0x06dc, 0x0b5c, 0x091c } },
-> +	{ 118800000, { 0x091c, 0x091c, 0x06dc } },
-> +	{ 216000000, { 0x06dc, 0x0b5c, 0x091c } },
-> +	{ ~0UL,      { 0x0000, 0x0000, 0x0000 } },
-> +};
-> +
-> +/*
-> + * Resistance term 133Ohm Cfg
-> + * PREEMP config 0.00
-> + * TX/CK level 10
-> + */
-> +static const struct dw_hdmi_phy_config ingenic_phy_config[] = {
-> +	/*pixelclk   symbol   term   vlev */
-> +	{ 216000000, 0x800d, 0x0005, 0x01ad},
-> +	{ ~0UL,      0x0000, 0x0000, 0x0000}
-> +};
-> +
-> +static enum drm_mode_status
-> +ingenic_dw_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
-> +			   const struct drm_display_info *info,
-> +			   const struct drm_display_mode *mode)
-> +{
-> +	if (mode->clock < 13500)
-> +		return MODE_CLOCK_LOW;
-> +	/* FIXME: Hardware is capable of 270MHz, but setup data is missing. */
-> +	if (mode->clock > 216000)
-> +		return MODE_CLOCK_HIGH;
-> +
-> +	return MODE_OK;
-> +}
-> +
-> +static bool
-> +ingenic_dw_hdmi_mode_fixup(struct drm_bridge *bridge,
-> +			   const struct drm_display_mode *mode,
-> +			   struct drm_display_mode *adjusted_mode)
-> +{
-> +	adjusted_mode->flags |= (DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC);
-> +	adjusted_mode->flags &= ~(DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC);
-> +
-> +	return true;
-> +}
-> +
-> +static const struct drm_bridge_timings ingenic_dw_hdmi_timings = {
-> +	.input_bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
-> +};
 
-These should go in the intermediate encoder bridge callbacks Paul introduces in his patch at [1].
+--1XNZ1F0Pgb03K+Pi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-With that patch 4 can be dropped.
+Drop ROHM BD70528 support
 
-[1] https://lore.kernel.org/r/20210922205555.496871-7-paul@crapouillou.net
+Unfortunately there has not been a big demand for ROHM BD70528
+IC. The few users I know control PMIC from separate M4-core,
+which is not running Linux. I am not aware of any users of this
+Linux driver.
 
-Neil
+While I did really like this IC and writing the drivers for it,
+seems like these drivers are becoming useless burden. So, I see
+no point in maintaining them. Let's just drop the drivers if
+there is no objections to this series. :(
 
-> +
-> +static struct dw_hdmi_plat_data ingenic_dw_hdmi_plat_data = {
-> +	.mpll_cfg   = ingenic_mpll_cfg,
-> +	.cur_ctr    = ingenic_cur_ctr,
-> +	.phy_config = ingenic_phy_config,
-> +	.mode_valid = ingenic_dw_hdmi_mode_valid,
-> +	.mode_fixup = ingenic_dw_hdmi_mode_fixup,
-> +	.timings    = &ingenic_dw_hdmi_timings,
-> +	.output_port	= 1,
-> +};
-> +
-> +static const struct of_device_id ingenic_dw_hdmi_dt_ids[] = {
-> +	{ .compatible = "ingenic,jz4780-dw-hdmi" },
-> +	{ /* Sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, ingenic_dw_hdmi_dt_ids);
-> +
-> +static int ingenic_dw_hdmi_probe(struct platform_device *pdev)
-> +{
-> +	struct dw_hdmi *hdmi;
-> +	struct regulator *regulator;
-> +	int ret;
-> +
-> +	hdmi = dw_hdmi_probe(pdev, &ingenic_dw_hdmi_plat_data);
-> +	if (IS_ERR(hdmi))
-> +		return PTR_ERR(hdmi);
-> +
-> +	platform_set_drvdata(pdev, hdmi);
-> +
-> +	regulator = devm_regulator_get_optional(&pdev->dev, "hdmi-5v");
-> +
-> +	if (IS_ERR(regulator)) {
-> +		ret = PTR_ERR(regulator);
-> +
-> +		DRM_DEV_ERROR(&pdev->dev, "failed to get hpd regulator: %s (%d)\n",
-> +			      "hdmi-5v", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regulator_enable(regulator);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(&pdev->dev, "Failed to enable hpd regulator: %d\n",
-> +			      ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ingenic_dw_hdmi_remove(struct platform_device *pdev)
-> +{
-> +	struct dw_hdmi *hdmi = platform_get_drvdata(pdev);
-> +
-> +	dw_hdmi_remove(hdmi);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver ingenic_dw_hdmi_driver = {
-> +	.probe  = ingenic_dw_hdmi_probe,
-> +	.remove = ingenic_dw_hdmi_remove,
-> +	.driver = {
-> +		.name = "dw-hdmi-ingenic",
-> +		.of_match_table = ingenic_dw_hdmi_dt_ids,
-> +	},
-> +};
-> +
-> +struct platform_driver *ingenic_dw_hdmi_driver_ptr = &ingenic_dw_hdmi_driver;
-> 
+The regulator, WDG and power-supply drivers were already dropped.
 
+The RTC and clk drivers remain in use by few other ROHM IC drivers.
+Nevertheless, they are already converted to not depend the BD70528
+defines during previous cycle.
+
+This series cleans the remaining pieces, GPIO, MFD, dt-bindings and
+MAINTAINER entries. The GPIO code uses defines from MFD - but the GPIO
+part is also depending on MFD KConfig entry - so there should be no
+breakages even if the patches were applied to respective subsystem trees
+and were not carried via single tree.
+
+---
+
+Matti Vaittinen (9):
+  dt-bindings: mfd: regulator: Drop BD70528 support
+  rtc: bd70528: Drop BD70528 support
+  watchdog: bd70528 drop bd70528 support
+  regulator: bd70528: Drop BD70528 support
+  clk: bd718xx: Drop BD70528 support
+  gpio: bd70528 Drop BD70528 support
+  power: supply: Drop BD70528 support
+  mfd: bd70528: Drop BD70528 support
+  MAINTAINERS: bd70528: Drop ROHM BD70528 drivers
+
+ .../bindings/mfd/rohm,bd70528-pmic.txt        | 102 ---
+ .../regulator/rohm,bd70528-regulator.txt      |  68 --
+ MAINTAINERS                                   |   8 -
+ drivers/clk/Kconfig                           |   6 +-
+ drivers/clk/clk-bd718x7.c                     |  11 +-
+ drivers/gpio/Kconfig                          |  11 -
+ drivers/gpio/Makefile                         |   1 -
+ drivers/gpio/gpio-bd70528.c                   | 230 ------
+ drivers/mfd/Kconfig                           |  17 -
+ drivers/mfd/Makefile                          |   1 -
+ drivers/mfd/rohm-bd70528.c                    | 314 --------
+ drivers/power/supply/Kconfig                  |   9 -
+ drivers/power/supply/Makefile                 |   1 -
+ drivers/power/supply/bd70528-charger.c        | 710 ------------------
+ drivers/regulator/Kconfig                     |  11 -
+ drivers/regulator/Makefile                    |   1 -
+ drivers/regulator/bd70528-regulator.c         | 283 -------
+ drivers/rtc/Kconfig                           |   4 +-
+ drivers/rtc/rtc-bd70528.c                     | 316 +-------
+ drivers/watchdog/Kconfig                      |  12 -
+ drivers/watchdog/Makefile                     |   1 -
+ drivers/watchdog/bd70528_wdt.c                | 291 -------
+ include/linux/mfd/rohm-bd70528.h              | 391 ----------
+ include/linux/mfd/rohm-generic.h              |   1 -
+ 24 files changed, 18 insertions(+), 2782 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic=
+=2Etxt
+ delete mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd7052=
+8-regulator.txt
+ delete mode 100644 drivers/gpio/gpio-bd70528.c
+ delete mode 100644 drivers/mfd/rohm-bd70528.c
+ delete mode 100644 drivers/power/supply/bd70528-charger.c
+ delete mode 100644 drivers/regulator/bd70528-regulator.c
+ delete mode 100644 drivers/watchdog/bd70528_wdt.c
+ delete mode 100644 include/linux/mfd/rohm-bd70528.h
+
+
+base-commit: c4681547bcce777daf576925a966ffa824edd09d
+--=20
+2.25.4
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+Matti Vaittinen (4):
+  dt-bindings: mfd: regulator: Drop BD70528 support
+  gpio: bd70528 Drop BD70528 support
+  mfd: bd70528: Drop BD70528 support
+  MAINTAINERS: bd70528: Drop ROHM BD70528 drivers
+
+ .../bindings/mfd/rohm,bd70528-pmic.txt        | 102 -----
+ .../regulator/rohm,bd70528-regulator.txt      |  68 ---
+ MAINTAINERS                                   |   8 -
+ drivers/gpio/Kconfig                          |  11 -
+ drivers/gpio/Makefile                         |   1 -
+ drivers/gpio/gpio-bd70528.c                   | 230 -----------
+ drivers/mfd/Kconfig                           |  17 -
+ drivers/mfd/Makefile                          |   1 -
+ drivers/mfd/rohm-bd70528.c                    | 314 --------------
+ include/linux/mfd/rohm-bd70528.h              | 389 ------------------
+ include/linux/mfd/rohm-generic.h              |   1 -
+ 11 files changed, 1142 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic=
+=2Etxt
+ delete mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd7052=
+8-regulator.txt
+ delete mode 100644 drivers/gpio/gpio-bd70528.c
+ delete mode 100644 drivers/mfd/rohm-bd70528.c
+ delete mode 100644 include/linux/mfd/rohm-bd70528.h
+
+
+base-commit: 5816b3e6577eaa676ceb00a848f0fd65fe2adc29
+--=20
+2.31.1
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--1XNZ1F0Pgb03K+Pi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmFTFW4ACgkQeFA3/03a
+ocVaAQgAuleT1MPoHWCfXjiRCNhHg+YdUJvOE2OFKH1xzQbOe8VDlQ1EJHsd6GkR
+RIvs9fi5lgLvH0JUAseqcMlASQUWyO7UyiZwSno6O12TX5wRHa36S3wW067PvOq2
+yx901Y6o9Kh2ItTxa2c1VuJPrYkhmbXFGBJiWhXGbTX+TUqyLHI0c+/HJj959NmS
+s1/khU20m0hCScSn/gao/XLKi77FYxTsBcXKgFveiY01G9GmODw+OFmelQRKgU0/
+7z+MeExPL5Z51fg2u7HHB0h9eBtWIFfL8aM9EHCeIsVdB3i2Im6fnrS4U0mSAxVG
+GjTYZX3hZ9qs5Uok1r/TxOctck6o9w==
+=U8Jj
+-----END PGP SIGNATURE-----
+
+--1XNZ1F0Pgb03K+Pi--
