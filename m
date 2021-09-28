@@ -2,156 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69A5541A9F4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 09:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D668141A9F7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 09:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239430AbhI1Hlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 03:41:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59456 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239413AbhI1Hlw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 03:41:52 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9E384611CC;
-        Tue, 28 Sep 2021 07:40:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632814813;
-        bh=aYODkh8cK4PFOh3SK7n+CRjrZVA5pL0qjjkMR3jTLuc=;
-        h=From:To:Cc:Subject:Date:From;
-        b=fePAQtm+Pa35YcJrDcs2uDZun4sJ9s6bHm194FzNqFrWbcXdnKH1haV28w34ItDYx
-         S6ReBl3cfvyzAK4By3OdLJz0Us9+p49FS2D2xw0C8roilycBnNkuIKb2yIt8MV6VSb
-         QIqLC99VrLP/Kag0y+CJk9tHhH5JroaQ1eAEUXc1NaLNKsve7g0nkzhpjuASjVprcD
-         APUHe3cRkyEn7YvDkw1vUXqDpzfZoM++LFYrhyzFkXo0iJrbZUSfJ8tnLH57NnCysP
-         lSntc+wadB6UOu7XAVCBE9GUG6AiNUp/V924mscOKKYuAlfGaqLnd69LO9blT4obeV
-         oNQ0RHqTlvJcA==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1mV7il-000RWx-KV; Tue, 28 Sep 2021 09:40:11 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Yu Chen <chenyu56@huawei.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: [PATCH v5] dt-bindings: misc: add schema for USB hub on Kirin devices
-Date:   Tue, 28 Sep 2021 09:40:06 +0200
-Message-Id: <f955e7dba47e2e96ca6bfe761a1f998e9b5a4c50.1632814787.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
+        id S239413AbhI1HmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 03:42:17 -0400
+Received: from mail-vs1-f54.google.com ([209.85.217.54]:45632 "EHLO
+        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239350AbhI1HmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 03:42:16 -0400
+Received: by mail-vs1-f54.google.com with SMTP id x1so230705vsp.12;
+        Tue, 28 Sep 2021 00:40:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fU9oYQxlMHaEmrFTAibMQ2psCWZx41wzemKb/HO3LR8=;
+        b=Z32P3eB5uU1Ik8MPNgMFTDnTUibW2R3HvSK2VrlG7ne6NBSyj562abZUqu5iFRgjWP
+         DWzoX3J7Q1DTkql9mtBJkqLOAVxDB4QZs3No9n9Wup1MIfSiYpnvqNjNxLUt/V7bvfUb
+         7ERzMpxnA5K5/ymNI4fX9KUZdoYZkhBrCwuTBZ84YpmQgHYnwCkaBaY/hCq0/h3sfjgZ
+         Dxandekw249zI2qQcSxgoWyrXst3D/5C+yvU6bmICYFHxvZhf4JIlzfKN9tnzSF11VK3
+         gQeLfTBxT1B8+3B5e0S05YTSw5yyIseq+/hN0ZKxUUbqAtspxnEYM60OC2Gtg0Bg8KL1
+         xbpw==
+X-Gm-Message-State: AOAM530UnHZ4q6xNOKHGzuwEx/5R7iOzsboNvqjiUKL+2/EjQ7S7MSA7
+        hLtDQT9DjUG+YBxwTnsjt+ERpJrMmKNHF8tIRHM=
+X-Google-Smtp-Source: ABdhPJx7QKRDdYhuI6YS9EOA8Mi2iLTrovyl/FL5RUqEieA5W05H827uSzJTvVkNa9haVDs97ya+VsOIs1lakJFP/N0=
+X-Received: by 2002:a67:cc1c:: with SMTP id q28mr3403521vsl.37.1632814837348;
+ Tue, 28 Sep 2021 00:40:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <cover.1631174218.git.geert+renesas@glider.be> <07bd7e04dda9e84cde0664980f0b1a6d69e03109.1631174218.git.geert+renesas@glider.be>
+In-Reply-To: <07bd7e04dda9e84cde0664980f0b1a6d69e03109.1631174218.git.geert+renesas@glider.be>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 28 Sep 2021 09:40:26 +0200
+Message-ID: <CAMuHMdU6g984vuU5mq7LAxmfE=QDfKzPDW7kgfR=9X0jYQC_Bg@mail.gmail.com>
+Subject: Re: [PATCH 8/9] arm64: dts: renesas: Add compatible properties to
+ KSZ9031 Ethernet PHYs
+To:     Magnus Damm <magnus.damm@gmail.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Adam Ford <aford173@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yu Chen <chenyu56@huawei.com>
+On Thu, Sep 9, 2021 at 10:49 AM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+> Add compatible values to Ethernet PHY subnodes representing Micrel
+> KSZ9031 PHYs on R-Car Gen3 boards.  This allows software to identify the
+> PHY model at any time, regardless of the state of the PHY reset line.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> I could not verify the PHY revision number (least significant nibble of
+> the ID) on eagle, v3msk, conder, and v3hsk, due to lack of hardware.
 
-This patch adds binding documentation to support USB HUB and
-USB data role switch of HiSilicon HiKey960 and HiKey970 boards.
+In the meantime, I managed to verify the PHY revision number on Eagle.
 
-[mchehab: updated OF schema and added HiKey970 example]
-Signed-off-by: Yu Chen <chenyu56@huawei.com>
-Signed-off-by: John Stultz <john.stultz@linaro.org>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../bindings/misc/hisilicon,hikey-usb.yaml    | 87 +++++++++++++++++++
- 1 file changed, 87 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
+Gr{oetje,eeting}s,
 
-diff --git a/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-new file mode 100644
-index 000000000000..761ab686121a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/misc/hisilicon,hikey-usb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiKey960/970 onboard USB GPIO Hub
-+
-+maintainers:
-+  - John Stultz <john.stultz@linaro.org>
-+
-+description: |
-+  Supports the onboard USB GPIO hubs found on HiKey960/970.
-+  Such hubs require a power supply for the USB I/O. Depending on the
-+  exact hub model, after USB I/O is powered up, a reset should be needed.
-+
-+  It also acts as a role-switch intermediary to detect the state of
-+  the USB-C port, to switch the hub into dual-role USB-C or host mode,
-+  which enables and powers up the onboard USB-A host ports.
-+
-+  Schematics about such hubs can be found here:
-+    https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_Schematics.pdf
-+    https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hisilicon,usbhub
-+
-+  typec-vbus-gpios:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: phandle to the typec-vbus gpio
-+
-+  otg-switch-gpios:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: phandle to the otg-switch gpio
-+
-+  hub-reset-en-gpios:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: phandle to the hub reset gpio
-+
-+  usb-role-switch:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: Support role switch.
-+
-+  hub-vdd-supply:
-+    description: regulator for hub power
-+
-+  port:
-+    description: |
-+      describe hadware connections between USB endpoints.
-+      Two ports are supported: the first being the endpoint that will
-+      be notified by this driver, and the second being the endpoint
-+      that notifies this driver of a role switch.
-+
-+required:
-+  - compatible
-+  - hub-vdd-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    usb-hub {
-+        compatible = "hisilicon,usbhub";
-+        typec-vbus-gpios = <&gpio25 2 GPIO_ACTIVE_HIGH>;
-+        otg-switch-gpios = <&gpio25 6 GPIO_ACTIVE_HIGH>;
-+        hub-reset-en-gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
-+        hub-vdd-supply = <&usb_hub_vdd>;
-+        usb-role-switch;
-+        port {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            usb_ep0: endpoint@0 {
-+                reg = <0>;
-+                remote-endpoint = <&dwc3_role_switch>;
-+            };
-+            usb_ep1: endpoint@1 {
-+                reg = <1>;
-+                remote-endpoint = <&rt1711h_ep>;
-+            };
-+        };
-+    };
+                        Geert
+
 -- 
-2.31.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
