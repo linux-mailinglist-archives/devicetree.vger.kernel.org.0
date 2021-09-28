@@ -2,171 +2,317 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 331E741AA09
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 09:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E86E41AA3E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 10:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239486AbhI1HsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 03:48:21 -0400
-Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:34901 "EHLO
-        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239462AbhI1HsU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 03:48:20 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.west.internal (Postfix) with ESMTP id 90F0F2B015A7;
-        Tue, 28 Sep 2021 03:46:40 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Tue, 28 Sep 2021 03:46:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=d
-        tm6+SCKQFDhqHajeVv9mlgo//hwfhw0+BsVjCXiKJU=; b=gfWQKwKRnbVVOG5uT
-        ZVsSIduZk65knrnWjTQ/i50fugQaOiTFwcSx+SD4h8dm2Xf/5dYP9tYM7QCIbcLj
-        6/DRPEPWfVKCifTBfv2j007+Nvrtx69bXAu+rd3Ietc4SqzBXVtP998v08uAnx4x
-        0pq3yWFc3QxJWq6W/MMtNv6+IuaXmpPGorIeDEDBhuUtDVZnZtW6t0L5hWCug6Vr
-        MDtjQRekx4Y7e0+rruLdlRlO2heW/6zkcwfXJOaR67coAL0sf+xlBra2l3aQehJz
-        AZayE6DDjHwAihcfzM2D+kIGel1B/spEDopSmrIRmtBvt4PpuixiCLto+L1LoKNA
-        4wQ5w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=dtm6+SCKQFDhqHajeVv9mlgo//hwfhw0+BsVjCXiK
-        JU=; b=r4wM3dhpzOGmjMQw05l+XvQucQK7ERRBNELDW4xNv5ooyZXkxYiUNKArX
-        ypguFps/Kfw8hDkBfCgMIZA6UuHJGP9H/zz39nMO1mEmbyDkjSgPLeBNYWc8sGCg
-        HhMGV4NG4FEWaZ6damMJU+PcwFDLLA/Fz13QIDVHJQu5d4CQHpNZ85Zo75ZmkjBR
-        pziE1YV8T4hZRVFBmCerupDMSU0SBCx8JD2tIQL2GQDBgQ9xmJvSvILdAGhEfWvL
-        cbAT3TyUSZlB/tVlYmYq9vhnO6CLbRChbwmEvQM4jtU2xW90TqySnthsIT2QvB/X
-        zFrLw9k3msAQVDxnFEuQ0lU6zFnig==
-X-ME-Sender: <xms:X8hSYRLbcnZ3tEhKIDYzmSFliMXtzNfGPo6oBKV8PBrL5HdT3cQT6A>
-    <xme:X8hSYdKOR3imuXyqpjDbMwBvPdHFig7Ihnid5CeAfApO2M2Kh8snqFw2n7JGpEcNY
-    sweepnTxKfvjz2bWQ>
-X-ME-Received: <xmr:X8hSYZvTwD0R5xuKeoCZYhTH-QQhPfH1G7fczje1R9bYWm6354ZnW8DPArrioRsbBOp8iloubYcsXPeefy2kUZtMJF9SsawN2cFkQBz1X_HA-Q6PvWQGxFnCGQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudejledguddulecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefvfhfhuffkffgfgggjtgfgsehtkeertddtfeehnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpeehjeeghfdufeefteelieeggfehteevieetueffhefhffekuedv
-    ffevffevtedufeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:YMhSYSbH_ko5olpDd9-v6slgV-fBRWPEuXSD2KQrXNyeeaNLU8Msyg>
-    <xmx:YMhSYYazspyFDFsplobTh50mhHQdZ7_DOg2kUBW2ZYfYTKl84pOwKg>
-    <xmx:YMhSYWBwz3nQ4juf-e3PybVWvoTcLqCbUsA5iJyVvaHkDGh7_9EZ-Q>
-    <xmx:YMhSYWn9i6Jqm4_iYidDaM8pM5n5LyzY6ersnviICcpU7-XhjKdUGMVOYoY>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 28 Sep 2021 03:46:39 -0400 (EDT)
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20210901053951.60952-1-samuel@sholland.org>
- <20210903145013.hn6dv7lfyvfys374@gilmour>
- <4a187add-462b-dfe4-868a-fdab85258b8d@sholland.org>
- <20210909084538.jeqltc7b3rtqvu4h@gilmour>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [RFC PATCH 0/7] clk: sunxi-ng: Add a RTC CCU driver
-Message-ID: <c910527d-e2d7-31ca-efd9-1915db62d85d@sholland.org>
-Date:   Tue, 28 Sep 2021 02:46:39 -0500
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S239328AbhI1IDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 04:03:04 -0400
+Received: from mga11.intel.com ([192.55.52.93]:30925 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239194AbhI1ICt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 04:02:49 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10120"; a="221438332"
+X-IronPort-AV: E=Sophos;i="5.85,328,1624345200"; 
+   d="scan'208";a="221438332"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2021 01:01:10 -0700
+X-IronPort-AV: E=Sophos;i="5.85,328,1624345200"; 
+   d="scan'208";a="561949036"
+Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.237.12.65]) ([10.237.12.65])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2021 01:01:07 -0700
+Subject: Re: [PATCH v8 14/22] ASoC: qdsp6: audioreach: add basic pkt alloc
+ support
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, lgirdwood@gmail.com, tiwai@suse.de,
+        plai@codeaurora.org, pierre-louis.bossart@linux.intel.com
+References: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
+ <20210927135559.738-15-srinivas.kandagatla@linaro.org>
+From:   =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?= 
+        <amadeuszx.slawinski@linux.intel.com>
+Message-ID: <d1f69cbc-37f6-dc47-258c-f53450dd558c@linux.intel.com>
+Date:   Tue, 28 Sep 2021 10:00:46 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210909084538.jeqltc7b3rtqvu4h@gilmour>
-Content-Type: text/plain; charset=windows-1252
+In-Reply-To: <20210927135559.738-15-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/9/21 3:45 AM, Maxime Ripard wrote:
-> On Fri, Sep 03, 2021 at 10:21:13AM -0500, Samuel Holland wrote:
->> On 9/3/21 9:50 AM, Maxime Ripard wrote:
->>> Hi,
->>>
->>> On Wed, Sep 01, 2021 at 12:39:44AM -0500, Samuel Holland wrote:
->>>> This patch series adds a CCU driver for the RTC in the H616 and R329.
->>>> The extra patches at the end of this series show how it would be
->>>> explanded to additional hardware variants.
->>>>
->>>> The driver is intended to support the existing binding used for the H6,
->>>> but also an updated binding which includes all RTC input clocks. I do
->>>> not know how to best represent that binding -- that is a major reason
->>>> why this series is an RFC.
->>>>
->>>> A future patch series could add functionality to the driver to manage
->>>> IOSC calibration at boot and during suspend/resume.
->>>>
->>>> It may be possible to support all of these hardware variants in the
->>>> existing RTC clock driver and avoid some duplicate code, but I'm
->>>> concerned about the complexity there, without any of the CCU
->>>> abstraction.
->>>>
->>>> This series is currently based on top of the other series I just sent
->>>> (clk: sunxi-ng: Lifetime fixes and module support), but I can rebase it
->>>> elsewhere.
->>>
->>> I'm generally ok with this, it makes sense to move it to sunxi-ng,
->>> especially with that other series of yours.
->>>
->>> My main concern about this is the split driver approach. We used to have
->>> that before in the RTC too, but it was mostly due to the early clock
->>> requirements. With your previous work, that requirement is not there
->>> anymore and we can just register it as a device just like the other
->>> clock providers.
->>
->> That's a good point. Originally, I had this RTC CCU providing osc24M, so
->> it did need to be an early provider. But with the current version, we
->> could have the RTC platform driver call devm_sunxi_ccu_probe. That does
->> seem cleaner.
->>
->> (Since it wasn't immediately obvious to me why this works: the only
->> early provider remaining is the sun5i CCU, and it doesn't use the sun6i
->> RTC driver.)
->>
->>> And since we can register all those clocks at device probe time, we
->>> don't really need to split the driver in two (and especially in two
->>> different places). The only obstacle to this after your previous series
->>> is that we don't have of_sunxi_ccu_probe / devm_sunxi_ccu_probe
->>> functions public, but that can easily be fixed by moving their
->>> definition to include/linux/clk/sunxi-ng.h
->>
->> Where are you thinking the clock definitions would go? We don't export
->> any of those structures (ccu_mux, ccu_common) or macros
->> (SUNXI_CCU_GATE_DATA) in a public header either.
+On 9/27/2021 3:55 PM, Srinivas Kandagatla wrote:
+> Add basic helper functions for AudioReach.
 > 
-> Ah, right...
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>   sound/soc/qcom/qdsp6/audioreach.c | 265 ++++++++++++
+>   sound/soc/qcom/qdsp6/audioreach.h | 668 ++++++++++++++++++++++++++++++
+>   2 files changed, 933 insertions(+)
+>   create mode 100644 sound/soc/qcom/qdsp6/audioreach.c
+>   create mode 100644 sound/soc/qcom/qdsp6/audioreach.h
 > 
->> Would you want to export those? That seems like a lot of churn. Or would
->> we put the CCU descriptions in drivers/clk/sunxi-ng and export a
->> function that the RTC driver can call? (Or some other idea?)
-> 
-> I guess we could export it. There's some fairly big headers in
-> include/linux/clk already (tegra and ti), it's not uAPI and we do have
-> reasons to do so, so I guess it's fine.
-> 
-> I'd like to avoid having two drivers for the same device if possible,
-> especially in two separate places. This creates some confusion since the
-> general expectation is that there's only one driver per device. There's
-> also the fact that this could lead to subtle bugs since the probe order
-> is the link order (or module loading).
+> diff --git a/sound/soc/qcom/qdsp6/audioreach.c b/sound/soc/qcom/qdsp6/audioreach.c
+> new file mode 100644
+> index 000000000000..34ec4c0d0175
+> --- /dev/null
+> +++ b/sound/soc/qcom/qdsp6/audioreach.c
+> @@ -0,0 +1,265 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2020, Linaro Limited
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/slab.h>
+> +#include <linux/soc/qcom/apr.h>
+> +#include <dt-bindings/soc/qcom,gpr.h>
+> +#include "audioreach.h"
+> +
+> +/* SubGraph Config */
+> +struct apm_sub_graph_data {
+> +	struct apm_sub_graph_cfg sub_graph_cfg;
+> +	struct apm_prop_data perf_data;
+> +	struct apm_sg_prop_id_perf_mode perf;
+> +	struct apm_prop_data dir_data;
+> +	struct apm_sg_prop_id_direction dir;
+> +	struct apm_prop_data sid_data;
+> +	struct apm_sg_prop_id_scenario_id sid;
+> +
+> +} __packed;
+> +
+> +#define APM_SUB_GRAPH_CFG_NPROP	3
+> +
+> +struct apm_sub_graph_params  {
+> +	struct apm_module_param_data param_data;
+> +	uint32_t num_sub_graphs;
+> +	struct apm_sub_graph_data sg_cfg[];
+> +} __packed;
+> +
+> +#define APM_SUB_GRAPH_PSIZE(n) ALIGN(sizeof(struct apm_sub_graph_params) + \
+> +				n * sizeof(struct apm_sub_graph_data), 8)
 
-I don't think there can be two "struct device"s for a single OF node. So
-if the CCU part is in drivers/clk/sunxi-ng, the CCU "probe" function
-would have to be called from the RTC driver. Since there has to be
-cooperation anyway, I don't think there would be any ordering problems.
+This looks, like you could use struct_size helper, something like:
+#define APM_SUB_GRAPH_PSIZE(n) ALIGN(struct_size(apm_sub_graph_params, 
+apm_sub_graph_data, n), 8)
 
-> And synchronizing access to registers between those two drivers will be
-> hard, while we could just share the same spin lock between the RTC and
-> clock drivers if they are instanciated in the same place.
+> +/* container config */
+> +struct apm_container_obj  {
+> +	struct apm_container_cfg container_cfg;
+> +	/* Capability ID list */
+> +	struct apm_prop_data cap_data;
+> +	uint32_t num_capability_id;
+> +	uint32_t capability_id;
+> +
+> +	/* Container graph Position */
+> +	struct apm_prop_data pos_data;
+> +	struct apm_cont_prop_id_graph_pos pos;
+> +
+> +	/* Container Stack size */
+> +	struct apm_prop_data stack_data;
+> +	struct apm_cont_prop_id_stack_size stack;
+> +
+> +	/* Container proc domain id */
+> +	struct apm_prop_data domain_data;
+> +	struct apm_cont_prop_id_domain domain;
+> +} __packed;
+> +
+> +struct apm_container_params  {
+> +	struct apm_module_param_data param_data;
+> +	uint32_t num_containers;
+> +	struct apm_container_obj cont_obj[];
+> +} __packed;
+> +
+> +#define APM_CONTAINER_PSIZE(n) ALIGN(sizeof(struct apm_container_params) + \
+> +				n * sizeof(struct apm_container_obj), 8)
+> +
 
-While the RTC driver currently shares a spinlock between the clock part
-and the RTC part, there isn't actually any overlap in register usage
-between the two. So there doesn't need to be any synchronization.
+Same here, use struct_size, and same applies for other defines in this 
+file, I won't add comment to all of them ;)
 
-Regards,
-Samuel
+> +/* Module List config */
+> +struct apm_mod_list_obj {
+> +	/* Modules list cfg */
+> +	uint32_t sub_graph_id;
+> +	uint32_t container_id;
+> +	uint32_t num_modules;
+> +	struct apm_module_obj mod_cfg[];
+> +} __packed;
+> +
+> +struct apm_module_list_params {
+> +	struct apm_module_param_data param_data;
+> +	uint32_t num_modules_list;
+> +	/* Module list config array */
+> +	struct apm_mod_list_obj mod_list_obj[];
+> +} __packed;
+> +
+
+(...)
+
+> diff --git a/sound/soc/qcom/qdsp6/audioreach.h b/sound/soc/qcom/qdsp6/audioreach.h
+> new file mode 100644
+> index 000000000000..556443155416
+> --- /dev/null
+> +++ b/sound/soc/qcom/qdsp6/audioreach.h
+> @@ -0,0 +1,668 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +
+> +#ifndef __AUDIOREACH_H__
+> +#define __AUDIOREACH_H__
+> +#include <linux/types.h>
+> +#include <linux/soc/qcom/apr.h>
+> +#include <sound/soc.h>
+> +
+> +/* Module IDs */
+> +#define MODULE_ID_WR_SHARED_MEM_EP	0x07001000
+> +#define MODULE_ID_RD_SHARED_MEM_EP	0x07001001
+> +#define MODULE_ID_GAIN			0x07001002
+> +#define MODULE_ID_PCM_CNV		0x07001003
+> +#define MODULE_ID_PCM_ENC		0x07001004
+> +#define MODULE_ID_PCM_DEC		0x07001005
+> +#define MODULE_ID_CODEC_DMA_SINK	0x07001023
+> +#define MODULE_ID_CODEC_DMA_SOURCE	0x07001024
+> +#define MODULE_ID_I2S_SINK		0x0700100A
+> +#define MODULE_ID_I2S_SOURCE		0x0700100b
+
+Small 'b' in hex value, use 'B' for consistency
+
+> +#define MODULE_ID_DATA_LOGGING		0x0700101A
+> +
+> +#define APM_CMD_GET_SPF_STATE		0x01001021
+> +#define APM_CMD_RSP_GET_SPF_STATE	0x02001007
+> +
+> +#define APM_MODULE_INSTANCE_ID		0x00000001
+> +#define PRM_MODULE_INSTANCE_ID		0x00000002
+> +#define AMDB_MODULE_INSTANCE_ID		0x00000003
+> +#define VCPM_MODULE_INSTANCE_ID		0x00000004
+> +#define AR_MODULE_INSTANCE_ID_START	0x00006000
+> +#define AR_MODULE_INSTANCE_ID_END	0x00007000
+> +#define AR_MODULE_DYNAMIC_INSTANCE_ID_START	0x00007000
+> +#define AR_MODULE_DYNAMIC_INSTANCE_ID_END	0x00008000
+> +#define AR_CONT_INSTANCE_ID_START	0x00005000
+> +#define AR_CONT_INSTANCE_ID_END		0x00006000
+> +#define AR_SG_INSTANCE_ID_START		0x00004000
+> +
+> +#define APM_CMD_GRAPH_OPEN			0x01001000
+> +#define APM_CMD_GRAPH_PREPARE			0x01001001
+> +#define APM_CMD_GRAPH_START			0x01001002
+> +#define APM_CMD_GRAPH_STOP			0x01001003
+> +#define APM_CMD_GRAPH_CLOSE			0x01001004
+> +#define APM_CMD_GRAPH_FLUSH			0x01001005
+> +#define APM_CMD_SET_CFG				0x01001006
+> +#define APM_CMD_GET_CFG				0x01001007
+> +#define APM_CMD_SHARED_MEM_MAP_REGIONS		0x0100100c
+
+Small 'c' here, use 'C'
+
+> +#define APM_CMD_SHARED_MEM_UNMAP_REGIONS	0x0100100d
+
+and 'D' insted of 'd' here.
+
+> +#define APM_CMD_RSP_SHARED_MEM_MAP_REGIONS	0x02001001
+> +#define APM_CMD_RSP_GET_CFG			0x02001000
+> +#define APM_CMD_CLOSE_ALL			0x01001013
+> +#define APM_CMD_REGISTER_SHARED_CFG		0x0100100A
+> +
+> +#define APM_MEMORY_MAP_SHMEM8_4K_POOL		3
+> +
+> +struct apm_cmd_shared_mem_map_regions {
+> +	uint16_t mem_pool_id;
+> +	uint16_t num_regions;
+> +	uint32_t property_flag;
+> +} __packed;
+> +
+> +struct apm_shared_map_region_payload {
+> +	uint32_t shm_addr_lsw;
+> +	uint32_t shm_addr_msw;
+> +	uint32_t mem_size_bytes;
+> +} __packed;
+> +
+> +struct apm_cmd_shared_mem_unmap_regions {
+> +	uint32_t mem_map_handle;
+> +} __packed;
+> +
+> +struct apm_cmd_rsp_shared_mem_map_regions {
+> +	uint32_t mem_map_handle;
+> +} __packed;
+> +
+
+(...)
+
+
+> +#define DATA_CMD_RD_SH_MEM_EP_DATA_BUFFER		0x04001003
+> +
+> +struct data_cmd_rd_sh_mem_ep_data_buffer {
+> +	uint32_t buf_addr_lsw;
+> +	uint32_t buf_addr_msw;
+> +	uint32_t mem_map_handle;
+> +	uint32_t buf_size;
+> +};
+> +
+> +#define DATA_CMD_RSP_RD_SH_MEM_EP_DATA_BUFFER		0x05001002
+> +
+> +struct data_cmd_rsp_rd_sh_mem_ep_data_buffer_done {
+> +	uint32_t status;
+> +	uint32_t buf_addr_lsw;
+> +	uint32_t buf_addr_msw;
+> +	uint32_t mem_map_handle;
+> +	uint32_t data_size;
+> +	uint32_t offset;
+> +	uint32_t timestamp_lsw;
+> +	uint32_t timestamp_msw;
+> +	uint32_t flags;
+> +	uint32_t num_frames;
+> +};
+
+Rest of structs is marked with __packed and it seems like it describes 
+communication protocol, so it seems like you missed it here.
+
+> +
+> +#define DATA_CMD_RD_SH_MEM_EP_DATA_BUFFER_V2		0x0400100B
+> +
+> +struct data_cmd_rd_sh_mem_ep_data_buffer_v2 {
+> +	uint32_t buf_addr_lsw;
+> +	uint32_t buf_addr_msw;
+> +	uint32_t mem_map_handle;
+> +	uint32_t buf_size;
+> +	uint32_t md_buf_addr_lsw;
+> +	uint32_t md_buf_addr_msw;
+> +	uint32_t md_mem_map_handle;
+> +	uint32_t md_buf_size;
+> +};
+
+Same comment as above.
+
+> +
+> +#define DATA_CMD_RSP_RD_SH_MEM_EP_DATA_BUFFER_V2	0x05001005
+> +
+> +struct data_cmd_rsp_rd_sh_mem_ep_data_buffer_done_v2 {
+> +	uint32_t status;
+> +	uint32_t buf_addr_lsw;
+> +	uint32_t buf_addr_msw;
+> +	uint32_t mem_map_handle;
+> +	uint32_t data_size;
+> +	uint32_t offset;
+> +	uint32_t timestamp_lsw;
+> +	uint32_t timestamp_msw;
+> +	uint32_t flags;
+> +	uint32_t num_frames;
+> +	uint32_t md_status;
+> +	uint32_t md_buf_addr_lsw;
+> +	uint32_t md_buf_addr_msw;
+> +	uint32_t md_mem_map_handle;
+> +	uint32_t md_size;
+> +} __packed;
+> +
+> +#define PARAM_ID_RD_SH_MEM_CFG				0x08001007
+> +
+> +struct param_id_rd_sh_mem_cfg {
+> +	uint32_t num_frames_per_buffer;
+> +	uint32_t metadata_control_flags;
+> +
+> +} __packed;
+> +
+
+(...)
