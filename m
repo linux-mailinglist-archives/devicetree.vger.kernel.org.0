@@ -2,116 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D10A941B530
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 19:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2E8B41B562
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 19:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242174AbhI1Rg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 13:36:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33778 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242171AbhI1Rg3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 13:36:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5BF0B60F21;
-        Tue, 28 Sep 2021 17:34:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632850489;
-        bh=Yfz08pV/gYDk+AOKJrmWrje1tFITZe7lHU+DG0nHe6Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=J3CdxDwHAF/IOVbYE4xxqV7Vv8NFVxTUJP/d0ax6bFYiBdgoclg3VgLO2tz+ndDj6
-         +ALOO3Q4lykpwvkmwFGWwExz6DdJAFZ0iuB8bxFtyAKAThiJkG8mOrDBnUJsmwalX3
-         lwc0oIQ9bR4XG7u3OK4l5ZmFbHZyRmtQD4YS1e4O/5IXOwXJDzD9lfJETjT+fqIR2T
-         RjVotFLwDdAzOAsmhjNJm/i1OzlCBs1sihufF6ZcFyQ040TPXSWikvUK0ukHDMoa/L
-         1G/yoeUpb86zY55GZYMIPkWr4xJIJswTPqkUkzXPoBAd8Qy7KdRa6vO9DtPgDTTXZ5
-         kjEfswrDsJRPw==
-Received: by mail-ed1-f50.google.com with SMTP id v10so82125349edj.10;
-        Tue, 28 Sep 2021 10:34:49 -0700 (PDT)
-X-Gm-Message-State: AOAM530Gy5f1Yzs1H78rU29janvahhEtul0GGW4UGzprPIKUVg0ss8tM
-        S2NRq7SFZLPfMtiolM/WrNMtcoXMv3x45djf6A==
-X-Google-Smtp-Source: ABdhPJySpBpXBtvPlQzRJSJ2jWwV4frZtniA8zfrmtuNaT8B9QSxRnDPopvqhpf1lHPNNHh2uyKCZ4Xxc1GjniBCCA0=
-X-Received: by 2002:a17:906:7217:: with SMTP id m23mr7883864ejk.466.1632850487958;
- Tue, 28 Sep 2021 10:34:47 -0700 (PDT)
+        id S241975AbhI1Rq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 13:46:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41846 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242041AbhI1Rq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 13:46:56 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD98C06161C
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 10:45:17 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id d4-20020a17090ad98400b0019ece228690so2246746pjv.5
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 10:45:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=YhFbyKGAjDURrMX4j5jmY9hPx93T2nKItfkSZo/eqKE=;
+        b=j/v1QR12oVDSnXvg+6+l04f6da+yVW3GwIrMSEMrqRQ5Ja6FgB06h4REov103Za89O
+         nlFKrJ2GRQbEM9MCeYcHW9nnmbf+QA5Idfv2ReN6kKPYrfUITf/wlWsUnR3VZ1rAgD/w
+         3ur7phyuWxbgVcGLKRjly5q4Gsd4A566ggL0E0Mcwxra384WKrHMMjzbDqgr1AfBXqK+
+         lo+VkMt6LfqtgRKXw3ptdj9uyGsXkEKZggSYxQxfREg0F6+t8xuLDSOPvKhpuouLDVT5
+         926tPOSSLTxz895XLpyZYpMpKG3VY+N/ZSVWIsmtnhLE4cGbt3Vth9qP2mzthEpWugJq
+         E+8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=YhFbyKGAjDURrMX4j5jmY9hPx93T2nKItfkSZo/eqKE=;
+        b=NceRDtyuBUL1SwMKTrOdhZ6LuDqpL+k6qZBR4L9/edoaQFSy0F7MGw1iAVEYtkW9Eg
+         zR5M3Toh5LCJvV9QgF6+nQSP2ak0iTAs50uWW7dy0GKXM+wFqFj7P8LtshUpDr1aHa5v
+         igrrudd9A4m48ZektpqjlpZW9frlvQKcbT31Bndon0UXPVhnbM+CT7j/L8SU6s87KCUb
+         9PR90lMfmWoG92G58Sr+QdFFkGvfPL+5+opnMEQrSbvDoOhQwe55tPIIr5O2b9zM1tq6
+         3cUlgM10l/AC56JTSCuPGnVMt8F2Bn5ysVYnAhE/HLuSa/bDydhsNFnKMtgKN8ULWNw9
+         pc9w==
+X-Gm-Message-State: AOAM533dLGmIfwcukW2RoCdO3N6isEDyVXQpDD+cADZseOWUyhnmUZ9D
+        oyijkSsso9kAWDS/zaJROOVq1LTVbYC8y5Pei7DCKxAJWXUDGZL5
+X-Google-Smtp-Source: ABdhPJwdF6OQu4fHwNGOxjFX7IkcbBeb2X8Krz3jA6ch3yrE85B/T2+4ZP6UoNjtY+Kjv0TrpkqLVzHPBpoN8Ctnlnk=
+X-Received: by 2002:a05:6102:2421:: with SMTP id l1mr6607985vsi.16.1632851105501;
+ Tue, 28 Sep 2021 10:45:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210928044546.4111223-1-bjorn.andersson@linaro.org> <YVLszZ7U7D91oIH2@gerhold.net>
-In-Reply-To: <YVLszZ7U7D91oIH2@gerhold.net>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 28 Sep 2021 12:34:35 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: soc: smem: Make indirection optional
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Received: by 2002:a9f:2d8b:0:0:0:0:0 with HTTP; Tue, 28 Sep 2021 10:45:04
+ -0700 (PDT)
+Reply-To: pi3501417@gmail.com
+From:   Pastor Ibobo <okoyefrancis201@gmail.com>
+Date:   Tue, 28 Sep 2021 10:45:04 -0700
+Message-ID: <CANVKyegL5fho93rmTmxdvKzs84gR8gOZy-7fBj+f+oaov50qSA@mail.gmail.com>
+Subject: Good Day to you
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 28, 2021 at 5:22 AM Stephan Gerhold <stephan@gerhold.net> wrote:
->
-> On Mon, Sep 27, 2021 at 09:45:44PM -0700, Bjorn Andersson wrote:
-> > In the olden days the Qualcomm shared memory (SMEM) region consisted of
-> > multiple chunks of memory, so SMEM was described as a standalone node
-> > with references to its various memory regions.
-> >
-> > But practically all modern Qualcomm platforms has a single reserved memory
-> > region used for SMEM. So rather than having to use two nodes to describe
-> > the one SMEM region, update the binding to allow the reserved-memory
-> > region alone to describe SMEM.
-> >
-> > The olden format is preserved as valid, as this is widely used already.
-> >
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  .../bindings/soc/qcom/qcom,smem.yaml          | 34 ++++++++++++++++---
-> >  1 file changed, 30 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> > index f7e17713b3d8..4149cf2b66be 100644
-> > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
-> > [...]
-> > @@ -43,6 +55,20 @@ examples:
-> >          #size-cells = <1>;
-> >          ranges;
-> >
-> > +        smem@fa00000 {
->
-> I think this is a good opportunity to make a decision which node name
-> should be used here. :)
+Good Day to you  I am bring this to your notice for you to know and
+understand when someone is telling you the truth, first of all, I
+truly understand that it is very hard for people to detect the real
+business transaction and that of the fake ones but you can never judge
+that every one are the same no!! no!!! it is impossible,
 
-reserved-memory node names are kind of a mess, so I haven't tried for
-any standard... It needs to be solved globally.
 
->
-> You use smem@ here but mentioned before that you think using the generic
-> memory@ would be better [1]. And you use memory@ in PATCH 3/3:
->
-> -               smem_mem: memory@86000000 {
-> +               memory@86000000 {
-> +                       compatible = "qcom,smem";
->                         reg = <0x0 0x86000000 0 0x200000>;
->                         no-map;
-> +                       hwlocks = <&tcsr_mutex 3>;
->                 };
->
-> However, if you would use memory@ as example in this DT schema,
-> Rob's bot would complain with the same error that I mentioned earlier [2]:
->
-> soc/qcom/qcom,smem.example.dt.yaml: memory@fa00000: 'device_type' is a required property
->         From schema: dtschema/schemas/memory.yaml
->
-> We should either fix the error when using memory@ or start using some
-> different node name (Stephen Boyd suggested shared-memory@ for example).
-> Otherwise we'll just keep introducing more and more dtbs_check errors
-> for the Qualcomm device trees.
+ we are busy fighting corruptions all over the world and people whom
+we have been fighting for are busying ruining into corruptions and
+scam believing them instead of believing the truth, for the past few
+Months you have been told to contact our Bank {standard American Bank}
+were your total fund have been deposited and credited and all you have
+been requested to do is  for your online account opening which will
+only cost you lesser amount  still yet you still don't believe .
 
-A different node name. A node name should only have 1 meaning and
-'memory' is already defined.
+ Now can you count how many times you have send your hard earn money
+to those impostors since then and until now you still have gotten non
+of your fund, Now is too earlier for you if you can come back to your
+senses and do the right now I am here to put a trust to you and make
+sure that after this your will be apprehended to seek for me after the
+successful of your transaction try and have your account opening fee
+send and an account will be open for you which you will be credited
+instantly with the total amount of your awaiting fund of $30.7 Million
+Dollars and issued you with all your online, login details to start
+making use of your fund,
 
-The main issue here is what to name nodes with only a size and no address.
+ Understand that you can as well request for an ATM master card from
+the Bank Portal if you wish that once you have an account with
+standard American Bank But try and understand that we are here to make
+sure you start making use of your long waiting  fund if you wish try
+and get back to me on this matter and God bless you...
+E-MAIL (( pi3501417@gmail.com ))
+Best Regards,
 
-Rob
+Pastor Ibobo
