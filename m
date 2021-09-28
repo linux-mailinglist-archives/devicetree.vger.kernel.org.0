@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B5D41ACA5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 12:10:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C331941ACD7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 12:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240117AbhI1KMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 06:12:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47208 "EHLO
+        id S240148AbhI1KXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 06:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240056AbhI1KMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 06:12:15 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D770C061575
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 03:10:36 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id u18so57089740wrg.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 03:10:36 -0700 (PDT)
+        with ESMTP id S239952AbhI1KXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 06:23:19 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B3FEC061575
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 03:21:40 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id j27so3020307wms.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 03:21:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VRYyjAJqzt+oGd/XIZ5uVDcZC/sKLm2kGO/Eia5PR48=;
-        b=CY+3n/OoUgJ33VHpMXzl38AWXNiKoEOa6EbAeHPbPKGTdKHJ6sz9MajJRffs3mAHV+
-         jFJv79HSJrF1BR4M78ECqWsT/h98n9SxGGQbdxSts7ENFy1MUVXa84jPbYW4ju6hcgfg
-         IkCJHNH+Iz3TXVzIxlobhrNy16mRxiYgiKDtex1rPkWZyNd1SF0pyV2sBa33auOsgLfk
-         DuAP+Ie0DR7qthOh1WmdNU/DSQl0f3/zd1CBhpupRPYj5cYfy1XqUOFwPLjBHXe0qzrR
-         36NgS/xo3vGI5bnx3xIxnsxqUrZ50PeS3JVnSf+koXbu61JWFeLEtqgYOsnD9iYgjr+0
-         ms0g==
+        bh=P4rbKj3d/woidokjvbpPUbGWRF5RvEv/2Gj/Zmur/bI=;
+        b=n8hiDNLG/+TGnrfWgbNWtgHz01Rbv76vsUlLnhJq6MfpUUVO2xl8+OjARxPRVfx3EW
+         ArzChCTRAU6+jgzESeqD22n4Gobb2Inx4MufrvCbIWJTLEZOh5GFmEIBjJ3fuk3ow+h3
+         28693JHfhTZViJVJodzoKPYsmz//SMZ+5yRigBpuPThM1Py/O9tzDcMpeGpMz3pd2T76
+         Mq3yV/XSC26N0DOgX0ITm35PhtfTapegNfMbAchIbCxDUVgg7h/iBehQ6mAXNxkEurTu
+         HnGn297T89s8mpNwXxgcO+lskslQzr987fkC5HMqD8K0rzS/8jKq4QHBtfDQRv2ufWXd
+         USMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=VRYyjAJqzt+oGd/XIZ5uVDcZC/sKLm2kGO/Eia5PR48=;
-        b=L8p2BqJcnZ3qdiIbcHI0nNfIT0i3gfjyEqOOEJXipyFZXVRufXBvw6xRgsYxJWx5nd
-         24uZhdSff2byfD0BlHj3gDSfg3+xxHOSuqR7HNT932Q3zmsVJl1l/VclKi9KSwOBwHX4
-         lbAcMRydmzH4oFYquQD5yAAjgFzadtEL+rc6WfMBJcGlmF378R8U17BPyKbeT6JYtYL6
-         zPAn+epRwQdhiwaQif5bGT5Q6X3vqWOYBvn0k8cgvPVFyCrS1EBGdlAkZJ8IJcZdxNLc
-         zPgeuucUMwcvXrdHk/enkckxsJMqy5iZSgBAJ9tW57rjeXoTZgBXe84p3jUdgXCiK4yM
-         6Dww==
-X-Gm-Message-State: AOAM531oIsfddAYIhu2a7tVsx/vGv5RSE61c4puR6iQu+rTbDXPx/0jK
-        Fo/PGyGNvdTMoheLD8NeHk1pwFBnZOTy2A==
-X-Google-Smtp-Source: ABdhPJz/u8z6imIBMwGvamngpy6HMxJyniXUvL/1f3PWBZNUlRmeNIQhJH5pU11SAugxMcVvjzTpxA==
-X-Received: by 2002:adf:ee4d:: with SMTP id w13mr5088754wro.223.1632823834677;
-        Tue, 28 Sep 2021 03:10:34 -0700 (PDT)
+        bh=P4rbKj3d/woidokjvbpPUbGWRF5RvEv/2Gj/Zmur/bI=;
+        b=YJc1faMZ/nhnrCVYvVJUnJHj0dF8dPHvdVLuWAM0RhuFqVx7FdTAI3vME7h2tSG77p
+         e5hc4cFW4xhiUQT9NGYs0x6LynJMwNzcn5BMkz9P3RcS9IVIdmG3uyqtnD/PpMT45vAW
+         GP13hT4b8UaTS4m1et1grIqoyyDsUZDwlCBMFb6NnVvW0xlEQWHwV8u2EfJ4oqqasc7e
+         54ZIeukZrVb7m+FEqus+R4zBMAGEuwsBRVzCLM+oyYu1kptFSCm7OHU4v0sfZSE7T9zW
+         a0po6ZOeZ3qubOIgah63YAJ+BrvycptZAY1INtKo+NYxNjt5LFqf/PzpVy4ds/pqbvkB
+         zxfg==
+X-Gm-Message-State: AOAM530eorw/5OPozyeKYL81TDNwz30h1tbzleQ/YUwzN+SrCGcFBarN
+        A9Tq0MPtJUz5SiFErjABCi+o+g==
+X-Google-Smtp-Source: ABdhPJy+BvIKjHPLakTXuFs6462RKnaNRkKp7fL0GUlBTuSHpti2s5PKjkQNBn5GNz56rEL68WSkNg==
+X-Received: by 2002:a05:600c:247:: with SMTP id 7mr1908531wmj.4.1632824499076;
+        Tue, 28 Sep 2021 03:21:39 -0700 (PDT)
 Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id o5sm7932803wrf.85.2021.09.28.03.10.33
+        by smtp.googlemail.com with ESMTPSA id a3sm6597588wrn.16.2021.09.28.03.21.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Sep 2021 03:10:34 -0700 (PDT)
-Subject: Re: [PATCH v8 14/22] ASoC: qdsp6: audioreach: add basic pkt alloc
- support
+        Tue, 28 Sep 2021 03:21:38 -0700 (PDT)
+Subject: Re: [PATCH v8 16/22] ASoC: qdsp6: audioreach: add module
+ configuration command helpers
 To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
         bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
 Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
         perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
         bgoswami@codeaurora.org
 References: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
- <20210927135559.738-15-srinivas.kandagatla@linaro.org>
- <ebfe1e31-778d-852a-20bf-ac8fe860dcc2@linux.intel.com>
+ <20210927135559.738-17-srinivas.kandagatla@linaro.org>
+ <2be40835-e98a-ff3f-71b1-ab2dd80086c3@linux.intel.com>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <d96a7337-c594-c64a-46f9-73d7d6ad77b7@linaro.org>
-Date:   Tue, 28 Sep 2021 11:10:33 +0100
+Message-ID: <42986413-57a5-30cb-5256-84b5f4e5e004@linaro.org>
+Date:   Tue, 28 Sep 2021 11:21:37 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <ebfe1e31-778d-852a-20bf-ac8fe860dcc2@linux.intel.com>
+In-Reply-To: <2be40835-e98a-ff3f-71b1-ab2dd80086c3@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -74,109 +74,82 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 27/09/2021 17:08, Pierre-Louis Bossart wrote:
+On 27/09/2021 17:16, Pierre-Louis Bossart wrote:
 > 
+>> +static int audioreach_shmem_set_media_format(struct q6apm_graph *graph,
+>> +					     struct audioreach_module *module,
+>> +					     struct audioreach_module_config *mcfg)
+>> +{
+>> +	uint32_t num_channels = mcfg->num_channels;
+>> +	struct apm_module_param_data *param_data;
+>> +	struct payload_media_fmt_pcm *cfg;
+>> +	struct media_format *header;
+>> +	int rc, payload_size;
+>> +	struct gpr_pkt *pkt;
+>> +	void *p;
+>> +
+>> +	if (num_channels > 2) {
+>> +		dev_err(graph->dev, "Error: Invalid channels (%d)!\n", num_channels);
+>> +		return -EINVAL;
+>> +	}
 > 
->> +struct apm_sub_graph_params  {
->> +	struct apm_module_param_data param_data;
->> +	uint32_t num_sub_graphs;
->> +	struct apm_sub_graph_data sg_cfg[];
->> +} __packed;
+> so here mcfg->num_channels > 2 is flagged as an error, but ...
 > 
-> The style you use is num_foobar and later foobar[]
+>> +
+>> +	payload_size = APM_SHMEM_FMT_CFG_PSIZE(num_channels) + APM_MODULE_PARAM_DATA_SIZE;
+>> +
+>> +	pkt = audioreach_alloc_cmd_pkt(payload_size, APM_CMD_SET_CFG, 0,
+>> +				     graph->port->id, module->instance_id);
+>> +	if (IS_ERR(pkt))
+>> +		return PTR_ERR(pkt);
+>> +
+>> +	p = (void *)pkt + GPR_HDR_SIZE + APM_CMD_HDR_SIZE;
+>> +
+>> +	param_data = p;
+>> +	param_data->module_instance_id = module->instance_id;
+>> +	param_data->error_code = 0;
+>> +	param_data->param_id = PARAM_ID_MEDIA_FORMAT;
+>> +	param_data->param_size = payload_size - APM_MODULE_PARAM_DATA_SIZE;
+>> +	p = p + APM_MODULE_PARAM_DATA_SIZE;
+>> +
+>> +	header = p;
+>> +	header->data_format = DATA_FORMAT_FIXED_POINT;
+>> +	header->fmt_id = MEDIA_FMT_ID_PCM;
+>> +	header->payload_size = payload_size - sizeof(*header);
+>> +
+>> +	p = p + sizeof(*header);
+>> +	cfg = p;
+>> +	cfg->sample_rate = mcfg->sample_rate;
+>> +	cfg->bit_width = mcfg->bit_width;
+>> +	cfg->alignment = PCM_LSB_ALIGNED;
+>> +	cfg->bits_per_sample = mcfg->bit_width;
+>> +	cfg->q_factor = mcfg->bit_width - 1;
+>> +	cfg->endianness = PCM_LITTLE_ENDIAN;
+>> +	cfg->num_channels = mcfg->num_channels;
+>> +
+>> +	if (mcfg->num_channels == 1) {
+>> +		cfg->channel_mapping[0] =  PCM_CHANNEL_L;
+>> +	} else if (num_channels == 2) {
+>> +		cfg->channel_mapping[0] =  PCM_CHANNEL_L;
+>> +		cfg->channel_mapping[1] =  PCM_CHANNEL_R;
+>> +	} else {
+>> +		dev_err(graph->dev, "Error: Invalid channels (%d)!\n", num_channels);
+>> +		rc = -EINVAL;
+>> +		goto err;
 > 
->> +/* container config */
->> +struct apm_container_obj  {
->> +	struct apm_container_cfg container_cfg;
->> +	/* Capability ID list */
->> +	struct apm_prop_data cap_data;
->> +	uint32_t num_capability_id;
->> +	uint32_t capability_id;
-> 
-> but here you have both a num_capability_id and capability_id
-> 
-> It's not very clear what they mean, or if there is a dependency?
+> ... this is again the case where mcfg->num_channels > 2 so this block is
+> never executed.
 
-DSP supports multiple capabilities for a container, however for now this 
-version of patches only support 1 capability for a container.
-
-I will add multiple capabilities once am in a position to test it.
-
-> 
->> +	/* Container graph Position */
->> +	struct apm_prop_data pos_data;
->> +	struct apm_cont_prop_id_graph_pos pos;
->> +
->> +	/* Container Stack size */
->> +	struct apm_prop_data stack_data;
->> +	struct apm_cont_prop_id_stack_size stack;
->> +
->> +	/* Container proc domain id */
->> +	struct apm_prop_data domain_data;
->> +	struct apm_cont_prop_id_domain domain;
->> +} __packed;
-> 
->> +/* Module IDs */
->> +#define MODULE_ID_WR_SHARED_MEM_EP	0x07001000
->> +#define MODULE_ID_RD_SHARED_MEM_EP	0x07001001
->> +#define MODULE_ID_GAIN			0x07001002
->> +#define MODULE_ID_PCM_CNV		0x07001003
->> +#define MODULE_ID_PCM_ENC		0x07001004
->> +#define MODULE_ID_PCM_DEC		0x07001005
->> +#define MODULE_ID_CODEC_DMA_SINK	0x07001023
->> +#define MODULE_ID_CODEC_DMA_SOURCE	0x07001024
->> +#define MODULE_ID_I2S_SINK		0x0700100A
->> +#define MODULE_ID_I2S_SOURCE		0x0700100b
->> +#define MODULE_ID_DATA_LOGGING		0x0700101A
->> +
->> +#define APM_CMD_GET_SPF_STATE		0x01001021
->> +#define APM_CMD_RSP_GET_SPF_STATE	0x02001007
->> +
->> +#define APM_MODULE_INSTANCE_ID		0x00000001
->> +#define PRM_MODULE_INSTANCE_ID		0x00000002
->> +#define AMDB_MODULE_INSTANCE_ID		0x00000003
->> +#define VCPM_MODULE_INSTANCE_ID		0x00000004
->> +#define AR_MODULE_INSTANCE_ID_START	0x00006000
->> +#define AR_MODULE_INSTANCE_ID_END	0x00007000
->> +#define AR_MODULE_DYNAMIC_INSTANCE_ID_START	0x00007000
->> +#define AR_MODULE_DYNAMIC_INSTANCE_ID_END	0x00008000
->> +#define AR_CONT_INSTANCE_ID_START	0x00005000
->> +#define AR_CONT_INSTANCE_ID_END		0x00006000
->> +#define AR_SG_INSTANCE_ID_START		0x00004000
->> +
->> +#define APM_CMD_GRAPH_OPEN			0x01001000
->> +#define APM_CMD_GRAPH_PREPARE			0x01001001
->> +#define APM_CMD_GRAPH_START			0x01001002
->> +#define APM_CMD_GRAPH_STOP			0x01001003
->> +#define APM_CMD_GRAPH_CLOSE			0x01001004
->> +#define APM_CMD_GRAPH_FLUSH			0x01001005
->> +#define APM_CMD_SET_CFG				0x01001006
->> +#define APM_CMD_GET_CFG				0x01001007
->> +#define APM_CMD_SHARED_MEM_MAP_REGIONS		0x0100100c
->> +#define APM_CMD_SHARED_MEM_UNMAP_REGIONS	0x0100100d
->> +#define APM_CMD_RSP_SHARED_MEM_MAP_REGIONS	0x02001001
->> +#define APM_CMD_RSP_GET_CFG			0x02001000
->> +#define APM_CMD_CLOSE_ALL			0x01001013
->> +#define APM_CMD_REGISTER_SHARED_CFG		0x0100100A
-> 
->> +/* APM module */
->> +#define APM_PARAM_ID_SUB_GRAPH_LIST		0x08001005
->> +
->> +#define APM_PARAM_ID_MODULE_LIST		0x08001002
-> 
->> +#define APM_PARAM_ID_MODULE_PROP		0x08001003
-> 
-> It seems like those definition follow a pattern, e.g. bits 28..32 a type
-> and bits 0..15 a token?
-Yes, it does have a pattern, each Opcode is divided in to 3 fields.
-
-GUID OWNER 31:28
-GUID Type 27:24
-MAIN GUID 23:0
+I agree this else is dead code, will remove this.
 
 --srini
-
-
 > 
-> 
->>
+>> +	}
+>> +
+>> +	rc = audioreach_graph_send_cmd_sync(graph, pkt, 0);
+>> +err:
+>> +	kfree(pkt);
+>> +
+>> +	return rc;
+>> +}
+>> +
