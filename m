@@ -2,140 +2,591 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B62241B397
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 18:13:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 228E441B3A5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 18:19:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241663AbhI1QPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 12:15:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48662 "EHLO
+        id S241700AbhI1QUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 12:20:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241523AbhI1QPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 12:15:22 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C332C06161C
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 09:13:42 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id d11so23908673ilc.8
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 09:13:42 -0700 (PDT)
+        with ESMTP id S241523AbhI1QUk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 12:20:40 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA88C06161C
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 09:19:00 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id dn26so8396184edb.13
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 09:19:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=v2zQz4XizfHwgNsfMM/95d+v9BN58F9SfAkKgr4nWbo=;
-        b=HCNd3PAb5VTA0Hj/uDS3qEqaivstHqwG5xndb95BxPTFJkpvoMisLEMufr5yfuKlp5
-         HTVL4MiqJcRnINa5nUgdphCKL/tY9ganf/5KVqVyksJSmXrkZnQHnNsRGRlPQZMmvG+C
-         o39/gJk3zvYKzgMWBo74gI5Psh7VnFl1jHNJHoBiWCf81AHyPGUPOP+abkmf3rkpZUa6
-         /cwoe++eZ95EIWrmbx3AAqajl72o+lGuKK61VDj4goKvwDXSGTva1OvdWdgS84a5u5uz
-         2E/jvsJbc+BtkT2MrJA0A+EJiOzXKbUgjVzL9QcKWFgHhMJ3psvEZQKaH8U7hrcoN06Q
-         EUqA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BDNtxwMVAWvBzZey8Nx0zpc2ApUlLL018ipSoCc2Oyw=;
+        b=Td/KVUz9prEly7Q7RHCc80OykqZ9wb5tRYoC0HHDj9UJIXCyMivEwe2MrLXW07PiZW
+         knL2hABExhPGIPe5KZgs6ftTyEOqUk3rAw5RLcLqnrkLIR49+WMdbH2DU75nOmXW6qFf
+         Mz7InOmRuOrGPbTT815aOQBlGZXZb/d+koDIOOYwmmVnCG7rhcLmUIxznTL2ELpCZSnC
+         ZBqengbrVwHY/0dUIn0srvZIeaSiDLdf0KewReVyUh3wS8a5wkeZhcUWP9hSZTLz3fAT
+         7hVybk/LsLe8p2sHBZYY0fJ23FWzUeDldNBVaPcKYRkmZ8FtJx85qJbpVKBopt9D0qm1
+         pZzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=v2zQz4XizfHwgNsfMM/95d+v9BN58F9SfAkKgr4nWbo=;
-        b=Nx6cZ72dEQ9e8wFZPGQSBmcrKyNFhWoIpgk+3X0C7vkSZ3guKcksIYDO4ehNgGjfF7
-         CJ/1Qs5c2TDbQJiyZS2TcoEOjYmZWNBh/D/JOUXi0TQJ2kuH/ARbfmHHxVFP3nqTKJ+3
-         0M1wM0WkDP/v0SfWu6JGsqyx0ImVhNrzEKkIl/MoZnVkAB8qhQxuI3XdiJjqKeWKCfBN
-         Jt1tlyPsxvzkLrWEFp7kdGSGnYjH32lH1asUYglyGXYwJL/o0JdS9qIxY3SOSyeTMdRm
-         QVgIGhLUVu1QD0YAB7c92to3ERQDMktmfQfwdeyjxIf8nfg+NKVDlCvC7LFZw5q0QGQ3
-         8mIw==
-X-Gm-Message-State: AOAM531tKGkjrfU9rBTZPa5lA7IsPWxFpHhs8zIwAhJmKDFXNTcyZaQm
-        PT2DJSqHmNJNaRF2UfKa3pQjV9AZAd9GEzLbkHE0+wLgfvY=
-X-Google-Smtp-Source: ABdhPJzp8SM43R1E44WVwU8mJUjw3G0PTjGQFg+A/ShFORc/dbikzu4gAC9vpc8iqa0HhmQSmXfVld7ORrgwtPucs7M=
-X-Received: by 2002:a92:c5c9:: with SMTP id s9mr5056555ilt.56.1632845622062;
- Tue, 28 Sep 2021 09:13:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210923181830.3449602-1-robert.marko@sartura.hr> <20210928154801.vkdt5qbsm4z7ox4y@pali>
-In-Reply-To: <20210928154801.vkdt5qbsm4z7ox4y@pali>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BDNtxwMVAWvBzZey8Nx0zpc2ApUlLL018ipSoCc2Oyw=;
+        b=XnZ1hFjImNcnmo0ktVInksy2Dsj1h6QLtgJz2LH25BKpGgoFcWD+HX4ZbpnkRpKQu2
+         /KWCohR8Nb6pAbxTecksQiq1zvQufnvRr8ssMbGl8hLRyaQR6IllpCUZaAz0jOj0wJFw
+         zx0KlNkBpw92GTTpAArhi4qU3eTeJFwbF0vpXiYObl6UP6EcpmqzkRwVFkYLhO+MhZZM
+         U9j0n7b2QqzInYwKqS4emBQlGPtLtyxZOnUX8QPYkgQXr1x60ocaTdwV9ghL7OE/qyuu
+         FgNjNJKQ05ec9Nxp6i/BJmQeU6Rg/wmvwvyF+nGMY4AYKIbdVUn5nyFojssZYaRK6Mh3
+         8v2Q==
+X-Gm-Message-State: AOAM533MT6sVyxwVHYpRdhxUMrb5xrCOzgcWYMkxMVZh48G4Fk7dA2jp
+        IQ6w6ZuFrIKTcS+ozem4B1cRpQ==
+X-Google-Smtp-Source: ABdhPJw19Y9wOFxkxb1Ft6H265ixbFK9axj6cjMv4VQWA73g8qYcAKT1u7N37vjkB1G0qcPHy0wz+w==
+X-Received: by 2002:a17:906:1f49:: with SMTP id d9mr7867526ejk.150.1632845938862;
+        Tue, 28 Sep 2021 09:18:58 -0700 (PDT)
+Received: from fedora.. (dh207-96-123.xnet.hr. [88.207.96.123])
+        by smtp.googlemail.com with ESMTPSA id p26sm7380908eds.58.2021.09.28.09.18.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Sep 2021 09:18:58 -0700 (PDT)
 From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Tue, 28 Sep 2021 18:13:31 +0200
-Message-ID: <CA+HBbNEF5s23K6goPAco9n=OhNqg4zcmTP6WKdh3p6qb8XSG5w@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: marvell: add Globalscale MOCHAbin
-To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+To:     robh+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        pali@kernel.org
+Cc:     Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v4] arm64: dts: marvell: add Globalscale MOCHAbin
+Date:   Tue, 28 Sep 2021 18:18:51 +0200
+Message-Id: <20210928161851.685499-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 28, 2021 at 5:48 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
->
-> On Thursday 23 September 2021 20:18:30 Robert Marko wrote:
-> > +/* SPI-NOR */
-> > +&cp0_spi1{
-> > +     status =3D "okay";
-> > +
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&cp0_spi1_pins>;
-> > +
-> > +     spi-flash@0 {
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <1>;
-> > +             compatible =3D "jedec,spi-nor";
-> > +             reg =3D <0>;
-> > +             spi-max-frequency =3D <20000000>;
-> > +
-> > +             partitions {
-> > +                     compatible =3D "fixed-partitions";
-> > +                     #address-cells =3D <1>;
-> > +                     #size-cells =3D <1>;
-> > +
-> > +                     partition@0 {
-> > +                             label =3D "u-boot";
-> > +                             reg =3D <0x0 0x3e0000>;
->
-> For sure U-Boot cannot start at offset zero as this is 64-bit ARM board
-> which uses at least TF-A firmware, which loads U-Boot.
->
-> Also on these mvebu SoCs is executed prior TF-A firmware custom Marvell
-> initialization code responsible for DDR training.
->
-> So on offset zero you cannot flash U-Boot, otherwise board would not be
-> bootable.
->
-> So I would suggest to either define correct offset at which U-Boot
-> starts or rename this whole partition to something generic, e.g. with
-> label "firmware". To not expose that on zero offset is stored U-Boot.
->
-> Due to how big is this partition I guess it contains concatenation of
-> various firmware and bootloader parts.
+Globalscale MOCHAbin is a Armada 7040 based development board.
 
-You are correct, its the mv-ddr + TF-A + U-boot in that partition, its just=
- a
-matter of habit calling it "u-boot".
-I will rename to "firmware" which is much more appropriate.
+Specifications:
+* Armada 7040 Quad core ARMv8 Cortex A-72 @ 1.4GHz
+* 2 / 4 / 8 GB of DDR4 DRAM
+* 16 GB eMMC
+* 4MB SPI-NOR (Bootloader)
+* 1x M.2-2280 B-key socket (for SSD expansion, SATA3 only)
+* 1x M.2-2250 B-key socket (for modems, USB2.0 and I2C only)
+* 1x Mini-PCIe 3.0 (x1, USB2.0 and I2C)
+* 1x SATA 7+15 socket (SATA3)
+* 1x 16-pin (2×8) MikroBus Connector
+* 1x SIM card slot (Connected to the mini-PCIe and both M.2 slots)
+* 2x USB3.0 Type-A ports via SMSC USB5434B hub
+* Cortex 2x5 JTAG
+* microUSB port for UART (PL2303GL/PL2303SA onboard)
+* 1x 10G SFP+
+* 1x 1G SFP (Connected to 88E1512 PHY)
+* 1x 1G RJ45 with PoE PD (Connected to 88E1512 PHY)
+* 4x 1G RJ45 ports via Topaz 88E6141 switch
+* RTC with battery holder (SoC provided, requires CR2032 battery)
+* 1x 12V DC IN
+* 1x Power switch
+* 1x 12V fan header (3-pin, power only)
+* 1x mini-PCIe LED header (2x0.1" pins)
+* 1x M.2-2280 LED header (2x0.1" pins)
+* 6x Bootstrap jumpers
+* 1x Power LED (Green)
+* 3x Tri-color RGB LEDs (Controllable)
+* 1x Microchip ATECC608B secure element
 
-Regards,
-Robert
->
-> > +                             read-only;
-> > +                     };
-> > +
-> > +                     partition@3e0000 {
-> > +                             label =3D "hw-info";
-> > +                             reg =3D <0x3e0000 0x10000>;
-> > +                             read-only;
-> > +                     };
-> > +
-> > +                     partition@3f0000 {
-> > +                             label =3D "u-boot-env";
-> > +                             reg =3D <0x3f0000 0x10000>;
-> > +                     };
-> > +             };
-> > +     };
-> > +};
+Note that 1G SFP and 1G WAN cannot be used at the same time as they are in
+parallel connected to the same PHY.
 
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+---
+Changes in v4:
+* Rename the "u-boot" partition to "firmware" which is more appropriate
+as it a concatenation of mv-ddr + TF-A + U-boot
 
+Changes in v3:
+* Use IRQ_TYPE_LEVEL_LOW instead of IRQ_TYPE_EDGE_FALLING as both the
+PCA9554 and Topaz switch have an active LOW IRQ signal.
 
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Changes in v2:
+* Use "10gbase-r" instead of "10gbase-kr"
+---
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../boot/dts/marvell/armada-7040-mochabin.dts | 452 ++++++++++++++++++
+ 2 files changed, 453 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+
+diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+index 34efe0fb6f37..4d3a2ae9adbd 100644
+--- a/arch/arm64/boot/dts/marvell/Makefile
++++ b/arch/arm64/boot/dts/marvell/Makefile
+@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-uDPU.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-db.dtb
++dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-mochabin.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-clearfog-gt-8k.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-db.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-mcbin.dtb
+diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+new file mode 100644
+index 000000000000..edd0df5e9ffd
+--- /dev/null
++++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+@@ -0,0 +1,452 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * Device Tree file for Globalscale MOCHAbin
++ * Copyright (C) 2019 Globalscale technologies, Inc.
++ * Copyright (C) 2021 Sartura Ltd.
++ *
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include "armada-7040.dtsi"
++
++/ {
++	model = "Globalscale MOCHAbin";
++	compatible = "globalscale,mochabin", "marvell,armada7040",
++		     "marvell,armada-ap806-quad", "marvell,armada-ap806";
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	aliases {
++		ethernet0 = &cp0_eth0;
++		ethernet1 = &cp0_eth1;
++		ethernet2 = &cp0_eth2;
++		ethernet3 = &swport1;
++		ethernet4 = &swport2;
++		ethernet5 = &swport3;
++		ethernet6 = &swport4;
++	};
++
++	/* SFP+ 10G */
++	sfp_eth0: sfp-eth0 {
++		compatible = "sff,sfp";
++		i2c-bus = <&cp0_i2c1>;
++		los-gpio = <&sfp_gpio 3 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpio = <&sfp_gpio 2 GPIO_ACTIVE_LOW>;
++		tx-disable-gpio = <&sfp_gpio 1 GPIO_ACTIVE_HIGH>;
++		tx-fault-gpio  = <&sfp_gpio 0 GPIO_ACTIVE_HIGH>;
++	};
++
++	/* SFP 1G */
++	sfp_eth2: sfp-eth2 {
++		compatible = "sff,sfp";
++		i2c-bus = <&cp0_i2c0>;
++		los-gpio = <&sfp_gpio 7 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpio = <&sfp_gpio 6 GPIO_ACTIVE_LOW>;
++		tx-disable-gpio = <&sfp_gpio 5 GPIO_ACTIVE_HIGH>;
++		tx-fault-gpio  = <&sfp_gpio 4 GPIO_ACTIVE_HIGH>;
++	};
++};
++
++/* microUSB UART console */
++&uart0 {
++	status = "okay";
++
++	pinctrl-0 = <&uart0_pins>;
++	pinctrl-names = "default";
++};
++
++/* eMMC */
++&ap_sdhci0 {
++	status = "okay";
++
++	bus-width = <4>;
++	non-removable;
++	/delete-property/ marvell,xenon-phy-slow-mode;
++	no-1-8-v;
++};
++
++&cp0_pinctrl {
++	cp0_uart0_pins: cp0-uart0-pins {
++		marvell,pins = "mpp6", "mpp7";
++		marvell,function = "uart0";
++	};
++
++	cp0_spi0_pins: cp0-spi0-pins {
++		marvell,pins = "mpp56", "mpp57", "mpp58", "mpp59";
++		marvell,function = "spi0";
++	};
++
++	cp0_spi1_pins: cp0-spi1-pins {
++		marvell,pins = "mpp13", "mpp14", "mpp15", "mpp16";
++		marvell,function = "spi1";
++	};
++
++	cp0_i2c0_pins: cp0-i2c0-pins {
++		marvell,pins = "mpp37", "mpp38";
++		marvell,function = "i2c0";
++	};
++
++	cp0_i2c1_pins: cp0-i2c1-pins {
++		marvell,pins = "mpp2", "mpp3";
++		marvell,function = "i2c1";
++	};
++
++	pca9554_int_pins: pca9554-int-pins {
++		marvell,pins = "mpp27";
++		marvell,function = "gpio";
++	};
++
++	cp0_rgmii1_pins: cp0-rgmii1-pins {
++		marvell,pins = "mpp44", "mpp45", "mpp46", "mpp47", "mpp48", "mpp49",
++			       "mpp50", "mpp51", "mpp52", "mpp53", "mpp54", "mpp55";
++		marvell,function = "ge1";
++	};
++
++	is31_sdb_pins: is31-sdb-pins {
++		marvell,pins = "mpp30";
++		marvell,function = "gpio";
++	};
++
++	cp0_pcie_reset_pins: cp0-pcie-reset-pins {
++		marvell,pins = "mpp9";
++		marvell,function = "gpio";
++	};
++
++	cp0_switch_pins: cp0-switch-pins {
++		marvell,pins = "mpp0", "mpp1";
++		marvell,function = "gpio";
++	};
++
++	cp0_phy_pins: cp0-phy-pins {
++		marvell,pins = "mpp12";
++		marvell,function = "gpio";
++	};
++};
++
++/* mikroBUS UART */
++&cp0_uart0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_uart0_pins>;
++};
++
++/* mikroBUS SPI */
++&cp0_spi0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_spi0_pins>;
++};
++
++/* SPI-NOR */
++&cp0_spi1{
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_spi1_pins>;
++
++	spi-flash@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <20000000>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "firmware";
++				reg = <0x0 0x3e0000>;
++				read-only;
++			};
++
++			partition@3e0000 {
++				label = "hw-info";
++				reg = <0x3e0000 0x10000>;
++				read-only;
++			};
++
++			partition@3f0000 {
++				label = "u-boot-env";
++				reg = <0x3f0000 0x10000>;
++			};
++		};
++	};
++};
++
++/* mikroBUS, 1G SFP and GPIO expander */
++&cp0_i2c0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_i2c0_pins>;
++	clock-frequency = <100000>;
++
++	sfp_gpio: pca9554@39 {
++		compatible = "nxp,pca9554";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pca9554_int_pins>;
++		reg = <0x39>;
++
++		interrupt-parent = <&cp0_gpio1>;
++		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		/*
++		 * IO0_0: SFP+_TX_FAULT
++		 * IO0_1: SFP+_TX_DISABLE
++		 * IO0_2: SFP+_PRSNT
++		 * IO0_3: SFP+_LOSS
++		 * IO0_4: SFP_TX_FAULT
++		 * IO0_5: SFP_TX_DISABLE
++		 * IO0_6: SFP_PRSNT
++		 * IO0_7: SFP_LOSS
++		 */
++	};
++};
++
++/* IS31FL3199, mini-PCIe and 10G SFP+ */
++&cp0_i2c1 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_i2c1_pins>;
++	clock-frequency = <100000>;
++
++	leds@64 {
++		compatible = "issi,is31fl3199";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&is31_sdb_pins>;
++		shutdown-gpios = <&cp0_gpio1 30 GPIO_ACTIVE_HIGH>;
++		reg = <0x64>;
++
++		led1_red: led@1 {
++			label = "led1:red";
++			reg = <1>;
++			led-max-microamp = <20000>;
++		};
++
++		led1_green: led@2 {
++			label = "led1:green";
++			reg = <2>;
++		};
++
++		led1_blue: led@3 {
++			label = "led1:blue";
++			reg = <3>;
++		};
++
++		led2_red: led@4 {
++			label = "led2:red";
++			reg = <4>;
++		};
++
++		led2_green: led@5 {
++			label = "led2:green";
++			reg = <5>;
++		};
++
++		led2_blue: led@6 {
++			label = "led2:blue";
++			reg = <6>;
++		};
++
++		led3_red: led@7 {
++			label = "led3:red";
++			reg = <7>;
++		};
++
++		led3_green: led@8 {
++			label = "led3:green";
++			reg = <8>;
++		};
++
++		led3_blue: led@9 {
++			label = "led3:blue";
++			reg = <9>;
++		};
++	};
++};
++
++&cp0_mdio {
++	status = "okay";
++
++	/* 88E1512 PHY */
++	eth2phy: ethernet-phy@1 {
++		reg = <1>;
++		sfp = <&sfp_eth2>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&cp0_phy_pins>;
++		reset-gpios = <&cp0_gpio1 12 GPIO_ACTIVE_LOW>;
++	};
++
++	/* 88E6141 Topaz switch */
++	switch: switch@3 {
++		compatible = "marvell,mv88e6085";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&cp0_switch_pins>;
++		reset-gpios = <&cp0_gpio1 0 GPIO_ACTIVE_LOW>;
++
++		interrupt-parent = <&cp0_gpio1>;
++		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			swport1: port@1 {
++				reg = <1>;
++				label = "lan0";
++				phy-handle = <&swphy1>;
++			};
++
++			swport2: port@2 {
++				reg = <2>;
++				label = "lan1";
++				phy-handle = <&swphy2>;
++			};
++
++			swport3: port@3 {
++				reg = <3>;
++				label = "lan2";
++				phy-handle = <&swphy3>;
++			};
++
++			swport4: port@4 {
++				reg = <4>;
++				label = "lan3";
++				phy-handle = <&swphy4>;
++			};
++
++			port@5 {
++				reg = <5>;
++				label = "cpu";
++				ethernet = <&cp0_eth1>;
++				phy-mode = "2500base-x";
++				managed = "in-band-status";
++			};
++		};
++
++		mdio {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			swphy1: swphy1@17 {
++				reg = <17>;
++			};
++
++			swphy2: swphy2@18 {
++				reg = <18>;
++			};
++
++			swphy3: swphy3@19 {
++				reg = <19>;
++			};
++
++			swphy4: swphy4@20 {
++				reg = <20>;
++			};
++		};
++	};
++};
++
++&cp0_ethernet {
++	status = "okay";
++};
++
++/* 10G SFP+ */
++&cp0_eth0 {
++	status = "okay";
++
++	phy-mode = "10gbase-r";
++	phys = <&cp0_comphy4 0>;
++	managed = "in-band-status";
++	sfp = <&sfp_eth0>;
++};
++
++/* Topaz switch uplink */
++&cp0_eth1 {
++	status = "okay";
++
++	phy-mode = "2500base-x";
++	phys = <&cp0_comphy0 1>;
++
++	fixed-link {
++		speed = <2500>;
++		full-duplex;
++	};
++};
++
++/* 1G SFP or 1G RJ45 */
++&cp0_eth2 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_rgmii1_pins>;
++
++	phy = <&eth2phy>;
++	phy-mode = "rgmii-id";
++};
++
++&cp0_utmi {
++	status = "okay";
++};
++
++/* SMSC USB5434B hub */
++&cp0_usb3_0 {
++	status = "okay";
++
++	phys = <&cp0_comphy1 0>, <&cp0_utmi0>;
++	phy-names = "cp0-usb3h0-comphy", "utmi";
++};
++
++/* miniPCI-E USB */
++&cp0_usb3_1 {
++	status = "okay";
++};
++
++&cp0_sata0 {
++	status = "okay";
++
++	/* 7 + 12 SATA connector (J24) */
++	sata-port@0 {
++		phys = <&cp0_comphy2 0>;
++		phy-names = "cp0-sata0-0-phy";
++	};
++
++	/* M.2-2250 B-key (J39) */
++	sata-port@1 {
++		phys = <&cp0_comphy3 1>;
++		phy-names = "cp0-sata0-1-phy";
++	};
++};
++
++/* miniPCI-E (J5) */
++&cp0_pcie2 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_pcie_reset_pins>;
++	phys = <&cp0_comphy5 2>;
++	phy-names = "cp0-pcie2-x1-phy";
++	reset-gpio = <&cp0_gpio1 9 GPIO_ACTIVE_LOW>;
++};
+-- 
+2.31.1
+
