@@ -2,150 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22B6B41AAE8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 10:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDAFF41AAEF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 10:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239602AbhI1IsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 04:48:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55558 "EHLO
+        id S239681AbhI1ItS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 04:49:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239563AbhI1IsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 04:48:05 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A69FC061575;
-        Tue, 28 Sep 2021 01:46:26 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id y8so18322365pfa.7;
-        Tue, 28 Sep 2021 01:46:26 -0700 (PDT)
+        with ESMTP id S239679AbhI1ItS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 04:49:18 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC35C061575
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 01:47:39 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id k7so4742710wrd.13
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 01:47:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KCrtZ+TidfNSoChItBdVF5KQYxEipped+12uAWz/GJE=;
-        b=N36Vn1uz9KJYZ2uc6LFCalXm4eewh2Oi6Jq/00b891L7fOqH0VfRh2zyadzezpjwbQ
-         +DPNTGX+VwNP0mhFu3PZu5U1tWXqAYYIHvwYplVIGRnXpJpcaRmIRpmpC8BZaUM0btgO
-         TGbODRJX4in/KxZiiuHmRgOxCO0fX4jCzQ3hZXxcdkcH9ri51kIYZ1pIqvxaGBbs4fz3
-         hiUojRbFCmuG/Q6JN01sgZ16dvYAgt2NFxaPUVOWdL2wzU5PmLV6QEp5CX3eszBe3Gjx
-         DR8u9ZIIkJzsKZNTkszYZ+hzCJthzR5rGevPwGWp0XnpVjJg9K85FWUaUvztoWEMGXSC
-         3uYQ==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Q8rK5Dzb/jMqPaX3ORZJ7Av9oZsLsOp10vNNKPPKavE=;
+        b=XD4/CFuELn/pGviHeMZrg8f6WwcT+vcqpMlExj9sWsdhMMldH3+DpuN/9v0/nf3cvM
+         graq3mXm/LtQrdwKccXXRN5yXRT1b8c2XwiAapUS9pe8FzZGgBX/ng9uxpn/FMcew6yD
+         5sBMcmQuLCZN+01awN06tuPC7j/g73j/UlD7YhnjcZcwxAXDXbXMno60iPm4sNlJik8J
+         +upVS/lMTguZn5QQ/vxloORLXflgJHQ9rkMN9UxnN5F59PPx+LxADbKHHo18GB+0fQ+V
+         LiL1yQZPn84JPqRHn9k9AFNxReq1uWtyM7bQJjv171oIiGKNBTUkOPNPre3jUeo7SqJN
+         6xLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KCrtZ+TidfNSoChItBdVF5KQYxEipped+12uAWz/GJE=;
-        b=tTpq7YBmaYagXVn4oY4Byxl/eow8ZmCAGaSJTi/nC/0/ISK9y0L3FywEHHA72AnCmY
-         rZRvi3EqXXSJShADCPcCgY9ht+u4wJGM7fXtAWrq8s7mwDxLVxbZDxv4sRpYSLTQtRuT
-         IfVXJr1eSqaqCYVDhMIiJUKS6iQQt8MRBMI1YB+ghEWjCgjao9Qi8ANcJAel7fH07SG7
-         OH4n+0lX53Y8p2fwqiQh+LpDVDdtVbt84syaxhvOe/XkMzv0Now9cmnSN7kQdmF8ESce
-         255CujeinBJXhHd6AYlvNF/rE3NeKagAa6nDZOomEBMaK7NCt4xyh8BfBqrLXHoMsh1A
-         2fnw==
-X-Gm-Message-State: AOAM531qiaHJ9zJ0GAolQEDMp3ODJnZNANQ9M7vAEfileetyDjfnL4NX
-        xdXRo6CO+8hDaxOug9zXm0U=
-X-Google-Smtp-Source: ABdhPJy6zQLw8giNM+YYOoWFe5VeHVvvm2VmCrvx/72m3qAQ+kGbL4DRR2MAx0Dbodnd7XirniQdcQ==
-X-Received: by 2002:aa7:989e:0:b0:44b:2d81:8510 with SMTP id r30-20020aa7989e000000b0044b2d818510mr4447741pfl.55.1632818785895;
-        Tue, 28 Sep 2021 01:46:25 -0700 (PDT)
-Received: from ubt.spreadtrum.com ([117.18.48.102])
-        by smtp.gmail.com with ESMTPSA id e5sm19930820pfj.181.2021.09.28.01.46.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 01:46:25 -0700 (PDT)
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] dt-bindings: regulator: Add bindings for Unisoc's SC2730 regulator
-Date:   Tue, 28 Sep 2021 16:46:07 +0800
-Message-Id: <20210928084607.220457-1-zhang.lyra@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210928073609.198975-2-zhang.lyra@gmail.com>
-References: <20210928073609.198975-2-zhang.lyra@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Q8rK5Dzb/jMqPaX3ORZJ7Av9oZsLsOp10vNNKPPKavE=;
+        b=lDohaTJ1rBJ5yCNvU1GjUOt4hArvonAl9ZN3O9vOusQzkx+k0JPxCgXzgYiCcy5ppY
+         NBgRWxFutbKTro+1op9X1zwIeCbEnLjPd4Zi1pcxsPvcHIgmdGo3ySCn0VCrjBB5qUKa
+         UTi4K5V18C+IoMr7eCWSnmH8KrtfYxFI9DffuFkkjM/2GXqg1D3zNm2TYItmB5SrL2iU
+         tlvzu2xnm+FP65mzJQA/2R9HJ3wuIU7rJlsmVWPtXS/NjijQzKSeuulrtGg/Hio2+9Gc
+         uPkSgXde9cxjzE6vGUadHK5W7umx2ohtfkbFU7YFK+ENcurX3lS5VeRSJPGevhMoJjOu
+         Mykw==
+X-Gm-Message-State: AOAM532GCgy3XijjMAGVG/tvIFqlBb++Q7B8lAmXiF2iYDhDi1AQLFVj
+        MPc7df4uKmWLZTh4xOJJkOkwfg==
+X-Google-Smtp-Source: ABdhPJxKnmR/HAxZsSb7dX5Tvj9qxkte5BVwAOsfFoeXcWJLtn7wmSjh9ilmVUjnW/uWoa0Y3zkqHQ==
+X-Received: by 2002:a05:6000:1562:: with SMTP id 2mr5029099wrz.36.1632818857757;
+        Tue, 28 Sep 2021 01:47:37 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id e5sm18973300wrd.1.2021.09.28.01.47.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Sep 2021 01:47:37 -0700 (PDT)
+Subject: Re: (subset) [PATCH v8 00/22] ASoC: qcom: Add AudioReach support
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>, robh@kernel.org,
+        broonie@kernel.org
+Cc:     tiwai@suse.de, perex@perex.cz, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org, pierre-louis.bossart@linux.intel.com,
+        devicetree@vger.kernel.org, plai@codeaurora.org,
+        alsa-devel@alsa-project.org
+References: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
+ <163279918313.1542640.4435970499489136227.b4-ty@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <56734892-26f8-dd29-ac87-5f270332c399@linaro.org>
+Date:   Tue, 28 Sep 2021 09:47:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <163279918313.1542640.4435970499489136227.b4-ty@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+Hi Bjorn,
 
-SC2730 is used on Unisoc's UMS512 SoC, it integrates low-voltage and low
-quiescent current DCDC/LDO.
+On 28/09/2021 04:20, Bjorn Andersson wrote:
+> On Mon, 27 Sep 2021 14:55:37 +0100, Srinivas Kandagatla wrote:
+>> Many thanks for reviewing v7 This version addresses all the comments
+>> raised as part of v8 review.
+>>
+>> This patchset adds ASoC driver support to configure signal processing
+>> framework ("AudioReach") which is integral part of Qualcomm next
+>> generation audio SDK and will be deployed on upcoming Qualcomm chipsets.
+>> It makes use of ASoC Topology to load graphs on to the DSP which is then
+>> managed by APM (Audio Processing Manager) service to prepare/start/stop.
+>>
+>> [...]
+> 
+> Applied, thanks!
+> 
+> [01/22] soc: dt-bindings: qcom: apr: convert to yaml
+>          commit: 985f62a9a13175217978a797cd8f1f26216b2c87
+> [02/22] soc: dt-bindings: qcom: apr: deprecate qcom,apr-domain property
+>          commit: 1ff63d5465d0b0bf4e69562096b2d3ec9ff1a116
+> [03/22] soc: qcom: apr: make code more reuseable
+>          commit: 99139b80c1b3d73026ed8be2de42c52e2976ab64
+> [04/22] soc: dt-bindings: qcom: add gpr bindings
+>          commit: 974c6faf7667e551d202712470ca210c14ca249d
+> [05/22] soc: qcom: apr: Add GPR support
+>          commit: ec1471a898cca38af6b8956a83ebc1297214546f
+> 
+Just in case you missed, rest of the series depend on some of the GRP 
+apis in these patches.
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
----
- .../regulator/sprd,sc2730-regulator.yaml      | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.yaml
+Am not sure how Mark would prefer to take the rest of series.
 
-diff --git a/Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.yaml b/Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.yaml
-new file mode 100644
-index 000000000000..6d1bec03eb52
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright 2019-2021 Unisoc Inc.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/regulator/sprd,sc2730-regulator.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Unisoc SC2730 Voltage Regulators Device Tree Bindings
-+
-+maintainers:
-+  - Orson Zhai <orsonzhai@gmail.com>
-+  - Baolin Wang <baolin.wang7@gmail.com>
-+  - Chunyan Zhang <zhang.lyra@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: sprd,sc2730-regulator
-+
-+  reg:
-+    maxItems: 1
-+
-+patternProperties:
-+  "^(DCDC|BUCK|LDO)_.+":
-+    # Child node
-+    type: object
-+    description: dcdc/buck/ldo regulator nodes(s).
-+    $ref: "regulator.yaml#"
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pmic {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      regulators@1800 {
-+        compatible = "sprd,sc2730-regulator";
-+        reg = <0x1800>;
-+
-+        DCDC_CPU {
-+          regulator-name = "vddcpu";
-+          regulator-min-microvolt = <200000>;
-+          regulator-max-microvolt = <1596875>;
-+          regulator-ramp-delay = <25000>;
-+          regulator-always-on;
-+        };
-+
-+        LDO_VDDWCN {
-+          regulator-name = "vddwcn";
-+          regulator-min-microvolt = <900000>;
-+          regulator-max-microvolt = <1845000>;
-+          regulator-ramp-delay = <25000>;
-+        };
-+      };
-+    };
-+...
--- 
-2.25.1
+--srini
 
+> Best regards,
+> 
