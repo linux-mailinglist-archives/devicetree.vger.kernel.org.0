@@ -2,136 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0AED41AEDC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 14:21:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A00641AEFD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 14:28:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240625AbhI1MX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 08:23:26 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:33302
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240553AbhI1MX0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 08:23:26 -0400
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CA6B5402FF
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 12:21:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632831705;
-        bh=OfxwTguAAwbeZQgJ80ueoQgTshBZ+S7XY57UrX7LQSQ=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=Rd0aVshdaryBtD77hiwU9t33H9sijF1oaX1t90jyDSp8LBnWoEPnsdIspUPEEqrbK
-         WpV41NfVZupTGJp95ctnL0P2iJttlZlQbxhTiaxZN8YcitIq5ItrxCU5Iw5z7C/wE8
-         GcWTyw6fqJI1NZVG/QI2KuF+GsLvhYYCGBbCph6qWnnhURjKqO71UODTJfr3qos6hC
-         iFlfSrgJO7gsCJZ60Xklk0QVaKT2jinswL+P1aZpefHxdXXdC3rdkPqzCd9bkeeWKR
-         HIUdLvaZXIgKH3loeAWn8XSMsQD7dotDgpRqvvtoc/CZDU1loKahY/irfQjMHSuOPl
-         bxSFR4jLv/rYA==
-Received: by mail-lf1-f69.google.com with SMTP id z9-20020a0565120c0900b003fce36c1f74so7116462lfu.9
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 05:21:45 -0700 (PDT)
+        id S240631AbhI1M37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 08:29:59 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:35648 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240610AbhI1M37 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 08:29:59 -0400
+Received: by mail-ot1-f43.google.com with SMTP id 77-20020a9d0ed3000000b00546e10e6699so28734554otj.2;
+        Tue, 28 Sep 2021 05:28:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=OfxwTguAAwbeZQgJ80ueoQgTshBZ+S7XY57UrX7LQSQ=;
-        b=E8/gBUcl3D4OjSOUOtxGpL9xQYd8oyPKCtc7xn+E+YLX5RjBUJONXP0hZR/7eBAgHZ
-         gnsbNHdt70WPyWrmrhmdsQkNNgH1zbDHzjNf25qH+dkk0SI7OCeBPpGcRZRH1AF6Zbfv
-         Znk7zHIMsXAx4nzfNn6tevvjzneB14qqcWl88qrudRImw/x/iObOp57EIOxi+IEcV7FG
-         Z0OoS3fskf+QJhcB1FLykGQetFm2hzeBFHUfZEL9xhC1jUJusuvYAjWIiQgFCnxa96K1
-         SDL9bZOUqZYi5gMg4qwgktGOBa4/gWNR4d7B1qjNY0mCv63svMFhbhS8+PN+vF08EoAx
-         oPzA==
-X-Gm-Message-State: AOAM531GQOFiVA2JEscB2CMfwAmDlfUtiDTddnkR9lLZ102dcjxZAqyS
-        olf8wEGT5YoIYqVGITqLCXjls1NKx5rXg8LXBtBD4EtqRG1+JXFRimkhvmTFliYEUpbFj6GFlqs
-        yZLB+/r1fZEePg7eDI82Et+NbJfn2NshmzPtB5pE=
-X-Received: by 2002:a05:6512:114d:: with SMTP id m13mr5424619lfg.303.1632831705087;
-        Tue, 28 Sep 2021 05:21:45 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw0vy5vZrqnYYaMKL16pGzHUs9IX7TEGREv9QsV/r46W3ZYpEP3iSl0+DfWN2eepyhKMjjDmg==
-X-Received: by 2002:a05:6512:114d:: with SMTP id m13mr5424585lfg.303.1632831704789;
-        Tue, 28 Sep 2021 05:21:44 -0700 (PDT)
-Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v138sm2097090lfa.120.2021.09.28.05.21.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Sep 2021 05:21:44 -0700 (PDT)
-Subject: Re: [PATCH 06/12] regulator: dt-bindings: samsung,s5m8767: convert to
- dtschema
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-References: <20210928084949.27939-1-krzysztof.kozlowski@canonical.com>
- <20210928084949.27939-7-krzysztof.kozlowski@canonical.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <48ec9ee9-0fc6-4c25-3e3a-1395286ee89d@canonical.com>
-Date:   Tue, 28 Sep 2021 14:21:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20210928084949.27939-7-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=HzAZ/T3R+PH8bgPxuKvTGOSJkQIkRR+vx63M18LOtQc=;
+        b=IXpHqqL02P5+YpTfhoxtVfZF3hy2D41RiZCsiVvkdQ8KvucyO/2twdUjMBIxp4kkSO
+         3hCe7M3yMOEbjqYCWoYv8niQ2Glg2a6nua8ZGTvOPhiptYTQ2Mi7pb2cVq4PIxZ13SZU
+         64g1uQrcn8Xl2pPwqd8nPLGrBcdMdRYlTrPrRkZPanlkaCtsIu2EXSsqsFkFGqdse02o
+         l4WTAeNBbfsrU7Zbh+JwytthnQJt7xkV7i/cs+DqHY+gyAy2Hib88Jg4nsTnocBQHrPd
+         ALmkgJFPFUsEFUSfQJ7rMnsVbFFS7ZdCAnWYZw+VBFbIL8/KPX7PijR3Qm8qP+ZaC4gJ
+         mktg==
+X-Gm-Message-State: AOAM530jD+k0GDRc9+UitkjjuAEWaHwnNezny0g4Xej8z1U0fHXh7xZJ
+        O5J8zZgiQ/aevYbTPcXSlA==
+X-Google-Smtp-Source: ABdhPJxVIrmxKPlTwA7wEdAtl66dHAN0QACL6JJR7dP8LaFI8FqpE7dEQViPIRV461RJgTN5q8H47A==
+X-Received: by 2002:a9d:20aa:: with SMTP id x39mr4788921ota.292.1632832099904;
+        Tue, 28 Sep 2021 05:28:19 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id y12sm4507502otu.11.2021.09.28.05.28.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Sep 2021 05:28:19 -0700 (PDT)
+Received: (nullmailer pid 963813 invoked by uid 1000);
+        Tue, 28 Sep 2021 12:28:18 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+In-Reply-To: <20210928044546.4111223-1-bjorn.andersson@linaro.org>
+References: <20210928044546.4111223-1-bjorn.andersson@linaro.org>
+Subject: Re: [PATCH 1/3] dt-bindings: soc: smem: Make indirection optional
+Date:   Tue, 28 Sep 2021 07:28:18 -0500
+Message-Id: <1632832098.523897.963812.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/09/2021 10:49, Krzysztof Kozlowski wrote:
-> Convert the regulators of Samsung S5M8767 PMIC to DT schema format.
+On Mon, 27 Sep 2021 21:45:44 -0700, Bjorn Andersson wrote:
+> In the olden days the Qualcomm shared memory (SMEM) region consisted of
+> multiple chunks of memory, so SMEM was described as a standalone node
+> with references to its various memory regions.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> But practically all modern Qualcomm platforms has a single reserved memory
+> region used for SMEM. So rather than having to use two nodes to describe
+> the one SMEM region, update the binding to allow the reserved-memory
+> region alone to describe SMEM.
+> 
+> The olden format is preserved as valid, as this is widely used already.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  .../bindings/regulator/samsung,s5m8767.txt    | 23 +----
->  .../bindings/regulator/samsung,s5m8767.yaml   | 83 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 85 insertions(+), 23 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
+>  .../bindings/soc/qcom/qcom,smem.yaml          | 34 ++++++++++++++++---
+>  1 file changed, 30 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt
-> index 6cd83d920155..a1c6eb6f07c8 100644
-> --- a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt
-> +++ b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt
-> @@ -48,28 +48,7 @@ Additional properties required if either of the optional properties are used:
->     for dvs. The format of the gpio specifier depends in the gpio controller.
->  
->  
-> -Names of regulators supported by S5M8767 device:
-> -	- LDOn
-> -		  - valid values for n are 1 to 28
-> -		  - Example: LDO1, LDO2, LDO28
-> -	- BUCKn
-> -		  - valid values for n are 1 to 9.
-> -		  - Example: BUCK1, BUCK2, BUCK9
-> -Note: The 'n' in LDOn and BUCKn represents the LDO or BUCK number
-> -as per the datasheet of device.
-> -
-> -
-> -Optional properties of the nodes under "regulators" sub-node:
-> - - op_mode: describes the different operating modes of the LDO's with
-> -            power mode change in SOC. The different possible values are,
-> -             0 - always off mode
-> -             1 - on in normal mode
-> -             2 - low power mode
-> -             3 - suspend mode
-> - - s5m8767,pmic-ext-control-gpios: (optional) GPIO specifier for one
-> -                                   GPIO controlling this regulator
-> -                                   (enable/disable); This is valid only
-> -                                   for buck9.
-> +
 
-That's obviously not sufficient - I will remove full file in v2.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/soc/qcom/qcom,smem.example.dt.yaml:0:0: /example-1/soc/sram@fc428000: failed to match any schema with compatible: ['qcom,rpm-msg-ram']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1533702
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
