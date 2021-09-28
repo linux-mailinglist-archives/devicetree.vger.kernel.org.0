@@ -2,141 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB6641ABF1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 11:31:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB7D641ABF7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 11:33:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239980AbhI1JdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 05:33:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38000 "EHLO
+        id S239769AbhI1JfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 05:35:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239844AbhI1JdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 05:33:21 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EB4CC061604
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 02:31:42 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 136-20020a1c048e000000b0030d05169e9bso1622006wme.4
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 02:31:42 -0700 (PDT)
+        with ESMTP id S239724AbhI1JfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 05:35:01 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5B3CC061575
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 02:33:21 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id t8so56977035wri.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 02:33:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=OwbUNyzcDhkwRSM1z2XoHupYIfFeEC2bQD7N4nxDnQI=;
-        b=EVAposAl80ZKcHtNjhQdjPLaK/iPtYQJNEU9lD7v0mx28zoKyokeEm46SnRbr9QOzN
-         TFoNEeYelyP65KO4umRfV+xvDtG/92nimh2HBdxWav4B0aTPBgmTKBVFdcN0fztRyuTZ
-         ebKADg9iKeOBPGZYkNM7FwoknT46lSwA7jAd6C0wGwWYoMRJ+hIGV3Kk0jasNAjuMOWl
-         Ska5rPRHdbZT+4MNrPNUQqZd7h/wfTJCWoOmGtpbBiW2a6KY9QOOGjkpcrCjJzMxjuuw
-         Paf6XKjYl0m4Yd/Ygwthxvoj+AYD0X/7U/xcTQrJdB3mi+nu8KRao8qxVZh5otuK1i88
-         vH2A==
+        bh=UFWLjB0W2jsMi2ZnH6ymwZl3bjSBnAe186vh+OeB0WU=;
+        b=vVUBSuUmwZNQZQMQuWoFG0MCX8iygaH4nDSZ3bBuoSYm1eryM+fPHk3LPc3yJRifM6
+         cnhmlP4XWb1o1y0ABTaQxGumsQqdxeUefWzlLCMhGcOQG1JLgPKoEBOqZpOMZIWdWgLt
+         9jpiUMtY8jt4fXiH9uEf/9wkkBv3f9LzszdJL6HAhhrbJcm3yWP/Dd+PkK/Bl9qOqaSt
+         zkFrKOcNJQ5GW+GMx/MgteKtzTIagHxmlCOhAexpCjBo2y3vXaVR5idqUxLwr+lfrgIx
+         mWpYq5iRY9ptJd7TqHnRL6h1LxOvJknBqfhj1tTSQmfoS1SmYS/YrmTcUbYIa10pGKah
+         gB7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=OwbUNyzcDhkwRSM1z2XoHupYIfFeEC2bQD7N4nxDnQI=;
-        b=GscqbvVsoep6wf/wwIqv83e24lgE4NlImpkwemkzsIsyC2CXYozdAT8Xc8gjVUKggd
-         HwEG4iARdr82gcyWVxWThup4PD8S7s7yBZb4+nsI678cvlQplvT1/rU+uEBmhODGrRfV
-         0u65+vjHNL6VBNP7L7jsEzoQ5DM4fZTpCZdYTPuKR5HuCF4UgF9RdqwZNsDkgLQBpJxb
-         WULpJ8LG7OwFRX6Oe4RMbQqryk6u3mCAV64UgjfebC7y+kciaO0t79HErIy+IlJuAqum
-         yhTCytKotv7YGMeFedpP++UUo/YB1ho4oPUxUZItuOPJs8v9YYgluRtPskQDkfNaK8oF
-         5bZA==
-X-Gm-Message-State: AOAM5329HYgZQuzYVU/EDit07F615auYV4WIePNLoC9e+Vdb356cQEtp
-        J6Al2e2pHIS2KCC3BKSsQ4ycQA==
-X-Google-Smtp-Source: ABdhPJyEiC7SUOkX7FnTCnCShBLCrawdHIIVTgRGxAiarcKJeDd5A6vU0oKIJrW3TZBqsBfAnipACA==
-X-Received: by 2002:a05:600c:22d6:: with SMTP id 22mr3717036wmg.17.1632821500931;
-        Tue, 28 Sep 2021 02:31:40 -0700 (PDT)
+        bh=UFWLjB0W2jsMi2ZnH6ymwZl3bjSBnAe186vh+OeB0WU=;
+        b=jWfdgnODlv6EFy4LUjfIRSR2NTRdHojuH5Z+AfhAR2gsBSg/DsQee4e3CcVX4FCijE
+         0Se9QbASS48qeUDsZ7xrHeQxsgihuJEl2KfxJl0bebo6YnwWBEDYvmU00ijlQY5KG7CK
+         2ZqUsKDcCdzqxV30dORX+H+jqcOPBOs9zwsHQVKRvrbGyLx92JuqVa7EYXnIV+C4gtMZ
+         01gvqYZByVhIBtLsARkiOgIkPHA+6XnbIZ4iUwRDrrg3mjtouc05DxkcitzC76NI78Ei
+         B+eXrUcrcdGsGX38U2ICuiYy2BE4Qz9O76Mgaqmhmd9c2f4VJa2HBm434mgqi5oXLIj+
+         7TWA==
+X-Gm-Message-State: AOAM532ApzsbcondQ1uzhk4WU2FDMmPkUPFjNvBolYuE3yAdN40ipg4/
+        CU8WmAuk0DOyBWSMEYO2cRwrhQ==
+X-Google-Smtp-Source: ABdhPJyv/THNOKdhlB1LmnC9UxX4hlZiTSiUuFLuzeCFWMaqw7PSUijQmKwiWgKSY9IOP4ZWuehsXw==
+X-Received: by 2002:a5d:6c67:: with SMTP id r7mr5202503wrz.29.1632821600565;
+        Tue, 28 Sep 2021 02:33:20 -0700 (PDT)
 Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id s85sm2188425wme.20.2021.09.28.02.31.39
+        by smtp.googlemail.com with ESMTPSA id w14sm18892145wro.8.2021.09.28.02.33.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Sep 2021 02:31:40 -0700 (PDT)
-Subject: Re: [PATCH v8 15/22] ASoC: qdsp6: audioreach: add q6apm support
-To:     =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?= 
-        <amadeuszx.slawinski@linux.intel.com>, bjorn.andersson@linaro.org,
-        broonie@kernel.org, robh@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, lgirdwood@gmail.com, tiwai@suse.de,
-        plai@codeaurora.org, pierre-louis.bossart@linux.intel.com
+        Tue, 28 Sep 2021 02:33:20 -0700 (PDT)
+Subject: Re: [PATCH v8 19/22] ASoC: qdsp6: audioreach: add q6apm-dai support
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
 References: <20210927135559.738-1-srinivas.kandagatla@linaro.org>
- <20210927135559.738-16-srinivas.kandagatla@linaro.org>
- <f5cad020-9d36-d700-df14-95e72a8357fd@linux.intel.com>
+ <20210927135559.738-20-srinivas.kandagatla@linaro.org>
+ <20605122-e6b4-1b5f-003a-96a74306f984@linux.intel.com>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <2d2fb4b8-2c79-ac52-5215-db66a7a4866e@linaro.org>
-Date:   Tue, 28 Sep 2021 10:31:39 +0100
+Message-ID: <c12ac2f5-bc53-ac0c-6ed0-f748a62015ac@linaro.org>
+Date:   Tue, 28 Sep 2021 10:33:19 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <f5cad020-9d36-d700-df14-95e72a8357fd@linux.intel.com>
+In-Reply-To: <20605122-e6b4-1b5f-003a-96a74306f984@linux.intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 28/09/2021 09:23, Amadeusz Sławiński wrote:
-> On 9/27/2021 3:55 PM, Srinivas Kandagatla wrote:
->> Add support to q6apm (Audio Process Manager) component which is
->> core Audioreach service running in the DSP.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> ---
+On 27/09/2021 17:25, Pierre-Louis Bossart wrote:
 > 
-> (...)
-> 
->> +++ b/sound/soc/qcom/qdsp6/q6apm.c
->> @@ -0,0 +1,597 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +// Copyright (c) 2020, Linaro Limited
->> +
->> +#include <dt-bindings/soc/qcom,gpr.h>
->> +#include <linux/delay.h>
->> +#include <linux/jiffies.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_platform.h>
->> +#include <linux/sched.h>
->> +#include <linux/slab.h>
->> +#include <linux/soc/qcom/apr.h>
->> +#include <linux/wait.h>
->> +#include <sound/soc.h>
->> +#include <sound/soc-dapm.h>
->> +#include <sound/pcm.h>
->> +#include "audioreach.h"
->> +#include "q6apm.h"
->> +
->> +/* Graph Management */
->> +struct apm_graph_mgmt_cmd {
->> +    struct apm_module_param_data param_data;
->> +    uint32_t num_sub_graphs;
->> +    uint32_t sub_graph_id_list[];
->> +} __packed;
->> +
->> +#define APM_GRAPH_MGMT_PSIZE(n) ALIGN(sizeof(struct 
->> apm_graph_mgmt_cmd) + \
->> +                      n * sizeof(uint32_t), 8)
-> 
-> Possible struct_size again
-
-Yes, we could use struct_size here.
-
-> 
->> +
->> +int q6apm_send_cmd_sync(struct q6apm *apm, struct gpr_pkt *pkt,    
->> uint32_t rsp_opcode)
-> 
-> There seems to be 'tab' in argument list?
-
-That's true, in vi I could not spot this by just looking.
-> 
+>> +static int q6apm_dai_prepare(struct snd_soc_component *component,
+>> +			     struct snd_pcm_substream *substream)
 >> +{
->> +    gpr_device_t *gdev = apm->gdev;
+>> +	struct snd_pcm_runtime *runtime = substream->runtime;
+>> +	struct q6apm_dai_rtd *prtd = runtime->private_data;
+>> +	struct audioreach_module_config cfg;
+>> +	struct device *dev = component->dev;
+>> +	struct q6apm_dai_data *pdata;
+>> +	int ret;
 >> +
->> +    return audioreach_send_cmd_sync(&gdev->dev, gdev, &apm->result, 
->> &apm->lock,
->> +                    NULL, &apm->wait, pkt, rsp_opcode);
+>> +	pdata = snd_soc_component_get_drvdata(component);
+>> +	if (!pdata)
+>> +		return -EINVAL;
+>> +
+>> +	if (!prtd || !prtd->graph) {
+>> +		dev_err(dev, "%s: private data null or audio client freed\n", __func__);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	cfg.direction = substream->stream;
+>> +	cfg.sample_rate = runtime->rate;
+>> +	cfg.num_channels = runtime->channels;
+>> +	cfg.bit_width = prtd->bits_per_sample;
+>> +
+>> +	prtd->pcm_count = snd_pcm_lib_period_bytes(substream);
+>> +	prtd->pos = 0;
+>> +	/* rate and channels are sent to audio driver */
+>> +	ret = q6apm_graph_media_format_shmem(prtd->graph, &cfg);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "%s: q6apm_open_write failed\n", __func__);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = q6apm_graph_media_format_pcm(prtd->graph, &cfg);
+>> +	if (ret < 0)
+>> +		dev_err(dev, "%s: CMD Format block failed\n", __func__);
+>> +
+>> +	ret = q6apm_map_memory_regions(prtd->graph, substream->stream, prtd->phys,
+>> +				       (prtd->pcm_size / prtd->periods), prtd->periods);
+>> +
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "Audio Start: Buffer Allocation failed rc = %d\n",	ret);
+>> +		return -ENOMEM;
+>> +	}
+>> +
+>> +	ret = q6apm_graph_prepare(prtd->graph);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to prepare Graph %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = q6apm_graph_start(prtd->graph);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to Start Graph %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE) {
+>> +		int i;
+>> +		/* Queue the buffers for Capture ONLY after graph is started */
+>> +		for (i = 0; i < runtime->periods; i++)
+>> +			q6apm_read(prtd->graph);
+>> +
+>> +	}
+>> +
+>> +	prtd->state = Q6APM_STREAM_RUNNING;
+> 
+> you should probably explain why a stream moves to the 'RUNNING' state in
+> a .prepare() callback, instead of TRIGGER_START?
+
+Sure, will add a comment,
+
+--srini
+> 
+>> +
+>> +	return 0;
 >> +}
 >> +
+>> +static int q6apm_dai_trigger(struct snd_soc_component *component,
+>> +			     struct snd_pcm_substream *substream, int cmd)
+>> +{
+>> +	struct snd_pcm_runtime *runtime = substream->runtime;
+>> +	struct q6apm_dai_rtd *prtd = runtime->private_data;
+>> +	int ret = 0;
+>> +
+>> +	switch (cmd) {
+>> +	case SNDRV_PCM_TRIGGER_START:
+>> +	case SNDRV_PCM_TRIGGER_RESUME:
+>> +	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+>> +		 /* start writing buffers for playback only as we already queued capture buffers */
+>> +		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+>> +			ret = q6apm_write_async(prtd->graph, prtd->pcm_count, 0, 0, 0);
+>> +		break;
+>> +	case SNDRV_PCM_TRIGGER_STOP:
+>> +		/* TODO support be handled via SoftPause Module */
+>> +		prtd->state = Q6APM_STREAM_STOPPED;
+>> +		break;
+>> +	case SNDRV_PCM_TRIGGER_SUSPEND:
+>> +	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+>> +		break;
+>> +	default:
+>> +		ret = -EINVAL;
+>> +		break;
+>> +	}
+>> +
+>> +	return ret;
+>> +}
 > 
-> (...)
