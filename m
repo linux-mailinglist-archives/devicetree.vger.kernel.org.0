@@ -2,91 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DCB041B977
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 23:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A9241B9C6
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 00:01:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242867AbhI1VlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 17:41:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55724 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232358AbhI1VlB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 17:41:01 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1420D61288;
-        Tue, 28 Sep 2021 21:39:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632865161;
-        bh=R7f+KH6pTNCbXYq0x7I45wP33jRLWv//E0u0+Zdp0f4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=glQR3XmvwcUyQZRi5+DF7+AwSmCH4DXfMXEb5cv1Spr/5pw12umNjgkBoE/vpKMz9
-         1j2/qUxmMuKxVR61GFEqBulqZjafhhTwIlx2kmelUrGAAn8LZzYWjTyFfFaTxDk/Bp
-         p2s/8A0Z+kCbnttCnpU/KFjBq+mVdIbNrYP2ibce/D65zvFfdzWm+yH0r9pCFRttJG
-         7S0Jzod7S0NH7B6LGzRNG/jYWU29F70RjJ6NLdKJVosY4WCxTZ3RwVpfUldKOjn7US
-         9wc4HtR0JBq2H1QLDsyifRDQlcOEseSyZJNDvroaNYJ5h/5C7/7Lz/oQ/9HlrV94+U
-         5Tr5GDVGFB11A==
-Received: by pali.im (Postfix)
-        id 77B377E1; Tue, 28 Sep 2021 23:39:18 +0200 (CEST)
-Date:   Tue, 28 Sep 2021 23:39:18 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        Scott Wood <oss@buserror.net>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] powerpc/fsl/dts: Fix phy-connection-type for fm1mac3
-Message-ID: <20210928213918.v4n3bzecbiltbktd@pali>
-References: <20210604233455.fwcu2chlsed2gwmu@pali>
- <20210704134325.24842-1-pali@kernel.org>
- <63a72f648297e96c140a1412c20bd3796398a932.camel@buserror.net>
- <20210827113836.hvqvaln65gexg5ps@pali>
+        id S243008AbhI1WC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 18:02:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242983AbhI1WC5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 18:02:57 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABD8C06161C
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 15:01:17 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id ba1so730453edb.4
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 15:01:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GSMAPXo1PThgUYlUpGQDRfKG1H/fd1r5GZq0PpbbCCc=;
+        b=ylGvyhAGItjO7WiKLBnz+mwd1ZvvxUzYebNGS6bN1GHcljmVhpdpWiupis7ctKb3qe
+         DmGzGuTTiq5zLEOlnvoWK4DXIAAWyO4QgN73RS1GCiQ5Hh/pGciwsLnpiGKP9YJ+1o4S
+         2pZM7SE1omvOzcDPBCGAMWof/F/rZdSgqXdcEwzHluPcp3YVn3pL/W9E5GE/WVpWfVQC
+         9PlSwNUNNvVN7XYZGou2qjJSm+irCBIJHoVnxnC3ldMh3+Sw2sEpKTAZCBZQb3wQ9mku
+         km13FBMLzRH4r6BdvvsDt85scfCsr2C1v7n6uN7AsSZF1SNSYMTvIpzMOi6aoTisYv+y
+         5I2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GSMAPXo1PThgUYlUpGQDRfKG1H/fd1r5GZq0PpbbCCc=;
+        b=ocJPbNtivuJO74yOFA+WbHDqX0nQHkDEl1k9siJwyyBW9hHU+PR6x+nTwdUZ4Ow5KY
+         L1Hx/04nE82lsx6alLEQF1TOS9ak4xgDQDJCh5rdr2D1VV1765j5Ps1pdwQ8P8zbZzFB
+         KrzbinmitCIYHu4YrYSIVRZ1LdrmPR1jT4+uLFqECz5HQ5IC6WG5SojummT+yJIk4vje
+         xqzWzYB9gVaMZRvG9k9yF4kGkIbpKyvjE+jrLgxYvEdqmYe5RFr7anZGfyUks7gik1zB
+         Rfy8f8lo3d+p0yST8cQcIR45+vLu9kfe+8FeXVaXExCMF0qOMHYifiDmHiJQ4xuakcuj
+         CQ/w==
+X-Gm-Message-State: AOAM530ZCdANCXmoUJPGBcwV9xJduQkpqMYbuksnkD+RuxrApV4qENl4
+        9h6FV7gQXnlauIx/mHOScN8TGVX6iPmbDNDK4Ah9VS66vfA=
+X-Google-Smtp-Source: ABdhPJwwGKfBVQ/xIs+wKo0BMv2aFJRA4Eg3sQ9gWVT7Ahfqlg1nwBWFVAmFc4yWxeML7PMGdB/NRmNZNSSpwYTCd8g=
+X-Received: by 2002:a50:f60a:: with SMTP id c10mr10420317edn.250.1632866475924;
+ Tue, 28 Sep 2021 15:01:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210827113836.hvqvaln65gexg5ps@pali>
-User-Agent: NeoMutt/20180716
+References: <20210924080632.28410-1-zhiyong.tao@mediatek.com>
+In-Reply-To: <20210924080632.28410-1-zhiyong.tao@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 29 Sep 2021 00:01:05 +0200
+Message-ID: <CACRpkdauJpfJfLazF+9VbeioR8UqLjYg+Sk6yPFnfmQn6Ky9Fw@mail.gmail.com>
+Subject: Re: [PATCH v14 0/5] Mediatek pinctrl patch on mt8195
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        hui.liu@mediatek.com, Light Hsieh <light.hsieh@mediatek.com>,
+        Biao Huang <biao.huang@mediatek.com>,
+        Hongzhou Yang <hongzhou.yang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 27 August 2021 13:38:36 Pali Rohár wrote:
-> On Wednesday 14 July 2021 12:11:49 Scott Wood wrote:
-> > On Sun, 2021-07-04 at 15:43 +0200, Pali Rohár wrote:
-> > > Property phy-connection-type contains invalid value "sgmii-2500" per scheme
-> > > defined in file ethernet-controller.yaml.
-> > > 
-> > > Correct phy-connection-type value should be "2500base-x".
-> > > 
-> > > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > > Fixes: 84e0f1c13806 ("powerpc/mpc85xx: Add MDIO bus muxing support to the
-> > > board device tree(s)")
-> > > ---
-> > >  arch/powerpc/boot/dts/fsl/t1023rdb.dts | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > 
-> > > diff --git a/arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > > b/arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > > index 5ba6fbfca274..f82f85c65964 100644
-> > > --- a/arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > > +++ b/arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > > @@ -154,7 +154,7 @@
-> > >  
-> > >                         fm1mac3: ethernet@e4000 {
-> > >                                 phy-handle = <&sgmii_aqr_phy3>;
-> > > -                               phy-connection-type = "sgmii-2500";
-> > > +                               phy-connection-type = "2500base-x";
-> > >                                 sleep = <&rcpm 0x20000000>;
-> > >                         };
-> > >  
-> > 
-> > Acked-by: Scott Wood <oss@buserror.net>
-> > 
-> > -Scott
-> 
-> Hello! If there is not any objection, could you take this patch?
+On Fri, Sep 24, 2021 at 10:06 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
 
-Hello! I would like to remind this patch.
+> This series includes 5 patches:
+> 1.add rsel define.
+> 2.change pull up/down description
+> 3.fix coding style
+> 4.support rsel feature for common ICs
+> 5.add rsel setting on MT8195
+>
+> Changes in patch v14:
+
+Finally applied this v14 patch set for v5.16!
+
+If any further fixes are needed we can deal with them on top.
+
+Yours,
+Linus Walleij
