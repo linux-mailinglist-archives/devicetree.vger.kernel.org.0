@@ -2,113 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D92141B50D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 19:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D10A941B530
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 19:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242050AbhI1RYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 13:24:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56118 "EHLO mail.kernel.org"
+        id S242174AbhI1Rg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 13:36:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33778 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241995AbhI1RYF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 13:24:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A36BD610E6;
-        Tue, 28 Sep 2021 17:22:24 +0000 (UTC)
+        id S242171AbhI1Rg3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 13:36:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5BF0B60F21;
+        Tue, 28 Sep 2021 17:34:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632849744;
-        bh=p1omdo8J0LTck4weGVlceL1bR9p0Zh2+XitDJiT9QIA=;
+        s=k20201202; t=1632850489;
+        bh=Yfz08pV/gYDk+AOKJrmWrje1tFITZe7lHU+DG0nHe6Y=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W7e95aYScYjgBzh8nhBa4jglUt8uT5Zyk76gaF3/yQ2D7s4KfcgYaBrWJ08Di0zNM
-         xIPk5nMpNO+l1I1rJqvfXavCgeKI7pZrYDKcn+K0Ow7yydL6PVo1D8LU08ZUUPbyxT
-         z7LNpN16o03DwF5wNkf3JK4/9fSa7zr+c3P6s0CDlnAQC5qjSgztQiGpOCd+WCvH21
-         VF4/BDYQyzA47h0+zDtfcSpIY+jqbzTXXk0BQxdX0asWQs52o6ouIMuci+2HyvAhz3
-         RIcZz/mcKPFNrolrlRy4bkjyW/8JltpIC8U9AFRaxCfWhP+KMJYgTin09XgLGOhJ22
-         rc0zGUJIMW/4w==
-Received: by mail-ed1-f43.google.com with SMTP id bd28so24496787edb.9;
-        Tue, 28 Sep 2021 10:22:24 -0700 (PDT)
-X-Gm-Message-State: AOAM531lVz1zLn3+S1vuaykDvjFw5yfS3el2+sSdxGlaGyD9f4bkZrby
-        Ww2GJcmbDnLZITTyI4tq8eDPDWXixwAZ3h1Sdw==
-X-Google-Smtp-Source: ABdhPJyYj6eZo+4rVJU4CYW255+Mc68GtlF90gxDfm5SHY/AXdUWRENNY4sqvr/w1Y6jnQWE59TZVZjjORVMXH70how=
-X-Received: by 2002:a17:906:a294:: with SMTP id i20mr8026916ejz.128.1632849740003;
- Tue, 28 Sep 2021 10:22:20 -0700 (PDT)
+        b=J3CdxDwHAF/IOVbYE4xxqV7Vv8NFVxTUJP/d0ax6bFYiBdgoclg3VgLO2tz+ndDj6
+         +ALOO3Q4lykpwvkmwFGWwExz6DdJAFZ0iuB8bxFtyAKAThiJkG8mOrDBnUJsmwalX3
+         lwc0oIQ9bR4XG7u3OK4l5ZmFbHZyRmtQD4YS1e4O/5IXOwXJDzD9lfJETjT+fqIR2T
+         RjVotFLwDdAzOAsmhjNJm/i1OzlCBs1sihufF6ZcFyQ040TPXSWikvUK0ukHDMoa/L
+         1G/yoeUpb86zY55GZYMIPkWr4xJIJswTPqkUkzXPoBAd8Qy7KdRa6vO9DtPgDTTXZ5
+         kjEfswrDsJRPw==
+Received: by mail-ed1-f50.google.com with SMTP id v10so82125349edj.10;
+        Tue, 28 Sep 2021 10:34:49 -0700 (PDT)
+X-Gm-Message-State: AOAM530Gy5f1Yzs1H78rU29janvahhEtul0GGW4UGzprPIKUVg0ss8tM
+        S2NRq7SFZLPfMtiolM/WrNMtcoXMv3x45djf6A==
+X-Google-Smtp-Source: ABdhPJySpBpXBtvPlQzRJSJ2jWwV4frZtniA8zfrmtuNaT8B9QSxRnDPopvqhpf1lHPNNHh2uyKCZ4Xxc1GjniBCCA0=
+X-Received: by 2002:a17:906:7217:: with SMTP id m23mr7883864ejk.466.1632850487958;
+ Tue, 28 Sep 2021 10:34:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210927064119.127285-1-gshan@redhat.com> <20210927064119.127285-3-gshan@redhat.com>
- <CAL_JsqL8+_Q690-c3J4TS6LBF-mCUBxbhTfr994=Fwffqab0_w@mail.gmail.com> <c101363f-1de7-1d56-a8d9-243f003b48c1@redhat.com>
-In-Reply-To: <c101363f-1de7-1d56-a8d9-243f003b48c1@redhat.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 28 Sep 2021 12:22:08 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJtckde=Ngfhr7u3f_xsccavo+4Pt-v9o_nGHTX+wD91w@mail.gmail.com>
-Message-ID: <CAL_JsqJtckde=Ngfhr7u3f_xsccavo+4Pt-v9o_nGHTX+wD91w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] of, numa: Fetch empty NUMA node ID from distance map
-To:     Gavin Shan <gshan@redhat.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>, Marc Zyngier <maz@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, shan.gavin@gmail.com
+References: <20210928044546.4111223-1-bjorn.andersson@linaro.org> <YVLszZ7U7D91oIH2@gerhold.net>
+In-Reply-To: <YVLszZ7U7D91oIH2@gerhold.net>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 28 Sep 2021 12:34:35 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: soc: smem: Make indirection optional
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 27, 2021 at 6:59 PM Gavin Shan <gshan@redhat.com> wrote:
+On Tue, Sep 28, 2021 at 5:22 AM Stephan Gerhold <stephan@gerhold.net> wrote:
 >
-> Hi Rob,
->
-> On 9/28/21 12:49 AM, Rob Herring wrote:
-> > On Mon, Sep 27, 2021 at 1:42 AM Gavin Shan <gshan@redhat.com> wrote:
-> >>
-> >> There is no device node for the empty NUMA node. However, the
-> >> corresponding NUMA node ID and distance map is still valid in
-> >> "numa-distance-map-v1" compatible device node.
-> >>
-> >> This fetches the NUMA node ID and distance map for these empty
-> >> NUMA node from "numa-distance-map-v1" compatible device node.
+> On Mon, Sep 27, 2021 at 09:45:44PM -0700, Bjorn Andersson wrote:
+> > In the olden days the Qualcomm shared memory (SMEM) region consisted of
+> > multiple chunks of memory, so SMEM was described as a standalone node
+> > with references to its various memory regions.
 > >
-> > This is much nicer.
+> > But practically all modern Qualcomm platforms has a single reserved memory
+> > region used for SMEM. So rather than having to use two nodes to describe
+> > the one SMEM region, update the binding to allow the reserved-memory
+> > region alone to describe SMEM.
 > >
->
-> Indeed, thanks for your suggestions :)
->
-> >> Signed-off-by: Gavin Shan <gshan@redhat.com>
-> >> ---
-> >>   drivers/of/of_numa.c | 2 ++
-> >>   1 file changed, 2 insertions(+)
-> >>
-> >> diff --git a/drivers/of/of_numa.c b/drivers/of/of_numa.c
-> >> index fe6b13608e51..5949829a1b00 100644
-> >> --- a/drivers/of/of_numa.c
-> >> +++ b/drivers/of/of_numa.c
-> >> @@ -111,6 +111,8 @@ static int __init of_numa_parse_distance_map_v1(struct device_node *map)
-> >>                          return -EINVAL;
-> >>                  }
-> >>
-> >> +               node_set(nodea, numa_nodes_parsed);
-> >> +
+> > The olden format is preserved as valid, as this is widely used already.
 > >
-> > With this, couldn't we remove of_numa_parse_cpu_nodes() as the only
-> > thing it does is node_set()?
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> >  .../bindings/soc/qcom/qcom,smem.yaml          | 34 ++++++++++++++++---
+> >  1 file changed, 30 insertions(+), 4 deletions(-)
 > >
+> > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
+> > index f7e17713b3d8..4149cf2b66be 100644
+> > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
+> > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smem.yaml
+> > [...]
+> > @@ -43,6 +55,20 @@ examples:
+> >          #size-cells = <1>;
+> >          ranges;
+> >
+> > +        smem@fa00000 {
 >
-> I don't think so for couple of reasons:
->
-> (1) With problematic device-tree, the distance map node might be missed
->      or incomplete. In this case, of_numa_parse_cpu_nodes() still helps.
+> I think this is a good opportunity to make a decision which node name
+> should be used here. :)
 
-It's not the kernel's job to validate the DT (if it was, it is doing a
-terrible job). I would suggest writing some checks for dtc if we're
-worried about correctness. (The schemas don't work too well for cross
-node checks.)
+reserved-memory node names are kind of a mess, so I haven't tried for
+any standard... It needs to be solved globally.
 
-> (2) @numa_nodes_parsed is also updated when the memory nodes are iterated
->      in of_numa_parse_memory_nodes() and numa_add_memblk().
 >
-> So @numa_nodes_parsed, which is synchronized to @node_possible_map afterwards,
-> is the gathering output of CPU nodes, memory nodes and distance map node.
+> You use smem@ here but mentioned before that you think using the generic
+> memory@ would be better [1]. And you use memory@ in PATCH 3/3:
+>
+> -               smem_mem: memory@86000000 {
+> +               memory@86000000 {
+> +                       compatible = "qcom,smem";
+>                         reg = <0x0 0x86000000 0 0x200000>;
+>                         no-map;
+> +                       hwlocks = <&tcsr_mutex 3>;
+>                 };
+>
+> However, if you would use memory@ as example in this DT schema,
+> Rob's bot would complain with the same error that I mentioned earlier [2]:
+>
+> soc/qcom/qcom,smem.example.dt.yaml: memory@fa00000: 'device_type' is a required property
+>         From schema: dtschema/schemas/memory.yaml
+>
+> We should either fix the error when using memory@ or start using some
+> different node name (Stephen Boyd suggested shared-memory@ for example).
+> Otherwise we'll just keep introducing more and more dtbs_check errors
+> for the Qualcomm device trees.
 
-Is it valid to have node id's that are not in the distance map?
+A different node name. A node name should only have 1 meaning and
+'memory' is already defined.
+
+The main issue here is what to name nodes with only a size and no address.
 
 Rob
