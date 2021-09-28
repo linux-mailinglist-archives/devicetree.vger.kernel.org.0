@@ -2,247 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9353641B0F3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A3B41B0F6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 15:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241315AbhI1Nhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 09:37:50 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:32531 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241012AbhI1Nhh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 09:37:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632836146;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=LUurXEgafzjScNeibCl5rkGHmB+KK9bQjsUcLLkRirY=;
-    b=aDfzXYr1A8nH2WwW3WkrIisbXTUoATb/ibMZyNUcAiH+x8u7vO45Ev8vOy9BDJmkW3
-    z8mCCoTK/1oEDJxvSmYCgxyb9o3hdTb7TnBMTa0KUhx0ayxP30t7DHTReGL8wQTvoSLI
-    wqi+8G+xdk8/sXzQGjD6zpN6egMFthMR8XajUUwpkZp3nr0kCcmHHVlGNNXy8suvVEDv
-    Nw5EMnq7G0K2Bj/Eg5D3bVyEDo8XLtZTTGR29Zd84kODwzaTn7DSzLdYh2Ey/cXaEgz5
-    d6/fRNmvyvvuVAwypKqAlctb2PlI//8+WFEprg7MJSk+HQpAb2aJ4go5dXe1rI5vhzHd
-    wuYA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43sT7Q="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id I01f74x8SDZieyb
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Tue, 28 Sep 2021 15:35:44 +0200 (CEST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v4 06/10] drm/ingenic: Add dw-hdmi driver for jz4780
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <86c61519-697f-9ca8-4257-074173656c38@baylibre.com>
-Date:   Tue, 28 Sep 2021 15:35:43 +0200
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <1E12CA58-78A7-4E23-BC41-64F0963D4C3A@goldelico.com>
-References: <cover.1632761067.git.hns@goldelico.com>
- <cecd7ae2e21f6547f23c125b2f7767b0090277bc.1632761068.git.hns@goldelico.com>
- <86c61519-697f-9ca8-4257-074173656c38@baylibre.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S241019AbhI1Ni1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 09:38:27 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:27295 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241248AbhI1NiX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 09:38:23 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1632836204; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=RXIq/K2ohsUwqQm35SM1S19TmqC+YjwzpoMV/xptKiU=;
+ b=OP57Tb0tLNzJsmvUF1KTU2owrW7Wuq9lfJN9+mujcOpdeNRgGAoEts0kqTko+Zs5ElcL4hLm
+ OskhQe2tDXtS0sOiXC5w4+fJmYVaSvsYgxCMYuo9YD+IcW/VKzmnKPKi06xjlHIrvNNW/6zD
+ P84PA4h9aLmR0JZx6UjLpJjrCZo=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 61531a6b9ffb4131497e37ba (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 28 Sep 2021 13:36:43
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A0C30C447A3; Tue, 28 Sep 2021 13:36:42 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BFACEC4338F;
+        Tue, 28 Sep 2021 13:36:41 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 28 Sep 2021 19:06:41 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     agross@kernel.org, bhelgaas@google.com, bjorn.andersson@linaro.org,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
+        manivannan.sadhasivam@linaro.org
+Subject: Re: [PATCH v8 3/4] arm64: dts: qcom: sc7280: Add PCIe nodes for IDP
+ board
+In-Reply-To: <CAE-0n53N-7wGgGmqep6ZTAt14dYObq43cTak_BWAjy6XS0Gnig@mail.gmail.com>
+References: <1631898947-27433-1-git-send-email-pmaliset@codeaurora.org>
+ <1631898947-27433-4-git-send-email-pmaliset@codeaurora.org>
+ <CAE-0n53N-7wGgGmqep6ZTAt14dYObq43cTak_BWAjy6XS0Gnig@mail.gmail.com>
+Message-ID: <5677240b6391d3e9a2d9a629505b9bf6@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
-
-
-> Am 28.09.2021 um 15:02 schrieb Neil Armstrong =
-<narmstrong@baylibre.com>:
->=20
-> On 27/09/2021 18:44, H. Nikolaus Schaller wrote:
->> From: Paul Boddie <paul@boddie.org.uk>
->>=20
->> A specialisation of the generic Synopsys HDMI driver is employed for =
-JZ4780
->> HDMI support. This requires a new driver, plus device tree and =
-configuration
->> modifications.
->>=20
->> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
->> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> ---
->> drivers/gpu/drm/ingenic/Kconfig           |   9 ++
->> drivers/gpu/drm/ingenic/Makefile          |   1 +
->> drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c | 142 =
-++++++++++++++++++++++
->> 3 files changed, 152 insertions(+)
->> create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
->>=20
->> diff --git a/drivers/gpu/drm/ingenic/Kconfig =
-b/drivers/gpu/drm/ingenic/Kconfig
->> index 3b57f8be007c..4c7d311fbeff 100644
->> --- a/drivers/gpu/drm/ingenic/Kconfig
->> +++ b/drivers/gpu/drm/ingenic/Kconfig
->> @@ -25,4 +25,13 @@ config DRM_INGENIC_IPU
->>=20
->> 	  The Image Processing Unit (IPU) will appear as a second =
-primary plane.
->>=20
->> +config DRM_INGENIC_DW_HDMI
->> +	bool "Ingenic specific support for Synopsys DW HDMI"
->> +	depends on MACH_JZ4780
->> +	select DRM_DW_HDMI
->> +	help
->> +	  Choose this option to enable Synopsys DesignWare HDMI based =
-driver.
->> +	  If you want to enable HDMI on Ingenic JZ4780 based SoC, you =
-should
->> +	  select this option..
+On 2021-09-21 01:21, Stephen Boyd wrote:
+> Quoting Prasad Malisetty (2021-09-17 10:15:46)
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> index 99f9ee5..ee00df0 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> @@ -199,6 +199,39 @@
+>>         modem-init;
+>>  };
+>> 
+>> +&pcie1 {
+>> +       status = "okay";
 >> +
->> endif
->> diff --git a/drivers/gpu/drm/ingenic/Makefile =
-b/drivers/gpu/drm/ingenic/Makefile
->> index d313326bdddb..3db9888a6c04 100644
->> --- a/drivers/gpu/drm/ingenic/Makefile
->> +++ b/drivers/gpu/drm/ingenic/Makefile
->> @@ -1,3 +1,4 @@
->> obj-$(CONFIG_DRM_INGENIC) +=3D ingenic-drm.o
->> ingenic-drm-y =3D ingenic-drm-drv.o
->> ingenic-drm-$(CONFIG_DRM_INGENIC_IPU) +=3D ingenic-ipu.o
->> +ingenic-drm-$(CONFIG_DRM_INGENIC_DW_HDMI) +=3D ingenic-dw-hdmi.o
->> diff --git a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c =
-b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
->> new file mode 100644
->> index 000000000000..dd9c94ae842e
->> --- /dev/null
->> +++ b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
->> @@ -0,0 +1,142 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/* Copyright (C) 2011-2013 Freescale Semiconductor, Inc.
->> + * Copyright (C) 2019, 2020 Paul Boddie <paul@boddie.org.uk>
->> + *
->> + * Derived from dw_hdmi-imx.c with i.MX portions removed.
->> + * Probe and remove operations derived from rcar_dw_hdmi.c.
->> + */
->> +
->> +#include <linux/module.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/regmap.h>
->> +
->> +#include <drm/bridge/dw_hdmi.h>
->> +#include <drm/drm_of.h>
->> +#include <drm/drm_print.h>
->> +
->> +static const struct dw_hdmi_mpll_config ingenic_mpll_cfg[] =3D {
->> +	{ 45250000,  { { 0x01e0, 0x0000 }, { 0x21e1, 0x0000 }, { 0x41e2, =
-0x0000 } } },
->> +	{ 92500000,  { { 0x0140, 0x0005 }, { 0x2141, 0x0005 }, { 0x4142, =
-0x0005 } } },
->> +	{ 148500000, { { 0x00a0, 0x000a }, { 0x20a1, 0x000a }, { 0x40a2, =
-0x000a } } },
->> +	{ 216000000, { { 0x00a0, 0x000a }, { 0x2001, 0x000f }, { 0x4002, =
-0x000f } } },
->> +	{ ~0UL,      { { 0x0000, 0x0000 }, { 0x0000, 0x0000 }, { 0x0000, =
-0x0000 } } }
+>> +       perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>> +       pinctrl-0 = <&pcie1_default_state &nvme_ldo_enable_pin>;
 >> +};
 >> +
->> +static const struct dw_hdmi_curr_ctrl ingenic_cur_ctr[] =3D {
->> +	/*pixelclk     bpp8    bpp10   bpp12 */
->> +	{ 54000000,  { 0x091c, 0x091c, 0x06dc } },
->> +	{ 58400000,  { 0x091c, 0x06dc, 0x06dc } },
->> +	{ 72000000,  { 0x06dc, 0x06dc, 0x091c } },
->> +	{ 74250000,  { 0x06dc, 0x0b5c, 0x091c } },
->> +	{ 118800000, { 0x091c, 0x091c, 0x06dc } },
->> +	{ 216000000, { 0x06dc, 0x0b5c, 0x091c } },
->> +	{ ~0UL,      { 0x0000, 0x0000, 0x0000 } },
+>> +&pcie1_phy {
+>> +       status = "okay";
+>> +
+>> +       vdda-phy-supply = <&vreg_l10c_0p8>;
+>> +       vdda-pll-supply = <&vreg_l6b_1p2>;
 >> +};
 >> +
->> +/*
->> + * Resistance term 133Ohm Cfg
->> + * PREEMP config 0.00
->> + * TX/CK level 10
->> + */
->> +static const struct dw_hdmi_phy_config ingenic_phy_config[] =3D {
->> +	/*pixelclk   symbol   term   vlev */
->> +	{ 216000000, 0x800d, 0x0005, 0x01ad},
->> +	{ ~0UL,      0x0000, 0x0000, 0x0000}
+>> +&pcie1_default_state {
+>> +       reset-n {
+>> +               pins = "gpio2";
+>> +               function = "gpio";
+>> +
+>> +               drive-strength = <16>;
+>> +               output-low;
+>> +               bias-disable;
+>> +       };
+>> +
+>> +       wake-n {
+>> +               pins = "gpio3";
+>> +               function = "gpio";
+>> +
+>> +               drive-strength = <2>;
+>> +               bias-pull-up;
+>> +       };
+> 
+> I think the previous round of this series Bjorn was saying that these
+> should be different nodes and tacked onto the pinctrl-0 list for the
+> pcie1 device instead of adding them as subnodes of the "default state".
+> 
+
+Hi Stephen,
+
+Here NVMe gpio entry is endpoint related where as wake-n and reset-n are 
+PCIe controller gpio's. I think Bjorn was saying keep endpoint related 
+gpio (NVMe) in separate state entry in pinctrl-0 list.
+
+Thanks
+-Prasad.
+
 >> +};
 >> +
->> +static enum drm_mode_status
->> +ingenic_dw_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
->> +			   const struct drm_display_info *info,
->> +			   const struct drm_display_mode *mode)
->> +{
->> +	if (mode->clock < 13500)
->> +		return MODE_CLOCK_LOW;
->> +	/* FIXME: Hardware is capable of 270MHz, but setup data is =
-missing. */
->> +	if (mode->clock > 216000)
->> +		return MODE_CLOCK_HIGH;
+>>  &pmk8350_vadc {
+>>         pmk8350_die_temp {
+>>                 reg = <PMK8350_ADC7_DIE_TEMP>;
+>> @@ -343,3 +376,10 @@
+>>                 bias-pull-up;
+>>         };
+>>  };
 >> +
->> +	return MODE_OK;
->> +}
->> +
->> +static bool
->> +ingenic_dw_hdmi_mode_fixup(struct drm_bridge *bridge,
->> +			   const struct drm_display_mode *mode,
->> +			   struct drm_display_mode *adjusted_mode)
->> +{
->> +	adjusted_mode->flags |=3D (DRM_MODE_FLAG_PHSYNC | =
-DRM_MODE_FLAG_PVSYNC);
->> +	adjusted_mode->flags &=3D ~(DRM_MODE_FLAG_NHSYNC | =
-DRM_MODE_FLAG_NVSYNC);
->> +
->> +	return true;
->> +}
->> +
->> +static const struct drm_bridge_timings ingenic_dw_hdmi_timings =3D {
->> +	.input_bus_flags =3D DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
+>> +&tlmm {
+>> +       nvme_ldo_enable_pin: nvme_ldo_enable_pin {
+> 
+> Please use dashes where you use underscores in node names
+> 
+>        nvme_ldo_enable_pin: nvme-ldo-enable-pin {
+> 
+>> +               function = "gpio";
+>> +               bias-pull-up;
+> 
+> Of course with that said, the name of this node makes it sound like 
+> this
+> is a gpio controlled regulator. Why not use that binding then and 
+> enable
+> the regulator either by default with regulator properties like
+> regulator-always-on and regulator-boot-enable and/or reference it from
+> the pcie device somehow so that it can be turned off during suspend?
+> 
+Agree, I will add in next patch series.
+
+>> +       };
 >> +};
->=20
-> These should go in the intermediate encoder bridge callbacks Paul =
-introduces in his patch at [1].
->=20
-> With that patch 4 can be dropped.
->=20
-> [1] =
-https://lore.kernel.org/r/20210922205555.496871-7-paul@crapouillou.net
->=20
-> Neil
-
-Sorry, but I can't follow you here. Our patch set is on top of Paul's =
-patch [1]
-and requires Paul's work to be merged first.
-
-And our 4/10 is needed to specialize dw-hdmi to the jz4780 like it is =
-done for
-other SoC integration. It addresses a different stage of the jz4780 HDMI =
-chain
-than [1].
-
-BR,
-Nikolaus
-
