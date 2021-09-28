@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EE6341AF3D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 14:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5081C41AF45
+	for <lists+devicetree@lfdr.de>; Tue, 28 Sep 2021 14:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240787AbhI1Mo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 08:44:58 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:32336 "EHLO m43-7.mailgun.net"
+        id S240637AbhI1MqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 08:46:10 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:41027 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240699AbhI1Mo5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Sep 2021 08:44:57 -0400
+        id S240610AbhI1MqI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 08:46:08 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1632832998; h=Message-ID: References: In-Reply-To: Subject:
+ s=smtp; t=1632833069; h=Message-ID: References: In-Reply-To: Subject:
  Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=JbjyQjUEF+2p6JDdH0AfBffAgxEQOr6+/L+pNG7q4l0=;
- b=FR81Rw4eE8im5l4Xz5lQJIJ+MfnsIQ1Xhz7Tk/RhjugXrKfoJyLkh8BoyOd+IIJnA+/nqVCt
- lKGjAeJMt30lt/lw3D5N8lx9x3BC2s4YFShgRL0Em9I5n3hrSXblpFHBU3lVs+/mcvpWoOia
- Hj76qZPNHxMiGseqocwAsmEo11c=
+ MIME-Version: Sender; bh=av2/tPBGX6NuSZLU+FvSMaJ0cW9h/uM3y8ef2WV5jQc=;
+ b=uJ/KDZGRvk0RqxCvtq/fEHEqzQ9k57bsM2o+JkW1zh5c+xx9TU2KYU0qkCFx/aaWa9TPpolu
+ FPBk0WkbWlUerY8ekB3Sh4VtnrwOVx8tOqTt09yW02K5ZgpbjOgw26SIOhVp5Fviv7Vj7yRp
+ H9sSYAE05WwcCRoPM/wKYckUGgw=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 61530de49ffb41314940fd19 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 28 Sep 2021 12:43:16
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 61530e21713d5d6f969d1949 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 28 Sep 2021 12:44:17
  GMT
 Sender: skakit=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1ED5DC43638; Tue, 28 Sep 2021 12:43:14 +0000 (UTC)
+        id 3AC15C43618; Tue, 28 Sep 2021 12:44:17 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -38,100 +38,94 @@ Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
         (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id CC8F3C4361C;
-        Tue, 28 Sep 2021 12:43:12 +0000 (UTC)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 99BA7C43460;
+        Tue, 28 Sep 2021 12:44:16 +0000 (UTC)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Tue, 28 Sep 2021 18:13:12 +0530
+Date:   Tue, 28 Sep 2021 18:14:16 +0530
 From:   skakit@codeaurora.org
-To:     Rob Herring <robh@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, mka@chromium.org,
+        Liam Girdwood <lgirdwood@gmail.com>, mka@chromium.org,
         swboyd@chromium.org, Das Srinagesh <gurus@codeaurora.org>,
         David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
         Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: pm8008: Add pm8008 regulator node
-In-Reply-To: <YUjxxnz9BFS7/WDK@robh.at.kernel.org>
+Subject: Re: [PATCH 2/4] regulator: dt-bindings: Add pm8008 regulator bindings
+In-Reply-To: <20210917154818.GC4700@sirena.org.uk>
 References: <1631875538-22473-1-git-send-email-skakit@codeaurora.org>
- <1631875538-22473-2-git-send-email-skakit@codeaurora.org>
- <YUjxxnz9BFS7/WDK@robh.at.kernel.org>
-Message-ID: <90420204e2a0628adffc9ab542d275a7@codeaurora.org>
+ <1631875538-22473-3-git-send-email-skakit@codeaurora.org>
+ <20210917154818.GC4700@sirena.org.uk>
+Message-ID: <b192c1e056e0ea2fc959651065e4ce7b@codeaurora.org>
 X-Sender: skakit@codeaurora.org
 User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-09-21 02:10, Rob Herring wrote:
-> On Fri, Sep 17, 2021 at 04:15:35PM +0530, Satya Priya wrote:
->> Add pm8008-regulator node and example.
->> 
->> Signed-off-by: Satya Priya <skakit@codeaurora.org>
->> ---
->>  .../devicetree/bindings/mfd/qcom,pm8008.yaml       | 24 
->> ++++++++++++++++++++++
->>  1 file changed, 24 insertions(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml 
->> b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
->> index ec3138c..de182f8 100644
->> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
->> @@ -45,6 +45,10 @@ properties:
->>      const: 0
->> 
->>  patternProperties:
->> +  "^pm8008[a-z]?-regulator$":
+On 2021-09-17 21:18, Mark Brown wrote:
+> On Fri, Sep 17, 2021 at 04:15:36PM +0530, Satya Priya wrote:
 > 
-> Is more than 1 node possible for a given PMIC? If not use 'regulators'
-> for the node name.
+>> +    properties:
+>> +      reg:
+>> +        maxItems: 1
+>> +      regulator-name: true
+>> +      regulator-min-microvolt: true
+>> +      regulator-max-microvolt: true
+> 
+> You shouldn't be forcing these properties, it should be perfectly OK 
+> for
+> boards to have fixed voltages especially for example during bringup or
+> for debugging.
 > 
 
-Not possible, will change the node name.
+Okay. I will remove these.
 
->> +    type: object
->> +    $ref: "../regulator/qcom,pm8008-regulator.yaml#"
->> +
->>    "^gpio@[0-9a-f]+$":
->>      type: object
->> 
->> @@ -122,6 +126,26 @@ examples:
->>            interrupt-controller;
->>            #interrupt-cells = <2>;
->>          };
->> +
->> +        pm8008-regulator {
->> +          compatible = "qcom,pm8008-regulator";
->> +          #address-cells = <1>;
->> +          #size-cells = <0>;
->> +
->> +          vdd_l1_l2-supply = <&vreg_s8b_1p2>;
->> +          vdd_l3_l4-supply = <&vreg_s1b_1p8>;
->> +          vdd_l5-supply = <&vreg_bob>;
->> +          vdd_l6-supply = <&vreg_bob>;
->> +          vdd_l7-supply = <&vreg_bob>;
->> +
->> +          pm8008_l1: regulator@4000 {
->> +            reg = <0x4000>;
->> +            regulator-name = "pm8008_l1";
->> +            regulator-min-microvolt = <950000>;
->> +            regulator-max-microvolt = <1300000>;
->> +            qcom,min-dropout-voltage = <96000>;
->> +          };
->> +        };
->>        };
->>      };
->> 
->> --
->> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
->> member
->> of Code Aurora Forum, hosted by The Linux Foundation
->> 
->> 
+>> +      qcom,min-dropout-voltage:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description:
+>> +          Specifies the minimum voltage in microvolts that the parent
+>> +          supply regulator must output, above the output of this
+>> +          regulator.
+> 
+> If this is needed in DT it should be a generic property since most
+> regulators have some requirement here however usually it's a fixed
+> property of the silicon and should therefore just gets set in the
+> regulator_desc as min_dropout_uV - I'd strongly recommend having a
+> default there even if there's some requirement for it to be set per
+> board.
+
+Yeah, we are setting the default values for this(headroom_uv) from 
+driver. Please see below
+
+struct regulator_data {
+      char        *name;
+      char        *supply_name;
+      int     min_uv;
+      int     max_uv;
+      int     min_dropout_uv;
+};
+
+static const struct regulator_data reg_data[PM8008_MAX_LDO] = {
+      /* name  parent      min_uv  max_uv  headroom_uv */
+     {"l1", "vdd_l1_l2",  528000, 1504000, 225000},
+     {"l2", "vdd_l1_l2",  528000, 1504000, 225000},
+     {"l3", "vdd_l3_l4", 1504000, 3400000, 200000},
+     {"l4", "vdd_l3_l4", 1504000, 3400000, 200000},
+     {"l5", "vdd_l5",    1504000, 3400000, 300000},
+     {"l6", "vdd_l6",    1504000, 3400000, 300000},
+     {"l7", "vdd_l7",    1504000, 3400000, 300000},
+};
+
+Inside Register LDO API:
+
+pm8008_reg->rdesc.min_dropout_uV = reg_data[i].min_dropout_uv;
+of_property_read_u32(reg_node, "qcom,min-dropout-voltage",
+                   &pm8008_reg->rdesc.min_dropout_uV);
+
