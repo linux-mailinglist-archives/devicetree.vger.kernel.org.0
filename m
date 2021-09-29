@@ -2,149 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFE3741CFA9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 01:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31FFD41D010
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 01:36:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347126AbhI2XGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 19:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49964 "EHLO
+        id S1347591AbhI2XiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 19:38:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346558AbhI2XGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 19:06:47 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91493C06161C;
-        Wed, 29 Sep 2021 16:05:05 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id dj4so15038180edb.5;
-        Wed, 29 Sep 2021 16:05:05 -0700 (PDT)
+        with ESMTP id S1347603AbhI2XiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 19:38:06 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7219C06161C
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 16:36:24 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id m21so4295779pgu.13
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 16:36:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=junDmjsGeeXH6AFTkfwWvE4eRp4hhF7+aaNBz6qBSf8=;
-        b=nh+yG0zcGzynV4sBXDmkkmzICeb9RD15jcVuXjresYcIPWYL58XSbBQJPKfFUhr8HZ
-         MK4Ib2UM8QwPkWwPxTMaRQEZ7gbfZVkjY7R55PfgC8cA3vxaGIuubZfMiyj9VlQerY0G
-         qzd51mNwVvGn5OlKaSz/Lja0vXV7+4AkM9gTHuvhGWaH7j6tX0+l7bCARq1tzxrntQrq
-         CvBE28bSBCl3RlT5j8Yqj/eKQpRAQ+yYCXcXk9WsLzhOo96mtf6lFIu/3zDEbovoQwEZ
-         tHt6Xf2OqFLnM2+N8UUPKz225lJqSVJC5Yg9eYivz/QUcj3aj93WFOKT1cDCHpAZRDjK
-         QYuA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HvaI2CnuZMRocUAuxkU7bar+LZuGwxIpo51W/3LktMo=;
+        b=IzZJtmb6XxyCwoSIO0qgrnxryeU2MYm1rpNv/ndfOQDtKcsnWAMrW4mZ3WsKGl/aG+
+         poBzt8xkzTPqt9azAVAO934HmwF8/0mnwV7qSaOADaUnNbiyuagGu6yF1uxWkp5L+eeF
+         vycTIH5/Xt8zjyHBmEpdDpkd64hX72U3gbFxc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=junDmjsGeeXH6AFTkfwWvE4eRp4hhF7+aaNBz6qBSf8=;
-        b=ZtSl/1Sm/JR0t5EAx9QBq+dByZq+MnrmyQjys82YA2zDCV0vt2ZpqHHeqsBl7Wq8L2
-         uaw7GF2xykuTiKrs7TUnprSH2up67FV+IUKoYIZ21XMFUN7O7Okltwljw9JgEYTjlNzj
-         kUSkqc24yzcJUYigxVtc9sXdbWDcnwYnjDqk6nDmRNG/8g4q8g4zIHjlnMQC1QBlPSjl
-         aUaDZPIgiFA5P8SOY543jXYP1sf+P2nOo7AQoP9Aoh8ohr7yeZqbZDCnKgtd3w7XCUOA
-         xSxFvnPkyoFAtjSiPZg6LMqg9epNITs5UJYQ9dMDbC8gnRr02Vlr6HI9caUH0y0F75Ng
-         n9Sw==
-X-Gm-Message-State: AOAM530Sunscs256hAStMS7pUgb+m5LoQ0lF7UFsWmUafG9g3oV9A7ZW
-        ZjR9wjlfeuPZdJCMoEJfLn7wT6s2MvyoYIBsnq4=
-X-Google-Smtp-Source: ABdhPJxNd8W4XXeXlRU3CKfDahGD6/F3XW55XhcqTgBtosY67UqcxtnkEDtJXvkNIg6AA+Ojjixpjh5S39+glLbrxjQ=
-X-Received: by 2002:a05:6402:513:: with SMTP id m19mr1037540edv.184.1632956703972;
- Wed, 29 Sep 2021 16:05:03 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HvaI2CnuZMRocUAuxkU7bar+LZuGwxIpo51W/3LktMo=;
+        b=7OnXjFiPkxCT9akyR4Qt2NdMVf+q6z20ua7dOHT/YUyOpA0hV41Jo5TS/NYSdkGLDm
+         Ew8TYMfmXbuArDNyMwKL04sRUrvLkVs1/NJNrmN0MZRa/Bco50XVaCUaOslIkFarUTlq
+         AZr6WIjv9YakbnNQ4bjQ8H2FoS6ErL3b+GC+sRndaxhU7jtyZjjZMCeCvURZXKeTLFXR
+         lDCTgV+wS187vYLd0c9+yIpSSup61JjE3t5e3GCyUB/9iD/EwdoEf2zAnQ30PFi4yFHG
+         MT4KwocBc3udpZDmENg625UNiEyijepSxN5XtL/DOe2GIcepGvxfcp0YB9wp7o+EQjlP
+         ziAQ==
+X-Gm-Message-State: AOAM533GWj1SfiEIx3pVzCSOPMNEgCXWJztBvzZ4jlG7/JEYrZQ0ZT/f
+        UEnKhFdGD8+MMzNTIlKIpmmY/g==
+X-Google-Smtp-Source: ABdhPJye82JkSQN1O7fDsiSS5dX3XnisZ+GDoPSTfJmU1gPBVBfE/Kx8CJ6vRQBhUVApKr+eL1+l9A==
+X-Received: by 2002:a05:6a00:22cd:b0:43c:9b41:e650 with SMTP id f13-20020a056a0022cd00b0043c9b41e650mr1189646pfj.60.1632958583660;
+        Wed, 29 Sep 2021 16:36:23 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:2f10:2763:4825:1f01])
+        by smtp.gmail.com with UTF8SMTPSA id p16sm2949687pja.24.2021.09.29.16.36.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Sep 2021 16:36:23 -0700 (PDT)
+Date:   Wed, 29 Sep 2021 16:36:21 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org, swboyd@chromium.org,
+        skakit@codeaurora.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: pmk8350: Make RTC disabled by default;
+ enable on sc7280-idp
+Message-ID: <YVT4dZHRcYlIXK7Q@google.com>
+References: <20210929153553.1.Ib44c2ac967833d7a3f51452d44d15b7b8d23c1f0@changeid>
 MIME-Version: 1.0
-References: <1632519891-26510-1-git-send-email-justinpopo6@gmail.com>
- <1632519891-26510-4-git-send-email-justinpopo6@gmail.com> <YU9SHpn4ZJrjqNuF@lunn.ch>
- <c66c8bd1-940a-bf9d-ce33-5a39635e9f5b@gmail.com> <YVB8ef3aMpJTEvgF@lunn.ch>
-In-Reply-To: <YVB8ef3aMpJTEvgF@lunn.ch>
-From:   Justin Chen <justinpopo6@gmail.com>
-Date:   Wed, 29 Sep 2021 16:04:53 -0700
-Message-ID: <CAJx26kVw8iJD_wJXypF4gjx697z_ErOdogWNNQffis19pt6y_w@mail.gmail.com>
-Subject: Re: [PATCH net-next 3/5] net: bcmasp: Add support for ASP2.0 Ethernet controller
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Doug Berger <opendmb@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Michael Chan <michael.chan@broadcom.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:DMA BUFFER SHARING FRAMEWORK" 
-        <linux-media@vger.kernel.org>,
-        "open list:DMA BUFFER SHARING FRAMEWORK" 
-        <dri-devel@lists.freedesktop.org>,
-        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
-        <linaro-mm-sig@lists.linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210929153553.1.Ib44c2ac967833d7a3f51452d44d15b7b8d23c1f0@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 26, 2021 at 6:58 AM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > > > +static int bcmasp_set_priv_flags(struct net_device *dev, u32 flags)
-> > > > +{
-> > > > + struct bcmasp_intf *intf = netdev_priv(dev);
-> > > > +
-> > > > + intf->wol_keep_rx_en = flags & BCMASP_WOL_KEEP_RX_EN ? 1 : 0;
-> > > > +
-> > > > + return 0;
-> > >
-> > > Please could you explain this some more. How can you disable RX and
-> > > still have WoL working?
-> >
-> > Wake-on-LAN using Magic Packets and network filters requires keeping the
-> > UniMAC's receiver turned on, and then the packets feed into the Magic Packet
-> > Detector (MPD) block or the network filter block. In that mode DRAM is in
-> > self refresh and there is local matching of frames into a tiny FIFO however
-> > in the case of magic packets the packets leading to a wake-up are dropped as
-> > there is nowhere to store them. In the case of a network filter match (e.g.:
-> > matching a multicast IP address plus protocol, plus source/destination
-> > ports) the packets are also discarded because the receive DMA was shut down.
-> >
-> > When the wol_keep_rx_en flag is set, the above happens but we also allow the
-> > packets that did match a network filter to reach the small FIFO (Justin
-> > would know how many entries are there) that is used to push the packets to
-> > DRAM. The packet contents are held in there until the system wakes up which
-> > is usually just a few hundreds of micro seconds after we received a packet
-> > that triggered a wake-up. Once we overflow the receive DMA FIFO capacity
-> > subsequent packets get dropped which is fine since we are usually talking
-> > about very low bit rates, and we only try to push to DRAM the packets of
-> > interest, that is those for which we have a network filter.
-> >
-> > This is convenient in scenarios where you want to wake-up from multicast DNS
-> > (e.g.: wake on Googlecast, Bonjour etc.) because then the packet that
-> > resulted in the system wake-up is not discarded but is then delivered to the
-> > network stack.
->
-> Thanks for the explanation. It would be easier for the user if you
-> automate this. Enable is by default for WoL types which have user
-> content?
->
-Yup that can work. We can enable it for WAKE_FILTER type wol and leave
-it disabled otherwise.
+On Wed, Sep 29, 2021 at 03:38:14PM -0700, Douglas Anderson wrote:
+> The RTC on the pmk8350 is not useful on all boards. Some boards may
+> not provide backup power to the PMIC but might have another RTC on the
+> board that does have backup power. In this case it's better to not use
+> the RTC on the PMIC.
+> 
+> At the moment, the only boards that includes this PMIC are sc7280-idp
+> and sc7280-idp2. On sc7280-idp I'm not aware of any other RTCs, but
+> sc7280-idp2 has a Chrome OS EC on it and this is intended to provide
+> the RTC for the AP.
+> 
+> Let's do what we normally do for hardware that's not used by all
+> boards and set it to a default status of "disabled" and then enable it
+> on the boards that need it.
+> 
+> NOTE: for sc7280-idp it's _possible_ we might also want to add
+> `allow-set-time;`. That could be the subject of a future patch if it
+> is indeed true.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-> > > > + /* Per ch */
-> > > > + intf->tx_spb_dma = priv->base + TX_SPB_DMA_OFFSET(intf);
-> > > > + intf->res.tx_spb_ctrl = priv->base + TX_SPB_CTRL_OFFSET(intf);
-> > > > + /*
-> > > > +  * Stop gap solution. This should be removed when 72165a0 is
-> > > > +  * deprecated
-> > > > +  */
-> > >
-> > > Is that an internal commit?
-> >
-> > Yes this is a revision of the silicon that is not meant to see the light of
-> > day.
->
-> So this can all be removed?
->
-Yup. That can be removed
-
->    Andrew
-
-Thanks for the review.
-
-Justin
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
