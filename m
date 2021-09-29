@@ -2,228 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E55B341C8D2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 17:54:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D6C41C9AF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 18:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345457AbhI2Pzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 11:55:44 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:48919 "EHLO m43-7.mailgun.net"
+        id S1345543AbhI2QJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 12:09:25 -0400
+Received: from ixit.cz ([94.230.151.217]:52012 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345429AbhI2Pzl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 11:55:41 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1632930840; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=mD8/cVzeUyAM6c/UabO55pm1CfQiL17d4b03cqAJbm8=;
- b=ZiZNAKOowOnvCmyahYVZ33Ls4jvT3BaspkfEygXuB2Za4t4io6Vbsrncg6f++3pE1jso4UDe
- Xlh7E55w1Jp4wY/jKkh3wNnZ3HdwUk9s7K9pcpKHU6clpScwHiJWvoXKAQhuVsVx5gbVI62g
- Usv1mjvwc2FgRXPKY7WDLLh0z/Y=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 61548c17713d5d6f962ffaf4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 29 Sep 2021 15:53:59
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1A7DEC43617; Wed, 29 Sep 2021 15:53:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        id S1345662AbhI2QJJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 12:09:09 -0400
+Received: from localhost.localdomain (78-80-97-115.customers.tmcz.cz [78.80.97.115])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 671A2C4360C;
-        Wed, 29 Sep 2021 15:53:56 +0000 (UTC)
+        by ixit.cz (Postfix) with ESMTPSA id 175B123B26;
+        Wed, 29 Sep 2021 18:07:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1632931645;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Py481dm6Mitgnggqp/GOXFcWMmJ8KLHphnXVkLLFkTg=;
+        b=S8YfuQ2EQ1qjlh8YVe/bmj/7zpipp18L7E8kThkhIiwo5oqg+f/WbwgHzwjhCbSliRQKSZ
+        Kj59odUwPhSQToxnRr9ZzK8M+R+ldifmksckLtf8WljpW6Oi9RXqpHa9o4SSDeXONcnGnd
+        6f6QBBBYy0SzjwMoP5WXgGUdeKZOBMA=
+From:   David Heidelberg <david@ixit.cz>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+Subject: [PATCH] dt-bindings: power: supply: max17040: switch to unevaluatedProperties
+Date:   Wed, 29 Sep 2021 18:06:05 +0200
+Message-Id: <20210929160605.74831-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 29 Sep 2021 21:23:55 +0530
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     agross@kernel.org, bhelgaas@google.com, bjorn.andersson@linaro.org,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
-        manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v9 3/4] arm64: dts: qcom: sc7280: Add PCIe nodes for IDP
- board
-In-Reply-To: <CAE-0n52G7=PFrPGr5Zwq43q55CWBSkaEm7HpC+C4r2+Gjv3JQg@mail.gmail.com>
-References: <1632837350-12100-1-git-send-email-pmaliset@codeaurora.org>
- <1632837350-12100-4-git-send-email-pmaliset@codeaurora.org>
- <CAE-0n52G7=PFrPGr5Zwq43q55CWBSkaEm7HpC+C4r2+Gjv3JQg@mail.gmail.com>
-Message-ID: <92e500fa87f726791383d1b6a2532699@codeaurora.org>
-X-Sender: pmaliset@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-09-29 02:22, Stephen Boyd wrote:
-> Quoting Prasad Malisetty (2021-09-28 06:55:49)
->> Enable PCIe controller and PHY for sc7280 IDP board.
->> Add specific NVMe GPIO entries for SKU1 and SKU2 support.
->> 
->> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sc7280-idp.dts  |  9 ++++++
->>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 54 
->> ++++++++++++++++++++++++++++++++
->>  arch/arm64/boot/dts/qcom/sc7280-idp2.dts |  9 ++++++
->>  3 files changed, 72 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts 
->> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> index 64fc22a..1562386 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> @@ -61,6 +61,15 @@
->>         modem-init;
->>  };
->> 
->> +&nvme_pwren_pin {
->> +       pins = "gpio19";
->> +};
-> 
-> This should move to the bottom in the "pinctrl" section.
-> 
->> +
->> +&nvme_3v3_regulators {
->> +       gpio = <&tlmm 19 GPIO_ACTIVE_HIGH>;
->> +       enable-active-high;
-> 
-> The enable-active-high can be in the idp.dtsi file? That doesn't seem 
-> to
-> change.
-> 
->> +};
->> +
->>  &pmk8350_vadc {
->>         pmr735a_die_temp {
->>                 reg = <PMR735A_ADC7_DIE_TEMP>;
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> index def22ff..5b5505f 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> @@ -31,6 +31,17 @@
->>                         linux,can-disable;
->>                 };
->>         };
->> +
->> +       nvme_3v3_regulators: nvme-3v3-regulators {
-> 
-> Why plural? Isn't it a single regulator?
-> 
->> +               compatible = "regulator-fixed";
->> +               regulator-name = "VLDO_3V3";
->> +
->> +               regulator-min-microvolt = <3300000>;
->> +               regulator-max-microvolt = <3300000>;
->> +
->> +               pinctrl-names = "default";
->> +               pinctrl-0 = <&nvme_pwren_pin>;
->> +       };
->>  };
->> 
->>  &apps_rsc {
->> @@ -220,6 +231,42 @@
->>         modem-init;
->>  };
->> 
->> +&pcie1 {
->> +       status = "okay";
->> +       perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
->> +
->> +       vddpe-3v3-supply = <&nvme_3v3_regulators>;
->> +
->> +       pinctrl-names = "default";
->> +       pinctrl-0 = <&pcie1_default_state>;
->> +};
->> +
->> +&pcie1_phy {
->> +       status = "okay";
->> +
->> +       vdda-phy-supply = <&vreg_l10c_0p8>;
->> +       vdda-pll-supply = <&vreg_l6b_1p2>;
->> +};
->> +
->> +&pcie1_default_state {
-> 
-> I thought the node would be split into a reset config node and a wake
-> config node. Is that not being done for some reason? The pinctrl-0 
-> would
-> look like
-> 
-> 	pinctrl-0 = <&pcie1_default_state>, <&pcie1_reset_n>, <&pcie1_wake_n>;
-> 
->> +       reset-n {
->> +               pins = "gpio2";
->> +               function = "gpio";
->> +
->> +               drive-strength = <16>;
->> +               output-low;
->> +               bias-disable;
->> +       };
->> +
->> +       wake-n {
->> +               pins = "gpio3";
->> +               function = "gpio";
->> +
->> +               drive-strength = <2>;
->> +               bias-pull-up;
->> +       };
->> +};
->> +
->>  &pmk8350_vadc {
->>         pmk8350_die_temp {
->>                 reg = <PMK8350_ADC7_DIE_TEMP>;
->> @@ -489,3 +536,10 @@
->>                 bias-pull-up;
->>         };
->>  };
->> +
->> +&tlmm {
->> +       nvme_pwren_pin: nvme-pwren-pin {
->> +               function = "gpio";
->> +               bias-pull-up;
->> +       };
->> +};
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts 
->> b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
->> index 1fc2add..0548cb6 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
->> @@ -21,3 +21,12 @@
->>                 stdout-path = "serial0:115200n8";
->>         };
->>  };
->> +
->> +&nvme_pwren_pin {
->> +       pins = "gpio51";
->> +};
-> 
-> The pin config can go to a pinctrl section at the bottom of this file?
-> 
-Hi Stephen,
+Required for validation of power-supplies from power-supply.yaml.
 
-Thanks for the review and comments.
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ .../devicetree/bindings/power/supply/maxim,max17040.yaml        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Sure, I will address all the comments and incorporate the changes in 
-next version series.
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+index f792d06db413..ffb344987a7b 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+@@ -62,7 +62,7 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.33.0
 
-Thanks
--Prasad
->> +
->> +&nvme_3v3_regulators {
->> +       gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
->> +       enable-active-high;
->> +};
