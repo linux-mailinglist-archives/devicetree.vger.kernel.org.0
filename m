@@ -2,90 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC5A141BDBB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 05:43:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1783741BDC3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 05:54:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244132AbhI2Dpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 23:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37490 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244118AbhI2DpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 23:45:13 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF05C06177D
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 20:43:29 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id k24so1298839pgh.8
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 20:43:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=FYXdO9hJvhFltLYbg/A8prSsur4Hc5VN104uh+rlA1o=;
-        b=VOBqEd74mVR9Y+lhOSmIztFfoJmPWTu7mP445QOv9cgjUnontrVnGc+EfpbzmbuB05
-         W/k4Lj/fd6Olb4muOd06V6Si8QV0Ft1iYCxM46WvEbRfccp9NrMHLrxiUKvqxoZuJdpS
-         HPjCSv3b/L3WCgEPsYxci0743LdgOAmyge42cN8S0WNixC6Fy/P9saTORPTNh0kDe5KA
-         WvTc4SPsXEtYjlBW/W2v0dumVL+vKuwGY91go5qPATPPPGSGDP6ypU7CmMMw2O0rCT/+
-         XSJcBs3u++amTRYkUvXAYGNyX9eSjRZ9ZchdMFLcZNNlRNRvx6BIiitP4OgfjYMp0cd6
-         IRkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=FYXdO9hJvhFltLYbg/A8prSsur4Hc5VN104uh+rlA1o=;
-        b=O9+fiKgkq1cUu3v8HfZKS1i2DZ1thPgFD3pMMNG+jjATa2lPzO6WuoHREeKcXl8+Eg
-         aaLc8wHxLaZI7Gc2lvU7g2E/eHyoOE0PtNu/b/3m9NeZtvgU/6l+xYMAiK4DtwmS0xSF
-         +sOmICg7vKWqU749BCEtGIXabubH7eHIjGkVL/5cMVzEH7ql95nBY5wS+kEut1ozhOnu
-         2QE0PhnokdndvAeIyNsijywrXR7iIDWMhH3gJbc5qG/3slDtYJOvPSxget7U168kXzs/
-         XkB21390OeDjNNHtZJZ53sThssYq3c9PVPkGYQhQOTeL0rjS9Tqg1XAWOiHHlT+oXWLj
-         yM9g==
-X-Gm-Message-State: AOAM5301XMUe5sJwaVe6bpHy0aIImjDtHi0Xf5AXlPecPMPnNUlWWOmP
-        oe8j8GMXEh9pFthGzqZDoHRosg==
-X-Google-Smtp-Source: ABdhPJxDn6uBmUa9SlWbpmR7EUFl7Ur07P+cgOttjL5zAM5eauFC2MUQEDyDL2Ou3akJ0ia+q/zMrA==
-X-Received: by 2002:a62:84d7:0:b0:438:af8:87ac with SMTP id k206-20020a6284d7000000b004380af887acmr9255549pfd.56.1632887009510;
-        Tue, 28 Sep 2021 20:43:29 -0700 (PDT)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id b7sm533032pfb.20.2021.09.28.20.43.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 20:43:29 -0700 (PDT)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH 10/10] ARM: dts: qcom: sdx55: Drop '#clock-cells' from QMP PHY node
-Date:   Wed, 29 Sep 2021 11:42:53 +0800
-Message-Id: <20210929034253.24570-11-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210929034253.24570-1-shawn.guo@linaro.org>
-References: <20210929034253.24570-1-shawn.guo@linaro.org>
+        id S244069AbhI2D4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 23:56:15 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:34519 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S244064AbhI2D4K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Sep 2021 23:56:10 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 30E56580E57;
+        Tue, 28 Sep 2021 23:54:29 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Tue, 28 Sep 2021 23:54:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=/
+        fz2xDmGvnVOv6nmGoPaDrmEwWr82udufb63/AmiMe8=; b=YfDdo97RhokBFNvMz
+        ImWhirnQy0nIl1TaEPKmE1HRb9R1rMZu8yR2Q93McjWprNkNNr3EzfXcV5yOoI76
+        zNk02KygJKgfr9JtpsUnaVoPCZ974tSBbS8YfzyeN6Ph6CIwN53eLaJlcnVMrauj
+        hy2uvDNglliwdAkZ9154x4UfvhQTpg8QCDJEw0cmzGkxunCnYQEUDUv/MBEHLmNB
+        z1VX8+J0TqD5DdRmqOn4PhSPD886e8/tnDMKzEG3b51ln3hxrlQMmCNdraSnlSFE
+        XFO0dfo9epTcMG3jHtFh5gVGUbJ/J1VukF8RL+aHYNGSVPPwpeuHNq/CJ2XU8HfD
+        l5n/Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=/fz2xDmGvnVOv6nmGoPaDrmEwWr82udufb63/AmiM
+        e8=; b=oup3cklh5OZrUL36ojjnMb5SRVL1GVBtY+Fx30n9bu7dVWrCwDZNwUz2R
+        BVz4huTwpafnlFN3Iqul/vUPVemG7hQ6MCKDtXHFeEUx+vM504FDd6JZ+OXcFZ56
+        pnVkBohD07XWG4vzquXtQzkpS3nPFWxRvO36V7iOeKNib39UrSqqkXJJdxrFrCCi
+        X14H3KM9MuNeVBPc8ok4QpNZtIqME6gnS8p/Ea3EFkaCmVeSYbc2VameVKfdElxF
+        EP7LnjW5x2EvSLmuslnAyw4DLKq8zScUwTvoymWY9HXCisme/NF8OeM/FI53VM+e
+        Jtwg77n5Zdl19Yz4+Z756r4M+CmVg==
+X-ME-Sender: <xms:dONTYQaxgontc6TT9gcWD_hpAW_bSY41ISXOJ0TUhTABwJQQy0qTRw>
+    <xme:dONTYbbfLqXfZGvH7IpnbrFTtokxbUS0Z-oM1rmwuhPxmc8Bb35aIUON4PhW_whoO
+    8OXmUw6poPJk6NXWg>
+X-ME-Received: <xmr:dONTYa8cG3mR_A429D2GJL949JFxtWO6dC_r4YFzdQKxMUl2mcj8jsh6gFYWUjXsVA8I1jbhDGppvpiXndisqZde2TDI74kE1-4ozuMjo70wb25V4pN-g4nvIQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudekuddgjeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
+    hedtfeevuedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:dONTYarch2QM-59eaZoBQB34aRxdWh0RNrBBI1msx5ectgeld_SkIQ>
+    <xmx:dONTYbp0FfM2rmkQaLm699JXCxLn2741Uqo0vNfHN2P6QhbiyjX3Wg>
+    <xmx:dONTYYRrYC83eLuYGF2DiEBRaupYSq7LoK-f1Y_XliuKzrDfKnRYtw>
+    <xmx:deNTYe17VXBKCbrCRwL5wWAtdx-9PmTwKqACewr1yfKZtgdCRjo-ag>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 28 Sep 2021 23:54:27 -0400 (EDT)
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20210901053951.60952-1-samuel@sholland.org>
+ <20210903145013.hn6dv7lfyvfys374@gilmour>
+ <4a187add-462b-dfe4-868a-fdab85258b8d@sholland.org>
+ <20210909084538.jeqltc7b3rtqvu4h@gilmour>
+ <c910527d-e2d7-31ca-efd9-1915db62d85d@sholland.org>
+ <20210928090625.rq3atiaejaq5kcbx@gilmour>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [RFC PATCH 0/7] clk: sunxi-ng: Add a RTC CCU driver
+Message-ID: <bc338f11-9867-2394-ceaa-99314ff67660@sholland.org>
+Date:   Tue, 28 Sep 2021 22:54:26 -0500
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
+MIME-Version: 1.0
+In-Reply-To: <20210928090625.rq3atiaejaq5kcbx@gilmour>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'#clock-cells' is a required property of QMP PHY child node, not itself.
-Drop it to fix the dtbs_check warnings below.
+Hi Maxime,
 
-qcom-sdx55-t55.dt.yaml: phy@ff6000: '#clock-cells' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-qcom-sdx55-mtp.dt.yaml: phy@ff6000: '#clock-cells' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-qcom-sdx55-telit-fn980-tlb.dt.yaml: phy@ff6000: '#clock-cells' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+Thanks for your reply.
 
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- arch/arm/boot/dts/qcom-sdx55.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+On 9/28/21 4:06 AM, Maxime Ripard wrote:
+> On Tue, Sep 28, 2021 at 02:46:39AM -0500, Samuel Holland wrote:
+>> On 9/9/21 3:45 AM, Maxime Ripard wrote:
+>>> On Fri, Sep 03, 2021 at 10:21:13AM -0500, Samuel Holland wrote:
+>>>> On 9/3/21 9:50 AM, Maxime Ripard wrote:
+>>>>> And since we can register all those clocks at device probe time, we
+>>>>> don't really need to split the driver in two (and especially in two
+>>>>> different places). The only obstacle to this after your previous series
+>>>>> is that we don't have of_sunxi_ccu_probe / devm_sunxi_ccu_probe
+>>>>> functions public, but that can easily be fixed by moving their
+>>>>> definition to include/linux/clk/sunxi-ng.h
+>>>>
+>>>> Where are you thinking the clock definitions would go? We don't export
+>>>> any of those structures (ccu_mux, ccu_common) or macros
+>>>> (SUNXI_CCU_GATE_DATA) in a public header either.
+>>>
+>>> Ah, right...
+>>>
+>>>> Would you want to export those? That seems like a lot of churn. Or would
+>>>> we put the CCU descriptions in drivers/clk/sunxi-ng and export a
+>>>> function that the RTC driver can call? (Or some other idea?)
+>>>
+>>> I guess we could export it. There's some fairly big headers in
+>>> include/linux/clk already (tegra and ti), it's not uAPI and we do have
+>>> reasons to do so, so I guess it's fine.
+>>>
+>>> I'd like to avoid having two drivers for the same device if possible,
+>>> especially in two separate places. This creates some confusion since the
+>>> general expectation is that there's only one driver per device. There's
+>>> also the fact that this could lead to subtle bugs since the probe order
+>>> is the link order (or module loading).
+>>
+>> I don't think there can be two "struct device"s for a single OF node.
+> 
+> That's not what I meant, there's indeed a single of_node for a single
+> struct device. If we dig a bit into the core framework, the most likely
+> scenario is that we would register both the RTC and clock driver at
+> module_init, and with the device already created with its of_node set
+> during the initial DT parsing.
+> 
+> We register our platform driver using module_platform_driver, which
+> expands to calling driver_register() at module_init(), setting the
+> driver bus to the platform_bus in the process (in
+> __platform_driver_register()).
+> 
+> After some sanity check, driver_register() calls bus_add_driver(), which
+> will call driver_attach() if drivers_autoprobe is set (which is the
+> default, set into bus_register()).
+> 
+> driver_attach() will, for each device on the platform bus, call
+> __driver_attach(). If there's a match between that device and our driver
+> (which is evaluated by platform_match() in our case), we'll call our
+> driver probe with that device through driver_probe_device(),
+> __driver_probe_device() and finally really_probe().
+> 
+> However, at no point in time there's any check about whether that device
+> has already been bound to a driver, nor does it create a new device for
+> each driver.
 
-diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-index 1e6ce035f76a..44526ad9d210 100644
---- a/arch/arm/boot/dts/qcom-sdx55.dtsi
-+++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-@@ -228,7 +228,6 @@
- 			compatible = "qcom,sdx55-qmp-usb3-uni-phy";
- 			reg = <0x00ff6000 0x1c0>;
- 			status = "disabled";
--			#clock-cells = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
--- 
-2.17.1
+I would expect this to hit the:
 
+	if (dev->driver)
+		return -EBUSY;
+
+in __driver_probe_device(), or fail the "if (!dev->driver)" check in
+__driver_attach() for the async case, once the first driver is bound.
+
+> So this means that, if you have two drivers that match the
+> same device (like our clock and RTC drivers), you'll have both probe
+> being called with the same device, and the probe order will be defined
+> by the link order. Worse, they would share the same driver_data, with
+> each driver not being aware of the other. This is incredibly fragile,
+> and hard to notice since it goes against the usual expectations.
+> 
+>> So if the CCU part is in drivers/clk/sunxi-ng, the CCU "probe"
+>> function would have to be called from the RTC driver.
+> 
+> No, it would be called by the core directly if there's a compatible to
+> match.
+> 
+>> Since there has to be cooperation anyway, I don't think there would be
+>> any ordering problems.
+> 
+> My initial point was that, with a direct function call, it's both
+> deterministic and obvious.
+
+I believe I did what you are suggesting for v2. From patch 7:
+
+--- a/drivers/rtc/rtc-sun6i.c
++++ b/drivers/rtc/rtc-sun6i.c
+@@ -683,6 +684,10 @@ static int sun6i_rtc_probe(struct platform_device
+*pdev)
+ 		chip->base = devm_platform_ioremap_resource(pdev, 0);
+ 		if (IS_ERR(chip->base))
+ 			return PTR_ERR(chip->base);
++
++		ret = sun6i_rtc_ccu_probe(&pdev->dev, chip->base);
++		if (ret)
++			return ret;
+ 	}
+
+ 	platform_set_drvdata(pdev, chip);
+
+>>> And synchronizing access to registers between those two drivers will be
+>>> hard, while we could just share the same spin lock between the RTC and
+>>> clock drivers if they are instanciated in the same place.
+>>
+>> While the RTC driver currently shares a spinlock between the clock part
+>> and the RTC part, there isn't actually any overlap in register usage
+>> between the two. So there doesn't need to be any synchronization.
+> 
+> I know, but this was more of a social problem than a technical one. Each
+> contributor and reviewer in the future will have to know or remember
+> that it's there, and make sure that it's still the case after any change
+> they make or review.
+> 
+> This is again a fairly fragile assumption.
+
+Yeah, I agree that having a lock that is only sometimes safe to use with
+certain registers is quite fragile.
+
+Would splitting the spinlock in rtc-sun6i.c into "losc_lock" (for the
+clock provider) and "alarm_lock" (for the RTC driver) make this
+distinction clear enough?
+
+Eventually, I want to split up the struct between the clock provider and
+RTC driver so it's clear which members belong to whom, and there's no
+ugly global pointer use. Maybe I should do this first?
+
+Regards,
+Samuel
