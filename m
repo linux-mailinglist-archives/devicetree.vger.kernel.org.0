@@ -2,132 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE0FD41C2F6
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 12:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8069741C342
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 13:19:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244849AbhI2KsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 06:48:02 -0400
-Received: from mail.kernelconcepts.de ([188.40.83.200]:33546 "EHLO
-        mail.kernelconcepts.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244886AbhI2KsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 06:48:01 -0400
-Received: from [217.146.132.69] (helo=yoda.kc.loc)
-        by mail.kernelconcepts.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <florian.boor@kernelconcepts.de>)
-        id 1mVX6M-0002Ot-V5; Wed, 29 Sep 2021 12:46:15 +0200
-From:   Florian Boor <florian.boor@kernelconcepts.de>
-To:     jic23@kernel.org
-Cc:     linux-iio@vger.kernel.org, Jonathan.Cameron@huawei.com,
-        Michael.Hennerich@analog.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Florian Boor <florian.boor@kernelconcepts.de>
-Subject: [PATCH v5 2/2] dt-bindings: iio: ad779x: Add binding document
-Date:   Wed, 29 Sep 2021 12:46:07 +0200
-Message-Id: <20210929104607.2699117-2-florian.boor@kernelconcepts.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210929104607.2699117-1-florian.boor@kernelconcepts.de>
-References: <20210929104607.2699117-1-florian.boor@kernelconcepts.de>
+        id S245677AbhI2LTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 07:19:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245671AbhI2LTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 07:19:49 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C05C06161C;
+        Wed, 29 Sep 2021 04:18:08 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 33D548281E;
+        Wed, 29 Sep 2021 13:18:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1632914285;
+        bh=dGc4HjvZ/w/JGXHTxOzP8+/A2IJCNhU36kbfb8OcODs=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=rZUu0BmrtcFmpE05PQ0K8pJq9SLJ0TGzjmO+ozo52scz0uuK5v4SRjPlFeFqMjVLl
+         b35mTHB4MYWG0sEzdbpkeY6IozQqvASG0gFd6wbisfsbNjqCi0VafJGrZpvqdeWLiA
+         UgSWQ007LgodFu6lg7gUaanPGFZq319PynJAQO+ia1pDsxyzPmapmrkyOcqzr4BoNr
+         mMfGfI56taBA4Rn0NlfrmUcF8xd5Owrb9b8Ea4uBtcrcSxtyKllHgpH3GHRJE1lljF
+         1AzrsfDa0T4AH69m1Qxpi/nCMFMlu5UEhTrcb5sQPrt/pKmc4OsY8r2ew7ar5wrEf+
+         fo2RtkBdT94qQ==
+Subject: Re: [PATCH 1/1] ARM: dts: stm32: fix AV96 board SAI2B pin muxing on
+ stm32mp15
+To:     Olivier Moysan <olivier.moysan@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20210927114553.21843-1-olivier.moysan@foss.st.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <beb6e7c8-f3c8-fc4e-6017-fea5690b9f33@denx.de>
+Date:   Wed, 29 Sep 2021 13:18:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210927114553.21843-1-olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-New binding documentation for AD799x series of I²C ADC ICs.
+On 9/27/21 1:45 PM, Olivier Moysan wrote:
+> Fix SAI2B pin muxing for AV96 board on STM32MP15.
+> The label "sai2a-4" is defined twice. Change redundant label to "sai2b-4".
+> 
+> Fixes: dcf185ca8175 ("ARM: dts: stm32: Add alternate pinmux for SAI2 pins on stm32mp15")
+> 
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
+>   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> index 5b60ecbd718f..b9cc9e0dd4fc 100644
+> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> @@ -1235,7 +1235,7 @@
+>   		};
+>   	};
+>   
+> -	sai2b_pins_c: sai2a-4 {
+> +	sai2b_pins_c: sai2b-4 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('F', 11, AF10)>; /* SAI2_SD_B */
+>   			bias-disable;
 
-Signed-off-by: Florian Boor <florian.boor@kernelconcepts.de>
----
-Changes in v5:
-- Correct errors in documentation found by
-  'make DT_CHECKER_FLAGS=-m dt_binding_check'
-  + Reduce title length
-  + Move information to description
-  + Add I²C bits to example
+This mp1 pinmuxing is a total mess, sigh.
 
- .../bindings/iio/adc/adi,ad799x.yaml          | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml
+Can you please also fix sai1a-4 and sai1a-5, which should really be 
+sai1a-2 and sai1a-sleep-2 ? Same as the sai2b-4 and sai2b-5 should be 
+sai2b-2 and sai2b-sleep-2 .
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml
-new file mode 100644
-index 000000000000..cdba1ea91f42
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad799x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD799x analog to digital converters
-+
-+maintainers:
-+  - Michael Hennerich, Analog Devices Inc. <Michael.Hennerich@analog.com>
-+
-+description: |
-+    Support for Analog Devices AD7991, AD7992, AD7993, AD7994, AD7995, AD7997, AD7998,
-+    AD7999 and similar analog to digital converters.
-+    Specifications on the converters can be found at:
-+    AD7991, AD7995, AD7999:
-+      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7991_7995_7999.pdf
-+    AD7992:
-+      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7992.pdf
-+    AD7993, AD7994:
-+      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7993_7994.pdf
-+    AD7997, AD7998:
-+      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7997_7998.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad7991
-+      - adi,ad7992
-+      - adi,ad7993
-+      - adi,ad7994
-+      - adi,ad7995
-+      - adi,ad7997
-+      - adi,ad7998
-+      - adi,ad7999
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vcc-supply:
-+    description:
-+      ADC power supply
-+
-+  vref-supply:
-+    description:
-+      ADC reference voltage supply, optional for AD7991, AD7995 and AD7999
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+       adc1: ad7991@28 {
-+               reg = <0x28>;
-+               compatible = "adi,ad7991";
-+               interrupts = <13 2>;
-+               interrupt-parent = <&gpio6>;
-+
-+               vcc-supply = <&vcc_3v3>;
-+               vref-supply = <&adc_vref>;
-+        };
-+    };
-+...
--- 
-2.30.2
+With that, it would be perfect, thank you.
 
+[...]
