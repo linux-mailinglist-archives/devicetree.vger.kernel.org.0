@@ -2,242 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32B8341C3A1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 13:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 430B141C3BF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 13:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245742AbhI2LqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 07:46:23 -0400
-Received: from mail-eopbgr150084.outbound.protection.outlook.com ([40.107.15.84]:43650
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        id S245153AbhI2Lup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 07:50:45 -0400
+Received: from mail-mw2nam10on2065.outbound.protection.outlook.com ([40.107.94.65]:39904
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229469AbhI2LqV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 07:46:21 -0400
+        id S245139AbhI2Luk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 07:50:40 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QhSppG7gymRfKZExZu7XePHIClaWLTDa9gpbKNlBRmKmCe0ZaU9Pyw5HansCWUo3KBebHzScjYqOGzsAgt+UEEqAslkGi6vphs5JEIn1tUtsCQLmLzRY0fXttESvM6stPWrbDlrD0HSFxNXlEzkyOzrhhiSjl/i4z8O7GN12cq6mCt7x+rKnOuwxAEcK/fdDE1F/WaGPcibWShwHLLPT8UjC8LEXDQcKD1lpOfru5CNG4VaYqaXi9r54qAJ/lzRi9EjP7S243/XxoijXaPhJkW6GpcEgwUsmONNpzg3/Pkhj0hyQFQmqMOw/kFAeYmSAMAZj1stnbNX/nHDoy7bkiQ==
+ b=MYFE77tfPwbJrsZ/eymOQ+X/0S6BFu3Q1xHWNiFFfoJ/GBkEWr1fiGiGrWnru/hJf7L3s94QbP3hINuLt5MBeJVLfi4nTp2iGst0aZ7UEz9+J0e3ZLZDKblIvqh+o9aWWVDIkXx+njL9GnZzJ+72FWtiPZKtkWYYtebo2XhhBtvj8gSk77NDvfFbz+XSwuyy030ioydeh9tXU+Px6opOydxCcwKf25kTr+hzvaSN6juW7OcXMAqoyMtyuy7VNw1d+9zeFZcFFqZc2Ah/8JgFEnd6lHTv12jF5nnoBr1h7NwvKPbHprxzIKY9/8zOr3RnwGsTk9SG6DHjLJ/4SWM4RQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=zBM0S24NoewjkE9YXOHiT21vjZ1v/h1aSr5grt3rH/k=;
- b=eR2/gyqlMvczyyz6Egtcn9ZujbRdCz47GjQCjj12Hwajj3dZQb746CO4y3o4s+78sL661o9L8x75a826ZScsV4U+MhthwosFO81dGO/Rs9prSFUVISN7kozquL/Be9+VL6b6REWvdAbFaXI7MT/gKVSfShpfOg7u+3vUzKe0RBxyl2xqKkMBkuVCbuBIFneHl38+20xhJ/FUyAnBeW+gpZJ0Vsp6ubMs6/p1plXueFAkNVZ/2q08+DXosjQ1krdIRSSh0fFoxw1P13iu1rz99pKhqhQEVhMl9jIGyf6a87W9p2ID0oCDf8rGOy3vA1+J9dE/FnSNgbn6ruaaRJqfzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=GrYWszDwyN1z3lRgfdXwf8h83uDkEskXsnjVhhrzj/w=;
+ b=YJ+07INkDXEsd5MUTR29xXWK/V6jZiTDlMXL3aSP+81ENH+dCed8/RssNYdfqfKOcWke+Z8wauBB6xxs387xAnR7QXCW7vBx8BuhZF5e18rp0bLFtdhxBvaictsIncF04qTuSfRinIMeCAWBkZ/oaL4InEs89V2qTt7uJTGArXLg0JN/+QD+iZHNE+s3hCsjegcZBS/ZCZV6uyHsH4EiXGAffZ7M0lD7v7Fnx9ze6NUJb+1uSKpBpBgFppTvb/mMC+30JUrJa99njnjtHAXWO/EHAGMvJu7TfLnKA/3TIeqPuJCG02FFHnSTo/L/u9tRr1dK9RpP1zMAhPLQrWMdbQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zBM0S24NoewjkE9YXOHiT21vjZ1v/h1aSr5grt3rH/k=;
- b=VxgAPTQy4xFD2rnf5WW0uBgR4Yf+evIBJ9zV9xg1GqRCI8R8M9qp0HH+qJUC7e553E6TqdJxMoW1Lk0BmFkAAKoDat4gY0qd1CIORU7HuXkrWUVq7NB3BZ4nlu2DJ2ftIxlepO0aLB/8FOg97R5cVaVsE07Vd1N2HbtnpJxAAz8=
-Authentication-Results: puri.sm; dkim=none (message not signed)
- header.d=none;puri.sm; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR0401MB2559.eurprd04.prod.outlook.com (2603:10a6:800:57::8)
- by VI1PR04MB5263.eurprd04.prod.outlook.com (2603:10a6:803:5f::24) with
+ bh=GrYWszDwyN1z3lRgfdXwf8h83uDkEskXsnjVhhrzj/w=;
+ b=HywlD48Ty9rR04t5DqRb2AZkSg3bpMYFvBbkvXLbMX2QoSHYr9d0tUheCD9pfkfVP9rFtoWxviwHyKfXzqKBDadn9QAU7e2RYs8wheRK5OTd3aKmYMgMOyXmYSqD9/4Lkn54o7P9a944sPLnkGSxW2ftk9PGSuBEw+BhAgyTGZg=
+Received: from BN0PR04CA0047.namprd04.prod.outlook.com (2603:10b6:408:e8::22)
+ by PH0PR02MB7576.namprd02.prod.outlook.com (2603:10b6:510:5a::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.20; Wed, 29 Sep
- 2021 11:44:37 +0000
-Received: from VI1PR0401MB2559.eurprd04.prod.outlook.com
- ([fe80::485a:4462:94c2:5edb]) by VI1PR0401MB2559.eurprd04.prod.outlook.com
- ([fe80::485a:4462:94c2:5edb%10]) with mapi id 15.20.4544.022; Wed, 29 Sep
- 2021 11:44:37 +0000
-Date:   Wed, 29 Sep 2021 14:44:34 +0300
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     a.fatoum@pengutronix.de, adrian.hunter@intel.com,
-        aisheng.dong@nxp.com, catalin.marinas@arm.com,
-        cw00.choi@samsung.com, devicetree@vger.kernel.org,
-        djakov@kernel.org, festevam@gmail.com, kernel@pengutronix.de,
-        kyungmin.park@samsung.com, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-serial@vger.kernel.org,
-        myungjoo.ham@samsung.com, robh@kernel.org, s.hauer@pengutronix.de,
-        shawnguo@kernel.org, ulf.hansson@linaro.org, will.deacon@arm.com
-Subject: Re: [RFC 00/19] Add interconnect and devfreq support for i.MX8MQ
-Message-ID: <YVRRomS8ut6NjYlV@ryzen>
-References: <1631554694-9599-1-git-send-email-abel.vesa@nxp.com>
- <20210924102026.2679952-1-martin.kepplinger@puri.sm>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210924102026.2679952-1-martin.kepplinger@puri.sm>
-X-ClientProxiedBy: VI1PR08CA0221.eurprd08.prod.outlook.com
- (2603:10a6:802:15::30) To VI1PR0401MB2559.eurprd04.prod.outlook.com
- (2603:10a6:800:57::8)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Wed, 29 Sep
+ 2021 11:48:57 +0000
+Received: from BN1NAM02FT032.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:408:e8:cafe::64) by BN0PR04CA0047.outlook.office365.com
+ (2603:10b6:408:e8::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15 via Frontend
+ Transport; Wed, 29 Sep 2021 11:48:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ BN1NAM02FT032.mail.protection.outlook.com (10.13.3.192) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4544.13 via Frontend Transport; Wed, 29 Sep 2021 11:48:57 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 29 Sep 2021 04:48:49 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 29 Sep 2021 04:48:49 -0700
+Envelope-to: git@xilinx.com,
+ linux-kernel@vger.kernel.org,
+ viresh.kumar@linaro.org,
+ krzk@kernel.org,
+ robh+dt@kernel.org,
+ michael@walle.cc,
+ linux-arm-kernel@lists.infradead.org,
+ geert+renesas@glider.be,
+ devicetree@vger.kernel.org,
+ monstr@monstr.eu,
+ robh@kernel.org
+Received: from [10.254.241.49] (port=59420)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1mVY4u-0005j7-J4; Wed, 29 Sep 2021 04:48:48 -0700
+Subject: Re: [PATCH v5] arm64: zynqmp: Add support for Xilinx Kria SOM board
+To:     Rob Herring <robh@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>
+CC:     <monstr@monstr.eu>, <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Michael Walle" <michael@walle.cc>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzk@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>, <git@xilinx.com>,
+        <linux-kernel@vger.kernel.org>
+References: <1ba32590670434b650bacf6410a65579dd30b38b.1632294439.git.michal.simek@xilinx.com>
+ <YVIPAGckmsYmrVv1@robh.at.kernel.org>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <72a2f8e1-eb6e-4642-a88e-36028b7bdae4@xilinx.com>
+Date:   Wed, 29 Sep 2021 13:48:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Received: from ryzen (86.121.85.242) by VI1PR08CA0221.eurprd08.prod.outlook.com (2603:10a6:802:15::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15 via Frontend Transport; Wed, 29 Sep 2021 11:44:35 +0000
+In-Reply-To: <YVIPAGckmsYmrVv1@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7361a64d-33fe-43af-a933-08d9833e836a
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5263:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB5263CFFBC39A33249936ED18F6A99@VI1PR04MB5263.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Office365-Filtering-Correlation-Id: 2a1683f3-6465-4261-fe8c-08d9833f1f13
+X-MS-TrafficTypeDiagnostic: PH0PR02MB7576:
+X-Microsoft-Antispam-PRVS: <PH0PR02MB7576ACA444DEA31C52065A91C6A99@PH0PR02MB7576.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:1227;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N+51PLwIs2YbURH5nVMngIoT5ZdXzbyO1sFggUIFjwZtEQwdGPptt1cnCq1a+4Gm09E+ichoIB+oQe+0XlA1mzYERP8HQNIsE9W2MXUtLQ9rTjEv4KfLdvyVvb8QmclsEmNF8LeUNIHueTbtXzR1nvmFwdo/mknaTQ2zlwHw93rszwINdMK0EvMQ6/yHeji3e55aEJ8EprJdxK8dJ3x/Y2+dJvfJk9dYsmS1WzWoK/kSC4FY4w0878A8ZYxzrRQ4Eo0HBrdrYmPGCVfgiuU3hLtkmPAqy0ygt+/oRah+7l1dx8vb1WdwgmPvtJv2UCJOPZVRlKHDofKE4JnA3OjtpZKyN1fdHfJ4eBq+iXPoZtaVvVMh6f8iFJF47XWXJvNWJ9mpEgiTlEa7uyREKRbdzmj16vQ8Tns2MNj/0xSjjQvqBav2w8v9Dm3L9LcPLOoJj287iP8LiGllOSK5ZMpUs/2W0D0xFAPmUKLSqRgsexErNY2CEqGcU3ktTcqA2ZCyDtqi7ssvQWzWsvyR4kUwVZp5pIuZ7wGp/l0QgQV0kPRDy/TbLOpxQ6XIsbjNvk2FuMoCoPGn2P9X4EjZj17Kk4Fli2FNRgYvVpEYm/YYfG1L5En1YY9F7TC7Vwp1ASOpmU0gXCcOxHWjs9EcXvdaaliCDKd03It4KH817+OdBKTayo6zY+mBXvxsQYSEGu44uYw3bmV8w0+N2XHc49NVN1SnkYGxTWfNwHALXg7No/BNz284vtajlgvZasFoQpZ4ZLu8mxsYn6CeSvD6i6bNnA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2559.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6496006)(55016002)(6916009)(38350700002)(5660300002)(186003)(38100700002)(9686003)(316002)(52116002)(9576002)(26005)(86362001)(53546011)(7416002)(4326008)(2906002)(508600001)(44832011)(966005)(83380400001)(66556008)(66946007)(66476007)(956004)(33716001)(8676002)(8936002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RAda+RRIROAS4jSLcA9vdIkml1Zk/Csu+xBn5FITbebiQLsrscT22VW4z1iI?=
- =?us-ascii?Q?9N5bW7tYJfVsOeZk2bRAqUTNkmWGqk4jTaqhiBBWXtfZCaHh+MZykSPI5tWd?=
- =?us-ascii?Q?x8rK6yEr6NpEQNidTClSNvLMTLgwMtQaLihHImDjUN/UXkEh9Buqa2zGDFq4?=
- =?us-ascii?Q?EgLtdln/EdTVtH1Y28zdse6OOmbo+ApM4I9TEMZBYLtdbGcVYnN5DCaQVqAJ?=
- =?us-ascii?Q?cpqImSX1maGP2i6gsDau+ACZpqyeYGcSXAi4o/KZG3ptoSrf0g0DLUoI2FI/?=
- =?us-ascii?Q?ED0SEgSxOuKBBHiTbMDc2G5E+DJuXsDk/Wsp7BK18XYvnxOjZ4zv+aBuSLAz?=
- =?us-ascii?Q?gWBI/XUSl/JBmv2qpxUSSmccIF5zrBi8KHa1awEagYCVngjv1ynAN9z84uo7?=
- =?us-ascii?Q?u4ObDUaWuY8IxcIe9FoF1sq9yal5teqWPtxYtSY5LpmmCCnWOzEnq3/bvxa/?=
- =?us-ascii?Q?i46uAPNAWBY65NiN+aXt6jnPrRPlge0ptlj93oeomU62dP/IaBje6PvZ8T2M?=
- =?us-ascii?Q?uqZFZRd6CkwP5VX9OsozF8sYT2BC/Gu5LUJ1AM/8hfm5wOWjAr0h+2B3gyGk?=
- =?us-ascii?Q?RQw0uq8aFtuuCBoajpqUgae6KSiRpQww1tvyQEXTQ5Wn6PrCsq97yUGIBvv4?=
- =?us-ascii?Q?ytxNhnBCEQz5/ujAiflhYvpmrMNQXSR3AQvdOhOt4GzkVBuHPssnXox044OG?=
- =?us-ascii?Q?4FVZUAKASNHB1nIuofgstdgo8n/8FyrL1+oBJgFqTJv1wDv23nYK+YqmO/Bk?=
- =?us-ascii?Q?2355rWuxTsla+PdKzM0M1dW2Hv9rv2YqTXMZtm33fbaIQSjWfRq3Nw6jdc1b?=
- =?us-ascii?Q?tZsJBkrs3rS9Jbcfw0VBVufVJ6vDW5Mv5guJ3vlvaU6DTs3QmT+OIFST4a3N?=
- =?us-ascii?Q?ct6e4m5/uZjBwD7m9DClGQc9pE7XSEsn4mOcnas23XjbG4UyddBymhBELnSC?=
- =?us-ascii?Q?1eAeEpeZZniuxBQQCZSSwYJTke0bUQRVHjCyds2L76xLBDwVfpA1Qw6p8zVK?=
- =?us-ascii?Q?+beeLCgvHSARatDlMquqM4AK/2A+B2+GG0jubz24wTJSIcukbrsfhpzTTIkx?=
- =?us-ascii?Q?Ng4rjCz9dW4RRJ/hnm3g3bQ/5d+IlOmsLhtbI/yLt/9byZeUtYN+oVieTv3R?=
- =?us-ascii?Q?Z+e1nqVoBzd73xfjwnYF/QwpfKmFmatie1TSsnlB0wxDxKcdGMwyOp+gVY/O?=
- =?us-ascii?Q?lj6o9NY2VZ8LeJ4SJiTg9CrH+EbRyuGcv8ry6kUYkJ3DCs8y33FUjLIQdENp?=
- =?us-ascii?Q?lrD6Wevepdxwaq3qDCfKXJIJpgBZYsCuummgiy2noPXgMFKEovV0v5+0Beb0?=
- =?us-ascii?Q?ETNJDx7hUQrn/LHAIu1xeg/c?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7361a64d-33fe-43af-a933-08d9833e836a
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2559.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2021 11:44:36.9880
+X-Microsoft-Antispam-Message-Info: O6kXnVAoJvBgD/NzcCjSpGkBYbSjnoyoyLZmZs34j/I2bbGtGGJmLP1Vubdg/A1T2fTNwGXOtYFp+RhQcGaEpM7hMYCOmOb5Q7SCwfUX/BkPLbPRAQYf6stJ4Zz38EE3XAW8tA5RPTzsdr2KwkHsFDnRjUsVCdA2ocHSHfsqzEnuH7xt9vPNW8lXK+PylZlhA6xtg5AElrg029iWHBI6MVOC6Avtcg+4Wcqj6slxlZBOeWypSIkcW92E813oXpWUziwCDJWGOVDpC1opjGOD+G8cNdvZL28a8GgMZiSXpwkqb3U4UW0nXltkJ1Ov4GDJjmIrU6is7/3lz4mvfsgLjGZlejnspb8G5qcWLV14cIhZUPkA2RxnuTljcTnJHNn/LaGrwUUSQB4LWpwJZsyIxJLgiPbgO3QkrFxXSwGr73rC/M+TgmdJZlgwuFtnVpuv9hCEQe2MRrvyDD6hvDUjz/d67roVEuaE6F0V/p41LTdDc/y7hJevSlGIT88/brF6/lJCSKCwze0uHG/mWbIaGF16Z1eK8oEM/PyaoqqBix71Gn1U4+nnKplFUVCyFTH+9q3j6wS0QM//BVogr5gzMFf4L6Itpu/jVBebdUbzNliFrlw0qD0xbu3G9+s9n/4IrdImJDlM1fLWC+hH61Irw0jaF89KfW3Lu4QODSPqBFJQR9peXF1Lkcp8LgK74EcMZPoeY7qi5spQALzrxgKsrLEL2f10MCg+NPtaPtWxIacsbcUWYYVTzW4bzZHvhypar+o1ZqMB6U1P9FuWOaJh5pIrk8o48p+lKKJgoWHQ6apKDP8v5YcBRFwsuZhALtGCbEn49bm2Ag1KmGJD6zqI7pLZWYfj8Bg1/OYwVytTMF+px9JBSWTrPK36SuqR+XMA
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(356005)(26005)(54906003)(110136005)(4326008)(8936002)(82310400003)(70206006)(70586007)(8676002)(186003)(36906005)(316002)(83380400001)(36756003)(6666004)(36860700001)(47076005)(7636003)(53546011)(966005)(31686004)(5660300002)(31696002)(2906002)(7416002)(2616005)(426003)(508600001)(336012)(44832011)(9786002)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2021 11:48:57.5728
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gaPN9rKY/gywWKk1YiSYxp2+QCYyAS1TJxglF24cB0n11F7Sevn/8Yjk1sc54UMusUmVK7t4tQjg2q4uqgFacA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5263
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a1683f3-6465-4261-fe8c-08d9833f1f13
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT032.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7576
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-09-24 12:20:26, Martin Kepplinger wrote:
-> hi Abel,
+
+
+On 9/27/21 8:35 PM, Rob Herring wrote:
+> On Wed, 22 Sep 2021 09:07:32 +0200, Michal Simek wrote:
+>> There are couple of revisions of SOMs (k26) and associated carrier cards
+>> (kv260).
+>> SOM itself has two major versions:
+>> sm-k26 - SOM with EMMC
+>> smk-k26 - SOM without EMMC used on starter kit with preprogrammed firmware
+>> in QSPI.
+>>
+>> SOMs are describing only devices available on the SOM or connections which
+>> are described in specification (for example UART, fwuen).
+>>
+>> When SOM boots out of QSPI it uses limited number of peripherals defined by
+>> the specification and present in sm(k)-k26 dtses.
+>> Then a carrier card (CC) detection is happening and DT overlay is applied
+>> to brings new functionality. That's why DT overlays are used. The name is
+>> composed together with SOM name and CC name that's why DT overlays with
+>> these names are generated to make sure they can be used together.
+>>
+>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+>> ---
+>>
+>> Changes in v5:
+>> - Extend commit message.
+>>
+>> Changes in v4:
+>> - Remove ina260 and usb5744 nodes
+>> - Remove compatible string from overlays
+>>
+>> Changes in v3:
+>> - Fix led node name
+>> - Fix compatible string for xlnx,zynqmp-sk-kv260-revA/Y/Z
+>> - Fix headers alignment
+>> - Move USB3 PHY properties from DWC3 node to USB node - reported by Manish
+>>   Narani
+>> - Change dtb names generated with dtbo
+>> - Fix emmc comment style
+>>
+>> Changes in v2:
+>> - Use sugar syntax - reported by Geert
+>> - Update copyright years
+>> - Fix SD3.0 comment alignment
+>> - Remove one newline from Makefile
+>>
+>> https://www.xilinx.com/products/som/kria.html
+>> Based on
+>> https://lore.kernel.org/r/cover.1628244703.git.michal.simek@xilinx.com
+>>
+>> ---
+>>  .../devicetree/bindings/arm/xilinx.yaml       |  16 +
+>>  arch/arm64/boot/dts/xilinx/Makefile           |  13 +
+>>  .../boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts  | 315 ++++++++++++++++++
+>>  .../boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts  | 298 +++++++++++++++++
+>>  .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    | 289 ++++++++++++++++
+>>  .../boot/dts/xilinx/zynqmp-smk-k26-revA.dts   |  21 ++
+>>  6 files changed, 952 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
+>>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts
+>>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+>>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts
+>>
 > 
-> thank you for the update (this is actually v2 of this RFC right?)!
-> 
-> all in all this runs fine on the imx8mq (Librem 5 and devkit) I use. For all
-> the pl301 nodes I'm not yet sure what I can actually test / switch frequencies.
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
 
-You can start by looking into each of the following:
-
- $ ls -1d /sys/devices/platform/soc@0/*/devfreq/*/trans_stat
-
-and look if the transitions happen when a specific driver that is a icc user suspends.
-
-You can also look at:
-
- /sys/kernel/debug/interconnect/interconnect_summary 
-
-and:
-
- /sys/kernel/debug/interconnect/interconnect_graph
-
-> But I still have one problem: lcdif/mxfb already has the interconnect dram
-> DT property and I use the following call to request bandwidth:
-> https://source.puri.sm/martin.kepplinger/linux-next/-/commit/d690e4c021293f938eb2253607f92f5a64f15688
-> (mainlining this is on our todo list).
-> 
-> With your patchset, I get:
-> 
-> [    0.792960] genirq: Flags mismatch irq 30. 00000004 (mxsfb-drm) vs. 00000004 (mxsfb-drm)
-> [    0.801143] mxsfb 30320000.lcd-controller: Failed to install IRQ handler
-> [    0.808058] mxsfb: probe of 30320000.lcd-controller failed with error -16
-> 
-> so the main devfreq user (mxsfb) is not there :) why?
-> 
-
-OK, I admit, this patchset doesn't provide support for all the icc consumer drivers.
-But that should come at a later stage. I only provided example like fec and usdhc, to show
-how it all fits together.
-
-> and when I remove the interconnect property from the lcdif DT node, mxsfb
-> probes again, but of course it doesn't lower dram freq as needed.
-> 
-> Do I do the icc calls wrong in mxsfb despite it working without your
-> patchset, or may there be something wrong on your side that breaks
-> the mxsfb IRQ?
-> 
-
-Do you have the following changes into your tree?
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi               
-index 00dd8e39a595..c43a84622af5 100644                                                                          
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi                                                                  
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi                                                                  
-@@ -524,7 +524,7 @@ lcdif: lcd-controller@30320000 {                                                             
-                                                  <&clk IMX8MQ_VIDEO_PLL1>,                                      
-                                                  <&clk IMX8MQ_VIDEO_PLL1_OUT>;                                  
-                                assigned-clock-rates = <0>, <0>, <0>, <594000000>;                               
--                               interconnects = <&noc IMX8MQ_ICM_LCDIF &noc IMX8MQ_ICS_DRAM>;                    
-+                               interconnects = <&icc IMX8MQ_ICM_LCDIF &icc IMX8MQ_ICS_DRAM>;                    
-                                interconnect-names = "dram";                                                     
-                                status = "disabled";                                                             
-                                                                                                                 
-@@ -1117,7 +1117,7 @@ mipi_csi1: csi@30a70000 {                                                                  
-                                         <&src IMX8MQ_RESET_MIPI_CSI1_PHY_REF_RESET>,                            
-                                         <&src IMX8MQ_RESET_MIPI_CSI1_ESC_RESET>;                                
-                                fsl,mipi-phy-gpr = <&iomuxc_gpr 0x88>;                                           
--                               interconnects = <&noc IMX8MQ_ICM_CSI1 &noc IMX8MQ_ICS_DRAM>;                     
-+                               interconnects = <&icc IMX8MQ_ICM_CSI1 &icc IMX8MQ_ICS_DRAM>;                     
-                                interconnect-names = "dram";                                                     
-                                status = "disabled";                                                             
-                                                                                                                 
-@@ -1169,7 +1169,7 @@ mipi_csi2: csi@30b60000 {                                                                  
-                                         <&src IMX8MQ_RESET_MIPI_CSI2_PHY_REF_RESET>,                            
-                                         <&src IMX8MQ_RESET_MIPI_CSI2_ESC_RESET>;                                
-                                fsl,mipi-phy-gpr = <&iomuxc_gpr 0xa4>;                                           
--                               interconnects = <&noc IMX8MQ_ICM_CSI2 &noc IMX8MQ_ICS_DRAM>;                     
-+                               interconnects = <&icc IMX8MQ_ICM_CSI2 &icc IMX8MQ_ICS_DRAM>;                     
-                                interconnect-names = "dram";                                                     
-                                status = "disabled";                                                             
-
-I forgot to update these in the current version of the patchset. Will do in the next version.
-
-Also, would help a lot if you could give me a link to a tree you're testing with.
-That way I can look exactly at what's going on.
-
-> again thanks a lot for working on this! I'm always happy to test.
-> 
->                           martin
-> 
-> 
-> 
-> ---
->  .../boot/dts/freescale/imx8mq-librem5.dtsi    | 20 -------------------
->  1 file changed, 20 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> index 6fac6676f412..8496a90f23bf 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> @@ -381,26 +381,6 @@ &A53_3 {
->  	cpu-supply = <&buck2_reg>;
->  };
->  
-> -&ddrc {
-> -	operating-points-v2 = <&ddrc_opp_table>;
-> -
-> -	ddrc_opp_table: ddrc-opp-table {
-> -		compatible = "operating-points-v2";
-> -
-> -		opp-25M {
-> -			opp-hz = /bits/ 64 <25000000>;
-> -		};
-> -
-> -		opp-100M {
-> -			opp-hz = /bits/ 64 <100000000>;
-> -		};
-> -
-> -		opp-800M {
-> -			opp-hz = /bits/ 64 <800000000>;
-> -		};
-> -	};
-> -};
-> -
->  &dphy {
->  	status = "okay";
->  };
-> -- 
-> 2.30.2
-> 
+Applied.
+M
