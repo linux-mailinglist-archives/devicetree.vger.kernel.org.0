@@ -2,83 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A41141C4C4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 14:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2FAB41C4E8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 14:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343663AbhI2Mbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 08:31:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41594 "EHLO mail.kernel.org"
+        id S1343842AbhI2Moq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 08:44:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49304 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1343531AbhI2Mbn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 08:31:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9A483613A0;
-        Wed, 29 Sep 2021 12:30:01 +0000 (UTC)
+        id S1343839AbhI2Moq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 08:44:46 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 76B9561406;
+        Wed, 29 Sep 2021 12:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632918602;
-        bh=FTNDmUlvMT5ZqQ/Z2KvcauJAJmdd+/ztjAw1kxwI6z4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eyrq5jvoebysBxaZXASykBblpjG3GOfzan58gaYSwlbbRA+OZrfHEXoSYjonTQmB3
-         z11Sotsg9T8gxq94qfQ5lVG2GtpJtlVefQicADpdfGkaiVPqP62z8l5LTjzYhXs7FE
-         KQKmbXXnbD+ox36a487aQM5Lt5gFrkZiTCYX9rguNcdBojv7tA2ptiWw7hgkTSmyUe
-         Tonh5pB3opo3Y247zLkoPrruf4lvd6Avw18+igb/g8LPOFPN54BqeDaBFd8xgjYJxU
-         KNX1sz5pQOoq44GXfM3t8gOcoLqw97ElFHzbVvUUOQJRgU4DK7GLwKXMQJ5gKa6QNN
-         AldWqEGZ7o6ZA==
-Date:   Wed, 29 Sep 2021 13:29:12 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] regulator: Add Unisoc's SC2730 regulator driver
-Message-ID: <20210929122912.GO4199@sirena.org.uk>
-References: <20210928073609.198975-1-zhang.lyra@gmail.com>
- <20210928113057.GJ4199@sirena.org.uk>
- <CAAfSe-vM8iG1OtQeVR1CxQtpvA8kqSs3pJ78RQQOL7GcWcTwSw@mail.gmail.com>
+        s=k20201202; t=1632919385;
+        bh=cWzLi7i1a/a68Tsb75m2gFcMuYlcPGVTxONILp7CzaA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lmgT1zdZ0oLjC5TFc9XmPIIQrBSMYFRL12JFR5LgtCMedubwNzoWj8y7CpB8E2/se
+         CHUkVMyTsFiR2/UL9z/e/nJTaAs2SwvkPcITSgbUYLJZ/4WMFIHB2M+3+yVfVbnLII
+         UqNor+jqnftZaySO//zGAsuiCypwzqpl8Iu37OybjCaFYTgjuh/bOfkLCf+u61PiC7
+         uOEWbK0kG2HmXTu/2oIox9c0MsB+woxNt4l2c1kwkJz3+ht5kOVatOWZZlYT9Wkb3l
+         rJ8iMnFsSmEGRP6mqnl6i4MTO8POa6XxcQOFs4WkVrJtPVlf/bCb9rqHd9D/xSeqYH
+         V+IUdRkkarhiA==
+Received: by mail-ed1-f48.google.com with SMTP id r18so8046350edv.12;
+        Wed, 29 Sep 2021 05:43:05 -0700 (PDT)
+X-Gm-Message-State: AOAM531GQmGD9U7z99Km77NLV30+QlyJ2SoJwCWo0JmDl2Ab0y6ckxrN
+        HzSjq0Oihela99Nmf2rIL8tfbtz9Kv2M5QIi2w==
+X-Google-Smtp-Source: ABdhPJxndpOOUJE3NM9jpGO24ny0m+Pmu/7sbkbFayNO5BQqCs07NMgh7wcniLUzz5l8HifNI+tI0MSA3xKXu7azUbM=
+X-Received: by 2002:a17:906:c10e:: with SMTP id do14mr9473117ejc.84.1632919384052;
+ Wed, 29 Sep 2021 05:43:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="hOh8F6DNH/RZBSFD"
-Content-Disposition: inline
-In-Reply-To: <CAAfSe-vM8iG1OtQeVR1CxQtpvA8kqSs3pJ78RQQOL7GcWcTwSw@mail.gmail.com>
-X-Cookie: 98% lean.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210929052613.8589-1-saiprakash.ranjan@codeaurora.org>
+In-Reply-To: <20210929052613.8589-1-saiprakash.ranjan@codeaurora.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 29 Sep 2021 07:42:52 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLzDejj99C6CPuW+19cgwdDVkctppL_SFeWnAG5LUkscw@mail.gmail.com>
+Message-ID: <CAL_JsqLzDejj99C6CPuW+19cgwdDVkctppL_SFeWnAG5LUkscw@mail.gmail.com>
+Subject: Re: [PATCH] Add system-cache-controller to the list of generic node names
+To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Cc:     Mailing List <devicetree-spec@vger.kernel.org>,
+        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 29, 2021 at 12:26 AM Sai Prakash Ranjan
+<saiprakash.ranjan@codeaurora.org> wrote:
+>
+> System Cache Controller (Last Level Cache Controller/LLCC) does not
+> have a cache-level associated with it as enforced by the already
+> existing 'cache-controller' node name, so add system-cache-controller
+> to the list of generic node names as decided on the lkml in [1][2]
+> and already being used in the dts for sometime now.
+>
+> [1] https://lore.kernel.org/lkml/5dcd8588.1c69fb81.2528a.3460@mx.google.com/
+> [2] https://lore.kernel.org/lkml/cover.1573814758.git.saiprakash.ranjan@codeaurora.org/
+>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Rajendra Nayak <rnayak@codeaurora.org>
+> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> ---
+>  source/chapter2-devicetree-basics.rst | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/source/chapter2-devicetree-basics.rst b/source/chapter2-devicetree-basics.rst
+> index 40be22192b2f..c06c5063c68b 100644
+> --- a/source/chapter2-devicetree-basics.rst
+> +++ b/source/chapter2-devicetree-basics.rst
+> @@ -276,6 +276,7 @@ name should be one of the following choices:
+>     * sram-controller
+>     * ssi-controller
+>     * syscon
+> +   * system-cache-controller
 
---hOh8F6DNH/RZBSFD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I don't want to encourage others to use this over 'cache-controller'
+and the standard binding.
 
-On Wed, Sep 29, 2021 at 04:20:37PM +0800, Chunyan Zhang wrote:
-> On Tue, 28 Sept 2021 at 19:31, Mark Brown <broonie@kernel.org> wrote:
-
-> > Since this is a part of a MFD I'd not expect it to have a compatible
-> > string?
-
-> Since we switched to use devm_of_platform_populate() [1] to register
-> MFD subdevices, compatible is required, IIUC.
-
-I'm not sure that's a good fit for these regulators, we don't gain any
-extra information from the compatible here.
-
---hOh8F6DNH/RZBSFD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFUXBcACgkQJNaLcl1U
-h9AS7gf/Y9ZY1fjRz+eP/5LZIskshRKmSZlQJ4lfJeCRxczaRp3TycTxCFvMVcZg
-Q88ZKfEJ7vR3JoO00LFqXal38XAlx7X5GPh1SYa7cF8UGmWmU2lwELfTMSnU8dRD
-jL7PJZGas/d2vXXwyuvZ2YxzrUN6BHMA0YwU2EdK85z+4hNeSCQ84UKAVX4DPRMV
-S4RwAo6RWQTC+gyYS+oDR2Mv3S47A724sX7sAYJbEMdLvZMpMplNqG0f/xVEfMqx
-rf6iP2EQ7o1krLR6SAdH5ZshmvNovy/1OcYc5WzOydIvHjjcnVTnIDQFTCYGn5tm
-Abs5ShUfbg352yF0fiUuQKAouXRk4g==
-=pmbW
------END PGP SIGNATURE-----
-
---hOh8F6DNH/RZBSFD--
+Rob
