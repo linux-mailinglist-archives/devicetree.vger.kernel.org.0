@@ -2,122 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF34A41C9BF
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 18:09:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32C9241CA2E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 18:33:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345563AbhI2QKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 12:10:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56420 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344611AbhI2QKn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 12:10:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8329F615A7;
-        Wed, 29 Sep 2021 16:09:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632931742;
-        bh=dijA/w5Ov8JsJ92OsBZBg2039bqDhk6Rb6AyNDbPn44=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=F/l734se74TwmNKqonr45ks6Q850RYvThvXxxdhTyJf3RZw1rzmHm3f7Rq9l4TUbH
-         fCysjvBQWOc0oroYUgIl8V24IheYEjz/xul/maQHbKIuA3dZbOEHR2gT16yODw6rm1
-         zPYdjJjh+cZ/tQsX2hXR4jU27EPuJG0V8gOdWwXEZ6enjVntGut2AW04aaIAv5b1sU
-         rEZ2oJjqzcqpRmnxCPLNc7xqE3BifgIvrvORJApCCs674vkO5pDWID5V24/iPO7OWm
-         /X5UYk8JAvcdEZojKGLgFtk+TI+8C06JdmyrCjjdItiybmC3AKcCoVNIoSE7EJKq2l
-         4IZZ5MbZW1gkw==
-Received: by mail-ed1-f41.google.com with SMTP id bd28so10484450edb.9;
-        Wed, 29 Sep 2021 09:09:02 -0700 (PDT)
-X-Gm-Message-State: AOAM533VDs/brX/1UDJ0JEbcn63icQo4cgetb+gUo5rQGcJ2Zcb8YfxR
-        +RxXsVTEeWD4bEWTRHky/uE1ozeKjLJu+o/Liw==
-X-Google-Smtp-Source: ABdhPJzrMbYO0rSYnqgmEqL2Di5ODf2KFSFLA0nJG3BUUjFxO4DRvWKc4rYXRSAUryn3020YRQn63vQqdkNzIXSPDII=
-X-Received: by 2002:a17:906:7250:: with SMTP id n16mr562242ejk.147.1632931694940;
- Wed, 29 Sep 2021 09:08:14 -0700 (PDT)
+        id S1345446AbhI2Qew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 12:34:52 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:51880 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244930AbhI2Qev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 12:34:51 -0400
+Received: from [IPv6:2a02:810a:880:f54:fd5c:7cb1:aaa8:78b1] (unknown [IPv6:2a02:810a:880:f54:fd5c:7cb1:aaa8:78b1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 3A3C31F4473B;
+        Wed, 29 Sep 2021 17:33:08 +0100 (BST)
+Subject: Re: [PATCH v8 03/12] iommu/mediatek: Add probe_defer for smi-larb
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        David Airlie <airlied@linux.ie>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        yi.kuo@mediatek.com, acourbot@chromium.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        anthony.huang@mediatek.com,
+        Frank Wunderlich <frank-w@public-files.de>
+References: <20210929013719.25120-1-yong.wu@mediatek.com>
+ <20210929013719.25120-4-yong.wu@mediatek.com>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <33a8b313-ad1b-d307-7e8c-2fdebdc6f1a7@collabora.com>
+Date:   Wed, 29 Sep 2021 18:33:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20210929115409.21254-1-zev@bewilderbeest.net>
-In-Reply-To: <20210929115409.21254-1-zev@bewilderbeest.net>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 29 Sep 2021 11:08:03 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJH+b5oFuSP+KBLBsN5QTA6xASuqXJWXUaDkHhugXPpnQ@mail.gmail.com>
-Message-ID: <CAL_JsqJH+b5oFuSP+KBLBsN5QTA6xASuqXJWXUaDkHhugXPpnQ@mail.gmail.com>
-Subject: Re: [PATCH 0/6] Dynamic aspeed-smc flash chips via "reserved" DT status
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Joel Stanley <joel@jms.id.au>,
-        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Michael Walle <michael@walle.cc>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210929013719.25120-4-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 29, 2021 at 6:54 AM Zev Weiss <zev@bewilderbeest.net> wrote:
->
-> Hello,
->
-> This patch series aims to improve a scenario that arises in OpenBMC
-> and which isn't handled very well at the moment.  Certain devices, the
-> example at hand being the flash chip used to store the host's firmware
-> (e.g. the BIOS), may be shared between the BMC and the host system but
-> only available to one or the other at any given time.  The device may
-> thus be effectively off-limits to the BMC when it boots, and only
-> usable after userspace performs the necessary steps to coordinate
-> appropriately with the host (tracking its power state, twiddling
-> GPIOs, sending IPMI commands, etc.).
->
-> Neither the "okay" nor the "disabled" device-tree status values works
-> nicely for the flash device this case -- an "okay" device gets probed
-> automatically as soon as the device and a driver for it are available,
-> and a "disabled" one gets forgotten about entirely, whereas we want
-> the BMC's kernel to be aware of the existence of the device, but not
-> try to actually do anything with it (i.e. probe it) until explicitly
-> requested to do so by userspace.
 
-While Linux treats 'disabled' as gone forever, that's not exactly what
-the spec says. Either disabled or reserved could change in theory. But
-I do agree 'reserved' is the right choice for your use.
 
-> However, while there's no support for it currently in the kernel tree,
-> the device-tree spec [0] also lists "reserved" as a possible status
-> value, and its description seems like a fairly reasonable fit for this
-> situation:
->
->   Indicates that the device is operational, but should not be used.
->   Typically this is used for devices that are controlled by another
->   software component, such as platform firmware.
->
-> These patches start making use of this status value in the aspeed-smc
-> driver.  The first patch adds a companion routine to
-> of_device_is_available() that checks for a "reserved" status instead
-> of "okay".  The second patch is a small MTD adjustment to allow an
-> unregistered device to be cleanly re-registered.  Patches 3 through 5
-> modify the aspeed-smc driver to allow individual chips to be attached
-> and detached at runtime, and to avoid automatically attaching any
-> marked as reserved.  Finally, patch 6 employs the newly-supported
-> status in adding support for the BIOS flash device to the ASRock Rack
-> e3c246d4i BMC.
+On 29.09.21 03:37, Yong Wu wrote:
+> Prepare for adding device_link.
+> 
+> The iommu consumer should use device_link to connect with the
+> smi-larb(supplier). then the smi-larb should run before the iommu
+> consumer. Here we delay the iommu driver until the smi driver is ready,
+> then all the iommu consumers always are after the smi driver.
+> 
+> When there is no this patch, if some consumer drivers run before
+> smi-larb, the supplier link_status is DL_DEV_NO_DRIVER(0) in the
+> device_link_add, then device_links_driver_bound will use WARN_ON
+> to complain that the link_status of supplier is not right.
+> 
+> device_is_bound may be more elegant here. but it is not allowed to
+> EXPORT from https://lore.kernel.org/patchwork/patch/1334670/.
+> 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Tested-by: Frank Wunderlich <frank-w@public-files.de> # BPI-R2/MT7623
+> ---
+>   drivers/iommu/mtk_iommu.c    | 2 +-
+>   drivers/iommu/mtk_iommu_v1.c | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index d837adfd1da5..d5848f78a677 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -844,7 +844,7 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+>   			id = i;
+>   
+>   		plarbdev = of_find_device_by_node(larbnode);
+> -		if (!plarbdev) {
+> +		if (!plarbdev || !plarbdev->dev.driver) {
+>   			of_node_put(larbnode);
+>   			return -EPROBE_DEFER;
 
-I'm not sure this should be MTD specific. There's other cases where we
-may want devices to become available. So the question is whether there
-should be a more generic mechanism rather than each subsystem coming
-up with their own thing.
+if plarbdev is null doesn't that mean that the device does not exist?
+so we should return -ENODEV in that case?
 
-There's out of tree support for applying overlays which could be used
-here. The issue with it is we don't want it to be unconstrained where
-an overlay can make any change anywhere in a DT.
+thanks,
+Dafna
 
-Another possibility is making 'status' writeable from userspace. It is
-just a sysfs file. That too may need to be opt-in.
-
-Rob
+>   		}
+> diff --git a/drivers/iommu/mtk_iommu_v1.c b/drivers/iommu/mtk_iommu_v1.c
+> index 1467ba1e4417..4d7809432239 100644
+> --- a/drivers/iommu/mtk_iommu_v1.c
+> +++ b/drivers/iommu/mtk_iommu_v1.c
+> @@ -602,7 +602,7 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+>   		}
+>   
+>   		plarbdev = of_find_device_by_node(larbnode);
+> -		if (!plarbdev) {
+> +		if (!plarbdev || !plarbdev->dev.driver) {
+>   			of_node_put(larbnode);
+>   			return -EPROBE_DEFER;
+>   		}
+> 
