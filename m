@@ -2,176 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA71841C873
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 17:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA4841C758
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:53:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345123AbhI2PcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 11:32:03 -0400
-Received: from mga02.intel.com ([134.134.136.20]:42002 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345362AbhI2Pb5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 11:31:57 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10122"; a="212221484"
-X-IronPort-AV: E=Sophos;i="5.85,332,1624345200"; 
-   d="scan'208";a="212221484"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2021 08:30:11 -0700
-X-IronPort-AV: E=Sophos;i="5.85,332,1624345200"; 
-   d="scan'208";a="588091592"
-Received: from ibarchen-mobl.amr.corp.intel.com (HELO [10.209.150.234]) ([10.209.150.234])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2021 08:30:09 -0700
-Subject: Re: [PATCH 01/13] ASoC: soc-pcm: Don't reconnect an already active BE
-To:     =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@linux.intel.com>,
-        Sameer Pujar <spujar@nvidia.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, catalin.marinas@arm.com, will@kernel.org,
-        perex@perex.cz, tiwai@suse.com, kuninori.morimoto.gx@renesas.com
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        sharadg@nvidia.com, linux-arm-kernel@lists.infradead.org
-References: <1630056839-6562-1-git-send-email-spujar@nvidia.com>
- <1630056839-6562-2-git-send-email-spujar@nvidia.com>
- <be6290d1-0682-3d93-98a6-ad0be3ca42c1@linux.intel.com>
- <70422e52-89d2-d926-b3f9-be59780d464e@nvidia.com>
- <2f96f1aa-74f2-8ea8-3f43-e4da97400fde@linux.intel.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <647b1d54-dbd7-ce91-291d-d677ce908398@linux.intel.com>
-Date:   Wed, 29 Sep 2021 09:52:17 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S1344729AbhI2OyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 10:54:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48726 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344618AbhI2OyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 10:54:05 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB786C061760
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 07:52:23 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id t2so2518309qtx.8
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 07:52:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=poorly.run; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=7JUE3KnwhzODMFVKnxXssJhCx06ypOEtInaS9VOkBkc=;
+        b=fEPcDyJIUlgGINqrdGQWXxbylyFaK2FDZ+tEciqN1QqVHxIMoGNh01cy71i9hulBrb
+         Ecc7pqn9FQVSle5p2ib31pKYcFcSqKGUAw9fD/Rt9nu0snwFY1nEa/em0Ns1EHUEgWUY
+         +6lLX31R29/Q4STnRF5RkIQZqKLDrtYuhAHSZXscTv6ISV8k4RTz7pj/3T2bkLjWsBWr
+         tIYoNBMLBHIcsfd8YqNrY3P0urlD5femmNoTWhT3FWznuSpYrbg9svfyHncSXzewI/VU
+         y40kzfszbo6mXYwIoydOPnVsAL19hUGrqerQkdCpYI0j4xR3eJIBpLt6AOq+Tr2T6Jof
+         k8uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7JUE3KnwhzODMFVKnxXssJhCx06ypOEtInaS9VOkBkc=;
+        b=TRpSdfTkjm8BWUyDWADlqTxHavEhd89NpKzZvMjhyisfi6tYPFMsBwKV8Gb4tEtRIo
+         SlkhR+ujuirsrpytBg8nCO6wgWN/e7oBQx5FSrh5lhTZpUpz4HcCQiZpYwC+zXiP/Z7Y
+         PvLf85BQjg7ztLXI8iO++DMbyHUgilt6r6gnHa6d4wwnvg4VJW+iKcQS8rg4hmgeU7Te
+         bsWAFrDP6F0O1N6DVpLNfJy7YVYorpFfBBgc5mgW4oJOS7/hGNlggVZIoMLv92kIuv+6
+         1KU1rpjC/F4WT7ncW4oGOmlVIpiC7fpKZn5cGw/8lNsyvp03KBu6iPZrl+tWN2so3XH1
+         yboQ==
+X-Gm-Message-State: AOAM531r4+759giYe6VpzoZrQr2LTeBbTzY6tSqoSEuh7yXxzYhSmaCY
+        i+onTKjWsqyqYNoG6r9UX4IJnA==
+X-Google-Smtp-Source: ABdhPJz2Dh587oAtNE+3dwmaLnKNyuoarrG+93H0oIr0lYSQ8p8duyHAHS/lBIVypGgw9ktyNvRQ2g==
+X-Received: by 2002:ac8:534b:: with SMTP id d11mr269756qto.167.1632927143089;
+        Wed, 29 Sep 2021 07:52:23 -0700 (PDT)
+Received: from localhost ([167.100.64.199])
+        by smtp.gmail.com with ESMTPSA id o21sm48055qtt.12.2021.09.29.07.52.22
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 29 Sep 2021 07:52:22 -0700 (PDT)
+Date:   Wed, 29 Sep 2021 10:52:20 -0400
+From:   Sean Paul <sean@poorly.run>
+To:     abhinavk@codeaurora.org
+Cc:     Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+        intel-gfx@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        swboyd@chromium.org, Sean Paul <seanpaul@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [Freedreno] [PATCH v2 13/13] drm/msm: Implement HDCP 1.x using
+ the new drm HDCP helpers
+Message-ID: <20210929145220.GV2515@art_vandelay>
+References: <20210915203834.1439-1-sean@poorly.run>
+ <20210915203834.1439-14-sean@poorly.run>
+ <2486179cbd76c34a9c085dfff98448e5@codeaurora.org>
+ <20210928180219.GT2515@art_vandelay>
+ <48a284181bf6211b60f8318531051add@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <2f96f1aa-74f2-8ea8-3f43-e4da97400fde@linux.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <48a284181bf6211b60f8318531051add@codeaurora.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-
->>> But in addition we'd need to agree on what an 'active BE' is. Why can't
->>> we connect a second stream while the first one is already in HW_PARAMS
->>> or PAUSED or STOP? It's perfectly legal in ALSA/ASoC to have multiple
->>> HW_PARAMS calls, and when we reach STOP we have to do a prepare again.
->>>
->>> And more fundamentally, the ability to add a second FE on a 'active' BE
->>> in START state is a basic requirement for a mixer, e.g. to play a
->>> notification on one FE while listening to music on another. What needs
->>> to happen is only to make sure that the FE and BE are compatible in
->>> terms of HW_PARAMS and not sending a second TRIGGER_STOP, only checking
->>> the BE NEW or CLOSE state is way too restrictive.
->>
->> Sorry for the trouble to your system.
->>
->> Idea was to avoid reconfiguration of the same BE DAI again, but not to
->> stop the provision to add a subsequent FE. In fact I had tested mixing
->> of streams coming from 10 different FEs.
-
-Can you describe the sequence that you used to start them? That may be
-useful to understand the criteria you used?
-
->> In your case, because of this patch, looks like the subsequent FE is not
->> finding a BE DAI since it is already active due to a prior FE. The
->> reason it works at my end is because the mixer input and output DAIs are
->> separated. Any new FE would just configure the mixer input DAI to which
->> it is attached and skip already running/configured output DAI. 
-
-If you want to visualize the topology we're using in our 'nocodec'
-tests, see
-
-https://sof-ci.01.org/linuxpr/PR3177/build6440/devicetest/?model=ADLP_RVP_NOCODEC&testcase=verify-kernel-boot-log
-
-and use the sof-adl-nocodec.
-
-it's a bog-standard topology with processing entities connected by buffers.
-
-I don't fully understand the notion of mixer input DAI, in our case we
-have a bunch of PCM devices connected to a mixer. The mixer is not
-directly connected to a DAI.
-
-> The problem as I see is that with this patch one can not connect a new
-> FE to a BE which is _not_ in NEW or CLOSE state.
+On Tue, Sep 28, 2021 at 02:35:09PM -0700, abhinavk@codeaurora.org wrote:
+> On 2021-09-28 11:02, Sean Paul wrote:
+> > On Tue, Sep 21, 2021 at 07:25:41PM -0700, abhinavk@codeaurora.org wrote:
+> > > On 2021-09-15 13:38, Sean Paul wrote:
+> > > > From: Sean Paul <seanpaul@chromium.org>
+> > > >
+> > > > This patch adds HDCP 1.x support to msm DP connectors using the new HDCP
+> > > > helpers.
+> > > >
+> > > > Cc: Stephen Boyd <swboyd@chromium.org>
+> > > > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > > > Link:
+> > > > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run
+> > > > #v1
+> > > >
+> > > > Changes in v2:
+> > > > -Squash [1] into this patch with the following changes (Stephen)
+> > > >   -Update the sc7180 dtsi file
+> > > >   -Remove resource names and just use index (Stephen)
+> > > >
+> > > 
+> > > 
+> > > > [1]
+> > > > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-14-sean@poorly.run
+> > > > ---
+> > 
+> > /snip
+> > 
+> > > > diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
+> > > > index 904535eda0c4..98731fd262d6 100644
+> > > > --- a/drivers/gpu/drm/msm/Makefile
+> > > > +++ b/drivers/gpu/drm/msm/Makefile
+> > > > @@ -109,6 +109,7 @@ msm-$(CONFIG_DRM_MSM_DP)+= dp/dp_aux.o \
+> > > >  	dp/dp_ctrl.o \
+> > > >  	dp/dp_display.o \
+> > > >  	dp/dp_drm.o \
+> > > > +	dp/dp_hdcp.o \
+> > > >  	dp/dp_hpd.o \
+> > > >  	dp/dp_link.o \
+> > > >  	dp/dp_panel.o \
+> > > > diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c
+> > > > b/drivers/gpu/drm/msm/dp/dp_debug.c
+> > > > index 2f6247e80e9d..de16fca8782a 100644
+> > > > --- a/drivers/gpu/drm/msm/dp/dp_debug.c
+> > > > +++ b/drivers/gpu/drm/msm/dp/dp_debug.c
+> > 
+> > /snip
+> > 
+> > > > +static ssize_t dp_hdcp_key_write(struct file *file, const char __user
+> > > > *ubuf,
+> > > > +				 size_t len, loff_t *offp)
+> > > > +{
+> > > > +	char *input_buffer;
+> > > > +	int ret = 0;
+> > > > +	struct dp_debug_private *debug = file->private_data;
+> > > > +	struct drm_device *dev;
+> > > > +
+> > > > +	dev = debug->drm_dev;
+> > > > +
+> > > > +	if (len != (DRM_HDCP_KSV_LEN + DP_HDCP_NUM_KEYS * DP_HDCP_KEY_LEN))
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	if (!debug->hdcp)
+> > > > +		return -ENOENT;
+> > > > +
+> > > > +	input_buffer = memdup_user_nul(ubuf, len);
+> > > > +	if (IS_ERR(input_buffer))
+> > > > +		return PTR_ERR(input_buffer);
+> > > > +
+> > > > +	ret = dp_hdcp_ingest_key(debug->hdcp, input_buffer, len);
+> > > > +
+> > > > +	kfree(input_buffer);
+> > > > +	if (ret < 0) {
+> > > > +		DRM_ERROR("Could not ingest HDCP key, ret=%d\n", ret);
+> > > > +		return ret;
+> > > > +	}
+> > > > +
+> > > > +	*offp += len;
+> > > > +	return len;
+> > > > +}
+> > > 
+> > > It seems like the HDCP keys written using debugfs, just for my
+> > > understanding,
+> > > are you storing this in some secure partition and the usermode reads
+> > > from it
+> > > and writes them here?
+> > > 
+> > 
+> > We have not sorted out the userspace side of HDCP enablement yet, so it
+> > remains
+> > to be seen whether the keys will be injected via debugfs/firmware
+> > file/property.
+> > 
+> > /snip
+> > 
+> > > > +static int dp_connector_atomic_check(struct drm_connector *connector,
+> > > > +				     struct drm_atomic_state *state)
+> > > > +{
+> > > > +	struct drm_connector_state *conn_state;
+> > > > +	struct dp_connector_state *dp_state;
+> > > > +
+> > > > +	conn_state = drm_atomic_get_new_connector_state(state, connector);
+> > > > +	dp_state = to_dp_connector_state(conn_state);
+> > > > +
+> > > > +	dp_state->hdcp_transition = drm_hdcp_atomic_check(connector, state);
+> > > 
+> > > I have a general question related to the transition flag and overall
+> > > tying
+> > > the HDCP
+> > > enable and authentication to the commit.
+> > > So lets say there is a case where the driver needs to disable HDCP.
+> > > It could
+> > > be due
+> > > to link integrity failure OR some other error condition which
+> > > usermode is
+> > > not aware of.
+> > > In that case, we will set this hdcp_transition to true but in the next
+> > > commit we will
+> > > actually do the authentication. What if usermode doesnt issue a new
+> > > frame?
+> > > This question arises because currently the link intergrity check is
+> > > done
+> > > using SW polling
+> > > in the previous patchset. But as I had commented there, this occurs
+> > > in HW
+> > > for us.
+> > > I dont see that isr itself in this patchset. So wanted to understand
+> > > if
+> > > thats part of this
+> > > approach to still tie it with commit.
+> > > 
+> > > So if we go with the HW polling based approach which is the preferred
+> > > method, we need to
+> > > untie this from the commit.
+> > > 
+> > 
+> > In the case of error, the worker will detect it and try to
+> > re-authenticate. If
+> > the re-authentication is successful, userspace will continue to be
+> > unaware and
+> > everything will keep working. If re-authentication is unsuccessful, the
+> > worker
+> > will update the property value and issue a uevent to userspace. So HDCP
+> > enablement is only tied to commits when the property value is changing
+> > as a
+> > result of userspace.
+> > 
+> > Regarding SW vs HW link checks, I don't think there's any difference in
+> > efficacy
+> > between them. If HW can be relied on to issue an interrupt in failure
+> > cases, a
+> > follow-up set allowing for this seems like a great idea.
+> > 
 > 
-> The FE and BE needs to be connected to have DPCM working and this patch
-> makes the code to skip the dpcm_be_connect().
+> Thanks for the explanation. Yes, from our experience it has been pretty
+> reliable to
+> issue signal integrity failures. We already had the isr based approach
+> downstream
+> and would prefer to keep it that way based on our experience of it firing
+> reliably.
+> We can still keep the SW polling code but it should come into effect only if
+> HW polling
+> is not supported / preferred.
+
+Ok, understood. Unfortunately I don't have access to a testing rig which could
+exercise the interrupt. Do you think you could post a follow-on patch to
+implement this?
+
+
 > 
-> Consider this simple setup:
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > 
+> > /snip
+> > 
+
+/snip
+
+> > > > +static int dp_hdcp_hdcp1_store_receiver_info(struct drm_connector
+> > > > *connector,
+> > > > +					     u32 *ksv, u32 status, u8 bcaps,
+> > > > +					     bool is_repeater)
+> > > > +{
+> > > > +	struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
+> > > > +	u32 val;
+> > > > +
+> > > > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA0,
+> > > > +			 ksv[0]);
+> > > > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA1,
+> > > > +			 ksv[1]);
+> > > > +
+> > > > +	val = ((status & GENMASK(15, 0)) << 8) | (bcaps & GENMASK(7, 0));
+> > > > +
+> > > > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA12,
+> > > > val);
+> > > > +
+> > > 
+> > > Cant this entire API be skipped for non-repeater cases from the hdcp
+> > > lib
+> > > layer?
+> > > You can write the bcaps to this earlier and write the bstatus only
+> > > if its a
+> > > repeater.
+> > 
+> > Could you expand on the benefits of this?
 > 
-> FE1 -->|
->        | --> BE -->
-> FE2- ->|
+> We can avoid the call coming into the vendor driver hook itself as it need
+> not be called
+> for non-repeater cases. So something like this can be done in the HDCP lib?
 > 
-> First we start FE1, dpcm_be_connect(FE1, BE, stream) is made.
+> if ( repeater && ops->hdcp1_store_receiver_info )
+>      ops->hdcp1_store_receiver_info(....);
 > 
-> Later FE2 is started but dpcm_be_connect(FE2, BE, stream) would be not
-> made because BE is no longer in NEW/CLOSE state.
 
-I share Peter's analysis, there cannot be any restrictions on
-connections - at any time. A mixer input might become active and be
-added to the mix. We might have a temporary lock to delay new
-connections but cannot not reject them outright based on BE state.
+Unfortunately this would break Intel's implementation.
 
->> I am just
->> curious to know, if originally you were reconfiguring the BE DAI again
->> with same parameters (for a second FE) or some additional configuration
->> is done?
+> > 
+> > > 
+> > > > +	return 0;
+> > > > +}
+> > 
+> > /snip
 
-That's a different question - and a good one.
-
-In the case of a mixer, the propagation of hw_params is a broken
-concept. It leads to the first FE configuring the BE to define its
-preferred parameters, e.g. S16_LE format. If later on a second FE is
-started which could play S24_LE, the mixer and BE are already configured
-to a lower resolution. A mixer should really have its own parameters and
-be the start of a new 'domain' - as Lars described it several years ago
-at the audio miniconference.
-
-For now, the only restriction that we could enforce is that the BE
-cannot be reconfigured after the prepare step.
-
-Note that our DAIs tolerate multiple calls to hw_params. If you have a
-case where the hw_params allocates resources, maybe you should consider
-moving that allocation to the prepare step, or free them if you detect a
-reconfiguration. That would be something needed even outside of the DPCM
-scope. Similarly you need to support the case where the DAI hw_free is
-called without hw_params ever being called, it's a known sequence that
-can happen if the FE hw-params fails.
-
->>> I can send a revert with the explanations in the commit message if there
->>> is a consensus that this patch needs to be revisited.
->>
->> May be this can be revisited since it appears to be a critical problem
->> for your system. But I hope this discussion can be alive on following
->> points for a better fix.
->>
->> 1. The original issue at my end was not just a configuration redundancy.
->> I realize now that with more stream addition following error print is seen.
->>    "ASoC: too many users playback at open 4"
->>
->>    This is because the max DPCM users is capped at 8. Increasing this
->> may help (need to see what number is better), but does not address the
->> redundancy problem.
-
-we haven't used more than 2 users, but it's already broken at 2 with
-race conditions left and right. I am really surprised you managed to
-have more than 2 without hitting inconsistent states - our automated
-play/stop/pause monkey tests reliably break DPCM in less than 20s.
-
->> 2. If reconfiguration of the same BE is not necessary for a subsequent
->> FE run, shouldn't we avoid the reconfig itself and somehow avoid FE
->> failure?
-> 
-> I'm not sure, but it might be possible to just skip the
-> dpcm_set_be_update_state(be, stream, SND_SOC_DPCM_UPDATE_BE);
-> call at the end of the loop, but the question is under which condition?
-> Can a BE asked to be reconfigured when STOP/OPEN/HW_PARAMS?
-> 
-> Skipping the connect does not sound right for a new FE-BE connection.
-
-The reconfiguration is one problem, but what also happens is that the BE
-dailink will see multiple triggers. I've been playing with refcounts to
-force consistency and make sure there is only one TRIGGER_START send to
-the dailink, and conversely there are cases where the TRIGGER_STOP is
-never sent...
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
