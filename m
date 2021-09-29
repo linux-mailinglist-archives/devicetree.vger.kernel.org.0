@@ -2,87 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3095B41CB8C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 20:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2561341CC08
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 20:40:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245114AbhI2SMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 14:12:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38876 "EHLO
+        id S1346248AbhI2SmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 14:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343518AbhI2SMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 14:12:38 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9DC4C061764
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 11:10:56 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id g7so11867304edv.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 11:10:56 -0700 (PDT)
+        with ESMTP id S1346132AbhI2SmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 14:42:21 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E92C061764
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 11:40:40 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id k23so2364346pji.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 11:40:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=9l2EvdxFPK429F/rA4GmuQh+dj6YgmzG95mdI5lm0p4=;
-        b=FbAyfTgz6D0xr+cEFRkBrB6wmspw52wF2NgzOI3YwnqgMAYJXLTu1f0uLzjAwI5eBt
-         w2IWdwFxZLJn38IRX03m6FqUD/3O1w6qgOVYAIDV7L1y5Dk2XIVd+b4fnrsOy4q823/e
-         9WaczIl9EhB1710qsMUKbN7LS+yikP1eiQKWldoZNJPxCyhMAKSmOdTrwuuTIdHzmTUS
-         fOt7FUQMNc2SlZN75x7/FADbmCWX8Zf45dQQnRIwnJj6sRTNxWBmP5LHt0p6EbyVYBdh
-         94PgWCemZxYf9DoB9Km79PdlQY5z39JNfDctQbt0/JwpR4N3hks125b3MeaMfXDXBAki
-         BdeA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4jwM7sobvyC/yr53MKLR0xpqrIrHAxpL22WbxQS8Ssk=;
+        b=BO4+2wrBhpWuCNj60xpuPgO7J50jiinFUZAkXTz6DPCNbk/I5aD11OhFxHjNtyFxYf
+         RvbtY17gJxHrUyr27wF6UBUJhxcBqQjmphC31JZ64+fNg3H8Bwg86zMp615PKpLSaL3v
+         mAQ9BTwki3iV5apUvUPYwTeH/26Af/6eh1ChA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=9l2EvdxFPK429F/rA4GmuQh+dj6YgmzG95mdI5lm0p4=;
-        b=6H9onzh0JrxTSpBeFhnG2ZaCIra09o2wUauS+wtBz+wTSgAE6rzv8Arw+znI2eCay1
-         fXot5XHo5USYWJCcRf7U3fyEFMFuLeFWFyGpfyuQ0a0O333pv0MoBvtOePc5whAuOHIR
-         JSdsknQuCKMQ4eVkwC2HQyc9GBe/HBLSBRB+h5bU6JtyBoGCvw0ISJFoojqRFRZBu4P4
-         9wziR5L2eHMSzT2/Mv2YpNAjqG8criF/CFDYkNYl5eHaci0rOKyl4Xk5cpMa/IYlbYhZ
-         xiPXvyVIQb8l+R89d5NnnM4CchPctL7XS3dkQH+74sTTe6Q35EAyfqt86thLwnx4W69l
-         sD4w==
-X-Gm-Message-State: AOAM533ZPFOVhyRZUI+D1BnPWwkx10gzUGlHzcOX9Y3xjnkmF8SHkLtl
-        eCFUVFrpr6iyW45eqn3PpHNmPwGuntnUVvyCvk8=
-X-Google-Smtp-Source: ABdhPJz8hlbVtSuYfzoAVu8x04a1Anf8HBvM9fGcnHVvKgNOAbgpxz7vq62r07s35+75HKTrqBvdAFsMVRT1pDEjx/I=
-X-Received: by 2002:a17:906:71c6:: with SMTP id i6mr1393668ejk.344.1632939054956;
- Wed, 29 Sep 2021 11:10:54 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4jwM7sobvyC/yr53MKLR0xpqrIrHAxpL22WbxQS8Ssk=;
+        b=39LOPXrgTCG+SMQskL6ZRHxqzKLFdXZMEmTqbFHnau4bbCLcuuZmHj7ejOERKd5NHk
+         VNazzjDkIGGvBAyi20rooAKUJHXZU75xAojPZGmpIN/c1Keh7IDjRSIsirbijjaNiAW9
+         VcVjVN47jgAJzM/qUpv/gvCVJexEWRtb4UgU2DroBNYw8iJBrH0BF1zz72jsQXB986cT
+         w/YcjbuXXUJVJzwf7OqopurWjLrj0DjcxhobWxEfnJy7gFL00wWbXfzGCjHRSonqqll1
+         Me+ZvQZHswUpHZYP8R6d6jh+fDfc+WXVTWoQFKQ8vlM/Fes1Du8erjfyZNCl4SxmBujl
+         9qmw==
+X-Gm-Message-State: AOAM533ss0FB9YghX5FMyIl8U07ANL/4t5YwJWWZ7dJ9+3WPfwrYLGwm
+        mMyLArMEwTmkmlR8Hb9u8Lvxsw==
+X-Google-Smtp-Source: ABdhPJyU6YGAnOeNMh7OS1RrgoT3QJ2xKwQz0u5IBYHVhIbWpHqBeKoWjIxxse5LTwLah0AAs5Kibw==
+X-Received: by 2002:a17:90b:2385:: with SMTP id mr5mr1478243pjb.189.1632940839770;
+        Wed, 29 Sep 2021 11:40:39 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:2f10:2763:4825:1f01])
+        by smtp.gmail.com with UTF8SMTPSA id c9sm425983pfi.212.2021.09.29.11.40.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Sep 2021 11:40:39 -0700 (PDT)
+Date:   Wed, 29 Sep 2021 11:40:37 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sdm845: mtp: Add vadc channels
+ and thermal zones
+Message-ID: <YVSzJZ8G43CLml3L@google.com>
+References: <20210923212311.2877048-1-bjorn.andersson@linaro.org>
+ <20210923212311.2877048-5-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Sender: banmoonk@gmail.com
-Received: by 2002:a05:6400:5baa:0:0:0:0 with HTTP; Wed, 29 Sep 2021 11:10:54
- -0700 (PDT)
-From:   "Mrs. Orgil Baatar" <mrs.orgilbaatar21@gmail.com>
-Date:   Wed, 29 Sep 2021 11:10:54 -0700
-X-Google-Sender-Auth: BfVJIVrVsM_zphaUOnWwSbt9zRE
-Message-ID: <CA+6bzGq8j-OskxtZhNRMY=5O3xHQmHKk7ajQ14xhau1ocAJeAw@mail.gmail.com>
-Subject: Your long awaited part payment of $2.5.000.00Usd
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210923212311.2877048-5-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Attention: Beneficiary,
+On Thu, Sep 23, 2021 at 02:23:11PM -0700, Bjorn Andersson wrote:
+> Downstream defines four ADC channels related to thermal sensors external
+> to the PM8998 and two channels for internal voltage measurements.
+> 
+> Add these to the upstream SDM845 MTP, describe the thermal monitor
+> channels and add thermal_zones for these.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> 
+> In addition to the iio channels exposed by v1, Daniel wanted thermal_zones...
+> 
+> Changes since v1:
+> - Enable the pm8998_adc_tm and describe the ADC channels
+> - Add thermal-zones for the new channels
+> 
+>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 128 ++++++++++++++++++++++++
+>  1 file changed, 128 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> index 52dd7a858231..e3b40daef801 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> @@ -10,6 +10,8 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include "sdm845.dtsi"
+> +#include "pm8998.dtsi"
+> +#include "pmi8998.dtsi"
+>  
+>  / {
+>  	model = "Qualcomm Technologies, Inc. SDM845 MTP";
+> @@ -46,6 +48,68 @@ vreg_s4a_1p8: pm8998-smps4 {
+>  
+>  		vin-supply = <&vph_pwr>;
+>  	};
+> +
+> +	thermal-zones {
+> +		xo_thermal: xo-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +
+> +			thermal-sensors = <&pm8998_adc_tm 1>;
+> +
+> +			trips {
+> +				trip-point {
+> +					temperature = <125000>;
+> +					hysteresis = <10000>;
+> +					type = "passive";
+> +				};
+> +			};
+> +		};
+> +
+> +		msm_thermal: msm-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +
+> +			thermal-sensors = <&pm8998_adc_tm 2>;
+> +
+> +			trips {
+> +				trip-point {
+> +					temperature = <125000>;
+> +					hysteresis = <10000>;
+> +					type = "passive";
+> +				};
+> +			};
+> +		};
+> +
+> +		pa_thermal: pa-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +
+> +			thermal-sensors = <&pm8998_adc_tm 3>;
+> +
+> +			trips {
+> +				trip-point {
+> +					temperature = <125000>;
+> +					hysteresis = <10000>;
+> +					type = "passive";
+> +				};
+> +			};
+> +		};
+> +
+> +		quiet_thermal: quiet-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +
+> +			thermal-sensors = <&pm8998_adc_tm 4>;
+> +
+> +			trips {
+> +				trip-point {
+> +					temperature = <125000>;
+> +					hysteresis = <10000>;
+> +					type = "passive";
+> +				};
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &adsp_pas {
+> @@ -469,6 +533,70 @@ &mss_pil {
+>  	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mbn";
+>  };
+>  
+> +&pm8998_adc {
+> +	adc-chan@4c {
+> +		reg = <ADC5_XO_THERM_100K_PU>;
+> +		label = "xo_therm";
+> +	};
+> +
+> +	adc-chan@4d {
+> +		reg = <ADC5_AMUX_THM1_100K_PU>;
+> +		label = "msm_therm";
+> +	};
+> +
+> +	adc-chan@4f {
+> +		reg = <ADC5_AMUX_THM3_100K_PU>;
+> +		label = "pa_therm1";
+> +	};
+> +
+> +	adc-chan@51 {
+> +		reg = <ADC5_AMUX_THM5_100K_PU>;
+> +		label = "quiet_therm";
+> +	};
+> +
+> +	adc-chan@83 {
+> +		reg = <ADC5_VPH_PWR>;
+> +		label = "vph_pwr";
+> +	};
+> +
+> +	adc-chan@85 {
+> +		reg = <ADC5_VCOIN>;
+> +		label = "vcoin";
+> +	};
+> +};
+> +
+> +&pm8998_adc_tm {
+> +	status = "okay";
+> +
+> +	xo-thermistor@1 {
+> +		reg = <1>;
+> +		io-channels = <&pm8998_adc ADC5_XO_THERM_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time-us = <200>;
+> +	};
+> +
+> +	msm-thermistor@2 {
+> +		reg = <2>;
+> +		io-channels = <&pm8998_adc ADC5_AMUX_THM1_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time-us = <200>;
+> +	};
+> +
+> +	pa-thermistor@3 {
+> +		reg = <3>;
+> +		io-channels = <&pm8998_adc ADC5_AMUX_THM3_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time-us = <200>;
+> +	};
+> +
+> +	quiet-thermistor@4 {
+> +		reg = <4>;
+> +		io-channels = <&pm8998_adc ADC5_AMUX_THM5_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time-us = <200>;
+> +	};
+> +};
+> +
 
-Your long awaited part payment of $2.5.000.00Usd (TWO MILLION FIVE
-Hundred Thousand United State Dollars) is ready for immediate release
-to you, and it was electronically credited into an ATM Visa Card for
-easy delivery.
-
-Your new Payment Reference No.- 6363836,
-Pin Code No: 1787
-Your Certificate of Merit Payment No: 05872,
-Released Code No: 1134;
-
-Re-Confirm;
-Your Names: |
-Address: |
-Cell Phone: |
-
-Your immediate response is needed UBA Bank
-
-Person to Contact:MR KELLY HALL the Director of the International
-Audit unit ATM Payment Center,
-
-Email: uba-bf@e-ubabf.com
-TELEPHONE: +226 68251393
-
-Your swift response will enhance our service,thanks for your co-operation;
-
-Regards.
-Mrs ORGIL BAATAR
+The example in the 'qcom,spmi-adc-tm5' binding specifies 'qcom,ratiometric'
+and 'qcom,hw-settle-time-us' for both the ADC and the thermal monitor, so do
+several board files (e.g. sm8250-mtp.dts and qrb5165-rb5.dts). This apparent
+redundancy bothered me earlier, it's not really clear to me whether it's
+needed/recommended or not. Do you happen to have any insights on this?
