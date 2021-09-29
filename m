@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B871641BDAB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 05:43:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4286141BDAF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 05:43:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244114AbhI2DpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Sep 2021 23:45:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37476 "EHLO
+        id S244119AbhI2DpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Sep 2021 23:45:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244117AbhI2DpD (ORCPT
+        with ESMTP id S244128AbhI2DpD (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 28 Sep 2021 23:45:03 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFAD4C061768
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 20:43:17 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id n2so560659plk.12
-        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 20:43:17 -0700 (PDT)
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12BF3C061749
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 20:43:20 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id r7so624706pjo.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Sep 2021 20:43:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=DdGxFZl6atvUpTyvNvQjUqEOKV5hQQ0OgkqUqC3owd0=;
-        b=Fi/DD7kyMatSKuFi+7rfk5bVggZQufMuuoIsIA8IvDVfpl08QajYjitc2Qtf5idFO8
-         7nCBmYueDmtm9WkH+ADOeGVFUMOk5n+wHyHGs1ipqeRisjBxjEqVtgEwHIQEJ+HolRyO
-         e1lJK6FKQ3EZumVRY4G/RB5fXMh1JqCXBOcLlciJFc16s84yYJThdi/aHgvau2p26nil
-         m8m3hlEqmA0a82ayBI2UD9Hqx9+6vXP9AbFJ1WszGkvITPK4lE1h2TAQ5XM79hhuCsOx
-         qEdLPfQL4DFwyPxtk91jhGCMLgK20ZYawCJcJl6cLlIkxFbSlWWJWOGilDqf+9t55SGD
-         16NQ==
+        bh=OGr1UhBmzv1ZbRN4Jw2f9I0cji4GhDLktnzGXnOfSCw=;
+        b=lojz6FLPpIyl/A59txe+JHKvs0tCb0UDRptBdBrDrIrrWgrcokj/x1HSe4Hhp50GYs
+         U8XmdWwKpC+k+MPz7KBY1yZHubAPNbDt7Tdewt3igCI4axF5G3kxktfW2I/52ctLAm3x
+         gN7JAhAuyFMi3HXqIdRBNTpz0BUJi0q4mM8jTzZO4kk4l1fZ6soZgXhvBEJ1Ew1liuam
+         chGBsDQGCbKP7wl5fYYfkIRCb2kLudDdbwVhZNN0PcvlnsR9NXxjF1UQoZhES9G0fwyb
+         3d2xdnGW6IDDlRABDOMrF87uTfdMdCmbqv4da/f2gfFWVN+UrGXvc1GHxoqFJWG7g8ho
+         GSUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=DdGxFZl6atvUpTyvNvQjUqEOKV5hQQ0OgkqUqC3owd0=;
-        b=ztegptI2D9WjAHdM/w0ng5PiQXIsF6dN6rCAednhAsjWLzJVU+FA5tukowodtmN4MW
-         1AWY+SOqa33qvIx+vfzW1w2ZXpqJYMDMhZiB1aj0/P/OkRnWHe5OKtqCy09+7XLl8MwP
-         W2sWjUdIAaXYTsy8f2lZ2jGAISzhwkEz1ucBQsq3EbhOi3+qvWgus4e1h8Q6bgx3DyIy
-         W2ireCT6ah9S/BDXAhNq3Nv2k+icV6leLklUkQ+UWO8tvrIHMxYHDPb4nT20hV2wE3Tg
-         HiqrDABgzZh/Gdn5edpNVlT2Dm+CTRUQFVjydOax+5SxfsbdI3OkohJxzsjzhTN9ropw
-         XcaA==
-X-Gm-Message-State: AOAM532hPSLRrVHxm7MCvwPpMZWwcQYDMPXPrKOIkxnpa2wdvGOB3RGM
-        0BA5ikumZ24iTHQuWQVSge/Tgw==
-X-Google-Smtp-Source: ABdhPJxR6Q+dwvvAlulmgyy85HyD13UmRB9sM1jEj6BZ+uB9eLjhRF3eW7TOfSIPhRP//vWeWQVfGA==
-X-Received: by 2002:a17:90b:4a44:: with SMTP id lb4mr3915805pjb.140.1632886997283;
-        Tue, 28 Sep 2021 20:43:17 -0700 (PDT)
+        bh=OGr1UhBmzv1ZbRN4Jw2f9I0cji4GhDLktnzGXnOfSCw=;
+        b=i5fVjqDLjl/HAUBA3j/yw/0nmGLuxJdqRMrRB9h4687gYbD61ByaGEkfivNoTSB/4g
+         MgTk7yuVXhjGGlVhMFVDmNud4tp3gDJPI2oVMMTABZ4Y7R48vOpwoH2ohr701xJ1U3mA
+         N7xkf9ePDoZrVJYK4hJ/tqu1thDsR5148iEkk3S8EhuP5MHUPpY7tEj6ChJl0ND/n7ig
+         mjpH+oE1tEqzDBKDfjHzEqRAz8YWE5S9Wrv933AWsEGZQqttBvyO6khp4z3qzKbR/O7F
+         8Wh1hUlzHk7pX5PZ5CNO2G3M3aRpmA8DDwJiG5YM8LCuYmEkoBf9qCYuUyvbCVIKSyV/
+         8V4Q==
+X-Gm-Message-State: AOAM530ZDmHAfzFqhlk5ORSQtV0Y3zwdACJg+XKdwW0itGeyrGoYgoGM
+        iAYUEGHNgwxTrQV+XQKAb/IjlCHlf947Lw==
+X-Google-Smtp-Source: ABdhPJz/CbZ/RVuQyXsLtfbfTUh9HP70UcEOYZ/Z9mDXIxeGLpabjuICfiiIaLeetmoAaxOHYEUvjw==
+X-Received: by 2002:a17:90b:1b06:: with SMTP id nu6mr3884145pjb.15.1632886999671;
+        Tue, 28 Sep 2021 20:43:19 -0700 (PDT)
 Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id b7sm533032pfb.20.2021.09.28.20.43.15
+        by smtp.gmail.com with ESMTPSA id b7sm533032pfb.20.2021.09.28.20.43.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Sep 2021 20:43:16 -0700 (PDT)
+        Tue, 28 Sep 2021 20:43:19 -0700 (PDT)
 From:   Shawn Guo <shawn.guo@linaro.org>
 To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH 05/10] arm64: dts: qcom: Drop max-microamp and vddp-ref-clk properties from QMP PHY
-Date:   Wed, 29 Sep 2021 11:42:48 +0800
-Message-Id: <20210929034253.24570-6-shawn.guo@linaro.org>
+Subject: [PATCH 06/10] arm64: dts: qcom: Drop reg-names from QMP PHY nodes
+Date:   Wed, 29 Sep 2021 11:42:49 +0800
+Message-Id: <20210929034253.24570-7-shawn.guo@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210929034253.24570-1-shawn.guo@linaro.org>
 References: <20210929034253.24570-1-shawn.guo@linaro.org>
@@ -62,202 +62,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following properties are not supported and causing dtbs_check
-warnings.
+The 'reg-names' is not a supported/used property.  Drop it from QMP PHY
+nodes to fix dtbs_check warnings like below.
 
-- vdda-phy-max-microamp
-- vdda-pll-max-microamp
-- vddp-ref-clk-max-microamp
-- vddp-ref-clk-always-on
-
-Drop them from QMP PHY nodes.
+phy-wrapper@88e9000: 'reg-names' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+        arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
+        arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
 
 Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts              | 3 ---
- arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi                 | 4 ----
- arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi      | 4 ----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts                  | 2 --
- arch/arm64/boot/dts/qcom/sa8155p-adp.dts                  | 2 --
- arch/arm64/boot/dts/qcom/sm8150-hdk.dts                   | 2 --
- arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts | 2 --
- arch/arm64/boot/dts/qcom/sm8150-mtp.dts                   | 2 --
- arch/arm64/boot/dts/qcom/sm8250-hdk.dts                   | 2 --
- arch/arm64/boot/dts/qcom/sm8250-mtp.dts                   | 2 --
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts                   | 2 --
- arch/arm64/boot/dts/qcom/sm8350-mtp.dts                   | 2 --
- 12 files changed, 29 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 1 -
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 -
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 -
+ 3 files changed, 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-index a57c60070cdc..567b33106556 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts
-@@ -395,9 +395,6 @@
- 
- 	vdda-phy-supply = <&vreg_l28a_0p925>;
- 	vdda-pll-supply = <&vreg_l12a_1p8>;
--
--	vdda-phy-max-microamp = <18380>;
--	vdda-pll-max-microamp = <9440>;
- };
- 
- &venus {
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
-index a1d15eab8553..af67c641df4e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
-@@ -371,10 +371,6 @@
- 	vdda-phy-supply = <&vreg_l1a_0p875>;
- 	vdda-pll-supply = <&vreg_l2a_1p2>;
- 	vddp-ref-clk-supply = <&vreg_l26a_1p2>;
--	vdda-phy-max-microamp = <51400>;
--	vdda-pll-max-microamp = <14600>;
--	vddp-ref-clk-max-microamp = <100>;
--	vddp-ref-clk-always-on;
- };
- 
- &usb3 {
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi
-index 0f5c7828a901..654188027f79 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi
-@@ -480,10 +480,6 @@
- 	vdda-phy-supply = <&vreg_l1a_0p875>;
- 	vdda-pll-supply = <&vreg_l2a_1p2>;
- 	vddp-ref-clk-supply = <&vreg_l26a_1p2>;
--	vdda-phy-max-microamp = <51400>;
--	vdda-pll-max-microamp = <14600>;
--	vddp-ref-clk-max-microamp = <100>;
--	vddp-ref-clk-always-on;
- };
- 
- &usb3 {
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 8ac96f8e79d4..100254489b87 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -1212,9 +1212,7 @@
- 	status = "okay";
- 
- 	vdda-phy-supply = <&vreg_l5a_0p88>;
--	vdda-max-microamp = <89900>;
- 	vdda-pll-supply = <&vreg_l9a_1p2>;
--	vdda-pll-max-microamp = <18800>;
- };
- 
- &usb_1 {
-diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-index 5ae2ddc65f7e..6f05934b4ccc 100644
---- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-@@ -328,9 +328,7 @@
- 	status = "okay";
- 
- 	vdda-phy-supply = <&vreg_l8c_1p2>;
--	vdda-max-microamp = <87100>;
- 	vdda-pll-supply = <&vreg_l5a_0p88>;
--	vdda-pll-max-microamp = <18300>;
- };
- 
- &usb_1 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-index 335aa0753fc0..37ddca0f0223 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-@@ -419,9 +419,7 @@
- 	status = "okay";
- 
- 	vdda-phy-supply = <&vdda_ufs_2ln_core_1>;
--	vdda-max-microamp = <90200>;
- 	vdda-pll-supply = <&vreg_l3c_1p2>;
--	vdda-pll-max-microamp = <19000>;
- };
- 
- &usb_1_hsphy {
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-index 736da9af44e0..6802097f576f 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-@@ -507,9 +507,7 @@
- 	status = "okay";
- 
- 	vdda-phy-supply = <&vdda_ufs_2ln_core_1>;
--	vdda-max-microamp = <90200>;
- 	vdda-pll-supply = <&vreg_l3c_1p2>;
--	vdda-pll-max-microamp = <19000>;
- };
- 
- &usb_1_hsphy {
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-index b484371a6044..46b5cf9a1192 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-@@ -416,9 +416,7 @@
- 	status = "okay";
- 
- 	vdda-phy-supply = <&vdda_ufs_2ln_core_1>;
--	vdda-max-microamp = <90200>;
- 	vdda-pll-supply = <&vreg_l3c_1p2>;
--	vdda-pll-max-microamp = <19000>;
- };
- 
- &usb_1_hsphy {
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-index 47742816ac2f..3b082472062b 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-@@ -409,9 +409,7 @@
- 	status = "okay";
- 
- 	vdda-phy-supply = <&vreg_l5a_0p88>;
--	vdda-max-microamp = <89900>;
- 	vdda-pll-supply = <&vreg_l9a_1p2>;
--	vdda-pll-max-microamp = <18800>;
- };
- 
- &usb_1_hsphy {
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-index 062b944be91d..5ffbcdd387ba 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-@@ -647,9 +647,7 @@
- 	status = "okay";
- 
- 	vdda-phy-supply = <&vreg_l5a_0p875>;
--	vdda-max-microamp = <90200>;
- 	vdda-pll-supply = <&vreg_l9a_1p2>;
--	vdda-pll-max-microamp = <19000>;
- };
- 
- &usb_1 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index 56093e260ddf..be062377c936 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -251,9 +251,7 @@
- 	status = "okay";
- 
- 	vdda-phy-supply = <&vreg_l5b_0p88>;
--	vdda-max-microamp = <91600>;
- 	vdda-pll-supply = <&vreg_l6b_1p2>;
--	vdda-pll-max-microamp = <19000>;
- };
- 
- &usb_1 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-mtp.dts b/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
-index bd95009c1875..5a8a966c475c 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
-@@ -318,9 +318,7 @@
- 	status = "okay";
- 
- 	vdda-phy-supply = <&vreg_l5b_0p88>;
--	vdda-max-microamp = <91600>;
- 	vdda-pll-supply = <&vreg_l6b_1p2>;
--	vdda-pll-max-microamp = <19000>;
- };
- 
- &usb_1 {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index ac775189a2e4..216d703f3e55 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -3678,7 +3678,6 @@
+ 			compatible = "qcom,sdm845-qmp-usb3-phy";
+ 			reg = <0 0x088e9000 0 0x18c>,
+ 			      <0 0x088e8000 0 0x10>;
+-			reg-names = "reg-base", "dp_com";
+ 			status = "disabled";
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 4e943e4a93c4..99cd54c69956 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -2994,7 +2994,6 @@
+ 			compatible = "qcom,sm8150-qmp-usb3-phy";
+ 			reg = <0 0x088e9000 0 0x18c>,
+ 			      <0 0x088e8000 0 0x10>;
+-			reg-names = "reg-base", "dp_com";
+ 			status = "disabled";
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index b19a3619e56b..dcda4fac46b1 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1202,7 +1202,6 @@
+ 			compatible = "qcom,sm8350-qmp-usb3-phy";
+ 			reg = <0 0x088e9000 0 0x200>,
+ 			      <0 0x088e8000 0 0x20>;
+-			reg-names = "reg-base", "dp_com";
+ 			status = "disabled";
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
 -- 
 2.17.1
 
