@@ -2,201 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52CCB41CE63
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 23:48:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC6E41CE8A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 23:53:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237351AbhI2Vtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 17:49:41 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:33521 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232364AbhI2Vtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 17:49:40 -0400
-Received: by mail-ot1-f54.google.com with SMTP id d12-20020a05683025cc00b0054d8486c6b8so4771855otu.0;
-        Wed, 29 Sep 2021 14:47:59 -0700 (PDT)
+        id S232364AbhI2Vz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 17:55:28 -0400
+Received: from mail-qt1-f175.google.com ([209.85.160.175]:34578 "EHLO
+        mail-qt1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345002AbhI2Vz2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 17:55:28 -0400
+Received: by mail-qt1-f175.google.com with SMTP id m26so3812355qtn.1;
+        Wed, 29 Sep 2021 14:53:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9tEAqZNJwDzQEWaGPnZz7mESP4HPQ040E5Y0zkN5TmQ=;
-        b=EIclDxNgbICpi2GaSGgRaW4imZfKvpBkNey5HwY+/PLQMEEfelPDAdX/u1eH5Wm7WL
-         qvjR9Oppw003G3h6B0blWm19cV87W7kdARuFWu90A1u+DS4CIugU6ZVUdDOsjyTjAYUf
-         bpVdqqRSxB5GvTzly4NAQ3sxhGVfxskNT63Pr/fSCETKRZGysJ6PsSDNo+s+luUEdoeh
-         0A2pYQus3AusIOhB3cvC169KJgm5VwPx0d2kvWRR4DB3sksJdPDSigKGOgVTZzwJHG7j
-         Mpgh+q2OpUzjP9nviYh2EY+Gkba7EMHD7Ha6L0L056TNZVB/48V7cMY4MgX1h3+Tdl2M
-         oP7w==
-X-Gm-Message-State: AOAM532UcP9+QJ2PfBGh+d/0rL+CBw5527l+lmSE6JOtWY6TqLJyQX9m
-        kphvcn32WXkiQE0z9dPJKg==
-X-Google-Smtp-Source: ABdhPJxeKotXQp3Lpf7KBsmo9mOFXTJ0Tf1HvSzbQ8YtUeLGQhbRfEeVPMok4PZOWUk9Jz6nlAyUiQ==
-X-Received: by 2002:a9d:192c:: with SMTP id j44mr1972042ota.302.1632952078623;
-        Wed, 29 Sep 2021 14:47:58 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a3sm191359oie.3.2021.09.29.14.47.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Sep 2021 14:47:57 -0700 (PDT)
-Received: (nullmailer pid 273777 invoked by uid 1000);
-        Wed, 29 Sep 2021 21:47:56 -0000
-Date:   Wed, 29 Sep 2021 16:47:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     linus.walleij@linaro.org, mark.rutland@arm.com,
-        matthias.bgg@gmail.com, sean.wang@kernel.org,
-        srv_heupstream@mediatek.com, hui.liu@mediatek.com,
-        light.hsieh@mediatek.com, biao.huang@mediatek.com,
-        hongzhou.yang@mediatek.com, sean.wang@mediatek.com,
-        seiya.wang@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v14 2/5] dt-bindings: pinctrl: mt8195: change pull
- up/down description
-Message-ID: <YVTfDJNW5Pe3iAR/@robh.at.kernel.org>
-References: <20210924080632.28410-1-zhiyong.tao@mediatek.com>
- <20210924080632.28410-3-zhiyong.tao@mediatek.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dy7tWacIyVasGr51uylmiHt4pHFLEmjBm7qwT/JIX6s=;
+        b=7C3GvbAIW9dZWJgtyOuh8kg9l/7PLOCNkE7jAXEEcN795yGOGVD3kZQv0ANRUx4wuM
+         RdPqb/+e9qX9YH5YsBiIpb5sleqK9uMgJjSuTvUfpMLDqQVkCTaZboOvgJ/KoxHF6tQg
+         WMTlOhGxUV+TjF4tce+eSHnGsRMNxjP3QbN2Sg0LMeq6qglaxSCfw+qhB7bndsqGlNWE
+         TQnFQjDjgXp+5FNzakAr5t4hRqRi8FjNELQGKG8LeZrPbQ21l0/5f24swVTtUvXABBUD
+         bbtTOBVnu5gBV8nSy+OItGyOJWFXqI/zSBnVF7QiAHv9+xEh9TEvk+LetpLCvCtL/CE8
+         jNJA==
+X-Gm-Message-State: AOAM532wl5d22OUGaQwdbGPnbLOehwjkXj/BMt5gYJq/xPjzWClnFlSS
+        gSPQm7UIpuh6XfIWnQ5pBxX7Dsq5I+k=
+X-Google-Smtp-Source: ABdhPJwPLycUZ4EXYZcj8EzQQSNHR89IoFoFUQkgRTYZT1lscVZbRILbRbEdAtTObJXT7su2fItKJA==
+X-Received: by 2002:a05:622a:1356:: with SMTP id w22mr2680228qtk.26.1632952426136;
+        Wed, 29 Sep 2021 14:53:46 -0700 (PDT)
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com. [209.85.219.54])
+        by smtp.gmail.com with ESMTPSA id d14sm616083qkg.49.2021.09.29.14.53.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Sep 2021 14:53:46 -0700 (PDT)
+Received: by mail-qv1-f54.google.com with SMTP id et16so2366498qvb.10;
+        Wed, 29 Sep 2021 14:53:45 -0700 (PDT)
+X-Received: by 2002:a05:6214:1461:: with SMTP id c1mr2230970qvy.19.1632952425407;
+ Wed, 29 Sep 2021 14:53:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210924080632.28410-3-zhiyong.tao@mediatek.com>
+References: <20210928192154.1841889-1-robh@kernel.org>
+In-Reply-To: <20210928192154.1841889-1-robh@kernel.org>
+From:   Li Yang <leoyang.li@nxp.com>
+Date:   Wed, 29 Sep 2021 16:53:33 -0500
+X-Gmail-Original-Message-ID: <CADRPPNSwy5U5kg8DGn6pBw3jGff10otnB1UHFmEh5k2L177f4w@mail.gmail.com>
+Message-ID: <CADRPPNSwy5U5kg8DGn6pBw3jGff10otnB1UHFmEh5k2L177f4w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: freescale: Fix 'interrupt-map' parent address cells
+To:     Rob Herring <robh@kernel.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 24, 2021 at 04:06:29PM +0800, Zhiyong Tao wrote:
-> For supporting SI units in "bias-pull-down" & "bias-pull-up",
-> change pull up/down description
-> and add "mediatek,rsel_resistance_in_si_unit" description.
-> 
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+On Tue, Sep 28, 2021 at 2:22 PM Rob Herring <robh@kernel.org> wrote:
+>
+> The 'interrupt-map' in several Layerscape SoCs is malformed. The
+> '#address-cells' size of the parent interrupt controller (the GIC) is not
+> accounted for.
+>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Li Yang <leoyang.li@nxp.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Acked-by: Li Yang <leoyang.li@nxp.com>
+
 > ---
->  .../bindings/pinctrl/pinctrl-mt8195.yaml      | 86 ++++++++++++++++++-
->  1 file changed, 84 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> index 2f12ec59eee5..5f642bef72af 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> @@ -49,6 +49,12 @@ properties:
->      description: The interrupt outputs to sysirq.
->      maxItems: 1
->  
-> +  mediatek,rsel_resistance_in_si_unit:
-
-s/_/-/
-
-> +    type: boolean
-> +    description: |
-> +      Identifying i2c pins pull up/down type which is RSEL. It can support
-> +      RSEL define or si unit value(ohm) to set different resistance.
-
-Aren't the RSEL and ohms disjoint values? 0-207 for RSEL and >1000 for 
-ohms. Why is this property even needed.
-
-> +
->  #PIN CONFIGURATION NODES
->  patternProperties:
->    '-pins$':
-> @@ -85,9 +91,85 @@ patternProperties:
->            2/4/6/8/10/12/14/16mA in mt8195.
->          enum: [0, 1, 2, 3, 4, 5, 6, 7]
->  
-> -      bias-pull-down: true
-> +      bias-pull-down:
-> +        description: |
-> +          For pull down type is normal, it don't need add RSEL & R1R0 define
-> +          and resistance value.
-> +          For pull down type is PUPD/R0/R1 type, it can add R1R0 define to
-> +          set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
-> +          "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" & "MTK_PUPD_SET_R1R0_11"
-> +          define in mt8195.
-> +          For pull down type is RSEL, it can add RSEL define & resistance value(ohm)
-> +          to set different resistance by identifying property "mediatek,rsel_resistance_in_si_unit".
-> +          It can support "MTK_PULL_SET_RSEL_000" & "MTK_PULL_SET_RSEL_001"
-> +          & "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011" & "MTK_PULL_SET_RSEL_100"
-> +          & "MTK_PULL_SET_RSEL_101" & "MTK_PULL_SET_RSEL_110" & "MTK_PULL_SET_RSEL_111"
-> +          define in mt8195. It can also support resistance value(ohm) "75000" & "5000" in mt8195.
-> +          oneOf:
-
-Because of the indentation, this is all just part of 'description'.
-
-> +            - enum: [100, 101, 102, 103]
-> +            - description: mt8195 pull down PUPD/R0/R1 type define value.
-
-This entry is always true.
-
-> +            - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-
-Are these supposed to be hex?
-
-> +            - description: mt8195 pull down RSEL type define value.
-
-And so is this one. That makes 'oneOf' always false.
-
-> +            - enum: [75000, 5000]
-> +            - description: mt8195 pull down RSEL type si unit value(ohm).
-> +
-> +          An example of using RSEL define:
-> +          pincontroller {
-> +            i2c0_pin {
-> +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
-> +              bias-pull-down = <MTK_PULL_SET_RSEL_001>;
-> +            };
-> +          };
-> +          An example of using si unit resistance value(ohm):
-> +          &pio {
-> +            mediatek,rsel_resistance_in_si_unit;
-> +          }
-> +          pincontroller {
-> +            i2c0_pin {
-> +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
-> +              bias-pull-down = <75000>;
-> +            };
-> +          };
->  
-> -      bias-pull-up: true
-> +      bias-pull-up:
-> +        description: |
-> +          For pull up type is normal, it don't need add RSEL & R1R0 define
-> +          and resistance value.
-> +          For pull up type is PUPD/R0/R1 type, it can add R1R0 define to
-> +          set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
-> +          "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" & "MTK_PUPD_SET_R1R0_11"
-> +          define in mt8195.
-> +          For pull up type is RSEL, it can add RSEL define & resistance value(ohm)
-> +          to set different resistance by identifying property "mediatek,rsel_resistance_in_si_unit".
-> +          It can support "MTK_PULL_SET_RSEL_000" & "MTK_PULL_SET_RSEL_001"
-> +          & "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011" & "MTK_PULL_SET_RSEL_100"
-> +          & "MTK_PULL_SET_RSEL_101" & "MTK_PULL_SET_RSEL_110" & "MTK_PULL_SET_RSEL_111"
-> +          define in mt8195. It can also support resistance value(ohm)
-> +          "1000" & "1500" & "2000" & "3000" & "4000" & "5000" & "10000" & "75000" in mt8195.
-> +          oneOf:
-> +            - enum: [100, 101, 102, 103]
-> +            - description: mt8195 pull up PUPD/R0/R1 type define value.
-> +            - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-> +            - description: mt8195 pull up RSEL type define value.
-> +            - enum: [1000, 1500, 2000, 3000, 4000, 5000, 10000, 75000]
-> +            - description: mt8195 pull up RSEL type si unit value(ohm).
-
-Same issues here.
-
-> +          An example of using RSEL define:
-> +          pincontroller {
-> +            i2c0_pin {
-> +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
-> +              bias-pull-up = <MTK_PULL_SET_RSEL_001>;
-> +            };
-> +          };
-> +          An example of using si unit resistance value(ohm):
-> +          &pio {
-> +            mediatek,rsel_resistance_in_si_unit;
-> +          }
-> +          pincontroller {
-> +            i2c0_pin {
-> +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
-> +              bias-pull-up = <1000>;
-> +            };
-> +          };
->  
->        bias-disable: true
->  
-> -- 
-> 2.25.1
-> 
-> 
+>  .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 24 +++++++++----------
+>  .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 24 +++++++++----------
+>  .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 24 +++++++++----------
+>  3 files changed, 36 insertions(+), 36 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> index f85e437f80b7..84a31372b3fa 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> @@ -241,18 +241,18 @@ extirq: interrupt-controller@14 {
+>                                 interrupt-controller;
+>                                 reg = <0x14 4>;
+>                                 interrupt-map =
+> -                                       <0 0 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <1 0 &gic GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <2 0 &gic GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <3 0 &gic GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <4 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <5 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <6 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <7 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <8 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <9 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <10 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <11 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> +                                       <0 0 &gic 0 0 GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <1 0 &gic 0 0 GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <2 0 &gic 0 0 GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <3 0 &gic 0 0 GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <4 0 &gic 0 0 GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <5 0 &gic 0 0 GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <6 0 &gic 0 0 GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <7 0 &gic 0 0 GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <8 0 &gic 0 0 GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <9 0 &gic 0 0 GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <10 0 &gic 0 0 GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <11 0 &gic 0 0 GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+>                                 interrupt-map-mask = <0xffffffff 0x0>;
+>                         };
+>                 };
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> index 801ba9612d36..38aea4fce238 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> @@ -293,18 +293,18 @@ extirq: interrupt-controller@14 {
+>                                 interrupt-controller;
+>                                 reg = <0x14 4>;
+>                                 interrupt-map =
+> -                                       <0 0 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <1 0 &gic GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <2 0 &gic GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <3 0 &gic GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <4 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <5 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <6 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <7 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <8 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <9 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <10 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <11 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> +                                       <0 0 &gic 0 0 GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <1 0 &gic 0 0 GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <2 0 &gic 0 0 GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <3 0 &gic 0 0 GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <4 0 &gic 0 0 GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <5 0 &gic 0 0 GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <6 0 &gic 0 0 GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <7 0 &gic 0 0 GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <8 0 &gic 0 0 GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <9 0 &gic 0 0 GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <10 0 &gic 0 0 GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <11 0 &gic 0 0 GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+>                                 interrupt-map-mask = <0xffffffff 0x0>;
+>                         };
+>                 };
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> index c4b1a59ba424..dc8661ebd1f6 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> @@ -680,18 +680,18 @@ extirq: interrupt-controller@14 {
+>                                 interrupt-controller;
+>                                 reg = <0x14 4>;
+>                                 interrupt-map =
+> -                                       <0 0 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <1 0 &gic GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <2 0 &gic GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <3 0 &gic GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <4 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <5 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <6 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <7 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <8 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <9 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <10 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> -                                       <11 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> +                                       <0 0 &gic 0 0 GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <1 0 &gic 0 0 GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <2 0 &gic 0 0 GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <3 0 &gic 0 0 GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <4 0 &gic 0 0 GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <5 0 &gic 0 0 GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <6 0 &gic 0 0 GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <7 0 &gic 0 0 GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <8 0 &gic 0 0 GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <9 0 &gic 0 0 GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <10 0 &gic 0 0 GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +                                       <11 0 &gic 0 0 GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+>                                 interrupt-map-mask = <0xffffffff 0x0>;
+>                         };
+>                 };
+> --
+> 2.30.2
+>
