@@ -2,172 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42C5B41C026
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 09:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 918AC41C046
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 10:07:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244440AbhI2Hw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 03:52:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36320 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244241AbhI2Hw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 03:52:56 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF22C06161C;
-        Wed, 29 Sep 2021 00:51:15 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id r75so1964095iod.7;
-        Wed, 29 Sep 2021 00:51:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Xi6oRIcFueXmlR0CndpQTgi+G0fdFD2P4KfyLXWhJ8Y=;
-        b=PKqZZypg6csaTv3HE1FO87oqCEGr0wbO13cFCh+c0xxgS5VMGaEUBxL630JE8yAhJq
-         hgXNZRHyP9uyDoqryh/gmUMaMkahvyRFncMgzToSWmJNelm1OU+yl2Sv3mt8ey3UuVoj
-         F91o0c4hRVl1Ba92PrG/8w+0q4NOH5A0m1JmjaC4LHnVgKxiyET+yJu3bOryaFwlR5iS
-         GQd3pG0JhDB2MOKFuVT/tyBXsBX4J36B/nSyf0OC8pLtIhcZil6A/p+Ekg9NrR9rIgBb
-         I/YzulOivM58C9cjXbntzN+m2EqEApUyZwFYA/saERRsBYQbLDD4ZtZCi3NoUKBxOLwE
-         6MNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Xi6oRIcFueXmlR0CndpQTgi+G0fdFD2P4KfyLXWhJ8Y=;
-        b=PN9q+XwEe3PXXReMFwyqS5Y0kEyLCaQlPjgH5sFWEW0wq/quJQcGwKvTB7GJMDq/F5
-         rNwyybf3Xd0rT/mXPsNu/4a5A9jbfbNDgN6rGAS+GABJ6fQdpDrCArUmTp5owXPcLY3m
-         P19NqRsNukyzDFBUxSTTry+I5qC7wfFQajALSoJUybPr4SP4ATJSxetY8ek5fs3qJQ5w
-         CmJPmoWqyU7k0ZVwko0NbMpAeNO5ThAwMJhuCsKxJvY58uAkHlpDXEdTof+1OHQb7R30
-         LQKCSkvi5m0EsvR86u78nkycuzJZB5ydwZ9uhu7zbgV/gX067hpDlsQAEbIAULAuqR7F
-         5l7Q==
-X-Gm-Message-State: AOAM531bTQzm+2VPykqQnENMprzAC/xbn00qqV8ByOAEhK+PnHvWyEB4
-        N5iJL3fZ4A1dW1UVlAdJ4crezchmnZyyO4PcgZkPQSGd8SsX2Nq8
-X-Google-Smtp-Source: ABdhPJwdPHD8TkHYd9RMPyqQj5husCjTRerMSyATA7K0i70RHLCD2Qk8VoSvKfw1HNpXlLJLlrJIEfSoYPeMuv/hnDM=
-X-Received: by 2002:a05:6638:61c:: with SMTP id g28mr8104263jar.117.1632901874910;
- Wed, 29 Sep 2021 00:51:14 -0700 (PDT)
+        id S244540AbhI2IJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 04:09:32 -0400
+Received: from mail-eopbgr150055.outbound.protection.outlook.com ([40.107.15.55]:3953
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S244389AbhI2IJb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 04:09:31 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gZSqJmcqKs2mfs/RB/k6O1hOlU6WMhmIdKlDxxI50QO5FCoBT+waVCVToZq5D1zZYOIZYNEbnisbjSQ4SGjoMeE+c9fq89mtdMxfIADmgtjv1z228l9EetBuSd3mQH+ueH0zBm072dUyteAsV73kzPAk709zIeJQCxxZkm/WtaVRGFFM8ixFmRd9ldN0f1JgkyQV0btEhgTcI+2NaJf/l86rfXlhtQhv+ouseH9LlzH76BsGlVozIu62fhGaELJ0dLGLLWSQNgPrLpKeLf8nDOTNFtmNPeRId1iN3nWoKM5n3q9AaG1ydK7gC1zHnh1TR3SivgkGD16mBHYns3NJkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=veigPUWwfEW6k/IjL675jVjlX2KFzCdbWH8kJhGDu4o=;
+ b=dNVvorw9oE3HAtUY1Eyro+dCGSSuKKd2psNPO0eeCwJi7ID4KHN6Qqx93xx6uwccHBPt5AVVS2Q28Ty+gze+McSrU78i2Xwu1Lw+pp5vAV2IqMtiankVPz5x6gegBIbBeS9tEMpQSupUf1YbBVdidlGsUQYpW7pPTCm5CZFpWHykLI4iHeCYTRVfegg5NLt66ww5x87i0UT/OmJdJbxRRg1S1HGLLbEQMQ/y7vW0fG2e9G41xeNhBR+GK/AcMbfkNpeDXvdTipxvC3VXXDZMluUEMOMjSHH93KtLo7CJv8jxBwYCKP13VvWBR7H/r2QodMh9KNIDuZAOEvO1hEzTOQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=veigPUWwfEW6k/IjL675jVjlX2KFzCdbWH8kJhGDu4o=;
+ b=Y27IRUWY7Pfz225RCgwW6OwYPsbfGu4mn8e+4zaQMgiRdK26Syc25rYr+XqcHyOBXe+lvmsuCd35yUovkiZaaAGoqYydeM6If6t7D7B3DpU+TJobRoHF21hXWA2hLJzV+TPNi5TbIhTEFYEK+/JjW2lLg38m9dIx45eD2mtTgLc=
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DB3PR0402MB3769.eurprd04.prod.outlook.com (2603:10a6:8:f::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Wed, 29 Sep
+ 2021 08:07:48 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::5d5a:30b0:2bc2:312f]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::5d5a:30b0:2bc2:312f%9]) with mapi id 15.20.4544.021; Wed, 29 Sep 2021
+ 08:07:48 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "a.fatoum@pengutronix.de" <a.fatoum@pengutronix.de>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH V2 0/6] nvmem: add "cell-type" property to support
+ mac-address
+Thread-Topic: [PATCH V2 0/6] nvmem: add "cell-type" property to support
+ mac-address
+Thread-Index: AQHXsGpO9wlWVM6iQUu6fwLoCMj4wKu5jc6AgAED9MA=
+Date:   Wed, 29 Sep 2021 08:07:48 +0000
+Message-ID: <DB8PR04MB67952C0FC44A1481230DB90BE6A99@DB8PR04MB6795.eurprd04.prod.outlook.com>
+References: <20210923110109.29785-1-qiangqing.zhang@nxp.com>
+ <2194172f-a362-a328-993b-45ebec539f9d@linaro.org>
+In-Reply-To: <2194172f-a362-a328-993b-45ebec539f9d@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6c869fa0-0c35-44a2-c88f-08d9832039da
+x-ms-traffictypediagnostic: DB3PR0402MB3769:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB3PR0402MB3769C0DC5B09770EE8DB5077E6A99@DB3PR0402MB3769.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kCw1u6T+MAdE3h2OR44Rjqf660d7uXjBMjBeggmFnTt1DEbE4ZXhg7d20RSCM29FGeFpYvGAC9lGz30+vYrNFpYx9fHzZBYVYuEBLouXtyKNUSS3dLU26tqFqTRW81GOGaZRq9q5p68nJ4CbOPIU3gah7tKxgJjB9UcV5Rf59jPqPJgleSwBIDUFyf7uShkrET72JdalzDJiz9WJRF72qHNgu4BGK3csdYaKQnyrOpuI0ado5PDSwQLby4KmzK4q4KYJNiiCnA4WM1TZnfNh1VOVsxkuzSZYn9zZr0ilo/r3yVnlMpyOPrc8uo1lqKy9yv9w2vAuUuSrmxKz8URDOTrSWa9UetcD/T79h6nmhRJwQuCFgXZCvLSCb/vRtXGHhZJo7MZjO1ODkGN1uo6oFrZWhpmqz7tWjinQXeFR6hqLc6yFmvx2cJCZqv30TKDuanPABelL3U+4m8AKO7oWIJNDCijJmllkRDQrHvZBe3aimzr9JjLFQ9OiWvoCtTj4Z+dDI3CdrYJa5WpRWasE22tLwuAubCcnTK1isLqMHgHZ3V2G9u+lWk5VLzXiartpUAy9Qq/X6u1oyq6nVYMb5szGIFhfFsmTyf2UFmCruDUeKKu3iuqgzCuvepswGImrYhoFcBIVBY2psWkJDq1UFVGNb4vUiyEALHK1zzD7AawiELpK28ESrREedomaHMTqPmu2925X+8m8PoR1xjrs5pOzm2IDPDcVYOoUndfwqmW7RJW1+OhGFk0Ed6U60y5q4nfutnpf8APJtM77ijcySNFxsOPCUqOO3SE0k9MBXo8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66446008)(7696005)(66946007)(508600001)(66476007)(45080400002)(9686003)(2906002)(33656002)(966005)(186003)(38070700005)(66556008)(5660300002)(64756008)(55016002)(110136005)(8936002)(76116006)(38100700002)(52536014)(71200400001)(316002)(86362001)(54906003)(4326008)(8676002)(26005)(53546011)(6506007)(83380400001)(122000001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?gb2312?B?Wkd0d3hXbEFiU3RpMUcyaDhUaThmdnA0WTlKbXZFNWhiRU1vaWc1U3BLVkNh?=
+ =?gb2312?B?WmdIczhLajB5ak40QmIyb1JHN3pDZXp0OG1QbDVxQmxDVWV6OXdxdmdUdFh6?=
+ =?gb2312?B?c0F6cGYyMnUxbTNJR1EwSGFHVmZnUCthanRGcDE2NnNjTDZMaU9oR2pjc0Zt?=
+ =?gb2312?B?L2REQTVtaVVIcGczTksxZmVSMFAyL2g5amJHREtJVTFMOG5yWXZMdncxcXdj?=
+ =?gb2312?B?YXY2U3ZkOEUzaldQZFZWSGFtcXo3UlA4OHNQYWVVT0NLU0VGUHdTdW14dmNi?=
+ =?gb2312?B?YXJrQ1RWOVdpWTRBTTVEdFh5OWV5TExxM2ZRdWJSVkdHOW9ra29oamJqOXg3?=
+ =?gb2312?B?VE5YY0R5KzFxTWNIUXlGZFNTOW9lYnNINHhtbHBGcXF1d3BBUWdkZkdIZTJJ?=
+ =?gb2312?B?MlRHV0xRWEN0UnhpbExwazNxRUN5WGRVSnh1ZGprbmt2MFo0OW4xa3MvSkZB?=
+ =?gb2312?B?cDhsSWVuQ25MSnVqd1dJU1lVbENReWI1czNoMXNMUWdsUXl1KzdwWG9aTzFy?=
+ =?gb2312?B?Zms5ejBkUDJZQjkrNDU4TGxVRzFkVVZrQnVLQ1hlREd0UHplM2ZqeUZkSkE4?=
+ =?gb2312?B?cHd5bk1XbGtKdlpJMEt2d2tmK2J5S2lSL1BveDRzaVc1cXJsMmRTbmlNMDZk?=
+ =?gb2312?B?c1M0RElSOHRKQTJnT0Z1WmYrNTZYcEx3ak93WDlWNG4wS0ozVWk1SjJaUVBP?=
+ =?gb2312?B?dWt0QnpBV2prT29jdEJ2NTFLdUtzNDRFK1YrVjRTVlJIVllSY3VhSFFoS3I0?=
+ =?gb2312?B?ckZ1ZnN5MWdrbU9TZis3N3ZCWG5vWXppUHJBOVI4K2tZNjNkbWFSZk4rYkN2?=
+ =?gb2312?B?VWNHMEZWY2V0TmVZU1ZtK0swQ3hBa0QrTXBIaHdJR2t3YkZOMWcyMjRSVGlF?=
+ =?gb2312?B?U2NWOFg3OGZpMjZRZmF0a3oxb2h6OFoweHNtUFo4VDc1TUFZdUIyc3BmczRK?=
+ =?gb2312?B?SFJ6WW4zb2lLMWZ6MVdUcFN3d0JMblFFcFVKdGJZbkZ2VVllVitXdHZleGt1?=
+ =?gb2312?B?RUFuVmNnOHpkajZxSVRtQ3lFS1VaSmJReS9KcG1ZdlNha0wvWGRTZVRuMHJK?=
+ =?gb2312?B?SWlxR0xKZ1VYVDdTSEFPb21QTFdBakluTGF5T2p3UGpSK3p1dE55TGFTYmVz?=
+ =?gb2312?B?TTZ6ZUlPN3BocFlob2h1T3VEbkcramV5UW9TTzFxdlVsT3BXdjZOaDRLSTYz?=
+ =?gb2312?B?SjYyUFg3YWs5YW1PZm9TQVFWUk1zRGUvU0wwcXhqcmRJaDVWTkptNmtSNUhy?=
+ =?gb2312?B?OXZPRG1RWVlYaFljZ25wbUZ1Vm8veW85aWM0WE1BSjJiZWl3U2ZxaXB5azE4?=
+ =?gb2312?B?WStvOWZ4WXZYYmZBTHgxZy95a3M3bEpzY3FGOWRNcG1OSVFqRkR5T21COFEx?=
+ =?gb2312?B?cU5QTUNyaU15bFdZbTN4UDFQb2FmMWZmayt4elZ3MzRPMUhFTmpDNDdLb1BE?=
+ =?gb2312?B?aGs2cjhicUIxREM2djlLMnJ3aDJJVmtVSlVOZHNSalJhQ21TTFEyZUg1b1Z0?=
+ =?gb2312?B?c3JNYXhwajZIK3BqQ0VmWitWaEs5R2c3ci84cHk3d1JKRy9DUGZkMVJubWpJ?=
+ =?gb2312?B?bkxRUGhEdUNXc3ltcEVHcFZkZWVoR1E4TG5HbWF0UmdsN1JUNG5sQ01QYytZ?=
+ =?gb2312?B?clkvaTlWSmxOaVMyejBVak9lWWUrcGc0dmJFSVFrSXZZTDNTRWcrSmtNclpF?=
+ =?gb2312?B?VytaaWJyM1VTUlNCeDBkOVpiNDJTa0pkQnJKdFBtVUJQd3h2N1ptUVR5VEl2?=
+ =?gb2312?Q?Jws6Slx+bz6A0j20lg=3D?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210829091925.190-1-alistair@alistair23.me> <20210829091925.190-7-alistair@alistair23.me>
- <YS1DGuTTAEKAd2Yr@google.com> <PA4PR07MB7407FE9FE271191AC52F7EA387CE9@PA4PR07MB7407.eurprd07.prod.outlook.com>
- <YTcBOskPYjbv4q61@google.com> <CAF8JNh+PcYuaLL=ToS0hOT62YbVmMWY9BCT-CGx_x+AkKuO_Tw@mail.gmail.com>
- <YThQUtE757b/ExR4@google.com> <CAF8JNhJL_AzqnpzPw5PRR1xczhMBscxwLHMN7tE2EGRH8PHu4A@mail.gmail.com>
- <YUlhEj/+gzrQLG8u@google.com>
-In-Reply-To: <YUlhEj/+gzrQLG8u@google.com>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Wed, 29 Sep 2021 17:50:00 +1000
-Message-ID: <CAKmqyKMgvTGS7-A9axCNRSu6n-FPxrq55yyzt1U3sHWWoLTCtg@mail.gmail.com>
-Subject: Re: [PATCH v10 05/12] Input: wacom_i2c - Read the descriptor values
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Ping Cheng <pinglinux@gmail.com>,
-        Alistair Francis <alistair@alistair23.me>,
-        "Tobita, Tatsunosuke" <tatsunosuke.tobita@wacom.com>,
-        linux-input <linux-input@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Tatsunosuke Tobita <junkpainting@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c869fa0-0c35-44a2-c88f-08d9832039da
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2021 08:07:48.1641
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /J6BDNPyvOW5K97W/ZgcGlq+cDx54B/wCJ6IAJDRyxaIAm5bUA9JkE/vvg+/SA8whennERIngRLWgguclSQ/ew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3769
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 2:35 PM Dmitry Torokhov
-<dmitry.torokhov@gmail.com> wrote:
->
-> Hi Ping,
->
-> On Fri, Sep 17, 2021 at 01:43:18PM -0700, Ping Cheng wrote:
-> > Hi Dmitry,
-> >
-> > On Tue, Sep 7, 2021 at 10:55 PM Dmitry Torokhov
-> > <dmitry.torokhov@gmail.com> wrote:
-> > >
-> > > > > >
-> > > > > > Yes, our firmware supports HID over I2C.  However, some of our
-> > > > > > customers often do not want to use HID to handle our hardware; even
-> > > > > > they don't install the generic HID driver neither.  In such case, we
-> > > > > > need to distinguish what generation of our device customer's has. And
-> > > > > > to do so, we check I2C HID descriptor even though the driver is not
-> > > > > > working with HID driver components, but this one.  That is why I2C HID
-> > > > > > descriptor is used there. It is called, but the situation with this
-> > > > > > driver is not supposed to work as a HID device.
-> > > > >
-> > > > > I would like to understand better why the customers do not want to use
-> > > > > HID.
-> > > >
-> > > >
-> > > > Those customers normally run embedded Linux. Their hardwares have very
-> > > > specific use cases. They don't need to support any other HID devices except
-> > > > the Wacom i2c device.
-> > > >
-> > > > >
-> > > > There needs to be a _very_ strong reason to essentially duplicate
-> > > > > HID layer in a vendor driver and I inclined to say that such customers
-> > > >
-> > > > would need to patch their kernels themselves.
-> > > >
-> > > > They most likely don't want to duplicate HID layer. They just don't need
-> > > > most of the HID layer code.
-> > >
-> > > They just need touchscreen support. Plus stylus support. And maybe
-> > > battery support. And maybe something else down the road... And they need
-> > > to introduce DT and ACPI descriptors to be able to mould the behavior to
-> > > platform needs. Which is pretty much the purpose of HID layer.
-> >
-> > I see your point.
-> >
-> > > > wacom_i2c simplifies their deployment and
-> > > > testing process. Most of those customers are very small companies...
-> > >
-> > > And now please continue this train of thoughts and consider every touch
-> > > vendor. Wacom is not unique. We have Elan, Cypress, Weida, Goodix, etc.
-> > > etc. Vendor drivers were acceptable before we had I2C standard, but now
-> > > it is much better for everyone to share the efforts and use HID instead
-> > > of replicating it for every vendor.
-> >
-> > And I agree with you that we should share our efforts on the main tasks.
-> >
-> > However, with the same token of sharing efforts, I see the benefit of
-> > merging this set of patches upstream. From the version number we can
-> > tell the patchset has gone through at least 10 rounds of review and
-> > update. Alistair has put a lot of effort to get this far (Thank you
-> > Alistair for your time and effort!).
->
-> I am sorry, but the fact that a developer spent a lot of time writing
-> code can not be used as a justification for merging said code.
->
-> > A few community developers have
-> > also reviewed the patches. This set of patches thoroughly touched all
-> > parts of the components that related to an input i2c driver, which is
-> > much better than the original version. This patchset would be a great
-> > starting point for vendors to create their out of tree drivers, when
-> > necessary. It would also offer vendors a clear picture of what
-> > components they need to change/update to make their i2c input device
-> > work under kernel input subsystem.
->
-> And they can do that by looking at the mailing list archive and they can
-> also follow this discussion and see why what they are doing is quite
-> wrong. I mean, why would they stop at dropping HID only? Why not bypass
-> I2C system as well and poke at the I2C controller directly. Skip PCI as
-> well?
->
-> >
-> > So, merging the patchset will benefit more people and preserve the
-> > effort that went into the patchset so far. If you like, you can add a
-> > comment in the patch mentioning that future effort should be directed
-> > to the i2c-hid subsystem, etc...
->
-> No, we should not merge the patch set that we agreed is wrong in its
-> approach. Maybe if I (and other community reviewers) realized that the
-> device was HID compliant we could stop this effort earlier, but
-> unfortunately it did not happen, so effort was wasted, but this happens
-> sometimes.
-
-Should I prepare a patch to remove the wacom I2C driver entirely then?
-
-Alistair
-
->
-> Thanks.
->
-> --
-> Dmitry
+DQpIaSBTcmluaXZhcywNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBT
+cmluaXZhcyBLYW5kYWdhdGxhIDxzcmluaXZhcy5rYW5kYWdhdGxhQGxpbmFyby5vcmc+DQo+IFNl
+bnQ6IDIwMjHE6jnUwjI4yNUgMjI6NDQNCj4gVG86IEpvYWtpbSBaaGFuZyA8cWlhbmdxaW5nLnpo
+YW5nQG54cC5jb20+OyByb2JoK2R0QGtlcm5lbC5vcmc7DQo+IHNoYXduZ3VvQGtlcm5lbC5vcmc7
+IGEuZmF0b3VtQHBlbmd1dHJvbml4LmRlDQo+IENjOiBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGRl
+dmljZXRyZWVAdmdlci5rZXJuZWwub3JnOw0KPiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3Jn
+OyBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENI
+IFYyIDAvNl0gbnZtZW06IGFkZCAiY2VsbC10eXBlIiBwcm9wZXJ0eSB0byBzdXBwb3J0DQo+IG1h
+Yy1hZGRyZXNzDQo+IA0KPiBIaSBKb2FraW0sDQo+IA0KPiANCj4gSSBwdXNoZWQgc29tZSBXSVAg
+Y2hhbmdlcyB0bw0KPiBodHRwczovL2V1cjAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2su
+Y29tLz91cmw9aHR0cHMlM0ElMkYlMkZnaXQua2Vybg0KPiBlbC5vcmclMkZwdWIlMkZzY20lMkZs
+aW51eCUyRmtlcm5lbCUyRmdpdCUyRnNyaW5pJTJGbnZtZW0uZ2l0JTJGbG9nJQ0KPiAyRiUzRmgl
+M0R0b3BpYyUyRnBvc3QtcHJvY2Vzc2luZyZhbXA7ZGF0YT0wNCU3QzAxJTdDcWlhbmdxaW5nLnpo
+YW4NCj4gZyU0MG54cC5jb20lN0NmZjkzYjQyOWJkZTg0YTQ1ZWVkZDA4ZDk4MjhlNzU4YiU3QzY4
+NmVhMWQzYmMyYjRjDQo+IDZmYTkyY2Q5OWM1YzMwMTYzNSU3QzAlN0MwJTdDNjM3Njg0MzcwNjM2
+MzU4ODYzJTdDVW5rbm93biU3Q1QNCj4gV0ZwYkdac2IzZDhleUpXSWpvaU1DNHdMakF3TURBaUxD
+SlFJam9pVjJsdU16SWlMQ0pCVGlJNklrMWhhV3dpTENKDQo+IFhWQ0k2TW4wJTNEJTdDMTAwMCZh
+bXA7c2RhdGE9aCUyQlpvM25rSjJRdU84Nk45M285dDN1VVB2QW9mbGgNCj4gUU9CS2ZTbmZBa0x2
+OCUzRCZhbXA7cmVzZXJ2ZWQ9MA0KPiB3aXRoIFJvYidzIGZlZWRiYWNrLA0KPiANCj4gRG8geW91
+IHRoaW5rIHlvdSBjb3VsZCB0cnkgaXQgb3V0IGFuZCBzZWUgaWYgdGhpcyB3b3JrcyBmb3IgeW91
+Pw0KDQpUaGFuayB5b3UgdmVyeSBtdWNoISENCg0KSSBkbyBhIHF1aWNrIHRlc3QsIGFuZCB0aGUg
+cmVzdWx0IGlzIGFzIHlvdSBleHBlY3RlZC4gRmVlbCBmcmVlIHRvIGFkZCBteSB0ZXN0IHRhZzog
+VGVzdGVkLWJ5OiBKb2FraW0gWmhhbmcgPHFpYW5ncWluZy56aGFuZ0BueHAuY29tPg0KU2luY2Ug
+bm8gZXh0cmEgd29yayBuZWVkZWQgZm9yIGkuTVggZHRzLCBzbyBjb3VsZCB5b3UgcGxlYXNlIHRh
+a2UgY2FyZSBvZiB0aGlzIHBhdGNoIHNldD8NCkFueSB0ZXN0IHJlcXVlc3QgbGF0ZXIgY291bGQg
+YmUgZGVsYXllZCwgc29ycnksIGFzIEkgYW0gb24gdmFjYXRpb24gc3RhcnRzIHRvbW9ycm93LiBJ
+IHdpbGwgaGFuZGxlIGl0IEFTQVAgd2hlbiBJIGNvbWUgYmFjayBvbiBvZmZpY2UgaWYgeW91IGhh
+dmUgcmVxdWVzdC4NCg0KQmVzdCBSZWdhcmRzLA0KSm9ha2ltIFpoYW5nDQo=
