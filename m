@@ -2,244 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2561341CC08
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 20:40:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 984AE41CC4B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 21:06:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346248AbhI2SmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 14:42:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45860 "EHLO
+        id S1346398AbhI2THi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 15:07:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346132AbhI2SmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 14:42:21 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E92C061764
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 11:40:40 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id k23so2364346pji.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 11:40:40 -0700 (PDT)
+        with ESMTP id S1346392AbhI2THh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 15:07:37 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36C78C061766
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 12:05:56 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id x27so14844759lfa.9
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 12:05:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=4jwM7sobvyC/yr53MKLR0xpqrIrHAxpL22WbxQS8Ssk=;
-        b=BO4+2wrBhpWuCNj60xpuPgO7J50jiinFUZAkXTz6DPCNbk/I5aD11OhFxHjNtyFxYf
-         RvbtY17gJxHrUyr27wF6UBUJhxcBqQjmphC31JZ64+fNg3H8Bwg86zMp615PKpLSaL3v
-         mAQ9BTwki3iV5apUvUPYwTeH/26Af/6eh1ChA=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ny2+77Uus4H/nPXbEE4fOfi5YTib/j8MfG7t5iU/Qjk=;
+        b=u6OGwlgD9IMdZ2HdoL8lkGBaqUb5DoK6/ym/uunK23jP7PeZNuys4OF0DfZjcc71mS
+         wSaga3Tz+eoQfYV0I77DEE+PbtHypvTZ/hqRMk541PeMfXxMoxuGqlNVo6GKIhgqBbtm
+         w4CE6GxIgsoXcTdf0P78xhEPcZsN2n4qskMRL9Pso9qTEa0nE66xFL/I5iPwRYB5XEyZ
+         ZI8Rbt2eumS1xSR4toHy0Z7Aqwi84+S12v0eY3n9N7BiGO3yEUodzVmc6BbfSI3q3Syx
+         EhFNtc07A3S93kgvOonDkfZaLwDimfeSFWceB/mxA5hxY8a6ldJ3f52N3kCwWFaHdbDI
+         bpLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4jwM7sobvyC/yr53MKLR0xpqrIrHAxpL22WbxQS8Ssk=;
-        b=39LOPXrgTCG+SMQskL6ZRHxqzKLFdXZMEmTqbFHnau4bbCLcuuZmHj7ejOERKd5NHk
-         VNazzjDkIGGvBAyi20rooAKUJHXZU75xAojPZGmpIN/c1Keh7IDjRSIsirbijjaNiAW9
-         VcVjVN47jgAJzM/qUpv/gvCVJexEWRtb4UgU2DroBNYw8iJBrH0BF1zz72jsQXB986cT
-         w/YcjbuXXUJVJzwf7OqopurWjLrj0DjcxhobWxEfnJy7gFL00wWbXfzGCjHRSonqqll1
-         Me+ZvQZHswUpHZYP8R6d6jh+fDfc+WXVTWoQFKQ8vlM/Fes1Du8erjfyZNCl4SxmBujl
-         9qmw==
-X-Gm-Message-State: AOAM533ss0FB9YghX5FMyIl8U07ANL/4t5YwJWWZ7dJ9+3WPfwrYLGwm
-        mMyLArMEwTmkmlR8Hb9u8Lvxsw==
-X-Google-Smtp-Source: ABdhPJyU6YGAnOeNMh7OS1RrgoT3QJ2xKwQz0u5IBYHVhIbWpHqBeKoWjIxxse5LTwLah0AAs5Kibw==
-X-Received: by 2002:a17:90b:2385:: with SMTP id mr5mr1478243pjb.189.1632940839770;
-        Wed, 29 Sep 2021 11:40:39 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:2f10:2763:4825:1f01])
-        by smtp.gmail.com with UTF8SMTPSA id c9sm425983pfi.212.2021.09.29.11.40.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Sep 2021 11:40:39 -0700 (PDT)
-Date:   Wed, 29 Sep 2021 11:40:37 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sdm845: mtp: Add vadc channels
- and thermal zones
-Message-ID: <YVSzJZ8G43CLml3L@google.com>
-References: <20210923212311.2877048-1-bjorn.andersson@linaro.org>
- <20210923212311.2877048-5-bjorn.andersson@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ny2+77Uus4H/nPXbEE4fOfi5YTib/j8MfG7t5iU/Qjk=;
+        b=k/6So783Zi8trUC1NERYSccloSQJNo8fUNvE1oIsHcoWz2ZzyGsquyw/OAorPs51K3
+         sXqy7M9uHRcn97toj2dRWVIy2XeIFCGMMx69HaFou13Nmhob78CVqeEIRTQolCux+3X1
+         DleA3bzJpzkeYUuXmOf5DWj2KRcu/PtZh9q64UcXYZxd46Y/NqQ4Aj0Czko/SMDw0KNp
+         Zx3BL4O07PhBfI5AXTYlnkt9NEMQnu5hE5Bg7Q+HDf3Mai5nFolutQKbE6qP9haVdvcS
+         Whq++Bli0/lI1wiFofJxku0NJbgeKkOZKyaxhmVaHEJ7lVaLelZu3SPGghvHhgE2C5Pg
+         GyyQ==
+X-Gm-Message-State: AOAM533T5FOI2zqfW3k7tiRkxW5SKovu/m6Exo+xSrblmXNwRoSj2wZK
+        IzHubCUCAbjvASnPwfxnKMsVhA9r+bFGwaWuQx7OfQ==
+X-Google-Smtp-Source: ABdhPJyqcID0Rhrbbe0OvfTzDp/RzSDgD4HnmlSaEBRo17fjtzsvHgiue0dF/BTOtdBw+Qj5ZU01/pfPX32AilRT4+s=
+X-Received: by 2002:a2e:8011:: with SMTP id j17mr1513715ljg.145.1632942354388;
+ Wed, 29 Sep 2021 12:05:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210923212311.2877048-5-bjorn.andersson@linaro.org>
+References: <20210929163847.2807812-1-maz@kernel.org> <20210929163847.2807812-11-maz@kernel.org>
+In-Reply-To: <20210929163847.2807812-11-maz@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 29 Sep 2021 21:05:42 +0200
+Message-ID: <CACRpkdaXbrmvoQQNRdyv6rJ+dHYAKMN+J_sc-3_c1d6D2dsfbQ@mail.gmail.com>
+Subject: Re: [PATCH v5 10/14] arm64: apple: Add pinctrl nodes
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        Joey Gouly <joey.gouly@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 23, 2021 at 02:23:11PM -0700, Bjorn Andersson wrote:
-> Downstream defines four ADC channels related to thermal sensors external
-> to the PM8998 and two channels for internal voltage measurements.
-> 
-> Add these to the upstream SDM845 MTP, describe the thermal monitor
-> channels and add thermal_zones for these.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> 
-> In addition to the iio channels exposed by v1, Daniel wanted thermal_zones...
-> 
-> Changes since v1:
-> - Enable the pm8998_adc_tm and describe the ADC channels
-> - Add thermal-zones for the new channels
-> 
->  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 128 ++++++++++++++++++++++++
->  1 file changed, 128 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> index 52dd7a858231..e3b40daef801 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> @@ -10,6 +10,8 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  #include "sdm845.dtsi"
-> +#include "pm8998.dtsi"
-> +#include "pmi8998.dtsi"
->  
->  / {
->  	model = "Qualcomm Technologies, Inc. SDM845 MTP";
-> @@ -46,6 +48,68 @@ vreg_s4a_1p8: pm8998-smps4 {
->  
->  		vin-supply = <&vph_pwr>;
->  	};
-> +
-> +	thermal-zones {
-> +		xo_thermal: xo-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&pm8998_adc_tm 1>;
-> +
-> +			trips {
-> +				trip-point {
-> +					temperature = <125000>;
-> +					hysteresis = <10000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		msm_thermal: msm-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&pm8998_adc_tm 2>;
-> +
-> +			trips {
-> +				trip-point {
-> +					temperature = <125000>;
-> +					hysteresis = <10000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		pa_thermal: pa-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&pm8998_adc_tm 3>;
-> +
-> +			trips {
-> +				trip-point {
-> +					temperature = <125000>;
-> +					hysteresis = <10000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		quiet_thermal: quiet-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&pm8998_adc_tm 4>;
-> +
-> +			trips {
-> +				trip-point {
-> +					temperature = <125000>;
-> +					hysteresis = <10000>;
-> +					type = "passive";
-> +				};
-> +			};
-> +		};
-> +	};
->  };
->  
->  &adsp_pas {
-> @@ -469,6 +533,70 @@ &mss_pil {
->  	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mbn";
->  };
->  
-> +&pm8998_adc {
-> +	adc-chan@4c {
-> +		reg = <ADC5_XO_THERM_100K_PU>;
-> +		label = "xo_therm";
-> +	};
-> +
-> +	adc-chan@4d {
-> +		reg = <ADC5_AMUX_THM1_100K_PU>;
-> +		label = "msm_therm";
-> +	};
-> +
-> +	adc-chan@4f {
-> +		reg = <ADC5_AMUX_THM3_100K_PU>;
-> +		label = "pa_therm1";
-> +	};
-> +
-> +	adc-chan@51 {
-> +		reg = <ADC5_AMUX_THM5_100K_PU>;
-> +		label = "quiet_therm";
-> +	};
-> +
-> +	adc-chan@83 {
-> +		reg = <ADC5_VPH_PWR>;
-> +		label = "vph_pwr";
-> +	};
-> +
-> +	adc-chan@85 {
-> +		reg = <ADC5_VCOIN>;
-> +		label = "vcoin";
-> +	};
-> +};
-> +
-> +&pm8998_adc_tm {
-> +	status = "okay";
-> +
-> +	xo-thermistor@1 {
-> +		reg = <1>;
-> +		io-channels = <&pm8998_adc ADC5_XO_THERM_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us = <200>;
-> +	};
-> +
-> +	msm-thermistor@2 {
-> +		reg = <2>;
-> +		io-channels = <&pm8998_adc ADC5_AMUX_THM1_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us = <200>;
-> +	};
-> +
-> +	pa-thermistor@3 {
-> +		reg = <3>;
-> +		io-channels = <&pm8998_adc ADC5_AMUX_THM3_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us = <200>;
-> +	};
-> +
-> +	quiet-thermistor@4 {
-> +		reg = <4>;
-> +		io-channels = <&pm8998_adc ADC5_AMUX_THM5_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us = <200>;
-> +	};
-> +};
-> +
+On Wed, Sep 29, 2021 at 6:56 PM Marc Zyngier <maz@kernel.org> wrote:
 
-The example in the 'qcom,spmi-adc-tm5' binding specifies 'qcom,ratiometric'
-and 'qcom,hw-settle-time-us' for both the ADC and the thermal monitor, so do
-several board files (e.g. sm8250-mtp.dts and qrb5165-rb5.dts). This apparent
-redundancy bothered me earlier, it's not really clear to me whether it's
-needed/recommended or not. Do you happen to have any insights on this?
+> From: Mark Kettenis <kettenis@openbsd.org>
+>
+> Add pinctrl nodes corresponding to the gpio,t8101 nodes in the
+> Apple device tree for the Mac mini (M1, 2020).
+>
+> Clock references are left out at the moment and will be added once
+> the appropriate bindings have been settled upon.
+>
+> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> Link: https://lore.kernel.org/r/20210520171310.772-3-mark.kettenis@xs4all.nl
+(...)
+> +               pinctrl_ap: pinctrl@23c100000 {
+> +                       compatible = "apple,t8103-pinctrl", "apple,pinctrl";
+> +                       reg = <0x2 0x3c100000 0x0 0x100000>;
+> +
+> +                       gpio-controller;
+> +                       #gpio-cells = <2>;
+> +                       gpio-ranges = <&pinctrl_ap 0 0 212>;
+
+In other discussions it turns out that the driver is abusing these gpio-ranges
+to find out how many pins are in each pinctrl instance. This is not the
+idea with gpio-ranges, these can be multiple and map different sets,
+so we need something like
+
+apple,npins = <212>;
+(+ bindings)
+
+or so...
+
+Yours,
+Linus Walleij
