@@ -2,117 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6365D41C52A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 15:04:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEC7B41C584
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 15:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343987AbhI2NGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 09:06:38 -0400
-Received: from rtits2.realtek.com ([211.75.126.72]:46364 "EHLO
-        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343954AbhI2NGh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 09:06:37 -0400
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.73 with qID 18TD4KjP4014979, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36503.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.71/5.88) with ESMTPS id 18TD4KjP4014979
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 29 Sep 2021 21:04:20 +0800
-Received: from RTEXMBS01.realtek.com.tw (172.21.6.94) by
- RTEXH36503.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.14; Wed, 29 Sep 2021 21:04:20 +0800
-Received: from localhost.localdomain (172.22.234.227) by
- RTEXMBS01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 29 Sep 2021 21:04:18 +0800
-From:   <derek.fang@realtek.com>
-To:     <broonie@kernel.org>, <lgirdwood@gmail.com>
-CC:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <lars@metafoo.de>, <flove@realtek.com>, <oder_chiou@realtek.com>,
-        <jack.yu@realtek.com>, <shumingf@realtek.com>,
-        Derek Fang <derek.fang@realtek.com>
-Subject: [PATCH] ASoC: dt-bindings: rt5682s: fix the device-tree schema errors
-Date:   Wed, 29 Sep 2021 21:04:06 +0800
-Message-ID: <20210929130406.24325-1-derek.fang@realtek.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [172.22.234.227]
-X-ClientProxiedBy: RTEXH36503.realtek.com.tw (172.21.6.25) To
- RTEXMBS01.realtek.com.tw (172.21.6.94)
-X-KSE-ServerInfo: RTEXMBS01.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: trusted connection
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Deterministic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 09/29/2021 12:47:00
-X-KSE-AttachmentFiltering-Interceptor-Info: no applicable attachment filtering
- rules found
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: =?big5?B?Q2xlYW4sIGJhc2VzOiAyMDIxLzkvMjkgpFekyCAxMTowNjowMA==?=
-X-KSE-BulkMessagesFiltering-Scan-Result: protection disabled
-X-KSE-ServerInfo: RTEXH36503.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+        id S1344138AbhI2N1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 09:27:13 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.83]:20489 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242801AbhI2N1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 09:27:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1632921905;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=iXnkGBjUJ/lD8Seg+3/qoiXxZlA8cp27UXC2S8pwhhE=;
+    b=LKr/APoVDaPodsHvLUwFwZdabISWBDYx7ojmMJKUlP3z+sgzhD748oTXc2WmfcIoiZ
+    1szZPCEho16UYScbl2z+dDlVLQwqXiro/m9UeJtTKzO6e5vuakfdM2oPGCf1rh36vCwk
+    AoaYxSczLNmY5pj7K/B+m3lu2zaPLzL2ffYVRMAgE+LyvIDthiTtzCLvSD4hpIQJS7cp
+    npEX43lPiBRxLMr2D5WE80Tz2lsDwbaIplqLcFXRMG7wprx0EJmg5X4zaC72omlf/sRX
+    HQQSBtm844e+cumiuLExMB7MAD07ZvNcdTKDg6CXAjjMGAsXDPXwyX9iJ+TQfNV9AdXG
+    BheQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43qmio="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
+    with ESMTPSA id I01f74x8TDP3k6X
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Wed, 29 Sep 2021 15:25:03 +0200 (CEST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v4 02/10] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <17BF1D7A-2057-448B-9FD2-907DE0EFD281@goldelico.com>
+Date:   Wed, 29 Sep 2021 15:25:02 +0200
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <3D436929-570A-43FA-A388-27A183ECF703@goldelico.com>
+References: <cover.1632761067.git.hns@goldelico.com>
+ <68cca888be1894ce45f1a93cfabeb5aa1f88c20a.1632761067.git.hns@goldelico.com>
+ <OA150R.JLKJBJP8V7FJ2@crapouillou.net>
+ <1E10A04A-4A78-4B47-B0FB-1E8C99456DA1@goldelico.com>
+ <17BF1D7A-2057-448B-9FD2-907DE0EFD281@goldelico.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Derek Fang <derek.fang@realtek.com>
+Hi Paul,
 
-Fix the device-tree schema errors that be reported by using 'make
-dt_binding_check'.
 
-Signed-off-by: Derek Fang <derek.fang@realtek.com>
----
- .../devicetree/bindings/sound/realtek,rt5682s.yaml   | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+> Am 28.09.2021 um 14:06 schrieb H. Nikolaus Schaller =
+<hns@goldelico.com>:
+>=20
+> Hi Paul,
+>=20
+>> Am 28.09.2021 um 12:21 schrieb H. Nikolaus Schaller =
+<hns@goldelico.com>:
+>>=20
+>>>> @@ -1492,10 +1555,16 @@ static int ingenic_drm_init(void)
+>>>> {
+>>>> 	int err;
+>>>> +	if (IS_ENABLED(CONFIG_DRM_INGENIC_DW_HDMI)) {
+>>>> +		err =3D =
+platform_driver_register(ingenic_dw_hdmi_driver_ptr);
+>>>> +		if (err)
+>>>> +			return err;
+>>>> +	}
+>>>=20
+>>> I don't see why you need to register the ingenic-dw-hdmi driver =
+here. Just register it in the ingenic-dw-hdmi driver.
+>>=20
+>> Ok, I never though about this (as the code was not from me). We =
+apparently just followed the IPU code pattern (learning by example).
+>>=20
+>> It indeed looks not necessary and would also avoid the =
+ingenic_dw_hdmi_driver_ptr dependency.
+>>=20
+>> But: what is ingenic_ipu_driver_ptr then good for?
+>>=20
+>> If we can get rid of this as well, we can drop patch 1/10 =
+("drm/ingenic: Fix drm_init error path if IPU was registered") =
+completely.
+>=20
+> A quick test shows that it *is* required. At least if I configure =
+everything as modules.
+> But like you I can't explain why.
+>=20
+> Well, just a very rough idea (may be wrong): the bridge chain is not =
+like an i2c bus and
+> clients are not automatically loaded/probed if linked in the device =
+tree. Therefore the
+> consumer (ingenic_drm_drv) must register the "clients" like IPU and =
+HDMI.
 
-diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
-index 7a5f1d0fd3e2..2b8b7b51fe55 100644
---- a/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
-+++ b/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
-@@ -29,6 +29,8 @@ properties:
-       - 0 # dmic1 data is not used
-       - 1 # using GPIO2 pin as dmic1 data pin
-       - 2 # using GPIO5 pin as dmic1 data pin
-+    description: |
-+      Specify which GPIO pin be used as DMIC1 data pin.
- 
-   realtek,dmic1-clk-pin:
-     $ref: /schemas/types.yaml#/definitions/uint32
-@@ -36,12 +38,16 @@ properties:
-       - 0 # dmic1 clk is not used
-       - 1 # using GPIO1 pin as dmic1 clock pin
-       - 2 # using GPIO3 pin as dmic1 clock pin
-+    description: |
-+      Specify which GPIO pin be used as DMIC1 clk pin.
- 
-   realtek,jd-src:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     enum:
-       - 0 # No JD is used
-       - 1 # using JD1 as JD source
-+    description: |
-+      Specify which JD source be used.
- 
-   realtek,ldo1-en-gpios:
-     description: |
-@@ -72,9 +78,9 @@ properties:
-     const: 1
- 
-   clock-output-names:
--    items:
--      - description: Name given for DAI word clock output.
--      - description: Name given for DAI bit clock output.
-+    minItems: 2
-+    maxItems: 2
-+    description: Name given for DAI word clock and bit clock outputs.
- 
- additionalProperties: false
- 
--- 
-2.17.1
+Any suggestion how to proceed here for v5?
+
+BR,
+Nikolaus
 
