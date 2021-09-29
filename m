@@ -2,69 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78CA141CF1C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 00:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2764041CF4A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 00:38:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347221AbhI2WNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 18:13:09 -0400
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:41523 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347092AbhI2WNH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 18:13:07 -0400
-Received: by mail-oi1-f175.google.com with SMTP id s24so4772546oij.8;
-        Wed, 29 Sep 2021 15:11:26 -0700 (PDT)
+        id S1345329AbhI2WkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 18:40:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43788 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345134AbhI2WkZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 18:40:25 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEBB9C061767
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 15:38:43 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id g184so4225647pgc.6
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 15:38:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lV5xuRCo97FO+/YjOZoVXS4gdXQHaPC1UbDoCKlaVDs=;
+        b=Cs/2B1s3XusJZNX2EAmJsThS72QYqL4+OFpfGGSEecNriNH4SxU1ge+7gzBxyLF+UB
+         OhVjMXkohP423v/sc7lFfN6/gLgISlQd7qX9ne8pyCgwD9cFw2NVliVeX31vfTN0pR0S
+         A1uYNnkHFpJkth9/9vwTFIumYZsM0U6SJIEX0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Xe2Jz+HG0oynCJl0Rh79iqr/d53l3gDFqX1VxKfAJeg=;
-        b=ef0UsrVKgGoh2JfiUG3ctWAjc8LZl88Vjf1AN6V+4wdsZAgnNHuSPt2djHDjuYk1cg
-         shusupkpdqo8QzW9E+MHin1WUYGBUaQYEn82MAEYTpmwzRYByO0J+6yp9Ek9oW1XD4MW
-         Vb6YBIJrUSrbU1RVLnZNiKggz6SJxQ49msw5bILbSjJc0zjlKaVHUksM6N/zf/bxZec1
-         JVEsMQ4LyB8/z+I+Ej8rppNYqub9Mp9ZVpQZWSicpL++Z0ZuV6Gw/VWFE0CNcHXKZAMI
-         /yJDo6wYSPTiCejOAEKSeJHq2JYWV8KoGFymbKj635twZ1VZ7RHOIMtKhcLuGAOvsXAJ
-         GTzA==
-X-Gm-Message-State: AOAM530EsT1VEGJkjTJklFS9sl9iUsagZ0No7tDXfK+RUdIAVYrDLPvg
-        OM+40Yc1M3Ilduae5JI/hA==
-X-Google-Smtp-Source: ABdhPJy/+/VB5A39jM44w1plBCdCfDo7DjkavPi1UzNuFA1EpZDX2UQk/OCAu6tqg2tZ2h0FWKJbAA==
-X-Received: by 2002:a05:6808:309f:: with SMTP id bl31mr17941oib.41.1632953485705;
-        Wed, 29 Sep 2021 15:11:25 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k2sm207954oog.5.2021.09.29.15.11.24
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lV5xuRCo97FO+/YjOZoVXS4gdXQHaPC1UbDoCKlaVDs=;
+        b=vrUcxQkDrjkOgIrZiJ3erITdvPX/0bFSxmMMbCjPWK3KM0rBm5DEiC2QnPAof4tfK+
+         vMHEXwtvKTJcH2GdA7rpPUQBX2bFX+QU+LxzkNkpuKoPR5Ye+fUZA9c4cuCGrejm3cRW
+         Df0DgzBSN6F58NPm9plVTxZlSSuYjN8hDea26HkuKIntZ3V748/SvlH+QdKhx8+YAeu7
+         flsRxGUBT6KxMSn+E6bAVN8oF2Tn3X+ok7PPjIZTfrFNkUkcrefF5MBmh/HBDpYb38ZB
+         5FsD5KxWRds2puG+iMYBJ4aYQX99ZXh8njy7VB72w3Qkmu4T+1WGXkVoRcSqxyg9frG5
+         l19w==
+X-Gm-Message-State: AOAM532EKHVLvST0APojBeyZzKTLvW7m6ZmsoONXwd9bLyEy/Og8QUOA
+        ksm8KPQgctTZuYxGiwjCBQEdkw==
+X-Google-Smtp-Source: ABdhPJzROFeEh/I+CPoPCnPZGs6TN7BdSFr9TWP5SM864JfRr89Ikuw9DFNIAz34rER4AThWfWtM9w==
+X-Received: by 2002:a05:6a00:b47:b0:43d:cac0:cbe with SMTP id p7-20020a056a000b4700b0043dcac00cbemr2136310pfo.79.1632955123366;
+        Wed, 29 Sep 2021 15:38:43 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:ae60:9169:75aa:d8e9])
+        by smtp.gmail.com with ESMTPSA id u6sm612471pgc.68.2021.09.29.15.38.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Sep 2021 15:11:25 -0700 (PDT)
-Received: (nullmailer pid 313269 invoked by uid 1000);
-        Wed, 29 Sep 2021 22:11:24 -0000
-Date:   Wed, 29 Sep 2021 17:11:24 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-Cc:     linux-kernel@vger.kernel.org, joel@jms.id.au,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        openbmc@lists.ozlabs.org, osk@google.com,
-        linux-aspeed@lists.ozlabs.org, andrew@aj.id.au, robh+dt@kernel.org
-Subject: Re: [PATCH v7 3/5] dt-bindings: aspeed: Add UART routing controller
-Message-ID: <YVTkjKdXcyIVImmP@robh.at.kernel.org>
-References: <20210927023053.6728-1-chiawei_wang@aspeedtech.com>
- <20210927023053.6728-4-chiawei_wang@aspeedtech.com>
+        Wed, 29 Sep 2021 15:38:42 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     bjorn.andersson@linaro.org
+Cc:     vkoul@kernel.org, mka@chromium.org, swboyd@chromium.org,
+        skakit@codeaurora.org, Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: pmk8350: Make RTC disabled by default; enable on sc7280-idp
+Date:   Wed, 29 Sep 2021 15:38:14 -0700
+Message-Id: <20210929153553.1.Ib44c2ac967833d7a3f51452d44d15b7b8d23c1f0@changeid>
+X-Mailer: git-send-email 2.33.0.685.g46640cef36-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210927023053.6728-4-chiawei_wang@aspeedtech.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Sep 2021 10:30:51 +0800, Chia-Wei Wang wrote:
-> Add dt-bindings for Aspeed UART routing controller.
-> 
-> Signed-off-by: Oskar Senft <osk@google.com>
-> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/mfd/aspeed-lpc.yaml   |  4 ++
->  .../bindings/soc/aspeed/uart-routing.yaml     | 56 +++++++++++++++++++
->  2 files changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/aspeed/uart-routing.yaml
-> 
+The RTC on the pmk8350 is not useful on all boards. Some boards may
+not provide backup power to the PMIC but might have another RTC on the
+board that does have backup power. In this case it's better to not use
+the RTC on the PMIC.
 
-Applied, thanks!
+At the moment, the only boards that includes this PMIC are sc7280-idp
+and sc7280-idp2. On sc7280-idp I'm not aware of any other RTCs, but
+sc7280-idp2 has a Chrome OS EC on it and this is intended to provide
+the RTC for the AP.
+
+Let's do what we normally do for hardware that's not used by all
+boards and set it to a default status of "disabled" and then enable it
+on the boards that need it.
+
+NOTE: for sc7280-idp it's _possible_ we might also want to add
+`allow-set-time;`. That could be the subject of a future patch if it
+is indeed true.
+
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi   | 1 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts | 4 ++++
+ 2 files changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+index 04fc2632a0b2..769f9726806f 100644
+--- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+@@ -59,6 +59,7 @@ pmk8350_rtc: rtc@6100 {
+ 			reg = <0x6100>, <0x6200>;
+ 			reg-names = "rtc", "alarm";
+ 			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
++			status = "disabled";
+ 		};
+ 
+ 		pmk8350_gpios: gpio@b000 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+index 64fc22aff33d..e11412bae738 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+@@ -61,6 +61,10 @@ &ipa {
+ 	modem-init;
+ };
+ 
++&pmk8350_rtc {
++	status = "okay";
++};
++
+ &pmk8350_vadc {
+ 	pmr735a_die_temp {
+ 		reg = <PMR735A_ADC7_DIE_TEMP>;
+-- 
+2.33.0.685.g46640cef36-goog
+
