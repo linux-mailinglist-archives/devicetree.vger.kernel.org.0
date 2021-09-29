@@ -2,111 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CDDB41CE2E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 23:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52CCB41CE63
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 23:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245566AbhI2Vbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 17:31:50 -0400
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:35610 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237351AbhI2Vbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 17:31:50 -0400
-Received: by mail-oi1-f173.google.com with SMTP id n64so4676025oih.2;
-        Wed, 29 Sep 2021 14:30:08 -0700 (PDT)
+        id S237351AbhI2Vtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 17:49:41 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:33521 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232364AbhI2Vtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 17:49:40 -0400
+Received: by mail-ot1-f54.google.com with SMTP id d12-20020a05683025cc00b0054d8486c6b8so4771855otu.0;
+        Wed, 29 Sep 2021 14:47:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=xj3A4rvClnuXjjs9tt5J5UAtJSSY9GP9bYs5NYEPfs8=;
-        b=dlkEnL1/PjATKw+BYyLiHsbslr1o78bPXXInb0cF1yM8ZT1DnOs2gHKbAyCtefYGzj
-         VgdmmVs5UVP6SnlvnSNgYb66qqZQu1/bAymm2SYZNs4vQ15L8l9POFiLVP/35UerNS0g
-         0WepLMGeSIRezaNpPWlCIiVMlWi13BfmWlSnJQ0tVMpqqKzjBf9XU/5RFgglF6Y7pwZm
-         MKRcsiSfP/IaiPgyFqewbNXvjl1Z1T1ZlKFWBm8e+UceQmlpTmZpCuWZJ1GBKUp8Xkvd
-         PC8Ioi1yzH2/mAQu0FvUip/1gezBbSWJXc6pFXn7PchoqKN0Zj8zabEPAhGx3v72c7tg
-         K7yw==
-X-Gm-Message-State: AOAM530Dmb8cEtWYlFOnrwLEOgM8jUUu1sqerRa0GDps1aZ/eZJ+LetG
-        eWdfB/N/meNj68HU4xTxwbd2IfsfCg==
-X-Google-Smtp-Source: ABdhPJwMOVqFhsChePGW0D8oj7w80frc/fDvBCM3G907ladFwiT0DkQpLc8pRZba5bEr7dmrT7qtGw==
-X-Received: by 2002:a05:6808:a9c:: with SMTP id q28mr9871562oij.148.1632951008390;
-        Wed, 29 Sep 2021 14:30:08 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=9tEAqZNJwDzQEWaGPnZz7mESP4HPQ040E5Y0zkN5TmQ=;
+        b=EIclDxNgbICpi2GaSGgRaW4imZfKvpBkNey5HwY+/PLQMEEfelPDAdX/u1eH5Wm7WL
+         qvjR9Oppw003G3h6B0blWm19cV87W7kdARuFWu90A1u+DS4CIugU6ZVUdDOsjyTjAYUf
+         bpVdqqRSxB5GvTzly4NAQ3sxhGVfxskNT63Pr/fSCETKRZGysJ6PsSDNo+s+luUEdoeh
+         0A2pYQus3AusIOhB3cvC169KJgm5VwPx0d2kvWRR4DB3sksJdPDSigKGOgVTZzwJHG7j
+         Mpgh+q2OpUzjP9nviYh2EY+Gkba7EMHD7Ha6L0L056TNZVB/48V7cMY4MgX1h3+Tdl2M
+         oP7w==
+X-Gm-Message-State: AOAM532UcP9+QJ2PfBGh+d/0rL+CBw5527l+lmSE6JOtWY6TqLJyQX9m
+        kphvcn32WXkiQE0z9dPJKg==
+X-Google-Smtp-Source: ABdhPJxeKotXQp3Lpf7KBsmo9mOFXTJ0Tf1HvSzbQ8YtUeLGQhbRfEeVPMok4PZOWUk9Jz6nlAyUiQ==
+X-Received: by 2002:a9d:192c:: with SMTP id j44mr1972042ota.302.1632952078623;
+        Wed, 29 Sep 2021 14:47:58 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bh39sm225250oib.37.2021.09.29.14.30.07
+        by smtp.gmail.com with ESMTPSA id a3sm191359oie.3.2021.09.29.14.47.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Sep 2021 14:30:07 -0700 (PDT)
-Received: (nullmailer pid 244287 invoked by uid 1000);
-        Wed, 29 Sep 2021 21:30:06 -0000
-Date:   Wed, 29 Sep 2021 16:30:06 -0500
+        Wed, 29 Sep 2021 14:47:57 -0700 (PDT)
+Received: (nullmailer pid 273777 invoked by uid 1000);
+        Wed, 29 Sep 2021 21:47:56 -0000
+Date:   Wed, 29 Sep 2021 16:47:56 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        linux-serial@vger.kernel.org,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Vladimir Vid <vladimir.vid@sartura.hr>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>
-Subject: Re: [PATCH v6 3/6] dt-bindings: mvebu-uart: document DT bindings for
- marvell,armada-3700-uart-clock
-Message-ID: <YVTa3pt279D/qWz6@robh.at.kernel.org>
-References: <20210929082034.15098-1-pali@kernel.org>
- <20210929082034.15098-4-pali@kernel.org>
- <1632923185.716457.3674443.nullmailer@robh.at.kernel.org>
- <20210929140132.gom6qiohucsczoxq@pali>
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     linus.walleij@linaro.org, mark.rutland@arm.com,
+        matthias.bgg@gmail.com, sean.wang@kernel.org,
+        srv_heupstream@mediatek.com, hui.liu@mediatek.com,
+        light.hsieh@mediatek.com, biao.huang@mediatek.com,
+        hongzhou.yang@mediatek.com, sean.wang@mediatek.com,
+        seiya.wang@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v14 2/5] dt-bindings: pinctrl: mt8195: change pull
+ up/down description
+Message-ID: <YVTfDJNW5Pe3iAR/@robh.at.kernel.org>
+References: <20210924080632.28410-1-zhiyong.tao@mediatek.com>
+ <20210924080632.28410-3-zhiyong.tao@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210929140132.gom6qiohucsczoxq@pali>
+In-Reply-To: <20210924080632.28410-3-zhiyong.tao@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 29, 2021 at 04:01:32PM +0200, Pali Rohár wrote:
-> On Wednesday 29 September 2021 08:46:25 Rob Herring wrote:
-> > On Wed, 29 Sep 2021 10:20:31 +0200, Pali Rohár wrote:
-> > > This change adds DT bindings documentation for device nodes with compatible
-> > > string "marvell,armada-3700-uart-clock".
-> > > 
-> > > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > > 
-> > > ---
-> > > Changes in v6
-> > > * Fix license
-> > > * Rename node to clock-controller@12010
-> > > * Remove maxItems
-> > > ---
-> > >  .../bindings/clock/armada3700-uart-clock.yaml | 56 +++++++++++++++++++
-> > >  1 file changed, 56 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/clock/armada3700-uart-clock.yaml
-> > > 
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/armada3700-uart-clock.yaml: $id: 'http://devicetree.org/schemas/clock/marvell,armada-3700-uart-clock#' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
-> > 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/armada3700-uart-clock.yaml: 'maintainers' is a required property
-> > 	hint: Metaschema for devicetree binding documentation
-> > 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-> > ./Documentation/devicetree/bindings/clock/armada3700-uart-clock.yaml: $id: relative path/filename doesn't match actual path or filename
-> > 	expected: http://devicetree.org/schemas/clock/armada3700-uart-clock.yaml#
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/armada3700-uart-clock.yaml: ignoring, error in schema: $id
-> > warning: no schema found in file: ./Documentation/devicetree/bindings/clock/armada3700-uart-clock.yaml
-> > Documentation/devicetree/bindings/clock/armada3700-uart-clock.example.dt.yaml:0:0: /example-0/clock-controller@12010: failed to match any schema with compatible: ['marvell,armada-3700-uart-clock']
+On Fri, Sep 24, 2021 at 04:06:29PM +0800, Zhiyong Tao wrote:
+> For supporting SI units in "bias-pull-down" & "bias-pull-up",
+> change pull up/down description
+> and add "mediatek,rsel_resistance_in_si_unit" description.
 > 
-> Hello! What does this error mean?
+> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+> ---
+>  .../bindings/pinctrl/pinctrl-mt8195.yaml      | 86 ++++++++++++++++++-
+>  1 file changed, 84 insertions(+), 2 deletions(-)
 > 
-> Should I add .yaml suffix into '$id: ' line and rename file via?
-> git mv Documentation/devicetree/bindings/clock/armada3700-uart-clock.yaml Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> index 2f12ec59eee5..5f642bef72af 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> @@ -49,6 +49,12 @@ properties:
+>      description: The interrupt outputs to sysirq.
+>      maxItems: 1
+>  
+> +  mediatek,rsel_resistance_in_si_unit:
 
-Yes. They need to match.
+s/_/-/
 
-Rob
+> +    type: boolean
+> +    description: |
+> +      Identifying i2c pins pull up/down type which is RSEL. It can support
+> +      RSEL define or si unit value(ohm) to set different resistance.
+
+Aren't the RSEL and ohms disjoint values? 0-207 for RSEL and >1000 for 
+ohms. Why is this property even needed.
+
+> +
+>  #PIN CONFIGURATION NODES
+>  patternProperties:
+>    '-pins$':
+> @@ -85,9 +91,85 @@ patternProperties:
+>            2/4/6/8/10/12/14/16mA in mt8195.
+>          enum: [0, 1, 2, 3, 4, 5, 6, 7]
+>  
+> -      bias-pull-down: true
+> +      bias-pull-down:
+> +        description: |
+> +          For pull down type is normal, it don't need add RSEL & R1R0 define
+> +          and resistance value.
+> +          For pull down type is PUPD/R0/R1 type, it can add R1R0 define to
+> +          set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
+> +          "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" & "MTK_PUPD_SET_R1R0_11"
+> +          define in mt8195.
+> +          For pull down type is RSEL, it can add RSEL define & resistance value(ohm)
+> +          to set different resistance by identifying property "mediatek,rsel_resistance_in_si_unit".
+> +          It can support "MTK_PULL_SET_RSEL_000" & "MTK_PULL_SET_RSEL_001"
+> +          & "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011" & "MTK_PULL_SET_RSEL_100"
+> +          & "MTK_PULL_SET_RSEL_101" & "MTK_PULL_SET_RSEL_110" & "MTK_PULL_SET_RSEL_111"
+> +          define in mt8195. It can also support resistance value(ohm) "75000" & "5000" in mt8195.
+> +          oneOf:
+
+Because of the indentation, this is all just part of 'description'.
+
+> +            - enum: [100, 101, 102, 103]
+> +            - description: mt8195 pull down PUPD/R0/R1 type define value.
+
+This entry is always true.
+
+> +            - enum: [200, 201, 202, 203, 204, 205, 206, 207]
+
+Are these supposed to be hex?
+
+> +            - description: mt8195 pull down RSEL type define value.
+
+And so is this one. That makes 'oneOf' always false.
+
+> +            - enum: [75000, 5000]
+> +            - description: mt8195 pull down RSEL type si unit value(ohm).
+> +
+> +          An example of using RSEL define:
+> +          pincontroller {
+> +            i2c0_pin {
+> +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
+> +              bias-pull-down = <MTK_PULL_SET_RSEL_001>;
+> +            };
+> +          };
+> +          An example of using si unit resistance value(ohm):
+> +          &pio {
+> +            mediatek,rsel_resistance_in_si_unit;
+> +          }
+> +          pincontroller {
+> +            i2c0_pin {
+> +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
+> +              bias-pull-down = <75000>;
+> +            };
+> +          };
+>  
+> -      bias-pull-up: true
+> +      bias-pull-up:
+> +        description: |
+> +          For pull up type is normal, it don't need add RSEL & R1R0 define
+> +          and resistance value.
+> +          For pull up type is PUPD/R0/R1 type, it can add R1R0 define to
+> +          set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
+> +          "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" & "MTK_PUPD_SET_R1R0_11"
+> +          define in mt8195.
+> +          For pull up type is RSEL, it can add RSEL define & resistance value(ohm)
+> +          to set different resistance by identifying property "mediatek,rsel_resistance_in_si_unit".
+> +          It can support "MTK_PULL_SET_RSEL_000" & "MTK_PULL_SET_RSEL_001"
+> +          & "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011" & "MTK_PULL_SET_RSEL_100"
+> +          & "MTK_PULL_SET_RSEL_101" & "MTK_PULL_SET_RSEL_110" & "MTK_PULL_SET_RSEL_111"
+> +          define in mt8195. It can also support resistance value(ohm)
+> +          "1000" & "1500" & "2000" & "3000" & "4000" & "5000" & "10000" & "75000" in mt8195.
+> +          oneOf:
+> +            - enum: [100, 101, 102, 103]
+> +            - description: mt8195 pull up PUPD/R0/R1 type define value.
+> +            - enum: [200, 201, 202, 203, 204, 205, 206, 207]
+> +            - description: mt8195 pull up RSEL type define value.
+> +            - enum: [1000, 1500, 2000, 3000, 4000, 5000, 10000, 75000]
+> +            - description: mt8195 pull up RSEL type si unit value(ohm).
+
+Same issues here.
+
+> +          An example of using RSEL define:
+> +          pincontroller {
+> +            i2c0_pin {
+> +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
+> +              bias-pull-up = <MTK_PULL_SET_RSEL_001>;
+> +            };
+> +          };
+> +          An example of using si unit resistance value(ohm):
+> +          &pio {
+> +            mediatek,rsel_resistance_in_si_unit;
+> +          }
+> +          pincontroller {
+> +            i2c0_pin {
+> +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
+> +              bias-pull-up = <1000>;
+> +            };
+> +          };
+>  
+>        bias-disable: true
+>  
+> -- 
+> 2.25.1
+> 
+> 
