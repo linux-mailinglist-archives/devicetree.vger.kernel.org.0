@@ -2,304 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEA4841C758
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:53:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BBAE41C796
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344729AbhI2OyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 10:54:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48726 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344618AbhI2OyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 10:54:05 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB786C061760
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 07:52:23 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id t2so2518309qtx.8
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 07:52:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=poorly.run; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=7JUE3KnwhzODMFVKnxXssJhCx06ypOEtInaS9VOkBkc=;
-        b=fEPcDyJIUlgGINqrdGQWXxbylyFaK2FDZ+tEciqN1QqVHxIMoGNh01cy71i9hulBrb
-         Ecc7pqn9FQVSle5p2ib31pKYcFcSqKGUAw9fD/Rt9nu0snwFY1nEa/em0Ns1EHUEgWUY
-         +6lLX31R29/Q4STnRF5RkIQZqKLDrtYuhAHSZXscTv6ISV8k4RTz7pj/3T2bkLjWsBWr
-         tIYoNBMLBHIcsfd8YqNrY3P0urlD5femmNoTWhT3FWznuSpYrbg9svfyHncSXzewI/VU
-         y40kzfszbo6mXYwIoydOPnVsAL19hUGrqerQkdCpYI0j4xR3eJIBpLt6AOq+Tr2T6Jof
-         k8uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7JUE3KnwhzODMFVKnxXssJhCx06ypOEtInaS9VOkBkc=;
-        b=TRpSdfTkjm8BWUyDWADlqTxHavEhd89NpKzZvMjhyisfi6tYPFMsBwKV8Gb4tEtRIo
-         SlkhR+ujuirsrpytBg8nCO6wgWN/e7oBQx5FSrh5lhTZpUpz4HcCQiZpYwC+zXiP/Z7Y
-         PvLf85BQjg7ztLXI8iO++DMbyHUgilt6r6gnHa6d4wwnvg4VJW+iKcQS8rg4hmgeU7Te
-         bsWAFrDP6F0O1N6DVpLNfJy7YVYorpFfBBgc5mgW4oJOS7/hGNlggVZIoMLv92kIuv+6
-         1KU1rpjC/F4WT7ncW4oGOmlVIpiC7fpKZn5cGw/8lNsyvp03KBu6iPZrl+tWN2so3XH1
-         yboQ==
-X-Gm-Message-State: AOAM531r4+759giYe6VpzoZrQr2LTeBbTzY6tSqoSEuh7yXxzYhSmaCY
-        i+onTKjWsqyqYNoG6r9UX4IJnA==
-X-Google-Smtp-Source: ABdhPJz2Dh587oAtNE+3dwmaLnKNyuoarrG+93H0oIr0lYSQ8p8duyHAHS/lBIVypGgw9ktyNvRQ2g==
-X-Received: by 2002:ac8:534b:: with SMTP id d11mr269756qto.167.1632927143089;
-        Wed, 29 Sep 2021 07:52:23 -0700 (PDT)
-Received: from localhost ([167.100.64.199])
-        by smtp.gmail.com with ESMTPSA id o21sm48055qtt.12.2021.09.29.07.52.22
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 29 Sep 2021 07:52:22 -0700 (PDT)
-Date:   Wed, 29 Sep 2021 10:52:20 -0400
-From:   Sean Paul <sean@poorly.run>
-To:     abhinavk@codeaurora.org
-Cc:     Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        swboyd@chromium.org, Sean Paul <seanpaul@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [Freedreno] [PATCH v2 13/13] drm/msm: Implement HDCP 1.x using
- the new drm HDCP helpers
-Message-ID: <20210929145220.GV2515@art_vandelay>
-References: <20210915203834.1439-1-sean@poorly.run>
- <20210915203834.1439-14-sean@poorly.run>
- <2486179cbd76c34a9c085dfff98448e5@codeaurora.org>
- <20210928180219.GT2515@art_vandelay>
- <48a284181bf6211b60f8318531051add@codeaurora.org>
+        id S1344759AbhI2PAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 11:00:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42186 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1344730AbhI2PAG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 11:00:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 42CAE613CE;
+        Wed, 29 Sep 2021 14:58:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632927505;
+        bh=EQQTnRS8lPfDTcCQ7Qonvy40+E4FTsuJpNfA2zp7kgs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=onlZ98hwlZ5oYGqO4Cu2vlKurJF5NzXl00KPNRdEahyjrQRGKUkc2vpzcwqZ8Rgzo
+         fokFz4U0ZbnD8qiAN79xYbJM5wwgjz/2holVbpCtsl2j1KRiG7Gp8axaUIegjsu/4p
+         AjFLTkfHj7DiChESUu+VpawS2RSH5ewFu0c7Zg7olxi195KkNWfDYgCEUm0Kk+2qDo
+         8dE+fZtQXjul1rB54wF++6nylTIwZvG6wFsK+su8ab5tMrXn0e8LtBTSQol5iLl2Q9
+         zhXDYjYIfxxUhSFEmlAvysmUcj1rB9zUVQ8N5u1+/4SkbYKLIsUlLuFCmo07CQXpTa
+         Rml1+Mm67lgqw==
+Received: by mail-ed1-f51.google.com with SMTP id dj4so10101209edb.5;
+        Wed, 29 Sep 2021 07:58:25 -0700 (PDT)
+X-Gm-Message-State: AOAM532mEZ2zmSdNLpjfFs8nOARL2P1aEuZWbQMnSvvl/+x4VFOT126f
+        abQWThHMsNUYI9H0Lecdl/sqIGGy5PEN+SD6jQ==
+X-Google-Smtp-Source: ABdhPJxjDTCqpw+W11Ljil+9t3MzrJAqBg+zykn7W36zQ7oVw8AEF8t6rSe/akCB+6pScUV0nvaP5KPkV9V+4m3JciE=
+X-Received: by 2002:a17:907:3e21:: with SMTP id hp33mr145136ejc.205.1632927436610;
+ Wed, 29 Sep 2021 07:57:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <48a284181bf6211b60f8318531051add@codeaurora.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20210929070807.4488-1-jason-jh.lin@mediatek.com>
+In-Reply-To: <20210929070807.4488-1-jason-jh.lin@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 29 Sep 2021 22:57:05 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-EEz0tAU_XoL789uOXx_hKGCz53vaaZrA4DSNM4NZ=8g@mail.gmail.com>
+Message-ID: <CAAOTY_-EEz0tAU_XoL789uOXx_hKGCz53vaaZrA4DSNM4NZ=8g@mail.gmail.com>
+Subject: Re: [PATCH] mailbox: Remove WARN_ON for async_cb.cb in cmdq_exec_done
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@google.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 28, 2021 at 02:35:09PM -0700, abhinavk@codeaurora.org wrote:
-> On 2021-09-28 11:02, Sean Paul wrote:
-> > On Tue, Sep 21, 2021 at 07:25:41PM -0700, abhinavk@codeaurora.org wrote:
-> > > On 2021-09-15 13:38, Sean Paul wrote:
-> > > > From: Sean Paul <seanpaul@chromium.org>
-> > > >
-> > > > This patch adds HDCP 1.x support to msm DP connectors using the new HDCP
-> > > > helpers.
-> > > >
-> > > > Cc: Stephen Boyd <swboyd@chromium.org>
-> > > > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > > > Link:
-> > > > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run
-> > > > #v1
-> > > >
-> > > > Changes in v2:
-> > > > -Squash [1] into this patch with the following changes (Stephen)
-> > > >   -Update the sc7180 dtsi file
-> > > >   -Remove resource names and just use index (Stephen)
-> > > >
-> > > 
-> > > 
-> > > > [1]
-> > > > https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-14-sean@poorly.run
-> > > > ---
-> > 
-> > /snip
-> > 
-> > > > diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
-> > > > index 904535eda0c4..98731fd262d6 100644
-> > > > --- a/drivers/gpu/drm/msm/Makefile
-> > > > +++ b/drivers/gpu/drm/msm/Makefile
-> > > > @@ -109,6 +109,7 @@ msm-$(CONFIG_DRM_MSM_DP)+= dp/dp_aux.o \
-> > > >  	dp/dp_ctrl.o \
-> > > >  	dp/dp_display.o \
-> > > >  	dp/dp_drm.o \
-> > > > +	dp/dp_hdcp.o \
-> > > >  	dp/dp_hpd.o \
-> > > >  	dp/dp_link.o \
-> > > >  	dp/dp_panel.o \
-> > > > diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c
-> > > > b/drivers/gpu/drm/msm/dp/dp_debug.c
-> > > > index 2f6247e80e9d..de16fca8782a 100644
-> > > > --- a/drivers/gpu/drm/msm/dp/dp_debug.c
-> > > > +++ b/drivers/gpu/drm/msm/dp/dp_debug.c
-> > 
-> > /snip
-> > 
-> > > > +static ssize_t dp_hdcp_key_write(struct file *file, const char __user
-> > > > *ubuf,
-> > > > +				 size_t len, loff_t *offp)
-> > > > +{
-> > > > +	char *input_buffer;
-> > > > +	int ret = 0;
-> > > > +	struct dp_debug_private *debug = file->private_data;
-> > > > +	struct drm_device *dev;
-> > > > +
-> > > > +	dev = debug->drm_dev;
-> > > > +
-> > > > +	if (len != (DRM_HDCP_KSV_LEN + DP_HDCP_NUM_KEYS * DP_HDCP_KEY_LEN))
-> > > > +		return -EINVAL;
-> > > > +
-> > > > +	if (!debug->hdcp)
-> > > > +		return -ENOENT;
-> > > > +
-> > > > +	input_buffer = memdup_user_nul(ubuf, len);
-> > > > +	if (IS_ERR(input_buffer))
-> > > > +		return PTR_ERR(input_buffer);
-> > > > +
-> > > > +	ret = dp_hdcp_ingest_key(debug->hdcp, input_buffer, len);
-> > > > +
-> > > > +	kfree(input_buffer);
-> > > > +	if (ret < 0) {
-> > > > +		DRM_ERROR("Could not ingest HDCP key, ret=%d\n", ret);
-> > > > +		return ret;
-> > > > +	}
-> > > > +
-> > > > +	*offp += len;
-> > > > +	return len;
-> > > > +}
-> > > 
-> > > It seems like the HDCP keys written using debugfs, just for my
-> > > understanding,
-> > > are you storing this in some secure partition and the usermode reads
-> > > from it
-> > > and writes them here?
-> > > 
-> > 
-> > We have not sorted out the userspace side of HDCP enablement yet, so it
-> > remains
-> > to be seen whether the keys will be injected via debugfs/firmware
-> > file/property.
-> > 
-> > /snip
-> > 
-> > > > +static int dp_connector_atomic_check(struct drm_connector *connector,
-> > > > +				     struct drm_atomic_state *state)
-> > > > +{
-> > > > +	struct drm_connector_state *conn_state;
-> > > > +	struct dp_connector_state *dp_state;
-> > > > +
-> > > > +	conn_state = drm_atomic_get_new_connector_state(state, connector);
-> > > > +	dp_state = to_dp_connector_state(conn_state);
-> > > > +
-> > > > +	dp_state->hdcp_transition = drm_hdcp_atomic_check(connector, state);
-> > > 
-> > > I have a general question related to the transition flag and overall
-> > > tying
-> > > the HDCP
-> > > enable and authentication to the commit.
-> > > So lets say there is a case where the driver needs to disable HDCP.
-> > > It could
-> > > be due
-> > > to link integrity failure OR some other error condition which
-> > > usermode is
-> > > not aware of.
-> > > In that case, we will set this hdcp_transition to true but in the next
-> > > commit we will
-> > > actually do the authentication. What if usermode doesnt issue a new
-> > > frame?
-> > > This question arises because currently the link intergrity check is
-> > > done
-> > > using SW polling
-> > > in the previous patchset. But as I had commented there, this occurs
-> > > in HW
-> > > for us.
-> > > I dont see that isr itself in this patchset. So wanted to understand
-> > > if
-> > > thats part of this
-> > > approach to still tie it with commit.
-> > > 
-> > > So if we go with the HW polling based approach which is the preferred
-> > > method, we need to
-> > > untie this from the commit.
-> > > 
-> > 
-> > In the case of error, the worker will detect it and try to
-> > re-authenticate. If
-> > the re-authentication is successful, userspace will continue to be
-> > unaware and
-> > everything will keep working. If re-authentication is unsuccessful, the
-> > worker
-> > will update the property value and issue a uevent to userspace. So HDCP
-> > enablement is only tied to commits when the property value is changing
-> > as a
-> > result of userspace.
-> > 
-> > Regarding SW vs HW link checks, I don't think there's any difference in
-> > efficacy
-> > between them. If HW can be relied on to issue an interrupt in failure
-> > cases, a
-> > follow-up set allowing for this seems like a great idea.
-> > 
-> 
-> Thanks for the explanation. Yes, from our experience it has been pretty
-> reliable to
-> issue signal integrity failures. We already had the isr based approach
-> downstream
-> and would prefer to keep it that way based on our experience of it firing
-> reliably.
-> We can still keep the SW polling code but it should come into effect only if
-> HW polling
-> is not supported / preferred.
+Hi, Jason:
 
-Ok, understood. Unfortunately I don't have access to a testing rig which could
-exercise the interrupt. Do you think you could post a follow-on patch to
-implement this?
+jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B49=E6=9C=882=
+9=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:08=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Because mtk_drm_crtc_update_config is not using cmdq_pkt_flush_async,
+> it won't have pkt->async_cb.cb anymore.
+>
+> So remove the WARN_ON check of pkt->async_cb.cb at cmdq_exec_done.
 
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
-> 
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > 
-> > /snip
-> > 
-
-/snip
-
-> > > > +static int dp_hdcp_hdcp1_store_receiver_info(struct drm_connector
-> > > > *connector,
-> > > > +					     u32 *ksv, u32 status, u8 bcaps,
-> > > > +					     bool is_repeater)
-> > > > +{
-> > > > +	struct dp_hdcp *hdcp = dp_display_connector_to_hdcp(connector);
-> > > > +	u32 val;
-> > > > +
-> > > > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA0,
-> > > > +			 ksv[0]);
-> > > > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA1,
-> > > > +			 ksv[1]);
-> > > > +
-> > > > +	val = ((status & GENMASK(15, 0)) << 8) | (bcaps & GENMASK(7, 0));
-> > > > +
-> > > > +	dp_hdcp_write_tz(hdcp, HDCP_SEC_DP_TZ_HV_HLOS_HDCP_RCVPORT_DATA12,
-> > > > val);
-> > > > +
-> > > 
-> > > Cant this entire API be skipped for non-repeater cases from the hdcp
-> > > lib
-> > > layer?
-> > > You can write the bcaps to this earlier and write the bstatus only
-> > > if its a
-> > > repeater.
-> > 
-> > Could you expand on the benefits of this?
-> 
-> We can avoid the call coming into the vendor driver hook itself as it need
-> not be called
-> for non-repeater cases. So something like this can be done in the HDCP lib?
-> 
-> if ( repeater && ops->hdcp1_store_receiver_info )
->      ops->hdcp1_store_receiver_info(....);
-> 
-
-Unfortunately this would break Intel's implementation.
-
-> > 
-> > > 
-> > > > +	return 0;
-> > > > +}
-> > 
-> > /snip
-
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+>
+> Fixes: 1b6b0ce2240e ("mailbox: mtk-cmdq: Use mailbox rx_callback")
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> ---
+>  drivers/mailbox/mtk-cmdq-mailbox.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmd=
+q-mailbox.c
+> index 64175a893312..c591dab9d5a4 100644
+> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
+> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+> @@ -195,7 +195,6 @@ static void cmdq_task_exec_done(struct cmdq_task *tas=
+k, int sta)
+>         struct cmdq_task_cb *cb =3D &task->pkt->async_cb;
+>         struct cmdq_cb_data data;
+>
+> -       WARN_ON(cb->cb =3D=3D (cmdq_async_flush_cb)NULL);
+>         data.sta =3D sta;
+>         data.data =3D cb->data;
+>         data.pkt =3D task->pkt;
+> --
+> 2.18.0
+>
