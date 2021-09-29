@@ -2,238 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F160041C1EB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 11:46:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77A4A41C2F5
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 12:46:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245163AbhI2Jsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 05:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34414 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245170AbhI2Jsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 05:48:37 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43CE7C06174E
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 02:46:56 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id x20so3155830wrg.10
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 02:46:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Mwf1tKg1O0N4TdrAHDKMubF2cwo9nO/+84LsL8mnCUg=;
-        b=EK96bY45esZeXSedAHzaXDD/97/7pEB2Ec1TlsHkD4e2go+rNg577bZ5PJAlUIs8B8
-         Z4y3LZ20BMQVmfHNXRs6g0vcBiWN4UKZmhwOdo6RtykBus9rnfXCaSE9T24hiQkl1EEr
-         yJgqKcJt7e7de39HZ2lYtpadF7nlHmpY3L80X6rrkKPN24WXcn/nhd2WIrTgnqr56fcM
-         QK5AnjWaxg2zsBY2b9VWuqGOia+Dw5QJyMekFjYA2pkai8W+s8SaLSSaY3x/JMnTAU09
-         BK/PyPJW5gXZGNkWjB2eG+1TJNOlZxYvW1YmkSPj4ceLchjcwfrdxGe5svJcVLdteN3w
-         zTHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Mwf1tKg1O0N4TdrAHDKMubF2cwo9nO/+84LsL8mnCUg=;
-        b=gFccTKr3iFTOes53cLDb1O/cc4VkZuoZjlkDBSA2p+XWoti0mVHRPdqDi+oBmh8u2c
-         viTHzhB5qLXnX+LAfa0gjwIuAC2Ql8LBAPTDkC6MaaXZqfOsx3ZZlnXZOnmpNsvI5qyh
-         k1o6Lwv52f+Rz+F9CspfQAFPvJkOapa/M4VjISRuHnM4ag+W/TvGeE1+p264bbxFNAsQ
-         n+dsNvKyMA8XuWdUzCemKtXFqmkg36rR3d4yrzyv/FXCxnZqo/u/nzrZr93t5I3B81Ux
-         XD6t3NhBDf+5gqZL3EIhPNzjnu772ocWOcu0hXBDi/+qqoAtEAg5Ha1CmYlrZSaRXAHb
-         Owng==
-X-Gm-Message-State: AOAM531EK8FGScYuT+4zW2abF2RwnQ9eHV8kWoTh+NUxPx9cG/BkZ830
-        GffOtMXbiZHYJXzML5WSzOqUlw==
-X-Google-Smtp-Source: ABdhPJxCZB5y9/24ZxId/CvDAmaWQ9JH8Sym9cvk3b1JSHbLkJIcqxj5WU+LObOEzlSfu8A5xUrM5g==
-X-Received: by 2002:adf:d1eb:: with SMTP id g11mr5521254wrd.31.1632908814812;
-        Wed, 29 Sep 2021 02:46:54 -0700 (PDT)
-Received: from localhost.localdomain (2a02-8440-6240-2cf3-3074-96af-9642-0002.rev.sfr.net. [2a02:8440:6240:2cf3:3074:96af:9642:2])
-        by smtp.gmail.com with ESMTPSA id h7sm1751938wrx.14.2021.09.29.02.46.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Sep 2021 02:46:54 -0700 (PDT)
-From:   Guillaume Ranquet <granquet@baylibre.com>
-To:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/4] dt-bindings: display: mediatek: add MT8195 hdmi bindings
-Date:   Wed, 29 Sep 2021 11:44:23 +0200
-Message-Id: <20210929094425.745-3-granquet@baylibre.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210929094425.745-1-granquet@baylibre.com>
-References: <20210929094425.745-1-granquet@baylibre.com>
+        id S244900AbhI2KsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 06:48:01 -0400
+Received: from mail.kernelconcepts.de ([188.40.83.200]:33544 "EHLO
+        mail.kernelconcepts.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244849AbhI2KsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 06:48:01 -0400
+Received: from [217.146.132.69] (helo=yoda.kc.loc)
+        by mail.kernelconcepts.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <florian.boor@kernelconcepts.de>)
+        id 1mVX6M-0002Ot-IZ; Wed, 29 Sep 2021 12:46:14 +0200
+From:   Florian Boor <florian.boor@kernelconcepts.de>
+To:     jic23@kernel.org
+Cc:     linux-iio@vger.kernel.org, Jonathan.Cameron@huawei.com,
+        Michael.Hennerich@analog.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Florian Boor <florian.boor@kernelconcepts.de>
+Subject: [PATCH v5 1/2] iio: adc: ad799x: Implement selecting external reference voltage input on AD7991, AD7995 and AD7999.
+Date:   Wed, 29 Sep 2021 12:46:06 +0200
+Message-Id: <20210929104607.2699117-1-florian.boor@kernelconcepts.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Mediatek HDMI and HDMI-DDC bindings for MT8195 SoC.
+Make use of the AD7991_REF_SEL bit and support using the external
+reference voltage if 'vref-supply' is present. Use VCC voltage supply
+as reference if no extra reference is supplied.
 
-Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+Signed-off-by: Florian Boor <florian.boor@kernelconcepts.de>
 ---
- .../mediatek/mediatek,mt8195-hdmi-ddc.yaml    | 45 +++++++++
- .../mediatek/mediatek,mt8195-hdmi.yaml        | 98 +++++++++++++++++++
- 2 files changed, 143 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
- create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
-new file mode 100644
-index 0000000000000..3c80bcebe6d30
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+Changes in v5:
+- Correct errors in documentation found by
+  'make DT_CHECKER_FLAGS=-m dt_binding_check'
+  + Reduce title length
+  + Move information to description
+  + Add I²C bits to example
+
+Changes in v4:
+- Check devm_regulator_get_optional() return value and
+  handle values other from -ENODEV separately.
+- Update documentation description
+
+Changes in v3:
+- Do not create dummy reference regulator, check for vref presence where needed.
+- Use VCC as reference if no extra reference voltage is provided
+- Add interrupt information to documentation
+
+Changes in v2:
+- Check if a provided external vref regulator is provided.
+- Drop unused setting
+- Add ad79xx documentation (second patch)
+
+ drivers/iio/adc/ad799x.c | 68 ++++++++++++++++++++++++++++++----------
+ 1 file changed, 51 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/iio/adc/ad799x.c b/drivers/iio/adc/ad799x.c
+index 18bf8386d50a..b67b3076d76e 100644
+--- a/drivers/iio/adc/ad799x.c
++++ b/drivers/iio/adc/ad799x.c
+@@ -299,7 +299,11 @@ static int ad799x_read_raw(struct iio_dev *indio_dev,
+ 			GENMASK(chan->scan_type.realbits - 1, 0);
+ 		return IIO_VAL_INT;
+ 	case IIO_CHAN_INFO_SCALE:
+-		ret = regulator_get_voltage(st->vref);
++		if (st->vref)
++			ret = regulator_get_voltage(st->vref);
++		else
++			ret = regulator_get_voltage(st->reg);
++		
+ 		if (ret < 0)
+ 			return ret;
+ 		*val = ret / 1000;
+@@ -770,6 +774,7 @@ static int ad799x_probe(struct i2c_client *client,
+ 				   const struct i2c_device_id *id)
+ {
+ 	int ret;
++	int extra_config = 0;
+ 	struct ad799x_state *st;
+ 	struct iio_dev *indio_dev;
+ 	const struct ad799x_chip_info *chip_info =
+@@ -797,14 +802,36 @@ static int ad799x_probe(struct i2c_client *client,
+ 	ret = regulator_enable(st->reg);
+ 	if (ret)
+ 		return ret;
+-	st->vref = devm_regulator_get(&client->dev, "vref");
++		
++	/* check if an external reference is supplied */
++	st->vref = devm_regulator_get_optional(&client->dev, "vref");
 +
-+title: Mediatek HDMI DDC Device Tree Bindings for mt8195
+ 	if (IS_ERR(st->vref)) {
+-		ret = PTR_ERR(st->vref);
+-		goto error_disable_reg;
++		if (PTR_ERR(st->vref) == -ENODEV) {
++			st->vref = NULL;
++			dev_info(&client->dev, "Using VCC reference voltage\n");
++		} else {
++			ret = PTR_ERR(st->vref);
++			goto error_disable_reg;
++		}
++	}
++		
++	if (st->vref) {
++		/* 
++		 * Use external reference voltage if supported by hardware.
++		 * This is optional if voltage / regulator present, use VCC otherwise.
++		 */
++		if ((st->id == ad7991) || (st->id == ad7995) || (st->id == ad7999)) {
++			dev_info(&client->dev, "Using external reference voltage\n");
++			extra_config |= AD7991_REF_SEL;
++			ret = regulator_enable(st->vref);
++			if (ret)
++				goto error_disable_reg;
++		} else {
++			st->vref = NULL;
++			dev_warn(&client->dev, "Supplied reference not supported\n");
++		}
+ 	}
+-	ret = regulator_enable(st->vref);
+-	if (ret)
+-		goto error_disable_reg;
+ 
+ 	st->client = client;
+ 
+@@ -815,7 +842,7 @@ static int ad799x_probe(struct i2c_client *client,
+ 	indio_dev->channels = st->chip_config->channel;
+ 	indio_dev->num_channels = chip_info->num_channels;
+ 
+-	ret = ad799x_update_config(st, st->chip_config->default_config);
++	ret = ad799x_update_config(st, st->chip_config->default_config | extra_config);
+ 	if (ret)
+ 		goto error_disable_vref;
+ 
+@@ -845,7 +872,8 @@ static int ad799x_probe(struct i2c_client *client,
+ error_cleanup_ring:
+ 	iio_triggered_buffer_cleanup(indio_dev);
+ error_disable_vref:
+-	regulator_disable(st->vref);
++	if (st->vref) 
++		regulator_disable(st->vref);
+ error_disable_reg:
+ 	regulator_disable(st->reg);
+ 
+@@ -860,7 +888,8 @@ static int ad799x_remove(struct i2c_client *client)
+ 	iio_device_unregister(indio_dev);
+ 
+ 	iio_triggered_buffer_cleanup(indio_dev);
+-	regulator_disable(st->vref);
++	if (st->vref) 
++		regulator_disable(st->vref);
+ 	regulator_disable(st->reg);
+ 	kfree(st->rx_buf);
+ 
+@@ -872,7 +901,8 @@ static int __maybe_unused ad799x_suspend(struct device *dev)
+ 	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
+ 	struct ad799x_state *st = iio_priv(indio_dev);
+ 
+-	regulator_disable(st->vref);
++	if (st->vref) 
++		regulator_disable(st->vref);
+ 	regulator_disable(st->reg);
+ 
+ 	return 0;
+@@ -889,17 +919,21 @@ static int __maybe_unused ad799x_resume(struct device *dev)
+ 		dev_err(dev, "Unable to enable vcc regulator\n");
+ 		return ret;
+ 	}
+-	ret = regulator_enable(st->vref);
+-	if (ret) {
+-		regulator_disable(st->reg);
+-		dev_err(dev, "Unable to enable vref regulator\n");
+-		return ret;
 +
-+maintainers:
-+  - CK Hu <ck.hu@mediatek.com>
-+  - Jitao shi <jitao.shi@mediatek.com>
-+
-+description: |
-+  The HDMI DDC i2c controller is used to interface with the HDMI DDC pins.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8195-hdmi-ddc
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: ddc-i2c
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    hdmiddc0: ddc_i2c {
-+      compatible = "mediatek,mt8195-hdmi-ddc";
-+      clocks = <&clk26m>;
-+      clock-names = "ddc-i2c";
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
-new file mode 100644
-index 0000000000000..17e542809a4e7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek HDMI Encoder Device Tree Bindings for mt8195
-+
-+maintainers:
-+  - CK Hu <ck.hu@mediatek.com>
-+  - Jitao shi <jitao.shi@mediatek.com>
-+
-+description: |
-+  The Mediatek HDMI encoder can generate HDMI 1.4a or MHL 2.0 signals from
-+  its parallel input.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8195-hdmi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: PLL divider
-+      - description: PLL divider
-+      - description: HDCP engine clock
-+      - description: PLL divider
-+      - description: HDCP engine clock
-+      - description: Bus clock
-+      - description: Clock for splitting HDMI/DGI into two pipes
-+
-+  clock-names:
-+    items:
-+      - const: univpll_d6_d4
-+      - const: msdcpll_d2
-+      - const: hdmi_apb_sel
-+      - const: univpll_d4_d8
-+      - const: hdcp_sel
-+      - const: hdcp24_sel
-+      - const: split_hdmi
-+
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    items:
-+      - const: hdmi
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - phys
-+  - phy-names
-+  - ddc-i2c-bus
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    hdmi0: hdmi@1c300000 {
-+      compatible = "mediatek,mt8195-hdmi";
-+      reg = <0 0x1c300000 0 0x1000>;
-+      power-domains = <&spm 25>;
-+      clocks = <&topckgen 153>,
-+             <&topckgen 86>,
-+             <&topckgen 78>,
-+             <&topckgen 146>,
-+             <&topckgen 73>,
-+             <&topckgen 74>,
-+             <&vppsys1 44>;
-+      clock-names = "univpll_d6_d4",
-+        "msdcpll_d2",
-+        "hdmi_apb_sel",
-+        "univpll_d4_d8",
-+        "hdcp_sel",
-+        "hdcp24_sel",
-+        "split_hdmi";
-+      interrupts = <GIC_SPI 677 IRQ_TYPE_LEVEL_HIGH 0>;
-+      pinctrl-names = "default";
-+      pinctrl-0 = <&hdmi_pin>;
-+      phys = <&hdmi_phy>;
-+      phy-names = "hdmi";
-+      ddc-i2c-bus = <&hdmiddc0>;
-+      status = "disabled";
-+    };
-+
-+...
++	if (st->vref) {
++		ret = regulator_enable(st->vref);
++		if (ret) {
++			regulator_disable(st->reg);
++			dev_err(dev, "Unable to enable vref regulator\n");
++			return ret;
++		}
+ 	}
+ 
+ 	/* resync config */
+ 	ret = ad799x_update_config(st, st->config);
+ 	if (ret) {
+-		regulator_disable(st->vref);
++		if (st->vref) 
++			regulator_disable(st->vref);
+ 		regulator_disable(st->reg);
+ 		return ret;
+ 	}
 -- 
-2.32.0
+2.30.2
 
