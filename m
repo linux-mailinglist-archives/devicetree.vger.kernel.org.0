@@ -2,94 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BBAE41C796
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95FC441C7A2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344759AbhI2PAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 11:00:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42186 "EHLO mail.kernel.org"
+        id S1344902AbhI2PBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 11:01:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42984 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344730AbhI2PAG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 11:00:06 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 42CAE613CE;
-        Wed, 29 Sep 2021 14:58:25 +0000 (UTC)
+        id S1344912AbhI2PBR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 11:01:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CBECF613A6;
+        Wed, 29 Sep 2021 14:59:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632927505;
-        bh=EQQTnRS8lPfDTcCQ7Qonvy40+E4FTsuJpNfA2zp7kgs=;
+        s=k20201202; t=1632927575;
+        bh=VUb8Hz0/BpNdgps2xTkakpwXoPg5XQy5xf84s5JEXVw=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=onlZ98hwlZ5oYGqO4Cu2vlKurJF5NzXl00KPNRdEahyjrQRGKUkc2vpzcwqZ8Rgzo
-         fokFz4U0ZbnD8qiAN79xYbJM5wwgjz/2holVbpCtsl2j1KRiG7Gp8axaUIegjsu/4p
-         AjFLTkfHj7DiChESUu+VpawS2RSH5ewFu0c7Zg7olxi195KkNWfDYgCEUm0Kk+2qDo
-         8dE+fZtQXjul1rB54wF++6nylTIwZvG6wFsK+su8ab5tMrXn0e8LtBTSQol5iLl2Q9
-         zhXDYjYIfxxUhSFEmlAvysmUcj1rB9zUVQ8N5u1+/4SkbYKLIsUlLuFCmo07CQXpTa
-         Rml1+Mm67lgqw==
-Received: by mail-ed1-f51.google.com with SMTP id dj4so10101209edb.5;
-        Wed, 29 Sep 2021 07:58:25 -0700 (PDT)
-X-Gm-Message-State: AOAM532mEZ2zmSdNLpjfFs8nOARL2P1aEuZWbQMnSvvl/+x4VFOT126f
-        abQWThHMsNUYI9H0Lecdl/sqIGGy5PEN+SD6jQ==
-X-Google-Smtp-Source: ABdhPJxjDTCqpw+W11Ljil+9t3MzrJAqBg+zykn7W36zQ7oVw8AEF8t6rSe/akCB+6pScUV0nvaP5KPkV9V+4m3JciE=
-X-Received: by 2002:a17:907:3e21:: with SMTP id hp33mr145136ejc.205.1632927436610;
- Wed, 29 Sep 2021 07:57:16 -0700 (PDT)
+        b=OFBBzHkgQI9pM3LmRLhMl3lZk092dBuPGTLGeDbB7UXUbCAegu9SvLAB8mbtqxvBs
+         0WABJBws6oAJNxae2pQMr2F613WDHf8KuZBPs5Yqp9ZrRG0W9x7Rz6KIzmH1qV54vg
+         GrHUMVzw23yRVOr2QRE549jZ3XdM6vWw43F9B90Hm8aIv+sYURQ5IWB/2ZAyZ5RfiM
+         Q7u89y1ysxUuSz1bVvVBkpSNEBbn5qviU7HdodZgGVvWAz2OFbzJAp9u5RMj79/DZz
+         pvUQDdcnoXKq+lI9zgeCcIJFmOYnbwywVysIRKGvH/mBZ82RRRbVl7lnFqXM0d2Abb
+         qKUWIy5haa/0A==
+Received: by mail-ed1-f47.google.com with SMTP id v10so9866079edj.10;
+        Wed, 29 Sep 2021 07:59:35 -0700 (PDT)
+X-Gm-Message-State: AOAM533U7HQ/QkJ3NRvMdtdDHql46bx66x6Jq7eBgWTeLGTZLAhjxHQh
+        jnfxVrN5NgbhWHA043F7V7WmBluGW+RmkgeokQ==
+X-Google-Smtp-Source: ABdhPJxsD+TnDFNUqanlGBCypQs3xKOluvNlkE0i13YzaQBkJ7d4Ds18d5fx4ZdpNBIF8fQe7huJSOVXh7Nq7sEZVgI=
+X-Received: by 2002:a17:906:c10e:: with SMTP id do14mr231513ejc.84.1632927503293;
+ Wed, 29 Sep 2021 07:58:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210929070807.4488-1-jason-jh.lin@mediatek.com>
-In-Reply-To: <20210929070807.4488-1-jason-jh.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 29 Sep 2021 22:57:05 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-EEz0tAU_XoL789uOXx_hKGCz53vaaZrA4DSNM4NZ=8g@mail.gmail.com>
-Message-ID: <CAAOTY_-EEz0tAU_XoL789uOXx_hKGCz53vaaZrA4DSNM4NZ=8g@mail.gmail.com>
-Subject: Re: [PATCH] mailbox: Remove WARN_ON for async_cb.cb in cmdq_exec_done
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@google.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com
+References: <20210928201214.294737-1-trix@redhat.com> <CAL_JsqKMLu1Vm1x0rVGXf-RD2Mw65f3YPY3QL1mEB8=CQ9GMGw@mail.gmail.com>
+In-Reply-To: <CAL_JsqKMLu1Vm1x0rVGXf-RD2Mw65f3YPY3QL1mEB8=CQ9GMGw@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 29 Sep 2021 09:58:11 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJmcTPqopCcETeFUsgG=nDSUMVvVBAMMuCF_j-SzfoAEw@mail.gmail.com>
+Message-ID: <CAL_JsqJmcTPqopCcETeFUsgG=nDSUMVvVBAMMuCF_j-SzfoAEw@mail.gmail.com>
+Subject: Re: [PATCH] of: remove duplicate declaration of of_iomap()
+To:     trix@redhat.com
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jason:
+On Wed, Sep 29, 2021 at 9:26 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Tue, Sep 28, 2021 at 3:12 PM <trix@redhat.com> wrote:
+> >
+> > From: Tom Rix <trix@redhat.com>
+> >
+> > A ranconfig produces this linker error
+> > irq-al-fic.c:252: undefined reference to `of_iomap'
+> >
+> > The declaration of of_iomap() is dependent on OF
+> > The definition of of_iomap() is dependent on OF_ADDRESS
+> > These should match.  There are duplicate declarations
+> > of of_iomap(), remove of_iomap() and the
+> > of_address_to_resource() duplicate.
+> >
+> > Signed-off-by: Tom Rix <trix@redhat.com>
+> > ---
+> >  include/linux/of_address.h | 8 +-------
+> >  1 file changed, 1 insertion(+), 7 deletions(-)
+> >
+> > diff --git a/include/linux/of_address.h b/include/linux/of_address.h
+> > index 45598dbec269..a190996b4b0b 100644
+> > --- a/include/linux/of_address.h
+> > +++ b/include/linux/of_address.h
+> > @@ -122,13 +122,7 @@ static inline bool of_dma_is_coherent(struct device_node *np)
+> >  {
+> >         return false;
+> >  }
+> > -#endif /* CONFIG_OF_ADDRESS */
+> >
+> > -#ifdef CONFIG_OF
+> > -extern int of_address_to_resource(struct device_node *dev, int index,
+> > -                                 struct resource *r);
+> > -void __iomem *of_iomap(struct device_node *node, int index);
+>
+> This is going to break sparc which has !OF_ADDRESS and its own
+> of_iomap and of_address_to_resource implementations. I don't want to
+> add CONFIG_SPARC in here, so I think we should solve this in kconfig.
+> OF and !OF_ADDRESS is supposed to mean the arch provides these
+> functions.
+>
+> I'd really like to do away with HAS_IOMEM. It doesn't serve much
+> purpose other than disabling a bunch of drivers.
 
-jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B49=E6=9C=882=
-9=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:08=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Because mtk_drm_crtc_update_config is not using cmdq_pkt_flush_async,
-> it won't have pkt->async_cb.cb anymore.
->
-> So remove the WARN_ON check of pkt->async_cb.cb at cmdq_exec_done.
+Following UML (the only other arch with configurable HAS_IOMEM), I
+think dummy ioremap() implementations is the way to go here. UML added
+its own dummy functions, but it would be better if we can just do
+this:
 
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+diff --git a/include/asm-generic/io.h b/include/asm-generic/io.h
+index e93375c710b9..a9d02403b2fe 100644
+--- a/include/asm-generic/io.h
++++ b/include/asm-generic/io.h
+@@ -946,7 +946,7 @@ static inline void *phys_to_virt(unsigned long address)
+  * can provide stricter non-posted write semantics if the architecture
+  * implements them.
+  */
+-#ifndef CONFIG_MMU
++#if !defined(CONFIG_GENERIC_IOREMAP)
+ #ifndef ioremap
+ #define ioremap ioremap
+ static inline void __iomem *ioremap(phys_addr_t offset, size_t size)
+@@ -961,7 +961,7 @@ static inline void iounmap(void __iomem *addr)
+ {
+ }
+ #endif
+-#elif defined(CONFIG_GENERIC_IOREMAP)
++#else /* CONFIG_GENERIC_IOREMAP */
+ #include <linux/pgtable.h>
 
->
-> Fixes: 1b6b0ce2240e ("mailbox: mtk-cmdq: Use mailbox rx_callback")
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> ---
->  drivers/mailbox/mtk-cmdq-mailbox.c | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmd=
-q-mailbox.c
-> index 64175a893312..c591dab9d5a4 100644
-> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
-> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-> @@ -195,7 +195,6 @@ static void cmdq_task_exec_done(struct cmdq_task *tas=
-k, int sta)
->         struct cmdq_task_cb *cb =3D &task->pkt->async_cb;
->         struct cmdq_cb_data data;
->
-> -       WARN_ON(cb->cb =3D=3D (cmdq_async_flush_cb)NULL);
->         data.sta =3D sta;
->         data.data =3D cb->data;
->         data.pkt =3D task->pkt;
-> --
-> 2.18.0
->
+ void __iomem *ioremap_prot(phys_addr_t addr, size_t size, unsigned long prot);
+@@ -972,7 +972,7 @@ static inline void __iomem *ioremap(phys_addr_t
+addr, size_t size)
+        /* _PAGE_IOREMAP needs to be supplied by the architecture */
+        return ioremap_prot(addr, size, _PAGE_IOREMAP);
+ }
+-#endif /* !CONFIG_MMU || CONFIG_GENERIC_IOREMAP */
++#endif /* CONFIG_GENERIC_IOREMAP */
+
+ #ifndef ioremap_wc
+ #define ioremap_wc ioremap
+
+
+Then we can apply the following patch:
+
+diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+index 3dfeae8912df..4a2453e4d4f3 100644
+--- a/drivers/of/Kconfig
++++ b/drivers/of/Kconfig
+@@ -64,7 +64,7 @@ config OF_DYNAMIC
+
+ config OF_ADDRESS
+        def_bool y
+-       depends on !SPARC && (HAS_IOMEM || UML)
++       depends on !SPARC
+
+ config OF_IRQ
+        def_bool y
