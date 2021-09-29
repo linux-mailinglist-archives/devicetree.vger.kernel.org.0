@@ -2,105 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C23C41C69E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBFF241C6AF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344386AbhI2O2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 10:28:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56458 "EHLO mail.kernel.org"
+        id S243639AbhI2Oce convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 Sep 2021 10:32:34 -0400
+Received: from aposti.net ([89.234.176.197]:43458 "EHLO aposti.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344142AbhI2O2f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 10:28:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2FF1A613A7;
-        Wed, 29 Sep 2021 14:26:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1632925614;
-        bh=L4/gUbMB7IXW/+mE5sg2yvzrsdvg/AxRJNdmEImmNm4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LFW54fO7AUdG0exWC/NgjDiA4Nt98dn5yg0hPo3EdvdC/yPNIU47XEiwzYG8CA3BF
-         0SNFSR6r2SyIYtkfpzI4LAfwTbTG3DBrFJ5qzRxSS/y+WJJbxgkf49SzQfVT3nyNPB
-         9PNRPsZLeUoBBMb3mPdxloLfnyshGTbxNl4rp4JwCqgZq+g0aLnHChxSFXBBXTOGsb
-         wfqT3eYHAdisIEprDGJ4H3K1Tjo8GIQX8bf9duGS5vbKKof+zhR+gGolnhRupHx9ON
-         Lmk2TH0udml8MKxicJ+4dx20E74mu7RFB1yt8THg5eycDrx7gP2qtlXLGLePaDu6r3
-         tJ1l6JW4OhIxw==
-Received: by mail-ed1-f45.google.com with SMTP id v18so9294167edc.11;
-        Wed, 29 Sep 2021 07:26:54 -0700 (PDT)
-X-Gm-Message-State: AOAM530AWTYw6wGELTRpFM0qU68auhQ9t52+FgqKS5KPPvEHvYzJnmh7
-        VodpMrl9xpILhfs2+Nc2NDdOK1x+BG4ijKIJoQ==
-X-Google-Smtp-Source: ABdhPJxriq+CXUfPdOMlH7SB1VYujcInai/2OpHBeIfsE62+e+avssLCYStnCY2EoBU4Vg3HIl9TOl81k2gGXrsCBvg=
-X-Received: by 2002:a50:d887:: with SMTP id p7mr232004edj.164.1632925576614;
- Wed, 29 Sep 2021 07:26:16 -0700 (PDT)
+        id S245167AbhI2Oce (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 10:32:34 -0400
+Date:   Wed, 29 Sep 2021 15:30:31 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v4 02/10] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Message-Id: <VM970R.TLCBMNA67DOI2@crapouillou.net>
+In-Reply-To: <17BF1D7A-2057-448B-9FD2-907DE0EFD281@goldelico.com>
+References: <cover.1632761067.git.hns@goldelico.com>
+        <68cca888be1894ce45f1a93cfabeb5aa1f88c20a.1632761067.git.hns@goldelico.com>
+        <OA150R.JLKJBJP8V7FJ2@crapouillou.net>
+        <1E10A04A-4A78-4B47-B0FB-1E8C99456DA1@goldelico.com>
+        <17BF1D7A-2057-448B-9FD2-907DE0EFD281@goldelico.com>
 MIME-Version: 1.0
-References: <20210928201214.294737-1-trix@redhat.com>
-In-Reply-To: <20210928201214.294737-1-trix@redhat.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 29 Sep 2021 09:26:05 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKMLu1Vm1x0rVGXf-RD2Mw65f3YPY3QL1mEB8=CQ9GMGw@mail.gmail.com>
-Message-ID: <CAL_JsqKMLu1Vm1x0rVGXf-RD2Mw65f3YPY3QL1mEB8=CQ9GMGw@mail.gmail.com>
-Subject: Re: [PATCH] of: remove duplicate declaration of of_iomap()
-To:     trix@redhat.com
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 28, 2021 at 3:12 PM <trix@redhat.com> wrote:
->
-> From: Tom Rix <trix@redhat.com>
->
-> A ranconfig produces this linker error
-> irq-al-fic.c:252: undefined reference to `of_iomap'
->
-> The declaration of of_iomap() is dependent on OF
-> The definition of of_iomap() is dependent on OF_ADDRESS
-> These should match.  There are duplicate declarations
-> of of_iomap(), remove of_iomap() and the
-> of_address_to_resource() duplicate.
->
-> Signed-off-by: Tom Rix <trix@redhat.com>
-> ---
->  include/linux/of_address.h | 8 +-------
->  1 file changed, 1 insertion(+), 7 deletions(-)
->
-> diff --git a/include/linux/of_address.h b/include/linux/of_address.h
-> index 45598dbec269..a190996b4b0b 100644
-> --- a/include/linux/of_address.h
-> +++ b/include/linux/of_address.h
-> @@ -122,13 +122,7 @@ static inline bool of_dma_is_coherent(struct device_node *np)
->  {
->         return false;
->  }
-> -#endif /* CONFIG_OF_ADDRESS */
->
-> -#ifdef CONFIG_OF
-> -extern int of_address_to_resource(struct device_node *dev, int index,
-> -                                 struct resource *r);
-> -void __iomem *of_iomap(struct device_node *node, int index);
+Hi,
 
-This is going to break sparc which has !OF_ADDRESS and its own
-of_iomap and of_address_to_resource implementations. I don't want to
-add CONFIG_SPARC in here, so I think we should solve this in kconfig.
-OF and !OF_ADDRESS is supposed to mean the arch provides these
-functions.
+Le mar., sept. 28 2021 at 14:06:03 +0200, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> Hi Paul,
+> 
+>>  Am 28.09.2021 um 12:21 schrieb H. Nikolaus Schaller 
+>> <hns@goldelico.com>:
+>> 
+>>>>  @@ -1492,10 +1555,16 @@ static int ingenic_drm_init(void)
+>>>>  {
+>>>>  	int err;
+>>>>  +	if (IS_ENABLED(CONFIG_DRM_INGENIC_DW_HDMI)) {
+>>>>  +		err = platform_driver_register(ingenic_dw_hdmi_driver_ptr);
+>>>>  +		if (err)
+>>>>  +			return err;
+>>>>  +	}
+>>> 
+>>>  I don't see why you need to register the ingenic-dw-hdmi driver 
+>>> here. Just register it in the ingenic-dw-hdmi driver.
+>> 
+>>  Ok, I never though about this (as the code was not from me). We 
+>> apparently just followed the IPU code pattern (learning by example).
+>> 
+>>  It indeed looks not necessary and would also avoid the 
+>> ingenic_dw_hdmi_driver_ptr dependency.
+>> 
+>>  But: what is ingenic_ipu_driver_ptr then good for?
+>> 
 
-I'd really like to do away with HAS_IOMEM. It doesn't serve much
-purpose other than disabling a bunch of drivers.
+It's done this way because ingenic-drm-drv.c and ingenic-ipu.c are both 
+compiled within the same module ingenic-drm.
 
-> -#else
->  static inline int of_address_to_resource(struct device_node *dev, int index,
->                                          struct resource *r)
->  {
-> @@ -139,7 +133,7 @@ static inline void __iomem *of_iomap(struct device_node *device, int index)
->  {
->         return NULL;
->  }
-> -#endif
-> +#endif /* CONFIG_OF_ADDRESS */
->  #define of_range_parser_init of_pci_range_parser_init
->
->  static inline const __be32 *of_get_address(struct device_node *dev, int index,
-> --
-> 2.26.3
->
+I'm not sure this is still required, maybe ingenic-ipu.c can be its own 
+module now.
+
+>> 
+>>  If we can get rid of this as well, we can drop patch 1/10 
+>> ("drm/ingenic: Fix drm_init error path if IPU was registered") 
+>> completely.
+> 
+> A quick test shows that it *is* required. At least if I configure 
+> everything as modules.
+> But like you I can't explain why.
+
+Well, a quick test here shows that it is not required, at least when 
+configuring with everything built-in.
+
+-Paul
+
+> Well, just a very rough idea (may be wrong): the bridge chain is not 
+> like an i2c bus and
+> clients are not automatically loaded/probed if linked in the device 
+> tree. Therefore the
+> consumer (ingenic_drm_drv) must register the "clients" like IPU and 
+> HDMI.
+> 
+> BR,
+> Nikolaus
+> 
+
+
