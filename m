@@ -2,99 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75AB641C694
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C23C41C69E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344149AbhI2O1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 10:27:01 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:38310 "EHLO vps0.lunn.ch"
+        id S1344386AbhI2O2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 10:28:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56458 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344142AbhI2O1B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 10:27:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=wWgC/vb5YXjwhIt78LP76qUd1D9uEqQMomeZ/ZahLfI=; b=z3
-        2N5e2h9d+oLtxvNTlpRGTUqVEVA3mvBQwslVgQBq224GDnhyuTVQLl0Atcl9TdwobqCefXFuTMFgS
-        zZv4dqGlFpXqjIuuio1X5jpchuB9nLn65HmL6xZw8/TMVuFz/vwSjLhpX96q92hRxJtRteSiTqM3f
-        XAacB/cW7Yp3tvM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mVaW5-008mdg-Lp; Wed, 29 Sep 2021 16:25:01 +0200
-Date:   Wed, 29 Sep 2021 16:25:01 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        Scott Wood <oss@buserror.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] powerpc/fsl/dts: Fix phy-connection-type for fm1mac3
-Message-ID: <YVR3PVa9C6w5A1ce@lunn.ch>
-References: <20210604233455.fwcu2chlsed2gwmu@pali>
- <20210704134325.24842-1-pali@kernel.org>
- <63a72f648297e96c140a1412c20bd3796398a932.camel@buserror.net>
- <20210827113836.hvqvaln65gexg5ps@pali>
- <20210928213918.v4n3bzecbiltbktd@pali>
+        id S1344142AbhI2O2f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 10:28:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2FF1A613A7;
+        Wed, 29 Sep 2021 14:26:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1632925614;
+        bh=L4/gUbMB7IXW/+mE5sg2yvzrsdvg/AxRJNdmEImmNm4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LFW54fO7AUdG0exWC/NgjDiA4Nt98dn5yg0hPo3EdvdC/yPNIU47XEiwzYG8CA3BF
+         0SNFSR6r2SyIYtkfpzI4LAfwTbTG3DBrFJ5qzRxSS/y+WJJbxgkf49SzQfVT3nyNPB
+         9PNRPsZLeUoBBMb3mPdxloLfnyshGTbxNl4rp4JwCqgZq+g0aLnHChxSFXBBXTOGsb
+         wfqT3eYHAdisIEprDGJ4H3K1Tjo8GIQX8bf9duGS5vbKKof+zhR+gGolnhRupHx9ON
+         Lmk2TH0udml8MKxicJ+4dx20E74mu7RFB1yt8THg5eycDrx7gP2qtlXLGLePaDu6r3
+         tJ1l6JW4OhIxw==
+Received: by mail-ed1-f45.google.com with SMTP id v18so9294167edc.11;
+        Wed, 29 Sep 2021 07:26:54 -0700 (PDT)
+X-Gm-Message-State: AOAM530AWTYw6wGELTRpFM0qU68auhQ9t52+FgqKS5KPPvEHvYzJnmh7
+        VodpMrl9xpILhfs2+Nc2NDdOK1x+BG4ijKIJoQ==
+X-Google-Smtp-Source: ABdhPJxriq+CXUfPdOMlH7SB1VYujcInai/2OpHBeIfsE62+e+avssLCYStnCY2EoBU4Vg3HIl9TOl81k2gGXrsCBvg=
+X-Received: by 2002:a50:d887:: with SMTP id p7mr232004edj.164.1632925576614;
+ Wed, 29 Sep 2021 07:26:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210928213918.v4n3bzecbiltbktd@pali>
+References: <20210928201214.294737-1-trix@redhat.com>
+In-Reply-To: <20210928201214.294737-1-trix@redhat.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 29 Sep 2021 09:26:05 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKMLu1Vm1x0rVGXf-RD2Mw65f3YPY3QL1mEB8=CQ9GMGw@mail.gmail.com>
+Message-ID: <CAL_JsqKMLu1Vm1x0rVGXf-RD2Mw65f3YPY3QL1mEB8=CQ9GMGw@mail.gmail.com>
+Subject: Re: [PATCH] of: remove duplicate declaration of of_iomap()
+To:     trix@redhat.com
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 28, 2021 at 11:39:18PM +0200, Pali Rohár wrote:
-> On Friday 27 August 2021 13:38:36 Pali Rohár wrote:
-> > On Wednesday 14 July 2021 12:11:49 Scott Wood wrote:
-> > > On Sun, 2021-07-04 at 15:43 +0200, Pali Rohár wrote:
-> > > > Property phy-connection-type contains invalid value "sgmii-2500" per scheme
-> > > > defined in file ethernet-controller.yaml.
-> > > > 
-> > > > Correct phy-connection-type value should be "2500base-x".
-> > > > 
-> > > > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > > > Fixes: 84e0f1c13806 ("powerpc/mpc85xx: Add MDIO bus muxing support to the
-> > > > board device tree(s)")
-> > > > ---
-> > > >  arch/powerpc/boot/dts/fsl/t1023rdb.dts | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > > > b/arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > > > index 5ba6fbfca274..f82f85c65964 100644
-> > > > --- a/arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > > > +++ b/arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > > > @@ -154,7 +154,7 @@
-> > > >  
-> > > >                         fm1mac3: ethernet@e4000 {
-> > > >                                 phy-handle = <&sgmii_aqr_phy3>;
-> > > > -                               phy-connection-type = "sgmii-2500";
-> > > > +                               phy-connection-type = "2500base-x";
-> > > >                                 sleep = <&rcpm 0x20000000>;
-> > > >                         };
-> > > >  
-> > > 
-> > > Acked-by: Scott Wood <oss@buserror.net>
-> > > 
-> > > -Scott
-> > 
-> > Hello! If there is not any objection, could you take this patch?
-> 
-> Hello! I would like to remind this patch.
+On Tue, Sep 28, 2021 at 3:12 PM <trix@redhat.com> wrote:
+>
+> From: Tom Rix <trix@redhat.com>
+>
+> A ranconfig produces this linker error
+> irq-al-fic.c:252: undefined reference to `of_iomap'
+>
+> The declaration of of_iomap() is dependent on OF
+> The definition of of_iomap() is dependent on OF_ADDRESS
+> These should match.  There are duplicate declarations
+> of of_iomap(), remove of_iomap() and the
+> of_address_to_resource() duplicate.
+>
+> Signed-off-by: Tom Rix <trix@redhat.com>
+> ---
+>  include/linux/of_address.h | 8 +-------
+>  1 file changed, 1 insertion(+), 7 deletions(-)
+>
+> diff --git a/include/linux/of_address.h b/include/linux/of_address.h
+> index 45598dbec269..a190996b4b0b 100644
+> --- a/include/linux/of_address.h
+> +++ b/include/linux/of_address.h
+> @@ -122,13 +122,7 @@ static inline bool of_dma_is_coherent(struct device_node *np)
+>  {
+>         return false;
+>  }
+> -#endif /* CONFIG_OF_ADDRESS */
+>
+> -#ifdef CONFIG_OF
+> -extern int of_address_to_resource(struct device_node *dev, int index,
+> -                                 struct resource *r);
+> -void __iomem *of_iomap(struct device_node *node, int index);
 
-Hi Pali
+This is going to break sparc which has !OF_ADDRESS and its own
+of_iomap and of_address_to_resource implementations. I don't want to
+add CONFIG_SPARC in here, so I think we should solve this in kconfig.
+OF and !OF_ADDRESS is supposed to mean the arch provides these
+functions.
 
-I suggest you resend, and with To: Michael Ellerman <mpe@ellerman.id.au>
-to make it clear who you expect to pick up the
-patch. Michael seems to do the Maintainer work in
-arch/powerpc/boot/dts/
+I'd really like to do away with HAS_IOMEM. It doesn't serve much
+purpose other than disabling a bunch of drivers.
 
-	Andrew
+> -#else
+>  static inline int of_address_to_resource(struct device_node *dev, int index,
+>                                          struct resource *r)
+>  {
+> @@ -139,7 +133,7 @@ static inline void __iomem *of_iomap(struct device_node *device, int index)
+>  {
+>         return NULL;
+>  }
+> -#endif
+> +#endif /* CONFIG_OF_ADDRESS */
+>  #define of_range_parser_init of_pci_range_parser_init
+>
+>  static inline const __be32 *of_get_address(struct device_node *dev, int index,
+> --
+> 2.26.3
+>
