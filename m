@@ -2,151 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC1DC41C6AA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75AB641C694
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 16:25:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244819AbhI2Oas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 10:30:48 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:33620 "EHLO
-        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245127AbhI2Oan (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 10:30:43 -0400
-X-Greylist: delayed 473 seconds by postgrey-1.27 at vger.kernel.org; Wed, 29 Sep 2021 10:30:41 EDT
-Received: from fiber.protonic.nl (edge2.prtnl [192.168.1.170])
-        by sparta.prtnl (Postfix) with ESMTP id 0ED0144A024E;
-        Wed, 29 Sep 2021 16:21:07 +0200 (CEST)
+        id S1344149AbhI2O1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 10:27:01 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:38310 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1344142AbhI2O1B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 10:27:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=wWgC/vb5YXjwhIt78LP76qUd1D9uEqQMomeZ/ZahLfI=; b=z3
+        2N5e2h9d+oLtxvNTlpRGTUqVEVA3mvBQwslVgQBq224GDnhyuTVQLl0Atcl9TdwobqCefXFuTMFgS
+        zZv4dqGlFpXqjIuuio1X5jpchuB9nLn65HmL6xZw8/TMVuFz/vwSjLhpX96q92hRxJtRteSiTqM3f
+        XAacB/cW7Yp3tvM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mVaW5-008mdg-Lp; Wed, 29 Sep 2021 16:25:01 +0200
+Date:   Wed, 29 Sep 2021 16:25:01 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+        Scott Wood <oss@buserror.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] powerpc/fsl/dts: Fix phy-connection-type for fm1mac3
+Message-ID: <YVR3PVa9C6w5A1ce@lunn.ch>
+References: <20210604233455.fwcu2chlsed2gwmu@pali>
+ <20210704134325.24842-1-pali@kernel.org>
+ <63a72f648297e96c140a1412c20bd3796398a932.camel@buserror.net>
+ <20210827113836.hvqvaln65gexg5ps@pali>
+ <20210928213918.v4n3bzecbiltbktd@pali>
 MIME-Version: 1.0
-Date:   Wed, 29 Sep 2021 16:21:07 +0200
-From:   Robin van der Gracht <robin@protonic.nl>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 09/19] auxdisplay: ht16k33: Connect backlight to fbdev
-Reply-To: robin@protonic.nl
-In-Reply-To: <20210914143835.511051-10-geert@linux-m68k.org>
-References: <20210914143835.511051-1-geert@linux-m68k.org>
- <20210914143835.511051-10-geert@linux-m68k.org>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <50740100a1062b981948e1773574928a@protonic.nl>
-X-Sender: robin@protonic.nl
-Organization: Protonic Holland
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210928213918.v4n3bzecbiltbktd@pali>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Robin van der Gracht <robin@protonic.nl>
+On Tue, Sep 28, 2021 at 11:39:18PM +0200, Pali Rohár wrote:
+> On Friday 27 August 2021 13:38:36 Pali Rohár wrote:
+> > On Wednesday 14 July 2021 12:11:49 Scott Wood wrote:
+> > > On Sun, 2021-07-04 at 15:43 +0200, Pali Rohár wrote:
+> > > > Property phy-connection-type contains invalid value "sgmii-2500" per scheme
+> > > > defined in file ethernet-controller.yaml.
+> > > > 
+> > > > Correct phy-connection-type value should be "2500base-x".
+> > > > 
+> > > > Signed-off-by: Pali Rohár <pali@kernel.org>
+> > > > Fixes: 84e0f1c13806 ("powerpc/mpc85xx: Add MDIO bus muxing support to the
+> > > > board device tree(s)")
+> > > > ---
+> > > >  arch/powerpc/boot/dts/fsl/t1023rdb.dts | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/arch/powerpc/boot/dts/fsl/t1023rdb.dts
+> > > > b/arch/powerpc/boot/dts/fsl/t1023rdb.dts
+> > > > index 5ba6fbfca274..f82f85c65964 100644
+> > > > --- a/arch/powerpc/boot/dts/fsl/t1023rdb.dts
+> > > > +++ b/arch/powerpc/boot/dts/fsl/t1023rdb.dts
+> > > > @@ -154,7 +154,7 @@
+> > > >  
+> > > >                         fm1mac3: ethernet@e4000 {
+> > > >                                 phy-handle = <&sgmii_aqr_phy3>;
+> > > > -                               phy-connection-type = "sgmii-2500";
+> > > > +                               phy-connection-type = "2500base-x";
+> > > >                                 sleep = <&rcpm 0x20000000>;
+> > > >                         };
+> > > >  
+> > > 
+> > > Acked-by: Scott Wood <oss@buserror.net>
+> > > 
+> > > -Scott
+> > 
+> > Hello! If there is not any objection, could you take this patch?
+> 
+> Hello! I would like to remind this patch.
 
-On 2021-09-14 16:38, Geert Uytterhoeven wrote:
-> Currently /sys/class/graphics/fb0/bl_curve is not accessible (-ENODEV),
-> as the driver does not connect the backlight to the frame buffer device.
-> Fix this moving backlight initialization up, and filling in
-> fb_info.bl_dev.
-> 
-> Fixes: 8992da44c6805d53 ("auxdisplay: ht16k33: Driver for LED controller")
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> ---
-> v6:
->   - No changes,
-> 
-> v5:
->   - No changes,
-> 
-> v4:
->   - No changes,
-> 
-> v3:
->   - No changes,
-> 
-> v2:
->   - New.
-> ---
->  drivers/auxdisplay/ht16k33.c | 56 ++++++++++++++++++------------------
->  1 file changed, 28 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
-> index 1e69cc6d21a0dca2..2b630e194570f6e5 100644
-> --- a/drivers/auxdisplay/ht16k33.c
-> +++ b/drivers/auxdisplay/ht16k33.c
-> @@ -413,6 +413,33 @@ static int ht16k33_probe(struct i2c_client *client,
->  	if (err)
->  		return err;
-> 
-> +	/* Backlight */
-> +	memset(&bl_props, 0, sizeof(struct backlight_properties));
-> +	bl_props.type = BACKLIGHT_RAW;
-> +	bl_props.max_brightness = MAX_BRIGHTNESS;
-> +
-> +	bl = devm_backlight_device_register(&client->dev, DRIVER_NAME"-bl",
-> +					    &client->dev, priv,
-> +					    &ht16k33_bl_ops, &bl_props);
-> +	if (IS_ERR(bl)) {
-> +		dev_err(&client->dev, "failed to register backlight\n");
-> +		return PTR_ERR(bl);
-> +	}
-> +
-> +	err = of_property_read_u32(node, "default-brightness-level",
-> +				   &dft_brightness);
-> +	if (err) {
-> +		dft_brightness = MAX_BRIGHTNESS;
-> +	} else if (dft_brightness > MAX_BRIGHTNESS) {
-> +		dev_warn(&client->dev,
-> +			 "invalid default brightness level: %u, using %u\n",
-> +			 dft_brightness, MAX_BRIGHTNESS);
-> +		dft_brightness = MAX_BRIGHTNESS;
-> +	}
-> +
-> +	bl->props.brightness = dft_brightness;
-> +	ht16k33_bl_update_status(bl);
-> +
->  	/* Framebuffer (2 bytes per column) */
->  	BUILD_BUG_ON(PAGE_SIZE < HT16K33_FB_SIZE);
->  	fbdev->buffer = (unsigned char *) get_zeroed_page(GFP_KERNEL);
-> @@ -445,6 +472,7 @@ static int ht16k33_probe(struct i2c_client *client,
->  	fbdev->info->screen_size = HT16K33_FB_SIZE;
->  	fbdev->info->fix = ht16k33_fb_fix;
->  	fbdev->info->var = ht16k33_fb_var;
-> +	fbdev->info->bl_dev = bl;
->  	fbdev->info->pseudo_palette = NULL;
->  	fbdev->info->flags = FBINFO_FLAG_DEFAULT;
->  	fbdev->info->par = priv;
-> @@ -460,34 +488,6 @@ static int ht16k33_probe(struct i2c_client *client,
->  			goto err_fbdev_unregister;
->  	}
-> 
-> -	/* Backlight */
-> -	memset(&bl_props, 0, sizeof(struct backlight_properties));
-> -	bl_props.type = BACKLIGHT_RAW;
-> -	bl_props.max_brightness = MAX_BRIGHTNESS;
-> -
-> -	bl = devm_backlight_device_register(&client->dev, DRIVER_NAME"-bl",
-> -					    &client->dev, priv,
-> -					    &ht16k33_bl_ops, &bl_props);
-> -	if (IS_ERR(bl)) {
-> -		dev_err(&client->dev, "failed to register backlight\n");
-> -		err = PTR_ERR(bl);
-> -		goto err_fbdev_unregister;
-> -	}
-> -
-> -	err = of_property_read_u32(node, "default-brightness-level",
-> -				   &dft_brightness);
-> -	if (err) {
-> -		dft_brightness = MAX_BRIGHTNESS;
-> -	} else if (dft_brightness > MAX_BRIGHTNESS) {
-> -		dev_warn(&client->dev,
-> -			 "invalid default brightness level: %u, using %u\n",
-> -			 dft_brightness, MAX_BRIGHTNESS);
-> -		dft_brightness = MAX_BRIGHTNESS;
-> -	}
-> -
-> -	bl->props.brightness = dft_brightness;
-> -	ht16k33_bl_update_status(bl);
-> -
->  	ht16k33_fb_queue(priv);
->  	return 0;
+Hi Pali
+
+I suggest you resend, and with To: Michael Ellerman <mpe@ellerman.id.au>
+to make it clear who you expect to pick up the
+patch. Michael seems to do the Maintainer work in
+arch/powerpc/boot/dts/
+
+	Andrew
