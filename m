@@ -2,91 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D562C41C808
-	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 17:11:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9C7641C84D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Sep 2021 17:25:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345136AbhI2PNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 11:13:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53498 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345135AbhI2PNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 11:13:12 -0400
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCF1C06161C
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 08:11:30 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id r9so3209520ile.5
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 08:11:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i8yIlNe1wteWFB7lp9PoXm9bRdu16IElht81lO++2aM=;
-        b=Y49oozr3mkIPyTvRc+zx4f6Oq3JfSFzuGoKqU5eJszrBT58SW2xZBdmA0vn8dzZgaX
-         soKRG8eLnTsuy2M944uVoxGtEJpgZTHU1Jez+9TKBDP8+ILHfoWnOdQVpPC/wsCbv0Am
-         KPJu/6jRnbTO3MEw5fq/wp6gUFSEmTvKBrQkw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i8yIlNe1wteWFB7lp9PoXm9bRdu16IElht81lO++2aM=;
-        b=fJXB8mp99ZTfcMxGbWXe/cIIaEhvwLXJFL79zpjx0QeSDPP67PfMRF5lzbnSImbyKl
-         WJDmRZ8x/vm2jNUcAWdUU5X4ywl7zmP+FQNCq0jHeyE0hZxa4YSwZsJ+JCd5z2dLjVNr
-         Hl3tHESKZ6+VU3kwqY5OBE1uykagTzh1KlQf02d7MewLGeRJ1JsOftAmAJP1QBkHEO8q
-         oN1kb+i4idOXtLYD8weHA+LBqKk3IPdfBixE1d6khuy0Qx6EfcqHqKehhdic6exfOtO+
-         xQ50doQEMMQeSQfTiL54rSf74IfdODnRIbkLd1ELYF547NuA10Jhrd6wecy0Aj8vnwRb
-         LY4w==
-X-Gm-Message-State: AOAM531DxIEEBC5bOiFQ670AwI2LnQUZs0EYBJDxQg0TV5yB6zWwdn6o
-        uA10j/UuTSsVC57Jq0Oxj/CLEkUzl6maxQ==
-X-Google-Smtp-Source: ABdhPJyV8IYt+0sCXwypBAlNXFxQvbl9f481MUjsUOADbqOUqcr6/ZvA0zUMNEqy/dU7SYPJ4p9EeA==
-X-Received: by 2002:a05:6e02:bc3:: with SMTP id c3mr147158ilu.178.1632928289895;
-        Wed, 29 Sep 2021 08:11:29 -0700 (PDT)
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com. [209.85.166.181])
-        by smtp.gmail.com with ESMTPSA id a14sm35158iol.24.2021.09.29.08.11.28
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Sep 2021 08:11:29 -0700 (PDT)
-Received: by mail-il1-f181.google.com with SMTP id a11so3187280ilk.9
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 08:11:28 -0700 (PDT)
-X-Received: by 2002:a05:6e02:19cb:: with SMTP id r11mr151712ill.120.1632928288363;
- Wed, 29 Sep 2021 08:11:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <1632892123-11006-1-git-send-email-rajpat@codeaurora.org>
-In-Reply-To: <1632892123-11006-1-git-send-email-rajpat@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 29 Sep 2021 08:11:16 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XHaf-EQ9Uonr=B6QYp+wXcdasmdu=v-bdwWniveN-Asw@mail.gmail.com>
-Message-ID: <CAD=FV=XHaf-EQ9Uonr=B6QYp+wXcdasmdu=v-bdwWniveN-Asw@mail.gmail.com>
-Subject: Re: [PATCH V1] arm64: dts: qcom: sc7280: Add 200MHz in qspi_opp_table
-To:     Rajesh Patil <rajpat@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1345187AbhI2P05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 11:26:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36670 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1344945AbhI2P05 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 11:26:57 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 89FD661440;
+        Wed, 29 Sep 2021 15:25:11 +0000 (UTC)
+Date:   Wed, 29 Sep 2021 16:29:05 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        msavaliy@qti.qualcomm.com, satya priya <skakit@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        bcousson@baylibre.com, Tony Lindgren <tony@atomide.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Ryan Barnett <ryan.barnett@collins.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Jason Reeder <jreeder@ti.com>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 25/48] mfd: ti_am335x_tscadc: Use the new HZ_PER_MHZ
+ macro
+Message-ID: <20210929162905.5fc771c5@jic23-huawei>
+In-Reply-To: <20210928133143.157329-26-miquel.raynal@bootlin.com>
+References: <20210928133143.157329-1-miquel.raynal@bootlin.com>
+        <20210928133143.157329-26-miquel.raynal@bootlin.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, 28 Sep 2021 15:31:20 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-On Tue, Sep 28, 2021 at 10:10 PM Rajesh Patil <rajpat@codeaurora.org> wrote:
->
-> Add 200MHz OPP in qspi_opp_table
->
-> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
+> Before adding another frequency with even more zeroes, use the
+> HZ_PER_MHZ macro to clarify the number.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+You missed tag I gave on v3.
+
+Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+
+Thanks,
+
 > ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
+>  include/linux/mfd/ti_am335x_tscadc.h | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/mfd/ti_am335x_tscadc.h b/include/linux/mfd/ti_am335x_tscadc.h
+> index 893c474c1f8c..a85643677bef 100644
+> --- a/include/linux/mfd/ti_am335x_tscadc.h
+> +++ b/include/linux/mfd/ti_am335x_tscadc.h
+> @@ -9,6 +9,7 @@
+>  #define __LINUX_TI_AM335X_TSCADC_MFD_H
+>  
+>  #include <linux/mfd/core.h>
+> +#include <linux/units.h>
+>  
+>  #define REG_RAWIRQSTATUS	0x024
+>  #define REG_IRQSTATUS		0x028
+> @@ -133,7 +134,7 @@
+>  #define SEQ_STATUS		BIT(5)
+>  #define CHARGE_STEP		0x11
+>  
+> -#define ADC_CLK			3000000
+> +#define ADC_CLK			(3 * HZ_PER_MHZ)
+>  #define TOTAL_STEPS		16
+>  #define TOTAL_CHANNELS		8
+>  #define FIFO1_THRESHOLD		19
 
-Looks fine to me, thanks!
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
