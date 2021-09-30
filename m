@@ -2,96 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4BF141D861
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 13:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 767A041D8A4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 13:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350307AbhI3LHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 07:07:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43814 "EHLO
+        id S1350436AbhI3L1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 07:27:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350311AbhI3LHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 07:07:10 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B94C06176E;
-        Thu, 30 Sep 2021 04:05:27 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id b26so20760736edt.0;
-        Thu, 30 Sep 2021 04:05:27 -0700 (PDT)
+        with ESMTP id S1350427AbhI3L1J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 07:27:09 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B80C061770
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 04:25:26 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id i19so20861267lfu.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 04:25:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3Mqq1EJ2H9lT3Ci5TT8crEf2RCsTlu4B8737O9t40fk=;
-        b=ctXoSjBkvSIYNULZaa1/V0zomtPR9Dg6hGyso+EDovmgaYUAbYEJved1OfeTZDjx6r
-         jsoMIVFfzEgEXtg4ZDNQzkyDlcbUG2cXX28Oor5BNgfMVRzhkznGLlwUKyxC41i0rUlz
-         0qxCqfQm9eeFVI+qQbpRezTR8Zzw7pGb9cpBicROrwpunIC0ncneATZnp28rqnrvYiwA
-         DuLwhPNGZLnTczsAJbUljTCACCW6ADDdxDo9hhnSoHEZLZbp9S36tQaQeppsrDhKPzgI
-         u5iWrGW/oUQ8smSzPXPqamjbW8X8kmCFGoAnobN42fYwMX9AmjY8zJrUluzhcbpqtc93
-         fgjw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fQ6FUBIM9thJqbhUS63FKjztr/wXj8cgKR4tXqEtQ7s=;
+        b=M8ozWpEVoGJuI2AqrfnJ8grrWDDy3hICF7yDn5elT2VNODPrJYZq/1dUel6ac/46xP
+         zEa4ct8ihuroQLVWvo/qmmiMqiX2DggNre9oKvXc0vf24Ebz0M/HbGz3afSH4J1u6rq1
+         LyhocEM49mPnbbAhmz7moVfZIjEkUNcoD8waWv58fPfoTi9DLf8ARV+yVPP84jkM673V
+         a7SKJ6LbWZg+qLSc4LiPoVIEpr2ItJFRHI+diEDfYRfSylO8ZIfFfFZI7yW55YzYx7qB
+         ubm3BkG7OWuXVr/J/RAsf20oczo8MMbv3w6DZSbx+LpER/VdzfgPMcX47k/RzsPVfrhY
+         X/KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3Mqq1EJ2H9lT3Ci5TT8crEf2RCsTlu4B8737O9t40fk=;
-        b=H+IPqSzsuSCZxX9n7qZ+JeF6ar35jIuxcTvsmsobGXv32KBCqDqLDyHDWh0Z8ENnpK
-         Eg95f7pR6twMyRvmCMBvMyqAYdiQvWfrdgD8M7anmMHxX6DYe/ov5socHffPtQvddZAQ
-         0+L9i/PBIl+ZBoPFXyuHzcZ7w6BtBlWhoLVZ0WJojhoQsaU1pmn8sWri0ynYsgA9YU3Z
-         AFe1ewTKYsd1XDlhTi75pTd7K7IN3oNnbqG3DrONAa/VFSlqe9hCkBe4+Qg6/dVM5O1d
-         3kyNyyN2knAGBYa1PuVjv6L4ya0VzLhHfZk9YcGEdAVtnykNA2DpaTJS3I6hwdS+pcS7
-         GgYg==
-X-Gm-Message-State: AOAM5314jNkfb4vrlNAVxBHoFOb1hVkN7sGo1SUI1ivfjJIQ7fcGWvXY
-        f5cM451S4qa0c7vOWu8wzSM=
-X-Google-Smtp-Source: ABdhPJwn+zUQkIe2nFFlWlA6BpEh0kKo3gLy3lRh6spCZ8VNO5YuDcImrQXlufA2biBRs2ZX2uzc7w==
-X-Received: by 2002:a50:fa93:: with SMTP id w19mr6405648edr.365.1632999926386;
-        Thu, 30 Sep 2021 04:05:26 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id i2sm1305158edv.7.2021.09.30.04.05.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Sep 2021 04:05:26 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org, p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: fix resets in tsadc node for rk356x.dtsi
-Date:   Thu, 30 Sep 2021 13:05:17 +0200
-Message-Id: <20210930110517.14323-4-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210930110517.14323-1-jbx6244@gmail.com>
-References: <20210930110517.14323-1-jbx6244@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fQ6FUBIM9thJqbhUS63FKjztr/wXj8cgKR4tXqEtQ7s=;
+        b=S8ue8tj35kjtrGxkIhV+hS3J1JwTLveHvcVMyQhl5AMGgJsMaPNEjASGBiv3W5wugc
+         LAKYYNZzJACgkMpFPLO3KJMEpWw0HGI5/w10OJhSRC2lIjvCo4zeaf+JjRkU8Z9E/PR4
+         D8/I/J8VO3snjDd4tRn2xJk2B4a5nCk1mCv9ylXGn8MdDnzBwiBQz07Lo04X3Fxe5lfl
+         OscdQq0Slba8RqRXaRKM4hgwxEXLNOaz3Q739ulHBftxcDAvk71HwEcnp+J5CDX46EhY
+         2KNpygC6rDrOKwDb50TYX9Phm+lBa0+WyOiRry/Dt4zPtaCVCD+a6rtQBIhfRwZPqevw
+         9byA==
+X-Gm-Message-State: AOAM531eRYoidJAZQoEyPqy3LbgPFslQCyIwLHhoP/7mHYzaLig8sV7n
+        gCJL2hGVm51OfIc48UAEh3joTcP4mzznBjVxuF7KNA==
+X-Google-Smtp-Source: ABdhPJyMnk07HkEmQ5T4dxMeflUqucQ/Q/tgaQvW78ey2NbZe+7L8S68QtEOQeKSrxWS+FGbmyyMpqTTZw1YJPCMLqM=
+X-Received: by 2002:a05:6512:3fa5:: with SMTP id x37mr5618301lfa.233.1633001124808;
+ Thu, 30 Sep 2021 04:25:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210928082346.22398-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210928082346.22398-1-krzysztof.kozlowski@canonical.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 30 Sep 2021 13:24:48 +0200
+Message-ID: <CAPDyKFrWTDe83Thbf_JGLGmfKbJvFyCLEXgoOgg-=ROvV8yJrw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: arasan,sdci: drop unneeded clock-cells dependency
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the rockchip_thermal.c driver we now get the resets with
-a devm_reset_control_array_get() function, so remove
-the reset-names property as it is no longer needed.
-Although no longer required in rockchip-thermal.yaml
-sort tsadc-apb as first item.
+On Tue, 28 Sept 2021 at 10:23, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> The meta-schema already defines dependency between clock-cells and
+> clock-output-names.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Applied for next, thanks!
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index e42fbac61..d013348bc 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -838,9 +838,8 @@
- 		assigned-clock-rates = <17000000>, <700000>;
- 		clocks = <&cru CLK_TSADC>, <&cru PCLK_TSADC>;
- 		clock-names = "tsadc", "apb_pclk";
--		resets = <&cru SRST_TSADC>, <&cru SRST_P_TSADC>,
-+		resets = <&cru SRST_P_TSADC>, <&cru SRST_TSADC>,
- 			 <&cru SRST_TSADCPHY>;
--		reset-names = "tsadc", "tsadc-apb", "tsadc-phy";
- 		rockchip,grf = <&grf>;
- 		rockchip,hw-tshut-temp = <95000>;
- 		pinctrl-names = "init", "default", "sleep";
--- 
-2.20.1
+Kind regards
+Uffe
 
+
+> ---
+>  Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 4 ----
+>  1 file changed, 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> index 23abb7e8b9d8..dd70431df0b7 100644
+> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> @@ -158,10 +158,6 @@ properties:
+>      description:
+>        The MIO bank number in which the command and data lines are configured.
+>
+> -dependencies:
+> -  clock-output-names: [ '#clock-cells' ]
+> -  '#clock-cells': [ clock-output-names ]
+> -
+>  required:
+>    - compatible
+>    - reg
+> --
+> 2.30.2
+>
