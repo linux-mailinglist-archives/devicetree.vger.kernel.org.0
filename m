@@ -2,76 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08FB441E457
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 00:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1CBC41E48E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 01:04:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349271AbhI3XAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 19:00:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40802 "EHLO
+        id S1345634AbhI3XG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 19:06:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349300AbhI3XAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 19:00:03 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F3DC06176C
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 15:58:20 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id y26so31712599lfa.11
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 15:58:20 -0700 (PDT)
+        with ESMTP id S1345470AbhI3XG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 19:06:27 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14EC4C06176A;
+        Thu, 30 Sep 2021 16:04:44 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id u7so6282162pfg.13;
+        Thu, 30 Sep 2021 16:04:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=AnIUtRQtDgk3YDJAatwz+LXUKRWPbctJNdAprjwvZ5o=;
-        b=R1PvQpCeIannjSb6Yh+ydpk75/C6o8mEtPAzmgaEHIE8+GwbHjyaz9wpB+8x12xrLC
-         5QzliCelgl2NI0J6eAvviXY6NAb0fddKOwm8F0zluWIgQVcCljaROD5vrmiDeSlDLGsK
-         xJB49pSfVQy8S3Pu4kCVcQeq6ZMoa/xhFaIxFdweO35gr4XDAjaXA+zoW+1iWxDz8mxI
-         TYIETMUD6inxlylZ2+5HXNoU+Ej3Yy1phQDEHgefTc6SLcco5OC3x4iNwsBqiDMPoP+P
-         pOk7Fq1FEKBsQAGNBYAce970oQL9Ja1ScWCdUauoISN5YYshWUwov1jp5zGqcxSOFPv4
-         8viw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=aUdRJqN7Q8Md0WLihot4c+nT71azCPqR01b/CTAu2es=;
+        b=EoX/Af0qQrI5JjOIGgcosWADNp06+Zxy8UTiqJp/KCtfoY6Eps16HylPPQf+j5xApl
+         k534ELCGLXmfZWhsAUvFam1aXHX4uehJU2DvmYI12z1+sKmvEFHNY66wRq2ID6tqWtvD
+         Ag9lyQbJIMAy4Vsfpa3cwuAAaXJi1MVtXjgiVkxLFQHZ7ka23lWgxHGpPFxbv889bAYJ
+         n8zxRwHKKY8qwcohQE7RRE/OgEJyT6ZvIPFeltjfOisdKE0Kv0SXs7cIUrGhWOMuNXVJ
+         QBIcmxiVDVj1MI7SHn4DZWkofpqUC1JuTTa3fXsGQQv/eSY3ZPdGdU8wlo6N+hCpkadf
+         HhJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=AnIUtRQtDgk3YDJAatwz+LXUKRWPbctJNdAprjwvZ5o=;
-        b=g8xM64h9qXeHz0pUNx+ySlpph0d1SfxTaoafUM3cVg8kpK1wbHWWCJPDJpu8UVQVZc
-         NU2BoS/oXA9NkLtQkyfespPZglBtQR5aHb9x7APw3XjLiiESvjFoAgiRShpHJCSYs3X8
-         HmQV+XvJrWMJDMBpeqYK6X9HQ/+hgXfk8Vybmx5N+HpPfpP4bPmpX4NUNzP/hWmp/0eH
-         EwjqIhcGzg7zShnaVv6EMtOjH0wIRar177NX2TK3/OfTJB7erX2FXcSY49JnmStYwCK9
-         G3wVo069ez3Tzj+rDgxPsGA4JyCXzumoz24m3+18h9gQFbQH0i5VnulcSVGCoNFB1RQf
-         s5dQ==
-X-Gm-Message-State: AOAM5314cNpivnbj5ocXV0PAOvYJPmi83PgwVg1nUv3oWyA4r3JUrYPP
-        Z93FLQv47Qo432Hln+64vnklKCjoYLL2gFOdVTs=
-X-Google-Smtp-Source: ABdhPJyp0GckkyoQimIbcF3/K7wY5JuxQheNi1bdL6NpxgoMO9RxiMuiJeEbVByK85pFkO1bkngH1qS9zgmfyJF8Wlc=
-X-Received: by 2002:ac2:4d91:: with SMTP id g17mr1289553lfe.597.1633042698767;
- Thu, 30 Sep 2021 15:58:18 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=aUdRJqN7Q8Md0WLihot4c+nT71azCPqR01b/CTAu2es=;
+        b=ymcEqa4HoXItg428/8vOQUn5jzybLaAdHAxKJEGuylsY8onkwXRuFbYM4f8ySyq5LC
+         iKkwJ6lb1BxfH7udxAhyGee9dE+O6bARMRaK38Qpfhqs7leSYucFC52YPTU9iZFeyWIn
+         AOgmN7XuBnaX2SHRxR5dWdhng/kzb99ZWH4Zgj/ctRNBznw9mr0s68IA4qgihwrt9kja
+         s0iGvWmFKie6PqfnAszArdbF384We0ZuaF+kYvXlznVajsu9fDufUd9TYTXcIemKcZZT
+         O1ofOKxv5z5nmBSYQihVYeeBwBbKcBagyI0XqBwJTjdK6EqxZJb4ZNbXY8Q0oWuCbtEe
+         EzSg==
+X-Gm-Message-State: AOAM532Wb5XTAjhWfsfye1pheOlFUPAyVJlj+yGIM+qcp2LMH5yubSKq
+        dVtRrgyFAN2aHQVkn4QiZlVcxxZNIkQ=
+X-Google-Smtp-Source: ABdhPJwzXaInJPCsyL+QovMoEB2pENaTd2orUuJTQf7uhEeBi03Qw2Gjf88gJHgIja+f2XcRgRcDNg==
+X-Received: by 2002:a65:580d:: with SMTP id g13mr6961278pgr.233.1633043083452;
+        Thu, 30 Sep 2021 16:04:43 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id ep6sm1095809pjb.34.2021.09.30.16.04.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Sep 2021 16:04:42 -0700 (PDT)
+Subject: Re: [PATCH net-next] net: bgmac: support MDIO described in DT
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20210920123441.9088-1-zajec5@gmail.com>
+ <168e00d3-f335-4e62-341f-224e79a08558@gmail.com>
+ <79c91b0e-7f6a-ef40-9ab2-ee8212bf5791@gmail.com>
+ <780a6e7f-655a-6d79-d086-2eefd7e9ccb6@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <c687a7b4-24eb-f088-d6d0-f167a8f9da1f@gmail.com>
+Date:   Thu, 30 Sep 2021 16:04:41 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Received: by 2002:a05:6512:5d8:0:0:0:0 with HTTP; Thu, 30 Sep 2021 15:58:17
- -0700 (PDT)
-Reply-To: southwestloanco59@gmail.com
-From:   SOUTHWESTLOANCO <saniabdullahinng2020@gmail.com>
-Date:   Thu, 30 Sep 2021 15:58:17 -0700
-Message-ID: <CA+3X9TxOgUnr17iBEDQumHTT-4sD=94e7Kczm3G2MdEDopz6kQ@mail.gmail.com>
-Subject: Dear owner,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <780a6e7f-655a-6d79-d086-2eefd7e9ccb6@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 9/30/21 7:29 AM, Rafał Miłecki wrote:
+> On 20.09.2021 19:57, Rafał Miłecki wrote:
+>> On 20.09.2021 18:11, Florian Fainelli wrote:
+>>> I believe this leaks np and the use case is not exactly clear to me
+>>> here. AFAICT the Northstar SoCs have two MDIO controllers: one for
+>>> internal PHYs and one for external PHYs which how you would attach a
+>>> switch to the chip (in chipcommonA). Is 53573 somewhat different here?
+>>> What is the MDIO bus driver that is being used?
+>>
+>> of_get_child_by_name() doesn't seem to increase refcount or anything and
+>> I think it's how most drivers handle it. I don't think it should leak.
+>>
+>> BCM53573 is a built with some older blocks. Please check:
+>>
+>> 4ebd50472899 ("ARM: BCM53573: Initial support for Broadcom BCM53573
+>> SoCs")
+>>      BCM53573 series is a new family with embedded wireless. By marketing
+>>      people it's sometimes called Northstar but it uses different CPU
+>> and has
+>>      different architecture so we need a new symbol for it.
+>>      Fortunately it shares some peripherals with other iProc based
+>> SoCs so we
+>>      will be able to reuse some drivers/bindings.
+>>
+>> e90d2d51c412 ("ARM: BCM5301X: Add basic dts for BCM53573 based Tenda
+>> AC9")
+>>      BCM53573 seems to be low priced alternative for Northstar
+>> chipsts. It
+>>      uses single core Cortex-A7 and doesn't have SDU or local (TWD)
+>> timer. It
+>>      was also stripped out of independent SPI controller and 2 GMACs.
+>>
+>> Northstar uses SRAB which is some memory based (0x18007000) access to
+>> switch register space.
+>> BCM53573 uses different blocks & mappings and it doesn't include SRAB at
+>> 0x18007000. Accessing switch registers is handled over MDIO.
+> 
+> Florian: did my explanations help reviewing this patch? Would you ack it
+> now?
+
+Thanks for providing the background.
+
+You still appear to be needing an of_node_put() after
+of_mdiobus_register() because that function does increase the reference
+count.
 -- 
-Good day,
-          Do you need a loan ? We offer any kind of loan to repay in
-6months with just 2% interest
-
-Kindly Reply with below information
-
-NAME...............
-ADDRESS..........
-OCCUPATION....
-AGE...................
-PHONE..............
-AMOUNT NEEDED......
-
-Regards
-
-Contact  Mr Gary Edward +13182955380
-
-Remittance Department southwestloanco59@gmail.com
+Florian
