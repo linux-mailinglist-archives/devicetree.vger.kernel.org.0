@@ -2,86 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93BDD41D069
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 02:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 493D541D074
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 02:08:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344487AbhI3AEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 20:04:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35074 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234481AbhI3AEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 20:04:46 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C06C061768
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:03:04 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so5069763otq.7
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:03:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=4OM7fi2cMvcLgh5ivBuxZIPAp/b12WncuWucyr2GmQs=;
-        b=iqP7gvo8WHZ1YKDuQeX9H2LJrvOm/jZGdTT+9AYiMcDG4cWINHWenITwqhjXlAVdy5
-         HXaiW/gfMMc3DFaKRE9Hhj2G6SPuEIXwuh5h+M6tvAzDCAZ8vOW1fw9lRQ0acZNPvV95
-         PqQYlWd81ixtOWRSvl96o09QE4YiyPg0DYBXM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=4OM7fi2cMvcLgh5ivBuxZIPAp/b12WncuWucyr2GmQs=;
-        b=TF3/BewQpGZLSZfc0TvL5vK3wJ5VwUDrLwIaWC3LDULfezNZc3Fb2TSConaYQa9UFO
-         WfYTD4RLj+uda6e4ny2g02G2oGUBMNL6/xkSz/+LXZ/b7x71FAzvPn4C8+oe83V3p5wQ
-         4XVZCJQvtlxe2WV+xn5SvTkgayHo05qdfF3ydW0bt937QnAGqa9q/jDWK5BUE4/AdJ2g
-         hq1Qkzq13nJurC6hgNsqPISQHnlI0CXuBxep6sH1Q07fGvZl0pcQ4explfqZCrEpd25y
-         5XAxGy5lEHp6lQME4ZGayBkQBejugFNcung1RTJ6t9CzGaaX6GplnMzvb5YpFFMvs1hn
-         /g0g==
-X-Gm-Message-State: AOAM5331fwG1mO9mMYVsIXq2tyhHFElcSc4JJWHGd5oFlQwJz0+Zj9Oz
-        sDszF8A9i8nqmdKINXzlTp7GCO9JSPLUYqLSaCBbkQ==
-X-Google-Smtp-Source: ABdhPJwW2nM0Cv5T0vMxdTX4OAbSJOrScRzv+4wemtGTpIaTfSrfyxBa3Zn2XNFa/GSyyy5QcGXX42Zfo39Tn3kP12c=
-X-Received: by 2002:a05:6830:358:: with SMTP id h24mr2305672ote.159.1632960183868;
- Wed, 29 Sep 2021 17:03:03 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 29 Sep 2021 17:03:03 -0700
+        id S235869AbhI3AKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 20:10:25 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:27371 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233873AbhI3AKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 20:10:25 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1632960523; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=kOhjkHIxuUBiyMj/xZU0inF7H1QQJc5rXV7rQHRmlHc=;
+ b=JFmru+6LXzA6p7dtLD2YvDNoPTAEw5FN4Yb3GQQIE/H1LFjmuqMx68Jpya1KjJBElpnDfE2h
+ J3dlUGZIOyDvb8+XRZwIYlYRA1CPw3wyRVxt6FnLgyeblvvnqZEH6k6CmL5ftxJWsKScvvez
+ zJnbO+8ytihkZokNc286puljHZo=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 6155000b713d5d6f9622ac70 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 30 Sep 2021 00:08:43
+ GMT
+Sender: mturney=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id ACDC2C4360D; Thu, 30 Sep 2021 00:08:42 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: mturney)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BB820C4338F;
+        Thu, 30 Sep 2021 00:08:41 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210929153553.1.Ib44c2ac967833d7a3f51452d44d15b7b8d23c1f0@changeid>
-References: <20210929153553.1.Ib44c2ac967833d7a3f51452d44d15b7b8d23c1f0@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 29 Sep 2021 17:03:03 -0700
-Message-ID: <CAE-0n53NfTVWqAJtNY+swZjJ1b1cEYP9oMYgh=A76Q6sHknfqA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: pmk8350: Make RTC disabled by default;
- enable on sc7280-idp
-To:     Douglas Anderson <dianders@chromium.org>,
-        bjorn.andersson@linaro.org
-Cc:     vkoul@kernel.org, mka@chromium.org, skakit@codeaurora.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 29 Sep 2021 17:08:41 -0700
+From:   mturney@codeaurora.org
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org
+Subject: Re: viability of dt-schema long-term
+In-Reply-To: <CAL_JsqLuZkL6XztT_Wid3R_ohU01zQwU5HywqpN7hAS4fUNa=g@mail.gmail.com>
+References: <b4c0976e36a3a6e45b1042d4587e2eb9@codeaurora.org>
+ <CAL_JsqLuZkL6XztT_Wid3R_ohU01zQwU5HywqpN7hAS4fUNa=g@mail.gmail.com>
+Message-ID: <bf523abba466af778c2e549806414578@codeaurora.org>
+X-Sender: mturney@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2021-09-29 15:38:14)
-> The RTC on the pmk8350 is not useful on all boards. Some boards may
-> not provide backup power to the PMIC but might have another RTC on the
-> board that does have backup power. In this case it's better to not use
-> the RTC on the PMIC.
->
-> At the moment, the only boards that includes this PMIC are sc7280-idp
-> and sc7280-idp2. On sc7280-idp I'm not aware of any other RTCs, but
-> sc7280-idp2 has a Chrome OS EC on it and this is intended to provide
-> the RTC for the AP.
->
-> Let's do what we normally do for hardware that's not used by all
-> boards and set it to a default status of "disabled" and then enable it
-> on the boards that need it.
->
-> NOTE: for sc7280-idp it's _possible_ we might also want to add
-> `allow-set-time;`. That could be the subject of a future patch if it
-> is indeed true.
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
+[sending to you directly because I am no longer on kernel list and you 
+respond to the dtschema queries anyway, if you prefer I will re-join 
+kernel list and re-send to whole list]
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Reviving this thread now that we have some experience with dt-schema.
+
+Our experience with both dtc and the dt-schema scripts is there doesn't 
+seem to be any real distinction between errors and warnings.
+Below are some examples.
+
+This is from dt-validate: : pinctrl@f100000: 'width' is a required 
+property
+This is from dtc: : Warning (reg_format): /soc/pinctrl@f100000:reg: 
+property has invalid length (8 bytes) (#address-cells == 2, #size-cells 
+== 1)
+
+In both cases neither tool returned an error code to the shell (echo $? 
+= 0)
+dtc will error with a syntax problem, but that seems to be it.
+
+Is this how the kernel community prefers these tools to work?
+
+Our concern is more with the dtschema scripts so we can use this to 
+break the build and force the engineer to fix either the .yaml or .dtsi 
+file.
+
+Before we dive into the dtschema scripts we wanted to understand the 
+philosophy behind the design decisions.
+
+
+On 2020-11-30 11:02, Rob Herring wrote:
+> On Wed, Nov 25, 2020 at 2:13 PM <mturney@codeaurora.org> wrote:
+>> 
+>> 
+>> Folks,
+>> I am advocating use of dt-schema project internally to validate DTS
+>> files.
+>> I should add that our use is outside kernel tree on proprietary 
+>> project.
+>> 
+>> One of the push-backs I'm getting from the management chain is along 
+>> the
+>> lines of...
+>> 
+>> Who is this Rob Herring guy and why should we use a project that is 
+>> only
+>> sourced on https://github.com/robherring/dt-schema?
+> 
+> I wouldn't trust him...
+> 
+> That's the wrong repo though: 
+> https://github.com/devicetree-org/dt-schema
+> 
+> (Unfortunately, GH's forks is misleading as the 'root' repo has 
+> changed.)
+> 
+>> If the kernel project is using it, why isn't kernel.org hosting the
+>> project?
+> 
+> It's not a kernel project. That's why devicetree.org hosts it.
+> 
+>> What is kernel plan if Rob walks away from the project, is this going 
+>> to
+>> wither away and die?
+> 
+> IMO, only if folks don't find validation valuable or a better
+> implementation comes along.
+> 
+>> There are more, but the above pseudo-quotes grab the gist of the
+>> management complaints.
+>> 
+>> Q.1) Is there a plan for the kernel project to suck dt-schema into its
+>> orbit?
+> 
+> No, the 'plan' (more like desire) is more in the opposite direction.
+> Move more of DT (bindings and dts files) out of the kernel for other
+> projects to use. For now, we have the 'devicetree-rebasing' tree which
+> is just the DT bits from the kernel tree.
+> 
+>> Q.2) How many active maintainers are there for dt-schema?
+> 
+> Mostly just me. Maxime Ripard is also one. Others could be if the need 
+> arose.
+> 
+>> Q.3) How do I respond to the above types of complaints?
+> 
+> jsonschema python module which is our main dependency is also just a
+> single maintainer. So is dtc. Maybe not what you want to highlight.
+> 
+> Rob
