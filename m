@@ -2,204 +2,380 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 355DA41D46E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 09:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAF6041D49A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 09:37:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348657AbhI3HVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 03:21:53 -0400
-Received: from mail-eopbgr50112.outbound.protection.outlook.com ([40.107.5.112]:28174
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1348636AbhI3HVt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 03:21:49 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aAjpXazLGkj4oHOeZ0XdiwbghhvPuCm0w6/KS1/oILFpCrxI6ci+znIP6x5OX7MVy76rCD/kEiRTVh4YcBI2AhSXxo1wUJu29jqBHpBZPgymdRhoRDRkW4sZspvRaui/Q71aaUfRoIZmNOMPZPn8QEnmkxRtQ4aM9REz4yXfzRAzx/T9H3WWDioerSezEtC+pujSkoTH9QewlInZH3mdj6yf6wjpdno64Lo9GlS7TZchOed5eALuhFiULa627pV3K99ftaQzQsVdMp/J2zZyc9ZmiH49n3fBeynwberVbunEpvGIpEga2e7U9qucsCIaDiSuwvKVSFIa6SRo/WTT1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZRujP//mtPGhfx+kNfscSs8WsydUgbjY7+zRaOHoUlI=;
- b=Y7w4yyTXhAWLXN3d2ltSMt6PafMU4JXnKPxhoU3TR/p7ydY8Ou4Z0TaA0P6WwzHhCD/70sSW+z3tplAxRKfqSCuYdvjskPa1tmY4IKehr/P3aKHs/E3UqqmXhyS6iBqeXiFoF700yLQqRkhAxbfzueppG0AVxi66JOdNRPOOs8GnfdmO+wWOZQJwzQmZ5aXLuDoRrpDfj9wrgmd9i5m7nggzZrGqu55FDcFm3ULih1NLyp04I7QZq+Zg//it3tjgoWo8R241LpJ4GGxRgrlxq+td+UI6MCRQnq9taFVGakiEEku1hsT23It2Q+C+9ON+81NGrh0FlKYKwuClbo05Mg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
- dkim=pass header.d=nokia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
- s=selector1-nokia-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZRujP//mtPGhfx+kNfscSs8WsydUgbjY7+zRaOHoUlI=;
- b=omxrhtog2gZq4k39b85PuS5eFhw1nJ/z9lNw66ciQXA7NgL22wnrkvZsYc/Z5xaExqgHqfvaViwO3IRs2uWnqWEn0HNAtVaGqqP7YfniPN/vOA2+5sL9/Km5zoMp5brKh3k6yWFjKhQiofXksP1vvZ0eq1TdOOBOupr1BOs0BxI=
-Authentication-Results: roeck-us.net; dkim=none (message not signed)
- header.d=none;roeck-us.net; dmarc=none action=none header.from=nokia.com;
-Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
- by DU2PR07MB8223.eurprd07.prod.outlook.com (2603:10a6:10:274::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.14; Thu, 30 Sep
- 2021 07:20:02 +0000
-Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
- ([fe80::c47f:b569:ac76:9feb]) by DU2PR07MB8110.eurprd07.prod.outlook.com
- ([fe80::c47f:b569:ac76:9feb%7]) with mapi id 15.20.4478.014; Thu, 30 Sep 2021
- 07:20:02 +0000
-Date:   Thu, 30 Sep 2021 09:19:49 +0200
-From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 11/11] dt-bindings: hwmon: allow specifying channels for
- tmp421
-Message-ID: <3ff7b4cc57dab2073fa091072366c1e524631729.1632984254.git.krzysztof.adamski@nokia.com>
-References: <cover.1632984254.git.krzysztof.adamski@nokia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1632984254.git.krzysztof.adamski@nokia.com>
-X-ClientProxiedBy: MAXPR01CA0116.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:5d::34) To DU2PR07MB8110.eurprd07.prod.outlook.com
- (2603:10a6:10:239::15)
+        id S1348743AbhI3HjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 03:39:12 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:42202 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348737AbhI3HjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 03:39:11 -0400
+Received: from fiber.protonic.nl (edge2.prtnl [192.168.1.170])
+        by sparta.prtnl (Postfix) with ESMTP id 17F5F44A024E;
+        Thu, 30 Sep 2021 09:37:22 +0200 (CEST)
 MIME-Version: 1.0
-Received: from localhost.localdomain (131.228.2.20) by MAXPR01CA0116.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:5d::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.16 via Frontend Transport; Thu, 30 Sep 2021 07:19:58 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 26548c23-bae5-484f-3157-08d983e2b7f8
-X-MS-TrafficTypeDiagnostic: DU2PR07MB8223:
-X-Microsoft-Antispam-PRVS: <DU2PR07MB82238CC34E22A36C68AB186EEFAA9@DU2PR07MB8223.eurprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +H9OXoPQZ925wSyarTRYVwcq3NO8ijq8S7LmiJ1bDLk+KG1Tz5TdQ6GycLOLasSiTrXaeaZfqWFoc0T5b3Wp8vVM1fD4Eikwz1HVBDKRCnMCEpm/wMqqLmf9i/2zVC+5Gn6Gx4XNDfC6kG+QOCNTNZybw9ApAcQ965i7QWlm/DkmvQtGkrF17TCfTi8Y3KqqpIZT/uxjwHt4hvkuOz2GnS/6zh0An/HCM6QgUOjVDEj906gnouZf2cdWfh0O9Q//NyY2GtHwyld19S+ZjUlfufQlOA9VUc3rnR5qxtdhHa0UmEgpr6hPz90U5h81yUISpnJ43LthJ/bEX96YFh8yojG+2ewZh1vkuVRHm4mpn6J3ryn2WN3xIt+Mxy7rPwwarHV/oob7vdXYsGlkUYRRx3o2IkKl/4cCuzwC4oT8KzTFsVWedxGRp7kXhXaPzhSL0T4WFeiXFKmKQ+D/JEpRI+bGabM8s0Z64Ml94dFGtp+4Wq1NvnRxcrj+FvHdjcWBIp0AzjORFXLJtWjBUI1KqUEyVVbV2k0BHbKzKxUC4b8IzVepDwM7vwaxlxR6l1Wec2rMZ4j5ah81OnLirbmwdxlF8I8a0iIsrT1pi+CEfhDESG16jJfOqIN3fKjVJfvhyFZH0WASLUVnvpxLRUC1MTDe3/Y2IcOIV6PmAYg20YagllKwj76Uuj9+wSv/XzEY0ICXAq9wPE/PNLeAOwUsbA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(956004)(66476007)(66556008)(6666004)(2906002)(2616005)(508600001)(44832011)(66946007)(52116002)(110136005)(316002)(36756003)(8676002)(8936002)(6512007)(83380400001)(5660300002)(4326008)(26005)(38350700002)(186003)(86362001)(38100700002)(6486002)(6506007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WvxcQK2/zIIWdmsx9/ppDjWPP7iHgFxnISW2ChNcC/CLpl+CS0qLZ66J3ffb?=
- =?us-ascii?Q?RqW0X0TzphzSKhkARXPTXFVy1juxt0ztUnEA0Y5Es/EjDjMjCSVvMwQoD041?=
- =?us-ascii?Q?g1AcaUoRBt/SMw1BG7YO70PUws3nPuviFzTtocYJ8LGYRJnnHyoKvsLkeSEn?=
- =?us-ascii?Q?5d19KlcW92vt7GlZwzRp95BMWILDYbaxbE527igueB0VyuzkEuHRza+9KVFi?=
- =?us-ascii?Q?y5GJwqjjEBkX5HQjOl0xHMz1/wcRzZInrpwBmlIqyuxZQ4lItXO/FtQ3sMrs?=
- =?us-ascii?Q?RMuqSept6S6d4u1Ji9awVaGt3p2QVUgAL/4cf0L70lrkYT/xpGxnQFzE7z9B?=
- =?us-ascii?Q?nq/qxwVDaFPO19AoYOTe8+Yep0z6xFwN+ijzSf4bvk4wobm7INfS0yAdUhj1?=
- =?us-ascii?Q?c9E9RpC22/RAlCTM9D6fK1yUqd9HF4UWVe6RBNBJztFvM7+ZsS6l+twK8da8?=
- =?us-ascii?Q?BNbf1RsozEYSNAGfR6TNS9xvyE6tcf8g1gGostoK8jSaVHRD37fyskM1ILxn?=
- =?us-ascii?Q?JsElL4bW6BgPzlUdwg1v26Y97B+A1TLOYSmbYPmQwDyMQyk4Z0dVmOR747pw?=
- =?us-ascii?Q?0x0E90OZ8qjHHSq83bEL2VUa/KugOZOEHjHrJYYYnTlUEayMEiy9W6dEtXEJ?=
- =?us-ascii?Q?HrQFsr2safursKxSacpffgpMcaSrLg/ERSXSw9qcAxYBVwwgUL73kdIOhC+4?=
- =?us-ascii?Q?YtOgqplJ51bEm94Ep+XutqbXHuWcNLtLct31LM8/Njdi4rFMN619pt8U1y4G?=
- =?us-ascii?Q?Ra5GhxXIw0CNBwkUJVVv+6rg1Eq0+vlc1eGViCpYzxp2+zrttbJS+7dAV5oK?=
- =?us-ascii?Q?nWWPnxCdMvw5TUFgvIdpBm4Eo6sw4EWtsnIV1aISYfRH2oLsH7q2Fehj8HX0?=
- =?us-ascii?Q?d62hZBdQxk5xn4AQE9ZpJlHG78yX/MiNufbAfrGsAlvQ1ZAyqn3KWluXvjTf?=
- =?us-ascii?Q?CMucdgczBGhqAdw5a3SflBdx9P7PfZfE7M9spNXFiPmkm2DF+iFh9Y9ZMR9C?=
- =?us-ascii?Q?2xmwgg+0yVUyE46i+/toEvGljbO8dV1VvxdhjzK7ZyaSUCoWyQ5K7kQRneF8?=
- =?us-ascii?Q?6vvmadhNyMddMGu6cBMSN8Brj4nA3GRWL/oCjOMl/IosnUsJf7OclMvrENos?=
- =?us-ascii?Q?db/5ThV1k6XvJq4JUJQhCYU4tVliBxhMtiKiXugqm11efxtXc58d+KPwrbSk?=
- =?us-ascii?Q?nT71X0ct0kItiQIIkC8zgowW2HBBOXPZel4jly1rYx0jPFS2v6jb6hq4Va7k?=
- =?us-ascii?Q?+LNx1ij7M1DXMhdSWGySil/Y9bkRFAvNLBX6wRiDHpgPiFZY5kzQWNWa9ibb?=
- =?us-ascii?Q?jZMNnyYq6VXLnefxdY4R6zup?=
-X-OriginatorOrg: nokia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26548c23-bae5-484f-3157-08d983e2b7f8
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2021 07:20:02.5513
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u9xOVx5JHwncMah2blvhhYDtuFliSFqiBIlfHJF+otc4lv795q4z/L6VwtsgnvjbPWY4/BaiLr2i465QpTd+ZdL0kxYRMpFaLMEVHpdU/Q4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR07MB8223
+Date:   Thu, 30 Sep 2021 09:37:22 +0200
+From:   Robin van der Gracht <robin@protonic.nl>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 17/19] auxdisplay: ht16k33: Add support for segment
+ displays
+Reply-To: robin@protonic.nl
+In-Reply-To: <20210914143835.511051-18-geert@linux-m68k.org>
+References: <20210914143835.511051-1-geert@linux-m68k.org>
+ <20210914143835.511051-18-geert@linux-m68k.org>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <f902011b7be495219da31e4c1d561cfe@protonic.nl>
+X-Sender: robin@protonic.nl
+Organization: Protonic Holland
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding description for the per temperature channel configuration
-like labels and n-factor.
+Acked-by: Robin van der Gracht <robin@protonic.nl>
 
-Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
----
- .../devicetree/bindings/hwmon/ti,tmp421.yaml  | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-index 47040ace4f73..0d4ea2209500 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-@@ -24,12 +24,49 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
- required:
-   - compatible
-   - reg
- 
- additionalProperties: false
- 
-+patternProperties:
-+  "^input@([0-4])$":
-+    type: object
-+    description: |
-+      Represents channels of the device and their specific configuration.
-+
-+    properties:
-+      reg:
-+        description: |
-+          The channel number. 0 is local channel, 1-4 are remote channels
-+        items:
-+          minimum: 0
-+          maximum: 4
-+
-+      label:
-+        description: |
-+          A descriptive name for this channel, like "ambient" or "psu".
-+
-+      n-factor:
-+        description: |
-+          The value (two's complement) to be programmed in the channel specific N correction register.
-+          For remote channels only.
-+        items:
-+          minimum: 0
-+          maximum: 1
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
- examples:
-   - |
-     i2c {
-@@ -41,3 +78,32 @@ examples:
-         reg = <0x4c>;
-       };
-     };
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      sensor@4c {
-+        compatible = "ti,tmp422";
-+        reg = <0x4c>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        input@0 {
-+          reg = <0x0>;
-+          n-factor = <0x1>;
-+          label = "local";
-+        };
-+
-+        input@1 {
-+          reg = <0x1>;
-+          n-factor = <0x0>;
-+          label = "somelabel";
-+        };
-+
-+        input@2 {
-+          reg = <0x2>;
-+          status = "disabled";
-+        };
-+      };
-+    };
--- 
-2.31.1
-
+On 2021-09-14 16:38, Geert Uytterhoeven wrote:
+> The Holtek HT16K33 LED controller is not only used for driving
+> dot-matrix displays, but also for driving segment displays.
+> 
+> Add support for 4-digit 7-segment and quad 14-segment alphanumeric
+> displays, like the Adafruit 7-segment and 14-segment display backpack
+> and FeatherWing expansion boards.  Use the character line display core
+> support to display a message, which will be scrolled if it doesn't fit.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> ---
+> The 7-segment support is based on schematics, and untested on actual
+> hardware.
+> 
+> v6:
+>   - No changes,
+> 
+> v5:
+>   - No changes,
+> 
+> v4:
+>   - No changes,
+> 
+> v3:
+>   - Pass "dev" instead of "client" to ht16k33_seg_probe(),
+>   - Remove unneeded inclusion of <linux/leds.h> and <linux/of_device.h>,
+> 
+> v2:
+>   - Move "select LINEDISP" to this patch,
+>   - Set "err = -EINVAL" in switch() case that cannot happen.
+> ---
+>  drivers/auxdisplay/Kconfig   |   1 +
+>  drivers/auxdisplay/ht16k33.c | 196 +++++++++++++++++++++++++++++++++--
+>  2 files changed, 190 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
+> index b41fdc5f7bf72a1b..42fc7b155de09dbc 100644
+> --- a/drivers/auxdisplay/Kconfig
+> +++ b/drivers/auxdisplay/Kconfig
+> @@ -176,6 +176,7 @@ config HT16K33
+>  	select FB_SYS_IMAGEBLIT
+>  	select INPUT_MATRIXKMAP
+>  	select FB_BACKLIGHT
+> +	select LINEDISP
+>  	help
+>  	  Say yes here to add support for Holtek HT16K33, RAM mapping 16*8
+>  	  LED controller driver with keyscan.
+> diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
+> index 27ac167dae74bd82..3b555e119e326cec 100644
+> --- a/drivers/auxdisplay/ht16k33.c
+> +++ b/drivers/auxdisplay/ht16k33.c
+> @@ -5,6 +5,7 @@
+>   * Author: Robin van der Gracht <robin@protonic.nl>
+>   *
+>   * Copyright: (C) 2016 Protonic Holland.
+> + * Copyright (C) 2021 Glider bv
+>   */
+> 
+>  #include <linux/kernel.h>
+> @@ -20,6 +21,13 @@
+>  #include <linux/workqueue.h>
+>  #include <linux/mm.h>
+> 
+> +#include <linux/map_to_7segment.h>
+> +#include <linux/map_to_14segment.h>
+> +
+> +#include <asm/unaligned.h>
+> +
+> +#include "line-display.h"
+> +
+>  /* Registers */
+>  #define REG_SYSTEM_SETUP		0x20
+>  #define REG_SYSTEM_SETUP_OSC_ON		BIT(0)
+> @@ -47,6 +55,12 @@
+>  #define BYTES_PER_ROW		(HT16K33_MATRIX_LED_MAX_ROWS / 8)
+>  #define HT16K33_FB_SIZE		(HT16K33_MATRIX_LED_MAX_COLS * BYTES_PER_ROW)
+> 
+> +enum display_type {
+> +	DISP_MATRIX = 0,
+> +	DISP_QUAD_7SEG,
+> +	DISP_QUAD_14SEG,
+> +};
+> +
+>  struct ht16k33_keypad {
+>  	struct i2c_client *client;
+>  	struct input_dev *dev;
+> @@ -67,11 +81,25 @@ struct ht16k33_fbdev {
+>  	uint8_t *cache;
+>  };
+> 
+> +struct ht16k33_seg {
+> +	struct linedisp linedisp;
+> +	union {
+> +		struct seg7_conversion_map seg7;
+> +		struct seg14_conversion_map seg14;
+> +	} map;
+> +	unsigned int map_size;
+> +	char curr[4];
+> +};
+> +
+>  struct ht16k33_priv {
+>  	struct i2c_client *client;
+>  	struct delayed_work work;
+>  	struct ht16k33_keypad keypad;
+> -	struct ht16k33_fbdev fbdev;
+> +	union {
+> +		struct ht16k33_fbdev fbdev;
+> +		struct ht16k33_seg seg;
+> +	};
+> +	enum display_type type;
+>  };
+> 
+>  static const struct fb_fix_screeninfo ht16k33_fb_fix = {
+> @@ -101,6 +129,33 @@ static const struct fb_var_screeninfo ht16k33_fb_var = 
+> {
+>  	.vmode = FB_VMODE_NONINTERLACED,
+>  };
+> 
+> +static const SEG7_DEFAULT_MAP(initial_map_seg7);
+> +static const SEG14_DEFAULT_MAP(initial_map_seg14);
+> +
+> +static ssize_t map_seg_show(struct device *dev, struct device_attribute 
+> *attr,
+> +			    char *buf)
+> +{
+> +	struct ht16k33_priv *priv = dev_get_drvdata(dev);
+> +
+> +	memcpy(buf, &priv->seg.map, priv->seg.map_size);
+> +	return priv->seg.map_size;
+> +}
+> +
+> +static ssize_t map_seg_store(struct device *dev, struct device_attribute 
+> *attr,
+> +			     const char *buf, size_t cnt)
+> +{
+> +	struct ht16k33_priv *priv = dev_get_drvdata(dev);
+> +
+> +	if (cnt != priv->seg.map_size)
+> +		return -EINVAL;
+> +
+> +	memcpy(&priv->seg.map, buf, cnt);
+> +	return cnt;
+> +}
+> +
+> +static DEVICE_ATTR(map_seg7, 0644, map_seg_show, map_seg_store);
+> +static DEVICE_ATTR(map_seg14, 0644, map_seg_show, map_seg_store);
+> +
+>  static int ht16k33_display_on(struct ht16k33_priv *priv)
+>  {
+>  	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON;
+> @@ -325,6 +380,51 @@ static void ht16k33_keypad_stop(struct input_dev *dev)
+>  	disable_irq(keypad->client->irq);
+>  }
+> 
+> +static void ht16k33_linedisp_update(struct linedisp *linedisp)
+> +{
+> +	struct ht16k33_priv *priv = container_of(linedisp, struct ht16k33_priv,
+> +						 seg.linedisp);
+> +
+> +	schedule_delayed_work(&priv->work, 0);
+> +}
+> +
+> +static void ht16k33_seg7_update(struct work_struct *work)
+> +{
+> +	struct ht16k33_priv *priv = container_of(work, struct ht16k33_priv,
+> +						 work.work);
+> +	struct ht16k33_seg *seg = &priv->seg;
+> +	char *s = seg->curr;
+> +	uint8_t buf[9];
+> +
+> +	buf[0] = map_to_seg7(&seg->map.seg7, *s++);
+> +	buf[1] = 0;
+> +	buf[2] = map_to_seg7(&seg->map.seg7, *s++);
+> +	buf[3] = 0;
+> +	buf[4] = 0;
+> +	buf[5] = 0;
+> +	buf[6] = map_to_seg7(&seg->map.seg7, *s++);
+> +	buf[7] = 0;
+> +	buf[8] = map_to_seg7(&seg->map.seg7, *s++);
+> +
+> +	i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), buf);
+> +}
+> +
+> +static void ht16k33_seg14_update(struct work_struct *work)
+> +{
+> +	struct ht16k33_priv *priv = container_of(work, struct ht16k33_priv,
+> +						 work.work);
+> +	struct ht16k33_seg *seg = &priv->seg;
+> +	char *s = seg->curr;
+> +	uint8_t buf[8];
+> +
+> +	put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf);
+> +	put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf + 2);
+> +	put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf + 4);
+> +	put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf + 6);
+> +
+> +	i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), buf);
+> +}
+> +
+>  static int ht16k33_keypad_probe(struct i2c_client *client,
+>  				struct ht16k33_keypad *keypad)
+>  {
+> @@ -469,9 +569,56 @@ static int ht16k33_fbdev_probe(struct device *dev,
+> struct ht16k33_priv *priv,
+>  	return err;
+>  }
+> 
+> +static int ht16k33_seg_probe(struct device *dev, struct ht16k33_priv *priv,
+> +			     uint32_t brightness)
+> +{
+> +	struct ht16k33_seg *seg = &priv->seg;
+> +	int err;
+> +
+> +	err = ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
+> +	if (err)
+> +		return err;
+> +
+> +	switch (priv->type) {
+> +	case DISP_MATRIX:
+> +		/* not handled here */
+> +		err = -EINVAL;
+> +		break;
+> +
+> +	case DISP_QUAD_7SEG:
+> +		INIT_DELAYED_WORK(&priv->work, ht16k33_seg7_update);
+> +		seg->map.seg7 = initial_map_seg7;
+> +		seg->map_size = sizeof(seg->map.seg7);
+> +		err = device_create_file(dev, &dev_attr_map_seg7);
+> +		break;
+> +
+> +	case DISP_QUAD_14SEG:
+> +		INIT_DELAYED_WORK(&priv->work, ht16k33_seg14_update);
+> +		seg->map.seg14 = initial_map_seg14;
+> +		seg->map_size = sizeof(seg->map.seg14);
+> +		err = device_create_file(dev, &dev_attr_map_seg14);
+> +		break;
+> +	}
+> +	if (err)
+> +		return err;
+> +
+> +	err = linedisp_register(&seg->linedisp, dev, 4, seg->curr,
+> +				ht16k33_linedisp_update);
+> +	if (err)
+> +		goto err_remove_map_file;
+> +
+> +	return 0;
+> +
+> +err_remove_map_file:
+> +	device_remove_file(dev, &dev_attr_map_seg7);
+> +	device_remove_file(dev, &dev_attr_map_seg14);
+> +	return err;
+> +}
+> +
+>  static int ht16k33_probe(struct i2c_client *client)
+>  {
+>  	struct device *dev = &client->dev;
+> +	const struct of_device_id *id;
+>  	struct ht16k33_priv *priv;
+>  	uint32_t dft_brightness;
+>  	int err;
+> @@ -486,6 +633,9 @@ static int ht16k33_probe(struct i2c_client *client)
+>  		return -ENOMEM;
+> 
+>  	priv->client = client;
+> +	id = i2c_of_match_device(dev->driver->of_match_table, client);
+> +	if (id)
+> +		priv->type = (uintptr_t)id->data;
+>  	i2c_set_clientdata(client, priv);
+> 
+>  	err = ht16k33_initialize(priv);
+> @@ -510,8 +660,19 @@ static int ht16k33_probe(struct i2c_client *client)
+>  			return err;
+>  	}
+> 
+> -	/* Frame Buffer Display */
+> -	return ht16k33_fbdev_probe(dev, priv, dft_brightness);
+> +	switch (priv->type) {
+> +	case DISP_MATRIX:
+> +		/* Frame Buffer Display */
+> +		err = ht16k33_fbdev_probe(dev, priv, dft_brightness);
+> +		break;
+> +
+> +	case DISP_QUAD_7SEG:
+> +	case DISP_QUAD_14SEG:
+> +		/* Segment Display */
+> +		err = ht16k33_seg_probe(dev, priv, dft_brightness);
+> +		break;
+> +	}
+> +	return err;
+>  }
+> 
+>  static int ht16k33_remove(struct i2c_client *client)
+> @@ -520,9 +681,21 @@ static int ht16k33_remove(struct i2c_client *client)
+>  	struct ht16k33_fbdev *fbdev = &priv->fbdev;
+> 
+>  	cancel_delayed_work_sync(&priv->work);
+> -	unregister_framebuffer(fbdev->info);
+> -	framebuffer_release(fbdev->info);
+> -	free_page((unsigned long) fbdev->buffer);
+> +
+> +	switch (priv->type) {
+> +	case DISP_MATRIX:
+> +		unregister_framebuffer(fbdev->info);
+> +		framebuffer_release(fbdev->info);
+> +		free_page((unsigned long)fbdev->buffer);
+> +		break;
+> +
+> +	case DISP_QUAD_7SEG:
+> +	case DISP_QUAD_14SEG:
+> +		linedisp_unregister(&priv->seg.linedisp);
+> +		device_remove_file(&client->dev, &dev_attr_map_seg7);
+> +		device_remove_file(&client->dev, &dev_attr_map_seg14);
+> +		break;
+> +	}
+> 
+>  	return 0;
+>  }
+> @@ -534,7 +707,16 @@ static const struct i2c_device_id ht16k33_i2c_match[] = 
+> {
+>  MODULE_DEVICE_TABLE(i2c, ht16k33_i2c_match);
+> 
+>  static const struct of_device_id ht16k33_of_match[] = {
+> -	{ .compatible = "holtek,ht16k33", },
+> +	{
+> +		/* 0.56" 4-Digit 7-Segment FeatherWing Display (Red) */
+> +		.compatible = "adafruit,3108", .data = (void *)DISP_QUAD_7SEG,
+> +	}, {
+> +		/* 0.54" Quad Alphanumeric FeatherWing Display (Red) */
+> +		.compatible = "adafruit,3130", .data = (void *)DISP_QUAD_14SEG,
+> +	}, {
+> +		/* Generic, assumed Dot-Matrix Display */
+> +		.compatible = "holtek,ht16k33", .data = (void *)DISP_MATRIX,
+> +	},
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, ht16k33_of_match);
