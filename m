@@ -2,150 +2,342 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 493D541D074
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 02:08:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 322D941D095
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 02:35:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235869AbhI3AKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 20:10:25 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:27371 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233873AbhI3AKZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 20:10:25 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1632960523; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=kOhjkHIxuUBiyMj/xZU0inF7H1QQJc5rXV7rQHRmlHc=;
- b=JFmru+6LXzA6p7dtLD2YvDNoPTAEw5FN4Yb3GQQIE/H1LFjmuqMx68Jpya1KjJBElpnDfE2h
- J3dlUGZIOyDvb8+XRZwIYlYRA1CPw3wyRVxt6FnLgyeblvvnqZEH6k6CmL5ftxJWsKScvvez
- zJnbO+8ytihkZokNc286puljHZo=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 6155000b713d5d6f9622ac70 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 30 Sep 2021 00:08:43
- GMT
-Sender: mturney=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id ACDC2C4360D; Thu, 30 Sep 2021 00:08:42 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: mturney)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BB820C4338F;
-        Thu, 30 Sep 2021 00:08:41 +0000 (UTC)
+        id S1347103AbhI3Ags (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 20:36:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346375AbhI3Agq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 20:36:46 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5211C061769
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:35:04 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id w14so3431563pfu.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:35:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IjzHh64lVsb/lZGdokH420d5kapcdEZWn0niE1pG8Io=;
+        b=k1XDa5kzkzk6WIXCCYBemIAgg6QjM1qe2Ui1PfxwfpS1hL01KcmHWNUmA9Y3frCCmR
+         NAP/jd/im30Mx1iOJLlSOxbMtvGzQ+PETFqONxiUBNtsLqcBn+rTSzRPA+OannOxTvVa
+         C4psKIMyqurDUZqwaX/P9QtnpNfHMZW7aeJ34=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IjzHh64lVsb/lZGdokH420d5kapcdEZWn0niE1pG8Io=;
+        b=Z0kh+u5niZKEZlsDYXNHhdqyh87IqNLiRbHJC1a2em9cgFJTcBQ2524GCXVNCkW6bf
+         cYIuRqhFXbzhWlQo8Loyo+N3fNH0tlJ5SNL4KFiQF4p0ep/UhG91wGh13pzKthjn9zF7
+         WAhoIgtxs2lWyQXxqf7AszvJqXbuFSoTLY4jEJxlj6LEj/GjJtNWkghwFQARmzP8VYNZ
+         dioAEers42ZK7NNepAnj2V3HYG0s9B9U4ns71THQbmaNBj0iDAqe5Bdf7RfCfegl4P6O
+         c48eP62n9U/+BKsq0hlcRcekr3bgb2xw23LmWellXN54YCLuz+xGLS/2xH5KZ2wNV82H
+         VQZw==
+X-Gm-Message-State: AOAM531NlSyntVj5LgnPbKqISXp7fwdAG3e+y6KuwWS+veWqoBMIDCo+
+        USb13hBCiJrUnfe8V4hj1qG45g==
+X-Google-Smtp-Source: ABdhPJw3ZSIgIDMmJg6t+5AaTTtXbKrEjjhWgpdZoKFVE6hNtQuYfLk7v5kBS8v05bBsyTofrz+gGg==
+X-Received: by 2002:aa7:82d0:0:b0:413:5e93:2f7a with SMTP id f16-20020aa782d0000000b004135e932f7amr1328435pfn.16.1632962104083;
+        Wed, 29 Sep 2021 17:35:04 -0700 (PDT)
+Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:b6b6:ed63:b801:ded7])
+        by smtp.gmail.com with ESMTPSA id 23sm711648pgk.89.2021.09.29.17.35.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Sep 2021 17:35:03 -0700 (PDT)
+From:   Philip Chen <philipchen@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org, swboyd@chromium.org,
+        Philip Chen <philipchen@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2 1/3] arm64: dts: sc7180: Factor out ti-sn65dsi86 support
+Date:   Wed, 29 Sep 2021 17:34:56 -0700
+Message-Id: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
+X-Mailer: git-send-email 2.33.0.685.g46640cef36-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 29 Sep 2021 17:08:41 -0700
-From:   mturney@codeaurora.org
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org
-Subject: Re: viability of dt-schema long-term
-In-Reply-To: <CAL_JsqLuZkL6XztT_Wid3R_ohU01zQwU5HywqpN7hAS4fUNa=g@mail.gmail.com>
-References: <b4c0976e36a3a6e45b1042d4587e2eb9@codeaurora.org>
- <CAL_JsqLuZkL6XztT_Wid3R_ohU01zQwU5HywqpN7hAS4fUNa=g@mail.gmail.com>
-Message-ID: <bf523abba466af778c2e549806414578@codeaurora.org>
-X-Sender: mturney@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[sending to you directly because I am no longer on kernel list and you 
-respond to the dtschema queries anyway, if you prefer I will re-join 
-kernel list and re-send to whole list]
+Factor out ti-sn65dsi86 edp bridge as a separate dts fragment.
+This helps us introduce the second source edp bridge later.
 
-Reviving this thread now that we have some experience with dt-schema.
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Signed-off-by: Philip Chen <philipchen@chromium.org>
+---
 
-Our experience with both dtc and the dt-schema scripts is there doesn't 
-seem to be any real distinction between errors and warnings.
-Below are some examples.
+Changes in v2:
+- Move edp_brij_i2c completely out of sc7180-trogdor.dtsi to the
+  bridge dts fragment, so that we can cleanly assign different
+  edp bridge in every board rev.
 
-This is from dt-validate: : pinctrl@f100000: 'width' is a required 
-property
-This is from dtc: : Warning (reg_format): /soc/pinctrl@f100000:reg: 
-property has invalid length (8 bytes) (#address-cells == 2, #size-cells 
-== 1)
+ .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  1 +
+ .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  1 +
+ .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  1 +
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  1 +
+ .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi | 90 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 86 ------------------
+ 6 files changed, 94 insertions(+), 86 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
 
-In both cases neither tool returned an error code to the shell (echo $? 
-= 0)
-dtc will error with a syntax problem, but that seems to be it.
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+index a758e4d22612..1d13fba3bd2f 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+@@ -11,6 +11,7 @@
+ ap_h1_spi: &spi0 {};
+ 
+ #include "sc7180-trogdor.dtsi"
++#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
+ 
+ /* Deleted nodes from trogdor.dtsi */
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+index 00535aaa43c9..27b26a782af9 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+@@ -11,6 +11,7 @@
+ ap_h1_spi: &spi0 {};
+ 
+ #include "sc7180-trogdor.dtsi"
++#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
+ 
+ &ap_sar_sensor {
+ 	semtech,cs0-ground;
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
+index a246dbd74cc1..e7c7cad14989 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
+@@ -11,6 +11,7 @@
+ ap_h1_spi: &spi0 {};
+ 
+ #include "sc7180-trogdor.dtsi"
++#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
+ 
+ / {
+ 	thermal-zones {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+index 2b522f9e0d8f..457c25499863 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+@@ -13,6 +13,7 @@
+ ap_h1_spi: &spi0 {};
+ 
+ #include "sc7180-trogdor.dtsi"
++#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
+ 
+ / {
+ 	model = "Google Trogdor (rev1+)";
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+new file mode 100644
+index 000000000000..97d5e45abd1d
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+@@ -0,0 +1,90 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Trogdor dts fragment for the boards with TI sn65dsi86 edp bridge
++ *
++ * Copyright 2021 Google LLC.
++ */
++
++&dsi0_out {
++	remote-endpoint = <&sn65dsi86_in>;
++	data-lanes = <0 1 2 3>;
++};
++
++edp_brij_i2c: &i2c2 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	sn65dsi86_bridge: bridge@2d {
++		compatible = "ti,sn65dsi86";
++		reg = <0x2d>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&edp_brij_en>, <&edp_brij_irq>;
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
++
++		enable-gpios = <&tlmm 104 GPIO_ACTIVE_HIGH>;
++
++		vpll-supply = <&pp1800_edp_vpll>;
++		vccio-supply = <&pp1800_brij_vccio>;
++		vcca-supply = <&pp1200_brij>;
++		vcc-supply = <&pp1200_brij>;
++
++		clocks = <&rpmhcc RPMH_LN_BB_CLK3>;
++		clock-names = "refclk";
++
++		no-hpd;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				sn65dsi86_in: endpoint {
++					remote-endpoint = <&dsi0_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++				sn65dsi86_out: endpoint {
++					data-lanes = <0 1>;
++					remote-endpoint = <&panel_in_edp>;
++				};
++			};
++		};
++
++		aux-bus {
++			panel: panel {
++				/* Compatible will be filled in per-board */
++				power-supply = <&pp3300_dx_edp>;
++				backlight = <&backlight>;
++				hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
++
++				port {
++					panel_in_edp: endpoint {
++						remote-endpoint = <&sn65dsi86_out>;
++					};
++				};
++			};
++		};
++	};
++};
++
++&tlmm {
++	edp_brij_irq: edp-brij-irq {
++		pinmux {
++			pins = "gpio11";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio11";
++			drive-strength = <2>;
++			bias-pull-down;
++		};
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 0f2b3c00e434..702139e89a80 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -602,15 +602,6 @@ &camcc {
+ &dsi0 {
+ 	status = "okay";
+ 	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+-
+-	ports {
+-		port@1 {
+-			endpoint {
+-				remote-endpoint = <&sn65dsi86_in>;
+-				data-lanes = <0 1 2 3>;
+-			};
+-		};
+-	};
+ };
+ 
+ &dsi_phy {
+@@ -618,70 +609,6 @@ &dsi_phy {
+ 	vdds-supply = <&vdda_mipi_dsi0_pll>;
+ };
+ 
+-edp_brij_i2c: &i2c2 {
+-	status = "okay";
+-	clock-frequency = <400000>;
+-
+-	sn65dsi86_bridge: bridge@2d {
+-		compatible = "ti,sn65dsi86";
+-		reg = <0x2d>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&edp_brij_en>, <&edp_brij_irq>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-
+-		interrupt-parent = <&tlmm>;
+-		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		enable-gpios = <&tlmm 104 GPIO_ACTIVE_HIGH>;
+-
+-		vpll-supply = <&pp1800_edp_vpll>;
+-		vccio-supply = <&pp1800_brij_vccio>;
+-		vcca-supply = <&pp1200_brij>;
+-		vcc-supply = <&pp1200_brij>;
+-
+-		clocks = <&rpmhcc RPMH_LN_BB_CLK3>;
+-		clock-names = "refclk";
+-
+-		no-hpd;
+-
+-		ports {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			port@0 {
+-				reg = <0>;
+-				sn65dsi86_in: endpoint {
+-					remote-endpoint = <&dsi0_out>;
+-				};
+-			};
+-
+-			port@1 {
+-				reg = <1>;
+-				sn65dsi86_out: endpoint {
+-					data-lanes = <0 1>;
+-					remote-endpoint = <&panel_in_edp>;
+-				};
+-			};
+-		};
+-
+-		aux-bus {
+-			panel: panel {
+-				/* Compatible will be filled in per-board */
+-				power-supply = <&pp3300_dx_edp>;
+-				backlight = <&backlight>;
+-				hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
+-
+-				port {
+-					panel_in_edp: endpoint {
+-						remote-endpoint = <&sn65dsi86_out>;
+-					};
+-				};
+-			};
+-		};
+-	};
+-};
+-
+ ap_sar_sensor_i2c: &i2c5 {
+ 	clock-frequency = <400000>;
+ 
+@@ -1245,19 +1172,6 @@ pinconf {
+ 		};
+ 	};
+ 
+-	edp_brij_irq: edp-brij-irq {
+-		pinmux {
+-			pins = "gpio11";
+-			function = "gpio";
+-		};
+-
+-		pinconf {
+-			pins = "gpio11";
+-			drive-strength = <2>;
+-			bias-pull-down;
+-		};
+-	};
+-
+ 	en_pp3300_codec: en-pp3300-codec {
+ 		pinmux {
+ 			pins = "gpio83";
+-- 
+2.33.0.685.g46640cef36-goog
 
-Is this how the kernel community prefers these tools to work?
-
-Our concern is more with the dtschema scripts so we can use this to 
-break the build and force the engineer to fix either the .yaml or .dtsi 
-file.
-
-Before we dive into the dtschema scripts we wanted to understand the 
-philosophy behind the design decisions.
-
-
-On 2020-11-30 11:02, Rob Herring wrote:
-> On Wed, Nov 25, 2020 at 2:13 PM <mturney@codeaurora.org> wrote:
->> 
->> 
->> Folks,
->> I am advocating use of dt-schema project internally to validate DTS
->> files.
->> I should add that our use is outside kernel tree on proprietary 
->> project.
->> 
->> One of the push-backs I'm getting from the management chain is along 
->> the
->> lines of...
->> 
->> Who is this Rob Herring guy and why should we use a project that is 
->> only
->> sourced on https://github.com/robherring/dt-schema?
-> 
-> I wouldn't trust him...
-> 
-> That's the wrong repo though: 
-> https://github.com/devicetree-org/dt-schema
-> 
-> (Unfortunately, GH's forks is misleading as the 'root' repo has 
-> changed.)
-> 
->> If the kernel project is using it, why isn't kernel.org hosting the
->> project?
-> 
-> It's not a kernel project. That's why devicetree.org hosts it.
-> 
->> What is kernel plan if Rob walks away from the project, is this going 
->> to
->> wither away and die?
-> 
-> IMO, only if folks don't find validation valuable or a better
-> implementation comes along.
-> 
->> There are more, but the above pseudo-quotes grab the gist of the
->> management complaints.
->> 
->> Q.1) Is there a plan for the kernel project to suck dt-schema into its
->> orbit?
-> 
-> No, the 'plan' (more like desire) is more in the opposite direction.
-> Move more of DT (bindings and dts files) out of the kernel for other
-> projects to use. For now, we have the 'devicetree-rebasing' tree which
-> is just the DT bits from the kernel tree.
-> 
->> Q.2) How many active maintainers are there for dt-schema?
-> 
-> Mostly just me. Maxime Ripard is also one. Others could be if the need 
-> arose.
-> 
->> Q.3) How do I respond to the above types of complaints?
-> 
-> jsonschema python module which is our main dependency is also just a
-> single maintainer. So is dtc. Maybe not what you want to highlight.
-> 
-> Rob
