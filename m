@@ -2,74 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFEA241D5BE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 10:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A009241D627
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 11:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348916AbhI3Ixl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 04:53:41 -0400
-Received: from mail-vk1-f180.google.com ([209.85.221.180]:38602 "EHLO
-        mail-vk1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348505AbhI3Ixk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 04:53:40 -0400
-Received: by mail-vk1-f180.google.com with SMTP id g15so2465523vke.5;
-        Thu, 30 Sep 2021 01:51:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=m5P6ZyShaVeYhWVRJKP1PIOkI+YrZXWqg8sKMg41Lio=;
-        b=fy22Rp1RURjm+z7bWEY5kc52B+INyF91Mbu0eIJlYGOIGFfo6QrBM/GgMarswAUvOz
-         I5npValuWiy0Pk9XPY9hBvTPN7W6leUhueOmHe2WfZsYcn75Pj8wktw+JHpSUV0QpbOJ
-         t+uoC2AiyUyPmO7yIDIiLaKTaEUVNPfPIcezWNeen0DjoIof8F8AzMlb4BERmh3vSDvR
-         2im4vbz+uYGp66Em56W0ZmvgFgqcP9HA7ktkgVHLLvGB2DmVfYANjdRb/JrTGgUwW7nF
-         A3apvmg5mfJwdJXyhZwWmtRt8Yuw9tIrCR8VRUk2088rWB9PmUaLbq1VOvAVsowLaA5W
-         55sA==
-X-Gm-Message-State: AOAM530UsWKOVTrga9jlJHIp7FixGCHmqo6dZX3CJ01TGmbbjg2J5WEP
-        tPajh1ZkJG1XhuRvho61JJgWlDVXG6uv0jZsi10=
-X-Google-Smtp-Source: ABdhPJz1vo+I+Wcsh48CwzD5470mzlIbp79s3RZD7B9rSW4uXBWkd8droNHqKLCdiQeyDI9NcnmkgI7w0r3FQDlmhBM=
-X-Received: by 2002:a05:6122:e71:: with SMTP id bj49mr489886vkb.7.1632991918045;
- Thu, 30 Sep 2021 01:51:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210901102705.556093-1-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20210901102705.556093-1-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 30 Sep 2021 10:51:46 +0200
-Message-ID: <CAMuHMdXkFWHrh1cs4YW_bpP0samT+gSkm99_AboZ=coO3iRj+g@mail.gmail.com>
-Subject: Re: [PATCH 0/2] iommu/ipmmu-vmsa: Add support for r8a779a0
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1349309AbhI3JW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 05:22:28 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:55108 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349293AbhI3JW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 05:22:27 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 9e48778a;
+        Thu, 30 Sep 2021 11:20:42 +0200 (CEST)
+Date:   Thu, 30 Sep 2021 11:20:42 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com,
+        kw@linux.com, alyssa@rosenzweig.io, stan@corellium.com,
+        kettenis@openbsd.org, sven@svenpeter.dev, marcan@marcan.st,
+        Robin.Murphy@arm.com, joey.gouly@arm.com, joro@8bytes.org,
+        kernel-team@android.com
+In-Reply-To: <87fstmtrv2.wl-maz@kernel.org> (message from Marc Zyngier on Thu,
+        30 Sep 2021 09:00:49 +0100)
+Subject: Re: [PATCH v5 10/14] arm64: apple: Add pinctrl nodes
+References: <20210929163847.2807812-1-maz@kernel.org>
+        <20210929163847.2807812-11-maz@kernel.org>
+        <CACRpkdaXbrmvoQQNRdyv6rJ+dHYAKMN+J_sc-3_c1d6D2dsfbQ@mail.gmail.com> <87fstmtrv2.wl-maz@kernel.org>
+Message-ID: <561497c161587be0@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+> Date: Thu, 30 Sep 2021 09:00:49 +0100
+> From: Marc Zyngier <maz@kernel.org>
 
-On Wed, Sep 1, 2021 at 12:27 PM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> This patch series adds support for r8a779a0 (R-Car V3U).
->
-> Yoshihiro Shimoda (2):
->   dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779a0 support
->   iommu/ipmmu-vmsa: Add support for r8a779a0
+Hi Linus and Marc,
 
-Thanks to rcar-4.1.0.rc16 of the R-Car BSP, I was pointed to the fact
-that the IPMMU modules on R-Car V3U have module clocks and resets,
-unlike on other R-Car SoCs.
-Probably they should be handled, too?
+> On Wed, 29 Sep 2021 20:05:42 +0100,
+> Linus Walleij <linus.walleij@linaro.org> wrote:
+> > 
+> > On Wed, Sep 29, 2021 at 6:56 PM Marc Zyngier <maz@kernel.org> wrote:
+> > 
+> > > From: Mark Kettenis <kettenis@openbsd.org>
+> > >
+> > > Add pinctrl nodes corresponding to the gpio,t8101 nodes in the
+> > > Apple device tree for the Mac mini (M1, 2020).
+> > >
+> > > Clock references are left out at the moment and will be added once
+> > > the appropriate bindings have been settled upon.
+> > >
+> > > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> > > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> > > Link: https://lore.kernel.org/r/20210520171310.772-3-mark.kettenis@xs4all.nl
+> > (...)
+> > > +               pinctrl_ap: pinctrl@23c100000 {
+> > > +                       compatible = "apple,t8103-pinctrl", "apple,pinctrl";
+> > > +                       reg = <0x2 0x3c100000 0x0 0x100000>;
+> > > +
+> > > +                       gpio-controller;
+> > > +                       #gpio-cells = <2>;
+> > > +                       gpio-ranges = <&pinctrl_ap 0 0 212>;
+> > 
+> > In other discussions it turns out that the driver is abusing these gpio-ranges
+> > to find out how many pins are in each pinctrl instance. This is not the
+> > idea with gpio-ranges, these can be multiple and map different sets,
+> > so we need something like
+> > 
+> > apple,npins = <212>;
+> > (+ bindings)
+> > 
+> > or so...
+> 
+> Is it the driver that needs updating? Or the binding? I don't really
+> care about the former, but the latter is more disruptive as it has
+> impacts over both u-boot and at least OpenBSD.
 
-Gr{oetje,eeting}s,
+I don't have a finished OpenBSD driver yet, and U-Boot support is
+still in the process of being upstreamed, so tweaking the binding a
+bit is not out of the question at this point.  And as long as the
+gpio-ranges property continues to be there, things won't break anyway.
 
-                        Geert
+> How is that solved on other pinctrl blocks? I can't see anyone having
+> a similar a similar property.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+I suspect most pinctrl blocks have a well-defined number of pins that
+is simply a #define in the driver.  Here we don't really know what the
+hardware provides but the "Apple device tree" has a property that
+describes the number of pins, which varies between the different
+blocks.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Since there is a simple 1:1 mapping between pins and gpios it seemed
+natural to me to simply use the value from gpio-ranges.  My thinking
+was that having a separate property to encode the number of pins just
+increases the chances of the two getting out of sync.  But maybe that
+is the whole point Linus is trying to make; not all pins may actually
+provide GPIO functionality and gpio-ranges can be used to map only
+those pins that actually do.  In this particular case I don't think it
+makes sense to map multiple ranges though as we will probably never
+know full details for all the pins.
+
+FWIW, there are other U-Boot drivers that use gpio-ranges to get the
+pin count.  But I suppose U-Boot has somewhat different standards than
+the Linux kernel, prioritising code size and such.
