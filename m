@@ -2,99 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F154141D90B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 13:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C178C41D943
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 13:58:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350566AbhI3Ltj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 07:49:39 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:41650
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1350512AbhI3Lti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 07:49:38 -0400
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S1350713AbhI3L6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 07:58:55 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:41855 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350712AbhI3L6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 07:58:49 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633003027; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=MgsTdvHC32CVeXQvpvDOvg9iOpH6jzoyvVH+Vm7ZG44=;
+ b=M3/XevhZ1fatbd820U/s6VyKVfKWbfpVQNG48b/cqTdtoS/Z/6uMCXmt0KHODYKJl+ZOmp8f
+ 8qZx4SpEzetC+r3KY2IV5zDjzNVNEfVsdrC2T/UA2twpKYVETxqS8jNOVVl97ofQg8TUsz1F
+ 2ADTkq7GT457+q5SgBqkkM6lux0=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 6155a60ca5a9bab6e879f24f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 30 Sep 2021 11:57:00
+ GMT
+Sender: mkrishn=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 06212C4360D; Thu, 30 Sep 2021 11:57:00 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 354B5402E0
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 11:47:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633002475;
-        bh=2I691nvxU/lO8++QbjVQLPuSPw++eMWKgLS4yAxN8zc=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=MQMJtlxuUSexb6eLopj9TGoKs0f/cEuYxvS3XOuM4JXgTh4rRK5SVmjEbJJ6beaiy
-         mMFtvixKxRJKXo1IccAr8Rl+lV5kKrvgpRk2VFsF26BgiI9XSdHx8PCXGMpOLDM6bp
-         U38AzUPtWx6nurq5MmE0Pq9VZvfxCkOLgW/stgaCnU+r3b3Je1W5EmMUK6zaZLINw8
-         +lMGhr1gBBZufDNhDvM6QZmyDPKpFmJphC06bdYC7r7iFTmF90ZT/0zbCpzcDXUvQ+
-         91kzHOglVOQxfMqGRGbO74tteO6mbCBVpjeekpESkdbbXCJ28gcJgDonk+H7r1YTRj
-         pbMFbfQ5fJtbQ==
-Received: by mail-lf1-f69.google.com with SMTP id r14-20020ac25c0e000000b003fc149ed50eso5358791lfp.11
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 04:47:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2I691nvxU/lO8++QbjVQLPuSPw++eMWKgLS4yAxN8zc=;
-        b=otMdhxVbDwwtI126iAi+trqinpXrtFUXfDyaEYI3u4p/rHZJ5KyzdAXHm3+8cgWkqa
-         OR5YM4AKcVMG4gZiKy9TSWa8Gofi7qVv4Bp4qjKIx6lLERD/ykdkJH2wuXu7AvASsnA9
-         rNHCjjSkjJ9h5TJkjIBvR2W85Ad5x9DMYTJ4XgQjVeO2zAClyD8oG2baPuinAp6jgPQj
-         rU+YDCOJbf5dM5RBI6c2S+aE1uZvW78x9LjgFWdBkGNKfYtveU9SwB/UZr2QoMO4hFQz
-         S+iuRpRvfh8rULhD919Wkx880fILu3SAMpDdeYHsZK11mpClEes2f7NA16cZUTnlvbrA
-         trPw==
-X-Gm-Message-State: AOAM530GMNMDEn6FOmgW4BHG8z/+wpho78V6hoUAMtkjLuF2OePFTiza
-        MVimomXM8Ln7ue0WHl39QAu7+sHzauENY1KDH5vCtirGN6GsOZ4y+7/GwQqaVEMQmj9PUAgbiQb
-        LAryUjNasVReY8b2CnWnhpGhixHz7LxIYN84br0E=
-X-Received: by 2002:a05:6512:3a96:: with SMTP id q22mr5172729lfu.228.1633002474480;
-        Thu, 30 Sep 2021 04:47:54 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxxxYXwhD32IdBAqEB2fAWGTXTprOHL2G3T691kTIriVXTz9p4loVv7RSJMT2Gvh5L2Ki1NSA==
-X-Received: by 2002:a05:6512:3a96:: with SMTP id q22mr5172709lfu.228.1633002474326;
-        Thu, 30 Sep 2021 04:47:54 -0700 (PDT)
-Received: from localhost.localdomain ([193.178.187.25])
-        by smtp.gmail.com with ESMTPSA id w19sm311349ljd.110.2021.09.30.04.47.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Sep 2021 04:47:53 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-samsung-soc@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: Re: (subset) [PATCH 12/12] ARM: dts: exynos: use spaces instead of tabs around '='
-Date:   Thu, 30 Sep 2021 13:47:16 +0200
-Message-Id: <163300242600.178519.4513175036717923621.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210928084949.27939-13-krzysztof.kozlowski@canonical.com>
-References: <20210928084949.27939-1-krzysztof.kozlowski@canonical.com> <20210928084949.27939-13-krzysztof.kozlowski@canonical.com>
+        (Authenticated sender: mkrishn)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 44068C4338F;
+        Thu, 30 Sep 2021 11:56:59 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 30 Sep 2021 17:26:59 +0530
+From:   mkrishn@codeaurora.org
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kalyan_t@codeaurora.org,
+        sbillaka@codeaurora.org, abhinavk@codeaurora.org,
+        robdclark@gmail.com, bjorn.andersson@linaro.org,
+        khsieh@codeaurora.org, rajeevny@codeaurora.org,
+        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v1 2/4] arm64: dts: qcom: sc7280: add display dt nodes
+In-Reply-To: <CAE-0n50b=pX=1MFwGPDvDR=O03tUAkAgyMonGm2+SXBft=16KQ@mail.gmail.com>
+References: <1629282424-4070-1-git-send-email-mkrishn@codeaurora.org>
+ <1629282424-4070-2-git-send-email-mkrishn@codeaurora.org>
+ <CAE-0n50b=pX=1MFwGPDvDR=O03tUAkAgyMonGm2+SXBft=16KQ@mail.gmail.com>
+Message-ID: <5adf2ab2c2a162272509d253bd797721@codeaurora.org>
+X-Sender: mkrishn@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Sep 2021 10:49:49 +0200, Krzysztof Kozlowski wrote:
-> Use spaces in Origen boards instead of tabs around '=' for simple
-> property assignments, to match coding style.
+On 2021-08-19 01:27, Stephen Boyd wrote:
+> Quoting Krishna Manikandan (2021-08-18 03:27:02)
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 53a21d0..fd7ff1c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -5,6 +5,7 @@
+>>   * Copyright (c) 2020-2021, The Linux Foundation. All rights 
+>> reserved.
+>>   */
+>> 
+>> +#include <dt-bindings/clock/qcom,dispcc-sc7280.h>
+>>  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+>>  #include <dt-bindings/clock/qcom,rpmh.h>
+>>  #include <dt-bindings/interconnect/qcom,sc7280.h>
+>> @@ -1424,6 +1425,90 @@
+>>                         #power-domain-cells = <1>;
+>>                 };
+>> 
+>> +               mdss: mdss@ae00000 {
 > 
+> subsystem@ae00000
 > 
+>> +                       compatible = "qcom,sc7280-mdss";
+>> +                       reg = <0 0x0ae00000 0 0x1000>;
+>> +                       reg-names = "mdss";
+>> +
+>> +                       power-domains = <&dispcc 
+>> DISP_CC_MDSS_CORE_GDSC>;
+>> +
+>> +                       clocks = <&gcc GCC_DISP_AHB_CLK>,
+>> +                                <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>> +                               <&dispcc DISP_CC_MDSS_MDP_CLK>;
+>> +                       clock-names = "iface", "ahb", "core";
+>> +
+>> +                       assigned-clocks = <&dispcc 
+>> DISP_CC_MDSS_MDP_CLK>;
+>> +                       assigned-clock-rates = <300000000>;
+>> +
+>> +                       interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+>> +                       interrupt-controller;
+>> +                       #interrupt-cells = <1>;
+>> +
+>> +                       interconnects = <&mmss_noc MASTER_MDP0 0 
+>> &mc_virt SLAVE_EBI1 0>;
+>> +                       interconnect-names = "mdp0-mem";
+>> +
+>> +                       iommus = <&apps_smmu 0x900 0x402>;
+>> +
+>> +                       #address-cells = <2>;
+>> +                       #size-cells = <2>;
+>> +                       ranges;
+>> +
+>> +                       status = "disabled";
+>> +
+>> +                       mdp: mdp@ae01000 {
+> 
+> display-controller@ae01000
 
-Applied, thanks!
+Stephen,
+    In the current driver code, there is a substring comparison for "mdp" 
+in device node name as part of probe sequence. If "mdp" is not present 
+in the node name, it will
+    return an error resulting in probe failure. Can we continue using mdp 
+as nodename instead of display controller?
 
-[12/12] ARM: dts: exynos: use spaces instead of tabs around '='
-        commit: 7ec804d6025c952e3122ad7fe768178efca3300e
+Thanks,
+Krishna
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+> 
+>> +                               compatible = "qcom,sc7280-dpu";
+>> +                               reg = <0 0x0ae01000 0 0x8f030>,
+>> +                                       <0 0x0aeb0000 0 0x2008>;
+>> +                               reg-names = "mdp", "vbif";
+>> +
+>> +                               clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+>> +                                       <&gcc GCC_DISP_SF_AXI_CLK>,
+>> +                                       <&dispcc 
+>> DISP_CC_MDSS_AHB_CLK>,
+>> +                                       <&dispcc 
+>> DISP_CC_MDSS_MDP_LUT_CLK>,
+>> +                                       <&dispcc 
+>> DISP_CC_MDSS_MDP_CLK>,
+>> +                                       <&dispcc 
+>> DISP_CC_MDSS_VSYNC_CLK>;
+>> +                               clock-names = "bus", "nrt_bus", 
+>> "iface", "lut", "core",
+>> +                                             "vsync";
+> 
+> One line per string please.
+> 
+>> +                               assigned-clocks = <&dispcc 
+>> DISP_CC_MDSS_MDP_CLK>,
+>> +                                               <&dispcc 
+>> DISP_CC_MDSS_VSYNC_CLK>,
+>> +                                               <&dispcc 
+>> DISP_CC_MDSS_AHB_CLK>;
+>> +                               assigned-clock-rates = <300000000>,
+>> +                                                       <19200000>,
+>> +                                                       <19200000>;
+>> +                               operating-points-v2 = 
+>> <&mdp_opp_table>;
+>> +                               power-domains = <&rpmhpd SC7280_CX>;
+>> +
+>> +                               interrupt-parent = <&mdss>;
+>> +                               interrupts = <0>;
+>> +
+>> +                               status = "disabled";
+>> +
+>> +                               mdp_opp_table: mdp-opp-table {
+> 
+> mdp_opp_table: opp-table {
+> 
+>> +                                       compatible = 
+>> "operating-points-v2";
+>> +
+>> +                                       opp-200000000 {
+>> +                                               opp-hz = /bits/ 64 
+>> <200000000>;
+>> +                                               required-opps = 
+>> <&rpmhpd_opp_low_svs>;
+>> +                                       };
+>> +
+>> +                                       opp-300000000 {
+>> +                                               opp-hz = /bits/ 64 
+>> <300000000>;
+>> +                                               required-opps = 
+>> <&rpmhpd_opp_svs>;
+>> +                                       };
+>> +
+>> +                                       opp-380000000 {
+>> +                                               opp-hz = /bits/ 64 
+>> <380000000>;
+>> +                                               required-opps = 
+>> <&rpmhpd_opp_svs_l1>;
+>> +                                       };
+>> +
+>> +                                       opp-506666667 {
+>> +                                               opp-hz = /bits/ 64 
+>> <506666667>;
+>> +                                               required-opps = 
+>> <&rpmhpd_opp_nom>;
+>> +                                       };
+>> +                               };
+>> +                       };
+>> +               };
+>> +
