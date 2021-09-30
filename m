@@ -2,106 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 612D941E1C4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 20:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6532741E1D9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 20:57:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244762AbhI3Sya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 14:54:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41832 "EHLO
+        id S236957AbhI3S7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 14:59:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239130AbhI3Sya (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 14:54:30 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5055CC06176A;
-        Thu, 30 Sep 2021 11:52:47 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id i19so26049183lfu.0;
-        Thu, 30 Sep 2021 11:52:47 -0700 (PDT)
+        with ESMTP id S229759AbhI3S7b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 14:59:31 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B8BC06176D
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 11:57:48 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id s11so7192287pgr.11
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 11:57:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zsZzgfbUxGvjY/35BurfncfGOk+t4Oowod0eAnc2ywY=;
-        b=D7wBGA4MHOGlZToVTsDa3JbYniANqoTYX/L6Nf4gW7M0qzAFuTAAmQT4b0mgmasKe1
-         B13/UIE0PYaJ53o6dCSwAeSoc7wpvW2mHhhGhij/ZeDEjjVSsYmD1kYBGvvlFczFo0WV
-         jfET0P/eh9p6p6HZrKVCSeWXoPpzIrxV+YesYe9n/bhkGIrpkhcCJdM/aG0V1EGp0USs
-         B9y71wxNnfgalkU/Y0ExhC7ttpwhxmEJDtBZbhK5oiXRRjTM9OUmsEqwSmDcVr5dRnzk
-         uLFeE0+VikbsX+VUIz64f9vqBcOi72dUJws2t/P8+53sAK9ZmczIZcjCmCbYoPPOKg1t
-         nxcA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GnzhfOKOJZwXoB/tTHTiy8y1Uvk2z9itqVPLfpQ/E2o=;
+        b=BlRWjiTQWUA9jq/gVqi+31U/NUWHs478NFv92nPVvRgFFmriXt0b2FbdBPTAOWFj2X
+         WOux/XmwHmCp3HxT5V6GVmjZcZ8t5muOZFeiQaeZdsylYqYw+qtI7WmtjKyTj9M+JTXc
+         7xE6xaTMqCz5bFJaISRfvkrZlmzyDXF2avLvtecjix7/chY2euHCGHBtXZVnNpeavp7N
+         /d61awiLZocViItuNXB9t/KkEO+FZvZavxN1dFZsHqsP0rrvRQTgF6GhgddIctN/Cctv
+         xKURo95OsthT5Kn6WCV6ipbgaGSPOpTDMNq3OQwEybn2H5lcOk4uQuDku6IDsMP84ymo
+         JqlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zsZzgfbUxGvjY/35BurfncfGOk+t4Oowod0eAnc2ywY=;
-        b=UyVaXWYuLnxXVSgQfi9G7gCUZ4KT5dHtThAJv0H1z/EHhXHPVUBGEdpArQRy0l6ZQV
-         +/cmErZb1ctI75AK5ADBFj422LfOM0XqWytVsQnAaACoWmj+nKRvBV4uic0MKbtYsoqa
-         kAMetLxJfF2YCUpZ+Chn3c0PQI+7Oz4X1xEufaRLL46fSyOFm9JUGUUdHdfzzUKHMKjY
-         04Q6NlYysAIWr+e+Zdh/cKFhZv5yxGK20jySfcTnLsNIUL5PW+47ebXVxcQH5vsnRTXY
-         GrN+GqJAfUS126wkSq3lFLik8/y93Gp/gJVQ9diZEgKLJTFDEeEW8WKWZKkSgGgOEgJC
-         2WqQ==
-X-Gm-Message-State: AOAM530nT3nvCA8SDsCqLTP4FJgfWt+2/1k2TwoUlwkW712neuGgkvJn
-        /SoiUUBrUxa7NSz2jfPw0i8xkl0cY3e/MUxTYkk=
-X-Google-Smtp-Source: ABdhPJyuLNTMt0ZfVRJivxJBhQSBqt1uAJ+pmxKpumn8GqdqEowJcyZIyMRooTQjTfPV8wn3f2cuHNFaz00vrHt0a6Y=
-X-Received: by 2002:a2e:a26b:: with SMTP id k11mr7698881ljm.185.1633027964954;
- Thu, 30 Sep 2021 11:52:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210930155633.2745201-1-frieder@fris.de> <20210930155633.2745201-9-frieder@fris.de>
-In-Reply-To: <20210930155633.2745201-9-frieder@fris.de>
-From:   Heiko Thiery <heiko.thiery@gmail.com>
-Date:   Thu, 30 Sep 2021 20:52:33 +0200
-Message-ID: <CAEyMn7YbYAUvxEgKDB4x4AGomhBeuBDj71b2LuCs1A2emToU0w@mail.gmail.com>
-Subject: Re: [PATCH 8/8] arm64: dts: imx8mm-kontron: Leave reg_vdd_arm always
- powered on
-To:     Frieder Schrempf <frieder@fris.de>
-Cc:     devicetree@vger.kernel.org,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GnzhfOKOJZwXoB/tTHTiy8y1Uvk2z9itqVPLfpQ/E2o=;
+        b=1AbsB8XlFxag+Cn6JszMSzyso5pZT5TJ80N8+SLFVJ/iGTqTuplFLCbXxKS8G+ddkg
+         1iVMFGZdnOUZ+94xZuaS/Ay87Q12fCQvaPM1PLOTGyJbQ5/jROXep6lXSIS6MWvrJ7bp
+         qsqZcGtBNn4+oluwHE9nY3tchyZgNeu0tvDFEcMwqyvXVmb84bme1hYZhGBabBERcTGi
+         5wqsezLFv7p7UEO0iNy7/Mg4bjsv1kgUE8xez4PeI+s94R/XGVlDQ55ZBkWsuiTAPRK4
+         GH8gTc+9qlXrExVOLbGnoaveunSNZq5hTXurAp5v1DtZ44d9zLRQUJK13b3cHgVdBaB1
+         Mp0A==
+X-Gm-Message-State: AOAM533nzkY2+oiMS325VENXbfwzRTEHWxvAigh2i+LKb4J76aXLHHUt
+        XW/g+PFkwEnblVgR0i+VnlpxRw==
+X-Google-Smtp-Source: ABdhPJzPzuoI1ni2jtTQHFP2JvzXU4Ndo0d9bFu6WaJspZ4oKx1+B7qIZ2B92qhhWgkECn+2vcoJhA==
+X-Received: by 2002:a63:e116:: with SMTP id z22mr3281880pgh.223.1633028267890;
+        Thu, 30 Sep 2021 11:57:47 -0700 (PDT)
+Received: from localhost.localdomain ([122.172.224.206])
+        by smtp.gmail.com with ESMTPSA id l144sm3920997pfd.193.2021.09.30.11.57.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Sep 2021 11:57:46 -0700 (PDT)
+From:   Amit Pundir <amit.pundir@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, stable@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        John Stultz <john.stultz@linaro.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: sdm845-db845c: Add msm-id and board-id
+Date:   Fri,  1 Oct 2021 00:27:41 +0530
+Message-Id: <20210930185742.117928-1-amit.pundir@linaro.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frieder,
+Add qcom,msm-id and qcom,board-id for Dragonboard 845c.
+This will help us boot the device with newer Android boot
+image header versions, which package dtb separately
+instead of the default Image.gz-dtb (appended dtb) format.
 
-Am Do., 30. Sept. 2021 um 17:57 Uhr schrieb Frieder Schrempf <frieder@fris.de>:
->
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
->
-> When the cpufreq driver is enabled, the buck2 regulator is kept powered on
-> by the dependency between the CPU nodes with 'cpu-supply' set. Without the
-> cpufreq driver the kernel will power off the regulator as it doesn't see
-> any users. This is obviously not what we want, therefore keep the regulator
-> powered on in any case.
->
-> Reported-by: Heiko Thiery <heiko.thiery@gmail.com>
-> Fixes: 21c4f45b335f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Tested-by: Heiko Thiery <heiko.thiery@gmail.com>
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 2d5533dd4ec2..a6ea5bb5f5cb 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -17,6 +17,8 @@
+ / {
+ 	model = "Thundercomm Dragonboard 845c";
+ 	compatible = "thundercomm,db845c", "qcom,sdm845";
++	qcom,msm-id = <341 0x20001>;
++	qcom,board-id = <8 0>;
+ 
+ 	aliases {
+ 		serial0 = &uart9;
+-- 
+2.25.1
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> index 213014f59b46..c3418d263eb4 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> @@ -105,6 +105,7 @@ reg_vdd_arm: BUCK2 {
->                                 regulator-min-microvolt = <850000>;
->                                 regulator-max-microvolt = <950000>;
->                                 regulator-boot-on;
-> +                               regulator-always-on;
->                                 regulator-ramp-delay = <3125>;
->                                 nxp,dvs-run-voltage = <950000>;
->                                 nxp,dvs-standby-voltage = <850000>;
-> --
-> 2.33.0
->
