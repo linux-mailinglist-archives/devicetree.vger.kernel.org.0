@@ -2,93 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 934BA41DC0C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 16:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBE7641DC18
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 16:15:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351849AbhI3ONT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 10:13:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57016 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351826AbhI3ONR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 10:13:17 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1791560FC0;
-        Thu, 30 Sep 2021 14:11:35 +0000 (UTC)
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1mVwmb-00E0In-58; Thu, 30 Sep 2021 15:11:33 +0100
-Date:   Thu, 30 Sep 2021 15:11:32 +0100
-Message-ID: <87y27erw4r.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        DTML <devicetree@vger.kernel.org>,
+        id S1351823AbhI3OQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 10:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60764 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240149AbhI3OQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 10:16:27 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EFE4C06176A;
+        Thu, 30 Sep 2021 07:14:45 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id u32so13481712ybd.9;
+        Thu, 30 Sep 2021 07:14:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=ZlbycwSf8KOr9C6VK23OEuQLUHZlOjmRvD/2nI+bi60=;
+        b=qRw2oV9iT78NoUU/Q9Q3Lnvh5rS5ozP/5a1m+D4kjfwoecvjLBUUFkLUYkOwQSDHb8
+         ka+qyVuNq/ZvtFYz9cDlqySWoAPpnE4s3sSLM2V138w9/5IkxMMmfF+LLX7h4cC4jCit
+         NRGkC9xzlxxq958GPMfid91BbrWEVwFvfkqf3u/VG93EyyZaa90+Gv7TTIHn0QpgwhfN
+         1uLqgdZONUrFwfHyAP00QWLmU41n/WFRUhOitn2YsrKnnNKsBsr4rx/6zx87xyDTF6Uc
+         PfK4hiFkkpNJudR0I7dI8F4fX+28JUrH8hAKTaiAr2gq0YuBhNL6MoypSfbIQpXZuzEB
+         BCOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=ZlbycwSf8KOr9C6VK23OEuQLUHZlOjmRvD/2nI+bi60=;
+        b=LKrH8ROjV9aUR9XSF1XOBJ+Gs9WiHCNB49J/O+76PXDCTG/a89hldnU3v2qX0SAtfo
+         ep5o6v2rP/nNSFPuSQyeJ7NHgX+dMTPwsBcxtRjRTfkjNxF7rmROFsbdgPsscupsr8S4
+         a1eirxR0JYWjjug9y/+Ha1rtLWhzptZ8kfjLqaYgHweAzXNxUY0qsp1c0Y6mWUQ4om0v
+         MjSBr86JdGUHUSZZyBfrN8FJG0KDUBrxADtQovIFZ/RP1b647yUzMxkWYe7PtYOFvPzf
+         2ImOBdRE2imqfHHaFBquCU+rvVGCJtHWYRN4KQwiy0CH70+Uu18HpJqTT/++BE/DBiAE
+         thrQ==
+X-Gm-Message-State: AOAM533r2r5v/YO6YOr9rlG1sW3J4qtftLwEA1ktb1CkOIcTv5Ai1t4s
+        m+J15KONdslwp8YDe76Zc1QkkQx/o5pD8sGCeWY=
+X-Google-Smtp-Source: ABdhPJwDD9Ku5kP4Ry+rJnrmuQRjtBKCt6klOYFciW0L2yTusRSqoya/lMiX4S851JiUivmDNoRAfnptDMxmsEOJv20=
+X-Received: by 2002:a25:1c02:: with SMTP id c2mr7377845ybc.218.1633011284452;
+ Thu, 30 Sep 2021 07:14:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210928140721.8805-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <YVXBwx7rxJLRhlTI@shikoro>
+In-Reply-To: <YVXBwx7rxJLRhlTI@shikoro>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 30 Sep 2021 15:14:18 +0100
+Message-ID: <CA+V-a8sZ0qudhbV7Fart-puNQO-ZHhDEG3OdRH=w_dbTHy2A7g@mail.gmail.com>
+Subject: Re: [PATCH 5/6] memory: renesas-rpc-if: Drop usage of
+ RPCIF_DIRMAP_SIZE macro
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Romain Perier <romain.perier@gmail.com>
-Subject: Re: [PATCH 2/3] irqchip: SigmaStar SSD20xD gpi
-In-Reply-To: <CAFr9PXn5BiN1mqeZYcVMfDKWx3Re9BkY_miE34669XivCpmrCg@mail.gmail.com>
-References: <20210914100415.1549208-1-daniel@0x0f.com>
-        <20210914100415.1549208-3-daniel@0x0f.com>
-        <87zgs7vavl.wl-maz@kernel.org>
-        <CAFr9PXnC4hQw5_0TtciKvqF7s=4axJ5Yrq80RXGcY4VvT1Ac2A@mail.gmail.com>
-        <87wnnbv6ac.wl-maz@kernel.org>
-        <CAFr9PXmA07Up_wfJzzgZeYwE5ZrwnLqjBvLG3CERGHOLeay0Cg@mail.gmail.com>
-        <87lf3quydn.wl-maz@kernel.org>
-        <CACRpkdYLURJCopH3hDuZTY8ce9-OxakELyFqwqkAVCsYmzF5kg@mail.gmail.com>
-        <874ka2tdqe.wl-maz@kernel.org>
-        <CAFr9PXmu2JRSK9==MjpwgWTCET4iqj5U=egQQ2TciN0=B_UwNw@mail.gmail.com>
-        <871r56tbir.wl-maz@kernel.org>
-        <CAFr9PXn5BiN1mqeZYcVMfDKWx3Re9BkY_miE34669XivCpmrCg@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: daniel@0x0f.com, linus.walleij@linaro.org, devicetree@vger.kernel.org, robh+dt@kernel.org, tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, romain.perier@gmail.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-mtd@lists.infradead.org,
+        linux-spi <linux-spi@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Sep 2021 14:59:24 +0100,
-Daniel Palmer <daniel@0x0f.com> wrote:
-> 
-> Hi Marc,
-> 
-> On Thu, 30 Sept 2021 at 22:53, Marc Zyngier <maz@kernel.org> wrote:
-> > Somehow, the handler for this interrupt is set to handle_bad_irq(),
-> > which probably isn't what you want. You'll have to find out who sets
-> > this (there is a comment about that in gpiolib.c, but I haven't had a
-> > chance to find where this is coming from).
+Hi Wolfram,
+
+Thank you for the review.
+
+On Thu, Sep 30, 2021 at 2:55 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+>
+> On Tue, Sep 28, 2021 at 03:07:20PM +0100, Lad Prabhakar wrote:
+> > RPCIF_DIRMAP_SIZE may differ on various SoC's. Instead of using
+> > RPCIF_DIRMAP_SIZE macro use resource size to get dirmap size
+> > which is already part of struct rpcif.
 > >
-> > Do you happen to set it in your driver?
-> 
-> The gpio driver (gpio-msc313.c) sets it during probe:
-> 
-> gpioirqchip = &gpiochip->irq;
-> gpioirqchip->chip = &msc313_gpio_irqchip;
-> gpioirqchip->fwnode = of_node_to_fwnode(dev->of_node);
-> gpioirqchip->parent_domain = parent_domain;
-> gpioirqchip->child_to_parent_hwirq = match_data->child_to_parent_hwirq;
-> gpioirqchip->populate_parent_alloc_arg = match_data->populate_parent_fwspec;
-> gpioirqchip->handler = handle_bad_irq;
-> gpioirqchip->default_type = IRQ_TYPE_NONE;
+> > Also make sure we return error in case devm_ioremap_resource()
+> > fails for dirmap.
+> >
+> > Fixes: ca7d8b980b67 ("memory: add Renesas RPC-IF driver")
+> > Fixes: 59e27d7c94aa ("memory: renesas-rpc-if: fix possible NULL pointer dereference of resource")
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> In general, all fine. I just think this should be split into two
+> patches:
+>
+Sure will split this into two.
 
-Right. I have no idea why this is a requirement, and I would normally
-set it to whatever is the normal flow handler on this HW, but this
-looks like the GPIO subsystem has some expectations here.
+> > @@ -147,8 +147,6 @@
+> >  #define RPCIF_PHYINT         0x0088  /* R/W */
+> >  #define RPCIF_PHYINT_WPVAL   BIT(1)
+> >
+> > -#define RPCIF_DIRMAP_SIZE    0x4000000
+> > -
+> >  static const struct regmap_range rpcif_volatile_ranges[] = {
+> >       regmap_reg_range(RPCIF_SMRDR0, RPCIF_SMRDR1),
+> >       regmap_reg_range(RPCIF_SMWDR0, RPCIF_SMWDR1),
+> > @@ -547,8 +545,8 @@ EXPORT_SYMBOL(rpcif_manual_xfer);
+> >
+> >  ssize_t rpcif_dirmap_read(struct rpcif *rpc, u64 offs, size_t len, void *buf)
+> >  {
+> > -     loff_t from = offs & (RPCIF_DIRMAP_SIZE - 1);
+> > -     size_t size = RPCIF_DIRMAP_SIZE - from;
+> > +     loff_t from = offs & (rpc->size - 1);
+> > +     size_t size = rpc->size - from;
+> >
+> >       if (len > size)
+> >               len = size;
+>
+> This is the second patch to split which fixes ca7d8b980b67.
+>
+Will split this change into a second patch but wont add a fixes tag see below..
 
-I'll let Linus comment on it.
+>
+> > @@ -244,7 +242,7 @@ int rpcif_sw_init(struct rpcif *rpc, struct device *dev)
+> >       res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dirmap");
+> >       rpc->dirmap = devm_ioremap_resource(&pdev->dev, res);
+> >       if (IS_ERR(rpc->dirmap))
+> > -             rpc->dirmap = NULL;
+> > +             return PTR_ERR(rpc->dirmap);
+> >       rpc->size = resource_size(res);
+> >
+> >       rpc->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+>
+> This is the first patch to split which fixes 59e27d7c94aa.
+>
+> Makes sense?
+>
+Both the fixes would apply to the first patch itself i.e. when
+resource_size was added in ca7d8b980b67 and later in 59e27d7c94aa
+resource_size was moved online below (this would cause kernel panic
+res is NULL). Do you agree?
 
-	M.
+> If you agree, you can add my tag already to the new patches:
+>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>
+Sure will add your RB tag.
 
--- 
-Without deviation from the norm, progress is not possible.
+Cheers,
+Prabhakar
