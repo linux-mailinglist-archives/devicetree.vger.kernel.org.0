@@ -2,196 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E2AE41D09A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 02:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE2241D0A7
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 02:40:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347363AbhI3Agv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 20:36:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42124 "EHLO
+        id S1345743AbhI3Alp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 20:41:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347385AbhI3Agv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 20:36:51 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AAE9C061769
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:35:09 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id 17so4494423pgp.4
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:35:09 -0700 (PDT)
+        with ESMTP id S244341AbhI3Alp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 20:41:45 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74FADC06161C;
+        Wed, 29 Sep 2021 17:40:03 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id x27so18133551lfu.5;
+        Wed, 29 Sep 2021 17:40:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XjJMyo4nepY67DLXBfdTq1qdfOniUTOoSKlZO422mI0=;
-        b=c/uR3dVM+1NVe4obbihceA7rgd8OA3E91zAv+gUeWoCAc7PfSZl1E1/2TwtoCrvWJq
-         6TD0hT9OuycedZg4J6eFUAvC/nBuDeH4nOZpqyFtIj+ym/scWUXWB7hZdGo42QpdJl5h
-         NCbO35gOrQB1k0gimHMkZ3z1HMzd2H3Z1XeR8=
+        d=gmail.com; s=20210112;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=xEzZC82rqk2En9Ed7KsQn1FTg8FAxs/dG3UWgw54VAY=;
+        b=O8dP8YX3oMg9WnbDyZu1hmO2h68+60K+lapykwVro5Dm9ppn/F9/NcbISMG5UgjbC1
+         Gl65W0faHrgnuG4Ivm1ZPA//iIglFIfYes3pHap406XwsMqh6ze54KPK6G1G3O5UlV3H
+         OpAwEnFC47Abzp/TQ4SNOauFELwfHEFZLL20Xt+YDmW+i0BdpaHAE8kOe1R0ZwvSJ88R
+         vse5HwrZKesjEBIM+g1FgoFyiPN/TBhtT+YBZZx+rRc0POYrOrKJZ64TomxVC2KqUNKa
+         /E+/csDF4DZh2HAhhjUkvllNeyvgxTMBlt9VzUAWKm/iPV4qw7A2k9Nqntk6VvZaM2tE
+         WgAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XjJMyo4nepY67DLXBfdTq1qdfOniUTOoSKlZO422mI0=;
-        b=ea3zl+SBGNepf7yCHWFE0t9xI+1qL2l+jorFhau+wXMaWE8HEAXDhQ7s2eghTPtJ2W
-         3PfHyRzOMnouEgHzCCDnXrridkZ5AoWYp4A5sdQLmx6ONcEL5IjDp7hTkemD48JDtQg1
-         DTh+M7MleNHx6DwM3GQUmWcBogOLvgew7XirzL2Q5jYXDutD2wQUv4K9VgUKnKF8+ttQ
-         tlj9R+YjR+jtIDj5x5nW+FcrLIc9qju9JfkkBxtYAtItr1SEYJAx1aBEVTj0AQ3PLsmB
-         VSKAEwZh6fgepKsTjwH0e3BbdhQVB3iPSL4yf34oBE1E0mczNeGcp4nCifxDJPJFjAYg
-         tMlA==
-X-Gm-Message-State: AOAM5309C0GjzetnGKnpt5hZ4SZH2tmEhvkIEUaynaFsNYLT5UnOaF6S
-        1B846ZsIw4Soik9EryIN65PHRQ==
-X-Google-Smtp-Source: ABdhPJzCl8vaM3acFT6ZGZlpSD0orUBM5WLa1c4jnTLVnWtCLiy3A2a6dGM0AmTqMoh5N1nCrM0mZQ==
-X-Received: by 2002:a62:3881:0:b0:44b:6639:6c20 with SMTP id f123-20020a623881000000b0044b66396c20mr1336754pfa.78.1632962108997;
-        Wed, 29 Sep 2021 17:35:08 -0700 (PDT)
-Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:b6b6:ed63:b801:ded7])
-        by smtp.gmail.com with ESMTPSA id 23sm711648pgk.89.2021.09.29.17.35.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Sep 2021 17:35:08 -0700 (PDT)
-From:   Philip Chen <philipchen@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org, swboyd@chromium.org,
-        Philip Chen <philipchen@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: sc7180: Support Parade ps8640 edp bridge
-Date:   Wed, 29 Sep 2021 17:34:58 -0700
-Message-Id: <20210929173343.v2.3.I630340a51130f4582dbe14e42f673b74e0531a2b@changeid>
-X-Mailer: git-send-email 2.33.0.685.g46640cef36-goog
-In-Reply-To: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
-References: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xEzZC82rqk2En9Ed7KsQn1FTg8FAxs/dG3UWgw54VAY=;
+        b=iymX/5SeA5DZoS7QTiNcTck0k4lQuLG208oKGYpoY+Vukmhs6+MCFWgkcQbWxSA6hy
+         WL0RMICq/vbSIjUN7LM3exUZ4d/mk6GlLqRPdqchk9O8GMrhh18392BEqL+BECJpgzDp
+         ylWytHSHo09KN4TmWm9fTqx1Mbwdvce0bbmixpFm6qsbaWfxYCbGlDlYUoUOue2Yga8j
+         6+NS0ANr5zz2ZztZnu+bNXrHTAoJ0CN18uGKOZXp0AxaJSOe2CI63485YufEr/2n7cns
+         EYA4vF+F6YPBJxs6oxmyudszfbMdbsxhCS+AfRjGgIn1ZZIYpx46GwmLEK3B3mTTZDah
+         BZAA==
+X-Gm-Message-State: AOAM530rE5xVj4kfItluG/hdUBXtE6fLdilnMM4D6RRnCnmROoT8yJZG
+        t/UTDQ4FeTV7a7zDRkr7w97Y9IeI7ug=
+X-Google-Smtp-Source: ABdhPJwR5F7TvblD+2tTvq+HxgGw1yddafN9WyTWe+FiqhsLFgixz8gInIIfk3R5GKlFeUDsI4kXHw==
+X-Received: by 2002:a05:651c:150a:: with SMTP id e10mr2955411ljf.287.1632962401591;
+        Wed, 29 Sep 2021 17:40:01 -0700 (PDT)
+Received: from [192.168.2.145] (46-138-80-108.dynamic.spd-mgts.ru. [46.138.80.108])
+        by smtp.googlemail.com with ESMTPSA id l23sm163024ljg.99.2021.09.29.17.40.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Sep 2021 17:40:01 -0700 (PDT)
+Subject: Re: [PATCH v13 16/35] usb: chipidea: tegra: Add runtime PM and OPP
+ support
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
+        linux-mmc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20210926224058.1252-1-digetx@gmail.com>
+ <20210926224058.1252-17-digetx@gmail.com>
+Message-ID: <e8f778b0-816f-3273-2c46-5d2460545610@gmail.com>
+Date:   Thu, 30 Sep 2021 03:40:00 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <20210926224058.1252-17-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a dts fragment file to support the sc7180 boards with the second
-source edp bridge, Parade ps8640.
+27.09.2021 01:40, Dmitry Osipenko пишет:
+> The Tegra USB controller belongs to the core power domain and we're going
+> to enable GENPD support for the core domain. Now USB controller must be
+> resumed using runtime PM API in order to initialize the USB power state.
+> We already support runtime PM for the CI device, but CI's PM is separated
+> from the RPM managed by tegra-usb driver. Add runtime PM and OPP support
+> to the driver.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  drivers/usb/chipidea/ci_hdrc_tegra.c | 53 ++++++++++++++++++++++++----
+>  1 file changed, 46 insertions(+), 7 deletions(-)
 
-Signed-off-by: Philip Chen <philipchen@chromium.org>
----
-
-Changes in v2:
-- Add the definition of edp_brij_i2c and some other properties to
-  ps8640 dts, making it match ti-sn65dsi86 dts better
-
- .../qcom/sc7180-trogdor-parade-ps8640.dtsi    | 108 ++++++++++++++++++
- 1 file changed, 108 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
-new file mode 100644
-index 000000000000..c274ab41bd67
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
-@@ -0,0 +1,108 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Trogdor dts fragment for the boards with Parade ps8640 edp bridge
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/ {
-+	pp3300_brij_ps8640: pp3300-brij-ps8640 {
-+		compatible = "regulator-fixed";
-+		status = "okay";
-+		regulator-name = "pp3300_brij_ps8640";
-+
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 32 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&en_pp3300_edp_brij_ps8640>;
-+
-+		vin-supply = <&pp3300_a>;
-+	};
-+};
-+
-+&dsi0_out {
-+	remote-endpoint = <&ps8640_in>;
-+};
-+
-+edp_brij_i2c: &i2c2 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	ps8640_bridge: edp-bridge@8 {
-+		compatible = "parade,ps8640";
-+		reg = <0x8>;
-+
-+		powerdown-gpios = <&tlmm 104 GPIO_ACTIVE_LOW>;
-+		reset-gpios = <&tlmm 11 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&edp_brij_en>, <&edp_brij_ps8640_rst>;
-+
-+		vdd12-supply = <&pp1200_brij>;
-+		vdd33-supply = <&pp3300_brij_ps8640>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				ps8640_in: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				ps8640_out: endpoint {
-+					remote-endpoint = <&panel_in_edp>;
-+				};
-+			};
-+		};
-+
-+		aux_bus: aux-bus {
-+			panel: panel {
-+				/* Compatible will be filled in per-board */
-+				power-supply = <&pp3300_dx_edp>;
-+				backlight = <&backlight>;
-+
-+				port {
-+					panel_in_edp: endpoint {
-+						remote-endpoint = <&ps8640_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&tlmm {
-+	edp_brij_ps8640_rst: edp-brij-ps8640-rst {
-+		pinmux {
-+			pins = "gpio11";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio11";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+
-+	en_pp3300_edp_brij_ps8640: en-pp3300-edp-brij-ps8640 {
-+		pinmux {
-+			pins = "gpio32";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio32";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+};
--- 
-2.33.0.685.g46640cef36-goog
-
+Peter Chen, could you please ack this patch? Thanks in advance!
