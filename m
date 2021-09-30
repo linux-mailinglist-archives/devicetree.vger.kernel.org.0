@@ -2,188 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57FF641DBAA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 16:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 899FB41DBDB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 16:04:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351617AbhI3OBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 10:01:33 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:34500 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1351594AbhI3OBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 10:01:33 -0400
-X-UUID: b46e2e530e6947f59e16205b08d997b2-20210930
-X-UUID: b46e2e530e6947f59e16205b08d997b2-20210930
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 277452451; Thu, 30 Sep 2021 21:59:46 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 30 Sep 2021 21:59:45 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 30 Sep 2021 21:59:44 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: [PATCH v9, 2/2] soc: mediatek: mmsys: Add mt8192 mmsys routing table
-Date:   Thu, 30 Sep 2021 21:59:44 +0800
-Message-ID: <20210930135944.6125-3-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210930135944.6125-1-yongqiang.niu@mediatek.com>
-References: <20210930135944.6125-1-yongqiang.niu@mediatek.com>
+        id S1351695AbhI3OFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 10:05:43 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41942
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1351673AbhI3OFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 10:05:43 -0400
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6DB324025C
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 14:03:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633010638;
+        bh=Cs492Uld1dgt/renKhzvwp/nFhGhdClsztwOexxROyc=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=CAVCbETXxIDvDWCLNHHSALTsP25CmPr0ejJJwXoFViKQtMAXoOQSMk6wYP37LrLXy
+         DhWGwPXi8QMQd7WuuY5W/4hVFeF/lQlDLb5hvVU5yLZTXvIphNLthG3Sbv2T7AX/aE
+         +JHjdCub2ivb8bMiE+6s7Xg/u6tb5OvOzLqVfWciOltQdzRowr3Pgv8XNMDbibEc9F
+         h/taTbwoDqYR6mL2lmt1tmLuZD7zxrUfE0CKg6V94UdEcBuiP+QZCuFWoBAwtroXj3
+         BK5heo3H2hCLwiHk4GhQtLrwlc1cyhyzUEXq7P18i5ptxWnb6ceGWjAs0Y2PNziQOy
+         YL/+TI/DM1sAw==
+Received: by mail-lf1-f72.google.com with SMTP id h27-20020a0565123c9b00b003fca9e11144so5677567lfv.19
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 07:03:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Cs492Uld1dgt/renKhzvwp/nFhGhdClsztwOexxROyc=;
+        b=L//TshQItbl0exHzd5eDw+oahgdaP3bwuXK5xNLtV/JH5VMNRaJPpVLd2rmO0AQyAp
+         EsNXVyy2KoGzH+BxvVDQjR7NcvNwVTnbIrEfkyTSrFHJkI3/ophtysJeBAH/ZGODgruI
+         1aUEqKuuUCt00hjqOrHrJ+8AzDnQ5V2u15yD2DmZ1r8hrCjzJIbBAVy0yuEr85kY4iKj
+         e4z32JiTN+f8mo9Yyv4Ss9rcG7ujks1uhjwWp0DTR47wfpAZMATglK4JomTNdP19kcVv
+         S4QfingF/Ju+ELUGKy7j9TMo1birAXSqSfDdOSdB88BExFM4+XSCKQnYHajzDvKl4rlS
+         xi9w==
+X-Gm-Message-State: AOAM532X3rCq6MmY1wk2Qwhb5BL5MplCnc+AgZkSC/yu1+C8JoJgnvDP
+        nmbDocs+JYKb2hOudCS52Csa1Qfm//uVUi7uUrQM76rdDPiIdcEiGEbrAl/xdovvyO1IrvYlXv7
+        swQc2HGNIijKFY2V86f3dtyfLEZWzooswXkn5c4Y=
+X-Received: by 2002:a2e:530d:: with SMTP id h13mr6158237ljb.192.1633010637568;
+        Thu, 30 Sep 2021 07:03:57 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwD+1Q+rFkY6iajccNc1tY8rWLhVSgoPoYUZn4jBBkNz7eojB3z0DHwP189TSCCUgWIgs/j/g==
+X-Received: by 2002:a2e:530d:: with SMTP id h13mr6158199ljb.192.1633010637245;
+        Thu, 30 Sep 2021 07:03:57 -0700 (PDT)
+Received: from localhost.localdomain ([193.178.187.25])
+        by smtp.gmail.com with ESMTPSA id m9sm382166lfb.162.2021.09.30.07.03.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Sep 2021 07:03:56 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] regulator: dt-bindings: maxim,max8952: convert to dtschema
+Date:   Thu, 30 Sep 2021 16:03:27 +0200
+Message-Id: <20210930140327.196232-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-mt8192 has different routing registers than mt8183
+Convert the Maxim MAX8952 regulator to DT schema format.
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- drivers/soc/mediatek/mt8192-mmsys.h | 77 +++++++++++++++++++++++++++++
- drivers/soc/mediatek/mtk-mmsys.c    | 11 +++++
- 2 files changed, 88 insertions(+)
- create mode 100644 drivers/soc/mediatek/mt8192-mmsys.h
+ .../devicetree/bindings/regulator/max8952.txt |  52 ---------
+ .../bindings/regulator/maxim,max8952.yaml     | 109 ++++++++++++++++++
+ 2 files changed, 109 insertions(+), 52 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/regulator/max8952.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max8952.yaml
 
-diff --git a/drivers/soc/mediatek/mt8192-mmsys.h b/drivers/soc/mediatek/mt8192-mmsys.h
+diff --git a/Documentation/devicetree/bindings/regulator/max8952.txt b/Documentation/devicetree/bindings/regulator/max8952.txt
+deleted file mode 100644
+index 866fcdd0f4eb..000000000000
+--- a/Documentation/devicetree/bindings/regulator/max8952.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-Maxim MAX8952 voltage regulator
+-
+-Required properties:
+-- compatible: must be equal to "maxim,max8952"
+-- reg: I2C slave address, usually 0x60
+-- max8952,dvs-mode-microvolt: array of 4 integer values defining DVS voltages
+-  in microvolts. All values must be from range <770000, 1400000>
+-- any required generic properties defined in regulator.txt
+-
+-Optional properties:
+-- max8952,vid-gpios: array of two GPIO pins used for DVS voltage selection
+-- max8952,en-gpio: GPIO used to control enable status of regulator
+-- max8952,default-mode: index of default DVS voltage, from <0, 3> range
+-- max8952,sync-freq: sync frequency, must be one of following values:
+-    - 0: 26 MHz
+-    - 1: 13 MHz
+-    - 2: 19.2 MHz
+-  Defaults to 26 MHz if not specified.
+-- max8952,ramp-speed: voltage ramp speed, must be one of following values:
+-    - 0: 32mV/us
+-    - 1: 16mV/us
+-    - 2: 8mV/us
+-    - 3: 4mV/us
+-    - 4: 2mV/us
+-    - 5: 1mV/us
+-    - 6: 0.5mV/us
+-    - 7: 0.25mV/us
+-  Defaults to 32mV/us if not specified.
+-- any available generic properties defined in regulator.txt
+-
+-Example:
+-
+-	vdd_arm_reg: pmic@60 {
+-		compatible = "maxim,max8952";
+-		reg = <0x60>;
+-
+-		/* max8952-specific properties */
+-		max8952,vid-gpios = <&gpx0 3 0>, <&gpx0 4 0>;
+-		max8952,en-gpio = <&gpx0 1 0>;
+-		max8952,default-mode = <0>;
+-		max8952,dvs-mode-microvolt = <1250000>, <1200000>,
+-						<1050000>, <950000>;
+-		max8952,sync-freq = <0>;
+-		max8952,ramp-speed = <0>;
+-
+-		/* generic regulator properties */
+-		regulator-name = "vdd_arm";
+-		regulator-min-microvolt = <770000>;
+-		regulator-max-microvolt = <1400000>;
+-		regulator-always-on;
+-		regulator-boot-on;
+-	};
+diff --git a/Documentation/devicetree/bindings/regulator/maxim,max8952.yaml b/Documentation/devicetree/bindings/regulator/maxim,max8952.yaml
 new file mode 100644
-index 000000000000..7ea1531ee8af
+index 000000000000..e4e8c58f6046
 --- /dev/null
-+++ b/drivers/soc/mediatek/mt8192-mmsys.h
-@@ -0,0 +1,77 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
++++ b/Documentation/devicetree/bindings/regulator/maxim,max8952.yaml
+@@ -0,0 +1,109 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/maxim,max8952.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#ifndef __SOC_MEDIATEK_MT8192_MMSYS_H
-+#define __SOC_MEDIATEK_MT8192_MMSYS_H
++title: Maxim MAX8952 voltage regulator
 +
-+#define MT8192_MMSYS_OVL_MOUT_EN		0xf04
-+#define MT8192_DISP_OVL1_2L_MOUT_EN		0xf08
-+#define MT8192_DISP_OVL0_2L_MOUT_EN		0xf18
-+#define MT8192_DISP_OVL0_MOUT_EN		0xf1c
-+#define MT8192_DISP_RDMA0_SEL_IN		0xf2c
-+#define MT8192_DISP_RDMA0_SOUT_SEL		0xf30
-+#define MT8192_DISP_CCORR0_SOUT_SEL		0xf34
-+#define MT8192_DISP_AAL0_SEL_IN			0xf38
-+#define MT8192_DISP_DITHER0_MOUT_EN		0xf3c
-+#define MT8192_DISP_DSI0_SEL_IN			0xf40
-+#define MT8192_DISP_OVL2_2L_MOUT_EN		0xf4c
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 +
-+#define MT8192_DISP_OVL0_GO_BLEND			BIT(0)
-+#define MT8192_DITHER0_MOUT_IN_DSI0			BIT(0)
-+#define MT8192_OVL0_MOUT_EN_DISP_RDMA0			BIT(0)
-+#define MT8192_OVL2_2L_MOUT_EN_RDMA4			BIT(0)
-+#define MT8192_DISP_OVL0_GO_BG				BIT(1)
-+#define MT8192_DISP_OVL0_2L_GO_BLEND			BIT(2)
-+#define MT8192_DISP_OVL0_2L_GO_BG			BIT(3)
-+#define MT8192_OVL1_2L_MOUT_EN_RDMA1			BIT(4)
-+#define MT8192_OVL0_MOUT_EN_OVL0_2L			BIT(4)
-+#define MT8192_RDMA0_SEL_IN_OVL0_2L			0x3
-+#define MT8192_RDMA0_SOUT_COLOR0			0x1
-+#define MT8192_CCORR0_SOUT_AAL0				0x1
-+#define MT8192_AAL0_SEL_IN_CCORR0			0x1
-+#define MT8192_DSI0_SEL_IN_DITHER0			0x1
++allOf:
++  - $ref: regulator.yaml#
 +
-+static const struct mtk_mmsys_routes mmsys_mt8192_routing_table[] = {
-+	{
-+		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-+		MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDMA0,
-+		MT8192_OVL0_MOUT_EN_DISP_RDMA0
-+	}, {
-+		DDP_COMPONENT_OVL_2L2, DDP_COMPONENT_RDMA4,
-+		MT8192_DISP_OVL2_2L_MOUT_EN, MT8192_OVL2_2L_MOUT_EN_RDMA4,
-+		MT8192_OVL2_2L_MOUT_EN_RDMA4
-+	}, {
-+		DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
-+		MT8192_DISP_DITHER0_MOUT_EN, MT8192_DITHER0_MOUT_IN_DSI0,
-+		MT8192_DITHER0_MOUT_IN_DSI0
-+	}, {
-+		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-+		MT8192_DISP_RDMA0_SEL_IN, MT8192_RDMA0_SEL_IN_OVL0_2L,
-+		MT8192_RDMA0_SEL_IN_OVL0_2L
-+	}, {
-+		DDP_COMPONENT_CCORR, DDP_COMPONENT_AAL0,
-+		MT8192_DISP_AAL0_SEL_IN, MT8192_AAL0_SEL_IN_CCORR0,
-+		MT8192_AAL0_SEL_IN_CCORR0
-+	}, {
-+		DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
-+		MT8192_DISP_DSI0_SEL_IN, MT8192_DSI0_SEL_IN_DITHER0,
-+		MT8192_DSI0_SEL_IN_DITHER0
-+	}, {
-+		DDP_COMPONENT_RDMA0, DDP_COMPONENT_COLOR0,
-+		MT8192_DISP_RDMA0_SOUT_SEL, MT8192_RDMA0_SOUT_COLOR0,
-+		MT8192_RDMA0_SOUT_COLOR0
-+	}, {
-+		DDP_COMPONENT_CCORR, DDP_COMPONENT_AAL0,
-+		MT8192_DISP_CCORR0_SOUT_SEL, MT8192_CCORR0_SOUT_AAL0,
-+		MT8192_CCORR0_SOUT_AAL0
-+	}, {
-+		DDP_COMPONENT_OVL0, DDP_COMPONENT_OVL_2L0,
-+		MT8192_MMSYS_OVL_MOUT_EN, MT8192_DISP_OVL0_GO_BG,
-+		MT8192_DISP_OVL0_GO_BG,
-+	}, {
-+		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-+		MT8192_MMSYS_OVL_MOUT_EN, MT8192_DISP_OVL0_2L_GO_BLEND,
-+		MT8192_DISP_OVL0_2L_GO_BLEND,
-+	}
-+};
++properties:
++  compatible:
++    const: maxim,max8952
 +
-+#endif /* __SOC_MEDIATEK_MT8192_MMSYS_H */
-diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
-index a78e88f27b62..6e97d1468183 100644
---- a/drivers/soc/mediatek/mtk-mmsys.c
-+++ b/drivers/soc/mediatek/mtk-mmsys.c
-@@ -14,6 +14,7 @@
- #include "mt8167-mmsys.h"
- #include "mt8183-mmsys.h"
- #include "mt8365-mmsys.h"
-+#include "mt8192-mmsys.h"
- 
- static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
- 	.clk_driver = "clk-mt2701-mm",
-@@ -59,6 +60,12 @@ static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data = {
- 	.num_routes = ARRAY_SIZE(mt8365_mmsys_routing_table),
- };
- 
-+static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
-+	.clk_driver = "clk-mt8192-mm",
-+	.routes = mmsys_mt8192_routing_table,
-+	.num_routes = ARRAY_SIZE(mmsys_mt8192_routing_table),
-+};
++  max8952,default-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++    description: |
++      index of default DVS voltage
 +
- struct mtk_mmsys {
- 	void __iomem *regs;
- 	const struct mtk_mmsys_driver_data *data;
-@@ -171,6 +178,10 @@ static const struct of_device_id of_match_mtk_mmsys[] = {
- 		.compatible = "mediatek,mt8365-mmsys",
- 		.data = &mt8365_mmsys_driver_data,
- 	},
-+	{
-+		.compatible = "mediatek,mt8192-mmsys",
-+		.data = &mt8192_mmsys_driver_data,
-+	},
- 	{ }
- };
- 
++  max8952,dvs-mode-microvolt:
++    minItems: 4
++    maxItems: 4
++    items:
++      minimum: 770000
++      maximum: 1400000
++    description: |
++      Array of 4 integer values defining DVS voltages in microvolts. All values
++      must be from range <770000, 1400000>.
++
++  max8952,en-gpio:
++    maxItems: 1
++    description: |
++      GPIO used to control enable status of regulator
++
++  max8952,ramp-speed:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3, 4, 5, 6, 7]
++    default: 0
++    description: |
++      Voltage ramp speed, values map to:
++       - 0: 32mV/us
++       - 1: 16mV/us
++       - 2: 8mV/us
++       - 3: 4mV/us
++       - 4: 2mV/us
++       - 5: 1mV/us
++       - 6: 0.5mV/us
++       - 7: 0.25mV/us
++      Defaults to 32mV/us if not specified.
++
++  max8952,sync-freq:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2]
++    default: 0
++    description: |
++      Sync frequency, values map to:
++       - 0: 26 MHz
++       - 1: 13 MHz
++       - 2: 19.2 MHz
++      Defaults to 26 MHz if not specified.
++
++  max8952,vid-gpios:
++    minItems: 2
++    maxItems: 2
++    description: |
++      Array of two GPIO pins used for DVS voltage selection
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - max8952,dvs-mode-microvolt
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic@60 {
++            compatible = "maxim,max8952";
++            reg = <0x60>;
++
++            max8952,vid-gpios = <&gpx0 3 GPIO_ACTIVE_HIGH>,
++                                <&gpx0 4 GPIO_ACTIVE_HIGH>;
++            max8952,default-mode = <0>;
++            max8952,dvs-mode-microvolt = <1250000>, <1200000>,
++                                         <1050000>, <950000>;
++            max8952,sync-freq = <0>;
++            max8952,ramp-speed = <0>;
++
++            regulator-name = "VARM_1.2V_C210";
++            regulator-min-microvolt = <770000>;
++            regulator-max-microvolt = <1400000>;
++            regulator-always-on;
++            regulator-boot-on;
++        };
++    };
 -- 
-2.25.1
+2.30.2
 
