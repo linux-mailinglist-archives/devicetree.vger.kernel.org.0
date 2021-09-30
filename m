@@ -2,104 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3826741DAD9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 561F041DAE7
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:21:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349852AbhI3NUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 09:20:40 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:47680 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1350673AbhI3NUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 09:20:39 -0400
-X-UUID: 973fccaee5584a37a98ec9f5f8e239f5-20210930
-X-UUID: 973fccaee5584a37a98ec9f5f8e239f5-20210930
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2121530296; Thu, 30 Sep 2021 21:18:53 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 30 Sep 2021 21:18:51 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkcas07.mediatek.inc
- (172.21.101.84) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 30 Sep
- 2021 21:18:51 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 30 Sep 2021 21:18:50 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: [PATCH v2, 1/1] mailbox: cmdq: add instruction time-out interrupt support
-Date:   Thu, 30 Sep 2021 21:18:50 +0800
-Message-ID: <20210930131850.21202-2-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210930131850.21202-1-yongqiang.niu@mediatek.com>
-References: <20210930131850.21202-1-yongqiang.niu@mediatek.com>
+        id S1348724AbhI3NXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 09:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351106AbhI3NXQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 09:23:16 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC30FC06176D
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 06:21:33 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id g19-20020a1c9d13000000b003075062d4daso4355859wme.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 06:21:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=0EnoGcQxVcjVLjhlbUWYyjl1NXgdf4STxEMEBfnyuEE=;
+        b=RfTVTSp1Jll5QOCFPLIM78aADWMp5XJ+7MXbtAhSEJgHyf5spRRcODCjtBNQ1Zr29M
+         3zZ0ofUeQgp4EmzaiUh9syLWblSChCksVV8XwwiVndwfk9CSH9jlVDatSVNRtfSkLV0K
+         UUnMG/NHEM8gFVZWGcFMqUgEVGDEhc2uWRGCLnWvDTRkfyXc2jv+7H5qafKQ8fZl3Aum
+         1Nnr8yVXQDR+vs8nayhUqdLXMCaj7KCNtU5EJNuhDJL0tkmteDGs407BQjMP6qfWasle
+         4POTMeon+KJwy6tnw3miMqaA96nRffXtdAm+Ky0rqO/NNPSR0QKAem7NDkk6Kx3WDKv9
+         1VCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=0EnoGcQxVcjVLjhlbUWYyjl1NXgdf4STxEMEBfnyuEE=;
+        b=JDU8T6ZcT4CvakNILbMGLAB+FHTtY9pn4W6vt6pKUQNAQiF3dv3Rin3113xUw4z7r0
+         AZ0boWfW5SGQ2e0VyZrRhUzsBSXEV8jAlpZc0NMQaprh/Q+X/PqVqXywRZChAyKxBQvF
+         QHYB+HZEmZeqZZ/Hv8hf8yWzWirClgxZvMuObcbW801zWztCn7KpGSkhEz5YKd7PSpXU
+         Za9LZYT/zR0t+9KxnpLPUD52ya03QtS6Cdf3YWqvlA+GvuqPr388L3buGBh6to+Rw7vf
+         UFR1xkNc7PTBhKzKabLV05C9eVzvACttNmfmlc0XTA96CztNspTy2xNYDQ4HSOW8O2aZ
+         Plzg==
+X-Gm-Message-State: AOAM530JdiWmremhig9c08w7sSP5yLWnxD/AU7NUWfRhVWGIZqPN2hH7
+        5VtpaBscG3op4WyDND+UNM4ylg==
+X-Google-Smtp-Source: ABdhPJyyEtgq7rfkTi/7o2F3OJOwqDVQ7uW6EcRjxsPnSK+R3odzh0Zz0IG2MLTOeNWuUz6OYd2YEg==
+X-Received: by 2002:a1c:f713:: with SMTP id v19mr5199573wmh.188.1633008092422;
+        Thu, 30 Sep 2021 06:21:32 -0700 (PDT)
+Received: from google.com ([95.148.6.233])
+        by smtp.gmail.com with ESMTPSA id s13sm4847931wmc.47.2021.09.30.06.21.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Sep 2021 06:21:32 -0700 (PDT)
+Date:   Thu, 30 Sep 2021 14:21:30 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Subject: Re: [PATCH 10/12] mfd: dt-bindings: samsung,s5m8767: document buck
+ and LDO supplies
+Message-ID: <YVW52vAdxbA8LqhM@google.com>
+References: <20210928084949.27939-1-krzysztof.kozlowski@canonical.com>
+ <20210928084949.27939-11-krzysztof.kozlowski@canonical.com>
+ <YVWx+08egbGPiYYt@google.com>
+ <e5ab2ba9-e4ae-30db-8e54-8af42d7f3bf1@canonical.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e5ab2ba9-e4ae-30db-8e54-8af42d7f3bf1@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add time-out cycle setting to make sure time-out interrupt irq
-will happened when instruction time-out for wait and poll
+On Thu, 30 Sep 2021, Krzysztof Kozlowski wrote:
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
----
- drivers/mailbox/mtk-cmdq-mailbox.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> On 30/09/2021 14:47, Lee Jones wrote:
+> > On Tue, 28 Sep 2021, Krzysztof Kozlowski wrote:
+> > 
+> >> Document the properties with regulator supplies for bucks and LDOs.  At
+> >> least one board uses it (Exynos5250 Arndale).
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> >> ---
+> >>  .../bindings/mfd/samsung,s5m8767.yaml         | 38 +++++++++++++++++++
+> >>  1 file changed, 38 insertions(+)
+> > 
+> > These all need Rob's Ack.
+> 
+> Correct.
+> 
+> > 
+> > But can you start with reworking the subject line please.
+> > 
+> > It should be:
+> > 
+> >   "dt-bindings: mfd: <component>: <Subject starting with an uppercase char>"
+> 
+> Sure, just have in mind that Mark wants them the other way around for
+> regulator. :)
 
-diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-index 64175a893312..197b03222f94 100644
---- a/drivers/mailbox/mtk-cmdq-mailbox.c
-+++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-@@ -36,6 +36,7 @@
- #define CMDQ_THR_END_ADDR		0x24
- #define CMDQ_THR_WAIT_TOKEN		0x30
- #define CMDQ_THR_PRIORITY		0x40
-+#define CMDQ_THR_INSTN_TIMEOUT_CYCLES	0x50
- 
- #define GCE_GCTL_VALUE			0x48
- 
-@@ -54,6 +55,15 @@
- #define CMDQ_JUMP_BY_OFFSET		0x10000000
- #define CMDQ_JUMP_BY_PA			0x10000001
- 
-+/*
-+ * instruction time-out
-+ * cycles to issue instruction time-out interrupt for wait and poll instructions
-+ * GCE axi_clock 156MHz
-+ * 1 cycle = 6.41ns
-+ * instruction time out 2^22*2*6.41ns = 53ms
-+ */
-+#define CMDQ_INSTN_TIMEOUT_CYCLES	22
-+
- struct cmdq_thread {
- 	struct mbox_chan	*chan;
- 	void __iomem		*base;
-@@ -376,6 +386,7 @@ static int cmdq_mbox_send_data(struct mbox_chan *chan, void *data)
- 		writel((task->pa_base + pkt->cmd_buf_size) >> cmdq->shift_pa,
- 		       thread->base + CMDQ_THR_END_ADDR);
- 
-+		writel(CMDQ_INSTN_TIMEOUT_CYCLES, thread->base + CMDQ_THR_INSTN_TIMEOUT_CYCLES);
- 		writel(thread->priority, thread->base + CMDQ_THR_PRIORITY);
- 		writel(CMDQ_THR_IRQ_EN, thread->base + CMDQ_THR_IRQ_ENABLE);
- 		writel(CMDQ_THR_ENABLED, thread->base + CMDQ_THR_ENABLE_TASK);
+a) I'm suggesting you use the standard formatting
+b) This is not a regulator patch :)
+
 -- 
-2.25.1
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
