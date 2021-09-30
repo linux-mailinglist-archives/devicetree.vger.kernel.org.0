@@ -2,74 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11C1F41DABD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7675241DACC
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244692AbhI3NL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 09:11:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234439AbhI3NL5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 09:11:57 -0400
-Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF13BC06176A
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 06:10:14 -0700 (PDT)
-Received: by mail-vs1-xe32.google.com with SMTP id h30so7223442vsq.3
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 06:10:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=apc4WniCFtPp9CA557OzdjUaRaGLWw983FzhWYJqI9M=;
-        b=ucxCq4VdJzfleMFDo7ub0e5a1F2FZgZC2iKADpY6UsvNm+3jSHwPA70uvCgXPrxlC/
-         qROt0Mrv15ihf4uAPyzYlsJQaIkopvg5mYJuMX9KTSIIFShLII9/G6H1IRxtiztMJHop
-         1dEAFGqucrhKzh/u7PHnGQLD3S72VV691VTVw=
+        id S1350774AbhI3NSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 09:18:45 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:45836
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1350730AbhI3NSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 09:18:44 -0400
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 41D07402F6
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 13:17:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633007821;
+        bh=RCNF115QrSenyhS4+VUmTb+/09HgZQVEEH62W5zhJ9o=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=NPBdil4tQLTdbn/InaRcY28R5pI15hbMigaqlVuDNvUHKLUI4t/k6TQ84trvRfQS2
+         f23JmlvnVzvCcIduDKPldzYvsS/b21/um2jRTsF3CZymQ5CPiK9ZVGDIoZBEAk+xhW
+         Fjbh+U19j8uXrSGlu8e0ugo337FaRr9czHMconAkylmLZLB4jVHcvvjJ08G7eJvXnx
+         Kn1GifhLbxK/7I3+slh9wtQtBoj/CJjphNSpDgFXLE0LzHy1hmyIsVlkQypv74mpqv
+         pHc2VdIR7O1X1zOuVXj7R+M2g4bHnW11VAXJlGR2k1Q1sNoMo0uKWUroM3Hom7gZzf
+         5/oEBpi2r1eSA==
+Received: by mail-lf1-f72.google.com with SMTP id q4-20020ac25284000000b003fcebb305a6so5544348lfm.15
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 06:17:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=apc4WniCFtPp9CA557OzdjUaRaGLWw983FzhWYJqI9M=;
-        b=UdmvG4BeJLpUqYnWII1kgPaHo9YcEFqRvZSs+9MVPGVMvD3CUm0Kvnr4GqLw8Cc9Sf
-         dUpadETpyt89sQV0l2bNErNpngXmmlaf3VOephgTcWy6FohJgF/iuesZ5OKNUpmMYdep
-         +exsWkMEy6FiG5HFsZCe/AWoXlVpCkJYxgsYe1KfW5yYaPzqWsQF6yKA7XvnNvS19EMM
-         xmzgMMl5ziNxV16LzoXcA2PdxwEzenE6Iewz0dS/j3uKUAdJjKzaYKp4UAeU+3u7GGxq
-         YLVFyvKceZ7bC/6gNBf6a/cI0Z0LD1RUr5Qgex/kutMsLxXLWHR7YaBtgXalDJMiA2Nu
-         xoNA==
-X-Gm-Message-State: AOAM533Eb/HzlTI3Y2vNYmVB5jizqBldr6IWziTq/oepxFotYo7muCzM
-        vFEjDZlrfyHcMKTa+OWwzzr1umnVZYyGEII38hstmg==
-X-Google-Smtp-Source: ABdhPJwBVbcZUWbq0/2+7n2xBYa1G1vIHMgCxSk3gY0LAueasyeQCmnIpvN359PONKJ8P5Ext7LSMSydY69akgqiRPs=
-X-Received: by 2002:a05:6102:1c9:: with SMTP id s9mr3207147vsq.14.1633007414052;
- Thu, 30 Sep 2021 06:10:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210914100415.1549208-1-daniel@0x0f.com> <20210914100415.1549208-3-daniel@0x0f.com>
- <87zgs7vavl.wl-maz@kernel.org> <CAFr9PXnC4hQw5_0TtciKvqF7s=4axJ5Yrq80RXGcY4VvT1Ac2A@mail.gmail.com>
- <87wnnbv6ac.wl-maz@kernel.org> <CAFr9PXmA07Up_wfJzzgZeYwE5ZrwnLqjBvLG3CERGHOLeay0Cg@mail.gmail.com>
- <87lf3quydn.wl-maz@kernel.org> <CACRpkdYLURJCopH3hDuZTY8ce9-OxakELyFqwqkAVCsYmzF5kg@mail.gmail.com>
- <CAFr9PXn3hEpmAprP2XhnbX2t9+pe3Lihc2A+EGzdmv9LM5pXOg@mail.gmail.com> <8735pmtdo9.wl-maz@kernel.org>
-In-Reply-To: <8735pmtdo9.wl-maz@kernel.org>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Thu, 30 Sep 2021 22:10:03 +0900
-Message-ID: <CAFr9PXmqXMt_9N1SXPy9BVk988JUBTejGSVRzb5GHjyqX004iQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] irqchip: SigmaStar SSD20xD gpi
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        DTML <devicetree@vger.kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=RCNF115QrSenyhS4+VUmTb+/09HgZQVEEH62W5zhJ9o=;
+        b=aSLwoig/6WjPzqoqnvlr6phenpaIwRUc52AGsnhr6sFr3wnC5lgTBHIE8PhERFkrfM
+         yIBfvf17z4kp+jrMEQyRwzOkXyTGbrxMy4W/oSn/0WfdL7K28jPejG9YBBP9Q0/B9DRF
+         C1RYCAKwd65GE9rcPe9HN6GN75gtpHeXcxlvT/ErItxvq63sZUhHP052IENTinmFImPU
+         yvJgh5vq8wRswmjZXoGZeuwapc6ofasGTCIZYeEtJdPYGm24wy0VwPSiI2WjTnaRdjmv
+         cFd5xNWbjM8O0F5fwpEXaWLz8KjK9wzstka3U0hRYQjiDvmHbWefDl57017HFzxmHRZC
+         Inpw==
+X-Gm-Message-State: AOAM530e1W1TAsc7Yqd4fB7dLLmIA4fpSMNHwVOGOtf5RDnCwn9PUuaf
+        Sd0EtnOevEOvvHIDBeCdkElGsR8kPb2lOWqaGXdpuJAl85Hmw3kN7fL0dK6zqSiYqwrauXheDaM
+        LUc3II7bEfyCUVK686M0cu13/g4Re4uhT2r1FOXk=
+X-Received: by 2002:a2e:a596:: with SMTP id m22mr6316948ljp.262.1633007820688;
+        Thu, 30 Sep 2021 06:17:00 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy09YmqEMO9K/DkFa/bZTei75H3U3dhuXPBwEhVk4C2y92R9e/R2akQYKqXZiF/L9tEarb/qQ==
+X-Received: by 2002:a2e:a596:: with SMTP id m22mr6316925ljp.262.1633007820526;
+        Thu, 30 Sep 2021 06:17:00 -0700 (PDT)
+Received: from [192.168.0.197] ([193.178.187.25])
+        by smtp.gmail.com with ESMTPSA id f26sm341405ljj.82.2021.09.30.06.16.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Sep 2021 06:17:00 -0700 (PDT)
+Subject: Re: [PATCH 10/12] mfd: dt-bindings: samsung,s5m8767: document buck
+ and LDO supplies
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Romain Perier <romain.perier@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+References: <20210928084949.27939-1-krzysztof.kozlowski@canonical.com>
+ <20210928084949.27939-11-krzysztof.kozlowski@canonical.com>
+ <YVWx+08egbGPiYYt@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <e5ab2ba9-e4ae-30db-8e54-8af42d7f3bf1@canonical.com>
+Date:   Thu, 30 Sep 2021 15:16:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <YVWx+08egbGPiYYt@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+On 30/09/2021 14:47, Lee Jones wrote:
+> On Tue, 28 Sep 2021, Krzysztof Kozlowski wrote:
+> 
+>> Document the properties with regulator supplies for bucks and LDOs.  At
+>> least one board uses it (Exynos5250 Arndale).
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> ---
+>>  .../bindings/mfd/samsung,s5m8767.yaml         | 38 +++++++++++++++++++
+>>  1 file changed, 38 insertions(+)
+> 
+> These all need Rob's Ack.
 
-On Thu, 30 Sept 2021 at 22:07, Marc Zyngier <maz@kernel.org> wrote:
-> Can you give the hack that sits in my reply to Linus a go?
+Correct.
 
-Yep. Doing it now.
+> 
+> But can you start with reworking the subject line please.
+> 
+> It should be:
+> 
+>   "dt-bindings: mfd: <component>: <Subject starting with an uppercase char>"
 
-Thanks,
+Sure, just have in mind that Mark wants them the other way around for
+regulator. :)
 
-Daniel
+Best regards,
+Krzysztof
