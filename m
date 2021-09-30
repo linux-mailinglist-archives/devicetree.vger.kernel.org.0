@@ -2,390 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22FAD41D837
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 12:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B61941D83A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 12:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350207AbhI3K65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 06:58:57 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:43930 "EHLO
-        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350206AbhI3K6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 06:58:54 -0400
-Received: from fiber.protonic.nl (edge2.prtnl [192.168.1.170])
-        by sparta.prtnl (Postfix) with ESMTP id 70F2944A024E;
-        Thu, 30 Sep 2021 12:57:09 +0200 (CEST)
+        id S1350123AbhI3K7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 06:59:46 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:60238 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350204AbhI3K7p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 06:59:45 -0400
+Received: from [IPv6:2a02:810a:880:f54:fd5c:7cb1:aaa8:78b1] (unknown [IPv6:2a02:810a:880:f54:fd5c:7cb1:aaa8:78b1])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id ED32C1F44A9D;
+        Thu, 30 Sep 2021 11:58:00 +0100 (BST)
+Subject: Re: [PATCH v8 09/12] media: mtk-vcodec: Get rid of
+ mtk_smi_larb_get/put
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        David Airlie <airlied@linux.ie>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        yi.kuo@mediatek.com, acourbot@chromium.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        anthony.huang@mediatek.com,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Irui Wang <irui.wang@mediatek.com>
+References: <20210929013719.25120-1-yong.wu@mediatek.com>
+ <20210929013719.25120-10-yong.wu@mediatek.com>
+ <02f444d5-9633-3f9c-2d1f-97ce073d1180@collabora.com>
+ <79cbf64491273797f218f417234b8c95936bd3b1.camel@mediatek.com>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <f9829a5a-984c-bced-0286-53f9edc8ae3d@collabora.com>
+Date:   Thu, 30 Sep 2021 12:57:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Date:   Thu, 30 Sep 2021 12:57:09 +0200
-From:   Robin van der Gracht <robin@protonic.nl>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>
-Subject: Re: [PATCH v6 19/19] auxdisplay: ht16k33: Add LED support
-Reply-To: robin@protonic.nl
-In-Reply-To: <20210914143835.511051-20-geert@linux-m68k.org>
-References: <20210914143835.511051-1-geert@linux-m68k.org>
- <20210914143835.511051-20-geert@linux-m68k.org>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <4602a8e681db4d0ebc43e4dafee8c28e@protonic.nl>
-X-Sender: robin@protonic.nl
-Organization: Protonic Holland
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <79cbf64491273797f218f417234b8c95936bd3b1.camel@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On 2021-09-14 16:38, Geert Uytterhoeven wrote:
-> Instantiate a single LED based on the "led" subnode in DT.
-> This allows the user to control display brightness and blinking (backed
-> by hardware support) through the LED class API and triggers, and exposes
-> the display color.  The LED will be named
-> "auxdisplay:<color>:<function>".
-> 
-> When running in dot-matrix mode and if no "led" subnode is found, the
-> driver falls back to the traditional backlight mode, to preserve
-> backwards compatibility.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Reviewed-by: Marek Behún <kabel@kernel.org>
-> ---
-> v6:
->   - Add Reviewed-by,
->   - Reorder operations in ht16k33_led_probe() to ease future conversion
->     to device properties,
-> 
-> v5:
->   - Add missing select NEW_LEDS,
-> 
-> v4:
->   - Add missing select LEDS_CLASS,
-> 
-> v3:
->   - Remove unneeded C++ comment,
->   - Use "err" instead of "error" to be consistent with existing driver
->     naming style,
->   - Make the creation of the LED device dependent on the presence of the
->     "led" subnode in DT, so it can be used in dot-matrix mode too.
->   - Use led_init_data() and devm_led_classdev_register_ext() to retrieve
->     all LED properties from DT, instead of manual LED name construction
->     based on just the "color" property,
-> 
-> v2:
->   - Use "auxdisplay" instead of DRIVER_NAME in LED name.
-> ---
->  drivers/auxdisplay/Kconfig   |   2 +
->  drivers/auxdisplay/ht16k33.c | 124 ++++++++++++++++++++++++++++++-----
->  2 files changed, 109 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
-> index 42fc7b155de09dbc..e32ef7f9945d49b2 100644
-> --- a/drivers/auxdisplay/Kconfig
-> +++ b/drivers/auxdisplay/Kconfig
-> @@ -176,6 +176,8 @@ config HT16K33
->  	select FB_SYS_IMAGEBLIT
->  	select INPUT_MATRIXKMAP
->  	select FB_BACKLIGHT
-> +	select NEW_LEDS
-> +	select LEDS_CLASS
->  	select LINEDISP
->  	help
->  	  Say yes here to add support for Holtek HT16K33, RAM mapping 16*8
-> diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
-> index 3b555e119e326cec..89ee5b4b3dfccb68 100644
-> --- a/drivers/auxdisplay/ht16k33.c
-> +++ b/drivers/auxdisplay/ht16k33.c
-> @@ -18,6 +18,7 @@
->  #include <linux/backlight.h>
->  #include <linux/input.h>
->  #include <linux/input/matrix_keypad.h>
-> +#include <linux/leds.h>
->  #include <linux/workqueue.h>
->  #include <linux/mm.h>
-> 
-> @@ -34,6 +35,10 @@
-> 
->  #define REG_DISPLAY_SETUP		0x80
->  #define REG_DISPLAY_SETUP_ON		BIT(0)
-> +#define REG_DISPLAY_SETUP_BLINK_OFF	(0 << 1)
-> +#define REG_DISPLAY_SETUP_BLINK_2HZ	(1 << 1)
-> +#define REG_DISPLAY_SETUP_BLINK_1HZ	(2 << 1)
-> +#define REG_DISPLAY_SETUP_BLINK_0HZ5	(3 << 1)
-> 
->  #define REG_ROWINT_SET			0xA0
->  #define REG_ROWINT_SET_INT_EN		BIT(0)
-> @@ -94,12 +99,14 @@ struct ht16k33_seg {
->  struct ht16k33_priv {
->  	struct i2c_client *client;
->  	struct delayed_work work;
-> +	struct led_classdev led;
->  	struct ht16k33_keypad keypad;
->  	union {
->  		struct ht16k33_fbdev fbdev;
->  		struct ht16k33_seg seg;
->  	};
->  	enum display_type type;
-> +	uint8_t blink;
->  };
-> 
->  static const struct fb_fix_screeninfo ht16k33_fb_fix = {
-> @@ -158,7 +165,7 @@ static DEVICE_ATTR(map_seg14, 0644, map_seg_show, 
-> map_seg_store);
-> 
->  static int ht16k33_display_on(struct ht16k33_priv *priv)
->  {
-> -	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON;
-> +	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON | priv->blink;
-> 
->  	return i2c_smbus_write_byte(priv->client, data);
->  }
-> @@ -173,8 +180,10 @@ static int ht16k33_brightness_set(struct ht16k33_priv 
-> *priv,
->  {
->  	int err;
-> 
-> -	if (brightness == 0)
-> +	if (brightness == 0) {
-> +		priv->blink = REG_DISPLAY_SETUP_BLINK_OFF;
->  		return ht16k33_display_off(priv);
-> +	}
-> 
->  	err = ht16k33_display_on(priv);
->  	if (err)
-> @@ -184,6 +193,49 @@ static int ht16k33_brightness_set(struct ht16k33_priv 
-> *priv,
->  				    REG_BRIGHTNESS | (brightness - 1));
->  }
-> 
-> +static int ht16k33_brightness_set_blocking(struct led_classdev *led_cdev,
-> +					   enum led_brightness brightness)
-> +{
-> +	struct ht16k33_priv *priv = container_of(led_cdev, struct ht16k33_priv,
-> +						 led);
-> +
-> +	return ht16k33_brightness_set(priv, brightness);
-> +}
-> +
-> +static int ht16k33_blink_set(struct led_classdev *led_cdev,
-> +			     unsigned long *delay_on, unsigned long *delay_off)
-> +{
-> +	struct ht16k33_priv *priv = container_of(led_cdev, struct ht16k33_priv,
-> +						 led);
-> +	unsigned int delay;
-> +	uint8_t blink;
-> +	int err;
-> +
-> +	if (!*delay_on && !*delay_off) {
-> +		blink = REG_DISPLAY_SETUP_BLINK_1HZ;
-> +		delay = 1000;
-> +	} else if (*delay_on <= 750) {
-> +		blink = REG_DISPLAY_SETUP_BLINK_2HZ;
-> +		delay = 500;
-> +	} else if (*delay_on <= 1500) {
-> +		blink = REG_DISPLAY_SETUP_BLINK_1HZ;
-> +		delay = 1000;
-> +	} else {
-> +		blink = REG_DISPLAY_SETUP_BLINK_0HZ5;
-> +		delay = 2000;
-> +	}
-> +
-> +	err = i2c_smbus_write_byte(priv->client,
-> +				   REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON |
-> +				   blink);
-> +	if (err)
-> +		return err;
-> +
-> +	priv->blink = blink;
-> +	*delay_on = *delay_off = delay;
-> +	return 0;
-> +}
-> +
->  static void ht16k33_fb_queue(struct ht16k33_priv *priv)
->  {
->  	struct ht16k33_fbdev *fbdev = &priv->fbdev;
-> @@ -425,6 +477,35 @@ static void ht16k33_seg14_update(struct work_struct 
-> *work)
->  	i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), buf);
->  }
-> 
-> +static int ht16k33_led_probe(struct device *dev, struct led_classdev *led,
-> +			     unsigned int brightness)
-> +{
-> +	struct led_init_data init_data = {};
-> +	struct device_node *node;
-> +	int err;
-> +
-> +	/* The LED is optional */
-> +	node = of_get_child_by_name(dev->of_node, "led");
-> +	if (!node)
-> +		return 0;
-> +
-> +	init_data.fwnode = of_fwnode_handle(node);
-> +	init_data.devicename = "auxdisplay";
-> +	init_data.devname_mandatory = true;
-> +
-> +	led->brightness_set_blocking = ht16k33_brightness_set_blocking;
-> +	led->blink_set = ht16k33_blink_set;
-> +	led->flags = LED_CORE_SUSPENDRESUME;
-> +	led->brightness = brightness;
-> +	led->max_brightness = MAX_BRIGHTNESS;
-
-What do you think about adding a default trigger and making it 'backlight'?
-
-led->default_trigger = "blacklight";
-
-Or as an alternative, suggesting linux,default-trigger = "backlight" in the
-docs? Since the led class won't respond to blank events by just making it's
-function LED_FUNCTION_BACKLIGHT.
-
-led {
-	function = LED_FUNCTION_BACKLIGHT;
-	color = <LED_COLOR_ID_GREEN>;
-	linux,default-trigger = "backlight";
-};
-
-I noticed blanking is broken. The backlight device (or LED device with
-backlight trigger) doens't get notified when the framebuffer is blanked since
-the driver doesn't implement fb_blank.
-
-Right now:
-
-echo 1 > /sys/class/graphics/fb0/blank                                        
-                                                             |
-sh: write error: Invalid argument
-
-Due to: 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/video/fbdev/core/fbmem.c?h=v5.15-rc3#n1078
-
-Something like this fixes it.
-
-diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
-index 89ee5b4b3dfc..0883d5252c81 100644
---- a/drivers/auxdisplay/ht16k33.c
-+++ b/drivers/auxdisplay/ht16k33.c
-@@ -346,6 +346,15 @@ static int ht16k33_mmap(struct fb_info *info, struct 
-vm_area_struct *vma)
-         return vm_map_pages_zero(vma, &pages, 1);
-  }
-
-+/*
-+ * Blank events will be passed to the backlight device (or the LED device if
-+ * it's trigger is 'backlight') when we return 0 here.
-+ */
-+static int ht16k33_blank(int blank, struct fb_info *info)
-+{
-+       return 0;
-+}
-+
-  static const struct fb_ops ht16k33_fb_ops = {
-         .owner = THIS_MODULE,
-         .fb_read = fb_sys_read,
-@@ -354,6 +363,7 @@ static const struct fb_ops ht16k33_fb_ops = {
-         .fb_copyarea = sys_copyarea,
-         .fb_imageblit = sys_imageblit,
-         .fb_mmap = ht16k33_mmap,
-+       .fb_blank = ht16k33_blank,
-  };
-
-  /*
-
-Feel free to include (something like) this in the patch stack.
 
 
-> +
-> +	err = devm_led_classdev_register_ext(dev, led, &init_data);
-> +	if (err)
-> +		dev_err(dev, "Failed to register LED\n");
+On 30.09.21 05:28, Yong Wu wrote:
+> Hi Dafna,
+> 
+> Thanks very much for the review.
+> 
+> On Wed, 2021-09-29 at 14:13 +0200, Dafna Hirschfeld wrote:
+>>
+>> On 29.09.21 03:37, Yong Wu wrote:
+>>> MediaTek IOMMU has already added the device_link between the
+>>> consumer
+>>> and smi-larb device. If the vcodec device call the
+>>> pm_runtime_get_sync,
+>>> the smi-larb's pm_runtime_get_sync also be called automatically.
+>>>
+>>> CC: Tiffany Lin <tiffany.lin@mediatek.com>
+>>> CC: Irui Wang <irui.wang@mediatek.com>
+>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>>> Reviewed-by: Evan Green <evgreen@chromium.org>
+>>> Acked-by: Tiffany Lin <tiffany.lin@mediatek.com>
+>>> Reviewed-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+>>> ---
+>>>    .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   | 37 +++-----------
+>>> --
+>>>    .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  3 --
+>>>    .../platform/mtk-vcodec/mtk_vcodec_enc.c      |  1 -
+>>>    .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   | 44 +++-----------
+>>> -----
+>>>    4 files changed, 10 insertions(+), 75 deletions(-)
+>>>
+>>> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c
+>>> b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c
+>>> index 6038db96f71c..d0bf9aa3b29d 100644
+>>> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c
+>>> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c
+>>> @@ -8,14 +8,12 @@
+>>>    #include <linux/of_address.h>
+>>>    #include <linux/of_platform.h>
+>>>    #include <linux/pm_runtime.h>
+>>> -#include <soc/mediatek/smi.h>
+>>>    
+>>>    #include "mtk_vcodec_dec_pm.h"
+>>>    #include "mtk_vcodec_util.h"
+>>>    
+>>>    int mtk_vcodec_init_dec_pm(struct mtk_vcodec_dev *mtkdev)
+>>>    {
+>>> -	struct device_node *node;
+>>>    	struct platform_device *pdev;
+>>>    	struct mtk_vcodec_pm *pm;
+>>>    	struct mtk_vcodec_clk *dec_clk;
+>>> @@ -26,18 +24,7 @@ int mtk_vcodec_init_dec_pm(struct mtk_vcodec_dev
+>>> *mtkdev)
+>>>    	pm = &mtkdev->pm;
+>>>    	pm->mtkdev = mtkdev;
+>>>    	dec_clk = &pm->vdec_clk;
+>>> -	node = of_parse_phandle(pdev->dev.of_node, "mediatek,larb", 0);
+>>> -	if (!node) {
+>>> -		mtk_v4l2_err("of_parse_phandle mediatek,larb fail!");
+>>> -		return -1;
+>>> -	}
+>>>    
+>>> -	pdev = of_find_device_by_node(node);
+>>> -	of_node_put(node);
+>>> -	if (WARN_ON(!pdev)) {
+>>> -		return -1;
+>>> -	}
+>>> -	pm->larbvdec = &pdev->dev;
+>>>    	pdev = mtkdev->plat_dev;
+>>>    	pm->dev = &pdev->dev;
+>>>    
+>>> @@ -47,14 +34,11 @@ int mtk_vcodec_init_dec_pm(struct
+>>> mtk_vcodec_dev *mtkdev)
+>>>    		dec_clk->clk_info = devm_kcalloc(&pdev->dev,
+>>>    			dec_clk->clk_num, sizeof(*clk_info),
+>>>    			GFP_KERNEL);
+>>> -		if (!dec_clk->clk_info) {
+>>> -			ret = -ENOMEM;
+>>> -			goto put_device;
+>>> -		}
+>>> +		if (!dec_clk->clk_info)
+>>> +			return -ENOMEM;
+>>>    	} else {
+>>>    		mtk_v4l2_err("Failed to get vdec clock count");
+>>> -		ret = -EINVAL;
+>>> -		goto put_device;
+>>> +		return -EINVAL;
+>>>    	}
+>>>    
+>>>    	for (i = 0; i < dec_clk->clk_num; i++) {
+>>> @@ -63,29 +47,24 @@ int mtk_vcodec_init_dec_pm(struct
+>>> mtk_vcodec_dev *mtkdev)
+>>>    			"clock-names", i, &clk_info->clk_name);
+>>>    		if (ret) {
+>>>    			mtk_v4l2_err("Failed to get clock name id =
+>>> %d", i);
+>>> -			goto put_device;
+>>> +			return ret;
+>>>    		}
+>>>    		clk_info->vcodec_clk = devm_clk_get(&pdev->dev,
+>>>    			clk_info->clk_name);
+>>>    		if (IS_ERR(clk_info->vcodec_clk)) {
+>>>    			mtk_v4l2_err("devm_clk_get (%d)%s fail", i,
+>>>    				clk_info->clk_name);
+>>> -			ret = PTR_ERR(clk_info->vcodec_clk);
+>>> -			goto put_device;
+>>> +			return PTR_ERR(clk_info->vcodec_clk);
+>>>    		}
+>>>    	}
+>>>    
+>>>    	pm_runtime_enable(&pdev->dev);
+>>>    	return 0;
+>>> -put_device:
+>>> -	put_device(pm->larbvdec);
+>>> -	return ret;
+>>>    }
+>>>    
+>>>    void mtk_vcodec_release_dec_pm(struct mtk_vcodec_dev *dev)
+>>>    {
+>>>    	pm_runtime_disable(dev->pm.dev);
+>>> -	put_device(dev->pm.larbvdec);
+>>>    }
+>>
+>> Now that functions only do  'pm_runtime_disable(dev->pm.dev);' so it
+>> will be more
+>> readable to remove the function mtk_vcodec_release_dec_pm
+>> and replace with pm_runtime_disable(dev->pm.dev);
+>> Same for the 'enc' equivalent.
+> 
+> Make sense. But It may be not proper if using pm_runtime_disable
+> as the symmetry with mtk_vcodec_init_dec_pm in the mtk_vcodec_probe.
+> 
+> Maybe we should move pm_runtime_enable out from mtk_vcodec_init_dec_pm
+> into mtk_vcodec_probe. I could do a new patch for this. Is this ok for
+> you?
 
-You might want to call ht16k33_brightness_set(priv, brightness) here to get a
-know value into the display setup register (0x80).
+yes, there is also asymettry when calling pm_runtime* in general,
+I see in the decoder it is called from mtk_vcodec_dec_pm.c
+but in the encoder it is called from mtk_vcodec_enc.c,
 
-Right now if I enable hardware blinking and (soft)reboot my board it keeps on
-blinking even after a re-probe.
+I think all calls to pm_runtime* should be out of the *_pm.c files
+since for example 'mtk_vcodec_dec_pw_on' also do just one call to
+pm_runtime_resume_and_get so this function can also be removed.
 
-> +
-> +	return err;
-> +}
-> +
->  static int ht16k33_keypad_probe(struct i2c_client *client,
->  				struct ht16k33_keypad *keypad)
->  {
-> @@ -498,24 +579,28 @@ static int ht16k33_fbdev_probe(struct device *dev,
-> struct ht16k33_priv *priv,
->  			       uint32_t brightness)
->  {
->  	struct ht16k33_fbdev *fbdev = &priv->fbdev;
-> -	struct backlight_properties bl_props;
-> -	struct backlight_device *bl;
-> +	struct backlight_device *bl = NULL;
->  	int err;
-> 
-> -	/* Backlight */
-> -	memset(&bl_props, 0, sizeof(struct backlight_properties));
-> -	bl_props.type = BACKLIGHT_RAW;
-> -	bl_props.max_brightness = MAX_BRIGHTNESS;
-> +	if (!priv->led.dev) {
-> +		/* backwards compatibility with DT lacking an led subnode */
-> +		struct backlight_properties bl_props;
-> 
-> -	bl = devm_backlight_device_register(dev, DRIVER_NAME"-bl", dev, priv,
-> -					    &ht16k33_bl_ops, &bl_props);
-> -	if (IS_ERR(bl)) {
-> -		dev_err(dev, "failed to register backlight\n");
-> -		return PTR_ERR(bl);
-> -	}
-> +		memset(&bl_props, 0, sizeof(struct backlight_properties));
-> +		bl_props.type = BACKLIGHT_RAW;
-> +		bl_props.max_brightness = MAX_BRIGHTNESS;
-> +
-> +		bl = devm_backlight_device_register(dev, DRIVER_NAME"-bl", dev,
-> +						    priv, &ht16k33_bl_ops,
-> +						    &bl_props);
-> +		if (IS_ERR(bl)) {
-> +			dev_err(dev, "failed to register backlight\n");
-> +			return PTR_ERR(bl);
-> +		}
-> 
-> -	bl->props.brightness = brightness;
-> -	ht16k33_bl_update_status(bl);
-> +		bl->props.brightness = brightness;
-> +		ht16k33_bl_update_status(bl);
-> +	}
-> 
->  	/* Framebuffer (2 bytes per column) */
->  	BUILD_BUG_ON(PAGE_SIZE < HT16K33_FB_SIZE);
-> @@ -575,7 +660,7 @@ static int ht16k33_seg_probe(struct device *dev, struct
-> ht16k33_priv *priv,
->  	struct ht16k33_seg *seg = &priv->seg;
->  	int err;
-> 
-> -	err = ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
-> +	err = ht16k33_brightness_set(priv, brightness);
+thanks,
+Dafna
 
-This looks like a bugfix for patch 17, maybe move this change there?
-
->  	if (err)
->  		return err;
 > 
-> @@ -653,6 +738,11 @@ static int ht16k33_probe(struct i2c_client *client)
->  		dft_brightness = MAX_BRIGHTNESS;
->  	}
+>>
+>> Thanks,
+>> Dafna
 > 
-> +	/* LED */
-> +	err = ht16k33_led_probe(dev, &priv->led, dft_brightness);
-> +	if (err)
-> +		return err;
-> +
->  	/* Keypad */
->  	if (client->irq > 0) {
->  		err = ht16k33_keypad_probe(client, &priv->keypad);
-
-Gr{oetje,eeting}s,
-Robin
+> [snip]
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> 
