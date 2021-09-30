@@ -2,119 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6F0241D72A
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 12:05:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6877A41D738
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 12:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349740AbhI3KHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 06:07:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57888 "EHLO
+        id S1349689AbhI3KKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 06:10:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349734AbhI3KHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 06:07:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64EEAC06176C
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 03:05:22 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mVsw8-00082R-U7; Thu, 30 Sep 2021 12:05:08 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mVsw3-00046S-BY; Thu, 30 Sep 2021 12:05:03 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     =?UTF-8?q?S=C3=B8ren=20Andersen?= <san@skov.dk>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v1 3/3] panel-simple: add LOGIC Technologies LTTD800480070-L2RT panel
-Date:   Thu, 30 Sep 2021 12:05:01 +0200
-Message-Id: <20210930100501.15690-3-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210930100501.15690-1-o.rempel@pengutronix.de>
-References: <20210930100501.15690-1-o.rempel@pengutronix.de>
+        with ESMTP id S1349676AbhI3KKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 06:10:15 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B92C06176D
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 03:08:33 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id m3so22802789lfu.2
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 03:08:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=mwTJIBSdS6R0C6OOzQhsYG/CA9Av8xCuOU1iydIZfq8=;
+        b=ivZCT+RSpG5Lr3g/DnUUf9qNfJjNYEBDbk0sXckN3US/d3v73YYcN23q0gW1WEDlCF
+         4QdzhSNaM0Lm9mjqyKiP/SvHhFGovDkoONIkjO6jEXsrqXkeuyGKcdG2dAh8vfVEmSRj
+         nke3WD52VbQKrXvU5FjyYTgmtUKEHPvQpiBan+Leef4aA7HQdSVd7xVwJ67rmFFTYmIt
+         zE+4gHgh7oa4RgNQvVReezvOaMgOIT+2CvBjbFAVrMr2Ej5UazkPfRl0orjBYUB0/MF5
+         4C2cUNV52DHLyVT8sMkGmEiMl7PP1Efg+OV9kaU8DlpmA6RXnUJOzKC55Om6qfkezQHS
+         mQgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=mwTJIBSdS6R0C6OOzQhsYG/CA9Av8xCuOU1iydIZfq8=;
+        b=Q0tTnxi6N4Ocs9a1p+awdZG/Ako7l6KHt+QOZz5ChXt/yTtPsN92eOx0k0Te9IHS2U
+         9nn7hgK690c59EHmHP0fNjo/f8K0Hz4ZvbU87iXP55oPQGomXvjO2i6LPSjuxfFKPnm/
+         YkE3ZRekV7sBfVjz4B7de6ShVnAG9ebHehLG3hSFM9NJYKyZWrK4B/uAHcCShlmyBJk3
+         nrFsxEyrpf0EteQ2xEO0LCAOP4KLYwDaMEjZwNirEMmPW2oZZMR5Gji3oGyTW7RfSvfB
+         VgIfpr0gPFZ3xCVvjRFPiHG0QvYI3QjVahXnZRsy4jyzUI9vS5GaRz6vBhYhMUMuRNx5
+         C8HQ==
+X-Gm-Message-State: AOAM530q8NfsmjKAdOYZgbnv39S88951BOLEpG7jdn5+YwB4b9U1ZNP5
+        JBqokLQYYbQLAm9ip+YSMQSI5Hp3V6Cxuc3XLsznxkNN7LU0Xw==
+X-Google-Smtp-Source: ABdhPJxp5GhGqokFxVNBLzc5wAxYntlHon3eHPcHlnoTTXeNni+3NFATmwx155GBOUerq63XPBnIf991pZVt2hJfQIM=
+X-Received: by 2002:a2e:898c:: with SMTP id c12mr5105509lji.16.1632996511275;
+ Thu, 30 Sep 2021 03:08:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com> <20210920161136.2398632-9-Jerome.Pouiller@silabs.com>
+In-Reply-To: <20210920161136.2398632-9-Jerome.Pouiller@silabs.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 30 Sep 2021 12:07:55 +0200
+Message-ID: <CAPDyKFp2_41mScO=-Ev+kvYD5xjShQdLugU_2FTTmvzgCxmEWA@mail.gmail.com>
+Subject: Re: [PATCH v7 08/24] wfx: add bus_sdio.c
+To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
+Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Søren Andersen <san@skov.dk>
+On Mon, 20 Sept 2021 at 18:12, Jerome Pouiller
+<Jerome.Pouiller@silabs.com> wrote:
+>
+> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+>
+> Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+> ---
+>  drivers/net/wireless/silabs/wfx/bus_sdio.c | 261 +++++++++++++++++++++
+>  1 file changed, 261 insertions(+)
+>  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
+>
+> diff --git a/drivers/net/wireless/silabs/wfx/bus_sdio.c b/drivers/net/wir=
+eless/silabs/wfx/bus_sdio.c
 
-Add support for the Logic Technologies LTTD800x480 L2RT 7" 800x480 TFT
-Resistive Touch Module.
+[...]
 
-Signed-off-by: Søren Andersen <san@skov.dk>
-Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- drivers/gpu/drm/panel/panel-simple.c | 35 ++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+> +
+> +static int wfx_sdio_probe(struct sdio_func *func,
+> +                         const struct sdio_device_id *id)
+> +{
+> +       struct device_node *np =3D func->dev.of_node;
+> +       struct wfx_sdio_priv *bus;
+> +       int ret;
+> +
+> +       if (func->num !=3D 1) {
+> +               dev_err(&func->dev, "SDIO function number is %d while it =
+should always be 1 (unsupported chip?)\n",
+> +                       func->num);
+> +               return -ENODEV;
+> +       }
+> +
+> +       bus =3D devm_kzalloc(&func->dev, sizeof(*bus), GFP_KERNEL);
+> +       if (!bus)
+> +               return -ENOMEM;
+> +
+> +       if (!np || !of_match_node(wfx_sdio_of_match, np)) {
+> +               dev_warn(&func->dev, "no compatible device found in DT\n"=
+);
+> +               return -ENODEV;
+> +       }
+> +
+> +       bus->func =3D func;
+> +       bus->of_irq =3D irq_of_parse_and_map(np, 0);
+> +       sdio_set_drvdata(func, bus);
+> +       func->card->quirks |=3D MMC_QUIRK_LENIENT_FN0 |
+> +                             MMC_QUIRK_BLKSZ_FOR_BYTE_MODE |
+> +                             MMC_QUIRK_BROKEN_BYTE_MODE_512;
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index a03b60f6fa99..fdcba94c02da 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -3139,6 +3139,38 @@ static const struct panel_desc logictechno_lt170410_2whc = {
- 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
- };
- 
-+static const struct drm_display_mode logictechno_lttd800480070_l2rt_mode = {
-+	.clock = 33000,
-+	.hdisplay = 800,
-+	.hsync_start = 800 + 112,
-+	.hsync_end = 800 + 112 + 3,
-+	.htotal = 800 + 112 + 3 + 85,
-+	.vdisplay = 480,
-+	.vsync_start = 480 + 38,
-+	.vsync_end = 480 + 38 + 3,
-+	.vtotal = 480 + 38 + 3 + 29,
-+	.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
-+};
-+
-+static const struct panel_desc logictechno_lttd800480070_l2rt = {
-+	.modes = &logictechno_lttd800480070_l2rt_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 154,
-+		.height = 86,
-+	},
-+	.delay = {
-+		.prepare = 45,
-+		.enable = 100,
-+		.disable = 100,
-+		.unprepare = 45
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
-+	.connector_type = DRM_MODE_CONNECTOR_DPI,
-+};
-+
- static const struct drm_display_mode logictechno_lttd800480070_l6wh_rt_mode = {
- 	.clock = 33000,
- 	.hdisplay = 800,
-@@ -4754,6 +4786,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "logictechno,lt170410-2whc",
- 		.data = &logictechno_lt170410_2whc,
-+	}, {
-+		.compatible = "logictechno,lttd800480070-l2rt",
-+		.data = &logictechno_lttd800480070_l2rt,
- 	}, {
- 		.compatible = "logictechno,lttd800480070-l6wh-rt",
- 		.data = &logictechno_lttd800480070_l6wh_rt,
--- 
-2.30.2
+I would rather see that you add an SDIO_FIXUP for the SDIO card, to
+the sdio_fixup_methods[], in drivers/mmc/core/quirks.h, instead of
+this.
 
+> +
+> +       sdio_claim_host(func);
+> +       ret =3D sdio_enable_func(func);
+> +       /* Block of 64 bytes is more efficient than 512B for frame sizes =
+< 4k */
+> +       sdio_set_block_size(func, 64);
+> +       sdio_release_host(func);
+> +       if (ret)
+> +               return ret;
+> +
+> +       bus->core =3D wfx_init_common(&func->dev, &wfx_sdio_pdata,
+> +                                   &wfx_sdio_hwbus_ops, bus);
+> +       if (!bus->core) {
+> +               ret =3D -EIO;
+> +               goto sdio_release;
+> +       }
+> +
+> +       ret =3D wfx_probe(bus->core);
+> +       if (ret)
+> +               goto sdio_release;
+> +
+> +       return 0;
+> +
+> +sdio_release:
+> +       sdio_claim_host(func);
+> +       sdio_disable_func(func);
+> +       sdio_release_host(func);
+> +       return ret;
+> +}
+> +
+> +static void wfx_sdio_remove(struct sdio_func *func)
+> +{
+> +       struct wfx_sdio_priv *bus =3D sdio_get_drvdata(func);
+> +
+> +       wfx_release(bus->core);
+> +       sdio_claim_host(func);
+> +       sdio_disable_func(func);
+> +       sdio_release_host(func);
+> +}
+> +
+> +static const struct sdio_device_id wfx_sdio_ids[] =3D {
+> +       { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF200)=
+ },
+> +       { },
+> +};
+> +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
+> +
+> +struct sdio_driver wfx_sdio_driver =3D {
+> +       .name =3D "wfx-sdio",
+> +       .id_table =3D wfx_sdio_ids,
+> +       .probe =3D wfx_sdio_probe,
+> +       .remove =3D wfx_sdio_remove,
+> +       .drv =3D {
+> +               .owner =3D THIS_MODULE,
+> +               .of_match_table =3D wfx_sdio_of_match,
+
+Is there no power management? Or do you intend to add that on top?
+
+> +       }
+> +};
+> --
+> 2.33.0
+>
+
+Kind regards
+Uffe
