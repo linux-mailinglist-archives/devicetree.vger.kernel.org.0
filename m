@@ -2,117 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7675241DACC
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D017841DAD6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:18:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350774AbhI3NSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 09:18:45 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:45836
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1350730AbhI3NSo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 09:18:44 -0400
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 41D07402F6
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 13:17:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633007821;
-        bh=RCNF115QrSenyhS4+VUmTb+/09HgZQVEEH62W5zhJ9o=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=NPBdil4tQLTdbn/InaRcY28R5pI15hbMigaqlVuDNvUHKLUI4t/k6TQ84trvRfQS2
-         f23JmlvnVzvCcIduDKPldzYvsS/b21/um2jRTsF3CZymQ5CPiK9ZVGDIoZBEAk+xhW
-         Fjbh+U19j8uXrSGlu8e0ugo337FaRr9czHMconAkylmLZLB4jVHcvvjJ08G7eJvXnx
-         Kn1GifhLbxK/7I3+slh9wtQtBoj/CJjphNSpDgFXLE0LzHy1hmyIsVlkQypv74mpqv
-         pHc2VdIR7O1X1zOuVXj7R+M2g4bHnW11VAXJlGR2k1Q1sNoMo0uKWUroM3Hom7gZzf
-         5/oEBpi2r1eSA==
-Received: by mail-lf1-f72.google.com with SMTP id q4-20020ac25284000000b003fcebb305a6so5544348lfm.15
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 06:17:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=RCNF115QrSenyhS4+VUmTb+/09HgZQVEEH62W5zhJ9o=;
-        b=aSLwoig/6WjPzqoqnvlr6phenpaIwRUc52AGsnhr6sFr3wnC5lgTBHIE8PhERFkrfM
-         yIBfvf17z4kp+jrMEQyRwzOkXyTGbrxMy4W/oSn/0WfdL7K28jPejG9YBBP9Q0/B9DRF
-         C1RYCAKwd65GE9rcPe9HN6GN75gtpHeXcxlvT/ErItxvq63sZUhHP052IENTinmFImPU
-         yvJgh5vq8wRswmjZXoGZeuwapc6ofasGTCIZYeEtJdPYGm24wy0VwPSiI2WjTnaRdjmv
-         cFd5xNWbjM8O0F5fwpEXaWLz8KjK9wzstka3U0hRYQjiDvmHbWefDl57017HFzxmHRZC
-         Inpw==
-X-Gm-Message-State: AOAM530e1W1TAsc7Yqd4fB7dLLmIA4fpSMNHwVOGOtf5RDnCwn9PUuaf
-        Sd0EtnOevEOvvHIDBeCdkElGsR8kPb2lOWqaGXdpuJAl85Hmw3kN7fL0dK6zqSiYqwrauXheDaM
-        LUc3II7bEfyCUVK686M0cu13/g4Re4uhT2r1FOXk=
-X-Received: by 2002:a2e:a596:: with SMTP id m22mr6316948ljp.262.1633007820688;
-        Thu, 30 Sep 2021 06:17:00 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy09YmqEMO9K/DkFa/bZTei75H3U3dhuXPBwEhVk4C2y92R9e/R2akQYKqXZiF/L9tEarb/qQ==
-X-Received: by 2002:a2e:a596:: with SMTP id m22mr6316925ljp.262.1633007820526;
-        Thu, 30 Sep 2021 06:17:00 -0700 (PDT)
-Received: from [192.168.0.197] ([193.178.187.25])
-        by smtp.gmail.com with ESMTPSA id f26sm341405ljj.82.2021.09.30.06.16.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Sep 2021 06:17:00 -0700 (PDT)
-Subject: Re: [PATCH 10/12] mfd: dt-bindings: samsung,s5m8767: document buck
- and LDO supplies
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-References: <20210928084949.27939-1-krzysztof.kozlowski@canonical.com>
- <20210928084949.27939-11-krzysztof.kozlowski@canonical.com>
- <YVWx+08egbGPiYYt@google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <e5ab2ba9-e4ae-30db-8e54-8af42d7f3bf1@canonical.com>
-Date:   Thu, 30 Sep 2021 15:16:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S1349962AbhI3NUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 09:20:37 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:47616 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1349852AbhI3NUg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 09:20:36 -0400
+X-UUID: 1e1941976b62472a9ffcb430063039f0-20210930
+X-UUID: 1e1941976b62472a9ffcb430063039f0-20210930
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1231326460; Thu, 30 Sep 2021 21:18:51 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 30 Sep 2021 21:18:50 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 30 Sep
+ 2021 21:18:50 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 30 Sep 2021 21:18:49 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Subject: [PATCH v2, 0/1] mailbox: cmdq: add instruction time-out interrupt support
+Date:   Thu, 30 Sep 2021 21:18:49 +0800
+Message-ID: <20210930131850.21202-1-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YVWx+08egbGPiYYt@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2021 14:47, Lee Jones wrote:
-> On Tue, 28 Sep 2021, Krzysztof Kozlowski wrote:
-> 
->> Document the properties with regulator supplies for bucks and LDOs.  At
->> least one board uses it (Exynos5250 Arndale).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  .../bindings/mfd/samsung,s5m8767.yaml         | 38 +++++++++++++++++++
->>  1 file changed, 38 insertions(+)
-> 
-> These all need Rob's Ack.
+Base v5.15
 
-Correct.
+Yongqiang Niu (1):
+  mailbox: cmdq: add instruction time-out interrupt support
 
-> 
-> But can you start with reworking the subject line please.
-> 
-> It should be:
-> 
->   "dt-bindings: mfd: <component>: <Subject starting with an uppercase char>"
+ drivers/mailbox/mtk-cmdq-mailbox.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Sure, just have in mind that Mark wants them the other way around for
-regulator. :)
+-- 
+2.25.1
 
-Best regards,
-Krzysztof
