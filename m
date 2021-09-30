@@ -2,285 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8488941D4FF
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 10:04:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74CD241D56F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 10:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349032AbhI3IGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 04:06:08 -0400
-Received: from comms.puri.sm ([159.203.221.185]:35176 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1348979AbhI3IFr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 04:05:47 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id C7B57E114A;
-        Thu, 30 Sep 2021 01:03:54 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id DGMzyBi4lGRH; Thu, 30 Sep 2021 01:03:53 -0700 (PDT)
-Message-ID: <a01be64e31fbeb910b237ce8b8031fe20f245c7e.camel@puri.sm>
-Subject: Re: [RFC 00/19] Add interconnect and devfreq support for i.MX8MQ
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     a.fatoum@pengutronix.de, adrian.hunter@intel.com,
-        aisheng.dong@nxp.com, catalin.marinas@arm.com,
-        cw00.choi@samsung.com, devicetree@vger.kernel.org,
-        djakov@kernel.org, festevam@gmail.com, kernel@pengutronix.de,
-        kyungmin.park@samsung.com, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-serial@vger.kernel.org,
-        myungjoo.ham@samsung.com, robh@kernel.org, s.hauer@pengutronix.de,
-        shawnguo@kernel.org, ulf.hansson@linaro.org, will.deacon@arm.com
-Date:   Thu, 30 Sep 2021 10:03:46 +0200
-In-Reply-To: <YVRRomS8ut6NjYlV@ryzen>
-References: <1631554694-9599-1-git-send-email-abel.vesa@nxp.com>
-         <20210924102026.2679952-1-martin.kepplinger@puri.sm>
-         <YVRRomS8ut6NjYlV@ryzen>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        id S1348428AbhI3Idl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 04:33:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36146 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348402AbhI3Idl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 04:33:41 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 634C7C06161C;
+        Thu, 30 Sep 2021 01:31:59 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id C49121F449E9
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-mediatek@lists.infradead.org, eizan@chromium.org,
+        kernel@collabora.com, drinkcat@chromium.org,
+        jitao.shi@mediatek.com, chunkuang.hu@kernel.org,
+        hsinyi@chromium.org, matthias.bgg@gmail.com,
+        Crystal Guo <crystal.guo@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Fabien Parent <fparent@baylibre.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org
+Subject: [PATCH v4 0/7] Add support to the mmsys driver to be a reset controller
+Date:   Thu, 30 Sep 2021 10:31:43 +0200
+Message-Id: <20210930083150.3317003-1-enric.balletbo@collabora.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 29.09.2021 um 14:44 +0300 schrieb Abel Vesa:
-> On 21-09-24 12:20:26, Martin Kepplinger wrote:
-> > hi Abel,
-> > 
-> > thank you for the update (this is actually v2 of this RFC right?)!
-> > 
-> > all in all this runs fine on the imx8mq (Librem 5 and devkit) I
-> > use. For all
-> > the pl301 nodes I'm not yet sure what I can actually test / switch
-> > frequencies.
-> > 
-> 
-> You can start by looking into each of the following:
-> 
->  $ ls -1d /sys/devices/platform/soc@0/*/devfreq/*/trans_stat
-> 
-> and look if the transitions happen when a specific driver that is a
-> icc user suspends.
-> 
-> You can also look at:
-> 
->  /sys/kernel/debug/interconnect/interconnect_summary 
-> 
-> and:
-> 
->  /sys/kernel/debug/interconnect/interconnect_graph
-> 
-> > But I still have one problem: lcdif/mxfb already has the
-> > interconnect dram
-> > DT property and I use the following call to request bandwidth:
-> > https://source.puri.sm/martin.kepplinger/linux-next/-/commit/d690e4c021293f938eb2253607f92f5a64f15688
-> > (mainlining this is on our todo list).
-> > 
-> > With your patchset, I get:
-> > 
-> > [    0.792960] genirq: Flags mismatch irq 30. 00000004 (mxsfb-drm)
-> > vs. 00000004 (mxsfb-drm)
-> > [    0.801143] mxsfb 30320000.lcd-controller: Failed to install IRQ
-> > handler
-> > [    0.808058] mxsfb: probe of 30320000.lcd-controller failed with
-> > error -16
-> > 
-> > so the main devfreq user (mxsfb) is not there :) why?
-> > 
-> 
-> OK, I admit, this patchset doesn't provide support for all the icc
-> consumer drivers.
-> But that should come at a later stage. I only provided example like
-> fec and usdhc, to show
-> how it all fits together.
-> 
-> > and when I remove the interconnect property from the lcdif DT node,
-> > mxsfb
-> > probes again, but of course it doesn't lower dram freq as needed.
-> > 
-> > Do I do the icc calls wrong in mxsfb despite it working without
-> > your
-> > patchset, or may there be something wrong on your side that breaks
-> > the mxsfb IRQ?
-> > 
-> 
-> Do you have the following changes into your tree?
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mq.dtsi               
-> index 00dd8e39a595..c43a84622af5
-> 100644                                                               
->            
-> ---
-> a/arch/arm64/boot/dts/freescale/imx8mq.dtsi                          
->                                         
-> +++
-> b/arch/arm64/boot/dts/freescale/imx8mq.dtsi                          
->                                         
-> @@ -524,7 +524,7 @@ lcdif: lcd-controller@30320000
-> {                                                             
->                                                   <&clk
-> IMX8MQ_VIDEO_PLL1>,                                      
->                                                   <&clk
-> IMX8MQ_VIDEO_PLL1_OUT>;                                  
->                                 assigned-clock-rates = <0>, <0>, <0>,
-> <594000000>;                               
-> -                               interconnects = <&noc
-> IMX8MQ_ICM_LCDIF &noc IMX8MQ_ICS_DRAM>;                    
-> +                               interconnects = <&icc
-> IMX8MQ_ICM_LCDIF &icc IMX8MQ_ICS_DRAM>;                    
->                                 interconnect-names =
-> "dram";                                                     
->                                 status =
-> "disabled";                                                          
->    
->                                                                      
->                                             
-> @@ -1117,7 +1117,7 @@ mipi_csi1: csi@30a70000
-> {                                                                  
->                                          <&src
-> IMX8MQ_RESET_MIPI_CSI1_PHY_REF_RESET>,                            
->                                          <&src
-> IMX8MQ_RESET_MIPI_CSI1_ESC_RESET>;                                
->                                 fsl,mipi-phy-gpr = <&iomuxc_gpr
-> 0x88>;                                           
-> -                               interconnects = <&noc IMX8MQ_ICM_CSI1
-> &noc IMX8MQ_ICS_DRAM>;                     
-> +                               interconnects = <&icc IMX8MQ_ICM_CSI1
-> &icc IMX8MQ_ICS_DRAM>;                     
->                                 interconnect-names =
-> "dram";                                                     
->                                 status =
-> "disabled";                                                          
->    
->                                                                      
->                                             
-> @@ -1169,7 +1169,7 @@ mipi_csi2: csi@30b60000
-> {                                                                  
->                                          <&src
-> IMX8MQ_RESET_MIPI_CSI2_PHY_REF_RESET>,                            
->                                          <&src
-> IMX8MQ_RESET_MIPI_CSI2_ESC_RESET>;                                
->                                 fsl,mipi-phy-gpr = <&iomuxc_gpr
-> 0xa4>;                                           
-> -                               interconnects = <&noc IMX8MQ_ICM_CSI2
-> &noc IMX8MQ_ICS_DRAM>;                     
-> +                               interconnects = <&icc IMX8MQ_ICM_CSI2
-> &icc IMX8MQ_ICS_DRAM>;                     
->                                 interconnect-names =
-> "dram";                                                     
->                                 status =
-> "disabled";                                                          
->    
-> 
-> I forgot to update these in the current version of the patchset. Will
-> do in the next version.
-> 
-> Also, would help a lot if you could give me a link to a tree you're
-> testing with.
-> That way I can look exactly at what's going on.
-> 
-> 
+Dear all,
+
+The following patchset is a reimplementation of the patch sent by Jitao
+Shi [1] some time ago. As suggested by Chun-Kuang Hu, this time the
+reset is done using the reset API, where the mmsys driver is the reset
+controller and the mtk_dsi driver is the reset consumer.
+
+Note that the first patch is kind of unrelated change, it's just a
+cleanup but is needed if you want to apply all the following patches
+cleanly.
+
+This patchset is important in order to have the DSI panel working on some
+kukui MT8183 Chromebooks (i.e Lenovo IdeaPad Duet). Without it, you just
+get a black screen.
+
+Best regards,
+  Enric
+
+[1] https://lore.kernel.org/linux-arm-kernel/20210420132614.150242-4-jitao.shi@mediatek.com/
 
 
-thanks Abel, with the above fix of existing interconnects properties my
-system runs as expected and here's the output of
+Changes in v4:
+- Remove unnused variable as pointed by Hsin-Yi
 
-for each in `ls -1d /sys/devices/platform/soc@0/*/devfreq/*`; do echo
-$each; cat $each/trans_stat; done
+Changes in v3:
+- Based on top of the patch that converts mmsys to schema
+- Fix typo in the commit description
 
-for mxsfb requesting (max) bandwith (display on):
+Changes in v2:
+- Fix build test ERROR Reported-by: kernel test robot <lkp@intel.com>
+- Added a new patch to describe the dsi reset optional property.
 
-/sys/devices/platform/soc@0/32700000.noc/devfreq/32700000.noc
-     From  :   To
-           : 133333333 400000000 800000000   time(ms)
-  133333333:         0         1         0       624
-  400000000:         0         0         1        28
-* 800000000:         1         0         0     30624
-Total transition : 3
-/sys/devices/platform/soc@0/3d400000.memory-
-controller/devfreq/3d400000.memory-controller
-     From  :   To
-           :  25000000 100000000 800000000   time(ms)
-   25000000:         0         0         1       620
-  100000000:         0         0         0         0
-* 800000000:         1         0         0     30652
-Total transition : 2
-/sys/devices/platform/soc@0/soc@0:pl301@0/devfreq/soc@0:pl301@0
-     From  :   To
-           :  25000000 133333333 333333333   time(ms)
-   25000000:         0         0         1       616
-  133333333:         0         0         0         0
-* 333333333:         1         0         0     30668
-Total transition : 2
-/sys/devices/platform/soc@0/soc@0:pl301@1/devfreq/soc@0:pl301@1
-     From  :   To
-           :  25000000 266666666   time(ms)
-*  25000000:         0         0     31284
-  266666666:         0         0         0
-Total transition : 0
-/sys/devices/platform/soc@0/soc@0:pl301@2/devfreq/soc@0:pl301@2
-     From  :   To
-           :  25000000 800000000   time(ms)
-*  25000000:         0         0     31288
-  800000000:         1         0         0
-Total transition : 1
-/sys/devices/platform/soc@0/soc@0:pl301@3/devfreq/soc@0:pl301@3
-     From  :   To
-           :  25000000 800000000   time(ms)
-*  25000000:         0         0     31292
-  800000000:         1         0         0
-Total transition : 1
-/sys/devices/platform/soc@0/soc@0:pl301@4/devfreq/soc@0:pl301@4
-     From  :   To
-           :  25000000 333333333   time(ms)
-   25000000:         0         1       648
-* 333333333:         0         0     30652
-Total transition : 1
-/sys/devices/platform/soc@0/soc@0:pl301@5/devfreq/soc@0:pl301@5
-     From  :   To
-           :  25000000 500000000   time(ms)
-*  25000000:         0         0     31304
-  500000000:         1         0         0
-Total transition : 1
-/sys/devices/platform/soc@0/soc@0:pl301@6/devfreq/soc@0:pl301@6
-     From  :   To
-           :  25000000 500000000   time(ms)
-*  25000000:         0         0     31308
-  500000000:         0         0         0
-Total transition : 0
-/sys/devices/platform/soc@0/soc@0:pl301@7/devfreq/soc@0:pl301@7
-     From  :   To
-           :  25000000 128000000 500000000   time(ms)
-*  25000000:         0         0         0     31312
-  128000000:         0         0         0         0
-  500000000:         1         0         0         0
-Total transition : 1
-/sys/devices/platform/soc@0/soc@0:pl301@8/devfreq/soc@0:pl301@8
-     From  :   To
-           :  25000000 133333333   time(ms)
-*  25000000:         0         0     31316
-  133333333:         0         0         0
-Total transition : 0
-/sys/devices/platform/soc@0/soc@0:pl301@9/devfreq/soc@0:pl301@9
-     From  :   To
-           :  25000000 133333333 266666666   time(ms)
-   25000000:         0         0         5      1052
-  133333333:         0         0         0         0
-* 266666666:         5         0         0     30268
-Total transition : 10
+Enric Balletbo i Serra (7):
+  arm64: dts: mediatek: Move reset controller constants into common
+    location
+  dt-bindings: mediatek: Add #reset-cells to mmsys system controller
+  dt-bindings: display: mediatek: add dsi reset optional property
+  arm64: dts: mt8173: Add the mmsys reset bit to reset the dsi0
+  arm64: dts: mt8183: Add the mmsys reset bit to reset the dsi0
+  soc: mediatek: mmsys: Add reset controller support
+  drm/mediatek: mtk_dsi: Reset the dsi0 hardware
 
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |  4 ++
+ .../display/mediatek/mediatek,dsi.txt         |  6 ++
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  2 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  5 +-
+ drivers/gpu/drm/mediatek/mtk_dsi.c            |  5 +-
+ drivers/soc/mediatek/mtk-mmsys.c              | 68 +++++++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.h              |  2 +
+ drivers/watchdog/mtk_wdt.c                    |  6 +-
+ .../mt2712-resets.h                           |  0
+ include/dt-bindings/reset/mt8173-resets.h     |  2 +
+ .../mt8183-resets.h                           |  3 +
+ .../mt8192-resets.h                           |  0
+ 12 files changed, 97 insertions(+), 6 deletions(-)
+ rename include/dt-bindings/{reset-controller => reset}/mt2712-resets.h (100%)
+ rename include/dt-bindings/{reset-controller => reset}/mt8183-resets.h (98%)
+ rename include/dt-bindings/{reset-controller => reset}/mt8192-resets.h (100%)
 
-but with display off (mxsfb not requesting anything), I get the same
-fast freqs for noc and memory-controller. They should use the lowest
-freqs. Only pl301@4 switches to 25mhz in that case. That's odd.
-
-said (still) out-of-tree mxsfb request is
-https://source.puri.sm/martin.kepplinger/linux-next/-/commit/ee7b1453295932da1e292b734afa7a03651ad9ba
-
-and the exact tree I'm running for the above is
-https://source.puri.sm/martin.kepplinger/linux-next/-/commits/5.15-rc3/librem5__integration_byzantium_test_new_devfreq_interconnect
-
-thanks,
-
-                              martin
+-- 
+2.30.2
 
