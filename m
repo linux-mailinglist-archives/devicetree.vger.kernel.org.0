@@ -2,94 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A97841E1DE
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 20:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66DC341E1ED
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 21:02:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344376AbhI3S7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 14:59:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43040 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229748AbhI3S7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 14:59:34 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 476E6C06176A
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 11:57:51 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id w11so4680706plz.13
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 11:57:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=INS/NnjmQyvczAJwc1033hNjtGgSshbZrS89HveDlGM=;
-        b=WgoreokdsHTzIOGGPFkpgNz8WEGB7izZxJTKl15ASjyea9Mg9vlAxp1OmPHyOHXCEa
-         xTpMzOndeiHm2JF4RT0QitL3+dfVb7YV1IYMB2hQDriX8tioJQ7kGpPAooTAjEZtriD4
-         lD+CpTfZspbBIyZJ8OnHL4MIyk9Ugc8PD3l9qF9h9YwdXB7zN/ijjxWjAhqbhrE58Ww5
-         5mw7NvLES+iBCYjA81UvyZRBem2i3WeZu7K7Y+aOizZUN0cMUwjlM/aAMvYvGpD2slLf
-         C8nSChQQ6BngoYOF2D0RdMJRzaHQ5iPSsfvme/ipXMLoo5JUwnRr/av0XQlH9JXxvK/o
-         goGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=INS/NnjmQyvczAJwc1033hNjtGgSshbZrS89HveDlGM=;
-        b=qtLhaPQyqnBL9AqRNciYfkPB3mt3ijgV5BaX/lH7XqS/R8cz5y75uRqej4kvVaaITO
-         D4mt2VUnoQPB6jwvKfQpvp13SoOdDbgEONjCaioBBau7hHDggzjTs/DDreZwP6Gpekzl
-         4ATQjHC2HWz5LHPmtwp2aCvGL4bL4J56J+eceMupJH1blSTAfFxRzqDks0Ka14p/ZJOh
-         32naHXUqVRkqrVysXRcjix7gvFk5c8rV6hE96lHTsJzdfceN+jQEcrn/crlfD+MXKTeG
-         PT8NBmx5V7Py8znTg2rBmVHvFHollLEb5Z8umFfkwRjFQY/mTi+Vr43wZ9krBYSIzeKa
-         TIYA==
-X-Gm-Message-State: AOAM53172tfSvg6lwn0MwEMvCM2QbIMYDe58/BmUB/1+WcQHoRIHdKTi
-        98l1e9BMRtsgYt58sAUIpBlpsNmPFO2y7Q==
-X-Google-Smtp-Source: ABdhPJwaoPJvYdeAh2zI6l9aT8mgELUxGUQbjL9dEpa0IauDfkSNJwmen/GiD+a60VO17A+jkO4iag==
-X-Received: by 2002:a17:90a:9306:: with SMTP id p6mr14952234pjo.119.1633028270826;
-        Thu, 30 Sep 2021 11:57:50 -0700 (PDT)
-Received: from localhost.localdomain ([122.172.224.206])
-        by smtp.gmail.com with ESMTPSA id l144sm3920997pfd.193.2021.09.30.11.57.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Sep 2021 11:57:50 -0700 (PDT)
-From:   Amit Pundir <amit.pundir@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: qrb5165-rb5: Add msm-id and board-id
-Date:   Fri,  1 Oct 2021 00:27:42 +0530
-Message-Id: <20210930185742.117928-2-amit.pundir@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210930185742.117928-1-amit.pundir@linaro.org>
-References: <20210930185742.117928-1-amit.pundir@linaro.org>
+        id S1345751AbhI3TEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 15:04:13 -0400
+Received: from mga14.intel.com ([192.55.52.115]:4234 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1345619AbhI3TDK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 15:03:10 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="224919968"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; 
+   d="scan'208";a="224919968"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2021 12:01:03 -0700
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; 
+   d="scan'208";a="521314581"
+Received: from lcalx-mobl1.amr.corp.intel.com (HELO [10.212.88.180]) ([10.212.88.180])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2021 12:01:01 -0700
+Subject: Re: [PATCH 01/13] ASoC: soc-pcm: Don't reconnect an already active BE
+To:     Sameer Pujar <spujar@nvidia.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, robh+dt@kernel.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, catalin.marinas@arm.com, will@kernel.org,
+        perex@perex.cz, tiwai@suse.com, kuninori.morimoto.gx@renesas.com
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, sharadg@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <1630056839-6562-1-git-send-email-spujar@nvidia.com>
+ <1630056839-6562-2-git-send-email-spujar@nvidia.com>
+ <be6290d1-0682-3d93-98a6-ad0be3ca42c1@linux.intel.com>
+ <70422e52-89d2-d926-b3f9-be59780d464e@nvidia.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <40f098c8-b9e3-8da6-849a-eb9a39fefdb0@linux.intel.com>
+Date:   Thu, 30 Sep 2021 14:00:59 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <70422e52-89d2-d926-b3f9-be59780d464e@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add qcom,msm-id and qcom,board-id for Robotics Board RB5.
-This will help us boot the device with newer Android boot
-image header versions, which package dtb separately
-instead of the default Image.gz-dtb (appended dtb) format.
 
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 2 ++
- 1 file changed, 2 insertions(+)
+> 1. The original issue at my end was not just a configuration redundancy.
+> I realize now that with more stream addition following error print is seen.
+>    "ASoC: too many users playback at open 4"
+> 
+>    This is because the max DPCM users is capped at 8. Increasing this
+> may help (need to see what number is better), but does not address the
+> redundancy problem.
+Going back to this DPCM_MAX_BE_USERS definition, it seems rather
+arbitrary and not so useful indeed.
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 8ac96f8e79d4..b6a8b41ea831 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -16,6 +16,8 @@
- / {
- 	model = "Qualcomm Technologies, Inc. Robotics RB5";
- 	compatible = "qcom,qrb5165-rb5", "qcom,sm8250";
-+	qcom,msm-id = <455 0x20001>;
-+	qcom,board-id = <11 3>;
- 
- 	aliases {
- 		serial0 = &uart12;
--- 
-2.25.1
+	/* first time the dpcm is open ? */
+	if (be->dpcm[stream].users == DPCM_MAX_BE_USERS) {
+		dev_err(be->dev, "ASoC: too many users %s at open %d\n",
+			stream ? "capture" : "playback",
+			be->dpcm[stream].state);
+		continue;
+	}
 
+The comment is no longer aligned with the code, wondering if this is a
+feature or a bug. There's no reason to arbitrarily restrict the number
+of users of a BE, or the check would need to use platform-specific
+information such as the number of inputs/outputs supported by a mixer/demux.
+
+Maybe Morimoto-san can comment since this was added in:
+
+1db19c151819 ('ASoC: soc-pcm: fixup dpcm_be_dai_startup() user count')
+
+We're not done with soc-pcm.c cleanups :-)
