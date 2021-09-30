@@ -2,157 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F22541DB91
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED0C341DBA1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351544AbhI3N5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 09:57:01 -0400
-Received: from www.zeus03.de ([194.117.254.33]:34136 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351530AbhI3N5A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 09:57:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=lACN/fAUucdc9g/2SkCkqipA6nj3
-        JMT9I8knLNGVIRc=; b=RamTHQIWkQK+fuLGLW0ws8vId009JxFNyus/bGbMvQpe
-        N/LLTH3ZSg4tG2e3fbGaN5ZCtiBc28jZfSELK1ogZgFP8AJXfmoclxqt5Pgj9osX
-        rcypf/pOERZPljCCM6gwAEmuYGC1mwz1zgBG0q1p6DGUe7775T6r9XpsjNaJib8=
-Received: (qmail 2098631 invoked from network); 30 Sep 2021 15:55:15 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 30 Sep 2021 15:55:15 +0200
-X-UD-Smtp-Session: l3s3148p1@OM3WyzbN1oQgARa4RV6LAWawlO8I9jL3
-Date:   Thu, 30 Sep 2021 15:55:15 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH 5/6] memory: renesas-rpc-if: Drop usage of
- RPCIF_DIRMAP_SIZE macro
-Message-ID: <YVXBwx7rxJLRhlTI@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210928140721.8805-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1351595AbhI3OBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 10:01:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351594AbhI3OBT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 10:01:19 -0400
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A78C06176A
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 06:59:36 -0700 (PDT)
+Received: by mail-ua1-x92e.google.com with SMTP id i8so4261816uae.7
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 06:59:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Om8no/2SyMr+ZFU7kT3RzTdTECQ48yOn5szzAaS26GE=;
+        b=QknXTcFUivTKE1/gx5taCpS3UPA4wZ3WPG9GhgNL9VG7eSiogJ9BssfgsKo+QFhJpo
+         8+QWXnn+vAGfxvNwCa+Mq4874S83Y7+Db8RW8usudhPe+2JSyn9RTtOyoVJx76Ox4Wg3
+         MLoaX0/3jsSp8Cr56Aysjrv+z61Q0H2QxXuOo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Om8no/2SyMr+ZFU7kT3RzTdTECQ48yOn5szzAaS26GE=;
+        b=7hPwkwChNUGkaAC54fm9BZ8NEgiCiT/Lhb0aR0fNLJHVi3fNHsgk68eg9RjxbzOzYu
+         yACd+nP0PO7shKHBmuaGs8oOQGPvCbpDSMRs57f4iE4OVBlUhcFiiToxFH3e53Ne8vML
+         OCG4XAnfSh0DhwLkc6emsO7iRedeFFyZtgBgRdzRy72CXCK/9m8V5B8XNM0i9ZQinREO
+         QhlPM/jovTFqlBYwIWfwewXO5Lg9cNGHNGjx/AfpOeNkocjoP8H2NGynQEqL/3914kaE
+         VMN5SOBbnEi6saOMZ2K2I75vgsciCAgI+vcl1xIF6xDL/Kx48NOZOzMZst+9GFHS48WC
+         kekA==
+X-Gm-Message-State: AOAM532pSRrjMfoVVcIQJxyyGcKbjTuszs5NCah7mJ0BsE5YavashoHg
+        4C+73sJHmJbNG3/scQXULBuKR7CmmvDrwqfNa2nKtw==
+X-Google-Smtp-Source: ABdhPJx6wz2/ujHJOTtRhJB2uxtKK1YQ8dFIeHcLgGPWjexj0atcY0x+hIG3kIhrTCZK03jO1hA4iu7rr8DlEFe0ty8=
+X-Received: by 2002:a9f:3881:: with SMTP id t1mr5445135uaf.127.1633010375712;
+ Thu, 30 Sep 2021 06:59:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="okOuMtWAHaaiVQFC"
-Content-Disposition: inline
-In-Reply-To: <20210928140721.8805-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210914100415.1549208-1-daniel@0x0f.com> <20210914100415.1549208-3-daniel@0x0f.com>
+ <87zgs7vavl.wl-maz@kernel.org> <CAFr9PXnC4hQw5_0TtciKvqF7s=4axJ5Yrq80RXGcY4VvT1Ac2A@mail.gmail.com>
+ <87wnnbv6ac.wl-maz@kernel.org> <CAFr9PXmA07Up_wfJzzgZeYwE5ZrwnLqjBvLG3CERGHOLeay0Cg@mail.gmail.com>
+ <87lf3quydn.wl-maz@kernel.org> <CACRpkdYLURJCopH3hDuZTY8ce9-OxakELyFqwqkAVCsYmzF5kg@mail.gmail.com>
+ <874ka2tdqe.wl-maz@kernel.org> <CAFr9PXmu2JRSK9==MjpwgWTCET4iqj5U=egQQ2TciN0=B_UwNw@mail.gmail.com>
+ <871r56tbir.wl-maz@kernel.org>
+In-Reply-To: <871r56tbir.wl-maz@kernel.org>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Thu, 30 Sep 2021 22:59:24 +0900
+Message-ID: <CAFr9PXn5BiN1mqeZYcVMfDKWx3Re9BkY_miE34669XivCpmrCg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] irqchip: SigmaStar SSD20xD gpi
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Romain Perier <romain.perier@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marc,
 
---okOuMtWAHaaiVQFC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 30 Sept 2021 at 22:53, Marc Zyngier <maz@kernel.org> wrote:
+> Somehow, the handler for this interrupt is set to handle_bad_irq(),
+> which probably isn't what you want. You'll have to find out who sets
+> this (there is a comment about that in gpiolib.c, but I haven't had a
+> chance to find where this is coming from).
+>
+> Do you happen to set it in your driver?
 
-On Tue, Sep 28, 2021 at 03:07:20PM +0100, Lad Prabhakar wrote:
-> RPCIF_DIRMAP_SIZE may differ on various SoC's. Instead of using
-> RPCIF_DIRMAP_SIZE macro use resource size to get dirmap size
-> which is already part of struct rpcif.
->=20
-> Also make sure we return error in case devm_ioremap_resource()
-> fails for dirmap.
->=20
-> Fixes: ca7d8b980b67 ("memory: add Renesas RPC-IF driver")
-> Fixes: 59e27d7c94aa ("memory: renesas-rpc-if: fix possible NULL pointer d=
-ereference of resource")
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+The gpio driver (gpio-msc313.c) sets it during probe:
 
-In general, all fine. I just think this should be split into two
-patches:
+gpioirqchip = &gpiochip->irq;
+gpioirqchip->chip = &msc313_gpio_irqchip;
+gpioirqchip->fwnode = of_node_to_fwnode(dev->of_node);
+gpioirqchip->parent_domain = parent_domain;
+gpioirqchip->child_to_parent_hwirq = match_data->child_to_parent_hwirq;
+gpioirqchip->populate_parent_alloc_arg = match_data->populate_parent_fwspec;
+gpioirqchip->handler = handle_bad_irq;
+gpioirqchip->default_type = IRQ_TYPE_NONE;
 
-> @@ -147,8 +147,6 @@
->  #define RPCIF_PHYINT		0x0088	/* R/W */
->  #define RPCIF_PHYINT_WPVAL	BIT(1)
-> =20
-> -#define RPCIF_DIRMAP_SIZE	0x4000000
-> -
->  static const struct regmap_range rpcif_volatile_ranges[] =3D {
->  	regmap_reg_range(RPCIF_SMRDR0, RPCIF_SMRDR1),
->  	regmap_reg_range(RPCIF_SMWDR0, RPCIF_SMWDR1),
-> @@ -547,8 +545,8 @@ EXPORT_SYMBOL(rpcif_manual_xfer);
-> =20
->  ssize_t rpcif_dirmap_read(struct rpcif *rpc, u64 offs, size_t len, void =
-*buf)
->  {
-> -	loff_t from =3D offs & (RPCIF_DIRMAP_SIZE - 1);
-> -	size_t size =3D RPCIF_DIRMAP_SIZE - from;
-> +	loff_t from =3D offs & (rpc->size - 1);
-> +	size_t size =3D rpc->size - from;
-> =20
->  	if (len > size)
->  		len =3D size;
+Cheers,
 
-This is the second patch to split which fixes ca7d8b980b67.
-
-
-> @@ -244,7 +242,7 @@ int rpcif_sw_init(struct rpcif *rpc, struct device *d=
-ev)
->  	res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "dirmap");
->  	rpc->dirmap =3D devm_ioremap_resource(&pdev->dev, res);
->  	if (IS_ERR(rpc->dirmap))
-> -		rpc->dirmap =3D NULL;
-> +		return PTR_ERR(rpc->dirmap);
->  	rpc->size =3D resource_size(res);
-> =20
->  	rpc->rstc =3D devm_reset_control_get_exclusive(&pdev->dev, NULL);
-
-This is the first patch to split which fixes 59e27d7c94aa.
-
-Makes sense?
-
-If you agree, you can add my tag already to the new patches:
-
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-
---okOuMtWAHaaiVQFC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFVwcMACgkQFA3kzBSg
-KbZM5A//fXS4viqAsvu5+MJsDqWy1PnkkxWVX0eKh7vxVxdV7ykHo6BWNIor3Trb
-RNDFycLEbVe+9SrnhLKUZiShiFR4xNQsBmJGds25YGFdQogDFGmnyapKA6zXtGj8
-KBe34UCyjUo5dv8Mvl5DGo5HEhYmu4OVZpGxPBfFqzmUEpk5dW9nUbiuH8rROVpW
-cs4UyGIAWC+NjGCm04VXy8pAWikVwCrs0RLBTGlk1KITESWts2Sz2q9EXuJdymy8
-yLfHKeTWl8oUAhLBlULhvaOp9z55U4utgBUtzP7xEwXdyWbSAmzluYIrQVaS/xtQ
-Mp6zCCwl4rpsYjWPPv5CKioj/qtBp2S9hbB4E/iigjMcpPCL7Znu+42/ehVu5HDf
-NLS4dizP/N+qTjZYIv1oCrkYFsdvOGwryAHYStOsZS9aSjO71lNLFBNdxnzi2B7p
-ySFR7l/Eb1VdNa82ZAfz1HbTxPKVhzHZHont7LW8LvqcfM3lZ1Xjm7+vvKmh1mq3
-Ypb0Hs6VlCIeBsvUUSTtmKYHA9E8+goahA4t5VPwtJVVXXVps5EnBFjoOEYZWAS2
-5t+rHMCIPX3+HB+kcr82WSZwoTydzO8lbwyIg7as1/U9nC0riYLPueeI3Wf/sxWt
-lpreIkbOSze9ThMEedlaTRzQouFaQW4JTTYG6IlCk/wpzadT/hE=
-=Pshj
------END PGP SIGNATURE-----
-
---okOuMtWAHaaiVQFC--
+Daniel
