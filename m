@@ -2,115 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F2441E0F2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 20:19:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8419141E169
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 20:50:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350891AbhI3SVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 14:21:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33980 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350797AbhI3SVL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 14:21:11 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB93EC06176A
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 11:19:27 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id x33-20020a9d37a4000000b0054733a85462so8431215otb.10
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 11:19:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ssfSmhsMHjEW6hYVe4PjTHBi61zsb9noqUigbf2gVRo=;
-        b=gCZKuBk5M3O2d6AQ6j53Dgx+OE2D665B/f7BF3j+ZV++mhUC2OqzthPTuK+SO78db/
-         KtTB8wc45m6vgtkxkxgpJcRqlY+svn2wtwfqEgdA1ykfjqCcFPs/3MqaMXPOFuOsetxG
-         cU7T/H8iXPjMWjJE4I+308Nw/WtO0Pex1uN7NlKCT/0Ip6CWTy8eIyj4CQgLgBTk9mb3
-         ASm+luD4b6PrECb7zs4GsbHNvpcfn4ECNZwwcOkHYjZVEsi0tQoBzJWRav+R+AXLgPRz
-         SI6WUgvPh1T+K+nMAp+KoZkDRol3QIT65/17KNEY2bZmfw7gM87fW7AzIq+1DLOyVXi5
-         cKEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ssfSmhsMHjEW6hYVe4PjTHBi61zsb9noqUigbf2gVRo=;
-        b=c92BZchokpVxeD64Z7fUcOYroack+L8/w+O/z3DdryYuKVghE63sqjJCC5ZLu3r9rP
-         0JOYtghgmkIeYJJZFGNwsD0L66RYk0PQykYPZIkXC5x5f9eruUqxo+nAaLGU6vTIg2Je
-         oDdAYbmcEw/er5au7DfNDy+6P4+MfWEpsp3TV6HmxizCE/hf2JBGuP/cVX8zI5o5lf0E
-         T4Ti05kzXaed+E3BomNjcJkYJU7YYbi8Yg3hqE+TB+ESA1KOZIYzwuc1NAiB0qAZp2LE
-         1jP3F9W87hD3p9fWGJFhDf8kzpwY2jf/hqCwrhjDHcThUtuZcnH88RPh2WhykF+QcK74
-         qHEA==
-X-Gm-Message-State: AOAM533xJdJtmadiYExIwBmywgg2BBbPliuGwUQniqGkCcrv8cD2qM+S
-        x164/xnEfTB5FkIneyUorrhLjw==
-X-Google-Smtp-Source: ABdhPJysxT/S2qCAUgtNFfo215PxQiLxPc6UaM4C3xoF2S30WXVkVEm2Dx2mDB4zZ6ichO79ZGVVww==
-X-Received: by 2002:a9d:7053:: with SMTP id x19mr6729949otj.229.1633025967205;
-        Thu, 30 Sep 2021 11:19:27 -0700 (PDT)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k6sm727416otf.80.2021.09.30.11.19.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Sep 2021 11:19:26 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Chris Lew <clew@codeaurora.org>,
-        Deepak Kumar Singh <deesin@codeaurora.org>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sdm845: Drop standalone smem node
-Date:   Thu, 30 Sep 2021 11:21:11 -0700
-Message-Id: <20210930182111.57353-5-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210930182111.57353-1-bjorn.andersson@linaro.org>
-References: <20210930182111.57353-1-bjorn.andersson@linaro.org>
+        id S1344892AbhI3Sw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 14:52:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40636 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1344879AbhI3SwZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 14:52:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8244C61216;
+        Thu, 30 Sep 2021 18:50:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633027842;
+        bh=sHuklxRhVNrOUIGACjRjjFQjjWujtmMEebA4SOO7XVI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=uHnQO7KnOuN+F6Kg/VYMCkYNZKP/FQuRQKsHlQ02RSvOU+Lsr6a/Ejf3NJuypnQ0r
+         wgcHaC0oqgL3wh/+Bjpr7enKokEpGkilkhAcBEHhE9uLRLhpb0YgHbs+X+j4bqDpV7
+         0AkfKl3RUdJBxJT+ECt+6aVhpjwQ315nbX0A7Nb4a9ZuqQ7VSnVENanCiGErOWceKw
+         TlOjeEhAK0IhpTcaKezOnHkaHC7hBR/4sk1qUNqqo7JqlIbR9UE+BEQUtaXKIMytSU
+         2kYuIhxuTpWdfCtUUQdGYdGcDoSXL5vM5e4zMX86OIlLp0nscaVxPuacUtXLN3LJw1
+         +kT+1vHV0j00g==
+From:   Mike Rapoport <rppt@kernel.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Juergen Gross <jgross@suse.com>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Mike Rapoport <rppt@kernel.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Shahab Vahedi <Shahab.Vahedi@synopsys.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        kasan-dev@googlegroups.com, kvm@vger.kernel.org,
+        linux-alpha@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-efi@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+        linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+        linux-snps-arc@lists.infradead.org, linux-um@lists.infradead.org,
+        linux-usb@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        sparclinux@vger.kernel.org, xen-devel@lists.xenproject.org
+Subject: [PATCH v2 0/6] memblock: cleanup memblock_free interface
+Date:   Thu, 30 Sep 2021 21:50:25 +0300
+Message-Id: <20210930185031.18648-1-rppt@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that the SMEM binding and driver allows the SMEM node to be
-described in the reserved-memory region directly, move the compatible
-and hwlock properties to the reserved-memory node and drop the
-standadlone node.
+From: Mike Rapoport <rppt@linux.ibm.com>
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+Hi,
 
-Changes since v1:
-- Node name is changed to "smem", as "memory" is reserved for memory nodes.
+Following the discussion on [1] this is the fix for memblock freeing APIs
+mismatch. 
 
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
+The first patch is a cleanup of numa_distance allocation in arch_numa I've
+spotted during the conversion.
+The second patch is a fix for Xen memory freeing on some of the error
+paths.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index beee57087d05..64119d2efdcf 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -99,9 +99,11 @@ aop_cmd_db_mem: memory@85fe0000 {
- 			no-map;
- 		};
- 
--		smem_mem: memory@86000000 {
-+		smem@86000000 {
-+			compatible = "qcom,smem";
- 			reg = <0x0 0x86000000 0 0x200000>;
- 			no-map;
-+			hwlocks = <&tcsr_mutex 3>;
- 		};
- 
- 		tz_mem: memory@86200000 {
-@@ -941,12 +943,6 @@ tcsr_mutex: hwlock {
- 		#hwlock-cells = <1>;
- 	};
- 
--	smem {
--		compatible = "qcom,smem";
--		memory-region = <&smem_mem>;
--		hwlocks = <&tcsr_mutex 3>;
--	};
--
- 	smp2p-cdsp {
- 		compatible = "qcom,smp2p";
- 		qcom,smem = <94>, <432>;
+I agree with Christophe that doing step by step makes the thing easier to
+review, so the patches 3-6 do the actual cleanup step by step.
+
+This time I used stricter coccinelle scripts so that only straightforward
+uses would get converted.
+
+There still a couple of (void *) castings for the cases when a virtual
+address has unsigned long type rather than a pointer type, like e.g
+initrd_start.
+
+Since scripts/get_maintainer.pl returned more than 100 addresses I've
+trimmed the distribution list only to the relevant lists.
+
+Juergen and Shahab, I didn't keep your Reviewed-by because the patches are
+a bit different this time.
+
+v2:
+* split changes into several patches
+* use stricter coccinelle scripts 
+
+[1] https://lore.kernel.org/all/CAHk-=wj9k4LZTz+svCxLYs5Y1=+yKrbAUArH1+ghyG3OLd8VVg@mail.gmail.com
+
+Mike Rapoport (6):
+  arch_numa: simplify numa_distance allocation
+  xen/x86: free_p2m_page: use memblock_free_ptr() to free a virtual pointer
+  memblock: drop memblock_free_early_nid() and memblock_free_early()
+  memblock: stop aliasing __memblock_free_late with memblock_free_late
+  memblock: rename memblock_free to memblock_phys_free
+  memblock: use memblock_free for freeing virtual pointers
+
+ arch/alpha/kernel/core_irongate.c         |  2 +-
+ arch/arc/mm/init.c                        |  2 +-
+ arch/arm/mach-hisi/platmcpm.c             |  2 +-
+ arch/arm/mm/init.c                        |  2 +-
+ arch/arm64/mm/mmu.c                       |  4 ++--
+ arch/mips/mm/init.c                       |  2 +-
+ arch/mips/sgi-ip30/ip30-setup.c           |  6 +++---
+ arch/powerpc/kernel/dt_cpu_ftrs.c         |  4 ++--
+ arch/powerpc/kernel/paca.c                |  8 ++++----
+ arch/powerpc/kernel/setup-common.c        |  2 +-
+ arch/powerpc/kernel/setup_64.c            |  2 +-
+ arch/powerpc/platforms/powernv/pci-ioda.c |  2 +-
+ arch/powerpc/platforms/pseries/svm.c      |  3 +--
+ arch/riscv/kernel/setup.c                 |  4 ++--
+ arch/s390/kernel/setup.c                  |  8 ++++----
+ arch/s390/kernel/smp.c                    |  4 ++--
+ arch/s390/kernel/uv.c                     |  2 +-
+ arch/s390/mm/kasan_init.c                 |  2 +-
+ arch/sh/boards/mach-ap325rxa/setup.c      |  2 +-
+ arch/sh/boards/mach-ecovec24/setup.c      |  4 ++--
+ arch/sh/boards/mach-kfr2r09/setup.c       |  2 +-
+ arch/sh/boards/mach-migor/setup.c         |  2 +-
+ arch/sh/boards/mach-se/7724/setup.c       |  4 ++--
+ arch/sparc/kernel/smp_64.c                |  2 +-
+ arch/um/kernel/mem.c                      |  2 +-
+ arch/x86/kernel/setup.c                   |  4 ++--
+ arch/x86/kernel/setup_percpu.c            |  2 +-
+ arch/x86/mm/init.c                        |  2 +-
+ arch/x86/mm/kasan_init_64.c               |  4 ++--
+ arch/x86/mm/numa.c                        |  2 +-
+ arch/x86/mm/numa_emulation.c              |  2 +-
+ arch/x86/xen/mmu_pv.c                     |  6 +++---
+ arch/x86/xen/p2m.c                        |  2 +-
+ arch/x86/xen/setup.c                      |  6 +++---
+ drivers/base/arch_numa.c                  | 10 ++++------
+ drivers/firmware/efi/memmap.c             |  2 +-
+ drivers/macintosh/smu.c                   |  2 +-
+ drivers/of/kexec.c                        |  3 +--
+ drivers/of/of_reserved_mem.c              |  5 +++--
+ drivers/s390/char/sclp_early.c            |  2 +-
+ drivers/usb/early/xhci-dbc.c              | 10 +++++-----
+ drivers/xen/swiotlb-xen.c                 |  2 +-
+ include/linux/memblock.h                  | 23 +++--------------------
+ init/initramfs.c                          |  2 +-
+ init/main.c                               |  2 +-
+ kernel/dma/swiotlb.c                      |  2 +-
+ kernel/printk/printk.c                    |  4 ++--
+ lib/bootconfig.c                          |  2 +-
+ lib/cpumask.c                             |  2 +-
+ mm/cma.c                                  |  2 +-
+ mm/memblock.c                             | 22 +++++++++++-----------
+ mm/memory_hotplug.c                       |  2 +-
+ mm/percpu.c                               |  8 ++++----
+ mm/sparse.c                               |  2 +-
+ 54 files changed, 99 insertions(+), 119 deletions(-)
+
+
+base-commit: 5816b3e6577eaa676ceb00a848f0fd65fe2adc29
 -- 
-2.29.2
+2.28.0
 
