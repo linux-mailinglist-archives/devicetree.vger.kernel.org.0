@@ -2,150 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B24941DF5C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 18:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DA4341DF71
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 18:43:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352235AbhI3QoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 12:44:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39742 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352245AbhI3QoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 12:44:09 -0400
-Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0D05C06176F
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 09:42:26 -0700 (PDT)
-Received: by mail-ua1-x941.google.com with SMTP id i8so4696171uae.7
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 09:42:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=/T9drlD1s9vO6lHEMs4LJzmDo2MKXEHBXvFYaWoQWpk=;
-        b=MVXGXX3aLHvdEWHCf5XJGaFOufs/PEmNG+RYEO4oTx+QozBBJXVYJaBnJtUB4vE17v
-         l7qyXFAJCbEctdu3sv0yFCoBaT709anRfXTrWJ9LhTtNNTeF1B+O3pLHqUy2QAPvnPSf
-         3IecToNi2HT6Pa8coT6aXrgI9wtYa7BmAid9HW8X8cKcp6oEqxD6jn+NQAgIAJ/uIR8C
-         IIBDMRIctM/mMB+N6Sj6bvfiXlKmuXxbPXR4GO4hFEN9lvqP5/jfJ8FGLJzKy6wn7oVo
-         2mk7x+YQ0Nx9H6ldMnQifpIRNZg0XeefD1+q8eWUCCxe1+/MmkhbycjtfATlCNeof1ow
-         TbpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=/T9drlD1s9vO6lHEMs4LJzmDo2MKXEHBXvFYaWoQWpk=;
-        b=0q/0+Aul3/+Ar5y7ijknG5uH7IpcCI9ok4YSeZnf/uPwVw3KXVVEszOIGyG5alPqeJ
-         KMqhCuCvSo5s67K1ydzgt8fMtTHlvnLbIGH/cT4x6mNn3gChpMrRDuaDMDBTkS7sto4G
-         24pMWiHj4u04jI+MlXpAl7ea+6y20lrX4kvZSb3gPsfxrbFYonngS73OYT+eWgeDIOEp
-         BJZF5ujaFDVXKWoNHhBRF0asqkuzp1P5GPkUttGouF2fU5iF9uLm/Z8ggS/WGHhpsi41
-         6fItrg5k9JiA6GI4bswMBL21c0h+dtyeB+/Cuum/eBcqsUw0xnvai9gKbrPBYJFeeh6L
-         Rumw==
-X-Gm-Message-State: AOAM531bZv0a+LgwpxB92AAcLVfiJKBzg1FXixlhJZ7TZ/3wMfykJ4u2
-        XBedcL3Xo78u5wFJ0V1MH5zjeXjJ9tEJF53h1mY=
-X-Google-Smtp-Source: ABdhPJyNAXlGgykPpoSQORoXm4LRDDlaCMAD8cIdikco7Ac1uwVB1jZIpGBr3/yozFCMZ2mvQhCbDywUDvBawknotr0=
-X-Received: by 2002:ab0:5602:: with SMTP id y2mr6742362uaa.120.1633020145964;
- Thu, 30 Sep 2021 09:42:25 -0700 (PDT)
+        id S1352193AbhI3QpU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 30 Sep 2021 12:45:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57514 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229490AbhI3QpU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 12:45:20 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A5C2461209;
+        Thu, 30 Sep 2021 16:43:35 +0000 (UTC)
+Date:   Thu, 30 Sep 2021 17:47:30 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Florian Boor <florian.boor@kernelconcepts.de>
+Cc:     linux-iio@vger.kernel.org, Jonathan.Cameron@huawei.com,
+        Michael.Hennerich@analog.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v6 2/2] dt-bindings: iio: ad779x: Add binding document
+Message-ID: <20210930174730.5c87e108@jic23-huawei>
+In-Reply-To: <20210930104249.2924336-2-florian.boor@kernelconcepts.de>
+References: <20210930104249.2924336-1-florian.boor@kernelconcepts.de>
+        <20210930104249.2924336-2-florian.boor@kernelconcepts.de>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Received: by 2002:a59:ab2e:0:b0:22d:7f44:603a with HTTP; Thu, 30 Sep 2021
- 09:42:25 -0700 (PDT)
-Reply-To: irenezakari24@gmail.com
-From:   Irene zakari <irenezakari88@gmail.com>
-Date:   Thu, 30 Sep 2021 09:42:25 -0700
-Message-ID: <CAFT8PFEAnoqXLbEA5pwcgwfbNhA5PiV3sHmraOZdm3n24J86mw@mail.gmail.com>
-Subject: PLEASE I NEED YOUR HELP
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello   ..
+On Thu, 30 Sep 2021 12:42:49 +0200
+Florian Boor <florian.boor@kernelconcepts.de> wrote:
 
-How do you do over there? I hope you are doing well?
+> New binding documentation for AD799x series of I²C ADC ICs.
+> 
+> Signed-off-by: Florian Boor <florian.boor@kernelconcepts.de>
 
-My name is Irene. (24 years), i am single, from Gambia, the only child
-of late Eng. Bernard Bakary Zakaria. the Director of Bajam Enterprise
-(Building Construction Company in The Gambia) also the CEO of Bernard
-Import and Export (GAMBIA).
+Rob gave a tag on v5 subject to some changes I assume you've made in here.
+Please make sure to pick those up as they won't get picked up across versions
+by the b4 which I'm using to grab patches from lore.kernel.org.
 
-As a matter of fact my mother died when i was barely 4 years old
-according to my late father and because of the type of love he had for
-my mother made him to remain UN-married till he left the ghost..
+Patches look fine to me, but I'll leave them on list a day or two to see if anyone
+else has feedback.
 
-So after the death of my father as a result of assassinate, his brother (My
-Uncle) who is the purchasing and marketing sale manager of my late
-fathers company named (Mr. James Tokunbo Oriade Zakaria) wanted to
-convert all the properties and resources of my late father into his
-which i quarreled with him and it made him to lay his anger on me to
-the extent of hiring an assassins to kill me but to God be the glory i
-succeeded by making a way to Burkina faso for my dear life.
-Honestly i do live a fearful life even here in Burkina faso because of
-those Assassins coming after me .
+Thanks,
 
-I would want to live and study in your country for my better future.
-because my father same blood brother wanted to force me into undecided
-marriage, just for me to leave my father home and went and live with
-another man I never know as he want to occupied all my father home
-and maybe to sold it as my father no longer alive, I'm the only child
-daughter my father born, '' but he don't know that i am not
-interesting in any of my father properties or early marriage for now,
-because i still have future to think about and to focus on my studies
-first as i was doing my first year in the University before the death
-of my father.
+Jonathan
 
-Actually what I want to discuss with you is about my personal issue
-concern funds my late father deposited in a bank outside my country,
-worth $4.5 million united state dollars. i need your assistance to
-receive and invest this funds in your country.
 
-Please help me, I am sincere to you and I want to be member of your
-family as well if you wouldn't mind to accept me and lead me to better
-future in your country.
+> ---
+> 
+> Changes in v6:
+> - Minor documentation change (label and contact info)
+> 
+> Changes in v5:
+> - Correct errors in documentation found by
+>   'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>   + Reduce title length
+>   + Move information to description
+>   + Add I²C bits to example
+> 
+>  .../bindings/iio/adc/adi,ad799x.yaml          | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml
+> new file mode 100644
+> index 000000000000..29641ce7175b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad799x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD799x analog to digital converters
+> +
+> +maintainers:
+> +  - Michael Hennerich <Michael.Hennerich@analog.com>
+> +
+> +description: |
+> +    Support for Analog Devices AD7991, AD7992, AD7993, AD7994, AD7995, AD7997, AD7998,
+> +    AD7999 and similar analog to digital converters.
+> +    Specifications on the converters can be found at:
+> +    AD7991, AD7995, AD7999:
+> +      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7991_7995_7999.pdf
+> +    AD7992:
+> +      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7992.pdf
+> +    AD7993, AD7994:
+> +      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7993_7994.pdf
+> +    AD7997, AD7998:
+> +      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7997_7998.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7991
+> +      - adi,ad7992
+> +      - adi,ad7993
+> +      - adi,ad7994
+> +      - adi,ad7995
+> +      - adi,ad7997
+> +      - adi,ad7998
+> +      - adi,ad7999
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vcc-supply:
+> +    description:
+> +      ADC power supply
+> +
+> +  vref-supply:
+> +    description:
+> +      ADC reference voltage supply, optional for AD7991, AD7995 and AD7999
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +       adc1: adc@28 {
+> +               reg = <0x28>;
+> +               compatible = "adi,ad7991";
+> +               interrupts = <13 2>;
+> +               interrupt-parent = <&gpio6>;
+> +
+> +               vcc-supply = <&vcc_3v3>;
+> +               vref-supply = <&adc_vref>;
+> +        };
+> +    };
+> +...
 
-All the documents the bank issue to my father during time of deposit
-is with me now.
-I already notify the bank on phone about the death of my father and
-they are surprise for the news and accept that my father is their good
-customer.
-I will be happy if this money can be invested in any business of your
-choice and it will be under your control till i finished my education,
-also I'm assuring you good relationship and I am ready to discuss the
-amount of money to give you from this money for your help.
-
-Therefore, I shall give you the bank contact and other necessary
-information in my next email if you will only promise me that you will
-not/never betray and disclosed this matter to anybody, because, this
-money is the only hope i have for survival on earth since I have lost
-my parents.
-
-Moreover I have the FUND PLACEMENT CERTIFICATE and the DEATH
-CERTIFICATE here with me, but before I give you further information, i
-will like to know your full data
-
-1. Full Name: ........................
-2. Address: ..................
-3. Nationality: ........... Sex................
-4. Age:........... Date of Birth:................
-5. Occupation:...................
-.....
-6. Phone: ........... Fax:.........................
-7. State of Origin: .......Country:..............
-8. Occupation:...................
-................
-9. Marital status........... E-mail address's: ............
-10. Scan copy of your ID card or Driving License/Photo:............
-DECLARATION:
-
-so that i will be fully sure that i am not trusting the wrong person.
-and it will also give me the mind to send you the bank contact for you
-to communicate with them for more verification about this money. and
-to know you more better.
-
-Meanwhile, you can reach me through my pastor,his name is Pastor Paul
-any time you call, tell him that you want to speak with me because
-right now i am living in the church here in Burkina faso and i don't
-want to stay here any longer,
-send for me to speak with you his phone number is this(+226 75213646)
-
-I will stop here and i will be waiting for your reply and feel free
-ask any thing you want to know about me.
-Please help me, I would be highly appreciated
-Have nice day.
-From Irene
