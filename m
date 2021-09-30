@@ -2,189 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEC8941DA45
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 14:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1FA241DA7B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:05:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351155AbhI3MyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 08:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40786 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351051AbhI3MyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 08:54:10 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74DB1C06176A
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 05:52:28 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mVvXz-00049S-CL; Thu, 30 Sep 2021 14:52:23 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mVvXy-0007sL-Hp; Thu, 30 Sep 2021 14:52:22 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: [PATCH v1] ARM: dts: imx6: skov: provide panel support for lt2 variants
-Date:   Thu, 30 Sep 2021 14:52:21 +0200
-Message-Id: <20210930125221.30127-1-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
+        id S1349366AbhI3NHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 09:07:20 -0400
+Received: from mail.fris.de ([116.203.77.234]:50556 "EHLO mail.fris.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1349422AbhI3NHT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 09:07:19 -0400
+X-Greylist: delayed 440 seconds by postgrey-1.27 at vger.kernel.org; Thu, 30 Sep 2021 09:07:19 EDT
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 43C78BFC2A;
+        Thu, 30 Sep 2021 14:58:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+        t=1633006694; h=from:subject:date:message-id:to:cc:mime-version:
+         content-transfer-encoding:in-reply-to:references;
+        bh=Zm3leV4xiEmZ5I7qYX9SHWVvuSf+WKr59C8LP7tkpH4=;
+        b=iCA2dgV6G0ciqJn9DvG7ulPLEw6aZmGXgNRq37AgTXn0c4ZgSXbPbMspAp2/qCSUePYu5F
+        YfebJNN5SRujWaECK5cUmFSk9e281YJhXeg5yuV+0IaIxaEKnGqmhIUNK0aqX8EsWCRtcI
+        qXgbJI7nqBoXC65qMPE0KHS4BH03ort/R+4ziNIOGiYMpWQl1f1pwGpmtyUsscg2BEcnfY
+        CPgYcawn1kOn3bMzhpd4dIzV8N4Qe3Xoobq2IzpgmKci4zCoYH3JYMplkgBjndtvDHyQvX
+        5YIDSvBLhdKYxfs4VOOtLewjYz36C5fs3/TZNe0FS86Okf1zrFMltyDWMTz/tw==
+From:   Frieder Schrempf <frieder@fris.de>
+To:     "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Baisheng Gao <gaobaisheng@bonc.com.cn>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH 2/3] dt-bindings: net: phy: mscc: vsc8531: Add LED mode combine disable property
+Date:   Thu, 30 Sep 2021 14:57:44 +0200
+Message-Id: <20210930125747.2511954-2-frieder@fris.de>
+In-Reply-To: <20210930125747.2511954-1-frieder@fris.de>
+References: <20210930125747.2511954-1-frieder@fris.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Last-TLS-Session-Version: TLSv1.3
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Logic Technologies LTTD800x480 L2RT 7" 800x480 TFT
-Resistive Touch Module.
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Add the new property to disable the combined LED modes to the bindings
+documentation.
+
+Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
- arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts   |  1 +
- arch/arm/boot/dts/imx6q-skov-revc-lt2.dts    |  1 +
- arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi | 99 ++++++++++++++++++++
- 3 files changed, 101 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi
+ Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts b/arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts
-index 667b8faa1807..b12b5aabe70a 100644
---- a/arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts
-+++ b/arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts
-@@ -6,6 +6,7 @@
- #include "imx6dl.dtsi"
- #include "imx6qdl-skov-cpu.dtsi"
- #include "imx6qdl-skov-cpu-revc.dtsi"
-+#include "imx6qdl-skov-revc-lt2.dtsi"
+diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+index 0a3647fe331b..1ca11ab4011b 100644
+--- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
++++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+@@ -31,10 +31,13 @@ Optional properties:
+ 			  VSC8531_LINK_100_ACTIVITY (2),
+ 			  VSC8531_LINK_ACTIVITY (0) and
+ 			  VSC8531_DUPLEX_COLLISION (8).
++- vsc8531,led-[N]-combine-disable	: Disable the combined mode for LED[N].
++			  This disables the second mode if a combined mode is selected.
+ - load-save-gpios	: GPIO used for the load/save operation of the PTP
+ 			  hardware clock (PHC).
  
- / {
- 	model = "SKOV IMX6 CPU SoloCore";
-diff --git a/arch/arm/boot/dts/imx6q-skov-revc-lt2.dts b/arch/arm/boot/dts/imx6q-skov-revc-lt2.dts
-index f00add7b3048..ff97d22eb09f 100644
---- a/arch/arm/boot/dts/imx6q-skov-revc-lt2.dts
-+++ b/arch/arm/boot/dts/imx6q-skov-revc-lt2.dts
-@@ -6,6 +6,7 @@
- #include "imx6q.dtsi"
- #include "imx6qdl-skov-cpu.dtsi"
- #include "imx6qdl-skov-cpu-revc.dtsi"
-+#include "imx6qdl-skov-revc-lt2.dtsi"
  
- / {
- 	model = "SKOV IMX6 CPU QuadCore";
-diff --git a/arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi b/arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi
-new file mode 100644
-index 000000000000..48c9ce051f47
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi
-@@ -0,0 +1,99 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+//
-+// Copyright (C) 2021 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
 +
-+/ {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_backlight>;
-+		enable-gpios = <&gpio6 23 GPIO_ACTIVE_LOW>;
-+		pwms = <&pwm2 0 20000 0>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <17>;
-+		default-brightness-level = <8>;
-+		power-supply = <&reg_24v0>;
-+	};
-+
-+	display {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		compatible = "fsl,imx-parallel-display";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ipu1>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			display0_in: endpoint {
-+				remote-endpoint = <&ipu1_di0_disp0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			display0_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+
-+	panel {
-+		compatible = "logictechno,lttd800480070-l2rt";
-+		backlight = <&backlight>;
-+		power-supply = <&reg_3v3>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&ipu1_di0_disp0 {
-+	remote-endpoint = <&display0_in>;
-+};
-+
-+&iomuxc {
-+	pinctrl_backlight: backlightgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_RGMII_TD3__GPIO6_IO23		0x58
-+		>;
-+	};
-+
-+	pinctrl_ipu1: ipu1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x10
-+			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x10
-+			MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02		0x10
-+			MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03		0x10
-+			MX6QDL_PAD_DISP0_DAT0__IPU1_DISP0_DATA00	0x10
-+			MX6QDL_PAD_DISP0_DAT1__IPU1_DISP0_DATA01	0x10
-+			MX6QDL_PAD_DISP0_DAT2__IPU1_DISP0_DATA02	0x10
-+			MX6QDL_PAD_DISP0_DAT3__IPU1_DISP0_DATA03	0x10
-+			MX6QDL_PAD_DISP0_DAT4__IPU1_DISP0_DATA04	0x10
-+			MX6QDL_PAD_DISP0_DAT5__IPU1_DISP0_DATA05	0x10
-+			MX6QDL_PAD_DISP0_DAT6__IPU1_DISP0_DATA06	0x10
-+			MX6QDL_PAD_DISP0_DAT7__IPU1_DISP0_DATA07	0x10
-+			MX6QDL_PAD_DISP0_DAT8__IPU1_DISP0_DATA08	0x10
-+			MX6QDL_PAD_DISP0_DAT9__IPU1_DISP0_DATA09	0x10
-+			MX6QDL_PAD_DISP0_DAT10__IPU1_DISP0_DATA10	0x10
-+			MX6QDL_PAD_DISP0_DAT11__IPU1_DISP0_DATA11	0x10
-+			MX6QDL_PAD_DISP0_DAT12__IPU1_DISP0_DATA12	0x10
-+			MX6QDL_PAD_DISP0_DAT13__IPU1_DISP0_DATA13	0x10
-+			MX6QDL_PAD_DISP0_DAT14__IPU1_DISP0_DATA14	0x10
-+			MX6QDL_PAD_DISP0_DAT15__IPU1_DISP0_DATA15	0x10
-+			MX6QDL_PAD_DISP0_DAT16__IPU1_DISP0_DATA16	0x10
-+			MX6QDL_PAD_DISP0_DAT17__IPU1_DISP0_DATA17	0x10
-+			MX6QDL_PAD_DISP0_DAT18__IPU1_DISP0_DATA18	0x10
-+			MX6QDL_PAD_DISP0_DAT19__IPU1_DISP0_DATA19	0x10
-+			MX6QDL_PAD_DISP0_DAT20__IPU1_DISP0_DATA20	0x10
-+			MX6QDL_PAD_DISP0_DAT21__IPU1_DISP0_DATA21	0x10
-+			MX6QDL_PAD_DISP0_DAT22__IPU1_DISP0_DATA22	0x10
-+			MX6QDL_PAD_DISP0_DAT23__IPU1_DISP0_DATA23	0x10
-+		>;
-+	};
-+};
+ Table: 1 - Edge rate change
+ ----------------------------------------------------------------|
+ | 		Edge Rate Change (VDDMAC)			|
 -- 
-2.30.2
+2.33.0
 
