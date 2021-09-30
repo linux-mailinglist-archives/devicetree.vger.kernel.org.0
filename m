@@ -2,152 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFC5541DA6C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:00:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36FD041DA97
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349170AbhI3NC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 09:02:26 -0400
-Received: from mail-eopbgr150138.outbound.protection.outlook.com ([40.107.15.138]:17892
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1349165AbhI3NC0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 09:02:26 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UERV1IYcMsk6hksNmJ/aux+07YdC7Wo+ygQXkjHPN3ENmUUrqoFtp8Uc/OMdWpJ7LAn7D7VKyLMz2udWTwU30QVGwVLLdYVQbhUPLSKXGZ7IpOVU/WsfoC0GojcYup+DqF+YmykU0ewYtg8cN34GS2kgOedRhnu3JostWrImvFUP+Qy0LohZ/GMQxb6rQKyuEc4BdedqqppTRllsyHJe/oGXwyGtBnMYOtvk5ZeqvZ/EZY7AWmySoY7h/fnfVY2SOaTTr0ne9y3yyAF4kLNZYmpcTVI413gZVZKW5AoFovlo1ybSK5kTuuhLXnikYBy4F/zNOO+SQEyO1ZHqScAWTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=5J/Gg1ndtz4sSl7YerPtNW1//TP/7Rv96hnlor/vTRI=;
- b=Bvpe5QWKu1/v7itLY4Rhy2+f8ZT7gXPec9tcT4TFzHTbNjwQRewN5zbpV34hJOcBa9V7/pacswHlGEQ3M3hEIjgbQHWO8pxtGupNLbGaNFYicDGiMj+wgN/7QyNcyaAOaqK7ETPAVqmOQbebMTJMnMdZnVtIACW/Z2otZEXC9FmN37MQOG6zKYF/NiE8WXZDjcbPhfmPx7cpVHSLPHPSDmvpdCV5WJCc9FNbaS+VGPZrZCOCgJwzsXGW+aOgXAl23eb/wDTB6xrYPhfDK3ERwaDVBpSbLoUe5mQYPKWsyD70sTxDU2GRiHU6iPfzl7NSaBj/tnnsNhQeM+fWQ5mwTw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5J/Gg1ndtz4sSl7YerPtNW1//TP/7Rv96hnlor/vTRI=;
- b=BYIS/iqAnCVOYsi6rEE6TQx8/B5O2taL+d+aCKz/2nmyDeiGGMo6NJF2ib9FGuW1fJnod6Lizylz5gRJawO8dtIGgJQxRrzssRiJpr6oWpCKj9HGjWp/bli7RnWuDixKKcjYmEz0zjxN1HxTcWzxEA9ea8JnQ501YbZlQ3uKz5I=
-Authentication-Results: fris.de; dkim=none (message not signed)
- header.d=none;fris.de; dmarc=none action=none header.from=kontron.de;
-Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
- by AM9PR10MB4436.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:271::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.15; Thu, 30 Sep
- 2021 13:00:40 +0000
-Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::216b:62be:3272:2560]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::216b:62be:3272:2560%6]) with mapi id 15.20.4566.015; Thu, 30 Sep 2021
- 13:00:40 +0000
-Message-ID: <c52ca248-f555-e5a7-4fb8-f6efdc06e6c6@kontron.de>
-Date:   Thu, 30 Sep 2021 15:00:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.1
-Subject: Re: [PATCH 2/3] dt-bindings: net: phy: mscc: vsc8531: Add LED mode
- combine disable property
-Content-Language: en-US
-To:     Frieder Schrempf <frieder@fris.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Baisheng Gao <gaobaisheng@bonc.com.cn>,
-        Rob Herring <robh@kernel.org>
-References: <20210930125747.2511954-1-frieder@fris.de>
- <20210930125747.2511954-2-frieder@fris.de>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20210930125747.2511954-2-frieder@fris.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0PR02CA0111.eurprd02.prod.outlook.com
- (2603:10a6:20b:28c::8) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:208:157::14)
-MIME-Version: 1.0
-Received: from [192.168.10.40] (89.247.44.207) by AM0PR02CA0111.eurprd02.prod.outlook.com (2603:10a6:20b:28c::8) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.16 via Frontend Transport; Thu, 30 Sep 2021 13:00:39 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a2247940-95f3-48c6-f76f-08d984124dee
-X-MS-TrafficTypeDiagnostic: AM9PR10MB4436:
-X-Microsoft-Antispam-PRVS: <AM9PR10MB4436E8F402791E5F288E9EFDE9AA9@AM9PR10MB4436.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: z+F1FUtZLdvfhGJF7c/BmL3I38NykGEVD9pbWEMmmkiX67yA13Qb9JNlCXsGQaoW2ildZo6sGweyTA+yyObPRvgD4IMvRgMiWSfYuedFUu1JtoxlnR7eCmXjkflnOCiNb/sMCcaapSYk085VyPDEpVyunh1vLP36e0NvePdufRqSzVhTIMpVdinQ6oxOQXIfokgbzSEmBScJMeiF3JVyzBO/0VHmkAE9YOS9MixXZDwQ4HFJWqr08h/tbZQnHB/5SuUJgn/rVi/nWEfM7pfopM28U1oYk9nZo9igdZ18DyO06TO3CPtfsOKpTQZ/oQr4swOfxu3RdYfkgJTdogZWZ/vmVRbhqtR9yioqbIj3FGv9+X7ICQ2wSj3DEWaa646QTwbxO867pkuaHXM4zoXdrz7Ed+Ffnw51s5UKyjLabWSVgp+NswCCjNyTvoQqRYxB4tHFkJcvQhpuRznRGdVHOUkeBFXJplbsYMnjQHrQumlZw8wmSMYHbONYs5phlUGplg77siTZpYxJCCt2n1zYna274XuK6+Tuo0CXLEoWTYEeJmZT3u70NxDIiDkuzzqmIjiMXjED0fCKwlM/uHqHZoBbbnWLd6mDhlBhXsGU2Ly5/XDYsEHxheQFS/mR91q2GnlsWKDUy1FJLKPau/CliUU3uah89cV9Hn6NLbsb1WVzg62ZJcPHEY2rMyzRW2sfGG6M2gvuKzAtvzx+sGxJNhcO1soILMbfUuTENuW+zzU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(86362001)(66946007)(8936002)(66476007)(53546011)(66556008)(83380400001)(186003)(2616005)(956004)(26005)(4326008)(8676002)(5660300002)(38100700002)(44832011)(36756003)(2906002)(508600001)(110136005)(54906003)(316002)(31686004)(6486002)(16576012)(31696002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MTAyVXJkWkxReitGOGMwN043ZEs1UlgxZFgxME9iaEJNWVkwWVVhQ29JUnpI?=
- =?utf-8?B?dFYvM1hGV2JoM0lDbmRlblg0NUp3cmREM1BBdFdteTJCMUxkNVVxY1dmVlFX?=
- =?utf-8?B?Z1NGMmpQL3Rhd1lyYkJtbW5uUlB4QkR3SUlyZGtoZTJzWTJHSERqbDFFMW02?=
- =?utf-8?B?S3EraTdvOGQ4b3NvcW9WMTBWTjI1bGI2ZUhSOURMQ2svcHUwOXVEcFZoMWl6?=
- =?utf-8?B?dkxYT3dJNVplUC9Gck1OeU5JVTRIL2JpZDNMQm9TU3BKVFNjNEtvb09TTzRm?=
- =?utf-8?B?dWc1K2syOEtTaklYdUw1ekxNcUJYU1owekxZdUZJSzRxUmJ0dUNrS0xBL1FR?=
- =?utf-8?B?akJpeUxLTDc4M2ZpaHpIODR4Wm9BOVZwYlYwRzdiZGIwRHNoN1RVVnp3cUlQ?=
- =?utf-8?B?TTMwR1NGd3hPbTlSOWE4dHlhaVpLTTJJYkhPcmVjSE82Um5VQTZXNldQa1JG?=
- =?utf-8?B?TXlxZkZRcFpPMFhuSmI3Z2c4Rm5VdEd6K003RFFFQTBpK0duNVZMWjkyTTdt?=
- =?utf-8?B?SEx6dGlTeStNLzQ5bGFKQUR6enhpV1BUTVBtSmo5RTBSemdtOW8xTVhuT3VR?=
- =?utf-8?B?SnVMUk5GZWR2eWxxWWc4cm95VnlQSmY2M0t0a3dQYlA3RjIycHIrQTAwandw?=
- =?utf-8?B?K3NsbWlicnpXRDEvdVRxbGh3cUhCVmVaREFxdEo0Y0t4QVc1aEFvbHNsQzZB?=
- =?utf-8?B?VE5rYlkwZXJNZktpZkpCd0pRZXB3amtZcm5KYXBWWm9GMHJoSCtFU1lUbzNj?=
- =?utf-8?B?blAvT1M2MVRJVmhxUi95S0JXTUFZNG5MUlhENGJ0UGtmcjF3NFFDKzIzZVBh?=
- =?utf-8?B?YUhWb3RiK3l5K1ZlNlN2a25mK2tYNVF5MW5UZjg1bklEUGdzT0hmZlBVSXBO?=
- =?utf-8?B?L1JzZzRqRkFIVXl0QjJ2anE1cDEwUm9oTi9MQklWSEZjUllVdktzL0N5YnJl?=
- =?utf-8?B?bFg0WEFDell2a29mTHRaYnI4WUdCbk5ab3VubnhpOVZkSzVqckU0eEM1amZN?=
- =?utf-8?B?ZWZxOHk2VjU5ZEk1U3N5elNGT2hjS1NjUmlneFVrQzBsRTllNTUyNWhnY0Vh?=
- =?utf-8?B?VGM4bzdldEVYTW5iSTJvLzh2dHpFemtablVIdXFNU2pXRWpiZTh4UTc0L0xT?=
- =?utf-8?B?dUlPZmw4ZiszVVlNcUpqUElqMzBCS1ZPenJuSWxjY2liQnYzTnRyU0NCMlFq?=
- =?utf-8?B?cWp1S3QvZTNCNG1Qak5qSGFDcklhampuQzZKZnNPVU91cWxyM2YyTHVRNmdX?=
- =?utf-8?B?OUZoK3FuSEZ6cW0rYXM4Q2Jxb0hyOUtUdU03czQ2RVRYM21JdGNpUWZEM0ZE?=
- =?utf-8?B?ZVZHbFByWE5xSVduSkNHN1VtNlhtV1pmNW4zbm9TUnNVOEVEVVgzWFdmdjlo?=
- =?utf-8?B?YnJmQnVrVHdobWI3Mlh3NEwvaEplV2FITkFXU3JoSUJYK0l5Ui9ZeHg0OU5m?=
- =?utf-8?B?cGZHeGF3OGxOS1ZMajVaSkdjMkZNdjRSNk1seHpvdWE4ejNZcFdneXFpd01Y?=
- =?utf-8?B?amw3azJ2WXFkT05zZE9IVkJMcVhiYTlaK2tWTHBOa0ErMG5zQnM2NlExOWxO?=
- =?utf-8?B?c0VVb2tjT2ltNnptWUYzdU0wQXNpR2U0cVB2Z2M3UGdxY2xlN2ZuNTNWM3dM?=
- =?utf-8?B?SWQ2UG1vZFY0TGpyY0NWWnUyckNTclZIaFhmT2pCR3BqRHdjSFcrMjZnbHlG?=
- =?utf-8?B?MkVFM2VnaW81NE1pcTAzTFVNRzhmcnQyZVpaZ29PRWFCd1FKNTk0NUEyOXRL?=
- =?utf-8?Q?AuAbVKw2gWA6Wv18eo507PsZu5XHufvfQm+skJr?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2247940-95f3-48c6-f76f-08d984124dee
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2021 13:00:40.3229
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mYL5wjhzzVxzsCuMg4WcMyf7zpC5ZHYP/zDitTstwEAHzOwYKKoBdfaioEuB3FSOW6jk1Ov/6Tn+CWCOqvPbEuBXvNF3Q2CTlKxQWbQWiIM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR10MB4436
+        id S1350144AbhI3NH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 09:07:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60528 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1351286AbhI3NHq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 09:07:46 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A6F6761A03;
+        Thu, 30 Sep 2021 13:06:03 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mVvlB-00DzHF-L3; Thu, 30 Sep 2021 14:06:01 +0100
+Date:   Thu, 30 Sep 2021 14:06:01 +0100
+Message-ID: <874ka2tdqe.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Daniel Palmer <daniel@0x0f.com>, DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Romain Perier <romain.perier@gmail.com>
+Subject: Re: [PATCH 2/3] irqchip: SigmaStar SSD20xD gpi
+In-Reply-To: <CACRpkdYLURJCopH3hDuZTY8ce9-OxakELyFqwqkAVCsYmzF5kg@mail.gmail.com>
+References: <20210914100415.1549208-1-daniel@0x0f.com>
+        <20210914100415.1549208-3-daniel@0x0f.com>
+        <87zgs7vavl.wl-maz@kernel.org>
+        <CAFr9PXnC4hQw5_0TtciKvqF7s=4axJ5Yrq80RXGcY4VvT1Ac2A@mail.gmail.com>
+        <87wnnbv6ac.wl-maz@kernel.org>
+        <CAFr9PXmA07Up_wfJzzgZeYwE5ZrwnLqjBvLG3CERGHOLeay0Cg@mail.gmail.com>
+        <87lf3quydn.wl-maz@kernel.org>
+        <CACRpkdYLURJCopH3hDuZTY8ce9-OxakELyFqwqkAVCsYmzF5kg@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linus.walleij@linaro.org, daniel@0x0f.com, devicetree@vger.kernel.org, robh+dt@kernel.org, tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, romain.perier@gmail.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.09.21 14:57, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> 
-> Add the new property to disable the combined LED modes to the bindings
-> documentation.
-> 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> index 0a3647fe331b..1ca11ab4011b 100644
-> --- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> +++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> @@ -31,10 +31,13 @@ Optional properties:
->  			  VSC8531_LINK_100_ACTIVITY (2),
->  			  VSC8531_LINK_ACTIVITY (0) and
->  			  VSC8531_DUPLEX_COLLISION (8).
-> +- vsc8531,led-[N]-combine-disable	: Disable the combined mode for LED[N].
-> +			  This disables the second mode if a combined mode is selected.
->  - load-save-gpios	: GPIO used for the load/save operation of the PTP
->  			  hardware clock (PHC).
->  
->  
-> +
+[huh, missed this email...]
 
-Sorry, this extra newline shouldn't be here of course.
-
->  Table: 1 - Edge rate change
->  ----------------------------------------------------------------|
->  | 		Edge Rate Change (VDDMAC)			|
+On Tue, 21 Sep 2021 19:23:04 +0100,
+Linus Walleij <linus.walleij@linaro.org> wrote:
 > 
+> On Tue, Sep 21, 2021 at 10:27 AM Marc Zyngier <maz@kernel.org> wrote:
+> 
+> > Linus: is there a reason why the gpiolib insist on setting its own
+> > handler while building the hierarchy?
+> 
+> Is it this?
+> 
+>         /*
+>          * We set handle_bad_irq because the .set_type() should
+>          * always be invoked and set the right type of handler.
+>          */
+>         irq_domain_set_info(d,
+>                             irq,
+>                             hwirq,
+>                             gc->irq.chip,
+>                             gc,
+>                             girq->handler,
+>                             NULL, NULL);
+>         irq_set_probe(irq);
+> (...)
+
+It is its relative position wrt to irq_domain_alloc_irqs_parent() that
+has the potential for annoyance. irq_domain_set_info() will trigger an
+irq startup, which will explode if the parent level hasn't been
+initialised correctly.
+
+> 
+> IIUC it's because sometimes, on elder systems (such as ixp4xx) some machines
+> are still using boardfiles, and drivers are not obtaining IRQs dynamically
+> from device tree or ACPI, instead they are set up statically at machine
+> init.
+>
+> I assume it would otherwise be done as part of ops->translate?
+
+No, this is the right spot if you really need to set the handler. But
+it should really be after the parent allocation (see below for
+something totally untested).
+
+Ultimately, setting the flow handler when there is a parent domain is
+a bit odd, as you'd expect the root domain to be in charge of the
+overall flow.
+
+Thanks,
+
+	M.
+
+diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+index abfbf546d159..53221d54c4be 100644
+--- a/drivers/gpio/gpiolib.c
++++ b/drivers/gpio/gpiolib.c
+@@ -1103,19 +1103,6 @@ static int gpiochip_hierarchy_irq_domain_alloc(struct irq_domain *d,
+ 	}
+ 	chip_dbg(gc, "found parent hwirq %u\n", parent_hwirq);
+ 
+-	/*
+-	 * We set handle_bad_irq because the .set_type() should
+-	 * always be invoked and set the right type of handler.
+-	 */
+-	irq_domain_set_info(d,
+-			    irq,
+-			    hwirq,
+-			    gc->irq.chip,
+-			    gc,
+-			    girq->handler,
+-			    NULL, NULL);
+-	irq_set_probe(irq);
+-
+ 	/* This parent only handles asserted level IRQs */
+ 	parent_arg = girq->populate_parent_alloc_arg(gc, parent_hwirq, parent_type);
+ 	if (!parent_arg)
+@@ -1137,6 +1124,18 @@ static int gpiochip_hierarchy_irq_domain_alloc(struct irq_domain *d,
+ 			 parent_hwirq, hwirq);
+ 
+ 	kfree(parent_arg);
++
++	if (!ret) {
++		irq_domain_set_info(d,
++				    irq,
++				    hwirq,
++				    gc->irq.chip,
++				    gc,
++				    girq->handler,
++				    NULL, NULL);
++		irq_set_probe(irq);
++	}
++
+ 	return ret;
+ }
+ 
+
+-- 
+Without deviation from the norm, progress is not possible.
