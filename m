@@ -2,155 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3C4F41D1DB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 05:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7654641D1CD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 05:15:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347672AbhI3DaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 23:30:05 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:44094 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S244576AbhI3DaB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 23:30:01 -0400
-X-UUID: 7f99426116984e4e82f32662b5e1824b-20210930
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=PUbrJ3OGRNIhFg0lP0OUuhqkMUmrG7lCbGwhX9NNv8I=;
-        b=fyhWP3a8ryvYzvl/+BcS1BevoTk8b7BSv/6fXTrv/0FJHzhAzSJ9EvZsZZOdtHQCJpzPezquq8qd8ib5G+etIueXIhiV6osK9o/XNzlJRd14yCGqik5DCS7rzqn/9x2GItVxSYy7jrBQPSt1k+koUgmZjtjH7drpKIqvXeprZhA=;
-X-UUID: 7f99426116984e4e82f32662b5e1824b-20210930
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1737133217; Thu, 30 Sep 2021 11:28:11 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 30 Sep 2021 11:28:11 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 30 Sep 2021 11:28:09 +0800
-Message-ID: <79cbf64491273797f218f417234b8c95936bd3b1.camel@mediatek.com>
-Subject: Re: [PATCH v8 09/12] media: mtk-vcodec: Get rid of
- mtk_smi_larb_get/put
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        David Airlie <airlied@linux.ie>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>
-CC:     Evan Green <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Will Deacon <will.deacon@arm.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
-        Matthias Kaehlcke <mka@chromium.org>, <anan.sun@mediatek.com>,
-        <yi.kuo@mediatek.com>, <acourbot@chromium.org>,
-        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        <anthony.huang@mediatek.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Irui Wang <irui.wang@mediatek.com>
-Date:   Thu, 30 Sep 2021 11:28:12 +0800
-In-Reply-To: <02f444d5-9633-3f9c-2d1f-97ce073d1180@collabora.com>
-References: <20210929013719.25120-1-yong.wu@mediatek.com>
-         <20210929013719.25120-10-yong.wu@mediatek.com>
-         <02f444d5-9633-3f9c-2d1f-97ce073d1180@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S1347879AbhI3DRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 23:17:09 -0400
+Received: from mailout2.samsung.com ([203.254.224.25]:18100 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346735AbhI3DRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 23:17:08 -0400
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20210930031524epoutp028a3eaaed8c41fc7743788f714b2f1235~peyHLp_el0772207722epoutp02e
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 03:15:24 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20210930031524epoutp028a3eaaed8c41fc7743788f714b2f1235~peyHLp_el0772207722epoutp02e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1632971725;
+        bh=rnDll4TvTapkIQp0szEehuNWnc8pRGBRYEn5e2vLYJw=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=gMRCYP0Z8iHT76mCnD3c1sArCPDhnQiH5RDIpjAAzZWCBaNMf4UN2TQy8d2aEtdLY
+         auuWjKqZ+Qusqgdj+TdIWJKtuIoMa2i91uicU30Hq7XYSHWqTUSqReQJ1UT/socUQg
+         u32bqP7N9XOe6r07Fr/fG/niqcLOEq9CBms4hqhk=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20210930031524epcas1p24823ceba2f97d418364927b0334f3d9a~peyG2Eyqk2328823288epcas1p2l;
+        Thu, 30 Sep 2021 03:15:24 +0000 (GMT)
+Received: from epsmges1p5.samsung.com (unknown [182.195.38.236]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4HKdfH0wgsz4x9Q3; Thu, 30 Sep
+        2021 03:15:19 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
+        AE.FF.13888.ABB25516; Thu, 30 Sep 2021 12:15:06 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
+        20210930031506epcas1p31bd20aa301492bb47035cd46688b81a0~pex17JvHX1834118341epcas1p3K;
+        Thu, 30 Sep 2021 03:15:06 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20210930031506epsmtrp20d34869e1d2f74b65e4075fd929ebc1a~pex16c_Ew2931629316epsmtrp2Z;
+        Thu, 30 Sep 2021 03:15:06 +0000 (GMT)
+X-AuditID: b6c32a39-a3d0ba8000003640-b9-61552bba782e
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        0F.0E.08750.ABB25516; Thu, 30 Sep 2021 12:15:06 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20210930031506epsmtip2a6677adceaa28ce256d9162712eaf279~pex1rmk2R2107821078epsmtip24;
+        Thu, 30 Sep 2021 03:15:06 +0000 (GMT)
+Subject: Re: [PATCH v5 0/3] extcon: usbc-tusb320: Initial TUSB320L support
+To:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Michael Auchter <michael.auchter@ni.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <07981514-563a-d64b-3fbf-ddf51e021f2c@samsung.com>
+Date:   Thu, 30 Sep 2021 12:36:22 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20210925054407.944225-1-y.oudjana@protonmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprAJsWRmVeSWpSXmKPExsWy7bCmru4u7dBEg75rNhbzj5xjtbi8aw6b
+        xbPnP1ktbjeuYLNo3XuE3eLquonsDmwem1Z1snlcP7OdyaOnbROTR9+WVYwenzfJBbBGZdtk
+        pCampBYppOYl56dk5qXbKnkHxzvHm5oZGOoaWlqYKynkJeam2iq5+AToumXmAF2gpFCWmFMK
+        FApILC5W0rezKcovLUlVyMgvLrFVSi1IySkwLdArTswtLs1L18tLLbEyNDAwMgUqTMjO+Ppz
+        ClvBFt6Khj1/WBoYr3N1MXJwSAiYSHy+k97FyMUhJLCDUWLD1o/MEM4nRoldD9azQDifGSXu
+        /pnO3sXICdbx59deJojELkaJO03bmEASQgLvGSUe3IoEsYUFvCT+HFvDCmKLCFRLXNr/nglk
+        HbNAhsTh+fUgYTYBLYn9L26wgdj8AooSV388ZgSxeQXsJFYf7GYGsVkEVCUe3b3HAmKLCoRJ
+        nNzWAlUjKHFy5hOwOKeAvcSbh6/B6pkFxCVuPZnPBGHLS2x/O4cZ4uapHBI3r1lA2C4S63eu
+        hIoLS7w6vgXqLymJz+/2skHY1RIrTx5hA/lRQqCDUWLL/gusEAljif1LJ0P9oimxfpc+RFhR
+        YufvuYwQe/kk3n3tYYWELq9ER5sQRImyxOUHd5kgbEmJxe2dbBMYlWYh+WYWkg9mIflgFsKy
+        BYwsqxjFUguKc9NTiw0LTOFRnZyfu4kRnDS1LHcwTn/7Qe8QIxMH4yFGCQ5mJRHeH+LBiUK8
+        KYmVValF+fFFpTmpxYcYTYHhO5FZSjQ5H5i280riDU0sDUzMjIxNLAzNDJXEeY+9tkwUEkhP
+        LEnNTk0tSC2C6WPi4JRqYJrbqr+y996VFwUTDDMP7tkxIaIj8MdPn/5UpbBVmqefhqrZqERN
+        9tvKF3pa5jhfNi/X5MO3JSaL31S5s4GDq26de5rI91bFkPuvuPsKFLdKJ6SZxzb87zz5yunt
+        BdmoGlNhgQU31dfsfqPSKO72k/lv+JU/fIpPD3tva8nkW/kni70ndiPr0QlNQm7rf/216jo4
+        u+nlr0q/KVMkN044NPHQiX7ThoXs8rpS67eWNq8NmvaGq/kEb+Hqs7GV5bpKx9T0/6qtn1rL
+        LOIYXZSWcnR+5/9K/lvV+zZ99NjLKuxlc6TWLODsAd2crRc8WbYunSgzUbakzetJ5Em5gJmz
+        P5ae0s/YI+WvfYZ7bv1bWyWW4oxEQy3mouJEAEGODN4jBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrHLMWRmVeSWpSXmKPExsWy7bCSvO4u7dBEg5+rhCzmHznHanF51xw2
+        i2fPf7Ja3G5cwWbRuvcIu8XVdRPZHdg8Nq3qZPO4fmY7k0dP2yYmj74tqxg9Pm+SC2CN4rJJ
+        Sc3JLEst0rdL4Mr4+nMKW8EW3oqGPX9YGhivc3UxcnJICJhI/Pm1l6mLkYtDSGAHo8TVvfOZ
+        IBKSEtMuHmXuYuQAsoUlDh8uhqh5yyix/M92ZpAaYQEviT/H1rCC2CIC1RJr2w8xgtjMAhkS
+        r+acZYFomMQo0bJuN1gRm4CWxP4XN9hAbH4BRYmrPx6DNfAK2EmsPtgNNpRFQFXi0d17LCC2
+        qECYxM4lj5kgagQlTs58AhbnFLCXePPwNTPEMnWJP/MuQdniEreeQDzALCAvsf3tHOYJjMKz
+        kLTPQtIyC0nLLCQtCxhZVjFKphYU56bnFhsWGOWllusVJ+YWl+al6yXn525iBEeRltYOxj2r
+        PugdYmTiYDzEKMHBrCTC+0M8OFGINyWxsiq1KD++qDQntfgQozQHi5I474Wuk/FCAumJJanZ
+        qakFqUUwWSYOTqkGpgBf96KlhTo3N+h3X5LY97PyZJPNsju/7e9vX385ZuKdJaftWFg191q9
+        /82o9CGA+V3i4emKlxLib6/WeHvEgNV1UYU4y6+N586funJN02FFyK9Uo9p06+bDy3q1DytF
+        xXaxV6fJvmQUcUvWve07qeZvd0nFWsPXMR26HFdOyhUdKNhk8aTVrKc0ynhFzZqYJdtdeK/X
+        Gq3om3lp+c3GoNWqVz4Y7PaTeecU8/g4s86unAMHLCTjP7qu6lu/Iaj4X/DzC1fPrJrsX//2
+        QszFjxuYeISN+5+t3iFs+3Xejtyo1k1ndi0LT762L63eZEPQk/pNwjO6FzVtzt6gdLbv4dqL
+        Tx8vfGfiyvCw6GcJa6USS3FGoqEWc1FxIgBTKwp8EQMAAA==
+X-CMS-MailID: 20210930031506epcas1p31bd20aa301492bb47035cd46688b81a0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210925054535epcas1p45ad283474c848a9ec83febd44b4965b5
+References: <CGME20210925054535epcas1p45ad283474c848a9ec83febd44b4965b5@epcas1p4.samsung.com>
+        <20210925054407.944225-1-y.oudjana@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRGFmbmEsDQoNClRoYW5rcyB2ZXJ5IG11Y2ggZm9yIHRoZSByZXZpZXcuDQoNCk9uIFdlZCwg
-MjAyMS0wOS0yOSBhdCAxNDoxMyArMDIwMCwgRGFmbmEgSGlyc2NoZmVsZCB3cm90ZToNCj4gDQo+
-IE9uIDI5LjA5LjIxIDAzOjM3LCBZb25nIFd1IHdyb3RlOg0KPiA+IE1lZGlhVGVrIElPTU1VIGhh
-cyBhbHJlYWR5IGFkZGVkIHRoZSBkZXZpY2VfbGluayBiZXR3ZWVuIHRoZQ0KPiA+IGNvbnN1bWVy
-DQo+ID4gYW5kIHNtaS1sYXJiIGRldmljZS4gSWYgdGhlIHZjb2RlYyBkZXZpY2UgY2FsbCB0aGUN
-Cj4gPiBwbV9ydW50aW1lX2dldF9zeW5jLA0KPiA+IHRoZSBzbWktbGFyYidzIHBtX3J1bnRpbWVf
-Z2V0X3N5bmMgYWxzbyBiZSBjYWxsZWQgYXV0b21hdGljYWxseS4NCj4gPiANCj4gPiBDQzogVGlm
-ZmFueSBMaW4gPHRpZmZhbnkubGluQG1lZGlhdGVrLmNvbT4NCj4gPiBDQzogSXJ1aSBXYW5nIDxp
-cnVpLndhbmdAbWVkaWF0ZWsuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFlvbmcgV3UgPHlvbmcu
-d3VAbWVkaWF0ZWsuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBFdmFuIEdyZWVuIDxldmdyZWVuQGNo
-cm9taXVtLm9yZz4NCj4gPiBBY2tlZC1ieTogVGlmZmFueSBMaW4gPHRpZmZhbnkubGluQG1lZGlh
-dGVrLmNvbT4NCj4gPiBSZXZpZXdlZC1ieTogRGFmbmEgSGlyc2NoZmVsZCA8ZGFmbmEuaGlyc2No
-ZmVsZEBjb2xsYWJvcmEuY29tPg0KPiA+IC0tLQ0KPiA+ICAgLi4uL3BsYXRmb3JtL210ay12Y29k
-ZWMvbXRrX3Zjb2RlY19kZWNfcG0uYyAgIHwgMzcgKysrLS0tLS0tLS0tLS0NCj4gPiAtLQ0KPiA+
-ICAgLi4uL3BsYXRmb3JtL210ay12Y29kZWMvbXRrX3Zjb2RlY19kcnYuaCAgICAgIHwgIDMgLS0N
-Cj4gPiAgIC4uLi9wbGF0Zm9ybS9tdGstdmNvZGVjL210a192Y29kZWNfZW5jLmMgICAgICB8ICAx
-IC0NCj4gPiAgIC4uLi9wbGF0Zm9ybS9tdGstdmNvZGVjL210a192Y29kZWNfZW5jX3BtLmMgICB8
-IDQ0ICsrKy0tLS0tLS0tLS0tDQo+ID4gLS0tLS0NCj4gPiAgIDQgZmlsZXMgY2hhbmdlZCwgMTAg
-aW5zZXJ0aW9ucygrKSwgNzUgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLXZjb2RlYy9tdGtfdmNvZGVjX2RlY19wbS5jDQo+ID4g
-Yi9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay12Y29kZWMvbXRrX3Zjb2RlY19kZWNfcG0uYw0K
-PiA+IGluZGV4IDYwMzhkYjk2ZjcxYy4uZDBiZjlhYTNiMjlkIDEwMDY0NA0KPiA+IC0tLSBhL2Ry
-aXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLXZjb2RlYy9tdGtfdmNvZGVjX2RlY19wbS5jDQo+ID4g
-KysrIGIvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstdmNvZGVjL210a192Y29kZWNfZGVjX3Bt
-LmMNCj4gPiBAQCAtOCwxNCArOCwxMiBAQA0KPiA+ICAgI2luY2x1ZGUgPGxpbnV4L29mX2FkZHJl
-c3MuaD4NCj4gPiAgICNpbmNsdWRlIDxsaW51eC9vZl9wbGF0Zm9ybS5oPg0KPiA+ICAgI2luY2x1
-ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4NCj4gPiAtI2luY2x1ZGUgPHNvYy9tZWRpYXRlay9zbWku
-aD4NCj4gPiAgIA0KPiA+ICAgI2luY2x1ZGUgIm10a192Y29kZWNfZGVjX3BtLmgiDQo+ID4gICAj
-aW5jbHVkZSAibXRrX3Zjb2RlY191dGlsLmgiDQo+ID4gICANCj4gPiAgIGludCBtdGtfdmNvZGVj
-X2luaXRfZGVjX3BtKHN0cnVjdCBtdGtfdmNvZGVjX2RldiAqbXRrZGV2KQ0KPiA+ICAgew0KPiA+
-IC0Jc3RydWN0IGRldmljZV9ub2RlICpub2RlOw0KPiA+ICAgCXN0cnVjdCBwbGF0Zm9ybV9kZXZp
-Y2UgKnBkZXY7DQo+ID4gICAJc3RydWN0IG10a192Y29kZWNfcG0gKnBtOw0KPiA+ICAgCXN0cnVj
-dCBtdGtfdmNvZGVjX2NsayAqZGVjX2NsazsNCj4gPiBAQCAtMjYsMTggKzI0LDcgQEAgaW50IG10
-a192Y29kZWNfaW5pdF9kZWNfcG0oc3RydWN0IG10a192Y29kZWNfZGV2DQo+ID4gKm10a2RldikN
-Cj4gPiAgIAlwbSA9ICZtdGtkZXYtPnBtOw0KPiA+ICAgCXBtLT5tdGtkZXYgPSBtdGtkZXY7DQo+
-ID4gICAJZGVjX2NsayA9ICZwbS0+dmRlY19jbGs7DQo+ID4gLQlub2RlID0gb2ZfcGFyc2VfcGhh
-bmRsZShwZGV2LT5kZXYub2Zfbm9kZSwgIm1lZGlhdGVrLGxhcmIiLCAwKTsNCj4gPiAtCWlmICgh
-bm9kZSkgew0KPiA+IC0JCW10a192NGwyX2Vycigib2ZfcGFyc2VfcGhhbmRsZSBtZWRpYXRlayxs
-YXJiIGZhaWwhIik7DQo+ID4gLQkJcmV0dXJuIC0xOw0KPiA+IC0JfQ0KPiA+ICAgDQo+ID4gLQlw
-ZGV2ID0gb2ZfZmluZF9kZXZpY2VfYnlfbm9kZShub2RlKTsNCj4gPiAtCW9mX25vZGVfcHV0KG5v
-ZGUpOw0KPiA+IC0JaWYgKFdBUk5fT04oIXBkZXYpKSB7DQo+ID4gLQkJcmV0dXJuIC0xOw0KPiA+
-IC0JfQ0KPiA+IC0JcG0tPmxhcmJ2ZGVjID0gJnBkZXYtPmRldjsNCj4gPiAgIAlwZGV2ID0gbXRr
-ZGV2LT5wbGF0X2RldjsNCj4gPiAgIAlwbS0+ZGV2ID0gJnBkZXYtPmRldjsNCj4gPiAgIA0KPiA+
-IEBAIC00NywxNCArMzQsMTEgQEAgaW50IG10a192Y29kZWNfaW5pdF9kZWNfcG0oc3RydWN0DQo+
-ID4gbXRrX3Zjb2RlY19kZXYgKm10a2RldikNCj4gPiAgIAkJZGVjX2Nsay0+Y2xrX2luZm8gPSBk
-ZXZtX2tjYWxsb2MoJnBkZXYtPmRldiwNCj4gPiAgIAkJCWRlY19jbGstPmNsa19udW0sIHNpemVv
-ZigqY2xrX2luZm8pLA0KPiA+ICAgCQkJR0ZQX0tFUk5FTCk7DQo+ID4gLQkJaWYgKCFkZWNfY2xr
-LT5jbGtfaW5mbykgew0KPiA+IC0JCQlyZXQgPSAtRU5PTUVNOw0KPiA+IC0JCQlnb3RvIHB1dF9k
-ZXZpY2U7DQo+ID4gLQkJfQ0KPiA+ICsJCWlmICghZGVjX2Nsay0+Y2xrX2luZm8pDQo+ID4gKwkJ
-CXJldHVybiAtRU5PTUVNOw0KPiA+ICAgCX0gZWxzZSB7DQo+ID4gICAJCW10a192NGwyX2Vycigi
-RmFpbGVkIHRvIGdldCB2ZGVjIGNsb2NrIGNvdW50Iik7DQo+ID4gLQkJcmV0ID0gLUVJTlZBTDsN
-Cj4gPiAtCQlnb3RvIHB1dF9kZXZpY2U7DQo+ID4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ID4gICAJ
-fQ0KPiA+ICAgDQo+ID4gICAJZm9yIChpID0gMDsgaSA8IGRlY19jbGstPmNsa19udW07IGkrKykg
-ew0KPiA+IEBAIC02MywyOSArNDcsMjQgQEAgaW50IG10a192Y29kZWNfaW5pdF9kZWNfcG0oc3Ry
-dWN0DQo+ID4gbXRrX3Zjb2RlY19kZXYgKm10a2RldikNCj4gPiAgIAkJCSJjbG9jay1uYW1lcyIs
-IGksICZjbGtfaW5mby0+Y2xrX25hbWUpOw0KPiA+ICAgCQlpZiAocmV0KSB7DQo+ID4gICAJCQlt
-dGtfdjRsMl9lcnIoIkZhaWxlZCB0byBnZXQgY2xvY2sgbmFtZSBpZCA9DQo+ID4gJWQiLCBpKTsN
-Cj4gPiAtCQkJZ290byBwdXRfZGV2aWNlOw0KPiA+ICsJCQlyZXR1cm4gcmV0Ow0KPiA+ICAgCQl9
-DQo+ID4gICAJCWNsa19pbmZvLT52Y29kZWNfY2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYs
-DQo+ID4gICAJCQljbGtfaW5mby0+Y2xrX25hbWUpOw0KPiA+ICAgCQlpZiAoSVNfRVJSKGNsa19p
-bmZvLT52Y29kZWNfY2xrKSkgew0KPiA+ICAgCQkJbXRrX3Y0bDJfZXJyKCJkZXZtX2Nsa19nZXQg
-KCVkKSVzIGZhaWwiLCBpLA0KPiA+ICAgCQkJCWNsa19pbmZvLT5jbGtfbmFtZSk7DQo+ID4gLQkJ
-CXJldCA9IFBUUl9FUlIoY2xrX2luZm8tPnZjb2RlY19jbGspOw0KPiA+IC0JCQlnb3RvIHB1dF9k
-ZXZpY2U7DQo+ID4gKwkJCXJldHVybiBQVFJfRVJSKGNsa19pbmZvLT52Y29kZWNfY2xrKTsNCj4g
-PiAgIAkJfQ0KPiA+ICAgCX0NCj4gPiAgIA0KPiA+ICAgCXBtX3J1bnRpbWVfZW5hYmxlKCZwZGV2
-LT5kZXYpOw0KPiA+ICAgCXJldHVybiAwOw0KPiA+IC1wdXRfZGV2aWNlOg0KPiA+IC0JcHV0X2Rl
-dmljZShwbS0+bGFyYnZkZWMpOw0KPiA+IC0JcmV0dXJuIHJldDsNCj4gPiAgIH0NCj4gPiAgIA0K
-PiA+ICAgdm9pZCBtdGtfdmNvZGVjX3JlbGVhc2VfZGVjX3BtKHN0cnVjdCBtdGtfdmNvZGVjX2Rl
-diAqZGV2KQ0KPiA+ICAgew0KPiA+ICAgCXBtX3J1bnRpbWVfZGlzYWJsZShkZXYtPnBtLmRldik7
-DQo+ID4gLQlwdXRfZGV2aWNlKGRldi0+cG0ubGFyYnZkZWMpOw0KPiA+ICAgfQ0KPiANCj4gTm93
-IHRoYXQgZnVuY3Rpb25zIG9ubHkgZG8gICdwbV9ydW50aW1lX2Rpc2FibGUoZGV2LT5wbS5kZXYp
-Oycgc28gaXQNCj4gd2lsbCBiZSBtb3JlDQo+IHJlYWRhYmxlIHRvIHJlbW92ZSB0aGUgZnVuY3Rp
-b24gbXRrX3Zjb2RlY19yZWxlYXNlX2RlY19wbQ0KPiBhbmQgcmVwbGFjZSB3aXRoIHBtX3J1bnRp
-bWVfZGlzYWJsZShkZXYtPnBtLmRldik7DQo+IFNhbWUgZm9yIHRoZSAnZW5jJyBlcXVpdmFsZW50
-Lg0KDQpNYWtlIHNlbnNlLiBCdXQgSXQgbWF5IGJlIG5vdCBwcm9wZXIgaWYgdXNpbmcgcG1fcnVu
-dGltZV9kaXNhYmxlDQphcyB0aGUgc3ltbWV0cnkgd2l0aCBtdGtfdmNvZGVjX2luaXRfZGVjX3Bt
-IGluIHRoZSBtdGtfdmNvZGVjX3Byb2JlLg0KDQpNYXliZSB3ZSBzaG91bGQgbW92ZSBwbV9ydW50
-aW1lX2VuYWJsZSBvdXQgZnJvbSBtdGtfdmNvZGVjX2luaXRfZGVjX3BtDQppbnRvIG10a192Y29k
-ZWNfcHJvYmUuIEkgY291bGQgZG8gYSBuZXcgcGF0Y2ggZm9yIHRoaXMuIElzIHRoaXMgb2sgZm9y
-DQp5b3U/DQoNCj4gDQo+IFRoYW5rcywNCj4gRGFmbmENCg0KW3NuaXBdDQo=
+On 9/25/21 2:45 PM, Yassine Oudjana wrote:
+> The TUSB320L is a newer chip with additional features. It is close enough to TUSB320 so it works
+> to some extent out-of-the-box, but for some reason it can start in UFP mode which is not desirable.
+> 
+> This series adds support for reset and mode setting for both chips, and does that while probing
+> to ensure the chip starts with the default mode of following the PORT pin.
+> 
+> Changes since v4:
+>  - Use ops struct instead of type enum.
+> Changes since v3:
+>  - Remove unused tusb_modes.
+>  - Remove extra blank line.
+> Changes since v2:
+>  - Read state before setting default mode, then update it again after resetting.
+>  - Remove mode tracing from irq handler
+>  - Add a delay after reset to handle tSOFT_RESET
+>  - Use a separate mode setting function for each of TUSB320 and TUSB320L.
+> Changes since v1:
+>  - Split first patch into two patches, one adding support for mode setting and reset on TUSB320,
+>    and the other adding support for TUSB320L.
+>  - Fix dt_binding_check warning:
+>    ../Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml:15:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+> 
+> Yassine Oudjana (3):
+>   extcon: usbc-tusb320: Add support for mode setting and reset
+>   extcon: usbc-tusb320: Add support for TUSB320L
+>   dt-bindings: extcon: usbc-tusb320: Add TUSB320L compatible string
+> 
+>  .../bindings/extcon/extcon-usbc-tusb320.yaml  |   4 +-
+>  drivers/extcon/extcon-usbc-tusb320.c          | 163 +++++++++++++++++-
+>  2 files changed, 161 insertions(+), 6 deletions(-)
+> 
 
+Thanks for fixup. Applied them.
+
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
