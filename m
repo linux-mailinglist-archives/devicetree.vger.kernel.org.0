@@ -2,160 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C5841DDD4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 17:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA5DC41DDEB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 17:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345912AbhI3Po1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 11:44:27 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:31936 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345816AbhI3PoZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 11:44:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1633016562; x=1664552562;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=SmX4ZduoWNa9T+QX9SzZQaa1c/SEhdpbKRtqYpTPzX8=;
-  b=T7uK9zS3ryz9ybWVjU+bxQqGzWKJw7nPlF5LeEchnkm1Z3JG0YBu0JRO
-   4r9YzD8S7GZIL+VCExv9++u/mphHZ0sKmKk0dYIvNbTGLR5291aAX+ony
-   +SGUiEvCZdOZ8WhxyDjYZIQm3DcV4pu0txO3kavKlqRHXESSQEY2KfGNX
-   /h5tNb56rN66TusrLZVsDBcjsnMVKqcxAx4cmf6MuKTMbhJgmArHQK4sx
-   98YtOZojjPVLaxYKuGAIpJYppKBotwTvpesGedgijliS4dCFVnfMlJhmt
-   dXYh8MIHDRCy2Zp+QMHDerbWSJsNB4TEpZBswsFWyQxDnJrtkGz0PLWNt
-   Q==;
-IronPort-SDR: Z+hFzDs3S5AIqjSQpbShBujrezhH4N3q3B3MStemOvzxNlCKtg/D5G1Iw8yWJm1yHl8pHGDrHS
- deHT9y7we3ct7VnK82iGTIlhwZD5SSVAjvsA7H/zSfcD5pcAa7eKHkk4ozYLk4PvUGDAIsFeb8
- 1gjbV2G3+UlG2sGK4do8HZuQmB22Sn+1ZC+vE45JdfBjvzquXZ058mjEPPv423mXd2OawYBmbA
- HCydYVIkZ7Fw68gL63IsCXo0MLVQ/F+Ky2HuvAdoksjxF2G1Q2FB1LO6LMj5SC8pRkbeUxQvoO
- 6qWLdt8IxhUg4JLWCxpNn5a4
-X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; 
-   d="scan'208";a="146284180"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Sep 2021 08:42:42 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 30 Sep 2021 08:42:39 -0700
-Received: from rob-dk-mpu01.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Thu, 30 Sep 2021 08:42:37 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>,
-        <linux@armlinux.org.uk>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v2 3/3] ARM: at91: pm: preload base address of controllers in tlb
-Date:   Thu, 30 Sep 2021 18:42:19 +0300
-Message-ID: <20210930154219.2214051-4-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210930154219.2214051-1-claudiu.beznea@microchip.com>
-References: <20210930154219.2214051-1-claudiu.beznea@microchip.com>
+        id S1346247AbhI3Psl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 11:48:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345971AbhI3Psl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 11:48:41 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27AE1C06176A
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 08:46:58 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id i4so27608697lfv.4
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 08:46:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=d2+hq+nxbbXAkaT4qaeWpisMiqGB49qBmA8xSYn2QSI=;
+        b=ts/avt3kzHzoGq7Ak5AV5Wxe9QuECdMvB1s1HFzD4+ry82idewTaLUO+lCQuPa4DyT
+         +gW4lWvWT46H7IaGSWgIxkI+ddVuNPHD7B4ZwzvfDM6vf/mfP9X4OI6AQuOiSypfGtZB
+         h3JFyOa4UBoWcHjaFYDexjo/9CzkqZyngQqJG5pdHE1mbP39PuOkPs0T7cpyNxEjM5Kz
+         UNFPvziWlKLKCBEVCTO6UtQGZazE4HPSsfNBQMMIEQoAQH8hu+mCqFP3HcABwh4l4y5v
+         WNZ9l1NNn4dCJYMrhtFz6JNdL92AvTTZeVcJ9g+V4XP+NEnb+VXo5HzLlIdET+Ht+L3K
+         Cszw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d2+hq+nxbbXAkaT4qaeWpisMiqGB49qBmA8xSYn2QSI=;
+        b=h8adVijtrQkXV/9UvhebkjDJZ7lPbQYtXP6QHuYbDXw1MJU6ca3irfwsRoOBh1uYQa
+         IbCkfU5xPUvq8XD8UXcJ3cYdgwv7+h562TNyzwYmjPoFWK1vkhqw4KD+9f4/94UmDgHA
+         f6OGLvNvOIjEBtXYcQ71SUV2MEfu4n89sl4gCVAjpFCsrDaN+BDEh4bohXhxTwRjFx1f
+         K1a9XHIT+yWjh05G4D9mdvqY5G2HrvsxG6t3/N1cbhxrq04e+zqY+dgSJYIEparBbnnR
+         pipcdJU8GW/2xOeyVqF2J07iQvmV0fvCS/+noLQ13LrnABQmap4KJQ62qM5JVxuvtonh
+         kXJg==
+X-Gm-Message-State: AOAM532LpNY8bZwsWxPiNkPds7p/Ee8Tsjl9/6qNAChxzWwI6dm8BRnQ
+        AxBmBkAE4W/D35fl6lXMR0TEAPp0r9RH2YsUO6+Cvg==
+X-Google-Smtp-Source: ABdhPJzaDE9QWa7bdhAIHJ94Li3ZZgNfj3d7w6jgx+N0Ze2Whd0t5L9GUlAJne4LsPtEXT2xZD6rwTNo5z3vCOmzq18=
+X-Received: by 2002:a05:651c:4d2:: with SMTP id e18mr6742952lji.432.1633016816515;
+ Thu, 30 Sep 2021 08:46:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20210929163847.2807812-1-maz@kernel.org> <20210929163847.2807812-11-maz@kernel.org>
+ <CACRpkdaXbrmvoQQNRdyv6rJ+dHYAKMN+J_sc-3_c1d6D2dsfbQ@mail.gmail.com> <87fstmtrv2.wl-maz@kernel.org>
+In-Reply-To: <87fstmtrv2.wl-maz@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 30 Sep 2021 17:46:45 +0200
+Message-ID: <CACRpkdb1JCoTLMH5hExcruJA=XT+KRX=LMvF=rRqzhJUup3-LA@mail.gmail.com>
+Subject: Re: [PATCH v5 10/14] arm64: apple: Add pinctrl nodes
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        Joey Gouly <joey.gouly@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In suspend/resume procedure for AT91 architecture different controllers
-(PMC, SHDWC, RAM, RAM PHY, SFRBU) are accessed to do the proper settings
-for power saving. Commit f0bbf17958e8 ("ARM: at91: pm: add self-refresh
-support for sama7g5") introduced the access to RAMC PHY controller for
-SAMA7G5. The access to this controller is done after RAMC ports are
-closed, thus any TLB walk necessary for RAMC PHY virtual address will
-fail. In the development branch this was not encountered. However, on
-current kernel the issue is reproducible.
+On Thu, Sep 30, 2021 at 10:00 AM Marc Zyngier <maz@kernel.org> wrote:
 
-To solve the issue the previous mechanism of pre-loading the TLB with
-the RAMC PHY virtual address has been used. However, only the addition
-of this new pre-load breaks the functionality for ARMv5 based
-devices (SAM9X60). This behavior has been encountered previously
-while debugging this code and using the same mechanism for pre-loading
-address for different controllers (e.g. pin controller, the assumption
-being that other requested translations are replaced from TLB).
+> > In other discussions it turns out that the driver is abusing these gpio-ranges
+> > to find out how many pins are in each pinctrl instance. This is not the
+> > idea with gpio-ranges, these can be multiple and map different sets,
+> > so we need something like
+> >
+> > apple,npins = <212>;
+> > (+ bindings)
+> >
+> > or so...
+>
+> Is it the driver that needs updating? Or the binding?
 
-To solve this new issue the TLB flush + the extension of pre-loading
-the rest of controllers to TLB (e.g. PMC, RAMC) has been added. The
-rest of the controllers should have been pre-loaded previously, anyway.
+Both, I guess.
 
-Fixes: f0bbf17958e8 ("ARM: at91: pm: add self-refresh support for sama7g5")
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
+> I don't really
+> care about the former, but the latter is more disruptive as it has
+> impacts over both u-boot and at least OpenBSD.
+>
+> How is that solved on other pinctrl blocks? I can't see anyone having
+> a similar a similar property.
 
-Hi Nicolas,
+The Apple pincontroller is unique in having four instances using the
+same compatible string (I raised this as an issue too).
 
-Please link this patch with the previous one in this series ("ARM: at91:
-pm: group constants and addresses loading") with a Depends-on tag as this
-will fail to apply if backported to older kernel versions.
+Most SoCs has one instance of a pin controller, with one compatible
+string and then we also know how many pins it has.
 
-Thank you,
-Claudiu Beznea
+The maintainer seeme unhappy about my suggestion to name
+the four pin controllers after function and insist to use the same
+compatible for all four, which means they instead need to be
+parametrized, which means this parameter has to be added
+because ranges should not be used in this way.
 
- arch/arm/mach-at91/pm_suspend.S | 25 ++++++++++++++++++++++++-
- 1 file changed, 24 insertions(+), 1 deletion(-)
+I guess the code can survive using the ranges as a fallback at
+the cost of some more complex code.
 
-diff --git a/arch/arm/mach-at91/pm_suspend.S b/arch/arm/mach-at91/pm_suspend.S
-index 34f251fdb743..fdb4f63ecde4 100644
---- a/arch/arm/mach-at91/pm_suspend.S
-+++ b/arch/arm/mach-at91/pm_suspend.S
-@@ -1014,6 +1014,10 @@ ENTRY(at91_pm_suspend_in_sram)
- 	mov	tmp1, #0
- 	mcr	p15, 0, tmp1, c7, c10, 4
- 
-+	/* Flush tlb. */
-+	mov	r4, #0
-+	mcr	p15, 0, r4, c8, c7, 0
-+
- 	ldr	tmp1, [r0, #PM_DATA_PMC_MCKR_OFFSET]
- 	str	tmp1, .mckr_offset
- 	ldr	tmp1, [r0, #PM_DATA_PMC_VERSION]
-@@ -1023,23 +1027,42 @@ ENTRY(at91_pm_suspend_in_sram)
- 	ldr	tmp1, [r0, #PM_DATA_MODE]
- 	str	tmp1, .pm_mode
- 
-+	/*
-+	 * ldrne below are here to preload their address in the TLB as access
-+	 * to RAM may be limited while in self-refresh.
-+	 */
- 	ldr	tmp1, [r0, #PM_DATA_PMC]
- 	str	tmp1, .pmc_base
-+	cmp	tmp1, #0
-+	ldrne	tmp2, [tmp1, #0]
-+
- 	ldr	tmp1, [r0, #PM_DATA_RAMC0]
- 	str	tmp1, .sramc_base
-+	cmp	tmp1, #0
-+	ldrne	tmp2, [tmp1, #0]
-+
- 	ldr	tmp1, [r0, #PM_DATA_RAMC1]
- 	str	tmp1, .sramc1_base
-+	cmp	tmp1, #0
-+	ldrne	tmp2, [tmp1, #0]
-+
-+#ifndef CONFIG_SOC_SAM_V4_V5
-+	/* ldrne below are here to preload their address in the TLB */
- 	ldr	tmp1, [r0, #PM_DATA_RAMC_PHY]
- 	str	tmp1, .sramc_phy_base
--	/* Both ldrne below are here to preload their address in the TLB */
-+	cmp	tmp1, #0
-+	ldrne	tmp2, [tmp1, #0]
-+
- 	ldr	tmp1, [r0, #PM_DATA_SHDWC]
- 	str	tmp1, .shdwc
- 	cmp	tmp1, #0
- 	ldrne	tmp2, [tmp1, #0]
-+
- 	ldr	tmp1, [r0, #PM_DATA_SFRBU]
- 	str	tmp1, .sfrbu
- 	cmp	tmp1, #0
- 	ldrne	tmp2, [tmp1, #0x10]
-+#endif
- 
- 	/* Active the self-refresh mode */
- 	at91_sramc_self_refresh_ena
--- 
-2.25.1
-
+Yours,
+Linus Walleij
