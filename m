@@ -2,256 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 899FB41DBDB
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 16:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36CC441DBF6
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 16:06:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351695AbhI3OFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 10:05:43 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41942
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1351673AbhI3OFn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 10:05:43 -0400
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6DB324025C
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 14:03:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633010638;
-        bh=Cs492Uld1dgt/renKhzvwp/nFhGhdClsztwOexxROyc=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=CAVCbETXxIDvDWCLNHHSALTsP25CmPr0ejJJwXoFViKQtMAXoOQSMk6wYP37LrLXy
-         DhWGwPXi8QMQd7WuuY5W/4hVFeF/lQlDLb5hvVU5yLZTXvIphNLthG3Sbv2T7AX/aE
-         +JHjdCub2ivb8bMiE+6s7Xg/u6tb5OvOzLqVfWciOltQdzRowr3Pgv8XNMDbibEc9F
-         h/taTbwoDqYR6mL2lmt1tmLuZD7zxrUfE0CKg6V94UdEcBuiP+QZCuFWoBAwtroXj3
-         BK5heo3H2hCLwiHk4GhQtLrwlc1cyhyzUEXq7P18i5ptxWnb6ceGWjAs0Y2PNziQOy
-         YL/+TI/DM1sAw==
-Received: by mail-lf1-f72.google.com with SMTP id h27-20020a0565123c9b00b003fca9e11144so5677567lfv.19
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 07:03:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Cs492Uld1dgt/renKhzvwp/nFhGhdClsztwOexxROyc=;
-        b=L//TshQItbl0exHzd5eDw+oahgdaP3bwuXK5xNLtV/JH5VMNRaJPpVLd2rmO0AQyAp
-         EsNXVyy2KoGzH+BxvVDQjR7NcvNwVTnbIrEfkyTSrFHJkI3/ophtysJeBAH/ZGODgruI
-         1aUEqKuuUCt00hjqOrHrJ+8AzDnQ5V2u15yD2DmZ1r8hrCjzJIbBAVy0yuEr85kY4iKj
-         e4z32JiTN+f8mo9Yyv4Ss9rcG7ujks1uhjwWp0DTR47wfpAZMATglK4JomTNdP19kcVv
-         S4QfingF/Ju+ELUGKy7j9TMo1birAXSqSfDdOSdB88BExFM4+XSCKQnYHajzDvKl4rlS
-         xi9w==
-X-Gm-Message-State: AOAM532X3rCq6MmY1wk2Qwhb5BL5MplCnc+AgZkSC/yu1+C8JoJgnvDP
-        nmbDocs+JYKb2hOudCS52Csa1Qfm//uVUi7uUrQM76rdDPiIdcEiGEbrAl/xdovvyO1IrvYlXv7
-        swQc2HGNIijKFY2V86f3dtyfLEZWzooswXkn5c4Y=
-X-Received: by 2002:a2e:530d:: with SMTP id h13mr6158237ljb.192.1633010637568;
-        Thu, 30 Sep 2021 07:03:57 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwD+1Q+rFkY6iajccNc1tY8rWLhVSgoPoYUZn4jBBkNz7eojB3z0DHwP189TSCCUgWIgs/j/g==
-X-Received: by 2002:a2e:530d:: with SMTP id h13mr6158199ljb.192.1633010637245;
-        Thu, 30 Sep 2021 07:03:57 -0700 (PDT)
-Received: from localhost.localdomain ([193.178.187.25])
-        by smtp.gmail.com with ESMTPSA id m9sm382166lfb.162.2021.09.30.07.03.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Sep 2021 07:03:56 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
+        id S1351802AbhI3OIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 10:08:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54298 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1351797AbhI3OIY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 10:08:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 21B0B60EFD;
+        Thu, 30 Sep 2021 14:06:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633010801;
+        bh=pV7wpRwYeddObrK3x2BRYB+BUb70rVeOOPgHw93L05s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uwqrJQlhmfkysFaoognvTOMelKZtmYisb28Nclpv9JNZM5fKRoqU5N08wrdIB/8Ht
+         uCsrMPtZOerzkZJDJxX8HuyOzi8v2dS05SPBGCeFL8co8ze1Eff0K8sTcO4xoF5BY3
+         VkfLEMMzEdfpdHBcEpC36gkcfZNeS7UKbrcWf6vmNHI8Ik/zp7a1iZwnzMQbIpqqYJ
+         UjRY3MtB2BMNzsvqw9EuTmsqIosTWxA967zuqh7NkSo4Zx3zDgTNogCUcsB3kSaxDD
+         1ApooBGjRExDQPUD9YGX108RZp4nkFd4kE9Cc3+nBxRsInYcbhNPuMRrs+mdt6w/hY
+         jeHacm3qNygIQ==
+Date:   Thu, 30 Sep 2021 22:06:30 +0800
+From:   Peter Chen <peter.chen@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
+        linux-mmc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
         Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] regulator: dt-bindings: maxim,max8952: convert to dtschema
-Date:   Thu, 30 Sep 2021 16:03:27 +0200
-Message-Id: <20210930140327.196232-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH v13 16/35] usb: chipidea: tegra: Add runtime PM and OPP
+ support
+Message-ID: <20210930140630.GA6697@Peter>
+References: <20210926224058.1252-1-digetx@gmail.com>
+ <20210926224058.1252-17-digetx@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210926224058.1252-17-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Maxim MAX8952 regulator to DT schema format.
+On 21-09-27 01:40:39, Dmitry Osipenko wrote:
+> The Tegra USB controller belongs to the core power domain and we're going
+> to enable GENPD support for the core domain. Now USB controller must be
+> resumed using runtime PM API in order to initialize the USB power state.
+> We already support runtime PM for the CI device, but CI's PM is separated
+> from the RPM managed by tegra-usb driver. Add runtime PM and OPP support
+> to the driver.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  drivers/usb/chipidea/ci_hdrc_tegra.c | 53 ++++++++++++++++++++++++----
+>  1 file changed, 46 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/usb/chipidea/ci_hdrc_tegra.c b/drivers/usb/chipidea/ci_hdrc_tegra.c
+> index 60361141ac04..3142ef7ebe42 100644
+> --- a/drivers/usb/chipidea/ci_hdrc_tegra.c
+> +++ b/drivers/usb/chipidea/ci_hdrc_tegra.c
+> @@ -7,6 +7,7 @@
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+> +#include <linux/pm_runtime.h>
+>  #include <linux/reset.h>
+>  
+>  #include <linux/usb.h>
+> @@ -15,6 +16,8 @@
+>  #include <linux/usb/of.h>
+>  #include <linux/usb/phy.h>
+>  
+> +#include <soc/tegra/common.h>
+> +
+>  #include "../host/ehci.h"
+>  
+>  #include "ci.h"
+> @@ -278,6 +281,8 @@ static int tegra_usb_probe(struct platform_device *pdev)
+>  	if (!usb)
+>  		return -ENOMEM;
+>  
+> +	platform_set_drvdata(pdev, usb);
+> +
+>  	soc = of_device_get_match_data(&pdev->dev);
+>  	if (!soc) {
+>  		dev_err(&pdev->dev, "failed to match OF data\n");
+> @@ -296,11 +301,17 @@ static int tegra_usb_probe(struct platform_device *pdev)
+>  		return err;
+>  	}
+>  
+> -	err = clk_prepare_enable(usb->clk);
+> -	if (err < 0) {
+> -		dev_err(&pdev->dev, "failed to enable clock: %d\n", err);
+> +	err = devm_pm_runtime_enable(&pdev->dev);
+> +	if (err)
+> +		return err;
+> +
+> +	err = devm_tegra_core_dev_init_opp_table_common(&pdev->dev);
+> +	if (err)
+> +		return err;
+> +
+> +	err = pm_runtime_resume_and_get(&pdev->dev);
+> +	if (err)
+>  		return err;
+> -	}
+>  
+>  	if (device_property_present(&pdev->dev, "nvidia,needs-double-reset"))
+>  		usb->needs_double_reset = true;
+> @@ -320,8 +331,6 @@ static int tegra_usb_probe(struct platform_device *pdev)
+>  	if (err)
+>  		goto fail_power_off;
+>  
+> -	platform_set_drvdata(pdev, usb);
+> -
+>  	/* setup and register ChipIdea HDRC device */
+>  	usb->soc = soc;
+>  	usb->data.name = "tegra-usb";
+> @@ -350,7 +359,8 @@ static int tegra_usb_probe(struct platform_device *pdev)
+>  phy_shutdown:
+>  	usb_phy_shutdown(usb->phy);
+>  fail_power_off:
+> -	clk_disable_unprepare(usb->clk);
+> +	pm_runtime_put(&pdev->dev);
+> +
+>  	return err;
+>  }
+>  
+> @@ -360,15 +370,44 @@ static int tegra_usb_remove(struct platform_device *pdev)
+>  
+>  	ci_hdrc_remove_device(usb->dev);
+>  	usb_phy_shutdown(usb->phy);
+> +	pm_runtime_put(&pdev->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused tegra_usb_runtime_resume(struct device *dev)
+> +{
+> +	struct tegra_usb *usb = dev_get_drvdata(dev);
+> +	int err;
+> +
+> +	err = clk_prepare_enable(usb->clk);
+> +	if (err < 0) {
+> +		dev_err(dev, "failed to enable clock: %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused tegra_usb_runtime_suspend(struct device *dev)
+> +{
+> +	struct tegra_usb *usb = dev_get_drvdata(dev);
+> +
+>  	clk_disable_unprepare(usb->clk);
+>  
+>  	return 0;
+>  }
+>  
+> +static const struct dev_pm_ops tegra_usb_pm = {
+> +	SET_RUNTIME_PM_OPS(tegra_usb_runtime_suspend, tegra_usb_runtime_resume,
+> +			   NULL)
+> +};
+> +
+>  static struct platform_driver tegra_usb_driver = {
+>  	.driver = {
+>  		.name = "tegra-usb",
+>  		.of_match_table = tegra_usb_of_match,
+> +		.pm = &tegra_usb_pm,
+>  	},
+>  	.probe = tegra_usb_probe,
+>  	.remove = tegra_usb_remove,
+> -- 
+> 2.32.0
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../devicetree/bindings/regulator/max8952.txt |  52 ---------
- .../bindings/regulator/maxim,max8952.yaml     | 109 ++++++++++++++++++
- 2 files changed, 109 insertions(+), 52 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/regulator/max8952.txt
- create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max8952.yaml
+I got below compile error if only compile this file, I think previous patches
+should include the definition, if that, feel free to add my ack to this
+patch.
 
-diff --git a/Documentation/devicetree/bindings/regulator/max8952.txt b/Documentation/devicetree/bindings/regulator/max8952.txt
-deleted file mode 100644
-index 866fcdd0f4eb..000000000000
---- a/Documentation/devicetree/bindings/regulator/max8952.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--Maxim MAX8952 voltage regulator
--
--Required properties:
--- compatible: must be equal to "maxim,max8952"
--- reg: I2C slave address, usually 0x60
--- max8952,dvs-mode-microvolt: array of 4 integer values defining DVS voltages
--  in microvolts. All values must be from range <770000, 1400000>
--- any required generic properties defined in regulator.txt
--
--Optional properties:
--- max8952,vid-gpios: array of two GPIO pins used for DVS voltage selection
--- max8952,en-gpio: GPIO used to control enable status of regulator
--- max8952,default-mode: index of default DVS voltage, from <0, 3> range
--- max8952,sync-freq: sync frequency, must be one of following values:
--    - 0: 26 MHz
--    - 1: 13 MHz
--    - 2: 19.2 MHz
--  Defaults to 26 MHz if not specified.
--- max8952,ramp-speed: voltage ramp speed, must be one of following values:
--    - 0: 32mV/us
--    - 1: 16mV/us
--    - 2: 8mV/us
--    - 3: 4mV/us
--    - 4: 2mV/us
--    - 5: 1mV/us
--    - 6: 0.5mV/us
--    - 7: 0.25mV/us
--  Defaults to 32mV/us if not specified.
--- any available generic properties defined in regulator.txt
--
--Example:
--
--	vdd_arm_reg: pmic@60 {
--		compatible = "maxim,max8952";
--		reg = <0x60>;
--
--		/* max8952-specific properties */
--		max8952,vid-gpios = <&gpx0 3 0>, <&gpx0 4 0>;
--		max8952,en-gpio = <&gpx0 1 0>;
--		max8952,default-mode = <0>;
--		max8952,dvs-mode-microvolt = <1250000>, <1200000>,
--						<1050000>, <950000>;
--		max8952,sync-freq = <0>;
--		max8952,ramp-speed = <0>;
--
--		/* generic regulator properties */
--		regulator-name = "vdd_arm";
--		regulator-min-microvolt = <770000>;
--		regulator-max-microvolt = <1400000>;
--		regulator-always-on;
--		regulator-boot-on;
--	};
-diff --git a/Documentation/devicetree/bindings/regulator/maxim,max8952.yaml b/Documentation/devicetree/bindings/regulator/maxim,max8952.yaml
-new file mode 100644
-index 000000000000..e4e8c58f6046
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/maxim,max8952.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/maxim,max8952.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim MAX8952 voltage regulator
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+
-+allOf:
-+  - $ref: regulator.yaml#
-+
-+properties:
-+  compatible:
-+    const: maxim,max8952
-+
-+  max8952,default-mode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3]
-+    description: |
-+      index of default DVS voltage
-+
-+  max8952,dvs-mode-microvolt:
-+    minItems: 4
-+    maxItems: 4
-+    items:
-+      minimum: 770000
-+      maximum: 1400000
-+    description: |
-+      Array of 4 integer values defining DVS voltages in microvolts. All values
-+      must be from range <770000, 1400000>.
-+
-+  max8952,en-gpio:
-+    maxItems: 1
-+    description: |
-+      GPIO used to control enable status of regulator
-+
-+  max8952,ramp-speed:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+    default: 0
-+    description: |
-+      Voltage ramp speed, values map to:
-+       - 0: 32mV/us
-+       - 1: 16mV/us
-+       - 2: 8mV/us
-+       - 3: 4mV/us
-+       - 4: 2mV/us
-+       - 5: 1mV/us
-+       - 6: 0.5mV/us
-+       - 7: 0.25mV/us
-+      Defaults to 32mV/us if not specified.
-+
-+  max8952,sync-freq:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2]
-+    default: 0
-+    description: |
-+      Sync frequency, values map to:
-+       - 0: 26 MHz
-+       - 1: 13 MHz
-+       - 2: 19.2 MHz
-+      Defaults to 26 MHz if not specified.
-+
-+  max8952,vid-gpios:
-+    minItems: 2
-+    maxItems: 2
-+    description: |
-+      Array of two GPIO pins used for DVS voltage selection
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - max8952,dvs-mode-microvolt
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@60 {
-+            compatible = "maxim,max8952";
-+            reg = <0x60>;
-+
-+            max8952,vid-gpios = <&gpx0 3 GPIO_ACTIVE_HIGH>,
-+                                <&gpx0 4 GPIO_ACTIVE_HIGH>;
-+            max8952,default-mode = <0>;
-+            max8952,dvs-mode-microvolt = <1250000>, <1200000>,
-+                                         <1050000>, <950000>;
-+            max8952,sync-freq = <0>;
-+            max8952,ramp-speed = <0>;
-+
-+            regulator-name = "VARM_1.2V_C210";
-+            regulator-min-microvolt = <770000>;
-+            regulator-max-microvolt = <1400000>;
-+            regulator-always-on;
-+            regulator-boot-on;
-+        };
-+    };
+Acked-by: Peter Chen <peter.chen@kernel.org>
+
+drivers/usb/chipidea/ci_hdrc_tegra.c:308:8: error: implicit declaration of function ‘devm_tegra_core_dev_init_opp_table_common’;
+did you mean ‘devm_tegra_core_dev_init_opp_table’? [-Werror=implicit-function-declaration]
+  308 |  err = devm_tegra_core_dev_init_opp_table_common(&pdev->dev);
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |        devm_tegra_core_dev_init_opp_table
+
+
 -- 
-2.30.2
+
+Thanks,
+Peter Chen
 
