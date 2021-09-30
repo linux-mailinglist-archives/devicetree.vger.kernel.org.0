@@ -2,117 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69A8941DCC4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 16:56:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA50141DCD9
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 17:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351994AbhI3O5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 10:57:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42360 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351985AbhI3O5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 10:57:43 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60399C06176A;
-        Thu, 30 Sep 2021 07:56:00 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id g41so26407732lfv.1;
-        Thu, 30 Sep 2021 07:56:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=uaAT5wob0YiOJmkWdlUFhs2KZnxNPqhCjHclKoH74vs=;
-        b=M6M4cVtrgzJCn3k1Nx3Js2ddtxJSAL5FKq0toORwn5TSYaQJo4j+glrjZH0j1AkKjC
-         Nr0C/u3n/0g0kgj8dViKf+o1Do2dyB4FtAh8knqyaWQlQIiNg/uMsi3gT0TVFUQtC1WF
-         ZPYk8lJJJYxdD/OpZ7oF9y//oLSSyTY6JPipc94TpMGO2BwVchhCWY929/aTSLyhhFtP
-         8M040RATCSTsG9Y5mPSe7DPmhgHmNl9OoGzadsiG2NLUUB9FmyKbzTPeKmNxKqnFB53/
-         iQkSw6y0glt88aWPg9gVW4GyMt1VUvsdkkF14/j0BbRtXjJBGq8K2YWX2lZ6sywuWhOs
-         naNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=uaAT5wob0YiOJmkWdlUFhs2KZnxNPqhCjHclKoH74vs=;
-        b=TbTb+auJNUZQ/aBNA+ggy9oEuSuK4h60dsGrFdfK4nDBpJQ6cRBDOcOR6CBYr0W8L4
-         ykEmQs8e78Qn6vliQNRcD7zRK1mRZoaiU6AV2xQ3X9zqlwbJN9CkRl5GZNwbHmHpOs4z
-         Pru+0AkaASsR0PbRGrngSlVW3Cy8i+XSIBkWBVI2R6R0ckjZzErwbKKq05kguxH42x82
-         5Ht0rpAbd6AMQsaQi9unas9lrVKgeGtjoTq0lBwKheWNHDjkGFldcz3E5ea5vV+CuQuC
-         s7J2SetzmkcVqUg1pNztuHeXTLLrYWnkriLr+2FwLX4CRz3tviI5fjJT8vPRgvsKJV01
-         WgcA==
-X-Gm-Message-State: AOAM5314fzCo7XBTeJQfKqMwqK1OMoC7ELEe6yZ13bLTaxPm8tL2G+y+
-        7HF1OgnnUipXuljWUxC8LHskmFATNwc=
-X-Google-Smtp-Source: ABdhPJztldcpWswKHWSNTSLhS+h7rgGDHOMYE8V6m4YP8LB2puVHqMF8A8QSLxInr3/kKXcryoWeNg==
-X-Received: by 2002:ac2:4896:: with SMTP id x22mr6592226lfc.257.1633013740388;
-        Thu, 30 Sep 2021 07:55:40 -0700 (PDT)
-Received: from [192.168.2.145] (46-138-80-108.dynamic.spd-mgts.ru. [46.138.80.108])
-        by smtp.googlemail.com with ESMTPSA id x128sm396434lff.102.2021.09.30.07.55.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Sep 2021 07:55:39 -0700 (PDT)
-Subject: Re: [PATCH v1 1/2] dt-bindings: memory: tegra20: emc: Document
- optional LPDDR properties
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20210929200305.4245-1-digetx@gmail.com>
- <20210929200305.4245-2-digetx@gmail.com>
- <2df06f23-1a5e-f6e9-8e2c-0bb4c93fe23c@canonical.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <b4309371-fac4-00dc-418e-86c2cf8a8902@gmail.com>
-Date:   Thu, 30 Sep 2021 17:55:39 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S1352054AbhI3PBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 11:01:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47146 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1352093AbhI3PBp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 11:01:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8782B6128E;
+        Thu, 30 Sep 2021 15:00:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633014003;
+        bh=VB9orFxsY14fyJtvup9liDeJdnBFjZM5Us2Lmk4xzYI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=M4+8pW4m1jx70gKS7pi6oS+KPNG4A5y62nZfj3Ny1xE032tj8VKISK1Sr9Cn7I3Wy
+         VKZ5sDaqCj2sGcSy9xNMb42hh1o7N1LAFn3b9Yjou4eNHz/rvdtu3hVYeTw7CVC93W
+         urXhq7vOnG6FpBLTW0eIq1RWVjdDjbN7tsxo+YYzoT4+Wyw8uAApGKD4j3fWCrnUGY
+         r4dk498bxjJJASiUbsfsf8kgEwv/aASN2qNGlkyJ7sc+Vx7P7D6Q84AjF1x/B5lXs2
+         PyPKC+JEWIqaW1yhkqc8ZmqHQJaM2j/Ump4SxV7ITcMM57T62RkzOZYM4594anuW2Q
+         QlcX3PbLgJySg==
+From:   Mark Brown <broonie@kernel.org>
+To:     derek.fang@realtek.com, lgirdwood@gmail.com
+Cc:     Mark Brown <broonie@kernel.org>, robh+dt@kernel.org,
+        flove@realtek.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, jack.yu@realtek.com,
+        linux-kernel@vger.kernel.org, lars@metafoo.de,
+        shumingf@realtek.com, oder_chiou@realtek.com
+Subject: Re: [PATCH] ASoC: dt-bindings: rt5682s: fix the device-tree schema errors
+Date:   Thu, 30 Sep 2021 15:58:54 +0100
+Message-Id: <163301248178.43045.15903836903409128227.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210929130406.24325-1-derek.fang@realtek.com>
+References: <20210929130406.24325-1-derek.fang@realtek.com>
 MIME-Version: 1.0
-In-Reply-To: <2df06f23-1a5e-f6e9-8e2c-0bb4c93fe23c@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-30.09.2021 09:54, Krzysztof Kozlowski пишет:
-> On 29/09/2021 22:03, Dmitry Osipenko wrote:
->> Some Tegra20 boards don't use RAM code for the memory chip identification
->> and the identity information should read out from LPDDR chip in this case.
->> Document new optional generic LPDDR properties that will be used for the
->> memory chip identification if RAM code isn't provided.
+On Wed, 29 Sep 2021 21:04:06 +0800, derek.fang@realtek.com wrote:
+> From: Derek Fang <derek.fang@realtek.com>
 > 
-> Please mention how they are going to be used. Naively I would assume
-> that these new properties describe the RAM you have. However it seems
-> you do not use them to configure the device but to compare with the
-> device. Why do you need them?
-
-Yes, the properties describe hardware configuration of external DRAM
-chip. This information is read-only and it's actually used for
-configuring SoC memory controller. This MC configuration is already
-pre-configured by bootloader and partially it shouldn't be ever touched
-by software. Kernel driver needs to reconfigure only a part of hardware
-on memory freq changes. The memory timing data is tuned for a specific
-DRAM chip and board, it doesn't include info which identifies the chip.
-So we need to read out DRAM config from hardware and find the matching
-timing in a device-tree by comparing the chip-unique properties. Note
-that only LPDDR chips have that chip-identity info. Regular DDR chips
-require SPD or other means, like NVMEM in case of Tegra.
-
-I'll extend the commit message.
-
-...
->> +          - 4 # S4 (4 words prefetch architecture)
->> +          - 2 # S2 (2 words prefetch architecture)
+> Fix the device-tree schema errors that be reported by using 'make
+> dt_binding_check'.
 > 
-> I think instead you should use generic lpddr{2,3} bindings - have a
-> separate node and reference it via a phandle.
+> 
 
-It indeed shouldn't be a problem to create lpddr binding and move these
-props there.
+Applied to
 
-Extra phandle shouldn't be needed, should be fine to keep these new DRAM
-properties within the chip-descriptor nodes that we already have in
-tegra device-trees. We'll only need to $ref the lpddr binding for the
-descriptor node in the binding. I.e. to make it similar to regulator
-bindings where there is generic regulator.yaml + hw-specific properties.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-I'll try to implement this in v2, thanks!
+Thanks!
+
+[1/1] ASoC: dt-bindings: rt5682s: fix the device-tree schema errors
+      commit: 91cf45595021bd6f6279748aa472de7fc7864084
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
