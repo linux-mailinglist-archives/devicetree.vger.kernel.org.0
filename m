@@ -2,168 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D221241D396
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 08:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EC8341D3A1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 08:54:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348378AbhI3GuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 02:50:04 -0400
-Received: from mail-db8eur05on2124.outbound.protection.outlook.com ([40.107.20.124]:57632
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1348342AbhI3GuD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 02:50:03 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mtG+MgzxXMxZD+WzZKQ5jka6apZhKtjPLnJ2cIGgHu+7AH42zyAJeNu+clI97zZLYnNo89pJD1VUoPDYKNMvK6fhWDCpEBoWxQMaQaAktuEZya2/j062lAve0D5Nqialr2lGNn4uXgCa/vCurLbgcPddNEhUgFizIlMqZ43eVXGzwJHEGNF1+LTfLgtDowdmCKoVSvV+x5b/5/Yi8bqiqyD30xKsTEoMW8HyqVN0yD+8JSPlb2ChNjDLo/CKuvd0hEAz/kmHipdqwWo8tL6zO/hNdNLXQgzw1TBzzXyRJEYEZ1dcXNDcj8UfcwULWsLZSRScsUi055reT1kKpR8XZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G90sv7YH+XSUdMbwGpqTcgDfigidAYZR6+MLvbAQ2yQ=;
- b=nGWmrwnuCf1+WmHNjz0+9maFPCjKpRQG+YoGAA8cPJuM5QD9sVEVY2DxYSubppAMu3quwpCSLYKHvL7Ji4FjkzJZZQY2faZAJlnzY6ilJizeLmJmNhHOoz2ZVVuxgvl+vnH3D/z0OKK5tgSJhbWgK0s5YbUM0NqEn2e6MlXTwarLtsD4EysSkGPFMTZowJr4dQars6vfCJjMTzymF35kMmUWl5Pb1WPRGA6C8tWIYd1hiXuy8oRXwksZrmSW7G4MY/fjBVpEvZbd7/8hFpQTVdG5/blRc25ggz1oNgYcjoGFjKGi/D3WO0g8PXRJCvLaNCTMghK7z1W+Dtd2wiuOZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
- dkim=pass header.d=nokia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
- s=selector1-nokia-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=G90sv7YH+XSUdMbwGpqTcgDfigidAYZR6+MLvbAQ2yQ=;
- b=Tus4hnsr3e0W3Qig63NhYz9qzpnlqLwmqCv2Bf2EmKXo0+02dRpVSJeQThem3ZwcjMa55PGiLWznWli8cvd6XPOrkxI/lcSunkyNEBsNYIG9xGrjUZGPhBtQiz81hurCzOuVpzLLopCvj2K6bx++QauFLZl7tE7VvhcNpm0/UuE=
-Authentication-Results: roeck-us.net; dkim=none (message not signed)
- header.d=none;roeck-us.net; dmarc=none action=none header.from=nokia.com;
-Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
- by DU2PR07MB8174.eurprd07.prod.outlook.com (2603:10a6:10:273::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.6; Thu, 30 Sep
- 2021 06:48:20 +0000
-Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
- ([fe80::c47f:b569:ac76:9feb]) by DU2PR07MB8110.eurprd07.prod.outlook.com
- ([fe80::c47f:b569:ac76:9feb%7]) with mapi id 15.20.4478.014; Thu, 30 Sep 2021
- 06:48:20 +0000
-Date:   Thu, 30 Sep 2021 08:47:58 +0200
-From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 00/11] Add per channel properies support in tmp421
-Message-ID: <cover.1632984254.git.krzysztof.adamski@nokia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-ClientProxiedBy: MAXPR01CA0104.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:5d::22) To DU2PR07MB8110.eurprd07.prod.outlook.com
- (2603:10a6:10:239::15)
+        id S1348395AbhI3G4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 02:56:06 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:50694
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1348387AbhI3G4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 02:56:06 -0400
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 306683F048
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 06:54:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1632984863;
+        bh=KCX4B1ULxSJnJGmYcLBUzwn6g7EB4GBQxWYASGCp2Is=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=UpDBBAr4N/54pMuWjeXBqd7aOV77Gxbln1Ic1lPXaTvBZzeruOOnlXldQaYj7QAx5
+         S7nbznNSN8Fvm8jCYgSw8qb/ZZlzQGDOaz1Rwhk1QN4Zd1OQL+J91beHHJFAuIpgmL
+         E6EsqpHNzjvzjx3e5N7st795Qwwz2k7hj0KwMkS13DdMBkjnQmnGM2/xURv9i4pIns
+         RlMgRB9CxeBGCDy6drxV0+6NowFFpCSd6Fzkd1z1i4mImxFGFEkYysV+1pd8Lw7we+
+         pyBJJHnPK1U2l3kQNJr3rdb6zIqkcyqHisptAnUoxj5uoUVFeeWxwNvTu4jDIS0+rA
+         UuNB78F4A/FDQ==
+Received: by mail-lf1-f70.google.com with SMTP id m2-20020ac24ac2000000b003f524eae63eso4689534lfp.10
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 23:54:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=KCX4B1ULxSJnJGmYcLBUzwn6g7EB4GBQxWYASGCp2Is=;
+        b=2Y++R8GYXKJixMo13hFerUQ0awUcFX4Ovcm00E8ic3P+nYjIczbG+Ruw8c3y4S1d/p
+         dgdzJlylH+RcpfQfXwUI1ysc9S+IpfV0wyAK5ATZ5yfOt5RPdUPdFBkWl1zfx7I5X9V9
+         gzSwsTtHDY+48DoyApC5PDATXUM9aDy2+JyXSjLUtqPqjv3zUfls68qLVtCOUwngCULz
+         ISmMBifuGUKoI0hI/FK9ZQTvsj/y1Fv0xAzvshjdodPhqT65/7X87v7QzgH780sySzjX
+         qRSQhlEnbdko42q90I6aQ87lB08Zk0pxARTfNLyydtvtv5COIY3UtIUb6o66qTl4hsvX
+         rKUQ==
+X-Gm-Message-State: AOAM53214Uf2W4TFrQLka1c3/D0TrKI4gPrXubMhrj/8pgLH1DJx+LZC
+        U5MroDkcxPblMEbfjZbp2SPiVVezrbBgHoJw618kzCvpA2ML1F0wT6DCZ5IL+Ffp0OaQppinsE1
+        pfQ+t85QRNvzEBdlqLvm/4Ag37qW89eleeNv+dPU=
+X-Received: by 2002:ac2:490d:: with SMTP id n13mr4259466lfi.185.1632984862538;
+        Wed, 29 Sep 2021 23:54:22 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwrmRbYqXV+I780EDfAqCAWVZA/cjP5V5bydrNmIPMKftKUdBdaVNtZ1rYRknaoYPFzK5QKbg==
+X-Received: by 2002:ac2:490d:: with SMTP id n13mr4259455lfi.185.1632984862370;
+        Wed, 29 Sep 2021 23:54:22 -0700 (PDT)
+Received: from [192.168.0.197] ([193.178.187.25])
+        by smtp.gmail.com with ESMTPSA id d16sm263276lfv.164.2021.09.29.23.54.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Sep 2021 23:54:22 -0700 (PDT)
+Subject: Re: [PATCH v1 1/2] dt-bindings: memory: tegra20: emc: Document
+ optional LPDDR properties
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20210929200305.4245-1-digetx@gmail.com>
+ <20210929200305.4245-2-digetx@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <2df06f23-1a5e-f6e9-8e2c-0bb4c93fe23c@canonical.com>
+Date:   Thu, 30 Sep 2021 08:54:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Received: from localhost.localdomain (131.228.2.20) by MAXPR01CA0104.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:5d::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14 via Frontend Transport; Thu, 30 Sep 2021 06:48:15 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 84fcc00c-68a6-42e3-b6ee-08d983de49ff
-X-MS-TrafficTypeDiagnostic: DU2PR07MB8174:
-X-Microsoft-Antispam-PRVS: <DU2PR07MB81746524AD38F0B84C3A5DFEEFAA9@DU2PR07MB8174.eurprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A9IQUp/VxRp6uv/Kl+vSsBVKIuc4OOZq8EhHGfrpGNK2xg33IKxJ+PO1bPHO0G+MriBq2gZ1+f2y246bTxkpBLQNDXd0OQb68RZACLg/IlQ4is1jT+uAuCfFg7ofiMV4O6V26eeKWW2uPgx3RjOO4GwwMmq+gjrYk1zQWMjlhCX0qltV94JjXAUk0VQ+zfL1G2OWuvgqAUTAHKwOpczW17r134YT0JBkRXTRQzQdR9LjXaJOHjbXKz97a9jGqGO1g+G4IEAPvEbRPfPGjKnkXdgqDAKStBdUE7OAMyhYD5Zc60Uj+REpAvdyR3o8yTPglAMEF+sAL+9XGtvEAka1grFbaMsxjQZRy8EE6KYwxHFL7geHcp9nyRzXZmPLle8IoXrATbQfXnFYaE9GuB4XlNqmc9c5nQD04eJSfUX27c9HOXiGfLCcSogtoyE+cL9Woc0oSo9oJmYFzPkzVkvYYwaWMQ7MhTt1WDeveQXdPx2/TjLhLpdEM/QEB2a639bdZr/6rNwFw11dMrICpSYh/0rYXwJXXnV44F3PIxOakfCQGnpMjnwslWkDi6mI0sMaeQ0p561Zip8MO2My7q4+wCiqwWRotfSCTNd9RwMb+xmFVhMD51/3G9zhPVPunWY7kTJzPm59chCtn7ICzMep5p44vtt4Fr9gP16/ZGHUEhqJVr/Z+A6GlL9E0pC9p8Q8/s06DaqGMT5vk03xVFNeBEPV9m4CTe65b3e1WRCTOn0OWwBA3YVLc/QwkDsuc+5+CBUdwD0UNHE9GHPVbaxbpA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(38100700002)(4326008)(52116002)(44832011)(2616005)(6666004)(66556008)(66946007)(2906002)(508600001)(8936002)(956004)(26005)(6512007)(186003)(6506007)(110136005)(8676002)(36756003)(966005)(86362001)(83380400001)(6486002)(5660300002)(38350700002)(316002)(66476007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9x69+X1r4pZZ8+YVNffl7OMm12v3n3zLttsonsTlLqLXfLtIEUnNEp8fsHbm?=
- =?us-ascii?Q?fPR5vEliuVUD4OQ3ehfB9YlQ1152jhHiF/0pi5BTb0g0y/2PqG25LEzhU/uf?=
- =?us-ascii?Q?T2/N3QULFaUSvNo0N/nvsLLZeCmH9jFR5p53WvMK2buRBR881szoUCAx33Fz?=
- =?us-ascii?Q?J6KoKQM7H9B0p/7ux09VRCvMcUlviyhVA40dbZSGjzvjMbsNtY3w4EoYO6mS?=
- =?us-ascii?Q?Hf9ip20NElfkya8DqjR6cfZIyn6GpSx854fakf1bdIWEjVsTaGWsAcZEnDkb?=
- =?us-ascii?Q?ApLfmQkTlBZa+OOOBst5VzbbeKLfuiBUT9NHu8n3eHjjan737fyUZytxHa/P?=
- =?us-ascii?Q?P1zLlLNqwAK0nmqm9PRMtPZvbVe52SYENCFniHOQtDQZzYFI+jMK4BIeHTBa?=
- =?us-ascii?Q?5k9ADjeZ+5byHGRCTsnOre2ZsogO3dnJs2xx//n8NFW/buWW458Cg+oIkaul?=
- =?us-ascii?Q?cQq27tEZ1oljl3nVntYX9TGeInp2ye9jgZZ6mEyidvWKZfBi5EK69EEtAe3C?=
- =?us-ascii?Q?FaBbVe//n2Tq45UXw6ZUEJJYwmkQp0xnDkCnmv3ihMLGz74PJMDkw+efyQYu?=
- =?us-ascii?Q?Pz66WWQtvp00Fl3hDzFlNmzCpADhFXny96UIatdED+QlUBhalI0gfT3LDZ6j?=
- =?us-ascii?Q?Jm6rhmRe3rSWmeApLGuiCDwGalOj5MWh3oNij91HJ3etf311pilh+9k46pTI?=
- =?us-ascii?Q?8Ljlnjw3Y9BTc028vAzjv4In114MXUS1NyEsa28s0Yb9ZZvYen0vkyeJDD9i?=
- =?us-ascii?Q?peF0Xf1aJhDmAnwHyuMg8v7MdWJE5weXeLwxx1DoPCAn1wiFyTBVGfSYD/CQ?=
- =?us-ascii?Q?gDg7/mDCnLwBbMUA4p0yHkkFWk5Tjch+CBTJPHeIBVXFzB4bJi7a7x4OzASk?=
- =?us-ascii?Q?htcTQau0Sk0dZbnXkKlgBty+GAokUcqe0akgBUmnXya8l5rhRMfg63eXotf+?=
- =?us-ascii?Q?VACZLVYiPoHEnCmYFm+2M9l4MQBk+hc4syCZQ44dOVnhUL5/Q1lVEABd9xpO?=
- =?us-ascii?Q?kXePWLoNSs6AiuP58ToOJRYqfPV4bXYhn0kvLXm2wiIFFvzOzzCfh+iJPO74?=
- =?us-ascii?Q?zo0AWwRfrAND0C+x8qaqtVd/kqAnrFHQVcOmzmDdQuA1HTuEyxz+Nf9X8dgM?=
- =?us-ascii?Q?7CUXEBlw1TPAjVc+s0MmAAiAWRApOgn2vBGAM52NgSH7VoxCo3XNoEgYgA3G?=
- =?us-ascii?Q?wVOM0WvVWc4mDUNmK6Jqsg7arHjhhaS4q/BxjRgMceEK57UtnAzH2J1QQmVG?=
- =?us-ascii?Q?C9ppXcsX4SJuqIZ38iO7A+iwD5tn7654tScZJmw6n4w38xZwiRWofn9Wdjvt?=
- =?us-ascii?Q?Vq7taoTE1yqBTN3LaZeIxQzG?=
-X-OriginatorOrg: nokia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84fcc00c-68a6-42e3-b6ee-08d983de49ff
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2021 06:48:19.8702
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1TeaDq3l6QMPBuIJ8wPr71qXzCc9LJ0RZ3SSmxJpVdkTjNLVf34K1yZKAO9t3bQQvD04BHnIGoGqhR7M3x2xc3jtsDFlxxtXL0Yu7ufJ1As=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR07MB8174
+In-Reply-To: <20210929200305.4245-2-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 29/09/2021 22:03, Dmitry Osipenko wrote:
+> Some Tegra20 boards don't use RAM code for the memory chip identification
+> and the identity information should read out from LPDDR chip in this case.
+> Document new optional generic LPDDR properties that will be used for the
+> memory chip identification if RAM code isn't provided.
 
-This series adds support for defining per-channel properies (like
-n-factor and label) to the TMP421 driver. It starts by adding the
-missing DT binding for tmp421, in the form that was there before any of
-my changes. Then I do the changes to the driver and finally adjust the
-bindings to my changes.
+Please mention how they are going to be used. Naively I would assume
+that these new properties describe the RAM you have. However it seems
+you do not use them to configure the device but to compare with the
+device. Why do you need them?
 
-The precedence for this case is:
-[PATCH v9 2/2] hwmon: (ina3221) Read channel input source info from DT
-Which can be found here:
-https://lkml.org/lkml/2018/10/2/136
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../nvidia,tegra20-emc.yaml                   | 43 +++++++++++++++++--
+>  1 file changed, 40 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+> index cac6842dc8f1..6d01b1bf6304 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+> @@ -158,6 +158,46 @@ patternProperties:
+>          description:
+>            Value of RAM_CODE this timing set is used for.
+>  
+> +      jedec,lpddr-manufacturer-id:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Unique manufacturer ID of SDRAM chip this timing set is used for.
+> +          See MR5 description in JEDEC LPDDR2 specification (JESD209-2).
+> +
+> +      jedec,lpddr-revision-id1:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Revision 1 value of SDRAM chip this timing set is used for.
+> +          See MR6 description in chip vendor specification.
+> +
+> +      jedec,lpddr-revision-id2:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Revision 2 value of SDRAM chip this timing set is used for.
+> +          See MR7 description in chip vendor specification.
+> +
+> +      jedec,lpddr-density-mbits:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Density in megabits of SDRAM chip this timing set is used for.
+> +          See MR8 description in JEDEC LPDDR2 specification.
+> +
+> +      jedec,lpddr-io-width-bits:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          IO bus width in bits of SDRAM chip this timing set is used for.
+> +          See MR8 description in JEDEC LPDDR2 specification.
+> +
+> +      jedec,lpddr-type:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          LPDDR type which corresponds to a number of words SDRAM pre-fetches
+> +          per column request that this timing set is used for.
+> +          See MR8 description in JEDEC LPDDR2 specification.
+> +        enum:
+> +          - 4 # S4 (4 words prefetch architecture)
+> +          - 2 # S2 (2 words prefetch architecture)
 
-My patches does similar thing but to tmp422 - we need a way to define
-the labels for specific channels as well as to define the n-factor (that
-is board specific as it depends on the diodes used for remote sensing).
-A possibility to disable unused channels seems like a good idea too.
+I think instead you should use generic lpddr{2,3} bindings - have a
+separate node and reference it via a phandle.
 
-Here comes v3. Changes compared to v2:
-- fixed the $id path in DT
-- moved the tmp421_enable_channels() call inside of tmp421_init_client()
-- fixed some unneeded line brakes
-- added "ignore non input related DT nodes" patch for skipping all
-  subnodes that are not input@X without raising an error. I'm not
-  completly convinced this is what we should do so I made it a separate
-  patch so that you can easily skip it, if you decide to
-
-Changes compared to v1:
-- fixed sparse warnings about making function declarations static
-- changed the policy for broken DT - in case of errors, the probe will
-  return an error instead of continuing
-- in addition to disabling the channels specified in DT, the probe
-  function will also enable all the others in case they were disabled by
-  some other code earlier
-  NOTE: this may be a backwards incompatible change - if some channels
-  were disabled by some bootloader code previously the channels would
-  stay like that and now they would be enabled during probe, even if
-  nothing is specified in DT. Is this what we want?
-- added support for HWMON_T_ENABLE
-- updated documentation
-- NOTE: I haven't changed anything related to DT as the discussion has
-  no clear conclusion yet.
-
-Krzysztof Adamski (11):
-  dt-bindings: hwmon: add missing tmp421 binding
-  hwmon: (tmp421) introduce MAX_CHANNELS define
-  hwmon: (tmp421) introduce a channel struct
-  hwmon: (tmp421) add support for defining labels from DT
-  hwmon: (tmp421) support disabling channels from DT
-  hwmon: (tmp421) support specifying n-factor via DT
-  hwmon: (tmp421) really disable channels
-  hwmon: (tmp421) support HWMON_T_ENABLE
-  hwmon: (tmp421) update documentation
-  hwmon: (tmp421) ignore non input related DT nodes
-  dt-bindings: hwmon: allow specifying channels for tmp421
-
- .../devicetree/bindings/hwmon/ti,tmp421.yaml  | 109 +++++++++++
- Documentation/hwmon/tmp421.rst                |  10 +
- drivers/hwmon/tmp421.c                        | 175 ++++++++++++++++--
- 3 files changed, 281 insertions(+), 13 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-
--- 
-2.31.1
-
+Best regards,
+Krzysztof
