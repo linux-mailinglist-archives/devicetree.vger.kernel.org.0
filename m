@@ -2,85 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA26341DE96
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 18:14:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2E741DE92
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 18:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348842AbhI3QPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 12:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60968 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349277AbhI3QPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 12:15:38 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79A9C06176D
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 09:13:55 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id m3so27076639lfu.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 09:13:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TJLJJokeuBYs6AoO6ijKwwyEapsnJe80ezxvMfQpOUU=;
-        b=TpeqRkh3Bk4tw6JodrzrBa9JGMC+4gSQtumns470j57UrSLxhykEVch6A1EBEr4438
-         bf+y1qz/H31jkXLaLh52zSoASLYdb/pMOIGzvaMedeIARQf9L+Sd/MbJd0isYNH3WeIx
-         r1Q93fjo9+r/xjgiXqeqdc/eed/HUj+EPI7LmbF94DTyi+TT9RQEW6cNjuIKoeQPbXeo
-         F5KQGOOmWCn/WjtEFZ59DqjhhAFSIRRDgdeo5LkO45SX6Gpe7EVsZLSQodrl65t0fO6Q
-         DE/3aShu5KtNcii4bHd0RLSrwq1vDAYASHchduRprMYB+Rx9SoZP53ssl9KU4dwRegXN
-         BVIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TJLJJokeuBYs6AoO6ijKwwyEapsnJe80ezxvMfQpOUU=;
-        b=vZmt49i82h6uEAwSYMhazCkYyqoB7rkl6livibPMGYfS8nVfPC3/7L/VPJJw+PpkzB
-         03BmgYS7YsM8twEwsUwyxz4GR5nYZxc21HtyV8JbJxNJaX0Q3ki8Y3xREmYGWEe+V4wR
-         b2gJmCahkpO88PaE+q1L3SkuHRlHNEYw0DC2pCIo9aBrUEYmx94Mt9j7YLS/RBx9gZdR
-         FAxGx58AUOwxDT5+NtO65ecKhKuaLMha2kRz50LsctW5YxU2EAHMfqYnaqUa6U7XlDMX
-         RblhKP6m4RoEWAamRB8Yc4EHniYILdLeH3fVSHzFpliwps7YQzrsfMxpSAJNew71B4J5
-         UU5Q==
-X-Gm-Message-State: AOAM530BPyewKnsv5k5TZa3O+vxNnKigWZWK8SPJgPN2uE8rBPYmUNIM
-        8po8HhrkENv+abw0YQWgwI59m7YddVqpfetF55XQ5A==
-X-Google-Smtp-Source: ABdhPJziB9UiBKAN9FvfEgsp/ADUnz+xOaphABzyi6Htfefzx+UDG/tuJ6ghAE0zsLngWGkaUhhfQ2HIt4NB1TMHaQ8=
-X-Received: by 2002:a05:651c:4d2:: with SMTP id e18mr6889883lji.432.1633018433492;
- Thu, 30 Sep 2021 09:13:53 -0700 (PDT)
+        id S1349291AbhI3QPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 12:15:39 -0400
+Received: from mga03.intel.com ([134.134.136.65]:53611 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1349136AbhI3QPd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 12:15:33 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10123"; a="225301309"
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; 
+   d="scan'208";a="225301309"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2021 09:13:50 -0700
+X-IronPort-AV: E=Sophos;i="5.85,336,1624345200"; 
+   d="scan'208";a="521260621"
+Received: from lcalx-mobl1.amr.corp.intel.com (HELO [10.212.88.180]) ([10.212.88.180])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2021 09:13:48 -0700
+Subject: Re: [PATCH 01/13] ASoC: soc-pcm: Don't reconnect an already active BE
+To:     Sameer Pujar <spujar@nvidia.com>,
+        =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@linux.intel.com>,
+        broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        catalin.marinas@arm.com, will@kernel.org, perex@perex.cz,
+        tiwai@suse.com, kuninori.morimoto.gx@renesas.com
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        sharadg@nvidia.com, linux-arm-kernel@lists.infradead.org
+References: <1630056839-6562-1-git-send-email-spujar@nvidia.com>
+ <1630056839-6562-2-git-send-email-spujar@nvidia.com>
+ <be6290d1-0682-3d93-98a6-ad0be3ca42c1@linux.intel.com>
+ <70422e52-89d2-d926-b3f9-be59780d464e@nvidia.com>
+ <2f96f1aa-74f2-8ea8-3f43-e4da97400fde@linux.intel.com>
+ <647b1d54-dbd7-ce91-291d-d677ce908398@linux.intel.com>
+ <94861852-29ba-be9e-8c63-a70a01550b3a@nvidia.com>
+ <b68d3c04-07b5-966c-5cd3-8cc715cc470e@linux.intel.com>
+ <78e175f3-29cb-f059-427f-51210278c42a@nvidia.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <09bbf14a-a5a0-23c6-d557-66a3af1ac227@linux.intel.com>
+Date:   Thu, 30 Sep 2021 11:13:45 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20210914100415.1549208-1-daniel@0x0f.com> <20210914100415.1549208-3-daniel@0x0f.com>
- <87zgs7vavl.wl-maz@kernel.org> <CAFr9PXnC4hQw5_0TtciKvqF7s=4axJ5Yrq80RXGcY4VvT1Ac2A@mail.gmail.com>
- <87wnnbv6ac.wl-maz@kernel.org> <CAFr9PXmA07Up_wfJzzgZeYwE5ZrwnLqjBvLG3CERGHOLeay0Cg@mail.gmail.com>
- <87lf3quydn.wl-maz@kernel.org> <CACRpkdYLURJCopH3hDuZTY8ce9-OxakELyFqwqkAVCsYmzF5kg@mail.gmail.com>
- <874ka2tdqe.wl-maz@kernel.org> <CAFr9PXmu2JRSK9==MjpwgWTCET4iqj5U=egQQ2TciN0=B_UwNw@mail.gmail.com>
-In-Reply-To: <CAFr9PXmu2JRSK9==MjpwgWTCET4iqj5U=egQQ2TciN0=B_UwNw@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 30 Sep 2021 18:13:42 +0200
-Message-ID: <CACRpkdY-G5cN1Bn0yTi+867X93K9kBsV5543d8LoXzk9W-yCOg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] irqchip: SigmaStar SSD20xD gpi
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Marc Zyngier <maz@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Romain Perier <romain.perier@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <78e175f3-29cb-f059-427f-51210278c42a@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 30, 2021 at 3:37 PM Daniel Palmer <daniel@0x0f.com> wrote:
-> On Thu, 30 Sept 2021 at 22:06, Marc Zyngier <maz@kernel.org> wrote:
-> > No, this is the right spot if you really need to set the handler. But
-> > it should really be after the parent allocation (see below for
-> > something totally untested).
->
-> Your change resolves the null pointer difference when enabling the
-> interrupt but when it triggers the below happens.
-> This might just be my driver so I'll try to debug.
 
-To me this looks like your IRQ handler is firing for unused IRQs, i.e.
-you are getting spurious IRQs.
+>>>> Can you describe the sequence that you used to start them? That may be
+>>>> useful to understand the criteria you used?
+>>> I have something like this:
+>>>
+>>> FE1  --> Crossbar -> Mixer Input1    |
+>>> FE2  --> Crossbar -> Mixer Input2    |
+>>> ...                                  | --> Mixer Output -->
+>>> ... |
+>>> FE10 --> Crossbar -> Mixer Input10   |
+>>>
+>>> All these FEs are started one after the other. This is an example of
+>>> 10x1. Similarly we can have 2x1, 3x1 etc.,
+>>> In our system, the crossbar [0] and mixer [1] are separate ASoC
+>>> components. Basically audio paths consist of a group of ASoC components
+>>> which are connected back to back.
+>> Not following. Can you explain how starting FE1 does not change the
+>> state of the mixer output then?
+>>
+>> Or is each 'Crossbar' instance a full-blown BE? In that case you have a
+>> 1:1 mapping between FE and BE, a *really* simple topology...
+> 
+> Yes 'Crossbar' exposes multiple ports and it is 1:1 mapping with FE.
+> Starting FE1 does configure mixer output.
 
-Are you missing to disable all IRQs as part of the set-up before
-registering the GPIO chip? (Usually some registers need to
-be written with zeroes.)
+Ah ok, now I get the difference with the N:1 topology we used.
+Thanks for explaining this.
 
-Yours,
-Linus Walleij
+>>> In the interim, may be we can have following patch to keep both systems
+>>> working and keep the discussion going to address the oustanding
+>>> requirements/issues?
+>>>
+>>> diff --git a/sound/soc/soc-pcm.c b/sound/soc/soc-pcm.c
+>>> index ab25f99..0fbab50 100644
+>>> --- a/sound/soc/soc-pcm.c
+>>> +++ b/sound/soc/soc-pcm.c
+>>> @@ -1395,7 +1395,13 @@ static int dpcm_add_paths(struct
+>>> snd_soc_pcm_runtime *fe, int stream,
+>>>                  if (!fe->dpcm[stream].runtime && !fe->fe_compr)
+>>>                          continue;
+>>>
+>>> -               if ((be->dpcm[stream].state !=
+>>> SND_SOC_DPCM_STATE_NEW) &&
+>>> +               /*
+>>> +                * Filter for systems with 'component_chaining' enabled.
+>>> +                * This helps to avoid unnecessary re-configuration
+>>> of an
+>>> +                * already active BE on such systems.
+>>> +                */
+>>> +               if (fe->card->component_chaining &&
+>>> +                   (be->dpcm[stream].state !=
+>>> SND_SOC_DPCM_STATE_NEW) &&
+>>>                      (be->dpcm[stream].state !=
+>>> SND_SOC_DPCM_STATE_CLOSE))
+>>>                          continue;
+>> that wouldn't work. We need to support the STOP and START cases as well.
+>>
+> 
+> I meant with flag 'fe->card->component_chaining', which is currently
+> used by Tegra audio only.
+
+Ah yes, this may be a temporary solution that gets us both back to a
+'working solution'. Let me give it a try.
+Good discussion, thanks!
+-Pierre
