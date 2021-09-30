@@ -2,93 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ADA241D94E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 14:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F42341D987
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 14:17:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350642AbhI3MHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 08:07:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49910 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1350490AbhI3MHn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 08:07:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 70345619E9;
-        Thu, 30 Sep 2021 12:06:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633003561;
-        bh=WUXfDUc//JyjnG/jAFLzYhzrcKKxnKio8LRuz/Sa4SE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Jc3KonpSQ9wIu8cbERb6KVjpU6LDGCPs80PSGa/jbjpkFYlKB8EBessNIIDdMPlZb
-         mdOf3r6qDaOiloFsel5NQFH3syLotorSV9/I78onpGZBBaHVJCl9L4vPLz/wf/0B0X
-         MigPNDhw6MAbsNwoOFmlyBA64VHiQxxhEOmmTpR5yvZGfkzKdSt8hwBIBchkgo6p2D
-         Ud6vVQ8s/VLgdsAI936Z9lJVThvdHNORnb1q9dT20/+MoEYv+s1WYysiDGDspTmQt8
-         M1VHpHnhCPa64p8SOr36dNqfZ9XR4xSJnqmJoXTc+l6XPyxypm90eVSrFcEYoWvhG/
-         202AMiuiTRmJQ==
-Date:   Thu, 30 Sep 2021 13:05:10 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        id S1349465AbhI3MTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 08:19:01 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:10230 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1349389AbhI3MTA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 08:19:00 -0400
+X-IronPort-AV: E=Sophos;i="5.85,336,1624287600"; 
+   d="scan'208";a="95682441"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 30 Sep 2021 21:17:16 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 5F4B8437F0DD;
+        Thu, 30 Sep 2021 21:17:14 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH 1/2] regulator: Add Unisoc's SC2730 regulator driver
-Message-ID: <20210930120510.GW4199@sirena.org.uk>
-References: <20210928073609.198975-1-zhang.lyra@gmail.com>
- <20210928113057.GJ4199@sirena.org.uk>
- <CAAfSe-vM8iG1OtQeVR1CxQtpvA8kqSs3pJ78RQQOL7GcWcTwSw@mail.gmail.com>
- <20210929122912.GO4199@sirena.org.uk>
- <CAAfSe-tJMvYyvtOArsAW9Y980y_qzUgHoaQsyqnO6W47f9jMNA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mz5eWKkhz39mMVQV"
-Content-Disposition: inline
-In-Reply-To: <CAAfSe-tJMvYyvtOArsAW9Y980y_qzUgHoaQsyqnO6W47f9jMNA@mail.gmail.com>
-X-Cookie: 98% lean.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [RFC PATCH 0/4] Add "output-impedance" property to pinconf-generic
+Date:   Thu, 30 Sep 2021 13:16:26 +0100
+Message-Id: <20210930121630.17449-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi All,
 
---mz5eWKkhz39mMVQV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The first two patches of the series add add "output-impedance" property
+to pinconf-generic and the last two patches add support to get/set
+drive-strength and output-impedance for RZ/G2L SoC.
 
-On Thu, Sep 30, 2021 at 11:12:28AM +0800, Chunyan Zhang wrote:
+Cheers,
+Prabhakar
 
-> On different platforms, sc27xx_spi consists of different sub-devices
-> with different compatible string, to avoid adding mfd_cells to
-> sc27xx_spi driver each time we add a new platform support, we changed
-> to use devm_of_platform_populate() which can automatically register
-> sun-devices listed in devicetree.
+Lad Prabhakar (4):
+  dt-bindings: pincfg-node: Add "output-impedance" property
+  pinctrl: pinconf-generic: Add support for "output-impedance" to be
+    extracted from DT files
+  dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add output-impedance
+    property
+  pinctrl: renesas: pinctrl-rzg2l: Add support to get/set drive-strength
+    and output-impedance
 
-> The above is my understand, please correct me if I'm missing something
-> @Lee Jones
+ .../bindings/pinctrl/pincfg-node.yaml         |   4 +
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |   2 +
+ drivers/pinctrl/pinconf-generic.c             |   2 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 181 ++++++++++++++----
+ include/linux/pinctrl/pinconf-generic.h       |   3 +
+ 5 files changed, 159 insertions(+), 33 deletions(-)
 
-Right, so my pushback here is that it's not clear to me that avoiding
-adding compatibles to the MFD is a strong enough goal to justify
-creating ABI - it's hard to see the upsides.  This is particularly the
-case here where the subdevice is really a random collection of devices
-that's particularly likely to change between variants and more likely
-that other OSs would want something different so it's even harder to
-achieve reuse.
+-- 
+2.17.1
 
---mz5eWKkhz39mMVQV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFVp/UACgkQJNaLcl1U
-h9A0NQf+MVIV20djUxEYTyRsu5XcsUBXOCjUH8C6aiUvI1f+91mdMR5EjZGsWxOP
-Qxind1nfGXf7+41sboK/15s4xWsWpFDHq/4wBUkHdgiqoywBuYisngyieNGhVNeB
-3FSJSdW0aNHNNNAjOSG0YXQRxog5XSBRSQ3s2614QFVXGFHh0DQoin2ud2rgPeZ0
-H7A6BV2E0LR+w3YNs/twWw7j4aM/wkrVTCc9OfPNdX5gNC1SoK6KC6ApfZYUyT0G
-k2jcq3qnQyGuadQPkpgo9X3tW7enbWzyGAL3aEN/jbaugSPsiS3pJsPizR00n5Jz
-VIb/B5YtJxgs+XIw4I6aELxDkaDdhw==
-=OZXI
------END PGP SIGNATURE-----
-
---mz5eWKkhz39mMVQV--
