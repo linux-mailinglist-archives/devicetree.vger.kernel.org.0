@@ -2,89 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5360441D2C7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 07:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B193C41D380
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 08:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348087AbhI3Foe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 01:44:34 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:56358
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1348059AbhI3Fod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 01:44:33 -0400
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 47F2F40279
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 05:42:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1632980565;
-        bh=1mKwPojwZVljLwBZplr11EQoeIBGXn/S/x5FHURshGs=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=iW/uhLksi0sdoYjLXnPBqVFKhVmoJW8n8afXhQu/A0ofK1K/fM4cuT5zzpBBP+bdT
-         C13bJ8wSvQP9ZByl9W6OViGtbyQoPDo89JtIB6IvTGYpJt21kWmm7CYgzfkmXxkWwg
-         bIqEd/guY7lJynAdsyg+GtPqSTlbzHoY/BjOCDKKvNioA9mRdieRhpQu9+TwXxyTkk
-         1DhNusLpjVvukz+7VFd3AV186z3lluWCPOjOtTnAyxarMhH0NOR7HumTUlev6PLgpz
-         Mztxhbz0Td4afJqVlwSgoB0XdhuJBMzvdO0YIGO9eLWiwpljHVdgS1JBoSGCzeqOD/
-         oTyxkxAuITZIQ==
-Received: by mail-lf1-f71.google.com with SMTP id i40-20020a0565123e2800b003f53da59009so4511993lfv.16
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 22:42:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1mKwPojwZVljLwBZplr11EQoeIBGXn/S/x5FHURshGs=;
-        b=ijsTMsalwqJ+LVIItTD8Ze0qGgb6AKM5eZ1PAMrWWCOZOLZB26jWcVGcy7hZ6lMTVk
-         7F7eCHtUo+J+7X7O3Tao+65zaO4qU0H/3wMM8c049kUKbTkxzJcwi1qAw84FuV0Ijw5G
-         5Wv7m+K4eI9nsTxj47MZ+0kImsVWPPQVZWZWlOlS3cGAoM6ZejhcOLxSu5ZMmHsCaBE2
-         XtTV9RMSjgb/pQC75fuxnZ0IgXpwvBWwRClnjSqs2PKEVRuMvB0IlJGT1G0N00xDf4gO
-         l455xoRyJTCx5O4rKa27Xo5ldxQZ0SAON2Ytd8yO+dYVH/6GefgRL51hYNS/ag3aTA7V
-         CF7g==
-X-Gm-Message-State: AOAM530o0l/fZ7RlImgaBspZvS/zSoc5vTWyaSvWyqHSLdSw2XJKp+Lx
-        r4Xizttru22u3kbMeCiMVf459/HUfR1YzLyKaJ1RW1s4tZq9pHYaMsBUEUtQnvMwqX1Y6MGBMwP
-        gxFp9DMkoeP3Ms6Q2GZgUjDFqdsu9Cp69tPswJ8w=
-X-Received: by 2002:ac2:5606:: with SMTP id v6mr3779637lfd.520.1632980564476;
-        Wed, 29 Sep 2021 22:42:44 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyfzHOQe412riavI/Qmxs0LY7rgPu/GGpo/1fLrCa042n08AZ+YLqvCU8IZK13tu6wUDRAysw==
-X-Received: by 2002:ac2:5606:: with SMTP id v6mr3779623lfd.520.1632980564295;
-        Wed, 29 Sep 2021 22:42:44 -0700 (PDT)
-Received: from [192.168.0.197] ([193.178.187.25])
-        by smtp.gmail.com with ESMTPSA id q6sm43696lfg.188.2021.09.29.22.42.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Sep 2021 22:42:43 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: add vendor prefix for asix
-To:     David Heidelberg <david@ixit.cz>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210929192619.111098-1-david@ixit.cz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <d3b20df8-1953-9a8d-e59c-fda3656d3790@canonical.com>
-Date:   Thu, 30 Sep 2021 07:42:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S1348228AbhI3Gi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 02:38:27 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:41594 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348034AbhI3Gi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 02:38:26 -0400
+Received: from fiber.protonic.nl (edge2.prtnl [192.168.1.170])
+        by sparta.prtnl (Postfix) with ESMTP id 244CC44A024E;
+        Thu, 30 Sep 2021 08:36:42 +0200 (CEST)
 MIME-Version: 1.0
-In-Reply-To: <20210929192619.111098-1-david@ixit.cz>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Date:   Thu, 30 Sep 2021 08:36:42 +0200
+From:   Robin van der Gracht <robin@protonic.nl>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 14/19] auxdisplay: ht16k33: Move delayed work
+Reply-To: robin@protonic.nl
+In-Reply-To: <20210914143835.511051-15-geert@linux-m68k.org>
+References: <20210914143835.511051-1-geert@linux-m68k.org>
+ <20210914143835.511051-15-geert@linux-m68k.org>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <b30da88512b1bd91a94c033d148f4284@protonic.nl>
+X-Sender: robin@protonic.nl
+Organization: Protonic Holland
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/09/2021 21:26, David Heidelberg wrote:
-> Add vendor prefix for ASIX Electronics Corp.
+Acked-by: Robin van der Gracht <robin@protonic.nl>
+
+On 2021-09-14 16:38, Geert Uytterhoeven wrote:
+> Move delayed_work from ht16k33_fbdev to ht16k33_priv, as it is not
+> specific to dot-matrix displays, but common to all display types.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> v6:
+>   - No changes,
 > 
-
-Already on the list since some months (unfortunately still not merged):
-https://lore.kernel.org/linux-samsung-soc/20210929140854.28535-2-l.stelmach@samsung.com/T/#u
-
-Best regards,
-Krzysztof
+> v5:
+>   - No changes,
+> 
+> v4:
+>   - No changes,
+> 
+> v3:
+>   - No changes,
+> 
+> v2:
+>   - No changes.
+> ---
+>  drivers/auxdisplay/ht16k33.c | 15 +++++++--------
+>  1 file changed, 7 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
+> index 75d326a823543898..c7a3a0e1fbb5d03e 100644
+> --- a/drivers/auxdisplay/ht16k33.c
+> +++ b/drivers/auxdisplay/ht16k33.c
+> @@ -65,11 +65,11 @@ struct ht16k33_fbdev {
+>  	uint32_t refresh_rate;
+>  	uint8_t *buffer;
+>  	uint8_t *cache;
+> -	struct delayed_work work;
+>  };
+> 
+>  struct ht16k33_priv {
+>  	struct i2c_client *client;
+> +	struct delayed_work work;
+>  	struct ht16k33_keypad keypad;
+>  	struct ht16k33_fbdev fbdev;
+>  };
+> @@ -117,7 +117,7 @@ static void ht16k33_fb_queue(struct ht16k33_priv *priv)
+>  {
+>  	struct ht16k33_fbdev *fbdev = &priv->fbdev;
+> 
+> -	schedule_delayed_work(&fbdev->work, HZ / fbdev->refresh_rate);
+> +	schedule_delayed_work(&priv->work, HZ / fbdev->refresh_rate);
+>  }
+> 
+>  /*
+> @@ -125,10 +125,9 @@ static void ht16k33_fb_queue(struct ht16k33_priv *priv)
+>   */
+>  static void ht16k33_fb_update(struct work_struct *work)
+>  {
+> -	struct ht16k33_fbdev *fbdev =
+> -		container_of(work, struct ht16k33_fbdev, work.work);
+> -	struct ht16k33_priv *priv =
+> -		container_of(fbdev, struct ht16k33_priv, fbdev);
+> +	struct ht16k33_priv *priv = container_of(work, struct ht16k33_priv,
+> +						 work.work);
+> +	struct ht16k33_fbdev *fbdev = &priv->fbdev;
+> 
+>  	uint8_t *p1, *p2;
+>  	int len, pos = 0, first = -1;
+> @@ -462,7 +461,7 @@ static int ht16k33_probe(struct i2c_client *client)
+>  	}
+>  	fb_bl_default_curve(fbdev->info, 0, MIN_BRIGHTNESS, MAX_BRIGHTNESS);
+> 
+> -	INIT_DELAYED_WORK(&fbdev->work, ht16k33_fb_update);
+> +	INIT_DELAYED_WORK(&priv->work, ht16k33_fb_update);
+>  	fbdev->info->fbops = &ht16k33_fb_ops;
+>  	fbdev->info->screen_base = (char __iomem *) fbdev->buffer;
+>  	fbdev->info->screen_size = HT16K33_FB_SIZE;
+> @@ -502,7 +501,7 @@ static int ht16k33_remove(struct i2c_client *client)
+>  	struct ht16k33_priv *priv = i2c_get_clientdata(client);
+>  	struct ht16k33_fbdev *fbdev = &priv->fbdev;
+> 
+> -	cancel_delayed_work_sync(&fbdev->work);
+> +	cancel_delayed_work_sync(&priv->work);
+>  	unregister_framebuffer(fbdev->info);
+>  	framebuffer_release(fbdev->info);
+>  	free_page((unsigned long) fbdev->buffer);
