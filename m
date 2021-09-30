@@ -2,149 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 722CC41D203
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 05:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D5B641D1C8
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 05:13:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347638AbhI3D4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 23:56:23 -0400
-Received: from mx0b-00268f01.pphosted.com ([148.163.159.192]:15182 "EHLO
-        mx0b-00268f01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1347082AbhI3D4X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 23:56:23 -0400
-X-Greylist: delayed 4163 seconds by postgrey-1.27 at vger.kernel.org; Wed, 29 Sep 2021 23:56:22 EDT
-Received: from pps.filterd (m0165120.ppops.net [127.0.0.1])
-        by mx0b-00268f01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18TJJOeJ029393;
-        Thu, 30 Sep 2021 02:44:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=equinix.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-id : content-transfer-encoding : mime-version; s=pps202002;
- bh=uhDkxvvxlaAjjLHyXf9KuaX6+crgGPtBHl2rKhaI1+E=;
- b=C7rNJQ945dnxWgG2b6iwiCKYs1lFcbA/hyS2hIv73T1xsEtkd16c+i8i7mL4QsvC0kag
- gLQGmlfeA4fQlXFlzIbvqLDkaEGGGNvc0Ru4+X8xPeuMZTlRCV3chtJOpaGgp521AWSi
- vaIZBk4mHwd7LCvY/AGvI4t6Ii6VCqqNy+5R1+2gBrqrGbrizzcgHyPFBnllPNScqS5P
- KsYsD2s9RkQoyurwv88OfLpugNP9io1iLQ3rP79CeXiPj6RfhT+s0WlMXLpuUa6tHdF7
- mxvT63IS63cJ+sd7I37FJZ4JU4GwBEXTMJkmaKGmb9labrfFGbEaK3IyopI4fCJ+43nb VQ== 
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2102.outbound.protection.outlook.com [104.47.55.102])
-        by mx0b-00268f01.pphosted.com with ESMTP id 3bcx6vs30q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 30 Sep 2021 02:44:51 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ch4JSbRVF1qImF2eSGVDjMV6iu4SN1S3qDLVThrLvnk/ANQ9G5j1fnRLi0ZgL1281ItVzrhpxJY9a3PrrJVLSR3PxPC80k6VNJp5FWhkd/gkfV9AKQZbVjQ1ExULzzLb+jVs6NdcDzor1/IJQDIdKz2h9YV6HRNVGXjAbikRtalwg/UBFNDaXemzkDjxw+bXdwE8UXYb79grAPiOUzhvdbThqSQ9HJSN8f6YKqzTRPFjnHxZzNYy+4jOHZ2r6v3PZZ4hTGIGmk3Gc+R9Gtyv49JHPwMwyf9mgI7nUZs2KrPV6FFYb9GV19hQ9Z4OuTRzJfL4181v7XYK6hEsDqJmdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=uhDkxvvxlaAjjLHyXf9KuaX6+crgGPtBHl2rKhaI1+E=;
- b=BlF3LKSLLBxBjtgAWOUew+slvRfN+0mkxH/+BVi1Xe/rJG1s7O4ZckYnZe4JoZlzEJPii5RyrcjCEo7GaHco32IW9Se7wK4UWBPvfFAGQnPOgocVgiEKEWWxwhnZovDfFSbSE0JCwhVuAl6rBStiHzPx5QScRw5LPhmvX7fkUaVCj7t2Ptgy3+Kv9RnK2eqt+QB+7lo7ePMwSdhzK2jvjRSHnOKhbJMrBiMaG2OMn5ufe4BanRK2TyhwsBTA8p7hlulBT0KegEndf3HezswR9Gf5ZUabtJphNTm1+qMYze7+jpl6WdoS904qeW1B4tc7XPAprpipqPcmJQtL3iwkjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
- dkim=pass header.d=equinix.com; arc=none
-Received: from DM8PR04MB8007.namprd04.prod.outlook.com (2603:10b6:5:314::20)
- by DM8PR04MB8135.namprd04.prod.outlook.com (2603:10b6:8:2::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4566.14; Thu, 30 Sep 2021 02:44:48 +0000
-Received: from DM8PR04MB8007.namprd04.prod.outlook.com
- ([fe80::8049:f2d5:9bed:efa0]) by DM8PR04MB8007.namprd04.prod.outlook.com
- ([fe80::8049:f2d5:9bed:efa0%6]) with mapi id 15.20.4544.021; Thu, 30 Sep 2021
- 02:44:48 +0000
-From:   Zev Weiss <zweiss@equinix.com>
-To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-CC:     Brendan Higgins <brendanhiggins@google.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
-        Cedric Le Goater <clg@kaod.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
-Subject: Re: [PATCH v4 0/4] i2c: aspeed: Add buffer and DMA modes support
-Thread-Topic: [PATCH v4 0/4] i2c: aspeed: Add buffer and DMA modes support
-Thread-Index: AQHXtaUi80ONMz2WSkW5UTjIcSKTPA==
-Date:   Thu, 30 Sep 2021 02:44:48 +0000
-Message-ID: <20210930024448.GU17315@packtop>
-References: <20210224191720.7724-1-jae.hyun.yoo@linux.intel.com>
-In-Reply-To: <20210224191720.7724-1-jae.hyun.yoo@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none
- header.from=equinix.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3bb2a2dc-8473-4ef7-1b60-08d983bc452c
-x-ms-traffictypediagnostic: DM8PR04MB8135:
-x-microsoft-antispam-prvs: <DM8PR04MB813504BA7754958A2A5FCB38C3AA9@DM8PR04MB8135.namprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5236;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KLhrUTBa7d/W9eImVG8tCjqWuvB9EwKQMANbx4GDDVicdNrzH90vijUMjP6yVvT6/hd09tcU8QyEXuqDgFiEluLNwywm3WoK1gqihAhpdAq3wzRPFTbSL7Pxb9/Vzg9ueVa/pY/lxKZailQ/b8RBaEgL1IF3udiYicw+c8vBr1qFq5ySPhjIH27gS30/zSZyMlAZFOAdMhLnW6ofy9gNxaOelBnNcsPnkPME56MYKAQhT89bSzROngDc689MROisiuofZkyZYymmKJ/vpuf/naxvR2kB4V4JA4LXNRAzkmWzKmreGfUbP0Mrix62OvVmxpzR2+SR1k8ZKXpMP8FKFiPlKWF2HWwZrMKe+Nxi8auqO7FcrPjfKcClOo6KWMuGtRH3K++OxKpKSAIZt8bLJGJAzyQZxuvXjmvm5HrPYJ4/BvJV5gBTmLr7WYzY9qe9gkr0p8yxz2O0UqfcHCCymcxeLniEy90DT/WVwzEzQF4lF9SLp1YaGpNL6iqoqpwek5K1VKH/QPxjPQ7Z/0qN5ZtGwmFQGRrXQ0WEjOx6gQcA9W+Gb9RhSFD6jJ25jT4vmBc1OQnITec3Hkb+Rd+Y/nTV0fqRuUccot2qEzb2aLSIX4By1ouH2GwwNY/3uFayaliknlPVLLTcJvrIPLb4vg8GTcAtVd0eI/n1IqZSsdI7NmpeYcS16gwmq7G+BgoVBFdpTa2crhRZbhQvN6Ku3g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR04MB8007.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(9686003)(6512007)(6506007)(5660300002)(6916009)(4326008)(71200400001)(38100700002)(122000001)(38070700005)(83380400001)(186003)(86362001)(7416002)(2906002)(66446008)(64756008)(91956017)(76116006)(66946007)(66476007)(66556008)(8676002)(33716001)(1076003)(33656002)(316002)(54906003)(6486002)(8936002)(508600001)(26005)(4744005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?cxcF061tZefS4AEUqTVXs9NiJWmMUT+0kgZGz3Tgx6cX2fjgmWU/TMalWSov?=
- =?us-ascii?Q?Pp2IyMR+cqHQRSUu7L7AnEDh51dLz3+NT+wenqg+UxEh2pOdU5K3rlEe3zZ5?=
- =?us-ascii?Q?20Jm4H8yYuJJJpGP/KhS1Yo+ZjfFGNCix++UCuJ+9lL94A76N763MWiK01Vc?=
- =?us-ascii?Q?ikMC6WJQGmLPAg/6gjss14BxmIonVAgmS+smluPAK1UeQMvXEvtzuKjfkbeq?=
- =?us-ascii?Q?p0pev5bq4v/w3tah+4mqDiXXqUpCv5t+ytlpJRq9RNAQVYnYQRFYqM8/lP2U?=
- =?us-ascii?Q?Js47Tur5ucwXKz5M6LxTt4QUKGdaozMhHoZafpK+3Tg1IiYGl/BwFW2f/vri?=
- =?us-ascii?Q?a6AkURMf9GR1EKSi9x29CNzWvhGqt28C42ng/vNXnwGeAItRpnlIBfuxKfbe?=
- =?us-ascii?Q?pT3zXbeMLdeH4xUxdK392+Aa5c2UAjV8hpbWrdLT4PbAhXVo7QmuqK1iwkjr?=
- =?us-ascii?Q?VoBBG4996pf5YKIaDh5wV3mXXs88ZbcTanW2DqChZ/qpw67tVTp1WN4Qx0bF?=
- =?us-ascii?Q?jWp6TIVa4ff3M9rxs7ab4d8bdwABn9fRY91Lbla8LDDg49S4hpmvjRF4MEhU?=
- =?us-ascii?Q?5joxPoLmx8n5UR/t5uupUs4o3jwvgJNsrFi2VOOlPnOwqUnMzVskG2JN+LPb?=
- =?us-ascii?Q?1gz72erhCaE1E1m+O8sTeZMRIDKC7FhIEVjuYnZ8KmWuzqXdLcufeiDKNbxd?=
- =?us-ascii?Q?FCzpnQnVAM5hiqv0hzh0vAfcmlu02ijhXIFakbIBsALTQvi5uavqxE8Q7fPW?=
- =?us-ascii?Q?i/opISxMELwYiY4SR04WOrF+6vO9G4oZ88OBNpEM3Vg5BDeoRFb31nPpaViP?=
- =?us-ascii?Q?XdUDY5Ko0wP+//T5Nr/ilg/1xRqIaeNFevyxPACNM3cp8gji2LG/au/MdwPD?=
- =?us-ascii?Q?Il6m3Jqwac0RFloJvH2ACqhTlAIWprRMhTsnpACQLo/60Hh8v9eB8QBjQ1T6?=
- =?us-ascii?Q?hcfRN9VyyEOj1yeSKkeANuuvjci8GonDZvtbjyvFBZ+WKpTuGnKQypja1Fb4?=
- =?us-ascii?Q?gxzCuLKi5YHlgo88tmr7WW8U/jpXSTPLvK1vEyH5FcZp5EwPY1AqcbTh+qB0?=
- =?us-ascii?Q?zV5/0TfNiZtpO5v+C1yNvimDCk29uCEkqdrWeVzszWyiIUke2i7P/JkJpftd?=
- =?us-ascii?Q?od5vhVtDsLLHxx5gEZdo6OC0t1GSuPXySORrFv2stQdOEv4Edoncl3OROrAr?=
- =?us-ascii?Q?+/1utbH0d/L9Qlv3O2sT0HbPMo8Bsxc9Cc555es6S4zeOn1YgkJ5PloPeTvP?=
- =?us-ascii?Q?OMG2wiut3JXZqr65U5EG6Bly8GTe3mvagZRJH4OLqmnAu7JYJH48huMJ0L6C?=
- =?us-ascii?Q?e4n+pmsOu4fpcav0YfhEIw8g?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <721798A469AE8E42ACFCABC8AF63E9EC@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1347001AbhI3DOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 23:14:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48900 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346735AbhI3DOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 23:14:48 -0400
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB3DDC06161C;
+        Wed, 29 Sep 2021 20:13:06 -0700 (PDT)
+Received: by mail-ot1-x331.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so5527603otq.7;
+        Wed, 29 Sep 2021 20:13:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fF22d/2C+sJktNyAT2q4zyofKn0DGrffVdGHAaWKWOg=;
+        b=Apv01V9LNBTGzVnm3+Ksvb9fv6yjUNPC+f2u6aOwfptJvMSncgdrCooZi6u6eV0lTf
+         +ifQjcG9e/fduX2+wWjoA6b1BrXdUDtMYW8+/ge/OTBH1aTt2vj//c8BouNJcW/mvwCa
+         kd9I0+YLr3zQYaVzzCoevoTu7g9LTDWwu+2xgfDht5e18z180Z98J3RFNtmfhLhaclPA
+         enL+yu0SvgJKMaJ/mJkqUsiIaKmOjfvFmTmeUuAryS6yZyEWcLI/rpjieun4IAVc6j1N
+         VhYD1kESbL+ggoQ+d6aV2BaSZg3K8RlpZ9Fgp4mha/9ZIxufyqvt7D91XZ0g/5B5u0oR
+         cMdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fF22d/2C+sJktNyAT2q4zyofKn0DGrffVdGHAaWKWOg=;
+        b=Zpoz+71I6V3JMD43MO1K3oTVmb9gRa6MNB8/GPtc238U0MUyUYI7+4dUj3eYTAcQ3I
+         9E96uB1pJbxZ4l8ZH2PN7Awanf+v8EkqgOj9eTcaPX4oROmNrlViB5k+EiMaWS/DW4Og
+         SzkzqnTDpkcydaCpyIUZEtTzVPCjeZ8WJ0tS4gnCVE/uiOF9WhhezoLFnekxN2IetDE2
+         XEfh8Q0Ap6hhD4+GIYzSw0us5SET7Kad1wdnRokGAJcv/Scf8/Oz/rp0G0QlUJ6MNC0L
+         dS6nG315yc4Xv/F7okllLVzkXYFnPZBBm43R56P95sxkhsBKTWI3UfiVWhhbC4nryvZR
+         1kqw==
+X-Gm-Message-State: AOAM531ihbCFp0if06bCL8XwWLIVHuPAqAeqhf8XuNMuLCsQb15EFx5M
+        QJsbEol+VYsWcHIvVNAkcQLLyEo8rIIeuMwrusk=
+X-Google-Smtp-Source: ABdhPJyM3c4rPIni04HMYo5pPMALpqwsbN4dTXba7vJ9bNG/hFkmUtVs5i/uUY7vQA/2GFeqEl7pLib08GgSehn49RM=
+X-Received: by 2002:a05:6830:9c9:: with SMTP id y9mr3094542ott.6.1632971584913;
+ Wed, 29 Sep 2021 20:13:04 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: equinix.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR04MB8007.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3bb2a2dc-8473-4ef7-1b60-08d983bc452c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2021 02:44:48.6388
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: H7J2Np2gV8IVQO+UNf64mn4BgGGAh3hmjSDyIujnSv2HYoXeelCHV8OyO9/FYl+N4L024qk4oG91mm65M7y7hg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR04MB8135
-X-Proofpoint-ORIG-GUID: 2BIPmXWw85HqLk7Y0lwikBFAWHaagc5x
-X-Proofpoint-GUID: 2BIPmXWw85HqLk7Y0lwikBFAWHaagc5x
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-30_01,2021-09-29_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1011
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- mlxlogscore=999 impostorscore=0 mlxscore=0 spamscore=0 bulkscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2109230001 definitions=main-2109300014
+References: <20210928073609.198975-1-zhang.lyra@gmail.com> <20210928113057.GJ4199@sirena.org.uk>
+ <CAAfSe-vM8iG1OtQeVR1CxQtpvA8kqSs3pJ78RQQOL7GcWcTwSw@mail.gmail.com> <20210929122912.GO4199@sirena.org.uk>
+In-Reply-To: <20210929122912.GO4199@sirena.org.uk>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Thu, 30 Sep 2021 11:12:28 +0800
+Message-ID: <CAAfSe-tJMvYyvtOArsAW9Y980y_qzUgHoaQsyqnO6W47f9jMNA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] regulator: Add Unisoc's SC2730 regulator driver
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 24, 2021 at 11:17:16AM PST, Jae Hyun Yoo wrote:
->This patch series adds buffer mode and DMA mode transfer support for the
->Aspeed I2C driver. With this change, buffer mode and DMA mode can be
->selectively used depend on platform configuration.
++Lee Jones
+
+On Wed, 29 Sept 2021 at 20:30, Mark Brown <broonie@kernel.org> wrote:
 >
+> On Wed, Sep 29, 2021 at 04:20:37PM +0800, Chunyan Zhang wrote:
+> > On Tue, 28 Sept 2021 at 19:31, Mark Brown <broonie@kernel.org> wrote:
+>
+> > > Since this is a part of a MFD I'd not expect it to have a compatible
+> > > string?
+>
+> > Since we switched to use devm_of_platform_populate() [1] to register
+> > MFD subdevices, compatible is required, IIUC.
+>
+> I'm not sure that's a good fit for these regulators, we don't gain any
+> extra information from the compatible here.
 
-Any updates on these patches?  They provide a welcome performance
-improvement for some stuff I've been doing -- for the v4 series:
+Humm... regulators cannot be probed without compatible for this case,
+except we have a list of mfd_cells which include compatible and driver
+name in sc27xx_spi (mfd) driver.
 
-Tested-by: Zev Weiss <zweiss@equinix.com>
+On different platforms, sc27xx_spi consists of different sub-devices
+with different compatible string, to avoid adding mfd_cells to
+sc27xx_spi driver each time we add a new platform support, we changed
+to use devm_of_platform_populate() which can automatically register
+sun-devices listed in devicetree.
+
+The above is my understand, please correct me if I'm missing something
+@Lee Jones
+
+Thanks,
+Chunyan
+
+[1] https://lkml.org/lkml/2020/6/19/207
