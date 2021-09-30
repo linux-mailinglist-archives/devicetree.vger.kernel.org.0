@@ -2,342 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 322D941D095
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 02:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 406DF41D097
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 02:35:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347103AbhI3Ags (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 20:36:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42092 "EHLO
+        id S1347276AbhI3Agt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 20:36:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346375AbhI3Agq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 20:36:46 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5211C061769
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:35:04 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id w14so3431563pfu.2
-        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:35:04 -0700 (PDT)
+        with ESMTP id S1346375AbhI3Ags (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 20:36:48 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 036B9C06161C
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:35:07 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id 75so4489291pga.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 17:35:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IjzHh64lVsb/lZGdokH420d5kapcdEZWn0niE1pG8Io=;
-        b=k1XDa5kzkzk6WIXCCYBemIAgg6QjM1qe2Ui1PfxwfpS1hL01KcmHWNUmA9Y3frCCmR
-         NAP/jd/im30Mx1iOJLlSOxbMtvGzQ+PETFqONxiUBNtsLqcBn+rTSzRPA+OannOxTvVa
-         C4psKIMyqurDUZqwaX/P9QtnpNfHMZW7aeJ34=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=AgZhYHdye54r6ShDoaQFSdXhndbZUW3v28dxdpS3Tao=;
+        b=oQgFAPuw89Z0XQftMMhBeGuniB6bE/9874lJytDJkWt+kezg72K+gksvMmV88OIEuM
+         Eyy3WSWdxU+gnWEx70j38/t7N7wyShxBNzbSNjZXozje94sq5QwoiSqqm20aTpSQSKdC
+         1N7sBCXf5Ws0kgBHUhcO5tDWZfQ/LKM9qch9Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IjzHh64lVsb/lZGdokH420d5kapcdEZWn0niE1pG8Io=;
-        b=Z0kh+u5niZKEZlsDYXNHhdqyh87IqNLiRbHJC1a2em9cgFJTcBQ2524GCXVNCkW6bf
-         cYIuRqhFXbzhWlQo8Loyo+N3fNH0tlJ5SNL4KFiQF4p0ep/UhG91wGh13pzKthjn9zF7
-         WAhoIgtxs2lWyQXxqf7AszvJqXbuFSoTLY4jEJxlj6LEj/GjJtNWkghwFQARmzP8VYNZ
-         dioAEers42ZK7NNepAnj2V3HYG0s9B9U4ns71THQbmaNBj0iDAqe5Bdf7RfCfegl4P6O
-         c48eP62n9U/+BKsq0hlcRcekr3bgb2xw23LmWellXN54YCLuz+xGLS/2xH5KZ2wNV82H
-         VQZw==
-X-Gm-Message-State: AOAM531NlSyntVj5LgnPbKqISXp7fwdAG3e+y6KuwWS+veWqoBMIDCo+
-        USb13hBCiJrUnfe8V4hj1qG45g==
-X-Google-Smtp-Source: ABdhPJw3ZSIgIDMmJg6t+5AaTTtXbKrEjjhWgpdZoKFVE6hNtQuYfLk7v5kBS8v05bBsyTofrz+gGg==
-X-Received: by 2002:aa7:82d0:0:b0:413:5e93:2f7a with SMTP id f16-20020aa782d0000000b004135e932f7amr1328435pfn.16.1632962104083;
-        Wed, 29 Sep 2021 17:35:04 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=AgZhYHdye54r6ShDoaQFSdXhndbZUW3v28dxdpS3Tao=;
+        b=PjAN6PsoVAgQx/FeMDKyJ4PcOtuBeJBSKmFgubk8ZsEVa56tAs43sMbSICvL2K0uAb
+         K2tlLf/6KvJIklsFVcwIS7gvzFV/TLYHTVVlsLzEyg7rtydVIPhNSmeuZswMLrRnEu8e
+         nbzimNXmta4oURSzleXLk5U5uXZZdZfXLF5gOqywWLt/zbIS/DHqHeuRCrX3+9aytP2h
+         mkySW9ZkCU2vm1J3j5j0Ya81vQuH71XaLXpmhSizwd8x3/IEB6YllNbY6lXC3aRyu/Qs
+         v9YIz5df//u2MaaF+RJVsXTnGYKMrRQJBUXrZHiLVKsYYiAs/k+JjSIy2QBolaZ8ZWSP
+         V8Qg==
+X-Gm-Message-State: AOAM532EmVeKmh/e2acZ/IzewepXBVdaIuWpk56wyJJsWXsuOXbQaQIt
+        X0voNUu6AJb3GQOByGqFwC9jyA==
+X-Google-Smtp-Source: ABdhPJxR9ohnQ+FXvrOlYtUk9aMrDtETY39YyKk7EZ+OawfXb0zWBw1TSfoVQJOrNHv1XXkZlynECA==
+X-Received: by 2002:aa7:8f01:0:b0:447:8167:46c1 with SMTP id x1-20020aa78f01000000b00447816746c1mr1529882pfr.30.1632962106583;
+        Wed, 29 Sep 2021 17:35:06 -0700 (PDT)
 Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:b6b6:ed63:b801:ded7])
-        by smtp.gmail.com with ESMTPSA id 23sm711648pgk.89.2021.09.29.17.35.02
+        by smtp.gmail.com with ESMTPSA id 23sm711648pgk.89.2021.09.29.17.35.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Sep 2021 17:35:03 -0700 (PDT)
+        Wed, 29 Sep 2021 17:35:06 -0700 (PDT)
 From:   Philip Chen <philipchen@chromium.org>
 To:     LKML <linux-kernel@vger.kernel.org>
 Cc:     dianders@chromium.org, swboyd@chromium.org,
         Philip Chen <philipchen@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 1/3] arm64: dts: sc7180: Factor out ti-sn65dsi86 support
-Date:   Wed, 29 Sep 2021 17:34:56 -0700
-Message-Id: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
+        Balletbo i Serra <enric.balletbo@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 2/3] dt-bindings: drm/bridge: ps8640: Add aux-bus child
+Date:   Wed, 29 Sep 2021 17:34:57 -0700
+Message-Id: <20210929173343.v2.2.I6050ba184b24d887e92692a72ee3054d643d6091@changeid>
 X-Mailer: git-send-email 2.33.0.685.g46640cef36-goog
+In-Reply-To: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
+References: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Factor out ti-sn65dsi86 edp bridge as a separate dts fragment.
-This helps us introduce the second source edp bridge later.
+dp-aux-bus.yaml says we can list an eDP panel as a child of
+an eDP controller node to represent the fact that the panel
+is connected to the controller's DP AUX bus.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Let's add it to the ps8640 bindings.
+
 Signed-off-by: Philip Chen <philipchen@chromium.org>
 ---
 
-Changes in v2:
-- Move edp_brij_i2c completely out of sc7180-trogdor.dtsi to the
-  bridge dts fragment, so that we can cleanly assign different
-  edp bridge in every board rev.
+(no changes since v1)
 
- .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  1 +
- .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  1 +
- .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  1 +
- .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  1 +
- .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi | 90 +++++++++++++++++++
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 86 ------------------
- 6 files changed, 94 insertions(+), 86 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+ .../bindings/display/bridge/ps8640.yaml       | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index a758e4d22612..1d13fba3bd2f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -11,6 +11,7 @@
- ap_h1_spi: &spi0 {};
+diff --git a/Documentation/devicetree/bindings/display/bridge/ps8640.yaml b/Documentation/devicetree/bindings/display/bridge/ps8640.yaml
+index fce82b605c8b..cdaf7a7a8f88 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ps8640.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ps8640.yaml
+@@ -40,6 +40,9 @@ properties:
+   vdd33-supply:
+     description: Regulator for 3.3V digital core power.
  
- #include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
++  aux-bus:
++    $ref: /schemas/display/dp-aux-bus.yaml#
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
  
- /* Deleted nodes from trogdor.dtsi */
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-index 00535aaa43c9..27b26a782af9 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-@@ -11,6 +11,7 @@
- ap_h1_spi: &spi0 {};
- 
- #include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- 
- &ap_sar_sensor {
- 	semtech,cs0-ground;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-index a246dbd74cc1..e7c7cad14989 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-@@ -11,6 +11,7 @@
- ap_h1_spi: &spi0 {};
- 
- #include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- 
- / {
- 	thermal-zones {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-index 2b522f9e0d8f..457c25499863 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-@@ -13,6 +13,7 @@
- ap_h1_spi: &spi0 {};
- 
- #include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- 
- / {
- 	model = "Google Trogdor (rev1+)";
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
-new file mode 100644
-index 000000000000..97d5e45abd1d
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Trogdor dts fragment for the boards with TI sn65dsi86 edp bridge
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
+@@ -98,7 +101,21 @@ examples:
+                     reg = <1>;
+                     ps8640_out: endpoint {
+                         remote-endpoint = <&panel_in>;
+-                   };
++                    };
++                };
++            };
 +
-+&dsi0_out {
-+	remote-endpoint = <&sn65dsi86_in>;
-+	data-lanes = <0 1 2 3>;
-+};
++            aux-bus {
++                panel {
++                    compatible = "boe,nv133fhm-n62";
++                    power-supply = <&pp3300_dx_edp>;
++                    backlight = <&backlight>;
 +
-+edp_brij_i2c: &i2c2 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	sn65dsi86_bridge: bridge@2d {
-+		compatible = "ti,sn65dsi86";
-+		reg = <0x2d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&edp_brij_en>, <&edp_brij_irq>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		enable-gpios = <&tlmm 104 GPIO_ACTIVE_HIGH>;
-+
-+		vpll-supply = <&pp1800_edp_vpll>;
-+		vccio-supply = <&pp1800_brij_vccio>;
-+		vcca-supply = <&pp1200_brij>;
-+		vcc-supply = <&pp1200_brij>;
-+
-+		clocks = <&rpmhcc RPMH_LN_BB_CLK3>;
-+		clock-names = "refclk";
-+
-+		no-hpd;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				sn65dsi86_in: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				sn65dsi86_out: endpoint {
-+					data-lanes = <0 1>;
-+					remote-endpoint = <&panel_in_edp>;
-+				};
-+			};
-+		};
-+
-+		aux-bus {
-+			panel: panel {
-+				/* Compatible will be filled in per-board */
-+				power-supply = <&pp3300_dx_edp>;
-+				backlight = <&backlight>;
-+				hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
-+
-+				port {
-+					panel_in_edp: endpoint {
-+						remote-endpoint = <&sn65dsi86_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&tlmm {
-+	edp_brij_irq: edp-brij-irq {
-+		pinmux {
-+			pins = "gpio11";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio11";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 0f2b3c00e434..702139e89a80 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -602,15 +602,6 @@ &camcc {
- &dsi0 {
- 	status = "okay";
- 	vdda-supply = <&vdda_mipi_dsi0_1p2>;
--
--	ports {
--		port@1 {
--			endpoint {
--				remote-endpoint = <&sn65dsi86_in>;
--				data-lanes = <0 1 2 3>;
--			};
--		};
--	};
- };
- 
- &dsi_phy {
-@@ -618,70 +609,6 @@ &dsi_phy {
- 	vdds-supply = <&vdda_mipi_dsi0_pll>;
- };
- 
--edp_brij_i2c: &i2c2 {
--	status = "okay";
--	clock-frequency = <400000>;
--
--	sn65dsi86_bridge: bridge@2d {
--		compatible = "ti,sn65dsi86";
--		reg = <0x2d>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&edp_brij_en>, <&edp_brij_irq>;
--		gpio-controller;
--		#gpio-cells = <2>;
--
--		interrupt-parent = <&tlmm>;
--		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
--
--		enable-gpios = <&tlmm 104 GPIO_ACTIVE_HIGH>;
--
--		vpll-supply = <&pp1800_edp_vpll>;
--		vccio-supply = <&pp1800_brij_vccio>;
--		vcca-supply = <&pp1200_brij>;
--		vcc-supply = <&pp1200_brij>;
--
--		clocks = <&rpmhcc RPMH_LN_BB_CLK3>;
--		clock-names = "refclk";
--
--		no-hpd;
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 {
--				reg = <0>;
--				sn65dsi86_in: endpoint {
--					remote-endpoint = <&dsi0_out>;
--				};
--			};
--
--			port@1 {
--				reg = <1>;
--				sn65dsi86_out: endpoint {
--					data-lanes = <0 1>;
--					remote-endpoint = <&panel_in_edp>;
--				};
--			};
--		};
--
--		aux-bus {
--			panel: panel {
--				/* Compatible will be filled in per-board */
--				power-supply = <&pp3300_dx_edp>;
--				backlight = <&backlight>;
--				hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
--
--				port {
--					panel_in_edp: endpoint {
--						remote-endpoint = <&sn65dsi86_out>;
--					};
--				};
--			};
--		};
--	};
--};
--
- ap_sar_sensor_i2c: &i2c5 {
- 	clock-frequency = <400000>;
- 
-@@ -1245,19 +1172,6 @@ pinconf {
- 		};
- 	};
- 
--	edp_brij_irq: edp-brij-irq {
--		pinmux {
--			pins = "gpio11";
--			function = "gpio";
--		};
--
--		pinconf {
--			pins = "gpio11";
--			drive-strength = <2>;
--			bias-pull-down;
--		};
--	};
--
- 	en_pp3300_codec: en-pp3300-codec {
- 		pinmux {
- 			pins = "gpio83";
++                    port {
++                        panel_in: endpoint {
++                            remote-endpoint = <&ps8640_out>;
++                        };
++                    };
+                 };
+             };
+         };
 -- 
 2.33.0.685.g46640cef36-goog
 
