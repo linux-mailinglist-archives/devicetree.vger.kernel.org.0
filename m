@@ -2,166 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8F8241D17E
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 04:34:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 722CC41D203
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 05:54:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347803AbhI3Cgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 22:36:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347759AbhI3Cgj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 22:36:39 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDB8C06161C;
-        Wed, 29 Sep 2021 19:34:57 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id m7so4383251qke.8;
-        Wed, 29 Sep 2021 19:34:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5H3zl6oYi2k/pahNWHm1qYAiJEHuNXY47Unp3/acgsA=;
-        b=ZWVqNdXJefB3MNBd7cVgBZxBZthq+q6h0PLTl/PWYzH0mbOaYjPeVKBTRPZDBb1Fnv
-         KhfowHhhakCGH2Olp+bCfriV0pQuFhBg0VXvLjYEelptqSsjQc175ANwQjswGiw5VsT7
-         0TbUdrVWoPVPcANFr+KEG1Go8FgaSvG4XJWGCcJ1fjh+TnaKKCtiodlsvVgImU92YmEl
-         THg79NjpOBfgytWQolN5U2Bk1YRjqNyyPvnFIexpNjzclGsYfygrzJNpqhht1AMSSoUs
-         LpeQRb7DfjTX/XYJ9CN2pAiFJmhm4xGL3+EafRK4+cizjxpX/q5BBZfhNUAORHzPvq3/
-         7RNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5H3zl6oYi2k/pahNWHm1qYAiJEHuNXY47Unp3/acgsA=;
-        b=y3AH1NUQK3NIZI77w4QZH7vbpogCybwjF7C0wSZ7MUbze6iCD9XKeXin8ZBwXmlqON
-         ocIZiNqEJK7aQbkEO9+ConZmFOmw2GVGr+ylKr/lT8uppYnagcv/UZogwRk7wXKtqVV3
-         nSykmlx79TpDf26dLBYcrYjuoEG6S8BFK8N5wUfuVxEUSQfzQJn6ZSnPpymxzAur4y74
-         zAQEH+wgV6CRPyxmYIjDKnMiAtliQJP2d5DtzPnDV7jisePuTt6v5vIMxLYFXApZPpbW
-         mkyUrBhXZa4aRwvd2Zms5y1/w+G5WExKdxQz9fecwsizr8xwiH7jCmxz2zWGmh6FUuCy
-         YOzQ==
-X-Gm-Message-State: AOAM533ydQd6NS4DphiGaIUQBqxAiLohpxZqPFWxFHjeTVuANl4ABS5A
-        rjQ+ELiOVZWNKcp0zk3P92W9XbsGR8srf1UBmc0=
-X-Google-Smtp-Source: ABdhPJwtPGdTpTNc5xgsgBlvtb/Wau0tzIHEBNiDnQI1DOjcDsVINKS3Mt8l/3BoBpDXW5kArtbRpujHlvw/FPwlBcA=
-X-Received: by 2002:a37:b087:: with SMTP id z129mr2754043qke.392.1632969297030;
- Wed, 29 Sep 2021 19:34:57 -0700 (PDT)
+        id S1347638AbhI3D4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 23:56:23 -0400
+Received: from mx0b-00268f01.pphosted.com ([148.163.159.192]:15182 "EHLO
+        mx0b-00268f01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1347082AbhI3D4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Sep 2021 23:56:23 -0400
+X-Greylist: delayed 4163 seconds by postgrey-1.27 at vger.kernel.org; Wed, 29 Sep 2021 23:56:22 EDT
+Received: from pps.filterd (m0165120.ppops.net [127.0.0.1])
+        by mx0b-00268f01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18TJJOeJ029393;
+        Thu, 30 Sep 2021 02:44:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=equinix.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-id : content-transfer-encoding : mime-version; s=pps202002;
+ bh=uhDkxvvxlaAjjLHyXf9KuaX6+crgGPtBHl2rKhaI1+E=;
+ b=C7rNJQ945dnxWgG2b6iwiCKYs1lFcbA/hyS2hIv73T1xsEtkd16c+i8i7mL4QsvC0kag
+ gLQGmlfeA4fQlXFlzIbvqLDkaEGGGNvc0Ru4+X8xPeuMZTlRCV3chtJOpaGgp521AWSi
+ vaIZBk4mHwd7LCvY/AGvI4t6Ii6VCqqNy+5R1+2gBrqrGbrizzcgHyPFBnllPNScqS5P
+ KsYsD2s9RkQoyurwv88OfLpugNP9io1iLQ3rP79CeXiPj6RfhT+s0WlMXLpuUa6tHdF7
+ mxvT63IS63cJ+sd7I37FJZ4JU4GwBEXTMJkmaKGmb9labrfFGbEaK3IyopI4fCJ+43nb VQ== 
+Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2102.outbound.protection.outlook.com [104.47.55.102])
+        by mx0b-00268f01.pphosted.com with ESMTP id 3bcx6vs30q-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 30 Sep 2021 02:44:51 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ch4JSbRVF1qImF2eSGVDjMV6iu4SN1S3qDLVThrLvnk/ANQ9G5j1fnRLi0ZgL1281ItVzrhpxJY9a3PrrJVLSR3PxPC80k6VNJp5FWhkd/gkfV9AKQZbVjQ1ExULzzLb+jVs6NdcDzor1/IJQDIdKz2h9YV6HRNVGXjAbikRtalwg/UBFNDaXemzkDjxw+bXdwE8UXYb79grAPiOUzhvdbThqSQ9HJSN8f6YKqzTRPFjnHxZzNYy+4jOHZ2r6v3PZZ4hTGIGmk3Gc+R9Gtyv49JHPwMwyf9mgI7nUZs2KrPV6FFYb9GV19hQ9Z4OuTRzJfL4181v7XYK6hEsDqJmdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=uhDkxvvxlaAjjLHyXf9KuaX6+crgGPtBHl2rKhaI1+E=;
+ b=BlF3LKSLLBxBjtgAWOUew+slvRfN+0mkxH/+BVi1Xe/rJG1s7O4ZckYnZe4JoZlzEJPii5RyrcjCEo7GaHco32IW9Se7wK4UWBPvfFAGQnPOgocVgiEKEWWxwhnZovDfFSbSE0JCwhVuAl6rBStiHzPx5QScRw5LPhmvX7fkUaVCj7t2Ptgy3+Kv9RnK2eqt+QB+7lo7ePMwSdhzK2jvjRSHnOKhbJMrBiMaG2OMn5ufe4BanRK2TyhwsBTA8p7hlulBT0KegEndf3HezswR9Gf5ZUabtJphNTm1+qMYze7+jpl6WdoS904qeW1B4tc7XPAprpipqPcmJQtL3iwkjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
+ dkim=pass header.d=equinix.com; arc=none
+Received: from DM8PR04MB8007.namprd04.prod.outlook.com (2603:10b6:5:314::20)
+ by DM8PR04MB8135.namprd04.prod.outlook.com (2603:10b6:8:2::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4566.14; Thu, 30 Sep 2021 02:44:48 +0000
+Received: from DM8PR04MB8007.namprd04.prod.outlook.com
+ ([fe80::8049:f2d5:9bed:efa0]) by DM8PR04MB8007.namprd04.prod.outlook.com
+ ([fe80::8049:f2d5:9bed:efa0%6]) with mapi id 15.20.4544.021; Thu, 30 Sep 2021
+ 02:44:48 +0000
+From:   Zev Weiss <zweiss@equinix.com>
+To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+CC:     Brendan Higgins <brendanhiggins@google.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        Cedric Le Goater <clg@kaod.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
+Subject: Re: [PATCH v4 0/4] i2c: aspeed: Add buffer and DMA modes support
+Thread-Topic: [PATCH v4 0/4] i2c: aspeed: Add buffer and DMA modes support
+Thread-Index: AQHXtaUi80ONMz2WSkW5UTjIcSKTPA==
+Date:   Thu, 30 Sep 2021 02:44:48 +0000
+Message-ID: <20210930024448.GU17315@packtop>
+References: <20210224191720.7724-1-jae.hyun.yoo@linux.intel.com>
+In-Reply-To: <20210224191720.7724-1-jae.hyun.yoo@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linux.intel.com; dkim=none (message not signed)
+ header.d=none;linux.intel.com; dmarc=none action=none
+ header.from=equinix.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3bb2a2dc-8473-4ef7-1b60-08d983bc452c
+x-ms-traffictypediagnostic: DM8PR04MB8135:
+x-microsoft-antispam-prvs: <DM8PR04MB813504BA7754958A2A5FCB38C3AA9@DM8PR04MB8135.namprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5236;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: KLhrUTBa7d/W9eImVG8tCjqWuvB9EwKQMANbx4GDDVicdNrzH90vijUMjP6yVvT6/hd09tcU8QyEXuqDgFiEluLNwywm3WoK1gqihAhpdAq3wzRPFTbSL7Pxb9/Vzg9ueVa/pY/lxKZailQ/b8RBaEgL1IF3udiYicw+c8vBr1qFq5ySPhjIH27gS30/zSZyMlAZFOAdMhLnW6ofy9gNxaOelBnNcsPnkPME56MYKAQhT89bSzROngDc689MROisiuofZkyZYymmKJ/vpuf/naxvR2kB4V4JA4LXNRAzkmWzKmreGfUbP0Mrix62OvVmxpzR2+SR1k8ZKXpMP8FKFiPlKWF2HWwZrMKe+Nxi8auqO7FcrPjfKcClOo6KWMuGtRH3K++OxKpKSAIZt8bLJGJAzyQZxuvXjmvm5HrPYJ4/BvJV5gBTmLr7WYzY9qe9gkr0p8yxz2O0UqfcHCCymcxeLniEy90DT/WVwzEzQF4lF9SLp1YaGpNL6iqoqpwek5K1VKH/QPxjPQ7Z/0qN5ZtGwmFQGRrXQ0WEjOx6gQcA9W+Gb9RhSFD6jJ25jT4vmBc1OQnITec3Hkb+Rd+Y/nTV0fqRuUccot2qEzb2aLSIX4By1ouH2GwwNY/3uFayaliknlPVLLTcJvrIPLb4vg8GTcAtVd0eI/n1IqZSsdI7NmpeYcS16gwmq7G+BgoVBFdpTa2crhRZbhQvN6Ku3g==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR04MB8007.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(9686003)(6512007)(6506007)(5660300002)(6916009)(4326008)(71200400001)(38100700002)(122000001)(38070700005)(83380400001)(186003)(86362001)(7416002)(2906002)(66446008)(64756008)(91956017)(76116006)(66946007)(66476007)(66556008)(8676002)(33716001)(1076003)(33656002)(316002)(54906003)(6486002)(8936002)(508600001)(26005)(4744005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?cxcF061tZefS4AEUqTVXs9NiJWmMUT+0kgZGz3Tgx6cX2fjgmWU/TMalWSov?=
+ =?us-ascii?Q?Pp2IyMR+cqHQRSUu7L7AnEDh51dLz3+NT+wenqg+UxEh2pOdU5K3rlEe3zZ5?=
+ =?us-ascii?Q?20Jm4H8yYuJJJpGP/KhS1Yo+ZjfFGNCix++UCuJ+9lL94A76N763MWiK01Vc?=
+ =?us-ascii?Q?ikMC6WJQGmLPAg/6gjss14BxmIonVAgmS+smluPAK1UeQMvXEvtzuKjfkbeq?=
+ =?us-ascii?Q?p0pev5bq4v/w3tah+4mqDiXXqUpCv5t+ytlpJRq9RNAQVYnYQRFYqM8/lP2U?=
+ =?us-ascii?Q?Js47Tur5ucwXKz5M6LxTt4QUKGdaozMhHoZafpK+3Tg1IiYGl/BwFW2f/vri?=
+ =?us-ascii?Q?a6AkURMf9GR1EKSi9x29CNzWvhGqt28C42ng/vNXnwGeAItRpnlIBfuxKfbe?=
+ =?us-ascii?Q?pT3zXbeMLdeH4xUxdK392+Aa5c2UAjV8hpbWrdLT4PbAhXVo7QmuqK1iwkjr?=
+ =?us-ascii?Q?VoBBG4996pf5YKIaDh5wV3mXXs88ZbcTanW2DqChZ/qpw67tVTp1WN4Qx0bF?=
+ =?us-ascii?Q?jWp6TIVa4ff3M9rxs7ab4d8bdwABn9fRY91Lbla8LDDg49S4hpmvjRF4MEhU?=
+ =?us-ascii?Q?5joxPoLmx8n5UR/t5uupUs4o3jwvgJNsrFi2VOOlPnOwqUnMzVskG2JN+LPb?=
+ =?us-ascii?Q?1gz72erhCaE1E1m+O8sTeZMRIDKC7FhIEVjuYnZ8KmWuzqXdLcufeiDKNbxd?=
+ =?us-ascii?Q?FCzpnQnVAM5hiqv0hzh0vAfcmlu02ijhXIFakbIBsALTQvi5uavqxE8Q7fPW?=
+ =?us-ascii?Q?i/opISxMELwYiY4SR04WOrF+6vO9G4oZ88OBNpEM3Vg5BDeoRFb31nPpaViP?=
+ =?us-ascii?Q?XdUDY5Ko0wP+//T5Nr/ilg/1xRqIaeNFevyxPACNM3cp8gji2LG/au/MdwPD?=
+ =?us-ascii?Q?Il6m3Jqwac0RFloJvH2ACqhTlAIWprRMhTsnpACQLo/60Hh8v9eB8QBjQ1T6?=
+ =?us-ascii?Q?hcfRN9VyyEOj1yeSKkeANuuvjci8GonDZvtbjyvFBZ+WKpTuGnKQypja1Fb4?=
+ =?us-ascii?Q?gxzCuLKi5YHlgo88tmr7WW8U/jpXSTPLvK1vEyH5FcZp5EwPY1AqcbTh+qB0?=
+ =?us-ascii?Q?zV5/0TfNiZtpO5v+C1yNvimDCk29uCEkqdrWeVzszWyiIUke2i7P/JkJpftd?=
+ =?us-ascii?Q?od5vhVtDsLLHxx5gEZdo6OC0t1GSuPXySORrFv2stQdOEv4Edoncl3OROrAr?=
+ =?us-ascii?Q?+/1utbH0d/L9Qlv3O2sT0HbPMo8Bsxc9Cc555es6S4zeOn1YgkJ5PloPeTvP?=
+ =?us-ascii?Q?OMG2wiut3JXZqr65U5EG6Bly8GTe3mvagZRJH4OLqmnAu7JYJH48huMJ0L6C?=
+ =?us-ascii?Q?e4n+pmsOu4fpcav0YfhEIw8g?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <721798A469AE8E42ACFCABC8AF63E9EC@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <1632625630-784-1-git-send-email-shengjiu.wang@nxp.com>
- <1632625630-784-5-git-send-email-shengjiu.wang@nxp.com> <YVTrbPC4/ir974xs@robh.at.kernel.org>
-In-Reply-To: <YVTrbPC4/ir974xs@robh.at.kernel.org>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Thu, 30 Sep 2021 10:34:46 +0800
-Message-ID: <CAA+D8ANdQQFuPh_F8DZka+Y6hVDGuT8BvRfWdUFJxHd5JTQPNA@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] dt-bindings: dsp: fsl: update binding document for
- remote proc driver
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Ohad Ben Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: equinix.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR04MB8007.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3bb2a2dc-8473-4ef7-1b60-08d983bc452c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2021 02:44:48.6388
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: H7J2Np2gV8IVQO+UNf64mn4BgGGAh3hmjSDyIujnSv2HYoXeelCHV8OyO9/FYl+N4L024qk4oG91mm65M7y7hg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR04MB8135
+X-Proofpoint-ORIG-GUID: 2BIPmXWw85HqLk7Y0lwikBFAWHaagc5x
+X-Proofpoint-GUID: 2BIPmXWw85HqLk7Y0lwikBFAWHaagc5x
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-30_01,2021-09-29_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1011
+ lowpriorityscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
+ mlxlogscore=999 impostorscore=0 mlxscore=0 spamscore=0 bulkscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2109230001 definitions=main-2109300014
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
-
-On Thu, Sep 30, 2021 at 6:40 AM Rob Herring <robh@kernel.org> wrote:
+On Wed, Feb 24, 2021 at 11:17:16AM PST, Jae Hyun Yoo wrote:
+>This patch series adds buffer mode and DMA mode transfer support for the
+>Aspeed I2C driver. With this change, buffer mode and DMA mode can be
+>selectively used depend on platform configuration.
 >
-> On Sun, Sep 26, 2021 at 11:07:10AM +0800, Shengjiu Wang wrote:
-> > As there are two drivers for DSP on i.MX, one is for sound open
-> > firmware, another is for remote processor framework. In order to
-> > distinguish two kinds of driver, defining different compatible strings.
-> >
-> > For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
-> > are needed and the mailbox channel is different with SOF.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
-> > ---
-> >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
-> >  1 file changed, 75 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > index 7afc9f2be13a..51ea657f6d42 100644
-> > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > @@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
-> >
-> >  maintainers:
-> >    - Daniel Baluta <daniel.baluta@nxp.com>
-> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> >
-> >  description: |
-> >    Some boards from i.MX8 family contain a DSP core used for
-> > @@ -19,6 +20,10 @@ properties:
-> >        - fsl,imx8qxp-dsp
-> >        - fsl,imx8qm-dsp
-> >        - fsl,imx8mp-dsp
-> > +      - fsl,imx8qxp-hifi4
-> > +      - fsl,imx8qm-hifi4
-> > +      - fsl,imx8mp-hifi4
-> > +      - fsl,imx8ulp-hifi4
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -28,37 +33,63 @@ properties:
-> >        - description: ipg clock
-> >        - description: ocram clock
-> >        - description: core clock
-> > +      - description: debug interface clock
-> > +      - description: message unit clock
-> > +    minItems: 3
-> > +    maxItems: 5
->
-> Don't need maxItems.
 
-Ok, I will update it.
+Any updates on these patches?  They provide a welcome performance
+improvement for some stuff I've been doing -- for the v4 series:
 
->
-> >
-> >    clock-names:
-> >      items:
-> >        - const: ipg
-> >        - const: ocram
-> >        - const: core
-> > +      - const: debug
-> > +      - const: mu
-> > +    minItems: 3
-> > +    maxItems: 5
->
-> ditto
-
-Ok, I will update it.
-
->
-> >
-> >    power-domains:
-> >      description:
-> >        List of phandle and PM domain specifier as documented in
-> >        Documentation/devicetree/bindings/power/power_domain.txt
-> > +    minItems: 1
->
-> This is curious. The h/w sometimes has fewer power domains?
-
-On i.MX8QM/8QXP,  there are independent power domains for DSP core,
-DSP's RAM and DSP's MU.
-But on i.MX8MP, all these DSP components are in same audio subsystem
-There is only one power domain for whole audio subsystem,  when
-power on audio subsystem, the DSP's components are powered on also.
-
-So the number of power domain depends on how the DSP component
-integrated in SoC.
-
-Best regards
-Wang Shengjiu
+Tested-by: Zev Weiss <zweiss@equinix.com>
