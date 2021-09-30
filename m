@@ -2,153 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3023741DA35
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 14:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEC8941DA45
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 14:52:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351064AbhI3Mtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 08:49:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39710 "EHLO
+        id S1351155AbhI3MyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 08:54:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351066AbhI3Mtl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 08:49:41 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26488C06176A
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 05:47:59 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id t8so9911630wri.1
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 05:47:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=jQcb/IRMulWTMVpLN7/tTW0JOEcywHbsCrqDEOi1tes=;
-        b=YciORU29ZLiM3+rVUPyXHQ/8jB28s1o/9oUDvkyfz5GDf+e9xhFV7JeHUgmjYxXHSL
-         fZL7VzoVijF/ZysR1BzWIU9+EsUSVjhDNhBbs8K75x2G+e/Ua+OzUhje3IJkab4RJF/b
-         2Wj6+P/HBT7whH6TTLSEDgC+28U2SxY8yrUdAohzBjOol2v4ap4D5QRNhb4cXINdH6jb
-         ZbGbPo/eatNtfPE1nbbZ9Hfw2GJuSEPeuC/Vis5sLjRvVocs5D2KBxG6Ek6rFDD9iAyk
-         eF8BBC+g66Vt5hSQs0mGUGSfSbqoFTtqBXQ4bDutWP9w9td99kj+qE594JunsF0UuI3P
-         njRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=jQcb/IRMulWTMVpLN7/tTW0JOEcywHbsCrqDEOi1tes=;
-        b=H7SAQtfdQk83qsO+vrB3pgnVLwlAOJpANLxaf1ol+QkhvJR+x1EBY3mf93pZbpMKrH
-         50zH/63zzS0c014ddFbaoyPVbPa5lOwJ4ckAYOxXzlejuXBHxBJ9dcya1XPzK8h0/DWU
-         qdEgkUjoB3JOLXcbiyb5IkOG8QdyeVc48ZqE3rsTezEBReAMOGqrxmTEbm79dTKuSx4s
-         lgKcMNCK7fTXUUM4Su5UuIf27TzuRmbOG0GUJftWWvU9AK1IUbdCPu0eZMWSStKaPKyr
-         yYg8GenukvS2jG2gCnk8ddOBu6WWApQy0ILdJgt2vrQz9nnyk59Y45gjzggV68VmJq/g
-         K6HA==
-X-Gm-Message-State: AOAM531aijUdOugHRwX2ceEaLGtlcg+MXtdWgT7grJd+a9P8UGtYrwtb
-        aiCpdg2jRvl7y8CghXILpRxmcg==
-X-Google-Smtp-Source: ABdhPJwnejh6dcPEIzPH5qBtw9qE77SEtnm6HLAZlJZXDYk4sIFKXEk4qno2ugj5odIXtRGh9o+kAA==
-X-Received: by 2002:a5d:6b46:: with SMTP id x6mr5972981wrw.192.1633006077728;
-        Thu, 30 Sep 2021 05:47:57 -0700 (PDT)
-Received: from google.com ([95.148.6.233])
-        by smtp.gmail.com with ESMTPSA id t16sm5222171wmi.33.2021.09.30.05.47.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Sep 2021 05:47:57 -0700 (PDT)
-Date:   Thu, 30 Sep 2021 13:47:55 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: Re: [PATCH 10/12] mfd: dt-bindings: samsung,s5m8767: document buck
- and LDO supplies
-Message-ID: <YVWx+08egbGPiYYt@google.com>
-References: <20210928084949.27939-1-krzysztof.kozlowski@canonical.com>
- <20210928084949.27939-11-krzysztof.kozlowski@canonical.com>
+        with ESMTP id S1351051AbhI3MyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 08:54:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74DB1C06176A
+        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 05:52:28 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1mVvXz-00049S-CL; Thu, 30 Sep 2021 14:52:23 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1mVvXy-0007sL-Hp; Thu, 30 Sep 2021 14:52:22 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH v1] ARM: dts: imx6: skov: provide panel support for lt2 variants
+Date:   Thu, 30 Sep 2021 14:52:21 +0200
+Message-Id: <20210930125221.30127-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210928084949.27939-11-krzysztof.kozlowski@canonical.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Sep 2021, Krzysztof Kozlowski wrote:
+Add support for the Logic Technologies LTTD800x480 L2RT 7" 800x480 TFT
+Resistive Touch Module.
 
-> Document the properties with regulator supplies for bucks and LDOs.  At
-> least one board uses it (Exynos5250 Arndale).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  .../bindings/mfd/samsung,s5m8767.yaml         | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts   |  1 +
+ arch/arm/boot/dts/imx6q-skov-revc-lt2.dts    |  1 +
+ arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi | 99 ++++++++++++++++++++
+ 3 files changed, 101 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi
 
-These all need Rob's Ack.
-
-But can you start with reworking the subject line please.
-
-It should be:
-
-  "dt-bindings: mfd: <component>: <Subject starting with an uppercase char>"
-
-> diff --git a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
-> index 35018346f68b..e97a94cab4e8 100644
-> --- a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
-> @@ -96,6 +96,44 @@ properties:
->      description: |
->        GPIO specifiers for three host gpio's used for dvs.
->  
-> +  vinb1-supply:
-> +    description: Power supply for buck1
-> +  vinb2-supply:
-> +    description: Power supply for buck1
-> +  vinb3-supply:
-> +    description: Power supply for buck1
-> +  vinb4-supply:
-> +    description: Power supply for buck1
-> +  vinb5-supply:
-> +    description: Power supply for buck1
-> +  vinb6-supply:
-> +    description: Power supply for buck1
-> +  vinb7-supply:
-> +    description: Power supply for buck1
-> +  vinb8-supply:
-> +    description: Power supply for buck1
-> +  vinb9-supply:
-> +    description: Power supply for buck1
-> +
-> +  vinl1-supply:
-> +    description: Power supply for LDO3, LDO10, LDO26, LDO27
-> +  vinl2-supply:
-> +    description: Power supply for LDO13, LDO16, LDO25, LDO28
-> +  vinl3-supply:
-> +    description: Power supply for LDO11, LDO14
-> +  vinl4-supply:
-> +    description: Power supply for LDO4, LDO9
-> +  vinl5-supply:
-> +    description: Power supply for LDO12, LDO17, LDO19, LDO23
-> +  vinl6-supply:
-> +    description: Power supply for LDO18, LDO20, LDO21, LDO24
-> +  vinl7-supply:
-> +    description: Power supply for LDO5, LDO22
-> +  vinl8-supply:
-> +    description: Power supply for LDO1, LDO6, LDO7, LDO8, LDO15
-> +  vinl9-supply:
-> +    description: Power supply for LDO2
-> +
->    wakeup-source: true
->  
->  required:
-
+diff --git a/arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts b/arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts
+index 667b8faa1807..b12b5aabe70a 100644
+--- a/arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts
++++ b/arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts
+@@ -6,6 +6,7 @@
+ #include "imx6dl.dtsi"
+ #include "imx6qdl-skov-cpu.dtsi"
+ #include "imx6qdl-skov-cpu-revc.dtsi"
++#include "imx6qdl-skov-revc-lt2.dtsi"
+ 
+ / {
+ 	model = "SKOV IMX6 CPU SoloCore";
+diff --git a/arch/arm/boot/dts/imx6q-skov-revc-lt2.dts b/arch/arm/boot/dts/imx6q-skov-revc-lt2.dts
+index f00add7b3048..ff97d22eb09f 100644
+--- a/arch/arm/boot/dts/imx6q-skov-revc-lt2.dts
++++ b/arch/arm/boot/dts/imx6q-skov-revc-lt2.dts
+@@ -6,6 +6,7 @@
+ #include "imx6q.dtsi"
+ #include "imx6qdl-skov-cpu.dtsi"
+ #include "imx6qdl-skov-cpu-revc.dtsi"
++#include "imx6qdl-skov-revc-lt2.dtsi"
+ 
+ / {
+ 	model = "SKOV IMX6 CPU QuadCore";
+diff --git a/arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi b/arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi
+new file mode 100644
+index 000000000000..48c9ce051f47
+--- /dev/null
++++ b/arch/arm/boot/dts/imx6qdl-skov-revc-lt2.dtsi
+@@ -0,0 +1,99 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++//
++// Copyright (C) 2021 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
++
++/ {
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_backlight>;
++		enable-gpios = <&gpio6 23 GPIO_ACTIVE_LOW>;
++		pwms = <&pwm2 0 20000 0>;
++		brightness-levels = <0 255>;
++		num-interpolated-steps = <17>;
++		default-brightness-level = <8>;
++		power-supply = <&reg_24v0>;
++	};
++
++	display {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		compatible = "fsl,imx-parallel-display";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_ipu1>;
++
++		port@0 {
++			reg = <0>;
++
++			display0_in: endpoint {
++				remote-endpoint = <&ipu1_di0_disp0>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++
++			display0_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++
++	panel {
++		compatible = "logictechno,lttd800480070-l2rt";
++		backlight = <&backlight>;
++		power-supply = <&reg_3v3>;
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&display0_out>;
++			};
++		};
++	};
++};
++
++&ipu1_di0_disp0 {
++	remote-endpoint = <&display0_in>;
++};
++
++&iomuxc {
++	pinctrl_backlight: backlightgrp {
++		fsl,pins = <
++			MX6QDL_PAD_RGMII_TD3__GPIO6_IO23		0x58
++		>;
++	};
++
++	pinctrl_ipu1: ipu1grp {
++		fsl,pins = <
++			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x10
++			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x10
++			MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02		0x10
++			MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03		0x10
++			MX6QDL_PAD_DISP0_DAT0__IPU1_DISP0_DATA00	0x10
++			MX6QDL_PAD_DISP0_DAT1__IPU1_DISP0_DATA01	0x10
++			MX6QDL_PAD_DISP0_DAT2__IPU1_DISP0_DATA02	0x10
++			MX6QDL_PAD_DISP0_DAT3__IPU1_DISP0_DATA03	0x10
++			MX6QDL_PAD_DISP0_DAT4__IPU1_DISP0_DATA04	0x10
++			MX6QDL_PAD_DISP0_DAT5__IPU1_DISP0_DATA05	0x10
++			MX6QDL_PAD_DISP0_DAT6__IPU1_DISP0_DATA06	0x10
++			MX6QDL_PAD_DISP0_DAT7__IPU1_DISP0_DATA07	0x10
++			MX6QDL_PAD_DISP0_DAT8__IPU1_DISP0_DATA08	0x10
++			MX6QDL_PAD_DISP0_DAT9__IPU1_DISP0_DATA09	0x10
++			MX6QDL_PAD_DISP0_DAT10__IPU1_DISP0_DATA10	0x10
++			MX6QDL_PAD_DISP0_DAT11__IPU1_DISP0_DATA11	0x10
++			MX6QDL_PAD_DISP0_DAT12__IPU1_DISP0_DATA12	0x10
++			MX6QDL_PAD_DISP0_DAT13__IPU1_DISP0_DATA13	0x10
++			MX6QDL_PAD_DISP0_DAT14__IPU1_DISP0_DATA14	0x10
++			MX6QDL_PAD_DISP0_DAT15__IPU1_DISP0_DATA15	0x10
++			MX6QDL_PAD_DISP0_DAT16__IPU1_DISP0_DATA16	0x10
++			MX6QDL_PAD_DISP0_DAT17__IPU1_DISP0_DATA17	0x10
++			MX6QDL_PAD_DISP0_DAT18__IPU1_DISP0_DATA18	0x10
++			MX6QDL_PAD_DISP0_DAT19__IPU1_DISP0_DATA19	0x10
++			MX6QDL_PAD_DISP0_DAT20__IPU1_DISP0_DATA20	0x10
++			MX6QDL_PAD_DISP0_DAT21__IPU1_DISP0_DATA21	0x10
++			MX6QDL_PAD_DISP0_DAT22__IPU1_DISP0_DATA22	0x10
++			MX6QDL_PAD_DISP0_DAT23__IPU1_DISP0_DATA23	0x10
++		>;
++	};
++};
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.30.2
+
