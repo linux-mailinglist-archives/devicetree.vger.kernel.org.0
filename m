@@ -2,216 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C178C41D943
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 13:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ADA241D94E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 14:06:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350713AbhI3L6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 07:58:55 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:41855 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350712AbhI3L6t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 07:58:49 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633003027; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=MgsTdvHC32CVeXQvpvDOvg9iOpH6jzoyvVH+Vm7ZG44=;
- b=M3/XevhZ1fatbd820U/s6VyKVfKWbfpVQNG48b/cqTdtoS/Z/6uMCXmt0KHODYKJl+ZOmp8f
- 8qZx4SpEzetC+r3KY2IV5zDjzNVNEfVsdrC2T/UA2twpKYVETxqS8jNOVVl97ofQg8TUsz1F
- 2ADTkq7GT457+q5SgBqkkM6lux0=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 6155a60ca5a9bab6e879f24f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 30 Sep 2021 11:57:00
- GMT
-Sender: mkrishn=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 06212C4360D; Thu, 30 Sep 2021 11:57:00 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkrishn)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 44068C4338F;
-        Thu, 30 Sep 2021 11:56:59 +0000 (UTC)
+        id S1350642AbhI3MHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 08:07:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49910 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1350490AbhI3MHn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 08:07:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 70345619E9;
+        Thu, 30 Sep 2021 12:06:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633003561;
+        bh=WUXfDUc//JyjnG/jAFLzYhzrcKKxnKio8LRuz/Sa4SE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Jc3KonpSQ9wIu8cbERb6KVjpU6LDGCPs80PSGa/jbjpkFYlKB8EBessNIIDdMPlZb
+         mdOf3r6qDaOiloFsel5NQFH3syLotorSV9/I78onpGZBBaHVJCl9L4vPLz/wf/0B0X
+         MigPNDhw6MAbsNwoOFmlyBA64VHiQxxhEOmmTpR5yvZGfkzKdSt8hwBIBchkgo6p2D
+         Ud6vVQ8s/VLgdsAI936Z9lJVThvdHNORnb1q9dT20/+MoEYv+s1WYysiDGDspTmQt8
+         M1VHpHnhCPa64p8SOr36dNqfZ9XR4xSJnqmJoXTc+l6XPyxypm90eVSrFcEYoWvhG/
+         202AMiuiTRmJQ==
+Date:   Thu, 30 Sep 2021 13:05:10 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH 1/2] regulator: Add Unisoc's SC2730 regulator driver
+Message-ID: <20210930120510.GW4199@sirena.org.uk>
+References: <20210928073609.198975-1-zhang.lyra@gmail.com>
+ <20210928113057.GJ4199@sirena.org.uk>
+ <CAAfSe-vM8iG1OtQeVR1CxQtpvA8kqSs3pJ78RQQOL7GcWcTwSw@mail.gmail.com>
+ <20210929122912.GO4199@sirena.org.uk>
+ <CAAfSe-tJMvYyvtOArsAW9Y980y_qzUgHoaQsyqnO6W47f9jMNA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 30 Sep 2021 17:26:59 +0530
-From:   mkrishn@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kalyan_t@codeaurora.org,
-        sbillaka@codeaurora.org, abhinavk@codeaurora.org,
-        robdclark@gmail.com, bjorn.andersson@linaro.org,
-        khsieh@codeaurora.org, rajeevny@codeaurora.org,
-        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v1 2/4] arm64: dts: qcom: sc7280: add display dt nodes
-In-Reply-To: <CAE-0n50b=pX=1MFwGPDvDR=O03tUAkAgyMonGm2+SXBft=16KQ@mail.gmail.com>
-References: <1629282424-4070-1-git-send-email-mkrishn@codeaurora.org>
- <1629282424-4070-2-git-send-email-mkrishn@codeaurora.org>
- <CAE-0n50b=pX=1MFwGPDvDR=O03tUAkAgyMonGm2+SXBft=16KQ@mail.gmail.com>
-Message-ID: <5adf2ab2c2a162272509d253bd797721@codeaurora.org>
-X-Sender: mkrishn@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mz5eWKkhz39mMVQV"
+Content-Disposition: inline
+In-Reply-To: <CAAfSe-tJMvYyvtOArsAW9Y980y_qzUgHoaQsyqnO6W47f9jMNA@mail.gmail.com>
+X-Cookie: 98% lean.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-19 01:27, Stephen Boyd wrote:
-> Quoting Krishna Manikandan (2021-08-18 03:27:02)
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index 53a21d0..fd7ff1c 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -5,6 +5,7 @@
->>   * Copyright (c) 2020-2021, The Linux Foundation. All rights 
->> reserved.
->>   */
->> 
->> +#include <dt-bindings/clock/qcom,dispcc-sc7280.h>
->>  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
->>  #include <dt-bindings/clock/qcom,rpmh.h>
->>  #include <dt-bindings/interconnect/qcom,sc7280.h>
->> @@ -1424,6 +1425,90 @@
->>                         #power-domain-cells = <1>;
->>                 };
->> 
->> +               mdss: mdss@ae00000 {
-> 
-> subsystem@ae00000
-> 
->> +                       compatible = "qcom,sc7280-mdss";
->> +                       reg = <0 0x0ae00000 0 0x1000>;
->> +                       reg-names = "mdss";
->> +
->> +                       power-domains = <&dispcc 
->> DISP_CC_MDSS_CORE_GDSC>;
->> +
->> +                       clocks = <&gcc GCC_DISP_AHB_CLK>,
->> +                                <&dispcc DISP_CC_MDSS_AHB_CLK>,
->> +                               <&dispcc DISP_CC_MDSS_MDP_CLK>;
->> +                       clock-names = "iface", "ahb", "core";
->> +
->> +                       assigned-clocks = <&dispcc 
->> DISP_CC_MDSS_MDP_CLK>;
->> +                       assigned-clock-rates = <300000000>;
->> +
->> +                       interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
->> +                       interrupt-controller;
->> +                       #interrupt-cells = <1>;
->> +
->> +                       interconnects = <&mmss_noc MASTER_MDP0 0 
->> &mc_virt SLAVE_EBI1 0>;
->> +                       interconnect-names = "mdp0-mem";
->> +
->> +                       iommus = <&apps_smmu 0x900 0x402>;
->> +
->> +                       #address-cells = <2>;
->> +                       #size-cells = <2>;
->> +                       ranges;
->> +
->> +                       status = "disabled";
->> +
->> +                       mdp: mdp@ae01000 {
-> 
-> display-controller@ae01000
 
-Stephen,
-    In the current driver code, there is a substring comparison for "mdp" 
-in device node name as part of probe sequence. If "mdp" is not present 
-in the node name, it will
-    return an error resulting in probe failure. Can we continue using mdp 
-as nodename instead of display controller?
+--mz5eWKkhz39mMVQV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks,
-Krishna
+On Thu, Sep 30, 2021 at 11:12:28AM +0800, Chunyan Zhang wrote:
 
+> On different platforms, sc27xx_spi consists of different sub-devices
+> with different compatible string, to avoid adding mfd_cells to
+> sc27xx_spi driver each time we add a new platform support, we changed
+> to use devm_of_platform_populate() which can automatically register
+> sun-devices listed in devicetree.
 
-> 
->> +                               compatible = "qcom,sc7280-dpu";
->> +                               reg = <0 0x0ae01000 0 0x8f030>,
->> +                                       <0 0x0aeb0000 0 0x2008>;
->> +                               reg-names = "mdp", "vbif";
->> +
->> +                               clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
->> +                                       <&gcc GCC_DISP_SF_AXI_CLK>,
->> +                                       <&dispcc 
->> DISP_CC_MDSS_AHB_CLK>,
->> +                                       <&dispcc 
->> DISP_CC_MDSS_MDP_LUT_CLK>,
->> +                                       <&dispcc 
->> DISP_CC_MDSS_MDP_CLK>,
->> +                                       <&dispcc 
->> DISP_CC_MDSS_VSYNC_CLK>;
->> +                               clock-names = "bus", "nrt_bus", 
->> "iface", "lut", "core",
->> +                                             "vsync";
-> 
-> One line per string please.
-> 
->> +                               assigned-clocks = <&dispcc 
->> DISP_CC_MDSS_MDP_CLK>,
->> +                                               <&dispcc 
->> DISP_CC_MDSS_VSYNC_CLK>,
->> +                                               <&dispcc 
->> DISP_CC_MDSS_AHB_CLK>;
->> +                               assigned-clock-rates = <300000000>,
->> +                                                       <19200000>,
->> +                                                       <19200000>;
->> +                               operating-points-v2 = 
->> <&mdp_opp_table>;
->> +                               power-domains = <&rpmhpd SC7280_CX>;
->> +
->> +                               interrupt-parent = <&mdss>;
->> +                               interrupts = <0>;
->> +
->> +                               status = "disabled";
->> +
->> +                               mdp_opp_table: mdp-opp-table {
-> 
-> mdp_opp_table: opp-table {
-> 
->> +                                       compatible = 
->> "operating-points-v2";
->> +
->> +                                       opp-200000000 {
->> +                                               opp-hz = /bits/ 64 
->> <200000000>;
->> +                                               required-opps = 
->> <&rpmhpd_opp_low_svs>;
->> +                                       };
->> +
->> +                                       opp-300000000 {
->> +                                               opp-hz = /bits/ 64 
->> <300000000>;
->> +                                               required-opps = 
->> <&rpmhpd_opp_svs>;
->> +                                       };
->> +
->> +                                       opp-380000000 {
->> +                                               opp-hz = /bits/ 64 
->> <380000000>;
->> +                                               required-opps = 
->> <&rpmhpd_opp_svs_l1>;
->> +                                       };
->> +
->> +                                       opp-506666667 {
->> +                                               opp-hz = /bits/ 64 
->> <506666667>;
->> +                                               required-opps = 
->> <&rpmhpd_opp_nom>;
->> +                                       };
->> +                               };
->> +                       };
->> +               };
->> +
+> The above is my understand, please correct me if I'm missing something
+> @Lee Jones
+
+Right, so my pushback here is that it's not clear to me that avoiding
+adding compatibles to the MFD is a strong enough goal to justify
+creating ABI - it's hard to see the upsides.  This is particularly the
+case here where the subdevice is really a random collection of devices
+that's particularly likely to change between variants and more likely
+that other OSs would want something different so it's even harder to
+achieve reuse.
+
+--mz5eWKkhz39mMVQV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFVp/UACgkQJNaLcl1U
+h9A0NQf+MVIV20djUxEYTyRsu5XcsUBXOCjUH8C6aiUvI1f+91mdMR5EjZGsWxOP
+Qxind1nfGXf7+41sboK/15s4xWsWpFDHq/4wBUkHdgiqoywBuYisngyieNGhVNeB
+3FSJSdW0aNHNNNAjOSG0YXQRxog5XSBRSQ3s2614QFVXGFHh0DQoin2ud2rgPeZ0
+H7A6BV2E0LR+w3YNs/twWw7j4aM/wkrVTCc9OfPNdX5gNC1SoK6KC6ApfZYUyT0G
+k2jcq3qnQyGuadQPkpgo9X3tW7enbWzyGAL3aEN/jbaugSPsiS3pJsPizR00n5Jz
+VIb/B5YtJxgs+XIw4I6aELxDkaDdhw==
+=OZXI
+-----END PGP SIGNATURE-----
+
+--mz5eWKkhz39mMVQV--
