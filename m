@@ -2,106 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C1241DB52
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:43:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB1741DB8B
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 15:54:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351751AbhI3Non (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 09:44:43 -0400
-Received: from www.zeus03.de ([194.117.254.33]:57278 "EHLO mail.zeus03.de"
+        id S235551AbhI3Nze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 09:55:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50864 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351656AbhI3Non (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 09:44:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=enjVHhjyJZgjd0uz2ZMCGxCdBS+f
-        mbNWBXj4KgCu+/g=; b=Vq4frCFv5u/OJhnwA+2jw2Zo3C8qPCWnb8BlITwGu6W2
-        F3Ba0Jot9YgQactoV/1PgzGVxftoTEzEYX6eKWjWBrPZxkb5fNVjqntHammaEn/p
-        0WVvfEdoIOWiPs1K+noRZDFS67NKKd1xx2//p8fbxw95ZZwnEuWR6tyimZEMtTw=
-Received: (qmail 2095125 invoked from network); 30 Sep 2021 15:42:57 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 30 Sep 2021 15:42:57 +0200
-X-UD-Smtp-Session: l3s3148p1@ZcTdnzbN1IQgARa4RV6LAWawlO8I9jL3
-Date:   Thu, 30 Sep 2021 15:42:57 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        id S1351519AbhI3Nzd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 09:55:33 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 88D3361440;
+        Thu, 30 Sep 2021 13:53:50 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mVwVQ-00E025-OM; Thu, 30 Sep 2021 14:53:48 +0100
+Date:   Thu, 30 Sep 2021 14:53:48 +0100
+Message-ID: <871r56tbir.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        DTML <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH 4/6] mtd: hyperbus: rpc-if: Check return value of
- rpcif_sw_init()
-Message-ID: <YVW+4fueYq0qwpZz@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210928140721.8805-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="UH/3+F32BIFpPcH9"
-Content-Disposition: inline
-In-Reply-To: <20210928140721.8805-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Romain Perier <romain.perier@gmail.com>
+Subject: Re: [PATCH 2/3] irqchip: SigmaStar SSD20xD gpi
+In-Reply-To: <CAFr9PXmu2JRSK9==MjpwgWTCET4iqj5U=egQQ2TciN0=B_UwNw@mail.gmail.com>
+References: <20210914100415.1549208-1-daniel@0x0f.com>
+        <20210914100415.1549208-3-daniel@0x0f.com>
+        <87zgs7vavl.wl-maz@kernel.org>
+        <CAFr9PXnC4hQw5_0TtciKvqF7s=4axJ5Yrq80RXGcY4VvT1Ac2A@mail.gmail.com>
+        <87wnnbv6ac.wl-maz@kernel.org>
+        <CAFr9PXmA07Up_wfJzzgZeYwE5ZrwnLqjBvLG3CERGHOLeay0Cg@mail.gmail.com>
+        <87lf3quydn.wl-maz@kernel.org>
+        <CACRpkdYLURJCopH3hDuZTY8ce9-OxakELyFqwqkAVCsYmzF5kg@mail.gmail.com>
+        <874ka2tdqe.wl-maz@kernel.org>
+        <CAFr9PXmu2JRSK9==MjpwgWTCET4iqj5U=egQQ2TciN0=B_UwNw@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: daniel@0x0f.com, linus.walleij@linaro.org, devicetree@vger.kernel.org, robh+dt@kernel.org, tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, romain.perier@gmail.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 30 Sep 2021 14:36:52 +0100,
+Daniel Palmer <daniel@0x0f.com> wrote:
+> 
+> Hi Marc,
+> 
+> On Thu, 30 Sept 2021 at 22:06, Marc Zyngier <maz@kernel.org> wrote:
+> > No, this is the right spot if you really need to set the handler. But
+> > it should really be after the parent allocation (see below for
+> > something totally untested).
+> 
+> Your change resolves the null pointer difference when enabling the
+> interrupt but when it triggers the below happens.
+> This might just be my driver so I'll try to debug.
+> 
+> Thanks,
+> 
+> Daniel
+> 
+> # gpiomon -r 0 44
+> [   61.770519] irq 66, desc: (ptrval), depth: 0, count: 0, unhandled: 0
+> [   61.770646]
+> [   61.770659] =============================
+> [   61.770670] [ BUG: Invalid wait context ]
+> [   61.770683] 5.15.0-rc2+ #2583 Not tainted
+> [   61.770702] -----------------------------
+> [   61.770712] swapper/0/0 is trying to lock:
+> [   61.770729] c1789eb0 (&port_lock_key){-.-.}-{3:3}, at:
+> serial8250_console_write+0x1b0/0x254
+> [   61.770840] other info that might help us debug this:
+> [   61.770853] context-{2:2}
+> [   61.770868] 2 locks held by swapper/0/0:
+> [   61.770889]  #0: c10189ec (console_lock){+.+.}-{0:0}, at:
+> vprintk_emit+0xa4/0x200
+> [   61.770986]  #1: c1018b44 (console_owner){-...}-{0:0}, at:
+> console_unlock+0x1e8/0x4b4
+> [   61.771080] stack backtrace:
+> [   61.771093] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.15.0-rc2+ #2583
+> [   61.771130] Hardware name: MStar/Sigmastar Armv7 (Device Tree)
+> [   61.771156] [<c010daf0>] (unwind_backtrace) from [<c0109f54>]
+> (show_stack+0x10/0x14)
+> [   61.771235] [<c0109f54>] (show_stack) from [<c09303a0>]
+> (dump_stack_lvl+0x58/0x70)
+> [   61.771312] [<c09303a0>] (dump_stack_lvl) from [<c016fbd8>]
+> (__lock_acquire+0x384/0x16a0)
+> [   61.771394] [<c016fbd8>] (__lock_acquire) from [<c017191c>]
+> (lock_acquire+0x2a0/0x320)
+> [   61.771470] [<c017191c>] (lock_acquire) from [<c093de84>]
+> (_raw_spin_lock_irqsave+0x5c/0x70)
+> [   61.771542] [<c093de84>] (_raw_spin_lock_irqsave) from [<c04cdf98>]
+> (serial8250_console_write+0x1b0/0x254)
+> [   61.771620] [<c04cdf98>] (serial8250_console_write) from
+> [<c0178068>] (console_unlock+0x3fc/0x4b4)
+> [   61.771699] [<c0178068>] (console_unlock) from [<c0179750>]
+> (vprintk_emit+0x1d0/0x200)
+> [   61.771769] [<c0179750>] (vprintk_emit) from [<c017979c>]
+> (vprintk_default+0x1c/0x24)
+> [   61.771840] [<c017979c>] (vprintk_default) from [<c092d178>]
+> (_printk+0x18/0x28)
+> [   61.771914] [<c092d178>] (_printk) from [<c017b9d0>]
+> (handle_bad_irq+0x44/0x22c)
+> [   61.771991] [<c017b9d0>] (handle_bad_irq) from [<c017ade4>]
+> (handle_irq_desc+0x24/0x34)
+> [   61.772066] [<c017ade4>] (handle_irq_desc) from [<c0467274>]
+> (ssd20xd_gpi_chainedhandler+0xb4/0xc4)
+> [   61.772147] [<c0467274>] (ssd20xd_gpi_chainedhandler) from
+> [<c017ade4>] (handle_irq_desc+0x24/0x34)
+> [   61.772223] [<c017ade4>] (handle_irq_desc) from [<c017b544>]
+> (handle_domain_irq+0x40/0x54)
+> [   61.772299] [<c017b544>] (handle_domain_irq) from [<c0465f20>]
+> (gic_handle_irq+0x60/0x6c)
+> [   61.772372] [<c0465f20>] (gic_handle_irq) from [<c0100aac>]
+> (__irq_svc+0x4c/0x64)
 
---UH/3+F32BIFpPcH9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Somehow, the handler for this interrupt is set to handle_bad_irq(),
+which probably isn't what you want. You'll have to find out who sets
+this (there is a comment about that in gpiolib.c, but I haven't had a
+chance to find where this is coming from).
 
-On Tue, Sep 28, 2021 at 03:07:19PM +0100, Lad Prabhakar wrote:
-> rpcif_sw_init() can fail so make sure we check the return value
-> of it and on error exit rpcif_hb_probe() callback with error code.
->=20
-> Fixes: 5de15b610f78 ("mtd: hyperbus: add Renesas RPC-IF driver")
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+Do you happen to set it in your driver?
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+	M.
 
-
---UH/3+F32BIFpPcH9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFVvuEACgkQFA3kzBSg
-KbaFOhAAkhQT+eANrESXMUmHwDoBaEftQaOhPkUb8DlXOqKGq+DAjzW+JyzW0kSL
-ESmiEdv89aufX5RfHPtGhaMpg4zw77UD3K2Lorxq/0NhbpSsw1QQPLJQ7S7opXi+
-4YbfeFnCQHfDshSl4Z72qhYIK2+hX0UxGb+Rwc4cFo+VlfSf0kwY3Fou40hyfvuc
-1QX32jsF4nIx8n0aRlChTwOkiDozSFhYsF6hyaHkujln6Tl3/XkhFJnVMx28Rx9D
-intGfPYb140kKY42sOSYyVIvU5NEOA20uptacBGyHjD08JMoUqngNFTrB9QSD7Qn
-UXyNSm8hCR2O4jXwqyaq+NkB38/KjGiA0KhqLe7VfIJF2kpIhD7A0byOuXeJN5NJ
-mzx8B1Je7st8S2+8tsB8+QXx4LhaxUwgOE6AuW4egwuh75VrXmKlOZpz7p7ScGga
-51om9XkoqZKZ8y/OYjlLs0PTnILm3FSC3kMG13bJEaKh7xDXujRTMHYhCLAeR+kP
-cnxNI6KR8+t/y8WgTukfo7z8uaC29WJ83cE4Nyl549lub9Y6s0mJJPmIW19xVxzY
-7kyjUj+BkBWsr96db+5f1hQJWxoJ55o7dhtmEscLa6Ka06uW5/fL6YLZQ3u0Cccs
-wshCtE1z4f40IvhH1w10UaNvmL4CXvI0tKQ6EgcoUQtp5p21m7M=
-=KpqM
------END PGP SIGNATURE-----
-
---UH/3+F32BIFpPcH9--
+-- 
+Without deviation from the norm, progress is not possible.
