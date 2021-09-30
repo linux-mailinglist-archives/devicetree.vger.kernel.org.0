@@ -2,106 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5A7841D8BA
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 13:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94D6841D8EB
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 13:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350470AbhI3L1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 07:27:54 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:60440 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350488AbhI3L1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 07:27:54 -0400
-Received: from [IPv6:2a02:810a:880:f54:fd5c:7cb1:aaa8:78b1] (unknown [IPv6:2a02:810a:880:f54:fd5c:7cb1:aaa8:78b1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id E54671F44AE1;
-        Thu, 30 Sep 2021 12:26:09 +0100 (BST)
-Subject: Re: [PATCH v2 11/29] iommu/mediatek: Always pm_runtime_get while tlb
- flush
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com
-References: <20210813065324.29220-1-yong.wu@mediatek.com>
- <20210813065324.29220-12-yong.wu@mediatek.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <11fe281d-4873-245b-f506-452900f33d3b@collabora.com>
-Date:   Thu, 30 Sep 2021 13:26:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S1350464AbhI3LjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 07:39:23 -0400
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:54573 "EHLO
+        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1350447AbhI3LjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 07:39:22 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.west.internal (Postfix) with ESMTP id 3CC412B00428;
+        Thu, 30 Sep 2021 07:37:39 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Thu, 30 Sep 2021 07:37:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=F
+        TKJqnUNdam3eXYcxKVwRSUv7R/MUB8dw+EeZb2yffI=; b=lZrejGtO9mHZIlKQR
+        8OC8F82Zjqs37lcpH1jGd9ppXkzv5qH9en10GS3OWsYPEytqOmoa3+b1IEDQ1xRq
+        /SsUwEYZ4g6rVlchuybxJK2dXv80WZA9ethatvW9yo1RBpaFbA82CIhKYbRHpHTV
+        AXOvxD/polWDrTn7cDHM0i4qEhbsOU7NPfsQtmR9wKnIlMP7Ym5O95+kyrRsWjc8
+        o6Y8+h0rfW4C9WHChuVMciBxQAgwsTb9PEFRcmtGYmFJ/Gg2GovD4osiLHie0OIR
+        pRb6cUTnpk3dqnHVyxP5kVhCP32pcwVf9FhXwLRcixvNusvomdsCwuCHE9DmPaDo
+        VRo5Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=FTKJqnUNdam3eXYcxKVwRSUv7R/MUB8dw+EeZb2yf
+        fI=; b=Cp3BiCJd9Si8nSF+L96RumPEjY5qCVwvtwq9CdPm9WRds+9qtTI0ERMGZ
+        j1Culz447InBI6CP05DY3qoF+nElBjiUtP6tSo0YR5sqPbPzICcRasc9KQLkLQuk
+        XRxnV+N6rjjnFTq+oXQFzgAjGNrqAsoOTOMb3ttJedKFv29o65Nl8pKH59Hlh8bQ
+        yDSyXAhSwTLTVjUvkZQPtUhsoQgsGfpbyljfsrBCGWRfKKJTz1BAJqoAW5UGW8/S
+        DawHkwxq1B1Dnuj/kgAeCpPkej0Zpz3XahFJI31AOKL8ZWfqGIJhrsvV6zuEncPq
+        GtuYSEp9tsTmXGcVYksTtgkAOONKQ==
+X-ME-Sender: <xms:gqFVYeWpq4we2qYbs17TlY2CXJLq4qISoSzBnNAhj0pFehaSkHudTQ>
+    <xme:gqFVYakwzZznoCRiHCDpykZwBEo8OF3TAUedUCAw02l_k5ZkWoy5ZAjcH_is6kRHC
+    8JGlDClJLNr0uDV7A>
+X-ME-Received: <xmr:gqFVYSbmQX52drvwkxfnuI-Z2VSyWQdcLx_OIhP6vfNb5pqBADVtzWLJ_BWPU_9Kv0OedUdyLrbQ2phZTx-OSpgN7eeyh6SzIBWLNe2qFYu1cDFFN3Bu-JbPBg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudekgedggeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
+    hedtfeevuedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:gqFVYVWOwFqu1wlzzxWfBkncu9fJlmRlw91zm2PCpwbzNtpVIpMW7Q>
+    <xmx:gqFVYYm8fMw4_WQz9zCnx8EnI-dRw5ABRhk6HO1LhXrUTQ4zrMHxaw>
+    <xmx:gqFVYaf4sT9c4yl6PXsufCPQ9K-VMjJWqsmJzUuFGOTtNTURDVOh7A>
+    <xmx:gqFVYT9l8kaFitT5Sm2I2qjMAAaGbZMRwyrVJKDjPWNVBpl66L15p9wURJQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 30 Sep 2021 07:37:37 -0400 (EDT)
+To:     Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20210929044254.38301-1-samuel@sholland.org>
+ <CGME20210929044301epcas1p4d69083b46ca38d610981db6f01cfe9e4@epcas1p4.samsung.com>
+ <20210929044254.38301-3-samuel@sholland.org>
+ <114afa7e-6218-6b1f-f87e-84690f10029c@samsung.com>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH 02/10] PM / devfreq: Do not require devices to have OPPs
+Message-ID: <d0a2c36b-4019-2f52-13f0-be76db5a48ec@sholland.org>
+Date:   Thu, 30 Sep 2021 06:37:37 -0500
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <20210813065324.29220-12-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <114afa7e-6218-6b1f-f87e-84690f10029c@samsung.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 9/29/21 11:19 PM, Chanwoo Choi wrote:
+> Hi Samuel,
+> 
+> 
+> On 9/29/21 1:42 PM, Samuel Holland wrote:
+>> Since commit ea572f816032 ("PM / devfreq: Change return type of
+>> devfreq_set_freq_table()"), all devfreq devices are required to have a
+>> valid freq_table. If freq_table is not provided by the driver, it will
+>> be filled in by set_freq_table() from the OPPs; if that fails,
+>> devfreq_add_device() will return an error.
+>>
+>> However, since commit ab8f58ad72c4 ("PM / devfreq: Set min/max_freq when
+>> adding the devfreq device"), devfreq devices are _also_ required to have
+>> an OPP table, even if they provide freq_table. devfreq_add_device()
+>> requires dev_pm_opp_find_freq_ceil() and dev_pm_opp_find_freq_floor() to
+>> return successfully, specifically to initialize scaling_min/max_freq.
+>>
+>> Not all drivers need an OPP table. For example, a driver where all
+>> frequencies are determined dynamically could work by filling out only
+>> freq_table. But with the current code it must call dev_pm_opp_add() on
+>> every freq_table entry to probe successfully.
+> 
+> As you commented, if device has no opp table, it should call dev_pm_opp_add().
+> The devfreq have to use OPP for controlling the frequency/regulator.
+> 
+> Actually, I want that all devfreq driver uses the OPP as default way.
 
+The current code/documentation implies that an OPP table is intended to
+be optional. For example:
 
-On 13.08.21 08:53, Yong Wu wrote:
-> Prepare for 2 HWs that sharing pgtable in different power-domains.
-> 
-> The previous SoC don't have PM. Only mt8192 has power-domain,
-> and it is display's power-domain which nearly always is enabled.
+ * struct devfreq - Device devfreq structure
+...
+ * @opp_table:  Reference to OPP table of dev.parent, if one exists.
 
-hi, I see that in mt1873.dtsi, many devices that uses the iommu have the
-'power-domains' property.
+So this should be updated if an OPP table is no longer optional.
 
-> 
-> When there are 2 M4U HWs, it may has problem.
-> In this function, we get the pm_status via the m4u dev, but it don't
-> reflect the real power-domain status of the HW since there may be other
-> HW also use that power-domain.
-> 
-> Currently we could not get the real power-domain status, thus always
-> pm_runtime_get here.
-> 
-> Prepare for mt8195, thus, no need fix tags here.
-> 
-> This patch may drop the performance, we expect the user could
-> pm_runtime_get_sync before dma_alloc_attrs which need tlb ops.
-> 
+> Are there any reason why don't use the OPP table?
 
-Could you explain this sentence a bit? should the user call pm_runtime_get_sync
-before calling dma_alloc_attrs?
+dev_pm_opp_add() takes a voltage, and assumes the existence of some
+voltage regulator, but there is none involved here. The only way to have
+an OPP table without regulators is to use a static table in the
+devicetree. But that also doesn't make much sense, because the OPPs
+aren't actually customizable; they are integer dividers from a fixed
+base clock. And adding a fixed OPP table to each board would be a lot of
+work to replace a trivial loop in the driver. So it seems to be the
+wrong abstraction.
 
-Thanks,
-Dafna
+Using an OPP table adds extra complexity (memory allocations, error
+cases), just to duplicate the list of frequencies that already has to
+exist in freq_table. And the driver works fine without any of that.
 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->   drivers/iommu/mtk_iommu.c | 5 ++++-
->   1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index add23a36a5e2..abc721a1da21 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -238,8 +238,11 @@ static void mtk_iommu_tlb_flush_range_sync(unsigned long iova, size_t size,
->   
->   	for_each_m4u(data, head) {
->   		if (has_pm) {
-> -			if (pm_runtime_get_if_in_use(data->dev) <= 0)
-> +			ret = pm_runtime_resume_and_get(data->dev);
-> +			if (ret < 0) {
-> +				dev_err(data->dev, "tlb flush: pm get fail %d.\n", ret);
->   				continue;
-> +			}
->   		}
->   
->   		spin_lock_irqsave(&data->tlb_lock, flags);
-> 
+Regards,
+Samuel
