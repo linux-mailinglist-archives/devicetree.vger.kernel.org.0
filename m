@@ -2,103 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0AAF41DCE7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 17:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6A7341DCF4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 17:06:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351859AbhI3PDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 11:03:41 -0400
-Received: from www.zeus03.de ([194.117.254.33]:34266 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1343834AbhI3PDl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 11:03:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=r+o3vngVkdgztVQkxkUxvPMjJ9nS
-        mdIiV96Cw1ESXyc=; b=CXiUxsT2FblaWdUcBNRW+qgmMsmmSNwCXBs3DTwU3ScX
-        SFb0bWfx+QD6R2MfmlF/a2igkJAipQBxDcYehr3rhi05Ed8fZsydSIBOlYBHa91a
-        mqvamJacTStj4qLZENtzL7Z49MPxeNugnjA/yO0Q9qGWFe9JuNmPTeRtGVOPsTo=
-Received: (qmail 2119133 invoked from network); 30 Sep 2021 17:01:56 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 30 Sep 2021 17:01:56 +0200
-X-UD-Smtp-Session: l3s3148p1@mcROujfNQIYgARa4RV6LAWawlO8I9jL3
-Date:   Thu, 30 Sep 2021 17:01:56 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH 0/6] Add SPI Multi I/O Bus Controller support for RZ/G2L
-Message-ID: <YVXRZNxrgmfROlJy@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S230370AbhI3PHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 11:07:48 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:36650 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235547AbhI3PHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 11:07:47 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18UDUKPh006556;
+        Thu, 30 Sep 2021 17:05:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=sspGCg/P+hrJnTfsc1SrMwVnAR/3nxeD+gtuxpS5IiQ=;
+ b=3N+iS++7Dx0oCCzhKcR+yKwrvwy+vQfuqhzBPj6pF11pCgtAcRPiDW9j3sYI6DnO+HDr
+ X1nBnNqcM1hKNDqq/G8cCXSX5BPZTDraKSt955VkoK+Ot83dR74RyUmeAgBneitrqQdh
+ Dt/oCso4n2EWHzziukyocysFbHvMhQCJcfFd5N30ihikO2dozrDoZXww3gHdQ8oJ4ybF
+ V9psSspNagjdDkZGKs7Ib3ZYI5JuROUDQ4CYW5fGlyvxOaDAyd1IKBR7aaI1ZbuJpmez
+ 03HL/QyWBfgAGjaFkYGO7Y5vSkQuSlPqVF4dgdN5g4ROVh0ZGaob/vKm7qkNZ+ULus+Q 6w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3bde69rh62-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 30 Sep 2021 17:05:54 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3F0A410002A;
+        Thu, 30 Sep 2021 17:05:53 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2D0232A4D71;
+        Thu, 30 Sep 2021 17:05:53 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.49) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Thu, 30 Sep
+ 2021 17:05:52 +0200
+Subject: Re: [PATCH 1/1] ARM: dts: stm32: fix AV96 board SAI2B pin muxing on
+ stm32mp15
+To:     Marek Vasut <marex@denx.de>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20210927114553.21843-1-olivier.moysan@foss.st.com>
+ <beb6e7c8-f3c8-fc4e-6017-fea5690b9f33@denx.de>
+ <e8d40be8-045c-096a-f079-d9f6364254e9@foss.st.com>
+ <cfbb8475-ad1e-9075-cd82-92a8b315efc9@denx.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <9b278eb2-7ca9-0e4b-ecb1-5949ce3c5c10@foss.st.com>
+Date:   Thu, 30 Sep 2021 17:05:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gdec5ePrzlj11VEg"
-Content-Disposition: inline
-In-Reply-To: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <cfbb8475-ad1e-9075-cd82-92a8b315efc9@denx.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-30_05,2021-09-30_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 9/30/21 12:26 PM, Marek Vasut wrote:
+> On 9/30/21 10:47 AM, Alexandre TORGUE wrote:
+>> Hi Marek
+>>
+>> On 9/29/21 1:18 PM, Marek Vasut wrote:
+>>> On 9/27/21 1:45 PM, Olivier Moysan wrote:
+>>>> Fix SAI2B pin muxing for AV96 board on STM32MP15.
+>>>> The label "sai2a-4" is defined twice. Change redundant label to 
+>>>> "sai2b-4".
+>>>>
+>>>> Fixes: dcf185ca8175 ("ARM: dts: stm32: Add alternate pinmux for SAI2 
+>>>> pins on stm32mp15")
+>>>>
+>>>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+>>>> ---
+>>>>   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 2 +-
+>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi 
+>>>> b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+>>>> index 5b60ecbd718f..b9cc9e0dd4fc 100644
+>>>> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+>>>> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+>>>> @@ -1235,7 +1235,7 @@
+>>>>           };
+>>>>       };
+>>>> -    sai2b_pins_c: sai2a-4 {
+>>>> +    sai2b_pins_c: sai2b-4 {
+>>>>           pins1 {
+>>>>               pinmux = <STM32_PINMUX('F', 11, AF10)>; /* SAI2_SD_B */
+>>>>               bias-disable;
+>>>
+>>> This mp1 pinmuxing is a total mess, sigh.
+>>
+>> What is the issue here ?
+> 
+> The same-old discussion about where to place the pinmux nodes, whether 
+> we should have these clusters of pre-defined options in ...pinctrl.dtsi, 
+> or whether we should do more nxp-like per-board configuration.
 
---gdec5ePrzlj11VEg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+ok it's a bit more precise. Honestly I don't understand why the current 
+topology is an issue here. Maybe pinctrl SAI nodes names are not well 
+chosen or are not enough explicit. Concerning our topology and the NXP 
+ones both exists and both have advantages and drawbacks. For ST boards 
+(DK/EV) we want to keep all configs in the same place.
 
-
-> This patch series adds a couple of fixes for rpc-if driver and
-> adds support for RZ/G2L SoC, where the SPI Multi I/O Bus Controller
-> is identical to the RPC-IF block found on R-Car Gen3 SoC's.
-
-I did some basic testing on the Falcon board with a Renesas R-Car V3U
-SoC and did not find a regression, so:
-
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-
---gdec5ePrzlj11VEg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFV0WMACgkQFA3kzBSg
-KbbtBQ//UDqnFRl9bJ/3z/krcE5cI7mn3iuGbS97ZGR6nqRDvSvmbIiQPTreCPNU
-VQqMfbLoLkHM9O9u7UR7ucjggb7kveCz1wAtz4h0WPArBvFXJXbOaaeU2dodlk2Y
-tYZCGkrfn5FhaRokcMK9MbIBxwwv5ZIypR1DBdyvPD5tX4QujTBrX2z/XzGkCfn2
-be+IxS8ibDKnx2VwD0ErPa7la4fKcGVh+4bVd8Wn3fCC+1lTBXaQl5sIcgZnS2H0
-HdhETeXxJTPLpPWKNjkYbO9gQRiKQ9iM9tg34hLjWvrgkG45LCct/Q/UTI998yeh
-4OXhypsgoFKnLjNJXh3CLAV1Ud8xQvglWV5YkLEyeinTb2xdk4LX45h+DKDOmcHU
-0GD2VvzY3ilwcneSAFRlae6EuJ+lvw6AingESituuIOPCtAmDbQ3MYkZsFHwDW2K
-rHnVMKNT6ajsehg9jmwIBOr7zAU1YEG0WrTXDI1KzoeL8hhczcGVRnhGOv0CMSXY
-tGrqEiVC9hSX6trxx60N42hLwuMxF2E4aS6mi/CsdkfPYfoOJ4YEWuvkMc+iG4mB
-4znsrDwaBYF47lX96RsW6nSI8prCyOsvf42vyZ6OeWJYOOlAgBSh9wGJN2IuYeh8
-BRop7XCqLmNVFAt/Q9CXDgsmXKcB+dE82t0MtavGfuwukYE01D4=
-=o3Q2
------END PGP SIGNATURE-----
-
---gdec5ePrzlj11VEg--
+As I prefer to not re open this topic again and again, feel free to add 
+your pin config in your dts board file, I'll accept it.
