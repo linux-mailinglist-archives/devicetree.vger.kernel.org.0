@@ -2,146 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B97EF41D12B
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 03:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8F8241D17E
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 04:34:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347709AbhI3B5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 21:57:04 -0400
-Received: from mail-eopbgr1320102.outbound.protection.outlook.com ([40.107.132.102]:16427
-        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233941AbhI3B5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Sep 2021 21:57:04 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eDlU99MmCo/+MrRFuJNNBmv6hskeFbdjmBJcWrkimMacsMgwySeIMYmWOCphV1qciXViPzZMs+OPpHrVJncLDyorZKPbGGuw2nj53FezbW78WgUEBW/UATwfp9jvBzMrZl1Pglc+StOFxwWN2nLXar9YccyhsLuy3DVBA60CvEa9eMq3V1VVf8KIRUlbVUMawVPTQjArCFFgKjYST/YVgan7sXC8oNv9HMgAoQgkK1oLtNrZVQ6gIsY0Hm4eY8z6rETnBsVfJTQOgXJJhEjmwb6cfTaof4gt/5d/TxKCrwgPs9f3r1TpIzqRRd4TV4AvOLSTLd8NTcgNh3J+3INVOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=qqG+PaCFfoSZmZd9vDQ7BFh0VM9G4KN7P/ycXseFHI8=;
- b=eOXO/pPWr3UpmwGn0EhNiOmuLMrtI7Y5cPtnEgC7mdxDoSyIRRXi9VQyJkcmYmVHF5hoNAd3XRH/cUSTAWQk707+AZF38esA6umBUl8q9m1QpkA9LV8zLhQrsN+ZszreqPd7tfB2pEYYgwcYtyRN8INjEP2ifYwlT5cy790/ODc38Ql0UCoMciTS4TamXw7HmIqhz+kJwEYOoJw6VHgFVE/hz9JPb99FI4A/kLK6SUNgXhnb3GzQ8zAwwJTmw9UgOqbqMk286cvzDEJ4ZcUskO4VPib38S7QVLu2915N3v32dr17UPrN55TtZb2NmzvqF7HLvJrBIGlkHrAXMO4UxQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qqG+PaCFfoSZmZd9vDQ7BFh0VM9G4KN7P/ycXseFHI8=;
- b=iOTtlTM1J/uxThjHrKLLH85NkO/4UqWUbKEsG/hmoirCy41E/evYWce+EMhoQbOfW14bUNkYIlwUmJaaMXwXFY4/X4GfkYQfwAs291At4kqUUEjluc9RzYsCf3aVmoNeyFfsp/pj0F3lGPQbwnC0TGayICOkS7ZA/PYpvVGH5qR0f467Ciy5S3S8dX9d/3FsbnuahsNO1I0SVrQ/WS707JwUcUvqnE2Fz76HNbbMJzFDoNIE2UUDVrWHoZ6x27ji0CwBLyk5vTGzMK1UBIpM/IvMfCgwPBGbS2m8O4vaDP5KY1Ff4zjHbiU9KA52mLuAc4Ai5hc8iUSPztBGydmRiQ==
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
- by HK2PR0601MB2004.apcprd06.prod.outlook.com (2603:1096:202:e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15; Thu, 30 Sep
- 2021 01:55:20 +0000
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::b0bc:df6:113:e08d]) by HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::b0bc:df6:113:e08d%5]) with mapi id 15.20.4566.015; Thu, 30 Sep 2021
- 01:55:20 +0000
-From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "osk@google.com" <osk@google.com>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: RE: [PATCH v7 3/5] dt-bindings: aspeed: Add UART routing controller
-Thread-Topic: [PATCH v7 3/5] dt-bindings: aspeed: Add UART routing controller
-Thread-Index: AQHXs0f9tHefCzsXE0KVS9CQb4i9M6u7l1EAgAA9ngA=
-Date:   Thu, 30 Sep 2021 01:55:20 +0000
-Message-ID: <HK0PR06MB377971D66A2ABA4929D3646791AA9@HK0PR06MB3779.apcprd06.prod.outlook.com>
-References: <20210927023053.6728-1-chiawei_wang@aspeedtech.com>
- <20210927023053.6728-4-chiawei_wang@aspeedtech.com>
- <YVTkjKdXcyIVImmP@robh.at.kernel.org>
-In-Reply-To: <YVTkjKdXcyIVImmP@robh.at.kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f24f332c-c297-48d8-a122-08d983b55c0f
-x-ms-traffictypediagnostic: HK2PR0601MB2004:
-x-microsoft-antispam-prvs: <HK2PR0601MB2004EE128A85555D5AB2C00B91AA9@HK2PR0601MB2004.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2582;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: SyVIyab2IfvVspQOGGusER/cjPuHYTRl2ey8qe1vxAI95ocLXoU4jva0o+bRkytCoc9rMulCzdrxNOk1jTQe5pULOvPOFOTXCoGlZJ4ZvM9FMMPNU3ml3KGqMlkwSFB749uENpYjrqIHlzROp1+l8nLulMcu02IrjWVOdsK1cDOPBDAepnmOQZ17BxWw/0zmOOSY3Rc66OEslSuYD/dx0nnUGDO0dqMdOzo9yumNLa9uS2D5dufUnBtDSpPpOV98MSskXE04tb8pv6b/sopgMP2IakntOX1Hv0cBrUnJeO9HctfC5T8HIO6QHAEjuDc7KZhaWz4c0+JuhzaBltT2j4Do/3/dFvip9oKROlUmRzJjWWYVMA2C7NFJx6u0S7Fh0PpdIzKKpehzi4yrCGCnrOeEcSAjH2VPeM8Z8J4VibXDDoadVYKhy9HcMpDJjNgr6+Kf7w86xi2DJgmcCP6B3bzmFI/eqcxPRzj4eqXxqnte7ScgGzp5YQ+e8VoRo1vHVi68GzLCPKvBoUwRKgZXWvPrp4aD/XfapXt2fdtNTVl04PebClskMGnC9Gbjsd37cjZoRNw/DhQx/bbZ3AML15SaNdvd3nIFcjQVFtVB+aYZd+PPGZ0e2MpUXzZIWao1djfgONewvmB80B5AlK3s7GANJyOMletnNu2kmG3YFVPxRtNzGHmKwskt1EQxxpgDrH6pXTsa+kaV5bROnpaibg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(86362001)(508600001)(186003)(52536014)(26005)(4744005)(71200400001)(66946007)(5660300002)(76116006)(6506007)(122000001)(55016002)(8676002)(8936002)(6916009)(38100700002)(33656002)(38070700005)(54906003)(7416002)(316002)(66446008)(64756008)(66556008)(7696005)(2906002)(4326008)(9686003)(66476007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Egkoc94LmopKOCJp8Eehf3vkTktGKBU3Ihp2MAJuJGADJh+kWXMX2n24puId?=
- =?us-ascii?Q?tE9aaQI+2VMAsASew01+t7LsJQQu89tO8HBjT+QvQi1Wi8UIkvcFN5fYIOT9?=
- =?us-ascii?Q?RyQhipgwnYhxQy0axpA5FQrGYMhdpARcdOxZOgzXi6++CBpepfSG2SnyJy3e?=
- =?us-ascii?Q?+4fh44T1Rg/wnKn3RcQkVDvog2eMk3iRlYe6zZCgzb+4HfNX7JnjVQp07+Ha?=
- =?us-ascii?Q?mCnfnxZqZQ80Ipp63HCc+71AV/IDlpljPqXZz84v393Jp/OOHiXnjghAAeWr?=
- =?us-ascii?Q?cMQ/yx4Si0BgqNyZkCCiDtepKP2MQwewYtoESEjW+CHVVLzH8k6vXCQoVNPP?=
- =?us-ascii?Q?1JiscV9kK4t42P68ff0AFY3qCVhBR9XFWxcSoqpQmW6ODaXL2/Ek5M5ofsJO?=
- =?us-ascii?Q?0GxQfaOiYCkdguzQmFGjT7EOEsmq+l+bNwd8uIn5O9s3CGSJiGKteMaK62Kt?=
- =?us-ascii?Q?Yr2MB+7mZrs8U67rb5JeVoqnbPhKBG0Mz1EVsWQtbexj2xFxVKUAnPgQok97?=
- =?us-ascii?Q?Vs0dZ97bKwlcA6A5cqi9fXMVMPrKtHVDw03qqqyJYEJpGK8GtzEYQW9L6f2Y?=
- =?us-ascii?Q?5lTBII2l8pQ9ycBv7KnIBBLTOFry3QEkQGptWPMYQf9qP56oTebo3w5Jy45Y?=
- =?us-ascii?Q?ZyUQg1xQTr4m9T7yppnqMRcR3hOEZ5eGEbM//5mdi1uQHNAE/VeAXNO+B0ih?=
- =?us-ascii?Q?E6VS3qJ5IALRD5iPdNp2Zog1LLbvDMEyKuW2gEPvADx9LMtnI0POXilKzpN/?=
- =?us-ascii?Q?PwOHNY3OuGJsIIvZ1597HK1T7aGnvV7RxABa/HAnAHm6sHqkJB7jK6CZKZIY?=
- =?us-ascii?Q?blvK+/r+7vaN5Jj9BjUWGZDx+rZwb7T/03xLaR1FkK7jQvZ2ZN4zKvcqrB8T?=
- =?us-ascii?Q?51B4szLne0SWw/s9hD0ljt+5DJxwClh2629RYUjJelthVU9bMo9fqSgEW+jO?=
- =?us-ascii?Q?/Bc8M9gpdk0H0P/68DrDWpdXz3uOB1RpD8HO9p3+vlBjkjBh0y4GdE7Eue2I?=
- =?us-ascii?Q?8ntMU5x6fEFVFiGJEc8v0iSlzzrWP92ElLeCyPhRvDKDsR6p9V73ZgQkWAQ9?=
- =?us-ascii?Q?nWJH2U9I2faabBk7wYAGOaTC/ESOxcDkdM+E8fuSibXjbd3C34VabmU1uYYj?=
- =?us-ascii?Q?U8Hxf/m1ad2U67aZVYF9qDo3sRMiQax7hgnwKPQFOrsLZdhReCrjg8q0BiC6?=
- =?us-ascii?Q?Zf1CqJZu13HPsJZI22+oKNxe3tITyBIwTqJ7zHa4zPXVeKJL8jo45bg+7Uad?=
- =?us-ascii?Q?l3oR5ouAYw9a8IAyQnhBD8nIHY2Ez5i6Yvh28sqcV+bxb2FTMQYkXnOPr2Ir?=
- =?us-ascii?Q?XfOaGLb6ej8WQHA7cwd0BhoB?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1347803AbhI3Cgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 22:36:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347759AbhI3Cgj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 22:36:39 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDB8C06161C;
+        Wed, 29 Sep 2021 19:34:57 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id m7so4383251qke.8;
+        Wed, 29 Sep 2021 19:34:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5H3zl6oYi2k/pahNWHm1qYAiJEHuNXY47Unp3/acgsA=;
+        b=ZWVqNdXJefB3MNBd7cVgBZxBZthq+q6h0PLTl/PWYzH0mbOaYjPeVKBTRPZDBb1Fnv
+         KhfowHhhakCGH2Olp+bCfriV0pQuFhBg0VXvLjYEelptqSsjQc175ANwQjswGiw5VsT7
+         0TbUdrVWoPVPcANFr+KEG1Go8FgaSvG4XJWGCcJ1fjh+TnaKKCtiodlsvVgImU92YmEl
+         THg79NjpOBfgytWQolN5U2Bk1YRjqNyyPvnFIexpNjzclGsYfygrzJNpqhht1AMSSoUs
+         LpeQRb7DfjTX/XYJ9CN2pAiFJmhm4xGL3+EafRK4+cizjxpX/q5BBZfhNUAORHzPvq3/
+         7RNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5H3zl6oYi2k/pahNWHm1qYAiJEHuNXY47Unp3/acgsA=;
+        b=y3AH1NUQK3NIZI77w4QZH7vbpogCybwjF7C0wSZ7MUbze6iCD9XKeXin8ZBwXmlqON
+         ocIZiNqEJK7aQbkEO9+ConZmFOmw2GVGr+ylKr/lT8uppYnagcv/UZogwRk7wXKtqVV3
+         nSykmlx79TpDf26dLBYcrYjuoEG6S8BFK8N5wUfuVxEUSQfzQJn6ZSnPpymxzAur4y74
+         zAQEH+wgV6CRPyxmYIjDKnMiAtliQJP2d5DtzPnDV7jisePuTt6v5vIMxLYFXApZPpbW
+         mkyUrBhXZa4aRwvd2Zms5y1/w+G5WExKdxQz9fecwsizr8xwiH7jCmxz2zWGmh6FUuCy
+         YOzQ==
+X-Gm-Message-State: AOAM533ydQd6NS4DphiGaIUQBqxAiLohpxZqPFWxFHjeTVuANl4ABS5A
+        rjQ+ELiOVZWNKcp0zk3P92W9XbsGR8srf1UBmc0=
+X-Google-Smtp-Source: ABdhPJwtPGdTpTNc5xgsgBlvtb/Wau0tzIHEBNiDnQI1DOjcDsVINKS3Mt8l/3BoBpDXW5kArtbRpujHlvw/FPwlBcA=
+X-Received: by 2002:a37:b087:: with SMTP id z129mr2754043qke.392.1632969297030;
+ Wed, 29 Sep 2021 19:34:57 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f24f332c-c297-48d8-a122-08d983b55c0f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2021 01:55:20.2625
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3T8OH05vM0kmSJMia2tJ10wCBmzH8ostjSLPkGpxI5uk6sUvxgStC27vln1kueFnQRerlgiz43JiHelYXA+VVCUBvAOGOCy7n8wLkm/aM6o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR0601MB2004
+References: <1632625630-784-1-git-send-email-shengjiu.wang@nxp.com>
+ <1632625630-784-5-git-send-email-shengjiu.wang@nxp.com> <YVTrbPC4/ir974xs@robh.at.kernel.org>
+In-Reply-To: <YVTrbPC4/ir974xs@robh.at.kernel.org>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Thu, 30 Sep 2021 10:34:46 +0800
+Message-ID: <CAA+D8ANdQQFuPh_F8DZka+Y6hVDGuT8BvRfWdUFJxHd5JTQPNA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] dt-bindings: dsp: fsl: update binding document for
+ remote proc driver
+To:     Rob Herring <robh@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Ohad Ben Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Rob Herring <robh@kernel.org>
-> Sent: Thursday, September 30, 2021 6:11 AM
->=20
-> On Mon, 27 Sep 2021 10:30:51 +0800, Chia-Wei Wang wrote:
-> > Add dt-bindings for Aspeed UART routing controller.
+Hi Rob
+
+On Thu, Sep 30, 2021 at 6:40 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Sun, Sep 26, 2021 at 11:07:10AM +0800, Shengjiu Wang wrote:
+> > As there are two drivers for DSP on i.MX, one is for sound open
+> > firmware, another is for remote processor framework. In order to
+> > distinguish two kinds of driver, defining different compatible strings.
 > >
-> > Signed-off-by: Oskar Senft <osk@google.com>
-> > Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
+> > are needed and the mailbox channel is different with SOF.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
 > > ---
-> >  .../devicetree/bindings/mfd/aspeed-lpc.yaml   |  4 ++
-> >  .../bindings/soc/aspeed/uart-routing.yaml     | 56
-> +++++++++++++++++++
-> >  2 files changed, 60 insertions(+)
-> >  create mode 100644
-> Documentation/devicetree/bindings/soc/aspeed/uart-routing.yaml
+> >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
+> >  1 file changed, 75 insertions(+), 6 deletions(-)
 > >
->=20
-> Applied, thanks!
+> > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > index 7afc9f2be13a..51ea657f6d42 100644
+> > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > @@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
+> >
+> >  maintainers:
+> >    - Daniel Baluta <daniel.baluta@nxp.com>
+> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> >
+> >  description: |
+> >    Some boards from i.MX8 family contain a DSP core used for
+> > @@ -19,6 +20,10 @@ properties:
+> >        - fsl,imx8qxp-dsp
+> >        - fsl,imx8qm-dsp
+> >        - fsl,imx8mp-dsp
+> > +      - fsl,imx8qxp-hifi4
+> > +      - fsl,imx8qm-hifi4
+> > +      - fsl,imx8mp-hifi4
+> > +      - fsl,imx8ulp-hifi4
+> >
+> >    reg:
+> >      maxItems: 1
+> > @@ -28,37 +33,63 @@ properties:
+> >        - description: ipg clock
+> >        - description: ocram clock
+> >        - description: core clock
+> > +      - description: debug interface clock
+> > +      - description: message unit clock
+> > +    minItems: 3
+> > +    maxItems: 5
+>
+> Don't need maxItems.
 
-Thanks!
+Ok, I will update it.
 
-Hi Joel,
+>
+> >
+> >    clock-names:
+> >      items:
+> >        - const: ipg
+> >        - const: ocram
+> >        - const: core
+> > +      - const: debug
+> > +      - const: mu
+> > +    minItems: 3
+> > +    maxItems: 5
+>
+> ditto
 
-Could you help to review the rest patches to see if they are ready to be me=
-rged into the linux-aspeed tree?
-Thanks.
+Ok, I will update it.
 
-Regards,
-Chiawei
+>
+> >
+> >    power-domains:
+> >      description:
+> >        List of phandle and PM domain specifier as documented in
+> >        Documentation/devicetree/bindings/power/power_domain.txt
+> > +    minItems: 1
+>
+> This is curious. The h/w sometimes has fewer power domains?
+
+On i.MX8QM/8QXP,  there are independent power domains for DSP core,
+DSP's RAM and DSP's MU.
+But on i.MX8MP, all these DSP components are in same audio subsystem
+There is only one power domain for whole audio subsystem,  when
+power on audio subsystem, the DSP's components are powered on also.
+
+So the number of power domain depends on how the DSP component
+integrated in SoC.
+
+Best regards
+Wang Shengjiu
