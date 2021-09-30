@@ -2,111 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6F6641DD0C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 17:13:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9291241DD43
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 17:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245266AbhI3POz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 11:14:55 -0400
-Received: from phobos.denx.de ([85.214.62.61]:35984 "EHLO phobos.denx.de"
+        id S245681AbhI3PWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 11:22:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52612 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245132AbhI3POz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 11:14:55 -0400
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 9F46F81FEC;
-        Thu, 30 Sep 2021 17:13:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1633014791;
-        bh=4n+78j9+c4MNjpI8CIXjUqArDX7g1K5iL35BABt5u6M=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=c9iM/svv66/9gVlCeN6ciTz7ljQ3i6Yqc422DnME00grr3LTtOT3UWOir40oLGfVf
-         x8lWoESgZuxUQvFZOiv3sdMRuYSI/BvjQLKTj/IALhVyry7VDBp2DPCXQD9KpLMeVC
-         6cUSRGk6xApgc3LZUMn/Z0QZU64n5Mgfk1X4xTBKVYPmWIZojRHfi9Q98FdOKG2Jg4
-         PG1h975ZRLb6TJHnSpWWvon2tgyHP6yhbwwJWFuJlYz26Q8/O4Wtda12reVvTC3Q72
-         FFegOB9RA1vLrs04zlyegsqAk8x6YcGNeqdQ/T97mL0N+z2BOqU4S/d2/yuBWH6xgr
-         iDRoiSdMtSmyA==
-Subject: Re: [PATCH 1/1] ARM: dts: stm32: fix AV96 board SAI2B pin muxing on
- stm32mp15
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20210927114553.21843-1-olivier.moysan@foss.st.com>
- <beb6e7c8-f3c8-fc4e-6017-fea5690b9f33@denx.de>
- <e8d40be8-045c-096a-f079-d9f6364254e9@foss.st.com>
- <cfbb8475-ad1e-9075-cd82-92a8b315efc9@denx.de>
- <9b278eb2-7ca9-0e4b-ecb1-5949ce3c5c10@foss.st.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <88867104-97f5-1c5f-506a-cfcac0962e55@denx.de>
-Date:   Thu, 30 Sep 2021 17:13:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S245411AbhI3PWg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 11:22:36 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DC7FB61881;
+        Thu, 30 Sep 2021 15:20:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633015253;
+        bh=j2TZu5BcuaT7ioGEzCsD1wNbWQadOMBLQrWMJt7yW58=;
+        h=From:To:Cc:Subject:Date:From;
+        b=eS/mSpQhAeLPwZuaiFN8Ef6/38FwC32y6XxZ/TVphUMqVkTTyMW08DXdoex8Asv+M
+         V+yXsKYnCe4KWKqDDn9jAXE0zr4FlfZhzws1AcwtorpPz7dega4tRZzCYKcqXWWdNL
+         D0wmpHkdZOQXQLyke+CNmLTNblRvlezsVnjLpTFUv0NKHs84vGkClT8/THJRgLjfAk
+         8++rlNP2G16ESH0qJthdF+O7+sVmTS0V0yiMHALKpqeHWqzGUoh165t/zooXKf/nUY
+         qjPT3mNjfVMUjC4agXhaE6RUcETmSws7BAKtVIiK4s+gV+QoUdQcLYvXNBuF1ufZy+
+         NyA5CJrZHAI7A==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     robh+dt@kernel.org
+Cc:     dinguyen@kernel.org, rzysztof.kozlowski@canonical.com,
+        manish.narani@xilinx.com, michal.simek@xilinx.com,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: memory: add entry for version 3.80a
+Date:   Thu, 30 Sep 2021 10:20:39 -0500
+Message-Id: <20210930152039.864907-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <9b278eb2-7ca9-0e4b-ecb1-5949ce3c5c10@foss.st.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/30/21 5:05 PM, Alexandre TORGUE wrote:
-> On 9/30/21 12:26 PM, Marek Vasut wrote:
->> On 9/30/21 10:47 AM, Alexandre TORGUE wrote:
->>> Hi Marek
->>>
->>> On 9/29/21 1:18 PM, Marek Vasut wrote:
->>>> On 9/27/21 1:45 PM, Olivier Moysan wrote:
->>>>> Fix SAI2B pin muxing for AV96 board on STM32MP15.
->>>>> The label "sai2a-4" is defined twice. Change redundant label to 
->>>>> "sai2b-4".
->>>>>
->>>>> Fixes: dcf185ca8175 ("ARM: dts: stm32: Add alternate pinmux for 
->>>>> SAI2 pins on stm32mp15")
->>>>>
->>>>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
->>>>> ---
->>>>>   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 2 +-
->>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi 
->>>>> b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
->>>>> index 5b60ecbd718f..b9cc9e0dd4fc 100644
->>>>> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
->>>>> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
->>>>> @@ -1235,7 +1235,7 @@
->>>>>           };
->>>>>       };
->>>>> -    sai2b_pins_c: sai2a-4 {
->>>>> +    sai2b_pins_c: sai2b-4 {
->>>>>           pins1 {
->>>>>               pinmux = <STM32_PINMUX('F', 11, AF10)>; /* SAI2_SD_B */
->>>>>               bias-disable;
->>>>
->>>> This mp1 pinmuxing is a total mess, sigh.
->>>
->>> What is the issue here ?
->>
->> The same-old discussion about where to place the pinmux nodes, whether 
->> we should have these clusters of pre-defined options in 
->> ...pinctrl.dtsi, or whether we should do more nxp-like per-board 
->> configuration.
-> 
-> ok it's a bit more precise. Honestly I don't understand why the current 
-> topology is an issue here. Maybe pinctrl SAI nodes names are not well 
-> chosen or are not enough explicit. Concerning our topology and the NXP 
-> ones both exists and both have advantages and drawbacks. For ST boards 
-> (DK/EV) we want to keep all configs in the same place.
-> 
-> As I prefer to not re open this topic again and again, feel free to add 
-> your pin config in your dts board file, I'll accept it.
+Add an entry for version 3.80a of the Synopsys DDR controller.
 
-Yes, let's not reopen it. I'm sorry if my grumbling came across as too 
-strong.
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ .../bindings/memory-controllers/synopsys,ddrc-ecc.yaml           | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml b/Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml
+index a24588474625..fb7ae38a9c86 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml
+@@ -26,6 +26,7 @@ properties:
+     enum:
+       - xlnx,zynq-ddrc-a05
+       - xlnx,zynqmp-ddrc-2.40a
++      - snps,ddrc-3.80a
+ 
+   interrupts:
+     maxItems: 1
+-- 
+2.25.1
+
