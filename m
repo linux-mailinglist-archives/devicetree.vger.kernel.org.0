@@ -2,111 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBAAD41DC9C
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 16:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69A8941DCC4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 16:56:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351232AbhI3Op1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 10:45:27 -0400
-Received: from www.zeus03.de ([194.117.254.33]:55086 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351234AbhI3OpW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 10:45:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=zC0Alauy1GO2I9lyHxa0EfxWQbz8
-        B2+rwQmkFWLZr+w=; b=pVciIik0p6VGP3udU6MCYIxqkKUY8GygzNDt3dr10lV1
-        x766ShUFEUcOvUJT65QToDAgeM8MTBAN3nLWv1gKhosWZiBdpwhLI31NzKU6ardB
-        2v2fqIabltyNPKTFY3nKtuwAJL8h5q1XgxJhMgOC2zsX3STrgNcsJ+6LS1ULl/Y=
-Received: (qmail 2114006 invoked from network); 30 Sep 2021 16:43:37 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 30 Sep 2021 16:43:37 +0200
-X-UD-Smtp-Session: l3s3148p1@9OrLeDfNOoYgARa4RV6LAWawlO8I9jL3
-Date:   Thu, 30 Sep 2021 16:43:37 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-mtd@lists.infradead.org,
-        linux-spi <linux-spi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH 5/6] memory: renesas-rpc-if: Drop usage of
- RPCIF_DIRMAP_SIZE macro
-Message-ID: <YVXNGTfOdMgkqxPT@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        linux-mtd@lists.infradead.org,
-        linux-spi <linux-spi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210928140721.8805-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <YVXBwx7rxJLRhlTI@shikoro>
- <CA+V-a8sZ0qudhbV7Fart-puNQO-ZHhDEG3OdRH=w_dbTHy2A7g@mail.gmail.com>
+        id S1351994AbhI3O5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 10:57:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42360 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351985AbhI3O5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Sep 2021 10:57:43 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60399C06176A;
+        Thu, 30 Sep 2021 07:56:00 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id g41so26407732lfv.1;
+        Thu, 30 Sep 2021 07:56:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uaAT5wob0YiOJmkWdlUFhs2KZnxNPqhCjHclKoH74vs=;
+        b=M6M4cVtrgzJCn3k1Nx3Js2ddtxJSAL5FKq0toORwn5TSYaQJo4j+glrjZH0j1AkKjC
+         Nr0C/u3n/0g0kgj8dViKf+o1Do2dyB4FtAh8knqyaWQlQIiNg/uMsi3gT0TVFUQtC1WF
+         ZPYk8lJJJYxdD/OpZ7oF9y//oLSSyTY6JPipc94TpMGO2BwVchhCWY929/aTSLyhhFtP
+         8M040RATCSTsG9Y5mPSe7DPmhgHmNl9OoGzadsiG2NLUUB9FmyKbzTPeKmNxKqnFB53/
+         iQkSw6y0glt88aWPg9gVW4GyMt1VUvsdkkF14/j0BbRtXjJBGq8K2YWX2lZ6sywuWhOs
+         naNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uaAT5wob0YiOJmkWdlUFhs2KZnxNPqhCjHclKoH74vs=;
+        b=TbTb+auJNUZQ/aBNA+ggy9oEuSuK4h60dsGrFdfK4nDBpJQ6cRBDOcOR6CBYr0W8L4
+         ykEmQs8e78Qn6vliQNRcD7zRK1mRZoaiU6AV2xQ3X9zqlwbJN9CkRl5GZNwbHmHpOs4z
+         Pru+0AkaASsR0PbRGrngSlVW3Cy8i+XSIBkWBVI2R6R0ckjZzErwbKKq05kguxH42x82
+         5Ht0rpAbd6AMQsaQi9unas9lrVKgeGtjoTq0lBwKheWNHDjkGFldcz3E5ea5vV+CuQuC
+         s7J2SetzmkcVqUg1pNztuHeXTLLrYWnkriLr+2FwLX4CRz3tviI5fjJT8vPRgvsKJV01
+         WgcA==
+X-Gm-Message-State: AOAM5314fzCo7XBTeJQfKqMwqK1OMoC7ELEe6yZ13bLTaxPm8tL2G+y+
+        7HF1OgnnUipXuljWUxC8LHskmFATNwc=
+X-Google-Smtp-Source: ABdhPJztldcpWswKHWSNTSLhS+h7rgGDHOMYE8V6m4YP8LB2puVHqMF8A8QSLxInr3/kKXcryoWeNg==
+X-Received: by 2002:ac2:4896:: with SMTP id x22mr6592226lfc.257.1633013740388;
+        Thu, 30 Sep 2021 07:55:40 -0700 (PDT)
+Received: from [192.168.2.145] (46-138-80-108.dynamic.spd-mgts.ru. [46.138.80.108])
+        by smtp.googlemail.com with ESMTPSA id x128sm396434lff.102.2021.09.30.07.55.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Sep 2021 07:55:39 -0700 (PDT)
+Subject: Re: [PATCH v1 1/2] dt-bindings: memory: tegra20: emc: Document
+ optional LPDDR properties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20210929200305.4245-1-digetx@gmail.com>
+ <20210929200305.4245-2-digetx@gmail.com>
+ <2df06f23-1a5e-f6e9-8e2c-0bb4c93fe23c@canonical.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <b4309371-fac4-00dc-418e-86c2cf8a8902@gmail.com>
+Date:   Thu, 30 Sep 2021 17:55:39 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="+vXGT369GaKLNZZk"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8sZ0qudhbV7Fart-puNQO-ZHhDEG3OdRH=w_dbTHy2A7g@mail.gmail.com>
+In-Reply-To: <2df06f23-1a5e-f6e9-8e2c-0bb4c93fe23c@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+30.09.2021 09:54, Krzysztof Kozlowski пишет:
+> On 29/09/2021 22:03, Dmitry Osipenko wrote:
+>> Some Tegra20 boards don't use RAM code for the memory chip identification
+>> and the identity information should read out from LPDDR chip in this case.
+>> Document new optional generic LPDDR properties that will be used for the
+>> memory chip identification if RAM code isn't provided.
+> 
+> Please mention how they are going to be used. Naively I would assume
+> that these new properties describe the RAM you have. However it seems
+> you do not use them to configure the device but to compare with the
+> device. Why do you need them?
 
---+vXGT369GaKLNZZk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Yes, the properties describe hardware configuration of external DRAM
+chip. This information is read-only and it's actually used for
+configuring SoC memory controller. This MC configuration is already
+pre-configured by bootloader and partially it shouldn't be ever touched
+by software. Kernel driver needs to reconfigure only a part of hardware
+on memory freq changes. The memory timing data is tuned for a specific
+DRAM chip and board, it doesn't include info which identifies the chip.
+So we need to read out DRAM config from hardware and find the matching
+timing in a device-tree by comparing the chip-unique properties. Note
+that only LPDDR chips have that chip-identity info. Regular DDR chips
+require SPD or other means, like NVMEM in case of Tegra.
 
+I'll extend the commit message.
 
-> Both the fixes would apply to the first patch itself i.e. when
-> resource_size was added in ca7d8b980b67 and later in 59e27d7c94aa
-> resource_size was moved online below (this would cause kernel panic
-> res is NULL). Do you agree?
+...
+>> +          - 4 # S4 (4 words prefetch architecture)
+>> +          - 2 # S2 (2 words prefetch architecture)
+> 
+> I think instead you should use generic lpddr{2,3} bindings - have a
+> separate node and reference it via a phandle.
 
-Yes. I do wonder a little if we need the Fixes tag for ca7d8b980b67
-because we fix 59e27d7c94aa which already fixes ca7d8b980b67, so there
-is a chain. But maybe redundancy doesn't hurt here. I don't mind.
+It indeed shouldn't be a problem to create lpddr binding and move these
+props there.
 
+Extra phandle shouldn't be needed, should be fine to keep these new DRAM
+properties within the chip-descriptor nodes that we already have in
+tegra device-trees. We'll only need to $ref the lpddr binding for the
+descriptor node in the binding. I.e. to make it similar to regulator
+bindings where there is generic regulator.yaml + hw-specific properties.
 
---+vXGT369GaKLNZZk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFVzRgACgkQFA3kzBSg
-Kba5Ag/+Nh2/+1ZBUs5G25GPrGF4qipbPyFFYvcGBkQ5Mx+GsiS9Z6jPdM3kjylF
-+suiOYdPxy4HsRrZuu43cSb3SCK9Liem2sE1hvd3HmWk6jEhctIpKWzVBXEYahHS
-g+BqPhcwQVEYlZCC6k46ByedC+E9IgSR6/of2J+3lVqVnH3iZhQjC5lAyan70za3
-9Zo8mTCxqhaugRFrVl9tROKrQ6Kh1tYwQ7cRWvUbXS5Cx813m19TPXs+ieXFQTIq
-KR3j3xAbkLSNjr+Y6Nlz6/4gcbF+FL9Y2u2/ey7Vku1ER6gwjpREkx0vVa9Dhi6K
-HOoRCI1bP/4T7IuTJ4Nsz2Wlram+VfwqaEv5PLmzquWnOmWY8IqXhiC2JtR5FqoM
-zbZbqVvAdrGLI8Ca+ogT4BDxB06JlZkgOW3454Nfw5xNNW1mc05Yoy45uTLvN5sf
-LHrkLQ5HH3yxbbSl5bTAeUz2SWj8rHoCG4a/THVwY9sdd/iBV+mQlsGWd4XV++ES
-zydPwjo37x04T/95dRpOOMqXeB5Ob5j0V2Dki1+hCTsHLmS2Gy1wrjhPKGR4C9RI
-JC8s9wmC9dFgbcmNZGqdWyVA/0L9h7u2XdZR+nQb7ZTuHlbNoa44gElHaCOS4i4U
-opohmx5AwY2ItrBcROWpTF7GMGRO+eyRn1I2kFLrCvJKJmA4wXE=
-=nHUc
------END PGP SIGNATURE-----
-
---+vXGT369GaKLNZZk--
+I'll try to implement this in v2, thanks!
