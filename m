@@ -2,150 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7654641D1CD
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 05:15:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6657D41D205
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 05:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347879AbhI3DRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Sep 2021 23:17:09 -0400
-Received: from mailout2.samsung.com ([203.254.224.25]:18100 "EHLO
-        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346735AbhI3DRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 23:17:08 -0400
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20210930031524epoutp028a3eaaed8c41fc7743788f714b2f1235~peyHLp_el0772207722epoutp02e
-        for <devicetree@vger.kernel.org>; Thu, 30 Sep 2021 03:15:24 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20210930031524epoutp028a3eaaed8c41fc7743788f714b2f1235~peyHLp_el0772207722epoutp02e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1632971725;
-        bh=rnDll4TvTapkIQp0szEehuNWnc8pRGBRYEn5e2vLYJw=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=gMRCYP0Z8iHT76mCnD3c1sArCPDhnQiH5RDIpjAAzZWCBaNMf4UN2TQy8d2aEtdLY
-         auuWjKqZ+Qusqgdj+TdIWJKtuIoMa2i91uicU30Hq7XYSHWqTUSqReQJ1UT/socUQg
-         u32bqP7N9XOe6r07Fr/fG/niqcLOEq9CBms4hqhk=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20210930031524epcas1p24823ceba2f97d418364927b0334f3d9a~peyG2Eyqk2328823288epcas1p2l;
-        Thu, 30 Sep 2021 03:15:24 +0000 (GMT)
-Received: from epsmges1p5.samsung.com (unknown [182.195.38.236]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4HKdfH0wgsz4x9Q3; Thu, 30 Sep
-        2021 03:15:19 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
-        AE.FF.13888.ABB25516; Thu, 30 Sep 2021 12:15:06 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
-        20210930031506epcas1p31bd20aa301492bb47035cd46688b81a0~pex17JvHX1834118341epcas1p3K;
-        Thu, 30 Sep 2021 03:15:06 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20210930031506epsmtrp20d34869e1d2f74b65e4075fd929ebc1a~pex16c_Ew2931629316epsmtrp2Z;
-        Thu, 30 Sep 2021 03:15:06 +0000 (GMT)
-X-AuditID: b6c32a39-a3d0ba8000003640-b9-61552bba782e
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        0F.0E.08750.ABB25516; Thu, 30 Sep 2021 12:15:06 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20210930031506epsmtip2a6677adceaa28ce256d9162712eaf279~pex1rmk2R2107821078epsmtip24;
-        Thu, 30 Sep 2021 03:15:06 +0000 (GMT)
-Subject: Re: [PATCH v5 0/3] extcon: usbc-tusb320: Initial TUSB320L support
-To:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Michael Auchter <michael.auchter@ni.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <07981514-563a-d64b-3fbf-ddf51e021f2c@samsung.com>
-Date:   Thu, 30 Sep 2021 12:36:22 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
-        Thunderbird/59.0
+        id S1347992AbhI3D6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Sep 2021 23:58:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58674 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347977AbhI3D6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Sep 2021 23:58:15 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA79C06161C
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 20:56:33 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so5638018ota.6
+        for <devicetree@vger.kernel.org>; Wed, 29 Sep 2021 20:56:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=pbICwdgUqYk+MY3CjajdFyZDTldPCutWBH9nPk1NU9M=;
+        b=dYYg+xr2qgVzVQpnw1vKySEYeTZUMyLCO3IjCFtkwCbD9pKzqZBm0wXSYwHIqbVnZB
+         j6j/az0gTXbKp/PPg7uz9Ed09jHYplqn0gK7ylwDo/7ULm7qTckwzVEwAQxTaMQ02IEW
+         qPujZVK/wt6fs6hmVDo6J410aSqfL7yzXjTro=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=pbICwdgUqYk+MY3CjajdFyZDTldPCutWBH9nPk1NU9M=;
+        b=ZO1AA3DX4e84jklghdX0Ns4OUt7terdYQIp11RayyJBdWxlO2Hqzo47HyjX5nZit+g
+         lGH68w9pELTkLRAq268hSXANnrqgUhOypRDK5quJobiArYsHHFBH3pN5TtsxQ5d7h9ck
+         8L6YyxybPJPdRPYYdBi+0qFtzSe26xlnYZjuIG+VnbNwmi+e56I7Yc4jX7Xbh8y+5oat
+         1elN8+bqfVjx3VxF9Wkidjx6vW88iR7r2P/HRkP09HG9zKf+HOpMtwyElq9B6uUaWaJB
+         Uv4yfdCBSa4wyj5dzvdv0/yJOqukEGNAoBdkx3P21quxQYaLOpfLD++ISf+BHbqS4fGn
+         Jb3g==
+X-Gm-Message-State: AOAM531yzcFAP6NWmNBblWaKS0kN+ke440S+UamZsbSmPGTsD1Vad9M4
+        ELfePxkaQPu/DK+i5DReBZPlDJoVBF6+4LnFTt0fjA==
+X-Google-Smtp-Source: ABdhPJyg5d3ErOcJIXToSHSHSONJcSYacRkFBefewskavVwKz804P1gLqh9+QSY2AHtW62MgsT4klS34ZxzhA+GxzKA=
+X-Received: by 2002:a05:6830:358:: with SMTP id h24mr3010200ote.159.1632974193021;
+ Wed, 29 Sep 2021 20:56:33 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 29 Sep 2021 20:56:32 -0700
 MIME-Version: 1.0
-In-Reply-To: <20210925054407.944225-1-y.oudjana@protonmail.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprAJsWRmVeSWpSXmKPExsWy7bCmru4u7dBEg75rNhbzj5xjtbi8aw6b
-        xbPnP1ktbjeuYLNo3XuE3eLquonsDmwem1Z1snlcP7OdyaOnbROTR9+WVYwenzfJBbBGZdtk
-        pCampBYppOYl56dk5qXbKnkHxzvHm5oZGOoaWlqYKynkJeam2iq5+AToumXmAF2gpFCWmFMK
-        FApILC5W0rezKcovLUlVyMgvLrFVSi1IySkwLdArTswtLs1L18tLLbEyNDAwMgUqTMjO+Ppz
-        ClvBFt6Khj1/WBoYr3N1MXJwSAiYSHy+k97FyMUhJLCDUWLD1o/MEM4nRoldD9azQDifGSXu
-        /pnO3sXICdbx59deJojELkaJO03bmEASQgLvGSUe3IoEsYUFvCT+HFvDCmKLCFRLXNr/nglk
-        HbNAhsTh+fUgYTYBLYn9L26wgdj8AooSV388ZgSxeQXsJFYf7GYGsVkEVCUe3b3HAmKLCoRJ
-        nNzWAlUjKHFy5hOwOKeAvcSbh6/B6pkFxCVuPZnPBGHLS2x/O4cZ4uapHBI3r1lA2C4S63eu
-        hIoLS7w6vgXqLymJz+/2skHY1RIrTx5hA/lRQqCDUWLL/gusEAljif1LJ0P9oimxfpc+RFhR
-        YufvuYwQe/kk3n3tYYWELq9ER5sQRImyxOUHd5kgbEmJxe2dbBMYlWYh+WYWkg9mIflgFsKy
-        BYwsqxjFUguKc9NTiw0LTOFRnZyfu4kRnDS1LHcwTn/7Qe8QIxMH4yFGCQ5mJRHeH+LBiUK8
-        KYmVValF+fFFpTmpxYcYTYHhO5FZSjQ5H5i280riDU0sDUzMjIxNLAzNDJXEeY+9tkwUEkhP
-        LEnNTk0tSC2C6WPi4JRqYJrbqr+y996VFwUTDDMP7tkxIaIj8MdPn/5UpbBVmqefhqrZqERN
-        9tvKF3pa5jhfNi/X5MO3JSaL31S5s4GDq26de5rI91bFkPuvuPsKFLdKJ6SZxzb87zz5yunt
-        BdmoGlNhgQU31dfsfqPSKO72k/lv+JU/fIpPD3tva8nkW/kni70ndiPr0QlNQm7rf/216jo4
-        u+nlr0q/KVMkN044NPHQiX7ThoXs8rpS67eWNq8NmvaGq/kEb+Hqs7GV5bpKx9T0/6qtn1rL
-        LOIYXZSWcnR+5/9K/lvV+zZ99NjLKuxlc6TWLODsAd2crRc8WbYunSgzUbakzetJ5Em5gJmz
-        P5ae0s/YI+WvfYZ7bv1bWyWW4oxEQy3mouJEAEGODN4jBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrHLMWRmVeSWpSXmKPExsWy7bCSvO4u7dBEg5+rhCzmHznHanF51xw2
-        i2fPf7Ja3G5cwWbRuvcIu8XVdRPZHdg8Nq3qZPO4fmY7k0dP2yYmj74tqxg9Pm+SC2CN4rJJ
-        Sc3JLEst0rdL4Mr4+nMKW8EW3oqGPX9YGhivc3UxcnJICJhI/Pm1l6mLkYtDSGAHo8TVvfOZ
-        IBKSEtMuHmXuYuQAsoUlDh8uhqh5yyix/M92ZpAaYQEviT/H1rCC2CIC1RJr2w8xgtjMAhkS
-        r+acZYFomMQo0bJuN1gRm4CWxP4XN9hAbH4BRYmrPx6DNfAK2EmsPtgNNpRFQFXi0d17LCC2
-        qECYxM4lj5kgagQlTs58AhbnFLCXePPwNTPEMnWJP/MuQdniEreeQDzALCAvsf3tHOYJjMKz
-        kLTPQtIyC0nLLCQtCxhZVjFKphYU56bnFhsWGOWllusVJ+YWl+al6yXn525iBEeRltYOxj2r
-        PugdYmTiYDzEKMHBrCTC+0M8OFGINyWxsiq1KD++qDQntfgQozQHi5I474Wuk/FCAumJJanZ
-        qakFqUUwWSYOTqkGpgBf96KlhTo3N+h3X5LY97PyZJPNsju/7e9vX385ZuKdJaftWFg191q9
-        /82o9CGA+V3i4emKlxLib6/WeHvEgNV1UYU4y6+N586funJN02FFyK9Uo9p06+bDy3q1DytF
-        xXaxV6fJvmQUcUvWve07qeZvd0nFWsPXMR26HFdOyhUdKNhk8aTVrKc0ynhFzZqYJdtdeK/X
-        Gq3om3lp+c3GoNWqVz4Y7PaTeecU8/g4s86unAMHLCTjP7qu6lu/Iaj4X/DzC1fPrJrsX//2
-        QszFjxuYeISN+5+t3iFs+3Xejtyo1k1ndi0LT762L63eZEPQk/pNwjO6FzVtzt6gdLbv4dqL
-        Tx8vfGfiyvCw6GcJa6USS3FGoqEWc1FxIgBTKwp8EQMAAA==
-X-CMS-MailID: 20210930031506epcas1p31bd20aa301492bb47035cd46688b81a0
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20210925054535epcas1p45ad283474c848a9ec83febd44b4965b5
-References: <CGME20210925054535epcas1p45ad283474c848a9ec83febd44b4965b5@epcas1p4.samsung.com>
-        <20210925054407.944225-1-y.oudjana@protonmail.com>
+In-Reply-To: <20210929173343.v2.2.I6050ba184b24d887e92692a72ee3054d643d6091@changeid>
+References: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
+ <20210929173343.v2.2.I6050ba184b24d887e92692a72ee3054d643d6091@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 29 Sep 2021 20:56:32 -0700
+Message-ID: <CAE-0n51sDbBfS82K7pY_yvWEQYdBVheqtzZcNVm16AZxaFMTng@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: drm/bridge: ps8640: Add aux-bus child
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Philip Chen <philipchen@chromium.org>
+Cc:     dianders@chromium.org,
+        Balletbo i Serra <enric.balletbo@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/25/21 2:45 PM, Yassine Oudjana wrote:
-> The TUSB320L is a newer chip with additional features. It is close enough to TUSB320 so it works
-> to some extent out-of-the-box, but for some reason it can start in UFP mode which is not desirable.
-> 
-> This series adds support for reset and mode setting for both chips, and does that while probing
-> to ensure the chip starts with the default mode of following the PORT pin.
-> 
-> Changes since v4:
->  - Use ops struct instead of type enum.
-> Changes since v3:
->  - Remove unused tusb_modes.
->  - Remove extra blank line.
-> Changes since v2:
->  - Read state before setting default mode, then update it again after resetting.
->  - Remove mode tracing from irq handler
->  - Add a delay after reset to handle tSOFT_RESET
->  - Use a separate mode setting function for each of TUSB320 and TUSB320L.
-> Changes since v1:
->  - Split first patch into two patches, one adding support for mode setting and reset on TUSB320,
->    and the other adding support for TUSB320L.
->  - Fix dt_binding_check warning:
->    ../Documentation/devicetree/bindings/extcon/extcon-usbc-tusb320.yaml:15:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
-> 
-> Yassine Oudjana (3):
->   extcon: usbc-tusb320: Add support for mode setting and reset
->   extcon: usbc-tusb320: Add support for TUSB320L
->   dt-bindings: extcon: usbc-tusb320: Add TUSB320L compatible string
-> 
->  .../bindings/extcon/extcon-usbc-tusb320.yaml  |   4 +-
->  drivers/extcon/extcon-usbc-tusb320.c          | 163 +++++++++++++++++-
->  2 files changed, 161 insertions(+), 6 deletions(-)
-> 
+Quoting Philip Chen (2021-09-29 17:34:57)
+> dp-aux-bus.yaml says we can list an eDP panel as a child of
+> an eDP controller node to represent the fact that the panel
+> is connected to the controller's DP AUX bus.
+>
+> Let's add it to the ps8640 bindings.
+>
+> Signed-off-by: Philip Chen <philipchen@chromium.org>
+> ---
 
-Thanks for fixup. Applied them.
-
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
