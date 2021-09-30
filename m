@@ -2,79 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA50141DCD9
-	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 17:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0AAF41DCE7
+	for <lists+devicetree@lfdr.de>; Thu, 30 Sep 2021 17:02:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352054AbhI3PBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 11:01:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47146 "EHLO mail.kernel.org"
+        id S1351859AbhI3PDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 11:03:41 -0400
+Received: from www.zeus03.de ([194.117.254.33]:34266 "EHLO mail.zeus03.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1352093AbhI3PBp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 11:01:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8782B6128E;
-        Thu, 30 Sep 2021 15:00:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633014003;
-        bh=VB9orFxsY14fyJtvup9liDeJdnBFjZM5Us2Lmk4xzYI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=M4+8pW4m1jx70gKS7pi6oS+KPNG4A5y62nZfj3Ny1xE032tj8VKISK1Sr9Cn7I3Wy
-         VKZ5sDaqCj2sGcSy9xNMb42hh1o7N1LAFn3b9Yjou4eNHz/rvdtu3hVYeTw7CVC93W
-         urXhq7vOnG6FpBLTW0eIq1RWVjdDjbN7tsxo+YYzoT4+Wyw8uAApGKD4j3fWCrnUGY
-         r4dk498bxjJJASiUbsfsf8kgEwv/aASN2qNGlkyJ7sc+Vx7P7D6Q84AjF1x/B5lXs2
-         PyPKC+JEWIqaW1yhkqc8ZmqHQJaM2j/Ump4SxV7ITcMM57T62RkzOZYM4594anuW2Q
-         QlcX3PbLgJySg==
-From:   Mark Brown <broonie@kernel.org>
-To:     derek.fang@realtek.com, lgirdwood@gmail.com
-Cc:     Mark Brown <broonie@kernel.org>, robh+dt@kernel.org,
-        flove@realtek.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, jack.yu@realtek.com,
-        linux-kernel@vger.kernel.org, lars@metafoo.de,
-        shumingf@realtek.com, oder_chiou@realtek.com
-Subject: Re: [PATCH] ASoC: dt-bindings: rt5682s: fix the device-tree schema errors
-Date:   Thu, 30 Sep 2021 15:58:54 +0100
-Message-Id: <163301248178.43045.15903836903409128227.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210929130406.24325-1-derek.fang@realtek.com>
-References: <20210929130406.24325-1-derek.fang@realtek.com>
+        id S1343834AbhI3PDl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 11:03:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=r+o3vngVkdgztVQkxkUxvPMjJ9nS
+        mdIiV96Cw1ESXyc=; b=CXiUxsT2FblaWdUcBNRW+qgmMsmmSNwCXBs3DTwU3ScX
+        SFb0bWfx+QD6R2MfmlF/a2igkJAipQBxDcYehr3rhi05Ed8fZsydSIBOlYBHa91a
+        mqvamJacTStj4qLZENtzL7Z49MPxeNugnjA/yO0Q9qGWFe9JuNmPTeRtGVOPsTo=
+Received: (qmail 2119133 invoked from network); 30 Sep 2021 17:01:56 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 30 Sep 2021 17:01:56 +0200
+X-UD-Smtp-Session: l3s3148p1@mcROujfNQIYgARa4RV6LAWawlO8I9jL3
+Date:   Thu, 30 Sep 2021 17:01:56 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH 0/6] Add SPI Multi I/O Bus Controller support for RZ/G2L
+Message-ID: <YVXRZNxrgmfROlJy@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gdec5ePrzlj11VEg"
+Content-Disposition: inline
+In-Reply-To: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Sep 2021 21:04:06 +0800, derek.fang@realtek.com wrote:
-> From: Derek Fang <derek.fang@realtek.com>
-> 
-> Fix the device-tree schema errors that be reported by using 'make
-> dt_binding_check'.
-> 
-> 
 
-Applied to
+--gdec5ePrzlj11VEg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks!
+> This patch series adds a couple of fixes for rpc-if driver and
+> adds support for RZ/G2L SoC, where the SPI Multi I/O Bus Controller
+> is identical to the RPC-IF block found on R-Car Gen3 SoC's.
 
-[1/1] ASoC: dt-bindings: rt5682s: fix the device-tree schema errors
-      commit: 91cf45595021bd6f6279748aa472de7fc7864084
+I did some basic testing on the Falcon board with a Renesas R-Car V3U
+SoC and did not find a regression, so:
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+--gdec5ePrzlj11VEg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
-Mark
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFV0WMACgkQFA3kzBSg
+KbbtBQ//UDqnFRl9bJ/3z/krcE5cI7mn3iuGbS97ZGR6nqRDvSvmbIiQPTreCPNU
+VQqMfbLoLkHM9O9u7UR7ucjggb7kveCz1wAtz4h0WPArBvFXJXbOaaeU2dodlk2Y
+tYZCGkrfn5FhaRokcMK9MbIBxwwv5ZIypR1DBdyvPD5tX4QujTBrX2z/XzGkCfn2
+be+IxS8ibDKnx2VwD0ErPa7la4fKcGVh+4bVd8Wn3fCC+1lTBXaQl5sIcgZnS2H0
+HdhETeXxJTPLpPWKNjkYbO9gQRiKQ9iM9tg34hLjWvrgkG45LCct/Q/UTI998yeh
+4OXhypsgoFKnLjNJXh3CLAV1Ud8xQvglWV5YkLEyeinTb2xdk4LX45h+DKDOmcHU
+0GD2VvzY3ilwcneSAFRlae6EuJ+lvw6AingESituuIOPCtAmDbQ3MYkZsFHwDW2K
+rHnVMKNT6ajsehg9jmwIBOr7zAU1YEG0WrTXDI1KzoeL8hhczcGVRnhGOv0CMSXY
+tGrqEiVC9hSX6trxx60N42hLwuMxF2E4aS6mi/CsdkfPYfoOJ4YEWuvkMc+iG4mB
+4znsrDwaBYF47lX96RsW6nSI8prCyOsvf42vyZ6OeWJYOOlAgBSh9wGJN2IuYeh8
+BRop7XCqLmNVFAt/Q9CXDgsmXKcB+dE82t0MtavGfuwukYE01D4=
+=o3Q2
+-----END PGP SIGNATURE-----
+
+--gdec5ePrzlj11VEg--
