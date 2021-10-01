@@ -2,213 +2,420 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A02C41F187
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 17:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E9AB41F18E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 17:52:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232025AbhJAPxF convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 1 Oct 2021 11:53:05 -0400
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:37815 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231649AbhJAPxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 11:53:04 -0400
-Received: by mail-ua1-f51.google.com with SMTP id t36so7006468uad.4;
-        Fri, 01 Oct 2021 08:51:20 -0700 (PDT)
+        id S231757AbhJAPyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 11:54:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45462 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231718AbhJAPyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 11:54:31 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29218C061775
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 08:52:47 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id s16so8345916pfk.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 08:52:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=W/2GzNB3u7TT74q9PP+qr3+N2+FbkoiA6tUqxu1t9uk=;
+        b=BlZFV/FP1uVSPdR/tPI438iaxuP71Hl/02jq4Q+B9+U+0kjLBbKDPDjXSYC5UAbKOP
+         +OmHjKtRjb9gEJ9IUzlOvD4mVL4YkU0f3ifg0nBStp6Tn0WO8ubCRPHIfXdE5AAY5y0w
+         PGfluAAYRZjK7Oi0BJgcvYjs8gc+XFUorBLu4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=V6QG7RVsPgL4MT7taFNIN3h9Vdu7FgpTMDBW2+9dAy4=;
-        b=7BnA7/BKelXoYxWK8iaAnS6yK1zR/K2UeEcIieD0HuVZDzmmHpNWuWD0+p/WMQn5zO
-         0o3P2pYBxATEpAw0PsG/kcug113d8V8cvcpNKwh/tzcx/5wiRsSvZoiA9WziVNJxMDYk
-         XoZ6gmV/i6ppNwnjN4y2cAgmPppHcSw6fsC/J2sEdfDQVL6nx69wEPjVU2CDsf/ID6f9
-         5bWAC90hkywi3Wfi9q1Na9f6trFJ+PAenh6GgdsXn5W37kaDRKdbK0eb3653pvTvx0Em
-         lFiFs8gz9jElGNwc36+qxh7cbBBYXFmnAWEmv0PiQpEwaWL3piF43XG3feD6s1aeN4dC
-         8Ijg==
-X-Gm-Message-State: AOAM531+5owAxqxQU0/RlnGdH32liuXwueZ5mM92fMX93t5+MQNb2UoN
-        30t+y/RfS8CoXG7PKIHzhgTSmqNf2PpV4bF3+R0=
-X-Google-Smtp-Source: ABdhPJxSLKh9AvpGnMkJMf+4rL5ey13Duasr9b9pl5UUVIbEI9s1F181091Vc8CdXHhLM8BddUTmHotIzJX01V/YUxw=
-X-Received: by 2002:ab0:16d4:: with SMTP id g20mr10998662uaf.114.1633103479588;
- Fri, 01 Oct 2021 08:51:19 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=W/2GzNB3u7TT74q9PP+qr3+N2+FbkoiA6tUqxu1t9uk=;
+        b=CUonuRMZJNq4RN85fRk9+0Q2/a+J+ldEjtvJWPFOyImNiPae9OYi/aiPfOpMkQvNGX
+         QKSreplkeKbEL7MQs8VYP4YkhbRf7iwRpR8qXtF62yvwylUu0yyfx9kDdJq6IMp+DsuJ
+         R+EqrT+fg9FIWTrqvpBRxQIws6POIm3VhKlotP+UYCGMYEag9lr1VY0wAZbSwMhKjGiy
+         a2mmvZuXGmNdSjHjSDAmolwSLFfRhVXmlJ8cDqnjab+oeqI65NoyjNcNQpY++8pZMnpW
+         wi8zx6hI9csgk5urLe215T52Gs/068X7cTtbBYObNJvHIuXohv7/va/rUg8w4E5Zyoym
+         sknQ==
+X-Gm-Message-State: AOAM531VnsJMsvSoplIGJIwUuXsn7+vJbqqpDIYWx1+ATTy7vpB5PKmn
+        RmouwoQ5CMeeRyYf/mc8durjhw==
+X-Google-Smtp-Source: ABdhPJxbW/w0AacFdyk0ikXT+slEN8/ifKr5jE1IrW4gPBXgMAtnj1+sCIqCQNOpG9muNHWycaARPw==
+X-Received: by 2002:a63:f30c:: with SMTP id l12mr10226543pgh.360.1633103566594;
+        Fri, 01 Oct 2021 08:52:46 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:f57f:9f3a:1408:a801])
+        by smtp.gmail.com with UTF8SMTPSA id n14sm6885211pgd.48.2021.10.01.08.52.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Oct 2021 08:52:46 -0700 (PDT)
+Date:   Fri, 1 Oct 2021 08:52:44 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>
+Subject: Re: [PATCH 4/8] ASoC: qcom: Add lapss CPU driver for codec dma
+ control
+Message-ID: <YVcuzEXA4Ej3HpHH@google.com>
+References: <1633087292-1378-1-git-send-email-srivasam@codeaurora.org>
+ <1633087292-1378-5-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
-References: <20210914143835.511051-1-geert@linux-m68k.org> <20210914143835.511051-20-geert@linux-m68k.org>
- <4602a8e681db4d0ebc43e4dafee8c28e@protonic.nl>
-In-Reply-To: <4602a8e681db4d0ebc43e4dafee8c28e@protonic.nl>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 1 Oct 2021 17:51:08 +0200
-Message-ID: <CAMuHMdVOa8DAGJQpJ8AotARxfh9PvpskJJa6k48jE92-P+GLRA@mail.gmail.com>
-Subject: Re: [PATCH v6 19/19] auxdisplay: ht16k33: Add LED support
-To:     Robin van der Gracht <robin@protonic.nl>
-Cc:     Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1633087292-1378-5-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hoi Robin,
+On Fri, Oct 01, 2021 at 04:51:28PM +0530, Srinivasa Rao Mandadapu wrote:
+> Subject: ASoC: qcom: Add lapss CPU driver for codec dma control
 
-On Thu, Sep 30, 2021 at 12:57 PM Robin van der Gracht <robin@protonic.nl> wrote:
-> On 2021-09-14 16:38, Geert Uytterhoeven wrote:
-> > Instantiate a single LED based on the "led" subnode in DT.
-> > This allows the user to control display brightness and blinking (backed
-> > by hardware support) through the LED class API and triggers, and exposes
-> > the display color.  The LED will be named
-> > "auxdisplay:<color>:<function>".
-> >
-> > When running in dot-matrix mode and if no "led" subnode is found, the
-> > driver falls back to the traditional backlight mode, to preserve
-> > backwards compatibility.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> > Reviewed-by: Marek Behún <kabel@kernel.org>
-> > ---
-> > v6:
-> >   - Add Reviewed-by,
-> >   - Reorder operations in ht16k33_led_probe() to ease future conversion
-> >     to device properties,
+nit: s/lapss/lpass/
 
-> > --- a/drivers/auxdisplay/ht16k33.c
-> > +++ b/drivers/auxdisplay/ht16k33.c
-> > @@ -425,6 +477,35 @@ static void ht16k33_seg14_update(struct work_struct
-> > *work)
-> >       i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), buf);
-> >  }
-> >
-> > +static int ht16k33_led_probe(struct device *dev, struct led_classdev *led,
-> > +                          unsigned int brightness)
-> > +{
-> > +     struct led_init_data init_data = {};
-> > +     struct device_node *node;
-> > +     int err;
-> > +
-> > +     /* The LED is optional */
-> > +     node = of_get_child_by_name(dev->of_node, "led");
-> > +     if (!node)
-> > +             return 0;
-> > +
-> > +     init_data.fwnode = of_fwnode_handle(node);
-> > +     init_data.devicename = "auxdisplay";
-> > +     init_data.devname_mandatory = true;
-> > +
-> > +     led->brightness_set_blocking = ht16k33_brightness_set_blocking;
-> > +     led->blink_set = ht16k33_blink_set;
-> > +     led->flags = LED_CORE_SUSPENDRESUME;
-> > +     led->brightness = brightness;
-> > +     led->max_brightness = MAX_BRIGHTNESS;
 >
-> What do you think about adding a default trigger and making it 'backlight'?
->
-> led->default_trigger = "blacklight";
->
-> Or as an alternative, suggesting linux,default-trigger = "backlight" in the
-> docs? Since the led class won't respond to blank events by just making it's
-> function LED_FUNCTION_BACKLIGHT.
->
-> led {
->         function = LED_FUNCTION_BACKLIGHT;
->         color = <LED_COLOR_ID_GREEN>;
->         linux,default-trigger = "backlight";
-> };
-
-The latter makes perfect sense to me.  Will do.
-
-> I noticed blanking is broken. The backlight device (or LED device with
-> backlight trigger) doens't get notified when the framebuffer is blanked since
-> the driver doesn't implement fb_blank.
->
-> Right now:
->
-> echo 1 > /sys/class/graphics/fb0/blank
->                                                              |
-> sh: write error: Invalid argument
->
-> Due to:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/video/fbdev/core/fbmem.c?h=v5.15-rc3#n1078
-
-That's a pre-existing problem, righ? ;-)
-
-> Something like this fixes it.
->
-> diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
-> index 89ee5b4b3dfc..0883d5252c81 100644
-> --- a/drivers/auxdisplay/ht16k33.c
-> +++ b/drivers/auxdisplay/ht16k33.c
-> @@ -346,6 +346,15 @@ static int ht16k33_mmap(struct fb_info *info, struct
-> vm_area_struct *vma)
->          return vm_map_pages_zero(vma, &pages, 1);
->   }
->
+> Add lpass cpu driver to support audio over codec dma for
+> ADSP bypass usecase.
+> 
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+>  sound/soc/qcom/lpass-cdc-dma.c | 263 +++++++++++++++++++++++++++++++++++++++++
+>  sound/soc/qcom/lpass.h         |   1 +
+>  2 files changed, 264 insertions(+)
+>  create mode 100644 sound/soc/qcom/lpass-cdc-dma.c
+> 
+> diff --git a/sound/soc/qcom/lpass-cdc-dma.c b/sound/soc/qcom/lpass-cdc-dma.c
+> new file mode 100644
+> index 0000000..56b3791
+> --- /dev/null
+> +++ b/sound/soc/qcom/lpass-cdc-dma.c
+> @@ -0,0 +1,263 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
-> + * Blank events will be passed to the backlight device (or the LED device if
-> + * it's trigger is 'backlight') when we return 0 here.
+> + * Copyright (c) 2021 The Linux Foundation. All rights reserved.
+> + *
+> + * lpass-cdc-dma.c -- ALSA SoC WCD -CPU DAI driver for QTi LPASS WCD
 > + */
-> +static int ht16k33_blank(int blank, struct fb_info *info)
+> +
+> +#include <linux/module.h>
+> +#include <sound/soc.h>
+> +#include <sound/soc-dai.h>
+> +
+> +#include "lpass-lpaif-reg.h"
+> +#include "lpass.h"
+> +
+> +static int __lpass_platform_codec_intf_init(struct snd_soc_dai *dai,
+> +					 struct snd_pcm_substream *substream)
 > +{
-> +       return 0;
+> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
+> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
+> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> +	struct snd_pcm_runtime *rt = substream->runtime;
+> +	struct lpass_pcm_data *pcm_data = rt->private_data;
+> +	struct lpass_variant *v = drvdata->variant;
+> +	struct lpaif_dmactl *dmactl;
+> +	struct regmap *map;
+> +	int dir = substream->stream;
+> +	int ret, id;
+> +	unsigned int dai_id = cpu_dai->driver->id;
+> +
+> +	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
+
+s/ ==  / == /
+
+> +		dmactl = drvdata->rxtx_rd_dmactl;
+> +		map = drvdata->rxtx_lpaif_map;
+> +		id = pcm_data->dma_ch;
+> +	} else {
+> +		if (dai_id == LPASS_CDC_DMA_TX3) {
+> +			dmactl = drvdata->rxtx_wr_dmactl;
+> +			map = drvdata->rxtx_lpaif_map;
+> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
+> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
+> +			dmactl = drvdata->va_wr_dmactl;
+> +			map = drvdata->va_lpaif_map;
+> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
+> +		}
+> +	}
+
+'map' is assigned here, but not used in the rest of the function, drop it.
+
+> +
+> +	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
+
+s/ ==  / == /
+
+> +		ret = regmap_fields_write(dmactl->codec_intf, id, LPASS_CDC_DMA_RX0_INTERFACE);
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to rdmactl reg: %d\n", ret);
+
+Some of the logs print the register name, others don't, why not log it
+always?
+
+> +			return ret;
+> +		}
+> +	    ret = regmap_fields_write(dmactl->codec_fs_sel, id, 0x0);
+
+fix indentation
+
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to rdmactl reg: %d\n", ret);
+> +			return ret;
+> +		}
+> +		ret = regmap_fields_write(dmactl->codec_fs_delay, id, 0x0);
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to rdmactl codec_fs_delay reg field: %d\n", ret);
+> +			return ret;
+> +		}
+> +		ret = regmap_fields_write(dmactl->codec_pack, id, 0x1);
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to rdmactl codec_pack reg field: %d\n", ret);
+> +			return ret;
+> +		}
+> +		ret = regmap_fields_write(dmactl->codec_enable, id, LPAIF_DMACTL_ENABLE_ON);
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to rdmactl reg: %d\n", ret);
+> +			return ret;
+> +		}
+> +
+
+Remove empty line
+
+> +	} else {
+> +		ret = regmap_fields_write(dmactl->codec_intf, id, LPASS_CDC_DMA_INTERFACE(dai_id));
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to wrdmactl codec_intf reg field: %d\n", ret);
+> +			return ret;
+> +		}
+> +	    ret = regmap_fields_write(dmactl->codec_fs_sel, id, 0x0);
+
+fix indentation
+
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to wrdmactl codec_fs_sel reg field: %d\n", ret);
+> +			return ret;
+> +		}
+> +		ret = regmap_fields_write(dmactl->codec_fs_delay, id, 0x0);
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to wrdmactl codec_fs_delay reg field: %d\n", ret);
+> +			return ret;
+> +		}
+> +		ret = regmap_fields_write(dmactl->codec_pack, id, 0x1);
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to wrdmactl codec_pack reg field: %d\n", ret);
+> +			return ret;
+> +		}
+> +		ret = regmap_fields_write(dmactl->codec_enable, id, LPAIF_DMACTL_ENABLE_ON);
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to wrdmactl codec_enable reg field: %d\n", ret);
+> +			return ret;
+> +		}
+
+The last four register writes are exactly the same in both branches, only the
+logging distinguishes between 'rdmactl' and 'wrdmactl'. Those should be in the
+main branch, if you really need to distinguish between 'rdmactl' and 'wrdmactl'
+in the logging you can assign a string pointer in the 'if (dir == SNDRV_PCM_STREAM_PLAYBACK)'
+branches.
+
+> +	}
+> +	return 0;
 > +}
 > +
->   static const struct fb_ops ht16k33_fb_ops = {
->          .owner = THIS_MODULE,
->          .fb_read = fb_sys_read,
-> @@ -354,6 +363,7 @@ static const struct fb_ops ht16k33_fb_ops = {
->          .fb_copyarea = sys_copyarea,
->          .fb_imageblit = sys_imageblit,
->          .fb_mmap = ht16k33_mmap,
-> +       .fb_blank = ht16k33_blank,
->   };
->
->   /*
->
-> Feel free to include (something like) this in the patch stack.
+> +static int lpass_wcd_daiops_startup(struct snd_pcm_substream *substream,
+> +		struct snd_soc_dai *dai)
+> +{
+> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> +	int ret, i;
+> +
+> +	for (i = 0; i < drvdata->cdc_num_clks; i++) {
+> +		ret = clk_prepare_enable(drvdata->cdc_dma_clks[i]);
+> +		if (ret) {
+> +			dev_err(dai->dev, "error in enabling cdc dma clks: %d\n", ret);
+> +			return ret;
 
-Thanks, will do.
+Disable clocks that have been enabled previously?
 
-> > +
-> > +     err = devm_led_classdev_register_ext(dev, led, &init_data);
-> > +     if (err)
-> > +             dev_err(dev, "Failed to register LED\n");
->
-> You might want to call ht16k33_brightness_set(priv, brightness) here to get a
-> know value into the display setup register (0x80).
->
-> Right now if I enable hardware blinking and (soft)reboot my board it keeps on
-> blinking even after a re-probe.
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void lpass_wcd_daiops_shutdown(struct snd_pcm_substream *substream,
+> +		struct snd_soc_dai *dai)
+> +{
+> +	int i;
+> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> +
+> +	for (i = 0; i < drvdata->cdc_num_clks; i++)
+> +		clk_disable_unprepare(drvdata->cdc_dma_clks[i]);
+> +}
+> +
+> +static int lpass_wcd_daiops_hw_params(struct snd_pcm_substream *substream,
+> +		struct snd_pcm_hw_params *params, struct snd_soc_dai *dai)
+> +{
+> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
+> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
+> +	struct lpaif_dmactl *dmactl;
+> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> +	struct snd_pcm_runtime *rt = substream->runtime;
+> +	struct lpass_pcm_data *pcm_data = rt->private_data;
+> +	struct lpass_variant *v = drvdata->variant;
+> +	struct regmap *map;
+> +	int dir = substream->stream;
+> +	unsigned int ret, regval;
+> +	unsigned int channels = params_channels(params);
+> +	int id;
+> +	unsigned int dai_id = cpu_dai->driver->id;
+> +
+> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK) {
+> +		dmactl = drvdata->rxtx_rd_dmactl;
+> +		map = drvdata->rxtx_lpaif_map;
+> +		id = pcm_data->dma_ch;
+> +	} else {
+> +		if (dai_id == LPASS_CDC_DMA_TX3) {
+> +			dmactl = drvdata->rxtx_wr_dmactl;
+> +			map = drvdata->rxtx_lpaif_map;
+> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
+> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
+> +			dmactl = drvdata->va_wr_dmactl;
+> +			map = drvdata->va_lpaif_map;
+> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
+> +		}
+> +	}
 
-I don't have that issue.
-Aha, ht16k33_seg_probe() calls ht16k33_brightness_set(), but
-ht16k33_fbdev_probe() doesn't.  The latter should do that, too,
-when not using backwards compatibility mode.
+The exact same code block is used 3 times in this driver. Add a helper with
+'substream' and 'dai' as parameters, which determines 'dmactl and 'id'.
+That would also make the variable declaration/assignment section of these
+functions signifcantly shorter.
 
-> > @@ -575,7 +660,7 @@ static int ht16k33_seg_probe(struct device *dev, struct
-> > ht16k33_priv *priv,
-> >       struct ht16k33_seg *seg = &priv->seg;
-> >       int err;
-> >
-> > -     err = ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
-> > +     err = ht16k33_brightness_set(priv, brightness);
->
-> This looks like a bugfix for patch 17, maybe move this change there?
+> +
+> +	switch (channels) {
+> +	case 1:
+> +		regval = LPASS_CDC_DMA_INTF_ONE_CHANNEL;
+> +		break;
+> +	case 2:
+> +		regval = LPASS_CDC_DMA_INTF_TWO_CHANNEL;
+> +		break;
+> +	case 4:
+> +		regval = LPASS_CDC_DMA_INTF_FOUR_CHANNEL;
+> +		break;
+> +	case 6:
+> +		regval = LPASS_CDC_DMA_INTF_SIX_CHANNEL;
+> +		break;
+> +	case 8:
+> +		regval = LPASS_CDC_DMA_INTF_EIGHT_CHANNEL;
+> +		break;
+> +	default:
+> +		dev_err(soc_runtime->dev, "invalid PCM config\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = regmap_fields_write(dmactl->codec_channel, id, regval);
+> +	if (ret) {
+> +		dev_err(soc_runtime->dev,
+> +			"error writing to rdmactl codec_channel reg field: %d\n", ret);
 
-Indeed. Bad rebase. Will move.
+not necessarily 'rdmactl'.
 
-Thanks a lot for your comments!
+> +		return ret;
+> +	}
+> +	return ret;
 
-Gr{oetje,eeting}s,
+	return 0
 
-                        Geert
+> +}
+> +
+> +static int lpass_wcd_daiops_trigger(struct snd_pcm_substream *substream,
+> +		int cmd, struct snd_soc_dai *dai)
+> +{
+> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
+> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
+> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> +	struct snd_pcm_runtime *rt = substream->runtime;
+> +	struct lpass_pcm_data *pcm_data = rt->private_data;
+> +	struct lpass_variant *v = drvdata->variant;
+> +	int dir = substream->stream;
+> +	struct lpaif_dmactl *dmactl;
+> +	struct regmap *map;
+> +	unsigned int dai_id = cpu_dai->driver->id;
+> +	int ret = 0, id;
+> +
+> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK) {
+> +		dmactl = drvdata->rxtx_rd_dmactl;
+> +		map = drvdata->rxtx_lpaif_map;
+> +		id = pcm_data->dma_ch;
+> +	} else {
+> +		if (dai_id == LPASS_CDC_DMA_TX3) {
+> +			dmactl = drvdata->rxtx_wr_dmactl;
+> +			map = drvdata->rxtx_lpaif_map;
+> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
+> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
+> +			dmactl = drvdata->va_wr_dmactl;
+> +			map = drvdata->va_lpaif_map;
+> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
+> +		}
+> +	}
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+see above
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +	switch (cmd) {
+> +	case SNDRV_PCM_TRIGGER_START:
+> +	case SNDRV_PCM_TRIGGER_RESUME:
+> +	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+> +		__lpass_platform_codec_intf_init(dai, substream);
+> +		break;
+> +	case SNDRV_PCM_TRIGGER_STOP:
+> +	case SNDRV_PCM_TRIGGER_SUSPEND:
+> +	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+> +		ret = regmap_fields_write(dmactl->codec_enable, id, LPAIF_DMACTL_ENABLE_OFF);
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev,
+> +				"error writing to rdmactl reg: %d\n", ret);
+
+not necessarily rdmactl, better log that it's the codec enable reg.
+
+> +			return ret;
+> +		}
+> +
+> +		break;
+> +	}
+> +	return ret;
+> +}
+> +
+> +const struct snd_soc_dai_ops asoc_qcom_lpass_wcd_dai_ops = {
+> +	.startup	= lpass_wcd_daiops_startup,
+> +	.shutdown	= lpass_wcd_daiops_shutdown,
+> +	.hw_params	= lpass_wcd_daiops_hw_params,
+> +	.trigger	= lpass_wcd_daiops_trigger,
+> +};
+> +EXPORT_SYMBOL_GPL(asoc_qcom_lpass_wcd_dai_ops);
+> +
+> +MODULE_DESCRIPTION("QTi LPASS CDC DMA Driver");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+> index 058b42d..e0ea698 100644
+> --- a/sound/soc/qcom/lpass.h
+> +++ b/sound/soc/qcom/lpass.h
+> @@ -418,5 +418,6 @@ int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai);
+>  extern const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops;
+>  int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
+>  				struct snd_soc_dai *dai);
+> +extern const struct snd_soc_dai_ops asoc_qcom_lpass_wcd_dai_ops;
+>  
+>  #endif /* __LPASS_H__ */
+> -- 
+> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> 
