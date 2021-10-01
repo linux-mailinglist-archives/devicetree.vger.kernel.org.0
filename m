@@ -2,136 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C76D41ECDB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 14:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4900A41ED23
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 14:11:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354217AbhJAMGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 08:06:11 -0400
-Received: from www.zeus03.de ([194.117.254.33]:55070 "EHLO mail.zeus03.de"
+        id S1354336AbhJAMNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 08:13:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48796 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231218AbhJAMGK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Oct 2021 08:06:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=sU1jHZ5AxD4VfGEdE0alKPxI1996
-        qYnc3sUVIk98xIA=; b=o2DkK4TEJ2MjNtxegdLBJeBjQFr16jn7wHO4G/EAQU1K
-        j1RK0i4oldYwujwtqM3GV/UGHQONbcgn6x9RtjmzfinIm+xq3fgXYuoL/LArmIRH
-        m2gGCz81yu6LMx18Kdm4IrvgKuRj9bp7gMlhcF+D7jWKpZmPbsyTgyNG7rNUaMw=
-Received: (qmail 2459946 invoked from network); 1 Oct 2021 14:04:22 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 1 Oct 2021 14:04:22 +0200
-X-UD-Smtp-Session: l3s3148p1@MLMZXUnNftIgAwDPXwmDAJN1R91E6vGQ
-Date:   Fri, 1 Oct 2021 14:04:21 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        id S1354324AbhJAMNi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Oct 2021 08:13:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B9AE561A56;
+        Fri,  1 Oct 2021 12:11:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633090313;
+        bh=Bvy+7X1IcIDRcHyDyMAbTvUl3nHvygA3YktJ+oiCrcM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=l7U9VDDpYX0ZUwtPnEO56MFcniGYqvbSsSx9pflxdaVOgSJUyodGnMeiqQ6CTaByk
+         G3H6vIMgHU8TuTqQMmE/rlpvdQgNwvmhm2cHD49GxeT8dtoLPu2Ez0GaERSW8lzftu
+         P1xZ1daUu/9RAi0dJdvXzfIvZWDInO2F6GRneepwoUqL0RMrHCe07heU8kCu8fSdvC
+         JQbsqGvVhfzlHS08xTAPyshoZTnNJxmkqHtBHlV4cXQIScgolopdLNhsRpe3OkHrMi
+         BGQ1gN/Upw0B8nWWw8Ogih/EQCQHUzh3lM9F1F03UdO44bcvOsRe4ST9ol3aApAR2C
+         RYuHokUNuAGjw==
+Received: by pali.im (Postfix)
+        id 6F5A2821; Fri,  1 Oct 2021 14:11:51 +0200 (CEST)
+Date:   Fri, 1 Oct 2021 14:11:51 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Gregory Clement <gregory.clement@bootlin.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-mtd@lists.infradead.org,
-        linux-spi <linux-spi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH 6/6] memory: renesas-rpc-if: Add support for RZ/G2L
-Message-ID: <YVb5RXvh9agIS7MG@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        linux-mtd@lists.infradead.org,
-        linux-spi <linux-spi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210928140721.8805-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <YVXMc1A4D/y4kjim@shikoro>
- <CA+V-a8sDSsyTGfTeQfG_ZhfrJHCm+2kBTEDWaoFMTgsMOmxEgQ@mail.gmail.com>
- <YVbM3z7x+D0MCkTF@ninjato>
- <CA+V-a8uyQmW3+4hAt4534spKeQHDoeZzuJJE4RY70KLZfYOXoA@mail.gmail.com>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vladimir Vid <vladimir.vid@sartura.hr>,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 0/6] serial: mvebu-uart: Support for higher baudrates
+Message-ID: <20211001121151.ofydfrf55hmh6gro@pali>
+References: <20210930095838.28145-1-pali@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5QK+6x2YA2y8yiDI"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CA+V-a8uyQmW3+4hAt4534spKeQHDoeZzuJJE4RY70KLZfYOXoA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210930095838.28145-1-pali@kernel.org>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Gregory, could you please review this patch series?
 
---5QK+6x2YA2y8yiDI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Prabhakar,
-
-I checked the G2L datasheet and reconsidered. It is better if your patch
-goes in first. That means...
-
-> > > > Is RPCIF_CMNCR_IO3FV and RPCIF_CMNCR_IO2FV actually documented in your
-> > > > datasheets? I am asking because I have a patch pending to remove writing
-> > > > to undocumented locations. So, I was aboout to remove the IO3FV and
-> > > > IO2FV macros.
-> > > >
-> > > Yes they are documented, you should be able to download the HW manual from [1]
-> >
-> > Great, then I will keep them!
-
-... that you could change the comments here from "undocumented" to
-"documened for G2L" or similar.
-
-> > > > > +             regmap_read(rpc->regmap, RPCIF_PHYCNT, &dummy);
-> > > > > +             dummy &= ~RPCIF_PHYCNT_PHYMEM_MASK;
-> > > > > +             dummy |= RPCIF_PHYCNT_PHYMEM(hyperflash ? 3 : 0) | 0x260;
-> > > > > +             regmap_write(rpc->regmap, RPCIF_PHYCNT, dummy);
-> > > >
-> > > > regmap_update_bits?
-> > > >
-> > > Im a bit hesitant to use regmap_update_bits() here as some of the bits
-> > > are not documented.
-
-Here you can keep your code as is. I will change it afterwards if needed
-once I clarified all undocumented locations.
-
-Thanks and have a nice weekend,
-
-   Wolfram
-
-
---5QK+6x2YA2y8yiDI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFW+UEACgkQFA3kzBSg
-Kbb9Nw//bCZjWZIYqwiSCfxBOafnLWkptccKRA/ccZ57W8k5zOSNRRPmx68uEr2+
-G6p3M5tlc9g9oqT0Yek9lce9f+7SIVrbOdHLONIpBpeEHEb4FfZUKqOiLzDB+JDf
-RlMF+IbEFNOwDAfhFCJdR9SY5GeobFjmLpTWyMfJlRnFvTFFe9S3NF7V1V9AQMHh
-KrTC2H67mMpgzVwT/iF7naTL4mHI7GaT9I1bm3U1meHYxDM7hDZB2uWvwErPzh1w
-plGrppDm02M6Bj+IllzZukxvC7ppzPDAjmuHMttjuurInrem5NrWCtTMT4mZdf/w
-0OIn2me7d40DI351em9tk5YL3tsqyIgTp+MpmrDGGi/9bs5FCQzPYh5RHtRVNwiZ
-XicfUYQzFXg5FxSwf2LcDOcuHu737TZxjjrr++cKC6e9uGnzfXUlAy+HNhzSce7M
-NqIZbnMNQD2t83mThggTvl+XgNQ/c4pMiJ11Je/fImfHkB/OV+ExZzhoTYqeRkjX
-STlHRriE+XIuotL+RFD/ImGqKXPauFhWJwCrQcJFmwMhV4vl8EkWdtZlNDiR9sR7
-+ir4YTUv1s7FUEpRCozcHus1MiKtFdoxDgC+yNDLwbo/fDE21lBB7o/4nTm3P3Qd
-itXUJBUf8jxaSazpaURv1jiRCGSFZZEZCYmbnD2SDS3+y4J3PDM=
-=nApo
------END PGP SIGNATURE-----
-
---5QK+6x2YA2y8yiDI--
+On Thursday 30 September 2021 11:58:32 Pali Rohár wrote:
+> This patch series add support for baudrates higher than 230400 on
+> Marvell Armada 37xx boards.
+> 
+> Changes in v7:
+> * fixed lint errors in yaml binding file
+> 
+> Changes in v6:
+> * fixed yaml binding file and dts files
+> 
+> Changes in v5:
+> * fixed yaml binding file
+> 
+> Changes in v4:
+> * converted armada3700-uart-clock documentation to YAML
+> * split documentation changes into two commits:
+>   - first which adds clock documentation
+>   - second which updates UART documentation
+> 
+> Changes in v3:
+> v3 is rebased on top of Linus master branch and all already applied patches
+> were dropped. There are no changes in patches itself since v2.
+> 
+> Pali Rohár (6):
+>   math64: New DIV_U64_ROUND_CLOSEST helper
+>   serial: mvebu-uart: implement UART clock driver for configuring UART
+>     base clock
+>   dt-bindings: mvebu-uart: document DT bindings for
+>     marvell,armada-3700-uart-clock
+>   dt-bindings: mvebu-uart: update information about UART clock
+>   arm64: dts: marvell: armada-37xx: add device node for UART clock and
+>     use it
+>   serial: mvebu-uart: implement support for baudrates higher than 230400
+> 
+>  .../clock/marvell,armada-3700-uart-clock.yaml |  59 ++
+>  .../devicetree/bindings/serial/mvebu-uart.txt |   9 +-
+>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |  14 +-
+>  drivers/tty/serial/Kconfig                    |   1 +
+>  drivers/tty/serial/mvebu-uart.c               | 592 +++++++++++++++++-
+>  include/linux/math64.h                        |  13 +
+>  6 files changed, 667 insertions(+), 21 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml
+> 
+> -- 
+> 2.20.1
+> 
