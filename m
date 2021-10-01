@@ -2,128 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10AD841F625
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 22:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D126D41F64C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 22:27:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231910AbhJAUKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 16:10:04 -0400
-Received: from mail-qk1-f170.google.com ([209.85.222.170]:38870 "EHLO
-        mail-qk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbhJAUKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 16:10:04 -0400
-Received: by mail-qk1-f170.google.com with SMTP id q81so10367378qke.5;
-        Fri, 01 Oct 2021 13:08:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KQlSEZZ+M9EHNYuoq+CO7QYaIkckaY1yCBN43D3/TuI=;
-        b=34X1tSlk6SQVCRvE7SybF7rgdvJK/HitNO9wefDV4AoKE3OeY19ntuwiYUdbdrCaFg
-         PNyifzcqTZPtUeM4Zuhw72JeK8JrHxryhYhXrrv4BmVZqiL65zauPqekSKIisQsyyqL4
-         FC83wLlag4ZnhDH99Wilb4iEaCykiy7fJquGNX0YmEwW+XJPG0zAoAB8ZqQWec/IgmCz
-         OnsgcuYOdRbHlgFvA2rWLxvSfGVp2VZh8JcRAFfcPmkzQ0zpBhHtPmin5h3NLpPc/gMV
-         quy6pglz0egmevPMLJQ6uI4ckTWzhflLE6boHSABAjy27eHqua+lpBof0Yz2SBgKSVdF
-         UEPA==
-X-Gm-Message-State: AOAM531ZPUW9M2rwdi+vaaPccfHCV5on7+dOBV6MmmKlXCKbxPTIqCpN
-        50Ko1jsKSbPkUj83DIJy+6R2u/qATFw=
-X-Google-Smtp-Source: ABdhPJy96jyiQUtuC4jk63wYlX0eX6mVYq9VG3nkjLeeipINWSIYDzjgH2oVpfrWPTsyRPjLuZlfCQ==
-X-Received: by 2002:a37:66d6:: with SMTP id a205mr11275641qkc.138.1633118898545;
-        Fri, 01 Oct 2021 13:08:18 -0700 (PDT)
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com. [209.85.219.44])
-        by smtp.gmail.com with ESMTPSA id k19sm3884284qko.115.2021.10.01.13.08.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Oct 2021 13:08:17 -0700 (PDT)
-Received: by mail-qv1-f44.google.com with SMTP id a14so6287010qvb.6;
-        Fri, 01 Oct 2021 13:08:17 -0700 (PDT)
-X-Received: by 2002:a05:6214:36d:: with SMTP id t13mr11022398qvu.50.1633118897756;
- Fri, 01 Oct 2021 13:08:17 -0700 (PDT)
+        id S230077AbhJAU3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 16:29:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52148 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230111AbhJAU2O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Oct 2021 16:28:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7B12D61A56;
+        Fri,  1 Oct 2021 20:26:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633119990;
+        bh=vXHfax9r9lddztIM164XFEM0kr2hoeoQ2/mwckZGDAI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=meZ3RyYTPec73G07idC5IUTIyL9CBE5FHdWwR51raQdT6tH84HRfySGFUc6KU91rM
+         eqUTBvWCwNFl3o1dWseBwjfLpYFCLWF6IJubEg3LCRkqwhN6nnkj/tErFkbVOee8eC
+         RiHB49+kcCXeBqp5H3sC8S9U4vDBX1YrfC9l83I3Q151IjbBXjfSsV1ljCk8B2AmM3
+         yRII7FcYHNn0ZvkT8zUQeX5Sgiklo2JTuzaDqI2iOyQRerr2Au8b0+UL0GRxlMYMnx
+         H9mSyP8KufKGqoUS61wsByeyA7hSYOgMKS2keQwdHdx/V8TRgiHA+xQ4OlZsdt5KB/
+         N7F5wsRdSbr8Q==
+Date:   Fri, 1 Oct 2021 21:25:39 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Rajesh Patil <rajpat@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org, sboyd@kernel.org, mka@chromium.org
+Subject: Re: [PATCH V1 1/2] dt-bindings: spi: Add sc7180 support
+Message-ID: <20211001202539.GE5080@sirena.org.uk>
+References: <1632997450-32293-1-git-send-email-rajpat@codeaurora.org>
+ <1632997450-32293-2-git-send-email-rajpat@codeaurora.org>
 MIME-Version: 1.0
-References: <20211001000417.15334-1-leoyang.li@nxp.com> <20211001000417.15334-5-leoyang.li@nxp.com>
- <AS8PR04MB86734729E9E08F70FF7E5AEEE0AB9@AS8PR04MB8673.eurprd04.prod.outlook.com>
-In-Reply-To: <AS8PR04MB86734729E9E08F70FF7E5AEEE0AB9@AS8PR04MB8673.eurprd04.prod.outlook.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Fri, 1 Oct 2021 15:08:05 -0500
-X-Gmail-Original-Message-ID: <CADRPPNTKsO7MYoUUXLgC+XnPPsrzjeBggvRnKvaB=3HUJy9-1A@mail.gmail.com>
-Message-ID: <CADRPPNTKsO7MYoUUXLgC+XnPPsrzjeBggvRnKvaB=3HUJy9-1A@mail.gmail.com>
-Subject: Re: [EXT] [PATCH v2 04/16] ARM: dts: ls1021a-qds: Add node for QSPI flash
-To:     Kuldeep Singh <kuldeep.singh@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kA1LkgxZ0NN7Mz3A"
+Content-Disposition: inline
+In-Reply-To: <1632997450-32293-2-git-send-email-rajpat@codeaurora.org>
+X-Cookie: "Pok pok pok, P'kok!"
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 1, 2021 at 12:30 AM Kuldeep Singh <kuldeep.singh@nxp.com> wrote:
->
-> Hi Leo,
->
-> > -----Original Message-----
-> > From: Li Yang <leoyang.li@nxp.com>
-> > Sent: Friday, October 1, 2021 5:34 AM
-> > To: Shawn Guo <shawnguo@kernel.org>; Rob Herring
-> > <robh+dt@kernel.org>; devicetree@vger.kernel.org; Oleksij Rempel
-> > <linux@rempel-privat.de>; linux-arm-kernel@lists.infradead.org; linux-
-> > kernel@vger.kernel.org
-> > Cc: Leo Li <leoyang.li@nxp.com>
-> > Subject: [EXT] [PATCH v2 04/16] ARM: dts: ls1021a-qds: Add node for QSPI
-> > flash
-> >
-> > Caution: EXT Email
-> >
-> > Add the missing node for qspi flash.
-> >
-> > Signed-off-by: Li Yang <leoyang.li@nxp.com>
-> > ---
-> >  arch/arm/boot/dts/ls1021a-qds.dts | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/ls1021a-qds.dts
-> > b/arch/arm/boot/dts/ls1021a-qds.dts
-> > index e2aa569ff404..522e1dc51059 100644
-> > --- a/arch/arm/boot/dts/ls1021a-qds.dts
-> > +++ b/arch/arm/boot/dts/ls1021a-qds.dts
-> > @@ -286,6 +286,21 @@ tbi0: tbi-phy@8 {
-> >         };
-> >  };
-> >
-> > +&qspi {
-> > +       num-cs = <2>;
->
-> Please drop "num-cs" property as it is not used by qspi driver.
->
-> > +       status = "okay";
-> > +
-> > +       qflash0: flash@0 {
->
-> Can we have flash chip name instead of qflash?
-> There is no hard requirement, it will help in aligning node properties with other board properties such as LX2160A-RDB, LS1046A-RDB etc.
 
-Thanks for the review.  I find that there is no reference to the label
-at all.  I don't know why we added it in the first place.  Probably we
-can just remove it?
+--kA1LkgxZ0NN7Mz3A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
->
-> With above fixed,
-> Reviewed-by: Kuldeep Singh <kuldeep.singh@nxp.com>
->
-> > +               compatible = "jedec,spi-nor";
-> > +               #address-cells = <1>;
-> > +               #size-cells = <1>;
-> > +               spi-max-frequency = <20000000>;
-> > +               reg = <0>;
-> > +               spi-rx-bus-width = <4>;
-> > +               spi-tx-bus-width = <4>;
-> > +       };
-> > +};
-> > +
-> >  &sai2 {
-> >         status = "okay";
-> >  };
-> > --
-> > 2.25.1
->
+On Thu, Sep 30, 2021 at 03:54:09PM +0530, Rajesh Patil wrote:
+> Add device tree compatible for sc7180 SoC.
+
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--kA1LkgxZ0NN7Mz3A
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFXbsIACgkQJNaLcl1U
+h9ASeAf+Ovebf56F1WWWWiQKFCWm6cBwITcjaeV7bhiWd297kBrRONtcJ16/h1b1
+Ao6YxQFw5LJF8JYr4LE/NlYeEsBXQ8ELzZaCfoiZow2v+GVKaqkpn/uzLCoVGYR1
+2miPdTc0dsuWwjjg6cCxWEjNXauSoFooSkyWtTW4C93OTvpdCjE01N+cVwFaEZW3
+uCEyQfkujOft6i+Bk59s3IZGFwOnMEHqOdcBskKmNoeNLoLL1SAuvKoq9pF6rdxh
+ImGd5MqnjbvS89Auw+1G5dkQB3wZ1ZLXJSBc8FGOFrKf7ke2UPLOIyX6L4p3U9+H
+Rz/2BhRFzoItt6xFeiyR2wwVL1s1Qg==
+=S3o7
+-----END PGP SIGNATURE-----
+
+--kA1LkgxZ0NN7Mz3A--
