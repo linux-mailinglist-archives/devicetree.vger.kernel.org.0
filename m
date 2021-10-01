@@ -2,84 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A7AF41EEE5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 15:49:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 333D041EF21
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 16:07:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231417AbhJANvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 09:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44696 "EHLO
+        id S1354073AbhJAOJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 10:09:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231186AbhJANvl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 09:51:41 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2F0DC061775
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 06:49:56 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id l18-20020a05600c4f1200b002f8cf606262so11303477wmq.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 06:49:56 -0700 (PDT)
+        with ESMTP id S231438AbhJAOJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 10:09:22 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B5BC061775
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 07:07:37 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id u18so39549306lfd.12
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 07:07:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=WcobWQEpWw130naSD1qRlgqF9tLl50nKK3Jb8AKHqY0=;
-        b=drKM7fR+bkOqM1CnvRn3B7zQHy2cElx4kLBMtgyBvwUjg6tbdbgQfLdHUMLDvui/UR
-         mqY8QRxauUHd+LxbNpoZsMq31xzVoS97UIbs9279YQeXjPayhm8lNJJLp0vJGdFMSSXw
-         DzUczyq0swBzmOE+vBWtIfkLhSSxBKEDkKjQEVk9R+Dfb3nuJ9znOJ2chsaJF2Hphgrb
-         FatNVY6nkmiWeKGai4Od/Zdd4CEFDazcaWQA/ShiUxjwS1RRBQfzZ2wLp6acsX+QqnpG
-         Ht3lU5hbW6GPFCbzHRvFF77PdjumyCGMUXvfy4T5sh/+2J49vBklzLF3z/v4EIM4U3Co
-         XqyQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ccy11Z40KixrI11cltYn5ZcJWVQJimHuRt26MAfNhAc=;
+        b=mmVOZyqaAUMBtkBBuhdoApFSqfWX3cINwimlNhKZZQP7bUFuplZ9/aIK4LLMO7vJCr
+         qyOqhGyIhI6KCEeiPZLwsC2b07LxNGLnpuzcmV6qFpBXMzpeNGktITcYb5/i+tzmqwrz
+         7cx5/5peX588jl+VQ6N9Q3TMW7Iyn5I2zgmwHgFqykeahAizRFvqAC2iniw39z6abLEf
+         On4jq92Ck02U2dkeqDjvca7VUTt4ZNUqTok0sAkszvDNL97AkFeYH3gKMQAjfU2Ojvja
+         rqUwI5xXgPNFICuQzirzLNc0KSzY72zsy/ztBJ8fxgCLJn6zrD/25W2AyKPQmJOLsPTv
+         M6rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=WcobWQEpWw130naSD1qRlgqF9tLl50nKK3Jb8AKHqY0=;
-        b=50GKd1yc4rrF/r2+uWadidoY+4BfklveVzks7gNy5+ePr4fhRfTCpRss0KYkO76u1X
-         b/Z1Eo7yDKrlSRovKWChYs2AalI5aCoVzKJHbRqNse26yDQpuNyRZ0RNT0jYejIb4+kV
-         ADeoTd9FCUBQ2/0/Q9FqLVNvpSgu6JjYfxeMaUlhe838paxcB/7LIfCqAj+wpd8Evqt5
-         FEX1qKIoNADItH0raB19eVoHdvcAXgYjyziR+TYaRZV1+ZsRFnTxJRVYSG3ibtoz3C6X
-         alZdx654nFgKOZ9fZWmlSAaLPVCtpYy//f31TYPCmOzNwwhKuIPQRJHLYIGif9I3SeD5
-         adkg==
-X-Gm-Message-State: AOAM533SqXMNu8DN03xFRwMR/Wy4jSJLyfIKBqS6iD0f9nZXAEszIzrl
-        VSblrium4bpnkFWArg4g041DaQ==
-X-Google-Smtp-Source: ABdhPJx5H32EiW6wymhJBhzRrbFyAIP2CyBgLVm92yZyD3woYizkxL86BsGpqCkq13ic2tRj2yYhEw==
-X-Received: by 2002:a1c:457:: with SMTP id 84mr1087408wme.161.1633096195384;
-        Fri, 01 Oct 2021 06:49:55 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:82c:5f0:426:4b95:c465:7a47])
-        by smtp.gmail.com with ESMTPSA id l11sm7471658wms.45.2021.10.01.06.49.54
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 01 Oct 2021 06:49:55 -0700 (PDT)
-From:   Loic Poulain <loic.poulain@linaro.org>
-To:     will@kernel.org, robh+dt@kernel.org, joro@8bytes.org
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        shawn.guo@linaro.org, bjorn.andersson@linaro.org,
-        robin.murphy@arm.com, Loic Poulain <loic.poulain@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: arm-smmu: Add qcm2290 compatible strings
-Date:   Fri,  1 Oct 2021 16:00:32 +0200
-Message-Id: <1633096832-7762-2-git-send-email-loic.poulain@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1633096832-7762-1-git-send-email-loic.poulain@linaro.org>
-References: <1633096832-7762-1-git-send-email-loic.poulain@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ccy11Z40KixrI11cltYn5ZcJWVQJimHuRt26MAfNhAc=;
+        b=56uDnHQ8r9/Y/R1E3WZDXDtQFUb0UoQOvDSl0mOR1prNaRsd8MWLDWlpHJysMNK1QG
+         v12eGa5ywVHlcxZCoAILFdMkgZd8RriIhXxK9SdHpHe7s8ku8LpottosrSr1ylT+TaKX
+         XNYdMISJNoajL5e7bXMQwufMkTrcEodmnNHx8slDSk2UQ1I90j+rmZbxx5QJd/x9qUpX
+         cJlcBKqAYggloxTR39SNDnSSLMwBDzkoMjdd3DRdtt+oVEp8hYOZ42IToRDXMKxdjOKq
+         SfhZdKiZA8rzBj1rA1AkyHgZzR3+Gg8hPDFZf4UbjnPfTq3XkZlQIg1EuAfQXQ/00/4g
+         ckag==
+X-Gm-Message-State: AOAM533AuOKPdMsIFkYePuzOfQX60Cn9KUqgYb5MFN9gFvLt+n3s6MFa
+        bML/un5P4cFrNey88+iDOgM2exlq6w2zyRjT6+tMmA==
+X-Google-Smtp-Source: ABdhPJxCT1fIjn0eX7h16hKPoCW6SQiHV9gFT4j/a+Ne56Lp+H5G5HrNrutb2Cfj1iLro5ZcopboLjBeTUlfzWnHMBA=
+X-Received: by 2002:a2e:898c:: with SMTP id c12mr12102788lji.16.1633097254789;
+ Fri, 01 Oct 2021 07:07:34 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210926224058.1252-1-digetx@gmail.com> <20210926224058.1252-15-digetx@gmail.com>
+In-Reply-To: <20210926224058.1252-15-digetx@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 1 Oct 2021 16:06:58 +0200
+Message-ID: <CAPDyKFoZdmnmcdoWsD36uQesSjz8KJOq0JxY5tNbHgO_xMy+_g@mail.gmail.com>
+Subject: Re: [PATCH v13 14/35] drm/tegra: gr3d: Support generic power domain
+ and runtime PM
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible strings for qcm2290 iommu to documentation.
+On Mon, 27 Sept 2021 at 00:42, Dmitry Osipenko <digetx@gmail.com> wrote:
+>
+> Add runtime power management and support generic power domains.
+>
+> Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
+> Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
+> Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T124
+> Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  drivers/gpu/drm/tegra/gr3d.c | 388 ++++++++++++++++++++++++++++++-----
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
----
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
- 1 file changed, 1 insertion(+)
+[...]
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 03f2b2d..e66f20d 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -40,6 +40,7 @@ properties:
-               - qcom,sm8150-smmu-500
-               - qcom,sm8250-smmu-500
-               - qcom,sm8350-smmu-500
-+              - qcom,qcm2290-smmu-500
-           - const: arm,mmu-500
-       - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
-         items:
--- 
-2.7.4
+> +
+> +static int gr3d_probe(struct platform_device *pdev)
+> +{
+> +       struct host1x_syncpt **syncpts;
+> +       struct gr3d *gr3d;
+> +       unsigned int i;
+> +       int err;
+> +
+> +       gr3d = devm_kzalloc(&pdev->dev, sizeof(*gr3d), GFP_KERNEL);
+> +       if (!gr3d)
+> +               return -ENOMEM;
+> +
+> +       platform_set_drvdata(pdev, gr3d);
+> +
+> +       gr3d->soc = of_device_get_match_data(&pdev->dev);
+> +
+> +       syncpts = devm_kzalloc(&pdev->dev, sizeof(*syncpts), GFP_KERNEL);
+> +       if (!syncpts)
+> +               return -ENOMEM;
+> +
+> +       err = gr3d_get_clocks(&pdev->dev, gr3d);
+> +       if (err)
+> +               return err;
+> +
+> +       err = gr3d_get_resets(&pdev->dev, gr3d);
+> +       if (err)
+> +               return err;
+> +
+> +       err = gr3d_init_power(&pdev->dev, gr3d);
+> +       if (err)
+> +               return err;
+> +
+>         INIT_LIST_HEAD(&gr3d->client.base.list);
+>         gr3d->client.base.ops = &gr3d_client_ops;
+>         gr3d->client.base.dev = &pdev->dev;
+> @@ -352,20 +552,36 @@ static int gr3d_probe(struct platform_device *pdev)
+>         gr3d->client.version = gr3d->soc->version;
+>         gr3d->client.ops = &gr3d_ops;
+>
+> +       pm_runtime_enable(&pdev->dev);
+> +       pm_runtime_use_autosuspend(&pdev->dev);
+> +       pm_runtime_set_autosuspend_delay(&pdev->dev, 200);
+> +
+> +       err = devm_pm_opp_register_set_opp_helper(&pdev->dev, gr3d_set_opp);
+> +       if (err)
+> +               goto disable_rpm;
+> +
+> +       err = devm_tegra_core_dev_init_opp_table_common(&pdev->dev);
+> +       if (err)
+> +               goto disable_rpm;
+> +
+>         err = host1x_client_register(&gr3d->client.base);
+>         if (err < 0) {
+>                 dev_err(&pdev->dev, "failed to register host1x client: %d\n",
+>                         err);
+> -               return err;
+> +               goto disable_rpm;
+>         }
+>
+>         /* initialize address register map */
+>         for (i = 0; i < ARRAY_SIZE(gr3d_addr_regs); i++)
+>                 set_bit(gr3d_addr_regs[i], gr3d->addr_regs);
+>
+> -       platform_set_drvdata(pdev, gr3d);
+> -
+>         return 0;
+> +
+> +disable_rpm:
+> +       pm_runtime_dont_use_autosuspend(&pdev->dev);
+> +       pm_runtime_disable(&pdev->dev);
 
+Similar comment as for patch13.
+
+> +
+> +       return err;
+>  }
+>
+>  static int gr3d_remove(struct platform_device *pdev)
+> @@ -380,23 +596,83 @@ static int gr3d_remove(struct platform_device *pdev)
+>                 return err;
+>         }
+>
+> -       if (gr3d->clk_secondary) {
+> -               reset_control_assert(gr3d->rst_secondary);
+> -               tegra_powergate_power_off(TEGRA_POWERGATE_3D1);
+> -               clk_disable_unprepare(gr3d->clk_secondary);
+> +       pm_runtime_dont_use_autosuspend(&pdev->dev);
+> +       pm_runtime_disable(&pdev->dev);
+
+Similar comment as for patch13. You may want to use
+pm_runtime_force_suspend() in favor of pm_runtime_disable().
+
+> +
+> +       return 0;
+> +}
+
+[...]
+
+I was looking for a call to dev_pm_opp_set_rate(), but couldn't find
+it. Isn't that needed when changing the rate of the clock?
+
+Kind regards
+Uffe
