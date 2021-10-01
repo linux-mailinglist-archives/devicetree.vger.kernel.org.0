@@ -2,96 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4878041F321
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 19:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AF2941F334
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 19:38:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355057AbhJARcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 13:32:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354823AbhJARcU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 13:32:20 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C68EDC061775
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 10:30:35 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id s69so12273471oie.13
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 10:30:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=IhB/01/IitH3m4NcKKW8vX/IfPHlPDQqhEV0x9b/C7E=;
-        b=HlOwQHROTnWHik2T8VfIGkqf3Z67AZudlPX/31hUH96V29bu/c+NtgsWRB35Fae6S8
-         LRJpMRytqwLLloUL5SVWhAn+fTyjTWi9hBOYyJPzx0jA5/2izZJvT6HHtKQId01uOYjT
-         6tER8Mwb4KIsIdjxAbVaQo4vTLNxi0Wy4/DwKtRQsmM2pNmdv6mlV3mw51tSfEOA58hV
-         J4CGdHVbtwVlguR7quRULV2ud9lA60Xg7DqxM3Q4poXa7eh9/xcOOkYCBiQ7P4Ai+16D
-         I6qTxZ1DNvPMcZVtnlJmJJl49Toh1yciblo1O1hBLN1UrP28icChZoiCT66oruTHh7NM
-         hTKg==
+        id S229638AbhJARjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 13:39:52 -0400
+Received: from mail-qv1-f49.google.com ([209.85.219.49]:45591 "EHLO
+        mail-qv1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229532AbhJARjv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 13:39:51 -0400
+Received: by mail-qv1-f49.google.com with SMTP id x9so6008982qvn.12;
+        Fri, 01 Oct 2021 10:38:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IhB/01/IitH3m4NcKKW8vX/IfPHlPDQqhEV0x9b/C7E=;
-        b=QDObxQCG6tPrN7ym3aXV3+aFbp4uaWB3BYD04k8nwfyrKioSkSEYyFwbsGI/kEZUkY
-         xxXsCn/ljPOYxN/qa0ureLddcrN6RFX+umn7+RqdgjmkAsYgmNS3tMeIfQLiFjannTeI
-         CjlstIatbagsu9gXC7YHruZjXtaJHnDkn0LjVAB7UbTN8JHt8jvluO6OEf7cFeRtIH9v
-         yuj7niUxMHID5TPfYLho9CaTxO39StTPtOuwOTcTmZNSOd16Ek53SEU8/qlqF0mHbDnI
-         uiUqT2ujDyder2+Myi93XkO51nUuXSqWcjBPlqyRGZX3k/YjhGPb7f8lA6rXAZDF+ffo
-         lp6g==
-X-Gm-Message-State: AOAM531QpuLsi8GvFzO9hAxgJgeCfh9cXnixZBBG/YVUCt8wYprtUpQB
-        Vdc7NueF2QrBaKNWzdNkTPRoyQ==
-X-Google-Smtp-Source: ABdhPJxNJDogYaRDrJIGhbZoMKxXpalTJtz7iUyJqaHo5NPFVSjpShuqvB6eeQBs/lxrG2ph5cJDtw==
-X-Received: by 2002:a05:6808:11c8:: with SMTP id p8mr4762589oiv.72.1633109434912;
-        Fri, 01 Oct 2021 10:30:34 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id z24sm1224876oic.26.2021.10.01.10.30.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Oct 2021 10:30:34 -0700 (PDT)
-Date:   Fri, 1 Oct 2021 10:32:22 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Loic Poulain <loic.poulain@linaro.org>
-Cc:     will@kernel.org, robh+dt@kernel.org, joro@8bytes.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        shawn.guo@linaro.org, robin.murphy@arm.com
-Subject: Re: [PATCH 1/2] iommu: arm-smmu-qcom: Add compatible for qcm2290
-Message-ID: <YVdGJtGnH+RMilBv@ripper>
-References: <1633096832-7762-1-git-send-email-loic.poulain@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X2NaVOihKYDha1rS5ZJPe10csDtV7bota8qvu25P5G8=;
+        b=gsbLCZIOPfs5HxNFWmLyBJh7MtaIkZErQsdvBn/z2pocr3SQnrRgdc04GdWXgC0lOe
+         rDRCs7id8Y9EhNB+6UQ6u2gwlXBAcscD4zexLfpH+Mzs7esw/Eqh/nqVYMgRetabjp8w
+         WJ+7wT2g6m86ZlxXPZ+9MXRiL7B6LN5EB/fLlSBJ24d47B0JCE4Gias3VH8xWVo50HKb
+         vIw8tWbXyznmKGXO0sDEpr56Ky8fMmd8L0pz8UFQiFlKtxCKDgZ4xUYmdd9ghsVsijha
+         OdRE0c9dJDcB0GJpzPMCUjPZIOi+S7cFqLmgNDQiR6mHG6HbFVEoQxd9D/cv+ZdpgRzr
+         FHCw==
+X-Gm-Message-State: AOAM532JPExv8V6hphgPHrNfeOGLkBFe2kpsqDyr/lTbzGiYYHt5cNg+
+        v/7DC7utyL6sWt5Llp/hssODFhlWw7o=
+X-Google-Smtp-Source: ABdhPJxS3cJzK6bcxiiyzmPpcLtXdf+O4n9j+f+AiWVpPGDFNLKquNdV/i5TnFwPxLKn0Oa9GjdbMQ==
+X-Received: by 2002:a0c:f841:: with SMTP id g1mr5822720qvo.58.1633109886640;
+        Fri, 01 Oct 2021 10:38:06 -0700 (PDT)
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com. [209.85.222.176])
+        by smtp.gmail.com with ESMTPSA id v23sm3256614qkj.76.2021.10.01.10.38.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Oct 2021 10:38:06 -0700 (PDT)
+Received: by mail-qk1-f176.google.com with SMTP id 138so9882912qko.10;
+        Fri, 01 Oct 2021 10:38:05 -0700 (PDT)
+X-Received: by 2002:a37:b842:: with SMTP id i63mr10892002qkf.262.1633109885690;
+ Fri, 01 Oct 2021 10:38:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1633096832-7762-1-git-send-email-loic.poulain@linaro.org>
+References: <20211001000417.15334-1-leoyang.li@nxp.com> <20211001000417.15334-3-leoyang.li@nxp.com>
+ <CAL_JsqJShTL4zf2Bh=fYHfsujKu1rtuduxp7EKYsRqEXdkLCEA@mail.gmail.com>
+In-Reply-To: <CAL_JsqJShTL4zf2Bh=fYHfsujKu1rtuduxp7EKYsRqEXdkLCEA@mail.gmail.com>
+From:   Li Yang <leoyang.li@nxp.com>
+Date:   Fri, 1 Oct 2021 12:37:54 -0500
+X-Gmail-Original-Message-ID: <CADRPPNRhVuHTxTpU8RCBMMTVe2V23pjqt8Z5vV=5efepWk6yPg@mail.gmail.com>
+Message-ID: <CADRPPNRhVuHTxTpU8RCBMMTVe2V23pjqt8Z5vV=5efepWk6yPg@mail.gmail.com>
+Subject: Re: [PATCH v2 02/16] dt-bindings: i2c: imx: update schema to align
+ with original txt binding
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 01 Oct 07:00 PDT 2021, Loic Poulain wrote:
+On Fri, Oct 1, 2021 at 8:24 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, Sep 30, 2021 at 7:04 PM Li Yang <leoyang.li@nxp.com> wrote:
+> >
+> > When the binding was converted from txt to yaml, it actually added more
+> > constrains than the original txt binding which was already used in many
+> > in-tree DTSes.  Some of the newly added constrains are either not valid
+> > or not neccessary.
+>
+> IMO, both of these should be fixed in the dts files.
+>
+> > Not all SoCs use ipg as the clock name for i2c.  There is no point in
+> > having SoC integration information defined in i2c binding.  Remove the
+> > clock name requirement in the schema.
+>
+> Any name you want is not fine. Your choices are remove clock-names,
+> add all the names used, or change everyone to use 'ipg'.
 
-> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-> ---
->  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> index 55690af..d105186 100644
-> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> @@ -412,6 +412,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
->  	{ .compatible = "qcom,sm8150-smmu-500" },
->  	{ .compatible = "qcom,sm8250-smmu-500" },
->  	{ .compatible = "qcom,sm8350-smmu-500" },
-> +	{ .compatible = "qcom,qcm2290-smmu-500" },
+I understand that the name should be important as clocks are
+referenced by name.  But since the i2c controller only has one clock ,
+the name is never referenced in the driver.
 
-Would be nice if we kept the alphabetical sort order on these and in the
-binding.
+If we really want to define the name, IMO, it should be from the
+perspective of the i2c controller like "clkin" or "i2c" instead of the
+"ipg" from the perspective of SoC integration which could be changing
+with a different integration.  I can list both "i2c" and "ipg" for now
+as a workaround though.
 
-With that, please feel free to add my R-b
+>
+> > The original txt binding didn't require the order of tx and rx for
+> > dmas/dma-names.  Many in tree DTSes are already using the other order.
+> > Both orders should just work fine.  Update the schema to allow both.
+>
+> Doesn't sound like a case where defining the order is challenging.
 
-Regards,
-Bjorn
+No, it is not challenging.  But as dma channel is only referenced by
+name instead of index.  I don't see too much benefit in enforcing the
+order other than easier to create the schema.
 
->  	{ }
->  };
->  
-> -- 
-> 2.7.4
-> 
+>
+> Rob
