@@ -2,119 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D69C941EEAF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 15:39:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 516EB41EF00
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 15:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353601AbhJANle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 09:41:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42306 "EHLO
+        id S231658AbhJAOBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 10:01:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231745AbhJANld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 09:41:33 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6FE0C06177E
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 06:39:48 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id i4so39398762lfv.4
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 06:39:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EjEzezsR+/PambgN+lAAYZ1z9rojBWgi6PT34tsYxbI=;
-        b=C6fV4yWw1ceIqlo3pLFwCxKnhVCw/kuzIb7ecScYvV7TNg4eT2p4ZPgCXRjlPQxuCS
-         Wdr/7z3822oHu/gKY7pb2CMDmwChG2MImExZ3SoiaWINyTtW1mjxzlIHKKJVuIYKx8hL
-         XXDlmZ7O6Q9suRQD3j6+xskiuv0wxvOHMTdBDNCKErUgilJvcT2E9jxQ+bUfhhOn3Zl2
-         PegGBhq5uW1fZcmpSDj8XwDwrskqlXtJCleoq2gIF4EIY51y2Y2nzExVxEGZFUBtMPZS
-         64vraK/EdUmAWqAarHFzUdqeZf01jrOztwUyhU1RKUkqlXcaOnw2/6iNrgizwk96n/W6
-         ZSQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EjEzezsR+/PambgN+lAAYZ1z9rojBWgi6PT34tsYxbI=;
-        b=1xvWolb+gnHmwDGrNfa8RfM9/tw2hZ4Jx8r9UhCCC+LVZKmRt2M4uAO0fUn/vhZtap
-         4a/iMtcQvu0BCYXbsjum84XJLO3Nr/Vu8qZCIx3TtFMiMLH9u9B51E7CJMHHNEknYtTn
-         wpxpAbH2BytplM5UdfW6mngU6pgMjwrRCBWj0tpyE7c+sjmv3GAIQnlA1drktagP0aXf
-         74g+S+LOdTabzRQf0iQRXYWGwbMB/wNP+m5j2Dxx3+oMAoTIlKUnH53/zxf5rYk0TMSa
-         3lDHUJQf8jyF+W4kG42OsDM5nOmNjCURn/nX8tPV4EBPk6N+YWF07XTN5M6RKhUwUw92
-         L6Bw==
-X-Gm-Message-State: AOAM533ILCNrvoe8hK/psJ/F0v3TB3UFF5x/k2b4CwWtFjsd5n8fclbI
-        uE/8Atdy/rJaheVmI/lB7JA3zQcWzT8y9i5MqFwWrw==
-X-Google-Smtp-Source: ABdhPJxp4p0UQRRIw2z72BWkWXdCGpyRnefweou3T6S9p6407CeSYXpm2W/gIhkCapLJ10cfY553xwNF/HrJa5MfNR0=
-X-Received: by 2002:a05:651c:2006:: with SMTP id s6mr12122181ljo.4.1633095586851;
- Fri, 01 Oct 2021 06:39:46 -0700 (PDT)
+        with ESMTP id S231458AbhJAOBB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 10:01:01 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65E0DC061775;
+        Fri,  1 Oct 2021 06:59:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=l0QKhZJiAMYm7mghBwurn/4et/ZmCUBUJgrearXat5U=; b=Ijcc/b8pN/nBoXWU0tDCNKAo0i
+        wJZmZZeytyRph7TCobJihIYREzd8TKIbbO/EhKxX0H/q2BubmrxCq+9gRjPAgmEI+HPalk4n3Xv5o
+        fQxpLNUTG4/HeszbJhbrVQA0xVWH8yxUFUJILUWpjXm26EEpVWjMvFDhZwKSyIQpbOr0=;
+Received: from p200300ccff0b42001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0b:4200:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mWJ4B-0000sG-Gc; Fri, 01 Oct 2021 15:59:12 +0200
+Received: from andi by aktux with local (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mWJ4B-00CDum-1D; Fri, 01 Oct 2021 15:59:11 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH] ARM: dts: omap3: fix cpu thermal label name
+Date:   Fri,  1 Oct 2021 15:59:08 +0200
+Message-Id: <20211001135908.2913378-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210926224058.1252-1-digetx@gmail.com> <20210926224058.1252-14-digetx@gmail.com>
-In-Reply-To: <20210926224058.1252-14-digetx@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 1 Oct 2021 15:39:10 +0200
-Message-ID: <CAPDyKFpzhv1UxjM0q5AWHVxTWC_cCO_Kg_6exO0o_=EoVvjo+w@mail.gmail.com>
-Subject: Re: [PATCH v13 13/35] drm/tegra: gr2d: Support generic power domain
- and runtime PM
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Sept 2021 at 00:42, Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> Add runtime power management and support generic power domains.
->
-> Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
-> Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
-> Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T124
-> Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/gpu/drm/tegra/gr2d.c | 155 +++++++++++++++++++++++++++++++++--
+Hyphens should be used in label names. make dtbs_check complains
+about that since it does not match the corresponding pattern
 
-[...]
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+ arch/arm/boot/dts/omap3-cpu-thermal.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->  static int gr2d_remove(struct platform_device *pdev)
-> @@ -259,15 +312,101 @@ static int gr2d_remove(struct platform_device *pdev)
->                 return err;
->         }
->
-> +       pm_runtime_dont_use_autosuspend(&pdev->dev);
-> +       pm_runtime_disable(&pdev->dev);
+diff --git a/arch/arm/boot/dts/omap3-cpu-thermal.dtsi b/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
+index 1ed837859374..a9069cca5888 100644
+--- a/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
++++ b/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
+@@ -10,7 +10,7 @@
+ 
+ #include <dt-bindings/thermal/thermal.h>
+ 
+-cpu_thermal: cpu_thermal {
++cpu_thermal: cpu-thermal {
+ 	polling-delay-passive = <250>; /* milliseconds */
+ 	polling-delay = <1000>; /* milliseconds */
+ 	coefficients = <0 20000>;
+-- 
+2.30.2
 
-There is no guarantee that the ->runtime_suspend() has been invoked
-here, which means that clock may be left prepared/enabled beyond this
-point.
-
-I suggest you call pm_runtime_force_suspend(), instead of
-pm_runtime_disable(), to make sure that gets done.
-
-[...]
-
-Kind regards
-Uffe
