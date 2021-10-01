@@ -2,181 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D82BF41E663
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 06:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D45641E693
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 06:23:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238250AbhJAED2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 00:03:28 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:21977 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237038AbhJAED0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 00:03:26 -0400
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 30 Sep 2021 21:01:41 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 30 Sep 2021 21:01:39 -0700
-X-QCInternal: smtphost
-Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 01 Oct 2021 09:31:17 +0530
-Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
-        id 4BDE3551D; Fri,  1 Oct 2021 09:31:16 +0530 (IST)
-From:   Satya Priya <skakit@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        swboyd@chromium.org, collinsd@codeurora.org,
-        subbaram@codeaurora.org, kgunda@codeaurora.org,
-        satya priya <skakit@codeaurora.org>
-Subject: [PATCH V2 4/4] arm64: dts: qcom: sc7280: Add pm8008 regulators support for sc7280-idp
-Date:   Fri,  1 Oct 2021 09:30:59 +0530
-Message-Id: <1633060859-22969-5-git-send-email-skakit@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1633060859-22969-1-git-send-email-skakit@codeaurora.org>
-References: <1633060859-22969-1-git-send-email-skakit@codeaurora.org>
+        id S233167AbhJAEZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 00:25:22 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:23048 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232679AbhJAEZT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Oct 2021 00:25:19 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633062216; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Dip6+gsZTv4hc6KbmQol7EirdVFSF+SQtqWOT76YHBw=;
+ b=u2Bs9Bcp5hgegRRAczorGuXXGuIXr6/HVmA4E43Vx4R68Wm5eTzvseh3WUU5YMuHrVdW8iWX
+ IKIyDMwRiTU+j3DRpdNTMyHP0WrNoroJm8rW3WkB27iiR15fvAIZHzCn+IimqaDYRvr+mnl+
+ WHel3J/M8ac/v4jbW5yN5t4xVSw=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 61568d47713d5d6f96c62c82 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 01 Oct 2021 04:23:35
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6A6C6C43460; Fri,  1 Oct 2021 04:23:34 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 81A92C4338F;
+        Fri,  1 Oct 2021 04:23:33 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 01 Oct 2021 09:53:33 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mailing List <devicetree-spec@vger.kernel.org>,
+        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: Re: [PATCH] Add system-cache-controller to the list of generic node
+ names
+In-Reply-To: <CAL_Jsq+vkpigu3P+dkAVXT7nypnJA_R8LBPGgj9wERcCW6P36w@mail.gmail.com>
+References: <20210929052613.8589-1-saiprakash.ranjan@codeaurora.org>
+ <CAL_JsqLzDejj99C6CPuW+19cgwdDVkctppL_SFeWnAG5LUkscw@mail.gmail.com>
+ <d9894ca86ed9a56ebf118a91bfe1b91d@codeaurora.org>
+ <CAL_Jsq+vkpigu3P+dkAVXT7nypnJA_R8LBPGgj9wERcCW6P36w@mail.gmail.com>
+Message-ID: <84f956f861e55bbfc1df0761ce7b4786@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: satya priya <skakit@codeaurora.org>
+On 2021-09-30 19:03, Rob Herring wrote:
+> On Wed, Sep 29, 2021 at 11:06 PM Sai Prakash Ranjan
+> <saiprakash.ranjan@codeaurora.org> wrote:
+>> 
+>> On 2021-09-29 18:12, Rob Herring wrote:
+>> > On Wed, Sep 29, 2021 at 12:26 AM Sai Prakash Ranjan
+>> > <saiprakash.ranjan@codeaurora.org> wrote:
+>> >>
+>> >> System Cache Controller (Last Level Cache Controller/LLCC) does not
+>> >> have a cache-level associated with it as enforced by the already
+>> >> existing 'cache-controller' node name, so add system-cache-controller
+>> >> to the list of generic node names as decided on the lkml in [1][2]
+>> >> and already being used in the dts for sometime now.
+>> >>
+>> >> [1]
+>> >> https://lore.kernel.org/lkml/5dcd8588.1c69fb81.2528a.3460@mx.google.com/
+>> >> [2]
+>> >> https://lore.kernel.org/lkml/cover.1573814758.git.saiprakash.ranjan@codeaurora.org/
+>> >>
+>> >> Cc: Stephen Boyd <swboyd@chromium.org>
+>> >> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+>> >> Cc: Rajendra Nayak <rnayak@codeaurora.org>
+>> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+>> >> ---
+>> >>  source/chapter2-devicetree-basics.rst | 1 +
+>> >>  1 file changed, 1 insertion(+)
+>> >>
+>> >> diff --git a/source/chapter2-devicetree-basics.rst
+>> >> b/source/chapter2-devicetree-basics.rst
+>> >> index 40be22192b2f..c06c5063c68b 100644
+>> >> --- a/source/chapter2-devicetree-basics.rst
+>> >> +++ b/source/chapter2-devicetree-basics.rst
+>> >> @@ -276,6 +276,7 @@ name should be one of the following choices:
+>> >>     * sram-controller
+>> >>     * ssi-controller
+>> >>     * syscon
+>> >> +   * system-cache-controller
+>> >
+>> > I don't want to encourage others to use this over 'cache-controller'
+>> > and the standard binding.
+>> >
+>> 
+>> Right, but why would others use this over cache-controller? This is
+>> supposed
+>> to be used only for last level cache controllers where there is no
+>> cache-level
+>> associated with it like in the system cache controller/LLCC found in 
+>> QTI
+>> SoCs.
+> 
+> I don't agree there's never a level.
+> 
 
-Add pm8008 regulators support for sc7280 idp.
+More like it isn't used for now.
 
-Signed-off-by: satya priya <skakit@codeaurora.org>
----
-Changes in V2:
- - As per Stephen's comments, replaced '_' with '-' for node names.
+> Using the cache binding will be necessary if you want to populate the
+> kernel's cache info. If your caches have MPAM support, they are going
+> to need to follow the cache binding as well.
+> 
+>> Also you had acked the corresponding change in the DT binding for LLCC
+>> [1].
+> 
+> Yes, but that doesn't mean it belongs in the spec. Maybe when we have
+> more than 1 case that will change, but for now I don't think it should
+> be in the spec.
+> 
 
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 103 +++++++++++++++++++++++++++++++
- 1 file changed, 103 insertions(+)
+All right, will drop this change for now.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 272d5ca..b953261 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -280,6 +280,97 @@
- 	};
- };
- 
-+&i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	pm8008_chip: pm8008@8 {
-+		compatible = "qcom,pm8008";
-+		reg = <0x8>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pm8008_active>;
-+	};
-+
-+	pm8008_ldo: pm8008@9 {
-+		compatible = "qcom,pm8008";
-+		reg = <0x9>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8008-regulators {
-+			compatible = "qcom,pm8008-regulator";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-+			vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-+			vdd_l5-supply = <&vreg_bob>;
-+			vdd_l6-supply = <&vreg_bob>;
-+			vdd_l7-supply = <&vreg_bob>;
-+
-+			pm8008_l1: regulator@4000 {
-+				reg = <0x4000>;
-+				regulator-name = "pm8008_l1";
-+				regulator-min-microvolt = <950000>;
-+				regulator-max-microvolt = <1300000>;
-+				qcom,min-dropout-voltage = <96000>;
-+			};
-+
-+			pm8008_l2: regulator@4100 {
-+				reg = <0x4100>;
-+				regulator-name = "pm8008_l2";
-+				regulator-min-microvolt = <950000>;
-+				regulator-max-microvolt = <1250000>;
-+				qcom,min-dropout-voltage = <24000>;
-+			};
-+
-+			pm8008_l3: regulator@4200 {
-+				reg = <0x4200>;
-+				regulator-name = "pm8008_l3";
-+				regulator-min-microvolt = <1650000>;
-+				regulator-max-microvolt = <3000000>;
-+				qcom,min-dropout-voltage = <224000>;
-+			};
-+
-+			pm8008_l4: regulator@4300 {
-+				reg = <0x4300>;
-+				regulator-name = "pm8008_l4";
-+				regulator-min-microvolt = <1504000>;
-+				regulator-max-microvolt = <1600000>;
-+				qcom,min-dropout-voltage = <0>;
-+			};
-+
-+			pm8008_l5: regulator@4400 {
-+				reg = <0x4400>;
-+				regulator-name = "pm8008_l5";
-+				regulator-min-microvolt = <2600000>;
-+				regulator-max-microvolt = <3000000>;
-+				qcom,min-dropout-voltage = <104000>;
-+			};
-+
-+			pm8008_l6: regulator@4500 {
-+				reg = <0x4500>;
-+				regulator-name = "pm8008_l6";
-+				regulator-min-microvolt = <2600000>;
-+				regulator-max-microvolt = <3000000>;
-+				qcom,min-dropout-voltage = <112000>;
-+			};
-+
-+			pm8008_l7: regulator@4600 {
-+				reg = <0x4600>;
-+				regulator-name = "pm8008_l7";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3544000>;
-+				qcom,min-dropout-voltage = <96000>;
-+			};
-+		};
-+	};
-+};
-+
- &qfprom {
- 	vcc-supply = <&vreg_l1c_1p8>;
- };
-@@ -408,6 +499,18 @@
- 	};
- };
- 
-+&pm8350c_gpios {
-+	pm8008-reset {
-+		pm8008_active: pm8008-active {
-+			pins = "gpio4";
-+			function = "normal";
-+			bias-disable;
-+			output-high;
-+			power-source = <0>;
-+		};
-+	};
-+};
-+
- &qspi_cs0 {
- 	bias-disable;
- };
+Thanks,
+Sai
+
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
 of Code Aurora Forum, hosted by The Linux Foundation
-
