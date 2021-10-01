@@ -2,135 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3035D41EA2D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 11:55:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1840A41EA3F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 11:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353079AbhJAJ5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 05:57:34 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:51741 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352943AbhJAJ5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 05:57:33 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633082149; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=tMw5Hzb3ztdNEHxY4bAev68n6seU8HT3Mf7aFuIt4P8=; b=n3yfemAU4rXEv6phatHY6LXxASqqbl/Rhuk7Lwyyr7oVUWjLGwZ0ml7rcHU5HKzjwUZJc4Pa
- QkfgrY/u/i2PAFb+00d+Kb2idnGpGg15l/uMg0whpJiGtUwU+fqCG5H+XPEkOXz0C81191Ma
- F0tM8Vj7OOkfkpL1XUglAaugNfw=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 6156db1c605ecf100b49b60d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 01 Oct 2021 09:55:40
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 910CFC43618; Fri,  1 Oct 2021 09:55:40 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E8C99C4338F;
-        Fri,  1 Oct 2021 09:55:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org E8C99C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v7 13/24] wfx: add hif_tx*.c/hif_tx*.h
-References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
-        <20210920161136.2398632-14-Jerome.Pouiller@silabs.com>
-Date:   Fri, 01 Oct 2021 12:55:33 +0300
-In-Reply-To: <20210920161136.2398632-14-Jerome.Pouiller@silabs.com> (Jerome
-        Pouiller's message of "Mon, 20 Sep 2021 18:11:25 +0200")
-Message-ID: <87fstlkr1m.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+        id S1353211AbhJAKBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 06:01:15 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:33787 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353069AbhJAKBO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 06:01:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1633082355;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=w7sUq6VJrsloj/8hoAJ9FcuFqQDBPa68Sv7hZ9Jm3Og=;
+    b=ZQMWyINswwhaTtSbMHYTg3UI8KdfyyD8BuZWtHm92xE981aY1vxh5nV4jiNDMMynZe
+    BevYiwpa0IAFdVYYV4u4eHd7dakjfUxl6XOeH68IqC+brxaNPuYKhH2KEMaFm3BX8YV+
+    +auHcHEqFtYH2hWcfYcPpD+qWR8aOCCsDXwz/qSwxqNHvI0YwctWoX+lt60YZLDAAyvy
+    PF7Q3N2CZKjO6kMhD/QK2W1UohjD/3C+uKmxZY+VMMd2mObCZ7rlP8yo421yh4r2eWhT
+    FoP/kRKXnFe4FMBhLTrpv61ahYCPzVEBGX62/X7QPIafN1b7EMUQIaNNGqxp1CsW/lV6
+    jReQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3iMMVxw=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
+    with ESMTPSA id I01f74x919xEruR
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Fri, 1 Oct 2021 11:59:14 +0200 (CEST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH V2] ARM: dts: omap36xx: Remove turbo mode for 1GHz
+ variants
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20211001095404.41f73d88@aktux>
+Date:   Fri, 1 Oct 2021 11:59:14 +0200
+Cc:     Adam Ford <aford173@gmail.com>, linux-omap@vger.kernel.org,
+        aford@beaconembedded.com,
+        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <C0A84970-0AAC-42E7-8E0F-4D165F0C9551@goldelico.com>
+References: <20210109170103.1249838-1-aford173@gmail.com>
+ <20211001095404.41f73d88@aktux>
+To:     Andreas Kemnade <andreas@kemnade.info>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
 
-> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
->
-> Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
 
-[...]
+> Am 01.10.2021 um 09:54 schrieb Andreas Kemnade <andreas@kemnade.info>:
+>=20
+> On Sat,  9 Jan 2021 11:01:03 -0600
+> Adam Ford <aford173@gmail.com> wrote:
+>=20
+>> Previously, the 1GHz variants were marked as a turbo,
+>> because that variant has reduced thermal operating range.
+>>=20
+>> Now that the thermal throttling is in place, it should be
+>> safe to remove the turbo-mode from the 1GHz variants, because
+>> the CPU will automatically slow if the thermal limit is reached.
+>>=20
+>> Signed-off-by: Adam Ford <aford173@gmail.com>
+>> ---
+>> V2:  The orignal patch had the wrong file added. Add the =
+omap36xx.dtsi
+>>=20
+> hmm, I somehow expected that there is a revert of this thing going
+> through. But now, the turbo-mode is still missing
 
-> --- /dev/null
-> +++ b/drivers/net/wireless/silabs/wfx/hif_tx_mib.h
-> @@ -0,0 +1,49 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Implementation of the host-to-chip MIBs of the hardware API.
-> + *
-> + * Copyright (c) 2017-2020, Silicon Laboratories, Inc.
-> + * Copyright (c) 2010, ST-Ericsson
-> + * Copyright (C) 2010, ST-Ericsson SA
-> + */
-> +#ifndef WFX_HIF_TX_MIB_H
-> +#define WFX_HIF_TX_MIB_H
-> +
-> +struct wfx_vif;
-> +struct sk_buff;
-> +
-> +int hif_set_output_power(struct wfx_vif *wvif, int val);
-> +int hif_set_beacon_wakeup_period(struct wfx_vif *wvif,
-> +				 unsigned int dtim_interval,
-> +				 unsigned int listen_interval);
-> +int hif_set_rcpi_rssi_threshold(struct wfx_vif *wvif,
-> +				int rssi_thold, int rssi_hyst);
-> +int hif_get_counters_table(struct wfx_dev *wdev, int vif_id,
-> +			   struct hif_mib_extended_count_table *arg);
-> +int hif_set_macaddr(struct wfx_vif *wvif, u8 *mac);
-> +int hif_set_rx_filter(struct wfx_vif *wvif,
-> +		      bool filter_bssid, bool fwd_probe_req);
-> +int hif_set_beacon_filter_table(struct wfx_vif *wvif, int tbl_len,
-> +				const struct hif_ie_table_entry *tbl);
-> +int hif_beacon_filter_control(struct wfx_vif *wvif,
-> +			      int enable, int beacon_count);
-> +int hif_set_operational_mode(struct wfx_dev *wdev, enum hif_op_power_mod=
-e mode);
-> +int hif_set_template_frame(struct wfx_vif *wvif, struct sk_buff *skb,
-> +			   u8 frame_type, int init_rate);
-> +int hif_set_mfp(struct wfx_vif *wvif, bool capable, bool required);
-> +int hif_set_block_ack_policy(struct wfx_vif *wvif,
-> +			     u8 tx_tid_policy, u8 rx_tid_policy);
-> +int hif_set_association_mode(struct wfx_vif *wvif, int ampdu_density,
-> +			     bool greenfield, bool short_preamble);
-> +int hif_set_tx_rate_retry_policy(struct wfx_vif *wvif,
-> +				 int policy_index, u8 *rates);
-> +int hif_keep_alive_period(struct wfx_vif *wvif, int period);
-> +int hif_set_arp_ipv4_filter(struct wfx_vif *wvif, int idx, __be32 *addr);
-> +int hif_use_multi_tx_conf(struct wfx_dev *wdev, bool enable);
-> +int hif_set_uapsd_info(struct wfx_vif *wvif, unsigned long val);
-> +int hif_erp_use_protection(struct wfx_vif *wvif, bool enable);
-> +int hif_slot_time(struct wfx_vif *wvif, int val);
-> +int hif_wep_default_key_id(struct wfx_vif *wvif, int val);
-> +int hif_rts_threshold(struct wfx_vif *wvif, int val);
+tagging by turbo-mode means the OPP is *disabled* by default and
+needs to be enabled actively.
 
-"wfx_" prefix missing from quite a few functions.
+> and I understood the
+> revert is only in Nikolaus' trees.
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
+It is just a revert for the gta04a5 because I think it is the only board
+which is affected (maybe it would need SmartReflex in operation to
+fine tune the OPPs compared to the generic table). Therefore I have
+a patch which adds turbo-mode to the gta04a5.dts
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+> The 1Ghz mode was working for some
+> time but does not anymore. Is it just me or do others also have the
+> same problems?
+
+That would be interesting to know.
+
+BR,
+NIkolaus
+
+>=20
+>=20
+>> diff --git a/arch/arm/boot/dts/omap36xx.dtsi =
+b/arch/arm/boot/dts/omap36xx.dtsi
+>> index 05fe5ed127b0..20844dbc002e 100644
+>> --- a/arch/arm/boot/dts/omap36xx.dtsi
+>> +++ b/arch/arm/boot/dts/omap36xx.dtsi
+>> @@ -72,7 +72,6 @@ opp1g-1000000000 {
+>> 					 <1375000 1375000 1375000>;
+>> 			/* only on am/dm37x with speed-binned bit set */
+>> 			opp-supported-hw =3D <0xffffffff 2>;
+>> -			turbo-mode;
+>> 		};
+>> 	};
+>>=20
+>=20
+
