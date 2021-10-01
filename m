@@ -2,180 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EA7C41F154
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 17:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A02C41F187
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 17:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355039AbhJAPkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 11:40:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42096 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232257AbhJAPkB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 11:40:01 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC7AC06177D
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 08:38:16 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id i4so40801362lfv.4
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 08:38:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=6A5eWZRYPq2y4phPK9+CWlezfURq0tv1a8DQf5ALkTk=;
-        b=O+MJpMdT+wGtP+L8d5YpDRq5uey0ctUtAD658N0P3a/rrf3cCwvjwKblyMc8BrpLKc
-         ZtlilAwX54jLce3m+AuzyBKpoBiblrSQtGPUanvdP+L3p/yGQp2/fR9Ras2oofTNACFE
-         5klqHeXe3dXV/7bw9GItNLb6s54DmQnNtkZlsTQysNE9BID/KXYNZNjL+YVGN90n6A/j
-         FVURrF/pCISPIYCn96pzNv/xglnMhTOvKtNak3d15JjtBnYG3QIHaPmm5C5qHkpQ3LKc
-         dzaMpVaomTHMZBGbLM+1e5i7ZOzCSZ4xbY40bR+E5g5Fa1Kg+GMFgpzCVZ4oX0Ahic0v
-         9p1g==
+        id S232025AbhJAPxF convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 1 Oct 2021 11:53:05 -0400
+Received: from mail-ua1-f51.google.com ([209.85.222.51]:37815 "EHLO
+        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231649AbhJAPxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 11:53:04 -0400
+Received: by mail-ua1-f51.google.com with SMTP id t36so7006468uad.4;
+        Fri, 01 Oct 2021 08:51:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=6A5eWZRYPq2y4phPK9+CWlezfURq0tv1a8DQf5ALkTk=;
-        b=nbdJUJPHK3vsaSMKtuMjg9e5Btfwzspgd70gsXbY9luon4Qy8kJkWXmZPdDuGwnm4h
-         t8bhumPGvGXOPkzlVA4B3kRpqsCOwTZ2aGTYwRxyR1BLSmFYyN021CmGTv+XPjhxqEdG
-         fAR6Qqx+sFFq/c+xSJrUb90uoDIS6FEbK/yhetedfLeAdn32E0mE/WXx/XgLLu6Z33VS
-         wWJ8z51gU02L620fwmOKEhV2leB0JR322cuedDmySYEFlyKMG+BOpQV4MKtq2lfbDNuZ
-         SsceQALCXK2NhIXKwiNvTelh/G80SnQxCIvFVRzWO4oNI8zdr1iaV3ayN9bANySGtZiD
-         MBPA==
-X-Gm-Message-State: AOAM530wYYHWfonD59l/SBLVQ+evYEcwFfb70lDLBv61RJs/TFlj7foL
-        zm79lFi+IrjfggfkSk9Cw87L8ziJER9yo1AGEs/Q0w==
-X-Google-Smtp-Source: ABdhPJwoZz8ZbUHqp0gwTDx94pmhbFjVKS3zXTpbCPNRVrdBj9Exo6x5JROj2k8NVSQkldadAtO8LBiB11Huutsiuto=
-X-Received: by 2002:a05:651c:213:: with SMTP id y19mr12199656ljn.273.1633102694548;
- Fri, 01 Oct 2021 08:38:14 -0700 (PDT)
+        bh=V6QG7RVsPgL4MT7taFNIN3h9Vdu7FgpTMDBW2+9dAy4=;
+        b=7BnA7/BKelXoYxWK8iaAnS6yK1zR/K2UeEcIieD0HuVZDzmmHpNWuWD0+p/WMQn5zO
+         0o3P2pYBxATEpAw0PsG/kcug113d8V8cvcpNKwh/tzcx/5wiRsSvZoiA9WziVNJxMDYk
+         XoZ6gmV/i6ppNwnjN4y2cAgmPppHcSw6fsC/J2sEdfDQVL6nx69wEPjVU2CDsf/ID6f9
+         5bWAC90hkywi3Wfi9q1Na9f6trFJ+PAenh6GgdsXn5W37kaDRKdbK0eb3653pvTvx0Em
+         lFiFs8gz9jElGNwc36+qxh7cbBBYXFmnAWEmv0PiQpEwaWL3piF43XG3feD6s1aeN4dC
+         8Ijg==
+X-Gm-Message-State: AOAM531+5owAxqxQU0/RlnGdH32liuXwueZ5mM92fMX93t5+MQNb2UoN
+        30t+y/RfS8CoXG7PKIHzhgTSmqNf2PpV4bF3+R0=
+X-Google-Smtp-Source: ABdhPJxSLKh9AvpGnMkJMf+4rL5ey13Duasr9b9pl5UUVIbEI9s1F181091Vc8CdXHhLM8BddUTmHotIzJX01V/YUxw=
+X-Received: by 2002:ab0:16d4:: with SMTP id g20mr10998662uaf.114.1633103479588;
+ Fri, 01 Oct 2021 08:51:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
- <20210920161136.2398632-9-Jerome.Pouiller@silabs.com> <CAPDyKFp2_41mScO=-Ev+kvYD5xjShQdLugU_2FTTmvzgCxmEWA@mail.gmail.com>
- <19731906.ZuIkq4dnIL@pc-42>
-In-Reply-To: <19731906.ZuIkq4dnIL@pc-42>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 1 Oct 2021 17:37:38 +0200
-Message-ID: <CAPDyKFpbZypaLVmE2J+rGzAXgdWp1koD8pRxBKo3kFK3NDTFWw@mail.gmail.com>
-Subject: Re: [PATCH v7 08/24] wfx: add bus_sdio.c
-To:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
-Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+References: <20210914143835.511051-1-geert@linux-m68k.org> <20210914143835.511051-20-geert@linux-m68k.org>
+ <4602a8e681db4d0ebc43e4dafee8c28e@protonic.nl>
+In-Reply-To: <4602a8e681db4d0ebc43e4dafee8c28e@protonic.nl>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 1 Oct 2021 17:51:08 +0200
+Message-ID: <CAMuHMdVOa8DAGJQpJ8AotARxfh9PvpskJJa6k48jE92-P+GLRA@mail.gmail.com>
+Subject: Re: [PATCH v6 19/19] auxdisplay: ht16k33: Add LED support
+To:     Robin van der Gracht <robin@protonic.nl>
+Cc:     Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Sept 2021 at 18:51, J=C3=A9r=C3=B4me Pouiller
-<jerome.pouiller@silabs.com> wrote:
->
-> Hello Ulf,
->
-> On Thursday 30 September 2021 12:07:55 CEST Ulf Hansson wrote:
-> > On Mon, 20 Sept 2021 at 18:12, Jerome Pouiller
-> > <Jerome.Pouiller@silabs.com> wrote:
-> > >
-> > > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
-> > >
-> > > Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
-> > > ---
-> > >  drivers/net/wireless/silabs/wfx/bus_sdio.c | 261 +++++++++++++++++++=
-++
-> > >  1 file changed, 261 insertions(+)
-> > >  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
-> > >
-> > > diff --git a/drivers/net/wireless/silabs/wfx/bus_sdio.c b/drivers/net=
-/wireless/silabs/wfx/bus_sdio.c
+Hoi Robin,
+
+On Thu, Sep 30, 2021 at 12:57 PM Robin van der Gracht <robin@protonic.nl> wrote:
+> On 2021-09-14 16:38, Geert Uytterhoeven wrote:
+> > Instantiate a single LED based on the "led" subnode in DT.
+> > This allows the user to control display brightness and blinking (backed
+> > by hardware support) through the LED class API and triggers, and exposes
+> > the display color.  The LED will be named
+> > "auxdisplay:<color>:<function>".
 > >
-> > [...]
+> > When running in dot-matrix mode and if no "led" subnode is found, the
+> > driver falls back to the traditional backlight mode, to preserve
+> > backwards compatibility.
 > >
-> > > +
-> > > +static int wfx_sdio_probe(struct sdio_func *func,
-> > > +                         const struct sdio_device_id *id)
-> > > +{
-> > > +       struct device_node *np =3D func->dev.of_node;
-> > > +       struct wfx_sdio_priv *bus;
-> > > +       int ret;
-> > > +
-> > > +       if (func->num !=3D 1) {
-> > > +               dev_err(&func->dev, "SDIO function number is %d while=
- it should always be 1 (unsupported chip?)\n",
-> > > +                       func->num);
-> > > +               return -ENODEV;
-> > > +       }
-> > > +
-> > > +       bus =3D devm_kzalloc(&func->dev, sizeof(*bus), GFP_KERNEL);
-> > > +       if (!bus)
-> > > +               return -ENOMEM;
-> > > +
-> > > +       if (!np || !of_match_node(wfx_sdio_of_match, np)) {
-> > > +               dev_warn(&func->dev, "no compatible device found in D=
-T\n");
-> > > +               return -ENODEV;
-> > > +       }
-> > > +
-> > > +       bus->func =3D func;
-> > > +       bus->of_irq =3D irq_of_parse_and_map(np, 0);
-> > > +       sdio_set_drvdata(func, bus);
-> > > +       func->card->quirks |=3D MMC_QUIRK_LENIENT_FN0 |
-> > > +                             MMC_QUIRK_BLKSZ_FOR_BYTE_MODE |
-> > > +                             MMC_QUIRK_BROKEN_BYTE_MODE_512;
+> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> > Reviewed-by: Marek Behún <kabel@kernel.org>
+> > ---
+> > v6:
+> >   - Add Reviewed-by,
+> >   - Reorder operations in ht16k33_led_probe() to ease future conversion
+> >     to device properties,
+
+> > --- a/drivers/auxdisplay/ht16k33.c
+> > +++ b/drivers/auxdisplay/ht16k33.c
+> > @@ -425,6 +477,35 @@ static void ht16k33_seg14_update(struct work_struct
+> > *work)
+> >       i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), buf);
+> >  }
 > >
-> > I would rather see that you add an SDIO_FIXUP for the SDIO card, to
-> > the sdio_fixup_methods[], in drivers/mmc/core/quirks.h, instead of
-> > this.
+> > +static int ht16k33_led_probe(struct device *dev, struct led_classdev *led,
+> > +                          unsigned int brightness)
+> > +{
+> > +     struct led_init_data init_data = {};
+> > +     struct device_node *node;
+> > +     int err;
+> > +
+> > +     /* The LED is optional */
+> > +     node = of_get_child_by_name(dev->of_node, "led");
+> > +     if (!node)
+> > +             return 0;
+> > +
+> > +     init_data.fwnode = of_fwnode_handle(node);
+> > +     init_data.devicename = "auxdisplay";
+> > +     init_data.devname_mandatory = true;
+> > +
+> > +     led->brightness_set_blocking = ht16k33_brightness_set_blocking;
+> > +     led->blink_set = ht16k33_blink_set;
+> > +     led->flags = LED_CORE_SUSPENDRESUME;
+> > +     led->brightness = brightness;
+> > +     led->max_brightness = MAX_BRIGHTNESS;
 >
-> In the current patch, these quirks are applied only if the device appears
-> in the device tree (see the condition above). If I implement them in
-> drivers/mmc/core/quirks.h they will be applied as soon as the device is
-> detected. Is it what we want?
+> What do you think about adding a default trigger and making it 'backlight'?
 >
-> Note: we already have had a discussion about the strange VID/PID declared
-> by this device:
->   https://www.spinics.net/lists/netdev/msg692577.html
+> led->default_trigger = "blacklight";
+>
+> Or as an alternative, suggesting linux,default-trigger = "backlight" in the
+> docs? Since the led class won't respond to blank events by just making it's
+> function LED_FUNCTION_BACKLIGHT.
+>
+> led {
+>         function = LED_FUNCTION_BACKLIGHT;
+>         color = <LED_COLOR_ID_GREEN>;
+>         linux,default-trigger = "backlight";
+> };
 
-Please, see my other reply to Pali.
+The latter makes perfect sense to me.  Will do.
 
+> I noticed blanking is broken. The backlight device (or LED device with
+> backlight trigger) doens't get notified when the framebuffer is blanked since
+> the driver doesn't implement fb_blank.
 >
+> Right now:
 >
-> [...]
-> > > +
-> > > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
-> > > +       { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF=
-200) },
-> > > +       { },
-> > > +};
-> > > +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
-> > > +
-> > > +struct sdio_driver wfx_sdio_driver =3D {
-> > > +       .name =3D "wfx-sdio",
-> > > +       .id_table =3D wfx_sdio_ids,
-> > > +       .probe =3D wfx_sdio_probe,
-> > > +       .remove =3D wfx_sdio_remove,
-> > > +       .drv =3D {
-> > > +               .owner =3D THIS_MODULE,
-> > > +               .of_match_table =3D wfx_sdio_of_match,
+> echo 1 > /sys/class/graphics/fb0/blank
+>                                                              |
+> sh: write error: Invalid argument
+>
+> Due to:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/video/fbdev/core/fbmem.c?h=v5.15-rc3#n1078
+
+That's a pre-existing problem, righ? ;-)
+
+> Something like this fixes it.
+>
+> diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
+> index 89ee5b4b3dfc..0883d5252c81 100644
+> --- a/drivers/auxdisplay/ht16k33.c
+> +++ b/drivers/auxdisplay/ht16k33.c
+> @@ -346,6 +346,15 @@ static int ht16k33_mmap(struct fb_info *info, struct
+> vm_area_struct *vma)
+>          return vm_map_pages_zero(vma, &pages, 1);
+>   }
+>
+> +/*
+> + * Blank events will be passed to the backlight device (or the LED device if
+> + * it's trigger is 'backlight') when we return 0 here.
+> + */
+> +static int ht16k33_blank(int blank, struct fb_info *info)
+> +{
+> +       return 0;
+> +}
+> +
+>   static const struct fb_ops ht16k33_fb_ops = {
+>          .owner = THIS_MODULE,
+>          .fb_read = fb_sys_read,
+> @@ -354,6 +363,7 @@ static const struct fb_ops ht16k33_fb_ops = {
+>          .fb_copyarea = sys_copyarea,
+>          .fb_imageblit = sys_imageblit,
+>          .fb_mmap = ht16k33_mmap,
+> +       .fb_blank = ht16k33_blank,
+>   };
+>
+>   /*
+>
+> Feel free to include (something like) this in the patch stack.
+
+Thanks, will do.
+
+> > +
+> > +     err = devm_led_classdev_register_ext(dev, led, &init_data);
+> > +     if (err)
+> > +             dev_err(dev, "Failed to register LED\n");
+>
+> You might want to call ht16k33_brightness_set(priv, brightness) here to get a
+> know value into the display setup register (0x80).
+>
+> Right now if I enable hardware blinking and (soft)reboot my board it keeps on
+> blinking even after a re-probe.
+
+I don't have that issue.
+Aha, ht16k33_seg_probe() calls ht16k33_brightness_set(), but
+ht16k33_fbdev_probe() doesn't.  The latter should do that, too,
+when not using backwards compatibility mode.
+
+> > @@ -575,7 +660,7 @@ static int ht16k33_seg_probe(struct device *dev, struct
+> > ht16k33_priv *priv,
+> >       struct ht16k33_seg *seg = &priv->seg;
+> >       int err;
 > >
-> > Is there no power management? Or do you intend to add that on top?
+> > -     err = ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
+> > +     err = ht16k33_brightness_set(priv, brightness);
 >
-> It seems we already have had this discussion:
->
->   https://lore.kernel.org/netdev/CAPDyKFqJf=3DvUqpQg3suDCadKrFTkQWFTY_qp=
-=3D+yDK=3D_Lu9gJGg@mail.gmail.com/#r
->
-> In this thread, Kalle said:
-> > Many mac80211 drivers do so that the device is powered off during
-> > interface down (ifconfig wlan0 down), and as mac80211 does interface
-> > down automatically during suspend, suspend then works without extra
-> > handlers.
+> This looks like a bugfix for patch 17, maybe move this change there?
 
-Yeah, it's been a while since I looked at this, thanks for the pointer.
+Indeed. Bad rebase. Will move.
 
-[...]
+Thanks a lot for your comments!
 
-Kind regards
-Uffe
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
