@@ -2,101 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF2941F334
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 19:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D9741F36A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 19:42:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbhJARjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 13:39:52 -0400
-Received: from mail-qv1-f49.google.com ([209.85.219.49]:45591 "EHLO
-        mail-qv1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbhJARjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 13:39:51 -0400
-Received: by mail-qv1-f49.google.com with SMTP id x9so6008982qvn.12;
-        Fri, 01 Oct 2021 10:38:07 -0700 (PDT)
+        id S1354427AbhJARok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 13:44:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42808 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1355428AbhJARoa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 13:44:30 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26667C06177E
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 10:42:46 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id s24so7775633wmh.4
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 10:42:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=6EIACl5M4v5UwJrM1j1H8fCICeUUt7tDN7R9RKi7N6Q=;
+        b=FXDaEEBL1WWge9xvDgFWP9qi9X2Qoe2qF7bpn4pAm00gFspAVlmC/X5UNtvF/6lAO5
+         IxQgF9Pp+V+Mt+9lsScURRgAJSJ1kHgpP4qwKlj4zhjqyCE0bgY8apSDthhw+MJzuazf
+         kt9n0+dWsJXcvQMB5nUOXf3qXpUNGMAern7nu+PYBaqo3Kev8FkuBLtx10+EOz35nm3F
+         GOPzj7bzd0j/k6LJvmB0F+9wT5AHgbI5macBJqRR6lB84FNGCpVB5gQCN5Cpndwo2BHO
+         FNVk31Ja6yyq+iiXZ5cnxkXY7G5oNg8k9afrzVF9kgNyaX4eEyWSwqK6f329I3HSCcss
+         Oa0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X2NaVOihKYDha1rS5ZJPe10csDtV7bota8qvu25P5G8=;
-        b=gsbLCZIOPfs5HxNFWmLyBJh7MtaIkZErQsdvBn/z2pocr3SQnrRgdc04GdWXgC0lOe
-         rDRCs7id8Y9EhNB+6UQ6u2gwlXBAcscD4zexLfpH+Mzs7esw/Eqh/nqVYMgRetabjp8w
-         WJ+7wT2g6m86ZlxXPZ+9MXRiL7B6LN5EB/fLlSBJ24d47B0JCE4Gias3VH8xWVo50HKb
-         vIw8tWbXyznmKGXO0sDEpr56Ky8fMmd8L0pz8UFQiFlKtxCKDgZ4xUYmdd9ghsVsijha
-         OdRE0c9dJDcB0GJpzPMCUjPZIOi+S7cFqLmgNDQiR6mHG6HbFVEoQxd9D/cv+ZdpgRzr
-         FHCw==
-X-Gm-Message-State: AOAM532JPExv8V6hphgPHrNfeOGLkBFe2kpsqDyr/lTbzGiYYHt5cNg+
-        v/7DC7utyL6sWt5Llp/hssODFhlWw7o=
-X-Google-Smtp-Source: ABdhPJxS3cJzK6bcxiiyzmPpcLtXdf+O4n9j+f+AiWVpPGDFNLKquNdV/i5TnFwPxLKn0Oa9GjdbMQ==
-X-Received: by 2002:a0c:f841:: with SMTP id g1mr5822720qvo.58.1633109886640;
-        Fri, 01 Oct 2021 10:38:06 -0700 (PDT)
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com. [209.85.222.176])
-        by smtp.gmail.com with ESMTPSA id v23sm3256614qkj.76.2021.10.01.10.38.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Oct 2021 10:38:06 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id 138so9882912qko.10;
-        Fri, 01 Oct 2021 10:38:05 -0700 (PDT)
-X-Received: by 2002:a37:b842:: with SMTP id i63mr10892002qkf.262.1633109885690;
- Fri, 01 Oct 2021 10:38:05 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=6EIACl5M4v5UwJrM1j1H8fCICeUUt7tDN7R9RKi7N6Q=;
+        b=hMQM7fRtgOmTgBIqUMxboAQWlDd7PFm/qLWRCL6vneDjS+761lFpthG0InlPBc73Hn
+         /cUmDP19gZU3YyKy6NYfXKYgQjwWyxURhmdabGsLcVP8xjvcRXg7LVAv0jfr/6mg6XtR
+         r6mdwHV1euwuRRnjZ/D6qSSBcTGFTOsiR+bJiJygwWMre75lr2kXA6iZYYcria/J+HTS
+         Rv9FW/eBG5pwozW0xtnxk+dwfZpEIcyZR7JvFZnpiE4VFniBiaduvRRElljgg0vKf7BU
+         m1/8EuVfBBnDgabpw+eTv8p1lJ4AJAqg0uR/HWE47bPggVoFUHYOYT1Rv/rzQlm7Brx8
+         Ez1Q==
+X-Gm-Message-State: AOAM530/WLvpzj2nzEeoLLB/xdkINcY1swi91p5rmh/mAyuqBCBRoEGK
+        BsRnnZNQGCUJTOuhYkUSNAnpBA==
+X-Google-Smtp-Source: ABdhPJyxMdiI8yKOS50Ns7vPDrKY2HGuQAFgmN7gLZqYJoDsBNxOtviiKuECjY2gh9CRlL6KDTclvQ==
+X-Received: by 2002:a05:600c:a08:: with SMTP id z8mr5929463wmp.165.1633110164624;
+        Fri, 01 Oct 2021 10:42:44 -0700 (PDT)
+Received: from localhost (p54ac5892.dip0.t-ipconnect.de. [84.172.88.146])
+        by smtp.gmail.com with ESMTPSA id t126sm7973920wma.4.2021.10.01.10.42.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Oct 2021 10:42:43 -0700 (PDT)
+Date:   Fri, 1 Oct 2021 19:42:43 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Sergey Shtylyov <s.shtylyov@omp.ru>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: renesas,ether: Update example to match
+ reality
+Message-ID: <YVdIk0fme05AyUeU@bismarck.dyn.berto.se>
+References: <a1cf8a6ccca511e948075c4e20eea2e2ba001c2c.1633090323.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-References: <20211001000417.15334-1-leoyang.li@nxp.com> <20211001000417.15334-3-leoyang.li@nxp.com>
- <CAL_JsqJShTL4zf2Bh=fYHfsujKu1rtuduxp7EKYsRqEXdkLCEA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJShTL4zf2Bh=fYHfsujKu1rtuduxp7EKYsRqEXdkLCEA@mail.gmail.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Fri, 1 Oct 2021 12:37:54 -0500
-X-Gmail-Original-Message-ID: <CADRPPNRhVuHTxTpU8RCBMMTVe2V23pjqt8Z5vV=5efepWk6yPg@mail.gmail.com>
-Message-ID: <CADRPPNRhVuHTxTpU8RCBMMTVe2V23pjqt8Z5vV=5efepWk6yPg@mail.gmail.com>
-Subject: Re: [PATCH v2 02/16] dt-bindings: i2c: imx: update schema to align
- with original txt binding
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a1cf8a6ccca511e948075c4e20eea2e2ba001c2c.1633090323.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 1, 2021 at 8:24 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Thu, Sep 30, 2021 at 7:04 PM Li Yang <leoyang.li@nxp.com> wrote:
-> >
-> > When the binding was converted from txt to yaml, it actually added more
-> > constrains than the original txt binding which was already used in many
-> > in-tree DTSes.  Some of the newly added constrains are either not valid
-> > or not neccessary.
->
-> IMO, both of these should be fixed in the dts files.
->
-> > Not all SoCs use ipg as the clock name for i2c.  There is no point in
-> > having SoC integration information defined in i2c binding.  Remove the
-> > clock name requirement in the schema.
->
-> Any name you want is not fine. Your choices are remove clock-names,
-> add all the names used, or change everyone to use 'ipg'.
+Hi Geert,
 
-I understand that the name should be important as clocks are
-referenced by name.  But since the i2c controller only has one clock ,
-the name is never referenced in the driver.
+Thanks for your patch.
 
-If we really want to define the name, IMO, it should be from the
-perspective of the i2c controller like "clkin" or "i2c" instead of the
-"ipg" from the perspective of SoC integration which could be changing
-with a different integration.  I can list both "i2c" and "ipg" for now
-as a workaround though.
+On 2021-10-01 14:13:20 +0200, Geert Uytterhoeven wrote:
+>   - Drop unneeded interrupt-parent,
+>   - Convert to new style CPG/MSSR bindings,
+>   - Add missing power-domains and resets properties,
+>   - Update PHY subnode:
+>       - Add example compatible values,
+>       - Add micrel,led-mode and reset-gpios examples.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
->
-> > The original txt binding didn't require the order of tx and rx for
-> > dmas/dma-names.  Many in tree DTSes are already using the other order.
-> > Both orders should just work fine.  Update the schema to allow both.
->
-> Doesn't sound like a case where defining the order is challenging.
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-No, it is not challenging.  But as dma channel is only referenced by
-name instead of index.  I don't see too much benefit in enforcing the
-order other than easier to create the schema.
+> ---
+>  .../devicetree/bindings/net/renesas,ether.yaml  | 17 ++++++++++++-----
+>  1 file changed, 12 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/renesas,ether.yaml b/Documentation/devicetree/bindings/net/renesas,ether.yaml
+> index c101a1ec846ea8e9..06b38c9bc6ec38e4 100644
+> --- a/Documentation/devicetree/bindings/net/renesas,ether.yaml
+> +++ b/Documentation/devicetree/bindings/net/renesas,ether.yaml
+> @@ -100,15 +100,18 @@ additionalProperties: false
+>  examples:
+>    # Lager board
+>    - |
+> -    #include <dt-bindings/clock/r8a7790-clock.h>
+> -    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/r8a7790-sysc.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+>  
+>      ethernet@ee700000 {
+>          compatible = "renesas,ether-r8a7790", "renesas,rcar-gen2-ether";
+>          reg = <0xee700000 0x400>;
+> -        interrupt-parent = <&gic>;
+> -        interrupts = <0 162 IRQ_TYPE_LEVEL_HIGH>;
+> -        clocks = <&mstp8_clks R8A7790_CLK_ETHER>;
+> +        interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cpg CPG_MOD 813>;
+> +        power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
+> +        resets = <&cpg 813>;
+>          phy-mode = "rmii";
+>          phy-handle = <&phy1>;
+>          renesas,ether-link-active-low;
+> @@ -116,8 +119,12 @@ examples:
+>          #size-cells = <0>;
+>  
+>          phy1: ethernet-phy@1 {
+> +            compatible = "ethernet-phy-id0022.1537",
+> +                         "ethernet-phy-ieee802.3-c22";
+>              reg = <1>;
+>              interrupt-parent = <&irqc0>;
+>              interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +            micrel,led-mode = <1>;
+> +            reset-gpios = <&gpio5 31 GPIO_ACTIVE_LOW>;
+>          };
+>      };
+> -- 
+> 2.25.1
+> 
 
->
-> Rob
+-- 
+Regards,
+Niklas Söderlund
