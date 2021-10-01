@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EF1641E9D9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 11:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F9ED41E9DE
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 11:42:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353254AbhJAJnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 05:43:47 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:56990
+        id S1353281AbhJAJnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 05:43:52 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:57052
         "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1353107AbhJAJnk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 05:43:40 -0400
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        by vger.kernel.org with ESMTP id S1353216AbhJAJnl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 05:43:41 -0400
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D0566402F7
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 09:41:55 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C337B407A1
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 09:41:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633081315;
-        bh=aaXYHrp3L66rLENOSWMMcR2xo/U8IXQjJU/MbbXOyWE=;
+        s=20210705; t=1633081316;
+        bh=R3ErAtthN0V3efdYXbXsQBs5evIbwDUWOvfMQKp3DG8=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=si7eAj9hD7aKJfwmh2ezzx+nVKA16ahdbJoKMoJsDy0LMYELPTyayC56PzQQX03eU
-         daCa6F1m7bW3i0cnMq+yF4g4/VqQmtxrIMGzFxlnYgI9n1NQKIakZTqHFlAIAScYN2
-         Wo7ldLO2yCfidDoJbrjgLlg7UfztkkNygvr4Tqu5VCQRSdLv3nqH8deLjfakEQn7y1
-         PP4G4Q//7hpRoPQzohEMXHu88x7HBON6o9xLyXAxduXRhlSZWWbMS4QaIIhf/kBzWl
-         Dd31J+pPhfG4UUvdAFiBp86iRnsaEoCJrn2vARV9APq3PxsBFJX8SsQuTNPW7fShAV
-         rKy7zuxs57Gcw==
-Received: by mail-lf1-f69.google.com with SMTP id n22-20020a0565120ad600b003fcc09af59fso8433315lfu.21
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 02:41:55 -0700 (PDT)
+        b=gT7tz6a0glWrLYW0SOhF5PHqBn0cO6E+vl01KgrrRJByXGA7mih5/E5fT3nnkS4Fq
+         1wFwAVHMhbwZDt69/+/1+OKCUYe9gtNVgO0G10KuoZzsTxpO9tkNP74NoDUNwZ2D1J
+         jxhGZdnJ5zu8Mg7DpID1rJZr4q85V8iHL2/FucFwPs2NdWzG/Rrvpj0ZoFhEfs7C2k
+         FBXbwET6sutaODKmnoSmBtVz19QQjh82/buq9mUUfUQTgk2eUguvxx4WA2R83uP6yp
+         ONbjpokSevbCupdzPFb+SKQoLWRMDxTR64IfPEvb0ZQynlqAW6zl0ieUZgAOzZ5JsA
+         aGu7yD1K058VA==
+Received: by mail-lf1-f71.google.com with SMTP id c24-20020ac25318000000b003f257832dfdso8355664lfh.20
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 02:41:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=aaXYHrp3L66rLENOSWMMcR2xo/U8IXQjJU/MbbXOyWE=;
-        b=lrQT793/WVbpUJkPmn2B2XSPBLOTJSjxwoJJbrv9usmuEsu3+fKeZSGxKSUaqRc3Hw
-         G5QhIxrXVLvnRP4tJbTFdJk2rbunZTuEf4I2HD4ZmS90hj8qDh1tu6rOTnaKykvwqClc
-         Q7ZQ+BtCwkADW17KYwcmbAN5L6iNHkK4zVMpkJUCG7J1VZtVk7QyyckPn63LDvMmL35w
-         WB6PTbrYyRBFhgfIFxGDf2Lc/cMAY1bIZFk69AUQOHEM0FAh6+5VjUwLC1zITpxG7B90
-         oIYQ9CIBkZ/SNuOdPO/dFRnSR8Y5CvOAx9594Eb7HJObV50V+aw+cA3xdXJ6UMbTrL7b
-         WR1g==
-X-Gm-Message-State: AOAM533lGYDQx5MUJmL37JpdPN+Bh1xGCWkf4zCGC9jC2X93sDA+1+Pu
-        m2Xncuu26iYa6K3m/dYx9TI6NykOFy8enlbLBNT0ImpiFtbScuXktwizKiWiw+wJ8mKtthUqrBa
-        UUk9oCJXBkCBeCK7tFGbDbEYSoNcgVgGaE6fLcpQ=
-X-Received: by 2002:a2e:300c:: with SMTP id w12mr10927697ljw.302.1633081314703;
-        Fri, 01 Oct 2021 02:41:54 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw++2FAU5KVA7/aa7wsxI4/ReeOZHBI8XpkY+ZBJRcwfbnw2bmNoVAkFteXXA7LLfGyYoc8aQ==
-X-Received: by 2002:a2e:300c:: with SMTP id w12mr10927674ljw.302.1633081314472;
-        Fri, 01 Oct 2021 02:41:54 -0700 (PDT)
+        bh=R3ErAtthN0V3efdYXbXsQBs5evIbwDUWOvfMQKp3DG8=;
+        b=o5E48t+FJXVgrDPciZWdUGkwhigo04kIVGWjUMz2LAjQ+DeHHBpJr697Q5KJCmSzXK
+         2P9dC3Y+JXUINBY6sOB9Y5NJuakTSrlgiHAr7nWA3WtW+Z1raeTZQkh70nHVcSnxvRs5
+         FIBIGawFgKl3ssMurxLyLcAkDfLLoSLZme7FFxQ3SPxmEUbrTz0/+FE2jjsS8tfWjixj
+         QxUztAdHPvXXEfTMO8zO3YZZZO0OXsCyJML3DCTGw/XI+x2Gvf9WFKUwPRMvJEvO6Mt4
+         RwqtwvnS5/J13SMlMqWO1B3bQk6p23b6O0WCewnB/oFBSnTo93zMhKkDEUGxcshQFB1G
+         q84g==
+X-Gm-Message-State: AOAM532y3VJB34N0Ko0ve2pU1T5tlX4zpZIXiJdnbRMsTprj9zhyg9lb
+        96NTJhbFDeofA6cpV6GoeyiTKr3QCci5CyXP0fCv26ZsS5Qho6S61t0FYSyEPmp0iPXH65CTE7S
+        0Srn2xF/oLZ4GQ4Km5W0zLdrSg+UINKBVosRxDTU=
+X-Received: by 2002:a19:6f4a:: with SMTP id n10mr4402736lfk.290.1633081316181;
+        Fri, 01 Oct 2021 02:41:56 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzJIDthiAZ7heJfzp7NcZtncpSXHC9eeOmPSdeTN4mmqPF7n5qVnxs75s8X8WHjYt2bqL0EKg==
+X-Received: by 2002:a19:6f4a:: with SMTP id n10mr4402717lfk.290.1633081316015;
+        Fri, 01 Oct 2021 02:41:56 -0700 (PDT)
 Received: from localhost.localdomain ([193.178.187.25])
-        by smtp.gmail.com with ESMTPSA id g29sm673784lfj.212.2021.10.01.02.41.52
+        by smtp.gmail.com with ESMTPSA id g29sm673784lfj.212.2021.10.01.02.41.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Oct 2021 02:41:53 -0700 (PDT)
+        Fri, 01 Oct 2021 02:41:55 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -67,9 +67,9 @@ To:     Michael Turquette <mturquette@baylibre.com>,
         Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 07/10] dt-bindings: mfd: samsung,s2mps11: convert to dtschema
-Date:   Fri,  1 Oct 2021 11:41:03 +0200
-Message-Id: <20211001094106.52412-8-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 08/10] dt-bindings: mfd: samsung,s2mpa01: convert to dtschema
+Date:   Fri,  1 Oct 2021 11:41:04 +0200
+Message-Id: <20211001094106.52412-9-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211001094106.52412-1-krzysztof.kozlowski@canonical.com>
 References: <20211001094106.52412-1-krzysztof.kozlowski@canonical.com>
@@ -79,33 +79,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the MFD part of Samsung S2MPS11/S2MPS13/S2MPS14/S2MPS15/S2MPU02
-family of PMICs to DT schema format.  Previously the bindings were
-mostly in mfd/samsung,sec-core.txt.
-
-The conversion copies parts of description from existing bindings
-therefore the license is not changed from GPLv2.
+Convert the MFD part of Samsung S2MPA01 PMIC to DT schema format.
+Previously the bindings were mostly in mfd/samsung,sec-core.txt.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../bindings/mfd/samsung,s2mps11.yaml         | 267 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 268 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
+ .../bindings/mfd/samsung,s2mpa01.yaml         | 91 +++++++++++++++++++
+ 1 file changed, 91 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/samsung,s2mpa01.yaml
 
-diff --git a/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml b/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
+diff --git a/Documentation/devicetree/bindings/mfd/samsung,s2mpa01.yaml b/Documentation/devicetree/bindings/mfd/samsung,s2mpa01.yaml
 new file mode 100644
-index 000000000000..771b3f16da96
+index 000000000000..017befdf8adb
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
-@@ -0,0 +1,267 @@
-+# SPDX-License-Identifier: GPL-2.0-only
++++ b/Documentation/devicetree/bindings/mfd/samsung,s2mpa01.yaml
+@@ -0,0 +1,91 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/mfd/samsung,s2mps11.yaml#
++$id: http://devicetree.org/schemas/mfd/samsung,s2mpa01.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Samsung S2MPS11/13/14/15 and S2MPU02 Power Management IC
++title: Samsung S2MPA01 Power Management IC
 +
 +maintainers:
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
@@ -114,23 +109,12 @@ index 000000000000..771b3f16da96
 +  This is a part of device tree bindings for S2M and S5M family of Power
 +  Management IC (PMIC).
 +
-+  The Samsung S2MPS11/13/14/15 and S2MPU02 is a family of Power Management IC
-+  which include voltage and current regulators, RTC, clock outputs and other
-+  sub-blocks.
++  The Samsung S2MPA01 is a Power Management IC which includes voltage
++  and current regulators, RTC, clock outputs and other sub-blocks.
 +
 +properties:
 +  compatible:
-+    enum:
-+      - samsung,s2mps11-pmic
-+      - samsung,s2mps13-pmic
-+      - samsung,s2mps14-pmic
-+      - samsung,s2mps15-pmic
-+      - samsung,s2mpu02-pmic
-+
-+  clocks:
-+    $ref: ../clock/samsung,s2mps11.yaml
-+    description:
-+      Child node describing clock provider.
++    const: samsung,s2mpa01-pmic
 +
 +  interrupts:
 +    maxItems: 1
@@ -139,24 +123,9 @@ index 000000000000..771b3f16da96
 +    maxItems: 1
 +
 +  regulators:
-+    type: object
++    $ref: ../regulator/samsung,s2mpa01.yaml
 +    description:
 +      List of child nodes that specify the regulators.
-+
-+  samsung,s2mps11-acokb-ground:
-+    description: |
-+      Indicates that ACOKB pin of S2MPS11 PMIC is connected to the ground so
-+      the PMIC must manually set PWRHOLD bit in CTRL1 register to turn off the
-+      power. Usually the ACOKB is pulled up to VBATT so when PWRHOLD pin goes
-+      low, the rising ACOKB will trigger power off.
-+    type: boolean
-+
-+  samsung,s2mps11-wrstbi-ground:
-+    description: |
-+      Indicates that WRSTBI pin of PMIC is pulled down. When the system is
-+      suspended it will always go down thus triggerring unwanted buck warm
-+      reset (setting buck voltages to default values).
-+    type: boolean
 +
 +  wakeup-source: true
 +
@@ -167,65 +136,6 @@ index 000000000000..771b3f16da96
 +
 +additionalProperties: false
 +
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,s2mps11-pmic
-+    then:
-+      properties:
-+        regulators:
-+          $ref: ../regulator/samsung,s2mps11.yaml
-+        samsung,s2mps11-wrstbi-ground: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,s2mps13-pmic
-+    then:
-+      properties:
-+        regulators:
-+          $ref: ../regulator/samsung,s2mps13.yaml
-+        samsung,s2mps11-acokb-ground: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,s2mps14-pmic
-+    then:
-+      properties:
-+        regulators:
-+          $ref: ../regulator/samsung,s2mps14.yaml
-+        samsung,s2mps11-acokb-ground: false
-+        samsung,s2mps11-wrstbi-ground: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,s2mps15-pmic
-+    then:
-+      properties:
-+        regulators:
-+          $ref: ../regulator/samsung,s2mps15.yaml
-+        samsung,s2mps11-acokb-ground: false
-+        samsung,s2mps11-wrstbi-ground: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,s2mpu02-pmic
-+    then:
-+      properties:
-+        regulators:
-+          $ref: ../regulator/samsung,s2mpu02.yaml
-+        samsung,s2mps11-acokb-ground: false
-+        samsung,s2mps11-wrstbi-ground: false
-+
 +examples:
 +  - |
 +    #include <dt-bindings/interrupt-controller/irq.h>
@@ -235,149 +145,46 @@ index 000000000000..771b3f16da96
 +        #size-cells = <0>;
 +
 +        pmic@66 {
-+            compatible = "samsung,s2mps11-pmic";
++            compatible = "samsung,s2mpa01-pmic";
 +            reg = <0x66>;
 +
-+            interrupt-parent = <&gpx0>;
-+            interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&s2mps11_irq>;
-+            samsung,s2mps11-acokb-ground;
-+            wakeup-source;
-+
-+            clocks {
-+                compatible = "samsung,s2mps11-clk";
-+                #clock-cells = <1>;
-+                clock-output-names = "s2mps11_ap", "s2mps11_cp", "s2mps11_bt";
-+            };
-+
 +            regulators {
-+                LDO1 {
-+                    regulator-name = "vdd_ldo1";
++                ldo1_reg: LDO1 {
++                    regulator-name = "VDD_ALIVE";
 +                    regulator-min-microvolt = <1000000>;
 +                    regulator-max-microvolt = <1000000>;
++                };
++
++                ldo2_reg: LDO2 {
++                    regulator-name = "VDDQ_MMC2";
++                    regulator-min-microvolt = <2800000>;
++                    regulator-max-microvolt = <2800000>;
 +                    regulator-always-on;
 +                };
 +
-+                LDO4 {
-+                    regulator-name = "vdd_adc";
-+                    regulator-min-microvolt = <1800000>;
-+                    regulator-max-microvolt = <1800000>;
++                // ...
 +
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                    };
-+                };
-+
-+                // ....
-+
-+                BUCK1 {
++                buck1_reg: BUCK1 {
 +                    regulator-name = "vdd_mif";
-+                    regulator-min-microvolt = <800000>;
-+                    regulator-max-microvolt = <1300000>;
++                    regulator-min-microvolt = <950000>;
++                    regulator-max-microvolt = <1350000>;
 +                    regulator-always-on;
 +                    regulator-boot-on;
-+
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                    };
 +                };
 +
-+                BUCK2 {
++                buck2_reg: BUCK2 {
 +                    regulator-name = "vdd_arm";
-+                    regulator-min-microvolt = <800000>;
-+                    regulator-max-microvolt = <1500000>;
++                    regulator-min-microvolt = <950000>;
++                    regulator-max-microvolt = <1350000>;
 +                    regulator-always-on;
 +                    regulator-boot-on;
-+                    regulator-coupled-with = <&buck3_reg>;
-+                    regulator-coupled-max-spread = <300000>;
-+
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                    };
-+                };
-+
-+                BUCK3 {
-+                    regulator-name = "vdd_int";
-+                    regulator-min-microvolt = <800000>;
-+                    regulator-max-microvolt = <1400000>;
-+                    regulator-always-on;
-+                    regulator-boot-on;
-+                    regulator-coupled-with = <&buck2_reg>;
-+                    regulator-coupled-max-spread = <300000>;
-+
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                    };
++                    regulator-ramp-delay = <50000>;
 +                };
 +
 +                // ...
 +            };
 +        };
 +    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@66 {
-+            compatible = "samsung,s2mps14-pmic";
-+            reg = <0x66>;
-+
-+            interrupt-parent = <&gpx0>;
-+            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+            wakeup-source;
-+
-+            clocks {
-+                compatible = "samsung,s2mps14-clk";
-+                #clock-cells = <1>;
-+                clock-output-names = "s2mps14_ap", "unused", "s2mps14_bt";
-+            };
-+
-+            regulators {
-+                LDO1 {
-+                    regulator-name = "VLDO1_1.0V";
-+                    regulator-min-microvolt = <1000000>;
-+                    regulator-max-microvolt = <1000000>;
-+                    regulator-always-on;
-+
-+                    regulator-state-mem {
-+                        regulator-on-in-suspend;
-+                    };
-+                };
-+
-+                // ...
-+
-+                BUCK1 {
-+                    regulator-name = "VBUCK1_1.0V";
-+                    regulator-min-microvolt = <800000>;
-+                    regulator-max-microvolt = <1000000>;
-+                    regulator-always-on;
-+
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                    };
-+                };
-+
-+                // ...
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5a7cb990b182..2de215d1274c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16600,6 +16600,7 @@ L:	linux-kernel@vger.kernel.org
- L:	linux-samsung-soc@vger.kernel.org
- S:	Supported
- F:	Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
-+F:	Documentation/devicetree/bindings/mfd/samsung,s2m*.yaml
- F:	Documentation/devicetree/bindings/mfd/samsung,sec-core.txt
- F:	Documentation/devicetree/bindings/regulator/samsung,s2m*.yaml
- F:	Documentation/devicetree/bindings/regulator/samsung,s5m*.yaml
 -- 
 2.30.2
 
