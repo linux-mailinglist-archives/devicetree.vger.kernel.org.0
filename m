@@ -2,101 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB6EA41EFEA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 16:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B498241F035
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 17:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354639AbhJAOrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 10:47:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37106 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231862AbhJAOrK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Oct 2021 10:47:10 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A7C8F61A50;
-        Fri,  1 Oct 2021 14:45:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633099526;
-        bh=k1wtkyroAI/X6RIAmdK9+9KKFXUlS31+a7dqXS6PVZE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Gly31fMOGxkJFn8YsRHsaZQtbBu+u2chUyvsVDURkzwukARvk7xa8f3RxUrJAxD3U
-         Oe4HxlrT8XPeke6guwKtJeboqdMjG4sjlqCHN37lH0bS8rnqOdGXKUwB4lutGaeDBp
-         PndOYQpNDZmMILojyjDeXPeoBrRUI2uvoPCJ8Ba+dk/Q307OvdWsajglyioJ68Dfjh
-         qO2earuLxM7r6LpeaSVjEjxuyqpauhq0ZXXnhkSeeg8eKnkIPmNGKVMlyS96RpUClN
-         QDar5+t0LYTHDLlxF0fc5nNOGX324rx9ZIby99UF9uH5FHlCNbUAsozfDptWQMo3H3
-         uGMhAQp/1unrw==
-Received: by mail-ed1-f48.google.com with SMTP id g8so35841681edt.7;
-        Fri, 01 Oct 2021 07:45:26 -0700 (PDT)
-X-Gm-Message-State: AOAM5308wxSpNCyrofpV+MMlUQdR8hSaYFMkmlOKkhnf0h5NaCh65CYc
-        8g8VS3ZcLMuKx124kMSTVgsg5djHQsUW23veYA==
-X-Google-Smtp-Source: ABdhPJxdQ1eDrhv3y+ZjQjQKQhQy9k9veNqk9jIfpZB4FFZi/ssAUeofjRFKk1vkwAbCd77dMBoJBat6UYim/jojhTA=
-X-Received: by 2002:a17:906:7217:: with SMTP id m23mr6561725ejk.466.1633099524990;
- Fri, 01 Oct 2021 07:45:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211001102237.4db23bff@aktux>
-In-Reply-To: <20211001102237.4db23bff@aktux>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 1 Oct 2021 09:45:13 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJEKjjx7mf04wHLDqKm+enWMnYykV5d6bb9AEju_Rcz=Q@mail.gmail.com>
-Message-ID: <CAL_JsqJEKjjx7mf04wHLDqKm+enWMnYykV5d6bb9AEju_Rcz=Q@mail.gmail.com>
-Subject: Re: strange dtbs_check error message regarding 8250_omap.yaml +
- serdev + gnss
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1354728AbhJAPDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 11:03:32 -0400
+Received: from mail-m17638.qiye.163.com ([59.111.176.38]:45404 "EHLO
+        mail-m17638.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231947AbhJAPDb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 11:03:31 -0400
+Received: from localhost.localdomain (unknown [112.48.80.210])
+        by mail-m17638.qiye.163.com (Hmail) with ESMTPA id 588041C00DC;
+        Fri,  1 Oct 2021 22:50:48 +0800 (CST)
+From:   Chukun Pan <amadeus@jmu.edu.cn>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH] arm64: dts: allwinner: NanoPi R1S H5: use the correct compatible for the eeprom
+Date:   Fri,  1 Oct 2021 22:50:36 +0800
+Message-Id: <20211001145036.18129-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.17.1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWRpJTExWTExPGkxOSUxPGU
+        1JVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWVVLWQY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MRA6OBw*PD4NNzgiAkkRNipJ
+        OQoKCx1VSlVKTUhIS0JCQ09CS0pJVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+        SVVPQ1VDS1VJSktZV1kIAVlBSUtJTTcG
+X-HM-Tid: 0a7c3c561b9cd993kuws588041c00dc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 1, 2021 at 3:22 AM Andreas Kemnade <andreas@kemnade.info> wrote:
->
-> Hi,
->
-> while doing some make dtbs_check cleanup I came across this message:
->
-> /home/andi/kernel/linux/arch/arm/boot/dts/omap3-gta04a4.dt.yaml: serial@4806c000: 'gnss' does not match any of the regexes: 'pinctrl-[0-9]+'
->         From schema: /home/andi/kernel/linux/Documentation/devicetree/bindings/serial/8250_omap.yaml
->
-> the corresponding snippet is this one:
->
-> &uart2 {
->         pinctrl-names = "default";
->         pinctrl-0 = <&uart2_pins>;
->         gnss: gnss {
->                 compatible = "wi2wi,w2sg0004";
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&gps_pins>;
->                 sirf,onoff-gpios = <&gpio5 17 GPIO_ACTIVE_HIGH>;
->                 lna-supply = <&vsim>;
->                 vcc-supply = <&ldo_3v3>;
->         };
-> };
->
->
-> I see a pattern for serdev objects in
-> Documentation/devicetree/bindings/serial/serial.yaml
->
-> patternProperties:
->   ".*":
->     if:
->       type: object
->     then:
->       description:
->         Serial attached devices shall be a child node of the host UART device
->         the slave device is attached to. It is expected that the attached
->         device is the only child node of the UART device. The slave device node
->         name shall reflect the generic type of device for the node.
->
->
-> so I would say, everything is allowed. serial.yaml is referenced by
-> 8250_omap.yaml. So what is the problem here?
+The 'microchip,24c02' compatible does not match the at24 driver, so
+replace it with 'atmel,24c02'. In addition, because the mac address
+is stored on this eeprom, set it to read-only mode.
 
-8250_omap.yaml probably has 'additionalProperties: false'. The problem
-with additionalProperties is it can't see into the $ref to
-serial.yaml. The fix is to use 'unevaluatedProperties' instead. Note
-that it currently is a nop, so don't expect to get any failures.
-Support for unevaluatedProperties was just released in jsonschema
-yesterday, so dtschema will support it very soon.
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Rob
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
+index 55bcdf8d1a07..4f01c17c49e0 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
+@@ -142,9 +142,10 @@
+ 	status = "okay";
+ 
+ 	eeprom@51 {
+-		compatible = "microchip,24c02";
+-		reg = <0x51>;
++		compatible = "atmel,24c02";
+ 		pagesize = <16>;
++		reg = <0x51>;
++		read-only; /* This holds our MAC */
+ 	};
+ };
+ 
+-- 
+2.17.1
+
