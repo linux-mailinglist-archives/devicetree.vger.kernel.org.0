@@ -2,180 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 845C141EF4C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 16:19:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B1C941EF5C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 16:21:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354436AbhJAOVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 10:21:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51594 "EHLO
+        id S1354313AbhJAOXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 10:23:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354353AbhJAOV0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 10:21:26 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6D4C06177D
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 07:19:41 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id y23so4676739lfj.7
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 07:19:41 -0700 (PDT)
+        with ESMTP id S1353728AbhJAOX3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 10:23:29 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA170C06177C
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 07:21:45 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id h9-20020a9d2f09000000b005453f95356cso11649669otb.11
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 07:21:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TmYkpMVtb1uSKsqX5euv7WOyLfzbmtOSlOndqVN+8j0=;
-        b=duQY39xT4Fb3Hr1PnbXTs56tkaQqjpQAgYJH7QSZorCPxuVu1w1xjBo4K+zxv2eT/i
-         Gv8vFaPicQua766hZYd2Z4sFxKAhudSPsUf76DMai8U3Fw5bbvcx7fO5WW1P2A848bGM
-         ZQq9OG2u50UNu3Jjx5+mQA6VDCrE6ml8Fh35xGIGRw6EE6eRYolYKa9p+8rWD2ZvBilp
-         uWVK4oDlCgf7DxNBdPej6J24qlMnSVWJnHXL2sfU57hu2pnNnIEFwtPnFm56+42awhNu
-         cSD+lRwaEeSCzPyePp37ympdEiAHaEdnn7LGs+wYp5tVdUW4CxRCTuk1HbDpdUV4ipuJ
-         BGrA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=RyljskWxEIj64E0/JKXsfCLMykqvOmjKdzQgJe75r2U=;
+        b=yQsH27dcsAfYNORAm1R6gUODOKo31/SdiCD/fT+dVfWd+sVz8HZDJoZm5NQGe7i2gY
+         7VEmSxQvd9JqFOs6Sn+Gt587qhhhHXJgHdsnpLDEbFzTzQwax/SmF0sU6pqbi2d3I7dS
+         n9G1hzvK13Lv75ThsNaRlHLZre2/xOk7NZ5Lpo5LCwXo28H8jIcMbg403AN5MlIWY5L4
+         Eo6QERZ8uyrjeBiBgTzKrP1frovpqd7Dr/33FhGzU9EYPh8vxoEIlmCHQSy731S6ljf4
+         0fjJ4tWuuuuRBYwiHYg5MP6mP2vPNqlWeIc/vqCcXkBwh11vH+YUvWjDRzbZfIdtdLXN
+         tZSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TmYkpMVtb1uSKsqX5euv7WOyLfzbmtOSlOndqVN+8j0=;
-        b=6DCnfKJR1Hi1UnqfqDTPkcHLJvzJ0e3z2wgCpEZH1O4u8GwVeZVJLpNFnncSGquqYA
-         B8G9kUj1dXAClCaOsXDyX+0G325wsZFlK79psDzWV+YJN35t1ySos6ut9AFgW36TgQFk
-         xJ0ydwW0+RyDrve2+WLL9+H8fPWtbdXMwmmMMwC3aiY3UubYuSw7nRq+gC28xZC/y63s
-         LlgB8Cn8LHLrixL8oErhl6dc6vAZlJOe9d6240PLMdW+o6D6FDJ9hHow7MLXfl6RSHXG
-         sfsnWX9yjUExM+VwwP1gSxIr9sc41rL0r026dtAvTQPsICjb71PEbeHowDEGdzg7rAxh
-         /euw==
-X-Gm-Message-State: AOAM530BCEnPaf5ZRRvi93qlR3tdIp2NNQzQW7FVtRZUdoqn8g2wo1yp
-        jROs0ZNqChfVTmNGL6GRj2nXUsUFQr30foqvO6H4RQ==
-X-Google-Smtp-Source: ABdhPJykzVLbDQqRsm8qwArsDUIjqMsOFjOioC0Mnou3m3mAAqwDg9NoSSc7iCu+AIdRWsUjvdPXt+LHd7gC+IctUuw=
-X-Received: by 2002:a05:6512:2397:: with SMTP id c23mr5560648lfv.358.1633097975362;
- Fri, 01 Oct 2021 07:19:35 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RyljskWxEIj64E0/JKXsfCLMykqvOmjKdzQgJe75r2U=;
+        b=aNCHCZebuPSe4O8095MexG9ut1z5zxQCsW7CySq0V8pL85eW1kjbU/QJfOjgEJ5IKk
+         RGbn6xKZH3+uXrhuU9Hk/tajjqJO9rPbcOgV0mkjJOU9Fv0YjGRITLiofak9LpTS9ZKZ
+         msSBILuSosYhO5ypQ3T4UueP5pdQZV5tfaqkH1z0uTzdfRb6kRv2fa95vx0usaZarZWq
+         fB0kWyGLq8VVxW3KGN/iUW6pap/59q3X0ZP37COZ/02yhx14D6+PlriLsntJs3hW2bwP
+         QoRqnlswDOc+dm9TlZqAMQvnn1g16lhrzaL/VXwdMxP4ysuR5/VeMnLHbaNTvMmHQlo/
+         IIog==
+X-Gm-Message-State: AOAM533N7uoE28cq4TYf5mifAnSkRVJN2ZgNNbmaxHsuD5En7xnXT4e8
+        Jk0Yv8qz212kUfw7dYU1IuYXig==
+X-Google-Smtp-Source: ABdhPJx4IXNLQp5mpOgHA767G+AngUBs0pCRIIbB0v5aaUOGgR/hVSObk7E9KZiGC2CkqwZ9AfFg3A==
+X-Received: by 2002:a9d:5f9b:: with SMTP id g27mr11101284oti.217.1633098104962;
+        Fri, 01 Oct 2021 07:21:44 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id i24sm1176746oie.42.2021.10.01.07.21.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Oct 2021 07:21:44 -0700 (PDT)
+Date:   Fri, 1 Oct 2021 07:23:32 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Chris Lew <clew@codeaurora.org>,
+        Deepak Kumar Singh <deesin@codeaurora.org>
+Subject: Re: [PATCH v2 3/4] soc: qcom: smem: Support reserved-memory
+ description
+Message-ID: <YVcZ5FsM2u+3uoK4@ripper>
+References: <20210930182111.57353-1-bjorn.andersson@linaro.org>
+ <20210930182111.57353-4-bjorn.andersson@linaro.org>
+ <9a4ef69d-df15-0fbc-3735-6d7c861855ac@linaro.org>
 MIME-Version: 1.0
-References: <20210926224058.1252-1-digetx@gmail.com> <20210926224058.1252-18-digetx@gmail.com>
-In-Reply-To: <20210926224058.1252-18-digetx@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 1 Oct 2021 16:18:59 +0200
-Message-ID: <CAPDyKFoC7Kn9FPjAZLisSKWyYaXr1j2GnyQGNTVg_Dsuku-muA@mail.gmail.com>
-Subject: Re: [PATCH v13 17/35] bus: tegra-gmi: Add runtime PM and OPP support
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9a4ef69d-df15-0fbc-3735-6d7c861855ac@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Sept 2021 at 00:42, Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> The GMI bus on Tegra belongs to the core power domain and we're going to
-> enable GENPD support for the core domain. Now GMI must be resumed using
-> runtime PM API in order to initialize the GMI power state. Add runtime PM
-> and OPP support to the GMI driver.
->
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/bus/tegra-gmi.c | 52 ++++++++++++++++++++++++++++++++++++-----
->  1 file changed, 46 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/bus/tegra-gmi.c b/drivers/bus/tegra-gmi.c
-> index a6570789f7af..72ef8a8c236b 100644
-> --- a/drivers/bus/tegra-gmi.c
-> +++ b/drivers/bus/tegra-gmi.c
-> @@ -13,8 +13,11 @@
->  #include <linux/io.h>
->  #include <linux/module.h>
->  #include <linux/of_device.h>
-> +#include <linux/pm_runtime.h>
->  #include <linux/reset.h>
->
-> +#include <soc/tegra/common.h>
-> +
->  #define TEGRA_GMI_CONFIG               0x00
->  #define TEGRA_GMI_CONFIG_GO            BIT(31)
->  #define TEGRA_GMI_BUS_WIDTH_32BIT      BIT(30)
-> @@ -54,9 +57,9 @@ static int tegra_gmi_enable(struct tegra_gmi *gmi)
->  {
->         int err;
->
-> -       err = clk_prepare_enable(gmi->clk);
-> -       if (err < 0) {
-> -               dev_err(gmi->dev, "failed to enable clock: %d\n", err);
-> +       err = pm_runtime_resume_and_get(gmi->dev);
-> +       if (err) {
-> +               pm_runtime_disable(gmi->dev);
->                 return err;
->         }
->
-> @@ -83,7 +86,8 @@ static void tegra_gmi_disable(struct tegra_gmi *gmi)
->         writel(config, gmi->base + TEGRA_GMI_CONFIG);
->
->         reset_control_assert(gmi->rst);
-> -       clk_disable_unprepare(gmi->clk);
-> +
-> +       pm_runtime_put(gmi->dev);
->  }
->
->  static int tegra_gmi_parse_dt(struct tegra_gmi *gmi)
-> @@ -213,6 +217,7 @@ static int tegra_gmi_probe(struct platform_device *pdev)
->         if (!gmi)
->                 return -ENOMEM;
->
-> +       platform_set_drvdata(pdev, gmi);
->         gmi->dev = dev;
->
->         res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> @@ -232,6 +237,14 @@ static int tegra_gmi_probe(struct platform_device *pdev)
->                 return PTR_ERR(gmi->rst);
->         }
->
-> +       err = devm_pm_runtime_enable(gmi->dev);
-> +       if (err)
-> +               return err;
-> +
-> +       err = devm_tegra_core_dev_init_opp_table_common(&pdev->dev);
-> +       if (err)
-> +               return err;
-> +
->         err = tegra_gmi_parse_dt(gmi);
->         if (err)
->                 return err;
-> @@ -247,8 +260,6 @@ static int tegra_gmi_probe(struct platform_device *pdev)
->                 return err;
->         }
->
-> -       platform_set_drvdata(pdev, gmi);
-> -
->         return 0;
->  }
->
-> @@ -262,6 +273,34 @@ static int tegra_gmi_remove(struct platform_device *pdev)
+On Fri 01 Oct 00:08 PDT 2021, Vladimir Zapolskiy wrote:
+> On 9/30/21 9:21 PM, Bjorn Andersson wrote:
+[..]
+> > diff --git a/drivers/soc/qcom/smem.c b/drivers/soc/qcom/smem.c
+[..]
+> > @@ -895,12 +892,14 @@ static int qcom_smem_map_memory(struct qcom_smem *smem, struct device *dev,
+> >   static int qcom_smem_probe(struct platform_device *pdev)
+> >   {
+> >   	struct smem_header *header;
+> > +	struct reserved_mem *rmem;
+> >   	struct qcom_smem *smem;
+> >   	size_t array_size;
+> >   	int num_regions;
+> >   	int hwlock_id;
+> >   	u32 version;
+> >   	int ret;
+> > +	int i;
+> 
+> Just a nitpicking, the index can be unsigned.
+> 
 
-Similar comment as for patch13, for the ->remove() callback.
+It's compared against the "num_regions", which is also signed. So I
+think it should be signed.
 
-This problem, which sometimes also exists in the error path in
-->probe() (according to my comments in patch13), seems to be a common
-issue in the series. I will therefore not continue to repeat my
-comment on this for the remaining patches in the series, I think I
-have made my point. :-)
+[..]
+> > +	for (i = 0; i < num_regions; i++) {
 
-Kind regards
-Uffe
+Thanks for the review!
+
+Regards,
+Bjorn
