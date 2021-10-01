@@ -2,97 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BCDE41F233
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 18:35:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B30E341F244
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 18:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232153AbhJAQhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 12:37:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60720 "EHLO mail.kernel.org"
+        id S1355196AbhJAQna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 12:43:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33994 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232117AbhJAQhD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Oct 2021 12:37:03 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E2DDB61A38;
-        Fri,  1 Oct 2021 16:35:18 +0000 (UTC)
+        id S232126AbhJAQmY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Oct 2021 12:42:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0C28361A08;
+        Fri,  1 Oct 2021 16:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633106118;
-        bh=nVW08TNUk03OPUkLLPVL11J+xOFZLhl1XXPfCDsxML0=;
+        s=k20201202; t=1633106440;
+        bh=+0oV5hICGzs20gfTIWOOlRzxQyWjfv0UKK6MtavSITw=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=V+Xg+U5ndcyUb/3WDyMptVjyiilObg0CqSnEjRj3Y+trirRNQZIO9x/aQHmpchsEY
-         718nz+4TRWo/M+EQbtNjZCVIKXfH1d821eR+S4ZFwFGKPmEue+zScfbOzNMiTbrH06
-         uHP3cxFqoem4g4Y+5Oy8Fee7/zleIAuPWBJIAuVjDH9XYXKWJGFjlPu9zUtA0tHm+X
-         1jILH8/pWaVDFdo9mX4RYmOGk/E5ddHAVgLgQseZaoKtKBPHKYGmotGUrPxVXsWzks
-         YaTEbTdz8iOuPMwBZ9WbCO6lUNv6rsIBU31J6NhFWVJGXOSDIwZc3EUxNGt/enGO9y
-         P3E8JkoIivGBg==
-Received: by mail-ed1-f41.google.com with SMTP id dn26so36755350edb.13;
-        Fri, 01 Oct 2021 09:35:18 -0700 (PDT)
-X-Gm-Message-State: AOAM5306vrdTJpAyoOsXcHYLbEJOB806DsLJPX3uTgAhwXhr1po3I8/P
-        0Tl3YmJ26e4RZ2yY+RJLqQ4Ot/8XeLrQQIrV9w==
-X-Google-Smtp-Source: ABdhPJzODcTe1gXJOefNR80freMbEX7WPVVHaY6R4BrgS/d3fO1+KRudSZl9TswU/WacJLi7Q/IWLZqZWEr+mcisi0Q=
-X-Received: by 2002:a17:906:7217:: with SMTP id m23mr7160192ejk.466.1633106117370;
- Fri, 01 Oct 2021 09:35:17 -0700 (PDT)
+        b=YzCLJtHtz2ZspaMIV/0SpMWLmpjdQFXHeI4p6xgH4Dr8wN75k3loun9UoUGxn4dK9
+         ZKj//oKCd73kooE8d4DZtJNnXXbP/Y6EBkclzjwqF5NIKP0zoJsDHAndmvD+ULetnU
+         ShSYO3azGPFMEajf7PFfylIeZRUEicbWks1KyiCNr6wL2Va70OeAMvSTxVNyvsm0Wf
+         cD9hP7f12AYRaFZxcOBQsFeCFaOezMfir+iQlZyruyBwntVj/ahWn/M68iwIFv3Pxl
+         bio2syHGpE2PITqgiy30bkrLKPLgZK6ANlF8Q4wWAe2GVgQ5or3Y3vVv8CkHMkaFO2
+         cpfBYtJrpXvXg==
+Received: by mail-ed1-f48.google.com with SMTP id s17so36121464edd.8;
+        Fri, 01 Oct 2021 09:40:39 -0700 (PDT)
+X-Gm-Message-State: AOAM533bvMXI77HhP/SRZxxC3BRnJf2NlH5sk/SaIEgvxt9VM1SkJeFD
+        NNh8B7pCbZnVIN0brIQqfe6xsL3YNHRoS2pJ/g==
+X-Google-Smtp-Source: ABdhPJwuJO24pNWXkNj7tzY9aOJ1BlPYMZPP5B7w2BlxS8ZEVzKLRl3HHzZ8FnJYpzAuZFmg1Y3i6Ch8HqxkzHwPyD8=
+X-Received: by 2002:a05:6402:44c:: with SMTP id p12mr15986633edw.145.1633106438415;
+ Fri, 01 Oct 2021 09:40:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211001000924.15421-1-leoyang.li@nxp.com> <20211001000924.15421-2-leoyang.li@nxp.com>
- <1633094217.843390.3666440.nullmailer@robh.at.kernel.org> <CADRPPNQBR63pS60nmfUQx02GbBoWEbgroU5Zw-iY62TodmB91Q@mail.gmail.com>
-In-Reply-To: <CADRPPNQBR63pS60nmfUQx02GbBoWEbgroU5Zw-iY62TodmB91Q@mail.gmail.com>
+References: <1632625630-784-1-git-send-email-shengjiu.wang@nxp.com>
+ <1632625630-784-5-git-send-email-shengjiu.wang@nxp.com> <YVTrbPC4/ir974xs@robh.at.kernel.org>
+ <CAA+D8ANdQQFuPh_F8DZka+Y6hVDGuT8BvRfWdUFJxHd5JTQPNA@mail.gmail.com>
+In-Reply-To: <CAA+D8ANdQQFuPh_F8DZka+Y6hVDGuT8BvRfWdUFJxHd5JTQPNA@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 1 Oct 2021 11:35:05 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL_M2Y+CDfK95BmFJYxT2h4q8rd0BaHLk2Wth3u_U6YMQ@mail.gmail.com>
-Message-ID: <CAL_JsqL_M2Y+CDfK95BmFJYxT2h4q8rd0BaHLk2Wth3u_U6YMQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: memory: fsl: convert ifc binding to yaml schema
-To:     Li Yang <leoyang.li@nxp.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+Date:   Fri, 1 Oct 2021 11:40:24 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK2KHfDisDXsuyWX0P99uY+nmEG72AsNUmqGRjJKHmg_Q@mail.gmail.com>
+Message-ID: <CAL_JsqK2KHfDisDXsuyWX0P99uY+nmEG72AsNUmqGRjJKHmg_Q@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] dt-bindings: dsp: fsl: update binding document for
+ remote proc driver
+To:     Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Ohad Ben Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 1, 2021 at 11:29 AM Li Yang <leoyang.li@nxp.com> wrote:
+On Wed, Sep 29, 2021 at 9:34 PM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
 >
-> On Fri, Oct 1, 2021 at 8:18 AM Rob Herring <robh@kernel.org> wrote:
+> Hi Rob
+>
+> On Thu, Sep 30, 2021 at 6:40 AM Rob Herring <robh@kernel.org> wrote:
 > >
-> > On Thu, 30 Sep 2021 19:09:20 -0500, Li Yang wrote:
-> > > Convert the txt binding to yaml format and add description.  Drop the
-> > > "simple-bus" compatible string from the example and not allowed by the
-> > > binding any more.  This will help to enforce the correct probe order
-> > > between parent device and child devices, but will require the ifc driver
-> > > to probe the child devices to work properly.
+> > On Sun, Sep 26, 2021 at 11:07:10AM +0800, Shengjiu Wang wrote:
+> > > As there are two drivers for DSP on i.MX, one is for sound open
+> > > firmware, another is for remote processor framework. In order to
+> > > distinguish two kinds of driver, defining different compatible strings.
 > > >
-> > > Signed-off-by: Li Yang <leoyang.li@nxp.com>
+> > > For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
+> > > are needed and the mailbox channel is different with SOF.
+> > >
+> > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > > Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
 > > > ---
-> > > updates from previous submission:
-> > > - Drop "simple-bus" from binding and only "fsl,ifc" as compatible
-> > > - Fix one identiation problem of "reg"
-> > > - Add type restriction to "little-endian" property
+> > >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
+> > >  1 file changed, 75 insertions(+), 6 deletions(-)
 > > >
-> > >  .../bindings/memory-controllers/fsl/ifc.txt   |  82 -----------
-> > >  .../bindings/memory-controllers/fsl/ifc.yaml  | 137 ++++++++++++++++++
-> > >  2 files changed, 137 insertions(+), 82 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/ifc.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/ifc.yaml
+> > > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > > index 7afc9f2be13a..51ea657f6d42 100644
+> > > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > > @@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
 > > >
+> > >  maintainers:
+> > >    - Daniel Baluta <daniel.baluta@nxp.com>
+> > > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> > >
+> > >  description: |
+> > >    Some boards from i.MX8 family contain a DSP core used for
+> > > @@ -19,6 +20,10 @@ properties:
+> > >        - fsl,imx8qxp-dsp
+> > >        - fsl,imx8qm-dsp
+> > >        - fsl,imx8mp-dsp
+> > > +      - fsl,imx8qxp-hifi4
+> > > +      - fsl,imx8qm-hifi4
+> > > +      - fsl,imx8mp-hifi4
+> > > +      - fsl,imx8ulp-hifi4
+> > >
+> > >    reg:
+> > >      maxItems: 1
+> > > @@ -28,37 +33,63 @@ properties:
+> > >        - description: ipg clock
+> > >        - description: ocram clock
+> > >        - description: core clock
+> > > +      - description: debug interface clock
+> > > +      - description: message unit clock
+> > > +    minItems: 3
+> > > +    maxItems: 5
 > >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > Documentation/devicetree/bindings/memory-controllers/fsl/ifc.example.dt.yaml:0:0: /example-0/soc/ifc@ffe1e000/flash@1,0: failed to match any schema with compatible: ['fsl,ifc-nand']
-> > Documentation/devicetree/bindings/memory-controllers/fsl/ifc.example.dt.yaml:0:0: /example-0/soc/ifc@ffe1e000/cpld@3,0: failed to match any schema with compatible: ['fsl,p1010rdb-cpld']
+> > Don't need maxItems.
 >
-> These are defined in other bindings, but unfortunately they are not
-> converted to yaml format yet.
+> Ok, I will update it.
+>
+> >
+> > >
+> > >    clock-names:
+> > >      items:
+> > >        - const: ipg
+> > >        - const: ocram
+> > >        - const: core
+> > > +      - const: debug
+> > > +      - const: mu
+> > > +    minItems: 3
+> > > +    maxItems: 5
+> >
+> > ditto
+>
+> Ok, I will update it.
+>
+> >
+> > >
+> > >    power-domains:
+> > >      description:
+> > >        List of phandle and PM domain specifier as documented in
+> > >        Documentation/devicetree/bindings/power/power_domain.txt
+> > > +    minItems: 1
+> >
+> > This is curious. The h/w sometimes has fewer power domains?
+>
+> On i.MX8QM/8QXP,  there are independent power domains for DSP core,
+> DSP's RAM and DSP's MU.
+> But on i.MX8MP, all these DSP components are in same audio subsystem
+> There is only one power domain for whole audio subsystem,  when
+> power on audio subsystem, the DSP's components are powered on also.
+>
+> So the number of power domain depends on how the DSP component
+> integrated in SoC.
 
-Yes, I know. I'm trying to turn on this check by default and adding
-more cases here doesn't help. And often, when those other bindings get
-converted, it's the example here that has errors and has to get fixed.
-So either convert those bindings too or drop them from the example.
+Sounds like you can write an if/then schema for this difference.
 
 Rob
