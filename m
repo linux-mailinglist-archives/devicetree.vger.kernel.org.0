@@ -2,247 +2,896 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1379141F268
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 18:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C15A741F288
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 18:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353509AbhJAQss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 12:48:48 -0400
-Received: from mail-dm6nam10on2087.outbound.protection.outlook.com ([40.107.93.87]:32480
-        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232094AbhJAQsr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Oct 2021 12:48:47 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B69MrppiS0ZX/PVhghlVWgy70RW81m++qtpdePZvLrpIA57FFQoW5hG4KXvBL36UZs6hYFYfffjDH7i0cNYxo+DOf0V5Nubufx3KJ8guAwpRVzMwfcVyVW18HKEH5iC14eskY9SwfftZ0v2JISqZ3tV8d2F0jUp/mq72XssPQQbPiodJb+60ceS2LCFFcIjRA1opd/KTQNJiCQT/P8OuBzN8A4qCPc/N+Uwv4lr7+XXZMMfcweHa3GlRnKKwbhy8cTv84YTuaWs3SSMsuS/zXoB+9LKEWWaP2W+BNOVv7WtqVAlZkV8+8NXz1NCrN8AbQ5U8EPgRjc/NGl+w36coJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iNE946XaZZ/UDavnyWdB+dlNXnVSkFQT2AvCfqZ19LQ=;
- b=IJNs7HNM7VXNka+sDhyls9nj6IMzVWOFf6S/YJYChlpQ7hmuvMIzq91h+5b/EyJZadaK++xx4dJvZtKEgayviOK+HrMRDKsVw4SDr9hsp8mXSgTb0COcmNttrz1qSF8zk8SIFwW8c1Tybw2QqwWh2wRrgfPOjqKFu7slqKjC7H42fHvsxZT31ff89j1xhUTdNxaAJxhTjCTRlAjs2cZmf1PA7kHX4qFTEsfkzzsZ/F7eBUPG+8myqNH6yC6vzohmqaXEQCo7qMjhu1TX5iWc6/e1IeTCsPivQ/2r3hkJkjms7luj9ZuLesSnb6z5rmwKuJBnqO1p7wYbdamzeUPOlQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=silabs.com; dmarc=pass action=none header.from=silabs.com;
- dkim=pass header.d=silabs.com; arc=none
+        id S242110AbhJAQyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 12:54:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59410 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240559AbhJAQyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 12:54:20 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DEF5C06177D
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 09:52:36 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id oj16so3675552pjb.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 09:52:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iNE946XaZZ/UDavnyWdB+dlNXnVSkFQT2AvCfqZ19LQ=;
- b=POOPWQV2ow6Xxz/o+nJ7aG+1JjbEtyNhsNvglR1hS4lbxR0hVew6Q05o9aiAjyGrvqgJLWQLxLr+TxE8i9A04RJmOafPJP4/uoZ5C+/kJH3+jhPnoG2b8nOfHIx16NaP9VbQQKZhkZYu4TUjR90gCwR3U0Iqog7VeRAgYNL1sk8=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=silabs.com;
-Received: from PH0PR11MB5657.namprd11.prod.outlook.com (2603:10b6:510:ee::19)
- by PH0PR11MB5580.namprd11.prod.outlook.com (2603:10b6:510:e5::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.15; Fri, 1 Oct
- 2021 16:46:54 +0000
-Received: from PH0PR11MB5657.namprd11.prod.outlook.com
- ([fe80::31cb:3b13:b0e8:d8f4]) by PH0PR11MB5657.namprd11.prod.outlook.com
- ([fe80::31cb:3b13:b0e8:d8f4%9]) with mapi id 15.20.4544.025; Fri, 1 Oct 2021
- 16:46:54 +0000
-From:   =?ISO-8859-1?Q?J=E9r=F4me?= Pouiller <jerome.pouiller@silabs.com>
-To:     Pali =?ISO-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v7 10/24] wfx: add fwio.c/fwio.h
-Date:   Fri, 01 Oct 2021 18:46:44 +0200
-Message-ID: <19961646.Mslci0rqIs@pc-42>
-Organization: Silicon Labs
-In-Reply-To: <20211001160832.ozxc7bhlwlmjeqbo@pali>
-References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com> <2174509.SLDT7moDbM@pc-42> <20211001160832.ozxc7bhlwlmjeqbo@pali>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-ClientProxiedBy: PR1P264CA0020.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:19f::7) To PH0PR11MB5657.namprd11.prod.outlook.com
- (2603:10b6:510:ee::19)
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=B9JRnpnzyxG2nP5T86XeSaWXclNSjrYmASL3XpSJd8w=;
+        b=lGkY1nEzWYLgETEgZE5BqJRxE0lcEYa27xwcGl8G015eHsLD/NfFvgCO4JyhTN8hSD
+         zVPDZc+nRDjRfDh8VCLw2jmflUqRVCOyDl8cMDomg0D9djazgYChjjBkQkLs/NleZ4be
+         jHucjFLr+ylqI2gDn8xpaYqNpqHDzNJ0NC5BY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=B9JRnpnzyxG2nP5T86XeSaWXclNSjrYmASL3XpSJd8w=;
+        b=gcebqx8gLPvkpbQ1SgaN9nJrd1w6r75X4I2TE0tXy4sNJVtNVV25KAfY8qFkY2b4d+
+         yMHoIs2iGjVy/pt0SORtYEK+pEgWMOA3vN+AQS+7Hq3vXUEwLWvHPafxYsbKJ9LlNXGs
+         m26jq0gHrrf+Ip5ro6bCMAD4Ufpux59u+A1aKgBZt21W1E946F98LwbmiLkiWxaTi2sO
+         fkY73Pev3Seqh2Ms8lp9tlW25FMubN57MkPXiMvzJy6IFU+Afrv/UsMc94bVx4QOH18f
+         t3rIL/LgL8O21LmIUnQxToAmB76qaKuQ7oizml2+qdtXdIw0MBZhF/u2XpX1UZfi60oU
+         8ffw==
+X-Gm-Message-State: AOAM533gqMW9nH8Y74G1KeBBC/h+0mxP4KGUpxK7XRw9GBkK/VWlpOCt
+        sv04cUcltM3NlR8PIq2yfohWtg==
+X-Google-Smtp-Source: ABdhPJzpjDJZme7REyCKMA97ajepds6T64hi0LW3fPEW6NNgOpg0OlOiBsGCx1ZQ+pGlNLreYoHFyA==
+X-Received: by 2002:a17:90b:3841:: with SMTP id nl1mr14208296pjb.206.1633107155660;
+        Fri, 01 Oct 2021 09:52:35 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:f57f:9f3a:1408:a801])
+        by smtp.gmail.com with UTF8SMTPSA id g27sm7010350pfk.173.2021.10.01.09.52.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Oct 2021 09:52:35 -0700 (PDT)
+Date:   Fri, 1 Oct 2021 09:52:33 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>
+Subject: Re: [PATCH 5/8] ASoC: qcom: Add support for codec dma driver
+Message-ID: <YVc80cNQS+CHfbpV@google.com>
+References: <1633087292-1378-1-git-send-email-srivasam@codeaurora.org>
+ <1633087292-1378-6-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
-Received: from pc-42.localnet (37.71.187.125) by PR1P264CA0020.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:19f::7) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14 via Frontend Transport; Fri, 1 Oct 2021 16:46:51 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2f8cd9c0-07d9-44f5-66f7-08d984fb12d3
-X-MS-TrafficTypeDiagnostic: PH0PR11MB5580:
-X-Microsoft-Antispam-PRVS: <PH0PR11MB55800B53CBB43D69870F8C7693AB9@PH0PR11MB5580.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: B0vtxO/EvZFGsvg6E0yrYhRD4OOcwDSlpTSPsVfbEQw6yH+kUfciv112J/6iVTaIlXiRbJ5tff2DXj5uTTYUY5+yfhixIYUSABN0szxXvFWdy6iLPfgmwOtbf53F6Yq3OlK7JFEVP5G/DlAUyL2TI3/JIeElOqycsWCgS0+nWedDwDzekz1kTikPmVbvZfMxy7LX+2wU3m0rfPGPwpw/OAtSGMDwk273qFJ+ro3u/Rc7p4spBh9c7jzDqFwQb3zvDUwLxnCMBHqMNckeuHttzc0anha3nmZNSwn3eKU4I/D2lT/q716l00mzgOqL6Id2lBZSOKi1w53BSYQVZElRoLReCCtbrFGx1aLV+7R8hmlnYJgmn+CglIUa8j7P+dPxrkx0XZsrAoI8gzQS6t0z0sBfeqk2HiD64XLkjOegPoZlTZBvi1e1KmHLaMOI+eT85DjQ1YwM45iTe0LrsrtgIBwnd/4uYbcyuzE4b/yvi0VCyykZUZsQdvyZIKDxXHcZzX/OhFZP5aeC3qcYBwoLAWt43Gvru79C650QcpOAcGm0COLCs4m+HIZrqSfKtW7ysG+CqGRwCjGB0O8xSX7iSs8F/jvJR2Sv9AMnEZKyXhRf5MhpA2aD2eNQihOQzMh5xJs7e8pedyKCD4CANw9q1DmeClBTYPBFiz9RORA4JHnZ3uctob5AYWfuMKicb02URMO814rPXOPJfxGv8IBl0h8VHXhbvJePhQ2qPMRAz6j0UxsYTQ5SOwC0ljaMBrChGciQXn1RhYwk9dtQSB+AQAaLZZHnigCVaeYs6gUk+WLQaff6r0MXGBRfBArnNWBM
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5657.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(7416002)(966005)(6512007)(4326008)(6486002)(508600001)(8936002)(5660300002)(9686003)(86362001)(66556008)(6916009)(66476007)(8676002)(52116002)(66946007)(38350700002)(38100700002)(36916002)(186003)(26005)(956004)(54906003)(316002)(66574015)(6666004)(83380400001)(33716001)(6506007)(2906002)(39026012);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?S1Yq1aFsuN/KeJwgA374r0Wc1ni2uUW4MtLDRsONSq8lgSf+HDYFxcuWe7?=
- =?iso-8859-1?Q?Z0q9GdaX/eo4XFurzmo+gT4GedHNU9pkpktGovI/c3F3JfnIrnCMY6mIJN?=
- =?iso-8859-1?Q?1hqODZ7Nv3pTYsTbpgeRrqKUveoGEoADAorblVmUCwtleGjtTF7B0yZpLa?=
- =?iso-8859-1?Q?1uzJjFxLfUgYMzMZUeGv5o/SaORrRnNlW+sUsvyFwok3PyTEZU79I91u+8?=
- =?iso-8859-1?Q?LU7f41BSrjK4TKeO+lH/ZgX8vhB4Gi8ra4lj0nDQpNeMxpoiyH8hX3Ge3L?=
- =?iso-8859-1?Q?E5a5joA1+6eDo8hDRo2T2HQt5r0acadk1Mq+41PcRBLYKGIfmr1NLA7gTB?=
- =?iso-8859-1?Q?BUKixTID7GVvot3j+X3FlSb9YxFuIND8D773ZMVxVJvFpQp+wN443jlaJV?=
- =?iso-8859-1?Q?5iRAaXjRNSRda7GVU2ldburg59u3nDi+ZoqX/x86Xcc+m3n179kPjauHHN?=
- =?iso-8859-1?Q?aSqEsAapTClA5atOpDWmn/Ce++320NGVQYccAybnXpkviuEKEKinGXTzVa?=
- =?iso-8859-1?Q?JTuhX06dfS8S2lF9ElLQgRlAWaY3IMzis96EsgIMtvt/KiZni/0vSu6uTS?=
- =?iso-8859-1?Q?CD/e7Bn95lHDQzr7esXGfEYKXgNcPxpHm26gblixL/A1jQmj3s5sJFeHEb?=
- =?iso-8859-1?Q?SP7HongDGrYtFM6Q7KKdZJ+BEDtLuD9N1F60HgrYWwPUGZkLNdZKzF+ogZ?=
- =?iso-8859-1?Q?A6bGulOMUT6bhwgOL7t8ot1l8sQf+srgcnbN7xZQrhCHME0JAGrc5DxO/I?=
- =?iso-8859-1?Q?2k5xBDLlvvs1loLT2ZHtF/G0VTko4QGumr+HwSHCNQ36shPVE63s7dIbqk?=
- =?iso-8859-1?Q?Jyur2CrWnL//oJX/rV8OLWI3Ww2fhJgG3LC3MSejzI+pXiiq3ayBvjMtk0?=
- =?iso-8859-1?Q?EmU3g4GwgehIGh8ADnxPOakuGicbr/rsaEJUdkTIE/SO2HE/nJTmJ1RY5x?=
- =?iso-8859-1?Q?p2ALVGyQmxl1GMoDRz8ihIbcD31FDbxmwuMziN2v2PyYRdxoxX0edPQAS2?=
- =?iso-8859-1?Q?VzKH07lDH8op13EEILNeT9qTNrCAUcQWIxCYOtYOGqONaiP2so5e4gO9oY?=
- =?iso-8859-1?Q?AObLngTTv0DebV52LD+8wFX7SeerwOM3I/W1ET5FcLZM0UJepzcSWgQVgn?=
- =?iso-8859-1?Q?fRRyDiAT6p9/hrlwkdsCV6bCVpk4gd57FRNl8Zr9Dbf0tu+oy5Njt+wPoP?=
- =?iso-8859-1?Q?f69uYKHKaEu9uN/7RE2K26/zbWE/TDjz9jQfpw/U9VA0K3B9rAe4Pwy1p/?=
- =?iso-8859-1?Q?KpHj7NYSDUrNU5Hams2b8GAlCmJOlZbOK4XxK/lebdV0f+g1BprPRL0dwz?=
- =?iso-8859-1?Q?HaBdZ0ekMx856/mS6fQbl8BDPs02xH54I7eC9I6UlhnDH1+CwGCUsVVAtd?=
- =?iso-8859-1?Q?dvJY3jg3iE?=
-X-OriginatorOrg: silabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f8cd9c0-07d9-44f5-66f7-08d984fb12d3
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5657.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2021 16:46:53.8835
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YGbxwhtBrPUAXMIfYrPG2oRoxFxtFpjLXpybnqSO00MTfsM17RRC9TuPchiTatqtSGUowGO7l8YUuiV7fPP8dA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5580
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1633087292-1378-6-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 1 October 2021 18:08:32 CEST Pali Roh=E1r wrote:
-> On Friday 01 October 2021 17:09:41 J=E9r=F4me Pouiller wrote:
-> > On Friday 1 October 2021 13:58:38 CEST Kalle Valo wrote:
-> > > Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
-> > >
-> > > > From: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
-> > > >
-> > > > Signed-off-by: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
-> > >
-> > > [...]
-> > >
-> > > > +static int get_firmware(struct wfx_dev *wdev, u32 keyset_chip,
-> > > > +                     const struct firmware **fw, int *file_offset)
-> > > > +{
-> > > > +     int keyset_file;
-> > > > +     char filename[256];
-> > > > +     const char *data;
-> > > > +     int ret;
-> > > > +
-> > > > +     snprintf(filename, sizeof(filename), "%s_%02X.sec",
-> > > > +              wdev->pdata.file_fw, keyset_chip);
-> > > > +     ret =3D firmware_request_nowarn(fw, filename, wdev->dev);
-> > > > +     if (ret) {
-> > > > +             dev_info(wdev->dev, "can't load %s, falling back to %=
-s.sec\n",
-> > > > +                      filename, wdev->pdata.file_fw);
-> > > > +             snprintf(filename, sizeof(filename), "%s.sec",
-> > > > +                      wdev->pdata.file_fw);
-> > > > +             ret =3D request_firmware(fw, filename, wdev->dev);
-> > > > +             if (ret) {
-> > > > +                     dev_err(wdev->dev, "can't load %s\n", filenam=
-e);
-> > > > +                     *fw =3D NULL;
-> > > > +                     return ret;
-> > > > +             }
-> > > > +     }
-> > >
-> > > How is this firmware file loading supposed to work? If I'm reading th=
-e
-> > > code right, the driver tries to load file "wfm_wf200_??.sec" but in
-> > > linux-firmware the file is silabs/wfm_wf200_C0.sec:
-> > >
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmwa=
-re.git/tree/silabs
-> > >
-> > > That can't work automatically, unless I'm missing something of course=
-.
-> >
-> > The firmware are signed. "C0" is the key used to sign this firmware. Th=
-is
-> > key must match with the key burned into the chip. Fortunately, the driv=
-er
-> > is able to read the key accepted by the chip and automatically choose t=
-he
-> > right firmware.
-> >
-> > We could imagine to add a attribute in the DT to choose the firmware to
-> > load. However, it would be a pity to have to specify it manually wherea=
-s
-> > the driver is able to detect it automatically.
-> >
-> > Currently, the only possible key is C0. However, it exists some interna=
-l
-> > parts with other keys. In addition, it is theoretically possible to ask
-> > to Silabs to burn parts with a specific key in order to improve securit=
-y
-> > of a product.
-> >
-> > Obviously, for now, this feature mainly exists for the Silabs firmware
-> > developers who have to work with other keys.
-> >
-> > > Also I would prefer to use directory name as the driver name wfx, but=
- I
-> > > guess silabs is also doable.
-> >
-> > I have no opinion.
-> >
-> >
-> > > Also I'm not seeing the PDS files in linux-firmware. The idea is that
-> > > when user installs an upstream kernel and the linux-firmware everythi=
-ng
-> > > will work automatically, without any manual file installations.
-> >
-> > WF200 is just a chip. Someone has to design an antenna before to be abl=
-e
-> > to use.
-> >
-> > However, we have evaluation boards that have antennas and corresponding
-> > PDS files[1]. Maybe linux-firmware should include the PDS for these boa=
-rds
->=20
-> So chip vendor provides firmware and card vendor provides PDS files.
+On Fri, Oct 01, 2021 at 04:51:29PM +0530, Srinivasa Rao Mandadapu wrote:
+> Upadate lpass cpu and platform driver to support audio over codec dma
+> in ADSP bypass use case.
+> 
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+>  sound/soc/qcom/lpass-cpu.c      | 312 ++++++++++++++++++++++++-
+>  sound/soc/qcom/lpass-platform.c | 499 +++++++++++++++++++++++++++++++++++++---
+>  2 files changed, 773 insertions(+), 38 deletions(-)
+> 
+> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+> index 3bd9eb3..c8dec52 100644
+> --- a/sound/soc/qcom/lpass-cpu.c
+> +++ b/sound/soc/qcom/lpass-cpu.c
+> @@ -798,6 +798,251 @@ static struct regmap_config lpass_hdmi_regmap_config = {
+>  	.cache_type = REGCACHE_FLAT,
+>  };
+>  
+> +static bool lpass_rxtx_regmap_writeable(struct device *dev, unsigned int reg)
+> +{
+> +	struct lpass_data *drvdata = dev_get_drvdata(dev);
+> +	struct lpass_variant *v = drvdata->variant;
+> +	int i;
+> +
+> +	for (i = 0; i < v->rxtx_irq_ports; ++i) {
+> +		if (reg == LPAIF_RXTX_IRQCLEAR_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQEN_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQSTAT_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +	}
+> +
+> +	for (i = 0; i < v->rxtx_rdma_channels; ++i) {
+> +		if (reg == LPAIF_CDC_RDMACTL_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_RDMABASE_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_RDMABUFF_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_RDMAPER_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_RDMA_INTF_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +	}
+> +
+> +	for (i = 0; i < v->rxtx_wrdma_channels; ++i) {
+> +		if (reg == LPAIF_CDC_WRDMACTL_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMABASE_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMABUFF_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMAPER_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMA_INTF_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static bool lpass_rxtx_regmap_readable(struct device *dev, unsigned int reg)
+> +{
+> +	struct lpass_data *drvdata = dev_get_drvdata(dev);
+> +	struct lpass_variant *v = drvdata->variant;
+> +	int i;
+> +
+> +	for (i = 0; i < v->rxtx_irq_ports; ++i) {
+> +		if (reg == LPAIF_RXTX_IRQCLEAR_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQEN_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQSTAT_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +	}
+> +
+> +	for (i = 0; i < v->rxtx_rdma_channels; ++i) {
+> +		if (reg == LPAIF_CDC_RDMACTL_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_RDMABASE_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_RDMABUFF_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_RDMACURR_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_RDMAPER_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_RDMA_INTF_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +	}
+> +
+> +	for (i = 0; i < v->rxtx_wrdma_channels; ++i) {
+> +		if (reg == LPAIF_CDC_WRDMACTL_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMABASE_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMABUFF_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMACURR_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMAPER_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMA_INTF_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
 
-Exactly.
+lpass_rxtx_regmap_readable() is almost the same as lpass_rxtx_regmap_writeable(),
+except for LPAIF_CDC_RDMACURR_REG and LPAIF_CDC_WRDMACURR_REG. Add something like
 
-> In
-> my opinion all files should go into linux-firmware repository. If Silabs
-> has PDS files for its devel boards (which are basically cards) then I
-> think these files should go also into linux-firmware repository.
->=20
-> And based on some parameter, driver should load correct PDS file. Seems
-> like DT can be a place where to put something which indicates which PDS
-> file should be used.
->=20
-> But should be in DT directly name of PDS file? Or should be in DT just
-> additional compatible string with card vendor name and then in driver
-> itself should be mapping table from compatible string to filename? I do
-> not know what is better.
+static bool __lpass_rxtx_regmap_accessible(struct device *dev, unsigned int reg, bool rw)
 
-The DT already accepts the attribute silabs,antenna-config-file (see
-patch #2).
+which would look essentially like lpass_rxtx_regmap_readable() but checks the
+'rw' parameter for LPAIF_CDC_RDMACURR_REG and LPAIF_CDC_WRDMACURR_REG.
+lpass_rxtx_regmap_readable() and lpass_rxtx_regmap_writeable() then call this
+function with the corresponding value for 'rw'
 
-I think that linux-firmware repository will reject the pds files if
-no driver in the kernel directly point to it. Else how to detect orphans?
-So, I think it is slightly better to use a mapping table.
+> +
+> +static bool lpass_rxtx_regmap_volatile(struct device *dev, unsigned int reg)
+> +{
+> +	struct lpass_data *drvdata = dev_get_drvdata(dev);
+> +	struct lpass_variant *v = drvdata->variant;
+> +	int i;
+> +
+> +	for (i = 0; i < v->rxtx_irq_ports; ++i) {
+> +		if (reg == LPAIF_RXTX_IRQCLEAR_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQSTAT_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +	}
+> +
+> +	for (i = 0; i < v->rxtx_rdma_channels; ++i)
+> +		if (reg == LPAIF_CDC_RDMACURR_REG(v, i, LPASS_CDC_DMA_RX0))
+> +			return true;
+> +
+> +	for (i = 0; i < v->rxtx_wrdma_channels; ++i)
+> +		if (reg == LPAIF_CDC_WRDMACURR_REG(v, i + v->rxtx_wrdma_channel_start,
+> +							LPASS_CDC_DMA_TX3))
+> +			return true;
+> +
+> +	return false;
+> +}
+> +
+> +static bool lpass_va_regmap_writeable(struct device *dev, unsigned int reg)
+> +{
+> +	struct lpass_data *drvdata = dev_get_drvdata(dev);
+> +	struct lpass_variant *v = drvdata->variant;
+> +	int i;
+> +
+> +	for (i = 0; i < v->va_irq_ports; ++i) {
+> +		if (reg == LPAIF_RXTX_IRQCLEAR_REG(v, i, LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQEN_REG(v, i, LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQSTAT_REG(v, i, LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +	}
+> +
+> +	for (i = 0; i < v->va_wrdma_channels; ++i) {
+> +		if (reg == LPAIF_CDC_WRDMACTL_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMABASE_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMABUFF_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMAPER_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMA_INTF_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static bool lpass_va_regmap_readable(struct device *dev, unsigned int reg)
+> +{
+> +	struct lpass_data *drvdata = dev_get_drvdata(dev);
+> +	struct lpass_variant *v = drvdata->variant;
+> +	int i;
+> +
+> +	for (i = 0; i < v->va_irq_ports; ++i) {
+> +		if (reg == LPAIF_RXTX_IRQCLEAR_REG(v, i, LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQEN_REG(v, i, LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQSTAT_REG(v, i, LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +	}
+> +
+> +	for (i = 0; i < v->va_wrdma_channels; ++i) {
+> +		if (reg == LPAIF_CDC_WRDMACTL_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMABASE_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMABUFF_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMACURR_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMAPER_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_CDC_WRDMA_INTF_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+
+Same as for lpass_rxtx_regmap_readable/writable()
+
+> +
+> +static bool lpass_va_regmap_volatile(struct device *dev, unsigned int reg)
+> +{
+> +	struct lpass_data *drvdata = dev_get_drvdata(dev);
+> +	struct lpass_variant *v = drvdata->variant;
+> +	int i;
+> +
+> +	for (i = 0; i < v->va_irq_ports; ++i) {
+> +		if (reg == LPAIF_RXTX_IRQCLEAR_REG(v, i, LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +		if (reg == LPAIF_RXTX_IRQSTAT_REG(v, i, LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +	}
+> +
+> +	for (i = 0; i < v->va_wrdma_channels; ++i) {
+> +		if (reg == LPAIF_CDC_WRDMACURR_REG(v, i + v->va_wrdma_channel_start,
+> +							LPASS_CDC_DMA_VA_TX0))
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static struct regmap_config lpass_rxtx_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.writeable_reg = lpass_rxtx_regmap_writeable,
+> +	.readable_reg = lpass_rxtx_regmap_readable,
+> +	.volatile_reg = lpass_rxtx_regmap_volatile,
+> +	.cache_type = REGCACHE_FLAT,
+> +};
+> +
+> +static struct regmap_config lpass_va_regmap_config = {
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.val_bits = 32,
+> +	.writeable_reg = lpass_va_regmap_writeable,
+> +	.readable_reg = lpass_va_regmap_readable,
+> +	.volatile_reg = lpass_va_regmap_volatile,
+> +	.cache_type = REGCACHE_FLAT,
+> +};
+> +
+>  static unsigned int of_lpass_cpu_parse_sd_lines(struct device *dev,
+>  						struct device_node *node,
+>  						const char *name)
+> @@ -837,6 +1082,17 @@ static unsigned int of_lpass_cpu_parse_sd_lines(struct device *dev,
+>  	}
+>  }
+>  
+> +static bool is_cdc_dma_port(int dai_id)
+> +{
+> +	switch (dai_id) {
+> +	case LPASS_CDC_DMA_RX0:
+> +	case LPASS_CDC_DMA_TX3:
+> +	case LPASS_CDC_DMA_VA_TX0:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+>  static void of_lpass_cpu_parse_dai_data(struct device *dev,
+>  					struct lpass_data *data)
+>  {
+> @@ -857,7 +1113,9 @@ static void of_lpass_cpu_parse_dai_data(struct device *dev,
+>  		}
+>  		if (id == LPASS_DP_RX) {
+>  			data->hdmi_port_enable = 1;
+> -		} else {
+> +		} else if (is_cdc_dma_port(id))
+> +			data->wcd_codec_enable = 1;
+> +		else {
+>  			data->mi2s_playback_sd_mode[id] =
+>  				of_lpass_cpu_parse_sd_lines(dev, node,
+>  							    "qcom,playback-sd-lines");
+> @@ -897,6 +1155,53 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
+>  
+>  	of_lpass_cpu_parse_dai_data(dev, drvdata);
+>  
+> +	drvdata->num_clks =  variant->num_clks;
+> +	if (drvdata->wcd_codec_enable) {
+> +		drvdata->rxtx_lpaif =
+> +				devm_platform_ioremap_resource_byname(pdev, "lpass-rxtx-lpaif");
+> +		if (IS_ERR(drvdata->rxtx_lpaif))
+> +			return PTR_ERR(drvdata->rxtx_lpaif);
+> +
+> +		drvdata->va_lpaif = devm_platform_ioremap_resource_byname(pdev, "lpass-va-lpaif");
+> +		if (IS_ERR(drvdata->va_lpaif))
+> +			return PTR_ERR(drvdata->va_lpaif);
+> +
+> +		lpass_rxtx_regmap_config.max_register = LPAIF_CDC_WRDMAPER_REG(variant,
+> +					variant->rxtx_wrdma_channels +
+> +					variant->rxtx_wrdma_channel_start, LPASS_CDC_DMA_TX3);
+> +
+> +		drvdata->rxtx_lpaif_map = devm_regmap_init_mmio(dev, drvdata->rxtx_lpaif,
+> +					&lpass_rxtx_regmap_config);
+> +		if (IS_ERR(drvdata->rxtx_lpaif_map)) {
+> +			dev_err(dev, "error initializing regmap: %ld\n",
+
+The same error is logged a few lines below, you might want to log which regmap
+couldn't be initialized.
+
+> +			PTR_ERR(drvdata->rxtx_lpaif_map));
+
+fix indentation
+
+> +			return PTR_ERR(drvdata->rxtx_lpaif_map);
+> +		}
+> +		lpass_va_regmap_config.max_register = LPAIF_CDC_WRDMAPER_REG(variant,
+> +					variant->va_wrdma_channels +
+> +					variant->va_wrdma_channel_start, LPASS_CDC_DMA_VA_TX0);
+> +
+> +		drvdata->va_lpaif_map = devm_regmap_init_mmio(dev, drvdata->va_lpaif,
+> +					&lpass_va_regmap_config);
+> +		if (IS_ERR(drvdata->va_lpaif_map)) {
+> +			dev_err(dev, "error initializing regmap: %ld\n",
+
+see above
+
+> +			PTR_ERR(drvdata->va_lpaif_map));
+
+fix indentation
+
+> +			return PTR_ERR(drvdata->va_lpaif_map);
+> +		}
+> +		drvdata->cdc_num_clks =  variant->cdc_dma_num_clks;
+> +		for (i = 0; i < variant->cdc_dma_num_clks; i++) {
+> +			drvdata->cdc_dma_clks[i] = devm_clk_get(dev,
+> +							variant->cdc_dma_clk_names[i]);
+> +			if (IS_ERR(drvdata->cdc_dma_clks[i])) {
+> +	vdata->lpaif_map;
+> +		}
+>  	}
+>  
+>  	ret = regmap_write(map, LPAIF_DMABASE_REG(v, ch, dir, dai_id),
+> @@ -423,6 +578,16 @@ static int lpass_platform_pcmops_prepare(struct snd_soc_component *component,
+>  		return ret;
+>  	}
+>  
+> +	if (dai_id == LPASS_CDC_DMA_RX0 ||
+> +		dai_id == LPASS_CDC_DMA_TX3 ||
+> +		dai_id == LPASS_CDC_DMA_VA_TX0) {
+> +		ret = regmap_fields_write(dmactl->fifowm, id, LPAIF_DMACTL_FIFOWM_8);
+> +		if (ret) {
+> +			dev_err(soc_runtime->dev, "error writing fifowm field to dmactl reg: %d, id: %d\n",
+> +				ret, id);
+> +			return ret;
+> +		}
+> +	}
+>  	ret = regmap_fields_write(dmactl->enable, id, LPAIF_DMACTL_ENABLE_ON);
+>  	if (ret) {
+>  		dev_err(soc_runtime->dev, "error writing to rdmactl reg: %d\n",
+> @@ -457,14 +622,27 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+>  		if (dai_id == LPASS_DP_RX) {
+>  			dmactl = drvdata->hdmi_rd_dmactl;
+>  			map = drvdata->hdmiif_map;
+> +		} else if (dai_id == LPASS_CDC_DMA_RX0) {
+> +			map = drvdata->rxtx_lpaif_map;
+> +			dmactl = drvdata->rxtx_rd_dmactl;
+>  		} else {
+>  			dmactl = drvdata->rd_dmactl;
+>  			map = drvdata->lpaif_map;
+>  		}
+>  	} else {
+> -		dmactl = drvdata->wr_dmactl;
+> -		id = pcm_data->dma_ch - v->wrdma_channel_start;
+> -		map = drvdata->lpaif_map;
+> +		if (dai_id == LPASS_CDC_DMA_TX3) {
+> +			dmactl = drvdata->rxtx_wr_dmactl;
+> +			map = drvdata->rxtx_lpaif_map;
+> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
+> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
+> +			dmactl = drvdata->va_wr_dmactl;
+> +			map = drvdata->va_lpaif_map;
+> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
+> +		} else {
+> +			dmactl = drvdata->wr_dmactl;
+> +			id = pcm_data->dma_ch - v->wrdma_channel_start;
+> +			map = drvdata->lpaif_map;
+> +		}
 
 
-> > and the DT should contains the name of the design. eg:
-> >
-> >     compatible =3D "silabs,brd4001a", "silabs,wf200";
-> >
-> > So the driver will know which PDS it should use.
-> >
-> > In fact, I am sure I had this idea in mind when I have started to write
-> > the wfx driver. But with the time I have forgotten it.
-> >
-> > If you agree with that idea, I can work on it next week.
-> >
-> >
-> > [1]: https://github.com/SiliconLabs/wfx-pds
+As for "[4/8] ASoC: qcom: Add lapss CPU driver for codec dma control", I think
+you want a helper that encapsulates the above, instead of open coding it
+multiple times in the driver.
 
+>  	}
+>  
+>  	switch (cmd) {
+> @@ -479,6 +657,24 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+>  			return ret;
+>  		}
+>  		switch (dai_id) {
+> +		case LPASS_CDC_DMA_RX0:
+> +		case LPASS_CDC_DMA_TX3:
+> +		case LPASS_CDC_DMA_VA_TX0:
+> +			ret = regmap_fields_write(dmactl->dyncclk, id, LPAIF_DMACTL_DYNCLK_ON);
+> +			if (ret) {
+> +				dev_err(soc_runtime->dev,
+> +					"error writing to rdmactl reg field: %d\n", ret);
+> +				return ret;
+> +			}
+> +			map = (dai_id == LPASS_CDC_DMA_VA_TX0) ?
+> +				drvdata->va_lpaif_map : drvdata->rxtx_lpaif_map;
 
---=20
-J=E9r=F4me Pouiller
+'map' was already assigned earlier.
 
+> +			reg_irqclr = LPAIF_RXTX_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST, dai_id);
+> +			val_irqclr = LPAIF_IRQ_ALL(ch);
+> +
+> +			reg_irqen = LPAIF_RXTX_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST, dai_id);
+> +			val_mask = LPAIF_IRQ_ALL(ch);
+> +			val_irqen = LPAIF_IRQ_ALL(ch);
+> +			break;
+>  		case LPASS_DP_RX:
+>  			ret = regmap_fields_write(dmactl->dyncclk, id,
+>  					 LPAIF_DMACTL_DYNCLK_ON);
+> @@ -543,6 +739,26 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+>  			return ret;
+>  		}
+>  		switch (dai_id) {
+> +		case LPASS_CDC_DMA_RX0:
+> +		case LPASS_CDC_DMA_TX3:
+> +		case LPASS_CDC_DMA_VA_TX0:
+> +			ret = regmap_fields_write(dmactl->dyncclk, id, LPAIF_DMACTL_DYNCLK_OFF);
+> +			if (ret) {
+> +				dev_err(soc_runtime->dev,
+> +					"error writing to rdmactl reg field: %d\n", ret);
+> +				return ret;
+> +			}
+> +			map = (dai_id == LPASS_CDC_DMA_VA_TX0) ?
+> +				drvdata->va_lpaif_map : drvdata->rxtx_lpaif_map;
 
+ditto
+
+> +
+> +			reg_irqclr = LPAIF_RXTX_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST, dai_id);
+> +			val_irqclr = LPAIF_IRQ_ALL(ch);
+> +
+> +			reg_irqen = LPAIF_RXTX_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST, dai_id);
+> +			val_mask = LPAIF_IRQ_ALL(ch);
+> +			val_irqen = LPAIF_IRQ_ALL(ch);
+> +
+> +		break;
+>  		case LPASS_DP_RX:
+>  			ret = regmap_fields_write(dmactl->dyncclk, id,
+>  					 LPAIF_DMACTL_DYNCLK_OFF);
+> @@ -601,6 +817,12 @@ static snd_pcm_uframes_t lpass_platform_pcmops_pointer(
+>  
+>  	if (dai_id == LPASS_DP_RX)
+>  		map = drvdata->hdmiif_map;
+> +	else if (dai_id == LPASS_CDC_DMA_RX0 ||
+> +		dai_id == LPASS_CDC_DMA_TX3 ||
+> +		dai_id == LPASS_CDC_DMA_VA_TX0)
+> +		map = (dai_id == LPASS_CDC_DMA_VA_TX0) ?
+> +			drvdata->va_lpaif_map :
+> +			drvdata->rxtx_lpaif_map;
+>  	else
+>  		map = drvdata->lpaif_map;
+
+use helper to get map from dai id
+
+>  
+> @@ -625,12 +847,39 @@ static snd_pcm_uframes_t lpass_platform_pcmops_pointer(
+>  	return bytes_to_frames(substream->runtime, curr_addr - base_addr);
+>  }
+>  
+> +static int lpass_platform_cdc_dma_mmap(struct snd_soc_component *component,
+> +			struct snd_pcm_substream *substream,
+> +			struct vm_area_struct *vma)
+> +{
+> +	struct snd_pcm_runtime *runtime = substream->runtime;
+> +	unsigned long size, offset;
+> +	int ret;
+> +
+> +	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
+> +	size = vma->vm_end - vma->vm_start;
+> +	offset = vma->vm_pgoff << PAGE_SHIFT;
+> +	ret = io_remap_pfn_range(vma, vma->vm_start,
+> +			(runtime->dma_addr + offset) >> PAGE_SHIFT,
+> +			size, vma->vm_page_prot);
+> +
+> +	return ret;
+
+no need for 'ret' just 'return io_remap_pfn_range(...);'
+
+> +}
+> +
+>  static int lpass_platform_pcmops_mmap(struct snd_soc_component *component,
+>  				      struct snd_pcm_substream *substream,
+>  				      struct vm_area_struct *vma)
+>  {
+>  	struct snd_pcm_runtime *runtime = substream->runtime;
+> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
+> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
+> +	unsigned int dai_id = cpu_dai->driver->id;
+>  
+> +	if (dai_id == LPASS_CDC_DMA_RX0 ||
+> +		dai_id == LPASS_CDC_DMA_TX3 ||
+> +		dai_id == LPASS_CDC_DMA_VA_TX0) {
+> +		lpass_platform_cdc_dma_mmap(component, substream, vma);
+> +		return 0;
+> +	}
+>  	return dma_mmap_coherent(component->dev, vma, runtime->dma_area,
+>  				 runtime->dma_addr, runtime->dma_bytes);
+>  }
+> @@ -651,6 +900,14 @@ static irqreturn_t lpass_dma_interrupt_handler(
+>  
+>  	mask = LPAIF_IRQ_ALL(chan);
+>  	switch (dai_id) {
+> +	case LPASS_CDC_DMA_RX0:
+> +	case LPASS_CDC_DMA_TX3:
+> +	case LPASS_CDC_DMA_VA_TX0:
+> +		map = (dai_id == LPASS_CDC_DMA_VA_TX0) ?
+> +				drvdata->va_lpaif_map : drvdata->rxtx_lpaif_map;
+> +		reg = LPAIF_RXTX_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST, dai_id);
+> +		val = 0;
+> +		break;
+>  	case LPASS_DP_RX:
+>  		map = drvdata->hdmiif_map;
+>  		reg = LPASS_HDMITX_APP_IRQCLEAR_REG(v);
+> @@ -774,41 +1031,131 @@ static irqreturn_t lpass_platform_hdmiif_irq(int irq, void *data)
+>  				return rv;
+>  		}
+>  	}
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static irqreturn_t lpass_platform_rxtxif_irq(int irq, void *data)
+> +{
+> +	struct lpass_data *drvdata = data;
+> +	struct lpass_variant *v = drvdata->variant;
+> +	unsigned int irqs;
+> +	int rv, chan;
+> +
+> +	rv = regmap_read(drvdata->rxtx_lpaif_map,
+> +			LPAIF_RXTX_IRQSTAT_REG(v, LPAIF_IRQ_PORT_HOST, LPASS_CDC_DMA_RX0), &irqs);
+> +	if (rv)
+> +		return IRQ_NONE;
+> +	/* Handle per channel interrupts */
+> +	for (chan = 0; chan < LPASS_MAX_CDC_DMA_CHANNELS; chan++) {
+> +		if (irqs & LPAIF_IRQ_ALL(chan) && drvdata->rxtx_substream[chan]) {
+> +			rv = lpass_dma_interrupt_handler(
+> +						drvdata->rxtx_substream[chan],
+> +						drvdata, chan, irqs);
+> +			if (rv != IRQ_HANDLED)
+> +				return rv;
+> +		}
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static irqreturn_t lpass_platform_vaif_irq(int irq, void *data)
+> +{
+> +	struct lpass_data *drvdata = data;
+> +	struct lpass_variant *v = drvdata->variant;
+> +	unsigned int irqs;
+> +	int rv, chan;
+>  
+> +	rv = regmap_read(drvdata->va_lpaif_map,
+> +			LPAIF_RXTX_IRQSTAT_REG(v, LPAIF_IRQ_PORT_HOST,
+> +			LPASS_CDC_DMA_VA_TX0), &irqs);
+> +	if (rv)
+> +		return IRQ_NONE;
+> +	/* Handle per channel interrupts */
+> +	for (chan = 0; chan < LPASS_MAX_VA_CDC_DMA_CHANNELS; chan++) {
+> +		if (irqs & LPAIF_IRQ_ALL(chan) && drvdata->va_substream[chan]) {
+> +			rv = lpass_dma_interrupt_handler(
+> +						drvdata->va_substream[chan],
+> +						drvdata, chan, irqs);
+> +			if (rv != IRQ_HANDLED)
+> +				return rv;
+> +		}
+> +	}
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static int lpass_platform_prealloc_cdc_dma_buffer(struct snd_pcm *pcm,
+> +			struct snd_pcm_substream *substream, int dai_id)
+> +{
+> +	struct snd_dma_buffer *buf = &substream->dma_buffer;
+> +	int ret;
+> +
+> +	ret = dma_coerce_mask_and_coherent(pcm->card->dev, DMA_BIT_MASK(64));
+> +	if (ret)
+> +		return ret;
+> +
+> +	buf->dev.dev = pcm->card->dev;
+> +	buf->private_data = NULL;
+> +
+> +	/* Assign Codec DMA buffer pointers */
+> +	buf->dev.type = SNDRV_DMA_TYPE_CONTINUOUS;
+> +	if (dai_id == LPASS_CDC_DMA_RX0) {
+> +		buf->bytes = lpass_platform_rxtx_hardware.buffer_bytes_max;
+> +		buf->addr = LPSAS_RXTX_CDC_DMA_LPM_ADDR;
+> +	} else if (dai_id == LPASS_CDC_DMA_TX3) {
+> +		buf->bytes = lpass_platform_rxtx_hardware.buffer_bytes_max;
+> +		buf->addr = LPSAS_RXTX_CDC_DMA_LPM_ADDR + LPSAS_RXTX_CDC_DMA_LPM_BUFF_SIZE;
+> +	} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
+> +		buf->bytes = lpass_platform_va_hardware.buffer_bytes_max;
+> +		buf->addr = LPSAS_VA_CDC_DMA_LPM_ADDR;
+> +	}
+> +
+> +	buf->area = (unsigned char * __force)ioremap(buf->addr, buf->bytes);
+> +
+> +	return 0;
+> +}
+> +
+>  static int lpass_platform_pcm_new(struct snd_soc_component *component,
+>  				  struct snd_soc_pcm_runtime *soc_runtime)
+>  {
+>  	struct snd_pcm *pcm = soc_runtime->pcm;
+>  	struct snd_pcm_substream *psubstream, *csubstream;
+>  	int ret;
+> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
+> +	unsigned int dai_id = cpu_dai->driver->id;
+> +
+>  	size_t size = lpass_platform_pcm_hardware.buffer_bytes_max;
+>  
+>  	psubstream = pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream;
+>  	if (psubstream) {
+> -		ret = snd_dma_alloc_pages(SNDRV_DMA_TYPE_DEV,
+> -					component->dev,
+> -					size, &psubstream->dma_buffer);
+> -		if (ret) {
+> -			dev_err(soc_runtime->dev, "Cannot allocate buffer(s)\n");
+> -			return ret;
+> +		if (dai_id == LPASS_CDC_DMA_RX0) {
+> +			lpass_platform_prealloc_cdc_dma_buffer(pcm, psubstream, dai_id);
+> +		} else {
+> +			ret = snd_dma_alloc_pages(SNDRV_DMA_TYPE_DEV,
+> +						component->dev,
+> +						size, &psubstream->dma_buffer);
+> +			if (ret) {
+> +				dev_err(soc_runtime->dev, "Cannot allocate buffer(s)\n");
+> +				return ret;
+> +			}
+>  		}
+>  	}
+>  
+>  	csubstream = pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream;
+>  	if (csubstream) {
+> -		ret = snd_dma_alloc_pages(SNDRV_DMA_TYPE_DEV,
+> -					component->dev,
+> -					size, &csubstream->dma_buffer);
+> -		if (ret) {
+> -			dev_err(soc_runtime->dev, "Cannot allocate buffer(s)\n");
+> -			if (psubstream)
+> -				snd_dma_free_pages(&psubstream->dma_buffer);
+> -			return ret;
+> +		if (dai_id == LPASS_CDC_DMA_TX3 || dai_id == LPASS_CDC_DMA_VA_TX0) {
+> +			lpass_platform_prealloc_cdc_dma_buffer(pcm, csubstream, dai_id);
+> +		} else {
+> +			ret = snd_dma_alloc_pages(SNDRV_DMA_TYPE_DEV,
+> +						component->dev,
+> +						size, &csubstream->dma_buffer);
+> +			if (ret) {
+> +				dev_err(soc_runtime->dev, "Cannot allocate buffer(s)\n");
+> +				if (psubstream)
+> +					snd_dma_free_pages(&psubstream->dma_buffer);
+> +				return ret;
+> +			}
+>  		}
+> -
+>  	}
+>  
+>  	return 0;
+> @@ -818,18 +1165,43 @@ static void lpass_platform_pcm_free(struct snd_soc_component *component,
+>  				    struct snd_pcm *pcm)
+>  {
+>  	struct snd_pcm_substream *substream;
+> +	unsigned int dai_id = component->id;
+>  	int i;
+>  
+>  	for_each_pcm_streams(i) {
+>  		substream = pcm->streams[i].substream;
+>  		if (substream) {
+> -			snd_dma_free_pages(&substream->dma_buffer);
+> +			if (dai_id == LPASS_CDC_DMA_RX0 ||
+> +				dai_id == LPASS_CDC_DMA_TX3 ||
+> +				dai_id == LPASS_CDC_DMA_VA_TX0) {
+> +				if (substream->dma_buffer.area)
+> +					iounmap((void __iomem *)substream->dma_buffer.area);
+> +			} else {
+> +				snd_dma_free_pages(&substream->dma_buffer);
+> +			}
+>  			substream->dma_buffer.area = NULL;
+>  			substream->dma_buffer.addr = 0;
+>  		}
+>  	}
+>  }
+>  
+> +int lpass_platform_copy(struct snd_soc_component *component,
+> +			 struct snd_pcm_substream *substream, int channel,
+> +			 unsigned long pos, void __user *buf, unsigned long bytes)
+> +{
+> +	struct snd_pcm_runtime *rt = substream->runtime;
+> +
+
+delete empty line
+
+> +	unsigned char *dma_buf = rt->dma_area + pos +
+> +				channel * (rt->dma_bytes / rt->channels);
+> +
+> +	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+> +		return copy_from_user_toio(dma_buf, buf, bytes);
+> +	else if (substream->stream == SNDRV_PCM_STREAM_CAPTURE)
+> +		return copy_to_user_fromio(buf, dma_buf, bytes);
+> +
+> +	return 0;
+
+Can 'substream->stream' have any other value than SNDRV_PCM_STREAM_PLAYBACK or
+SNDRV_PCM_STREAM_CAPTURE? If not maybe return -EINVAL here?
+
+> +}
+> +
+>  static int lpass_platform_pcmops_suspend(struct snd_soc_component *component)
+>  {
+>  	struct lpass_data *drvdata = snd_soc_component_get_drvdata(component);
+> @@ -875,6 +1247,7 @@ static const struct snd_soc_component_driver lpass_component_driver = {
+>  	.mmap		= lpass_platform_pcmops_mmap,
+>  	.pcm_construct	= lpass_platform_pcm_new,
+>  	.pcm_destruct	= lpass_platform_pcm_free,
+> +	.copy_user		= lpass_platform_copy,
+>  	.suspend		= lpass_platform_pcmops_suspend,
+>  	.resume			= lpass_platform_pcmops_resume,
+>  
+> @@ -914,6 +1287,60 @@ int asoc_qcom_lpass_platform_register(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> +	if (drvdata->wcd_codec_enable) {
+> +		ret = regmap_write(drvdata->rxtx_lpaif_map,
+> +			LPAIF_RXTX_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST, LPASS_CDC_DMA_TX3), 0x0);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "error writing to rxtx irqen reg: %d\n", ret);
+> +			return ret;
+> +		}
+> +		ret = regmap_write(drvdata->va_lpaif_map,
+> +			LPAIF_RXTX_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST, LPASS_CDC_DMA_VA_TX0), 0x0);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "error writing to rxtx irqen reg: %d\n", ret);
+> +			return ret;
+> +		}
+> +		drvdata->rxtxif_irq = platform_get_irq_byname(pdev, "lpass-irq-rxtxif");
+> +		if (drvdata->rxtxif_irq < 0)
+> +			return -ENODEV;
+> +
+> +		ret = devm_request_irq(&pdev->dev, drvdata->rxtxif_irq,
+> +				lpass_platform_rxtxif_irq, IRQF_TRIGGER_RISING,
+> +				"lpass-irq-rxtxif", drvdata);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "rxtx irq request failed: %d\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		ret = lpass_platform_alloc_rxtx_dmactl_fields(&pdev->dev,
+> +						 drvdata->rxtx_lpaif_map);
+> +		if (ret) {
+> +			dev_err(&pdev->dev,
+> +				"error initializing rxtx dmactl fields: %d\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		drvdata->vaif_irq = platform_get_irq_byname(pdev, "lpass-irq-vaif");
+> +		if (drvdata->vaif_irq < 0)
+> +			return -ENODEV;
+> +
+> +		ret = devm_request_irq(&pdev->dev, drvdata->vaif_irq,
+> +				lpass_platform_vaif_irq, IRQF_TRIGGER_RISING,
+> +				"lpass-irq-vaif", drvdata);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "va irq request failed: %d\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		ret = lpass_platform_alloc_va_dmactl_fields(&pdev->dev,
+> +						 drvdata->va_lpaif_map);
+> +		if (ret) {
+> +			dev_err(&pdev->dev,
+> +				"error initializing va dmactl fields: %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	if (drvdata->hdmi_port_enable) {
+>  		drvdata->hdmiif_irq = platform_get_irq_byname(pdev, "lpass-irq-hdmi");
+>  		if (drvdata->hdmiif_irq < 0)
+> -- 
+> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> 
