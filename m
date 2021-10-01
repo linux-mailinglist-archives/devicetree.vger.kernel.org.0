@@ -2,121 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C1541ECD3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 14:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C76D41ECDB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 14:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354258AbhJAMDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 08:03:30 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:49270 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354274AbhJAMDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 08:03:19 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633089695; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=p2Ore5ulMIaePgcqUBJyw2WiETcga1BN2OxeVaOjVH4=; b=Km+Zf+Fwobqqn4QiuQrm7nO+Buud6nv6h68G1uwWHDOtzNWcUAzOrPZeFVjsbRIdBgKsRId5
- pkvgRMzTnrDh62uX8US9EuZrpevW700tMdzsOgAEfl2XVqWEKRcA9QYBQwBkuJvSVbR5j278
- K7Gfh4Zdf2mnJgyhgzvlm2WQt5M=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 6156f897605ecf100bc57fce (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 01 Oct 2021 12:01:26
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 84B00C43619; Fri,  1 Oct 2021 12:01:26 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 08EC7C4338F;
-        Fri,  1 Oct 2021 12:01:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 08EC7C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v7 21/24] wfx: add debug.c/debug.h
-References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
-        <20210920161136.2398632-22-Jerome.Pouiller@silabs.com>
-Date:   Fri, 01 Oct 2021 15:01:20 +0300
-In-Reply-To: <20210920161136.2398632-22-Jerome.Pouiller@silabs.com> (Jerome
-        Pouiller's message of "Mon, 20 Sep 2021 18:11:33 +0200")
-Message-ID: <87o889j6nj.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S1354217AbhJAMGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 08:06:11 -0400
+Received: from www.zeus03.de ([194.117.254.33]:55070 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231218AbhJAMGK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Oct 2021 08:06:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=sU1jHZ5AxD4VfGEdE0alKPxI1996
+        qYnc3sUVIk98xIA=; b=o2DkK4TEJ2MjNtxegdLBJeBjQFr16jn7wHO4G/EAQU1K
+        j1RK0i4oldYwujwtqM3GV/UGHQONbcgn6x9RtjmzfinIm+xq3fgXYuoL/LArmIRH
+        m2gGCz81yu6LMx18Kdm4IrvgKuRj9bp7gMlhcF+D7jWKpZmPbsyTgyNG7rNUaMw=
+Received: (qmail 2459946 invoked from network); 1 Oct 2021 14:04:22 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 1 Oct 2021 14:04:22 +0200
+X-UD-Smtp-Session: l3s3148p1@MLMZXUnNftIgAwDPXwmDAJN1R91E6vGQ
+Date:   Fri, 1 Oct 2021 14:04:21 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-mtd@lists.infradead.org,
+        linux-spi <linux-spi@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH 6/6] memory: renesas-rpc-if: Add support for RZ/G2L
+Message-ID: <YVb5RXvh9agIS7MG@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        linux-mtd@lists.infradead.org,
+        linux-spi <linux-spi@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210928140721.8805-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <YVXMc1A4D/y4kjim@shikoro>
+ <CA+V-a8sDSsyTGfTeQfG_ZhfrJHCm+2kBTEDWaoFMTgsMOmxEgQ@mail.gmail.com>
+ <YVbM3z7x+D0MCkTF@ninjato>
+ <CA+V-a8uyQmW3+4hAt4534spKeQHDoeZzuJJE4RY70KLZfYOXoA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5QK+6x2YA2y8yiDI"
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8uyQmW3+4hAt4534spKeQHDoeZzuJJE4RY70KLZfYOXoA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
 
-> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
->
-> Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+--5QK+6x2YA2y8yiDI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[...]
+Hi Prabhakar,
 
-> +static int wfx_ps_timeout_set(void *data, u64 val)
-> +{
-> +	struct wfx_dev *wdev =3D (struct wfx_dev *)data;
-> +	struct wfx_vif *wvif;
-> +
-> +	wdev->force_ps_timeout =3D val;
-> +	wvif =3D NULL;
-> +	while ((wvif =3D wvif_iterate(wdev, wvif)) !=3D NULL)
-> +		wfx_update_pm(wvif);
-> +	return 0;
-> +}
-> +
-> +static int wfx_ps_timeout_get(void *data, u64 *val)
-> +{
-> +	struct wfx_dev *wdev =3D (struct wfx_dev *)data;
-> +
-> +	*val =3D wdev->force_ps_timeout;
-> +	return 0;
-> +}
-> +
-> +DEFINE_DEBUGFS_ATTRIBUTE(wfx_ps_timeout_fops, wfx_ps_timeout_get,
-> wfx_ps_timeout_set, "%lld\n");
-> +
-> +int wfx_debug_init(struct wfx_dev *wdev)
-> +{
-> +	struct dentry *d;
-> +
-> +	d =3D debugfs_create_dir("wfx", wdev->hw->wiphy->debugfsdir);
-> +	debugfs_create_file("counters", 0444, d, wdev, &wfx_counters_fops);
-> +	debugfs_create_file("rx_stats", 0444, d, wdev, &wfx_rx_stats_fops);
-> +	debugfs_create_file("tx_power_loop", 0444, d, wdev,
-> +			    &wfx_tx_power_loop_fops);
-> +	debugfs_create_file("send_pds", 0200, d, wdev, &wfx_send_pds_fops);
-> +	debugfs_create_file("send_hif_msg", 0600, d, wdev,
-> +			    &wfx_send_hif_msg_fops);
-> +	debugfs_create_file("ps_timeout", 0600, d, wdev, &wfx_ps_timeout_fops);
+I checked the G2L datasheet and reconsidered. It is better if your patch
+goes in first. That means...
 
-ps_timeout sounds like something which should be in nl80211, not in
-debugfs. Please remove it until the driver is accepted.
+> > > > Is RPCIF_CMNCR_IO3FV and RPCIF_CMNCR_IO2FV actually documented in your
+> > > > datasheets? I am asking because I have a patch pending to remove writing
+> > > > to undocumented locations. So, I was aboout to remove the IO3FV and
+> > > > IO2FV macros.
+> > > >
+> > > Yes they are documented, you should be able to download the HW manual from [1]
+> >
+> > Great, then I will keep them!
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
+... that you could change the comments here from "undocumented" to
+"documened for G2L" or similar.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+> > > > > +             regmap_read(rpc->regmap, RPCIF_PHYCNT, &dummy);
+> > > > > +             dummy &= ~RPCIF_PHYCNT_PHYMEM_MASK;
+> > > > > +             dummy |= RPCIF_PHYCNT_PHYMEM(hyperflash ? 3 : 0) | 0x260;
+> > > > > +             regmap_write(rpc->regmap, RPCIF_PHYCNT, dummy);
+> > > >
+> > > > regmap_update_bits?
+> > > >
+> > > Im a bit hesitant to use regmap_update_bits() here as some of the bits
+> > > are not documented.
+
+Here you can keep your code as is. I will change it afterwards if needed
+once I clarified all undocumented locations.
+
+Thanks and have a nice weekend,
+
+   Wolfram
+
+
+--5QK+6x2YA2y8yiDI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFW+UEACgkQFA3kzBSg
+Kbb9Nw//bCZjWZIYqwiSCfxBOafnLWkptccKRA/ccZ57W8k5zOSNRRPmx68uEr2+
+G6p3M5tlc9g9oqT0Yek9lce9f+7SIVrbOdHLONIpBpeEHEb4FfZUKqOiLzDB+JDf
+RlMF+IbEFNOwDAfhFCJdR9SY5GeobFjmLpTWyMfJlRnFvTFFe9S3NF7V1V9AQMHh
+KrTC2H67mMpgzVwT/iF7naTL4mHI7GaT9I1bm3U1meHYxDM7hDZB2uWvwErPzh1w
+plGrppDm02M6Bj+IllzZukxvC7ppzPDAjmuHMttjuurInrem5NrWCtTMT4mZdf/w
+0OIn2me7d40DI351em9tk5YL3tsqyIgTp+MpmrDGGi/9bs5FCQzPYh5RHtRVNwiZ
+XicfUYQzFXg5FxSwf2LcDOcuHu737TZxjjrr++cKC6e9uGnzfXUlAy+HNhzSce7M
+NqIZbnMNQD2t83mThggTvl+XgNQ/c4pMiJ11Je/fImfHkB/OV+ExZzhoTYqeRkjX
+STlHRriE+XIuotL+RFD/ImGqKXPauFhWJwCrQcJFmwMhV4vl8EkWdtZlNDiR9sR7
++ir4YTUv1s7FUEpRCozcHus1MiKtFdoxDgC+yNDLwbo/fDE21lBB7o/4nTm3P3Qd
+itXUJBUf8jxaSazpaURv1jiRCGSFZZEZCYmbnD2SDS3+y4J3PDM=
+=nApo
+-----END PGP SIGNATURE-----
+
+--5QK+6x2YA2y8yiDI--
