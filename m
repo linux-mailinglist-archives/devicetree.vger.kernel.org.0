@@ -2,68 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F138D41E8FA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 10:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9980B41E908
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 10:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352016AbhJAIVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 04:21:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34828 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231209AbhJAIVg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Oct 2021 04:21:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 393CF61A63;
-        Fri,  1 Oct 2021 08:19:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633076392;
-        bh=SXKYoP4v8q0a1PDAzV+UPRkyOgdg+9D+MrmjRdjtW5M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=X8R0S1Hv/XuLUH6kBia6UAlnKkf8cuhAqoWtqu+sdRZ4gpBdX8os5qki8Et1VmlnZ
-         ZAIjJzT4YjhVK0PwN3fmKoBuDtkMKLBwXQkoz0lxEkxRsEKS8R3L4XTUihjWz6r5NX
-         idFI0FUPmh+Et0tfqYesGHdQhiPh5pfebO2zkq+wGHATg/HPrzBIvuwtca2jDkNRWX
-         A9sX+4HiX/ZFIMHQpMR3PiaT2ck+2NmdP0xjIHt9n7Xd4ZFaSZA5ZuBZ+H1MjidnAn
-         BjmpLjAN6sZv60Xuw9FIDUgQSi3wuWc/wy4BnZQzey8yFW91WGx9/39O4wGdVerS+e
-         Jm5GJMkkWbvcw==
-Date:   Fri, 1 Oct 2021 13:49:47 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shawn Guo <shawn.guo@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp: Add QCM2290 USB3 PHY
-Message-ID: <YVbEo4i5T63O+RnC@matsya>
-References: <20210927064829.5752-1-shawn.guo@linaro.org>
- <20210927064829.5752-2-shawn.guo@linaro.org>
- <1632745399.282824.3097156.nullmailer@robh.at.kernel.org>
+        id S1352146AbhJAIY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 04:24:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53074 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231324AbhJAIY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 04:24:26 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82DABC061775;
+        Fri,  1 Oct 2021 01:22:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To:Cc:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=pPNITRfk/+DdrQC1VBhJPHKrVKVH0S2nRMBzEmUJscs=; b=YZwao7UC3Vw4kdGsWqEjhc96wp
+        4WBgiHs3TbdWX1m3yUNwcyKaWtH09EA+0q4fruXRxGq/C/m+YBV4VeJvovpu62Md/IeM37b/1n4dV
+        hPcdagOgq/bzzDpx0s1jcmW887SpQrSqXhnM3ZiZE9SXE0nCymqur5Xhd3KjiY400OBc=;
+Received: from p200300ccff0b42001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0b:4200:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mWDoU-00024p-Fr; Fri, 01 Oct 2021 10:22:38 +0200
+Date:   Fri, 1 Oct 2021 10:22:37 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org
+Subject: strange dtbs_check error message regarding 8250_omap.yaml + serdev
+ + gnss
+Message-ID: <20211001102237.4db23bff@aktux>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1632745399.282824.3097156.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27-09-21, 07:23, Rob Herring wrote:
-> On Mon, 27 Sep 2021 14:48:28 +0800, Shawn Guo wrote:
-> > Add support for USB3 PHY found on Qualcomm QCM2290 SoC.
-> > 
-> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > ---
-> >  .../devicetree/bindings/phy/qcom,qmp-phy.yaml | 27 +++++++++++++++++++
-> >  1 file changed, 27 insertions(+)
-> > 
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
+Hi,
 
-Shawn has fixed it at: https://lore.kernel.org/r/20210929034253.24570-1-shawn.guo@linaro.org
+while doing some make dtbs_check cleanup I came across this message:
 
-I guess you are okay with this patch, if not do let me know...
+/home/andi/kernel/linux/arch/arm/boot/dts/omap3-gta04a4.dt.yaml: serial@4806c000: 'gnss' does not match any of the regexes: 'pinctrl-[0-9]+'
+        From schema: /home/andi/kernel/linux/Documentation/devicetree/bindings/serial/8250_omap.yaml
 
--- 
-~Vinod
+the corresponding snippet is this one:
+
+&uart2 {
+        pinctrl-names = "default";
+        pinctrl-0 = <&uart2_pins>;
+        gnss: gnss {
+                compatible = "wi2wi,w2sg0004";
+                pinctrl-names = "default";
+                pinctrl-0 = <&gps_pins>;
+                sirf,onoff-gpios = <&gpio5 17 GPIO_ACTIVE_HIGH>;
+                lna-supply = <&vsim>;
+                vcc-supply = <&ldo_3v3>;
+        };
+};
+
+
+I see a pattern for serdev objects in
+Documentation/devicetree/bindings/serial/serial.yaml
+
+patternProperties:
+  ".*":
+    if:
+      type: object
+    then:
+      description:
+        Serial attached devices shall be a child node of the host UART device
+        the slave device is attached to. It is expected that the attached
+        device is the only child node of the UART device. The slave device node
+        name shall reflect the generic type of device for the node.
+
+
+so I would say, everything is allowed. serial.yaml is referenced by
+8250_omap.yaml. So what is the problem here?
+
+Regards,
+Andreas
