@@ -2,140 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4510341E7E8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 09:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4682A41E7FF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 09:08:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352373AbhJAHEt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 03:04:49 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:53940 "EHLO
-        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237478AbhJAHEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 03:04:48 -0400
-Received: from ert768.prtnl (ert768.prtnl [192.168.224.11])
-        by sparta.prtnl (Postfix) with ESMTP id 2DA5A44A0252;
-        Fri,  1 Oct 2021 09:02:59 +0200 (CEST)
-From:   Roan van Dijk <roan@protonic.nl>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, david@protonic.nl,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Roan van Dijk <roan@protonic.nl>
-Subject: [PATCH v4 4/4] iio: documentation: Document scd4x calibration use
-Date:   Fri,  1 Oct 2021 09:02:54 +0200
-Message-Id: <20211001070254.3940795-5-roan@protonic.nl>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211001070254.3940795-1-roan@protonic.nl>
-References: <20211001070254.3940795-1-roan@protonic.nl>
+        id S231196AbhJAHKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 03:10:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36242 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231131AbhJAHKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 03:10:24 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FE3BC061778
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 00:08:40 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id i25so35059170lfg.6
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 00:08:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=d+67dZI32wvtfT/woO5CfYBNyLEC+7GhwoOQwraT6EE=;
+        b=T+iko0ZvnOCFVOjzR/EupuBJ1DoSkQA0lgxYS0G9gP1D7hh54JuL9z7q3jnEKG7+mu
+         ktMUZjq7C8JRlPWIq6AdKMeF2vJHzpp70p3vb5nGKIGGuso4jQH6chWx/xqksryjwJLg
+         bTA7wn4Hn6B9ksg2CWU6KhXiAojJdsbHENBb+WVDMuN7GfLXztCN4/4hPKLYtPc66jdI
+         8y8EN174MysT80nAsSZB3/7VaTj//JVlqgkvX+WUaeX86lPKOJa27storU8lo5nDwPEf
+         UGxnfg3i4oDk3x9GxYBijePw49I8FLm3vM1tTetUSINxYXAz/DYIWqZHwDrdTu15ib/k
+         B64Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=d+67dZI32wvtfT/woO5CfYBNyLEC+7GhwoOQwraT6EE=;
+        b=gY/YJLYQYeeF85KhVTjYfOKQceNq8hJqiF4V9mvlmead1olNqh27n+g2lhwP7cFhKt
+         hnG+oGImYVxTZHskkOtaQs04hjLoNKA1SxIltiLKHa1Quo+ZLAcZ3srVyketBygwL723
+         gVrFXYp6iNE6pKjjnOBWSDB+LLi8dC9DNmILHjmuFxkQ8bRzE/6fDRZna0w6PCYOnOXn
+         gulOEWicVh8bdpCwb/QokOCTX3F5cyQw7iP3T2Mk9+xJfU5Wom3vn4AFvpZCffZ5Pfhd
+         BtTSrW/cyjAspI7Haeo6uf7o5Af3p9KOnvQa0JtaG/FZqg/Pn0gdLhwcojwPNe6jY+Rr
+         JDEw==
+X-Gm-Message-State: AOAM5335wcxNLkhM6URHXxw9FGMrOlEPa9vm55uApVqr1t4gpODa8VDd
+        GTw37C4EhvdGUfvZnwHL0+vDFw==
+X-Google-Smtp-Source: ABdhPJyEo2IdYkhhcZntpK5K9ICUfn44bkyHDyERU57Jj1fA5GS/v4aJNAE9wAEb0dWr7VXBmoGWHA==
+X-Received: by 2002:a2e:a54b:: with SMTP id e11mr10631275ljn.171.1633072118579;
+        Fri, 01 Oct 2021 00:08:38 -0700 (PDT)
+Received: from [192.168.10.17] (88-112-130-172.elisa-laajakaista.fi. [88.112.130.172])
+        by smtp.gmail.com with ESMTPSA id i19sm584769ljg.92.2021.10.01.00.08.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Oct 2021 00:08:38 -0700 (PDT)
+Subject: Re: [PATCH v2 3/4] soc: qcom: smem: Support reserved-memory
+ description
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Chris Lew <clew@codeaurora.org>,
+        Deepak Kumar Singh <deesin@codeaurora.org>
+References: <20210930182111.57353-1-bjorn.andersson@linaro.org>
+ <20210930182111.57353-4-bjorn.andersson@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Message-ID: <9a4ef69d-df15-0fbc-3735-6d7c861855ac@linaro.org>
+Date:   Fri, 1 Oct 2021 10:08:15 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210930182111.57353-4-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries from Documentation/ABI/testing/sysfs-bus-iio-scd30
-to Documentation/ABI/testing/sysfs-bus-iio. The attributes of the scd4x
-and scd30 are common.
+Hi Bjorn,
 
-Remove Documentation/ABI/testing/sysfs-bus-iio-scd30.
+On 9/30/21 9:21 PM, Bjorn Andersson wrote:
+> Practically all modern Qualcomm platforms has a single reserved-memory
+> region for SMEM. So rather than having to describe SMEM in the form of a
+> node with a reference to a reserved-memory node, allow the SMEM device
+> to be instantiated directly from the reserved-memory node.
+> 
+> The current means of falling back to dereferencing the "memory-region"
+> is kept as a fallback, if it's determined that the SMEM node is a
+> reserved-memory node.
+> 
+> The "qcom,smem" compatible is added to the reserved_mem_matches list, to
+> allow the reserved-memory device to be probed.
+> 
+> In order to retain the readability of the code, the resolution of
+> resources is split from the actual ioremapping.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> 
+> Changes since v1:
+> - None
+> 
+>   drivers/of/platform.c   |  1 +
+>   drivers/soc/qcom/smem.c | 57 ++++++++++++++++++++++++++++-------------
+>   2 files changed, 40 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 32d5ff8df747..07813fb1ef37 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -505,6 +505,7 @@ EXPORT_SYMBOL_GPL(of_platform_default_populate);
+>   static const struct of_device_id reserved_mem_matches[] = {
+>   	{ .compatible = "qcom,rmtfs-mem" },
+>   	{ .compatible = "qcom,cmd-db" },
+> +	{ .compatible = "qcom,smem" },
+>   	{ .compatible = "ramoops" },
+>   	{ .compatible = "nvmem-rmem" },
+>   	{}
+> diff --git a/drivers/soc/qcom/smem.c b/drivers/soc/qcom/smem.c
+> index 4fb5aeeb0843..c7e519bfdc8a 100644
+> --- a/drivers/soc/qcom/smem.c
+> +++ b/drivers/soc/qcom/smem.c
+> @@ -9,6 +9,7 @@
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+>   #include <linux/of_address.h>
+> +#include <linux/of_reserved_mem.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/sizes.h>
+>   #include <linux/slab.h>
+> @@ -240,7 +241,7 @@ static const u8 SMEM_INFO_MAGIC[] = { 0x53, 0x49, 0x49, 0x49 }; /* SIII */
+>    * @size:	size of the memory region
+>    */
+>   struct smem_region {
+> -	u32 aux_base;
+> +	phys_addr_t aux_base;
+>   	void __iomem *virt_base;
+>   	size_t size;
+>   };
+> @@ -499,7 +500,7 @@ static void *qcom_smem_get_global(struct qcom_smem *smem,
+>   	for (i = 0; i < smem->num_regions; i++) {
+>   		region = &smem->regions[i];
+>   
+> -		if (region->aux_base == aux_base || !aux_base) {
+> +		if ((u32)region->aux_base == aux_base || !aux_base) {
+>   			if (size != NULL)
+>   				*size = le32_to_cpu(entry->size);
+>   			return region->virt_base + le32_to_cpu(entry->offset);
+> @@ -664,7 +665,7 @@ phys_addr_t qcom_smem_virt_to_phys(void *p)
+>   		if (p < region->virt_base + region->size) {
+>   			u64 offset = p - region->virt_base;
+>   
+> -			return (phys_addr_t)region->aux_base + offset;
+> +			return region->aux_base + offset;
+>   		}
+>   	}
+>   
+> @@ -863,12 +864,12 @@ qcom_smem_enumerate_partitions(struct qcom_smem *smem, u16 local_host)
+>   	return 0;
+>   }
+>   
+> -static int qcom_smem_map_memory(struct qcom_smem *smem, struct device *dev,
+> -				const char *name, int i)
+> +static int qcom_smem_resolve_mem(struct qcom_smem *smem, const char *name,
+> +				 struct smem_region *region)
+>   {
+> +	struct device *dev = smem->dev;
+>   	struct device_node *np;
+>   	struct resource r;
+> -	resource_size_t size;
+>   	int ret;
+>   
+>   	np = of_parse_phandle(dev->of_node, name, 0);
+> @@ -881,13 +882,9 @@ static int qcom_smem_map_memory(struct qcom_smem *smem, struct device *dev,
+>   	of_node_put(np);
+>   	if (ret)
+>   		return ret;
+> -	size = resource_size(&r);
+>   
+> -	smem->regions[i].virt_base = devm_ioremap_wc(dev, r.start, size);
+> -	if (!smem->regions[i].virt_base)
+> -		return -ENOMEM;
+> -	smem->regions[i].aux_base = (u32)r.start;
+> -	smem->regions[i].size = size;
+> +	region->aux_base = r.start;
+> +	region->size = resource_size(&r);
+>   
+>   	return 0;
+>   }
+> @@ -895,12 +892,14 @@ static int qcom_smem_map_memory(struct qcom_smem *smem, struct device *dev,
+>   static int qcom_smem_probe(struct platform_device *pdev)
+>   {
+>   	struct smem_header *header;
+> +	struct reserved_mem *rmem;
+>   	struct qcom_smem *smem;
+>   	size_t array_size;
+>   	int num_regions;
+>   	int hwlock_id;
+>   	u32 version;
+>   	int ret;
+> +	int i;
 
-Signed-off-by: Roan van Dijk <roan@protonic.nl>
----
- Documentation/ABI/testing/sysfs-bus-iio       | 41 +++++++++++++++++++
- Documentation/ABI/testing/sysfs-bus-iio-scd30 | 34 ---------------
- 2 files changed, 41 insertions(+), 34 deletions(-)
- delete mode 100644 Documentation/ABI/testing/sysfs-bus-iio-scd30
+Just a nitpicking, the index can be unsigned.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-index 6ad47a67521c..c27347d3608e 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio
-+++ b/Documentation/ABI/testing/sysfs-bus-iio
-@@ -1957,3 +1957,44 @@ Description:
- 		Specify the percent for light sensor relative to the channel
- 		absolute value that a data field should change before an event
- 		is generated. Units are a percentage of the prior reading.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/calibration_auto_enable
-+Date:		June 2020
-+KernelVersion:	5.8
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Some sensors have the ability to apply auto calibration at
-+		runtime. For example, it may be necessary to compensate for
-+		contaminant build-up in a measurement chamber or optical
-+		element deterioration that would otherwise lead to sensor drift.
-+
-+		Writing 1 or 0 to this attribute will respectively activate or
-+		deactivate this auto calibration function.
-+
-+		Upon reading, the current status is returned.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/calibration_forced_value
-+Date:		June 2020
-+KernelVersion:	5.8
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Some sensors have the ability to apply a manual calibration using
-+		a known measurement value, perhaps obtained from an external
-+		reference device.
-+
-+		Writing a value to this function will force such a calibration
-+		change. For the scd30 the value should be from the range
-+		[400 1 2000].
-+
-+		Note for the scd30 that a valid value may only be obtained once
-+		it is has been written. Until then any read back of this value
-+		should be ignored. As for the scd4x an error will be returned
-+		immediately if the manual calibration has failed.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/calibration_forced_value_available
-+KernelVersion:  5.15
-+Contact:        linux-iio@vger.kernel.org
-+Description:
-+		Available range for the forced calibration value, expressed as:
-+
-+		- a range specified as "[min step max]"
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-scd30 b/Documentation/ABI/testing/sysfs-bus-iio-scd30
-deleted file mode 100644
-index b9712f390bec..000000000000
---- a/Documentation/ABI/testing/sysfs-bus-iio-scd30
-+++ /dev/null
-@@ -1,34 +0,0 @@
--What:		/sys/bus/iio/devices/iio:deviceX/calibration_auto_enable
--Date:		June 2020
--KernelVersion:	5.8
--Contact:	linux-iio@vger.kernel.org
--Description:
--		Contaminants build-up in the measurement chamber or optical
--		elements deterioration leads to sensor drift.
--
--		One can compensate for sensor drift by using automatic self
--		calibration procedure (asc).
--
--		Writing 1 or 0 to this attribute will respectively activate or
--		deactivate asc.
--
--		Upon reading current asc status is returned.
--
--What:		/sys/bus/iio/devices/iio:deviceX/calibration_forced_value
--Date:		June 2020
--KernelVersion:	5.8
--Contact:	linux-iio@vger.kernel.org
--Description:
--		Contaminants build-up in the measurement chamber or optical
--		elements deterioration leads to sensor drift.
--
--		One can compensate for sensor drift by using forced
--		recalibration (frc). This is useful in case there's known
--		co2 reference available nearby the sensor.
--
--		Picking value from the range [400 1 2000] and writing it to the
--		sensor will set frc.
--
--		Upon reading current frc value is returned. Note that after
--		power cycling default value (i.e 400) is returned even though
--		internally sensor had recalibrated itself.
--- 
-2.30.2
+>   
+>   	num_regions = 1;
+>   	if (of_find_property(pdev->dev.of_node, "qcom,rpm-msg-ram", NULL))
+> @@ -914,13 +913,35 @@ static int qcom_smem_probe(struct platform_device *pdev)
+>   	smem->dev = &pdev->dev;
+>   	smem->num_regions = num_regions;
+>   
+> -	ret = qcom_smem_map_memory(smem, &pdev->dev, "memory-region", 0);
+> -	if (ret)
+> -		return ret;
+> +	rmem = of_reserved_mem_lookup(pdev->dev.of_node);
+> +	if (rmem) {
+> +		smem->regions[0].aux_base = rmem->base;
+> +		smem->regions[0].size = rmem->size;
+> +	} else {
+> +		/*
+> +		 * Fall back to the memory-region reference, if we're not a
+> +		 * reserved-memory node.
+> +		 */
+> +		ret = qcom_smem_resolve_mem(smem, "memory-region", &smem->regions[0]);
+> +		if (ret)
+> +			return ret;
+> +	}
+>   
+> -	if (num_regions > 1 && (ret = qcom_smem_map_memory(smem, &pdev->dev,
+> -					"qcom,rpm-msg-ram", 1)))
+> -		return ret;
+> +	if (num_regions > 1) {
+> +		ret = qcom_smem_resolve_mem(smem, "qcom,rpm-msg-ram", &smem->regions[1]);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	for (i = 0; i < num_regions; i++) {
+> +		smem->regions[i].virt_base = devm_ioremap_wc(&pdev->dev,
+> +							     smem->regions[i].aux_base,
+> +							     smem->regions[i].size);
+> +		if (!smem->regions[i].virt_base) {
+> +			dev_err(&pdev->dev, "failed to remap %pa\n", &smem->regions[i].aux_base);
+> +			return -ENOMEM;
+> +		}
+> +	}
+>   
+>   	header = smem->regions[0].virt_base;
+>   	if (le32_to_cpu(header->initialized) != 1 ||
+> 
 
+--
+Best wishes,
+Vladimir
