@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D45641E693
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 06:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B076F41E6C5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 06:29:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233167AbhJAEZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 00:25:22 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:23048 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232679AbhJAEZT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Oct 2021 00:25:19 -0400
+        id S244131AbhJAEb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 00:31:26 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:40971 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238056AbhJAEb0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 00:31:26 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633062216; h=Message-ID: References: In-Reply-To: Subject:
+ s=smtp; t=1633062582; h=Message-ID: References: In-Reply-To: Subject:
  Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=Dip6+gsZTv4hc6KbmQol7EirdVFSF+SQtqWOT76YHBw=;
- b=u2Bs9Bcp5hgegRRAczorGuXXGuIXr6/HVmA4E43Vx4R68Wm5eTzvseh3WUU5YMuHrVdW8iWX
- IKIyDMwRiTU+j3DRpdNTMyHP0WrNoroJm8rW3WkB27iiR15fvAIZHzCn+IimqaDYRvr+mnl+
- WHel3J/M8ac/v4jbW5yN5t4xVSw=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ MIME-Version: Sender; bh=hMlYsnEpNAjIGcGeBS4W4NAj6nd6tI3JefAIl+pq0PI=;
+ b=PSHkEBLEGG/GtIEaZnZwGp/ixtl6mqFU8fOZ0qxXoX0xKHRWVRFpCgJ+OT21m3C9V79OXrwF
+ /d7f7RhC2atTQqqTWtV2/h0BfJ511NgMKbKMTFCHeMDuyj/Wg846O4/62L3ksFtxzQZ+z/UV
+ nJF6A9gD9cvhVm9Z6XKGOqaHL9c=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 61568d47713d5d6f96c62c82 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 01 Oct 2021 04:23:35
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 61568eb447d64efb6d1f2c4f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 01 Oct 2021 04:29:40
  GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6A6C6C43460; Fri,  1 Oct 2021 04:23:34 +0000 (UTC)
+        id AE5D0C43460; Fri,  1 Oct 2021 04:29:40 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -37,107 +37,199 @@ X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
 Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
         (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 81A92C4338F;
-        Fri,  1 Oct 2021 04:23:33 +0000 (UTC)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9AE4FC4338F;
+        Fri,  1 Oct 2021 04:29:39 +0000 (UTC)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Fri, 01 Oct 2021 09:53:33 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mailing List <devicetree-spec@vger.kernel.org>,
-        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Subject: Re: [PATCH] Add system-cache-controller to the list of generic node
- names
-In-Reply-To: <CAL_Jsq+vkpigu3P+dkAVXT7nypnJA_R8LBPGgj9wERcCW6P36w@mail.gmail.com>
-References: <20210929052613.8589-1-saiprakash.ranjan@codeaurora.org>
- <CAL_JsqLzDejj99C6CPuW+19cgwdDVkctppL_SFeWnAG5LUkscw@mail.gmail.com>
- <d9894ca86ed9a56ebf118a91bfe1b91d@codeaurora.org>
- <CAL_Jsq+vkpigu3P+dkAVXT7nypnJA_R8LBPGgj9wERcCW6P36w@mail.gmail.com>
-Message-ID: <84f956f861e55bbfc1df0761ce7b4786@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
+Date:   Fri, 01 Oct 2021 09:59:39 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     agross@kernel.org, bhelgaas@google.com, bjorn.andersson@linaro.org,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
+        manivannan.sadhasivam@linaro.org
+Subject: Re: [PATCH v9 3/4] arm64: dts: qcom: sc7280: Add PCIe nodes for IDP
+ board
+In-Reply-To: <CAE-0n52G7=PFrPGr5Zwq43q55CWBSkaEm7HpC+C4r2+Gjv3JQg@mail.gmail.com>
+References: <1632837350-12100-1-git-send-email-pmaliset@codeaurora.org>
+ <1632837350-12100-4-git-send-email-pmaliset@codeaurora.org>
+ <CAE-0n52G7=PFrPGr5Zwq43q55CWBSkaEm7HpC+C4r2+Gjv3JQg@mail.gmail.com>
+Message-ID: <d009c9c26e8ea7058509e96d2e0cd282@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
 User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-09-30 19:03, Rob Herring wrote:
-> On Wed, Sep 29, 2021 at 11:06 PM Sai Prakash Ranjan
-> <saiprakash.ranjan@codeaurora.org> wrote:
+On 2021-09-29 02:22, Stephen Boyd wrote:
+> Quoting Prasad Malisetty (2021-09-28 06:55:49)
+>> Enable PCIe controller and PHY for sc7280 IDP board.
+>> Add specific NVMe GPIO entries for SKU1 and SKU2 support.
 >> 
->> On 2021-09-29 18:12, Rob Herring wrote:
->> > On Wed, Sep 29, 2021 at 12:26 AM Sai Prakash Ranjan
->> > <saiprakash.ranjan@codeaurora.org> wrote:
->> >>
->> >> System Cache Controller (Last Level Cache Controller/LLCC) does not
->> >> have a cache-level associated with it as enforced by the already
->> >> existing 'cache-controller' node name, so add system-cache-controller
->> >> to the list of generic node names as decided on the lkml in [1][2]
->> >> and already being used in the dts for sometime now.
->> >>
->> >> [1]
->> >> https://lore.kernel.org/lkml/5dcd8588.1c69fb81.2528a.3460@mx.google.com/
->> >> [2]
->> >> https://lore.kernel.org/lkml/cover.1573814758.git.saiprakash.ranjan@codeaurora.org/
->> >>
->> >> Cc: Stephen Boyd <swboyd@chromium.org>
->> >> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
->> >> Cc: Rajendra Nayak <rnayak@codeaurora.org>
->> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
->> >> ---
->> >>  source/chapter2-devicetree-basics.rst | 1 +
->> >>  1 file changed, 1 insertion(+)
->> >>
->> >> diff --git a/source/chapter2-devicetree-basics.rst
->> >> b/source/chapter2-devicetree-basics.rst
->> >> index 40be22192b2f..c06c5063c68b 100644
->> >> --- a/source/chapter2-devicetree-basics.rst
->> >> +++ b/source/chapter2-devicetree-basics.rst
->> >> @@ -276,6 +276,7 @@ name should be one of the following choices:
->> >>     * sram-controller
->> >>     * ssi-controller
->> >>     * syscon
->> >> +   * system-cache-controller
->> >
->> > I don't want to encourage others to use this over 'cache-controller'
->> > and the standard binding.
->> >
+>> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc7280-idp.dts  |  9 ++++++
+>>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 54 
+>> ++++++++++++++++++++++++++++++++
+>>  arch/arm64/boot/dts/qcom/sc7280-idp2.dts |  9 ++++++
+>>  3 files changed, 72 insertions(+)
 >> 
->> Right, but why would others use this over cache-controller? This is
->> supposed
->> to be used only for last level cache controllers where there is no
->> cache-level
->> associated with it like in the system cache controller/LLCC found in 
->> QTI
->> SoCs.
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts 
+>> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+>> index 64fc22a..1562386 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+>> @@ -61,6 +61,15 @@
+>>         modem-init;
+>>  };
+>> 
+>> +&nvme_pwren_pin {
+>> +       pins = "gpio19";
+>> +};
 > 
-> I don't agree there's never a level.
+> This should move to the bottom in the "pinctrl" section.
 > 
+Hi Stephen,
 
-More like it isn't used for now.
+There is no pinctrl section in this file. we defined nvme_pwren_pin in 
+common IDP file(sc7280-idp.dtsi) and using the nvme_pwren_pin reference 
+to define SKU specific gpio pin for SKU1 and SKU2 support.
 
-> Using the cache binding will be necessary if you want to populate the
-> kernel's cache info. If your caches have MPAM support, they are going
-> to need to follow the cache binding as well.
+Thanks
+-Prasad
+>> +
+>> +&nvme_3v3_regulators {
+>> +       gpio = <&tlmm 19 GPIO_ACTIVE_HIGH>;
+>> +       enable-active-high;
 > 
->> Also you had acked the corresponding change in the DT binding for LLCC
->> [1].
+> The enable-active-high can be in the idp.dtsi file? That doesn't seem 
+> to
+> change.
 > 
-> Yes, but that doesn't mean it belongs in the spec. Maybe when we have
-> more than 1 case that will change, but for now I don't think it should
-> be in the spec.
+>> +};
+>> +
+>>  &pmk8350_vadc {
+>>         pmr735a_die_temp {
+>>                 reg = <PMR735A_ADC7_DIE_TEMP>;
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> index def22ff..5b5505f 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> @@ -31,6 +31,17 @@
+>>                         linux,can-disable;
+>>                 };
+>>         };
+>> +
+>> +       nvme_3v3_regulators: nvme-3v3-regulators {
 > 
+> Why plural? Isn't it a single regulator?
+> 
+Sure, I will update in next version
 
-All right, will drop this change for now.
+Thanks
+-Prasad
+>> +               compatible = "regulator-fixed";
+>> +               regulator-name = "VLDO_3V3";
+>> +
+>> +               regulator-min-microvolt = <3300000>;
+>> +               regulator-max-microvolt = <3300000>;
+>> +
+>> +               pinctrl-names = "default";
+>> +               pinctrl-0 = <&nvme_pwren_pin>;
+>> +       };
+>>  };
+>> 
+>>  &apps_rsc {
+>> @@ -220,6 +231,42 @@
+>>         modem-init;
+>>  };
+>> 
+>> +&pcie1 {
+>> +       status = "okay";
+>> +       perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>> +
+>> +       vddpe-3v3-supply = <&nvme_3v3_regulators>;
+>> +
+>> +       pinctrl-names = "default";
+>> +       pinctrl-0 = <&pcie1_default_state>;
+>> +};
+>> +
+>> +&pcie1_phy {
+>> +       status = "okay";
+>> +
+>> +       vdda-phy-supply = <&vreg_l10c_0p8>;
+>> +       vdda-pll-supply = <&vreg_l6b_1p2>;
+>> +};
+>> +
+>> +&pcie1_default_state {
+> 
+> I thought the node would be split into a reset config node and a wake
+> config node. Is that not being done for some reason? The pinctrl-0 
+> would
+> look like
+> 
+Agree, I will incorporate the changes in next version.
 
-Thanks,
-Sai
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
+> 	pinctrl-0 = <&pcie1_default_state>, <&pcie1_reset_n>, <&pcie1_wake_n>;
+> 
+>> +       reset-n {
+>> +               pins = "gpio2";
+>> +               function = "gpio";
+>> +
+>> +               drive-strength = <16>;
+>> +               output-low;
+>> +               bias-disable;
+>> +       };
+>> +
+>> +       wake-n {
+>> +               pins = "gpio3";
+>> +               function = "gpio";
+>> +
+>> +               drive-strength = <2>;
+>> +               bias-pull-up;
+>> +       };
+>> +};
+>> +
+>>  &pmk8350_vadc {
+>>         pmk8350_die_temp {
+>>                 reg = <PMK8350_ADC7_DIE_TEMP>;
+>> @@ -489,3 +536,10 @@
+>>                 bias-pull-up;
+>>         };
+>>  };
+>> +
+>> +&tlmm {
+>> +       nvme_pwren_pin: nvme-pwren-pin {
+>> +               function = "gpio";
+>> +               bias-pull-up;
+>> +       };
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts 
+>> b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
+>> index 1fc2add..0548cb6 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
+>> @@ -21,3 +21,12 @@
+>>                 stdout-path = "serial0:115200n8";
+>>         };
+>>  };
+>> +
+>> +&nvme_pwren_pin {
+>> +       pins = "gpio51";
+>> +};
+> 
+> The pin config can go to a pinctrl section at the bottom of this file?
+> 
+Same as a like SKU1 (sc7280-idp.dts)
+>> +
+>> +&nvme_3v3_regulators {
+>> +       gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
+>> +       enable-active-high;
+>> +};
