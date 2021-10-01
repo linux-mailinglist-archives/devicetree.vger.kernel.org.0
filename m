@@ -2,123 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1615141F1E5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 18:13:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 611F541F1FC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 18:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231621AbhJAQPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 12:15:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53942 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232047AbhJAQPD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Oct 2021 12:15:03 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C0C46619E7;
-        Fri,  1 Oct 2021 16:13:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633104799;
-        bh=mMEfl2DznOLS6As2JE8WI2CMTaAzNlFeLwPjlOMFh+M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qtGKYpJVkWBpyfyIyf10q2LSp6HasZDVzScNFobfxXXMug+wL9eZareCzYk+rZb9q
-         Bp31Pex6eOAkyzHPX38/nYND0zavBfBuQLf5X9pR5y+icTLrveqPNhRfrkZb8ZooIy
-         /GTrNaYJiAxzqVgrk2dLPgxp1qkD1n+MiEWkz86PNnnm1Nod5545kqh8TzCw1pT547
-         wyIwuckD3T+tChy8asdoEfjyBw0Eu6Q/JJEE+KZNz+n9SrB93B+iHQWSLLXQYcPJzj
-         SL6prBx77BEXuIGdSRsDzZusFqGJFTqCSVyMR7/Pi4GIUPXm88fjSm0HJ1kcj8vGLD
-         kcEeoJ2NLE7tQ==
-Received: by pali.im (Postfix)
-        id 4384A821; Fri,  1 Oct 2021 18:13:16 +0200 (CEST)
-Date:   Fri, 1 Oct 2021 18:13:16 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
-Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v7 13/24] wfx: add hif_tx*.c/hif_tx*.h
-Message-ID: <20211001161316.w3cwsigacznjbowl@pali>
-References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
- <20210920161136.2398632-14-Jerome.Pouiller@silabs.com>
- <87fstlkr1m.fsf@codeaurora.org>
- <2873071.CAOYYqaKbK@pc-42>
+        id S1354781AbhJAQTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 12:19:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51342 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354819AbhJAQTY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 12:19:24 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D190C061775
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 09:17:39 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id a18so4233369wru.4
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 09:17:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EzWy2nvLFCIuBba5ki21B6r/rdWPB3y7nLXxAimeS4w=;
+        b=b2lLhCxu6V++Sis/mzcbImRUwTxDNoulIsuf3Sczqqkb3P62Hf51DBU/V8Y3dCY3HN
+         rAmHWI7x8HxoS1AXDAOFpohrtioMc5sxKrjF2RRS21tl0Q0LxeED13VDEl3Vvo8frIai
+         BlIbUZwOO//b4X2b+byOgLkAukKJtKa9Xk1MxDXLHsdr/Zo06R772bxPkEq3aF9qGBuR
+         4pbDWJPO3Z6OXFcI3PV0P7g6fjuamXz0lGxqjXqyeqIukxKfoWOPY77DiZPPnRTiNDQS
+         EFEaiN1U2lXaefXvFwMwxYdcTAJpXGyK8Xr0B+VmMShKQwaHAu2fP2MGxb8Et8Lq2m4R
+         56WQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EzWy2nvLFCIuBba5ki21B6r/rdWPB3y7nLXxAimeS4w=;
+        b=aW135F9AOnjY1csHVr3FgLCfvXwiZiS6F/WOdsE6WGXpYAuxddDtBy82+q3Ai+FNwd
+         CC6yO/n4YjdId1sgglhk2dOMTWMLkK66BMtnMc/d9cksA6UKi7pPZZSi8+NV5UvU/fws
+         99aMzmy3OxQMhhS25TnlXby/QfnanCEnLBgCpG9LJlZviaA2jomT8ChSF71bJOiToz3Y
+         jZ6Cl6IIlW+Fkb2u6qgugD6NIisGiPSq72pdDgPiFlncwLEV2XoDpM15RCERKQmnR3OI
+         RWx58H/BRGjmyuYs/aX4E57zmgF2CBWeo8Bl8IG7X8c522hQw0Fc07gbTjvSPGXVbg4Z
+         4ZLQ==
+X-Gm-Message-State: AOAM530ymJX+UmzpLkKYykx7+cgsGfPW+ojZIPpSxdAGMuCRb1371LS+
+        coQHGfEGJK7B9gmr7ZP0yRz4rA==
+X-Google-Smtp-Source: ABdhPJwgdmNt4q6CM1GJcIjHlayiUH7mjwfnFg2ReVmLQ9E++96gykDFNpXlrlKThqqyafXizNYSsg==
+X-Received: by 2002:adf:a3c7:: with SMTP id m7mr13417466wrb.339.1633105057911;
+        Fri, 01 Oct 2021 09:17:37 -0700 (PDT)
+Received: from localhost.localdomain ([82.142.20.44])
+        by smtp.gmail.com with ESMTPSA id d7sm6168206wrh.13.2021.10.01.09.17.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Oct 2021 09:17:37 -0700 (PDT)
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Add idle cooling devices
+Date:   Fri,  1 Oct 2021 18:17:28 +0200
+Message-Id: <20211001161728.1729664-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2873071.CAOYYqaKbK@pc-42>
-User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 01 October 2021 17:17:52 Jérôme Pouiller wrote:
-> On Friday 1 October 2021 11:55:33 CEST Kalle Valo wrote:
-> > CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
-> > 
-> > 
-> > Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
-> > 
-> > > From: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> > >
-> > > Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> > 
-> > [...]
-> > 
-> > > --- /dev/null
-> > > +++ b/drivers/net/wireless/silabs/wfx/hif_tx_mib.h
-> > > @@ -0,0 +1,49 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > > +/*
-> > > + * Implementation of the host-to-chip MIBs of the hardware API.
-> > > + *
-> > > + * Copyright (c) 2017-2020, Silicon Laboratories, Inc.
-> > > + * Copyright (c) 2010, ST-Ericsson
-> > > + * Copyright (C) 2010, ST-Ericsson SA
-> > > + */
-> > > +#ifndef WFX_HIF_TX_MIB_H
-> > > +#define WFX_HIF_TX_MIB_H
-> > > +
-> > > +struct wfx_vif;
-> > > +struct sk_buff;
-> > > +
-> > > +int hif_set_output_power(struct wfx_vif *wvif, int val);
-> > > +int hif_set_beacon_wakeup_period(struct wfx_vif *wvif,
-> > > +                              unsigned int dtim_interval,
-> > > +                              unsigned int listen_interval);
-> > > +int hif_set_rcpi_rssi_threshold(struct wfx_vif *wvif,
-> > > +                             int rssi_thold, int rssi_hyst);
-> > > +int hif_get_counters_table(struct wfx_dev *wdev, int vif_id,
-> > > +                        struct hif_mib_extended_count_table *arg);
-> > > +int hif_set_macaddr(struct wfx_vif *wvif, u8 *mac);
-> > > +int hif_set_rx_filter(struct wfx_vif *wvif,
-> > > +                   bool filter_bssid, bool fwd_probe_req);
-> > > +int hif_set_beacon_filter_table(struct wfx_vif *wvif, int tbl_len,
-> > > +                             const struct hif_ie_table_entry *tbl);
-> > > +int hif_beacon_filter_control(struct wfx_vif *wvif,
-> > > +                           int enable, int beacon_count);
-> > > +int hif_set_operational_mode(struct wfx_dev *wdev, enum hif_op_power_mode mode);
-> > > +int hif_set_template_frame(struct wfx_vif *wvif, struct sk_buff *skb,
-> > > +                        u8 frame_type, int init_rate);
-> > > +int hif_set_mfp(struct wfx_vif *wvif, bool capable, bool required);
-> > > +int hif_set_block_ack_policy(struct wfx_vif *wvif,
-> > > +                          u8 tx_tid_policy, u8 rx_tid_policy);
-> > > +int hif_set_association_mode(struct wfx_vif *wvif, int ampdu_density,
-> > > +                          bool greenfield, bool short_preamble);
-> > > +int hif_set_tx_rate_retry_policy(struct wfx_vif *wvif,
-> > > +                              int policy_index, u8 *rates);
-> > > +int hif_keep_alive_period(struct wfx_vif *wvif, int period);
-> > > +int hif_set_arp_ipv4_filter(struct wfx_vif *wvif, int idx, __be32 *addr);
-> > > +int hif_use_multi_tx_conf(struct wfx_dev *wdev, bool enable);
-> > > +int hif_set_uapsd_info(struct wfx_vif *wvif, unsigned long val);
-> > > +int hif_erp_use_protection(struct wfx_vif *wvif, bool enable);
-> > > +int hif_slot_time(struct wfx_vif *wvif, int val);
-> > > +int hif_wep_default_key_id(struct wfx_vif *wvif, int val);
-> > > +int hif_rts_threshold(struct wfx_vif *wvif, int val);
-> > 
-> > "wfx_" prefix missing from quite a few functions.
-> 
-> I didn't know it was mandatory to prefix all the functions with the
-> same prefix. With the rule of 80-columns, I think I will have to change
-> a bunch of code :( .
+The thermal framework accepts now the cpu idle cooling device as an
+alternative when the cpufreq cooling device fails.
 
-I think that new drivers can use 100 characters per line.
+Add the node in the DT so the cooling devices will be present and the
+platforms can extend the thermal zone definition to add them.
+
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 3871c7fd83b0..9ac232ffd284 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -124,6 +124,11 @@ cpu_b0: cpu@100 {
+ 			#cooling-cells = <2>; /* min followed by max */
+ 			dynamic-power-coefficient = <436>;
+ 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
++			thermal-idle {
++				#cooling-cells = <2>;
++				duration-us = <10000>;
++				exit-latency-us = <500>;
++			};
+ 		};
+ 
+ 		cpu_b1: cpu@101 {
+@@ -136,6 +141,11 @@ cpu_b1: cpu@101 {
+ 			#cooling-cells = <2>; /* min followed by max */
+ 			dynamic-power-coefficient = <436>;
+ 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
++			thermal-idle {
++				#cooling-cells = <2>;
++				duration-us = <10000>;
++				exit-latency-us = <500>;
++			};
+ 		};
+ 
+ 		idle-states {
+-- 
+2.25.1
+
