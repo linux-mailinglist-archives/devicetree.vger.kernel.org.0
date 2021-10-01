@@ -2,134 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4F8541E9A8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 11:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ED9441E9BD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 11:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352928AbhJAJhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 05:37:45 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:47068 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352915AbhJAJho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 05:37:44 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633080961; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=BeCtPj+gAx1yb+qr7Piiqq97L5UNvZlh+6GnVLGIR9Q=; b=GoVVTjPmayChgkT1keJT0SXvHxGUUBeRgMSV7oH3t5m/kDZvGzq1xQ1Zt2fwl/+l1m9S13qj
- eRwpQiMs3UgAP1jE2SXPnIaJ4A9nYMUeLV2BF8N7GVW1GaYRrTFBxEMxPsYN9yKJx1djk5zy
- tx1EWUniBlMauce7mykSbU4HfUk=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 6156d66947d64efb6dd25f1d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 01 Oct 2021 09:35:37
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 399F7C4338F; Fri,  1 Oct 2021 09:35:37 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1352979AbhJAJna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 05:43:30 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46508
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1352915AbhJAJn3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 05:43:29 -0400
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B05F2C4338F;
-        Fri,  1 Oct 2021 09:35:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B05F2C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v7 20/24] wfx: add scan.c/scan.h
-References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
-        <20210920161136.2398632-21-Jerome.Pouiller@silabs.com>
-Date:   Fri, 01 Oct 2021 12:35:28 +0300
-In-Reply-To: <20210920161136.2398632-21-Jerome.Pouiller@silabs.com> (Jerome
-        Pouiller's message of "Mon, 20 Sep 2021 18:11:32 +0200")
-Message-ID: <87r1d5krz3.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8FBFA402D0
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 09:41:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633081304;
+        bh=hCpMRXvOk2qr7XekeSwTAlezX0sg/HHCf3cdaEa6PNI=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=V+uoDUE4Tys3jJRO5q2Qa+/TQHrreER05Q4dtzhm2vF7Hvi+5VvRdwtjuVUOpxu0U
+         I96AR3ETnJ+MUD5E5m5No0jUUSteg8/Ii4KTiBBR3an0a41xLWXC4bZFf503W2Id/a
+         rkBjXGCJXU2pfeOUQR/Stoqr0QblX0pYkSIFUYStrL9nGkhq9Xd/IDG9Eo7N+VsD67
+         y23CvTZFwLoXxu2jcnsBP/TZu3i7lKHVg6qkasUScy6YXWX19+q+Ge23QHEsqqa8ut
+         mAF9tocEvSkyoAB5VZv5hVTmgKYZqVPnOUYH8kb+SrhXF5zTLw4RAA9MEcJYElXFIK
+         r21515v5lKzvA==
+Received: by mail-lf1-f69.google.com with SMTP id z9-20020a0565120c0900b003fce36c1f74so8436329lfu.9
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 02:41:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hCpMRXvOk2qr7XekeSwTAlezX0sg/HHCf3cdaEa6PNI=;
+        b=EE8/5FzOvXdom/h5Ug6j7T2EVsC0eLOwPfmgwII2PI3yXwtCIj6lCRXUH0DqljukRe
+         X8rjop8gCy/68C91Ld3WVyVwbRjuenP+EGydVYoqQDVEeAJMjPfTVe/pXqEJkXZTGTLy
+         eOSn3RjIG88JZxBPiY5h+aRoR3I5ciyxCtocu1YBYs94AvARIcCAbzW/XD0vo+/qK17J
+         2JFGPHkd6h7hN1wWGYeZdTY72gK6qBzQCBNWeBpCL8KmXkmCFgNE93YdhvtUsxhhGPDB
+         o4QMRYE8Tj4OOQdKPq1ntewJMsBV0FdzNIdeK07a4faH2AXcy9738CVtnoVr5l1ZWaBm
+         pb1w==
+X-Gm-Message-State: AOAM533k5dW8b+qTXV2Mqh03pRIEfU+POF3fqQ1LDILeYn5BVd6iGy3j
+        375JccRBdY04vFrHU6nnnatNjg/VtOp+mxoq7wEd/2n1xhe7hI033DFY70iX8Y3nrWWXIhiMT7A
+        UWOYHm7zJ8955Vx6jl8Y2QZvGfp5+fySchCuqr/4=
+X-Received: by 2002:ac2:5b10:: with SMTP id v16mr4303295lfn.331.1633081303911;
+        Fri, 01 Oct 2021 02:41:43 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxx27QWtjCHIBqlzXq+yG8hpF1waFM4KgjEZAEVScGpVqd57scj/Mcll414XykeZPaNgSPJLQ==
+X-Received: by 2002:ac2:5b10:: with SMTP id v16mr4303273lfn.331.1633081303584;
+        Fri, 01 Oct 2021 02:41:43 -0700 (PDT)
+Received: from localhost.localdomain ([193.178.187.25])
+        by smtp.gmail.com with ESMTPSA id g29sm673784lfj.212.2021.10.01.02.41.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Oct 2021 02:41:43 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v2 00/10] regulator/mfd/clock: dt-bindings: Samsung S2M and S5M to dtschema
+Date:   Fri,  1 Oct 2021 11:40:56 +0200
+Message-Id: <20211001094106.52412-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
+Hi All,
 
-> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
->
-> Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+Changes since v1
+================
+1. Drop DTS patches - applied.
+2. Fully remove bindings/regulator/samsung,s5m8767.txt .
+3. Minor subject reformatting and few typos in text.
 
-[...]
 
-> +/* It is not really necessary to run scan request asynchronously. Howeve=
-r,
-> + * there is a bug in "iw scan" when ieee80211_scan_completed() is called=
- before
-> + * wfx_hw_scan() return
-> + */
-> +void wfx_hw_scan_work(struct work_struct *work)
-> +{
-> +	struct wfx_vif *wvif =3D container_of(work, struct wfx_vif, scan_work);
-> +	struct ieee80211_scan_request *hw_req =3D wvif->scan_req;
-> +	int chan_cur, ret, err;
-> +
-> +	mutex_lock(&wvif->wdev->conf_mutex);
-> +	mutex_lock(&wvif->scan_lock);
-> +	if (wvif->join_in_progress) {
-> +		dev_info(wvif->wdev->dev, "abort in-progress REQ_JOIN");
-> +		wfx_reset(wvif);
-> +	}
-> +	update_probe_tmpl(wvif, &hw_req->req);
-> +	chan_cur =3D 0;
-> +	err =3D 0;
-> +	do {
-> +		ret =3D send_scan_req(wvif, &hw_req->req, chan_cur);
-> +		if (ret > 0) {
-> +			chan_cur +=3D ret;
-> +			err =3D 0;
-> +		}
-> +		if (!ret)
-> +			err++;
-> +		if (err > 2) {
-> +			dev_err(wvif->wdev->dev, "scan has not been able to start\n");
-> +			ret =3D -ETIMEDOUT;
-> +		}
-> +	} while (ret >=3D 0 && chan_cur < hw_req->req.n_channels);
-> +	mutex_unlock(&wvif->scan_lock);
-> +	mutex_unlock(&wvif->wdev->conf_mutex);
-> +	__ieee80211_scan_completed_compat(wvif->wdev->hw, ret < 0);
-> +}
-> +
-> +int wfx_hw_scan(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
-> +		struct ieee80211_scan_request *hw_req)
-> +{
-> +	struct wfx_vif *wvif =3D (struct wfx_vif *)vif->drv_priv;
-> +
-> +	WARN_ON(hw_req->req.n_channels > HIF_API_MAX_NB_CHANNELS);
-> +	wvif->scan_req =3D hw_req;
-> +	schedule_work(&wvif->scan_work);
-> +	return 0;
-> +}
+Intro
+=====
+This patchset converts all devicetree bindings of Samsung S2M and S5M
+PMIC devices from txt to dtschema.
 
-This scan logic looks fishy to me, but no time to investigate in detail.
-Though not a blocker.
+It includes also two fixes because later conversion depends on it
+(contextually).
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+Merging/dependencies
+====================
+1. Regulator related binding changes depend on first two commits (the
+   fixes), because of context.
+2. The mfd bindings depend on clock and regulator bindings.
+
+The fixes and bindings changes (patches 1-10) should go via the same
+tree.  For example regulator or mfd tree.  I propose the regulator tree,
+since it will have also one driver change (the fix, first commit).
+
+
+Overview of devices
+===================
+Essentially all Samsung S2M and S5M PMICs are very similar devices. They
+provide the same functionality: regulators, RTC, 2 or 3 clocks and main
+power management (e.g. power cut to SoC).
+
+The differences are mostly in registers layout and number of regulators.
+
+The drivers are built around one common part, mfd/sec-core.c, and share
+some drivers between devices:
+1. MFD sec-core for all devices,
+1. one clock driver for most of devices,
+2. one RTC driver for all devices,
+3. three regulator drivers.
+
+The regulator drivers were implementing slightly different features,
+therefore one regulator binding for all devices does not make much
+sense.  However the clock device binding can be shared.
+
+The final dtschema bindings try to implement this - share only the clock
+bindings.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (10):
+  regulator: s5m8767: do not use reset value as DVS voltage if GPIO DVS
+    is disabled
+  regulator: dt-bindings: samsung,s5m8767: correct
+    s5m8767,pmic-buck-default-dvs-idx property
+  dt-bindings: clock: samsung,s2mps11: convert to dtschema
+  regulator: dt-bindings: samsung,s2m: convert to dtschema
+  regulator: dt-bindings: samsung,s2mpa01: convert to dtschema
+  regulator: dt-bindings: samsung,s5m8767: convert to dtschema
+  dt-bindings: mfd: samsung,s2mps11: convert to dtschema
+  dt-bindings: mfd: samsung,s2mpa01: convert to dtschema
+  dt-bindings: mfd: samsung,s5m8767: convert to dtschema
+  dt-bindings: mfd: samsung,s5m8767: document buck and LDO supplies
+
+ .../bindings/clock/samsung,s2mps11.txt        |  49 ---
+ .../bindings/clock/samsung,s2mps11.yaml       |  45 +++
+ .../bindings/mfd/samsung,s2mpa01.yaml         |  91 ++++++
+ .../bindings/mfd/samsung,s2mps11.yaml         | 267 +++++++++++++++
+ .../bindings/mfd/samsung,s5m8767.yaml         | 307 ++++++++++++++++++
+ .../bindings/mfd/samsung,sec-core.txt         |  86 -----
+ .../bindings/regulator/samsung,s2mpa01.txt    |  79 -----
+ .../bindings/regulator/samsung,s2mpa01.yaml   |  69 ++++
+ .../bindings/regulator/samsung,s2mps11.txt    | 102 ------
+ .../bindings/regulator/samsung,s2mps11.yaml   |  52 +++
+ .../bindings/regulator/samsung,s2mps13.yaml   |  52 +++
+ .../bindings/regulator/samsung,s2mps14.yaml   |  52 +++
+ .../bindings/regulator/samsung,s2mps15.yaml   |  52 +++
+ .../bindings/regulator/samsung,s2mpu02.yaml   |  52 +++
+ .../bindings/regulator/samsung,s5m8767.txt    | 145 ---------
+ .../bindings/regulator/samsung,s5m8767.yaml   |  83 +++++
+ MAINTAINERS                                   |   9 +-
+ drivers/regulator/s5m8767.c                   |  21 +-
+ 18 files changed, 1136 insertions(+), 477 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/samsung,s2mps11.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/samsung,s2mpa01.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/samsung,sec-core.txt
+ delete mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mpa01.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mpa01.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps11.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps11.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps13.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps14.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps15.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mpu02.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
+
+-- 
+2.30.2
+
