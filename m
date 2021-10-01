@@ -2,151 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8DA841EDD2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 14:51:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6035241EDE5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 14:54:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353559AbhJAMwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 08:52:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
+        id S231481AbhJAMzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 08:55:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353253AbhJAMwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 08:52:47 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA161C06177C
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 05:51:02 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id b20so38668951lfv.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 05:51:02 -0700 (PDT)
+        with ESMTP id S231434AbhJAMzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 08:55:42 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0106AC061775;
+        Fri,  1 Oct 2021 05:53:58 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id r4so20290505ybp.4;
+        Fri, 01 Oct 2021 05:53:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U3g3FVHcAfq2CjS/tDBEgPrTjvgAlik1UmRsepWrO/M=;
-        b=AzjhIKsGc5F00nF8gT49XgOerH2kylziofl1fTWdcLRpswV4wNz8DKK5xJ7On0pP/7
-         FUfZ1Wgbt1/fuaxVdMYCvvgTtIGVXfv0UoK33+IzBB+zOi+jh2jn6j2wyaLjswS/IOzw
-         SQjTg3BAouTPEqyD9JFdD9cYzi69CQhCoGH5fKvFHMMepL7XM0KGl/OrspTiy4mR9WhP
-         foe5FrlQSoXx4OG2RW+Mn3fWJuth6XGpzQJ4ILLPGQ/0+fTYG3YwXfmnYk9SirlbmFbB
-         VWqNGRy6BMbC7o4y9fE4zK6CBmWtNh3bv3/HT2LLpsFmdOSr7meyX9U8IJw0f7EYsu6v
-         RPYQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=c+kURNAAkSIIC5kx7+rU/IV/731k5cWXXDLuC8d6BG4=;
+        b=CmoIj3+u5w6xdONToKlV8fG3jt47szGOKyPvH/oQSmMrhDRpA8wd8iTvAlViEFKcnE
+         ptqm7Fz8WTn/hYmhdBPUDI1pxU0BYKkaR0/Qx8uZUoU+s3AAdg43N+opw7vvcoUBvudJ
+         m+uduBukHAN126diABfdvwqCUu8S1uMeCv0z18Ca5Zu4h03H1g9e86piwSsC+VlqydfB
+         1pa456Rj02ulpijkQ9gFPtgOj7I+wxDjs//egaMSMWCNeOwmIMK8omDMPNLwztTIljWz
+         xbj4chFNRP/5Cm+zzHbNY0jKWhjRwdrHGn6hdZmAHKH1SW/MBKDTKU5BDE7ZJCuZg+4u
+         K0cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U3g3FVHcAfq2CjS/tDBEgPrTjvgAlik1UmRsepWrO/M=;
-        b=xRkvWlhu6KhL/p1GoXASclRt7VlVL52FiNekCat8ZSkvUUZxk4b4s/glRQcy6uG1kB
-         tQBcBtI7LltL//m+G3EcWhy1p5KtkYBCt68NU4/Oz2dOtKuOj8hrFMfLkGtVcS0FQT3G
-         X8/lmq3JikyQSaZ6J+aXmkXCx6Hzly7hS0WSx2DowxVcOwYcr2mDL0l+vRZ2QYnZO/Sd
-         XxooXiNYAs2IAHO0J+KwfHlNRP+K5FPM/cerPAIVMdwavNqKh54w1M9cHBrpr2u2Xkkc
-         ANxJtSR9ivgttnWFG1x1QKYae9fJfWHOHtYHG34gE93xlG6ut9j3vL+sp5QCzoURqt49
-         fpdA==
-X-Gm-Message-State: AOAM532gDDRoJmDLGh1+F5qVDaZauV1Tu15ibFKbjQA3ZhBu3z9pUnM+
-        AdtUrHpn1DI9AMTlJJQnG+X2N2vESJ7PeYxNtIBbDA==
-X-Google-Smtp-Source: ABdhPJwqqw8e12Oj8Mbs+ZBogohxgciqSKBUNXiyR2zo3nKqwCJ61Gsrw5pb7r1VVcKkZcvnXQuH+1x0Dzep9YUsgPg=
-X-Received: by 2002:a19:5f4b:: with SMTP id a11mr5158365lfj.373.1633092661107;
- Fri, 01 Oct 2021 05:51:01 -0700 (PDT)
+         :message-id:subject:to;
+        bh=c+kURNAAkSIIC5kx7+rU/IV/731k5cWXXDLuC8d6BG4=;
+        b=Hg3mpkULPyNHeStQfXOyXK673u9kLSEnIExa2fEki+69U+9E8bwE0twtOdGvsZVc+d
+         Fk6efwtKXUTNtX9Ksm52QovgT2u70pnjR3ghrA5ZnHGXt0lISdPhUt2IHuM+2FxOC96h
+         nNp5UsOSRK4SRORcqjnQhnUSUMLx1GbkoUw2/Pz4XquO8bOAAVmG5m87hglGbZ1xQVPw
+         rPeYPuCrZn6gsRODvo37XQj5x044wRF0LiMxAyzyEv1M/hUKx8X8LDpjwKSX36+vXSlq
+         tx8Zp1goES8OQokJfmSEqkBsqYoZQMr2xhWCJNYht3EhJZl9bNduhaIC4n2AoJfRnqjY
+         Op9g==
+X-Gm-Message-State: AOAM531w+u5HjDpRtWl7pQBzGvJIJ0Tl2A1PNsIXXVIDseqHjY7Wcl+I
+        lI53xh9+9Okilg5QKGxXJ4ktu9azxM+ku4yHqc8=
+X-Google-Smtp-Source: ABdhPJyoKAv0iarnUd7y3IYOy1Ztcq0Ch+N3p78eU2QqNjTH5HmI6jvK5PHdjjklcXIMiPSKYoLlsTnwZhQsST5T+GE=
+X-Received: by 2002:a25:c08a:: with SMTP id c132mr5971448ybf.49.1633092837128;
+ Fri, 01 Oct 2021 05:53:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210926224058.1252-1-digetx@gmail.com> <20210926224058.1252-3-digetx@gmail.com>
-In-Reply-To: <20210926224058.1252-3-digetx@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 1 Oct 2021 14:50:25 +0200
-Message-ID: <CAPDyKFrtE75Tf-vefM0isj52PJ5_v525AjqU2TMUpc4__rYLhA@mail.gmail.com>
-Subject: Re: [PATCH v13 02/35] soc/tegra: Add devm_tegra_core_dev_init_opp_table_common()
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
+References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210928140721.8805-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <YVXMc1A4D/y4kjim@shikoro> <CA+V-a8sDSsyTGfTeQfG_ZhfrJHCm+2kBTEDWaoFMTgsMOmxEgQ@mail.gmail.com>
+ <YVbM3z7x+D0MCkTF@ninjato> <CA+V-a8uyQmW3+4hAt4534spKeQHDoeZzuJJE4RY70KLZfYOXoA@mail.gmail.com>
+ <YVb5RXvh9agIS7MG@ninjato>
+In-Reply-To: <YVb5RXvh9agIS7MG@ninjato>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 1 Oct 2021 13:53:30 +0100
+Message-ID: <CA+V-a8vQ2EoMW18aEq5Ssa71M6VvA6YtOzU2UAe7L1Puorr07Q@mail.gmail.com>
+Subject: Re: [PATCH 6/6] memory: renesas-rpc-if: Add support for RZ/G2L
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Heidelberg <david@ixit.cz>
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-mtd@lists.infradead.org,
+        linux-spi <linux-spi@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Sept 2021 at 00:42, Dmitry Osipenko <digetx@gmail.com> wrote:
+Hi Wolfram,
+
+On Fri, Oct 1, 2021 at 1:04 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
 >
-> Only couple drivers need to get the -ENODEV error code and majority of
-> drivers need to explicitly initialize the performance state. Add new
-> common helper which sets up OPP table for these drivers.
+> Hi Prabhakar,
 >
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  include/soc/tegra/common.h | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
+> I checked the G2L datasheet and reconsidered. It is better if your patch
+> goes in first. That means...
 >
-> diff --git a/include/soc/tegra/common.h b/include/soc/tegra/common.h
-> index af41ad80ec21..5b4a042f60fb 100644
-> --- a/include/soc/tegra/common.h
-> +++ b/include/soc/tegra/common.h
-> @@ -39,4 +39,28 @@ devm_tegra_core_dev_init_opp_table(struct device *dev,
->  }
->  #endif
+> > > > > Is RPCIF_CMNCR_IO3FV and RPCIF_CMNCR_IO2FV actually documented in your
+> > > > > datasheets? I am asking because I have a patch pending to remove writing
+> > > > > to undocumented locations. So, I was aboout to remove the IO3FV and
+> > > > > IO2FV macros.
+> > > > >
+> > > > Yes they are documented, you should be able to download the HW manual from [1]
+> > >
+> > > Great, then I will keep them!
 >
-> +/*
-> + * This function should be invoked with the enabled runtime PM of the device
-> + * in order to initialize performance state properly. Most of Tegra devices
-> + * are assumed to be suspended at a probe time and GENPD require RPM to be
-> + * enabled to set up the rpm-resume state, otherwise device is active and
-> + * performance state is applied immediately. Note that it will initialize
-> + * OPP bandwidth if it's wired in a device-tree for this device, which is
-> + * undesirable for a suspended device.
-> + */
-> +static inline int
-> +devm_tegra_core_dev_init_opp_table_common(struct device *dev)
-> +{
-> +       struct tegra_core_opp_params opp_params = {};
-> +       int err;
-> +
-> +       opp_params.init_state = true;
-> +
-> +       err = devm_tegra_core_dev_init_opp_table(dev, &opp_params);
-> +       if (err != -ENODEV)
-> +               return err;
-> +
-> +       return 0;
-> +}
-
-Just want to share a few thoughts around these functions.
-
-So, I assume it's fine to call
-devm_tegra_core_dev_init_opp_table_common() or
-devm_tegra_core_dev_init_opp_table() from consumer drivers during
-->probe(), as long as those drivers are tegra specific, which I assume
-all are in the series!?
-
-My point is, a cross SoC consumer driver that needs to initiate OPP
-tables can get rather messy, if it would need to make one specific
-function call per SoC.
-
-That said, I hope we can tackle this as a separate/future problem, so
-the series can get merged as is.
-
-> +
->  #endif /* __SOC_TEGRA_COMMON_H__ */
-> --
-> 2.32.0
+> ... that you could change the comments here from "undocumented" to
+> "documened for G2L" or similar.
 >
+> > > > > > +             regmap_read(rpc->regmap, RPCIF_PHYCNT, &dummy);
+> > > > > > +             dummy &= ~RPCIF_PHYCNT_PHYMEM_MASK;
+> > > > > > +             dummy |= RPCIF_PHYCNT_PHYMEM(hyperflash ? 3 : 0) | 0x260;
+> > > > > > +             regmap_write(rpc->regmap, RPCIF_PHYCNT, dummy);
+> > > > >
+> > > > > regmap_update_bits?
+> > > > >
+> > > > Im a bit hesitant to use regmap_update_bits() here as some of the bits
+> > > > are not documented.
+>
+> Here you can keep your code as is. I will change it afterwards if needed
+> once I clarified all undocumented locations.
+>
+Thanks, will re-spin the patches with comments fixed.
 
-Kind regards
-Uffe
+> Thanks and have a nice weekend,
+>
+You too.
+
+Cheers,
+Prabhakar
+
+>    Wolfram
+>
