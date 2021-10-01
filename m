@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FBE441F5EC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 21:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED54741F61B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 22:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbhJATx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 15:53:27 -0400
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:44571 "EHLO
-        mail-qk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229899AbhJATx1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 15:53:27 -0400
-Received: by mail-qk1-f171.google.com with SMTP id 194so10271985qkj.11;
-        Fri, 01 Oct 2021 12:51:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CP2czsJFLPOz9RraUZFgCkPw+6TZRIivrlAU3dXRTyE=;
-        b=jg+QsgAHUog8mfT0c45KQX1/4PRfPCun1pet/4a9PXZoQsAlG1/kOX5/wH3uxLJBDK
-         RvLMkjQMQ943KYbU5rATWjL1iWFP8gKbgy8MGqVuRUqdN6Kt26UGJLtMNvRqFBm8iVE1
-         d09qnOSYw17Gu4zNtWUK4LMlpKo9VI+iwJ1adKTY5i+SjwCbURUkgFVvKYw/pPHfepR1
-         uFa2Ta1VEh0EtDN+CPzXpzzz6cgXOmmeFZEXmdtaTxHoh6tlP+vOr9XVQxF7aR4UVG/D
-         CrFiGJvSY22Y5J++knE3T/M/igbah1WZGcffrVt+32mhdx7ayCrTQeNzo7lxHbTKaYdA
-         CPvw==
-X-Gm-Message-State: AOAM531szHzTCyC1MMK8VOIy4VfyO0w8j0SczfrNvyuBiKDcUxCJ0M6u
-        5YlMLAjLz2MveX5iziJZpR6FuYXk4RE=
-X-Google-Smtp-Source: ABdhPJxiql+SvQ7JhIqib3BIwYulUPpviLXE9ODVRim+NLLN2xt7zDQW2TRN3KJpn8N9QhCcrTeB5g==
-X-Received: by 2002:a37:668d:: with SMTP id a135mr10825796qkc.288.1633117901819;
-        Fri, 01 Oct 2021 12:51:41 -0700 (PDT)
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com. [209.85.160.181])
-        by smtp.gmail.com with ESMTPSA id y6sm3423358qkj.26.2021.10.01.12.51.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Oct 2021 12:51:41 -0700 (PDT)
-Received: by mail-qt1-f181.google.com with SMTP id e16so10090234qts.4;
-        Fri, 01 Oct 2021 12:51:41 -0700 (PDT)
-X-Received: by 2002:ac8:1e0e:: with SMTP id n14mr14774869qtl.95.1633117900842;
- Fri, 01 Oct 2021 12:51:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211001000924.15421-1-leoyang.li@nxp.com> <4697aa5c-35de-8331-e7a9-831837618477@canonical.com>
-In-Reply-To: <4697aa5c-35de-8331-e7a9-831837618477@canonical.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Fri, 1 Oct 2021 14:51:29 -0500
-X-Gmail-Original-Message-ID: <CADRPPNRv2n7RHX9=2CTQ25Qce1PNeJnYZ3rt1EwYuCx5Ku5-PQ@mail.gmail.com>
-Message-ID: <CADRPPNRv2n7RHX9=2CTQ25Qce1PNeJnYZ3rt1EwYuCx5Ku5-PQ@mail.gmail.com>
-Subject: Re: [PATCH 0/5] convert ifc binding to yaml and drop "simple-bus"
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S229626AbhJAUDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 16:03:12 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:58348 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229568AbhJAUDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 16:03:12 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id ffc3ff1d;
+        Fri, 1 Oct 2021 22:01:23 +0200 (CEST)
+Date:   Fri, 1 Oct 2021 22:01:23 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Joey Gouly <joey.gouly@arm.com>
+Cc:     linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        marcan@marcan.st, maz@kernel.org, alyssa.rosenzweig@collabora.com,
+        sven@svenpeter.dev, devicetree@vger.kernel.org, robh+dt@kernel.org,
+        kettenis@openbsd.org, nd@arm.com, joey.gouly@arm.com
+In-Reply-To: <20211001191209.29988-3-joey.gouly@arm.com> (message from Joey
+        Gouly on Fri, 1 Oct 2021 20:12:08 +0100)
+Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: Add apple,npins property to apple,pinctrl
+References: <20211001191209.29988-1-joey.gouly@arm.com> <20211001191209.29988-3-joey.gouly@arm.com>
+Message-ID: <d3ca2fefcce5e048@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 1, 2021 at 4:46 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 01/10/2021 02:09, Li Yang wrote:
-> > Convert the ifc binding to yaml schema, in the mean while remove the
-> > "simple-bus" compatible from the binding to make sure ifc device probes
-> > before any of the child devices.  Update the driver and existing DTSes
-> > accordingly.
-> >
-> > DTS changes should be merged together with the driver/binding changes
-> > if DTS maintainer is ok with it or after the driver changes are applied.
-> >
->
-> It's discouraged to merge DTS along with drivers (e.g. soc folks don't
-> accept such pull requests), so I propose to apply it in the next cycle.
+> From: Joey Gouly <joey.gouly@arm.com>
+> Date: Fri, 1 Oct 2021 20:12:08 +0100
+> 
+> This property is used to describe the total number of pins on this
+> particular pinctrl hardware block.
+> 
+> Signed-off-by: Joey Gouly <joey.gouly@arm.com>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-Ok.  Will separate the DTS changes in the next version.
+Adding does property doesn't break the U-Boot driver, so I'm ok with
+this.  This should probably be a required property though.
 
->
-> Best regards,
-> Krzysztof
+> diff --git a/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+> index d50571affd1f..cdd8cb454e92 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+> @@ -34,6 +34,9 @@ properties:
+>    gpio-ranges:
+>      maxItems: 1
+>  
+> +  apple,npins:
+> +    maxItems: 1
+> +
+>    interrupts:
+>      description: One interrupt for each of the (up to 7) interrupt
+>        groups supported by the controller sorted by interrupt group
+> @@ -86,6 +89,7 @@ examples:
+>          gpio-controller;
+>          #gpio-cells = <2>;
+>          gpio-ranges = <&pinctrl 0 0 212>;
+> +        apple,npins = <212>;
+>  
+>          interrupt-controller;
+>          interrupt-parent = <&aic>;
+> -- 
+> 2.17.1
+> 
+> 
