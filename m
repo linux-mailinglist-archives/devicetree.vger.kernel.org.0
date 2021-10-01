@@ -2,420 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E9AB41F18E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 17:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDD4341F1D8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 18:08:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231757AbhJAPyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 11:54:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45462 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231718AbhJAPyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 11:54:31 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29218C061775
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 08:52:47 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id s16so8345916pfk.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 08:52:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=W/2GzNB3u7TT74q9PP+qr3+N2+FbkoiA6tUqxu1t9uk=;
-        b=BlZFV/FP1uVSPdR/tPI438iaxuP71Hl/02jq4Q+B9+U+0kjLBbKDPDjXSYC5UAbKOP
-         +OmHjKtRjb9gEJ9IUzlOvD4mVL4YkU0f3ifg0nBStp6Tn0WO8ubCRPHIfXdE5AAY5y0w
-         PGfluAAYRZjK7Oi0BJgcvYjs8gc+XFUorBLu4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=W/2GzNB3u7TT74q9PP+qr3+N2+FbkoiA6tUqxu1t9uk=;
-        b=CUonuRMZJNq4RN85fRk9+0Q2/a+J+ldEjtvJWPFOyImNiPae9OYi/aiPfOpMkQvNGX
-         QKSreplkeKbEL7MQs8VYP4YkhbRf7iwRpR8qXtF62yvwylUu0yyfx9kDdJq6IMp+DsuJ
-         R+EqrT+fg9FIWTrqvpBRxQIws6POIm3VhKlotP+UYCGMYEag9lr1VY0wAZbSwMhKjGiy
-         a2mmvZuXGmNdSjHjSDAmolwSLFfRhVXmlJ8cDqnjab+oeqI65NoyjNcNQpY++8pZMnpW
-         wi8zx6hI9csgk5urLe215T52Gs/068X7cTtbBYObNJvHIuXohv7/va/rUg8w4E5Zyoym
-         sknQ==
-X-Gm-Message-State: AOAM531VnsJMsvSoplIGJIwUuXsn7+vJbqqpDIYWx1+ATTy7vpB5PKmn
-        RmouwoQ5CMeeRyYf/mc8durjhw==
-X-Google-Smtp-Source: ABdhPJxbW/w0AacFdyk0ikXT+slEN8/ifKr5jE1IrW4gPBXgMAtnj1+sCIqCQNOpG9muNHWycaARPw==
-X-Received: by 2002:a63:f30c:: with SMTP id l12mr10226543pgh.360.1633103566594;
-        Fri, 01 Oct 2021 08:52:46 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:f57f:9f3a:1408:a801])
-        by smtp.gmail.com with UTF8SMTPSA id n14sm6885211pgd.48.2021.10.01.08.52.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Oct 2021 08:52:46 -0700 (PDT)
-Date:   Fri, 1 Oct 2021 08:52:44 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: Re: [PATCH 4/8] ASoC: qcom: Add lapss CPU driver for codec dma
- control
-Message-ID: <YVcuzEXA4Ej3HpHH@google.com>
-References: <1633087292-1378-1-git-send-email-srivasam@codeaurora.org>
- <1633087292-1378-5-git-send-email-srivasam@codeaurora.org>
+        id S231710AbhJAQKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 12:10:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52236 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231675AbhJAQKT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Oct 2021 12:10:19 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4651961452;
+        Fri,  1 Oct 2021 16:08:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633104515;
+        bh=7CRJ2vFylAq8uVkY++RDETUKk8nEfEIuz0JrlkfB8sI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oD7R+2XiopeULBOwycPhpvnbEoal/ni+kws6ZyAXytNkOWn9N0mQODpFiE/JMO+XO
+         mYG5gSJJDy9Qth2f+LYHxojz1HhNJBBrMNzudSSGNkcnx0iKZA7QiG3/CapjLlBprN
+         nPrXAl6I9Ii22Qpj4oWNidjl3C4Z5WZBrm+oV9xmzQ9uEPPXoG8upS35eJAO08I5ag
+         iJ9fgwDIqzN8gYEce+JLUgYuj+DOdj+cBHi8GRqsSL11JNHGnYLbjnktpFAoXsF8nc
+         XiScFG52br5SvcdG+skf6rWLax7d9hTc0x1EDuJzMIfgVKxgRMv4XVubKGQJwmoedf
+         4p3AjS+hdLMFQ==
+Received: by pali.im (Postfix)
+        id 0B989821; Fri,  1 Oct 2021 18:08:32 +0200 (CEST)
+Date:   Fri, 1 Oct 2021 18:08:32 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
+Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v7 10/24] wfx: add fwio.c/fwio.h
+Message-ID: <20211001160832.ozxc7bhlwlmjeqbo@pali>
+References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
+ <20210920161136.2398632-11-Jerome.Pouiller@silabs.com>
+ <87sfxlj6s1.fsf@codeaurora.org>
+ <2174509.SLDT7moDbM@pc-42>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1633087292-1378-5-git-send-email-srivasam@codeaurora.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2174509.SLDT7moDbM@pc-42>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 01, 2021 at 04:51:28PM +0530, Srinivasa Rao Mandadapu wrote:
-> Subject: ASoC: qcom: Add lapss CPU driver for codec dma control
-
-nit: s/lapss/lpass/
-
->
-> Add lpass cpu driver to support audio over codec dma for
-> ADSP bypass usecase.
+On Friday 01 October 2021 17:09:41 Jérôme Pouiller wrote:
+> On Friday 1 October 2021 13:58:38 CEST Kalle Valo wrote:
+> > Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
+> > 
+> > > From: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> > >
+> > > Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> > 
+> > [...]
+> > 
+> > > +static int get_firmware(struct wfx_dev *wdev, u32 keyset_chip,
+> > > +                     const struct firmware **fw, int *file_offset)
+> > > +{
+> > > +     int keyset_file;
+> > > +     char filename[256];
+> > > +     const char *data;
+> > > +     int ret;
+> > > +
+> > > +     snprintf(filename, sizeof(filename), "%s_%02X.sec",
+> > > +              wdev->pdata.file_fw, keyset_chip);
+> > > +     ret = firmware_request_nowarn(fw, filename, wdev->dev);
+> > > +     if (ret) {
+> > > +             dev_info(wdev->dev, "can't load %s, falling back to %s.sec\n",
+> > > +                      filename, wdev->pdata.file_fw);
+> > > +             snprintf(filename, sizeof(filename), "%s.sec",
+> > > +                      wdev->pdata.file_fw);
+> > > +             ret = request_firmware(fw, filename, wdev->dev);
+> > > +             if (ret) {
+> > > +                     dev_err(wdev->dev, "can't load %s\n", filename);
+> > > +                     *fw = NULL;
+> > > +                     return ret;
+> > > +             }
+> > > +     }
+> > 
+> > How is this firmware file loading supposed to work? If I'm reading the
+> > code right, the driver tries to load file "wfm_wf200_??.sec" but in
+> > linux-firmware the file is silabs/wfm_wf200_C0.sec:
+> > 
+> > https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/silabs
+> > 
+> > That can't work automatically, unless I'm missing something of course.
 > 
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
->  sound/soc/qcom/lpass-cdc-dma.c | 263 +++++++++++++++++++++++++++++++++++++++++
->  sound/soc/qcom/lpass.h         |   1 +
->  2 files changed, 264 insertions(+)
->  create mode 100644 sound/soc/qcom/lpass-cdc-dma.c
+> The firmware are signed. "C0" is the key used to sign this firmware. This
+> key must match with the key burned into the chip. Fortunately, the driver
+> is able to read the key accepted by the chip and automatically choose the
+> right firmware.
 > 
-> diff --git a/sound/soc/qcom/lpass-cdc-dma.c b/sound/soc/qcom/lpass-cdc-dma.c
-> new file mode 100644
-> index 0000000..56b3791
-> --- /dev/null
-> +++ b/sound/soc/qcom/lpass-cdc-dma.c
-> @@ -0,0 +1,263 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021 The Linux Foundation. All rights reserved.
-> + *
-> + * lpass-cdc-dma.c -- ALSA SoC WCD -CPU DAI driver for QTi LPASS WCD
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <sound/soc.h>
-> +#include <sound/soc-dai.h>
-> +
-> +#include "lpass-lpaif-reg.h"
-> +#include "lpass.h"
-> +
-> +static int __lpass_platform_codec_intf_init(struct snd_soc_dai *dai,
-> +					 struct snd_pcm_substream *substream)
-> +{
-> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
-> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
-> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +	struct snd_pcm_runtime *rt = substream->runtime;
-> +	struct lpass_pcm_data *pcm_data = rt->private_data;
-> +	struct lpass_variant *v = drvdata->variant;
-> +	struct lpaif_dmactl *dmactl;
-> +	struct regmap *map;
-> +	int dir = substream->stream;
-> +	int ret, id;
-> +	unsigned int dai_id = cpu_dai->driver->id;
-> +
-> +	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
-
-s/ ==  / == /
-
-> +		dmactl = drvdata->rxtx_rd_dmactl;
-> +		map = drvdata->rxtx_lpaif_map;
-> +		id = pcm_data->dma_ch;
-> +	} else {
-> +		if (dai_id == LPASS_CDC_DMA_TX3) {
-> +			dmactl = drvdata->rxtx_wr_dmactl;
-> +			map = drvdata->rxtx_lpaif_map;
-> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
-> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
-> +			dmactl = drvdata->va_wr_dmactl;
-> +			map = drvdata->va_lpaif_map;
-> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
-> +		}
-> +	}
-
-'map' is assigned here, but not used in the rest of the function, drop it.
-
-> +
-> +	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
-
-s/ ==  / == /
-
-> +		ret = regmap_fields_write(dmactl->codec_intf, id, LPASS_CDC_DMA_RX0_INTERFACE);
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to rdmactl reg: %d\n", ret);
-
-Some of the logs print the register name, others don't, why not log it
-always?
-
-> +			return ret;
-> +		}
-> +	    ret = regmap_fields_write(dmactl->codec_fs_sel, id, 0x0);
-
-fix indentation
-
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to rdmactl reg: %d\n", ret);
-> +			return ret;
-> +		}
-> +		ret = regmap_fields_write(dmactl->codec_fs_delay, id, 0x0);
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to rdmactl codec_fs_delay reg field: %d\n", ret);
-> +			return ret;
-> +		}
-> +		ret = regmap_fields_write(dmactl->codec_pack, id, 0x1);
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to rdmactl codec_pack reg field: %d\n", ret);
-> +			return ret;
-> +		}
-> +		ret = regmap_fields_write(dmactl->codec_enable, id, LPAIF_DMACTL_ENABLE_ON);
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to rdmactl reg: %d\n", ret);
-> +			return ret;
-> +		}
-> +
-
-Remove empty line
-
-> +	} else {
-> +		ret = regmap_fields_write(dmactl->codec_intf, id, LPASS_CDC_DMA_INTERFACE(dai_id));
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to wrdmactl codec_intf reg field: %d\n", ret);
-> +			return ret;
-> +		}
-> +	    ret = regmap_fields_write(dmactl->codec_fs_sel, id, 0x0);
-
-fix indentation
-
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to wrdmactl codec_fs_sel reg field: %d\n", ret);
-> +			return ret;
-> +		}
-> +		ret = regmap_fields_write(dmactl->codec_fs_delay, id, 0x0);
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to wrdmactl codec_fs_delay reg field: %d\n", ret);
-> +			return ret;
-> +		}
-> +		ret = regmap_fields_write(dmactl->codec_pack, id, 0x1);
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to wrdmactl codec_pack reg field: %d\n", ret);
-> +			return ret;
-> +		}
-> +		ret = regmap_fields_write(dmactl->codec_enable, id, LPAIF_DMACTL_ENABLE_ON);
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to wrdmactl codec_enable reg field: %d\n", ret);
-> +			return ret;
-> +		}
-
-The last four register writes are exactly the same in both branches, only the
-logging distinguishes between 'rdmactl' and 'wrdmactl'. Those should be in the
-main branch, if you really need to distinguish between 'rdmactl' and 'wrdmactl'
-in the logging you can assign a string pointer in the 'if (dir == SNDRV_PCM_STREAM_PLAYBACK)'
-branches.
-
-> +	}
-> +	return 0;
-> +}
-> +
-> +static int lpass_wcd_daiops_startup(struct snd_pcm_substream *substream,
-> +		struct snd_soc_dai *dai)
-> +{
-> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +	int ret, i;
-> +
-> +	for (i = 0; i < drvdata->cdc_num_clks; i++) {
-> +		ret = clk_prepare_enable(drvdata->cdc_dma_clks[i]);
-> +		if (ret) {
-> +			dev_err(dai->dev, "error in enabling cdc dma clks: %d\n", ret);
-> +			return ret;
-
-Disable clocks that have been enabled previously?
-
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void lpass_wcd_daiops_shutdown(struct snd_pcm_substream *substream,
-> +		struct snd_soc_dai *dai)
-> +{
-> +	int i;
-> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +
-> +	for (i = 0; i < drvdata->cdc_num_clks; i++)
-> +		clk_disable_unprepare(drvdata->cdc_dma_clks[i]);
-> +}
-> +
-> +static int lpass_wcd_daiops_hw_params(struct snd_pcm_substream *substream,
-> +		struct snd_pcm_hw_params *params, struct snd_soc_dai *dai)
-> +{
-> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
-> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
-> +	struct lpaif_dmactl *dmactl;
-> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +	struct snd_pcm_runtime *rt = substream->runtime;
-> +	struct lpass_pcm_data *pcm_data = rt->private_data;
-> +	struct lpass_variant *v = drvdata->variant;
-> +	struct regmap *map;
-> +	int dir = substream->stream;
-> +	unsigned int ret, regval;
-> +	unsigned int channels = params_channels(params);
-> +	int id;
-> +	unsigned int dai_id = cpu_dai->driver->id;
-> +
-> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK) {
-> +		dmactl = drvdata->rxtx_rd_dmactl;
-> +		map = drvdata->rxtx_lpaif_map;
-> +		id = pcm_data->dma_ch;
-> +	} else {
-> +		if (dai_id == LPASS_CDC_DMA_TX3) {
-> +			dmactl = drvdata->rxtx_wr_dmactl;
-> +			map = drvdata->rxtx_lpaif_map;
-> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
-> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
-> +			dmactl = drvdata->va_wr_dmactl;
-> +			map = drvdata->va_lpaif_map;
-> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
-> +		}
-> +	}
-
-The exact same code block is used 3 times in this driver. Add a helper with
-'substream' and 'dai' as parameters, which determines 'dmactl and 'id'.
-That would also make the variable declaration/assignment section of these
-functions signifcantly shorter.
-
-> +
-> +	switch (channels) {
-> +	case 1:
-> +		regval = LPASS_CDC_DMA_INTF_ONE_CHANNEL;
-> +		break;
-> +	case 2:
-> +		regval = LPASS_CDC_DMA_INTF_TWO_CHANNEL;
-> +		break;
-> +	case 4:
-> +		regval = LPASS_CDC_DMA_INTF_FOUR_CHANNEL;
-> +		break;
-> +	case 6:
-> +		regval = LPASS_CDC_DMA_INTF_SIX_CHANNEL;
-> +		break;
-> +	case 8:
-> +		regval = LPASS_CDC_DMA_INTF_EIGHT_CHANNEL;
-> +		break;
-> +	default:
-> +		dev_err(soc_runtime->dev, "invalid PCM config\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = regmap_fields_write(dmactl->codec_channel, id, regval);
-> +	if (ret) {
-> +		dev_err(soc_runtime->dev,
-> +			"error writing to rdmactl codec_channel reg field: %d\n", ret);
-
-not necessarily 'rdmactl'.
-
-> +		return ret;
-> +	}
-> +	return ret;
-
-	return 0
-
-> +}
-> +
-> +static int lpass_wcd_daiops_trigger(struct snd_pcm_substream *substream,
-> +		int cmd, struct snd_soc_dai *dai)
-> +{
-> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
-> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
-> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +	struct snd_pcm_runtime *rt = substream->runtime;
-> +	struct lpass_pcm_data *pcm_data = rt->private_data;
-> +	struct lpass_variant *v = drvdata->variant;
-> +	int dir = substream->stream;
-> +	struct lpaif_dmactl *dmactl;
-> +	struct regmap *map;
-> +	unsigned int dai_id = cpu_dai->driver->id;
-> +	int ret = 0, id;
-> +
-> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK) {
-> +		dmactl = drvdata->rxtx_rd_dmactl;
-> +		map = drvdata->rxtx_lpaif_map;
-> +		id = pcm_data->dma_ch;
-> +	} else {
-> +		if (dai_id == LPASS_CDC_DMA_TX3) {
-> +			dmactl = drvdata->rxtx_wr_dmactl;
-> +			map = drvdata->rxtx_lpaif_map;
-> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
-> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
-> +			dmactl = drvdata->va_wr_dmactl;
-> +			map = drvdata->va_lpaif_map;
-> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
-> +		}
-> +	}
-
-see above
-
-> +	switch (cmd) {
-> +	case SNDRV_PCM_TRIGGER_START:
-> +	case SNDRV_PCM_TRIGGER_RESUME:
-> +	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-> +		__lpass_platform_codec_intf_init(dai, substream);
-> +		break;
-> +	case SNDRV_PCM_TRIGGER_STOP:
-> +	case SNDRV_PCM_TRIGGER_SUSPEND:
-> +	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-> +		ret = regmap_fields_write(dmactl->codec_enable, id, LPAIF_DMACTL_ENABLE_OFF);
-> +		if (ret) {
-> +			dev_err(soc_runtime->dev,
-> +				"error writing to rdmactl reg: %d\n", ret);
-
-not necessarily rdmactl, better log that it's the codec enable reg.
-
-> +			return ret;
-> +		}
-> +
-> +		break;
-> +	}
-> +	return ret;
-> +}
-> +
-> +const struct snd_soc_dai_ops asoc_qcom_lpass_wcd_dai_ops = {
-> +	.startup	= lpass_wcd_daiops_startup,
-> +	.shutdown	= lpass_wcd_daiops_shutdown,
-> +	.hw_params	= lpass_wcd_daiops_hw_params,
-> +	.trigger	= lpass_wcd_daiops_trigger,
-> +};
-> +EXPORT_SYMBOL_GPL(asoc_qcom_lpass_wcd_dai_ops);
-> +
-> +MODULE_DESCRIPTION("QTi LPASS CDC DMA Driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
-> index 058b42d..e0ea698 100644
-> --- a/sound/soc/qcom/lpass.h
-> +++ b/sound/soc/qcom/lpass.h
-> @@ -418,5 +418,6 @@ int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai);
->  extern const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops;
->  int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
->  				struct snd_soc_dai *dai);
-> +extern const struct snd_soc_dai_ops asoc_qcom_lpass_wcd_dai_ops;
+> We could imagine to add a attribute in the DT to choose the firmware to
+> load. However, it would be a pity to have to specify it manually whereas
+> the driver is able to detect it automatically.
+> 
+> Currently, the only possible key is C0. However, it exists some internal
+> parts with other keys. In addition, it is theoretically possible to ask
+> to Silabs to burn parts with a specific key in order to improve security
+> of a product. 
+> 
+> Obviously, for now, this feature mainly exists for the Silabs firmware
+> developers who have to work with other keys.
 >  
->  #endif /* __LPASS_H__ */
+> > Also I would prefer to use directory name as the driver name wfx, but I
+> > guess silabs is also doable.
+> 
+> I have no opinion.
+> 
+> 
+> > Also I'm not seeing the PDS files in linux-firmware. The idea is that
+> > when user installs an upstream kernel and the linux-firmware everything
+> > will work automatically, without any manual file installations.
+> 
+> WF200 is just a chip. Someone has to design an antenna before to be able
+> to use.
+> 
+> However, we have evaluation boards that have antennas and corresponding
+> PDS files[1]. Maybe linux-firmware should include the PDS for these boards
+
+So chip vendor provides firmware and card vendor provides PDS files. In
+my opinion all files should go into linux-firmware repository. If Silabs
+has PDS files for its devel boards (which are basically cards) then I
+think these files should go also into linux-firmware repository.
+
+And based on some parameter, driver should load correct PDS file. Seems
+like DT can be a place where to put something which indicates which PDS
+file should be used.
+
+But should be in DT directly name of PDS file? Or should be in DT just
+additional compatible string with card vendor name and then in driver
+itself should be mapping table from compatible string to filename? I do
+not know what is better.
+
+> and the DT should contains the name of the design. eg:
+> 
+>     compatible = "silabs,brd4001a", "silabs,wf200";
+> 
+> So the driver will know which PDS it should use. 
+> 
+> In fact, I am sure I had this idea in mind when I have started to write
+> the wfx driver. But with the time I have forgotten it. 
+> 
+> If you agree with that idea, I can work on it next week.
+> 
+> 
+> [1]: https://github.com/SiliconLabs/wfx-pds
+> 
 > -- 
-> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> Jérôme Pouiller
+> 
 > 
