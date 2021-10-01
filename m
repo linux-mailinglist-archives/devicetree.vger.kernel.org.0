@@ -2,100 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DCA841EE5A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 15:18:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7224441EE53
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 15:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231582AbhJANTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 09:19:23 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:41581 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231587AbhJANSr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 09:18:47 -0400
-Received: by mail-ot1-f45.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso11420513ota.8;
-        Fri, 01 Oct 2021 06:17:02 -0700 (PDT)
+        id S231560AbhJANSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 09:18:44 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:42836 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230345AbhJANSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 09:18:43 -0400
+Received: by mail-oi1-f179.google.com with SMTP id x124so11355393oix.9;
+        Fri, 01 Oct 2021 06:16:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=JmNm4fwvOprJyv3kxO/2sZUF4SyR5k28U6t0hU5FgjQ=;
-        b=gOqXPhp0bX1UmCzKYyZIPlS2vBZ8zogGLTdUQEz/A7yQj0W0S0MUOljylVZWCPvhqw
-         ymAYX7TKRG3RHAbTuYWmUa/zoR7bxpe4HmM9PsUmPLnG/pnBhQizHwAg7sVH+bjhaazz
-         h6x0YxRsdmOK8D1UjoPkwYQF4DE+sRVBmDHUUUXHm3I8iyosjWMjJc4/Zy8qrfAbNzsV
-         htfLx7BnXxDYr349MjcuFJ00oAb92jEpQcOQALUhcHFaNewagN3AELTEeIFj7q3rFEdo
-         zYgURFm/uH3qeDi0L4Lnw0N5oVztjP6HLn68TIV2XFgKEfE8HkxuHJeadQzUsMVCJgJD
-         tv7A==
-X-Gm-Message-State: AOAM531Fy0gleSN/d/tZpLXYMuKSy1c8jny1ZzKTe5XQGXgXy8cBrYYp
-        PDPNISFLyQCYKhyVtjGkAu8yfoLeQg==
-X-Google-Smtp-Source: ABdhPJxxq3oW0g94TnmTeT15Po6GQnjHvadMyLD7HUcKeLZdpO/hq3UAbkMJjbq+EeONotgH/xEmGA==
-X-Received: by 2002:a9d:8cc:: with SMTP id 70mr7650397otf.328.1633094222591;
-        Fri, 01 Oct 2021 06:17:02 -0700 (PDT)
+        bh=s93FCbEY6wiV8iS/EDoBTCM7Mo8XJASc8RhUVRLOCxo=;
+        b=rt42qo3y/On5LIqnPcuE+mLBLlRtTBSjfGXhbZ+xJ2sg42++AgZ432ulGbhIhGDxr9
+         4jYJU/Klz/0tHxuF4+xO2ceJOGmIsHsb6Xhl5+HcfyLGfLwbRMGwKRGm4OFE3PniqMpu
+         qOKIfUI4XF1TONHev5otb88z8/+ymfbGYaW9heusb8zfiFieu201VFhzpiHfojuMRHCf
+         ofoWz8KgXu/QW0VTBz+Ik52vR1OCA65uScbX84hDXMpLqxqiN/G0ACAzTR/LERO0wM37
+         4f3voamk8Q5pYRCO+gANN3Vb3VyIj6/GMPw8G77wUiqWlXLhERNaMivqRqat5gUl1RO/
+         uYng==
+X-Gm-Message-State: AOAM531gqeCuAg7EiHpwswI6wYiAFgxmDUfUTv9tqDVOijk1TfF7bR9q
+        nbz5xRpkbDGilmGsOGGGIQ==
+X-Google-Smtp-Source: ABdhPJxqIZBVEGOYTlvgGELRTch2AV0JHIMbH+6kmz85mv3lykRhU/J6zCE6YTwRePhunB+9Higd6A==
+X-Received: by 2002:aca:d686:: with SMTP id n128mr3734516oig.144.1633094219252;
+        Fri, 01 Oct 2021 06:16:59 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t17sm1200813otl.56.2021.10.01.06.17.01
+        by smtp.gmail.com with ESMTPSA id c21sm1124500oiy.18.2021.10.01.06.16.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Oct 2021 06:17:02 -0700 (PDT)
-Received: (nullmailer pid 3666448 invoked by uid 1000);
+        Fri, 01 Oct 2021 06:16:58 -0700 (PDT)
+Received: (nullmailer pid 3666441 invoked by uid 1000);
         Fri, 01 Oct 2021 13:16:57 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-In-Reply-To: <1633075894-10214-10-git-send-email-abel.vesa@nxp.com>
-References: <1633075894-10214-1-git-send-email-abel.vesa@nxp.com> <1633075894-10214-10-git-send-email-abel.vesa@nxp.com>
-Subject: Re: [RESEND v2 09/10] dt-bindings: i2c: imx-lpi2c: Add i.MX8DXL compatible match
+To:     Li Yang <leoyang.li@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        linuxppc-dev@lists.ozlabs.org
+In-Reply-To: <20211001000924.15421-2-leoyang.li@nxp.com>
+References: <20211001000924.15421-1-leoyang.li@nxp.com> <20211001000924.15421-2-leoyang.li@nxp.com>
+Subject: Re: [PATCH 1/5] dt-bindings: memory: fsl: convert ifc binding to yaml schema
 Date:   Fri, 01 Oct 2021 08:16:57 -0500
-Message-Id: <1633094217.918569.3666447.nullmailer@robh.at.kernel.org>
+Message-Id: <1633094217.843390.3666440.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Oct 2021 11:11:34 +0300, Abel Vesa wrote:
-> Add i.MX8DXL lpi2c compatible to the bindings documentation.
+On Thu, 30 Sep 2021 19:09:20 -0500, Li Yang wrote:
+> Convert the txt binding to yaml format and add description.  Drop the
+> "simple-bus" compatible string from the example and not allowed by the
+> binding any more.  This will help to enforce the correct probe order
+> between parent device and child devices, but will require the ifc driver
+> to probe the child devices to work properly.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> Signed-off-by: Li Yang <leoyang.li@nxp.com>
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> updates from previous submission:
+> - Drop "simple-bus" from binding and only "fsl,ifc" as compatible
+> - Fix one identiation problem of "reg"
+> - Add type restriction to "little-endian" property
+> 
+>  .../bindings/memory-controllers/fsl/ifc.txt   |  82 -----------
+>  .../bindings/memory-controllers/fsl/ifc.yaml  | 137 ++++++++++++++++++
+>  2 files changed, 137 insertions(+), 82 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/ifc.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/ifc.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1535241
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/memory-controllers/fsl/ifc.example.dt.yaml:0:0: /example-0/soc/ifc@ffe1e000/flash@1,0: failed to match any schema with compatible: ['fsl,ifc-nand']
+Documentation/devicetree/bindings/memory-controllers/fsl/ifc.example.dt.yaml:0:0: /example-0/soc/ifc@ffe1e000/cpld@3,0: failed to match any schema with compatible: ['fsl,p1010rdb-cpld']
 
+doc reference errors (make refcheckdocs):
 
-i2c@5a800000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/freescale/imx8qm-mek.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml
+See https://patchwork.ozlabs.org/patch/1535102
 
-i2c@5a810000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/freescale/imx8qm-mek.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-i2c@5a820000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/freescale/imx8qm-mek.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-i2c@5a830000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/freescale/imx8qm-mek.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dt.yaml
-	arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
