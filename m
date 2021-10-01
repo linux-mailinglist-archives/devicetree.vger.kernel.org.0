@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 181E241E70F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 07:14:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A7AE41E71D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 07:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351939AbhJAFQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 01:16:38 -0400
-Received: from mail-am6eur05on2068.outbound.protection.outlook.com ([40.107.22.68]:50908
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        id S230500AbhJAF0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 01:26:08 -0400
+Received: from mail-eopbgr70041.outbound.protection.outlook.com ([40.107.7.41]:4230
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230397AbhJAFQh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Oct 2021 01:16:37 -0400
+        id S230488AbhJAF0H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Oct 2021 01:26:07 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hC/FLhdVdge3gyhJLAwx15/96aKVWm5Fow23N9a/G84YomLBsR7zA/GaneFwKTiuoLG3pRJi51bQYjrheRTvZumudtCDtgcZq8MpArrvfmPwImG2CUFYmtLADFhErT8CoVhZZhdoMIlRq3n2ozhUlxhFXSGeb1hPQxY7xEb9vzfAjXot1yPJ0HGSLtZMkn2bg0gkN5l41yN+NWKhqpMUqFhH3I+TDimz9+xI9nVxEogVpbrDIbFfmJltvzKz6LewoBYGu2CiBkbCk+UiCdEeD3Wrc9p4MXPkELgvg+wmaSXc/n6wzHV78h6nIfD7PRu3utrhv1jKkEH2w0xDlgtCpQ==
+ b=fO/ECA+3ul9TVS6JlmbqkBMRxJHMbL6fC4OfpGHqKKMd6Eun88N0c9v4NTja3jHv5CPsY90OO5imc5/CFJxUvCKUCgI4CoNbVLYPgfs8dU5uHzSJW2xSeKr+MIO1dCBij2YSvoUq7ok77YYi6L5ETD4iuR87SxdIlsPbb5iZHg711cTIlqJw7Sd7sLTsyvd8u1x0dUGuQEJ4nugWrsCx9I+UgE1lz8cuyl0AOloU2EmxoE7CBsHTlQdioGECX7WxBf6zNTgOFkA73hpvJJwsXyde7a+UCXPnqTeZzX4zj9HlQT1Kr7E77gvtIGnBvJ8lQGNVuVvP7FD4shh3Com6cg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=58uZ3e26ZuyVJLfP64TR525brGKVYf1h1EjATxuJp/o=;
- b=UAYfi/Z+VpftXQdxZOiTPHZCb+FPz1J1gBK1HlOEPpF30Ztkbj1XIbBxAQLIXr1plKRVM7Tdrv9SYXRToI6no+fZs02b84D1bhGeYRYM+Z6DcjV7Efpd0341B517VzUApcAkiMZs2LXnf7+FN1xjicVqEDiZJzEr1nc8mAwqowwnfiu3HUUy2tEayJ8crq8p8tgIXo3mGoXa9KdIoMWytZt92ihUB0hOFvCyIk3zySI1rqNGlSwdwQ/xqFGtru13th/afo4wX4xxQmwsztPp/fLDNCXMzh8W4lRYSwDnMSkb3ZfjqUD+anq2J3lIfTLW0vVcHBSV/v2Clyupm3IaoQ==
+ bh=VUtYX/7Gv5kT5I0275X2nkaB3EHWgCCI8mhCtrptLWw=;
+ b=crt5unGICHvQeu3bJvwcrSS0HccM9JUhn6eKRZopKuEmRnJTU10NjDhpp+RVBXZmBj3Le6EhFQ7kVStQ9TrTV2adlwIE83Mg4mtNFBikQpC8NqZlGWLRqs0YnUAtivYVsh4TkVVRfFSDx+5EP+DNh4qtSS/NAIk0/wP8F5y5vUdkSQEALiRW96w5yO098OOdkS3JJHwiQazXvmFQoRgRq+VChB16ydIV3WCay24YF2VV8h1pGc3cfpHZBgQVeexaeb4kiUXaC7ECwNd2zP7Hj2eP7y1GbIknvXPvptaoyvBniZwg0IkUnSnYXbItsDPdI5wE6jY8johD2ft9msXP6Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=58uZ3e26ZuyVJLfP64TR525brGKVYf1h1EjATxuJp/o=;
- b=D2hLR7sOrEyii9ZUcS8k613yDGGURjvO64XP8ghsPReGsrq8BMJKsOsFCjsZi0AUYinChkrF5DoW76gk9NZRkjdIP6SIcFVTDNng1AOE4reNRfV3VKoH88UoD7qqK9dwTe2bsy51ahICLejyJ4tWo2ueN4M7rnraxhQKXm+PrIg=
+ bh=VUtYX/7Gv5kT5I0275X2nkaB3EHWgCCI8mhCtrptLWw=;
+ b=sdJncjvQBdAIBvQ3kCCD5Q/MkPm6mUjygvHP4solbRa4XEc7OhFk8PEF6iTXdNl2DeFWRymKTrx/UfMnD3dKKjb+pjEdmnVuTPWIJGgo++CPpT4jJ9cjWrPuqe5JviXYON6ZRq0nQSh64U/TJYdIbPqUiGLVUY6BDtcqX0BP02Y=
 Received: from AS8PR04MB8673.eurprd04.prod.outlook.com (2603:10a6:20b:428::9)
- by AS8PR04MB8820.eurprd04.prod.outlook.com (2603:10a6:20b:42f::13) with
+ by AS8PR04MB8833.eurprd04.prod.outlook.com (2603:10a6:20b:42c::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.15; Fri, 1 Oct
- 2021 05:14:52 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.19; Fri, 1 Oct
+ 2021 05:24:21 +0000
 Received: from AS8PR04MB8673.eurprd04.prod.outlook.com
  ([fe80::d4f7:fe6:3e65:3c55]) by AS8PR04MB8673.eurprd04.prod.outlook.com
  ([fe80::d4f7:fe6:3e65:3c55%7]) with mapi id 15.20.4566.019; Fri, 1 Oct 2021
- 05:14:52 +0000
+ 05:24:21 +0000
 From:   Kuldeep Singh <kuldeep.singh@nxp.com>
 To:     Leo Li <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -44,16 +44,16 @@ To:     Leo Li <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 CC:     Leo Li <leoyang.li@nxp.com>
-Subject: RE: [EXT] [PATCH v2 16/16] ARM: dts: ls1021a-tsn: use generic
- "jedec,spi-nor" compatible for flash
-Thread-Topic: [EXT] [PATCH v2 16/16] ARM: dts: ls1021a-tsn: use generic
- "jedec,spi-nor" compatible for flash
-Thread-Index: AQHXtlfucauvEqx52Uqd8cxq3OuIqau9mKrA
-Date:   Fri, 1 Oct 2021 05:14:52 +0000
-Message-ID: <AS8PR04MB8673DB448952E9E36C323555E0AB9@AS8PR04MB8673.eurprd04.prod.outlook.com>
+Subject: RE: [EXT] [PATCH v2 04/16] ARM: dts: ls1021a-qds: Add node for QSPI
+ flash
+Thread-Topic: [EXT] [PATCH v2 04/16] ARM: dts: ls1021a-qds: Add node for QSPI
+ flash
+Thread-Index: AQHXtlfopRpWy+oE2kOXPz/B4PLFIqu9mgdg
+Date:   Fri, 1 Oct 2021 05:24:20 +0000
+Message-ID: <AS8PR04MB86734729E9E08F70FF7E5AEEE0AB9@AS8PR04MB8673.eurprd04.prod.outlook.com>
 References: <20211001000417.15334-1-leoyang.li@nxp.com>
- <20211001000417.15334-17-leoyang.li@nxp.com>
-In-Reply-To: <20211001000417.15334-17-leoyang.li@nxp.com>
+ <20211001000417.15334-5-leoyang.li@nxp.com>
+In-Reply-To: <20211001000417.15334-5-leoyang.li@nxp.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -61,57 +61,59 @@ X-MS-TNEF-Correlator:
 authentication-results: nxp.com; dkim=none (message not signed)
  header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7f44c516-c0b7-4800-cd68-08d9849a6645
-x-ms-traffictypediagnostic: AS8PR04MB8820:
+x-ms-office365-filtering-correlation-id: 076a7b95-f807-49ba-fb68-08d9849bb925
+x-ms-traffictypediagnostic: AS8PR04MB8833:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AS8PR04MB88206F66C50E7EF92896585BE0AB9@AS8PR04MB8820.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:983;
+x-microsoft-antispam-prvs: <AS8PR04MB8833C5459CC17F0395576522E0AB9@AS8PR04MB8833.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1468;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: F/nqMAY87ZZttrxD8xfeFSwoi0aM+m376WbSUM/A33Br9cnXKQRPMLW/Q0Os6yuWxaM5zE3Ioi7HO1YzG7ASiEghL4Q8Cmw8BdmP8tS6viY1SdPm6E3LYoGNgCHtgdydLySzbALNTg+LF95ofXCJbmKLhd3VOIu1gyewe0v840oQ251emXwj1TMFaOUQ12ZA+wEasz30bWIrY78KzNff+Bjau+h2AN053DmLfEcy0byqwVb2Y8lSH4Ruva1MiLW3a4sUYlulxpKbhNQu+QnLxYE+f6LJshme99W+Gc6XKbeQxO8bmgLvk+VmFqjHC6LD/7Gt3RcEEsdBbzXLQFYpWHpO0ZcGgceG3erl1PdvhxpJHP0+UlaTta6dITMklefGholFYz26RFCJ+mCAN4C3WhmS0/VmSnlEtDom5YuciJ4WCIbf3o2k0Bhl92ljrS5KV+TsNca1iq8h+3YwKktUFJixf4MrSUOq8EU/JQER8p33PLBnmlVVw4SHw/lU4dxGmZeJ+3bN5hw3yRw1v51++MRwJseak7AG1RAHUZbuSDcRjUkUIkMpkSdtmCQ4O3cbg+H6oEKuCEcsOPVqrP9r7eSzBm4WmmbeFDTAbTtMcjl4HHzK9TO9c50lO55TFi1/G8FQzsoYnJH5BjvtYcM5oPFg5gCwCpv2rQxEju1VggggIhmiRC6O3lpnTKurqkmf2tP1FvIrbOw2upMCRUEaZX0OKTd7fH+5fwfdkaM0d+g=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8673.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(186003)(122000001)(33656002)(83380400001)(55236004)(26005)(53546011)(6506007)(2906002)(7696005)(38100700002)(9686003)(55016002)(44832011)(8936002)(5660300002)(508600001)(38070700005)(8676002)(86362001)(110136005)(71200400001)(316002)(52536014)(66946007)(66476007)(64756008)(66556008)(66446008)(76116006)(4326008)(41533002);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: Wi31sy5Fs9DWcrVYXQd9L17z2EK18UuMjTl600Lkd4FamtjTVq1eCGkAywHSVk0lpMwt3qCC5AHpI2Vhxt4GPBYwXkRcGeFLT8azj/S+4JstPux58CNoW+kaGrCcFYFX2om3v2yG+3kkcUJJ8st5JOqa5rDZA3LCxT6Sumj9VnZNo6ZPE5gK5tpsQsJ2gWjh4196Xn/mz8AQ34w08nD2e3G1ljF3eSbeSo76m2QZkAP4fuu2bhJaHT1bUz+EZUS5e8Wzt3lX0UcqFHh9qg7aJV1GhAl4CQSN4kxH/KhIRA7fmvb9AkmpHnh8b2+bAz2v+s7UQeXEs9gIUJ1bZS/b3hcfvOSutOJeE+qjUUHhKO769DEEbL2WzqYMv7gr6bL61ymPEVMJqDRHo7QVZ14bazFdn3i1Bb2K7byHbEdMOoovEetxpL3lJZvWgcyLUafh0FiLxEgCSbl/x5TS2cxajDEg6y8sV7Jh3UkXAHr4FagOwIVYkRWADgENp+vKH7VTBDBEXXHkzRMpJwhxqrj4+04fDmToITYOesVm4Ee8rOYY3AKamp1lEjKqw+avGB2UCM1fgvISi1QntkB/gVs60i8BfOdJ/CwgrhzTp3guz1DA6h8L5tdVDY+5mwRULJI/MavEVyyorcgKtG3Fdp2PaMiv/jQLELcqvVB5KtDWanE9wdsqGjEzCVfnXenf6knjk7OTn5lTWqV0IROTMK7f/w==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8673.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8936002)(83380400001)(86362001)(76116006)(66946007)(8676002)(66556008)(66476007)(64756008)(55016002)(2906002)(122000001)(38100700002)(6506007)(110136005)(9686003)(316002)(508600001)(66446008)(7696005)(53546011)(5660300002)(71200400001)(55236004)(186003)(44832011)(52536014)(26005)(33656002)(38070700005)(4326008);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?UVw+NK0uWqezsU7XQe5TPI+5Kopwumvwp7hayQ/6fKP+xUt+GX6sb3Rp94ec?=
- =?us-ascii?Q?lbF+gGlHwfGCSatsrNVewoeBu9Ro9VoM0dvrJUlyLHJrHpE5M37eZkMCAadT?=
- =?us-ascii?Q?siJuahePE7hfc+WjszSDyJdrqzs2Ku5fqJrAd0eGFox/U5xwjgslpqzq7Yvp?=
- =?us-ascii?Q?RwVWfkHNUEniWfUfAmZRqYlcesxtiKDCtwbqR5ldt/PLqLS3BVOFvesUF0YL?=
- =?us-ascii?Q?9ORqIc+B9eYQPUMPBd84QdfvZe0AE8Gam1a0cuEnQdpq9M1nsFj+1TZTvZAe?=
- =?us-ascii?Q?zORvsC6FGXFAeTHTxug2+/cBslaCZtvL6czQyp5LUJqTK5vxPx5WhGHwYQWd?=
- =?us-ascii?Q?T7DGwmugqASVcs0c9kh5w+y/KubH7VGInSE6r7IDlEewgE8taKZ9V3MKbQyX?=
- =?us-ascii?Q?VzGQs2UPW19vSJgZoaojWSoe4Na3RuheeI09nNilO2vveDcCcJdEE7BNVka4?=
- =?us-ascii?Q?8TN3/xnisHo9v3eaEWuUq2PlOx6igRkEn/AdwrGgLLH2xD62tKXui90pEtnP?=
- =?us-ascii?Q?6kMQ6LfmEsbmcKDoGBh6mOTt5nnVSLU5g9VUJtqvX5liy2VMyUxqdVooM/ea?=
- =?us-ascii?Q?j3J0WswiMkjLFtly+rpGbyUL602zvrTxTX1EI5oJPbZrmbJ+WAdqiJGpRlH6?=
- =?us-ascii?Q?di/TlIQIOw224NNC9Sc2duRhNnNjzhzh4kLn9+Hy8wa3vT8KK15JNayCqbrN?=
- =?us-ascii?Q?m/Nz08CanJBxkT7Cj2sc3GEiuCk9xVNT3BABKN/MEIdwTko6gLmuw5R8EFFl?=
- =?us-ascii?Q?D0cciPtcOxM6MgPcZUglaetlYzuDKb+dAC05bvkazb/pNP56HnObPJWsRv/J?=
- =?us-ascii?Q?/aekdbWJ49GyDyaRYYc3IfZ4XaDPYTTYoLZd7ITR7m4rnEWDHCnvvqO9DQo4?=
- =?us-ascii?Q?7tJYmbwCIQVWTITPd/km3hjFJGHHxWQAJy+4CiByiIK73SCPXGHVnVliTMHW?=
- =?us-ascii?Q?LDjw06WcwJAp5CvPuYmOrQ2W2LvX8s1ZBbJDfkhQMX6Njri4SEXG+2X9gyP7?=
- =?us-ascii?Q?arPqLeihReyJcRy2GdBWC3MnFyjrSX3muWrpxQV1O7y878yhFRaW9hw9uYlv?=
- =?us-ascii?Q?uzqM5JwVjvM0md4bbIsh/wIlkwNvQuVyFB0ZHjMDkcbFWIj7W+K2DnX/1Vli?=
- =?us-ascii?Q?7qQEX9tvHwZq7mmeklvfyuq59H6znYfgVM3IWKDiuv9LBluiyDcvqJbfB2zp?=
- =?us-ascii?Q?YckrJyaUac+CnmBZTEs1PNuuA3NuBVM1KLsZcxpkkKPtW6hCQzjRijF6uYbO?=
- =?us-ascii?Q?iSYdpMyzH7Ox6IONp1zYz1IxvLvZI2uwm/mRNuk64uG70avw7K+Ud0H3ZT0A?=
- =?us-ascii?Q?XXE=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?6Ef1mpy66/6FxZGKsXialk4Pxz7uDUHDNAKlzK/Ki8CwgDHUdJqSo8WWQL+t?=
+ =?us-ascii?Q?bCpJsrYyRc8gzPQEEXaLhehZHIh5Kz9TpBKqupU4ao8i3ul7Z+F/8WVOiE/8?=
+ =?us-ascii?Q?6fF8P/Gm83fpakHxVyf1cSXHjJZSpsm5zcRlSzgIopMFo6rxP6AbtWgGr1u+?=
+ =?us-ascii?Q?ckEx9SUUYeCasC5DhHsWGhfJ/1vjwOmA4PEphRqoK5iFApp4Yfl3u260WkSO?=
+ =?us-ascii?Q?53X09m541I+vWT+9uw5L3HG6D52CDtzbGPlm6r/rzdGtn3M5/6YImgy7wj3d?=
+ =?us-ascii?Q?a7fiWgextNSfwjsB0HfLRuu0LEmhyoYL0EpD4cSXVDFCIsuBtE6KJO3YpvNx?=
+ =?us-ascii?Q?FqLa2ghTYsa6emXIwgmVeL4ZltfaZhsUdcSkTbCXdftXB5ysr7oiSVWisLpg?=
+ =?us-ascii?Q?1xqN6Xv4aLwbwo8r+ckVA/R0Pb20C1k5OQvKjt6lbHxQKInsLB2rVpjnl3AN?=
+ =?us-ascii?Q?SfNvivebrQJGR0ft+CXKL363DFxiynwmhFIiwV+XdsGNTX4YgIm3UeZ4ItSx?=
+ =?us-ascii?Q?phtAKxN427aaXEOqdRAgsQ81pdJZIDaJEja7u7fwxFcu0TDwGyJuxfWjcrbd?=
+ =?us-ascii?Q?ltWn1TTw5oL/XWURH9uD+JXDpEIOXjq/YgEz3+0Vi1VBlkN+EVwg0ar62ShF?=
+ =?us-ascii?Q?I8vNQw2WAu7HFW9Y7fSN/q7LYfuP3/cM8fZhd0K0vlY8WWrGcw+H3fUCwZvm?=
+ =?us-ascii?Q?zr8j991bUo4UV8MaQbmynCLqeCpLgx+Nx6rTL/q7Jm8KtYMoHYNnxzyu72Qs?=
+ =?us-ascii?Q?bvMv+2JbQ3NujKcI7AaX2i75z4o1NkHOd2/0AyfOZkS0YZrRS5bLTfjGKS/m?=
+ =?us-ascii?Q?rfKpJfz1XOWnet8WyJ0Nbc0/enAAxXELOgVTZqptl7lWP7zqkVjg8ypNrzu4?=
+ =?us-ascii?Q?DZwYJmLc213LVstFnIYClVz4o229374Wh0DDmeaNW+J33UyBJP9+jcFLFDhy?=
+ =?us-ascii?Q?4MdrZyTXHSza31Q8Yufb7qLBZCj2pOW77L9BAQNxD3pf8XsVeHhRkGn228RU?=
+ =?us-ascii?Q?0j3NE67LeFW+jTpAb4Mcb13Rl90hXHADN1MIbu1HbZb06DFC+M9x5HL2GlkJ?=
+ =?us-ascii?Q?Am0wp14YshXFgH8WRmqG5ZuYmvSZEjCKaePcE7LOXBadRDGsGaIiffEQHdN8?=
+ =?us-ascii?Q?WTHEg4c8ii7uUVoMpQFXCHTPpeYNJfMCs7w7H9IUlc8N5tS21kPUPz4Tsp4h?=
+ =?us-ascii?Q?rDns0+Nxa3H+M5iUbXhPF/HMFvnrPFCTiJZbs7E/pzYjQ1Feihi9J9lUolX8?=
+ =?us-ascii?Q?QfMxcGdsto3DXf/3LillIagTHDSOTtkauwotj3aiF0E9flj3BEOfVsgZgxlP?=
+ =?us-ascii?Q?X8AuKqerhj2yBnknVVfJ4FyE?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8673.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f44c516-c0b7-4800-cd68-08d9849a6645
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2021 05:14:52.3633
+X-MS-Exchange-CrossTenant-Network-Message-Id: 076a7b95-f807-49ba-fb68-08d9849bb925
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2021 05:24:20.9383
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3mx+NeL10EXEkpjIHi1USAEQqhA1GgMtVjcoPmLKPbhSWXJ9P5Z+QbFHz8R/4Rhek94279ov9wjjxpve7wvrSg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8820
+X-MS-Exchange-CrossTenant-userprincipalname: gT4D8XGNZSmjtuSjh4eXhQWN8xmvzoKKsRzxjBU3wnPHkYBF/XAQhkUnq5yArz0WMXFSRh36eYcQY/j0vFVxFg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8833
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
+
+Hi Leo,
 
 > -----Original Message-----
 > From: Li Yang <leoyang.li@nxp.com>
@@ -121,41 +123,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 > <linux@rempel-privat.de>; linux-arm-kernel@lists.infradead.org; linux-
 > kernel@vger.kernel.org
 > Cc: Leo Li <leoyang.li@nxp.com>
-> Subject: [EXT] [PATCH v2 16/16] ARM: dts: ls1021a-tsn: use generic
-> "jedec,spi-nor" compatible for flash
+> Subject: [EXT] [PATCH v2 04/16] ARM: dts: ls1021a-qds: Add node for QSPI
+> flash
 >=20
 > Caution: EXT Email
 >=20
-> We cannot list all the possible chips used in different board revisions, =
-just
-> use the generic "jedec,spi-nor" compatible instead.  This also fixes
-> dtbs_check error:
-> ['s25fl256s1', 's25fl512s', 'jedec,spi-nor'] is too long
+> Add the missing node for qspi flash.
 >=20
 > Signed-off-by: Li Yang <leoyang.li@nxp.com>
+> ---
+>  arch/arm/boot/dts/ls1021a-qds.dts | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/ls1021a-qds.dts
+> b/arch/arm/boot/dts/ls1021a-qds.dts
+> index e2aa569ff404..522e1dc51059 100644
+> --- a/arch/arm/boot/dts/ls1021a-qds.dts
+> +++ b/arch/arm/boot/dts/ls1021a-qds.dts
+> @@ -286,6 +286,21 @@ tbi0: tbi-phy@8 {
+>         };
+>  };
+>=20
+> +&qspi {
+> +       num-cs =3D <2>;
 
+Please drop "num-cs" property as it is not used by qspi driver.
+
+> +       status =3D "okay";
+> +
+> +       qflash0: flash@0 {
+
+Can we have flash chip name instead of qflash?
+There is no hard requirement, it will help in aligning node properties with=
+ other board properties such as LX2160A-RDB, LS1046A-RDB etc.
+
+With above fixed,
 Reviewed-by: Kuldeep Singh <kuldeep.singh@nxp.com>
 
-> ---
->  arch/arm/boot/dts/ls1021a-tsn.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm/boot/dts/ls1021a-tsn.dts b/arch/arm/boot/dts/ls1021=
-a-
-> tsn.dts
-> index 8005efc5c812..ff0ffb22768b 100644
-> --- a/arch/arm/boot/dts/ls1021a-tsn.dts
-> +++ b/arch/arm/boot/dts/ls1021a-tsn.dts
-> @@ -251,7 +251,7 @@ &qspi {
->=20
->         flash@0 {
->                 /* Rev. A uses 64MB flash, Rev. B & C use 32MB flash */
-> -               compatible =3D "jedec,spi-nor", "s25fl256s1", "s25fl512s"=
-;
 > +               compatible =3D "jedec,spi-nor";
->                 spi-max-frequency =3D <20000000>;
->                 #address-cells =3D <1>;
->                 #size-cells =3D <1>;
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <1>;
+> +               spi-max-frequency =3D <20000000>;
+> +               reg =3D <0>;
+> +               spi-rx-bus-width =3D <4>;
+> +               spi-tx-bus-width =3D <4>;
+> +       };
+> +};
+> +
+>  &sai2 {
+>         status =3D "okay";
+>  };
 > --
 > 2.25.1
 
