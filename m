@@ -2,109 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE3B341F7FF
-	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 01:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4659441F80A
+	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 01:07:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231425AbhJAXEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 19:04:41 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:44613 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231347AbhJAXEk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 19:04:40 -0400
-Received: by mail-ot1-f52.google.com with SMTP id h9-20020a9d2f09000000b005453f95356cso13358556otb.11;
-        Fri, 01 Oct 2021 16:02:55 -0700 (PDT)
+        id S231883AbhJAXJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 19:09:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32848 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230337AbhJAXJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 19:09:11 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D7E0C061775
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 16:07:27 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id k24so10734820pgh.8
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 16:07:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iHNcsy5lgGMAtmXigaTNGFMTD+XFwfnKegSyPWe2JUU=;
+        b=rhoJ3wk7+11gNovkUHPIBrJhKgiV0sANstNzOkbe5dM7txUiUXR0KbAiCTmVb7zlp4
+         gmITKza2HyctFO9PMIBEz96CXj5keYd5NAZbiKUZCsxQGNGa1gL/bEIIs9YJI88uYYOT
+         DZWOdGwAAwNvWrKVEdn/GCi/DrENY9tEPSu+Upv8f6reixHjUJNvb+U0XLR2caebq+vo
+         9GwcxkpCTDJF/Ugo23RxPRbPAAG9Yyxi9fBAbR/lHWBydC9R0AUQ4BjaQ6a6j91t7TT0
+         Yv7rcCJ8cCNLBnVimLwZo7O/tN2kRlRykch7+rp29ronzFqv5SrMRXjn+Hb+Caq6pTBg
+         GbAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=HPFMWdir494w9bNz8iSKAzV+hQY9c8iMUt7pI1HvHoo=;
-        b=6iht+VdEMHIfBZOF21C899npkRfHgYd+HeRvau4ySnyNszWt70kMT3Z68rTxJUWdo0
-         QxBitmVDQIE4FQpP6WNkA2efFzf1OQudIWh9r+/ILnsG3lOo0fDkR3BO/A5xEI2fUeRU
-         itGKtnjbAScIJVmb9LwPpZq3wgNIoMrd5wH1oSmEdE95es8Hfrn54B0t9NwDtqGzJ811
-         wZa3IQkAHGZ0QxJwwE03cAYNxuzqUGx6nI3bA70MY48/SjxPKEJPHIz0ZNAcgZomKWPe
-         Hy2qwyjIEnZfB8DrIZ3Iddw9XU+LshGkJYI16dOLH2yg0tSruSFNJ1gzI2Hu8DxkNlOq
-         yEbg==
-X-Gm-Message-State: AOAM5313F+d94PvzCFc56XXcdWtnN2l2xhhorUhnqKaCyG41ecsWCLsE
-        5jUz9nqoQ+axB1DypTTtyJ9Jfi4MJA==
-X-Google-Smtp-Source: ABdhPJxpa+7Ej4eouceWGgFrwO/nYeU7pNn5WsBgQFboYmeiIB/Hmza7bZiATYT4yudG/5NIb6c62Q==
-X-Received: by 2002:a05:6830:4095:: with SMTP id x21mr374135ott.352.1633129375505;
-        Fri, 01 Oct 2021 16:02:55 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m26sm1425258otr.27.2021.10.01.16.02.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Oct 2021 16:02:54 -0700 (PDT)
-Received: (nullmailer pid 255461 invoked by uid 1000);
-        Fri, 01 Oct 2021 23:02:54 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Joey Gouly <joey.gouly@arm.com>
-Cc:     Hector Martin <marcan@marcan.st>, nd@arm.com,
-        Marc Zyngier <maz@kernel.org>, Sven Peter <sven@svenpeter.dev>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, Mark Kettenis <kettenis@openbsd.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-In-Reply-To: <20211001191209.29988-3-joey.gouly@arm.com>
-References: <20211001191209.29988-1-joey.gouly@arm.com> <20211001191209.29988-3-joey.gouly@arm.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: Add apple,npins property to apple,pinctrl
-Date:   Fri, 01 Oct 2021 18:02:54 -0500
-Message-Id: <1633129374.007240.255460.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iHNcsy5lgGMAtmXigaTNGFMTD+XFwfnKegSyPWe2JUU=;
+        b=jWaxIeDADqgWGXfwmP1ZtEDzUunk323qCDNCUCi+rXpwbRboSzU1ZsVEbPoALY0o4M
+         9HiM3VSEqjF4dBeoVLtXhOm7/W9YSWqbjOLmMufi7bL7qCQ/EgiSyTuo3lP7nx7OXzv4
+         5L8ffJbbimm2gImgZ3fLCyWamHRqQa8c0S2ou6V/Wll+maVWHf/NGDFbYfs8lZlYNMbO
+         vOpO8HrXpv5WwZoQNyXrWC2EGpO2nEFPTf+z/voWXiPidzItKx8KvyXjG83sDEpogKxS
+         x4q+g6BXnwPwic5SAhuznUmwp9IDSiVhIKDcfm6WdTDaPMPuEHcE+sA4j6SVKCvsVohw
+         Jw1w==
+X-Gm-Message-State: AOAM530vg/Y6xCwD0RJEwLJ/X1A0WboC44WMeMCu+WwI2xo4+yBhdKAR
+        pY6OBGWwed4A1M6Pg70KGSg50GlmGNn85QyIyCvXcw==
+X-Google-Smtp-Source: ABdhPJwpD3F0S3/BnvybtLezd8CIv/dck8h1NedZ0hCaEaUxiF8tLV75zgBOVlz74Axuon7fLSTR3J0v9fJ6uwopqss=
+X-Received: by 2002:a63:6f42:: with SMTP id k63mr529835pgc.358.1633129646468;
+ Fri, 01 Oct 2021 16:07:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210910202640.980366-1-l.stach@pengutronix.de> <20210910202640.980366-15-l.stach@pengutronix.de>
+In-Reply-To: <20210910202640.980366-15-l.stach@pengutronix.de>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 1 Oct 2021 16:07:14 -0700
+Message-ID: <CAJ+vNU2F6RLK3mT5mws0X+EOgsF_+N0JC20ZNWEQtdj_cY9KHg@mail.gmail.com>
+Subject: Re: [PATCH v4 14/18] arm64: dts: imx8mm: add GPC node
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Adam Ford <aford173@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Oct 2021 20:12:08 +0100, Joey Gouly wrote:
-> This property is used to describe the total number of pins on this
-> particular pinctrl hardware block.
-> 
-> Signed-off-by: Joey Gouly <joey.gouly@arm.com>
+On Fri, Sep 10, 2021 at 1:26 PM Lucas Stach <l.stach@pengutronix.de> wrote:
+>
+> Add the DT node for the GPC, including all the PGC power domains,
+> some of them are not fully functional yet, as they require interaction
+> with the blk-ctrls to properly power up/down the peripherals.
+>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 > ---
->  Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 107 ++++++++++++++++++++++
+>  1 file changed, 107 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index e7648c3b8390..3922f26f8fd4 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -7,6 +7,8 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/power/imx8mm-power.h>
+> +#include <dt-bindings/reset/imx8mq-reset.h>
+>  #include <dt-bindings/thermal/thermal.h>
+>
+>  #include "imx8mm-pinfunc.h"
+> @@ -609,6 +611,111 @@ src: reset-controller@30390000 {
+>                                 interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+>                                 #reset-cells = <1>;
+>                         };
+> +
+> +                       gpc: gpc@303a0000 {
+> +                               compatible = "fsl,imx8mm-gpc";
+> +                               reg = <0x303a0000 0x10000>;
+> +                               interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+> +                               interrupt-parent = <&gic>;
+> +                               interrupt-controller;
+> +                               #interrupt-cells = <3>;
+> +
+> +                               pgc {
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +
+> +                                       pgc_hsiomix: power-domain@0 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_HSIOMIX>;
+> +                                               clocks = <&clk IMX8MM_CLK_USB_BUS>;
+> +                                               assigned-clocks = <&clk IMX8MM_CLK_USB_BUS>;
+> +                                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_500M>;
+> +                                       };
+> +
+> +                                       pgc_pcie: power-domain@1 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_PCIE>;
+> +                                               power-domains = <&pgc_hsiomix>;
+> +                                               clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>;
+> +                                       };
+> +
+> +                                       pgc_otg1: power-domain@2 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_OTG1>;
+> +                                               power-domains = <&pgc_hsiomix>;
+> +                                       };
+> +
+> +                                       pgc_otg2: power-domain@3 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_OTG2>;
+> +                                               power-domains = <&pgc_hsiomix>;
+> +                                       };
+> +
+> +                                       pgc_gpumix: power-domain@4 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_GPUMIX>;
+> +                                               clocks = <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> +                                                        <&clk IMX8MM_CLK_GPU_AHB>;
+> +                                               assigned-clocks = <&clk IMX8MM_CLK_GPU_AXI>,
+> +                                                                 <&clk IMX8MM_CLK_GPU_AHB>;
+> +                                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_800M>,
+> +                                                                        <&clk IMX8MM_SYS_PLL1_800M>;
+> +                                               assigned-clock-rates = <800000000>, <400000000>;
+> +                                       };
+> +
+> +                                       pgc_gpu: power-domain@5 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_GPU>;
+> +                                               clocks = <&clk IMX8MM_CLK_GPU_AHB>,
+> +                                                        <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> +                                                        <&clk IMX8MM_CLK_GPU2D_ROOT>,
+> +                                                        <&clk IMX8MM_CLK_GPU3D_ROOT>;
+> +                                               resets = <&src IMX8MQ_RESET_GPU_RESET>;
+> +                                               power-domains = <&pgc_gpumix>;
+> +                                       };
+> +
+> +                                       pgc_vpumix: power-domain@6 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_VPUMIX>;
+> +                                               clocks = <&clk IMX8MM_CLK_VPU_DEC_ROOT>;
+> +                                               assigned-clocks = <&clk IMX8MM_CLK_VPU_BUS>;
+> +                                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_800M>;
+> +                                               resets = <&src IMX8MQ_RESET_VPU_RESET>;
+> +                                       };
+> +
+> +                                       pgc_vpu_g1: power-domain@7 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_VPUG1>;
+> +                                       };
+> +
+> +                                       pgc_vpu_g2: power-domain@8 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_VPUG2>;
+> +                                       };
+> +
+> +                                       pgc_vpu_h1: power-domain@9 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_VPUH1>;
+> +                                       };
+> +
+> +                                       pgc_dispmix: power-domain@10 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_DISPMIX>;
+> +                                               clocks = <&clk IMX8MM_CLK_DISP_APB_ROOT>,
+> +                                                        <&clk IMX8MM_CLK_DISP_AXI_ROOT>;
+> +                                               assigned-clocks = <&clk IMX8MM_CLK_DISP_AXI>,
+> +                                                                 <&clk IMX8MM_CLK_DISP_APB>;
+> +                                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_1000M>,
+> +                                                                        <&clk IMX8MM_SYS_PLL1_800M>;
+> +                                               assigned-clock-rates = <500000000>, <200000000>;
+> +                                       };
+> +
+> +                                       pgc_mipi: power-domain@11 {
+> +                                               #power-domain-cells = <0>;
+> +                                               reg = <IMX8MM_POWER_DOMAIN_MIPI>;
+> +                                       };
+> +                               };
+> +                       };
+>                 };
+>
+>                 aips2: bus@30400000 {
+> --
+> 2.30.2
+>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Lucas,
 
-yamllint warnings/errors:
+I've been using your 'i.MX8MM GPC improvements and BLK_CTRL driver'
+series for imx8mm-venice* and imx8mn-venice* boards. Thank you for
+this work and I hope to see it merged soon!
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml: properties:apple,npins: 'description' is a required property
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml: properties:apple,npins: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('maxItems' was unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml: properties:apple,npins: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml: properties:apple,npins: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml: ignoring, error in schema: properties: apple,npins
-warning: no schema found in file: ./Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
-Documentation/devicetree/bindings/pinctrl/apple,pinctrl.example.dt.yaml:0:0: /example-0/soc/pinctrl@23c100000: failed to match any schema with compatible: ['apple,t8103-pinctrl', 'apple,pinctrl']
-Documentation/devicetree/bindings/pinctrl/apple,pinctrl.example.dt.yaml:0:0: /example-0/soc/pinctrl@23c100000: failed to match any schema with compatible: ['apple,t8103-pinctrl', 'apple,pinctrl']
+I have found that on the imx8mm-venice-gw7901 board which does not use
+MIPI and thus does not connect VDD_MIPI_1P8, VDD_MIPI_1P2,
+VDD_MIPI_0P9, MIPI_VREG_CAP pins on the IMX8MM hangs with this
+particular patch. If I comment out the pgc_mipi domain and subsequent
+disp_blk_ctrl node from a later patch it resolves the hang. Is this
+behavior expected and what would your recommendation be to work around
+it?
 
-doc reference errors (make refcheckdocs):
+Best regards,
 
-See https://patchwork.ozlabs.org/patch/1535492
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Tim
