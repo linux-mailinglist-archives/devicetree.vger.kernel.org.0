@@ -2,109 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0304C41E7A6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 08:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5412541E7BE
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 08:47:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352254AbhJAGkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 02:40:53 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:60617 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352233AbhJAGkx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 02:40:53 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633070349; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=DH07yRNxfLIbPow4oMCMJkb9io5D23Aj6DAM87OKB7w=;
- b=L/NJ3XbBL01HIPsQP+E6HgzAZAtK8WZZsSbhl07rAAIaB4b3IZROz+25us7aNWfcd2uOTpf5
- zmzp0c3skaeeYjN/fFVnVf2i4MAt7aw0tv9/GJWhbhygu6VgqmDJjzOKLYiqOS5uv1Obi3Xb
- aG2OTvQvClyeiFIcKDrqHCVUML0=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 6156ad0d63b1f186582f8e8c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 01 Oct 2021 06:39:09
- GMT
-Sender: mkrishn=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9D9B1C43618; Fri,  1 Oct 2021 06:39:08 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkrishn)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 356EEC43460;
-        Fri,  1 Oct 2021 06:39:07 +0000 (UTC)
+        id S1352273AbhJAGsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 02:48:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59548 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352269AbhJAGsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 02:48:54 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5462BC06176A;
+        Thu, 30 Sep 2021 23:47:10 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so10362017ota.6;
+        Thu, 30 Sep 2021 23:47:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Croa0ikRg9ed7rFOcCt98+2kFoVofysMYP5kvf8qbog=;
+        b=fA5rnPSNUkYrQXNp3FXg4tEGdE2X9USp4E5HWLMS9HhTrbz7m1xj2vWuBF3H85WG2B
+         5WJON+ymoXJtw2bXKL+yULUfTvp/3V3f1/PNRiFnp9yHKPbRE69BoN68dTCu8XXT7owr
+         RvgHLiJd+59LDmAoF/gMf+4tKrC7HgWvZVecRFGY6YD9GBo7DVXEeXTDhzvwt4m7C3ap
+         01Yc7v8JsSt37Aol28hML1XV8o9tPrhnRHcOGg7r8qwtkSxjXlr4kba9YkwQvdgl36p4
+         1O2WNHWXA4WFAl3Rra6FJAY5Cw6MTA+EowWwnFPTTkW5FCfE8DzXaJ5EgqkwL01vyzlf
+         4xzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Croa0ikRg9ed7rFOcCt98+2kFoVofysMYP5kvf8qbog=;
+        b=SApmYM5xRKFPssn8V+zRanLAqkblmcyv1r2K9lx1BrZ8WsC8DzLxhvZwmNrr6/To09
+         VBJGht1HLLxduIw/8n6mLmwCOhG157FRQS1pZ8M4hkiaMhOQIT7ZzFjf0FnTWvZ20oF9
+         Bu7BlTfEZO9RuoY0iWZ4ClYuI9bI5y8krtQ0lGsUN9jbK7b8wRSXMqjoDkevhITyPoXB
+         JhSVC2tlBTPDeM07uNTce9kzTV72R8AIa2T936dfDuEoUJ8AT+uvkI+ZyPvOnep/biIm
+         0HpJ5bWmd3kxp7/mRZYpqEg7YCxT9LlTAU+TLBDT5eBO62rQDeDHeVn2ImP7qWzkAngd
+         4G/A==
+X-Gm-Message-State: AOAM53312wvU+rwkVYLT2Y0U4WrgmTa7y6zDtQLpfsjXv2g9leqMaYsd
+        W34riNyXOR5et6nzQmeTELJQv/HUK/YidjFyoQs=
+X-Google-Smtp-Source: ABdhPJwyAvuHVKGewNwRCIDt87Kj/ThUttEmpLFrhQaYhgZQQzhGmQs83LQwjcJqZTMUntD3DPp4Ix9FvG/r6NGxUKc=
+X-Received: by 2002:a9d:369:: with SMTP id 96mr2980930otv.150.1633070829661;
+ Thu, 30 Sep 2021 23:47:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 01 Oct 2021 12:09:07 +0530
-From:   mkrishn@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kalyan_t@codeaurora.org,
-        sbillaka@codeaurora.org, abhinavk@codeaurora.org,
-        robdclark@gmail.com, bjorn.andersson@linaro.org,
-        khsieh@codeaurora.org, rajeevny@codeaurora.org,
-        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v1 2/4] arm64: dts: qcom: sc7280: add display dt nodes
-In-Reply-To: <CAE-0n53kQU=8pdcWR0OZap1wDgxxwed0qvfaGruc71YT5Cj1iA@mail.gmail.com>
-References: <1629282424-4070-1-git-send-email-mkrishn@codeaurora.org>
- <1629282424-4070-2-git-send-email-mkrishn@codeaurora.org>
- <CAE-0n50b=pX=1MFwGPDvDR=O03tUAkAgyMonGm2+SXBft=16KQ@mail.gmail.com>
- <5adf2ab2c2a162272509d253bd797721@codeaurora.org>
- <CAE-0n53kQU=8pdcWR0OZap1wDgxxwed0qvfaGruc71YT5Cj1iA@mail.gmail.com>
-Message-ID: <8f344213978f31c04e80b804a931db56@codeaurora.org>
-X-Sender: mkrishn@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <20210930135944.6125-1-yongqiang.niu@mediatek.com> <20210930135944.6125-3-yongqiang.niu@mediatek.com>
+In-Reply-To: <20210930135944.6125-3-yongqiang.niu@mediatek.com>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Fri, 1 Oct 2021 08:46:58 +0200
+Message-ID: <CAFqH_53w6LkdMM4fPEFt_nwgRs9MRFkbi9yMjK9B7TqV4e8wng@mail.gmail.com>
+Subject: Re: [PATCH v9, 2/2] soc: mediatek: mmsys: Add mt8192 mmsys routing table
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-09-30 23:28, Stephen Boyd wrote:
-> Quoting mkrishn@codeaurora.org (2021-09-30 04:56:59)
->> On 2021-08-19 01:27, Stephen Boyd wrote:
->> > Quoting Krishna Manikandan (2021-08-18 03:27:02)
->> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >> index 53a21d0..fd7ff1c 100644
->> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >> +
->> >> +                       status = "disabled";
->> >> +
->> >> +                       mdp: mdp@ae01000 {
->> >
->> > display-controller@ae01000
->> 
->> Stephen,
->>     In the current driver code, there is a substring comparison for 
->> "mdp"
->> in device node name as part of probe sequence. If "mdp" is not present
->> in the node name, it will
->>     return an error resulting in probe failure. Can we continue using 
->> mdp
->> as nodename instead of display controller?
->> 
-> 
-> Can we fix the driver to not look for node names and look for 
-> compatible
-> strings instead? It took me a minute to find compare_name_mdp() in
-> drivers/gpu/drm/msm/msm_drv.c to understand what you're talking about.
-> Perhaps looking for qcom,mdp5 in there will be sufficient instead of
-> looking at the node name.
+Hi Yongqiang,
 
-Sure Stephen. I will make the necessary changes in msm_drv.c to look for 
-compatible string instead of node name.
-Can I include these two changes (changing mdp--> display controller and 
-msm_drv.c changes) in a separate series ?
+This patch already have my reviewed tag but I just noticed a small nit
+
+
+Missatge de Yongqiang Niu <yongqiang.niu@mediatek.com> del dia dj., 30
+de set. 2021 a les 16:00:
+>
+> mt8192 has different routing registers than mt8183
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> ---
+>  drivers/soc/mediatek/mt8192-mmsys.h | 77 +++++++++++++++++++++++++++++
+>  drivers/soc/mediatek/mtk-mmsys.c    | 11 +++++
+>  2 files changed, 88 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mt8192-mmsys.h
+>
+> diff --git a/drivers/soc/mediatek/mt8192-mmsys.h b/drivers/soc/mediatek/mt8192-mmsys.h
+> new file mode 100644
+> index 000000000000..7ea1531ee8af
+> --- /dev/null
+> +++ b/drivers/soc/mediatek/mt8192-mmsys.h
+> @@ -0,0 +1,77 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +
+> +#ifndef __SOC_MEDIATEK_MT8192_MMSYS_H
+> +#define __SOC_MEDIATEK_MT8192_MMSYS_H
+> +
+> +#define MT8192_MMSYS_OVL_MOUT_EN               0xf04
+> +#define MT8192_DISP_OVL1_2L_MOUT_EN            0xf08
+> +#define MT8192_DISP_OVL0_2L_MOUT_EN            0xf18
+> +#define MT8192_DISP_OVL0_MOUT_EN               0xf1c
+> +#define MT8192_DISP_RDMA0_SEL_IN               0xf2c
+> +#define MT8192_DISP_RDMA0_SOUT_SEL             0xf30
+> +#define MT8192_DISP_CCORR0_SOUT_SEL            0xf34
+> +#define MT8192_DISP_AAL0_SEL_IN                        0xf38
+> +#define MT8192_DISP_DITHER0_MOUT_EN            0xf3c
+> +#define MT8192_DISP_DSI0_SEL_IN                        0xf40
+> +#define MT8192_DISP_OVL2_2L_MOUT_EN            0xf4c
+> +
+> +#define MT8192_DISP_OVL0_GO_BLEND                      BIT(0)
+> +#define MT8192_DITHER0_MOUT_IN_DSI0                    BIT(0)
+> +#define MT8192_OVL0_MOUT_EN_DISP_RDMA0                 BIT(0)
+> +#define MT8192_OVL2_2L_MOUT_EN_RDMA4                   BIT(0)
+> +#define MT8192_DISP_OVL0_GO_BG                         BIT(1)
+> +#define MT8192_DISP_OVL0_2L_GO_BLEND                   BIT(2)
+> +#define MT8192_DISP_OVL0_2L_GO_BG                      BIT(3)
+> +#define MT8192_OVL1_2L_MOUT_EN_RDMA1                   BIT(4)
+> +#define MT8192_OVL0_MOUT_EN_OVL0_2L                    BIT(4)
+> +#define MT8192_RDMA0_SEL_IN_OVL0_2L                    0x3
+> +#define MT8192_RDMA0_SOUT_COLOR0                       0x1
+> +#define MT8192_CCORR0_SOUT_AAL0                                0x1
+> +#define MT8192_AAL0_SEL_IN_CCORR0                      0x1
+> +#define MT8192_DSI0_SEL_IN_DITHER0                     0x1
+> +
+> +static const struct mtk_mmsys_routes mmsys_mt8192_routing_table[] = {
+> +       {
+> +               DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
+> +               MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDMA0,
+> +               MT8192_OVL0_MOUT_EN_DISP_RDMA0
+> +       }, {
+> +               DDP_COMPONENT_OVL_2L2, DDP_COMPONENT_RDMA4,
+> +               MT8192_DISP_OVL2_2L_MOUT_EN, MT8192_OVL2_2L_MOUT_EN_RDMA4,
+> +               MT8192_OVL2_2L_MOUT_EN_RDMA4
+> +       }, {
+> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
+> +               MT8192_DISP_DITHER0_MOUT_EN, MT8192_DITHER0_MOUT_IN_DSI0,
+> +               MT8192_DITHER0_MOUT_IN_DSI0
+> +       }, {
+> +               DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
+> +               MT8192_DISP_RDMA0_SEL_IN, MT8192_RDMA0_SEL_IN_OVL0_2L,
+> +               MT8192_RDMA0_SEL_IN_OVL0_2L
+> +       }, {
+> +               DDP_COMPONENT_CCORR, DDP_COMPONENT_AAL0,
+> +               MT8192_DISP_AAL0_SEL_IN, MT8192_AAL0_SEL_IN_CCORR0,
+> +               MT8192_AAL0_SEL_IN_CCORR0
+> +       }, {
+> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
+> +               MT8192_DISP_DSI0_SEL_IN, MT8192_DSI0_SEL_IN_DITHER0,
+> +               MT8192_DSI0_SEL_IN_DITHER0
+> +       }, {
+> +               DDP_COMPONENT_RDMA0, DDP_COMPONENT_COLOR0,
+> +               MT8192_DISP_RDMA0_SOUT_SEL, MT8192_RDMA0_SOUT_COLOR0,
+> +               MT8192_RDMA0_SOUT_COLOR0
+> +       }, {
+> +               DDP_COMPONENT_CCORR, DDP_COMPONENT_AAL0,
+> +               MT8192_DISP_CCORR0_SOUT_SEL, MT8192_CCORR0_SOUT_AAL0,
+> +               MT8192_CCORR0_SOUT_AAL0
+> +       }, {
+> +               DDP_COMPONENT_OVL0, DDP_COMPONENT_OVL_2L0,
+> +               MT8192_MMSYS_OVL_MOUT_EN, MT8192_DISP_OVL0_GO_BG,
+> +               MT8192_DISP_OVL0_GO_BG,
+> +       }, {
+> +               DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
+> +               MT8192_MMSYS_OVL_MOUT_EN, MT8192_DISP_OVL0_2L_GO_BLEND,
+> +               MT8192_DISP_OVL0_2L_GO_BLEND,
+> +       }
+> +};
+> +
+> +#endif /* __SOC_MEDIATEK_MT8192_MMSYS_H */
+> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
+> index a78e88f27b62..6e97d1468183 100644
+> --- a/drivers/soc/mediatek/mtk-mmsys.c
+> +++ b/drivers/soc/mediatek/mtk-mmsys.c
+> @@ -14,6 +14,7 @@
+>  #include "mt8167-mmsys.h"
+>  #include "mt8183-mmsys.h"
+>  #include "mt8365-mmsys.h"
+> +#include "mt8192-mmsys.h"
+>
+>  static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
+>         .clk_driver = "clk-mt2701-mm",
+> @@ -59,6 +60,12 @@ static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data = {
+>         .num_routes = ARRAY_SIZE(mt8365_mmsys_routing_table),
+>  };
+>
+> +static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
+> +       .clk_driver = "clk-mt8192-mm",
+> +       .routes = mmsys_mt8192_routing_table,
+> +       .num_routes = ARRAY_SIZE(mmsys_mt8192_routing_table),
+> +};
+> +
+
+For better readability it would be nice if you put this structure by
+SoC order. That's before mt8365 struct and after mt8183 struct.
+
+>  struct mtk_mmsys {
+>         void __iomem *regs;
+>         const struct mtk_mmsys_driver_data *data;
+> @@ -171,6 +178,10 @@ static const struct of_device_id of_match_mtk_mmsys[] = {
+>                 .compatible = "mediatek,mt8365-mmsys",
+>                 .data = &mt8365_mmsys_driver_data,
+>         },
+> +       {
+> +               .compatible = "mediatek,mt8192-mmsys",
+> +               .data = &mt8192_mmsys_driver_data,
+> +       },
+
+The same here,  for better readability would be nice if you put this
+fields by SoC order. That's before mt8365 fields and after mt8183
+fields.
 
 Thanks,
-Krishna
+  Enric
+
+>         { }
+>  };
+>
+> --
+> 2.25.1
+>
