@@ -2,36 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEF2E41E54C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 02:04:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D6F41E55E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 02:09:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351188AbhJAAGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Sep 2021 20:06:19 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:51662 "EHLO inva021.nxp.com"
+        id S238207AbhJAALO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Sep 2021 20:11:14 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:41398 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351070AbhJAAGL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Sep 2021 20:06:11 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 42502200C04;
-        Fri,  1 Oct 2021 02:04:27 +0200 (CEST)
+        id S230172AbhJAALO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Sep 2021 20:11:14 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D360F1A0D8B;
+        Fri,  1 Oct 2021 02:09:29 +0200 (CEST)
 Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 09B5B200A95;
-        Fri,  1 Oct 2021 02:04:27 +0200 (CEST)
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 982411A0D7C;
+        Fri,  1 Oct 2021 02:09:29 +0200 (CEST)
 Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.142])
-        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 7503440BCF;
-        Thu, 30 Sep 2021 17:04:26 -0700 (MST)
+        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id C47CB40A55;
+        Thu, 30 Sep 2021 17:09:28 -0700 (MST)
 From:   Li Yang <leoyang.li@nxp.com>
 To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
 Cc:     Li Yang <leoyang.li@nxp.com>
-Subject: [PATCH v2 16/16] ARM: dts: ls1021a-tsn: use generic "jedec,spi-nor" compatible for flash
-Date:   Thu, 30 Sep 2021 19:04:17 -0500
-Message-Id: <20211001000417.15334-17-leoyang.li@nxp.com>
+Subject: [PATCH 0/5] convert ifc binding to yaml and drop "simple-bus"
+Date:   Thu, 30 Sep 2021 19:09:19 -0500
+Message-Id: <20211001000924.15421-1-leoyang.li@nxp.com>
 X-Mailer: git-send-email 2.25.1.377.g2d2118b
-In-Reply-To: <20211001000417.15334-1-leoyang.li@nxp.com>
-References: <20211001000417.15334-1-leoyang.li@nxp.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: ClamAV using ClamSMTP
@@ -39,29 +38,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We cannot list all the possible chips used in different board revisions,
-just use the generic "jedec,spi-nor" compatible instead.  This also
-fixes dtbs_check error:
-['s25fl256s1', 's25fl512s', 'jedec,spi-nor'] is too long
+Convert the ifc binding to yaml schema, in the mean while remove the
+"simple-bus" compatible from the binding to make sure ifc device probes
+before any of the child devices.  Update the driver and existing DTSes
+accordingly.
 
-Signed-off-by: Li Yang <leoyang.li@nxp.com>
----
- arch/arm/boot/dts/ls1021a-tsn.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+DTS changes should be merged together with the driver/binding changes
+if DTS maintainer is ok with it or after the driver changes are applied.
 
-diff --git a/arch/arm/boot/dts/ls1021a-tsn.dts b/arch/arm/boot/dts/ls1021a-tsn.dts
-index 8005efc5c812..ff0ffb22768b 100644
---- a/arch/arm/boot/dts/ls1021a-tsn.dts
-+++ b/arch/arm/boot/dts/ls1021a-tsn.dts
-@@ -251,7 +251,7 @@ &qspi {
- 
- 	flash@0 {
- 		/* Rev. A uses 64MB flash, Rev. B & C use 32MB flash */
--		compatible = "jedec,spi-nor", "s25fl256s1", "s25fl512s";
-+		compatible = "jedec,spi-nor";
- 		spi-max-frequency = <20000000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
+Li Yang (5):
+  dt-bindings: memory: fsl: convert ifc binding to yaml schema
+  memory: fsl_ifc: populate child devices without relying on simple-bus
+  ARM: dts: ls1021a: remove "simple-bus" compatible from ifc node
+  arm64: dts: remove "simple-bus" compatible from ifc node
+  powerpc/mpc85xx: remove "simple-bus" compatible from ifc node
+
+ .../bindings/memory-controllers/fsl/ifc.txt   |  82 -----------
+ .../bindings/memory-controllers/fsl/ifc.yaml  | 137 ++++++++++++++++++
+ arch/arm/boot/dts/ls1021a.dtsi                |   2 +-
+ .../arm64/boot/dts/freescale/fsl-ls1043a.dtsi |   2 +-
+ .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi |   2 +-
+ .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |   2 +-
+ .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi |   2 +-
+ arch/powerpc/boot/dts/fsl/b4si-post.dtsi      |   2 +-
+ arch/powerpc/boot/dts/fsl/bsc9131si-post.dtsi |   2 +-
+ arch/powerpc/boot/dts/fsl/bsc9132si-post.dtsi |   2 +-
+ arch/powerpc/boot/dts/fsl/c293si-post.dtsi    |   2 +-
+ arch/powerpc/boot/dts/fsl/p1010si-post.dtsi   |   2 +-
+ arch/powerpc/boot/dts/fsl/t1023si-post.dtsi   |   2 +-
+ arch/powerpc/boot/dts/fsl/t1040si-post.dtsi   |   2 +-
+ arch/powerpc/boot/dts/fsl/t2081si-post.dtsi   |   2 +-
+ arch/powerpc/boot/dts/fsl/t4240si-post.dtsi   |   2 +-
+ drivers/memory/fsl_ifc.c                      |   9 ++
+ 17 files changed, 160 insertions(+), 96 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/ifc.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/ifc.yaml
+
 -- 
 2.25.1
 
