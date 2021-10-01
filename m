@@ -2,75 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69DAB41F037
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 17:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 016E941F012
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 16:55:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354736AbhJAPDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 11:03:33 -0400
-Received: from mail-m17638.qiye.163.com ([59.111.176.38]:45408 "EHLO
-        mail-m17638.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354688AbhJAPDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 11:03:33 -0400
-X-Greylist: delayed 434 seconds by postgrey-1.27 at vger.kernel.org; Fri, 01 Oct 2021 11:03:32 EDT
-Received: from localhost.localdomain (unknown [112.48.80.210])
-        by mail-m17638.qiye.163.com (Hmail) with ESMTPA id 40F191C0091;
-        Fri,  1 Oct 2021 22:54:32 +0800 (CST)
-From:   Chukun Pan <amadeus@jmu.edu.cn>
-To:     Andy Gross <agross@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH] arm64: dts: ipq8074: Add QUP5 I2C node
-Date:   Fri,  1 Oct 2021 22:54:21 +0800
-Message-Id: <20211001145421.18302-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.17.1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWRlKSklWHx1MTB5KHRgZTU
-        kdVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWVVLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6KzI6Mio*SD4OKzgKKE5PNhg5
-        P0swCxJVSlVKTUhISktLS0xJTE1NVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-        SVVPQ1VDS1VJSktZV1kIAVlBSUtPTjcG
-X-HM-Tid: 0a7c3c598636d993kuws40f191c0091
+        id S1354674AbhJAO5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 10:57:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354139AbhJAO5d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 10:57:33 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E6C6C061775
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 07:55:49 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id m3so39361091lfu.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 07:55:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=HF8DBMItzWWxaU367RAPSYKUXH5BnlS9jAZczRe4ePU=;
+        b=aqXBI8UqLDWeTuVHGIBErjDsxio9yrdPfisehV9T9mJJk+ppF2b/RSy8QKzqoblHaJ
+         hktrYJaeXtvLqskrzNnGhVJzexc6aEdc98fBbQvK69Gb12EAMd3ESJqlkrS5oD7OvNgG
+         P97muReS34kLGu9NjHY+j5dwj2WyCWNHYTaed7xbvTrI2JzTGDs8qi8N0Qw7LkdjcWZX
+         LXXkcViUSEK9vm+haTULi+cNSHJvU7ahpKWlcRMN7cX+R5RpA0/f3OUd7Bkg7+NCE+Fi
+         1p1K49QgqzjgYEL1VL7M/h/E3btzs6Z5y5Av95Pp0dtJLF67v2p4aNsixGXoHBfrryKU
+         UTgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=HF8DBMItzWWxaU367RAPSYKUXH5BnlS9jAZczRe4ePU=;
+        b=thy8Jw6bbVpmlRw5Es8VOlDCDH77j6TNbcIc5qkkgQKdI5mYdExqULkxcRGyWe1pyQ
+         mAS3B1cOX7ihpSZTz4XobY3nL9RlX8NzKL8ESi7dnMoSWsbAAP37g9YwSY8Dwu3SYoRH
+         ge0NjDxehndoRWIpLOyrkftw4hwEw2Tv6EwlwD6Xl+rXBzcl5vogmG+420OIaYSErcS4
+         fb3jg3ddD0aAzHzV0Jh0nrdH1YKjvpYjGhykOS7QLtvje/dLxxZR7uuXB54vjc1ibZ8e
+         Ucc6aAqMiYT9LFAItjJa0zOvH7RIVejoAoJIFzmamT7YElwF+01WbPL9gfE9ExzSZoAP
+         YQGA==
+X-Gm-Message-State: AOAM532+2REtWmhNJ8FJ5ADh0uBM/A6JCWtmcuB9oIYJ/dItx1N763FK
+        I20p79HrQ0xQB8PebLZ/qxII9OInCBpF7tLMVPiDlQ==
+X-Google-Smtp-Source: ABdhPJy2ug8Cm3POxLOQxU+SWQ8ZDieYeZsYoVZxo62Idbb6vc9hck4xUmbalsRsefa0nQdQjDMqTs5I8HVxPDG4gAE=
+X-Received: by 2002:a05:6512:3095:: with SMTP id z21mr5935006lfd.167.1633100147608;
+ Fri, 01 Oct 2021 07:55:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210926224058.1252-1-digetx@gmail.com> <20210926224058.1252-14-digetx@gmail.com>
+ <CAPDyKFpzhv1UxjM0q5AWHVxTWC_cCO_Kg_6exO0o_=EoVvjo+w@mail.gmail.com> <aad7a508-7fb5-3418-f902-def80c365094@gmail.com>
+In-Reply-To: <aad7a508-7fb5-3418-f902-def80c365094@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 1 Oct 2021 16:55:11 +0200
+Message-ID: <CAPDyKFppSuP6FfaBaGn3o+8WvTT=vJ8XMzZ47WPQ1JKiUYyEpw@mail.gmail.com>
+Subject: Re: [PATCH v13 13/35] drm/tegra: gr2d: Support generic power domain
+ and runtime PM
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add node to support the QUP5 I2C controller inside of IPQ8074.
-It is exactly the same as QUP2 controllers.
-Some routers like ZTE MF269 use this bus.
+On Fri, 1 Oct 2021 at 16:29, Dmitry Osipenko <digetx@gmail.com> wrote:
+>
+> 01.10.2021 16:39, Ulf Hansson =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > On Mon, 27 Sept 2021 at 00:42, Dmitry Osipenko <digetx@gmail.com> wrote=
+:
+> >>
+> >> Add runtime power management and support generic power domains.
+> >>
+> >> Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
+> >> Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
+> >> Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T12=
+4
+> >> Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
+> >> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> >> ---
+> >>  drivers/gpu/drm/tegra/gr2d.c | 155 +++++++++++++++++++++++++++++++++-=
+-
+> >
+> > [...]
+> >
+> >>  static int gr2d_remove(struct platform_device *pdev)
+> >> @@ -259,15 +312,101 @@ static int gr2d_remove(struct platform_device *=
+pdev)
+> >>                 return err;
+> >>         }
+> >>
+> >> +       pm_runtime_dont_use_autosuspend(&pdev->dev);
+> >> +       pm_runtime_disable(&pdev->dev);
+> >
+> > There is no guarantee that the ->runtime_suspend() has been invoked
+> > here, which means that clock may be left prepared/enabled beyond this
+> > point.
+> >
+> > I suggest you call pm_runtime_force_suspend(), instead of
+> > pm_runtime_disable(), to make sure that gets done.
+>
+> The pm_runtime_disable() performs the final synchronization, please see [=
+1].
+>
+> [1]
+> https://elixir.bootlin.com/linux/v5.15-rc3/source/drivers/base/power/runt=
+ime.c#L1412
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+pm_runtime_disable() end up calling _pm_runtime_barrier(), which calls
+cancel_work_sync() if dev->power.request_pending has been set.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index aebd0949ac81..68aaad4c9705 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -430,6 +430,21 @@
- 			status = "disabled";
- 		};
- 
-+		blsp1_i2c5: i2c@78b9000 {
-+			compatible = "qcom,i2c-qup-v2.2.1";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x78b9000 0x600>;
-+			interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
-+				<&gcc GCC_BLSP1_QUP5_I2C_APPS_CLK>;
-+			clock-names = "iface", "core";
-+			clock-frequency = <400000>;
-+			dmas = <&blsp_dma 21>, <&blsp_dma 20>;
-+			dma-names = "rx", "tx";
-+			status = "disabled";
-+		};
-+
- 		blsp1_i2c6: i2c@78ba000 {
- 			compatible = "qcom,i2c-qup-v2.2.1";
- 			#address-cells = <1>;
--- 
-2.17.1
+If the work that was punted to the pm_wq in rpm_idle() has not been
+started yet, we end up just canceling it. In other words, there are no
+guarantees it runs to completion.
 
+Moreover, use space may have bumped the usage count via sysfs for the
+device (pm_runtime_forbid()) to keep the device runtime resumed.
+
+>
+> Calling pm_runtime_force_suspend() isn't correct because each 'enable'
+> must have the corresponding 'disable'. Hence there is no problem here.
+
+pm_runtime_force_suspend() calls pm_runtime_disable(), so I think that
+should be fine. No?
+
+Kind regards
+Uffe
