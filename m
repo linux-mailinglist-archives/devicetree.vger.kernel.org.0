@@ -2,90 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1264F41F40E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 19:57:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37EE041F532
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 20:52:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355467AbhJAR7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 13:59:35 -0400
-Received: from mga11.intel.com ([192.55.52.93]:29105 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238784AbhJAR7e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Oct 2021 13:59:34 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10124"; a="222315899"
-X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; 
-   d="scan'208";a="222315899"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2021 10:57:49 -0700
-X-IronPort-AV: E=Sophos;i="5.85,339,1624345200"; 
-   d="scan'208";a="540435721"
-Received: from pwhela2-mobl1.ger.corp.intel.com (HELO [10.213.160.166]) ([10.213.160.166])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2021 10:57:48 -0700
-Subject: Re: [PATCH] ASoC: qcom: soundwire: Enable soundwire bus clock for
- version 1.6
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1633105471-30928-1-git-send-email-srivasam@codeaurora.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <a2b6a9c7-2191-4bc9-b03b-3b22b495a4be@linux.intel.com>
-Date:   Fri, 1 Oct 2021 12:57:42 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S231985AbhJASyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 14:54:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231467AbhJASyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 14:54:31 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7295C061775
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 11:52:46 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id v19so7177749pjh.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 11:52:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=BJPWo58tKlQXm4vRD5vnXhZrKIbn/SXsA1N14vuJVFE=;
+        b=fo73cXF0jBdfYPiDQI9s7acWyILkfbI1a+jCHdSer3DtoRsO+8s8/vTPpYyLcBoDcu
+         jotjJmCwnZG9BQhQ9A3x5xpkKDlrngKQADxlT1FbxRcl4lUMBSezBr4bHdFz2WK/F+Sf
+         uVLimJk70102NQ8t/wVuL0j7TfW4zvGLEJDjR13bqjM4vUaEM4DYHBHtmYPiA+FlM+Vn
+         AJGUwdfuePbGcma3Q8GJNygCgXX+4wqFrrITSTY/EQkzHtkmckrrW7rapUwGUXUQwBHK
+         ygsbmorbix38yzKwnAv5FT8+/DqQawTcUdMv3d9X6FrsUO53xDgs4Y53TZD6hIbVH9rM
+         C0ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=BJPWo58tKlQXm4vRD5vnXhZrKIbn/SXsA1N14vuJVFE=;
+        b=2QmmrsIfpfXWa7z8/glacXWM9hl4a1QtYLjVM23x5xDPRtQYPE/xmMvGIWJogqV1G6
+         0x38JLGDEni9yBFYTtHyWrhKJ+TBmH/PVpIcTskNTorp+gsxMiYtLO5eZpBXTHyu0hEf
+         NwAscKqaqrx2RA8twBfRnb7SgyqEeWUe8owaTf23YuoyoxBFvBryLBEtpMjiWgjw54jv
+         18a4S47ZiNPvQrWM9LXXR7mNPnAGqWK5Q89AmVpaqx7Z5xX7W7kaI4rUXJw6q45I7XdF
+         eoREdcZjRRMDPODKxhz6XVhEBXpOWGcWz5pYLleMHZc+GyjfPC7aenSHGyhArPpw2C8V
+         8AEQ==
+X-Gm-Message-State: AOAM533VbpdkUN+LwADAFj4nA6W6rm50eA4BFOjzsAriBb06qTw6MVHO
+        TDXXrqOQBZrbWG7cb8tjOzWi+wv0XcEWyDCc+Yk=
+X-Google-Smtp-Source: ABdhPJwQbCx/qqa9VOJq9tw/N+AzHGDEjd94fpCOr+JpHLIY8FtEwgKNSCemlPi9grJLf2ZrXGghFdd81OqiPC/5pH8=
+X-Received: by 2002:a17:90b:1bd1:: with SMTP id oa17mr21619559pjb.82.1633114366282;
+ Fri, 01 Oct 2021 11:52:46 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1633105471-30928-1-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a05:6a20:85a4:b0:5a:7f9:f8 with HTTP; Fri, 1 Oct 2021
+ 11:52:45 -0700 (PDT)
+Reply-To: clmloans9@gmail.com
+From:   MR ANTHONY EDWARD <debraalessii@gmail.com>
+Date:   Fri, 1 Oct 2021 19:52:45 +0100
+Message-ID: <CAM30Liti4FtCz5NNhrk0PQnaZPt6--ux_PoT4OPgX9EEWYWa0g@mail.gmail.com>
+Subject: DARLEHEN ZU 2% BEANTRAGEN
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--=20
+Ben=C3=B6tigen Sie einen Gesch=C3=A4ftskredit oder einen Kredit jeglicher A=
+rt?
+Wenn ja, kontaktieren Sie uns
 
-> @@ -610,6 +611,12 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
->  	val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
->  	val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
->  
-> +	if (ctrl->swrm_hctl_reg) {
-> +		val = ioread32(ctrl->swrm_hctl_reg);
-> +		val &= 0xFFFFFFFD;
-
-magic value, use a #define MASK_SOMETHING?
-
-> +		iowrite32(val, ctrl->swrm_hctl_reg);
-> +	}
-> +
->  	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
->  
->  	/* Enable Auto enumeration */
-> @@ -1200,7 +1207,7 @@ static int qcom_swrm_probe(struct platform_device *pdev)
->  	struct qcom_swrm_ctrl *ctrl;
->  	const struct qcom_swrm_data *data;
->  	int ret;
-> -	u32 val;
-> +	int val, swrm_hctl_reg = 0;
->  
->  	ctrl = devm_kzalloc(dev, sizeof(*ctrl), GFP_KERNEL);
->  	if (!ctrl)
-> @@ -1251,6 +1258,9 @@ static int qcom_swrm_probe(struct platform_device *pdev)
->  	ctrl->bus.port_ops = &qcom_swrm_port_ops;
->  	ctrl->bus.compute_params = &qcom_swrm_compute_params;
->  
-> +	if (!of_property_read_u32(dev->of_node, "qcom,swrm-hctl-reg", &swrm_hctl_reg))
-> +		ctrl->swrm_hctl_reg = devm_ioremap(&pdev->dev, swrm_hctl_reg, 0x4);
-
-if (!ctrl->swrm_hctl_reg)
-    return -ENODEV;
-
-?
-
-> +
->  	ret = qcom_swrm_get_port_config(ctrl);
->  	if (ret)
->  		goto err_clk;
-> 
+*Vollst=C3=A4ndiger Name:
+*Ben=C3=B6tigte Menge:
+*Darlehensdauer:
+*Handy:
+*Land:
