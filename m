@@ -2,115 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A35BF41F371
-	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 19:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E554D41F34C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Oct 2021 19:42:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354740AbhJARp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 13:45:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43146 "EHLO
+        id S231513AbhJARoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 13:44:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354604AbhJARpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 13:45:25 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB02C06177D
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 10:43:41 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id q127-20020a1ca785000000b0030cb71ea4d1so7281590wme.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 10:43:41 -0700 (PDT)
+        with ESMTP id S231336AbhJARn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 13:43:59 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E16CC06177E
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 10:42:15 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id h9-20020a9d2f09000000b005453f95356cso12444959otb.11
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 10:42:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=JbCierPieNoW3/azUKor2WMUEq9XV26EWPgrT0BEXys=;
-        b=q9m6EI2xLZu+udZrImKwlCmHMZmm+4wiTGo+A+DXi6zc/J5OOI1teKt18rla51wMx5
-         y0V3xMNXQlxIA2yUEIvyvFZz9sr4SiIEUvdjgPWVK7kZdsKPLJgMFzxXfS8b5VGtXlKl
-         YGvQxSrJqw5jcqkp6h/EcQuHBX6KBmnGeTLx/slusn1ct4G65vkS921sNaPEatJ3xjdd
-         QLZONhOzuDVBGqDnMZHotx5FlHjTQDvMZe1qrne03hIsOIvQHS9RyA0hKzEVe9EmFW6o
-         qF5AC7grcThH6vWoUpYM3kNq/Gb3XoAP1YOaEU65ngIpJkrYcbY2/rQygKA8mAGXjXUL
-         dVOQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T4Pk/SKGcDml8g9kQfIFxWSgB1QkZnzEqcqoMDRtiFU=;
+        b=VRR2kMxgmb9zJjO0qYX8lZqyUNeV+qdczrK/Y59b/4E3QvXYlZ0QNQ5xWsfIh6rK4H
+         nD4pIRu9YpKAIAdKd4oIkEF5ff3HecWkEyDSfCgCzmipUezsGOpwt1SxEu3gQbyT0ESX
+         nKFje9Tgi0BiW6/BVW4wLn1l4GLuvW2UMx7naANaAnWjU+st9NQKlnGP+yeh/ZWdSEG2
+         kfk6c3KYIkOzZN4LkqhYvnfEu+uBHf/g74EKVcCHmv5Ghd/hqILcluFBIBM/RO8lFyFx
+         ZMNd1UynGsc3QBwsehEFGtmj3RGwdff8DeSzbHhGQAV1ziSq/XR+ACZlKODvoO079f5N
+         yg8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=JbCierPieNoW3/azUKor2WMUEq9XV26EWPgrT0BEXys=;
-        b=CPSspnElTl1DeQGkAzME9CnoKQKfefmi2dL+N7XfwRX58G2412S77Yprto6/n8pWSo
-         3Wawdw1B/F3bq+yt45AjBKsyN253tf0tVNW+DCvUN2cdimsEK8rhbaXEKghuW0goRIV5
-         c3xpgAQzWICTlya4zPMm5uS+T8QJSOBXCvzE/RxTjye15JSyRoVqgQaUMO/pE9tRbxlD
-         JhsQ+CLgchoG0pOkPqRmrrlkkEEZodWjqhnX6GQ97Ye6MV51DufwyCcZ4feDC7IxK/hk
-         0c333XoxAI4XMrdaKxTzPuviz7MRwVeSsXYUpJHPy9BGbrAto23dy2ee7oMBXYkGA1zX
-         NGPA==
-X-Gm-Message-State: AOAM53316xdSjmc5yry6CNrnZyS2HyY7wVqvc0rCc3+6wSBqUlTGpS0w
-        T3btVP9smCkf1L6JCUHsBxyR0A==
-X-Google-Smtp-Source: ABdhPJxo8kSEMkub10r1oi30AJapWK4Rfku+hO0xbpjs793Z2l8po+6OQS+QuMKVY5ObMsqB0z+Y/A==
-X-Received: by 2002:a05:600c:40c4:: with SMTP id m4mr3295317wmh.116.1633110219928;
-        Fri, 01 Oct 2021 10:43:39 -0700 (PDT)
-Received: from localhost (p54ac5892.dip0.t-ipconnect.de. [84.172.88.146])
-        by smtp.gmail.com with ESMTPSA id k1sm6525203wrl.33.2021.10.01.10.43.39
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T4Pk/SKGcDml8g9kQfIFxWSgB1QkZnzEqcqoMDRtiFU=;
+        b=HVHWNgMqxvWk5tLImToSM28z+hv9/VYw39ezWQKRXlDqKlS953lTHppyfQ7lco/RjA
+         cV7A/cWxOX1MY+2XiOjtUon7MOGuzvZEh0+YxRRbuZTg9mXwTCM9hcz7fY/jiANsWAGV
+         XYAfCMOnqdCY0uqlISZ8GA4LTKXizYlADP0KOHgwdKDZwZE9ypGVbj+gYWR2Gh9CCrzd
+         yQhpIblfUQLkGWAU0clAdsvA19FmnNpvlgk4GWrs0E0v1SfyJPB3yALdIk4wY9Z3U+kU
+         6FPnemLrHrGdaAfq4+IWU1LvpiTscQR8a5zldDSu1vp/M8BOiRcpgXtfuqruD/bDTPaF
+         YtXQ==
+X-Gm-Message-State: AOAM5327uO6HeBu/iRO87AsP0/7NapD9kScmmTjKkkYaMvN4FCp3kK7j
+        EhO+sjb1tKtTft/cRgObXolCNg==
+X-Google-Smtp-Source: ABdhPJwsyNL/kZct1ui5XlNR0vlk5yVHdKEYNUXX7kt5RL34oCziPyKWeZrHRi9vLGJtc5+BkxMkzg==
+X-Received: by 2002:a9d:6399:: with SMTP id w25mr11409273otk.53.1633110134535;
+        Fri, 01 Oct 2021 10:42:14 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id u15sm1369264oon.35.2021.10.01.10.42.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Oct 2021 10:43:39 -0700 (PDT)
-Date:   Fri, 1 Oct 2021 19:43:39 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Sergey Shtylyov <s.shtylyov@omp.ru>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: renesas,etheravb: Update example to
- match reality
-Message-ID: <YVdIy9JF3et1DFT8@bismarck.dyn.berto.se>
-References: <7590361db25e8c8b22021d3a4e87f9d304773533.1633090409.git.geert+renesas@glider.be>
+        Fri, 01 Oct 2021 10:42:14 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>
+Cc:     Kuogee Hsieh <khsieh@codeaurora.org>,
+        Tanmay Shah <tanmay@codeaurora.org>,
+        Chandan Uddaraju <chandanu@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/5] drm/msm/dp: Allow variation in register regions
+Date:   Fri,  1 Oct 2021 10:43:55 -0700
+Message-Id: <20211001174400.981707-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7590361db25e8c8b22021d3a4e87f9d304773533.1633090409.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+It turns out that sc8180x (among others) doesn't have the same internal
+layout of the 4 subblocks. This series therefor modifies the binding to
+require all four regions to be described individually and then extends
+the driver to read these four regions. The driver will fall back to read
+the old single-reg format and apply the original offsets and sizes.
 
-Thanks for your patch.
+Bjorn Andersson (5):
+  dt-bindings: msm/dp: Change reg definition
+  drm/msm/dp: Use devres for ioremap()
+  drm/msm/dp: Refactor ioremap wrapper
+  drm/msm/dp: Store each subblock in the io region
+  drm/msm/dp: Allow sub-regions to be specified in DT
 
-On 2021-10-01 14:13:55 +0200, Geert Uytterhoeven wrote:
->   - Add missing clock-names property,
->   - Add example compatible values for PHY subnode.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
-> ---
->  Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-> index 4c927d2c17d35d1b..bda821065a2b631f 100644
-> --- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-> +++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-> @@ -287,6 +287,7 @@ examples:
->                                "ch13", "ch14", "ch15", "ch16", "ch17", "ch18",
->                                "ch19", "ch20", "ch21", "ch22", "ch23", "ch24";
->              clocks = <&cpg CPG_MOD 812>;
-> +            clock-names = "fck";
->              iommus = <&ipmmu_ds0 16>;
->              power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
->              resets = <&cpg 812>;
-> @@ -298,6 +299,8 @@ examples:
->              #size-cells = <0>;
->  
->              phy0: ethernet-phy@0 {
-> +                    compatible = "ethernet-phy-id0022.1622",
-> +                                 "ethernet-phy-ieee802.3-c22";
->                      rxc-skew-ps = <1500>;
->                      reg = <0>;
->                      interrupt-parent = <&gpio2>;
-> -- 
-> 2.25.1
-> 
+ .../bindings/display/msm/dp-controller.yaml   |  13 ++-
+ drivers/gpu/drm/msm/dp/dp_catalog.c           |  64 ++++-------
+ drivers/gpu/drm/msm/dp/dp_parser.c            | 102 ++++++++++--------
+ drivers/gpu/drm/msm/dp/dp_parser.h            |  11 +-
+ 4 files changed, 100 insertions(+), 90 deletions(-)
 
 -- 
-Regards,
-Niklas Söderlund
+2.29.2
+
