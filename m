@@ -2,74 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B567A41F991
-	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 06:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD72041FA04
+	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 08:09:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbhJBEIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Oct 2021 00:08:00 -0400
-Received: from smtprelay0163.hostedemail.com ([216.40.44.163]:50444 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229560AbhJBEIA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 00:08:00 -0400
-X-Greylist: delayed 324 seconds by postgrey-1.27 at vger.kernel.org; Sat, 02 Oct 2021 00:07:59 EDT
-Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com [10.5.19.251])
-        by smtpgrave04.hostedemail.com (Postfix) with ESMTP id 99FE9180782A4;
-        Sat,  2 Oct 2021 04:00:51 +0000 (UTC)
-Received: from omf12.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay01.hostedemail.com (Postfix) with ESMTP id 51090100E7B52;
-        Sat,  2 Oct 2021 04:00:49 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf12.hostedemail.com (Postfix) with ESMTPA id 1ED57240235;
-        Sat,  2 Oct 2021 04:00:46 +0000 (UTC)
-Message-ID: <fbab80553b993421e064b61814a7e5c634f62e6e.camel@perches.com>
-Subject: Re: [RFC v2 11/11] MAINTAINERS: Added HTE Subsystem
-From:   Joe Perches <joe@perches.com>
-To:     Randy Dunlap <rdunlap@infradead.org>,
-        Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        warthog618@gmail.com, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org
-Date:   Fri, 01 Oct 2021 21:00:45 -0700
-In-Reply-To: <b6a968cb-1d7b-887c-8995-6e6b9fef03bf@infradead.org>
-References: <20210930232617.6396-1-dipenp@nvidia.com>
-         <20210930232617.6396-12-dipenp@nvidia.com>
-         <b6a968cb-1d7b-887c-8995-6e6b9fef03bf@infradead.org>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.40.0-1 
+        id S231691AbhJBGLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Oct 2021 02:11:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229591AbhJBGK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 02:10:59 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED4ECC061775
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 23:09:13 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id v127so8674130wme.5
+        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 23:09:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CpKLS1d74uMlVWoAjljLqamIbO1VwhrophNuwn4Fb34=;
+        b=jVYSvmlCnf216Ppb59clZ4UQpZcuw73mh57yyrFMd2oZ0/nTx4nKW/fmKYKVPm/RFb
+         CMEjJzMn5tq+clCPWbRmF/oZuPEImV6EJ9oFM3u0y/Vdbm9ivb2byggWzvkd5k7alfGY
+         5uXQR317JDp0d4+UYtFeMK1V0UYPoxZv8oGklVdt5f8ZFZvgQcrM4gp3aoSEcxDU/RSG
+         UTVvs9HtqtUiN4fopEzSGEp7AuvIt1YSH5BLJpYG7OpMbsk4p+tDov7aTS6WNPmRMaC4
+         M5OKSNLSmW5YDCG2QK/GaJAzRF6H4riSLNGE5i6yzbU53y11oqAj8rbZoFxnsvUf3ZEm
+         l4Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CpKLS1d74uMlVWoAjljLqamIbO1VwhrophNuwn4Fb34=;
+        b=uT+tmETcnEOETQOKOYa1hmcqGO/CK/pyfeXDJptQhf+MbOVJOtAsr/o/mDHmEGG61+
+         boHS+4P9vPg0pR0hh80ki56VCd6XThMZ5mvC6VBKDFCdql/AsaGPOE+hKE1HsHDuZxSD
+         bkuJJJ+/OQ/kPWbo8vvUoWguCwsN5LO7cg0NG4sisV3CfKZEdUPoq6hQl2wsjAWHXeqi
+         vKVFRJSh/q8VQkki29elYYv4Sq7Ny+ZLAbe72w8hxguqxlMBwgJRjGv0Tc6TT53ESP0r
+         r5pcNYFwciaMSw0WobA2vchIYVvBtPllVd1f+ZLgJOEIl+5Er/e4J9SbN3sUtEM3NzBs
+         jhwQ==
+X-Gm-Message-State: AOAM530zMpXZ2cyb+xtglPP1M/JyCA5PaIG8btCsP/KrRu7otheUJRuL
+        pZeUTQFXw/ULUtPYp/+nuCIZ1Jbnriw=
+X-Google-Smtp-Source: ABdhPJzWBWtHHMwG/GDc7gU90T1+7dSJvFXE4IDBClqA0Xb5Rnp9vJokOmBOKHi/7UcotHtLDD7Afg==
+X-Received: by 2002:a05:600c:1d16:: with SMTP id l22mr8136694wms.44.1633154952301;
+        Fri, 01 Oct 2021 23:09:12 -0700 (PDT)
+Received: from localhost.localdomain (252.red-83-54-181.dynamicip.rima-tde.net. [83.54.181.252])
+        by smtp.gmail.com with ESMTPSA id m21sm8409901wmq.37.2021.10.01.23.09.11
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 01 Oct 2021 23:09:11 -0700 (PDT)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, neil@brown.name
+Subject: [PATCH] dt-bindings: memory: add binding for Mediatek's MT7621 SDRAM memory controller
+Date:   Sat,  2 Oct 2021 08:09:10 +0200
+Message-Id: <20211002060910.30613-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 1ED57240235
-X-Spam-Status: No, score=-0.64
-X-Stat-Signature: hgk6z5sz6jieutxqdrx7yuux4xd3imtu
-X-Rspamd-Server: rspamout02
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX19mvdfNloEqShYZNn11H8x47SYY6vDcqBg=
-X-HE-Tag: 1633147246-448701
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-10-01 at 17:08 -0700, Randy Dunlap wrote:
-> On 9/30/21 4:26 PM, Dipen Patel wrote:
-> > Added myself as a maintainer for this new Hardware Timestamping Engine
-> > (HTE) subsystem.
-[]
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-[]
-> > +S:	Maintained
-> > +F:	drivers/hte/*
-> > +F:	include/linux/hte.h
-> > +F:	Documentation/hte/*
-> > +F:	Documentation/devicetree/bindings/hte/*
+Add binding documentation for Mediatek's SDRAM memory controller present on
+MT7621 SoC.
 
-And using * does not support any possible subdirectory
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+ .../mediatek,mt7621-memc.yaml                 | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
 
-Likely these should be:
-
-F:	drivers/hte/
-F:	include/linux/hte.h
-F:	Documentation/hte/
-F:	Documentation/devicetree/bindings/hte/
-
+diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
+new file mode 100644
+index 000000000000..85e02854f083
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
+@@ -0,0 +1,30 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/mediatek,mt7621-memc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MT7621 SDRAM controller
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++properties:
++  compatible:
++    const: mediatek,mt7621-memc
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    memory-controller@5000 {
++        compatible = "mediatek,mt7621-memc";
++        reg = <0x5000 0x1000>;
++    };
+-- 
+2.25.1
 
