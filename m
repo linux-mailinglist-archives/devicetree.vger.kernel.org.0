@@ -2,182 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFB7D41FC7C
-	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 16:22:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D336A41FCAE
+	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 17:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233378AbhJBOYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Oct 2021 10:24:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35330 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233274AbhJBOYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 10:24:07 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5F1C0613EC;
-        Sat,  2 Oct 2021 07:22:21 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id h9-20020a9d2f09000000b005453f95356cso15344792otb.11;
-        Sat, 02 Oct 2021 07:22:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=rhAlgih+BTmjGMxKoPczehCr7Ohc6WZbR6tgamkRMbA=;
-        b=C8w3DIhGQGOSiiTM2rOV81H4wizNcrmvXSAP3BktonYRsd7dM9+HGsFRXw3NLJ3iU5
-         kxklHgwfBdirEf/3dcj1V2LEWc9K7HmutP53ohjy3+rtLOaLU90YxBtvvey3K32gPp6/
-         81Ih3NA0R4DTbbbBMb+0F4BZOf1t5vxtqaCDtDrT/apYH11XX3cCFsv1GvfK/Tl+hxs4
-         yBgLpDygkukYaESLfy7RmWGTyGTzLO5X4bWfVInmsDcUSXqHXu8I/e4bn0mbi8Pc3VCq
-         Qiyi1JIazx1ozYSIyHjJLfIm6YPTUEbfyZVq+8y8e8Gzs9zilo7U6p+qn1EVkGoYpqga
-         EyMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=rhAlgih+BTmjGMxKoPczehCr7Ohc6WZbR6tgamkRMbA=;
-        b=BLTIZLxIc8aa+UluQuoxdZjZ0Ac9k0GxqUjH0BY2JUh0k52/QB70bud8rzT0/fByKP
-         9MXu5tXU3b2DeDSt53SQ2581WrMEQTfjv4Qh3chh7CS72S1hTNdfwNjisUlsz6Akz8Pr
-         JA+WJDnz41aUCfPaJbQl9gap2vC/e7waVzkIRxoDFR8Zxnl4dXZtTgQmt4YSVqNrHKp8
-         KXPzIRNQPk2yhvHkA37ZduHyGIK4RCelklaitjBkjQ/d6Ksm/iIlisA4ppO/8el6QDuR
-         d4jG8bdI1DobsgT3NNGWhC9NqdqPwZaiLiuCNWzNmv78BCg+HUa58HCPPuuvZEmzd+r8
-         RP9Q==
-X-Gm-Message-State: AOAM530D3G9F1UgjiCg3fGpoK2TvmHOrUEkEX9CAbIgCuQv8wB5l69rC
-        I+kZJDWVGHBNIdF/qQkwLlg=
-X-Google-Smtp-Source: ABdhPJyfKa2wYvuN641mTeG6/6dNc/jIgHDzT/3E1c6BIzlFSqG41pUPDxJNGWzrmxk6q2r22eYTvA==
-X-Received: by 2002:a05:6830:2706:: with SMTP id j6mr2847136otu.82.1633184540954;
-        Sat, 02 Oct 2021 07:22:20 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l13sm809940otp.32.2021.10.02.07.22.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Oct 2021 07:22:20 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 2 Oct 2021 07:22:19 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 11/11] dt-bindings: hwmon: allow specifying channels
- for tmp421
-Message-ID: <20211002142219.GC34532@roeck-us.net>
-References: <cover.1632984254.git.krzysztof.adamski@nokia.com>
- <3ff7b4cc57dab2073fa091072366c1e524631729.1632984254.git.krzysztof.adamski@nokia.com>
+        id S233395AbhJBPVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Oct 2021 11:21:24 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:56714 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232575AbhJBPVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 11:21:23 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id ADC021F44931
+Received: by earth.universe (Postfix, from userid 1000)
+        id C2AD73C0CA8; Sat,  2 Oct 2021 17:19:33 +0200 (CEST)
+Date:   Sat, 2 Oct 2021 17:19:33 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Martyn Welch <martyn.welch@collabora.com>
+Subject: Re: [PATCH] ARM: dts: imx6dl-b1x5v2: drop unsupported vcc-supply for
+ MPL3115A2
+Message-ID: <20211002151933.4p47qostpheldpr3@earth.universe>
+References: <20210920182227.339577-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="pwvhzfyyfezbrgkg"
 Content-Disposition: inline
-In-Reply-To: <3ff7b4cc57dab2073fa091072366c1e524631729.1632984254.git.krzysztof.adamski@nokia.com>
+In-Reply-To: <20210920182227.339577-1-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 30, 2021 at 09:19:49AM +0200, Krzysztof Adamski wrote:
-> Add binding description for the per temperature channel configuration
-> like labels and n-factor.
-> 
-> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+
+--pwvhzfyyfezbrgkg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Mon, Sep 20, 2021 at 08:22:27PM +0200, Krzysztof Kozlowski wrote:
+> The MPL3115A2 I2C pressure sensor driver does not take a VCC regulator.
+> The bindings are so far trivial, but the datasheet does not have a VCC
+> pin.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
->  .../devicetree/bindings/hwmon/ti,tmp421.yaml  | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-> index 47040ace4f73..0d4ea2209500 100644
-> --- a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-> @@ -24,12 +24,49 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
->  required:
->    - compatible
->    - reg
->  
->  additionalProperties: false
->  
-> +patternProperties:
-> +  "^input@([0-4])$":
 
-Was there agreement on "input" ? It is a somewhat odd name for a temperature
-sensor. If that name can be used to distinguish child sensor types, it might
-make sense to have a well defined name to state that this is a temperature
-sensor.
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-> +    type: object
-> +    description: |
-> +      Represents channels of the device and their specific configuration.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. 0 is local channel, 1-4 are remote channels
+FWIW &reg_3v3_acm is connected to VDD obviously, but it's an
+always-on regulator without any means to control it, so there
+is no need to describe it.
 
-Which of the supported chips has 4 remote channels ?
+-- Sebastian
 
-> +        items:
-> +          minimum: 0
-> +          maximum: 4
-> +
-> +      label:
-> +        description: |
-> +          A descriptive name for this channel, like "ambient" or "psu".
-> +
-> +      n-factor:
+>  arch/arm/boot/dts/imx6dl-b1x5v2.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/arch/arm/boot/dts/imx6dl-b1x5v2.dtsi b/arch/arm/boot/dts/imx=
+6dl-b1x5v2.dtsi
+> index a326a331508e..f028b6a191df 100644
+> --- a/arch/arm/boot/dts/imx6dl-b1x5v2.dtsi
+> +++ b/arch/arm/boot/dts/imx6dl-b1x5v2.dtsi
+> @@ -47,7 +47,6 @@ &i2c5 {
+>  	mpl3115a2: pressure-sensor@60 {
+>  		compatible =3D "fsl,mpl3115";
+>  		reg =3D <0x60>;
+> -		vcc-supply =3D <&reg_3v3_acm>;
+> =20
+>  		/*
+>  		 * The MPL3115 interrupts are connected to pin 22 and 23
+> --=20
+> 2.30.2
+>=20
+>=20
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
-n-factor or "ti,n-factor" ? The unit is chip specific, after all.
+--pwvhzfyyfezbrgkg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +        description: |
-> +          The value (two's complement) to be programmed in the channel specific N correction register.
-> +          For remote channels only.
-> +        items:
-> +          minimum: 0
-> +          maximum: 1
+-----BEGIN PGP SIGNATURE-----
 
-Is this the correct value range ? The value range (in integer form) is
--128 .. 127 (or 0 .. 255 as unsigned), not 0..1.
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmFYeHkACgkQ2O7X88g7
++pqtIg//fMGCTweMUgdK4LAWx2sOeLerSt14MdRQnyVK6/8qmjIn1gj+mlg4EU3b
+rF9lEFypzxCdZ2o8GQFewDJ66PXV90Wz9iBP75dgxnZPTyWDAm8pgoYDC95CWiSZ
+/br+4/78IZV5fdHlDb5D74rKwWcjE9pFGNLCtBmAXBwLeF11hJsy6WZduMPsyB+v
+qzFh+ZUi46p3KyWYNEPrlemJ9dtrfDGvL/ANtDtBdNp/hGRtY2Rra5vpYoxA7KbT
+TO0uzwH1P4S4N9v6xijFv6B1jPCboimPqCf3eG2yQ8OVoF1tQSf0dcPnYLxceUKA
+pjfkCoZeEjD2nNAiP1GJtj0pOdtkG90w5WnMhfPPv1wyW9Cc8HkI79TX4cV8IRla
+Ce+838uCediYcItroEWZTQ1lPl5f91bbMSs9mOiHJCT/r/ZGVUlg66iTDrc7pXYo
+x6sonqCuozJEf66lcLedAwNkkUMbH0QmK4+rJ1K8iv8X4/H/NxPYwvqI2RHiWLWn
+PGSQZg1zVMYJGEyCzwVOBEoZ9RNhti8vszkooLQdu9+Y2NdGYs5WIAtfBNsjMuM5
+WPo0AKhSThgvgYB+SbQ1KiKcN66uiQJAsheOoiiDwqTi4TEZm9ujE1ZlT+ky5Yix
+GAQ2H2Q7y84mewlNe9fmG21ziuZU8vELC7SaVykwJz2BdXjETBk=
+=3+Ry
+-----END PGP SIGNATURE-----
 
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
->  examples:
->    - |
->      i2c {
-> @@ -41,3 +78,32 @@ examples:
->          reg = <0x4c>;
->        };
->      };
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      sensor@4c {
-> +        compatible = "ti,tmp422";
-> +        reg = <0x4c>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        input@0 {
-> +          reg = <0x0>;
-> +          n-factor = <0x1>;
-> +          label = "local";
-> +        };
-> +
-> +        input@1 {
-> +          reg = <0x1>;
-> +          n-factor = <0x0>;
-> +          label = "somelabel";
-> +        };
-> +
-> +        input@2 {
-> +          reg = <0x2>;
-> +          status = "disabled";
-> +        };
-> +      };
-> +    };
-> -- 
-> 2.31.1
-> 
+--pwvhzfyyfezbrgkg--
