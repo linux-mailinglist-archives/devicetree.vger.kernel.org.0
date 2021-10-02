@@ -2,98 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3ABA41FCDD
-	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 17:52:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD9E641FD04
+	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 18:15:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233471AbhJBPyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Oct 2021 11:54:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54980 "EHLO
+        id S233540AbhJBQRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Oct 2021 12:17:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233438AbhJBPyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 11:54:22 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4568EC0613EC;
-        Sat,  2 Oct 2021 08:52:36 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 6D0931F411C6
-Received: by earth.universe (Postfix, from userid 1000)
-        id 348223C0CA8; Sat,  2 Oct 2021 17:52:31 +0200 (CEST)
-Date:   Sat, 2 Oct 2021 17:52:31 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: supply: max17040: switch to
- unevaluatedProperties
-Message-ID: <20211002155231.esfpwvirwjkhhij4@earth.universe>
-References: <20210929160605.74831-1-david@ixit.cz>
+        with ESMTP id S233451AbhJBQRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 12:17:12 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF86FC0613EC;
+        Sat,  2 Oct 2021 09:15:26 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id bd28so46382471edb.9;
+        Sat, 02 Oct 2021 09:15:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GU4RaNbxOwXU1AIglgn1YkqGJA8DPAlBXbwJZqnnnz4=;
+        b=ohxzd4KXkpBTobxCCJI+EWnhcki2mwF5TARWnr0FNSIxRBV4ADr/1IX9F5sRh0E+qe
+         tu7hz0dFBpYErVRlUNTUTgo8ciikJdQGZKoHCplDOcK8sNnSB+lvYXBqqihx0F/NquWJ
+         GuLFckHqzfZL+IHhJ0iBsDnpq39i7/e/jECDNLUlCfUv3gO+mzbfPZvvQQ8qyt/CBz3d
+         Gp07zNddoyklfm+chXC6vRx5lHi4r2rENYX6TkZDXRSBEOu8CE/qFSuQa3Hve6uiY/D2
+         JUHCKBfhVNtfKRyU4CjeP/UeI6F4N/FS4+sAAeGO8rEPQlmzg5LfkqndupxPZzDaCOOF
+         Ti5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GU4RaNbxOwXU1AIglgn1YkqGJA8DPAlBXbwJZqnnnz4=;
+        b=ipW66doPpbyJcDMdsHxv/vjzShgyEYKZqYQ4E7uSxaw0P7UlqduSyIA1/wMDPrILHY
+         txZZYedxbWR8t7p7GoZIz8Soo00/j/xEGlfCAgoUA1LJG8tbJkqt++YMlf4ivp0HsjeK
+         uSlDmCaF/mOpwX/ICpL40G84p77liChVboZ7PfgxV0K25zyPdeeJ9qBSCixpqlm+fHEi
+         22CrRD2jxVvD/g9Y4TwP4RgGL52B5JLiHPrAO9oufk/A1NeasEw87obsKyQlPAtd+YSd
+         +4STmnfVBnPpd4gjcwY3QTkM71+PQzzGlROw40WeRt+3MuPTkD6FA9arOkWESCITJ4t/
+         xjYA==
+X-Gm-Message-State: AOAM532yBy2gAnrpZhwXtnPtDCbm5aPqYC+USWXjk4/vWyu2F/NoBB7Q
+        IvqIwHtYG0PFl3afrA6UsGbZPHur1nKVC0E9B+E=
+X-Google-Smtp-Source: ABdhPJx8iGPvBXqIOC79LIMaSFWfmnsPsAvezXdC1Fm0UJHmRbMR3uvQb5Otz+6ieWqCJWaTHSKX4lYjiN3ceab33Lg=
+X-Received: by 2002:aa7:d903:: with SMTP id a3mr3840670edr.292.1633191324726;
+ Sat, 02 Oct 2021 09:15:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ab4zly5rdnua3eyf"
-Content-Disposition: inline
-In-Reply-To: <20210929160605.74831-1-david@ixit.cz>
+References: <20210930065733.31943-1-tony@atomide.com> <20210930065733.31943-2-tony@atomide.com>
+In-Reply-To: <20210930065733.31943-2-tony@atomide.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Sat, 2 Oct 2021 11:15:13 -0500
+Message-ID: <CAHCN7xKTkPEo1mmaG+cRYacpo4-8ONz-S6Nzdg9XeAEd5rt5TA@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: sdhci-omap: Update binding for legacy SoCs
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Chunyan Zhang <zhang.chunyan@linaro.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 30, 2021 at 1:58 AM Tony Lindgren <tony@atomide.com> wrote:
+>
+> Let's add compatible values for the legacy SoCs so we can continue
+> deprecating omap_hsmmc in favor of sdhci-omap driver.
+>
+> For omap5, we want to have a separate compatible from omap4 for the
+> additional features available on omap5. AFAIK ti81 can just use the
+> omap4 compatible.
+>
+> Cc: devicetree@vger.kernel.org
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
 
---ab4zly5rdnua3eyf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+For the series, with an additional change to omap3.dtsi to reference
+mmc nodes to ti,omap3-sdhci,
 
-Hi,
+Tested-by: Adam Ford <aford173@gmail.com> # logicpd-torpedo-37xx-devkit
 
-On Wed, Sep 29, 2021 at 06:06:05PM +0200, David Heidelberg wrote:
-> Required for validation of power-supplies from power-supply.yaml.
->=20
-> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
-
-Thanks, queued.
-
--- Sebastian
-
->  .../devicetree/bindings/power/supply/maxim,max17040.yaml        | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max1704=
-0.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
-> index f792d06db413..ffb344987a7b 100644
-> --- a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
-> @@ -62,7 +62,7 @@ required:
->    - compatible
->    - reg
-> =20
-> -additionalProperties: false
-> +unevaluatedProperties: false
-> =20
->  examples:
->    - |
-> --=20
+>  Documentation/devicetree/bindings/mmc/sdhci-omap.txt | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
+> @@ -5,7 +5,11 @@ Refer to mmc.txt for standard MMC bindings.
+>  For UHS devices which require tuning, the device tree should have a "cpu_thermal" node which maps to the appropriate thermal zone. This is used to get the temperature of the zone during tuning.
+>
+>  Required properties:
+> -- compatible: Should be "ti,dra7-sdhci" for DRA7 and DRA72 controllers
+> +- compatible: Should be "ti,omap2430-sdhci" for omap2430 controllers
+> +             Should be "ti,omap3-sdhci" for omap3 controllers
+> +             Should be "ti,omap4-sdhci" for omap4 and ti81 controllers
+> +             Should be "ti,omap5-sdhci" for omap5 controllers
+> +             Should be "ti,dra7-sdhci" for DRA7 and DRA72 controllers
+>               Should be "ti,k2g-sdhci" for K2G
+>               Should be "ti,am335-sdhci" for am335x controllers
+>               Should be "ti,am437-sdhci" for am437x controllers
+> --
 > 2.33.0
->=20
-
---ab4zly5rdnua3eyf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmFYgD8ACgkQ2O7X88g7
-+pppyw/+Pr45fsL2424436n0/uBMv7viJDetLGP4IpWijlWCA4MgFBndngjRjyK3
-5dzfsjd7+JarWzyCSeA1L8FrAb/H9sl+LLUoLAF0CtFxV0lHluW3R1ND+0hv0ubZ
-dQXQ7Hx24csnXM7ONVyljhEQI/w4XwB2eHN4D0+vyFwVGEUHHSSFH/cqEhtABerU
-OODcgs1ZC+42y/XwYF9EsLYMkRNsQqWYBcLSi2OZg1c1QST1TSJ7pakKGqmGzyZc
-PvcQDTe8uInveS7Sm7aArMgLRoCY81F33ykMz2BFDvCT4SetQittn0NLgiglXDFd
-9DeRa4Q1k83pSwQKols7TRa4Z3T8LZkcHXxGVEQFgMSNsS8WwAhHd2SlsW8S20KL
-Zfg0GC/Fx0o9BwyJa9j+CoZ6WeLa83IIpvVwPPln/WqSeV6F7HUDz9tAF/RDbo3K
-luTzAxy4a5IECm36LnrgQ8ydEC42VQGII1gkjHMDmbUmD3HlCiVyCsCh/Ayjgq0d
-DPyKXjV0zdPWAHXgV3CgGkZpgpVEwknyQLgVnd2/7uq5zc/n8ZexVjJxIG+UjXux
-6puN1CpIJl+l/WSlg+5HZIdVwnFgiqLpwvqjhA5OjFpn206Zl1sUWedqfLPoEK88
-Db7FDGuysN6ncIa1Ta9Dfb1uwoF3yF8jiRSMH7PbkjdKYu73EBc=
-=j8W1
------END PGP SIGNATURE-----
-
---ab4zly5rdnua3eyf--
