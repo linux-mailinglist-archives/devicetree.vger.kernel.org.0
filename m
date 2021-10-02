@@ -2,201 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FEE741F8A9
-	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 02:18:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E71B41F8B7
+	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 02:25:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230291AbhJBAU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 20:20:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49028 "EHLO
+        id S230333AbhJBA06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Oct 2021 20:26:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230259AbhJBAU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 20:20:27 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22C4C061775;
-        Fri,  1 Oct 2021 17:18:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:
-        Subject:Sender:Reply-To:Cc:Content-ID:Content-Description;
-        bh=RqX8/wclMPh8rdKmPHIqwNBBYNDwMU8vPuFzjp1ZKig=; b=RVvzTboaKRM1qFIDREl9FccXN8
-        U9jmnJ4h6Zg6gnVkYw1Aui63VaCOXtf/4dd3UAAvWDMjQMDQG5aCKykfzsV0/lpmpr1x4pc8Q0Ekx
-        CJ33ImURpLylkWsOdwvDfIZjCOjuzARAX1eEwIIdGRWWs7VOy9DqAwKYid6ND8BROeNljGLRG+x7U
-        eFNSchp2R2gNMRoBA5oNhyaXwDch6/FvC3EmDEoYII0emZ8JKw/G/4epmUfPsO6n2KUQJh8n2IECl
-        A3u50OmYNI8z7U/8Ji9NjcfRgFKby4m5FArnDrJIITZtKtv6yQbI0JQj/t+TQjaXsCBZO87gaYiJz
-        E0Tz9EvA==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mWSji-001XMM-2a; Sat, 02 Oct 2021 00:18:42 +0000
-Subject: Re: [RFC v2 01/11] Documentation: Add HTE subsystem guide
-To:     Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        warthog618@gmail.com, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org
-References: <20210930232617.6396-1-dipenp@nvidia.com>
- <20210930232617.6396-2-dipenp@nvidia.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <70321686-276c-b972-302a-e649f28412de@infradead.org>
-Date:   Fri, 1 Oct 2021 17:18:39 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S230259AbhJBA06 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 20:26:58 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8686C061775
+        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 17:25:12 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mWSpt-00030S-VH; Sat, 02 Oct 2021 02:25:06 +0200
+Message-ID: <21bef8f0351a8a6c65e38f7ba80b98b34aec7b73.camel@pengutronix.de>
+Subject: Re: [PATCH v4 14/18] arm64: dts: imx8mm: add GPC node
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Adam Ford <aford173@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de
+Date:   Sat, 02 Oct 2021 02:25:03 +0200
+In-Reply-To: <CAJ+vNU1VKyZzkyeah1QtxA1y_Oswmgs4qWE87ZRU9++DqQSveA@mail.gmail.com>
+References: <20210910202640.980366-1-l.stach@pengutronix.de>
+         <20210910202640.980366-15-l.stach@pengutronix.de>
+         <CAJ+vNU2F6RLK3mT5mws0X+EOgsF_+N0JC20ZNWEQtdj_cY9KHg@mail.gmail.com>
+         <b4c51d93b2837666f44ea4a0e2b1fdb60ceaae15.camel@pengutronix.de>
+         <CAJ+vNU3rK=4y3wj_WCSdBozUZK1P=vmhowtgBZcW9OW-+N-LGA@mail.gmail.com>
+         <CAJ+vNU1VKyZzkyeah1QtxA1y_Oswmgs4qWE87ZRU9++DqQSveA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-In-Reply-To: <20210930232617.6396-2-dipenp@nvidia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/30/21 4:26 PM, Dipen Patel wrote:
-> Adding hte document which can help understand various APIs implemented
-> in HTE framework for the HTE producers and the consumers.
+Am Freitag, dem 01.10.2021 um 17:15 -0700 schrieb Tim Harvey:
+> On Fri, Oct 1, 2021 at 5:06 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> > 
+> > On Fri, Oct 1, 2021 at 4:20 PM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > > 
+> > > Hi Tim,
+> > > 
+> > > Am Freitag, dem 01.10.2021 um 16:07 -0700 schrieb Tim Harvey:
+> > > > On Fri, Sep 10, 2021 at 1:26 PM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > > > > 
+> > > > > Add the DT node for the GPC, including all the PGC power domains,
+> > > > > some of them are not fully functional yet, as they require interaction
+> > > > > with the blk-ctrls to properly power up/down the peripherals.
+> > > > > 
+> > > > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > > > > ---
+> > > > >  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 107 ++++++++++++++++++++++
+> > > > >  1 file changed, 107 insertions(+)
+> > > > > 
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > > > > index e7648c3b8390..3922f26f8fd4 100644
+> > > > > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > > > > @@ -7,6 +7,8 @@
+> > > > >  #include <dt-bindings/gpio/gpio.h>
+> > > > >  #include <dt-bindings/input/input.h>
+> > > > >  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > > +#include <dt-bindings/power/imx8mm-power.h>
+> > > > > +#include <dt-bindings/reset/imx8mq-reset.h>
+> > > > >  #include <dt-bindings/thermal/thermal.h>
+> > > > > 
+> > > > >  #include "imx8mm-pinfunc.h"
+> > > > > @@ -609,6 +611,111 @@ src: reset-controller@30390000 {
+> > > > >                                 interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> > > > >                                 #reset-cells = <1>;
+> > > > >                         };
+> > > > > +
+> > > > > +                       gpc: gpc@303a0000 {
+> > > > > +                               compatible = "fsl,imx8mm-gpc";
+> > > > > +                               reg = <0x303a0000 0x10000>;
+> > > > > +                               interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > +                               interrupt-parent = <&gic>;
+> > > > > +                               interrupt-controller;
+> > > > > +                               #interrupt-cells = <3>;
+> > > > > +
+> > > > > +                               pgc {
+> > > > > +                                       #address-cells = <1>;
+> > > > > +                                       #size-cells = <0>;
+> > > > > +
+> > > > > +                                       pgc_hsiomix: power-domain@0 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_HSIOMIX>;
+> > > > > +                                               clocks = <&clk IMX8MM_CLK_USB_BUS>;
+> > > > > +                                               assigned-clocks = <&clk IMX8MM_CLK_USB_BUS>;
+> > > > > +                                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_500M>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_pcie: power-domain@1 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_PCIE>;
+> > > > > +                                               power-domains = <&pgc_hsiomix>;
+> > > > > +                                               clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_otg1: power-domain@2 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_OTG1>;
+> > > > > +                                               power-domains = <&pgc_hsiomix>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_otg2: power-domain@3 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_OTG2>;
+> > > > > +                                               power-domains = <&pgc_hsiomix>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_gpumix: power-domain@4 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_GPUMIX>;
+> > > > > +                                               clocks = <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> > > > > +                                                        <&clk IMX8MM_CLK_GPU_AHB>;
+> > > > > +                                               assigned-clocks = <&clk IMX8MM_CLK_GPU_AXI>,
+> > > > > +                                                                 <&clk IMX8MM_CLK_GPU_AHB>;
+> > > > > +                                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_800M>,
+> > > > > +                                                                        <&clk IMX8MM_SYS_PLL1_800M>;
+> > > > > +                                               assigned-clock-rates = <800000000>, <400000000>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_gpu: power-domain@5 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_GPU>;
+> > > > > +                                               clocks = <&clk IMX8MM_CLK_GPU_AHB>,
+> > > > > +                                                        <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
+> > > > > +                                                        <&clk IMX8MM_CLK_GPU2D_ROOT>,
+> > > > > +                                                        <&clk IMX8MM_CLK_GPU3D_ROOT>;
+> > > > > +                                               resets = <&src IMX8MQ_RESET_GPU_RESET>;
+> > > > > +                                               power-domains = <&pgc_gpumix>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_vpumix: power-domain@6 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_VPUMIX>;
+> > > > > +                                               clocks = <&clk IMX8MM_CLK_VPU_DEC_ROOT>;
+> > > > > +                                               assigned-clocks = <&clk IMX8MM_CLK_VPU_BUS>;
+> > > > > +                                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_800M>;
+> > > > > +                                               resets = <&src IMX8MQ_RESET_VPU_RESET>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_vpu_g1: power-domain@7 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_VPUG1>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_vpu_g2: power-domain@8 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_VPUG2>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_vpu_h1: power-domain@9 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_VPUH1>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_dispmix: power-domain@10 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_DISPMIX>;
+> > > > > +                                               clocks = <&clk IMX8MM_CLK_DISP_APB_ROOT>,
+> > > > > +                                                        <&clk IMX8MM_CLK_DISP_AXI_ROOT>;
+> > > > > +                                               assigned-clocks = <&clk IMX8MM_CLK_DISP_AXI>,
+> > > > > +                                                                 <&clk IMX8MM_CLK_DISP_APB>;
+> > > > > +                                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_1000M>,
+> > > > > +                                                                        <&clk IMX8MM_SYS_PLL1_800M>;
+> > > > > +                                               assigned-clock-rates = <500000000>, <200000000>;
+> > > > > +                                       };
+> > > > > +
+> > > > > +                                       pgc_mipi: power-domain@11 {
+> > > > > +                                               #power-domain-cells = <0>;
+> > > > > +                                               reg = <IMX8MM_POWER_DOMAIN_MIPI>;
+> > > > > +                                       };
+> > > > > +                               };
+> > > > > +                       };
+> > > > >                 };
+> > > > > 
+> > > > >                 aips2: bus@30400000 {
+> > > > > --
+> > > > > 2.30.2
+> > > > > 
+> > > > 
+> > > > Lucas,
+> > > > 
+> > > > I've been using your 'i.MX8MM GPC improvements and BLK_CTRL driver'
+> > > > series for imx8mm-venice* and imx8mn-venice* boards. Thank you for
+> > > > this work and I hope to see it merged soon!
+> > > > 
+> > > > I have found that on the imx8mm-venice-gw7901 board which does not use
+> > > > MIPI and thus does not connect VDD_MIPI_1P8, VDD_MIPI_1P2,
+> > > > VDD_MIPI_0P9, MIPI_VREG_CAP pins on the IMX8MM hangs with this
+> > > > particular patch. If I comment out the pgc_mipi domain and subsequent
+> > > > disp_blk_ctrl node from a later patch it resolves the hang. Is this
+> > > > behavior expected and what would your recommendation be to work around
+> > > > it?
+> > > 
+> > > No, this isn't expected. If there are no active devices in the MIPI
+> > > domain, the power domain should not be touched, as we treat all of them
+> > > as disabled initially. If we don't touch the domain I would expect that
+> > > the power supply not being present shouldn't be an issue.
+> > > 
+> > > Can you check if something in your system causes this power domain to
+> > > be powered up? Easiest way is probably to sprinkle a
+> > > printk("%s\n, genpd->name) in both imx8m_blk_ctrl_power_on() and
+> > > imx_gpc_power_on().
+> > > 
+> > 
+> > Lucas,
+> > 
+> > Here's what I see before I hang (debug print on both power on/off
+> > followed by a msleep(1000) to make sure I see it before I hang):
+> > [    0.518319] imx_pgc_power_up hsiomix
+> > [    0.624031] imx_pgc_power_down hsiomix
+> > [    0.731879] imx_pgc_power_up hsiomix
+> > [    0.839906] imx_pgc_power_down hsiomix
+> > [    0.947875] imx_pgc_power_up hsiomix
+> > [    1.055859] imx_pgc_power_down hsiomix
+> > [    1.057296] imx_pgc_power_up gpumix
+> > [    1.167884] imx_pgc_power_down gpumix
+> > [    0.518513] imx_pgc_power_up hsiomix
+> > [    0.519933] imx_pgc_power_up gpumix
+> > 
 > 
-> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
-> ---
-> Changes in v2:
-> - Removed explanation, instead added kernel-doc references.
+> The board also has IMX8MM VDD_GPU pins not connected so it makes sense
+> that we hang here I suppose. Yet if I add the folloiwng to
+> imx8mm-venice-gw7901.dts it still tries to enable them and hangs:
+> &gpu_2d {
+>         status = "disabled";
+> };
 > 
->   Documentation/hte/hte.rst | 83 +++++++++++++++++++++++++++++++++++++++
->   1 file changed, 83 insertions(+)
->   create mode 100644 Documentation/hte/hte.rst
+> &gpu_3d {
+>         status = "disabled";
+> };
 > 
-> diff --git a/Documentation/hte/hte.rst b/Documentation/hte/hte.rst
-> new file mode 100644
-> index 000000000000..c9b1badae601
-> --- /dev/null
-> +++ b/Documentation/hte/hte.rst
-> @@ -0,0 +1,83 @@
-> +============================================
-> +The Linux Hardware Timestamping Engine (HTE)
-> +============================================
-> +
-> +:Author: Dipen Patel
-> +
-> +Introduction
-> +------------
-> +
-> +Certain devices have built in hardware timestamping engines which can
-> +monitor sets of system signals, lines, buses etc... in realtime for state
-> +change; upon detecting the change they can automatically store the timestamp at
-> +the moment of occurrence. Such functionality may help achieve better accuracy
-> +in obtaining timestamp than using software counterparts i.e. ktime and friends.
+> &vpu_blk_ctrl {
+>         status = "disabled";
+> };
 
-                 timestamps
+The pgc_gpu is a "active" consumer of the pgc_gpumix domain while the
+driver gets probed, so the driver core will power up the gpumix domain
+for a moment during kernel init. To avoid this you must at least set
+the status of the pgc_gpu node to disabled.
 
-> +
-> +This document describes the API that can be used by hardware timestamping
-> +engine provider and consumer drivers that want to use the hardware timestamping
-> +engine (HTE) framework. Both consumers and providers must
-> +#include <linux/hte.h>.
-> +
-> +The HTE framework APIs for the providers
-> +----------------------------------------
-> +
-> +.. kernel-doc:: drivers/hte/hte.c
-> +   :functions: devm_hte_register_chip hte_push_ts_ns
-> +
-> +The HTE framework APIs for the consumers
-> +----------------------------------------
-> +
-> +.. kernel-doc:: drivers/hte/hte.c
-> +   :functions: devm_of_hte_request_ts hte_req_ts_by_hte_name hte_release_ts hte_enable_ts hte_disable_ts hte_get_clk_src_info
-> +
-> +The HTE framework public structures
-> +-----------------------------------
-> +.. kernel-doc:: include/linux/hte.h
-> +
-> +
-> +More on the HTE timestamp data
-> +------------------------------
-> +The struct hte_ts_data is used to pass timestamp details between the consumers
-> +and the providers. It expresses timestamp data in nano second in u64 data
+Regards,
+Lucas
 
-                                                      nanosesconds
-                                              possibly:           in a __u64 data
-
-> +type. For now all the HTE APIs using struct hte_ts_data requires tsc to be in
-
-                                                            require tsc to be in
-
-> +nano seconds. An example of the typical hte_ts_data data life cycle, for the
-
-    nanoseconds.
-
-> +GPIO line is as follows::
-> +
-> + - Monitors GPIO line change.
-> + - Detects the state change on GPIO line.
-> + - Converts timestamps in nano seconds and stores it in tsc.
-
-                              nanoseconds
-
-> + - Stores GPIO direction in dir variable if the provider has that hardware
-> + capability.
-> + - Pushes this hte_ts_data object to HTE subsystem.
-> + - HTE subsystem increments seq counter and invokes consumer provided callback.
-> + Based on callback return value, the HTE starts kernel thread and invokes
-
-                                             starts a kernel thread
-
-> + secondary callback in the thread context.
-> +
-> +HTE subsystem debugfs attributes
-> +--------------------------------
-> +HTE subsystem creates debugfs attributes at ``/sys/kernel/debug/hte/``.
-> +It also creates line/signal related debugfs attributes at
-
-                         signal-related
-
-> +``/sys/kernel/debug/hte/<provider>/<label or line id>/``.
-> +
-> +`ts_requested`
-> +		The total number of entities requested from the given provider,
-> +		where entity is the provider specific and could represent
-
-		             is specified by the provider and could
-(just guessing here; I could not parse it.)
-
-> +		lines, GPIO, chip signals, buses etc...
-> +                The attribute will be availble at
-
-		                         available
-
-> +		``/sys/kernel/debug/hte/<provider>/``.
-> +
-> +		Read only value
-
-		Read-only value
-
-> +
-> +`total_ts`
-> +		The total number of entities supported by the provider.
-> +                The attribute will be availble at
-
-		                         available
-
-> +		``/sys/kernel/debug/hte/<provider>/``.
-> +
-> +		Read only value
-
-		Read-only value
-
-> +
-> +`dropped_timestamps`
-> +		The dropped timestamps for a given line.
-> +                The attribute will be availble at
-
-		                         available
-
-> +		``/sys/kernel/debug/hte/<provider>/<label or line id>/``.
-> +
-> +		Read only value
-
-		Read-only value
-> 
-
-
--- 
-~Randy
