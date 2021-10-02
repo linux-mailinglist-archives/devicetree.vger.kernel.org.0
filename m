@@ -2,107 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9E641FD04
-	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 18:15:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05A0541FCFF
+	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 18:12:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233540AbhJBQRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Oct 2021 12:17:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60022 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233451AbhJBQRM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 12:17:12 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF86FC0613EC;
-        Sat,  2 Oct 2021 09:15:26 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id bd28so46382471edb.9;
-        Sat, 02 Oct 2021 09:15:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GU4RaNbxOwXU1AIglgn1YkqGJA8DPAlBXbwJZqnnnz4=;
-        b=ohxzd4KXkpBTobxCCJI+EWnhcki2mwF5TARWnr0FNSIxRBV4ADr/1IX9F5sRh0E+qe
-         tu7hz0dFBpYErVRlUNTUTgo8ciikJdQGZKoHCplDOcK8sNnSB+lvYXBqqihx0F/NquWJ
-         GuLFckHqzfZL+IHhJ0iBsDnpq39i7/e/jECDNLUlCfUv3gO+mzbfPZvvQQ8qyt/CBz3d
-         Gp07zNddoyklfm+chXC6vRx5lHi4r2rENYX6TkZDXRSBEOu8CE/qFSuQa3Hve6uiY/D2
-         JUHCKBfhVNtfKRyU4CjeP/UeI6F4N/FS4+sAAeGO8rEPQlmzg5LfkqndupxPZzDaCOOF
-         Ti5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GU4RaNbxOwXU1AIglgn1YkqGJA8DPAlBXbwJZqnnnz4=;
-        b=ipW66doPpbyJcDMdsHxv/vjzShgyEYKZqYQ4E7uSxaw0P7UlqduSyIA1/wMDPrILHY
-         txZZYedxbWR8t7p7GoZIz8Soo00/j/xEGlfCAgoUA1LJG8tbJkqt++YMlf4ivp0HsjeK
-         uSlDmCaF/mOpwX/ICpL40G84p77liChVboZ7PfgxV0K25zyPdeeJ9qBSCixpqlm+fHEi
-         22CrRD2jxVvD/g9Y4TwP4RgGL52B5JLiHPrAO9oufk/A1NeasEw87obsKyQlPAtd+YSd
-         +4STmnfVBnPpd4gjcwY3QTkM71+PQzzGlROw40WeRt+3MuPTkD6FA9arOkWESCITJ4t/
-         xjYA==
-X-Gm-Message-State: AOAM532yBy2gAnrpZhwXtnPtDCbm5aPqYC+USWXjk4/vWyu2F/NoBB7Q
-        IvqIwHtYG0PFl3afrA6UsGbZPHur1nKVC0E9B+E=
-X-Google-Smtp-Source: ABdhPJx8iGPvBXqIOC79LIMaSFWfmnsPsAvezXdC1Fm0UJHmRbMR3uvQb5Otz+6ieWqCJWaTHSKX4lYjiN3ceab33Lg=
-X-Received: by 2002:aa7:d903:: with SMTP id a3mr3840670edr.292.1633191324726;
- Sat, 02 Oct 2021 09:15:24 -0700 (PDT)
+        id S233567AbhJBQON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Oct 2021 12:14:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50720 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233451AbhJBQON (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 2 Oct 2021 12:14:13 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E880B61A03;
+        Sat,  2 Oct 2021 16:12:24 +0000 (UTC)
+Date:   Sat, 2 Oct 2021 17:16:22 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Roan van Dijk <roan@protonic.nl>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, david@protonic.nl,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v4 3/4] drivers: iio: chemical: Add support for
+ Sensirion SCD4x CO2 sensor
+Message-ID: <20211002171622.0f5d34d7@jic23-huawei>
+In-Reply-To: <20211001070254.3940795-4-roan@protonic.nl>
+References: <20211001070254.3940795-1-roan@protonic.nl>
+        <20211001070254.3940795-4-roan@protonic.nl>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210930065733.31943-1-tony@atomide.com> <20210930065733.31943-2-tony@atomide.com>
-In-Reply-To: <20210930065733.31943-2-tony@atomide.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Sat, 2 Oct 2021 11:15:13 -0500
-Message-ID: <CAHCN7xKTkPEo1mmaG+cRYacpo4-8ONz-S6Nzdg9XeAEd5rt5TA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: sdhci-omap: Update binding for legacy SoCs
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Chunyan Zhang <zhang.chunyan@linaro.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 30, 2021 at 1:58 AM Tony Lindgren <tony@atomide.com> wrote:
->
-> Let's add compatible values for the legacy SoCs so we can continue
-> deprecating omap_hsmmc in favor of sdhci-omap driver.
->
-> For omap5, we want to have a separate compatible from omap4 for the
-> additional features available on omap5. AFAIK ti81 can just use the
-> omap4 compatible.
->
-> Cc: devicetree@vger.kernel.org
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+On Fri,  1 Oct 2021 09:02:53 +0200
+Roan van Dijk <roan@protonic.nl> wrote:
 
-For the series, with an additional change to omap3.dtsi to reference
-mmc nodes to ti,omap3-sdhci,
+> This is a driver for the SCD4x CO2 sensor from Sensirion. The sensor is
+> able to measure CO2 concentration, temperature and relative humdity.
+> The sensor uses a photoacoustic principle for measuring CO2 concentration.
+> An I2C interface is supported by this driver in order to communicate with
+> the sensor.
+> 
+> Signed-off-by: Roan van Dijk <roan@protonic.nl>
+Hi Roan,
 
-Tested-by: Adam Ford <aford173@gmail.com> # logicpd-torpedo-37xx-devkit
+Looks like you sent out wrong version or similar as the trigger_handler
+won't work as you have it here.  Otherwise looks good to me.
 
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-omap.txt | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-> @@ -5,7 +5,11 @@ Refer to mmc.txt for standard MMC bindings.
->  For UHS devices which require tuning, the device tree should have a "cpu_thermal" node which maps to the appropriate thermal zone. This is used to get the temperature of the zone during tuning.
->
->  Required properties:
-> -- compatible: Should be "ti,dra7-sdhci" for DRA7 and DRA72 controllers
-> +- compatible: Should be "ti,omap2430-sdhci" for omap2430 controllers
-> +             Should be "ti,omap3-sdhci" for omap3 controllers
-> +             Should be "ti,omap4-sdhci" for omap4 and ti81 controllers
-> +             Should be "ti,omap5-sdhci" for omap5 controllers
-> +             Should be "ti,dra7-sdhci" for DRA7 and DRA72 controllers
->               Should be "ti,k2g-sdhci" for K2G
->               Should be "ti,am335-sdhci" for am335x controllers
->               Should be "ti,am437-sdhci" for am437x controllers
-> --
-> 2.33.0
+...
+
+> +static irqreturn_t scd4x_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct scd4x_state *state = iio_priv(indio_dev);
+> +	struct {
+> +		uint16_t data[3];
+> +		int64_t ts __aligned(8);
+> +	} scan;
+> +	int ret;
+> +	uint16_t buf[3];
+> +
+> +	memset(&scan, 0, sizeof(scan));
+> +	mutex_lock(&state->lock);
+> +	ret = scd4x_read_poll(state, buf);
+
+scan->data and drop the local variable buf as unused.
+
+If I've interpreted the intent right here I'm happy to make this tweak
+whilst applying.  If you prefer to send a v5 with it fixed up that is
+fine as well.
+
+
+> +	mutex_unlock(&state->lock);
+> +	if (ret)
+> +		goto out;
+> +
+> +	iio_push_to_buffers_with_timestamp(indio_dev, &scan, iio_get_time_ns(indio_dev));
+> +out:
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +	return IRQ_HANDLED;
+> +}
+> +
+...
