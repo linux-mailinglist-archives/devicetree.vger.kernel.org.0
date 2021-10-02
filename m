@@ -2,145 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 719B041FE17
-	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 22:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27E8A41FE72
+	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 00:25:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234016AbhJBUqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Oct 2021 16:46:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34092 "EHLO
+        id S234125AbhJBW0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Oct 2021 18:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233975AbhJBUqg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 16:46:36 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 357FBC061714;
-        Sat,  2 Oct 2021 13:44:50 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id j5so48530857lfg.8;
-        Sat, 02 Oct 2021 13:44:50 -0700 (PDT)
+        with ESMTP id S234115AbhJBW0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 18:26:55 -0400
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3FC7C0613EF
+        for <devicetree@vger.kernel.org>; Sat,  2 Oct 2021 15:25:08 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso16408459ota.8
+        for <devicetree@vger.kernel.org>; Sat, 02 Oct 2021 15:25:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=kali.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=T5NA95fXjewFVQZ7RXmQGjvZaYL3KLG4ILjTuHYXm9E=;
-        b=VInxURP7xctDXfL0Dl1Z5iIuI8Z57STPldPnyJ+NEoakoMviQJJZLMTDvRJajSYeUA
-         L6hAx+33fXvlxHQdSLAb2swwYgCSXcm4IHTOs4QNGPXy0n+3kc1PaSRsPOeccYBdBeZd
-         i/GVKW6ch0QjgR5Al9izKnsKjtkLP9b6WFxxbgQj5xOtMJ+SSJ3vI3nxrqadHVRi/RnA
-         W6QxtWyfIbdShJzgMDhIpqfX5qzkmNQXHlvgGM11cFUopWEMKunpWxyqUcwKJKYvFAG5
-         +vztm6uVxmXOzcI8Wt5yVr3CSoQmJa2Le0PpZjwLrPdDyp4eM6GhDyuSByQAckD1zOgW
-         c3ug==
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=kwLCMDXG5tAutueUhhnC0ulekbfLXbc2/QpfBcJC3Gc=;
+        b=CkzgWwYsO1rSY3eTTWbbReNUToQcUrXoV84rcZmMa1U/c92fjnIMLQtF5Bpd1p2bph
+         2fCGkp7WOivVcgol091VH/53AwvG9KqaL4wjUiMRSdGQQxTS1dkYtt7AdlnywaB35vy5
+         6axVGYOBvZEVfZUse1/JBnuDQvUucr4GZfSyXMwExBPYXAuj29Q9s55XV6ut3iXBFqLO
+         Kt9VjlcXmI2LDRuUdfr5R93iFlnc0yPiS/olVIf1cDTT0EZ/Q9+1ncDsizTuVrNpxUz0
+         350Ux8d/wjAtvh/8v9NsenQtHGY9ZWgoti3qacnUcC7EUaeIvutihvy7PVqYURMOKVpN
+         /EIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=T5NA95fXjewFVQZ7RXmQGjvZaYL3KLG4ILjTuHYXm9E=;
-        b=o+AkgwIXTGmhQJOReVcp/TKkZzv7PXYcfMekTaitKUtIJwq9Jx49Ek3A6rzLNWnGDw
-         P14BK/n3ooXkpVEH9nCyL8FXZYN7ZEwDQcX/HwTKjBIRyMgJudlk3iv1sfciLtZTSdOR
-         vwOpvOwVQIenigGsvIM5EuTWq+4BDfs+q6YQF1gWnaCKscYOjk/MGgW3xBNn8ZhUdVCZ
-         7xYmRwRBj20i5ZIDmJzuKM5BziIPaasu+aA7E2ExtPF5uOYuwbOaw7T/wguPP+RgSZQ4
-         IMKvmtAHcPJB8dSJI9T5/DLw2qkb2FpwIt50gSksOXa8MP0ZwlDi4BPe4g+NLYlyBgjd
-         yb5A==
-X-Gm-Message-State: AOAM5320QoRG2UTT3/F5jVU3Ku5BPR/cGcwERvAogi3KnHxkjgIS1xsP
-        utURybmrqidGKVMJdilKdqs=
-X-Google-Smtp-Source: ABdhPJzClEAya5hcn4TqFZQoHIn0mpgv86q3zG4rhbGd/Hwr0saEHFeEJIpz6XM0cCQNRVK631z4Mw==
-X-Received: by 2002:a2e:80cd:: with SMTP id r13mr5454584ljg.415.1633207488462;
-        Sat, 02 Oct 2021 13:44:48 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-52-238.dynamic.spd-mgts.ru. [94.29.52.238])
-        by smtp.googlemail.com with ESMTPSA id v27sm1233535lfp.0.2021.10.02.13.44.46
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=kwLCMDXG5tAutueUhhnC0ulekbfLXbc2/QpfBcJC3Gc=;
+        b=VaI7Ng5UG7QEluP4KETZVA8x7hgkYnguwAk7Lhx1rxpwh9lyvE9ZgYunsTa252UiJl
+         8McpJcX+l/2LB17NJZygMrXoTR1vgEmaQbcQFLGN6syLUp6GwvgBhOJ7MoPwaGxZmXgX
+         ou6ErWSFiFvZNImpGcMDnH/j2FKkfWUJQquDQhdmtxORRsZXO8hW6wf4q8DEeZcqcFUg
+         a99RXIolpkI5Gjz/Kxh88SROsG1P9ifaHfcP1gKrBvZ2KHKULKyxS3rnznNZLdYJreVi
+         M8R7GGmOgh+NKyqv9MmlRBGLQZ4wKSiunpkXC39iSGtKVb5mNH7FLx6yS4eWCTgZurEo
+         Bxpw==
+X-Gm-Message-State: AOAM533y8k5jJq+YydHvMxHQdndlFwSaf3alzBMnd3T1pnxZfNqZD17o
+        XACrVizdS0eu0NB7ZjJJ2VrXTg==
+X-Google-Smtp-Source: ABdhPJz/k9T2u/nP84ZQY8F3jRkfJcpbw3hwNCZNaDcXk4TDyHyTla1Or+E+xjTwPwQOHaVFyHb8xg==
+X-Received: by 2002:a9d:750f:: with SMTP id r15mr4158632otk.24.1633213507901;
+        Sat, 02 Oct 2021 15:25:07 -0700 (PDT)
+Received: from MacBook-Pro.hackershack.net (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
+        by smtp.gmail.com with ESMTPSA id i12sm1862271oik.50.2021.10.02.15.25.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Oct 2021 13:44:47 -0700 (PDT)
-Subject: Re: [PATCH v13 06/35] clk: tegra: Support runtime PM and power domain
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Nishanth Menon <nm@ti.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-References: <20210926224058.1252-1-digetx@gmail.com>
- <20210926224058.1252-7-digetx@gmail.com>
- <CAPDyKFq+LS4Jr1GyC-a-tGWPzGH0JxfJ9wKY=uQEBGYm952azw@mail.gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <24101cd6-d3f5-1e74-db39-145ecd30418b@gmail.com>
-Date:   Sat, 2 Oct 2021 23:44:46 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Sat, 02 Oct 2021 15:25:07 -0700 (PDT)
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: sdm845: Disable Adreno, modem and
+ Venus by default
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211002001358.45920-1-konrad.dybcio@somainline.org>
+ <20211002001358.45920-3-konrad.dybcio@somainline.org>
+From:   Steev Klimaszewski <steev@kali.org>
+Message-ID: <67e12e31-2eb3-fea6-822e-56836aabc0d2@kali.org>
+Date:   Sat, 2 Oct 2021 17:25:05 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
+ Gecko/20100101 Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFq+LS4Jr1GyC-a-tGWPzGH0JxfJ9wKY=uQEBGYm952azw@mail.gmail.com>
+In-Reply-To: <20211002001358.45920-3-konrad.dybcio@somainline.org>
 Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-01.10.2021 15:32, Ulf Hansson пишет:
->> +static __maybe_unused int tegra_clock_pm_suspend(struct device *dev)
->> +{
->> +       struct tegra_clk_device *clk_dev = dev_get_drvdata(dev);
->> +
->> +       /*
->> +        * Power management of the clock is entangled with the Tegra PMC
->> +        * GENPD because PMC driver enables/disables clocks for toggling
->> +        * of the PD's on/off state.
->> +        *
->> +        * The PMC GENPD is resumed in NOIRQ phase, before RPM of the clocks
->> +        * becomes available, hence PMC can't use clocks at the early resume
->> +        * phase if RPM is involved. For example when 3d clock is enabled,
->> +        * it may enable the parent PLL clock that needs to be RPM-resumed.
->> +        *
->> +        * Secondly, the PLL clocks may be enabled by the low level suspend
->> +        * code, so we need to assume that PLL is in enabled state during
->> +        * suspend.
->> +        *
->> +        * We will keep PLLs and system clock resumed during suspend time.
->> +        * All PLLs on all SoCs are low power and system clock is always-on,
->> +        * so practically not much is changed here.
->> +        */
->> +
->> +       return clk_prepare(clk_dev->hw->clk);
-> I am trying to understand, more exactly, what you intend to achieve
-> with the clk_prepare() here. It looks a bit weird, to me. Can you try
-> to elaborate a bit more on the use case?
 
-The Tegra GENPD driver enable/disable clocks when domain is turned on.
-This can't be done during early system resume, when domains are getting
-turned on by the drivers core, because when clock is enabled, it's
-getting prepared (RPM-resumed) and this preparation fails because
-performance state of the clock goes up and it doesn't work during the
-early resume time since I2C, which applies the state to hardware, is
-suspended and can't work at that early time.
-
-Secondly, Tegra has arch-specific low level assembly which touches
-clocks during last phase of system suspend and in the beginning of
-resume. Hence, clocks should stay prepared during suspend just because
-technically clock should be prepared before it can be enabled.
-
-> Is this rather about making sure that the clock's corresponding PM
-> domain stays powered on during system suspend? In that case, I think
-> there may be an alternative option....
-> 
-
-This is not about domain staying powered on, this is about keeping the
-performance state of the domain high during suspend.
+On 10/1/21 7:13 PM, Konrad Dybcio wrote:
+> Components that rely on proprietary (not to mention signed!) firmware should
+> not be enabled by default, as lack of the aforementioned firmware could cause
+> various issues, from random errors to straight-up failing to boot.
+>
+> Re-enable these remote processors on boards that didn't previously explicitly
+> disable them.
+>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi           | 12 ++++++++++++
+>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts              | 10 ++++++++++
+>  arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi  | 10 ++++++++++
+>  arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 10 ++++++++++
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi                 |  8 ++++++++
+>  5 files changed, 50 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> index dfd1b42c07fd..1f8a26f36f2e 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> @@ -616,6 +616,14 @@ touchscreen@10 {
+>  	};
+>  };
+>  
+> +&gmu {
+> +	status = "okay";
+> +};
+> +
+> +&gpu {
+> +	status = "okay";
+> +};
+> +
+>  &ipa {
+>  	status = "okay";
+>  	modem-init;
+> @@ -643,6 +651,8 @@ &adreno_smmu {
+>  };
+>  
+>  &mss_pil {
+> +	status = "okay";
+> +
+>  	iommus = <&apps_smmu 0x781 0x0>,
+>  		 <&apps_smmu 0x724 0x3>;
+>  };
+> @@ -1317,6 +1327,8 @@ config {
+>  };
+>  
+>  &venus {
+> +	status = "okay";
+> +
+>  	video-firmware {
+>  		iommus = <&apps_smmu 0x10b2 0x0>;
+>  	};
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> index 52dd7a858231..bccc90a469ab 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> @@ -439,7 +439,13 @@ &gcc {
+>  			   <GCC_LPASS_SWAY_CLK>;
+>  };
+>  
+> +&gmu {
+> +	status = "okay";
+> +};
+> +
+>  &gpu {
+> +	status = "okay";
+> +
+>  	zap-shader {
+>  		memory-region = <&gpu_mem>;
+>  		firmware-name = "qcom/sdm845/a630_zap.mbn";
+> @@ -566,6 +572,10 @@ &usb_2_qmpphy {
+>  	vdda-pll-supply = <&vdda_usb2_ss_core>;
+>  };
+>  
+> +&venus {
+> +	status = "okay";
+> +};
+> +
+>  &wifi {
+>  	status = "okay";
+>  	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> index d4355522374a..2f8942542788 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> @@ -362,7 +362,13 @@ &gcc {
+>  				<GCC_LPASS_SWAY_CLK>;
+>  };
+>  
+> +&gmu {
+> +	status = "okay";
+> +};
+> +
+>  &gpu {
+> +	status = "okay";
+> +
+>  	zap-shader {
+>  		memory-region = <&gpu_mem>;
+>  		firmware-name = "qcom/sdm845/oneplus6/a630_zap.mbn";
+> @@ -641,6 +647,10 @@ mux {
+>  	};
+>  };
+>  
+> +&venus {
+> +	status = "okay";
+> +};
+> +
+>  &wifi {
+>  	status = "okay";
+>  	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> index c60c8c640e17..51cfe6f31bec 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
+> @@ -256,7 +256,13 @@ &gcc {
+>  			   <GCC_LPASS_SWAY_CLK>;
+>  };
+>  
+> +&gmu {
+> +	status = "okay";
+> +};
+> +
+>  &gpu {
+> +	status = "okay";
+> +
+>  	zap-shader {
+>  		memory-region = <&gpu_mem>;
+>  		firmware-name = "qcom/sdm845/a630_zap.mbn";
+> @@ -513,6 +519,10 @@ &usb_1_qmpphy {
+>  	vdda-pll-supply = <&vreg_l1a_0p875>;
+>  };
+>  
+> +&venus {
+> +	status = "okay";
+> +};
+> +
+>  &wcd9340{
+>  	pinctrl-0 = <&wcd_intr_default>;
+>  	pinctrl-names = "default";
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index edfff955ca02..970e92188503 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -3004,6 +3004,8 @@ mss_pil: remoteproc@4080000 {
+>  					<&rpmhpd SDM845_MSS>;
+>  			power-domain-names = "cx", "mx", "mss";
+>  
+> +			status = "disabled";
+> +
+>  			mba {
+>  				memory-region = <&mba_region>;
+>  			};
+> @@ -3898,6 +3900,8 @@ venus: video-codec@aa00000 {
+>  					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_VENUS_CFG 0>;
+>  			interconnect-names = "video-mem", "cpu-cfg";
+>  
+> +			status = "disabled";
+> +
+>  			video-core0 {
+>  				compatible = "venus-decoder";
+>  			};
+> @@ -4432,6 +4436,8 @@ gpu: gpu@5000000 {
+>  			interconnects = <&mem_noc MASTER_GFX3D 0 &mem_noc SLAVE_EBI1 0>;
+>  			interconnect-names = "gfx-mem";
+>  
+> +			status = "disabled";
+> +
+>  			gpu_opp_table: opp-table {
+>  				compatible = "operating-points-v2";
+>  
+> @@ -4527,6 +4533,8 @@ gmu: gmu@506a000 {
+>  
+>  			operating-points-v2 = <&gmu_opp_table>;
+>  
+> +			status = "disabled";
+> +
+>  			gmu_opp_table: opp-table {
+>  				compatible = "operating-points-v2";
+>  
+This missed the Lenovo Yoga C630 inherits from sdm845 and breaks it.
