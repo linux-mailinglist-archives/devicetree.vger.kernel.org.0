@@ -2,87 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34EC441F977
-	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 05:08:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B567A41F991
+	for <lists+devicetree@lfdr.de>; Sat,  2 Oct 2021 06:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229811AbhJBDKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Oct 2021 23:10:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57864 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbhJBDKV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Oct 2021 23:10:21 -0400
-Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AFB5C061775
-        for <devicetree@vger.kernel.org>; Fri,  1 Oct 2021 20:08:36 -0700 (PDT)
-Received: by mail-vk1-xa2e.google.com with SMTP id z202so5269642vkd.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Oct 2021 20:08:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zWcsoNNbTI1PrEdcKy9yhwvLZLKkP72Q13vQFT7BlXo=;
-        b=KQXrpsPYq6s0eg2MINPQMispN40kZXeXFtl9fMCZzH/igW3d8aZ+NS8/vujlfUpeXz
-         YhA+KumORTVC424NHqJR11VrsTghbSBI9XLSRZaa6UAE312NTyDBm6HQqQENj2UkSIZL
-         quNlbSRca/XUE4YtSEvTl3L6q4IILSFbeFduk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zWcsoNNbTI1PrEdcKy9yhwvLZLKkP72Q13vQFT7BlXo=;
-        b=jLZ1hewlumvT7T0X5se8FP+V+aDvqMTXOhCM4P7w4JjSMKp5G3qk1ftzXLZWh2/HD4
-         T4VNku8ISMjWPYy8em3KwFX1oqh75H7T0gGSul23kFfXOffBaauJm5HEFLS/Bt3daC0F
-         Xy5BKrsvzih+MzD6pxTUgoFCL0lyqRe2nlS0858R3syz/KTAhgr19Unm5fz09w7g7QZO
-         ROKKDmshjBrwMp6SH4gS1Dc8JK3EzkJ05ZF+AmOpLhASxHLBY5xPRGybY5X0NWcScaxd
-         i10khgJyu9KhFnDfW3VnSgGCYxgUu91jatZW6fKG6ixe7+S6kgs720tlRzuXbxBLnXsa
-         oEHQ==
-X-Gm-Message-State: AOAM533oSGYIyQTVoWQNMySUcfeS66VPp8aTGrgQjA5ZBBh2TwNUrpyo
-        koUAuVBwd5f0tK/ejcE1jrf/qzB5OaWq5UVLT50O2Gm3QLyK0w==
-X-Google-Smtp-Source: ABdhPJzQFnjnm+4kFz4Ga2tT8LY1UjJ7dIbzibIxyWK6T3MUPYRc42jt1goxY0qKRKqgi5DvuZtwwU9SxPdx7vjfbcY=
-X-Received: by 2002:a1f:f203:: with SMTP id q3mr10454977vkh.1.1633144115355;
- Fri, 01 Oct 2021 20:08:35 -0700 (PDT)
+        id S229657AbhJBEIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Oct 2021 00:08:00 -0400
+Received: from smtprelay0163.hostedemail.com ([216.40.44.163]:50444 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229560AbhJBEIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 00:08:00 -0400
+X-Greylist: delayed 324 seconds by postgrey-1.27 at vger.kernel.org; Sat, 02 Oct 2021 00:07:59 EDT
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com [10.5.19.251])
+        by smtpgrave04.hostedemail.com (Postfix) with ESMTP id 99FE9180782A4;
+        Sat,  2 Oct 2021 04:00:51 +0000 (UTC)
+Received: from omf12.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay01.hostedemail.com (Postfix) with ESMTP id 51090100E7B52;
+        Sat,  2 Oct 2021 04:00:49 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf12.hostedemail.com (Postfix) with ESMTPA id 1ED57240235;
+        Sat,  2 Oct 2021 04:00:46 +0000 (UTC)
+Message-ID: <fbab80553b993421e064b61814a7e5c634f62e6e.camel@perches.com>
+Subject: Re: [RFC v2 11/11] MAINTAINERS: Added HTE Subsystem
+From:   Joe Perches <joe@perches.com>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        Dipen Patel <dipenp@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        warthog618@gmail.com, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org
+Date:   Fri, 01 Oct 2021 21:00:45 -0700
+In-Reply-To: <b6a968cb-1d7b-887c-8995-6e6b9fef03bf@infradead.org>
+References: <20210930232617.6396-1-dipenp@nvidia.com>
+         <20210930232617.6396-12-dipenp@nvidia.com>
+         <b6a968cb-1d7b-887c-8995-6e6b9fef03bf@infradead.org>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-References: <20210914100415.1549208-1-daniel@0x0f.com> <20210914100415.1549208-3-daniel@0x0f.com>
- <87zgs7vavl.wl-maz@kernel.org> <CAFr9PXnC4hQw5_0TtciKvqF7s=4axJ5Yrq80RXGcY4VvT1Ac2A@mail.gmail.com>
- <87wnnbv6ac.wl-maz@kernel.org> <CAFr9PXmA07Up_wfJzzgZeYwE5ZrwnLqjBvLG3CERGHOLeay0Cg@mail.gmail.com>
- <87lf3quydn.wl-maz@kernel.org> <CACRpkdYLURJCopH3hDuZTY8ce9-OxakELyFqwqkAVCsYmzF5kg@mail.gmail.com>
- <874ka2tdqe.wl-maz@kernel.org> <CAFr9PXmu2JRSK9==MjpwgWTCET4iqj5U=egQQ2TciN0=B_UwNw@mail.gmail.com>
- <CACRpkdY-G5cN1Bn0yTi+867X93K9kBsV5543d8LoXzk9W-yCOg@mail.gmail.com>
-In-Reply-To: <CACRpkdY-G5cN1Bn0yTi+867X93K9kBsV5543d8LoXzk9W-yCOg@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Sat, 2 Oct 2021 12:08:24 +0900
-Message-ID: <CAFr9PXmNLZ5sXhsVXyoNJmaAUMz866ZPDsAAteSv13dVQ_hNEg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] irqchip: SigmaStar SSD20xD gpi
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Marc Zyngier <maz@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Romain Perier <romain.perier@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 1ED57240235
+X-Spam-Status: No, score=-0.64
+X-Stat-Signature: hgk6z5sz6jieutxqdrx7yuux4xd3imtu
+X-Rspamd-Server: rspamout02
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX19mvdfNloEqShYZNn11H8x47SYY6vDcqBg=
+X-HE-Tag: 1633147246-448701
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Fri, 2021-10-01 at 17:08 -0700, Randy Dunlap wrote:
+> On 9/30/21 4:26 PM, Dipen Patel wrote:
+> > Added myself as a maintainer for this new Hardware Timestamping Engine
+> > (HTE) subsystem.
+[]
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+[]
+> > +S:	Maintained
+> > +F:	drivers/hte/*
+> > +F:	include/linux/hte.h
+> > +F:	Documentation/hte/*
+> > +F:	Documentation/devicetree/bindings/hte/*
 
-Sorry for the constant spam on this..
+And using * does not support any possible subdirectory
 
-On Fri, 1 Oct 2021 at 01:13, Linus Walleij <linus.walleij@linaro.org> wrote:
-> To me this looks like your IRQ handler is firing for unused IRQs, i.e.
-> you are getting spurious IRQs.
->
-> Are you missing to disable all IRQs as part of the set-up before
-> registering the GPIO chip? (Usually some registers need to
-> be written with zeroes.)
+Likely these should be:
 
-Changing the handler to handle_edge_irq() on the gpio side resolves
-the issue and gpiomon registers edges from the gpio like it should.
-So I think it's an ordering thing. Something like the gpio side sets
-the handler to handle_bad_irq() after the irqchip side sets it to
-handle_edge_irq().
+F:	drivers/hte/
+F:	include/linux/hte.h
+F:	Documentation/hte/
+F:	Documentation/devicetree/bindings/hte/
 
-Thanks for the help.
 
-Cheers,
-
-Daniel
