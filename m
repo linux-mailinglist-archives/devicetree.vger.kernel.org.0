@@ -2,80 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 210D342043E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 00:10:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A31E7420447
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 00:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231839AbhJCWL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Oct 2021 18:11:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55562 "EHLO
+        id S231790AbhJCWX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Oct 2021 18:23:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231820AbhJCWL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Oct 2021 18:11:58 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48856C061781
-        for <devicetree@vger.kernel.org>; Sun,  3 Oct 2021 15:10:10 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id y23so24227243lfb.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Oct 2021 15:10:10 -0700 (PDT)
+        with ESMTP id S231583AbhJCWX0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Oct 2021 18:23:26 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4425C0613EC
+        for <devicetree@vger.kernel.org>; Sun,  3 Oct 2021 15:21:37 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id i4so64065745lfv.4
+        for <devicetree@vger.kernel.org>; Sun, 03 Oct 2021 15:21:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=U9Mf9GI5Pm+kL+VrrV0E+/1cX+8MmlfNpjuTrHIHDBU=;
-        b=yz+MMKs016NPuE07ZM/SC+j0anFa+U46jg+mEqlMroGgSo0OVRX/iofinaFE6ejX/x
-         VmzstodfD09SW17AUy8oeN4nfpEg1VsLCoPIb3qX1pz40qF5uWpt7PQdZfFt4IkANUkT
-         kbO945a/obo21YaI+yunotwvgZA8hGf4DX4wS+5Fqkd9lGVGx6BrKMR9YONncGZPmD2l
-         Tay+n7KiAFQIa9c81prLgONI+BqzyXEFY5hXEdfBGz8n4MuJHHMfJAs/nVy7IAfWj2zF
-         Od88lzNIPSr8M89btm4C01W7RyiHdr7I1IN5cmBmIA39pWY3OBgpEFZGEJrVPRfiQUmW
-         aJlQ==
+        bh=Ha4KPP96c9xEyWBTDtUnjtflOYpKDiaevgMoztxbhBw=;
+        b=uh+rwJD+WupkcQ6pMmlQv4BP8AJNpxL9ZngmxF8iDBE87FF6H3RHMBJYjQ3G8JezIA
+         pvfNv6Dly/h6UIu45XzjD2oMVOWyArQ4RnNRSuHGDmCulFQMZpLUAfNvDK57l1lxeKvG
+         ed/usCqvyRxd61ZZdT7Yd9jnUXThEza6N3CCebmPquq+lSV/ftW14/+cLZGZUtJBXz8D
+         RlbV5lXgmx7dxclUUF6yFvJKlE9UbUWFOOdvT7fUY23CQAGdqK6OVFK7462GwPGcXstS
+         mgrNAoI64RQSGBFJIBmX2PhTKIFmgi6xCEWaZ6VGxX0Rkhh8F89jvKErgkwhb7Hj0o2U
+         3D9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=U9Mf9GI5Pm+kL+VrrV0E+/1cX+8MmlfNpjuTrHIHDBU=;
-        b=Q7RfvdflJyMGCoVp0yEV1EHCfohhgY2pxkUcCbn4Qms3Yl+nUdlxWgBrW3cR4Aqm8U
-         PXNqw46nb2dMnpvGC8wXakgZuSO3ASYDcBdGDuzeHseqoTA4Vm8RG5SSbPi+suX0yOGP
-         DcnO1Qr3Mj1PiBjGLzecsrOnx6CQ3BQg9SYGV2mX3vpY182ixXcB3CRBHlu+kgA5BAQD
-         XIjC+V0t8TF7r9Nd2bWwyHFVzVVnbZx7uLavCfz7RkUBVsiQCt5pHmUZOg6z+ni5PYTK
-         jzivkwmEd8Il4eCwjLg3K73G2R2xXPHPCUX/ntHAX7F3btAizMyJeTHmWII2+oBPg2fh
-         z9/g==
-X-Gm-Message-State: AOAM530Nh5K6Flq0Xw8sF3M2PkwwDJnTW/3FG5aJeQxkqlXHOJfpiAZZ
-        kP2uir9LK6fo9HQ9zMESUsACXvosPiFVbzVk+qGBLA==
-X-Google-Smtp-Source: ABdhPJwXQxgJnBiCJXHiEECucos6gkDzEYPUpOuN9ryCXhy30bNBzWy6TPluZ4UpN7159wDQXClY4Uo7sDaMjt8BupI=
-X-Received: by 2002:a2e:510a:: with SMTP id f10mr12187903ljb.358.1633299008538;
- Sun, 03 Oct 2021 15:10:08 -0700 (PDT)
+        bh=Ha4KPP96c9xEyWBTDtUnjtflOYpKDiaevgMoztxbhBw=;
+        b=XgkZBKs4d+qEjG0+f92QMzbw5q7t+4KE45hmTb+ofavCV0YCWGtXuluVfk03lzq7Db
+         /VfwvLQSj6pYytSCUjhk8YBhuIY6+dkScdinLZbWKfXWbE0QKskG0nNf+zvSpb2TNvXn
+         a9GilVml2GI30XPNSWjHCFBLs5Umy9Fzqe5+xuzCBImaTp2rAIse+ZfxBM1w9ZhxA6LE
+         rVeki8CvWe+V0UYsawVb/EZx/VrLC7NJhnqDuheO+4gdSt9sbYEtsNh3iiEepW/aUz4B
+         fus9aRH8fD5tn29iOJiC+VH1B4pu+e6Gag45NEEbCB4Ng/aMiXEBnhkwSVBeUZE9uQLq
+         hyhA==
+X-Gm-Message-State: AOAM533MQS+uHNbeYZQfxwhVOKBujVm9AvxXrNHYB+ooLqMFoS5l7Wox
+        2LKqv4JkTw4sgVSKl/ag0xdNEfXVH+68rdjt5Z4y6Q==
+X-Google-Smtp-Source: ABdhPJzAPjbQzi66RvTKB4i1hR2rwBUGWvCcNMGWE4lsj2AaSK6905q9F7ehlzINjR2URzVKnmYfqMpdoFrR/3Lp7KE=
+X-Received: by 2002:a05:6512:706:: with SMTP id b6mr10969524lfs.656.1633299696245;
+ Sun, 03 Oct 2021 15:21:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210930232617.6396-1-dipenp@nvidia.com> <20210930232617.6396-9-dipenp@nvidia.com>
-In-Reply-To: <20210930232617.6396-9-dipenp@nvidia.com>
+References: <20211001191209.29988-1-joey.gouly@arm.com> <20211001191209.29988-2-joey.gouly@arm.com>
+In-Reply-To: <20211001191209.29988-2-joey.gouly@arm.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 4 Oct 2021 00:09:57 +0200
-Message-ID: <CACRpkdaO8ydTEkPU4LT+ibzb_-5VEw9mdvMbu+R9cR6zv9MsDQ@mail.gmail.com>
-Subject: Re: [RFC v2 08/11] gpiolib: cdev: Add hardware timestamp clock type
-To:     Dipen Patel <dipenp@nvidia.com>
-Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Kent Gibson <warthog618@gmail.com>,
+Date:   Mon, 4 Oct 2021 00:21:25 +0200
+Message-ID: <CACRpkdZP6=aSDegTrOd2qopUQc-ZbtmSWehs2kSN=50CPN-04w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] gpio: Allow per-parent interrupt data
+To:     Joey Gouly <joey.gouly@arm.com>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sven Peter <sven@svenpeter.dev>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>, nd <nd@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 1, 2021 at 1:26 AM Dipen Patel <dipenp@nvidia.com> wrote:
+On Fri, Oct 1, 2021 at 9:12 PM Joey Gouly <joey.gouly@arm.com> wrote:
 
-> +       if (test_bit(FLAG_EVENT_CLOCK_HARDWARE, &line->desc->flags)) {
+> From: Marc Zyngier <maz@kernel.org>
+>
+> The core gpiolib code is able to deal with multiple interrupt parents
+> for a single gpio irqchip. It however only allows a single piece
+> of data to be conveyed to all flow handlers (either the gpio_chip
+> or some other, driver-specific data).
+>
+> This means that drivers have to go through some interesting dance
+> to find the correct context, something that isn't great in interrupt
+> context (see aebdc8abc9db86e2bd33070fc2f961012fff74b4 for a prime
+> example).
+>
+> Instead, offer an optional way for a pinctrl/gpio driver to provide
+> an array of pointers which gets used to provide the correct context
+> to the flow handler.
+>
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
 
-I don't know if it's here or a few other places as well we could sneak
-in a IS_ENABLED(CONFIG_HTE) to make sure the compiler will
-optimize out a bunch of the HTE support code if HTE is not in use?
-
-Just an idea, I guess it's not the most urgent.
+This works for me, bonus for the elegant use of union
+here to make the array optional.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
