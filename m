@@ -2,35 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66D214200C3
-	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 10:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9B474200D0
+	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 10:33:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbhJCIdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Oct 2021 04:33:52 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:37948 "EHLO mail.z3ntu.xyz"
+        id S229822AbhJCIfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Oct 2021 04:35:13 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:37964 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229809AbhJCIdv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Oct 2021 04:33:51 -0400
+        id S229968AbhJCIdx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 Oct 2021 04:33:53 -0400
 Received: from g550jk.portal.nstrein.ns.nl (unknown [145.15.244.215])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 7371AC910E;
-        Sun,  3 Oct 2021 08:32:02 +0000 (UTC)
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 385E8C910E;
+        Sun,  3 Oct 2021 08:32:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1633249923; bh=QweKY5MA+C4H7ytFhPQeyJb1i/Tq++4mbxAZu/ezFn4=;
+        t=1633249925; bh=5A+sleW25CkdHFJbndlf92vvIwLf7Sdoa5EtZ0V4lzo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=Oo0/wB+xOkfYuocKVMuAWwWM+FyVtN7AWqOtAbZ8KRs3xGiMGOr8vPce5kmPO4Pft
-         DWXqgJyy7Bm/oAI59iePjXnhG0gpkJzXOOc1o5YOPqhLeDcDA4AtClS6ZLJJsmAGNF
-         ln3A7UePE+rYr4iajuF2z2juEbeV9SeLZ6uI0IOY=
+        b=ds6kdI+Pe3uhtp7jkL/JFyfj6agF4cPoTk77deqnTysYVfVC3TtOVFNq/YcQmkH+O
+         AcLl+7e22UPrvvCTbXx9BqsPpjmwrQ4sXOdd7wzxK/CAEmIOsvcOHpu7+5cBODGenz
+         jHBvyeQv13MHXuI7aOLmIHmrZxk83SswNI2oKLrY=
 From:   Luca Weiss <luca@z3ntu.xyz>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, Luca Weiss <luca@z3ntu.xyz>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 04/11] dt-bindings: pinctrl: qcom,pmic-gpio: Add compatible for PM6350
-Date:   Sun,  3 Oct 2021 10:31:27 +0200
-Message-Id: <20211003083141.613509-5-luca@z3ntu.xyz>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 06/11] arm64: dts: qcom: Add PM6350 PMIC
+Date:   Sun,  3 Oct 2021 10:31:29 +0200
+Message-Id: <20211003083141.613509-7-luca@z3ntu.xyz>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211003083141.613509-1-luca@z3ntu.xyz>
 References: <20211003083141.613509-1-luca@z3ntu.xyz>
@@ -40,33 +39,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pmic-gpio compatible string for pm6350 pmic.
+PM6350 is used in SM6350 and provides similar functionality to other
+Qualcomm PMICs.
+
+Add the pon node with power & volume key and the gpios.
 
 Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 ---
- Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/pm6350.dtsi | 54 ++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm6350.dtsi
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-index 9bd01db37dcd..1e5153f10ca1 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-@@ -21,6 +21,7 @@ properties:
-           - qcom,pm660l-gpio
-           - qcom,pm6150-gpio
-           - qcom,pm6150l-gpio
-+          - qcom,pm6350-gpio
-           - qcom,pm7325-gpio
-           - qcom,pm8005-gpio
-           - qcom,pm8008-gpio
-@@ -103,6 +104,7 @@ $defs:
-           this subnode.  Valid pins are
-                  - gpio1-gpio10 for pm6150
-                  - gpio1-gpio12 for pm6150l
-+                 - gpio1-gpio9 for pm6350
-                  - gpio1-gpio10 for pm7325
-                  - gpio1-gpio4 for pm8005
-                  - gpio1-gpio2 for pm8008
+diff --git a/arch/arm64/boot/dts/qcom/pm6350.dtsi b/arch/arm64/boot/dts/qcom/pm6350.dtsi
+new file mode 100644
+index 000000000000..c5d85064562b
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/pm6350.dtsi
+@@ -0,0 +1,54 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2021, Luca Weiss <luca@z3ntu.xyz>
++ */
++
++#include <dt-bindings/spmi/spmi.h>
++
++&spmi_bus {
++	pmic@0 {
++		compatible = "qcom,pm6350", "qcom,spmi-pmic";
++		reg = <0x0 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pm6350_pon: pon@800 {
++			compatible = "qcom,pm8998-pon";
++			reg = <0x800>;
++			mode-bootloader = <0x2>;
++			mode-recovery = <0x1>;
++
++			pm6350_pwrkey: pwrkey {
++				compatible = "qcom,pm8941-pwrkey";
++				interrupts = <0x0 0x8 0x0 IRQ_TYPE_EDGE_BOTH>;
++				debounce = <15625>;
++				bias-pull-up;
++				linux,code = <KEY_POWER>;
++			};
++
++			pm6350_resin: resin {
++				compatible = "qcom,pm8941-resin";
++				interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
++				debounce = <15625>;
++				bias-pull-up;
++				status = "disabled";
++			};
++		};
++
++		pm6350_gpios: gpios@c000 {
++			compatible = "qcom,pm6350-gpio";
++			reg = <0xc000>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++
++	pmic@1 {
++		compatible = "qcom,pm6350", "qcom,spmi-pmic";
++		reg = <0x1 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++	};
++};
 -- 
 2.33.0
 
