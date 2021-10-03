@@ -2,90 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 444DE4200B6
-	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 10:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D3284200BC
+	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 10:32:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229878AbhJCIds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Oct 2021 04:33:48 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:37898 "EHLO mail.z3ntu.xyz"
+        id S229936AbhJCIdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Oct 2021 04:33:50 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:37924 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229809AbhJCIdr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Oct 2021 04:33:47 -0400
+        id S229885AbhJCIds (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 Oct 2021 04:33:48 -0400
 Received: from g550jk.portal.nstrein.ns.nl (unknown [145.15.244.215])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 9454DC9072;
-        Sun,  3 Oct 2021 08:31:57 +0000 (UTC)
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 5CB29C90F6;
+        Sun,  3 Oct 2021 08:32:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1633249919; bh=7A3bctolnPomul0Ceu+ocAChJSDa+GUUAFf4Ke825mc=;
-        h=From:To:Cc:Subject:Date;
-        b=cDaZGW7vadCXMfDCOVNdSTrGqr8VU8gvccrlL6DA1N3p0m4gWG3xSpyGfWRWSOkeA
-         6T08FT3SNi7oCdB+eDSRqrxuWt5oqkx8wGGXDsZ4Xiimpvhun0npLRveeKJ5xyke49
-         8xlc+MAD5wDb4JEJyFLCQ8ThU0kMbgSZF7+0Vy3c=
+        t=1633249920; bh=cPDamchJW0mjeP0iNR4px+LzJKosMc9BhKEa6fAGkEw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=BgwdoVZK00Phlxx9j2cPArOU41IJLf+WuzAx8sBtrjmL6KL36eIkM0zvD0IibkcS+
+         QuDda7ArDPaIVwuIp2NwnWELPCOK3nQTCZvOlYaBySuTq8OxpBm4CAvfDJGJTEFHGD
+         NPDkr6BBaHO5CzQKJz5okoqgNDjWivQhhnNLabaA=
 From:   Luca Weiss <luca@z3ntu.xyz>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, Luca Weiss <luca@z3ntu.xyz>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         David Collins <collinsd@codeaurora.org>,
-        Hector Martin <marcan@marcan.st>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 00/11] Initial Fairphone 4 support
-Date:   Sun,  3 Oct 2021 10:31:23 +0200
-Message-Id: <20211003083141.613509-1-luca@z3ntu.xyz>
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 02/11] dt-bindings: regulator: qcom,rpmh: Add compatible for PM6350
+Date:   Sun,  3 Oct 2021 10:31:25 +0200
+Message-Id: <20211003083141.613509-3-luca@z3ntu.xyz>
 X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211003083141.613509-1-luca@z3ntu.xyz>
+References: <20211003083141.613509-1-luca@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds basic support for the recently announced Fairphone 4
-smartphone, based on the Snapdragon 750G (sm7225).
+Add compatible string for pm6350 used in sm6350 boards.
 
-This adds support for UART, power & volume buttons, screen based on
-simple-framebuffer, regulators and USB.
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+ .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml      | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Luca Weiss (11):
-  clk: qcom: add select QCOM_GDSC for SM6350
-  dt-bindings: regulator: qcom,rpmh: Add compatible for PM6350
-  regulator: qcom-rpmh: Add PM6350 regulators
-  dt-bindings: pinctrl: qcom,pmic-gpio: Add compatible for PM6350
-  pinctrl: qcom: spmi-gpio: Add compatible for PM6350
-  arm64: dts: qcom: Add PM6350 PMIC
-  arm64: dts: qcom: sm6350: add debug uart
-  dt-bindings: arm: cpus: Add Kryo 570 CPUs
-  dt-bindings: arm: qcom: Document sm7225 and fairphone,fp4 board
-  arm64: dts: qcom: Add SM7225 device tree
-  arm64: dts: qcom: sm7225: Add device tree for Fairphone 4
-
- .../devicetree/bindings/arm/cpus.yaml         |   1 +
- .../devicetree/bindings/arm/qcom.yaml         |   6 +
- .../bindings/pinctrl/qcom,pmic-gpio.yaml      |   2 +
- .../regulator/qcom,rpmh-regulator.yaml        |   2 +
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- arch/arm64/boot/dts/qcom/pm6350.dtsi          |  54 +++
- arch/arm64/boot/dts/qcom/sm6350.dtsi          |  31 ++
- .../boot/dts/qcom/sm7225-fairphone-fp4.dts    | 322 ++++++++++++++++++
- arch/arm64/boot/dts/qcom/sm7225.dtsi          |  16 +
- drivers/clk/qcom/Kconfig                      |   1 +
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |   1 +
- drivers/regulator/qcom-rpmh-regulator.c       |  32 ++
- 12 files changed, 469 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/pm6350.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sm7225.dtsi
-
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+index 34de38377aa6..b959504e0ea4 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+@@ -35,6 +35,7 @@ description: |
+     PMIC. Supported regulator node names are
+       For PM6150, smps1 - smps5, ldo1 - ldo19
+       For PM6150L, smps1 - smps8, ldo1 - ldo11, bob
++      For PM6350, smps1 - smps5, ldo1 - ldo22
+       For PM7325, smps1 - smps8, ldo1 - ldo19
+       For PM8005, smps1 - smps4
+       For PM8009, smps1 - smps2, ldo1 - ldo7
+@@ -52,6 +53,7 @@ properties:
+     enum:
+       - qcom,pm6150-rpmh-regulators
+       - qcom,pm6150l-rpmh-regulators
++      - qcom,pm6350-rpmh-regulators
+       - qcom,pm7325-rpmh-regulators
+       - qcom,pm8005-rpmh-regulators
+       - qcom,pm8009-rpmh-regulators
 -- 
 2.33.0
 
