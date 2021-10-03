@@ -2,98 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D49C941FE93
-	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 00:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 168A441FEEC
+	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 02:35:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234176AbhJBWxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Oct 2021 18:53:15 -0400
-Received: from relay06.th.seeweb.it ([5.144.164.167]:49011 "EHLO
-        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234050AbhJBWxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 18:53:14 -0400
-Received: from [192.168.1.101] (83.6.167.124.neoplus.adsl.tpnet.pl [83.6.167.124])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 82DB63EE73;
-        Sun,  3 Oct 2021 00:51:25 +0200 (CEST)
-Message-ID: <255059cf-b91c-1d29-0474-6b4b8fcef141@somainline.org>
-Date:   Sun, 3 Oct 2021 00:51:24 +0200
+        id S234302AbhJCAhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Oct 2021 20:37:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56048 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234287AbhJCAhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Oct 2021 20:37:24 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD054C0613EC;
+        Sat,  2 Oct 2021 17:35:37 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id r7so6835885wrc.10;
+        Sat, 02 Oct 2021 17:35:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=g6IgKgTeOPn2kSgL3hUWPhBdd8ZQiQNCWpf+x3vkmn4=;
+        b=StEygmgG9jKOWu/dcN1kETNu3JvN1iXbTU72tC0RMT37kCtIjPri4ZjrWFmpSXvmG+
+         Dwe6TndDZ15Rs16xd44StTKc3eoreTaIr797kwMUDS9VNkojKwKAzasNTvTl6ZrGfAfk
+         EsgOxeey9eLnfNningerBWfzqGBZ/GLiij5O3+tFQaD6bK9GKg6An47hcWWJFbAbZ5Qi
+         Tsvi0XWcsvQOA3YUwmqVntp4vuzxq6pmbQtHi5qIL5Jl2BHms95SQ3WKNgaX+/HaEGqq
+         HMOwtrFIMU9MeM3F9rbJci7ewtcDKMzHLhpVUuLeARYhvHKHM8GzW4XanZxl/647VAq9
+         srAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=g6IgKgTeOPn2kSgL3hUWPhBdd8ZQiQNCWpf+x3vkmn4=;
+        b=p5kPQlk0pKNXVCdS2XspTxLjgo8fReHRm1ynMIirIIzqdPEV0B7RqJOVvmOVRXTKlk
+         aES7tT8NqrdajXt03i4L0Zlxmv2WFThZGDK+loHA8Tjku3P/CO/PiXhlsTBz7z2dtDMu
+         UX2AzpQs/KKAsVGooFAfRLZ8kJhuLAF0Z7+duqfaOCpi5D67jd4Ab31/sIj3nnTfAsba
+         E/aS3qxA+qAZvqMqQOn+1jnwrguTll2/9akK8IbGqZbjjb2udqid5FmxszX0HjuhOlHv
+         vG0Ds/d7hDlPWyCXgOW+LvMC0w/Yo5jHiDEIVmp6Rz+jRUcJk9pgpK17W1RV90inIPwI
+         QFow==
+X-Gm-Message-State: AOAM533YpgbUft71GLA5KNqX5i834d0FKf5TTLo1dnG/jioPzPqKYk2l
+        r8QfnStZQh0HIfqwPb5ymOdS1MgQbms=
+X-Google-Smtp-Source: ABdhPJwmRbqUE5DfLscEMV9Ey47bDq8RZudZp6oKsFIGvCypW0ysEfvxyV4mEpgvbMm5zNQSafzd6w==
+X-Received: by 2002:adf:a147:: with SMTP id r7mr5793018wrr.52.1633221336366;
+        Sat, 02 Oct 2021 17:35:36 -0700 (PDT)
+Received: from localhost.localdomain (94-29-54-195.dynamic.spd-mgts.ru. [94.29.54.195])
+        by smtp.gmail.com with ESMTPSA id m21sm10981445wmq.37.2021.10.02.17.35.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Oct 2021 17:35:36 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v2 0/4] tegra20-emc: Identify memory chip by LPDDR configuration
+Date:   Sun,  3 Oct 2021 03:35:05 +0300
+Message-Id: <20211003003509.28241-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.1
-Subject: Re: [PATCH 2/5] arm64: dts: qcom: sdm845: Disable Adreno, modem and
- Venus by default
-Content-Language: en-US
-To:     Steev Klimaszewski <steev@kali.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211002001358.45920-1-konrad.dybcio@somainline.org>
- <20211002001358.45920-3-konrad.dybcio@somainline.org>
- <67e12e31-2eb3-fea6-822e-56836aabc0d2@kali.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <67e12e31-2eb3-fea6-822e-56836aabc0d2@kali.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Support memory chip identification by LPDDR2 configuration, which is
+needed by ASUS Transformer TF101 tablet device that doesn't store RAMCODE
+in Tegra's NVMEM.
 
-On 03.10.2021 00:25, Steev Klimaszewski wrote:
->
-> This missed the Lenovo Yoga C630 inherits from sdm845 and breaks it.
+Changelog:
 
-Welp, qcom decided to give laptops +5 sdm points and that made me overlook it :P
+v2: - Added separate binding for standard LPDDR2 properties, like it
+      was suggested by Krzysztof Kozlowski.
 
+    - Switched Tegra binding to use new lpddr2-configuration sub-node
+      that contains the standard properties.
 
-If the rest of the patch looks good, could you add this diff Bjorn to fix that?:
+    - Extended commit message of the "emc: Document new LPDDR2 sub-node"
+      patch, telling how the properties are supposed to be used, which
+      was requested by Krzysztof Kozlowski.
 
+    - Added new common helpers for parsing LPDDR2 properties and made
+      tegra20-emc driver to use these helpers.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index a3b61cb3cfad..b96ecf537ff1 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -343,7 +343,12 @@ &gcc {
-                           <GCC_LPASS_SWAY_CLK>;
- };
- 
-+&gmu {
-+       status = "okay";
-+};
-+
- &gpu {
-+       status = "okay";
-        zap-shader {
-                memory-region = <&gpu_mem>;
-                firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn";
-@@ -461,6 +466,7 @@ &mdss {
- };
- 
- &mss_pil {
-+       status = "okay";
-        firmware-name = "qcom/LENOVO/81JL/qcdsp1v2850.mbn", "qcom/LENOVO/81JL/qcdsp2850.mbn";
- };
- 
-@@ -722,6 +728,10 @@ &usb_2_qmpphy {
-        vdda-pll-supply = <&vdda_usb2_ss_core>;
- };
- 
-+&venus {
-+       status = "okay";
-+};
-+
- &wcd9340{
-        pinctrl-0 = <&wcd_intr_default>;
-        pinctrl-names = "default";
+Dmitry Osipenko (4):
+  dt-bindings: memory: Add LPDDR2 binding
+  dt-bindings: memory: tegra20: emc: Document new LPDDR2 sub-node
+  memory: Add LPDDR2 configuration helpers
+  memory: tegra20-emc: Support matching timings by LPDDR2 configuration
 
+ .../memory-controllers/jedec,lpddr2.yaml      |  80 ++++++++
+ .../nvidia,tegra20-emc.yaml                   |  17 +-
+ drivers/memory/jedec_ddr.h                    |  21 ++
+ drivers/memory/jedec_ddr_data.c               |  42 ++++
+ drivers/memory/of_memory.c                    |  34 ++++
+ drivers/memory/of_memory.h                    |   9 +
+ drivers/memory/tegra/Kconfig                  |   1 +
+ drivers/memory/tegra/tegra20-emc.c            | 191 ++++++++++++++++--
+ include/dt-bindings/memory/lpddr2.h           |  25 +++
+ 9 files changed, 404 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/jedec,lpddr2.yaml
+ create mode 100644 include/dt-bindings/memory/lpddr2.h
 
-Konrad
+-- 
+2.32.0
 
