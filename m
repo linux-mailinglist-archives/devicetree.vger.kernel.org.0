@@ -2,70 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C57DE420383
-	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 20:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C9A24203C0
+	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 21:27:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231442AbhJCS75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Oct 2021 14:59:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42012 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231239AbhJCS74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Oct 2021 14:59:56 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C798C0613EC;
-        Sun,  3 Oct 2021 11:58:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=ecCDp627k9b9pWiUjQNYfJsy6FQv77EM/XdnXbwKgjQ=; b=NPY5CsU2M8622V7qoLyh30jnp/
-        aALbMv9f8bzLpVZGVUGLEQWSkbqmVmn8yt6JZ5PjsknQN2apeaNzx5XvJBkMT3Wa7t+b/KmlHpYyx
-        1Thncj3fTmzLAD2MYzNtPui9i9iKP/Kp6HMOvAxGUup/1KZw2TRZtfGJfusyXjXeJ3Gm52imzpuWi
-        oCONCoJQrcD0IK89gEjpQoxkBJvEb/gotk32TFkaxWl4D91/N05fH3yST7tcbM7jLscNj2/JTSP1H
-        fYyPK9DdZpDj3Oa15dWgKzcZBYPp1raSjRaJJEe07M5lrFjiHZczgcuhCB2c3I77zVESzUpBBvP00
-        gR3ADrOQ==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mX6gZ-004HYv-M0; Sun, 03 Oct 2021 18:58:07 +0000
-Subject: Re: [PATCH 1/2] docs: dt: Fix a few grammar nits in the
- binding/schema docs
-To:     Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org
-Cc:     U-Boot Mailing List <u-boot@lists.denx.de>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        id S231447AbhJCT3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Oct 2021 15:29:14 -0400
+Received: from ixit.cz ([94.230.151.217]:40574 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231280AbhJCT3N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 Oct 2021 15:29:13 -0400
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 5883A23B26;
+        Sun,  3 Oct 2021 21:27:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1633289240;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=hCAUjPHDxeqfRdMgnNt1cmHZgCF0U/aaJ3LZydpKbhA=;
+        b=yK9UmMKnlFdWaJGo1TlzDiFOkhIKJzbXQEliEKEmbGEhQFJFvMU8hM1y3u13NsmfPD7gJC
+        0immSkFoaUz/GMT8OXSzVL0on/XuCCdSgQEMQ2d66vSjnN7C2ztZENgEoxuNPjuLoVAGiM
+        1NWWOZmoVv1mvhO1Iy1cCQj1IXlNFEM=
+From:   David Heidelberg <david@ixit.cz>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org
-References: <20211003124936.1.Idc7beddc77250bca0cfb5912b56be719d9073bc4@changeid>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <a17737b2-b7aa-3e3a-d06d-fb70487f457a@infradead.org>
-Date:   Sun, 3 Oct 2021 11:58:06 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thierry Reding <treding@nvidia.com>,
+        David Heidelberg <david@ixit.cz>
+Subject: [PATCH] [v2] dt-bindings: clock: tegra: Fix USB controller nodes in examples
+Date:   Sun,  3 Oct 2021 21:25:30 +0200
+Message-Id: <20211003192529.29615-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <20211003124936.1.Idc7beddc77250bca0cfb5912b56be719d9073bc4@changeid>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/3/21 11:50 AM, Simon Glass wrote:
-> Add missing hyphens and reword one sentence for clarity.
-> 
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
-> 
->   .../devicetree/bindings/example-schema.yaml   | 14 ++++-----
->   .../devicetree/bindings/writing-bindings.rst  |  2 +-
->   .../devicetree/bindings/writing-schema.rst    | 29 ++++++++++---------
->   3 files changed, 23 insertions(+), 22 deletions(-)
-> 
+From: Thierry Reding <treding@nvidia.com>
 
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+A subsequent patch will convert the USB controller device tree bindings
+to json-schema, which will cause the DT validation to point out various
+issues with the examples in the clock and reset controller bindings.
 
-Thanks.
+Fix these issues so that the subsequent patch will not cause validation
+warnings.
+
+v2:
+ - add missing usb-ehci compatible (David)
+
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ .../bindings/clock/nvidia,tegra124-car.yaml           | 11 ++++++++---
+ .../devicetree/bindings/clock/nvidia,tegra20-car.yaml |  5 +++++
+ 2 files changed, 13 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml b/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
+index ec7ab1483652..b52f3ef059e2 100644
+--- a/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
++++ b/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
+@@ -99,6 +99,7 @@ additionalProperties: false
+ examples:
+   - |
+     #include <dt-bindings/clock/tegra124-car.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     car: clock-controller@60006000 {
+         compatible = "nvidia,tegra124-car";
+@@ -107,9 +108,13 @@ examples:
+         #reset-cells = <1>;
+     };
+ 
+-    usb-controller@c5004000 {
+-        compatible = "nvidia,tegra20-ehci";
+-        reg = <0xc5004000 0x4000>;
++    usb-controller@7d000000 {
++        compatible = "nvidia,tegra124-ehci", "nvidia,tegra30-ehci", "usb-ehci";
++        reg = <0x7d000000 0x4000>;
++        interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
++        phy_type = "utmi";
+         clocks = <&car TEGRA124_CLK_USB2>;
+         resets = <&car TEGRA124_CLK_USB2>;
++        reset-names = "usb";
++        nvidia,phy = <&phy1>;
+     };
+diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml b/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
+index f832abb7f11a..6386126b45e8 100644
+--- a/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
++++ b/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
+@@ -83,6 +83,7 @@ additionalProperties: false
+ examples:
+   - |
+     #include <dt-bindings/clock/tegra20-car.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     car: clock-controller@60006000 {
+         compatible = "nvidia,tegra20-car";
+@@ -101,6 +102,10 @@ examples:
+     usb-controller@c5004000 {
+         compatible = "nvidia,tegra20-ehci";
+         reg = <0xc5004000 0x4000>;
++        interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
++        phy_type = "utmi";
+         clocks = <&car TEGRA20_CLK_USB2>;
+         resets = <&car TEGRA20_CLK_USB2>;
++        reset-names = "usb";
++        nvidia,phy = <&phy1>;
+     };
 -- 
-~Randy
+2.33.0
+
