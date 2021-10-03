@@ -2,37 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D3284200BC
-	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 10:32:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D214200C3
+	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 10:32:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbhJCIdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Oct 2021 04:33:50 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:37924 "EHLO mail.z3ntu.xyz"
+        id S229965AbhJCIdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Oct 2021 04:33:52 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:37948 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229885AbhJCIds (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Oct 2021 04:33:48 -0400
+        id S229809AbhJCIdv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 Oct 2021 04:33:51 -0400
 Received: from g550jk.portal.nstrein.ns.nl (unknown [145.15.244.215])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 5CB29C90F6;
-        Sun,  3 Oct 2021 08:32:00 +0000 (UTC)
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 7371AC910E;
+        Sun,  3 Oct 2021 08:32:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1633249920; bh=cPDamchJW0mjeP0iNR4px+LzJKosMc9BhKEa6fAGkEw=;
+        t=1633249923; bh=QweKY5MA+C4H7ytFhPQeyJb1i/Tq++4mbxAZu/ezFn4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=BgwdoVZK00Phlxx9j2cPArOU41IJLf+WuzAx8sBtrjmL6KL36eIkM0zvD0IibkcS+
-         QuDda7ArDPaIVwuIp2NwnWELPCOK3nQTCZvOlYaBySuTq8OxpBm4CAvfDJGJTEFHGD
-         NPDkr6BBaHO5CzQKJz5okoqgNDjWivQhhnNLabaA=
+        b=Oo0/wB+xOkfYuocKVMuAWwWM+FyVtN7AWqOtAbZ8KRs3xGiMGOr8vPce5kmPO4Pft
+         DWXqgJyy7Bm/oAI59iePjXnhG0gpkJzXOOc1o5YOPqhLeDcDA4AtClS6ZLJJsmAGNF
+         ln3A7UePE+rYr4iajuF2z2juEbeV9SeLZ6uI0IOY=
 From:   Luca Weiss <luca@z3ntu.xyz>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, Luca Weiss <luca@z3ntu.xyz>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 02/11] dt-bindings: regulator: qcom,rpmh: Add compatible for PM6350
-Date:   Sun,  3 Oct 2021 10:31:25 +0200
-Message-Id: <20211003083141.613509-3-luca@z3ntu.xyz>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 04/11] dt-bindings: pinctrl: qcom,pmic-gpio: Add compatible for PM6350
+Date:   Sun,  3 Oct 2021 10:31:27 +0200
+Message-Id: <20211003083141.613509-5-luca@z3ntu.xyz>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211003083141.613509-1-luca@z3ntu.xyz>
 References: <20211003083141.613509-1-luca@z3ntu.xyz>
@@ -42,33 +40,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for pm6350 used in sm6350 boards.
+Add pmic-gpio compatible string for pm6350 pmic.
 
 Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 ---
- .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml      | 2 ++
+ Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-index 34de38377aa6..b959504e0ea4 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-@@ -35,6 +35,7 @@ description: |
-     PMIC. Supported regulator node names are
-       For PM6150, smps1 - smps5, ldo1 - ldo19
-       For PM6150L, smps1 - smps8, ldo1 - ldo11, bob
-+      For PM6350, smps1 - smps5, ldo1 - ldo22
-       For PM7325, smps1 - smps8, ldo1 - ldo19
-       For PM8005, smps1 - smps4
-       For PM8009, smps1 - smps2, ldo1 - ldo7
-@@ -52,6 +53,7 @@ properties:
-     enum:
-       - qcom,pm6150-rpmh-regulators
-       - qcom,pm6150l-rpmh-regulators
-+      - qcom,pm6350-rpmh-regulators
-       - qcom,pm7325-rpmh-regulators
-       - qcom,pm8005-rpmh-regulators
-       - qcom,pm8009-rpmh-regulators
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+index 9bd01db37dcd..1e5153f10ca1 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+@@ -21,6 +21,7 @@ properties:
+           - qcom,pm660l-gpio
+           - qcom,pm6150-gpio
+           - qcom,pm6150l-gpio
++          - qcom,pm6350-gpio
+           - qcom,pm7325-gpio
+           - qcom,pm8005-gpio
+           - qcom,pm8008-gpio
+@@ -103,6 +104,7 @@ $defs:
+           this subnode.  Valid pins are
+                  - gpio1-gpio10 for pm6150
+                  - gpio1-gpio12 for pm6150l
++                 - gpio1-gpio9 for pm6350
+                  - gpio1-gpio10 for pm7325
+                  - gpio1-gpio4 for pm8005
+                  - gpio1-gpio2 for pm8008
 -- 
 2.33.0
 
