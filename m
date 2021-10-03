@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6739B42015E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 13:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2FE7420162
+	for <lists+devicetree@lfdr.de>; Sun,  3 Oct 2021 13:48:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbhJCLla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Oct 2021 07:41:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58976 "EHLO
+        id S230111AbhJCLui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Oct 2021 07:50:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbhJCLl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Oct 2021 07:41:29 -0400
-Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D77E8C0613EC
-        for <devicetree@vger.kernel.org>; Sun,  3 Oct 2021 04:39:42 -0700 (PDT)
-Received: by mail-il1-x141.google.com with SMTP id t15so12934800ilj.1
-        for <devicetree@vger.kernel.org>; Sun, 03 Oct 2021 04:39:42 -0700 (PDT)
+        with ESMTP id S229505AbhJCLug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Oct 2021 07:50:36 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F2EC0613EC
+        for <devicetree@vger.kernel.org>; Sun,  3 Oct 2021 04:48:48 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id e15so59084036lfr.10
+        for <devicetree@vger.kernel.org>; Sun, 03 Oct 2021 04:48:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:reply-to:from:date:message-id:subject:to;
         bh=He9kpFQwq1I68wdOjeNvE0LON5OL4PlSGVKoCJBAUEM=;
-        b=SJs/bXz7DgiWqjXl34JUGtpC+FSk70SiQV5ElggFnvkRNCcEq8OmSKfSWVIkGeqDSE
-         9IKrV2O6SK570/TPK6UlLpmxrUzPFrtXMswbUwlKYx4q0AQWVbgHaNEgXjBXW2+RWQ1G
-         U/CC4BWvNiyhezSoxFXYKIFEC/IVi/vTiUuVFKh/0js5unCUQdkf5TkDwuO2iymwOZC2
-         IsC0UQ6JS6bCwdbcu/FFqEtDqSeagIV9ArDaovh2CNcYYYgMTXDq8CW5gfYgV3embBlH
-         7w2ogIBpola6Ur8+IvEJ0cEAlzY1HXRgTO4GCXh79U+VuT2ApG8CTTwlb9KU1haNaUaY
-         eXhA==
+        b=cwcNhrK/9FfqMshZRDYlRVihN4dUe9fGbGHMUXPoUDwnCfltoea4qW2MHs7KwUEAo7
+         qcHTa94YzbOjAeVQ//uUL970qvk6xLgWYOj8KQ5fLwwl7q8axYJVk5GiqnDMXzl3QT5z
+         shakqA1cP5ZZQrWaKK4NdHMCfezziNzMtZgi23WVRgpxgO1WXGst5KwwGZ4GO86KwCSZ
+         YG3o89peWht1Tslwvnwlj7K2Ii51C5zDcQ9i3KEouLiDs2/9RhzwrG88OWXDZ9mgEFfW
+         R89HWvHLTkNi4V6k80aWm9Mmvps5qgyub+6Dp3b0RbNBgvMa1II/6+kHgxuF+IbJxGbg
+         o+jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:reply-to:from:date:message-id
          :subject:to;
         bh=He9kpFQwq1I68wdOjeNvE0LON5OL4PlSGVKoCJBAUEM=;
-        b=WtGs1Nvi9vaZP8A5xhO7boWP6nQcFMuKkENH6DA4xZ/uYXUr/nDQWaVO6bR5sOJzzv
-         sZauQP84UNv8M3p4CC4s2kAaR1Vw2ZluXgGwRbjzk8j7M1nX9SOkL6u2tjiMBOlfMCSv
-         MbgJXju2pUZFLwafExG/xv1rtoNTsqpXAMP1IJkqkru2xhlCuAXxSgw+bk4oVXvBnKM9
-         bivMiaptanDNUY0IBlEb/84cZJQ+2LX+LTCspIstlRNkFnAPLY67PH3AeaPyiUXKy5BS
-         oGeGQekvUI9YIYi5ffF7RM8Tx1TxW82jCRcncasxcfTOcPc7upjDKNu95QtipMJlM1LS
-         mbOA==
-X-Gm-Message-State: AOAM530bjK60yC0ZLvVkLDSdlc2QRtcur+llmAu5I+T6wvnbgA3TkbIW
-        /tTFQJtvzChO7btHo+CIFKqESHjBjWgUWqEYGu4=
-X-Google-Smtp-Source: ABdhPJx5g6/75QKCROep28OUOdIO22XcicVqcUTbgQgdCS44woV1WxzgSDE0D16zynP1MfMtTT19Xg9W8XQQY1xsYEE=
-X-Received: by 2002:a05:6e02:bc4:: with SMTP id c4mr5774320ilu.129.1633261182157;
- Sun, 03 Oct 2021 04:39:42 -0700 (PDT)
+        b=tCD/1coI3Fd6jrNYtaOnDEjNdKT+To2ux4ljJbR/leEnA5BmRHkQu/YWNCiAup4Xjh
+         HNk7+Tk0pB/TAqth5TgLqdMrMlEeDj8h53e3dia3P2yaYGCKxi1A6lX63HjOm6TJwv87
+         pWv68hSyoUNeRZxWi2JNUXiGikEDHIgAiL53TJhBPBH7rYxqq7lnO//lB/MWKPQrKxzb
+         gsNDYkNUIE48hJZyJFxj0SKqyV1twokIpbjk3xrIAFC1YpqlEhvre9oX7a4AidaVtZ25
+         gEaE7r/c/o5YUGsUiT5zShV7d14btOUl3dXFumHce2wTI7ebNUHIpRn9wD4x5DZII3B5
+         3hzA==
+X-Gm-Message-State: AOAM531P8nuQKeYouy0rCJjIgKlkTe1cTUXGKHmKGiPWZPvD30X0/FrJ
+        5HSeKUUW4au3BndiB5eHeKM9CQNxA7MB9J1XTH0=
+X-Google-Smtp-Source: ABdhPJyz9C7mGYPwjk+vHzm8MMbJgi+wBvlrXD8B9rnwHJMDqB5lmFlfTyTRjxiSmMhaevArBQC29ITB6b7NjrPwyUw=
+X-Received: by 2002:a05:6512:21cb:: with SMTP id d11mr8385720lft.579.1633261727126;
+ Sun, 03 Oct 2021 04:48:47 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a6b:d907:0:0:0:0:0 with HTTP; Sun, 3 Oct 2021 04:39:41 -0700 (PDT)
+Received: by 2002:a2e:a583:0:0:0:0:0 with HTTP; Sun, 3 Oct 2021 04:48:46 -0700 (PDT)
 Reply-To: mrskade@hotmail.com
-From:   mrs kadi <david1kama202@gmail.com>
-Date:   Sun, 3 Oct 2021 01:39:41 -1000
-Message-ID: <CANMgs4FAcRi-Y_Eqy0mJBKsw+BqcfN_FGcEWsieQXgiR2cg_LQ@mail.gmail.com>
+From:   mrs kadi <mrs1alice2025@gmail.com>
+Date:   Sun, 3 Oct 2021 01:48:46 -1000
+Message-ID: <CAN1KOYMQWe8V4wEW5b=s04JL9P_0ca+OrpdkY_a6yHD1n_z4fQ@mail.gmail.com>
 Subject: Compliment of the day
 To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
