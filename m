@@ -2,140 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCAAD42184B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 22:22:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ABDC421871
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 22:32:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235969AbhJDUXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 16:23:52 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.83]:30324 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235425AbhJDUXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 16:23:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1633378912;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=BNocBK4U1HyTaxyN3VYb2yfK5aJOaCFqjEMeLHlV25E=;
-    b=X/95LHhnc+kTdg+7tBN1vZVklTHr1sXMlxDaVoCt3T73doSBLH42egK1bULCMjkN39
-    wdmT2wckB+r7297JlCVEdJZpMFWWysiRkNM6hcJwsOlMMtOpxRNbt/zjzTrNb5LTGJWb
-    KMoOm8jojKAnR2fNVZqb/U7Mr+M0n+h9dOOF8DHhWfbNjChsFMQVbFPai5teyW7AFe0P
-    wBclHRrDCnPZR2rte8APn/d+4JpVB/gfECkoRrxFSUtPyRbGnAIHt0toZWZoT5mEaHhc
-    PxuRwBntveNN6CgR5nB4Pe1OaTMPb17bKKrmAdyVis5EmEceLE+miNLQABJT9Gu5vml6
-    HiIA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXTbAOHjRHIhr2eFePxBA="
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id 301038x94KLqKQq
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 4 Oct 2021 22:21:52 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v2 06/15] arm64: dts: qcom: msm8916-samsung-serranove: Add NFC
-Date:   Mon,  4 Oct 2021 22:19:12 +0200
-Message-Id: <20211004201921.18526-7-stephan@gerhold.net>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211004201921.18526-1-stephan@gerhold.net>
-References: <20211004201921.18526-1-stephan@gerhold.net>
+        id S236339AbhJDUeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 16:34:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51530 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233934AbhJDUeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 16:34:10 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55D6C061745;
+        Mon,  4 Oct 2021 13:32:20 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id n8so21110946lfk.6;
+        Mon, 04 Oct 2021 13:32:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=9++LVbb1ZgVmL4thX9K4PQNAQ2NBkN+QYbEP+4ptnH4=;
+        b=V84IwbKWTotGIBqNXF2nkUgsADhmRFOGZVunhqZTJ6RtYtB8Z/FiCkaFAxjv3zjmuw
+         YXHgph8NGFOvN+GpVeQ1Vcyytw/Kcdded/YAu3rr4U4T6P/A1E8HL4DxrQ4Zfszva0lX
+         OYgZ2ZlBiCWJ0NBV6AW6F/y8SK44ZtO+lIj+42T6O9fAb3vJiH2HH6Mhv6quyEx+497l
+         eVJAniwQmeIxG6Kv7JS6oZaYeixGmXQwuU0cXWahQ5VUNhvAQd4w9smpv9c/JlqJITHD
+         /Xs2LX2tj+2thofc8yzrLgBed7Wpds8pym2PHbUcw2Q7LzsjTVCGzAI6WNkTf06xNqrh
+         rIEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9++LVbb1ZgVmL4thX9K4PQNAQ2NBkN+QYbEP+4ptnH4=;
+        b=G7MFXXhWaURWjm6wFRs/gDw4vHvvs8PaxPevkBMkTF+2IY2F/rPxqb0LX2Q1rdbxPw
+         qcYfIwamRCTJzqmYNtqSpFjA6DvfaZK3sb2qbRvp5eg1GV60wggUk1ONCyZoDUKRlEKI
+         oimSre6J5CXjnS81MqwQf/cJz/61Hkal4e+yNwp7Yuum6I/Pr3K8v1p6qKWWYOVLfvZY
+         nAzR67WOTYTyvcfUglI6QGxvZy7zKFoBHoylKCPUjoZC3Oce3ARlMLLXiO4Qb8QpF8yQ
+         5X8scMN4a7+KEAjhJ3UGbEFINeu04YOpQK84xFFWLRtCh4rGyirk00/Y91zQMHgVXRoC
+         EG3g==
+X-Gm-Message-State: AOAM533NtaIIug/3TF9tynnw6uFguK39xk80IzhKcCkUo8MUGs0l2nCS
+        lu++A7EVeJ5C+p6ryQiVnnU1ijcDos0=
+X-Google-Smtp-Source: ABdhPJy1IMBj+UoXvSNdaYO2FdaApa8G9+VkflvO9WSPaNeDF1mm5hubzT+oIwR97eBUaJ3C9BWfSw==
+X-Received: by 2002:a19:4344:: with SMTP id m4mr15742299lfj.155.1633379538372;
+        Mon, 04 Oct 2021 13:32:18 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.googlemail.com with ESMTPSA id j12sm756247lfk.246.2021.10.04.13.32.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Oct 2021 13:32:18 -0700 (PDT)
+Subject: Re: [PATCH v2 0/5] iommu: Support identity mappings of
+ reserved-memory regions
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+ <95e4c23e-4700-ef7e-d8ae-17693b65e121@gmail.com>
+ <YVtUrTdI9kUSScui@orome.fritz.box>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <4f1fadc7-119e-0fad-f597-0cea99cd9095@gmail.com>
+Date:   Mon, 4 Oct 2021 23:32:17 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <YVtUrTdI9kUSScui@orome.fritz.box>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LTE version of the S4 Mini VE has a NXP PN547, which is supported
-by the nxp-nci-i2c driver in mainline. It seems to detect NFC tags
-using "nfctool" just fine, although more testing is difficult given
-there seem to be very few useful applications making use of the
-Linux NFC subsystem. :(
+04.10.2021 22:23, Thierry Reding пишет:
+> On Sun, Oct 03, 2021 at 04:09:56AM +0300, Dmitry Osipenko wrote:
+>> 23.04.2021 19:32, Thierry Reding пишет:
+>>> I've made corresponding changes in the proprietary bootloader, added a
+>>> compatibility shim in U-Boot (which forwards information created by the
+>>> proprietary bootloader to the kernel) and the attached patches to test
+>>> this on Jetson TX1, Jetson TX2 and Jetson AGX Xavier.
+>>
+>> Could you please tell what downstream kernel does for coping with the
+>> identity mappings in conjunction with the original proprietary bootloader?
+>>
+>> If there is some other method of passing mappings to kernel, could it be
+>> supported by upstream? Putting burden on users to upgrade bootloader
+>> feels a bit inconvenient.
+> 
+> It depends on the chip generation. As far as I know there have been
+> several iterations. The earliest was to pass this information via a
+> command-line option, but more recent versions use device tree to pass
+> this information in a similar way as described here. However, these
+> use non-standard DT bindings, so I don't think we can just implement
+> them as-is.
 
-Note that for some reason Samsung decided to connect the I2C pins
-to GPIOs where no hardware I2C bus is available, so we need to
-fall back to software bit-banging with i2c-gpio.
+Is it possible to boot upstream kernel with that original bootloader?
 
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
-Changes in v2: None.
----
- .../dts/qcom/msm8916-samsung-serranove.dts    | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
-index 3ef00bdc043e..a78f87a5bf4f 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
-@@ -168,6 +168,32 @@ touchkey@20 {
- 			pinctrl-0 = <&tkey_default>;
- 		};
- 	};
-+
-+	i2c-nfc {
-+		compatible = "i2c-gpio";
-+		sda-gpios = <&msmgpio 0 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-+		scl-gpios = <&msmgpio 1 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&nfc_i2c_default>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		nfc@2b {
-+			compatible = "nxp,pn547", "nxp,nxp-nci-i2c";
-+			reg = <0x2b>;
-+
-+			interrupt-parent = <&msmgpio>;
-+			interrupts = <21 IRQ_TYPE_EDGE_RISING>;
-+
-+			enable-gpios = <&msmgpio 20 GPIO_ACTIVE_HIGH>;
-+			firmware-gpios = <&msmgpio 49 GPIO_ACTIVE_HIGH>;
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&nfc_default>;
-+		};
-+	};
- };
- 
- &blsp_i2c2 {
-@@ -434,6 +460,30 @@ muic_irq_default: muic-irq-default {
- 		bias-disable;
- 	};
- 
-+	nfc_default: nfc-default {
-+		pins = "gpio20", "gpio49";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+
-+		irq {
-+			pins = "gpio21";
-+			function = "gpio";
-+
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+	};
-+
-+	nfc_i2c_default: nfc-i2c-default {
-+		pins = "gpio0", "gpio1";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	tkey_default: tkey-default {
- 		pins = "gpio98";
- 		function = "gpio";
--- 
-2.33.0
-
+I remember seeing other platforms, like QCOM, supporting downstream
+quirks in upstream kernel on a side, i.e. they are undocumented, but the
+additional support code is there. That is what "normal" people want. You
+should consider doing that for Tegra too, if possible.
