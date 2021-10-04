@@ -2,117 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 028AE42160B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 20:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25FA8421629
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 20:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237789AbhJDSIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 14:08:52 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:36608 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237757AbhJDSIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 14:08:36 -0400
-Received: by mail-oi1-f178.google.com with SMTP id y201so22746674oie.3;
-        Mon, 04 Oct 2021 11:06:47 -0700 (PDT)
+        id S233615AbhJDSPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 14:15:30 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:42951 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233226AbhJDSP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 14:15:29 -0400
+Received: by mail-oi1-f171.google.com with SMTP id x124so22729592oix.9;
+        Mon, 04 Oct 2021 11:13:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0nglCwSmLkqWcDDYbgeQI0Rj6hImnZUh6ykmGdkaXq8=;
-        b=IxbFNuQMU6zNOxo/0NJb+24MxCdv2rJEPOWZyoQDPgsXd35iudXasTMy1BcFrmOIIf
-         kqYsdzxp5X/QafrXXB7hKXcnfwmsx3YB9PA4ZvNNCaBUCsc+2UK5hfbWsK1qSahhMb3a
-         fL9fr8zQaQBqWAZJDV0wJu1OOCnyvP/n+xpU4rvc0AXpRlvhG6ozuCnvGMQGtshF9yeK
-         vQdW5mDwvKwYYAEWxoStjnQFJnh32WVz04VZ/g/9cx2DtHNzb5F+sQTwmcihYDy/cAtq
-         jOPUbBwyhW6K8vKTcnauVPFkfwWt9yQtdu9yVIOrPNKUsLUmA0+XkU/8oswb/gVjOXkI
-         PJOA==
-X-Gm-Message-State: AOAM531IYIyAiLIJ7sAWoyyxSwiCX0S5XfuwD1At83HsYHlgnbckPDEQ
-        2jFybbYu1oqwZXXQhzaezg==
-X-Google-Smtp-Source: ABdhPJzc6i6SjUk6crMunB3I6rcO8tJCZQ3N0J3WDSTRxPs5tV4XPfPSZZeDN54KEpyM2WQoVndhDw==
-X-Received: by 2002:aca:e143:: with SMTP id y64mr14547898oig.21.1633370806633;
-        Mon, 04 Oct 2021 11:06:46 -0700 (PDT)
+        bh=7MmG9UNeaN9rX2Xe0UpnHbblcz68hViXX139qRa5xqs=;
+        b=CYMDUgQVW7UT0G1bG4WG1rXhKfJBnAgcadn8Vu1u+BcLNU7lrvQmKBdOACNByaPjNG
+         P8gDlGn+lGyXIR/fQgTVxQfQQ/J8ED6L23xq9uVlshYBP9aVKygbxKEw+gx0Pbzm21Sw
+         NuxiW1cfYFUejxt719WxOpSiDUXdpXkb7cAiiPL+PWIZqAVseYHWqx8/zW/Fz6A31iig
+         +dcKv4CJArG/gHwSSJb55UtxRqlVdr/5jV5iLuyKypvJglKutnChHl+N38Ps76gXu5ET
+         piItricQ+XmtiXzk5Zkn61kNQdu/jrlr1J/aBC4sVGeXE4aA+H9SBbiOLy0rnOS3ygG3
+         KB/w==
+X-Gm-Message-State: AOAM533FpsN/+55MoDx+J6TACs5a9rBRreNxynWfYJzrFdnu6ut9X1JQ
+        3YHqC7pgDE/9Ab+fqt+O8g==
+X-Google-Smtp-Source: ABdhPJx0ioUdg1qmUioj/6ORoTI6fqApCcPadwhZIZ/aH8TQKsWdiLD5MArO3D+E2krV4WhpTIUqEA==
+X-Received: by 2002:aca:1b09:: with SMTP id b9mr14672812oib.55.1633371220108;
+        Mon, 04 Oct 2021 11:13:40 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w14sm3032395oth.5.2021.10.04.11.06.45
+        by smtp.gmail.com with ESMTPSA id d7sm2973690ooa.36.2021.10.04.11.13.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 11:06:46 -0700 (PDT)
-Received: (nullmailer pid 1577410 invoked by uid 1000);
-        Mon, 04 Oct 2021 18:06:44 -0000
-Date:   Mon, 4 Oct 2021 13:06:44 -0500
+        Mon, 04 Oct 2021 11:13:39 -0700 (PDT)
+Received: (nullmailer pid 1588507 invoked by uid 1000);
+        Mon, 04 Oct 2021 18:13:38 -0000
+Date:   Mon, 4 Oct 2021 13:13:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     linux-staging@lists.linux.dev, john@phrozen.org,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        neil@brown.name, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt: bindings: add ralink RT2880 resets device tree
- binding documentation
-Message-ID: <YVtCtGcLjNcO2NJ0@robh.at.kernel.org>
-References: <20210926145931.14603-1-sergio.paracuellos@gmail.com>
- <20210926145931.14603-3-sergio.paracuellos@gmail.com>
+To:     Gavin Shan <gshan@redhat.com>
+Cc:     devicetree@vger.kernel.org, catalin.marinas@arm.com,
+        shan.gavin@gmail.com, will@kernel.org, rdunlap@infradead.org,
+        maz@kernel.org, linux-efi@vger.kernel.org,
+        kvmarm@lists.cs.columbia.edu, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] Documentation, dt, numa: Add note to empty NUMA
+ node
+Message-ID: <YVtEUpIFdOrIoH0B@robh.at.kernel.org>
+References: <20210927064119.127285-1-gshan@redhat.com>
+ <20210927064119.127285-2-gshan@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210926145931.14603-3-sergio.paracuellos@gmail.com>
+In-Reply-To: <20210927064119.127285-2-gshan@redhat.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 26, 2021 at 04:59:30PM +0200, Sergio Paracuellos wrote:
-> Adds device tree binding documentation for resets in the ralink RT2880 SoCs.
+On Mon, 27 Sep 2021 14:41:18 +0800, Gavin Shan wrote:
+> The empty memory nodes, where no memory resides in, are allowed.
+> The NUMA node IDs are still valid and parsed, but memory may be
+> added to them through hotplug afterwards. Currently, QEMU fails
+> to boot when multiple empty memory nodes are specified. It's
+> caused by device-tree population failure and duplicated memory
+> node names.
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> The device-tree specification doesn't provide how empty NUMA
+> nodes are handled. Besides, I finds difficulty to get where
+> this case is documented. So lets add a section for empty memory
+> nodes to cover it in NUMA binding document.
+> 
+> Signed-off-by: Gavin Shan <gshan@redhat.com>
 > ---
->  .../bindings/reset/ralink,rt2880-reset.yaml   | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+>  Documentation/devicetree/bindings/numa.txt | 46 +++++++++++++++++++++-
+>  1 file changed, 45 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
-> new file mode 100644
-> index 000000000000..88eddeb4ee45
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/ralink,rt2880-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ralink RT2880 Reset Controller Device Tree Bindings
-> +
-> +maintainers:
-> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> +
-> +description: |
-> +  Ralink RT2880 reset controller driver which supports the SoC
-> +  system controller supplied reset registers for the various peripherals
-> +  of the SoC.
-> +
-> +  See also:
-> +  - dt-bindings/reset/ralink-rt2880.h
-> +
-> +properties:
-> +  compatible:
-> +    const: ralink,rt2880-reset
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +required:
-> +  - '#reset-cells'
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/reset/ralink-rt2880.h>
-> +    rstctrl: reset-controller {
-> +      compatible = "ralink,rt2880-reset";
-> +      #reset-cells = <1>;
 
-How is this h/w controlled? If this is part of a system controller, then 
-it needs to be documented as such. IOW, you need to document the binding 
-for the whole block.
-
-Do you really need a child node here? All you need to make a system 
-controller a reset provider is add '#reset-cells' to it.
-
-Rob
+Applied, thanks!
