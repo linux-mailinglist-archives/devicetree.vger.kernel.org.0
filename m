@@ -2,220 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E1C5421643
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 20:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B817E42164E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 20:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238032AbhJDSWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 14:22:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48820 "EHLO
+        id S238262AbhJDSZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 14:25:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236634AbhJDSWF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 14:22:05 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B01C061749
-        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 11:20:15 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id ls18so2062297pjb.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 11:20:15 -0700 (PDT)
+        with ESMTP id S238063AbhJDSZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 14:25:10 -0400
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBE37C061745;
+        Mon,  4 Oct 2021 11:23:20 -0700 (PDT)
+Received: by mail-ua1-x92d.google.com with SMTP id h4so4903767uaw.1;
+        Mon, 04 Oct 2021 11:23:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pEjTxCQKuPkdzyQQSESkdNKEWA1LvyzgE120tyKjY/k=;
-        b=rGnHyMlngVZkVwcemVB84QoJgkH1XLR0Hg7szuZRrfBs+vpJHEce6HZlQJyes1QbVm
-         SbpROkR94JhvXXXC5WkOwInC9p0RM1G5uqrOOUv2b9BVFzJo16pY2Bd/+UJFUEpH+gMm
-         hZfXJdrboGH78IJt6C83lbLsW71NNip/Op9Rcr2O1vMhYiFYF4oxzQVGHxYNd6Vd3Wcg
-         817+jvBFq+t5osSy8FUpDwF8Rt4paPtwvELMG6/seyy/AsVlXzD0QUshhKcKVgpuM3b1
-         EM9MLqKWPIQA8hZ6vVSDG3YG3ZAOq6OHjrZ2xU7jufjBDvNJjlH70KxyuJT6nd2+5ZwM
-         0ajQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hK4OhSiTNsNfjE6KJ9kkf4rjTqcI5urGy7xo3IPDC3A=;
+        b=Q69CYp0o33+bNhPhgJw6tfQEU2jevmksNOnLa45BJW4J860ZLdd5As8XnBiijsgNxl
+         9fPQdXYUniDiNOBhPJuO7PUM16sHw4NDcviTLntp3swnZ8DAJywhF/lmbmrUSWqIZJNF
+         XMvzN8O0geUzG58BQFhfCMZPNXjRXZRTnOV/NM9zVAApRYCNrGV131CpOlTlfvfeMS9J
+         8S7/QdGD9jwNWl1W00hdv/q3B/EkrS3gIYF/3V7iUf6zDtjARM979ySKNfJT12HngGKU
+         Lf0IGu5hOQ6HwLNVwR+MLbt5KKe/IRnx2UJIAxZgrmmy4U/Mjkvep7lhg00ICW5yijUa
+         NZuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=pEjTxCQKuPkdzyQQSESkdNKEWA1LvyzgE120tyKjY/k=;
-        b=0cDHT23c8eJianO/TmpN+RchsxGiGxOXe0wFLZ7l8bZQ2iXg6YyWXvYHMaCQrm4qtE
-         r6bFD2V25ql2SHbxWtJPa0pwrZKyyQWWGMcpVHQUhUwNXaxfvTHL6rFSccrrDS8WCRSb
-         Acj/kLprA4Qlrb3JcKPog2UO/EuiNr/yWwFFGdnJFDdNNdadRSVoh2FI0spKz5/JPeG+
-         qszxXuqMy8PNxoIpIYhqvVoZt5xwVDbSCJwkCiesxEGyrg/ZCAZwGxfvgyhDbiODYDM9
-         61nWWhVfz7DoHK1QAPrzkqFTfbEkbBCegC0WQBeH/gNmpVkqZtFaj/tVfX4TV82Pv5DI
-         sS4A==
-X-Gm-Message-State: AOAM532nFY0Z8gZtdQwDADlyJ8iftZtgfjUs2sl86Yj5yVSHvnn67gkg
-        XkvUT/0MliZwhnnSMRvDPWgGaw==
-X-Google-Smtp-Source: ABdhPJzK5iZkh9VfvvOe8LwLx7+UekY7XK1kf6LgOA8CSZG1sCV/38BCb5MgWXDwf85wkTC4ZS3fHA==
-X-Received: by 2002:a17:90a:5d11:: with SMTP id s17mr22510232pji.230.1633371614886;
-        Mon, 04 Oct 2021 11:20:14 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id x13sm699826pgt.80.2021.10.04.11.20.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 11:20:14 -0700 (PDT)
-Date:   Mon, 04 Oct 2021 11:20:14 -0700 (PDT)
-X-Google-Original-Date: Mon, 04 Oct 2021 11:20:12 PDT (-0700)
-Subject:     Re: [v3 00/10] Improve RISC-V Perf support using SBI PMU and sscofpmf extension
-In-Reply-To: <20210910192757.2309100-1-atish.patra@wdc.com>
-CC:     linux-kernel@vger.kernel.org, Atish Patra <Atish.Patra@wdc.com>,
-        alexander.shishkin@linux.intel.com,
-        Anup Patel <Anup.Patel@wdc.com>, ardb@kernel.org,
-        djwong@kernel.org, devicetree@vger.kernel.org,
-        guoren@linux.alibaba.com, xypron.glpk@gmx.de, jolsa@redhat.com,
-        john.garry@huawei.com, corbet@lwn.net, linux-doc@vger.kernel.org,
-        linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
-        mick@ics.forth.gr, Paul Walmsley <paul.walmsley@sifive.com>,
-        robh+dt@kernel.org, vincent.chen@sifive.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Atish Patra <Atish.Patra@wdc.com>
-Message-ID: <mhng-62d18ad4-0547-42bb-87a0-5e96e5354650@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hK4OhSiTNsNfjE6KJ9kkf4rjTqcI5urGy7xo3IPDC3A=;
+        b=uTLaTA4t1W6xCNeimQhFW8PyM3W4jh4OP4vxmsRhDHzDPRyhBBpeVya3/3tbuJQf8+
+         pxqaNkDUweVeTb8KV0Wj2SrVzsZC4zoqlVl2LxaUIDHKiAc2sF2cSMN10A6E3ahQxZ4c
+         e0bKWiunJ4IgeSZR+a6GJvDfgBHbgJK7rhvnFinjs+8dnViTGaJmqxqPtblh/HDq9sfM
+         yCST1ovI5ZO3wXAxiekTggR+uFLHOsDqMxf4JgMgSx9Dkp5LeImq8IyhET8wl/jFAmg9
+         YmUgFS4gV/HsveRPrqNLY/oIJNGbksXzpB3ZYPfiYyskDQsAn7sCwQEW2GZmJ5gvAOIm
+         3Niw==
+X-Gm-Message-State: AOAM532TS1rvdR2BG/GgNU8pA/cO8PHmplnHfFLdNo+UHX9rBDA+9DQz
+        KFMrQCz5MtR5CikEgsLid2azUyw0IsA8031Hf5I=
+X-Google-Smtp-Source: ABdhPJwnjNUHh5SCs2J6EKDd+0hWKi+8Yf7wGYGlpYeVF/BzjvF24T+BLeEgDVKFumFPqVNBHKKdnwmMLny4AzCRO9A=
+X-Received: by 2002:ab0:5548:: with SMTP id u8mr8021640uaa.0.1633371799913;
+ Mon, 04 Oct 2021 11:23:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210926145931.14603-1-sergio.paracuellos@gmail.com>
+ <20210926145931.14603-3-sergio.paracuellos@gmail.com> <YVtCtGcLjNcO2NJ0@robh.at.kernel.org>
+In-Reply-To: <YVtCtGcLjNcO2NJ0@robh.at.kernel.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Mon, 4 Oct 2021 20:23:08 +0200
+Message-ID: <CAMhs-H9TDEWEffDn7hBQxT127RNU4eUtPxaSciuiis0fPqTN_w@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt: bindings: add ralink RT2880 resets device tree
+ binding documentation
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-staging@lists.linux.dev, John Crispin <john@phrozen.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Greg KH <gregkh@linuxfoundation.org>,
+        NeilBrown <neil@brown.name>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Sep 2021 12:27:47 PDT (-0700), Atish Patra wrote:
-> This series adds improved perf support for RISC-V based system using
-> SBI PMU extension[1] and Sscofpmf extension[2]. The SBI PMU extension allows
+Hi Rob,
 
-Last we talked the SBI-0.3 stuff was in an uncertain state and I'm not 
-sure we ever got to a point of agreement there.  I've decided to just 
-stop worrying about the state of extensions, so if you guys want the 
-SBI-0.3 stuff merged then just go say it's frozen and that'll be good 
-enough for me.
+On Mon, Oct 4, 2021 at 8:06 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Sun, Sep 26, 2021 at 04:59:30PM +0200, Sergio Paracuellos wrote:
+> > Adds device tree binding documentation for resets in the ralink RT2880 SoCs.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> >  .../bindings/reset/ralink,rt2880-reset.yaml   | 39 +++++++++++++++++++
+> >  1 file changed, 39 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > new file mode 100644
+> > index 000000000000..88eddeb4ee45
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > @@ -0,0 +1,39 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/reset/ralink,rt2880-reset.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Ralink RT2880 Reset Controller Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > +
+> > +description: |
+> > +  Ralink RT2880 reset controller driver which supports the SoC
+> > +  system controller supplied reset registers for the various peripherals
+> > +  of the SoC.
+> > +
+> > +  See also:
+> > +  - dt-bindings/reset/ralink-rt2880.h
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ralink,rt2880-reset
+> > +
+> > +  '#reset-cells':
+> > +    const: 1
+> > +
+> > +required:
+> > +  - '#reset-cells'
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/reset/ralink-rt2880.h>
+> > +    rstctrl: reset-controller {
+> > +      compatible = "ralink,rt2880-reset";
+> > +      #reset-cells = <1>;
+>
+> How is this h/w controlled? If this is part of a system controller, then
+> it needs to be documented as such. IOW, you need to document the binding
+> for the whole block.
+>
+> Do you really need a child node here? All you need to make a system
+> controller a reset provider is add '#reset-cells' to it.
 
-> the kernel to program the counters for different events and start/stop counters
-> while the sscofpmf extension allows the counter overflow interrupt and privilege
-> mode filtering. An hardware platform can leverage SBI PMU extension without
-> the sscofpmf extension if it supports mcountinhibit and mcounteren. However,
-> the reverse is not true. With both of these extension enabled, a platform can
-> take advantage of all both event counting and sampling using perf tool.
+I am just documenting what is already mainlined (see [0]) in order to
+get mt7621-dts out of staging at some point of my life. What am I
+supposed to do? Should I rewrite all already mainlined code? Because
+if that is the case we need to rewrite tons of things from the ralink
+platform...
+
+I'd also like to know what we should do with those nodes already added
+to the dtsi file that have not got associated compatible driver
+mainlined. Can we just get rid of them?
+
+Thanks in advance for clarification.
+
+Best regards,
+    Sergio Paracuellos
+
+[0]: https://elixir.bootlin.com/linux/latest/source/arch/mips/ralink/reset.c
+
 >
-> This series introduces a platform perf driver instead of a existing arch
-> specific implementation. The new perf implementation has adopted a modular
-> approach where most of the generic event handling is done in the core library
-> while individual PMUs need to only implement necessary features specific to
-> the PMU. This is easily extensible and any future RISC-V PMU implementation
-> can leverage this. Currently, SBI PMU driver & legacy PMU driver are implemented
-> as a part of this series.
->
-> The legacy driver tries to reimplement the existing minimal perf under a new
-> config to maintain backward compatibility. This implementation only allows
-> monitoring of always running cycle/instruction counters. Moreover, they can
-> not be started or stopped. In general, this is very limited and not very useful.
-> That's why, I am not very keen to carry the support into the new driver.
-> However, I don't want to break perf for any existing hardware platforms.
-> If nobody really uses perf currently, I will be happy to drop PATCH 4.
->
-> This series has been tested in Qemu on both RV64 & RV32. Qemu[5] & OpenSBI [3]
-> patches are required to test it. Qemu changes are not backward compatible.
-> That means, you can not use perf anymore on older Qemu versions with latest
-> OpenSBI and/or Kernel. However, newer kernel will just use legacy pmu driver if
-> old OpenSBI is detected or hardware doesn't implement mcountinhibit.
->
-> Here is an output of perf stat/report while running hackbench with OpenSBI & Linux
-> kernel patches applied [3].
->
-> Perf stat:
-> =========
->
-> [root@fedora-riscv riscv]# perf stat -e r8000000000000005 -e r8000000000000007
-> -e r8000000000000006 -e r0000000000020002 -e r0000000000020004 -e branch-misses
-> -e cache-misses -e dTLB-load-misses -e dTLB-store-misses -e iTLB-load-misses
-> -e cycles -e instructions ./hackbench -pipe 15 process
-> Running with 15*40 (== 600) tasks.
-> Time: 6.578
->
->  Performance counter stats for './hackbench -pipe 15 process':
->
->              6,491      r8000000000000005      (52.59%) --> SBI_PMU_FW_SET_TIMER
->             20,433      r8000000000000007      (60.74%) --> SBI_PMU_FW_IPI_RECVD
->             21,271      r8000000000000006      (68.71%) --> SBI_PMU_FW_IPI_SENT
->                  0      r0000000000020002      (76.55%)
->      <not counted>      r0000000000020004      (0.00%)
->      <not counted>      branch-misses          (0.00%)
->      <not counted>      cache-misses           (0.00%)
->         57,537,853      dTLB-load-misses       (9.49%)
->          2,821,147      dTLB-store-misses      (18.64%)
->         52,928,130      iTLB-load-misses       (27.53%)
->     89,521,791,110      cycles                 (36.08%)
->     90,678,132,464      instructions #    1.01  insn per cycle (44.44%)
->
->        6.975908032 seconds time elapsed
->
->        3.130950000 seconds user
->       24.353310000 seconds sys
->
-> The patches can also be found in the github[4].
->
-> Perf record:
-> ============
-> [root@fedora-riscv riscv]# perf record -e cycles -e instructions -e \
-> dTLB-load-misses -e dTLB-store-misses -c 1000 ./hackbench -pipe 15 process 15
-> Running with 15*40 (== 600) tasks.
-> Time: 1.238
-> [ perf record: Woken up 1 times to write data ]
-> [ perf record: Captured and wrote 0.106 MB perf.data (1020 samples) ]
->
-> [root@fedora-riscv riscv]# perf report
-> Available samples
-> 372 cycles                                                                     ◆
-> 372 instructions                                                               ▒
-> 262 dTLB-load-misses                                                           ▒
-> 14 dTLB-store-misses
->
-> The patches can also be found in the github[4].
->
-> [1] https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sbi.adoc
-> [2] https://drive.google.com/file/d/171j4jFjIkKdj5LWcExphq4xG_2sihbfd/edit
-> [3] https://github.com/atishp04/opensbi/tree/pmu_sscofpmf
-> [4] https://github.com/atishp04/linux/tree/riscv_pmu_v3
-> [5] https://github.com/atishp04/qemu/tree/riscv_pmu_v2
->
-> Changes from v3->v4:
-> 1. Added interrupt overflow support.
-> 2. Cleaned up legacy driver initialization.
-> 3. Supports perf record now.
-> 4. Added the DT binding and maintainers file.
-> 5. Changed cpu hotplug notifier to be multi-state.
-> 6. OpenSBI doesn't disable cycle/instret counter during boot. Update the
->    perf code to disable all the counter during the boot.
->
-> Changes from v1->v2
-> 1. Implemented the latest SBI PMU extension specification.
-> 2. The core platform driver was changed to operate as a library while only
->    sbi based PMU is built as a driver. The legacy one is just a fallback if
->    SBI PMU extension is not available.
->
-> Atish Patra (10):
-> RISC-V: Remove the current perf implementation
-> RISC-V: Add CSR encodings for all HPMCOUNTERS
-> RISC-V: Add a perf core library for pmu drivers
-> RISC-V: Add a simple platform driver for RISC-V legacy perf
-> RISC-V: Add RISC-V SBI PMU extension definitions
-> dt-binding: pmu: Add RISC-V PMU DT bindings
-> RISC-V: Add perf platform driver based on SBI PMU extension
-> RISC-V: Add interrupt support for perf
-> Documentation: riscv: Remove the old documentation
-> MAINTAINERS: Add entry for RISC-V PMU drivers
->
-> .../devicetree/bindings/perf/riscv,pmu.yaml   |  51 ++
-> Documentation/riscv/pmu.rst                   | 255 ------
-> MAINTAINERS                                   |  10 +
-> arch/riscv/Kconfig                            |  13 -
-> arch/riscv/include/asm/csr.h                  |  66 +-
-> arch/riscv/include/asm/perf_event.h           |  72 --
-> arch/riscv/include/asm/sbi.h                  |  97 +++
-> arch/riscv/kernel/Makefile                    |   1 -
-> arch/riscv/kernel/perf_event.c                | 485 ------------
-> drivers/perf/Kconfig                          |  25 +
-> drivers/perf/Makefile                         |   5 +
-> drivers/perf/riscv_pmu.c                      | 331 ++++++++
-> drivers/perf/riscv_pmu_legacy.c               | 143 ++++
-> drivers/perf/riscv_pmu_sbi.c                  | 731 ++++++++++++++++++
-> include/linux/cpuhotplug.h                    |   1 +
-> include/linux/perf/riscv_pmu.h                |  69 ++
-> 16 files changed, 1528 insertions(+), 827 deletions(-)
-> create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> delete mode 100644 Documentation/riscv/pmu.rst
-> delete mode 100644 arch/riscv/kernel/perf_event.c
-> create mode 100644 drivers/perf/riscv_pmu.c
-> create mode 100644 drivers/perf/riscv_pmu_legacy.c
-> create mode 100644 drivers/perf/riscv_pmu_sbi.c
-> create mode 100644 include/linux/perf/riscv_pmu.h
+> Rob
