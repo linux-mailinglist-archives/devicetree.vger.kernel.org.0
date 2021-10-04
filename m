@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A7CD4207EA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 11:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16D7A4207FA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 11:12:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231825AbhJDJNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 05:13:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60148 "EHLO
+        id S231907AbhJDJNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 05:13:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231340AbhJDJNV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 05:13:21 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AB1C061746
-        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 02:11:32 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id 187so9519527pfc.10
-        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 02:11:32 -0700 (PDT)
+        with ESMTP id S231838AbhJDJNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 05:13:49 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 771DAC061786
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 02:12:00 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id s16so13971297pfk.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 02:12:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=YnXBnzRi4479wrP+sOZpLMZLpiMj5aSP2rgmOi0KU+Y=;
-        b=yHS0nO7iFlQxxeohVMKV6PWXnBayEsi9lK8tSdjyStFeIxmYN5rIMZxWjWE8H9QfQ7
-         AvniVHR4oVvflXPr7rVbf8sVCWvLQiAfD2PqZZOaMZZagxylmkSlHyBj920ay6skehmA
-         lwPjTUVi6b1oJKkZT0ky+bzsrvrsH1XTsPU+7POECpWl2AWydruKqWVrUMQtVvyTgJNZ
-         9cA08qnu4tcOpHZUG2y+ws6DGVRR6nnOd2Q7S631komf0wGsVpsnKC0k2yEC97ewcBee
-         Rlj7VnjufTy6C0syx9iS4lMwwcQ6JWoSgRGxLLVZ4yopWw1R7D8NUTmmgynLt2Yuhptl
-         CQxw==
+        bh=p/zt6Ihrdo7Rv/qMfG//6nHW1vz4Z3xHHD5M5I4jbOQ=;
+        b=oEtv2Uyiaed2bmjIbuF/vB0QG9ocT4iPqv/zNYk4oCpeZ3YHAbxSLDzHY++HcFaeBW
+         UmfNPQHY0UjD4ITXwNi3bpvEPUmYZANyXj8kPQ+yd9YpDZh/EuZJUYXqrJXbMXIgqOHs
+         MOJwMYfTXWFXJFNMIvr0ESA5Rgotq1aXgXjBbgqndwCbKQdFUtx7/X+2FB67HXqo4EUM
+         D0fejXbVrkt/jYQXA55NgdwmIRTOYC7jUSKdWhSNcqkUjvK4R8DENenI50eKlclRv3jJ
+         zXCfmfV9tYeO303doLc9HPBs6G9mR7PD5vkndfNd5uijzfIEbNOfEC5aAEDG3D3j3LiK
+         Gg1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YnXBnzRi4479wrP+sOZpLMZLpiMj5aSP2rgmOi0KU+Y=;
-        b=3Y+SA83SYqhi8luKzEKy3nJeKubEX+OVqlqnCypt1uJI3gwyowMf2DpNEbPpePKPk6
-         fOSB4KLiaBEQReWjes+l75sCa7Z34E3Gg2R9D3eDo+pFNexmcWoj0ILhsp3XNougFjec
-         sUbLrnHZfBDuh4RzD6yqrHSJ3T7Acp9NzLeeYRbZZEftCkfTKrTRM/ZMrqolJb2S2rCO
-         8cOMLgraOrtSvQd/QzNUuc2fCtfN7Os9/3yWINFUVQZEcbmeDMgqVSBmKu2HGt/GYbxr
-         6dzOcxOcF5uLyUfyqS4bagl3p97kzUsJLf5ttSXufcaU3D5Y2rqP+UG+LB3esUcLxOmt
-         OLCQ==
-X-Gm-Message-State: AOAM533GfLTXo3JhrJ9mFq7KTKaeXu3jYcDXGjgASv+snp3jpPTxT17a
-        I/MHUcsedU+oNHP4SAW5DsOlmw==
-X-Google-Smtp-Source: ABdhPJxO8fMguXUXH6Qb+6kH1fEGOWCwG/KzlAh+unxySsrzptYsUWr9XN2Vqt7ITaHGghNVJjw0VA==
-X-Received: by 2002:a05:6a00:16cb:b0:44b:bd38:e068 with SMTP id l11-20020a056a0016cb00b0044bbd38e068mr25041257pfc.34.1633338691658;
-        Mon, 04 Oct 2021 02:11:31 -0700 (PDT)
+        bh=p/zt6Ihrdo7Rv/qMfG//6nHW1vz4Z3xHHD5M5I4jbOQ=;
+        b=JLQs66JWjWWH2GGJE7gDN19YBzUfIbn/NdPGF/ZRsHZkkBUiuqO8HZieVzrHDovHQK
+         Y80NkdLfzRDXgGCjwxReFsqijI9zHSLiEgdGB1yXZHoChMA6Ac041tddMOqjP7VbfzE7
+         NpsxbbW4/Ne38rvlmEaJv6iaU4SQRKkOsIlgrhu7Vp2PtJlqRQ/WYQP27gB2MVyAmdEL
+         znzTVLTGTE24oGgm4ZAA9tQYVzhhnbDlN2GECKN9X9blEoqhlgQl3ZOfbkYBEnx33Yfv
+         660ZRriaT3jdYiXyfoqGneFc3IiG3yfuxArhIcsl9Q1AG+TDgSWD/4yGjFi1l+YiHt8h
+         AZtg==
+X-Gm-Message-State: AOAM531QtCcI8/L7bADa72cljiwwGsOZjotx0fh/rSxRMWA6jstWooUu
+        6uLKgmIBB8xdAYBqlQ6Rax1ZsQ==
+X-Google-Smtp-Source: ABdhPJy0W8ugEcJOIW4QoiueG/Yc3HmOK62CHjUdLDNNiCUoCf91AnhaDt2fgr98vS9LG2/AQVVStQ==
+X-Received: by 2002:a62:1610:0:b0:447:53fa:a27 with SMTP id 16-20020a621610000000b0044753fa0a27mr24163749pfw.39.1633338719957;
+        Mon, 04 Oct 2021 02:11:59 -0700 (PDT)
 Received: from localhost ([122.171.247.18])
-        by smtp.gmail.com with ESMTPSA id p48sm13584576pfw.160.2021.10.04.02.11.30
+        by smtp.gmail.com with ESMTPSA id o2sm14351598pja.7.2021.10.04.02.11.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 02:11:30 -0700 (PDT)
-Date:   Mon, 4 Oct 2021 14:41:29 +0530
+        Mon, 04 Oct 2021 02:11:59 -0700 (PDT)
+Date:   Mon, 4 Oct 2021 14:41:57 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Dmitry Osipenko <digetx@gmail.com>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
@@ -75,26 +75,94 @@ Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
         David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH v13 00/35] NVIDIA Tegra power management patches for 5.16
-Message-ID: <20211004091129.fhlfhsddzk5fakuj@vireshk-i7>
+Subject: Re: [PATCH v13 01/35] opp: Change type of
+ dev_pm_opp_attach_genpd(names) argument
+Message-ID: <20211004091157.uidbtrhpsl264xjs@vireshk-i7>
 References: <20210926224058.1252-1-digetx@gmail.com>
+ <20210926224058.1252-2-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210926224058.1252-1-digetx@gmail.com>
+In-Reply-To: <20210926224058.1252-2-digetx@gmail.com>
 User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27-09-21, 01:40, Dmitry Osipenko wrote:
-> This series adds runtime PM support to Tegra drivers and enables core
-> voltage scaling for Tegra20/30 SoCs, resolving overheating troubles.
+> Elements of the 'names' array are not changed by the code, constify them
+> for consistency.
 > 
-> All patches in this series are interdependent and should go via Tegra tree.
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  drivers/opp/core.c     | 6 +++---
+>  include/linux/pm_opp.h | 8 ++++----
+>  2 files changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+> index 04b4691a8aac..3057beabd370 100644
+> --- a/drivers/opp/core.c
+> +++ b/drivers/opp/core.c
+> @@ -2348,12 +2348,12 @@ static void _opp_detach_genpd(struct opp_table *opp_table)
+>   * "required-opps" are added in DT.
+>   */
+>  struct opp_table *dev_pm_opp_attach_genpd(struct device *dev,
+> -		const char **names, struct device ***virt_devs)
+> +		const char * const *names, struct device ***virt_devs)
+>  {
+>  	struct opp_table *opp_table;
+>  	struct device *virt_dev;
+>  	int index = 0, ret = -EINVAL;
+> -	const char **name = names;
+> +	const char * const *name = names;
+>  
+>  	opp_table = _add_opp_table(dev, false);
+>  	if (IS_ERR(opp_table))
+> @@ -2457,7 +2457,7 @@ static void devm_pm_opp_detach_genpd(void *data)
+>   *
+>   * Return: 0 on success and errorno otherwise.
+>   */
+> -int devm_pm_opp_attach_genpd(struct device *dev, const char **names,
+> +int devm_pm_opp_attach_genpd(struct device *dev, const char * const *names,
+>  			     struct device ***virt_devs)
+>  {
+>  	struct opp_table *opp_table;
+> diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
+> index a95d6fdd20b6..879c138c7b8e 100644
+> --- a/include/linux/pm_opp.h
+> +++ b/include/linux/pm_opp.h
+> @@ -156,9 +156,9 @@ int devm_pm_opp_set_clkname(struct device *dev, const char *name);
+>  struct opp_table *dev_pm_opp_register_set_opp_helper(struct device *dev, int (*set_opp)(struct dev_pm_set_opp_data *data));
+>  void dev_pm_opp_unregister_set_opp_helper(struct opp_table *opp_table);
+>  int devm_pm_opp_register_set_opp_helper(struct device *dev, int (*set_opp)(struct dev_pm_set_opp_data *data));
+> -struct opp_table *dev_pm_opp_attach_genpd(struct device *dev, const char **names, struct device ***virt_devs);
+> +struct opp_table *dev_pm_opp_attach_genpd(struct device *dev, const char * const *names, struct device ***virt_devs);
+>  void dev_pm_opp_detach_genpd(struct opp_table *opp_table);
+> -int devm_pm_opp_attach_genpd(struct device *dev, const char **names, struct device ***virt_devs);
+> +int devm_pm_opp_attach_genpd(struct device *dev, const char * const *names, struct device ***virt_devs);
+>  struct dev_pm_opp *dev_pm_opp_xlate_required_opp(struct opp_table *src_table, struct opp_table *dst_table, struct dev_pm_opp *src_opp);
+>  int dev_pm_opp_xlate_performance_state(struct opp_table *src_table, struct opp_table *dst_table, unsigned int pstate);
+>  int dev_pm_opp_set_rate(struct device *dev, unsigned long target_freq);
+> @@ -376,7 +376,7 @@ static inline int devm_pm_opp_set_clkname(struct device *dev, const char *name)
+>  	return -EOPNOTSUPP;
+>  }
+>  
+> -static inline struct opp_table *dev_pm_opp_attach_genpd(struct device *dev, const char **names, struct device ***virt_devs)
+> +static inline struct opp_table *dev_pm_opp_attach_genpd(struct device *dev, const char * const *names, struct device ***virt_devs)
+>  {
+>  	return ERR_PTR(-EOPNOTSUPP);
+>  }
+> @@ -384,7 +384,7 @@ static inline struct opp_table *dev_pm_opp_attach_genpd(struct device *dev, cons
+>  static inline void dev_pm_opp_detach_genpd(struct opp_table *opp_table) {}
+>  
+>  static inline int devm_pm_opp_attach_genpd(struct device *dev,
+> -					   const char **names,
+> +					   const char * const *names,
+>  					   struct device ***virt_devs)
+>  {
+>  	return -EOPNOTSUPP;
 
-So you don't need any OPP changes anymore ? I just came back from
-vacation, don't know what you guys discussed in between :)
+Applied. Thanks.
 
 -- 
 viresh
