@@ -2,125 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A580421507
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DD4F42152B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233767AbhJDRSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 13:18:05 -0400
-Received: from mail-vs1-f44.google.com ([209.85.217.44]:38880 "EHLO
-        mail-vs1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233446AbhJDRSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 13:18:04 -0400
-Received: by mail-vs1-f44.google.com with SMTP id y141so4802845vsy.5;
-        Mon, 04 Oct 2021 10:16:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/cIKwqiiuLgobXDQ2FDfJfThXFQMEGwTN5ZwOTn9O4c=;
-        b=pQ4iaKDNP+C76ASPJ2mNlCnDlix1tg5tvrHS3GvszQjLs03q47lolUVyHOsEcux8pb
-         qTVmxfw+2rQIgYxAWauzoUgPFJ2+6k2aUDcApDf7D0P1KMsvxYAusx9oX/HnoHAIQojP
-         IMd3iv6wNA1iZPZWe0Z0s2RueHGBQTwAhV2GK0gpIEXgqD5JMNC3Ccsck0ksheTG3o2t
-         i4jNcFf/E3raLQNKNIqaCHoyUEkPMnUZlEzeVD7LfVi6CrnKLXtQp0VwshXmwGtzp/xX
-         B3r8cYKH98L8taa9sTz/QLQegdb4GWG85eRNs6/3naEDFpNfmb+P9adh1ogvR5G9GZLr
-         mQ4w==
-X-Gm-Message-State: AOAM533OFF1PJzZqhDPtV1AS6vCsilbXlb5xnkemZ2x63igvuRDiY6MF
-        V8hizUAykX+p9OtrDzU6FWhPeSc/x/x2XAN8mFA=
-X-Google-Smtp-Source: ABdhPJwNIZzHrryVaq03dDhlSZqDVIvNqhD8sTXheMyiIkrcLXtixi70I9evUxN+y2x4M+IJ+XLbx0Evor3VmO5CVqA=
-X-Received: by 2002:a67:c295:: with SMTP id k21mr11443962vsj.37.1633367774534;
- Mon, 04 Oct 2021 10:16:14 -0700 (PDT)
+        id S234027AbhJDRaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 13:30:15 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:47952 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234612AbhJDRaN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 13:30:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=fBQQnjUYlNCeKO7JTfO5K7VB/ceVUGDzh7Do/3hwY1U=; b=UXjBkkLhygo6vRs86pDAFxoBnT
+        MWBRl5HHutT+Y0Xf0M+fXE6txx5VEoHBeLlB2kkxsh7bjLzuhwsrmmamOcNlJPftzsp4nteffr0hl
+        KcaoSa3Go05EBsopcZCPlgvWdNYtwkUz20SYpT8A/edEmYGb3BsK6eEV+E3B0TxzIEzE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mXRlD-009ZrX-PL; Mon, 04 Oct 2021 19:28:19 +0200
+Date:   Mon, 4 Oct 2021 19:28:19 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: lets settle the LED `function` property regarding the netdev
+ trigger
+Message-ID: <YVs5sxd/dEBwBShm@lunn.ch>
+References: <20211001143601.5f57eb1a@thinkpad>
+ <YVn815h7JBtVSfwZ@lunn.ch>
+ <20211003212654.30fa43f5@thinkpad>
+ <YVsUodiPoiIESrEE@lunn.ch>
+ <20211004170847.3f92ef48@thinkpad>
 MIME-Version: 1.0
-References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
- <CAHp75VcG9KajNpDbewDq7QzotB6t7MfwiGk15FaobX+cmMVSzg@mail.gmail.com>
- <CAK9rFnwrA=W2Vk5yFwG4N_WS=eBXXnhtexA+tqgAYb6xOAO4oQ@mail.gmail.com>
- <CAHp75VdfrJ3JV_gL3xCLHOiw6Tj-5Ep7z5JKWUFKFbUt8gobcw@mail.gmail.com>
- <CAK9rFnx--z_pr_yR6CqGsH04ddwUtx4rxc7MxNNmy7ZSF86+Mg@mail.gmail.com>
- <CAMuHMdUz4vUQzXBHA9AiT3w6L20yBpgd0emVZJb=v_qw70qiJQ@mail.gmail.com>
- <CAK9rFnw-j8whcsK-NQ4w4+sCdrumCk7Bb=J+KfsF9ZO2Tf5r5g@mail.gmail.com>
- <CAMuHMdW0s=x+DBZffeuEcyifDRfy8YM3c_wEAZscO7twR2wj3Q@mail.gmail.com> <CAK9rFnwCry1G7RqdWL9W1vq6Q3RV9tRxmDD6UErY=hQB6W-=_Q@mail.gmail.com>
-In-Reply-To: <CAK9rFnwCry1G7RqdWL9W1vq6Q3RV9tRxmDD6UErY=hQB6W-=_Q@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 4 Oct 2021 19:16:03 +0200
-Message-ID: <CAMuHMdUCESsnrbsh981OeNfnuiGn7w49wbUctxc_FnsZyP8GZA@mail.gmail.com>
-Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
-To:     Brad Larson <brad@pensando.io>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211004170847.3f92ef48@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brad,
+> > There are two different ways this can be implemented. There can be two
+> > independent LEDs within the same package. So you can generate three
+> > colours. Or there can be two cross connected LEDs within the
+> > package. Apply +ve you get one colour, apply -ve you get a different
+> > colour. Since you cannot apply both -ve and +ve at the same time, you
+> > cannot get both colours at once.
+> > 
+> > If you have two independent LEDs, I would define two LEDs in DT.
+> 
+> No, we have multicolor LED API which is meant for exactly this
+> situation: a multicolor LED.
+> (I am talking about something like the KJ2518D-262 from
+>  http://www.rego.com.tw/product_detail.php?prdt_id=258
+>  which has Green/Orange on left and Yellow on right side.
+>  The left Green/Orange LED has 3 pins, and so it can mix the colors into
+>  yellow.)
 
-On Mon, Oct 4, 2021 at 7:14 PM Brad Larson <brad@pensando.io> wrote:
-> On Mon, Aug 23, 2021 at 1:11 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Mon, Aug 23, 2021 at 6:31 PM Brad Larson <brad@pensando.io> wrote:
-> > > On Mon, Aug 23, 2021 at 12:50 AM Geert Uytterhoeven
-> > > <geert@linux-m68k.org> wrote:
-> > > > On Mon, Aug 23, 2021 at 3:14 AM Brad Larson <brad@pensando.io> wrote:
-> > > > > On Mon, Mar 29, 2021 at 3:40 AM Andy Shevchenko
-> > > [...]
-> > > > > Regarding the above module question and Kconfig definition, since I
-> > > > > first looked at this and reviewed the comments I realized I should be
-> > > > > using builtin.  The file gpio/Kconfig is currently this
-> > > > >
-> > > > > config GPIO_ELBA_SPICS
-> > > > >         def_bool y
-> > > > >         depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
-> > > >
-> > > > That means the driver will default to yes by merely enabling
-> > > > COMPILE_TEST, which is a no-go.
-> > > >
-> > > >     config GPIO_ELBA_SPICS
-> > > >             bool "one-line summary"
-> > > >             depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
-> > > >             default y if ARCH_PENSANDO_ELBA_SOC
-> > >
-> > > Thanks Geert, changed to this
-> > >
-> > > --- a/drivers/gpio/Kconfig
-> > > +++ b/drivers/gpio/Kconfig
-> > > @@ -241,8 +241,9 @@ config GPIO_EIC_SPRD
-> > >           Say yes here to support Spreadtrum EIC device.
-> > >
-> > >  config GPIO_ELBA_SPICS
-> > > +       bool "Pensando Elba SoC SPI Chip Select as GPIO support"
-> > > +       depends on ARCH_PENSANDO_ELBA_SOC
-> > >         def_bool y
-> > > -       depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
-> >
-> > So we're losing the COMPILE_TEST ability again?
-> >
->
-> Hi Geert,
->
-> The gpio-elba-spics.c driver is being deleted with the spi chip-select
-> control integrated into spi-dw-mmio.c.  The GPIO_ELBA_SPICS config
-> option goes away and fixes my breakage of COMPILE_TEST.
+But here you are talking about the LED, not the controller in the
+PHY. The controller might control it as two independent LEDs. It has
+no idea it can get a third colour by enabling two LEDs at the same
+time. Or maybe the controller does know it can combine colours.
 
-OK. Thanks for the follow-up.
+So you need to know about both the controller and the LED. And the
+same controller can be used either way. Plus you need to think about
+the non DT case, when you have no idea about the LED connected to the
+controller.
 
-Gr{oetje,eeting}s,
+> I think the best solution here would be a subclass "enumcolor" (or
+> different name), where you can choose between several pre-defined colors.
+> In sysfs you could then do
+>   echo 1 >brightness
+>   echo green >color
+>   echo yellow >color
 
-                        Geert
+I'm not sure it is as simple as that. In the general case, you have no
+idea what the colours actually are. You only know the colours if you
+have DT and DT lists the colours. And you only know if LEDs are
+combined if you have DT. You need a basic sysfs API based on knowing
+the PHY can control X LEDs. You can then extend that API if you have
+additional information via DT, like colour and if LEDs are combined,
+that only LEDs numbered 2 and 3 are used, etc.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+	   Andrew
