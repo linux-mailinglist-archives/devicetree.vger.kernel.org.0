@@ -2,421 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29CB9421311
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA09421330
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235983AbhJDPwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 11:52:49 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:58203 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234366AbhJDPwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 11:52:49 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633362660; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=UFJF7rvcWoXxeHRWJ7Q4jnW0oWuIdJoL6fGNh6XQlR4=; b=kM8zvD8P5613PrPWWzCjZbzQEVxa/BPWbx5x/CAwuH/4DLO85MoxPDyMOVet2QCwdeG2J/32
- g/apD7xFb01/RIeBjU3324Aow7ieZLlbO4lwYRGFamgliHsIupHuNmQ51EvK5L0g0IxJqfkZ
- 7F7KzEadR0L4/p6sl3VtQ/lRExg=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 615b22dba5a9bab6e83320a9 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 04 Oct 2021 15:50:51
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 522A2C4361A; Mon,  4 Oct 2021 15:50:51 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.1.102] (unknown [157.48.255.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 23BA0C4338F;
-        Mon,  4 Oct 2021 15:50:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 23BA0C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH 4/8] ASoC: qcom: Add lapss CPU driver for codec dma
- control
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1633087292-1378-1-git-send-email-srivasam@codeaurora.org>
- <1633087292-1378-5-git-send-email-srivasam@codeaurora.org>
- <YVcuzEXA4Ej3HpHH@google.com>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <8c5484d9-eb78-102f-c4bc-7ce9e9c1b573@codeaurora.org>
-Date:   Mon, 4 Oct 2021 21:20:40 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S236077AbhJDP7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 11:59:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234809AbhJDP7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 11:59:04 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A8EC061745;
+        Mon,  4 Oct 2021 08:57:14 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id e15so73647536lfr.10;
+        Mon, 04 Oct 2021 08:57:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=oXxI7X/1bkoyfWLqsQl0b8N5L2M43qDxOhyRLjNgwgs=;
+        b=pH5gGGqkZlMuFnRyIJAXiewuWBbmrXc4nrj48Dzw+Xc6gukr3JlL4bc0XqPdYPe5DQ
+         NDB4vv+qA4gvKAo7lM0mnIDk8dHTj89Skv+bi+CnIwKoB0GbtflokeLFAGWMWBkGuUwO
+         vnV+cxSUarX4fvwMNp98YdWmdtdCmVfrq9kQiTD/iscLYeiALsQL/FGXMsD8gWDMtQgb
+         SdntlSYjQY8VC2aw+ENPn0LFmLD5mx6hdBsOFMb8vi+SpeKciwoN3fNZiNgmP/61OVVQ
+         wnD2qG3x98rXnlrsSFT8O6Xj/b7E6uaK2TJJmtNceUOe0ut/Z6O07eTqHqNZmJmGlly8
+         1zZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=oXxI7X/1bkoyfWLqsQl0b8N5L2M43qDxOhyRLjNgwgs=;
+        b=QQ9WkcJSRIIDfAKEViFn8odN8m6sW2AcT33Ny0B7YDP5A4VQ81xIgQqxi4C6wDMXPR
+         uNmNAy/RH03b3YjBS31LpJ9OIpXzOG8p1dkPF3CbPnI1UxA03hcyqiiVyAUECWHidBP6
+         SBTmsKbCWrJV94tEBqMc9dERYhtnwTKo8074npB1WNZeZP5zsYAVOkIHNwrZmZr36BS0
+         7rsn5SQiYpJRQiPJUwT7Jz0NmMeIktq8LmsEaZ1jf2674GxgGYkzmyCjCA3H5Ce0Tsfm
+         /ZkyShA9tanplHheIECAepB97n3lQ8uNY+xtaBIHXcM4WmrkSTSxMn9pWkO3unBBOH0f
+         2aRg==
+X-Gm-Message-State: AOAM531WtDx9XxSj2lAy81T91jDuTqUOVELcm5PFwqxYmTwmzMvMcGFO
+        J3elyH6NxSZzGNZNv82xEow=
+X-Google-Smtp-Source: ABdhPJwVBnc7vV9bh5UvETfiXZp05qVUc3d2AIsNbe2sLzFhSwuNlbIJLQFDdKH2jbPpxZ0FciK83w==
+X-Received: by 2002:a05:6512:31c1:: with SMTP id j1mr15924982lfe.442.1633363033096;
+        Mon, 04 Oct 2021 08:57:13 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.googlemail.com with ESMTPSA id l9sm886038lje.32.2021.10.04.08.57.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Oct 2021 08:57:12 -0700 (PDT)
+Subject: Re: [PATCH v13 13/35] drm/tegra: gr2d: Support generic power domain
+ and runtime PM
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+References: <20210926224058.1252-1-digetx@gmail.com>
+ <20210926224058.1252-14-digetx@gmail.com>
+ <CAPDyKFpzhv1UxjM0q5AWHVxTWC_cCO_Kg_6exO0o_=EoVvjo+w@mail.gmail.com>
+ <aad7a508-7fb5-3418-f902-def80c365094@gmail.com>
+ <CAPDyKFppSuP6FfaBaGn3o+8WvTT=vJ8XMzZ47WPQ1JKiUYyEpw@mail.gmail.com>
+ <8d75436d-864a-7ce0-ba53-daa8b663035a@gmail.com>
+ <CAPDyKFpqs5gUcym4q+GuiJy13eXqjEnx-eFdUT4bQpcfPAOEYw@mail.gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <f5b5e06a-71ed-1250-f0ad-692062e00e01@gmail.com>
+Date:   Mon, 4 Oct 2021 18:57:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <YVcuzEXA4Ej3HpHH@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <CAPDyKFpqs5gUcym4q+GuiJy13eXqjEnx-eFdUT4bQpcfPAOEYw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+04.10.2021 14:01, Ulf Hansson пишет:
+> On Fri, 1 Oct 2021 at 21:00, Dmitry Osipenko <digetx@gmail.com> wrote:
+>>
+>> 01.10.2021 17:55, Ulf Hansson пишет:
+>>> On Fri, 1 Oct 2021 at 16:29, Dmitry Osipenko <digetx@gmail.com> wrote:
+>>>>
+>>>> 01.10.2021 16:39, Ulf Hansson пишет:
+>>>>> On Mon, 27 Sept 2021 at 00:42, Dmitry Osipenko <digetx@gmail.com> wrote:
+>>>>>>
+>>>>>> Add runtime power management and support generic power domains.
+>>>>>>
+>>>>>> Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
+>>>>>> Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
+>>>>>> Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T124
+>>>>>> Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
+>>>>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>>>>> ---
+>>>>>>  drivers/gpu/drm/tegra/gr2d.c | 155 +++++++++++++++++++++++++++++++++--
+>>>>>
+>>>>> [...]
+>>>>>
+>>>>>>  static int gr2d_remove(struct platform_device *pdev)
+>>>>>> @@ -259,15 +312,101 @@ static int gr2d_remove(struct platform_device *pdev)
+>>>>>>                 return err;
+>>>>>>         }
+>>>>>>
+>>>>>> +       pm_runtime_dont_use_autosuspend(&pdev->dev);
+>>>>>> +       pm_runtime_disable(&pdev->dev);
+>>>>>
+>>>>> There is no guarantee that the ->runtime_suspend() has been invoked
+>>>>> here, which means that clock may be left prepared/enabled beyond this
+>>>>> point.
+>>>>>
+>>>>> I suggest you call pm_runtime_force_suspend(), instead of
+>>>>> pm_runtime_disable(), to make sure that gets done.
+>>>>
+>>>> The pm_runtime_disable() performs the final synchronization, please see [1].
+>>>>
+>>>> [1]
+>>>> https://elixir.bootlin.com/linux/v5.15-rc3/source/drivers/base/power/runtime.c#L1412
+>>>
+>>> pm_runtime_disable() end up calling _pm_runtime_barrier(), which calls
+>>> cancel_work_sync() if dev->power.request_pending has been set.
+>>>
+>>> If the work that was punted to the pm_wq in rpm_idle() has not been
+>>> started yet, we end up just canceling it. In other words, there are no
+>>> guarantees it runs to completion.
+>>
+>> You're right. Although, in a case of this particular patch, the syncing
+>> is actually implicitly done by pm_runtime_dont_use_autosuspend().
+>>
+>> But for drivers which don't use auto-suspend, there is no sync. This
+>> looks like a disaster, it's a very common pattern for drivers to
+>> 'put+disable'.
+>>
+>>> Moreover, use space may have bumped the usage count via sysfs for the
+>>> device (pm_runtime_forbid()) to keep the device runtime resumed.
+>>
+>> Right, this is also a disaster in a case of driver removal.
+>>
+>>>> Calling pm_runtime_force_suspend() isn't correct because each 'enable'
+>>>> must have the corresponding 'disable'. Hence there is no problem here.
+>>>
+>>> pm_runtime_force_suspend() calls pm_runtime_disable(), so I think that
+>>> should be fine. No?
+>>
+>> [adding Rafael]
+>>
+>> Rafael, could you please explain how drivers are supposed to properly
+>> suspend and disable RPM to cut off power and reset state that was
+>> altered by the driver's resume callback? What we're missing? Is Ulf's
+>> suggestion acceptable?
+>>
+>> The RPM state of a device is getting reset on driver's removal, hence
+>> all refcounts that were bumped by the rpm-resume callback of the device
+>> driver will be screwed up if device is kept resumed after removal. I
+>> just verified that it's true in practice.
+> 
+> Note that, what makes the Tegra drivers a bit special is that they are
+> always built with CONFIG_PM being set (selected from the "SoC"
+> Kconfig).
+> 
+> Therefore, pm_runtime_force_suspend() can work for some of these
+> cases. Using this, would potentially avoid the driver from having to
+> runtime resume the device in ->remove(), according to the below
+> generic sequence, which is used in many drivers.
+> 
+> pm_runtime_get_sync()
+> clk_disable_unprepare() (+ additional things to turn off the device)
+> pm_runtime_disable()
+> pm_runtime_put_noidle()
 
-On 10/1/2021 9:22 PM, Matthias Kaehlcke wrote:
-Thanks for Your time Matthias!!!
-> On Fri, Oct 01, 2021 at 04:51:28PM +0530, Srinivasa Rao Mandadapu wrote:
->> Subject: ASoC: qcom: Add lapss CPU driver for codec dma control
-> nit: s/lapss/lpass/
-Okay. Will change.
->> Add lpass cpu driver to support audio over codec dma for
->> ADSP bypass usecase.
->>
->> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
->> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->> ---
->>   sound/soc/qcom/lpass-cdc-dma.c | 263 +++++++++++++++++++++++++++++++++++++++++
->>   sound/soc/qcom/lpass.h         |   1 +
->>   2 files changed, 264 insertions(+)
->>   create mode 100644 sound/soc/qcom/lpass-cdc-dma.c
->>
->> diff --git a/sound/soc/qcom/lpass-cdc-dma.c b/sound/soc/qcom/lpass-cdc-dma.c
->> new file mode 100644
->> index 0000000..56b3791
->> --- /dev/null
->> +++ b/sound/soc/qcom/lpass-cdc-dma.c
->> @@ -0,0 +1,263 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2021 The Linux Foundation. All rights reserved.
->> + *
->> + * lpass-cdc-dma.c -- ALSA SoC WCD -CPU DAI driver for QTi LPASS WCD
->> + */
->> +
->> +#include <linux/module.h>
->> +#include <sound/soc.h>
->> +#include <sound/soc-dai.h>
->> +
->> +#include "lpass-lpaif-reg.h"
->> +#include "lpass.h"
->> +
->> +static int __lpass_platform_codec_intf_init(struct snd_soc_dai *dai,
->> +					 struct snd_pcm_substream *substream)
->> +{
->> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
->> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
->> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
->> +	struct snd_pcm_runtime *rt = substream->runtime;
->> +	struct lpass_pcm_data *pcm_data = rt->private_data;
->> +	struct lpass_variant *v = drvdata->variant;
->> +	struct lpaif_dmactl *dmactl;
->> +	struct regmap *map;
->> +	int dir = substream->stream;
->> +	int ret, id;
->> +	unsigned int dai_id = cpu_dai->driver->id;
->> +
->> +	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
-> s/ ==  / == /
-Okay. Will change it.
->> +		dmactl = drvdata->rxtx_rd_dmactl;
->> +		map = drvdata->rxtx_lpaif_map;
->> +		id = pcm_data->dma_ch;
->> +	} else {
->> +		if (dai_id == LPASS_CDC_DMA_TX3) {
->> +			dmactl = drvdata->rxtx_wr_dmactl;
->> +			map = drvdata->rxtx_lpaif_map;
->> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
->> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
->> +			dmactl = drvdata->va_wr_dmactl;
->> +			map = drvdata->va_lpaif_map;
->> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
->> +		}
->> +	}
-> 'map' is assigned here, but not used in the rest of the function, drop it.
-Okay. will remove it.
->> +
->> +	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
-> s/ ==  / == /
-Okay. Will change it.
->> +		ret = regmap_fields_write(dmactl->codec_intf, id, LPASS_CDC_DMA_RX0_INTERFACE);
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to rdmactl reg: %d\n", ret);
-> Some of the logs print the register name, others don't, why not log it
-> always?
->
->> +			return ret;
->> +		}
->> +	    ret = regmap_fields_write(dmactl->codec_fs_sel, id, 0x0);
-> fix indentation
-Okay. will change it.
->
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to rdmactl reg: %d\n", ret);
->> +			return ret;
->> +		}
->> +		ret = regmap_fields_write(dmactl->codec_fs_delay, id, 0x0);
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to rdmactl codec_fs_delay reg field: %d\n", ret);
->> +			return ret;
->> +		}
->> +		ret = regmap_fields_write(dmactl->codec_pack, id, 0x1);
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to rdmactl codec_pack reg field: %d\n", ret);
->> +			return ret;
->> +		}
->> +		ret = regmap_fields_write(dmactl->codec_enable, id, LPAIF_DMACTL_ENABLE_ON);
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to rdmactl reg: %d\n", ret);
->> +			return ret;
->> +		}
->> +
-> Remove empty line
-Okay. will remove it.
->
->> +	} else {
->> +		ret = regmap_fields_write(dmactl->codec_intf, id, LPASS_CDC_DMA_INTERFACE(dai_id));
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to wrdmactl codec_intf reg field: %d\n", ret);
->> +			return ret;
->> +		}
->> +	    ret = regmap_fields_write(dmactl->codec_fs_sel, id, 0x0);
-> fix indentation
-Okay. Will change it.
->
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to wrdmactl codec_fs_sel reg field: %d\n", ret);
->> +			return ret;
->> +		}
->> +		ret = regmap_fields_write(dmactl->codec_fs_delay, id, 0x0);
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to wrdmactl codec_fs_delay reg field: %d\n", ret);
->> +			return ret;
->> +		}
->> +		ret = regmap_fields_write(dmactl->codec_pack, id, 0x1);
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to wrdmactl codec_pack reg field: %d\n", ret);
->> +			return ret;
->> +		}
->> +		ret = regmap_fields_write(dmactl->codec_enable, id, LPAIF_DMACTL_ENABLE_ON);
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to wrdmactl codec_enable reg field: %d\n", ret);
->> +			return ret;
->> +		}
-> The last four register writes are exactly the same in both branches, only the
-> logging distinguishes between 'rdmactl' and 'wrdmactl'. Those should be in the
-> main branch, if you really need to distinguish between 'rdmactl' and 'wrdmactl'
-> in the logging you can assign a string pointer in the 'if (dir == SNDRV_PCM_STREAM_PLAYBACK)'
-> branches.
-Okay. Will optimize code. I don't think rdmactl/wrdmactl is distinguish 
-required.
->> +	}
->> +	return 0;
->> +}
->> +
->> +static int lpass_wcd_daiops_startup(struct snd_pcm_substream *substream,
->> +		struct snd_soc_dai *dai)
->> +{
->> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
->> +	int ret, i;
->> +
->> +	for (i = 0; i < drvdata->cdc_num_clks; i++) {
->> +		ret = clk_prepare_enable(drvdata->cdc_dma_clks[i]);
->> +		if (ret) {
->> +			dev_err(dai->dev, "error in enabling cdc dma clks: %d\n", ret);
->> +			return ret;
-> Disable clocks that have been enabled previously?
-Okay. will use bulk clock API here.
->
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void lpass_wcd_daiops_shutdown(struct snd_pcm_substream *substream,
->> +		struct snd_soc_dai *dai)
->> +{
->> +	int i;
->> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
->> +
->> +	for (i = 0; i < drvdata->cdc_num_clks; i++)
->> +		clk_disable_unprepare(drvdata->cdc_dma_clks[i]);
->> +}
->> +
->> +static int lpass_wcd_daiops_hw_params(struct snd_pcm_substream *substream,
->> +		struct snd_pcm_hw_params *params, struct snd_soc_dai *dai)
->> +{
->> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
->> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
->> +	struct lpaif_dmactl *dmactl;
->> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
->> +	struct snd_pcm_runtime *rt = substream->runtime;
->> +	struct lpass_pcm_data *pcm_data = rt->private_data;
->> +	struct lpass_variant *v = drvdata->variant;
->> +	struct regmap *map;
->> +	int dir = substream->stream;
->> +	unsigned int ret, regval;
->> +	unsigned int channels = params_channels(params);
->> +	int id;
->> +	unsigned int dai_id = cpu_dai->driver->id;
->> +
->> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK) {
->> +		dmactl = drvdata->rxtx_rd_dmactl;
->> +		map = drvdata->rxtx_lpaif_map;
->> +		id = pcm_data->dma_ch;
->> +	} else {
->> +		if (dai_id == LPASS_CDC_DMA_TX3) {
->> +			dmactl = drvdata->rxtx_wr_dmactl;
->> +			map = drvdata->rxtx_lpaif_map;
->> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
->> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
->> +			dmactl = drvdata->va_wr_dmactl;
->> +			map = drvdata->va_lpaif_map;
->> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
->> +		}
->> +	}
-> The exact same code block is used 3 times in this driver. Add a helper with
-> 'substream' and 'dai' as parameters, which determines 'dmactl and 'id'.
-> That would also make the variable declaration/assignment section of these
-> functions signifcantly shorter.
-Okay. will optimize it.
->> +
->> +	switch (channels) {
->> +	case 1:
->> +		regval = LPASS_CDC_DMA_INTF_ONE_CHANNEL;
->> +		break;
->> +	case 2:
->> +		regval = LPASS_CDC_DMA_INTF_TWO_CHANNEL;
->> +		break;
->> +	case 4:
->> +		regval = LPASS_CDC_DMA_INTF_FOUR_CHANNEL;
->> +		break;
->> +	case 6:
->> +		regval = LPASS_CDC_DMA_INTF_SIX_CHANNEL;
->> +		break;
->> +	case 8:
->> +		regval = LPASS_CDC_DMA_INTF_EIGHT_CHANNEL;
->> +		break;
->> +	default:
->> +		dev_err(soc_runtime->dev, "invalid PCM config\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	ret = regmap_fields_write(dmactl->codec_channel, id, regval);
->> +	if (ret) {
->> +		dev_err(soc_runtime->dev,
->> +			"error writing to rdmactl codec_channel reg field: %d\n", ret);
-> not necessarily 'rdmactl'.
-Okay. will change it.
->> +		return ret;
->> +	}
->> +	return ret;
-> 	return 0
->
->> +}
->> +
->> +static int lpass_wcd_daiops_trigger(struct snd_pcm_substream *substream,
->> +		int cmd, struct snd_soc_dai *dai)
->> +{
->> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
->> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
->> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
->> +	struct snd_pcm_runtime *rt = substream->runtime;
->> +	struct lpass_pcm_data *pcm_data = rt->private_data;
->> +	struct lpass_variant *v = drvdata->variant;
->> +	int dir = substream->stream;
->> +	struct lpaif_dmactl *dmactl;
->> +	struct regmap *map;
->> +	unsigned int dai_id = cpu_dai->driver->id;
->> +	int ret = 0, id;
->> +
->> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK) {
->> +		dmactl = drvdata->rxtx_rd_dmactl;
->> +		map = drvdata->rxtx_lpaif_map;
->> +		id = pcm_data->dma_ch;
->> +	} else {
->> +		if (dai_id == LPASS_CDC_DMA_TX3) {
->> +			dmactl = drvdata->rxtx_wr_dmactl;
->> +			map = drvdata->rxtx_lpaif_map;
->> +			id = pcm_data->dma_ch - v->rxtx_wrdma_channel_start;
->> +		} else if (dai_id == LPASS_CDC_DMA_VA_TX0) {
->> +			dmactl = drvdata->va_wr_dmactl;
->> +			map = drvdata->va_lpaif_map;
->> +			id = pcm_data->dma_ch - v->va_wrdma_channel_start;
->> +		}
->> +	}
-> see above
-okay.
->> +	switch (cmd) {
->> +	case SNDRV_PCM_TRIGGER_START:
->> +	case SNDRV_PCM_TRIGGER_RESUME:
->> +	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
->> +		__lpass_platform_codec_intf_init(dai, substream);
->> +		break;
->> +	case SNDRV_PCM_TRIGGER_STOP:
->> +	case SNDRV_PCM_TRIGGER_SUSPEND:
->> +	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
->> +		ret = regmap_fields_write(dmactl->codec_enable, id, LPAIF_DMACTL_ENABLE_OFF);
->> +		if (ret) {
->> +			dev_err(soc_runtime->dev,
->> +				"error writing to rdmactl reg: %d\n", ret);
-> not necessarily rdmactl, better log that it's the codec enable reg.
-okay. will change it.
->
->> +			return ret;
->> +		}
->> +
->> +		break;
->> +	}
->> +	return ret;
->> +}
->> +
->> +const struct snd_soc_dai_ops asoc_qcom_lpass_wcd_dai_ops = {
->> +	.startup	= lpass_wcd_daiops_startup,
->> +	.shutdown	= lpass_wcd_daiops_shutdown,
->> +	.hw_params	= lpass_wcd_daiops_hw_params,
->> +	.trigger	= lpass_wcd_daiops_trigger,
->> +};
->> +EXPORT_SYMBOL_GPL(asoc_qcom_lpass_wcd_dai_ops);
->> +
->> +MODULE_DESCRIPTION("QTi LPASS CDC DMA Driver");
->> +MODULE_LICENSE("GPL v2");
->> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
->> index 058b42d..e0ea698 100644
->> --- a/sound/soc/qcom/lpass.h
->> +++ b/sound/soc/qcom/lpass.h
->> @@ -418,5 +418,6 @@ int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai);
->>   extern const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops;
->>   int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
->>   				struct snd_soc_dai *dai);
->> +extern const struct snd_soc_dai_ops asoc_qcom_lpass_wcd_dai_ops;
->>   
->>   #endif /* __LPASS_H__ */
->> -- 
->> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
->> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
->>
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+It's not a problem to change this patchset. The problem is that if
+you'll grep mainline for 'pm_runtime_disable', you will find that there
+are a lot of drivers in a potential trouble.
 
+I'm proposing that we should change pm_runtime_disable() to perform the
+syncing with this oneliner:
+
+diff --git a/drivers/base/power/runtime.c b/drivers/base/power/runtime.c
+index ec94049442b9..5c9f28165824 100644
+--- a/drivers/base/power/runtime.c
++++ b/drivers/base/power/runtime.c
+@@ -1380,6 +1380,8 @@ EXPORT_SYMBOL_GPL(pm_runtime_barrier);
+  */
+ void __pm_runtime_disable(struct device *dev, bool check_resume)
+ {
++	flush_work(&dev->power.work);
++
+ 	spin_lock_irq(&dev->power.lock);
+
+ 	if (dev->power.disable_depth > 0) {
+
+Objections?
+
+The sysfs rpm-forbid is a separate problem and it's less troublesome
+since it requires root privileges. It's also not something that
+userspace touches casually. For now I don't know what could be done
+about it.
