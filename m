@@ -2,88 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 282E34214C2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:05:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C2EB4214DE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235119AbhJDRHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 13:07:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58870 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233646AbhJDRHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 13:07:07 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDC52C061745;
-        Mon,  4 Oct 2021 10:05:17 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id y15so8800584lfk.7;
-        Mon, 04 Oct 2021 10:05:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=hjjZdeUEp0/4fUr63QkE2TTYbTpb7SXPyJvyoceinIg=;
-        b=AnMkcDTsrywKhl4y+oppPWcYZcIKQ63v3gS35gx0/IvVoLEprhHDnA4uvm95SaYYhA
-         W5VXBFqElv/CKGKZS+FUuJdiR3+96LkR7BxPjhNva3Kh9AVfrIOXmfCAln9++FD9crKO
-         mBLaM5mpfYJ9+djgbhbxgT3irK7tFMBEiEo5FYI2+8hVhQDK5E14AjWHCCrJaxPZPfJh
-         mCFvXbb/JsE0VVAZsRRKL5IubO5tcUzS5gzmlwHcH/f+yRoqTZcYHegiKRPl0l11GrrI
-         yOu3gITcCuQUnQlKH+TnifKIj3altWR+Kv0e1zVHOCfjjzqy0Cfel/JQpNHCKW8M2K0H
-         iNUg==
+        id S232968AbhJDRLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 13:11:42 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:36683 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233108AbhJDRLm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 13:11:42 -0400
+Received: by mail-oi1-f179.google.com with SMTP id y201so22516384oie.3;
+        Mon, 04 Oct 2021 10:09:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=hjjZdeUEp0/4fUr63QkE2TTYbTpb7SXPyJvyoceinIg=;
-        b=ohUPi/VrV+oLFnUdULY5aW06fkGIVCtMMdLRMwyRe8Ny4dCqUtKinBKFQ5L44jLsRx
-         u4+4yjp8dB7nZaG3NwNB0CObx+mDpArp0udWQHIxgQZ6Spiou89kbSIrMtv3sm6W1EYR
-         ES/fXreSmJ2VYM2rwxPPpZtJe3D35J1aSUPHEV6fkXF9CiyaUEDGUpKu60DRMt88dWyV
-         9d1vMPWi7kuLoIHUIK6LwjK2lNHQgbq93QS8dsF7lJyYTnsDFvfyYjVjRHKunYMthMID
-         0t2Gq1aZdbLWy+b/8Jv87UxOx705kFIY6NJmWLL/YNvCdb8wPfv/vmPgZ714xcl6BmkH
-         szKA==
-X-Gm-Message-State: AOAM530VighfvqdVIujMNq85EK8hfJr1+L1MR/INUm+4HfsjQn/LcAZv
-        osxPcrTF06HzxkWg1XFYj35+1DG5Hck=
-X-Google-Smtp-Source: ABdhPJxKoUyZO6u3SJQhLjYW/+mnS1pgFUV5IK5hg0dLyXSHlpeXAAVlxm4bUXQ7O0iQyC6gIRP8Fg==
-X-Received: by 2002:a2e:814d:: with SMTP id t13mr17592208ljg.237.1633367115986;
-        Mon, 04 Oct 2021 10:05:15 -0700 (PDT)
-Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
-        by smtp.googlemail.com with ESMTPSA id j20sm1481798lfu.304.2021.10.04.10.05.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Oct 2021 10:05:15 -0700 (PDT)
-Subject: Re: [PATCH v3 4/4] memory: tegra20-emc: Support matching timings by
- LPDDR2 configuration
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20211003013235.2357-1-digetx@gmail.com>
- <20211003013235.2357-5-digetx@gmail.com>
- <636b147b-0a71-8c40-7038-1227918986e5@canonical.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <e41c944e-1b01-ef09-78a9-8dab7f97b054@gmail.com>
-Date:   Mon, 4 Oct 2021 20:05:15 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1KLq9MkcpxBGVB7sgiyeCQaUXR/d16n3LEbxVLt/cqg=;
+        b=kChq6Lz06yp2ddKLDr3yxU9ZS6r0fx8VSwFKuh0XWy9AJpeptxbBhWj76Ce4ZADGV/
+         25trhaCd02OV4x3WS46oUGURpPCc850doSfoxwy4Rva+otCLJFcIHBVk9MFogbDh4M2E
+         O8aJfTa3UHa1QU97K+2FEsQ4N9qC5KvqsGLaaYuKKxwEKj3W6D7zl03B5QecMXxX9nwk
+         ozYlS25XTj+cCLM0ES8LTQFt+0Djw1rL6OE3lxyqoagarSd9YY3z9Aulrrkfj4wDRDGx
+         IE8cGcpQzA7nTlLGlzWXcHZ7u3y9rpKrZ/ow1WG9L9m5SEh+LQTwQslNtqEUdkxEJgVn
+         n64g==
+X-Gm-Message-State: AOAM5306DShRPCKK1i5B6ithfHdR7OACYq8mKsMQBZQgb2+veXWPdG52
+        3f0aPv0/Y5GFE08AF2+Aww==
+X-Google-Smtp-Source: ABdhPJwpGLcCHuQ/ilTbzTySohMcTJl/JUKbz4U1S+2nZLmVieFfoTMv2OP5e4KmB3Dqpn/bYl08mg==
+X-Received: by 2002:a05:6808:57d:: with SMTP id j29mr15099829oig.80.1633367392344;
+        Mon, 04 Oct 2021 10:09:52 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id f61sm2998816otf.73.2021.10.04.10.09.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Oct 2021 10:09:50 -0700 (PDT)
+Received: (nullmailer pid 1488976 invoked by uid 1000);
+        Mon, 04 Oct 2021 17:09:49 -0000
+Date:   Mon, 4 Oct 2021 12:09:49 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Michael Walle <michael@walle.cc>,
+        Apurva Nandan <a-nandan@ti.com>, Nishanth Menon <nm@ti.com>,
+        linux-spi@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v1] dt-bindings: mtd: spi-nor: use unevaluatedProperties:
+ false
+Message-ID: <YVs1XZmeIdix1m1V@robh.at.kernel.org>
+References: <20210924180705.14021-1-p.yadav@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <636b147b-0a71-8c40-7038-1227918986e5@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210924180705.14021-1-p.yadav@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-04.10.2021 12:09, Krzysztof Kozlowski пишет:
->>  static int emc_setup_hw(struct tegra_emc *emc)
->>  {
->> +	u32 emc_cfg, emc_dbg, emc_fbio, emc_adr_cfg;
->>  	u32 intmask = EMC_REFRESH_OVERFLOW_INT;
->> -	u32 emc_cfg, emc_dbg, emc_fbio;
->> +	static bool print_sdram_info_once;
-> How about moving print_sdram_info_once to emc_read_lpddr_sdram_info()?
-> Less code here.
+On Fri, Sep 24, 2021 at 11:37:05PM +0530, Pratyush Yadav wrote:
+> Many SPI controllers need to add properties to slave devices. This could
+> be the delay in clock or data lines, etc. These properties are
+> controller specific but need to be defined in the slave node because
+> they are per-slave and there can be multiple slaves attached to a
+> controller.
 > 
+> If these properties are not added to the slave binding, then the dtbs
+> check emits a warning. But these properties do not make much sense in
+> the slave binding because they are controller-specific and they will
+> just pollute every slave binding.
+> 
+> One option is to add a separate schema that collects all such properties
+> from all such controllers. Slave bindings can simply refer to this
+> binding and they should be rid of the warnings.
+> 
+> There are some limitations with this approach:
+> 
+> 1. There is no way to specify required properties. The schema would
+> contain properties for all controllers and there would be no way to know
+> which controller is being used.
+> 
+> 2. There would be no way to restrict additional properties. Since this
+> schema will be used with an allOf operator, additionalProperties would
+> need to be true. In addition, the slave schema will have to set
+> unevaluatedProperties: false.
 
-The SDRAM info is printed out for each attached SDRAM chip. There are
-two prints if two chips are attached to memory controller. Hence this
-print_once flag should cover both prints.
+I don't see what is the problem. If there's a $ref, then 
+unevaluatedProperties is what should be used.
+
+> 
+> A much simpler option would be to make controller schemas specify those
+> properties in patternProperties and set unevaluatedProperties to false
+> on slave schemas, which is done in the previous approach anyway. This
+> approach would have the same limitations as the 2nd limitation in the
+> previous approach. But it does not have the 1st limitation since the
+> properties of all controllers are not collected in a single schema, but
+> instead reside in the same schema as the controller. It also has the
+> added benefit of being much simpler.
+> 
+> The SPI NOR binding is taken as the first one to follow this. Other
+> bindings like SPI NAND can follow in later patches.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> 
+> ---
+> I sent the first approach mentioned in the commit message some time ago
+> [0]. When re-rolling this series I realized that if we are going to use
+> unevaluatedProperties: false, then it would be much simpler to just keep
+> everything else as-is. This has clear positives with no negatives
+> relative to [0], as explained in the commit message.
+> 
+> [0] https://lore.kernel.org/all/20210609111707.9555-1-p.yadav@ti.com/T/#u
+> 
+>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index ed590d7c6e37..81be0620b264 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -88,7 +88,7 @@ patternProperties:
+>    "^otp(-[0-9]+)?$":
+>      type: object
+> 
+> -additionalProperties: false
+> +unevaluatedProperties: false
+
+This only works until unevaluatedProperties support is actually 
+implemented. Then it's back to the same warnings. In the mean time, we'd 
+be allowing any extra random properties to be added for everyone.
+
+Rob
