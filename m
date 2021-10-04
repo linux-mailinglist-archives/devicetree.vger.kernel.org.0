@@ -2,144 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E5A642091E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 12:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 314A9420928
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 12:13:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232339AbhJDKNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 06:13:23 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:38621 "EHLO
+        id S231940AbhJDKPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 06:15:07 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:37092 "EHLO
         esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232200AbhJDKNU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 06:13:20 -0400
+        with ESMTP id S231575AbhJDKPD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 06:15:03 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1633342291; x=1664878291;
+  t=1633342395; x=1664878395;
   h=subject:to:cc:references:from:message-id:date:
    mime-version:in-reply-to:content-transfer-encoding;
-  bh=qLcpqz+iRRKrosQS6DZLyFyiCeY52+B1R8A+oMdkn90=;
-  b=fptvREj/Z9eoZELMFLQsIoOLq0XWQLJzvwsitqzH9PzKStWq3xbNuo2b
-   N52nBm9bhWG0AQW5K2KDwePBzdHNYTimgjOK+Z+MLdnCCv1PiJ6K6pTiJ
-   xZsSMcBvYASnMdptQcS4QFw7iuF988dgtz8gLRCzu/U1HQr83WZ/VWWN0
-   23PRCOvD+nDi3EevHT89lrs7EZh4RWjSJqaCONOxFcPOdKDl75iYz5lYt
-   vbW+6WQqHidEInan1ihwVcRrnPI3FtYiMDgeIrH+00SpfYJELFMX+4X7d
-   txSkB1qu6E/zTfa3cilK+fXvZW3SX17pjC791BTTzthIbzCWPucaTbbqi
-   w==;
-IronPort-SDR: FvH2JJpRMwzdVoKsO661SwLMjbFDpZK1OPBnnh/hw5vhgfiZfrwnW08HcbngdGRN6lf/9JnHDK
- S9vpnjtrqb60e1c8d4MWn4VtrPETNY7tVJqVfe7d+1VowEYlDprWtteC05U1lSA51sOT0oG/nG
- WhsP5jVs9jwU9XNOQ/lMhpSCjLDdjqvkWqsrQaXQ/VpOOFPyo/KmM+lQuomsl+SnWpPN+aU1Ph
- 3CKJu1vO34ve3BBaqMBU7MuqLMRrT5Gb6OQELtIer1lVUKmILCAWLqqo+5rY28DWqvz2uhnV1U
- MRp8gEOgd1gZEjybHtWhLI28
+  bh=ZRiPgFOwdB5HQVEmuLOGDb/uc8iQaPWmGWovZpGxIpw=;
+  b=NyyJH8tB3hnFpCVa11fnWchfaFrJmnieiIrEyRdOfIqK7CrZ5ElGBrG9
+   umylK/nsulPTA+b39/fuAlnheX7uygzDS0J5As1B4jGBm3EdxnxLJqDNu
+   R/L9jHBojqwgcyF/6dWuxpbB4/DMwVdcBoej8GVcWJuryKZ4BPAcUfGsG
+   yDLhIiNfyAFVabe202/n3SHJNJj8cI0A17ll8oyv5rc9tbpKxNcdDTH/p
+   0uQv+UWPP5W7NkoDd+CtQ88v89hff2XGaL6jzA/IRGnAM6N5UdBjrgmUI
+   +qZDFsOryzXOoE5634MCITrrHVNEVJ7gKb0pUaSWphSc6vbwl/hiayJFW
+   A==;
+IronPort-SDR: nWwVL5THIJKc1iCif3n1JInows5yrOx6wTAf/MURZXDOAnfjm5B/27ywqnscJV4999OXbUJbBq
+ +QexuKMty7YcFi02ZL/pHd0VVwB4fdaMj7BZxf+DyVaE4tfmsNPISR6Z/ypOdLhSNa0bMQ+2Ld
+ wsTcsMUdiaFo9L1wZ7wwDbtGkYt+3aMUvrgElmJjIBOZ/ZFmiGPltyXTk/JKXdD+lGtnzARDeS
+ B6X+D3B97VPxoNw2EK6tIUL2+4MtDZtoDjtLCW6kxcZBPBkPUKGJHUU+kgET8pFhMLa73HV/lN
+ 8kbOvaoHdIg0kgRsqbsYRe/s
 X-IronPort-AV: E=Sophos;i="5.85,345,1624345200"; 
-   d="scan'208";a="71596531"
+   d="scan'208";a="146651402"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Oct 2021 03:11:29 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Oct 2021 03:13:13 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 4 Oct 2021 03:11:28 -0700
-Received: from [10.12.73.58] (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Mon, 4 Oct 2021 03:11:26 -0700
-Subject: Re: [PATCH 2/3] ARM: at91: pm: group constants and addresses loading
-To:     Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC:     Ludovic Desroches - M43218 <Ludovic.Desroches@microchip.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20210928084257.2188017-1-claudiu.beznea@microchip.com>
- <20210928084257.2188017-3-claudiu.beznea@microchip.com>
- <YVLn4WScnmybTzy1@piout.net>
- <fe93c4ae-4ac4-02e2-ce4a-03ead76e65e6@microchip.com>
+ 15.1.2176.14; Mon, 4 Oct 2021 03:13:13 -0700
+Received: from [10.12.73.58] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Mon, 4 Oct 2021 03:13:11 -0700
+Subject: Re: [PATCH v2 3/3] ARM: at91: pm: preload base address of controllers
+ in tlb
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <robh+dt@kernel.org>, <linux@armlinux.org.uk>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210930154219.2214051-1-claudiu.beznea@microchip.com>
+ <20210930154219.2214051-4-claudiu.beznea@microchip.com>
 From:   Nicolas Ferre <nicolas.ferre@microchip.com>
 Organization: microchip
-Message-ID: <98829cc8-ee9b-d600-58d7-eb3d74263c9c@microchip.com>
-Date:   Mon, 4 Oct 2021 12:11:25 +0200
+Message-ID: <ac27aa9b-255f-613e-6ea2-6f5915550685@microchip.com>
+Date:   Mon, 4 Oct 2021 12:13:11 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <fe93c4ae-4ac4-02e2-ce4a-03ead76e65e6@microchip.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <20210930154219.2214051-4-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2021 at 12:16, Claudiu Beznea - M18063 wrote:
-> On 28.09.2021 13:01, Alexandre Belloni wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> Hello,
->>
->> On 28/09/2021 11:42:56+0300, Claudiu Beznea wrote:
->>> Group constants and addresses loading. This commit prepares the field for
->>> the next one. Added fixes tag on this commit as the next one will fail
->>> to apply if backported alone to older kernels.
->>
->> The proper notation is to use Depends-on: on the next patch.
+On 30/09/2021 at 17:42, Claudiu Beznea wrote:
+> In suspend/resume procedure for AT91 architecture different controllers
+> (PMC, SHDWC, RAM, RAM PHY, SFRBU) are accessed to do the proper settings
+> for power saving. Commit f0bbf17958e8 ("ARM: at91: pm: add self-refresh
+> support for sama7g5") introduced the access to RAMC PHY controller for
+> SAMA7G5. The access to this controller is done after RAMC ports are
+> closed, thus any TLB walk necessary for RAMC PHY virtual address will
+> fail. In the development branch this was not encountered. However, on
+> current kernel the issue is reproducible.
 > 
-> At the moment this patch has no sha1 associated so I will ask Nicolas to
-> add the Depends-on when he will take it. Do you see other options?
+> To solve the issue the previous mechanism of pre-loading the TLB with
+> the RAMC PHY virtual address has been used. However, only the addition
+> of this new pre-load breaks the functionality for ARMv5 based
+> devices (SAM9X60). This behavior has been encountered previously
+> while debugging this code and using the same mechanism for pre-loading
+> address for different controllers (e.g. pin controller, the assumption
+> being that other requested translations are replaced from TLB).
+> 
+> To solve this new issue the TLB flush + the extension of pre-loading
+> the rest of controllers to TLB (e.g. PMC, RAMC) has been added. The
+> rest of the controllers should have been pre-loaded previously, anyway.
+> 
+> Fixes: f0bbf17958e8 ("ARM: at91: pm: add self-refresh support for sama7g5")
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+> 
+> Hi Nicolas,
+> 
+> Please link this patch with the previous one in this series ("ARM: at91:
+> pm: group constants and addresses loading") with a Depends-on tag as this
+> will fail to apply if backported to older kernel versions.
 
-Depends-on added when queuing on at91-fixes.
+Done.
 
-Thanks, best regards,
+For whole series:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+Whole series added to at91-fixes. To be sent as a second fixes tag to 
+arm-soc.
+
+Best regards,
    Nicolas
 
->>> Fixes: f0bbf17958e8 ("ARM: at91: pm: add self-refresh support for sama7g5")
->>> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
->>> ---
->>>   arch/arm/mach-at91/pm_suspend.S | 17 +++++++++--------
->>>   1 file changed, 9 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/arch/arm/mach-at91/pm_suspend.S b/arch/arm/mach-at91/pm_suspend.S
->>> index cbd61a3bcab1..34f251fdb743 100644
->>> --- a/arch/arm/mach-at91/pm_suspend.S
->>> +++ b/arch/arm/mach-at91/pm_suspend.S
->>> @@ -1014,6 +1014,15 @@ ENTRY(at91_pm_suspend_in_sram)
->>>        mov     tmp1, #0
->>>        mcr     p15, 0, tmp1, c7, c10, 4
->>>
->>> +     ldr     tmp1, [r0, #PM_DATA_PMC_MCKR_OFFSET]
->>> +     str     tmp1, .mckr_offset
->>> +     ldr     tmp1, [r0, #PM_DATA_PMC_VERSION]
->>> +     str     tmp1, .pmc_version
->>> +     ldr     tmp1, [r0, #PM_DATA_MEMCTRL]
->>> +     str     tmp1, .memtype
->>> +     ldr     tmp1, [r0, #PM_DATA_MODE]
->>> +     str     tmp1, .pm_mode
->>> +
->>>        ldr     tmp1, [r0, #PM_DATA_PMC]
->>>        str     tmp1, .pmc_base
->>>        ldr     tmp1, [r0, #PM_DATA_RAMC0]
->>> @@ -1022,14 +1031,6 @@ ENTRY(at91_pm_suspend_in_sram)
->>>        str     tmp1, .sramc1_base
->>>        ldr     tmp1, [r0, #PM_DATA_RAMC_PHY]
->>>        str     tmp1, .sramc_phy_base
->>> -     ldr     tmp1, [r0, #PM_DATA_MEMCTRL]
->>> -     str     tmp1, .memtype
->>> -     ldr     tmp1, [r0, #PM_DATA_MODE]
->>> -     str     tmp1, .pm_mode
->>> -     ldr     tmp1, [r0, #PM_DATA_PMC_MCKR_OFFSET]
->>> -     str     tmp1, .mckr_offset
->>> -     ldr     tmp1, [r0, #PM_DATA_PMC_VERSION]
->>> -     str     tmp1, .pmc_version
->>>        /* Both ldrne below are here to preload their address in the TLB */
->>>        ldr     tmp1, [r0, #PM_DATA_SHDWC]
->>>        str     tmp1, .shdwc
->>> --
->>> 2.25.1
->>>
->>
->> --
->> Alexandre Belloni, co-owner and COO, Bootlin
->> Embedded Linux and Kernel engineering
->> https://bootlin.com
->>
+
+>   arch/arm/mach-at91/pm_suspend.S | 25 ++++++++++++++++++++++++-
+>   1 file changed, 24 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/mach-at91/pm_suspend.S b/arch/arm/mach-at91/pm_suspend.S
+> index 34f251fdb743..fdb4f63ecde4 100644
+> --- a/arch/arm/mach-at91/pm_suspend.S
+> +++ b/arch/arm/mach-at91/pm_suspend.S
+> @@ -1014,6 +1014,10 @@ ENTRY(at91_pm_suspend_in_sram)
+>   	mov	tmp1, #0
+>   	mcr	p15, 0, tmp1, c7, c10, 4
+>   
+> +	/* Flush tlb. */
+> +	mov	r4, #0
+> +	mcr	p15, 0, r4, c8, c7, 0
+> +
+>   	ldr	tmp1, [r0, #PM_DATA_PMC_MCKR_OFFSET]
+>   	str	tmp1, .mckr_offset
+>   	ldr	tmp1, [r0, #PM_DATA_PMC_VERSION]
+> @@ -1023,23 +1027,42 @@ ENTRY(at91_pm_suspend_in_sram)
+>   	ldr	tmp1, [r0, #PM_DATA_MODE]
+>   	str	tmp1, .pm_mode
+>   
+> +	/*
+> +	 * ldrne below are here to preload their address in the TLB as access
+> +	 * to RAM may be limited while in self-refresh.
+> +	 */
+>   	ldr	tmp1, [r0, #PM_DATA_PMC]
+>   	str	tmp1, .pmc_base
+> +	cmp	tmp1, #0
+> +	ldrne	tmp2, [tmp1, #0]
+> +
+>   	ldr	tmp1, [r0, #PM_DATA_RAMC0]
+>   	str	tmp1, .sramc_base
+> +	cmp	tmp1, #0
+> +	ldrne	tmp2, [tmp1, #0]
+> +
+>   	ldr	tmp1, [r0, #PM_DATA_RAMC1]
+>   	str	tmp1, .sramc1_base
+> +	cmp	tmp1, #0
+> +	ldrne	tmp2, [tmp1, #0]
+> +
+> +#ifndef CONFIG_SOC_SAM_V4_V5
+> +	/* ldrne below are here to preload their address in the TLB */
+>   	ldr	tmp1, [r0, #PM_DATA_RAMC_PHY]
+>   	str	tmp1, .sramc_phy_base
+> -	/* Both ldrne below are here to preload their address in the TLB */
+> +	cmp	tmp1, #0
+> +	ldrne	tmp2, [tmp1, #0]
+> +
+>   	ldr	tmp1, [r0, #PM_DATA_SHDWC]
+>   	str	tmp1, .shdwc
+>   	cmp	tmp1, #0
+>   	ldrne	tmp2, [tmp1, #0]
+> +
+>   	ldr	tmp1, [r0, #PM_DATA_SFRBU]
+>   	str	tmp1, .sfrbu
+>   	cmp	tmp1, #0
+>   	ldrne	tmp2, [tmp1, #0x10]
+> +#endif
+>   
+>   	/* Active the self-refresh mode */
+>   	at91_sramc_self_refresh_ena
 > 
 
 
