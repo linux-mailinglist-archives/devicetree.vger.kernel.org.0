@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CA0B4206C8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 09:44:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79A2C4206CE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 09:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230359AbhJDHq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 03:46:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40226 "EHLO
+        id S230004AbhJDHt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 03:49:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbhJDHqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 03:46:25 -0400
+        with ESMTP id S230389AbhJDHtz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 03:49:55 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D76EC061745
-        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 00:44:37 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C59D1C061745
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 00:48:06 -0700 (PDT)
 Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1mXIe9-0008Jp-O3; Mon, 04 Oct 2021 09:44:25 +0200
-Message-ID: <856e8e738338f376b98303a8d9c988e0af43a85f.camel@pengutronix.de>
+        id 1mXIhX-0000NC-0E; Mon, 04 Oct 2021 09:47:55 +0200
+Message-ID: <964810e41534d5a48ce452e3cbff0742ea358fb5.camel@pengutronix.de>
 Subject: Re: [PATCH v4 14/18] arm64: dts: imx8mm: add GPC node
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Tim Harvey <tharvey@gateworks.com>
@@ -33,7 +33,7 @@ Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
         Sascha Hauer <kernel@pengutronix.de>,
         patchwork-lst@pengutronix.de
-Date:   Mon, 04 Oct 2021 09:44:24 +0200
+Date:   Mon, 04 Oct 2021 09:47:53 +0200
 In-Reply-To: <CAJ+vNU0n1aav4kBR6sgkukMZe2Mwu+a_+L5yX5nvBHd-5_bSEA@mail.gmail.com>
 References: <20210910202640.980366-1-l.stach@pengutronix.de>
          <20210910202640.980366-15-l.stach@pengutronix.de>
@@ -187,47 +187,17 @@ Am Sonntag, dem 03.10.2021 um 14:21 -0700 schrieb Tim Harvey:
 > it still tries to power the pgc_gpumix domain if I 'only' disable
 > gpu_2d and gpu_3d. I have to disable 'pgc_gpumix' specifically - is
 > that what you expect here?
-> 
-> > One consequence of disabling the MIPI power domain is that the disp-
-> > blk-ctrl driver won't probe anymore, as it needs all the referenced
-> > power domains to be available. Do you think this might be an issue? Is
-> > there a valid system configuration where you would use devices from
-> > from the display power domain, but not the MIPI domain? If that's a
-> > valid case we might need to make this configuration possible in the
-> > disp-blk-ctrl driver.
-> 
-> In the case of imx8mm I don't see that you can have any display
-> without MIPI however the imx8mp can have HDMI display without needing
-> MIPI so in general that should be allowed.
 
-I was thinking about the camera input path, but this one also needs the
-MIPI domain. The camera interface is useless without the MIPI PHY to
-get data from. The i.MX8MP is a different topic, as the HDMI part is a
-separate blk-ctrl domain there.
+Yes, that's expected. As I said earlier, the gpu domain is considered a
+active child device of the gpumix domain if it isn't disabled in DT, so
+the driver core will try to power up the gpumix domain before the gpu
+domain is probed.
 
-With that in mind, I think things are okay as they are implemented now,
-as I don't see any use-case where one would want to use devices from
-the DISP domain (CSI, LCDIF) without having the MIPI PHY parts
-available.
+You must disable the power domains in DT to avoid them ever being
+touched on your board. You should disable the GPU devices depending on
+this power domain to avoid the GPU devices staying in probe deferred
+limbo forever.
 
 Regards,
 Lucas
-
-> 
-> > 
-> > > What needs to be done to get this series merged? I suppose it's too
-> > > late to get it into 5.13?
-> > 
-> > 5.13? Way too late, even the 5.15 merge window is long closed. The
-> > series is almost completely reviewed and the DT bindings are also good
-> > to go. So if no one happens to run into any real showstopper, Shawn may
-> > be willing to pick up the series and stage it for the 5.16 merge
-> > window.
-> 
-> oops... I meant 5.15 but yes, seems too late for that. We seem to have
-> time to get this into 5.16 however. I'm not sure what Shawn's cut-off
-> is there.
-> 
-> Tim
-
 
