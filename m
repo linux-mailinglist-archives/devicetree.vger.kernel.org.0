@@ -2,118 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9311F421707
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 21:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D59742171B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 21:15:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235154AbhJDTKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 15:10:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60174 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233226AbhJDTKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 15:10:12 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35222C061745;
-        Mon,  4 Oct 2021 12:08:23 -0700 (PDT)
-Received: from zn.tnic (p200300ec2f0fe4009c23c25c98857304.dip0.t-ipconnect.de [IPv6:2003:ec:2f0f:e400:9c23:c25c:9885:7304])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id A06841EC03FE;
-        Mon,  4 Oct 2021 21:08:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1633374501;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=i6PxikJNA1V7HfDVyLAobLqaSjOebbk6J6n8Zlv5QfE=;
-        b=EKdSCXKP0dFy4SUcN7yE1/LTYYr7g50Rq74dwqthJVY7HnSsWQ0haYRQBlHM9qpvT/ZewA
-        L/dhM/XkdJucHyEk/QoP7sLQggGOKhbB/la4UEPn7+C8g2QJ/yp32xgC5HZdOGksGMh1OO
-        gOfqpItzsrx/A1wmMvUKtArbVnZHUQM=
-Date:   Mon, 4 Oct 2021 21:08:22 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        x86@kernel.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
-        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Lutomirski <luto@kernel.org>,
-        Ingo Molnar <mingo@redhat.com>,
-        Yazen Ghannam <yazen.ghannam@amd.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Zev Weiss <zweiss@equinix.com>,
-        David Muller <d.mueller@elsoft.ch>
-Subject: Re: [PATCH v2 02/15] x86/cpu: Extract cpuid helpers to
- arch-independent
-Message-ID: <YVtRJiYD9EqGh7TM@zn.tnic>
-References: <20210803113134.2262882-1-iwona.winiarska@intel.com>
- <20210803113134.2262882-3-iwona.winiarska@intel.com>
+        id S238374AbhJDTRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 15:17:39 -0400
+Received: from mail-eopbgr60088.outbound.protection.outlook.com ([40.107.6.88]:55525
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233981AbhJDTRi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 15:17:38 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nKJayh9PXSR6my25WPl7gwrZthLGd4ga9sgr7kEFpzCltBem4IUiCnkN+KaEcAZqN6A3U9xILRX96Th11GvuU+tAnQpjlziYgEYAXXFe+/8/euVQl9TvysLPUd6OtURkdI6TY1XKY4FJzBqlbhD0XyLdFPa3Y+XH9RApcn8mqXrad0q479slhRdbPiILlLNQNcZ9Ylstk0T6vMeLBT71CN0iKcyHx1ezna0zLImWNMFpzMOtYZ5KDDFPiHNcBB9ve9yThj3JkB4vSI529ZkyyMl43NSjgnsBRok6F9vbGJmPJw7XSgAc20U+xUnPxFvy9VtbbwZo1LAcd9mGCRzjWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/qHSsZkuEbDQhYO+AtzFoOxOqwGyUgjIEjaR4GAeuAU=;
+ b=bUobJNOMgNpESCdOY3nCqCrIxkSCQ8SBkJNEFVizc+h6mkCylUznRdCSGjrmqp70hmLQwizIJol1onQbFuC9HzxtsS8wQxClIcPTCOliHBUYwAF6gX4MzbwAgebzBY8vbjarl96rjRQNxQkOyLUiQ5pofDr4dJm4Wz+969YwCof//EIG5KXDKifRe15lk7plmpKjCSDEc+zb5ZgBRPJ+jgvvTllqUh89d0QZ0LEqvAcdO90CxyT4EEIHq3V39gOysgbTTZBHp8X2NiybWyjMgDLJKz5nIqBVOhHahuVWDKqJYtsQwH0xMMNtupys6VHkVoyKPTFaxmO/dMnHEHs8cA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/qHSsZkuEbDQhYO+AtzFoOxOqwGyUgjIEjaR4GAeuAU=;
+ b=QF/s6XhYUlIDS2wjJjLOiRvfOpiCewh46CD8wfYOffpM+/iACvxD29+SJfkph5MvGHB/Qo3327U+qWw0LYp26YVcoTjKqCkZ5T2xZDr5Owyzb0fOzpu8Rqwjc/Kqait07DzLZKbfpZ/Fe3LgSsIAT4bSeUnVmKVflrYwYy8KqzQ=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+ by DB9PR03MB7434.eurprd03.prod.outlook.com (2603:10a6:10:22c::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.19; Mon, 4 Oct
+ 2021 19:15:46 +0000
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::a9aa:f363:66e:fadf]) by DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::a9aa:f363:66e:fadf%6]) with mapi id 15.20.4566.022; Mon, 4 Oct 2021
+ 19:15:46 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Rob Herring <robh@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Saravana Kannan <saravanak@google.com>,
+        devicetree@vger.kernel.org
+Subject: [RFC net-next PATCH 00/16] Add support for Xilinx PCS
+Date:   Mon,  4 Oct 2021 15:15:11 -0400
+Message-Id: <20211004191527.1610759-1-sean.anderson@seco.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MN2PR08CA0023.namprd08.prod.outlook.com
+ (2603:10b6:208:239::28) To DB7PR03MB4523.eurprd03.prod.outlook.com
+ (2603:10a6:10:19::27)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210803113134.2262882-3-iwona.winiarska@intel.com>
+Received: from plantagenet.inhand.com (50.195.82.171) by MN2PR08CA0023.namprd08.prod.outlook.com (2603:10b6:208:239::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.17 via Frontend Transport; Mon, 4 Oct 2021 19:15:44 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c3915f66-ccb6-49c3-cb29-08d9876b5e3c
+X-MS-TrafficTypeDiagnostic: DB9PR03MB7434:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB9PR03MB7434BB91C1F2679D93EA2A7F96AE9@DB9PR03MB7434.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: y2YwIzVWBnUo3uRXdQRE0AvXjMPCo2gNBFl9oIbr9WGg4s273xFV19yywmeqvpZHFp7F+gqh6MI87NUpecRyALi8hiFN0KCJRladHpf2B1LsB1qb8fTyCXFUIDhDPOuElBc/uOPELL6h5VRhwSvxSIr80swuo7h21RSAeIejg8IUWf+j9r7pEYpj9aCU4k9VgDmmd8QJe9TAsBbhA3fVR3BIROE6XgHazrOB7P0XoDVx5j2Pu+fO/bft1yhpOy5MUyH2YLKPX7juWZ0XenFUo4+CBx1/vS8P42DcJp3zAnYX13vagbKgTo8TwSflskDNyGPqNTvqgB6EEiGOVeMUgBt3FEeM1nURvYzE82fKt6RV5C9s7yMPaLcMJVJ5lcVH1gDRSCUe6ywkI33m7ad3b5Mw4xc7NnJf1U+dLWUdZP3GMjkG46VFTNcVXJSabc8T7Nq759w7uQ581zNApm7/48fvBYF+nM/14jjjyj8UUNY5i4z6LUl2eWjbg2JwJ85s12R9xBNPHOMXr3TymvfMGnqPZydr7pLgo6t4vhXTDyUXXejvYqDUmx0sg2zKfPNPLndnA/RH6LN049MHJfFMWP831bLxQnYsDMd+p88ZbTi7/poyOq8ytaT4z+TTXBNRBB4gR6dVIllJ2y+ruFPYTFALlIBL16k+1X69xWVSlv4YhHamKmMWGGnG7gNHSR9e
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(1076003)(86362001)(4326008)(44832011)(6486002)(5660300002)(66946007)(508600001)(38350700002)(83380400001)(52116002)(956004)(66556008)(66476007)(38100700002)(110136005)(6506007)(2906002)(186003)(8936002)(316002)(8676002)(2616005)(7416002)(54906003)(26005)(6666004)(36756003)(6512007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bRccyvAWnElJXvjDj6+xXFrYToLp3UKkTJCCNQF1UycCWZyIB96O7yZp65So?=
+ =?us-ascii?Q?E6WkN+r/dWq54ueWo7Btc+upCKKUkECkVdHSRJYHOtLmDPz+auIVDxg1guHm?=
+ =?us-ascii?Q?OaNkxnPHY+/3/T3qC95c5bczJ0wP+VgjiwI1uImAUPCCPThYBfgNp2OZcqeW?=
+ =?us-ascii?Q?4tzlKM2BdrFVy1Llxh4kHqLmV0vhs6X1+GKfYY6IE1Rr2dDtChCmFfSpkEVY?=
+ =?us-ascii?Q?ZiKjXDAV0Vc50joyOZxB0KmE0Z/m3TWIncBrVmB8WKAzKhvnjyP7ek8Yjrif?=
+ =?us-ascii?Q?Z1tukFvH3PnfYFJol2bKinxEstIQgYtbSLwMpqMrsRCX28HFjmD4OVrjpa9+?=
+ =?us-ascii?Q?pHTM0h3BrVfHBQA2nr1j7/p4MMsLkBsF1oXHeDG/IG5M4jbcI8xaRK0g5bcW?=
+ =?us-ascii?Q?hUy0fq0z//zGiSFMXzl9LgnWQmcOAxI9TjR2jcvExcJua+A61Hu29OL30HIY?=
+ =?us-ascii?Q?rVFe8gD+IfVoTzmwI5l26+KCvYduvxsdhP7wF51sf5gGaGTuuDzqi/RwHtd7?=
+ =?us-ascii?Q?ATbLCy3jH+KgIiD4r9tJTdTNeLKw8oCuggbozjv+aFTwKtRRWrytk7IXUQ9y?=
+ =?us-ascii?Q?eMy20AlO9Drli/RauvRMumro6UKyJ9hmKXjXZgqJ872FksLjWkj/SjQfdSH8?=
+ =?us-ascii?Q?bQIqooicLt2Wa1wEqKtYdpNR9oTl+BA/Brr2fbbXwj9gK2x5VzHStahV0iIj?=
+ =?us-ascii?Q?N5mgYGmulQyhpKLiJJMsem+2J9cM57lB3BKdyO9WwyslR6Sn9ZRZ8tukAO6n?=
+ =?us-ascii?Q?E7OHVZjNIBBCUHJb7kT5ykmQRrUwJEOt/cVjS73Ht8wZKssTDJEWCTAchanr?=
+ =?us-ascii?Q?cWbrmCsEXx0mMDZj+XtuSAg9bbnfZGTf3O0oMJLli6Z/WT2RqVs0uERUhI6W?=
+ =?us-ascii?Q?AkasaEOPrUQZNPDZtP60PqaZC3cGSGbbjoEpWvxtl4xev41leujr5nyRnTBe?=
+ =?us-ascii?Q?vPAeGmGIKLDKXl2/OMS0fRsDBoDKr6R0DWLs8Kd5Utw9vFUMLmQCmCJ1SnAa?=
+ =?us-ascii?Q?f409Wk84iWytLl+agqa8M2MIvPir9puEVgD9R0Ccym9cz3DA9fejbv2KK3aJ?=
+ =?us-ascii?Q?ltQSJqGiNOtp83sg47SkhVIB4XbftSoY7RFIJhHLg8f/9A7fzcoPnsj7sA1F?=
+ =?us-ascii?Q?P9J4eGITp2jJ9zTIqU4NPJ7qle2YBIZWyLrgK/u1NJNUgHs1nibpk/usv3QP?=
+ =?us-ascii?Q?KxDSgPsYI26TY6PfG1KoJtywMDQ7NhVUi8Lz0fkOsqnarGhd80uE9DTvPRka?=
+ =?us-ascii?Q?ZBObWgOS1PZ4TGoBZNwmcol3hyAB0OQjpFrC/HWwUvYJJvak9kimlOfLr1+2?=
+ =?us-ascii?Q?4H8+X4lTW2FwXT4h887ixKz0?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3915f66-ccb6-49c3-cb29-08d9876b5e3c
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2021 19:15:46.4144
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: h5k0gxq4lvSPY8ByGHawmx/1OI3iDqTyr3CmFJEqiH2O7iIA2kjHat20tMdwuFRb9hopioCTWioJwkqGQhfplA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB7434
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 03, 2021 at 01:31:21PM +0200, Iwona Winiarska wrote:
-> Baseboard management controllers (BMC) often run Linux but are usually
-> implemented with non-X86 processors. They can use PECI to access package
-> config space (PCS) registers on the host CPU and since some information,
-> e.g. figuring out the core count, can be obtained using different
-> registers on different CPU generations, they need to decode the family
-> and model.
-> 
-> The format of Package Identifier PCS register that describes CPUID
-> information has the same layout as CPUID_1.EAX, so let's allow to reuse
-> cpuid helpers by making it available for other architectures as well.
-> 
-> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
-> Reviewed-by: Tony Luck <tony.luck@intel.com>
-> Reviewed-by: Dan Williams <dan.j.williams@intel.com>
-> ---
->  MAINTAINERS                      | 1 +
->  arch/x86/Kconfig                 | 1 +
->  arch/x86/include/asm/cpu.h       | 3 ---
->  arch/x86/include/asm/microcode.h | 2 +-
->  arch/x86/kvm/cpuid.h             | 3 ++-
->  arch/x86/lib/Makefile            | 2 +-
->  drivers/edac/mce_amd.c           | 3 +--
->  include/linux/x86/cpu.h          | 9 +++++++++
->  lib/Kconfig                      | 4 ++++
->  lib/Makefile                     | 2 ++
->  lib/x86/Makefile                 | 3 +++
->  {arch/x86/lib => lib/x86}/cpu.c  | 2 +-
->  12 files changed, 26 insertions(+), 9 deletions(-)
->  create mode 100644 include/linux/x86/cpu.h
->  create mode 100644 lib/x86/Makefile
->  rename {arch/x86/lib => lib/x86}/cpu.c (95%)
+This series adds experimental support for Xilinx PCS devices. It is
+experimental because while I believe I have the Linux side mostly
+sorted, I have yet to achieve any data transfer. Adding support for this
+device has required some plumbing work related to PCSs in general, and I
+would appreciate feedback in that area. In general, I have not tested
+these changes outside of my particular setup, though I do have the
+ability to test the macb changes using the internal PCS in the future.
 
-AFAICT, all that churn is done for x86_family() and x86_model() which
-are used *exactly* *once* and which are almost trivial anyway.
 
-What's wrong with simply computing the family and model "by hand", so to
-speak, in peci_device_info_init() and do away with that diffstat
+Sean Anderson (16):
+  dt-bindings: net: Add pcs property
+  dt-bindings: net: Add binding for Xilinx PCS
+  net: sfp: Fix typo in state machine debug string
+  net: phylink: Move phylink_set_pcs before phylink_create
+  net: phylink: Automatically attach PCS devices
+  net: phylink: Add function for optionally adding a PCS
+  net: phylink: Add helpers for c22 registers without MDIO
+  net: macb: Clean up macb_validate
+  net: macb: Move most of mac_prepare to mac_config
+  net: macb: Move PCS settings to PCS callbacks
+  net: macb: Support restarting PCS autonegotiation
+  net: macb: Support external PCSs
+  net: phy: Export get_phy_c22_id
+  net: mdio: Add helper functions for accessing MDIO devices
+  net: pcs: Add Xilinx PCS driver
+  net: sfp: Add quirk to ignore PHYs
 
- 12 files changed, 26 insertions(+), 9 deletions(-)
-
-?
+ .../bindings/net/ethernet-controller.yaml     |   5 +
+ .../devicetree/bindings/net/xilinx,pcs.yaml   |  83 ++++
+ MAINTAINERS                                   |   6 +
+ drivers/net/ethernet/cadence/macb_main.c      | 375 +++++++++++-------
+ drivers/net/pcs/Kconfig                       |  19 +
+ drivers/net/pcs/Makefile                      |   1 +
+ drivers/net/pcs/pcs-xilinx.c                  | 326 +++++++++++++++
+ drivers/net/phy/phy_device.c                  |   3 +-
+ drivers/net/phy/phylink.c                     | 335 ++++++++++++----
+ drivers/net/phy/sfp-bus.c                     |  12 +-
+ drivers/net/phy/sfp.c                         |   5 +-
+ include/linux/mdio.h                          |  17 +
+ include/linux/phy.h                           |   1 +
+ include/linux/phylink.h                       |  17 +-
+ 14 files changed, 963 insertions(+), 242 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/xilinx,pcs.yaml
+ create mode 100644 drivers/net/pcs/pcs-xilinx.c
 
 -- 
-Regards/Gruss,
-    Boris.
+2.25.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
