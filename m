@@ -2,62 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 847F0420A94
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 14:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 353FB420AAB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 14:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233140AbhJDMHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 08:07:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44784 "EHLO mail.kernel.org"
+        id S233110AbhJDMMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 08:12:43 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:63046 "EHLO mx1.tq-group.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232591AbhJDMHf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 08:07:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2BCEB613D5;
-        Mon,  4 Oct 2021 12:05:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633349147;
-        bh=R6dz7pO6OG6fmGkY234lfGDjKO98fbK8hK91/ADTI20=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=r6zYcHhTvwIKFGoyPpvyaQEqD7hoQlLHgKwiJ9EkslxdrF15gKV0WEksGSZkEx7oy
-         degp/UJXwJwK8gLIDvreb6ywDz2cbuVanh7GiTbyFOwt9iKRqEpRVW6RuPglJs8yST
-         shtE9AIWwJrWvil9QK+Da1dbBdEPfhkCzr3dIhiiolaXc5yp3aTEqCjy7dAMmHVKRd
-         xauI8fjwP/3c65JNAZl6/TrgG0NxAwlqcwceDmw9l4e/gV8fZxAuNOsVtJQweHBj1G
-         szK6OhHFF3eAJIjQ1i8QBXg1udK63jjRIYuTqarIdezL4XpL1CRTOynFg+oC5LXkQA
-         aRQatk6YTgRvw==
-From:   Will Deacon <will@kernel.org>
-To:     robh+dt@kernel.org, Loic Poulain <loic.poulain@linaro.org>,
-        joro@8bytes.org
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>, robin.murphy@arm.com,
-        shawn.guo@linaro.org, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, bjorn.andersson@linaro.org
-Subject: Re: [PATCH 1/2] iommu: arm-smmu-qcom: Add compatible for qcm2290
-Date:   Mon,  4 Oct 2021 13:05:34 +0100
-Message-Id: <163334827414.2617486.6663969645889307910.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1633096832-7762-1-git-send-email-loic.poulain@linaro.org>
-References: <1633096832-7762-1-git-send-email-loic.poulain@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        id S233109AbhJDMMn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 08:12:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1633349454; x=1664885454;
+  h=subject:from:to:cc:date:mime-version:
+   content-transfer-encoding:message-id;
+  bh=b/VbAVXf8V1rUtjjhY58TDRgAT82p9nbfmXylEq2ISQ=;
+  b=UPzGUrMd1M1DIA1sL98TWyyEIKlxzjTXUVtpUEERAT5UF6dRlZ38rCfN
+   frUDkY5le8LwnhGG6kLhopDZ9zwPIFNNiEfomZbrOZ0p0WjS1BEgYwDTa
+   yuQDlks5TxIoUsl5T8AG0ljJDIB8AkLB3XMnnK5KgDSjY0pYR0Ltc0JVX
+   ipSicv2FOLAFPEEec1wCFtz3sTZhAh8OABGasKvLSk/I9IsEX3A5jgpp5
+   twbbhc8OzjrqgGwrxgpX9m8qRqTr8ssntB88oDqE5NvFFAWUaZDk0XW9s
+   M+OkZ04k5vD9wg0+1f41Q5uzFdWjDoUQ43zTQKSePqPde5dbb1KfSyK8r
+   w==;
+X-IronPort-AV: E=Sophos;i="5.85,345,1624312800"; 
+   d="scan'208";a="19848754"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 04 Oct 2021 14:10:53 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 04 Oct 2021 14:10:53 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 04 Oct 2021 14:10:53 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1633349453; x=1664885453;
+  h=subject:from:to:cc:date:mime-version:
+   content-transfer-encoding:message-id;
+  bh=b/VbAVXf8V1rUtjjhY58TDRgAT82p9nbfmXylEq2ISQ=;
+  b=g1t2Pyc0oLZTY1MwNYw53DQSbKRCv9pKnrQ6VzbING+jEmGnn0ytL16A
+   EwOuOFbl5c6CAb1ZRG01W7dpghAoZ27ksRiwyY9WrPWQZNXGIldrnH1l7
+   x3PNcGY8fNfX/9CcQbdMwrRSTq0sddMUaxgd8fJ/3OgvQsv+8udG02LDl
+   IrbhYpLYoCUNlw7DYoTt2qCd+aMNXQZArBA7gAyI9DhZ9VHleiCkJvHsh
+   XSpQUBsHcgzlT4yT9IuMFgJTBoTfUnG0LRVFdHC/LUthtAiuOj8iKzsHd
+   kLhuyLms9jsIuNFpi6oMvdXmJUdBGi4zMrbAhmz77N6njiIfl1Weqeaq1
+   g==;
+X-IronPort-AV: E=Sophos;i="5.85,345,1624312800"; 
+   d="scan'208";a="19848753"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 04 Oct 2021 14:10:53 +0200
+Received: from vtuxmail01.tq-net.de (localhost [127.0.0.1])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTP id 6058F280065;
+        Mon,  4 Oct 2021 14:10:53 +0200 (CEST)
+Received: by vtuxmail01 (kopano-spooler) with MAPI; Mon, 4 Oct 2021 14:10:53
+ +0200
+Subject: AW: (EXT) Re: [PATCH 2/2] mtd: spi-nor: micron-st: Add support for
+ output-driver-strength
+From:   "Alexander Stein" <Alexander.Stein@ew.tq-group.com>
+To:     =?us-ascii?Q?Tudor=2EAmbarus=40microchip=2Ecom?= 
+        <Tudor.Ambarus@microchip.com>,
+        =?us-ascii?Q?Alexander=2EStein=40tq-sys?=
+         =?us-ascii?Q?tems=2Ecom?= <Alexander.Stein@tq-systems.com>,
+        =?us-ascii?Q?miquel=2Eraynal=40bootlin=2Ecom?= 
+        <miquel.raynal@bootlin.com>,
+        =?us-ascii?Q?richard=40nod=2Eat?= <richard@nod.at>,
+        =?us-ascii?Q?vigneshr=40ti=2Ecom?= <vigneshr@ti.com>,
+        =?us-ascii?Q?robh+dt=40kernel=2Eorg?= <robh@kernel.org>,
+        =?us-ascii?Q?p=2Eyadav=40ti=2Ecom?= <p.yadav@ti.com>,
+        =?us-ascii?Q?michael=40walle=2Ecc?= <michael@walle.cc>
+Cc:     =?us-ascii?Q?linux-mtd=40lists=2Einfradead=2Eorg?= 
+        <linux-mtd@lists.infradead.org>,
+        =?us-ascii?Q?devicetree=40vger=2Ekern?= =?us-ascii?Q?el=2Eorg?= 
+        <devicetree@vger.kernel.org>,
+        =?us-ascii?Q?linux-kernel=40vger=2Ekernel=2Eorg?= 
+        <linux-kernel@vger.kernel.org>
+Date:   Mon, 4 Oct 2021 12:10:53 +0000
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Priority: 3 (Normal)
+X-Mailer: Kopano 8.7.82
+Message-Id: <kcEE.Dc11rDoPQ8iRcxif5TBAOA.gESl4Bi51wE@vtuxmail01.tq-net.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 1 Oct 2021 16:00:31 +0200, Loic Poulain wrote:
-> 
+Hello,
 
+> Does the micron flash define the SCCR SFDP map=3F
 
-Applied to will (for-joerg/arm-smmu/updates), thanks!
+As far as I can tell, it only defines the Basis SPI protocol and the 4-byte Adress Instruction Table.
+Dunno when the SCCR SFDP map was added, but this flash only announces JESD216B (SFDP 1.6)
 
-[1/2] iommu: arm-smmu-qcom: Add compatible for qcm2290
-      https://git.kernel.org/will/c/756a622c8f06
-[2/2] dt-bindings: arm-smmu: Add qcm2290 compatible strings
-      https://git.kernel.org/will/c/f1edce3db543
+Is there some tool for dumping/decoding the SFDP available=3F
 
-Cheers,
--- 
-Will
+Best regards,
+Alexander
 
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
