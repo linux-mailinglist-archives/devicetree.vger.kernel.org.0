@@ -2,129 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8554217F4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 21:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76D174217FC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 21:53:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234775AbhJDTxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 15:53:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46696 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234691AbhJDTxo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 15:53:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 79BF4610A5;
-        Mon,  4 Oct 2021 19:51:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633377115;
-        bh=ftIISwj5VomvNZxJNk+YRaZbhRwimc0N+dZ0U1M/kNM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JvNxsoxP0lBgAXvh4kDSdCWDVFWoqH3CZyIVwRdbN7aUKBCGwK7qvedJ1TbprIUUQ
-         9e2LPSbyQhdhMwzdvy58yqhrF29wamamie7tgj+7gVfOGNMZClu+Sv/99vbJDKuEu1
-         kCnTurgGjhCYj4/fl3VdxWRl9gUZmC3TGJj/w1U+C3JzL5Gyadwt/XoJ9L1Iqd9ZEv
-         HTgjjhAaxCbNiD7bpQyiSk/AtOyUOgMvrLPeyHtWlTB8ybVbh/qhvBTCfJRnOv56O7
-         hDD6u3Q6FfDaOBP+lSTJygSjbFTQhKX6reAE/WBze8Py/cG5+fLKY0TRvJmVkrKvyk
-         rKZP2qmbV2ZUw==
-Received: by mail-ed1-f49.google.com with SMTP id b8so34757224edk.2;
-        Mon, 04 Oct 2021 12:51:55 -0700 (PDT)
-X-Gm-Message-State: AOAM533mAr1R6PLSK+klJbK2lH6IHC4oAtROvH9D6g815cN0hi/EgK4b
-        6NUXVxDRntLjUBmlPlZElF0xR/ycz7LT6KZukw==
-X-Google-Smtp-Source: ABdhPJzSaN7S7ALG3yUJraf/vtQi93nFDytVl2mghUeFAx99vVF0KnNziH2QYzN9Y4g3zdY/aY6ClGPdGsHoEzYDI9c=
-X-Received: by 2002:a17:906:7217:: with SMTP id m23mr19125282ejk.466.1633377114021;
- Mon, 04 Oct 2021 12:51:54 -0700 (PDT)
+        id S235067AbhJDTyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 15:54:50 -0400
+Received: from relay01.th.seeweb.it ([5.144.164.162]:57467 "EHLO
+        relay01.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234914AbhJDTyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 15:54:49 -0400
+Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 104111F67F;
+        Mon,  4 Oct 2021 21:52:58 +0200 (CEST)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/2] Global Clock Controller driver for MSM8976/56
+Date:   Mon,  4 Oct 2021 21:52:53 +0200
+Message-Id: <20211004195255.701220-1-marijn.suijten@somainline.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20210929163847.2807812-1-maz@kernel.org> <20211004083845.GA22336@lpieralisi>
-In-Reply-To: <20211004083845.GA22336@lpieralisi>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 4 Oct 2021 14:51:39 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+4FF9QYy87aYhJ-AS78qyHp0NkLrL492+WmdyWj-NKaw@mail.gmail.com>
-Message-ID: <CAL_Jsq+4FF9QYy87aYhJ-AS78qyHp0NkLrL492+WmdyWj-NKaw@mail.gmail.com>
-Subject: Re: [PATCH v5 00/14] PCI: Add support for Apple M1
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Hector Martin <marcan@marcan.st>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        Joey Gouly <joey.gouly@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 4, 2021 at 3:38 AM Lorenzo Pieralisi
-<lorenzo.pieralisi@arm.com> wrote:
->
-> On Wed, Sep 29, 2021 at 05:38:33PM +0100, Marc Zyngier wrote:
-> > This is v5 of the series adding PCIe support for the M1 SoC. Not a lot
-> > has changed this time around, and most of what I was saying in [1] is
-> > still valid.
-> >
-> > Very little has changed code wise (a couple of bug fixes). The series
-> > however now carries a bunch of DT updates so that people can actually
-> > make use of PCIe on an M1 box (OK, not quite, you will still need [2],
-> > or whatever version replaces it). The corresponding bindings are
-> > either already merged, or queued for 5.16 (this is the case for the
-> > PCI binding).
-> >
-> > It all should be in a state that makes it mergeable (yeah, I said that
-> > last time... I mean it this time! ;-).
-> >
-> > As always, comments welcome.
-> >
-> >       M.
-> >
-> > [1] https://lore.kernel.org/r/20210922205458.358517-1-maz@kernel.org
-> > [2] https://lore.kernel.org/r/20210921222956.40719-2-joey.gouly@arm.com
-> >
-> > Alyssa Rosenzweig (2):
-> >   PCI: apple: Add initial hardware bring-up
-> >   PCI: apple: Set up reference clocks when probing
-> >
-> > Marc Zyngier (10):
-> >   irqdomain: Make of_phandle_args_to_fwspec generally available
-> >   of/irq: Allow matching of an interrupt-map local to an interrupt
-> >     controller
-> >   PCI: of: Allow matching of an interrupt-map local to a PCI device
-> >   PCI: apple: Add INTx and per-port interrupt support
-> >   PCI: apple: Implement MSI support
-> >   iommu/dart: Exclude MSI doorbell from PCIe device IOVA range
-> >   PCI: apple: Configure RID to SID mapper on device addition
-> >   arm64: dts: apple: t8103: Add PCIe DARTs
-> >   arm64: dts: apple: t8103: Add root port interrupt routing
-> >   arm64: dts: apple: j274: Expose PCI node for the Ethernet MAC address
-> >
-> > Mark Kettenis (2):
-> >   arm64: apple: Add pinctrl nodes
-> >   arm64: apple: Add PCIe node
-> >
-> >  MAINTAINERS                              |   7 +
-> >  arch/arm64/boot/dts/apple/t8103-j274.dts |  23 +
-> >  arch/arm64/boot/dts/apple/t8103.dtsi     | 203 ++++++
-> >  drivers/iommu/apple-dart.c               |  27 +
-> >  drivers/of/irq.c                         |  17 +-
-> >  drivers/pci/controller/Kconfig           |  17 +
-> >  drivers/pci/controller/Makefile          |   1 +
-> >  drivers/pci/controller/pcie-apple.c      | 822 +++++++++++++++++++++++
-> >  drivers/pci/of.c                         |  10 +-
-> >  include/linux/irqdomain.h                |   4 +
-> >  kernel/irq/irqdomain.c                   |   6 +-
-> >  11 files changed, 1127 insertions(+), 10 deletions(-)
-> >  create mode 100644 drivers/pci/controller/pcie-apple.c
->
-> I have applied (with very minor log changes) patches [1-9] to
-> pci/apple for v5.16, I expect the dts changes to go via the
-> arm-soc tree separately, please let me know if that works for you.
+This is the Global Clock Controller (GCC) driver for MSM8956, MSM8976
+and APQ variants and it has been tested on two Sony phones featuring the
+Qualcomm MSM8956 SoC.
 
-FYI, I pushed patches 1-3 to kernelCI and didn't see any regressions.
-I am a bit worried about changes to the DT interrupt parsing and
-ancient platforms (such as PowerMacs). Most likely there wouldn't be
-any report until -rc1 or months later on those old systems.
+In addition to GCC this driver is also responsible for providing MDSS
+and GFX3D clocks which reside in the same register space.
 
-Rob
+SoMainline is dedicated to getting their long-awaited msm8976 support,
+including the Xperia X, X Compact and if feasible also the Xperia Touch
+projector (APQ8056) slowly but steadily upstreamed.
+
+Changes since v4:
+- Insert error handling that left `int ret;` in gcc_msm8976_probe unused
+  when the original regmap read, xor, and write were replaced with
+  regmap_update_bits in v3;
+- Document vdd_gfx supply, required in oxili_gx_gdsc;
+- Dual-license the yaml Documentation and DT bindings (Rob).
+
+Changes since v3:
+- Set the enable_mask of gcc_apss_ahb_clk and gcc_apss_axi_clk to BIT 14
+  and 13 respectively instead of overlapping gcc_crypto_ahb_clk's BIT 0.
+
+Changes since v2:
+- Rebased on v5.14;
+- Various minor cleanups (lowercase hex, const where appropriate,
+  removal of unused enum constants);
+- Fixed XOR confusion in probe;
+- All remnants of global clock name dependencies are removed, all
+  inter-driver dependencies must be fully specified in DT;
+- Added proper dt-bindings yaml validation, listing the required clocks;
+- Moved dt-bindings header to the dt-bindings patch.
+
+Changes since v1:
+- Rebased onto linux-next 20191015
+- Fixed platform driver name (qcom,gcc-8976 => gcc-msm8976)
+- Splitted changes to dt-bindings to a separate commit
+
+AngeloGioacchino Del Regno (1):
+  clk: qcom: Add MSM8976/56 Global Clock Controller (GCC) driver
+
+Marijn Suijten (1):
+  dt-bindings: clk: qcom: Document MSM8976 Global Clock Controller
+
+ .../bindings/clock/qcom,gcc-msm8976.yaml      |   95 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-msm8976.c                | 4160 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-msm8976.h  |  240 +
+ 5 files changed, 4504 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8976.yaml
+ create mode 100644 drivers/clk/qcom/gcc-msm8976.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-msm8976.h
+
+-- 
+2.33.0
+
