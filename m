@@ -2,94 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 694B34213FF
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 18:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C251E42140C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 18:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236900AbhJDQZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 12:25:55 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:37607 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236674AbhJDQZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 12:25:54 -0400
-Received: by mail-oi1-f179.google.com with SMTP id w206so22278456oiw.4;
-        Mon, 04 Oct 2021 09:24:05 -0700 (PDT)
+        id S235724AbhJDQ2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 12:28:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49404 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236969AbhJDQ2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 12:28:10 -0400
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBF8CC061745
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 09:26:21 -0700 (PDT)
+Received: by mail-io1-xd35.google.com with SMTP id y197so20958929iof.11
+        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 09:26:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zwhqowoXzJuFipJCtXxoOJgFbLCEZ6oYYj5nkHsrECU=;
+        b=MjEdSbK7Tf/fjpwb7Yk8F5uzjjTjzIGJNCAM0AEiXbPEAqmsbThEErq1rFhLkU0Pta
+         d5vOOgij05XSR2qDWiwkwKR3oszOUa03sJ7u/knuZOTnSnBXzQwUSxHHz65obtXMIARC
+         64mx8oYDuueywYKk07LC4kFvOT9gQI7XVr05I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3YL9t/LcFUdv6zIOKUIqTBFhHWXv86fgYlmOjVAyNXI=;
-        b=C9v5LlOUGZWYJxJW8v5tcT1aVT8rQFHh0NPuhMixm9HR6B9+V+x/ARKKIWQ32cQhYu
-         fyNwxA9Ctgm4m5EfDD6GJMsOVPE0IS4eKKjxCvVlykkt5aIkfpDEHLaVMfcnBz/eOWDv
-         By5AZZD6PlRruF/IQOD8IZkv59R18o9avRsbqFR8Z+HbO86vhjAXU6Zf9lvYNJSqp3wc
-         OIcWzu/H2/lFjZOyMSShtTmXNv8W/Zz3NC1htTieIypcHnL8RawhSZWY7XDRF6G+liQi
-         d9Guh80gYZgqyrBM/GZZAHnAKzPc3ptCup2wHdWV23F3fMU+twYLQ8Y1FAoBLYoDeJDN
-         hjOQ==
-X-Gm-Message-State: AOAM532MMF9wG2tiC8CmqFgufByxZ6nKQooZzcIltj4k3YRb7txCDsPd
-        /3DRoLG1Q5PFHwYlyBSYzg==
-X-Google-Smtp-Source: ABdhPJzYH4QZGQHRqPJ/av1OXS8AHDxnW5j2mrkBdDuuBvT+5e7uRYrz/G37hN2fVdGuO1IX015rCA==
-X-Received: by 2002:a05:6808:8c5:: with SMTP id k5mr13925791oij.93.1633364640465;
-        Mon, 04 Oct 2021 09:24:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o26sm2920432oof.32.2021.10.04.09.23.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 09:23:59 -0700 (PDT)
-Received: (nullmailer pid 1413747 invoked by uid 1000);
-        Mon, 04 Oct 2021 16:23:58 -0000
-Date:   Mon, 4 Oct 2021 11:23:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v2 0/8] Arm boards syscon 'unit_address_format' clean-ups
-Message-ID: <YVsqnr185GTtN3uH@robh.at.kernel.org>
-References: <20210913192816.1225025-1-robh@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zwhqowoXzJuFipJCtXxoOJgFbLCEZ6oYYj5nkHsrECU=;
+        b=1XqzQwzspQHBtGKrJ9CRebZw8mnqg/l+7FqLSSOVr/d/oC54Xyd7ZnEr3OeiQNECWR
+         5zArnLGUX38PP/z1NS0P0Zx6PhYUhR9eQxf3dsHSVoQQj8PcW7mkeWIna2QudM+RCDXE
+         DdMxQpdkGR+DmgFBpFUqZDMBSDEZOl0Bd4YTwJqvafJFQIh8RdlnlqMlU70fXib1kFyl
+         waEwHHZr9GM49tsYHEAjZnPJwKi42ZheAmwplV9yElgHL3erltmNLrWg5TwkohB7V/qV
+         q5IwQ9lA3ilK0jKunsJtFR+5hbmRH+o7bZXF2BJSeNTeh3TvmsM8KWc98ulunuPgW2J5
+         Wveg==
+X-Gm-Message-State: AOAM530jXlMmG+ISEyuNmuXS8jJ0UqvXdEkJnJUJ0DLk/98l7WH8t/vW
+        MWc5qf0nCg3v8a4Mnzk4IIGiCDydkL8HlQ==
+X-Google-Smtp-Source: ABdhPJzBprAWCu8wnDKEA5y5QeA+0IFlNhk6GAAvjBxvsl1btSJB55KElitex1YFd6a0YzOIuWlBAg==
+X-Received: by 2002:a6b:5910:: with SMTP id n16mr9972236iob.203.1633364780889;
+        Mon, 04 Oct 2021 09:26:20 -0700 (PDT)
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com. [209.85.166.47])
+        by smtp.gmail.com with ESMTPSA id s8sm9314326ilt.47.2021.10.04.09.26.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Oct 2021 09:26:19 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id h129so21020592iof.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 09:26:19 -0700 (PDT)
+X-Received: by 2002:a6b:6a0c:: with SMTP id x12mr9867780iog.177.1633364778729;
+ Mon, 04 Oct 2021 09:26:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210913192816.1225025-1-robh@kernel.org>
+References: <20210914202202.1702601-1-dianders@chromium.org>
+ <20210914132020.v5.2.I62e76a034ac78c994d40a23cd4ec5aeee56fa77c@changeid> <CAMuHMdWy+aASNevg8nc9LTvR9QNrGYZQnB3sYYLDRfEU1w_idg@mail.gmail.com>
+In-Reply-To: <CAMuHMdWy+aASNevg8nc9LTvR9QNrGYZQnB3sYYLDRfEU1w_idg@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 4 Oct 2021 09:26:06 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W07iZigvNaxv1WodhQZVm8hD-1NxTuBuapJYifi6ROng@mail.gmail.com>
+Message-ID: <CAD=FV=W07iZigvNaxv1WodhQZVm8hD-1NxTuBuapJYifi6ROng@mail.gmail.com>
+Subject: Re: [PATCH v5 02/15] drm/edid: Break out reading block 0 of the EDID
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Steev Klimaszewski <steev@kali.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Linus W <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 13, 2021 at 02:28:08PM -0500, Rob Herring wrote:
-> This series addresses the last of the dtc 'unit_address_format'
-> warnings in the tree.
-> 
-> The remaining issue was dealing with the node names on 2 bindings for
-> Arm Ltd boards syscon child nodes: register-bit-led and Versatile ICST.
-> Both of these used an offset property for register address rather than
-> 'reg' which is the preference nowadays. With a 'reg' property, then we
-> can have a proper node name and unit-address. This series adds support
-> for using 'reg' instead and updates the node names and unit-addresses.
-> 
-> The dts file changes have inter-dependencies, but the clock and led
-> changes can go via each subsystem.
-> 
-> Rob
-> 
-> 
-> Rob Herring (8):
->   dt-bindings: leds: Convert register-bit-led binding to DT schema
->   dt-bindings: leds: register-bit-led: Use 'reg' instead of 'offset'
->   leds: syscon: Support 'reg' in addition to 'offset' for register
->     address
+Hi,
 
-Pavel, Can you apply or comment on patches 1-3?
+On Mon, Oct 4, 2021 at 8:42 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> > -       if ((edid = kmalloc(EDID_LENGTH, GFP_KERNEL)) == NULL)
+> > +       edid = (u8 *)drm_do_get_edid_base_block(get_edid_block, data,
+> > +                                               &connector->edid_corrupt,
+> > +                                               &connector->null_edid_counter);
+> > +       if (IS_ERR_OR_NULL(edid)) {
+> > +               if (IS_ERR(edid))
+>
+> So edid is an error code, not a valid pointer...
+>
+> > +                       connector_bad_edid(connector, edid, 1);
+>
+> ... while connector_bad_edid() expects edid to be a valid pointer,
+> causing a crash:
+>
+> Unable to handle kernel NULL pointer dereference at virtual address
 
-Rob
+Sigh. Thanks for the report and analysis. I guess I don't have any
+displays reporting invalid EDIDs to test with. Hopefully this will
+help:
 
+https://lore.kernel.org/r/20211004092100.1.Ic90a5ebd44c75db963112be167a03cc96f9fb249@changeid/
 
->   dt-bindings: clock: arm,syscon-icst: Use 'reg' instead of 'vco-offset'
->     for VCO register address
->   clk: versatile: clk-icst: Support 'reg' in addition to 'vco-offset'
->     for register address
->   ARM: dts: arm: Update register-bit-led nodes 'reg' and node names
->   ARM: dts: arm: Update ICST clock nodes 'reg' and node names
->   kbuild: Enable dtc 'unit_address_format' warning by default
+-Doug
