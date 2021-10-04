@@ -2,87 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0BDF421992
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 00:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45AAD421A8B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 01:22:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233972AbhJDWIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 18:08:01 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:49998 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233722AbhJDWIB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 18:08:01 -0400
-X-Greylist: delayed 11201 seconds by postgrey-1.27 at vger.kernel.org; Mon, 04 Oct 2021 18:08:01 EDT
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 194IxKOD016034;
-        Mon, 4 Oct 2021 13:59:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1633373960;
-        bh=NyH+MlctXadiJnC7SYn/Gt47lxm/Xz6ld3yGSQ1HTGg=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=jTJbyv0ubhZXyDEQDp/ZodowX7TfPHvMWg2wKpAlvmadQ3knVoodjd3fxpjQTKgfe
-         hEYQu1NgK7QZbwRqbROvOn4qChzZ1ka3ADgA9ALyFeOSBrP1GEVMGg4d31j781HM53
-         sUbCPrM2IFuqNmKPLexrSP+ShIQm6L4mOitv4lbM=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 194IxKwq002483
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 4 Oct 2021 13:59:20 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 4
- Oct 2021 13:59:20 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 4 Oct 2021 13:59:20 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 194IxKO3049783;
-        Mon, 4 Oct 2021 13:59:20 -0500
-Date:   Mon, 4 Oct 2021 13:59:20 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>,
-        Hari Nagalla <hnagalla@ti.com>,
-        Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>
-Subject: Re: [PATCH V2 2/4] dt-bindings: arm: ti: am642/am654: Allow for SoC
- only compatibles
-Message-ID: <20211004185920.26iyyq3xz7vjam5i@gentile>
-References: <20210925201430.11678-1-nm@ti.com>
- <20210925201430.11678-3-nm@ti.com>
- <YVs/v7g8wwLq/ujb@robh.at.kernel.org>
+        id S235375AbhJDXYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 19:24:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33642 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232582AbhJDXYT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 19:24:19 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B3D1C06174E
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 16:22:30 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id x27so77719150lfa.9
+        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 16:22:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y88jSQVnbJBOQYQ4AxCD943B/erEatCzVKFIFOSQuww=;
+        b=NlwkumD8rqfvMouZ849F/ee6LWUvdKs/sAZNaFRj6REJukjsoJxBp32AFWIN7Zf/Rk
+         IL85RvrJJD/NUxUf9B+8AlCR3HxpRAjBocAMePH8DLq7PVlajL+7v3PnOvwyM1Bf+J8g
+         YTjApK3fqFB20XnINQuVB4PFwLp5BaKKzBYja8ejr4KQBOjjXkK7mJyoI/dV+2TD1x/U
+         9IZDhfl/0i9/tsDEZ0xPy/eShhahH2CWT7mdeGAhXu80gENF3LaEfIfcEqyS+Snitonp
+         62BpcZHAzmSp9gxhRaJolbOXYqRPNr9WI72PmH03BY0EL+qMmxlobqCu6TBmDP6uJgJF
+         oszg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y88jSQVnbJBOQYQ4AxCD943B/erEatCzVKFIFOSQuww=;
+        b=HDv1xv/i/MKlPTG3rFGIZev+qn8E9xaitYBJoStvt0Sf3PgPr3qUl5X25OH0Ibxe5W
+         QzdsZ7GDPEhCPzGKkdmKIAI7ClxHvh1vQ0LTBWRMXyXlqXWYAF1jcG9ncJUcfAW2DwKF
+         QoztJmLLCt5pSKPAhP/XBHwcuTWvgCnCBh4fL5PYUH45R7ROJ4U8W/CH7fk+VhlAe0ox
+         f+2rb+DFKx+73PU2h3c0PBOFsmzaojOmXlDwUDUN/WjQ28AMoMnf+5RF5NpOa33j7mdK
+         gqdpRqSQxl1jOYiBh5b2xhCssd/CzQUkLJObr+VAOea6oJS/tX3478Cprq83vtY0oQ8/
+         q2iA==
+X-Gm-Message-State: AOAM532UWaxDNCz49VdLvlf3w9XDIm6pdC88XVZBjUHYZneTAefODj9U
+        AZMahSQpRsJmIpcLC4ZKCyD7vQ==
+X-Google-Smtp-Source: ABdhPJxKcYVxOuCYWUyFhWdw0qggcKyAXeGfIDGQyJhmbX7PJRBKWzGt1aB79wWah1rzcnAOGl1aUQ==
+X-Received: by 2002:ac2:508b:: with SMTP id f11mr16258716lfm.318.1633389747792;
+        Mon, 04 Oct 2021 16:22:27 -0700 (PDT)
+Received: from umbar.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id h23sm1786219lja.131.2021.10.04.16.22.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Oct 2021 16:22:27 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH 0/6] pinctrl: qcom: convert ssbi-mpp and spmi-mpp to hierarchical IRQ
+Date:   Tue,  5 Oct 2021 02:22:19 +0300
+Message-Id: <20211004232225.2260665-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YVs/v7g8wwLq/ujb@robh.at.kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12:54-20211004, Rob Herring wrote:
-> On Sat, Sep 25, 2021 at 03:14:28PM -0500, Nishanth Menon wrote:
-> > Maintain consistency in K3 SoCs by allowing AM654 and AM642 platforms
-> > just state SoC compatibles without specific board specific compatibles
-> > aligned with what we have done for J721E/J7200 platforms as well.
-> 
-> This is the wrong direction IMO. Why do you want this other than 
-> alignment?
+In 2019 (in kernel 5.4) spmi-gpio and ssbi-gpio drivers were converted
+to hierarchical IRQ helpers, however MPP drivers were not converted at
+that moment. Complete this by converting MPP drivers.
 
-Many downstream boards tend not to have an specific compatible at least
-during initial phase and I would like folks to start using checks to
-make sure that the easy to catch issues via match against bindings are
-already handled.
+----------------------------------------------------------------
+Dmitry Baryshkov (6):
+      dt-bindings: pinctrl: qcom,pmic-mpp: Convert qcom pmic mpp bindings to YAML
+      dt-bindings: pinctrl: qcom,pmic-mpp: switch to #interrupt-cells
+      pinctrl: qcom: ssbi-mpp: hardcode IRQ counts
+      pinctrl: qcom: ssbi-mpp: add support for hierarchical IRQ chip
+      pinctrl: qcom: spmi-mpp: hardcode IRQ counts
+      pinctrl: qcom: spmi-mpp: add support for hierarchical IRQ chip
 
-I am curious as to why you think this is wrong - because we permit an
-alternative option that allows the board files to be less specific?
+ .../devicetree/bindings/pinctrl/qcom,pmic-mpp.txt  | 187 ---------------------
+ .../devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml | 177 +++++++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-spmi-mpp.c            | 111 ++++++++----
+ drivers/pinctrl/qcom/pinctrl-ssbi-mpp.c            | 133 +++++++++++----
+ 4 files changed, 357 insertions(+), 251 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
 
-[...]
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
