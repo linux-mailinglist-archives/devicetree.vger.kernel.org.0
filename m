@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4B5E4215A0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE8384215C8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:58:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233420AbhJDR52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 13:57:28 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:33438 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233311AbhJDR52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 13:57:28 -0400
-Received: by mail-ot1-f48.google.com with SMTP id d12-20020a05683025cc00b0054d8486c6b8so22720693otu.0;
-        Mon, 04 Oct 2021 10:55:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qbZN6rMSWR0gbKjL6x8M6wey/LpUEac+LmLt3k0AccY=;
-        b=4GpAM4wKmzzJkymVL82BoKUMzxUHSwpQJ9rkm6I3V3PdtxHBgHuxP9a8Dmob64PfYO
-         cURZJUFxJngS5fAQ5dDHPsoOtll/3VsLSEUzkSSBA78zx9s72rPjkNmSy5wNdiiFmvu+
-         cEiAn9YbjhYTzqPBYVOA9QBbfsmTiGHaMBFPGiDS6Qq7drhtY2c0TbKQuzFUiqLVf33d
-         7B6ZM5QaVPlw6XzoAj0SKk7z48QHHFu/5emxWc2mbecQWC2Bc5wkLA/WcY0/mBjfJ9QM
-         sYOk83kytiky6e8xbFjHv5mtvp8DYzwe+GumcM4N2s/3PsloN0egTxBJKCsKol7d7OcE
-         GFCg==
-X-Gm-Message-State: AOAM533PqWBFpFZsCOUzGXbTHtvxb0zCUxzXLNNyhwHz54lwOYOx7Ybu
-        W1DyCayZq+bZoxCOc+jKTQ==
-X-Google-Smtp-Source: ABdhPJzE8ansEYAF7nfdPkNvh9Xlpfn9aiNclDdmzorIs3IpHlu8p25hfzxxPbmIHxHpA+9LIrdmYQ==
-X-Received: by 2002:a9d:4618:: with SMTP id y24mr10505775ote.326.1633370138696;
-        Mon, 04 Oct 2021 10:55:38 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w21sm2840108oif.13.2021.10.04.10.55.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 10:55:38 -0700 (PDT)
-Received: (nullmailer pid 1559992 invoked by uid 1000);
-        Mon, 04 Oct 2021 17:55:37 -0000
-Date:   Mon, 4 Oct 2021 12:55:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: add bindings for the Sharp
- LS060T1SX01 panel
-Message-ID: <YVtAGXwLr8FepT+I@robh.at.kernel.org>
-References: <20210926001005.3442668-1-dmitry.baryshkov@linaro.org>
- <20210926001005.3442668-2-dmitry.baryshkov@linaro.org>
+        id S235686AbhJDSAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 14:00:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37296 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233615AbhJDSAn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 14:00:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 650A26115C;
+        Mon,  4 Oct 2021 17:58:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633370333;
+        bh=xb/bgTrnfX4eSX7hBa71k4X8vWp4UJbNe5GWQjQtIsQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Zr/4H7dMoLxDba891yZytgqF9ipgvOh2Q18c8zllo9Mgk0z8MnybmQ+pxZgSBiGvX
+         DR7dLWdtm+8w9A0dPVxH4VPuumLGzIvlJ2V0J6SQjI+eG8jsqL2qYau5xW+FIvh2CJ
+         EwMqDbBl7crAnqfQCjoDsV2fYDFE/jZfKKcbXMhJHrk3v8JGreL/H1DeqqUwPYmkA9
+         047ry1L5Nq46XXr430KURg3Oxoe6pcCfKAxkVCbRFGQMrptP/Z9QcIm4znUtJOUrcp
+         HMXL2mOEyZabhd3meunSFVGTDHYN1lZByuOEtK7uebusES+sd3Zhzc/tDeT9DbBnZT
+         C5peD6ODLdTyQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH] regulator: dt-bindings: maxim,max8952: convert to dtschema
+Date:   Mon,  4 Oct 2021 18:58:51 +0100
+Message-Id: <163336889338.4019169.5976191844435491586.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210930140327.196232-1-krzysztof.kozlowski@canonical.com>
+References: <20210930140327.196232-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210926001005.3442668-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Sep 2021 03:10:04 +0300, Dmitry Baryshkov wrote:
-> Add devicetree bindings for the Sharp LS060T1SX01 6.0" FullHD panel
-> using NT35695 driver. This panel can be found i.e. in the Dragonboard
-> Display Adapter bundle.
+On Thu, 30 Sep 2021 16:03:27 +0200, Krzysztof Kozlowski wrote:
+> Convert the Maxim MAX8952 regulator to DT schema format.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../display/panel/sharp,ls060t1sx01.yaml      | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/1] regulator: dt-bindings: maxim,max8952: convert to dtschema
+      commit: 5f4b59f7e640108512aa2afbabec5b02420eaebb
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
