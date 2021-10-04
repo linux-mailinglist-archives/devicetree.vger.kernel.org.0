@@ -2,117 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CF09420B8B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 14:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E07BC420CCB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 15:07:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234089AbhJDM56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 08:57:58 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:36268 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233672AbhJDM5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 08:57:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1633352133; x=1664888133;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=JccWlpUp/or4JMcaKBhLvGhBaLkD9fbtO9eKKoI3YkA=;
-  b=uHfOZ2zHMzpiZuohcU6+DXt/5n7AWgSlePsHpm/pstmTdNvC3hoHuHFr
-   uVrWAwQy47LxeYBhgCWf4BdfAGd04kUJa6dHVn5ZHhqEmEu1c8swx67LE
-   QKiW0uekpbwaV+uo6WSDMWAug/Q23WDAkDJebIJJZrPDr2sSN7rJGyYIk
-   qIVYGuyKdC1AS0Gqb7JAKSJyOcxJAMRR6H8OvYIcXiMDecZ6/4z04V+bu
-   8o0Zj7wYxKb/lyoWWr9HHY/qE3LrixYHdPYCk4kTgmeS0/dn69S8R1peh
-   4+/cwbTiEs4T/1WUW65yCC/6ACXimhXMXzmsZc+YXfOitGt8m857J0cFV
-   Q==;
-IronPort-SDR: zyaE9nC/36+n7dYKUTIUlsupvphOvcygjjT6DyF49geXMLjpLB5vrOGkom88OMSa9Q+fxuIlBa
- fykR7itjtkWgPBbM3Q+wYDUKrwTmeWZlBzOhwszfdPGnZpHu66Ghbl5fcw6U8XlFEZSxXTm16Y
- vglL3eSPsFml1WVm7KYNfTmAHJbD87TnKGtMgRuMMpJJiK+vN6gSUFWqSFemlZra+mdXxEuMft
- WS+lcQvYj75rEvKrXzspYLcfT55oyort9BkQJOpmfjzeHdRvc8+UENTHc8H7QK8hyo2coSfS1h
- CvigYaCiskW7m5iUHfXBfU0E
-X-IronPort-AV: E=Sophos;i="5.85,345,1624345200"; 
-   d="scan'208";a="138365305"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Oct 2021 05:55:32 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 4 Oct 2021 05:55:32 -0700
-Received: from [10.12.73.58] (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Mon, 4 Oct 2021 05:55:29 -0700
-Subject: Re: [PATCH 0/4] Add lan966 documentation and remove lan966x.c file
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-CC:     <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>,
-        <corbet@lwn.net>, <linux@armlinux.org.uk>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
-        <Manohar.Puri@microchip.com>
-References: <20211004105926.5696-1-kavyasree.kotagiri@microchip.com>
- <YVrgzWLReFS5FgWd@piout.net>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <09645199-50af-0373-c5bb-e0d745543e5b@microchip.com>
-Date:   Mon, 4 Oct 2021 14:55:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S235046AbhJDNJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 09:09:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39400 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235498AbhJDNIb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 09:08:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8D20A61425;
+        Mon,  4 Oct 2021 13:02:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633352543;
+        bh=VtcPaXR9dkDp4NIqjnvCK/gI/LxrXMTSniLXLU0DfHk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qrFZXdCNyZhqZt+0afA1Gx/mx7HB6ERk5cuD+2B3evuK+Z558+QXtpt9dTZ+LDAmI
+         UyFmhvyJgPDbdZYsW/BBAkoxaovGIaU21efU2k0C+ET0m1BKFprHaU7zWnCjs/XCvP
+         f9Y3G8leu0tSglFS19ydfOB8qlHEEAdU/hsnyPH+I9gPMJzOMM+ZQT0nZPzzUy0ahr
+         5LIt9K2kGN0xtkWmX1E/yYEMsylCt17zshVeb0CkHDUmKEPrsmWkUC5luewRqwSmo8
+         mXgKoWidg1Ouwm95506dJBpfbWoNM6ksNLEbtUYLEqSMDnvuM7UKDwBcYGxxzCl9o5
+         jFRI9y3jbKXoA==
+Date:   Mon, 4 Oct 2021 21:02:18 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH 0/7] arm64: dts: ls1028: GPU support and cleanups
+Message-ID: <20211004130218.GJ15650@dragon>
+References: <20210831134013.1625527-1-michael@walle.cc>
 MIME-Version: 1.0
-In-Reply-To: <YVrgzWLReFS5FgWd@piout.net>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210831134013.1625527-1-michael@walle.cc>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/10/2021 at 13:09, Alexandre Belloni wrote:
-> On 04/10/2021 16:29:22+0530, Kavyasree Kotagiri wrote:
->> This patch series modifies Kconfig entry, adds documentation for
->> lan966 family and removes lan966x setup code file as it is not
->> required.
->>
->> These patches are generated from at91/linux.git
->> I had agreement with Nicolas Ferre that he will merge these changes
->> into existing patch.
->>
+On Tue, Aug 31, 2021 at 03:40:06PM +0200, Michael Walle wrote:
+> In an attempt to unify u-boot's and linux' device tree for the LS1028A SoC
+> we first need to clean up some network related stuff. Vladimir suggested to
+> move the Ethernet PHYs into the MDIO controller node, which is already the
+> case for u-boot's device tree. Further we unify the use of phy-mode and
+> phy-connection-type. Both have the same meaning, but phy-mode is used more
+> often in the kernel and for the ls1028a both were used. Replace
+> phy-connection-type with phy-mode.
 > 
-> Seems good to me, for the whole series:
-> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com> for the whole 
-series, added to at91-soc and merged with previous patch.
-
-Please have a look at the resulting tree or at91-next branch for 
-double-checking.
-
-Thanks, best regards,
-   Nicolas
-
->> Kavyasree Kotagiri (4):
->>    ARM: at91: Kconfig: use only one name SOC_LAN966 and merge options
->>    ARM: at91: Documentation: add lan966 family
->>    dt-bindings: arm: at91: Document lan966 pcb8291 and pcb8290 boards
->>    ARM: at91: remove lan966x file
->>
->>   Documentation/arm/microchip.rst               |  6 +++++
->>   .../devicetree/bindings/arm/atmel-at91.yaml   | 12 +++++++++
->>   arch/arm/mach-at91/Kconfig                    | 12 ++++-----
->>   arch/arm/mach-at91/Makefile                   |  1 -
->>   arch/arm/mach-at91/lan966x.c                  | 25 -------------------
->>   5 files changed, 23 insertions(+), 33 deletions(-)
->>   delete mode 100644 arch/arm/mach-at91/lan966x.c
->>
->> --
->> 2.17.1
->>
+> Further move all the nodes which belongs to the CCSR into the /soc node.
+> These are the Mali display conntroller and its associated pixel clock PLL.
+> Finally, add the GPU node for the etnaviv driver under /soc.
 > 
-> --
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-> 
+> Michael Walle (7):
+>   arm64: dts: ls1028a: move pixel clock pll into /soc
+>   arm64: dts: ls1028a: move Mali DP500 node into /soc
+>   arm64: dts: ls1028a: add Vivante GPU node
+>   arm64: dts: freescale: fix arm,sp805 compatible string
+>   arm64: dts: ls1028a: disable usb controller by default
+>   arm64: dts: ls1028a: move PHY nodes to MDIO controller
+>   arm64: dts: ls1028a: use phy-mode instead of phy-connection-type
 
+Applied all, except #4 which had been picked up separately.
 
--- 
-Nicolas Ferre
+Shawn
