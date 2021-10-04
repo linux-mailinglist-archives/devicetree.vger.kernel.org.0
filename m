@@ -2,101 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A8AE4204DA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 04:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 641A74204E3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 04:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232156AbhJDCOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Oct 2021 22:14:17 -0400
-Received: from mx.socionext.com ([202.248.49.38]:29786 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232113AbhJDCOQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Oct 2021 22:14:16 -0400
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 04 Oct 2021 11:12:27 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 7B48C2059034;
-        Mon,  4 Oct 2021 11:12:27 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Mon, 4 Oct 2021 11:12:27 +0900
-Received: from plum.e01.socionext.com (unknown [10.212.243.119])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id DE589B62B7;
-        Mon,  4 Oct 2021 11:12:26 +0900 (JST)
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH] ASoC: dt-bindings: uniphier: Add description of each port number
-Date:   Mon,  4 Oct 2021 11:12:26 +0900
-Message-Id: <1633313546-23258-1-git-send-email-hayashi.kunihiko@socionext.com>
-X-Mailer: git-send-email 2.7.4
+        id S232217AbhJDCYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Oct 2021 22:24:22 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:36767 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232213AbhJDCYV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Oct 2021 22:24:21 -0400
+Received: by mail-oi1-f172.google.com with SMTP id y201so19746832oie.3;
+        Sun, 03 Oct 2021 19:22:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=ushgit0mjUfKyHoADqKH5l5MXksAnFZZ1AfG5dgrz5o=;
+        b=KavC6goRMlIqYawnF0c6rDjtUiZLCGomJELy84TPlotH5ENKP6xbIyLKZxa3Mwp08i
+         k7sKpbhsBXUiTNtqOfATzoM9foTt4azfd6tj/wx7GkLgU9ddu2Xf7GPPOO2xhhVEFtWg
+         hPdBxorWCbDc5MGGI2qMMro9lCur8lRTUhaslgp31TrndVn/ftachMCWuqb7JLe4cD1p
+         WjRearT2vvBhvpUtVhJf4VfxkgAmZpC7pHGYKdB9H/73mJmlrJhGU/pjSSU307wejbQY
+         X4lG1KSqqoIx9G0J54W8ZCdRlE0y5RLOqsnzPHpS+qRDdJasXvGpdhwSDmEJ2TPcISY6
+         l8ng==
+X-Gm-Message-State: AOAM530f4p5Q8D35WsrHkotMfa2/iaxlCJJDDALpo4fPeTjllKKqWd+z
+        NPEmABs7Rh8fYSmQKGrVFw==
+X-Google-Smtp-Source: ABdhPJy86dvc9vfTKpEFg++eA1EydHmuKP0dyaBvrqugtku1lZKymqE4572adTJMvNNBVNFt4ors8Q==
+X-Received: by 2002:aca:5909:: with SMTP id n9mr11877042oib.130.1633314151746;
+        Sun, 03 Oct 2021 19:22:31 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e2sm2612613ooa.20.2021.10.03.19.22.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Oct 2021 19:22:31 -0700 (PDT)
+Received: (nullmailer pid 116315 invoked by uid 1000);
+        Mon, 04 Oct 2021 02:22:30 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <treding@nvidia.com>, linux-clk@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>
+In-Reply-To: <20211003192529.29615-1-david@ixit.cz>
+References: <20211003192529.29615-1-david@ixit.cz>
+Subject: Re: [PATCH] [v2] dt-bindings: clock: tegra: Fix USB controller nodes in examples
+Date:   Sun, 03 Oct 2021 21:22:30 -0500
+Message-Id: <1633314150.313988.116314.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To eliminate FIXME, add descriptions of what each port number is
-associated with.
+On Sun, 03 Oct 2021 21:25:30 +0200, David Heidelberg wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> A subsequent patch will convert the USB controller device tree bindings
+> to json-schema, which will cause the DT validation to point out various
+> issues with the examples in the clock and reset controller bindings.
+> 
+> Fix these issues so that the subsequent patch will not cause validation
+> warnings.
+> 
+> v2:
+>  - add missing usb-ehci compatible (David)
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  .../bindings/clock/nvidia,tegra124-car.yaml           | 11 ++++++++---
+>  .../devicetree/bindings/clock/nvidia,tegra20-car.yaml |  5 +++++
+>  2 files changed, 13 insertions(+), 3 deletions(-)
+> 
 
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
----
- .../bindings/sound/socionext,uniphier-aio.yaml     | 22 +++++++++++++++++++++-
- .../bindings/sound/socionext,uniphier-evea.yaml    |  6 +++++-
- 2 files changed, 26 insertions(+), 2 deletions(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/Documentation/devicetree/bindings/sound/socionext,uniphier-aio.yaml b/Documentation/devicetree/bindings/sound/socionext,uniphier-aio.yaml
-index 55ae198..70f62ec 100644
---- a/Documentation/devicetree/bindings/sound/socionext,uniphier-aio.yaml
-+++ b/Documentation/devicetree/bindings/sound/socionext,uniphier-aio.yaml
-@@ -46,7 +46,27 @@ properties:
- 
- patternProperties:
-   "^port@[0-9]$":
--    description: FIXME, Need to define what each port is.
-+    description: |
-+      Port number of DT node is specified by the following DAI channels that
-+      depends on SoC.
-+      ld11-aio,ld20-aio:
-+        0: hdmi
-+        1: pcmin2
-+        2: line
-+        3: hpcmout1
-+        4: pcmout3
-+        5: hiecout1
-+        6: epcmout2
-+        7: epcmout3
-+        8: hieccompout1
-+      pxs2-aio:
-+        0: hdmi
-+        1: line
-+        2: aux
-+        3: hiecout1
-+        4: iecout1
-+        5: hieccompout1
-+        6: ieccompout1
-     $ref: audio-graph-port.yaml#
-     unevaluatedProperties: false
- 
-diff --git a/Documentation/devicetree/bindings/sound/socionext,uniphier-evea.yaml b/Documentation/devicetree/bindings/sound/socionext,uniphier-evea.yaml
-index 48ddfcb..be6acfd 100644
---- a/Documentation/devicetree/bindings/sound/socionext,uniphier-evea.yaml
-+++ b/Documentation/devicetree/bindings/sound/socionext,uniphier-evea.yaml
-@@ -40,7 +40,11 @@ properties:
- 
- patternProperties:
-   "^port@[0-9]$":
--    description: FIXME, Need to define what each port is.
-+    description: |
-+      Port number of DT node is specified by the following DAI channels.
-+        0: line1
-+        1: hp
-+        2: line2
-     $ref: audio-graph-port.yaml#
-     unevaluatedProperties: false
- 
--- 
-2.7.4
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.example.dt.yaml: usb-controller@7d000000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['nvidia,tegra124-ehci', 'nvidia,tegra30-ehci', 'usb-ehci'] is too long
+	Additional items are not allowed ('usb-ehci' was unexpected)
+	Additional items are not allowed ('nvidia,tegra30-ehci', 'usb-ehci' were unexpected)
+	'nvidia,tegra124-ehci' is not one of ['allwinner,sun4i-a10-ehci', 'allwinner,sun50i-a64-ehci', 'allwinner,sun50i-h6-ehci', 'allwinner,sun5i-a13-ehci', 'allwinner,sun6i-a31-ehci', 'allwinner,sun7i-a20-ehci', 'allwinner,sun8i-a23-ehci', 'allwinner,sun8i-a83t-ehci', 'allwinner,sun8i-h3-ehci', 'allwinner,sun8i-r40-ehci', 'allwinner,sun9i-a80-ehci', 'aspeed,ast2400-ehci', 'aspeed,ast2500-ehci', 'aspeed,ast2600-ehci', 'brcm,bcm3384-ehci', 'brcm,bcm63268-ehci', 'brcm,bcm6328-ehci', 'brcm,bcm6358-ehci', 'brcm,bcm6362-ehci', 'brcm,bcm6368-ehci', 'brcm,bcm7125-ehci', 'brcm,bcm7346-ehci', 'brcm,bcm7358-ehci', 'brcm,bcm7360-ehci', 'brcm,bcm7362-ehci', 'brcm,bcm7420-ehci', 'brcm,bcm7425-ehci', 'brcm,bcm7435-ehci', 'ibm,476gtr-ehci', 'nxp,lpc1850-ehci', 'qca,ar7100-ehci', 'snps,hsdk-v1.0-ehci', 'socionext,uniphier-ehci']
+	'nvidia,tegra124-ehci' is not one of ['cavium,octeon-6335-ehci', 'ibm,usb-ehci-440epx', 'ibm,usb-ehci-460ex', 'nintendo,hollywood-usb-ehci', 'st,spear600-ehci']
+	'nvidia,tegra124-ehci' is not one of ['generic-ehci', 'usb-ehci']
+	'generic-ehci' was expected
+	'usb-ehci' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.example.dt.yaml: usb-controller@7d000000: 'nvidia,phy', 'phy_type', 'reset-names' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+Documentation/devicetree/bindings/clock/nvidia,tegra124-car.example.dt.yaml:0:0: /example-0/usb-controller@7d000000: failed to match any schema with compatible: ['nvidia,tegra124-ehci', 'nvidia,tegra30-ehci', 'usb-ehci']
+Documentation/devicetree/bindings/clock/nvidia,tegra124-car.example.dt.yaml:0:0: /example-0/usb-controller@7d000000: failed to match any schema with compatible: ['nvidia,tegra124-ehci', 'nvidia,tegra30-ehci', 'usb-ehci']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1535873
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
