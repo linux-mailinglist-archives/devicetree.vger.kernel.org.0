@@ -2,153 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA3D3420AEA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 14:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5F24420A92
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 14:05:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232729AbhJDMdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 08:33:40 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:56238 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231613AbhJDMdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 08:33:38 -0400
-X-Greylist: delayed 3934 seconds by postgrey-1.27 at vger.kernel.org; Mon, 04 Oct 2021 08:33:38 EDT
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 194BQGWE045291;
-        Mon, 4 Oct 2021 06:26:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1633346776;
-        bh=Oc4kovP/NYg0BhPcPGQz4tvGA6N0DSPOAm11vK+OoBI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ftFB3VYNmVWNT9Irir2Xn7MFRMCqGdDYksztUgGxj52u3ZjdCghqbpaVAsFAP4gRU
-         m2LCCJSuhG1ArO6u6i79lDb2wcAUDtlY+uKCz/RU8fo1omFfgaZFpiITp1Av6qJUJi
-         pZVlu3j/9fJAfW9MwHwimDgyyh5upsG1bOOUJLfo=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 194BQGbm023276
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 4 Oct 2021 06:26:16 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 4
- Oct 2021 06:26:16 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 4 Oct 2021 06:26:16 -0500
-Received: from localhost.localdomain (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 194BQ384065426;
-        Mon, 4 Oct 2021 06:26:13 -0500
-From:   Keerthy <j-keerthy@ti.com>
-To:     <robh+dt@kernel.org>, <daniel.lezcano@linaro.org>,
-        <amitk@kernel.org>, <rui.zhang@intel.com>, <kristo@kernel.org>
-CC:     <j-keerthy@ti.com>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/4] arm64: dts: ti: j7200: Add VTM node
-Date:   Mon, 4 Oct 2021 16:55:49 +0530
-Message-ID: <20211004112550.27546-4-j-keerthy@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211004112550.27546-1-j-keerthy@ti.com>
-References: <20211004112550.27546-1-j-keerthy@ti.com>
+        id S233087AbhJDMHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 08:07:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44724 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232591AbhJDMHd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 08:07:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 25B3F61215;
+        Mon,  4 Oct 2021 12:05:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633349144;
+        bh=c6LEDjMveuaB/U/2rmlfIhlH+c99dwL8fKFv9i/sGXs=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=YJarSqwsXSdTSsyPNMFF+Lkir8x+NXdxnVPOMwMAX7+ZypzSijOh/Z5VA0q+T/z/+
+         6ZyjHbIvPVyG+Nx+hsmBcaNG5A7+wCdxvICcS7wsah+PmnCG+t+S5wUPPOJayNDjn+
+         9Sd/GYX1v8J8zHqulRJpa5QfR88ewty6iAn/8xkpjDli+x0C85Sy5qYXosHvtkw0X1
+         DbDjHpG/FqpgGkVLyE+UEwd8JcJ0UjqEjPST4RrEce2ygGpLaL/7HVU6C0IHCSnSuG
+         oARAWdNXqHIoSH/bVoWc1PAn7XioaXxE7zs2L9j73PIBr6oSvKMEPMYYpBkSVr5q7D
+         FfkHjpB59e3QA==
+From:   Will Deacon <will@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     catalin.marinas@arm.com, kernel-team@android.com,
+        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        marijn.suijten@somainline.org, linux-kernel@vger.kernel.org,
+        martin.botka@somainline.org, linux-arm-kernel@lists.infradead.org,
+        angelogioacchino.delregno@somainline.org,
+        iommu@lists.linux-foundation.org, jamipkettunen@somainline.org,
+        Robin Murphy <robin.murphy@arm.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add compatible for SM6350 SoC
+Date:   Mon,  4 Oct 2021 13:05:33 +0100
+Message-Id: <163334664315.1581907.12696776880512874722.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210820202906.229292-1-konrad.dybcio@somainline.org>
+References: <20210820202906.229292-1-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VTM stands for Voltage Thermal Management
+On Fri, 20 Aug 2021 22:29:04 +0200, Konrad Dybcio wrote:
+> Add the SoC specific compatible for SM6350 implementing
+> arm,mmu-500.
+> 
+> 
 
-Signed-off-by: Keerthy <j-keerthy@ti.com>
----
- .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |  9 ++++
- arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi  | 45 +++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j7200.dtsi          |  4 ++
- 3 files changed, 58 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
+Applied to will (for-joerg/arm-smmu/updates), thanks!
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index 1044ec6c4b0d..2b5c570253cc 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -375,4 +375,13 @@
- 			ti,loczrama = <1>;
- 		};
- 	};
-+
-+	wkup_vtm0: wkup_vtm0@42040000 {
-+		compatible = "ti,j7200-vtm";
-+		reg = <0x0 0x42040000 0x0 0x350>,
-+			<0x0 0x42050000 0x0 0x350>,
-+			<0x0 0x43000300 0x0 0x10>;
-+		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
-+		#thermal-sensor-cells = <1>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
-new file mode 100644
-index 000000000000..1f18f9dcd3e9
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
-@@ -0,0 +1,45 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <dt-bindings/thermal/thermal.h>
-+
-+mcu_thermal: mcu_thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 0>;
-+
-+	trips {
-+		wkup_crit: wkup_crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-+
-+mpu_thermal: mpu_thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 1>;
-+
-+	trips {
-+		mpu_crit: mpu_crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-+
-+main_thermal: main_thermal {
-+	polling-delay-passive = <250>; /* milliseconds */
-+	polling-delay = <500>; /* milliseconds */
-+	thermal-sensors = <&wkup_vtm0 2>;
-+
-+	trips {
-+		c7x_crit: c7x_crit {
-+			temperature = <125000>; /* milliCelsius */
-+			hysteresis = <2000>; /* milliCelsius */
-+			type = "critical";
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-index b7005b803149..649d1d60f5c7 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-@@ -165,6 +165,10 @@
- 				 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>; /* FSS OSPI1 data region 3 */
- 		};
- 	};
-+
-+	thermal_zones: thermal-zones {
-+		#include "k3-j7200-thermal.dtsi"
-+	};
- };
- 
- /* Now include the peripherals for each bus segments */
+[1/2] dt-bindings: arm-smmu: Add compatible for SM6350 SoC
+      https://git.kernel.org/will/c/e4a40f15b031
+[2/2] iommu/arm-smmu-qcom: Add SM6350 SMMU compatible
+      https://git.kernel.org/will/c/bc53c8b8b087
+
+Cheers,
 -- 
-2.17.1
+Will
 
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
