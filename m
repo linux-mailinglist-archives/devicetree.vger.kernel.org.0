@@ -2,85 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A21F420666
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 09:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 265C842066F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 09:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229588AbhJDHHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 03:07:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59518 "EHLO
+        id S229523AbhJDHKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 03:10:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbhJDHHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 03:07:22 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77BBFC0613EC
-        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 00:05:34 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id qe4-20020a17090b4f8400b0019f663cfcd1so7555373pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 00:05:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=RPoe9yQ/p8JX2xrTYhiPsh6nCIk1jjrxqKzdQqWJyog=;
-        b=Ka8y1AQQmTEFx8/r768QmfjGxG53lXA8UbkO6mDVZsaX+DQI8NaaDAcF3mBu9G9Xyd
-         HUE6S7nv1P+pTi2De6WqhQC1deOIQ0Ke7YEYeLR5tuKrC1A05ShCiDTNwoLZxoOHW7Qx
-         bLehQMyfGNeG/PjVcgu1gqrCRf40HaVU6o9scklcvA0BTypLghbyv8B43pyb5mChkEAb
-         VEzNnd2+e72sLNEonol5rLBSnumCUUFEGUNO971Qi0B2/2tqyqMQuAZnSTlOkLLe1CiB
-         WP04FkeCobT53WYfu4kl2vy9e9Wvbkyst6XAjIzAZb0kkWMLzU86rtsCf2FeqQqCZina
-         efew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=RPoe9yQ/p8JX2xrTYhiPsh6nCIk1jjrxqKzdQqWJyog=;
-        b=zagdGVJodmC4mSvXdLBRvj3mze3HBbSc3bFLJRDmN2NJdYHGkxHFBY0/F+DYb8AUI3
-         DSCOWWbdgMYxKTAvC+bp7wzVHzPcZ9W+N/Sxv90tBQo8GUAsRyAqVyic0BrYzhlaerj7
-         n3f21HonZEv0lIWII7wPVbLhw3vGaLrP5hIPERJR1TRibOjseSKNgXJkHF0C/cvr0sp5
-         KYpP9YlmmEfFCl/H98XLI8nwM7wdFuUtvW1/QyH8oZgW52lHnmlNixpYx2BH3TnHPRQI
-         QrFQxMSFCpj+AP0nhaQvKPIaaBZqF7CYLYCWZ3MlEG9IDS5pTBxlPLW1HHArcJHSuS56
-         +kQA==
-X-Gm-Message-State: AOAM530re26vlrkzqxeQhlQtkknlYpOuNXb2n8RcX1tbRd2aLrjgK/Eg
-        iIvy2L1JCLLKpcAtLG4yLSw9oQ==
-X-Google-Smtp-Source: ABdhPJyA+/zycYXtCrPiIKuHwWlHal7yChVygfvWDZI2GL/gExSMeDtDqVqRw5UZIxqD9vYgxtfCug==
-X-Received: by 2002:a17:90b:4b49:: with SMTP id mi9mr36027415pjb.79.1633331133955;
-        Mon, 04 Oct 2021 00:05:33 -0700 (PDT)
-Received: from localhost ([122.171.247.18])
-        by smtp.gmail.com with ESMTPSA id y15sm6631075pfa.64.2021.10.04.00.05.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 00:05:33 -0700 (PDT)
-Date:   Mon, 4 Oct 2021 12:35:31 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     rafael@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: cpufreq: cpufreq-qcom-hw: Convert to YAML
- bindings
-Message-ID: <20211004070531.sexvnqmnkoe4j6a2@vireshk-i7>
-References: <20211004044317.34809-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S229486AbhJDHKf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 03:10:35 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECDB7C061745
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 00:08:46 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mXI5P-00049J-Ll; Mon, 04 Oct 2021 09:08:31 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mXI5K-0007tv-Nw; Mon, 04 Oct 2021 09:08:26 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mXI5K-0007Hj-Mf; Mon, 04 Oct 2021 09:08:26 +0200
+Date:   Mon, 4 Oct 2021 09:08:26 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [v12 2/2] pwm: Add Aspeed ast2600 PWM support
+Message-ID: <20211004070826.on5tg42dvjh7bayt@pengutronix.de>
+References: <20210906024339.21124-1-billy_tsai@aspeedtech.com>
+ <20210906024339.21124-3-billy_tsai@aspeedtech.com>
+ <012AEBBE-9FFC-48B5-8794-00A577C3C87A@aspeedtech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5t4m3yzkgi5tqy6e"
 Content-Disposition: inline
-In-Reply-To: <20211004044317.34809-1-manivannan.sadhasivam@linaro.org>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <012AEBBE-9FFC-48B5-8794-00A577C3C87A@aspeedtech.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04-10-21, 10:13, Manivannan Sadhasivam wrote:
-> Convert Qualcomm cpufreq devicetree binding to YAML.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-I am not sure if Rob ever gave this.
+--5t4m3yzkgi5tqy6e
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Hello Billy,
 
-Why double signed off ?
+On Mon, Oct 04, 2021 at 02:54:00AM +0000, Billy Tsai wrote:
+> Does anyone have any comments about this patch?
 
--- 
-viresh
+It's on my list of todos, the problem is there are so many thing on that
+list. I'll try to review your patch set this week.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--5t4m3yzkgi5tqy6e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmFaqGcACgkQwfwUeK3K
+7AnGAgf9G336UWwO/gwlaZ/cj2wpcF8RfEe28nz+ZdOLKOTExHGoTFA/i4jisAN3
+QCtLRrKdUQb+133ZMFwKdfUH+MVgtDC2TyScXhsHH9x8/8flyZTkP1fxeQp4u3Qw
+MJIF2oiz18CGU01qck3evudKGeWKiD9yHl2TbvCT+dlcSIIGpleviEyynnOB7OKi
+sMNE7wJcz8i+EYiB7N0NxdTIWhix17lE3QSYyy9yBRrfUpmT8QEj15mUxuAzsI+x
+EZHk9bv43TRShMy6QFNfwcqdC5L6mSKFKgwSSJmYGQSunmzcRxpZLM9upJy3Jj/Z
+Y6+cqlD/ohXtKbi9Znc4XYXPg0ug3A==
+=lJ1t
+-----END PGP SIGNATURE-----
+
+--5t4m3yzkgi5tqy6e--
