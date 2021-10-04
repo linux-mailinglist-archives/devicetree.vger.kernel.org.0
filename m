@@ -2,62 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2B0D420511
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 05:26:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E71B420513
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 05:33:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230513AbhJDD1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Oct 2021 23:27:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43930 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230295AbhJDD1u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Oct 2021 23:27:50 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4BD9B61351;
-        Mon,  4 Oct 2021 03:26:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633317962;
-        bh=rnrznOFRMDEvjI/ziBQpTfMzTrkNi2HgQnQTm+R3nLA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=H6XFNi8ael9eduJ+H+QacrO11faHRWze0V0LBL8ngcegV4r8AVjdyYt5CetaS6oBH
-         j8e6/PyZ50aRIOPHQZJpHG7oh/NnPlAnbMJ6YP3hcBugWHQ93f3P8TSaFvzTRn9Yp5
-         OmmCSIv7GscQRkxz/S72REVMcECfNpYy6KUHTBVtnbPwZZMN0r93kA9NUTYd/xdkx8
-         GZmKsYXyGnGhihOsgoRDVKrTF52YcuqPKJMexL5AIp30fNxiS4Nrlmq1zM3aYvLWb2
-         qdYeKm5/hd9kAPw7h7wh31QG5hpZ35DB2EB7Dl/wfb8raDT+m7bVWJhYfioHnSXdwY
-         e/V4VjhEHi24A==
-Date:   Mon, 4 Oct 2021 11:25:57 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     haibo.chen@nxp.com
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] ARM: dts: imx: change the spi-nor tx
-Message-ID: <20211004032556.GA15650@dragon>
-References: <1629451790-10507-1-git-send-email-haibo.chen@nxp.com>
+        id S232299AbhJDDfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Oct 2021 23:35:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41258 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230295AbhJDDfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Oct 2021 23:35:15 -0400
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1D6DC0613EC
+        for <devicetree@vger.kernel.org>; Sun,  3 Oct 2021 20:33:26 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 36A05419C2;
+        Mon,  4 Oct 2021 03:33:15 +0000 (UTC)
+To:     Joey Gouly <joey.gouly@arm.com>, linux-gpio@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>, nd@arm.com,
+        Stan Skowronek <stan@corellium.com>
+References: <20211001191209.29988-1-joey.gouly@arm.com>
+ <20211001191209.29988-4-joey.gouly@arm.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v2 3/3] pinctrl: add pinctrl/GPIO driver for Apple SoCs
+Message-ID: <e18d09cb-ec5f-0e15-e701-f6ae5108b23e@marcan.st>
+Date:   Mon, 4 Oct 2021 12:33:15 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1629451790-10507-1-git-send-email-haibo.chen@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20211001191209.29988-4-joey.gouly@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 20, 2021 at 05:29:49PM +0800, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
-> 
-> Before commit 0e30f47232ab5 ("mtd: spi-nor: add support for DTR protocol"),
-> for all PP command, it only support 1-1-1 mode, no matter the tx setting
-> in dts. But after the upper commit, the logic change. It will choose
-> the best mode(fastest mode) which flash device and spi-nor host controller
-> both support.
-> 
-> Though the spi-nor device on imx6sx-sdb/imx6ul(l/z)-14x14-evk board
-> do not support PP-1-4-4/PP-1-1-4, but if tx is 4 in dts file, it will also
-> impact the read mode selection. For the spi-nor device on the upper mentioned
-> boards, they support read 1-4-4 mode and read 1-1-4 mode according to the
-> device internal sfdp register. But qspi host controller do not support
-> read 1-4-4 mode. so need to set the tx to 1, let the common code finally
-> select read 1-1-4 mode, PP-1-1-1 mode.
-> 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+On 02/10/2021 04.12, Joey Gouly wrote:
+> +#define REG_GPIO(x)          (4 * (x))
+> +#define REG_GPIOx_DATA       BIT(0)
+> +#define REG_GPIOx_MODE_MASK  GENMASK(3, 1)
+> +#define REG_GPIOx_OUT        1
+> +#define REG_GPIOx_IN_IRQ_HI  2
+> +#define REG_GPIOx_IN_IRQ_LO  3
+> +#define REG_GPIOx_IN_IRQ_UP  4
+> +#define REG_GPIOx_IN_IRQ_DN  5
+> +#define REG_GPIOx_IN_IRQ_ANY 6
+> +#define REG_GPIOx_IN_IRQ_OFF 7
+> +#define REG_GPIOx_PERIPH     BIT(5)
+> +#define REG_GPIOx_CFG_DONE   BIT(9)
+> +#define REG_GPIOx_GRP_MASK   GENMASK(18, 16)
+> +#define REG_IRQ(g, x)        (0x800 + 0x40 * (g) + 4 * ((x) >> 5))
 
-Applied both, thanks!
+Can we update these defines with the correct definitions and names we 
+figured out the other day and add the missing ones? We now know a bunch 
+of these are wrong (e.g. CFG_DONE is INPUT_ENABLE, PERIPH should be two 
+bits, we're missing pull-up control, drive strength, schmitt trigger and 
+lock bits). Even if we don't implement all the features in the driver 
+yet, we should have all the register bit defines for documentation 
+purposes at least.
+
+> +	if (!(prev & REG_GPIOx_CFG_DONE))
+> +		writel_relaxed(cfg & ~REG_GPIOx_CFG_DONE, ppin);
+> +	writel_relaxed(cfg, ppin);
+
+We already determined this dance doesn't make any sense; if we want to 
+change the pin config before enabling the input buffer (whether this 
+serves any purpose at all is an open question) then that should be 
+handled in the upper code responsible for enabling/disabling the input 
+buffer, not in the core register wrappers.
+
+> +	if (func)
+> +		apple_gpio_set_reg(pctl, group, 0,
+> +				   REG_GPIOx_PERIPH | REG_GPIOx_CFG_DONE);
+> +	else
+> +		apple_gpio_set_reg(pctl, group, REG_GPIOx_PERIPH,
+> +				   REG_GPIOx_CFG_DONE);
+
+Func is two bits (4 functions) :)
+
+> +static void apple_gpio_gpio_set(struct gpio_chip *chip, unsigned int offset,
+> +				int value)
+> +{
+> +	struct apple_gpio_pinctrl *pctl = gpiochip_get_data(chip);
+> +
+> +	apple_gpio_set_reg(pctl, offset, REG_GPIOx_DATA,
+> +			   REG_GPIOx_CFG_DONE | (value & REG_GPIOx_DATA));
+> +}
+
+`value ? REG_GPIOx_DATA : 0` please, otherwise this makes assumptions 
+about value always being 1 and REG_GPIOx_DATA being the LSB.
+
+Also as we now know, REG_GPIOx_CFG_DONE is nonsense and doesn't belong 
+here. Let's drop the cargo cult and drive the hardware based on how it 
+works, not how macOS or Corellium decided to do things.
+
+> +static int apple_gpio_gpio_direction_input(struct gpio_chip *chip,
+> +					   unsigned int offset)
+> +{
+> +	struct apple_gpio_pinctrl *pctl = gpiochip_get_data(chip);
+> +
+> +	apple_gpio_set_reg(pctl, offset, REG_GPIOx_MODE_MASK | REG_GPIOx_DATA,
+> +			   FIELD_PREP(REG_GPIOx_MODE_MASK,
+> +				      REG_GPIOx_IN_IRQ_OFF) |
+> +				   REG_GPIOx_CFG_DONE);
+
+Is hardcoding IRQ_OFF correct here? Shouldn't this be getting the 
+intended IRQ state from somewhere, or is it always guaranteed that that 
+gets set later?
+
+> +static int apple_gpio_gpio_direction_output(struct gpio_chip *chip,
+> +					    unsigned int offset, int value)
+> +{
+> +	struct apple_gpio_pinctrl *pctl = gpiochip_get_data(chip);
+> +
+> +	apple_gpio_set_reg(pctl, offset, REG_GPIOx_PERIPH | REG_GPIOx_DATA,
+> +			   FIELD_PREP(REG_GPIOx_MODE_MASK, REG_GPIOx_OUT) |
+> +				   (value & REG_GPIOx_DATA) |
+> +				   REG_GPIOx_CFG_DONE);
+
+I actually wonder if we should even bother turning on the input buffer 
+for output pins, given we're shadowing the value anyway. Seems 
+unnecessary and might save a few nanowatts.
+
+Also, why is this clearing the peripheral (yet direction_input isn't)?
+
+> +static void apple_gpio_gpio_irq_mask(struct irq_data *data)
+> +{
+> +	struct apple_gpio_pinctrl *pctl =
+> +		gpiochip_get_data(irq_data_get_irq_chip_data(data));
+> +	apple_gpio_set_reg(pctl, data->hwirq, REG_GPIOx_MODE_MASK,
+> +			   FIELD_PREP(REG_GPIOx_MODE_MASK,
+> +				      REG_GPIOx_IN_IRQ_OFF) |
+> +				   REG_GPIOx_CFG_DONE);
+> +}
+
+-REG_GPIOx_CFG_DONE please
+
+> +
+> +static void apple_gpio_gpio_irq_unmask(struct irq_data *data)
+> +{
+> +	struct apple_gpio_pinctrl *pctl =
+> +		gpiochip_get_data(irq_data_get_irq_chip_data(data));
+> +	u32 irqtype = apple_gpio_irq_type(irqd_get_trigger_type(data));
+> +
+> +	if (WARN_ON(irqtype < 0))
+> +		return;
+> +	apple_gpio_set_reg(pctl, data->hwirq, REG_GPIOx_MODE_MASK,
+> +			   FIELD_PREP(REG_GPIOx_MODE_MASK, irqtype) |
+> +				   REG_GPIOx_CFG_DONE);
+
+Ditto
+
+> +static unsigned int apple_gpio_gpio_irq_startup(struct irq_data *data)
+> +{
+> +	struct gpio_chip *chip = irq_data_get_irq_chip_data(data);
+> +	struct apple_gpio_pinctrl *pctl = gpiochip_get_data(chip);
+> +
+> +	apple_gpio_set_reg(pctl, data->hwirq, REG_GPIOx_GRP_MASK,
+> +			   FIELD_PREP(REG_GPIOx_GRP_MASK, 0));
+
+I guess we're only using a single IRQ group right now?
+
+The driver structure looks good (though see the regmap suggestion from 
+Linus). Let's just get the actual hardware part right. I didn't spend a 
+couple hours poking register bits with a multimeter, a scope, and a 
+breadboard for nothing ;)
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
