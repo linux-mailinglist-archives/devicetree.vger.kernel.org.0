@@ -2,93 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04A18421285
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BCFB4212A5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:28:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234792AbhJDPVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 11:21:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48528 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233561AbhJDPVw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 11:21:52 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B15A361213;
-        Mon,  4 Oct 2021 15:20:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633360803;
-        bh=NG/Wy5XIrpVSoMYEmEB2A64wk7yYUtdnVHnG1Itjeb8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fl61qGbE43aaXJB16PkDauG+7QifrchZOcJ8Q1UIv0KhMEEAG0gLHD58BCtjOQDnl
-         b4kCe1t5aK4K/QBK/ZgLtzMtbkh69rWWB5Tnfykf2ifdIQbEOUqUTlV6u9xxC5FPaN
-         CJ6Yai/KKRHJLslXxkzTu+gWaKZ15xRmdeKobfV0kPrWZk8OhvyR0Os8Z/1/PSIMXL
-         sGyDEbsA96Br6jPhRh/qv3GvoFtq29F0Q9Y8xHyIXbuSQSn9JCY0DEM6YAXSdjE5+X
-         YT+TvaY8ff9UYHCoUfhAek0D4TSGQRPg3pBtde0y4FXzGhDRPrzz7sBZDC/uaPy7Uv
-         SNiL2RR1AZCeQ==
-Date:   Mon, 4 Oct 2021 16:20:00 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Ricard Wanderlof <ricardw@axis.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        alsa-devel <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: sound: tlv320adc3xxx: New codec driver
-Message-ID: <YVsboGxNmu1aMgS/@sirena.org.uk>
-References: <alpine.DEB.2.21.2110041115070.14472@lnxricardw1.se.axis.com>
- <YVr8tqRoyyiWR4xl@sirena.org.uk>
- <alpine.DEB.2.21.2110041656220.14472@lnxricardw1.se.axis.com>
+        id S233648AbhJDPaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 11:30:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35478 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233469AbhJDPaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 11:30:14 -0400
+Received: from bombadil.infradead.org (unknown [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43462C061745;
+        Mon,  4 Oct 2021 08:28:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=s7NZ7E3PI4Zsi+Hk9Jgv2Mz0SRxrTaSZ+M7CVvLomVU=; b=It0zxgyKd+0NBpQv4BLdI65mV1
+        2Gs5Jz/qiIVNKX3J2SQTIMLdOiYY4t5FtfW/v49IexG2s7Rea+jK39G2FTn8VtYW985N21W8odFQ+
+        1dTWWBb7uBmH88jPcHf+W8zj3SgQ/JmKP8C7z5w4N1u6iAXBfmx4gIhG35sIkILIkVFBEn4o9IQNN
+        TF/zocH396jjjvrE39l3dQN6t0y83liFwQrXg4q6fFtD+X9gIxv/bEPOmmKi96qwXy0rIKQHekPEd
+        j2IdoydVOYOSrAruB4luX0isKTRx/iOxvDNr347Ol5Rwyi3p7zRtc5PT7/0ZfHuipzJQ/JPJCXQaw
+        YFFMs4oA==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mXPtA-006u0w-4p; Mon, 04 Oct 2021 15:28:24 +0000
+Subject: Re: [PATCH 2/2] power: supply: max77976: add Maxim MAX77976 charger
+ driver
+To:     Luca Ceresoli <luca@lucaceresoli.net>, linux-pm@vger.kernel.org
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211004130732.950512-1-luca@lucaceresoli.net>
+ <20211004130732.950512-2-luca@lucaceresoli.net>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <a6ea9a21-e9df-b596-eb80-4df4b8d8115e@infradead.org>
+Date:   Mon, 4 Oct 2021 08:28:22 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="swq8DQvSRbS3kp74"
-Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.21.2110041656220.14472@lnxricardw1.se.axis.com>
-X-Cookie: If it heals good, say it.
+In-Reply-To: <20211004130732.950512-2-luca@lucaceresoli.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/4/21 6:07 AM, Luca Ceresoli wrote:
+> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+> index ad93b3550d6d..622d690c883a 100644
+> --- a/drivers/power/supply/Kconfig
+> +++ b/drivers/power/supply/Kconfig
+> @@ -557,6 +557,17 @@ config CHARGER_MAX77693
+>   	help
+>   	  Say Y to enable support for the Maxim MAX77693 battery charger.
+>   
+> +config CHARGER_MAX77976
+> +	tristate "Maxim MAX77976 battery charger driver"
+> +	depends on REGMAP_I2C
+> +	help
+> +	  The Maxim MAX77976 is a 19 Vin, 5.5A 1-Cell Li+ Battery Charger
+> +	  USB OTG support. It has an I2C interface for configuration.
+> +
+> +	  Say Y to enable support for the Maxim MAX77976 battery charger.
+> +	  This driver can also be built as a module. If so, the module will be
+> +	  called max77976_charger.
 
---swq8DQvSRbS3kp74
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+REGMAP_I2C is not a user-settable config option, so drivers should not
+"depend on" it. This should be more like:
 
-On Mon, Oct 04, 2021 at 05:16:04PM +0200, Ricard Wanderlof wrote:
-> On Mon, 4 Oct 2021, Mark Brown wrote:
-> > On Mon, Oct 04, 2021 at 11:17:47AM +0200, Ricard Wanderlof wrote:
+	depends on I2C
+	select REGMAP_I2C
 
-> > > +  ti,pll-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum:
-> > > +      - 0 # ADC3XXX_PLL_DONT_SET - leave mode unchanged
-> > > +      - 1 # ADC3XXX_PLL_ENABLE - use the on-chip PLL
-> > > +      - 2 # ADC3XXX_PLL_BYPASS - do not use the on-chip PLL
-> > > +      - 3 # ADC3XXX_PLL_AUTO - use on-chip PLL if possible
-
-> > Why is this configured through the DT binding and not via the machine
-> > driver as done for other drivers?
-
-> The reason is that I want to be able to use this driver with the=20
-> simple-card machine driver which doesn't have any PLL control options=20
-> AFAIK, as the .set_sysclk callback clk_id parameter is always set to 0=20
-> by simple-card.
-
-That's not a good reason to define ABI.  If you absolutely can't arrange
-for your machine driver to do something sensible then you could make the
-CODEC driver default to auto mode.  This is configuration, not hardware
-description.
-
---swq8DQvSRbS3kp74
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFbG58ACgkQJNaLcl1U
-h9AoNwf+MRnncNdTj123hjjeS6rrwA7o+66KuwNTIk1j8OTX4DEaJpBCcRG5dWaX
-1wSI+rYODNQZJSL34nqZOgAZ4g45gJdo26XUGdPfeL5VHLSRBLtHWS/xD3nHKo47
-vzVHpzmie4Jy38LpiaA0iLu4/AcI/cM5i18q1f/VcnWcpXGNoEZrlrqgalOX0sLv
-3kxtK3es8v2m5gWbgSXHdPdG32DcntmTy8Degr/7BHgSjq3WuGEW93IkA+MWmcpv
-riEOKKdxdhp6t3cJSuOgTetce/k8kOlkNizJkDiGq/1bXFkrlBBLRv4qhjB7JRyW
-F9IziIARjCeWlkg9VM/LYtjzwUO9tA==
-=EbzI
------END PGP SIGNATURE-----
-
---swq8DQvSRbS3kp74--
+-- 
+~Randy
