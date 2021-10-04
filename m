@@ -2,132 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A38014205BD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 08:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA47D4205F9
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 08:48:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232749AbhJDGQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 02:16:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47828 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232745AbhJDGP6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 02:15:58 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2D63C06178A
-        for <devicetree@vger.kernel.org>; Sun,  3 Oct 2021 23:14:08 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id v11so2945776pgb.8
-        for <devicetree@vger.kernel.org>; Sun, 03 Oct 2021 23:14:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=l1url66F0t/sCmMZqx5y0fYEDd1yfCg2fr6WFfRQ3Fw=;
-        b=sEc2mG/IcBMiant54vsDVEnr8ub9YZTmeOslKiDh2u/Y77UCVeiXyrf1pwXLdAOTpg
-         KTsglb+CAiSbLenzU3T/Us7uAipU7l+BKt7fjNtHDptylOtGdJ7kG4cAuXwaVov+q6bk
-         deNIPO9tPs+4kvzxr1eSqduYV4/aFuuf7keyx4w0icaYHiO3+PKHkx8wuje8P+bZ54Rl
-         Tdk3rXUAZEx86R8oViottUEtZK04mxPhhlClibA+mGNtqfNuiS5W1AbDKwDQ1+0aivOQ
-         SmHNIfqZ58LSEqLn7bmZ6W9hYAOlOsjE4ESgYgVPS0LwLI33X/wD6KwLTpbX2L7KQRjC
-         44aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=l1url66F0t/sCmMZqx5y0fYEDd1yfCg2fr6WFfRQ3Fw=;
-        b=hnq/VN+YkGXoPfnBISFkI5/giLKiN0aVhPI7b5KnNHCH+wMgCCWBSC8hTjBtp783wr
-         3y6d/tgu/NhzbgFZX3BTLZIkQXoaXiV5oJYBFR7aMsXWlIJzmp4ND9G61+Zjd4ZVl/gM
-         8/pkuOYLkmtq5Kpq4HBYnVV/s/Yq2zcXvYYwociK6HfvoUvW64FVjIhebs5I65odF8U2
-         QS50JLCAVwR2qwFA9al4/Q6tKnVGkwrIIEqOr9BTlhPrlAd2+LYNJsF/TPttdPc9I39D
-         AHo+x94DKiiyEA8Rp+eWoQj3WPkZrhWggMZt0YL6S1VQLfEqravGeGJqLVq71K6mvZ33
-         MtaA==
-X-Gm-Message-State: AOAM533m/czsmUvFbKeq1+XIzL20f/OvbhkBYnxnwOfAWjUY1r0rjX8x
-        eTg3nuPv8iDwoqJu6vXfuPyeoQ==
-X-Google-Smtp-Source: ABdhPJxW9fa52UROhfFkyQi74ZWZotCpSVB8zQ3pXKHnyqZiheRubcZmxJTYmBrc6vPNc0b49P1zeA==
-X-Received: by 2002:a62:5185:0:b0:43e:79c:6b6 with SMTP id f127-20020a625185000000b0043e079c06b6mr23361454pfb.79.1633328048527;
-        Sun, 03 Oct 2021 23:14:08 -0700 (PDT)
-Received: from localhost ([122.171.247.18])
-        by smtp.gmail.com with ESMTPSA id q27sm6004041pfg.125.2021.10.03.23.14.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Oct 2021 23:14:08 -0700 (PDT)
-Date:   Mon, 4 Oct 2021 11:44:06 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: spear13xx: Drop malformed 'interrupt-map' on
- PCI nodes
-Message-ID: <20211004061406.tyhldt4f26zilaaw@vireshk-i7>
-References: <20210928192143.1841497-1-robh@kernel.org>
+        id S232715AbhJDGuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 02:50:35 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:45694 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232131AbhJDGuf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 02:50:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1633330126; x=1635922126;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=FErI2ug8KtoVBhGDqdfU5Bd9uqUK/N0StDgB0unFXzM=;
+        b=b0LGMGK+GnnEsMQkXUSm5YISvMCQ+8HBmcrjZOktZGZAF9+oCp0rOBX8MBv46jg/
+        H8cmuxsTBdOynSJMtyZnj/p1kPbR9cz9kuoBYcnZNYH/n5gB8BUTcHJVYWXaym24
+        R+uBieosbtbffgqroE5ywjYfGN+/fo9t9RJUWtuFsgc=;
+X-AuditID: c39127d2-c275470000001d24-96-615aa3cea30a
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 5A.77.07460.EC3AA516; Mon,  4 Oct 2021 08:48:46 +0200 (CEST)
+Received: from lws-ybas.phytec.de ([172.16.21.122])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2021100408484587-1808701 ;
+          Mon, 4 Oct 2021 08:48:45 +0200 
+From:   Yunus Bas <y.bas@phytec.de>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: imx6: phytec: Add gpio pinctrl for i2c bus recovery
+Date:   Mon, 4 Oct 2021 08:48:22 +0200
+Message-Id: <20211004064822.97170-1-y.bas@phytec.de>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210928192143.1841497-1-robh@kernel.org>
-User-Agent: NeoMutt/20180716-391-311a52
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 04.10.2021 08:48:46,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 04.10.2021 08:48:46
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOLMWRmVeSWpSXmKPExsWyRoCBS/fc4qhEgzPnuC3mHznHavHwqr/F
+        qqk7WSw2Pb7GanF51xw2i9a9R9gt/m7fxGLxYou4A4fHzll32T02repk89i8pN6j/6+Bx+dN
+        cgGsUVw2Kak5mWWpRfp2CVwZP29PYCp4oVLxbXtUA2OffBcjB4eEgInEum7hLkYuDiGBbYwS
+        HY0TWSGc84wSPc+bGbsYOTnYBBQlzt9+ywpiiwhUSkzfuIIJxGYWCJdYffsZO4gtLOAn8a9r
+        CzOIzSKgInHz8TSwGl6gBQcuP2ADsSUE5CWO/OpkhogLSpyc+YQFZJmEwBVGibn9H1ggioQk
+        Ti8+ywyxQFti2cLXzBMY+WYh6ZmFJLWAkWkVo1BuZnJ2alFmtl5BRmVJarJeSuomRmBgHp6o
+        fmkHY98cj0OMTByMhxglOJiVRHivekUmCvGmJFZWpRblxxeV5qQWH2KU5mBREue938OUKCSQ
+        nliSmp2aWpBaBJNl4uCUamBke+DAzvHo+rr1HxtyJ7ryy++wCHqXekOmRs3806Y7X53WnJTI
+        V5wR+j3h2J3WgrvB7tfM124Wk7/1Pruyw2Z5jl4w1077CSqutsX89uyf6re5Sob0VmyJPb30
+        jF5Vr8xXPYbpOZwRnyX4Hu2QUstVfKvB68nwsiokPeFW66Gp5VL7eV/ESymxFGckGmoxFxUn
+        AgA1Qe+cOgIAAA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28-09-21, 14:21, Rob Herring wrote:
-> The spear13xx PCI 'interrupt-map' property is not parse-able.
-> '#interrupt-cells' is missing and there are 3 #address-cells. Based on the
-> driver, the only supported interrupt is for MSI. Therefore, 'interrupt-map'
-> is not needed.
-> 
-> Cc: Viresh Kumar <vireshk@kernel.org>
-> Cc: Shiraz Hashim <shiraz.linux.kernel@gmail.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  arch/arm/boot/dts/spear1310.dtsi | 6 ------
->  arch/arm/boot/dts/spear1340.dtsi | 2 --
->  2 files changed, 8 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/spear1310.dtsi b/arch/arm/boot/dts/spear1310.dtsi
-> index c4b49baf9804..2f746a9428a7 100644
-> --- a/arch/arm/boot/dts/spear1310.dtsi
-> +++ b/arch/arm/boot/dts/spear1310.dtsi
-> @@ -82,8 +82,6 @@ pcie0: pcie@b1000000 {
->  			reg = <0xb1000000 0x4000>, <0x80000000 0x20000>;
->  			reg-names = "dbi", "config";
->  			interrupts = <0 68 0x4>;
-> -			interrupt-map-mask = <0 0 0 0>;
-> -			interrupt-map = <0x0 0 &gic 0 68 0x4>;
->  			num-lanes = <1>;
->  			phys = <&miphy0 1>;
->  			phy-names = "pcie-phy";
-> @@ -101,8 +99,6 @@ pcie1: pcie@b1800000 {
->  			reg = <0xb1800000 0x4000>, <0x90000000 0x20000>;
->  			reg-names = "dbi", "config";
->  			interrupts = <0 69 0x4>;
-> -			interrupt-map-mask = <0 0 0 0>;
-> -			interrupt-map = <0x0 0 &gic 0 69 0x4>;
->  			num-lanes = <1>;
->  			phys = <&miphy1 1>;
->  			phy-names = "pcie-phy";
-> @@ -120,8 +116,6 @@ pcie2: pcie@b4000000 {
->  			reg = <0xb4000000 0x4000>, <0xc0000000 0x20000>;
->  			reg-names = "dbi", "config";
->  			interrupts = <0 70 0x4>;
-> -			interrupt-map-mask = <0 0 0 0>;
-> -			interrupt-map = <0x0 0 &gic 0 70 0x4>;
->  			num-lanes = <1>;
->  			phys = <&miphy2 1>;
->  			phy-names = "pcie-phy";
-> diff --git a/arch/arm/boot/dts/spear1340.dtsi b/arch/arm/boot/dts/spear1340.dtsi
-> index 1a8f5e8b10e3..827e887afbda 100644
-> --- a/arch/arm/boot/dts/spear1340.dtsi
-> +++ b/arch/arm/boot/dts/spear1340.dtsi
-> @@ -47,8 +47,6 @@ pcie0: pcie@b1000000 {
->  			reg = <0xb1000000 0x4000>, <0x80000000 0x20000>;
->  			reg-names = "dbi", "config";
->  			interrupts = <0 68 0x4>;
-> -			interrupt-map-mask = <0 0 0 0>;
-> -			interrupt-map = <0x0 0 &gic 0 68 0x4>;
->  			num-lanes = <1>;
->  			phys = <&miphy0 1>;
->  			phy-names = "pcie-phy";
+Make use of the i2c bus recovery feature and enable it on PHYTEC
+phyCORE-based modules and boards.
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Signed-off-by: Yunus Bas <y.bas@phytec.de>
+---
+ arch/arm/boot/dts/imx6qdl-phytec-mira.dtsi    | 30 +++++++++++++++----
+ .../boot/dts/imx6qdl-phytec-phycore-som.dtsi  | 12 +++++++-
+ .../boot/dts/imx6ul-phytec-phycore-som.dtsi   | 12 +++++++-
+ 3 files changed, 47 insertions(+), 7 deletions(-)
 
--- 
-viresh
+diff --git a/arch/arm/boot/dts/imx6qdl-phytec-mira.dtsi b/arch/arm/boot/dts=
+/imx6qdl-phytec-mira.dtsi
+index 0873f53ea275..120d6e997a4c 100644
+--- a/arch/arm/boot/dts/imx6qdl-phytec-mira.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-phytec-mira.dtsi
+@@ -145,8 +145,11 @@ &hdmi {
+ };
+=20
+ &i2c1 {
+-	pinctrl-names =3D "default";
++	pinctrl-names =3D "default", "gpio";
+ 	pinctrl-0 =3D <&pinctrl=5Fi2c1>;
++	pinctrl-1 =3D <&pinctrl=5Fi2c1=5Fgpio>;
++	scl-gpios =3D <&gpio3 21 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
++	sda-gpios =3D <&gpio3 28 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
+ 	clock-frequency =3D <400000>;
+ 	status =3D "disabled";
+=20
+@@ -185,8 +188,11 @@ i2c=5Frtc: rtc@68 {
+ };
+=20
+ &i2c2 {
+-	pinctrl-names =3D "default";
++	pinctrl-names =3D "default", "gpio";
+ 	pinctrl-0 =3D <&pinctrl=5Fi2c2>;
++	pinctrl-1 =3D <&pinctrl=5Fi2c2=5Fgpio>;
++	scl-gpios =3D <&gpio4 12 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
++	sda-gpios =3D <&gpio4 13 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
+ 	clock-frequency =3D <100000>;
+ 	status =3D "disabled";
+ };
+@@ -300,6 +306,20 @@ MX6QDL=5FPAD=5FKEY=5FROW2=5F=5FHDMI=5FTX=5FCEC=5FLINE	=
+0x1f8b0
+ 		>;
+ 	};
+=20
++	pinctrl=5Fi2c1: i2c1grp {
++		fsl,pins =3D <
++			MX6QDL=5FPAD=5FEIM=5FD21=5F=5FI2C1=5FSCL		0x4001b8b1
++			MX6QDL=5FPAD=5FEIM=5FD28=5F=5FI2C1=5FSDA		0x4001b8b1
++		>;
++	};
++
++	pinctrl=5Fi2c1=5Fgpio: i2c1gpiogrp {
++		fsl,pins =3D <
++			MX6QDL=5FPAD=5FEIM=5FD21=5F=5FGPIO3=5FIO21		0x4001b8b1
++			MX6QDL=5FPAD=5FEIM=5FD28=5F=5FGPIO3=5FIO28		0x4001b8b1
++		>;
++	};
++
+ 	pinctrl=5Fi2c2: i2c2grp {
+ 		fsl,pins =3D <
+ 			MX6QDL=5FPAD=5FKEY=5FROW3=5F=5FI2C2=5FSDA		0x4001b8b1
+@@ -307,10 +327,10 @@ MX6QDL=5FPAD=5FKEY=5FCOL3=5F=5FI2C2=5FSCL		0x4001b8b1
+ 		>;
+ 	};
+=20
+-	pinctrl=5Fi2c1: i2c1grp {
++	pinctrl=5Fi2c2=5Fgpio: i2c2gpiogrp {
+ 		fsl,pins =3D <
+-			MX6QDL=5FPAD=5FEIM=5FD21=5F=5FI2C1=5FSCL		0x4001b8b1
+-			MX6QDL=5FPAD=5FEIM=5FD28=5F=5FI2C1=5FSDA		0x4001b8b1
++			MX6QDL=5FPAD=5FKEY=5FROW3=5F=5FGPIO4=5FIO13		0x4001b8b1
++			MX6QDL=5FPAD=5FKEY=5FCOL3=5F=5FGPIO4=5FIO12		0x4001b8b1
+ 		>;
+ 	};
+=20
+diff --git a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi b/arch/arm/b=
+oot/dts/imx6qdl-phytec-phycore-som.dtsi
+index a80aa08a37cb..94b254bfd054 100644
+--- a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
+@@ -78,8 +78,11 @@ &gpmi {
+ };
+=20
+ &i2c3 {
+-	pinctrl-names =3D "default";
++	pinctrl-names =3D "default", "gpio";
+ 	pinctrl-0 =3D <&pinctrl=5Fi2c3>;
++	pinctrl-1 =3D <&pinctrl=5Fi2c3=5Fgpio>;
++	scl-gpios =3D <&gpio1 5 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
++	sda-gpios =3D <&gpio1 6 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
+ 	clock-frequency =3D <400000>;
+ 	status =3D "okay";
+=20
+@@ -259,6 +262,13 @@ MX6QDL=5FPAD=5FGPIO=5F5=5F=5FI2C3=5FSCL		0x4001b8b1
+ 		>;
+ 	};
+=20
++	pinctrl=5Fi2c3=5Fgpio: i2c3gpiogrp {
++		fsl,pins =3D <
++			MX6QDL=5FPAD=5FGPIO=5F6=5F=5FGPIO1=5FIO06	0x4001b8b1
++			MX6QDL=5FPAD=5FGPIO=5F5=5F=5FGPIO1=5FIO05	0x4001b8b1
++		>;
++	};
++
+ 	pinctrl=5Fecspi1: ecspi1grp {
+ 		fsl,pins =3D <
+ 			MX6QDL=5FPAD=5FEIM=5FD16=5F=5FECSPI1=5FSCLK		0x100b1
+diff --git a/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi b/arch/arm/bo=
+ot/dts/imx6ul-phytec-phycore-som.dtsi
+index 19a062635ff6..3cddc68917a0 100644
+--- a/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi
++++ b/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi
+@@ -68,8 +68,11 @@ &gpmi {
+ };
+=20
+ &i2c1 {
+-	pinctrl-names =3D "default";
++	pinctrl-names =3D "default", "gpio";
+ 	pinctrl-0 =3D <&pinctrl=5Fi2c1>;
++	pinctrl-1 =3D <&pinctrl=5Fi2c1=5Fgpio>;
++	scl-gpios =3D <&gpio1 28 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
++	sda-gpios =3D <&gpio1 29 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
+ 	clock-frequency =3D <100000>;
+ 	status =3D "okay";
+=20
+@@ -147,6 +150,13 @@ MX6UL=5FPAD=5FUART4=5FRX=5FDATA=5F=5FI2C1=5FSDA	0x4001=
+b8b0
+ 		>;
+ 	};
+=20
++	pinctrl=5Fi2c1=5Fgpio: i2cgpiogrp {
++		fsl,pins =3D <
++			MX6UL=5FPAD=5FUART4=5FTX=5FDATA=5F=5FGPIO1=5FIO28	0x4001b8b0
++			MX6UL=5FPAD=5FUART4=5FRX=5FDATA=5F=5FGPIO1=5FIO29	0x4001b8b0
++		>;
++	};
++
+ 	pinctrl=5Fuart1: uart1grp {
+ 		fsl,pins =3D <
+ 			MX6UL=5FPAD=5FUART1=5FTX=5FDATA=5F=5FUART1=5FDCE=5FTX	0x1b0b1
+--=20
+2.33.0
+
