@@ -2,132 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79F44421936
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 23:24:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0BDF421992
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 00:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235472AbhJDV0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 17:26:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35486 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234470AbhJDV03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 17:26:29 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BF06C061745;
-        Mon,  4 Oct 2021 14:24:40 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id i4so78033362lfv.4;
-        Mon, 04 Oct 2021 14:24:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Y6CKjic+MhbQXzMyBA7YrYpbPkbHTokGzRhmbnDC1pY=;
-        b=qnUpsdJkrMJsH2AGyxKNQpbqdA0VYA2pVdw7TTLVcg2QMCSHirIQ+ibrjV9OZsFz48
-         vG1lT3qWktk5AR7G9w35q30XNXQ5x54HosTa+iI4Q727zVTQnGEKz46V/z+gna8L7k9v
-         FvaYBlbaA2vh84bGHd2xGwNWU5T7XsakcIlvtjrs5bLoOsblpKJ9Ns02GZQHIyuoSIvX
-         GoHFb3jmmCwIwVJJWmxLvJJ98P+aLa0YU1w3BM36t5vcny5S8Qefe+/cm0TysjgRo7Ag
-         K8UjBFCG+nrhkEO6cIt1d2JAs3bLz7XVK8GwFMU3HcGsBY+xZXbIN4mkGbmafAdDQFzc
-         XAvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Y6CKjic+MhbQXzMyBA7YrYpbPkbHTokGzRhmbnDC1pY=;
-        b=ctx/eu/9m77HAMdw43BqxoJJ0pNiFT2E4mmZetyK9Qd08vKBCxTriR9OcaH3KJWUAx
-         4+kUh/AGgNXCuZaJcp+jH1b6DlWKS6Taw2gRkdbVIupQAaN93e4JQscqq38vcAJSjbpS
-         +J6PPvCmQvr5HzKqEiqri1ZFHvpqWaDF6ZcwaNoc2+MgX+Zpwu/qSFz9WcRgwgzuK08J
-         bmxLbAZzlAHLzLPYksD3hmECI6nw51dxhyDGxpKPnqmHKJg5gzQRATAqP+6t1iUQyo5Y
-         ZTrf4T9NksJ2aDAFPZ8i2+FYXZtJrxjM4BhHI1W40tpa+s9aBRAFWtxVzC29ww+A9HSR
-         PfYg==
-X-Gm-Message-State: AOAM531zlmdgZGMVALhRBw53s0BGQrSNjWFVBjan9/Jop0w5rP0cavk1
-        4jj0NVAuEQtJZNCP5rHvLPQ=
-X-Google-Smtp-Source: ABdhPJzK69LA/qULZaH06vujyoxbpKODuoq/Rv0LBiW8dmbnx2FiTv4tCUpcbkXhYAzPq4Az2ZFrUQ==
-X-Received: by 2002:a2e:6e19:: with SMTP id j25mr18066041ljc.360.1633382678495;
-        Mon, 04 Oct 2021 14:24:38 -0700 (PDT)
-Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
-        by smtp.googlemail.com with ESMTPSA id d13sm1708555lfe.21.2021.10.04.14.24.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Oct 2021 14:24:38 -0700 (PDT)
-Subject: Re: [PATCH v7 4/7] usb: phy: tegra: Support OTG mode programming
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, Peter Chen <peter.chen@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-References: <20210912181718.1328-1-digetx@gmail.com>
- <20210912181718.1328-5-digetx@gmail.com>
- <29ae631d-cc8d-663e-3ce2-db00f3470365@gmail.com>
- <YVtslrGXStvdO2IS@orome.fritz.box>
- <94949858-6089-06df-1226-f7974a3ae6bf@gmail.com>
- <YVtwqLlG8+S9cooU@orome.fritz.box>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <99040137-64dd-2895-a90e-7b4478e97bec@gmail.com>
-Date:   Tue, 5 Oct 2021 00:24:37 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S233972AbhJDWIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 18:08:01 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:49998 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233722AbhJDWIB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 18:08:01 -0400
+X-Greylist: delayed 11201 seconds by postgrey-1.27 at vger.kernel.org; Mon, 04 Oct 2021 18:08:01 EDT
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 194IxKOD016034;
+        Mon, 4 Oct 2021 13:59:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1633373960;
+        bh=NyH+MlctXadiJnC7SYn/Gt47lxm/Xz6ld3yGSQ1HTGg=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=jTJbyv0ubhZXyDEQDp/ZodowX7TfPHvMWg2wKpAlvmadQ3knVoodjd3fxpjQTKgfe
+         hEYQu1NgK7QZbwRqbROvOn4qChzZ1ka3ADgA9ALyFeOSBrP1GEVMGg4d31j781HM53
+         sUbCPrM2IFuqNmKPLexrSP+ShIQm6L4mOitv4lbM=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 194IxKwq002483
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 4 Oct 2021 13:59:20 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 4
+ Oct 2021 13:59:20 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 4 Oct 2021 13:59:20 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 194IxKO3049783;
+        Mon, 4 Oct 2021 13:59:20 -0500
+Date:   Mon, 4 Oct 2021 13:59:20 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>,
+        Hari Nagalla <hnagalla@ti.com>,
+        Sinthu Raja <sinthu.raja@mistralsolutions.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>
+Subject: Re: [PATCH V2 2/4] dt-bindings: arm: ti: am642/am654: Allow for SoC
+ only compatibles
+Message-ID: <20211004185920.26iyyq3xz7vjam5i@gentile>
+References: <20210925201430.11678-1-nm@ti.com>
+ <20210925201430.11678-3-nm@ti.com>
+ <YVs/v7g8wwLq/ujb@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <YVtwqLlG8+S9cooU@orome.fritz.box>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <YVs/v7g8wwLq/ujb@robh.at.kernel.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-05.10.2021 00:22, Thierry Reding пишет:
-> On Tue, Oct 05, 2021 at 12:13:48AM +0300, Dmitry Osipenko wrote:
->> 05.10.2021 00:05, Thierry Reding пишет:
->>> On Mon, Sep 27, 2021 at 07:36:52PM +0300, Dmitry Osipenko wrote:
->>>> 12.09.2021 21:17, Dmitry Osipenko пишет:
->>>>> Support programming USB PHY into OTG mode.
->>>>>
->>>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->>>>> ---
->>>>>  drivers/usb/phy/phy-tegra-usb.c   | 198 +++++++++++++++++++++++++++++-
->>>>>  include/linux/usb/tegra_usb_phy.h |   5 +
->>>>>  2 files changed, 198 insertions(+), 5 deletions(-)
->>>>
->>>> Greg / Felipe, could you please ack this patch to allow Thierry to take
->>>> this series via the Tegra tree? It depends on the soc/tegra patch of
->>>> this patchset.
->>>
->>> Looking at the series, I don't think this necessarily needs to go
->>> through the Tegra tree. Given that you have backwards-compatibility with
->>> older device trees, applying this separately to the USB tree should work
->>> fine. Once the soc/tegra and DT bits and the USB bits get combined they
->>> should enable the new functionality, but nothing should break if things
->>> are applied separately.
->>>
->>> If so, I can just pick up the rest and let Felipe or Greg pick this one
->>> up.
->>>
->>> Dmitry, can you confirm that this patch should be applicable separately?
->>> If so:
->>>
->>> Acked-by: Thierry Reding <treding@nvidia.com>
->>>
->>
->> This PHY patch has this hunk:
->>
->> +	phy->pmc_regmap = dev_get_regmap(&pmc_pdev->dev, "usb_sleepwalk");
->> +	if (!phy->pmc_regmap)
->> +		return -EINVAL;
->>
->> If this patch and the DT patches will be applied before the soc/tegra
->> patch, then USB PHY driver will fail to probe.
+On 12:54-20211004, Rob Herring wrote:
+> On Sat, Sep 25, 2021 at 03:14:28PM -0500, Nishanth Menon wrote:
+> > Maintain consistency in K3 SoCs by allowing AM654 and AM642 platforms
+> > just state SoC compatibles without specific board specific compatibles
+> > aligned with what we have done for J721E/J7200 platforms as well.
 > 
-> I had missed that. I was assuming that this other hunk took care of the
-> backwards-compatibility:
-> 
-> +       /* older device-trees don't have PMC regmap */
-> +       if (!phy->pmc_regmap)
-> +               return 0;
-> 
-> but that's rather pointless given your check above, right? Why not just
-> return 0 instead and let the remaining code skip sleepwalk configuration
-> if the regmap doesn't exist?
+> This is the wrong direction IMO. Why do you want this other than 
+> alignment?
 
-Because regmap must exists if node exists.
+Many downstream boards tend not to have an specific compatible at least
+during initial phase and I would like folks to start using checks to
+make sure that the easy to catch issues via match against bindings are
+already handled.
+
+I am curious as to why you think this is wrong - because we permit an
+alternative option that allows the board files to be less specific?
+
+[...]
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
