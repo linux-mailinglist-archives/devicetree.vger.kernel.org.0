@@ -2,90 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1FB4211FC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 16:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1A9A421206
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 16:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235211AbhJDOwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 10:52:03 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:47742 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234608AbhJDOwC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 10:52:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=wOZTTETwQj+aeizjny2ZCg9H4PeRjV/em09E5T3i7eE=; b=Uk2eAfNzdCk2uC7qWfID3JcISm
-        toY6VyR9oZSXNSBVujC/1L1b2mn2Dpzpe+df7kwFE4glcMeHhtIkyQy4KxpvgqfY/KshbsVE/uBUM
-        NT4FapRTC2Q48JIfiRpsyubM5Gg6+mX30L+T6YEc5aJTGqfNWSLnatmcoSQ/LW61vvOU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mXPI9-009YcN-2b; Mon, 04 Oct 2021 16:50:09 +0200
-Date:   Mon, 4 Oct 2021 16:50:09 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: lets settle the LED `function` property regarding the netdev
- trigger
-Message-ID: <YVsUodiPoiIESrEE@lunn.ch>
-References: <20211001143601.5f57eb1a@thinkpad>
- <YVn815h7JBtVSfwZ@lunn.ch>
- <20211003212654.30fa43f5@thinkpad>
+        id S235284AbhJDOyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 10:54:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55232 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234608AbhJDOyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 10:54:38 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5727C061749;
+        Mon,  4 Oct 2021 07:52:48 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id e15so72801906lfr.10;
+        Mon, 04 Oct 2021 07:52:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=e9mEC7vyz6aYS5ipxJsTFX2kQTkmdkM9KeZtG855BT0=;
+        b=j0Ur3IU22Dtc5kFnP/nXkoktbxHcZFHOAKKskIoJgXkwGHYXbbkyALnAz04dfcCoVV
+         0Mi+yf7x6bLdauQEAwTnqbWC6yASn3DvUmQzjLsswUxGTTKJ6s/CRmffsVicfj4H/JdQ
+         c/LIIg0L7rv8lHs1sW2K5rZwgSx57ZXcHyto17YWq5qqGR+KdrUM8a/vBIQevrz7MKqt
+         4+fAAMP0uH9K8IRIrKtcrYu5d1hJt2gQAndx84DW2UalqWNKhO6AnDeKmZJUWZRpcZPy
+         CmjMAchXyeOg4QY//26g7aMb6W3U/7YeGFmXOquN7S/42F7Yuv5Wu7Qw7InfGjWugPr7
+         q3/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=e9mEC7vyz6aYS5ipxJsTFX2kQTkmdkM9KeZtG855BT0=;
+        b=i4FOD3fZwEezdBUfN0ibfgTJ8bBbIkAGRvpk6bnVxVD/jD6xaHkpPLWblD5dUTA+FN
+         xwnrb6cpktDfgsOJD7Z5NERbkC9ww5+MyuGnsg2HQ8KIjLd2G1yRTE2kR4R2aYhBARFP
+         7YJ9e/gjVT07bv7KzONujK/NvIL1OyachS6GD/Y2L5sEUYGzwcZvcwc2GR6dsTQptgRf
+         C//fUStXeY3Ufp/Fr4R7r1feYRNHMpIIlFJAxlPEMs4EegXfmRQHMUTiEVeti98JFixw
+         eMGZiKBw+sR90a7JmXSCm1P/+VIVC7PO7L00zZkOmgBPMJsDygKER/rrAVzJwqHVoKdZ
+         vN3A==
+X-Gm-Message-State: AOAM5326A24VhUpnlyO4l8r+dzkw2KfbwBEIgBbWc9ROTtdICTxxKtu2
+        E3uku8UKjseBYCt/yHAVPrE=
+X-Google-Smtp-Source: ABdhPJwZpF/pb309DarSmG6340t8JrbcT7IOPdU/tSH1oTe/CJm/C7yaYY6kTpK2zLUPD04MKNAKqg==
+X-Received: by 2002:a2e:5450:: with SMTP id y16mr16673360ljd.21.1633359167035;
+        Mon, 04 Oct 2021 07:52:47 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.googlemail.com with ESMTPSA id o19sm1632148lfg.68.2021.10.04.07.52.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Oct 2021 07:52:46 -0700 (PDT)
+Subject: Re: [PATCH v13 00/35] NVIDIA Tegra power management patches for 5.16
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
+        linux-mmc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+References: <20210926224058.1252-1-digetx@gmail.com>
+ <20211004091129.fhlfhsddzk5fakuj@vireshk-i7>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <80e0e5a9-7987-a334-7a2b-a7b09b591414@gmail.com>
+Date:   Mon, 4 Oct 2021 17:52:45 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211003212654.30fa43f5@thinkpad>
+In-Reply-To: <20211004091129.fhlfhsddzk5fakuj@vireshk-i7>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Hello Andrew,
+04.10.2021 12:11, Viresh Kumar пишет:
+> On 27-09-21, 01:40, Dmitry Osipenko wrote:
+>> This series adds runtime PM support to Tegra drivers and enables core
+>> voltage scaling for Tegra20/30 SoCs, resolving overheating troubles.
+>>
+>> All patches in this series are interdependent and should go via Tegra tree.
 > 
-> I am aware of this, and in fact am working on a proposal for an
-> extension of netdev LED extension, to support the different link
-> modes. (And also to support for multi-color LEDs.)
+> So you don't need any OPP changes anymore ? I just came back from
+> vacation, don't know what you guys discussed in between :)
 > 
-> But I am not entirely sure whether these different link modes should be
-> also definable via device-tree. Are there devices with ethernet LEDs
-> dedicated for a specific speed? (i.e. the manufacturer says in the
-> documentation of the device, or perhaps on the device's case, that this
-> LED shows 100M/1000M link, and that other LED is shows 10M link?)
-> If so, that this should be specified in the devicetree, IMO. But are
-> such devices common?
 
-I have a dumb 5 port switch next to me. One port is running at 1G. Its
-left green LED is on and blinks with traffic. Another port of the
-switch is running at 100Mbps and its right orange LED is on, blinks
-for traffic. And there is text on the case saying 10/100 orange, 1G
-green.
-
-I think this is pretty common. You generally do want to know if 10/100
-is being used, it can indicate problems. Same for a 10G port running
-at 1G, etc.
-
-> And what about multi-color LEDs? There are ethernet ports where one LED
-> is red-green, and so can generate red, green, and yellow color. Should
-> device tree also define which color indicates which mode?
-
-There are two different ways this can be implemented. There can be two
-independent LEDs within the same package. So you can generate three
-colours. Or there can be two cross connected LEDs within the
-package. Apply +ve you get one colour, apply -ve you get a different
-colour. Since you cannot apply both -ve and +ve at the same time, you
-cannot get both colours at once.
-
-If you have two independent LEDs, I would define two LEDs in DT.
-
-Things get tricky for the two dependency LEDs. Does the LED core have
-support for such LEDs?
-
-This is where we need to strike a balance between too simple and too
-complex. Implement most of the common features, but don't support
-exotic stuff, like two dependency LEDs?
-
-       Andrew
+We discussed it and decided that we don't need more OPP/domain core
+changes. It's already good enough for the starter and making it all
+absolutely ideal doesn't worth the effort for now.
