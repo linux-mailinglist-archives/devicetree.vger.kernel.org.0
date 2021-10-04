@@ -2,67 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1970A421599
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8299D42158F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:52:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234063AbhJDRzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 13:55:13 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:45712 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238589AbhJDRxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 13:53:14 -0400
-Received: by mail-oi1-f177.google.com with SMTP id v10so22640853oic.12;
-        Mon, 04 Oct 2021 10:51:25 -0700 (PDT)
+        id S233821AbhJDRyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 13:54:09 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:41898 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233597AbhJDRyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 13:54:08 -0400
+Received: by mail-ot1-f54.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso22656284ota.8;
+        Mon, 04 Oct 2021 10:52:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=3vWwFoLU/AV3mlTHht+MMyQ5jmWKT/p5IFY/3H+BlVc=;
-        b=QpjhOAxMiLrjpk1cpJf8PYsp2euwmGcdg6lAorI26lygV/mUy5j5k4911NvQK8XqaP
-         HW6FlBuiCrvz3kEvcX+p5P9kcFkdYm67B8hTxClShR6FocJ8G+4J9Q56QpHVaqv8OEq5
-         CVQn1gCwavK7tiYbCAmDfwMxpWXG++mVrxCKbCju4I5ur4573OXFaE7+0zgPleouwnXj
-         XzwhxRASrehywgLv7TMOlwROtDYE3hizhxDw3iH+e4L9HJ4QyhXXweqyH3TNy2mkAV33
-         sgO6sbdZG8yCwAX2xLhE/KmOGzlXzusnZoRQzn+HzStHdM6hYmJdKAnfMMtbSJwJ9+NQ
-         vBLA==
-X-Gm-Message-State: AOAM532rv7CNOYKuWGmHPkPknWFHldxWnuJusqcChJKzGweNDz4/PwlN
-        F/LD9JF+k2pxjQG4xDk28Q==
-X-Google-Smtp-Source: ABdhPJya8ioCqBxAIdwFPEEysr8oQqLtz2mjK5uD+nxi59pFeB2kP5iwanEEqI6Hgjd2nBGMq4h/5g==
-X-Received: by 2002:aca:ebd5:: with SMTP id j204mr14247424oih.14.1633369884850;
-        Mon, 04 Oct 2021 10:51:24 -0700 (PDT)
+        bh=pCk+WteoJ4Ql9iJLHdcU9i/mA+NmSdPVlxjxSYcSevE=;
+        b=vh7l0a7AosyMgtdnymeRUTZUV+mqL1pEZCjk7WYGErlDQm3ftcDdSBEM7np3CZQIob
+         Y3+tkurKX9Ma65c9lkM3CcYMIY8JC5v6cvKdEbfoNtA+uUp9j2e7QqF753cbZ150MvSR
+         SOr/HjFLfpoa/34/rFAWY8drnp6AIhrHZ9osWCGjfa265igaSQ9YjX5oDShtXUE7KNhw
+         SkzdjbxjOxM2syCDXpgqwr+TVh+789QBz/dy8AiXoxdVCWPOkR1ovNskzMipeoStOC3R
+         CpS6fdkiSXm/3tZXM2qwzOsLfX1Iat+/aM9dkFdjKLTv1UI5o7WbzulL78FAmCZW3bmw
+         jBlQ==
+X-Gm-Message-State: AOAM531WMqsCrkzzV60TrLYQCdf0LtUSJMBt36oZR+35LCHkMi8iAX6B
+        m0tj2Av6jN469gsnKeCmDQ==
+X-Google-Smtp-Source: ABdhPJx2MYqLCUXb7aPlehMQIvJmqPvcsMtr4caQZX8loQ7DUpvZ2wg0rkhYL8tgOH7tQzBTsze81w==
+X-Received: by 2002:a9d:6399:: with SMTP id w25mr10643277otk.53.1633369939222;
+        Mon, 04 Oct 2021 10:52:19 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bd24sm3029117oib.52.2021.10.04.10.51.23
+        by smtp.gmail.com with ESMTPSA id d7sm2997419otl.19.2021.10.04.10.52.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 10:51:24 -0700 (PDT)
-Received: (nullmailer pid 1553251 invoked by uid 1000);
-        Mon, 04 Oct 2021 17:51:23 -0000
-Date:   Mon, 4 Oct 2021 12:51:23 -0500
+        Mon, 04 Oct 2021 10:52:18 -0700 (PDT)
+Received: (nullmailer pid 1554740 invoked by uid 1000);
+        Mon, 04 Oct 2021 17:52:17 -0000
+Date:   Mon, 4 Oct 2021 12:52:17 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Raffaele Tranquillini <raffaele.tranquillini@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        daniel@ffwll.ch, airlied@linux.ie, sam@ravnborg.org,
-        y.oudjana@protonmail.com, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        ~postmarketos/upstreaming@lists.sr.ht, thierry.reding@gmail.com
-Subject: Re: [PATCH 2/2] dt-bindings: panel-simple-dsi: add JDI R63452 panel
- bindings
-Message-ID: <YVs/G9T6Jw7Y1AWn@robh.at.kernel.org>
-References: <20210925103135.518443-1-raffaele.tranquillini@gmail.com>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
+        Suman Anna <s-anna@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sinthu Raja <sinthu.raja@ti.com>, linux-kernel@vger.kernel.org,
+        Hari Nagalla <hnagalla@ti.com>, Tero Kristo <kristo@kernel.org>
+Subject: Re: [PATCH V2 1/4] dt-bindings: arm: ti: Add missing compatibles for
+ j721e/j7200 evms
+Message-ID: <YVs/UTZjzwjypf1e@robh.at.kernel.org>
+References: <20210925201430.11678-1-nm@ti.com>
+ <20210925201430.11678-2-nm@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210925103135.518443-1-raffaele.tranquillini@gmail.com>
+In-Reply-To: <20210925201430.11678-2-nm@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Sep 2021 12:31:33 +0200, Raffaele Tranquillini wrote:
-> This add the bindings for the JDI FHD_R63452 1080x1920 5.2" LCD DSI
->  panel used on the Xiaomi Mi 5 smartphone.
+On Sat, 25 Sep 2021 15:14:27 -0500, Nishanth Menon wrote:
+> Add compatibles for j721e and j7200 evms to allow for newer platforms
+> to distinguish themselves.
 > 
-> Signed-off-by: Raffaele Tranquillini <raffaele.tranquillini@gmail.com>
+> While doing this, maintain support for older style of description where
+> the board compatibility was not required.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 > ---
->  .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
->  1 file changed, 2 insertions(+)
+> 
+> Changes in V2:
+> * Modified such that legacy style of compatibles (of just SoC alone) is
+>   still valid
+> * Made the capability of providing a board specific compatible as an
+>   alternate scheme
+> * No longer dependent on rproc cleanup and platforms hosted in
+>   downstream trees remain compatible
+> 
+> V1: https://lore.kernel.org/all/20210915121937.27702-2-nm@ti.com/
+> 
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
