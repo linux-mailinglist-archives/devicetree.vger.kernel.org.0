@@ -2,165 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5A3420A16
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 13:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6569F420A0B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 13:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232983AbhJDL2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 07:28:18 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:14089 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232978AbhJDL2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 07:28:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1633346789; x=1664882789;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=tq4RQxNypt1LwjRP+N0A57ajPMyVAagSGhw5OGb+6r8=;
-  b=daMgPu13f4P2nsLSix9jPxkSuIxFUWcwKTUpt9lQ7Kwq48Ox5L1Y26PQ
-   JFNn8xxsr5YndB20KBva7yo+1uWzYblyW8wonxRfxuMUaQi/mRUBCihyO
-   8I0GH9ACawB17XnLiIIP1QuatxTZaLOCHUNqWv2ooNbNC0kd6lmOW9+R3
-   v2ZoWBW/5wWOMOlr29pNRaHKE6Z4lnW475gD60GvRzSQkVy/Coy1AFB9E
-   jT/H8XzyUdk+S0vABuqMH5p8nmvJGDP0iLpWGtLUCVLvNs8Zydct02Qf2
-   NJj3jnQhlbNTC+RtDVQhTttzLevZ0DgUXK7Kny9CpxQDtMLymXLdRrpMA
-   g==;
-IronPort-SDR: KE14AikJEBiUlQ8fnUTWEPXszixF264xJUMGfr+KFxVKwNTaVH1tllTZSA1PU9bRlnVuyyHhkT
- KFozPB6pgfWZHGRfGBy60qSPb6KLQJJbOEF80zBWk/19tK29veGFuwrbprSSU0jcbmSdeQhLB1
- 0nOnUGOqPnSSwJtg/GwsiT06spTSXHeAUi+CxkUc1dIpu+j+OywLzOTpYvMpfgFhZArhGwEgEs
- qJuOfPBh/44qR5cSK48KOgXMuE3InnoCI57DeHRKl/ij+D1IqKggGjAdD7rR72Yftl8cwPIt5D
- XIUOfFUPgfwpJW/t8ERwBXcM
-X-IronPort-AV: E=Sophos;i="5.85,345,1624345200"; 
-   d="scan'208";a="138356717"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Oct 2021 04:26:28 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 4 Oct 2021 04:26:27 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14 via Frontend
- Transport; Mon, 4 Oct 2021 04:26:27 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PzY9tIMeUCqfWiDq3sTWlLBn4s9HUnaiesn5iVqe5oCwnTijprRA+XMS/lALTQ+hzwiyR61ZtKkn3quVqUgayS8AZVl3I08f7QbECVnbWXa1pvEu+4xglJ5FX7hzj62xNxbIM3KmU6mFUPmzHIisbAHm43loH5g+7GTHDFeELytJ003YFIJr4YwyuTTlmpVuiqFj3ARX26l8H6riibErIoMGTxY5jPPXtnQZUIR7Fz3rvSO/xJCi+TYTbS/MYcukjDPEFmim6sbfNU47+J2oeUY7eRR5OHBLlnJUzVlSPF3MOsT1Z4BvE1+wKZ/YrkF3SnhzEVgwqEcAcg6TxKB90g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tq4RQxNypt1LwjRP+N0A57ajPMyVAagSGhw5OGb+6r8=;
- b=Y7Vlgh3sOd3ZEhWEQWW/3jW7ValPA7YoY+VySVPabNqp1Nk4kzNrC7brS3bIspVeNn9Q7a+bxyBBJOK91sPMYrzxN/yoAuG50/d/1acVD1Rys+Ch1Ie6hw6OX2F70vkHftqcBfFZ/v6ae9f2efsvbRGgxZQSj/fuSDw3H8V7ItPZDdMVg7JufH7airO1dYXi+R8nGJpxZxqizBraoM7oDJGr/EpkOIdurJc52NNNjDn+9k5KZRcLwS/a+3Ab0lw+JhXiPYl9gGT9JxMR+q0FNxNiloRuyusCEnaBzDR6Vcg/bwEzS+feYF7Mca9tR0JdeIrf8W1l1XRKaM3xvRpEEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tq4RQxNypt1LwjRP+N0A57ajPMyVAagSGhw5OGb+6r8=;
- b=eVkq3fm19FPdZ0JjGYTHTiUusMwX4FvSr2DXW5vEBr6tkufLGCVnPsfX4RBaqw1VOBDf0fahGB04hpGpktdZ9PLsi8FXy4Xl5ioA9SkBkf1ipwmO6uxCn3PS4CUHnR77URvFJapAnuAtc38Zk23R3Zzvm1Fp499QoS4tqmW7M78=
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
- by SN6PR11MB3342.namprd11.prod.outlook.com (2603:10b6:805:b9::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.17; Mon, 4 Oct
- 2021 11:26:26 +0000
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::a496:d4af:df74:5213]) by SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::a496:d4af:df74:5213%9]) with mapi id 15.20.4566.022; Mon, 4 Oct 2021
- 11:26:26 +0000
-From:   <Tudor.Ambarus@microchip.com>
-To:     <Alexander.Stein@tq-systems.com>, <miquel.raynal@bootlin.com>,
-        <richard@nod.at>, <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <p.yadav@ti.com>, <michael@walle.cc>
-CC:     <alexander.stein@ew.tq-group.com>, <linux-mtd@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] mtd: spi-nor: micron-st: Add support for
- output-driver-strength
-Thread-Topic: [PATCH 2/2] mtd: spi-nor: micron-st: Add support for
- output-driver-strength
-Thread-Index: AQHXuRKr7GFrLm4rUk2FxXfPSxknrw==
-Date:   Mon, 4 Oct 2021 11:26:26 +0000
-Message-ID: <c3490462-9f07-9f69-ecc1-e51b61622ff9@microchip.com>
-References: <20211004111529.211089-1-Alexander.Stein@tq-systems.com>
- <20211004111529.211089-2-Alexander.Stein@tq-systems.com>
-In-Reply-To: <20211004111529.211089-2-Alexander.Stein@tq-systems.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-authentication-results: tq-systems.com; dkim=none (message not signed)
- header.d=none;tq-systems.com; dmarc=none action=none
- header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 783c01ab-1a31-4421-a583-08d98729cdce
-x-ms-traffictypediagnostic: SN6PR11MB3342:
-x-microsoft-antispam-prvs: <SN6PR11MB3342B37103D27ED318CE7045F0AE9@SN6PR11MB3342.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2331;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ABUNQfSvEa/ofFwsDZuz4W+V+z3lJRklBi5204QrRcHuQHpmFytflL7wvpfdt0cf4z9MM7xC/uBKgHHNJKJ+e59aYTAEhQR0Fickcdx/SY3DcdAjx/Hi7T3RwVb5+z12U1xEtm7taU9sGaxao/UZON10N30385PSVqP0DtSbDaic1c5hbhwdwpQE4tUl2LMoczZ7ZU9jXpSlRaylTsds4po2a/q+e5cNaJwDKmm9ORBnyuhKVtAtRAG4to/ZI1QSshFWyFt5/yxW3Cvwpoew+ndiXxyi36QoB1K+KkfoHimtkKVt9O81MsCAeYJqkl8Uhsk7336HjUM70mhVQFMKYdxXrQnRKpUgCW2hmaqao5q0c3HJcZNqYHjzcaVOce+AHMVoMSKfakB3/94mn+1BYKS8l0Uf0bLS8p1H7arMjMHMjLEgquenaKdlj1RDrNRVmWGIAUexf9+yeeOZ4P3HWdlbiGw+gGM204km9xw7abBd4Qgq7Xk2P6EqfJ32HHOsnvngdroODUKm8iIPVDHGkSWYVsd5eyaO/fkU21dXuS1If42+m5kwG16WJ6vSAKyMxvJxaJhVWZ0s+ARudHLBWEbZoSu3g3HQUo8ZfVqZ76U2CENE3c8rGDfRLix5kGGTH/oav+TtHY3KhxHiwEerGHrstwuKoAYAT79TI660vbEmK2YHypGx/MkLwi/M4oJb9PMQoZaw6H19AhUeQvnA4xKCFXVuSWl9WmRXyo4PhQtl11fTCHrIUI1hVtElToEPWlihuoZnfH6EwG0Kp1xaRQOxeoq/biKzslH8KXzG/vs=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB4874.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(26005)(316002)(38070700005)(31686004)(36756003)(86362001)(2906002)(110136005)(31696002)(66946007)(7416002)(53546011)(6506007)(8936002)(38100700002)(19627235002)(54906003)(186003)(122000001)(508600001)(66446008)(64756008)(66556008)(66476007)(76116006)(91956017)(966005)(6486002)(4326008)(5660300002)(8676002)(6512007)(71200400001)(2616005)(4744005)(45980500001)(43740500002)(10090945008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QlF2TjBjcmR0bEZRSEp0UEhEbitaY2lWRlIvRitiNWgwVlMyY2ZWRlRWWG1x?=
- =?utf-8?B?c2NERW0wMWI5K2NlUVVFcVQ0cm8wajdFUzdtck1FQmdwQmN1dzROVWR0cWta?=
- =?utf-8?B?Y0VJYWx5Z0RZUENRdXUrb1BaSWtVczd2OE5pVWVJQ0NaRHBpZU02bUh2ZEZY?=
- =?utf-8?B?cDdJTXRvZVRsa05hS1FzTUpCMlk4QTh3MExuc2FTUGNBMTVoSnJaU0lzbzBv?=
- =?utf-8?B?K2xIU2JaVGltZ2dLNjhKb2dtbWh1VnA4OERIQk1reEdGUjkwQnJpc3k3eUF6?=
- =?utf-8?B?TXZjRWVvbmg0VUg5QzMyTGdlMDY5dysvb0tTQ2pkMnJOZmx6VTNKTm42UFVr?=
- =?utf-8?B?STV0SWFUVDl2MkJMMVIrL3NzL1JJWitxUi9MM0FLUEVLSGdNT2NvRzA2M0ZB?=
- =?utf-8?B?YlRpQUwwRCtOZGxKanQ2VFl1VVJ2Y2xzMUFHSkpkejRmeG1wRzd6bkllTEdW?=
- =?utf-8?B?SnNlY0JodVl2RjJ1bjBjcUlwNEJpS3cxMFVJUGYrdmE5NU4rcHYyVU5ZbjZG?=
- =?utf-8?B?SVpiYnBJdGxuNDFwUVRDQ3dFUEJGbmVISjFzSmswWUNEUU9sWG1EbXRieHBJ?=
- =?utf-8?B?ZTF0Nm96cURhUlUwV0UveUZUbXZIUFdpYWl2RGlvS2NSZU9uRXFNcVVncXp5?=
- =?utf-8?B?Y3pUeHdwV29GY1Vuc2srdEpPR1F6N01EYnF6dWlrTlFYc0FNWG1pdzV2OVZr?=
- =?utf-8?B?S1VVMlQ2djMvQXc2RWFKZnRjRW9Nc2M4NUkzdWlaT216YWowdmJ0eHJXSjJN?=
- =?utf-8?B?c01iempxSlgxM1JINCs2akhBWTZMa2tXUHZxakNpY0doRWNSSGhpR0ZaOFZh?=
- =?utf-8?B?Vk9vNXd4THdTcVJQUDcrajNONU5iMnB1ZUMzay9kS3NSUWNWaGNUL3EwcWxQ?=
- =?utf-8?B?NG5ZeUhsTHByMFZ2RnpmUDdQZWlVbHBXcVUvRWk5QXNvako5WFp3bHdGWXBz?=
- =?utf-8?B?eTlXM2FncHpBUTN6bzY3RVhVNWZOOFlnSDc0QUdlWXBnbVFvbC8vNnhKTUNF?=
- =?utf-8?B?aGF6T2o4TjdYcG5SNjJ1K1pyb2xRcmtpYkZUc1VxV0JHVUpwVlRnVTRneFUr?=
- =?utf-8?B?c2lVS3d2VzF2OUNkUGdkZG1QSUNpcFo3dFRHTnhnOXpCWHQ0OWJMOHVsVHJ0?=
- =?utf-8?B?RHIwVVFmeHgrTXYvTlZjbXlWa2diNGs3UlQwUFpBMmdKMm1ZbUdJZHNrUWhl?=
- =?utf-8?B?b1Vua3J1L1pBazRzZjNEWkwrN0xzZUM0QW92aHFKbjJJa0RBaS9NN2NQY2U5?=
- =?utf-8?B?bnFWUnhPZ0dYaUtLUXh2WDBCdjdCNGl2WG1QNE5oMFdzY1RvTWRaZXl6Slkx?=
- =?utf-8?B?dkR1bmxVMWxuN3BvN1gwS3ZTdjBCK0gwQXpzU0dhZTJxbHF1aHA0MWRPcVpZ?=
- =?utf-8?B?YlUycXNqcUszTVNsTHBEdmNQakJyMDE4V3pQSVVYcGpTaUUzTkg0dnh2bGxl?=
- =?utf-8?B?b21PNm9rdXJCV0p0NlZNN0dVQVVId2s2cllqcnV3aVBIaHdsTnhoZmpETEZw?=
- =?utf-8?B?Q29MTmU3UUVKL2k4cHJ3RnNSZUFiTTBNQlplUjViT0VFR3hXTldNNjNEUVZQ?=
- =?utf-8?B?UmhneFJKZGVzNEVEaEFSa1NEWmpOSWZOTXdKZ01qRUF5Lys2NXorK0U3eTQ3?=
- =?utf-8?B?eEpMb1BkOWFJczMrOCsrVVV1Rmhsb3RQaVR2UzZpakRKOVQ0TGN1K3RzQytl?=
- =?utf-8?B?cHNLQldKNmt4ZFUzS3BxYWI3VmZTNkNPbG05RWVqMlF6bEY3RnN2L2V5MlBl?=
- =?utf-8?Q?xFK3QJ+O1/tiZ2HU30=3D?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <CB42DF34B7A874469B20B5DDF71ACEF9@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S232200AbhJDL1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 07:27:41 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:40314 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229945AbhJDL1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 07:27:41 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 194BPn7K014166;
+        Mon, 4 Oct 2021 06:25:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1633346749;
+        bh=fqtoTyRd5s6NUDfOtPVHgPo5Lq3iTfJWd6q3mmC+wYg=;
+        h=From:To:CC:Subject:Date;
+        b=OPt0eU/QmUzxEGekZmEXQffk3xqqpfL3BXx0FsKfHZCU6kRusJ9gbe3nU+cSIFHVm
+         /7uq5cZpK1s/KSYTeTnoe6fkF6lGnlKMXWBGkTFpFkbV+mMpsSPrjxsClDBM8rpeQ3
+         bUlNM3GMb8MyHJVxqNCs9gz4C57icTRJix289Muo=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 194BPnCn069457
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 4 Oct 2021 06:25:49 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 4
+ Oct 2021 06:25:49 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 4 Oct 2021 06:25:48 -0500
+Received: from localhost.localdomain (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 194BPjrU127551;
+        Mon, 4 Oct 2021 06:25:46 -0500
+From:   Aparna M <a-m1@ti.com>
+To:     <a-govindraju@ti.com>
+CC:     <vigneshr@ti.com>, <grygorii.strashko@ti.com>,
+        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <bgolaszewski@baylibre.com>, Aparna M <a-m1@ti.com>
+Subject: [PATCH] dt-bindings: gpio: Convert TI TPIC2810 GPIO Controller bindings to YAML
+Date:   Mon, 4 Oct 2021 16:57:43 +0530
+Message-ID: <20211004112743.19828-1-a-m1@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4874.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 783c01ab-1a31-4421-a583-08d98729cdce
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Oct 2021 11:26:26.4443
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: syg0CN6RuoyTqKEhH2x27f2w7oLh0W7lKvsbUhJROgNPYN5EU7rjaIoHu8n+T3y9psb0OL2ebDP6bG3iYgD+tR6CfYXi6IXrx9e5JdxgfAo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3342
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMTAvNC8yMSAyOjE1IFBNLCBBbGV4YW5kZXIgU3RlaW4gd3JvdGU6DQo+IFtZb3UgZG9uJ3Qg
-b2Z0ZW4gZ2V0IGVtYWlsIGZyb20gYWxleGFuZGVyLnN0ZWluQHRxLXN5c3RlbXMuY29tLiBMZWFy
-biB3aHkgdGhpcyBpcyBpbXBvcnRhbnQgYXQgaHR0cDovL2FrYS5tcy9MZWFybkFib3V0U2VuZGVy
-SWRlbnRpZmljYXRpb24uXQ0KPiANCj4gRVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5r
-cyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZl
-DQo+IA0KPiBGcm9tOiBBbGV4YW5kZXIgU3RlaW4gPGFsZXhhbmRlci5zdGVpbkBldy50cS1ncm91
-cC5jb20+DQo+IA0KPiBNaWNyb24gZmxhc2hlcyBzdXBwb3J0IHRoaXMgYnkgdGhlIEJpdHMgWzI6
-MF0gaW4gdGhlIEVuaGFuY2VkIFZvbGF0aWxlDQo+IENvbmZpZ3VyYXRpb24gUmVnaXN0ZXIuDQo+
-IENoZWNrZWQgZGF0YXNoZWV0czoNCj4gLSBuMjVxXzEyOG1iXzN2XzY1bm0ucGRmDQo+IC0gbXQy
-NXQtcWxqcy1MNTEyLXhCQS14eFQucGRmDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kZXIg
-U3RlaW4gPGFsZXhhbmRlci5zdGVpbkBldy50cS1ncm91cC5jb20+DQo+IC0tLQ0KDQpEb2VzIHRo
-ZSBtaWNyb24gZmxhc2ggZGVmaW5lIHRoZSBTQ0NSIFNGRFAgbWFwPw0K
+* Convert gpio-tpic2810 bindings to yaml format
+* Remove outdated gpio-tpic2810 bindings in .txt format
+
+Signed-off-by: Aparna M <a-m1@ti.com>
+---
+ .../bindings/gpio/gpio-tpic2810.txt           | 16 -------
+ .../bindings/gpio/gpio-tpic2810.yaml          | 48 +++++++++++++++++++
+ 2 files changed, 48 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
+
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
+deleted file mode 100644
+index 1afc2de7a537..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-TPIC2810 GPIO controller bindings
+-
+-Required properties:
+- - compatible		: Should be "ti,tpic2810".
+- - reg			: The I2C address of the device
+- - gpio-controller	: Marks the device node as a GPIO controller.
+- - #gpio-cells		: Should be two. For consumer use see gpio.txt.
+-
+-Example:
+-
+-	gpio@60 {
+-		compatible = "ti,tpic2810";
+-		reg = <0x60>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-	};
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
+new file mode 100644
+index 000000000000..6d4e22143551
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/gpio-tpic2810.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TPIC2810 GPIO controller bindings
++
++maintainers:
++   - Aswath Govindraju <a-govindraju@ti.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,tpic2810
++
++  reg:
++    maxItems: 1
++    description: The I2C address of the device
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 2
++
++required:
++    - compatible
++    - reg
++    - gpio-controller
++    - "#gpio-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        gpio@60 {
++            compatible = "ti,tpic2810";
++            reg = <0x60>;
++            gpio-controller;
++            #gpio-cells = <2>;
++        };
++    };
+-- 
+2.17.1
+
