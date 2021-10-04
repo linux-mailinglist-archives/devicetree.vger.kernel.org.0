@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E9D24215E1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 20:01:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6414A4215F5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 20:02:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236240AbhJDSD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 14:03:27 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:37702 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236334AbhJDSDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 14:03:21 -0400
-Received: by mail-ot1-f46.google.com with SMTP id r43-20020a05683044ab00b0054716b40005so22665659otv.4;
-        Mon, 04 Oct 2021 11:01:32 -0700 (PDT)
+        id S236675AbhJDSEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 14:04:20 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:39919 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236615AbhJDSES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 14:04:18 -0400
+Received: by mail-ot1-f48.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so22678393ota.6;
+        Mon, 04 Oct 2021 11:02:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Pv86mBYYQI6ZTZjtJe5Lu8vOr6IQOHLnJWKdcQKjRzc=;
-        b=mO7jbZenEvQ7dSY/pDJIDtKCJnduv67QEVHtGs8+z9XotuaMwKJuIqNDHGWGYjepHS
-         Yfi1rYDzq6e9eTtV/J5R5sp07TocWjMM/brxhhvK+x2wOXBHZl/zsOHEeCOmeNBWatsW
-         OBj0kRCoJWvSPBAX45WOiDvIWR7q+eD/sVFMZsS23A/gyx44+w1t1vO7FTGZtRlduEpB
-         mT7OR+RsdlTLK5CfYluxUvJeiVfWn52cwcV5ryrTsnMQgJIo1liVTFMhFMsseCWi5j3n
-         IzkjSppl5EhN972USn+8G44gB+yUkzd9ZG3i9RUSiY5Gp7gYEAtkBlm3gutHc+sOSrbw
-         hTJQ==
-X-Gm-Message-State: AOAM531WUHyAKvqiNOlwkYz7509j+QPv+OSSv+x+waEMM7jWGug6MO1B
-        Ak2NURZO7TBnoZwMKZVq7AJKQWCiUw==
-X-Google-Smtp-Source: ABdhPJzhXWNovn9uWaeLJ8IddFdPPa+myX6TR4D87Hapmy4PG1jAlRPPCh0xx7swB3WDfIkmyGc9Rg==
-X-Received: by 2002:a9d:7116:: with SMTP id n22mr10788066otj.56.1633370490645;
-        Mon, 04 Oct 2021 11:01:30 -0700 (PDT)
+        bh=M/SGga67jN2G7/llzVrub5qhFrk1aFwuQmWZS4qHJnU=;
+        b=wCIBh8G0T5gov4J1aDH1pbHmRmIeSwg1vF6yeMLbNeq44t73TE0MNnQ4C9AA0vAJDW
+         7YT7wYNkEwXXKYxYZSC8x2Fnn8jP8ev3LO+lMbVgxm6/Bwm8nHUfr6z4QDzKu5qtJqvP
+         yELQGRQ1cHDy5S16QJoi6N49rhDecH8lX3QtBGJ7ieXkeuzh7St/Im7uNW9Jw5CZrM+E
+         JyIcWk5VHOYRkwlffTZ8yvL/JZvW9lGxgyC9zV5NZCK17LgWxUAszrNafWQXzd/AIziN
+         pkqOGxiizQZ6xxgd+Q5A+OtnOmWKHyoLipUxqgMo0dVEkL2vRvy7WKgcCtPGke2GbdLI
+         m6xQ==
+X-Gm-Message-State: AOAM530wWMpDxNySbnCsxx2nx/ti7zocTv+aH9dghMb1Bovo85Hvyv3U
+        In7sq4mjJzD+NGyejbs4/A==
+X-Google-Smtp-Source: ABdhPJxRFQOGJe/1Gc8YPX/AbyB8SwC/3eUvlri6WIZ7hLGxw4bR0uSlc2koc4irHc7tVC7tGlyNSQ==
+X-Received: by 2002:a9d:1783:: with SMTP id j3mr11058382otj.366.1633370548465;
+        Mon, 04 Oct 2021 11:02:28 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i12sm2820400oik.50.2021.10.04.11.01.29
+        by smtp.gmail.com with ESMTPSA id l19sm3029186ota.17.2021.10.04.11.02.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 11:01:30 -0700 (PDT)
-Received: (nullmailer pid 1569210 invoked by uid 1000);
-        Mon, 04 Oct 2021 18:01:29 -0000
-Date:   Mon, 4 Oct 2021 13:01:29 -0500
+        Mon, 04 Oct 2021 11:02:27 -0700 (PDT)
+Received: (nullmailer pid 1570795 invoked by uid 1000);
+        Mon, 04 Oct 2021 18:02:26 -0000
+Date:   Mon, 4 Oct 2021 13:02:26 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Olof Johansson <olof@lixom.net>,
-        Paul Mackerras <paulus@samba.org>,
-        Stan Skowronek <stan@corellium.com>,
-        Arnd Bergmann <arnd@arndb.de>, linuxppc-dev@lists.ozlabs.org,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Hector Martin <marcan@marcan.st>,
-        Michael Ellerman <mpe@ellerman.id.au>
-Subject: Re: [PATCH 01/10] dt-bindings: i2c: Add Apple I2C controller bindings
-Message-ID: <YVtBeZKqErioOMkD@robh.at.kernel.org>
-References: <20210926095847.38261-1-sven@svenpeter.dev>
- <20210926095847.38261-2-sven@svenpeter.dev>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-staging@lists.linux.dev, john@phrozen.org,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        neil@brown.name, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: reset: add dt binding header for ralink
+ RT2880 resets
+Message-ID: <YVtBsrmCDk/sLsRJ@robh.at.kernel.org>
+References: <20210926145931.14603-1-sergio.paracuellos@gmail.com>
+ <20210926145931.14603-2-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210926095847.38261-2-sven@svenpeter.dev>
+In-Reply-To: <20210926145931.14603-2-sergio.paracuellos@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Sep 2021 11:58:38 +0200, Sven Peter wrote:
-> The Apple I2C controller is based on the PASemi I2C controller.
-> It is present on Apple SoCs such as the M1.
+On Sun, Sep 26, 2021 at 04:59:29PM +0200, Sergio Paracuellos wrote:
+> Adds dt binding header for 'ralink,rt2880-reset' resets.
 > 
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 > ---
->  .../devicetree/bindings/i2c/apple,i2c.yaml    | 61 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/apple,i2c.yaml
+>  include/dt-bindings/reset/ralink-rt2880.h | 40 +++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 include/dt-bindings/reset/ralink-rt2880.h
 > 
+> diff --git a/include/dt-bindings/reset/ralink-rt2880.h b/include/dt-bindings/reset/ralink-rt2880.h
+> new file mode 100644
+> index 000000000000..266ef521a584
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/ralink-rt2880.h
+> @@ -0,0 +1,40 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Dual license please.
