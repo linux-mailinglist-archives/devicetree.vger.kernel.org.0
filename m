@@ -2,101 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 844A44212C6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7673F4212CF
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235665AbhJDPjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 11:39:06 -0400
-Received: from smtp1.axis.com ([195.60.68.17]:45241 "EHLO smtp1.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235677AbhJDPid (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 11:38:33 -0400
+        id S235733AbhJDPlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 11:41:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235677AbhJDPlS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 11:41:18 -0400
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2658BC061749
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 08:39:29 -0700 (PDT)
+Received: by mail-oo1-xc2b.google.com with SMTP id e16-20020a4ad250000000b002b5e1f1bc78so5481466oos.11
+        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 08:39:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1633361805;
-  x=1664897805;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=5fRSpChnXs0jk1pUSgAuePYOIFm55P/7nqa8whji5Bc=;
-  b=cEPtAEGzTOUnH6DrttAVczOxVz4hbr4P1o8e3ZpD2LrrE4a+wzVEWL2S
-   /zKG8ttbzggCCirlu/nQ+FcSRhcS8PW5iePSEShpQNb0dgqNsV8wAKoTd
-   CmkWldctlnoVoLbbnjVcxzhvESYCr+0dr4nePHTIxpEhRxditSMpL+iWF
-   NqDzLLOywtZt8OkUEsRyXUwEflKWLUhwyF22kmKD1/TaDRI4wV9xBbC4D
-   dXv6uDcKTDYUJVPWvo7pvAHaVvEdqhf97/9F29nGQCgZ2QnzqZ8e/a1k/
-   ZLu82JXVqkK2nyktkT+70xtqKuAGOtp5BESc3r0mW6PehjmPOB/QTkEIY
-   w==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     <peda@axentia.se>, <devicetree@vger.kernel.org>
-CC:     <kernel@axis.com>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>
-Subject: [PATCH 2/2] mux: gpio: Support settle-time-us property
-Date:   Mon, 4 Oct 2021 17:36:40 +0200
-Message-ID: <20211004153640.20650-3-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20211004153640.20650-1-vincent.whitchurch@axis.com>
-References: <20211004153640.20650-1-vincent.whitchurch@axis.com>
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Us2MiqnVBXpIAHNmjS+4Uro6qLPvm37AM9FJM95DVqk=;
+        b=UvTBpMnnuGZzjffPYb1u5v3vOYcVC2caWUQcqnkd1SLnhHYh9HoUpsXWXuHV6CtF5c
+         qMZKrO/WVTD50NObgICfr6AIx2m7OqeFLWq38/Bojj2dfTst72YaiVDbAP4LRm84siko
+         W0POz+WpjQ8TkFq/mdfHoftPovhR7ea0POI0/jkT0FchYIXofqPaFVabSVDjA5naW9fH
+         LIoKCl5sVg/m3yswO6YL8mr13fQV3LxifZ6QaM3DnXbxNn69JDOXnrCy7PzY8roN46Hb
+         pCVL3TwbByCMm2KZ0bT/eSw3E/gI0K15dpImi2Cc9n2eyL1p0LiiYc+iuhX5Zq+vGJ5j
+         4IYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Us2MiqnVBXpIAHNmjS+4Uro6qLPvm37AM9FJM95DVqk=;
+        b=vSOAMT0wxe8R5ULmhyBLOPy4MQ3hytueC4M/gZH9jsWIz6oHoDOuEWvvP0j/uiIR02
+         ir+9JPvWm3o98bdZs2Dyg2iYm+ZNEx90FZgkrTqCyls7K5XCYSDRpmJD33kLuLDmEWS/
+         xTVAiqgtoLxwOB2tBstwyO+pmTpvePgIEkYeAXkI2v3bXB5lHJgPQuB05sj3HLdDif4T
+         nmQGtCGFP6Zm8g8QpjqUr3H1NW1mFF0svmynY+NDDvtB5yTX4Z3+TXFuqAd1f42AEgTP
+         aNdB9oOU12CBq76OWdEnrUQKBQ3Ko/ojzooCXIeC8NrzjjlIVDh2a1xIsjrqv38Ot7ud
+         yKVg==
+X-Gm-Message-State: AOAM5339rQR6kSfWaGXSUdchDEen2syPM5h/pIR1y+M/+t0QbtpWRQc+
+        gdEjlFxN16zF0jzpgObfUE5eiQ==
+X-Google-Smtp-Source: ABdhPJxxvMe3/BhpD1hlLw/7JNd8iujE5rqTGt73ELHYeygX/swn9CKzIPC4Wb4jnT2LvEpikdkp2w==
+X-Received: by 2002:a4a:dc1a:: with SMTP id p26mr9580113oov.6.1633361968417;
+        Mon, 04 Oct 2021 08:39:28 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id x28sm3127570ote.24.2021.10.04.08.39.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Oct 2021 08:39:28 -0700 (PDT)
+Date:   Mon, 4 Oct 2021 08:41:11 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rakesh Pillai <pillair@codeaurora.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org, swboyd@chromium.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org
+Subject: Re: [PATCH v5] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
+Message-ID: <YVsgl+EQr4aByTW5@ripper>
+References: <1633339945-1568-1-git-send-email-pillair@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1633339945-1568-1-git-send-email-pillair@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the devicetree specifies that the hardware requires a settle time,
-add an appropriate delay after the mux GPIOs are set.
+On Mon 04 Oct 02:32 PDT 2021, Rakesh Pillai wrote:
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
- drivers/mux/gpio.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> Add the WPSS remoteproc node in dts for
+> PIL loading.
+> 
+> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
 
-diff --git a/drivers/mux/gpio.c b/drivers/mux/gpio.c
-index cc5f2c1861d4..17d7e03e39f0 100644
---- a/drivers/mux/gpio.c
-+++ b/drivers/mux/gpio.c
-@@ -8,6 +8,7 @@
-  */
- 
- #include <linux/bitmap.h>
-+#include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/gpio/consumer.h>
- #include <linux/mod_devicetable.h>
-@@ -18,12 +19,14 @@
- 
- struct mux_gpio {
- 	struct gpio_descs *gpios;
-+	u32 delay;
- };
- 
- static int mux_gpio_set(struct mux_control *mux, int state)
- {
- 	struct mux_gpio *mux_gpio = mux_chip_priv(mux->chip);
- 	DECLARE_BITMAP(values, BITS_PER_TYPE(state));
-+	u32 delay = mux_gpio->delay;
- 	u32 value = state;
- 
- 	bitmap_from_arr32(values, &value, BITS_PER_TYPE(value));
-@@ -32,6 +35,9 @@ static int mux_gpio_set(struct mux_control *mux, int state)
- 				       mux_gpio->gpios->desc,
- 				       mux_gpio->gpios->info, values);
- 
-+	if (delay)
-+		fsleep(delay);
-+
- 	return 0;
- }
- 
-@@ -72,6 +78,9 @@ static int mux_gpio_probe(struct platform_device *pdev)
- 	WARN_ON(pins != mux_gpio->gpios->ndescs);
- 	mux_chip->mux->states = BIT(pins);
- 
-+	mux_gpio->delay = 0;
-+	device_property_read_u32(dev, "settle-time-us", &mux_gpio->delay);
-+
- 	ret = device_property_read_u32(dev, "idle-state", (u32 *)&idle_state);
- 	if (ret >= 0 && idle_state != MUX_IDLE_AS_IS) {
- 		if (idle_state < 0 || idle_state >= mux_chip->mux->states) {
--- 
-2.28.0
+qcom,sc7280-wpss-pil isn't a compatible that's documented or implemented
+upstream, so I can't do anything with this patch.
 
+I did go back an looked for the binding and driver and made a comment
+regarding auto_boot. My comment/question still stands, but I see I made
+that comment on v1, which is the last version you sent to the
+linux-remoteproc@ mailing list.
+
+Unfortunately the dt binding in v6 seem to have some issues still.
+
+
+So based on that, I will have to ignore this patch until the binding has
+landed - please help me remember this forward dependency when that day
+comes.
+
+And please include linux-remoteproc@ if you want the binding & driver
+merged.
+
+Regards,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 +++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 58 +++++++++++++++++++++++++++++++++
+>  2 files changed, 62 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index 64fc22a..2b8bbcd 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -68,3 +68,7 @@
+>  		qcom,pre-scaling = <1 1>;
+>  	};
+>  };
+> +
+> +&remoteproc_wpss {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 39635da..edc7951 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -134,6 +134,11 @@
+>  			no-map;
+>  		};
+>  
+> +		wpss_mem: memory@9ae00000 {
+> +			no-map;
+> +			reg = <0x0 0x9ae00000 0x0 0x1900000>;
+> +		};
+> +
+>  		rmtfs_mem: memory@9c900000 {
+>  			compatible = "qcom,rmtfs-mem";
+>  			reg = <0x0 0x9c900000 0x0 0x280000>;
+> @@ -2588,6 +2593,59 @@
+>  			#power-domain-cells = <1>;
+>  		};
+>  
+> +		remoteproc_wpss: remoteproc@8a00000 {
+> +			compatible = "qcom,sc7280-wpss-pil";
+> +			reg = <0 0x08a00000 0 0x10000>;
+> +
+> +			interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready", "handover",
+> +					  "stop-ack", "shutdown-ack";
+> +
+> +			clocks = <&gcc GCC_WPSS_AHB_BDG_MST_CLK>,
+> +				 <&gcc GCC_WPSS_AHB_CLK>,
+> +				 <&gcc GCC_WPSS_RSCP_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "gcc_wpss_ahb_bdg_mst_clk",
+> +				      "gcc_wpss_ahb_clk",
+> +				      "gcc_wpss_rscp_clk",
+> +				      "xo";
+> +
+> +			power-domains = <&rpmhpd SC7280_CX>,
+> +					<&rpmhpd SC7280_MX>;
+> +			power-domain-names = "cx", "mx";
+> +
+> +			memory-region = <&wpss_mem>;
+> +
+> +			qcom,qmp = <&aoss_qmp>;
+> +
+> +			qcom,smem-states = <&wpss_smp2p_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			resets = <&aoss_reset AOSS_CC_WCSS_RESTART>,
+> +				 <&pdc_reset PDC_WPSS_SYNC_RESET>;
+> +			reset-names = "restart", "pdc_sync";
+> +
+> +			qcom,halt-regs = <&tcsr_mutex 0x37000>;
+> +
+> +			status = "disabled";
+> +
+> +			glink-edge {
+> +				interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
+> +							     IPCC_MPROC_SIGNAL_GLINK_QMP
+> +							     IRQ_TYPE_EDGE_RISING>;
+> +				mboxes = <&ipcc IPCC_CLIENT_WPSS
+> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +				label = "wpss";
+> +				qcom,remote-pid = <13>;
+> +			};
+> +		};
+> +
+>  		pdc: interrupt-controller@b220000 {
+>  			compatible = "qcom,sc7280-pdc", "qcom,pdc";
+>  			reg = <0 0x0b220000 0 0x30000>;
+> -- 
+> 2.7.4
+> 
