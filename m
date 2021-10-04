@@ -2,73 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6404E4213E8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 18:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 694B34213FF
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 18:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235536AbhJDQWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 12:22:05 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:40912 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236773AbhJDQV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 12:21:59 -0400
-Received: by mail-ot1-f46.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so22207229otq.7;
-        Mon, 04 Oct 2021 09:20:10 -0700 (PDT)
+        id S236900AbhJDQZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 12:25:55 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:37607 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236674AbhJDQZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 12:25:54 -0400
+Received: by mail-oi1-f179.google.com with SMTP id w206so22278456oiw.4;
+        Mon, 04 Oct 2021 09:24:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/xhcRaXeSwI22a55xcmDjhj060dG9svhnJ1Kf7rSZM4=;
-        b=jyZpoHlqszm6bh4PcrynCYZ5d+iJnK4TzKEaEaqS7GQlW04DJm+1bIN+iWMeLvYCBR
-         WuvYB7bEVsLBRS5ny2XCJ4BXOW+zpuPr6tw9NgnX4gcFZpJW33q9ogk4olY8oWvH61sw
-         0dGvCdMpelctYb2pFFVSWpgQzOmBqOUTskwzXT1TxV2kMKEMSP7xOA92T967rM3lmAaO
-         9pibq9dw0Y2ndMNOsTOMBAZmA8425WUdTOorJqV6JHqoBjBkg+5wFqlMBYyzwj3A6g1P
-         m2yI3blxjaRJD2wK9NuZO5B9e3M0QRXNfOBJ6BE8IX7EcGykwCLye6WpOD5DBUB/w0R0
-         qdWg==
-X-Gm-Message-State: AOAM532tRsBCMNwPN7Ej15Cq435PnO2/Hvm4zAH49xHfyU2oN0IyiqfD
-        cFLh0govt7J5sxiNu1BCAqbXZvnPRg==
-X-Google-Smtp-Source: ABdhPJz3i06qsMtau5TraGJF8w7v9w1RAZV7CejKkpFU1R7VMlkhPxGZKUBxHA4zC/+p/tDmZRgh6g==
-X-Received: by 2002:a9d:3b2:: with SMTP id f47mr10137667otf.253.1633364409607;
-        Mon, 04 Oct 2021 09:20:09 -0700 (PDT)
+        bh=3YL9t/LcFUdv6zIOKUIqTBFhHWXv86fgYlmOjVAyNXI=;
+        b=C9v5LlOUGZWYJxJW8v5tcT1aVT8rQFHh0NPuhMixm9HR6B9+V+x/ARKKIWQ32cQhYu
+         fyNwxA9Ctgm4m5EfDD6GJMsOVPE0IS4eKKjxCvVlykkt5aIkfpDEHLaVMfcnBz/eOWDv
+         By5AZZD6PlRruF/IQOD8IZkv59R18o9avRsbqFR8Z+HbO86vhjAXU6Zf9lvYNJSqp3wc
+         OIcWzu/H2/lFjZOyMSShtTmXNv8W/Zz3NC1htTieIypcHnL8RawhSZWY7XDRF6G+liQi
+         d9Guh80gYZgqyrBM/GZZAHnAKzPc3ptCup2wHdWV23F3fMU+twYLQ8Y1FAoBLYoDeJDN
+         hjOQ==
+X-Gm-Message-State: AOAM532MMF9wG2tiC8CmqFgufByxZ6nKQooZzcIltj4k3YRb7txCDsPd
+        /3DRoLG1Q5PFHwYlyBSYzg==
+X-Google-Smtp-Source: ABdhPJzYH4QZGQHRqPJ/av1OXS8AHDxnW5j2mrkBdDuuBvT+5e7uRYrz/G37hN2fVdGuO1IX015rCA==
+X-Received: by 2002:a05:6808:8c5:: with SMTP id k5mr13925791oij.93.1633364640465;
+        Mon, 04 Oct 2021 09:24:00 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i12sm2773162oik.50.2021.10.04.09.20.08
+        by smtp.gmail.com with ESMTPSA id o26sm2920432oof.32.2021.10.04.09.23.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 09:20:08 -0700 (PDT)
-Received: (nullmailer pid 1407750 invoked by uid 1000);
-        Mon, 04 Oct 2021 16:20:08 -0000
-Date:   Mon, 4 Oct 2021 11:20:08 -0500
+        Mon, 04 Oct 2021 09:23:59 -0700 (PDT)
+Received: (nullmailer pid 1413747 invoked by uid 1000);
+        Mon, 04 Oct 2021 16:23:58 -0000
+Date:   Mon, 4 Oct 2021 11:23:58 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH] regulator: dt-bindings: maxim,max8997: convert to
- dtschema
-Message-ID: <YVspuAjMZFIoK/to@robh.at.kernel.org>
-References: <20211001130249.80405-1-krzysztof.kozlowski@canonical.com>
+        linux-leds@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v2 0/8] Arm boards syscon 'unit_address_format' clean-ups
+Message-ID: <YVsqnr185GTtN3uH@robh.at.kernel.org>
+References: <20210913192816.1225025-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211001130249.80405-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210913192816.1225025-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Oct 2021 15:02:49 +0200, Krzysztof Kozlowski wrote:
-> Convert the Maxim MAX8997 PMIC bindings to DT schema format.  Extend the
-> examples with additional one copied from kernel's exynos4210-origen.dts.
-> Also the binding descriptions are copied from old file, so license
-> entire work under GPL-2.0.
+On Mon, Sep 13, 2021 at 02:28:08PM -0500, Rob Herring wrote:
+> This series addresses the last of the dtc 'unit_address_format'
+> warnings in the tree.
 > 
-> This also adds previously undocumented 32 kHz clock output modelled as
-> regulators.
+> The remaining issue was dealing with the node names on 2 bindings for
+> Arm Ltd boards syscon child nodes: register-bit-led and Versatile ICST.
+> Both of these used an offset property for register address rather than
+> 'reg' which is the preference nowadays. With a 'reg' property, then we
+> can have a proper node name and unit-address. This series adds support
+> for using 'reg' instead and updates the node names and unit-addresses.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  .../bindings/regulator/max8997-regulator.txt  | 145 ------
->  .../bindings/regulator/maxim,max8997.yaml     | 445 ++++++++++++++++++
->  2 files changed, 445 insertions(+), 145 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/regulator/max8997-regulator.txt
->  create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max8997.yaml
+> The dts file changes have inter-dependencies, but the clock and led
+> changes can go via each subsystem.
 > 
+> Rob
+> 
+> 
+> Rob Herring (8):
+>   dt-bindings: leds: Convert register-bit-led binding to DT schema
+>   dt-bindings: leds: register-bit-led: Use 'reg' instead of 'offset'
+>   leds: syscon: Support 'reg' in addition to 'offset' for register
+>     address
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Pavel, Can you apply or comment on patches 1-3?
+
+Rob
+
+
+>   dt-bindings: clock: arm,syscon-icst: Use 'reg' instead of 'vco-offset'
+>     for VCO register address
+>   clk: versatile: clk-icst: Support 'reg' in addition to 'vco-offset'
+>     for register address
+>   ARM: dts: arm: Update register-bit-led nodes 'reg' and node names
+>   ARM: dts: arm: Update ICST clock nodes 'reg' and node names
+>   kbuild: Enable dtc 'unit_address_format' warning by default
