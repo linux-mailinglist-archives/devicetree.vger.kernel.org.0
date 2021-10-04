@@ -2,90 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B6AB42168A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 20:30:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A12D421694
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 20:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238736AbhJDSck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 14:32:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51482 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235352AbhJDScj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 14:32:39 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C67D8C061749
-        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 11:30:49 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id y23so36207823lfb.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 11:30:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WYaHpNPd5iNfSgVGQsCT7+Pa41+xpBTvkNAX6en4bmk=;
-        b=YW0KtJsTP5rI4zjU6hpQY7S4u6k9lUh4EEB+CsI+CIfSgEr7C3MO0cObLf7h2xjjx5
-         WtKYIF9M6s+d95as+hNn45lVSRYcprnbK4s0lb5tsF2xJxullrt/g3PaI/WIx9/mYJRA
-         BINausv0nynG979PoLxCE2wr8xooR3Udqj5LHdwwBvE2D820cC6rUQkh6wKhdKqZFCMI
-         UEwvzLQuU9bZ15aBxVwzMgKT3C+LApE2rhuQqn+VHQhGm7cMO2XOGpqwID/PkA3zp5Jv
-         h8G+a8pwKxwEMo0yPYTw91VCgh9K4U8PJjS0rbDRcBhutKgw5WPctumnmpctt/IqlbM3
-         fn6Q==
+        id S234157AbhJDSgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 14:36:02 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:44672 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229487AbhJDSgC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 14:36:02 -0400
+Received: by mail-ot1-f42.google.com with SMTP id h9-20020a9d2f09000000b005453f95356cso22789341otb.11;
+        Mon, 04 Oct 2021 11:34:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WYaHpNPd5iNfSgVGQsCT7+Pa41+xpBTvkNAX6en4bmk=;
-        b=H4YTwwXGMVf6SSBd46D8y0QfSbM0Ogs7KoZ2pOBek9aYO9PXqqlFRUFWZg6CSHlzuU
-         qktOrsvCfArbsJwankx5dBbiXp83Kz73hno7yblcbXzHDgvKA833W3wVHvQ8l2xsNHEr
-         e2mbvgtboyMEy864r19AzkkMS4YzdpnTBHRuqKURxgieFj7Ni1IB352d7IAnuJRFsCW4
-         n3P9qogz7ccGnhFFQhU+hka4ENE/h8maVuPNSJeNZ72Yzdc3HUA54EO6//6cW3e644Ro
-         JPlWXiXHWg1p0CUD9jc3BEO1CMQGRyX8hV5zsfFek6tLla9S6512ZBpVQB3KZRRykkxQ
-         63fA==
-X-Gm-Message-State: AOAM532teBCVrcgkAxqdxl5QyjOoU2Npoiw42f0ta7idl+ngX4/+xdy6
-        xFvi4lpN9Pi+JgtYZssZeLTQxXoHIS0BPySdVf3Wvg==
-X-Google-Smtp-Source: ABdhPJzwPMLixmNEteJfYTYbQ05qYkqCLS3fY+3QFW/RcZFdO8U3LfG8R6lZnCdHdRy5zRPcTCePjhzKrDRf131zPjE=
-X-Received: by 2002:a19:c10d:: with SMTP id r13mr15971449lff.339.1633372247707;
- Mon, 04 Oct 2021 11:30:47 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=knUJ++gCkH0YzfTgjeyyFLEPM19JWGgrMdgeiG9dfr0=;
+        b=ZH9ZKZX0LoAVx1BPHd0qQA4Lf2M1zW8gJRtWF+Ivrkn2CwWqX/x43nD2A7iWthx58w
+         EJnYJGOKBrxjqRj1jYYUOpnMh0GuRmly0C1Zoo6qf3kVkfotqc8m2FsM2bWREDOCRQB1
+         SZC6hFNpDvn740PrvnkHeiZH+gw2Wlxnjsw2A25b/Ue0zrjXbpjP0mS3/U0KZDD4OQ3W
+         g0Wov47pmq4SLupjZ7Z3r+LcFEK9YNmZg9GSv8FDiGCbRA6T7/aZu+V1Fb+IPRXLFx39
+         8EpKtPAC3p1xJ3m9vD4o+lfVLsVHFLgW4iKkTFnJ6u3Olv080EiIFXcl7Y7S7GErm4Q2
+         QSLQ==
+X-Gm-Message-State: AOAM530kjN1hXI3TR9jw+J6/BHQot6L2KwhZMbkFVvoPSdUIj0jBW+cZ
+        rS4sMMKS7rArkzI0dCV8zQ==
+X-Google-Smtp-Source: ABdhPJxhmFsq7jhbIvHuobTSpWL78IuEztcmQg9POgKTR3rQa6/xqPU/Koa7Xfnl0PLxskCnxrbbLQ==
+X-Received: by 2002:a05:6830:1c1:: with SMTP id r1mr10850663ota.372.1633372452441;
+        Mon, 04 Oct 2021 11:34:12 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id p8sm3003547oti.15.2021.10.04.11.34.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Oct 2021 11:34:11 -0700 (PDT)
+Received: (nullmailer pid 1621450 invoked by uid 1000);
+        Mon, 04 Oct 2021 18:34:10 -0000
+Date:   Mon, 4 Oct 2021 13:34:10 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 08/15] dt-bindings: arm: cpus: Document qcom,msm8916-smp
+ enable-method
+Message-ID: <YVtJIm6Tu2z+Ph/V@robh.at.kernel.org>
+References: <20210928171231.12766-1-stephan@gerhold.net>
+ <20210928171231.12766-9-stephan@gerhold.net>
 MIME-Version: 1.0
-References: <20210929163847.2807812-1-maz@kernel.org> <20211004083845.GA22336@lpieralisi>
- <87czolrwgn.wl-maz@kernel.org>
-In-Reply-To: <87czolrwgn.wl-maz@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 4 Oct 2021 20:30:36 +0200
-Message-ID: <CACRpkdZzdzJmatnYe2pcKCSW2=WJBa-DZQPib7aGW9m_GLrAwg@mail.gmail.com>
-Subject: Re: [PATCH v5 00/14] PCI: Add support for Apple M1
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Hector Martin <marcan@marcan.st>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        Joey Gouly <joey.gouly@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Arnd Bergmann <arnd@arndb.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210928171231.12766-9-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 4, 2021 at 11:05 AM Marc Zyngier <maz@kernel.org> wrote:
+On Tue, Sep 28, 2021 at 07:12:24PM +0200, Stephan Gerhold wrote:
+> Document the qcom,msm8916-smp enable method. It is actually just
+> an alias for qcom,msm8226-smp since it should be implemented identically.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  Documentation/devicetree/bindings/arm/cpus.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+> index 11e3e09da2e5..5602a8f3c513 100644
+> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+> @@ -211,6 +211,7 @@ properties:
+>            - qcom,kpss-acc-v1
+>            - qcom,kpss-acc-v2
+>            - qcom,msm8226-smp
+> +          - qcom,msm8916-smp
 
-> Yes, that's absolutely fine. I hope we can resolve the issue on the
-> pinctrl binding pretty quickly, and get the arm-soc folks to pull the
-> DT changes in for 5.16 too.
+I thought arm64 is PSCI only.
 
-I think I ACKed a patch for apple,npins = <> yesterday.
-
-> This would make the Mini a usable machine with a mainline kernel.
-
-That seems useful.
-
-Yours,
-Linus Walleij
+>            - renesas,apmu
+>            - renesas,r9a06g032-smp
+>            - rockchip,rk3036-smp
+> @@ -295,7 +296,8 @@ properties:
+>        Specifies the ACC* node associated with this CPU.
+>  
+>        Required for systems that have an "enable-method" property
+> -      value of "qcom,kpss-acc-v1", "qcom,kpss-acc-v2" or "qcom,msm8226-smp"
+> +      value of "qcom,kpss-acc-v1", "qcom,kpss-acc-v2", "qcom,msm8226-smp"
+> +      or "qcom,msm8916-smp".
+>  
+>        * arm/msm/qcom,kpss-acc.txt
+>  
+> -- 
+> 2.33.0
+> 
+> 
