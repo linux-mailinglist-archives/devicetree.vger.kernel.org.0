@@ -2,96 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DC2D4218D7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 22:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8461D4218E0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 22:58:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234233AbhJDU67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 16:58:59 -0400
-Received: from mo4-p03-ob.smtp.rzone.de ([81.169.146.174]:35242 "EHLO
-        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233533AbhJDU65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 16:58:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1633381020;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=E0qdQBxjh9+IrFGfHN0IpBEDVrfru3woX63k95iqOrg=;
-    b=UUkwpl4uMSW7qvBwP3il0LDXLMawYRybT+N/HqGSxWmjQaH/ISNfwRWoL4e66IoYc5
-    VVEhbfDhF0uZ0p3T5WbtMNVaDVRFRW95//3jn1F8NYuG9D4mIjC+/bpiee+pdHhMFwmX
-    lL56hXz/wO3mAfBTnaxYjgMWLgioUNEtu+oq6JBpZDk4VJgxXokGBWxARueLIBTq8q/i
-    5q0/QArRdXLnBmoDt1T2V1zONfby+ocBMHjxHnY/B+bk8YUnseF8YYAtKJSfWKNtvvmK
-    /4ybXntJFgnPwLNO/FNeAR+qclwc2s6Vtwj/WQwnhfxbRAj0Id1ruWlSRgOd+FhZjWnv
-    Cg1g==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4pWA8pmE1A=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id 301038x94KuxKT3
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 4 Oct 2021 22:56:59 +0200 (CEST)
-Date:   Mon, 4 Oct 2021 22:56:54 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH 08/15] dt-bindings: arm: cpus: Document qcom,msm8916-smp
- enable-method
-Message-ID: <YVtnfNA1yF3uB35Q@gerhold.net>
-References: <20210928171231.12766-1-stephan@gerhold.net>
- <20210928171231.12766-9-stephan@gerhold.net>
- <YVtJIm6Tu2z+Ph/V@robh.at.kernel.org>
- <CAL_Jsq+nJH8WgSL0S4LAW6Ru_W-000+AxGQrtxskrPWViRqN5w@mail.gmail.com>
+        id S233626AbhJDVAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 17:00:18 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:29735 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233763AbhJDVAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 17:00:17 -0400
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 6FA6B240002;
+        Mon,  4 Oct 2021 20:58:25 +0000 (UTC)
+Date:   Mon, 4 Oct 2021 22:58:25 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        ludovic.desroches@microchip.com, robh+dt@kernel.org,
+        corbet@lwn.net, linux@armlinux.org.uk,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        UNGLinuxDriver@microchip.com, Manohar.Puri@microchip.com
+Subject: Re: [PATCH 0/4] Add lan966 documentation and remove lan966x.c file
+Message-ID: <YVtq8Qeb4RbenhTG@piout.net>
+References: <20211004105926.5696-1-kavyasree.kotagiri@microchip.com>
+ <YVrgzWLReFS5FgWd@piout.net>
+ <09645199-50af-0373-c5bb-e0d745543e5b@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+nJH8WgSL0S4LAW6Ru_W-000+AxGQrtxskrPWViRqN5w@mail.gmail.com>
+In-Reply-To: <09645199-50af-0373-c5bb-e0d745543e5b@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 04, 2021 at 01:37:58PM -0500, Rob Herring wrote:
-> On Mon, Oct 4, 2021 at 1:34 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Tue, Sep 28, 2021 at 07:12:24PM +0200, Stephan Gerhold wrote:
-> > > Document the qcom,msm8916-smp enable method. It is actually just
-> > > an alias for qcom,msm8226-smp since it should be implemented identically.
-> > >
-> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/cpus.yaml | 4 +++-
-> > >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > index 11e3e09da2e5..5602a8f3c513 100644
-> > > --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> > > @@ -211,6 +211,7 @@ properties:
-> > >            - qcom,kpss-acc-v1
-> > >            - qcom,kpss-acc-v2
-> > >            - qcom,msm8226-smp
-> > > +          - qcom,msm8916-smp
-> >
-> > I thought arm64 is PSCI only.
+On 04/10/2021 14:55:29+0200, Nicolas Ferre wrote:
+> On 04/10/2021 at 13:09, Alexandre Belloni wrote:
+> > On 04/10/2021 16:29:22+0530, Kavyasree Kotagiri wrote:
+> > > This patch series modifies Kconfig entry, adds documentation for
+> > > lan966 family and removes lan966x setup code file as it is not
+> > > required.
+> > > 
+> > > These patches are generated from at91/linux.git
+> > > I had agreement with Nicolas Ferre that he will merge these changes
+> > > into existing patch.
+> > > 
+> > 
+> > Seems good to me, for the whole series:
+> > Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 > 
-> I see the explanation now. Please add that to this commit as well and
-> a comment here that this is for 32-bit only.
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com> for the whole series,
+> added to at91-soc and merged with previous patch.
+> 
+> Please have a look at the resulting tree or at91-next branch for
+> double-checking.
 > 
 
-I'm not sure why this is literally the only patch in the series where
-I omitted the explanation. Sorry for the confusion! :)
+That's way better, no code at all is the best code to maintain ;)
+Thanks for your efforts Kavya
 
-I clarified this in v2 and added the comment as you suggested.
-
-Thanks!
-Stephan
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
