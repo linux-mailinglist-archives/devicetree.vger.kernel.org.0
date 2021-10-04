@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF823421463
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 18:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A1F421466
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 18:48:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237352AbhJDQtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 12:49:35 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:45845 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237351AbhJDQtf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 12:49:35 -0400
-Received: by mail-ot1-f49.google.com with SMTP id e66-20020a9d2ac8000000b0054da8bdf2aeso20153646otb.12;
-        Mon, 04 Oct 2021 09:47:46 -0700 (PDT)
+        id S235662AbhJDQuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 12:50:32 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:41473 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233842AbhJDQub (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 12:50:31 -0400
+Received: by mail-ot1-f41.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso22395459ota.8;
+        Mon, 04 Oct 2021 09:48:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bX1AWjTVQ99QhdMBAvTgxvLZsO8dKqZ24tnr3dEHNw8=;
-        b=sdBcnya7haGVyy8rMSgoNrblNYqgnUM4BQuTXmSMbUJ1z2rQ5ZTp9lQwwU8/XFSwW1
-         9SkXzPgWzfwtvGOEVrRb1ptnzfnRPem3vQSoc3SuQrrWsdHxwxbftPWEGGGwv/6Za0lR
-         bmJgiaILq//JB5U/DX4yFWV81S8ZxdQmbR0aMW1kEhVbgxJIMVj4NlXzM588xYU4s043
-         cb7rX/z9OYJJyECg+6EAoxQ4brgetgL0w/+CEkHRRQ77Q3wIwBmwSoVz4R7Bwyk3Uf9h
-         GorVObrfEWuPTWPb8G5K5u7fqaFBloCElEjB5v0HC6dscRzfKqH3aY5I69D2VEUqRZxm
-         j9mQ==
-X-Gm-Message-State: AOAM533TUyY1PcTAaZC8oxf8ry/iFCkIzHzr6lG0KgIpvu5zgCqsS977
-        bKjkzxtMgNPgiPX0qsvQ3w==
-X-Google-Smtp-Source: ABdhPJwRXaKWlO5doyFlIqDOX6eKpoHs6FSOnYo+lTc7QnEVeYigsMQ3rRlJ7Hq/fQ3+OH+d8D37Lw==
-X-Received: by 2002:a05:6830:3486:: with SMTP id c6mr10175603otu.101.1633366065420;
-        Mon, 04 Oct 2021 09:47:45 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=+hwLdOp02R5EAiJ4KNQCp4lIQVkoRkYxlsfTnQeSF+s=;
+        b=RnMCWzq7SnOzrARXYYHpsnJ7nE3KtOS4B4iBDBV7DoHOnBtIeOtqlHlajNL2PnDV7O
+         pgcK5lUwx0Vk22KcdFu9HIGjmTO4s/7AFzPyWqlmzlpudmEDjbdf4Qy4kY6QohFwYk+d
+         wjGKohwyDbshkNXRF/IP2rRXr3lbysKw/X6XgCCaBbl8x4u9zDxdkhr1RkV2dErHPIz1
+         noT9FOf6YANmHFBVmBfYSOXWXAZ7+hevsynaxAvMcdKTvXKQX8PwFdCpzbL2EE31E18+
+         BLlIUaWhiXlyoHw2z6GzvSZWwRfbw/1Ge3Jh1o7Rd+rukIUuHXfZ71j2mo6mBuXJPeoH
+         +GDw==
+X-Gm-Message-State: AOAM5323eyLtmILfH0anBgAMzaAL9XJEitpT59HX/z11YsCRn/WwpI+E
+        0mu6sQziseIdIpXE0aJA6Q==
+X-Google-Smtp-Source: ABdhPJxXLkpec85mPyfX/0RbHai/r0l5yavVd7LFW2ZoMky+8OA1PzKRe3k0EPzIC0t3fGYXtAWlyw==
+X-Received: by 2002:a9d:4a8d:: with SMTP id i13mr10341023otf.180.1633366122440;
+        Mon, 04 Oct 2021 09:48:42 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g12sm2919168oof.6.2021.10.04.09.47.44
+        by smtp.gmail.com with ESMTPSA id c4sm2552956ook.5.2021.10.04.09.48.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 09:47:44 -0700 (PDT)
-Received: (nullmailer pid 1453765 invoked by uid 1000);
-        Mon, 04 Oct 2021 16:47:43 -0000
-Date:   Mon, 4 Oct 2021 11:47:43 -0500
+        Mon, 04 Oct 2021 09:48:41 -0700 (PDT)
+Received: (nullmailer pid 1455411 invoked by uid 1000);
+        Mon, 04 Oct 2021 16:48:40 -0000
+Date:   Mon, 4 Oct 2021 11:48:40 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     drinkcat@chromium.org, matthias.bgg@gmail.com,
-        Rob Herring <robh+dt@kernel.org>, chunkuang.hu@kernel.org,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>, kernel@collabora.com,
-        eizan@chromium.org, hsinyi@chromium.org, jitao.shi@mediatek.com
-Subject: Re: [PATCH v4 2/7] dt-bindings: mediatek: Add #reset-cells to mmsys
- system controller
-Message-ID: <YVswLzTQhuj7zI4Z@robh.at.kernel.org>
-References: <20210930083150.3317003-1-enric.balletbo@collabora.com>
- <20210930103105.v4.2.I3f7f1c9a8e46be07d1757ddf4e0097535f3a7d41@changeid>
+To:     Florian Boor <florian.boor@kernelconcepts.de>
+Cc:     Michael.Hennerich@analog.com, Jonathan.Cameron@huawei.com,
+        devicetree@vger.kernel.org, jic23@kernel.org,
+        linux-iio@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v6 2/2] dt-bindings: iio: ad779x: Add binding document
+Message-ID: <YVswaEcToAR+4bLG@robh.at.kernel.org>
+References: <20210930104249.2924336-1-florian.boor@kernelconcepts.de>
+ <20210930104249.2924336-2-florian.boor@kernelconcepts.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210930103105.v4.2.I3f7f1c9a8e46be07d1757ddf4e0097535f3a7d41@changeid>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210930104249.2924336-2-florian.boor@kernelconcepts.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Sep 2021 10:31:45 +0200, Enric Balletbo i Serra wrote:
-> The mmsys system controller exposes a set of memory client resets and
-> needs to specify the #reset-cells property in order to advertise the
-> number of cells needed to describe each of the resets.
+On Thu, 30 Sep 2021 12:42:49 +0200, Florian Boor wrote:
+> New binding documentation for AD799x series of I²C ADC ICs.
 > 
-> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> Signed-off-by: Florian Boor <florian.boor@kernelconcepts.de>
 > ---
 > 
-> (no changes since v3)
+> Changes in v6:
+> - Minor documentation change (label and contact info)
 > 
-> Changes in v3:
-> - Based on top of the patch that converts mmsys to schema
+> Changes in v5:
+> - Correct errors in documentation found by
+>   'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>   + Reduce title length
+>   + Move information to description
+>   + Add I²C bits to example
 > 
->  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml      | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../bindings/iio/adc/adi,ad799x.yaml          | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad799x.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
