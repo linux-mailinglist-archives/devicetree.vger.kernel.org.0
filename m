@@ -2,72 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C8834216D7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 20:55:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 037F04216F5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 21:04:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236195AbhJDS5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 14:57:33 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:38877 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235402AbhJDS5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 14:57:33 -0400
-Received: by mail-oi1-f181.google.com with SMTP id u22so22979426oie.5;
-        Mon, 04 Oct 2021 11:55:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UEd/IS2p4s5rX/rYBoB39vVWlsyCBCLryum1tYzyxp4=;
-        b=kYw8BZHVIoBa9kD86BEIoZTTVdCtWexy9lA5v31NwkOJWYqFPbRR4X2q22UbGQ8g/c
-         XvFuPhIcIevHIFRkg4z6S44ljkOmS3PmnBIyKUIKzZUL84EFNkklD8miSpVmJCKqprq2
-         g9VzH8LvKSvDxKJRdHwLRX1WejNhGpAY3RT58adOr+LMxFgVXlTRqR9mPhXfoan8mWgb
-         JeFqlvSwWh7fHsdteK1iYjQ6ZDvUb71aiIntBzhjf6TF8zkXWveocTv/4lXjvll1OhX4
-         5faZTvL/ptKLmJZa2nQuRPNyaST6evrEpYZGtLSCM7krxr0uSk++USUIBvIzfL5qb1SB
-         ipfA==
-X-Gm-Message-State: AOAM533EDb2lfTUisnUHBKrsgew1Dz0ufcOVlpi8kKSMhwSXy+7KenZE
-        lgXZ/LZdSqp8QFgcp68Y3Wv5NlKJ0w==
-X-Google-Smtp-Source: ABdhPJwPR3roneNzQc8Q8oMR4mc+NOgb47AXAP9Wzw3uNHf/WI+AEPLAcGFU5M+464vIGOXaLAdiyQ==
-X-Received: by 2002:aca:ebd5:: with SMTP id j204mr14440580oih.14.1633373743507;
-        Mon, 04 Oct 2021 11:55:43 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id u2sm3086365otg.51.2021.10.04.11.55.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 11:55:43 -0700 (PDT)
-Received: (nullmailer pid 1655351 invoked by uid 1000);
-        Mon, 04 Oct 2021 18:55:42 -0000
-Date:   Mon, 4 Oct 2021 13:55:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Simon Glass <sjg@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: Re: [PATCH 1/2] docs: dt: Fix a few grammar nits in the
- binding/schema docs
-Message-ID: <YVtOLlv1mQlYrWED@robh.at.kernel.org>
-References: <20211003124936.1.Idc7beddc77250bca0cfb5912b56be719d9073bc4@changeid>
+        id S238858AbhJDTFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 15:05:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59120 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238855AbhJDTFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 15:05:50 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B239FC061749;
+        Mon,  4 Oct 2021 12:04:00 -0700 (PDT)
+Received: from zn.tnic (p200300ec2f0fe4009c23c25c98857304.dip0.t-ipconnect.de [IPv6:2003:ec:2f0f:e400:9c23:c25c:9885:7304])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 774201EC03D2;
+        Mon,  4 Oct 2021 21:03:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1633374238;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=0Nms4auAY3J/VUVtMgcFZcZpc069CLLUqzM+bdeYLVk=;
+        b=hB1AzTSsB1cgjjLDziTXH0QngoL3aO0oKRg7k+c5hPO68B1wguz1yl6+QrOaVKi3NLEbrh
+        joloXjbwL8oGdS5mMnbNgevjUzDOetUYM2ffcG/crFVIlxNq94ibITOrm89OrC30+oHyJW
+        th69nz+SBcfqNS7StlH4IeV54nrlyNI=
+Date:   Mon, 4 Oct 2021 21:03:55 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Iwona Winiarska <iwona.winiarska@intel.com>
+Cc:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        x86@kernel.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andy Lutomirski <luto@kernel.org>,
+        Ingo Molnar <mingo@redhat.com>,
+        Yazen Ghannam <yazen.ghannam@amd.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Zev Weiss <zweiss@equinix.com>,
+        David Muller <d.mueller@elsoft.ch>
+Subject: Re: [PATCH v2 01/15] x86/cpu: Move intel-family to arch-independent
+ headers
+Message-ID: <YVtQG+idmwKn0qLe@zn.tnic>
+References: <20210803113134.2262882-1-iwona.winiarska@intel.com>
+ <20210803113134.2262882-2-iwona.winiarska@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211003124936.1.Idc7beddc77250bca0cfb5912b56be719d9073bc4@changeid>
+In-Reply-To: <20210803113134.2262882-2-iwona.winiarska@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 03 Oct 2021 12:50:06 -0600, Simon Glass wrote:
-> Add missing hyphens and reword one sentence for clarity.
+On Tue, Aug 03, 2021 at 01:31:20PM +0200, Iwona Winiarska wrote:
+> Baseboard management controllers (BMC) often run Linux but are usually
+> implemented with non-X86 processors. They can use PECI to access package
+> config space (PCS) registers on the host CPU and since some information,
+> e.g. figuring out the core count, can be obtained using different
+> registers on different CPU generations, they need to decode the family
+> and model.
 > 
-> Signed-off-by: Simon Glass <sjg@chromium.org>
+> Move the data from arch/x86/include/asm/intel-family.h into a new file
+> include/linux/x86/intel-family.h so that it can be used by other
+> architectures.
+> 
+> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
+> Reviewed-by: Tony Luck <tony.luck@intel.com>
+> Reviewed-by: Dan Williams <dan.j.williams@intel.com>
 > ---
-> 
->  .../devicetree/bindings/example-schema.yaml   | 14 ++++-----
->  .../devicetree/bindings/writing-bindings.rst  |  2 +-
->  .../devicetree/bindings/writing-schema.rst    | 29 ++++++++++---------
->  3 files changed, 23 insertions(+), 22 deletions(-)
-> 
+> To limit tree-wide changes and help people that were expecting
+> intel-family defines in arch/x86 to find it more easily without going
+> through git history, we're not removing the original header
+> completely, we're keeping it as a "stub" that includes the new one.
+> If there is a consensus that the tree-wide option is better,
+> we can choose this approach.
 
-Applied, thanks!
+Why can't the linux/ namespace header include the x86 one so that
+nothing changes for arch/x86/?
+
+And if it is really only a handful of families you need, you might just
+as well copy them into the peci headers and slap a comment above it
+saying where they come from and save yourself all that churn...
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
