@@ -2,235 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07B48420584
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 07:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B17624205A1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 07:53:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230467AbhJDFDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 01:03:02 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:52979 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232358AbhJDFDB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 01:03:01 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633323673; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=md+WhcXo9Co1RVUTL3+oTqB7noJAW/K8AXFDsva3XTE=;
- b=pELjB9QmzZ7mqSXf14Y2ILtPRPziH9n1U5wAvq5kZ08IUVD7XrpuneGbR4Qvu5wtcHV29vLG
- 4f+oYVMlDjvbQBJ27RJAOBTnu5JAum/iK1VLt+nvbUV02w8df9NZeIiFQzz7t5fz5scEajZ+
- sez3gL49DCJroUUi4pLvMRV3qzY=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 615a8a91a5a9bab6e8985eea (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 04 Oct 2021 05:01:05
- GMT
-Sender: schowdhu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 028B3C4360D; Mon,  4 Oct 2021 05:01:05 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: schowdhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D7C5FC4338F;
-        Mon,  4 Oct 2021 05:01:03 +0000 (UTC)
+        id S232523AbhJDFzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 01:55:35 -0400
+Received: from mail-eopbgr60042.outbound.protection.outlook.com ([40.107.6.42]:6112
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232131AbhJDFzf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 01:55:35 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DW8IL3JQClV/AsvuCL9ZmvuMC2bkSD9h3yskJxnp/SZb6dqOFLjaThDrousT7GXbUnZk2W3Iwl9Fed+jwgSFszK8KrX82SkSOE5EcAhU4CLjFqb7p25pwlomrfqbbrCrrSc+G42iBeegdrWcnamZtzmsFL0dGoHyYPLvbXX2502O6pCuIATwh/KqBJR+QJHvd0hc2W4gov8DbM9LLJv3jdnxh8qfmmz+ao0+LvH6Cx8QNNMflwyP1ZAPdWbTH2r4D3nxSu8ulbwMl5liNpMmB5UcJdNuPdA9cIfXulI1l7qof1kA6Ntt2lZtXI4lKyubDKQqq6tV887UZr3WKz53lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UEAcsAxkEVClTGApMBgx7pDUR8cW6nxrmrWUOlA20Vc=;
+ b=K05p9DnqtwmVfr9FnyKWYaC8NCk06D0uw+OzEpJ1uBi5QlHlgqE2N8z0bgexneZ7Uu/xIkzOGZ5QOLNIfeycGBqXse/KNj1VEg5jBzar2dqFgtIUsGAgelVRd8K5dWO04iAXlzG19WlrJzC22rC2tvCj3QUel4bF0XYHy8A8Zfja5F2IEWKyuiSjrDER6//poJfbPQ5YjaK6Cur8W195THrNlhS62zO99V21O/dNaRRSy/4R1o59E7V7JOO9adJRZgzsr4Zp+Rfmhb38NGTR9y3D6ddOuu2dkYsIY9YkkKma3asdvi+lMwHRl/MY65MjhtqAoAh4Noppph9yrtvI+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UEAcsAxkEVClTGApMBgx7pDUR8cW6nxrmrWUOlA20Vc=;
+ b=nM0b8Twri3M2WKNQ2o+KFnNtNyr2ZDEx1FAXP3KD96oXEeBk2Sk6B1KH1829QDD8aEVBI6YZ2lwrmXjQh17Y+MD7Pxw5d3mGLSLLPvw7FzPkKlv+jpDHsoJmsi4IrnvjMeTArBqIBOsqA9lLV0iecQ5cuAxlSVMeaWgUYiVAKKo=
+Received: from AS8PR04MB8673.eurprd04.prod.outlook.com (2603:10a6:20b:428::9)
+ by AS8PR04MB8946.eurprd04.prod.outlook.com (2603:10a6:20b:42d::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.16; Mon, 4 Oct
+ 2021 05:53:45 +0000
+Received: from AS8PR04MB8673.eurprd04.prod.outlook.com
+ ([fe80::d4f7:fe6:3e65:3c55]) by AS8PR04MB8673.eurprd04.prod.outlook.com
+ ([fe80::d4f7:fe6:3e65:3c55%7]) with mapi id 15.20.4566.022; Mon, 4 Oct 2021
+ 05:53:45 +0000
+From:   Kuldeep Singh <kuldeep.singh@nxp.com>
+To:     Leo Li <leoyang.li@nxp.com>
+CC:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [EXT] [PATCH v2 04/16] ARM: dts: ls1021a-qds: Add node for QSPI
+ flash
+Thread-Topic: [EXT] [PATCH v2 04/16] ARM: dts: ls1021a-qds: Add node for QSPI
+ flash
+Thread-Index: AQHXtlfopRpWy+oE2kOXPz/B4PLFIqu9mgdggAD5YICAA8ffoA==
+Date:   Mon, 4 Oct 2021 05:53:45 +0000
+Message-ID: <AS8PR04MB867338457BEBF8BB91163420E0AE9@AS8PR04MB8673.eurprd04.prod.outlook.com>
+References: <20211001000417.15334-1-leoyang.li@nxp.com>
+ <20211001000417.15334-5-leoyang.li@nxp.com>
+ <AS8PR04MB86734729E9E08F70FF7E5AEEE0AB9@AS8PR04MB8673.eurprd04.prod.outlook.com>
+ <CADRPPNTKsO7MYoUUXLgC+XnPPsrzjeBggvRnKvaB=3HUJy9-1A@mail.gmail.com>
+In-Reply-To: <CADRPPNTKsO7MYoUUXLgC+XnPPsrzjeBggvRnKvaB=3HUJy9-1A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 71bf19ca-696a-4dee-10df-08d986fb5411
+x-ms-traffictypediagnostic: AS8PR04MB8946:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AS8PR04MB8946C7499CA83146297753C0E0AE9@AS8PR04MB8946.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 399PNKkxmaW5IJPuS/TM7qnHjN9wNplB35Cy8VbyOgYwm5oF34/qADfNOH7icnd1Hdain+sbwg2fq/be4kXokYvrJsAOA1vw/WwUCjIluOGrbJ8mrQ6twwGYnevoHmKvWY/2q3VfFy4PBGQxCe3zjbcZf4RYriUfO9vTAkrLQfnfgEamB7M8p4H/5d+K0ThrG9/5xwk53XxsVR5v0CnkAQxdpT9EpAjLvct0vV54eHpkOdqFBNQ/cnGzkujEm95jZX//YDfOE2Gy4vgLOf73Cb8/WiLh2d6e1G+ciVeIn+wXKm5Y9/CwZf1fqSHVbmklG0HdhW0lcUJit7d9cgIxP/0M8arRY2RYAtIexiJPdv+tZ7SvhKE1rbLrrjrOhEHIck5uUCwpXiDhCu1kqOW26wDGL7P2fHRthWZ0URBIswXGbLWhIJ/uqVm+kl/h1EOr+UItluxFGcE1N7sfAMrfFSLFeS7zN4z8mQKFuzPSE6tOm6SxrhU5QxiuI2NQh+zjrRZF0udm+flHB1oK179vX5oufCaXgmpXVzbpiC97OsI90HXjmeJAgofZtVe1TAymxEtnf/elhxji6CNhv0DHko6G3/8qUmBFBj0YAvc1PYhOvZJ0QR4LrQRV/2ichOGssCzXCSd8uZTK/+i+kb9dLAjQNG+MCNvYMs9JgKYqC4KJ5zjs7+tH30XiVFM7Z7z+bUADf26YoJ0VEtW3ysNoSg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8673.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(122000001)(66446008)(55236004)(53546011)(508600001)(66476007)(186003)(76116006)(6636002)(6862004)(7696005)(64756008)(6506007)(316002)(54906003)(33656002)(5660300002)(8936002)(66556008)(52536014)(66946007)(26005)(38100700002)(71200400001)(8676002)(4326008)(44832011)(83380400001)(55016002)(9686003)(38070700005)(2906002)(86362001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?U3Q3cDl5MWRPYUZtUHhyd0N0ZGtPMVAzejZHMm1lUnhRTVVOZzZYaHJmcGNE?=
+ =?utf-8?B?a0x0WjNteWg1SE9vVXRXTkJQNmpSWjh1VUFIVnh0MFNqK0RuQnZ5VEd1L2lE?=
+ =?utf-8?B?QStuU2d4YUQvU1k1N0VtRlNlR3BrTERnVDE0dGQvcmtLOWtBY0FUdnhIS3lF?=
+ =?utf-8?B?b1k0cXl3ZmY1ZG5WbU15VFE3VlJLcDBHUDFSemhkUVcvRGFjbld4M2ZOeXdO?=
+ =?utf-8?B?QzRvS3V3MElVaWtRMkpCM2QrV3BiRi9HdEEyTmt4Zm0xWWFyM3luM2tSbVM1?=
+ =?utf-8?B?N25SeGRTSkxPUGpuQXM0U21yVWpFQjVtb2ZTVEFKM1ErQUJKMGwzeEt5VlVD?=
+ =?utf-8?B?TEJvQjZGSzdPQXBadXEvZUhKYmx4ZUJSZ0NNWjR5R1Y1a1VLZVdEM08vQ2F3?=
+ =?utf-8?B?RmVQNHZwS0NYckxYblNOdmxwbUFRbVhvczZwVUNTb3Q2T0xnOTQxOUFvWkhZ?=
+ =?utf-8?B?Mlh0Q3hYZThxRTg4N016T1NpSVdyd0ZWSHRxVTlaaUNRdlVrbjRjOTB4NGl5?=
+ =?utf-8?B?c1FxczJNNzlDVWljWEF3RVp6SXlhUWJSZGxVT2J4S1EzQnJkQW5XZ1FWNWJ1?=
+ =?utf-8?B?d003emc3ZnNDZk95bHZuK21ZZElWVnJJR01tWHFmWitrT295N0Vwalg4enpp?=
+ =?utf-8?B?SGJ3WkJyVWduVWY4NTFnanNWTjRlbFd6VW8xbzBVQXZVNWFMYXBSYW0xQm1L?=
+ =?utf-8?B?ZFYrWGhBcEN3ZGFKTjJHTlUzdWtNSjZNaVh0bStlREM4VGpmY0VsNG1uKytk?=
+ =?utf-8?B?NTJBNlp5TlloY3Q1ZVh4R0IrRVZTOW5mYkZ3bHV2T2pNRExua3BNcjVFVUFk?=
+ =?utf-8?B?d044ZVloYUdYN3o4VjgyV2kydXB5Y0JENWZzRkRzWEFKUTN3ZlViSTZFYzlt?=
+ =?utf-8?B?YVBwclBYUUNTMW9KYUg3WXJ6VWl3QmVRZnRseTFzVHJidGFiVFN2ekx0bG5v?=
+ =?utf-8?B?cHRyeWRyaTNIdlM2WHJaM2h1ZHp1c2hjUkRMY0xNUHN6NEp3dmQ0NThldnZl?=
+ =?utf-8?B?ZW9RZ25HN2I4UmNCQ2VIem5XUVc5dmZZczNUTW92UUk3VWhnays0aHFrT1ZE?=
+ =?utf-8?B?K2JIdGVsb0Vmak05TVpTcFkwNWRrcy94Z3Z1Z0dIa29CU2U1STgwR3VtSmNp?=
+ =?utf-8?B?V29QL0pkMkJzNis0c3FRMUs5R1BOWjRLRTdVM0gzaWx0NlNhN0lrK2R2UmNt?=
+ =?utf-8?B?T0k0RkdZQk1uT3hsMHQxQ2ZDblBlMEVaeVQzMHkrZmpqRXhXRGs0VVd3UXM4?=
+ =?utf-8?B?V014UGkxOU5WSHJVdlJHUEN0Q3c1aDNjNVM0U2xSSzZtWStzanJzTlpreEVw?=
+ =?utf-8?B?cGh6WFdWWXI0N1JQNDY1cmFGcTA3aU9RZDh1aW9HWW9jaGVlTHREbzR1QTdT?=
+ =?utf-8?B?bURYb0xDOHR3djE1ZWtTZlgwK0VaUlZhUE1sQU5pR3c1RFp4ZmwzdnBIYnp5?=
+ =?utf-8?B?YUdXVTNsM3U1QlpFa0ZNRzZiNk5tWFAwSDFXRUpjVFZWNEdhODZ5SXQwZitU?=
+ =?utf-8?B?MHcwZmZWcjdmUkxhYXl1TFg2Nzc2N0VwbUZ3VDFod0pCSEJIVmFQVmhxdVFQ?=
+ =?utf-8?B?UDZETEJ4OVBwWmpRU1FOYVJoRGlRdUh1elh0VzZBREYwamhUdEgvSCtLNmxh?=
+ =?utf-8?B?RmpLaDdOd1RuL1l3TnY2S29RNnl4WjRvcTAzT2FKVERDbFNMbDdiVy80c0Q0?=
+ =?utf-8?B?d1hUZmQwYzNtMHNnZkFkWk91cUZyYWc3b2Y1K3pzY1RDYTlEc2JSWXVTOHdF?=
+ =?utf-8?Q?W/ZR6iU4Vnju8rz3rvRZbzlDSax1Y5Xtg1idlRa?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 04 Oct 2021 10:31:03 +0530
-From:   schowdhu@codeaurora.org
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
-Subject: Re: [PATCH V6 0/7] Add driver support for Data Capture and Compare
- Engine(DCC) for SM8150,SC7280,SC7180,SDM845
-In-Reply-To: <cover.1628617260.git.schowdhu@codeaurora.org>
-References: <cover.1628617260.git.schowdhu@codeaurora.org>
-Message-ID: <d1344b04dc3f39c17f8df594769da269@codeaurora.org>
-X-Sender: schowdhu@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8673.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71bf19ca-696a-4dee-10df-08d986fb5411
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Oct 2021 05:53:45.3838
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AzYZE0F/Eydenh6SKJAuo7SM1PwRik5nGfER7nmR5/fwO63Ku1iYzvTSHax7odZVQfS85YkB7k9BVwV18qgw6g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8946
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-10 23:24, Souradeep Chowdhury wrote:
-> DCC(Data Capture and Compare) is a DMA engine designed for debugging
-> purposes.In case of a system
-> crash or manual software triggers by the user the DCC hardware stores
-> the value at the register
-> addresses which can be used for debugging purposes.The DCC driver
-> provides the user with sysfs
-> interface to configure the register addresses.The options that the DCC
-> hardware provides include
-> reading from registers,writing to registers,first reading and then
-> writing to registers and looping
-> through the values of the same register.
-> 
-> In certain cases a register write needs to be executed for accessing
-> the rest of the registers,
-> also the user might want to record the changing values of a register
-> with time for which he has the
-> option to use the loop feature.
-> 
-> The options mentioned above are exposed to the user by sysfs files
-> once the driver is probed.The
-> details and usage of this sysfs files are documented in
-> Documentation/ABI/testing/sysfs-driver-dcc.
-> 
-> As an example let us consider a couple of debug scenarios where DCC
-> has been proved to be effective
-> for debugging purposes:-
-> 
-> i)TimeStamp Related Issue
-> 
-> On SC7180, there was a coresight timestamp issue where it would
-> occasionally be all 0 instead of proper
-> timestamp values.
-> 
-> Proper timestamp:
-> Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val =
-> 0x13004d8f5b7aa; CC=0x9e
-> 
-> Zero timestamp:
-> Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
-> 
-> Now this is a non-fatal issue and doesn't need a system reset, but 
-> still needs
-> to be rootcaused and fixed for those who do care about coresight etm 
-> traces.
-> Since this is a timestamp issue, we would be looking for any timestamp 
-> related
-> clocks and such.
-> 
-> o we get all the clk register details from IP documentation and 
-> configure it
-> via DCC config syfs node. Before that we set the current linked list.
-> 
-> /* Set the current linked list */
-> echo 3 > /sys/bus/platform/devices/10a2000.dcc/curr_list
-> 
-> /* Program the linked list with the addresses */
-> echo 0x10c004 > /sys/bus/platform/devices/10a2000.dcc/config
-> echo 0x10c008 > /sys/bus/platform/devices/10a2000.dcc/config
-> echo 0x10c00c > /sys/bus/platform/devices/10a2000.dcc/config
-> echo 0x10c010 > /sys/bus/platform/devices/10a2000.dcc/config
-> ..... and so on for other timestamp related clk registers
-> 
-> /* Other way of specifying is in "addr len" pair, in below case it
-> specifies to capture 4 words starting 0x10C004 */
-> 
-> echo 0x10C004 4 > /sys/bus/platform/devices/10a2000.dcc/config
-> 
-> /* Enable DCC */
-> echo 1 > /sys/bus/platform/devices/10a2000.dcc/enable
-> 
-> /* Run the timestamp test for working case */
-> 
-> /* Send SW trigger */
-> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
-> 
-> /* Read SRAM */
-> cat /dev/dcc_sram > dcc_sram1.bin
-> 
-> /* Run the timestamp test for non-working case */
-> 
-> /* Send SW trigger */
-> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
-> 
-> /* Read SRAM */
-> cat /dev/dcc_sram > dcc_sram2.bin
-> 
-> Get the parser from [1] and checkout the latest branch.
-> 
-> /* Parse the SRAM bin */
-> python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
-> python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
-> 
-> Sample parsed output of dcc_sram1.bin:
-> 
-> <hwioDump version="1">
->         <timestamp>03/14/21</timestamp>
->             <generator>Linux DCC Parser</generator>
->                 <chip name="None" version="None">
->                 <register address="0x0010c004" value="0x80000000" />
->                 <register address="0x0010c008" value="0x00000008" />
->                 <register address="0x0010c00c" value="0x80004220" />
->                 <register address="0x0010c010" value="0x80000000" />
->             </chip>
->     <next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
-> </hwioDump>
-> 
-> ii)NOC register errors
-> 
-> A particular class of registers called NOC which are functional
-> registers was reporting
-> errors while logging the values.To trace these errors the DCC has been
-> used effectively.
-> The steps followed were similar to the ones mentioned above.
-> In addition to NOC registers a few other dependent registers were
-> configured in DCC to
-> monitor it's values during a crash. A look at the dependent register
-> values revealed that
-> the crash was happening due to a secured access to one of these
-> dependent registers.
-> All these debugging activity and finding the root cause was achieved 
-> using DCC.
-> 
-> DCC parser is available at the following open source location
-> 
-> https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
-> 
-> Changes in v6:
-> 
-> *Added support in the dcc driver to handle multiple Qualcomm SoCs
-> including SC7180,SC7280,SDM845
->  along with existing SM8150.
-> 
-> *Added the support node in the respective device tree files for
-> SC7180,SC7280,SDM845.
-> 
-> Souradeep Chowdhury (7):
->   dt-bindings: Added the yaml bindings for DCC
->   soc: qcom: dcc:Add driver support for Data Capture and Compare
->     unit(DCC)
->   MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
->     support
->   arm64: dts: qcom: sm8150: Add Data Capture and Compare(DCC) support
->     node
->   arm64: dts: qcom: sc7280: Add Data Capture and Compare(DCC) support
->     node
->   arm64: dts: qcom: sc7180: Add Data Capture and Compare(DCC) support
->     node
->   arm64: dts: qcom: sdm845: Add Data Capture and Compare(DCC) support
->     node
-> 
->  Documentation/ABI/testing/sysfs-driver-dcc         |  114 ++
->  .../devicetree/bindings/arm/msm/qcom,dcc.yaml      |   43 +
->  MAINTAINERS                                        |    8 +
->  arch/arm64/boot/dts/qcom/sc7180.dtsi               |    6 +
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               |    6 +
->  arch/arm64/boot/dts/qcom/sdm845.dtsi               |    6 +
->  arch/arm64/boot/dts/qcom/sm8150.dtsi               |    6 +
->  drivers/soc/qcom/Kconfig                           |    8 +
->  drivers/soc/qcom/Makefile                          |    1 +
->  drivers/soc/qcom/dcc.c                             | 1549 
-> ++++++++++++++++++++
->  10 files changed, 1747 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
->  create mode 100644 
-> Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
->  create mode 100644 drivers/soc/qcom/dcc.c
-
-Gentle ping
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBMaSBZYW5nIDxsZW95YW5nLmxp
+QG54cC5jb20+DQo+IFNlbnQ6IFNhdHVyZGF5LCBPY3RvYmVyIDIsIDIwMjEgMTozOCBBTQ0KPiBU
+bzogS3VsZGVlcCBTaW5naCA8a3VsZGVlcC5zaW5naEBueHAuY29tPg0KPiBDYzogU2hhd24gR3Vv
+IDxzaGF3bmd1b0BrZXJuZWwub3JnPjsgUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47
+DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBPbGVrc2lqIFJlbXBlbCA8bGludXhAcmVt
+cGVsLXByaXZhdC5kZT47IGxpbnV4LQ0KPiBhcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7
+IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gU3ViamVjdDogUmU6IFtFWFRdIFtQQVRD
+SCB2MiAwNC8xNl0gQVJNOiBkdHM6IGxzMTAyMWEtcWRzOiBBZGQgbm9kZSBmb3INCj4gUVNQSSBm
+bGFzaA0KPiANCj4gQ2F1dGlvbjogRVhUIEVtYWlsDQo+IA0KPiBPbiBGcmksIE9jdCAxLCAyMDIx
+IGF0IDEyOjMwIEFNIEt1bGRlZXAgU2luZ2ggPGt1bGRlZXAuc2luZ2hAbnhwLmNvbT4NCj4gd3Jv
+dGU6DQo+ID4NCj4gPiBIaSBMZW8sDQo+ID4NCj4gPiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
+LS0tDQo+ID4gPiBGcm9tOiBMaSBZYW5nIDxsZW95YW5nLmxpQG54cC5jb20+DQo+ID4gPiBTZW50
+OiBGcmlkYXksIE9jdG9iZXIgMSwgMjAyMSA1OjM0IEFNDQo+ID4gPiBUbzogU2hhd24gR3VvIDxz
+aGF3bmd1b0BrZXJuZWwub3JnPjsgUm9iIEhlcnJpbmcNCj4gPiA+IDxyb2JoK2R0QGtlcm5lbC5v
+cmc+OyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgT2xla3NpaiBSZW1wZWwNCj4gPiA+IDxs
+aW51eEByZW1wZWwtcHJpdmF0LmRlPjsgbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQu
+b3JnOw0KPiA+ID4gbGludXgtIGtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gPiA+IENjOiBMZW8g
+TGkgPGxlb3lhbmcubGlAbnhwLmNvbT4NCj4gPiA+IFN1YmplY3Q6IFtFWFRdIFtQQVRDSCB2MiAw
+NC8xNl0gQVJNOiBkdHM6IGxzMTAyMWEtcWRzOiBBZGQgbm9kZSBmb3INCj4gPiA+IFFTUEkgZmxh
+c2gNCj4gPiA+DQo+ID4gPiBDYXV0aW9uOiBFWFQgRW1haWwNCj4gPiA+DQo+ID4gPiBBZGQgdGhl
+IG1pc3Npbmcgbm9kZSBmb3IgcXNwaSBmbGFzaC4NCj4gPiA+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5
+OiBMaSBZYW5nIDxsZW95YW5nLmxpQG54cC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+ICBhcmNoL2Fy
+bS9ib290L2R0cy9sczEwMjFhLXFkcy5kdHMgfCAxNSArKysrKysrKysrKysrKysNCj4gPiA+ICAx
+IGZpbGUgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKQ0KPiA+ID4NCj4gPiA+IGRpZmYgLS1naXQg
+YS9hcmNoL2FybS9ib290L2R0cy9sczEwMjFhLXFkcy5kdHMNCj4gPiA+IGIvYXJjaC9hcm0vYm9v
+dC9kdHMvbHMxMDIxYS1xZHMuZHRzDQo+ID4gPiBpbmRleCBlMmFhNTY5ZmY0MDQuLjUyMmUxZGM1
+MTA1OSAxMDA2NDQNCj4gPiA+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2xzMTAyMWEtcWRzLmR0
+cw0KPiA+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvbHMxMDIxYS1xZHMuZHRzDQo+ID4gPiBA
+QCAtMjg2LDYgKzI4NiwyMSBAQCB0YmkwOiB0YmktcGh5QDggew0KPiA+ID4gICAgICAgICB9Ow0K
+PiA+ID4gIH07DQo+ID4gPg0KPiA+ID4gKyZxc3BpIHsNCj4gPiA+ICsgICAgICAgbnVtLWNzID0g
+PDI+Ow0KPiA+DQo+ID4gUGxlYXNlIGRyb3AgIm51bS1jcyIgcHJvcGVydHkgYXMgaXQgaXMgbm90
+IHVzZWQgYnkgcXNwaSBkcml2ZXIuDQo+ID4NCj4gPiA+ICsgICAgICAgc3RhdHVzID0gIm9rYXki
+Ow0KPiA+ID4gKw0KPiA+ID4gKyAgICAgICBxZmxhc2gwOiBmbGFzaEAwIHsNCj4gPg0KPiA+IENh
+biB3ZSBoYXZlIGZsYXNoIGNoaXAgbmFtZSBpbnN0ZWFkIG9mIHFmbGFzaD8NCj4gPiBUaGVyZSBp
+cyBubyBoYXJkIHJlcXVpcmVtZW50LCBpdCB3aWxsIGhlbHAgaW4gYWxpZ25pbmcgbm9kZSBwcm9w
+ZXJ0aWVzIHdpdGgNCj4gb3RoZXIgYm9hcmQgcHJvcGVydGllcyBzdWNoIGFzIExYMjE2MEEtUkRC
+LCBMUzEwNDZBLVJEQiBldGMuDQo+IA0KPiBUaGFua3MgZm9yIHRoZSByZXZpZXcuICBJIGZpbmQg
+dGhhdCB0aGVyZSBpcyBubyByZWZlcmVuY2UgdG8gdGhlIGxhYmVsIGF0IGFsbC4gIEkNCj4gZG9u
+J3Qga25vdyB3aHkgd2UgYWRkZWQgaXQgaW4gdGhlIGZpcnN0IHBsYWNlLiAgUHJvYmFibHkgd2Ug
+Y2FuIGp1c3QgcmVtb3ZlIGl0Pw0KDQpJIGJlbGlldmUgeWVzLCB0aG91Z2ggSSBoYXZlbid0IGNo
+ZWNrZWQgaXQgYnV0IEkgdGhpbmsgaXQncyBzYWZlIHRvIHJlbW92ZSBsYWJlbCBhbmQga2VlcCBv
+bmx5IGZsYXNoQDAuDQoNClJlZ2FyZHMNCkt1bGRlZXANCg==
