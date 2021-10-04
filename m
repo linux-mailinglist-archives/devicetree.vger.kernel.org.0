@@ -2,253 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 466FF4206C2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 09:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA0B4206C8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 09:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230195AbhJDHn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 03:43:57 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54330
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230160AbhJDHn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 03:43:56 -0400
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 58F3E4076F
-        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 07:42:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633333327;
-        bh=e714NVWVScI0+yjdvUNrvtSFupcv664MYMHWSpxcxMo=;
-        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=fxmqJbG0nE9sOnkZMUmLGzzspYDtu0XNidN/HrgIt1hm9xKusY2FNT77rT68o1nxy
-         IG+FAiStp6vDArhH6If7plJckPPZdu5cJQzai8RanBUXLtf+luIgbqL93p39LC1J/M
-         1CTztxDw7fNDXRAZSL5iFBNsYw4IExDpGjXDj8QcblT1sbRAQj6Gn7AIFFGfperUDS
-         1wL0kKKayv9JVVVCM9hnpVvBC4Ji8wcuTISLFhGSMM7pzXPah3nz4CpW/gG0kVr7kF
-         U0hMY6jzk1t2GaH4Us3wJSzTmzqB32PH0kgrnVLOirctmd9QGoafIb5CoAq/JSwWCA
-         ElGhO3/SQTwlg==
-Received: by mail-lf1-f70.google.com with SMTP id x7-20020a056512130700b003fd1a7424a8so8051342lfu.5
-        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 00:42:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=e714NVWVScI0+yjdvUNrvtSFupcv664MYMHWSpxcxMo=;
-        b=jL+Z+/vq8KNhgSq8phgxJ98GAydhl7gYMtNX9cdjzKsDHCiJjZmU2Xuk0lcDwydHq/
-         tyreoIrRV1vmqlEa7tDPXEbtFD9I29PubN3QpVBUhjUZqr/E9WmC+v3kqyZQTRBDN8Ex
-         B4ypG+EeB3babNYuvDI9Yy6sC2mCXJ7rorHTuIeVtxLO8Bc36mCb5+RxUMr/Tt5vT9Mj
-         gyltuRO3DTf8q8ECK4Fi6nLOLU8frn1UCtFPrUJlh53Uq5a+LkUhfVfYo6dMWGltpYfL
-         q4Omhpqg/8+UuKaXvZ5xFKAxRVKLSRWQRyB2KMF6Zckl9shuYgNCWfA56nrvptegEk/F
-         MQxQ==
-X-Gm-Message-State: AOAM530LO9FhF9l1f6ZuXYkTRF7vS1eYFVCBODQ17JIhOPaUkdVX/ljt
-        IfGzBcOyuggsyj2zKxjBJh+9CRyB3jvdlgTtGxNwuaXvZ3FRVs0ApaydpdcAxP3KEz6cp45Ni8L
-        8EoAf4DWcKNlswRTbL4xeqvb5pg7tjLw9TYQBpSA=
-X-Received: by 2002:a2e:7d15:: with SMTP id y21mr13936964ljc.70.1633333326562;
-        Mon, 04 Oct 2021 00:42:06 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzRJspKI6Vl7ZMdGxUQeATfKQIB9Bmf0vo2F7KLIpoe6VCVE+oWZXaAY8PDuK8/hw5UWEtJVA==
-X-Received: by 2002:a2e:7d15:: with SMTP id y21mr13936948ljc.70.1633333326351;
-        Mon, 04 Oct 2021 00:42:06 -0700 (PDT)
-Received: from [192.168.0.197] ([193.178.187.25])
-        by smtp.gmail.com with ESMTPSA id l24sm1532183lfh.8.2021.10.04.00.42.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Oct 2021 00:42:05 -0700 (PDT)
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20211003013235.2357-1-digetx@gmail.com>
- <20211003013235.2357-2-digetx@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: memory: Add LPDDR2 binding
-Message-ID: <4c5643de-d39d-2b1a-12ae-ec5247fe2976@canonical.com>
-Date:   Mon, 4 Oct 2021 09:42:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230359AbhJDHq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 03:46:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40226 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230175AbhJDHqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 03:46:25 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D76EC061745
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 00:44:37 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mXIe9-0008Jp-O3; Mon, 04 Oct 2021 09:44:25 +0200
+Message-ID: <856e8e738338f376b98303a8d9c988e0af43a85f.camel@pengutronix.de>
+Subject: Re: [PATCH v4 14/18] arm64: dts: imx8mm: add GPC node
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Adam Ford <aford173@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de
+Date:   Mon, 04 Oct 2021 09:44:24 +0200
+In-Reply-To: <CAJ+vNU0n1aav4kBR6sgkukMZe2Mwu+a_+L5yX5nvBHd-5_bSEA@mail.gmail.com>
+References: <20210910202640.980366-1-l.stach@pengutronix.de>
+         <20210910202640.980366-15-l.stach@pengutronix.de>
+         <CAJ+vNU2F6RLK3mT5mws0X+EOgsF_+N0JC20ZNWEQtdj_cY9KHg@mail.gmail.com>
+         <b4c51d93b2837666f44ea4a0e2b1fdb60ceaae15.camel@pengutronix.de>
+         <CAJ+vNU3rK=4y3wj_WCSdBozUZK1P=vmhowtgBZcW9OW-+N-LGA@mail.gmail.com>
+         <CAJ+vNU1VKyZzkyeah1QtxA1y_Oswmgs4qWE87ZRU9++DqQSveA@mail.gmail.com>
+         <21bef8f0351a8a6c65e38f7ba80b98b34aec7b73.camel@pengutronix.de>
+         <CAJ+vNU3Qt3BCLLUjHaFdeq7L-A_Re2r=__10Mg_vLFA=6U02Cw@mail.gmail.com>
+         <fde6a0f40aa3ba41b054bcbc4c50a05e77a431cd.camel@pengutronix.de>
+         <CAJ+vNU2MY9GYgEE9zgFHRKeyoc2a7G0AU9yu5xrbU2wO9Cx3DQ@mail.gmail.com>
+         <aff038a7710618d21a48c8d79f0317e69b6cbb33.camel@pengutronix.de>
+         <CAJ+vNU0n1aav4kBR6sgkukMZe2Mwu+a_+L5yX5nvBHd-5_bSEA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-In-Reply-To: <20211003013235.2357-2-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/10/2021 03:32, Dmitry Osipenko wrote:
-> Add binding for standard LPDDR2 memory chip properties.
+Am Sonntag, dem 03.10.2021 um 14:21 -0700 schrieb Tim Harvey:
+> On Sun, Oct 3, 2021 at 12:44 PM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > 
+> > Am Sonntag, dem 03.10.2021 um 10:17 -0700 schrieb Tim Harvey:
+> > > On Sat, Oct 2, 2021 at 5:51 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > > > 
+> > > > Hi Tim,
+> > > > 
+> > > > Am Freitag, dem 01.10.2021 um 19:43 -0700 schrieb Tim Harvey:
+> > > > > > > > > 
+> > > > [...]
+> > > > > > > > > > Lucas,
+> > > > > > > > > > 
+> > > > > > > > > > I've been using your 'i.MX8MM GPC improvements and BLK_CTRL driver'
+> > > > > > > > > > series for imx8mm-venice* and imx8mn-venice* boards. Thank you for
+> > > > > > > > > > this work and I hope to see it merged soon!
+> > > > > > > > > > 
+> > > > > > > > > > I have found that on the imx8mm-venice-gw7901 board which does not use
+> > > > > > > > > > MIPI and thus does not connect VDD_MIPI_1P8, VDD_MIPI_1P2,
+> > > > > > > > > > VDD_MIPI_0P9, MIPI_VREG_CAP pins on the IMX8MM hangs with this
+> > > > > > > > > > particular patch. If I comment out the pgc_mipi domain and subsequent
+> > > > > > > > > > disp_blk_ctrl node from a later patch it resolves the hang. Is this
+> > > > > > > > > > behavior expected and what would your recommendation be to work around
+> > > > > > > > > > it?
+> > > > > > > > > 
+> > > > > > > > > No, this isn't expected. If there are no active devices in the MIPI
+> > > > > > > > > domain, the power domain should not be touched, as we treat all of them
+> > > > > > > > > as disabled initially. If we don't touch the domain I would expect that
+> > > > > > > > > the power supply not being present shouldn't be an issue.
+> > > > > > > > > 
+> > > > > > > > > Can you check if something in your system causes this power domain to
+> > > > > > > > > be powered up? Easiest way is probably to sprinkle a
+> > > > > > > > > printk("%s\n, genpd->name) in both imx8m_blk_ctrl_power_on() and
+> > > > > > > > > imx_gpc_power_on().
+> > > > > > > > > 
+> > > > > > > > 
+> > > > > > > > Lucas,
+> > > > > > > > 
+> > > > > > > > Here's what I see before I hang (debug print on both power on/off
+> > > > > > > > followed by a msleep(1000) to make sure I see it before I hang):
+> > > > > > > > [    0.518319] imx_pgc_power_up hsiomix
+> > > > > > > > [    0.624031] imx_pgc_power_down hsiomix
+> > > > > > > > [    0.731879] imx_pgc_power_up hsiomix
+> > > > > > > > [    0.839906] imx_pgc_power_down hsiomix
+> > > > > > > > [    0.947875] imx_pgc_power_up hsiomix
+> > > > > > > > [    1.055859] imx_pgc_power_down hsiomix
+> > > > > > > > [    1.057296] imx_pgc_power_up gpumix
+> > > > > > > > [    1.167884] imx_pgc_power_down gpumix
+> > > > > > > > [    0.518513] imx_pgc_power_up hsiomix
+> > > > > > > > [    0.519933] imx_pgc_power_up gpumix
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > The board also has IMX8MM VDD_GPU pins not connected so it makes sense
+> > > > > > > that we hang here I suppose. Yet if I add the folloiwng to
+> > > > > > > imx8mm-venice-gw7901.dts it still tries to enable them and hangs:
+> > > > > > > &gpu_2d {
+> > > > > > >         status = "disabled";
+> > > > > > > };
+> > > > > > > 
+> > > > > > > &gpu_3d {
+> > > > > > >         status = "disabled";
+> > > > > > > };
+> > > > > > > 
+> > > > > > > &vpu_blk_ctrl {
+> > > > > > >         status = "disabled";
+> > > > > > > };
+> > > > > > 
+> > > > > > The pgc_gpu is a "active" consumer of the pgc_gpumix domain while the
+> > > > > > driver gets probed, so the driver core will power up the gpumix domain
+> > > > > > for a moment during kernel init. To avoid this you must at least set
+> > > > > > the status of the pgc_gpu node to disabled.
+> > > > > > 
+> > > > > 
+> > > > > I've tried that and it doesn't work either.
+> > > > > 
+> > > > > &gpu_2d {
+> > > > >         status = "disabled";
+> > > > > };
+> > > > > 
+> > > > > &gpu_3d {
+> > > > >         status = "disabled";
+> > > > > };
+> > > > > 
+> > > > > &vpu_blk_ctrl {
+> > > > >         status = "disabled";
+> > > > > };
+> > > > > 
+> > > > > &pgc_gpumix {
+> > > > >         status = "disabled";
+> > > > > };
+> > > > > 
+> > > > > &pgc_gpu {
+> > > > >         status = "disabled";
+> > > > > };
+> > > > > 
+> > > > > The interesting thing is that the first patch that causes this is
+> > > > > 'arm64: dts: imx8mm: add GPC node' which just adds the gpc node and is
+> > > > > before the addition of the other nodes. Therefore these are being
+> > > > > enabled by default regardless of the above nodes being disabled (or
+> > > > > not even added yet to imx8mm.dtsi).
+> > > > 
+> > > > My bad, I didn't think about the fact that the power domain devices are
+> > > > not instantiated via the common OF populate code. For the status
+> > > > property to work as expected the GPCv2 code needs to check this
+> > > > property. I've just sent a patch to make this happen. Can you give it
+> > > > another try with your DT changes and this patch applied?
+> > > > 
+> > > 
+> > > Yes, this makes sense and resolves it with only disabling pgc_gpumix in my dts.
+> > > 
+> > > I believe it is fine for me to not specifically disable gpu_2d and
+> > > gpu_3d as they are not enabled by default in imx8mm.dtsi and I don't
+> > > believe that will change and I don't 'currently' need to disable
+> > > disp_blk_ctrl or pgc_mipi but wondering if I should as the MIPI rails
+> > > are not hooked up either? (ie will something added in the future try
+> > > to use them?)
+> > > 
+> > I think it would be better to disable the GPU devices in your DT. They
+> > don't have a status property and thus are enabled by default. They
+> > won't probe without the power domain being available, but it will cause
+> > those devices to stay in probe deferred state forever, which may
+> > confuse some users. So I guess it would be good style to disable the
+> > GPU nodes.
+> > 
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  .../memory-controllers/jedec,lpddr2.yaml      | 80 +++++++++++++++++++
->  include/dt-bindings/memory/lpddr2.h           | 25 ++++++
-
-Hi Dmitry,
-
-Thanks for doing this. I think I should be slightly more descriptive in
-my previous comment. What I meant, is to use existing DDR bindings
-(which might include or require converting them to YAML):
-Documentation/devicetree/bindings/ddr/
-
-The bindings are already used:
-arch/arm/boot/dts/elpida_ecb240abacn.dtsi
-arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-drivers/memory/samsung/exynos5422-dmc.c
-
-You can remove the Documentation/devicetree/bindings/ddr/lpddr2.txt
-after full conversion, so also including AC timings and AC timing
-parameters. The timing parameters could be a separate YAML, if you want
-to convert everything. You can also skip it, because it is not necessary
-for your work.
-
-
-Rob,
-Any advice from your side where to put LPDDR2 dtschema bindings? The
-existing location was bindings/ddr/ but maybe this should be part of
-memory-controllers (although it is not actually a controller but rather
-used by the controller)?
-
->  2 files changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/jedec,lpddr2.yaml
->  create mode 100644 include/dt-bindings/memory/lpddr2.h
+> it still tries to power the pgc_gpumix domain if I 'only' disable
+> gpu_2d and gpu_3d. I have to disable 'pgc_gpumix' specifically - is
+> that what you expect here?
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/jedec,lpddr2.yaml
-> new file mode 100644
-> index 000000000000..ef227eba1e4a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/jedec,lpddr2.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/jedec,lpddr2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: JEDEC LPDDR2 SDRAM
-> +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzk@kernel.org>
-> +
-> +properties:
-
-You need compatible (see lpddr2.txt)
-
-> +  jedec,lpddr2-manufacturer-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maximum: 255
-> +    description: |
-> +      Unique manufacturer ID of SDRAM chip. See MR5 description in JESD209-2.
-
-Plus:
-"See include/dt-bindings/memory/lpddr2.h for known manufactured IDs."
-
-However I wonder whether we need it. It should be taken from the vendor
-part of compatible.
-
-> +
-> +  jedec,lpddr2-revision-id1:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maximum: 255
-> +    description: |
-> +      Revision 1 value of SDRAM chip.
-> +      See MR6 description in chip vendor specification.
-> +
-> +  jedec,lpddr2-revision-id2:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maximum: 255
-> +    description: |
-> +      Revision 2 value of SDRAM chip.
-> +      See MR7 description in chip vendor specification.
-> +
-> +  jedec,lpddr2-density-mbits:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Density in megabits of SDRAM chip. See MR8 description in JESD209-2.
-> +    enum:
-> +      - 64
-> +      - 128
-> +      - 256
-> +      - 512
-> +      - 1024
-> +      - 2048
-> +      - 4096
-> +      - 8192
-> +      - 16384
-> +      - 32768
-> +
-> +  jedec,lpddr2-io-width-bits:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      IO bus width in bits of SDRAM chip. See MR8 description in JESD209-2.
-> +    enum:
-> +      - 32
-> +      - 16
-> +      - 8
-> +
-> +  jedec,lpddr2-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      LPDDR type which corresponds to a number of words SDRAM pre-fetches
-> +      per column request. See MR8 description in JESD209-2.
-> +    enum:
-> +      - 0 # S4 (4 words prefetch architecture)
-> +      - 1 # S2 (2 words prefetch architecture)
-> +      - 2 # NVM (Non-volatile memory)
-
-Type should not be needed but instead taken from compatible. Unless Rob
-has here preference and maybe change the DDR bindings?
-
-requiredProperties for compatible, density, io-width.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/memory/lpddr2.h>
-> +
-> +    lpddr2 {
-> +        jedec,lpddr2-manufacturer-id = <LPDDR2_MANID_ELPIDA>;
-> +        jedec,lpddr2-revision-id1 = <1>;
-> +        jedec,lpddr2-density-mbits = <2048>;
-> +        jedec,lpddr2-io-width-bits = <16>;
-> +        jedec,lpddr2-type = <LPDDR2_TYPE_S4>;
-> +    };
-> diff --git a/include/dt-bindings/memory/lpddr2.h b/include/dt-bindings/memory/lpddr2.h
-> new file mode 100644
-> index 000000000000..e837b0d8a11e
-> --- /dev/null
-> +++ b/include/dt-bindings/memory/lpddr2.h
-> @@ -0,0 +1,25 @@
-> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
-> +#ifndef _DT_BINDINGS_LPDDR2_H
-> +#define _DT_BINDINGS_LPDDR2_H
-> +
-> +#define LPDDR2_MANID_SAMSUNG		1
-> +#define LPDDR2_MANID_QIMONDA		2
-> +#define LPDDR2_MANID_ELPIDA		3
-> +#define LPDDR2_MANID_ETRON		4
-> +#define LPDDR2_MANID_NANYA		5
-> +#define LPDDR2_MANID_HYNIX		6
-> +#define LPDDR2_MANID_MOSEL		7
-> +#define LPDDR2_MANID_WINBOND		8
-> +#define LPDDR2_MANID_ESMT		9
-> +#define LPDDR2_MANID_SPANSION		11
-> +#define LPDDR2_MANID_SST		12
-> +#define LPDDR2_MANID_ZMOS		13
-> +#define LPDDR2_MANID_INTEL		14
-> +#define LPDDR2_MANID_NUMONYX		254
-> +#define LPDDR2_MANID_MICRON		255
-> +
-> +#define LPDDR2_TYPE_S4			0
-> +#define LPDDR2_TYPE_S2			1
-> +#define LPDDR2_TYPE_NVM			2
-> +
-> +#endif /*_DT_BINDINGS_LPDDR2_H */
+> > One consequence of disabling the MIPI power domain is that the disp-
+> > blk-ctrl driver won't probe anymore, as it needs all the referenced
+> > power domains to be available. Do you think this might be an issue? Is
+> > there a valid system configuration where you would use devices from
+> > from the display power domain, but not the MIPI domain? If that's a
+> > valid case we might need to make this configuration possible in the
+> > disp-blk-ctrl driver.
 > 
+> In the case of imx8mm I don't see that you can have any display
+> without MIPI however the imx8mp can have HDMI display without needing
+> MIPI so in general that should be allowed.
+
+I was thinking about the camera input path, but this one also needs the
+MIPI domain. The camera interface is useless without the MIPI PHY to
+get data from. The i.MX8MP is a different topic, as the HDMI part is a
+separate blk-ctrl domain there.
+
+With that in mind, I think things are okay as they are implemented now,
+as I don't see any use-case where one would want to use devices from
+the DISP domain (CSI, LCDIF) without having the MIPI PHY parts
+available.
+
+Regards,
+Lucas
+
+> 
+> > 
+> > > What needs to be done to get this series merged? I suppose it's too
+> > > late to get it into 5.13?
+> > 
+> > 5.13? Way too late, even the 5.15 merge window is long closed. The
+> > series is almost completely reviewed and the DT bindings are also good
+> > to go. So if no one happens to run into any real showstopper, Shawn may
+> > be willing to pick up the series and stage it for the 5.16 merge
+> > window.
+> 
+> oops... I meant 5.15 but yes, seems too late for that. We seem to have
+> time to get this into 5.16 however. I'm not sure what Shawn's cut-off
+> is there.
+> 
+> Tim
 
 
-Best regards,
-Krzysztof
