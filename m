@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24A5D4214AB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:02:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 847274214B6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 19:02:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237798AbhJDRDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 13:03:54 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:39456 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236018AbhJDRDy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 13:03:54 -0400
-Received: by mail-ot1-f44.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so22433827ota.6;
-        Mon, 04 Oct 2021 10:02:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=z8bpX5ohfnGv7NG36iJlZFsfoAswAuM/dfneaZYCWlc=;
-        b=BW0GbdQfEwvME+IQcjs6ntrrzzuWBZJ7ZL0AlgRBf0+k+Gl0C/ndIO+TI/CCVD2KrU
-         KiLUPsq1FkH6gdUMGDw7TnycH6i8VdNg6Wk0WKhog2BVPOIyVUd/BzY1Jne0tcPaC1ue
-         GZeKR/M2cCjWWhIaH1T0gZmjH0AENyYWZhOXona9bW3CF3XkPnLZEuIdogdjrzuv8/Qe
-         mU4e7az8X5K6gg15NwEOtxcA7xK73ptlAbozYtVin9Nz33XrSOUHsrE9WjiqvrU/9XET
-         OJCNoSIghDhdmlsdQY/JhJ6dPRL72KCOXsGcuXz4Hmbk+/oquW2Wl3zhygvjKtiJyeue
-         7g2g==
-X-Gm-Message-State: AOAM533zDONekOKZpcOXDhtx0GXk1o0rv8kEm0HB4kBHQvBQV2jJRMfw
-        pjNlcN7+mhWbaiMcUiL/yw==
-X-Google-Smtp-Source: ABdhPJxJSYblX7JkA85U0CFTxkDI1xiwSypwDUBERIDrrr6PccL+U6MR2gBqou0mYj1RzK5yhsT2RQ==
-X-Received: by 2002:a05:6830:4089:: with SMTP id x9mr10314313ott.223.1633366924827;
-        Mon, 04 Oct 2021 10:02:04 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f61sm2994889otf.73.2021.10.04.10.02.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 10:02:03 -0700 (PDT)
-Received: (nullmailer pid 1477065 invoked by uid 1000);
-        Mon, 04 Oct 2021 17:02:03 -0000
-Date:   Mon, 4 Oct 2021 12:02:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        linux-renesas-soc@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sandeep Panda <spanda@codeaurora.org>
-Subject: Re: [PATCH] dt-bindings: drm/bridge: ti-sn65dsi86: Fix reg value
-Message-ID: <YVszi+keVlkqSfYY@robh.at.kernel.org>
-References: <08f73c2aa0d4e580303357dfae107d084d962835.1632486753.git.geert+renesas@glider.be>
+        id S238086AbhJDREi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 13:04:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36866 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238098AbhJDREh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 13:04:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 847DC6120A;
+        Mon,  4 Oct 2021 17:02:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633366968;
+        bh=Gx/CYCFVJu84iQ/txzZ7rjGlD1I/Qy9L32fCT0MwsCQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=haCRp0q6vEu7267/hmBwEWWjTOY2l11CSxN7JJkNu7wTw9cdaY+SFa2Bxx3C8Rgx7
+         bPjpCj+mWk6uzY0LsKok54Fzi0cB+K3NVUf5E9v2NduyguTKRJVYwetLNdu6RbNz+W
+         ZX+Kb0RFA+9BsuqvAQO7kauy1vv40I2p3qjUxiMRAf2mC8TxeFdy8yf1x938/p2Xwr
+         1n4iZCxDG6j1fNUQ98HtGVdAH89FvDBM9iHDBNPgSTWoxgKEgG6s6om59U8OyW3njb
+         kHFz9e11D3KGiiS6dzKl+wz5WwcDpm4iDe3e4DxXD4SSVVuist4PjaZ90LDseUZxaO
+         gVd4vjfhSzFsw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        Rob Herring <robh@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: uniphier: Add description of each port number
+Date:   Mon,  4 Oct 2021 18:02:33 +0100
+Message-Id: <163336659968.3340210.15989674520560079639.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <1633313546-23258-1-git-send-email-hayashi.kunihiko@socionext.com>
+References: <1633313546-23258-1-git-send-email-hayashi.kunihiko@socionext.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <08f73c2aa0d4e580303357dfae107d084d962835.1632486753.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Sep 2021 14:35:12 +0200, Geert Uytterhoeven wrote:
-> make dtbs_check:
+On Mon, 4 Oct 2021 11:12:26 +0900, Kunihiko Hayashi wrote:
+> To eliminate FIXME, add descriptions of what each port number is
+> associated with.
 > 
->     arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml: bridge@2c: reg:0:0: 45 was expected
-> 
-> According to the datasheet, the I2C address can be either 0x2c or 0x2d,
-> depending on the ADDR control input.
-> 
-> Fixes: e3896e6dddf0b821 ("dt-bindings: drm/bridge: Document sn65dsi86 bridge bindings")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> Also seen with the in-flight Falcon DSI display output patch:
-> 
->     arch/arm64/boot/dts/renesas/r8a779a0-falcon.dt.yaml: sn65dsi86@2c: reg:0:0: 45 was expected
-> ---
->  .../devicetree/bindings/display/bridge/ti,sn65dsi86.yaml        | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Applied, thanks!
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: uniphier: Add description of each port number
+      commit: 2a04151ff95a3c430150064b0c8beb1981f81187
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
