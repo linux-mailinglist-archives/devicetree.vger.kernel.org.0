@@ -2,69 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCCA64207D1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 11:05:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 266724207D3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 11:05:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230453AbhJDJHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 05:07:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230022AbhJDJG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 05:06:59 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB720C061745;
-        Mon,  4 Oct 2021 02:05:10 -0700 (PDT)
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        id S231303AbhJDJHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 05:07:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52710 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230022AbhJDJHf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 05:07:35 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 8E8D380D2E;
-        Mon,  4 Oct 2021 11:05:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1633338307;
-        bh=SdoqJLKmubUagmXHnGxb49M8Qt5ZdbF/okH3GByeG98=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=OOOW3ycLKZ5AX08jBnTL86jvCfKkQr0ebqwxPgZ4DeHeOovbNGxTxxntTlV7YC98z
-         evuCKh+s4IIkXABNzj8Q1F2C0GiCQYdS8CBRYF+2B6az6aX6rcIqkM5KHq1PamGgho
-         x5Lc0ysBKD7RuPEJsexrVY5tKo/hy/Fy8MeqYTxXucKNuJQnEX6VtUH2N6FmtFAfJu
-         CZLNnanNJyERacGXN3o79fj8JyWu0ai+MwRmNNnBRkKfjlO8lyjw59+Ur4sicZUlCV
-         CIVnXjYeyLSMMcItYMlDPYMS9bFqt7nrA1hVz+sDXYj5+udmIple9+TpM0j5FBmtoA
-         RTNkF7HAQRW3w==
-Subject: Re: [PATCH v2] ARM: dts: stm32: fix AV96 board SAI2 pin muxing on
- stm32mp15
-To:     Olivier Moysan <olivier.moysan@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20211004090304.8984-1-olivier.moysan@foss.st.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <e8440a2b-521f-75f5-c529-e05c93e9a40f@denx.de>
-Date:   Mon, 4 Oct 2021 11:05:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <20211004090304.8984-1-olivier.moysan@foss.st.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+        by mail.kernel.org (Postfix) with ESMTPSA id 0EC18613A2;
+        Mon,  4 Oct 2021 09:05:47 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mXJur-00EZok-3A; Mon, 04 Oct 2021 10:05:45 +0100
+Date:   Mon, 04 Oct 2021 10:05:44 +0100
+Message-ID: <87czolrwgn.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        Joey Gouly <joey.gouly@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, kernel-team@android.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v5 00/14] PCI: Add support for Apple M1
+In-Reply-To: <20211004083845.GA22336@lpieralisi>
+References: <20210929163847.2807812-1-maz@kernel.org>
+        <20211004083845.GA22336@lpieralisi>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lorenzo.pieralisi@arm.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org, kw@linux.com, alyssa@rosenzweig.io, stan@corellium.com, kettenis@openbsd.org, sven@svenpeter.dev, marcan@marcan.st, Robin.Murphy@arm.com, joey.gouly@arm.com, joro@8bytes.org, kernel-team@android.com, linus.walleij@linaro.org, arnd@arndb.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/4/21 11:03 AM, Olivier Moysan wrote:
-> Fix SAI2A and SAI2B pin muxings for AV96 board on STM32MP15.
-> Change sai2a-4 & sai2a-5 to sai2a-2 & sai2a-2.
-> Change sai2a-4 & sai2a-sleep-5 to sai2b-2 & sai2b-sleep-2
-> 
-> Fixes: dcf185ca8175 ("ARM: dts: stm32: Add alternate pinmux for SAI2 pins on stm32mp15")
-> 
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+Hi Lorenzo,
 
-Nice, thank you.
+[+LinusW, Arnd]
 
-Reviewed-by: Marek Vasut <marex@denx.de>
+On Mon, 04 Oct 2021 09:38:45 +0100,
+Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> wrote:
+> 
+> On Wed, Sep 29, 2021 at 05:38:33PM +0100, Marc Zyngier wrote:
+> > This is v5 of the series adding PCIe support for the M1 SoC. Not a lot
+> > has changed this time around, and most of what I was saying in [1] is
+> > still valid.
+> > 
+> > Very little has changed code wise (a couple of bug fixes). The series
+> > however now carries a bunch of DT updates so that people can actually
+> > make use of PCIe on an M1 box (OK, not quite, you will still need [2],
+> > or whatever version replaces it). The corresponding bindings are
+> > either already merged, or queued for 5.16 (this is the case for the
+> > PCI binding).
+> > 
+> > It all should be in a state that makes it mergeable (yeah, I said that
+> > last time... I mean it this time! ;-).
+> > 
+> > As always, comments welcome.
+> > 
+> > 	M.
+> > 
+> > [1] https://lore.kernel.org/r/20210922205458.358517-1-maz@kernel.org
+> > [2] https://lore.kernel.org/r/20210921222956.40719-2-joey.gouly@arm.com
+> > 
+> > Alyssa Rosenzweig (2):
+> >   PCI: apple: Add initial hardware bring-up
+> >   PCI: apple: Set up reference clocks when probing
+> > 
+> > Marc Zyngier (10):
+> >   irqdomain: Make of_phandle_args_to_fwspec generally available
+> >   of/irq: Allow matching of an interrupt-map local to an interrupt
+> >     controller
+> >   PCI: of: Allow matching of an interrupt-map local to a PCI device
+> >   PCI: apple: Add INTx and per-port interrupt support
+> >   PCI: apple: Implement MSI support
+> >   iommu/dart: Exclude MSI doorbell from PCIe device IOVA range
+> >   PCI: apple: Configure RID to SID mapper on device addition
+> >   arm64: dts: apple: t8103: Add PCIe DARTs
+> >   arm64: dts: apple: t8103: Add root port interrupt routing
+> >   arm64: dts: apple: j274: Expose PCI node for the Ethernet MAC address
+> > 
+> > Mark Kettenis (2):
+> >   arm64: apple: Add pinctrl nodes
+> >   arm64: apple: Add PCIe node
+> > 
+> >  MAINTAINERS                              |   7 +
+> >  arch/arm64/boot/dts/apple/t8103-j274.dts |  23 +
+> >  arch/arm64/boot/dts/apple/t8103.dtsi     | 203 ++++++
+> >  drivers/iommu/apple-dart.c               |  27 +
+> >  drivers/of/irq.c                         |  17 +-
+> >  drivers/pci/controller/Kconfig           |  17 +
+> >  drivers/pci/controller/Makefile          |   1 +
+> >  drivers/pci/controller/pcie-apple.c      | 822 +++++++++++++++++++++++
+> >  drivers/pci/of.c                         |  10 +-
+> >  include/linux/irqdomain.h                |   4 +
+> >  kernel/irq/irqdomain.c                   |   6 +-
+> >  11 files changed, 1127 insertions(+), 10 deletions(-)
+> >  create mode 100644 drivers/pci/controller/pcie-apple.c
+> 
+> I have applied (with very minor log changes) patches [1-9] to
+> pci/apple for v5.16, I expect the dts changes to go via the
+> arm-soc tree separately, please let me know if that works for you.
+
+Yes, that's absolutely fine. I hope we can resolve the issue on the
+pinctrl binding pretty quickly, and get the arm-soc folks to pull the
+DT changes in for 5.16 too.
+
+This would make the Mini a usable machine with a mainline kernel.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
