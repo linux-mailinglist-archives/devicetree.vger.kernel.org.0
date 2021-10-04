@@ -2,106 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49EDC42127C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF50421282
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:18:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234491AbhJDPTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 11:19:18 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:60144
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233586AbhJDPTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 11:19:18 -0400
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2EC7C3F32F
-        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 15:17:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633360648;
-        bh=V3o0PPzdLxt9FTzgnpcmYNfVrR3nxoe1+2HhHs0RBOg=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
-        b=OwiGN2oqCj9tvcc8hQwMFo6qWa/7bAY+lnxFEHfJ8SA++Kod28PJ6gXUVcQIM7oAG
-         MTpv4CRxyNYYfEyrQ5uxz+XlNCQLT8LJgBDn47Pz59MSIQrEN5Rlz0DbYecJuAfrC7
-         EUOF8jKoMksKTwrjEMyjZaNnjEnkGdCbnvmBW/2TyXKVuCnbnyymo2yH+AAHCrrGbv
-         dlPph4tJOu5G8V+0EYpSvjsumgWmO4NQ7aiEt79WMUyjgLh8dncRQUMlSxdCF2Tz53
-         QqqYNPKOjcnAJSNS33wslWAPYjD3JH0uLSV+7gDDzTT1RSl6d5hDUh5UhXpwX/suiu
-         NX/PN6GqTF8Nw==
-Received: by mail-lf1-f69.google.com with SMTP id c42-20020a05651223aa00b003fd328cfeccso3274081lfv.4
-        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 08:17:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=V3o0PPzdLxt9FTzgnpcmYNfVrR3nxoe1+2HhHs0RBOg=;
-        b=PtsZa8tCr+0b5sqpZMb/X/r9i8WQA06tGy54xI2SUN2k8WENV9kigX06qbBvnzlwMQ
-         XvzDyveLgxqdy+KEpMafJqOGfIBXMFp8oIPMfXj1fWQPID59bhzu1Gy+k/YnTigE8BgZ
-         /U9IddK/fg5YiKaGcwY9yg/DUk4Qf/S/ISAbD5x7IkKHbgRjUOEYvIcRSa+sh4CtWZDM
-         SupzG0BlIj+UUsac8XQ7lnSf9iIY5xPnFa7WinYTG6xwKHuZU5ekrZNmFnSvXCnK3DHy
-         l0L8esxdy6wVjuAmzVmG/j8Jg1rwMuVTyGEFfVtq3WfN1RU2qS7cmkyXVV0W+M78VLY0
-         l1rw==
-X-Gm-Message-State: AOAM531VvGoNjK8JsLJ4+W52mV4k6sf64TVFJuVqpPVSShwT44NyNkYC
-        eYRpk8XkljQaAFaXYY1CtjSKtI8P+TCEyEm7WUCpfYIPLLaFpxmLv3WTNO80wy8xSDnmnVwRynx
-        voE4AVzPx0dVI+L6FNeCV1FxAEFoUFxCVCkzROys=
-X-Received: by 2002:ac2:4f01:: with SMTP id k1mr14821247lfr.94.1633360647624;
-        Mon, 04 Oct 2021 08:17:27 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwqAmuBfz4zlVzr9PC+S5DriT+SGP+Xe1UGshV8/PwVH2o6sbeYfOu4GBpKMtuF700lCYfSFg==
-X-Received: by 2002:ac2:4f01:: with SMTP id k1mr14821227lfr.94.1633360647464;
-        Mon, 04 Oct 2021 08:17:27 -0700 (PDT)
-Received: from localhost.localdomain ([193.178.187.25])
-        by smtp.gmail.com with ESMTPSA id f7sm1623302lfc.217.2021.10.04.08.17.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 08:17:27 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH next] dt-bindings: mmc: arasan,sdci: bring back requirement of clock-output-names
-Date:   Mon,  4 Oct 2021 17:16:46 +0200
-Message-Id: <20211004151646.73599-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
+        id S234621AbhJDPUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 11:20:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33200 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233561AbhJDPUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 11:20:17 -0400
+Received: from mail.bugwerft.de (mail.bugwerft.de [IPv6:2a03:6000:1011::59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 76D71C061745;
+        Mon,  4 Oct 2021 08:18:28 -0700 (PDT)
+Received: from [192.168.178.130] (p57bc9c60.dip0.t-ipconnect.de [87.188.156.96])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id C45154EBB25;
+        Mon,  4 Oct 2021 15:18:26 +0000 (UTC)
+Message-ID: <ef40eb7c-2f3c-4745-a9a4-dd265bd7b240@zonque.org>
+Date:   Mon, 4 Oct 2021 17:18:26 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Subject: Re: [PATCH v5 0/9] clk: cs2000-cp: add dynamic mode and more features
+Content-Language: en-US
+From:   Daniel Mack <daniel@zonque.org>
+To:     mturquette@baylibre.com, sboyd@kernel.org
+Cc:     robh+dt@kernel.org, kuninori.morimoto.gx@renesas.com,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20210901093631.1403278-1-daniel@zonque.org>
+ <72d37dde-f50a-df89-57c7-243e7f287680@zonque.org>
+In-Reply-To: <72d37dde-f50a-df89-57c7-243e7f287680@zonque.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The schema defines dependency only of clock-output-names on #clock-cells.
-The dependency in opposite direction - requirement of clock-output-names
-if #clock-cells is defined - should be explicitly included in the
-bindings.
+On 9/22/21 11:44, Daniel Mack wrote:
+> Mike, Stephen,
+> 
+> Is there a chance to get this series reviewed and potentially queued for
+> 5.16?
+> 
+> We have clearance for the devicetree side, and the functional changes of
+> the driver are all guarded by new feature flags, so my patches shouldn't
+> break existing setups.
 
-Reported-by: Rob Herring <robh@kernel.org>
-Fixes: 22ea8ab0dcc4 ("dt-bindings: mmc: arasan,sdci: drop unneeded clock-cells dependency")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Gentle ping. Anything I can do to get this reviewed?
 
----
 
-Fixes tag from the linux-next
+Thanks,
+Daniel
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-index dd70431df0b7..de6f076e0ece 100644
---- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-@@ -158,6 +158,9 @@ properties:
-     description:
-       The MIO bank number in which the command and data lines are configured.
- 
-+dependencies:
-+  '#clock-cells': [ clock-output-names ]
-+
- required:
-   - compatible
-   - reg
--- 
-2.30.2
+
+> 
+> 
+> Thanks a lot,
+> Daniel
+> 
+> 
+> On 9/1/21 11:36 AM, Daniel Mack wrote:
+>> This patch series adds support for dynamic mode, configurable clock
+>> skip settings and a tranisition to regmap.
+>>
+>> The most significant change is the additional support for dynamic mode.
+>> Currently, the driver only supports static mode in which the (currently
+>> mandatory) CLK_IN clock input is not used by the hardware.
+>>
+>> Unlike v3 of this series, the patch stack now maintains full
+>> compatibility with existing bindings. Rather than infering the mode of
+>> operation through the presence of an optional clock, the driver now
+>> parses a new DT property to enable the dynamic mode.
+>>
+>> Thanks,
+>> Daniel
+>>
+>> Changelog:
+>>
+>> v4 -> v5:
+>> 	* Fixed a regression for static mode configurations
+>> 	* Added Rob's Acked-by signatures
+>>
+>> v3 -> v4:
+>> 	* Introduced cirrus,dynamic-mode in favor of making CLK_IN
+>> 	  optional
+>>
+>>
+>> Daniel Mack (9):
+>>   dt-bindings: clock: convert cs2000-cp bindings to yaml
+>>   dt-bindings: clock: cs2000-cp: document aux-output-source
+>>   dt-bindings: clock: cs2000-cp: document cirrus,clock-skip flag
+>>   dt-bindings: clock: cs2000-cp: document cirrus,dynamic-mode
+>>   clk: cs2000-cp: Make aux output function controllable
+>>   clk: cs2000-cp: add support for dynamic mode
+>>   clk: cs2000-cp: make clock skip setting configurable
+>>   clk: cs2000-cp: freeze config during register fiddling
+>>   clk: cs2000-cp: convert driver to regmap
+>>
+>>  .../bindings/clock/cirrus,cs2000-cp.yaml      |  91 +++++++
+>>  .../devicetree/bindings/clock/cs2000-cp.txt   |  22 --
+>>  drivers/clk/Kconfig                           |   1 +
+>>  drivers/clk/clk-cs2000-cp.c                   | 240 +++++++++++-------
+>>  include/dt-bindings/clock/cirrus,cs2000-cp.h  |  14 +
+>>  5 files changed, 261 insertions(+), 107 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/clock/cs2000-cp.txt
+>>  create mode 100644 include/dt-bindings/clock/cirrus,cs2000-cp.h
+>>
+> 
 
