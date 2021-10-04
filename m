@@ -2,110 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2353421275
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:16:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49EDC42127C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 17:17:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233387AbhJDPSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 11:18:00 -0400
-Received: from smtp2.axis.com ([195.60.68.18]:20436 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233289AbhJDPSA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 11:18:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1633360571;
-  x=1664896571;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=2KTYP+6+Oa+eVOZ4J5T/8XxYyfJctb51pSOnZcy78io=;
-  b=qIJCUpLtSkkrLyZ+xNESMVjl24fG+DMr8frSxKuQ4OWYfO5GYcwwk2N6
-   JRR/uFSzPWwknYE8GPx9TzEE0ZWy6XP+wSUFMj3oWVlRSamVGh5s7Ow+P
-   yH0t3XDb/Eoweb3EtDty6tJN4N6zjG7rb+VF45RmhopJabnjOg3V16Wql
-   0yHs7cjtiYEvw83NVY16d+ggNeDKCW1EQ7elZZvQwzMOQDOgBgGjGy9qm
-   Vg9liilGB4lbUX3iSR4swenW3VV/wKqyvi8qvEHE5O695vuzlpmEB1REP
-   gFN8lth0BPBNLj3D/nI+BFa0AFlcgoe3tLkLUm5+lNLLCc5c7pxUQLFOD
-   A==;
-Date:   Mon, 4 Oct 2021 17:16:04 +0200
-From:   Ricard Wanderlof <ricardw@axis.com>
-X-X-Sender: ricardw@lnxricardw1.se.axis.com
-To:     Mark Brown <broonie@kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        id S234491AbhJDPTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 11:19:18 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:60144
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233586AbhJDPTS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 11:19:18 -0400
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2EC7C3F32F
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 15:17:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633360648;
+        bh=V3o0PPzdLxt9FTzgnpcmYNfVrR3nxoe1+2HhHs0RBOg=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=OwiGN2oqCj9tvcc8hQwMFo6qWa/7bAY+lnxFEHfJ8SA++Kod28PJ6gXUVcQIM7oAG
+         MTpv4CRxyNYYfEyrQ5uxz+XlNCQLT8LJgBDn47Pz59MSIQrEN5Rlz0DbYecJuAfrC7
+         EUOF8jKoMksKTwrjEMyjZaNnjEnkGdCbnvmBW/2TyXKVuCnbnyymo2yH+AAHCrrGbv
+         dlPph4tJOu5G8V+0EYpSvjsumgWmO4NQ7aiEt79WMUyjgLh8dncRQUMlSxdCF2Tz53
+         QqqYNPKOjcnAJSNS33wslWAPYjD3JH0uLSV+7gDDzTT1RSl6d5hDUh5UhXpwX/suiu
+         NX/PN6GqTF8Nw==
+Received: by mail-lf1-f69.google.com with SMTP id c42-20020a05651223aa00b003fd328cfeccso3274081lfv.4
+        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 08:17:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=V3o0PPzdLxt9FTzgnpcmYNfVrR3nxoe1+2HhHs0RBOg=;
+        b=PtsZa8tCr+0b5sqpZMb/X/r9i8WQA06tGy54xI2SUN2k8WENV9kigX06qbBvnzlwMQ
+         XvzDyveLgxqdy+KEpMafJqOGfIBXMFp8oIPMfXj1fWQPID59bhzu1Gy+k/YnTigE8BgZ
+         /U9IddK/fg5YiKaGcwY9yg/DUk4Qf/S/ISAbD5x7IkKHbgRjUOEYvIcRSa+sh4CtWZDM
+         SupzG0BlIj+UUsac8XQ7lnSf9iIY5xPnFa7WinYTG6xwKHuZU5ekrZNmFnSvXCnK3DHy
+         l0L8esxdy6wVjuAmzVmG/j8Jg1rwMuVTyGEFfVtq3WfN1RU2qS7cmkyXVV0W+M78VLY0
+         l1rw==
+X-Gm-Message-State: AOAM531VvGoNjK8JsLJ4+W52mV4k6sf64TVFJuVqpPVSShwT44NyNkYC
+        eYRpk8XkljQaAFaXYY1CtjSKtI8P+TCEyEm7WUCpfYIPLLaFpxmLv3WTNO80wy8xSDnmnVwRynx
+        voE4AVzPx0dVI+L6FNeCV1FxAEFoUFxCVCkzROys=
+X-Received: by 2002:ac2:4f01:: with SMTP id k1mr14821247lfr.94.1633360647624;
+        Mon, 04 Oct 2021 08:17:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwqAmuBfz4zlVzr9PC+S5DriT+SGP+Xe1UGshV8/PwVH2o6sbeYfOu4GBpKMtuF700lCYfSFg==
+X-Received: by 2002:ac2:4f01:: with SMTP id k1mr14821227lfr.94.1633360647464;
+        Mon, 04 Oct 2021 08:17:27 -0700 (PDT)
+Received: from localhost.localdomain ([193.178.187.25])
+        by smtp.gmail.com with ESMTPSA id f7sm1623302lfc.217.2021.10.04.08.17.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Oct 2021 08:17:27 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        alsa-devel <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: sound: tlv320adc3xxx: New codec
- driver
-In-Reply-To: <YVr8tqRoyyiWR4xl@sirena.org.uk>
-Message-ID: <alpine.DEB.2.21.2110041656220.14472@lnxricardw1.se.axis.com>
-References: <alpine.DEB.2.21.2110041115070.14472@lnxricardw1.se.axis.com> <YVr8tqRoyyiWR4xl@sirena.org.uk>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        Adrian Hunter <adrian.hunter@intel.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH next] dt-bindings: mmc: arasan,sdci: bring back requirement of clock-output-names
+Date:   Mon,  4 Oct 2021 17:16:46 +0200
+Message-Id: <20211004151646.73599-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-X-Originating-IP: [10.0.5.60]
-X-ClientProxiedBy: se-mail04w.axis.com (10.20.40.10) To se-mail07w.axis.com
- (10.20.40.13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The schema defines dependency only of clock-output-names on #clock-cells.
+The dependency in opposite direction - requirement of clock-output-names
+if #clock-cells is defined - should be explicitly included in the
+bindings.
 
-On Mon, 4 Oct 2021, Mark Brown wrote:
+Reported-by: Rob Herring <robh@kernel.org>
+Fixes: 22ea8ab0dcc4 ("dt-bindings: mmc: arasan,sdci: drop unneeded clock-cells dependency")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-> On Mon, Oct 04, 2021 at 11:17:47AM +0200, Ricard Wanderlof wrote:
-> 
-> > +  gpios:
-> > +    maxItems: 1
-> > +    description: GPIO pin used for codec reset (RESET pin)
-> 
-> Usually this would be called reset-gpios and/or have a name to improve
-> readability and allow for extensibility, from the binding we can see
-> that the device has other signals that can be used as GPIOs.
+---
 
-In this case, 'GPIO pin' refers to the GPIO pin on the host side that is 
-connected to the reset pin on the codec, not which pin on the codec that 
-is used for the reset function. So I probably didn't express this 
-correctly in the binding document.
+Fixes tag from the linux-next
 
-My strategy was to just call the property 'gpios' and if more host control 
-signals were needed, one can add a 'gpio-names' property in the future, 
-but I see no other codec bindings have a 'gpio-names' so I think I'll 
-simply change this to 'reset-gpios', as there are not any other pins that 
-it's likely a host would have any need to control; if that happens we can 
-add another 'foo-gpios' property when the time comes.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> > +  ti,pll-mode:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum:
-> > +      - 0 # ADC3XXX_PLL_DONT_SET - leave mode unchanged
-> > +      - 1 # ADC3XXX_PLL_ENABLE - use the on-chip PLL
-> > +      - 2 # ADC3XXX_PLL_BYPASS - do not use the on-chip PLL
-> > +      - 3 # ADC3XXX_PLL_AUTO - use on-chip PLL if possible
-> > +    default: 0
-> > +    description: |
-> > +      Set on-chip PLL mode.
-> > +      ADC3XXX_PLL_DONT_SET is intended for use when setting the clock mod
-> > +      via the clock id in a machine driver and it is not to be changed
-> > +      from the previous setting.
-> > +      ADC3XXX_PLL_AUTO will enable  on-chip PLL if possible, depending on the
-> > +      master clock and sample rate combination.
-> 
-> Why is this configured through the DT binding and not via the machine
-> driver as done for other drivers?
-
-The reason is that I want to be able to use this driver with the 
-simple-card machine driver which doesn't have any PLL control options 
-AFAIK, as the .set_sysclk callback clk_id parameter is always set to 0 
-by simple-card.
-
-> > +      Note that there is currently no support for reading the GPIO pins as
-> > +      inputs.
-> 
-> This doesn't belong in the binding document, it's describing the binding
-> not any particular implementation.
-
-Good point, I'll remove it.
-
-/Ricard
+diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+index dd70431df0b7..de6f076e0ece 100644
+--- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+@@ -158,6 +158,9 @@ properties:
+     description:
+       The MIO bank number in which the command and data lines are configured.
+ 
++dependencies:
++  '#clock-cells': [ clock-output-names ]
++
+ required:
+   - compatible
+   - reg
 -- 
-Ricard Wolf Wanderlof                           ricardw(at)axis.com
-Axis Communications AB, Lund, Sweden            www.axis.com
-Phone +46 46 272 2016                           Fax +46 46 13 61 30
+2.30.2
+
