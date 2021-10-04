@@ -2,620 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2236A4210E8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 16:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFF0A42114B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 16:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233282AbhJDOI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 10:08:29 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:59457 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230380AbhJDOI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 10:08:29 -0400
-Received: from [77.244.183.192] (port=65250 helo=melee.fritz.box)
-        by hostingweb31.netsons.net with esmtpa (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1mXNhd-004WfD-I8; Mon, 04 Oct 2021 15:08:21 +0200
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-To:     linux-pm@vger.kernel.org
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Luca Ceresoli <luca@lucaceresoli.net>
-Subject: [PATCH 2/2] power: supply: max77976: add Maxim MAX77976 charger driver
-Date:   Mon,  4 Oct 2021 15:07:32 +0200
-Message-Id: <20211004130732.950512-2-luca@lucaceresoli.net>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211004130732.950512-1-luca@lucaceresoli.net>
-References: <20211004130732.950512-1-luca@lucaceresoli.net>
+        id S233874AbhJDO3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 10:29:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48702 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233767AbhJDO3l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 10:29:41 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDACC061745
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 07:27:52 -0700 (PDT)
+Received: from [IPv6:2a01:e0a:4cb:a870:445e:c29d:10aa:bf6] (unknown [IPv6:2a01:e0a:4cb:a870:445e:c29d:10aa:bf6])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 1A7041F43211;
+        Mon,  4 Oct 2021 15:27:50 +0100 (BST)
+Subject: Re: [PATCH v4 10/18] soc: imx: add i.MX8M blk-ctrl driver
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Adam Ford <aford173@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        patchwork-lst@pengutronix.de
+References: <20210910202640.980366-1-l.stach@pengutronix.de>
+ <20210910202640.980366-11-l.stach@pengutronix.de>
+ <5b5609e9-cbba-79be-218c-0dd508e26ecf@collabora.com>
+ <763dff4c948a5c435dc4d51224e825071c0a3cd6.camel@pengutronix.de>
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Message-ID: <24568eb4-11d5-1fd7-e111-382b41cdb4da@collabora.com>
+Date:   Mon, 4 Oct 2021 16:27:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <763dff4c948a5c435dc4d51224e825071c0a3cd6.camel@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the MAX77976 3.5/5.5A 1-Cell Li+ Battery Charger.
 
-This is a simple implementation enough to be used as a simple battery
-charger without OTG and boost.
+Le 02/10/2021 à 03:07, Lucas Stach a écrit :
+> Hi Benjamin,
+>
+> Am Dienstag, dem 14.09.2021 um 17:46 +0200 schrieb Benjamin Gaignard:
+>> Le 10/09/2021 à 22:26, Lucas Stach a écrit :
+>>> This adds a driver for the blk-ctrl blocks found in the i.MX8M* line of
+>>> SoCs. The blk-ctrl is a top-level peripheral located in the various *MIX
+>>> power domains and interacts with the GPC power controller to provide the
+>>> peripherals in the power domain access to the NoC and ensures that those
+>>> peripherals are properly reset when their respective power domain is
+>>> brought back to life.
+>>>
+>>> Software needs to do different things to make the bus handshake happen
+>>> after the GPC *MIX domain is powered up and before it is powered down.
+>>> As the requirements are quite different between the various blk-ctrls
+>>> there is a callback function provided to hook in the proper sequence.
+>>>
+>>> The peripheral domains are quite uniform, they handle the soft clock
+>>> enables and resets in the blk-ctrl address space and sequencing with the
+>>> upstream GPC power domains.
+>> Hi Lucas,
+>>
+>> I have tried to use your patches for IMX8MQ but it seems that the hardware
+>> have different architecture.
+>> On IMX8MQ there is only one VPU domain for G1 and G2 and that doesn't match
+>> with your implementation where it is needed to have "bus" and devices power domain.
+>>   From what I experiment in current IMX8MQ implementation of blk-ctrl (inside VPU driver)
+>> enabling the 3 clocks (bus, G1, G2) is needed to reset the VPUs.
+>>
+>> Do you think you can update your design to take care of these hardware variations ?
+> The clocking/reset of the blk-ctrl and ADB in the i.MX8MQ VPU power
+> domain is really a bit strange, as the ADB reset is tied to the VPU
+> resets and the clk-ctrl seem to require all 3 VPU clocks, instead of
+> only the bus clock as in newer designs. However I was able to make it
+> work with the existing blk-ctrl driver design.
+>
+> My current WIP patches (only tested with the G1 core so far) on top of
+> the v5 of the series I just sent out can be found here:
+> https://git.pengutronix.de/cgit/lst/linux/log/?h=imx8mq-vpu-blk-ctrl
+>
+> Hope this helps.
 
-Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
----
- MAINTAINERS                             |   1 +
- drivers/power/supply/Kconfig            |  11 +
- drivers/power/supply/Makefile           |   1 +
- drivers/power/supply/max77976_charger.c | 508 ++++++++++++++++++++++++
- 4 files changed, 521 insertions(+)
- create mode 100644 drivers/power/supply/max77976_charger.c
+Hi Lucas,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b3a3667cef46..064c0560b810 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11392,6 +11392,7 @@ MAXIM MAX77976 BATTERY CHARGER
- M:	Luca Ceresoli <luca@lucaceresoli.net>
- S:	Supported
- F:	Documentation/devicetree/bindings/power/supply/maxim,max77976.yaml
-+F:	drivers/power/supply/max77976_charger.c
- 
- MAXIM MUIC CHARGER DRIVERS FOR EXYNOS BASED BOARDS
- M:	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index ad93b3550d6d..622d690c883a 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -557,6 +557,17 @@ config CHARGER_MAX77693
- 	help
- 	  Say Y to enable support for the Maxim MAX77693 battery charger.
- 
-+config CHARGER_MAX77976
-+	tristate "Maxim MAX77976 battery charger driver"
-+	depends on REGMAP_I2C
-+	help
-+	  The Maxim MAX77976 is a 19 Vin, 5.5A 1-Cell Li+ Battery Charger
-+	  USB OTG support. It has an I2C interface for configuration.
-+
-+	  Say Y to enable support for the Maxim MAX77976 battery charger.
-+	  This driver can also be built as a module. If so, the module will be
-+	  called max77976_charger.
-+
- config CHARGER_MAX8997
- 	tristate "Maxim MAX8997/MAX8966 PMIC battery charger driver"
- 	depends on MFD_MAX8997 && REGULATOR_MAX8997
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index 4e55a11aab79..2c1b264b2046 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -75,6 +75,7 @@ obj-$(CONFIG_CHARGER_MAX14577)	+= max14577_charger.o
- obj-$(CONFIG_CHARGER_DETECTOR_MAX14656)	+= max14656_charger_detector.o
- obj-$(CONFIG_CHARGER_MAX77650)	+= max77650-charger.o
- obj-$(CONFIG_CHARGER_MAX77693)	+= max77693_charger.o
-+obj-$(CONFIG_CHARGER_MAX77976)	+= max77976_charger.o
- obj-$(CONFIG_CHARGER_MAX8997)	+= max8997_charger.o
- obj-$(CONFIG_CHARGER_MAX8998)	+= max8998_charger.o
- obj-$(CONFIG_CHARGER_MP2629)	+= mp2629_charger.o
-diff --git a/drivers/power/supply/max77976_charger.c b/drivers/power/supply/max77976_charger.c
-new file mode 100644
-index 000000000000..2ff900b1843a
---- /dev/null
-+++ b/drivers/power/supply/max77976_charger.c
-@@ -0,0 +1,508 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * max77976_charger.c - Driver for the Maxim MAX77976 battery charger
-+ *
-+ * Copyright (C) 2021 Luca Ceresoli
-+ * Author: Luca Ceresoli <luca@lucaceresoli.net>
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/power_supply.h>
-+#include <linux/regmap.h>
-+
-+#define MAX77976_DRIVER_NAME	"max77976-charger"
-+#define MAX77976_CHIP_ID	0x76
-+
-+static const char *max77976_manufacturer	= "Maxim Integrated";
-+static const char *max77976_model		= "MAX77976";
-+
-+/* --------------------------------------------------------------------------
-+ * Register map
-+ */
-+
-+#define MAX77976_REG_CHIP_ID		0x00
-+#define MAX77976_REG_CHIP_REVISION	0x01
-+#define MAX77976_REG_CHG_INT_OK		0x12
-+#define MAX77976_REG_CHG_DETAILS_01	0x14
-+#define MAX77976_REG_CHG_CNFG_00	0x16
-+#define MAX77976_REG_CHG_CNFG_02	0x18
-+#define MAX77976_REG_CHG_CNFG_06	0x1c
-+#define MAX77976_REG_CHG_CNFG_09	0x1f
-+
-+/* CHG_DETAILS_01.CHG_DTLS values */
-+enum max77976_charging_state {
-+	MAX77976_CHARGING_PREQUALIFICATION = 0x0,
-+	MAX77976_CHARGING_FAST_CONST_CURRENT,
-+	MAX77976_CHARGING_FAST_CONST_VOLTAGE,
-+	MAX77976_CHARGING_TOP_OFF,
-+	MAX77976_CHARGING_DONE,
-+	MAX77976_CHARGING_RESERVED_05,
-+	MAX77976_CHARGING_TIMER_FAULT,
-+	MAX77976_CHARGING_SUSPENDED_QBATT_OFF,
-+	MAX77976_CHARGING_OFF,
-+	MAX77976_CHARGING_RESERVED_09,
-+	MAX77976_CHARGING_THERMAL_SHUTDOWN,
-+	MAX77976_CHARGING_WATCHDOG_EXPIRED,
-+	MAX77976_CHARGING_SUSPENDED_JEITA,
-+	MAX77976_CHARGING_SUSPENDED_THM_REMOVAL,
-+	MAX77976_CHARGING_SUSPENDED_PIN,
-+	MAX77976_CHARGING_RESERVED_0F,
-+};
-+
-+/* CHG_DETAILS_01.BAT_DTLS values */
-+enum max77976_battery_state {
-+	MAX77976_BATTERY_BATTERY_REMOVAL = 0x0,
-+	MAX77976_BATTERY_PREQUALIFICATION,
-+	MAX77976_BATTERY_TIMER_FAULT,
-+	MAX77976_BATTERY_REGULAR_VOLTAGE,
-+	MAX77976_BATTERY_LOW_VOLTAGE,
-+	MAX77976_BATTERY_OVERVOLTAGE,
-+	MAX77976_BATTERY_RESERVED,
-+	MAX77976_BATTERY_BATTERY_ONLY, // No valid adapter is present
-+};
-+
-+/* CHG_CNFG_00.MODE values */
-+enum max77976_mode {
-+	MAX77976_MODE_CHARGER_BUCK		= 0x5,
-+	MAX77976_MODE_BOOST			= 0x9,
-+};
-+
-+/* CHG_CNFG_02.CHG_CC: charge current limit, 100..5500 mA, 50 mA steps */
-+#define MAX77976_CHG_CC_STEP			  50000U
-+#define MAX77976_CHG_CC_MIN			 100000U
-+#define MAX77976_CHG_CC_MAX			5500000U
-+
-+/* CHG_CNFG_09.CHGIN_ILIM: input current limit, 100..3200 mA, 100 mA steps */
-+#define MAX77976_CHGIN_ILIM_STEP		 100000U
-+#define MAX77976_CHGIN_ILIM_MIN			 100000U
-+#define MAX77976_CHGIN_ILIM_MAX			3200000U
-+
-+enum max77976_field_idx {
-+	VERSION, REVISION,                      /* CHIP_REVISION */
-+	CHGIN_OK,                               /* CHG_INT_OK */
-+	BAT_DTLS, CHG_DTLS,                     /* CHG_DETAILS_01 */
-+	MODE,                                   /* CHG_CNFG_00 */
-+	CHG_CC,                                 /* CHG_CNFG_02 */
-+	CHGPROT,                                /* CHG_CNFG_06 */
-+	CHGIN_ILIM,                             /* CHG_CNFG_09 */
-+	MAX77976_N_REGMAP_FIELDS
-+};
-+
-+static const struct reg_field max77976_reg_field[MAX77976_N_REGMAP_FIELDS] = {
-+	[VERSION]        = REG_FIELD(MAX77976_REG_CHIP_REVISION,   4, 7),
-+	[REVISION]       = REG_FIELD(MAX77976_REG_CHIP_REVISION,   0, 3),
-+	[CHGIN_OK]       = REG_FIELD(MAX77976_REG_CHG_INT_OK,      6, 6),
-+	[CHG_DTLS]       = REG_FIELD(MAX77976_REG_CHG_DETAILS_01,  0, 3),
-+	[BAT_DTLS]       = REG_FIELD(MAX77976_REG_CHG_DETAILS_01,  4, 6),
-+	[MODE]           = REG_FIELD(MAX77976_REG_CHG_CNFG_00,     0, 3),
-+	[CHG_CC]         = REG_FIELD(MAX77976_REG_CHG_CNFG_02,     0, 6),
-+	[CHGPROT]        = REG_FIELD(MAX77976_REG_CHG_CNFG_06,     2, 3),
-+	[CHGIN_ILIM]     = REG_FIELD(MAX77976_REG_CHG_CNFG_09,     0, 5),
-+};
-+
-+static const struct regmap_config max77976_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x24,
-+};
-+
-+/* --------------------------------------------------------------------------
-+ * Data structures
-+ */
-+
-+struct max77976 {
-+	struct i2c_client	*client;
-+	struct regmap		*regmap;
-+	struct regmap_field	*rfield[MAX77976_N_REGMAP_FIELDS];
-+};
-+
-+/* --------------------------------------------------------------------------
-+ * power_supply properties
-+ */
-+
-+static int max77976_get_status(struct max77976 *chg, int *val)
-+{
-+	unsigned int regval;
-+	int err;
-+
-+	err = regmap_field_read(chg->rfield[CHG_DTLS], &regval);
-+	if (err < 0)
-+		return err;
-+
-+	switch (regval) {
-+	case MAX77976_CHARGING_PREQUALIFICATION:
-+	case MAX77976_CHARGING_FAST_CONST_CURRENT:
-+	case MAX77976_CHARGING_FAST_CONST_VOLTAGE:
-+	case MAX77976_CHARGING_TOP_OFF:
-+		*val = POWER_SUPPLY_STATUS_CHARGING;
-+		break;
-+	case MAX77976_CHARGING_DONE:
-+		*val = POWER_SUPPLY_STATUS_FULL;
-+		break;
-+	case MAX77976_CHARGING_TIMER_FAULT:
-+	case MAX77976_CHARGING_SUSPENDED_QBATT_OFF:
-+	case MAX77976_CHARGING_SUSPENDED_JEITA:
-+	case MAX77976_CHARGING_SUSPENDED_THM_REMOVAL:
-+	case MAX77976_CHARGING_SUSPENDED_PIN:
-+		*val = POWER_SUPPLY_STATUS_NOT_CHARGING;
-+		break;
-+	case MAX77976_CHARGING_OFF:
-+	case MAX77976_CHARGING_THERMAL_SHUTDOWN:
-+	case MAX77976_CHARGING_WATCHDOG_EXPIRED:
-+		*val = POWER_SUPPLY_STATUS_DISCHARGING;
-+		break;
-+	default:
-+		*val = POWER_SUPPLY_STATUS_UNKNOWN;
-+	}
-+
-+	return 0;
-+}
-+
-+static int max77976_get_charge_type(struct max77976 *chg, int *val)
-+{
-+	unsigned int regval;
-+	int err;
-+
-+	err = regmap_field_read(chg->rfield[CHG_DTLS], &regval);
-+	if (err < 0)
-+		return err;
-+
-+	switch (regval) {
-+	case MAX77976_CHARGING_PREQUALIFICATION:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_TRICKLE;
-+		break;
-+	case MAX77976_CHARGING_FAST_CONST_CURRENT:
-+	case MAX77976_CHARGING_FAST_CONST_VOLTAGE:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_FAST;
-+		break;
-+	case MAX77976_CHARGING_TOP_OFF:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_STANDARD;
-+		break;
-+	case MAX77976_CHARGING_DONE:
-+	case MAX77976_CHARGING_TIMER_FAULT:
-+	case MAX77976_CHARGING_SUSPENDED_QBATT_OFF:
-+	case MAX77976_CHARGING_OFF:
-+	case MAX77976_CHARGING_THERMAL_SHUTDOWN:
-+	case MAX77976_CHARGING_WATCHDOG_EXPIRED:
-+	case MAX77976_CHARGING_SUSPENDED_JEITA:
-+	case MAX77976_CHARGING_SUSPENDED_THM_REMOVAL:
-+	case MAX77976_CHARGING_SUSPENDED_PIN:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_NONE;
-+		break;
-+	default:
-+		*val = POWER_SUPPLY_CHARGE_TYPE_UNKNOWN;
-+	}
-+
-+	return 0;
-+}
-+
-+static int max77976_get_health(struct max77976 *chg, int *val)
-+{
-+	unsigned int regval;
-+	int err;
-+
-+	err = regmap_field_read(chg->rfield[BAT_DTLS], &regval);
-+	if (err < 0)
-+		return err;
-+
-+	switch (regval) {
-+	case MAX77976_BATTERY_BATTERY_REMOVAL:
-+		*val = POWER_SUPPLY_HEALTH_DEAD;
-+		break;
-+	case MAX77976_BATTERY_PREQUALIFICATION:
-+	case MAX77976_BATTERY_LOW_VOLTAGE:
-+	case MAX77976_BATTERY_REGULAR_VOLTAGE:
-+		*val = POWER_SUPPLY_HEALTH_GOOD;
-+		break;
-+	case MAX77976_BATTERY_TIMER_FAULT:
-+		*val = POWER_SUPPLY_HEALTH_SAFETY_TIMER_EXPIRE;
-+		break;
-+	case MAX77976_BATTERY_OVERVOLTAGE:
-+		*val = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
-+		break;
-+	case MAX77976_BATTERY_BATTERY_ONLY:
-+		*val = POWER_SUPPLY_HEALTH_UNKNOWN;
-+		break;
-+	default:
-+		*val = POWER_SUPPLY_HEALTH_UNKNOWN;
-+	}
-+
-+	return 0;
-+}
-+
-+static int max77976_get_online(struct max77976 *chg, int *val)
-+{
-+	unsigned int regval;
-+	int err;
-+
-+	err = regmap_field_read(chg->rfield[CHGIN_OK], &regval);
-+	if (err < 0)
-+		return err;
-+
-+	*val = (regval ? 1 : 0);
-+
-+	return 0;
-+}
-+
-+static int max77976_get_integer(struct max77976 *chg, enum max77976_field_idx fidx,
-+				unsigned int clamp_min, unsigned int clamp_max,
-+				unsigned int mult, int *val)
-+{
-+	unsigned int regval;
-+	int err;
-+
-+	err = regmap_field_read(chg->rfield[fidx], &regval);
-+	if (err < 0)
-+		return err;
-+
-+	*val = clamp_val(regval * mult, clamp_min, clamp_max);
-+
-+	return 0;
-+}
-+
-+static int max77976_set_integer(struct max77976 *chg, enum max77976_field_idx fidx,
-+				unsigned int clamp_min, unsigned int clamp_max,
-+				unsigned int div, int val)
-+{
-+	unsigned int regval;
-+
-+	regval = clamp_val(val, clamp_min, clamp_max) / div;
-+
-+	return regmap_field_write(chg->rfield[fidx], regval);
-+}
-+
-+static int max77976_get_property(struct power_supply *psy,
-+				 enum power_supply_property psp,
-+				 union power_supply_propval *val)
-+{
-+	struct max77976 *chg = power_supply_get_drvdata(psy);
-+	int err = 0;
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_STATUS:
-+		err = max77976_get_status(chg, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_TYPE:
-+		err = max77976_get_charge_type(chg, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_HEALTH:
-+		err = max77976_get_health(chg, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_ONLINE:
-+		err = max77976_get_online(chg, &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT_MAX:
-+		val->intval = MAX77976_CHG_CC_MAX;
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
-+		err = max77976_get_integer(chg, CHG_CC,
-+					   MAX77976_CHG_CC_MIN,
-+					   MAX77976_CHG_CC_MAX,
-+					   MAX77976_CHG_CC_STEP,
-+					   &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		err = max77976_get_integer(chg, CHGIN_ILIM,
-+					   MAX77976_CHGIN_ILIM_MIN,
-+					   MAX77976_CHGIN_ILIM_MAX,
-+					   MAX77976_CHGIN_ILIM_STEP,
-+					   &val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_MODEL_NAME:
-+		val->strval = max77976_model;
-+		break;
-+	case POWER_SUPPLY_PROP_MANUFACTURER:
-+		val->strval = max77976_manufacturer;
-+		break;
-+	default:
-+		err = -EINVAL;
-+	}
-+
-+	return err;
-+}
-+
-+static int max77976_set_property(struct power_supply *psy,
-+				 enum power_supply_property psp,
-+				 const union power_supply_propval *val)
-+{
-+	struct max77976 *chg = power_supply_get_drvdata(psy);
-+	int err = 0;
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
-+		err = max77976_set_integer(chg, CHG_CC,
-+					   MAX77976_CHG_CC_MIN,
-+					   MAX77976_CHG_CC_MAX,
-+					   MAX77976_CHG_CC_STEP,
-+					   val->intval);
-+		break;
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		err = max77976_set_integer(chg, CHGIN_ILIM,
-+					   MAX77976_CHGIN_ILIM_MIN,
-+					   MAX77976_CHGIN_ILIM_MAX,
-+					   MAX77976_CHGIN_ILIM_STEP,
-+					   val->intval);
-+		break;
-+	default:
-+		err = -EINVAL;
-+	}
-+
-+	return err;
-+};
-+
-+static int max77976_property_is_writeable(struct power_supply *psy,
-+					  enum power_supply_property psp)
-+{
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static enum power_supply_property max77976_psy_props[] = {
-+	POWER_SUPPLY_PROP_STATUS,
-+	POWER_SUPPLY_PROP_CHARGE_TYPE,
-+	POWER_SUPPLY_PROP_HEALTH,
-+	POWER_SUPPLY_PROP_ONLINE,
-+	POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT,
-+	POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT_MAX,
-+	POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT,
-+	POWER_SUPPLY_PROP_MODEL_NAME,
-+	POWER_SUPPLY_PROP_MANUFACTURER,
-+};
-+
-+static const struct power_supply_desc max77976_psy_desc = {
-+	.name			= MAX77976_DRIVER_NAME,
-+	.type			= POWER_SUPPLY_TYPE_BATTERY,
-+	.properties		= max77976_psy_props,
-+	.num_properties		= ARRAY_SIZE(max77976_psy_props),
-+	.get_property		= max77976_get_property,
-+	.set_property		= max77976_set_property,
-+	.property_is_writeable	= max77976_property_is_writeable,
-+};
-+
-+/* --------------------------------------------------------------------------
-+ * Entry point
-+ */
-+
-+static int max77976_detect(struct max77976 *chg)
-+{
-+	struct device *dev = &chg->client->dev;
-+	unsigned int id, ver, rev;
-+	int err;
-+
-+	err = regmap_read(chg->regmap, MAX77976_REG_CHIP_ID, &id);
-+	if (err)
-+		return dev_err_probe(dev, err, "cannot read chip ID\n");
-+
-+	if (id != MAX77976_CHIP_ID)
-+		return dev_err_probe(dev, -ENXIO, "unknown model ID 0x%02x\n", id);
-+
-+	err = regmap_field_read(chg->rfield[VERSION], &ver);
-+	if (!err)
-+		err = regmap_field_read(chg->rfield[REVISION], &rev);
-+	if (err)
-+		return dev_err_probe(dev, -ENXIO, "cannot read version/revision\n");
-+
-+	dev_info(dev, "detected model MAX779%02x ver %u rev %u", id, ver, rev);
-+
-+	return 0;
-+}
-+static int max77976_configure(struct max77976 *chg)
-+{
-+	struct device *dev = &chg->client->dev;
-+	int err;
-+
-+	/* Magic value to unlock writing to some registers */
-+	err = regmap_field_write(chg->rfield[CHGPROT], 0x3);
-+	if (err)
-+		goto err;
-+
-+	/*
-+	 * Mode 5 = Charger ON, OTG OFF, buck ON, boost OFF.
-+	 * Other modes are not implemented by this driver.
-+	 */
-+	err = regmap_field_write(chg->rfield[MODE], MAX77976_MODE_CHARGER_BUCK);
-+	if (err)
-+		goto err;
-+
-+	return 0;
-+
-+err:
-+	return dev_err_probe(dev, err, "error while configuring");
-+}
-+
-+static int max77976_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct power_supply_config psy_cfg = {};
-+	struct power_supply *psy;
-+	struct max77976 *chg;
-+	int err;
-+	int i;
-+
-+	chg = devm_kzalloc(dev, sizeof(*chg), GFP_KERNEL);
-+	if (!chg)
-+		return -ENOMEM;
-+
-+	i2c_set_clientdata(client, chg);
-+	psy_cfg.drv_data = chg;
-+	chg->client = client;
-+
-+	chg->regmap = devm_regmap_init_i2c(client, &max77976_regmap_config);
-+	if (IS_ERR(chg->regmap))
-+		return dev_err_probe(dev, PTR_ERR(chg->regmap),
-+				     "cannot allocate regmap\n");
-+
-+	for (i = 0; i < MAX77976_N_REGMAP_FIELDS; i++) {
-+		chg->rfield[i] = devm_regmap_field_alloc(dev, chg->regmap,
-+							 max77976_reg_field[i]);
-+		if (IS_ERR(chg->rfield[i]))
-+			return dev_err_probe(dev, PTR_ERR(chg->rfield[i]),
-+					     "cannot allocate regmap field\n");
-+	}
-+
-+	err = max77976_detect(chg);
-+	if (err)
-+		return err;
-+
-+	err = max77976_configure(chg);
-+	if (err)
-+		return err;
-+
-+	psy = devm_power_supply_register_no_ws(dev, &max77976_psy_desc, &psy_cfg);
-+	if (IS_ERR(psy))
-+		return dev_err_probe(dev, PTR_ERR(psy), "cannot register\n");
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id max77976_i2c_id[] = {
-+	{ MAX77976_DRIVER_NAME, 0 },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(i2c, max77976_i2c_id);
-+
-+static const struct of_device_id max77976_of_id[] = {
-+	{ .compatible = "maxim,max77976" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, max77976_of_id);
-+
-+static struct i2c_driver max77976_driver = {
-+	.driver = {
-+		.name		= MAX77976_DRIVER_NAME,
-+		.of_match_table	= of_match_ptr(max77976_of_id),
-+	},
-+	.probe_new	= max77976_probe,
-+	.id_table	= max77976_i2c_id,
-+};
-+module_i2c_driver(max77976_driver);
-+
-+MODULE_AUTHOR("Luca Ceresoli <luca@lucaceresoli.net>");
-+MODULE_DESCRIPTION("Maxim MAX77976 charger driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.25.1
+I have been able to test your branch on my iMX8MQ.
+I confirm that G1 is working fine, I able to decode H264 files.
 
+I wasn't able to make G2 works, I think it is coming from the reset sequence
+done before each frame decoding in G2 driver.
+I have change imx8mq_runtime_resume() and  imx8m_vpu_reset()
+to call pm_runtime_put() and pm_runtime_get() to perform a reset like.
+Without that G2 hangs when decoding the first frame.
+
+One G1 it seems that doing a reset before each frame decoding is not needed.
+
+On DT I had to assignee G1 and G2 on the both nodes to avoid a warning at probe time.
+assigned-clocks = <&clk IMX8MQ_CLK_VPU_G1>,
+					  <&clk IMX8MQ_CLK_VPU_G2>,
+					  <&clk IMX8MQ_VPU_PLL_BYPASS>;
+			assigned-clock-parents = <&clk IMX8MQ_VPU_PLL_OUT>,
+						 <&clk IMX8MQ_VPU_PLL_OUT>,
+						 <&clk IMX8MQ_VPU_PLL>;
+			assigned-clock-rates = <600000000>, <300000000>, <0>;
+
+I also set G2 clock at 300Mhz as specify in the TRM.
+Even with all this G2 doesn't fire interrupts.
+
+Benjamin
+
+>
+> Regards,
+> Lucas
+>
