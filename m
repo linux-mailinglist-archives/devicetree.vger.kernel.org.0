@@ -2,221 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E75A42171F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 21:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BDEB421763
+	for <lists+devicetree@lfdr.de>; Mon,  4 Oct 2021 21:23:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238620AbhJDTRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 15:17:42 -0400
-Received: from mail-eopbgr60088.outbound.protection.outlook.com ([40.107.6.88]:55525
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S238501AbhJDTRk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 15:17:40 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cGC8264jgEkkgBtrFWqKryk9wttea7ANKl4pxOg+UxpxYoDXmugIXThaJpxyp+EPKXxsucMy71Dw3OIsjCusAyL7d1CLvB2Ujgsd1gNoWDl6pmyVShJDNq4j9BDWG6LKXAgyvaR4gO2ws9XRGGdPdM2KPhAk3vbWNnUslqsL+RF7PjnbYWl3uYbHCOLuG1BzVNvXZLoF+452zPUSZLu1KxhjzUnjKySPnBEwuRKXEn24/o79WsQRw26jvUKpqgRXMcWEgxy7Dy+pBkR0xHIer51n4xb/sMd2u12kYVnoX2meqOR3B7lLNYlgqLi6t0855f1fOh1I7aMLEAGJYfITRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p9UlkUu6sxJFXBIxo3jZuwWY1oxP/LYIeHhe83CUWic=;
- b=P8NteS0acuSPhwwEjlJSRBJVI/0DQorrtqw4lWGXrgoVVwg5a8x7SXjbOqynVil177KRnSEILCMbNPdPXM1AZL4zdaAQX+pbASxOzN63WKitz3d9gUge3AQ5hejCE8PbkFFmYKBTLlz+qRLiOVS1CLuYm9nWLoqhIQP5jWCMXux+YybEwQs/XY3+PobYllqKgI4iqs3PqppKyN8FDCjc+SQ3hZ+656siNus6KO+37HXvO3MgQyn9skGScF/MAEoVFe86lQJ8oiGtwsq7nL+THS9w2RuKtcF1NfmWf2EcJYJb1Lqmf63DfeqJVjKSE0iKh6cl/P3YXiH6PSEJaNtYRw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
+        id S238590AbhJDTZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 15:25:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238621AbhJDTZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 15:25:19 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E330C061745;
+        Mon,  4 Oct 2021 12:23:29 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id g193-20020a1c20ca000000b0030d55f1d984so312271wmg.3;
+        Mon, 04 Oct 2021 12:23:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p9UlkUu6sxJFXBIxo3jZuwWY1oxP/LYIeHhe83CUWic=;
- b=sgnWL/R/1K5hblIIQFI746lHLNESk9aAAn4IrHVk4kJ1XGqmNnCaYdK42vXfcXXTAvXv6bqg5Hidjp6liId12bKsKxLzZYLvQTDk7bffiEL8n25oDeJ5vaWsKpFAtRGFgde/PJf7l2PzhRQImG1OLK2t9pJgZvPCGLIQ74BHwcc=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB9PR03MB7434.eurprd03.prod.outlook.com (2603:10a6:10:22c::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.19; Mon, 4 Oct
- 2021 19:15:50 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::a9aa:f363:66e:fadf]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::a9aa:f363:66e:fadf%6]) with mapi id 15.20.4566.022; Mon, 4 Oct 2021
- 19:15:50 +0000
-From:   Sean Anderson <sean.anderson@seco.com>
-To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [RFC net-next PATCH 02/16] dt-bindings: net: Add binding for Xilinx PCS
-Date:   Mon,  4 Oct 2021 15:15:13 -0400
-Message-Id: <20211004191527.1610759-3-sean.anderson@seco.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211004191527.1610759-1-sean.anderson@seco.com>
-References: <20211004191527.1610759-1-sean.anderson@seco.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MN2PR08CA0023.namprd08.prod.outlook.com
- (2603:10b6:208:239::28) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=uMjCccuv8K3FthyMvW3umSTS3TXEzXjJZC770iFNXMw=;
+        b=T2U/nE7hnQSuiIVNXx59ef/KVGvClvaES83NC0R+C/3AWB+l1vO8a+jvJe+dsF+Au2
+         iBDZVJ8ZpaBDFHU/BtxgDphiSZpuFUjU64E6txDvtN4d24igRZNmXkoLz1PuhIP2IHEK
+         CAQWThnaBlUeIrnqxTjYF8wt6lPkNXgIuPY1XTHb/D9T+E5NNROAhJW0cbUHtpHmChYR
+         gX+hXU6gsU1dNpnzDOpqnAsOBV0I4es4WLQHD6JO/6OwpezrLJcrN2XquUZ0oDAJEXQr
+         kY7NkOW7FblGAPzGsbIFeWsTDK++aRYDd3dYpGjOhSmyecNOtDbJJ0MidhsSkXa6hFNO
+         ZgBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=uMjCccuv8K3FthyMvW3umSTS3TXEzXjJZC770iFNXMw=;
+        b=78VmxLZQPZWNaIc7KrXO1JQ7o+eg1yTCKtYO1oGiUYxOGxJngx8nuNVxOV4tS4TIpl
+         3cgrgE/MbhKaK/GnGTBI1oB3KN4ZFE3Pi9r9G4yxx1AVjcYMVxVAC579A6g6N9mEsGmP
+         xux7+c3W1x6CfmZibfm/j6QA9hhvnvm1vyPLZ9dXYqbTaok5hzR6+yCyh+3IaLW4M4qI
+         dfJ5/Wk/9PDcvrDdTKylLD4GMrkzhb894SBA9EN9DApKWTO8SU/d8JnoUSLjF1qTI8GV
+         z/WG5VvjtczOzTJ8A20taPVlzFdj/QhzlXUQY0HNL1h06T8FcUnZD5gGOJoqOxJn8lsF
+         lPFA==
+X-Gm-Message-State: AOAM531GZPh5+WdpPADXGKdRb3SV3atXRWcAz/UoGzUiWCJ44KqkxEt6
+        hjIlUyPWNQLs48z4WJG0yPw=
+X-Google-Smtp-Source: ABdhPJyjwD/LH2q95MXnuxOh2nx+sB81p6fg9bLtYYJr1TQ6uyeixQlpw5qjfZ9c4yBIQ6sqSZlgoA==
+X-Received: by 2002:a1c:f31a:: with SMTP id q26mr19823190wmq.159.1633375407907;
+        Mon, 04 Oct 2021 12:23:27 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id h18sm18108229wmq.23.2021.10.04.12.23.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Oct 2021 12:23:26 -0700 (PDT)
+Date:   Mon, 4 Oct 2021 21:23:25 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] iommu: Support identity mappings of
+ reserved-memory regions
+Message-ID: <YVtUrTdI9kUSScui@orome.fritz.box>
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+ <95e4c23e-4700-ef7e-d8ae-17693b65e121@gmail.com>
 MIME-Version: 1.0
-Received: from plantagenet.inhand.com (50.195.82.171) by MN2PR08CA0023.namprd08.prod.outlook.com (2603:10b6:208:239::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.17 via Frontend Transport; Mon, 4 Oct 2021 19:15:48 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a5778b41-6ec6-4122-5118-08d9876b6072
-X-MS-TrafficTypeDiagnostic: DB9PR03MB7434:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB9PR03MB743461D8355B9544BE8EDFC596AE9@DB9PR03MB7434.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3KaFzLR6x5stWllMcAygW4xopQ4LhduUiXQUJqBcdAs09PSECv2LXVQEtttw3bh/iw1wf7HZbzRJFjNsIqQsus7sWnqAnm1wf9bQb3lwV6MDVc0raeKDnBXilkA1RUP3y9VaDsB0Yl3XOFv4G0R7kuqXaXcPjKqtkSxIdMaAI78loIbqP/39WEF22cM3aqrXl96hnJ0U+sJ+FoCi73hHn9/RID+ooaWqkdfawuac9o5+ZRNyuG8X6WMooZdqlo1VbdCFyY/5qYGS9Qa92RogBnhtlaqTr8hjt0BWo3TEn0EhkR26/YomqbBY/QMCBVxktOABjA6n9U8CgFoAhJ8GApmQTgSU3UhSQw+9rN3hL80u6/XyFUZv4QeUyy+7UUTNcZxXf6GXztK/gMwYx5dnykLC7k+NVuqOQ3r9M9FeWbFca+S/nvB5nvgjCUwx/j6lTVhbUI0Z0Pmkk88pFIiX2w3ampgvFuza5baftbW4IebfoYS49d/xaj23kv53KvZPB1LdHRk6i1D6QRIQ2hvqzVzreGONJwP9yPylvcjdJlMFvK4MYuSLIWt+vquFL2RAQ44+iLk7mOMgL1FwFwSXH0qxan/IM56r7dOg8y/s8fXBv+h5dW6jzLlhVBAUcaynBP0kAMTdNgVchcBqyJOmmqPTgwPBYsBx2+o4Gu1uEe3bX4SmZNC5WYx/B8STzlt0ciifPDJ/aWK+y+4/xgs17i9yehtvVLZZuUQh7W2xMNh2uz73rskr4xvSU0TJxR0Ejh5+5nydDIPuRiVch4nc6o4gZfAcX0Yv95YFke9KN2A=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(1076003)(86362001)(4326008)(44832011)(6486002)(5660300002)(66946007)(508600001)(38350700002)(83380400001)(52116002)(956004)(66556008)(966005)(66476007)(38100700002)(110136005)(6506007)(2906002)(186003)(8936002)(316002)(8676002)(2616005)(7416002)(54906003)(26005)(6666004)(36756003)(6512007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/rapiSpOwr3F8Y/BspyboF+V+nl9G4QVH+kNj+LFdptPOllesv62JK7EGXxq?=
- =?us-ascii?Q?2XmxBg1gC6zzzkBDdNuvbEDLMzayszg1GsRI83z9PlxIygXckL3PmqQinB+3?=
- =?us-ascii?Q?Rpl3bE1M4ACquVIDBxGOcv0SU7l0N2mKTzIFnqu949sLqGComhL4kttsQZMj?=
- =?us-ascii?Q?URLgts0uI/JP1NnSFmrOi2LMq3SWBiQBZRE+kn3qjb6tRoE30rI0dRbabsmk?=
- =?us-ascii?Q?I5GvKfMByaK2yYM0UmYdMb7vmtyC5q8vZ0bpIj45cYaNr+F9QgRVsYh+qkT8?=
- =?us-ascii?Q?5bJhTDLec55DsMlPQmUKTulFQbgM1It4YXHlFe/emmorIK4H8cjDmKKdquUH?=
- =?us-ascii?Q?GyFjI7MEh+hIlvyv7McHIUdGc5NlNe42mHU2Xx/oaCQZAHnHfwrTq/TD3joQ?=
- =?us-ascii?Q?Ue8HNNzCC3YF7diuii8HGci61DVFmDJP+Pkt3ObP9O/pbzkLQYBLbn9SpIDr?=
- =?us-ascii?Q?gM/JT8eG9ZT0XzijdA/LPdjTx79MBOeLvnPJ8VBrbfgtpXeBFWmoYhEAzc2N?=
- =?us-ascii?Q?EvY0kvGw23JClq0ajLUKrqEWsRBh/gWUm0dMFTAQzjkGQ6Pf7Z8ds+fKRgZT?=
- =?us-ascii?Q?Y40O/b+fNGP/kPevQaeGSR+SzMcineVRPH8OI4LJD6hHTnEC1ophHrcp2Cew?=
- =?us-ascii?Q?OuodCyF95FAfG0rWgHrMdIoKl6MOV5Irkg8OBoQ4fKazdluvH9uGTeWB+gu0?=
- =?us-ascii?Q?2IzuONkV8xAgDg54BuxWePJG2HokW8KC/EtqcObqW3WsxAGDd9BaEkiOHxzc?=
- =?us-ascii?Q?OX+RKFaNb2ebByVhb7uYiRlsGtapHHBPUSsxB4axxTkVv9FFBuf5Pyj8qLnv?=
- =?us-ascii?Q?9g/KewKTtxpWdnNyqZvfxn4zq/D2uosAVuw0GjqewX/nttfScqUkOs/IOJUc?=
- =?us-ascii?Q?fxyvYxJrs8/zrRdSi/hj5+PT8RMTjFatoDwOHOlhapR7Qv1VPbg1fYXKOOaX?=
- =?us-ascii?Q?XW9JXZuhlSQ/LgC9mrwdnj00OO0XwPLncNk7EoP+Zcl/U49+i1KeyXcxfOCT?=
- =?us-ascii?Q?6i0DZuDPcoqYUP7VvZe6EM4+73FgmbUr0B5stYnOFDcHH+k6rNRhXVDuYjrj?=
- =?us-ascii?Q?Kg2KveHWZ2c4yr+V4zxUtsbAnawGd0XstA5S09F+nZsqhQkzhx3JJPhIzdrn?=
- =?us-ascii?Q?/xtZ9plyMcfcKCMG3VitxvaaKcnE3Fywox3rFuJfF6VkZ6STYFTstKPT8OPA?=
- =?us-ascii?Q?KaoVRt8MmfF6dqcE/iRhd8BJ38AK6BY0U94fv64TKEg+3OgDmXO5MJHatr0k?=
- =?us-ascii?Q?fFQ7uJUwvdKAT075Te7P9MPOqZLvnc3ViwnKSiov20/epaPKem2NfL54xFxf?=
- =?us-ascii?Q?IuNS6NRkm4XY02a9x2Q1LZMu?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5778b41-6ec6-4122-5118-08d9876b6072
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2021 19:15:50.1606
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3MQpZJf4zouuU9jbiSIXKBsImwZOZbFfg0QS8PbtfeOC2pwHSmV98P3ZJm0TCJfCkZegrxdAhxMugww9q2DNzw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB7434
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="348p5nA0ximYPP+C"
+Content-Disposition: inline
+In-Reply-To: <95e4c23e-4700-ef7e-d8ae-17693b65e121@gmail.com>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a binding for the Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII
-LogiCORE IP. This device is a soft device typically used to adapt between
-GMII and SGMII or 1000BASE-X (in combination with a suitable SERDES). The
-standard property is roughly analogous to the interface property of
-ethernet controllers, except that it has an additional value used to
-indicate that dynamic switching is supported. Note that switching is
-supported only between SGMII and 1000BASE-X, and only if the appropriate
-parameter is set when the device is synthesized. The property name was
-chosen to align with the terminology in the datasheet. I also considered
-"mdi", but that is a bit of a misnomer in the case of SGMII.
 
-Signed-off-by: Sean Anderson <sean.anderson@seco.com>
----
+--348p5nA0ximYPP+C
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- .../devicetree/bindings/net/xilinx,pcs.yaml   | 83 +++++++++++++++++++
- 1 file changed, 83 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/xilinx,pcs.yaml
+On Sun, Oct 03, 2021 at 04:09:56AM +0300, Dmitry Osipenko wrote:
+> 23.04.2021 19:32, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > I've made corresponding changes in the proprietary bootloader, added a
+> > compatibility shim in U-Boot (which forwards information created by the
+> > proprietary bootloader to the kernel) and the attached patches to test
+> > this on Jetson TX1, Jetson TX2 and Jetson AGX Xavier.
+>=20
+> Could you please tell what downstream kernel does for coping with the
+> identity mappings in conjunction with the original proprietary bootloader?
+>=20
+> If there is some other method of passing mappings to kernel, could it be
+> supported by upstream? Putting burden on users to upgrade bootloader
+> feels a bit inconvenient.
 
-diff --git a/Documentation/devicetree/bindings/net/xilinx,pcs.yaml b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
-new file mode 100644
-index 000000000000..43750dcb4b11
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/xilinx,pcs.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII LogiCORE IP
-+
-+maintainers:
-+  - Sean Anderson <sean.anderson@seco.com>
-+
-+description:
-+  This is a soft device which converts between GMII and SGMII, 2.5G SGMII,
-+  1000BASE-X, or 2500BASE-X. It may have an attached SERDES, or may talk
-+  directly to LVDS.
-+
-+allOf:
-+  - $ref: "ethernet-controller.yaml#"
-+
-+properties:
-+  compatible:
-+    contains:
-+      const:
-+        - xilinx,pcs-16.2
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+    items:
-+      - description: The reference clock for the PMD, which is typically a
-+                     SERDES but may be a direct interface to LVDS I/Os.
-+                     Depending on your setup, this may be the gtrefclk, refclk,
-+                     or clk125m signal.
-+
-+  clock-names:
-+    const: refclk
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: pcs
-+
-+  standard:
-+    description:
-+      The interface standard that the PCS supports. The sgmii/1000base-x
-+      setting indicates that the PCS supports dynamically switching between
-+      SGMII and 1000BASE-X.
-+    enum:
-+      - sgmii
-+      - 1000base-x
-+      - sgmii/1000base-x
-+      - 2500base-x
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - standard
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pcs0: ethernet-pcs@0 {
-+            compatible = "xlnx,pcs-16.2";
-+            reg = <0>;
-+            clocks = <&si570>;
-+            clock-names = "refclk";
-+            resets = <&pcs_reset 1>;
-+            reset-names = "pcs";
-+            standard = "sgmii/1000base-x";
-+        };
-+    };
--- 
-2.25.1
+It depends on the chip generation. As far as I know there have been
+several iterations. The earliest was to pass this information via a
+command-line option, but more recent versions use device tree to pass
+this information in a similar way as described here. However, these
+use non-standard DT bindings, so I don't think we can just implement
+them as-is.
 
+Thierry
+
+--348p5nA0ximYPP+C
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmFbVKsACgkQ3SOs138+
+s6GKyQ//V2saEEzeX3U0wiG5Q2qsyu91r79CCduNGpAEgJwyoZfObKu07BhPXBUw
+lCxgiRVS84aoOcEl7llqB01B8UzRAaB4c3jXW5SvRyYF+J0MUjcwXENJpWE1Ojho
+PuIcOZPRJt0jCcAv2O0hK8azDyFdaf+xpCeLEOMwA3oDp1MadfGzhP9K3Nj/la6f
+KKldVqTYxbSaErW/jZ/S1Rdhe7M0iWW/90f+NdBU2hdFvChd0WkQW7WSbTRDitu9
+GorqdupEe9fwsm5xh43kk3jrST3tJccjJkeAuK+JqVnfaesNChgiiyAvXtva1bBh
+fqwp+Ey5YjcgoRUO5PBwCOg86+LrCifhpoVkGSSV3+GO9VPg1A6r90A665fFR6ti
+H9QWJCt0NgdEQeCmkeKZ4JIQ1ICm9OYSRe8JjJpTV/ppGAcyP3nyXfye7cru0hc3
+lh5BgGcksPz6kgawyxeIZNrEWOg9T6qb9uV29myqNHGt2yXgTAIC1IxoqYD/SBD6
+ghGS/qDBo2jGiUC97GmEOoY2/2JK7EgRpjmPKWdRjy8xmqSgIr87+Lxg5ZmpFvmw
+Z6JWzqUjbD2E3La+r10q6B19BQd/9vK7j4k19Umz5WTnbHMAZwi91b8Rbs8C0D0p
+oDdx7kjHeSKdqsh68zNTx0RDwEsl5jgIb5hxtdTJOWKOOgVNGfU=
+=Unww
+-----END PGP SIGNATURE-----
+
+--348p5nA0ximYPP+C--
