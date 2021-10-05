@@ -2,90 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D505D4222DC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 11:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 629E94222E6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 11:57:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233937AbhJEJ6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 05:58:12 -0400
-Received: from mail-ua1-f41.google.com ([209.85.222.41]:36572 "EHLO
-        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233933AbhJEJ6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 05:58:10 -0400
-Received: by mail-ua1-f41.google.com with SMTP id u11so14412044uaw.3;
-        Tue, 05 Oct 2021 02:56:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7f7La1K3j/sf3y6WAPsiJ3HiHMfo9c5sHomKDoZBG7U=;
-        b=k2IKov7jB0n+UA2Ba6xXi/dtkzWMyvN8/oXdRDjW/TVGcXQs5GyrZCahRsU9ZUzoSk
-         qXfb3TdiyKbNjQI2i2tlB32LSBrDG2mHcucnAAPxaZatqc0lz4ujs+g4Boz1/yOTQltl
-         VVYAXO9LhU2an/YvvnzO9e59P8m8QfNu6UJOD76u5w0lmLnUzjW6Zg+pAh97G1d0YN4b
-         yIcWwqrIlfIfLGbzPUvgTgzWXD8Ec7A6n5UMWjYOtUJKQjvvxirZS1f+AGXdSYOYo4VV
-         nDZzSMEPh8sRK2DfZcqwoVFSha3/emEyeiwO/zPUntHjwzyKiYFO65GDv0Jw4gJHv3Fk
-         SCPA==
-X-Gm-Message-State: AOAM531c3rkWFNKd9MWvG9S5We1t54akg894yzQ4balVf22SemmRUco6
-        9ZKSs6prEmfXhMyF7ZWVwYcmrOJvVbbl4aU24fc=
-X-Google-Smtp-Source: ABdhPJwoedqIMTs/zp1tZCy9OstAKU8ntmrhQvtFdRYOoHyHH+E8MpEzp9P57PSyaiMXuRqdCgIgcecFKpCx4qab0jY=
-X-Received: by 2002:ab0:311a:: with SMTP id e26mr10862299ual.122.1633427779260;
- Tue, 05 Oct 2021 02:56:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210921193028.13099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210921193028.13099-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CACRpkdaJk-G0YE63uvH9C=G3n7k2gZqf9QrwGfAZC2O4hhps=A@mail.gmail.com>
-In-Reply-To: <CACRpkdaJk-G0YE63uvH9C=G3n7k2gZqf9QrwGfAZC2O4hhps=A@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 5 Oct 2021 11:56:07 +0200
-Message-ID: <CAMuHMdUvThtOKrhTqW+U1qijW7dRc6GYg4_Owt_GnUxX4DrGog@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/4] pinctrl: renesas: pinctrl-rzg2l: Add IRQ
- domain to handle GPIO interrupt
+        id S233826AbhJEJ7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 05:59:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51368 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233365AbhJEJ7P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 05:59:15 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id ECB8F610A5;
+        Tue,  5 Oct 2021 09:57:24 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mXhCN-00EqLn-1v; Tue, 05 Oct 2021 10:57:23 +0100
+Date:   Tue, 05 Oct 2021 10:57:22 +0100
+Message-ID: <87o883rdz1.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
 To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org list" <linuxppc-dev@lists.ozlabs.org>,
+        opensuse-ppc@opensuse.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        Joey Gouly <joey.gouly@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Android Kernel Team <kernel-team@android.com>
+Subject: Re: [PATCH v5 00/14] PCI: Add support for Apple M1
+In-Reply-To: <CACRpkdaL=YEfqSmAogLcP0Gn2gUqSaEXZQrJD1GR5QU+DyuyDQ@mail.gmail.com>
+References: <20210929163847.2807812-1-maz@kernel.org>
+        <20211004083845.GA22336@lpieralisi>
+        <CAL_Jsq+4FF9QYy87aYhJ-AS78qyHp0NkLrL492+WmdyWj-NKaw@mail.gmail.com>
+        <CACRpkdaL=YEfqSmAogLcP0Gn2gUqSaEXZQrJD1GR5QU+DyuyDQ@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linus.walleij@linaro.org, robh+dt@kernel.org, linuxppc-dev@lists.ozlabs.org, opensuse-ppc@opensuse.org, lorenzo.pieralisi@arm.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, bhelgaas@google.com, kw@linux.com, alyssa@rosenzweig.io, stan@corellium.com, kettenis@openbsd.org, sven@svenpeter.dev, marcan@marcan.st, Robin.Murphy@arm.com, joey.gouly@arm.com, joro@8bytes.org, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Mon, 04 Oct 2021 21:42:45 +0100,
+Linus Walleij <linus.walleij@linaro.org> wrote:
+> 
+> On Mon, Oct 4, 2021 at 9:52 PM Rob Herring <robh+dt@kernel.org> wrote:
+> 
+> > FYI, I pushed patches 1-3 to kernelCI and didn't see any regressions.
+> > I am a bit worried about changes to the DT interrupt parsing and
+> > ancient platforms (such as PowerMacs). Most likely there wouldn't be
+> > any report until -rc1 or months later on those old systems.
+> 
+> Lets page the PPC lists to see if someone can test on some powermac.
 
-On Thu, Sep 23, 2021 at 11:38 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Tue, Sep 21, 2021 at 9:30 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > Add IRQ domian to RZ/G2L pinctrl driver to handle GPIO interrupt.
-> >
-> > GPIO0-GPIO122 pins can be used as IRQ lines but only 32 pins can be
-> > used as IRQ lines at given time. Selection of pins as IRQ lines
-> > is handled by IA55 (which is the IRQC block) which sits in between the
-> > GPIO and GIC.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Why can't you just use the hierarchical IRQ domain handling inside
-> gpiolib?
+/me eyes the XServe-G5 that hasn't been powered on in 10 years. What
+could possibly go wrong?
 
-Out of interest (not related to this patch), does this support multiple
-parent domains?
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
+	M.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Without deviation from the norm, progress is not possible.
