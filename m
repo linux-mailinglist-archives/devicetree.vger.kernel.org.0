@@ -2,70 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D82CA42315B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B679342316F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:16:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbhJEUOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 16:14:00 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:50718 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235581AbhJEUN7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 16:13:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=Wq7nrL82/L3EOLhn+avQUN00z2EQ2FcNnYuF4o5Vwxc=; b=AV/VFhOx8CPCsEz+WuHkHFZ7pH
-        3D7Sa/E0gSDzXv38L0ZyfveGdnlyDeZQSSSifGFbhZFlgWu2U2XrcYpVjGXqHAwOtKKebb5b73rKd
-        gf1YjkWeejx3bP7apHZ7GC7Ta8vB/+amiGOkfjGzjD1jLXCUGy/I+1DkXUJtIDUAWtG8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mXqnE-009k7C-1I; Tue, 05 Oct 2021 22:12:04 +0200
-Date:   Tue, 5 Oct 2021 22:12:04 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: lets settle the LED `function` property regarding the netdev
- trigger
-Message-ID: <YVyxlEVQ7TvMs5DH@lunn.ch>
-References: <20211001143601.5f57eb1a@thinkpad>
- <YVn815h7JBtVSfwZ@lunn.ch>
- <20211003212654.30fa43f5@thinkpad>
- <YVsUodiPoiIESrEE@lunn.ch>
- <20211004170847.3f92ef48@thinkpad>
- <0b1bc2d7-6e62-5adb-5aed-48b99770d80d@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0b1bc2d7-6e62-5adb-5aed-48b99770d80d@gmail.com>
+        id S230012AbhJEUSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 16:18:21 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:50367 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229805AbhJEUSV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 16:18:21 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 3b738dd1;
+        Tue, 5 Oct 2021 22:16:28 +0200 (CEST)
+Date:   Tue, 5 Oct 2021 22:16:28 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     linux-arm-kernel@lists.infradead.org, marcan@marcan.st,
+        maz@kernel.org, robh+dt@kernel.org, arnd@kernel.org,
+        linus.walleij@linaro.org, alyssa@rosenzweig.io, krzk@kernel.org,
+        gregkh@linuxfoundation.org, p.zabel@pengutronix.de,
+        rafael@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org
+In-Reply-To: <20211005155923.173399-3-marcan@marcan.st> (message from Hector
+        Martin on Wed, 6 Oct 2021 00:59:18 +0900)
+Subject: Re: [PATCH 2/7] dt-bindings: power: Add apple,pmgr-pwrstate binding
+References: <20211005155923.173399-1-marcan@marcan.st> <20211005155923.173399-3-marcan@marcan.st>
+Message-ID: <d3ca3bcc44156f32@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > There are two different ways this can be implemented. There can be two
-> > > independent LEDs within the same package. So you can generate three
-> > > colours. Or there can be two cross connected LEDs within the
-> > > package. Apply +ve you get one colour, apply -ve you get a different
-> > > colour. Since you cannot apply both -ve and +ve at the same time, you
-> > > cannot get both colours at once.
-> > > 
-> > > If you have two independent LEDs, I would define two LEDs in DT.
-> > 
-> > No, we have multicolor LED API which is meant for exactly this
-> > situation: a multicolor LED.
+> From: Hector Martin <marcan@marcan.st>
+> Date: Wed,  6 Oct 2021 00:59:18 +0900
+> 
+> This syscon child node represents a single SoC device controlled by the
+> PMGR block. This layout allows us to declare all device power state
+> controls (power/clock gating and reset) in the device tree, including
+> dependencies, instead of hardcoding it into the driver. The register
+> layout is uniform.
+> 
+> Each pmgr-pwrstate node provides genpd and reset features, to be
+> consumed by downstream device nodes.
+> 
+> Future SoCs are expected to use backwards compatible registers, and the
+> "apple,pmgr-pwrstate" represents any such interfaces (possibly with
+> additional features gated by the more specific compatible), allowing
+> them to be bound without driver updates. If a backwards incompatible
+> change is introduced in future SoCs, it will require a new compatible,
+> such as "apple,pmgr-pwrstate-v2".
 
-> What do you mean by dependency here?
+Or we drop the apple,mpgr-pwrstate and go with only SoC-specific
+compatibles from that point onwards.
 
-https://www.youtube.com/watch?v=5M9p25OfKdg
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  .../bindings/power/apple,pmgr-pwrstate.yaml   | 117 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 118 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
 
-There are two different ways you can two LEDs in one package.
+This works for U-Boot.  Didn't write an OpenBSD driver yet but it
+should work there as well.
 
-Some Ethernet PHY RJ45 connector housings have bi-colour LEDs. Some
-have tri-colour LEDs, and some have mono-colour LEDs.
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
 
-      Andrew
+
+> diff --git a/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
+> new file mode 100644
+> index 000000000000..a14bf5f30ff0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
+> @@ -0,0 +1,117 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/apple,pmgr-pwrstate.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple SoC PMGR Power States
+> +
+> +maintainers:
+> +  - Hector Martin <marcan@marcan.st>
+> +
+> +allOf:
+> +  - $ref: "power-domain.yaml#"
+> +
+> +description: |
+> +  Apple SoCs include a PMGR block responsible for power management,
+> +  which can control various clocks, resets, power states, and
+> +  performance features. This binding describes the device power
+> +  state registers, which control power states and resets.
+> +
+> +  Each instance of a power controller within the PMGR syscon node
+> +  represents a generic power domain provider, as documented in
+> +  Documentation/devicetree/bindings/power/power-domain.yaml.
+> +  The provider controls a single SoC block. The power hierarchy is
+> +  represented via power-domains relationships between these nodes.
+> +
+> +  See Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+> +  for the top-level PMGR node documentation.
+> +
+> +  IP cores belonging to a power domain should contain a
+> +  "power-domains" property that is a phandle for the
+> +  power domain node representing the domain.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^power-controller@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,t8103-pmgr-pwrstate
+> +      - const: apple,pmgr-pwrstate
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#power-domain-cells":
+> +    const: 0
+> +
+> +  "#reset-cells":
+> +    const: 0
+> +
+> +  power-domains:
+> +    description:
+> +      Reference to parent power domains. A domain may have multiple parents,
+> +      and all will be powered up when it is powered.
+> +
+> +  apple,domain-name:
+> +    description: |
+> +      Specifies the name of the SoC device being controlled. This is used to
+> +      name the power/reset domains.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +
+> +  apple,always-on:
+> +    description: |
+> +      Forces this power domain to always be powered up.
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#power-domain-cells"
+> +  - "#reset-cells"
+> +  - "apple,domain-name"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        power-management@23b700000 {
+> +            compatible = "apple,t8103-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            reg = <0x2 0x3b700000 0x0 0x14000>;
+> +
+> +            ps_sio: power-controller@1c0 {
+> +                compatible = "apple,t8103-pmgr-pwrstate", "apple,pmgr-pwrstate";
+> +                reg = <0x1c0>;
+> +                #power-domain-cells = <0>;
+> +                #reset-cells = <0>;
+> +                apple,domain-name = "sio";
+> +                apple,always-on;
+> +            };
+> +
+> +            ps_uart_p: power-controller@220 {
+> +                compatible = "apple,t8103-pmgr-pwrstate", "apple,pmgr-pwrstate";
+> +                reg = <0x220>;
+> +                #power-domain-cells = <0>;
+> +                #reset-cells = <0>;
+> +                apple,domain-name = "uart_p";
+> +                power-domains = <&ps_sio>;
+> +            };
+> +
+> +            ps_uart0: power-controller@270 {
+> +                compatible = "apple,t8103-pmgr-pwrstate", "apple,pmgr-pwrstate";
+> +                reg = <0x270>;
+> +                #power-domain-cells = <0>;
+> +                #reset-cells = <0>;
+> +                apple,domain-name = "uart0";
+> +                power-domains = <&ps_uart_p>;
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d25598842d15..5fe53d9a2956 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1722,6 +1722,7 @@ F:	Documentation/devicetree/bindings/arm/apple.yaml
+>  F:	Documentation/devicetree/bindings/arm/apple/*
+>  F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+>  F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+> +F:	Documentation/devicetree/bindings/power/apple*
+>  F:	arch/arm64/boot/dts/apple/
+>  F:	drivers/irqchip/irq-apple-aic.c
+>  F:	include/dt-bindings/interrupt-controller/apple-aic.h
+> -- 
+> 2.33.0
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
