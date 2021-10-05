@@ -2,94 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FD60422B05
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7063422B32
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:38:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234103AbhJEObE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 10:31:04 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:51421 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235454AbhJEObE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 10:31:04 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633444144; h=Date: Message-Id: Cc: To: References:
- In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=M/tBEJGnQxX32yoGa1O+IWu4aAvfVnCAMmtGxlm25Iw=;
- b=e0oRK1dDdjhUxCU3m3UCz3IYImYzlN9wraxbXqoggDDSg1G2Kce16/rfZ0n34rDqUUYagYgT
- sH4Py1xgIdy5I6ueEcP+NuIp/0sAb1K559fYJ9v2CVoeLrK75kky0bmuDWAlLnVFoj7r7p7B
- 4Nr/gStDiLgUpwwm3Wg5PPcLv1M=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 615c61124ccc4cf2c7896481 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 14:28:34
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A9D1EC43460; Tue,  5 Oct 2021 14:28:34 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        MISSING_DATE,MISSING_MID,SPF_FAIL,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.0
-Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0E3B8C4338F;
-        Tue,  5 Oct 2021 14:28:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 0E3B8C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Content-Type: text/plain; charset="utf-8"
+        id S234669AbhJEOkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 10:40:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47404 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235306AbhJEOkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 10:40:06 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A584FC061749
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 07:38:15 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id g41so86961009lfv.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 07:38:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=msJiBzyUeKV8FpoS/TYzjgGtnwD3uWYer6ogIVTmynQ=;
+        b=A9uNkZL1Zeuo7Tspc6oQR2fBKHxSVRHx+WgNkJwJfw83LPMlNQQjYSsYKu6+1NGJ8O
+         NB2CeH19fARPh9GsfBeEH/spe+gxRk3cY9v2/C+vlB4S4nEvS1XhNbMTMskxuATQrB5C
+         U07yEvNOLUjOYFkrynNrUwD0iRyAOydH56W+ZvnHPe960sqryoPlAH3D81I71O4iGbOh
+         c/8EkoNjOn1xAsDtaWTwSoxm9ya4RsuhlfokputHxqq1Aef21AepJiG+xFCCblgHEZ4C
+         3Bv1uCy7CsYQNmCRngk4/PcoMYBF42wAZRtgAJbaRhxNsc42FMIM5ALwp/+8UsEtUZRA
+         2/yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=msJiBzyUeKV8FpoS/TYzjgGtnwD3uWYer6ogIVTmynQ=;
+        b=JrTmAAhbNloOa8tS+KxYbzS77l4R7v1QYOuXM/mWpe2rt0PiaZUwBgWSf+Bxyo2Cpi
+         tCZZTbQV2WvRgNtkSXcmnxjrF6JWV8MIlYGS/TiJrahoMa4zZNP61X2Dsxf7cS2d8oa9
+         cNi3SeHUieYaWALq6VDozCLk+KCua59cwnj4V/+nI+sss+JKKQfAnrEys9AYO5hKMdjs
+         oaVNs9c8BnneVFBD7+y78scfapTLXKFy3sxw6uUr949+lMNCV3MJ2Wi1G9bLjbvmNsXy
+         w0o0r1/5nt19CpA/p8MUfnIF1il1OMLI8ZeDAYYMKuBNZKOziPBIUtlqD40vjFULD3Ft
+         djXg==
+X-Gm-Message-State: AOAM532uA/cjWuXH4m4cS9LSvsuZA6hChH+FAyH3DyBEb+jGdHnPzw0i
+        QKMxBerDUahHuaGmg5Fwop6yaw==
+X-Google-Smtp-Source: ABdhPJwjHFt3CH4sjkux3RohVRrB59RZWeObwoAjO4ak37gG3wQ/jeQOUiIaNRGdJyngodBj+RX0UQ==
+X-Received: by 2002:a05:6512:3501:: with SMTP id h1mr3770923lfs.446.1633444688364;
+        Tue, 05 Oct 2021 07:38:08 -0700 (PDT)
+Received: from grasshopper.googchameleon.semihalf.net ([83.142.187.85])
+        by smtp.gmail.com with ESMTPSA id u25sm1973835lfc.176.2021.10.05.07.38.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Oct 2021 07:38:08 -0700 (PDT)
+From:   =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
+To:     jarkko.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+        mika.westerberg@linux.intel.com, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, dinguyen@kernel.org, p.yadav@ti.com,
+        Tudor.Ambarus@microchip.com
+Cc:     linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alexandre.belloni@bootlin.com, sre@kernel.org,
+        thunder.leizhen@huawei.com, Jonathan.Cameron@huawei.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        ka@semihalf.com, tn@semihalf.com, jam@semihalf.com,
+        amstan@google.com,
+        =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
+Subject: [PATCH v2 0/4] Add support for the Mercury+ AA1 module
+Date:   Tue,  5 Oct 2021 16:37:44 +0200
+Message-Id: <20211005143748.2471647-1-pan@semihalf.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v4] dt-bindings: net: wireless: qca,ath9k: convert to the
- json-schema
-From:   Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20210924223509.52525-1-chunkeey@gmail.com>
-References: <20210924223509.52525-1-chunkeey@gmail.com>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-Id: <20211005142834.A9D1EC43460@smtp.codeaurora.org>
-Date:   Tue,  5 Oct 2021 14:28:34 +0000 (UTC)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Lamparter <chunkeey@gmail.com> wrote:
+The following patches add support for the Mercury+ AA1 with an
+Arria 10 SoCFPGA.
 
-> This replaces the existing .txt binding file. Furthermore, this
-> also helps with validating DTS files.
-> 
-> Introduced binding changes:
->  1. added inherited mac-address nvmem property
->  2. added inherited ieee80211-freq-limit property
->  3. added new calibration nvmem property
->  4. added second example (taken from the Netgear WNDR3700v2)
->     Reason: Setting qca,no-eeprom; takes presedence over
->     nvmem-cells. I think a different example is needed,
->     because the driver can only reads from one calibration
->     source per device.
->  5. (re-added) chip list (based on data from ath9k's pci.c)
-> 
-> Added binding .yaml to MAINTAINERS.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+This version differs from the previous one by removing the spi
+flash node, renaming the memory and mdio nodes, adding gpio nodes,
+and adding a bus number property to Synopsys DesignWare i2c
+controller node.
 
-Patch applied to ath-next branch of ath.git, thanks.
+Paweł Anikiel (4):
+  i2c: check bus number property in DesignWare I2C Controller
+  dt-bindings: add bus number property
+  reset: socfpga: add empty driver allowing consumers to probe
+  dts: socfpga: Add Mercury+ AA1 devicetree
 
-57bb2398bd5f dt-bindings: net: wireless: qca,ath9k: convert to the json-schema
+ .../bindings/i2c/snps,designware-i2c.yaml     |  5 +
+ arch/arm/boot/dts/Makefile                    |  1 +
+ .../boot/dts/socfpga_arria10_mercury_aa1.dts  | 99 +++++++++++++++++++
+ drivers/i2c/busses/i2c-designware-platdrv.c   |  3 +-
+ drivers/reset/reset-socfpga.c                 | 26 +++++
+ 5 files changed, 133 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20210924223509.52525-1-chunkeey@gmail.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.25.1
 
