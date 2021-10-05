@@ -2,65 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86E5F422C0E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D6FE422C59
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235208AbhJEPPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 11:15:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55848 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbhJEPPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:15:21 -0400
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA65BC061749
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 08:13:30 -0700 (PDT)
-Received: by mail-ua1-x92d.google.com with SMTP id c33so15106016uae.9
-        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 08:13:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=kHkROjDqImNrCORBYAHwY53VEsgwyF5aAqEMBu+eK6E=;
-        b=eapv9lM4KgSfTI6XiAfNzqt3XshDOy73s0+ddirA4D+qHtBZHt5UmkgMo19zS18sHC
-         5omMUw2bwvZhsbKYP2CDcMiu3X9I289N9hrZBv3dyymun5cK/+QxAlSkFy6SxHuM0+k8
-         4jfRQSS6cGbGG6C9GRsTf+98A/jPmNNb1NSweqmJHe+LezqMDhE4hV9j95cUtcZNYhb9
-         0pONS/eKyt73bDmT4B9imUGZ4kNQXXN4l5PWTtVAWlYlOfB/EGR1LdaU+9J2LTnUIVZD
-         +p7a3BIGVhofEgrcL7TeBTNp9sTeFL/MqCAqLhA5sRllYqn7Y1pULGjarhWsOth4wKPz
-         f2AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=kHkROjDqImNrCORBYAHwY53VEsgwyF5aAqEMBu+eK6E=;
-        b=sFLEgiEDQvIqtzcttgtrmiUegtHOvTg4XB0XG6xRV6vBMp+POyn5ba57qgTumistOU
-         XIoG6QByEO3v57uKAemvYPgy2jr7ETtE/QR0TR61TY0J3qfYru8xBY4/bWkWrRT6LlXi
-         Df1t0mbJs7KWxJAUVb2A3SGIoOTCfM0rSIy8o7cfb+AuF7d9b4oFdFmyXvCLtE5jFol2
-         IthPgvR8wdkQNrvyzx3OxQVWG2UOX/iQL+02BRMRV4aW0aU38N7hRqOamDASb4IR7Qca
-         LgehMi1dfkBO9dvEJutJlTho3JUsPB1J8FV/YFw3QpmuPXnATtB8/n6a3ApdWs14CYh9
-         RZIA==
-X-Gm-Message-State: AOAM532GtHF5dgLqH+M1t93utu5pf9DuHOqeKTAmz2+QyFL+sn01fCT/
-        4Yeo7m02A0Ns2FnOrvk8Pl2NRUVx4R7VUgcu5iE=
-X-Google-Smtp-Source: ABdhPJzSgPyO1DU9AXq30e+H+nOLZ7L5oK8Y7/Y49E6ck0JgrpY46f8qhdLd38ZyKhLNMfe7gNjPVO2zUc/iO4Cdjno=
-X-Received: by 2002:a9f:24c4:: with SMTP id 62mr12274663uar.95.1633446809071;
- Tue, 05 Oct 2021 08:13:29 -0700 (PDT)
+        id S235322AbhJEPZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 11:25:27 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:53500 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236000AbhJEPZY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:25:24 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 9AAA41F42D67
+Received: by earth.universe (Postfix, from userid 1000)
+        id DA4A33C0CA7; Tue,  5 Oct 2021 17:23:23 +0200 (CEST)
+Date:   Tue, 5 Oct 2021 17:23:23 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: power: Bindings for Samsung batteries
+Message-ID: <20211005152323.kyxzytgmj2kfegwd@earth.universe>
+References: <20210806090050.3510671-1-linus.walleij@linaro.org>
+ <CACRpkdbdgdpg7CNQ+s4SkJBOsWfuOOWmXTar+cx2Eu_Wt5qNfw@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 2002:a59:5d10:0:b0:235:cc09:d8f with HTTP; Tue, 5 Oct 2021
- 08:13:28 -0700 (PDT)
-Reply-To: Salemchantal2@mail.com
-From:   MRS Salem Chantal Lawrence <patrickmurphy791@gmail.com>
-Date:   Tue, 5 Oct 2021 08:13:28 -0700
-Message-ID: <CAEsU2=ho9waCkHKWtYhNDME72+TNdYEqSfQL626jMSL9whddug@mail.gmail.com>
-Subject: Attention
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ajsvss6txycmr5om"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdbdgdpg7CNQ+s4SkJBOsWfuOOWmXTar+cx2Eu_Wt5qNfw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Attention
 
-You have been compensated with the sum of 4.6 million dollars in this
-United Nation the payment will be issue into Atm Visa Card and send to you
-from the Bank we need your Address Passport and your whatsapp number.
+--ajsvss6txycmr5om
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-THANKS
-MRS Salem Chantal Lawrence
+Hi,
+
+On Sun, Aug 29, 2021 at 09:09:47PM +0200, Linus Walleij wrote:
+> On Fri, Aug 6, 2021 at 11:02 AM Linus Walleij <linus.walleij@linaro.org> =
+wrote:
+>=20
+> > This adds device tree bindings for Samsung SDI batteries.
+> > Everything can be determined from the product number so the entire
+> > battery is just a specific compatible string.
+> >
+> > Cc: devicetree@vger.kernel.org
+> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+>=20
+> Sebastian: can this be merged? I am working on corresponding code
+> for Linux to populate Samsung batteries from compatible.
+
+Thanks, queued.
+
+-- Sebastian
+
+--ajsvss6txycmr5om
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmFcbeYACgkQ2O7X88g7
++pqtAg/+Id3bovx0nIoDu8y+vWG0FkDe/f5Umy/tlsu+a2uk/VVvq7OibuJXKskI
+czGmbl/touUa+vN86XyeDtZOWkfPBX+FjzaI8ywyc/pI5ZemHBLZzkdV3T8OmlQn
+DjiGD25dchFjVAF4usgQPVn7rw1bgH97R6c1xKVj4/dQqG5hAMy58YsJek43Bhcz
+sEr/q6XH2ZggV7x4PmvJty2gZdcpGYexykTARYcdvxiYfg48C1ptiUlyLXHnWgDy
+OFFtVKtEYW+Bh7V5HIPklG4yVf/KmVQzlwmO0T88TE0rns24XiHI++wxLh3GYfpx
+D0eVVWhfYeyTOL1IoxpgF4YPQ5nuPwZ5HnkI9BgGfaDw1hCT/dkAJfcYJ4VRmAHj
+X11+QLOy8YdDPd3hobfNxaJRZ0QzCBW4qBpYJ+hu2xCsvL5dlchxsC3MEoez3RnV
+UolSAR+bao8Rer07+qj9pfDj7AnKrNY0YjCGz23JdKqk5xFRA8eJkXsMwLvAp4wQ
+jOhE3Rj3dS6fNVEXRH5l8pMlGfFOcmRCvdn5EbWRdf34kL2Lb6GdTKisGYm8s0fO
+xv5Sss5Oqqr4FmLTmxU7HLSdJelOZB/5L0afktxbV/RFaTb6CoRKJCquwUdASpT2
+xsbYaJWzmLP9Bu9PX14LI1ux5rRACtarVUjSGzsU2tVKYjX0zMM=
+=vwPQ
+-----END PGP SIGNATURE-----
+
+--ajsvss6txycmr5om--
