@@ -2,68 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0321422736
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 14:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B220E42273C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 14:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234934AbhJEM6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 08:58:10 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:49752 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233977AbhJEM6I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 08:58:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=dpuqj2Jeeee/gupFFc81hYqxPAQItHzGH75X2bBgRSQ=; b=xVS9UVzfcdoHAaaQmFjsL6A1M+
-        deiCx3x/cWg7jwnpc0kPMrPKMUdaWDdRPDodgw2MMv8LO68Km6HKHs2K/G8zLTMNGMVg7284DOe1i
-        NfVbxozCaRw3H4lA99FP0rZn3/TqkNYKuGqXFf40+WSEk2gzwGfrqfoMwI4wkMxb9zwI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mXjzS-009h1l-30; Tue, 05 Oct 2021 14:56:14 +0200
-Date:   Tue, 5 Oct 2021 14:56:14 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marcel Ziswiler <marcel@ziswiler.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH v1 3/4] ARM: mvebu_v7_defconfig: rebuild default
- configuration
-Message-ID: <YVxLbhCml+ba1AIx@lunn.ch>
-References: <20211005060334.203818-1-marcel@ziswiler.com>
- <20211005060334.203818-4-marcel@ziswiler.com>
+        id S234732AbhJEM7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 08:59:25 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:30830 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234403AbhJEM7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 08:59:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633438654; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=LNP3R4WHNvNPz7xGqMY7PMzJL7IKt0UlHIeyr3P3hdg=;
+ b=wMGAZgCR1Ng6Gr8gPVQks/ITmPVLHAv6uJt7LT43O+C+mCHBlzaH8hJjYz40zKtH0lA+jp1V
+ 0UNG9qD47s4+CUoaAWj2dWJK+0fKUFJlO+dJHJDCreRbPlb3IShfNAk6r/EyT/MjEBa12ahb
+ bAXxtbDcErtNpO1B4DYs8vJfaDU=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 615c4bb347d64efb6dbfc2d3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 12:57:23
+ GMT
+Sender: schowdhu=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0F950C4360C; Tue,  5 Oct 2021 12:57:23 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: schowdhu)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4F43EC4338F;
+        Tue,  5 Oct 2021 12:57:22 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211005060334.203818-4-marcel@ziswiler.com>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 05 Oct 2021 18:27:22 +0530
+From:   schowdhu@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bryan O'Donoghue <pure.logic@nexus-software.ie>,
+        Greg KH <greg@kroah.com>, linux-kernel@vger.kernel.org,
+        ckadabi@codeaurora.org, tsoni@codeaurora.org,
+        bryanh@codeaurora.org, psodagud@codeaurora.org,
+        satyap@codeaurora.org, pheragu@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Subject: Re: [PATCH V0 2/7] dt-bindings: usb: dwc3: Update dwc3 properties for
+ EUD connector
+In-Reply-To: <YVsiwsemiCEmRkJ0@ripper>
+References: <cover.1633343547.git.schowdhu@codeaurora.org>
+ <d4c9d60e8960968ad77a4a2c6c119a8e9cebc22d.1633343547.git.schowdhu@codeaurora.org>
+ <YVsiwsemiCEmRkJ0@ripper>
+Message-ID: <a624d08d661a55620130a3b5a88e6224@codeaurora.org>
+X-Sender: schowdhu@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 05, 2021 at 08:03:33AM +0200, Marcel Ziswiler wrote:
-> Run "make mvebu_v7_defconfig; make savedefconfig" to rebuild
-> mvebu_v7_defconfig
+On 2021-10-04 21:20, Bjorn Andersson wrote:
+> On Mon 04 Oct 04:16 PDT 2021, Souradeep Chowdhury wrote:
 > 
-> This re-ordered the following configuration options:
+>> Adding the address size,cell size and ranges property for EUD 
+>> connector.
+>> Adding the connector property for EUD which is child of dwc3 node.
+>> 
 > 
-> CONFIG_MODULES=y
-> CONFIG_MODULE_UNLOAD=y
-> CONFIG_PCI=y
-> CONFIG_PCI_MVEBU=y
-> CONFIG_CRYPTO_DEV_MARVELL_CESA=y
+> When we have a Type-C controller involved, the connector is described
+> using of_graph, so will we not then have two different connectors
+> described, in two different ways?
 > 
-> And dropped the following nowadays obsolete configuration options:
-> 
-> CONFIG_ZBOOT_ROM_TEXT=0x0 (default now anyway since commit 39c3e304567a
->  ("ARM: 8984/1: Kconfig: set default ZBOOT_ROM_TEXT/BSS value to 0x0"))
-> CONFIG_ZBOOT_ROM_BSS=0x0 (ditto)
-> CONFIG_MTD_M25P80=y (got integrated into MTD_SPI_NOR)
-> 
-> Signed-off-by: Marcel Ziswiler <marcel@ziswiler.com>
+> Regards,
+> Bjorn
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Ack. Will have this updated with the of_graph in the next version.
 
-    Andrew
+> 
+>> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> ---
+>>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 15 
+>> +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml 
+>> b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> index 078fb78..3e71205 100644
+>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> @@ -36,6 +36,14 @@ properties:
+>>          - const: synopsys,dwc3
+>>            deprecated: true
+>> 
+>> +  "#address-cells":
+>> +    enum: [ 1, 2 ]
+>> +
+>> +  "#size-cells":
+>> +    enum: [ 1, 2 ]
+>> +
+>> +  ranges: true
+>> +
+>>    interrupts:
+>>      description:
+>>        It's either a single common DWC3 interrupt (dwc_usb3) or 
+>> individual
+>> @@ -318,6 +326,13 @@ properties:
+>>      items:
+>>        enum: [1, 4, 8, 16, 32, 64, 128, 256]
+>> 
+>> +  connector:
+>> +    type: object
+>> +    $ref: /connector/usb-connector.yaml#
+>> +    description:
+>> +      Connector for dual role switch, especially for 
+>> "eud-usb-c-connector"
+>> +
+>> +
+>>  unevaluatedProperties: false
+>> 
+>>  required:
+>> --
+>> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+>> member
+>> of Code Aurora Forum, hosted by The Linux Foundation
+>> 
