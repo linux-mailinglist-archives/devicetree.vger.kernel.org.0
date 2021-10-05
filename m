@@ -2,72 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4665B422B92
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AFB0422BC5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:05:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231938AbhJEO5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 10:57:50 -0400
-Received: from mail-vs1-f49.google.com ([209.85.217.49]:34515 "EHLO
-        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbhJEO5u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 10:57:50 -0400
-Received: by mail-vs1-f49.google.com with SMTP id d18so1389088vsh.1;
-        Tue, 05 Oct 2021 07:55:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wvgHFbWrViCEKRu6yzuxfkEfhT1uqxh6DDBmzue5eBI=;
-        b=3jM6/LVbE0EpFkk/yFVBiVaj8kOqSYBXLSUP1SdEeVR7WCoiSIoYzdL+wq0PMtMGxU
-         pVPrpjBKoFgHu3StDEDdLwNdFD/pXd6L/LxWYEAkp+9arMKFETK0khIoUU5rOkeRlHS5
-         iHhuf0p9SioQkFlKXBhl96v8ckxYQ7oeAl/CIH2+a9/Iv8hiIzSi6ZEp2v+ZbffunLJL
-         7sutsq7JtWRxZAVWCgjt/cJKWr9R/QVGTZB+JmnN1fROXE2ZJrnateYge9FhIpQ5jCUR
-         QD39V5qhsZri6mG3JP6himo/ugdryP3+O72ArHHXn01SyX3PwSSHTAnD7yKMB4vfxFwx
-         v0mQ==
-X-Gm-Message-State: AOAM530uUB0K5YvK7MuK1aSQXDm1FsdBBKoPIN4giYaKb1ck6NjeUz4l
-        4CE/4xctMbxoGPPL+sdSSbC3vziDp1V7+u0xkdk=
-X-Google-Smtp-Source: ABdhPJzNXRAXsBTqyyR29m7Wc6S+ZaCmOOIMfpnoBh9hLLki5MizcvoylNeXKvoKkGMpd6W/GGbsSjssBr44NS3EQt8=
-X-Received: by 2002:a67:cb0a:: with SMTP id b10mr19257155vsl.9.1633445759140;
- Tue, 05 Oct 2021 07:55:59 -0700 (PDT)
+        id S230141AbhJEPHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 11:07:11 -0400
+Received: from mga18.intel.com ([134.134.136.126]:53938 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235022AbhJEPHL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 11:07:11 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="212696560"
+X-IronPort-AV: E=Sophos;i="5.85,349,1624345200"; 
+   d="scan'208";a="212696560"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2021 08:04:01 -0700
+X-IronPort-AV: E=Sophos;i="5.85,349,1624345200"; 
+   d="scan'208";a="523803649"
+Received: from emccutch-mobl.amr.corp.intel.com (HELO [10.212.34.81]) ([10.212.34.81])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2021 08:03:59 -0700
+Subject: Re: [PATCH] ASoC: qcom: soundwire: Enable soundwire bus clock for
+ version 1.6
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1633105471-30928-1-git-send-email-srivasam@codeaurora.org>
+ <a2b6a9c7-2191-4bc9-b03b-3b22b495a4be@linux.intel.com>
+ <2c18ff0c-cd24-356c-0104-086837ed7ff0@codeaurora.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <d485af5f-4dfb-df08-9a22-901b7534ca3b@linux.intel.com>
+Date:   Tue, 5 Oct 2021 10:03:56 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20210928155852.32569-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210928155852.32569-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 5 Oct 2021 16:55:47 +0200
-Message-ID: <CAMuHMdVg08Ya1RGFWtK9czWwOg3d_60rh-1NkmLoR1DwBYF69Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add SPI Multi I/O Bus
- controller node
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <2c18ff0c-cd24-356c-0104-086837ed7ff0@codeaurora.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 28, 2021 at 5:59 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add SPI Multi I/O Bus controller node to R9A07G044 (RZ/G2L) SoC DTSI.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.16.
 
-Gr{oetje,eeting}s,
+>>> +        ctrl->swrm_hctl_reg = devm_ioremap(&pdev->dev,
+>>> swrm_hctl_reg, 0x4);
+>> if (!ctrl->swrm_hctl_reg)
+>>      return -ENODEV;
+>>
+>> ?
+> I think here error check is not required, as this change is required
+> only for soundwire version 1.6 and above.
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+My comment had nothing to do with versions, it's just that ioremap can
+fail and in general it's wise to test for errors...
