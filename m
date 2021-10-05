@@ -2,75 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D769421F4E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 09:14:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B604D421F56
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 09:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232460AbhJEHQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 03:16:26 -0400
-Received: from smtprelay0048.hostedemail.com ([216.40.44.48]:58156 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S232251AbhJEHQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 03:16:26 -0400
-Received: from omf14.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay06.hostedemail.com (Postfix) with ESMTP id C071F1807D7C1;
-        Tue,  5 Oct 2021 07:14:30 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf14.hostedemail.com (Postfix) with ESMTPA id 3DE5B268E45;
-        Tue,  5 Oct 2021 07:14:27 +0000 (UTC)
-Message-ID: <c56e78bc85cbe6b05dd16c750e596ab331c37dee.camel@perches.com>
-Subject: Re: [PATCH V0 4/7] usb: common: eud: Added the driver support for
- Embedded USB Debugger(EUD)
-From:   Joe Perches <joe@perches.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Souradeep Chowdhury <schowdhu@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Bryan O'Donoghue <pure.logic@nexus-software.ie>,
-        Greg KH <greg@kroah.com>, linux-kernel@vger.kernel.org,
-        ckadabi@codeaurora.org, tsoni@codeaurora.org,
-        bryanh@codeaurora.org, psodagud@codeaurora.org,
-        satyap@codeaurora.org, pheragu@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Date:   Tue, 05 Oct 2021 00:14:25 -0700
-In-Reply-To: <YVsu602phHbZLMOT@ripper>
-References: <cover.1633343547.git.schowdhu@codeaurora.org>
-         <e6df4a21a283e822d15dedb7ffb3ae62c241999c.1633343547.git.schowdhu@codeaurora.org>
-         <YVsu602phHbZLMOT@ripper>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.40.0-1 
+        id S232561AbhJEHWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 03:22:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57522 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230526AbhJEHWj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 03:22:39 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E092361409;
+        Tue,  5 Oct 2021 07:20:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633418449;
+        bh=N7hQX43Kc4fE1oxsGIaIgA7jCH+iDTQUQqbND1FQvec=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fQx/oH/Qe3bDAJIP7MxqLrVxADMwPDT+NeIDwVwCPVs/ndILpILM8+xyr/nwBfSRa
+         qYPNEuOVdLZr4EOEULM0AZSnyvMPelUd+ELNseGJYzeaPuzl2KBTKEe2LQiO8mPZAA
+         u71EXhikzdVPvxoitG6yAmEicZSq2jihmdxkJdfYeJIUtZiT8mFCrA4lEI9D2LLRvw
+         tn0LsQEZ82LXJiXP5fgUMBPNMUZzkvLbiK/Xq7ytIKkL2j53eKF0f0/LVNZ2C+yxUe
+         /3t6OgC0Np5i4id8X2NIgcub1Arj2WYlG9FowDp3ZKqB41pF27EFEX1beKeMkJcE46
+         dy1SO9AJl7hiw==
+Date:   Tue, 5 Oct 2021 15:20:43 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Frieder Schrempf <frieder@fris.de>
+Cc:     devicetree@vger.kernel.org,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>, stable@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH 6/8] arm64: dts: imx8mm-kontron: Fix connection type for
+ VSC8531 RGMII PHY
+Message-ID: <20211005072042.GD20743@dragon>
+References: <20210930155633.2745201-1-frieder@fris.de>
+ <20210930155633.2745201-7-frieder@fris.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 3DE5B268E45
-X-Spam-Status: No, score=-2.03
-X-Stat-Signature: p41cre9disuxr4e5bn6qwko7y6z19gz4
-X-Rspamd-Server: rspamout02
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX1/wX7nCYcBjYI3ylpNeDbHYE4g46+Sy/Cw=
-X-HE-Tag: 1633418067-584561
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210930155633.2745201-7-frieder@fris.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-10-04 at 09:42 -0700, Bjorn Andersson wrote:
-> On Mon 04 Oct 04:16 PDT 2021, Souradeep Chowdhury wrote:
+On Thu, Sep 30, 2021 at 05:56:29PM +0200, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
 > 
-> > Add support for control peripheral of EUD (Embedded USB Debugger) to
-> > listen to events such as USB attach/detach, pet EUD to indicate software
-> > is functional.Reusing the platform device kobj, sysfs entry 'enable' is
-> > created to enable or disable EUD.
-[]
-> > diff --git a/drivers/usb/common/qcom_eud.c b/drivers/usb/common/qcom_eud.c
-[]
-> > +static ssize_t enable_show(struct device *dev,
-> > +		struct device_attribute *attr, char *buf)
-> > +{
-> > +	struct eud_chip *chip = dev_get_drvdata(dev);
-> > +
-> > +	return sprintf(buf, "%d", chip->enable);
+> Previously we falsely relied on the PHY driver to unconditionally
+> enable the internal RX delay. Since the following fix for the PHY
+> driver this is not the case anymore:
+> 
+> commit 7b005a1742be ("net: phy: mscc: configure both RX and TX internal
+> delays for RGMII")
+> 
+> In order to enable the delay we need to set the connection type to
+> "rgmii-rxid".
 
-trivia:
+Could you share some details of the issue that the delay is not enabled,
+e.g. how broken the Ethernet support is without this change?
 
-should probably use sysfs_emit and have a trailing '\n' in the format.
+Shawn
 
-
+> 
+> Fixes: 21c4f45b335f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
+> index dbf11e03ecce..0e4509287a92 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
+> @@ -114,7 +114,7 @@ &ecspi3 {
+>  &fec1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_enet>;
+> -	phy-connection-type = "rgmii";
+> +	phy-connection-type = "rgmii-rxid";
+>  	phy-handle = <&ethphy>;
+>  	status = "okay";
+>  
+> -- 
+> 2.33.0
+> 
