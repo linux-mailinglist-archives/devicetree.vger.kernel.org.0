@@ -2,88 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACA8942260F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 14:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD408422665
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 14:26:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234499AbhJEMQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 08:16:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38874 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233808AbhJEMQk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 08:16:40 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EAA5B61166;
-        Tue,  5 Oct 2021 12:14:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633436090;
-        bh=DeaHbSCWFT8NlzFI7wJri1fE1dG3RGKllnRW0mksoIo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CUNgIxvsTj9HQ9K9IbRnK/q5KeNl3Eq9UZtsxwYap6OhnKEBUkVz79qVWZIJA9OV0
-         IqB9kLaFnP60wlAm0vYZYd2qO5B/pEgLAI0xfqKMM9a9rAJ9HvzzyWorat3pC0a5EJ
-         RU80Mk5SupjC+SM+9lN4zx/oblJStStnqNrCbTjhFhKvSEUFGp1CKPGx8deEnKxNIz
-         GX4qNwgH9EQHKAB4yRD3nkX4q9HGl5hvluanRCXqM2F1Y8kBwY33MxnAPpzQu/GRm+
-         kMg0VaiExald2jB4tap1QTznzfe3UHVJfxC0s80FgZaDMlKgKbrUCaTbO4XqCOLP5o
-         hda23Jz+1GW/Q==
-Date:   Tue, 5 Oct 2021 13:14:48 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2 00/10] regulator/mfd/clock: dt-bindings: Samsung S2M
- and S5M to dtschema
-Message-ID: <YVxBuEvHVdyDvaGD@sirena.org.uk>
-References: <20211001094106.52412-1-krzysztof.kozlowski@canonical.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NHJ+x3vjgC+S2IOr"
-Content-Disposition: inline
-In-Reply-To: <20211001094106.52412-1-krzysztof.kozlowski@canonical.com>
-X-Cookie: A is for Apple.
+        id S234798AbhJEM2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 08:28:37 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:38779 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234732AbhJEM2d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 08:28:33 -0400
+Received: by mail-oi1-f181.google.com with SMTP id w190so858693oif.5;
+        Tue, 05 Oct 2021 05:26:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=yIgUhu7G6czXFO6ebeJdfMc193Tu4/8LB2OpU0TT3Ns=;
+        b=3UoFEa7CDUSup8u2giBbzjUMT2leQkn3rxYFaIGKyRuh9KMcx3yS6NUvi6TTpHAsNo
+         mI182Q7v25UoOyRBzT6v7EGiwz8wJzyXho4lo04nK+7xX+RbOXlVzTngmwMeI6MGYLJB
+         5yVPPIHlyLl5AFFIO587/uPz8qfKh3jcZsq6dJjrEWeq5kyrJrNAad8l1+LAnGqGWEEQ
+         bTxKnIIe4LoFrXiaFb32LYEkzj8+W7uCW/qCNol2bgLUzB+PJyHUBUuM3anBfcg2e6di
+         QncvscylB11N7nTT6gxk+MOx6MQmdok4zsCaDP0IAunw358P5B4sX/bwjgLnziV8/Sao
+         cP8A==
+X-Gm-Message-State: AOAM532vW5UZmWHAVqftBvUW/Er1JVrlEJx6R5ze1aQUJopcnt8QZRBu
+        Emu6kBO57lEMHHHvWh79XKzOQT14uw==
+X-Google-Smtp-Source: ABdhPJyG5fdOJLbVr22TivKYurISzS9pyWYFd8K412AFAxNwLKZMEoRo8Zed3HzbfPI5Sw5Ua+torA==
+X-Received: by 2002:a05:6808:1912:: with SMTP id bf18mr2292547oib.118.1633436803179;
+        Tue, 05 Oct 2021 05:26:43 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e12sm3528754otq.4.2021.10.05.05.26.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Oct 2021 05:26:42 -0700 (PDT)
+Received: (nullmailer pid 3226823 invoked by uid 1000);
+        Tue, 05 Oct 2021 12:26:38 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <1633399842-1402-3-git-send-email-hayashi.kunihiko@socionext.com>
+References: <1633399842-1402-1-git-send-email-hayashi.kunihiko@socionext.com> <1633399842-1402-3-git-send-email-hayashi.kunihiko@socionext.com>
+Subject: Re: [PATCH 2/3] dt-bindings: reset: uniphier: Add NX1 reset control binding
+Date:   Tue, 05 Oct 2021 07:26:38 -0500
+Message-Id: <1633436798.721139.3226822.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 05 Oct 2021 11:10:41 +0900, Kunihiko Hayashi wrote:
+> Update reset controller binding document for UniPhier NX1 SoC.
+> 
+> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> ---
+>  .../devicetree/bindings/reset/socionext,uniphier-glue-reset.yaml       | 1 +
+>  Documentation/devicetree/bindings/reset/socionext,uniphier-reset.yaml  | 3 +++
+>  2 files changed, 4 insertions(+)
+> 
 
---NHJ+x3vjgC+S2IOr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-On Fri, Oct 01, 2021 at 11:40:56AM +0200, Krzysztof Kozlowski wrote:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-> Merging/dependencies
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> 1. Regulator related binding changes depend on first two commits (the
->    fixes), because of context.
-> 2. The mfd bindings depend on clock and regulator bindings.
->=20
-> The fixes and bindings changes (patches 1-10) should go via the same
-> tree.  For example regulator or mfd tree.  I propose the regulator tree,
-> since it will have also one driver change (the fix, first commit).
+Full log is available here: https://patchwork.ozlabs.org/patch/1536452
 
-Lee, Stephen, Michael does Krzysztof's plan make sense to you?
 
---NHJ+x3vjgC+S2IOr
-Content-Type: application/pgp-signature; name="signature.asc"
+reset: 'resets' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/socionext/uniphier-ld11-global.dt.yaml
+	arch/arm64/boot/dts/socionext/uniphier-ld11-ref.dt.yaml
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFcQbcACgkQJNaLcl1U
-h9B78Qf8DbtcL1OFNxmK5o5qziAQ7pj3GzOOi+h25mAQirGBLDoUxNGTTzs57/8f
-kSK2LEvstzQMBEUeZtXSOzhHzLjAGRahEWlwNLmYP/8hSAlY+y9VJCEBbYbeWnbl
-qm5Zy/rDqH8I9dKMWvTcMA6V2AfcGczQ6UnlObIdsO3+FYYRKvB9qxmQQaro8d8/
-s3Eq8je14T6lQ+AITujDiWEoxUzJsrPX8WxZQAiKjmJjl/RB/sjI8bN1i0UImjws
-IYvv3DYnFKTcyQzLXeBkstB/mmUaTAgdz9DzChh6j9StHXkI0h83/so2pp3Ys+09
-1mV23wOM9a2muVldboi23vvDpWBjSQ==
-=E3E1
------END PGP SIGNATURE-----
-
---NHJ+x3vjgC+S2IOr--
