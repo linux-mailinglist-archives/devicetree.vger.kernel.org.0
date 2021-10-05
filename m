@@ -2,209 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38053422372
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 12:29:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9660E4223CC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 12:46:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234250AbhJEKaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 06:30:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44680 "EHLO
+        id S233576AbhJEKru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 06:47:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234161AbhJEKao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 06:30:44 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 644C1C061755
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 03:28:54 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id v4so8393310vsg.12
-        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 03:28:54 -0700 (PDT)
+        with ESMTP id S233077AbhJEKru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 06:47:50 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E59F5C06161C;
+        Tue,  5 Oct 2021 03:45:59 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id g10so16999605edj.1;
+        Tue, 05 Oct 2021 03:45:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=G0mA3IE5MZEisQTtgMG+oRXyhpY0P+ydyHuZ+OL6HWc=;
-        b=dYz37AlljNPD9qLWQ97zbV27b0HY7ewVO3Uc3VbZE59qtLyIPZdAygLiP/L7L6ta2k
-         7wo82cBeaU/yrZGMukOkPAJVQZ4pLBfEzhvWccizI4iAeqttaW9UJYaQFvD6X593YYIL
-         UMVXewCTa3HMEhW+WMZqNwoGh2ccWd/n4Pm/RN1VTve0giAK9GGSd5+fNcnUwN7X/V9y
-         AGJRlgKoL8TADZr1MKOpubWt6dNk1B3XRYOeE3CyYwjA1HnG55pgvOyQHGnDcbaDSd+t
-         CsvLEOIzJa6coTyRT5lmDL0toEgb6nBTS2LPk6eoarcqHaj93J/x0NsS2JxXZdDhzVeK
-         lPLg==
+         :cc;
+        bh=cIIxJObi+e13NmHv65VtLTgT3/9mPzupU8skdaC+/ac=;
+        b=moF1A5AADl4m9a/AWvqtYEGUruMAE24BQ0ekMHjyRw9JBhSB9uLARlzooYReDJm83N
+         ZqdWx4rSiCxofnYQHFkq6nlrsxxt/kEarV6q76IpKaWAQy32eZ/m8RgX1O9nGx0PSiwD
+         6PuMtSCkfxhff+rgkcMCvv4suLA7jfxXf26my09QMdeEQxBGAi+q3v7CwW4B5kZ+QIQB
+         nnV1HhzFapxDw4tKLqLgpExtZBen3LUkgV7bpWQaUK2N6kfsuQsxTwQdZADJTxKomwS+
+         4ujkzJMIY908r8OBaw+jXEbwfWMtaamCNi0p9uEc1bzBFtVGY2cSaqp8THtt6Rd20gCh
+         ndLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=G0mA3IE5MZEisQTtgMG+oRXyhpY0P+ydyHuZ+OL6HWc=;
-        b=q6PRH2igpnY+Ofp0QaLhSL7z6h8+3J/NLliR3PZ7MsEhxYu2m3fE+8ctcg6uJGkCDR
-         4E8hKjrc6NhYCnpvb0d1n9EvdUVAHI6xjL1fpyGxtviuRhADFMXQ7LxbvOs9nFY+8LIE
-         xDk2NDsyHZlUQRFR3riJIBzb8rL8uxnl8RZrgX5xyY43faybL2Rv7Pn8NfymiUsRa9N7
-         Aov3tktAWr9gExMU/h8Rjcn2YmrFoQQghugA4Yzrt5ZYp+vsvSG2C+sUUGKbvgVsS2cc
-         L58BL0rGa7lgakaTwKxrmiIckN/vTnpkHe/28mj+/4J2HLPPG1zoAP4SDgiGC7Qdh9ua
-         4TNA==
-X-Gm-Message-State: AOAM5322pz/wz8esTw+UVlLGzccx8D+n3GMXNjoy9IFw5CVsChc1UKjJ
-        xYbUeVKXVh6yyNFPJDdZc3nKq/GxOINXoct6xfhMfQ==
-X-Google-Smtp-Source: ABdhPJxI3BjDXd7TUEnohF0PNs6zjgfdCxTBiFr0D8GdDdXVisMsIArQDHOLlS4VgiQB2aceby4tfN5qicUSqa2Bf2o=
-X-Received: by 2002:a67:d289:: with SMTP id z9mr8432439vsi.39.1633429733158;
- Tue, 05 Oct 2021 03:28:53 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=cIIxJObi+e13NmHv65VtLTgT3/9mPzupU8skdaC+/ac=;
+        b=AugDPtooqHf3ysaed7IFEIiBGeShNnXJXy7XyJeeD6LM7trN5v44WvGWmmKXUycBGY
+         sAm8SX35XOgPGHmtKYPu0Jcv7nBEq3cBPa0TW0YcNiv0QhusCgTfNaG5va5eb3yJJm5Y
+         56x2we1kmqnT+lgHhN3U4LmJYFXPwaS8ak6tOaAXCrgQm7Qo2MRr5GMsxkzikM6nbCRU
+         3D8MJIBzcTBxNbBVPJbkEjaL2M99ft3GLGvfPeDVzKTrtjd10sAz1eTR4GWassQa4m2G
+         9UB7mPYVqVJTE3Xt4pkdr8Ke6enMYNboOpKu9La6k+Svz4Ry9XPJltLpmdfSiRvkbjpL
+         C6LA==
+X-Gm-Message-State: AOAM531BVWQVGCHEBX67RkiQDnoRx1l+X5nJiHIojWi4F+ClNSUtS0yq
+        JdxStK6AssikFS4ldY79N2YceiU84IyYRThzpQ/bspXb
+X-Google-Smtp-Source: ABdhPJyLahJVk0oA8O9uOJ3sJ4bZ5NZT4ZV1Vn9RfrurcfjD3ViTjOfDDkA8qpc8CM24WI20/bKb1FTujaVHOeqsN84=
+X-Received: by 2002:a50:be81:: with SMTP id b1mr26068397edk.59.1633430757237;
+ Tue, 05 Oct 2021 03:45:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210914155607.14122-1-semen.protsenko@linaro.org>
- <20210914155607.14122-5-semen.protsenko@linaro.org> <96e5587e-aca7-248e-6448-8edfc70784b7@gmail.com>
-In-Reply-To: <96e5587e-aca7-248e-6448-8edfc70784b7@gmail.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Tue, 5 Oct 2021 13:28:40 +0300
-Message-ID: <CAPLW+4mEeh8Fo8kGHx+rB7nX7bDfaQRPGDotgPLTp4pm4rC0Cg@mail.gmail.com>
-Subject: Re: [PATCH 4/6] dt-bindings: clock: Add bindings definitions for
- Exynos850 CMU
-To:     Chanwoo Choi <cwchoi00@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
+References: <20210930065733.31943-1-tony@atomide.com> <20210930065733.31943-2-tony@atomide.com>
+ <CAHCN7xJ_28ALRds4rduQP3LZoEK9y6mdia_czKU0DWse7FnjoA@mail.gmail.com> <YVwHEqaAtk0MFwmR@atomide.com>
+In-Reply-To: <YVwHEqaAtk0MFwmR@atomide.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Tue, 5 Oct 2021 05:45:46 -0500
+Message-ID: <CAHCN7xLBi09oHa75SxOc=CJ3hHZCNTxn6Z7m0NwuMcLY8+UL6g@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: sdhci-omap: Update binding for legacy SoCs
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Chunyan Zhang <zhang.chunyan@linaro.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Sept 2021 at 19:37, Chanwoo Choi <cwchoi00@gmail.com> wrote:
+On Tue, Oct 5, 2021 at 3:04 AM Tony Lindgren <tony@atomide.com> wrote:
 >
 > Hi,
 >
-> You don't add clock ids for the all defined clocks in clk-exynos850.c.
-> I recommend that add all clock ids for the defined clocks if possible.
+> * Adam Ford <aford173@gmail.com> [211002 13:29]:
+> > I noticed that you added omap3 compatibility to the driver and the
+> > bindings, but no device tree changes for omap3.dtsi to enable this.
+> > Is there anything holding back?
 >
-> If you want to change the parent clock of mux or change the clock rate
-> of div rate for some clocks, you have to touch the files as following:
-> - include/dt-bindings/clock/exynos850.h
-> - drivers/clk/samsung/clk-exynos850.c
-> - exynos850 dt files
+> There is at least the wl1251 quirk handling missing as I mentioned in
+> the cover letter. I guess we could enable sdhci except for wl1251 users
+> though.
+
+Sorry, I guess I missed the cover letter.  I didn't see any obvious
+differences between the drivers other than the hsmmc driver enumerated
+before the DMA, so it threw some splat indicating that.  The newer
+driver appears to enumerate after the DMA, so that message
+disappeared.
+
 >
-> If you define the clock ids for all clocks added to this patchset,
-> you can change the parent or rate by just editing the dt files.
->
-
-Hi Chanwoo,
-
-I see your point. But I have intentionally omitted some clock ids,
-which can't be / shouldn't be used by consumers in device tree.
-Actually I took that idea from clk-exynos7.c.
-
-Krzysztof, Sylwester: can you please advice if all clock ids should be
-defined, or only those that are going to be used in dts clk consumers?
-I don't mind reworking the patch, just want to be sure which design
-approach we want to follow.
-
-Thanks!
-
-> But, I have no strongly objection about just keeping this patch.
->
->
-> On 21. 9. 15. =EC=98=A4=EC=A0=84 12:56, Sam Protsenko wrote:
-> > Clock controller driver is designed to have separate instances for each
-> > particular CMU. So clock IDs in this bindings header also start from 1
-> > for each CMU.
+> > I modified omap3.dtsi and changed the compatible flag to
+> > ti,omap3-sdhci and it boots from SD card just fine.  For some reason,
+> > I cannot get the wl1283 to function, but the driver probes, so I need
+> > to spend some time investigating this.
 > >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > ---
-> >   include/dt-bindings/clock/exynos850.h | 72 ++++++++++++++++++++++++++=
-+
-> >   1 file changed, 72 insertions(+)
-> >   create mode 100644 include/dt-bindings/clock/exynos850.h
-> >
-> > diff --git a/include/dt-bindings/clock/exynos850.h b/include/dt-binding=
-s/clock/exynos850.h
-> > new file mode 100644
-> > index 000000000000..2f0a7f619627
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/exynos850.h
-> > @@ -0,0 +1,72 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * Copyright (C) 2021 Linaro Ltd.
-> > + * Author: Sam Protsenko <semen.protsenko@linaro.org>
-> > + *
-> > + * Device Tree binding constants for Exynos850 clock controller.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLOCK_EXYNOS_850_H
-> > +#define _DT_BINDINGS_CLOCK_EXYNOS_850_H
-> > +
-> > +/* CMU_TOP */
-> > +#define DOUT_HSI_BUS                 1
-> > +#define DOUT_HSI_MMC_CARD            2
-> > +#define DOUT_HSI_USB20DRD            3
-> > +#define DOUT_PERI_BUS                        4
-> > +#define DOUT_PERI_UART                       5
-> > +#define DOUT_PERI_IP                 6
-> > +#define DOUT_CORE_BUS                        7
-> > +#define DOUT_CORE_CCI                        8
-> > +#define DOUT_CORE_MMC_EMBD           9
-> > +#define DOUT_CORE_SSS                        10
-> > +#define TOP_NR_CLK                   11
-> > +
-> > +/* CMU_HSI */
-> > +#define GOUT_USB_RTC_CLK             1
-> > +#define GOUT_USB_REF_CLK             2
-> > +#define GOUT_USB_PHY_REF_CLK         3
-> > +#define GOUT_USB_PHY_ACLK            4
-> > +#define GOUT_USB_BUS_EARLY_CLK               5
-> > +#define GOUT_GPIO_HSI_PCLK           6
-> > +#define GOUT_MMC_CARD_ACLK           7
-> > +#define GOUT_MMC_CARD_SDCLKIN                8
-> > +#define GOUT_SYSREG_HSI_PCLK         9
-> > +#define HSI_NR_CLK                   10
-> > +
-> > +/* CMU_PERI */
-> > +#define GOUT_GPIO_PERI_PCLK          1
-> > +#define GOUT_HSI2C0_IPCLK            2
-> > +#define GOUT_HSI2C0_PCLK             3
-> > +#define GOUT_HSI2C1_IPCLK            4
-> > +#define GOUT_HSI2C1_PCLK             5
-> > +#define GOUT_HSI2C2_IPCLK            6
-> > +#define GOUT_HSI2C2_PCLK             7
-> > +#define GOUT_I2C0_PCLK                       8
-> > +#define GOUT_I2C1_PCLK                       9
-> > +#define GOUT_I2C2_PCLK                       10
-> > +#define GOUT_I2C3_PCLK                       11
-> > +#define GOUT_I2C4_PCLK                       12
-> > +#define GOUT_I2C5_PCLK                       13
-> > +#define GOUT_I2C6_PCLK                       14
-> > +#define GOUT_MCT_PCLK                        15
-> > +#define GOUT_PWM_MOTOR_PCLK          16
-> > +#define GOUT_SPI0_IPCLK                      17
-> > +#define GOUT_SPI0_PCLK                       18
-> > +#define GOUT_SYSREG_PERI_PCLK                19
-> > +#define GOUT_UART_IPCLK                      20
-> > +#define GOUT_UART_PCLK                       21
-> > +#define GOUT_WDT0_PCLK                       22
-> > +#define GOUT_WDT1_PCLK                       23
-> > +#define PERI_NR_CLK                  24
-> > +
-> > +/* CMU_CORE */
-> > +#define GOUT_CCI_ACLK                        1
-> > +#define GOUT_GIC_CLK                 2
-> > +#define GOUT_MMC_EMBD_ACLK           3
-> > +#define GOUT_MMC_EMBD_SDCLKIN                4
-> > +#define GOUT_SSS_ACLK                        5
-> > +#define GOUT_SSS_PCLK                        6
-> > +#define CORE_NR_CLK                  7
-> > +
-> > +#endif /* _DT_BINDINGS_CLOCK_EXYNOS_850_H */
-> >
+> > If i can get my wl1283 working again, I'll reply with a tested note.
+> > I hope to have more time tomorrow, but i can't do it any more today.
 >
+> I don't have wl1283 omap3 devices online, but I have tested that the
+> sdhci patches do work with wl12xx and mwifiex drivers. Did you figure
+> out why your wl1283 is not working with sdhci?
+
+I did get it working.  It was a MAC address issue.  I didn't properly
+set the MAC address.  Once I did, it worked just fine.
+
+I think I sent a 2nd reply with a tested-by message.
+
+adam
 >
-> --
-> Best Regards,
-> Samsung Electronics
-> Chanwoo Choi
+> Regards,
+>
+> Tony
