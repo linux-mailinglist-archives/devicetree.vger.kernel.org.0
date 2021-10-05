@@ -2,297 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 577E54233CF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 00:46:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10D434233D7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 00:46:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236957AbhJEWsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 18:48:04 -0400
-Received: from mail-oo1-f50.google.com ([209.85.161.50]:33287 "EHLO
-        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236912AbhJEWsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 18:48:01 -0400
-Received: by mail-oo1-f50.google.com with SMTP id i26-20020a4ad09a000000b002a9d58c24f5so297579oor.0;
-        Tue, 05 Oct 2021 15:46:09 -0700 (PDT)
+        id S236922AbhJEWsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 18:48:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236956AbhJEWsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 18:48:03 -0400
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3799C061760
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 15:46:12 -0700 (PDT)
+Received: by mail-oo1-xc2a.google.com with SMTP id j11-20020a4a92cb000000b002902ae8cb10so267557ooh.7
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 15:46:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VFvZc24blAvborprFIZbskjuKA2+rXG/KD54iQC+o2k=;
+        b=kfl7WKFzeAxKvatS7HOHCSeGXHiLDgd7DiQr20URrbqNEc9STgVIKqfi/qUGY+GCVV
+         miFHtv4EKNr2iclUmz5QRGO6xb2XLY0nNQkr5buSkOIxXhqJsYV4MYdbiG63W1ESf1TN
+         vRIRInL7HPoMuCtm7Bw7nUUfyU+1x4WHU6uNGY8H/1RWheKK+GvQMdqzUPgvh3R1ysM7
+         zd10xw2jcscrP0jC6eGrNCpLQPkqKbZUjj3U6q0Lu/gZKoToi2ibQXifaC+tZDY7SPTv
+         fh+gj43bCFP0VaKM3QYMZCwkTZ6m0Y5WLA1zrAFZ8NKh7hbdtXxlz7gU9+t7zGtTiE23
+         J8rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=CfIHHtT0TFEzmaXEkxfsHiOsCOuFZLojk7Wuirezz8k=;
-        b=RlJhroWdVjeUWTGCQLt7tgTTogAs3vTHhesMcprJebxJzMfiDqdFB3ri4Ad3znPm9f
-         s3BWFzJtxit4wutvTcTjNZdxQ4Di7PGOFKHDRoEJM88aORK4pcUNkfL2sgyEYENGeFkH
-         Kq5JFLwPKXtg7IAar4q5y+vINA94V3CRfvoY/tTBtl7IlNbFz6obmUa+a+TttXIjhu1i
-         rHC/OTTJ6axEidaBfOfeBN9UbjXuCZ+lANpjYUBBV9RGquyy7Be5fUcqtXEzwpWQY7NV
-         avrltik8TddD080FdifqucxVPQ9Rzz+4NuA1vU5f5S497OrenOIwTfm/0xcUHJBDMSXj
-         pumg==
-X-Gm-Message-State: AOAM532perrGtbIHccRcLJam91joNnlOSBUAmLlXEbIG1fu130g6O+EG
-        nw1k2TTxF5McCi41IJJXhg==
-X-Google-Smtp-Source: ABdhPJxj/toN99B+/P+e9cC9jSTAVyJFULlFRQXEGUDvemxQeEmRCyqoAajCpacQjUDpDSlbQXvd8g==
-X-Received: by 2002:a4a:8789:: with SMTP id b9mr5979966ooi.9.1633473969273;
-        Tue, 05 Oct 2021 15:46:09 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p14sm1924640oov.0.2021.10.05.15.46.08
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VFvZc24blAvborprFIZbskjuKA2+rXG/KD54iQC+o2k=;
+        b=bYd21eBehTY5qS5T79rvL/ooduOW7kAyIkBsxvnyVrWVmwau47ivdIvC6sOk7TwgbK
+         uUzLE7lI13ciyLlPl6dRgwNQ48O1qQcI97PQIk+pZn3mSqevawpc1BoA8uxigLQhByyj
+         UcJIjbCIPZfrWSe/jBuRcgjILhK+xqu7U9L91v+RB9MPjj4mwjM7wWISfyxhSkcAuk7g
+         i6YsCcrH0bozyu4NQeSUfSxA2pFA9jsGWju+DSDT5YX0EP/24RLoOmTQTHNDiFvVaFPI
+         bch/7KSBJr7S9wH4tJZYSc4OLjl+iXrOwBdWBasedN78Cr3lpSya4ipmK0EXMZHnzTud
+         rPfw==
+X-Gm-Message-State: AOAM533PEPVi2H/cSIYsa2hDJuUBkHEhMTI91ValGfFBlXHDFUfACivR
+        PvjUPHpI2PCGbQwW6xbo/tgbfQ==
+X-Google-Smtp-Source: ABdhPJzCq3CuRhDKs6tZFOk0YxoyyNMRy0sjkVz3W7NWOEWrwNXbVYN8ZdSKnVsv0D82zkOqnpDm7Q==
+X-Received: by 2002:a05:6820:17a:: with SMTP id k26mr15662292ood.37.1633473971915;
+        Tue, 05 Oct 2021 15:46:11 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id f10sm3728038ooh.42.2021.10.05.15.46.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 15:46:08 -0700 (PDT)
-Received: (nullmailer pid 106804 invoked by uid 1000);
-        Tue, 05 Oct 2021 22:45:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-gpio@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-In-Reply-To: <20211005144329.2405315-3-dmitry.baryshkov@linaro.org>
-References: <20211005144329.2405315-1-dmitry.baryshkov@linaro.org> <20211005144329.2405315-3-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: pinctrl: qcom,pmic-mpp: switch to #interrupt-cells
-Date:   Tue, 05 Oct 2021 17:45:59 -0500
-Message-Id: <1633473959.446136.106800.nullmailer@robh.at.kernel.org>
+        Tue, 05 Oct 2021 15:46:11 -0700 (PDT)
+Date:   Tue, 5 Oct 2021 15:47:53 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sdm845: mtp: Add vadc channels
+ and thermal zones
+Message-ID: <YVzWGSLtyatHUPfL@ripper>
+References: <20210923212311.2877048-1-bjorn.andersson@linaro.org>
+ <20210923212311.2877048-5-bjorn.andersson@linaro.org>
+ <YVSzJZ8G43CLml3L@google.com>
+ <YVtg3lcR1HMqVdAJ@ripper>
+ <CAA8EJprYij6pWD1A17yr1+5-n5fKPW=YDA_-2+f8h6JnEh4myw@mail.gmail.com>
+ <f136fbb0-be3e-aee8-7a68-1d16148c80ff@linaro.org>
+ <YVzJDU5ROmrI2rQb@ripper>
+ <cb0d97b1-81c7-2d5b-45d3-00dd09815ddd@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cb0d97b1-81c7-2d5b-45d3-00dd09815ddd@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Oct 2021 17:43:25 +0300, Dmitry Baryshkov wrote:
-> Stop specifying individual interrupts properties. Use #interrupt-cells
-> instead as we are switching qcom,spmi-mpp and qcom,ssbi-mpp to
-> hierarchical IRQ setup.
+On Tue 05 Oct 15:21 PDT 2021, Thara Gopinath wrote:
+
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
+> 
+> On 10/5/21 5:52 PM, Bjorn Andersson wrote:
+> > On Tue 05 Oct 13:30 PDT 2021, Thara Gopinath wrote:
+> > 
+> > > 
+> > > 
+> > > On 10/4/21 4:56 PM, Dmitry Baryshkov wrote:
+> > > > On Mon, 4 Oct 2021 at 23:13, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+> > > > > 
+> > > > > On Wed 29 Sep 11:40 PDT 2021, Matthias Kaehlcke wrote:
+> > > > > 
+> > > > > > On Thu, Sep 23, 2021 at 02:23:11PM -0700, Bjorn Andersson wrote:
+> > > > > > > Downstream defines four ADC channels related to thermal sensors external
+> > > > > > > to the PM8998 and two channels for internal voltage measurements.
+> > > > > > > 
+> > > > > > > Add these to the upstream SDM845 MTP, describe the thermal monitor
+> > > > > > > channels and add thermal_zones for these.
+> > > > > > > 
+> > > > > > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > > > > ---
+> > > > > > > 
+> > > > > > > In addition to the iio channels exposed by v1, Daniel wanted thermal_zones...
+> > > > > > > 
+> > > > > > > Changes since v1:
+> > > > > > > - Enable the pm8998_adc_tm and describe the ADC channels
+> > > > > > > - Add thermal-zones for the new channels
+> > > > > > > 
+> > > > > > >    arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 128 ++++++++++++++++++++++++
+> > > > > > >    1 file changed, 128 insertions(+)
+> > > > > > > 
+> > > > > > > diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> > > > > [..]
+> > > > > > > +&pm8998_adc {
+> > > > > > > +   adc-chan@4c {
+> > > > > > > +           reg = <ADC5_XO_THERM_100K_PU>;
+> > > > > > > +           label = "xo_therm";
+> > > > > > > +   };
+> > > > > > > +
+> > > > > > > +   adc-chan@4d {
+> > > > > > > +           reg = <ADC5_AMUX_THM1_100K_PU>;
+> > > > > > > +           label = "msm_therm";
+> > > > > > > +   };
+> > > > > > > +
+> > > > > > > +   adc-chan@4f {
+> > > > > > > +           reg = <ADC5_AMUX_THM3_100K_PU>;
+> > > > > > > +           label = "pa_therm1";
+> > > > > > > +   };
+> > > > > > > +
+> > > > > > > +   adc-chan@51 {
+> > > > > > > +           reg = <ADC5_AMUX_THM5_100K_PU>;
+> > > > > > > +           label = "quiet_therm";
+> > > > > > > +   };
+> > > > > > > +
+> > > > > > > +   adc-chan@83 {
+> > > > > > > +           reg = <ADC5_VPH_PWR>;
+> > > > > > > +           label = "vph_pwr";
+> > > > > > > +   };
+> > > > > > > +
+> > > > > > > +   adc-chan@85 {
+> > > > > > > +           reg = <ADC5_VCOIN>;
+> > > > > > > +           label = "vcoin";
+> > > > > > > +   };
+> > > > > > > +};
+> > > > > > > +
+> > > > > > > +&pm8998_adc_tm {
+> > > > > > > +   status = "okay";
+> > > > > > > +
+> > > > > > > +   xo-thermistor@1 {
+> > > > > > > +           reg = <1>;
+> > > > > > > +           io-channels = <&pm8998_adc ADC5_XO_THERM_100K_PU>;
+> > > > > > > +           qcom,ratiometric;
+> > > > > > > +           qcom,hw-settle-time-us = <200>;
+> > > > > > > +   };
+> > > > > > > +
+> > > > > > > +   msm-thermistor@2 {
+> > > > > > > +           reg = <2>;
+> > > > > > > +           io-channels = <&pm8998_adc ADC5_AMUX_THM1_100K_PU>;
+> > > > > > > +           qcom,ratiometric;
+> > > > > > > +           qcom,hw-settle-time-us = <200>;
+> > > > > > > +   };
+> > > > > > > +
+> > > > > > > +   pa-thermistor@3 {
+> > > > > > > +           reg = <3>;
+> > > > > > > +           io-channels = <&pm8998_adc ADC5_AMUX_THM3_100K_PU>;
+> > > > > > > +           qcom,ratiometric;
+> > > > > > > +           qcom,hw-settle-time-us = <200>;
+> > > > > > > +   };
+> > > > > > > +
+> > > > > > > +   quiet-thermistor@4 {
+> > > > > > > +           reg = <4>;
+> > > > > > > +           io-channels = <&pm8998_adc ADC5_AMUX_THM5_100K_PU>;
+> > > > > > > +           qcom,ratiometric;
+> > > > > > > +           qcom,hw-settle-time-us = <200>;
+> > > > > > > +   };
+> > > > > > > +};
+> > > > > > > +
+> > > > > > 
+> > > > > > The example in the 'qcom,spmi-adc-tm5' binding specifies 'qcom,ratiometric'
+> > > > > > and 'qcom,hw-settle-time-us' for both the ADC and the thermal monitor, so do
+> > > > > > several board files (e.g. sm8250-mtp.dts and qrb5165-rb5.dts). This apparent
+> > > > > > redundancy bothered me earlier, it's not really clear to me whether it's
+> > > > > > needed/recommended or not. Do you happen to have any insights on this?
+> > > > > 
+> > > > > Hmm, you're right and I missed this in defining my channels. I've not
+> > > > > looked at this detail, just got reasonable readings from my thermal
+> > > > > zones and was happy about that.
+> > > > > 
+> > > > > Dmitry, do you have any further insights why these properties are
+> > > > > supposed to be duplicated between the adc channel and the thermal zones?
+> > > > 
+> > > > Because both ADC channel and thermal zone registers should be
+> > > > programmed accordingly.
+> > > > 
+> > > > One not-so-perfect approach would be to use io-channels property to
+> > > > locate the adc's adc-chan node and to parse it. However this way
+> > > > thermal driver would have to know the exact structure of adc's device
+> > > > tree nodes.
+> > > > Another (even worse) solution would be to introduce qcom-specific API
+> > > > to query these properties from the IIO channel.
+> > > > 
+> > > > Selecting between these two options I decided to follow the downstream
+> > > > path and just to duplicate these few properties.
+> > > 
+> > > I know I am joining late to this party, since v3 is out. But before I send
+> > > my acked-by, wanted to check/state a few things.
+> > > To me, the not-so-perfect approach that you mention here is actually not so
+> > > bad, considering the thermal sensor driver already is aware of internals of
+> > > the adc device. The duplicating of node is kind of confusing.
+> > > Also did you explore using one of _channel_write apis in iio framework to
+> > > move all the writes into the adc device instead of thermal sensor driver ?
+> > > 
+> > 
+> > To me the TM hardware block seems to just duplicate some parts of the
+> > ADC block. Without understanding why the two would need to be configured
+> > in sync, I don't think we should tie them together further.
+> 
+> You are right. It is duplicating most of the ADC parts except for
+> temperature read for which it calls into the adc device. And I don't see any
+> interface from the ADC driver that can be used to do the configuration TM
+> needs. Hence the question, have we ever explored this path ?
+> 
+> 
+> > 
+> > In particular, I get the same readings with or without configuring the
+> > ADC channels, does this perhaps imply that the TM configuration is used
+> > to configure the ADC during it's reads (i.e. we don't need to define the
+> > ADC channels after all), or is this just a coincidence?
+> 
+> Maybe because of what we do in adc_tm5_init ?
+> 
+> If needed, we should be able to duplicate the read in the TM as well and get
+> rid of ADC channels , right ? I don't like this half configuration in TM and
+> half in ADC device unless there is a reason behind this.
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Looking at the registers once more makes me more convinced that the PMIC
+is using the ADC hardware behind the back of the ADC driver - for the
+purpose of detecting if we pass the trip points.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+And then we use the ADC driver to read the temperature, separate of
+that. To expose a thermal_zone with both trip points and temperature.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1536696
+That way it would be in our best interest to configure the TM and the
+ADC in the same way, so the trips and temperature readings are matching,
+but it really is two different interfaces to the underlying ADC
+hardware.
 
+Regards,
+Bjorn
 
-mpp@50: 'gpio-ranges' is a required property
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
-
-mpp@50: 'interrupt-controller' is a required property
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
-
-mpp@50: 'interrupts' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
-
-mpps@50: 'cm3605-mpps', 'interrupts' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/qcom-apq8060-dragonboard.dt.yaml
-
-mpps@50: 'gpio-ranges' is a required property
-	arch/arm/boot/dts/qcom-apq8060-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-	arch/arm/boot/dts/qcom-msm8660-surf.dt.yaml
-
-mpps@50: 'interrupt-controller' is a required property
-	arch/arm/boot/dts/qcom-apq8060-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-	arch/arm/boot/dts/qcom-msm8660-surf.dt.yaml
-
-mpps@50: 'interrupts' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-	arch/arm/boot/dts/qcom-msm8660-surf.dt.yaml
-
-mpps@a000: compatible: ['qcom,pm8916-mpp'] is too short
-	arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dt.yaml
-
-mpps@a000: compatible: ['qcom,pm8994-mpp'] is too short
-	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
-
-mpps@a000: 'gpio-ranges' is a required property
-	arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8084-ifc6540.dt.yaml
-	arch/arm/boot/dts/qcom-apq8084-mtp.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-samsung-klte.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-
-mpps@a000: 'interrupt-controller' is a required property
-	arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8084-ifc6540.dt.yaml
-	arch/arm/boot/dts/qcom-apq8084-mtp.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-samsung-klte.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-
-mpps@a000: 'interrupts' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8084-ifc6540.dt.yaml
-	arch/arm/boot/dts/qcom-apq8084-mtp.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-samsung-klte.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-
-mpps@a000: 'interrupts', 'pm8916-mpp4', 'pm8916-mpps-leds' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml
-
-mpps@a000: pm8994-mpps-default-state: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
-
+> > 
+> > There are other things in the PMIC, using the ADC seemingly without you
+> > having to explicitly configure the ADC and there's definitely things
+> > pointing to the ADC being "timeshared" between various users.
+> > 
+> > Regards,
+> > Bjorn
+> > 
+> 
+> -- 
+> Warm Regards
+> Thara (She/Her/Hers)
