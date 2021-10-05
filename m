@@ -2,122 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4061421C5F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 04:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E75E421C68
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 04:12:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230514AbhJECMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 22:12:35 -0400
-Received: from mx.socionext.com ([202.248.49.38]:53415 "EHLO mx.socionext.com"
+        id S231233AbhJECNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 22:13:52 -0400
+Received: from mx.socionext.com ([202.248.49.38]:40147 "EHLO mx.socionext.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231302AbhJECMe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 22:12:34 -0400
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 05 Oct 2021 11:10:44 +0900
+        id S230462AbhJECNv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Oct 2021 22:13:51 -0400
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 05 Oct 2021 11:12:01 +0900
 Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 1289B2059034;
-        Tue,  5 Oct 2021 11:10:44 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 5 Oct 2021 11:10:44 +0900
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 5BE602058B40;
+        Tue,  5 Oct 2021 11:12:01 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 5 Oct 2021 11:12:01 +0900
 Received: from plum.e01.socionext.com (unknown [10.212.243.119])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 67214AB192;
-        Tue,  5 Oct 2021 11:10:43 +0900 (JST)
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id A821DB62B7;
+        Tue,  5 Oct 2021 11:12:00 +0900 (JST)
 From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Masami Hiramatsu <mhiramat@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH 3/3] reset: uniphier: Add NX1 reset support
-Date:   Tue,  5 Oct 2021 11:10:42 +0900
-Message-Id: <1633399842-1402-4-git-send-email-hayashi.kunihiko@socionext.com>
+Subject: [PATCH 0/3] pinctrl: uniphier: Introduce some features and NX1 support
+Date:   Tue,  5 Oct 2021 11:11:57 +0900
+Message-Id: <1633399920-1537-1-git-send-email-hayashi.kunihiko@socionext.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1633399842-1402-1-git-send-email-hayashi.kunihiko@socionext.com>
-References: <1633399842-1402-1-git-send-email-hayashi.kunihiko@socionext.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic reset data for UniPhier NX1 SoC.
+This series includes the patches to add audio pinmux settings for LD11/LD20/PXs3
+SoCs and basic pinmux settings for new UniPhier NX1 SoC. NX1 SoC also has
+the same kinds of pinmux settings as the other UniPhier SoCs.
 
-Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
-Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
----
- drivers/reset/reset-uniphier-glue.c |  4 ++++
- drivers/reset/reset-uniphier.c      | 25 +++++++++++++++++++++++++
- 2 files changed, 29 insertions(+)
+Kunihiko Hayashi (3):
+  pinctrl: uniphier: Add extra audio pinmux settings for LD11, LD20 and
+    PXs3 SoCs
+  dt-bindings: pinctrl: uniphier: Add NX1 pinctrl binding
+  pinctrl: uniphier: Add UniPhier NX1 pinctrl driver
 
-diff --git a/drivers/reset/reset-uniphier-glue.c b/drivers/reset/reset-uniphier-glue.c
-index 027990b..908c1d5 100644
---- a/drivers/reset/reset-uniphier-glue.c
-+++ b/drivers/reset/reset-uniphier-glue.c
-@@ -156,6 +156,10 @@ static const struct of_device_id uniphier_glue_reset_match[] = {
- 		.data = &uniphier_pxs2_data,
- 	},
- 	{
-+		.compatible = "socionext,uniphier-nx1-usb3-reset",
-+		.data = &uniphier_pxs2_data,
-+	},
-+	{
- 		.compatible = "socionext,uniphier-pro4-ahci-reset",
- 		.data = &uniphier_pro4_data,
- 	},
-diff --git a/drivers/reset/reset-uniphier.c b/drivers/reset/reset-uniphier.c
-index 4a6cfd8..ff7580f 100644
---- a/drivers/reset/reset-uniphier.c
-+++ b/drivers/reset/reset-uniphier.c
-@@ -141,6 +141,19 @@ static const struct uniphier_reset_data uniphier_pxs3_sys_reset_data[] = {
- 	UNIPHIER_RESET_END,
- };
- 
-+static const struct uniphier_reset_data uniphier_nx1_sys_reset_data[] = {
-+	UNIPHIER_RESETX(4, 0x2008, 8),		/* eMMC */
-+	UNIPHIER_RESETX(6, 0x200c, 0),		/* Ether */
-+	UNIPHIER_RESETX(12, 0x200c, 16),        /* USB30 link */
-+	UNIPHIER_RESETX(16, 0x200c, 24),        /* USB30-PHY0 */
-+	UNIPHIER_RESETX(17, 0x200c, 25),        /* USB30-PHY1 */
-+	UNIPHIER_RESETX(18, 0x200c, 26),        /* USB30-PHY2 */
-+	UNIPHIER_RESETX(24, 0x200c, 8),         /* PCIe */
-+	UNIPHIER_RESETX(52, 0x2010, 0),         /* VOC */
-+	UNIPHIER_RESETX(58, 0x2010, 8),         /* HDMI-Tx */
-+	UNIPHIER_RESET_END,
-+};
-+
- /* Media I/O reset data */
- #define UNIPHIER_MIO_RESET_SD(id, ch)			\
- 	UNIPHIER_RESETX((id), 0x110 + 0x200 * (ch), 0)
-@@ -402,6 +415,10 @@ static const struct of_device_id uniphier_reset_match[] = {
- 		.compatible = "socionext,uniphier-pxs3-reset",
- 		.data = uniphier_pxs3_sys_reset_data,
- 	},
-+	{
-+		.compatible = "socionext,uniphier-nx1-reset",
-+		.data = uniphier_nx1_sys_reset_data,
-+	},
- 	/* Media I/O reset, SD reset */
- 	{
- 		.compatible = "socionext,uniphier-ld4-mio-reset",
-@@ -439,6 +456,10 @@ static const struct of_device_id uniphier_reset_match[] = {
- 		.compatible = "socionext,uniphier-pxs3-sd-reset",
- 		.data = uniphier_pro5_sd_reset_data,
- 	},
-+	{
-+		.compatible = "socionext,uniphier-nx1-sd-reset",
-+		.data = uniphier_pro5_sd_reset_data,
-+	},
- 	/* Peripheral reset */
- 	{
- 		.compatible = "socionext,uniphier-ld4-peri-reset",
-@@ -472,6 +493,10 @@ static const struct of_device_id uniphier_reset_match[] = {
- 		.compatible = "socionext,uniphier-pxs3-peri-reset",
- 		.data = uniphier_pro4_peri_reset_data,
- 	},
-+	{
-+		.compatible = "socionext,uniphier-nx1-peri-reset",
-+		.data = uniphier_pro4_peri_reset_data,
-+	},
- 	/* Analog signal amplifiers reset */
- 	{
- 		.compatible = "socionext,uniphier-ld11-adamv-reset",
+ .../pinctrl/socionext,uniphier-pinctrl.yaml        |   1 +
+ drivers/pinctrl/uniphier/Kconfig                   |   4 +
+ drivers/pinctrl/uniphier/Makefile                  |   1 +
+ drivers/pinctrl/uniphier/pinctrl-uniphier-ld11.c   |  18 +
+ drivers/pinctrl/uniphier/pinctrl-uniphier-ld20.c   |  35 ++
+ drivers/pinctrl/uniphier/pinctrl-uniphier-nx1.c    | 491 +++++++++++++++++++++
+ drivers/pinctrl/uniphier/pinctrl-uniphier-pxs3.c   |  40 ++
+ 7 files changed, 590 insertions(+)
+ create mode 100644 drivers/pinctrl/uniphier/pinctrl-uniphier-nx1.c
+
 -- 
 2.7.4
 
