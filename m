@@ -2,89 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03434422CDB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:45:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DA2D422CF5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236131AbhJEPrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 11:47:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35386 "EHLO
+        id S234505AbhJEPxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 11:53:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236042AbhJEPrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:47:11 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF09C061753
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 08:45:20 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id x124so26754153oix.9
-        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 08:45:20 -0700 (PDT)
+        with ESMTP id S231513AbhJEPxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:53:33 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69EAEC061749;
+        Tue,  5 Oct 2021 08:51:42 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id g41so87870245lfv.1;
+        Tue, 05 Oct 2021 08:51:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=DyGC1o0ExiPXVEzbLwM161zjxcLwXtL3mQFHYbOsiDo=;
-        b=L9DrO2uUoQ/UpmFwlKvuVaRiu12KqmtBMCrJ2DKw5oxUJeW34nCAUCbRoMUM6Vk34w
-         ZEn1A7xPxnl9G2tq4BMjqrXkoR4FGN/0sfLPauqPM5neqBW/CcBHVsADJLnA+lZ7mVFw
-         9DD9epEqNj0CvNGEDlT7pmoNOmmBhaQpa3QpMAQjbsdvnfwwISp5B88IwHqK2dZFo7Xh
-         bHzU0WBMncx9+eKP0uX+iaLmoCw8dixxGSFSzseCChZCE9hYyK5niUZYosyY5BYPkRSN
-         DKYsTQM9tjlwCAvC8pZl5xAh7D9/yjgiUPUmC96sdR0cdjpy5xXgmxALmFMajHyfUX5D
-         LQew==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=exd7cB2eRheopuzqHRQfFwH00Rjr9jsRGEU+VKQb+OU=;
+        b=YGNSNFgWHko3MSQM349fQ1TclyPzlMTwzkG8qW0+rC8w064y2W5vjW3PiFpaAMfeMx
+         CC5ZNTt8rhljZdzN6fxZ5HbJsiqYY7bPdQXdyH9gCyrqNvhO8cYw2ElAcyD5HBPEfH6U
+         A16ZZesBpj5Vnz9o7XjZBaZlqMU3P1WNLfCB3w85aqVPcr4lu42gVfPTsn071YzW3zy/
+         Y2Xr9uk9d6HkYMOACBwVbQHdSSz/kUUhRFbR+zilHbZBUp33IKdRLxVlUofU4dslatfR
+         NBIURTr7Q+gA1+3sTJqp3vRkKNnMVBxqA59n0s4rnvcc5Jdcz3iFsXfKNxKAdkGev53S
+         2qMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=DyGC1o0ExiPXVEzbLwM161zjxcLwXtL3mQFHYbOsiDo=;
-        b=YA8iDKkRRcz0MNrKGm8KuruYybhHZwk0XZDajiqv1SvXgzbu3HcQKb3DaCrF8b2V1e
-         n5+WbkB5oQQ4Cg0fpMRm+AjW4PeLIwJYtwUuSDbMYA9AysbyZmSZT5Jyu4gh4mruKjdL
-         LZ7LZfGgy4PQNGkfUwlWPe0wOoC2ndeIefGW4+bxpJ+DF4y1fHiokqEqkEUGh4Vk9hUO
-         4ls4FN8sjLPHK5ccq65oMf/ldPDRfVUK5Fq3BENZlY7ZeEcdusKTPi/F8+/vUbs5di45
-         Bg66I14ADY/YjAzdJoF4MbWrk9+Up+x2YwuwztHyoD7XQ6Fn7ajed6DSDOtOkFIc5Dt5
-         gO4A==
-X-Gm-Message-State: AOAM531Wj0O0YdZveULzHw0yP7AonY5Z0dzjmAyO8SE7dMi+EL5mEfIT
-        WRnJ76FeOML4dfhrmD6FB2kZLg==
-X-Google-Smtp-Source: ABdhPJxcdpxGev1KAnRYwHDx/rf+AN5tzztCSHqw6+k+f4FyxvAWAqXGrACRtPVl44iPi8MVcXXF7Q==
-X-Received: by 2002:aca:110e:: with SMTP id 14mr3093834oir.18.1633448719808;
-        Tue, 05 Oct 2021 08:45:19 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id a3sm3345617oie.3.2021.10.05.08.45.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 08:45:19 -0700 (PDT)
-Date:   Tue, 5 Oct 2021 08:47:02 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Shawn Guo <shawn.guo@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/10] dt-bindings: phy: qcom,qmp: IPQ6018 and IPQ8074
- PCIe PHY require no supply
-Message-ID: <YVxzdiVKWOF9AVVV@ripper>
-References: <20210929034253.24570-1-shawn.guo@linaro.org>
- <20210929034253.24570-3-shawn.guo@linaro.org>
- <YVvx9jEGS3g9LD8X@matsya>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=exd7cB2eRheopuzqHRQfFwH00Rjr9jsRGEU+VKQb+OU=;
+        b=hidsey8Xg8QoFpD0kbWMTUOelyVpU2E0UHrUq6M9+oVyUjghwX6X4nG1PpaybQZmEQ
+         nc4k13JH/9sE9ihVysMtyzOGVM3xawEQZOaOE8GfbHbkrfIRZcrRkW3SB85Z4FZb7pNJ
+         biuCCbJWJTLkSqKtuoQ09k4QexZyC7stasmcNldavcHdiD+MTvsKbY8BEaD12YYZ5rYD
+         iGqWvlhj1Ol9wKh7nyOWdH1jsO/oFaK8BYsNqxR0zmChOBKcpncI7k9jZvYRZInUoFVC
+         zod/+kpJfSGoxb0ERLWAXCfOak60OFjSc0tGVAlJ5tYsgtNcJHgjwFDqG3O4OFeTallx
+         2MFw==
+X-Gm-Message-State: AOAM5322zIITCEpPayr+ZGAESImd1hJjoXJ1HwuXLhJ2DfrX3/WlsLOq
+        U007Dt7dIx8ooD9CYWAdd1bMOnzDG1s=
+X-Google-Smtp-Source: ABdhPJzBiEVmlzJPY5GRtGkvRmKB7fT9JdDE2faKoCdfuHCYL73UPh4luaMu94FdiTftNaSY6mwgiw==
+X-Received: by 2002:a05:651c:1067:: with SMTP id y7mr24234481ljm.481.1633449099938;
+        Tue, 05 Oct 2021 08:51:39 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.googlemail.com with ESMTPSA id n9sm903128lfq.100.2021.10.05.08.51.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Oct 2021 08:51:39 -0700 (PDT)
+Subject: Re: [PATCH v3 4/4] memory: tegra20-emc: Support matching timings by
+ LPDDR2 configuration
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20211003013235.2357-1-digetx@gmail.com>
+ <20211003013235.2357-5-digetx@gmail.com>
+ <636b147b-0a71-8c40-7038-1227918986e5@canonical.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <dc730748-04a5-f5bd-727c-a8b7d67b2a26@gmail.com>
+Date:   Tue, 5 Oct 2021 18:51:38 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YVvx9jEGS3g9LD8X@matsya>
+In-Reply-To: <636b147b-0a71-8c40-7038-1227918986e5@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 04 Oct 23:34 PDT 2021, Vinod Koul wrote:
-
-> On 29-09-21, 11:42, Shawn Guo wrote:
-> > The qmp-phy driver suggests that 'vdda-phy-supply' and 'vdda-pll-supply'
-> > are not required for IPQ6018 and IPQ8074 QMP PCIe PHY.  Update the
-> > bindings to reflect it.
-> > 
-> > While at it, also correct the clock properies for IPQ8074 QMP PCIe PHY.
-> > And as the result, 'qcom,ipq8074-qmp-pcie-phy' and
-> > 'qcom,ipq6018-qmp-pcie-phy' share the same clock, reset and supply
-> > bindings.
+04.10.2021 12:09, Krzysztof Kozlowski пишет:
+>> +static void emc_read_lpddr_sdram_info(struct tegra_emc *emc,
+>> +				      unsigned int emem_dev,
+>> +				      bool print_out)
+>> +{
+>> +	/* these registers are standard for all LPDDR JEDEC memory chips */
+>> +	emc_read_lpddr_mode_register(emc, emem_dev, 5, &emc->manufacturer_id);
+>> +	emc_read_lpddr_mode_register(emc, emem_dev, 6, &emc->revision_id1);
+>> +	emc_read_lpddr_mode_register(emc, emem_dev, 7, &emc->revision_id2);
+>> +	emc_read_lpddr_mode_register(emc, emem_dev, 8, &emc->basic_conf4.value);
+> You ignore the return codes but you should not try to load timings in
+> such case. The DT could (by mistake or on purpose) have values '0' for
+> the fields you compare.
 > 
-> Acked-By: Vinod Koul <vkoul@kernel.org>
-> 
 
-I think it's better if you take the two dt-bindings through your tree,
-so we avoid any potential merge conflicts related to possible other
-changes.
-
-Regards,
-Bjorn
+Good suggestion. I'll add a flag that will prevent loading timings if
+there was MRR error, thanks.
