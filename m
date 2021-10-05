@@ -2,117 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24A144233EC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 00:59:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 752674233F2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 01:01:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233567AbhJEXBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 19:01:08 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:57746 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233540AbhJEXBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 19:01:08 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 195MxBDi026881;
-        Tue, 5 Oct 2021 17:59:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1633474751;
-        bh=fIE5iQMq7CmeQX9nJoCTacXGDRl7HP4ROJnmv4GuPAA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=zJqiSmqgSoUdrsoqkPBGYGfxRX8O5pxDJ4htcan5DLiA6EBiNEIwuSdcdVUTEfnbo
-         8Ib5H3RhXdjA0qO5DUUiHFUoUaig4y9Olm8HM0KQF+iY6wtQQWVFRNUM9C5/h9wzbJ
-         Glep5wj5Kw0wLwbXEvj7bwbe7tuPdhwNqrbES4mM=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 195MxBIB083306
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 5 Oct 2021 17:59:11 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 5
- Oct 2021 17:59:10 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 5 Oct 2021 17:59:10 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 195MxALm101008;
-        Tue, 5 Oct 2021 17:59:10 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jan Kiszka <jan.kiszka@web.de>, Tero Kristo <kristo@kernel.org>,
+        id S236585AbhJEXC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 19:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52298 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233540AbhJEXC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 19:02:59 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A7DC061749;
+        Tue,  5 Oct 2021 16:01:07 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id y23so2574640lfb.0;
+        Tue, 05 Oct 2021 16:01:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WcAG2pFexEAw/PhPteoF7b81eoy0hwDWD/QB7DB/ry8=;
+        b=m11a3PRGubAZu9CedRiqalqX6IvjzIq1nb4WdW7eYtbv9ZceqzTUFHC7obeX4bfqOn
+         oykrvTPGGgN0hg6XE2WGzvsOngWj8AEqeNdAFwgwzJ3tvNzrfd15R1eqYaj4YsXFcUXS
+         5Xt9QJRVqs1bvaOZJMynCQ5C4SM+HkagbJGCJhD58y+IY4EzlnqGNk4FFcmNz4DljFJq
+         A65VXdXA9VMNdAFv+NbPiVxBn3HxBiRYmbYk4iDxqvqQEMYnor9S17TY81x3Y9SvveFl
+         ijvDF9DFo2QuYrx0D4EclIz3VjdESKo7Hm6A5c5i8tIxlb2mPAIk1GRFWm9fplS4xXFs
+         +5Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WcAG2pFexEAw/PhPteoF7b81eoy0hwDWD/QB7DB/ry8=;
+        b=wd48897OFmf4awIQAUMGkXlVI+jIPcUHkr7vEf8d9EZ1ipPY0NXWwEuhCglsJQ2DiN
+         Ht6Le9sxIdwPdvT05UM1Ts/qvBP0iMOPOglTh4FVyZMxx7hc6th4CkDRBNjsswaG/uGY
+         dd7LKjbMGl10UwXge1+ANEcaiM/AQBFeOVT+ooU3+T/krsEd5Xn6wmLZZS8yL+T9B9YS
+         /MQVI8sVLYxS+UAj01G2k+z196HdKc3hU+MP8JaZ5MaWM13iLKK0Qktohpcc9R95fPUN
+         801Kkn2W7X584xvp4FBkRpU6uAn7Lxzo5EQgug3f74QmiEejp2dFIfn35qkhqFVhtn74
+         lp6Q==
+X-Gm-Message-State: AOAM530DssuVP78QDiKTm/1w3NLQQLl8lRn+IaKI4qpK1b9VBDOXW76r
+        mrd27Ed3WPyyYJD3GzfD0ko=
+X-Google-Smtp-Source: ABdhPJy3p4HRUlLetJSBx/9ZvegpjZCcDTe1M8os3brumHYKiH49B+fWolEOMCV9Emxz32zj9u7L5A==
+X-Received: by 2002:ac2:57d4:: with SMTP id k20mr6308063lfo.160.1633474866219;
+        Tue, 05 Oct 2021 16:01:06 -0700 (PDT)
+Received: from localhost.localdomain (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.gmail.com with ESMTPSA id j18sm2101125lfu.84.2021.10.05.16.01.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Oct 2021 16:01:05 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>
-CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        Chao Zeng <chao.zeng@siemens.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>
-Subject: Re: [PATCH v5 0/6] arm64: dts: Update IOT2050 boards
-Date:   Tue, 5 Oct 2021 17:59:09 -0500
-Message-ID: <163347457762.3486.6931163717938538588.b4-ty@ti.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <cover.1632657916.git.jan.kiszka@web.de>
-References: <cover.1632657916.git.jan.kiszka@web.de>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v4 0/7] tegra20-emc: Identify memory chip by LPDDR configuration
+Date:   Wed,  6 Oct 2021 02:00:02 +0300
+Message-Id: <20211005230009.3635-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Sep 2021 14:05:11 +0200, Jan Kiszka wrote:
-> This enhances the DTs for the IOT2050, primarily by added support for
-> upcoming Production Generation 2 (PG2) and by ordering the MMC devices
-> consistently across variants.
-> 
-> Changes in v5:
->  - fix usb0 node (for true USB 3.0 support)
->  - added reviewed/acked tags
-> 
-> [...]
+Support memory chip identification by LPDDR2 configuration, which is
+needed by ASUS Transformer TF101 tablet device that doesn't store RAMCODE
+in Tegra's NVMEM.
 
-Hi Jan Kiszka,
+Changelog:
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+v4: - Moved DDR bindings directory to memory-controllers/, like it
+      was suggested by Krzysztof Kozlowski.
 
-[1/6] arm64: dts: ti: iot2050: Flip mmc device ordering on Advanced devices
-      commit: 06784f7679274be3ca170a689c56192143a04541
-[2/6] arm64: dts: ti: iot2050: Disable SR2.0-only PRUs
-      commit: 262a98b43c2a08a5446bab2030f8fb68d3699396
-[3/6] arm64: dts: ti: iot2050: Add/enabled mailboxes and carve-outs for R5F cores
-      commit: af755fe2b36c87abfa6f00caf7dfce6351b7412a
-[4/6] dt-bindings: arm: ti: Add bindings for Siemens IOT2050 PG2 boards
-      commit: 4f535a0e38f696cadc92cc980d25a4198b11ae33
-[5/6] arm64: dts: ti: iot2050: Prepare for adding 2nd-generation boards
-      commit: a9dbf044c600277f5d2805831a73083f3688e19f
-[6/6] arm64: dts: ti: iot2050: Add support for product generation 2 boards
-      commit: 614d47cc9303893c706c0c94516249eb3adaeb80
+    - Converted existing LPDDR2 binding to schema and utilized it,
+      like it was requested by Krzysztof Kozlowski.
 
+    - Added Elpida B8132B2PB-6D-F compatible.
 
-Side note:
-- There are still cleanups that are in works (tsadc, cdns, etc..) - since
-  these are already present and active cleanup is going on, letting it past,
-  but if I do get a push back from upstream maintainers, I'd have to pull the
-  series back.
+    - Made code changes that were requested by Krzysztof Kozlowski.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+v3: - Corrected sub-node name in tegra20-emc.yaml.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+v2: - Added separate binding for standard LPDDR2 properties, like it
+      was suggested by Krzysztof Kozlowski.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+    - Switched Tegra binding to use new lpddr2-configuration sub-node
+      that contains the standard properties.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+    - Extended commit message of the "emc: Document new LPDDR2 sub-node"
+      patch, telling how the properties are supposed to be used, which
+      was requested by Krzysztof Kozlowski.
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+    - Added new common helpers for parsing LPDDR2 properties and made
+      tegra20-emc driver to use these helpers.
+
+Dmitry Osipenko (7):
+  dt-bindings: Relocate DDR bindings
+  dt-bindings: memory: lpddr2: Convert to schema
+  dt-bindings: memory: lpddr2: Add revision-id properties
+  dt-bindings: memory: lpddr2: Document Elpida B8132B2PB-6D-F
+  dt-bindings: memory: tegra20: emc: Document new LPDDR2 sub-node
+  memory: Add LPDDR2 configuration helpers
+  memory: tegra20-emc: Support matching timings by LPDDR2 configuration
+
+ .../devicetree/bindings/ddr/lpddr2.txt        | 102 ---------
+ .../memory-controllers/ddr/jedec,lpddr2.yaml  | 208 ++++++++++++++++++
+ .../ddr/lpddr2-timings.txt                    |   0
+ .../ddr/lpddr3-timings.txt                    |   0
+ .../{ => memory-controllers}/ddr/lpddr3.txt   |   0
+ .../nvidia,tegra20-emc.yaml                   |  23 +-
+ drivers/memory/jedec_ddr.h                    |  46 ++++
+ drivers/memory/jedec_ddr_data.c               |  41 ++++
+ drivers/memory/of_memory.c                    |  88 ++++++++
+ drivers/memory/of_memory.h                    |   9 +
+ drivers/memory/tegra/Kconfig                  |   1 +
+ drivers/memory/tegra/tegra20-emc.c            | 199 +++++++++++++++--
+ 12 files changed, 599 insertions(+), 118 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/ddr/lpddr2.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+ rename Documentation/devicetree/bindings/{ => memory-controllers}/ddr/lpddr2-timings.txt (100%)
+ rename Documentation/devicetree/bindings/{ => memory-controllers}/ddr/lpddr3-timings.txt (100%)
+ rename Documentation/devicetree/bindings/{ => memory-controllers}/ddr/lpddr3.txt (100%)
+
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.32.0
 
