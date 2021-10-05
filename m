@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F53F423060
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 20:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28E76423067
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 20:52:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235079AbhJESwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 14:52:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50798 "EHLO
+        id S232869AbhJESxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 14:53:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229662AbhJESwl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 14:52:41 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69D53C061749
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 11:50:50 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id x33-20020a9d37a4000000b0054733a85462so61674otb.10
-        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 11:50:50 -0700 (PDT)
+        with ESMTP id S234718AbhJESxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 14:53:48 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B5CC061760
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 11:51:57 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id s24so560919oij.8
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 11:51:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=Xo0OGV/ZUiPKgbD5HPrkjo/F/a3NnSi3YP8gAkh8iCY=;
-        b=TLXgjh4ToYp4L5wZ9wa2GsVgHenprfEFVxFIhITFK0WYtOWIaJF8j4qZ6/RAQ9C1r6
-         EpvOaDxqumTiruAkli7zPPmCKL0JSrF9LfGknFKwVgzHYam4/+1+Rr9UnfZlEU6cIl9U
-         d8Q6IKYeC3/AyJhc+AeQmAzNNc8w99c60xeLo=
+        bh=LIIZhO6QemCxBZ+WNeUA1NEuSGEugkxriOxoUlLOrtM=;
+        b=Y1nq5bwPYgRtZSjzARwnqT6iVgQ/xdr6g8NM7LasqBqbPZpI4zP1qfDtiPCm3SaWPr
+         jrdpR5Tx34tO4K7ERkIGnrUhYh3+v/jVh5GhPPfbfud6u6GE5I6i0Rr4W/eNnlf8HALN
+         BsGPH1DMJw5cFM9cMKPantLExCmTQIv+nQip4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=Xo0OGV/ZUiPKgbD5HPrkjo/F/a3NnSi3YP8gAkh8iCY=;
-        b=0p8VeHuVQXGfcwxTRmxZDZaYEDw1z47Mu/+LXZhzcefoPU9P0OBLUxgX3v/jMk3BTH
-         N94oQQQzn77SnhOTr3Dtbznq7F42xJBjPI8c6uI/Q2iQ5r5WoFwpcUfhwkmseM3t4MMr
-         ju+OlzxIQMybNTnB7/190pLPLLX89bF1NcrToEHf1u1cZE0LC+xYG5D3AAX8J/gZN20X
-         uYjfZPatdx4cRGc3tPh14RKsEGxRXh7jJrMvjWE34kvrZ61x2JV9s8CfgWyvy8XOuYzC
-         MSyVuaRfH16Mv5q6FPIN5+vCi6Bj+1HergaJIBoV+96qCFnlsqOae0uTOFOSKKqAQm2c
-         1Bdg==
-X-Gm-Message-State: AOAM5321WVHIN4PAGw+5cB0+8RlsYTtiS2lGdkjwihNaAH00Wq5oYJx4
-        67tyK9J/iltkvmUqcgX+Y5olrCubJzBkXJeudFBtmg==
-X-Google-Smtp-Source: ABdhPJxre14riLWd/0Vk02OXaJCmQW1uYI8QN3QfKNpl8EpzGV8Umsr6ysW7Vq58lYjpRA0Ei9xoDL68KK8/ibgSmx8=
-X-Received: by 2002:a9d:6a0f:: with SMTP id g15mr16259964otn.126.1633459849811;
- Tue, 05 Oct 2021 11:50:49 -0700 (PDT)
+        bh=LIIZhO6QemCxBZ+WNeUA1NEuSGEugkxriOxoUlLOrtM=;
+        b=7zmoIZR9Gu+Y/bYK7oV72SHtQFaxZn8dG7RULZOlrhqlvvEn0EK9J3xwdMIIzLk9Yt
+         2Ery8T9n5JQ9xXu6QJ0WZmJXHvM0HMAv8S/0w3TiGuE0l6mUfNGzXnzWU9Goj0QfYrPv
+         jiRgR5pipaaiOB4s6V/K3WJUZqq7Yy76u/0NpGIwSFqYFQX+9cS5DLNr0if7SZqdaThJ
+         P2STLYJOeJ+mtcVQjhlk2Kv6lMley310U5u5yqEeCb5M8RfNHZGRLtLUL2RJfFcDwFhZ
+         Mpzc7lh94yWWj75a8KCPe5mWDPIyWprLz0cefeRSH/1fjvxZC6c8cHBXq7NnQsl1CKcD
+         4yiQ==
+X-Gm-Message-State: AOAM533wp/TfJHCwF6NqXQp0BKEeQEcrIzierxeyX4/MGy/ltLD9CqnM
+        JA/16RSZAJBQ3V/xRUIVxeGlUmhcsiUbFI+AHtNeYQ==
+X-Google-Smtp-Source: ABdhPJx3bk6kPZwvGXnigGeMH3u2Pd/DyxwzdF0vLz40GZdxglzimeBZyFdhqzgXgqztcirSxk8zy1Y/fjFQiUbZmPM=
+X-Received: by 2002:aca:3110:: with SMTP id x16mr3979222oix.64.1633459917288;
+ Tue, 05 Oct 2021 11:51:57 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 5 Oct 2021 11:50:49 -0700
+ HTTPREST; Tue, 5 Oct 2021 11:51:56 -0700
 MIME-Version: 1.0
-In-Reply-To: <1633459359-31517-4-git-send-email-pmaliset@codeaurora.org>
-References: <1633459359-31517-1-git-send-email-pmaliset@codeaurora.org> <1633459359-31517-4-git-send-email-pmaliset@codeaurora.org>
+In-Reply-To: <1633459359-31517-5-git-send-email-pmaliset@codeaurora.org>
+References: <1633459359-31517-1-git-send-email-pmaliset@codeaurora.org> <1633459359-31517-5-git-send-email-pmaliset@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Tue, 5 Oct 2021 11:50:49 -0700
-Message-ID: <CAE-0n521dCW4mc_Fu=YZ8w-DOwrE_+4S1tmU3WUzA0B9ODfYUg@mail.gmail.com>
-Subject: Re: [PATCH v11 3/5] arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
+Date:   Tue, 5 Oct 2021 11:51:56 -0700
+Message-ID: <CAE-0n511H+FbPCbSb+FP0VMsrTmA4h8Q9pfk-=4zZPnwLuRAPQ@mail.gmail.com>
+Subject: Re: [PATCH v11 4/5] PCI: qcom: Add a flag in match data along with ops
 To:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
         bhelgaas@google.com, bjorn.andersson@linaro.org,
         lorenzo.pieralisi@arm.com, robh+dt@kernel.org, svarbanov@mm-sol.com
@@ -63,9 +63,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prasad Malisetty (2021-10-05 11:42:37)
-> Enable PCIe controller and PHY for sc7280 IDP board.
-> Add specific NVMe GPIO entries for SKU1 and SKU2 support.
+Quoting Prasad Malisetty (2021-10-05 11:42:38)
+> Add pipe_clk_need_muxing flag in match data and configure
+> If the platform needs to switch pipe_clk_src.
 >
 > Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
 > ---
