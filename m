@@ -2,46 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7798F422AC5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:16:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9219B422ADE
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:20:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235718AbhJEOSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 10:18:42 -0400
-Received: from mx.socionext.com ([202.248.49.38]:22635 "EHLO mx.socionext.com"
+        id S235910AbhJEOV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 10:21:56 -0400
+Received: from mx.socionext.com ([202.248.49.38]:10312 "EHLO mx.socionext.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235518AbhJEOSk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 10:18:40 -0400
+        id S235640AbhJEOVz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 10:21:55 -0400
 Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 05 Oct 2021 23:16:49 +0900
+  by mx.socionext.com with ESMTP; 05 Oct 2021 23:20:04 +0900
 Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id EA3BC2059034;
-        Tue,  5 Oct 2021 23:16:48 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 5 Oct 2021 23:16:48 +0900
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 4A40B2059034;
+        Tue,  5 Oct 2021 23:20:04 +0900 (JST)
+Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Tue, 5 Oct 2021 23:20:04 +0900
 Received: from yuzu2.css.socionext.com (yuzu2 [172.31.9.57])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 90EB9B62B7;
-        Tue,  5 Oct 2021 23:16:48 +0900 (JST)
+        by iyokan2.css.socionext.com (Postfix) with ESMTP id 02111B62B7;
+        Tue,  5 Oct 2021 23:20:03 +0900 (JST)
 Received: from [10.212.181.36] (unknown [10.212.181.36])
-        by yuzu2.css.socionext.com (Postfix) with ESMTP id E5BF3B62B3;
-        Tue,  5 Oct 2021 23:16:47 +0900 (JST)
-Subject: Re: [PATCH 4/5] dt-bindings: clock: uniphier: Add clock binding for
- SoC-glue
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <1633399706-1251-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1633399706-1251-5-git-send-email-hayashi.kunihiko@socionext.com>
- <1633436798.596710.3226801.nullmailer@robh.at.kernel.org>
+        by yuzu2.css.socionext.com (Postfix) with ESMTP id 8BB89B62B3;
+        Tue,  5 Oct 2021 23:20:02 +0900 (JST)
+Subject: Re: [PATCH 3/3] pinctrl: uniphier: Add UniPhier NX1 pinctrl driver
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1633399920-1537-4-git-send-email-hayashi.kunihiko@socionext.com>
+ <202110052101.CZroR9ku-lkp@intel.com>
 From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <4e6d39ec-4c49-9dfb-9428-901dca940989@socionext.com>
-Date:   Tue, 5 Oct 2021 23:16:47 +0900
+Message-ID: <9acc6fe3-ff06-106b-4289-92319d43f100@socionext.com>
+Date:   Tue, 5 Oct 2021 23:20:02 +0900
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <1633436798.596710.3226801.nullmailer@robh.at.kernel.org>
+In-Reply-To: <202110052101.CZroR9ku-lkp@intel.com>
 Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -49,25 +45,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021/10/05 21:26, Rob Herring wrote:
-> On Tue, 05 Oct 2021 11:08:25 +0900, Kunihiko Hayashi wrote:
->> Update binding document for clocks implemented in SoC-glue.
->>
->> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->> ---
->>   .../bindings/clock/socionext,uniphier-clock.yaml         | 16
-> ++++++++++++++++
->>   1 file changed, 16 insertions(+)
->>
+
+On 2021/10/05 22:06, kernel test robot wrote:
+> Hi Kunihiko,
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> I love your patch! Yet something to improve:
 > 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml:51
-> :1: [error] syntax error: found character '\t' that cannot start any token
-> (syntax)
-I made mistake. I'll fix it in next.
+> [auto build test ERROR on linusw-pinctrl/devel]
+> [also build test ERROR on robh/for-next v5.15-rc3 next-20210922]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:
+> https://github.com/0day-ci/linux/commits/Kunihiko-Hayashi/pinctrl-uniphier
+> -Introduce-some-features-and-NX1-support/20211005-101346
+> base:
+> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git
+> devel
+> config: powerpc-allyesconfig (attached as .config)
+> compiler: powerpc64-linux-gcc (GCC) 11.2.0
+> reproduce (this is a W=1 build):
+>          wget
+> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross
+> -O ~/bin/make.cross
+>          chmod +x ~/bin/make.cross
+>          #
+> https://github.com/0day-ci/linux/commit/c68781cbddcc323070eee04896f6f85884
+> 0a60dc
+>          git remote add linux-review https://github.com/0day-ci/linux
+>          git fetch --no-tags linux-review
+> Kunihiko-Hayashi/pinctrl-uniphier-Introduce-some-features-and-NX1-support/
+> 20211005-101346
+>          git checkout c68781cbddcc323070eee04896f6f858840a60dc
+>          # save the attached .config to linux build tree
+>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross
+> ARCH=powerpc
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+>>> drivers/pinctrl/uniphier/pinctrl-uniphier-nx1.c:429:27: error:
+> 'usb3_groups' defined but not used [-Werror=unused-const-variable=]
+>       429 | static const char * const usb3_groups[] = {"usb3"};
+>           |                           ^~~~~~~~~~~
+>>> drivers/pinctrl/uniphier/pinctrl-uniphier-nx1.c:428:27: error:
+> 'usb2_groups' defined but not used [-Werror=unused-const-variable=]
+>       428 | static const char * const usb2_groups[] = {"usb2"};
+>           |                           ^~~~~~~~~~~
+>     cc1: all warnings being treated as errors
+
+The usb2 and usb3 groups don't exist. I'll remove them in next.
 
 Thank you,
 
