@@ -2,62 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AFB0422BC5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C803422C07
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230141AbhJEPHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 11:07:11 -0400
-Received: from mga18.intel.com ([134.134.136.126]:53938 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235022AbhJEPHL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 11:07:11 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="212696560"
-X-IronPort-AV: E=Sophos;i="5.85,349,1624345200"; 
-   d="scan'208";a="212696560"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2021 08:04:01 -0700
-X-IronPort-AV: E=Sophos;i="5.85,349,1624345200"; 
-   d="scan'208";a="523803649"
-Received: from emccutch-mobl.amr.corp.intel.com (HELO [10.212.34.81]) ([10.212.34.81])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2021 08:03:59 -0700
-Subject: Re: [PATCH] ASoC: qcom: soundwire: Enable soundwire bus clock for
- version 1.6
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1633105471-30928-1-git-send-email-srivasam@codeaurora.org>
- <a2b6a9c7-2191-4bc9-b03b-3b22b495a4be@linux.intel.com>
- <2c18ff0c-cd24-356c-0104-086837ed7ff0@codeaurora.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <d485af5f-4dfb-df08-9a22-901b7534ca3b@linux.intel.com>
-Date:   Tue, 5 Oct 2021 10:03:56 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S235796AbhJEPN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 11:13:58 -0400
+Received: from mail-vs1-f53.google.com ([209.85.217.53]:34602 "EHLO
+        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235810AbhJEPNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:13:55 -0400
+Received: by mail-vs1-f53.google.com with SMTP id d18so1453207vsh.1;
+        Tue, 05 Oct 2021 08:12:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gf17DwZloYrFgqlw64n/3dkqUKbD656uIR22G5R4yNA=;
+        b=WYWH8uTxSMJq76TgA2ObpZPhrPwf5t4TEhKPIinSCwhxIUYEW17aRT2z7Ec5V2w1OF
+         fXJqV2fGKZPpZsJBLjsm257C0WpKeLnWGDnnUdaV2GgUhQOFFuYksbEinRMK0YLArKTu
+         bNrJ3gw1Mcar1W2RfltrYcKIhuoEPPqPDqo53y02iALamMZC/XrLOMEhkVPTVpmy1WMG
+         kM1TyEs4QVPdBcPBWLzRbeilnYXx6NLB1yH1g5j5qquX+SvgmCg01zCxrHf8Jyzs0fbj
+         jZLNFTyLbrv9c3/BOjdgTTtNU1Bp/3vJsStxL7BhN/ZZP0pgsIN8Tlldc6eoNQS37833
+         N/9Q==
+X-Gm-Message-State: AOAM531G7wM3MG0hgkBNVs2MKk1aim1WUNOmDg4yUvy5GDnohnB/vwbp
+        Gag/x74BaU+b4rij5+ibXPIz7p+e0ir+okDwxkM=
+X-Google-Smtp-Source: ABdhPJyixGIKxdVKLR+jX0yGSnIsxa6UT2MwKmvFfDtbnIxso2yONZOkM11x61wzCO95nrP8oCxmehr97uuO6qk3ado=
+X-Received: by 2002:a67:f147:: with SMTP id t7mr18978451vsm.41.1633446724666;
+ Tue, 05 Oct 2021 08:12:04 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2c18ff0c-cd24-356c-0104-086837ed7ff0@codeaurora.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210928140721.8805-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210928140721.8805-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 5 Oct 2021 17:11:53 +0200
+Message-ID: <CAMuHMdWSsrV-9Kxz=zS3CVKSbo2OkwyaVK2Jx-+X68W-cqAdvQ@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: memory: renesas,rpc-if: Add optional
+ interrupts property
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Sep 28, 2021 at 4:07 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> For completeness add optional interrupts property.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
->>> +        ctrl->swrm_hctl_reg = devm_ioremap(&pdev->dev,
->>> swrm_hctl_reg, 0x4);
->> if (!ctrl->swrm_hctl_reg)
->>      return -ENODEV;
->>
->> ?
-> I think here error check is not required, as this change is required
-> only for soundwire version 1.6 and above.
+Gr{oetje,eeting}s,
 
-My comment had nothing to do with versions, it's just that ioremap can
-fail and in general it's wise to test for errors...
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
