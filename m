@@ -2,120 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A924232F9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 23:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22486423317
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 23:54:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235957AbhJEVph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 17:45:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55970 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231167AbhJEVph (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 17:45:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CA53B6115B;
-        Tue,  5 Oct 2021 21:43:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633470226;
-        bh=WSHqCxwflqcKiT4irCE8NVjFBqw/353tC8L3Y9Ud/TI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ScmUt3fswhW0wl194TQi6oZyg8Vnh1ZvtfHQ9IWUNX/pReP6oohtj8AgjDUSbtZEz
-         zVL/iYigoegiTcipiIhaJICnIckaUQZGL8vie8YySTZe+r+texQfzMQU5Hp+8xUH9I
-         Uu5t/397vlJONtqayAAqVrNpkes3cGbJuBTYiG8lTh5n0vuSFqVJdRvgxRVx+8JvVl
-         36Q1zw+SmY5BjYBQJOU2nOMzjOY/gpQ7T0Bo/vU3h2cWPv+D2I/BZHh9n2QGHEVEEz
-         LSYUCFNH3+oIg5AvyTFfaGZKb7Vnp9fg/YJh8Io6+P3W4hbaP2cq4rINjyxNijkKOi
-         yYcOO1wb3E9Tw==
-Date:   Tue, 5 Oct 2021 23:43:42 +0200
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: lets settle the LED `function` property regarding the netdev
- trigger
-Message-ID: <20211005234342.7334061b@thinkpad>
-In-Reply-To: <YVy9Ho47XeVON+lB@lunn.ch>
-References: <20211001143601.5f57eb1a@thinkpad>
-        <YVn815h7JBtVSfwZ@lunn.ch>
-        <20211003212654.30fa43f5@thinkpad>
-        <YVsUodiPoiIESrEE@lunn.ch>
-        <20211004170847.3f92ef48@thinkpad>
-        <0b1bc2d7-6e62-5adb-5aed-48b99770d80d@gmail.com>
-        <20211005222657.7d1b2a19@thinkpad>
-        <YVy9Ho47XeVON+lB@lunn.ch>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S236600AbhJEV4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 17:56:17 -0400
+Received: from smtp2.de.opalstack.com ([139.162.136.213]:45824 "EHLO
+        smtp2.de.opalstack.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229974AbhJEV4R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 17:56:17 -0400
+X-Greylist: delayed 600 seconds by postgrey-1.27 at vger.kernel.org; Tue, 05 Oct 2021 17:56:17 EDT
+Received: from jason.localnet (host-37-191-188-128.lynet.no [37.191.188.128])
+        by smtp2.de.opalstack.com (Postfix) with ESMTPSA id 5930C12D79C;
+        Tue,  5 Oct 2021 21:44:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=boddie.org.uk;
+        s=dkim; t=1633470264;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=N89vCJUW5C6PtAMTKhh3UWrrTYPPd5RQPb+6C/bnXP0=;
+        b=OBPnxKdiqKld2PpKdYUuuf2z2vVAzv9gylAWz0SapUlAh+v+UrgjvoAyMJTf+XRusgQcLf
+        +2Nt1sCaOh0Xi/crCfrZYEC6Y7vsepQ5rO5t4Y7twjBZH6ECF4xa2Nv+cHDdjYD++/fLoE
+        h4WAdxUzAT5gC6SX/v3jEuUzxAj0HOE=
+From:   Paul Boddie <paul@boddie.org.uk>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jon as Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v5 5/7] MIPS: DTS: jz4780: Account for Synopsys HDMI driver and LCD controllers
+Date:   Tue, 05 Oct 2021 23:44:12 +0200
+Message-ID: <3514743.EH6qe8WxYI@jason>
+In-Reply-To: <O7VI0R.CRIG8R7O0OOI3@crapouillou.net>
+References: <cover.1633436959.git.hns@goldelico.com> <c243176cb5e5a3ab5df1fe77f9246b6d5ec4f88e.1633436959.git.hns@goldelico.com> <O7VI0R.CRIG8R7O0OOI3@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=1.66
+X-Spam-Level: *
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 Oct 2021 23:01:18 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
+On Tuesday, 5 October 2021 22:50:12 CEST Paul Cercueil wrote:
+> Hi Nikolaus & Paul,
+>=20
+> Le mar., oct. 5 2021 at 14:29:17 +0200, H. Nikolaus Schaller=20
+<hns@goldelico.com> a =E9crit :
+> >=20
+> > diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> > b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> > index 9e34f433b9b5..c3c18a59c377 100644
+> > --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> > +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> > @@ -424,6 +424,51 @@ i2c4: i2c@10054000 {
+> >=20
+> >  		status =3D "disabled";
+> >  =09
+> >  	};
+> >=20
+> > +	hdmi: hdmi@10180000 {
+> > +		compatible =3D "ingenic,jz4780-dw-hdmi";
+> > +		reg =3D <0x10180000 0x8000>;
+> > +		reg-io-width =3D <4>;
+> > +
+> > +		clocks =3D <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
+> > +		clock-names =3D "iahb", "isfr";
+> > +
+> > +		assigned-clocks =3D <&cgu JZ4780_CLK_HDMI>;
+> > +		assigned-clock-rates =3D <27000000>;
+>=20
+> Any reason why this is set to 27 MHz? Is it even required? Because with
+> the current ci20.dts, it won't be clocked at anything but 48 MHz.
 
-> > In the discussed case (ethernet PHY LEDs) - it is sometimes possible to
-> > have multiple brightness levels per color channel. For example some
-> > Marvell PHYs allow to set 8 levels of brightness for Dual Mode LEDs.
-> > Dual Mode is what Marvell calls when the PHY allows to pair two
-> > LED pins to control one dual-color LED (green-red, for example) into
-> > one.
-> > 
-> > Moreover for this Dual Mode case they also allow for HW control of
-> > this dual LED, which, when enabled, does something like this, in HW:
-> >   1g link	green
-> >   100m link	yellow
-> >   10m link	red
-> >   no link	off
-> > 
-> > Note that actual colors depend on the LEDs themselves. The PHY
-> > documentation does not talk about the color, only about which pin is
-> > on/off. The thing is that if we want to somehow set this mode for the
-> > LED, it should be represented as one LED class device.
-> > 
-> > I want to extend the netdev trigger to support such configuration,
-> > so that when you have multicolor LED, you will be able to say which
-> > color should be set for which link mode.  
-> 
-> This is getting into the exotic level i don't think we need to
-> support. How many PHYs have you seen that support something like this?
+EXCLK will be 48MHz, but the aim is to set the HDMI peripheral clock to 27M=
+Hz,=20
+which is supposedly required. I vaguely recall a conversation about whether=
+ we=20
+were doing this right, but I don't recall any conclusion.
 
-This isn't about whether there are PHYs which support this in HW.
-The extension to netdev trigger will be able to do this in SW.
+> > +
+> > +		interrupt-parent =3D <&intc>;
+> > +		interrupts =3D <3>;
+> > +
+> > +		/* ddc-i2c-bus =3D <&i2c4>; */
+> > +
+> > +		status =3D "disabled";
+> > +	};
+> > +
+> > +	lcdc0: lcdc0@13050000 {
+> > +		compatible =3D "ingenic,jz4780-lcd";
+> > +		reg =3D <0x13050000 0x1800>;
+> > +
+> > +		clocks =3D <&cgu JZ4780_CLK_TVE>, <&cgu JZ4780_CLK_LCD0PIXCLK>;
+> > +		clock-names =3D "lcd", "lcd_pclk";
+> > +
+> > +		interrupt-parent =3D <&intc>;
+> > +		interrupts =3D <31>;
+> > +
+> > +		status =3D "disabled";
+>=20
+> I think you can keep lcdc0 enabled by default (not lcdc1 though), since
+> it is highly likely that you'd want that.
 
-For example the Turris Omnia has 12 RGB LEDs on the front panel, of
-which 6 are dedicated to ethernet ports (and there are no LEDs on
-ethernet ports themselves). It would make sense to be able to have
-netdev trigger (or it's extension) show link mode by color (for example
-green on 1g, yellow on 100g, orange on 10g).
+As far as I know, the clock gating for the LCD controllers acts like a seri=
+es=20
+circuit, meaning that they both need to be enabled. Some testing seemed to=
+=20
+confirm this. Indeed, I seem to remember only enabling one clock and not=20
+getting any output until I figured this weird arrangement out.
 
-Anyway when you have a green-yellow LED on an ethernet port wired in
-such a way than it can only be off, green or yellow, but not both green
-and yellow, I don't think we should register these as 2 LED class
-devices.
+Paul
 
-> I suggest we start with simple independent LEDs. That gives enough to
-> support the majority of use cases people actually need. And is enough
-> to unblock people who i keep NACKing patches and tell them to wait for
-> this work to get merged.
 
-Of course, and I plan to do so. Those netdev trigger extensions and
-multi-color function definitions are for later :)
-
-We got side tracked in this discussion, sorry about that.
-
-In this thread I just wanted to settle the LED function property for
-LEDs indicating network ports.
-
-So would you, Andrew, agree with:
-- extending function property to be array of strings instead of only
-  one string, so that we can do
-    function = "link", "activity";
-- having separate functions for different link modes
-    function = "link1000", "link100";
-  or should this insted be in another property
-    function = "link";
-    link-modes = <1000 100>;
-  ?
-
-Marek
