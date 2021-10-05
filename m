@@ -2,181 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5E4B4233D8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 00:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8FA74233C6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 00:46:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230477AbhJEWsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 18:48:13 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:46812 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236924AbhJEWsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 18:48:03 -0400
-Received: by mail-ot1-f54.google.com with SMTP id u20-20020a9d7214000000b0054e170300adso762700otj.13;
-        Tue, 05 Oct 2021 15:46:12 -0700 (PDT)
+        id S236904AbhJEWsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 18:48:00 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:42821 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236820AbhJEWr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 18:47:59 -0400
+Received: by mail-oi1-f171.google.com with SMTP id x124so1358397oix.9;
+        Tue, 05 Oct 2021 15:46:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=QK9Imlq5OXfe14Tp+9gPEdkTtY/w5a8pVgEJHriWYS8=;
-        b=nsJtdcPMTwIU0vbY7l8UAAfiCCMurJoE/7msV8WVZUFTDPTdpdwLn5gSCNg9xNhw1I
-         AKzWCNYFyZsdLiVjH2bqQPQEjrmT78nuhmI3bXZt5C2Llr4iXbMzgOb6an5SVOa1TLA4
-         2pRab8gBgt4tYFjuH/PIflZFAulguxRfppfs1+dLepYlFjGyZxsIA+BOKH/7clwWi+IO
-         LJlAhbCXYxyd7XVXbpDIyqLhGUViq0Ex2jZVnn0TF6691FTNyIxYg5/7+SjyfV6O4tiE
-         povzzy6T6viNbQhHUMIT0vTiiuwmfVHMpP7cSSzqYvzf1m90kvJe+x+U76fMmlh1BY1Z
-         Mdzg==
-X-Gm-Message-State: AOAM530i7ltzLthKxy8CUdjqMuBFn8WCRbt7BluJ8H6uRgMaF1JwpwGd
-        S3JXe0DC7pdvIbHGwn/GHzeXjpAoog==
-X-Google-Smtp-Source: ABdhPJx7Av2ARqNLmB8U1zkPeOfgnNrqQH/K8kcCUbN6X7M36zfA/n9GiR9nHGRLwAiQ/dVJajq3Mg==
-X-Received: by 2002:a9d:7257:: with SMTP id a23mr17143146otk.311.1633473972200;
-        Tue, 05 Oct 2021 15:46:12 -0700 (PDT)
+        bh=idk/OPLqOoxicS++8eNcVOO+4pet2v6UE8sH+4Sn+Fs=;
+        b=WyTt2CQ9yJFlHGsC8zVMPHHvq5DXj31iv+UOO1BmXHi63+boxFKUna0r6qh0YTQY1/
+         M6TlUdbENjmP7LKGWBkuEjexUxmMNRskHJcy8eU4pYWnCYPzV/Fs/ilhnlQbyID86q5a
+         hvadqI9on0eHQYE6O2A0GT2ydrplUF0O10uZd25G56AjOs/rAZ7lU/mqGC3Io6kjssSg
+         sekxx0qnJLKGOTterNuzRs8zgl217lLuLxLGt14WiOShWd8U8Fn7urS4M+9uiUvILwQA
+         B8TU7Fnns99SfJyDaEBZfWzSpF9TDVV0hlB1T1uOtZX/EitPCyLKOSA+/GFJnXrALjir
+         Xzog==
+X-Gm-Message-State: AOAM533xb7Cko15KkCkvj0LbQF//I+SDLs5IsG8PlTuU/rz11d6CEkgn
+        aOTdNXsO68c5Zfxs7/t/HQ==
+X-Google-Smtp-Source: ABdhPJzuCyAG5KCu9OI9pzfAoSNtgTk0/nwWINbsvAaJKNhig4buPmUm2PEwS2D8Cwi0GfG/C6nvPw==
+X-Received: by 2002:aca:2415:: with SMTP id n21mr4542248oic.27.1633473967660;
+        Tue, 05 Oct 2021 15:46:07 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g21sm3817818ooc.31.2021.10.05.15.46.11
+        by smtp.gmail.com with ESMTPSA id a9sm3775851otk.3.2021.10.05.15.46.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 15:46:11 -0700 (PDT)
-Received: (nullmailer pid 106792 invoked by uid 1000);
+        Tue, 05 Oct 2021 15:46:06 -0700 (PDT)
+Received: (nullmailer pid 106780 invoked by uid 1000);
         Tue, 05 Oct 2021 22:45:59 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-In-Reply-To: <20211005144329.2405315-2-dmitry.baryshkov@linaro.org>
-References: <20211005144329.2405315-1-dmitry.baryshkov@linaro.org> <20211005144329.2405315-2-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2 1/6] dt-bindings: pinctrl: qcom,pmic-mpp: Convert qcom pmic mpp bindings to YAML
+To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
+Cc:     devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        =?utf-8?b?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>,
+        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devel@driverdev.osuosl.org,
+        =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-wireless@vger.kernel.org, linux-mmc@vger.kernel.org
+In-Reply-To: <20211005135400.788058-3-Jerome.Pouiller@silabs.com>
+References: <20211005135400.788058-1-Jerome.Pouiller@silabs.com> <20211005135400.788058-3-Jerome.Pouiller@silabs.com>
+Subject: Re: [PATCH v8 02/24] dt-bindings: introduce silabs,wfx.yaml
 Date:   Tue, 05 Oct 2021 17:45:59 -0500
-Message-Id: <1633473959.436288.106788.nullmailer@robh.at.kernel.org>
+Message-Id: <1633473959.392405.106778.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Oct 2021 17:43:24 +0300, Dmitry Baryshkov wrote:
-> Convert Qualcomm PMIC MPP bindings from .txt to .yaml format.
+On Tue, 05 Oct 2021 15:53:38 +0200, Jerome Pouiller wrote:
+> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Prepare the inclusion of the wfx driver in the kernel.
+> 
+> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
 > ---
->  .../bindings/pinctrl/qcom,pmic-mpp.txt        | 187 ------------------
->  .../bindings/pinctrl/qcom,pmic-mpp.yaml       | 180 +++++++++++++++++
->  2 files changed, 180 insertions(+), 187 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+>  .../bindings/net/wireless/silabs,wfx.yaml     | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml:39:31: [error] syntax error: mapping values are not allowed here (syntax)
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1536695
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/net/wireless/silabs,wfx.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 120, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: mapping values are not allowed in this context
+  in "<unicode string>", line 39, column 31
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/net/wireless/silabs,wfx.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml:  mapping values are not allowed in this context
+  in "<unicode string>", line 39, column 31
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+make: *** [Makefile:1441: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-mpp@50: 'gpio-ranges' is a required property
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
+See https://patchwork.ozlabs.org/patch/1536655
 
-mpps@50: 'cm3605-mpps' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/qcom-apq8060-dragonboard.dt.yaml
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-mpps@50: 'gpio-ranges' is a required property
-	arch/arm/boot/dts/qcom-apq8060-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-	arch/arm/boot/dts/qcom-msm8660-surf.dt.yaml
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-mpps@a000: compatible: ['qcom,pm8916-mpp'] is too short
-	arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dt.yaml
+pip3 install dtschema --upgrade
 
-mpps@a000: compatible: ['qcom,pm8994-mpp'] is too short
-	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
-
-mpps@a000: 'gpio-ranges' is a required property
-	arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-	arch/arm/boot/dts/qcom-apq8084-ifc6540.dt.yaml
-	arch/arm/boot/dts/qcom-apq8084-mtp.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-samsung-klte.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-
-mpps@a000: 'pm8916-mpp4', 'pm8916-mpps-leds' do not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml
-
-mpps@a000: pm8994-mpps-default-state: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
+Please check and re-submit.
 
