@@ -2,121 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76015422F65
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 19:50:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEB96422FC1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 20:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234740AbhJERv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 13:51:56 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:28978 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234559AbhJERvy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 13:51:54 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633456203; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=umNYz8pA01LGfst/ZDKb/BGeTkpsTgzCMazCvgWWhM4=; b=VjtQjJwQyacALVa+HJ4owpHSoS/5KMh/aHpaHvdiNdxhl+jU0qH3E7xovWXv2Z9m/khV//r1
- QSeZOBkC01lBripgAbe6v9DOmGqmB532zFgGmcLPCugGixT2lB8IK8/EqgJeR7V0xor8Eni9
- S02aHQlcckY4RLA28AYAoY8l6yk=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 615c903a003e680efbce2678 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 17:49:46
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9EE95C4338F; Tue,  5 Oct 2021 17:49:45 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E2E1DC4338F;
-        Tue,  5 Oct 2021 17:49:41 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org E2E1DC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v8 00/24] wfx: get out from the staging area
-References: <20211005135400.788058-1-Jerome.Pouiller@silabs.com>
-        <875yubfthh.fsf@codeaurora.org> <2810333.gDgIz5hftg@pc-42>
-Date:   Tue, 05 Oct 2021 20:49:37 +0300
-In-Reply-To: <2810333.gDgIz5hftg@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
- Pouiller"'s message of "Tue,
-        05 Oct 2021 18:22:31 +0200")
-Message-ID: <87o883e4zy.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S235047AbhJESMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 14:12:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41532 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235023AbhJESMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 14:12:45 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53311C061762
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 11:10:50 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso26988927ota.8
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 11:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=PmGzQuIqk2k4kzsoKeBKvFVdnEBiz+RKXSuRjoeZURM=;
+        b=B0mBiHAsN8I7BNS/mU4QppQq4xPSJV3whZyZvOYVXy07yim5yqBpDFH0m9G11EeiuC
+         I+zhgIBakhE9uiJrK5pMepAaCUUaBvbcVLWKldqhoPO8hW4DjWfzHT8QQp7xjLnP4kBB
+         +1evPf4JRJfCPzB4fh6k8lS3Js8Ys//I8stWI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=PmGzQuIqk2k4kzsoKeBKvFVdnEBiz+RKXSuRjoeZURM=;
+        b=KFO2AOgiwsxFMKvMv7k+bt3DS9pkVVod3RXsW5Ii/heACjif2sKLqG6uFCm8cxwG+a
+         5betyDSQ0kYR3632KeMr/13OMQk7HHQFCEqOex2U+4rVLoRJOab0Atw0yMutD/R/Ast0
+         dhmjinKfsQzXA0f7PgaIWx5TKbJRkO+EWiia13Z1etGLyrSjUIz4Uh0C9bqD62q3pLgv
+         LZwZB4d2RxVDnMPV7CyyOHoqTWHmhqjUVzdYTYF3IGYtLtFxtUlzcN25PGFvVfutlqv2
+         S/LEKspF5XBp+NSxg8q01T8bSXJ08htlUn/Blm5Mg6mAgzE0U2QOWQSdwvMTELT1D4gD
+         PVUA==
+X-Gm-Message-State: AOAM530ePyWdDyZ46L8GklNI31yNbxi0njOBoi3S2OOC8HYU73ebPTdR
+        p2bngweCtL5QLvY9ycl5bi2nVOwONxV2j1IOx0DCVQ==
+X-Google-Smtp-Source: ABdhPJwEEYUyuAtHy0el1QmjpZCJ0OjboZgnL5mSaQ5E0Rrbqy4svm1Ycwg7yYumXkdwlxQqYdw4gbsY9g/XLo/ffjw=
+X-Received: by 2002:a9d:1f4:: with SMTP id e107mr15358336ote.77.1633457449530;
+ Tue, 05 Oct 2021 11:10:49 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 5 Oct 2021 11:10:49 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1633060859-22969-3-git-send-email-skakit@codeaurora.org>
+References: <1633060859-22969-1-git-send-email-skakit@codeaurora.org> <1633060859-22969-3-git-send-email-skakit@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Tue, 5 Oct 2021 11:10:49 -0700
+Message-ID: <CAE-0n51pCkrdOSJFf3V4HGB5PcUcRa2y6zRQbQ30i-hQVhjC=Q@mail.gmail.com>
+Subject: Re: [PATCH V2 2/4] dt-bindings: mfd: pm8008: Add pm8008 regulator node
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <skakit@codeaurora.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mka@chromium.org,
+        collinsd@codeurora.org, subbaram@codeaurora.org,
+        kgunda@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
-
-> On Tuesday 5 October 2021 16:15:22 CEST Kalle Valo wrote:
->> Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
->>=20
->> > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
-> [...]
->> > v8:
->> >   - Change the way the DT is handled. The user can now specify the nam=
-e of
->> >     the board (=3D chip + antenna) he use. It easier for board designe=
-rs to
->> >     add new entries. I plan to send a PR to linux-firmware to include =
-PDS
->> >     files of the developpement boards belong the firmware (I also plan=
- to
->> >     relocate these file into wfx/ instead of silabs/). (Kalle, Pali)
->> >   - Prefix visible functions and structs with "wfx_". I mostly kept the
->> >     code under 80 columns. (Kalle, Pali, Greg)
->> >   - Remove support for force_ps_timeout for now. (Kalle)
->> >   - Fix licenses of Makefile, Kconfig and hif_api*.h. (Kalle)
->> >   - Do not mix and match endianess in struct hif_ind_startup. (Kalle)
->> >   - Remove magic values. (Kalle)
->> >   - Use IS_ALIGNED(). (BTW, PTR_IS_ALIGNED() does not exist?) (Kalle)
->> >   - I have also noticed that some headers files did not declare all the
->> >     struct they used.
->> >
->> >   These issues remain (I hope they are not blockers):
->> >   - I have currently no ideas how to improve/simplify the parsing PDS =
-file.
->> >     (Kalle)
->>=20
->> For the PDS file problem it would help if you could actually describe
->> what the firmware requires/needs and then we can start from that. I had
->> some questions about this in v7 but apparently you missed those.
+Quoting Satya Priya (2021-09-30 21:00:57)
+> Add pm8008-regulator node and example.
 >
-> Did you received this reply[1]?
+> Signed-off-by: Satya Priya <skakit@codeaurora.org>
+> ---
+> Changes in V2:
+>  - As per Rob's comments changed "pm8008[a-z]?-regulator" to
+>    "^pm8008[a-z]?-regulators".
 >
-> [1]: https://lore.kernel.org/all/2723787.uDASXpoAWK@pc-42/
+>  .../devicetree/bindings/mfd/qcom,pm8008.yaml       | 24 ++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> index ec3138c..0c9665e 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> @@ -45,6 +45,10 @@ properties:
+>      const: 0
+>
+>  patternProperties:
+> +  "^pm8008[a-z]?-regulators$":
 
-I did and I even made further questions:
+Please just call it 'regulators'
 
-https://lore.kernel.org/all/87k0ixj5vn.fsf@codeaurora.org/
+> +    type: object
+> +    $ref: "../regulator/qcom,pm8008-regulator.yaml#"
+> +
+>    "^gpio@[0-9a-f]+$":
+>      type: object
+>
+> @@ -122,6 +126,26 @@ examples:
+>            interrupt-controller;
+>            #interrupt-cells = <2>;
+>          };
+> +
+> +        pm8008-regulators {
 
-Can we please continue the discussion on that thread instead of passing
-out lore links to each other :)
+Please just call it 'regulators'
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+> +          compatible = "qcom,pm8008-regulator";
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          vdd_l1_l2-supply = <&vreg_s8b_1p2>;
+> +          vdd_l3_l4-supply = <&vreg_s1b_1p8>;
+> +          vdd_l5-supply = <&vreg_bob>;
+> +          vdd_l6-supply = <&vreg_bob>;
+> +          vdd_l7-supply = <&vreg_bob>;
+> +
+> +          pm8008_l1: regulator@4000 {
+> +            reg = <0x4000>;
+> +            regulator-name = "pm8008_l1";
+> +            regulator-min-microvolt = <950000>;
+> +            regulator-max-microvolt = <1300000>;
+> +            qcom,min-dropout-voltage = <96000>;
+> +          };
+> +        };
