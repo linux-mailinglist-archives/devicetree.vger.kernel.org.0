@@ -2,124 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3302D423202
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 694AC423206
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:30:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236304AbhJEUbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 16:31:12 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:56930 "EHLO mail.z3ntu.xyz"
+        id S230057AbhJEUcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 16:32:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53028 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236267AbhJEUbL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 16:31:11 -0400
-Received: from localhost.localdomain (ip-213-127-63-121.ip.prioritytelecom.net [213.127.63.121])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 86371C9169;
-        Tue,  5 Oct 2021 20:29:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1633465759; bh=caiZgo8/843g5GxiEcUJXyvFHNkUlh+M/VUHezDs/U0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=sK8ycAW1lzqo8789qgSWNTfbDXo0yMpkDtlxfrLloMHJi0CasZYUw7jDIXqr1i8G+
-         oFxb4zncyeWOD7O+l+JoFzNJGhYXmsxY1gFIjOV+CwTE5bnmnT+x9QMSkKB619qAPN
-         1aBzkZm8E7VDQ55u07pF8blp6JZl4poROxKFarps=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-mediatek@lists.infradead.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Arnd Bergmann <arnd@arndb.de>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org
-Subject: [PATCH 2/2] arm: dts: mt6589: Add device tree for Fairphone 1
-Date:   Tue,  5 Oct 2021 22:28:31 +0200
-Message-Id: <20211005202833.96526-2-luca@z3ntu.xyz>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211005202833.96526-1-luca@z3ntu.xyz>
-References: <20211005202833.96526-1-luca@z3ntu.xyz>
+        id S230019AbhJEUcJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 16:32:09 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E7FA60F44;
+        Tue,  5 Oct 2021 20:30:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633465818;
+        bh=gbIXNRW5Wq4ehAfiyk/kQqqaMrxPz+mtMrf130bf9ws=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=VjJ5c5XiBc3GJlXt/eQ9FQXEUIJnTCkKvmvqABBmmAOmc9KdXI7hdqZho1rptJ9uu
+         EzAmvw7Ns2KK0qgz6zKdf53DMIyZtO5jTXcYEdqouK4XCOapcVKg+Fjoo9LsoHYJUZ
+         1zSY/AQSjzI8aGmz7G9KFunqazrwt+D0SwJ037GqEU7jRljEEccAZxw8OjgvNWbGJ2
+         6op7FZcz0tXKLlpio7y1CJ42vRuPPMivlbDdwZy7D3DbI8hdueQtBHgQ6vLlcaiwKs
+         zp+rIKuUalKmA0fEfAMEHazs3YHUfZ5LaHrzQQU0TAk/Z4MquijSjEhL2yCGN9Lg2N
+         4mQ5c+3jBpRbg==
+Date:   Tue, 5 Oct 2021 22:30:14 +0200
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: lets settle the LED `function` property regarding the netdev
+ trigger
+Message-ID: <20211005223014.3891f041@thinkpad>
+In-Reply-To: <YVs5sxd/dEBwBShm@lunn.ch>
+References: <20211001143601.5f57eb1a@thinkpad>
+        <YVn815h7JBtVSfwZ@lunn.ch>
+        <20211003212654.30fa43f5@thinkpad>
+        <YVsUodiPoiIESrEE@lunn.ch>
+        <20211004170847.3f92ef48@thinkpad>
+        <YVs5sxd/dEBwBShm@lunn.ch>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add rudimentary support for the Fairphone 1, based on MT6589 to boot to
-UART console.
+On Mon, 4 Oct 2021 19:28:19 +0200
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-The recently added SMP support needs to be disabled for this board as
-the kernel panics executing /init with it, even though the CPUs seem to
-start up fine - maybe a stability issue.
+> > > There are two different ways this can be implemented. There can be two
+> > > independent LEDs within the same package. So you can generate three
+> > > colours. Or there can be two cross connected LEDs within the
+> > > package. Apply +ve you get one colour, apply -ve you get a different
+> > > colour. Since you cannot apply both -ve and +ve at the same time, you
+> > > cannot get both colours at once.
+> > > 
+> > > If you have two independent LEDs, I would define two LEDs in DT.  
+> > 
+> > No, we have multicolor LED API which is meant for exactly this
+> > situation: a multicolor LED.
+> > (I am talking about something like the KJ2518D-262 from
+> >  http://www.rego.com.tw/product_detail.php?prdt_id=258
+> >  which has Green/Orange on left and Yellow on right side.
+> >  The left Green/Orange LED has 3 pins, and so it can mix the colors into
+> >  yellow.)  
+> 
+> But here you are talking about the LED, not the controller in the
+> PHY. The controller might control it as two independent LEDs. It has
+> no idea it can get a third colour by enabling two LEDs at the same
+> time. Or maybe the controller does know it can combine colours.
+> 
+> So you need to know about both the controller and the LED. And the
+> same controller can be used either way. Plus you need to think about
+> the non DT case, when you have no idea about the LED connected to the
+> controller.
+> 
+> > I think the best solution here would be a subclass "enumcolor" (or
+> > different name), where you can choose between several pre-defined colors.
+> > In sysfs you could then do
+> >   echo 1 >brightness
+> >   echo green >color
+> >   echo yellow >color  
+> 
+> I'm not sure it is as simple as that. In the general case, you have no
+> idea what the colours actually are. You only know the colours if you
+> have DT and DT lists the colours. And you only know if LEDs are
+> combined if you have DT. You need a basic sysfs API based on knowing
+> the PHY can control X LEDs. You can then extend that API if you have
+> additional information via DT, like colour and if LEDs are combined,
+> that only LEDs numbered 2 and 3 are used, etc.
+> 
+> 	   Andrew
 
-[    0.072010] smp: Bringing up secondary CPUs ...
-[    0.131888] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
-[    0.191889] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
-[    0.251890] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
-[    0.251982] smp: Brought up 1 node, 4 CPUs
-[    0.254745] SMP: Total of 4 processors activated (7982.28 BogoMIPS).
-[    0.255582] CPU: All CPU(s) started in SVC mode.
+I really don't think we should be registering any LEDs in the PHY driver
+if the driver does not know whether there are LEDs connected to the PHY.
 
-[    0.472039] Run /init as init process
-[    0.473317] Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000004
+If this information is not available (via device-tree or some other
+method, for example USB vendor/device table), then we can't register a
+LED and let user control it.
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm/boot/dts/Makefile                 |  1 +
- arch/arm/boot/dts/mt6589-fairphone-fp1.dts | 30 ++++++++++++++++++++++
- 2 files changed, 31 insertions(+)
- create mode 100644 arch/arm/boot/dts/mt6589-fairphone-fp1.dts
+What if the pin is used for something different on a board?
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7e0934180724..24f402db2613 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1437,6 +1437,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
- 	mt2701-evb.dtb \
- 	mt6580-evbp1.dtb \
- 	mt6589-aquaris5.dtb \
-+	mt6589-fairphone-fp1.dtb \
- 	mt6592-evb.dtb \
- 	mt7623a-rfb-emmc.dtb \
- 	mt7623a-rfb-nand.dtb \
-diff --git a/arch/arm/boot/dts/mt6589-fairphone-fp1.dts b/arch/arm/boot/dts/mt6589-fairphone-fp1.dts
-new file mode 100644
-index 000000000000..32c14ecf2244
---- /dev/null
-+++ b/arch/arm/boot/dts/mt6589-fairphone-fp1.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2021, Luca Weiss <luca@z3ntu.xyz>
-+ */
-+
-+/dts-v1/;
-+#include "mt6589.dtsi"
-+
-+/ {
-+	model = "Fairphone 1";
-+	compatible = "fairphone,fp1", "mediatek,mt6589";
-+
-+	chosen {
-+		stdout-path = &uart3;
-+	};
-+
-+	cpus {
-+		/* SMP is not stable on this board, makes the kernel panic */
-+		/delete-property/ enable-method;
-+	};
-+
-+	memory {
-+		device_type = "memory";
-+		reg = <0x80000000 0x40000000>;
-+	};
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
--- 
-2.33.0
-
+Marek
