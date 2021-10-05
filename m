@@ -2,147 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36E634232F7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 23:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11A924232F9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 23:43:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235126AbhJEVpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 17:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34578 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235088AbhJEVpf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 17:45:35 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 385CAC061749
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 14:43:44 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id l6so326133plh.9
-        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 14:43:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KueyQP1qhZFXjcASjngiU44PCPT1m0q8kUWaGeTu76Y=;
-        b=wvHYe1hON2UBjCvCrhb7WUdeFjV8+LdwRxK5rw+KpAZ3fRx2qqaune3ittmGEf2MeU
-         JiWAmZ2fftTiR+I8pxszim004hsd0Q13HwxPxDIlHK0i9etQKd1XZljax00sUzDj0b5d
-         Ny1Z3nxHB+JiiyN+WyPrHcAklsF0p27YijqpVPg/N3WJG5XXlS8zo71dqUcrYZxmqNge
-         NLeBN7SsyrAz7/PO78W+0uuqgHrgtkxW7ZggVbtdvqD25jkEhHYXKuf3qCJxRo1JpycO
-         7x/JVnnjWzhW1k6dZfnBYTiI7VFIq3eyJALAR8kGCDfbtrPGEadiLbxVChY5loDXQaJJ
-         r5tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KueyQP1qhZFXjcASjngiU44PCPT1m0q8kUWaGeTu76Y=;
-        b=VI0RALxklRnzzP7DB0J3B99PheuYzplMf1bybSoM9h6LH2Z435wSr07tJNHB7rYCAc
-         WsJi/SbcI2UWraG7whECgnxrmRvdYWu4iDC8cG0ZAl+cnNw75MIFe2Ax6YN3Yc7LG4tJ
-         8uUOjA+scHUuitw2hU+kM5xeSOtRjHnwfzJzXZgn5kWQ9PPMVS6+AE6xEXDOTslTesdx
-         aI0F80Y/XXFo5JzaxiCxD7/ETBAQBZ1J9LJfawc5sp8aldd9Q1UsUQxiyUf2/J77wfBG
-         9mL8ElAmH9Bma9OJ4HgLVOq2BvV/s37c6yY+sUXe7WGxRcqerLhNWozOg6a5cnryQl+y
-         gSlw==
-X-Gm-Message-State: AOAM533eCHYXHFMaV8QRPhcNcdjUl90KM8CQpPc6bUfz7d3XKZiNdLNc
-        ioRttH/3tYAK/tWTIb3BM4IfE23EtoZFHV2phEH1GA==
-X-Google-Smtp-Source: ABdhPJz5msu3tpgzjyQlXtcG3TaMTV8djnu63L0f25Gd4yaLGKWeWwPfwN1wloTy8zkkyk9KCPXOpiNDEEm+EwuDXTs=
-X-Received: by 2002:a17:902:d903:b0:13e:d890:e4c4 with SMTP id
- c3-20020a170902d90300b0013ed890e4c4mr7512780plz.12.1633470223694; Tue, 05 Oct
- 2021 14:43:43 -0700 (PDT)
+        id S235957AbhJEVph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 17:45:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55970 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231167AbhJEVph (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 17:45:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CA53B6115B;
+        Tue,  5 Oct 2021 21:43:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633470226;
+        bh=WSHqCxwflqcKiT4irCE8NVjFBqw/353tC8L3Y9Ud/TI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ScmUt3fswhW0wl194TQi6oZyg8Vnh1ZvtfHQ9IWUNX/pReP6oohtj8AgjDUSbtZEz
+         zVL/iYigoegiTcipiIhaJICnIckaUQZGL8vie8YySTZe+r+texQfzMQU5Hp+8xUH9I
+         Uu5t/397vlJONtqayAAqVrNpkes3cGbJuBTYiG8lTh5n0vuSFqVJdRvgxRVx+8JvVl
+         36Q1zw+SmY5BjYBQJOU2nOMzjOY/gpQ7T0Bo/vU3h2cWPv+D2I/BZHh9n2QGHEVEEz
+         LSYUCFNH3+oIg5AvyTFfaGZKb7Vnp9fg/YJh8Io6+P3W4hbaP2cq4rINjyxNijkKOi
+         yYcOO1wb3E9Tw==
+Date:   Tue, 5 Oct 2021 23:43:42 +0200
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: lets settle the LED `function` property regarding the netdev
+ trigger
+Message-ID: <20211005234342.7334061b@thinkpad>
+In-Reply-To: <YVy9Ho47XeVON+lB@lunn.ch>
+References: <20211001143601.5f57eb1a@thinkpad>
+        <YVn815h7JBtVSfwZ@lunn.ch>
+        <20211003212654.30fa43f5@thinkpad>
+        <YVsUodiPoiIESrEE@lunn.ch>
+        <20211004170847.3f92ef48@thinkpad>
+        <0b1bc2d7-6e62-5adb-5aed-48b99770d80d@gmail.com>
+        <20211005222657.7d1b2a19@thinkpad>
+        <YVy9Ho47XeVON+lB@lunn.ch>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210704090230.26489-1-jagan@amarulasolutions.com>
- <YP2ZvoVQyvwTXP++@ravnborg.org> <CAMty3ZANJz=HSKFzZ8gn896uw98iVwMEpGhmanXNbj77Ren4hw@mail.gmail.com>
-In-Reply-To: <CAMty3ZANJz=HSKFzZ8gn896uw98iVwMEpGhmanXNbj77Ren4hw@mail.gmail.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Tue, 5 Oct 2021 14:43:32 -0700
-Message-ID: <CAJ+vNU1Hy_94TYgs0isNc2pmiH2sOReZJLhphzQFTN2Z50JPrA@mail.gmail.com>
-Subject: Re: [RFC PATCH 00/17] drm: bridge: Samsung MIPI DSIM bridge
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Sam Ravnborg <sam@ravnborg.org>, Marek Vasut <marex@denx.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 25, 2021 at 10:14 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> Hi Sam,
->
-> On Sun, Jul 25, 2021 at 10:35 PM Sam Ravnborg <sam@ravnborg.org> wrote:
-> >
-> > Hi Jagan,
-> >
-> > On Sun, Jul 04, 2021 at 02:32:13PM +0530, Jagan Teki wrote:
-> > > This series supports common bridge support for Samsung MIPI DSIM
-> > > which is used in Exynos and i.MX8MM SoC's.
-> > >
-> > > The final bridge supports both the Exynos and i.MX8MM DSI devices.
-> > >
-> > > Right now bridge offers two sets of implementations.
-> > >
-> > > A. With component_ops and exynos specific code exclusively for
-> > >    exynos dsi drivers and it's legacy bindings.
-> > >
-> > > B. Without componenet_ops for newly implemented bridges and its
-> > >    users like i.MX8MM.
-> > >
-> > > The future plan is to fix the implementation A) by dropping
-> > > component_ops and fixing exynos specific code in order to make
-> > > the bridge more mature to use and the same is mentioned in
-> > > drivers TODO.
-> > >
-> > > Patch 0001 - 0006: Bridge conversion
-> > > Patch 0007 - 0017: Samsung MIPI DSIM bridge fixes, additions
-> > >
-> > > Tested in Engicam i.Core MX8M Mini SoM.
-> > >
-> > > Anyone interest, please have a look on this repo
-> > > https://github.com/openedev/linux/tree/070421-imx8mm-dsim
-> > >
-> > > Would appreciate anyone from the exynos team to test it on
-> > > the exynos platform?
-> > >
-> > > Any inputs?
-> >
-> > I really like where you are headign with this!
-> > No testing - sorry. But I will try to provide a bit of feedback on the
-> > individual patches.
-> >
-> > I hope you find a way to move forward with this.
->
-> Thanks for the response.
->
-> We have found some issues with Bridge conversion on existing exynos
-> drivers. The component based DSI drivers(like exynos) are difficult to
-> attach if it involves kms hotplug. kms hotplug would require drm
-> pointer and that pointer would only available after the bind call
-> finishes. But the bridge attach in bind call will defer till it find
-> the attached bridge.
->
-> Right now I'm trying to find the proper way to attach the bridges for
-> component based DSI drivers which involves kms hot-plug.
->
-> If you have any ideas on this, please let me know.
->
+On Tue, 5 Oct 2021 23:01:18 +0200
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-Jagan,
+> > In the discussed case (ethernet PHY LEDs) - it is sometimes possible to
+> > have multiple brightness levels per color channel. For example some
+> > Marvell PHYs allow to set 8 levels of brightness for Dual Mode LEDs.
+> > Dual Mode is what Marvell calls when the PHY allows to pair two
+> > LED pins to control one dual-color LED (green-red, for example) into
+> > one.
+> > 
+> > Moreover for this Dual Mode case they also allow for HW control of
+> > this dual LED, which, when enabled, does something like this, in HW:
+> >   1g link	green
+> >   100m link	yellow
+> >   10m link	red
+> >   no link	off
+> > 
+> > Note that actual colors depend on the LEDs themselves. The PHY
+> > documentation does not talk about the color, only about which pin is
+> > on/off. The thing is that if we want to somehow set this mode for the
+> > LED, it should be represented as one LED class device.
+> > 
+> > I want to extend the netdev trigger to support such configuration,
+> > so that when you have multicolor LED, you will be able to say which
+> > color should be set for which link mode.  
+> 
+> This is getting into the exotic level i don't think we need to
+> support. How many PHYs have you seen that support something like this?
 
-How is your progress on this series? Looking at your repo it looks
-like you've rebased on top of 5.13-rc3 in your 070121-imx8mm-dsim
-branch but you've got a lot of things there that are likely not
-related to this series?
+This isn't about whether there are PHYs which support this in HW.
+The extension to netdev trigger will be able to do this in SW.
 
-Best regards,
+For example the Turris Omnia has 12 RGB LEDs on the front panel, of
+which 6 are dedicated to ethernet ports (and there are no LEDs on
+ethernet ports themselves). It would make sense to be able to have
+netdev trigger (or it's extension) show link mode by color (for example
+green on 1g, yellow on 100g, orange on 10g).
 
-Tim
+Anyway when you have a green-yellow LED on an ethernet port wired in
+such a way than it can only be off, green or yellow, but not both green
+and yellow, I don't think we should register these as 2 LED class
+devices.
+
+> I suggest we start with simple independent LEDs. That gives enough to
+> support the majority of use cases people actually need. And is enough
+> to unblock people who i keep NACKing patches and tell them to wait for
+> this work to get merged.
+
+Of course, and I plan to do so. Those netdev trigger extensions and
+multi-color function definitions are for later :)
+
+We got side tracked in this discussion, sorry about that.
+
+In this thread I just wanted to settle the LED function property for
+LEDs indicating network ports.
+
+So would you, Andrew, agree with:
+- extending function property to be array of strings instead of only
+  one string, so that we can do
+    function = "link", "activity";
+- having separate functions for different link modes
+    function = "link1000", "link100";
+  or should this insted be in another property
+    function = "link";
+    link-modes = <1000 100>;
+  ?
+
+Marek
