@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6863F422AF3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45812422B02
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:28:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235216AbhJEO0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 10:26:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44074 "EHLO
+        id S235022AbhJEOa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 10:30:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234437AbhJEO0Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 10:26:16 -0400
-Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7680FC061749;
-        Tue,  5 Oct 2021 07:24:25 -0700 (PDT)
-Received: by mail-ua1-x92f.google.com with SMTP id f13so9160937uan.6;
-        Tue, 05 Oct 2021 07:24:25 -0700 (PDT)
+        with ESMTP id S234757AbhJEOa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 10:30:26 -0400
+Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E588C061749;
+        Tue,  5 Oct 2021 07:28:35 -0700 (PDT)
+Received: by mail-vs1-xe32.google.com with SMTP id y141so8246626vsy.5;
+        Tue, 05 Oct 2021 07:28:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=fkUZ7DdFeWkEpyDRZ/1dM/ty+cqUyDxv2VSxJU7d1zc=;
-        b=bU5JIPdpARDVB55z0K2+CLoUJgHYBy6m9RQhkSHDIhiVsRqGHWwn1rHOEi9hKGl345
-         rbytzpzJXF89ylrynFg9UnGnph3EHP40DqVbiriw6oF3io73pcJNqv6cKVZ1KTvpposF
-         UkD7gZYhfkG9qcSjHP7X8xTdrb1W2OoYvnVgFliw+uINq6Cp16FyvBWwIdIcpSBSw9K3
-         r+7glMFCnUt3LW6IuttDWBqIY7v0vuxbPUP5A4sPQfOKkp8SO+6v8jOGKEBkro6hAE/D
-         lGVTwDvAeTr0IzrtN0icLbweNZgPH7lT30H9bAJplbQZ3I8XIHlSYBW311J5lQI9AJRd
-         Os3A==
+        bh=FHV4wEBlv7+E/N0x33DBUWEcPcy+owxk4b6zOW0s8mY=;
+        b=DWFIyP/fMFUE/Pw1MHAQYZsHoFjjhBvbbvAnwCZHVGigC0zPAinHEJGNfN0lV/U93X
+         7qi0bb86drJ1QWEXISKt9ijjXKBt7n8O1MH02WhKfEqKMT9wHbZmbokug/uJQ58LEOSD
+         omGTCm5dRYapRT37O4hJ29gQhI7UPJ/z/AIGRVHz0ifz/b5Tlit7s/7p0TvAFXMLwcDS
+         l2+m976ElO6u17QUsfK7CoP9w1x6cQmqQ+2lovPnrlxDkXvQdUZ1eNVxYV2s3HcGBaYD
+         6psV0YWTXcrm+NYL6bYGhyKRlq+MMequFsj3rIJsonqQB9hf8p0WB+c+fk3VPZFjrSe1
+         G4RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=fkUZ7DdFeWkEpyDRZ/1dM/ty+cqUyDxv2VSxJU7d1zc=;
-        b=au2mCCeNyisJvfupD/gB045B2gY0On6cX5eeV6pQSmfHb792o1aY6SlVopIXBuUqe6
-         NVPyndZK20nidak6l7ezSq7v38Ql5y3Loa3EpBPJV01W8jvVcDc6fIZ94p/LZ9PvzIWr
-         yyYvPpW3fxPldgWzJjpVxLnFI20BqNXVT1pnZZqC4e+vfhlLl8rQ0X2E8Zg3mKVjSzub
-         lSgzHIFQe1Xx0xggfQHffNdK3vI2vKO4VpjJraJdsG1ucEbwk9q+E153TuBeaUbJdly8
-         AkZc8d2u6LsCWv24LE4GPG1uKeny19xS1ty5LfxYBG1SmopZjPhqka8rLl9qH5vpf8PV
-         obtw==
-X-Gm-Message-State: AOAM533BMWPOZGn6CYn2fGjK8Qnl42dxZcN/YqMnxfvW75hzRGi8Cm64
-        i9pNsCTXt6Etf9PPwPLjjGucu5RZo6sIlk2lm8rec5st8mg=
-X-Google-Smtp-Source: ABdhPJyvi75JWiWJrIbgesEtwwpwS2QwxXNTC393L1igtxGKdv0pJbR/hj13HjwDvZJngNIPNVjl0CV2RV76dVUFLJg=
-X-Received: by 2002:ab0:538b:: with SMTP id k11mr12027715uaa.131.1633443864593;
- Tue, 05 Oct 2021 07:24:24 -0700 (PDT)
+        bh=FHV4wEBlv7+E/N0x33DBUWEcPcy+owxk4b6zOW0s8mY=;
+        b=hakXTv5YJ5FkJqXhut/9UD0u7lxHp0UV8vgteTFQ73sUZnmhy8OpaKro6z7cRbW8zF
+         HmpKz45A0wrXbre5Ji3VEDg5tQ1UuqL9WvsnaX/3T5A7kDOBd0AYG1LFCbrKD6cMY0i0
+         mYF0rqY5OZ2uprj0OLVEDhE1UeJyOtjriNK/xHNi7mC1Glkb1pka45HEiFenRFNEtRAF
+         B4kJvE7mKeSD4X6tHjl4lDYT/nsaaF0mIjTKXJEsyPZWSvPaaLiLN2rdAeoWw73vTzjr
+         /Kw3JmBT+WVDAmXrs71TI5LYfXt1btaDL9Flf8CDNi9rH5Bs4DGAFk4kRf/EFhySjISL
+         uZjg==
+X-Gm-Message-State: AOAM530JgEAdR9qIHmk2tYWi6oF4cAT40N2qgDivA/f9J8dt0WNo8ygD
+        Xm0L/xmMAHd829DZngAx9rdPu+g7e7X8pMJmCWM=
+X-Google-Smtp-Source: ABdhPJyDspRSkVvnHra04Mdcv65U+ePR6LZLk+ZBDg7fjiU36TrhUY+gkTAU9tJkNDuXTomF077bobUuAnPzogs9syM=
+X-Received: by 2002:a67:d78c:: with SMTP id q12mr5822870vsj.28.1633444114448;
+ Tue, 05 Oct 2021 07:28:34 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210926145931.14603-1-sergio.paracuellos@gmail.com>
- <20210926145931.14603-3-sergio.paracuellos@gmail.com> <YVtCtGcLjNcO2NJ0@robh.at.kernel.org>
- <CAMhs-H9TDEWEffDn7hBQxT127RNU4eUtPxaSciuiis0fPqTN_w@mail.gmail.com> <CAL_Jsq+U_0JnCoJVaHH0T+kdmxX_OosD9=OT0dWyNdwbe=CLoQ@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+U_0JnCoJVaHH0T+kdmxX_OosD9=OT0dWyNdwbe=CLoQ@mail.gmail.com>
+ <20210926145931.14603-2-sergio.paracuellos@gmail.com> <YVtBsrmCDk/sLsRJ@robh.at.kernel.org>
+ <CAMhs-H_qBkQhzwvcVyFbegf412ecvweOBOYq8NW2hBNYUUCE-w@mail.gmail.com> <CAL_Jsq+Nj_=kmGNEbmN4DxJquVdd1BRJnuK43ROvNp-hQM4POw@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+Nj_=kmGNEbmN4DxJquVdd1BRJnuK43ROvNp-hQM4POw@mail.gmail.com>
 From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 5 Oct 2021 16:24:12 +0200
-Message-ID: <CAMhs-H_3Z34e3_n4VrMayvbOt0MJ_RuJ=jYDgQynT6Zdo1eDVw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt: bindings: add ralink RT2880 resets device tree
- binding documentation
+Date:   Tue, 5 Oct 2021 16:28:23 +0200
+Message-ID: <CAMhs-H_FqjSkQBxhgMLySO4U5_Gc2aPUkPEX7u3zfb+MQmTw_g@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: reset: add dt binding header for ralink
+ RT2880 resets
 To:     Rob Herring <robh@kernel.org>
 Cc:     linux-staging@lists.linux.dev, John Crispin <john@phrozen.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
@@ -64,124 +64,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Tue, Oct 5, 2021 at 3:27 PM Rob Herring <robh@kernel.org> wrote:
+On Tue, Oct 5, 2021 at 3:29 PM Rob Herring <robh@kernel.org> wrote:
 >
-> On Mon, Oct 4, 2021 at 1:23 PM Sergio Paracuellos
+> On Mon, Oct 4, 2021 at 1:26 PM Sergio Paracuellos
 > <sergio.paracuellos@gmail.com> wrote:
 > >
-> > Hi Rob,
-> >
-> > On Mon, Oct 4, 2021 at 8:06 PM Rob Herring <robh@kernel.org> wrote:
+> > On Mon, Oct 4, 2021 at 8:02 PM Rob Herring <robh@kernel.org> wrote:
 > > >
-> > > On Sun, Sep 26, 2021 at 04:59:30PM +0200, Sergio Paracuellos wrote:
-> > > > Adds device tree binding documentation for resets in the ralink RT2880 SoCs.
+> > > On Sun, Sep 26, 2021 at 04:59:29PM +0200, Sergio Paracuellos wrote:
+> > > > Adds dt binding header for 'ralink,rt2880-reset' resets.
 > > > >
 > > > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 > > > > ---
-> > > >  .../bindings/reset/ralink,rt2880-reset.yaml   | 39 +++++++++++++++++++
-> > > >  1 file changed, 39 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > > >  include/dt-bindings/reset/ralink-rt2880.h | 40 +++++++++++++++++++++++
+> > > >  1 file changed, 40 insertions(+)
+> > > >  create mode 100644 include/dt-bindings/reset/ralink-rt2880.h
 > > > >
-> > > > diff --git a/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > > > diff --git a/include/dt-bindings/reset/ralink-rt2880.h b/include/dt-bindings/reset/ralink-rt2880.h
 > > > > new file mode 100644
-> > > > index 000000000000..88eddeb4ee45
+> > > > index 000000000000..266ef521a584
 > > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
-> > > > @@ -0,0 +1,39 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/reset/ralink,rt2880-reset.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Ralink RT2880 Reset Controller Device Tree Bindings
-> > > > +
-> > > > +maintainers:
-> > > > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > > > +
-> > > > +description: |
-> > > > +  Ralink RT2880 reset controller driver which supports the SoC
-> > > > +  system controller supplied reset registers for the various peripherals
-> > > > +  of the SoC.
-> > > > +
-> > > > +  See also:
-> > > > +  - dt-bindings/reset/ralink-rt2880.h
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: ralink,rt2880-reset
-> > > > +
-> > > > +  '#reset-cells':
-> > > > +    const: 1
-> > > > +
-> > > > +required:
-> > > > +  - '#reset-cells'
-> > > > +  - compatible
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    #include <dt-bindings/reset/ralink-rt2880.h>
-> > > > +    rstctrl: reset-controller {
-> > > > +      compatible = "ralink,rt2880-reset";
-> > > > +      #reset-cells = <1>;
+> > > > +++ b/include/dt-bindings/reset/ralink-rt2880.h
+> > > > @@ -0,0 +1,40 @@
+> > > > +/* SPDX-License-Identifier: GPL-2.0 */
 > > >
-> > > How is this h/w controlled? If this is part of a system controller, then
-> > > it needs to be documented as such. IOW, you need to document the binding
-> > > for the whole block.
-> > >
-> > > Do you really need a child node here? All you need to make a system
-> > > controller a reset provider is add '#reset-cells' to it.
+> > > Dual license please.
 > >
-> > I am just documenting what is already mainlined (see [0]) in order to
-> > get mt7621-dts out of staging at some point of my life. What am I
-> > supposed to do? Should I rewrite all already mainlined code? Because
-> > if that is the case we need to rewrite tons of things from the ralink
-> > platform...
+> > Ah, ok. I thought the dual license was only for binding yaml files but
+> > not for headers since there are a lot of already mainlined files with
+> > only GPL-2.0. I will take into account from now that binding headers
+> > also need dual license.
 >
-> On the flip side, am I not supposed to review bindings because the dts
-> is already in staging? Code dependent on DT bindings shouldn't have
-> been mainlined without any documented binding.
+> If you want your dts files used by other projects such as *BSD, then
+> they and their include files need to be licensed for that.
 
-Thanks for reviewing this. I guess I should have sent a complete
-patchset with all remaining bindings and the move for the complete
-binding instead of sending single binding doc patches.
-
->
-> Looks like the resets are part of "mediatek,mt7621-sysc" to answer my
-> question. Add a #reset-cell to that node (and binding) and then change
-> this line to "mediatek,mt7621-sysc":
->
->         reset_dev.of_node = of_find_compatible_node(NULL, NULL,
->                                                 "ralink,rt2880-reset");
->
-> That's the minimal change, but really I would move the reset code to
-> the clock driver as that is what handles the sysc node.
-
-It is not that easy since the code in reset.c is shared for all ralink
-platforms and the mediatek,mt7621-sysc node is only for mt7621. So I
-guess I have to "duplicate" the reset code and put it in the clock
-driver for mt7621 as you are pointing out here. I have to also review
-how other drivers are using the reset, using reset apis or directly
-through the syscon.
-
->
->
-> > I'd also like to know what we should do with those nodes already added
-> > to the dtsi file that have not got associated compatible driver
-> > mainlined. Can we just get rid of them?
->
-> Yes. Typically dts files start with minimal support.
->
-> A dts file in staging is odd. We shouldn't be adding them there.
-
-Thanks for clarification.
+Ok, it is clear now. Thanks for clarification.
 
 Best regards,
     Sergio Paracuellos
-
 >
 > Rob
