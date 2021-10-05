@@ -2,67 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7E62422E72
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 18:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBED2422EA5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 19:00:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233825AbhJEQ4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 12:56:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49258 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235238AbhJEQz7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 12:55:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A3A40611C5;
-        Tue,  5 Oct 2021 16:54:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633452848;
-        bh=EU4i46Iv81JxEqXo49bpEWSTRMwOPurDSU/8ru7L3aM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ax4wzZ+4oeyeFvXuGkok1j702SR7Zd2HW/DOcZgiuRQJ+ASjPpG3dkaBzeC1LAl6O
-         c2Dc+p0oFrLhdGyzaJyoY5OFALaIQ8f44kQjs+lW4SBvVK7MSOew2lJWFg0CSQRox4
-         nEa0J+LZjqrq4GDHmHVMpER0c17OCXUeLbtH1uGoF9o/yG9SusLol6Bw/LOS+r67Zm
-         gq4PqPbxXPQK/gJndh8Rb9ZjRDGA/+m8QSks4BnInIdmC4USqSt315gWOWd2+clK3g
-         VApdE+uEjwpExHAdOr59yIrNuuch0K4r9D4j9hfZXJ3LRxjQNYIiQWRuxtweD2+i5N
-         sLwoOOo+W7yuQ==
-Date:   Tue, 5 Oct 2021 09:54:08 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     David Miller <davem@davemloft.net>,
-        netdev <netdev@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/4] of: net: add a helper for loading
- netdev->dev_addr
-Message-ID: <20211005095408.2adcb2e7@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <CAL_JsqLGtfQgpVqSGN-HsTmeRQnbZ0vrOv2y6PprPx373-tVfg@mail.gmail.com>
-References: <20211005155321.2966828-1-kuba@kernel.org>
-        <20211005155321.2966828-2-kuba@kernel.org>
-        <CAL_Jsq+HsW-dpUxC2Sz-FhgHgRonhanX2LgUVHiNZYfZS81iBQ@mail.gmail.com>
-        <20211005092956.44eb4d3d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-        <CAL_JsqLGtfQgpVqSGN-HsTmeRQnbZ0vrOv2y6PprPx373-tVfg@mail.gmail.com>
+        id S236646AbhJERB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 13:01:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53566 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235230AbhJERB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 13:01:56 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F265CC061753
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 10:00:05 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so26704325ota.6
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 10:00:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=eT4QRWTiJcs1knqD0fms3lf+fPlsl7moqQX0wdYcY2M=;
+        b=sLzQMGXP4lgmvW6RIos0qJsSgfnvDPNPlxKz2aHtLdzE6GdRTycaBnkCKNjXGOEDRC
+         wrzfyJIZNmfz0HPapn33yfabQJTY5IZQNOzdjM3rXsVolGMtMpmAe40khV59mmixH6CM
+         whbo3qoGSQxWG/UHNB169e90vg9khpC5JY1Zd12yJCa3tNsluVTzjHVdfKJG9eYENNBv
+         U3gqZe+LI9wtybSg/larb2Nq2bMKax1sf1aWgwrR15QKY0l5h5ocm+Bgiskj6+NlZM4+
+         nu8WfFDGDV1NaNMsyKV3rlECx6QgSz7avNXjrrpIoLoMdb7LttswJTUeRvkHjnV5qB2e
+         Cymg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eT4QRWTiJcs1knqD0fms3lf+fPlsl7moqQX0wdYcY2M=;
+        b=J/zXSzhJWVVFomYAeMVDGXT6IyPIv6e8UxMI+h1qXMz1Jxjd8F+M5UkcwvPe7r2sMQ
+         8nC6lSafpFLZHFGHcD8ZJH8Mfkyga7QmzYnTQ12tL9nkOeDj7aMk6hXYoyL88Sx96ZVA
+         jsEOr3Ioxs9m5wWRJrUBc5GmCW5ciySVKmnrg+09m5LtE4GPzRkNjg5CN08Y9IjSGZus
+         W5KW7SKeg+RIdx/Ig+qe+zj4dKA04MvIzO15wGP6NUMOAGwGl80+RRCz+MNU//oYy3T+
+         HaYRGxREM6nsQnF02wSpXhxaDXVD4AZ+5O1LeB+GK+aFJvHik/Iefuuz+wpHGAdaqgXh
+         tRkg==
+X-Gm-Message-State: AOAM530KdWorGC1hZ90rLDCUDkKT7EVRLlWsEW6Xvwlg2+mDveemwkMy
+        4r0KpAMoKgJIwekAEfflfr9jPQ==
+X-Google-Smtp-Source: ABdhPJxY2jmsRmi0yUIG27/p4uC6tH4JPn1TN2xDpW8nkkRfeciD9lUi6d1YiRKW4hjAqu6mxi4HeQ==
+X-Received: by 2002:a05:6830:2906:: with SMTP id z6mr15861929otu.257.1633453205311;
+        Tue, 05 Oct 2021 10:00:05 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id u2sm3664543otg.51.2021.10.05.10.00.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Oct 2021 10:00:04 -0700 (PDT)
+Date:   Tue, 5 Oct 2021 10:01:47 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>
+Subject: Re: [PATCH] ASoC: qcom: soundwire: Enable soundwire bus clock for
+ version 1.6
+Message-ID: <YVyE+ytKVmOh85c3@ripper>
+References: <1633105471-30928-1-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1633105471-30928-1-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 5 Oct 2021 11:39:39 -0500 Rob Herring wrote:
-> On Tue, Oct 5, 2021 at 11:29 AM Jakub Kicinski <kuba@kernel.org> wrote:
-> > On Tue, 5 Oct 2021 11:15:48 -0500 Rob Herring wrote:  
-> > > Can we move this file to drivers/net/ given it's always merged via the
-> > > net tree? It's also the only thing left not part of the driver
-> > > subsystems.  
-> >
-> > Hm, our driver core historically lives under net/core, not drivers/net,
-> > how about drivers/of/of_net.c -> net/core/of_net.c ?  
-> 
-> Sure.
+On Fri 01 Oct 09:24 PDT 2021, Srinivasa Rao Mandadapu wrote:
 
-I'll send out the rename as soon as this gets merged. If anyone has 
-a different idea on where to move this code please chime in.
+> Add support for soundwire 1.6 version to gate RX/TX bus clock.
+> 
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+>  drivers/soundwire/qcom.c | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index 0ef79d6..599b3ed 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -127,6 +127,7 @@ struct qcom_swrm_ctrl {
+>  	struct device *dev;
+>  	struct regmap *regmap;
+>  	void __iomem *mmio;
+> +	char __iomem *swrm_hctl_reg;
+>  	struct completion broadcast;
+>  	struct completion enumeration;
+>  	struct work_struct slave_work;
+> @@ -610,6 +611,12 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
+>  	val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
+>  	val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
+>  
+> +	if (ctrl->swrm_hctl_reg) {
+> +		val = ioread32(ctrl->swrm_hctl_reg);
+> +		val &= 0xFFFFFFFD;
+
+That's a tricky way of saying:
+
+	val &= ~BIT(1);
+
+That said, naming bit 1 is still a very good thing.
+
+> +		iowrite32(val, ctrl->swrm_hctl_reg);
+> +	}
+> +
+>  	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
+>  
+>  	/* Enable Auto enumeration */
+> @@ -1200,7 +1207,7 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+>  	struct qcom_swrm_ctrl *ctrl;
+>  	const struct qcom_swrm_data *data;
+>  	int ret;
+> -	u32 val;
+> +	int val, swrm_hctl_reg = 0;
+>  
+>  	ctrl = devm_kzalloc(dev, sizeof(*ctrl), GFP_KERNEL);
+>  	if (!ctrl)
+> @@ -1251,6 +1258,9 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+>  	ctrl->bus.port_ops = &qcom_swrm_port_ops;
+>  	ctrl->bus.compute_params = &qcom_swrm_compute_params;
+>  
+> +	if (!of_property_read_u32(dev->of_node, "qcom,swrm-hctl-reg", &swrm_hctl_reg))
+> +		ctrl->swrm_hctl_reg = devm_ioremap(&pdev->dev, swrm_hctl_reg, 0x4);
+
+Nack.
+
+You may not pull an address to a single register out of an undocumented
+DT property and blindly ioremap that.
+
+And you surely should check for errors here, to avoid magical errors
+caused by this ioremap failing and your bit not being cleared.
+
+Thanks,
+Bjorn
+
+> +
+>  	ret = qcom_swrm_get_port_config(ctrl);
+>  	if (ret)
+>  		goto err_clk;
+> -- 
+> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> 
