@@ -2,216 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8280242320B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ABEB423219
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:33:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236407AbhJEUcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 16:32:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45898 "EHLO
+        id S236229AbhJEUfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 16:35:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235994AbhJEUct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 16:32:49 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6026DC061753
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 13:30:58 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id b16so367690qtt.7
-        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 13:30:58 -0700 (PDT)
+        with ESMTP id S229805AbhJEUfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 16:35:39 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90B6AC061749;
+        Tue,  5 Oct 2021 13:33:48 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id oa12-20020a17090b1bcc00b0019f715462a8so575604pjb.3;
+        Tue, 05 Oct 2021 13:33:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZyooK385UPa/hejgXrvQ3R8D7J/IvgX2J1+dY+z5Tfw=;
-        b=dq8RULmqd/pqVqtZm6l3zrjAcWOiMybIlP1ptQScoFB8gpWrSQ8JidbN23s38m6K75
-         5JgEoQurQtd2GoBxSHNmZM4ISkx5owMoAEl2w3xHjqn230lrazOB1eTJ1QJAx8LVWXyy
-         SS2NweOIXmW9f3SvFpWPIPSumSt/q0bl6wzVijpo7KjXmzf29sYxvpU/kZMQHSU4PeQQ
-         228E10Ocp8fdk/G/Bw3Q5ZMXagGDLvrEyBEdNiPfO5ibORVbo1tYC82Cu6BWDfl2OfSM
-         N+/H9K77hetRTmTbDuW8vJXji/7ePhCXQ+6Bokf9XT/Zh0Yf2N7/7jEeOpvfm2uEPlCY
-         /9KQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=cWnkiNHSwi55ZiD4L0VvG3TUUEbuFBF808HoHr4qCDs=;
+        b=lW/bsYb36msG5mDUrWNvMOAHzongZSZJiThoide+rKf1M57QIiYwFdSNrzgHHmnNAF
+         OGgNfXZR8DKpW54EcYU+bQo0MG0nrzxzgbldKaL0mQ+Hn/Lha3DsTnMe+rhhiVDdtZ55
+         qcdCQMzBj3nIxSQi1Pdh3PJl/v3YQC+U9CXUNlhSlcewOWXwR8lfhejCOsgex9h/HbYk
+         ZPhfkQakt79q66qJLgXK1ISLv5XLlWvWq/B6/+OXIx61niCHGipVMKpRMCi3XLh3yWsE
+         8euXn9QnC1heHppsiQWMGT7WrtXwFNQa1hPDVMx0Zs24pRtpZyv5T0ePilv2vTBziCxc
+         571w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ZyooK385UPa/hejgXrvQ3R8D7J/IvgX2J1+dY+z5Tfw=;
-        b=yiEpj53Z/viiFYfVebniHdOaKOEqUre90B/u/AARR1jjqyT5eXhcVIL3AxA0jlkjhz
-         /bNv56fv9YykNveVNM+/fm6qXwd5q2Hy+vlrzID00ltYWIq8Nx8DDHiuxxpLTNbMTpAE
-         160UsErN3JEmbM6HEDO3Jc5giMEmEdyHSxOSWvO4hSbYS1nwxAnErS7ePjC/ebeJo+gF
-         J65N+1qKem27Uat715BLLfFBvgzjNJNyQwHipjsqcQwT09QsB9U+6ebL/ojmCfobH5zn
-         fhsQIsDd0bJqMDBGMMS490W5zfsoy4V7ZgsRuDpevDICH83qg4pEEANHVH5V/i9zS0L+
-         q6pw==
-X-Gm-Message-State: AOAM533TsHINsF6GZGzvAbxvS1TkCdri3R8rUqpxhkjN9iIq65JnBi7c
-        /jlDDcjXZaK5zeExKMMSrWRUXA==
-X-Google-Smtp-Source: ABdhPJyJTQZ6xwp9tKG3Wq5zR4ov03NpNo29GGIUs+asJd7aPHY+RE1U7VfkCrNe/bnaaGZu3xl8lA==
-X-Received: by 2002:ac8:51d7:: with SMTP id d23mr22813497qtn.332.1633465857492;
-        Tue, 05 Oct 2021 13:30:57 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id n16sm11924195qta.51.2021.10.05.13.30.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Oct 2021 13:30:56 -0700 (PDT)
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sdm845: mtp: Add vadc channels
- and thermal zones
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210923212311.2877048-1-bjorn.andersson@linaro.org>
- <20210923212311.2877048-5-bjorn.andersson@linaro.org>
- <YVSzJZ8G43CLml3L@google.com> <YVtg3lcR1HMqVdAJ@ripper>
- <CAA8EJprYij6pWD1A17yr1+5-n5fKPW=YDA_-2+f8h6JnEh4myw@mail.gmail.com>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <f136fbb0-be3e-aee8-7a68-1d16148c80ff@linaro.org>
-Date:   Tue, 5 Oct 2021 16:30:56 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cWnkiNHSwi55ZiD4L0VvG3TUUEbuFBF808HoHr4qCDs=;
+        b=E/CxDif44ZxnD4EpdpzcWfMLvEZh8oyZf4EovhKA42f4to/szS/u55f6U2iEsdDes0
+         deQ0JJdcvWJpZgvqE1nWVpcEgMgMKVC+5ldxtDz+4GMk/gEShmY9lQFS429B1nYO+L9C
+         5UcK2oIbL2//U3uB8QNVOuGUja/hUDq4cCVf/7tCpeSfXxHg0L1mNbueMqg8prZ08SZX
+         /OXMf0IiQKSIvhr2TC+ALHHRcA7sbyeTcsdl78NMszYsEeaos8hM5m0nh5bWzqo9k+tL
+         zJq9KhpN2oGJX+MR7dcMuwGeRze8yNZH6UxoH0ltei90YLLwv/Uav7eD0Vxte6WyXPb0
+         7E8w==
+X-Gm-Message-State: AOAM533XYXw/ap9nNgdKLtdBXSjrnKiXinauaTikbAq6as0T7mTG8nqf
+        vKFHnv2XMNlOv6zkyU3dkas=
+X-Google-Smtp-Source: ABdhPJwPUJPyBu/rDVipbDnhmtYUuiMmS30qjgHig0GIDLYr4X8vlJ1/77KO6+9CIka/gR8frmf/Ow==
+X-Received: by 2002:a17:902:7fcd:b0:13e:8b24:b94 with SMTP id t13-20020a1709027fcd00b0013e8b240b94mr7103473plb.45.1633466027909;
+        Tue, 05 Oct 2021 13:33:47 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:d0a7:4716:8e1b:a15d])
+        by smtp.gmail.com with ESMTPSA id i13sm3193680pjh.0.2021.10.05.13.33.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Oct 2021 13:33:46 -0700 (PDT)
+Date:   Tue, 5 Oct 2021 13:33:43 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Yu Chen <chenyu56@huawei.com>,
+        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        Deepak Saxena <dsaxena@plexity.net>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Wilken Gottwalt <wilken.gottwalt@posteo.net>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Mark Brown <broonie@kernel.org>,
+        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 11/11] MAINTAINERS: rectify entry for CHIPONE ICN8318
+ I2C TOUCHSCREEN DRIVER
+Message-ID: <YVy2p/lmAtIFfaW6@google.com>
+References: <20211005075451.29691-1-lukas.bulwahn@gmail.com>
+ <20211005075451.29691-12-lukas.bulwahn@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAA8EJprYij6pWD1A17yr1+5-n5fKPW=YDA_-2+f8h6JnEh4myw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211005075451.29691-12-lukas.bulwahn@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/4/21 4:56 PM, Dmitry Baryshkov wrote:
-> On Mon, 4 Oct 2021 at 23:13, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
->>
->> On Wed 29 Sep 11:40 PDT 2021, Matthias Kaehlcke wrote:
->>
->>> On Thu, Sep 23, 2021 at 02:23:11PM -0700, Bjorn Andersson wrote:
->>>> Downstream defines four ADC channels related to thermal sensors external
->>>> to the PM8998 and two channels for internal voltage measurements.
->>>>
->>>> Add these to the upstream SDM845 MTP, describe the thermal monitor
->>>> channels and add thermal_zones for these.
->>>>
->>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->>>> ---
->>>>
->>>> In addition to the iio channels exposed by v1, Daniel wanted thermal_zones...
->>>>
->>>> Changes since v1:
->>>> - Enable the pm8998_adc_tm and describe the ADC channels
->>>> - Add thermal-zones for the new channels
->>>>
->>>>   arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 128 ++++++++++++++++++++++++
->>>>   1 file changed, 128 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
->> [..]
->>>> +&pm8998_adc {
->>>> +   adc-chan@4c {
->>>> +           reg = <ADC5_XO_THERM_100K_PU>;
->>>> +           label = "xo_therm";
->>>> +   };
->>>> +
->>>> +   adc-chan@4d {
->>>> +           reg = <ADC5_AMUX_THM1_100K_PU>;
->>>> +           label = "msm_therm";
->>>> +   };
->>>> +
->>>> +   adc-chan@4f {
->>>> +           reg = <ADC5_AMUX_THM3_100K_PU>;
->>>> +           label = "pa_therm1";
->>>> +   };
->>>> +
->>>> +   adc-chan@51 {
->>>> +           reg = <ADC5_AMUX_THM5_100K_PU>;
->>>> +           label = "quiet_therm";
->>>> +   };
->>>> +
->>>> +   adc-chan@83 {
->>>> +           reg = <ADC5_VPH_PWR>;
->>>> +           label = "vph_pwr";
->>>> +   };
->>>> +
->>>> +   adc-chan@85 {
->>>> +           reg = <ADC5_VCOIN>;
->>>> +           label = "vcoin";
->>>> +   };
->>>> +};
->>>> +
->>>> +&pm8998_adc_tm {
->>>> +   status = "okay";
->>>> +
->>>> +   xo-thermistor@1 {
->>>> +           reg = <1>;
->>>> +           io-channels = <&pm8998_adc ADC5_XO_THERM_100K_PU>;
->>>> +           qcom,ratiometric;
->>>> +           qcom,hw-settle-time-us = <200>;
->>>> +   };
->>>> +
->>>> +   msm-thermistor@2 {
->>>> +           reg = <2>;
->>>> +           io-channels = <&pm8998_adc ADC5_AMUX_THM1_100K_PU>;
->>>> +           qcom,ratiometric;
->>>> +           qcom,hw-settle-time-us = <200>;
->>>> +   };
->>>> +
->>>> +   pa-thermistor@3 {
->>>> +           reg = <3>;
->>>> +           io-channels = <&pm8998_adc ADC5_AMUX_THM3_100K_PU>;
->>>> +           qcom,ratiometric;
->>>> +           qcom,hw-settle-time-us = <200>;
->>>> +   };
->>>> +
->>>> +   quiet-thermistor@4 {
->>>> +           reg = <4>;
->>>> +           io-channels = <&pm8998_adc ADC5_AMUX_THM5_100K_PU>;
->>>> +           qcom,ratiometric;
->>>> +           qcom,hw-settle-time-us = <200>;
->>>> +   };
->>>> +};
->>>> +
->>>
->>> The example in the 'qcom,spmi-adc-tm5' binding specifies 'qcom,ratiometric'
->>> and 'qcom,hw-settle-time-us' for both the ADC and the thermal monitor, so do
->>> several board files (e.g. sm8250-mtp.dts and qrb5165-rb5.dts). This apparent
->>> redundancy bothered me earlier, it's not really clear to me whether it's
->>> needed/recommended or not. Do you happen to have any insights on this?
->>
->> Hmm, you're right and I missed this in defining my channels. I've not
->> looked at this detail, just got reasonable readings from my thermal
->> zones and was happy about that.
->>
->> Dmitry, do you have any further insights why these properties are
->> supposed to be duplicated between the adc channel and the thermal zones?
+On Tue, Oct 05, 2021 at 09:54:51AM +0200, Lukas Bulwahn wrote:
+> Commit 04647773d648 ("dt-bindings: input: Convert ChipOne ICN8318
+> binding to a schema") converts chipone_icn8318.txt to chipone,icn8318.yaml,
+> but missed to adjust its reference in MAINTAINERS.
 > 
-> Because both ADC channel and thermal zone registers should be
-> programmed accordingly.
+> Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about
+> a broken reference.
 > 
-> One not-so-perfect approach would be to use io-channels property to
-> locate the adc's adc-chan node and to parse it. However this way
-> thermal driver would have to know the exact structure of adc's device
-> tree nodes.
-> Another (even worse) solution would be to introduce qcom-specific API
-> to query these properties from the IIO channel.
+> Repair this file reference in CHIPONE ICN8318 I2C TOUCHSCREEN DRIVER.
 > 
-> Selecting between these two options I decided to follow the downstream
-> path and just to duplicate these few properties.
+> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 
-I know I am joining late to this party, since v3 is out. But before I 
-send my acked-by, wanted to check/state a few things.
-To me, the not-so-perfect approach that you mention here is actually not 
-so bad, considering the thermal sensor driver already is aware of 
-internals of the adc device. The duplicating of node is kind of confusing.
-Also did you explore using one of _channel_write apis in iio framework 
-to move all the writes into the adc device instead of thermal sensor 
-driver ?
-
-> 
+Applied, thank you.
 
 -- 
-Warm Regards
-Thara (She/Her/Hers)
+Dmitry
