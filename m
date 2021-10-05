@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04CE5422B30
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BD23422B34
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235226AbhJEOkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 10:40:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47402 "EHLO
+        id S235560AbhJEOkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 10:40:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234823AbhJEOkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 10:40:05 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E355C06174E
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 07:38:15 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id y26so87744397lfa.11
-        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 07:38:15 -0700 (PDT)
+        with ESMTP id S235519AbhJEOkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 10:40:07 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16797C06174E
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 07:38:17 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id b20so87866005lfv.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 07:38:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=semihalf-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=klTjczTUx8b1c2tX38XlKQEw8mKHpQEoY//ZV2AWwv8=;
-        b=Dt8fAg1I9xPaomCa7reH7OK7NJBIuG3OckiqCfqYhOscZS+aDefAdl2iB6gSGYc9N8
-         FWy4PDKwKyaeGINQDfSU+6/FBU8W2XimCAdNYeQAQ/yWL5WwZd6iCnfQQBRBP1g7DC6f
-         vLM0zBqkF++xS5L5lTB3R/2D1vO5dxzLFDjFb50sfpu7WYK0pdYEvIi1gcO8GBaDGfnm
-         fh1wWuUp7K97RzDezKc/7D1y1AK9c82a9Y8QmOT7ySgQYgQTM4LKqn1uWWEEW2t8q1uy
-         FXPACkkrzTjyQMyaektNdKcOQ3M9x7HIp3bTHhSlCyhsoNjUWaaeTrWdBF6eUGbNP2SE
-         ePWg==
+        bh=Z8yJ3pPZ9+WPMdAHGwCAtozfSgkyhJMEnQnMA+Z0TQI=;
+        b=0CE3XJmx7D6euF5qrA2Opsb+C3uYz+egZm36W2sRX5c0XlTlmxj9meTCHFzWx4P+kC
+         cj7WYKZkaziTQJItkQNcG7FDbGdy2qByNwUkZpr+z6QaJP7FXZoBHmna27omLi+1F+Pc
+         Zy/BR3dISsxo34DCfGR0fF5qio1t59z8jfvYWCErYDjplgL/HQK99Rmtx8zEVqSLWCjN
+         lR+icNyvVSyx2f6juS3dvQ5LpJQFDiQk0mchttG5xqk73hhNfin+cpSLYVsaljqYgc+j
+         1yUACMgYpNoGKLAihzOuQ8bgVHvsppCKtWcDD40kSsbV+A8y9AhDFawtDfZWWIgmOdNr
+         ZLrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=klTjczTUx8b1c2tX38XlKQEw8mKHpQEoY//ZV2AWwv8=;
-        b=g9IoF5BtjMgRDgcObC//9qq9aLvPrv6tOPFcmRk1obbvIWMzsFIzOkfqIE1izS7qf3
-         32P2TxYqxYw2YDKZxvCS5hoU8HLyosjpnkezNmpP+R2OctojqofQdxAhh6RCtSuKV9bS
-         gxjrMv79t0jv5zeJKcBHciydGNADbrnUHBcMBMdPtnjSZv3Bky3RcGaCw1Xxd8hAy8wh
-         M6MsaA8kgwD0fmwjjQlfPT30Vc8GdzOWHmXx/gIO+0zDIBYoVOFM53MyeHdwEYh8bjFI
-         B0b0qOSfCZWn210yWiRcyqlAaEV/0UfcgdCB4q9KlxpptpTqESd3nGvIhPGHRUm1quQE
-         Yr1w==
-X-Gm-Message-State: AOAM532D2earVy5N5j14mwGA6AhdFkgiNEnF4h9BSjqSe4W/eM+0AN7R
-        HI5tIAC02wgS0xbsdIznJBkCpA==
-X-Google-Smtp-Source: ABdhPJyClsOWQd1HOJx8+kEKXL8GXAvDh/ETWKrerqxRvGr3pDmCfDtf3PwnNF8948g8MDS7LYIO4w==
-X-Received: by 2002:a05:6512:32c1:: with SMTP id f1mr3769373lfg.471.1633444692745;
-        Tue, 05 Oct 2021 07:38:12 -0700 (PDT)
+        bh=Z8yJ3pPZ9+WPMdAHGwCAtozfSgkyhJMEnQnMA+Z0TQI=;
+        b=YkeUu+eCwvEmPpaUQL/SFEFpqZzGjC+9BovSIPrrwiGOP1E9LtsB4F4lDVkduD3snc
+         HgZgoZuHga91emiU3JN5pss9ynYz90mCcvYLlq0+hI4dH4ccr/jQlscHB9aWqerevp0b
+         m4xmpSwrIaTyx6FzSk5uTYYpqxvh4JKqDUsoTaICA3LqpxVfX3eK0j9JG+XBuDJW3UDD
+         6ox/G9sJli1uew+BpLbeY/fG+x6ZuEm7mwYhS2MxLCe2TMaszsNuYsAaQoI+5vvkK8B8
+         CM7bMGfxemH+mL3/nseG4z/0wqaZGLkq/xV7YYO3amJgUcgU4KEV0ySNuPFKh6O25Rq5
+         TxYQ==
+X-Gm-Message-State: AOAM530ur+2nsMagz1n9oZc94AWni1cL39JQuSSgqF4gfqnbtUi8Fiws
+        BuiAwEDAOMCgIb0vt+j3m9y6yA==
+X-Google-Smtp-Source: ABdhPJzaxO4ySi1hxPEHc55AKtXS0CtE0M+NBzHPCG+qdRxgDm6cu0AbkYqr8+G8n3cVtkEUfe7g0g==
+X-Received: by 2002:a19:4802:: with SMTP id v2mr3839955lfa.49.1633444694743;
+        Tue, 05 Oct 2021 07:38:14 -0700 (PDT)
 Received: from grasshopper.googchameleon.semihalf.net ([83.142.187.85])
-        by smtp.gmail.com with ESMTPSA id u25sm1973835lfc.176.2021.10.05.07.38.11
+        by smtp.gmail.com with ESMTPSA id u25sm1973835lfc.176.2021.10.05.07.38.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 07:38:12 -0700 (PDT)
+        Tue, 05 Oct 2021 07:38:14 -0700 (PDT)
 From:   =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
 To:     jarkko.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
         mika.westerberg@linux.intel.com, robh+dt@kernel.org,
@@ -60,9 +60,9 @@ Cc:     linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
         ka@semihalf.com, tn@semihalf.com, jam@semihalf.com,
         amstan@google.com,
         =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
-Subject: [PATCH v2 1/4] i2c: check bus number property in DesignWare I2C Controller
-Date:   Tue,  5 Oct 2021 16:37:45 +0200
-Message-Id: <20211005143748.2471647-2-pan@semihalf.com>
+Subject: [PATCH v2 2/4] dt-bindings: add bus number property
+Date:   Tue,  5 Oct 2021 16:37:46 +0200
+Message-Id: <20211005143748.2471647-3-pan@semihalf.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211005143748.2471647-1-pan@semihalf.com>
 References: <20211005143748.2471647-1-pan@semihalf.com>
@@ -82,23 +82,25 @@ robust.
 
 Signed-off-by: Paweł Anikiel <pan@semihalf.com>
 ---
- drivers/i2c/busses/i2c-designware-platdrv.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/i2c/snps,designware-i2c.yaml         | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/i2c/busses/i2c-designware-platdrv.c b/drivers/i2c/busses/i2c-designware-platdrv.c
-index 21113665ddea..f27e6bc9ad9d 100644
---- a/drivers/i2c/busses/i2c-designware-platdrv.c
-+++ b/drivers/i2c/busses/i2c-designware-platdrv.c
-@@ -280,7 +280,8 @@ static int dw_i2c_plat_probe(struct platform_device *pdev)
- 					I2C_CLASS_HWMON : I2C_CLASS_DEPRECATED;
- 	ACPI_COMPANION_SET(&adap->dev, ACPI_COMPANION(&pdev->dev));
- 	adap->dev.of_node = pdev->dev.of_node;
--	adap->nr = -1;
-+	if (of_property_read_u32(pdev->dev.of_node, "busno", &adap->nr))
-+		adap->nr = -1;
+diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+index d9293c57f573..1e02ddcbd690 100644
+--- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+@@ -93,6 +93,11 @@ properties:
+       - const: tx
+       - const: rx
  
- 	if (dev->flags & ACCESS_NO_IRQ_SUSPEND) {
- 		dev_pm_set_driver_flags(&pdev->dev,
++  busno:
++    description: |
++      The property should contain the desired bus number (as opposed to
++      being assigned automatically)
++
+ unevaluatedProperties: false
+ 
+ required:
 -- 
 2.25.1
 
