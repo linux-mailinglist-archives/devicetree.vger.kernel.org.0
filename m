@@ -2,127 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E810421CA8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 04:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9351A421CCF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 05:12:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230305AbhJECsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 22:48:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51634 "EHLO
+        id S231530AbhJEDN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 23:13:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230237AbhJECsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 22:48:21 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D64EEC061749
-        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 19:46:31 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id e66-20020a9d2ac8000000b0054da8bdf2aeso21908435otb.12
-        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 19:46:31 -0700 (PDT)
+        with ESMTP id S231466AbhJEDN5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 23:13:57 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F0B5C061749
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 20:12:08 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id x124so24294679oix.9
+        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 20:12:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2v0JRGt7XQAIcUQyPryK4l59xx+ixSfRdzcmJ7Ifc6E=;
-        b=nUjK3wvf+yJ4MHvLPmEL7StrPrQWSx7XM+ohhKiWAJn6LqkbQ9oHruwYBdMokklk8k
-         JwWn8G+7Ozlgo+0xeaObs+JLZjP6TjbgbeHDqtWJBHhSiG2GZAAi1pMH/o4KzDNuI02h
-         BGjsWmQQ5qGw690I80qIhSBZr04u6C5nr6Z/+469oPvjL4hR9sUI554nFIRdWi15PRlR
-         5Ma5QkaNsdzNKAw6yyM4QLnHy/R+mve4LMKRZoKWXdvaMDzBHs6vTIdxCmUHAmXak/IN
-         zrzdYqUTiCWea7upxbYzYiukODVVJEGaVf0GkOPrGhAWhiEWJ8o2Fj6znDKn6VZjZS54
-         y9Tw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2eGuF9yrfRZ7HYMXv0FDGrrnI1fdkBivhcQ+vOGTxCg=;
+        b=ik3kKEdbd7mUnND8jQw8zVgpqV28vtfrJ1ITkytt48hNs5tiTSkdzvvNIP3y0t4qLF
+         ygWx/AuiV7/G5O0Kj7qtQHJTFKg9TvgQdrUcOdjdQRtXCKh4R3T9Lb9KMNx2Lh2dKSQU
+         EM0zYItI2DsAfwBht5VbgfRr61aHz9/OBRH7I1FR0Q7F2tUKsbMdX/9NTAFBiwLkZEEG
+         mfWBhKrjuuV0lSmjm79vtHwZpc0ybcOULNLQDNtzlee9kk3dom8c5zkLv29tokvFBU8c
+         wZuGVDduEA35pWKPe/I8BHmPPdGDEQetwvG3Ca33ZvrbaWpZA6lYKTaM3m/RaZ+lh16u
+         8kHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2v0JRGt7XQAIcUQyPryK4l59xx+ixSfRdzcmJ7Ifc6E=;
-        b=AoW7sT0yKS+Gf/DDIBUPOv3hn0G/Ba/Sx7cxHTUkfOCVZU7aQ+r0ijn40//+TP1Liv
-         9AkaNy2g2Byu9LEOWMAo1HHdx3Bh+mznUQQjEeSzdXNfVPbylttT9i268JJAlqmMYa2l
-         8Emd3m40VX3/ab0IT5JD4NvT+NYhXGXJevtVXBzFRHtys9pCsya/yjvnOBMGorvGp1rd
-         jGI66yZvffvepjKKNTw1cGF99WgqvStsrkq0QMUuZ5QzD1r7kKMLJZFMHzOkx9SO1afv
-         nAcbx0+pnncwMIyvAFUIxTxOcZ/o9coUj4c6O5og4S4bX8m9o7lEgt/m8CvdRb3+buU8
-         6nQg==
-X-Gm-Message-State: AOAM531mFhQvapffsSTlHUUWlkzNz9kDvVMEUMj/o5wKWunWjgS6a9Bo
-        lmw3qTXPegbsbKT9iWpC+rQyDQ==
-X-Google-Smtp-Source: ABdhPJw3ZWEe1C/zsKGXF9zCJltt9v/8r3R2hD3/qFoo7i1IcQWTzVWQYu2uTWkI3q4dfLX3z10YVA==
-X-Received: by 2002:a9d:2f28:: with SMTP id h37mr11920795otb.196.1633401991254;
-        Mon, 04 Oct 2021 19:46:31 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id l25sm3034712oic.54.2021.10.04.19.46.30
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2eGuF9yrfRZ7HYMXv0FDGrrnI1fdkBivhcQ+vOGTxCg=;
+        b=MAJ7mHXWg8WZsrDThhHJvlSX9Bts4JB4mxgGvuy6obmEr1EwCI9dloT/CPbHq2AquC
+         Kx6EydR3+N7rdAqta9inkCSrHzHKQ0AsWP9JCCRj81MyhGCDOaoVDez/PpIU4MVJCI5y
+         Yalj8iYOG3qL0wnUYseue4yUW9nIdb/0XhKwNyRqAf1E9YyRoaTJv6Wf6pdthvsM13Rt
+         /s+uTZ5TkS501Utx17QLa7eeeSXvcRbr25ZFsHXr90L0F3qBLahgOQsSFFVsF0EsQcrg
+         yxJAxiDKUh2Yh6c6VOqRfHtVs5zTmgbrmJkamWp2es0ZLV9l99PfEA+kiclbhrP48uPx
+         S/NQ==
+X-Gm-Message-State: AOAM531XsFmskSTkf5V9BdFtfLE/eFQT0jkyH4H7QMwtA6jCk6iuVEwo
+        b93tEnLGQnz7wwVsovWlfNB4zw==
+X-Google-Smtp-Source: ABdhPJwFt21TeWx177qr6HneOnRNpt17cUbSmdfdYx5o0fzICnB6UgzOwFp5Ieqx6rc2vXlzDEQ/uQ==
+X-Received: by 2002:a05:6808:2188:: with SMTP id be8mr593263oib.44.1633403527316;
+        Mon, 04 Oct 2021 20:12:07 -0700 (PDT)
+Received: from yoga ([2600:1700:a0:3dc8:c84c:8eff:fe1e:256f])
+        by smtp.gmail.com with ESMTPSA id q133sm3066758oia.55.2021.10.04.20.12.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 19:46:30 -0700 (PDT)
+        Mon, 04 Oct 2021 20:12:06 -0700 (PDT)
+Date:   Mon, 4 Oct 2021 22:12:04 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] mfd: qcom-spmi-pmic: Add missing PMICs supported by socinfo
-Date:   Mon,  4 Oct 2021 19:48:12 -0700
-Message-Id: <20211005024812.2038249-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20211005024812.2038249-1-bjorn.andersson@linaro.org>
-References: <20211005024812.2038249-1-bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sdm845: mtp: Add vadc channels
+ and thermal zones
+Message-ID: <YVvChGwyiBF+TjlB@yoga>
+References: <20210923212311.2877048-1-bjorn.andersson@linaro.org>
+ <20210923212311.2877048-5-bjorn.andersson@linaro.org>
+ <YVSzJZ8G43CLml3L@google.com>
+ <YVtg3lcR1HMqVdAJ@ripper>
+ <CAA8EJprYij6pWD1A17yr1+5-n5fKPW=YDA_-2+f8h6JnEh4myw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJprYij6pWD1A17yr1+5-n5fKPW=YDA_-2+f8h6JnEh4myw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm socinfo driver has eight more PMICs described, add these to
-the SPMI PMIC driver as well.
+On Mon 04 Oct 15:56 CDT 2021, Dmitry Baryshkov wrote:
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/mfd/qcom-spmi-pmic.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+> On Mon, 4 Oct 2021 at 23:13, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+> >
+> > On Wed 29 Sep 11:40 PDT 2021, Matthias Kaehlcke wrote:
+> >
+> > > On Thu, Sep 23, 2021 at 02:23:11PM -0700, Bjorn Andersson wrote:
+> > > > Downstream defines four ADC channels related to thermal sensors external
+> > > > to the PM8998 and two channels for internal voltage measurements.
+> > > >
+> > > > Add these to the upstream SDM845 MTP, describe the thermal monitor
+> > > > channels and add thermal_zones for these.
+> > > >
+> > > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > ---
+> > > >
+> > > > In addition to the iio channels exposed by v1, Daniel wanted thermal_zones...
+> > > >
+> > > > Changes since v1:
+> > > > - Enable the pm8998_adc_tm and describe the ADC channels
+> > > > - Add thermal-zones for the new channels
+> > > >
+> > > >  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 128 ++++++++++++++++++++++++
+> > > >  1 file changed, 128 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> > [..]
+> > > > +&pm8998_adc {
+> > > > +   adc-chan@4c {
+> > > > +           reg = <ADC5_XO_THERM_100K_PU>;
+> > > > +           label = "xo_therm";
+> > > > +   };
+> > > > +
+> > > > +   adc-chan@4d {
+> > > > +           reg = <ADC5_AMUX_THM1_100K_PU>;
+> > > > +           label = "msm_therm";
+> > > > +   };
+> > > > +
+> > > > +   adc-chan@4f {
+> > > > +           reg = <ADC5_AMUX_THM3_100K_PU>;
+> > > > +           label = "pa_therm1";
+> > > > +   };
+> > > > +
+> > > > +   adc-chan@51 {
+> > > > +           reg = <ADC5_AMUX_THM5_100K_PU>;
+> > > > +           label = "quiet_therm";
+> > > > +   };
+> > > > +
+> > > > +   adc-chan@83 {
+> > > > +           reg = <ADC5_VPH_PWR>;
+> > > > +           label = "vph_pwr";
+> > > > +   };
+> > > > +
+> > > > +   adc-chan@85 {
+> > > > +           reg = <ADC5_VCOIN>;
+> > > > +           label = "vcoin";
+> > > > +   };
+> > > > +};
+> > > > +
+> > > > +&pm8998_adc_tm {
+> > > > +   status = "okay";
+> > > > +
+> > > > +   xo-thermistor@1 {
+> > > > +           reg = <1>;
+> > > > +           io-channels = <&pm8998_adc ADC5_XO_THERM_100K_PU>;
+> > > > +           qcom,ratiometric;
+> > > > +           qcom,hw-settle-time-us = <200>;
+> > > > +   };
+> > > > +
+> > > > +   msm-thermistor@2 {
+> > > > +           reg = <2>;
+> > > > +           io-channels = <&pm8998_adc ADC5_AMUX_THM1_100K_PU>;
+> > > > +           qcom,ratiometric;
+> > > > +           qcom,hw-settle-time-us = <200>;
+> > > > +   };
+> > > > +
+> > > > +   pa-thermistor@3 {
+> > > > +           reg = <3>;
+> > > > +           io-channels = <&pm8998_adc ADC5_AMUX_THM3_100K_PU>;
+> > > > +           qcom,ratiometric;
+> > > > +           qcom,hw-settle-time-us = <200>;
+> > > > +   };
+> > > > +
+> > > > +   quiet-thermistor@4 {
+> > > > +           reg = <4>;
+> > > > +           io-channels = <&pm8998_adc ADC5_AMUX_THM5_100K_PU>;
+> > > > +           qcom,ratiometric;
+> > > > +           qcom,hw-settle-time-us = <200>;
+> > > > +   };
+> > > > +};
+> > > > +
+> > >
+> > > The example in the 'qcom,spmi-adc-tm5' binding specifies 'qcom,ratiometric'
+> > > and 'qcom,hw-settle-time-us' for both the ADC and the thermal monitor, so do
+> > > several board files (e.g. sm8250-mtp.dts and qrb5165-rb5.dts). This apparent
+> > > redundancy bothered me earlier, it's not really clear to me whether it's
+> > > needed/recommended or not. Do you happen to have any insights on this?
+> >
+> > Hmm, you're right and I missed this in defining my channels. I've not
+> > looked at this detail, just got reasonable readings from my thermal
+> > zones and was happy about that.
+> >
+> > Dmitry, do you have any further insights why these properties are
+> > supposed to be duplicated between the adc channel and the thermal zones?
+> 
+> Because both ADC channel and thermal zone registers should be
+> programmed accordingly.
+> 
 
-diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
-index a35d5cf16faa..0920d7aa43a7 100644
---- a/drivers/mfd/qcom-spmi-pmic.c
-+++ b/drivers/mfd/qcom-spmi-pmic.c
-@@ -31,6 +31,8 @@
- #define PM8916_SUBTYPE		0x0b
- #define PM8004_SUBTYPE		0x0c
- #define PM8909_SUBTYPE		0x0d
-+#define PM8028_SUBTYPE		0x0e
-+#define PM8901_SUBTYPE		0x0f
- #define PM8950_SUBTYPE		0x10
- #define PMI8950_SUBTYPE		0x11
- #define PM8998_SUBTYPE		0x14
-@@ -38,6 +40,13 @@
- #define PM8005_SUBTYPE		0x18
- #define PM660L_SUBTYPE		0x1A
- #define PM660_SUBTYPE		0x1B
-+#define PM8150_SUBTYPE		0x1E
-+#define PM8150L_SUBTYPE		0x1f
-+#define PM8150B_SUBTYPE		0x20
-+#define PMK8002_SUBTYPE		0x21
-+#define PM8009_SUBTYPE		0x24
-+#define PM8150C_SUBTYPE		0x26
-+#define SMB2351_SUBTYPE		0x29
- 
- static const struct of_device_id pmic_spmi_id_table[] = {
- 	{ .compatible = "qcom,spmi-pmic", .data = (void *)COMMON_SUBTYPE },
-@@ -54,6 +63,8 @@ static const struct of_device_id pmic_spmi_id_table[] = {
- 	{ .compatible = "qcom,pm8916",    .data = (void *)PM8916_SUBTYPE },
- 	{ .compatible = "qcom,pm8004",    .data = (void *)PM8004_SUBTYPE },
- 	{ .compatible = "qcom,pm8909",    .data = (void *)PM8909_SUBTYPE },
-+	{ .compatible = "qcom,pm8028",    .data = (void *)PM8028_SUBTYPE },
-+	{ .compatible = "qcom,pm8901",    .data = (void *)PM8901_SUBTYPE },
- 	{ .compatible = "qcom,pm8950",    .data = (void *)PM8950_SUBTYPE },
- 	{ .compatible = "qcom,pmi8950",   .data = (void *)PMI8950_SUBTYPE },
- 	{ .compatible = "qcom,pm8998",    .data = (void *)PM8998_SUBTYPE },
-@@ -61,6 +72,12 @@ static const struct of_device_id pmic_spmi_id_table[] = {
- 	{ .compatible = "qcom,pm8005",    .data = (void *)PM8005_SUBTYPE },
- 	{ .compatible = "qcom,pm660l",    .data = (void *)PM660L_SUBTYPE },
- 	{ .compatible = "qcom,pm660",     .data = (void *)PM660_SUBTYPE },
-+	{ .compatible = "qcom,pm8150",    .data = (void *)PM8150_SUBTYPE },
-+	{ .compatible = "qcom,pm8150l",   .data = (void *)PM8150L_SUBTYPE },
-+	{ .compatible = "qcom,pm8150b",   .data = (void *)PM8150B_SUBTYPE },
-+	{ .compatible = "qcom,pmk8002",   .data = (void *)PMK8002_SUBTYPE },
-+	{ .compatible = "qcom,pm8150c",   .data = (void *)PM8150C_SUBTYPE },
-+	{ .compatible = "qcom,smb2351",   .data = (void *)SMB2351_SUBTYPE },
- 	{ }
- };
- 
--- 
-2.29.2
+I presume our question is "why" to this particular part. The actual
+implementation thereof seems reasonable.
 
+Regards,
+Bjorn
