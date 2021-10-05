@@ -2,97 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F744422C10
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:13:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86E5F422C0E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:13:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231226AbhJEPPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 11:15:25 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:63958 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235533AbhJEPPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:15:25 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633446815; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=s3Xb4IsSqsYB8Xe3c7qxyiGRJeLbjA3gkFSG8+CibCw=; b=YS0rkOpB4q9ONKPFZURacTfXywhYybXYkHHVFXVdRaPDVaLgQe1l/XXQKVujadzpj0wKs1zA
- Gdi0zJJxlmYuym+atDUGsmUkaM7n6ait2jX+8+TTSGVL0TTNL2bsuYjuzmFIHbm6ozqbcViZ
- 2JPV2faBZnYY8gKkOJcOamYi+N4=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 615c6b934ccc4cf2c7c421cc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 15:13:23
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 42FD3C4361C; Tue,  5 Oct 2021 15:13:23 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.1.102] (unknown [157.48.255.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7DCE6C4360C;
-        Tue,  5 Oct 2021 15:13:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 7DCE6C4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH] ASoC: qcom: soundwire: Enable soundwire bus clock for
- version 1.6
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1633105471-30928-1-git-send-email-srivasam@codeaurora.org>
- <a2b6a9c7-2191-4bc9-b03b-3b22b495a4be@linux.intel.com>
- <2c18ff0c-cd24-356c-0104-086837ed7ff0@codeaurora.org>
- <d485af5f-4dfb-df08-9a22-901b7534ca3b@linux.intel.com>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <f7fbf5e2-2f09-1df5-475a-cfe04f33059a@codeaurora.org>
-Date:   Tue, 5 Oct 2021 20:43:11 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S235208AbhJEPPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 11:15:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55848 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229626AbhJEPPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:15:21 -0400
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA65BC061749
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 08:13:30 -0700 (PDT)
+Received: by mail-ua1-x92d.google.com with SMTP id c33so15106016uae.9
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 08:13:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=kHkROjDqImNrCORBYAHwY53VEsgwyF5aAqEMBu+eK6E=;
+        b=eapv9lM4KgSfTI6XiAfNzqt3XshDOy73s0+ddirA4D+qHtBZHt5UmkgMo19zS18sHC
+         5omMUw2bwvZhsbKYP2CDcMiu3X9I289N9hrZBv3dyymun5cK/+QxAlSkFy6SxHuM0+k8
+         4jfRQSS6cGbGG6C9GRsTf+98A/jPmNNb1NSweqmJHe+LezqMDhE4hV9j95cUtcZNYhb9
+         0pONS/eKyt73bDmT4B9imUGZ4kNQXXN4l5PWTtVAWlYlOfB/EGR1LdaU+9J2LTnUIVZD
+         +p7a3BIGVhofEgrcL7TeBTNp9sTeFL/MqCAqLhA5sRllYqn7Y1pULGjarhWsOth4wKPz
+         f2AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=kHkROjDqImNrCORBYAHwY53VEsgwyF5aAqEMBu+eK6E=;
+        b=sFLEgiEDQvIqtzcttgtrmiUegtHOvTg4XB0XG6xRV6vBMp+POyn5ba57qgTumistOU
+         XIoG6QByEO3v57uKAemvYPgy2jr7ETtE/QR0TR61TY0J3qfYru8xBY4/bWkWrRT6LlXi
+         Df1t0mbJs7KWxJAUVb2A3SGIoOTCfM0rSIy8o7cfb+AuF7d9b4oFdFmyXvCLtE5jFol2
+         IthPgvR8wdkQNrvyzx3OxQVWG2UOX/iQL+02BRMRV4aW0aU38N7hRqOamDASb4IR7Qca
+         LgehMi1dfkBO9dvEJutJlTho3JUsPB1J8FV/YFw3QpmuPXnATtB8/n6a3ApdWs14CYh9
+         RZIA==
+X-Gm-Message-State: AOAM532GtHF5dgLqH+M1t93utu5pf9DuHOqeKTAmz2+QyFL+sn01fCT/
+        4Yeo7m02A0Ns2FnOrvk8Pl2NRUVx4R7VUgcu5iE=
+X-Google-Smtp-Source: ABdhPJzSgPyO1DU9AXq30e+H+nOLZ7L5oK8Y7/Y49E6ck0JgrpY46f8qhdLd38ZyKhLNMfe7gNjPVO2zUc/iO4Cdjno=
+X-Received: by 2002:a9f:24c4:: with SMTP id 62mr12274663uar.95.1633446809071;
+ Tue, 05 Oct 2021 08:13:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <d485af5f-4dfb-df08-9a22-901b7534ca3b@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Received: by 2002:a59:5d10:0:b0:235:cc09:d8f with HTTP; Tue, 5 Oct 2021
+ 08:13:28 -0700 (PDT)
+Reply-To: Salemchantal2@mail.com
+From:   MRS Salem Chantal Lawrence <patrickmurphy791@gmail.com>
+Date:   Tue, 5 Oct 2021 08:13:28 -0700
+Message-ID: <CAEsU2=ho9waCkHKWtYhNDME72+TNdYEqSfQL626jMSL9whddug@mail.gmail.com>
+Subject: Attention
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Attention
 
-On 10/5/2021 8:33 PM, Pierre-Louis Bossart wrote:
-> Thanks for Your time Bossart!!!
->
->>>> +        ctrl->swrm_hctl_reg = devm_ioremap(&pdev->dev,
->>>> swrm_hctl_reg, 0x4);
->>> if (!ctrl->swrm_hctl_reg)
->>>       return -ENODEV;
->>>
->>> ?
->> I think here error check is not required, as this change is required
->> only for soundwire version 1.6 and above.
-> My comment had nothing to do with versions, it's just that ioremap can
-> fail and in general it's wise to test for errors...
+You have been compensated with the sum of 4.6 million dollars in this
+United Nation the payment will be issue into Atm Visa Card and send to you
+from the Bank we need your Address Passport and your whatsapp number.
 
-Okay. My intention is if offset (swrm_hctl_reg) is zero, devm_ioremap 
-may return error.
-
-In that case we need to ignore error.
-
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+THANKS
+MRS Salem Chantal Lawrence
