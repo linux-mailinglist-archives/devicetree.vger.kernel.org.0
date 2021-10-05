@@ -2,99 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F2D4233BE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 00:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 489954233BB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 00:46:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236805AbhJEWrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 18:47:55 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:43901 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbhJEWry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 18:47:54 -0400
-Received: by mail-ot1-f52.google.com with SMTP id x33-20020a9d37a4000000b0054733a85462so788134otb.10;
-        Tue, 05 Oct 2021 15:46:03 -0700 (PDT)
+        id S231569AbhJEWrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 18:47:53 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:38541 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230113AbhJEWrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 18:47:52 -0400
+Received: by mail-ot1-f47.google.com with SMTP id c6-20020a9d2786000000b005471981d559so813472otb.5;
+        Tue, 05 Oct 2021 15:46:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=rXuuVcqlOPGRQ8KPZYAGmcmEqaRdABG3AyDsI/H0JEo=;
-        b=5M97xTMxwA2Hk+SvV7hrgGEpsSeX+QbhQEm4pI4dXQdmZjkrHhb48cwOgvrbMljcN5
-         mT6w9CHc1L4nqy2I2BHxHHMsRPfJwfSDLpQVVaZzw0H3xh9t7bxozlp48tC6AjNukiW8
-         go1tv3ekdPSW9vpqSGfoiS8ZJwp2RTjpvMsa6eZTS16JnnCGKwd25AhtzeN0Z8tpRQVW
-         /gLyPpU7hHFwXx32+jWtEBAQgDEeWJG83+7X98+m4+PeLSZEPAQBuDkamia3JFW04aBm
-         MQSDtmnAzBP3ZHPu3S0b74YQirxEdzf3HQG6j9c0xZhmESmXsaXpOoQ+UChrIkrzR49+
-         75+w==
-X-Gm-Message-State: AOAM531hoKhBHOZ4l1OgT75hV7T6i95li3l+u6VQG3clR4Qp1dJFYWtQ
-        rldwlE1BZM/7LdnYr2Ddcg==
-X-Google-Smtp-Source: ABdhPJxu1yHXCK7JsFPVWCnV3YwQqmVgBcxLJQObQXFkUx2eUkxTxDAYsMRWCskB3IZu70rdOx5wmA==
-X-Received: by 2002:a9d:72d5:: with SMTP id d21mr17442035otk.181.1633473963274;
-        Tue, 05 Oct 2021 15:46:03 -0700 (PDT)
+        bh=7Yvv1Am41pkLFWVRRxtVFFpmmIZ/+MuvB5/QTODKe0c=;
+        b=zZRvGmVXqhxnYzC1VlnglVmmpGaduPuNO3MBn8Lu2vSjztnMCMzpqWuvHUFEOJDjT0
+         MsBN6NDkzodI5FVjcbcMT2Z9ieP6emQs9Q6v6wbSm5cKtzO8xcAhermkLZ/jJvj1EmXV
+         3vrN3NDNo2I/+owL5Ptgstdm/0OyixGn5Gs/tZZC6GnUzLfckjYZQ/VcCeCRzxJ/jxX4
+         Ji6+xbxc9TnQElCYr6wLIdLufdH3J2psaBxmVGkkdSZUkH6A1PFey1Dt8t2qTo/71SnN
+         TnPV7fcnRYF1SlTcn5JkLT21Isbdk5uh5dq4LyzNwLWNbPVnbSCIhgihXNk9ShjDYz97
+         zAxQ==
+X-Gm-Message-State: AOAM530seIUqEFOnxrjG1yrD573c4nNtIZ0vXlmZ9plIXEh6DS8lgadV
+        YPfMzWBhi/cxCaJpo5H8wA==
+X-Google-Smtp-Source: ABdhPJz8rCGrSwA5JycAr4jjywMT6Q9vFnZJCvKui4nCAMdxcCRG96o4SGy+jI6iNtZhTv01VbbH+Q==
+X-Received: by 2002:a9d:6d14:: with SMTP id o20mr17177311otp.57.1633473961337;
+        Tue, 05 Oct 2021 15:46:01 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i127sm3627476oia.43.2021.10.05.15.46.01
+        by smtp.gmail.com with ESMTPSA id v25sm3684003oov.14.2021.10.05.15.45.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 15:46:02 -0700 (PDT)
-Received: (nullmailer pid 106785 invoked by uid 1000);
+        Tue, 05 Oct 2021 15:46:00 -0700 (PDT)
+Received: (nullmailer pid 106764 invoked by uid 1000);
         Tue, 05 Oct 2021 22:45:59 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-serial@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-samsung-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>
-In-Reply-To: <20211005155923.173399-2-marcan@marcan.st>
-References: <20211005155923.173399-1-marcan@marcan.st> <20211005155923.173399-2-marcan@marcan.st>
-Subject: Re: [PATCH 1/7] dt-bindings: arm: apple: Add apple,pmgr binding
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mark Brown <broonie@kernel.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        linux-mips@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        letux-kernel@openphoenux.org, Rob Herring <robh+dt@kernel.org>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Kees Cook <keescook@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        linux-kernel@vger.kernel.org, Paul Boddie <paul@boddie.org.uk>
+In-Reply-To: <518d5db83e84e3f0326854c5afb53a92e7ae4e41.1633436959.git.hns@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com> <518d5db83e84e3f0326854c5afb53a92e7ae4e41.1633436959.git.hns@goldelico.com>
+Subject: Re: [PATCH v5 3/7] dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
 Date:   Tue, 05 Oct 2021 17:45:59 -0500
-Message-Id: <1633473959.420655.106783.nullmailer@robh.at.kernel.org>
+Message-Id: <1633473959.306315.106759.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Oct 2021 00:59:17 +0900, Hector Martin wrote:
-> The PMGR block in Apple Silicon SoCs is responsible for SoC power
-> management. There are two PMGRs in T8103, with different register
-> layouts but compatible registers. In order to support this as well
-> as future SoC generations with backwards-compatible registers, we
-> declare these blocks as syscons and bind to individual registers
-> in child nodes. Each register controls one SoC device.
+On Tue, 05 Oct 2021 14:29:15 +0200, H. Nikolaus Schaller wrote:
+> From: Sam Ravnborg <sam@ravnborg.org>
 > 
-> The respective apple compatibles are defined in case device-specific
-> quirks are necessary in the future, but currently these nodes are
-> expected to be bound by the generic syscon driver.
+> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
+> Based on .txt binding from Zubair Lutfullah Kakakhel
 > 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
 > ---
->  .../bindings/arm/apple/apple,pmgr.yaml        | 74 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+>  .../bindings/display/ingenic-jz4780-hdmi.yaml | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.yaml:39:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/arm/apple/apple,pmgr.example.dts:30.40-35.15: ERROR (duplicate_node_names): /example-0/soc/power-management@23b700000: Duplicate node name
-ERROR: Input tree has errors, aborting (use -f to force output)
-make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/arm/apple/apple,pmgr.example.dt.yaml] Error 2
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1441: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.example.dt.yaml: hdmi@10180000: 'clock-names', 'interrupt-parent', 'interrupts', 'reg' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1536742
+See https://patchwork.ozlabs.org/patch/1536624
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
