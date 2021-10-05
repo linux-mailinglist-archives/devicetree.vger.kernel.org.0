@@ -2,114 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B59AE421FE4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 09:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4FD1422016
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 10:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233371AbhJEH51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 03:57:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36226 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233262AbhJEH5U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 03:57:20 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF7CC061749;
-        Tue,  5 Oct 2021 00:55:30 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id e12so15448445wra.4;
-        Tue, 05 Oct 2021 00:55:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=f1ACAdPpXdD7+6xlsaFl8y9pYKjykE5MoAahHiFRZ5E=;
-        b=er4wiUbQiLkmUVpKn+tlxmS/Qs66tV0kj619OOdd/4IahYBHC0sQVo3cMYjzP1i5X6
-         ZbGbK60zuyoe3y8Hh6YUTvvOQfEGBhpWUH8Kooj5X5FZYTucrzXj7Ftl/rZKMdzca4aZ
-         g7tS4lOZZVKh3lnzn4CZ8gLDQZO6+iy1JbPodKviWHfNRvwHLFkwt+O7bwryyvPt8JJN
-         Xqb6GGWaXkKWm50xPDD5dPdcK6F2pBizjyxSuJm12Ybfp9ObTGhxfIj0St2/vI60jF4r
-         qt07H30FuZWdYNS1N/ofd+9mvJqa+SqzJMzlyb47RoH8pz1FMcrSpllKlv65AE7InABx
-         nWHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=f1ACAdPpXdD7+6xlsaFl8y9pYKjykE5MoAahHiFRZ5E=;
-        b=w+3TEcPwo0E/0MOnSUY0USvRYdiFE3YWHYxSfAUQSzya+LWQlxz5eU+Rcdy7zJB/02
-         NUWDakJWJfcgplpXb/GEFTsBL+K1vOkY017dWqAmNe+FZEIY6cHLrmFuMmEA/hsRJlIa
-         nqgC8OC+AKMrCMziinmmB9nagc0IqPz3m8LTeHsXvF87gum6QJKIgQkFr7N4Mzi6xjQ0
-         MhJu9w3EEXnL/svz2LmJIIxK1EYUmlsDQqEyo+/5T2up4strhDA9DYfw3G3GpUTEVP2E
-         QbsE8Pn8Hv1vJjo8u2KprXjpxNBmOI46WaNMXEfq82h7HlVRN5A710SI5+7nS/ukbs5w
-         cIIA==
-X-Gm-Message-State: AOAM532VzzPhKCOSS8wyoCz8BkM5rAy3G9tVlnlhtW68xNd/iljMozQl
-        stqW/BLA9+6vBu9i0YtfEEM=
-X-Google-Smtp-Source: ABdhPJwDIbP8wwo0ZNAP9e9uSY7WrXGStyt4Ykt1Eq+rfFKv2BP59bZHZhVmj6pZY91sllPZGUnEVA==
-X-Received: by 2002:adf:a2c8:: with SMTP id t8mr19955799wra.215.1633420528694;
-        Tue, 05 Oct 2021 00:55:28 -0700 (PDT)
-Received: from localhost.localdomain (i59F67A83.versanet.de. [89.246.122.131])
-        by smtp.gmail.com with ESMTPSA id o1sm1176984wmq.26.2021.10.05.00.55.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 00:55:28 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Yu Chen <chenyu56@huawei.com>,
-        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        Deepak Saxena <dsaxena@plexity.net>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        id S232866AbhJEIG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 04:06:29 -0400
+Received: from muru.com ([72.249.23.125]:40900 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232793AbhJEIG2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 04:06:28 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 3911180E1;
+        Tue,  5 Oct 2021 08:05:06 +0000 (UTC)
+Date:   Tue, 5 Oct 2021 11:04:34 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Chunyan Zhang <zhang.chunyan@linaro.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Santosh Shilimkar <ssantosh@kernel.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        Wilken Gottwalt <wilken.gottwalt@posteo.net>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH v4 11/11] MAINTAINERS: rectify entry for CHIPONE ICN8318 I2C TOUCHSCREEN DRIVER
-Date:   Tue,  5 Oct 2021 09:54:51 +0200
-Message-Id: <20211005075451.29691-12-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20211005075451.29691-1-lukas.bulwahn@gmail.com>
-References: <20211005075451.29691-1-lukas.bulwahn@gmail.com>
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: sdhci-omap: Update binding for legacy
+ SoCs
+Message-ID: <YVwHEqaAtk0MFwmR@atomide.com>
+References: <20210930065733.31943-1-tony@atomide.com>
+ <20210930065733.31943-2-tony@atomide.com>
+ <CAHCN7xJ_28ALRds4rduQP3LZoEK9y6mdia_czKU0DWse7FnjoA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHCN7xJ_28ALRds4rduQP3LZoEK9y6mdia_czKU0DWse7FnjoA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 04647773d648 ("dt-bindings: input: Convert ChipOne ICN8318
-binding to a schema") converts chipone_icn8318.txt to chipone,icn8318.yaml,
-but missed to adjust its reference in MAINTAINERS.
+Hi,
 
-Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about
-a broken reference.
+* Adam Ford <aford173@gmail.com> [211002 13:29]:
+> I noticed that you added omap3 compatibility to the driver and the
+> bindings, but no device tree changes for omap3.dtsi to enable this.
+> Is there anything holding back?
 
-Repair this file reference in CHIPONE ICN8318 I2C TOUCHSCREEN DRIVER.
+There is at least the wl1251 quirk handling missing as I mentioned in
+the cover letter. I guess we could enable sdhci except for wl1251 users
+though.
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> I modified omap3.dtsi and changed the compatible flag to
+> ti,omap3-sdhci and it boots from SD card just fine.  For some reason,
+> I cannot get the wl1283 to function, but the driver probes, so I need
+> to spend some time investigating this.
+> 
+> If i can get my wl1283 working again, I'll reply with a tested note.
+> I hope to have more time tomorrow, but i can't do it any more today.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9e537e78f426..84acb8c57176 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4415,7 +4415,7 @@ CHIPONE ICN8318 I2C TOUCHSCREEN DRIVER
- M:	Hans de Goede <hdegoede@redhat.com>
- L:	linux-input@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/input/touchscreen/chipone_icn8318.txt
-+F:	Documentation/devicetree/bindings/input/touchscreen/chipone,icn8318.yaml
- F:	drivers/input/touchscreen/chipone_icn8318.c
- 
- CHIPONE ICN8505 I2C TOUCHSCREEN DRIVER
--- 
-2.26.2
+I don't have wl1283 omap3 devices online, but I have tested that the
+sdhci patches do work with wl12xx and mwifiex drivers. Did you figure
+out why your wl1283 is not working with sdhci?
 
+Regards,
+
+Tony
