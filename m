@@ -2,117 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32222422D60
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 18:07:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0162422DA3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 18:15:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231513AbhJEQJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 12:09:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40816 "EHLO
+        id S236470AbhJEQRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 12:17:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233975AbhJEQJQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 12:09:16 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 297E5C061749
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 09:07:26 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso26502953ota.8
-        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 09:07:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=J7AnnRzpMQWfrS8w+7C/LsU/pHKQTZK1/Px5Rn9pGIM=;
-        b=K7nSGfOJWjz0aRycOOJK+XB0XKb7dHpRY0YmZVFSLmFlPayA2r4Xs/3OpD2rMOlVd3
-         N0KdjQOmyJ0l++sBQLpJZBs5aSPY0mCH1XhI2Sd4u2kIUbdXtqEAh2qeClR88PFPdE0i
-         W2Lkb3qjFA7+XO/OgoTsM9/OQD2hkaYBKRj4cA9Bl476BqPQEMN5Ib6qEGFyxpKeBwzf
-         m8bIHf04ylTAvz0YgetHfF/1H6verxoYbQkYeF7XL2myyxyDoks9u5tHQLknJse80E4+
-         8TVBJd3C2tX4DznXyKMTV+Bo2bEOeJvTc3sjJMVtaFK1tDLzhYVVleDllWQdUrhWGl0Y
-         j+nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=J7AnnRzpMQWfrS8w+7C/LsU/pHKQTZK1/Px5Rn9pGIM=;
-        b=s8o5dBZ50ONb1EnBW+PeD0SIBH6ChPYkdu+IGrzI7FjhQKx9V7kR3DCFiSedgBnFr8
-         Ry6BBCFutsFn4UXw8vl82jXb4x8IL6Jww2CuRx/VbkDdjsG6FEFlZY/pjjpG3eEiqIXe
-         IqjIw1lofJeCQSIC+wO1VsUajOfsfjAhHFnZ0mJT6KqI05+GEvgGueRlkW/Cfnr8wFGw
-         Af9vqooYjFBM47PZp///dILpgEdLfAwlKeDOAArIwTcx2wxiRBNLrZpJN7+LWDimozyH
-         9kWA6TjuaonzfiNlYZxKvBLNiTCvGS+bhGTR4ukEhT6CfdkY6HsOU/jZxo2K75i0Ff5E
-         7Fbg==
-X-Gm-Message-State: AOAM531rFUjYMa9IO/Gna+2W/O20K/fJCGd6RVAcTudVig6h9/rhGFga
-        NrJB+1JZCBPd1a4+B1iU3u73Bg==
-X-Google-Smtp-Source: ABdhPJzolzQvstN0cY1puPuhcdj9tBT45kpfMSiZeSljPQfJk8IffOEBG6PO0wXpehzgWD0rPHyQvA==
-X-Received: by 2002:a9d:5a8e:: with SMTP id w14mr15440953oth.322.1633450045516;
-        Tue, 05 Oct 2021 09:07:25 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id p15sm275641oto.23.2021.10.05.09.07.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 09:07:25 -0700 (PDT)
-Date:   Tue, 5 Oct 2021 09:09:07 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Maulik Shah <mkshah@codeaurora.org>
-Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
-        rnayak@codeaurora.org, lsrao@codeaurora.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v10 5/5] arm64: dts: qcom: sc7280: Enable SoC sleep stats
-Message-ID: <YVx4o8mfmFjKW5ng@ripper>
-References: <1633425065-7927-1-git-send-email-mkshah@codeaurora.org>
- <1633425065-7927-6-git-send-email-mkshah@codeaurora.org>
+        with ESMTP id S235077AbhJEQRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 12:17:20 -0400
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B29C061749;
+        Tue,  5 Oct 2021 09:15:29 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id D599E41EA7;
+        Tue,  5 Oct 2021 16:15:23 +0000 (UTC)
+Subject: Re: [PATCH 3/7] soc: apple: Add driver for Apple PMGR power state
+ controls
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+References: <20211005155923.173399-1-marcan@marcan.st>
+ <20211005155923.173399-4-marcan@marcan.st>
+ <CACRpkdanbovvXXLAGGZEEiKXXrNnW+8p1sCONQYWmAjVi-m-9A@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <3bad7bc3-30ac-851f-57a3-7781dfa23521@marcan.st>
+Date:   Wed, 6 Oct 2021 01:15:21 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1633425065-7927-6-git-send-email-mkshah@codeaurora.org>
+In-Reply-To: <CACRpkdanbovvXXLAGGZEEiKXXrNnW+8p1sCONQYWmAjVi-m-9A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 05 Oct 02:11 PDT 2021, Maulik Shah wrote:
+Hi Linus,
 
-> Add device node for SoC sleep stats driver which provides various
-> low power mode stats.
+On 06/10/2021 01.08, Linus Walleij wrote:
+> Hi Hector,
 > 
-> Also update the reg size of aoss_qmp device to 0x400.
+> On Tue, Oct 5, 2021 at 6:00 PM Hector Martin <marcan@marcan.st> wrote:
 > 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+>>   drivers/soc/apple/Kconfig               |  21 ++
+>>   drivers/soc/apple/Makefile              |   2 +
+>>   drivers/soc/apple/apple-pmgr-pwrstate.c | 281 ++++++++++++++++++++++++
+> 
+> This is traditionally where we put the ARM SoC drivers, but
+> Mac has traditionally used drivers/macintosh for their custom
+> board etc stuff. Or is that just for any off-chip stuff?
+> 
+> I suppose it doesn't matter much (unless there is code under
+> drivers/macintosh we want to reuse for M1), but it could be a bit
+> confusing?
 
-Can you please follow up with patches for the other upstream platforms
-as well.
+Hmm, it seems that tree is mostly about the PowerPC era Macs; the only 
+thing enabled for x86 there is MAC_EMUMOUSEBTN. There is also 
+platform/x86/apple-gmux.c for an x86 Mac specific thing...
 
-Thanks,
-Bjorn
+We already broke tradition with the "apple," DT compatible prefix (used 
+to be AAPL for the PowerPC Macs), and these chips aren't even just used 
+in Macs (e.g. the iPad, which in theory people would be able to run 
+Linux on if someone figures out a jailbreak), so perhaps it's time for 
+another break here?
 
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 39635da..f8622ae 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2637,7 +2637,7 @@
->  
->  		aoss_qmp: power-controller@c300000 {
->  			compatible = "qcom,sc7280-aoss-qmp";
-> -			reg = <0 0x0c300000 0 0x100000>;
-> +			reg = <0 0x0c300000 0 0x400>;
->  			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
->  						     IPCC_MPROC_SIGNAL_GLINK_QMP
->  						     IRQ_TYPE_EDGE_RISING>;
-> @@ -2647,6 +2647,11 @@
->  			#clock-cells = <0>;
->  		};
->  
-> +		memory@c3f0000 {
-> +			compatible = "qcom,rpmh-sleep-stats";
-> +			reg = <0 0x0c3f0000 0 0x400>;
-> +		};
-> +
->  		spmi_bus: spmi@c440000 {
->  			compatible = "qcom,spmi-pmic-arb";
->  			reg = <0 0x0c440000 0 0x1100>,
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
