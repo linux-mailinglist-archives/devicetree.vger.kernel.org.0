@@ -2,123 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D254222B8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 11:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D505D4222DC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 11:56:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233597AbhJEJyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 05:54:50 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:25199 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233455AbhJEJyt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 05:54:49 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633427579; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=9NNh8Apyajof6vjdxuO0fo4bjhrIb3avsDuXH6d364Y=;
- b=YC4wsFevvXLse61D0v5Xy+0nSLRDDjd20ILBksrGbBQshxTdsdu0wgaQdIGqHV6eTeUUCEem
- hG9S1MfvydH2cmntvGxy9q3WBxkpYePgbk5IzSOoXhaieLEq4AhR1dDrBUbOuVw7eX/40cxh
- YM++yFdoXTG2+z8Ud1qc6Twf1uI=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 615c207ab62327f2cb643de8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 09:52:58
- GMT
-Sender: mkrishn=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3F2B1C43617; Tue,  5 Oct 2021 09:52:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkrishn)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7639EC4338F;
-        Tue,  5 Oct 2021 09:52:57 +0000 (UTC)
+        id S233937AbhJEJ6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 05:58:12 -0400
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:36572 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233933AbhJEJ6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 05:58:10 -0400
+Received: by mail-ua1-f41.google.com with SMTP id u11so14412044uaw.3;
+        Tue, 05 Oct 2021 02:56:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7f7La1K3j/sf3y6WAPsiJ3HiHMfo9c5sHomKDoZBG7U=;
+        b=k2IKov7jB0n+UA2Ba6xXi/dtkzWMyvN8/oXdRDjW/TVGcXQs5GyrZCahRsU9ZUzoSk
+         qXfb3TdiyKbNjQI2i2tlB32LSBrDG2mHcucnAAPxaZatqc0lz4ujs+g4Boz1/yOTQltl
+         VVYAXO9LhU2an/YvvnzO9e59P8m8QfNu6UJOD76u5w0lmLnUzjW6Zg+pAh97G1d0YN4b
+         yIcWwqrIlfIfLGbzPUvgTgzWXD8Ec7A6n5UMWjYOtUJKQjvvxirZS1f+AGXdSYOYo4VV
+         nDZzSMEPh8sRK2DfZcqwoVFSha3/emEyeiwO/zPUntHjwzyKiYFO65GDv0Jw4gJHv3Fk
+         SCPA==
+X-Gm-Message-State: AOAM531c3rkWFNKd9MWvG9S5We1t54akg894yzQ4balVf22SemmRUco6
+        9ZKSs6prEmfXhMyF7ZWVwYcmrOJvVbbl4aU24fc=
+X-Google-Smtp-Source: ABdhPJwoedqIMTs/zp1tZCy9OstAKU8ntmrhQvtFdRYOoHyHH+E8MpEzp9P57PSyaiMXuRqdCgIgcecFKpCx4qab0jY=
+X-Received: by 2002:ab0:311a:: with SMTP id e26mr10862299ual.122.1633427779260;
+ Tue, 05 Oct 2021 02:56:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 05 Oct 2021 15:22:57 +0530
-From:   mkrishn@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kalyan_t@codeaurora.org,
-        sbillaka@codeaurora.org, abhinavk@codeaurora.org,
-        robdclark@gmail.com, bjorn.andersson@linaro.org,
-        khsieh@codeaurora.org, rajeevny@codeaurora.org,
-        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v1 2/4] arm64: dts: qcom: sc7280: add display dt nodes
-In-Reply-To: <CAE-0n53wqdo7NBZn4UMRZDtc3MrF6JdvZpjcfGapJT1s5iV2jQ@mail.gmail.com>
-References: <1629282424-4070-1-git-send-email-mkrishn@codeaurora.org>
- <1629282424-4070-2-git-send-email-mkrishn@codeaurora.org>
- <CAE-0n50b=pX=1MFwGPDvDR=O03tUAkAgyMonGm2+SXBft=16KQ@mail.gmail.com>
- <5adf2ab2c2a162272509d253bd797721@codeaurora.org>
- <CAE-0n53kQU=8pdcWR0OZap1wDgxxwed0qvfaGruc71YT5Cj1iA@mail.gmail.com>
- <8f344213978f31c04e80b804a931db56@codeaurora.org>
- <CAE-0n53wqdo7NBZn4UMRZDtc3MrF6JdvZpjcfGapJT1s5iV2jQ@mail.gmail.com>
-Message-ID: <41fb0eec922ff8499bb4b95ab29000f3@codeaurora.org>
-X-Sender: mkrishn@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <20210921193028.13099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210921193028.13099-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CACRpkdaJk-G0YE63uvH9C=G3n7k2gZqf9QrwGfAZC2O4hhps=A@mail.gmail.com>
+In-Reply-To: <CACRpkdaJk-G0YE63uvH9C=G3n7k2gZqf9QrwGfAZC2O4hhps=A@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 5 Oct 2021 11:56:07 +0200
+Message-ID: <CAMuHMdUvThtOKrhTqW+U1qijW7dRc6GYg4_Owt_GnUxX4DrGog@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 3/4] pinctrl: renesas: pinctrl-rzg2l: Add IRQ
+ domain to handle GPIO interrupt
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-10-05 07:21, Stephen Boyd wrote:
-> Quoting mkrishn@codeaurora.org (2021-09-30 23:39:07)
->> On 2021-09-30 23:28, Stephen Boyd wrote:
->> > Quoting mkrishn@codeaurora.org (2021-09-30 04:56:59)
->> >> On 2021-08-19 01:27, Stephen Boyd wrote:
->> >> > Quoting Krishna Manikandan (2021-08-18 03:27:02)
->> >> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >> >> index 53a21d0..fd7ff1c 100644
->> >> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> >> >> +
->> >> >> +                       status = "disabled";
->> >> >> +
->> >> >> +                       mdp: mdp@ae01000 {
->> >> >
->> >> > display-controller@ae01000
->> >>
->> >> Stephen,
->> >>     In the current driver code, there is a substring comparison for
->> >> "mdp"
->> >> in device node name as part of probe sequence. If "mdp" is not present
->> >> in the node name, it will
->> >>     return an error resulting in probe failure. Can we continue using
->> >> mdp
->> >> as nodename instead of display controller?
->> >>
->> >
->> > Can we fix the driver to not look for node names and look for
->> > compatible
->> > strings instead? It took me a minute to find compare_name_mdp() in
->> > drivers/gpu/drm/msm/msm_drv.c to understand what you're talking about.
->> > Perhaps looking for qcom,mdp5 in there will be sufficient instead of
->> > looking at the node name.
->> 
->> Sure Stephen. I will make the necessary changes in msm_drv.c to look 
->> for
->> compatible string instead of node name.
->> Can I include these two changes (changing mdp--> display controller 
->> and
->> msm_drv.c changes) in a separate series ?
->> 
-> 
-> Sure. So you'll send the drm driver change now and we'll get the DT
-> change after that with the more generic node name?
+Hi Linus,
 
-Yes Stephen.I have raised the change to fix the driver issue.
-https://patchwork.kernel.org/project/linux-arm-msm/patch/1633427071-19523-1-git-send-email-mkrishn@codeaurora.org/
+On Thu, Sep 23, 2021 at 11:38 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> On Tue, Sep 21, 2021 at 9:30 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add IRQ domian to RZ/G2L pinctrl driver to handle GPIO interrupt.
+> >
+> > GPIO0-GPIO122 pins can be used as IRQ lines but only 32 pins can be
+> > used as IRQ lines at given time. Selection of pins as IRQ lines
+> > is handled by IA55 (which is the IRQC block) which sits in between the
+> > GPIO and GIC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Why can't you just use the hierarchical IRQ domain handling inside
+> gpiolib?
 
-Regards,
-Krishna
+Out of interest (not related to this patch), does this support multiple
+parent domains?
 
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
