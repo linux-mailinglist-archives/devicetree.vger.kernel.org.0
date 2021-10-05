@@ -2,90 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0162422DA3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 18:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E280422DAB
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 18:16:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236470AbhJEQRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 12:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42770 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235077AbhJEQRU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 12:17:20 -0400
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B29C061749;
-        Tue,  5 Oct 2021 09:15:29 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id D599E41EA7;
-        Tue,  5 Oct 2021 16:15:23 +0000 (UTC)
-Subject: Re: [PATCH 3/7] soc: apple: Add driver for Apple PMGR power state
- controls
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-References: <20211005155923.173399-1-marcan@marcan.st>
- <20211005155923.173399-4-marcan@marcan.st>
- <CACRpkdanbovvXXLAGGZEEiKXXrNnW+8p1sCONQYWmAjVi-m-9A@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <3bad7bc3-30ac-851f-57a3-7781dfa23521@marcan.st>
-Date:   Wed, 6 Oct 2021 01:15:21 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S236506AbhJEQRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 12:17:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55420 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236504AbhJEQRw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 12:17:52 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E044161507;
+        Tue,  5 Oct 2021 16:16:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633450561;
+        bh=gA9SUJLpMS2aWLEumpGChQlH/EHwBrRRD1vFHumsbfo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cob5acGg1ZOVoxTI77FWB9zPo9fPAPIpY22UNzRo7lZlD8ywOSoV/HB2kz4dOfWN8
+         zThN7UYlaaRy5VRXVme9i5kCbG1c8GSmlduZW2+DyK0BA8d6Ilp1VTsJaIFbXOZTm1
+         D86dMvAzPPCazmri5geAY9HVQ785S7g8os/XTd54G6scL0ykcnD1xNR0CgQXnzAoj5
+         8/D4mqeHa7mJVZ0BGTJZ6jAPnKUDMfNz6EiV2HTOL14xQTPJ7NhfvHZV8q/dlqN1SX
+         rGzi4kyKCmwpbBiLE11+29uQaVTvUU1PlD+J8X48DN/0QPJJXU12s1lRxZYUt8eeGf
+         37ppjYkj+/9Xg==
+Received: by mail-ed1-f42.google.com with SMTP id z20so904921edc.13;
+        Tue, 05 Oct 2021 09:16:01 -0700 (PDT)
+X-Gm-Message-State: AOAM533lzeTccxxN19Pj68h48/XbxnM0WfXXVqPwnLQ7dTsCubNP6LO5
+        HTmndqtpXFZX/g1xLlnwF0jx/7niuy1PZNakyg==
+X-Google-Smtp-Source: ABdhPJwz+IAhSNH6BxzvW3QvcUQBpOfB0ZtacYFzUVmuAcaKtBIqPhZhgBpWbts2afyyDJzaFG9oIJE04j/Mpow6z2E=
+X-Received: by 2002:a05:6402:44c:: with SMTP id p12mr27851295edw.145.1633450560320;
+ Tue, 05 Oct 2021 09:16:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdanbovvXXLAGGZEEiKXXrNnW+8p1sCONQYWmAjVi-m-9A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+References: <20211005155321.2966828-1-kuba@kernel.org> <20211005155321.2966828-2-kuba@kernel.org>
+In-Reply-To: <20211005155321.2966828-2-kuba@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 5 Oct 2021 11:15:48 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+HsW-dpUxC2Sz-FhgHgRonhanX2LgUVHiNZYfZS81iBQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+HsW-dpUxC2Sz-FhgHgRonhanX2LgUVHiNZYfZS81iBQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 1/4] of: net: add a helper for loading netdev->dev_addr
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     David Miller <davem@davemloft.net>,
+        netdev <netdev@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Tue, Oct 5, 2021 at 10:53 AM Jakub Kicinski <kuba@kernel.org> wrote:
+>
+> Commit 406f42fa0d3c ("net-next: When a bond have a massive amount
+> of VLANs...") introduced a rbtree for faster Ethernet address look
+> up. To maintain netdev->dev_addr in this tree we need to make all
+> the writes to it got through appropriate helpers.
+>
+> There are roughly 40 places where netdev->dev_addr is passed
+> as the destination to a of_get_mac_address() call. Add a helper
+> which takes a dev pointer instead, so it can call an appropriate
+> helper.
+>
+> Note that of_get_mac_address() already assumes the address is
+> 6 bytes long (ETH_ALEN) so use eth_hw_addr_set().
+>
+> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+> ---
+>  drivers/of/of_net.c    | 25 +++++++++++++++++++++++++
 
-On 06/10/2021 01.08, Linus Walleij wrote:
-> Hi Hector,
-> 
-> On Tue, Oct 5, 2021 at 6:00 PM Hector Martin <marcan@marcan.st> wrote:
-> 
->>   drivers/soc/apple/Kconfig               |  21 ++
->>   drivers/soc/apple/Makefile              |   2 +
->>   drivers/soc/apple/apple-pmgr-pwrstate.c | 281 ++++++++++++++++++++++++
-> 
-> This is traditionally where we put the ARM SoC drivers, but
-> Mac has traditionally used drivers/macintosh for their custom
-> board etc stuff. Or is that just for any off-chip stuff?
-> 
-> I suppose it doesn't matter much (unless there is code under
-> drivers/macintosh we want to reuse for M1), but it could be a bit
-> confusing?
+Can we move this file to drivers/net/ given it's always merged via the
+net tree? It's also the only thing left not part of the driver
+subsystems.
 
-Hmm, it seems that tree is mostly about the PowerPC era Macs; the only 
-thing enabled for x86 there is MAC_EMUMOUSEBTN. There is also 
-platform/x86/apple-gmux.c for an x86 Mac specific thing...
-
-We already broke tradition with the "apple," DT compatible prefix (used 
-to be AAPL for the PowerPC Macs), and these chips aren't even just used 
-in Macs (e.g. the iPad, which in theory people would be able to run 
-Linux on if someone figures out a jailbreak), so perhaps it's time for 
-another break here?
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+>  include/linux/of_net.h |  6 ++++++
+>  2 files changed, 31 insertions(+)
+>
+> diff --git a/drivers/of/of_net.c b/drivers/of/of_net.c
+> index dbac3a172a11..f1a9bf7578e7 100644
+> --- a/drivers/of/of_net.c
+> +++ b/drivers/of/of_net.c
+> @@ -143,3 +143,28 @@ int of_get_mac_address(struct device_node *np, u8 *addr)
+>         return of_get_mac_addr_nvmem(np, addr);
+>  }
+>  EXPORT_SYMBOL(of_get_mac_address);
+> +
+> +/**
+> + * of_get_ethdev_address()
+> + * @np:                Caller's Device Node
+> + * @dev:       Pointer to netdevice which address will be updated
+> + *
+> + * Search the device tree for the best MAC address to use.
+> + * If found set @dev->dev_addr to that address.
+> + *
+> + * See documentation of of_get_mac_address() for more information on how
+> + * the best address is determined.
+> + *
+> + * Return: 0 on success and errno in case of error.
+> + */
+> +int of_get_ethdev_address(struct device_node *np, struct net_device *dev)
+> +{
+> +       u8 addr[ETH_ALEN];
+> +       int ret;
+> +
+> +       ret = of_get_mac_address(np, addr);
+> +       if (!ret)
+> +               eth_hw_addr_set(dev, addr);
+> +       return ret;
+> +}
+> +EXPORT_SYMBOL(of_get_ethdev_address);
+> diff --git a/include/linux/of_net.h b/include/linux/of_net.h
+> index daef3b0d9270..314b9accd98c 100644
+> --- a/include/linux/of_net.h
+> +++ b/include/linux/of_net.h
+> @@ -14,6 +14,7 @@
+>  struct net_device;
+>  extern int of_get_phy_mode(struct device_node *np, phy_interface_t *interface);
+>  extern int of_get_mac_address(struct device_node *np, u8 *mac);
+> +int of_get_ethdev_address(struct device_node *np, struct net_device *dev);
+>  extern struct net_device *of_find_net_device_by_node(struct device_node *np);
+>  #else
+>  static inline int of_get_phy_mode(struct device_node *np,
+> @@ -27,6 +28,11 @@ static inline int of_get_mac_address(struct device_node *np, u8 *mac)
+>         return -ENODEV;
+>  }
+>
+> +static inline int of_get_ethdev_address(struct device_node *np, struct net_device *dev)
+> +{
+> +       return -ENODEV;
+> +}
+> +
+>  static inline struct net_device *of_find_net_device_by_node(struct device_node *np)
+>  {
+>         return NULL;
+> --
+> 2.31.1
+>
