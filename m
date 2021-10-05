@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16CDB421CEE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 05:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 715D0421CE7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 05:23:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231938AbhJEDZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 23:25:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59862 "EHLO
+        id S231820AbhJEDZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 23:25:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231495AbhJEDZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 23:25:41 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2197C061753
-        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 20:23:51 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 77-20020a9d0ed3000000b00546e10e6699so24206582otj.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 20:23:51 -0700 (PDT)
+        with ESMTP id S231669AbhJEDZm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 23:25:42 -0400
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8602AC061749
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 20:23:52 -0700 (PDT)
+Received: by mail-ot1-x32f.google.com with SMTP id c6-20020a9d2786000000b005471981d559so24167181otb.5
+        for <devicetree@vger.kernel.org>; Mon, 04 Oct 2021 20:23:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=SvFCR87aiu5ds1ai63pEGRyATYSJy34i9VrTijqqATk=;
-        b=vXNxhAPVm30L6Xwd7l1KDcxjU3BcId0umPpRZ+QRXrcRF/NNweADvP03yj3W16MmqC
-         t+TU6TUsj3/p6FhOBj1Ywr8CI3d/EnJjW+QbRZMUlrT/JHQLY/rPw0Cp0oPoVfc0qIxy
-         5ysF0+II44twkSwSjQ66eJNFuNcWHhtnJ8l35QnrHCVgZ/rPxk2+Tr2/zwRDQ7xbQMJx
-         tNqwefRDwAFJDYTxHxDNlfP/piepyb/GlMnhZjlirSC5ZkkOciIZfv1hJeDU8/gxCffQ
-         rfXb2a+B2ICQYVYGQaAEtBNTF7rO0B8cOd41MeBZSmWHgMbBq0i+o28Nxn5wug6vdv6N
-         S3IQ==
+        bh=y5RA2wJTON98WzYl53qPa7h0i0r9iGvauGseixrJrIc=;
+        b=Aa9b5NPgFHKC4wB3EjIr3h4i/9hZDOyzf3Q8MLutzyZhY721rTJ5waSU/q9Su+JK33
+         og9nWMM4s5u+KqiWHuaTJ+ukcchVJyTa8/BXLnUIz7OYeGvPSFGfSWqma9rtyO6FTneT
+         kRKg2FwMXTJAmZP+7Ak2LFG9z0rh1mNfAsgaMwzkHbsf9R9IpKkrLaYIZ6sihDRmBiB/
+         9708xNEs/b3f3QWdUCaYmztByqSLys6pQ6Yd0TWXC7px6c/omo6HKSPdjhMG7fEhkRkP
+         zcDnsqnb3N4uWiNHfwEb6s25p86Ecw1SgoMflhn9uE77fItk9PJDCROIhG1bNMXhNoiY
+         cgNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SvFCR87aiu5ds1ai63pEGRyATYSJy34i9VrTijqqATk=;
-        b=Gvph5winCk8Tfa7YvwScy5Se+4czD2In3QXeA9QAq93c02HubV0m1zENujoe5ZgGux
-         S1FYJ4aSzRItIrkfQLvT++6/RD5bbT5SjaiNStzZW+22fJ6di3vvvJl2p2Kw3tDwQbto
-         TirQSM2/ohwv3iSGCmOpSJyGTXzWg7DIgh1B8K8lLNhQz6jYWF6rHx0J+KdMLDKIyIiQ
-         xIIiPKbvxWTXtxW8Y2EDj0y3R0eiO0SrCKuvMVYWMmwyvo0wqQlPdwPmjRaOkaU0As2r
-         Qgpv/MlAlGe7jvRDVCOXbPJvLTaE85S+Ty9WEjayG8oXCQo4bOoojD+jr2BkinCWPTiQ
-         /xeQ==
-X-Gm-Message-State: AOAM532CR9QAsw5XTwjcYT3Z1mG6zP1joMy6el441OPelYNyVrmXzwv9
-        dW4pvAf/JGyBt5Cy6xx+a0fYaw==
-X-Google-Smtp-Source: ABdhPJxSSslvoW0rwWInaRPbH4TQYAA0/DWTIUmmyUTD8TNYQ48VnwLlvqg+BiZluVnaq9t2DjPRdQ==
-X-Received: by 2002:a05:6830:793:: with SMTP id w19mr11859830ots.23.1633404231018;
+        bh=y5RA2wJTON98WzYl53qPa7h0i0r9iGvauGseixrJrIc=;
+        b=Ja11B+u8ZOjCysWwpYffa8e7bHwekg1WT+dGtYuGZIiR6OohuOBHJRvQVxmyIez5sC
+         QvfG4BTCs8/jFXrfTh37RMPqlfatVOG8NESyGNjvlxi472xA3LEXyhoo/NHKpI7yA0US
+         wZoIJCelrQhuXmAO4KQVX27lB5fhBf3fpT7NC7kgiW4lHgezoHxJRXY3wE2IrO3uhjVg
+         o+EGXYQwfpFRM0BsBDX0SDSag/3Ni9ONU9Zxh1LFzxt8zwgY3GqmA5p1EDb5uT+pBtfh
+         tFo0k6p5fleZwM11ZLLs7PNS3/PCa1BWYsNg7p2nFR9kJLVt0jSQlESe1Ao786E6HI/9
+         zmtA==
+X-Gm-Message-State: AOAM530LkQNZZQvPc/DJ6gU/xk1YfKrk5h1SDq6gxbd/AQdWlFlVNFNb
+        Bj81485ATD2d2yb7FHcOFbsnEw==
+X-Google-Smtp-Source: ABdhPJySapr/1zE5LsF59a3kyVP11LwcxvnuRGHYCpStdsF4EQ0YZ2cV0VVp78WP2loqj+923JSnVA==
+X-Received: by 2002:a05:6830:18f0:: with SMTP id d16mr12549396otf.63.1633404231873;
         Mon, 04 Oct 2021 20:23:51 -0700 (PDT)
 Received: from localhost.localdomain ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id j4sm3111955oia.56.2021.10.04.20.23.50
+        by smtp.gmail.com with ESMTPSA id j4sm3111955oia.56.2021.10.04.20.23.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Oct 2021 20:23:50 -0700 (PDT)
+        Mon, 04 Oct 2021 20:23:51 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/4] thermal/drivers/qcom/spmi-adc-tm5: Add support for HC variant
-Date:   Mon,  4 Oct 2021 20:25:29 -0700
-Message-Id: <20211005032531.2251928-3-bjorn.andersson@linaro.org>
+Subject: [PATCH v3 3/4] arm64: dts: qcom: pm8998: Add ADC Thermal Monitor node
+Date:   Mon,  4 Oct 2021 20:25:30 -0700
+Message-Id: <20211005032531.2251928-4-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20211005032531.2251928-1-bjorn.andersson@linaro.org>
 References: <20211005032531.2251928-1-bjorn.andersson@linaro.org>
@@ -70,99 +70,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The variant of the ADC Thermal Monitor block found in e.g. PM8998 is
-"HC", add support for this variant to the ADC TM5 driver in order to
-support using VADC channels as thermal_zones on SDM845 et al.
+Add a node for the ADC Thermal Monitor found in the PM8998 PMIC. This is
+used to connect thermal zones with ADC channels.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
 
 Changes since v2:
-- Dropped conditional return ret right before unconditionatl return ret;
+- None
 
- drivers/thermal/qcom/qcom-spmi-adc-tm5.c | 41 +++++++++++++++++++++++-
- 1 file changed, 40 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/pm8998.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-index 8494cc04aa21..824671cf494a 100644
---- a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-+++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-@@ -82,6 +82,7 @@ struct adc_tm5_data {
- 	const u32	full_scale_code_volt;
- 	unsigned int	*decimation;
- 	unsigned int	*hw_settle;
-+	bool		is_hc;
- };
+diff --git a/arch/arm64/boot/dts/qcom/pm8998.dtsi b/arch/arm64/boot/dts/qcom/pm8998.dtsi
+index 6f5bb6b37ec2..d09f2954b6f9 100644
+--- a/arch/arm64/boot/dts/qcom/pm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8998.dtsi
+@@ -84,6 +84,16 @@ adc-chan@6 {
+ 			};
+ 		};
  
- enum adc_tm5_cal_method {
-@@ -146,6 +147,14 @@ static const struct adc_tm5_data adc_tm5_data_pmic = {
- 					 64000, 128000 },
- };
- 
-+static const struct adc_tm5_data adc_tm_hc_data_pmic = {
-+	.full_scale_code_volt = 0x70e4,
-+	.decimation = (unsigned int []) { 256, 512, 1024 },
-+	.hw_settle = (unsigned int []) { 0, 100, 200, 300, 400, 500, 600, 700,
-+					 1000, 2000, 4000, 6000, 8000, 10000 },
-+	.is_hc = true,
-+};
++		pm8998_adc_tm: adc-tm@3400 {
++			compatible = "qcom,spmi-adc-tm-hc";
++			reg = <0x3400>;
++			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
++			#thermal-sensor-cells = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
 +
- static int adc_tm5_read(struct adc_tm5_chip *adc_tm, u16 offset, u8 *data, int len)
- {
- 	return regmap_bulk_read(adc_tm->regmap, adc_tm->base + offset, data, len);
-@@ -375,6 +384,29 @@ static int adc_tm5_register_tzd(struct adc_tm5_chip *adc_tm)
- 	return 0;
- }
- 
-+static int adc_tm_hc_init(struct adc_tm5_chip *chip)
-+{
-+	unsigned int i;
-+	u8 buf[2];
-+	int ret;
-+
-+	for (i = 0; i < chip->nchannels; i++) {
-+		if (chip->channels[i].channel >= ADC_TM5_NUM_CHANNELS) {
-+			dev_err(chip->dev, "Invalid channel %d\n", chip->channels[i].channel);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	buf[0] = chip->decimation;
-+	buf[1] = chip->avg_samples | ADC_TM5_FAST_AVG_EN;
-+
-+	ret = adc_tm5_write(chip, ADC_TM5_ADC_DIG_PARAM, buf, sizeof(buf));
-+	if (ret)
-+		dev_err(chip->dev, "block write failed: %d\n", ret);
-+
-+	return ret;
-+}
-+
- static int adc_tm5_init(struct adc_tm5_chip *chip)
- {
- 	u8 buf[4], channels_available;
-@@ -591,7 +623,10 @@ static int adc_tm5_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	ret = adc_tm5_init(adc_tm);
-+	if (adc_tm->data->is_hc)
-+		ret = adc_tm_hc_init(adc_tm);
-+	else
-+		ret = adc_tm5_init(adc_tm);
- 	if (ret) {
- 		dev_err(dev, "adc-tm init failed\n");
- 		return ret;
-@@ -612,6 +647,10 @@ static const struct of_device_id adc_tm5_match_table[] = {
- 		.compatible = "qcom,spmi-adc-tm5",
- 		.data = &adc_tm5_data_pmic,
- 	},
-+	{
-+		.compatible = "qcom,spmi-adc-tm-hc",
-+		.data = &adc_tm_hc_data_pmic,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, adc_tm5_match_table);
+ 		rtc@6000 {
+ 			compatible = "qcom,pm8941-rtc";
+ 			reg = <0x6000>, <0x6100>;
 -- 
 2.29.2
 
