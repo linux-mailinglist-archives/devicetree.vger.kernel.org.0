@@ -2,161 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DD9942328B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1799E423293
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 23:01:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235715AbhJEVB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 17:01:26 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:43232 "EHLO m43-7.mailgun.net"
+        id S235467AbhJEVDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 17:03:12 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:50800 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230027AbhJEVBZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 17:01:25 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633467574; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=fm5FQYtCALSKM1ZR93d4V0E1g2kpfnAO1WvTCSbTa4A=;
- b=k3Ky/ULqGZak4U0UTYcNDQyPD7Dvhk8xBi8V5mIG952RCHrrwtdIYBBl04qPZHy8xBcTqRCc
- oi+m0ikz503RFuq2iqN1Xd05I+pucB6VXsqJIw8UJ9L7LkP9aJO3wVbyzbnWvST1gGtMaQfi
- kNqAGBTvx91g28aGpLkE9iq76vg=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 615cbca84ccdf4fe579580f7 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 20:59:20
- GMT
-Sender: abhinavk=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D9CEDC43635; Tue,  5 Oct 2021 20:59:19 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: abhinavk)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8BB87C4338F;
-        Tue,  5 Oct 2021 20:59:18 +0000 (UTC)
+        id S231387AbhJEVDM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 17:03:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=xoD6/I7Cc8crpzzqPjHiA+h57zOy6+xgtG83jf7v3i8=; b=NYWTqPejfFry0n/LrjSsAY4phD
+        Qv1Tdgk05aJiDeQWZbS1BqXiFN/DcEdqUax8IasE+VPxks+3NE3UEyp2JQfM8YXCOsAG4Oogb1FPj
+        SFZsudwdTTCj2sSoyY+bdNG+q9Bbt+LK+gMQf5D8vdH6eIZDVq+QPOqlesfuADycj2UQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mXrYs-009kQB-57; Tue, 05 Oct 2021 23:01:18 +0200
+Date:   Tue, 5 Oct 2021 23:01:18 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: lets settle the LED `function` property regarding the netdev
+ trigger
+Message-ID: <YVy9Ho47XeVON+lB@lunn.ch>
+References: <20211001143601.5f57eb1a@thinkpad>
+ <YVn815h7JBtVSfwZ@lunn.ch>
+ <20211003212654.30fa43f5@thinkpad>
+ <YVsUodiPoiIESrEE@lunn.ch>
+ <20211004170847.3f92ef48@thinkpad>
+ <0b1bc2d7-6e62-5adb-5aed-48b99770d80d@gmail.com>
+ <20211005222657.7d1b2a19@thinkpad>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 05 Oct 2021 13:59:18 -0700
-From:   abhinavk@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kuogee Hsieh <khsieh@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [Freedreno] [PATCH v3 3/5] drm/msm/dp: Refactor ioremap wrapper
-In-Reply-To: <20211001174400.981707-4-bjorn.andersson@linaro.org>
-References: <20211001174400.981707-1-bjorn.andersson@linaro.org>
- <20211001174400.981707-4-bjorn.andersson@linaro.org>
-Message-ID: <e5556fc02b53cfd613287bea47e12023@codeaurora.org>
-X-Sender: abhinavk@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211005222657.7d1b2a19@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-10-01 10:43, Bjorn Andersson wrote:
-> In order to deal with multiple memory ranges in the following commit
-> change the ioremap wrapper to not poke directly into the dss_io_data
-> struct.
+> In the discussed case (ethernet PHY LEDs) - it is sometimes possible to
+> have multiple brightness levels per color channel. For example some
+> Marvell PHYs allow to set 8 levels of brightness for Dual Mode LEDs.
+> Dual Mode is what Marvell calls when the PHY allows to pair two
+> LED pins to control one dual-color LED (green-red, for example) into
+> one.
 > 
-> While at it, devm_ioremap_resource() already prints useful error
-> messages on failure, so omit the unnecessary prints from the caller.
+> Moreover for this Dual Mode case they also allow for HW control of
+> this dual LED, which, when enabled, does something like this, in HW:
+>   1g link	green
+>   100m link	yellow
+>   10m link	red
+>   no link	off
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
-> ---
+> Note that actual colors depend on the LEDs themselves. The PHY
+> documentation does not talk about the color, only about which pin is
+> on/off. The thing is that if we want to somehow set this mode for the
+> LED, it should be represented as one LED class device.
 > 
-> Changes since v2:
-> - Switched to devm_platform_get_and_ioremap_resource()
-> 
->  drivers/gpu/drm/msm/dp/dp_parser.c | 35 ++++++++++--------------------
->  drivers/gpu/drm/msm/dp/dp_parser.h |  2 +-
->  2 files changed, 12 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.c
-> b/drivers/gpu/drm/msm/dp/dp_parser.c
-> index c064ced78278..c05ba1990218 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_parser.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_parser.c
-> @@ -19,40 +19,27 @@ static const struct dp_regulator_cfg 
-> sdm845_dp_reg_cfg = {
->  	},
->  };
-> 
-> -static int msm_dss_ioremap(struct platform_device *pdev,
-> -				struct dss_io_data *io_data)
-> +static void __iomem *dp_ioremap(struct platform_device *pdev, int
-> idx, size_t *len)
->  {
-> -	struct resource *res = NULL;
-> +	struct resource *res;
-> +	void __iomem *base;
-> 
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	if (!res) {
-> -		DRM_ERROR("%pS->%s: msm_dss_get_res failed\n",
-> -			__builtin_return_address(0), __func__);
-> -		return -ENODEV;
-> -	}
-> -
-> -	io_data->len = (u32)resource_size(res);
-> -	io_data->base = devm_ioremap(&pdev->dev, res->start, io_data->len);
-> -	if (!io_data->base) {
-> -		DRM_ERROR("%pS->%s: ioremap failed\n",
-> -			__builtin_return_address(0), __func__);
-> -		return -EIO;
-> -	}
-> +	base = devm_platform_get_and_ioremap_resource(pdev, idx, &res);
-> +	if (!IS_ERR(base))
-> +		*len = resource_size(res);
-> 
-> -	return 0;
-> +	return base;
->  }
-> 
->  static int dp_parser_ctrl_res(struct dp_parser *parser)
->  {
-> -	int rc = 0;
->  	struct platform_device *pdev = parser->pdev;
->  	struct dp_io *io = &parser->io;
-> +	struct dss_io_data *dss = &io->dp_controller;
-> 
-> -	rc = msm_dss_ioremap(pdev, &io->dp_controller);
-> -	if (rc) {
-> -		DRM_ERROR("unable to remap dp io resources, rc=%d\n", rc);
-> -		return rc;
-> -	}
-> +	dss->base = dp_ioremap(pdev, 0, &dss->len);
-> +	if (IS_ERR(dss->base))
-> +		return PTR_ERR(dss->base);
-> 
->  	io->phy = devm_phy_get(&pdev->dev, "dp");
->  	if (IS_ERR(io->phy))
-> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.h
-> b/drivers/gpu/drm/msm/dp/dp_parser.h
-> index 34b49628bbaf..dc62e70b1640 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_parser.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_parser.h
-> @@ -26,7 +26,7 @@ enum dp_pm_type {
->  };
-> 
->  struct dss_io_data {
-> -	u32 len;
-> +	size_t len;
->  	void __iomem *base;
->  };
+> I want to extend the netdev trigger to support such configuration,
+> so that when you have multicolor LED, you will be able to say which
+> color should be set for which link mode.
+
+This is getting into the exotic level i don't think we need to
+support. How many PHYs have you seen that support something like this?
+
+I suggest we start with simple independent LEDs. That gives enough to
+support the majority of use cases people actually need. And is enough
+to unblock people who i keep NACKing patches and tell them to wait for
+this work to get merged.
+
+     Andrew
+
+
+
