@@ -2,145 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5DC342325A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47912423275
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbhJEUwR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 5 Oct 2021 16:52:17 -0400
-Received: from aposti.net ([89.234.176.197]:51698 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235545AbhJEUwR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 16:52:17 -0400
-Date:   Tue, 05 Oct 2021 21:50:12 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v5 5/7] MIPS: DTS: jz4780: Account for Synopsys HDMI
- driver and LCD controllers
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
+        id S236460AbhJEU6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 16:58:10 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:47657 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236444AbhJEU6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 16:58:09 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633467378; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=d2UIVnPOW3ElF02gfggo+xeMDHqG4QtmTz1NBPCyNOc=;
+ b=NBQuKFM2FQSKsTb8Q2ws5vvVZvtHJhnTvATqTSJnXhoYhMJ1xkJMiNAuyJcwW2r010O+vKEc
+ VkPXfO7cVnanRe5/jAqg0fFRC7gESnModI2xFpreKadPNRF0QtSrPyHj2nTlSAqOBLUEJR7+
+ db5UhReZ6TPGvyOtKgcOqaZEt0w=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 615cbbf29ebaf35aaa14b505 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 20:56:18
+ GMT
+Sender: abhinavk=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 60C9DC4361B; Tue,  5 Oct 2021 20:56:17 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: abhinavk)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6416DC43460;
+        Tue,  5 Oct 2021 20:56:16 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 05 Oct 2021 13:56:16 -0700
+From:   abhinavk@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Message-Id: <O7VI0R.CRIG8R7O0OOI3@crapouillou.net>
-In-Reply-To: <c243176cb5e5a3ab5df1fe77f9246b6d5ec4f88e.1633436959.git.hns@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com>
-        <c243176cb5e5a3ab5df1fe77f9246b6d5ec4f88e.1633436959.git.hns@goldelico.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kuogee Hsieh <khsieh@codeaurora.org>,
+        Tanmay Shah <tanmay@codeaurora.org>,
+        Chandan Uddaraju <chandanu@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [Freedreno] [PATCH v3 1/5] dt-bindings: msm/dp: Change reg
+ definition
+In-Reply-To: <20211001174400.981707-2-bjorn.andersson@linaro.org>
+References: <20211001174400.981707-1-bjorn.andersson@linaro.org>
+ <20211001174400.981707-2-bjorn.andersson@linaro.org>
+Message-ID: <78cc9c0faafcab3375f74a4f52790a52@codeaurora.org>
+X-Sender: abhinavk@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus & Paul,
-
-Le mar., oct. 5 2021 at 14:29:17 +0200, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> From: Paul Boddie <paul@boddie.org.uk>
+On 2021-10-01 10:43, Bjorn Andersson wrote:
+> reg was defined as one region covering the entire DP block, but the
+> memory map is actually split in 4 regions and obviously the size of
+> these regions differs between platforms.
 > 
-> A specialisation of the generic Synopsys HDMI driver is employed for 
-> JZ4780
-> HDMI support. This requires a new driver, plus device tree and 
-> configuration
-> modifications.
+> Switch the reg to require that all four regions are specified instead.
+> It is expected that the implementation will handle existing DTBs, even
+> though the schema defines the new layout.
 > 
-> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
 > ---
->  arch/mips/boot/dts/ingenic/jz4780.dtsi | 45 
-> ++++++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
 > 
-> diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi 
-> b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-> index 9e34f433b9b5..c3c18a59c377 100644
-> --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-> @@ -424,6 +424,51 @@ i2c4: i2c@10054000 {
->  		status = "disabled";
->  	};
+> Changes since v2:
+> - None
 > 
-> +	hdmi: hdmi@10180000 {
-> +		compatible = "ingenic,jz4780-dw-hdmi";
-> +		reg = <0x10180000 0x8000>;
-> +		reg-io-width = <4>;
-> +
-> +		clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
-> +		clock-names = "iahb", "isfr";
-> +
-> +		assigned-clocks = <&cgu JZ4780_CLK_HDMI>;
-> +		assigned-clock-rates = <27000000>;
-
-Any reason why this is set to 27 MHz? Is it even required? Because with 
-the current ci20.dts, it won't be clocked at anything but 48 MHz.
-
-> +
-> +		interrupt-parent = <&intc>;
-> +		interrupts = <3>;
-> +
-> +		/* ddc-i2c-bus = <&i2c4>; */
-> +
-> +		status = "disabled";
-> +	};
-> +
-> +	lcdc0: lcdc0@13050000 {
-> +		compatible = "ingenic,jz4780-lcd";
-> +		reg = <0x13050000 0x1800>;
-> +
-> +		clocks = <&cgu JZ4780_CLK_TVE>, <&cgu JZ4780_CLK_LCD0PIXCLK>;
-> +		clock-names = "lcd", "lcd_pclk";
-> +
-> +		interrupt-parent = <&intc>;
-> +		interrupts = <31>;
-> +
-> +		status = "disabled";
-
-I think you can keep lcdc0 enabled by default (not lcdc1 though), since 
-it is highly likely that you'd want that.
-
-Cheers,
--Paul
-
-> +	};
-> +
-> +	lcdc1: lcdc1@130a0000 {
-> +		compatible = "ingenic,jz4780-lcd";
-> +		reg = <0x130a0000 0x1800>;
-> +
-> +		clocks = <&cgu JZ4780_CLK_TVE>, <&cgu JZ4780_CLK_LCD1PIXCLK>;
-> +		clock-names = "lcd", "lcd_pclk";
-> +
-> +		interrupt-parent = <&intc>;
-> +		interrupts = <31>;
-> +
-> +		status = "disabled";
-> +	};
-> +
->  	nemc: nemc@13410000 {
->  		compatible = "ingenic,jz4780-nemc", "simple-mfd";
->  		reg = <0x13410000 0x10000>;
-> --
-> 2.33.0
+>  .../bindings/display/msm/dp-controller.yaml         | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
 > 
-
-
+> diff --git
+> a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index d89b3c510c27..6bb424c21340 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -19,7 +19,12 @@ properties:
+>        - qcom,sc7180-dp
+> 
+>    reg:
+> -    maxItems: 1
+> +    items:
+> +      - description: ahb register block
+> +      - description: aux register block
+> +      - description: link register block
+> +      - description: p0 register block
+> +      - description: p1 register block
+> 
+>    interrupts:
+>      maxItems: 1
+> @@ -99,7 +104,11 @@ examples:
+> 
+>      displayport-controller@ae90000 {
+>          compatible = "qcom,sc7180-dp";
+> -        reg = <0xae90000 0x1400>;
+> +        reg = <0xae90000 0x200>,
+> +              <0xae90200 0x200>,
+> +              <0xae90400 0xc00>,
+> +              <0xae91000 0x400>,
+> +              <0xae91400 0x400>;
+>          interrupt-parent = <&mdss>;
+>          interrupts = <12>;
+>          clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
