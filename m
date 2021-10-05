@@ -2,235 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99383421EFD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 08:45:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FA6D421F04
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 08:46:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232261AbhJEGrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 02:47:01 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:27234 "EHLO
-        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231751AbhJEGq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 02:46:58 -0400
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1956C0Nh003700;
-        Tue, 5 Oct 2021 02:44:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=in-reply-to : from : to
- : cc : date : message-id : content-type : references :
- content-transfer-encoding : mime-version : subject; s=pp1;
- bh=pPNWkNRfEsRJAAVYmHmXPa0lB82wL+NbFspwM37jvaQ=;
- b=sJSJVKM0feq+rxyH9DwjBCnItFv8fO/V3/12Ss8dQwbev7R/04OKAK21erOrs76AjB4g
- 6Woi6p0OQDqRkmSS7Y2VXyatzLoaVtYQeXKaeaLIWFVroRNswdWRiXHd034ZvbUZvp50
- 3F30ZY2qhdxrVeatN8Kcg+HoeivKpbLevopI6LuN1BzksG483siT/6QbJK9IXuGt1fjE
- Nse8vtgcnTA6rxZgyLT5lhtFTDy27sfJW4A3P4U/ZRP6iM/N19kaRt/ANkNwPVxMQFZf
- Medi3UQs5KST2Im1NJWG0WdJkdcUA38BFZVUqxGwFRKCGBo11aSNomcNPw1nmaZLg07s Ag== 
-Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3bgh7j8kpe-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 05 Oct 2021 02:44:56 -0400
-Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
-        by ppma02wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 1956bE30020060;
-        Tue, 5 Oct 2021 06:44:55 GMT
-Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
-        by ppma02wdc.us.ibm.com with ESMTP id 3bef2adcss-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 05 Oct 2021 06:44:55 +0000
-Received: from b03ledav001.gho.boulder.ibm.com (b03ledav001.gho.boulder.ibm.com [9.17.130.232])
-        by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 1956isNK36438486
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 5 Oct 2021 06:44:54 GMT
-Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 2540B6E059;
-        Tue,  5 Oct 2021 06:44:54 +0000 (GMT)
-Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 11BC66E058;
-        Tue,  5 Oct 2021 06:44:53 +0000 (GMT)
-Received: from mww0332.dal12m.mail.ibm.com (unknown [9.208.69.80])
-        by b03ledav001.gho.boulder.ibm.com (Postfix) with ESMTPS;
-        Tue,  5 Oct 2021 06:44:53 +0000 (GMT)
-In-Reply-To: <cb9dedaf242264f76eca18e94934703300be5a7e.camel@yadro.com>
-From:   "Milton Miller II" <miltonm@us.ibm.com>
-To:     "Ivan Mikhaylov" <i.mikhaylov@yadro.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        "Samuel Mendoza-Jonas" <sam@mendozajonas.com>,
-        "Brad Ho" <Brad_Ho@phoenix.com>,
-        "Paul Fertser" <fercerpav@gmail.com>, <openbmc@lists.ozlabs.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Ricardo Del Pozo Gonzalez" <ricardopozo@es.ibm.com>
-Date:   Tue, 5 Oct 2021 06:44:52 +0000
-Message-ID: <OF8E108F72.39D22E89-ON00258765.001E46EB-00258765.00251157@ibm.com>
-Content-Type: text/plain; charset=UTF-8
-Sensitivity: 
-Importance: Normal
-X-Priority: 3 (Normal)
-References: <cb9dedaf242264f76eca18e94934703300be5a7e.camel@yadro.com>,<20210830171806.119857-2-i.mikhaylov@yadro.com>
- <OF2487FB9E.ECED277D-ON00258741.006BEF89-00258744.001FE4C0@ibm.com>
-X-Mailer: Lotus Domino Web Server Release 11.0.1FP2HF114   September 2, 2021
-X-MIMETrack: Serialize by http on MWW0332/03/M/IBM at 10/05/2021 06:44:52,Serialize
- complete at 10/05/2021 06:44:52
-X-Disclaimed: 11143
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: j5JPjlJWzfLnVUmGLkRIH9-0XOo268Ag
-X-Proofpoint-ORIG-GUID: j5JPjlJWzfLnVUmGLkRIH9-0XOo268Ag
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+        id S232346AbhJEGrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 02:47:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35198 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230526AbhJEGrw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 02:47:52 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BFEBB61165;
+        Tue,  5 Oct 2021 06:46:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633416362;
+        bh=iGLwEOScmgytD/tatPTnU36QZ0hfNyjNwouQNp+Iiaw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rAdXpzYDIpOOkIOzMHf22hymEY6OK3i2IJz3WTzXZCKvSyGamanePwEfb7yuv5gMU
+         pHcVuDSaJ5V1eqMwYkZ46KpSggSa41W/mQFPDLTz7gbeELKxk0ofXo+bxDfp9KBoEk
+         zOOgH3I9r3qLN8fzZ0bjEbnIEvBL8SKr23TVN/KSPxjSNkHwpaxbEoqvbrfFTD6N28
+         jRgjWBodlX3teHis5HikVRvl4TMuOhQR/N5ghCUyyKqH5P4xS1B3FFzKammbgSQ1jo
+         MDwNeeGW/+SiVJcUx52HgmoilWN6g+fSUTQfhW6HNDuqVxgV8RG9z6AwKkdvh/B+5O
+         GX0m/a8l0STjw==
+Date:   Tue, 5 Oct 2021 14:45:56 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Frieder Schrempf <frieder@fris.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH 1/8] arm64: dts: imx8mm-kontron: Add support for ultra
+ high speed modes on SD card
+Message-ID: <20211005064556.GX20743@dragon>
+References: <20210930155633.2745201-1-frieder@fris.de>
+ <20210930155633.2745201-2-frieder@fris.de>
 MIME-Version: 1.0
-Subject: RE:  [PATCH 1/1] net/ncsi: add get MAC address command to get Intel i210
- MAC address
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-10-04_05,2021-10-04_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- spamscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0 mlxlogscore=999
- impostorscore=0 clxscore=1011 bulkscore=0 priorityscore=1501
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2109230001 definitions=main-2110050035
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210930155633.2745201-2-frieder@fris.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On September 2, 2021, Ivan Mikhaylov wrote:
+On Thu, Sep 30, 2021 at 05:56:24PM +0200, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> 
+> In order to use ultra high speed modes (UHS) on the SD card slot, we
+> add matching pinctrls and fix the voltage switching for LDO5 of the
+> PMIC, by providing the SD_VSEL pin as GPIO to the PMIC driver.
+> 
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> ---
+>  .../dts/freescale/imx8mm-kontron-n801x-s.dts  | 28 ++++++++++++++++++-
+>  .../freescale/imx8mm-kontron-n801x-som.dtsi   |  2 ++
+>  2 files changed, 29 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
+> index d17abb515835..62ba3bd08a0c 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
+> @@ -189,8 +189,10 @@ usbnet: usbether@1 {
+>  };
+>  
+>  &usdhc2 {
+> -	pinctrl-names = "default";
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>  	pinctrl-0 = <&pinctrl_usdhc2>;
+> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
+>  	vmmc-supply = <&reg_vdd_3v3>;
+>  	vqmmc-supply = <&reg_nvcc_sd>;
+>  	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+> @@ -319,4 +321,28 @@ MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
+>  			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
+>  		>;
+>  	};
+> +
+> +	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
 
->On Thu, 2021-09-02 at 05:48 +0000, Milton Miller II wrote:
->> On August 30, 2021, Ivan Mikhaylov" <i.mikhaylov@yadro.com> wrote:
->> > This patch adds OEM Intel GMA command and response handler for
->it.
->> >=20
->> > /* Get Link Status */
->> > struct ncsi_rsp_gls_pkt {
->> >         struct ncsi_rsp_pkt_hdr rsp;        /* Response header
->*/
->> > diff --git a/net/ncsi/ncsi-rsp.c b/net/ncsi/ncsi-rsp.c
->> > index d48374894817..6447a09932f5 100644
->> > --- a/net/ncsi/ncsi-rsp.c
->> > +++ b/net/ncsi/ncsi-rsp.c
->> > @@ -699,9 +699,51 @@ static int ncsi_rsp_handler_oem_bcm(struct
->> > ncsi_request *nr)
->> >         return 0;
->> > }
->> >=20
->> > +/* Response handler for Intel command Get Mac Address */
->> > +static int ncsi_rsp_handler_oem_intel_gma(struct ncsi_request
->*nr)
->> > +{
->> > +       struct ncsi_dev_priv *ndp =3D nr->ndp;
->> > +       struct net_device *ndev =3D ndp->ndev.dev;
->> > +       const struct net_device_ops *ops =3D ndev->netdev_ops;
->> > +       struct ncsi_rsp_oem_pkt *rsp;
->> > +       struct sockaddr saddr;
->> > +       int ret =3D 0;
->> > +
->> > +       /* Get the response header */
->> > +       rsp =3D (struct ncsi_rsp_oem_pkt
->*)skb_network_header(nr->rsp);
->> > +
->> > +       saddr.sa_family =3D ndev->type;
->> > +       ndev->priv_flags |=3D IFF_LIVE_ADDR_CHANGE;
->> > +       memcpy(saddr.sa_data, &rsp->data[INTEL_MAC_ADDR_OFFSET],
->ETH_ALEN);
->> > +       /* Increase mac address by 1 for BMC's address */
->> > +       eth_addr_inc((u8 *)saddr.sa_data);
->> > +       if (!is_valid_ether_addr((const u8 *)saddr.sa_data))
->> > +               return -ENXIO;
->>=20
->> The Intel GMA retireves the MAC address of the host, and the
->datasheet
->> anticipates the BMC will "share" the MAC by stealing specific TCP
->and=20
->> UDP port traffic destined to the host.
->>=20
->> This "add one" allocation of the MAC is therefore a policy, and one
->that=20
->> is beyond the data sheet.
->>=20
->> While this +1 policy may work for some OEM boards, there are other
->boards=20
->> where the MAC address assigned to the BMC does not follow this
->pattern,=20
->> but instead the MAC is stored in some platform dependent location
->obtained=20
->> in a platform specific manner.
->>=20
->> I suggest this BMC =3D ether_addr_inc(GMA) be opt in via a device
->tree
->> property.=20=20
->>=20
->> as it appears it would be generic to more than one vendor.
->>=20
->> Unfortunately, we missed this when we added the broadcom and
->mellanox
->> handlers.
->>=20
->>=20
->>=20
->
->Milton,
->
->maybe something like "mac_addr_inc" or "ncsi,mac_addr_inc"? Also
->those 3(intel,
->mellanox, broadcom) functions even with handlers similar to each
->other, they
->could be unified on idea, difference in addresses, payload lengths,
->ids only as
->I see. Joel proposed in the past about dts option for Intel OEM
->keep_phy option,
->maybe that's the right time to reorganize all OEM related parts to
->fit in one
->direction with dts options for ethernet interface without Kconfig
->options?
+Did you run dtbs_check on it?
 
-I was hopping to get some feed back from device tree maintainers.=20
-I hope we can get something decided before we have to ask for a=20
-revert.=20=20
+Shawn
 
-Since the existing properties are mac-address and local-mac-address,=20
-I feel the new property should build upon the former like the later.=20=20
-I think the most general would be to have an offset that could be=20
-positive or negative.  I don't think we necessarily need the full=20
-range of address offset as I expect the upper bytes would be remain=20
-the assigned block but maybe some would want a large offset in the=20
-administrativly set address space?  or buy 2 ranges and assign one=20
-from each?
-
-Anyways, I propose one of
-
-mac-address-host-offset
-host-mac-address-offset
-
-how do we make it clear its the offset from the host to the BMC not=20
-from the BMC to the host?   Is the description in the binding enough?
-
-Do we need more than 3 bytes offset?  How should we represent a=20
-decrement vs an increment?  sign extend a u32?  two cells for u64?
-treat the first byte as add or subtract and the rest the offset?  Do=20
-we need a separate property name to subtract?
-
-My system stores the MAC for the BMC elsewhere but we need a=20
-way to opt out of using an offset from the host, hence the need of
-at least some property to opt in.
-
-
-
-
-
-Some background for Rob (and others):
-
-DTMF spec DSP0222 NC-SI (network controller sideband interface)
-is a method to provide a BMC (Baseboard management controller) shared
-access to an external ethernet port for comunication to the management
-network in the outside world.  The protocol describes ethernet packets=20
-that control selective bridging implemented in a host network controller
-to share its phy.  Various NIC OEMs have added a query to find out the=20
-address the host is using, and some vendors have added code to query host
-nic and set the BMC mac to a fixed offset (current hard coded +1 from
-the host value).  If this is compiled in the kernel, the NIC OEM is=20
-recognised and the BMC doesn't miss the NIC response the address is set
-once each time the NCSI stack reinitializes.  This mechanism overrides
-any mac-address or local-mac-address or other assignment.
-
-DSP0222 https://www.dmtf.org/documents/pmci/network-controller-sideband-int=
-erface-nc-si-specification-110
-
-milton
-
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x194
+> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d4
+> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4
+> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4
+> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4
+> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4
+> +			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x196
+> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d6
+> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d6
+> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
+> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
+> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
+> +			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x019
+> +		>;
+> +	};
+>  };
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
+> index d0456daefda8..03b3516abd64 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
+> @@ -86,6 +86,7 @@ pca9450: pmic@25 {
+>  		pinctrl-0 = <&pinctrl_pmic>;
+>  		interrupt-parent = <&gpio1>;
+>  		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +		sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+>  
+>  		regulators {
+>  			reg_vdd_soc: BUCK1 {
+> @@ -225,6 +226,7 @@ MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA			0x400001c3
+>  	pinctrl_pmic: pmicgrp {
+>  		fsl,pins = <
+>  			MX8MM_IOMUXC_GPIO1_IO00_GPIO1_IO0		0x141
+> +			MX8MM_IOMUXC_GPIO1_IO04_GPIO1_IO4		0x141
+>  		>;
+>  	};
+>  
+> -- 
+> 2.33.0
+> 
