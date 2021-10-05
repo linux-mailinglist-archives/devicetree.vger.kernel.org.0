@@ -2,55 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D107E4233E7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 00:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E294D4233E8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 00:55:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236885AbhJEW4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 18:56:41 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:57148 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236764AbhJEW4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 18:56:41 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 195Mse1G025806;
-        Tue, 5 Oct 2021 17:54:40 -0500
+        id S236764AbhJEW5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 18:57:09 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:51140 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236700AbhJEW5I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 18:57:08 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 195MtDBx034240;
+        Tue, 5 Oct 2021 17:55:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1633474480;
-        bh=DRu4uGHJOsn2Qjk78rnIUvTnwRcSP0GiBlBS7UnsB9c=;
+        s=ti-com-17Q1; t=1633474513;
+        bh=Vqrb8OITY86uTHg7VFPfnXDWjzx60PvTJ572wpmOzZ8=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=TrCgSwMXpUygqZ+RKmPeUxi+zXfYbn/vX+crSOm2MwnAyeH7Ld8cvC4szj30hA7ks
-         Cjo+ZijjEHOT403qBYHUDeX3bNYzq8RlZFB4yTm2lTaaZMNju4YenLERV1+/SHuiM3
-         Zh57kVtz9iU+u3qu2CCepd3bNiE/wLtMRDF5hkCE=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 195MserD078224
+        b=dKN66XlYtCc6c3D1rAmx6svJagvbeUp3JQ0cPrb1M7AAVtQRy9mo91kn9fo8XbM5v
+         hlA1HuVQXbZN1SlwRij+PVdieRJ3XH5rVSlkDdZsuyNOsqwYHVeBfMcYX1LVd8DuvT
+         /wBvYuchgi2vhIYJLR6Am8JUnRuvgii4CuS6cor4=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 195MtDDk105984
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 5 Oct 2021 17:54:40 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 5 Oct 2021 17:55:13 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 5
- Oct 2021 17:54:39 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2021 17:55:12 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 5 Oct 2021 17:54:39 -0500
+ Frontend Transport; Tue, 5 Oct 2021 17:55:12 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 195Msd5O093934;
-        Tue, 5 Oct 2021 17:54:39 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 195MtCpj095350;
+        Tue, 5 Oct 2021 17:55:12 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC:     Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am64-main: Add ICSSG nodes
-Date:   Tue, 5 Oct 2021 17:54:38 -0500
-Message-ID: <163347441478.2593.14491163786099201140.b4-ty@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: Makefile: Collate AM64 platforms together
+Date:   Tue, 5 Oct 2021 17:55:12 -0500
+Message-ID: <163347449345.3031.3768295833456220957.b4-ty@ti.com>
 X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210919202935.15604-1-s-anna@ti.com>
-References: <20210919202935.15604-1-s-anna@ti.com>
+In-Reply-To: <20210915121442.27112-1-nm@ti.com>
+References: <20210915121442.27112-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -59,29 +56,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 19 Sep 2021 15:29:35 -0500, Suman Anna wrote:
-> Add the DT nodes for the ICSSG0 and ICSSG1 processor subsystems that are
-> present on the K3 AM64x SoCs. The two ICSSGs are identical to each other
-> for the most part, with some of the peripheral pins from ICSSG1 not pinned
-> out. Each ICSSG instance is represented by a PRUSS subsystem node and other
-> child nodes.
+On Wed, 15 Sep 2021 07:14:42 -0500, Nishanth Menon wrote:
+> Make sure that the platforms are grouped together per SoC. This helps
+> keep the Makefile readable as newer platforms get added to the list.
 > 
-> The nodes are all added and enabled in the common k3-am64-main.dtsi
-> file by default. The MDIO nodes need pinctrl lines, and so should be
-> enabled only on boards where they are actually wired and pinned out
-> for ICSSG Ethernet. Any new board dts file should disable these if
-> they are not sure. These are disabled in the existing AM64x board dts
-> files to begin with.
 > 
-> [...]
 
-Hi Suman Anna,
+Hi Nishanth Menon,
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-am64-main: Add ICSSG nodes
-      commit: c9087e3898a1d085c6fd462e9c325a0afcb4af29
+[1/1] arm64: dts: ti: Makefile: Collate AM64 platforms together
+      commit: e94575e1b05c057895ad36b5cbc539209f2cd64e
 
 
 All being well this means that it will be integrated into the linux-next
