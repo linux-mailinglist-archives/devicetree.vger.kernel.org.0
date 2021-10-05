@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AEFA422675
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 14:27:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CBDB422669
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 14:26:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234918AbhJEM2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 08:28:51 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:35565 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234857AbhJEM2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 08:28:44 -0400
-Received: by mail-oi1-f181.google.com with SMTP id n64so25991759oih.2;
-        Tue, 05 Oct 2021 05:26:53 -0700 (PDT)
+        id S234771AbhJEM2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 08:28:38 -0400
+Received: from mail-oo1-f54.google.com ([209.85.161.54]:41699 "EHLO
+        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234780AbhJEM2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 08:28:36 -0400
+Received: by mail-oo1-f54.google.com with SMTP id b5-20020a4ac285000000b0029038344c3dso6342924ooq.8;
+        Tue, 05 Oct 2021 05:26:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=bfmACICGOmWfPzZ+fa6p+DSX46Smp7cp4Xl40pW5V0I=;
-        b=o5GUb7zYi8c1lKb3oAkQNxx3tOAkLYWdqcNRyR5CPS3aHGQjzqsrt7HVCFE79rU+SP
-         MjCRtRnkEnUnW6k3mwOlKJxZghgksp39o+N3CW0vEhdb4pKk5vSEUVLtunA+UTd5cVg6
-         iTgCgiQX6D4AlKMsJO1pp5qGPrhhj1W2gyC0GfNfZ1YD0iLNKFczlgPc0SY8a+0srDut
-         SoMCENSOmHBpGfC9Qqc1pSuPkKXlMwgtU4oNdNbJ5/mje04k3W+oTo/5oGLncrfxpUpU
-         8otqr+oLrWD0090Boe9RMhnrFrHBaCH4X6k2JJQHcM2kzctUI55KsUxcnjm//Z+VFqlk
-         BvOA==
-X-Gm-Message-State: AOAM533V1QY5Jalnh9jsdHty3GlGVwpSR6TCu6NgXGmeT+jhU5J94GP1
-        YqZGSMs5eLMLTv0uWWxVRsLqN5CJ2g==
-X-Google-Smtp-Source: ABdhPJwGyYN3i6dySAYhusJoss2TO9w7xq/j51h4VZbLySVVJUG2myZcdz9rvTBTFMxh7/4/7dK6fA==
-X-Received: by 2002:a05:6808:1494:: with SMTP id e20mr2214637oiw.28.1633436813466;
-        Tue, 05 Oct 2021 05:26:53 -0700 (PDT)
+        bh=12B425lue7e7bkxC1MmLr36fhfhw6Ghp6FxDgU81lTI=;
+        b=2ZvG6cRtRoQjw9TDwvPnA1TmO7OhqJ6eaJoK+UE/2H2KxmT0yPkim3HJ0SwNxgH+Z7
+         L4qfZL3FosZuTGVTVUwZ55JKyoLs9wObGO2QmDmq93cHAA0krvj0VAGxIGzH0B7t7GHk
+         E/ZrHImSvCpcGnvI15KWiQrBDn+ZStyY8k6E+aQbxedRW6XejOZdoR+K0IZTiBME4+eB
+         R7hGEnxcbG+u1YfMifCl0MjgwSYYXVG4WjfV2ohZCkDz3uDr+YRZd/4X2+FGMxeUtvlL
+         kTf6wrQahHRAHpC3IOoTrbrBKtdpMrZwU7JEk4BNkivYetrZ+JaSx//8GE3eGhMqYQzB
+         /J3A==
+X-Gm-Message-State: AOAM5335Z1tshfYxBdJgSgmTYQXDvLnF9Hw7PfTztOFx54noCi97LlR0
+        a4gs7jqglkDLP3ab2HPtdg==
+X-Google-Smtp-Source: ABdhPJzviUxP+uSvuH4E4JBAfoTZZ7tkOF4YnI98mcMiSAVS1rlPEbdZ3k7X70uJfL7DNdiD2Hhe0w==
+X-Received: by 2002:a4a:b994:: with SMTP id e20mr12894523oop.50.1633436805397;
+        Tue, 05 Oct 2021 05:26:45 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d7sm3461684otl.19.2021.10.05.05.26.52
+        by smtp.gmail.com with ESMTPSA id g21sm3490872ooc.31.2021.10.05.05.26.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Oct 2021 05:26:52 -0700 (PDT)
-Received: (nullmailer pid 3226809 invoked by uid 1000);
+        Tue, 05 Oct 2021 05:26:44 -0700 (PDT)
+Received: (nullmailer pid 3226798 invoked by uid 1000);
         Tue, 05 Oct 2021 12:26:38 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     rafael@kernel.org,
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Taniya Das <tdas@codeaurora.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-kernel@vger.kernel.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>,
-        viresh.kumar@linaro.org, linux-arm-msm@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        bjorn.andersson@linaro.org
-In-Reply-To: <20211005044920.78544-1-manivannan.sadhasivam@linaro.org>
-References: <20211005044920.78544-1-manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: cpufreq: cpufreq-qcom-hw: Convert to YAML bindings
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org
+In-Reply-To: <20211004195255.701220-2-marijn.suijten@somainline.org>
+References: <20211004195255.701220-1-marijn.suijten@somainline.org> <20211004195255.701220-2-marijn.suijten@somainline.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: clk: qcom: Document MSM8976 Global Clock Controller
 Date:   Tue, 05 Oct 2021 07:26:38 -0500
-Message-Id: <1633436798.641210.3226807.nullmailer@robh.at.kernel.org>
+Message-Id: <1633436798.553183.3226797.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Oct 2021 10:19:20 +0530, Manivannan Sadhasivam wrote:
-> Convert Qualcomm cpufreq devicetree binding to YAML.
+On Mon, 04 Oct 2021 21:52:54 +0200, Marijn Suijten wrote:
+> Document the required properties and firmware clocks for gcc-msm8976 to
+> operate nominally, and add header definitions for referencing the clocks
+> from firmware.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > ---
-> 
-> Changes in v2:
-> 
-> * Removed maxItems property as reported by the bot
-> 
->  .../bindings/cpufreq/cpufreq-qcom-hw.txt      | 172 ---------------
->  .../bindings/cpufreq/cpufreq-qcom-hw.yaml     | 201 ++++++++++++++++++
->  2 files changed, 201 insertions(+), 172 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>  .../bindings/clock/qcom,gcc-msm8976.yaml      |  95 +++++++
+>  include/dt-bindings/clock/qcom,gcc-msm8976.h  | 240 ++++++++++++++++++
+>  2 files changed, 335 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8976.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,gcc-msm8976.h
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -79,20 +82,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.example.dt.yaml: performance-controller@12340000: reg: [[305397760, 4096]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.example.dt.yaml: performance-controller@12340000: 'clocks' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.example.dt.yaml: performance-controller@12340000: 'clock-names' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.example.dt.yaml: performance-controller@12340000: '#freq-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.example.dt.yaml: performance-controller@12340000: '#performance-domain-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-msm8976.example.dt.yaml: clock-controller@1800000: 'vdd_gfx-supply' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-msm8976.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1536466
+See https://patchwork.ozlabs.org/patch/1536345
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
