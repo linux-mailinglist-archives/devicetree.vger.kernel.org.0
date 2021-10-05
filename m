@@ -2,118 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1251342233D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 12:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38053422372
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 12:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233501AbhJEKY1 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 5 Oct 2021 06:24:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43104 "EHLO
+        id S234250AbhJEKaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 06:30:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232723AbhJEKY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 06:24:26 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48AB2C06161C
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 03:22:32 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mXhac-00027b-W0; Tue, 05 Oct 2021 12:22:26 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mXhab-0006B5-TG; Tue, 05 Oct 2021 12:22:25 +0200
-Message-ID: <6993ccdaf8f3f248f4ff1c739445e0f798ee0efa.camel@pengutronix.de>
-Subject: Re: [PATCH 3/3] reset: socfpga: add empty driver allowing consumers
- to probe
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     =?UTF-8?Q?Pawe=C5=82?= Anikiel <pan@semihalf.com>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-        dinguyen@kernel.org
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Tomasz Nowicki <tn@semihalf.com>,
-        Konrad Adamczyk <ka@semihalf.com>,
-        Jacek Majkowski <jam@semihalf.com>
-Date:   Tue, 05 Oct 2021 12:22:25 +0200
-In-Reply-To: <CAF9_jYQVpG8imn3zjAGKeZqZqDPtWRYWLQjNSXi2SXjjzAKvfA@mail.gmail.com>
-References: <20210920124141.1166544-1-pan@semihalf.com>
-         <20210920124141.1166544-4-pan@semihalf.com>
-         <ce254cc123f2809976c2f2404941a9074c458309.camel@pengutronix.de>
-         <CAF9_jYQVpG8imn3zjAGKeZqZqDPtWRYWLQjNSXi2SXjjzAKvfA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S234161AbhJEKao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 06:30:44 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 644C1C061755
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 03:28:54 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id v4so8393310vsg.12
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 03:28:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=G0mA3IE5MZEisQTtgMG+oRXyhpY0P+ydyHuZ+OL6HWc=;
+        b=dYz37AlljNPD9qLWQ97zbV27b0HY7ewVO3Uc3VbZE59qtLyIPZdAygLiP/L7L6ta2k
+         7wo82cBeaU/yrZGMukOkPAJVQZ4pLBfEzhvWccizI4iAeqttaW9UJYaQFvD6X593YYIL
+         UMVXewCTa3HMEhW+WMZqNwoGh2ccWd/n4Pm/RN1VTve0giAK9GGSd5+fNcnUwN7X/V9y
+         AGJRlgKoL8TADZr1MKOpubWt6dNk1B3XRYOeE3CyYwjA1HnG55pgvOyQHGnDcbaDSd+t
+         CsvLEOIzJa6coTyRT5lmDL0toEgb6nBTS2LPk6eoarcqHaj93J/x0NsS2JxXZdDhzVeK
+         lPLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=G0mA3IE5MZEisQTtgMG+oRXyhpY0P+ydyHuZ+OL6HWc=;
+        b=q6PRH2igpnY+Ofp0QaLhSL7z6h8+3J/NLliR3PZ7MsEhxYu2m3fE+8ctcg6uJGkCDR
+         4E8hKjrc6NhYCnpvb0d1n9EvdUVAHI6xjL1fpyGxtviuRhADFMXQ7LxbvOs9nFY+8LIE
+         xDk2NDsyHZlUQRFR3riJIBzb8rL8uxnl8RZrgX5xyY43faybL2Rv7Pn8NfymiUsRa9N7
+         Aov3tktAWr9gExMU/h8Rjcn2YmrFoQQghugA4Yzrt5ZYp+vsvSG2C+sUUGKbvgVsS2cc
+         L58BL0rGa7lgakaTwKxrmiIckN/vTnpkHe/28mj+/4J2HLPPG1zoAP4SDgiGC7Qdh9ua
+         4TNA==
+X-Gm-Message-State: AOAM5322pz/wz8esTw+UVlLGzccx8D+n3GMXNjoy9IFw5CVsChc1UKjJ
+        xYbUeVKXVh6yyNFPJDdZc3nKq/GxOINXoct6xfhMfQ==
+X-Google-Smtp-Source: ABdhPJxI3BjDXd7TUEnohF0PNs6zjgfdCxTBiFr0D8GdDdXVisMsIArQDHOLlS4VgiQB2aceby4tfN5qicUSqa2Bf2o=
+X-Received: by 2002:a67:d289:: with SMTP id z9mr8432439vsi.39.1633429733158;
+ Tue, 05 Oct 2021 03:28:53 -0700 (PDT)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210914155607.14122-1-semen.protsenko@linaro.org>
+ <20210914155607.14122-5-semen.protsenko@linaro.org> <96e5587e-aca7-248e-6448-8edfc70784b7@gmail.com>
+In-Reply-To: <96e5587e-aca7-248e-6448-8edfc70784b7@gmail.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Tue, 5 Oct 2021 13:28:40 +0300
+Message-ID: <CAPLW+4mEeh8Fo8kGHx+rB7nX7bDfaQRPGDotgPLTp4pm4rC0Cg@mail.gmail.com>
+Subject: Re: [PATCH 4/6] dt-bindings: clock: Add bindings definitions for
+ Exynos850 CMU
+To:     Chanwoo Choi <cwchoi00@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-10-05 at 13:12 +0200, Paweł Anikiel wrote:
-> On Tue, Oct 5, 2021 at 11:34 AM Philipp Zabel <p.zabel@pengutronix.de> wrote:
-> > Hi Paweł,
-> > 
-> > On Mon, 2021-09-20 at 14:41 +0200, Paweł Anikiel wrote:
-> > > The early reset driver doesn't ever probe, which causes consuming
-> > > devices to be unable to probe. Add an empty driver to set this device
-> > > as available, allowing consumers to probe.
-> > > 
-> > > Signed-off-by: Paweł Anikiel <pan@semihalf.com>
-> > > ---
-> > >  drivers/reset/reset-socfpga.c | 26 ++++++++++++++++++++++++++
-> > >  1 file changed, 26 insertions(+)
-> > > 
-> > > diff --git a/drivers/reset/reset-socfpga.c b/drivers/reset/reset-socfpga.c
-> > > index 2a72f861f798..8c6492e5693c 100644
-> > > --- a/drivers/reset/reset-socfpga.c
-> > > +++ b/drivers/reset/reset-socfpga.c
-> > > @@ -92,3 +92,29 @@ void __init socfpga_reset_init(void)
-> > >       for_each_matching_node(np, socfpga_early_reset_dt_ids)
-> > >               a10_reset_init(np);
-> > >  }
-> > > +
-> > > +/*
-> > > + * The early driver is problematic, because it doesn't register
-> > > + * itself as a driver. This causes certain device links to prevent
-> > > + * consumer devices from probing. The hacky solution is to register
-> > > + * an empty driver, whose only job is to attach itself to the reset
-> > > + * manager and call probe.
-> > > + */
-> > > +static const struct of_device_id socfpga_reset_dt_ids[] = {
-> > > +     { .compatible = "altr,rst-mgr", },
-> > > +     { /* sentinel */ },
-> > > +};
-> > > +
-> > > +static int reset_simple_probe(struct platform_device *pdev)
-> > > +{
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static struct platform_driver reset_socfpga_driver = {
-> > > +     .probe  = reset_simple_probe,
-> > > +     .driver = {
-> > > +             .name           = "socfpga-reset",
-> > > +             .of_match_table = socfpga_reset_dt_ids,
-> > > +     },
-> > > +};
-> > > +builtin_platform_driver(reset_socfpga_driver);
-> > 
-> > If we can just let devlink delay all consumers until the empty driver is
-> > probed, does the reset controller have to be registered early at all?
-> > 
-> > regards
-> > Philipp
-> 
-> I asked Dinh if the reset controller code needs to be called early:
-> 
-> > That's correct. It's for one of the SP timers.
+On Wed, 15 Sept 2021 at 19:37, Chanwoo Choi <cwchoi00@gmail.com> wrote:
+>
+> Hi,
+>
+> You don't add clock ids for the all defined clocks in clk-exynos850.c.
+> I recommend that add all clock ids for the defined clocks if possible.
+>
+> If you want to change the parent clock of mux or change the clock rate
+> of div rate for some clocks, you have to touch the files as following:
+> - include/dt-bindings/clock/exynos850.h
+> - drivers/clk/samsung/clk-exynos850.c
+> - exynos850 dt files
+>
+> If you define the clock ids for all clocks added to this patchset,
+> you can change the parent or rate by just editing the dt files.
+>
 
-Ah, right, those call of_reset_control_get() from TIMER_OF_DECLARE().
-Thank you, I'll apply this to reset/fixes.
+Hi Chanwoo,
 
-regards
-Philipp
+I see your point. But I have intentionally omitted some clock ids,
+which can't be / shouldn't be used by consumers in device tree.
+Actually I took that idea from clk-exynos7.c.
+
+Krzysztof, Sylwester: can you please advice if all clock ids should be
+defined, or only those that are going to be used in dts clk consumers?
+I don't mind reworking the patch, just want to be sure which design
+approach we want to follow.
+
+Thanks!
+
+> But, I have no strongly objection about just keeping this patch.
+>
+>
+> On 21. 9. 15. =EC=98=A4=EC=A0=84 12:56, Sam Protsenko wrote:
+> > Clock controller driver is designed to have separate instances for each
+> > particular CMU. So clock IDs in this bindings header also start from 1
+> > for each CMU.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> >   include/dt-bindings/clock/exynos850.h | 72 ++++++++++++++++++++++++++=
++
+> >   1 file changed, 72 insertions(+)
+> >   create mode 100644 include/dt-bindings/clock/exynos850.h
+> >
+> > diff --git a/include/dt-bindings/clock/exynos850.h b/include/dt-binding=
+s/clock/exynos850.h
+> > new file mode 100644
+> > index 000000000000..2f0a7f619627
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/exynos850.h
+> > @@ -0,0 +1,72 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > +/*
+> > + * Copyright (C) 2021 Linaro Ltd.
+> > + * Author: Sam Protsenko <semen.protsenko@linaro.org>
+> > + *
+> > + * Device Tree binding constants for Exynos850 clock controller.
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_CLOCK_EXYNOS_850_H
+> > +#define _DT_BINDINGS_CLOCK_EXYNOS_850_H
+> > +
+> > +/* CMU_TOP */
+> > +#define DOUT_HSI_BUS                 1
+> > +#define DOUT_HSI_MMC_CARD            2
+> > +#define DOUT_HSI_USB20DRD            3
+> > +#define DOUT_PERI_BUS                        4
+> > +#define DOUT_PERI_UART                       5
+> > +#define DOUT_PERI_IP                 6
+> > +#define DOUT_CORE_BUS                        7
+> > +#define DOUT_CORE_CCI                        8
+> > +#define DOUT_CORE_MMC_EMBD           9
+> > +#define DOUT_CORE_SSS                        10
+> > +#define TOP_NR_CLK                   11
+> > +
+> > +/* CMU_HSI */
+> > +#define GOUT_USB_RTC_CLK             1
+> > +#define GOUT_USB_REF_CLK             2
+> > +#define GOUT_USB_PHY_REF_CLK         3
+> > +#define GOUT_USB_PHY_ACLK            4
+> > +#define GOUT_USB_BUS_EARLY_CLK               5
+> > +#define GOUT_GPIO_HSI_PCLK           6
+> > +#define GOUT_MMC_CARD_ACLK           7
+> > +#define GOUT_MMC_CARD_SDCLKIN                8
+> > +#define GOUT_SYSREG_HSI_PCLK         9
+> > +#define HSI_NR_CLK                   10
+> > +
+> > +/* CMU_PERI */
+> > +#define GOUT_GPIO_PERI_PCLK          1
+> > +#define GOUT_HSI2C0_IPCLK            2
+> > +#define GOUT_HSI2C0_PCLK             3
+> > +#define GOUT_HSI2C1_IPCLK            4
+> > +#define GOUT_HSI2C1_PCLK             5
+> > +#define GOUT_HSI2C2_IPCLK            6
+> > +#define GOUT_HSI2C2_PCLK             7
+> > +#define GOUT_I2C0_PCLK                       8
+> > +#define GOUT_I2C1_PCLK                       9
+> > +#define GOUT_I2C2_PCLK                       10
+> > +#define GOUT_I2C3_PCLK                       11
+> > +#define GOUT_I2C4_PCLK                       12
+> > +#define GOUT_I2C5_PCLK                       13
+> > +#define GOUT_I2C6_PCLK                       14
+> > +#define GOUT_MCT_PCLK                        15
+> > +#define GOUT_PWM_MOTOR_PCLK          16
+> > +#define GOUT_SPI0_IPCLK                      17
+> > +#define GOUT_SPI0_PCLK                       18
+> > +#define GOUT_SYSREG_PERI_PCLK                19
+> > +#define GOUT_UART_IPCLK                      20
+> > +#define GOUT_UART_PCLK                       21
+> > +#define GOUT_WDT0_PCLK                       22
+> > +#define GOUT_WDT1_PCLK                       23
+> > +#define PERI_NR_CLK                  24
+> > +
+> > +/* CMU_CORE */
+> > +#define GOUT_CCI_ACLK                        1
+> > +#define GOUT_GIC_CLK                 2
+> > +#define GOUT_MMC_EMBD_ACLK           3
+> > +#define GOUT_MMC_EMBD_SDCLKIN                4
+> > +#define GOUT_SSS_ACLK                        5
+> > +#define GOUT_SSS_PCLK                        6
+> > +#define CORE_NR_CLK                  7
+> > +
+> > +#endif /* _DT_BINDINGS_CLOCK_EXYNOS_850_H */
+> >
+>
+>
+> --
+> Best Regards,
+> Samsung Electronics
+> Chanwoo Choi
