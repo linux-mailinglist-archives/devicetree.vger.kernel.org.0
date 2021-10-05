@@ -2,154 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE556422AE3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:20:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6863F422AF3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235901AbhJEOWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 10:22:30 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:63874 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234850AbhJEOW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 10:22:29 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633443637; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=iXaHQCDcTat4B7XjXBM6ERGc8OaY+eIv7u8gl6/j0qg=; b=N7RnSvNXmzuAzrwuhdZx689MYqG8mspp2pMtrlW9maZ42mrP79Czdm7Q4TzxwbhBuBA8urZH
- ZAK2k6nTG+c9EaxTxcQTp0HtGIiawPQgElugnF36PAJq7HBI7UTs6kwFuJDoWQmYoNlZGe6O
- Y+Wjb8s17uWp6mIWAsbT0NkYQ84=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 615c5f2aff0285fb0ab466d5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 14:20:26
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 087F0C4361B; Tue,  5 Oct 2021 14:20:26 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id EF3B7C4338F;
-        Tue,  5 Oct 2021 14:20:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org EF3B7C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v8 00/24] wfx: get out from the staging area
-References: <20211005135400.788058-1-Jerome.Pouiller@silabs.com>
-Date:   Tue, 05 Oct 2021 17:20:19 +0300
-In-Reply-To: <20211005135400.788058-1-Jerome.Pouiller@silabs.com> (Jerome
-        Pouiller's message of "Tue, 5 Oct 2021 15:53:36 +0200")
-Message-ID: <871r4zft98.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S235216AbhJEO0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 10:26:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44074 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234437AbhJEO0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 10:26:16 -0400
+Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7680FC061749;
+        Tue,  5 Oct 2021 07:24:25 -0700 (PDT)
+Received: by mail-ua1-x92f.google.com with SMTP id f13so9160937uan.6;
+        Tue, 05 Oct 2021 07:24:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fkUZ7DdFeWkEpyDRZ/1dM/ty+cqUyDxv2VSxJU7d1zc=;
+        b=bU5JIPdpARDVB55z0K2+CLoUJgHYBy6m9RQhkSHDIhiVsRqGHWwn1rHOEi9hKGl345
+         rbytzpzJXF89ylrynFg9UnGnph3EHP40DqVbiriw6oF3io73pcJNqv6cKVZ1KTvpposF
+         UkD7gZYhfkG9qcSjHP7X8xTdrb1W2OoYvnVgFliw+uINq6Cp16FyvBWwIdIcpSBSw9K3
+         r+7glMFCnUt3LW6IuttDWBqIY7v0vuxbPUP5A4sPQfOKkp8SO+6v8jOGKEBkro6hAE/D
+         lGVTwDvAeTr0IzrtN0icLbweNZgPH7lT30H9bAJplbQZ3I8XIHlSYBW311J5lQI9AJRd
+         Os3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fkUZ7DdFeWkEpyDRZ/1dM/ty+cqUyDxv2VSxJU7d1zc=;
+        b=au2mCCeNyisJvfupD/gB045B2gY0On6cX5eeV6pQSmfHb792o1aY6SlVopIXBuUqe6
+         NVPyndZK20nidak6l7ezSq7v38Ql5y3Loa3EpBPJV01W8jvVcDc6fIZ94p/LZ9PvzIWr
+         yyYvPpW3fxPldgWzJjpVxLnFI20BqNXVT1pnZZqC4e+vfhlLl8rQ0X2E8Zg3mKVjSzub
+         lSgzHIFQe1Xx0xggfQHffNdK3vI2vKO4VpjJraJdsG1ucEbwk9q+E153TuBeaUbJdly8
+         AkZc8d2u6LsCWv24LE4GPG1uKeny19xS1ty5LfxYBG1SmopZjPhqka8rLl9qH5vpf8PV
+         obtw==
+X-Gm-Message-State: AOAM533BMWPOZGn6CYn2fGjK8Qnl42dxZcN/YqMnxfvW75hzRGi8Cm64
+        i9pNsCTXt6Etf9PPwPLjjGucu5RZo6sIlk2lm8rec5st8mg=
+X-Google-Smtp-Source: ABdhPJyvi75JWiWJrIbgesEtwwpwS2QwxXNTC393L1igtxGKdv0pJbR/hj13HjwDvZJngNIPNVjl0CV2RV76dVUFLJg=
+X-Received: by 2002:ab0:538b:: with SMTP id k11mr12027715uaa.131.1633443864593;
+ Tue, 05 Oct 2021 07:24:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20210926145931.14603-1-sergio.paracuellos@gmail.com>
+ <20210926145931.14603-3-sergio.paracuellos@gmail.com> <YVtCtGcLjNcO2NJ0@robh.at.kernel.org>
+ <CAMhs-H9TDEWEffDn7hBQxT127RNU4eUtPxaSciuiis0fPqTN_w@mail.gmail.com> <CAL_Jsq+U_0JnCoJVaHH0T+kdmxX_OosD9=OT0dWyNdwbe=CLoQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+U_0JnCoJVaHH0T+kdmxX_OosD9=OT0dWyNdwbe=CLoQ@mail.gmail.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Tue, 5 Oct 2021 16:24:12 +0200
+Message-ID: <CAMhs-H_3Z34e3_n4VrMayvbOt0MJ_RuJ=jYDgQynT6Zdo1eDVw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt: bindings: add ralink RT2880 resets device tree
+ binding documentation
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-staging@lists.linux.dev, John Crispin <john@phrozen.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Greg KH <gregkh@linuxfoundation.org>,
+        NeilBrown <neil@brown.name>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
+Hi Rob,
 
-> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+On Tue, Oct 5, 2021 at 3:27 PM Rob Herring <robh@kernel.org> wrote:
 >
-> Hello,
+> On Mon, Oct 4, 2021 at 1:23 PM Sergio Paracuellos
+> <sergio.paracuellos@gmail.com> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Mon, Oct 4, 2021 at 8:06 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Sun, Sep 26, 2021 at 04:59:30PM +0200, Sergio Paracuellos wrote:
+> > > > Adds device tree binding documentation for resets in the ralink RT2880 SoCs.
+> > > >
+> > > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > > > ---
+> > > >  .../bindings/reset/ralink,rt2880-reset.yaml   | 39 +++++++++++++++++++
+> > > >  1 file changed, 39 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..88eddeb4ee45
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > > > @@ -0,0 +1,39 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/reset/ralink,rt2880-reset.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Ralink RT2880 Reset Controller Device Tree Bindings
+> > > > +
+> > > > +maintainers:
+> > > > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > > > +
+> > > > +description: |
+> > > > +  Ralink RT2880 reset controller driver which supports the SoC
+> > > > +  system controller supplied reset registers for the various peripherals
+> > > > +  of the SoC.
+> > > > +
+> > > > +  See also:
+> > > > +  - dt-bindings/reset/ralink-rt2880.h
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: ralink,rt2880-reset
+> > > > +
+> > > > +  '#reset-cells':
+> > > > +    const: 1
+> > > > +
+> > > > +required:
+> > > > +  - '#reset-cells'
+> > > > +  - compatible
+> > > > +
+> > > > +additionalProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    #include <dt-bindings/reset/ralink-rt2880.h>
+> > > > +    rstctrl: reset-controller {
+> > > > +      compatible = "ralink,rt2880-reset";
+> > > > +      #reset-cells = <1>;
+> > >
+> > > How is this h/w controlled? If this is part of a system controller, then
+> > > it needs to be documented as such. IOW, you need to document the binding
+> > > for the whole block.
+> > >
+> > > Do you really need a child node here? All you need to make a system
+> > > controller a reset provider is add '#reset-cells' to it.
+> >
+> > I am just documenting what is already mainlined (see [0]) in order to
+> > get mt7621-dts out of staging at some point of my life. What am I
+> > supposed to do? Should I rewrite all already mainlined code? Because
+> > if that is the case we need to rewrite tons of things from the ralink
+> > platform...
 >
-> I think the wfx driver is now mature enough to be accepted in the
-> drivers/net/wireless directory.
->
-> The firmware is now a part of the linux-firmware repository since relase
-> 20210315[1]. It had taken a bit of time because I have worked with the le=
-gal
-> department to simplify the redistribution terms of the firmware.
->
-> [1]: https://lore.kernel.org/linux-firmware/2833354.gXvVfaC4I7@pc-42/
->
->
-> As requested by Kalle[2], I send one file per patch. At the end, all the
-> patches (or at least the patches 3 to 24) will be squashed (therefore, I
-> didn't bother to write real commit messages).
->
-> [2]: https://lore.kernel.org/lkml/87ft6p2n0h.fsf@codeaurora.org/
->
-> Here is a diagram of the global architecture that may help to understand
-> the code:
->
->     ,------------------------------------.
->     |                mac80211            |
->     `------------------------------------'
->     ,------------+-----------+-----------.
->     |    sta     |           |           |
->     |    scan    |           |           |
->     |    main    |           |           |
->     +------------+  data_tx  |           |
->     |    key     |           |  data_rx  |
->     | hif_tx_mib |   queue   |           |
->     |   hif_tx   |           |           |
->     |   hif_rx   |           |           |
->     |  hif_api_* |           |           |
->     +------------+-----------+-----------+--------.
->     |                  bh                |  fwio  |
->     +------------------------------------+--------+
->     |                     hwio                    |
->     +---------------------------------------------+
->     |                   bus_sdio                  |
->     |                   bus_spi                   |
->     `---------------------------------------------'
->     ,---------------------------------------------.
->     |                  spi / sdio                 |
->     `---------------------------------------------'
->
-> Roughly, I have sent the files from the bottom to the top.
->
->
-> v8:
->   - Change the way the DT is handled. The user can now specify the name of
->     the board (=3D chip + antenna) he use. It easier for board designers =
-to
->     add new entries. I plan to send a PR to linux-firmware to include PDS
->     files of the developpement boards belong the firmware (I also plan to
->     relocate these file into wfx/ instead of silabs/). (Kalle, Pali)
->   - Prefix visible functions and structs with "wfx_". I mostly kept the
->     code under 80 columns. (Kalle, Pali, Greg)
->   - Remove support for force_ps_timeout for now. (Kalle)
->   - Fix licenses of Makefile, Kconfig and hif_api*.h. (Kalle)
->   - Do not mix and match endianess in struct hif_ind_startup. (Kalle)
->   - Remove magic values. (Kalle)
->   - Use IS_ALIGNED(). (BTW, PTR_IS_ALIGNED() does not exist?) (Kalle)
->   - I have also noticed that some headers files did not declare all the
->     struct they used.
->
->   These issues remain (I hope they are not blockers):
->   - I have currently no ideas how to improve/simplify the parsing PDS fil=
-e.
->     (Kalle)
->   - We would like to relate the SDIO quirks into mmc/core/quirks.h, but t=
-he
->     API to do that does not yet exist. (Ulf, Pali)
+> On the flip side, am I not supposed to review bindings because the dts
+> is already in staging? Code dependent on DT bindings shouldn't have
+> been mainlined without any documented binding.
 
-So is this a direct version from staging-next? If yes, what commit id did
-you use? Or do you have your own set of patches on top of staging-next?
+Thanks for reviewing this. I guess I should have sent a complete
+patchset with all remaining bindings and the move for the complete
+binding instead of sending single binding doc patches.
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
+>
+> Looks like the resets are part of "mediatek,mt7621-sysc" to answer my
+> question. Add a #reset-cell to that node (and binding) and then change
+> this line to "mediatek,mt7621-sysc":
+>
+>         reset_dev.of_node = of_find_compatible_node(NULL, NULL,
+>                                                 "ralink,rt2880-reset");
+>
+> That's the minimal change, but really I would move the reset code to
+> the clock driver as that is what handles the sysc node.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+It is not that easy since the code in reset.c is shared for all ralink
+platforms and the mediatek,mt7621-sysc node is only for mt7621. So I
+guess I have to "duplicate" the reset code and put it in the clock
+driver for mt7621 as you are pointing out here. I have to also review
+how other drivers are using the reset, using reset apis or directly
+through the syscon.
+
+>
+>
+> > I'd also like to know what we should do with those nodes already added
+> > to the dtsi file that have not got associated compatible driver
+> > mainlined. Can we just get rid of them?
+>
+> Yes. Typically dts files start with minimal support.
+>
+> A dts file in staging is odd. We shouldn't be adding them there.
+
+Thanks for clarification.
+
+Best regards,
+    Sergio Paracuellos
+
+>
+> Rob
