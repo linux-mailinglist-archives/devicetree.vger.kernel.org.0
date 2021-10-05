@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 205CF421F2C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 08:56:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2218421F47
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 09:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232361AbhJEG6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 02:58:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42266 "EHLO mail.kernel.org"
+        id S232431AbhJEHLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 03:11:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51038 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230526AbhJEG6h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 02:58:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C9090610A2;
-        Tue,  5 Oct 2021 06:56:45 +0000 (UTC)
+        id S232561AbhJEHLp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 03:11:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8E13861425;
+        Tue,  5 Oct 2021 07:09:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633417007;
-        bh=71mlPq8y3H59x8SPscGDba3lmvBHepI0lrXnh8IQ0gE=;
+        s=k20201202; t=1633417795;
+        bh=LolzeVyvQ9Fdg5AkSm3PkTTdmlFXrwEm0GL30clzJto=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ejJtWkmgJW82hCd31ZTppNppfTqQ3PKGjBsoQggjoEP3rT1LjMLnRQtrCWxjafETF
-         rZ9VDvidU+6Hb6ZsWz2Xk5Xf/Jy706h2GdiSvqid0TfUeeAGXZrwqdSc/5JVEUzyuU
-         ydIBhUybmP1NKWVV9ixTwUsOGRo4Wrf4G8KW9amQKVvg5RCFhwX6xnEMAJChG6hUkF
-         YxK5bQBOL6pZAIu0StvZ09c6II4TCtn/m3Y5SxyMaBnhXgcLKUB7HPiFtUfx/38SUG
-         8BAeWA+QTf7tGGwQgMH9ZgGPLlCWZji0vygZEyXaQP2AfcHoQeHfe9aPf7lZ9/9sGs
-         PEvJ758WmHQrw==
-Date:   Tue, 5 Oct 2021 14:56:42 +0800
+        b=GxilFPaiS6TAr3bQVhm56wzc4JTQjhYIvMLUUju0F9keWMASsTqBJHwvoAeWZytso
+         Ur8dqOIpN+fTIf/wdtaPFZ0UTFw/lePh/6iKtPZQpDMYrttaVpHfyAyOw72sYVcNmQ
+         mRHXK3IXIDTJUwxNyEfqn2W/2Sbk1Jag8/alf8pjr3JSV0NZ9PT2pN7njnXka7FMkp
+         VOeUvM84aserRlVX5MRJBD5CQv70yEU+3ydIDnQWT0DZ7LdIr9xBFl51zKPfZQSUew
+         +zSLr7O8WiPyBbJBjOCQeUnn+AT9lJvJIQr27kiO+Aa2PBONDGxVKGpnSSdUjAOE1D
+         QdRa/lhHU2QiQ==
+Date:   Tue, 5 Oct 2021 15:09:49 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Frieder Schrempf <frieder@fris.de>
 Cc:     devicetree@vger.kernel.org,
@@ -35,52 +35,69 @@ Cc:     devicetree@vger.kernel.org,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH 3/8] arm64: dts: imx8mm-kontron: Set VDD_SNVS to 800 mV
-Message-ID: <20211005065641.GA20743@dragon>
+Subject: Re: [PATCH 4/8] arm64: dts: imx8mm-kontron: Fix reg_rst_eth2 and
+ reg_vdd_5v regulators
+Message-ID: <20211005070949.GB20743@dragon>
 References: <20210930155633.2745201-1-frieder@fris.de>
- <20210930155633.2745201-4-frieder@fris.de>
+ <20210930155633.2745201-5-frieder@fris.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210930155633.2745201-4-frieder@fris.de>
+In-Reply-To: <20210930155633.2745201-5-frieder@fris.de>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 30, 2021 at 05:56:26PM +0200, Frieder Schrempf wrote:
+On Thu, Sep 30, 2021 at 05:56:27PM +0200, Frieder Schrempf wrote:
 > From: Frieder Schrempf <frieder.schrempf@kontron.de>
 > 
-> According to the datasheet VDD_SNVS should be 800 mV, so let's
-> make sure that the voltage won't be different.
+> The regulator reg_vdd_5v represents the fixed 5V supply on the board which
+> can't be switched off. Mark it as always-on.
+> 
+> The regulator reg_rst_eth2 should keep the reset signal of the USB ethernet
+> adapter deassertet anytime. Fix the polarity and mark it as always-on.
 
-Could you share the datasheet?
-
-Shawn
+It seems to be wrong from the beginning that the reset is modelled by a
+regulator.
 
 > 
 > Fixes: 21c4f45b335f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
 > Cc: stable@vger.kernel.org
 > Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> index b12fb7ce6686..213014f59b46 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> @@ -152,8 +152,8 @@ reg_nvcc_snvs: LDO1 {
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
+> index 62ba3bd08a0c..f2c8ccefd1bf 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
+> @@ -70,7 +70,9 @@ reg_rst_eth2: regulator-rst-eth2 {
+>  		regulator-name = "rst-usb-eth2";
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&pinctrl_usb_eth2>;
+> -		gpio = <&gpio3 2 GPIO_ACTIVE_LOW>;
+> +		gpio = <&gpio3 2 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+>  	};
 >  
->  			reg_vdd_snvs: LDO2 {
->  				regulator-name = "ldo2";
-> -				regulator-min-microvolt = <850000>;
-> -				regulator-max-microvolt = <900000>;
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <800000>;
->  				regulator-boot-on;
->  				regulator-always-on;
->  			};
+>  	reg_vdd_5v: regulator-5v {
+> @@ -78,6 +80,7 @@ reg_vdd_5v: regulator-5v {
+>  		regulator-name = "vdd-5v";
+>  		regulator-min-microvolt = <5000000>;
+>  		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+
+You do not have any on/off control over the regulator.  So how does this
+always-on property make any difference?
+
+Shawn
+
+>  	};
+>  };
+>  
 > -- 
 > 2.33.0
 > 
