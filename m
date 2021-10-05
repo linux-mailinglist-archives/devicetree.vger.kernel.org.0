@@ -2,152 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FA6B422ABC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7798F422AC5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 16:16:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235444AbhJEOSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 10:18:39 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:45468 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236640AbhJEOSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 10:18:30 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633443392; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=wbRlR3S9un/VrDX7Y3W0hcFvNCAKaY9PkJGHjSDPKeo=; b=E8ST7FayegOZgFuOGNAlKsh+7FbKHdau/4DQmcAQ8SfGTfR/e3iDUB+bVXTy9jg28fs55Vmp
- dw0zt/RcmYTKOPXWCBAJsP1VTn+UQjDs6t0HkFnqfcjR7FmRXZ1sxfMs4CtO1F6D4bRXLUXa
- KXDoyKAoQ1qdC2pBwA4JoHKHd3g=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 615c5e038ea00a941f67647d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 14:15:31
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9913BC43150; Tue,  5 Oct 2021 14:15:31 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0FB13C43164;
-        Tue,  5 Oct 2021 14:15:26 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 0FB13C43164
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v8 00/24] wfx: get out from the staging area
-References: <20211005135400.788058-1-Jerome.Pouiller@silabs.com>
-Date:   Tue, 05 Oct 2021 17:15:22 +0300
-In-Reply-To: <20211005135400.788058-1-Jerome.Pouiller@silabs.com> (Jerome
-        Pouiller's message of "Tue, 5 Oct 2021 15:53:36 +0200")
-Message-ID: <875yubfthh.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S235718AbhJEOSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 10:18:42 -0400
+Received: from mx.socionext.com ([202.248.49.38]:22635 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235518AbhJEOSk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 10:18:40 -0400
+Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 05 Oct 2021 23:16:49 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id EA3BC2059034;
+        Tue,  5 Oct 2021 23:16:48 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 5 Oct 2021 23:16:48 +0900
+Received: from yuzu2.css.socionext.com (yuzu2 [172.31.9.57])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 90EB9B62B7;
+        Tue,  5 Oct 2021 23:16:48 +0900 (JST)
+Received: from [10.212.181.36] (unknown [10.212.181.36])
+        by yuzu2.css.socionext.com (Postfix) with ESMTP id E5BF3B62B3;
+        Tue,  5 Oct 2021 23:16:47 +0900 (JST)
+Subject: Re: [PATCH 4/5] dt-bindings: clock: uniphier: Add clock binding for
+ SoC-glue
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+References: <1633399706-1251-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1633399706-1251-5-git-send-email-hayashi.kunihiko@socionext.com>
+ <1633436798.596710.3226801.nullmailer@robh.at.kernel.org>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <4e6d39ec-4c49-9dfb-9428-901dca940989@socionext.com>
+Date:   Tue, 5 Oct 2021 23:16:47 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1633436798.596710.3226801.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
+On 2021/10/05 21:26, Rob Herring wrote:
+> On Tue, 05 Oct 2021 11:08:25 +0900, Kunihiko Hayashi wrote:
+>> Update binding document for clocks implemented in SoC-glue.
+>>
+>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>> ---
+>>   .../bindings/clock/socionext,uniphier-clock.yaml         | 16
+> ++++++++++++++++
+>>   1 file changed, 16 insertions(+)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml:51
+> :1: [error] syntax error: found character '\t' that cannot start any token
+> (syntax)
+I made mistake. I'll fix it in next.
 
-> From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
->
-> Hello,
->
-> I think the wfx driver is now mature enough to be accepted in the
-> drivers/net/wireless directory.
->
-> The firmware is now a part of the linux-firmware repository since relase
-> 20210315[1]. It had taken a bit of time because I have worked with the le=
-gal
-> department to simplify the redistribution terms of the firmware.
->
-> [1]: https://lore.kernel.org/linux-firmware/2833354.gXvVfaC4I7@pc-42/
->
->
-> As requested by Kalle[2], I send one file per patch. At the end, all the
-> patches (or at least the patches 3 to 24) will be squashed (therefore, I
-> didn't bother to write real commit messages).
->
-> [2]: https://lore.kernel.org/lkml/87ft6p2n0h.fsf@codeaurora.org/
->
-> Here is a diagram of the global architecture that may help to understand
-> the code:
->
->     ,------------------------------------.
->     |                mac80211            |
->     `------------------------------------'
->     ,------------+-----------+-----------.
->     |    sta     |           |           |
->     |    scan    |           |           |
->     |    main    |           |           |
->     +------------+  data_tx  |           |
->     |    key     |           |  data_rx  |
->     | hif_tx_mib |   queue   |           |
->     |   hif_tx   |           |           |
->     |   hif_rx   |           |           |
->     |  hif_api_* |           |           |
->     +------------+-----------+-----------+--------.
->     |                  bh                |  fwio  |
->     +------------------------------------+--------+
->     |                     hwio                    |
->     +---------------------------------------------+
->     |                   bus_sdio                  |
->     |                   bus_spi                   |
->     `---------------------------------------------'
->     ,---------------------------------------------.
->     |                  spi / sdio                 |
->     `---------------------------------------------'
->
-> Roughly, I have sent the files from the bottom to the top.
->
->
-> v8:
->   - Change the way the DT is handled. The user can now specify the name of
->     the board (=3D chip + antenna) he use. It easier for board designers =
-to
->     add new entries. I plan to send a PR to linux-firmware to include PDS
->     files of the developpement boards belong the firmware (I also plan to
->     relocate these file into wfx/ instead of silabs/). (Kalle, Pali)
->   - Prefix visible functions and structs with "wfx_". I mostly kept the
->     code under 80 columns. (Kalle, Pali, Greg)
->   - Remove support for force_ps_timeout for now. (Kalle)
->   - Fix licenses of Makefile, Kconfig and hif_api*.h. (Kalle)
->   - Do not mix and match endianess in struct hif_ind_startup. (Kalle)
->   - Remove magic values. (Kalle)
->   - Use IS_ALIGNED(). (BTW, PTR_IS_ALIGNED() does not exist?) (Kalle)
->   - I have also noticed that some headers files did not declare all the
->     struct they used.
->
->   These issues remain (I hope they are not blockers):
->   - I have currently no ideas how to improve/simplify the parsing PDS fil=
-e.
->     (Kalle)
+Thank you,
 
-For the PDS file problem it would help if you could actually describe
-what the firmware requires/needs and then we can start from that. I had
-some questions about this in v7 but apparently you missed those.
-
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+---
+Best Regards
+Kunihiko Hayashi
