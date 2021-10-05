@@ -2,152 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 461C142286E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 15:50:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30D094228F7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 15:54:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235374AbhJENwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 09:52:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58930 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235289AbhJENwX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 09:52:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D830361506;
-        Tue,  5 Oct 2021 13:50:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633441833;
-        bh=by9GtSUX11HWhHVBkgN2q4BLfuacQPdQ+x5SSxgs4Kw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GAcG/n8fKBrrYTAeJnp790E2kaGkW0m4fP8bgu9aklUdM0LhRbLOXGmWlRjSozytS
-         ZC46Z5TqRvx15p3imPunoA1MDJ88wjWWGKxPCJ/rZ/KhpyBahUXt12f1GHGGBLeBmm
-         QgnpT8CM9YGl2z9zQrxz9sdnBuPux/wAoqQ8spTy/yH42AxaSK97pCOErjNBMgBQhr
-         7tvxyjYCsZgSbdEAy+nAASNqD6RgotqZjAZhvk+seEUSRePVsP7QX0K2bRpFD176Ak
-         zIlM5IacQYwquMrNB0sVypiD5xlmKzHgkSJ7ZGVR2M2xEI9kPtSW/3QeaFo6dpPI1Y
-         pXrx/0Cz7L0+A==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Shawn Guo <shawn.guo@linaro.org>, Rob Herring <robh@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org, kholk11@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.14 06/40] dt-bindings: interconnect: sdm660: Add missing a2noc qos clocks
-Date:   Tue,  5 Oct 2021 09:49:45 -0400
-Message-Id: <20211005135020.214291-6-sashal@kernel.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211005135020.214291-1-sashal@kernel.org>
-References: <20211005135020.214291-1-sashal@kernel.org>
-MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+        id S235120AbhJEN4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 09:56:19 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:15973 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235889AbhJENzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 09:55:08 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633441998; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=vtQAzb9lpDnotZo9fmYEDd5/dCJbYPc2VLFrjXmvxno=; b=JksagufpKM0sM02GND29Ln1EqTh8DqXey4XxcHPVeCAs2Xzaw1x944P7jOphN3XcVvzFFwXI
+ kzjzVYi9BaO6koxGvcbMEcLXE4z4a9yV27CmFlEOGVLeGe/S1mdIwnVhSStzFTdsKZEjaeJx
+ BFGTOVhSOxq5TtoDG0zyvI9ofOc=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 615c58cd47d64efb6d0a73d1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 13:53:17
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 3016FC48B2D; Tue,  5 Oct 2021 13:53:16 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 803DFC41633;
+        Tue,  5 Oct 2021 13:53:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 803DFC41633
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v2 0/9] Add support for audio on SC7280 based targets
+Date:   Tue,  5 Oct 2021 19:22:45 +0530
+Message-Id: <1633441974-15353-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Shawn Guo <shawn.guo@linaro.org>
+This patch set is to add support for Audio over wcd codec,
+digital mics, through digital codecs and without ADSP.
+This patch set depends on:
+	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=549577
+	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=548765
+	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=543829
 
-[ Upstream commit cf49e366020396ad83845c1c3bdbaa3c1406f5ce ]
+Chnages Since V1:
+    -- Typo errors fix
+	-- CPU driver readable/writable apis optimization.
+	-- Add Missing config patch
+	-- Add Common api for repeated dmactl initialization.
+Srinivasa Rao Mandadapu (9):
+  ASoC: qcom: Move lpass_pcm_data structure to lpass header
+  ASoC: qcom: lpass: Add dma fields for codec dma lpass interface
+  ASoC: qcom: Add register definition for codec rddma and wrdma
+  ASoC: qcom: Add lpass CPU driver for codec dma control
+  ASoC: qcom: Add support for codec dma driver
+  ASoC: dt-bindings: Add SC7280 sound card bindings
+  ASoC: qcom: lpass-sc7280: Add platform driver for lpass audio
+  ASoc: qcom: lpass: Add suspend and resume for sc7280 platform
+  ASoC: qcom: SC7280: Update config for building codec dma drivers
 
-It adds the missing a2noc clocks required for QoS registers programming
-per downstream kernel[1].
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  69 ++-
+ sound/soc/qcom/Kconfig                             |  13 +
+ sound/soc/qcom/Makefile                            |   4 +
+ sound/soc/qcom/lpass-cdc-dma.c                     | 209 +++++++
+ sound/soc/qcom/lpass-cpu.c                         | 274 +++++++++-
+ sound/soc/qcom/lpass-lpaif-reg.h                   | 103 +++-
+ sound/soc/qcom/lpass-platform.c                    | 497 +++++++++++++++--
+ sound/soc/qcom/lpass-sc7280.c                      | 602 +++++++++++++++++++++
+ sound/soc/qcom/lpass.h                             | 156 ++++++
+ 9 files changed, 1870 insertions(+), 57 deletions(-)
+ create mode 100644 sound/soc/qcom/lpass-cdc-dma.c
+ create mode 100644 sound/soc/qcom/lpass-sc7280.c
 
-[1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
-
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-Link: https://lore.kernel.org/r/20210824043435.23190-2-shawn.guo@linaro.org
-Signed-off-by: Georgi Djakov <djakov@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../bindings/interconnect/qcom,sdm660.yaml    | 46 +++++++++++++++++--
- 1 file changed, 42 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
-index 29de7807df54..bcd41e491f1d 100644
---- a/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
-@@ -31,11 +31,11 @@ properties:
- 
-   clocks:
-     minItems: 1
--    maxItems: 3
-+    maxItems: 7
- 
-   clock-names:
-     minItems: 1
--    maxItems: 3
-+    maxItems: 7
- 
- required:
-   - compatible
-@@ -72,6 +72,32 @@ allOf:
-           contains:
-             enum:
-               - qcom,sdm660-a2noc
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Bus Clock.
-+            - description: Bus A Clock.
-+            - description: IPA Clock.
-+            - description: UFS AXI Clock.
-+            - description: Aggregate2 UFS AXI Clock.
-+            - description: Aggregate2 USB3 AXI Clock.
-+            - description: Config NoC USB2 AXI Clock.
-+        clock-names:
-+          items:
-+            - const: bus
-+            - const: bus_a
-+            - const: ipa
-+            - const: ufs_axi
-+            - const: aggre2_ufs_axi
-+            - const: aggre2_usb3_axi
-+            - const: cfg_noc_usb2_axi
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-               - qcom,sdm660-bimc
-               - qcom,sdm660-cnoc
-               - qcom,sdm660-gnoc
-@@ -91,6 +117,7 @@ examples:
-   - |
-       #include <dt-bindings/clock/qcom,rpmcc.h>
-       #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
-+      #include <dt-bindings/clock/qcom,gcc-sdm660.h>
- 
-       bimc: interconnect@1008000 {
-               compatible = "qcom,sdm660-bimc";
-@@ -123,9 +150,20 @@ examples:
-               compatible = "qcom,sdm660-a2noc";
-               reg = <0x01704000 0xc100>;
-               #interconnect-cells = <1>;
--              clock-names = "bus", "bus_a";
-+              clock-names = "bus",
-+                            "bus_a",
-+                            "ipa",
-+                            "ufs_axi",
-+                            "aggre2_ufs_axi",
-+                            "aggre2_usb3_axi",
-+                            "cfg_noc_usb2_axi";
-               clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
--                       <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>;
-+                       <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>,
-+                       <&rpmcc RPM_SMD_IPA_CLK>,
-+                       <&gcc GCC_UFS_AXI_CLK>,
-+                       <&gcc GCC_AGGRE2_UFS_AXI_CLK>,
-+                       <&gcc GCC_AGGRE2_USB3_AXI_CLK>,
-+                       <&gcc GCC_CFG_NOC_USB2_AXI_CLK>;
-       };
- 
-       mnoc: interconnect@1745000 {
 -- 
-2.33.0
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
