@@ -2,83 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22187422795
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 15:15:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF2404227C0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 15:27:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234948AbhJENRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 09:17:31 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:40403 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234919AbhJENRb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 09:17:31 -0400
-Received: from [185.56.157.72] (port=34808 helo=[192.168.101.73])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1mXkIF-00GPVT-64; Tue, 05 Oct 2021 15:15:39 +0200
-Subject: Re: [PATCH 2/2] power: supply: max77976: add Maxim MAX77976 charger
- driver
-To:     Randy Dunlap <rdunlap@infradead.org>, linux-pm@vger.kernel.org
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211004130732.950512-1-luca@lucaceresoli.net>
- <20211004130732.950512-2-luca@lucaceresoli.net>
- <a6ea9a21-e9df-b596-eb80-4df4b8d8115e@infradead.org>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <cce10251-c092-c06b-dbc4-d257bb7aa305@lucaceresoli.net>
-Date:   Tue, 5 Oct 2021 15:15:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S234914AbhJEN3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 09:29:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49240 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234950AbhJEN3c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 09:29:32 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5EE5E61251;
+        Tue,  5 Oct 2021 13:27:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633440461;
+        bh=MOH/wIgGZg6o0CoLkFJQmfzWGtCwlnQSYLFTb25uQlE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OSXc2LRUI4jwymWNkorUMTx3IFqUVd8nGbunxnV4tDHJIzKX/UmPIEKW1LZC+dqhg
+         fj4xIOWMU+FrFQnf8liB/iuwu8aPd7Ebrrqu/+/2D/tbDLdnBGDQ/iLWqGIAIoGQAj
+         dhBY9itF4VbZYAQV87Cj+YGui9E4aYT6LvtQz6cibckn3yYskVxxMsYwLpKQR/WjQc
+         540JNRJwmIx/zi16917RkiXb4UjmQs9RGD25YrwBNJNfICyVjI6Ft639964CpbVSWz
+         bVZ1dR7Px+wZgFhhrlNWlWiWIfgXYUpOMu2wzqtoHCp+OF7MmyAhxPBvxmLK2ItSIe
+         8awC367gFY1fA==
+Received: by mail-qt1-f182.google.com with SMTP id r16so19001491qtw.11;
+        Tue, 05 Oct 2021 06:27:41 -0700 (PDT)
+X-Gm-Message-State: AOAM533VO+z33Rj879OrOmE79gktQMMahsUdD6RlY6hQ+e+QHcvzNwAI
+        Yt5ceVXUkdh88ILyETbdjevklsaVtnXakY5bfw==
+X-Google-Smtp-Source: ABdhPJxQAFhHe4+av141S3+5nqxD6ijBY6lLkb+QsF2zqe+Qv+Dlzut6+e0uaRWT3UFTk7nE4P0ehgvDvleY8Qztn3c=
+X-Received: by 2002:ac8:1090:: with SMTP id a16mr19819375qtj.297.1633440459286;
+ Tue, 05 Oct 2021 06:27:39 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <a6ea9a21-e9df-b596-eb80-4df4b8d8115e@infradead.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+References: <20210926145931.14603-1-sergio.paracuellos@gmail.com>
+ <20210926145931.14603-3-sergio.paracuellos@gmail.com> <YVtCtGcLjNcO2NJ0@robh.at.kernel.org>
+ <CAMhs-H9TDEWEffDn7hBQxT127RNU4eUtPxaSciuiis0fPqTN_w@mail.gmail.com>
+In-Reply-To: <CAMhs-H9TDEWEffDn7hBQxT127RNU4eUtPxaSciuiis0fPqTN_w@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 5 Oct 2021 08:27:25 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+U_0JnCoJVaHH0T+kdmxX_OosD9=OT0dWyNdwbe=CLoQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+U_0JnCoJVaHH0T+kdmxX_OosD9=OT0dWyNdwbe=CLoQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt: bindings: add ralink RT2880 resets device tree
+ binding documentation
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-staging@lists.linux.dev, John Crispin <john@phrozen.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Greg KH <gregkh@linuxfoundation.org>,
+        NeilBrown <neil@brown.name>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Randy,
+On Mon, Oct 4, 2021 at 1:23 PM Sergio Paracuellos
+<sergio.paracuellos@gmail.com> wrote:
+>
+> Hi Rob,
+>
+> On Mon, Oct 4, 2021 at 8:06 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Sun, Sep 26, 2021 at 04:59:30PM +0200, Sergio Paracuellos wrote:
+> > > Adds device tree binding documentation for resets in the ralink RT2880 SoCs.
+> > >
+> > > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > > ---
+> > >  .../bindings/reset/ralink,rt2880-reset.yaml   | 39 +++++++++++++++++++
+> > >  1 file changed, 39 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > > new file mode 100644
+> > > index 000000000000..88eddeb4ee45
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/reset/ralink,rt2880-reset.yaml
+> > > @@ -0,0 +1,39 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/reset/ralink,rt2880-reset.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Ralink RT2880 Reset Controller Device Tree Bindings
+> > > +
+> > > +maintainers:
+> > > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > > +
+> > > +description: |
+> > > +  Ralink RT2880 reset controller driver which supports the SoC
+> > > +  system controller supplied reset registers for the various peripherals
+> > > +  of the SoC.
+> > > +
+> > > +  See also:
+> > > +  - dt-bindings/reset/ralink-rt2880.h
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: ralink,rt2880-reset
+> > > +
+> > > +  '#reset-cells':
+> > > +    const: 1
+> > > +
+> > > +required:
+> > > +  - '#reset-cells'
+> > > +  - compatible
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/reset/ralink-rt2880.h>
+> > > +    rstctrl: reset-controller {
+> > > +      compatible = "ralink,rt2880-reset";
+> > > +      #reset-cells = <1>;
+> >
+> > How is this h/w controlled? If this is part of a system controller, then
+> > it needs to be documented as such. IOW, you need to document the binding
+> > for the whole block.
+> >
+> > Do you really need a child node here? All you need to make a system
+> > controller a reset provider is add '#reset-cells' to it.
+>
+> I am just documenting what is already mainlined (see [0]) in order to
+> get mt7621-dts out of staging at some point of my life. What am I
+> supposed to do? Should I rewrite all already mainlined code? Because
+> if that is the case we need to rewrite tons of things from the ralink
+> platform...
 
-On 04/10/21 17:28, Randy Dunlap wrote:
-> On 10/4/21 6:07 AM, Luca Ceresoli wrote:
->> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
->> index ad93b3550d6d..622d690c883a 100644
->> --- a/drivers/power/supply/Kconfig
->> +++ b/drivers/power/supply/Kconfig
->> @@ -557,6 +557,17 @@ config CHARGER_MAX77693
->>       help
->>         Say Y to enable support for the Maxim MAX77693 battery charger.
->>   +config CHARGER_MAX77976
->> +    tristate "Maxim MAX77976 battery charger driver"
->> +    depends on REGMAP_I2C
->> +    help
->> +      The Maxim MAX77976 is a 19 Vin, 5.5A 1-Cell Li+ Battery Charger
->> +      USB OTG support. It has an I2C interface for configuration.
->> +
->> +      Say Y to enable support for the Maxim MAX77976 battery charger.
->> +      This driver can also be built as a module. If so, the module
->> will be
->> +      called max77976_charger.
-> 
-> REGMAP_I2C is not a user-settable config option, so drivers should not
-> "depend on" it. This should be more like:
-> 
->     depends on I2C
->     select REGMAP_I2C
+On the flip side, am I not supposed to review bindings because the dts
+is already in staging? Code dependent on DT bindings shouldn't have
+been mainlined without any documented binding.
 
-Ouch, thanks for spotting, will fix in v2.
+Looks like the resets are part of "mediatek,mt7621-sysc" to answer my
+question. Add a #reset-cell to that node (and binding) and then change
+this line to "mediatek,mt7621-sysc":
 
--- 
-Luca
+        reset_dev.of_node = of_find_compatible_node(NULL, NULL,
+                                                "ralink,rt2880-reset");
+
+That's the minimal change, but really I would move the reset code to
+the clock driver as that is what handles the sysc node.
+
+
+> I'd also like to know what we should do with those nodes already added
+> to the dtsi file that have not got associated compatible driver
+> mainlined. Can we just get rid of them?
+
+Yes. Typically dts files start with minimal support.
+
+A dts file in staging is odd. We shouldn't be adding them there.
+
+Rob
