@@ -2,83 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D6FE422C59
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A6C9422C6A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:25:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235322AbhJEPZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 11:25:27 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:53500 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236000AbhJEPZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:25:24 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 9AAA41F42D67
-Received: by earth.universe (Postfix, from userid 1000)
-        id DA4A33C0CA7; Tue,  5 Oct 2021 17:23:23 +0200 (CEST)
-Date:   Tue, 5 Oct 2021 17:23:23 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: power: Bindings for Samsung batteries
-Message-ID: <20211005152323.kyxzytgmj2kfegwd@earth.universe>
-References: <20210806090050.3510671-1-linus.walleij@linaro.org>
- <CACRpkdbdgdpg7CNQ+s4SkJBOsWfuOOWmXTar+cx2Eu_Wt5qNfw@mail.gmail.com>
+        id S236054AbhJEP1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 11:27:13 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:46324 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236085AbhJEP1L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:27:11 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 195DGbq1021117;
+        Tue, 5 Oct 2021 17:24:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=77QYGY7BiuwUpHd7MHzy7GqNWdzhJ3VP18VxSYvCOIs=;
+ b=cEimbhrxrCF+RDJicHYS7Sc9QWp9vIouda4DYGTpP9hOr3m/yD/xjd7dXXJsJMWuPkxu
+ hBbIdmP+RHuXWqM+2Z7hAq7iUpmGsIovu4/I/+XYXP/n5A38ZxbrNmVFk4GZrqOU/ogt
+ Ft1sZfIBRrzuCOKGR7+ZucT683OW3REDcyj/O3wzTQHUhqm8CLYFQXmY/jjWDp2s8uUS
+ a+5JIKdnxQwfZ8w9gT6+GRFssgNzN+RyB2dogZ6iS9P5MOgDxJmUOpKHwe6UyZxc7OU/
+ 5Yw/9uKn7aZb0bXbUSw3jQK/YJTzdyuaHNS5nr6KboHbmhzviZTIUtdsfrDlIDexjYxU MQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3bgjt8th0f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 05 Oct 2021 17:24:57 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 87B8410002A;
+        Tue,  5 Oct 2021 17:24:56 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7FAD6229A8E;
+        Tue,  5 Oct 2021 17:24:56 +0200 (CEST)
+Received: from localhost (10.75.127.46) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 5 Oct 2021 17:24:55
+ +0200
+From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH v2 0/3] phy: stm32: add phy tuning support
+Date:   Tue, 5 Oct 2021 17:24:50 +0200
+Message-ID: <20211005152453.89330-1-amelie.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ajsvss6txycmr5om"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdbdgdpg7CNQ+s4SkJBOsWfuOOWmXTar+cx2Eu_Wt5qNfw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-10-05_02,2021-10-04_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series brings phy tuning to stm32-usbphyc with new optional
+device tree properties.
+A prior patch add resume routine, which is used to restore UTMI
+switch and phy tuning configuration, as they can be reset if
+deep low power state is achieved.
 
---ajsvss6txycmr5om
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Amelie Delaunay (3):
+  phy: stm32: restore utmi switch on resume
+  dt-bindings: phy: phy-stm32-usbphyc: add optional phy tuning
+    properties
+  phy: stm32: add phy tuning support
 
-Hi,
+---
+Changes in v2:
+- st,phy-tuning + usb_phy_tuning node removed
+- properties are now in phy child nodes
 
-On Sun, Aug 29, 2021 at 09:09:47PM +0200, Linus Walleij wrote:
-> On Fri, Aug 6, 2021 at 11:02 AM Linus Walleij <linus.walleij@linaro.org> =
-wrote:
->=20
-> > This adds device tree bindings for Samsung SDI batteries.
-> > Everything can be determined from the product number so the entire
-> > battery is just a specific compatible string.
-> >
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
->=20
-> Sebastian: can this be merged? I am working on corresponding code
-> for Linux to populate Samsung batteries from compatible.
+ .../bindings/phy/phy-stm32-usbphyc.yaml       | 126 +++++++++++
+ drivers/phy/st/phy-stm32-usbphyc.c            | 204 ++++++++++++++++++
+ 2 files changed, 330 insertions(+)
 
-Thanks, queued.
+-- 
+2.25.1
 
--- Sebastian
-
---ajsvss6txycmr5om
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmFcbeYACgkQ2O7X88g7
-+pqtAg/+Id3bovx0nIoDu8y+vWG0FkDe/f5Umy/tlsu+a2uk/VVvq7OibuJXKskI
-czGmbl/touUa+vN86XyeDtZOWkfPBX+FjzaI8ywyc/pI5ZemHBLZzkdV3T8OmlQn
-DjiGD25dchFjVAF4usgQPVn7rw1bgH97R6c1xKVj4/dQqG5hAMy58YsJek43Bhcz
-sEr/q6XH2ZggV7x4PmvJty2gZdcpGYexykTARYcdvxiYfg48C1ptiUlyLXHnWgDy
-OFFtVKtEYW+Bh7V5HIPklG4yVf/KmVQzlwmO0T88TE0rns24XiHI++wxLh3GYfpx
-D0eVVWhfYeyTOL1IoxpgF4YPQ5nuPwZ5HnkI9BgGfaDw1hCT/dkAJfcYJ4VRmAHj
-X11+QLOy8YdDPd3hobfNxaJRZ0QzCBW4qBpYJ+hu2xCsvL5dlchxsC3MEoez3RnV
-UolSAR+bao8Rer07+qj9pfDj7AnKrNY0YjCGz23JdKqk5xFRA8eJkXsMwLvAp4wQ
-jOhE3Rj3dS6fNVEXRH5l8pMlGfFOcmRCvdn5EbWRdf34kL2Lb6GdTKisGYm8s0fO
-xv5Sss5Oqqr4FmLTmxU7HLSdJelOZB/5L0afktxbV/RFaTb6CoRKJCquwUdASpT2
-xsbYaJWzmLP9Bu9PX14LI1ux5rRACtarVUjSGzsU2tVKYjX0zMM=
-=vwPQ
------END PGP SIGNATURE-----
-
---ajsvss6txycmr5om--
