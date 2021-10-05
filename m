@@ -2,127 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD8604221E7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 11:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B784422234
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 11:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233182AbhJEJQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 05:16:38 -0400
-Received: from www.zeus03.de ([194.117.254.33]:37444 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232871AbhJEJQh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 05:16:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=Ko//vJyuyzkPLobdWRfp+yv7tyBc
-        7iVoX1/SJmxO3TA=; b=VtlR4bgMqXIBd5DWuugHtGk9yyyDygAneVjffLA5ldjl
-        pAWSNhrqUERs8oyt4OKXq1q/a9QpTPiC7Rt2L+RJz5NqL/LSj5dPB5jCzcm3z6I6
-        xfvrh+wqR/siH9eEiLFS2V4S5GVnbUGickqtE8JS6mabXe0R/olbq6f5D5LA/4I=
-Received: (qmail 3740740 invoked from network); 5 Oct 2021 11:14:44 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Oct 2021 11:14:44 +0200
-X-UD-Smtp-Session: l3s3148p1@JUPbdZfNBoogAwDPXw1kABtQsg8UzxVo
-Date:   Tue, 5 Oct 2021 11:14:44 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        id S232992AbhJEJ0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 05:26:01 -0400
+Received: from forward500o.mail.yandex.net ([37.140.190.195]:59362 "EHLO
+        forward500o.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232871AbhJEJ0B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 05:26:01 -0400
+X-Greylist: delayed 377 seconds by postgrey-1.27 at vger.kernel.org; Tue, 05 Oct 2021 05:25:59 EDT
+Received: from myt5-6c0659e8c6cb.qloud-c.yandex.net (myt5-6c0659e8c6cb.qloud-c.yandex.net [IPv6:2a02:6b8:c12:271e:0:640:6c06:59e8])
+        by forward500o.mail.yandex.net (Yandex) with ESMTP id A206F941E36;
+        Tue,  5 Oct 2021 12:17:48 +0300 (MSK)
+Received: from myt5-ca5ec8faf378.qloud-c.yandex.net (2a02:6b8:c12:2514:0:640:ca5e:c8fa [2a02:6b8:c12:2514:0:640:ca5e:c8fa])
+        by myt5-6c0659e8c6cb.qloud-c.yandex.net (mxback/Yandex) with ESMTP id IyV6tEzelD-HkDqMhNI;
+        Tue, 05 Oct 2021 12:17:48 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1633425468;
+        bh=CrnGMerQ4LBYjjGbgeqFgGHVtZrQ+QTtn5a0VX0cO1Y=;
+        h=In-Reply-To:Message-ID:Subject:To:From:References:Date:Cc;
+        b=dehZ7uZt+fO6YaaLE03MQykhBGAWbnTmJAz787q5v+kP+tnjCX9x7H9RnogO2XnQp
+         o2LRZpnAlGHdRWJteqIyL14dh5xgLy2vRi3CnyXYsauaUBuFMzC+aXli5//Spgpk63
+         AQfi00eYfDiMTtzwMWrmEkxl0sCLVfek9C7+wa9k=
+Authentication-Results: myt5-6c0659e8c6cb.qloud-c.yandex.net; dkim=pass header.i=@maquefel.me
+Received: by myt5-ca5ec8faf378.qloud-c.yandex.net (smtp/Yandex) with ESMTPS id 43frcM9OPL-HjPCRD6R;
+        Tue, 05 Oct 2021 12:17:46 +0300
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client certificate not present)
+Date:   Tue, 5 Oct 2021 12:17:44 +0300
+From:   Nikita Shubin <nikita.shubin@maquefel.me>
+To:     Atish Patra <atish.patra@wdc.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        "Darrick J. Wong" <djwong@kernel.org>, devicetree@vger.kernel.org,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Jiri Olsa <jolsa@redhat.com>,
+        John Garry <john.garry@huawei.com>,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH 6/6] memory: renesas-rpc-if: Add support for RZ/G2L
-Message-ID: <YVwXhFalcYr72CZT@kunai>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210928140721.8805-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Vincent Chen <vincent.chen@sifive.com>
+Subject: Re: [v3 00/10] Improve RISC-V Perf support using SBI PMU and
+ sscofpmf extension
+Message-ID: <20211005121744.728385be@redslave.neermore.group>
+In-Reply-To: <20210910192757.2309100-1-atish.patra@wdc.com>
+References: <20210910192757.2309100-1-atish.patra@wdc.com>
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="1E6oOfbK851bS2lO"
-Content-Disposition: inline
-In-Reply-To: <20210928140721.8805-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 10 Sep 2021 12:27:47 -0700
+Atish Patra <atish.patra@wdc.com> wrote:
 
---1E6oOfbK851bS2lO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hello Atish,
 
-Hi Prabhakar,
+> Perf stat:
+> =========
+> 
+> [root@fedora-riscv riscv]# perf stat -e r8000000000000005 -e
+> r8000000000000007 -e r8000000000000006 -e r0000000000020002 -e
+> r0000000000020004 -e branch-misses -e cache-misses -e
+> dTLB-load-misses -e dTLB-store-misses -e iTLB-load-misses -e cycles
+> -e instructions ./hackbench -pipe 15 process Running with 15*40 (==
+> 600) tasks. Time: 6.578
+> 
+>  Performance counter stats for './hackbench -pipe 15 process':
+> 
+>              6,491      r8000000000000005      (52.59%) -->
+> SBI_PMU_FW_SET_TIMER 20,433      r8000000000000007      (60.74%) -->
+> SBI_PMU_FW_IPI_RECVD 21,271      r8000000000000006      (68.71%) -->
+> SBI_PMU_FW_IPI_SENT 0      r0000000000020002      (76.55%)
+>      <not counted>      r0000000000020004      (0.00%)
+>      <not counted>      branch-misses          (0.00%)
+>      <not counted>      cache-misses           (0.00%)
+>         57,537,853      dTLB-load-misses       (9.49%)
+>          2,821,147      dTLB-store-misses      (18.64%)
+>         52,928,130      iTLB-load-misses       (27.53%)
+>     89,521,791,110      cycles                 (36.08%)
+>     90,678,132,464      instructions #    1.01  insn per cycle
+> (44.44%)
+> 
+>        6.975908032 seconds time elapsed
+> 
+>        3.130950000 seconds user
+>       24.353310000 seconds sys
+> 
 
-some updates after internal discussions I had.
+Tested your patch series with qemu and got results as expected:
 
-> +#define RPCIF_CMNCR_MOIIO_HIZ(val) (RPCIF_CMNCR_MOIIO0(val) | \
-> +				 RPCIF_CMNCR_MOIIO1(val) | \
-> +				 RPCIF_CMNCR_MOIIO2(val) | RPCIF_CMNCR_MOIIO3(val))
+perf stat -e r8000000000000005 -e r8000000000000007 \
+-e r8000000000000006 -e r0000000000020002 -e r0000000000020004 -e
+branch-misses \ -e cache-misses -e dTLB-load-misses -e
+dTLB-store-misses -e iTLB-load-misses \ -e cycles -e instructions
+./hackbench -pipe 15 process
 
-Shimoda-san rightfully said that '_HIZ' should be removed from the macro
-name because HIZ implies the value 3.
+Running with 15*40 (== 600) tasks.nch -pipe 15 process
+Time: 20.027
+
+ Performance counter stats for './hackbench -pipe 15 process':
+
+              4896      r8000000000000005
+                            (53.34%) 0      r8000000000000007
+                                                (61.20%) 0
+              r8000000000000006
+                  (68.88%) 0      r0000000000020002
+                                      (76.53%) <not counted>
+              r0000000000020004
+                  (0.00%) <not counted>      branch-misses
+                                                 (0.00%) <not counted>
+                  cache-misses
+                      (0.00%) 48414917      dTLB-load-misses
+                                                (9.87%) 2427413
+              dTLB-store-misses
+                  (19.43%) 46958092      iTLB-load-misses
+                                             (28.58%) 69245163600
+              cycles
+                  (37.09%) 70334279943      instructions              #
+                 1.02  insn per cycle           (45.24%)
+
+      20.895871900 seconds time elapsed
+
+       2.724942000 seconds user
+      18.126277000 seconds sys
+
+perf top/record also works.
+
+Tested-by: Nikita Shubin <n.shubin@yadro.com>
+
+Yours,
+Nikita Shubin
 
 
->  #define RPCIF_CMNCR_IO3FV(val)	(((val) & 0x3) << 14) /* undocumented */
->  #define RPCIF_CMNCR_IO2FV(val)	(((val) & 0x3) << 12) /* undocumented */
-
-As discussed before, mention here that they are documented for G2L.
-Sadly, we can't use them with Gen3...
-
-> -#define RPCIF_CMNCR_IOFV_HIZ	(RPCIF_CMNCR_IO0FV(3) | RPCIF_CMNCR_IO2FV(3) | \
-> -				 RPCIF_CMNCR_IO3FV(3))
-> +#define RPCIF_CMNCR_IOFV_HIZ(val) (RPCIF_CMNCR_IO0FV(val) | RPCIF_CMNCR_IO2FV(val) | \
-> +				 RPCIF_CMNCR_IO3FV(val))
-
-... which means we should remove this macro entirely because it is
-forbidden for Gen3. I think it is best to use the RPCIF_CMNCR_IO<n>FV
-macros directly where we need them.
-
-Do you agree?
-
-Kind regards,
-
-   Wolfram
-
-
---1E6oOfbK851bS2lO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFcF4QACgkQFA3kzBSg
-KbbnLRAAl70bTAB+aCkvy4wf5a037bvW472u2V73Husi70cFbyNZccWvjYNENHbA
-w15RefXBgSpefwx3hNndCw9hvXBW5TyLVHaKjGyN23G9y+d7clBKGUUzXI/8Wkko
-cfYmv+T9Sx+EhH+ZX2fuYId22CcR4DY7q++BDytTmgeQ9iXqvgch1fNhol/XAoVo
-8ADih0NYeq2qBD23OGejJxEQVzLSc3RX8p7oi4rNrr78nqVD+bPtKlqH7mX1s/5m
-UtjXlgc3jqRWKfCq3anpE/ketF+F/D2reqsAE29dQP8Pnwhy64XmEvsJbwy+n0xl
-GeQ7ZRS4maXgVPMcH157aPL77OgiUczqTNGYnpXGGQtUaxMNx7GOir+xtsHv9NaO
-FTczDB4l0tx7E155wgKl3+bImYvnrFPTblJpQhBkzkzzu0fF2l4HNlLkUQ2Wusb0
-MTlPa4efYMzK0Yo+BNeOf6962cjlA/Fmu+MZ1udD/Ko9NVvSfSgZH17LAX31cOGo
-pI5eDH2LHZCkP7zhH7hIKYVAn8jKqJYX6aUk5/6yt1Rj/FLSRZzSiIb2UcRwC6Hs
-gB2Ang+Rou0Dpu2rnhYxVG25tho+SeEx7I+RFXUZTQSrMCKpFIh67Oid5HY7RmaJ
-v6EsYsI4+qDVRfamnyNTjS+Hwt5/fs+uRYyHMOAj2UXeSgZiOBk=
-=3XAi
------END PGP SIGNATURE-----
-
---1E6oOfbK851bS2lO--
