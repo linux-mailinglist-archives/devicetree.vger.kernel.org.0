@@ -2,107 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 694AC423206
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:30:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8280242320B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 22:31:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230057AbhJEUcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 16:32:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53028 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230019AbhJEUcJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 16:32:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E7FA60F44;
-        Tue,  5 Oct 2021 20:30:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633465818;
-        bh=gbIXNRW5Wq4ehAfiyk/kQqqaMrxPz+mtMrf130bf9ws=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=VjJ5c5XiBc3GJlXt/eQ9FQXEUIJnTCkKvmvqABBmmAOmc9KdXI7hdqZho1rptJ9uu
-         EzAmvw7Ns2KK0qgz6zKdf53DMIyZtO5jTXcYEdqouK4XCOapcVKg+Fjoo9LsoHYJUZ
-         1zSY/AQSjzI8aGmz7G9KFunqazrwt+D0SwJ037GqEU7jRljEEccAZxw8OjgvNWbGJ2
-         6op7FZcz0tXKLlpio7y1CJ42vRuPPMivlbDdwZy7D3DbI8hdueQtBHgQ6vLlcaiwKs
-         zp+rIKuUalKmA0fEfAMEHazs3YHUfZ5LaHrzQQU0TAk/Z4MquijSjEhL2yCGN9Lg2N
-         4mQ5c+3jBpRbg==
-Date:   Tue, 5 Oct 2021 22:30:14 +0200
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: lets settle the LED `function` property regarding the netdev
- trigger
-Message-ID: <20211005223014.3891f041@thinkpad>
-In-Reply-To: <YVs5sxd/dEBwBShm@lunn.ch>
-References: <20211001143601.5f57eb1a@thinkpad>
-        <YVn815h7JBtVSfwZ@lunn.ch>
-        <20211003212654.30fa43f5@thinkpad>
-        <YVsUodiPoiIESrEE@lunn.ch>
-        <20211004170847.3f92ef48@thinkpad>
-        <YVs5sxd/dEBwBShm@lunn.ch>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S236407AbhJEUcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 16:32:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45898 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235994AbhJEUct (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 16:32:49 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6026DC061753
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 13:30:58 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id b16so367690qtt.7
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 13:30:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ZyooK385UPa/hejgXrvQ3R8D7J/IvgX2J1+dY+z5Tfw=;
+        b=dq8RULmqd/pqVqtZm6l3zrjAcWOiMybIlP1ptQScoFB8gpWrSQ8JidbN23s38m6K75
+         5JgEoQurQtd2GoBxSHNmZM4ISkx5owMoAEl2w3xHjqn230lrazOB1eTJ1QJAx8LVWXyy
+         SS2NweOIXmW9f3SvFpWPIPSumSt/q0bl6wzVijpo7KjXmzf29sYxvpU/kZMQHSU4PeQQ
+         228E10Ocp8fdk/G/Bw3Q5ZMXagGDLvrEyBEdNiPfO5ibORVbo1tYC82Cu6BWDfl2OfSM
+         N+/H9K77hetRTmTbDuW8vJXji/7ePhCXQ+6Bokf9XT/Zh0Yf2N7/7jEeOpvfm2uEPlCY
+         /9KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ZyooK385UPa/hejgXrvQ3R8D7J/IvgX2J1+dY+z5Tfw=;
+        b=yiEpj53Z/viiFYfVebniHdOaKOEqUre90B/u/AARR1jjqyT5eXhcVIL3AxA0jlkjhz
+         /bNv56fv9YykNveVNM+/fm6qXwd5q2Hy+vlrzID00ltYWIq8Nx8DDHiuxxpLTNbMTpAE
+         160UsErN3JEmbM6HEDO3Jc5giMEmEdyHSxOSWvO4hSbYS1nwxAnErS7ePjC/ebeJo+gF
+         J65N+1qKem27Uat715BLLfFBvgzjNJNyQwHipjsqcQwT09QsB9U+6ebL/ojmCfobH5zn
+         fhsQIsDd0bJqMDBGMMS490W5zfsoy4V7ZgsRuDpevDICH83qg4pEEANHVH5V/i9zS0L+
+         q6pw==
+X-Gm-Message-State: AOAM533TsHINsF6GZGzvAbxvS1TkCdri3R8rUqpxhkjN9iIq65JnBi7c
+        /jlDDcjXZaK5zeExKMMSrWRUXA==
+X-Google-Smtp-Source: ABdhPJyJTQZ6xwp9tKG3Wq5zR4ov03NpNo29GGIUs+asJd7aPHY+RE1U7VfkCrNe/bnaaGZu3xl8lA==
+X-Received: by 2002:ac8:51d7:: with SMTP id d23mr22813497qtn.332.1633465857492;
+        Tue, 05 Oct 2021 13:30:57 -0700 (PDT)
+Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.gmail.com with ESMTPSA id n16sm11924195qta.51.2021.10.05.13.30.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Oct 2021 13:30:56 -0700 (PDT)
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sdm845: mtp: Add vadc channels
+ and thermal zones
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20210923212311.2877048-1-bjorn.andersson@linaro.org>
+ <20210923212311.2877048-5-bjorn.andersson@linaro.org>
+ <YVSzJZ8G43CLml3L@google.com> <YVtg3lcR1HMqVdAJ@ripper>
+ <CAA8EJprYij6pWD1A17yr1+5-n5fKPW=YDA_-2+f8h6JnEh4myw@mail.gmail.com>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <f136fbb0-be3e-aee8-7a68-1d16148c80ff@linaro.org>
+Date:   Tue, 5 Oct 2021 16:30:56 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <CAA8EJprYij6pWD1A17yr1+5-n5fKPW=YDA_-2+f8h6JnEh4myw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 4 Oct 2021 19:28:19 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
 
-> > > There are two different ways this can be implemented. There can be two
-> > > independent LEDs within the same package. So you can generate three
-> > > colours. Or there can be two cross connected LEDs within the
-> > > package. Apply +ve you get one colour, apply -ve you get a different
-> > > colour. Since you cannot apply both -ve and +ve at the same time, you
-> > > cannot get both colours at once.
-> > > 
-> > > If you have two independent LEDs, I would define two LEDs in DT.  
-> > 
-> > No, we have multicolor LED API which is meant for exactly this
-> > situation: a multicolor LED.
-> > (I am talking about something like the KJ2518D-262 from
-> >  http://www.rego.com.tw/product_detail.php?prdt_id=258
-> >  which has Green/Orange on left and Yellow on right side.
-> >  The left Green/Orange LED has 3 pins, and so it can mix the colors into
-> >  yellow.)  
-> 
-> But here you are talking about the LED, not the controller in the
-> PHY. The controller might control it as two independent LEDs. It has
-> no idea it can get a third colour by enabling two LEDs at the same
-> time. Or maybe the controller does know it can combine colours.
-> 
-> So you need to know about both the controller and the LED. And the
-> same controller can be used either way. Plus you need to think about
-> the non DT case, when you have no idea about the LED connected to the
-> controller.
-> 
-> > I think the best solution here would be a subclass "enumcolor" (or
-> > different name), where you can choose between several pre-defined colors.
-> > In sysfs you could then do
-> >   echo 1 >brightness
-> >   echo green >color
-> >   echo yellow >color  
-> 
-> I'm not sure it is as simple as that. In the general case, you have no
-> idea what the colours actually are. You only know the colours if you
-> have DT and DT lists the colours. And you only know if LEDs are
-> combined if you have DT. You need a basic sysfs API based on knowing
-> the PHY can control X LEDs. You can then extend that API if you have
-> additional information via DT, like colour and if LEDs are combined,
-> that only LEDs numbered 2 and 3 are used, etc.
-> 
-> 	   Andrew
 
-I really don't think we should be registering any LEDs in the PHY driver
-if the driver does not know whether there are LEDs connected to the PHY.
+On 10/4/21 4:56 PM, Dmitry Baryshkov wrote:
+> On Mon, 4 Oct 2021 at 23:13, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+>>
+>> On Wed 29 Sep 11:40 PDT 2021, Matthias Kaehlcke wrote:
+>>
+>>> On Thu, Sep 23, 2021 at 02:23:11PM -0700, Bjorn Andersson wrote:
+>>>> Downstream defines four ADC channels related to thermal sensors external
+>>>> to the PM8998 and two channels for internal voltage measurements.
+>>>>
+>>>> Add these to the upstream SDM845 MTP, describe the thermal monitor
+>>>> channels and add thermal_zones for these.
+>>>>
+>>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>>> ---
+>>>>
+>>>> In addition to the iio channels exposed by v1, Daniel wanted thermal_zones...
+>>>>
+>>>> Changes since v1:
+>>>> - Enable the pm8998_adc_tm and describe the ADC channels
+>>>> - Add thermal-zones for the new channels
+>>>>
+>>>>   arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 128 ++++++++++++++++++++++++
+>>>>   1 file changed, 128 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+>> [..]
+>>>> +&pm8998_adc {
+>>>> +   adc-chan@4c {
+>>>> +           reg = <ADC5_XO_THERM_100K_PU>;
+>>>> +           label = "xo_therm";
+>>>> +   };
+>>>> +
+>>>> +   adc-chan@4d {
+>>>> +           reg = <ADC5_AMUX_THM1_100K_PU>;
+>>>> +           label = "msm_therm";
+>>>> +   };
+>>>> +
+>>>> +   adc-chan@4f {
+>>>> +           reg = <ADC5_AMUX_THM3_100K_PU>;
+>>>> +           label = "pa_therm1";
+>>>> +   };
+>>>> +
+>>>> +   adc-chan@51 {
+>>>> +           reg = <ADC5_AMUX_THM5_100K_PU>;
+>>>> +           label = "quiet_therm";
+>>>> +   };
+>>>> +
+>>>> +   adc-chan@83 {
+>>>> +           reg = <ADC5_VPH_PWR>;
+>>>> +           label = "vph_pwr";
+>>>> +   };
+>>>> +
+>>>> +   adc-chan@85 {
+>>>> +           reg = <ADC5_VCOIN>;
+>>>> +           label = "vcoin";
+>>>> +   };
+>>>> +};
+>>>> +
+>>>> +&pm8998_adc_tm {
+>>>> +   status = "okay";
+>>>> +
+>>>> +   xo-thermistor@1 {
+>>>> +           reg = <1>;
+>>>> +           io-channels = <&pm8998_adc ADC5_XO_THERM_100K_PU>;
+>>>> +           qcom,ratiometric;
+>>>> +           qcom,hw-settle-time-us = <200>;
+>>>> +   };
+>>>> +
+>>>> +   msm-thermistor@2 {
+>>>> +           reg = <2>;
+>>>> +           io-channels = <&pm8998_adc ADC5_AMUX_THM1_100K_PU>;
+>>>> +           qcom,ratiometric;
+>>>> +           qcom,hw-settle-time-us = <200>;
+>>>> +   };
+>>>> +
+>>>> +   pa-thermistor@3 {
+>>>> +           reg = <3>;
+>>>> +           io-channels = <&pm8998_adc ADC5_AMUX_THM3_100K_PU>;
+>>>> +           qcom,ratiometric;
+>>>> +           qcom,hw-settle-time-us = <200>;
+>>>> +   };
+>>>> +
+>>>> +   quiet-thermistor@4 {
+>>>> +           reg = <4>;
+>>>> +           io-channels = <&pm8998_adc ADC5_AMUX_THM5_100K_PU>;
+>>>> +           qcom,ratiometric;
+>>>> +           qcom,hw-settle-time-us = <200>;
+>>>> +   };
+>>>> +};
+>>>> +
+>>>
+>>> The example in the 'qcom,spmi-adc-tm5' binding specifies 'qcom,ratiometric'
+>>> and 'qcom,hw-settle-time-us' for both the ADC and the thermal monitor, so do
+>>> several board files (e.g. sm8250-mtp.dts and qrb5165-rb5.dts). This apparent
+>>> redundancy bothered me earlier, it's not really clear to me whether it's
+>>> needed/recommended or not. Do you happen to have any insights on this?
+>>
+>> Hmm, you're right and I missed this in defining my channels. I've not
+>> looked at this detail, just got reasonable readings from my thermal
+>> zones and was happy about that.
+>>
+>> Dmitry, do you have any further insights why these properties are
+>> supposed to be duplicated between the adc channel and the thermal zones?
+> 
+> Because both ADC channel and thermal zone registers should be
+> programmed accordingly.
+> 
+> One not-so-perfect approach would be to use io-channels property to
+> locate the adc's adc-chan node and to parse it. However this way
+> thermal driver would have to know the exact structure of adc's device
+> tree nodes.
+> Another (even worse) solution would be to introduce qcom-specific API
+> to query these properties from the IIO channel.
+> 
+> Selecting between these two options I decided to follow the downstream
+> path and just to duplicate these few properties.
 
-If this information is not available (via device-tree or some other
-method, for example USB vendor/device table), then we can't register a
-LED and let user control it.
+I know I am joining late to this party, since v3 is out. But before I 
+send my acked-by, wanted to check/state a few things.
+To me, the not-so-perfect approach that you mention here is actually not 
+so bad, considering the thermal sensor driver already is aware of 
+internals of the adc device. The duplicating of node is kind of confusing.
+Also did you explore using one of _channel_write apis in iio framework 
+to move all the writes into the adc device instead of thermal sensor 
+driver ?
 
-What if the pin is used for something different on a board?
+> 
 
-Marek
+-- 
+Warm Regards
+Thara (She/Her/Hers)
