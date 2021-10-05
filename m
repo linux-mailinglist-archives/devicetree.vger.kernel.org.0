@@ -2,90 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4E7F422C73
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:26:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C922422CA6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:37:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236067AbhJEP1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 11:27:55 -0400
-Received: from mail-vs1-f48.google.com ([209.85.217.48]:36837 "EHLO
-        mail-vs1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234440AbhJEP1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 11:27:54 -0400
-Received: by mail-vs1-f48.google.com with SMTP id y28so10321393vsd.3;
-        Tue, 05 Oct 2021 08:26:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KSfoUs1RyncvnmPC5NiMdbUYy+WE1in92GvUJZla4GY=;
-        b=lTYDrruJNj2CHAgNSR5f7poVvASO1+IMQuNLlZDtGzJHapP4cRLXvs0YD6dbwBNP6G
-         cf5aP9QC10xADxXjShVKnJ3K3bZ1w2H4YUNIO/y02uBlnDJMzUKJS4Z55Hb50fvy14NX
-         O6IzaorxbulQxi1jw+fYE93JyBZ1/I0qo7Of3tCq45pyKVPLuHoye84T8aNEsfT5p0QL
-         NtN22psd8zSsHQKQVUC0ObZvRni78xK9ycPaIiZ5+KBdnweHwjm8zbrGtNvLg3cSyHI8
-         O7z1MnLjS0DFSQXnS6Wg56/esPcQFLhQgWaucTNbcZZZ+6lAFVF7p69VTZnx8ch/care
-         31Dg==
-X-Gm-Message-State: AOAM531qmkE4Vdy9paW2+NTvG4l6KxBO2T/unSKvL/mQbnleLZqvN0S0
-        bFpXnUsGhiHat70DWweAPiwxq2Jc5cDXhBB7tDM=
-X-Google-Smtp-Source: ABdhPJywGwfpRqbIeYpGX+HZ2UWKkSYVpZ/hXxSNrmGd7JFi4IsId+z/R5soZJYSH3hdG3qWIJpUMzGfVNXr0Jb1zLM=
-X-Received: by 2002:a67:c295:: with SMTP id k21mr16616682vsj.37.1633447562966;
- Tue, 05 Oct 2021 08:26:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210928140721.8805-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210928140721.8805-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 5 Oct 2021 17:25:51 +0200
-Message-ID: <CAMuHMdXVxOtvXu_DM5FjFzNcPbLtrRJ9W2R6CHmCc0ZJg9JJYw@mail.gmail.com>
-Subject: Re: [PATCH 3/6] spi: spi-rpc-if: Check return value of rpcif_sw_init()
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        id S234440AbhJEPjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 11:39:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43232 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235942AbhJEPjl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Oct 2021 11:39:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 69245610EA;
+        Tue,  5 Oct 2021 15:37:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633448270;
+        bh=s8dscrrIAsTmIuDm+tx17i82rsTJNNFZ/mXmMzrR8a8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=V422fjGQ5XIVBiW3hGv4wEyMh5NPtAi1+IcycV9rfcvPIrDaRz0y+qXjnMCD00TTT
+         u2sklFX6x9jdCrvu+6F/1j77FAraO7T5FVvbqmM7CtocIajF4ypxFUjXEPS/8SkjAx
+         ZdUbiwuU99pWVRZg5HAjp6KYpoEuAhAHmr2vJuQd5UIpxF2T6P+FDJBMj8njgfYVnr
+         V95Do6ZtHdk4ak1yaCUOhrTmQLH4zDbWb1hKJAlNtP9rYV1T3PsWnGRBlePU/JYnk/
+         CN8qIJTegt13fRsKQo7YEZY/6vuBLpe/OXhsThYQyAY4YlT4vUHWQTrznNkGlSo7fL
+         R6lar4nOFt6Tg==
+From:   Mark Brown <broonie@kernel.org>
+To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+        linux-kernel@vger.kernel.org,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Wilken Gottwalt <wilken.gottwalt@posteo.net>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Tero Kristo <kristo@kernel.org>, Yu Chen <chenyu56@huawei.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Deepak Saxena <dsaxena@plexity.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        kernel-janitors@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: (subset) [PATCH v4 00/11] Rectify file references for dt-bindings in MAINTAINERS
+Date:   Tue,  5 Oct 2021 16:37:40 +0100
+Message-Id: <163344802403.1141521.13995618381491807996.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211005075451.29691-1-lukas.bulwahn@gmail.com>
+References: <20211005075451.29691-1-lukas.bulwahn@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On Tue, 5 Oct 2021 09:54:40 +0200, Lukas Bulwahn wrote:
+> here is a patch series that cleans up some file references for dt-bindings
+> in MAINTAINERS. It applies cleanly on next-20211001.
+> 
+> This is a v4 of the still relevant patches from the first submission
+> of the patch series (see Links) send out 2021-03-15 and resent on 2021-04-19
+> and on 2021-07-26.
+> 
+> [...]
 
-Thanks for your patch!
+Applied to
 
-On Tue, Sep 28, 2021 at 4:07 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> rpcif_sw_init() can fail so make sure we check the return value
-> of it and on error exit rpcif_spi_probe() callback with error code.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Indeed, it will now fail earlier if CONFIG_RESET_CONTROLLER=n
-Patch sent
-https://lore.kernel.org/all/d4383bd1a97c0490c0bdc9dae5695f4230d4a420.1633447185.git.geert+renesas@glider.be
+Thanks!
 
-> Fixes: eb8d6d464a27 ("spi: add Renesas RPC-IF driver")
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+[10/11] MAINTAINERS: rectify entry for SY8106A REGULATOR DRIVER
+        commit: beb76cb4eebf9ac4ff15312e33f97db621b46da7
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Gr{oetje,eeting}s,
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-                        Geert
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Mark
