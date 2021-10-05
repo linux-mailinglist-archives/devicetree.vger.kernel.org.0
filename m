@@ -2,102 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A6E1422264
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 11:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4F5F422280
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 11:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233656AbhJEJgK convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 5 Oct 2021 05:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59786 "EHLO
+        id S233400AbhJEJlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 05:41:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233641AbhJEJgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 05:36:09 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B90C061745
-        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 02:34:19 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mXgpt-0004TB-7y; Tue, 05 Oct 2021 11:34:09 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mXgpr-0003p8-Es; Tue, 05 Oct 2021 11:34:07 +0200
-Message-ID: <ce254cc123f2809976c2f2404941a9074c458309.camel@pengutronix.de>
-Subject: Re: [PATCH 3/3] reset: socfpga: add empty driver allowing consumers
- to probe
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     =?UTF-8?Q?Pawe=C5=82?= Anikiel <pan@semihalf.com>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-        dinguyen@kernel.org
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        tn@semihalf.com, ka@semihalf.com, jam@semihalf.com
-Date:   Tue, 05 Oct 2021 11:34:07 +0200
-In-Reply-To: <20210920124141.1166544-4-pan@semihalf.com>
-References: <20210920124141.1166544-1-pan@semihalf.com>
-         <20210920124141.1166544-4-pan@semihalf.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S233077AbhJEJlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 05:41:32 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2E7C061745;
+        Tue,  5 Oct 2021 02:39:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=mP8SE6PYbA6eukRG5PcP85FllcxoPD5k3unsb67nCcQ=; b=dep6hnBXc/2z4bKbJKxlnT2dmi
+        lRDGPHZoHYEiXUzkY6zRwlksYbM9/sVYUoltpKhS9AgjOZ1GByGTv8Eknt9wBdI0NTbciP3jn0gG0
+        BojX//rXH1mGt51PPAb4U1pBafNj1qOB9J2+a5Z6+GNTyR8sOwVUSXhtKGTrueqUAENOYlcRsLkx8
+        pwSXq3k4COgz8QUaaAyIDBA/HuNu3obOcpt6u1z6kJ6AC7pmEshAqndY2f1ILqfXNpnrmsi+ej+XE
+        Vr/t5HjbzFbl+Jkl1IF+jNvHaz4aEgHqTDsVZb2IEnp/0JXTJUhHYB+hAi9b80l1+tY+LKKJNNDS7
+        Bu8EF6mw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54942)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1mXgvC-00005N-Qh; Tue, 05 Oct 2021 10:39:38 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1mXgvA-0008Mf-Rx; Tue, 05 Oct 2021 10:39:36 +0100
+Date:   Tue, 5 Oct 2021 10:39:36 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RFC net-next PATCH 01/16] dt-bindings: net: Add pcs property
+Message-ID: <YVwdWIJiV1nkJ4A3@shell.armlinux.org.uk>
+References: <20211004191527.1610759-1-sean.anderson@seco.com>
+ <20211004191527.1610759-2-sean.anderson@seco.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211004191527.1610759-2-sean.anderson@seco.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paweł,
+On Mon, Oct 04, 2021 at 03:15:12PM -0400, Sean Anderson wrote:
+> Add a property for associating PCS devices with ethernet controllers.
+> Because PCS has no generic analogue like PHY, I have left off the
+> -handle suffix.
 
-On Mon, 2021-09-20 at 14:41 +0200, Paweł Anikiel wrote:
-> The early reset driver doesn't ever probe, which causes consuming
-> devices to be unable to probe. Add an empty driver to set this device
-> as available, allowing consumers to probe.
-> 
-> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
-> ---
->  drivers/reset/reset-socfpga.c | 26 ++++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-> diff --git a/drivers/reset/reset-socfpga.c b/drivers/reset/reset-socfpga.c
-> index 2a72f861f798..8c6492e5693c 100644
-> --- a/drivers/reset/reset-socfpga.c
-> +++ b/drivers/reset/reset-socfpga.c
-> @@ -92,3 +92,29 @@ void __init socfpga_reset_init(void)
->  	for_each_matching_node(np, socfpga_early_reset_dt_ids)
->  		a10_reset_init(np);
->  }
-> +
-> +/*
-> + * The early driver is problematic, because it doesn't register
-> + * itself as a driver. This causes certain device links to prevent
-> + * consumer devices from probing. The hacky solution is to register
-> + * an empty driver, whose only job is to attach itself to the reset
-> + * manager and call probe.
-> + */
-> +static const struct of_device_id socfpga_reset_dt_ids[] = {
-> +	{ .compatible = "altr,rst-mgr", },
-> +	{ /* sentinel */ },
-> +};
-> +
-> +static int reset_simple_probe(struct platform_device *pdev)
-> +{
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver reset_socfpga_driver = {
-> +	.probe	= reset_simple_probe,
-> +	.driver = {
-> +		.name		= "socfpga-reset",
-> +		.of_match_table	= socfpga_reset_dt_ids,
-> +	},
-> +};
-> +builtin_platform_driver(reset_socfpga_driver);
+For PHYs, we used to have phy and phy-device as property names, but the
+modern name is "phy-handle". I think we should do the same here, so I
+would suggest using "pcs-handle".
 
-If we can just let devlink delay all consumers until the empty driver is
-probed, does the reset controller have to be registered early at all?
+We actually already have LX2160A platforms using "pcs-handle", (see
+Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml) so we're
+in danger of ending up with multiple property names describing the same
+thing.
 
-regards
-Philipp
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
