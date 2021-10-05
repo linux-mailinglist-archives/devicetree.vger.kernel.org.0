@@ -2,132 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF8E7421ACD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 01:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C192D421AF1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 02:03:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231337AbhJDXno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Oct 2021 19:43:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54452 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229703AbhJDXnn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Oct 2021 19:43:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 09D83610EA;
-        Mon,  4 Oct 2021 23:41:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633390914;
-        bh=WnectnZlCpcN61u4P637Y4VP+/XeYfu9evNmOwRjGE8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PedMieptOH3QAu5hrQRBKb2vz5y9jLhG0XoC4awDbq5B2EUhQnt+Xr54GzaMAXzvC
-         BB5MLnDCBBjRq5C1+RG9OM1CuGM6AiRxLsJC2yfvxq1A1COlDf7YJ6s/nTC1Sjv3Ul
-         jKBcydao/10vr1Ubv+vKMcgqObFE74d00M0AJoiAxAw2toVHbFNy52CHC+wTCQbWP0
-         2TsG//vFGyem/A1+MY/CuhtK9JJMvic+C6dN88k0JvBGz3qt7DutxVBiOkK8doUolU
-         jpcv7Fb5mwQnFNv18BRgtpfXCFRmeXyVM2iPzJJmZJ6r/+TfKhfojpAf+fp8b8Aaul
-         4CBT38HD2VlzA==
-Received: by mail-ed1-f42.google.com with SMTP id dj4so71702702edb.5;
-        Mon, 04 Oct 2021 16:41:53 -0700 (PDT)
-X-Gm-Message-State: AOAM531iqKJ/leeGluEdYXqlKiDe08Xx8vgDdAcZa++e6FFNttBSzB9S
-        ijviU4WSRbmqFx4WHaoz7F178lTdVJSTZIiZew==
-X-Google-Smtp-Source: ABdhPJytlz/j7z7RIkYICVtGXnlO4ZRu804S/63zkgVzKSKfZfB7OF+ECsWzuO7+wkBDJPSdAg9zzWDwhLAyYGrsbyY=
-X-Received: by 2002:a50:bf0f:: with SMTP id f15mr21400916edk.43.1633390912636;
- Mon, 04 Oct 2021 16:41:52 -0700 (PDT)
+        id S229487AbhJEAFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Oct 2021 20:05:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42828 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229486AbhJEAFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Oct 2021 20:05:37 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59745C061745
+        for <devicetree@vger.kernel.org>; Mon,  4 Oct 2021 17:03:47 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BC52625B;
+        Tue,  5 Oct 2021 02:03:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1633392225;
+        bh=vTWJHsJppItdG1fvMuN4FUg4+H954D3cWaDRpVVr4BY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RorcdFyIXDcQWYyBm7X4AMbZkTAGJv1Cq2IPPJ3KbwtggRi3+o3GzmGbvhxWuWuYQ
+         W0/c9TD2Sih7LN+nHOOqvyyHVLBi0I3KQ1Cy1jYRylvOJUL9bKuBSXpyagQWnV1U8j
+         6OrWE8TUpkW+Lo5FaUks2oNbp0k4nJEsmRVILCaA=
+Date:   Tue, 5 Oct 2021 03:03:39 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 1/2] dt-bindings: display: bridge: lvds-codec:
+ Document LVDS data mapping select
+Message-ID: <YVuWWz+njDNy99sz@pendragon.ideasonboard.com>
+References: <20210727161357.8842-1-marex@denx.de>
 MIME-Version: 1.0
-References: <20210930131850.21202-1-yongqiang.niu@mediatek.com> <20210930131850.21202-2-yongqiang.niu@mediatek.com>
-In-Reply-To: <20210930131850.21202-2-yongqiang.niu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Tue, 5 Oct 2021 07:41:41 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_82OaLAz0o6BUcogQ=xgYTsFJSov=J72UzMwwq3YtkPdg@mail.gmail.com>
-Message-ID: <CAAOTY_82OaLAz0o6BUcogQ=xgYTsFJSov=J72UzMwwq3YtkPdg@mail.gmail.com>
-Subject: Re: [PATCH v2, 1/1] mailbox: cmdq: add instruction time-out interrupt support
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210727161357.8842-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+Hi Marek,
 
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B49=E6=9C=
-=8830=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:18=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> add time-out cycle setting to make sure time-out interrupt irq
-> will happened when instruction time-out for wait and poll
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+Thank you for the patch.
+
+On Tue, Jul 27, 2021 at 06:13:56PM +0200, Marek Vasut wrote:
+> Decoder input LVDS format is a property of the decoder chip or even
+> its strapping. Add DT property data-mapping the same way lvds-panel
+> does, to define the LVDS data mapping.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+And all my apologies for the delay.
+
 > ---
->  drivers/mailbox/mtk-cmdq-mailbox.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmd=
-q-mailbox.c
-> index 64175a893312..197b03222f94 100644
-> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
-> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-> @@ -36,6 +36,7 @@
->  #define CMDQ_THR_END_ADDR              0x24
->  #define CMDQ_THR_WAIT_TOKEN            0x30
->  #define CMDQ_THR_PRIORITY              0x40
-> +#define CMDQ_THR_INSTN_TIMEOUT_CYCLES  0x50
->
->  #define GCE_GCTL_VALUE                 0x48
->
-> @@ -54,6 +55,15 @@
->  #define CMDQ_JUMP_BY_OFFSET            0x10000000
->  #define CMDQ_JUMP_BY_PA                        0x10000001
->
-> +/*
-> + * instruction time-out
-> + * cycles to issue instruction time-out interrupt for wait and poll inst=
-ructions
-> + * GCE axi_clock 156MHz
-> + * 1 cycle =3D 6.41ns
-> + * instruction time out 2^22*2*6.41ns =3D 53ms
-
-For different clients, the timeout value would be different, and each
-client could use timer to detect timeout, so it's not necessary to
-enable timeout in cmdq driver.
-
-Regards,
-Chun-Kuang.
-
-> + */
-> +#define CMDQ_INSTN_TIMEOUT_CYCLES      22
+> V2: - Use allOf
+>     - Move the data-mapping to endpoint
+> V3: - Rebase on V2 submitted a while ago, reinstate changelog
+>     - Drop the allOf and un-rebase on previous pclk patch
+> V4: - port@1, remove $ref: /schemas/graph.yaml#/properties/port and
+>       add $ref: /schemas/graph.yaml#/$defs/port-base
+> ---
+>  .../bindings/display/bridge/lvds-codec.yaml   | 33 ++++++++++++++++++-
+>  1 file changed, 32 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> index 304a1367faaa7..c0400c60f272a 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> @@ -55,11 +55,26 @@ properties:
+>            For LVDS decoders, port 0 is the LVDS input
+>  
+>        port@1:
+> -        $ref: /schemas/graph.yaml#/properties/port
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>          description: |
+>            For LVDS encoders, port 1 is the LVDS output
+>            For LVDS decoders, port 1 is the parallel output
+>  
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
 > +
->  struct cmdq_thread {
->         struct mbox_chan        *chan;
->         void __iomem            *base;
-> @@ -376,6 +386,7 @@ static int cmdq_mbox_send_data(struct mbox_chan *chan=
-, void *data)
->                 writel((task->pa_base + pkt->cmd_buf_size) >> cmdq->shift=
-_pa,
->                        thread->base + CMDQ_THR_END_ADDR);
->
-> +               writel(CMDQ_INSTN_TIMEOUT_CYCLES, thread->base + CMDQ_THR=
-_INSTN_TIMEOUT_CYCLES);
->                 writel(thread->priority, thread->base + CMDQ_THR_PRIORITY=
-);
->                 writel(CMDQ_THR_IRQ_EN, thread->base + CMDQ_THR_IRQ_ENABL=
-E);
->                 writel(CMDQ_THR_ENABLED, thread->base + CMDQ_THR_ENABLE_T=
-ASK);
-> --
-> 2.25.1
->
+> +            properties:
+> +              data-mapping:
+> +                enum:
+> +                  - jeida-18
+> +                  - jeida-24
+> +                  - vesa-24
+> +                description: |
+> +                  The color signals mapping order. See details in
+> +                  Documentation/devicetree/bindings/display/panel/lvds.yaml
+> +
+>      required:
+>        - port@0
+>        - port@1
+> @@ -71,6 +86,22 @@ properties:
+>  
+>    power-supply: true
+>  
+> +if:
+> +  not:
+> +    properties:
+> +      compatible:
+> +        contains:
+> +          const: lvds-decoder
+> +then:
+> +  properties:
+> +    ports:
+> +      properties:
+> +        port@1:
+> +          properties:
+> +            endpoint:
+> +              properties:
+> +                data-mapping: false
+> +
+>  required:
+>    - compatible
+>    - ports
+
+-- 
+Regards,
+
+Laurent Pinchart
