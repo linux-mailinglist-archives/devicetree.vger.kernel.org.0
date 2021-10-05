@@ -2,161 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38EE042244A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 13:01:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9347C422322
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 12:12:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234490AbhJELCh convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 5 Oct 2021 07:02:37 -0400
-Received: from ni.piap.pl ([195.187.100.5]:46666 "EHLO ni.piap.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234504AbhJELCI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 07:02:08 -0400
-From:   Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>
-To:     devicetree@vger.kernel.org
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v5] dt-binding: media: document ON Semi AR0521 sensor bindings
-Date:   Tue, 05 Oct 2021 13:00:15 +0200
-Message-ID: <m3ilybohxc.fsf@t19.piap.pl>
+        id S233469AbhJEKOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 06:14:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40792 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233290AbhJEKOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 06:14:08 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E798C06161C
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 03:12:18 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id b20so84546829lfv.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 03:12:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Fd2bVG3T2aDLLsUGg65DNy9VZxuxLh/QslDXMizwJK8=;
+        b=Ez5mYoeEnxP72wgv6au1eWbZZvt7siRLWpI9GsKBKBLepayHvuXHhoBFqZfseuORyY
+         h1HA3jABRlKS8tuWaG2UUN4XzRb4Jizd3n+k9ryDkBNUpWyPDxOui77+S9ZqKc3aD0eI
+         IhRttz3xOc3IW3LwIjPPFZxivXeffhFA5txSbttH+iOS9g7NO3HrB8pvutVsiiQaPsIG
+         1ySZ3kqO9o7Bd1T6MoTMLAQEKlN8iKHV+m5My4Owt13LGlpQFTv1OWpU6AdxUVVKm/bP
+         7UXovG3irUPeGNxrJ6iwxCqh0qKa2utVcRhWtScOoJ2MkJj+6XNlVCKFmGij7agmbAVh
+         KBXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Fd2bVG3T2aDLLsUGg65DNy9VZxuxLh/QslDXMizwJK8=;
+        b=7/0ShjIp3jNjyyqAtFCrTysf3e68R1+2EIiOuYndOV20Kydcd8Q7xplzAJ11FK6pv0
+         UWqacEPiFCTAXISLoqL57GXW+VRAEk9SoL++OCpkOy4iMpcsI7RZGBEje3/OA0zBs+/o
+         jkXUsHZCAXtBIZLkgnjEDBaG4FClaimLMh/3rDoyLU+TY5C6jgcgdb1y+LtsmY+3ojum
+         k2k14G3cWe3FsmUCUDHV7bqQ+BQ7UnaK04QA90KK9jb0a37aBz3UmRw9cLIsqO3icXnd
+         p/3+NmntjXSPTEJk8ecFeNGB5H7AU4RRAf5SNuPRcibOZnQC8JQta0lXQ3y+cBQISASv
+         TnvQ==
+X-Gm-Message-State: AOAM531GnM2gWrI48i96Vwi/Ch9ISehOoILmH+C2U0MxwLyFjv3xaqKg
+        H2sF2Tmabfavhm0fEown2V1Js4GV3u+sjDTh1A6q5Q==
+X-Google-Smtp-Source: ABdhPJweYgnhJ9wfwnhC1naOEgjt465iKJfu5aOyclroBOPqShbw0RGuw1NZisfc1hj6jMsbtIvWVkehVRtpOKozveQ=
+X-Received: by 2002:a2e:b8cd:: with SMTP id s13mr21300509ljp.44.1633428736539;
+ Tue, 05 Oct 2021 03:12:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+References: <20210920124141.1166544-1-pan@semihalf.com> <20210920124141.1166544-4-pan@semihalf.com>
+ <ce254cc123f2809976c2f2404941a9074c458309.camel@pengutronix.de>
+In-Reply-To: <ce254cc123f2809976c2f2404941a9074c458309.camel@pengutronix.de>
+From:   =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
+Date:   Tue, 5 Oct 2021 13:12:05 +0200
+Message-ID: <CAF9_jYQVpG8imn3zjAGKeZqZqDPtWRYWLQjNSXi2SXjjzAKvfA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] reset: socfpga: add empty driver allowing consumers
+ to probe
+To:     Philipp Zabel <p.zabel@pengutronix.de>, miquel.raynal@bootlin.com,
+        richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org, dinguyen@kernel.org
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Tomasz Nowicki <tn@semihalf.com>,
+        Konrad Adamczyk <ka@semihalf.com>,
+        Jacek Majkowski <jam@semihalf.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This file documents DT bindings for the AR0521 camera sensor driver.
+On Tue, Oct 5, 2021 at 11:34 AM Philipp Zabel <p.zabel@pengutronix.de> wrot=
+e:
+>
+> Hi Pawe=C5=82,
+>
+> On Mon, 2021-09-20 at 14:41 +0200, Pawe=C5=82 Anikiel wrote:
+> > The early reset driver doesn't ever probe, which causes consuming
+> > devices to be unable to probe. Add an empty driver to set this device
+> > as available, allowing consumers to probe.
+> >
+> > Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
+> > ---
+> >  drivers/reset/reset-socfpga.c | 26 ++++++++++++++++++++++++++
+> >  1 file changed, 26 insertions(+)
+> >
+> > diff --git a/drivers/reset/reset-socfpga.c b/drivers/reset/reset-socfpg=
+a.c
+> > index 2a72f861f798..8c6492e5693c 100644
+> > --- a/drivers/reset/reset-socfpga.c
+> > +++ b/drivers/reset/reset-socfpga.c
+> > @@ -92,3 +92,29 @@ void __init socfpga_reset_init(void)
+> >       for_each_matching_node(np, socfpga_early_reset_dt_ids)
+> >               a10_reset_init(np);
+> >  }
+> > +
+> > +/*
+> > + * The early driver is problematic, because it doesn't register
+> > + * itself as a driver. This causes certain device links to prevent
+> > + * consumer devices from probing. The hacky solution is to register
+> > + * an empty driver, whose only job is to attach itself to the reset
+> > + * manager and call probe.
+> > + */
+> > +static const struct of_device_id socfpga_reset_dt_ids[] =3D {
+> > +     { .compatible =3D "altr,rst-mgr", },
+> > +     { /* sentinel */ },
+> > +};
+> > +
+> > +static int reset_simple_probe(struct platform_device *pdev)
+> > +{
+> > +     return 0;
+> > +}
+> > +
+> > +static struct platform_driver reset_socfpga_driver =3D {
+> > +     .probe  =3D reset_simple_probe,
+> > +     .driver =3D {
+> > +             .name           =3D "socfpga-reset",
+> > +             .of_match_table =3D socfpga_reset_dt_ids,
+> > +     },
+> > +};
+> > +builtin_platform_driver(reset_socfpga_driver);
+>
+> If we can just let devlink delay all consumers until the empty driver is
+> probed, does the reset controller have to be registered early at all?
+>
+> regards
+> Philipp
 
-Signed-off-by: Krzysztof Hałasa <khalasa@piap.pl>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-changes from v4: none
+I asked Dinh if the reset controller code needs to be called early:
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
-new file mode 100644
-index 000000000000..b617cc5c6a9f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
-@@ -0,0 +1,112 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/onnn,ar0521.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ON Semiconductor AR0521 MIPI CSI-2 sensor
-+
-+maintainers:
-+  - Krzysztof Hałasa <khalasa@piap.pl>
-+
-+description: |-
-+  The AR0521 is a raw CMOS image sensor with MIPI CSI-2 and
-+  I2C-compatible control interface.
-+
-+properties:
-+  compatible:
-+    const: onnn,ar0521
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: extclk
-+
-+  vaa-supply:
-+    description:
-+      Definition of the regulator used as analog (2.7 V) voltage supply.
-+
-+  vdd-supply:
-+    description:
-+      Definition of the regulator used as digital core (1.2 V) voltage supply.
-+
-+  vdd_io-supply:
-+    description:
-+      Definition of the regulator used as digital I/O (1.8 V) voltage supply.
-+
-+  reset-gpios:
-+    description: reset GPIO, usually active low
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    unevaluatedProperties: false
-+    description: |
-+      Video output port.
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          bus-type:
-+            const: 4
-+          data-lanes:
-+            anyOf:
-+              - items:
-+                  - const: 1
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - vaa-supply
-+  - vdd-supply
-+  - vdd_io-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/clock/imx6qdl-clock.h>
-+
-+    i2c {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            ar0521: camera-sensor@36 {
-+                    compatible = "onnn,ar0521";
-+                    reg = <0x36>;
-+                    pinctrl-names = "default";
-+                    pinctrl-0 = <&pinctrl_mipi_camera>;
-+                    clocks = <&clks IMX6QDL_CLK_CKO>;
-+                    clock-names = "extclk";
-+                    reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
-+                    vaa-supply = <&reg_2p7v>;
-+                    vdd-supply = <&reg_1p2v>;
-+                    vdd_io-supply = <&reg_1p8v>;
-+
-+                    port {
-+                           mipi_camera_to_mipi_csi2: endpoint {
-+                                    remote-endpoint = <&mipi_csi2_in>;
-+                                    data-lanes = <1 2 3 4>;
-+                            };
-+                    };
-+            };
-+    };
-
--- 
-Krzysztof "Chris" Hałasa
-
-Sieć Badawcza Łukasiewicz
-Przemysłowy Instytut Automatyki i Pomiarów PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+>That's correct. It's for one of the SP timers.
+>
+>On 9/16/21 6:13 AM, Pawe=C5=82 Anikiel wrote:
+>> Hi,
+>>
+>> I would like to ask you about the following commit:
+>>> commit b3ca9888f35fa6919569cf27c929dc0ac49e9716
+>>> Author: Dinh Nguyen <dinguyen@kernel.org>
+>>> Date:   Tue Nov 13 12:50:48 2018 -0600
+>>>
+>>>      reset: socfpga: add an early reset driver for SoCFPGA
+>>>
+>>>      Create a separate reset driver that uses the reset operations in
+>>>      reset-simple. The reset driver for the SoCFPGA platform needs to
+>>>      register early in order to be able bring online timers that needed
+>>>      early in the kernel bootup.
+>>>      [...]
+>> Which online timers is this commit message referring to? I couldn't find
+>> any information about this. Without this patch the kernel seems to work
+>> fine on an Arria 10 (with Mercury AA1 module). What's the exact reason
+>> a regular platform driver isn't sufficient?
+>>
+>> Best regards,
+>> Pawe=C5=82
+>>
