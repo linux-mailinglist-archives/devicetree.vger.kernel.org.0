@@ -2,200 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 465F94230B5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 21:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 419FB4230F9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 21:49:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235101AbhJETXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 15:23:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60152 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235361AbhJETXY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 15:23:24 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AA57761154;
-        Tue,  5 Oct 2021 19:21:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633461693;
-        bh=M62TAUo+09n/pFjm3mE9/03lQLtfj7sPmGMZwJ6g/bA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=Ql+LqFMIoFiVmsk2GVJiJC/64iVnAjQjwndueuqwbKdSVeiEnuh+YfbXn8j/2/RAi
-         y/dn9eLG4VCUEphU8AgVjSoqf0Ixg4AWMDsDRY3PSa3d99ya8O/IdqYKbxWF4tbJ9Q
-         ccJ7su+bSpUIPmnEWqVSFwOvjA7xnb2OiPxoECAt1yvogP10qH7ATPF+ZtWEfR7ZEi
-         UMkBzXk2jlAdJtMB5qcFnnMKHvUNr4QXOod2rL8u73IP3Kb30VcYIXnI6SCfXVHTxE
-         P+e7DdAlqO4NzuQiymtOgExlzeNObIwfaZ8gc3hjYI/ZtcDiaIFsAFvvivRS1+WFV2
-         WxoehdS+fH6Mg==
-Date:   Tue, 5 Oct 2021 14:21:31 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Prasad Malisetty <pmaliset@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
-        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
-        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
-        manivannan.sadhasivam@linaro.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v11 4/5] PCI: qcom: Add a flag in match data along with
- ops
-Message-ID: <20211005192131.GA1111392@bhelgaas>
+        id S231396AbhJETvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 15:51:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35768 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235761AbhJETvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 15:51:07 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55FBFC06174E
+        for <devicetree@vger.kernel.org>; Tue,  5 Oct 2021 12:49:16 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id y15so579931lfk.7
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 12:49:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hSuSoFxOGCn2dKc1HCjcYz8H8NJV0h0NOInNBU1gpMA=;
+        b=r5wtOsIeugQcbSyjEU/905zrWR2yTnrfd3lG/w4v8yln/ZETnNb15iirXrqb21Q/SO
+         TEkfrPxqqAWodYR8/iZ0w+09qmRwPy7SPYIbNrIieEdDujUiMOG0kyqZv85hzLj98DXH
+         y2issgbN9WDO+jaoPuyZ2Bw995Nwtlvn7qQs+2QC1QtjPEruZLJ6h1NVwg90mo0swtGl
+         Gqtzl3zB1FwcLxIZqLbQa28WNWcdigta1v0d0BTNgYIo4l82y7hJdMvDVTwuYpWgugRB
+         q5IGQRWZ6oYxSo7vVocD3QCq5TzZLWiRn/S2Ud82TfBBpk/5ZtIb4oG/hk30EUA43SXm
+         xwnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hSuSoFxOGCn2dKc1HCjcYz8H8NJV0h0NOInNBU1gpMA=;
+        b=nu1scobrYvNDs3zOksiJqJiiBMAHIfZRqPSe3Fet+OJa4lrerbracl2LbJwD3tSljF
+         wPiIMWIJCOcr2TH/AfC5Y2y/ZqR4Xac/sDDJMTUNOsIgiwhzaS1exRqT9GTWa7UKXbQ+
+         y8DNDliJxtz5Ikv9VraWEcv3ip/rfC8uUrCEtpiqtBUJhWEI4lBUvL2w2suNSKeLr/6e
+         seNgEJcXxn6/Z6chaVYvcH5aO+XROosIqFbkX9bvh75rholHff5vVhvDxJMF7KZmKB8N
+         G3Bs9ZqzwiaYK+Lm7KXXFQ5vQ9lJcZn3M88UBF5991UjxTxFzqOMRzh5l8iyXh321pJ1
+         j5SA==
+X-Gm-Message-State: AOAM531UR59IutXy5XSqE4UbV3Z5H2PcZsz7RH0bVuRvmW0J4iawvcNe
+        ZeEx7KcFNCDxHAZlpLfOMq85gRUAVg5uEYLddn17Ig==
+X-Google-Smtp-Source: ABdhPJykTThNIeCyH9BpbVcn03w3Un13AqDopS7RhmmTGPabmxfsRDhqrRXTaLxBykgm3tcdjFmpnL7g7PfeGoPlFYI=
+X-Received: by 2002:a2e:7f05:: with SMTP id a5mr23623339ljd.261.1633463354742;
+ Tue, 05 Oct 2021 12:49:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1633459359-31517-5-git-send-email-pmaliset@codeaurora.org>
+References: <20211005155923.173399-1-marcan@marcan.st> <20211005155923.173399-4-marcan@marcan.st>
+ <CACRpkdanbovvXXLAGGZEEiKXXrNnW+8p1sCONQYWmAjVi-m-9A@mail.gmail.com> <3bad7bc3-30ac-851f-57a3-7781dfa23521@marcan.st>
+In-Reply-To: <3bad7bc3-30ac-851f-57a3-7781dfa23521@marcan.st>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 5 Oct 2021 21:49:03 +0200
+Message-ID: <CACRpkdaZ5p1P1S6j5cphVB8dC6JZT+nc9VMdy7qTmT2EFExqng@mail.gmail.com>
+Subject: Re: [PATCH 3/7] soc: apple: Add driver for Apple PMGR power state controls
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 06, 2021 at 12:12:38AM +0530, Prasad Malisetty wrote:
-> Add pipe_clk_need_muxing flag in match data and configure
-> If the platform needs to switch pipe_clk_src.
-> 
-> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 70 ++++++++++++++++++++++++++++------
->  1 file changed, 59 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 8a7a300..1d7a9cb 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -189,6 +189,11 @@ struct qcom_pcie_ops {
->  	int (*config_sid)(struct qcom_pcie *pcie);
->  };
->  
-> +struct qcom_pcie_cfg {
-> +	const struct qcom_pcie_ops *ops;
-> +	unsigned int pipe_clk_need_muxing:1;
-> +};
+On Tue, Oct 5, 2021 at 6:15 PM Hector Martin <marcan@marcan.st> wrote:
 
-Thanks for splitting this up; it's 90% of the way there.
+> We already broke tradition with the "apple," DT compatible prefix (used
+> to be AAPL for the PowerPC Macs), and these chips aren't even just used
+> in Macs (e.g. the iPad, which in theory people would be able to run
+> Linux on if someone figures out a jailbreak), so perhaps it's time for
+> another break here?
 
-It would be better if this patch added only the definition and use of
-qcom_pcie_cfg:
+Yeah fair enough. It's probably more intuitive under drivers/soc anyway.
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-  +struct qcom_pcie_cfg {
-  +     const struct qcom_pcie_ops *ops;
-  +};
-
-and then the subsequent patch added the clock muxing stuff:
-
-   struct qcom_pcie_cfg {
-  +	unsigned int pipe_clk_need_muxing:1;
-
-   struct qcom_pcie {
-  +	unsigned int pipe_clk_need_muxing:1;
-
-   static const struct qcom_pcie_cfg sc7280_cfg = {
-  +	.pipe_clk_need_muxing = true,
-
-  static int qcom_pcie_probe(struct platform_device *pdev)
-  +	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
-
-That way everything related to pipe_clk_need_muxing would be in a
-single patch.
-
->  struct qcom_pcie {
->  	struct dw_pcie *pci;
->  	void __iomem *parf;			/* DT parf */
-> @@ -197,6 +202,7 @@ struct qcom_pcie {
->  	struct phy *phy;
->  	struct gpio_desc *reset;
->  	const struct qcom_pcie_ops *ops;
-> +	unsigned int pipe_clk_need_muxing:1;
->  };
->  
->  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-> @@ -1456,6 +1462,39 @@ static const struct qcom_pcie_ops ops_1_9_0 = {
->  	.config_sid = qcom_pcie_config_sid_sm8250,
->  };
->  
-> +static const struct qcom_pcie_cfg apq8084_cfg = {
-> +	.ops = &ops_1_0_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg ipq8064_cfg = {
-> +	.ops = &ops_2_1_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg msm8996_cfg = {
-> +	.ops = &ops_2_3_2,
-> +};
-> +
-> +static const struct qcom_pcie_cfg ipq8074_cfg = {
-> +	.ops = &ops_2_3_3,
-> +};
-> +
-> +static const struct qcom_pcie_cfg ipq4019_cfg = {
-> +	.ops = &ops_2_4_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg sdm845_cfg = {
-> +	.ops = &ops_2_7_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg sm8250_cfg = {
-> +	.ops = &ops_1_9_0,
-> +};
-> +
-> +static const struct qcom_pcie_cfg sc7280_cfg = {
-> +	.ops = &ops_1_9_0,
-> +	.pipe_clk_need_muxing = true,
-> +};
-> +
->  static const struct dw_pcie_ops dw_pcie_ops = {
->  	.link_up = qcom_pcie_link_up,
->  	.start_link = qcom_pcie_start_link,
-> @@ -1467,6 +1506,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  	struct pcie_port *pp;
->  	struct dw_pcie *pci;
->  	struct qcom_pcie *pcie;
-> +	const struct qcom_pcie_cfg *pcie_cfg;
->  	int ret;
->  
->  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> @@ -1488,7 +1528,14 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  
->  	pcie->pci = pci;
->  
-> -	pcie->ops = of_device_get_match_data(dev);
-> +	pcie_cfg = of_device_get_match_data(dev);
-> +	if (!pcie_cfg || !pcie_cfg->ops) {
-> +		dev_err(dev, "Invalid platform data\n");
-> +		return NULL;
-> +	}
-> +
-> +	pcie->ops = pcie_cfg->ops;
-> +	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
->  
->  	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
->  	if (IS_ERR(pcie->reset)) {
-> @@ -1545,16 +1592,17 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id qcom_pcie_match[] = {
-> -	{ .compatible = "qcom,pcie-apq8084", .data = &ops_1_0_0 },
-> -	{ .compatible = "qcom,pcie-ipq8064", .data = &ops_2_1_0 },
-> -	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ops_2_1_0 },
-> -	{ .compatible = "qcom,pcie-apq8064", .data = &ops_2_1_0 },
-> -	{ .compatible = "qcom,pcie-msm8996", .data = &ops_2_3_2 },
-> -	{ .compatible = "qcom,pcie-ipq8074", .data = &ops_2_3_3 },
-> -	{ .compatible = "qcom,pcie-ipq4019", .data = &ops_2_4_0 },
-> -	{ .compatible = "qcom,pcie-qcs404", .data = &ops_2_4_0 },
-> -	{ .compatible = "qcom,pcie-sdm845", .data = &ops_2_7_0 },
-> -	{ .compatible = "qcom,pcie-sm8250", .data = &ops_1_9_0 },
-> +	{ .compatible = "qcom,pcie-apq8084", .data = &apq8084_cfg },
-> +	{ .compatible = "qcom,pcie-ipq8064", .data = &ipq8064_cfg },
-> +	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ipq8064_cfg },
-> +	{ .compatible = "qcom,pcie-apq8064", .data = &ipq8064_cfg },
-> +	{ .compatible = "qcom,pcie-msm8996", .data = &msm8996_cfg },
-> +	{ .compatible = "qcom,pcie-ipq8074", .data = &ipq8074_cfg },
-> +	{ .compatible = "qcom,pcie-ipq4019", .data = &ipq4019_cfg },
-> +	{ .compatible = "qcom,pcie-qcs404", .data = &ipq4019_cfg },
-> +	{ .compatible = "qcom,pcie-sdm845", .data = &sdm845_cfg },
-> +	{ .compatible = "qcom,pcie-sm8250", .data = &sm8250_cfg },
-> +	{ .compatible = "qcom,pcie-sc7280", .data = &sc7280_cfg },
->  	{ }
->  };
->  
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+Yours,
+Linus Walleij
