@@ -2,59 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E34422D24
-	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15320422D31
+	for <lists+devicetree@lfdr.de>; Tue,  5 Oct 2021 17:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234853AbhJEP7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 11:59:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48480 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234282AbhJEP7v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 11:59:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D99D16120A;
-        Tue,  5 Oct 2021 15:58:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1633449481;
-        bh=TV6N9QCS7x0T75ql3vVUYe4U2uq/x+LtnM/stpKWe2s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=c69kueUeFXXriOkRWVWDJu0GWzOjay7I3kiQUyDZzJQ5lPpyz7Ihz9MP6hYxI20oq
-         LobVysaDxSR9SvsLfav2liiAodauKKufJU8neV+6Yi0ElbvWik2dRlEbcarn4hsnaj
-         yiNnbcYFr177oNGpCZEmj4IkHG324M0ys5JpfOdI=
-Date:   Tue, 5 Oct 2021 17:57:54 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     davem@davemloft.net, netdev@vger.kernel.org, rafael@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        heikki.krogerus@linux.intel.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/4] device property: add a helper for loading
- netdev->dev_addr
-Message-ID: <YVx2AvEgLFx06M5U@kroah.com>
-References: <20211005155321.2966828-1-kuba@kernel.org>
- <20211005155321.2966828-4-kuba@kernel.org>
+        id S233986AbhJEQBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 12:01:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38912 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233913AbhJEQBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 12:01:38 -0400
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1790DC061749;
+        Tue,  5 Oct 2021 08:59:47 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: hector@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 55D26419B4;
+        Tue,  5 Oct 2021 15:59:41 +0000 (UTC)
+From:   Hector Martin <marcan@marcan.st>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Hector Martin <marcan@marcan.st>, Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Subject: [PATCH 0/7] Apple SoC PMGR device power states driver
+Date:   Wed,  6 Oct 2021 00:59:16 +0900
+Message-Id: <20211005155923.173399-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211005155321.2966828-4-kuba@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 05, 2021 at 08:53:20AM -0700, Jakub Kicinski wrote:
-> Commit 406f42fa0d3c ("net-next: When a bond have a massive amount
-> of VLANs...") introduced a rbtree for faster Ethernet address look
-> up. To maintain netdev->dev_addr in this tree we need to make all
-> the writes to it got through appropriate helpers.
-> 
-> There is a handful of drivers which pass netdev->dev_addr as
-> the destination buffer to device_get_mac_address(). Add a helper
-> which takes a dev pointer instead, so it can call an appropriate
-> helper.
-> 
-> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
-> ---
->  drivers/base/property.c  | 20 ++++++++++++++++++++
->  include/linux/property.h |  2 ++
->  2 files changed, 22 insertions(+)
+This series adds the driver for the Apple PMGR device power state
+registers. These registers can clockgate and (in some cases) powergate
+specific SoC blocks. They also control the reset line, and can have
+additional features such as automatic power management.
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+The current driver supports only the lowest/highest power states,
+provided via the genpd framework, plus reset support provided via
+the reset subsystem.
+
+Apple's PMGRs (there are two in the T8103) have a uniform register
+bit layout (sometimes with varying features). To be able to support
+multiple SoC generations as well as express pd relationships
+dynamically, this binding describes each PMGR power state control
+as a single devicetree node. Future SoC generations are expected to
+retain backwards compatibility, allowing this driver to work on them
+with only DT changes.
+
+#1-#2: Adds the required device tree bindings
+#3: The driver itself.
+#4: Somewhat unrelated DT change, but I wanted to get it out of the way
+    for #7
+#5: Instantiates the driver in t8103.dtsi.
+#6: Adds runtime-pm support to the Samsung UART driver, as a first
+    consumer.
+#7: Instantiates a second UART, to more easily test this.
+
+There are currently no consumers for the reset functionality, so
+it is untested, but we will be testing it soon with the NVMe driver
+(as it is required to allow driver re-binding to work properly).
+
+Hector Martin (7):
+  dt-bindings: arm: apple: Add apple,pmgr binding
+  dt-bindings: power: Add apple,pmgr-pwrstate binding
+  soc: apple: Add driver for Apple PMGR power state controls
+  arm64: dts: apple: t8103: Rename clk24 to clkref
+  arm64: dts: apple: t8103: Add the UART PMGR tree
+  tty: serial: samsung_tty: Support runtime PM
+  arm64: dts: apple: t8103: Add UART2
+
+ .../bindings/arm/apple/apple,pmgr.yaml        |  74 +++++
+ .../bindings/power/apple,pmgr-pwrstate.yaml   | 117 ++++++++
+ MAINTAINERS                                   |   3 +
+ arch/arm64/boot/dts/apple/t8103-j274.dts      |   5 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          | 134 ++++++++-
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/apple/Kconfig                     |  21 ++
+ drivers/soc/apple/Makefile                    |   2 +
+ drivers/soc/apple/apple-pmgr-pwrstate.c       | 281 ++++++++++++++++++
+ drivers/tty/serial/samsung_tty.c              |  88 +++---
+ 11 files changed, 690 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
+ create mode 100644 drivers/soc/apple/Kconfig
+ create mode 100644 drivers/soc/apple/Makefile
+ create mode 100644 drivers/soc/apple/apple-pmgr-pwrstate.c
+
+-- 
+2.33.0
+
