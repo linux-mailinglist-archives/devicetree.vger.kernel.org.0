@@ -2,150 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E255F4241AE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1723F42419C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:44:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239301AbhJFPrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 11:47:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35396 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239280AbhJFPrA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 11:47:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9434661154;
-        Wed,  6 Oct 2021 15:45:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633535106;
-        bh=7tGrolaPtm0yK4RHBoVz2P9qG9S2ZGS78cUr+64jN24=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=eHhEX1B5DyBmFm8HW2hjkn1xWauedL+jP1oI4ln/axZzlRSjH4tURI/NSeYzOcgKo
-         lhbRUPxvyyd1koCKV2CZVPFo7e1kTdJ4BJSlR3mCsUtha0f1GHLFmNPmJlheJw0jZR
-         an4mMUzckhaIq6Ar4PeWyhfU7qfmNKIABde95uj10/Wl/jJcxso1ZqVPhoRf+oHyfQ
-         ++oVGpeicDfIhmSEaLtBA5s+TbCaEJYAaTuyOu1QD231RumP6jBodBCyNjCwKMCNbM
-         jiqCAdWLN+i7iTau0FkJHT7/UkZe+Nghu0l2cm2XJOoLUg7U+fKOtIaCQUCAFzT/V9
-         ofEMeCuDm4+kg==
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     davem@davemloft.net
-Cc:     netdev@vger.kernel.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, saravanak@google.com, mw@semihalf.com,
-        andrew@lunn.ch, jeremy.linton@arm.com, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, robh+dt@kernel.org, frowand.list@gmail.com,
-        heikki.krogerus@linux.intel.com, devicetree@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>
-Subject: [PATCH net-next v2 9/9] ethernet: make more use of device_get_ethdev_address()
-Date:   Wed,  6 Oct 2021 08:44:26 -0700
-Message-Id: <20211006154426.3222199-10-kuba@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211006154426.3222199-1-kuba@kernel.org>
-References: <20211006154426.3222199-1-kuba@kernel.org>
+        id S239200AbhJFPqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 11:46:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55418 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230101AbhJFPqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 11:46:48 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58510C061746;
+        Wed,  6 Oct 2021 08:44:56 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id x27so12231048lfa.9;
+        Wed, 06 Oct 2021 08:44:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=99MWTeT38qwRLIuXKDVRIiA39mldC4P4+Z58f4c6Oxo=;
+        b=JstCZ/Blylc8fozBwwuE60wyxINFp25Rons9sFMwCxhvd2M/WtUs60sR6oesEhgERy
+         rAVEy2uXawhbFCMrSKMhYXiayGzOYeftEkmik/gkBgl+efKuhiEoIyVTZ7zuFF783ml+
+         sP+haaqtLVmwCKhgF5trgxyk6WQRZPC9jnG3bVkXkOtHTuHPDtv+5O0yozNGsY4S3xZL
+         aF3BjeHI5PdxV6qJEM5NH0wbJ8tXXT1xnr3QrwLipOFsz3DASY6/MxED3gI8+cFl/bV9
+         3pXOtjaQScfKQMiEVo8TjK9q6kUddT2X21XpG2f9Rrc6tNj6nQEcV5ifdisj0XWnMTbP
+         TX8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=99MWTeT38qwRLIuXKDVRIiA39mldC4P4+Z58f4c6Oxo=;
+        b=3/dYE1N5CM6ISYMeyLbB7bNAiZJr335uzUdAvSvPQRKbrFZYmjPTvFY6B07o4Zdy4a
+         eUElWkFh6HNhLVXw033xUBWyQTqyQKePVKzuQKBZNcZdLqGsCyLSO2n/BW96NSJOvKaE
+         7LuIEcD+pRkMLgs7RBAwdBlg61pOP+1E/HAXc7yjezYAOCyRIQnEauDXRhMnX83qPMh7
+         1EurIJlN3YxNmuDI9A/3xLYtRnFQcB0jCq/nWx7j17iGh/vih432e2Gjk+K0cvLKdiD1
+         hsXSYgBNCo0yAa5NfvD9cJFwQ2JtDukCQFNa6PrRfk330erxF0mRNvSlKzuWCUA+sx2X
+         +9/A==
+X-Gm-Message-State: AOAM531kiQbPdX07NjTHd8GY3bZMK6n1tsHxoycFMzKZoH8py9o0UQLJ
+        xlHda1XyZ5r02k5LcMsAdFC5Gly/zLE=
+X-Google-Smtp-Source: ABdhPJw7a9UDTlS1otJ7Lud3ywJJxvOGNL9g0UDd+8bMT+kLuXJgksg1Y9VKBa9IZt2VtDIhI02bNA==
+X-Received: by 2002:a2e:8915:: with SMTP id d21mr30149653lji.45.1633535094414;
+        Wed, 06 Oct 2021 08:44:54 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.googlemail.com with ESMTPSA id t81sm1114224lff.228.2021.10.06.08.44.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Oct 2021 08:44:54 -0700 (PDT)
+Subject: Re: [PATCH v4 2/7] dt-bindings: memory: lpddr2: Convert to schema
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20211005230009.3635-1-digetx@gmail.com>
+ <20211005230009.3635-3-digetx@gmail.com>
+ <6b8f6ef7-cfc5-3a8b-d44d-f4080a85ecf3@canonical.com>
+ <7047ad7b-52d6-0c91-b7d2-b115ea69506f@gmail.com>
+Message-ID: <481f4d90-638f-b64f-83a2-b882d9bf194a@gmail.com>
+Date:   Wed, 6 Oct 2021 18:44:53 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <7047ad7b-52d6-0c91-b7d2-b115ea69506f@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert a few drivers to device_get_ethdev_address(),
-saving a few LoC.
+06.10.2021 18:41, Dmitry Osipenko пишет:
+> 06.10.2021 13:57, Krzysztof Kozlowski пишет:
+>>> +  density:
+>>> +    description: |
+>>> +      Density in megabits of SDRAM chip. Obtained from device datasheet.
+>> You need here a type/ref, so uint32.
+>>
+> 
+> The type is uint32 by default. I can add it, but it's not really necessary.
+> 
 
-The check if addr is valid in netsec is superfluous,
-device_get_ethdev_addr() already checks that (in
-fwnode_get_mac_addr()).
-
-Signed-off-by: Jakub Kicinski <kuba@kernel.org>
----
-v2: new patch
----
- drivers/net/ethernet/faraday/ftgmac100.c  | 5 ++---
- drivers/net/ethernet/microchip/enc28j60.c | 5 +----
- drivers/net/ethernet/qualcomm/emac/emac.c | 5 +----
- drivers/net/ethernet/socionext/netsec.c   | 9 ++-------
- 4 files changed, 6 insertions(+), 18 deletions(-)
-
-diff --git a/drivers/net/ethernet/faraday/ftgmac100.c b/drivers/net/ethernet/faraday/ftgmac100.c
-index 86c2986395de..97c5d70de76e 100644
---- a/drivers/net/ethernet/faraday/ftgmac100.c
-+++ b/drivers/net/ethernet/faraday/ftgmac100.c
-@@ -183,10 +183,9 @@ static void ftgmac100_initial_mac(struct ftgmac100 *priv)
- 	unsigned int m;
- 	unsigned int l;
- 
--	if (!device_get_mac_address(priv->dev, mac)) {
--		eth_hw_addr_set(priv->netdev, mac);
-+	if (!device_get_ethdev_address(priv->dev, priv->netdev)) {
- 		dev_info(priv->dev, "Read MAC address %pM from device tree\n",
--			 mac);
-+			 priv->netdev->dev_addr);
- 		return;
- 	}
- 
-diff --git a/drivers/net/ethernet/microchip/enc28j60.c b/drivers/net/ethernet/microchip/enc28j60.c
-index cca8aa70cfc9..634ac7649c43 100644
---- a/drivers/net/ethernet/microchip/enc28j60.c
-+++ b/drivers/net/ethernet/microchip/enc28j60.c
-@@ -1539,7 +1539,6 @@ static const struct net_device_ops enc28j60_netdev_ops = {
- 
- static int enc28j60_probe(struct spi_device *spi)
- {
--	unsigned char macaddr[ETH_ALEN];
- 	struct net_device *dev;
- 	struct enc28j60_net *priv;
- 	int ret = 0;
-@@ -1572,9 +1571,7 @@ static int enc28j60_probe(struct spi_device *spi)
- 		goto error_irq;
- 	}
- 
--	if (!device_get_mac_address(&spi->dev, macaddr))
--		eth_hw_addr_set(dev, macaddr);
--	else
-+	if (device_get_ethdev_address(&spi->dev, dev))
- 		eth_hw_addr_random(dev);
- 	enc28j60_set_hw_macaddr(dev);
- 
-diff --git a/drivers/net/ethernet/qualcomm/emac/emac.c b/drivers/net/ethernet/qualcomm/emac/emac.c
-index b1b324f45fe7..a55c52696d49 100644
---- a/drivers/net/ethernet/qualcomm/emac/emac.c
-+++ b/drivers/net/ethernet/qualcomm/emac/emac.c
-@@ -545,13 +545,10 @@ static int emac_probe_resources(struct platform_device *pdev,
- 				struct emac_adapter *adpt)
- {
- 	struct net_device *netdev = adpt->netdev;
--	char maddr[ETH_ALEN];
- 	int ret = 0;
- 
- 	/* get mac address */
--	if (!device_get_mac_address(&pdev->dev, maddr))
--		eth_hw_addr_set(netdev, maddr);
--	else
-+	if (device_get_ethdev_address(&pdev->dev, netdev))
- 		eth_hw_addr_random(netdev);
- 
- 	/* Core 0 interrupt */
-diff --git a/drivers/net/ethernet/socionext/netsec.c b/drivers/net/ethernet/socionext/netsec.c
-index 7e3dd07ac94e..baa9f5d1c549 100644
---- a/drivers/net/ethernet/socionext/netsec.c
-+++ b/drivers/net/ethernet/socionext/netsec.c
-@@ -1981,7 +1981,6 @@ static int netsec_probe(struct platform_device *pdev)
- 	struct netsec_priv *priv;
- 	u32 hw_ver, phy_addr = 0;
- 	struct net_device *ndev;
--	u8 macbuf[ETH_ALEN];
- 	int ret;
- 
- 	mmio_res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-@@ -2034,12 +2033,8 @@ static int netsec_probe(struct platform_device *pdev)
- 		goto free_ndev;
- 	}
- 
--	ret = device_get_mac_address(&pdev->dev, macbuf);
--	if (!ret)
--		eth_hw_addr_set(ndev, macbuf);
--
--	if (priv->eeprom_base &&
--	    (ret || !is_valid_ether_addr(ndev->dev_addr))) {
-+	ret = device_get_ethdev_address(&pdev->dev, ndev);
-+	if (ret && priv->eeprom_base) {
- 		void __iomem *macp = priv->eeprom_base +
- 					NETSEC_EEPROM_MAC_ADDRESS;
- 
--- 
-2.31.1
-
+You may grep bindings for 'enum: [' to see that nobody is specifying the
+type.
