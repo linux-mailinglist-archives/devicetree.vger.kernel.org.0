@@ -2,100 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 538584235A7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 04:03:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCB234235C5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 04:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237139AbhJFCFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 22:05:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36762 "EHLO
+        id S237102AbhJFCZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 22:25:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233994AbhJFCFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 22:05:06 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D42FFC061749;
-        Tue,  5 Oct 2021 19:03:14 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id p4so972639qki.3;
-        Tue, 05 Oct 2021 19:03:14 -0700 (PDT)
+        with ESMTP id S229908AbhJFCZm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 22:25:42 -0400
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1906C061749;
+        Tue,  5 Oct 2021 19:23:50 -0700 (PDT)
+Received: by mail-vs1-xe2a.google.com with SMTP id g10so1297833vsb.8;
+        Tue, 05 Oct 2021 19:23:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+imzhIwYLWw+0XZp01QjLQU5qCZcEX7p0+XG2/HynCw=;
-        b=EigJj2F1ORQcL2AewRAcVvv7ciAp5p0B6pWdsp4pHWbSzaYl69yRshEEYwmMOixa3j
-         p9XoyaW23vqy3e9AyoFHMA5XDf9nd+Vdow3tq/QuF5ErHNF5jxVjqD26AvHfVfOjnbc1
-         oZICRLLM1/uheg7uzbrgPgVDj1hFEsinuDeFgCoIl2U8lN2mtekYnQYV7rMafCOHFDxP
-         2zeyr48ag6wQ5ewZqKb0IKAJyiudQMfnFlK1Gwj8QDBZARGDmfl+sl90SzY/3Dvlc3Vt
-         iPejkQcAs8344MRXgZwTeqmOKDhkk3JYQTU1Dz7mfeRY31yo+os7LAJPPBe8Hb7R1EMi
-         ICfw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=WwmHQgUBgnVFhJP2TLRGoapFl3aOWOVk6xMbmdmYBZg=;
+        b=GOc7dwi8lOh1lC6U5VsgxVQcF6lKVrF5WsAzGmomX36eBy3tlkaRBdKq4x+l6MwlU5
+         J1Uob5g3VFdq+6OCqToVaprDxqCdabVj6JsoLv6fLedkdI/Ep+lgNeJVNwKD/lMuiH9z
+         rYSp688Q8QKNXJF1U0ab631Y7MXAqD8SkcIqseATHEIlQDuCWuIqvZcOBEKdC2MFivhd
+         OW7CIJMrVB0EHQncn+ZiFtHtUntykBIYatjFwxudD6oJCjVcVMNRtcfCjT4zyoh62X9x
+         If4NRyb9Kuf4nofVdpWr2wUWxyZ4HMevfHjPGE1+r3992VUSB4rRZfK2tzmTYHLwKnDb
+         vazg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+imzhIwYLWw+0XZp01QjLQU5qCZcEX7p0+XG2/HynCw=;
-        b=Ztnp7XDVRfTPUgsWjq5O7etYfRiwe0myupjQ0JkOiwBu9hn+0T2lKb+JicAZCL9hvZ
-         sYu+lpVZtc//Y9eyWvJjskr9qk4qhtDaV1Uia/9cP70qRNgJNpcAjjlvw65wKDRZoQOr
-         qVo/b9iQfgidPaknzzZB3Q1P7o0f3OYRvzhiHIgVzUnrxOqWcVlCEBNxaICc+iwrQxz6
-         lDWXpuO5SAckS/OAp3rJlas4RhXz5GE/CylV/u0oQV6aFm3/yPZehQYks/ZjoFos8m/l
-         7RH8ihK9IcfWFL3QYkKK9eef7bjwLjTeDdLANyEKVnJIcEhuaWXjW1owow9T+eg2WCNZ
-         LlFw==
-X-Gm-Message-State: AOAM532u9TTyY2/pWJvqzpYHIBDLFr8g45RLASgX9YEn30FEefoLCM1M
-        9riHi33jl8dOQjqNXPstd7M=
-X-Google-Smtp-Source: ABdhPJyuAzoARjaCc6ZrOCBIhFu39S2YWmuwM/wXBBoIcdN664yQX3uAVkxWIcFiAgb2IjZHoRReOw==
-X-Received: by 2002:a37:a691:: with SMTP id p139mr18083435qke.365.1633485793054;
-        Tue, 05 Oct 2021 19:03:13 -0700 (PDT)
-Received: from ?IPV6:2600:1700:dfe0:49f0:c86a:e663:3309:49d7? ([2600:1700:dfe0:49f0:c86a:e663:3309:49d7])
-        by smtp.gmail.com with ESMTPSA id c17sm11859127qtn.65.2021.10.05.19.03.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Oct 2021 19:03:12 -0700 (PDT)
-Message-ID: <aeea5997-4e98-2ebe-9675-7ab883f4b422@gmail.com>
-Date:   Tue, 5 Oct 2021 19:03:10 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=WwmHQgUBgnVFhJP2TLRGoapFl3aOWOVk6xMbmdmYBZg=;
+        b=TTb3Steq8Gaq5+GgwGOyOi1zPET+y2aX5CuXD3Xky/3r5pQdYGNA1mtGj5z9+YzZPP
+         w1WNium5HUu+qYITCGO7DZ0PNPaaITZx1OAl06BEw6Kh9RwNnd4bPVB89lItQmBFxpVe
+         UIacVG/TdILX3a1sUOhX7u7EzqbjFa4ipqHmabxFyUntUFifop7Rl2rjLm3eYchnACcf
+         j6lua+dnyZqLhXyd/C6Q+P7LlBfiAKWZNbmj39qOT0p8rhztPo9ZWUZ5wuwe/R3KImnh
+         E92oPBj9Nar/Ek5NDU8+pe1A66+O0Po8NZ0rpDuy7Ht2KYE1dxuKnzPVK2S9c5MZp3Yf
+         FPNw==
+X-Gm-Message-State: AOAM530yG3SgFGKUXyTaW5yD7GGfWHDWADUiFerL9/zt8fFSvtBaa0nC
+        bvRSrcrCCQt0b7qHeufHFxVva1YHTQ8HIQ3qR6U=
+X-Google-Smtp-Source: ABdhPJwcONDskG/EsRXuJWW7n2sfuq/f3H3TUfGpNb7vycf8BKF3z24Ow7AU8AqZm/bdzE/StOvMydXYy2kEZZFCVH8=
+X-Received: by 2002:a67:e0de:: with SMTP id m30mr6440548vsl.51.1633487029583;
+ Tue, 05 Oct 2021 19:23:49 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH V2 net-next 1/2] net: bgmac: improve handling PHY
-Content-Language: en-US
-To:     Jakub Kicinski <kuba@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211002175812.14384-1-zajec5@gmail.com>
- <20211005182138.01b1bf98@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20211005182138.01b1bf98@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <m3lf39nfsq.fsf@t19.piap.pl> <CAGETcx_N7XYkzFPSuQdvWKk1o+Pzzg4HnzChE_4c_Bg_oOK3eA@mail.gmail.com>
+In-Reply-To: <CAGETcx_N7XYkzFPSuQdvWKk1o+Pzzg4HnzChE_4c_Bg_oOK3eA@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 5 Oct 2021 23:23:38 -0300
+Message-ID: <CAOMZO5DwcXUe5j97n4Q_RF9WRo2DYoToe7FLNbpDJhn_BxuH0w@mail.gmail.com>
+Subject: Re: v5.15-rcX regression: video devices on i.MX6 are not created
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     =?UTF-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
+On Tue, Oct 5, 2021 at 9:10 PM Saravana Kannan <saravanak@google.com> wrote=
+:
+>
+> On Mon, Oct 4, 2021 at 5:19 AM Krzysztof Ha=C5=82asa <khalasa@piap.pl> wr=
+ote:
+> >
+> > Hi Saravana et al.,
+> >
+> > FYI the patch: 6b2117ad65f1bca9ece6d4b1ee784b42701a2d86
+> >
+> > of: property: fw_devlink: Add support for "resets" and "pwms"
+> >
+> > Allows better tracking of dependencies between devices.
+> >
+> >  drivers/of/property.c | 4 ++++
+> >
+> > breaks v4l2 video devices on an i.MX6 CPU. The /dev/video* nodes are no=
+t
+> > created, and the drivers (async subdevicess) are "waiting":
 
-On 10/5/2021 6:21 PM, Jakub Kicinski wrote:
-> On Sat,  2 Oct 2021 19:58:11 +0200 Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> 1. Use info from DT if available
->>
->> It allows describing for example a fixed link. It's more accurate than
->> just guessing there may be one (depending on a chipset).
->>
->> 2. Verify PHY ID before trying to connect PHY
->>
->> PHY addr 0x1e (30) is special in Broadcom routers and means a switch
->> connected as MDIO devices instead of a real PHY. Don't try connecting to
->> it.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->> V2: Promote it out of RFC and send together with MDIO patch per
->>      Florian's request.
-> 
-> Florian, ack?
-> 
-
-Roger roger, thanks for the ping.
--- 
-Florian
+Phillip has sent a fix for this issue:
+http://lists.infradead.org/pipermail/linux-arm-kernel/2021-October/687868.h=
+tml
