@@ -2,72 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1E37423423
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 01:09:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04A234234BE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 02:05:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236810AbhJEXLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 19:11:30 -0400
-Received: from ixit.cz ([94.230.151.217]:57632 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236700AbhJEXL3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Oct 2021 19:11:29 -0400
-Received: from [192.168.1.101] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 376BE23B26;
-        Wed,  6 Oct 2021 01:09:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1633475374;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ryaZOCEIyzEMf9WLB8AWdQNR9eOGIYijtgw+PlfnnDA=;
-        b=ofWsGyVBqJwUGnXZmDn19pSLk9dH8KHRo++Z1SMqNkulyLHIlOPLGma7Xuz0rbKhOYpBCm
-        7D0CHrFisBcx5xygqa+E7p8gExn7siXeNAYOVmaT0grnHlQfhczS6d+Lwl1TRxt7m7AD1X
-        ZtkOrVpT0WvYwQwmcb+kBKglmKAGJcM=
-Date:   Wed, 06 Oct 2021 01:08:06 +0200
-From:   David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: rename vendor of
- apq8026-lenok
-To:     Rob Herring <robh@kernel.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Message-Id: <IL1J0R.Y3YCSF1D43YJ3@ixit.cz>
-In-Reply-To: <YVtKY6wY4GJpwVvF@robh.at.kernel.org>
-References: <20210928203815.77175-1-luca@z3ntu.xyz>
-        <YVtKY6wY4GJpwVvF@robh.at.kernel.org>
-X-Mailer: geary/40.0
+        id S236952AbhJFAHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 20:07:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38700 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236889AbhJFAHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 20:07:11 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA09C061749;
+        Tue,  5 Oct 2021 17:05:20 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id w10so1037128ilc.13;
+        Tue, 05 Oct 2021 17:05:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iygZcmzrLB3e1K8hChm09B8oQxVJNXkOlhdGKacTC4c=;
+        b=U2olciHgRkvmmp16T4kKhc30f4v2PNNKP9ZrgmspGxIV3DM2ghZw5VOdcBw35N9a1q
+         KCnjiJieZcTRqeY2XOpP9xAxAaxVF7hGUrXvD6SUrOq6PlPeM/BlHvw7jFA33PHpgpqb
+         6K0H+WKnsj8yCk0yVOSlui5ou0woWIJmlNks1m+wDcSTxkN/EdptuGbvScEU4+Em7iF0
+         4v0nj+IrkDfQxeba2kcppcZUyAZchZG8wUD2FkHg+oCK1ANahc8KP7YqPsZJuPlfwwJV
+         bpaiqe6qBpJwgsdNs6N2ZhnlMC389rf4kolieAR89jVOxS36kC8MIxahhPUCza+VgHA3
+         3LAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iygZcmzrLB3e1K8hChm09B8oQxVJNXkOlhdGKacTC4c=;
+        b=V510Px9fFWo+taiTIAPVdkzqefrRH6hkzmS5zZrhJVwc66A55lHOkK8abmwijZeHRS
+         PqPkQNVbVFqlsPX9fRG2EyY2NMWCCbDQf8f5yW7DF5zVxGLeyBvkEx/JkMVwUfWyIHe6
+         755zy4lmgIDgTgpIN5dSvE4Xf78Nr+y6uPCz0D/6G61S4SWTTrRLBXWcX48IrnFcxV+J
+         kAZQmLqfs4dfw1juOGe+S+0LR5bTlFEL3QUn/cyW4thF5A1Kip4C2HOXr0uRmJUVwjGW
+         Ls+esT613WPJ6QZnU0HWO5B0Ma2y9r/wensJnvP++/TrXVP/r4rw3UFx2kXnsuA+lf2+
+         RVYQ==
+X-Gm-Message-State: AOAM531JIhYTo42aoec71cRknxR8qWgBibNAKZsfE9i7XbrpfAVpbRTs
+        usGD46zuBtR75SR/lXKC5zA=
+X-Google-Smtp-Source: ABdhPJwwbFOjXGXMQ+NxJxbxLXnQNP9FoSWtwrTv2KLasH77OsYCj4sf0T0+6jUTbbAuoOP4KZAsfw==
+X-Received: by 2002:a05:6e02:1c4d:: with SMTP id d13mr5121152ilg.49.1633478719642;
+        Tue, 05 Oct 2021 17:05:19 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:94fc:9a4b:2e18:e915])
+        by smtp.gmail.com with ESMTPSA id y2sm11338646ioj.12.2021.10.05.17.05.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Oct 2021 17:05:19 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/7] dt-bindings: power: imx8mn: add defines for DISP blk-ctrl domains
+Date:   Tue,  5 Oct 2021 19:04:58 -0500
+Message-Id: <20211006000505.627334-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Acked-by: David Heidelberg <david@ixit.cz>
-Best regards
-David Heidelberg
+This adds the defines for the power domains provided by the DISP
+blk-ctrl.
 
-On Mon, Oct 4 2021 at 13:39:31 -0500, Rob Herring <robh@kernel.org> 
-wrote:
-> On Tue, 28 Sep 2021 22:38:14 +0200, Luca Weiss wrote:
->>  In order to avoid having prefixes for multiple internal divisions 
->> of LG
->>  use the "lg" prefix instead of "lge".
->> 
->>  Fixes: 21f3cbf693b0 ("dt-bindings: arm: qcom: Document APQ8026 SoC 
->> binding")
->>  Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->>  ---
->>   Documentation/devicetree/bindings/arm/qcom.yaml | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->> 
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Adam Ford <aford173@gmail.com>
+---
+ include/dt-bindings/power/imx8mn-power.h | 5 +++++
+ 1 file changed, 5 insertions(+)
 
+diff --git a/include/dt-bindings/power/imx8mn-power.h b/include/dt-bindings/power/imx8mn-power.h
+index 102ee85a9b62..eedd0e581939 100644
+--- a/include/dt-bindings/power/imx8mn-power.h
++++ b/include/dt-bindings/power/imx8mn-power.h
+@@ -12,4 +12,9 @@
+ #define IMX8MN_POWER_DOMAIN_DISPMIX	3
+ #define IMX8MN_POWER_DOMAIN_MIPI	4
+ 
++#define IMX8MN_DISPBLK_PD_MIPI_DSI	0
++#define IMX8MN_DISPBLK_PD_MIPI_CSI	1
++#define IMX8MN_DISPBLK_PD_LCDIF	2
++#define IMX8MN_DISPBLK_PD_ISI	3
++
+ #endif
+-- 
+2.25.1
 
