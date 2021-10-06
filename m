@@ -2,121 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47457423E88
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 15:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0019B423E94
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 15:21:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231528AbhJFNV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 09:21:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49560 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231652AbhJFNV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 09:21:59 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2085C061760
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 06:20:06 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id j8so8769472wro.7
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 06:20:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=p6gdpQMOmptKubvJ742KDDFUbo9hEV0sBfCaJk3WkUE=;
-        b=c6QDqpPiXtNIV7dzN5ll+FQ6KvfswcGWcaP2rST+y9EevgjCepx7n6lQ/Ywkm7gsK5
-         LHCTTJVgjJrhnLdE5oiKlNUPQ2Kg3yuhCZYBT7PREtbfd0xN0IeZtqeZ8osgZB0JSznl
-         12pmuBiPPD7N/XKULR6fiMUPS45M1jy/BcwO+eEAfWGYo/hUdXIbtUSsrr3orlw4p8vn
-         UhQoF+aaOVl4fqg5jkQcohYx50IblNjHP1ZqiFMh7vpFYoAWRMyyjDuOzjyu7h2qrEkw
-         TX1cslnGgnwvZU5pixPfmoiKDlUjTjehwomD/EOGuzvC+BnGjKNek/TeMsxj1n/BxC76
-         Bx9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=p6gdpQMOmptKubvJ742KDDFUbo9hEV0sBfCaJk3WkUE=;
-        b=mSZ486N5bpVKYEhviqthGrzhk3wF4EnkQpuexPpVSFv331e6njE7XHL29C7ay5Lm6z
-         gtv9NCqEGUQRLacXqlzKrKw6ypJ3uvQb4MSiy+jgBXMKcm8Jh2fcEypDQNQqZnsfRqEX
-         E4czQDigCnH/rfj6MPVex68UuZMPreTByWGv1RVnhYEQruIwoWGQYeYWViVWiyaLCAow
-         V1TSuZIsMyZSQjsehVK4565x9DQ23+NnAatydu+hXqsSvRq85KFJP/6YLX8egUYWGB2h
-         QhYN+BFqt6L7xvnLM+hEUfoIyeULzD5JqyGP0IukTXUnsF3iMarzw5H7FIgipKuj2KwY
-         HIXg==
-X-Gm-Message-State: AOAM530i97BbueuBaXMuxabULWXASxr0cOlLn2odk1tN8+e3YbivqtdZ
-        x1GFTAtLvOcitOYSE4zjVXZvnA==
-X-Google-Smtp-Source: ABdhPJzoqukl/i94XHKcFnleptcwa9ahZaEF/VFUkN64z5eHIVt0qazWn5ydLdseOD3cVrnXwiPuvQ==
-X-Received: by 2002:a5d:544c:: with SMTP id w12mr29472633wrv.398.1633526405385;
-        Wed, 06 Oct 2021 06:20:05 -0700 (PDT)
-Received: from google.com ([95.148.6.175])
-        by smtp.gmail.com with ESMTPSA id d16sm5029441wmb.2.2021.10.06.06.20.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 06:20:04 -0700 (PDT)
-Date:   Wed, 6 Oct 2021 14:20:03 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2 00/10] regulator/mfd/clock: dt-bindings: Samsung S2M
- and S5M to dtschema
-Message-ID: <YV2ig7q0UWQQC5N2@google.com>
-References: <20211001094106.52412-1-krzysztof.kozlowski@canonical.com>
- <YVxBuEvHVdyDvaGD@sirena.org.uk>
- <YVxP0+kVxI0xQmQQ@google.com>
- <41226a6d-999d-b1bb-d6a2-294a9e34d271@canonical.com>
+        id S231378AbhJFNXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 09:23:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43502 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231469AbhJFNXR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 09:23:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 411A4610C8
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 13:21:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633526485;
+        bh=alLVztSAR+zVhYna8rbF1fpO8IxYlGuubsf+eUj4w7s=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Z/JpSi3vSHGrUztG6gWnpyVAgZrssJKAqe/zXFlTRikECYp1fNmeyAQhDi9JkH1oV
+         08f03DQzh/naU1iEzwy57JqjO4ktEi9/Ou/RdlYLOvI5t5Y/PuQzDhylGBAQV2ORts
+         h7Bpqi81Zm0De/RYOcWivPjdG0aC8RoU5dqnC9MT6zaUz+s7xH69dyRLA8UDU7xcWy
+         UeCamA7yTf50Rs9TpU0jID/RKJoeZXbaEQ+KO6RTEEmGoGDhiX78pAC8fgg5/s28Vo
+         zveYxbQDjAlLGuskVR3Vz5UyE87NZelfnMipp5yzCtrZcwptjLYpSKLdfyQB1leuVo
+         UYSwA1g6vg7BQ==
+Received: by mail-ed1-f44.google.com with SMTP id d8so9806951edx.9
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 06:21:25 -0700 (PDT)
+X-Gm-Message-State: AOAM533jX09dNWogUd5cymKgqAaNU1I6cOZaQgM46qK9zwfzUNkayf2u
+        GBMDYzYw1T1gB/KEN6iCsVubyYMZFW60OFjUew==
+X-Google-Smtp-Source: ABdhPJw7MkXaYsUDoeBX7SmE6lCrAD2fJ87SwrdDv7Ez4blzswV4YKvWC/bciH0EDYeIZW5/+bMmgH6JkWx3e/KTAp8=
+X-Received: by 2002:a17:907:7d8b:: with SMTP id oz11mr6746523ejc.84.1633526479452;
+ Wed, 06 Oct 2021 06:21:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <41226a6d-999d-b1bb-d6a2-294a9e34d271@canonical.com>
+References: <20211006074713.1094396-1-alexander.stein@ew.tq-group.com> <20211006074713.1094396-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20211006074713.1094396-2-alexander.stein@ew.tq-group.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 6 Oct 2021 08:21:06 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJDNCdc8iqKWqo9r30VnPgXUuNvhzF7aSjA9N7OmYH1dg@mail.gmail.com>
+Message-ID: <CAL_JsqJDNCdc8iqKWqo9r30VnPgXUuNvhzF7aSjA9N7OmYH1dg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc supply bindings
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Oct 2021, Krzysztof Kozlowski wrote:
+On Wed, Oct 6, 2021 at 2:47 AM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Add a VCC regulator which needs to be enabled before the EN pin is
+> released.
+>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml     | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> index 07b20383cbca..149cff3233c2 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> @@ -32,6 +32,9 @@ properties:
+>      maxItems: 1
+>      description: GPIO specifier for bridge_en pin (active high).
+>
+> +  vcc-supply:
+> +    description: A 1.8V power supply (see regulator/regulator.yaml).
+> +
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>
+> @@ -94,6 +97,7 @@ required:
+>    - compatible
+>    - reg
+>    - enable-gpios
+> +  - vcc-supply
 
-> On 05/10/2021 15:14, Lee Jones wrote:
-> > On Tue, 05 Oct 2021, Mark Brown wrote:
-> > 
-> >> On Fri, Oct 01, 2021 at 11:40:56AM +0200, Krzysztof Kozlowski wrote:
-> >>
-> >>> Merging/dependencies
-> >>> ====================
-> >>> 1. Regulator related binding changes depend on first two commits (the
-> >>>    fixes), because of context.
-> >>> 2. The mfd bindings depend on clock and regulator bindings.
-> >>>
-> >>> The fixes and bindings changes (patches 1-10) should go via the same
-> >>> tree.  For example regulator or mfd tree.  I propose the regulator tree,
-> >>> since it will have also one driver change (the fix, first commit).
-> >>
-> >> Lee, Stephen, Michael does Krzysztof's plan make sense to you?
-> > 
-> > I tend to take cross subsystem patches.  MFD is usually in the centre
-> > of these scenarios and I have tooling to easily set-up immutable
-> > branches/pull-requests.
-> > 
-> > Always happy to discuss if others have different/better ideas though.
-> > 
-> 
-> Another alternative is that regulator patches (1-2, 4-6) go via Mark who
-> later gives you a stable branch/tag to pull. Then the clock and MFD
-> bindings would go on top via MFD tree.
+You generally can't make added properties required unless all DT files
+already had this property. It breaks compatibility.
 
-It shouldn't matter where they are first applied.  Creating 2
-immutable branches when just 1 will do would be a pain.
-
-> There is a comment from Rob which I will fix in v3.
-
-Sure.
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Rob
