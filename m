@@ -2,117 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3B92423E7B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 15:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3227E423E85
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 15:19:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231494AbhJFNSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 09:18:53 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:34794 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231259AbhJFNSx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 09:18:53 -0400
-Received: by mail-oi1-f169.google.com with SMTP id z11so3977456oih.1;
-        Wed, 06 Oct 2021 06:17:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=j+HFuJa5yucfLsRf45OhrZ28a63h7uv0Y638CH2xCvw=;
-        b=YKt2YWeQK1mWmRyDc+iTLfaMem5WajdFTGZ/Qg+0aKI22oQpPVuJF7P51w9SZAjn+I
-         5Z6wwR3YPPjilEDzoAl4/wX2abU7o37i4/Z2mg6sdTIVAi91eo6eSPOR6UFxZbtSkHGj
-         m3xLcZUexWPSgO6P0rd5O0gHKKnnvtaAjWXtqR2GIfM4Rk1g/60M1mxMnjPn5JZnvtET
-         ZnkC6bkqxdmnNqH0a+zcRkng+p2r1ffnH3PrthbNiO43zO1l+9nQ1QjxJomLmRJyWmyA
-         dl8ebzvowhr3g5gTpI7kllp8hU/XBOFl/OrimP24Ve4zdJwt2PsSf2zGoHbaRePQLRym
-         MY5g==
-X-Gm-Message-State: AOAM532Cv5+QAwojU2dp+zfRdOkHoQHjLX61dWg8kDFrtMnGkdoABjlc
-        VQzV4Y3Bs34jR/QuTGP98w==
-X-Google-Smtp-Source: ABdhPJyZqA5OnhJJ2UaAStzRyrYktRE55ALDXgJcv31JiEZ05hmPf6VwtcdNdXWEWUXE8KgdMv+D2A==
-X-Received: by 2002:a05:6808:1816:: with SMTP id bh22mr7034701oib.69.1633526220915;
-        Wed, 06 Oct 2021 06:17:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a18sm3475581ook.41.2021.10.06.06.16.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 06:17:00 -0700 (PDT)
-Received: (nullmailer pid 1513509 invoked by uid 1000);
-        Wed, 06 Oct 2021 13:16:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, aford@beaconembedded.com,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20211006000505.627334-2-aford173@gmail.com>
-References: <20211006000505.627334-1-aford173@gmail.com> <20211006000505.627334-2-aford173@gmail.com>
-Subject: Re: [PATCH 2/7] dt-bindings: soc: add binding for i.MX8MN DISP blk-ctrl
-Date:   Wed, 06 Oct 2021 08:16:59 -0500
-Message-Id: <1633526219.066849.1513508.nullmailer@robh.at.kernel.org>
+        id S231259AbhJFNVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 09:21:05 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:36888 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231524AbhJFNVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 09:21:05 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 196DJ8iR055040;
+        Wed, 6 Oct 2021 08:19:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1633526349;
+        bh=Nb8U4U2trMtARelPANdTerZUVjPr3+IxvmjVKxEf6QM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=GkQAffm8zbALvXMB3C69UTdCQ4x2AlQtRmcVstYXcgVUKv4pKRck9b/Teg3EiBH22
+         HcZ4v32n2MZdMwvGBda3zIFlA24fIWn6xi672N/7H96CswPAcVD9ABT8RYl71YXqbx
+         7B1j/AC2lxV7iqpYdnzIHu/MwkfsNotUecGVVS4Y=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 196DJ8uG113063
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 6 Oct 2021 08:19:08 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 6
+ Oct 2021 08:19:08 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 6 Oct 2021 08:19:08 -0500
+Received: from [10.250.233.140] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 196DJ4e9064609;
+        Wed, 6 Oct 2021 08:19:05 -0500
+Subject: Re: [PATCH 1/4] dt-bindings: thermal: k3-j72xx: Add VTM bindings
+ documentation
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>
+References: <20211004112550.27546-1-j-keerthy@ti.com>
+ <20211004112550.27546-2-j-keerthy@ti.com>
+ <1633436798.497006.3226792.nullmailer@robh.at.kernel.org>
+ <CAL_JsqKLuE+RhH+T4UKecMhRjbm69rwA1a2+FjrnMPKUf13J6A@mail.gmail.com>
+ <edb3e75a-1092-7e90-40d0-225dd4d4764c@linaro.org>
+From:   "J, KEERTHY" <j-keerthy@ti.com>
+Message-ID: <03549a90-4bf7-70a8-39f9-b3dd15d5ca45@ti.com>
+Date:   Wed, 6 Oct 2021 18:49:04 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <edb3e75a-1092-7e90-40d0-225dd4d4764c@linaro.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Oct 2021 19:04:59 -0500, Adam Ford wrote:
-> This adds the DT binding for the i.MX8MN DISP blk-ctrl.
+
+
+On 10/6/2021 3:12 PM, Daniel Lezcano wrote:
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
->  .../soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml     | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
+> Keerthy,
 > 
+> did you receive this answer ?
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Daniel,
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml:78:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+Thanks for sending this. I did not receive Rob's responses.
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 120, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 70, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 78, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml:  while scanning a block scalar
-  in "<unicode string>", line 70, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 78, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-make: *** [Makefile:1441: dt_binding_check] Error 2
+Rob,
 
-doc reference errors (make refcheckdocs):
+Apologies. I will get this rectified before i send the V2 with the 
+reported issue fixed. It seems issue with my particular e-mail account.
 
-See https://patchwork.ozlabs.org/patch/1536963
+Apologies for the inconvenience once again!
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+Best Regards,
+Keerthy
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> 
+> 
+> On 05/10/2021 15:05, Rob Herring wrote:
+>> On Tue, Oct 5, 2021 at 7:26 AM Rob Herring <robh@kernel.org> wrote:
+>>>
+>>> On Mon, 04 Oct 2021 16:55:47 +0530, Keerthy wrote:
+>>>> Add VTM bindings documentation. In the Voltage Thermal
+>>>> Management Module(VTM), K3 J72XX supplies a voltage
+>>>> reference and a temperature sensor feature that are gathered in the band
+>>>> gap voltage and temperature sensor (VBGAPTS) module. The band
+>>>> gap provides current and voltage reference for its internal
+>>>> circuits and other analog IP blocks. The analog-to-digital
+>>>> converter (ADC) produces an output value that is proportional
+>>>> to the silicon temperature.
+>>>>
+>>>> Signed-off-by: Keerthy <j-keerthy@ti.com>
+>>>> ---
+>>>>   .../bindings/thermal/ti,j72xx-thermal.yaml    | 58 +++++++++++++++++++
+>>>>   1 file changed, 58 insertions(+)
+>>>>   create mode 100644 Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+>>>>
+>>>
+>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> Woot, TI has blacklisted me:
+>>
+>> The response from the remote server was:
+>> 553 Sorry, your email address has been blacklisted. Please contact
+>> Texas Instruments Inc to have yourself removed.
+>>
+> 
+> 
