@@ -2,121 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FE324245E5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C3BC4245FA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:24:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239088AbhJFSU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 14:20:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35866 "EHLO
+        id S235329AbhJFS0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 14:26:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239093AbhJFSUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:20:50 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDE9AC061755;
-        Wed,  6 Oct 2021 11:18:57 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id o20so11449700wro.3;
-        Wed, 06 Oct 2021 11:18:57 -0700 (PDT)
+        with ESMTP id S229992AbhJFS0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:26:17 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14F2C061753
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 11:24:24 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id np13so2855533pjb.4
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 11:24:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=l37z0MKyCQi5WzX8pvIE+axWaJnGib7YY31xgkAbYag=;
-        b=YMxKk5GokJKkD+1QU2aKCqmbK17C//8UkeEj3P3drE7UjQbiNVqnChd9R/DfMW/3L8
-         7gV+9dsaDmo5ug03qv/w8QXuwQyV5+pftkzlFNt2kdPk77EcrBWINy/dHNgMBH757Ewg
-         LQjH+PVgsw9nVM2HTW18xHDkdNk24GjE8SzruBn0bwUixX483L6wkVV9bjWuGoxdCZ7j
-         4JSLbPBNDYEA+Svldw0K2F2CT2WOSzWxWDJqC6BeCv2Zc7yh3EQLTdbFU7NeF5J/J0PT
-         FeTOH2jMDpxWQcjcKsQn4sRQQINoYYYyIL1eE0EP0lzAHDKzIF8/Zoak5f/HazTrLAIU
-         ytxQ==
+         :content-disposition:in-reply-to;
+        bh=7H/DPJoWMp11tmUoPKSZMQxmcZJGqCLHjQqOxlkRT3I=;
+        b=JG/yky1tdDSKqvCvLBDptJd6qpCbJk/pCGNJdvJqZCaNkuwtgO8Qcc53jj4oEh+bVI
+         Y3SkLqQq4cKC7q0QZpPuNzG+M8X2j8l/IFom9760x7KzzcvF2WYleCx8dF9vUIRUKYPD
+         Pr00IFbquO++J1KP3uf96wTDf/XVEBiQqfLMunzqSkZ4oTOG3WTf+hv7vjGVVS6lfUTJ
+         9N3531JVgATjf1E0x/bax8PmJliIbHkS5ieVenjBOxeQ73K4lyErXAf3uYE55NIf0Iag
+         rs6Zs3Q2CD4weHPYYUkfnRVShQk8XkXeoGF0+ItEnTyWNzxm7G4mtp+l81P69cjNXMPB
+         4WeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=l37z0MKyCQi5WzX8pvIE+axWaJnGib7YY31xgkAbYag=;
-        b=xEbTPMcnpa/5/4LLMB04aWkrXGRvPuzh4YGOXbIFemsy9fhVf/SRyToQdy3TtkgU+3
-         oYnSnu0Lzlz3Kz+Gk/rVRWilPI05R9+geSTRg4jEzpXpnUN/P439+LA1Qq2xBr+23qYp
-         AninqWPxx7cmOvKQJSJP0tJSSDsYsjNrX9QQpxtBNUjjbV5rw23qQzK+xk91wbKsgt86
-         FwbJxfu0xVxK8Pjolv7U13PQrC4UbiYQwYw2WnvkFsHcltKgU474TEL+PWwKx14HumHe
-         JPn39nCk1wOUC0QvxGUpkbW66AGTp/relhiwElvjBnLwMzGNkbad5YsOMjkNWGg6/gWS
-         +NTQ==
-X-Gm-Message-State: AOAM532GYf9DP3vZbJ4J4kna+BDZanafXm4KUjp+wuuHGDJiBYMr5dL+
-        l/98vK9+mQUr96KBawChnTfcu2URwK0=
-X-Google-Smtp-Source: ABdhPJwnwubEDrHTBkqhdLoABazk+jRR7YeJ5lT4vhfHV6igYkdGI/zT6Y5HhkkFuYmacU+/G1KpRQ==
-X-Received: by 2002:a05:6000:18aa:: with SMTP id b10mr3280919wri.270.1633544336554;
-        Wed, 06 Oct 2021 11:18:56 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id e8sm5771913wme.46.2021.10.06.11.18.55
+         :mime-version:content-disposition:in-reply-to;
+        bh=7H/DPJoWMp11tmUoPKSZMQxmcZJGqCLHjQqOxlkRT3I=;
+        b=PDRCcuTks+0gKSDARfE+kqHdlu89bP9u4FnJnmjgnoACTIHvyazyNBmcVakiFEIFfQ
+         WKDRCG5/InVEZudBXm+qkJOW/gLDUEHEBcz9iM3+azS47bYCToqIr9Pxz2zbDpcTMhYJ
+         m7br54CbbpRNXJxMeLwHEcjpPGoTMpt/2FfhkYAphYUD+SA23SO4kxY20F5UwLgqyhZW
+         TcPkZZ48geJjERwmxFnrp7e3uD5CQklQVcDICfxrtw41mxfOGauFtMMkEq7n9pThnLq+
+         TDpIy7FrYwxO9zmJlJ67Zh3yk90NYehNjXrkIhsF4/0BN16TDhUDaNNXh2q6bN9tR9h7
+         LL8g==
+X-Gm-Message-State: AOAM533bHa5T9xs3hXHgoWFzq265zagN2GH+BQUXh4zNf4h98xOXiF0k
+        cWNyvlkMC/Zy9VvQ1sLnzvo7
+X-Google-Smtp-Source: ABdhPJysFUYu3grPoRZB/ukVEQ0LvQQELodUHWFXUGYINOwkWLYtdIvPWLtAW0ZjczNSHWD6nINBDA==
+X-Received: by 2002:a17:90b:946:: with SMTP id dw6mr248431pjb.49.1633544664308;
+        Wed, 06 Oct 2021 11:24:24 -0700 (PDT)
+Received: from thinkpad ([117.202.189.72])
+        by smtp.gmail.com with ESMTPSA id u74sm12366435pfc.87.2021.10.06.11.24.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 11:18:55 -0700 (PDT)
-Date:   Wed, 6 Oct 2021 20:18:53 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     jonathanh@nvidia.com, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/3] arm64: tegra: Add NVDEC to Tegra186/194 device
- trees
-Message-ID: <YV3ojTpZuH9HU5DU@orome.fritz.box>
-References: <20210916145517.2047351-1-mperttunen@nvidia.com>
- <20210916145517.2047351-3-mperttunen@nvidia.com>
+        Wed, 06 Oct 2021 11:24:23 -0700 (PDT)
+Date:   Wed, 6 Oct 2021 23:54:19 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Robert Marko <robimarko@gmail.com>,
+        Kathiravan T <kathirav@codeaurora.org>, agross@kernel.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: add SMEM support
+Message-ID: <20211006182419.GC33862@thinkpad>
+References: <20210902214708.1776690-1-robimarko@gmail.com>
+ <YUf3aKn78+41Cb/G@builder.lan>
+ <CAOX2RU5b46H7nqm6G4mHLSqEhGiWktwWjUKF5w10Ut+AdKea-A@mail.gmail.com>
+ <632a7d28c23a8497d35ea009bfe89883@codeaurora.org>
+ <CAOX2RU5+jeXiqz8oss8Sd-BWa059uAv5xu=7nx_YF4RYpG2S6w@mail.gmail.com>
+ <YUurqDL/S15RziCQ@builder.lan>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="FpULcs2kzJzavYtS"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210916145517.2047351-3-mperttunen@nvidia.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+In-Reply-To: <YUurqDL/S15RziCQ@builder.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 22, 2021 at 05:18:16PM -0500, Bjorn Andersson wrote:
+> On Wed 22 Sep 15:23 CDT 2021, Robert Marko wrote:
+> 
+> > On Tue, 21 Sept 2021 at 08:24, Kathiravan T <kathirav@codeaurora.org> wrote:
+> > >
+> > > On 2021-09-20 14:55, Robert Marko wrote:
+> > > > On Mon, 20 Sept 2021 at 04:52, Bjorn Andersson
+> > > > <bjorn.andersson@linaro.org> wrote:
+> > > >>
+> > > >> On Thu 02 Sep 16:47 CDT 2021, Robert Marko wrote:
+> > > >>
+> > > >> > IPQ8074 uses SMEM like other modern QCA SoC-s, so since its already
+> > > >> > supported by the kernel add the required DT nodes.
+> > > >> >
+> > > >> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > > >>
+> > > >> Thanks for your patch Robert.
+> > > >>
+> > > >> > ---
+> > > >> >  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 28 +++++++++++++++++++++++++++
+> > > >> >  1 file changed, 28 insertions(+)
+> > > >> >
+> > > >> > diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> > > >> > index a620ac0d0b19..83e9243046aa 100644
+> > > >> > --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> > > >> > +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> > > >> > @@ -82,6 +82,29 @@ scm {
+> > > >> >               };
+> > > >> >       };
+> > > >> >
+> > > >> > +     reserved-memory {
+> > > >> > +             #address-cells = <2>;
+> > > >> > +             #size-cells = <2>;
+> > > >> > +             ranges;
+> > > >> > +
+> > > >> > +             smem_region: memory@4ab00000 {
+> > > >> > +                     no-map;
+> > > >> > +                     reg = <0x0 0x4ab00000 0x0 0x00100000>;
+> > > >> > +             };
+> > > >> > +     };
+> > > >> > +
+> > > >> > +     tcsr_mutex: hwlock {
+> > > >> > +             compatible = "qcom,tcsr-mutex";
+> > > >> > +             syscon = <&tcsr_mutex_regs 0 0x80>;
+> > > >>
+> > > >> Since it's not okay to have a lone "syscon" and I didn't think it was
+> > > >> worth coming up with a binding for the TCSR mutex "syscon" I rewrote
+> > > >> the
+> > > >> binding a while back. As such qcom,tcsr-mutex should now live in /soc
+> > > >> directly.
+> > > >>
+> > > >> So can you please respin accordingly?
+> > > >
+> > > > Sure, can you just confirm that the:
+> > > > reg = <0x01905000 0x8000>;
+> > > >
+> > > > Is the whole TCSR range as I don't have docs?
+> > >
+> > > Robert,
+> > >
+> > > TCSR_MUTEX block starts from 0x01905000 and has size 0x20000 (128KB)
+> > 
+> > Thanks, Kathiravan,
+> > TSCR mutex with MMIO reg under it works, but there is some weird probe
+> > ordering issue.
+> > 
+> > For whatever reason, SMEM will get probed only after MTD does and this
+> > will cause issues
+> > if SMEM parser is used as it will return -EPROBE_DEFER but the MTD
+> > core does not really
+> > handle it correctly and causes the device to reboot after failed parsing.
+> > 
+> > Now, I have no idea why does this variant which uses MMIO regmap probe
+> > so much later?
+> > 
+> 
+> Mani, do you have any input related to the probe deferral of the SMEM
+> partition parser, because SMEM not yet probed?
+> 
 
---FpULcs2kzJzavYtS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Sorry, missed this earlier. I did face the probe deferral issue before and
+submitted a small series for fixing that:
 
-On Thu, Sep 16, 2021 at 05:55:16PM +0300, Mikko Perttunen wrote:
-> Add a device tree node for NVDEC on Tegra186, and
-> device tree nodes for NVDEC and NVDEC1 on Tegra194.
->=20
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> ---
-> v5:
-> * Change from nvidia,instance to nvidia,host1x-class
-> v4:
-> * Add dma-coherent markers
-> v3:
-> * Change read2 to read-1
-> v2:
-> * Add NVDECSRD1 memory client
-> * Add also to T194 (both NVDEC0/1)
-> ---
->  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 16 ++++++++++
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 38 ++++++++++++++++++++++++
->  2 files changed, 54 insertions(+)
+https://lore.kernel.org/linux-mtd/20210302132757.225395-1-manivannan.sadhasivam@linaro.org/
 
-The driver patch adds support for Tegra210, so could we also add NVDEC
-entries for that?
+These 2 patches are in mainline now. Robert, can you make sure that you have
+these 2 patches in your tree?
 
-Thierry
+Thanks,
+Mani
 
---FpULcs2kzJzavYtS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmFd6I0ACgkQ3SOs138+
-s6EF7hAAtjDqnfA0BIjpUwLKkQRm7q+hc3m6K5LsNmRSiQSUXP44LcnP62Bt3NIS
-FkcljathUGw+tGjvKZp9wIpVKRniEPaDilx0doggljLByDhzaWeGXTjrEmrD/feI
-GtPaUbEgJZKOaxvdbwBAcxDc4Q0/c4k1I7OwDi6VT0vTQg0Sj9jqF3Kg9NJkbPRj
-xsBthVuCiEfoqcrdwCVbH6SpJkDUT2fAgeTaIuXtmV+5RxHqHhEzSW7QHyShmR1z
-QUEc+84hflRHc8Q03QcmQCjh0hYi3CC7dnInFlMydvKg9O8TGyRr4mSZ7zFMMWlN
-tZ2vf0wN20HEzmdfNJ2HDzuTJ8Cm6SUQltBv/5pxCBDwStkA81ceEyG0AV8qXl8Y
-11/Qbg8KYyiroOY08TYHCsDoHoUEESKRzet6JhhI7Krzx6q5Cw3kC+DoitCzwgU6
-X/mcDciehOe2dsW97trt1CdgpVINX4Sw3JWaU3iMBYim+acDwpF9okAwLuWf1a3n
-rnPqUK7o7GigWmhKCp0+KjN9uagT5kYiREsSbD+M1vXIBDoz66557WRmF7Gyhi8l
-BdGltBpsorFZlgS+EQOenfN+w02ZCgxlYbnBfl+Cpi1acwadceRbt3rjMkOg9gdj
-OV2kNAvwfjAKwgsVkX2neOAE3rvd1LTl2KmlF1XOqVrHx0ue0k0=
-=Wi7B
------END PGP SIGNATURE-----
-
---FpULcs2kzJzavYtS--
+> Thanks,
+> Bjorn
