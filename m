@@ -2,60 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 565FB42479A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 21:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C83674247A0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 22:02:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbhJFUAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 16:00:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58588 "EHLO
+        id S233626AbhJFUEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 16:04:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbhJFUAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 16:00:19 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E559CC061746
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 12:58:26 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id dj4so14164313edb.5
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 12:58:26 -0700 (PDT)
+        with ESMTP id S229992AbhJFUEb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 16:04:31 -0400
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AA72C061755
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 13:02:38 -0700 (PDT)
+Received: by mail-vs1-xe2f.google.com with SMTP id i30so4217577vsj.13
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 13:02:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=0NqHQYP/c3mUi/IFOx7CMz/U7QYzqFRbcXZKclx3qeg=;
-        b=P9rwefw1u0YuBvu7btuIKmqtOKsxqlGBKWlgXBPt+h3YJRcs997yzZvKncf4y8J/uK
-         bssLhNS8JsPAMbmHybRFXgMc3DMn6OlG4wSGDCsqga237h+moZxkRd3ZhwiCgbSj/74W
-         mpYpL5vUna38K4uCF0TFk3+t9hjVcIYxLqvKdN75L9X1UORBkxVurqu0bMBqi+aM4y09
-         X5V0UoAgmTaNkntBzRS4zMFXLJl999/AIO/6oewXLeMpPohuQ/8HOdYVr4/bp5rDoTyB
-         1N9MsQOb1AH3u4G6psr4Tg8p6Id4yZQScFXFfp7i08mdOHf7z1r1kluqQ0jR4tc86efP
-         Letw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FnczB4qtoym6/uCjIoCpBahkSSySqs0UV+3zlX8l/eU=;
+        b=luzAbdgOSHLbUnVI7+LDtEwAOcBzWaPm/YemTUoropMXQELkkRtug3wUOd8ISioW5y
+         R6PLuwR0g8vqXMFB1jTT3B4O1TvkZtsv2RhsLK8zus2wSLCdTUUJn1Sk9d5FL7TmISbI
+         noq+Alw3COJg0SlDatN1KJbFAKN6h96r+mVbhbs1ZhnAKkaL1xXVEiB/z2CXjJgXT3Or
+         W3LUrGd809izM0ubfAoHLp27pLiyVg6lM3BCR2slvu51OlufNNMwd7ocGwJjaKO0dLdA
+         7KtXQ8L8zGsrF7FoLRDW1HJLLZO6rIRNK0UUObibxfRXvuXFH2VCwLfPyMdEwcQOT7qn
+         eGzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=0NqHQYP/c3mUi/IFOx7CMz/U7QYzqFRbcXZKclx3qeg=;
-        b=yq2rlxEFVDpl78AlDCkCle5IPY5tUmqptm+lMoC6grQtOv7fkLJLd0zmEdiVonTway
-         pCORhgWOs1EdFmu77fTkYMueitbZ4ao0soFkrV0/a8/d/Ytwv/0W92dlR/+oDsw9W18i
-         YJKNi1psfAvfO7SzwJ25KaX9e0hCgiVqHLaUma/2GIDmTahRNrRQ9NlNcaGViEBxskbK
-         Cq7tROSuhCGifRj/Uo3GtegRhKxmtjGYqrPXbr4tzUyyZ2kYSOu4FRhSotBvHWjum07w
-         l6QFINhgMNSH+uQLVIeZfWdLOQ+S2Y4CJDY0SgPceE2Chzdyd0KLDn6R1t1xKfuJeBn9
-         15KA==
-X-Gm-Message-State: AOAM533E538Dggo1Q8HmJozc8G0kfN+9sZGK0AOkwU7VnDQIES2SmsJt
-        hpc4XSvHCZnx0HvORaJDq0+ypSwY8quOy5wiUpUvqIfVCfRWcw==
-X-Google-Smtp-Source: ABdhPJxTjSrpUIqDeUJQCbLS8cVVn8v9cqBQxjAquFB1CHNyU7kfYq8TIzLjco1dJObneyyaroFSYZffvEnsQscIyRg=
-X-Received: by 2002:a05:6402:51d3:: with SMTP id r19mr315958edd.60.1633550305315;
- Wed, 06 Oct 2021 12:58:25 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FnczB4qtoym6/uCjIoCpBahkSSySqs0UV+3zlX8l/eU=;
+        b=X1cCPw5O39wYI+fHi9b/gagKvwVLC2+iXrfpuEPec8eZrXihpBulvVYK2UlzN4ciVe
+         6iic4A1KiqYPap4pe99Nq7ltA4f0o6uzlnvIRaWKmV7I3Jph/EgrwC/r5Sda5ch+xwZQ
+         /yFqOIAguiQUGwTRDv4sbD+gXUIOvtM7PHjmXnq0Q22xqobety4Hn9/tGBHB2gXonUdj
+         d74Xru6hE3A9/rIqIctSFgcgkhHAHdJ6doP+NRqjqyw35ehBOfeQgmYDUibqcnmHfm9j
+         HEhx6cSPEAqOPhrVa48+HVEHvizxYnqNuELvqpr8YT+D+abku2ypAQ28sUJUeDodzI/C
+         Ns3A==
+X-Gm-Message-State: AOAM533qBS4/nIIcazWOmjIwDs2eiUNvaLmq8cfrdVKi+V/K7GYfxx4U
+        VAB5EgnX43yJlvx8Cy4whg7ZLH9O9F9igkST8HfYzw==
+X-Google-Smtp-Source: ABdhPJyELTZu4mT/PVMaTLHDN0ZAPUEE6TvSoJzj8LOR79nAd4NsF/4drXozDiH8Ionz68cLVZi8M2xd1UvxfYkU0ms=
+X-Received: by 2002:a67:ed5a:: with SMTP id m26mr26731553vsp.35.1633550557421;
+ Wed, 06 Oct 2021 13:02:37 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a17:907:171a:0:0:0:0 with HTTP; Wed, 6 Oct 2021 12:58:24
- -0700 (PDT)
-Reply-To: monica43brown@gmail.com
-From:   monica brown <issifouidi1@gmail.com>
-Date:   Wed, 6 Oct 2021 20:58:24 +0100
-Message-ID: <CANXfVh4A10gGpofC_adLYVmfT_KkqiGTZSFX9AA+Hwr66X8GTQ@mail.gmail.com>
-Subject: Hi
-To:     undisclosed-recipients:;
+References: <20211006132324.76008-1-krzysztof.kozlowski@canonical.com> <20211006132324.76008-11-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211006132324.76008-11-krzysztof.kozlowski@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Wed, 6 Oct 2021 23:02:25 +0300
+Message-ID: <CAPLW+4migQ+3NBsHgMd04N-Fc71CTzxoUMS3HN2S8377qFDa6g@mail.gmail.com>
+Subject: Re: [PATCH v3 10/10] dt-bindings: mfd: samsung,s5m8767: document buck
+ and LDO supplies
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings from me
-My name is Monica Brown and how are you today, please I have something that
-i will like to share with you okay please try and get back.
+On Wed, 6 Oct 2021 at 16:24, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> Document the properties with regulator supplies for bucks and LDOs.  At
+> least one board uses it (Exynos5250 Arndale).
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/mfd/samsung,s5m8767.yaml         | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
+> index b2529a48c890..12dea5aac8b6 100644
+> --- a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
+> @@ -96,6 +96,44 @@ properties:
+>      description: |
+>        GPIO specifiers for three host gpio's used for dvs.
+>
+> +  vinb1-supply:
+> +    description: Power supply for buck1
+> +  vinb2-supply:
+> +    description: Power supply for buck1
+
+Nitpick: all those vinb* are for buck1, or that's a typo (here and below)?
+
+> +  vinb3-supply:
+> +    description: Power supply for buck1
+> +  vinb4-supply:
+> +    description: Power supply for buck1
+> +  vinb5-supply:
+> +    description: Power supply for buck1
+> +  vinb6-supply:
+> +    description: Power supply for buck1
+> +  vinb7-supply:
+> +    description: Power supply for buck1
+> +  vinb8-supply:
+> +    description: Power supply for buck1
+> +  vinb9-supply:
+> +    description: Power supply for buck1
+> +
+> +  vinl1-supply:
+> +    description: Power supply for LDO3, LDO10, LDO26, LDO27
+> +  vinl2-supply:
+> +    description: Power supply for LDO13, LDO16, LDO25, LDO28
+> +  vinl3-supply:
+> +    description: Power supply for LDO11, LDO14
+> +  vinl4-supply:
+> +    description: Power supply for LDO4, LDO9
+> +  vinl5-supply:
+> +    description: Power supply for LDO12, LDO17, LDO19, LDO23
+> +  vinl6-supply:
+> +    description: Power supply for LDO18, LDO20, LDO21, LDO24
+> +  vinl7-supply:
+> +    description: Power supply for LDO5, LDO22
+> +  vinl8-supply:
+> +    description: Power supply for LDO1, LDO6, LDO7, LDO8, LDO15
+> +  vinl9-supply:
+> +    description: Power supply for LDO2
+> +
+>    wakeup-source: true
+>
+>  required:
+> --
+> 2.30.2
+>
