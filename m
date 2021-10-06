@@ -2,89 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0019B423E94
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 15:21:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 297F7423E9C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 15:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231378AbhJFNXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 09:23:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43502 "EHLO mail.kernel.org"
+        id S231524AbhJFNZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 09:25:12 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:35555 "EHLO mx1.tq-group.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231469AbhJFNXR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 09:23:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 411A4610C8
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 13:21:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633526485;
-        bh=alLVztSAR+zVhYna8rbF1fpO8IxYlGuubsf+eUj4w7s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Z/JpSi3vSHGrUztG6gWnpyVAgZrssJKAqe/zXFlTRikECYp1fNmeyAQhDi9JkH1oV
-         08f03DQzh/naU1iEzwy57JqjO4ktEi9/Ou/RdlYLOvI5t5Y/PuQzDhylGBAQV2ORts
-         h7Bpqi81Zm0De/RYOcWivPjdG0aC8RoU5dqnC9MT6zaUz+s7xH69dyRLA8UDU7xcWy
-         UeCamA7yTf50Rs9TpU0jID/RKJoeZXbaEQ+KO6RTEEmGoGDhiX78pAC8fgg5/s28Vo
-         zveYxbQDjAlLGuskVR3Vz5UyE87NZelfnMipp5yzCtrZcwptjLYpSKLdfyQB1leuVo
-         UYSwA1g6vg7BQ==
-Received: by mail-ed1-f44.google.com with SMTP id d8so9806951edx.9
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 06:21:25 -0700 (PDT)
-X-Gm-Message-State: AOAM533jX09dNWogUd5cymKgqAaNU1I6cOZaQgM46qK9zwfzUNkayf2u
-        GBMDYzYw1T1gB/KEN6iCsVubyYMZFW60OFjUew==
-X-Google-Smtp-Source: ABdhPJw7MkXaYsUDoeBX7SmE6lCrAD2fJ87SwrdDv7Ez4blzswV4YKvWC/bciH0EDYeIZW5/+bMmgH6JkWx3e/KTAp8=
-X-Received: by 2002:a17:907:7d8b:: with SMTP id oz11mr6746523ejc.84.1633526479452;
- Wed, 06 Oct 2021 06:21:19 -0700 (PDT)
+        id S231356AbhJFNZM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 09:25:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1633526600; x=1665062600;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=2hi3uyFgBmoXMSx9J/EyEwdcL1aNU2wFfxc4RN7ZiR4=;
+  b=l1ehhPyX1Wrhk1yVF2YriWcpnkvd2QpcJ19wkwCOVXTaExicx3eApxtj
+   UdV+qYa2jk2Seeu9SpUjSiySmCBefIzPms8TUd+OBXHbxVdfbV747zvwA
+   0OByDAK8ooma4DC/F7C7VLZnyDczd2UzFSdNFMT/yiFJsV0o3ANRSHLz8
+   HmLwUArwdSngSG7MzHr/zPMmkZkscfHZUXhsib19vP5DREIsXhmEXKLJI
+   jFHJ4DL11HSRfTx7Kl3BFopEs2pUuUFRTRW1xbGcnagD4pUCven31shdp
+   5ltGwDgHNhetaBgZv3FvBIItRALJftterhipsMH0HNIObU+qC/Ph/0mO4
+   g==;
+X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
+   d="scan'208";a="19897918"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 06 Oct 2021 15:23:19 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 06 Oct 2021 15:23:19 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 06 Oct 2021 15:23:19 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1633526599; x=1665062599;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=2hi3uyFgBmoXMSx9J/EyEwdcL1aNU2wFfxc4RN7ZiR4=;
+  b=chGE0wNcgRwbtO+vhZmvxFpLC5ZD+KMw896ZAV2c7vefZKnLjWLdCs7u
+   kIwFBLHxEyaS80TNzRLIASI5MwRw4lxepX20QWSC3hyc3H/SaMSe6QtaC
+   AifLsmU0mOH7FTJguSuoDUrdR37ca4+zeLHbiq96yapPaDIfBFqWSXm5F
+   Lqi0pchMawJIg5rqAwooVi3x/JUvcCD2EDRjQowR9udTyAGxpKwVPB3vR
+   fJSJ6qPnRuU52/gSxG1hYY6HxURbyKTy1YVkli5mQC9B0pNXvMKYKM3AW
+   6yzHqFjWDS1ZSDkDOxVFDwasyIVEw5JTxZso/FCbBrz1H6AcOJ8oHDtDu
+   g==;
+X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
+   d="scan'208";a="19897917"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Oct 2021 15:23:19 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id CE6F8280065;
+        Wed,  6 Oct 2021 15:23:18 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/7] Support for some TQMa8M* boards
+Date:   Wed,  6 Oct 2021 15:23:02 +0200
+Message-Id: <20211006132309.1239708-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20211006074713.1094396-1-alexander.stein@ew.tq-group.com> <20211006074713.1094396-2-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20211006074713.1094396-2-alexander.stein@ew.tq-group.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 6 Oct 2021 08:21:06 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJDNCdc8iqKWqo9r30VnPgXUuNvhzF7aSjA9N7OmYH1dg@mail.gmail.com>
-Message-ID: <CAL_JsqJDNCdc8iqKWqo9r30VnPgXUuNvhzF7aSjA9N7OmYH1dg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc supply bindings
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 6, 2021 at 2:47 AM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> Add a VCC regulator which needs to be enabled before the EN pin is
-> released.
->
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml     | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> index 07b20383cbca..149cff3233c2 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> @@ -32,6 +32,9 @@ properties:
->      maxItems: 1
->      description: GPIO specifier for bridge_en pin (active high).
->
-> +  vcc-supply:
-> +    description: A 1.8V power supply (see regulator/regulator.yaml).
-> +
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
->
-> @@ -94,6 +97,7 @@ required:
->    - compatible
->    - reg
->    - enable-gpios
-> +  - vcc-supply
+This patch set adds support for the following modules:
+* TQMa8Mx
+* TQMa8MxML
+* TQMa8MxNL
 
-You generally can't make added properties required unless all DT files
-already had this property. It breaks compatibility.
+Each of the modules is available with different i.MX8M variants, the
+bootloader modifies the device tree and disabled paripherals which
+are not available on the actual hardware.
 
-Rob
+All of them can be attached to the same mainboard MBa8Mx, although
+TQMa8MxML & TQMa8MxNL need an adapter. For that reason there is a single
+mainboard .dtsi file named mba8mx.dtsi.
+
+There is a .dtsi file for each module named imx8m?-tmqa8m*.dts.
+
+Finally there is the final .dts file which includes the mainboard and
+the attached module and contains the missing connection, prominently clk
+and pinctrl defines.
+
+
+Alexander Stein (7):
+  dt-bindings: arm: fsl: add TQMa8MxML boards
+  arm64: dts: freescale: add initial tree for TQMa8MQML with i.MX8MM
+  arm64: defconfig: enable drivers for TQ TQMa8MxML-MBa8Mx
+  dt-bindings: arm: fsl: add TQMa8MxNL boards
+  arm64: dts: freescale: add initial tree for TQMa8MQNL with i.MX8MN
+  dt-bindings: arm: fsl: add TQMa8Mx boards
+  arm64: dts: freescale: add initial tree for TQMa8Mx with i.MX8M
+
+ .../devicetree/bindings/arm/fsl.yaml          |  31 ++
+ arch/arm64/boot/dts/freescale/Makefile        |   3 +
+ .../dts/freescale/imx8mm-tqma8mqml-mba8mx.dts | 259 +++++++++++
+ .../boot/dts/freescale/imx8mm-tqma8mqml.dtsi  | 350 +++++++++++++++
+ .../dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts | 283 ++++++++++++
+ .../boot/dts/freescale/imx8mn-tqma8mqnl.dtsi  | 345 +++++++++++++++
+ .../dts/freescale/imx8mq-tqma8mq-mba8mx.dts   | 416 ++++++++++++++++++
+ .../boot/dts/freescale/imx8mq-tqma8mq.dtsi    | 369 ++++++++++++++++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi     | 285 ++++++++++++
+ arch/arm64/configs/defconfig                  |   5 +
+ 10 files changed, 2346 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/mba8mx.dtsi
+
+-- 
+2.25.1
+
