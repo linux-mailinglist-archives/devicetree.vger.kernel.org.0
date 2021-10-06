@@ -2,101 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F7A34241B9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C31E24241D9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:52:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238154AbhJFPs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 11:48:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55962 "EHLO
+        id S232088AbhJFPyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 11:54:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231851AbhJFPs6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 11:48:58 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E49E9C061746;
-        Wed,  6 Oct 2021 08:47:05 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id y23so12572837lfb.0;
-        Wed, 06 Oct 2021 08:47:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=GfVVERpziq4truOunJikxrUf6BXuZD7+3TCMiv3eHCw=;
-        b=hKwuv0BI3AUNCW2oo7hJUMPCzxZ0HarLZGF6aKZX5ckpHDhJcqe7QKdKy7m2o/opVC
-         66tEV2jRCeFHIt/Gv6ZJqzlo+nhBqojbNpPtT81ngcDKdSw+fFaauzhCumJu7a9Nj0YV
-         YLKi2Cmnm9Kgw/JMaQhpyud9oH+UGo02Y004QMAiGFVG/fXiAnHg4Poq14tmRBdWHoVk
-         Jd4DDlFgykxqr/55sZrYCI5x1wPVyXwWnnSQeRI4hPCXKPAU28abn8LA+y61tuQb5cmN
-         3Suia1TAUS4Lb4yYjLfHy/UsvzWdgYFKr6DMQwNQ5JH4SDZfPvtKHk+CAz5iYxAY1eu2
-         D/Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GfVVERpziq4truOunJikxrUf6BXuZD7+3TCMiv3eHCw=;
-        b=Gz2po3YSgNZpaS0k9X5le76k8LJEiYDrM2I79BYYKv2ZCNYDFglyE5SqAt4auFIbGJ
-         qT+NNU4yHrvpSK3tFLafQsjCU607A039KPduaBoISaRMieJvVf5gs1UD3LcBgE0lgtqG
-         S7PsiVf+S32oHKbXHQktFX5xO6bLkmatR3O4z5t6b3QKrdWiyFqwkxofnRW0uWTgV6Ob
-         4cDJfnVSn/QBymryv3oV8E7Bw1WQJK5n4invcAeIcvThfguqM2+FqK4VrySl/7E1C/95
-         wpxdlW2u7nl5pXHMwzgc8GbQdUI6ByolebTL0WNdEaMs8unrVqolHhUnWHNxe0bjcehD
-         3CQw==
-X-Gm-Message-State: AOAM532/Tma0TUt3ejxsOpenl45KWVgXaKFcIFh/xMmzOrtXwYpd2iu/
-        6nUg8uR7ATYH+wHDQRbaWv0QCrYC3Ec=
-X-Google-Smtp-Source: ABdhPJxcxUvNK9BCNsepaPErBne/gtT50oxUO7KhKgcMzfQupjYKdHdT1m9ES2kcbWsy2IefeHEwyw==
-X-Received: by 2002:a05:651c:179a:: with SMTP id bn26mr29489526ljb.528.1633535224146;
-        Wed, 06 Oct 2021 08:47:04 -0700 (PDT)
-Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
-        by smtp.googlemail.com with ESMTPSA id h10sm88397ljb.60.2021.10.06.08.47.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Oct 2021 08:47:03 -0700 (PDT)
-Subject: Re: [PATCH v4 3/7] dt-bindings: memory: lpddr2: Add revision-id
- properties
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20211005230009.3635-1-digetx@gmail.com>
- <20211005230009.3635-4-digetx@gmail.com>
- <545e4036-a9fe-a0f1-dd8c-f5948fee6c4e@canonical.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <b24831e5-653c-e3e6-fd96-9746e8e96d8d@gmail.com>
-Date:   Wed, 6 Oct 2021 18:47:03 +0300
+        with ESMTP id S231768AbhJFPyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 11:54:08 -0400
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAD28C061746;
+        Wed,  6 Oct 2021 08:52:15 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 75FCF3FA5E;
+        Wed,  6 Oct 2021 15:52:09 +0000 (UTC)
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+References: <20211005155923.173399-1-marcan@marcan.st>
+ <20211005155923.173399-3-marcan@marcan.st>
+ <CAL_JsqJenHAOw4gApzGpuj-8nZjkYhmBg0qBj-DV+CEJ7zXuVw@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 2/7] dt-bindings: power: Add apple,pmgr-pwrstate binding
+Message-ID: <f95f6d61-8809-e668-0458-453a8dfbe641@marcan.st>
+Date:   Thu, 7 Oct 2021 00:52:07 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <545e4036-a9fe-a0f1-dd8c-f5948fee6c4e@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <CAL_JsqJenHAOw4gApzGpuj-8nZjkYhmBg0qBj-DV+CEJ7zXuVw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-06.10.2021 13:59, Krzysztof Kozlowski пишет:
-> On 06/10/2021 01:00, Dmitry Osipenko wrote:
->> Add optional revision-id standard LPDDR2 properties which will help to
->> identify memory chip.
->>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  .../memory-controllers/ddr/jedec,lpddr2.yaml         | 12 ++++++++++++
->>  1 file changed, 12 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
->> index d99ccad54938..01efb43c3425 100644
->> --- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
->> +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
->> @@ -24,6 +24,16 @@ properties:
->>            - enum:
->>                - jedec,lpddr2-nvm
->>  
->> +  revision-id1:
->> +    maximum: 255
->> +    description: |
->> +      Revision 1 value of SDRAM chip. Obtained from device datasheet.
->> +
+On 06/10/2021 09.58, Rob Herring wrote:
+> On Tue, Oct 5, 2021 at 10:59 AM Hector Martin <marcan@marcan.st> wrote:
+>> Future SoCs are expected to use backwards compatible registers, and the
+>> "apple,pmgr-pwrstate" represents any such interfaces (possibly with
+>> additional features gated by the more specific compatible), allowing
+>> them to be bound without driver updates. If a backwards incompatible
+>> change is introduced in future SoCs, it will require a new compatible,
+>> such as "apple,pmgr-pwrstate-v2".
 > 
-> Also type/ref for uint32 needed.
+> Is that because past SoCs used the same registers? I don't see how
+> else you have any insight to what future SoCs will do.
+> 
+> Normally we don't do 1 node per register type bindings, so I'm a bit
+> leery about doing 1 node per domain.
 
-Also unnecessary :) It's uint32 by default, inferred from the 'maximum'.
+Yes, we can trace a pretty clear lineage from past SoCs. Plus Apple 
+folks themselves have confirmed that this is an explicit policy:
+
+https://twitter.com/stuntpants/status/1442276493669724160
+
+Already within this SoC we have two PMGR instances with different 
+register sets (one covers all devices that stay on during system sleep), 
+although I am only instantiating one in our devicetree at the moment. 
+And of course there is the A14, which is the same generation as the M1 
+and has exactly the same register format, but a different set of domains.
+
+Having sub-nodes describing individual power domains has some prior art 
+(e.g. power/rockchip,power-controller.yaml). In that case the nodes are 
+all managed by the parent node, and use the hierarchical format, but the 
+hierarchical format cannot handle multi-parent nodes (which we do have, 
+or at least Apple describes them that way). Since we really have no 
+"top-level" implementation specifics to worry about, I think it makes 
+sense to just bind to single nodes at this point, which makes the driver 
+very simple since it doesn't have to perform any bookkeeping for 
+multiple domains.
+
+I realize this is all kind of "not the way things are usually done", but 
+I don't want to pass up on the opportunity to have one driver last us 
+multiple SoCs if we have the chance, and it's looking like it should :-)
+
+Note that as new features are implemented (e.g. auto-PM, which I will 
+add to this driver later), that also naturally lends itself to 
+forwards-compat, as SoCs without those features at all simply wouldn't 
+request them in the DT. In this case an "apple,auto-pm" flag would 
+enable that for domains where we want it, and those that don't support 
+it (or a hypothetical past SoC without the feature at all) would simply 
+not use it.
+
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^power-controller@[0-9a-f]+$"
+> 
+> Drop this and define this node in the syscon schema with a $ref to this schema.
+
+Ack, makes sense.
+
+>> +  apple,domain-name:
+>> +    description: |
+>> +      Specifies the name of the SoC device being controlled. This is used to
+>> +      name the power/reset domains.
+>> +    $ref: /schemas/types.yaml#/definitions/string
+> 
+> No other power domain binding needs this, why do you?
+
+Because they all hardcode the domain names in the drivers for every SoC :-)
+
+Without a name of some sort in the devicetree, all our genpds would have 
+to use numeric register offsets or the like, which seems quite ugly.
+
+> I prefer 1 complete example in the MFD schema rather than piecemeal examples.
+
+Sure. Would we leave this schema without examples then?
+
+> As the child nodes are memory mapped devices, size should be 1. Then
+> address translation works (though Linux doesn't care (currently)).
+
+This requires all the reg properties to also declare the reg size, right?
+
+One thing I wonder is whether it would make sense to allow 
+#power-domain-cells = <1> and then be able to declare consecutive ranges 
+of related power registers in one node. This would be useful for e.g. 
+the 9 UARTs, the 4 SPI controllers, the 6 MCAs, the 5 I2C controllers, 
+the 5 PWM controllers, etc (which all have uniform parents and features 
+and are consecutive, so could be described together). I'm not sure if 
+it's worth it, thoughts?
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
