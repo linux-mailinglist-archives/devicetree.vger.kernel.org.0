@@ -2,240 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 935CB42485C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 22:55:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D046742486C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 23:01:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239524AbhJFU5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 16:57:42 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:40917 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239516AbhJFU5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 16:57:41 -0400
-Received: by mail-ot1-f44.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so4779662otq.7;
-        Wed, 06 Oct 2021 13:55:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=PEl1Wiq7Yzxw1JyOc9TwT8faJxfEQGULJwcfWCWiJkE=;
-        b=GyzGwyXw7S0wGnKixrE5Ff8odzbDciNXepCn5zlz81lUnphvA2nE8AG3CERHiCWlHN
-         X/6X8Owwdn9cO7wePo4Pwt7fEIputZmAYZVBfhfKUH6PsupIpayfLZd7oWgDHzqcUDfr
-         gt5GnYFL4a1sfn9WV2cUHdAI39a0/z22wd8NL7YnNuZyVO2DOf+c1RzLFVN9E/IqXEeS
-         lZldztLQyW+ebpgW3ebqVHcwmEqSKzEVNOOiJ+jLOElQZ7/cmni2i6XhaF76ansJ7Vqt
-         cewdo8gBshF3Q3VI9zk6Es6yJGYwK7jqANewY9nYDNR2GhzXHp2G4fImsp6q4fCpnKq+
-         C5Ww==
-X-Gm-Message-State: AOAM5300EXxCAWE6Y5aVWNRQVjecVd794944Tv3lJszbiIoeMRYtRyIu
-        6+HNuNaUp3/xqcQ98YLr5eoOJG8fkA==
-X-Google-Smtp-Source: ABdhPJyqBAjKD5LkaXGtc+EwOmuHvjB3JzySclZvRpa0XwLGhqvqXkKvpxQPFOovyl89rcbJ/Gf/8w==
-X-Received: by 2002:a05:6830:9c9:: with SMTP id y9mr400716ott.6.1633553748826;
-        Wed, 06 Oct 2021 13:55:48 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 21sm4300612oix.1.2021.10.06.13.55.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 13:55:48 -0700 (PDT)
-Received: (nullmailer pid 2857378 invoked by uid 1000);
-        Wed, 06 Oct 2021 20:55:46 -0000
-Date:   Wed, 6 Oct 2021 15:55:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 11/11] dt-bindings: hwmon: allow specifying channels
- for tmp421
-Message-ID: <YV4NUqf7ey5Yr55P@robh.at.kernel.org>
-References: <cover.1632984254.git.krzysztof.adamski@nokia.com>
- <3ff7b4cc57dab2073fa091072366c1e524631729.1632984254.git.krzysztof.adamski@nokia.com>
- <20211002142219.GC34532@roeck-us.net>
- <YVqu92dUgNKlYMlG@localhost.localdomain>
- <20211005141457.GB2395636@roeck-us.net>
+        id S231749AbhJFVDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 17:03:45 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:54988 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229657AbhJFVDo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 17:03:44 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 196L1ih1006161;
+        Wed, 6 Oct 2021 16:01:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1633554104;
+        bh=/JmJo+ErGdIoXouvVDXIbJXXugSqnxWgX9g+2MsqHWg=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=iA7Xflg/rRiOEg/WxnHChL/Dm7tuf5nwhz8EmjNjw7FBAczUubmW1VYEc0MMlN0KL
+         8Ej6VFzK0+HYWfeHNI8uLo1oq70e0xo18O8TP8UZofA0X9jvqx0X5vxNh8ZNgeXSge
+         1veZWO7xkvqr6ciwtPxQpZsvvDYALQxwLVAM6kg0=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 196L1iBO127796
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 6 Oct 2021 16:01:44 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 6
+ Oct 2021 16:01:44 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 6 Oct 2021 16:01:44 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 196L1hAL070019;
+        Wed, 6 Oct 2021 16:01:44 -0500
+Date:   Thu, 7 Oct 2021 02:31:43 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Benoit Parrot <bparrot@ti.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>
+Subject: Re: [PATCH v4 08/11] media: ti: Add CSI2RX support for J721E
+Message-ID: <20211006210141.3mi2popzfsalskm3@ti.com>
+References: <20210915120240.21572-1-p.yadav@ti.com>
+ <20210915120240.21572-9-p.yadav@ti.com>
+ <YV4G6kjCLREpbam2@paasikivi.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211005141457.GB2395636@roeck-us.net>
+In-Reply-To: <YV4G6kjCLREpbam2@paasikivi.fi.intel.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 05, 2021 at 07:14:57AM -0700, Guenter Roeck wrote:
-> On Mon, Oct 04, 2021 at 09:36:23AM +0200, Krzysztof Adamski wrote:
-> > Dnia Sat, Oct 02, 2021 at 07:22:19AM -0700, Guenter Roeck napisał(a):
-> > > On Thu, Sep 30, 2021 at 09:19:49AM +0200, Krzysztof Adamski wrote:
-> > > > Add binding description for the per temperature channel configuration
-> > > > like labels and n-factor.
-> > > > 
-> > > > Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> > > > ---
-> > > >  .../devicetree/bindings/hwmon/ti,tmp421.yaml  | 66 +++++++++++++++++++
-> > > >  1 file changed, 66 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-> > > > index 47040ace4f73..0d4ea2209500 100644
-> > > > --- a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-> > > > +++ b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-> > > > @@ -24,12 +24,49 @@ properties:
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > 
-> > > > +  '#address-cells':
-> > > > +    const: 1
-> > > > +
-> > > > +  '#size-cells':
-> > > > +    const: 0
-> > > > +
-> > > >  required:
-> > > >    - compatible
-> > > >    - reg
-> > > > 
-> > > >  additionalProperties: false
-> > > > 
-> > > > +patternProperties:
-> > > > +  "^input@([0-4])$":
-> > > 
-> > > Was there agreement on "input" ? It is a somewhat odd name for a temperature
-> > > sensor. If that name can be used to distinguish child sensor types, it might
-> > > make sense to have a well defined name to state that this is a temperature
-> > > sensor.
-> > 
-> > Nope, no conclusion on that, yet, thus I did not change that and I was
-> > still using the same approach I had on v1. For me it can be a "channel@X", a
-> > "temperature@X".. whatever you decide.
-> > 
+On 06/10/21 11:28PM, Sakari Ailus wrote:
+> Hi Pratyush,
 > 
-> My question was more on mandating a single string instead of letting
-> users decide. I don't care either if it isn't used for anything in
-> particular, but you specifically mandate "input" as the only valid
-> string. I am not a DT expert, but it seems to me that mandating the
-> content of that string and then not using it other than to ensure that
-> the user really specified "input" doesn't make much sense to me.
-> Having said that, if this is the DT way of things, it is ok with
-> me.
+> On Wed, Sep 15, 2021 at 05:32:37PM +0530, Pratyush Yadav wrote:
+> ...
+> > +/*
+> > + * Find the input format. This is done by finding the first device in the
+> > + * pipeline which can tell us the current format. This could be the sensor, or
+> > + * this could be another device in the middle which is capable of format
+> > + * conversions.
+> > + */
+> > +static int ti_csi2rx_validate_pipeline(struct ti_csi2rx_dev *csi)
+> > +{
+> > +	struct media_pipeline *pipe = &csi->pipe;
+> > +	struct media_entity *entity;
+> > +	struct v4l2_subdev *sd;
+> > +	struct v4l2_subdev_format fmt;
+> > +	struct v4l2_pix_format *pix = &csi->v_fmt.fmt.pix;
+> > +	struct media_device *mdev = &csi->mdev;
+> > +	const struct ti_csi2rx_fmt *ti_fmt;
+> > +	int ret;
+> > +
+> > +	mutex_lock(&mdev->graph_mutex);
+> > +	ret = media_graph_walk_init(&pipe->graph, mdev);
+> > +	if (ret) {
+> > +		mutex_unlock(&mdev->graph_mutex);
+> > +		return ret;
+> > +	}
+> > +
+> > +	media_graph_walk_start(&pipe->graph, &csi->vdev.entity);
+> > +
+> > +	while ((entity = media_graph_walk_next(&pipe->graph))) {
+> > +		if (!is_media_entity_v4l2_subdev(entity))
+> > +			continue;
+> 
+> You shouldn't rely on media_graph_walk_next() to return entities in a
+> particular order.
 
-Kind of a catch-22. Node names weren't consistent nor checked, so 
-we can use them. 
-
-> > However I'm in favor of some generic name, like "channel" or "input",
-> > and using some "type property", if required, instead of calling the
-> > nodes "temperatue@X", "voltage@X".
-> > 
-> 
-> It does open up a nother dimension for multi-type sensor chips, though,
-> 
-> For a chip with voltage and temperature sensors:
-> 
-> 	temperature@0 {
-> 		reg = <0>;
-> 	};
-> 
-> 	voltage@0 {
-> 		reg = <0>;
-> 	};
-
-Not valid because you have same address twice.
+Ah, right. Need to drop this.
 
 > 
-> vs:
+> I'd suggest approach taken in isp_video_check_external_subdevs() (in
+> drivers/media/platform/omap3isp/ispvideo.c).
 > 
-> 	temperature-sensors {
-> 		xxx@0 {
-> 			reg = <0>;
-> 		};
-> 	};
+> > +
+> > +		sd = media_entity_to_v4l2_subdev(entity);
+> > +
+> > +		fmt.which = V4L2_SUBDEV_FORMAT_ACTIVE;
+> > +		fmt.pad = media_get_pad_index(entity, 0, PAD_SIGNAL_DEFAULT);
+> > +
+> > +		ret = v4l2_subdev_call(sd, pad, get_fmt, NULL, &fmt);
+> > +		if (ret && ret != -ENOIOCTLCMD) {
+> > +			media_graph_walk_cleanup(&pipe->graph);
+> > +			mutex_unlock(&mdev->graph_mutex);
+> > +			return ret;
+> > +		}
+> > +
+> > +		if (!ret)
+> > +			break;
+> > +	}
+> > +
+> > +	media_graph_walk_cleanup(&pipe->graph);
+> > +	mutex_unlock(&mdev->graph_mutex);
+> > +
+> > +	/* Could not find input format. */
+> > +	if (!entity)
+> > +		return -EPIPE;
+> > +
+> > +	if (fmt.format.width != pix->width)
+> > +		return -EPIPE;
+> > +	if (fmt.format.height != pix->height)
+> > +		return -EPIPE;
 > 
-> 	voltage-sensors {
-> 		xxx@0 {
-> 			reg = <0>;
-> 		};
-> 	};
-> 
+> Pipeline validation should take place during media_pipeline_start(). Why
+> are you doing it here?
 
-Didn't we already discuss this?
-
-> This is way out of my league in terms of what is appropriate,
-> except that "xxx" isn't always easy to determine if the string is fixed
-> as you suggest. What should it be for a sensor measuring an output voltage ?
-
-Does measuring a voltage have a direction?
+How would be do that? Via the link_validate callback?
 
 > 
-> 	input@0 {
-> 		reg = <0>;
-> 		label = "output voltage";
-> 	};
+> > +
+> > +	ti_fmt = find_format_by_pix(pix->pixelformat);
+> > +	if (WARN_ON(!ti_fmt))
+> > +		return -EINVAL;
+> > +
+> > +	if (fmt.format.code == MEDIA_BUS_FMT_YUYV8_2X8 ||
+> > +	    fmt.format.code == MEDIA_BUS_FMT_VYUY8_2X8 ||
+> > +	    fmt.format.code == MEDIA_BUS_FMT_YVYU8_2X8) {
+> > +		dev_err(csi->dev,
+> > +			"Only UYVY input allowed for YUV422 8-bit. Output format can be configured.\n");
+> > +		return -EPIPE;
+> > +	}
+> > +
+> > +	if (fmt.format.code == MEDIA_BUS_FMT_UYVY8_2X8) {
+> > +		/* Format conversion between YUV422 formats can be done. */
+> > +		if (ti_fmt->code != MEDIA_BUS_FMT_UYVY8_2X8 &&
+> > +		    ti_fmt->code != MEDIA_BUS_FMT_YUYV8_2X8 &&
+> > +		    ti_fmt->code != MEDIA_BUS_FMT_VYUY8_2X8 &&
+> > +		    ti_fmt->code != MEDIA_BUS_FMT_YVYU8_2X8)
+> > +			return -EPIPE;
+> > +	} else if (fmt.format.code != ti_fmt->code) {
+> > +		return -EPIPE;
+> > +	}
+> > +
+> > +	if (fmt.format.field != V4L2_FIELD_NONE &&
+> > +	    fmt.format.field != V4L2_FIELD_ANY)
+> > +		return -EPIPE;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int ti_csi2rx_start_streaming(struct vb2_queue *vq, unsigned int count)
+> > +{
+> > +	struct ti_csi2rx_dev *csi = vb2_get_drv_priv(vq);
+> > +	struct ti_csi2rx_dma *dma = &csi->dma;
+> > +	struct ti_csi2rx_buffer *buf, *tmp;
+> > +	unsigned long flags = 0;
 > 
-> Anyway, maybe Rob has an idea how to name this properly.
+> No need to assign flags here.
 
-No, I don't have a sense of the range of h/w...
+Ok.
 
 > 
-> Guenter
+> > +	int ret = 0;
+> > +
 > 
-> > > > +    type: object
-> > > > +    description: |
-> > > > +      Represents channels of the device and their specific configuration.
-> > > > +
-> > > > +    properties:
-> > > > +      reg:
-> > > > +        description: |
-> > > > +          The channel number. 0 is local channel, 1-4 are remote channels
-> > > 
-> > > Which of the supported chips has 4 remote channels ?
-> > 
-> > True, there is no TMP424. I will fix that in v4.
-> > 
-> > > 
-> > > > +        items:
-> > > > +          minimum: 0
-> > > > +          maximum: 4
-> > > > +
-> > > > +      label:
-> > > > +        description: |
-> > > > +          A descriptive name for this channel, like "ambient" or "psu".
-> > > > +
-> > > > +      n-factor:
-> > > 
-> > > n-factor or "ti,n-factor" ? The unit is chip specific, after all.
-> > 
-> > Or ti,nfactor, as used by tmp513? Again, there was no clear conclusion
-> > so I didn't change that. Let me know what is your decision and I will
-> > obey that.
+> -- 
+> Kind regards,
 > 
-> Not my call to make about nfactor or n-factor, really. I'll leave that
-> for Rob to decide.
+> Sakari Ailus
 
-ti,n-factor
-
-> > 
-> > > 
-> > > > +        description: |
-> > > > +          The value (two's complement) to be programmed in the channel specific N correction register.
-> 
-> [ side note: Since the value is just a register value, "two's complement" seems
->   unnecessary and confusing; in the context of the DT description it doesn't
->   really matter what the register values actually mean. ]
-> 
-> > > > +          For remote channels only.
-> > > > +        items:
-> > > > +          minimum: 0
-> > > > +          maximum: 1
-> > > 
-> > > Is this the correct value range ? The value range (in integer form) is
-> > > -128 .. 127 (or 0 .. 255 as unsigned), not 0..1.
-> > 
-> > True, I must have misunderstood this minimum/maximum and confused it
-> > with the number of items or something. Now, since DT does not really
-> > handle signed values and considers everything an unsigned, should I use
-> > 0..255 or -128..127?
-> > 
-> 
-> I suspect it should be 0..255. After all, the values reflect register values,
-> not their meaning. But I don't really know. Rob ?
-
-That's fine.
-
-You can define it as a signed type, but the validation there is not 
-working due to dts->dt.yaml losing the sign.
-
-Rob
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
