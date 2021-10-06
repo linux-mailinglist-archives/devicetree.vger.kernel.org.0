@@ -2,111 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D27F5423B17
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 11:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B79E6423B19
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 11:54:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238060AbhJFJzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 05:55:47 -0400
-Received: from mx1.tq-group.com ([93.104.207.81]:20110 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238336AbhJFJzQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 05:55:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1633514004; x=1665050004;
-  h=subject:from:to:cc:date:mime-version:
-   content-transfer-encoding:in-reply-to:references:
-   message-id;
-  bh=RzK8Z4XWzA9gepJluNel//xwbbmFJP3zMlyC59rtTf0=;
-  b=WUpacYBT4ssYgdtdCbM8M4k9farH5M5MdWWomQW6q9bNr9yPFq8TH6qV
-   I2pIW2j4yxk5WdnctX2EjRSgMoxVGhqIDBCK6/ETjdSBvBRrE3rRpmaoj
-   xlt3aO+WzJ06ZzjcM891a4D7TAbhs3ZuhqjlEfBGf7OS8MXZTwqpw1Nct
-   xdRumdSDPr7IaJO+QpMq4xc7iV7oyMC6v207H0yXSD1RmrVpReoyrRWJN
-   pK2k89vJPcL7PeF38TPa3Mg0lj7uEBzupxqF8NgnxfQ4ZzMIFzevgHxY9
-   vwZFMdiYNBAIYikqoVYqEeP+0g8tSBVRRI0cX9uKcrDPwoKoimhzqPV5V
-   g==;
-X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
-   d="scan'208";a="19892311"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 06 Oct 2021 11:53:19 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 06 Oct 2021 11:53:19 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 06 Oct 2021 11:53:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1633513999; x=1665049999;
-  h=subject:from:to:cc:date:mime-version:
-   content-transfer-encoding:in-reply-to:references:
-   message-id;
-  bh=RzK8Z4XWzA9gepJluNel//xwbbmFJP3zMlyC59rtTf0=;
-  b=AIH1q92NA4D6F9ETEs4tOfwF6kQtpl1cXHbh1HL1wcscin6IOsV+G0jD
-   5eO7o0VoBWI3lkd5ubWgAS5C2uBDfFBC243qTgf4mu3HIFylo54ZBAD+g
-   zhngBap6U8Hyv/ws+rGazt16aJKGvfjzAWhyD8off5zqTxIFNXerNX/9R
-   zhuKe9Z/ZvzafsZKink+0zBh+hjEdbegdtiEn3b8/M18VH/LhDw8YCIbz
-   NQp1jjQQnCnGzZI3t1vMP9CAJjU4UB+foydbcN4GQUyKY439NlXXUAm7W
-   c0IA75la7xsF4Wcw1qdORzKZ9O0L9anrDtoIzhk5BYzgfkRyBNg4rv8/f
-   g==;
-X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
-   d="scan'208";a="19892310"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 06 Oct 2021 11:53:19 +0200
-Received: from vtuxmail01.tq-net.de (localhost [127.0.0.1])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTP id 8C980280065;
-        Wed,  6 Oct 2021 11:53:19 +0200 (CEST)
-Received: by vtuxmail01 (kopano-spooler) with MAPI; Wed, 6 Oct 2021 11:53:19
+        id S238102AbhJFJ4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 05:56:12 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:41654 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229824AbhJFJ4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 05:56:02 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1968Zurl023597;
+        Wed, 6 Oct 2021 11:53:57 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=iBK4jt+j/TuaNdy+BtubPQOGdvAAr+skdXQvKDtN8d4=;
+ b=OVS9amKfW5iF06CYWl4M0AJla3mr76y6Opsvuizx+rhWsdJe2z6hQGiH0id/Q8fTtJnG
+ nB3eIF+Nsc7yAKsJxawwJpR6OfHpeeAjLO02KyoJssoNs5TTgTISi7xRN5xvgNJDD/S4
+ B4rIX/vU8Qb7494IW9R9k6k+fiyn49V1lavZUR8OW4kxDv8gft6sJ5lpztnkHlhROoGw
+ 7tV1UyYenUyFCLuII4bEFsEMsP6IFch6X5OpyXZam9qTFdT/Fy1JgTjweunFPeWBAeOx
+ utaBq4G3lTPQPZtL4njJ4VyvYGBfbDbQ/u2Fi3KQsMT4xo5fikjQZrsAqHaNqsvgKjh+ wg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3bh8e8ghe6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 06 Oct 2021 11:53:57 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6B520100034;
+        Wed,  6 Oct 2021 11:53:56 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6346F21BF6D;
+        Wed,  6 Oct 2021 11:53:56 +0200 (CEST)
+Received: from localhost (10.75.127.50) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 6 Oct 2021 11:53:55
  +0200
-Subject: AW: (EXT) [PATCH] dt-bindings: display: bridge: sn65dsi83: Make
- enable GPIO optional
-From:   "Alexander Stein" <Alexander.Stein@ew.tq-group.com>
-To:     "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
-        =?us-ascii?Q?dri-devel=40lists=2Efreedesktop=2Eorg?= 
-        <dri-devel@lists.freedesktop.org>
-Cc:     =?us-ascii?Q?devicetree=40vger=2Ekernel=2Eorg?= 
-        <devicetree@vger.kernel.org>, "Rob Herring" <robh@kernel.org>,
-        Marek Vasut <marex@denx.de>,
-        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>
-Date:   Wed, 6 Oct 2021 09:53:19 +0000
-Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211006091624.6293-1-laurent.pinchart+renesas@ideasonboard.com>
-References: <20211006074713.1094396-3-alexander.stein@ew.tq-group.com> <20211006091624.6293-1-laurent.pinchart+renesas@ideasonboard.com>
-X-Priority: 3 (Normal)
-X-Mailer: Kopano 8.7.82
-Message-Id: <kcEE.Nro65tfmTzKn1JUMsvfb+w.gFG0/Ze61wE@vtuxmail01.tq-net.de>
+From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH 1/1] ARM: dts: stm32: use usbphyc ck_usbo_48m as USBH OHCI clock on stm32mp151
+Date:   Wed, 6 Oct 2021 11:53:55 +0200
+Message-ID: <20211006095355.59078-1-amelie.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-10-06_02,2021-10-04_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->=20
-> The SN65DSI8x EN signal may be tied to VCC, or otherwise controlled by
-> means not available to the kernel. Make the GPIO optional.
->=20
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml         | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> index 07b20383cbca..a5779bf17849 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> @@ -93,7 +93,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - enable-gpios
->    - ports
-> =20
->  allOf:
->=20
-> base-commit: 1e3944578b749449bd7fa6bf0bae4c3d3f5f1733
+Referring to the note under USBH reset and clocks chapter of RM0436,
+"In order to access USBH_OHCI registers it is necessary to activate the USB
+clocks by enabling the PLL controlled by USBPHYC" (ck_usbo_48m).
 
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+The point is, when USBPHYC PLL is not enabled, OHCI register access
+freezes the resume from STANDBY. It is the case when dual USBH is enabled,
+instead of OTG + single USBH.
+When OTG is probed, as ck_usbo_48m is USBO clock parent, then USBPHYC PLL
+is enabled and OHCI register access is OK.
 
-Best regards,
-Alexander
+This patch adds ck_usbo_48m (provided by USBPHYC PLL) as clock of USBH
+OHCI, thus USBPHYC PLL will be enabled and OHCI register access will be OK.
+
+Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+---
+ arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+index bd289bf5d269..fe194c787e6c 100644
+--- a/arch/arm/boot/dts/stm32mp151.dtsi
++++ b/arch/arm/boot/dts/stm32mp151.dtsi
+@@ -1452,7 +1452,7 @@ stmmac_axi_config_0: stmmac-axi-config {
+ 		usbh_ohci: usb@5800c000 {
+ 			compatible = "generic-ohci";
+ 			reg = <0x5800c000 0x1000>;
+-			clocks = <&rcc USBH>;
++			clocks = <&rcc USBH>, <&usbphyc>;
+ 			resets = <&rcc USBH_R>;
+ 			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+ 			status = "disabled";
+-- 
+2.25.1
+
