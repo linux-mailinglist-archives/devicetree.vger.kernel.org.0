@@ -2,109 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE2FE424638
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3AD442466A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 21:02:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239149AbhJFSqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 14:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41728 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbhJFSqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:46:03 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1D0CC061755
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 11:44:10 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id 187so3134105pfc.10
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 11:44:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BRycDukXp/mwG19rK+ZZveffPObZScVLwnEXUPao+Qo=;
-        b=dGB+k3+qNGd/+wJJNrFG9vCJplDjNmludJHXOhGA5rXke971izpN7UhxeJcT7MNDPU
-         AurJjZzVIWgAnLKC90k7BjSi3YpMjvNigLRvvhQKqNUaqW1VamZ5EXwSRHbGXOf+W6Sl
-         7IgiMMLRziARhtyyA04yPxDlEfYp9b7VVlC8xItUwdkHt28eRNLm0cSzhn8ErxRsZzN9
-         Vzr60PxAm7X84mDEgluZbigKV4U1V5zB6W8UcVbJ15tsptEN/EEgUJFkjJmGC+eDIrhT
-         3s81ngvG2Z6YEmtsllnNN9jazLwe+9HKLKs/aYEZc10CuW/FmiADaE2phMwt3Mi0h8yP
-         69eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BRycDukXp/mwG19rK+ZZveffPObZScVLwnEXUPao+Qo=;
-        b=Qu/u8PZxxSSvkJm4OJ5vm+v1t3sYVdScTQ8AcyIGx0mghsmT28fgpflCLI/eBrPz7a
-         bz5rBAsdLjiwYyKYq0j8EAosNtoyRYJ6kJDHbtclTCSf/lpP2JXJSqymR3/3jNLOQrFU
-         nEZ1o2twmrhMmq8KQIl27GSH6qPur0no6UmZNSt25vSFpOYJ2j9BPakdOJJLDJe+2TT4
-         gHovJmy9it9FEn+O192PtYy/kHZJhueZTNfDpfp7OzgloQxyKA4RMZNEczoK5/m48SzH
-         1Z4OlaSpg0t16ckR+r0IVhv9+nRqhMTeGacs1pNsjeDaJ7OO46tpXMyFyPyMN6054uue
-         6NQg==
-X-Gm-Message-State: AOAM532hS9CVcTB9qPmUzu4f7ROER2+NZb7TTeYarHLWsVvmgjsfr5OJ
-        w7rHa6z81qX5317GRHg0P/z47Z+9hkRQ
-X-Google-Smtp-Source: ABdhPJyhBGw4InI09Ed/EIPnI9X+8ylbqAVBx0qlJ5UmeYYxO0j8y0mJwfvwwTP9TeW0ZeaCxJn6mw==
-X-Received: by 2002:a62:5101:0:b0:44c:5cc3:e088 with SMTP id f1-20020a625101000000b0044c5cc3e088mr19739203pfb.72.1633545850115;
-        Wed, 06 Oct 2021 11:44:10 -0700 (PDT)
-Received: from thinkpad ([117.202.189.72])
-        by smtp.gmail.com with ESMTPSA id 11sm20828595pfl.41.2021.10.06.11.44.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 11:44:09 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 00:14:04 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kathiravan T <kathirav@codeaurora.org>, agross@kernel.org,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: add SMEM support
-Message-ID: <20211006184404.GD33862@thinkpad>
-References: <20210902214708.1776690-1-robimarko@gmail.com>
- <YUf3aKn78+41Cb/G@builder.lan>
- <CAOX2RU5b46H7nqm6G4mHLSqEhGiWktwWjUKF5w10Ut+AdKea-A@mail.gmail.com>
- <632a7d28c23a8497d35ea009bfe89883@codeaurora.org>
- <CAOX2RU5+jeXiqz8oss8Sd-BWa059uAv5xu=7nx_YF4RYpG2S6w@mail.gmail.com>
- <YUurqDL/S15RziCQ@builder.lan>
- <20211006182419.GC33862@thinkpad>
- <CAOX2RU43D72yx1Kyb0jRMMOLgBd1OMscWLH-dEdp0P=L-5quHQ@mail.gmail.com>
+        id S231804AbhJFTEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 15:04:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54792 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229564AbhJFTEs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 15:04:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DF3A1611C6;
+        Wed,  6 Oct 2021 19:02:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633546975;
+        bh=DxiX84ET7gi0KSf7MLiFGcfKZcbIEHwGNxmgykcGuBI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=GWtHL3HsVsggAK5Z0j1ZtFQhSgvj8+Uj3zOxOjZq6bR0Vlw+Eh8eU6uVXXLoS1U2l
+         woN4Ndrie2zAV9fCdPWGzFZkCQazUs95eRU1/n1/VLTOhVvKyjG6BJYV9MBlTXJNwS
+         6fqD3DfQQTYPKm+ua7t33ECr7Tf6tbEpsF8lvrKji4eZAAamJPNw+Bc/fBCIcKSesR
+         cb6kKlouaTAIan/l1rJQsjKF65vOnyvaYjoU7ek1shB8xKX1JAYniZoH5LSUqq8cpS
+         P/23Bxn6inAXR4u+PbWRpp529v1z3Zs6rSh2NsKm18tEhWrpQ4TY7Mg9wQ21SKeLDF
+         GvHJypKWdpO+w==
+Received: by mail-ed1-f47.google.com with SMTP id g8so13585002edt.7;
+        Wed, 06 Oct 2021 12:02:55 -0700 (PDT)
+X-Gm-Message-State: AOAM530mlB1A0HFCXDkY/RCqYys/6wPLP/kZbwzWUuWP+n9Gp3rAfDkQ
+        hYg/oZigO7ZCmXynPnYasbzdfECIUmUy9R05sg==
+X-Google-Smtp-Source: ABdhPJxPhoRzhOLtW/Zb9nB1Y+liMFNKBNdABFZe6ELJ8Z4pfZRd9ekEn0nvhAanuMAlyJYlDJ2eqKe5iG/3oHi3nVM=
+X-Received: by 2002:a17:906:7250:: with SMTP id n16mr33162419ejk.147.1633546974326;
+ Wed, 06 Oct 2021 12:02:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOX2RU43D72yx1Kyb0jRMMOLgBd1OMscWLH-dEdp0P=L-5quHQ@mail.gmail.com>
+References: <20211006154426.3222199-1-kuba@kernel.org> <20211006154426.3222199-2-kuba@kernel.org>
+ <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com>
+ <YV3QAzAWiYdKFB3m@lunn.ch> <CAL_JsqLRQRmhXZm25WKzUSBUyK6q5d-BspW4zQcztW3Qf56EKg@mail.gmail.com>
+ <20211006101203.4337e9a4@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211006101203.4337e9a4@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 6 Oct 2021 14:02:42 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK81knMX5i2DJDsxEALFjwoj3pijjT9ZMJ73aOCjYFhMQ@mail.gmail.com>
+Message-ID: <CAL_JsqK81knMX5i2DJDsxEALFjwoj3pijjT9ZMJ73aOCjYFhMQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 1/9] of: net: move of_net under net/
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>, David Miller <davem@davemloft.net>,
+        netdev <netdev@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 06, 2021 at 08:26:10PM +0200, Robert Marko wrote:
-> On Wed, 6 Oct 2021 at 20:24, Manivannan Sadhasivam
-> <manivannan.sadhasivam@linaro.org> wrote:
+On Wed, Oct 6, 2021 at 12:12 PM Jakub Kicinski <kuba@kernel.org> wrote:
+>
+> On Wed, 6 Oct 2021 11:58:07 -0500 Rob Herring wrote:
+> > On Wed, Oct 6, 2021 at 11:34 AM Andrew Lunn <andrew@lunn.ch> wrote:
+> > >
+> > > On Wed, Oct 06, 2021 at 11:18:19AM -0500, Rob Herring wrote:
+> > > > The OF_NET kconfig should move or disappear too. I imagine you can do just:
+> > >
+> > > It is used in a few places:
 > >
-
-[...]
-
-> > Sorry, missed this earlier. I did face the probe deferral issue before and
-> > submitted a small series for fixing that:
+> > Okay, then just move it for now.
 > >
-> > https://lore.kernel.org/linux-mtd/20210302132757.225395-1-manivannan.sadhasivam@linaro.org/
+> > I suspect though that most of these can either be dropped or replaced
+> > with just 'OF' dependency.
+>
+> I have something that builds with allmodconfig :) see below.
+
+Sparc is the arch to try. That's generally we we get tripped up with OF options.
+
+> > > net/ethernet/litex/Kconfig:     depends on OF_NET
+> > > net/ethernet/amd/Kconfig:       depends on ((OF_NET && OF_ADDRESS) || ACPI || PCI) && HAS_IOMEM
 > >
-> > These 2 patches are in mainline now. Robert, can you make sure that you have
-> > these 2 patches in your tree?
-> 
-> Hi Mani,
-> Yes, I have those patches as I am running this on top of 5.15-rc4 currently.
-> 
-
-Hmm. So if both SMEM and NAND drivers are added to the probe deferral list then
-the issue is likely not related to probe ordering.
-
-Can you nail down the point where the board starts rebooting?
-
-Thanks,
-Mani
-
-> Regards,
-> Robert
+> > If the driver depends on OF or ACPI, then the dependency should just
+> > be removed because one of those is almost always enabled.
+>
+> I assumed any OF_* implies OF so just dropping OF_NET.
+>
+> > > net/ethernet/mscc/Kconfig:      depends on OF_NET
+> > > net/ethernet/ezchip/Kconfig:    depends on OF_IRQ && OF_NET
+> > > net/ethernet/arc/Kconfig:       depends on OF_IRQ && OF_NET
+> > > net/ethernet/arc/Kconfig:       depends on OF_IRQ && OF_NET && REGULATOR
 > >
-> > Thanks,
-> > Mani
-> >
-> > > Thanks,
-> > > Bjorn
+> > I don't see any OF_IRQ dependency (which would be odd). The OF_NET
+> > dependency is just of_get_phy_mode() from a quick glance and we have a
+> > stub for it.
+>
+> Hm. Indeed on the OF_IRQ.
+>
+> net/ethernet/arc/ has irq_of_parse_and_map()
+
+Ah right, but there is a stub for that. The preference is to use
+platform_get_irq() instead of irq_of_parse_and_map(), then the OF_IRQ
+dependency would really be gone.
+
+> but I don't see the need in ezchip, but that seems like a separate matter...
