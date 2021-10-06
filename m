@@ -2,50 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C32DD424228
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 452C1424230
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:08:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235111AbhJFQIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 12:08:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40216 "EHLO mail.kernel.org"
+        id S239304AbhJFQKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 12:10:05 -0400
+Received: from marcansoft.com ([212.63.210.85]:37368 "EHLO mail.marcansoft.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232071AbhJFQIs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 12:08:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 17075610A0;
-        Wed,  6 Oct 2021 16:06:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1633536416;
-        bh=Qok4WNyAOzjO8FdziSTbeDBU+2x5NVrxBuFweVNXjIk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XI1S+/lAjFz8pwLOn+NGUhCybCfe9nrGC1lK4CSagueqLsknUI7nSQ1VpQf8BH1GH
-         +rvDZIIoMGbAdNCu5DPTCCCqNFJ6aNpIcoH2q5cS4RodvWip2UWYy2sU6TrL5BDCPn
-         5X0TEM4Cr0atMZSWb8v/AOmNeNPWNN+e0oSYezoU=
-Date:   Wed, 6 Oct 2021 18:06:54 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     davem@davemloft.net, netdev@vger.kernel.org, rafael@kernel.org,
-        saravanak@google.com, mw@semihalf.com, andrew@lunn.ch,
-        jeremy.linton@arm.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        heikki.krogerus@linux.intel.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 4/9] device property: move mac addr helpers
- to eth.c
-Message-ID: <YV3JnjlqOwJ7JEQS@kroah.com>
-References: <20211006154426.3222199-1-kuba@kernel.org>
- <20211006154426.3222199-5-kuba@kernel.org>
+        id S231768AbhJFQKE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 12:10:04 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 942A441EA7;
+        Wed,  6 Oct 2021 16:08:05 +0000 (UTC)
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20211005155923.173399-1-marcan@marcan.st>
+ <20211005155923.173399-4-marcan@marcan.st>
+ <bee16b95-964c-f515-a196-cd267391d4eb@canonical.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 3/7] soc: apple: Add driver for Apple PMGR power state
+ controls
+Message-ID: <48d3996e-9f96-2e68-56f2-d445475cf131@marcan.st>
+Date:   Thu, 7 Oct 2021 01:08:03 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211006154426.3222199-5-kuba@kernel.org>
+In-Reply-To: <bee16b95-964c-f515-a196-cd267391d4eb@canonical.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 06, 2021 at 08:44:21AM -0700, Jakub Kicinski wrote:
-> Move the mac address helpers out, eth.c already contains
-> a bunch of similar helpers.
+On 06/10/2021 16.28, Krzysztof Kozlowski wrote:
+>> +static int apple_pmgr_ps_set(struct generic_pm_domain *genpd, u32 pstate)
+>> +{
+>> +	int ret;
+>> +	struct apple_pmgr_ps *ps = genpd_to_apple_pmgr_ps(genpd);
+>> +	u32 reg;
+>> +
+>> +	regmap_read(ps->regmap, ps->offset, &reg);
 > 
-> Suggested-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+> MMIO accesses should not fail, but regmap API could fail if for example
+> clk_enable() fails. In such case you will write below value based on
+> random stack init. Please check the return value here.
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Ack, will fix for v2 (as well as the related ones below).
+
+>> +static int apple_pmgr_reset_deassert(struct reset_controller_dev *rcdev, unsigned long id)
+>> +{
+>> +	struct apple_pmgr_ps *ps = rcdev_to_apple_pmgr_ps(rcdev);
+>> +
+>> +	mutex_lock(&ps->genpd.mlock);
+> 
+> This looks wrong: it can be a spin-lock, not mutex, so you should use
+> genpd_lock.
+
+genpd_lock() is not part of the public API, which is why I did it like 
+this. This gets decided by whether the GENPD_FLAG_IRQ_SAFE flag is set, 
+so it should be a mutex in this case, as that is not set.
+
+> However now I wonder if there could be a case when a reset-controller
+> consumer calls it from it's GENPD_NOTIFY_ON notifier? In such case you
+> would have this lock taken.
+
+Hm, yeah, I wonder if we'll hit that use case. Probably not, though. I 
+mostly expect our drivers to only reset devices on initial probe or in 
+some kind of panic recovery scenario, not while doing PM stuff.
+
+>> +static const struct of_device_id apple_pmgr_ps_of_match[] = {
+>> +	{ .compatible = "apple,t8103-pmgr-pwrstate" },
+>> +	{ .compatible = "apple,pmgr-pwrstate" },
+> 
+> You call the device/driver "pwrstate", which it seems is "power state".
+> These are not power states. These are power controllers or power
+> domains. Power state is rather a state of power domain - e.g. on or
+> gated. How about renaming it to power domain or pd?
+
+It's a bit confusing. Apple calls these registers "ps" registers, which 
+presumably stands for "power state". They can both clockgate and 
+powergate devices (where supported), as well as enable auto-PM and also 
+handle reset. So they're a bit more complex and higher level than a 
+simple power domain, which is why I called the driver "pwrstate", since 
+it controls the power state of a specific SoC domain or block. In fact, 
+the device PM is controlled via a 4-bit power state index, though right 
+now only 0, 4, 15 are used (power gated, clock gated, active). Many 
+devices will not support individual power gating and would just 
+clockgate at 0, and right now the driver never uses 4, but might in the 
+future. If that needs to be exposed to consumers, then it'd have to be 
+via genpd idle states.
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
