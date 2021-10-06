@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F302423ABC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 11:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D27F5423B17
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 11:53:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237820AbhJFJoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 05:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55208 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230143AbhJFJoG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 05:44:06 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFC01C061749
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 02:42:13 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id t2so6912621wrb.8
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 02:42:13 -0700 (PDT)
+        id S238060AbhJFJzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 05:55:47 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:20110 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238336AbhJFJzQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 05:55:16 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZN2MGTKW8HS5ful8I8NJEsDZCFiU186A9rqdS7aIXn0=;
-        b=aX4LKQ2mCR9pIs+VsiyRlRqklx+TafioQgirniEBfBI/JSeubXTaWEh4DKZetKSphI
-         PRv4GV/N0oIuCsV06yFwB4BcQlv//CjyNMn2wqwEiyyFxQtyKN/GO6Ngv8zcxAQjwUxz
-         hyE4pg1lpwPaM+e8IbsMXcP/xow0jHffxg+NhPZI/oO4fY62UfM2m8Iog0Alb3wwGh1s
-         SJlSfSQQMysu72ZMxJCIuMsKsmwWY63sS4HH1/LlQ7bFC1QiOtT0lmuR4SUHBtRNkdLQ
-         EbTb1jB8Tn8QLuUmnQiWC9y9pTnCeD/rL0e7ml+lEbIsQEWuyL2QnzyLWk+swY8D9vOc
-         3moQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ZN2MGTKW8HS5ful8I8NJEsDZCFiU186A9rqdS7aIXn0=;
-        b=IEraW0i5qgQHjb/1Veq+M16ZjhuS0q4Rvyui1Q4KLm4Dcidt+rPub/dn6TCYwQD15Y
-         mRtU/WBEAo67CF7NcqFmdnCcJzYcO8cXGTL0Kh3EX4zhKVVb6loBYTLdg1AOZYtd3gQX
-         5N7V5g3OsaYIndzya4dWX7CgB1wAIZN9nKR/PAeE5Ux9H1Avm4lnje2CmIA3tm43Caaf
-         xHvBVj7rARN5gtTHXF2z7v32Zt3U7NPi5ITlPEdkuAgNiV1csF53YBXv5DKWxRGlh98I
-         16JpHdWDpCoobsM6lsUx1uf6W7kfI+7QR7A4T/jvFJlwOtO/95cVGmFog/Bs6BbohlN3
-         3ilA==
-X-Gm-Message-State: AOAM531lbsdyJwNvmdA4KMRxElTriouCs22wpRhnPvLyfkFxWkCKBN8+
-        rvqQixh2sOJawWFlnhq7Qc64PA==
-X-Google-Smtp-Source: ABdhPJxXQJc1Bdq+Nu4tptxWSt8BkN3eyd1QmAMdLyZZu5Vl+ysI5y6ywWn3umjR7VmLyXBdmGXHvA==
-X-Received: by 2002:a05:600c:35d2:: with SMTP id r18mr8656025wmq.97.1633513332280;
-        Wed, 06 Oct 2021 02:42:12 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:278:1f59:2992:87fe? ([2a01:e34:ed2f:f020:278:1f59:2992:87fe])
-        by smtp.googlemail.com with ESMTPSA id r205sm967005wma.3.2021.10.06.02.42.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Oct 2021 02:42:11 -0700 (PDT)
-Subject: Re: [PATCH 1/4] dt-bindings: thermal: k3-j72xx: Add VTM bindings
- documentation
-To:     Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>
-References: <20211004112550.27546-1-j-keerthy@ti.com>
- <20211004112550.27546-2-j-keerthy@ti.com>
- <1633436798.497006.3226792.nullmailer@robh.at.kernel.org>
- <CAL_JsqKLuE+RhH+T4UKecMhRjbm69rwA1a2+FjrnMPKUf13J6A@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <edb3e75a-1092-7e90-40d0-225dd4d4764c@linaro.org>
-Date:   Wed, 6 Oct 2021 11:42:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <CAL_JsqKLuE+RhH+T4UKecMhRjbm69rwA1a2+FjrnMPKUf13J6A@mail.gmail.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1633514004; x=1665050004;
+  h=subject:from:to:cc:date:mime-version:
+   content-transfer-encoding:in-reply-to:references:
+   message-id;
+  bh=RzK8Z4XWzA9gepJluNel//xwbbmFJP3zMlyC59rtTf0=;
+  b=WUpacYBT4ssYgdtdCbM8M4k9farH5M5MdWWomQW6q9bNr9yPFq8TH6qV
+   I2pIW2j4yxk5WdnctX2EjRSgMoxVGhqIDBCK6/ETjdSBvBRrE3rRpmaoj
+   xlt3aO+WzJ06ZzjcM891a4D7TAbhs3ZuhqjlEfBGf7OS8MXZTwqpw1Nct
+   xdRumdSDPr7IaJO+QpMq4xc7iV7oyMC6v207H0yXSD1RmrVpReoyrRWJN
+   pK2k89vJPcL7PeF38TPa3Mg0lj7uEBzupxqF8NgnxfQ4ZzMIFzevgHxY9
+   vwZFMdiYNBAIYikqoVYqEeP+0g8tSBVRRI0cX9uKcrDPwoKoimhzqPV5V
+   g==;
+X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
+   d="scan'208";a="19892311"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 06 Oct 2021 11:53:19 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 06 Oct 2021 11:53:19 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 06 Oct 2021 11:53:19 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1633513999; x=1665049999;
+  h=subject:from:to:cc:date:mime-version:
+   content-transfer-encoding:in-reply-to:references:
+   message-id;
+  bh=RzK8Z4XWzA9gepJluNel//xwbbmFJP3zMlyC59rtTf0=;
+  b=AIH1q92NA4D6F9ETEs4tOfwF6kQtpl1cXHbh1HL1wcscin6IOsV+G0jD
+   5eO7o0VoBWI3lkd5ubWgAS5C2uBDfFBC243qTgf4mu3HIFylo54ZBAD+g
+   zhngBap6U8Hyv/ws+rGazt16aJKGvfjzAWhyD8off5zqTxIFNXerNX/9R
+   zhuKe9Z/ZvzafsZKink+0zBh+hjEdbegdtiEn3b8/M18VH/LhDw8YCIbz
+   NQp1jjQQnCnGzZI3t1vMP9CAJjU4UB+foydbcN4GQUyKY439NlXXUAm7W
+   c0IA75la7xsF4Wcw1qdORzKZ9O0L9anrDtoIzhk5BYzgfkRyBNg4rv8/f
+   g==;
+X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
+   d="scan'208";a="19892310"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Oct 2021 11:53:19 +0200
+Received: from vtuxmail01.tq-net.de (localhost [127.0.0.1])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTP id 8C980280065;
+        Wed,  6 Oct 2021 11:53:19 +0200 (CEST)
+Received: by vtuxmail01 (kopano-spooler) with MAPI; Wed, 6 Oct 2021 11:53:19
+ +0200
+Subject: AW: (EXT) [PATCH] dt-bindings: display: bridge: sn65dsi83: Make
+ enable GPIO optional
+From:   "Alexander Stein" <Alexander.Stein@ew.tq-group.com>
+To:     "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        =?us-ascii?Q?dri-devel=40lists=2Efreedesktop=2Eorg?= 
+        <dri-devel@lists.freedesktop.org>
+Cc:     =?us-ascii?Q?devicetree=40vger=2Ekernel=2Eorg?= 
+        <devicetree@vger.kernel.org>, "Rob Herring" <robh@kernel.org>,
+        Marek Vasut <marex@denx.de>,
+        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>
+Date:   Wed, 6 Oct 2021 09:53:19 +0000
+Mime-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211006091624.6293-1-laurent.pinchart+renesas@ideasonboard.com>
+References: <20211006074713.1094396-3-alexander.stein@ew.tq-group.com> <20211006091624.6293-1-laurent.pinchart+renesas@ideasonboard.com>
+X-Priority: 3 (Normal)
+X-Mailer: Kopano 8.7.82
+Message-Id: <kcEE.Nro65tfmTzKn1JUMsvfb+w.gFG0/Ze61wE@vtuxmail01.tq-net.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>=20
+> The SN65DSI8x EN signal may be tied to VCC, or otherwise controlled by
+> means not available to the kernel. Make the GPIO optional.
+>=20
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml         | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> index 07b20383cbca..a5779bf17849 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> @@ -93,7 +93,6 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - enable-gpios
+>    - ports
+> =20
+>  allOf:
+>=20
+> base-commit: 1e3944578b749449bd7fa6bf0bae4c3d3f5f1733
 
-Keerthy,
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-did you receive this answer ?
-
-
-On 05/10/2021 15:05, Rob Herring wrote:
-> On Tue, Oct 5, 2021 at 7:26 AM Rob Herring <robh@kernel.org> wrote:
->>
->> On Mon, 04 Oct 2021 16:55:47 +0530, Keerthy wrote:
->>> Add VTM bindings documentation. In the Voltage Thermal
->>> Management Module(VTM), K3 J72XX supplies a voltage
->>> reference and a temperature sensor feature that are gathered in the band
->>> gap voltage and temperature sensor (VBGAPTS) module. The band
->>> gap provides current and voltage reference for its internal
->>> circuits and other analog IP blocks. The analog-to-digital
->>> converter (ADC) produces an output value that is proportional
->>> to the silicon temperature.
->>>
->>> Signed-off-by: Keerthy <j-keerthy@ti.com>
->>> ---
->>>  .../bindings/thermal/ti,j72xx-thermal.yaml    | 58 +++++++++++++++++++
->>>  1 file changed, 58 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> Woot, TI has blacklisted me:
-> 
-> The response from the remote server was:
-> 553 Sorry, your email address has been blacklisted. Please contact
-> Texas Instruments Inc to have yourself removed.
-> 
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Best regards,
+Alexander
