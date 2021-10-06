@@ -2,233 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DA05423F9E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 15:52:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 288D242401B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 16:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238097AbhJFNyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 09:54:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57274 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230023AbhJFNyE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 09:54:04 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E85CAC061749;
-        Wed,  6 Oct 2021 06:52:11 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 5E48B1F41CD9
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     a.hajda@samsung.com, daniel@ffwll.ch, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH] dt-bindings: display/bridge: tc358767: Convert to YAML binding
-Date:   Wed,  6 Oct 2021 15:52:04 +0200
-Message-Id: <20211006135204.505144-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.33.0
+        id S231738AbhJFOcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 10:32:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38356 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231403AbhJFOb7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 10:31:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id A99AC610A3;
+        Wed,  6 Oct 2021 14:30:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633530607;
+        bh=4pYwma9lTkngKeJYzw/+Yu1H3cwK5ZwsCxpHurRv0iI=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=dnp1XYvRaJZH0Qp/+LVUW3onM4IYNovk6XeJErj8VNzYAPZkGkKL7nJ7bT1r9Pk/K
+         MlVNm+NQAtRpXx9cMCVm/wUtXtQr8YJ7SsMe7GgbfpZjHz5exNAaPbbRwtQtDG3Bwc
+         ceJGPit3wvqWh6vdkxrqWVDRBVhGnmnTesx5NPVgcbSUQq53fhxSZEHfFU/7LsZxIg
+         NG0CiIV5bCsv7vWbBf213/NXfY9IezlY8zcmag8gRzq5/nYIA9ZHyGhRFnDhQe9bVe
+         atPb/na+f42zeR5oLExHQqv9U9GqiN2X6f0Jih1QfcdCRRTqnDEKzsXkx+xKxukxgh
+         Z1vDqgWqkElMQ==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 9B82260971;
+        Wed,  6 Oct 2021 14:30:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2] dt-bindings: net: dsa: marvell: fix compatible in example
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163353060763.19239.10775956960953115345.git-patchwork-notify@kernel.org>
+Date:   Wed, 06 Oct 2021 14:30:07 +0000
+References: <20211006063104.351685-1-marcel@ziswiler.com>
+In-Reply-To: <20211006063104.351685-1-marcel@ziswiler.com>
+To:     Marcel Ziswiler <marcel@ziswiler.com>
+Cc:     netdev@vger.kernel.org, andrew@lunn.ch, davem@davemloft.net,
+        f.fainelli@gmail.com, frowand.list@gmail.com, kuba@kernel.org,
+        robh+dt@kernel.org, vivien.didelot@gmail.com, olteanv@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Toshiba TC358767 txt documentation to YAML.
+Hello:
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../display/bridge/toshiba,tc358767.txt       |  54 --------
- .../display/bridge/toshiba,tc358767.yaml      | 118 ++++++++++++++++++
- 2 files changed, 118 insertions(+), 54 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt
- create mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+This patch was applied to netdev/net.git (refs/heads/master):
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt
-deleted file mode 100644
-index 583c5e9dbe6b..000000000000
---- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt
-+++ /dev/null
-@@ -1,54 +0,0 @@
--Toshiba TC358767 eDP bridge bindings
--
--Required properties:
-- - compatible: "toshiba,tc358767"
-- - reg: i2c address of the bridge, 0x68 or 0x0f, depending on bootstrap pins
-- - clock-names: should be "ref"
-- - clocks: OF device-tree clock specification for refclk input. The reference
--   clock rate must be 13 MHz, 19.2 MHz, 26 MHz, or 38.4 MHz.
--
--Optional properties:
-- - shutdown-gpios: OF device-tree gpio specification for SD pin
--                   (active high shutdown input)
-- - reset-gpios: OF device-tree gpio specification for RSTX pin
--                (active low system reset)
-- - toshiba,hpd-pin: TC358767 GPIO pin number to which HPD is connected to (0 or 1)
-- - ports: the ports node can contain video interface port nodes to connect
--   to a DPI/DSI source and to an eDP/DP sink according to [1][2]:
--    - port@0: DSI input port
--    - port@1: DPI input port
--    - port@2: eDP/DP output port
--
--[1]: Documentation/devicetree/bindings/graph.txt
--[2]: Documentation/devicetree/bindings/media/video-interfaces.txt
--
--Example:
--	edp-bridge@68 {
--		compatible = "toshiba,tc358767";
--		reg = <0x68>;
--		shutdown-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
--		reset-gpios = <&gpio3 24 GPIO_ACTIVE_LOW>;
--		clock-names = "ref";
--		clocks = <&edp_refclk>;
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@1 {
--				reg = <1>;
--
--				bridge_in: endpoint {
--					remote-endpoint = <&dpi_out>;
--				};
--			};
--
--			port@2 {
--				reg = <2>;
--
--				bridge_out: endpoint {
--					remote-endpoint = <&panel_in>;
--				};
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-new file mode 100644
-index 000000000000..8e27e6f0fc7d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/toshiba,tc358767.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Toshiba TC358767 MIPI-DSI or MIPI-DPI to DP/eDP bridge
-+
-+maintainers:
-+  - Tomi Valkeinen <tomi.valkeinen@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - toshiba,tc358767
-+
-+  reg:
-+    description: I2C address of the bridge
-+    enum: [0x68, 0x0f]
-+
-+  clocks:
-+    description:
-+      Reference clock input. The reference clock rate must be 13MHz, 19.2MHz,
-+      26MHz, or 38.4MHz.
-+    maxItems: 1
-+
-+  clock-names:
-+    const: ref
-+
-+  reset-gpios:
-+    description: GPIO connected to the RSTX signal.
-+    maxItems: 1
-+
-+  shutdown-gpios:
-+    description: GPIO connected to the SD signal.
-+    maxItems: 1
-+
-+  toshiba,hpd-pin:
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    description: TC356767 GPIO pin number to which HPD is connected
-+    enum:
-+      - 0
-+      - 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Video port for MIPI DSI input
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Video port for MIPI DPI input
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Video port for DP/eDP output (panel or connector).
-+
-+    oneOf:
-+      - required:
-+          - port@0
-+          - port@2
-+      - required:
-+          - port@1
-+          - port@2
-+
-+required:
-+  - compatible
-+  - reg
-+  - clock-names
-+  - clocks
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c1 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      bridge@68 {
-+        compatible = "toshiba,tc358767";
-+        reg = <0x68>;
-+        clock-names = "ref";
-+        clocks = <&edp_refclk>;
-+        reset-gpios = <&gpio3 24 GPIO_ACTIVE_LOW>;
-+        shutdown-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-+
-+        ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          port@1 {
-+            reg = <1>;
-+            bridge_in: endpoint {
-+              remote-endpoint = <&dpi_out>;
-+            };
-+          };
-+
-+          port@2 {
-+            reg = <2>;
-+            bridge_out: endpoint {
-+              remote-endpoint = <&panel_in>;
-+            };
-+          };
-+        };
-+      };
-+    };
-+
-+...
--- 
-2.33.0
+On Wed,  6 Oct 2021 08:31:04 +0200 you wrote:
+> While the MV88E6390 switch chip exists, one is supposed to use a
+> compatible of "marvell,mv88e6190" for it. Fix this in the given example.
+> 
+> Signed-off-by: Marcel Ziswiler <marcel@ziswiler.com>
+> Fixes: a3c53be55c95 ("net: dsa: mv88e6xxx: Support multiple MDIO busses")
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> 
+> [...]
+
+Here is the summary with links:
+  - [v2] dt-bindings: net: dsa: marvell: fix compatible in example
+    https://git.kernel.org/netdev/net/c/a50a0595230d
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
