@@ -2,105 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6867742392D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 09:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A866542392E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 09:48:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237588AbhJFHtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 03:49:15 -0400
-Received: from mx1.tq-group.com ([93.104.207.81]:38343 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237470AbhJFHtO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 03:49:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1633506443; x=1665042443;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=EZE+qWpRsn+5r1JQt0pqgoeVfHJE9GHVycUHYlEL3rc=;
-  b=gXBADIioj0VCR/wGTb17+YtLLtkIKria9cqM8Q553T7ur4fVxmqKJ/kL
-   8kzsk+M0FkJ2W90/CO2ow0f51DW+lliyIQmkabR6qmEZuGmeScod0neER
-   18sySMYM7BOB+RgcOk7X0W58mzrMYE9XK4tdbS6x0ZeczrF9ucbiq4YAl
-   wUaZ76/FnpNXy+WcvvS546yBVSivqQft9PuhKxdYzSa7ItmbBaHp3OzA8
-   OCFnnMy2vTn6J+b2TrjWuRLod+4g99hCthO46l4ygQDJxNKMUomUM2iHU
-   1d/pdL+h7cvNSBC6anGcIr7b20x2Tg/hOVK9etkJ0GDszFervXyzJ/ulH
-   g==;
-X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
-   d="scan'208";a="19887682"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 06 Oct 2021 09:47:22 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 06 Oct 2021 09:47:22 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 06 Oct 2021 09:47:22 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1633506442; x=1665042442;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=EZE+qWpRsn+5r1JQt0pqgoeVfHJE9GHVycUHYlEL3rc=;
-  b=OSbBXLByawSb1n6/Y95tcrH0YN0yqkiwsdWataqNRFvXoXg5FtAN4Uxm
-   x51b0OyYcBYd/XfDq1mvynfqsMR3NFpI++fgTAd1X+edQ1qWgaSrOe55L
-   fMDC/oO3t5dl0AQYnj3bQUVQn/FbZhbEc0gDM8R4bd6yrXh/tNCHsNlV6
-   EYcMMi/4hYSQacJdO8OmQIE7aL1nzWttF9yecynjLzmehJAZ2IZRQcHFH
-   oBGutCxaLl+qXExlZEkL0E8z9h8kxBkGPn9suc48LO0R5uFSHLXPDXNIU
-   UV/003rQsFONoknI2QAuGQkUkLhUXFy88GLtixDLifNOxmV1EUgUnUHoc
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
-   d="scan'208";a="19887681"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 06 Oct 2021 09:47:22 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id E5D3C280075;
-        Wed,  6 Oct 2021 09:47:21 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: [PATCH 3/3] drm/bridge: ti-sn65dsi8: Make enable GPIO optional
-Date:   Wed,  6 Oct 2021 09:47:13 +0200
-Message-Id: <20211006074713.1094396-3-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211006074713.1094396-1-alexander.stein@ew.tq-group.com>
-References: <20211006074713.1094396-1-alexander.stein@ew.tq-group.com>
+        id S237470AbhJFHud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 03:50:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57138 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236829AbhJFHud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 03:50:33 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C74DC061749
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 00:48:41 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mY1fG-0001t3-BQ; Wed, 06 Oct 2021 09:48:34 +0200
+Message-ID: <4a47669a6b450822da7128bbb62f50b046dfd210.camel@pengutronix.de>
+Subject: Re: [PATCH 4/7] arm64: dts: imx8mn: add GPC node
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Adam Ford <aford173@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Wed, 06 Oct 2021 09:48:33 +0200
+In-Reply-To: <20211006000505.627334-4-aford173@gmail.com>
+References: <20211006000505.627334-1-aford173@gmail.com>
+         <20211006000505.627334-4-aford173@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The enable signal may not be controllable by the kernel. Make it
-optional.
-This is a similar to commit bbda1704fc15 ("drm/bridge: ti-sn65dsi86: Make
-enable GPIO optional")
+Am Dienstag, dem 05.10.2021 um 19:05 -0500 schrieb Adam Ford:
+> Add the DT node for the GPC, including all the PGC power domains,
+> some of them are not fully functional yet, as they require interaction
+> with the blk-ctrls to properly power up/down the peripherals.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 49 +++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> index da6c942fb7f9..4191b5bfcdf3 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> @@ -4,6 +4,8 @@
+>   */
+>  
+>  #include <dt-bindings/clock/imx8mn-clock.h>
+> +#include <dt-bindings/power/imx8mn-power.h>
+> +#include <dt-bindings/reset/imx8mq-reset.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> @@ -612,6 +614,53 @@ src: reset-controller@30390000 {
+>  				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+>  				#reset-cells = <1>;
+>  			};
+> +
+> +			gpc: gpc@303a0000 {
+> +				compatible = "fsl,imx8mn-gpc";
+> +				reg = <0x303a0000 0x10000>;
+> +				interrupt-parent = <&gic>;
+> +				interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +				pgc {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					pgc_hsiomix: power-domain@0 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MN_POWER_DOMAIN_HSIOMIX>;
+> +						clocks = <&clk IMX8MN_CLK_USB1_CTRL_ROOT>;
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- drivers/gpu/drm/bridge/ti-sn65dsi83.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This should be IMX8MN_CLK_USB_BUS.
 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-index 5fab0fabcd15..101da29ba698 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-@@ -679,7 +679,7 @@ static int sn65dsi83_probe(struct i2c_client *client,
- 		model = id->driver_data;
- 	}
- 
--	ctx->enable_gpio = devm_gpiod_get(ctx->dev, "enable", GPIOD_OUT_LOW);
-+	ctx->enable_gpio = devm_gpiod_get_optional(ctx->dev, "enable", GPIOD_OUT_LOW);
- 	if (IS_ERR(ctx->enable_gpio))
- 		return PTR_ERR(ctx->enable_gpio);
- 
--- 
-2.25.1
+Regards,
+Lucas
+
+> +					};
+> +
+> +					pgc_otg1: power-domain@1 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MN_POWER_DOMAIN_OTG1>;
+> +						power-domains = <&pgc_hsiomix>;
+> +					};
+> +
+> +					pgc_gpumix: power-domain@2 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MN_POWER_DOMAIN_GPUMIX>;
+> +						clocks = <&clk IMX8MN_CLK_GPU_CORE_ROOT>,
+> +							 <&clk IMX8MN_CLK_GPU_SHADER_DIV>,
+> +							 <&clk IMX8MN_CLK_GPU_BUS_ROOT>,
+> +							 <&clk IMX8MN_CLK_GPU_AHB>;
+> +						resets = <&src IMX8MQ_RESET_GPU_RESET>;
+> +					};
+> +
+> +					pgc_dispmix: power-domain@3 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MN_POWER_DOMAIN_DISPMIX>;
+> +						clocks = <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
+> +							 <&clk IMX8MN_CLK_DISP_APB_ROOT>;
+> +					};
+> +
+> +					pgc_mipi: power-domain@4 {
+> +						#power-domain-cells = <0>;
+> +						reg = <IMX8MN_POWER_DOMAIN_MIPI>;
+> +						power-domains = <&pgc_dispmix>;
+> +					};
+> +				};
+> +			};
+>  		};
+>  
+>  		aips2: bus@30400000 {
+
 
