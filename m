@@ -2,109 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1259B42437D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:56:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C07F42438D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234375AbhJFQ60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 12:58:26 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:46215 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230108AbhJFQ6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 12:58:24 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633539391; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
- To: From: Sender; bh=lQZLnUbAnV1z1oOtEcGvv/ll8WYBTl5+AI3Ku0BvaiY=; b=AIkZa0gll0dq+AzHbba+2duLtyyxy3yq82C6dgkj75jjlQbjMu7A910L+koZTlqKLQnA/aRP
- WKC+EWfgT/97ivZLV1VkBXmph7LdI1NvO23X4giItpdGbs+AiCA6T0h1YsuHaPNqE7wN0R6Q
- TYOQ9ey3zDd33nkUn4ckZhkjUFY=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 615dd538ff0285fb0a9e0bff (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 06 Oct 2021 16:56:24
- GMT
-Sender: pillair=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id CA6E7C4314D; Wed,  6 Oct 2021 16:56:24 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from PILLAIR1 (unknown [103.155.223.104])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6679DC43460;
-        Wed,  6 Oct 2021 16:56:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 6679DC43460
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   <pillair@codeaurora.org>
-To:     "'Stephen Boyd'" <swboyd@chromium.org>,
-        "'Rob Herring'" <robh@kernel.org>
-Cc:     <mathieu.poirier@linaro.org>, <p.zabel@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <bjorn.andersson@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <sibis@codeaurora.org>, <kuabhs@chromium.org>, <agross@kernel.org>,
-        <ohad@wizery.com>, <linux-arm-msm@vger.kernel.org>,
-        <mpubbise@codeaurora.org>
-References: <1633330133-29617-1-git-send-email-pillair@codeaurora.org> <1633330133-29617-3-git-send-email-pillair@codeaurora.org> <1633350086.759437.1051509.nullmailer@robh.at.kernel.org> <006801d7ba70$54daae00$fe900a00$@codeaurora.org> <CAE-0n51rsfFX_-Vxn2tumWiw9K-Tf244rhTedc76UKx5ADzKyg@mail.gmail.com>
-In-Reply-To: <CAE-0n51rsfFX_-Vxn2tumWiw9K-Tf244rhTedc76UKx5ADzKyg@mail.gmail.com>
-Subject: RE: [PATCH v6 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
-Date:   Wed, 6 Oct 2021 22:26:15 +0530
-Message-ID: <006a01d7bad3$1758f290$460ad7b0$@codeaurora.org>
+        id S239475AbhJFRAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 13:00:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54172 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229992AbhJFRAO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 13:00:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B554E61184;
+        Wed,  6 Oct 2021 16:58:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633539501;
+        bh=Pv2GQ9ppIbCDtjJ6FHG8UrZrwL0q5p8yJu6Ox1odcl4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZxwFTj6h8/4zl+ZbyobZ3gXyH6zFFHuuunpSCeZtGq5yyBh458lN6qgjrPtbzvmEE
+         JOOJRKCS+cBjpsGZsFsu2qC7UT2xexuiAP+pKnneMu16nz3F7IlrhMx37GjF8vnwt0
+         o61sz2wSwPJd3nZ73vK9cDb7mu9kpL6OH34+xqBitWiiJlEeCZMOz2ORHGj5DzBeHV
+         lXnRdLCU5OwkGhGLRRnRM9LBtawkqp+ghPb2wtzyNm0RXi9ToDk7/pzxdw2KZbTxzU
+         X/pQ2PLrdiI+gydju+/rHCKwPD4FYD9yeb7qGaLXANvhp6iC/3OhwOMt93GWz9oHi0
+         /UKKtVyOralpg==
+Received: by mail-ed1-f46.google.com with SMTP id g10so11987533edj.1;
+        Wed, 06 Oct 2021 09:58:21 -0700 (PDT)
+X-Gm-Message-State: AOAM533dM0l6UJiTdMjGpOF3D/M6sL5L1atLIRlpmJO4Xe5MpZ8aOPW8
+        6BSSGDHodG+y8bKM3kL7ZwDbVnkUWkuaBV3Q1A==
+X-Google-Smtp-Source: ABdhPJwMHkUzUgd0cGA2QXNsXv0uRtztN2UbQ2gOCNuLs32mPBDjNqEd6cAB6lIHngB5ur8nwNpG3ntFDOFsttuDTVQ=
+X-Received: by 2002:a50:d903:: with SMTP id t3mr35230363edj.70.1633539499069;
+ Wed, 06 Oct 2021 09:58:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-thread-index: AQKwJKLJ4tjmgoIJWycFdR/OOcUEpAEIhLzCAlTlvmMBQz416ALxzEPWqdjIsSA=
-Content-Language: en-us
+References: <20211006154426.3222199-1-kuba@kernel.org> <20211006154426.3222199-2-kuba@kernel.org>
+ <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com> <YV3QAzAWiYdKFB3m@lunn.ch>
+In-Reply-To: <YV3QAzAWiYdKFB3m@lunn.ch>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 6 Oct 2021 11:58:07 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLRQRmhXZm25WKzUSBUyK6q5d-BspW4zQcztW3Qf56EKg@mail.gmail.com>
+Message-ID: <CAL_JsqLRQRmhXZm25WKzUSBUyK6q5d-BspW4zQcztW3Qf56EKg@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 1/9] of: net: move of_net under net/
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        netdev <netdev@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Stephen Boyd <swboyd@chromium.org>
-> Sent: Wednesday, October 6, 2021 12:40 PM
-> To: Rob Herring <robh@kernel.org>; pillair@codeaurora.org
-> Cc: mathieu.poirier@linaro.org; p.zabel@pengutronix.de;
-> devicetree@vger.kernel.org; bjorn.andersson@linaro.org; linux-
-> kernel@vger.kernel.org; robh+dt@kernel.org; sibis@codeaurora.org;
-> kuabhs@chromium.org; agross@kernel.org; ohad@wizery.com; linux-arm-
-> msm@vger.kernel.org; mpubbise@codeaurora.org
-> Subject: RE: [PATCH v6 2/3] dt-bindings: remoteproc: qcom: Add SC7280
-> WPSS support
-> 
-> Quoting pillair@codeaurora.org (2021-10-05 22:09:18)
-> >
+On Wed, Oct 6, 2021 at 11:34 AM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Wed, Oct 06, 2021 at 11:18:19AM -0500, Rob Herring wrote:
+> > On Wed, Oct 6, 2021 at 10:45 AM Jakub Kicinski <kuba@kernel.org> wrote:
 > > >
-> > > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s),
-> > > then make sure 'yamllint' is installed and dt-schema is up to
-> > > date:
+> > > Rob suggests to move of_net.c from under drivers/of/ somewhere
+> > > to the networking code.
 > > >
-> > > pip3 install dtschema --upgrade
+> > > Suggested-by: Rob Herring <robh@kernel.org>
+> > > Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+> > > ---
+> > > v2: new patch
+> > > ---
+> > >  drivers/of/Makefile               | 1 -
+> > >  net/core/Makefile                 | 1 +
+> > >  {drivers/of => net/core}/of_net.c | 0
+> > >  3 files changed, 1 insertion(+), 1 deletion(-)
+> > >  rename {drivers/of => net/core}/of_net.c (100%)
 > > >
-> > > Please check and re-submit.
+> > > diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+> > > index c13b982084a3..e0360a44306e 100644
+> > > --- a/drivers/of/Makefile
+> > > +++ b/drivers/of/Makefile
+> > > @@ -7,7 +7,6 @@ obj-$(CONFIG_OF_EARLY_FLATTREE) += fdt_address.o
+> > >  obj-$(CONFIG_OF_PROMTREE) += pdt.o
+> > >  obj-$(CONFIG_OF_ADDRESS)  += address.o
+> > >  obj-$(CONFIG_OF_IRQ)    += irq.o
+> > > -obj-$(CONFIG_OF_NET)   += of_net.o
+> > >  obj-$(CONFIG_OF_UNITTEST) += unittest.o
+> > >  obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
+> > >  obj-$(CONFIG_OF_RESOLVE)  += resolver.o
+> > > diff --git a/net/core/Makefile b/net/core/Makefile
+> > > index 35ced6201814..37b1befc39aa 100644
+> > > --- a/net/core/Makefile
+> > > +++ b/net/core/Makefile
+> > > @@ -36,3 +36,4 @@ obj-$(CONFIG_FAILOVER) += failover.o
+> > >  obj-$(CONFIG_NET_SOCK_MSG) += skmsg.o
+> > >  obj-$(CONFIG_BPF_SYSCALL) += sock_map.o
+> > >  obj-$(CONFIG_BPF_SYSCALL) += bpf_sk_storage.o
+> > > +obj-$(CONFIG_OF_NET)   += of_net.o
 > >
-> >
-> > I have updated the dtschema (2021.7) and still not seeing these
-> > errors. I will fix the errors mentioned in this log though.
-> > Is there any other flag/setting, which is to be enabled ?
-> >
-> 
-> I have dtschema-2021.10 installed.
+> > The OF_NET kconfig should move or disappear too. I imagine you can do just:
+>
+> It is used in a few places:
 
-Thanks Stephen. Yes, my dtschema, for some reason, was not getting updated.
-After upgrading it to 2021.10, I was able to see the same errors.
-I will send out the next patchset with these errors fixed.
+Okay, then just move it for now.
 
-Thanks,
-Rakesh Pillai.
+I suspect though that most of these can either be dropped or replaced
+with just 'OF' dependency.
 
+> net/ethernet/litex/Kconfig:     depends on OF_NET
+> net/ethernet/amd/Kconfig:       depends on ((OF_NET && OF_ADDRESS) || ACPI || PCI) && HAS_IOMEM
+
+If the driver depends on OF or ACPI, then the dependency should just
+be removed because one of those is almost always enabled.
+
+> net/ethernet/mscc/Kconfig:      depends on OF_NET
+> net/ethernet/ezchip/Kconfig:    depends on OF_IRQ && OF_NET
+> net/ethernet/arc/Kconfig:       depends on OF_IRQ && OF_NET
+> net/ethernet/arc/Kconfig:       depends on OF_IRQ && OF_NET && REGULATOR
+
+I don't see any OF_IRQ dependency (which would be odd). The OF_NET
+dependency is just of_get_phy_mode() from a quick glance and we have a
+stub for it.
+
+Rob
