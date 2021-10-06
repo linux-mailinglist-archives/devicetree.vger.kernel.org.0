@@ -2,90 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCB234235C5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 04:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF68C4235E6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 04:40:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237102AbhJFCZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Oct 2021 22:25:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41276 "EHLO
+        id S230301AbhJFCl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Oct 2021 22:41:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229908AbhJFCZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 22:25:42 -0400
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1906C061749;
-        Tue,  5 Oct 2021 19:23:50 -0700 (PDT)
-Received: by mail-vs1-xe2a.google.com with SMTP id g10so1297833vsb.8;
-        Tue, 05 Oct 2021 19:23:50 -0700 (PDT)
+        with ESMTP id S229908AbhJFCl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Oct 2021 22:41:57 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41FB3C061749;
+        Tue,  5 Oct 2021 19:40:06 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id t9so4046677lfd.1;
+        Tue, 05 Oct 2021 19:40:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=WwmHQgUBgnVFhJP2TLRGoapFl3aOWOVk6xMbmdmYBZg=;
-        b=GOc7dwi8lOh1lC6U5VsgxVQcF6lKVrF5WsAzGmomX36eBy3tlkaRBdKq4x+l6MwlU5
-         J1Uob5g3VFdq+6OCqToVaprDxqCdabVj6JsoLv6fLedkdI/Ep+lgNeJVNwKD/lMuiH9z
-         rYSp688Q8QKNXJF1U0ab631Y7MXAqD8SkcIqseATHEIlQDuCWuIqvZcOBEKdC2MFivhd
-         OW7CIJMrVB0EHQncn+ZiFtHtUntykBIYatjFwxudD6oJCjVcVMNRtcfCjT4zyoh62X9x
-         If4NRyb9Kuf4nofVdpWr2wUWxyZ4HMevfHjPGE1+r3992VUSB4rRZfK2tzmTYHLwKnDb
-         vazg==
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jBjl2SKIDUWdGGNNCdNQzm0sXvagxduES6I98oCU5Y8=;
+        b=chv8eTFsLZvhIeL+hkzvYI0WTv6C1hQt4IbTe+2xmGQkTHoN3MvZ0Jtjaf5nJ60yH8
+         Qll610va/L7nfzXyHi9q5H18Ow+SshG+eVNj+gSdDfOq3y7RXIcXU17IFSrdKUsqMGDl
+         Bns94mjB430lIX1L+jpyb63pJy7SuBLUq2Zz5gUmkoa+ld9TdVOzDhd/itLWhWEQUYh6
+         w/ij/t35/Agn1d9bEjw9KP0FJwCJbX0TIcoQQ9rohRXEEbOoZw69in/qeyGnWiJ4R/RF
+         +DxmiKiv3q4SpB4Czd0/XkoQ7itREY7Ra4KeHWPZGr13fZLG2O0bWXrsMD3HPPH5buvd
+         Yn0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=WwmHQgUBgnVFhJP2TLRGoapFl3aOWOVk6xMbmdmYBZg=;
-        b=TTb3Steq8Gaq5+GgwGOyOi1zPET+y2aX5CuXD3Xky/3r5pQdYGNA1mtGj5z9+YzZPP
-         w1WNium5HUu+qYITCGO7DZ0PNPaaITZx1OAl06BEw6Kh9RwNnd4bPVB89lItQmBFxpVe
-         UIacVG/TdILX3a1sUOhX7u7EzqbjFa4ipqHmabxFyUntUFifop7Rl2rjLm3eYchnACcf
-         j6lua+dnyZqLhXyd/C6Q+P7LlBfiAKWZNbmj39qOT0p8rhztPo9ZWUZ5wuwe/R3KImnh
-         E92oPBj9Nar/Ek5NDU8+pe1A66+O0Po8NZ0rpDuy7Ht2KYE1dxuKnzPVK2S9c5MZp3Yf
-         FPNw==
-X-Gm-Message-State: AOAM530yG3SgFGKUXyTaW5yD7GGfWHDWADUiFerL9/zt8fFSvtBaa0nC
-        bvRSrcrCCQt0b7qHeufHFxVva1YHTQ8HIQ3qR6U=
-X-Google-Smtp-Source: ABdhPJwcONDskG/EsRXuJWW7n2sfuq/f3H3TUfGpNb7vycf8BKF3z24Ow7AU8AqZm/bdzE/StOvMydXYy2kEZZFCVH8=
-X-Received: by 2002:a67:e0de:: with SMTP id m30mr6440548vsl.51.1633487029583;
- Tue, 05 Oct 2021 19:23:49 -0700 (PDT)
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jBjl2SKIDUWdGGNNCdNQzm0sXvagxduES6I98oCU5Y8=;
+        b=4WZuTi/aFT8t0rIWmsNGXbNserSJoChOakY8uTfD8c8w09DW6C1uX9c7zH0O4LT5h6
+         h80Q8hc8S6aBiPGZ+lhWX14WVOyTvrZfEVeaeTUoJ5/KJf0D6u3FsSatLSMjFGJpICso
+         FBFho8zQsDwUsH/9b9QpmvquzW5dZwDdIZCtuYi69Inkm5G4s+XXQzEIpPPNMnrinYkq
+         gpzl+UNoK4YmYwNmPlylIWBxCk/1GRUFWfnECkvCbk9O6EPAV8Nh/HNqv5txVl/oWMF+
+         Yj6wzFjpXEIbULx1tjyJ6VEw1oftLzUZ+Uni2NVOpXDzjd7MC8+yakgjPWBuOHATu0zq
+         Tv7Q==
+X-Gm-Message-State: AOAM5332YZQX7BPuAOuuaHrL9W/Gy61+C/YFzKU72Q1m4YAMBi8dnrdg
+        mOS2Q8XKGdkNNoZJBEjbiXo=
+X-Google-Smtp-Source: ABdhPJz5nDf5e1lLckhTPfcq8ws67JWhBNrPmg70PycmaRWuWT397hKxpbU2YgDLYDLc8supNRztWA==
+X-Received: by 2002:a2e:91d4:: with SMTP id u20mr25686467ljg.81.1633488004426;
+        Tue, 05 Oct 2021 19:40:04 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.googlemail.com with ESMTPSA id o19sm2137695lfg.68.2021.10.05.19.40.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Oct 2021 19:40:03 -0700 (PDT)
+Subject: Re: [PATCH v13 06/35] clk: tegra: Support runtime PM and power domain
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+References: <20210926224058.1252-1-digetx@gmail.com>
+ <20210926224058.1252-7-digetx@gmail.com>
+ <CAPDyKFq+LS4Jr1GyC-a-tGWPzGH0JxfJ9wKY=uQEBGYm952azw@mail.gmail.com>
+ <24101cd6-d3f5-1e74-db39-145ecd30418b@gmail.com>
+ <CAPDyKFreK7976PJL-1zySoza_yXM7rMQ64aODWUZ+U3L-uCa0w@mail.gmail.com>
+ <4bdba8a2-4b9b-ed7d-e6ca-9218d8200a85@gmail.com>
+ <74a47158-e2e4-5fd0-3f37-0b50d4ead4d9@gmail.com>
+Message-ID: <8597d539-311b-4f04-481c-b48e6a5a882a@gmail.com>
+Date:   Wed, 6 Oct 2021 05:40:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <m3lf39nfsq.fsf@t19.piap.pl> <CAGETcx_N7XYkzFPSuQdvWKk1o+Pzzg4HnzChE_4c_Bg_oOK3eA@mail.gmail.com>
-In-Reply-To: <CAGETcx_N7XYkzFPSuQdvWKk1o+Pzzg4HnzChE_4c_Bg_oOK3eA@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 5 Oct 2021 23:23:38 -0300
-Message-ID: <CAOMZO5DwcXUe5j97n4Q_RF9WRo2DYoToe7FLNbpDJhn_BxuH0w@mail.gmail.com>
-Subject: Re: v5.15-rcX regression: video devices on i.MX6 are not created
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     =?UTF-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <74a47158-e2e4-5fd0-3f37-0b50d4ead4d9@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+06.10.2021 01:43, Dmitry Osipenko пишет:
+> 06.10.2021 01:19, Dmitry Osipenko пишет:
+> ...
+>> I reproduced the OFF problem by removing the clk prepare/unprepare from
+>> the suspend/resume of the clk driver and making some extra changes to
+>> clock tree topology and etc to trigger the problem on Nexus 7.
+>>
+>> tegra-pmc 7000e400.pmc: failed to turn off PM domain heg: -13
+>>
+>> It happens from genpd_suspend_noirq() -> tegra_genpd_power_off() -> clk
+>> -> GENPD -> I2C -> runtime-pm.
+>>
+>> -13 is EACCES, it comes from the runtime PM of I2C device. RPM is
+>> prohibited/disabled during late (NOIRQ) suspend by the drivers core.
+> 
+> My bad, I double-checked and it's not I2C RPM that is failing now, but
+> the clock's RPM [1], which is also unavailable during NOIRQ.
+> 
+> [1]
+> https://elixir.free-electrons.com/linux/v5.15-rc4/source/drivers/clk/clk.c#L116
+> 
+> Previously it was I2C RPM that was failing in a similar way, but code
+> changed a tad since that time.
+> 
 
-On Tue, Oct 5, 2021 at 9:10 PM Saravana Kannan <saravanak@google.com> wrote=
-:
->
-> On Mon, Oct 4, 2021 at 5:19 AM Krzysztof Ha=C5=82asa <khalasa@piap.pl> wr=
-ote:
-> >
-> > Hi Saravana et al.,
-> >
-> > FYI the patch: 6b2117ad65f1bca9ece6d4b1ee784b42701a2d86
-> >
-> > of: property: fw_devlink: Add support for "resets" and "pwms"
-> >
-> > Allows better tracking of dependencies between devices.
-> >
-> >  drivers/of/property.c | 4 ++++
-> >
-> > breaks v4l2 video devices on an i.MX6 CPU. The /dev/video* nodes are no=
-t
-> > created, and the drivers (async subdevicess) are "waiting":
+Just in case, I checked that the suspension order isn't somehow the
+source of the problem by adding links to device tree in order to always
+suspend clocks after the rest of devices and still GENPD gets -EACCESS
+from clk_pm_runtime_get().
 
-Phillip has sent a fix for this issue:
-http://lists.infradead.org/pipermail/linux-arm-kernel/2021-October/687868.h=
-tml
+RPM is disabled by dpm_suspend_late(), which is invoked before
+dpm_suspend_noirq() [1]. Hence RPM is unavailable in NOIRQ phase in any
+case.
+
+[1]
+https://elixir.bootlin.com/linux/v5.15-rc4/source/kernel/power/suspend.c#L399
