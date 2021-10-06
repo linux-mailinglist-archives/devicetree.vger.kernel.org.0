@@ -2,77 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56DFA4242D4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:38:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F3AC4242C5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:34:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232249AbhJFQkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 12:40:49 -0400
-Received: from box.trvn.ru ([194.87.146.52]:36313 "EHLO box.trvn.ru"
+        id S229719AbhJFQgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 12:36:25 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:52602 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231259AbhJFQkt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 12:40:49 -0400
-X-Greylist: delayed 457 seconds by postgrey-1.27 at vger.kernel.org; Wed, 06 Oct 2021 12:40:48 EDT
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id 8F488428D6;
-        Wed,  6 Oct 2021 21:31:17 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1633537877; bh=RKX+UxOJaofOnl3psZgoVRHnWMDW48UJ8sAbexJ0pD4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qX0JPIMOsJgD/Dv2gqdB1D9egd7Qoip59izkv7zt2lM8Ha/ZMHDWLH0IayCGOwkSp
-         v+aB7YnbqkK+k2Q2RqNYhigJZt6UVvlQJUaNG2mam5ezI2DpRiLhXXrCTMs/XQ/tHl
-         gJkAH6Pbe7lxNxDER6bdFcMN77vv06nciqyuHPCs01cukFuvNMrOxGRhAyYcP9P080
-         3ebGG4jkz0z99k/aKmLlm0n8N+Wa9aJ8y+GhmBz9wOb/FpwG8oh92faFJ3JqqgncUe
-         kihNnpJfpSqs3fubDziuzuBV1nUOt4xUv3DGwx2QwuQag2daw8/MOj0u2gNhQ8gsR8
-         vU/uHwMbESonA==
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     jic23@kernel.org
-Cc:     lars@metafoo.de, robh+dt@kernel.org, stephan@gerhold.net,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
-Subject: [PATCH 4/4] iio: light: ltr501: Add of_device_id table
-Date:   Wed,  6 Oct 2021 21:30:58 +0500
-Message-Id: <20211006163058.145842-4-nikita@trvn.ru>
-In-Reply-To: <20211006163058.145842-1-nikita@trvn.ru>
-References: <20211006163058.145842-1-nikita@trvn.ru>
+        id S235957AbhJFQgX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 12:36:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=M7ourfR7N3IREsZHWkmqZNuXaEfP+RZhu9KUMFheoaQ=; b=olYX4XZNKj5XTuB2L4XSCVljGC
+        eA6Lu3jv+5rZr4Y6hdPVyg6bie9iLsYzdp6XtkJ+4crUwXhmlhEMboo7rQwPaiM+BST6qDXEzlPmg
+        HsfyLloe1knYy8y/deIMNYttKHUrUzAVfZiR7F8ngu2tK8TBo2pCMYBBjaPFR2E5SEy8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mY9rv-009rE7-1T; Wed, 06 Oct 2021 18:34:11 +0200
+Date:   Wed, 6 Oct 2021 18:34:11 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        netdev <netdev@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/9] of: net: move of_net under net/
+Message-ID: <YV3QAzAWiYdKFB3m@lunn.ch>
+References: <20211006154426.3222199-1-kuba@kernel.org>
+ <20211006154426.3222199-2-kuba@kernel.org>
+ <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add of_device_id table so the driver can be used on DT platforms without
-relying on i2c_device_id fallback. (So DT schema validation is possible)
+On Wed, Oct 06, 2021 at 11:18:19AM -0500, Rob Herring wrote:
+> On Wed, Oct 6, 2021 at 10:45 AM Jakub Kicinski <kuba@kernel.org> wrote:
+> >
+> > Rob suggests to move of_net.c from under drivers/of/ somewhere
+> > to the networking code.
+> >
+> > Suggested-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+> > ---
+> > v2: new patch
+> > ---
+> >  drivers/of/Makefile               | 1 -
+> >  net/core/Makefile                 | 1 +
+> >  {drivers/of => net/core}/of_net.c | 0
+> >  3 files changed, 1 insertion(+), 1 deletion(-)
+> >  rename {drivers/of => net/core}/of_net.c (100%)
+> >
+> > diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+> > index c13b982084a3..e0360a44306e 100644
+> > --- a/drivers/of/Makefile
+> > +++ b/drivers/of/Makefile
+> > @@ -7,7 +7,6 @@ obj-$(CONFIG_OF_EARLY_FLATTREE) += fdt_address.o
+> >  obj-$(CONFIG_OF_PROMTREE) += pdt.o
+> >  obj-$(CONFIG_OF_ADDRESS)  += address.o
+> >  obj-$(CONFIG_OF_IRQ)    += irq.o
+> > -obj-$(CONFIG_OF_NET)   += of_net.o
+> >  obj-$(CONFIG_OF_UNITTEST) += unittest.o
+> >  obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
+> >  obj-$(CONFIG_OF_RESOLVE)  += resolver.o
+> > diff --git a/net/core/Makefile b/net/core/Makefile
+> > index 35ced6201814..37b1befc39aa 100644
+> > --- a/net/core/Makefile
+> > +++ b/net/core/Makefile
+> > @@ -36,3 +36,4 @@ obj-$(CONFIG_FAILOVER) += failover.o
+> >  obj-$(CONFIG_NET_SOCK_MSG) += skmsg.o
+> >  obj-$(CONFIG_BPF_SYSCALL) += sock_map.o
+> >  obj-$(CONFIG_BPF_SYSCALL) += bpf_sk_storage.o
+> > +obj-$(CONFIG_OF_NET)   += of_net.o
+> 
+> The OF_NET kconfig should move or disappear too. I imagine you can do just:
 
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
- drivers/iio/light/ltr501.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+It is used in a few places:
 
-diff --git a/drivers/iio/light/ltr501.c b/drivers/iio/light/ltr501.c
-index 57851c8ef1c6..7e51aaac0bf8 100644
---- a/drivers/iio/light/ltr501.c
-+++ b/drivers/iio/light/ltr501.c
-@@ -1609,9 +1609,18 @@ static const struct i2c_device_id ltr501_id[] = {
- };
- MODULE_DEVICE_TABLE(i2c, ltr501_id);
- 
-+static const struct of_device_id ltr501_of_match[] = {
-+	{ .compatible = "liteon,ltr501", },
-+	{ .compatible = "liteon,ltr559", },
-+	{ .compatible = "liteon,ltr301", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ltr501_of_match);
-+
- static struct i2c_driver ltr501_driver = {
- 	.driver = {
- 		.name   = LTR501_DRV_NAME,
-+		.of_match_table = ltr501_of_match,
- 		.pm	= &ltr501_pm_ops,
- 		.acpi_match_table = ACPI_PTR(ltr_acpi_match),
- 	},
--- 
-2.30.2
+net/ethernet/litex/Kconfig:	depends on OF_NET
+net/ethernet/amd/Kconfig:	depends on ((OF_NET && OF_ADDRESS) || ACPI || PCI) && HAS_IOMEM
+net/ethernet/mscc/Kconfig:	depends on OF_NET
+net/ethernet/ezchip/Kconfig:	depends on OF_IRQ && OF_NET
+net/ethernet/arc/Kconfig:	depends on OF_IRQ && OF_NET
+net/ethernet/arc/Kconfig:	depends on OF_IRQ && OF_NET && REGULATOR
 
+so it cannot just disappear. These will need reviewing and changing as
+well.
+
+	Andrew
