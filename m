@@ -2,128 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF354245B8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:09:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D40304245CB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238917AbhJFSK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 14:10:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33546 "EHLO
+        id S238501AbhJFSPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 14:15:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbhJFSK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:10:56 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6E8C061746;
-        Wed,  6 Oct 2021 11:09:04 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id t8so11504442wri.1;
-        Wed, 06 Oct 2021 11:09:03 -0700 (PDT)
+        with ESMTP id S232165AbhJFSPY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:15:24 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2883DC061746
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 11:13:32 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id 187so3063044pfc.10
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 11:13:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=exwhG0nzdIAjIFVVMDdmFwiX7lQiq4OxdoroCkKUsS0=;
-        b=HuBuqtsZ+euCw1ibUy7yAKa+Hak+XIku86FHIPqir12RLDyJ8vjP0N+s2u54z6Wwj0
-         JcSLGsqpIQpakWP9eR4TEsirwOYl92zJAcZ9hK0euGCd53ljF53ndJ2UZ6CtlXCAC9WG
-         w93UQnH9aU9Hstk3LgKXxIiP9NNw00rViiSe2tk/QVXTOx1eBKqQ6PvazYVP8aXjnh3/
-         y21NxWOb9Mk04uvm6VqNJgqruoXtibq5lAWwIqADF5rIJS+n/LXfT03J1We+a6V8RJpK
-         P/OHdiRKaQz/jX9wBPFY3YTgeQQwn0SlJwbRR2+PXfMWyLmdRDMfASiOn0+8xDczBlW1
-         YInw==
+        d=pensando.io; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=AHbFLLJBVdMn1EYU1myYShV5KJr7nhKj/LhKLE9VktY=;
+        b=nhrD/4QplDgtRCKbs+d1BsV0aQosiQBT3GjUL0PAfAcdWD6m7PoyOtl6CHbN6yTwvy
+         kwaLQKq5H7ea9Qxf4rb/s+VrpASAlhjwZvvDcWY920q4H/jJ6IwP2Q0cuRF1fWtAm8Bc
+         H6ldHslh6sTSm8Yy0nBHDjTc/Yrk3IR+8Ms+eFHQUzUsgW25OtpDA+ffLYoXnYf+t9De
+         OzNcH2iqd8deytbUm87BfvU/pxTeQ2R2qY+kyb/KZphLzUXdV40J0NpIEnTvMdFOWygX
+         7KC8mYBB8PBMdD4pmLLnik7rOGGSZCN79wMUoo7kbbjYQMzbGpaCxrF0A7F47xe1xjok
+         OWjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=exwhG0nzdIAjIFVVMDdmFwiX7lQiq4OxdoroCkKUsS0=;
-        b=xpKO5mln89eD1ifXpMkrUA6jCbl4Gat8tpvS4O6e+Hy6FqNjxPb7BFt97W2FdWgKtT
-         JyZ+IorzJSNSOcgQvpSL4KGcqG86U4bvbOUO3GhqyOA8w4bE5i4jbSLkNrQzMKJ986T1
-         qiiLM1jg+Hed8fbaBo/FSjB6JhApDgd69hPGdMqkxnkdFJ0y2h8Dyyd2mP0iKWCFa2ni
-         4bz/8vYQU9mv6HxRIN8NgJNQPayEy58RLXtmAEAG4zEXzCz2b87nskfmRZySWqSDp+52
-         yR1R1tfG2wUCAK9ya6Nsh/bcol10jcTkedatUsVIyWK97R0FiRWJV2dgobvcHQ34+Myz
-         1TZQ==
-X-Gm-Message-State: AOAM530bBHsIzAHKyOSj3k65eomByfNG2QTE48p0PacCIDknlLPz7UOE
-        8ar18l+aNCxsDSQfEQtTHH8=
-X-Google-Smtp-Source: ABdhPJwuJVzlA2zZrzmKkCJqJ0rvYjsVMXs5bz21h9cCHXSbpi0DpBAwGG9MHqAc+lyYhyt5VrMNUQ==
-X-Received: by 2002:a1c:f703:: with SMTP id v3mr11035782wmh.177.1633543742600;
-        Wed, 06 Oct 2021 11:09:02 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id c9sm6115710wmb.41.2021.10.06.11.09.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 11:09:01 -0700 (PDT)
-Date:   Wed, 6 Oct 2021 20:09:00 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     jonathanh@nvidia.com, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] drm/tegra: Add NVDEC driver
-Message-ID: <YV3mPD8z47LmB4x8@orome.fritz.box>
-References: <20210916145517.2047351-1-mperttunen@nvidia.com>
- <20210916145517.2047351-4-mperttunen@nvidia.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=AHbFLLJBVdMn1EYU1myYShV5KJr7nhKj/LhKLE9VktY=;
+        b=KBDSZouYh/dJxK1Jst4ywi2UYrgJnFH7S5ink828aI8j7CzkClSzC0aN1EAYQeHG4F
+         kxXJNPNRyrhE1saaySKngeeyd3oly++r3xXcc7aKQZdyNLsIIKH6aGr4UdFCbHJf2D9Y
+         6fnjx9uQLVQ3PJy8ZwmkLXNdcjETX4pFdMYK5af6nXZ2R7Q4pEK6Hz/ipPSyGwEBe77I
+         O2xzFlRy6Ef/j0hqsWai189b+eApLijMH+QXhNyUBxM7uaAbf3hNzwYcQqCX7W67SBBL
+         lrI3MHOxpf1qhmsdNlFfnHHS0bnCAN7QNC5gzxL52bdMtCKKf0nnYTZFm/50vBUFrJGu
+         yZSg==
+X-Gm-Message-State: AOAM533TkEoDwSodC6yKsWuo/cvwIrln9rDEs7Je+ivb62a/YSGsiWSr
+        JsqCxXipblvFR0SvKz1bWLshEg==
+X-Google-Smtp-Source: ABdhPJxmKF3Bdz9OwWKs+AydMtJ6JforNBHoMf1Udb6gHLHIyfOPHHC8iDRSqQZ/o3duyNgdDMWmvQ==
+X-Received: by 2002:a63:1950:: with SMTP id 16mr141725pgz.346.1633544011042;
+        Wed, 06 Oct 2021 11:13:31 -0700 (PDT)
+Received: from [192.168.0.14] ([50.53.47.17])
+        by smtp.gmail.com with ESMTPSA id u12sm20921209pgi.21.2021.10.06.11.13.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Oct 2021 11:13:30 -0700 (PDT)
+Message-ID: <4ff9c36a-3c66-b244-8b2a-7eb4e2cc2d05@pensando.io>
+Date:   Wed, 6 Oct 2021 11:13:28 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7stmA90g+iXPADGV"
-Content-Disposition: inline
-In-Reply-To: <20210916145517.2047351-4-mperttunen@nvidia.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.1.2
+Subject: Re: [PATCH net-next v2 7/9] eth: fwnode: add a helper for loading
+ netdev->dev_addr
+Content-Language: en-US
+To:     Jakub Kicinski <kuba@kernel.org>, davem@davemloft.net
+Cc:     netdev@vger.kernel.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, saravanak@google.com, mw@semihalf.com,
+        andrew@lunn.ch, jeremy.linton@arm.com, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, robh+dt@kernel.org, frowand.list@gmail.com,
+        heikki.krogerus@linux.intel.com, devicetree@vger.kernel.org
+References: <20211006154426.3222199-1-kuba@kernel.org>
+ <20211006154426.3222199-8-kuba@kernel.org>
+From:   Shannon Nelson <snelson@pensando.io>
+In-Reply-To: <20211006154426.3222199-8-kuba@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---7stmA90g+iXPADGV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 16, 2021 at 05:55:17PM +0300, Mikko Perttunen wrote:
-> Add support for booting and using NVDEC on Tegra210, Tegra186
-> and Tegra194 to the Host1x and TegraDRM drivers. Booting in
-> secure mode is not currently supported.
->=20
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+On 10/6/21 8:44 AM, Jakub Kicinski wrote:
+> Commit 406f42fa0d3c ("net-next: When a bond have a massive amount
+> of VLANs...") introduced a rbtree for faster Ethernet address look
+> up. To maintain netdev->dev_addr in this tree we need to make all
+> the writes to it got through appropriate helpers.
+>
+> There is a handful of drivers which pass netdev->dev_addr as
+> the destination buffer to device_get_mac_address(). Add a helper
+> which takes a dev pointer instead, so it can call an appropriate
+> helper.
+>
+> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
 > ---
-> v5:
-> * Remove num_instances
-> * Change from nvidia,instance to nvidia,host1x-class
-> v3:
-> * Change num_instances to unsigned int
-> * Remove unnecessary '=3D 0' initializer
-> * Populate num_instances data
-> * Fix instance number check
-> v2:
-> * Use devm_platform_get_and_ioremap_resource
-> * Remove reset handling, done by power domain code
-> * Assume runtime PM is enabled
+> v2: spell out address instead of addr in the function name
 > ---
->  drivers/gpu/drm/tegra/Makefile |   3 +-
->  drivers/gpu/drm/tegra/drm.c    |   4 +
->  drivers/gpu/drm/tegra/drm.h    |   1 +
->  drivers/gpu/drm/tegra/nvdec.c  | 464 +++++++++++++++++++++++++++++++++
->  drivers/gpu/host1x/dev.c       |  18 ++
->  include/linux/host1x.h         |   2 +
->  6 files changed, 491 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/gpu/drm/tegra/nvdec.c
+>   include/linux/etherdevice.h |  1 +
+>   include/linux/property.h    |  1 +
+>   net/ethernet/eth.c          | 20 ++++++++++++++++++++
+>   3 files changed, 22 insertions(+)
+>
+> diff --git a/include/linux/etherdevice.h b/include/linux/etherdevice.h
+> index 32c30d0f7a73..e75116f48cd1 100644
+> --- a/include/linux/etherdevice.h
+> +++ b/include/linux/etherdevice.h
+> @@ -32,6 +32,7 @@ int eth_platform_get_mac_address(struct device *dev, u8 *mac_addr);
+>   unsigned char *arch_get_platform_mac_address(void);
+>   int nvmem_get_mac_address(struct device *dev, void *addrbuf);
+>   int device_get_mac_address(struct device *dev, char *addr);
+> +int device_get_ethdev_address(struct device *dev, struct net_device *netdev);
+>   int fwnode_get_mac_address(struct fwnode_handle *fwnode, char *addr);
+>   
+>   u32 eth_get_headlen(const struct net_device *dev, const void *data, u32 len);
+> diff --git a/include/linux/property.h b/include/linux/property.h
+> index 4fb081684255..88fa726a76df 100644
+> --- a/include/linux/property.h
+> +++ b/include/linux/property.h
+> @@ -15,6 +15,7 @@
+>   #include <linux/types.h>
+>   
+>   struct device;
+> +struct net_device;
+>   
+>   enum dev_prop_type {
+>   	DEV_PROP_U8,
+> diff --git a/net/ethernet/eth.c b/net/ethernet/eth.c
+> index 29447a61d3ec..5441b232d8a4 100644
+> --- a/net/ethernet/eth.c
+> +++ b/net/ethernet/eth.c
+> @@ -617,3 +617,23 @@ int device_get_mac_address(struct device *dev, char *addr)
+>   	return fwnode_get_mac_address(dev_fwnode(dev), addr);
+>   }
+>   EXPORT_SYMBOL(device_get_mac_address);
+> +
+> +/**
+> + * device_get_ethdev_addr - Set netdev's MAC address from a given device
 
-Applied, thanks.
+Nit: s/_addr/_address/
 
-Thierry
+sln
 
---7stmA90g+iXPADGV
-Content-Type: application/pgp-signature; name="signature.asc"
+> + * @dev:	Pointer to the device
+> + * @netdev:	Pointer to netdev to write the address to
+> + *
+> + * Wrapper around device_get_mac_address() which writes the address
+> + * directly to netdev->dev_addr.
+> + */
+> +int device_get_ethdev_address(struct device *dev, struct net_device *netdev)
+> +{
+> +	u8 addr[ETH_ALEN];
+> +	int ret;
+> +
+> +	ret = device_get_mac_address(dev, addr);
+> +	if (!ret)
+> +		eth_hw_addr_set(netdev, addr);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(device_get_ethdev_address);
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmFd5jwACgkQ3SOs138+
-s6GcNRAAwJpwl7dN6LBRZAB+8sJ4ax0GeNoqf4WMs3ZyWrVQE2IuNuKjZhUi68jD
-rpCc8XkK1m5x3loTMpXaA0HyUiAVb7rmTFtR0Kcqim+0qULcQALmix4M/Ax5dd56
-PgyaOCMQm5ORBt5JA9yYswqFB22eRpZKhssN7BVO4SBYeR7J9lMmwFnH5w8SrIs3
-XfW+V4/h4YiB1eEqsEKKUyqrb5IXYuAT5A6xqvZVmEB9YY7Mxut56Eu98Wdxb/yL
-ceQ6IGnl4JTkMAZWCGnZIZRHdq192GmtxKO6ZLNPH/fLArxZipkMJ8YZfbUjbw4z
-GTadAj5sPTAbuM1CdYmyehIX9gJOV+kUY5fAP2kxbDggmgdLapNCAd9YXY3N+JV6
-yse6kXXugv+A87Moose05WX+oTw0NFer2DohEWOO+YoqSqDMOgkx/3efhiuhQvw+
-Ze/NSrGkxsgyvHYM5YFTHfZInpgntRo0XudfkLeR3HqKQfg6DT6f49HuqCsZKQMc
-QAbkXMlAmRcZE5nwiz69xaRQrvkjrb9T25vI3/MHfbFOo0PM8MYFe2Zgoqyr+Vsj
-pp5+s9QQe3ycttvgjQEX/wQwDcXAeOw2yPFjKx6HKeAzt3Ybyi+xXM8DHhWs9Qg7
-AbHHiE9j/60PiOPiOQdrD0mwvGuLIyrpUS6sfKhT6LY1ubD3uEw=
-=qSJm
------END PGP SIGNATURE-----
-
---7stmA90g+iXPADGV--
