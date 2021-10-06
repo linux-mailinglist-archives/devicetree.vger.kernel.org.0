@@ -2,83 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50B2F4237E5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 08:20:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30AF64237F5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 08:28:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231635AbhJFGVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 02:21:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36772 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234566AbhJFGVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 02:21:49 -0400
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 927A7C061753;
-        Tue,  5 Oct 2021 23:19:57 -0700 (PDT)
-Received: from hatter.bewilderbeest.net (71-212-29-146.tukw.qwest.net [71.212.29.146])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 6092626B;
-        Tue,  5 Oct 2021 23:19:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1633501194;
-        bh=KnzYCD7vYTEETXdJq8U14sn2fgo0/l23JR6vuuqUnc4=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Qyk5nx+CMptubmQyyNBxp0EQO70zYVacaBQwcoa5l1k/vqdEXvKyRdy5RYVcavaSK
-         pi6DVYAiap6FyQEkV/TjLvQU9nsr+FZVibZNe630vQ5KnO+iPa6TgM8OUd71TLKm85
-         8zX2nhwUmCtw1wbG6X5qAUWn6kDw2dMaZIF9WJkg=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Zev Weiss <zev@bewilderbeest.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Grant Likely <grant.likely@secretlab.ca>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] of: remove duplicate declarations of __of_*_sysfs() functions
-Date:   Tue,  5 Oct 2021 23:19:42 -0700
-Message-Id: <20211006061943.8472-1-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.33.0
+        id S229932AbhJFG3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 02:29:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53850 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229797AbhJFG3x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 02:29:53 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6DDA760EC0;
+        Wed,  6 Oct 2021 06:28:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1633501681;
+        bh=spg2FfB33eWRaZlMimWllWmYIhAbe/hDa0jC2sb1vWI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Nu0KSdos8srKS5PIPAOZZNp8J/2y5CPh/+dnqB2466tL4XJzMDHY0vH2W7eGUsOYc
+         CwnIoKUKrM8wQ76l6MJw2Q38dpQZHYi605sGDZ27T+ryGez1rmoQ5JHaX7o8kI0A+i
+         sD8TBOVJACa3H17k+oxP6iQHDCcOoJIHajMgs3ro=
+Date:   Wed, 6 Oct 2021 08:27:59 +0200
+From:   "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+To:     Minas Harutyunyan <Minas.Harutyunyan@synopsys.com>
+Cc:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "alexandre.torgue@foss.st.com" <alexandre.torgue@foss.st.com>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "amelie.delaunay@foss.st.com" <amelie.delaunay@foss.st.com>
+Subject: Re: [PATCH 1/3] usb: dwc2: add otg_rev and otg_caps information for
+ gadget driver
+Message-ID: <YV1B7/yP2L+0L1sQ@kroah.com>
+References: <1631692473-8732-1-git-send-email-fabrice.gasnier@foss.st.com>
+ <1631692473-8732-2-git-send-email-fabrice.gasnier@foss.st.com>
+ <a183ddf9-c578-0b45-1aa2-4fcd1fbf17eb@synopsys.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a183ddf9-c578-0b45-1aa2-4fcd1fbf17eb@synopsys.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When CONFIG_OF_KOBJ was introduced in commit b56b5528f5b3 ("of: make
-kobject and bin_attribute support configurable") and #ifdef-ed
-versions of these declarations got added, the originals didn't get
-removed.
+On Fri, Oct 01, 2021 at 11:10:19AM +0000, Minas Harutyunyan wrote:
+> On 9/15/2021 11:54 AM, Fabrice Gasnier wrote:
+> > Currently the dwc2 doesn't fill in the 'otg_caps' of usb_gadget structure.
+> > When registering a gadget device (e.g. via configfs), the
+> > usb_otg_descriptor_init() checks the 'otg_caps' and 'otg_rev'. It defaults
+> > to HNP and SRP bmAttributes if unspecified. There may be a mismatch with
+> > what's being set in dwc2 params structure. This result in the descriptors
+> > to be miss-configured in this case.
+> > 
+> > So add an option to setup 'otg_caps' and 'otg_rev' in the params. It's
+> > then provided to the gadget struct. These parameters can then be tuned
+> > for each platform. In case it's not set, it will default to current
+> > behavior.
+> > Also add option to setup these from the device tree by calling
+> > of_usb_update_otg_caps(). This provides support for standard properties
+> > such as "otg-rev", "hnp-disable" and "srp-disable" (see usb-drd.yaml).
+> > 
+> > Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> Acked-by: Minas Harutyunyan <Minas.Harutyunyan@synopsys.com>
+> 
 
-Fixes: b56b5528f5b3 ("of: make kobject and bin_attribute support configurable")
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
- drivers/of/of_private.h | 8 --------
- 1 file changed, 8 deletions(-)
+Looks like this commit breaks the build on some configurations:
+	https://lore.kernel.org/r/000000000000b01f1505cda8e03c@google.com
 
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index 631489f7f8c0..75e67b8bb826 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -127,19 +127,11 @@ struct device_node *__of_find_node_by_full_path(struct device_node *node,
- extern const void *__of_get_property(const struct device_node *np,
- 				     const char *name, int *lenp);
- extern int __of_add_property(struct device_node *np, struct property *prop);
--extern int __of_add_property_sysfs(struct device_node *np,
--		struct property *prop);
- extern int __of_remove_property(struct device_node *np, struct property *prop);
--extern void __of_remove_property_sysfs(struct device_node *np,
--		struct property *prop);
- extern int __of_update_property(struct device_node *np,
- 		struct property *newprop, struct property **oldprop);
--extern void __of_update_property_sysfs(struct device_node *np,
--		struct property *newprop, struct property *oldprop);
- 
--extern int __of_attach_node_sysfs(struct device_node *np);
- extern void __of_detach_node(struct device_node *np);
--extern void __of_detach_node_sysfs(struct device_node *np);
- 
- extern void __of_sysfs_remove_bin_file(struct device_node *np,
- 				       struct property *prop);
--- 
-2.33.0
+So I'll go drop this and the 2/3 patch from my tree.  Please fix up and
+resend.
 
+thanks,
+
+greg k-h
