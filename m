@@ -2,173 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E12B7424617
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE2FE424638
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:44:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239126AbhJFSah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 14:30:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38278 "EHLO
+        id S239149AbhJFSqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 14:46:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbhJFSah (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:30:37 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A867C061746
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 11:28:44 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id i84so7471410ybc.12
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 11:28:44 -0700 (PDT)
+        with ESMTP id S229564AbhJFSqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:46:03 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1D0CC061755
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 11:44:10 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id 187so3134105pfc.10
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 11:44:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0n7XTaYuNuU3GQROpWlHveon37tQGGRs8ekBzlKCoOE=;
-        b=J6lI24iVpCdHoWTtNM7a/8ZwFedTCp/QYd7FALh8Tpc0VTNH/H/a/A6zY/gO4qGFL5
-         HiApsBuVnVxYyelJMV5w4M+PnZ6pKWEzylR/zFMx7qxiTGvyfr8sdCpE/Hv4O59NCf7J
-         PFL/3b+ZlF7hsCL35SoZvUe1X//m/4EWglNIU=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=BRycDukXp/mwG19rK+ZZveffPObZScVLwnEXUPao+Qo=;
+        b=dGB+k3+qNGd/+wJJNrFG9vCJplDjNmludJHXOhGA5rXke971izpN7UhxeJcT7MNDPU
+         AurJjZzVIWgAnLKC90k7BjSi3YpMjvNigLRvvhQKqNUaqW1VamZ5EXwSRHbGXOf+W6Sl
+         7IgiMMLRziARhtyyA04yPxDlEfYp9b7VVlC8xItUwdkHt28eRNLm0cSzhn8ErxRsZzN9
+         Vzr60PxAm7X84mDEgluZbigKV4U1V5zB6W8UcVbJ15tsptEN/EEgUJFkjJmGC+eDIrhT
+         3s81ngvG2Z6YEmtsllnNN9jazLwe+9HKLKs/aYEZc10CuW/FmiADaE2phMwt3Mi0h8yP
+         69eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0n7XTaYuNuU3GQROpWlHveon37tQGGRs8ekBzlKCoOE=;
-        b=4a1Wya6ly4WYLd80f9JRWsqK90xEzbQaQD/lUjgZkAN5zV8x60CiMmupYwdaVsZjdL
-         aL9FJ6OivDqbeIqIPR0M1P6Ndoo5SIZ3tqT6rZ4C/nEH6Wmyi5pT5YosAd5xmQiRuafS
-         IFB0DU//uvcg3nogff/ZYIwaKlYnK0zDTDltrfRWk8R9gLAQp3ORs6esPqqkOCEonCyW
-         8zY5GYOVRWj65mHQquQY/s2kRogRA//BJY3kobu+/ub33qeqIJOTE4Edbrcigesch2rV
-         tpbKFOOyKoWem6k2RWiJeR7cQZtcEZ3qubEmZe/daK3wSNMAt+uybVP3d/zgU6g8HHtK
-         iK1Q==
-X-Gm-Message-State: AOAM533ev4wB6F34+CcUu2iLULNDF0APajJOHyiBpYnh99UlRfh2rDUE
-        98HsKt5KmXzETc67Q3xei3RzjRow5Qy6/TeR5hic
-X-Google-Smtp-Source: ABdhPJy4ghJUXe860sK/73CDH7bq+Ep1/YOkYbT2u0s7Dyc2ylF3jCsuAhbF7KTPSGqFvXAumb8QRRuDBQVZ+tVWJMo=
-X-Received: by 2002:a25:d47:: with SMTP id 68mr31232340ybn.204.1633544923738;
- Wed, 06 Oct 2021 11:28:43 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BRycDukXp/mwG19rK+ZZveffPObZScVLwnEXUPao+Qo=;
+        b=Qu/u8PZxxSSvkJm4OJ5vm+v1t3sYVdScTQ8AcyIGx0mghsmT28fgpflCLI/eBrPz7a
+         bz5rBAsdLjiwYyKYq0j8EAosNtoyRYJ6kJDHbtclTCSf/lpP2JXJSqymR3/3jNLOQrFU
+         nEZ1o2twmrhMmq8KQIl27GSH6qPur0no6UmZNSt25vSFpOYJ2j9BPakdOJJLDJe+2TT4
+         gHovJmy9it9FEn+O192PtYy/kHZJhueZTNfDpfp7OzgloQxyKA4RMZNEczoK5/m48SzH
+         1Z4OlaSpg0t16ckR+r0IVhv9+nRqhMTeGacs1pNsjeDaJ7OO46tpXMyFyPyMN6054uue
+         6NQg==
+X-Gm-Message-State: AOAM532hS9CVcTB9qPmUzu4f7ROER2+NZb7TTeYarHLWsVvmgjsfr5OJ
+        w7rHa6z81qX5317GRHg0P/z47Z+9hkRQ
+X-Google-Smtp-Source: ABdhPJyhBGw4InI09Ed/EIPnI9X+8ylbqAVBx0qlJ5UmeYYxO0j8y0mJwfvwwTP9TeW0ZeaCxJn6mw==
+X-Received: by 2002:a62:5101:0:b0:44c:5cc3:e088 with SMTP id f1-20020a625101000000b0044c5cc3e088mr19739203pfb.72.1633545850115;
+        Wed, 06 Oct 2021 11:44:10 -0700 (PDT)
+Received: from thinkpad ([117.202.189.72])
+        by smtp.gmail.com with ESMTPSA id 11sm20828595pfl.41.2021.10.06.11.44.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Oct 2021 11:44:09 -0700 (PDT)
+Date:   Thu, 7 Oct 2021 00:14:04 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kathiravan T <kathirav@codeaurora.org>, agross@kernel.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: add SMEM support
+Message-ID: <20211006184404.GD33862@thinkpad>
+References: <20210902214708.1776690-1-robimarko@gmail.com>
+ <YUf3aKn78+41Cb/G@builder.lan>
+ <CAOX2RU5b46H7nqm6G4mHLSqEhGiWktwWjUKF5w10Ut+AdKea-A@mail.gmail.com>
+ <632a7d28c23a8497d35ea009bfe89883@codeaurora.org>
+ <CAOX2RU5+jeXiqz8oss8Sd-BWa059uAv5xu=7nx_YF4RYpG2S6w@mail.gmail.com>
+ <YUurqDL/S15RziCQ@builder.lan>
+ <20211006182419.GC33862@thinkpad>
+ <CAOX2RU43D72yx1Kyb0jRMMOLgBd1OMscWLH-dEdp0P=L-5quHQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210910192757.2309100-1-atish.patra@wdc.com> <20211005121744.728385be@redslave.neermore.group>
-In-Reply-To: <20211005121744.728385be@redslave.neermore.group>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Wed, 6 Oct 2021 11:28:32 -0700
-Message-ID: <CAOnJCU+0=9FG+cUT0V16TEN_ar7d9F+Me_nkQtK+5mKrFFZOqg@mail.gmail.com>
-Subject: Re: [v3 00/10] Improve RISC-V Perf support using SBI PMU and sscofpmf extension
-To:     Nikita Shubin <nikita.shubin@maquefel.me>
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        "Darrick J. Wong" <djwong@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Jiri Olsa <jolsa@redhat.com>,
-        John Garry <john.garry@huawei.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-perf-users@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Chen <vincent.chen@sifive.com>,
-        Anish Khurana <akhurana@ventanamicro.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAOX2RU43D72yx1Kyb0jRMMOLgBd1OMscWLH-dEdp0P=L-5quHQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 5, 2021 at 2:18 AM Nikita Shubin <nikita.shubin@maquefel.me> wrote:
->
-> On Fri, 10 Sep 2021 12:27:47 -0700
-> Atish Patra <atish.patra@wdc.com> wrote:
->
-> Hello Atish,
->
-> > Perf stat:
-> > =========
+On Wed, Oct 06, 2021 at 08:26:10PM +0200, Robert Marko wrote:
+> On Wed, 6 Oct 2021 at 20:24, Manivannan Sadhasivam
+> <manivannan.sadhasivam@linaro.org> wrote:
 > >
-> > [root@fedora-riscv riscv]# perf stat -e r8000000000000005 -e
-> > r8000000000000007 -e r8000000000000006 -e r0000000000020002 -e
-> > r0000000000020004 -e branch-misses -e cache-misses -e
-> > dTLB-load-misses -e dTLB-store-misses -e iTLB-load-misses -e cycles
-> > -e instructions ./hackbench -pipe 15 process Running with 15*40 (==
-> > 600) tasks. Time: 6.578
-> >
-> >  Performance counter stats for './hackbench -pipe 15 process':
-> >
-> >              6,491      r8000000000000005      (52.59%) -->
-> > SBI_PMU_FW_SET_TIMER 20,433      r8000000000000007      (60.74%) -->
-> > SBI_PMU_FW_IPI_RECVD 21,271      r8000000000000006      (68.71%) -->
-> > SBI_PMU_FW_IPI_SENT 0      r0000000000020002      (76.55%)
-> >      <not counted>      r0000000000020004      (0.00%)
-> >      <not counted>      branch-misses          (0.00%)
-> >      <not counted>      cache-misses           (0.00%)
-> >         57,537,853      dTLB-load-misses       (9.49%)
-> >          2,821,147      dTLB-store-misses      (18.64%)
-> >         52,928,130      iTLB-load-misses       (27.53%)
-> >     89,521,791,110      cycles                 (36.08%)
-> >     90,678,132,464      instructions #    1.01  insn per cycle
-> > (44.44%)
-> >
-> >        6.975908032 seconds time elapsed
-> >
-> >        3.130950000 seconds user
-> >       24.353310000 seconds sys
-> >
->
-> Tested your patch series with qemu and got results as expected:
->
-> perf stat -e r8000000000000005 -e r8000000000000007 \
-> -e r8000000000000006 -e r0000000000020002 -e r0000000000020004 -e
-> branch-misses \ -e cache-misses -e dTLB-load-misses -e
-> dTLB-store-misses -e iTLB-load-misses \ -e cycles -e instructions
-> ./hackbench -pipe 15 process
->
-> Running with 15*40 (== 600) tasks.nch -pipe 15 process
-> Time: 20.027
->
->  Performance counter stats for './hackbench -pipe 15 process':
->
->               4896      r8000000000000005
->                             (53.34%) 0      r8000000000000007
->                                                 (61.20%) 0
->               r8000000000000006
->                   (68.88%) 0      r0000000000020002
->                                       (76.53%) <not counted>
->               r0000000000020004
->                   (0.00%) <not counted>      branch-misses
->                                                  (0.00%) <not counted>
->                   cache-misses
->                       (0.00%) 48414917      dTLB-load-misses
->                                                 (9.87%) 2427413
->               dTLB-store-misses
->                   (19.43%) 46958092      iTLB-load-misses
->                                              (28.58%) 69245163600
->               cycles
->                   (37.09%) 70334279943      instructions              #
->                  1.02  insn per cycle           (45.24%)
->
->       20.895871900 seconds time elapsed
->
->        2.724942000 seconds user
->       18.126277000 seconds sys
->
-> perf top/record also works.
->
-> Tested-by: Nikita Shubin <n.shubin@yadro.com>
->
 
-Thanks for the testing.
+[...]
 
-> Yours,
-> Nikita Shubin
->
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> > Sorry, missed this earlier. I did face the probe deferral issue before and
+> > submitted a small series for fixing that:
+> >
+> > https://lore.kernel.org/linux-mtd/20210302132757.225395-1-manivannan.sadhasivam@linaro.org/
+> >
+> > These 2 patches are in mainline now. Robert, can you make sure that you have
+> > these 2 patches in your tree?
+> 
+> Hi Mani,
+> Yes, I have those patches as I am running this on top of 5.15-rc4 currently.
+> 
 
+Hmm. So if both SMEM and NAND drivers are added to the probe deferral list then
+the issue is likely not related to probe ordering.
 
+Can you nail down the point where the board starts rebooting?
 
--- 
-Regards,
-Atish
+Thanks,
+Mani
+
+> Regards,
+> Robert
+> >
+> > Thanks,
+> > Mani
+> >
+> > > Thanks,
+> > > Bjorn
