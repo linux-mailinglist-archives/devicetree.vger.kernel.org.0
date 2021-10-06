@@ -2,149 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F39E42489D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 23:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FA904248AA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 23:14:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239584AbhJFVQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 17:16:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47888 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239591AbhJFVQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 17:16:25 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A20BC061746;
-        Wed,  6 Oct 2021 14:14:33 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id r19so14857340lfe.10;
-        Wed, 06 Oct 2021 14:14:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=o0cs0AX5nwq+IUf+CKObBfgaJgmuJRgoStffvFAIT10=;
-        b=OAAHbT16tXECghgQaYpBDvaBg2nyBCHmtuMyvDSLSTbuObskqWOWorhnE8GXhvyO1P
-         Bn8A+jUBY+Hq5L0nIx22XuRHtWkBK8UW1aLeRHBCefSUfXdhaYPQAKLssy6jZKCTDPxq
-         OuYscwLfHiEBxKSN7pEAEtHJlzcaimxesa44SVQW0YCpj0qYJNneKlMBzctNoocz4ITJ
-         VLxjAWxLdAX08DniG2ajG9YPUowE5Inf0Vtvp7bs6ZdboMQY6blXurlo0smoYncTZQ5t
-         rw5V35NzcSMJgcQCw0DJs/tH0fAF9zeUo7FIdEgb52Z5b5ZJr0WNe8OnId+CPYq6ATlB
-         3Q5Q==
+        id S239645AbhJFVQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 17:16:46 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:36810 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239646AbhJFVQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 17:16:45 -0400
+Received: by mail-ot1-f41.google.com with SMTP id 5-20020a9d0685000000b0054706d7b8e5so4867091otx.3;
+        Wed, 06 Oct 2021 14:14:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=o0cs0AX5nwq+IUf+CKObBfgaJgmuJRgoStffvFAIT10=;
-        b=dHKgwl05ahWi5cU9Hiyl4YYu0neWI9FXFRCKzhBcVeC9fpThuIrBw3SPwKNI8YCBVA
-         5QhIczpMas1JvybyfTI8eWMvo9ZLN3ZCUmAjKMZ1u8TKMwU/x+zMWBLfwZam4m4LKn1T
-         1WVjninNjaI6DH9md/EMlItLR0L7LkRsE5Mu1GQk8EBRCFLa+hS++354PxCR97YtJVIs
-         PRUVGWX2d066aKL1AqrGhvQTnAQ4DzW7DElmb8dZNY5yrcnlG6MrcPnZlROGs4v0jAPD
-         XrOhNnukeq0CR0BDM/L/tRUijvMy89v+UpKBcV8aZQrwr8i7xBOXZa8XbG+74hrtHKT3
-         zUqg==
-X-Gm-Message-State: AOAM531NxcdUtxp3DzpJ+oZqoFD1mFyFP+7tzseG/avl+qCQSxYfiL2I
-        2/Sfj7qNzDwQsxf15/BCZZU=
-X-Google-Smtp-Source: ABdhPJxZLAYAk0xCkFO9EYine6/BQhvLLzwYgf3qj0g/KgNEzyhgPVdePU/+7HeABS0slrCmP/BOEw==
-X-Received: by 2002:a05:6512:3c95:: with SMTP id h21mr371551lfv.128.1633554871471;
-        Wed, 06 Oct 2021 14:14:31 -0700 (PDT)
-Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
-        by smtp.googlemail.com with ESMTPSA id t18sm2356186lfl.219.2021.10.06.14.14.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Oct 2021 14:14:31 -0700 (PDT)
-Subject: Re: [PATCH v13 06/35] clk: tegra: Support runtime PM and power domain
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Nishanth Menon <nm@ti.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-References: <20210926224058.1252-1-digetx@gmail.com>
- <20210926224058.1252-7-digetx@gmail.com>
- <CAPDyKFq+LS4Jr1GyC-a-tGWPzGH0JxfJ9wKY=uQEBGYm952azw@mail.gmail.com>
- <24101cd6-d3f5-1e74-db39-145ecd30418b@gmail.com>
- <CAPDyKFreK7976PJL-1zySoza_yXM7rMQ64aODWUZ+U3L-uCa0w@mail.gmail.com>
- <4bdba8a2-4b9b-ed7d-e6ca-9218d8200a85@gmail.com>
- <74a47158-e2e4-5fd0-3f37-0b50d4ead4d9@gmail.com>
- <CAPDyKFr2-f1wM+6jF9vWJ-Nq80Zg1Z3qFP6saULOrBi1270HGw@mail.gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <b06bf794-b8b3-417b-58ef-4d815ca86c95@gmail.com>
-Date:   Thu, 7 Oct 2021 00:14:29 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lak8Kr6S28oWWnCbDixiphSYTCbXgMBHH9/qqV4Giyc=;
+        b=1Mlm9+OC7ZdJp/6YYm78hcul4b2nMToWIb94JdwE1gCoGR1M8e+Aj+CZK/y9Fbft1j
+         PYe9c/i02O0YOG9YLdp5yxNNGgj9LNwgH/3NlrVsJ/evU/vKkv6gvj7tUBz6zAHdZ7Vz
+         OvPLsPhcls2xBGpqpT8hs/1mqE9Tm3ukN4OoIdIcgeGtYAGyuk8Eugzc3kjm3lPzdhu+
+         JaPfjXtjM3dNK/XYZu6yk1KuiMSBzgTd8zsoU/kXF5GNV/0VPjL3SMBlcZ7O52WKg6pI
+         8JPD/OWTPRVMr2wyXnQrTGbsVHicVvLDL5aNox1WqcjKT/uG1o07dzxdEhiv+t9WxsUV
+         4MlA==
+X-Gm-Message-State: AOAM53066FWbw6hNWH1xZ/4h62+XCtt/Jf2LLwl/iEyighvGCy06+Kcc
+        z4Qgt3r+Sxl3l5TPInwPYdYx4bFl+Q==
+X-Google-Smtp-Source: ABdhPJwjkpOHrD8M6tpuzasy4z7/puEHow6aB3HnOWHU8azVI5+r8jJyF/JJjo6sBcNSVtVIjY967g==
+X-Received: by 2002:a9d:71d4:: with SMTP id z20mr432620otj.29.1633554892688;
+        Wed, 06 Oct 2021 14:14:52 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id s22sm1100539ois.32.2021.10.06.14.14.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Oct 2021 14:14:51 -0700 (PDT)
+Received: (nullmailer pid 2887704 invoked by uid 1000);
+        Wed, 06 Oct 2021 21:14:50 -0000
+Date:   Wed, 6 Oct 2021 16:14:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [RFC PATCH 1/4] dt-bindings: pincfg-node: Add "output-impedance"
+ property
+Message-ID: <YV4RypY6/n23Bl2T@robh.at.kernel.org>
+References: <20210930121630.17449-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210930121630.17449-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFr2-f1wM+6jF9vWJ-Nq80Zg1Z3qFP6saULOrBi1270HGw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210930121630.17449-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-06.10.2021 15:43, Ulf Hansson пишет:
-> On Wed, 6 Oct 2021 at 00:43, Dmitry Osipenko <digetx@gmail.com> wrote:
->>
->> 06.10.2021 01:19, Dmitry Osipenko пишет:
->> ...
->>> I reproduced the OFF problem by removing the clk prepare/unprepare from
->>> the suspend/resume of the clk driver and making some extra changes to
->>> clock tree topology and etc to trigger the problem on Nexus 7.
->>>
->>> tegra-pmc 7000e400.pmc: failed to turn off PM domain heg: -13
->>>
->>> It happens from genpd_suspend_noirq() -> tegra_genpd_power_off() -> clk
->>> -> GENPD -> I2C -> runtime-pm.
->>>
->>> -13 is EACCES, it comes from the runtime PM of I2C device. RPM is
->>> prohibited/disabled during late (NOIRQ) suspend by the drivers core.
->>
->> My bad, I double-checked and it's not I2C RPM that is failing now, but
->> the clock's RPM [1], which is also unavailable during NOIRQ.
+On Thu, Sep 30, 2021 at 01:16:27PM +0100, Lad Prabhakar wrote:
+> On RZ/G2L SoC for Group-B pins, output impedance can be configured.
+> This patch documents "output-impedance" property in pincfg-node.yaml so
+> that other platforms requiring such feature can make use of this property.
 > 
-> Yes, that sounds reasonable.
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> You would then need a similar patch for the tegra clock driver as I
-> suggested for tegra I2C driver. That should solve the problem, I
-> think.
-> 
->>
->> [1]
->> https://elixir.free-electrons.com/linux/v5.15-rc4/source/drivers/clk/clk.c#L116
->>
->> Previously it was I2C RPM that was failing in a similar way, but code
->> changed a tad since that time.
-> 
-> Alright. In any case, as long as the devices gets suspended in the
-> correct order, I think it should be fine to cook a patch along the
-> lines of what I suggest for the I2C driver as well.
-> 
-> It should work, I think. Although, maybe you want to avoid runtime
-> resuming the I2C device, unless it's the device belonging to the PMIC
-> interface, if there is a way to distinguish that for the driver.
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> index 71ed0a9def84..cdcb23daeca2 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> @@ -114,6 +114,10 @@ properties:
+>      description: enable output on a pin without actively driving it
+>        (such as enabling an output buffer)
+>  
+> +  output-impedance:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Ulf, thank you very much for the suggestions! I was thinking about this
-all once again and concluded that the simplest variant will be to just
-remove the suspend ops from the clk driver since neither of PLLs require
-high voltage. We now have voltage bumped to a nominal level during
-suspend by Tegra's regulator-coupler driver and it's much higher than
-voltage needed by PLLs. So the problem I was trying to work around
-doesn't really exist anymore.
+Use standard unit suffix and drop the type.
+
+> +    description: set the pins output impedance at most X ohm
+> +
+>    output-low:
+>      type: boolean
+>      description: set the pin to output mode with low level
+> -- 
+> 2.17.1
+> 
+> 
