@@ -2,325 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72860424550
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 19:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E274424589
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:02:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232101AbhJFR4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 13:56:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58190 "EHLO
+        id S234560AbhJFSEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 14:04:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbhJFR4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 13:56:10 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1DE9C061753;
-        Wed,  6 Oct 2021 10:54:17 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id x27so13770356lfa.9;
-        Wed, 06 Oct 2021 10:54:17 -0700 (PDT)
+        with ESMTP id S232498AbhJFSEq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:04:46 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023AFC061746;
+        Wed,  6 Oct 2021 11:02:54 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id a73so3244914pge.0;
+        Wed, 06 Oct 2021 11:02:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=a9k9Di8QRSjHw+JIJ/kleEuOF1voj2mDbtq0EAdXgvM=;
-        b=Wf+pL0su6BHsKR7nlTe4gApWdcQHsp/leFukMVJRwwlCHm9bYGXCCEHfE/UzxHP35l
-         ua9L9dwYoYgW8FZLFR2T/X0kkw5TTIT1EwVp+IPDNKlYnvPCdkrDdBDh2fwNErLBZcqR
-         QvqMduqW1YUshbcSW/TZxK5OoTPDHA/VOtaEEzFdod25pKOFYArE5JhFU50SMfubedDF
-         23N010XzSDQG4B1iWEnETkQQ5JM69wr15LkqxBFlUl+CcVwnSRo6afgR9CNVB7x54OPp
-         VRE1qj++FdIwkEhenqgOnCzV8SvVqww6ZMv0eFiskF/vu8rlG38ZvUQLj4SjJxJIMPiV
-         IvKA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4TKwQXAYbjOvW/141fj+PXaCeAVVGq83heQrA5J1LOQ=;
+        b=W4/ZzDzkX7XhETD7t2aYC5dKXknh47hi2hPwTpNi/nDOafO9vq6ZQQPxwU5Yo3dFxs
+         d6zKU4R9mbGcwaeE4BPe28sppUef2LTy5ja5ncfKvWBX4GP5N2AG1Gac8zo5Ga6SlTNH
+         dPTTxpwEAFW/WpjUG1iTTiT77UQwMaw/1oJDEdM7EW6oGah7vkVemyGT0jkfQaF19hzJ
+         y8O9MYppp+zYv0+1iM24CElrOpl0eZixAxJP3O8ZhGat9SrrRY7AjyU5ALn8bO/HO9Xm
+         wINzsC9aNBdBD/YQf4K2Ncl4J7b1Pf2vSjP1D1Q1rmoBG9oRo9If8bIA1UoiKKVM1DhT
+         ZSZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=a9k9Di8QRSjHw+JIJ/kleEuOF1voj2mDbtq0EAdXgvM=;
-        b=3+KVJuyuVSAU1mv7YX70vulsw3+Z8WXI5oH3wATaL160yjybCq6dSwl2RQyEOiJdjS
-         BKBHgeysC22H01SttlICYOlQyDmAuxOXJvOLok8nMrNx2kPZeWu0sJYmYrPGpxfzoRdR
-         Cgxob27pqRI9Nd7SEpLMA28IDky88pqLS3i7jIK4Oi7xBD00DCyRKSnSpyUikJ7fIFFA
-         XWQsCNUmTV81tE70dNn3HzwLYXz9WgnS3i5NzuzfNrxmABwDPyE7qLO2sSJLxaIQ01SJ
-         Mmkozvvq1S37DohIHLHe7vSElyF2ScjTdy5rZ8z21x1+gcVTewsN+Ec4Sp25yFY675LI
-         bPTA==
-X-Gm-Message-State: AOAM5320fmnZ4Lcn/uIxFbml4mcM+7EsvRaMztR5bvxEm22P73QggOfp
-        8P6zx6RaGcU7LdFzDK1jGiMV+m3PhFLCbgB1ROE=
-X-Google-Smtp-Source: ABdhPJxgy/mRrH43RK1J7qxx++zPO1SKNcj+z9JQU9lHV32x5j+sYEYYje0zcWG/sKu+dZyqTsbUvtQH1+hYIkENBeo=
-X-Received: by 2002:ac2:5e9c:: with SMTP id b28mr11025869lfq.405.1633542856224;
- Wed, 06 Oct 2021 10:54:16 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4TKwQXAYbjOvW/141fj+PXaCeAVVGq83heQrA5J1LOQ=;
+        b=t+cZmknQa7RBkq2d1cng7bUsys9JdGJyG5nuO8xn+End8EPyv2Oc2JKnNcbJZ99JR2
+         XBpK55XlDl9CgkZ2sAtl9ChHdkoBd9L8Wyq83dP4IvsbJh6NpqfoVbZ3GqFrfzKRyUPr
+         YsPvxGigqUmZftFA4fw3jP8iHHKrqnb3FqHPevEc9CKlkYAVP1FqSKoxJdQEh6BFioM0
+         CmFzh6DHHJYHgJF/i97a9nzclV+5lLMhKaHONCWgMBVwsDT9EHOdZaE57MVorzWyR36i
+         eg58IPsngV3nWNLkBXtrNPtCNKIsdjdHKPXC6QBSxWss/fuOxsDRoz5vQvuwiMKuRaAW
+         YFsg==
+X-Gm-Message-State: AOAM531Vi817frlyeMaoIEcnq7zFIHRQnu017APkx22Xj5Qa9WfRSD7T
+        C1fa5wsDNU0R5Z+IfdTWuDQ=
+X-Google-Smtp-Source: ABdhPJzh6DiVWI8qJ6GdozQJiMoJPFRbLJyCkqaFQmQYqBYLD9FM9CjU97ZdyezEx26Pcww7Pbg8Eg==
+X-Received: by 2002:a05:6a00:22c3:b0:447:b30c:ed36 with SMTP id f3-20020a056a0022c300b00447b30ced36mr39274563pfj.82.1633543373111;
+        Wed, 06 Oct 2021 11:02:53 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:18f1:d20e:edb5:c807])
+        by smtp.gmail.com with ESMTPSA id m22sm22209908pfo.176.2021.10.06.11.02.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Oct 2021 11:02:52 -0700 (PDT)
+Date:   Wed, 6 Oct 2021 11:02:49 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     "Tobita, Tatsunosuke" <tatsunosuke.tobita@wacom.com>
+Cc:     Ping Cheng <pinglinux@gmail.com>,
+        Alistair Francis <alistair@alistair23.me>,
+        "Cheng, Ping" <Ping.Cheng@wacom.com>,
+        linux-input <linux-input@vger.kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Tatsunosuke Tobita <junkpainting@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alistair23@gmail.com" <alistair23@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v10 05/12] Input: wacom_i2c - Read the descriptor values
+Message-ID: <YV3kyReNo7BkecAD@google.com>
+References: <20210829091925.190-1-alistair@alistair23.me>
+ <20210829091925.190-7-alistair@alistair23.me>
+ <YS1DGuTTAEKAd2Yr@google.com>
+ <PA4PR07MB7407FE9FE271191AC52F7EA387CE9@PA4PR07MB7407.eurprd07.prod.outlook.com>
+ <YTcBOskPYjbv4q61@google.com>
+ <CAF8JNh+PcYuaLL=ToS0hOT62YbVmMWY9BCT-CGx_x+AkKuO_Tw@mail.gmail.com>
+ <YThQUtE757b/ExR4@google.com>
+ <PA4PR07MB7407540AC0904ADB6D58A46487D69@PA4PR07MB7407.eurprd07.prod.outlook.com>
+ <PA4PR07MB7407EF5BE9140753388E12C187B09@PA4PR07MB7407.eurprd07.prod.outlook.com>
 MIME-Version: 1.0
-References: <20210813145302.3933-1-kevin3.tang@gmail.com> <20210813145302.3933-7-kevin3.tang@gmail.com>
- <20210917154047.leojvqjqjj2sg34l@gilmour> <CAFPSGXZbqh0f6kEoQaq_Nt677ksVS6QPdAa5==KVVAszSAuasw@mail.gmail.com>
- <20210928092805.wbc4ev3ze7a7zgqr@gilmour>
-In-Reply-To: <20210928092805.wbc4ev3ze7a7zgqr@gilmour>
-From:   Kevin Tang <kevin3.tang@gmail.com>
-Date:   Thu, 7 Oct 2021 01:54:04 +0800
-Message-ID: <CAFPSGXbiRQ22gnqDB13LBFt-RSPneS751JsoN8y6gTpTh7M1fw@mail.gmail.com>
-Subject: Re: [PATCH v6 6/6] drm/sprd: add Unisoc's drm mipi dsi&dphy driver
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, pony1.wu@gmail.com,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PA4PR07MB7407EF5BE9140753388E12C187B09@PA4PR07MB7407.eurprd07.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2021=E5=B9=B49=E6=9C=8828=E6=97=
-=A5=E5=91=A8=E4=BA=8C =E4=B8=8B=E5=8D=885:28=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Sun, Sep 26, 2021 at 10:31:53PM +0800, Kevin Tang wrote:
-> > Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2021=E5=B9=B49=E6=9C=8817=E6=
-=97=A5=E5=91=A8=E4=BA=94 =E4=B8=8B=E5=8D=8811:40=E5=86=99=E9=81=93=EF=BC=9A
-> > > > +static void sprd_dsi_encoder_mode_set(struct drm_encoder *encoder,
-> > > > +                              struct drm_display_mode *mode,
-> > > > +                              struct drm_display_mode *adj_mode)
-> > > > +{
-> > > > +     struct sprd_dsi *dsi =3D encoder_to_dsi(encoder);
-> > > > +
-> > > > +     drm_dbg(dsi->drm, "%s() set mode: %s\n", __func__, dsi->mode-=
->name);
-> > > > +}
-> > >
-> > > You don't need that function?
-> > No need for now. need to delete it?
->
-> Yes
->
-> > > > +static int sprd_dsi_encoder_atomic_check(struct drm_encoder *encod=
-er,
-> > > > +                                 struct drm_crtc_state *crtc_state=
-,
-> > > > +                                 struct drm_connector_state *conn_=
-state)
-> > > > +{
-> > > > +     return 0;
-> > > > +}
-> > >
-> > > Ditto
+Hi Tatsunosuke,
+
+On Wed, Oct 06, 2021 at 07:08:38AM +0000, Tobita, Tatsunosuke wrote:
+> Hi Dmitry,
+> 
+> I now understand what you mean. The understandable example is USB. The
+> most of the recent drivers for USB devices has bee released as HiD
+> driver.  That said. It's glad if you can have comments too about my
+> questions.  Especially, when someone doesn't want the whole HID
+> driver, but a single I2C I/F'd input device driver.
+
+So far I have not heard a good reason for "not wanting" to use a
+standard, well tested solution that everyone else is using, and instead
+having a custom driver that essentially reimplements everything that HID
+layer already does. Is the additional memory requirements of HID layer
+too onerous? Can we address that instead?
+
+If we continue this train of thought, why are they concerned with HID,
+but happy with using I2C layer? Why don't they require a driver that
+bangs directly onto I2C master ports bypassing all the layersi and
+communicating with the peripheral directly?
+
+> And also, I want to make correction that ***not*** all of our devices
+> support HID. Some old devices do not support HID; that's why I added
+> the driver in 2011.
+
+And that is a good reason to keep existing version of wacom_i2c in the
+kernel, but we should not try to extend it to handle HID-compatible
+devices.
+
+Thanks,
+Dmitry
+
+> 
+> Thanks,
+> 
+> Tats
+> 
+> -----Original Message-----
+> From: Tobita, Tatsunosuke <tatsunosuke.tobita@wacom.com> 
+> Sent: Friday, September 10, 2021 1:10 PM
+> To: Dmitry Torokhov <dmitry.torokhov@gmail.com>; Ping Cheng <pinglinux@gmail.com>
+> Cc: Alistair Francis <alistair@alistair23.me>; Cheng, Ping <Ping.Cheng@wacom.com>; linux-input <linux-input@vger.kernel.org>; linux-imx@nxp.com; kernel@pengutronix.de; Tatsunosuke Tobita <junkpainting@gmail.com>; linux-kernel@vger.kernel.org; alistair23@gmail.com; robh+dt@kernel.org; devicetree@vger.kernel.org
+> Subject: RE: [PATCH v10 05/12] Input: wacom_i2c - Read the descriptor values
+> 
+> [EXTERNAL]
+> 
+> Hi Dmitry and Ping,
+> 
+> I understand that we should stick with HID as much as possible.
+> However, there're certainly situations in which some do not want even whole HID, but only an individual functionality for a certain device.
+> In that case, they may not even include the bit of the HID, but exclude HID. What about then; what they should do without HID?
+> This would be also the questions if such situations happened to other vendors than Wacom.
+> 
+> Also, what I need to add is that the early generations of our I2C devices do not support HID which is why "wacom_i2c" was added in 2011.
+> 
+> 
+> Tats
+> 
+> -----Original Message-----
+> From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Sent: Wednesday, September 8, 2021 2:56 PM
+> To: Ping Cheng <pinglinux@gmail.com>
+> Cc: Tobita, Tatsunosuke <tatsunosuke.tobita@wacom.com>; Alistair Francis <alistair@alistair23.me>; Cheng, Ping <Ping.Cheng@wacom.com>; linux-input <linux-input@vger.kernel.org>; linux-imx@nxp.com; kernel@pengutronix.de; Tatsunosuke Tobita <junkpainting@gmail.com>; linux-kernel@vger.kernel.org; alistair23@gmail.com; robh+dt@kernel.org; devicetree@vger.kernel.org
+> Subject: Re: [PATCH v10 05/12] Input: wacom_i2c - Read the descriptor values
+> 
+> [EXTERNAL]
+> 
+> Hi Ping,
+> 
+> On Tue, Sep 07, 2021 at 10:25:43PM -0700, Ping Cheng wrote:
+> > Hi Dmitry,
 > >
-> > No need for now. need to delete it?
->
-> Yep
->
-> > > > +static int sprd_dsi_find_panel(struct sprd_dsi *dsi)
-> > > > +{
-> > > > +     struct device *dev =3D dsi->host.dev;
-> > > > +     struct device_node *child, *lcds_node;
-> > > > +     struct drm_panel *panel;
-> > > > +
-> > > > +     /* search /lcds child node first */
-> > > > +     lcds_node =3D of_find_node_by_path("/lcds");
-> > > > +     for_each_child_of_node(lcds_node, child) {
-> > > > +             panel =3D of_drm_find_panel(child);
-> > > > +             if (!IS_ERR(panel)) {
-> > > > +                     dsi->panel =3D panel;
-> > > > +                     return 0;
-> > > > +             }
-> > > > +     }
-> > > > +
-> > > > +     /*
-> > > > +      * If /lcds child node search failed, we search
-> > > > +      * the child of dsi host node.
-> > > > +      */
-> > > > +     for_each_child_of_node(dev->of_node, child) {
-> > > > +             panel =3D of_drm_find_panel(child);
-> > > > +             if (!IS_ERR(panel)) {
-> > > > +                     dsi->panel =3D panel;
-> > > > +                     return 0;
-> > > > +             }
-> > > > +     }
-> > > > +
-> > > > +     drm_err(dsi->drm, "of_drm_find_panel() failed\n");
-> > > > +     return -ENODEV;
-> > > > +}
-> > >
-> > > Just use devm_drm_of_get_bridge there
+> > On Mon, Sep 6, 2021, 11:05 PM Dmitry Torokhov 
+> > <dmitry.torokhov@gmail.com>
+> > wrote:
 > >
-> > We use drm_panel_init and drm_panel_add API to add panel, so here is a
-> > panel device, not a bridge.
->
-> Like Sam said, the panel API is on its way out and is being superseded
-> by bridge_panels.
-Ok, i will try it.
->
-> > > > +static int sprd_dsi_host_init(struct sprd_dsi *dsi, struct device =
-*dev)
-> > > > +{
-> > > > +     int ret;
-> > > > +
-> > > > +     dsi->host.dev =3D dev;
-> > > > +     dsi->host.ops =3D &sprd_dsi_host_ops;
-> > > > +
-> > > > +     ret =3D mipi_dsi_host_register(&dsi->host);
-> > > > +     if (ret)
-> > > > +             drm_err(dsi->drm, "failed to register dsi host\n");
-> > > > +
-> > > > +     return ret;
-> > > > +}
+> > > Hi Tatsunosuke,
+> > >
+> > > On Thu, Sep 02, 2021 at 07:33:49AM +0000, Tobita, Tatsunosuke wrote:
+> > > > Hi Dmitry,
 > > > >
-> > > > [...]
-> > > >
-> > > > +static int sprd_dsi_connector_init(struct drm_device *drm, struct =
-sprd_dsi *dsi)
-> > > > +{
-> > > > +     struct drm_encoder *encoder =3D &dsi->encoder;
-> > > > +     struct drm_connector *connector =3D &dsi->connector;
-> > > > +     int ret;
-> > > > +
-> > > > +     connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> > > > +
-> > > > +     ret =3D drm_connector_init(drm, connector,
-> > > > +                              &sprd_dsi_atomic_connector_funcs,
-> > > > +                              DRM_MODE_CONNECTOR_DSI);
-> > > > +     if (ret) {
-> > > > +             drm_err(drm, "drm_connector_init() failed\n");
-> > > > +             return ret;
-> > > > +     }
-> > > > +
-> > > > +     drm_connector_helper_add(connector,
-> > > > +                              &sprd_dsi_connector_helper_funcs);
-> > > > +
-> > > > +     drm_connector_attach_encoder(connector, encoder);
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +
-> > > > +static int sprd_dsi_context_init(struct sprd_dsi *dsi,
-> > > > +                     struct device *dev)
-> > > > +{
-> > > > +     struct platform_device *pdev =3D to_platform_device(dev);
-> > > > +     struct dsi_context *ctx =3D &dsi->ctx;
-> > > > +     struct resource *res;
-> > > > +
-> > > > +     res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > > > +     ctx->base =3D devm_ioremap(dev, res->start, resource_size(res=
-));
-> > > > +     if (!ctx->base) {
-> > > > +             drm_err(dsi->drm, "failed to map dsi host registers\n=
-");
-> > > > +             return -ENXIO;
-> > > > +     }
-> > > > +
-> > > > +     ctx->pll =3D devm_kzalloc(dev, sizeof(*ctx->pll), GFP_KERNEL)=
-;
-> > > > +     if (!ctx->pll)
-> > > > +             return -ENOMEM;
-> > > > +
-> > > > +     ctx->regmap =3D devm_regmap_init(dev, &regmap_tst_io, dsi, &b=
-yte_config);
-> > > > +     if (IS_ERR(ctx->regmap)) {
-> > > > +             drm_err(dsi->drm, "dphy regmap init failed\n");
-> > > > +             return PTR_ERR(ctx->regmap);
-> > > > +     }
-> > > > +
-> > > > +     ctx->data_hs2lp =3D 120;
-> > > > +     ctx->data_lp2hs =3D 500;
-> > > > +     ctx->clk_hs2lp =3D 4;
-> > > > +     ctx->clk_lp2hs =3D 15;
-> > > > +     ctx->max_rd_time =3D 6000;
-> > > > +     ctx->int0_mask =3D 0xffffffff;
-> > > > +     ctx->int1_mask =3D 0xffffffff;
-> > > > +     ctx->enabled =3D true;
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +
-> > > > +static int sprd_dsi_bind(struct device *dev, struct device *master=
-, void *data)
-> > > > +{
-> > > > +     struct drm_device *drm =3D data;
-> > > > +     struct sprd_dsi *dsi;
-> > > > +     int ret;
-> > > > +
-> > > > +     dsi =3D sprd_dsi_encoder_init(drm, dev);
-> > > > +     if (IS_ERR(dsi))
-> > > > +             return PTR_ERR(dsi);
-> > > > +
-> > > > +     dsi->drm =3D drm;
-> > > > +     dev_set_drvdata(dev, dsi);
-> > > > +
-> > > > +     ret =3D sprd_dsi_connector_init(drm, dsi);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     ret =3D sprd_dsi_context_init(dsi, dev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     ret =3D sprd_dsi_host_init(dsi, dev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +
-> > > > +static void sprd_dsi_unbind(struct device *dev,
-> > > > +                     struct device *master, void *data)
-> > > > +{
-> > > > +     struct sprd_dsi *dsi =3D dev_get_drvdata(dev);
-> > > > +
-> > > > +     mipi_dsi_host_unregister(&dsi->host);
-> > > > +}
-> > > > +
-> > > > +static const struct component_ops dsi_component_ops =3D {
-> > > > +     .bind   =3D sprd_dsi_bind,
-> > > > +     .unbind =3D sprd_dsi_unbind,
-> > > > +};
-> > > > +
-> > > > +static const struct of_device_id dsi_match_table[] =3D {
-> > > > +     { .compatible =3D "sprd,sharkl3-dsi-host" },
-> > > > +     { /* sentinel */ },
-> > > > +};
-> > > > +
-> > > > +static int sprd_dsi_probe(struct platform_device *pdev)
-> > > > +{
-> > > > +     return component_add(&pdev->dev, &dsi_component_ops);
+> > > > Yes, our firmware supports HID over I2C.  However, some of our 
+> > > > customers often do not want to use HID to handle our hardware; 
+> > > > even they don't install the generic HID driver neither.  In such 
+> > > > case, we need to distinguish what generation of our device 
+> > > > customer's has. And to do so, we check I2C HID descriptor even 
+> > > > though the driver is not working with HID driver components, but 
+> > > > this one.  That is why I2C HID descriptor is used there. It is 
+> > > > called, but the situation with this driver is not supposed to work as a HID device.
 > > >
-> > > In order to prevent probe issues, you need to register you mipi_dsi_h=
-ost
-> > > here, see:
-> > > https://lore.kernel.org/dri-devel/20210910101218.1632297-3-maxime@cer=
-no.tech/
+> > > I would like to understand better why the customers do not want to 
+> > > use HID.
 > >
-> > We register mipi_dsi_hot on our panel driver, like this:
 > >
-> > 1092   ret =3D mipi_dsi_attach(slave);
-> > 1093   if (ret) {
-> > 1094   DRM_ERROR("failed to attach dsi panel to host\n");
-> > 1095   drm_panel_remove(&panel->base);
-> > 1096   return ret;
-> > 1097   }
->
-> It's not about when you attach, but when you call
-> mipi_dsi_host_register. You're doing it in sprd_dsi_host_init that you
-> call in bind(), which is against the best practices and will create
-> probing issues in the future.
-If we call mipi_dsi_host_register on probe phase, it looks like can't
-call drmm_encoder_alloc to create dsi device on bind.
-It may be necessary to go back to the devm_kzalloc method used before
-
-static int sprd_dsi_probe(struct platform_device *pdev)
-{
-struct device *dev =3D &pdev->dev;
-struct sprd_dsi *dsi;
-
-dsi =3D devm_kzalloc(dev, sizeof(*dsi), GFP_KERNEL);
-if (!dsi)
-    return -ENOMEM;
-
-dsi->host.dev =3D dev;
-dsi->host.ops =3D &sprd_dsi_host_ops;
-ret =3D mipi_dsi_host_register(&dsi->host);
-if (ret)
-    dev_err(dev, "failed to register dsi host\n");
-
-......
-return 0;
-}
-
->
-> Maxime
+> > Those customers normally run embedded Linux. Their hardwares have very 
+> > specific use cases. They don't need to support any other HID devices 
+> > except the Wacom i2c device.
+> >
+> > >
+> > There needs to be a _very_ strong reason to essentially duplicate
+> > > HID layer in a vendor driver and I inclined to say that such 
+> > > customers
+> >
+> > would need to patch their kernels themselves.
+> >
+> >
+> > They most likely don't want to duplicate HID layer. They just don't 
+> > need most of the HID layer code.
+> 
+> They just need touchscreen support. Plus stylus support. And maybe battery support. And maybe something else down the road... And they need to introduce DT and ACPI descriptors to be able to mould the behavior to platform needs. Which is pretty much the purpose of HID layer.
+> 
+> > wacom_i2c simplifies their deployment and testing process. Most of 
+> > those customers are very small companies...
+> 
+> And now please continue this train of thoughts and consider every touch vendor. Wacom is not unique. We have Elan, Cypress, Weida, Goodix, etc.
+> etc. Vendor drivers were acceptable before we had I2C standard, but now it is much better for everyone to share the efforts and use HID instead of replicating it for every vendor.
+> 
+> Thanks.
+> 
+> --
+> Dmitry
