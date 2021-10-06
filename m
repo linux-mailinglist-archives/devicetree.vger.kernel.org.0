@@ -2,134 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7565F424829
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 22:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 935CB42485C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 22:55:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239515AbhJFUp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 16:45:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239511AbhJFUp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 16:45:56 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E5DC061753;
-        Wed,  6 Oct 2021 13:44:03 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id ls18-20020a17090b351200b001a00250584aso4834837pjb.4;
-        Wed, 06 Oct 2021 13:44:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=uukXjZUQ/w+EOWxXqSK1+sdvRdmpSRZkmYypGawzIsM=;
-        b=QT+moIpptwRsvjJhH6SoVjzQTZZ76DE7Nw9kqS29J/CEKIqSBkKNAPsy0jT6+cMT5r
-         0B+0+QxpzmLLa3r7jEXnwxbIQgJkwMi/us4S+81A070jhHgCr7uQ+fbqDmEae7tJyZrW
-         KXcNV8SnxYIgrHqlro0WODjOtXLW8X88ZHdiubGxyQ6s4VSefvMST/UT52GjNmBirP7J
-         vPJrn4/h0HeMwFA9oFdn+ECv8WDQE4jLb4GwOzBBu4isPwb9sn2ye3J8U1vaLKqwIt6z
-         g4sBC+3kK0eokeo5x1JO49TmdiQsp14FxekFKZ6n9Z+Jk+BJ4arhTM0CkIcl8c56mqWF
-         a5Sw==
+        id S239524AbhJFU5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 16:57:42 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:40917 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239516AbhJFU5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 16:57:41 -0400
+Received: by mail-ot1-f44.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so4779662otq.7;
+        Wed, 06 Oct 2021 13:55:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uukXjZUQ/w+EOWxXqSK1+sdvRdmpSRZkmYypGawzIsM=;
-        b=VEFyg7RWWiqrBN1ghf0WFRGdya2NV8YeXc9yTR4umQ+RrbZmQMnKUMYk8M/hqdnAx9
-         K4TGUGQ0ku+OwqDO4QXMmIPgXHNBiMVjRjkAJuiCrGyTpc5x1MXP4+815LugJU/VuzBi
-         IqruQBBdfsjTnt5tGmGhd88L5AUoYYv34nPUMel02xhi0gxIbABqd+xUUpuNikXr24dZ
-         VLMX65Pcl9NFDvaCjr1vOQdC58utfmHXSH+aKSSP0/nhZhaIaKe36FgkAt3ffrKDUdu5
-         Y23a7SOxGTK2pfKN7NXyvcH7V+1bUFsOvlwh/gOyLVbDAl917qiYCUrGD95UapPmEDQ7
-         EZ9w==
-X-Gm-Message-State: AOAM533+Mmt0p51sP+xx9MaukHN+UPZrkiUr54ioP/lKQLYJI2phPS3z
-        PlDjOgdiLE9rAi0JozSsR7w=
-X-Google-Smtp-Source: ABdhPJxbN+u6234S13N4970pWpeBYhU6hjO3nALy/nZjNDvGJdvqZ+ABgTpyG64/0LL2Z6QM8DUU9w==
-X-Received: by 2002:a17:902:bb81:b0:12d:a7ec:3d85 with SMTP id m1-20020a170902bb8100b0012da7ec3d85mr328965pls.17.1633553043180;
-        Wed, 06 Oct 2021 13:44:03 -0700 (PDT)
-Received: from localhost ([2409:10:24a0:4700:e8ad:216a:2a9d:6d0c])
-        by smtp.gmail.com with ESMTPSA id q8sm5806904pja.52.2021.10.06.13.44.01
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=PEl1Wiq7Yzxw1JyOc9TwT8faJxfEQGULJwcfWCWiJkE=;
+        b=GyzGwyXw7S0wGnKixrE5Ff8odzbDciNXepCn5zlz81lUnphvA2nE8AG3CERHiCWlHN
+         X/6X8Owwdn9cO7wePo4Pwt7fEIputZmAYZVBfhfKUH6PsupIpayfLZd7oWgDHzqcUDfr
+         gt5GnYFL4a1sfn9WV2cUHdAI39a0/z22wd8NL7YnNuZyVO2DOf+c1RzLFVN9E/IqXEeS
+         lZldztLQyW+ebpgW3ebqVHcwmEqSKzEVNOOiJ+jLOElQZ7/cmni2i6XhaF76ansJ7Vqt
+         cewdo8gBshF3Q3VI9zk6Es6yJGYwK7jqANewY9nYDNR2GhzXHp2G4fImsp6q4fCpnKq+
+         C5Ww==
+X-Gm-Message-State: AOAM5300EXxCAWE6Y5aVWNRQVjecVd794944Tv3lJszbiIoeMRYtRyIu
+        6+HNuNaUp3/xqcQ98YLr5eoOJG8fkA==
+X-Google-Smtp-Source: ABdhPJyqBAjKD5LkaXGtc+EwOmuHvjB3JzySclZvRpa0XwLGhqvqXkKvpxQPFOovyl89rcbJ/Gf/8w==
+X-Received: by 2002:a05:6830:9c9:: with SMTP id y9mr400716ott.6.1633553748826;
+        Wed, 06 Oct 2021 13:55:48 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 21sm4300612oix.1.2021.10.06.13.55.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 13:44:02 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 05:44:00 +0900
-From:   Stafford Horne <shorne@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        James Morse <james.morse@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
-        Jonas Bonn <jonas@southpole.se>,
-        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, x86@kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-csky@vger.kernel.org, openrisc@lists.librecores.org,
-        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
-        linux-sh@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 06/12] openrisc: Use of_get_cpu_hwid()
-Message-ID: <YV4KkAC2p9D4yCnH@antec>
-References: <20211006164332.1981454-1-robh@kernel.org>
- <20211006164332.1981454-7-robh@kernel.org>
+        Wed, 06 Oct 2021 13:55:48 -0700 (PDT)
+Received: (nullmailer pid 2857378 invoked by uid 1000);
+        Wed, 06 Oct 2021 20:55:46 -0000
+Date:   Wed, 6 Oct 2021 15:55:46 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
+        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 11/11] dt-bindings: hwmon: allow specifying channels
+ for tmp421
+Message-ID: <YV4NUqf7ey5Yr55P@robh.at.kernel.org>
+References: <cover.1632984254.git.krzysztof.adamski@nokia.com>
+ <3ff7b4cc57dab2073fa091072366c1e524631729.1632984254.git.krzysztof.adamski@nokia.com>
+ <20211002142219.GC34532@roeck-us.net>
+ <YVqu92dUgNKlYMlG@localhost.localdomain>
+ <20211005141457.GB2395636@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211006164332.1981454-7-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211005141457.GB2395636@roeck-us.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 06, 2021 at 11:43:26AM -0500, Rob Herring wrote:
-> Replace open coded parsing of CPU nodes' 'reg' property with
-> of_get_cpu_hwid().
+On Tue, Oct 05, 2021 at 07:14:57AM -0700, Guenter Roeck wrote:
+> On Mon, Oct 04, 2021 at 09:36:23AM +0200, Krzysztof Adamski wrote:
+> > Dnia Sat, Oct 02, 2021 at 07:22:19AM -0700, Guenter Roeck napisał(a):
+> > > On Thu, Sep 30, 2021 at 09:19:49AM +0200, Krzysztof Adamski wrote:
+> > > > Add binding description for the per temperature channel configuration
+> > > > like labels and n-factor.
+> > > > 
+> > > > Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+> > > > ---
+> > > >  .../devicetree/bindings/hwmon/ti,tmp421.yaml  | 66 +++++++++++++++++++
+> > > >  1 file changed, 66 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
+> > > > index 47040ace4f73..0d4ea2209500 100644
+> > > > --- a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
+> > > > +++ b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
+> > > > @@ -24,12 +24,49 @@ properties:
+> > > >    reg:
+> > > >      maxItems: 1
+> > > > 
+> > > > +  '#address-cells':
+> > > > +    const: 1
+> > > > +
+> > > > +  '#size-cells':
+> > > > +    const: 0
+> > > > +
+> > > >  required:
+> > > >    - compatible
+> > > >    - reg
+> > > > 
+> > > >  additionalProperties: false
+> > > > 
+> > > > +patternProperties:
+> > > > +  "^input@([0-4])$":
+> > > 
+> > > Was there agreement on "input" ? It is a somewhat odd name for a temperature
+> > > sensor. If that name can be used to distinguish child sensor types, it might
+> > > make sense to have a well defined name to state that this is a temperature
+> > > sensor.
+> > 
+> > Nope, no conclusion on that, yet, thus I did not change that and I was
+> > still using the same approach I had on v1. For me it can be a "channel@X", a
+> > "temperature@X".. whatever you decide.
+> > 
 > 
-> Cc: Jonas Bonn <jonas@southpole.se>
-> Cc: Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>
-> Cc: Stafford Horne <shorne@gmail.com>
-> Cc: openrisc@lists.librecores.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  arch/openrisc/kernel/smp.c | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
+> My question was more on mandating a single string instead of letting
+> users decide. I don't care either if it isn't used for anything in
+> particular, but you specifically mandate "input" as the only valid
+> string. I am not a DT expert, but it seems to me that mandating the
+> content of that string and then not using it other than to ensure that
+> the user really specified "input" doesn't make much sense to me.
+> Having said that, if this is the DT way of things, it is ok with
+> me.
+
+Kind of a catch-22. Node names weren't consistent nor checked, so 
+we can use them. 
+
+> > However I'm in favor of some generic name, like "channel" or "input",
+> > and using some "type property", if required, instead of calling the
+> > nodes "temperatue@X", "voltage@X".
+> > 
 > 
-> diff --git a/arch/openrisc/kernel/smp.c b/arch/openrisc/kernel/smp.c
-> index 415e209732a3..7d5a4f303a5a 100644
-> --- a/arch/openrisc/kernel/smp.c
-> +++ b/arch/openrisc/kernel/smp.c
-> @@ -65,11 +65,7 @@ void __init smp_init_cpus(void)
->  	u32 cpu_id;
->  
->  	for_each_of_cpu_node(cpu) {
-> -		if (of_property_read_u32(cpu, "reg", &cpu_id)) {
-> -			pr_warn("%s missing reg property", cpu->full_name);
-> -			continue;
-> -		}
-> -
-> +		cpu_id = of_get_cpu_hwid(cpu);
-
-You have defined of_get_cpu_hwid to return u64, will this create compiler
-warnings when since we are storing a u64 into a u32?
-
-It seems only if we make with W=3.
-
-I thought we usually warned on this.  Oh well, for the openrisc bits.
-
-Acked-by: Stafford Horne <shorne@gmail.com>
-
->  		if (cpu_id < NR_CPUS)
->  			set_cpu_possible(cpu_id, true);
->  	}
-> -- 
-> 2.30.2
+> It does open up a nother dimension for multi-type sensor chips, though,
 > 
+> For a chip with voltage and temperature sensors:
+> 
+> 	temperature@0 {
+> 		reg = <0>;
+> 	};
+> 
+> 	voltage@0 {
+> 		reg = <0>;
+> 	};
+
+Not valid because you have same address twice.
+
+> 
+> vs:
+> 
+> 	temperature-sensors {
+> 		xxx@0 {
+> 			reg = <0>;
+> 		};
+> 	};
+> 
+> 	voltage-sensors {
+> 		xxx@0 {
+> 			reg = <0>;
+> 		};
+> 	};
+> 
+
+Didn't we already discuss this?
+
+> This is way out of my league in terms of what is appropriate,
+> except that "xxx" isn't always easy to determine if the string is fixed
+> as you suggest. What should it be for a sensor measuring an output voltage ?
+
+Does measuring a voltage have a direction?
+
+> 
+> 	input@0 {
+> 		reg = <0>;
+> 		label = "output voltage";
+> 	};
+> 
+> Anyway, maybe Rob has an idea how to name this properly.
+
+No, I don't have a sense of the range of h/w...
+
+> 
+> Guenter
+> 
+> > > > +    type: object
+> > > > +    description: |
+> > > > +      Represents channels of the device and their specific configuration.
+> > > > +
+> > > > +    properties:
+> > > > +      reg:
+> > > > +        description: |
+> > > > +          The channel number. 0 is local channel, 1-4 are remote channels
+> > > 
+> > > Which of the supported chips has 4 remote channels ?
+> > 
+> > True, there is no TMP424. I will fix that in v4.
+> > 
+> > > 
+> > > > +        items:
+> > > > +          minimum: 0
+> > > > +          maximum: 4
+> > > > +
+> > > > +      label:
+> > > > +        description: |
+> > > > +          A descriptive name for this channel, like "ambient" or "psu".
+> > > > +
+> > > > +      n-factor:
+> > > 
+> > > n-factor or "ti,n-factor" ? The unit is chip specific, after all.
+> > 
+> > Or ti,nfactor, as used by tmp513? Again, there was no clear conclusion
+> > so I didn't change that. Let me know what is your decision and I will
+> > obey that.
+> 
+> Not my call to make about nfactor or n-factor, really. I'll leave that
+> for Rob to decide.
+
+ti,n-factor
+
+> > 
+> > > 
+> > > > +        description: |
+> > > > +          The value (two's complement) to be programmed in the channel specific N correction register.
+> 
+> [ side note: Since the value is just a register value, "two's complement" seems
+>   unnecessary and confusing; in the context of the DT description it doesn't
+>   really matter what the register values actually mean. ]
+> 
+> > > > +          For remote channels only.
+> > > > +        items:
+> > > > +          minimum: 0
+> > > > +          maximum: 1
+> > > 
+> > > Is this the correct value range ? The value range (in integer form) is
+> > > -128 .. 127 (or 0 .. 255 as unsigned), not 0..1.
+> > 
+> > True, I must have misunderstood this minimum/maximum and confused it
+> > with the number of items or something. Now, since DT does not really
+> > handle signed values and considers everything an unsigned, should I use
+> > 0..255 or -128..127?
+> > 
+> 
+> I suspect it should be 0..255. After all, the values reflect register values,
+> not their meaning. But I don't really know. Rob ?
+
+That's fine.
+
+You can define it as a signed type, but the validation there is not 
+working due to dts->dt.yaml losing the sign.
+
+Rob
