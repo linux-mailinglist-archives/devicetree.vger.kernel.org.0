@@ -2,161 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 542234237B4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 07:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 478BC4237B9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 07:56:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237217AbhJFF4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 01:56:40 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:52722 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237272AbhJFF4i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 01:56:38 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1965sUXL062189;
-        Wed, 6 Oct 2021 00:54:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1633499670;
-        bh=gwmy1g7upSs451Tvms0rbChOLQpMToAcL1SFZbrXNh0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=TPvRWn9AAZzX0E24lgutCJzhqx+e/m22i3WGtmMNlYIr2LWa4ldzP9DT6KoXO8sXf
-         rQE7fz8VUu1p233+U2+u0yGN/3Z5BqL+9vepfLkOnOIayMH3EEvDooOBlWmgNHZnqr
-         4yhujglk/teavosepUTnglwDJWa420oSU43ARVcQ=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1965sUD7118903
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 6 Oct 2021 00:54:30 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 6
- Oct 2021 00:54:30 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 6 Oct 2021 00:54:30 -0500
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1965rjkI070213;
-        Wed, 6 Oct 2021 00:54:25 -0500
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Marc Kleine-Budde <mkl@pengutronix.de>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        id S231336AbhJFF6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 01:58:08 -0400
+Received: from gandalf.ozlabs.org ([150.107.74.76]:35597 "EHLO
+        gandalf.ozlabs.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235604AbhJFF6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 01:58:08 -0400
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4HPNx844mYz4xR9;
+        Wed,  6 Oct 2021 16:56:12 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1633499775;
+        bh=yAmQoNe4QQh6i00NhuH34dqGowIW44cpaMTI9W4YrSU=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=hfVgrO7IF1qsS481zscMUiiK48SJzKENC+N3Ctiddk8MqqpJwPzIuFdUjBfq7Xm3v
+         /gnsvRiospeRnRfb8N076aAlV/UeoXUK56yAV6cm/Dl+Dqp4yErjZNvwYxop/rk8o6
+         6dXxyNH42jyYrIFFSY6E5BL3ercij5batzZN+L2XKaQ988U4LYykffnL/j9+8Agw/p
+         ZdSXjbcUg5zc0oB3qcIDZIM6QjkEykPilZyoJ1d4zRKIsOvKWTjxdth5BPcZg+mv/J
+         gqmVR9AoPsNHAZUhxlhfIsIB0+nhee8rOgyR44bVrDaUw+3okL07EmxboIbVD2/mYe
+         41sqv6HoKV8Tw==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Alexei Starovoitov <ast@kernel.org>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        Andrii Nakryiko <andrii@kernel.org>,
-        Martin KaFai Lau <kafai@fb.com>,
-        Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
-        John Fastabend <john.fastabend@gmail.com>,
-        KP Singh <kpsingh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <bpf@vger.kernel.org>
-Subject: [PATCH v4 6/6] arm64: dts: ti: k3-am642-evm/sk: Add support for main domain mcan nodes in EVM and disable them on SK
-Date:   Wed, 6 Oct 2021 11:23:43 +0530
-Message-ID: <20211006055344.22662-7-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211006055344.22662-1-a-govindraju@ti.com>
-References: <20211006055344.22662-1-a-govindraju@ti.com>
+        "linuxppc-dev@lists.ozlabs.org list" <linuxppc-dev@lists.ozlabs.org>,
+        opensuse-ppc@opensuse.org
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        Joey Gouly <joey.gouly@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Android Kernel Team <kernel-team@android.com>
+Subject: Re: [PATCH v5 00/14] PCI: Add support for Apple M1
+In-Reply-To: <CACRpkdaL=YEfqSmAogLcP0Gn2gUqSaEXZQrJD1GR5QU+DyuyDQ@mail.gmail.com>
+References: <20210929163847.2807812-1-maz@kernel.org>
+ <20211004083845.GA22336@lpieralisi>
+ <CAL_Jsq+4FF9QYy87aYhJ-AS78qyHp0NkLrL492+WmdyWj-NKaw@mail.gmail.com>
+ <CACRpkdaL=YEfqSmAogLcP0Gn2gUqSaEXZQrJD1GR5QU+DyuyDQ@mail.gmail.com>
+Date:   Wed, 06 Oct 2021 16:56:07 +1100
+Message-ID: <87o882ofwo.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM642 EVM has two CAN connecters brought out from the two MCAN instances in
-the main domain through transceivers. Add device tree nodes for
-transceivers and set the required properties in the mcan device tree nodes,
-in EVM device tree file.
+Linus Walleij <linus.walleij@linaro.org> writes:
+> On Mon, Oct 4, 2021 at 9:52 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+>> FYI, I pushed patches 1-3 to kernelCI and didn't see any regressions.
+>> I am a bit worried about changes to the DT interrupt parsing and
+>> ancient platforms (such as PowerMacs). Most likely there wouldn't be
+>> any report until -rc1 or months later on those old systems.
+>
+> Lets page the PPC lists to see if someone can test on some powermac.
 
-On AM642 SK there are no connectors brought out for CAN. Therefore, disable
-the mcan device tree nodes in the SK device tree file.
+It boots and everything seems fine on an iMac-G5 of mine.
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 40 +++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts  |  8 +++++
- 2 files changed, 48 insertions(+)
+I don't have access to any other powermac hardware at the moment due to
+the lockdown here.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 6726c4c7c28c..e94ae178b1ae 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -184,6 +184,20 @@
- 			};
- 		};
- 	};
-+
-+	transceiver1: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		standby-gpios = <&exp1 8 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	transceiver2: can-phy1 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		standby-gpios = <&exp1 9 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- &main_pmx0 {
-@@ -294,6 +308,20 @@
- 			AM64X_IOPAD(0x0270, PIN_INPUT, 0) /* (D18) ECAP0_IN_APWM_OUT */
- 		>;
- 	};
-+
-+	main_mcan0_pins_default: main-mcan0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0254, PIN_INPUT, 0) /* (B17) MCAN0_RX */
-+			AM64X_IOPAD(0x0250, PIN_OUTPUT, 0) /* (A17) MCAN0_TX */
-+		>;
-+	};
-+
-+	main_mcan1_pins_default: main-mcan1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x025c, PIN_INPUT, 0) /* (D17) MCAN1_RX */
-+			AM64X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (C17) MCAN1_TX */
-+		>;
-+	};
- };
- 
- &main_uart0 {
-@@ -638,3 +666,15 @@
- &icssg1_mdio {
- 	status = "disabled";
- };
-+
-+&main_mcan0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan0_pins_default>;
-+	phys = <&transceiver1>;
-+};
-+
-+&main_mcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan1_pins_default>;
-+	phys = <&transceiver2>;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 6b04745147be..a9785bec12df 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -525,3 +525,11 @@
- &icssg1_mdio {
- 	status = "disabled";
- };
-+
-+&main_mcan0 {
-+	status = "disabled";
-+};
-+
-+&main_mcan1 {
-+	status = "disabled";
-+};
--- 
-2.17.1
-
+cheers
