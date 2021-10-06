@@ -2,148 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A475423A7A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 11:24:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C1144239BE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 10:29:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237801AbhJFJ0o convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 6 Oct 2021 05:26:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51102 "EHLO
+        id S231145AbhJFIbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 04:31:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230131AbhJFJ0o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 05:26:44 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BA00C061749
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 02:24:52 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mY3AD-00058X-K4; Wed, 06 Oct 2021 11:24:37 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mY3AA-0007WP-J2; Wed, 06 Oct 2021 11:24:34 +0200
-Message-ID: <59334bc1f64926f8106a9b1e885dd88971d34117.camel@pengutronix.de>
-Subject: Re: [PATCH 3/7] soc: apple: Add driver for Apple PMGR power state
- controls
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-serial@vger.kernel.org
-Date:   Wed, 06 Oct 2021 11:24:34 +0200
-In-Reply-To: <20211005155923.173399-4-marcan@marcan.st>
-References: <20211005155923.173399-1-marcan@marcan.st>
-         <20211005155923.173399-4-marcan@marcan.st>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S237653AbhJFIbI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 04:31:08 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D41A3C06174E
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 01:29:16 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id n8so7080689lfk.6
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 01:29:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Cs32oKjPY880HhRcpboK0pON5dPQmpZCrv3AmYoudi4=;
+        b=Y7jduTBLBpq47YNLGK+8Fs1peBjDqtnqaIvJ71rnYHl2LKlBGz14YVXsbSX59h/7Y1
+         Mpy86aVzDlMC7vyhQDY0ggy1MsBXlPo/Ri//HkNUdIFfOGLV40yK1Trpb03j940CkDcv
+         aAi/bqPh8x4BcyfK9LhFAKp78v/GNsJe/AjNjzTLXl5ez3JblOovjZ2YaxpfDaASzd7K
+         kimrxEauFPfupzQ6Nknzw562FDT0tk6D8TVLUU5SA23Moj0PXlw0yo3uP2eWMEzUUkHm
+         GFjDlEiJHZj48oW2v7cLjvTKto/78fzY5Td0AE8ohTmVRtoxxTZux0z8S0solecVTL/f
+         UYZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Cs32oKjPY880HhRcpboK0pON5dPQmpZCrv3AmYoudi4=;
+        b=i/9fqxWWGdSAHkf2zuw56MxsTHpeNcUk5D/XkToTGc0mkQ15bRwGvUTlLDrHmUfRyF
+         raTjMSX6ygEaXsDJ5PQgZLYjUOayyytCRoFLF1khdfS2ju9Ed6QSkfsH0+B2Ux15o5Ki
+         vmrzwxlFublm7EHnXXuXVGp2NMVJK+MBUZeIGRoG5lSEa7dmKXUwcCYYw+oMZQMdDKsu
+         RBj5rnF1bVXg7rjjV6oOhnD1L4BXppxihMyZ7MJ2pdWJfJsmooVAf3NYl3RsGsQZi35I
+         lL+zTOYHgTJAIz7yvjHkrITeip+whX23UYSg1IDsiJvZMDnkKN7IIgYBq0wgScGGxBaS
+         Pdaw==
+X-Gm-Message-State: AOAM53288MC2buua424FZnWml3AYL+cU4caYuZNyIRPJfq6KtJxMX051
+        QWSKGAoNcYQy2mC+YSNefXYSbrsCvR8LibOtvFZbxQ==
+X-Google-Smtp-Source: ABdhPJwgbKRqUWndz/R/ob0yYOvX+zmWUkoW3ELAssaKrTJCToZ4rmrps0L8dLDx2abTjB7pRmhWDo7HUxDlivZuBuU=
+X-Received: by 2002:a05:6512:21cb:: with SMTP id d11mr8276307lft.579.1633508954553;
+ Wed, 06 Oct 2021 01:29:14 -0700 (PDT)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20211005143748.2471647-1-pan@semihalf.com> <20211005143748.2471647-3-pan@semihalf.com>
+ <CAK8P3a1kj1G3TkM7bK3ckXoG8_PTLURAcpDRmDxdnjutEPMsug@mail.gmail.com> <YVx9IMk7cJSCK79/@piout.net>
+In-Reply-To: <YVx9IMk7cJSCK79/@piout.net>
+From:   =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
+Date:   Wed, 6 Oct 2021 11:29:03 +0200
+Message-ID: <CAF9_jYT7_9Oz-HFSy5z7uiieoHtujUD_En9MTi68PxGb7gxphw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: add bus number property
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, jarkko.nikula@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Konrad Adamczyk <ka@semihalf.com>,
+        Tomasz Nowicki <tn@semihalf.com>,
+        Jacek Majkowski <jam@semihalf.com>,
+        Alexandru Stan <amstan@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hector,
+On Tue, Oct 5, 2021 at 6:28 PM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
+>
+> On 05/10/2021 18:22:12+0200, Arnd Bergmann wrote:
+> > On Tue, Oct 5, 2021 at 4:37 PM Pawe=C5=82 Anikiel <pan@semihalf.com> wr=
+ote:
+> > >
+> > > On SoCFPGA systems, it's desireable to have fixed numbering for
+> > > i2c busses, while being able to enable/disable them (e.g. have i2c1
+> > > be mapped to /dev/i2c-1, even though i2c0 is disabled). This can also
+> > > be achieved using devicetree aliases (see i2c_add_adapter). However,
+> > > having the driver be self-contained without relying on aliases is mor=
+e
+> > > robust.
+> > >
+> > > Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
+> >
+> > I don't see how adding a nonstandard property in one of the i2c bus
+> > drivers helps at all. How do you expect this to work when there are
+> > multiple i2c controllers in the system using different drivers? What
+> > should happen if both an alias and the busno property are set?
+> >
+>
+> What happens when two nodes have the same busno property because e.g.
+> one is in a dtsi and the other one is in a dts?
+>
 
-On Wed, 2021-10-06 at 00:59 +0900, Hector Martin wrote:
-> Implements genpd and reset providers for downstream devices. Each
-> instance of the driver binds to a single register and represents a
-> single SoC power domain.
-> 
-> The driver does not currently implement all features (auto-pm,
-> clockgate-only state), but we declare the respective registers for
-> documentation purposes. These features will be added as they become
-> useful for downstream devices.
-> 
-> This also creates the apple/soc tree and Kconfig submenu.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  MAINTAINERS                             |   1 +
->  drivers/soc/Kconfig                     |   1 +
->  drivers/soc/Makefile                    |   1 +
->  drivers/soc/apple/Kconfig               |  21 ++
->  drivers/soc/apple/Makefile              |   2 +
->  drivers/soc/apple/apple-pmgr-pwrstate.c | 281 ++++++++++++++++++++++++
->  6 files changed, 307 insertions(+)
->  create mode 100644 drivers/soc/apple/Kconfig
->  create mode 100644 drivers/soc/apple/Makefile
->  create mode 100644 drivers/soc/apple/apple-pmgr-pwrstate.c
-> 
-[...]
-> diff --git a/drivers/soc/apple/apple-pmgr-pwrstate.c b/drivers/soc/apple/apple-pmgr-pwrstate.c
-> new file mode 100644
-> index 000000000000..a0338dbb29b8
-> --- /dev/null
-> +++ b/drivers/soc/apple/apple-pmgr-pwrstate.c
-> @@ -0,0 +1,281 @@
-[...]
-> +static int apple_pmgr_reset_assert(struct reset_controller_dev *rcdev, unsigned long id)
-> +{
-> +	struct apple_pmgr_ps *ps = rcdev_to_apple_pmgr_ps(rcdev);
-> +
-> +	mutex_lock(&ps->genpd.mlock);
-> +
-> +	if (ps->genpd.status == GENPD_STATE_OFF)
-> +		dev_err(ps->dev, "PS 0x%x: asserting RESET while powered down\n", ps->offset);
-> +
-> +	dev_dbg(ps->dev, "PS 0x%x: assert reset\n", ps->offset);
-> +	/* Quiesce device before asserting reset */
-> +	regmap_set_bits(ps->regmap, ps->offset, APPLE_PMGR_DEV_DISABLE);
-> +	regmap_set_bits(ps->regmap, ps->offset, APPLE_PMGR_RESET);
-> +
-> +	mutex_unlock(&ps->genpd.mlock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int apple_pmgr_reset_deassert(struct reset_controller_dev *rcdev, unsigned long id)
-> +{
-> +	struct apple_pmgr_ps *ps = rcdev_to_apple_pmgr_ps(rcdev);
-> +
-> +	mutex_lock(&ps->genpd.mlock);
-> +
-> +	dev_dbg(ps->dev, "PS 0x%x: deassert reset\n", ps->offset);
-> +	regmap_clear_bits(ps->regmap, ps->offset, APPLE_PMGR_RESET);
-> +	regmap_clear_bits(ps->regmap, ps->offset, APPLE_PMGR_DEV_DISABLE);
-> +
-> +	if (ps->genpd.status == GENPD_STATE_OFF)
-> +		dev_err(ps->dev, "PS 0x%x: RESET was deasserted while powered down\n", ps->offset);
-> +
-> +	mutex_unlock(&ps->genpd.mlock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int apple_pmgr_reset_reset(struct reset_controller_dev *rcdev, unsigned long id)
-> +{
-> +	int ret;
-> +
-> +	ret = apple_pmgr_reset_assert(rcdev, id);
-> +	if (ret)
-> +		return ret;
-> +
-> +	usleep_range(APPLE_PMGR_RESET_TIME, 2 * APPLE_PMGR_RESET_TIME);
+If busno is set, the alias is ignored (the code that checks aliases
+is never reached). If two nodes have the same busno property, we get
+a WARN in drivers/i2c/i2c-core-base.c:1637, and only on of them
+gets attached.
 
-Is this delay known to be long enough for all consumers using the
-reset_control_reset() functionality? Are there any users at all?
+What is a better way of doing this then? Is adding aliases to the
+devicetree like this okay?
 
-Is it ok for a genpd transition to happen during this sleep?
-
-> +	return apple_pmgr_reset_deassert(rcdev, id);
-> +}
-
-regards
-Philipp
+aliases {
+...
+i2c0 =3D &i2c0;
+i2c1 =3D &i2c1;
+};
