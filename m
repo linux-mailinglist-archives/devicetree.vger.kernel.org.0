@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92AC94239F8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 10:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEB76423A3A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 11:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237674AbhJFIt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 04:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
+        id S237740AbhJFJLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 05:11:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237841AbhJFItZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 04:49:25 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3A8C061749;
-        Wed,  6 Oct 2021 01:47:32 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id i24so7105082lfj.13;
-        Wed, 06 Oct 2021 01:47:32 -0700 (PDT)
+        with ESMTP id S230120AbhJFJLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 05:11:17 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B104C061749;
+        Wed,  6 Oct 2021 02:09:25 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id t9so7608100lfd.1;
+        Wed, 06 Oct 2021 02:09:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=qt1MU2rBHUcCG/itiqLGGGuQT3zd/XSnIPDfOKn/Ios=;
-        b=kofkwor/Exw5fvZpgw8RKXo87GQ0UtBlNV5skI9mNMtOZVBYKg7R9sHNw1qy8RCy9K
-         YQHGCMGVX/3a8t0XVF1JQ7x6YugN3L9s2+PSQCGpox9gTc1sQNXCrLLLQVpiiXxCrXW0
-         KDPv+9k/5mwYlsYqFTLbKu7TzygRe273QRv8gexRDvoyHI1Z7VCybp2ucN6/XFeaQALJ
-         rkDUpc7VnBDkOWPplETX4Xt3OrqiQw+h558dDb4GXRlDd50fyU+1W+7bvezdsrG8ygmg
-         19mkkyGaD3IEtb5Oft/QGYZDBvq/T7+05fs64GSZrQu+yZ5XWMLYIWdF3T+o1gVzxikp
-         iJ2g==
+        bh=3vIcEyr7QuVBCeh3mAP0j/ko23BFx3UEwrFTydDoOjw=;
+        b=Y+lq3L8PXp/1DJR4LuSkH4uvV2i5I7JQW+Mg5eysonjJbDnGZYTGpaPdiR11IGqjhG
+         JKH30t3CTeuWR3tTFw37vPdfhQwu5/jIu1wDWVkbzn89HlN35RhhEDICcFfEyNVMjckn
+         SjqvEwF93o+Dll9Ho4OF2rQq/2zRsHdhwwtEhEOIwmkXpKoFcrqFxO4DVljYJs9D2ltS
+         oFRDnzfCFwXbYYBsbXNY19dMVpF/xPb1fOKPr0zirVmIqBcGNmZLUQdMU4uSmOpxMzvJ
+         0Ku5Vl+pdpzY8bLAUf/jPHbkD0qTEQzay2idwQYGswCmlxim/4JK2TC07JRXpKgjrVdf
+         A3vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=qt1MU2rBHUcCG/itiqLGGGuQT3zd/XSnIPDfOKn/Ios=;
-        b=3ezdQgneTJbB/8g+Fl8pTYoIwAxkrmSTaYYif89/XCJ4gTIuR1LTVEoiZ493GAuo4G
-         IegpoLyvWynUb8dDI7WSWls0tJHwKnb6sGvupKgCunN6wPFcLoP4FBXlDiGQm2UTwqSC
-         QznOw7JCrtP+jGKoAVqsu2Fl7/w6Cq87/1kHVU19DI5yXpBe9p5mrCNAx3v3BcAEDGWJ
-         l7kKYCuA6ejlMkIJdy952CvczSAEkZQEWo+xcNQ/laToPSnomNPN10gNcI5Xeg4SJONI
-         KJ0GAmXal7ujRX8CFYpec+bOABIBkMR94fyjMZQVSLPWD4L1BcHFs8B0VBmd4ILaUQTi
-         7CLg==
-X-Gm-Message-State: AOAM532lvCDwhziFI5ySF12yxo/d+y4Z3JEscRihnHbkWRvnNsqbfNtO
-        HA5MSgqu9rUxiKjj3C02+/qZNxISaaIkuGJvB08=
-X-Google-Smtp-Source: ABdhPJxaeki3renWBs16/PtlBC3PGa0bzgH87pk9l6BVmGBv7CtNn1ORXziCn/HrbNw8V2syQmhIs6DqrrcmCLa6b7E=
-X-Received: by 2002:a05:6512:12c9:: with SMTP id p9mr8839455lfg.345.1633510049583;
- Wed, 06 Oct 2021 01:47:29 -0700 (PDT)
+        bh=3vIcEyr7QuVBCeh3mAP0j/ko23BFx3UEwrFTydDoOjw=;
+        b=mOiFYmR0uAGZbmBmaWxbiYeyxJndOCoIzg/hE3QwcNp4cMNOu9FeQDeCDJnDGYQCl1
+         LJYZ0L1oT9CyBhdfTaIdaZXAo9wF2T9P2v2Y4964trPcmHzvls2z1AR5oyk3FKScOG/u
+         +snnpvUl1CtuxLeoLxMXAVabtF1cfqevBy25HDO3r/F53zsNgC0RCJYGtOEm28s9s4FO
+         MNE8eYJ9DG/KeAeCFJs+I3JdZWgzgNnGbQ1xSu5n3yN7ccScIDxdandguuZGwj/4VEh2
+         UVPL2aRZ3B4jeRydBJ/MJWvYCSUD/CPsLTyK88HKyRFx1lEJtbPW2Lr338RvhD+w5P+G
+         RVew==
+X-Gm-Message-State: AOAM533hBPg+0v6Go91YGhvMX/AdWfa6KJaTpL+RqHpPad4ywSSgu7Cy
+        7UsCiaK/OPjnwpD/RnZv7i8Yp8uvkX8LAjXjUqh14Mbt
+X-Google-Smtp-Source: ABdhPJzMfNeD2VPG/6FkmkYV9CXq06WhI5WUIlsAqQRktPRR9FccwJ9bJa1onYE9OFp6sVr+8NN/olw+7nSRxwBQT1k=
+X-Received: by 2002:a2e:80cd:: with SMTP id r13mr26860600ljg.415.1633511363662;
+ Wed, 06 Oct 2021 02:09:23 -0700 (PDT)
 MIME-Version: 1.0
 References: <1633396615-14043-1-git-send-email-u0084500@gmail.com>
- <YVw7vbpu4TS+7Su8@sirena.org.uk> <CADiBU39dvKS_a5FDgw9yMVFe8Uycn6bfjGwBWq+7MN_DdxkL1g@mail.gmail.com>
- <YVxFMaPhZdAFniMa@sirena.org.uk> <CADiBU3_TuHKiVG-r1TG-8WK_tW2GXi4VuqkidPwTyebOgE60OA@mail.gmail.com>
-In-Reply-To: <CADiBU3_TuHKiVG-r1TG-8WK_tW2GXi4VuqkidPwTyebOgE60OA@mail.gmail.com>
+ <1633396615-14043-2-git-send-email-u0084500@gmail.com> <YVw87lc4uXSvCiyC@sirena.org.uk>
+ <CADiBU38X6nY1D7NpgW8+61AX6rUU7jngnPagryDKxUAKdtGjAg@mail.gmail.com> <YVxIv6NOiVdNSkXf@sirena.org.uk>
+In-Reply-To: <YVxIv6NOiVdNSkXf@sirena.org.uk>
 From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Wed, 6 Oct 2021 16:47:18 +0800
-Message-ID: <CADiBU3-4F-FdJxaa4Qp4xmUD3vsA=6u5_ojwDSr8zrDuW8JbXg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: rt9120: Add initial bindings
+Date:   Wed, 6 Oct 2021 17:09:12 +0800
+Message-ID: <CADiBU3-A3vcn9ekKnL+mRjafHzi25W0OQs8HzGg_t99mtJurWQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ASoC: rt9120: Add rt9210 audio amplifier support
 To:     Mark Brown <broonie@kernel.org>
 Cc:     oder_chiou@realtek.com, perex@perex.cz, tiwai@suse.com,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,47 +67,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Hi, Mark:
-ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2021=E5=B9=B410=E6=9C=885=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=888:39=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B410=E6=9C=885=E6=97=
-=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=888:29=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > On Tue, Oct 05, 2021 at 08:25:43PM +0800, ChiYuan Huang wrote:
-> > > Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B410=E6=9C=885=
-=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=887:49=E5=AF=AB=E9=81=93=EF=BC=
-=9A
-> > > > On Tue, Oct 05, 2021 at 09:16:54AM +0800, cy_huang wrote:
-> >
-> > > > > +  richtek,use-dvdd-1p8v:
-> > > > > +    description: Indicate DVDD 1P8V is used, default for 3P3V or=
- 5V design
-> > > > > +    type: boolean
-> >
-> > > > I would expect this to be done through the regulator bindings, they
-> > > > would allow the driver to query the supply voltage.
-> >
-> > > It's more like as the I/O pad voltage.
-> > > Must be the same as I2C and I2S signal high level.
-> > > It depends on the application SOC design.
-> > > From my understanding, not all application SOC I/O voltage uses
-> > > regulator interface.
-> >
-> > It doesn't really matter what the SoC is doing here, you can always add
-> > regulator support to your device - you'd be requesting the supplies to
-> > your device, if the SoC doesn't request the supplies that go to it that
-> > doesn't really make a difference to what your driver does.
-> >
-> > Please don't take things off-list unless there is a really strong reaso=
-n
-> > to do so.  Sending things to the list ensures that everyone gets a
-> > chance to read and comment on things.
->
-After contacting our HW RD, to support DVDD 1.8V not just SW config,
-also HW connections.
-To get only DVDD supply voltage is not enough to meet the HW design.
-The property seems indeed and need to be used by user's HW connection.
 
-Can this property to be kept?
-> Sorry, my fault.
-> I just noticed the mail not reply all. Loop all again.
+Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B410=E6=9C=885=E6=97=
+=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=888:44=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Tue, Oct 05, 2021 at 08:36:44PM +0800, ChiYuan Huang wrote:
+> > Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B410=E6=9C=885=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=887:54=E5=AF=AB=E9=81=93=EF=BC=9A
+> > > On Tue, Oct 05, 2021 at 09:16:55AM +0800, cy_huang wrote:
+>
+> > > > +     /* Default config volume to 0dB */
+> > > > +     snd_soc_component_write(comp, RT9120_REG_MSVOL, 0x180);
+> > > > +     /* Mute by default */
+> > > > +     snd_soc_component_update_bits(comp, RT9120_REG_VOLRAMP,
+> > > > +                                   RT9120_MUTE_MASK, RT9120_MUTE_M=
+ASK);
+>
+> > > As ever you should leave the defaults at whatever the hardware defaul=
+ts
+> > > to, the defaults for one machine may not be suitable for another so w=
+e
+> > > shouldn't be trying to do that in software.
+>
+> > The default volume will be kept in value 0x7ff (mute).
+> > I just want to follow the ASoC flow to control mute/unmute mask by AMP =
+on/off.
+> > If to default set volume to 0dB and mute is improper, user have to use
+> > mixer control to configure the volume.
+> > Does mute function also need to be removed also?
+>
+> It's totally fine and indeed quite common for devices to be muted by
+> default - usually systems will have UCM profiles that unmute things by
+> the time users actually interact with them.
+>
+> Please don't take things off-list unless there is a really strong reason
+> to do so.  Sending things to the list ensures that everyone gets a
+> chance to read and comment on things.
+
+After asking the HW member, there's already builtin HW volume ramp function=
+.
+Mute API is still no need. There's already no pop issue without mute functi=
+on.
+
+So the next change, I'll remove the default volume and mute config,
+and also mute API.
+
+Thx.
