@@ -2,58 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E779424155
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B87C442417C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:41:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239205AbhJFP3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 11:29:32 -0400
-Received: from marcansoft.com ([212.63.210.85]:55408 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231671AbhJFP3c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 11:29:32 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id C1DAB3FA5E;
-        Wed,  6 Oct 2021 15:27:33 +0000 (UTC)
-Subject: Re: [PATCH 2/7] dt-bindings: power: Add apple,pmgr-pwrstate binding
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     linux-arm-kernel@lists.infradead.org, maz@kernel.org,
-        robh+dt@kernel.org, arnd@kernel.org, linus.walleij@linaro.org,
-        alyssa@rosenzweig.io, krzk@kernel.org, gregkh@linuxfoundation.org,
-        p.zabel@pengutronix.de, rafael@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-serial@vger.kernel.org
-References: <20211005155923.173399-1-marcan@marcan.st>
- <20211005155923.173399-3-marcan@marcan.st>
- <d3ca3bcc44156f32@bloch.sibelius.xs4all.nl>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <bb403fbe-2ac2-f9d2-ac86-35e63b4210a8@marcan.st>
-Date:   Thu, 7 Oct 2021 00:27:31 +0900
+        id S231293AbhJFPnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 11:43:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54544 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230014AbhJFPnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 11:43:09 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D488C061746;
+        Wed,  6 Oct 2021 08:41:17 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id r19so11419619lfe.10;
+        Wed, 06 Oct 2021 08:41:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EcWwiS6s+2hsdKW38DDnyx0jTkPf8lZT967mi4aaVRU=;
+        b=OSx2SIFa3QZatPqQ1/1JhIMHW9/xVzpWbWJ3JRx38+vkc7yD3VhW0qZPTRXo9BHPAb
+         jqThRDpZ0kg6ZpAqxG2JtHeMn3hkxCgfz6NEKIJ7VCvOhBjv8tEvA+F+ola4MKtey4W6
+         6tkAdoqeo5YgJ+ccviV414q5ymKWqXmOHWR03wrBvLcC1hyucYUejAbGeEBHMdkt6pNZ
+         8HWP4CFxNNf4YTbPRr/OlQ8ucASJWFLCMnmZRQ+kMjzWnezyK5gHEkf2wflkjyStAtpK
+         CH0vEiVb7u1tSojwaalDHZzv61AptJr6u6640FPdb069l7IzleOKJabZjkqRSGs5cxlh
+         zq+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EcWwiS6s+2hsdKW38DDnyx0jTkPf8lZT967mi4aaVRU=;
+        b=WHdzqRjCuBSQvIE6NL+CyHsCd6RTwoBr3NxNexvpuoXIOJkdvChn7Ax+lXFYyw0td+
+         Ywn0QOHFa4UWaOQSbbcFTsk+HiOXkZuv04F+lBR6Mu4Uvng/unPFCkSSTYfhD0t5Q7Wy
+         mdGZ4exljrOLSX11yL0kdQXxjeSJW5Bhcb9fV0lJnSTy4maM6yuYSkS8Xh4/PCz7XDNr
+         kyWbyXXpNOM+vUb3ZEu0U8JIvC91x74/++3eTT/R0sIKXLDE9lEnGhyrLYhgsBbZ7NOU
+         o+efWj8BMCKQrFk+beTSkmb8vDH1k+HFM939uJ9GPW2GvMazl0bdrkMBUl8pUYWFigV/
+         w+1A==
+X-Gm-Message-State: AOAM531I124dJsVt+2NgP10lK5+nlQTha87kOGYqIEmiSLAZSDJ8y82m
+        eXPGVt4nDKY4XDfpDLjjUa9JE7bDtMs=
+X-Google-Smtp-Source: ABdhPJyyPif7tIwRD8TIt+Gr8SE2XFik/v8luje5qQy8jYQOg+e2WrqhmAoSQ0MfKf9L2+5J+fDukw==
+X-Received: by 2002:ac2:4e09:: with SMTP id e9mr7989973lfr.308.1633534865724;
+        Wed, 06 Oct 2021 08:41:05 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.googlemail.com with ESMTPSA id t9sm300124ljk.39.2021.10.06.08.41.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Oct 2021 08:41:05 -0700 (PDT)
+Subject: Re: [PATCH v4 2/7] dt-bindings: memory: lpddr2: Convert to schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20211005230009.3635-1-digetx@gmail.com>
+ <20211005230009.3635-3-digetx@gmail.com>
+ <6b8f6ef7-cfc5-3a8b-d44d-f4080a85ecf3@canonical.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <7047ad7b-52d6-0c91-b7d2-b115ea69506f@gmail.com>
+Date:   Wed, 6 Oct 2021 18:41:04 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <d3ca3bcc44156f32@bloch.sibelius.xs4all.nl>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <6b8f6ef7-cfc5-3a8b-d44d-f4080a85ecf3@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/2021 05.16, Mark Kettenis wrote:
-> Or we drop the apple,mpgr-pwrstate and go with only SoC-specific
-> compatibles from that point onwards.
+06.10.2021 13:57, Krzysztof Kozlowski пишет:
+>> +  density:
+>> +    description: |
+>> +      Density in megabits of SDRAM chip. Obtained from device datasheet.
+> You need here a type/ref, so uint32.
+> 
 
-I think if Apple has discrete compat breaks and several SoCs still share 
-compatibility, it'd make sense to encode those as pmgr-pwrstate-v2, v3, 
-etc. That way compatible SoCs can continue to benefit from 
-forwards-compatible kernels, and we only end up with a hard dep on a new 
-kernel for incompatible SoCs.
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+The type is uint32 by default. I can add it, but it's not really necessary.
