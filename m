@@ -2,200 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DFC4423CAB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 13:23:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0C54423CD4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 13:31:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238481AbhJFLZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 07:25:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
+        id S238136AbhJFLdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 07:33:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238387AbhJFLZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 07:25:05 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DC94C06174E;
-        Wed,  6 Oct 2021 04:23:13 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id o20so7760971wro.3;
-        Wed, 06 Oct 2021 04:23:13 -0700 (PDT)
+        with ESMTP id S238001AbhJFLdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 07:33:06 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B78C06174E
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 04:31:13 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id a11so1519815plm.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 04:31:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ffRV1lgCZH4SUcwisTjt7KS+V4NY1XyWgQczanLiSKI=;
-        b=AmO/WdSrVVzmz3eIuRFZdU6tZOPf6qAcPLEIznqiulf/Dc+r9+9GMsBc4J97s54N0B
-         2vnRSQtGx8ul5J7YfgVz53mFmMcbkdfQIM3wn/rtJ60nBjgTFOsQ7arVAe/Dk8QmHB/4
-         ox6ToBZIBm2pTvIR3uBxM1+mVhOb9W1dHS56XHwOaT3i0Y/ln2PEY+fA3iB41tsLctXA
-         7zkm+dU0GMBgssQLHXyYfT9nP7WortWEUuFPlsT+6JhzKS+gnnaQSym818qCMMqobTdK
-         bR0NTjywDvjtNMLN0/OtkKmobwikgYGXEdgDEJpbK4FRE2QE5hLE2D1++WFZJoVyzvG8
-         YeSQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Gia1QQnXEqZ0IHaAay2qz6311LHsI6yQ4uNChEXC7f4=;
+        b=CASN7zGbYBrcm6AFxeUl+DJMKUCrNV6rsw2g7MQn6B9NjMA4LklFLFCnLSwpVOPZKy
+         TZWvyRxlPGEnuDbbQpKWeloeFED8y+riIxhC3LRZ4PJNLVU0nceF+/kDLg6GQnBd6ShT
+         IygamWxr4l8Fz3gCJdfb3rDs7ipvsCj2D93NUMbEnTTCiMfplikJRJ7jClgALV4HhbHj
+         2KrMbZJs1qEtkNLj3fLJgp98gHrlNZFB2k6iedXQJT9rKDEqjW5xwua1dctvMBr3huCF
+         zwYBC4Y3tKQFxXyPfZOzT4k2oPWlyjUwS8RG1aXAw8Qhq5eeW8IGC6LBpuDRsrtjTDJY
+         t4sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ffRV1lgCZH4SUcwisTjt7KS+V4NY1XyWgQczanLiSKI=;
-        b=aERg8/pDMamwYqMsCDJZA+jaTzLk3JXtJqxyTf9qM14qCsqDM/pcqq/pVPSwFlgl0N
-         zKPrNy5PSsXAvPPkSzPKReKSuvxQtj1Pim0Tc/GMeYSjZpR1esy1BQOkHjMOWVCBSITa
-         0QE3uQKhBLvw4sH25bwRDYxtEcDluWmEuWgP7813e2AIASD/gH9nzD3hFezDVDmVE436
-         ntCy5FFPpDumuXEZEY8iKDqzxUIUBL78mjaY0iUG0B34kbN2GMY0T1hDT57s7dU/RPlA
-         PCQK24iCRl2k8+JQqo9dg4t/HZaYH+TmVrgKEMJiaISUQHOVCdEjrNO2u/xpG4ub3Dm2
-         WGGA==
-X-Gm-Message-State: AOAM532EnbAgyfZww5pB9qv4C1K1J1jqULFCtyEk7hTdRoeKAD1DgV2P
-        d5CAjJqx0YhvOA4zpgeptH8=
-X-Google-Smtp-Source: ABdhPJzzhguOEY1DXT0UTKpsGkb5UY/wEblts5XqclGyygkkZMTw/GrMByM0bvcJVIxSm6QjhEvrUQ==
-X-Received: by 2002:a1c:1dcb:: with SMTP id d194mr8868510wmd.161.1633519391730;
-        Wed, 06 Oct 2021 04:23:11 -0700 (PDT)
-Received: from localhost.localdomain (252.red-83-54-181.dynamicip.rima-tde.net. [83.54.181.252])
-        by smtp.gmail.com with ESMTPSA id e14sm10801985wrw.33.2021.10.06.04.23.10
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 06 Oct 2021 04:23:11 -0700 (PDT)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     sboyd@kernel.org
-Cc:     linux-clk@vger.kernel.org, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-staging@lists.linux.dev, neil@brown.name,
-        linux-kernel@vger.kernel.org, john@phrozen.org
-Subject: [PATCH v2 4/4] staging: mt7621-dts: align resets with binding documentation
-Date:   Wed,  6 Oct 2021 13:23:06 +0200
-Message-Id: <20211006112306.4691-5-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211006112306.4691-1-sergio.paracuellos@gmail.com>
-References: <20211006112306.4691-1-sergio.paracuellos@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Gia1QQnXEqZ0IHaAay2qz6311LHsI6yQ4uNChEXC7f4=;
+        b=I5BSeI8SVcKfHwcgxNWPZXaPAd1Oi8JRCZCoZjtdYUb8KUqoSwgEe6nFtvgWin+asI
+         hoWGNssUbKw1aFv/FvGyiB4u3fNAtXVohYYgj9nX8abE23rAyYp18WpE9GsJTMg/LePy
+         flS78KXzPtQ/Td8OsfGom9eOKXLCXy0BEKh0+Gu8/KHZoD/OXcX0K55aaK3QWhtSP45X
+         fEhZwiJejxEtOq5wkQntw4BMFfuaUHIR0Is8DJtOo2icroGqX8y0BphPJTsQFrhKLEDg
+         JbdhLFhccRCJ+zm8TyT/1OyZ64/RzoKvVSFPgIxYMDDYgHQQvT9abOZFQ+UBq0WWgKdH
+         KZPQ==
+X-Gm-Message-State: AOAM530KrqTuVOJf6v9GBecajmmtU1QCKxhvDgG/WAhv16x6LnEFIC+Z
+        H84bs3kTeZA4w2jpXn6K6tE/drmca2eGq9eNdfezQg==
+X-Google-Smtp-Source: ABdhPJye4H+jVkrQ0+lywQ/EqobK++QdIlFGiqZBddWzZiyhFTtNpA8cM9eFAvdsGPhr3DvgmuELR2ahyy1pMmQcx2w=
+X-Received: by 2002:a17:90b:4c0d:: with SMTP id na13mr10510639pjb.232.1633519873150;
+ Wed, 06 Oct 2021 04:31:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210825221600.1498939-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20210825221600.1498939-1-bjorn.andersson@linaro.org>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Wed, 6 Oct 2021 13:31:02 +0200
+Message-ID: <CAG3jFysa9ou9qbXi7dmz9k0GguAFOtgQdmXKwX3QcyULWrequQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8350: Add CPU topology and idle-states
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Binding documentation for compatible 'mediatek,mt7621-sysc' has been updated
-to be used as a reset provider. Align reset related bits and system controller
-node with binding documentation along the dtsi file.
+On Thu, 26 Aug 2021 at 00:14, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> Add CPU topology and define the idle states for the silver and gold
+> cores as well as the cluster.
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 141 +++++++++++++++++++++++++++
+>  1 file changed, 141 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index c6e1febaee46..35e8935bc1fa 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -48,6 +48,8 @@ CPU0: cpu@0 {
+>                         enable-method = "psci";
+>                         next-level-cache = <&L2_0>;
+>                         qcom,freq-domain = <&cpufreq_hw 0>;
+> +                       power-domains = <&CPU_PD0>;
+> +                       power-domain-names = "psci";
+>                         #cooling-cells = <2>;
+>                         L2_0: l2-cache {
+>                               compatible = "cache";
+> @@ -65,6 +67,8 @@ CPU1: cpu@100 {
+>                         enable-method = "psci";
+>                         next-level-cache = <&L2_100>;
+>                         qcom,freq-domain = <&cpufreq_hw 0>;
+> +                       power-domains = <&CPU_PD1>;
+> +                       power-domain-names = "psci";
+>                         #cooling-cells = <2>;
+>                         L2_100: l2-cache {
+>                               compatible = "cache";
+> @@ -79,6 +83,8 @@ CPU2: cpu@200 {
+>                         enable-method = "psci";
+>                         next-level-cache = <&L2_200>;
+>                         qcom,freq-domain = <&cpufreq_hw 0>;
+> +                       power-domains = <&CPU_PD2>;
+> +                       power-domain-names = "psci";
+>                         #cooling-cells = <2>;
+>                         L2_200: l2-cache {
+>                               compatible = "cache";
+> @@ -93,6 +99,8 @@ CPU3: cpu@300 {
+>                         enable-method = "psci";
+>                         next-level-cache = <&L2_300>;
+>                         qcom,freq-domain = <&cpufreq_hw 0>;
+> +                       power-domains = <&CPU_PD3>;
+> +                       power-domain-names = "psci";
+>                         #cooling-cells = <2>;
+>                         L2_300: l2-cache {
+>                               compatible = "cache";
+> @@ -107,6 +115,8 @@ CPU4: cpu@400 {
+>                         enable-method = "psci";
+>                         next-level-cache = <&L2_400>;
+>                         qcom,freq-domain = <&cpufreq_hw 1>;
+> +                       power-domains = <&CPU_PD4>;
+> +                       power-domain-names = "psci";
+>                         #cooling-cells = <2>;
+>                         L2_400: l2-cache {
+>                               compatible = "cache";
+> @@ -121,6 +131,8 @@ CPU5: cpu@500 {
+>                         enable-method = "psci";
+>                         next-level-cache = <&L2_500>;
+>                         qcom,freq-domain = <&cpufreq_hw 1>;
+> +                       power-domains = <&CPU_PD5>;
+> +                       power-domain-names = "psci";
+>                         #cooling-cells = <2>;
+>                         L2_500: l2-cache {
+>                               compatible = "cache";
+> @@ -136,6 +148,8 @@ CPU6: cpu@600 {
+>                         enable-method = "psci";
+>                         next-level-cache = <&L2_600>;
+>                         qcom,freq-domain = <&cpufreq_hw 1>;
+> +                       power-domains = <&CPU_PD6>;
+> +                       power-domain-names = "psci";
+>                         #cooling-cells = <2>;
+>                         L2_600: l2-cache {
+>                               compatible = "cache";
+> @@ -150,12 +164,86 @@ CPU7: cpu@700 {
+>                         enable-method = "psci";
+>                         next-level-cache = <&L2_700>;
+>                         qcom,freq-domain = <&cpufreq_hw 2>;
+> +                       power-domains = <&CPU_PD7>;
+> +                       power-domain-names = "psci";
+>                         #cooling-cells = <2>;
+>                         L2_700: l2-cache {
+>                               compatible = "cache";
+>                               next-level-cache = <&L3_0>;
+>                         };
+>                 };
+> +
+> +               cpu-map {
+> +                       cluster0 {
+> +                               core0 {
+> +                                       cpu = <&CPU0>;
+> +                               };
+> +
+> +                               core1 {
+> +                                       cpu = <&CPU1>;
+> +                               };
+> +
+> +                               core2 {
+> +                                       cpu = <&CPU2>;
+> +                               };
+> +
+> +                               core3 {
+> +                                       cpu = <&CPU3>;
+> +                               };
+> +
+> +                               core4 {
+> +                                       cpu = <&CPU4>;
+> +                               };
+> +
+> +                               core5 {
+> +                                       cpu = <&CPU5>;
+> +                               };
+> +
+> +                               core6 {
+> +                                       cpu = <&CPU6>;
+> +                               };
+> +
+> +                               core7 {
+> +                                       cpu = <&CPU7>;
+> +                               };
+> +                       };
+> +               };
+> +
+> +               idle-states {
+> +                       entry-method = "psci";
+> +
+> +                       LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+> +                               compatible = "arm,idle-state";
+> +                               idle-state-name = "silver-rail-power-collapse";
+> +                               arm,psci-suspend-param = <0x40000004>;
+> +                               entry-latency-us = <355>;
+> +                               exit-latency-us = <909>;
+> +                               min-residency-us = <3934>;
+> +                               local-timer-stop;
+> +                       };
+> +
+> +                       BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+> +                               compatible = "arm,idle-state";
+> +                               idle-state-name = "gold-rail-power-collapse";
+> +                               arm,psci-suspend-param = <0x40000004>;
+> +                               entry-latency-us = <241>;
+> +                               exit-latency-us = <1461>;
+> +                               min-residency-us = <4488>;
+> +                               local-timer-stop;
+> +                       };
+> +               };
+> +
+> +               domain-idle-states {
+> +                       CLUSTER_SLEEP_0: cluster-sleep-0 {
+> +                               compatible = "domain-idle-state";
+> +                               idle-state-name = "cluster-power-collapse";
+> +                               arm,psci-suspend-param = <0x4100c344>;
+> +                               entry-latency-us = <3263>;
+> +                               exit-latency-us = <6562>;
+> +                               min-residency-us = <9987>;
+> +                               local-timer-stop;
+> +                       };
+> +               };
+>         };
+>
+>         firmware {
+> @@ -179,6 +267,59 @@ pmu {
+>         psci {
+>                 compatible = "arm,psci-1.0";
+>                 method = "smc";
+> +
+> +               CPU_PD0: cpu0 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +               };
+> +
+> +               CPU_PD1: cpu1 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +               };
+> +
+> +               CPU_PD2: cpu2 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +               };
+> +
+> +               CPU_PD3: cpu3 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
+> +               };
+> +
+> +               CPU_PD4: cpu4 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +               };
+> +
+> +               CPU_PD5: cpu5 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +               };
+> +
+> +               CPU_PD6: cpu6 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +               };
+> +
+> +               CPU_PD7: cpu7 {
+> +                       #power-domain-cells = <0>;
+> +                       power-domains = <&CLUSTER_PD>;
+> +                       domain-idle-states = <&BIG_CPU_SLEEP_0>;
+> +               };
+> +
+> +               CLUSTER_PD: cpu-cluster0 {
+> +                       #power-domain-cells = <0>;
+> +                       domain-idle-states = <&CLUSTER_SLEEP_0>;
+> +               };
+>         };
+>
+>         reserved_memory: reserved-memory {
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- drivers/staging/mt7621-dts/mt7621.dtsi | 27 ++++++++++++--------------
- 1 file changed, 12 insertions(+), 15 deletions(-)
+This looks good to me, and introduces no new issues to dtbs_check.
 
-diff --git a/drivers/staging/mt7621-dts/mt7621.dtsi b/drivers/staging/mt7621-dts/mt7621.dtsi
-index 719ef28171f4..72b99d8b4647 100644
---- a/drivers/staging/mt7621-dts/mt7621.dtsi
-+++ b/drivers/staging/mt7621-dts/mt7621.dtsi
-@@ -1,6 +1,7 @@
- #include <dt-bindings/interrupt-controller/mips-gic.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/clock/mt7621-clk.h>
-+#include <dt-bindings/reset/mt7621-reset.h>
- 
- / {
- 	#address-cells = <1>;
-@@ -59,6 +60,7 @@ sysc: syscon@0 {
- 			compatible = "mediatek,mt7621-sysc", "syscon";
- 			reg = <0x0 0x100>;
- 			#clock-cells = <1>;
-+			#reset-cells = <1>;
- 			ralink,memctl = <&memc>;
- 			clock-output-names = "xtal", "cpu", "bus",
- 					     "50m", "125m", "150m",
-@@ -88,7 +90,7 @@ i2c: i2c@900 {
- 
- 			clocks = <&sysc MT7621_CLK_I2C>;
- 			clock-names = "i2c";
--			resets = <&rstctrl 16>;
-+			resets = <&sysc MT7621_RST_I2C>;
- 			reset-names = "i2c";
- 
- 			#address-cells = <1>;
-@@ -106,7 +108,7 @@ i2s: i2s@a00 {
- 
- 			clocks = <&sysc MT7621_CLK_I2S>;
- 			clock-names = "i2s";
--			resets = <&rstctrl 17>;
-+			resets = <&sysc MT7621_RST_I2S>;
- 			reset-names = "i2s";
- 
- 			interrupt-parent = <&gic>;
-@@ -151,7 +153,7 @@ spi0: spi@b00 {
- 			clocks = <&sysc MT7621_CLK_SPI>;
- 			clock-names = "spi";
- 
--			resets = <&rstctrl 18>;
-+			resets = <&sysc MT7621_RST_SPI>;
- 			reset-names = "spi";
- 
- 			#address-cells = <1>;
-@@ -167,7 +169,7 @@ gdma: gdma@2800 {
- 
- 			clocks = <&sysc MT7621_CLK_GDMA>;
- 			clock-names = "gdma";
--			resets = <&rstctrl 14>;
-+			resets = <&sysc MT7621_RST_GDMA>;
- 			reset-names = "dma";
- 
- 			interrupt-parent = <&gic>;
-@@ -186,7 +188,7 @@ hsdma: hsdma@7000 {
- 
- 			clocks = <&sysc MT7621_CLK_HSDMA>;
- 			clock-names = "hsdma";
--			resets = <&rstctrl 5>;
-+			resets = <&sysc MT7621_RST_HSDMA>;
- 			reset-names = "hsdma";
- 
- 			interrupt-parent = <&gic>;
-@@ -286,11 +288,6 @@ pinmux {
- 		};
- 	};
- 
--	rstctrl: rstctrl {
--		compatible = "ralink,rt2880-reset";
--		#reset-cells = <1>;
--	};
--
- 	sdhci: sdhci@1E130000 {
- 		status = "disabled";
- 
-@@ -383,7 +380,7 @@ ethernet: ethernet@1e100000 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		resets = <&rstctrl 6 &rstctrl 23>;
-+		resets = <&sysc MT7621_CLK_FE &sysc MT7621_CLK_ETH>;
- 		reset-names = "fe", "eth";
- 
- 		interrupt-parent = <&gic>;
-@@ -428,7 +425,7 @@ switch0: switch0@0 {
- 				#size-cells = <0>;
- 				reg = <0>;
- 				mediatek,mcm;
--				resets = <&rstctrl 2>;
-+				resets = <&sysc MT7621_RST_MCM>;
- 				reset-names = "mcm";
- 				interrupt-controller;
- 				#interrupt-cells = <1>;
-@@ -514,7 +511,7 @@ pcie@0,0 {
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0>;
- 			interrupt-map = <0 0 0 0 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>;
--			resets = <&rstctrl 24>;
-+			resets = <&sysc MT7621_RST_PCIE0>;
- 			clocks = <&sysc MT7621_CLK_PCIE0>;
- 			phys = <&pcie0_phy 1>;
- 			phy-names = "pcie-phy0";
-@@ -529,7 +526,7 @@ pcie@1,0 {
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0>;
- 			interrupt-map = <0 0 0 0 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>;
--			resets = <&rstctrl 25>;
-+			resets = <&sysc MT7621_RST_PCIE1>;
- 			clocks = <&sysc MT7621_CLK_PCIE1>;
- 			phys = <&pcie0_phy 1>;
- 			phy-names = "pcie-phy1";
-@@ -544,7 +541,7 @@ pcie@2,0 {
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0>;
- 			interrupt-map = <0 0 0 0 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
--			resets = <&rstctrl 26>;
-+			resets = <&sysc MT7621_RST_PCIE2>;
- 			clocks = <&sysc MT7621_CLK_PCIE2>;
- 			phys = <&pcie2_phy 0>;
- 			phy-names = "pcie-phy2";
--- 
-2.33.0
-
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
