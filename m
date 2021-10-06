@@ -2,72 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50AEE424116
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:17:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F748424129
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:20:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238226AbhJFPTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 11:19:30 -0400
-Received: from marcansoft.com ([212.63.210.85]:52834 "EHLO mail.marcansoft.com"
+        id S239143AbhJFPWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 11:22:19 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:50481 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231874AbhJFPT3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 11:19:29 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        id S238923AbhJFPWT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 11:22:19 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633533627; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=vTominGrDerw5CGaGhPCV6xyYr12cyAJAlCnNz1Tn0w=; b=jL6qOduaWtKcUeWz2X0baVXfGt33mMRsM++Y1GbQvn8WZ8x9txJAhNC6hBkq1Syy/+QuxDFN
+ 7y6oa8XNieZWG/YOBHtDHvXaNbrzbKZE2Kr4wjLAaeTDouOpV+EUmjf91MTopuTg+CEC9iC6
+ VXptTqD0cCjXy1oAIAg0xz1lHEM=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 615dbeb403355859c8b81ac3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 06 Oct 2021 15:20:20
+ GMT
+Sender: mkshah=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 33B00C43460; Wed,  6 Oct 2021 15:20:20 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.29.129] (unknown [49.36.85.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id AC02B3FA5E;
-        Wed,  6 Oct 2021 15:17:27 +0000 (UTC)
-Subject: Re: [PATCH 1/7] dt-bindings: arm: apple: Add apple,pmgr binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-serial@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Marc Zyngier <maz@kernel.org>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-samsung-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>
-References: <20211005155923.173399-1-marcan@marcan.st>
- <20211005155923.173399-2-marcan@marcan.st>
- <1633473959.420655.106783.nullmailer@robh.at.kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <a80d8bbd-0e71-af81-b3c2-b2e8e5efed63@marcan.st>
-Date:   Thu, 7 Oct 2021 00:17:25 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        (Authenticated sender: mkshah)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B0F89C4338F;
+        Wed,  6 Oct 2021 15:20:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B0F89C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v10 5/5] arm64: dts: qcom: sc7280: Enable SoC sleep stats
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, lsrao@codeaurora.org,
+        devicetree@vger.kernel.org
+References: <1633425065-7927-1-git-send-email-mkshah@codeaurora.org>
+ <1633425065-7927-6-git-send-email-mkshah@codeaurora.org>
+ <YVx4o8mfmFjKW5ng@ripper>
+From:   Maulik Shah <mkshah@codeaurora.org>
+Message-ID: <e1d88886-23ea-77b3-c827-0f83d2df576f@codeaurora.org>
+Date:   Wed, 6 Oct 2021 20:50:10 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <1633473959.420655.106783.nullmailer@robh.at.kernel.org>
+In-Reply-To: <YVx4o8mfmFjKW5ng@ripper>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/2021 07.45, Rob Herring wrote:
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/arm/apple/apple,pmgr.example.dts:30.40-35.15: ERROR (duplicate_node_names): /example-0/soc/power-management@23b700000: Duplicate node name
-> ERROR: Input tree has errors, aborting (use -f to force output)
-> make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/arm/apple/apple,pmgr.example.dt.yaml] Error 2
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1441: dt_binding_check] Error 2
+Hi,
 
-Argh, sorry about that. I ran the check before adding the mini-pmgr node 
-to the example right before sending out the series, and of course I 
-screwed it up. It'll be fixed and double checked for v2.
+On 10/5/2021 9:39 PM, Bjorn Andersson wrote:
+> On Tue 05 Oct 02:11 PDT 2021, Maulik Shah wrote:
+> 
+>> Add device node for SoC sleep stats driver which provides various
+>> low power mode stats.
+>>
+>> Also update the reg size of aoss_qmp device to 0x400.
+>>
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> 
+> Can you please follow up with patches for the other upstream platforms
+> as well.
+> 
+> Thanks,
+> Bjorn
+> 
+
+Sure, included most of other upstream platforms in v11.
+
+Thanks,
+Maulik
+
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 7 ++++++-
+>>   1 file changed, 6 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 39635da..f8622ae 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -2637,7 +2637,7 @@
+>>   
+>>   		aoss_qmp: power-controller@c300000 {
+>>   			compatible = "qcom,sc7280-aoss-qmp";
+>> -			reg = <0 0x0c300000 0 0x100000>;
+>> +			reg = <0 0x0c300000 0 0x400>;
+>>   			interrupts-extended = <&ipcc IPCC_CLIENT_AOP
+>>   						     IPCC_MPROC_SIGNAL_GLINK_QMP
+>>   						     IRQ_TYPE_EDGE_RISING>;
+>> @@ -2647,6 +2647,11 @@
+>>   			#clock-cells = <0>;
+>>   		};
+>>   
+>> +		memory@c3f0000 {
+>> +			compatible = "qcom,rpmh-sleep-stats";
+>> +			reg = <0 0x0c3f0000 0 0x400>;
+>> +		};
+>> +
+>>   		spmi_bus: spmi@c440000 {
+>>   			compatible = "qcom,spmi-pmic-arb";
+>>   			reg = <0 0x0c440000 0 0x1100>,
+>> -- 
+>> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+>> of Code Aurora Forum, hosted by The Linux Foundation
+>>
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member of Code Aurora Forum, hosted by The Linux Foundation
