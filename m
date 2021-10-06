@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9EF4424891
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 23:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA5AA42489A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 23:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239589AbhJFVNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 17:13:39 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:45579 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239541AbhJFVNj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 17:13:39 -0400
-Received: by mail-ot1-f43.google.com with SMTP id 66-20020a9d0548000000b0054e21cd00f4so4694126otw.12;
-        Wed, 06 Oct 2021 14:11:46 -0700 (PDT)
+        id S239599AbhJFVPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 17:15:50 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:41563 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239591AbhJFVPt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 17:15:49 -0400
+Received: by mail-ot1-f51.google.com with SMTP id v2-20020a05683018c200b0054e3acddd91so331628ote.8;
+        Wed, 06 Oct 2021 14:13:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=TMbBbaTkeRvCJm9ZSb70KRzbl0JkE0P9uF9VW3nfCtQ=;
-        b=WrYX5KvB79Gn9i6h0i/d6qZ6MPSj+pS2QL5mlo/rh0lruKI18K5axXhOn9WCYtmfH4
-         D6CeUkhygWD8mKZouOPMhR07ZD2qJ8qjwYep8kGkMspg9vjwDnDMA7tlL+4nKDnqYWiE
-         PkZqopq8Ij7jUHNQRG150cwQXueqQ20M6b4CSPVI3TfycfAuwrVbrIzamggpnyfYzSka
-         Ljq/Ol/kZ5FBraHNy3XMlIy7004Flo1o2KL1TnsBE2KXSqwiiXhJV7woFqnJnF8TSvHz
-         oTm7S3orsJhunN96sh46IxKCHHPjHNj9OWN2T2DZK0B2qJm863lTqoIeHp8xBu1hxcCg
-         OiMQ==
-X-Gm-Message-State: AOAM5331kK3AddwIsD2LyKHNgsdgwSdkSEu3ZCrHxleIBk5ScOoLHQiL
-        K5tfBOFY9C+Ns9nBSxBLyg==
-X-Google-Smtp-Source: ABdhPJysTlpXIwh+eH0MNk3KRrWFzHG9RUfNxtyx3upahYuQW6NDt0Jb1U1HAxVzlGHOIU8B9ArvBA==
-X-Received: by 2002:a9d:7410:: with SMTP id n16mr417037otk.71.1633554706283;
-        Wed, 06 Oct 2021 14:11:46 -0700 (PDT)
+        bh=hhEh5kd4e+SG2xwNY07ROc2/rt5AxCtyHRuXkRz4T3k=;
+        b=ED8BIYVYEqC5aj5MPdxwTjRswWLPYF/qBQ+1SJwW/q0+T82vwMuzr7vntrGAKEueDu
+         5YQAaaedioLHMlh9un1hwwxfedC4bFIK1vz61szXnq/qVNAvFd4KRIxD9GJvJ9ifus5M
+         z1+lnnzuDZdt8mo8EQs1reJaEGCC2YNdsAwnhHHgVM5KIPq8G1JMS8OAiHaGDcUoG2/J
+         piV+CWI24a5pQDkeccPhMWciqDlWUfONmTNGOcQByUu8vrJcnkeBi9LRk1uLHmy+Lu1b
+         yf9bz2npIU1dZRSP4AbzaD1FI9zvh5o6Z/0mbEmYse+YgrPV5DIlO0DQObmjdwRGsL7P
+         lHKg==
+X-Gm-Message-State: AOAM531IIjKfTw636KKgEdTcoiMKGNpWKySz4VIxukXMIUIDhvspz9uv
+        mA6huFZI9RXSaAhS6xwTFA==
+X-Google-Smtp-Source: ABdhPJzCaOetxDXjKEw1eehKByezoxHask+w4Lv2EHhMvurr3FrCIGFjv9FkOtkcIDUctkQBkf71mA==
+X-Received: by 2002:a05:6830:922:: with SMTP id v34mr439300ott.240.1633554836780;
+        Wed, 06 Oct 2021 14:13:56 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bl23sm2552476oib.40.2021.10.06.14.11.45
+        by smtp.gmail.com with ESMTPSA id z24sm4135433oic.26.2021.10.06.14.13.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 14:11:45 -0700 (PDT)
-Received: (nullmailer pid 2882794 invoked by uid 1000);
-        Wed, 06 Oct 2021 21:11:44 -0000
-Date:   Wed, 6 Oct 2021 16:11:44 -0500
+        Wed, 06 Oct 2021 14:13:56 -0700 (PDT)
+Received: (nullmailer pid 2886228 invoked by uid 1000);
+        Wed, 06 Oct 2021 21:13:54 -0000
+Date:   Wed, 6 Oct 2021 16:13:54 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: display: simple: add Innolux
- G070Y2-T02 panel
-Message-ID: <YV4REJzcUezYmAMN@robh.at.kernel.org>
-References: <20210930100501.15690-1-o.rempel@pengutronix.de>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+        p.zabel@pengutronix.de, amitk@kernel.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        rui.zhang@intel.com, heiko@sntech.de, linux-pm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: thermal: allow more resets for tsadc
+ node in rockchip-thermal.yaml
+Message-ID: <YV4RkjIEMUKlWK4z@robh.at.kernel.org>
+References: <20210930110517.14323-1-jbx6244@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210930100501.15690-1-o.rempel@pengutronix.de>
+In-Reply-To: <20210930110517.14323-1-jbx6244@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Sep 2021 12:04:59 +0200, Oleksij Rempel wrote:
-> Add binding for the Innolux G070Y2-T02 panel. It is 7" WVGA (800x480)
-> TFT LCD panel with TTL interface and a backlight unit.
+On Thu, 30 Sep 2021 13:05:14 +0200, Johan Jonker wrote:
+> The tsadc node in rk356x.dtsi has more resets defined then currently
+> allowed by rockchip-thermal.yaml, so fix that in the documentation.
+> The driver now uses the devm_reset_control_array_get() function,
+> so reset-names is no longer required, but keep it for legacy reasons.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
+> 
+> Changed V2:
+>   Remove deprecated
+> ---
+>  .../devicetree/bindings/thermal/rockchip-thermal.yaml      | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
