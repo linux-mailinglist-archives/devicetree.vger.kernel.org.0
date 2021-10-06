@@ -2,105 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3AD442466A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 21:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20CEE424678
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 21:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231804AbhJFTEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 15:04:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54792 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229564AbhJFTEs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 15:04:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DF3A1611C6;
-        Wed,  6 Oct 2021 19:02:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633546975;
-        bh=DxiX84ET7gi0KSf7MLiFGcfKZcbIEHwGNxmgykcGuBI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=GWtHL3HsVsggAK5Z0j1ZtFQhSgvj8+Uj3zOxOjZq6bR0Vlw+Eh8eU6uVXXLoS1U2l
-         woN4Ndrie2zAV9fCdPWGzFZkCQazUs95eRU1/n1/VLTOhVvKyjG6BJYV9MBlTXJNwS
-         6fqD3DfQQTYPKm+ua7t33ECr7Tf6tbEpsF8lvrKji4eZAAamJPNw+Bc/fBCIcKSesR
-         cb6kKlouaTAIan/l1rJQsjKF65vOnyvaYjoU7ek1shB8xKX1JAYniZoH5LSUqq8cpS
-         P/23Bxn6inAXR4u+PbWRpp529v1z3Zs6rSh2NsKm18tEhWrpQ4TY7Mg9wQ21SKeLDF
-         GvHJypKWdpO+w==
-Received: by mail-ed1-f47.google.com with SMTP id g8so13585002edt.7;
-        Wed, 06 Oct 2021 12:02:55 -0700 (PDT)
-X-Gm-Message-State: AOAM530mlB1A0HFCXDkY/RCqYys/6wPLP/kZbwzWUuWP+n9Gp3rAfDkQ
-        hYg/oZigO7ZCmXynPnYasbzdfECIUmUy9R05sg==
-X-Google-Smtp-Source: ABdhPJxPhoRzhOLtW/Zb9nB1Y+liMFNKBNdABFZe6ELJ8Z4pfZRd9ekEn0nvhAanuMAlyJYlDJ2eqKe5iG/3oHi3nVM=
-X-Received: by 2002:a17:906:7250:: with SMTP id n16mr33162419ejk.147.1633546974326;
- Wed, 06 Oct 2021 12:02:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211006154426.3222199-1-kuba@kernel.org> <20211006154426.3222199-2-kuba@kernel.org>
- <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com>
- <YV3QAzAWiYdKFB3m@lunn.ch> <CAL_JsqLRQRmhXZm25WKzUSBUyK6q5d-BspW4zQcztW3Qf56EKg@mail.gmail.com>
- <20211006101203.4337e9a4@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20211006101203.4337e9a4@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 6 Oct 2021 14:02:42 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK81knMX5i2DJDsxEALFjwoj3pijjT9ZMJ73aOCjYFhMQ@mail.gmail.com>
-Message-ID: <CAL_JsqK81knMX5i2DJDsxEALFjwoj3pijjT9ZMJ73aOCjYFhMQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 1/9] of: net: move of_net under net/
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, David Miller <davem@davemloft.net>,
-        netdev <netdev@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S239274AbhJFTKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 15:10:12 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:41669 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239225AbhJFTKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 15:10:10 -0400
+Received: by mail-ot1-f51.google.com with SMTP id 97-20020a9d006a000000b00545420bff9eso4393436ota.8
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 12:08:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=UtwrzsrYrexw7egYl4wU8hBbEuUQZK7E7w2jgOhW2FY=;
+        b=3vPJpRtMWCI1k7nqIt+CwoNkbjKWIEhDXQjpfIbuR6F9JI8O/Wru5V0LzZd9ep7eGR
+         XLvDbho3AoFARBIDraRYV6iHvvP845d8F5bIg2/y1+awDzR90uEe19r9lf0DVcDAo72T
+         uMl3ybcYlpSFfEDIXykLP6PgaWlOa9EXm5/OHBvIZAhYSGrBKi5pjCAmUB1AlMMOV9O1
+         kMHYmJs5FXzgmmzdBY2wdjAIfHcxh0160kPJYbkBDltDpLSTPbIPH+shfFnOucGNIc1P
+         LK4PTIyiJFaGzinriHxk1rEEWabJv+/0j64HYZkoNBUwjjk7rhAPTZkyQDY7Yc6JGRQU
+         wAcg==
+X-Gm-Message-State: AOAM530I9idPfE3IZ2WCxgvxmGQF2MUI+d4eXAaIKGwcu2hdGftgbMV4
+        XEjRoftQphNcoFqGUgroHA==
+X-Google-Smtp-Source: ABdhPJzCcOPOOJdCjqSevCGuw5AOGRSNXRgCFkbO/1DpFLBrPrHrCVeoHRNZya0eH6wzs4sJ3fSSQw==
+X-Received: by 2002:a9d:4702:: with SMTP id a2mr347403otf.271.1633547297462;
+        Wed, 06 Oct 2021 12:08:17 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q39sm268643oiw.47.2021.10.06.12.08.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Oct 2021 12:08:16 -0700 (PDT)
+Received: (nullmailer pid 2218064 invoked by uid 1000);
+        Wed, 06 Oct 2021 19:08:13 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     lgirdwood@gmail.com, tiwai@suse.de, devicetree@vger.kernel.org,
+        broonie@kernel.org, plai@codeaurora.org,
+        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
+        perex@perex.cz, bjorn.andersson@linaro.org, bgoswami@codeaurora.org
+In-Reply-To: <20211006113950.10782-9-srinivas.kandagatla@linaro.org>
+References: <20211006113950.10782-1-srinivas.kandagatla@linaro.org> <20211006113950.10782-9-srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH v9 08/17] ASoC: dt-bindings: add q6apm digital audio stream bindings
+Date:   Wed, 06 Oct 2021 14:08:13 -0500
+Message-Id: <1633547293.527218.2218062.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 6, 2021 at 12:12 PM Jakub Kicinski <kuba@kernel.org> wrote:
->
-> On Wed, 6 Oct 2021 11:58:07 -0500 Rob Herring wrote:
-> > On Wed, Oct 6, 2021 at 11:34 AM Andrew Lunn <andrew@lunn.ch> wrote:
-> > >
-> > > On Wed, Oct 06, 2021 at 11:18:19AM -0500, Rob Herring wrote:
-> > > > The OF_NET kconfig should move or disappear too. I imagine you can do just:
-> > >
-> > > It is used in a few places:
-> >
-> > Okay, then just move it for now.
-> >
-> > I suspect though that most of these can either be dropped or replaced
-> > with just 'OF' dependency.
->
-> I have something that builds with allmodconfig :) see below.
+On Wed, 06 Oct 2021 12:39:41 +0100, Srinivas Kandagatla wrote:
+> On AudioReach audio Framework, Audio Streams (PCM/Compressed) are managed by
+> Q6APM(Audio Process Manager) service. This patch adds bindings for this DAIs
+> exposed by the DSP.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/sound/qcom,q6apm-dai.yaml        | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+> 
 
-Sparc is the arch to try. That's generally we we get tripped up with OF options.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> > > net/ethernet/litex/Kconfig:     depends on OF_NET
-> > > net/ethernet/amd/Kconfig:       depends on ((OF_NET && OF_ADDRESS) || ACPI || PCI) && HAS_IOMEM
-> >
-> > If the driver depends on OF or ACPI, then the dependency should just
-> > be removed because one of those is almost always enabled.
->
-> I assumed any OF_* implies OF so just dropping OF_NET.
->
-> > > net/ethernet/mscc/Kconfig:      depends on OF_NET
-> > > net/ethernet/ezchip/Kconfig:    depends on OF_IRQ && OF_NET
-> > > net/ethernet/arc/Kconfig:       depends on OF_IRQ && OF_NET
-> > > net/ethernet/arc/Kconfig:       depends on OF_IRQ && OF_NET && REGULATOR
-> >
-> > I don't see any OF_IRQ dependency (which would be odd). The OF_NET
-> > dependency is just of_get_phy_mode() from a quick glance and we have a
-> > stub for it.
->
-> Hm. Indeed on the OF_IRQ.
->
-> net/ethernet/arc/ has irq_of_parse_and_map()
+yamllint warnings/errors:
 
-Ah right, but there is a stub for that. The preference is to use
-platform_get_irq() instead of irq_of_parse_and_map(), then the OF_IRQ
-dependency would really be gone.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/sound/qcom,q6apm-dai.example.dts:19:18: fatal error: dt-bindings/soc/qcom,gpr.h: No such file or directory
+   19 |         #include <dt-bindings/soc/qcom,gpr.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/sound/qcom,q6apm-dai.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1441: dt_binding_check] Error 2
 
-> but I don't see the need in ezchip, but that seems like a separate matter...
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1537089
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
