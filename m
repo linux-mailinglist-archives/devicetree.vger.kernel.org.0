@@ -2,175 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1026442390E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 09:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1EAB423916
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 09:43:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237335AbhJFHlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 03:41:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbhJFHlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 03:41:07 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34226C061749
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 00:39:16 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mY1W9-0000li-VC; Wed, 06 Oct 2021 09:39:10 +0200
-Message-ID: <b5b80a0fafe6b774fe9d8bb9e1431960cf2e7330.camel@pengutronix.de>
-Subject: Re: [PATCH 2/7] dt-bindings: soc: add binding for i.MX8MN DISP
- blk-ctrl
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Wed, 06 Oct 2021 09:39:08 +0200
-In-Reply-To: <20211006000505.627334-2-aford173@gmail.com>
-References: <20211006000505.627334-1-aford173@gmail.com>
-         <20211006000505.627334-2-aford173@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S231272AbhJFHpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 03:45:10 -0400
+Received: from mga18.intel.com ([134.134.136.126]:8624 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230013AbhJFHpK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 03:45:10 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10128"; a="212875074"
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; 
+   d="scan'208";a="212875074"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Oct 2021 00:43:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,350,1624345200"; 
+   d="scan'208";a="623779592"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 06 Oct 2021 00:43:14 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 06 Oct 2021 10:43:13 +0300
+Date:   Wed, 6 Oct 2021 10:43:13 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     davem@davemloft.net, netdev@vger.kernel.org,
+        gregkh@linuxfoundation.org, rafael@kernel.org, andrew@lunn.ch,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, robh+dt@kernel.org,
+        frowand.list@gmail.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 3/4] device property: add a helper for loading
+ netdev->dev_addr
+Message-ID: <YV1TkRtiu/q2vm/S@kuha.fi.intel.com>
+References: <20211005155321.2966828-1-kuba@kernel.org>
+ <20211005155321.2966828-4-kuba@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211005155321.2966828-4-kuba@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 05.10.2021 um 19:04 -0500 schrieb Adam Ford:
-> This adds the DT binding for the i.MX8MN DISP blk-ctrl.
+On Tue, Oct 05, 2021 at 08:53:20AM -0700, Jakub Kicinski wrote:
+> Commit 406f42fa0d3c ("net-next: When a bond have a massive amount
+> of VLANs...") introduced a rbtree for faster Ethernet address look
+> up. To maintain netdev->dev_addr in this tree we need to make all
+> the writes to it got through appropriate helpers.
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> There is a handful of drivers which pass netdev->dev_addr as
+> the destination buffer to device_get_mac_address(). Add a helper
+> which takes a dev pointer instead, so it can call an appropriate
+> helper.
+> 
+> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
 > ---
->  .../soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml     | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
+>  drivers/base/property.c  | 20 ++++++++++++++++++++
+>  include/linux/property.h |  2 ++
+>  2 files changed, 22 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-> new file mode 100644
-> index 000000000000..92d30aff446e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml#
+> diff --git a/drivers/base/property.c b/drivers/base/property.c
+> index 453918eb7390..1c8d4676addc 100644
+> --- a/drivers/base/property.c
+> +++ b/drivers/base/property.c
+> @@ -997,6 +997,26 @@ void *device_get_mac_address(struct device *dev, char *addr, int alen)
+>  }
+>  EXPORT_SYMBOL(device_get_mac_address);
+>  
+> +/**
+> + * device_get_ethdev_addr - Set netdev's MAC address from a given device
+> + * @dev:	Pointer to the device
+> + * @netdev:	Pointer to netdev to write the address to
+> + *
+> + * Wrapper around device_get_mac_address() which writes the address
+> + * directly to netdev->dev_addr.
+> + */
+> +void *device_get_ethdev_addr(struct device *dev, struct net_device *netdev)
+> +{
+> +	u8 addr[ETH_ALEN];
+> +	void *ret;
+> +
+> +	ret = device_get_mac_address(dev, addr, ETH_ALEN);
+> +	if (ret)
+> +		eth_hw_addr_set(netdev, addr);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(device_get_ethdev_addr);
 
-mm -> mn in the file name.
+Is there some reason why can't this be in net/ethernet/eth.c?
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX8MN DISP blk-ctrl
-> +
-> +maintainers:
-> +  - Lucas Stach <l.stach@pengutronix.de>
+I would really prefer that we don't add any more subsystem specific
+functions into this file (drivers/base/property.c).
 
-I'm not opposed to being maintainer for this file, just making sure
-that this is what you intended.
+Shouldn't actually fwnode_get_mac_addr() and fwnode_get_mac_address()
+be moved to net/ethernet/eth.c as well?
 
-Other than that I think this looks okay.
+>  /**
+>   * fwnode_irq_get - Get IRQ directly from a fwnode
+>   * @fwnode:	Pointer to the firmware node
+> diff --git a/include/linux/property.h b/include/linux/property.h
+> index 357513a977e5..24dc4d2b9dbd 100644
+> --- a/include/linux/property.h
+> +++ b/include/linux/property.h
+> @@ -15,6 +15,7 @@
+>  #include <linux/types.h>
+>  
+>  struct device;
+> +struct net_device;
+>  
+>  enum dev_prop_type {
+>  	DEV_PROP_U8,
+> @@ -390,6 +391,7 @@ const void *device_get_match_data(struct device *dev);
+>  int device_get_phy_mode(struct device *dev);
+>  
+>  void *device_get_mac_address(struct device *dev, char *addr, int alen);
+> +void *device_get_ethdev_addr(struct device *dev, struct net_device *netdev);
 
-Regards,
-Lucas
+So this you would then introduce in linux/etherdevce.h (?)
+But not here, in include/linux/property.h
 
-> +
-> +description:
-> +  The i.MX8MN DISP blk-ctrl is a top-level peripheral providing access to
-> +  the NoC and ensuring proper power sequencing of the display and MIPI CSI
-> +  peripherals located in the DISP domain of the SoC.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: fsl,imx8mn-disp-blk-ctrl
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  power-domains:
-> +    minItems: 5
-> +    maxItems: 5
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: bus
-> +      - const: isi
-> +      - const: lcdif
-> +      - const: mipi-dsi
-> +      - const: mipi-csi
-> +
-> +  clocks:
-> +    minItems: 11
-> +    maxItems: 11
-> +
-> +  clock-names:
-> +    items:
-> +      - const: disp_axi
-> +      - const: disp_apb
-> +      - const: disp_axi_root
-> +      - const: disp_apb_root
-> +      - const: lcdif-axi
-> +      - const: lcdif-apb
-> +      - const: lcdif-pix
-> +      - const: dsi-pclk
-> +      - const: dsi-ref
-> +      - const: csi-aclk
-> +      - const: csi-pclk
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - power-domains
-> +  - power-domain-names
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mn-clock.h>
-> +    #include <dt-bindings/power/imx8mn-power.h>
-> +
-> +    disp_blk_ctl: blk_ctrl@32e28000 {
-> +      compatible = "fsl,imx8mn-disp-blk-ctrl", "syscon";
-> +      reg = <0x32e28000 0x100>;
-> +      power-domains = <&pgc_dispmix>, <&pgc_dispmix>,
-> +		       <&pgc_dispmix>, <&pgc_mipi>,
-> +			<&pgc_mipi>;
-> +      power-domain-names = "bus", "isi", "lcdif", "mipi-dsi",
-> +			    "mipi-csi";
-> +      clocks = <&clk IMX8MN_CLK_DISP_AXI>,
-> +	       <&clk IMX8MN_CLK_DISP_APB>,
-> +	       <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
-> +	       <&clk IMX8MN_CLK_DISP_APB_ROOT>,
-> +	       <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
-> +	       <&clk IMX8MN_CLK_DISP_APB_ROOT>,
-> +	       <&clk IMX8MN_CLK_DISP_PIXEL_ROOT>,
-> +	       <&clk IMX8MN_CLK_DSI_CORE>,
-> +	       <&clk IMX8MN_CLK_DSI_PHY_REF>,
-> +	       <&clk IMX8MN_CLK_CSI1_PHY_REF>,
-> +	       <&clk IMX8MN_CLK_CAMERA_PIXEL_ROOT>;
-> +       clock-names = "disp_axi", "disp_apb", "disp_axi_root", "disp_apb_root",
-> +                     "lcdif-axi", "lcdif-apb", "lcdif-pix", "dsi-pclk",
-> +                     "dsi-ref", "csi-aclk", "csi-pclk";
-> +       #power-domain-cells = <1>;
-> +    };
+thanks,
 
-
+-- 
+heikki
