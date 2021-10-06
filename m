@@ -2,68 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ED51424690
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 21:14:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E24424776
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 21:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239214AbhJFTQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 15:16:35 -0400
-Received: from mail-oo1-f53.google.com ([209.85.161.53]:44892 "EHLO
-        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbhJFTQf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 15:16:35 -0400
-Received: by mail-oo1-f53.google.com with SMTP id e16-20020a4ad250000000b002b5e1f1bc78so1156053oos.11;
-        Wed, 06 Oct 2021 12:14:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=F2u+l/lmYmOhB5qG5+bzuACvdjgmAdllAL4afyPVf8I=;
-        b=H/8M+xtGLAMoA1hJD/tcKHuQqN3VtwrXtrDiK09757ynvABp+3mdEnAEGm2vlwbjAs
-         w9bWnhlEQLPKR+3qzk7Ih8/wZzSfBKlnvKd34O8NPcvSHqIPDSJGhUY5hsQXNE0kPgnv
-         k8EJd+CS3tAfp0J8qEilhtKWstrXrWVNd6edolCCsFJejg5nvGcVgfTZFfC/dhQIr4D7
-         2WtiP3rJ8aCeBCD+HgBYS1IT627xyB7gVQQME6WVOqAzJaXbA67bpebdrQDEssb7aYWw
-         pzoZk+yhTtv5pf5ubMYOKmB+LCoQFHv9oPmjr1vSaS/wJJkbVEA9BejlsJI2t2kGu5qu
-         AHHQ==
-X-Gm-Message-State: AOAM532F1kaqqg6UINSfXiD5p2GrYrYxeO5u3JC/ADCbdSRmVD2SGCXK
-        RvJdjugMi6F/9NU7j9gu5Q==
-X-Google-Smtp-Source: ABdhPJyGrxWCOpNPPLGYwRvElOIPV41kNWMelDN9N+FeSrmez82iHIoUOO7fZBPy3ySVbVV/8PSdWA==
-X-Received: by 2002:a4a:d088:: with SMTP id i8mr64515oor.17.1633547682230;
-        Wed, 06 Oct 2021 12:14:42 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o42sm2875975ooi.9.2021.10.06.12.14.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 12:14:41 -0700 (PDT)
-Received: (nullmailer pid 2249766 invoked by uid 1000);
-        Wed, 06 Oct 2021 19:14:40 -0000
-Date:   Wed, 6 Oct 2021 14:14:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Grant Likely <grant.likely@secretlab.ca>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: remove duplicate declarations of __of_*_sysfs()
- functions
-Message-ID: <YV31oO+MV6z2qoDO@robh.at.kernel.org>
-References: <20211006061943.8472-1-zev@bewilderbeest.net>
+        id S234768AbhJFTvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 15:51:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38152 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229810AbhJFTvN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 15:51:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8A39D610A2;
+        Wed,  6 Oct 2021 19:49:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633549761;
+        bh=fIzE6ERIklxmcWuCrWzrrE3Y+yQgRsjs9i1rdqSmBbo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=MfF7kkiyCZsLGtDBR7KVuBVxt65Wek2MDpiA6ZoB7bRJK/GLXUCaTep9/PZlpwan4
+         4QKSxgFK5uO4XeK/ljb6n1+dS9M8tPDh2pAHyA4u5mgDDaSXFOBPT8Plwjr0qO+vut
+         bBYVnCBhnJWmDDRfCxC9NW2anQQX2XCQPv5Ku2X0BgsssqI9/Q1HDL4NTJp4ukSr9W
+         eX+DJjztGH44AT+GU/JkR5+Mah69kFO8+jd1rxnxuIfoxZX73zXYwXC3p5wZ929rWc
+         GVUvZBd6lOnIFhYqb6xspI3utaXnMkvyNOH9ENxCT68cfFtV1MUkO/2kE+FVo/9Ttk
+         hbx9K5s8qCn0A==
+Date:   Wed, 6 Oct 2021 12:49:19 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>, David Miller <davem@davemloft.net>,
+        netdev <netdev@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/9] of: net: move of_net under net/
+Message-ID: <20211006124919.48b46660@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <CAL_JsqK81knMX5i2DJDsxEALFjwoj3pijjT9ZMJ73aOCjYFhMQ@mail.gmail.com>
+References: <20211006154426.3222199-1-kuba@kernel.org>
+        <20211006154426.3222199-2-kuba@kernel.org>
+        <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com>
+        <YV3QAzAWiYdKFB3m@lunn.ch>
+        <CAL_JsqLRQRmhXZm25WKzUSBUyK6q5d-BspW4zQcztW3Qf56EKg@mail.gmail.com>
+        <20211006101203.4337e9a4@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        <CAL_JsqK81knMX5i2DJDsxEALFjwoj3pijjT9ZMJ73aOCjYFhMQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211006061943.8472-1-zev@bewilderbeest.net>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Oct 2021 23:19:42 -0700, Zev Weiss wrote:
-> When CONFIG_OF_KOBJ was introduced in commit b56b5528f5b3 ("of: make
-> kobject and bin_attribute support configurable") and #ifdef-ed
-> versions of these declarations got added, the originals didn't get
-> removed.
+On Wed, 6 Oct 2021 14:02:42 -0500 Rob Herring wrote:
+> > > Okay, then just move it for now.
+> > >
+> > > I suspect though that most of these can either be dropped or replaced
+> > > with just 'OF' dependency.  
+> >
+> > I have something that builds with allmodconfig :) see below.  
 > 
-> Fixes: b56b5528f5b3 ("of: make kobject and bin_attribute support configurable")
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> ---
->  drivers/of/of_private.h | 8 --------
->  1 file changed, 8 deletions(-)
-> 
+> Sparc is the arch to try. That's generally we we get tripped up with OF options.
 
-Applied, thanks!
+Thanks for the hint, sparc (non-64) allmodconfig builds fine (well, it
+spits out this:
+
+  <stdin>:1515:2: warning: #warning syscall clone3 not implemented [-Wcpp] 
+  arch/sparc/boot/Makefile:26: FORCE prerequisite is missing
+
+but that seems unrelated).
+
+Is there any other sparc config worth building?
