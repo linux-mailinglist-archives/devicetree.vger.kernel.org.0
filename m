@@ -2,62 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE9442374B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 06:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC0C42375A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 07:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229887AbhJFE6o convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 6 Oct 2021 00:58:44 -0400
-Received: from ni.piap.pl ([195.187.100.5]:40784 "EHLO ni.piap.pl"
+        id S229554AbhJFFFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 01:05:19 -0400
+Received: from muru.com ([72.249.23.125]:41174 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229554AbhJFE6o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 00:58:44 -0400
-From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>
-Subject: Re: v5.15-rcX regression: video devices on i.MX6 are not created
-References: <m3lf39nfsq.fsf@t19.piap.pl>
-        <CAGETcx_N7XYkzFPSuQdvWKk1o+Pzzg4HnzChE_4c_Bg_oOK3eA@mail.gmail.com>
-        <CAOMZO5DwcXUe5j97n4Q_RF9WRo2DYoToe7FLNbpDJhn_BxuH0w@mail.gmail.com>
-Date:   Wed, 06 Oct 2021 06:56:48 +0200
-In-Reply-To: <CAOMZO5DwcXUe5j97n4Q_RF9WRo2DYoToe7FLNbpDJhn_BxuH0w@mail.gmail.com>
-        (Fabio Estevam's message of "Tue, 5 Oct 2021 23:23:38 -0300")
-Message-ID: <m38rz6oinj.fsf@t19.piap.pl>
+        id S231355AbhJFFFS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 01:05:18 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 8EC3580E1;
+        Wed,  6 Oct 2021 05:03:56 +0000 (UTC)
+Date:   Wed, 6 Oct 2021 08:03:24 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Chunyan Zhang <zhang.chunyan@linaro.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: sdhci-omap: Update binding for legacy
+ SoCs
+Message-ID: <YV0uHN9N73YbWUsK@atomide.com>
+References: <20210930065733.31943-1-tony@atomide.com>
+ <20210930065733.31943-2-tony@atomide.com>
+ <CAHCN7xJ_28ALRds4rduQP3LZoEK9y6mdia_czKU0DWse7FnjoA@mail.gmail.com>
+ <YVwHEqaAtk0MFwmR@atomide.com>
+ <CAHCN7xLBi09oHa75SxOc=CJ3hHZCNTxn6Z7m0NwuMcLY8+UL6g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHCN7xLBi09oHa75SxOc=CJ3hHZCNTxn6Z7m0NwuMcLY8+UL6g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio, Saravana,
+* Adam Ford <aford173@gmail.com> [211005 10:46]:
+> On Tue, Oct 5, 2021 at 3:04 AM Tony Lindgren <tony@atomide.com> wrote:
+> >
+> > Hi,
+> >
+> > * Adam Ford <aford173@gmail.com> [211002 13:29]:
+> > > I noticed that you added omap3 compatibility to the driver and the
+> > > bindings, but no device tree changes for omap3.dtsi to enable this.
+> > > Is there anything holding back?
+> >
+> > There is at least the wl1251 quirk handling missing as I mentioned in
+> > the cover letter. I guess we could enable sdhci except for wl1251 users
+> > though.
+> 
+> Sorry, I guess I missed the cover letter.  I didn't see any obvious
+> differences between the drivers other than the hsmmc driver enumerated
+> before the DMA, so it threw some splat indicating that.  The newer
+> driver appears to enumerate after the DMA, so that message
+> disappeared.
 
-Fabio Estevam <festevam@gmail.com> writes:
+OK
 
->> > FYI the patch: 6b2117ad65f1bca9ece6d4b1ee784b42701a2d86
->> >
->> > of: property: fw_devlink: Add support for "resets" and "pwms"
->> >
->> > Allows better tracking of dependencies between devices.
->> >
->> >  drivers/of/property.c | 4 ++++
->> >
->> > breaks v4l2 video devices on an i.MX6 CPU. The /dev/video* nodes are not
->> > created, and the drivers (async subdevicess) are "waiting":
->
-> Phillip has sent a fix for this issue:
-> http://lists.infradead.org/pipermail/linux-arm-kernel/2021-October/687868.html
+> > > I modified omap3.dtsi and changed the compatible flag to
+> > > ti,omap3-sdhci and it boots from SD card just fine.  For some reason,
+> > > I cannot get the wl1283 to function, but the driver probes, so I need
+> > > to spend some time investigating this.
+> > >
+> > > If i can get my wl1283 working again, I'll reply with a tested note.
+> > > I hope to have more time tomorrow, but i can't do it any more today.
+> >
+> > I don't have wl1283 omap3 devices online, but I have tested that the
+> > sdhci patches do work with wl12xx and mwifiex drivers. Did you figure
+> > out why your wl1283 is not working with sdhci?
+> 
+> I did get it working.  It was a MAC address issue.  I didn't properly
+> set the MAC address.  Once I did, it worked just fine.
+> 
+> I think I sent a 2nd reply with a tested-by message.
 
-This patch makes the /dev/video* devices to show up on my i.MX6-based
-system again, so I consider the problem fixed. Thanks.
--- 
-Krzysztof "Chris" Hałasa
+OK good to hear, thanks for testing :)
 
-Sieć Badawcza Łukasiewicz
-Przemysłowy Instytut Automatyki i Pomiarów PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+Regards,
+
+Tony
