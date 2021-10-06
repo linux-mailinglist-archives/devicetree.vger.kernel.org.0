@@ -2,85 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3AFD4248CC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 23:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C9A04248D8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 23:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239674AbhJFVWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 17:22:37 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:38873 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239680AbhJFVWg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 17:22:36 -0400
-Received: by mail-ot1-f44.google.com with SMTP id c6-20020a9d2786000000b005471981d559so4863851otb.5;
-        Wed, 06 Oct 2021 14:20:44 -0700 (PDT)
+        id S239657AbhJFV1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 17:27:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50374 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239683AbhJFV1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 17:27:01 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CB2C061746;
+        Wed,  6 Oct 2021 14:25:08 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id y23so16238275lfb.0;
+        Wed, 06 Oct 2021 14:25:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Z+D15vASJYR0SWQDyQP1KR8IKSZuDFJmcBUbxtdKwZQ=;
+        b=AZF3RQplv1wwucr3sX1VkhwqLxjb5jhLmlPTf6BcmzWR9S/ab1/50oKhYytjUxuxjF
+         OHbHbObgbt4KErSP1sBFtIGwDtqomaoinmksPntQwQo7yPKa9M8wW3aTrRkR1ENr9YXH
+         An3NYJ3BFO03YmpjlOAhqA15ukSOSB0TmSxxvb7VM8/kfAy6BCpaA8CZeYQjS7j0xRGz
+         CIwjLR5d3klZfaAeb5Knr5b9YHfwyA4YgK3OqOvAXLc4tncC4f/hvr9mbFYGzpAun4QX
+         mHvtjJ798n0SKwZ8bTfGtw8Fxr4u/DkYaIvvzaIRXqZRO/CW8DDEWuYH/pEiTmGzLMvD
+         XQ1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Wsk8RujENKPF2c4h64RRnI6VLfD/b5uYWJziNgJB7M0=;
-        b=7hoBXHQnSVB1GM5P5S1vsI7bVDjrAKr7KAUlPPFUM4WVTFcwGPZ7VRDkIq/52XQFcg
-         5vOz3h2pPTgvMscsSb/grySk7VdecMZguG4CkZ2j89sZk/sLl+bma6LxiM2WTIYUTxU2
-         l2eQV5cXn300Ak1axjaX2wWa8xvw4+ACvLLZXig3FT5dnqP2oWAYfnWZeaMLmHWnsyo5
-         /2uY1OvnC5QDCZ9jYFyxYVhbkwAKLQ4Dhb57a8wgSd0TJuEGuH0vBRm3rnTNS9WJqxsF
-         tg5CFoKX4DE7P3XvzdOMkb0IX6YKWVyhJhdJ3q8WtpXxSGSLjkSCr9cE2PGj3thDUIgy
-         SeTQ==
-X-Gm-Message-State: AOAM530lg2mP0/h+NJeo1a08o9JWWwllhKK6c7jqdxrCuDurerZGaikl
-        01fr6gK0xYPZ9mI2F7Muog==
-X-Google-Smtp-Source: ABdhPJzk0l6OpNMLfyVJq6uEk7MSbYP8iSur8KxaREovhFU5d98gqEVN2G7ijUssdWzjCshNN35VWg==
-X-Received: by 2002:a9d:4049:: with SMTP id o9mr455235oti.161.1633555243743;
-        Wed, 06 Oct 2021 14:20:43 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s10sm4189966oib.58.2021.10.06.14.20.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 14:20:43 -0700 (PDT)
-Received: (nullmailer pid 2897196 invoked by uid 1000);
-        Wed, 06 Oct 2021 21:20:42 -0000
-Date:   Wed, 6 Oct 2021 16:20:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Chris Lew <clew@codeaurora.org>,
-        Deepak Kumar Singh <deesin@codeaurora.org>
-Subject: Re: [PATCH v2 3/4] soc: qcom: smem: Support reserved-memory
- description
-Message-ID: <YV4TKh3XJYGOpGM3@robh.at.kernel.org>
-References: <20210930182111.57353-1-bjorn.andersson@linaro.org>
- <20210930182111.57353-4-bjorn.andersson@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Z+D15vASJYR0SWQDyQP1KR8IKSZuDFJmcBUbxtdKwZQ=;
+        b=eoI47RpotMB6l/W+VEtTxFLDzwNq8P/uyNHr42K7EWPwthQ2NpE0TiyKjLOuD2tdOL
+         J2q1uepIWAJGbJe6HYN9M8eFZjX1C/tKa2nVdpHTM8DgMebknWB6buakbT3m+qyVuPxv
+         eswrlSGQFl27hbpj71JjlaU77vRfc3Wr/VMIXaYYVqnJF5rZfQ6S3E38nLC1rnu5GEtn
+         NQ37OIpuHAwUdGJex7B3oR0AvJ2Elk0I7C7i69DpBcvS2PQ8helKynEzHerebW/TsBV+
+         Lerp4yqk9J8bMzVytJfch/QBmFtIDnhD2UcYZmpGSDuyMhQQ4FZEh8Ar+S24j4D8y2Bj
+         m3oA==
+X-Gm-Message-State: AOAM533Zj3tjYEXdAlcccH2fYDykd/DdgveE8NZI0qF4nJX+rGypXegK
+        oOqBuTe8od0SDBdiW6fMAIs=
+X-Google-Smtp-Source: ABdhPJw744uZG1epOJTVnrPpE+ugh/u7w22Q41348b4PDrlNyl5oKr3YpciuIkhK7LF587NSrNYsPA==
+X-Received: by 2002:a2e:1404:: with SMTP id u4mr387417ljd.269.1633555506822;
+        Wed, 06 Oct 2021 14:25:06 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.googlemail.com with ESMTPSA id s30sm2577705lfb.90.2021.10.06.14.25.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Oct 2021 14:25:06 -0700 (PDT)
+Subject: Re: [PATCH v13 06/35] clk: tegra: Support runtime PM and power domain
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+References: <20210926224058.1252-1-digetx@gmail.com>
+ <20210926224058.1252-7-digetx@gmail.com>
+ <CAPDyKFq+LS4Jr1GyC-a-tGWPzGH0JxfJ9wKY=uQEBGYm952azw@mail.gmail.com>
+ <24101cd6-d3f5-1e74-db39-145ecd30418b@gmail.com>
+ <CAPDyKFreK7976PJL-1zySoza_yXM7rMQ64aODWUZ+U3L-uCa0w@mail.gmail.com>
+ <4bdba8a2-4b9b-ed7d-e6ca-9218d8200a85@gmail.com>
+ <CAPDyKFq_-HGPRNiNDmnEbuah0mUYoRUWVs1SvbQ6VNMMwEcXjA@mail.gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <35714b9d-d855-1ad3-241b-f97859f8c97b@gmail.com>
+Date:   Thu, 7 Oct 2021 00:25:05 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210930182111.57353-4-bjorn.andersson@linaro.org>
+In-Reply-To: <CAPDyKFq_-HGPRNiNDmnEbuah0mUYoRUWVs1SvbQ6VNMMwEcXjA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 30, 2021 at 11:21:10AM -0700, Bjorn Andersson wrote:
-> Practically all modern Qualcomm platforms has a single reserved-memory
-> region for SMEM. So rather than having to describe SMEM in the form of a
-> node with a reference to a reserved-memory node, allow the SMEM device
-> to be instantiated directly from the reserved-memory node.
+06.10.2021 15:38, Ulf Hansson пишет:
+>> I'm also wondering if we could add some 'was_enabled' flag to GENPDs,
+>> setting it by genpd_suspend_noirq() for the enabled domains, and then
+>> powering-on GENPDs from genpd_resume_noirq() only if they were in the
+>> enabled state during genpd_suspend_noirq() time. It actually puzzled me
+>> for a quite long time why GENPD core enables domains unconditionally
+>> during early resume. This should solve a part of the problem and it
+>> makes suspend/resume a bit safer because there is a smaller chance to
+>> crash hardware during suspend, at least it's easier to debug.
+> Just because the PM domain was already off at genpd_suspend_noirq(),
+> doesn't mean that it can stay powered off at genpd_resume_noirq(). At
+> least as is today.
 > 
-> The current means of falling back to dereferencing the "memory-region"
-> is kept as a fallback, if it's determined that the SMEM node is a
-> reserved-memory node.
-> 
-> The "qcom,smem" compatible is added to the reserved_mem_matches list, to
-> allow the reserved-memory device to be probed.
-> 
-> In order to retain the readability of the code, the resolution of
-> resources is split from the actual ioremapping.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> 
-> Changes since v1:
-> - None
-> 
->  drivers/of/platform.c   |  1 +
+> The main reason why genpd_resume_noirq() powers on the PM domain, is
+> because it's not possible for the consumer drivers to rely on runtime
+> PM to do it (because runtime PM has been disabled by the PM core).
 
-Acked-by: Rob Herring <robh@kernel.org>
-
->  drivers/soc/qcom/smem.c | 57 ++++++++++++++++++++++++++++-------------
->  2 files changed, 40 insertions(+), 18 deletions(-)
+At least Tegra doesn't need to have domains force-resumed. This should
+be a platform-specific behaviour. We may add a new flag for that, I
+suppose. I'll try to keep this in mind for a future improvement. Thank
+you for the clarification.
