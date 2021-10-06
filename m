@@ -2,191 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 330DD42406C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 16:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D0A4240B6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:03:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239037AbhJFOvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 10:51:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42410 "EHLO
+        id S239112AbhJFPEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 11:04:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231776AbhJFOvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 10:51:24 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EDB8C061753;
-        Wed,  6 Oct 2021 07:49:32 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 7DDE81F44C3D
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, a.hajda@samsung.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH] dt-bindings: display/bridge: sil,sii8620: Convert to YAML binding
-Date:   Wed,  6 Oct 2021 16:49:14 +0200
-Message-Id: <20211006144914.568787-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.33.0
+        with ESMTP id S239171AbhJFPEw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 11:04:52 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01583C061746
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 08:02:59 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id r19so10998894lfe.10
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 08:02:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=R4UxXX9KG4xRnVHb1QP83F57gPSySRp26PaptBp9W+E=;
+        b=c2A8rXvYzl1XNvZe6X4yZXQ3DLXLxHVa95fIeuj9rBZ45m5+8eQqA0RVm1pT9i5zOe
+         IP0uAHiT77O47MvBhw0735+i5MKafDMF8rm3XY3+GiY3sm1DHFCDtLS1irEQ7rjem6PH
+         z6EPzmh3XFxdiXENPbjV4F/Nf8XkcT+AS3X7bYULQ8nuQH/96YZs/87VtOMKIKoncsmB
+         wA9+TSN42zh2xgxKchxfLbMFWohuQcgnEa0N5aqbEa5qFEoqSh5C/B6sWPtyoLrUx+Wb
+         saDrRNUR/xjybJOgghpZJTkrVZHaWjg59TzFmav3zbSgFAtoov70UgIuygPiykA8TN7O
+         vaig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=R4UxXX9KG4xRnVHb1QP83F57gPSySRp26PaptBp9W+E=;
+        b=jNoWqT/RS8Dk+ZEl8FeuvG8mbDTwFx7ctj4piz1reJI3iMgBdrG/1/NFCCHVIXKKIM
+         CysST7abxc3ERCIfqbO7HvIa3bxHbgx5cmZxv3ziW1O/LNhqicgHTNfLLDgE5VYFd8Cf
+         IA2Rf0lFf8g9rev0r2K1DHbs2ZUtgRhzSivLFGfdUXsaSBc9Gf5tRs+GNE46P4+Mn/XB
+         sHu137mpsGjxXnTQ/J63AsqhPW+d+FYRza+34hqgWwqGKp+T5/1OLtPFWSfVqA1un+zt
+         LJ1Xwk5pgVB7KW/vNoQyQUvsEcV1FDEAdICx0K88N8mCKacgYvuwFJeuUaR6Px3eE3p0
+         5GUg==
+X-Gm-Message-State: AOAM532rDB44CGmYIs6+/oNXPFsnumvFwJNs0PW/eRIhadlIUwAHqIV7
+        Ib/gfAGfHzVNkAbFQLiVBU5b0kly/qeqjVg+nFk3/Q==
+X-Google-Smtp-Source: ABdhPJwzkIcdOlAvbcG0LoR5b5rYqJwoDDhoAr9cF2QmPGsGTRkgcfVrKXVLKuhHnG+954Nczl0s2lh35/naoTki6mY=
+X-Received: by 2002:a2e:85c2:: with SMTP id h2mr30410582ljj.367.1633532563483;
+ Wed, 06 Oct 2021 08:02:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
+ <20210930170646.cffsuytdpa72izbh@pali> <CAPDyKFoaw8rdPRdjgAJz3-T2_fS1iA9jtonbwZAYE0npUNfOQQ@mail.gmail.com>
+ <149139701.nbvtKH4F0p@pc-42>
+In-Reply-To: <149139701.nbvtKH4F0p@pc-42>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 6 Oct 2021 17:02:07 +0200
+Message-ID: <CAPDyKFr62Kykg3=9WiXAV8UToqjw8gj4t6bbM7pGQ+iGGQRLmg@mail.gmail.com>
+Subject: Re: [PATCH v7 08/24] wfx: add bus_sdio.c
+To:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
+Cc:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Silicon Image SiI8620 MIPI-DSI to LVDS bridge documentation
-to YAML.
+On Tue, 5 Oct 2021 at 10:14, J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@sil=
+abs.com> wrote:
+>
+> On Friday 1 October 2021 17:23:16 CEST Ulf Hansson wrote:
+> > On Thu, 30 Sept 2021 at 19:06, Pali Roh=C3=A1r <pali@kernel.org> wrote:
+> > > On Thursday 30 September 2021 18:51:09 J=C3=A9r=C3=B4me Pouiller wrot=
+e:
+> > > > On Thursday 30 September 2021 12:07:55 CEST Ulf Hansson wrote:
+> > > > > On Mon, 20 Sept 2021 at 18:12, Jerome Pouiller
+> > > > > <Jerome.Pouiller@silabs.com> wrote:
+> > > > > >
+> > > > > > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+> > > > > >
+> > > > > > Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silab=
+s.com>
+> > > > > > ---
+> > > > > >  drivers/net/wireless/silabs/wfx/bus_sdio.c | 261 +++++++++++++=
+++++++++
+> > > > > >  1 file changed, 261 insertions(+)
+> > > > > >  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
+> > > > > >
+> > > > > > diff --git a/drivers/net/wireless/silabs/wfx/bus_sdio.c b/drive=
+rs/net/wireless/silabs/wfx/bus_sdio.c
+> > > > >
+> > > > > [...]
+> > > > >
+> > > > > > +
+> > > > > > +static int wfx_sdio_probe(struct sdio_func *func,
+> > > > > > +                         const struct sdio_device_id *id)
+> > > > > > +{
+> > > > > > +       struct device_node *np =3D func->dev.of_node;
+> > > > > > +       struct wfx_sdio_priv *bus;
+> > > > > > +       int ret;
+> > > > > > +
+> > > > > > +       if (func->num !=3D 1) {
+> > > > > > +               dev_err(&func->dev, "SDIO function number is %d=
+ while it should always be 1 (unsupported chip?)\n",
+> > > > > > +                       func->num);
+> > > > > > +               return -ENODEV;
+> > > > > > +       }
+> > > > > > +
+> > > > > > +       bus =3D devm_kzalloc(&func->dev, sizeof(*bus), GFP_KERN=
+EL);
+> > > > > > +       if (!bus)
+> > > > > > +               return -ENOMEM;
+> > > > > > +
+> > > > > > +       if (!np || !of_match_node(wfx_sdio_of_match, np)) {
+> > > > > > +               dev_warn(&func->dev, "no compatible device foun=
+d in DT\n");
+> > > > > > +               return -ENODEV;
+> > > > > > +       }
+> > > > > > +
+> > > > > > +       bus->func =3D func;
+> > > > > > +       bus->of_irq =3D irq_of_parse_and_map(np, 0);
+> > > > > > +       sdio_set_drvdata(func, bus);
+> > > > > > +       func->card->quirks |=3D MMC_QUIRK_LENIENT_FN0 |
+> > > > > > +                             MMC_QUIRK_BLKSZ_FOR_BYTE_MODE |
+> > > > > > +                             MMC_QUIRK_BROKEN_BYTE_MODE_512;
+> > > > >
+> > > > > I would rather see that you add an SDIO_FIXUP for the SDIO card, =
+to
+> > > > > the sdio_fixup_methods[], in drivers/mmc/core/quirks.h, instead o=
+f
+> > > > > this.
+> > > >
+> > > > In the current patch, these quirks are applied only if the device a=
+ppears
+> > > > in the device tree (see the condition above). If I implement them i=
+n
+> > > > drivers/mmc/core/quirks.h they will be applied as soon as the devic=
+e is
+> > > > detected. Is it what we want?
+> > > >
+> > > > Note: we already have had a discussion about the strange VID/PID de=
+clared
+> > > > by this device:
+> > > >   https://www.spinics.net/lists/netdev/msg692577.html
+> > >
+> > > Yes, vendor id 0x0000 is invalid per SDIO spec. So based on this vend=
+or
+> > > id, it is not possible to write any quirk in mmc/sdio generic code.
+> > >
+> > > Ulf, but maybe it could be possible to write quirk based on OF
+> > > compatible string?
+> >
+> > Yes, that would be better in my opinion.
+> >
+> > We already have DT bindings to describe embedded SDIO cards (a subnode
+> > to the mmc controller node), so we should be able to extend that I
+> > think.
+>
+> So, this feature does not yet exist? Do you consider it is a blocker for
+> the current patch?
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../bindings/display/bridge/sil,sii8620.yaml  | 96 +++++++++++++++++++
- .../bindings/display/bridge/sil-sii8620.txt   | 33 -------
- 2 files changed, 96 insertions(+), 33 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
+Yes, sorry. I think we should avoid unnecessary hacks in SDIO func
+drivers, especially those that deserve to be fixed in the mmc core.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml b/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
-new file mode 100644
-index 000000000000..4e32409eff17
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/sil,sii8620.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Silicon Image SiI8620 MIPI-DSI to LVDS bridge
-+
-+maintainers:
-+  - Andrzej Hajda <a.hajda@samsung.com>
-+
-+description: |
-+  The SiI8620 is bridge device which converts MIPI DSI or MIPI DPI to DP/eDP.
-+
-+properties:
-+  compatible:
-+    const: sil,sii8620
-+
-+  reg:
-+    description: I2C address of the bridge
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: xtal
-+
-+  cvcc10-supply:
-+    description: Digital Core Supply Voltage, 1.0V
-+
-+  iovcc18-supply:
-+    description: I/O voltage supply, 1.8V
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: GPIO connected to the reset pin.
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Video port for HDMI input
-+
-+    required:
-+      - port@0
-+
-+required:
-+  - compatible
-+  - reg
-+  - cvcc10-supply
-+  - iovcc18-supply
-+  - interrupts
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c1 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      bridge@39 {
-+        compatible = "sil,sii8620";
-+        reg = <0x39>;
-+        cvcc10-supply = <&ldo36_reg>;
-+        iovcc18-supply = <&ldo34_reg>;
-+        interrupt-parent = <&gpf0>;
-+        interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-+        reset-gpios = <&gpv7 0 GPIO_ACTIVE_HIGH>;
-+
-+        ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          port@0 {
-+            reg = <0>;
-+            mhl_to_hdmi: endpoint {
-+              remote-endpoint = <&hdmi_to_mhl>;
-+            };
-+          };
-+        };
-+      };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt b/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
-deleted file mode 100644
-index b05052f7d62f..000000000000
---- a/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--Silicon Image SiI8620 HDMI/MHL bridge bindings
--
--Required properties:
--	- compatible: "sil,sii8620"
--	- reg: i2c address of the bridge
--	- cvcc10-supply: Digital Core Supply Voltage (1.0V)
--	- iovcc18-supply: I/O Supply Voltage (1.8V)
--	- interrupts: interrupt specifier of INT pin
--	- reset-gpios: gpio specifier of RESET pin
--	- clocks, clock-names: specification and name of "xtal" clock
--	- video interfaces: Device node can contain video interface port
--			    node for HDMI encoder according to [1].
--
--[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
--
--Example:
--	sii8620@39 {
--		reg = <0x39>;
--		compatible = "sil,sii8620";
--		cvcc10-supply = <&ldo36_reg>;
--		iovcc18-supply = <&ldo34_reg>;
--		interrupt-parent = <&gpf0>;
--		interrupts = <2 0>;
--		reset-gpio = <&gpv7 0 0>;
--		clocks = <&pmu_system_controller 0>;
--		clock-names = "xtal";
--
--		port {
--			mhl_to_hdmi: endpoint {
--				remote-endpoint = <&hdmi_to_mhl>;
--			};
--		};
--	};
--- 
-2.33.0
+Moreover, we already support the similar thing for eMMC cards, plus
+that most parts are already done for SDIO too.
 
+>
+> To be honest, I don't really want to take over this change in mmc/core.
+
+I understand. Allow me a couple of days, then I can post a patch to
+help you out.
+
+>
+> --
+> J=C3=A9r=C3=B4me Pouiller
+
+Kind regards
+Uffe
