@@ -2,93 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B7C24249EA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 00:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E967242496D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 00:03:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236541AbhJFWkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 18:40:11 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:48012 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239912AbhJFWj4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 18:39:56 -0400
-X-Greylist: delayed 5755 seconds by postgrey-1.27 at vger.kernel.org; Wed, 06 Oct 2021 18:39:54 EDT
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 196L1xSo095749;
-        Wed, 6 Oct 2021 16:01:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1633554119;
-        bh=5GQkMzCzRXHqDDBT/bRBMLgEAfL2pt0t8U1wYbm8oDE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=NET/pdSy1xXpoizghZ6rEKPBbwja1s7RS1GQQNJNAnaFv66wnOrt9noLRvfUo17Rq
-         MIEMlNTSmEDuaPxkyq7Osj2nBdxBtqLmi1seiHsPZlVxgpGl+6zaYYSlqjBfWDEDdV
-         3igehkjpy0JiqQu3NEmamFdGeDMtEdtKDKvDjFW0=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 196L1xdG044307
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 6 Oct 2021 16:01:59 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 6
- Oct 2021 16:01:59 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 6 Oct 2021 16:01:59 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 196L1wxu070269;
-        Wed, 6 Oct 2021 16:01:58 -0500
-Date:   Thu, 7 Oct 2021 02:31:57 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        id S239635AbhJFWFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 18:05:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59172 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239771AbhJFWFU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 18:05:20 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA82EC061746;
+        Wed,  6 Oct 2021 15:03:27 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id z11so8174725lfj.4;
+        Wed, 06 Oct 2021 15:03:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ocF1Zd1GgargbSRFkTmMQuOw5z6Jk+7ep3c3eIOkpY0=;
+        b=ifXynuue/W+cts8xYAzQAjPsqjJAD3xm4bF5WPNBP3JdeZZeTkuHZ6o05Wga1mAEPW
+         uZBGIlccZgW7Zx08VO5j7forCX1vkPQvvoGq55QfThNxZroKaf7wt+EiygR38dICdv6x
+         rroUayAcRJedS+qeeYmhsWhHm9O8SGdiRISMqWg3sIqmtQtasrIDTGpy16tLvBqOnPdS
+         7VFt0DzOxk9oISnLMP0hp7pLoAYRpd/mP7Y5dJB/Ou/2xDx40RzvKuKuN/+zcyw8MIYR
+         7Kez1XrR98p/rr4uEPM0EsltzlzBLHnnhIfQ1lPQ+eKwuV1vbQZ+k+eIoHRBG6pJrLDt
+         WmfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ocF1Zd1GgargbSRFkTmMQuOw5z6Jk+7ep3c3eIOkpY0=;
+        b=3OS6Ml7bUodi3ie/nSzjXu7ntRkokboKF3LBhqUsHtqWwZQFDeb2BLVqINzfZ7irLv
+         lPjPmOJHzoqckvl40Y9Urac8A7E9r2RbG+ODvBxkrOdWhL9n1KmjicYhSSPLo3SVCxBy
+         Dfw/aNE+oIlZZBzL4qN4iGC52WaSh0tvl644aeTPbIS5Onm2NorszA2wF6+jY8oqLUNq
+         fHVLkZ7Kb6b6cb5bap0d1tBZeUtjQu8go4db/eXS8gpBQZ8w3EJ2tEmflOnnNQcn6vvz
+         d5T551oZNitPtC1Yai+DDROyz4lPgJaMoQAQWINgCwaIULuPidhgRhlWiFGahh6Lzjes
+         UnuQ==
+X-Gm-Message-State: AOAM530YlOmSWDZdvnoyr3cSpETHU8m8B8HJ73bAHT8zT7OvQ7sMUDaV
+        /0Sw7e2oophGwK5aQhe0OOLAlLfuIOA=
+X-Google-Smtp-Source: ABdhPJzzU4Kir/q2zSrh7VeOqOd6EwnvXqJt373WnDkIWpzjoqXokHPpHUyjZ+sXTNvD05zQT1QiYQ==
+X-Received: by 2002:a05:651c:169c:: with SMTP id bd28mr586938ljb.476.1633557806201;
+        Wed, 06 Oct 2021 15:03:26 -0700 (PDT)
+Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
+        by smtp.googlemail.com with ESMTPSA id d7sm2600461lfa.80.2021.10.06.15.03.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Oct 2021 15:03:25 -0700 (PDT)
+Subject: Re: [PATCH v13 06/35] clk: tegra: Support runtime PM and power domain
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
         Vignesh Raghavendra <vigneshr@ti.com>,
-        Benoit Parrot <bparrot@ti.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>
-Subject: Re: [PATCH v4 02/11] media: cadence: csi2rx: Add external DPHY
- support
-Message-ID: <20211006210155.ukfmh24kdipqprcn@ti.com>
-References: <20210915120240.21572-1-p.yadav@ti.com>
- <20210915120240.21572-3-p.yadav@ti.com>
- <YV4EuD2KSIXIYzY4@paasikivi.fi.intel.com>
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+References: <20210926224058.1252-1-digetx@gmail.com>
+ <20210926224058.1252-7-digetx@gmail.com>
+ <CAPDyKFq+LS4Jr1GyC-a-tGWPzGH0JxfJ9wKY=uQEBGYm952azw@mail.gmail.com>
+ <24101cd6-d3f5-1e74-db39-145ecd30418b@gmail.com>
+ <CAPDyKFreK7976PJL-1zySoza_yXM7rMQ64aODWUZ+U3L-uCa0w@mail.gmail.com>
+ <4bdba8a2-4b9b-ed7d-e6ca-9218d8200a85@gmail.com>
+ <CAPDyKFq_-HGPRNiNDmnEbuah0mUYoRUWVs1SvbQ6VNMMwEcXjA@mail.gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <5dfe7463-7a92-59c5-3ba6-57d31fc5833c@gmail.com>
+Date:   Thu, 7 Oct 2021 01:03:24 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YV4EuD2KSIXIYzY4@paasikivi.fi.intel.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAPDyKFq_-HGPRNiNDmnEbuah0mUYoRUWVs1SvbQ6VNMMwEcXjA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/21 11:19PM, Sakari Ailus wrote:
-> Hi Pratyush,
+06.10.2021 15:38, Ulf Hansson пишет:
+>>> Right, so the PM domain managed in tegra_genpd_power_on|off() can
+>>> still be powered on/off, as long as the clock remains ungated?
+>> Not ungated, but prepared.
+> Okay, thanks for clarifying!
 > 
-> On Wed, Sep 15, 2021 at 05:32:31PM +0530, Pratyush Yadav wrote:
-> > +	ret = phy_pm_runtime_get_sync(csi2rx->dphy);
-> 
-> Note that this will return 1 if the device was already resumed. That is not
-> an error.
+> In summary, it sounds like you should be able to fix this problem in
+> the I2C driver as I suggested above. If that works, that seems much
+> better.
 
-Thanks. Will fix.
+I'll try this variant, thank you.
 
-> 
-> > +	if (ret == -ENOTSUPP)
-> > +		got_pm = false;
-> > +	else if (ret)
-> > +		return ret;
-> 
-> -- 
-> Sakari Ailus
+> Moreover, it would leave the clocks gated/unprepared when the system
+> is fully suspended, which I guess is better from an energy point of
+> view?
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+The clocks are kept gated, it wasn't a problem. The problem was that
+clocks were needed to be enabled temporarily. In order to enable a
+clock, it needs to be prepared first. When clock is prepared, it resumes
+clock's device RPM.
+
+Keeping clocks prepared shouldn't make a noticeable difference from the
+energy POV since clocks are gated. It's only voltage that is kept high,
+but we need to keep it high during suspend anyways in order to resume
+successfully. The hardware is mostly gated during suspend, depending on
+suspend mode, so the power consumption difference is negligible. At
+least I haven't seen any problems, battery doesn't drain during suspend.
