@@ -2,187 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16DC04240C1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13FB9424104
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:13:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239154AbhJFPG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 11:06:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46138 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239167AbhJFPG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 11:06:57 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A716C061753;
-        Wed,  6 Oct 2021 08:05:05 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id DDED91F44C85
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, a.hajda@samsung.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+        id S232280AbhJFPPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 11:15:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53548 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239249AbhJFPO2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 11:14:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A132760F6D;
+        Wed,  6 Oct 2021 15:12:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633533155;
+        bh=n66tkchc4XioC797+ZaRTmljx8w2JSrZg0u+2YT9yP4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tj2i74+kSScWGUPwg9XGfcPcwA6u1sN0NaosnVHyjb801WCcn/99Xirx+Z/Tgcf4V
+         yvQ3eOyeUPaZxshaDJRMQCqEP/TOoyvsHlSqRypyg0YlqDi5YPny49/+sfb8CHLSDQ
+         ifXfnwQgz5vHZymPdlTty2JbOnP36utoKW+7pORuuQdm6awk7QazBP+6thcF47n1RS
+         Dhk/ytiL6Xw1SMyDWN14tBeqdpzysERZ9BlCTdCFUdlRKgq6XXey8gJ71OnTxPqe/+
+         ttABcuz21nRK+Y8MJKdyeUzahGdJrwXcdXQEooPPvHmcUZYkjnRAKvZcmYCyIrrJAy
+         /Jvqa4USrsDfQ==
+Date:   Wed, 6 Oct 2021 11:12:34 -0400
+From:   Sasha Levin <sashal@kernel.org>
+To:     Georgi Djakov <djakov@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Rob Herring <robh@kernel.org>,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v2] dt-bindings: display/bridge: sil,sii8620: Convert to YAML binding
-Date:   Wed,  6 Oct 2021 17:04:59 +0200
-Message-Id: <20211006150459.584875-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.33.0
+        <angelogioacchino.delregno@somainline.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org, kholk11@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH AUTOSEL 5.14 06/40] dt-bindings: interconnect: sdm660:
+ Add missing a2noc qos clocks
+Message-ID: <YV284nZX4BoE+TYj@sashalap>
+References: <20211005135020.214291-1-sashal@kernel.org>
+ <20211005135020.214291-6-sashal@kernel.org>
+ <0a7af294-095e-cac4-e20a-296de7bd59cb@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <0a7af294-095e-cac4-e20a-296de7bd59cb@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Silicon Image SiI8620 HDMI/MHL bridge documentation to YAML.
+On Tue, Oct 05, 2021 at 10:11:31PM +0300, Georgi Djakov wrote:
+>Hi Sasha,
+>
+>On 5.10.21 16:49, Sasha Levin wrote:
+>>From: Shawn Guo <shawn.guo@linaro.org>
+>>
+>>[ Upstream commit cf49e366020396ad83845c1c3bdbaa3c1406f5ce ]
+>>
+>>It adds the missing a2noc clocks required for QoS registers programming
+>>per downstream kernel[1].
+>>
+>>[1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
+>>
+>>Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+>>Reviewed-by: Rob Herring <robh@kernel.org>
+>>Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>>Link: https://lore.kernel.org/r/20210824043435.23190-2-shawn.guo@linaro.org
+>>Signed-off-by: Georgi Djakov <djakov@kernel.org>
+>>Signed-off-by: Sasha Levin <sashal@kernel.org>
+>
+>There is no benefit to backport these changes, as devices that
+>needed them, would not boot on v5.14 anyways. So please drop these:
+>
+>[PATCH AUTOSEL 5.14 06/40] dt-bindings: interconnect: sdm660: Add 
+>missing a2noc qos clocks
+>[PATCH AUTOSEL 5.14 07/40] interconnect: qcom: sdm660: Add missing 
+>a2noc qos clocks
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../bindings/display/bridge/sil,sii8620.yaml  | 93 +++++++++++++++++++
- .../bindings/display/bridge/sil-sii8620.txt   | 33 -------
- 2 files changed, 93 insertions(+), 33 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
+I'll drop it, thanks!
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml b/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
-new file mode 100644
-index 000000000000..5a38595b6687
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/sil,sii8620.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/sil,sii8620.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Silicon Image SiI8620 HDMI/MHL bridge
-+
-+maintainers:
-+  - Andrzej Hajda <a.hajda@samsung.com>
-+
-+properties:
-+  compatible:
-+    const: sil,sii8620
-+
-+  reg:
-+    description: I2C address of the bridge
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: xtal
-+
-+  cvcc10-supply:
-+    description: Digital Core Supply Voltage, 1.0V
-+
-+  iovcc18-supply:
-+    description: I/O voltage supply, 1.8V
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: GPIO connected to the reset pin.
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Video port for HDMI input
-+
-+    required:
-+      - port@0
-+
-+required:
-+  - compatible
-+  - reg
-+  - cvcc10-supply
-+  - iovcc18-supply
-+  - interrupts
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c1 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      bridge@39 {
-+        compatible = "sil,sii8620";
-+        reg = <0x39>;
-+        cvcc10-supply = <&ldo36_reg>;
-+        iovcc18-supply = <&ldo34_reg>;
-+        interrupt-parent = <&gpf0>;
-+        interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-+        reset-gpios = <&gpv7 0 GPIO_ACTIVE_HIGH>;
-+
-+        ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          port@0 {
-+            reg = <0>;
-+            mhl_to_hdmi: endpoint {
-+              remote-endpoint = <&hdmi_to_mhl>;
-+            };
-+          };
-+        };
-+      };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt b/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
-deleted file mode 100644
-index b05052f7d62f..000000000000
---- a/Documentation/devicetree/bindings/display/bridge/sil-sii8620.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--Silicon Image SiI8620 HDMI/MHL bridge bindings
--
--Required properties:
--	- compatible: "sil,sii8620"
--	- reg: i2c address of the bridge
--	- cvcc10-supply: Digital Core Supply Voltage (1.0V)
--	- iovcc18-supply: I/O Supply Voltage (1.8V)
--	- interrupts: interrupt specifier of INT pin
--	- reset-gpios: gpio specifier of RESET pin
--	- clocks, clock-names: specification and name of "xtal" clock
--	- video interfaces: Device node can contain video interface port
--			    node for HDMI encoder according to [1].
--
--[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
--
--Example:
--	sii8620@39 {
--		reg = <0x39>;
--		compatible = "sil,sii8620";
--		cvcc10-supply = <&ldo36_reg>;
--		iovcc18-supply = <&ldo34_reg>;
--		interrupt-parent = <&gpf0>;
--		interrupts = <2 0>;
--		reset-gpio = <&gpv7 0 0>;
--		clocks = <&pmu_system_controller 0>;
--		clock-names = "xtal";
--
--		port {
--			mhl_to_hdmi: endpoint {
--				remote-endpoint = <&hdmi_to_mhl>;
--			};
--		};
--	};
 -- 
-2.33.0
-
+Thanks,
+Sasha
