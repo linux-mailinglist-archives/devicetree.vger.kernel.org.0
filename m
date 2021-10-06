@@ -2,96 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B79E6423B19
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 11:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 848EF423B30
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 12:02:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238102AbhJFJ4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 05:56:12 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:41654 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229824AbhJFJ4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 05:56:02 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1968Zurl023597;
-        Wed, 6 Oct 2021 11:53:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=iBK4jt+j/TuaNdy+BtubPQOGdvAAr+skdXQvKDtN8d4=;
- b=OVS9amKfW5iF06CYWl4M0AJla3mr76y6Opsvuizx+rhWsdJe2z6hQGiH0id/Q8fTtJnG
- nB3eIF+Nsc7yAKsJxawwJpR6OfHpeeAjLO02KyoJssoNs5TTgTISi7xRN5xvgNJDD/S4
- B4rIX/vU8Qb7494IW9R9k6k+fiyn49V1lavZUR8OW4kxDv8gft6sJ5lpztnkHlhROoGw
- 7tV1UyYenUyFCLuII4bEFsEMsP6IFch6X5OpyXZam9qTFdT/Fy1JgTjweunFPeWBAeOx
- utaBq4G3lTPQPZtL4njJ4VyvYGBfbDbQ/u2Fi3KQsMT4xo5fikjQZrsAqHaNqsvgKjh+ wg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3bh8e8ghe6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 06 Oct 2021 11:53:57 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6B520100034;
-        Wed,  6 Oct 2021 11:53:56 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6346F21BF6D;
-        Wed,  6 Oct 2021 11:53:56 +0200 (CEST)
-Received: from localhost (10.75.127.50) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 6 Oct 2021 11:53:55
- +0200
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH 1/1] ARM: dts: stm32: use usbphyc ck_usbo_48m as USBH OHCI clock on stm32mp151
-Date:   Wed, 6 Oct 2021 11:53:55 +0200
-Message-ID: <20211006095355.59078-1-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        id S237945AbhJFKES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 06:04:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59982 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230143AbhJFKEQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 06:04:16 -0400
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A5BC061749;
+        Wed,  6 Oct 2021 03:02:24 -0700 (PDT)
+Received: by mail-ua1-x929.google.com with SMTP id g13so724887uaj.3;
+        Wed, 06 Oct 2021 03:02:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Uau9/pR+8X0YYImoS0Wg4cgXBZAlRqGIWfRwQoTAlIs=;
+        b=FqojcO+6S1vzBTjYbWbeynWCuPHepeTAT1FG+f7XggYRcYHFl2NcgAaFsGUz/WQF/J
+         osO5xGm/MsCLkelJrr/BzPvAv8HIa84pyjyLbs0KX3evk7wEGs80Qhe3mYmEiIgcN5uG
+         TaThcXRoYFOIrfAFeFAgD12BzFzzmH/YHX8Zzmwd4remXoiWpHXVDeVD920edl5SR896
+         rWR/pWGkDTTjHxc9pjNmdFsNB4Ikvq75kYEliY3zH58Wau8goW+mNCBtJwWynW42Jk2/
+         hJeKDbd0ttf7WP1sTQqhwM5oZf7bBp7ZtULYYJQtBbSP+Ki7cmrSVGEdLKts7ivbVwXe
+         uMzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Uau9/pR+8X0YYImoS0Wg4cgXBZAlRqGIWfRwQoTAlIs=;
+        b=Lw99BchxYEKvh301aUMWA2BnimWl26+QJ4L1HyUF3mHPXhQfif3ArsXOF88oZ+ZkeZ
+         rQkBE/AqBwv/xteZtZJD1HkzQGNAueIYquGiiuzmT+BIdlUxOo9lWM6+9YD8owNDE4VC
+         97U/gbHiZgm7jaV1hyWJrxuwholvgSZKqrpJjLS4UcUjRphlMZVh2OO6pmVF3SYU72vn
+         mQxLZD9OKoqrWKshPlGXn2wBHSqSIxVROFftzC94+A+0ueXshd0Yv7HgLkSxkXob2w0M
+         LFGSoGedfqE9QqchQENNNRx3up9ros4l8yMC5UKBoPrembOWnPbSyQFNOfbSECUSql0h
+         2IsQ==
+X-Gm-Message-State: AOAM530LJZQ15TpuJnk0p34RUDXEOqLH36H1Q5MpQR7fJcVyuiCsr8xR
+        DzM0irBKpXnBIkJsbvvoC780h9eGVN0Jrq8G9z4=
+X-Google-Smtp-Source: ABdhPJzfTPCIqF75XYHBa+La5Pd+QBvj9phqUfquQvBKUdk8ClsF1hEHLmwPcrVcniX/f0yPaOZWmW7JcncYMW+6iPI=
+X-Received: by 2002:ab0:5548:: with SMTP id u8mr16315316uaa.0.1633514543473;
+ Wed, 06 Oct 2021 03:02:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-10-06_02,2021-10-04_01,2020-04-07_01
+References: <20211006061204.2854-1-sergio.paracuellos@gmail.com>
+ <20211006061204.2854-4-sergio.paracuellos@gmail.com> <20211006082903.GZ2048@kadam>
+In-Reply-To: <20211006082903.GZ2048@kadam>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 6 Oct 2021 12:02:12 +0200
+Message-ID: <CAMhs-H_qb=goRmfhO1P+mt_NKhJFuJgH6a483-6Wk8M9MA1cJQ@mail.gmail.com>
+Subject: Re: [PATCH 3/4] clk: ralink: make system controller node a reset provider
+To:     Dan Carpenter <dan.carpenter@oracle.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-staging@lists.linux.dev, NeilBrown <neil@brown.name>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        John Crispin <john@phrozen.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Referring to the note under USBH reset and clocks chapter of RM0436,
-"In order to access USBH_OHCI registers it is necessary to activate the USB
-clocks by enabling the PLL controlled by USBPHYC" (ck_usbo_48m).
+Hi Dan,
 
-The point is, when USBPHYC PLL is not enabled, OHCI register access
-freezes the resume from STANDBY. It is the case when dual USBH is enabled,
-instead of OTG + single USBH.
-When OTG is probed, as ck_usbo_48m is USBO clock parent, then USBPHYC PLL
-is enabled and OHCI register access is OK.
+Thanks for the review. Comments below.
 
-This patch adds ck_usbo_48m (provided by USBPHYC PLL) as clock of USBH
-OHCI, thus USBPHYC PLL will be enabled and OHCI register access will be OK.
+On Wed, Oct 6, 2021 at 10:29 AM Dan Carpenter <dan.carpenter@oracle.com> wrote:
+>
+> On Wed, Oct 06, 2021 at 08:12:03AM +0200, Sergio Paracuellos wrote:
+> > @@ -398,6 +401,76 @@ static void __init mt7621_clk_init(struct device_node *node)
+> >  }
+> >  CLK_OF_DECLARE_DRIVER(mt7621_clk, "mediatek,mt7621-sysc", mt7621_clk_init);
+> >
+> > +struct mt7621_rst {
+> > +     struct reset_controller_dev rcdev;
+> > +     struct regmap *sysc;
+> > +};
+> > +
+> > +static inline struct mt7621_rst *to_mt7621_rst(struct reset_controller_dev *dev)
+>
+> No need to mark this as inline.  The compiler should do it automatically
+> or it will ignore the inline.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ok, I have other functions to_* with the same inline syntax, that's
+why I have added also here. I think I will maintain it to be coherent
+and can be removed afterwards with another patch not belonging to this
+series.
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index bd289bf5d269..fe194c787e6c 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1452,7 +1452,7 @@ stmmac_axi_config_0: stmmac-axi-config {
- 		usbh_ohci: usb@5800c000 {
- 			compatible = "generic-ohci";
- 			reg = <0x5800c000 0x1000>;
--			clocks = <&rcc USBH>;
-+			clocks = <&rcc USBH>, <&usbphyc>;
- 			resets = <&rcc USBH_R>;
- 			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
--- 
-2.25.1
+>
+> > +{
+> > +     return container_of(dev, struct mt7621_rst, rcdev);
+> > +}
+> > +
+> > +static int mt7621_assert_device(struct reset_controller_dev *rcdev,
+> > +                             unsigned long id)
+> > +{
+> > +     struct mt7621_rst *data = to_mt7621_rst(rcdev);
+> > +     struct regmap *sysc = data->sysc;
+> > +
+> > +     if (id == MT7621_RST_SYS)
+> > +             return -1;
+>
+> Please, return proper error codes.
 
+Current code at 'reset.c' of the arch was returning -1 in this case. I
+guess it is better to change it to -EINVAL.
+
+>
+> > +
+> > +     return regmap_update_bits(sysc, SYSC_REG_RESET_CTRL, BIT(id), BIT(id));
+> > +}
+> > +
+> > +static int mt7621_deassert_device(struct reset_controller_dev *rcdev,
+> > +                               unsigned long id)
+> > +{
+> > +     struct mt7621_rst *data = to_mt7621_rst(rcdev);
+> > +     struct regmap *sysc = data->sysc;
+> > +
+> > +     if (id == MT7621_RST_SYS)
+> > +             return -1;
+>
+> Here too.
+
+Will change to -EINVAL.
+
+>
+> > +
+> > +     return regmap_update_bits(sysc, SYSC_REG_RESET_CTRL, BIT(id), 0);
+> > +}
+> > +
+> > +static int mt7621_reset_device(struct reset_controller_dev *rcdev,
+> > +                            unsigned long id)
+> > +{
+> > +     int ret;
+> > +
+> > +     ret = mt7621_assert_device(rcdev, id);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     return mt7621_deassert_device(rcdev, id);
+> > +}
+> > +
+> > +static const struct reset_control_ops reset_ops = {
+> > +     .reset = mt7621_reset_device,
+> > +     .assert = mt7621_assert_device,
+> > +     .deassert = mt7621_deassert_device
+> > +};
+> > +
+> > +static int mt7621_reset_init(struct device *dev, struct regmap *sysc)
+> > +{
+> > +     struct mt7621_rst *rst_data;
+> > +
+> > +     rst_data = kzalloc(sizeof(*rst_data), GFP_KERNEL);
+>
+>
+> Can we use devm_ to allocate this or do we need to clean up if
+> devm_reset_controller_register() fails?  Also a free in the release
+> function I suppose.  (Please, use devm_).
+
+True, yes we can use devm_ for this. Will change it, thanks.
+
+>
+>
+> > +     if (!rst_data)
+> > +             return -ENOMEM;
+> > +
+> > +     rst_data->sysc = sysc;
+> > +     rst_data->rcdev.ops = &reset_ops;
+> > +     rst_data->rcdev.owner = THIS_MODULE;
+> > +     rst_data->rcdev.nr_resets = 32;
+> > +     rst_data->rcdev.of_reset_n_cells = 1;
+> > +     rst_data->rcdev.of_node = dev_of_node(dev);
+> > +
+> > +     return devm_reset_controller_register(dev, &rst_data->rcdev);
+> > +}
+>
+>
+> regards,
+> dan carpenter
+>
+I will properly take into account your comments and send v2.
+
+Thanks,
+     Sergio Paracuellos
