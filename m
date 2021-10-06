@@ -2,234 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 821674239C1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 10:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C147C4239C9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 10:31:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237774AbhJFIb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 04:31:29 -0400
-Received: from mx0b-00069f02.pphosted.com ([205.220.177.32]:24756 "EHLO
-        mx0b-00069f02.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237551AbhJFIbX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 04:31:23 -0400
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1967FC9E002190;
-        Wed, 6 Oct 2021 08:29:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : content-type : in-reply-to :
- mime-version; s=corp-2021-07-09;
- bh=WWRoMQ8zhTaXom/z2uhkObyUuEKE4LiEirH3VhZ7Oto=;
- b=qOqFeI2TzMljk4P+1EKbWg0+52/OyKZavap88cifPygSXBUZul24RNk4FB+quGrRb/cp
- LLSuBdg+5ywXib9z+GicShneGDcFYNgb7QyfMIINkINSIETD04FkdOujoJgA1a90669N
- Qb5cU1VSAX6bL+UB2naYWH7J6hU/rFBPWFl/3P5jmD5bbFgKELlH4ojEW/asKjPG+GDF
- EgEh0Al0DdVjIYuT5tp7TGPSVpsqvFiJA16hGX3fSMUAnw96dEGqzewMMTR/SEW8uGmt
- nuag4ykW5VXylH8t/i0suSAVj8Vv2VeWBOAJgmYXa0d35zhnpkAAUQB8lnFXJzLxmjct NA== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
-        by mx0b-00069f02.pphosted.com with ESMTP id 3bh3yn198e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 06 Oct 2021 08:29:25 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
-        by aserp3030.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 19689xON141998;
-        Wed, 6 Oct 2021 08:29:25 GMT
-Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2171.outbound.protection.outlook.com [104.47.55.171])
-        by aserp3030.oracle.com with ESMTP id 3bev7ugrng-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 06 Oct 2021 08:29:24 +0000
+        id S237411AbhJFIdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 04:33:17 -0400
+Received: from mail-eopbgr30139.outbound.protection.outlook.com ([40.107.3.139]:62294
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231415AbhJFIdP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 04:33:15 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WGbIFWRNswtGsBJchSxlXX3lBk/OjEkTJiM315c0V/AEzfLBNRsB1ChBKIGutfqonTbh8H7DlwrXvIS0QLsLt28mJyU9q/CalT9PjVwkdasDKvFCxSPRoRXsw34MHoiEEjNpnKI2+wLt+PUVZGS3QS3S8fCUbfH+fBV5ZwXJgUQosl0irUFcrSvy9oyufzZ4U1uQ3GNqBHrADfkFBhet60gWQ0e0xXYdhO6/xIsIy3TUfSfZLkVSKyLa2hXwp6iAc9wwJIOVph/nhoNCku3vcMCL/tHfzGb21kEtda3LXG6YkWN6V7zo514TN8j0qnE21NGbdJMh8s+U6SnactynYQ==
+ b=Jbip0YBFe8Nog+Em5lClUTPSfXJCmrzQtBOUYee/HENonrkumYlYr4VEJRoudJjkLpmbasKc4D7L7FFN/uDrjrxUHbTLODcJyVLz0yoTNYk8+pFpvX7LTyjBYIoxZy4DEivVaS1SwJ6afh60+QtPiPPTigmaQQX+rGGed6P3oOtrA0lO3nOHv4mX2AjaSIfsYQT8rHSN8+6Iwy0Ba4h9APhwKyvM4devaJ2oYMUAbU2IEznzuY9FAMQGrpDug9I1dwHXYRVBv74JXbJxBkXRBc37RSEG66eaAEQcY2tMSf74vP+6jxPAgGzyZTXFkelvuEl32TVqfAA0JaHM5nb2qg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WWRoMQ8zhTaXom/z2uhkObyUuEKE4LiEirH3VhZ7Oto=;
- b=kqI90n3079zw9dmWxDV75zvv5Q55b5/rRYGjRCPZtIuNXn1woQeybOjCyIKmQQ+Izp/S9w9TsBqPFpmg93ivLqrJcf52uXv4mT4f96me4FJkUT5vjR7cThQ+p8+FppKp+tRLiyaxXiKKtpmDt1Cjwj7mSOxMRZCTe781OfwR9XQXix31F3MMIQdJDDYC0RmY7VKWqg6rYBz0PWRVhJJWgMFpMFqxyvdDuFQOtuhxDSPrrE71Dn9Rcn/72pAYw4kKt4pgvwkxEvVpsg+gKOE1Fm1Z+EMskdaF3V/YqGvMhAUx2M1odzhPVqTuqMV++LsIcehC+u8m7fpLMDHMoMgjsA==
+ bh=BR3zjZHN7qWRNOMgAH/oaiBW0MGxXx2AiedImq9QttI=;
+ b=Tkh37QVD8iey6gtUIpS8bH9um/cny8bWcq5KhsxgGpDuzbCH63qQLPJYSFr9pYgsX3GWbMZc2ZTeUE2ywhXSPsKIHYevj8vxhhoysaHzMzImQcqUOqKHXZBOUZuBqQxqdYvVS3wt3fpQWcoS2Euw/IW48fc2Sli62wO5ciTdtCIt1hmjI6fLD0Y4VqISpbxgFCG3fWBWYXAURxiHXXIYm93yJJwVSi/s7uJTQHVpcJDTv9QlWlCK1DdciO7JgzH8udGEbPLtRVXWRWMCg0kjQzrEtIWH+lQtVpXDkZ1LPsTO1JZGlf3M3i1HO0kh+DB3kKmpS4MhSj6To7yIglOsuw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WWRoMQ8zhTaXom/z2uhkObyUuEKE4LiEirH3VhZ7Oto=;
- b=rcewUYhO4rf2js5uWAaokNdSRXSEBn99nGrA4EkcQGNV+kGunUz7lIMJB/UI0CAc5ov2V7LJ4b11a50H6kkfjPDcg10sC8cylap5sMOJ95EKKA4MR5Ls91zkRHSI1DYUxQvFcgjABgzB0tIUeJRQhkJwa01MuOMXLl7PRrCVEPg=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=oracle.com;
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by CO6PR10MB5789.namprd10.prod.outlook.com
- (2603:10b6:303:140::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.16; Wed, 6 Oct
- 2021 08:29:22 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::d409:11b5:5eb2:6be9]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::d409:11b5:5eb2:6be9%5]) with mapi id 15.20.4566.022; Wed, 6 Oct 2021
- 08:29:22 +0000
-Date:   Wed, 6 Oct 2021 11:29:03 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     sboyd@kernel.org, linux-clk@vger.kernel.org,
-        gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-staging@lists.linux.dev, neil@brown.name,
-        linux-kernel@vger.kernel.org, john@phrozen.org
-Subject: Re: [PATCH 3/4] clk: ralink: make system controller node a reset
- provider
-Message-ID: <20211006082903.GZ2048@kadam>
-References: <20211006061204.2854-1-sergio.paracuellos@gmail.com>
- <20211006061204.2854-4-sergio.paracuellos@gmail.com>
-Content-Type: text/plain; charset=us-ascii
+ bh=BR3zjZHN7qWRNOMgAH/oaiBW0MGxXx2AiedImq9QttI=;
+ b=MqKUo9L1ZubGavaP2+U3q8UQJa1BOzVcuTs/iJP41xbzb85POr6/fzbaH/OwuXlGzdXUOhuaKRK2l5xioLr2zo/eXgtm3qMkLa3igsM0yoPQy4iodXtyUMWRXMhRzZbFF6BzSIP6KI+0euIeFEdRPZ/Gbo4/iBr2ybI78MPq18E=
+Authentication-Results: roeck-us.net; dkim=none (message not signed)
+ header.d=none;roeck-us.net; dmarc=none action=none header.from=nokia.com;
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
+ by DU2PR07MB8346.eurprd07.prod.outlook.com (2603:10a6:10:2e5::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.9; Wed, 6 Oct
+ 2021 08:31:21 +0000
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::c47f:b569:ac76:9feb]) by DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::c47f:b569:ac76:9feb%7]) with mapi id 15.20.4478.014; Wed, 6 Oct 2021
+ 08:31:21 +0000
+Date:   Wed, 6 Oct 2021 10:31:13 +0200
+From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 11/11] dt-bindings: hwmon: allow specifying channels
+ for tmp421
+Message-ID: <YV1e0Re9nuwLEkhv@localhost.localdomain>
+References: <cover.1632984254.git.krzysztof.adamski@nokia.com>
+ <3ff7b4cc57dab2073fa091072366c1e524631729.1632984254.git.krzysztof.adamski@nokia.com>
+ <20211002142219.GC34532@roeck-us.net>
+ <YVqu92dUgNKlYMlG@localhost.localdomain>
+ <20211005141457.GB2395636@roeck-us.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20211006061204.2854-4-sergio.paracuellos@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-ClientProxiedBy: JNXP275CA0045.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:18::33)
- To MWHPR1001MB2365.namprd10.prod.outlook.com (2603:10b6:301:2d::28)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211005141457.GB2395636@roeck-us.net>
+X-ClientProxiedBy: HE1PR0701CA0081.eurprd07.prod.outlook.com
+ (2603:10a6:3:64::25) To DU2PR07MB8110.eurprd07.prod.outlook.com
+ (2603:10a6:10:239::15)
 MIME-Version: 1.0
-Received: from kadam (62.8.83.99) by JNXP275CA0045.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:18::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14 via Frontend Transport; Wed, 6 Oct 2021 08:29:16 +0000
+Received: from localhost.localdomain (131.228.2.9) by HE1PR0701CA0081.eurprd07.prod.outlook.com (2603:10a6:3:64::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.8 via Frontend Transport; Wed, 6 Oct 2021 08:31:19 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4de7eb57-39d1-4b96-713e-08d988a365b8
-X-MS-TrafficTypeDiagnostic: CO6PR10MB5789:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CO6PR10MB5789E56AA806559689856D428EB09@CO6PR10MB5789.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-MS-Office365-Filtering-Correlation-Id: ea01b69a-667f-482b-bf54-08d988a3ac4e
+X-MS-TrafficTypeDiagnostic: DU2PR07MB8346:
+X-Microsoft-Antispam-PRVS: <DU2PR07MB834635B02D156879F98E913FEFB09@DU2PR07MB8346.eurprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a4/mJwaH/EtWORwTU/2ObEk1u39c8qUHb/W8sBsYolxq9lURsko6yQCOo/5EOdtWHWGoRK6D+ZYUeok0YI84PLt5jEE2bEsWwAJzexLIYosLwcuR185opoxYjHIj9iHNeIMHGD6n5uwKwGgc6+P6Lnq5USBGROp7ftOqNmAUnYqCWPbErTljnREzYrAPkh+MgPxGHyFsts3rwDYyruUPOywwYeXQSRmZ0b9q9XThXeGCMBz5ExN0kZQr+zGcI4g4XeFnIc44tEtF3M2wUU663nSaA5ko9oL34G30rRnHkGKbVK+B+vQR/NYTJV2gNHvTkPt58qttjEK4DxG+jqQPr/eqInYYJWgUkLXAhvDv17u3ZXU5il2RHfYYJuqFIeS34xOKZKKwaF+AWrHyZnFHO7WkYdlhQ132M+PQ0bVNSp96mYHFey05u6KfixWp9XNr0VNGiXWqXYkvIfJVr6HSD9rgqMTss3l9ICGgS4Dn9BohN1npkmLTBtlPyKyt0aCsl2GFyJ4UDePZnRqWPypHYCoAyydq9R2taHyaURiaONMKe5GWrEjJpkgbOmdeAwer+Jby8Ra+vHpGflKd16kmLRD2UxpK13plNff+Ui5l0WGvU02G9lI+i2ZfPAE8VzxDWJfjrajEzc5OXFJqapIMLE+2Jkp+BaKWszCismHvsGn/wxZpHAUX9Lpq7peawvn0edH9LkmlF6A4hSLpaPFbjg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2365.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(8936002)(38100700002)(33716001)(66476007)(6496006)(66556008)(508600001)(66946007)(9576002)(6916009)(44832011)(38350700002)(33656002)(2906002)(6666004)(83380400001)(9686003)(8676002)(7416002)(5660300002)(186003)(956004)(52116002)(316002)(26005)(55016002)(4326008)(86362001)(1076003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: ec6/nGcPbd0ENLHZbVL5SGV54SG9/BOaUPRh4qn2i9NzKxVfeYVbFVFq128Kd7/9TS8u/Dtdkk+TBqKX7eYimwlMrsW5G+UgnEXviIyXKXfblyDtpFIvrZPWNjexHbz3N4sREJSmumrF4CM74wz2eA/glxhMhvbwL63xUnSlCR6TcrGUh5beLksbdizmVFVBxZpNc+kkRX20/bbxeDa7GkjAgLviCsRuTNadwvcDwCHhgNUAuGMY6iXyNNvvvcvZPwX6LaQUvbOu6SrYZWpWLUMJZ2vI5cyAw5laxUYhhGGSYdD2QOFoMhOQxg3gtiyzyw4HmPbK2TqLeIYthM+/LO1z0EVYywRDqNo4q+abrvg0n5bvBwfUmb3vhYTVDMUPeuNMA8zku6TjQ2sNfL4K3EvcVFq9U8vC/YWNjspyhkIPzXF3QWTTPenv/sYyMmhSyFkFVksqUiH4oCUfpPskzCUptC5SWi2yWH2x+gJFAxGqPW/LzXdjqrCytoqutg1Rvl46eNSEYdNt6GNQUV0Vx4fqe33DOYEw2bM3jQcCH0cUdRcG5LFIPRLG9S7y+RXXLJcL6X1lupY9BDW9ydgz4PJmIaSpm3W0wyIo7i6h+anGNkAcJlQljt1/gg/3a300cz/mgFPmAviZRDoo+IlkGa1P5mdt1O7rB9FUPYReTGO29fxG2oXTBwMw8Qpg1i4OTPT7HjblbQqWaBX8K4qdF0qcCq1i0VPoPjAQ5weyhmA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(5660300002)(316002)(956004)(110136005)(4326008)(86362001)(55016002)(9686003)(2906002)(186003)(83380400001)(8936002)(38100700002)(66946007)(38350700002)(6506007)(66556008)(26005)(66476007)(8676002)(52116002)(44832011)(7696005)(6666004)(508600001)(21314003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fk+VThJnp1xV70vd1AurqBuclylZKblmuf76lDH6SOM3bk3M6YRF/ir3GZAT?=
- =?us-ascii?Q?wDzI8m+EvWWqzTPH0jdnA79jJmGH0pFSqlj44fi5kTurdFMvGZcFBCsftwmd?=
- =?us-ascii?Q?DEor9di+bXPwAj6YpwcXZfOinxkfpIJDKgracRCiIJQuNu2FtnivrUhxXGMs?=
- =?us-ascii?Q?RpPpDLuxssQ2CsUKpy39797pakcIf2T8f6C9WGtqzzyTnpbFKJdwG4TYrAnc?=
- =?us-ascii?Q?kpXrPu9lNyw2bGk/1O4XTEDdzf1HxUCFYhM95b3VarrSCXTc6Va81GjcsmyO?=
- =?us-ascii?Q?sC/35f08AeCuhOHDv1XRkkkSQhroqNE5NfR/4oJawxGiXWFuQWrKEcxY1zSj?=
- =?us-ascii?Q?WcAZsfCLLPZy4DRHXf2IY8flSGd9maSuR2wvF7Kn/T+vfOZGmHVkCbsVL1EZ?=
- =?us-ascii?Q?RComdMpo6BFA6iZ53zUc/+wtyjnEO24wn7q/SzxeuueVEKoefsQ4dlkYwblI?=
- =?us-ascii?Q?7ilmwhRJ6mhqruAIBaAab5W5EQPkPBOx6COsq+azJaKDiFhLmXagLjJ7tl+S?=
- =?us-ascii?Q?epATPMKn8euY2hzlP+M7AeKQMHb8dfUOHYiyqJDhABO9Zy5iH4zibvfa9ZaL?=
- =?us-ascii?Q?knLaxMbASW7AF45quAFPgbpS3Roxr6/t0ythuejOAQFvPIFE8y05Sm9VMgQx?=
- =?us-ascii?Q?hPKV0vlffk6WwGddFvwA5iAfGveuh8DQZTPB8GDu1rsZ5f3A322Uh3BMsUWw?=
- =?us-ascii?Q?ePGHkgeq+f93ZvmJulJ+OnnVN2ysqVLN0ahPWXTUsbtdwm9M18XAsCQF1zKK?=
- =?us-ascii?Q?hE8ASF56XhBrA7yWY2QX19HZfgvBIp3Dw8gSZZWimplUw1EqckJH97xgyHfp?=
- =?us-ascii?Q?zJWOeHjuzfWTeK0jfGmcR4RsrBYrERIVO+fxiL0l6wUvbs6zqA7o3SxmcH3C?=
- =?us-ascii?Q?VEeTYyH0CpoZQ+4z33oSHNkxnE4ccyx191RbVr1U1lDuDk3GoZZD2J8Uip7o?=
- =?us-ascii?Q?Yv945YWOKnLdNlf0URYviJl9vYRf+rcKYf7iYKoT4HN5G/84KxD4k7gsB2nz?=
- =?us-ascii?Q?0Y2B794kTm3qb42MxZf2ujYQQh7WYObdELBcm2CarkE6vjzGzrVvflejGmns?=
- =?us-ascii?Q?0ClROYs4BsoX/W9MJmcHtF/1r/cwRpl93NFcTKAfMyEgBdjgtfKFk4kEYGXn?=
- =?us-ascii?Q?y/K6Dpj0LEX21uZ4p6KvweXxWdffBjWLi3cwpC4zWmL2ODhc+BDFHXvMTmZw?=
- =?us-ascii?Q?FnRpntEF+2E16b/TuLH1FTMnuIKhzhyGs6w7ATQNP0PD6NfMejcSCp5T+i20?=
- =?us-ascii?Q?c9Lk47etQqYXPOMhZBUlpbeTHADvJWAGQwYK5AR1HyA4t/BIRzbBheSvhAdr?=
- =?us-ascii?Q?0OvIYNqd0lzZxlm1ndWgW+Gt?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4de7eb57-39d1-4b96-713e-08d988a365b8
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RElDWWhDOTJNVFl1Y0dsNWZSdkhzYlRWT01wZWlxRldpZHVBRUJSd2pTeHdj?=
+ =?utf-8?B?ejVwbUMveXpMWlVueUJRNXNLMGUyTmpyUDBxL2V4dVNhTFA3UWtQUlYzM3Zp?=
+ =?utf-8?B?c2R3eTNzUXhVRXZVdDVXdEtlWFl3U2I1M2N2dXF3UnlPYWlpRGJQWFNycUhv?=
+ =?utf-8?B?TDNKY2Q2UnRNbjNGRDRpOGR0bjRod09jNVJuaC9UNHRwSXZid2Q3YStoakZG?=
+ =?utf-8?B?WldlSmJyVzIxd0tmSmY5VVFwV3k5eHJBeHFRa3p4OFpvZnh0ZythZGI0SXZ2?=
+ =?utf-8?B?amlDS2hEaFNUTDZubFJqeWRuNnZyMzUxcmVjdEdieVZUU3NuRVFVRWRYR2xV?=
+ =?utf-8?B?SlpmL3ZNVlpoOENFOTNBUGg3RFJMWVFmdlRCNG53U1lMeE5uZHNIRTlKT0hH?=
+ =?utf-8?B?T29VMU9IRUNLT2Zjb1BiVUpHMENhdWp2bHZHeTdTOTJ1eU5ZMG0xbXJxQkxi?=
+ =?utf-8?B?U2RIVzg1OGRDcDRseEo2MW9ZRmEra3BOR2xVYS9FdUVKK0FoZ1JxeG1tMnBC?=
+ =?utf-8?B?aSs3QlZnQXJKUWc3NVlqVlJvbUgwZytIRE9SM3BaU0pqT3RRYVZRdXVtbVNV?=
+ =?utf-8?B?bDBlSlJ6d3ZCTjVHdk9JQ2VPa2ErSFpQc0h6aCt3eVFCME1OVDN6WnIzRkVQ?=
+ =?utf-8?B?RTZpc2FvclJWaElmK2NOMUFKakt4YittMWJNUkVsKzBGbWRYcnFUR1Bnb2pF?=
+ =?utf-8?B?eFNQQkhIcmQwNEpxSU1WT1EyNnVZaG9zaHB4dGN6RWVjUGV6RCthZkVnSkJ0?=
+ =?utf-8?B?N0JIS0oralkrdEFiSjZZc3NKcStXejJRRC9ZdWtlcDM3UmtVMS9Bd1FUZlJs?=
+ =?utf-8?B?SmJkU2pEeUtycGZxSk5nZDBLaWlLWjF0RzdWZU9mY1BOUHU5Q0ZnYjYxVDVR?=
+ =?utf-8?B?cHNiTmc5T2NYNXRmdmhaYmVVa1Z2bE1zdXJRMU5tWkZlQUgxOUpOZk9FUWZS?=
+ =?utf-8?B?a29SMGYzU3loRWM3YVlMQ1NmTXFGRU1FWFZGYmd2NVJMbkd2M0treERldzRa?=
+ =?utf-8?B?UWFzQnRlWFhMZzlVM2JuNXh6b3NwdS9TdVd4Nk1uWlVRbFg0SDdOaWdxS1Jp?=
+ =?utf-8?B?MmZvTlZvTVpKQXpnSGRTbElGdGpraDM4R3ZEbThWUWV6ajQzU3ZJVnhEZ2M1?=
+ =?utf-8?B?eGRjVWFpMncwanF5d2xtUStpT2lkeStBUWYva3RWQW9BdWlsNnBibmJ6WW5V?=
+ =?utf-8?B?NjJ6c0diV0J3ZFpNZEQzM2owM0JYTW9NblUzZE9OYXNESUpVVThHWFlPQkRR?=
+ =?utf-8?B?ZnB2bzh0T1NRMHdZOUdRT3NOUkRxZVg4N3VFNjFvNjhnYlMzcGJaSEI5QzJP?=
+ =?utf-8?B?SUNXbkk4YkUwTFdkdFlzNlJKOHljOFU1Q0hzWHZTOXFOQnVNTVRmampsemlv?=
+ =?utf-8?B?NVRPdCtnNmNlcnMwZkQ2aHY4cmVmSEh1Q2FPQlg5OFVIRGxRNVpFOGtjNmdX?=
+ =?utf-8?B?dWxhNldaTitNNmJ0STlzejVGSEsvTGxvd0hlWmJ6UVpEN2VtNXAyVXllZC83?=
+ =?utf-8?B?U1ptQkVBKzdMUVplc1M4NkZDN2pQV1Yrd0kxRnozTThYd08rNjltKzdhaGoy?=
+ =?utf-8?B?N3o4TlFKVW1xUFJiL2hMZ3c5emlyaXBiejI1eHlZdTBoT1Q5SzZVem5lKzFj?=
+ =?utf-8?B?NXE1SDd4RjR0S2RoUFRhTE91dTI4dGRtT0h5SG5sSmZld0s4WnVBd0xYQjA2?=
+ =?utf-8?B?MEUvL3ZsSFIwTHpmWklCUVV2R0RsdHBxYk1mbEdGcGYxdGhCZWhVZUt5cnYv?=
+ =?utf-8?Q?owCsLjuawJg06vZknMUiuQBC339uVWlElO4FEQP?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea01b69a-667f-482b-bf54-08d988a3ac4e
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2021 08:29:22.7053
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2021 08:31:21.4019
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Sw4iSX+F1cuSAS0IpzhA23qIOdpQmHCaTXslS2a1sx5JLnVI32aX/T6cHeIbUibxKOufbMm9/WUZqt6NE2tbudZXsC2h1Z1j7GXeNSV3Dco=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR10MB5789
-X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10128 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 mlxlogscore=999 adultscore=0
- bulkscore=0 suspectscore=0 malwarescore=0 spamscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2109230001
- definitions=main-2110060052
-X-Proofpoint-ORIG-GUID: TWToqgPkw8zbw3ONeb_I--p-t8VB-Fwc
-X-Proofpoint-GUID: TWToqgPkw8zbw3ONeb_I--p-t8VB-Fwc
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1aoZgo5r3XNXg45K4CF9UjDk7o4NV2unpV17nIhfwnCW+p51PH85KRx8cfbrMj7nrf3PaPzQuPnR8O8ZjMJK6/qq5uzyBjdEOdaog/IHr94=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR07MB8346
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 06, 2021 at 08:12:03AM +0200, Sergio Paracuellos wrote:
-> @@ -398,6 +401,76 @@ static void __init mt7621_clk_init(struct device_node *node)
->  }
->  CLK_OF_DECLARE_DRIVER(mt7621_clk, "mediatek,mt7621-sysc", mt7621_clk_init);
->  
-> +struct mt7621_rst {
-> +	struct reset_controller_dev rcdev;
-> +	struct regmap *sysc;
-> +};
-> +
-> +static inline struct mt7621_rst *to_mt7621_rst(struct reset_controller_dev *dev)
+Dnia Tue, Oct 05, 2021 at 07:14:57AM -0700, Guenter Roeck napisał(a):
+>> > > +patternProperties:
+>> > > +  "^input@([0-4])$":
+>> >
+>> > Was there agreement on "input" ? It is a somewhat odd name for a temperature
+>> > sensor. If that name can be used to distinguish child sensor types, it might
+>> > make sense to have a well defined name to state that this is a temperature
+>> > sensor.
+>>
+>> Nope, no conclusion on that, yet, thus I did not change that and I was
+>> still using the same approach I had on v1. For me it can be a "channel@X", a
+>> "temperature@X".. whatever you decide.
+>>
+>
+>My question was more on mandating a single string instead of letting
+>users decide. I don't care either if it isn't used for anything in
+>particular, but you specifically mandate "input" as the only valid
+>string. I am not a DT expert, but it seems to me that mandating the
+>content of that string and then not using it other than to ensure that
+>the user really specified "input" doesn't make much sense to me.
+>Having said that, if this is the DT way of things, it is ok with
+>me.
 
-No need to mark this as inline.  The compiler should do it automatically
-or it will ignore the inline.
+I guess the reason I have used "input@X" was, again, because I based my
+idea of how DT bindings should look like on the ina3221 as it seemed
+like the most similar to my case. This chip, however, current/voltage
+monitor so "input" makes more sense there, indeed.
 
-> +{
-> +	return container_of(dev, struct mt7621_rst, rcdev);
-> +}
-> +
-> +static int mt7621_assert_device(struct reset_controller_dev *rcdev,
-> +				unsigned long id)
-> +{
-> +	struct mt7621_rst *data = to_mt7621_rst(rcdev);
-> +	struct regmap *sysc = data->sysc;
-> +
-> +	if (id == MT7621_RST_SYS)
-> +		return -1;
+In general, while I do like consistency, we are not defining a binding
+for all hwmon sensors now as each of them, anyways, has its own binding
+documentation so some variation is allowed, I think (and inevitable as
+we won't change existing bindings).
 
-Please, return proper error codes.
+So, I do mandate that the child nodes for *this* device should be named
+accordingly but this doesn't mean other hwmon devices can't use others names
+that makes more sense to them. While I could make the code that will
+iterate over all child nodes and will ignore their names, I do think it
+is better to specify the strict naming convention that everybody will
+use (again, for *this* device), instead. I see several advantages of
+this:
+  - consistency in different DTs
+  - easier extensibility - if we introduce something that will require
+    adding some other non-channel related nodes, we don't have to worry
+    that much about the name clashing
+  - it makes verifying the DT correctness easier
 
-> +
-> +	return regmap_update_bits(sysc, SYSC_REG_RESET_CTRL, BIT(id), BIT(id));
-> +}
-> +
-> +static int mt7621_deassert_device(struct reset_controller_dev *rcdev,
-> +				  unsigned long id)
-> +{
-> +	struct mt7621_rst *data = to_mt7621_rst(rcdev);
-> +	struct regmap *sysc = data->sysc;
-> +
-> +	if (id == MT7621_RST_SYS)
-> +		return -1;
+>> However I'm in favor of some generic name, like "channel" or "input",
+>> and using some "type property", if required, instead of calling the
+>> nodes "temperatue@X", "voltage@X".
+>>
+>
+>It does open up a nother dimension for multi-type sensor chips, though,
+>
+>For a chip with voltage and temperature sensors:
+>
+>	temperature@0 {
+>		reg = <0>;
+>	};
+>
+>	voltage@0 {
+>		reg = <0>;
+>	};
+>
+>vs:
+>
+>	temperature-sensors {
+>		xxx@0 {
+>			reg = <0>;
+>		};
+>	};
+>
+>	voltage-sensors {
+>		xxx@0 {
+>			reg = <0>;
+>		};
+>	};
 
-Here too.
+Out of those, I strongly prefer the first one. But, again, we don't have
+to define one kind of binding for ALL hwmon sensors (but I do think its
+better if we can be generic).
+So the biggest question to me is whether temperature and voltage should
+have separate "address spaces". If we, indeed, want to have
+temperature@0 and voltage@0, then using specific names, instead of
+generic, like "channel", does make sense. But then, again, I don't see a
+problem with one driver having a binding with "channel@X", while other
+having "temperature@X" and "voltage@X".
 
-> +
-> +	return regmap_update_bits(sysc, SYSC_REG_RESET_CTRL, BIT(id), 0);
-> +}
-> +
-> +static int mt7621_reset_device(struct reset_controller_dev *rcdev,
-> +			       unsigned long id)
-> +{
-> +	int ret;
-> +
-> +	ret = mt7621_assert_device(rcdev, id);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return mt7621_deassert_device(rcdev, id);
-> +}
-> +
-> +static const struct reset_control_ops reset_ops = {
-> +	.reset = mt7621_reset_device,
-> +	.assert = mt7621_assert_device,
-> +	.deassert = mt7621_deassert_device
-> +};
-> +
-> +static int mt7621_reset_init(struct device *dev, struct regmap *sysc)
-> +{
-> +	struct mt7621_rst *rst_data;
-> +
-> +	rst_data = kzalloc(sizeof(*rst_data), GFP_KERNEL);
+>
+>This is way out of my league in terms of what is appropriate,
+>except that "xxx" isn't always easy to determine if the string is fixed
+>as you suggest. What should it be for a sensor measuring an output voltage ?
+>
+>	input@0 {
+>		reg = <0>;
+>		label = "output voltage";
+>	};
+>
 
+I think that if all the "channels" of the device are of the same type,
+it doesn't matter. If we have some inputs and some outputs, we should
+have either:
 
-Can we use devm_ to allocate this or do we need to clean up if
-devm_reset_controller_register() fails?  Also a free in the release
-function I suppose.  (Please, use devm_).
+channel@0 {
+	reg = <0>;
+	type = "input";   // or something like that, maybe a numeric value
+	with defines
+}
+channel@1 {
+	reg = <1>;
+	type = "output";   // or something like that, maybe a numeric value
+	with defines
+}
 
+Or:
 
-> +	if (!rst_data)
-> +		return -ENOMEM;
-> +
-> +	rst_data->sysc = sysc;
-> +	rst_data->rcdev.ops = &reset_ops;
-> +	rst_data->rcdev.owner = THIS_MODULE;
-> +	rst_data->rcdev.nr_resets = 32;
-> +	rst_data->rcdev.of_reset_n_cells = 1;
-> +	rst_data->rcdev.of_node = dev_of_node(dev);
-> +
-> +	return devm_reset_controller_register(dev, &rst_data->rcdev);
-> +}
+input@0 {
+  reg = <0>;
+}
 
+output@1 {
+  reg = <1>;
+}
 
-regards,
-dan carpenter
+But, again, TMP42X doesn't need any of that anyways :)
+
+>Anyway, maybe Rob has an idea how to name this properly.
+
+Rob? :)
+
+>> > Is this the correct value range ? The value range (in integer form) is
+>> > -128 .. 127 (or 0 .. 255 as unsigned), not 0..1.
+>>
+>> True, I must have misunderstood this minimum/maximum and confused it
+>> with the number of items or something. Now, since DT does not really
+>> handle signed values and considers everything an unsigned, should I use
+>> 0..255 or -128..127?
+>>
+>
+>I suspect it should be 0..255. After all, the values reflect register values,
+>not their meaning. But I don't really know. Rob ?
+
+The DT blob will only contain 0..255. DTC has a syntactic sugar that
+lets you specify the value as negative and will convert it to 2s
+complement for you. So those two are exactly the same:
+
+n-factor = <(-10)>;
+n-factor = <0xfffffff6>;
+
+ From the code perspective, however, all 3 most significant bytes are
+ignored so 0xfffffff6 is the same as 0xf6.
+
+Krzysztof
 
