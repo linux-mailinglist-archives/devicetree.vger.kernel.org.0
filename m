@@ -2,136 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D86742432D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:44:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0C3F424343
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:47:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239551AbhJFQqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 12:46:01 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:37639 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239473AbhJFQpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 12:45:51 -0400
-Received: by mail-ot1-f47.google.com with SMTP id r43-20020a05683044ab00b0054716b40005so3860784otv.4;
-        Wed, 06 Oct 2021 09:43:59 -0700 (PDT)
+        id S230101AbhJFQtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 12:49:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42122 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229992AbhJFQtK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 12:49:10 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62A8C061753
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 09:47:17 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id r18so10751095wrg.6
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 09:47:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hWNwqs2rPHLNqzm5quN1YUDByI90jxJ6lWJ2+LUdERs=;
+        b=CNvvixiV3yzUfWvu021sde1fOC8Ify4HFjb24mAKbtI8OzRBa+QlHpeoeEHBEofuiR
+         1Nocw24IZaeJgJnPKCXrxt6UCnqjBVbCrITtgYXTJLs3Chl45kt+eVM1W2WsxSDyvvRj
+         sCqTbfFEZAJlvgAkc+wGH5Klv2UiJPtTgMLQ9YeLZI3Y/Zxs6cV2GKWzIpkOyEu2P/nU
+         pfkbGNyBwBna6BAiuKVXNvU95f/i1oAwLAgjNdbIHEHLR/MHgMRunb+8O/rNpFUGRlxo
+         +La1FnmQZxNHBrRBN7LFJwi6uMbygPGRwF3HYzBbd6GkT28yH4pPXhRY1tDUqgOckHNW
+         JoAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ODdwkiH4tXq9GvyXH7/gt65PfkKCS+62hrrbhfBOAKY=;
-        b=KjVsZlxx2i4DNdKl4plQ7nquC69f93FQm8Z8JNSY/+Jeif9it35gDBSFUpOamO4Kfy
-         Sh8VqPOHRHNQjJvpdQvavgc/MpFrpG85PnWD1GsLbIsR3kt+WWRaYC9ND0k8j/yME2Kt
-         350QGD0gNz0yQBrWlgVUeliy0h3SSIU0wI1KXj03GXf5XiOB1Hcs9oDz/jGtz6jW7KAk
-         tT046I82ScmDM7729vVDQq3orDhfgKsWAQJC4XWtxeyjX2boA65FGbEREl5Auc/id+2Z
-         s8GYN+MupuutmZHYVWDtRIoQZwB7e2qBlkYxLsBiYywHgrtI1iR+kmE33FFMauKtrvCD
-         3jPw==
-X-Gm-Message-State: AOAM530mQ60mKh0xHJFsGFNudKEAeyKedbJL21F82tHwLS+xnuz58fGb
-        wauKdYjBaXpvaBGbYiXjWw==
-X-Google-Smtp-Source: ABdhPJyKbg8/vmyrEytsmwBD61hnJT/KfL8RD1L+0+jj33vwvFOqRG7dPOrAYWXK5lnk+W9TvgzSoQ==
-X-Received: by 2002:a05:6830:1ad3:: with SMTP id r19mr19253078otc.98.1633538638626;
-        Wed, 06 Oct 2021 09:43:58 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id s29sm4236628otg.60.2021.10.06.09.43.56
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hWNwqs2rPHLNqzm5quN1YUDByI90jxJ6lWJ2+LUdERs=;
+        b=ZHOr2fHaPMpl6kPVdHmoKG6NHhZfYWlo7iq5RMwht7IHXAW3ZcUq7yFKTpUyIMw9io
+         SbQBAb0dMA39FKgzyVnitWIYDYL1s1Yn0SL31XY3D+VrHmcORBugEtguxZtAZKq6tIk8
+         cpe1o1ikWRIbGk8WPIkOFPazT4UASGhRVsjDHFZEzmZ3tAUdAu2VamsTt7Qg7M8I47aN
+         H6YsVsdH0Gq2gt6Wy0xzvigTStmb9cTDDe9ejHjP8QaXXGo9G7e1LohKg0QZ5vjnlGPx
+         cv3Gzq7nbpLGuZ/v5+L2FHhz/XooA/nY/h9XhhOewH3kXjBdAhNeJqJbBV+D9fBJEO/+
+         GvAg==
+X-Gm-Message-State: AOAM533ZkVSPRPSDF/BERC+JSFCjLGTwZpQE6ZH4gwbrMWvW2i54iMl2
+        ANM6hK/AUmIE2HUgpWkpSgNrXhnmfby4QQ==
+X-Google-Smtp-Source: ABdhPJzmJ+jqY4LpsXYG8nLnU8YJezE3zVqnpIINNc9+KcyJg7wX/LgQfAlFNUL7FGwSYYvbyae6eA==
+X-Received: by 2002:a1c:3b86:: with SMTP id i128mr10988462wma.132.1633538836375;
+        Wed, 06 Oct 2021 09:47:16 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id l21sm6785165wmg.18.2021.10.06.09.47.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 09:43:57 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Russell King <linux@armlinux.org.uk>,
-        James Morse <james.morse@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
-        Jonas Bonn <jonas@southpole.se>,
-        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-        Stafford Horne <shorne@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, x86@kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-csky@vger.kernel.org, openrisc@lists.librecores.org,
-        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
-        linux-sh@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 12/12] cacheinfo: Set cache 'id' based on DT data
-Date:   Wed,  6 Oct 2021 11:43:32 -0500
-Message-Id: <20211006164332.1981454-13-robh@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211006164332.1981454-1-robh@kernel.org>
-References: <20211006164332.1981454-1-robh@kernel.org>
+        Wed, 06 Oct 2021 09:47:15 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH 0/4] arm64: dts: qcom: sm8250-mtp: Audio support
+Date:   Wed,  6 Oct 2021 17:47:08 +0100
+Message-Id: <20211006164712.16078-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the minimum CPU h/w id of the CPUs associated with the cache for the
-cache 'id'. This will provide a stable id value for a given system. As
-we need to check all possible CPUs, we can't use the shared_cpu_map
-which is just online CPUs. As there's not a cache to CPUs mapping in DT,
-we have to walk all CPU nodes and then walk cache levels.
+This patchset adds Audio support to SM8250 MTP using 
+- WCD938x Codec for headset playback and Capture
+- WSA8810 Smart Speaker Amplifier for Speaker Playback
+- DMICs via VA macro for Audio Catpure
+    
 
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/base/cacheinfo.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Srinivas Kandagatla (4):
+  arm64: dts: qcom: sm8250: Add nodes for tx and rx macros with
+    soundwire masters
+  arm64: dts: qcom: sm8250-mtp: Add wcd9380 audio codec node
+  arm64: dts: qcom: sm8250-mtp: Add wsa8810 audio codec node
+  arm64: dts: qcom: sm8250-mtp: add sound card support
 
-diff --git a/drivers/base/cacheinfo.c b/drivers/base/cacheinfo.c
-index 66d10bdb863b..44547fd96f72 100644
---- a/drivers/base/cacheinfo.c
-+++ b/drivers/base/cacheinfo.c
-@@ -136,6 +136,31 @@ static bool cache_node_is_unified(struct cacheinfo *this_leaf,
- 	return of_property_read_bool(np, "cache-unified");
- }
- 
-+static void cache_of_set_id(struct cacheinfo *this_leaf, struct device_node *np)
-+{
-+	struct device_node *cpu;
-+	unsigned long min_id = ~0UL;
-+
-+	for_each_of_cpu_node(cpu) {
-+		struct device_node *cache_node = cpu;
-+		u64 id = of_get_cpu_hwid(cache_node, 0);
-+
-+		while ((cache_node = of_find_next_cache_node(cache_node))) {
-+			if ((cache_node == np) && (id < min_id)) {
-+				min_id = id;
-+				of_node_put(cache_node);
-+				break;
-+			}
-+			of_node_put(cache_node);
-+		}
-+	}
-+
-+	if (min_id != ~0UL) {
-+		this_leaf->id = min_id;
-+		this_leaf->attributes |= CACHE_ID;
-+	}
-+}
-+
- static void cache_of_set_props(struct cacheinfo *this_leaf,
- 			       struct device_node *np)
- {
-@@ -151,6 +176,7 @@ static void cache_of_set_props(struct cacheinfo *this_leaf,
- 	cache_get_line_size(this_leaf, np);
- 	cache_nr_sets(this_leaf, np);
- 	cache_associativity(this_leaf);
-+	cache_of_set_id(this_leaf, np);
- }
- 
- static int cache_setup_of_node(unsigned int cpu)
+ arch/arm64/boot/dts/qcom/sm8250-mtp.dts | 191 ++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi    | 157 +++++++++++++++++++
+ 2 files changed, 348 insertions(+)
+
 -- 
-2.30.2
+2.21.0
 
