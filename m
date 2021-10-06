@@ -2,84 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10F14423890
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 09:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B000423899
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 09:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237487AbhJFHLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 03:11:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47954 "EHLO
+        id S229627AbhJFHRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 03:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237578AbhJFHLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 03:11:34 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C6BC06176D
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 00:09:42 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so1952895ota.6
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 00:09:42 -0700 (PDT)
+        with ESMTP id S230227AbhJFHRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 03:17:50 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53B31C06174E
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 00:15:58 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id y15so6335629lfk.7
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 00:15:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=HfTHUhLPFuNYu+1s+5X0I1ftdKhtGk97U1HjbXbHe2o=;
-        b=MFJcPHrnKWIcIkMutzo8P/bcT7APg9bV6rqSWArphXMQM8qVEv3/2CHyvz9IGsTCkk
-         oR5muMjWB8iM1Twlo3tukBoIIcpK2u44tZmqMm/ve0gintVkb92yXeDz2se9QZSt/VX2
-         xqeDp+xVcN2Mx83FyOYrr9Vgufc/ytalTD4O4=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AKrh6jeg1+D2CUT4DyWcA9w76ozKBLfI8b6gpIDDpCY=;
+        b=jlvFw1VyiUIGeXyBbQ9knQIXcxkL5XR1d87HM6bU+T3TKIwdXnnumNjfeQaX1d878T
+         svv3scwdLS4dmAva4UIVS5EK12PD74qGcJ652OscGWQNjBkuAhLvcdubUBVqPWpiC3VI
+         jhCmorePoM8uiIS2+Cu6GdwuJcx1eCQ9hpHMNsyi4arUZbX2dCNVCm3/cbkH4f8hDrGa
+         7Dlf6EqmJ+v6doctL4CnV4sN6f8We+sz5hu6w/zdGmU+YUbXKpWyJoQ+ZfIIY9YzN2br
+         iE/CQRmOgCbFlFOzyF6uRhd3BEV1iJp+OKQUIqi2lkWSk6jlXgYeraLdeSBPkuCyPp1H
+         d5FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=HfTHUhLPFuNYu+1s+5X0I1ftdKhtGk97U1HjbXbHe2o=;
-        b=fB1UOhoYdMehh1Wr6hmqfSVZkpKAm72si/SWo2rYJWIRGOqVVl/5rAZFG3fkr22iBq
-         AEAgHtOMVaRIYxpkf2hzksDqOS0ChpYe7teIJ4qys2aqUfe2yREgBXpGIMEuHJHHRjTR
-         BevLIoP64+N4UBupwEods/SC0lXRlHB1at7aa/2gs8cnS15hdf5DQ2J6HFAb5N+Y8tn/
-         GjkPU5wCCiBALPM/yAK/X1TlIjVzNb89EnA7IaBJ0bH6zwq4pfJqtOG+AiZ+v8oe0RWI
-         E4RoqPibMGwIegXlsegv6GrxzzzmOw0vFA4TS88QkxSF9n3xJ89aKBRiV6atGcDQMest
-         gcyw==
-X-Gm-Message-State: AOAM531WOxdLM/yDPGBop322q6+0/Mgn6JSLSpoJIWoo2hI/jq9AoAFT
-        Au727Ap+YSMyc0lGTslphDHEvqiwE/FyDSCo4nVVvz7bLF8=
-X-Google-Smtp-Source: ABdhPJzivuyKoDsjOOPOWdoEgQDyWy6eq7Yz1Nv43Y/7dsaEcPdBJmpGtrjRzBtq40vOOSw1Ry91dEzksSzUwC1Qe7Y=
-X-Received: by 2002:a05:6830:4116:: with SMTP id w22mr4893118ott.159.1633504181834;
- Wed, 06 Oct 2021 00:09:41 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 6 Oct 2021 00:09:41 -0700
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AKrh6jeg1+D2CUT4DyWcA9w76ozKBLfI8b6gpIDDpCY=;
+        b=uynU3xGQLkuX/V1sntw5Txwy4wtaepF/hqVY6pbEHYBlax+qTG0V1VtAEGDNmoWyGU
+         fKCCzalZK3gmIb9sAXdRKdAy9icwasUncguR70d/GlFGPu9HMxsTclvcyyG10Q6xsv8b
+         svof9ECbB5Z178pd/4KTAaDt9REdeuLTgpFArAUov6gPIKasvRDXxIAukpEqSAc2S3xm
+         JwDr3E3YWqOBn2BdjSNivyBkxrgh4n7t5J5HDPqm5C2o5cp920pbOOYmU7TRxplRR3nz
+         hpH/BG18KuxYorPgGDUDNHKzqXXnoAS3VaMsvlvoUFAYgaBLVm7iMjZgQWgbfWii610x
+         2SqA==
+X-Gm-Message-State: AOAM530cZHXC3WH7HV+NGFRzVgkvILIWjsXqGXmc7SWtaKnRge3kmBkQ
+        nDWS6Q39fftlbOenzRPOOe8fOs+MfR5DNw==
+X-Google-Smtp-Source: ABdhPJxX+Sqcew6GyVwEuZ8oDl53IzGhaBx4xrF1wNs0tSxodxjwllEsfBZ5NsFHcMMU+iWWjE3zCQ==
+X-Received: by 2002:a05:651c:1039:: with SMTP id w25mr26709368ljm.440.1633504556692;
+        Wed, 06 Oct 2021 00:15:56 -0700 (PDT)
+Received: from jade.ideon.se ([85.235.10.227])
+        by smtp.gmail.com with ESMTPSA id y7sm960376lfk.143.2021.10.06.00.15.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Oct 2021 00:15:56 -0700 (PDT)
+From:   Jens Wiklander <jens.wiklander@linaro.org>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org
+Cc:     Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Jens Wiklander <jens.wiklander@linaro.org>
+Subject: [PATCH v6 0/6] Asynchronous notifications from secure world
+Date:   Wed,  6 Oct 2021 09:15:40 +0200
+Message-Id: <20211006071546.2540920-1-jens.wiklander@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <006801d7ba70$54daae00$fe900a00$@codeaurora.org>
-References: <1633330133-29617-1-git-send-email-pillair@codeaurora.org>
- <1633330133-29617-3-git-send-email-pillair@codeaurora.org>
- <1633350086.759437.1051509.nullmailer@robh.at.kernel.org> <006801d7ba70$54daae00$fe900a00$@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 6 Oct 2021 00:09:41 -0700
-Message-ID: <CAE-0n51rsfFX_-Vxn2tumWiw9K-Tf244rhTedc76UKx5ADzKyg@mail.gmail.com>
-Subject: RE: [PATCH v6 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
-To:     Rob Herring <robh@kernel.org>, pillair@codeaurora.org
-Cc:     mathieu.poirier@linaro.org, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        sibis@codeaurora.org, kuabhs@chromium.org, agross@kernel.org,
-        ohad@wizery.com, linux-arm-msm@vger.kernel.org,
-        mpubbise@codeaurora.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting pillair@codeaurora.org (2021-10-05 22:09:18)
->
-> >
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> error(s),
-> > then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> >
-> > pip3 install dtschema --upgrade
-> >
-> > Please check and re-submit.
->
->
-> I have updated the dtschema (2021.7) and still not seeing these errors. I
-> will fix the errors mentioned in this log though.
-> Is there any other flag/setting, which is to be enabled ?
->
+Hi all,
 
-I have dtschema-2021.10 installed.
+This adds support for asynchronous notifications from OP-TEE in secure
+world to the OP-TEE driver. This allows a design with a top half and bottom
+half type of driver where the top half runs in secure interrupt context and
+a notifications tells normal world to schedule a yielding call to do the
+bottom half processing.
+
+An edge-triggered interrupt is used to notify the driver that there are
+asynchronous notifications pending.
+
+The documentation and DT bindings patches are now well reviewed, but
+the patches with code would do with some more attention.
+
+v5->v6:
+* Rebased on v5.15-rc2
+* Replaced "tee: add tee_dev_open_helper() primitive" with "tee: export
+  teedev_open() and teedev_close_context()" since it turned out that the
+  normal teedev functions could be used instead as noted by Sumit.
+* Changed "optee: add asynchronous notifications" to use the exported
+  teedev_open() and teedev_close_context() functions instead.
+
+v4->v5:
+* Rebased on v5.14-rc7
+* Updated documentation to clarify that one interrupt may represent multiple
+  notifications as requested.
+* Applied Marc's and Rob's tags
+
+v3->v4:
+* Clarfied the expected type of interrypt is edge-triggered, both in
+  the normal documentation and in the DT bindings as requested.
+
+v2->v3:
+* Rebased on v5.14-rc2 which made the patch "dt-bindings: arm: Convert
+  optee binding to json-schema" from the V2 patch set obsolete.
+* Applied Ard's Acked-by on "optee: add asynchronous notifications"
+
+v1->v2:
+* Added documentation
+* Converted optee bindings to json-schema and added interrupt property
+* Configure notification interrupt from DT instead of getting it
+  from secure world, suggested by Ard Biesheuvel <ardb@kernel.org>.
+
+Thanks,
+Jens
+
+Jens Wiklander (6):
+  docs: staging/tee.rst: add a section on OP-TEE notifications
+  dt-bindings: arm: optee: add interrupt property
+  tee: fix put order in teedev_close_context()
+  tee: export teedev_open() and teedev_close_context()
+  optee: separate notification functions
+  optee: add asynchronous notifications
+
+ .../arm/firmware/linaro,optee-tz.yaml         |   7 +
+ Documentation/staging/tee.rst                 |  30 +++
+ drivers/tee/optee/Makefile                    |   1 +
+ drivers/tee/optee/call.c                      |  27 +++
+ drivers/tee/optee/core.c                      |  87 +++++--
+ drivers/tee/optee/notif.c                     | 226 ++++++++++++++++++
+ drivers/tee/optee/optee_msg.h                 |   9 +
+ drivers/tee/optee/optee_private.h             |  23 +-
+ drivers/tee/optee/optee_rpc_cmd.h             |  31 +--
+ drivers/tee/optee/optee_smc.h                 |  75 +++++-
+ drivers/tee/optee/rpc.c                       |  73 +-----
+ drivers/tee/tee_core.c                        |  10 +-
+ include/linux/tee_drv.h                       |  14 ++
+ 13 files changed, 496 insertions(+), 117 deletions(-)
+ create mode 100644 drivers/tee/optee/notif.c
+
+-- 
+2.31.1
+
