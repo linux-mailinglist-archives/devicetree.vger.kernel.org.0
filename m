@@ -2,158 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A03F2424261
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:15:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A103F42426F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:18:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231851AbhJFQRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 12:17:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34634 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230101AbhJFQRq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 12:17:46 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6016C061746;
-        Wed,  6 Oct 2021 09:15:53 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 4FCE31F41572
-Received: by earth.universe (Postfix, from userid 1000)
-        id F1C4A3C0CA8; Wed,  6 Oct 2021 18:15:48 +0200 (CEST)
-Date:   Wed, 6 Oct 2021 18:15:48 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: power: supply: add Maxim MAX77976
- battery charger
-Message-ID: <20211006161548.ary3mijxlcz6mdob@earth.universe>
-References: <20211004130732.950512-1-luca@lucaceresoli.net>
+        id S238705AbhJFQU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 12:20:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42882 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231998AbhJFQUZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 12:20:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0676461166;
+        Wed,  6 Oct 2021 16:18:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633537113;
+        bh=t5H/xR9Gh8B4ev99gfiUYiuJjRHiXsNBFPENjcrLYII=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Fw6O4L6hKS0YVHDYjLCklEKhDhszJ1ta7gQ6nE06NoSmunAYBkeLeWaZFO1HImTa6
+         c/S3ADi4lqdjolyd9zXEtma0tD1ec0n24U0c4J8AaMG2rNLqMGtjQyUHe+bm7AYX0k
+         YETsPs9Hv6y1CmL9g0JkJ6DlshtVVucaVqPNfNCizXxFJn9N/tWWC26QRDFOs3xi4Q
+         rpoxhUQQ+tZ54Hrk88yoKVAGSaKBhLWU0e5N4YUQYlOv1HOvsH0mc/IuD1Ze6/5Xun
+         /lPyUuNR1dOz8F3BLQvczyN1zekzBZJ1p117bUdyo7OE8jPlg++OVQlGlBShLP1pAd
+         rk5seyW6nFUwA==
+Received: by mail-ed1-f46.google.com with SMTP id v18so11934230edc.11;
+        Wed, 06 Oct 2021 09:18:32 -0700 (PDT)
+X-Gm-Message-State: AOAM533KU0t2QEBnKWytpsNqW6ZRYJQyHdHK6BkcD19eg9pLUS2sjedd
+        25uoM9KRZInvKXhNsr/FaT3AGTLwG350KwtQow==
+X-Google-Smtp-Source: ABdhPJyM7UFe9DzvIe0l+OD9gvTJUhVYGJBVSVSUs7wURjGSrj5hreFCNI00JWgdX2SrcpjFVwcxlo25twwfrn2KyUs=
+X-Received: by 2002:a17:906:71d4:: with SMTP id i20mr33206868ejk.390.1633537111464;
+ Wed, 06 Oct 2021 09:18:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4iiygwy4zl7ebylp"
-Content-Disposition: inline
-In-Reply-To: <20211004130732.950512-1-luca@lucaceresoli.net>
+References: <20211006154426.3222199-1-kuba@kernel.org> <20211006154426.3222199-2-kuba@kernel.org>
+In-Reply-To: <20211006154426.3222199-2-kuba@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 6 Oct 2021 11:18:19 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com>
+Message-ID: <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 1/9] of: net: move of_net under net/
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     David Miller <davem@davemloft.net>,
+        netdev <netdev@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Marcin Wojtas <mw@semihalf.com>, Andrew Lunn <andrew@lunn.ch>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---4iiygwy4zl7ebylp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Mon, Oct 04, 2021 at 03:07:31PM +0200, Luca Ceresoli wrote:
-> Add bindings for the Maxim MAX77976 I2C-controlled battery charger.
->=20
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+On Wed, Oct 6, 2021 at 10:45 AM Jakub Kicinski <kuba@kernel.org> wrote:
+>
+> Rob suggests to move of_net.c from under drivers/of/ somewhere
+> to the networking code.
+>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
 > ---
->  .../bindings/power/supply/maxim,max77976.yaml | 41 +++++++++++++++++++
->  MAINTAINERS                                   |  5 +++
->  2 files changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,=
-max77976.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max7797=
-6.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max77976.yaml
-> new file mode 100644
-> index 000000000000..b508d9cc04a0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max77976.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/maxim,max77976.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim Integrated MAX77976 Battery charger
-> +
-> +maintainers:
-> +  - Luca Ceresoli <luca@lucaceresoli.net>
-> +
-> +description: |
-> +  The Maxim MAX77976 is a 19Vin / 5.5A, 1-Cell Li+ battery charger
-> +  configured via I2C.
-> +
-> +properties:
-> +  compatible:
-> +    const: maxim,max77976
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
+> v2: new patch
+> ---
+>  drivers/of/Makefile               | 1 -
+>  net/core/Makefile                 | 1 +
+>  {drivers/of => net/core}/of_net.c | 0
+>  3 files changed, 1 insertion(+), 1 deletion(-)
+>  rename {drivers/of => net/core}/of_net.c (100%)
+>
+> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+> index c13b982084a3..e0360a44306e 100644
+> --- a/drivers/of/Makefile
+> +++ b/drivers/of/Makefile
+> @@ -7,7 +7,6 @@ obj-$(CONFIG_OF_EARLY_FLATTREE) += fdt_address.o
+>  obj-$(CONFIG_OF_PROMTREE) += pdt.o
+>  obj-$(CONFIG_OF_ADDRESS)  += address.o
+>  obj-$(CONFIG_OF_IRQ)    += irq.o
+> -obj-$(CONFIG_OF_NET)   += of_net.o
+>  obj-$(CONFIG_OF_UNITTEST) += unittest.o
+>  obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
+>  obj-$(CONFIG_OF_RESOLVE)  += resolver.o
+> diff --git a/net/core/Makefile b/net/core/Makefile
+> index 35ced6201814..37b1befc39aa 100644
+> --- a/net/core/Makefile
+> +++ b/net/core/Makefile
+> @@ -36,3 +36,4 @@ obj-$(CONFIG_FAILOVER) += failover.o
+>  obj-$(CONFIG_NET_SOCK_MSG) += skmsg.o
+>  obj-$(CONFIG_BPF_SYSCALL) += sock_map.o
+>  obj-$(CONFIG_BPF_SYSCALL) += bpf_sk_storage.o
+> +obj-$(CONFIG_OF_NET)   += of_net.o
 
-Add
+The OF_NET kconfig should move or disappear too. I imagine you can do just:
 
-allOf:
-  - $ref: power-supply.yaml#
+obj-$(CONFIG_OF) += of_net.o
 
-and replace additionalProperties with unevaluatedProperties, so that
-the power-supplies property is also valid.
-
--- Sebastian
-
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      charger@6b {
-> +        compatible =3D "maxim,max77976";
-> +        reg =3D <0x6b>;
-> +      };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index eeb4c70b3d5b..b3a3667cef46 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11388,6 +11388,11 @@ F:	Documentation/devicetree/bindings/*/*max77802=
-=2Etxt
->  F:	drivers/regulator/max77802-regulator.c
->  F:	include/dt-bindings/*/*max77802.h
-> =20
-> +MAXIM MAX77976 BATTERY CHARGER
-> +M:	Luca Ceresoli <luca@lucaceresoli.net>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/power/supply/maxim,max77976.yaml
-> +
->  MAXIM MUIC CHARGER DRIVERS FOR EXYNOS BASED BOARDS
->  M:	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->  M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-> --=20
-> 2.25.1
->=20
-
---4iiygwy4zl7ebylp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmFdy68ACgkQ2O7X88g7
-+pouRw/+IjIUpy+TiY80hx4winh/LGG8JvLd2epxDCqGClCNw7evULVpiqB8MYMt
-+bLLjesjNjVrTSbLgZZrK332F2OtTS+z4hEAQQs3a9qbEoYh/f3vkeT4nvxG7Om0
-0A8lYTQgtD85vV/g/2xyKvwE4BtzLLW7HMf9lPcQjnteaOsKeBf3ppLujV7Xu+nd
-ytSAc8AGDlI4g3Rw4CQ5GEYDZLOeYuxMRaYzF6uSQFeeXFBnzOlAwiASqwzSXY5+
-ngoATAvZcXQHCNrRk7515MZ7TGOHgpROVdo5dSVVtCKYst5JkQGeyTXpUk8y/Yjz
-EkDwVZK/XJkb430XS4kmuqo2WpOwD961fmtyJCwlFmmfZFLG4SRF6lI1UbhIn26T
-oiGYAINVezGzIO+nMrrGCnCkn5H3xmDRyCmieGD83KSeaeHw8ZEIYexDjg0SgNmq
-OZm/V1L2lsAWNuzLl+RSaozfPoSfYlpFYQTPxdbI2ACdtSsIvIf2lyHGnukmTH56
-FR9dqwP2TxlB4WZFkmLSygb/Ta8l8GLvJDI1KbeKYZ98pPI9M7ZjH6ZCByFrkYA6
-dsjbK1ra304twX5eIUYOpaD8tu4Xpzb/wE7pm6Kbaaqx4oAQljo+Vdsb7UwoTwt6
-HhZ3rN7AQc5zHHHf26CI+vpc+XxRWwJi9uAsv5x3YLmo6kI+WLg=
-=4+L8
------END PGP SIGNATURE-----
-
---4iiygwy4zl7ebylp--
+> diff --git a/drivers/of/of_net.c b/net/core/of_net.c
+> similarity index 100%
+> rename from drivers/of/of_net.c
+> rename to net/core/of_net.c
+> --
+> 2.31.1
+>
