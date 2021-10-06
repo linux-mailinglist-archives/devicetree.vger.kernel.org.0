@@ -2,122 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF20423F57
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 15:31:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D40E423F5D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 15:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238606AbhJFNdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 09:33:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52148 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239015AbhJFNdH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 09:33:07 -0400
-Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE28C061755
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 06:31:14 -0700 (PDT)
-Received: by mail-ua1-x92a.google.com with SMTP id w2so1755893uau.10
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 06:31:14 -0700 (PDT)
+        id S230048AbhJFNeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 09:34:18 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:18811 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230023AbhJFNeR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 09:34:17 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IVKf8Genafin95Q2Di2z6fbGCVMHXhleTRmZr5HVl28=;
-        b=H0kQmGBsGcwDkt5hQt5X8QgbEs7mcB/HT7Ds17Xv8F/K0xyixce4X/dm0T7SHIfdYM
-         3mAvpLtrnNhP6GivySCKypOSdGeDl1PTc4EHBTjlrYP8lOWZ8k+OjDncfwM+D1hePrXD
-         //GrbK03hPtCTL7AHUdNhPOb73MAlJoUHAlxkPrdeGM9wz0wWcvJg0j/x4bxBbZt30IN
-         WTsPSCsPARs9DTDmjObNjJuMvitiUsnUGR6YvAhcje2/eQS9+imw7UefTHBRxgdAKdQ9
-         4Np9SxfjyrZk7AIH6Er7+LNn6wawojcklD4JogoG3HraPQeoSg399LoNWAp3vsk/XrUp
-         ciUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IVKf8Genafin95Q2Di2z6fbGCVMHXhleTRmZr5HVl28=;
-        b=HxpQMKLLH8e52agopq7NngMu/D5KXE7/PvLMEOq33OkoVGdLI0BZu8YpeM/FNyOVJv
-         AwXq2d1HXzAOuHG7wTXzecssP75vtNybUvGTca68OSwup3axg8WTkbVEKOzAk0cFag6F
-         0JoB4ZJBoCeyJKF2o/ZPaNQCT4pvueJxqIXOO/Yhw7jKzZqdQDxvgLUIPwFBVqwAXzpS
-         S8kGwKHvtHvGueVN5e14pj1giWi5EamIveLgQolYgjfsBLlvpCR8lQWYgU0JZKAbRjWv
-         uOR+/bFFhX1wUh79ilTbGPElP9VJ58TuSVCdR3jNkzuh99wG7HBFQmmTVPpGtQEcR/mg
-         u7Kw==
-X-Gm-Message-State: AOAM533dYX2cfD7ZF5EWgXmtDafzIgruqnr2Gc6M1wY2iYaEeI9we0Cq
-        vBBBW3t89MlLl2PHeO0SJIPV5mj/+mqwGTGeJvLD9A==
-X-Google-Smtp-Source: ABdhPJzZOAo9G31czsBxb4fU+8I6tAGDuMwhRn5OzKvHiUr5u8U+cXOG8wNIya5MSF1bKpSXTROUHhpYctvd/VR1i/k=
-X-Received: by 2002:ab0:3b12:: with SMTP id n18mr5625901uaw.9.1633527073899;
- Wed, 06 Oct 2021 06:31:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210914155607.14122-1-semen.protsenko@linaro.org>
- <20210914155607.14122-5-semen.protsenko@linaro.org> <96e5587e-aca7-248e-6448-8edfc70784b7@gmail.com>
- <CAPLW+4mEeh8Fo8kGHx+rB7nX7bDfaQRPGDotgPLTp4pm4rC0Cg@mail.gmail.com> <77d976c3-a0b4-294f-d49a-8fd46b112a28@canonical.com>
-In-Reply-To: <77d976c3-a0b4-294f-d49a-8fd46b112a28@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Wed, 6 Oct 2021 16:31:02 +0300
-Message-ID: <CAPLW+4m0yyk+E5GqYxfzXHxq1vKBoX3Mfc+6F6J_UXAfZ5s2Bg@mail.gmail.com>
-Subject: Re: [PATCH 4/6] dt-bindings: clock: Add bindings definitions for
- Exynos850 CMU
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Chanwoo Choi <cwchoi00@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1633527145; x=1665063145;
+  h=subject:from:to:cc:date:mime-version:
+   content-transfer-encoding:message-id;
+  bh=wZiREG20BjEiTJRnwZWlOCnyxxSCgmhJ1maroNiROi4=;
+  b=j/zM0aRwWg2JgwxhuvwrVcR8CRGcYcCpcpltv81haaQFjR3Zaw7SdLXO
+   9AvKTNXIlGVEksBXDLFk9vf6SyzX7dbrRsVFJREtF8XGWXH0zOACrXBfP
+   15rJhUJYkrNJjjAqUQ6zXceD5LTteKoxv9jyG4oZq7a7uW560L7Nm3awm
+   AsJkk2yWNoAnw3V9HOKdlc9DBTY9dMSgLWxwYoaYwnbq6by9wz9+TVY/t
+   1yrDsChaKn6Wr4Rf+m0TjlLuXbwf6mbSnWXUlZU2jydCytCFSSR/1V7dN
+   cz6OJiIEAwcCWJRdo14g8zkWhSM0H/kQR2j2q5d5QPNfVhMvX20EYGAdb
+   w==;
+X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
+   d="scan'208";a="19898161"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 06 Oct 2021 15:32:23 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 06 Oct 2021 15:32:23 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 06 Oct 2021 15:32:23 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1633527143; x=1665063143;
+  h=subject:from:to:cc:date:mime-version:
+   content-transfer-encoding:message-id;
+  bh=wZiREG20BjEiTJRnwZWlOCnyxxSCgmhJ1maroNiROi4=;
+  b=BoLoD/PCUrZwzV2UZg7TaFprGYd6xFzdHGveky64hsV6gGGE34WE/M7w
+   FWL3H9sdoO1GDxliHZvxsd4MLN9qivQZdthI4drmazhGgUiQJVgmOByh9
+   StlWFIRZA+mAmf+/i7V8arnr1yirJcKaKZO6EtIxYawpztaMQjNfpdC3n
+   kXLkCw5RBhGQQR2280erBtU2vRwz65m+geectHGXdmGkxN0Cb6IX3/CQY
+   MpkXGxePqaWFzsnR0nTXTmqQ6asnQEVefJoYfY3Sl2h1iBwcTP1BEH2U5
+   A07rURUG1fXONH0KEkOuah+6Hdj3U+53csv7Vv2QLwdVXHfpdvLrAQQEF
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.85,350,1624312800"; 
+   d="scan'208";a="19898160"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Oct 2021 15:32:23 +0200
+Received: from vtuxmail01.tq-net.de (localhost [127.0.0.1])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTP id AC94E280065;
+        Wed,  6 Oct 2021 15:32:23 +0200 (CEST)
+Received: by vtuxmail01 (kopano-spooler) with MAPI; Wed, 6 Oct 2021 15:32:23
+ +0200
+Subject: AW: (EXT) Re: [PATCH 2/3] dt-bindings: drm/bridge: ti-sn65dsi83: Add
+ vcc supply bindings
+From:   "Alexander Stein" <Alexander.Stein@ew.tq-group.com>
+To:     "Rob Herring" <robh@kernel.org>
+Cc:     "David Airlie" <airlied@linux.ie>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        "Neil Armstrong" <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
+        "Jonas Karlman" <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "dri-devel" <dri-devel@lists.freedesktop.org>,
+        =?us-ascii?Q?devicetree=40vger=2Eke?= =?us-ascii?Q?rnel=2Eorg?= 
+        <devicetree@vger.kernel.org>
+Date:   Wed, 6 Oct 2021 13:32:23 +0000
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Priority: 3 (Normal)
+X-Mailer: Kopano 8.7.82
+Message-Id: <kcEE.GYPgnunSRpO/+9Q/n9b1tA.gI0jmLa61wE@vtuxmail01.tq-net.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Oct 2021 at 13:49, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 05/10/2021 12:28, Sam Protsenko wrote:
-> > On Wed, 15 Sept 2021 at 19:37, Chanwoo Choi <cwchoi00@gmail.com> wrote:
-> >>
-> >> Hi,
-> >>
-> >> You don't add clock ids for the all defined clocks in clk-exynos850.c.
-> >> I recommend that add all clock ids for the defined clocks if possible.
-> >>
-> >> If you want to change the parent clock of mux or change the clock rate
-> >> of div rate for some clocks, you have to touch the files as following:
-> >> - include/dt-bindings/clock/exynos850.h
-> >> - drivers/clk/samsung/clk-exynos850.c
-> >> - exynos850 dt files
-> >>
-> >> If you define the clock ids for all clocks added to this patchset,
-> >> you can change the parent or rate by just editing the dt files.
-> >>
-> >
-> > Hi Chanwoo,
-> >
-> > I see your point. But I have intentionally omitted some clock ids,
-> > which can't be / shouldn't be used by consumers in device tree.
-> > Actually I took that idea from clk-exynos7.c.
-> >
-> > Krzysztof, Sylwester: can you please advice if all clock ids should be
-> > defined, or only those that are going to be used in dts clk consumers?
-> > I don't mind reworking the patch, just want to be sure which design
-> > approach we want to follow.
-> >
->
-> I would advise to define all clock IDs, unless the clock really, really
-> should not be used. Why do you think several clocks should not be used?
-> Have in mind it is not only about consumers but also clock reparenting
-> and assigning rates.
->
+On Wed, Oct 6, 2021 at 3:21 PM Rob Herring
+<robh+dt@kernel.org> wrote:
 
-Thanks! Will be done in v2.
-
+> On Wed, Oct 6, 2021 at 2:47 AM Alexander Stein
+> <alexander.stein@ew.tq-group.com> wrote:
+> >
+> > Add a VCC regulator which needs to be enabled before the EN pin is
+> > released.
+> >
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> >=C2=A0 .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml=C2=A0=C2=A0=C2=A0=C2=A0 | 5 +++++
+> >=C2=A0 1 file changed, 5 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > index 07b20383cbca..149cff3233c2 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > @@ -32,6 +32,9 @@ properties:
+> >=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> >=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: GPIO specifier for bridge_en pin (active high).
+> >
+> > +=C2=A0 vcc-supply:
+> > +=C2=A0=C2=A0=C2=A0 description: A 1.8V power supply (see regulator/regulator.yaml).
+> > +
+> >=C2=A0=C2=A0=C2=A0 ports:
+> >=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/graph.yaml#/properties/ports
+> >
+> > @@ -94,6 +97,7 @@ required:
+> >=C2=A0=C2=A0=C2=A0 - compatible
+> >=C2=A0=C2=A0=C2=A0 - reg
+> >=C2=A0=C2=A0=C2=A0 - enable-gpios
+> > +=C2=A0 - vcc-supply
 >
-> Best regards,
-> Krzysztof
+> You generally can't make added properties required unless all DT files
+> already had this property. It breaks compatibility.
+
+I agree, but AFAICS none of the in-kernel DT files uses this binding. I used
+'grep -re "ti,sn65dsi8[34]" arch/*/boot/dts' to check. Only
+ti,sn65dsi86 is used on some qcom boards, but this is a completly different
+binding and driver.
+
+Best regards,
+Alexander
+
