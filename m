@@ -2,107 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B58BA424245
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A03F2424261
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:15:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239341AbhJFQNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 12:13:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33482 "EHLO
+        id S231851AbhJFQRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 12:17:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230021AbhJFQNC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 12:13:02 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98DDDC061746;
-        Wed,  6 Oct 2021 09:11:09 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id b20so12903278lfv.3;
-        Wed, 06 Oct 2021 09:11:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=8cGBldMfEJ95FNn3AxoEmcovSSwBsWicQa8v8Iv276M=;
-        b=GfjocarBxwSZ3iJFzeq0N/l84rLEVu3Da3tiuTniXrcGY6/DQnxtc1ZrlaUJoqdgyt
-         w4Gihg2LuuZno+cDrafgpzY+T1ogiPTXx7eKvdxD60gR8MFkPALjT1aMsMvZYLb+t5se
-         cpc75bMeqjuT4ygFJm/BJ/2ekLqTDnJ8lOHVf4MzhU3wdRmt/do22Ml9x6Jd2G07Dr6p
-         lm+zWRMsHDAiKuAFj9CLZVvdr+3NOEvFWgSBblTznM73Cds0CMRJmuylgVXf0Db/2aLl
-         AxZKBu/2oIDv2XL5W8kJHbpe3ebIFHV7wgxkJ3p667MbThj9Ihxh4EurmOSU3X4xfvtq
-         9cUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8cGBldMfEJ95FNn3AxoEmcovSSwBsWicQa8v8Iv276M=;
-        b=TTsD8RA0a/2EtYU/cDH3BDZQcOznRJVUN9IXfUM8+TJLVbNhQCE/kflkxdxSpRsxLH
-         Kr1R67OTkYIu/PrLL6+R1DxJm6bmssTLL8nbgiXKnNV0J0EOSExfqhG9eQGAA3Em3tGU
-         Ir3SrFdDoJFKvMj2UUfkYSEG8OGJvwue9u4FPwZixghP5xMmkM0tdV8XCj0qCxrh6cyE
-         2UBdC+rXQNCxkLxbRfolSUiVzjuUjRPAFXz8MWwB13w0w3O5WjLwODd+4eAabvRimFR8
-         dkKa88lDc4/y/r60Lp0wr8x9ZdFsUuRm7na1TK6Fok4YX4nOVhlB0HalOfMfi5LyarK2
-         wcZg==
-X-Gm-Message-State: AOAM530hllwN9Y3uTJIYVg6a0JOfDVYBCN4EI1I2lgBJ40iCXEkktVx5
-        b8r0e4YEvifNSSzNsMEHPXrw5pCMgw0=
-X-Google-Smtp-Source: ABdhPJyB7rgAE715VRacHFOyD2Z+3eLyumI5OR0U+J4S4MkKbph5eG0X+XvRRGu2zPAqVW2/Nc9Uew==
-X-Received: by 2002:a2e:5705:: with SMTP id l5mr31104368ljb.456.1633536667884;
-        Wed, 06 Oct 2021 09:11:07 -0700 (PDT)
-Received: from [192.168.2.145] (79-139-163-57.dynamic.spd-mgts.ru. [79.139.163.57])
-        by smtp.googlemail.com with ESMTPSA id l24sm2334922lji.25.2021.10.06.09.11.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Oct 2021 09:11:07 -0700 (PDT)
-Subject: Re: [PATCH v4 3/7] dt-bindings: memory: lpddr2: Add revision-id
- properties
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20211005230009.3635-1-digetx@gmail.com>
- <20211005230009.3635-4-digetx@gmail.com>
- <545e4036-a9fe-a0f1-dd8c-f5948fee6c4e@canonical.com>
- <b24831e5-653c-e3e6-fd96-9746e8e96d8d@gmail.com>
-Message-ID: <16f2e720-03d3-1643-5577-4039091a1ffc@gmail.com>
-Date:   Wed, 6 Oct 2021 19:11:06 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S230101AbhJFQRq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 12:17:46 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6016C061746;
+        Wed,  6 Oct 2021 09:15:53 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 4FCE31F41572
+Received: by earth.universe (Postfix, from userid 1000)
+        id F1C4A3C0CA8; Wed,  6 Oct 2021 18:15:48 +0200 (CEST)
+Date:   Wed, 6 Oct 2021 18:15:48 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: power: supply: add Maxim MAX77976
+ battery charger
+Message-ID: <20211006161548.ary3mijxlcz6mdob@earth.universe>
+References: <20211004130732.950512-1-luca@lucaceresoli.net>
 MIME-Version: 1.0
-In-Reply-To: <b24831e5-653c-e3e6-fd96-9746e8e96d8d@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4iiygwy4zl7ebylp"
+Content-Disposition: inline
+In-Reply-To: <20211004130732.950512-1-luca@lucaceresoli.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-06.10.2021 18:47, Dmitry Osipenko пишет:
-> 06.10.2021 13:59, Krzysztof Kozlowski пишет:
->> On 06/10/2021 01:00, Dmitry Osipenko wrote:
->>> Add optional revision-id standard LPDDR2 properties which will help to
->>> identify memory chip.
->>>
->>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->>> ---
->>>  .../memory-controllers/ddr/jedec,lpddr2.yaml         | 12 ++++++++++++
->>>  1 file changed, 12 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
->>> index d99ccad54938..01efb43c3425 100644
->>> --- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
->>> +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
->>> @@ -24,6 +24,16 @@ properties:
->>>            - enum:
->>>                - jedec,lpddr2-nvm
->>>  
->>> +  revision-id1:
->>> +    maximum: 255
->>> +    description: |
->>> +      Revision 1 value of SDRAM chip. Obtained from device datasheet.
->>> +
->>
->> Also type/ref for uint32 needed.
-> 
-> Also unnecessary :) It's uint32 by default, inferred from the 'maximum'.
-> 
 
-Please grep for 'maximum: ' to see that other bindings don't specify the
-type.
+--4iiygwy4zl7ebylp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Mon, Oct 04, 2021 at 03:07:31PM +0200, Luca Ceresoli wrote:
+> Add bindings for the Maxim MAX77976 I2C-controlled battery charger.
+>=20
+> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+> ---
+>  .../bindings/power/supply/maxim,max77976.yaml | 41 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 +++
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,=
+max77976.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max7797=
+6.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max77976.yaml
+> new file mode 100644
+> index 000000000000..b508d9cc04a0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max77976.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/maxim,max77976.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim Integrated MAX77976 Battery charger
+> +
+> +maintainers:
+> +  - Luca Ceresoli <luca@lucaceresoli.net>
+> +
+> +description: |
+> +  The Maxim MAX77976 is a 19Vin / 5.5A, 1-Cell Li+ battery charger
+> +  configured via I2C.
+> +
+> +properties:
+> +  compatible:
+> +    const: maxim,max77976
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+
+Add
+
+allOf:
+  - $ref: power-supply.yaml#
+
+and replace additionalProperties with unevaluatedProperties, so that
+the power-supplies property is also valid.
+
+-- Sebastian
+
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      charger@6b {
+> +        compatible =3D "maxim,max77976";
+> +        reg =3D <0x6b>;
+> +      };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index eeb4c70b3d5b..b3a3667cef46 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11388,6 +11388,11 @@ F:	Documentation/devicetree/bindings/*/*max77802=
+=2Etxt
+>  F:	drivers/regulator/max77802-regulator.c
+>  F:	include/dt-bindings/*/*max77802.h
+> =20
+> +MAXIM MAX77976 BATTERY CHARGER
+> +M:	Luca Ceresoli <luca@lucaceresoli.net>
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/power/supply/maxim,max77976.yaml
+> +
+>  MAXIM MUIC CHARGER DRIVERS FOR EXYNOS BASED BOARDS
+>  M:	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>  M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+> --=20
+> 2.25.1
+>=20
+
+--4iiygwy4zl7ebylp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmFdy68ACgkQ2O7X88g7
++pouRw/+IjIUpy+TiY80hx4winh/LGG8JvLd2epxDCqGClCNw7evULVpiqB8MYMt
++bLLjesjNjVrTSbLgZZrK332F2OtTS+z4hEAQQs3a9qbEoYh/f3vkeT4nvxG7Om0
+0A8lYTQgtD85vV/g/2xyKvwE4BtzLLW7HMf9lPcQjnteaOsKeBf3ppLujV7Xu+nd
+ytSAc8AGDlI4g3Rw4CQ5GEYDZLOeYuxMRaYzF6uSQFeeXFBnzOlAwiASqwzSXY5+
+ngoATAvZcXQHCNrRk7515MZ7TGOHgpROVdo5dSVVtCKYst5JkQGeyTXpUk8y/Yjz
+EkDwVZK/XJkb430XS4kmuqo2WpOwD961fmtyJCwlFmmfZFLG4SRF6lI1UbhIn26T
+oiGYAINVezGzIO+nMrrGCnCkn5H3xmDRyCmieGD83KSeaeHw8ZEIYexDjg0SgNmq
+OZm/V1L2lsAWNuzLl+RSaozfPoSfYlpFYQTPxdbI2ACdtSsIvIf2lyHGnukmTH56
+FR9dqwP2TxlB4WZFkmLSygb/Ta8l8GLvJDI1KbeKYZ98pPI9M7ZjH6ZCByFrkYA6
+dsjbK1ra304twX5eIUYOpaD8tu4Xpzb/wE7pm6Kbaaqx4oAQljo+Vdsb7UwoTwt6
+HhZ3rN7AQc5zHHHf26CI+vpc+XxRWwJi9uAsv5x3YLmo6kI+WLg=
+=4+L8
+-----END PGP SIGNATURE-----
+
+--4iiygwy4zl7ebylp--
