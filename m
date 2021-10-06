@@ -2,98 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C97ED4249E6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 00:37:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C3434249EF
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 00:38:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239918AbhJFWj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 18:39:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38324 "EHLO
+        id S239777AbhJFWk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 18:40:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239947AbhJFWio (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 18:38:44 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95604C06176C;
-        Wed,  6 Oct 2021 15:36:43 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id l7so15717740edq.3;
-        Wed, 06 Oct 2021 15:36:43 -0700 (PDT)
+        with ESMTP id S239859AbhJFWkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 18:40:23 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E81BC06177C;
+        Wed,  6 Oct 2021 15:37:43 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id np13so3309234pjb.4;
+        Wed, 06 Oct 2021 15:37:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=aJj/1qPNuaVQFK3OzLpENkQJhnzkYtyy78uh6Vh8QNI=;
-        b=L0TlaMBtITBxzhR1lZHviuIP/bQA5HOgoY9MF28mg2zKUsEhBR0OBg4qyBDW6UYQFK
-         h3WVON6cCNud1Cat7h9vWBUhP2OwOOTj6xm9TWzuu9tZod7rsVDqmrRY0RPRnVU333mk
-         oldpmbXnjLKEsaIdHF1YcdCctASMZd3pvTXT37JGjY5+rdi0NnHi+rJ9f+AeI1gw3JFa
-         qiIcUMnMv+xTOZQ4DNtcjCAi+W8jOcJbWj6sai7XgeGvNd6zCqvmd7/lRSd7ZrzlwqYZ
-         M3Lk762vdJfnD2xMzfpvljpuguIGED4unT/+FAEVPfZ7YAof8/HNMgpWgLp5APmJgovQ
-         Uqtg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=u2ABEJkCd1WJjIKZz+HrMsC2GEgILkJNEDXWHfmz6WM=;
+        b=FIrtOed5QowKUvESH0rG0wvV+3jKddQCuuIuBfhHRTk8T8VmPDFwv1/sTJAAFMgoXe
+         HXkN7YWXjhF/zrR2F/U+/MkjdMr28Eiiif61PM8lgdzeGlwKVNoy3cZO3oVwxlf1y4Qq
+         ML0Zxd6olLxMEd7tbUGjRpK/R7cb1ynklKOEnOsKGuHS+AR9eM3gQhrSgwrpbIXxDltH
+         O/Ru0l0Mwm5WP0mW7srNV2jrlVjnmHbcXmHAwvScFtyDBwPixATxWKZZPvwE9Leemq7b
+         /FuyLrO0jdPkAaWnvyISUJPK4unL1H92dmReVh6yyqBPX6EVv7yFmcldM3IfxchdNGsR
+         dHOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aJj/1qPNuaVQFK3OzLpENkQJhnzkYtyy78uh6Vh8QNI=;
-        b=bplOCCeguD+DvJlfIzKzSUhOSiAxcE/+wdEdAznjmAKoqiVp9pl799bgNHMGGk3Z2u
-         fc/rEqu2IItiOd4lTdeewcHkEAj9A9MOZ0qRtAjTEOBQMleH6WrvH3qRWVeCQjT2JLhu
-         O3AlojWeaf/mb4HOhZHncwvwgiwZCLPJV+91kr3e+7gm+G1Vf9o7jJf2EWPwPMHtlYZM
-         NEGsEO2clCEOPkGRXL/rZgPHxJIBj4qsy30laT5reTVlv0tmmoOt0WobjDEVycZs5wTH
-         hElK8E+c4MUUCT56oZGPYfAERSMTwkZ4uAObN8s4LyBND6BP7cTltGWNgBKx9hMothIu
-         khHg==
-X-Gm-Message-State: AOAM532hApELI7cfOVwMASapc74Pi67ieowbfp82rkb4KMEH72PytiAR
-        qWU+jGIshegQMN9buAxStYA=
-X-Google-Smtp-Source: ABdhPJxkBNOH1aDqAS8750346rUpHDVKyJa1T5CfAuP5cz9uFbjkqTzrTsIXoRI8jkACY8ggS6wWdA==
-X-Received: by 2002:a17:906:7d42:: with SMTP id l2mr1130949ejp.467.1633559802038;
-        Wed, 06 Oct 2021 15:36:42 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.googlemail.com with ESMTPSA id z8sm9462678ejd.94.2021.10.06.15.36.41
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=u2ABEJkCd1WJjIKZz+HrMsC2GEgILkJNEDXWHfmz6WM=;
+        b=jr36hr+unBUX+e4+RGzWWTFxCJhgO3Fr69AyfZx0/qnL4AbdGpovcQmx8qb+mq2qcx
+         zaqEsjAKpMQwuJBDRxngvfagIQKGHCXSsSW026teLJ1VwBgRfsNoUbtKubJmfBCR0Xbd
+         CFzI0tgly7kWIzDUEAz5NLN84DkgRBefTqfQMCLIqMbeck2l+qrbojF+qbDm1aXfMdyc
+         hTfwIC54m1LMYnmv1ndvJWx8Bwmq7lNsTxEV1SCOlpmdtpIv1j3zb5Kn03Xl+VuJM4g6
+         sEoPQ8OQQ4t8IDWVMQMbpIUIKA+l4lPz8euC7x2pibF6qUxshVDJczhQYfwAVaVAHCf3
+         Nokg==
+X-Gm-Message-State: AOAM533cszsY5tQvaPc/ZDtulmvXyNRfQjXtjZdAknV81ul7zdb5AUNB
+        TEIL3CKgB2QhRf7H4HajJe4=
+X-Google-Smtp-Source: ABdhPJz4BaWTMOr4ZP31Nn4C5AszSnkpRS3L0Y1gfKAehJA2FRUXByCD1kztbcVi2shP0MV6GW1oQQ==
+X-Received: by 2002:a17:90b:1804:: with SMTP id lw4mr830200pjb.174.1633559862671;
+        Wed, 06 Oct 2021 15:37:42 -0700 (PDT)
+Received: from localhost ([2409:10:24a0:4700:e8ad:216a:2a9d:6d0c])
+        by smtp.gmail.com with ESMTPSA id c18sm20848814pge.69.2021.10.06.15.37.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 15:36:41 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
+        Wed, 06 Oct 2021 15:37:41 -0700 (PDT)
+Date:   Thu, 7 Oct 2021 07:37:39 +0900
+From:   Stafford Horne <shorne@gmail.com>
+To:     Segher Boessenkool <segher@kernel.crashing.org>
+Cc:     Rob Herring <robh@kernel.org>, Rich Felker <dalias@libc.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+        "H. Peter Anvin" <hpa@zytor.com>, linux-riscv@lists.infradead.org,
+        Will Deacon <will@kernel.org>, Jonas Bonn <jonas@southpole.se>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Ansuel Smith <ansuelsmth@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [net-next PATCH 13/13] Documentation: devicetree: net: dsa: qca8k: document open drain binding
-Date:   Thu,  7 Oct 2021 00:36:03 +0200
-Message-Id: <20211006223603.18858-14-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211006223603.18858-1-ansuelsmth@gmail.com>
-References: <20211006223603.18858-1-ansuelsmth@gmail.com>
+        Yoshinori Sato <ysato@users.osdn.me>, linux-sh@vger.kernel.org,
+        x86@kernel.org, Russell King <linux@armlinux.org.uk>,
+        linux-csky@vger.kernel.org, Ingo Molnar <mingo@redhat.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
+        Ray Jui <rjui@broadcom.com>,
+        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+        openrisc@lists.librecores.org, Borislav Petkov <bp@alien8.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Scott Branden <sbranden@broadcom.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        James Morse <james.morse@arm.com>,
+        Paul Mackerras <paulus@samba.org>,
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH 06/12] openrisc: Use of_get_cpu_hwid()
+Message-ID: <YV4lM/YJ4V4EAlZb@antec>
+References: <20211006164332.1981454-1-robh@kernel.org>
+ <20211006164332.1981454-7-robh@kernel.org>
+ <YV4KkAC2p9D4yCnH@antec>
+ <20211006212728.GM10333@gate.crashing.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211006212728.GM10333@gate.crashing.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document new binding qca,power_on_sel used to enable Power-on-strapping
-select reg and qca,led_open_drain to set led to open drain mode.
+Hi Segher,
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- Documentation/devicetree/bindings/net/dsa/qca8k.txt | 4 ++++
- 1 file changed, 4 insertions(+)
+On Wed, Oct 06, 2021 at 04:27:28PM -0500, Segher Boessenkool wrote:
+> On Thu, Oct 07, 2021 at 05:44:00AM +0900, Stafford Horne wrote:
+> > You have defined of_get_cpu_hwid to return u64, will this create compiler
+> > warnings when since we are storing a u64 into a u32?
+> > 
+> > It seems only if we make with W=3.
+> 
+> Yes.  This is done by -Wconversion, "Warn for implicit conversions that
+> may alter a value."
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-index 550f4313c6e0..4f6ef9f9e024 100644
---- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-+++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-@@ -13,6 +13,10 @@ Required properties:
- Optional properties:
- 
- - reset-gpios: GPIO to be used to reset the whole device
-+- qca,package48: Set to 48-pin mode required in some QCA8327 switches.
-+- qca,power-on-sel: Enable Power-on-strapping select required in some QCA8327
-+  switches.
-+- qca,led-open-drain: Set leds to open-drain mode.
- - qca,mac6-exchange: Internally swap MAC0 and MAC6.
- - qca,sgmii-rxclk-falling-edge: Set the receive clock phase to falling edge.
- - qca,sgmii-txclk-falling-edge: Set the transmit clock phase to falling edge.
--- 
-2.32.0
+Yeah, that is what I found out when I looked into it.
 
+> > I thought we usually warned on this.
+> 
+> This warning is not in -Wall or -Wextra either, it suffers too much from
+> false positives.  It is very natural to just ignore the high bits of
+> modulo types (which is what "unsigned" types *are*).  Or the bits that
+> "fall off" on a conversion.  The C standard makes this required
+> behaviour, it is useful, and it is the only convenient way of getting
+> this!
+
+Thanks for the background, It does make sense. I guess I was confused with java
+which requires casting when you store to a smaller size.  I.e.
+
+    Test.java:5: error: incompatible types: possible lossy conversion from int to short
+	s = i;
+
+-Stafford
