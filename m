@@ -2,106 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F3AC4242C5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F244242F2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:43:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229719AbhJFQgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 12:36:25 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:52602 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235957AbhJFQgX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 12:36:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=M7ourfR7N3IREsZHWkmqZNuXaEfP+RZhu9KUMFheoaQ=; b=olYX4XZNKj5XTuB2L4XSCVljGC
-        eA6Lu3jv+5rZr4Y6hdPVyg6bie9iLsYzdp6XtkJ+4crUwXhmlhEMboo7rQwPaiM+BST6qDXEzlPmg
-        HsfyLloe1knYy8y/deIMNYttKHUrUzAVfZiR7F8ngu2tK8TBo2pCMYBBjaPFR2E5SEy8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mY9rv-009rE7-1T; Wed, 06 Oct 2021 18:34:11 +0200
-Date:   Wed, 6 Oct 2021 18:34:11 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        netdev <netdev@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S231779AbhJFQpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 12:45:30 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:42793 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231484AbhJFQp2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 12:45:28 -0400
+Received: by mail-oi1-f175.google.com with SMTP id x187so2464276oix.9;
+        Wed, 06 Oct 2021 09:43:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jBzMvIMgnR7M/3yhI7B+vslrQk5E3C0Pdi0d+USOXmM=;
+        b=lKAeLC9r17NMcHj0W2tJAF27RAB1XfMR5afeQawc9v55LcLokP8Q3ou8GzO7qSBm0y
+         cM4kwUZOwBsCnieLBo0vkzBSQYa2saturs8bXxE2benYdciWglT7e2IG0nwB2PHUyVU/
+         YnIIpJYDQbFIDOQivrp+skZmgZnpVY4CTW8pvYKNLy25LuKJHidKSgNEPx7goAn4OGLo
+         1tq48eaytUxxezZd2xCzMahOly8TEYixkecUZAORcIrv1PGVX1osBBA5psSxReGyFJt2
+         YqLI+8nc4zfyDYt1XEykLqsFIYICT6Szq9iph7gpp/3z1dEP48qEp0ZsCrrEvDLFGaiD
+         H78w==
+X-Gm-Message-State: AOAM532najdQMh0/57fxxP1ii9hOgyyftOHITSqh8tILxG1UFe+ejvJ/
+        FDu4pNeAg80YxkqOX+vjTg==
+X-Google-Smtp-Source: ABdhPJx7CXhXT5M1W0CAhtBp2h8eMcQ5I0cRndKVwy8olo5SejcUQh3JemHdw8Jrz5VsbxC5vFcqCA==
+X-Received: by 2002:a05:6808:2221:: with SMTP id bd33mr8117373oib.64.1633538615382;
+        Wed, 06 Oct 2021 09:43:35 -0700 (PDT)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id s29sm4236628otg.60.2021.10.06.09.43.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Oct 2021 09:43:34 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Russell King <linux@armlinux.org.uk>,
+        James Morse <james.morse@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Jonas Bonn <jonas@southpole.se>,
+        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+        Stafford Horne <shorne@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, x86@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        "H. Peter Anvin" <hpa@zytor.com>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
         Frank Rowand <frowand.list@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 1/9] of: net: move of_net under net/
-Message-ID: <YV3QAzAWiYdKFB3m@lunn.ch>
-References: <20211006154426.3222199-1-kuba@kernel.org>
- <20211006154426.3222199-2-kuba@kernel.org>
- <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com>
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-csky@vger.kernel.org, openrisc@lists.librecores.org,
+        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+        linux-sh@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 00/12] DT: CPU h/w id parsing clean-ups and cacheinfo id support
+Date:   Wed,  6 Oct 2021 11:43:20 -0500
+Message-Id: <20211006164332.1981454-1-robh@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK6YzaD0wB0BsP5tghnYMbZzDHq2p6Z_ZGr99EFWhWggw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 06, 2021 at 11:18:19AM -0500, Rob Herring wrote:
-> On Wed, Oct 6, 2021 at 10:45 AM Jakub Kicinski <kuba@kernel.org> wrote:
-> >
-> > Rob suggests to move of_net.c from under drivers/of/ somewhere
-> > to the networking code.
-> >
-> > Suggested-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Jakub Kicinski <kuba@kernel.org>
-> > ---
-> > v2: new patch
-> > ---
-> >  drivers/of/Makefile               | 1 -
-> >  net/core/Makefile                 | 1 +
-> >  {drivers/of => net/core}/of_net.c | 0
-> >  3 files changed, 1 insertion(+), 1 deletion(-)
-> >  rename {drivers/of => net/core}/of_net.c (100%)
-> >
-> > diff --git a/drivers/of/Makefile b/drivers/of/Makefile
-> > index c13b982084a3..e0360a44306e 100644
-> > --- a/drivers/of/Makefile
-> > +++ b/drivers/of/Makefile
-> > @@ -7,7 +7,6 @@ obj-$(CONFIG_OF_EARLY_FLATTREE) += fdt_address.o
-> >  obj-$(CONFIG_OF_PROMTREE) += pdt.o
-> >  obj-$(CONFIG_OF_ADDRESS)  += address.o
-> >  obj-$(CONFIG_OF_IRQ)    += irq.o
-> > -obj-$(CONFIG_OF_NET)   += of_net.o
-> >  obj-$(CONFIG_OF_UNITTEST) += unittest.o
-> >  obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
-> >  obj-$(CONFIG_OF_RESOLVE)  += resolver.o
-> > diff --git a/net/core/Makefile b/net/core/Makefile
-> > index 35ced6201814..37b1befc39aa 100644
-> > --- a/net/core/Makefile
-> > +++ b/net/core/Makefile
-> > @@ -36,3 +36,4 @@ obj-$(CONFIG_FAILOVER) += failover.o
-> >  obj-$(CONFIG_NET_SOCK_MSG) += skmsg.o
-> >  obj-$(CONFIG_BPF_SYSCALL) += sock_map.o
-> >  obj-$(CONFIG_BPF_SYSCALL) += bpf_sk_storage.o
-> > +obj-$(CONFIG_OF_NET)   += of_net.o
-> 
-> The OF_NET kconfig should move or disappear too. I imagine you can do just:
+The first 10 patches add a new function, of_get_cpu_hwid(), which parses
+CPU DT node 'reg' property, and then use it to replace all the open
+coded versions of parsing CPU node 'reg' properties.
 
-It is used in a few places:
+The last 2 patches add support for populating the cacheinfo 'id' on DT
+platforms. The minimum associated CPU hwid is used for the id. The id is
+optional, but necessary for resctrl which is being adapted for Arm MPAM.
 
-net/ethernet/litex/Kconfig:	depends on OF_NET
-net/ethernet/amd/Kconfig:	depends on ((OF_NET && OF_ADDRESS) || ACPI || PCI) && HAS_IOMEM
-net/ethernet/mscc/Kconfig:	depends on OF_NET
-net/ethernet/ezchip/Kconfig:	depends on OF_IRQ && OF_NET
-net/ethernet/arc/Kconfig:	depends on OF_IRQ && OF_NET
-net/ethernet/arc/Kconfig:	depends on OF_IRQ && OF_NET && REGULATOR
+Tested on arm64. Compile tested on arm, x86 and powerpc.
 
-so it cannot just disappear. These will need reviewing and changing as
-well.
+Rob
 
-	Andrew
+Rob Herring (12):
+  of: Add of_get_cpu_hwid() to read hardware ID from CPU nodes
+  ARM: Use of_get_cpu_hwid()
+  ARM: broadcom: Use of_get_cpu_hwid()
+  arm64: Use of_get_cpu_hwid()
+  csky: Use of_get_cpu_hwid()
+  openrisc: Use of_get_cpu_hwid()
+  powerpc: Use of_get_cpu_hwid()
+  riscv: Use of_get_cpu_hwid()
+  sh: Use of_get_cpu_hwid()
+  x86: dt: Use of_get_cpu_hwid()
+  cacheinfo: Allow for >32-bit cache 'id'
+  cacheinfo: Set cache 'id' based on DT data
+
+ arch/arm/kernel/devtree.c       | 22 ++-------------------
+ arch/arm/mach-bcm/bcm63xx_pmb.c |  6 +++---
+ arch/arm64/kernel/smp.c         | 31 ++----------------------------
+ arch/csky/kernel/smp.c          |  6 ++----
+ arch/openrisc/kernel/smp.c      |  6 +-----
+ arch/powerpc/kernel/smp.c       |  7 +------
+ arch/riscv/kernel/cpu.c         |  3 ++-
+ arch/sh/boards/of-generic.c     |  5 ++---
+ arch/x86/kernel/devicetree.c    |  5 ++---
+ drivers/base/cacheinfo.c        | 34 ++++++++++++++++++++++++++++++++-
+ drivers/of/base.c               | 22 +++++++++++++++++++++
+ include/linux/cacheinfo.h       |  2 +-
+ include/linux/of.h              |  1 +
+ 13 files changed, 74 insertions(+), 76 deletions(-)
+
+-- 
+2.30.2
+
