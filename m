@@ -2,167 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7ED5424609
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E96F442460F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 20:27:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231641AbhJFS2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 14:28:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37674 "EHLO
+        id S239083AbhJFS3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 14:29:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbhJFS2P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:28:15 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3676C061746;
-        Wed,  6 Oct 2021 11:26:22 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id x12so3476962qkf.9;
-        Wed, 06 Oct 2021 11:26:22 -0700 (PDT)
+        with ESMTP id S239074AbhJFS3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 14:29:31 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 024EFC061753
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 11:27:39 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id u32so7489182ybd.9
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 11:27:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=atishpatra.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MW5tHpMjCfEp2ujWAs5HwJDY4QO3gYqom+zIppRuqpk=;
-        b=Qc6hmZMtR7hj7SMkVwT3Qp9i91IzcDo8nkb8LT1TUO9Z9h35Xn25e+VUXjOrRAr62H
-         ebRrgIXcE+yfW6HdsGVBDF+DkmtYWJTtWzq6I0v3GQ7honc7LA9gZzUZnYftECbtmTsh
-         aIp7UrBYbBM2++qmIu78d8pph3C5QX7mac5/Q4RkLWsMTzwVANyFhVEJcF84tcDHOtBu
-         livJ7yU3agWK2L/cSli2EIfxpGV/XrLq7nVv/wLPfyqNGKxRep2+g3MZbKWbzDmrd5Hr
-         3rUAohixBxdzX7WCbbyVpjfYNNPKFKnKfF08EjeJIdkHQBV8QR2OUf8PAqolkwPwJBYV
-         LWzQ==
+         :cc:content-transfer-encoding;
+        bh=Y+skB1HbPSAUXUVGPBTXTTzBDV28QLRW6pLRxEsII1I=;
+        b=XRaOmyhpTkYI2RNEZjrVdOZFE24IBvyG0AwZo+gC8CvTKCZZpHlStkZ3/VzgVf4a+c
+         5oamGtKVoPxKx/kyEpHBPTRpcc9zAJEmncyYDGvFfaTe7BzFi5MupxT1jxXYZR18iaO8
+         MxU3QlNTTtLIGmCoB7kvuSVziK/lFf7Tq45Uk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MW5tHpMjCfEp2ujWAs5HwJDY4QO3gYqom+zIppRuqpk=;
-        b=fPvCcJ8hL1wq3F5ZgivMqyHQSUWgfukNJaB3fr7dz1Q68c0zlM6fYLnfRcZ6+TL/Tx
-         eWZauykmkftYjjWAKwBwEwbvu5Fipoxj01Ktbp5+AMLrNMmt0C4Py7R0i5gvm+zpfdht
-         G9EsA3FOd1WfN7FeS42f6A09BBDAYnbholHPlC74bT4qsiI5BdHNuv0ohQ4bqgrnpO+P
-         CkXbvaKHH8UiLcIdGBPIMXL0oE/SY8zJgtRYL05MG6oy3DH1yoNuYUEH8NmPxtuTfo38
-         QeD2LnythzTvNOKJcqwPWzO91kG3y2EKHVJX3bUNlHiFI6IxpJFg6yZBUPsR83vajH0k
-         E0cQ==
-X-Gm-Message-State: AOAM531aYQwq0C2A3W91nh7qfbjOBs179hovlTNmyXl7xNCH/nFESTZH
-        gf9nbUoFXqMkcOeEKNtghD2WAza4aOV9i9qzLL8=
-X-Google-Smtp-Source: ABdhPJzLcLJsxRSBGw+zSWXGMASZJrbr2DfMYmSywwZ8SZRVzhbbVnYAZtC3YPyNrHooddEvk2Gk1UeKldkZnL/sTQ8=
-X-Received: by 2002:a37:af02:: with SMTP id y2mr209498qke.33.1633544781895;
- Wed, 06 Oct 2021 11:26:21 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Y+skB1HbPSAUXUVGPBTXTTzBDV28QLRW6pLRxEsII1I=;
+        b=LzEATlgQ9MU3XyVmoafaj/oBovlsx5BIzoy1liC8MsxUgNDqkeAjGS2ofGPiS7zT2m
+         nBGz4kZLWgqVxiNAaXnNjcRQmSV7d+AodH9COgUwYFN/c5R7SwPSWtUfW7HWvCRGFej4
+         TXSwrM9EAyJNJbA+kJyUM65Mf3C+KLccL8uQyDeo49e8L1kTZqkDVaI2mrAtweuxRAL/
+         8tCuHwPBgRRUYAoBpPx8oAXbjm7+KbRZAxs7qMip8n3/VNYguBIb3JIb3Ena48Ap8bCJ
+         Tk5mOS0HwK08kMJWuzhjVaypqXLxkXulf+NO1uaS37NzVC77OgtMKAEZb0NNNf6jd8Pg
+         PpJA==
+X-Gm-Message-State: AOAM530k6ucE/2bdiMve1MVPGWihAscowheaw2HjD+23f4DMm/U2V4iL
+        GOMXQWL+Onnzd1a11F6gHqNPpGYfnaBpdD0xTdUK
+X-Google-Smtp-Source: ABdhPJyp/2YLRyXJo6+aWq4mpFiZsUtJsZlQfWTMIcq9NiqSxw30dtz063tTJ00RXPrb5oBYG6dUzbJMOdXUMYea800=
+X-Received: by 2002:a5b:2d2:: with SMTP id h18mr32560878ybp.526.1633544858074;
+ Wed, 06 Oct 2021 11:27:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210902214708.1776690-1-robimarko@gmail.com> <YUf3aKn78+41Cb/G@builder.lan>
- <CAOX2RU5b46H7nqm6G4mHLSqEhGiWktwWjUKF5w10Ut+AdKea-A@mail.gmail.com>
- <632a7d28c23a8497d35ea009bfe89883@codeaurora.org> <CAOX2RU5+jeXiqz8oss8Sd-BWa059uAv5xu=7nx_YF4RYpG2S6w@mail.gmail.com>
- <YUurqDL/S15RziCQ@builder.lan> <20211006182419.GC33862@thinkpad>
-In-Reply-To: <20211006182419.GC33862@thinkpad>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Wed, 6 Oct 2021 20:26:10 +0200
-Message-ID: <CAOX2RU43D72yx1Kyb0jRMMOLgBd1OMscWLH-dEdp0P=L-5quHQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: add SMEM support
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kathiravan T <kathirav@codeaurora.org>, agross@kernel.org,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>
+References: <20210910192757.2309100-1-atish.patra@wdc.com> <mhng-62d18ad4-0547-42bb-87a0-5e96e5354650@palmerdabbelt-glaptop>
+In-Reply-To: <mhng-62d18ad4-0547-42bb-87a0-5e96e5354650@palmerdabbelt-glaptop>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Wed, 6 Oct 2021 11:27:26 -0700
+Message-ID: <CAOnJCUK4rbM5ouAfd-ZsfMBiGg1uxjV4EW1iu7-fkwf3Ztk1iA@mail.gmail.com>
+Subject: Re: [v3 00/10] Improve RISC-V Perf support using SBI PMU and sscofpmf extension
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Atish Patra <Atish.Patra@wdc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        alexander.shishkin@linux.intel.com,
+        Anup Patel <Anup.Patel@wdc.com>,
+        Ard Biesheuvel <ardb@kernel.org>, djwong@kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>, jolsa@redhat.com,
+        john.garry@huawei.com, Jonathan Corbet <corbet@lwn.net>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-perf-users@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vincent Chen <vincent.chen@sifive.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Oct 2021 at 20:24, Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
+On Mon, Oct 4, 2021 at 11:21 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
 >
-> On Wed, Sep 22, 2021 at 05:18:16PM -0500, Bjorn Andersson wrote:
-> > On Wed 22 Sep 15:23 CDT 2021, Robert Marko wrote:
-> >
-> > > On Tue, 21 Sept 2021 at 08:24, Kathiravan T <kathirav@codeaurora.org> wrote:
-> > > >
-> > > > On 2021-09-20 14:55, Robert Marko wrote:
-> > > > > On Mon, 20 Sept 2021 at 04:52, Bjorn Andersson
-> > > > > <bjorn.andersson@linaro.org> wrote:
-> > > > >>
-> > > > >> On Thu 02 Sep 16:47 CDT 2021, Robert Marko wrote:
-> > > > >>
-> > > > >> > IPQ8074 uses SMEM like other modern QCA SoC-s, so since its already
-> > > > >> > supported by the kernel add the required DT nodes.
-> > > > >> >
-> > > > >> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > > > >>
-> > > > >> Thanks for your patch Robert.
-> > > > >>
-> > > > >> > ---
-> > > > >> >  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 28 +++++++++++++++++++++++++++
-> > > > >> >  1 file changed, 28 insertions(+)
-> > > > >> >
-> > > > >> > diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> > > > >> > index a620ac0d0b19..83e9243046aa 100644
-> > > > >> > --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> > > > >> > +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> > > > >> > @@ -82,6 +82,29 @@ scm {
-> > > > >> >               };
-> > > > >> >       };
-> > > > >> >
-> > > > >> > +     reserved-memory {
-> > > > >> > +             #address-cells = <2>;
-> > > > >> > +             #size-cells = <2>;
-> > > > >> > +             ranges;
-> > > > >> > +
-> > > > >> > +             smem_region: memory@4ab00000 {
-> > > > >> > +                     no-map;
-> > > > >> > +                     reg = <0x0 0x4ab00000 0x0 0x00100000>;
-> > > > >> > +             };
-> > > > >> > +     };
-> > > > >> > +
-> > > > >> > +     tcsr_mutex: hwlock {
-> > > > >> > +             compatible = "qcom,tcsr-mutex";
-> > > > >> > +             syscon = <&tcsr_mutex_regs 0 0x80>;
-> > > > >>
-> > > > >> Since it's not okay to have a lone "syscon" and I didn't think it was
-> > > > >> worth coming up with a binding for the TCSR mutex "syscon" I rewrote
-> > > > >> the
-> > > > >> binding a while back. As such qcom,tcsr-mutex should now live in /soc
-> > > > >> directly.
-> > > > >>
-> > > > >> So can you please respin accordingly?
-> > > > >
-> > > > > Sure, can you just confirm that the:
-> > > > > reg = <0x01905000 0x8000>;
-> > > > >
-> > > > > Is the whole TCSR range as I don't have docs?
-> > > >
-> > > > Robert,
-> > > >
-> > > > TCSR_MUTEX block starts from 0x01905000 and has size 0x20000 (128KB)
-> > >
-> > > Thanks, Kathiravan,
-> > > TSCR mutex with MMIO reg under it works, but there is some weird probe
-> > > ordering issue.
-> > >
-> > > For whatever reason, SMEM will get probed only after MTD does and this
-> > > will cause issues
-> > > if SMEM parser is used as it will return -EPROBE_DEFER but the MTD
-> > > core does not really
-> > > handle it correctly and causes the device to reboot after failed parsing.
-> > >
-> > > Now, I have no idea why does this variant which uses MMIO regmap probe
-> > > so much later?
-> > >
-> >
-> > Mani, do you have any input related to the probe deferral of the SMEM
-> > partition parser, because SMEM not yet probed?
-> >
+> On Fri, 10 Sep 2021 12:27:47 PDT (-0700), Atish Patra wrote:
+> > This series adds improved perf support for RISC-V based system using
+> > SBI PMU extension[1] and Sscofpmf extension[2]. The SBI PMU extension a=
+llows
 >
-> Sorry, missed this earlier. I did face the probe deferral issue before and
-> submitted a small series for fixing that:
+> Last we talked the SBI-0.3 stuff was in an uncertain state and I'm not
+> sure we ever got to a point of agreement there.  I've decided to just
+> stop worrying about the state of extensions, so if you guys want the
+> SBI-0.3 stuff merged then just go say it's frozen and that'll be good
+> enough for me.
 >
-> https://lore.kernel.org/linux-mtd/20210302132757.225395-1-manivannan.sadhasivam@linaro.org/
->
-> These 2 patches are in mainline now. Robert, can you make sure that you have
-> these 2 patches in your tree?
 
-Hi Mani,
-Yes, I have those patches as I am running this on top of 5.15-rc4 currently.
+Now, there is a freeze/ratification process[1] and DoD policy[2] in
+place for non-ISA specifications.
+Thus, we are following the process to get it approved by the TSC.
 
+[1] https://docs.google.com/document/d/1KkTmcPuor3DipS2JIUeR3DJhIN5i51bj3VF=
+-L7QQShw/edit#heading=3Dh.hym1mtuc89he
+[2] https://docs.google.com/document/d/1A4gZlXXFT_a9QGzlc9g2RHg853e6ZDB59co=
+ANEYN3Aw/edit
+
+There will be another release v0.3.1 which will be approved by the TSC
+and will be called frozen officially.
+There are no functional changes between v0.3 and v0.3.1. It is created
+just to follow the newly defined process.
+I will update the mailing list as soon as it is submitted for approval.
+
+> > the kernel to program the counters for different events and start/stop =
+counters
+> > while the sscofpmf extension allows the counter overflow interrupt and =
+privilege
+> > mode filtering. An hardware platform can leverage SBI PMU extension wit=
+hout
+> > the sscofpmf extension if it supports mcountinhibit and mcounteren. How=
+ever,
+> > the reverse is not true. With both of these extension enabled, a platfo=
+rm can
+> > take advantage of all both event counting and sampling using perf tool.
+> >
+> > This series introduces a platform perf driver instead of a existing arc=
+h
+> > specific implementation. The new perf implementation has adopted a modu=
+lar
+> > approach where most of the generic event handling is done in the core l=
+ibrary
+> > while individual PMUs need to only implement necessary features specifi=
+c to
+> > the PMU. This is easily extensible and any future RISC-V PMU implementa=
+tion
+> > can leverage this. Currently, SBI PMU driver & legacy PMU driver are im=
+plemented
+> > as a part of this series.
+> >
+> > The legacy driver tries to reimplement the existing minimal perf under =
+a new
+> > config to maintain backward compatibility. This implementation only all=
+ows
+> > monitoring of always running cycle/instruction counters. Moreover, they=
+ can
+> > not be started or stopped. In general, this is very limited and not ver=
+y useful.
+> > That's why, I am not very keen to carry the support into the new driver=
+.
+> > However, I don't want to break perf for any existing hardware platforms=
+.
+> > If nobody really uses perf currently, I will be happy to drop PATCH 4.
+> >
+> > This series has been tested in Qemu on both RV64 & RV32. Qemu[5] & Open=
+SBI [3]
+> > patches are required to test it. Qemu changes are not backward compatib=
+le.
+> > That means, you can not use perf anymore on older Qemu versions with la=
+test
+> > OpenSBI and/or Kernel. However, newer kernel will just use legacy pmu d=
+river if
+> > old OpenSBI is detected or hardware doesn't implement mcountinhibit.
+> >
+> > Here is an output of perf stat/report while running hackbench with Open=
+SBI & Linux
+> > kernel patches applied [3].
+> >
+> > Perf stat:
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > [root@fedora-riscv riscv]# perf stat -e r8000000000000005 -e r800000000=
+0000007
+> > -e r8000000000000006 -e r0000000000020002 -e r0000000000020004 -e branc=
+h-misses
+> > -e cache-misses -e dTLB-load-misses -e dTLB-store-misses -e iTLB-load-m=
+isses
+> > -e cycles -e instructions ./hackbench -pipe 15 process
+> > Running with 15*40 (=3D=3D 600) tasks.
+> > Time: 6.578
+> >
+> >  Performance counter stats for './hackbench -pipe 15 process':
+> >
+> >              6,491      r8000000000000005      (52.59%) --> SBI_PMU_FW_=
+SET_TIMER
+> >             20,433      r8000000000000007      (60.74%) --> SBI_PMU_FW_=
+IPI_RECVD
+> >             21,271      r8000000000000006      (68.71%) --> SBI_PMU_FW_=
+IPI_SENT
+> >                  0      r0000000000020002      (76.55%)
+> >      <not counted>      r0000000000020004      (0.00%)
+> >      <not counted>      branch-misses          (0.00%)
+> >      <not counted>      cache-misses           (0.00%)
+> >         57,537,853      dTLB-load-misses       (9.49%)
+> >          2,821,147      dTLB-store-misses      (18.64%)
+> >         52,928,130      iTLB-load-misses       (27.53%)
+> >     89,521,791,110      cycles                 (36.08%)
+> >     90,678,132,464      instructions #    1.01  insn per cycle (44.44%)
+> >
+> >        6.975908032 seconds time elapsed
+> >
+> >        3.130950000 seconds user
+> >       24.353310000 seconds sys
+> >
+> > The patches can also be found in the github[4].
+> >
+> > Perf record:
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > [root@fedora-riscv riscv]# perf record -e cycles -e instructions -e \
+> > dTLB-load-misses -e dTLB-store-misses -c 1000 ./hackbench -pipe 15 proc=
+ess 15
+> > Running with 15*40 (=3D=3D 600) tasks.
+> > Time: 1.238
+> > [ perf record: Woken up 1 times to write data ]
+> > [ perf record: Captured and wrote 0.106 MB perf.data (1020 samples) ]
+> >
+> > [root@fedora-riscv riscv]# perf report
+> > Available samples
+> > 372 cycles                                                             =
+        =E2=97=86
+> > 372 instructions                                                       =
+        =E2=96=92
+> > 262 dTLB-load-misses                                                   =
+        =E2=96=92
+> > 14 dTLB-store-misses
+> >
+> > The patches can also be found in the github[4].
+> >
+> > [1] https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sb=
+i.adoc
+> > [2] https://drive.google.com/file/d/171j4jFjIkKdj5LWcExphq4xG_2sihbfd/e=
+dit
+> > [3] https://github.com/atishp04/opensbi/tree/pmu_sscofpmf
+> > [4] https://github.com/atishp04/linux/tree/riscv_pmu_v3
+> > [5] https://github.com/atishp04/qemu/tree/riscv_pmu_v2
+> >
+> > Changes from v3->v4:
+> > 1. Added interrupt overflow support.
+> > 2. Cleaned up legacy driver initialization.
+> > 3. Supports perf record now.
+> > 4. Added the DT binding and maintainers file.
+> > 5. Changed cpu hotplug notifier to be multi-state.
+> > 6. OpenSBI doesn't disable cycle/instret counter during boot. Update th=
+e
+> >    perf code to disable all the counter during the boot.
+> >
+> > Changes from v1->v2
+> > 1. Implemented the latest SBI PMU extension specification.
+> > 2. The core platform driver was changed to operate as a library while o=
+nly
+> >    sbi based PMU is built as a driver. The legacy one is just a fallbac=
+k if
+> >    SBI PMU extension is not available.
+> >
+> > Atish Patra (10):
+> > RISC-V: Remove the current perf implementation
+> > RISC-V: Add CSR encodings for all HPMCOUNTERS
+> > RISC-V: Add a perf core library for pmu drivers
+> > RISC-V: Add a simple platform driver for RISC-V legacy perf
+> > RISC-V: Add RISC-V SBI PMU extension definitions
+> > dt-binding: pmu: Add RISC-V PMU DT bindings
+> > RISC-V: Add perf platform driver based on SBI PMU extension
+> > RISC-V: Add interrupt support for perf
+> > Documentation: riscv: Remove the old documentation
+> > MAINTAINERS: Add entry for RISC-V PMU drivers
+> >
+> > .../devicetree/bindings/perf/riscv,pmu.yaml   |  51 ++
+> > Documentation/riscv/pmu.rst                   | 255 ------
+> > MAINTAINERS                                   |  10 +
+> > arch/riscv/Kconfig                            |  13 -
+> > arch/riscv/include/asm/csr.h                  |  66 +-
+> > arch/riscv/include/asm/perf_event.h           |  72 --
+> > arch/riscv/include/asm/sbi.h                  |  97 +++
+> > arch/riscv/kernel/Makefile                    |   1 -
+> > arch/riscv/kernel/perf_event.c                | 485 ------------
+> > drivers/perf/Kconfig                          |  25 +
+> > drivers/perf/Makefile                         |   5 +
+> > drivers/perf/riscv_pmu.c                      | 331 ++++++++
+> > drivers/perf/riscv_pmu_legacy.c               | 143 ++++
+> > drivers/perf/riscv_pmu_sbi.c                  | 731 ++++++++++++++++++
+> > include/linux/cpuhotplug.h                    |   1 +
+> > include/linux/perf/riscv_pmu.h                |  69 ++
+> > 16 files changed, 1528 insertions(+), 827 deletions(-)
+> > create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yam=
+l
+> > delete mode 100644 Documentation/riscv/pmu.rst
+> > delete mode 100644 arch/riscv/kernel/perf_event.c
+> > create mode 100644 drivers/perf/riscv_pmu.c
+> > create mode 100644 drivers/perf/riscv_pmu_legacy.c
+> > create mode 100644 drivers/perf/riscv_pmu_sbi.c
+> > create mode 100644 include/linux/perf/riscv_pmu.h
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+
+
+--
 Regards,
-Robert
->
-> Thanks,
-> Mani
->
-> > Thanks,
-> > Bjorn
+Atish
