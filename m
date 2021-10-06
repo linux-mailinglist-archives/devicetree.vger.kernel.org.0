@@ -2,165 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72A7E42410C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:14:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50AEE424116
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 17:17:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238945AbhJFPQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 11:16:48 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:45730 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231883AbhJFPQr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 11:16:47 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633533295; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=xn2MlEnndVhT702tvxf3rYrTjb8G+mVNbNyf7hHoIe0=; b=gWtRe/5+QgMC4ZH+eV1Bjx1Ab+XkNqJXxkqfMClfY53Cc8pqeDaUZOz5CbZCuH4mzL7+dpvz
- IRWzo9fNVa3JFX0vfdyl8maQBC1EUZ57NoWJ2F7RCzu5sWGUBxsj7kW9rbc3cyC5+svT9tau
- QMI0rv8TqvR6YzApHG1bF4e3lUg=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 615dbd6e003e680efb10338d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 06 Oct 2021 15:14:54
- GMT
-Sender: mkshah=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 860FCC43618; Wed,  6 Oct 2021 15:14:53 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [192.168.29.129] (unknown [49.36.85.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S238226AbhJFPTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 11:19:30 -0400
+Received: from marcansoft.com ([212.63.210.85]:52834 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231874AbhJFPT3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Oct 2021 11:19:29 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        (Authenticated sender: mkshah)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C2EC9C4338F;
-        Wed,  6 Oct 2021 15:14:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C2EC9C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v10 1/5] dt-bindings: Introduce SoC sleep stats bindings
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
-        rnayak@codeaurora.org, lsrao@codeaurora.org,
-        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
-        devicetree@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>
-References: <1633425065-7927-1-git-send-email-mkshah@codeaurora.org>
- <1633425065-7927-2-git-send-email-mkshah@codeaurora.org>
- <YVx2vEGOtFalhNUH@ripper>
-From:   Maulik Shah <mkshah@codeaurora.org>
-Message-ID: <e1e1e26b-e15d-deb5-0199-9d40d7f328d7@codeaurora.org>
-Date:   Wed, 6 Oct 2021 20:44:45 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id AC02B3FA5E;
+        Wed,  6 Oct 2021 15:17:27 +0000 (UTC)
+Subject: Re: [PATCH 1/7] dt-bindings: arm: apple: Add apple,pmgr binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-serial@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>
+References: <20211005155923.173399-1-marcan@marcan.st>
+ <20211005155923.173399-2-marcan@marcan.st>
+ <1633473959.420655.106783.nullmailer@robh.at.kernel.org>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <a80d8bbd-0e71-af81-b3c2-b2e8e5efed63@marcan.st>
+Date:   Thu, 7 Oct 2021 00:17:25 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <YVx2vEGOtFalhNUH@ripper>
+In-Reply-To: <1633473959.420655.106783.nullmailer@robh.at.kernel.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+Content-Language: es-ES
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 10/5/2021 9:31 PM, Bjorn Andersson wrote:
-> On Tue 05 Oct 02:11 PDT 2021, Maulik Shah wrote:
+On 06/10/2021 07.45, Rob Herring wrote:
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
->> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
->>
->> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
->> SoC sleep stats driver. The driver is used for displaying SoC sleep
->> statistic maintained by Always On Processor or Resource Power Manager.
->>
->> Cc: devicetree@vger.kernel.org
->> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
->> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
->> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->> ---
->>   .../bindings/soc/qcom/soc-sleep-stats.yaml         | 47 ++++++++++++++++++++++
->>   1 file changed, 47 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
->> new file mode 100644
->> index 0000000..e50be2d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
->> @@ -0,0 +1,47 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/soc/qcom/soc-sleep-stats.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Technologies, Inc. (QTI) SoC sleep stats bindings
->> +
->> +maintainers:
->> +  - Maulik Shah <mkshah@codeaurora.org>
->> +
->> +description:
->> +  Always On Processor/Resource Power Manager maintains statistics of the SoC
->> +  sleep modes involving powering down of the rails and oscillator clock.
->> +
->> +  Statistics includes SoC sleep mode type, number of times low power mode were
->> +  entered, time of last entry, time of last exit and accumulated sleep duration.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,rpmh-sleep-stats
->> +      - qcom,rpm-sleep-stats
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  # Example of rpmh sleep stats
->> +  - |
->> +    memory@c3f0000 {
+> yamllint warnings/errors:
 > 
-> As noted by Rob's bot, "memory" is reserved to describe system ram. I
-> think we can call this "sram@" instead.
-> 
-> Regards,
-> Bjorn
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/arm/apple/apple,pmgr.example.dts:30.40-35.15: ERROR (duplicate_node_names): /example-0/soc/power-management@23b700000: Duplicate node name
+> ERROR: Input tree has errors, aborting (use -f to force output)
+> make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/arm/apple/apple,pmgr.example.dt.yaml] Error 2
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1441: dt_binding_check] Error 2
 
-Updated in v11 to use sram.
-
-Thanks,
-Maulik
-
-> 
->> +      compatible = "qcom,rpmh-sleep-stats";
->> +      reg = <0x0c3f0000 0x400>;
->> +    };
->> +  # Example of rpm sleep stats
->> +  - |
->> +    memory@4690000 {
->> +      compatible = "qcom,rpm-sleep-stats";
->> +      reg = <0x04690000 0x400>;
->> +    };
->> +...
->> -- 
->> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
->> of Code Aurora Forum, hosted by The Linux Foundation
->>
+Argh, sorry about that. I ran the check before adding the mini-pmgr node 
+to the example right before sending out the series, and of course I 
+screwed it up. It'll be fixed and double checked for v2.
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member of Code Aurora Forum, hosted by The Linux Foundation
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
