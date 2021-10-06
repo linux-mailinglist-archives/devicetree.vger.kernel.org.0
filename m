@@ -2,191 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1597424357
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1259B42437D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 18:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234535AbhJFQvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 12:51:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42176 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237359AbhJFQtP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 12:49:15 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84605C061767
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 09:47:23 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id e12so10737272wra.4
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 09:47:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ouCcvRhvwfDjDdqR2Ag/OHVwx6Zmnh+mSBZ9TgkL1Gw=;
-        b=pz4OtzCzz13mMNwHvEydOd2llMX0EY3kvJvOhhTgZERSPZsaIlDcx+SC5eO2rCrA0a
-         rKuw0mlXHMEAcPbv/zlu5Zi9EmoQg9s3alk7qflr+bysbthM6tPWZfDq3YqUezmv8urx
-         ROIxXtw+Zn+rrlqLv86ohQkU5qn5Cb8JWnHL9jguUlniesxRV185tQS+LLoN//fIHTK6
-         Siq6niuuVnBmW7Hk7pufhXJoY+IZ1gSgDVQ3AMFRcjqUzzwYpsw6BYGekVldFTRlDxJb
-         8cBgk3f6vv5NXOu5D6dioGldSVs0WYwDEG7SFVoWojxuC+Co7Tdn+B2H0PRtuLrt7L25
-         GlWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ouCcvRhvwfDjDdqR2Ag/OHVwx6Zmnh+mSBZ9TgkL1Gw=;
-        b=bRkTqaQckjDi6sh5YwQYj35/RmvYQjsuUCkfb9Q9BzgTsAB+A2B+s4uB2fwIlpRY3l
-         czQgts9PlBdUIMsn0sP4Or+ln6a3BUEBhnNuczODSAzBi46M45SAWG+l05VKbvUtG5Jb
-         wIAOSe6CBOd/yNM9L1/oEreMC+lz9jTZgiTaC/a8rKOuJlxrz+fgThEQAPQOFMg831mN
-         Dq9IdbG0MeHRFMejlQ/vuntMdHBtNGdYJwru8Dig5uUkWc/b1xKA9wFtsozoybVLSfJ3
-         Liu0Brt5Xi2CG7OuIDgL2jN0HLB1IvP7RIxfkfPvsemsEA0QbAVFV2gxaAIqTsDHGiuV
-         sX3Q==
-X-Gm-Message-State: AOAM530Rj+1dTxLo3B09OGlkXTvQoX3dKvbEMVGep5JtFH+n+UVM/09v
-        TTwvR2BYkuTEA6fC1+hCd8ibmQ==
-X-Google-Smtp-Source: ABdhPJyG2f83tI2dMUPlm2nJR68nYh8Tx8aj634/MqcyODxjz+7j0FsHzjYmc4VsCxif9SZ1oxdowg==
-X-Received: by 2002:a05:6000:188d:: with SMTP id a13mr25071311wri.243.1633538842094;
-        Wed, 06 Oct 2021 09:47:22 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id l21sm6785165wmg.18.2021.10.06.09.47.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Oct 2021 09:47:21 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8250-mtp: add sound card support
-Date:   Wed,  6 Oct 2021 17:47:12 +0100
-Message-Id: <20211006164712.16078-5-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20211006164712.16078-1-srinivas.kandagatla@linaro.org>
-References: <20211006164712.16078-1-srinivas.kandagatla@linaro.org>
+        id S234375AbhJFQ60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 12:58:26 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:46215 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230108AbhJFQ6Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 12:58:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633539391; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
+ To: From: Sender; bh=lQZLnUbAnV1z1oOtEcGvv/ll8WYBTl5+AI3Ku0BvaiY=; b=AIkZa0gll0dq+AzHbba+2duLtyyxy3yq82C6dgkj75jjlQbjMu7A910L+koZTlqKLQnA/aRP
+ WKC+EWfgT/97ivZLV1VkBXmph7LdI1NvO23X4giItpdGbs+AiCA6T0h1YsuHaPNqE7wN0R6Q
+ TYOQ9ey3zDd33nkUn4ckZhkjUFY=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 615dd538ff0285fb0a9e0bff (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 06 Oct 2021 16:56:24
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id CA6E7C4314D; Wed,  6 Oct 2021 16:56:24 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from PILLAIR1 (unknown [103.155.223.104])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6679DC43460;
+        Wed,  6 Oct 2021 16:56:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 6679DC43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   <pillair@codeaurora.org>
+To:     "'Stephen Boyd'" <swboyd@chromium.org>,
+        "'Rob Herring'" <robh@kernel.org>
+Cc:     <mathieu.poirier@linaro.org>, <p.zabel@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <bjorn.andersson@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <sibis@codeaurora.org>, <kuabhs@chromium.org>, <agross@kernel.org>,
+        <ohad@wizery.com>, <linux-arm-msm@vger.kernel.org>,
+        <mpubbise@codeaurora.org>
+References: <1633330133-29617-1-git-send-email-pillair@codeaurora.org> <1633330133-29617-3-git-send-email-pillair@codeaurora.org> <1633350086.759437.1051509.nullmailer@robh.at.kernel.org> <006801d7ba70$54daae00$fe900a00$@codeaurora.org> <CAE-0n51rsfFX_-Vxn2tumWiw9K-Tf244rhTedc76UKx5ADzKyg@mail.gmail.com>
+In-Reply-To: <CAE-0n51rsfFX_-Vxn2tumWiw9K-Tf244rhTedc76UKx5ADzKyg@mail.gmail.com>
+Subject: RE: [PATCH v6 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
+Date:   Wed, 6 Oct 2021 22:26:15 +0530
+Message-ID: <006a01d7bad3$1758f290$460ad7b0$@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+thread-index: AQKwJKLJ4tjmgoIJWycFdR/OOcUEpAEIhLzCAlTlvmMBQz416ALxzEPWqdjIsSA=
+Content-Language: en-us
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds sound card support for MTP using WCD938x headset playback,
-capture, WSA8810 Speaker Playback and DMICs via VA macro.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250-mtp.dts | 104 ++++++++++++++++++++++++
- 1 file changed, 104 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-index 9b27053ca3af..1df64a744607 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-@@ -648,6 +648,110 @@
- 	};
- };
- 
-+&sound {
-+	compatible = "qcom,sm8250-sndcard";
-+	model = "SM8250-MTP-WCD9380-WSA8810-VA-DMIC";
-+	audio-routing =
-+		"SpkrLeft IN", "WSA_SPK1 OUT",
-+		"SpkrRight IN", "WSA_SPK2 OUT",
-+		"IN1_HPHL", "HPHL_OUT",
-+		"IN2_HPHR", "HPHR_OUT",
-+		"AMIC1", "MIC BIAS1",
-+		"AMIC2", "MIC BIAS2",
-+		"AMIC3", "MIC BIAS3",
-+		"AMIC4", "MIC BIAS3",
-+		"AMIC5", "MIC BIAS4",
-+		"TX SWR_ADC0", "ADC1_OUTPUT",
-+		"TX SWR_ADC1", "ADC2_OUTPUT",
-+		"TX SWR_ADC2", "ADC3_OUTPUT",
-+		"TX SWR_ADC3", "ADC4_OUTPUT",
-+		"TX SWR_DMIC0", "DMIC1_OUTPUT",
-+		"TX SWR_DMIC1", "DMIC2_OUTPUT",
-+		"TX SWR_DMIC2", "DMIC3_OUTPUT",
-+		"TX SWR_DMIC3", "DMIC4_OUTPUT",
-+		"TX SWR_DMIC4", "DMIC5_OUTPUT",
-+		"TX SWR_DMIC5", "DMIC6_OUTPUT",
-+		"TX SWR_DMIC6", "DMIC7_OUTPUT",
-+		"TX SWR_DMIC7", "DMIC8_OUTPUT";
-+
-+	mm1-dai-link {
-+		link-name = "MultiMedia1";
-+		cpu {
-+			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA1>;
-+		};
-+	};
-+
-+	mm2-dai-link {
-+		link-name = "MultiMedia2";
-+		cpu {
-+			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA2>;
-+		};
-+	};
-+
-+	mm3-dai-link {
-+		link-name = "MultiMedia3";
-+		cpu {
-+			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA3>;
-+		};
-+	};
-+
-+	wcd-playback-dai-link {
-+		link-name = "WCD Playback";
-+		cpu {
-+			sound-dai = <&q6afedai RX_CODEC_DMA_RX_0>;
-+		};
-+		codec {
-+			sound-dai = <&wcd938x 0>, <&swr1 0>, <&rxmacro 0>;
-+		};
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+	};
-+
-+	wcd-capture-dai-link {
-+		link-name = "WCD Capture";
-+		cpu {
-+			sound-dai = <&q6afedai TX_CODEC_DMA_TX_3>;
-+		};
-+
-+		codec {
-+			sound-dai = <&wcd938x 1>, <&swr2 0>, <&txmacro 0>;
-+		};
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+	};
-+
-+	wsa-dai-link {
-+		link-name = "WSA Playback";
-+		cpu {
-+			sound-dai = <&q6afedai WSA_CODEC_DMA_RX_0>;
-+		};
-+
-+		codec {
-+			sound-dai = <&left_spkr>, <&right_spkr>, <&swr0 0>, <&wsamacro 0>;
-+		};
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+	};
-+
-+	va-dai-link {
-+		link-name = "VA Capture";
-+		cpu {
-+			sound-dai = <&q6afedai VA_CODEC_DMA_TX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+
-+		codec {
-+			sound-dai = <&vamacro 0>;
-+		};
-+	};
-+};
-+
- &swr0 {
- 	left_spkr: wsa8810-right@0,3{
- 		compatible = "sdw10217211000";
--- 
-2.21.0
+> -----Original Message-----
+> From: Stephen Boyd <swboyd@chromium.org>
+> Sent: Wednesday, October 6, 2021 12:40 PM
+> To: Rob Herring <robh@kernel.org>; pillair@codeaurora.org
+> Cc: mathieu.poirier@linaro.org; p.zabel@pengutronix.de;
+> devicetree@vger.kernel.org; bjorn.andersson@linaro.org; linux-
+> kernel@vger.kernel.org; robh+dt@kernel.org; sibis@codeaurora.org;
+> kuabhs@chromium.org; agross@kernel.org; ohad@wizery.com; linux-arm-
+> msm@vger.kernel.org; mpubbise@codeaurora.org
+> Subject: RE: [PATCH v6 2/3] dt-bindings: remoteproc: qcom: Add SC7280
+> WPSS support
+> 
+> Quoting pillair@codeaurora.org (2021-10-05 22:09:18)
+> >
+> > >
+> > > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s),
+> > > then make sure 'yamllint' is installed and dt-schema is up to
+> > > date:
+> > >
+> > > pip3 install dtschema --upgrade
+> > >
+> > > Please check and re-submit.
+> >
+> >
+> > I have updated the dtschema (2021.7) and still not seeing these
+> > errors. I will fix the errors mentioned in this log though.
+> > Is there any other flag/setting, which is to be enabled ?
+> >
+> 
+> I have dtschema-2021.10 installed.
+
+Thanks Stephen. Yes, my dtschema, for some reason, was not getting updated.
+After upgrading it to 2021.10, I was able to see the same errors.
+I will send out the next patchset with these errors fixed.
+
+Thanks,
+Rakesh Pillai.
 
