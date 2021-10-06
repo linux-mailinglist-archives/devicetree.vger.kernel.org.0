@@ -2,331 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCFB7423CDA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 13:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C69B1423CF3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 13:40:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238193AbhJFLfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 07:35:08 -0400
-Received: from mail-mw2nam10on2053.outbound.protection.outlook.com ([40.107.94.53]:3572
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S237936AbhJFLfI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 07:35:08 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nQ5NFQZQb8SDGxfa/aRCMMrvf2QAaGiiNg3SFxvTSFnQo0fB3gtHutOpTdeoE/9IwJ0zqdhgXJ9ov31cvCp6rb99Q3a/YzenaatUVoQrXiG+hrRPJyTM5bISREjV/FrnGyfceXmxoWMGoDvVl5plSMgvVvvkbmAXBKHrUGmy0CyuELv+b6DKJ9fVMhsTOrfTChHajMDpQbrca7fHmCPA4lzNtYCBpbEbhF7CqRU3bK2UBpAQ3U6s9DR4/s6ftn6zo/LPSvJApif/9ADrZjtxTxv/RxTNCp34iM0Apyw4+sFMPX8Kc2yBQNiHyu+f3dQ/WhD7KjU3SjvKlPbrOxCSgA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4B4jc8sAEzgcHxkPu4reZMBSIPQB3mWHvOZluLL0NAA=;
- b=DwSYf8ChYNxmXBWfw1H04vW6T5YZ9BSHY95PRRq/UWX62RmA/G6088aXvNw76LE6XV3BjwTogH4JZOk2i0eIPgYk1pGFHSyCmHG9TsqrIh9sDuPC2bt2kJvzfa3w9+3J0uCNcMiMfqLQqm21zYMVHiGUgvYJ9dABgGK3JRUMIo2gtBH34cgmDG5wiI933vyPipGOqt8JCMX/Dbr0u7dusU+4HUiIDSHMPFw5uU5qtFYWarAHtjzsccZ/ZVIqpAFAlRl9a4+lPzUjZK/ZEP535cW182S5TdS27ElQ4OkIq32QFIM8hZ7xcC24HI5Kv/SQA16E6NI8BwpfcQFrsGH7lQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        id S237982AbhJFLmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 07:42:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54716 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237836AbhJFLl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 07:41:59 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C01E9C061749
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 04:40:07 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id v17so7875795wrv.9
+        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 04:40:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4B4jc8sAEzgcHxkPu4reZMBSIPQB3mWHvOZluLL0NAA=;
- b=V8vlp1QfKGRLDX1EUjZVvozgCSxy4k1qrcBeR4xaB9z1DPmEqx0HuHNhKio0c8gr7FIl1F1vUy5jzX0wa1wqT7Opbxq7xxOgqSfIvtjHaqIm8d8RMtR3JRAhIoQNw3fg+bBa7xLfvsKsNrcEreXypm+FeHmF5QGlE5+pNNO+PNg=
-Received: from BN6PR1101CA0019.namprd11.prod.outlook.com
- (2603:10b6:405:4a::29) by MN2PR02MB6030.namprd02.prod.outlook.com
- (2603:10b6:208:1b7::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.16; Wed, 6 Oct
- 2021 11:33:12 +0000
-Received: from BN1NAM02FT052.eop-nam02.prod.protection.outlook.com
- (2603:10b6:405:4a:cafe::cf) by BN6PR1101CA0019.outlook.office365.com
- (2603:10b6:405:4a::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14 via Frontend
- Transport; Wed, 6 Oct 2021 11:33:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT052.mail.protection.outlook.com (10.13.2.160) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4566.14 via Frontend Transport; Wed, 6 Oct 2021 11:33:12 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 6 Oct 2021 04:33:11 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 6 Oct 2021 04:33:11 -0700
-Envelope-to: linux-media@vger.kernel.org,
- devicetree@vger.kernel.org,
- robh+dt@kernel.org,
- sakari.ailus@iki.fi,
- laurent.pinchart@ideasonboard.com,
- stefan.hladnik@gmail.com,
- frebaudo@witekio.com
-Received: from [10.140.9.5] (port=37390 helo=xhdkthangav40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <anil.mamidala@xilinx.com>)
-        id 1mY5Ac-000ER0-Oo; Wed, 06 Oct 2021 04:33:11 -0700
-From:   Anil Kumar Mamidala <anil.mamidala@xilinx.com>
-To:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <sakari.ailus@iki.fi>, <naveenku@xilinx.com>,
-        Anil Kumar Mamidala <anil.mamidala@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Stefan Hladnik <stefan.hladnik@gmail.com>,
-        Florian Rebaudo <frebaudo@witekio.com>
-Subject: [PATCH v2 2/2] media: dt-bindings: media: i2c: Add bindings for AP1302
-Date:   Wed, 6 Oct 2021 05:32:54 -0600
-Message-ID: <20211006113254.3470-2-anil.mamidala@xilinx.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211006113254.3470-1-anil.mamidala@xilinx.com>
-References: <20211006113254.3470-1-anil.mamidala@xilinx.com>
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VpQHh+t6NF9tkOFLPv9+Kz4YDCWXW0+ajSEShbkHaek=;
+        b=YhQc8IhJ11l0Y9JCk9COIpGB0vw6HFmIZJ/3uG+ndao893ngUUfPUHNNeeulKlT+I+
+         LTklTI/2LKG78KB56sSHNKIuYvAtB1HGV2k9591hA8gdvb/6H1LhlS1ooK7kEGrx9amu
+         GnyOzPI9/267NE0bZVd9PTDZowiq63dWoc+Oe2+Z16iZOWMItCQN7MJ2+gPQuHpGSIXi
+         ZeZ9ia7y1yS6n4Se3ENKTJK0f0Ut/iAjqYo8uN2zIWzIafntcnMaKzbePh/MP6jxWOYs
+         LOA7SeoODqbBSwEUUpvHv63JKKs23KuQLpYc//AP7vzLKsRNHxlgnHuKoVXfkpEP0YIh
+         Tnhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VpQHh+t6NF9tkOFLPv9+Kz4YDCWXW0+ajSEShbkHaek=;
+        b=jKVu66HxJ/ip5KqwTz9Hp17jwV6ckeq/iRnNOAt0YSk87iKK1tkuSDegbANTm/lVLI
+         8p5h+2RY/UGe1GXeBkqjN08nHOS4BxY7RYHN8dt3HERG2wur8tYbK2iAimGI6G2wDnw2
+         FmCm2g/XbQXhg/SLgKKV694XjlfJI4Z/je5jJoJe4J+wpRMvEpszS1FxolaA5N88r0DL
+         3ZoS5DiNmkDUB1+FmhD47FpRwVLEaSthW6wxQ5ZAgnx4ZjoBsMQktsupNfH/Edl/77HF
+         jqDIKyWVvpCooxZnlZQjpqNpNUBBu84ImtlHZepCgEP5lcwz/vL/h4wsPyhzJg6G5drH
+         lKuw==
+X-Gm-Message-State: AOAM531tRcEuk0y+OG9ck/+0lFigQNoqYy2SaO39RO/O25Ntw+yxI+De
+        AGxcOwWh9GRN0Lfd0vb5+oDohg==
+X-Google-Smtp-Source: ABdhPJyyGhCWkfUCewNuyXrGCEkCelcsUfG6JGQTROo6iegx7gqSg16soV3ODA/Cq6PTP/SBEBzQ4w==
+X-Received: by 2002:a05:6000:1569:: with SMTP id 9mr29094161wrz.337.1633520406183;
+        Wed, 06 Oct 2021 04:40:06 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id n11sm5540110wmq.19.2021.10.06.04.40.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Oct 2021 04:40:05 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org, bjorn.andersson@linaro.org, robh@kernel.org
+Cc:     plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
+        tiwai@suse.de, devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v9 00/17] ASoC: qcom: Add AudioReach support
+Date:   Wed,  6 Oct 2021 12:39:33 +0100
+Message-Id: <20211006113950.10782-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ebd864c2-a14f-4370-10e1-08d988bd149b
-X-MS-TrafficTypeDiagnostic: MN2PR02MB6030:
-X-Microsoft-Antispam-PRVS: <MN2PR02MB6030EFA0285485BF9B26FD86B7B09@MN2PR02MB6030.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3xSz/XpAAVyq4waD5etIV5CtM0CUBZq5gMTfBEBA3e+tmTb1mQoPWd2XKDYqeBMVgd6olamw8NrxGl/EgYtF+mBuNBHcj9MjJPpX6ePoLJTbbuSs3r3CU9RUGhLMBRiabk80zgo4PEv+IWcvz75umN1CKtV8mZJLi1DbhR5VEAiXxCjed3rGE5zpysxU5EuQtkFaSc9YPLyDjlDgaYWWMTzvl9qwrohi3j1yzPiFWOJi+K5KyxYYbBLl5RzT8U3ZJQIRInbgytzGBYl48gH6dQ1aA/5v9imoSSvaTikIov4ggTg58zLgGELVd5L14HkZuOuCJ2XJA8bR9FcjvUJOGOm5pJIKDx+JdiSJSigDZB38wBDeU20cqiQUZyxDZ6ncGVN20+keXkvjpZ+/OF+mtBmetK0I6l91VV+UsPMcevuXyHbJlywV6s4X5F4NzGyXp/fv3/vQF6JqsW6jg1Tz5HMnQoS7qAW9cgNvniBHbOWL+OF0M/718/+qpXgqZqm9DdJ9LCNZxEZwJMT8X7CCTDbatXfrsA3b3X7YnppNwPE0jJdlkCeOrNkE5cEfkAFJQGHhNpbhW851v/7DW8U7yK4HPzPf2ziQZUsPvPDr3F0emZPXZSntGZ3XWoX2ZN3uG9jISqJGY1zGTBgLtiur1NUK/xupT/0Ih7VfTs8yJOcTdqxPyyAg7rUb0SVqGT6kbgMh5n+h8CldCM5rA9sX2IxToiG8hDMMzTtGBRpLwiXZzw+rxRHq42jfNarmHf6slUeixZKt0e+KYH/I0t/F5zmwKHXogbLw0xzHb19DSqQFn/ZFJOGzvn/3UnoQSr+aTr8wZfMDgzSsmbx7NB+KHmnFvI7pjzt53izolc7I7Rc=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(46966006)(36840700001)(36756003)(6666004)(82310400003)(426003)(356005)(83380400001)(1076003)(7636003)(508600001)(966005)(36860700001)(47076005)(5660300002)(26005)(9786002)(36906005)(316002)(70206006)(8676002)(54906003)(2906002)(110136005)(7696005)(8936002)(2616005)(70586007)(336012)(4326008)(186003)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2021 11:33:12.4119
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ebd864c2-a14f-4370-10e1-08d988bd149b
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT052.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6030
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AP1302 is a standalone ISP for ON Semiconductor sensors.
-Add corresponding DT bindings.
+Hi Mark,
 
-Signed-off-by: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Stefan Hladnik <stefan.hladnik@gmail.com>
-Signed-off-by: Florian Rebaudo <frebaudo@witekio.com>
----
- .../devicetree/bindings/media/i2c/onnn,ap1302.yaml | 202 +++++++++++++++++++++
- 1 file changed, 202 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
+This version addresses all the comments raised as part of v8 review.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
-new file mode 100644
-index 0000000..d96e9db
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
-@@ -0,0 +1,202 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/onnn,ap1302.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ON Semiconductor AP1302 Advanced Image Coprocessor
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+  - Anil Kumar M <anil.mamidala@xilinx.com>
-+
-+description: |-
-+  The AP1302 is a standalone ISP for ON Semiconductor sensors. It interfaces to
-+  up to two RAW CMOS sensors over MIPI CSI-2 connections, processes the two
-+  video streams and outputs YUV frames to the host over a MIPI CSI-2 interface.
-+  Frames are output side by side or on two virtual channels.
-+
-+  The sensors must be identical. They are connected to the AP1302 on dedicated
-+  I2C buses, and are controlled by the AP1302 firmware. They are not accessible
-+  from the host.
-+
-+properties:
-+  compatible:
-+    const: onnn,ap1302
-+
-+  reg:
-+    description: I2C device address.
-+    maxItems: 1
-+
-+  clocks:
-+    description: Reference to the CLK clock.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: Reference to the GPIO connected to the RST pin (active low).
-+    maxItems: 1
-+
-+  standby-gpios:
-+    description:
-+      Reference to the GPIO connected to the STANDBY pin (active high).
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    unevaluatedProperties: false
-+    description: MIPI CSI-2 output interface to the host.
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+        unevaluatedProperties: false
-+
-+        properties:
-+          clock-noncontinuous:
-+            type: boolean
-+
-+          data-lanes:
-+            oneOf:
-+              - items:
-+                  - const: 1
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+        required:
-+          - data-lanes
-+
-+  sensors:
-+    type: object
-+    description: List of connected sensors
-+
-+    properties:
-+      "#address-cells":
-+        const: 1
-+
-+      "#size-cells":
-+        const: 0
-+
-+      onnn,model:
-+        $ref: "/schemas/types.yaml#/definitions/string"
-+        description: |
-+          Model of the connected sensors. Must be a valid compatible string.
-+
-+          If no sensor is connected, this property must no be specified, and
-+          the AP1302 can be used with it's internal test pattern generator.
-+
-+    patternProperties:
-+      "^sensor@[01]":
-+        type: object
-+        description: |
-+          Sensors connected to the first and second input, with one node per
-+          sensor.
-+
-+        properties:
-+          reg:
-+            description: AP1302 input port number
-+            maxItems: 1
-+
-+        patternProperties:
-+          ".*-supply":
-+            description: Power supplies for the sensor
-+
-+        required:
-+          - reg
-+
-+        additionalProperties: false
-+
-+    required:
-+      - "#address-cells"
-+      - "#size-cells"
-+
-+    # How can we express that onnn,model requires one sensor object to be set ?
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+  - sensors
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        camera@3c {
-+            compatible = "onnn,ap1302";
-+            reg = <0x3c>;
-+
-+            clocks = <&clk24mhz>;
-+
-+            reset-gpios = <&pio 102 GPIO_ACTIVE_LOW>;
-+            standby-gpios = <&pio 40 GPIO_ACTIVE_HIGH>;
-+
-+            port {
-+                isp1_out: endpoint {
-+                    remote-endpoint = <&seninf_in1>;
-+                    data-lanes = <1 2 3 4>;
-+                };
-+            };
-+
-+            sensors {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                onnn,model = "onnn,ar0144";
-+
-+                sensor@0 {
-+                    reg = <0>;
-+
-+                    vdd-supply = <&mt6358_vcamd_reg>;
-+                    vaa-supply = <&mt6358_vcama1_reg>;
-+                    vddio-supply = <&reg_1p8v_ext>;
-+                };
-+            };
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        camera@3c {
-+            compatible = "onnn,ap1302";
-+            reg = <0x3c>;
-+
-+            clocks = <&topckgen 0>;
-+
-+            reset-gpios = <&pio 102 GPIO_ACTIVE_LOW>;
-+            standby-gpios = <&pio 40 GPIO_ACTIVE_HIGH>;
-+
-+            port {
-+                isp2_out: endpoint {
-+                    remote-endpoint = <&seninf_in1>;
-+                    data-lanes = <1 2>;
-+                };
-+            };
-+
-+            sensors {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+            };
-+        };
-+    };
-+
-+...
+QCOM SoC relevant non-audio patches in this series has been merged into
+the Qualcomm drivers-for-5.16 tree, as this series depends those patches
+an immutable tag is available at:
+https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git tags/20210927135559.738-6-srinivas.kandagatla@linaro.org
+
+This patchset adds ASoC driver support to configure signal processing
+framework ("AudioReach") which is integral part of Qualcomm next
+generation audio SDK and will be deployed on upcoming Qualcomm chipsets.
+It makes use of ASoC Topology to load graphs on to the DSP which is then
+managed by APM (Audio Processing Manager) service to prepare/start/stop.
+
+Here is simplified high-level block diagram of AudioReach:
+
+ ___________________________________________________________
+|                 CPU (Application Processor)               |
+|  +---------+          +---------+         +----------+    |
+|  |  q6apm  |          |  q6apm  |         |  q6apm   |    |
+|  |   dais  | <------> |         | <-----> |lpass-dais|    |
+|  +---------+          +---------+         +----------+    |
+|                            ^  ^                           |
+|                            |  |           +---------+     |
+|  +---------+               v  +---------->|topology |     |
+|  | q6prm   |          +---------+         |         |     |
+|  |         |<-------->|   GPR   |         +---------+     |
+|  +---------+          +---------+                         |
+|       ^                    ^                              |
+|       |                    |                              |
+|  +----------+              |                              |
+|  |   q6prm  |              |                              |
+|  |lpass-clks|              |                              |
+|  +----------+              |                              |
+|____________________________|______________________________|
+                             |  
+                             | RPMSG (IPC over GLINK)              
+ ____________________________|______________________________
+|                            |                              |
+|    +-----------------------+                              |
+|    |                       |                              |
+|    v                       v              q6 (Audio DSP)  |
+|+-----+    +----------------------------------+            |
+|| PRM |    | APM (Audio Processing Manager)   |            |
+|+-----+    |  . Graph Management              |            |  
+|           |  . Command Handing               |            |  
+|           |  . Event Management              |            |  
+|           |  ...                             |            |  
+|           +----------------------------------+            |  
+|                            ^                              |
+|____________________________|______________________________|
+                             |  
+                             |   LPASS AIF
+ ____________________________|______________________________
+|                            |            Audio I/O         |
+|                            v                              |
+|   +--------------------------------------------------+    |
+|    |                Audio devices                     |   |
+|    | CODEC | HDMI-TX | PCM  | SLIMBUS | I2S |MI2S |...|   |
+|    |                                                  |   |
+|    +--------------------------------------------------+   |
+|___________________________________________________________|
+
+AudioReach has constructs of sub-graph, container and modules.
+Each sub-graph can have N containers and each Container can have N Modules
+and connections between them can be linear or non-linear.
+An audio function can be realized with one or many connected
+sub-graphs. There are also control/event paths between modules that can
+be wired up while building graph to achieve various control mechanism
+between modules. These concepts of Sub-Graph, Containers and Modules
+are represented in ASoC topology.
+
+Here is simple I2S graph with a Write Shared Memory and a
+Volume control module within a single Subgraph (1) with one Container (1)
+and 5 modules.
+
+  ____________________________________________________________
+ |                        Sub-Graph [1]                       |
+ |  _______________________________________________________   |
+ | |                       Container [1]                   |  |
+ | | [WR_SH] -> [PCM DEC] -> [PCM CONV] -> [VOL]-> [I2S-EP]|  |
+ | |_______________________________________________________|  |
+ |____________________________________________________________|
+
+For now this graph is split into two subgraphs to achieve dpcm like below:
+ ________________________________________________    _________________
+|                Sub-Graph [1]                   |  |  Sub-Graph [2]  |
+|  ____________________________________________  |  |  _____________  |
+| |              Container [1]                 | |  | |Container [2]| |
+| | [WR_SH] -> [PCM DEC] -> [PCM CONV] -> [VOL]| |  | |   [I2S-EP]  | |
+| |____________________________________________| |  | |_____________| |
+|________________________________________________|  |_________________|
+
+                                                      _________________
+                                                    |  Sub-Graph [3]  |
+                                                    |  _____________  |
+                                                    | |Container [3]| |
+                                                    | |  [DMA-EP]   | |
+                                                    | |_____________| |
+                                                    |_________________|
+
+
+This patchset adds very minimal support for AudioReach which includes
+supporting sub-graphs containing CODEC DMA ports and simple PCM
+Decoder/Encoder and Logger Modules. Additional capabilities will
+be built over time to expose features offered by AudioReach. 
+
+This patchset is Tested on SM8250 SoC based Qualcomm Robotics Platform RB5
+and SM9250 MTP with WSA881X Smart Speaker Amplifiers, DMICs connected via
+VA Macro and WCD938x Codec connected via TX and RX Macro and HDMI audio
+via I2S.
+
+First 10 Patches are mostly reorganization existing Old QDSP Audio
+Framework code and bindings so that we could reuse them on AudioReach.
+
+ASoC topology graphs for DragonBoard RB5 and SM8250 MTP are available at 
+https://git.linaro.org/people/srinivas.kandagatla/audioreach-topology.git/
+and Qualcomm AudioReach DSP headers are available at:
+https://source.codeaurora.org/quic/la/platform/vendor/opensource/arspf-headers
+
+Note: There is one false positive warning in this patchset:
+audioreach.c:80:45: warning: array of flexible structures
+
+Thanks,
+srini
+
+Changes since v8:
+- made use of struct_size where possible.
+- fixed an incorrect indent.
+- adding __packed for consistency on structures that are passed to dsp.
+- rebased to sound-next branch.
+
+Srinivas Kandagatla (17):
+  ASoC: dt-bindings: move LPASS dai related bindings out of q6afe
+  ASoC: dt-bindings: move LPASS clocks related bindings out of q6afe
+  ASoC: dt-bindings: rename q6afe.h to q6dsp-lpass-ports.h
+  ASoC: qdsp6: q6afe-dai: move lpass audio ports to common file
+  ASoC: qdsp6: q6afe-clocks: move audio-clocks to common file
+  ASoC: dt-bindings: q6dsp: add q6apm-lpass-dai compatible
+  ASoC: dt-bindings: lpass-clocks: add q6prm clocks compatible
+  ASoC: dt-bindings: add q6apm digital audio stream bindings
+  ASoC: qdsp6: audioreach: add basic pkt alloc support
+  ASoC: qdsp6: audioreach: add q6apm support
+  ASoC: qdsp6: audioreach: add module configuration command helpers
+  ASoC: qdsp6: audioreach: add Kconfig and Makefile
+  ASoC: qdsp6: audioreach: add topology support
+  ASoC: qdsp6: audioreach: add q6apm-dai support
+  ASoC: qdsp6: audioreach: add q6apm lpass dai support
+  ASoC: qdsp6: audioreach: add q6prm support
+  ASoC: qdsp6: audioreach: add support for q6prm-clocks
+
+ .../devicetree/bindings/sound/qcom,q6afe.txt  |  181 ---
+ .../bindings/sound/qcom,q6apm-dai.yaml        |   53 +
+ .../sound/qcom,q6dsp-lpass-clocks.yaml        |   77 ++
+ .../sound/qcom,q6dsp-lpass-ports.yaml         |  205 +++
+ include/dt-bindings/sound/qcom,q6afe.h        |  203 +--
+ .../sound/qcom,q6dsp-lpass-ports.h            |  208 +++
+ include/uapi/sound/snd_ar_tokens.h            |  208 +++
+ sound/soc/qcom/Kconfig                        |   22 +
+ sound/soc/qcom/qdsp6/Makefile                 |   11 +-
+ sound/soc/qcom/qdsp6/audioreach.c             | 1130 +++++++++++++++++
+ sound/soc/qcom/qdsp6/audioreach.h             |  726 +++++++++++
+ sound/soc/qcom/qdsp6/q6afe-clocks.c           |  187 +--
+ sound/soc/qcom/qdsp6/q6afe-dai.c              |  687 +---------
+ sound/soc/qcom/qdsp6/q6apm-dai.c              |  416 ++++++
+ sound/soc/qcom/qdsp6/q6apm-lpass-dais.c       |  260 ++++
+ sound/soc/qcom/qdsp6/q6apm.c                  |  822 ++++++++++++
+ sound/soc/qcom/qdsp6/q6apm.h                  |  152 +++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c     |  186 +++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h     |   30 +
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c      |  627 +++++++++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h      |   22 +
+ sound/soc/qcom/qdsp6/q6prm-clocks.c           |   85 ++
+ sound/soc/qcom/qdsp6/q6prm.c                  |  202 +++
+ sound/soc/qcom/qdsp6/q6prm.h                  |   78 ++
+ sound/soc/qcom/qdsp6/topology.c               | 1113 ++++++++++++++++
+ 25 files changed, 6664 insertions(+), 1227 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml
+ create mode 100644 include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+ create mode 100644 include/uapi/sound/snd_ar_tokens.h
+ create mode 100644 sound/soc/qcom/qdsp6/audioreach.c
+ create mode 100644 sound/soc/qcom/qdsp6/audioreach.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm-dai.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6prm-clocks.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6prm.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6prm.h
+ create mode 100644 sound/soc/qcom/qdsp6/topology.c
+
 -- 
-2.7.4
+2.21.0
 
