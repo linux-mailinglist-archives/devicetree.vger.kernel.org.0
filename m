@@ -2,151 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 788A4423859
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 08:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1816423869
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 08:57:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbhJFGxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 02:53:24 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:48238 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229956AbhJFGxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 02:53:23 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1961ksGV015791;
-        Wed, 6 Oct 2021 08:51:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=rO925toKGJpSuU4pLXeMxuqM2/M7LYZ/XbcUM5PgYCA=;
- b=5NjtWws5VCmwoC2Bp39pmuU0vGYVTPiuuIiyTS6mmxvU6/2DFmyHspwAq0aoAQVtCZAr
- nZlTEHJ7yRPVldLaU2Z3Ac4zuDb6nPoMuCEFeZOEJjsQaQgXtZkxgqUThTiN9YiDD8cx
- cHrRP+tJUz8+Vf0OUH7smvteCpkegWVZ9+qwHT+vCjqJR7Y+tulY/rVLjkoCAfLQjrms
- TKkMZd1kQtIhnv3xtQIThE5MxT660cebxtS28rnFzh+/qscThp7l3m402qyEV8erHPLp
- wzA3uFWcB4+SAkaOD9M26p4Fxfs2Oe+Da3qb8F6smJKxYki1B6X1+FH5lHM/k4QDEc+F Ng== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3bh2eh9e5g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 06 Oct 2021 08:51:15 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2CD1A100034;
-        Wed,  6 Oct 2021 08:51:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2289F214D39;
-        Wed,  6 Oct 2021 08:51:14 +0200 (CEST)
-Received: from lmecxl0995.lme.st.com (10.75.127.50) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 6 Oct
- 2021 08:51:12 +0200
-Subject: Re: [PATCH v2 2/3] dt-bindings: phy: phy-stm32-usbphyc: add optional
- phy tuning properties
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-kernel@vger.kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>
-References: <20211005152453.89330-1-amelie.delaunay@foss.st.com>
- <20211005152453.89330-3-amelie.delaunay@foss.st.com>
- <1633473959.465401.106809.nullmailer@robh.at.kernel.org>
-From:   Amelie DELAUNAY <amelie.delaunay@foss.st.com>
-Message-ID: <491ab475-e7dc-eb71-85aa-6d82543b74db@foss.st.com>
-Date:   Wed, 6 Oct 2021 08:51:11 +0200
+        id S237354AbhJFG65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 02:58:57 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:49150
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237335AbhJFG64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 02:58:56 -0400
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5407B3F31E
+        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 06:57:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633503422;
+        bh=oBd5s4+6tEQT7bthyqlL4VvsdjmF+NhdczufCXOLTMo=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=pqe/RffEYeekMLQiMSMuP49z97xEm0tFOJPR9w1hprzCLcSFtJvmvYZBM3blRfhWC
+         9h1kUTfvxN+n1hq59AJiTyC8wyflvwO8bZ24z8y/Mr8vzuL+5l4SWgJGr03wUpmOLZ
+         z+Yj8IP4FR1OSU57q7YlZFN6H3TqswM3uMgo3ijg6tnRBJjxE+l3C8Cr0cvwC1eply
+         tM1AVVYQy7zDjXn6MA0k019AI6sfqaLp/CD8NFyhA1WjPqXUrHHp9Gf5MJ4d/8U15Q
+         Fjf+an158teNHNPKry4YA1HBRMZh2gE2LbymDquWDoAqAp3ClPGjScTOO1bGRZrW7w
+         rKF9eQkaWa78g==
+Received: by mail-lf1-f71.google.com with SMTP id r14-20020ac25c0e000000b003fc149ed50eso1201266lfp.11
+        for <devicetree@vger.kernel.org>; Tue, 05 Oct 2021 23:57:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=oBd5s4+6tEQT7bthyqlL4VvsdjmF+NhdczufCXOLTMo=;
+        b=Tm0fiYV5nBrgIopixeLPp8seMG1gSNx//amXmZ4RIg0bAzEzEiZ1slRWYL/BgBsIO1
+         dp4Vcp3hcOSj649P97G5SOlt/Tr6s4d7QqPNiCPu4PqbezBPi/uvSxNDT+NiQl/Q9GYK
+         ZlEuILwNH21po9d2KEyQEVbs9RS7DsJRWoxql6msHSIQeMMfvo2InFHZrHDyowWN20YT
+         XTgifyrLm0D32XazZIw2Ni+sKCpCZcmf+5je84sr0275/XmB9ftXRuy48IiqZqRJDMB6
+         nubW/NRAwTF2ls/+kLI+USYgLPu2Ua0dxLFGMTXu9g3jAm+Y+p1MV4Jo9ISybRGKjWlI
+         c3Pg==
+X-Gm-Message-State: AOAM530libvbOFI/k2fBShjzjweHlytgGvwthuYXF06U9jG05q5lh2Jc
+        RESAEwalo3v80b1zatnevGKr+ChUAY7c02SIhRdGyVWcSDGwVqfz3NugYqDfmnBz19zPtKx5zO8
+        l61J/kQoM6H0ax+/ZnulwT49hKsiFFmksQZ+xIuQ=
+X-Received: by 2002:a19:c218:: with SMTP id l24mr8078202lfc.588.1633503421703;
+        Tue, 05 Oct 2021 23:57:01 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx0wVhgkx+rcS8gRjiHqaAE+DTq9q3wo4KrmTTq5XXnN9gwMBdMs1x5aVB70fvBmq+M87pWPg==
+X-Received: by 2002:a19:c218:: with SMTP id l24mr8078186lfc.588.1633503421491;
+        Tue, 05 Oct 2021 23:57:01 -0700 (PDT)
+Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id d7sm2391106lfa.80.2021.10.05.23.57.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Oct 2021 23:57:00 -0700 (PDT)
+Subject: Re: [PATCH 1/7] dt-bindings: arm: apple: Add apple,pmgr binding
+To:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20211005155923.173399-1-marcan@marcan.st>
+ <20211005155923.173399-2-marcan@marcan.st>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <18818eff-87d7-6a53-a4fd-7f3cbf625a0e@canonical.com>
+Date:   Wed, 6 Oct 2021 08:56:59 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <1633473959.465401.106809.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <20211005155923.173399-2-marcan@marcan.st>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-10-05_06,2021-10-04_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 05/10/2021 17:59, Hector Martin wrote:
+> The PMGR block in Apple Silicon SoCs is responsible for SoC power
+> management. There are two PMGRs in T8103, with different register
+> layouts but compatible registers. In order to support this as well
+> as future SoC generations with backwards-compatible registers, we
+> declare these blocks as syscons and bind to individual registers
+> in child nodes. Each register controls one SoC device.
+> 
+> The respective apple compatibles are defined in case device-specific
+> quirks are necessary in the future, but currently these nodes are
+> expected to be bound by the generic syscon driver.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  .../bindings/arm/apple/apple,pmgr.yaml        | 74 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+> new file mode 100644
+> index 000000000000..0304164e4140
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/apple/apple,pmgr.yaml#
 
-On 10/6/21 12:45 AM, Rob Herring wrote:
-> On Tue, 05 Oct 2021 17:24:52 +0200, Amelie Delaunay wrote:
->> This patch adds the description of new optional phy tuning properties
->> for usbphyc phy sub nodes.
->>
->> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
->> ---
->> Changes in v2:
->> - st,phy-tuning property removed
->> - tuning properties are now put directly in each child node
->> - tuning properties are no more free form text and their name reworked
->> ---
->>   .../bindings/phy/phy-stm32-usbphyc.yaml       | 126 ++++++++++++++++++
->>   1 file changed, 126 insertions(+)
->>
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1536730
-> 
-> 
-> usbphyc@5a006000: usb-phy@0: 'phy-supply' is a required property
-> 	arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157c-odyssey.dt.yaml
-> 
-> usbphyc@5a006000: usb-phy@1: 'phy-supply' is a required property
-> 	arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157c-lxa-mc1.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157c-odyssey.dt.yaml
+Please don't store all Apple-related bindings in bindings/arm/apple, but
+instead group per device type like in most of other bindings. In this
+case - this looks like something close to power domain controller, so it
+should be in bindings/power/
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple SoC Power Manager (PMGR)
+> +
+> +maintainers:
+> +  - Hector Martin <marcan@marcan.st>
+> +
+> +description: |
+> +  Apple SoCs include a PMGR block responsible for power management,
+> +  which can control various clocks, resets, power states, and
+> +  performance features. This node represents the PMGR as a syscon,
+> +  with sub-nodes representing individual features.
+> +
+> +  Apple SoCs may have a secondary "mini-PMGR"; it is represented
+> +  separately in the device tree, but works the same way.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - apple,t8103-pmgr
+> +          - apple,t8103-minipmgr
+> +          - apple,pmgr
+> +
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^power-management@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,t8103-pmgr
+> +          - apple,t8103-minipmgr
+> +      - const: apple,pmgr
+> +      - const: syscon
+> +      - const: simple-mfd
+
+No power-domain-cells? Why? What exactly this device is going to do?
+Maybe I'll check the driver first.... :)
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: true
+
+additionalProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        power-management@23b700000 {
+> +            compatible = "apple,t8103-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            reg = <0x2 0x3b700000 0x0 0x14000>;
+> +        };
+> +
+> +        power-management@23b700000 {
+> +            compatible = "apple,t8103-minipmgr", "apple,pmgr", "syscon", "simple-mfd";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            reg = <0x2 0x3d280000 0x0 0xc000>;
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index abdcbcfef73d..d25598842d15 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1719,6 +1719,7 @@ B:	https://github.com/AsahiLinux/linux/issues
+>  C:	irc://irc.oftc.net/asahi-dev
+>  T:	git https://github.com/AsahiLinux/linux.git
+>  F:	Documentation/devicetree/bindings/arm/apple.yaml
+> +F:	Documentation/devicetree/bindings/arm/apple/*
+>  F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+>  F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+>  F:	arch/arm64/boot/dts/apple/
 > 
 
-These warnings are due to the fact that usbphyc parent node is disabled 
-in parent device tree (stm32mp151.dtsi) but not the "usb-phy" child 
-nodes. These warnings are not introduced by this current patch "optional 
-phy tuning properties" but anyway. The device trees mentioned don't 
-enable usbphyc, so they don't have to set phy-supply in usbphyc child nodes.
 
-$ git diff arch/arm/boot/dts/stm32mp151.dtsi
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi 
-b/arch/arm/boot/dts/stm32mp151.dtsi
-index bd289bf5d269..abef8b6be40a 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1507,11 +1507,13 @@ usbphyc: usbphyc@5a006000 {
-                         usbphyc_port0: usb-phy@0 {
-                                 #phy-cells = <0>;
-                                 reg = <0>;
-+                               status = "disabled";
-                         };
-
-                         usbphyc_port1: usb-phy@1 {
-                                 #phy-cells = <1>;
-                                 reg = <1>;
-+                               status = "disabled";
-                         };
-                 };
-
-Disable child nodes while parent node is already disabled fixes the 
-warning. But it means to add status = "okay"; in child nodes everywhere 
-usbphyc is enabled.
-Is it normal dtbs_check checks in child nodes when parent node is disabled?
-
-Regards,
-Amelie
+Best regards,
+Krzysztof
