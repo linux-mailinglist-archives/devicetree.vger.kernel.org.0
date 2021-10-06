@@ -2,74 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CDFC42378F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 07:45:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96D0C4237A2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Oct 2021 07:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229639AbhJFFrd convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 6 Oct 2021 01:47:33 -0400
-Received: from ni.piap.pl ([195.187.100.5]:44002 "EHLO ni.piap.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229579AbhJFFrc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 01:47:32 -0400
-From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] Add ADV7610 support for adv7604 driver - DT docs.
-Date:   Wed, 06 Oct 2021 07:45:38 +0200
-Message-ID: <m31r4yoge5.fsf@t19.piap.pl>
+        id S231621AbhJFF4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 01:56:12 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:50662 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229621AbhJFF4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 01:56:11 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1965rpiU033140;
+        Wed, 6 Oct 2021 00:53:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1633499631;
+        bh=tfVY0tCk13Gm9LvbM/Nt6WS2pYI/2NBjcAkyeRss47k=;
+        h=From:To:CC:Subject:Date;
+        b=lmofctU12ck3ysEsXzf8eOtoiwzGLzPdxvDwwTzLkXAj6BuprYf4Xr8F0RRQkW2t1
+         TMMnFe0pKk16glDuKW33J0JtDPecc2h5F6TJZJ3WW0vwN94uP2DG4HPjIK3mrrffpf
+         QeVRh9TcShhDoqD+q1RUkiWhSP4SmCgSKpKGdWrQ=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1965rpGN025917
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 6 Oct 2021 00:53:51 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 6
+ Oct 2021 00:53:51 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 6 Oct 2021 00:53:51 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1965rjkC070213;
+        Wed, 6 Oct 2021 00:53:46 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Martin KaFai Lau <kafai@fb.com>,
+        Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <bpf@vger.kernel.org>
+Subject: [PATCH v4 0/6] CAN: Add support for CAN in AM65,J721e and AM64
+Date:   Wed, 6 Oct 2021 11:23:37 +0530
+Message-ID: <20211006055344.22662-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ADV7610 is another HDMI receiver chip, very similar to
-the ADV7611. Tested on TinyRex BaseBoard Lite.
+The following series of patches add support for CAN in SoC's AM65, J721e
+and AM64.
 
-Signed-off-by: Krzysztof Hałasa <khalasa@piap.pl>
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-index de15cebe2955..c19d8391e2d5 100644
---- a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-@@ -4,23 +4,24 @@
- $id: http://devicetree.org/schemas/media/i2c/adv7604.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Analog Devices ADV7604/11/12 video decoder with HDMI receiver
-+title: Analog Devices ADV7604/10/11/12 video decoder with HDMI receiver
- 
- maintainers:
-   - Hans Verkuil <hverkuil-cisco@xs4all.nl>
- 
- description:
--  The ADV7604 and ADV7611/12 are multiformat video decoders with an integrated
--  HDMI receiver. The ADV7604 has four multiplexed HDMI inputs and one analog
--  input, and the ADV7611 has one HDMI input and no analog input. The 7612 is
--  similar to the 7611 but has 2 HDMI inputs.
-+  The ADV7604 and ADV7610/11/12 are multiformat video decoders with
-+  an integrated HDMI receiver. The ADV7604 has four multiplexed HDMI inputs
-+  and one analog input, and the ADV7610/11 have one HDMI input and no analog
-+  input. The ADV7612 is similar to the ADV7610/11 but has 2 HDMI inputs.
- 
--  These device tree bindings support the ADV7611/12 only at the moment.
-+  These device tree bindings support the ADV7610/11/12 only at the moment.
- 
- properties:
-   compatible:
-     items:
-       - enum:
-+          - adi,adv7610
-           - adi,adv7611
-           - adi,adv7612
- 
+The following series is dependent on,
+https://patchwork.kernel.org/project/netdevbpf/patch/20210920123344.2320-1-a-govindraju@ti.com/
+
+changes since v3 -
+- Rebased the series on top of ti-k3-dts-next branch
+
+changes since v2 -
+- correct the dtbs_check errors. clock names order and interrupts
+  property added in the dt bindings
+- added support for main mcan instances on common processor board
+  for j721e
+- rebased the series on top of latest linux-next head
+
+changes since v1 -
+- changed the message ram configuration to use the maximum value
+  in each field, for better performance.
+
+Aswath Govindraju (3):
+  arm64: dts: ti: am654-base-board/am65-iot2050-common: Disable mcan
+    nodes
+  arm64: dts: ti: k3-am64-main: Add support for MCAN
+  arm64: dts: ti: k3-am642-evm/sk: Add support for main domain mcan
+    nodes in EVM and disable them on SK
+
+Faiz Abbas (3):
+  arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
+  arm64: dts: ti: k3-j721e: Add support for MCAN nodes
+  arm64: dts: ti: k3-j721e-common-proc-board: Add support for mcu and
+    main mcan nodes
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |  28 +++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  40 ++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |   8 +
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |   8 +
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  30 +++
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |   8 +
+ .../dts/ti/k3-j721e-common-proc-board.dts     | 155 ++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 196 ++++++++++++++++++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  28 +++
+ 9 files changed, 501 insertions(+)
 
 -- 
-Krzysztof "Chris" Hałasa
+2.17.1
 
-Sieć Badawcza Łukasiewicz
-Przemysłowy Instytut Automatyki i Pomiarów PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
