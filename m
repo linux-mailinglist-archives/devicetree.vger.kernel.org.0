@@ -2,86 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01577425494
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:46:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D14884254A2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241734AbhJGNso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 09:48:44 -0400
-Received: from smtp1.axis.com ([195.60.68.17]:31231 "EHLO smtp1.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241709AbhJGNsn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 09:48:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1633614409;
-  x=1665150409;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=SkzjWmGgT/i1H38wRenFdkkBAjqNYA/xh9dv+VS8yO0=;
-  b=WY79HO/0NG7FCAaZ3YUQAXA+dn6ZGnsJnIFWunV71DpEEikAoYchw4gc
-   rrliTufvMH+/Zz/Zs0pM2qWA8B9tVj894CJZrD0w1bJVNrR0avlifx+EB
-   CakNmXEYubYOVeBdaTc6UI542lVB/zIN0+6bozmQ5BHrl8c4/BnKavl5A
-   z0dTdMC70V7V8i3rSzaDpuysnzdvdcj+bHqPOWK1B7uzsZP4P6wplMYhG
-   wGHJNZE3PkhrW1NKwZw5uXlvckyQ1Tf6JngEesF66GRrhgUdOMs+OmbBu
-   aZlYZHi3FpeNxC6ePtYvidqMVqXa0f45EHqZSLg2EHZ9puZpuzIFZEZ5R
-   Q==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     <peda@axentia.se>, <jic23@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <kernel@axis.com>, <lars@metafoo.de>, <linux-iio@vger.kernel.org>,
-        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>
-Subject: [PATCH v2 3/3] iio: multiplexer: iio-mux: Support settle-time-us property
-Date:   Thu, 7 Oct 2021 15:46:41 +0200
-Message-ID: <20211007134641.13417-4-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20211007134641.13417-1-vincent.whitchurch@axis.com>
-References: <20211007134641.13417-1-vincent.whitchurch@axis.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+        id S241772AbhJGNvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 09:51:12 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:14512 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241714AbhJGNvK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 09:51:10 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633614556; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=LJlIsAmhsWWtNJvtDA2z8gf+SVO6RTgCLs6jKSGxJaU=; b=j2WyNHWL80XeRNZ+6y3Yqa9lCU5dAtXjN+KrYjBOa2ifZ/cO5d//gx7APu2NrAVyqTK8APgL
+ M6n9d1VCbREHo9ToEItew1j/qLahpgZH8BdrJ4VNy5kZHBqKN5vLiNYBntI39ecneMVHOlxP
+ z7PRci1P/KNj5t8uzLljNvTJWE4=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 615efacbff0285fb0ab7bf5c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 13:48:59
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D52C2C4361C; Thu,  7 Oct 2021 13:48:58 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C796FC4338F;
+        Thu,  7 Oct 2021 13:48:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C796FC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH 0/3] Add pin control support for lpass sc7280
+Date:   Thu,  7 Oct 2021 19:18:36 +0530
+Message-Id: <1633614519-26680-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the devicetree specifies that the hardware requires a settle time,
-pass this time on to the mux APIs.
+This patch series is to make lpass variant independent pin control
+functions common and to add lpass sc7280 pincontrol support.
+It also includes dt-bindings for lpass sc7280 lpi compatible. 
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
- drivers/iio/multiplexer/iio-mux.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Srinivasa Rao Mandadapu (3):
+  pinctrl: qcom: Update lpass variant independent functions as generic
+  dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi pinctrl compatible
+  pinctrl: qcom: Add SC7280 lpass pin configuration
 
-diff --git a/drivers/iio/multiplexer/iio-mux.c b/drivers/iio/multiplexer/iio-mux.c
-index d54ae5cbe51b..f422d44377df 100644
---- a/drivers/iio/multiplexer/iio-mux.c
-+++ b/drivers/iio/multiplexer/iio-mux.c
-@@ -33,6 +33,7 @@ struct mux {
- 	struct iio_chan_spec *chan;
- 	struct iio_chan_spec_ext_info *ext_info;
- 	struct mux_child *child;
-+	u32 delay_us;
- };
- 
- static int iio_mux_select(struct mux *mux, int idx)
-@@ -42,7 +43,8 @@ static int iio_mux_select(struct mux *mux, int idx)
- 	int ret;
- 	int i;
- 
--	ret = mux_control_select(mux->control, chan->channel);
-+	ret = mux_control_select_delay(mux->control, chan->channel,
-+				       mux->delay_us);
- 	if (ret < 0) {
- 		mux->cached_state = -1;
- 		return ret;
-@@ -392,6 +394,9 @@ static int mux_probe(struct platform_device *pdev)
- 	mux->parent = parent;
- 	mux->cached_state = -1;
- 
-+	mux->delay_us = 0;
-+	of_property_read_u32(np, "settle-time-us", &mux->delay_us);
-+
- 	indio_dev->name = dev_name(dev);
- 	indio_dev->info = &mux_info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
+ .../bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml   |  4 +-
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c           | 57 +++++++++++++++++++---
+ 2 files changed, 52 insertions(+), 9 deletions(-)
+
 -- 
-2.28.0
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
