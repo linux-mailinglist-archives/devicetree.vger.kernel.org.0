@@ -2,113 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A3F0425A70
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:13:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7110C425A7D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:15:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243383AbhJGSOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 14:14:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53428 "EHLO
+        id S243527AbhJGSRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 14:17:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233709AbhJGSOx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:14:53 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A43C061570;
-        Thu,  7 Oct 2021 11:12:59 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id m5so6015906pfk.7;
-        Thu, 07 Oct 2021 11:12:59 -0700 (PDT)
+        with ESMTP id S233807AbhJGSRr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:17:47 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95FA6C061570
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 11:15:53 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id z5so15417800ybj.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 11:15:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zcGBIhKrON+MgfHdKChgd+MR4ouCwcsLhobVnFLjAGE=;
-        b=G1mwsJ/sX9YkeHnQ5UcKRh/HCb+HTgZx08HBbarDJdy+/xzYwLjH/c9Qg6rIkh+wPS
-         gecKknATnLFv5+Ot98ZL3CUyMekhKsLERP8cEfSGcb7aPVELaUzEOvF2zMNblaTX9qQK
-         k0YP0ECL/3hcvTMIdW9SChZpCi/pgEzKW7++TaP6JiUR1xtq6ZcH0gik8QfqEEr20GIJ
-         bMVCz8dr1eeSM9oXjE4uY7h62d0GF4MswqFWfBveV4jvIj7GmL/NiwMxudRXhfoGr+0t
-         0uyHXy2HRLRJvgboIAy1hWXwS0OzznwVx2Vrru5YE8qnObWSq4pB3gGaVPa3qnoNkzs1
-         HNtg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hxNCZni7OLjbLUM2oQ+zPYdyzTwxKlKSIw1gMRbxwKc=;
+        b=HaA4A6Ta2mUHIBcxZL2CKjoRtG9GcR6ieEqiqwqdPenP1IGuK5WthHbwO3ou61Tnh9
+         IdZm+AhwWUzQTSCgHbQKPmWzZQYr/mbmKac8PrBY5Lc/RuCrMSXsaua/89j3JLwStEy/
+         xgH8m+0bsbtYNUN/XhdgaDjnNxH9xWtwMWdzE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zcGBIhKrON+MgfHdKChgd+MR4ouCwcsLhobVnFLjAGE=;
-        b=cfbhA1sLmzux+fn2Q++ff8kat28RxJ7lqX+hLfjCF/oLbfki8kMZQhj8t1gFoNhSAW
-         p/vR/SvnKVPa6uV3Evp992rTfHp7lOtYn614djbRtIXmMJ68CyDyNEHKaBI7QR5B7uM9
-         mG+0POklNKwW/S8EhwOOoElgEOwDC2ZoUWsIiQfa/RaS069j0W1iIy+AH/JV/96hgABL
-         7Ycv5g2ts53x5dNzqjjxow3Fsc7oq47z439Kw6Ty6np0v7hnuMDi3qz/l6Hkhqxn/w5x
-         g4ZgZF9mvQTN1sZGy/7n3SuSsMtyscjwzKjTbXvWUcANXDX6UeweNHA9l7E5ALgk1GhS
-         uxQA==
-X-Gm-Message-State: AOAM533qHUb26lzHLZFcqvnlTLo4+QcZTxRmTcu+NjIt628rySpASssw
-        uz4NpEciL5FnZ9jIXQen27sMtow9gy8=
-X-Google-Smtp-Source: ABdhPJwFmTWHDSMgp2ERks6179u8iTUF9h+CjBN17Qn3U3om1x2znZybadLxqJwjTlFROjrWeh4Grg==
-X-Received: by 2002:a05:6a00:10cc:b0:44c:852:41d8 with SMTP id d12-20020a056a0010cc00b0044c085241d8mr5871737pfu.54.1633630378089;
-        Thu, 07 Oct 2021 11:12:58 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id u12sm8831747pjr.2.2021.10.07.11.12.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 11:12:57 -0700 (PDT)
-Subject: Re: [net-next PATCH 09/13] net: dsa: qca8k: check rgmii also on port
- 6 if exchanged
-To:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211006223603.18858-1-ansuelsmth@gmail.com>
- <20211006223603.18858-10-ansuelsmth@gmail.com> <YV4+KDQWNhDmcaHL@lunn.ch>
- <YV72oJ/wWiiNthAs@Ansuel-xps.localdomain>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <90ebf1eb-89b9-3059-a6b8-87c197032e4c@gmail.com>
-Date:   Thu, 7 Oct 2021 11:12:48 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hxNCZni7OLjbLUM2oQ+zPYdyzTwxKlKSIw1gMRbxwKc=;
+        b=6nvGpi65+234dokjoI4tt4F+qU8iB2fA/8kWMHU2XdUO/e2Vu9W3xlmA6K3DmFvSod
+         G9YjtfsAvuqVVmA7+DPgFSt1C3vvZ8ORaI16MQexIhtWP8jjL/4IXCS5RLDMiDZ6Vulg
+         6TSb9Ginr46TFDWqeMfBoehGggrjmUClnOhcqCLf9EnIQnLzuXeTHqkyqFYQvng7gRuv
+         VruxhFAGyhs6l43R7IDSthsyt+1hbUgrQOGk73QxVL+/94l+fy+bhe823KEgQYtuUBAU
+         f0uY0Mbwh/2X83I+3awesULacakl/s14Lf0UCg1vD1/GYcdZsvv+Ebt30Az3Cv/VcRpY
+         DBAg==
+X-Gm-Message-State: AOAM533J8oWDe4HzJTl9tCN/IeDMwStLndyfzIZsk7JzrINrK2mpxfcS
+        kEH2meZgZVZVfwLC1KvPQyR6wowvO6VX9yg+A27WaA==
+X-Google-Smtp-Source: ABdhPJxonSF0ODbOA/KcRix4iq6ySNPKYDrYvWJYF++/VLTpja7FfdjmRMXdslLNYtDIGSEpvodrSddisABnGwahNNI=
+X-Received: by 2002:a25:54c5:: with SMTP id i188mr6584598ybb.43.1633630552920;
+ Thu, 07 Oct 2021 11:15:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YV72oJ/wWiiNthAs@Ansuel-xps.localdomain>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
+ <20210929173343.v2.3.I630340a51130f4582dbe14e42f673b74e0531a2b@changeid>
+ <CAE-0n53EBvKv-RdMwiiOsUkb+LOKAKwrpP7cDavx4meA2vbvcA@mail.gmail.com> <CAD=FV=XoOhSNP2EXurkA=G9iG2BnH9VzkvSEiNJ8W71s8N9bgg@mail.gmail.com>
+In-Reply-To: <CAD=FV=XoOhSNP2EXurkA=G9iG2BnH9VzkvSEiNJ8W71s8N9bgg@mail.gmail.com>
+From:   Philip Chen <philipchen@chromium.org>
+Date:   Thu, 7 Oct 2021 11:15:42 -0700
+Message-ID: <CA+cxXhkM9Gzc+0EVapZVu=pJZ3WZawgucG5J2=bokYEJXFNKCQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: sc7180: Support Parade ps8640 edp bridge
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/7/21 6:31 AM, Ansuel Smith wrote:
-> On Thu, Oct 07, 2021 at 02:24:08AM +0200, Andrew Lunn wrote:
->> On Thu, Oct 07, 2021 at 12:35:59AM +0200, Ansuel Smith wrote:
->>> Port 0 can be exchanged with port6. Handle this special case by also
->>> checking the port6 if present.
->>
->> This is messy.
->>
->> The DSA core has no idea the ports have been swapped, so the interface
->> names are going to be taken from DT unswaped. Now you appear to be
->> taking phy-mode from the other port in DT. That is inconsistent. All
->> the configuration for a port should come from the same place, nothing
->> gets swapped. Or everything needs to swap, which means you need to
->> change the DSA core.
->>
->>     Andrew
-> 
-> The swap is internal. So from the dts side we still use port0 as port0,
-> it's just swapped internally in the switch.
-> The change here is required as this scan the rgmii delay and sets the
-> value to be set later in the phylink mac config.
-> We currently assume that only one cpu port is supported and that can be
-> sgmii or rgmii. This specific switch have 2 cpu port and we can have one
-> config with cpu port0 set to sgmii and cpu port6 set to rgmii-id.
-> This patch is to address this and to add the delay function to scan also
-> for the secondary cpu port. (again the real value will be set in the mac
-> config function)
-> Honestly i think we should just rework this and move the delay logic
-> directly in the mac_config function and scan there directly. What do you
-> think? That way we should be able to generalize this and drop the extra
-> if.
+Hi,
 
-Agreed, the whole port swapping business is really hairy and seems like
-it will led to unpleasant surprises down the road.
--- 
-Florian
+On Thu, Sep 30, 2021 at 9:22 AM Doug Anderson <dianders@chromium.org> wrote:
+>
+> Hi,
+>
+> On Wed, Sep 29, 2021 at 9:02 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > > +       pp3300_brij_ps8640: pp3300-brij-ps8640 {
+> > > +               compatible = "regulator-fixed";
+> > > +               status = "okay";
+> > > +               regulator-name = "pp3300_brij_ps8640";
+> > > +
+> > > +               regulator-min-microvolt = <3300000>;
+> > > +               regulator-max-microvolt = <3300000>;
+> > > +
+> > > +               gpio = <&tlmm 32 GPIO_ACTIVE_HIGH>;
+> >
+> > Doesn't this need
+> >
+> >                 enable-active-high;
+>
+> Looks like it. Without that it looks like it assumes active low.
+Thanks for catching this.
+I'll fix it in v3.
+
+>
+>
+> > > +
+> > > +               pinctrl-names = "default";
+> > > +               pinctrl-0 = <&en_pp3300_edp_brij_ps8640>;
+> > > +
+> > > +               vin-supply = <&pp3300_a>;
+> > > +       };
+> > > +};
+> > > +
+> > > +&dsi0_out {
+> > > +       remote-endpoint = <&ps8640_in>;
+> >
+> > Should this also have data-lanes to be "complete"?
+>
+> That's still back in the main trogdor.dtsi, isn't it?
+Yes, I think so.
+Plus, ti-sn65 dts doesn't define data-lanes for input either.
+
+>
+>
+> > > +edp_brij_i2c: &i2c2 {
+> > > +       status = "okay";
+> > > +       clock-frequency = <400000>;
+> > > +
+> > > +       ps8640_bridge: edp-bridge@8 {
+> >
+> > Just bridge@8 to match ti bridge? Also, is the label used? If not
+> > please drop it.
+>
+> I agree with Stephen about it being "bridge@8". Personally I don't
+> mind labels like this even if they're not used since they don't hurt
+> and it creates less churn to add them now, but I won't fight hard to
+> keep them.
+I will make it "bridge@8" to match ti-sn65 dts.
+Meanwhile, can we keep "ps8640_bridge" label to match ti-sn65 dts?
+
+>
+>
+> > > +               aux_bus: aux-bus {
+> >
+> > Is this label used either?
+>
+> Yeah, I'd get rid of this one since there you didn't add it in the
+> sn65dsi86 dtsi file and it seems exceedingly unlikely we'd need it for
+> any reason.
+Sure, I will remove "aux_bus" label in v3.
+
+>
+> -Doug
