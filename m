@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C76A425751
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 18:03:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC50A425779
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 18:14:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233255AbhJGQF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 12:05:26 -0400
-Received: from marcansoft.com ([212.63.210.85]:56266 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233486AbhJGQF0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 12:05:26 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id E0FED419BC;
-        Thu,  7 Oct 2021 16:03:26 +0000 (UTC)
-Subject: Re: [PATCH v5 14/14] arm64: dts: apple: j274: Expose PCI node for the
- Ethernet MAC address
-To:     Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        Joey Gouly <joey.gouly@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, kernel-team@android.com
-References: <20210929163847.2807812-1-maz@kernel.org>
- <20210929163847.2807812-15-maz@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <d49994e1-cd01-f6a4-98bf-941058543a44@marcan.st>
-Date:   Fri, 8 Oct 2021 01:03:24 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S233481AbhJGQQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 12:16:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231495AbhJGQQv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 12:16:51 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA599C061570
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 09:14:57 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id x27so26952820lfa.9
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 09:14:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=NkfgikIWDmOlPmnez+ncgqSfYHRo+fYQy+Yi1qcgPg4=;
+        b=IglPqPATV98VBLOJZMbZKyTUIWVQnBE7910F+6ptSMCvlW9Z1Ya2RILh3iimHLFAoD
+         7o7q7XPqNpxlIvWVrINnBW51XC2MKlNYo8tW6TSoT17TsGZtkZlViVO50I9DrTzIHm1f
+         npSin4SQqr3/P3ub2M8AQqJJVAHxBoym5ZShHw0uyAyV5bc7vIU+pcV3ZNDganW6JWD2
+         oiSNVBumwZM/0EM5unXpVlcvcTLzEmdNfCn9owKwUn8i10+SUZBwmrTFwqE4sbFB8et+
+         e50tmmqg1bv7uVzGOIUuNhCp5QloeKUevCpbYDgJtTTlZXCN6dGsGDh7jFTCor8yOGxR
+         Nesg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=NkfgikIWDmOlPmnez+ncgqSfYHRo+fYQy+Yi1qcgPg4=;
+        b=IHatUJzXxf07ncdKiir3tFGDlFJjqcc3GXm1f7Ptqcklc4em+4trtnrQBFunb2Tbja
+         eP1yR8B4YYSQ7ZBytq2DPxUdUz/1eDOELOntC29P2Z8PNk/oOJoPUyrWbYlzQPTr8JiA
+         9G/tVdt+hcfpSAWz+8xHuthU+d+XoUX78R15eOsIW/cl5pNZw2JOlDaG5/LE89TH+igd
+         mmVrFUgpb7RHVcwPmNRlfyxE43fSek2N22ZVN+AE4SLxalBAqdY+304aE/7+wOi5mvLv
+         0uj8TGnu0SoFi4d3Amyn9e+MvQU6WTGgWYWLSr5rH+x5XOaKC8zFp041RtfjMz02Wo0m
+         8J5A==
+X-Gm-Message-State: AOAM531fhj9Gf43PcOMQPYAXRTBvzpqLvNPhu+nhaqNbEAhGDVFZJ+3j
+        UgiPPNH5P7eRdvt9nRmcSzhWORNsXQkOMNV9pqk=
+X-Google-Smtp-Source: ABdhPJyMtyG7xxhEPNqbYh2/8IckkMaGXLl6+Nb+R4g5aHDh9zbka27IIyMXL9Ly5QBZM6a4owhOf8jAYOZaTT1zvIU=
+X-Received: by 2002:a05:651c:506:: with SMTP id o6mr5630401ljp.96.1633623295802;
+ Thu, 07 Oct 2021 09:14:55 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210929163847.2807812-15-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Received: by 2002:ab3:5793:0:0:0:0:0 with HTTP; Thu, 7 Oct 2021 09:14:54 -0700 (PDT)
+Reply-To: mrsaishaaqddafi@yahoo.com
+From:   Mrs Aisha Al-Qaddafi <chineduj21@gmail.com>
+Date:   Thu, 7 Oct 2021 09:14:54 -0700
+Message-ID: <CALU6aQy4OMX0SO+QyQZNfJ7tEZQg6BQZVK_nBgc2qqPTHDQX3Q@mail.gmail.com>
+Subject: Dear Partner,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2021 01.38, Marc Zyngier wrote:
-> At the moment, all the Minis running Linux have the same MAC
-> address (00:10:18:00:00:00), which is a bit annoying.
-> 
-> Expose the PCI node corresponding to the Ethernet device, and
-> declare a 'local-mac-address' property. The bootloader will update
-> it (m1n1 already has the required feature). And if it doesn't, then
-> the default value is already present in the DT.
-> 
-> This relies on forcing the bus number for each port so that the
-> endpoints connected to them are correctly numbered (and keeps dtc
-> quiet).
-> 
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> ---
->   arch/arm64/boot/dts/apple/t8103-j274.dts | 23 +++++++++++++++++++++++
->   1 file changed, 23 insertions(+)
-> 
+Dear Partner,
 
-Acked-by: Hector Martin <marcan@marcan.st>
+I came across your contact during my private search Mrs Aisha Al-Qaddafi is
+my name, the only daughter of late Libyan president, I have funds the sum
+of $27.5 million USD for investment, I am interested in you for investment
+project assistance in your country, i shall compensate you 30% of the total
+sum after the funds are transfer into your account, Reply me urgent for
+more details. Please kindly respond quickly for further details through my
+private e_mail address:mrsaishaaqddafi@yahoo.com
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Mrs Aisha Al-Qaddafi.
