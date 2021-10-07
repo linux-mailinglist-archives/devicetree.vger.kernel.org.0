@@ -2,248 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7288A425909
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E99DD425951
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:23:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243229AbhJGRPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 13:15:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47628 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S243187AbhJGRPj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 13:15:39 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3923961058;
-        Thu,  7 Oct 2021 17:13:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633626825;
-        bh=j0/YGPldZc0aZGMEp6CwCKqMygvHt12m0klDB6ibhNg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=DpjmVX8k0HHr3JN+8M54mMeTBueA9+ZASt/YCwLQwiqoaYbcBt/WRCyCIHiCk76WM
-         THX2gG2M703UyOBtGLDeR7L2jQBNFOu2lAUWaR9cy25g4w5odHhiJQzYLVjSaQnGYa
-         Qr0YOduhr/8geMTDTGlLvPWwTEryT3HV7i+U2xKyabwRmhhVhDoxfF1JDXlMuF+T2J
-         dCXku49/1TUzI9axIUmMGrLqnYCmnWwm/HG9IBMtigcnpW5mV62HEmMT5bikFk9vA+
-         Qn8fU1ZmZBeAPQRyKnBrXq2CG5eoGiIfONyngONqC1FSLfFo1kXCJb8Q0ta/likiv3
-         A4EbR7s7xsygw==
-Date:   Thu, 7 Oct 2021 19:13:41 +0200
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: lets settle the LED `function` property regarding the netdev
- trigger
-Message-ID: <20211007191341.0fc65dfc@thinkpad>
-In-Reply-To: <YV2dKZIwxcFkU798@lunn.ch>
-References: <YVn815h7JBtVSfwZ@lunn.ch>
-        <20211003212654.30fa43f5@thinkpad>
-        <YVsUodiPoiIESrEE@lunn.ch>
-        <20211004170847.3f92ef48@thinkpad>
-        <0b1bc2d7-6e62-5adb-5aed-48b99770d80d@gmail.com>
-        <20211005222657.7d1b2a19@thinkpad>
-        <YVy9Ho47XeVON+lB@lunn.ch>
-        <20211005234342.7334061b@thinkpad>
-        <YVzMghbt1+ZSILpQ@lunn.ch>
-        <20211006010606.15d7370b@thinkpad>
-        <YV2dKZIwxcFkU798@lunn.ch>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S241570AbhJGRZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 13:25:38 -0400
+Received: from mail-vs1-f49.google.com ([209.85.217.49]:43982 "EHLO
+        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235301AbhJGRZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 13:25:38 -0400
+Received: by mail-vs1-f49.google.com with SMTP id p2so7543326vst.10;
+        Thu, 07 Oct 2021 10:23:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=V+O/Tzkp10P1T+2/uoWEpVc+uysV2odcVKV4KvQ215U=;
+        b=mUQyB0CmULvhRojj4nHZ+DkXDyV6mZVwVT+UxOlHCanmvS0wFj72FbNuB9C+86vzX6
+         oLEnJZDmg7Eizykec56R5J7iWxhA1y8shCeAx1GrbpfxdESVVpcXDgRTEEmUljdJl1HQ
+         iQ9al3xQCmloX2srfuB0WTs/ft7lrinHQwZf289W/W8VpY7WRJ5b96J8qzwcOCNDiiuO
+         Zu68P/FtRBIXNZYreZAK2f6BjohwEZlV7eHhS2WGuAwxpS06eEe5cHVXsZa5htuJo3Wy
+         g2VV0ohxotVqvdA0HHcq7y7qqV+EBXVXm/La7sgkh94/nN/v0dGF2llyuSH2N/JkWMZ9
+         Eucg==
+X-Gm-Message-State: AOAM530jm7n/LFWa4C+lCHeq2rNoJcdt1cB36hz4X77oemp3RjPAHiTn
+        l18OCVME3I/CYjG3AGAr6lrzMfxTvcXnJX3ba5g=
+X-Google-Smtp-Source: ABdhPJy4V/GXmg0AB22mdAwPWs3SRDpQ98AGJjXgLUnixh5p7JM+hRNLqYF8eYaypEWmH3xNHiXW9XwGfcfP15BVtaQ=
+X-Received: by 2002:a67:d583:: with SMTP id m3mr5601152vsj.41.1633627423685;
+ Thu, 07 Oct 2021 10:23:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210930121630.17449-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210930121630.17449-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210930121630.17449-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 7 Oct 2021 19:23:31 +0200
+Message-ID: <CAMuHMdXHv7H3xxEYFLhfBf+Pun-w=F4k5S2RAYJY6qz75QpxhQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/4] pinctrl: renesas: pinctrl-rzg2l: Add support to
+ get/set drive-strength and output-impedance
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Oct 2021 14:57:13 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
+Hi Prabhakar,
 
-> > > I agree with having a list, and we use the combination. If the
-> > > combination is not possible by the hardware, then -EINVAL, or
-> > > -EOPNOTSUPP.
-> > >   
-> > > > - having separate functions for different link modes
-> > > >     function = "link1000", "link100";    
-> > > 
-> > > I would suggest this, so you can use 
-> > > 
-> > > function = "link1000", "link100", "activity"  
-> > 
-> > The problem here is that LED core uses function to compose LED name:
-> >   devicename:color:function
-> > Should we use the first function? Then this LED will be named:
-> >   ethphy42:green:link1000
-> > but it also indicates link100...  
-> 
-> This makes no sense. Using function makes no sense, when the whole
-> point of using the LED framework is we have a uniform way of
-> setting/changing the function at run time.
+On Thu, Sep 30, 2021 at 2:17 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add support to get/set drive-strength and output-impedance of the pins.
 >
-> An LED called ethphy42:green:link1000 which is actually showing
-> activity makes no sense.
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> @@ -47,6 +47,7 @@
+>  #define PIN_CFG_FILONOFF               BIT(9)
+>  #define PIN_CFG_FILNUM                 BIT(10)
+>  #define PIN_CFG_FILCLKSEL              BIT(11)
+> +#define PIN_CFG_GROUP_B                        BIT(12)
+
+Perhaps it would be easier to have separate PIN_CFG_IOLH_A and
+PIN_CFG_IOLH_B flags, instead of a PIN_CFG_IOLH flag and a
+PIN_CFG_GROUP_B modifier flag?
+
 >
-> ethphy42:green:state would be a better name.  The function of the LED
-> is to give you some idea of what the state of the PHY is. What state
-> it actually indicates is up to the user.
+>  #define RZG2L_MPXED_PIN_FUNCS          (PIN_CFG_IOLH | \
+>                                          PIN_CFG_SR | \
 
-The LED device name is supposed to reflect what the LED was dedicated
-for by vendor. So if on the device chassis next to the LED there is an
-icon or text indicating that the LED is supposed to show link, then the
-function part of the LED name should be "link", no matter what the user
-does with the LED during runtime.
+> @@ -484,6 +513,38 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
+>                 break;
+>         }
+>
+> +       case PIN_CONFIG_OUTPUT_IMPEDANCE:
+> +       case PIN_CONFIG_DRIVE_STRENGTH: {
+> +               unsigned int mA[4] = { 2, 4, 8, 12 };
+> +               unsigned int oi[4] = { 100, 66, 50, 33 };
 
-In many cases the icon/text by the LED on the chassis says only something
-like "wan" or "lanN". On Turris Omnia for example this is so, and the LED
-is supposed to show link and blink on activity.
+static const
 
-For LEDs on ethernet ports usually the port is dedicated (i.e. it is a
-wan port or a lanN port), and the LEDs are also dedicated in some way
-(for example green for link1000, blink on activity, yellow for link100).
+> +
+> +               if (param == PIN_CONFIG_DRIVE_STRENGTH) {
+> +                       if (!(cfg & PIN_CFG_IOLH) || groupb_pin)
+> +                               return -EINVAL;
+> +               } else {
+> +                       if (!(cfg & PIN_CFG_IOLH) || !groupb_pin)
+> +                               return -EINVAL;
+> +               }
+> +
+> +               spin_lock_irqsave(&pctrl->lock, flags);
+> +
+> +               /* handle _L/_H for 32-bit register read/write */
+> +               addr = pctrl->base + IOLH(port);
+> +               if (bit >= 4) {
+> +                       bit -= 4;
+> +                       addr += 4;
+> +               }
+> +
+> +               reg = readl(addr) & (IOLH_MASK << (bit * 8));
+> +               reg = reg >> (bit * 8);
+> +               if (param == PIN_CONFIG_DRIVE_STRENGTH)
+> +                       arg = mA[reg];
+> +               else
+> +                       arg = oi[reg];
+> +               spin_unlock_irqrestore(&pctrl->lock, flags);
 
-Currently device tree binding for LEDs allows setting function and
-function-enumerator, and there are only macros
-  LED_FUNCTION_WAN	(expands to "wan")
-  LED_FUNCTION_LAN	(expands to "lan")
-So the device tree can specify:
-  color = <LED_COLOR_ID_GREEN>;
-  function = LED_FUNCTION_WAN;
-and the LED will be called
-  <devicename>:green:wan (with no devicename just green:wan)
-or
-  color = <LED_COLOR_ID_GREEN>;
-  function = LED_FUNCTION_LAN;
-  function-enumerator = <2>;
-and the LED will be called
-  <devicename>:green:lan-2
+I think you've reached the point where it starts to make sense to
+have helper functions to read and modify these sub-register fields
+that may be located into the current or next register.
 
-We need to somehow keep the function part of the LED name consistent
-with what the LED was dedicated for by vendor, but also to be able to
-set more specific trigger settings (link1000, link100, link10,
-activity).
+And after that, you can split it in two smaller separate cases for
+drive strength and output impedance.
 
-Maybe it would make sense to keep the first string in the function
-property "lan" / "wan", and the other strings to specify more specific
-functions?
+> +               break;
+> +       }
+> +
+>         default:
+>                 return -ENOTSUPP;
+>         }
 
-> > No, my current ideas about the netdev trigger extension are as follows
-> > (not yet complete):
-> > 
-> > $ cd /sys/.../<LED>
-> > $ echo netdev >trigger	# To enable netdev trigger
-> > $ echo eth0 >device_name
-> > $ echo 1 >ext		# To enable extended netdev trigger.
-> > 			# This will create directory modes if there is
-> > 			# a PHY attached to the interface  
-> > $ ls modes/		
-> > 1000baseT_Full 100BaseT_Full 100BaseT_Half 10BaseT_Full 10BaseT_Half
-> >
-> > $ cd modes/1000baseT_Full
-> > $ ls
-> > brightness link rx tx interval
-> > 
-> > So basically if you enable the extended netdev trigger, you will get
-> > all the standard netdev settings for each PHY mode. (With a little
-> > change to support blinking on link.)
-> > 
-> > With this you can set the LED:
-> >   ON when linked and speed=1000m or 100m, blink on activity
-> > or
-> >   blink with 50ms interval when speed=1000m
-> >   blink with 100ms interval when speed=100m
-> >   blink with 200ms interval when speed=10m
-> > 
-> > (Note that these don't need to be supported by PHY. We are talking
-> >  about SW control. If the PHY supports some of these in HW, then the
-> >  trigger can be offloaded.)  
-> 
-> I see a number of problems with this
-> 
-> 1) Not all PHYs support software control of the LEDs. i.e. software
-> on/off. But they do support different blink modes. Just looking at the
-> data sheets i have lying around like this:
-> 
-> LAN8740 
-> KSZ8041
-> 
-> and i'm sure there are more. So these PHYs LEDs will always be in
-> offloaded mode, you cannot do software blinking. But they do support
-> multiple blinking modes, so we want to be able to control that.
+Gr{oetje,eeting}s,
 
-I am aware of such LEDs. Currently the LED subsystem does not support
-such LEDs. I wanted first to extend the LED API to support offloading,
-and wanted to look at LEDs that only can be HW controlled later.
+                        Geert
 
-> 2) Marvell PHY i have the datasheet open for at the moment has no way
-> to indicate duplex. So you cannot actually offload 100baseT_Full. You
-> need to user to configure the same blink mode for both 100baseT_Full
-> and then 100baseT_Half, so duplex is irrelevant, then you can offload
-> it, which is not very obvious.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-This was just a proposal, I have not written code for this yet. We can
-do this by speed only, if it makes more sense.
-
-> 3) phylib does not actually tell you what link mode the PHY is
-> operating in. All you get is the resolved speed and duplex. And
-> mapping speed an duplex back to a link mode is not obvious. Take for
-> example 100baseT_Full & 100baseT1_Full. Both are 100Mbps, both full
-> duplex. Currently there is no PHY which actually implements both, so
-> currently you can work it out, but in general, you cannot. But this is
-> very true for higher speeds, where the MAC is providing the PHY LED
-> control, but ideally we want the same /sysfs interface:
-> 
->         ETHTOOL_LINK_MODE_40000baseKR4_Full_BIT = 23,
->         ETHTOOL_LINK_MODE_40000baseCR4_Full_BIT = 24,
->         ETHTOOL_LINK_MODE_40000baseSR4_Full_BIT = 25,
->         ETHTOOL_LINK_MODE_40000baseLR4_Full_BIT = 26,
-> 
-> Are you suggesting 4 different directories for the same speed?
-> 
-> I think you need duplex, KR4/CR4/SR4/LR4, T1/T2 as separate
-> attributes, which the LED might support, but are not required.
-
-OK, it would make more sense to do this by speed only at first. And
-later if someone needs to do it more specific, it can be extended.
-
-$ cd /sys/class/leds/<LED>
-$ echo netdev >trigger
-$ echo speed >ext
-$ ls modes
-1000 100 10
-
-Or maybe the subdirectories can be added by request:
-
-$ cd /sys/class/leds/<LED>
-$ echo netdev >trigger
-$ cat ext
-[none] speed link_mode
-$ echo link_mode >ext
-$ ls modes
-add  delete
-$ echo 40000baseKR4_Full >modes/add
-$ ls modes
-40000baseKR4_Full  add  delete
-
-> 4) Software blinking can add quite a lot of overhead. Getting the
-> counters from the device can be expensive, particularly for Ethernet
-> switches on slow busses. If anybody sets the interval to 5ms, they
-> could saturate the MDIO bus. And blinking the LEDs is not for free.
-
-This is how the netdev trigger works currently. I just wanted first to
-extend it to support in SW things that are offloadable to some HW.
-
-You are right that MDIO bus can be slow and saturated by SW blinking,
-that is why we need offloading.
-
-Also currently netdev trigger blink on activity does not work for DSA
-switch ports (at least not for mv88e6xxx), unless the packet goes to
-CPU also, since the trigger looks at CPU interface stats...
-
-> So either we need to indicate if software or hardware is used, or we
-> should limit the choices to those which the hardware can actually do,
-> so we guarantee offload.
-
-I think we should indicate whether the trigger is offloaded and let the
-user control the LED also in SW. An utility (ledtool) can be written
-which could then list HW offloadable modes and let the user choose only
-between those.
-
-Marek
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
