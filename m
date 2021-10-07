@@ -2,126 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C7C7425781
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 18:16:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D34B42584A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 18:47:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233479AbhJGQSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 12:18:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53092 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242630AbhJGQSL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 12:18:11 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC3DBC061755
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 09:16:16 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id y26so27450742lfa.11
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 09:16:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JPnT4IpQsu6GWrhFYest0dabRyyCsorT5rlqIt2XyBk=;
-        b=tCO7+DXwMMUKzKawpnAckHOhMLHXBMexNKIJ71+XuvkEY6UqKTLBuoDOXeWkBtO9O7
-         JEQStB4pAh7Q4JJmlmuqtfMOLaf/ai8bozykRxRPSbbDtkNI8iP+NvWnJ83C5Zyovkov
-         NZC3DvM77HGpvnLFXQP9A95bAxrxP31Brdu+NnrRuUgvhziyD9/MWoLF4r3TPt8gAODm
-         KgMKksJW9MG087YskbBg30CzgsD6pIYS6OGvIHQ+7yeJg/JM24WR8avFDW3rxUWZVzsF
-         oZNVI8xFpWaEZ8dXV+zzF/+l01bBo3H1XG4Sm32rZJmSuyjgEGkb2TCWFw7fSRk3JTUm
-         DzIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JPnT4IpQsu6GWrhFYest0dabRyyCsorT5rlqIt2XyBk=;
-        b=sUnr+M6cgqSUTBOATXA8cTvOPQMKXCP/SFfbZRPU2jdj7zSpf+TEriF0ia7pzO2Zc3
-         mgeK2X/GoSsxdW6g/r3DpUxPbSa/cdwlHBudMXtEfNQkiqTizLNgaj8/UdyB7TOV7eTP
-         CjMjlUn74w0AzKTz/IuUPYRIyypjhR/nCftoNcQP9Znwwi2r9NGW8hN8ZRM0Ylqz2XK/
-         ELtPqILxCIIiBxfCL1fRC2Qad0C+jKtI1ficfqi2lxTZgoyticOCYI9Vbo4uaNu8kLB7
-         1Xhd/sKlNzUO1xAesLD+OvXACBsEFXidddiime81F7DwRAIsYuVVrZWwO1On9zieu/yU
-         lIrQ==
-X-Gm-Message-State: AOAM532/gAQw0wuQGPkaQAXXNvuNdRRaBZK8w0e19kn82x9oOH3ybWj1
-        u5X+/5hR74qtVNGH6RrEAeoehA==
-X-Google-Smtp-Source: ABdhPJyWyNkSm3vUTGocVNe1vwyuX9qAZbEiipyo4qdoRtXwIb0mJnifjuLeaXBLQUipK9GTsK5YpQ==
-X-Received: by 2002:a2e:978a:: with SMTP id y10mr5411636lji.317.1633623374682;
-        Thu, 07 Oct 2021 09:16:14 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id p7sm434717lfr.275.2021.10.07.09.16.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 09:16:14 -0700 (PDT)
-Subject: Re: [PATCH v7 7/8] clk: qcom: dispcc-sm8250: stop using mmcx
- regulator
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20210829154757.784699-1-dmitry.baryshkov@linaro.org>
- <20210829154757.784699-8-dmitry.baryshkov@linaro.org>
- <YV8WsQb9H7+CaLjP@ripper>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <4614587c-b87a-4375-cb6a-6af6f5462c6b@linaro.org>
-Date:   Thu, 7 Oct 2021 19:16:13 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S242431AbhJGQtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 12:49:13 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:54650 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233631AbhJGQtN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 12:49:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=0ngutiKOJ0WudAw+k4ezPA2j8LVfCbxRAnC2tenS7FA=; b=6SCVtMyBYejWyw5X3VO/Bsv8Gx
+        lD0FOEkn4CRkyZksYUz1/IDuxMD2TJp4r6jrlofA3GUGAjK/8+/4CXHKfCSFRM3LxGKFnLWz0TIsp
+        iuDfNi5Vjsq0NTxqcToWYfrgr56hK0O6X9eMfFGz5QFbA3tJHB8bkOGRByl6SWBJI8gk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mYWY2-009yKN-Jg; Thu, 07 Oct 2021 18:47:10 +0200
+Date:   Thu, 7 Oct 2021 18:47:10 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH 06/13] Documentation: devicetree: net: dsa:
+ qca8k: document rgmii_1_8v bindings
+Message-ID: <YV8kjnX2TKgESC30@lunn.ch>
+References: <20211006223603.18858-1-ansuelsmth@gmail.com>
+ <20211006223603.18858-7-ansuelsmth@gmail.com>
+ <YV46wJYlJZHAZLyD@lunn.ch>
+ <YV71TCksnbixsYI0@Ansuel-xps.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <YV8WsQb9H7+CaLjP@ripper>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YV71TCksnbixsYI0@Ansuel-xps.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2021 18:48, Bjorn Andersson wrote:
-> On Sun 29 Aug 08:47 PDT 2021, Dmitry Baryshkov wrote:
-> 
->> Now as the common qcom clock controller code has been taught about power
->> domains, stop mentioning mmcx supply as a way to power up the clock
->> controller's gdsc.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> Once we merge these, I expect that the boards will start crashing if
-> the kernel is booted using an existing DTB?
-> 
-> Is it okay to just merge the first 6 patches in the series now and
-> postpone these two until we've had the dts change sitting for a while?
+> Only some device require this, with these bit at 0, the internal
+> regulator provide 1.5v. It's not really a on/off but a toggle of the
+> different operating voltage. Some device require this and some doesn't.
 
-Sure it is.
+Can you provide a list of devices which require it?
 
-> 
-> Regards,
-> Bjorn
-> 
->> ---
->>   drivers/clk/qcom/dispcc-sm8250.c | 1 -
->>   1 file changed, 1 deletion(-)
->>
->> diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
->> index 108dd1249b6a..cf0bb12eb6e1 100644
->> --- a/drivers/clk/qcom/dispcc-sm8250.c
->> +++ b/drivers/clk/qcom/dispcc-sm8250.c
->> @@ -1129,7 +1129,6 @@ static struct gdsc mdss_gdsc = {
->>   	},
->>   	.pwrsts = PWRSTS_OFF_ON,
->>   	.flags = HW_CTRL,
->> -	.supply = "mmcx",
->>   };
->>   
->>   static struct clk_regmap *disp_cc_sm8250_clocks[] = {
->> -- 
->> 2.33.0
->>
-
-
--- 
-With best wishes
-Dmitry
+    Andrew
