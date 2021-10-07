@@ -2,107 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A449D4258F9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D3AA425903
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:13:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242922AbhJGRL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 13:11:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38206 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241593AbhJGRL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 13:11:58 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95534C061570;
-        Thu,  7 Oct 2021 10:10:04 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id g10so24950251edj.1;
-        Thu, 07 Oct 2021 10:10:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=zvrsWew019O7PHzdE6mBd8qKwyXDHePBaKJlZlxzWEA=;
-        b=e0iL9pgRKG6POXkIdBIKKkuedeDWrZTlO4gQ+kL0mLiD0/Ke8qmKrbKqj0pf+a8upj
-         g0zH810e2uLuAcNZPQ7XzySUmaXQp/tU1NGTujRHF8Jof5jvJLngVZDx4g7JJsVxa1CC
-         y5SfMOL9O/hSOZ7iAzFuxFyapWI9ItUKJrcw8nxEa87BYTpda9IqXPbOF5d4qqF+XaiS
-         wxm9hDH9TEPLjLjNrjLui4LEe8TdZGbg2+PDPznkTfFaIHHfgc3dZPdZ11deW2mk/FDk
-         Y8ldDOukvmcXwtUANyehHQNLGwAHTddXaUd56BeaGFfKH1Tlp1L7eI1R2m9GTcZCtagb
-         EF+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zvrsWew019O7PHzdE6mBd8qKwyXDHePBaKJlZlxzWEA=;
-        b=FGikGyd/EmRtpoCyrg2NhbeTihaYAoJrebCxbn+lGPLFAReXYe4LbqnZiAzjH6+Oct
-         fiuxEstrqBa3d1U1wsHN0P7jBu2W91XjJQ1WSc5s1zv4qRsP3Ygxkl+nArzr0KAj4gwI
-         5Wg4TOZ0pEwcKbruBpn4L9V2lDg+ngV5f0rsdRUy3vLKXp0PRNokB22UljuZjtWFd64r
-         FVpOFIh3uJP4iSs8jtEgxAeWEBjlNXycGOe5pTgLMHrpzT/Eu937zEnoX0605T4iRcq1
-         qMQ2gu9z57hflxQXiTA8tt0DsCJVhuWjnJMmXvSRKsSrI1aqrG3f8opghNyVKHr+g/Ja
-         1Efg==
-X-Gm-Message-State: AOAM532BJrhfQB8CNtwsVRXp87Dt3i7J9Xwz6lY8yWZoZptPGMgz8QG+
-        RJ+wA542Mi/bhx0oLWtjTW4=
-X-Google-Smtp-Source: ABdhPJxUdN0NiyBnU9gC5stEJXEFofLGp/Fr+YOOdztG/kqpu3so4UvqTw93ooaE6cO+r5Ss4LMx3A==
-X-Received: by 2002:a17:906:5689:: with SMTP id am9mr7245703ejc.416.1633626597241;
-        Thu, 07 Oct 2021 10:09:57 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id s3sm70736eja.87.2021.10.07.10.09.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 10:09:56 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 19:09:55 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthew Hagan <mnhagan88@gmail.com>
-Subject: Re: [net-next PATCH 07/13] net: dsa: qca8k: add support for
- mac6_exchange, sgmii falling edge
-Message-ID: <YV8p48rH+H6Ztp3c@Ansuel-xps.localdomain>
-References: <20211006223603.18858-1-ansuelsmth@gmail.com>
- <20211006223603.18858-8-ansuelsmth@gmail.com>
- <YV472otG4JTeppou@lunn.ch>
- <YV71nZsSDEeY97yt@Ansuel-xps.localdomain>
- <YV8lAvzocfvvsA/I@lunn.ch>
+        id S243188AbhJGRPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 13:15:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47398 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S243197AbhJGRPQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 13:15:16 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D2C8D61245;
+        Thu,  7 Oct 2021 17:13:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633626802;
+        bh=qgaRkKylb5I7rL0mEhfxEXR9XIrcqAJxFLzv8e5JG88=;
+        h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+        b=lPcFKMPJUrxSO2zGApX5vGLRmoUwVi1rdOpOD3HfzJbMF+yI9oi2WdKUxwAAvxkju
+         mBDvBA417YhzIJK49U8r65LworeDV+XmeyC3s8I2x0Hbw20xkpzj+yDB2LIMYoOyI+
+         HC0//WOEPilcK42nhhU7OgFBHFHmugMvBWRDpqquR4CIAF7sSQDcOZvCQB/pFKPEUQ
+         dq9bATZJMgXocUJVJkst7F1y2DwsFfQqmwZN1/ixej4FLkorfteMHcc0WQ8NlEs7sq
+         jI23jNUOwTKzWAVE7x7PlEUCYw9x3Lj4Hrn8cpDOM7dbBF5TKbdVW4bK+4zY7GXmh7
+         7q0wwUN5CR8cg==
+Received: by mail-vs1-f48.google.com with SMTP id o124so7559770vsc.6;
+        Thu, 07 Oct 2021 10:13:22 -0700 (PDT)
+X-Gm-Message-State: AOAM533CbuWftBxnJG6O9ueAe27qyoOI7BjntgrTa7rBiCSlWcB9e7wf
+        cKSGK0BvojXf+QAByemInp0jlmg04g8kkxSrMi8=
+X-Google-Smtp-Source: ABdhPJz4d+CxciE86cm0an+klVYy8vZNXeGzVO8rMl/54qPRzymGwVMpiZwmLxviwztCIOJoXCPLvCq5C4v+XIgxJVY=
+X-Received: by 2002:a67:c284:: with SMTP id k4mr5637887vsj.24.1633626802047;
+ Thu, 07 Oct 2021 10:13:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YV8lAvzocfvvsA/I@lunn.ch>
+References: <20210920175647.13008-1-wens@kernel.org> <64f06ddb-cde6-d71a-7920-41c485a1d3fb@arm.com>
+In-Reply-To: <64f06ddb-cde6-d71a-7920-41c485a1d3fb@arm.com>
+Reply-To: wens@kernel.org
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Fri, 8 Oct 2021 01:13:10 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67dixQ7BH+YoBVWEJFup9FdgvrDaCZACEYidPuD4pB7YQ@mail.gmail.com>
+Message-ID: <CAGb2v67dixQ7BH+YoBVWEJFup9FdgvrDaCZACEYidPuD4pB7YQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: nanopi4: decrease Bluetooth UART
+ baud rate
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 07, 2021 at 06:49:06PM +0200, Andrew Lunn wrote:
-> On Thu, Oct 07, 2021 at 03:26:53PM +0200, Ansuel Smith wrote:
-> > On Thu, Oct 07, 2021 at 02:14:18AM +0200, Andrew Lunn wrote:
-> > > On Thu, Oct 07, 2021 at 12:35:57AM +0200, Ansuel Smith wrote:
-> > > > Some device set the switch to exchange the mac0 port with mac6 port. Add
-> > > > support for this in the qca8k driver. Also add support for SGMII rx/tx
-> > > > clock falling edge. This is only present for pad0, pad5 and pad6 have
-> > > > these bit reserved from Documentation.
-> > > > 
-> > > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > > Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
-> > > 
-> > > Who wrote this patch? The person submitting it should be last. If
-> > > Matthew actually wrote it, you want to play with git commit --author=
-> > > to set the correct author.
-> > > 
-> > >    Andrew
-> > 
-> > I wrote it and Matthew did some very minor changes (binding name).
-> > Should I use co-developed by ?
-> 
-> In that case, just reverse the order of the two Signed-off-by, and
-> leave the author information as you.
-> 
->       Andrew
+On Wed, Oct 6, 2021 at 6:49 PM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> On 2021-09-20 18:56, Chen-Yu Tsai wrote:
+> > From: Chen-Yu Tsai <wens@csie.org>
+> >
+> > The RK3399 does not seem to be able to properly generate the required
+> > 64 MHz clock for the UART to operate at 4MBd.
+> >
+> > Drop the baud rate down to 3MBd, which can be used as the clock
+> > controller is able to produce a 48 MHz clock.
+>
+> Hmm, I've been running mine this way (with DMA) for ages now :/
 
-Ok will fix in v2.
+I guess you have extra patches on top for DMA? I sent another patch
+to hook up DMA.
 
--- 
-	Ansuel
+> Looking at clk_summary, clk_uart0_src ends up at 800MHz off CPLL (same
+> as several other significant clocks), with clk_uart0 at an exact 64MHz
+> as a division of that. I stuck a scope on the UART pins of the module
+> and all the edges look nicely lined up to 250ns intervals.
+
+Could you provide a partial dump of /sys/kernel/debug/clk/clk_summary ?
+Just the bits related to uart0 should be enough.
+
+Mine is also running from CPLL, but ends up at 1843200 Hz, which seems
+like the clock rate used for 115200 baud:
+
+ xin24m                              24       24        0    24000000
+        0     0  50000         Y
+    pll_cpll                          1        1        0   800000000
+        0     0  50000         Y
+       cpll                           7       15        0   800000000
+        0     0  50000         Y
+          clk_uart0_src               1        1        0   800000000
+        0     0  50000         Y
+             clk_uart0_div            1        1        0   800000000
+        0     0  50000         Y
+                clk_uart0_frac        1        1        0     1843200
+        0     0  50000         Y
+                   clk_uart0          1        1        0     1843200
+        0     0  50000         Y
+
+I also observe a couple error messages:
+
+Bluetooth: hci0: BCM: failed to write clock (-56)
+Bluetooth: hci0: Failed to set baudrate
+Bluetooth: hci0: BCM: chip id 130
+Bluetooth: hci0: BCM: features 0x0f
+Bluetooth: hci0: BCM4345C5
+Bluetooth: hci0: BCM4345C5 (003.006.006) build 0000
+Bluetooth: hci0: BCM4345C5 'brcm/BCM4345C5.hcd' Patch
+Bluetooth: hci0: BCM: failed to write clock (-56)
+Bluetooth: hci0: BCM4345C5 Ampak_CL1.5 UART 37.4 MHz BT 5.0 [Version:
+Version: 0033.0080]
+Bluetooth: hci0: BCM4345C5 (003.006.006) build 0080
+
+So I think my UART is actually still running at its initial speed.
+
+Another thing is that the Rockchip datasheet says something about the
+denominator has to be 20 times larger than the nominator for a stable clock.
+
+> This is with a 5.11.4 kernel, though - I wonder if the recent fractional
+> divider changes in the clock driver have changed anything?
+
+I tried reverting the three patches but that didn't make a difference.
+
+Regards
+ChenYu
+
+
+>
+> > Fixes: 3e2f0bb72be3 ("arm64: dts: rockchip: Add nanopi4 bluetooth")
+> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> > ---
+> >   arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
+> > index 8c0ff6c96e03..45ff053b119d 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
+> > @@ -699,7 +699,7 @@ bluetooth {
+> >               device-wakeup-gpios = <&gpio2 RK_PD2 GPIO_ACTIVE_HIGH>;
+> >               host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
+> >               shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
+> > -             max-speed = <4000000>;
+> > +             max-speed = <3000000>;
+> >               pinctrl-names = "default";
+> >               pinctrl-0 = <&bt_reg_on_h &bt_host_wake_l &bt_wake_l>;
+> >               vbat-supply = <&vcc3v3_sys>;
+> >
