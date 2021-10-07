@@ -2,140 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7110C425A7D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:15:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53788425A81
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:17:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243527AbhJGSRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 14:17:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54106 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233807AbhJGSRr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:17:47 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95FA6C061570
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 11:15:53 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id z5so15417800ybj.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 11:15:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hxNCZni7OLjbLUM2oQ+zPYdyzTwxKlKSIw1gMRbxwKc=;
-        b=HaA4A6Ta2mUHIBcxZL2CKjoRtG9GcR6ieEqiqwqdPenP1IGuK5WthHbwO3ou61Tnh9
-         IdZm+AhwWUzQTSCgHbQKPmWzZQYr/mbmKac8PrBY5Lc/RuCrMSXsaua/89j3JLwStEy/
-         xgH8m+0bsbtYNUN/XhdgaDjnNxH9xWtwMWdzE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hxNCZni7OLjbLUM2oQ+zPYdyzTwxKlKSIw1gMRbxwKc=;
-        b=6nvGpi65+234dokjoI4tt4F+qU8iB2fA/8kWMHU2XdUO/e2Vu9W3xlmA6K3DmFvSod
-         G9YjtfsAvuqVVmA7+DPgFSt1C3vvZ8ORaI16MQexIhtWP8jjL/4IXCS5RLDMiDZ6Vulg
-         6TSb9Ginr46TFDWqeMfBoehGggrjmUClnOhcqCLf9EnIQnLzuXeTHqkyqFYQvng7gRuv
-         VruxhFAGyhs6l43R7IDSthsyt+1hbUgrQOGk73QxVL+/94l+fy+bhe823KEgQYtuUBAU
-         f0uY0Mbwh/2X83I+3awesULacakl/s14Lf0UCg1vD1/GYcdZsvv+Ebt30Az3Cv/VcRpY
-         DBAg==
-X-Gm-Message-State: AOAM533J8oWDe4HzJTl9tCN/IeDMwStLndyfzIZsk7JzrINrK2mpxfcS
-        kEH2meZgZVZVfwLC1KvPQyR6wowvO6VX9yg+A27WaA==
-X-Google-Smtp-Source: ABdhPJxonSF0ODbOA/KcRix4iq6ySNPKYDrYvWJYF++/VLTpja7FfdjmRMXdslLNYtDIGSEpvodrSddisABnGwahNNI=
-X-Received: by 2002:a25:54c5:: with SMTP id i188mr6584598ybb.43.1633630552920;
- Thu, 07 Oct 2021 11:15:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
- <20210929173343.v2.3.I630340a51130f4582dbe14e42f673b74e0531a2b@changeid>
- <CAE-0n53EBvKv-RdMwiiOsUkb+LOKAKwrpP7cDavx4meA2vbvcA@mail.gmail.com> <CAD=FV=XoOhSNP2EXurkA=G9iG2BnH9VzkvSEiNJ8W71s8N9bgg@mail.gmail.com>
-In-Reply-To: <CAD=FV=XoOhSNP2EXurkA=G9iG2BnH9VzkvSEiNJ8W71s8N9bgg@mail.gmail.com>
-From:   Philip Chen <philipchen@chromium.org>
-Date:   Thu, 7 Oct 2021 11:15:42 -0700
-Message-ID: <CA+cxXhkM9Gzc+0EVapZVu=pJZ3WZawgucG5J2=bokYEJXFNKCQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: sc7180: Support Parade ps8640 edp bridge
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S243518AbhJGSTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 14:19:12 -0400
+Received: from muru.com ([72.249.23.125]:41998 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233750AbhJGSTM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 14:19:12 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id C4AB980C7;
+        Thu,  7 Oct 2021 18:17:48 +0000 (UTC)
+Date:   Thu, 7 Oct 2021 21:17:16 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
+        <linux-omap@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Suman Anna <s-anna@ti.com>
+Subject: Re: [PATCH 1/3] dt-bindings: bus: simple-pm-bus: Make clocks and
+ power-domains optional
+Message-ID: <YV85rKlB79nMC+nq@atomide.com>
+References: <20211007124858.44011-1-tony@atomide.com>
+ <20211007124858.44011-2-tony@atomide.com>
+ <CAMuHMdX3XBA25sUMF2SpfbH7XX5-UpPFj-0nHuwDOv49YWQn+A@mail.gmail.com>
+ <YV8tZP05lAukFc4E@atomide.com>
+ <CAMuHMdUzL7PWrUaO3CeCz7XXm=cmSg4BEZo582cxeTL_YuuETQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUzL7PWrUaO3CeCz7XXm=cmSg4BEZo582cxeTL_YuuETQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+* Geert Uytterhoeven <geert@linux-m68k.org> [211007 17:57]:
+> Hi Tony,
+> 
+> On Thu, Oct 7, 2021 at 7:24 PM Tony Lindgren <tony@atomide.com> wrote:
+> > * Geert Uytterhoeven <geert@linux-m68k.org> [211007 13:27]:
+> > > On Thu, Oct 7, 2021 at 2:49 PM Tony Lindgren <tony@atomide.com> wrote:
+> > > > Even without clocks and power domains configured, simple-pm-bus is still
+> > > > different from simple-bus as simple-pm-bus enables runtime PM for the bus
+> > > > driver.
+> > >
+> > > Which you need to have working Runtime PM for child devices, right? ;-)
+> >
+> > Right. And based on what I remember we simply cannot do pm_runtime_enable()
+> > for simple-bus without breaking tons of devices.
+> 
+> Why not? Do you have an example of what would break?
+> The only reason I created simple-pm-bus was because the DT people
+> objected to adding PM to simple-bus, as they considered it wrong
+> conceptually.  AFAIK this wouldn't have caused any actual breakage.
 
-On Thu, Sep 30, 2021 at 9:22 AM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Wed, Sep 29, 2021 at 9:02 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > > +       pp3300_brij_ps8640: pp3300-brij-ps8640 {
-> > > +               compatible = "regulator-fixed";
-> > > +               status = "okay";
-> > > +               regulator-name = "pp3300_brij_ps8640";
-> > > +
-> > > +               regulator-min-microvolt = <3300000>;
-> > > +               regulator-max-microvolt = <3300000>;
-> > > +
-> > > +               gpio = <&tlmm 32 GPIO_ACTIVE_HIGH>;
-> >
-> > Doesn't this need
-> >
-> >                 enable-active-high;
->
-> Looks like it. Without that it looks like it assumes active low.
-Thanks for catching this.
-I'll fix it in v3.
+Oh OK, then I just remember the reasons wrong for the need for
+adding it as a driver.
 
->
->
-> > > +
-> > > +               pinctrl-names = "default";
-> > > +               pinctrl-0 = <&en_pp3300_edp_brij_ps8640>;
-> > > +
-> > > +               vin-supply = <&pp3300_a>;
-> > > +       };
-> > > +};
-> > > +
-> > > +&dsi0_out {
-> > > +       remote-endpoint = <&ps8640_in>;
-> >
-> > Should this also have data-lanes to be "complete"?
->
-> That's still back in the main trogdor.dtsi, isn't it?
-Yes, I think so.
-Plus, ti-sn65 dts doesn't define data-lanes for input either.
+Regards,
 
->
->
-> > > +edp_brij_i2c: &i2c2 {
-> > > +       status = "okay";
-> > > +       clock-frequency = <400000>;
-> > > +
-> > > +       ps8640_bridge: edp-bridge@8 {
-> >
-> > Just bridge@8 to match ti bridge? Also, is the label used? If not
-> > please drop it.
->
-> I agree with Stephen about it being "bridge@8". Personally I don't
-> mind labels like this even if they're not used since they don't hurt
-> and it creates less churn to add them now, but I won't fight hard to
-> keep them.
-I will make it "bridge@8" to match ti-sn65 dts.
-Meanwhile, can we keep "ps8640_bridge" label to match ti-sn65 dts?
-
->
->
-> > > +               aux_bus: aux-bus {
-> >
-> > Is this label used either?
->
-> Yeah, I'd get rid of this one since there you didn't add it in the
-> sn65dsi86 dtsi file and it seems exceedingly unlikely we'd need it for
-> any reason.
-Sure, I will remove "aux_bus" label in v3.
-
->
-> -Doug
+Tony
