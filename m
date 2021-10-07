@@ -2,136 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA95425AFC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:38:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8E6F425B48
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 21:03:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243744AbhJGSj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 14:39:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59582 "EHLO
+        id S243796AbhJGTFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 15:05:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbhJGSj5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:39:57 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD4DEC061570;
-        Thu,  7 Oct 2021 11:38:03 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id v17so21923793wrv.9;
-        Thu, 07 Oct 2021 11:38:03 -0700 (PDT)
+        with ESMTP id S233903AbhJGTFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 15:05:52 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B479C061570
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 12:03:58 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so8702187ota.6
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 12:03:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=0T4sFmsFD4jLWnAWeMtgvLVvevwwzto8DJfNckqAtjk=;
-        b=DH6fzr+IIzvip9zeeAFecwpDyaHALa4B1Oe0c/V/M91O7gttobD0SPdeyjx95lbLJL
-         W+XMI7LFo1/Yb718Lz5oI6G+nenZ1v4SAKbLSpheS/IMWMAJMQTrgMSP5oUOm5sLNJVD
-         66SXUtnopJLlySa9fWdXU9f06q1GfGykRH4QZezgx1aHDXlRJZORvhUT0p0s0xYOZy0+
-         U0NPIQtE818CunbhYVeyd5/Tx9ElijJBBRhACr9dVw0KCU4BGhOLwezRm0pSZtKTm7Sw
-         lY/R5JldsmD29j9U8/y1Lf96e9XpYnVNnksLNAE4PKvFr8SVR0AmxV0P6a753XU58SUn
-         F8kQ==
+        h=sender:date:from:to:cc:subject:message-id:reply-to:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SxyXdNsyYmV5Tl8eNXZqHd4HMhchmqYT7ZdxvD1AScI=;
+        b=F+Xc/9Vb9mRVWaKbzV/SLflQZt1R0tgoVeb1fEBrn9ac3XQ913oPpkkh63hMaWRIxQ
+         mFbz7KvPHJiQ2J7KbbFuZJAK2PA5ObShO8P7v2ZWyPRB+kGyG6As/Uj81aojQTuVm14O
+         8/6EHgxnuYt7rJ/l2ZxAv2vYKCMnG0W6C631b5oaA5C7VxLDeHkWEGkb0Y4eH6RVTr5i
+         W/3s9LEiSYNIQrvrXAu2o4yRb7/dl1+QjQ9VU905Yxz0mZTkFzraQ6W9NsjowexXOiA7
+         1arUBFBATjrDXKTy9QbLFBFODBxJAEw9NFeMPMRfugKN02uIXCB6tV5Yryu/nmyHyYNf
+         EVxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0T4sFmsFD4jLWnAWeMtgvLVvevwwzto8DJfNckqAtjk=;
-        b=Euzoy1mIDKzi0HXgvPFYYvQ35khSOkhNGS4pkZZi+ye+3H7oGKXeqqio6yHe2DzapK
-         oVtIRTs4wtTOzbhgWB+C++ZFW1wHJpycT+e8RhxGnvFPP6LwAHOIx1yglrOYuqO0j6/P
-         U3zzA1HYhLbiuE422dl/eNFrScjr8rF63j4bhElou1ya38ICzkU+NWPK6cWKLM4MKIG7
-         8M0tYrhfxbZPQWR1KBL8Z/s0sjvUxASVH7dYU1lkScSjghPVpgUB05x8TeU/JLF/Kh1w
-         Bb1h5NWHZgucXBrChrYbWdfBY8HkikiHIUx8RJZYrq9os6XljXp1F9nuP2u+yf8bEGZs
-         ZtKQ==
-X-Gm-Message-State: AOAM533k4Z3lzelYuL1Z5wxnyZ7T+pFZbACOuDd+xgl1Au8G88rgLxIa
-        ANIRRBWm/GW/R+w2OTzOUXM=
-X-Google-Smtp-Source: ABdhPJzJfuDW9EQbVCHx1gflY1tLjMExzGosRt6WHhIO2MXUwwvJLhDGBqt/htKqf6iSgvJNqqHdww==
-X-Received: by 2002:adf:b19b:: with SMTP id q27mr7627454wra.125.1633631882331;
-        Thu, 07 Oct 2021 11:38:02 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id w5sm102868wrq.86.2021.10.07.11.38.01
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :reply-to:references:mime-version:content-disposition:in-reply-to;
+        bh=SxyXdNsyYmV5Tl8eNXZqHd4HMhchmqYT7ZdxvD1AScI=;
+        b=F9R/pSh6m8tw24HxC5HCqgVr0rmW4xnuxs/46PCLC+2ODDoH8o9m6I3XVsLSLth0lX
+         jjBy8YWPeJlMn+8vZ3QGaLagi9jOIIdRIWoKfd4id4CiQpJUy4vPUsPF0FUJAwNhjyqk
+         gdIfMMngwkCW6DQEfFusNHG/seZ0MDA8dfZzUQ8AecFBEFq/LOTa4RbTlyPhoqmCmCKT
+         UicLZtd2jL8f8ne1jWwBHF7KHsyViFmLcMjLA+M76Dgfsz5gliClQV2el92Qx23n9jM8
+         o4d0Swvcs0rVFN+HuSfiNantgdWB6rIEDJPTpXoVy63jVFnnqdaxBVnblzP0E4Baf5un
+         Ll9A==
+X-Gm-Message-State: AOAM5322jtxuG0gj5GRif9GwR4l+FxewgDEuJ+RDwKLRt1BLMbsP/gUU
+        DjIyCgAjaJv+ko7NQzNY4R5adRCRXg==
+X-Google-Smtp-Source: ABdhPJyK026NoRKxTdlamHW752AxIjq919q2Bu/KdeQ+9IgHPzz6O3Stmx8RF8M7aBoy0KhbXfQ/xQ==
+X-Received: by 2002:a9d:1b6f:: with SMTP id l102mr5084375otl.34.1633633437727;
+        Thu, 07 Oct 2021 12:03:57 -0700 (PDT)
+Received: from serve.minyard.net ([47.184.156.158])
+        by smtp.gmail.com with ESMTPSA id v6sm33219ooe.4.2021.10.07.12.03.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 11:38:01 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 20:38:00 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        jonathanh@nvidia.com, catalin.marinas@arm.com, will@kernel.org,
-        perex@perex.cz, tiwai@suse.com, kuninori.morimoto.gx@renesas.com,
-        sharadg@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 13/13] arm64: tegra: Extend APE audio support on
- Jetson platforms
-Message-ID: <YV8+iNu+BFWtUi0k@orome.fritz.box>
-References: <1631551342-25469-1-git-send-email-spujar@nvidia.com>
- <1631551342-25469-14-git-send-email-spujar@nvidia.com>
+        Thu, 07 Oct 2021 12:03:57 -0700 (PDT)
+Sender: Corey Minyard <tcminyard@gmail.com>
+Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:656d:b396:af0f:bc35])
+        by serve.minyard.net (Postfix) with ESMTPSA id 504AB1800F0;
+        Thu,  7 Oct 2021 19:03:56 +0000 (UTC)
+Date:   Thu, 7 Oct 2021 14:03:50 -0500
+From:   Corey Minyard <minyard@acm.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Rob Herring <robh@kernel.org>,
+        openipmi-developer@lists.sourceforge.net,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] ipmi: bt: Add ast2600 compatible string
+Message-ID: <20211007190350.GA16026@minyard.net>
+Reply-To: minyard@acm.org
+References: <20210903015314.177987-1-joel@jms.id.au>
+ <YTe46lyQDfV6OzOc@robh.at.kernel.org>
+ <CACPK8XeC=ZN2SRP+M2pz9RiAPD=chZr9+aifnnY03HAXDQ3xOA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="WYOR3Bx3yFK/LlLF"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1631551342-25469-14-git-send-email-spujar@nvidia.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+In-Reply-To: <CACPK8XeC=ZN2SRP+M2pz9RiAPD=chZr9+aifnnY03HAXDQ3xOA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Oct 07, 2021 at 06:37:00AM +0000, Joel Stanley wrote:
+> On Tue, 7 Sept 2021 at 19:09, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Fri, 03 Sep 2021 11:23:14 +0930, Joel Stanley wrote:
+> > > The AST2600 has the same register set as the previous generation SoCs.
+> > >
+> > > Signed-off-by: Joel Stanley <joel@jms.id.au>
+> > > ---
+> > >  .../devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.txt          | 1 +
+> > >  drivers/char/ipmi/bt-bmc.c                                       | 1 +
+> > >  2 files changed, 2 insertions(+)
+> > >
+> >
+> > Acked-by: Rob Herring <robh@kernel.org>
+> 
+> Corey, can you please merge this one?
 
---WYOR3Bx3yFK/LlLF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Ok, it's in my linux-next branch.
 
-On Mon, Sep 13, 2021 at 10:12:21PM +0530, Sameer Pujar wrote:
-> Extend APE audio support by adding more audio components such as SFC,
-> MVC, AMX, ADX and Mixer. These components can be plugged into an audio
-> path and required processing can be done. ASoC audio-graph based sound
-> driver is used to facilitate this and thus extend sound bindings as
-> well.
->=20
-> The components in the path may require different PCM parameters (such
-> as sample rate, channels or sample size). Depending on the pre-defined
-> audio paths, these can be statically configured with "convert-xxx" DT
-> properties in endpoint subnode. The support for the rate and channel
-> conversion is already available in generic audio-graph driver. Sample
-> size conversion support can be added based on the need in future.
->=20
-> The support is extended for following platforms:
->  * Jertson TX1
->  * Jetson Nano
->  * Jetson TX2
->  * Jetson AGX Xavier
->  * Jetson Xavier NX
->=20
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 1554 ++++++++++++++=
-++++--
->  arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts | 1493 ++++++++++++++=
-+++--
->  .../arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi | 1520 ++++++++++++++=
-+++--
->  arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts |  876 +++++++++++
->  arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts |  876 +++++++++++
->  5 files changed, 5900 insertions(+), 419 deletions(-)
+Thanks,
 
-Applied, thanks.
+-corey
 
-Thierry
-
---WYOR3Bx3yFK/LlLF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmFfPogACgkQ3SOs138+
-s6E0BA//V/eXDLK/uGRMAQbd9X+wxshlGqYWKNNJgBMMyoAm0pmjd9zMOsHzZEZi
-0lgEL7Bdy2BvzUF2KG79yQfyggFZPNLG8eGtSmSrbTtJresRXXHO0R75vN071bF7
-KFYG4rVvYiucFakXV56UaqesjPUJLWW6Gp9XmTkkyBIA+UA4IpOJHoIxF8NZ4Kb5
-37yQfqqweQf9B/eblz699rnZMYlZHKRQh4TXlyav3HiMUOb2JcowF3wLF+nac7mj
-6QsV48xa0gFSgMy9k9KeiAmhS4EYEAsGKbxyrf594U6cfLpXgKFhZv4QJ3w3UZHJ
-mrY9ktzkjDj2fbOqtQ/U5/pMGBa71IJWgdc1/HZbXcvzxQ9y4A6p3143XFLHdw0z
-s7VDJ4teuu4lPaE+LocpWVqXepIUNlvKZzQZOdFMMJSlXOwI+Git+wBT4vS9+tDX
-VDMLvjf+0LOhGtw0gPuFxr3GBnWy+3gwakqVnSnCHZoEvdCo49TPbWOA8GUjfOve
-YWrFw7Om6iQspODn/uNTrtg47sTonx9+6iITIC/o4Ie3+kZHWqm6OxOz5Bx2hQ7T
-dqC2WqbjRCGvYzdAY7fGo+wycz4gGihabgEQ/sjs8J9J/+Pv5Zezwrkda7kc1Al/
-jNG5ZgbLb74oHlXwPtQFtF5DuQ1NCYo25GSOevRXj4fDx24vLro=
-=B2Sx
------END PGP SIGNATURE-----
-
---WYOR3Bx3yFK/LlLF--
+> 
+> Cheers,
+> 
+> Joel
