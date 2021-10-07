@@ -2,349 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E02425366
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 14:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9764A425389
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 14:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241501AbhJGMvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 08:51:21 -0400
-Received: from muru.com ([72.249.23.125]:41878 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241505AbhJGMvN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 08:51:13 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id A819182CA;
-        Thu,  7 Oct 2021 12:49:48 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Suman Anna <s-anna@ti.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms+renesas@verge.net.au>
-Subject: [PATCH 3/3] dt-bindings: bus: ti-sysc: Update to use yaml binding
-Date:   Thu,  7 Oct 2021 15:48:58 +0300
-Message-Id: <20211007124858.44011-4-tony@atomide.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211007124858.44011-1-tony@atomide.com>
-References: <20211007124858.44011-1-tony@atomide.com>
+        id S232897AbhJGM71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 08:59:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34172 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238605AbhJGM70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 08:59:26 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FBABC061762
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 05:57:33 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id y1so3839682plk.10
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 05:57:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vQY2vR3JgZ7UpKkWrQZDehl7P8KiMsXS+BrIiJW4faw=;
+        b=bJomXKg/1nq3R2YS3lQKJ7igUG7a7MxOQThIPFhHbftHvmvrdGqDEIW79PQhyKvxVK
+         qPv1ngrKQOeadlDBNPyU5hcBB1bKVzqkwDZzBIyX0BemoAl5JjRQ2USYjYzBdEJIincc
+         4sCIG3uEdrnrBKtANe13OFMiEYrDpn/BuF0suYziikgWqhH0oRYIFOzbfqVjwyuwVnJE
+         5ZEFj/JJfCERacrVLTV1gn4GeLhwG4YNEtr7/92G5GKbW4FqgSL7YnX0XpXOoPZEi6gK
+         7oCCIbIhjGPLsJuHDK2v2Dcgu94pZH06MxvIuAa8sfL59IHT37o7DmILh7+JWcD+r5dQ
+         kCUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vQY2vR3JgZ7UpKkWrQZDehl7P8KiMsXS+BrIiJW4faw=;
+        b=FaUkjKgfHLA1jR/s5SVHWq6ofcY7jLCcTU3LnFcp+lwFf07tzHcyPb6/XezIBPHycZ
+         ozDurWbnYYbm+BRe6EasQwSrdhr5JlFbXSKxztFGv9o2ZcgO8v6F8xihV1ztgcXxSvTP
+         MxcHvpAF+DRrXAhFzgjZESVMn1ikIx24pTLQ3xOCN5+WcoYb52KC64acd1cmNrqQ95zw
+         MPfoUdyNbXW4hILC/+w+t2Tj06uswiUfihoyAs//4Qqs+C2jDVRb/X0MioTGEvKhLEQh
+         DmzaR5OGEkKQymDBKyVLVElX757DBeWndYz4A9U5jCbXxtMdzJILMWlasL97KZyXvBDw
+         kgZQ==
+X-Gm-Message-State: AOAM531rUshs3Ydn6EXvF04tNQeIwI81a+o51aBo2NsF03cmrSNHZROA
+        5169m49oVdDmZ8Z+oHlamBm6j/ofvCgZ
+X-Google-Smtp-Source: ABdhPJyYuVz4xSiU1qQP1SwuVkloHPNzNlgzKo/0anLbdAkCS6A455j327vkwO03/OU8G/f5B8dbwQ==
+X-Received: by 2002:a17:902:e0c2:b0:13e:7f73:f181 with SMTP id e2-20020a170902e0c200b0013e7f73f181mr3600459pla.10.1633611452428;
+        Thu, 07 Oct 2021 05:57:32 -0700 (PDT)
+Received: from thinkpad ([117.202.189.72])
+        by smtp.gmail.com with ESMTPSA id rm6sm2881121pjb.18.2021.10.07.05.57.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Oct 2021 05:57:31 -0700 (PDT)
+Date:   Thu, 7 Oct 2021 18:27:24 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        robh@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        hemantk@codeaurora.org, bjorn.andersson@linaro.org,
+        sallenki@codeaurora.org, skananth@codeaurora.org,
+        vpernami@codeaurora.org, vbadigan@codeaurora.org
+Subject: Re: [PATCH v8 0/3] Add Qualcomm PCIe Endpoint driver support
+Message-ID: <20211007125724.GA27987@thinkpad>
+References: <20210920065946.15090-1-manivannan.sadhasivam@linaro.org>
+ <20211004041949.GA16442@workstation>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211004041949.GA16442@workstation>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the binding for ti-sysc interconnect target module driver to yaml
-format.
+On Mon, Oct 04, 2021 at 09:49:49AM +0530, Manivannan Sadhasivam wrote:
+> On Mon, Sep 20, 2021 at 12:29:43PM +0530, Manivannan Sadhasivam wrote:
+> > Hello,
+> > 
+> > This series adds support for Qualcomm PCIe Endpoint controller found
+> > in platforms like SDX55. The Endpoint controller is based on the designware
+> > core with additional Qualcomm wrappers around the core.
+> > 
+> > The driver is added separately unlike other Designware based drivers that
+> > combine RC and EP in a single driver. This is done to avoid complexity and
+> > to maintain this driver autonomously.
+> > 
+> > The driver has been validated with an out of tree MHI function driver on
+> > SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
+> > 
+> 
+> Ping on this series! Patchwork says the state is still "New". Both
+> binding and driver patches got enough reviews I believe. Are there any
+> issues pending to be addressed?
+> 
 
-Cc: Rob Herring <robh@kernel.org>
-Cc: Suman Anna <s-anna@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- .../devicetree/bindings/bus/ti-sysc.txt       | 139 ----------------
- .../devicetree/bindings/bus/ti-sysc.yaml      | 150 ++++++++++++++++++
- 2 files changed, 150 insertions(+), 139 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/bus/ti-sysc.txt
- create mode 100644 Documentation/devicetree/bindings/bus/ti-sysc.yaml
+Sorry for the noise. But not seeing any activity on this series is tempting me
+to ping this thread. This series has been under review for almost 3 releases and
+I don't want to miss this one too without any obvious reasons.
 
-diff --git a/Documentation/devicetree/bindings/bus/ti-sysc.txt b/Documentation/devicetree/bindings/bus/ti-sysc.txt
-deleted file mode 100644
---- a/Documentation/devicetree/bindings/bus/ti-sysc.txt
-+++ /dev/null
-@@ -1,139 +0,0 @@
--Texas Instruments sysc interconnect target module wrapper binding
--
--Texas Instruments SoCs can have a generic interconnect target module
--hardware for devices connected to various interconnects such as L3
--interconnect (Arteris NoC) and L4 interconnect (Sonics s3220). The sysc
--is mostly used for interaction between module and PRCM. It participates
--in the OCP Disconnect Protocol but other than that is mostly independent
--of the interconnect.
--
--Each interconnect target module can have one or more devices connected to
--it. There is a set of control registers for managing interconnect target
--module clocks, idle modes and interconnect level resets for the module.
--
--These control registers are sprinkled into the unused register address
--space of the first child device IP block managed by the interconnect
--target module and typically are named REVISION, SYSCONFIG and SYSSTATUS.
--
--Required standard properties:
--
--- compatible	shall be one of the following generic types:
--
--		"ti,sysc"
--		"ti,sysc-omap2"
--		"ti,sysc-omap4"
--		"ti,sysc-omap4-simple"
--
--		or one of the following derivative types for hardware
--		needing special workarounds:
--
--		"ti,sysc-omap2-timer"
--		"ti,sysc-omap4-timer"
--		"ti,sysc-omap3430-sr"
--		"ti,sysc-omap3630-sr"
--		"ti,sysc-omap4-sr"
--		"ti,sysc-omap3-sham"
--		"ti,sysc-omap-aes"
--		"ti,sysc-mcasp"
--		"ti,sysc-dra7-mcasp"
--		"ti,sysc-usb-host-fs"
--		"ti,sysc-dra7-mcan"
--		"ti,sysc-pruss"
--
--- reg		shall have register areas implemented for the interconnect
--		target module in question such as revision, sysc and syss
--
--- reg-names	shall contain the register names implemented for the
--		interconnect target module in question such as
--		"rev, "sysc", and "syss"
--
--- ranges	shall contain the interconnect target module IO range
--		available for one or more child device IP blocks managed
--		by the interconnect target module, the ranges may include
--		multiple ranges such as device L4 range for control and
--		parent L3 range for DMA access
--
--Optional properties:
--
--- ti,sysc-mask	shall contain mask of supported register bits for the
--		SYSCONFIG register as documented in the Technical Reference
--		Manual (TRM) for the interconnect target module
--
--- ti,sysc-midle	list of master idle modes supported by the interconnect
--		target module as documented in the TRM for SYSCONFIG
--		register MIDLEMODE bits
--
--- ti,sysc-sidle	list of slave idle modes supported by the interconnect
--		target module as documented in the TRM for SYSCONFIG
--		register SIDLEMODE bits
--
--- ti,sysc-delay-us	delay needed after OCP softreset before accssing
--			SYSCONFIG register again
--
--- ti,syss-mask	optional mask of reset done status bits as described in the
--		TRM for SYSSTATUS registers, typically 1 with some devices
--		having separate reset done bits for children like OHCI and
--		EHCI
--
--- clocks	clock specifier for each name in the clock-names as
--		specified in the binding documentation for ti-clkctrl,
--		typically available for all interconnect targets on TI SoCs
--		based on omap4 except if it's read-only register in hwauto
--		mode as for example omap4 L4_CFG_CLKCTRL
--
--- clock-names	should contain at least "fck", and optionally also "ick"
--		depending on the SoC and the interconnect target module,
--		some interconnect target modules also need additional
--		optional clocks that can be specified as listed in TRM
--		for the related CLKCTRL register bits 8 to 15 such as
--		"dbclk" or "clk32k" depending on their role
--
--- ti,hwmods	optional TI interconnect module name to use legacy
--		hwmod platform data
--
--- ti,no-reset-on-init	interconnect target module should not be reset at init
--
--- ti,no-idle-on-init	interconnect target module should not be idled at init
--
--- ti,no-idle		interconnect target module should not be idled
--
--Example: Single instance of MUSB controller on omap4 using interconnect ranges
--using offsets from l4_cfg second segment (0x4a000000 + 0x80000 = 0x4a0ab000):
--
--	target-module@2b000 {		/* 0x4a0ab000, ap 84 12.0 */
--		compatible = "ti,sysc-omap2";
--		ti,hwmods = "usb_otg_hs";
--		reg = <0x2b400 0x4>,
--		      <0x2b404 0x4>,
--		      <0x2b408 0x4>;
--		reg-names = "rev", "sysc", "syss";
--		clocks = <&l3_init_clkctrl OMAP4_USB_OTG_HS_CLKCTRL 0>;
--		clock-names = "fck";
--		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
--				 SYSC_OMAP2_SOFTRESET |
--				 SYSC_OMAP2_AUTOIDLE)>;
--		ti,sysc-midle = <SYSC_IDLE_FORCE>,
--				<SYSC_IDLE_NO>,
--				<SYSC_IDLE_SMART>;
--		ti,sysc-sidle = <SYSC_IDLE_FORCE>,
--				<SYSC_IDLE_NO>,
--				<SYSC_IDLE_SMART>,
--				<SYSC_IDLE_SMART_WKUP>;
--		ti,syss-mask = <1>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges = <0 0x2b000 0x1000>;
--
--		usb_otg_hs: otg@0 {
--			compatible = "ti,omap4-musb";
--			reg = <0x0 0x7ff>;
--			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
--				     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
--			usb-phy = <&usb2_phy>;
--			...
--		};
--	};
--
--Note that other SoCs, such as am335x can have multiple child devices. On am335x
--there are two MUSB instances, two USB PHY instances, and a single CPPI41 DMA
--instance as children of a single interconnect target module.
-diff --git a/Documentation/devicetree/bindings/bus/ti-sysc.yaml b/Documentation/devicetree/bindings/bus/ti-sysc.yaml
-new file mode 100644
---- /dev/null
-+++ b/Documentation/devicetree/bindings/bus/ti-sysc.yaml
-@@ -0,0 +1,150 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bus/ti-sysc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments interconnect target module binding
-+
-+maintainers:
-+  - Tony Lindgren <tony@atomide.com>
-+
-+description: |
-+  Texas Instruments SoCs can have a generic interconnect target module
-+  for devices connected to various interconnects such as L3 interconnect
-+  using Arteris NoC, and L4 interconnect using Sonics s3220. This module
-+  is mostly used for interaction between module and Power, Reset and Clock
-+  Manager PRCM. It participates in the OCP Disconnect Protocol, but other
-+  than that it is mostly independent of the interconnect.
-+
-+  Each interconnect target module can have one or more devices connected to
-+  it. There is a set of control registers for managing the interconnect target
-+  module clocks, idle modes and interconnect level resets.
-+
-+  The interconnect target module control registers are sprinkled into the
-+  unused register address space of the first child device IP block managed by
-+  the interconnect target module. Typically the register names are REVISION,
-+  SYSCONFIG and SYSSTATUS.
-+
-+properties:
-+  $nodename:
-+    pattern: "^target-module(@[0-9a-f]+)?$"
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+        - enum:
-+            - ti,sysc-omap2
-+            - ti,sysc-omap2
-+            - ti,sysc-omap4
-+            - ti,sysc-omap4-simple
-+            - ti,sysc-omap2-timer
-+            - ti,sysc-omap4-timer
-+            - ti,sysc-omap3430-sr
-+            - ti,sysc-omap3630-sr
-+            - ti,sysc-omap4-sr
-+            - ti,sysc-omap3-sham
-+            - ti,sysc-omap-aes
-+            - ti,sysc-mcasp
-+            - ti,sysc-dra7-mcasp
-+            - ti,sysc-usb-host-fs
-+            - ti,sysc-dra7-mcan
-+            - ti,sysc-pruss
-+        - const: ti,sysc
-+      - items:
-+        - const: ti,sysc
-+
-+  reg: true
-+
-+  reg-names: true
-+
-+  clocks: true
-+
-+  clock-names: true
-+
-+  power-domains: true
-+
-+  '#address-cells':
-+    enum: [ 1, 2 ]
-+
-+  '#size-cells':
-+    enum: [ 1, 2 ]
-+
-+  ranges: true
-+
-+  ti,sysc-mask:
-+    description: Mask of supported register bits for the SYSCONFIG register
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  ti,sysc-midle:
-+    description: List of hardware supported idle modes
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+  ti,sysc-sidle:
-+    description: List of hardware supported idle modes
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+  ti,syss-mask:
-+    description: Mask of supported register bits for the SYSSTATUS register
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  ti,sysc-delay-us:
-+    description: Delay needed after OCP softreset before accessing SYCONFIG
-+    default: 0
-+    minimum: 0
-+    maximum: 2
-+
-+  ti,no-reset-on-init:
-+    description: Interconnect target module shall not be reset at init
-+    type: boolean
-+
-+  ti,no-idle-on-init:
-+    description: Interconnect target module shall not be idled at init
-+    type: boolean
-+
-+  ti,no-idle:
-+    description: Interconnect target module shall not be idled
-+    type: boolean
-+
-+  ti,hwmods:
-+    description: Interconnect module name to use with legacy hwmod data
-+    $ref: /schemas/types.yaml#/definitions/string
-+    deprecated: true
-+
-+required:
-+  - compatible
-+  - '#address-cells'
-+  - '#size-cells'
-+  - ranges
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    #include <dt-bindings/bus/ti-sysc.h>
-+    #include <dt-bindings/clock/omap4.h>
-+
-+    target-module@2b000 {
-+        compatible = "ti,sysc-omap2", "ti,sysc";
-+        ti,hwmods = "usb_otg_hs";
-+        reg = <0x2b400 0x4>,
-+              <0x2b404 0x4>,
-+              <0x2b408 0x4>;
-+        reg-names = "rev", "sysc", "syss";
-+        clocks = <&l3_init_clkctrl OMAP4_USB_OTG_HS_CLKCTRL 0>;
-+        clock-names = "fck";
-+        ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
-+                         SYSC_OMAP2_SOFTRESET |
-+                         SYSC_OMAP2_AUTOIDLE)>;
-+        ti,sysc-midle = <SYSC_IDLE_FORCE>,
-+                        <SYSC_IDLE_NO>,
-+                        <SYSC_IDLE_SMART>;
-+        ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-+                        <SYSC_IDLE_NO>,
-+                        <SYSC_IDLE_SMART>,
-+                        <SYSC_IDLE_SMART_WKUP>;
-+        ti,syss-mask = <1>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges = <0 0x2b000 0x1000>;
-+    };
--- 
-2.33.0
+Thanks,
+Mani
+
+> Thanks,
+> Mani
+> 
+> > Thanks,
+> > Mani
+> > 
+> > Changes in v8:
+> > 
+> > * Added Reviewed-by tag from Rob for the driver patch
+> > * Rebased on top of v5.15-rc1
+> > 
+> > Changes in v7:
+> > 
+> > * Used existing naming convention for callback functions
+> > * Used active low state for PERST# gpio
+> > 
+> > Changes in v6:
+> > 
+> > * Removed status property in DT and added reviewed tag from Rob
+> > * Switched to _relaxed variants as suggested by Rob
+> > 
+> > Changes in v5:
+> > 
+> > * Removed the DBI register settings that are not needed
+> > * Used the standard definitions available in pci_regs.h
+> > * Added defines for all the register fields
+> > * Removed the left over code from previous iteration
+> > 
+> > Changes in v4:
+> > 
+> > * Removed the active_config settings needed for IPA integration
+> > * Switched to writel for couple of relaxed versions that sneaked in
+> > 
+> > Changes in v3:
+> > 
+> > * Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
+> > * Noticeable changes are:
+> >   - Got rid of _relaxed calls and used readl/writel
+> >   - Got rid of separate TCSR memory region and used syscon for getting the
+> >     register offsets for Perst registers
+> >   - Changed the wake gpio handling logic
+> >   - Added remove() callback and removed "suppress_bind_attrs"
+> >   - stop_link() callback now just disables PERST IRQ
+> > * Added MMIO region and doorbell interrupt to the binding
+> > * Added logic to write MMIO physicall address to MHI base address as it is
+> >   for the function driver to work
+> > 
+> > Changes in v2:
+> > 
+> > * Addressed the comments from Rob on bindings patch
+> > * Modified the driver as per binding change
+> > * Fixed the warnings reported by Kbuild bot
+> > * Removed the PERST# "enable_irq" call from probe()
+> > 
+> > Manivannan Sadhasivam (3):
+> >   dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
+> >     controller
+> >   PCI: qcom-ep: Add Qualcomm PCIe Endpoint controller driver
+> >   MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
+> > 
+> >  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
+> >  MAINTAINERS                                   |  10 +-
+> >  drivers/pci/controller/dwc/Kconfig            |  10 +
+> >  drivers/pci/controller/dwc/Makefile           |   1 +
+> >  drivers/pci/controller/dwc/pcie-qcom-ep.c     | 710 ++++++++++++++++++
+> >  5 files changed, 888 insertions(+), 1 deletion(-)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> >  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
+> > 
+> > -- 
+> > 2.25.1
+> > 
