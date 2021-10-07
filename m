@@ -2,94 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26C9A42599D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:37:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E0B4259CC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243302AbhJGRjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 13:39:41 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:50024
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S242002AbhJGRjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 13:39:39 -0400
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S243150AbhJGRvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 13:51:23 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:26087 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243073AbhJGRvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 13:51:23 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633628969; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=kfORCF2GEFvCeQKcnUI4BSJAbKcW66pq4L84uJV6G5Q=; b=SDrvpF12A9ucwNlQv2DCJgMl3/plKlwaunrh0bbvIZGSqU1CHGuSVf5WoAC72mZ6mkAo53hh
+ PXw4fO22ZuiDkzOwDkaahJqrMNMU1/kx+ip3PiW09UHjtp2dm8KhE8MZemiOlv4bgIVhgca5
+ +D10ECOnRznz5WRJ9YlH/CYwDHU=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 615f3310446c6db0cb55a1b3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 17:49:04
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id CEF0AC43618; Thu,  7 Oct 2021 17:49:03 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 63B023FFD9
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 17:37:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633628264;
-        bh=5flUaf6jKiDLWUPC8SE0c+myQU9KVt7aFY9IwB5v+1Y=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=m0nIQYzxzHZBsy7Q5pXii5iUojo1yyY5uXT88bFBevOjqU6rEyNxv38zZq/BnRPn7
-         RGJLGzV0vIgzMo0FiW0ynHRc/V1s5L4RbPEOXeM+Q/LXPw+aMya+Y+aJsEstgoPSmR
-         jE2sCmrylNTUiwdE6jaUB54CxpYZ/ANOdICbQkedfw+X+wZb6/BEowOp/+3/kjwcRN
-         2aZnhgl7k8p7j5/nhami9KdqiCOf/xP3Pog/j3fJ8aZxQ/5irqIPhMDnspy8z+sva9
-         n9MVpdMW2fHzvq32sp+1eGTA9T+jc047zgFH6T8UNQXe80lM2d1N9cnzc/bYnoHTn1
-         IDc4JmzbmnjcQ==
-Received: by mail-ed1-f70.google.com with SMTP id q26-20020aa7da9a000000b003db531e7acbso2252835eds.22
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 10:37:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=5flUaf6jKiDLWUPC8SE0c+myQU9KVt7aFY9IwB5v+1Y=;
-        b=gUnZeuk3tY84IvXWf1qVdKh7xZwi0He61thXBLQf9Ous6e7Tovpp7XZM0l04IBRGY8
-         qw83fjwo5t2OOR+iRLopQddMzbVFUbpB/zfN5QJ3Vxu4tEyvET74Lfu9EkWYTtdFuuFf
-         mtwCdmenM0NR72T58NW+Ub9WZ9cuWMuUJnLIt5Lr47BlaOKF4Ujz6/Hwcatkjzo41jbe
-         Rz97LP6VeNFTAfM5eUCUpzMwXz50FdzSWmsR9E/Tws2fx8J/8kYNs6GiUip26leBsOIJ
-         zr2awDCJkjOzJS56N/WMsTCzKyIcKoiG1dcdfEEk6WQHjvyy53qPQe+BanpQAK51TH5Q
-         O/PQ==
-X-Gm-Message-State: AOAM532xp4Lvve4pEBZD9dZ9A+Tv2wV/O9n0WHu00mAiQYTl4elkEqwh
-        3Gw5TUdycQ5ia2yYCSy8zXZDvYarKtvmObMsu9rnj9v7JXpSv+CbYJ5wA+nwSgYkB+pfPBG0WiC
-        JJVJo4lvowKcnaUGIUiqOWrPxL5osAtAfLmhs1qM=
-X-Received: by 2002:aa7:dbcf:: with SMTP id v15mr7948895edt.243.1633628264142;
-        Thu, 07 Oct 2021 10:37:44 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxiw5fAi2srcOES1uBrM+2ioQHt4K41K6+prToUJlETyugFBx966hJWqDGKNiOpd+Zl4XJjVg==
-X-Received: by 2002:aa7:dbcf:: with SMTP id v15mr7948871edt.243.1633628264021;
-        Thu, 07 Oct 2021 10:37:44 -0700 (PDT)
-Received: from [192.168.1.24] (xdsl-188-155-186-13.adslplus.ch. [188.155.186.13])
-        by smtp.gmail.com with ESMTPSA id b5sm42732edu.13.2021.10.07.10.37.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 10:37:43 -0700 (PDT)
-Subject: Re: [PATCH v5 0/8] dt-bindings: memory-controllers: ti,gpmc: Convert
- to yaml
-To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
-Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
-        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211007120830.17221-1-rogerq@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <6b90a6fd-001f-a41a-b69f-2bd3ec8a8e26@canonical.com>
-Date:   Thu, 7 Oct 2021 19:37:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20211007120830.17221-1-rogerq@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B52FCC4338F;
+        Thu,  7 Oct 2021 17:48:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B52FCC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
+        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org,
+        linux-pci@vger.kernel.org,
+        Prasad Malisetty <pmaliset@codeaurora.org>
+Subject: [PATCH v12 0/5] Add DT bindings and DT nodes for PCIe and PHY in SC7280
+Date:   Thu,  7 Oct 2021 23:18:38 +0530
+Message-Id: <1633628923-25047-1-git-send-email-pmaliset@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2021 14:08, Roger Quadros wrote:
-> Hi,
-> 
-> This series converts ti,gpmc memory controller and ti,gpmc-nand and
-> ti,gpmc-onenand MTD controller bindings to yaml.
-> 
-> cheers,
-> -roger
-> 
+Changes added in v12:
 
-Hi,
+	* Sorted pipe_clk muxing changes in patch 4 & 5 as per the commit log.
+	  -Suggested by Bjorn.
 
-Although you did not mention it here, it looks like you have some
-dependencies between the patches. Maybe this shall go simply via Rob's tree?
+Changes added in v11:
 
-Best regards,
-Krzysztof
+	* Modified nvme_pwren name as nvme_pwren.
+	* Removed bias-pullup option in nvme_pwren entry [v11 Patch 3/5].
+	* Changed pcie1_default_state name to pcie1_clkreq_n.
+	* Added NULL pointer check for pcie_cfg.
+
+Changes added in v10:
+
+	* v9 [Patch 4/4/] has been split into two separate patches
+	* Addressed all comments in IDP [Patch 3/4] file.
+ 	
+Changes added in v9:
+    * Added fixed regulator entry for nvme.suggested by Stephen Boyd
+    * Added NULL pointer check before accessing ops in pcie probe
+      Suggested by Stephen Boyd
+
+Changes added in v8:
+
+    * Added seperate pinctrl state for NVMe LDO enable pin [v8 P3/4]
+    * Removed pointer initialization for pcie_cfg [v8 P4/4]
+    * Replaced bool pcie_pipe_clk_src with unsigned int:1 [v8 P4/4]
+    * Changed gcc_pcie_1_pipe_clk_src to pipe_clk_src
+
+Changes added in v7:
+
+        * Removed two fallbacks qcom,pcie-sm8250 and snps,dw-pcie.
+        * Replaced compatible method in get_resources_2_7_0 with
+            flag approach suggested by Bjorn Helgaas .
+        * Setting gcc_pcie_1_clk_src as XO in init_2_7_0 for
+          gdsc enable.
+        * Added specific NVMe GPIO entries for SKU1 and SKU2 support
+          in idp.dts and idp2.dts respectively.
+        * Moved pcie_1 and pcie_1_phy board specific entries into common
+          board file sc7280-idp.dtsi file.
+
+Changes in v6:
+
+    * Removed platform check while setting gcc_pcie_1_pipe_clk_src
+          as clk_set_parent will return 0 with nop if platform doesn't
+          need to switch pipe clk source.
+        * Moved wake-n gpio to board specific file sc7280-idp.dtsi
+        * Sorted gpio.h header entry in sc7280.dtsi file
+
+Changes in v5:
+
+        * Re ordered PCIe, PHY nodes in Soc and board specific dtsi files.
+        * Removed ref_clk entry in current patch [PATCH v4 P4/4].
+        * I will add ref clk entry in suspend/ resume commits.
+        * Added boolean flag in Soc specific dtsi file to differentiate
+          SM8250 and SC7280 platforms. based on boolean flag, platforms will handle
+          the pipe clk handling.
+
+Changes in v4 as suggested by Bjorn:
+
+        * Changed pipe clk mux name as gcc_pcie_1_pipe_clk_src.
+        * Changed pipe_ext_src as phy_pipe_clk.
+        * Updated commit message for [PATCH v4 4/4].
+
+Changes in v3:
+        * Changed pipe clock names in dt bindings as pipe_mux and phy_pipe.
+        * Moved reset and NVMe GPIO pin configs into board specific file.
+        * Updated pipe clk mux commit message.
+
+Changes in v2:
+        * Moved pcie pin control settings into IDP file.
+        * Replaced pipe_clk_src with pipe_clk_mux in pcie driver
+        * Included pipe clk mux setting change set in this series
+
+Prasad Malisetty (5):
+  dt-bindings: pci: qcom: Document PCIe bindings for SC7280
+  arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
+  arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
+  PCI: qcom: Add a flag in match data along with ops
+  PCI: qcom: Switch pcie_1_pipe_clk_src after PHY init in SC7280
+
+ .../devicetree/bindings/pci/qcom,pcie.txt          |  17 +++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            |   8 ++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  50 +++++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp2.dts           |   8 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 118 +++++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom.c             |  95 +++++++++++++++--
+ 6 files changed, 285 insertions(+), 11 deletions(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
