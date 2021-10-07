@@ -2,91 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C478425390
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B7754253A8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240778AbhJGNCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 09:02:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51516 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240739AbhJGNCI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 09:02:08 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id E7F6861108;
-        Thu,  7 Oct 2021 13:00:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633611614;
-        bh=n/LyOKYsiHITIBU7f/eNjPxBPJF9qwjnJTyWG8q3j9E=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=Bu3hwGcjunvNC7S3UoZb3OUwyw+7jVcFFRdYukq29C1pE+3ZevWqib5OGWKvMqV0u
-         CBgc2Lw1i9oeqAJte0db6yFRkDDZoZAylg07SOwkm6zhEDiGDAQ/gUMB3Mw/UmPX/z
-         +ZqZr9B+9ERDumH7pCG8oesaGLwoNCFWGrlRXEmUTX8g3myuFdUPbdnn1Lv66sukFo
-         +k3qaj/YJSV9lVJVhLWAGxOiK3Ojpub+xk0d9cqRTB45Pe247AL8eRUhGWSNjh6CTQ
-         YkEP6fpF7HHrl4sCjUcHllQwcDTgw63flOFzZQet+CgHRaYxSbNTwEp1af9XxxzXP8
-         nlpLdBVzFkcMw==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id D415660A39;
-        Thu,  7 Oct 2021 13:00:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S233169AbhJGNIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 09:08:51 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:35348 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233143AbhJGNIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 09:08:51 -0400
+X-UUID: fbc2f5d81ff347659b3219736ff982b2-20211007
+X-UUID: fbc2f5d81ff347659b3219736ff982b2-20211007
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 693638722; Thu, 07 Oct 2021 21:06:46 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 7 Oct 2021 21:06:45 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkcas07.mediatek.inc
+ (172.21.101.84) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 7 Oct
+ 2021 21:06:44 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 7 Oct 2021 21:06:44 +0800
+From:   Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+Subject: [PATCH] dt-bindings: mediatek: add adsp-mbox document
+Date:   Thu, 7 Oct 2021 21:06:41 +0800
+Message-ID: <20211007130641.3589-1-Allen-KH.Cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 0/9] net: add a helpers for loading
- netdev->dev_addr from FW
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <163361161386.30815.7886368181851048182.git-patchwork-notify@kernel.org>
-Date:   Thu, 07 Oct 2021 13:00:13 +0000
-References: <20211007010702.3438216-1-kuba@kernel.org>
-In-Reply-To: <20211007010702.3438216-1-kuba@kernel.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     davem@davemloft.net, netdev@vger.kernel.org, rafael@kernel.org,
-        saravanak@google.com, mw@semihalf.com, andrew@lunn.ch,
-        jeremy.linton@arm.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        heikki.krogerus@linux.intel.com, devicetree@vger.kernel.org,
-        snelson@pensando.io
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+This patch adds document for mediatek adsp mbox
 
-This series was applied to netdev/net-next.git (refs/heads/master)
-by David S. Miller <davem@davemloft.net>:
+Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+---
+ .../bindings/mailbox/mtk,adsp-mbox.yaml       | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
 
-On Wed,  6 Oct 2021 18:06:53 -0700 you wrote:
-> We're trying to make all writes to netdev->dev_addr go via helpers.
-> A lot of places pass netdev->dev_addr to of_get_ethdev_address() and
-> device_get_ethdev_addr() so this set adds new functions which wrap
-> the functionality.
-> 
-> v2 performs suggested code moves, adds a couple additional clean ups
-> on the device property side, and an extra patch converting drivers
-> which can benefit from device_get_ethdev_address().
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v3,1/9] of: net: move of_net under net/
-    https://git.kernel.org/netdev/net-next/c/e330fb14590c
-  - [net-next,v3,2/9] of: net: add a helper for loading netdev->dev_addr
-    https://git.kernel.org/netdev/net-next/c/d466effe282d
-  - [net-next,v3,3/9] ethernet: use of_get_ethdev_address()
-    https://git.kernel.org/netdev/net-next/c/9ca01b25dfff
-  - [net-next,v3,4/9] device property: move mac addr helpers to eth.c
-    https://git.kernel.org/netdev/net-next/c/433baf0719d6
-  - [net-next,v3,5/9] eth: fwnode: change the return type of mac address helpers
-    https://git.kernel.org/netdev/net-next/c/8017c4d8173c
-  - [net-next,v3,6/9] eth: fwnode: remove the addr len from mac helpers
-    https://git.kernel.org/netdev/net-next/c/0a14501ed818
-  - [net-next,v3,7/9] eth: fwnode: add a helper for loading netdev->dev_addr
-    https://git.kernel.org/netdev/net-next/c/d9eb44904e87
-  - [net-next,v3,8/9] ethernet: use device_get_ethdev_address()
-    https://git.kernel.org/netdev/net-next/c/b8eeac565b16
-  - [net-next,v3,9/9] ethernet: make more use of device_get_ethdev_address()
-    https://git.kernel.org/netdev/net-next/c/894b0fb09215
-
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+diff --git a/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
+new file mode 100644
+index 000000000000..d45b93025428
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/mtk,adsp-mbox.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek ADSP mailbox
++
++maintainers:
++  - Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
++
++description: |
++  The MTK ADSP mailbox Inter-Processor Communication (IPC) enables the SoC
++  to ommunicate with ADSP by passing messages through two mailbox channels.
++  The MTK ADSP mailbox IPC also provides the ability for one processor to
++  signal the other processor using interrupts.
++
++properties:
++  compatible:
++    items:
++      - const: mediatek,mt8195-adsp-mbox
++
++  "#mbox-cells":
++    const: 1
++
++  reg:
++    items:
++      - description: adsp mbox0 registers
++      - description: adsp mbox1 registers
++
++  reg-names:
++    items:
++      - const: reg_mbox0 
++      - const: reg_mbox1
++
++  interrupts:
++    items:
++      - description: adsp mbox0 interrupt
++      - description: adsp mbox1 interrupt
++
++  interrupt-names:
++    items:
++      - const: irq_mbox0 
++      - const: irq_mbox1
++
++required:
++  - compatible
++  - "#mbox-cells"
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    adsp_mailbox@adsp_mailbox@10816000 {
++        compatible = "mediatek,mt8195-adsp-mbox";
++        #mbox-cells = <1>;
++        reg = <0 0x10816000 0 0x1000>,
++              <0 0x10817000 0 0x1000>;
++        reg-names = "reg_mbox0", "reg_mbox1";
++        interrupts = <GIC_SPI 702 IRQ_TYPE_LEVEL_HIGH 0>,
++                 <GIC_SPI 703 IRQ_TYPE_LEVEL_HIGH 0>;
++        interrupt-names = "irq_mbox0", "irq_mbox0";
++    };
++
+-- 
+2.18.0
 
