@@ -2,106 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A30F94254E0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:57:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 947134254F9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 16:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241897AbhJGN64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 09:58:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48450 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241745AbhJGN6z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 09:58:55 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C9CC061570
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 06:57:01 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id t8so19523780wri.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 06:57:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kQq0xCGqotFLmmvs4jPCrD6mVz7A9gMb8nAtNV0dxeM=;
-        b=HWsW/9OcJDxgqkkiBU5+qjxZoCSIB1shHRB+Sb9HVtqJ4XUIq8IHStPoon98fq5AlA
-         tQL18prYExD5HuJ/q51xDAIxa73iSTqP+caEJgVhotTekYDxw3GzzTrUzl3xD1kbIbte
-         GSGrDPY7amQU1ZtLPxS+v7aoyzRwH1/x6XGBgrCsOa3k7ygT5YXUoMCJwPORlfJD/VBe
-         RPd70qF/boWR6xWNPKzUrZgvA8SpqW6YnEjut8ZWGpwDtiNsIFb6eyEGdv9/BkgESm1W
-         X1+I/n7PQewysIaWhfp3QoAzDTOdUG/O0FGplrFvZS0GnO5/VSvVehqEaWvq5eBLjzj9
-         o6hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kQq0xCGqotFLmmvs4jPCrD6mVz7A9gMb8nAtNV0dxeM=;
-        b=QyH68OKdm56VA2WEePDQJDp/OJnQEKfj+QeWz3WCBl/UEGkwD8N8lcVVPJRChESkTC
-         DquSwcvxrttkt64c1DNSBcBYiI1+Aao01lT1uTGSp763dgJlMBhgIEfM/rfn1kcTW4i+
-         RwOLGacg/6hkPU5FxY6WPfqWoWEDVOoK1mQXgG/RqhIZsepk2pZhAs59PUOErM2O2Jyy
-         ADff624JxMkfBafwMiU5G+UDXBgUXQaF8cfhRbURB7U63nJ2vFlRkaG0k61rsCr7dwmn
-         ZiqT0evFBsk/uy4byBIbtDWCqismg+ejpB8rTJvDECnDCItJKudVe5888hElkz7X7K97
-         +1fw==
-X-Gm-Message-State: AOAM530N6JR6cUtBFCj1i2u3YTPYFYtCMPUMDkOGfo595sCumKx/Apt3
-        SRtMTsqFfjr3xG+Qbwo5IoybLQ==
-X-Google-Smtp-Source: ABdhPJxHCzaN93g3HhmQUt/+mxJ7EZDf5b2xG9w94uqi//2O64Y6WdJ6bv5skd3oTFllx0TjKqLm7A==
-X-Received: by 2002:adf:c70b:: with SMTP id k11mr5478970wrg.154.1633615020393;
-        Thu, 07 Oct 2021 06:57:00 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id q18sm8800003wmc.7.2021.10.07.06.56.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 06:56:59 -0700 (PDT)
-Subject: Re: [PATCH] ASoC: codec: wcd938x: Add irq config support
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1633614675-27122-1-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <217797a8-b37d-9084-f2de-b9162e21718f@linaro.org>
-Date:   Thu, 7 Oct 2021 14:56:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S241775AbhJGOFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 10:05:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57974 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240542AbhJGOFt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 10:05:49 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 60D0161040;
+        Thu,  7 Oct 2021 14:03:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633615435;
+        bh=FxCAFLlGgK49/2COjsXgG1rVtjEcAsgaFojdvABsXqo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CvUZI27JoscBZGdZ9A6RfsjyOv7+5yiC9bYrhS1AQRCBO591YKc8EM+uKvl2wnBHm
+         sGtXsUs8Dvb/gSQbVcLjLyKOG82Xkis8mSpmlz6ZvQ8w/yWRLcmht/4duU4PpSNi8T
+         YH+OldYxh6AF6hTEtWHyDBJTPzsxQMfZwomxEbBUjM5+HpV7p3pkDWrX22K6nqMWVJ
+         n6jCaedFT//3P7hUkfHRm1BTTF+Dp2SoRYpSnj8le6f96QykH6Cnufzufs41ij+/mO
+         qEEWoTTnq4CRCMSlkwWyvofuwg8cKJ+HTW3QbHMksGyAXOXwvVnktUSotjrr9rP0vB
+         +6qOIaczWzP+w==
+Date:   Thu, 7 Oct 2021 15:03:53 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Alejandro Tafalla <atafalla@dnyon.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        =?iso-8859-1?Q?P=E9ter?= Ujfalusi 
+        <peter.ujfalusi@linux.intel.com>,
+        ~postmarketos/upstreaming@lists.sr.ht, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: sound: max98927: Add reset-gpios
+ optional property
+Message-ID: <YV7+STMCR9VwVwzH@sirena.org.uk>
+References: <cover.1633572679.git.atafalla@dnyon.com>
+ <5004d52da527bf1dd9e5b17e20b2ce50a0b57b5a.1633572679.git.atafalla@dnyon.com>
 MIME-Version: 1.0
-In-Reply-To: <1633614675-27122-1-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="NUQMgpiVZHupYbGL"
+Content-Disposition: inline
+In-Reply-To: <5004d52da527bf1dd9e5b17e20b2ce50a0b57b5a.1633572679.git.atafalla@dnyon.com>
+X-Cookie: Colors may fade.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--NUQMgpiVZHupYbGL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 07/10/2021 14:51, Srinivasa Rao Mandadapu wrote:
-> This patch fixes compilation error in wcd98x codec driver.
-> 
-> Fixes: 045442228868 ("ASoC: codecs: wcd938x: add audio routing and Kconfig")
-> 
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+On Thu, Oct 07, 2021 at 04:38:58AM +0200, Alejandro Tafalla wrote:
+> Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
 
-LGTM,
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+--NUQMgpiVZHupYbGL
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-> ---
->   sound/soc/codecs/Kconfig | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-> index 82ee233..216cea0 100644
-> --- a/sound/soc/codecs/Kconfig
-> +++ b/sound/soc/codecs/Kconfig
-> @@ -1583,6 +1583,7 @@ config SND_SOC_WCD938X_SDW
->   	tristate "WCD9380/WCD9385 Codec - SDW"
->   	select SND_SOC_WCD938X
->   	select SND_SOC_WCD_MBHC
-> +	select REGMAP_IRQ
->   	depends on SOUNDWIRE
->   	select REGMAP_SOUNDWIRE
->   	help
-> 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFe/kgACgkQJNaLcl1U
+h9CPCQf/c8ztQc827+7duxObGTk551NtNF0ANN+oi7Jj8i4cc12kZNRdnATusEp4
+87+//IPw49XR2ecA1z/7vRO6nLWN82hYJg8+maq4mYyC6Iz2jzuyA/Z1EutvNuC3
+jerDjqtvT6UPH5B6p46l9gwdsJQJ9JotNz8jo/YeQBTeTevsa8KG23UqE2dpv3vc
+yz1wpRMo5+IygDns+PbkwaZnTtCSA6y0Fb/wF0YyAn8yt2I/EnRV6FSyO2nxA3Cf
+4loSR5+Lqf5v6TrnZy2wOJ3PyNH0eYqg59Pj7ZQEqEc+91Af1xFm236cuHTajczr
+sevuM75gVsXBmFbhoYu/QBc1eJQHTQ==
+=Ulyj
+-----END PGP SIGNATURE-----
+
+--NUQMgpiVZHupYbGL--
