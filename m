@@ -2,45 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C8CE425F34
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 23:37:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B96C8425F39
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 23:37:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239918AbhJGVji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 17:39:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51210 "EHLO mail.kernel.org"
+        id S241993AbhJGVjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 17:39:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51602 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235775AbhJGVjg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 17:39:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 769C560EBD;
-        Thu,  7 Oct 2021 21:37:41 +0000 (UTC)
+        id S241753AbhJGVjt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 17:39:49 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CD3B961175;
+        Thu,  7 Oct 2021 21:37:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633642662;
-        bh=LnM69uNfSHqFm/JN32p/Z48yLK7e9Udj6Zp+QoLE4+Y=;
+        s=k20201202; t=1633642675;
+        bh=Q/3Zh6BeJ0iOh2f8WH4pqEQ0/pyFSZZFE+3zbz+hEPw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=C/NxVNmC8TapIoPJI/2BXWPniDR3aZwE8q24Or+tcTfs6IevxBGUhzFRzuOEFBYRl
-         EFh5Xw7NSQbr4qtGbh+VyBBgEGcwhfKVVRQ1g4O3UbnTOzsx2O1gqx8Blt2X8osOCT
-         v/oowuF4VLDKA+3saL1ijOiOZ9OCdiRUYuLmmw8CWpCQ6Ty9bkuBSMd4CF7I9J4c9f
-         oc1pmDqtG+WvKBRHqhR1XBIRY1gmIhz6Rc5JuQIk7AD0G23corbH+1l/0rCjCUp+ce
-         746Areb1KOvw/atwBrlphWNvJdQ7yW+Vvtgze98+NX6+PMcAzc4/qqb1gaR1SWh5gI
-         EDTjdn2pucjMQ==
+        b=uH5ZTUDgYLLeQ6DNOL/qeaXP9z8tc0HzqBKxO6xHh2yQZOR3LreWcUd0Yu7r3mkm8
+         Erdg9MED1gPeYR901gUffb/RmGcER8vwGrfsuc48ApRdDhF2c7RPwYpvhIyxjWabAb
+         lBVN3xpp97qqwCJYqyuGaRIuboDebSrkjykmFRCtSMLI0Go0xRDnBy8OcbGjAJuFFh
+         IMe5nJR/aupA2pCgh33BOo+mh8+QMF0TxP+w9RL/DtlYkUsaW7+SUNKZynNi20dNV9
+         jl/B2zgYLh125yuMGLD3wsOqltHiQwPDIUpjj1ls+Y/isIjCaKe/AIIwVp/3tJqV6g
+         wYS59zGy3g1cA==
 From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        perex@perex.cz, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, plai@codeaurora.org,
-        swboyd@chromium.org, srinivas.kandagatla@linaro.org,
-        bgoswami@codeaurora.org, judyhsiao@chromium.org,
-        lgirdwood@gmail.com, rohitkr@codeaurora.org,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, tiwai@suse.com,
-        bjorn.andersson@linaro.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: Re: [PATCH] ASoC: codec: wcd938x: Add irq config support
-Date:   Thu,  7 Oct 2021 22:37:23 +0100
-Message-Id: <163364264608.649699.14778607826601877244.b4-ty@kernel.org>
+To:     =?UTF-8?q?P=C3=A9ter=20Ujfalusi?= <peter.ujfalusi@linux.intel.com>,
+        Alejandro Tafalla <atafalla@dnyon.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>
+Subject: Re: [PATCH v4 0/2] Add reset-gpios handling for max98927
+Date:   Thu,  7 Oct 2021 22:37:28 +0100
+Message-Id: <163364264607.649699.766377916130433507.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <1633614675-27122-1-git-send-email-srivasam@codeaurora.org>
-References: <1633614675-27122-1-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <cover.1633572679.git.atafalla@dnyon.com>
+References: <cover.1633572679.git.atafalla@dnyon.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -48,12 +46,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 7 Oct 2021 19:21:15 +0530, Srinivasa Rao Mandadapu wrote:
-> This patch fixes compilation error in wcd98x codec driver.
+On Thu, 7 Oct 2021 04:38:54 +0200, Alejandro Tafalla wrote:
+> The max98927 codec on some devices (i.e. Xiaomi Mi A2 Lite phone) requires
+> hardware-resetting the codec by driving a reset-gpio. This series adds
+> support for it through an optional reset-gpios property.
 > 
-> Fixes: 045442228868 ("ASoC: codecs: wcd938x: add audio routing and Kconfig")
+> v4:
+> * Correctly assert/deassert the GPIO states
+> * Wait for the i2c port to be ready after reset
+> * Reset device when removed
 > 
-> 
+> [...]
 
 Applied to
 
@@ -61,8 +64,10 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: codec: wcd938x: Add irq config support
-      commit: 214174d9f56c7f81f4860a26b6b8b961a6b92654
+[1/2] ASoC: max98927: Handle reset gpio when probing i2c
+      commit: 4d67dc1998f1890a9d22d03208037075ea9f2562
+[2/2] dt-bindings: sound: max98927: Add reset-gpios optional property
+      commit: b23d3189c038c091adc8de382d20a8f5321645a1
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
