@@ -2,233 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6791E425961
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26C9A42599D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:37:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233707AbhJGR1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 13:27:55 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:59782 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241842AbhJGR1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 13:27:54 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633627560; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=VkS6NmPattbLWc8+MxzPrbJcF68lr+JijAPN1npuoe0=;
- b=ifh7t+OYCCYKdCgMgB+t7GxcKwfmAccAsPoHQM96C5ABgGMCpGEnITUuHdcgff/jgujccKsb
- NJo0iJm0iS98o7zFCWCjF2fQsWcI8y8ROQzGaGT1Yeep+KwxWGp5qq23e2zBLzegVAuwj86U
- ExDPGO9q8z9EbvM/E9AJdghncPU=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 615f2da7de4c4ed385a03948 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 17:25:59
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 61317C4360D; Thu,  7 Oct 2021 17:25:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        id S243302AbhJGRjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 13:39:41 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:50024
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S242002AbhJGRjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 13:39:39 -0400
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1CC90C4338F;
-        Thu,  7 Oct 2021 17:25:57 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 63B023FFD9
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 17:37:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633628264;
+        bh=5flUaf6jKiDLWUPC8SE0c+myQU9KVt7aFY9IwB5v+1Y=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=m0nIQYzxzHZBsy7Q5pXii5iUojo1yyY5uXT88bFBevOjqU6rEyNxv38zZq/BnRPn7
+         RGJLGzV0vIgzMo0FiW0ynHRc/V1s5L4RbPEOXeM+Q/LXPw+aMya+Y+aJsEstgoPSmR
+         jE2sCmrylNTUiwdE6jaUB54CxpYZ/ANOdICbQkedfw+X+wZb6/BEowOp/+3/kjwcRN
+         2aZnhgl7k8p7j5/nhami9KdqiCOf/xP3Pog/j3fJ8aZxQ/5irqIPhMDnspy8z+sva9
+         n9MVpdMW2fHzvq32sp+1eGTA9T+jc047zgFH6T8UNQXe80lM2d1N9cnzc/bYnoHTn1
+         IDc4JmzbmnjcQ==
+Received: by mail-ed1-f70.google.com with SMTP id q26-20020aa7da9a000000b003db531e7acbso2252835eds.22
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 10:37:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5flUaf6jKiDLWUPC8SE0c+myQU9KVt7aFY9IwB5v+1Y=;
+        b=gUnZeuk3tY84IvXWf1qVdKh7xZwi0He61thXBLQf9Ous6e7Tovpp7XZM0l04IBRGY8
+         qw83fjwo5t2OOR+iRLopQddMzbVFUbpB/zfN5QJ3Vxu4tEyvET74Lfu9EkWYTtdFuuFf
+         mtwCdmenM0NR72T58NW+Ub9WZ9cuWMuUJnLIt5Lr47BlaOKF4Ujz6/Hwcatkjzo41jbe
+         Rz97LP6VeNFTAfM5eUCUpzMwXz50FdzSWmsR9E/Tws2fx8J/8kYNs6GiUip26leBsOIJ
+         zr2awDCJkjOzJS56N/WMsTCzKyIcKoiG1dcdfEEk6WQHjvyy53qPQe+BanpQAK51TH5Q
+         O/PQ==
+X-Gm-Message-State: AOAM532xp4Lvve4pEBZD9dZ9A+Tv2wV/O9n0WHu00mAiQYTl4elkEqwh
+        3Gw5TUdycQ5ia2yYCSy8zXZDvYarKtvmObMsu9rnj9v7JXpSv+CbYJ5wA+nwSgYkB+pfPBG0WiC
+        JJVJo4lvowKcnaUGIUiqOWrPxL5osAtAfLmhs1qM=
+X-Received: by 2002:aa7:dbcf:: with SMTP id v15mr7948895edt.243.1633628264142;
+        Thu, 07 Oct 2021 10:37:44 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxiw5fAi2srcOES1uBrM+2ioQHt4K41K6+prToUJlETyugFBx966hJWqDGKNiOpd+Zl4XJjVg==
+X-Received: by 2002:aa7:dbcf:: with SMTP id v15mr7948871edt.243.1633628264021;
+        Thu, 07 Oct 2021 10:37:44 -0700 (PDT)
+Received: from [192.168.1.24] (xdsl-188-155-186-13.adslplus.ch. [188.155.186.13])
+        by smtp.gmail.com with ESMTPSA id b5sm42732edu.13.2021.10.07.10.37.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Oct 2021 10:37:43 -0700 (PDT)
+Subject: Re: [PATCH v5 0/8] dt-bindings: memory-controllers: ti,gpmc: Convert
+ to yaml
+To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
+Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
+        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211007120830.17221-1-rogerq@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <6b90a6fd-001f-a41a-b69f-2bd3ec8a8e26@canonical.com>
+Date:   Thu, 7 Oct 2021 19:37:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <20211007120830.17221-1-rogerq@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Thu, 07 Oct 2021 22:55:57 +0530
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
-        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
-        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
-        manivannan.sadhasivam@linaro.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v11 4/5] PCI: qcom: Add a flag in match data along with
- ops
-In-Reply-To: <20211005192131.GA1111392@bhelgaas>
-References: <20211005192131.GA1111392@bhelgaas>
-Message-ID: <f06496757db7a5ba41c94ff14e9c2ef9@codeaurora.org>
-X-Sender: pmaliset@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-10-06 00:51, Bjorn Helgaas wrote:
-> On Wed, Oct 06, 2021 at 12:12:38AM +0530, Prasad Malisetty wrote:
->> Add pipe_clk_need_muxing flag in match data and configure
->> If the platform needs to switch pipe_clk_src.
->> 
->> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
->> ---
->>  drivers/pci/controller/dwc/pcie-qcom.c | 70 
->> ++++++++++++++++++++++++++++------
->>  1 file changed, 59 insertions(+), 11 deletions(-)
->> 
->> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c 
->> b/drivers/pci/controller/dwc/pcie-qcom.c
->> index 8a7a300..1d7a9cb 100644
->> --- a/drivers/pci/controller/dwc/pcie-qcom.c
->> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> @@ -189,6 +189,11 @@ struct qcom_pcie_ops {
->>  	int (*config_sid)(struct qcom_pcie *pcie);
->>  };
->> 
->> +struct qcom_pcie_cfg {
->> +	const struct qcom_pcie_ops *ops;
->> +	unsigned int pipe_clk_need_muxing:1;
->> +};
+On 07/10/2021 14:08, Roger Quadros wrote:
+> Hi,
 > 
-> Thanks for splitting this up; it's 90% of the way there.
+> This series converts ti,gpmc memory controller and ti,gpmc-nand and
+> ti,gpmc-onenand MTD controller bindings to yaml.
 > 
-> It would be better if this patch added only the definition and use of
-> qcom_pcie_cfg:
+> cheers,
+> -roger
 > 
->   +struct qcom_pcie_cfg {
->   +     const struct qcom_pcie_ops *ops;
->   +};
-> 
-> and then the subsequent patch added the clock muxing stuff:
-> 
->    struct qcom_pcie_cfg {
->   +	unsigned int pipe_clk_need_muxing:1;
-> 
->    struct qcom_pcie {
->   +	unsigned int pipe_clk_need_muxing:1;
-> 
->    static const struct qcom_pcie_cfg sc7280_cfg = {
->   +	.pipe_clk_need_muxing = true,
-> 
->   static int qcom_pcie_probe(struct platform_device *pdev)
->   +	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
-> 
-> That way everything related to pipe_clk_need_muxing would be in a
-> single patch.
-> 
->>  struct qcom_pcie {
->>  	struct dw_pcie *pci;
->>  	void __iomem *parf;			/* DT parf */
->> @@ -197,6 +202,7 @@ struct qcom_pcie {
->>  	struct phy *phy;
->>  	struct gpio_desc *reset;
->>  	const struct qcom_pcie_ops *ops;
->> +	unsigned int pipe_clk_need_muxing:1;
->>  };
->> 
->>  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
->> @@ -1456,6 +1462,39 @@ static const struct qcom_pcie_ops ops_1_9_0 = {
->>  	.config_sid = qcom_pcie_config_sid_sm8250,
->>  };
->> 
-Thanks Bjorn, Agree on it. I will incorporate the changes in next patch 
-version.
 
--Prasad
+Hi,
 
->> +static const struct qcom_pcie_cfg apq8084_cfg = {
->> +	.ops = &ops_1_0_0,
->> +};
->> +
->> +static const struct qcom_pcie_cfg ipq8064_cfg = {
->> +	.ops = &ops_2_1_0,
->> +};
->> +
->> +static const struct qcom_pcie_cfg msm8996_cfg = {
->> +	.ops = &ops_2_3_2,
->> +};
->> +
->> +static const struct qcom_pcie_cfg ipq8074_cfg = {
->> +	.ops = &ops_2_3_3,
->> +};
->> +
->> +static const struct qcom_pcie_cfg ipq4019_cfg = {
->> +	.ops = &ops_2_4_0,
->> +};
->> +
->> +static const struct qcom_pcie_cfg sdm845_cfg = {
->> +	.ops = &ops_2_7_0,
->> +};
->> +
->> +static const struct qcom_pcie_cfg sm8250_cfg = {
->> +	.ops = &ops_1_9_0,
->> +};
->> +
->> +static const struct qcom_pcie_cfg sc7280_cfg = {
->> +	.ops = &ops_1_9_0,
->> +	.pipe_clk_need_muxing = true,
->> +};
->> +
->>  static const struct dw_pcie_ops dw_pcie_ops = {
->>  	.link_up = qcom_pcie_link_up,
->>  	.start_link = qcom_pcie_start_link,
->> @@ -1467,6 +1506,7 @@ static int qcom_pcie_probe(struct 
->> platform_device *pdev)
->>  	struct pcie_port *pp;
->>  	struct dw_pcie *pci;
->>  	struct qcom_pcie *pcie;
->> +	const struct qcom_pcie_cfg *pcie_cfg;
->>  	int ret;
->> 
->>  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
->> @@ -1488,7 +1528,14 @@ static int qcom_pcie_probe(struct 
->> platform_device *pdev)
->> 
->>  	pcie->pci = pci;
->> 
->> -	pcie->ops = of_device_get_match_data(dev);
->> +	pcie_cfg = of_device_get_match_data(dev);
->> +	if (!pcie_cfg || !pcie_cfg->ops) {
->> +		dev_err(dev, "Invalid platform data\n");
->> +		return NULL;
->> +	}
->> +
->> +	pcie->ops = pcie_cfg->ops;
->> +	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
->> 
->>  	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
->>  	if (IS_ERR(pcie->reset)) {
->> @@ -1545,16 +1592,17 @@ static int qcom_pcie_probe(struct 
->> platform_device *pdev)
->>  }
->> 
->>  static const struct of_device_id qcom_pcie_match[] = {
->> -	{ .compatible = "qcom,pcie-apq8084", .data = &ops_1_0_0 },
->> -	{ .compatible = "qcom,pcie-ipq8064", .data = &ops_2_1_0 },
->> -	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ops_2_1_0 },
->> -	{ .compatible = "qcom,pcie-apq8064", .data = &ops_2_1_0 },
->> -	{ .compatible = "qcom,pcie-msm8996", .data = &ops_2_3_2 },
->> -	{ .compatible = "qcom,pcie-ipq8074", .data = &ops_2_3_3 },
->> -	{ .compatible = "qcom,pcie-ipq4019", .data = &ops_2_4_0 },
->> -	{ .compatible = "qcom,pcie-qcs404", .data = &ops_2_4_0 },
->> -	{ .compatible = "qcom,pcie-sdm845", .data = &ops_2_7_0 },
->> -	{ .compatible = "qcom,pcie-sm8250", .data = &ops_1_9_0 },
->> +	{ .compatible = "qcom,pcie-apq8084", .data = &apq8084_cfg },
->> +	{ .compatible = "qcom,pcie-ipq8064", .data = &ipq8064_cfg },
->> +	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ipq8064_cfg },
->> +	{ .compatible = "qcom,pcie-apq8064", .data = &ipq8064_cfg },
->> +	{ .compatible = "qcom,pcie-msm8996", .data = &msm8996_cfg },
->> +	{ .compatible = "qcom,pcie-ipq8074", .data = &ipq8074_cfg },
->> +	{ .compatible = "qcom,pcie-ipq4019", .data = &ipq4019_cfg },
->> +	{ .compatible = "qcom,pcie-qcs404", .data = &ipq4019_cfg },
->> +	{ .compatible = "qcom,pcie-sdm845", .data = &sdm845_cfg },
->> +	{ .compatible = "qcom,pcie-sm8250", .data = &sm8250_cfg },
->> +	{ .compatible = "qcom,pcie-sc7280", .data = &sc7280_cfg },
->>  	{ }
->>  };
->> 
->> --
->> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
->> Forum,
->> a Linux Foundation Collaborative Project
->> 
+Although you did not mention it here, it looks like you have some
+dependencies between the patches. Maybe this shall go simply via Rob's tree?
+
+Best regards,
+Krzysztof
