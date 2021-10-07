@@ -2,94 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E484F425A28
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:59:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA3C425A2E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:00:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243366AbhJGSBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 14:01:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50204 "EHLO
+        id S243408AbhJGSCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 14:02:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243325AbhJGSBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:01:48 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC3AC061570
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 10:59:54 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id u20-20020a9d7214000000b0054e170300adso8429655otj.13
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 10:59:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=R7oz/IASrAb/4S/A1hee4Ri/gQz0oKdB3ob6dMUeA4I=;
-        b=JvGo9D9xRiy8w/STgotFKvcJot6b4pk0BA8Kl5UxeFRlGy7KLQTPBd9FMo2O8BkKmI
-         YkjaEgVWvN6bFfcd9vjw5/fZfb3GH2zaXJVZ2GlrBILlTcAV2eJlZJpqbosYgNqQAsoR
-         9LiTE2MTlB2FBiwHuPUVl9VEPQk9DV03+XJzY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=R7oz/IASrAb/4S/A1hee4Ri/gQz0oKdB3ob6dMUeA4I=;
-        b=uOqeS/woK9Nj9hvouMcbSH1LzH9Et+k2YwAQGwOIHKKMiFk7Q+wI3Eox+TGTRN1YL8
-         U4Tcu5aeyd2/QQ9aEmiKsGogJzl3KFh5VHpFU4cc7HpRMdQErd+U3TTBs1xd3Li8OZ4R
-         6O24nEiBuPRe5Ov+NxM37rVIPOAMnsuMRpQUTphCYJcTf6Qs5W8bYs5JpCSRdxe/pCO+
-         pX0e60chs/Oa2zPMED3lmt9Dub/T7QdQXDzXDcLQYU4SnwO4AJKtDMZLdymQvhAv2s0+
-         wVShQz2laiGIk21ptNijR4ZxajQx7kIG4M8FmNi30PlG8mFILWr11wFeLAj6G9B2Yoiy
-         2Biw==
-X-Gm-Message-State: AOAM533amhEOUvkaHDKF+4r5+offgCj6cGuQQXzSifeJu2gQ8k/jWMR3
-        vXWRHu/9LMA6mKoNKVfU5il59suQl8R6xQ9evXd3jg==
-X-Google-Smtp-Source: ABdhPJyShabx+Bv1Ts3hPeR1WVsMR/XNDLbLDJ40g/qGwpZoSFC/DiaaGOf5FZHOhggTg5HxhlGAhw7oD3ncFoWjMX0=
-X-Received: by 2002:a05:6830:1c2e:: with SMTP id f14mr4647448ote.159.1633629593547;
- Thu, 07 Oct 2021 10:59:53 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 7 Oct 2021 13:59:53 -0400
+        with ESMTP id S242977AbhJGSCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:02:42 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF717C061570;
+        Thu,  7 Oct 2021 11:00:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=IvYUNBHe87N2UV2hqOHOkd/I2jVQb+ixxwyqeQZ6J7s=; b=ZlH8EaZGnIhsPrECEC180CTMv5
+        oiiUHk4qdo3HfcOXDxg1mBn2UG+QM58u9Has5AMqQqxmYnnDvylLdT94Sa3lWHScREXuT7n385a0L
+        4asVaIwyhu+aydftoHk2hTKS+yyfc4MTswZui3Wa0JHn+Q3jta7C8h7KO0ZsIysc2f90=;
+Received: from p200300ccff1124001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff11:2400:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mYXh9-0004VK-DM; Thu, 07 Oct 2021 20:00:39 +0200
+Date:   Thu, 7 Oct 2021 20:00:38 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH V2] ARM: dts: omap36xx: Remove turbo mode for 1GHz
+ variants
+Message-ID: <20211007200038.58833d60@aktux>
+In-Reply-To: <CAHCN7x+TdPb0UthQ9CeQL_sWwJmRK++M1kUXZVvCcj8anAFqRQ@mail.gmail.com>
+References: <20210109170103.1249838-1-aford173@gmail.com>
+        <20211001095404.41f73d88@aktux>
+        <C0A84970-0AAC-42E7-8E0F-4D165F0C9551@goldelico.com>
+        <CAHCN7x+TdPb0UthQ9CeQL_sWwJmRK++M1kUXZVvCcj8anAFqRQ@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <1633614519-26680-3-git-send-email-srivasam@codeaurora.org>
-References: <1633614519-26680-1-git-send-email-srivasam@codeaurora.org> <1633614519-26680-3-git-send-email-srivasam@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 7 Oct 2021 13:59:53 -0400
-Message-ID: <CAE-0n51qO1q5ZF-fAf2Gma9a2B+iSyoQnJdJ8Fnmsz+DG0rwPg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi
- pinctrl compatible
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-10-07 06:48:38)
-> Add device tree binding compatible name for Qualcomm SC7280 LPASS LPI pinctrl driver.
->
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
->  Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-> index e47ebf9..578b283 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-> @@ -16,7 +16,9 @@ description: |
->
->  properties:
->    compatible:
-> -    const: qcom,sm8250-lpass-lpi-pinctrl
-> +    enum:
-> +      - qcom,sc7280-lpass-lpi-pinctrl
-> +      - qcom,sm8250-lpass-lpi-pinctrl
+On Sat, 2 Oct 2021 07:12:05 -0500
+Adam Ford <aford173@gmail.com> wrote:
 
-I suspect we need to split the binding because the function list needs
-to change. Can you make a whole new file that's probably largely a copy
-of this file and/or extract the common bits into a meta schema and
-include that in both the files? Then the function list can be different
-and the clock property can be omitted in the sc7280 file.
+> On Fri, Oct 1, 2021 at 4:59 AM H. Nikolaus Schaller <hns@goldelico.com> wrote:
+> >
+> >
+> >  
+> > > Am 01.10.2021 um 09:54 schrieb Andreas Kemnade <andreas@kemnade.info>:
+> > >
+> > > On Sat,  9 Jan 2021 11:01:03 -0600
+> > > Adam Ford <aford173@gmail.com> wrote:
+> > >  
+> > >> Previously, the 1GHz variants were marked as a turbo,
+> > >> because that variant has reduced thermal operating range.
+> > >>
+> > >> Now that the thermal throttling is in place, it should be
+> > >> safe to remove the turbo-mode from the 1GHz variants, because
+> > >> the CPU will automatically slow if the thermal limit is reached.
+> > >>
+> > >> Signed-off-by: Adam Ford <aford173@gmail.com>
+> > >> ---
+> > >> V2:  The orignal patch had the wrong file added. Add the omap36xx.dtsi
+> > >>  
+> > > hmm, I somehow expected that there is a revert of this thing going
+> > > through. But now, the turbo-mode is still missing  
+> >
+> > tagging by turbo-mode means the OPP is *disabled* by default and
+> > needs to be enabled actively.
+> >  
+> > > and I understood the
+> > > revert is only in Nikolaus' trees.  
+> >
+> > It is just a revert for the gta04a5 because I think it is the only board
+> > which is affected (maybe it would need SmartReflex in operation to
+> > fine tune the OPPs compared to the generic table). Therefore I have
+> > a patch which adds turbo-mode to the gta04a5.dts
+> >  
+> > > The 1Ghz mode was working for some
+> > > time but does not anymore. Is it just me or do others also have the
+> > > same problems?  
+> >
+> > That would be interesting to know.
+> >  
+> 
+> What version are you seeing the break?  It's working for me on 5.15.y branch
+> 
+> # cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies
+> 300000 600000 800000 1000000
+> # uname -a
+> Linux buildroot 5.14.9-00260-g70248e7b378b-dirty #1 SMP Sat Oct 2
+> 06:56:02 CDT 2021 armv7l GNU/Linux
+> #
+> 
+
+I see this one: I remember there was also a discussion about proper
+handling of that but I do not remember the final result:
+
+Author: H. Nikolaus Schaller <hns@goldelico.com>
+Date:   Mon Dec 2 22:10:55 2019 +0100
+
+    Revert "ARM: OMAP2+: Fix warnings with broken omap2_set_init_voltage()"
+    
+    This reverts commit cf395f7ddb9ebc6b2d28d83b53d18aa4e7c19701.
+    
+    This patch is in conflict with 1GHz OPP.
+
+
+
+
+commit ae44b701fb6afb2be62defff590531e3b0632772
+Author: H. Nikolaus Schaller <hns@goldelico.com>
+Date:   Sat Apr 10 16:59:53 2021 +0200
+
+    ARM: DTS: gta04a5: disable 1GHz OPP again because it is not reliable
+    
+    To enable on a running system:
+    
+    echo 1 >/sys/devices/system/cpu/cpufreq/boost
+    
+    The symptom can be spurious hangs and virtual paging error,
+    kernel panics and strange things.
+
+on top of 5.13-rcX in Nikolaus trees.
+
+Regards,
+Andreas
