@@ -2,75 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63683425861
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 18:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06EFD42588B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 18:57:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242889AbhJGQvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 12:51:05 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:54680 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242827AbhJGQvD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 12:51:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=K1pNxZtqLLgIwOkunNdpRqqwnHYphnkviPFOPxcGXU4=; b=Rxr8aMFIyN/YJ83Sty0Iv50PAL
-        jlB1fO+QAOaN/bqBlSK9X2nUNE6Ob1i5GcgQz4dNd9ONjF9ifkB4BXRQdAgMRt3BgVDkSGMkXCOe8
-        0QC27dlh3KgoMicJ1sBIl8Q/EN7zLKxHpeK59Iij83ZHazSmeJX1kigQ3CKMkoyi0IIE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mYWZu-009yNO-4q; Thu, 07 Oct 2021 18:49:06 +0200
-Date:   Thu, 7 Oct 2021 18:49:06 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthew Hagan <mnhagan88@gmail.com>
-Subject: Re: [net-next PATCH 07/13] net: dsa: qca8k: add support for
- mac6_exchange, sgmii falling edge
-Message-ID: <YV8lAvzocfvvsA/I@lunn.ch>
-References: <20211006223603.18858-1-ansuelsmth@gmail.com>
- <20211006223603.18858-8-ansuelsmth@gmail.com>
- <YV472otG4JTeppou@lunn.ch>
- <YV71nZsSDEeY97yt@Ansuel-xps.localdomain>
+        id S242921AbhJGQ7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 12:59:24 -0400
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:35596 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242927AbhJGQ7R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 12:59:17 -0400
+Received: by mail-ua1-f42.google.com with SMTP id q13so4748069uaq.2;
+        Thu, 07 Oct 2021 09:57:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YHGIoV7Hfbbu/9BkiOkHuK+t9qYG8/aGn3949dx2OyM=;
+        b=QLi+Fm0rweEEApstMctjejtxx2qHOoEvsmtm7CRjkOWjMJKgCUJd2XERwXo06VWoWd
+         Lz61q/AIyhx0FZdYG5jgFC2Aogm3ucWzC4G0jYSftdnO2jTcSjAFH40HaEUprkFUgpBw
+         E0uI24vXHLV8X+mY2HpM9sEV4UEHqXlxyMx39mJLy+pV0sl7zAKEvxc74en62m4pm9Iu
+         XXZ5cipFy/4EvoZ2a+KUljaqsULCTNliC9yP0SMdLUSrzELw9aR2UuQy6OIivsDE9+B/
+         uN5CuzGGXC/UgpDI7F5sAdYrMO4p1WZqMgzgpPS/qxXIJj4RsAa3n19zg+UJabPx5D5y
+         FZqA==
+X-Gm-Message-State: AOAM530L8vp6YOOjUuQFf+P/4F5UsiOk4STld67ixvdxINXOQLEVuJzd
+        +mSS68LuPCXV3KXXdfBrx1n+VfExO4niOMuW3b/QgZGhF/g=
+X-Google-Smtp-Source: ABdhPJy8M36Q04+A6uhVYWTeSIdm4xbLl8phJgcuCl+qtwaJrAjH15v35YHy4Ust53D6BLtTPq8G+zt8kC2Sr8t4Mvg=
+X-Received: by 2002:ab0:311a:: with SMTP id e26mr6017528ual.122.1633625842202;
+ Thu, 07 Oct 2021 09:57:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YV71nZsSDEeY97yt@Ansuel-xps.localdomain>
+References: <20210930121630.17449-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210930121630.17449-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210930121630.17449-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 7 Oct 2021 18:57:11 +0200
+Message-ID: <CAMuHMdVm5gYFKZa=4jSm+GAsMYRUFwXjjXNhr16Z-ROVzpsZbA@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/4] dt-bindings: pincfg-node: Add "output-impedance" property
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 07, 2021 at 03:26:53PM +0200, Ansuel Smith wrote:
-> On Thu, Oct 07, 2021 at 02:14:18AM +0200, Andrew Lunn wrote:
-> > On Thu, Oct 07, 2021 at 12:35:57AM +0200, Ansuel Smith wrote:
-> > > Some device set the switch to exchange the mac0 port with mac6 port. Add
-> > > support for this in the qca8k driver. Also add support for SGMII rx/tx
-> > > clock falling edge. This is only present for pad0, pad5 and pad6 have
-> > > these bit reserved from Documentation.
-> > > 
-> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
-> > 
-> > Who wrote this patch? The person submitting it should be last. If
-> > Matthew actually wrote it, you want to play with git commit --author=
-> > to set the correct author.
-> > 
-> >    Andrew
-> 
-> I wrote it and Matthew did some very minor changes (binding name).
-> Should I use co-developed by ?
+Hi Prabhakar,
 
-In that case, just reverse the order of the two Signed-off-by, and
-leave the author information as you.
+On Thu, Sep 30, 2021 at 2:17 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> On RZ/G2L SoC for Group-B pins, output impedance can be configured.
+> This patch documents "output-impedance" property in pincfg-node.yaml so
+> that other platforms requiring such feature can make use of this property.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-      Andrew
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> @@ -114,6 +114,10 @@ properties:
+>      description: enable output on a pin without actively driving it
+>        (such as enabling an output buffer)
+>
+> +  output-impedance:
+
+output-impedance-ohms (ugh, the standard suffix is plural)
+
+Yes, I know only one other property has a standard unit suffix from
+dt-schema/schemas/property-units.yaml. Should we add properties
+including standard unit suffixes, and deprecate the old ones?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: set the pins output impedance at most X ohm
+> +
+>    output-low:
+>      type: boolean
+>      description: set the pin to output mode with low level
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
