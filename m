@@ -2,190 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39C0F425AC8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D00425AD4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:32:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbhJGScs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 14:32:48 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:38260
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231340AbhJGScr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:32:47 -0400
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 94E2640011
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 18:30:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633631451;
-        bh=udvQb5YkJZw9BC1VpFEKFml8jvra6kBTS8xwiHMdWjo=;
-        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=PidBQAMKAqlqRGuycfRit5J9xXYiA/nbivBPe8xwK/0vJ6rX3lATVTM8NVfhXsDe2
-         d516+gs5IuCR+JyuoEgA6fSLW4fonQF6202cNhgDQslyyx/nwoLwcH24bt4uWbxeUn
-         YwgHykYX70QzRQh2s/k0dNM+f8mzhDWjGtKyxJDT1jx91aUUgmDsWq/T9h/E7Hsxr2
-         n/+kaEjlfeevta+jCQNBQXaXaYrwf6o/uA+laN5I7lnhr1ofdteks7Zbe0bZpfWMbU
-         p6qw9R3X8WiGRMOIi/wg3qYle/2fIbvwQ0eRcSaoCGcZFDgrjGZ2wKCPcoGE6t/cnM
-         l6Q9JjRnhehkw==
-Received: by mail-wr1-f70.google.com with SMTP id f11-20020adfc98b000000b0015fedc2a8d4so5412980wrh.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 11:30:51 -0700 (PDT)
+        id S243680AbhJGSeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 14:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58208 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233598AbhJGSet (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:34:49 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7616C061570;
+        Thu,  7 Oct 2021 11:32:55 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id r7so21864821wrc.10;
+        Thu, 07 Oct 2021 11:32:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=BrYFk3n3wKlXA8WLTss5loXYswBXAXQcm0uu3iwx1oI=;
+        b=MsmiKmM5Xym6tqTIRo1kiphYf5bA1ylKLWS+V/xinVqK4hzPC6mYF8MnSUtIlH6DNV
+         RIt82LI/xZTYqZXJO01GpviNeRI6Yw3JUYGSFseeu4zog29LlNXUMl/MLCG2idIB5L8D
+         CjOaOzo5oK1/HTA3mta6bMF3wMn6I2nCtBEzeqPPyLan6c0TGMJ891xn0ivvqjMI6LDV
+         4nDF78xt+yP/1sOYDwWuE0jxCSwpiu0a91gBt6FPa3wl9P4HJ+5aI/AioM2SQ7SsGXj7
+         hN2kY88SrcJu6IYemiXcWBF6B9IjS6YXa9iSUfcNlvRM1+232yIm9u5nl8kM0WoTkEVi
+         T4ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=udvQb5YkJZw9BC1VpFEKFml8jvra6kBTS8xwiHMdWjo=;
-        b=Zj8VqXi8YANKrJmtHvWv4Y663lYioz61CFpHi97je/am++HmKSWDfOeozRG4C9ZcI6
-         PWRwMhhoqoJUhW5T5w8KfxhNKJGJJNzqwe3cowUKmaXtwjpVISDues/42qxxRUHbPcBA
-         1xFbdiozz2thutO3CopNKs6XJCY4Woijx/wS5aVmwNak6qt9UCNcMsm323IQe2hNh+Qz
-         MihM2mipknl12YcnZwn9+q3XXvlRps9xlpl1rsbNKkbqK/OvmqhzFVsRWH+mfkHpQZKT
-         W0jtyE8nTzrR+0Mxj2p81ywOn1d8JLrJa7QzzN7JoX14nC+Bnm3932Oh2kOIULTydU62
-         CiBA==
-X-Gm-Message-State: AOAM532a+/Yv/ZeJCJZo+qkKiGeF3fyE+GpCObkclY7gLiEWdJe9lpVu
-        f5WKxMe3UTl5FlYZu/93Vy0hZSLWXcCGakcsRVy+FEHK6UNtjHajcI/XLcNnBjaPMEPMiac8Da+
-        wYIQ7qPOhDsi39tA+qjqOqwEJ+zhNe30d5lcVlZc=
-X-Received: by 2002:a05:600c:198e:: with SMTP id t14mr6479274wmq.124.1633631451022;
-        Thu, 07 Oct 2021 11:30:51 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyT2n5BgOJPrzei+gD8cQeD3zwKMCoP1yPY+ofWDlle/pakNskAkBXVb2MkecmqRlMJyRGQpQ==
-X-Received: by 2002:a05:600c:198e:: with SMTP id t14mr6479248wmq.124.1633631450810;
-        Thu, 07 Oct 2021 11:30:50 -0700 (PDT)
-Received: from [192.168.1.24] (xdsl-188-155-186-13.adslplus.ch. [188.155.186.13])
-        by smtp.gmail.com with ESMTPSA id k17sm9578584wmj.0.2021.10.07.11.30.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 11:30:50 -0700 (PDT)
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20211007120855.56555-1-chanho61.park@samsung.com>
- <CGME20211007121055epcas2p3257cda61bd7f28f8ac9f3ba126b8fd41@epcas2p3.samsung.com>
- <20211007120855.56555-4-chanho61.park@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH 3/3] arm64: dts: exynos: add minimal support for
- exynosautov9 sadk board
-Message-ID: <67df638a-5415-0107-1b83-287f0f871817@canonical.com>
-Date:   Thu, 7 Oct 2021 20:30:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=BrYFk3n3wKlXA8WLTss5loXYswBXAXQcm0uu3iwx1oI=;
+        b=MeE60+B5mMgXwecBazz/3953iXdKndIwEr93377CQPVZ797EhReOloCmc9Fk2sUQ1o
+         SBnOlgV5BOdvHgWEnBPEFYLahaG5uAGmK8PupmnhCWSN9yg2n7NmbY6DLlkETg/ox50c
+         5HVKpnIj4nqFw4dHOJwTTkJhmrdf0JHvQNORVf1cVhT+RbziPccCBTd2KYh5jVqPKPq/
+         fyvlPn3KEIBf6zuKopTd7wHEPal1x8jf3xuzqU/vKxAjFt5+Mq/hjIPzRrCWqpxBUsDk
+         XBpm8F3We7mrFvk69qUkKnVV5mHQMOKBse/DfP+ug6Oj9qA8p4othmm6rwhxT7Hz23uc
+         3YUw==
+X-Gm-Message-State: AOAM533g3isLpJ0BCQnMJbOm8l6IpXc9ubVzX3cCR305sXnEf+c62eqN
+        v5rOUBGVuWRCzR6d5sfDgu76ID8lqdU=
+X-Google-Smtp-Source: ABdhPJxeMJ5V8OljD6sv6Bq3GPMYA2a4B9MI4IhMi5Wn4JY1Rjt7i54TrwpzsJgm+Ic44xKq6+7YZQ==
+X-Received: by 2002:a1c:7917:: with SMTP id l23mr1740719wme.36.1633631574175;
+        Thu, 07 Oct 2021 11:32:54 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id r205sm180356wma.3.2021.10.07.11.32.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Oct 2021 11:32:53 -0700 (PDT)
+Date:   Thu, 7 Oct 2021 20:32:52 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: tegra: dts: remove unused backlight-boot-off
+Message-ID: <YV89VEW8TlT2DaKF@orome.fritz.box>
+References: <20210919152720.72748-1-david@ixit.cz>
 MIME-Version: 1.0
-In-Reply-To: <20211007120855.56555-4-chanho61.park@samsung.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="LPO8ZLWxFwBYEdel"
+Content-Disposition: inline
+In-Reply-To: <20210919152720.72748-1-david@ixit.cz>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2021 14:08, Chanho Park wrote:
-> SADK(Samsung Automotive Development Kit) is the development kit to
-> evaluate Exynos Auto v9 SoC. It has 16GB LPDDR4 DRAM and two
-> 256GB Samsung UFS. This patch enables only serial console and ufs0
-> device.
-> 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+
+--LPO8ZLWxFwBYEdel
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, Sep 19, 2021 at 05:27:20PM +0200, David Heidelberg wrote:
+> backlight-boot-off was proposed as a patch, but ended not being accepted
+> since different solution was already in the place:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/1406806970-12=
+561-1-git-send-email-thierry.reding@gmail.com/#21327479
+>=20
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  .../bindings/arm/samsung/samsung-boards.yaml  |  6 +++
->  .../boot/dts/exynos/exynosautov9-sadk.dts     | 52 +++++++++++++++++++
+>  arch/arm/boot/dts/tegra20-paz00.dts            | 2 --
+>  arch/arm64/boot/dts/nvidia/tegra132-norrin.dts | 2 --
+>  2 files changed, 4 deletions(-)
 
-You need also Makefile entry.
+I've split these into two (one for arm/dt and another for arm64/dt) and
+applied them.
 
->  2 files changed, 58 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-> index 0796f0c87727..2147e664d5bc 100644
-> --- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-> +++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-> @@ -199,6 +199,12 @@ properties:
->                - samsung,exynos7-espresso        # Samsung Exynos7 Espresso
->            - const: samsung,exynos7
->  
-> +      - description: Exynos Auto v9 based boards
-> +        items:
-> +          - enum:
-> +              - samsung,samsung,exynosautov9-sadk   # Samsung Exynos Auto v9 SADK
+Thanks,
+Thierry
 
-Double samsung.
+--LPO8ZLWxFwBYEdel
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +          - const: samsung,exynosautov9
-> +
->  required:
->    - compatible
->  
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> new file mode 100644
-> index 000000000000..e59ef39a368f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> @@ -0,0 +1,52 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Samsung ExynosAutov9 SADK board device tree source
+-----BEGIN PGP SIGNATURE-----
 
-Any Copyrights? Not needed, just mentioning...
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmFfPVEACgkQ3SOs138+
+s6HofhAAkHuFOoH9Xs9hJuwIyoJHZq0Z/CzqUIl2ORpr3Id7qQs1uIrrFFE8MzAB
+2lNS4r6XgU3ze2TH97G+Np740zqUvSw4fU/P5Iu+sIzOKwB+Fn2dICXBpkftSDGI
+h6RYBXbABAEl7iYB3rvOZDZWlV7q0mFAhNbBOz+UpaUEYUHuEE4f92o9r39mR8QO
+gL6FYs8FAnBHcaMXajeMF5ZDxCRnSn3XgJBj8pCMsjXz1RRRXX+tkL8b4p0fv2E6
+TkXjAGc/m9V98qdK7p4/ZvTM5K97TIJ6dzT9SU7TKwIVnRlwaCrQb6+obVhGi/Zh
+4pja71t1tNgKH65fwuhwvQ9Gozw0AUa/R8DcC58BAw8z0hZNx48nBLIFIELizttJ
+FD/cGkKCr7q+zFnfV23tTYrMourUuWVGIdy6YBj5CHIs7nNaq57Pw8M/PT4GtLdI
+ZuKqGWwwqlopQJ2xeFeNCtUM8Bba7Ho3dKbdPZEBieGZR8+sTu1htuwzME0wfRZD
+JO1WE1kn755LJaMQ2DMMYcTFp0IqzIx6RqsVEvcX5Wshj3fcQnCCKbsL/cVZVa/p
+7TsJl/YeWFUL8qLo+FvJFBGQytRVqGiGss/c49v4RIT6O+BnGdGSMjJfo8AdYa/w
+/BhUQG8BPkFg8IKTKFM1+xhV0Ij8hy5zlCy0ZtL6w0k14BIdMAU=
+=khHq
+-----END PGP SIGNATURE-----
 
-> + */
-> +
-> +/dts-v1/;
-> +#include "exynosautov9.dtsi"
-
-Include gpio.h here, because it is used. Probably you can also remove it
-from dtsi - I did not see it being used in there.
-
-> +
-> +/ {
-> +	model = "Samsung ExynosAutov9 SADK board";
-> +	compatible = "samsung,exynosautov9-sadk", "samsung,exynosautov9";
-> +
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &serial_0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &serial_0;
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000 0x0 0x77000000>,
-> +		      <0x8 0x80000000 0x1 0x7ba00000>,
-> +		      <0xa 0x00000000 0x2 0x00000000>;
-> +	};
-> +
-> +	ufs_0_fixed_vcc: fixedregulator@0 {
-
-Node name: "regulator" or "regulator-0" if you think you will have more
-of them.
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "ufs-vcc";
-> +		gpio = <&gpq0 1 GPIO_ACTIVE_HIGH>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +	};
-> +};
-> +
-> +&serial_0 {
-> +	status = "okay";
-> +};
-> +
-> +&ufs_0_phy {
-> +	status = "okay";
-> +};
-> +
-> +&ufs_0 {
-> +	status = "okay";
-> +	vcc-supply = <&ufs_0_fixed_vcc>;
-> +	vcc-fixed-regulator;
-> +};
-> 
-
-
-Best regards,
-Krzysztof
+--LPO8ZLWxFwBYEdel--
