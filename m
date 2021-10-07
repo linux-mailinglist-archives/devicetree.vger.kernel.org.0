@@ -2,84 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1149425F3E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 23:38:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E126A425F57
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 23:41:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242269AbhJGVkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 17:40:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51986 "EHLO mail.kernel.org"
+        id S242336AbhJGVnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 17:43:42 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:55340 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242333AbhJGVkE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 17:40:04 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2F86B61245;
-        Thu,  7 Oct 2021 21:38:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633642690;
-        bh=4vRh1y+xg/pfgwZWyOIc9oYS+SyNhWVKlApXMzlafFM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qk+xMv47J8u8vh4QEs92r0oEkKY4tQReLijaMwkLCJDbxpMGAKb6Is8y7+feI7RvE
-         pp3akkZeROrwMosXVTOt/Lu0ulZX5o5Btdvkp+5bqj+mSqlPQBwTV9+93UfpPS5Ypr
-         qryJocO/3lgs+VVhBWxpxs2kHfZchef/OnAgIZ+rphytjuU09fRPtvlS65wUMe5nkd
-         GXdy6kCg0TUpp6xa+G/hmE6d4h8DBGsp0rJe7zsPS+Ykshz6PtrWg1Uo2zB0fGksxm
-         rhlSNRO1xEJEGjZw0CVezPdJXgonfmA6MakV2ZHUr5Yd6r2gYJ17CWMLuLdEBII3jf
-         yAWq16282CdKg==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, agross@kernel.org,
-        rohitkr@codeaurora.org, robh+dt@kernel.org, perex@perex.cz,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        swboyd@chromium.org, plai@codeaurora.org,
-        srinivas.kandagatla@linaro.org, lgirdwood@gmail.com,
-        judyhsiao@chromium.org, bgoswami@codeaurora.org,
-        linux-arm-msm@vger.kernel.org,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        tiwai@suse.com, bjorn.andersson@linaro.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: Re: [PATCH] ASoC: wcd938x: Fix jack detection issue
-Date:   Thu,  7 Oct 2021 22:37:34 +0100
-Message-Id: <163364264608.649699.14554141644947512653.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <1633614619-27026-1-git-send-email-srivasam@codeaurora.org>
-References: <1633614619-27026-1-git-send-email-srivasam@codeaurora.org>
+        id S241753AbhJGVnm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 17:43:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=zNEViZ4F22HFg4Uu4a+UfpGs0GxPWIjVj+B5UlJ5o94=; b=lbM6QdQvarc7KVhE9pbwhxllcs
+        QcNF7HO3i1pdelW6SYw4kkjs7znaUSm/3ll9/kdFhc+MB8W5VzwCt0h68Vk/6MBhHb8bP9T/DueR+
+        anerbHXzrBy4iZcosJogRDpY7Qs/r80zYmPRkkiiRzcEbueXUO73tu9GAwl+ID6tkBMI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mYb91-009zsW-La; Thu, 07 Oct 2021 23:41:39 +0200
+Date:   Thu, 7 Oct 2021 23:41:39 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     netdev@vger.kernel.org, olteanv@gmail.com, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 net-next 01/10] dt-bindings: net: dsa: dt bindings for
+ microchip lan937x
+Message-ID: <YV9pk13TT9W7X2i1@lunn.ch>
+References: <20211007151200.748944-1-prasanna.vengateshan@microchip.com>
+ <20211007151200.748944-2-prasanna.vengateshan@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211007151200.748944-2-prasanna.vengateshan@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 7 Oct 2021 19:20:19 +0530, Srinivasa Rao Mandadapu wrote:
-> This patch is to fix audio 3.5mm jack detection failure
-> on wcd938x codec based target.
-> 
-> Fixes: bcee7ed09b8e (ASoC: codecs: wcd938x: add Multi Button Headset Control support)
-> 
-> 
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    //Ethernet switch connected via spi to the host
+> +    ethernet {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      fixed-link {
+> +        speed = <1000>;
+> +        full-duplex;
+> +      };
+> +    };
+> +
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      lan9374: switch@0 {
+> +        compatible = "microchip,lan9374";
+> +        reg = <0>;
+> +
+> +        spi-max-frequency = <44000000>;
+> +
+> +        ethernet-ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +          port@0 {
+> +            reg = <0>;
+> +            label = "lan1";
+> +            phy-mode = "internal";
+> +            phy-handle = <&t1phy0>;
+> +          };
 
-Applied to
+...
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> +        mdio {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          t1phy0: ethernet-phy@0{
+> +            reg = <0x0>;
+> +          };
 
-Thanks!
+Does this pass Rob's DT schema proof tools? You don't have any
+description of the mdio properties.
 
-[1/1] ASoC: wcd938x: Fix jack detection issue
-      commit: db0767b8a6e620b99459d2e688c1983c2e5add0d
+Maybe look at nxp,sja1105.yaml
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+      Andrew
