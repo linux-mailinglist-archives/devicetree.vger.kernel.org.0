@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41BB1425A1F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E484F425A28
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243344AbhJGR7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 13:59:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
+        id S243366AbhJGSBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 14:01:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243307AbhJGR7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 13:59:21 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13019C061760
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 10:57:28 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id c6-20020a9d2786000000b005471981d559so8476588otb.5
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 10:57:28 -0700 (PDT)
+        with ESMTP id S243325AbhJGSBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:01:48 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC3AC061570
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 10:59:54 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id u20-20020a9d7214000000b0054e170300adso8429655otj.13
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 10:59:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=tNffkl0Q4XYFcl/VueyyIpHh5QtOfORzbwnyFe2lGUk=;
-        b=b+B3rRcrnNNlpsNamNM5v+Dg5DxzaCynl+SWNFYgRP4C1AnU07jrfTNLTW3dVfQRNr
-         m16M6gVxXz3tLCf9fGZXHnleEiyRdUWguUWmryHmIQ82olFUq30yn7iNGN3fm3PbT7gq
-         iuVijXL/lXLB2gsZHyuvZ/TeV4YTcLK+kzvu8=
+        bh=R7oz/IASrAb/4S/A1hee4Ri/gQz0oKdB3ob6dMUeA4I=;
+        b=JvGo9D9xRiy8w/STgotFKvcJot6b4pk0BA8Kl5UxeFRlGy7KLQTPBd9FMo2O8BkKmI
+         YkjaEgVWvN6bFfcd9vjw5/fZfb3GH2zaXJVZ2GlrBILlTcAV2eJlZJpqbosYgNqQAsoR
+         9LiTE2MTlB2FBiwHuPUVl9VEPQk9DV03+XJzY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=tNffkl0Q4XYFcl/VueyyIpHh5QtOfORzbwnyFe2lGUk=;
-        b=CpfAhGx3X1Ng1A2/5mGDmEeqxH0fYsuUmsD7n0+WGCdfOYMM0qhcdQSTZ0J/uNKPXa
-         MVEtkPZj/ntV2EQL1kD+5UL1IQZ8BlBHfDIzOm/ts3QTo35FBoByVMLf5Y5tOrtmH+og
-         /5V8tiCVK7DXOPKcGE1u0TXvxBD/riu5LyKGF+k37q5j7pl1XKjQvZSRbs2KOYnsk4sy
-         h5AtbcVaVDVXu2YXFmXgbQsGgjojjlvvFrDLIWzpYwVi0AjcAIE1VwTY9WfG/Tp4rhZZ
-         u0KkV/2jOnXfEx7R8aexRl8r0EmogItJkf78NLEhBGMgZmpRX9WtJ91U6zPU8h1paAFL
-         9Arw==
-X-Gm-Message-State: AOAM532SBHuADV+f7uI23m18hWZFI2UHVYZ3/1lA3QbvvyRfcqPrBnDq
-        Wh8QuXu9Vw5Udah9X0PPJPvrKFq6qg710Ivfn6iNMQ==
-X-Google-Smtp-Source: ABdhPJwAvWX1ls2QReA8P64elG2Woqp0Lk3ZSmYVtjCSdDEAjMULvzOhTxb4cSKxDFAzNCrZ2d6cimg76yLQk+aAvUE=
-X-Received: by 2002:a9d:12f4:: with SMTP id g107mr908111otg.77.1633629447464;
- Thu, 07 Oct 2021 10:57:27 -0700 (PDT)
+        bh=R7oz/IASrAb/4S/A1hee4Ri/gQz0oKdB3ob6dMUeA4I=;
+        b=uOqeS/woK9Nj9hvouMcbSH1LzH9Et+k2YwAQGwOIHKKMiFk7Q+wI3Eox+TGTRN1YL8
+         U4Tcu5aeyd2/QQ9aEmiKsGogJzl3KFh5VHpFU4cc7HpRMdQErd+U3TTBs1xd3Li8OZ4R
+         6O24nEiBuPRe5Ov+NxM37rVIPOAMnsuMRpQUTphCYJcTf6Qs5W8bYs5JpCSRdxe/pCO+
+         pX0e60chs/Oa2zPMED3lmt9Dub/T7QdQXDzXDcLQYU4SnwO4AJKtDMZLdymQvhAv2s0+
+         wVShQz2laiGIk21ptNijR4ZxajQx7kIG4M8FmNi30PlG8mFILWr11wFeLAj6G9B2Yoiy
+         2Biw==
+X-Gm-Message-State: AOAM533amhEOUvkaHDKF+4r5+offgCj6cGuQQXzSifeJu2gQ8k/jWMR3
+        vXWRHu/9LMA6mKoNKVfU5il59suQl8R6xQ9evXd3jg==
+X-Google-Smtp-Source: ABdhPJyShabx+Bv1Ts3hPeR1WVsMR/XNDLbLDJ40g/qGwpZoSFC/DiaaGOf5FZHOhggTg5HxhlGAhw7oD3ncFoWjMX0=
+X-Received: by 2002:a05:6830:1c2e:: with SMTP id f14mr4647448ote.159.1633629593547;
+ Thu, 07 Oct 2021 10:59:53 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 7 Oct 2021 13:57:27 -0400
+ HTTPREST; Thu, 7 Oct 2021 13:59:53 -0400
 MIME-Version: 1.0
-In-Reply-To: <1633614519-26680-2-git-send-email-srivasam@codeaurora.org>
-References: <1633614519-26680-1-git-send-email-srivasam@codeaurora.org> <1633614519-26680-2-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <1633614519-26680-3-git-send-email-srivasam@codeaurora.org>
+References: <1633614519-26680-1-git-send-email-srivasam@codeaurora.org> <1633614519-26680-3-git-send-email-srivasam@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Thu, 7 Oct 2021 13:57:27 -0400
-Message-ID: <CAE-0n52Ge_XZr914Ksmq5Myk3FRp7+Sc5P-9jj8wuspKkjXnYw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] pinctrl: qcom: Update lpass variant independent
- functions as generic
+Date:   Thu, 7 Oct 2021 13:59:53 -0400
+Message-ID: <CAE-0n51qO1q5ZF-fAf2Gma9a2B+iSyoQnJdJ8Fnmsz+DG0rwPg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi
+ pinctrl compatible
 To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
         agross@kernel.org, alsa-devel@alsa-project.org,
         bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
@@ -66,46 +66,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-10-07 06:48:37)
-> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> index 2f19ab4..c0117c5 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> @@ -124,7 +124,8 @@ static const struct pinctrl_pin_desc sm8250_lpi_pins[] = {
->         PINCTRL_PIN(13, "gpio13"),
->  };
+Quoting Srinivasa Rao Mandadapu (2021-10-07 06:48:38)
+> Add device tree binding compatible name for Qualcomm SC7280 LPASS LPI pinctrl driver.
 >
-> -enum sm8250_lpi_functions {
-> +
-
-Please drop this extra newline so the diff makes sense.
-
-> +enum lpass_lpi_functions {
->         LPI_MUX_dmic1_clk,
->         LPI_MUX_dmic1_data,
->         LPI_MUX_dmic2_clk,
-> @@ -203,7 +204,7 @@ static const struct lpi_pingroup sm8250_groups[] = {
->         LPI_PINGROUP(13, NO_SLEW, dmic3_data, i2s2_data, _, _),
->  };
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 >
-> -static const struct lpi_function sm8250_functions[] = {
-> +static const struct lpi_function lpass_functions[] = {
-
-Why not follow the approach of other qcom pinctrl drivers and make a
-core driver that each SoC uses as a library?
-
->         LPI_FUNCTION(dmic1_clk),
->         LPI_FUNCTION(dmic1_data),
->         LPI_FUNCTION(dmic2_clk),
-> @@ -615,7 +616,7 @@ static int lpi_pinctrl_probe(struct platform_device *pdev)
->                 return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
->                                      "Slew resource not provided\n");
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+> index e47ebf9..578b283 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+> @@ -16,7 +16,9 @@ description: |
 >
-> -       ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
-> +       ret = devm_clk_bulk_get_optional(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
+>  properties:
+>    compatible:
+> -    const: qcom,sm8250-lpass-lpi-pinctrl
+> +    enum:
+> +      - qcom,sc7280-lpass-lpi-pinctrl
+> +      - qcom,sm8250-lpass-lpi-pinctrl
 
-Please mention in the commit text why this is now optional.
-
->         if (ret)
->                 return dev_err_probe(dev, ret, "Can't get clocks\n");
->
+I suspect we need to split the binding because the function list needs
+to change. Can you make a whole new file that's probably largely a copy
+of this file and/or extract the common bits into a meta schema and
+include that in both the files? Then the function list can be different
+and the clock property can be omitted in the sc7280 file.
