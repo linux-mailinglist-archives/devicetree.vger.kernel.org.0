@@ -2,126 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 309C1424E56
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 09:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 374DC424E63
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 09:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232617AbhJGHzC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 7 Oct 2021 03:55:02 -0400
-Received: from eu-smtp-delivery-151.mimecast.com ([185.58.85.151]:29035 "EHLO
-        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232550AbhJGHzB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 03:55:01 -0400
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- uk-mta-38-fz1CuUWYNx6QMVBcOLTHFg-1; Thu, 07 Oct 2021 08:53:02 +0100
-X-MC-Unique: fz1CuUWYNx6QMVBcOLTHFg-1
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
- Server (TLS) id 15.0.1497.23; Thu, 7 Oct 2021 08:53:01 +0100
-Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
- AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
- 15.00.1497.023; Thu, 7 Oct 2021 08:53:01 +0100
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Segher Boessenkool' <segher@kernel.crashing.org>,
-        Stafford Horne <shorne@gmail.com>
-CC:     Rich Felker <dalias@libc.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "x86@kernel.org" <x86@kernel.org>, Guo Ren <guoren@kernel.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "Will Deacon" <will@kernel.org>, Jonas Bonn <jonas@southpole.se>,
-        Rob Herring <robh@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-sh@vger.kernel.org" <linux-sh@vger.kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        "linux-csky@vger.kernel.org" <linux-csky@vger.kernel.org>,
-        Ingo Molnar <mingo@redhat.com>,
-        "bcm-kernel-feedback-list@broadcom.com" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        James Morse <james.morse@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>, Ray Jui <rjui@broadcom.com>,
-        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-        "openrisc@lists.librecores.org" <openrisc@lists.librecores.org>,
-        Borislav Petkov <bp@alien8.de>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Scott Branden <sbranden@broadcom.com>,
-        Yoshinori Sato <ysato@users.osdn.me>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Paul Mackerras" <paulus@samba.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Subject: RE: [PATCH 06/12] openrisc: Use of_get_cpu_hwid()
-Thread-Topic: [PATCH 06/12] openrisc: Use of_get_cpu_hwid()
-Thread-Index: AQHXuvrQ2rKkD2ly1kazB6yB6/HdHavHKFTA
-Date:   Thu, 7 Oct 2021 07:53:01 +0000
-Message-ID: <c81b9c01650e487785b02f6562791556@AcuMS.aculab.com>
-References: <20211006164332.1981454-1-robh@kernel.org>
- <20211006164332.1981454-7-robh@kernel.org> <YV4KkAC2p9D4yCnH@antec>
- <20211006212728.GM10333@gate.crashing.org>
-In-Reply-To: <20211006212728.GM10333@gate.crashing.org>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        id S232599AbhJGIAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 04:00:31 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:59204 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232593AbhJGIAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 04:00:30 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 6C4A81F44EA8
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     robh+dt@kernel.org
+Cc:     airlied@linux.ie, daniel@ffwll.ch, seanpaul@chromium.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH] dt-bindings: display/bridge: ptn3460: Convert to YAML binding
+Date:   Thu,  7 Oct 2021 09:58:22 +0200
+Message-Id: <20211007075822.62411-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Segher Boessenkool
-> Sent: 06 October 2021 22:27
-> 
-> On Thu, Oct 07, 2021 at 05:44:00AM +0900, Stafford Horne wrote:
-> > You have defined of_get_cpu_hwid to return u64, will this create compiler
-> > warnings when since we are storing a u64 into a u32?
-> >
-> > It seems only if we make with W=3.
-> 
-> Yes.  This is done by -Wconversion, "Warn for implicit conversions that
-> may alter a value."
-> 
-> > I thought we usually warned on this.
+Convert the NXP PTN3460 eDP to LVDS bridge documentation to YAML.
 
-The microsoft compiler does - best to turn all those warnings off.
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ .../bindings/display/bridge/nxp,ptn3460.yaml  | 106 ++++++++++++++++++
+ .../bindings/display/bridge/ptn3460.txt       |  39 -------
+ 2 files changed, 106 insertions(+), 39 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,ptn3460.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/bridge/ptn3460.txt
 
-> This warning is not in -Wall or -Wextra either, it suffers too much from
-> false positives.  It is very natural to just ignore the high bits of
-> modulo types (which is what "unsigned" types *are*).  Or the bits that
-> "fall off" on a conversion.  The C standard makes this required
-> behaviour, it is useful, and it is the only convenient way of getting
-> this!
-
-I've also seen a compiler convert:
-	struct->char_member = (char)(int_val & 0xff);
-into:
-	reg = int_val;
-	reg &= 0xff; // for the & 0xff
-	reg &= 0xff; // for the cast
-	struct->char_member = low_8bits(reg);
-
-You really don't want the extra noise.
-
-I'll bet that (char)int_val is actually an arithmetic expression.
-So its type will be 'int'.
-
-	David
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,ptn3460.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,ptn3460.yaml
+new file mode 100644
+index 000000000000..107dd138e6c6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/nxp,ptn3460.yaml
+@@ -0,0 +1,106 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/nxp,ptn3460.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PTN3460 eDP to LVDS bridge
++
++maintainers:
++  - Sean Paul <seanpaul@chromium.org>
++
++properties:
++  compatible:
++    const: nxp,ptn3460
++
++  reg:
++    description: I2C address of the bridge
++    maxItems: 1
++
++  edid-emulation:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description:
++      The EDID emulation entry to use
++      Value  Resolution  Description
++        0     1024x768   NXP Generic
++        1     1920x1080  NXP Generic
++        2     1920x1080  NXP Generic
++        3     1600x900   Samsung LTM200KT
++        4     1920x1080  Samsung LTM230HT
++        5     1366x768   NXP Generic
++        6     1600x900   ChiMei M215HGE
++    enum: [0, 1, 2, 3, 4, 5, 6]
++
++  powerdown-gpios:
++    description: GPIO connected to the PD_N signal.
++    maxItems: 1
++
++  reset-gpios:
++    description: GPIO connected to the RST_N signal.
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Video port for LVDS output
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Video port for eDP input
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - edid-emulation
++  - powerdown-gpios
++  - reset-gpios
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c1 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      bridge@20 {
++        compatible = "nxp,ptn3460";
++        reg = <0x20>;
++        edid-emulation = <5>;
++        powerdown-gpios = <&gpy2 5 GPIO_ACTIVE_HIGH>;
++        reset-gpios = <&gpx1 5 GPIO_ACTIVE_LOW>;
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          port@0 {
++            reg = <0>;
++            bridge_out: endpoint {
++              remote-endpoint = <&panel_in>;
++            };
++          };
++
++          port@1 {
++            reg = <1>;
++            bridge_in: endpoint {
++              remote-endpoint = <&dp_out>;
++            };
++          };
++        };
++      };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/display/bridge/ptn3460.txt b/Documentation/devicetree/bindings/display/bridge/ptn3460.txt
+deleted file mode 100644
+index 361971ba104d..000000000000
+--- a/Documentation/devicetree/bindings/display/bridge/ptn3460.txt
++++ /dev/null
+@@ -1,39 +0,0 @@
+-ptn3460 bridge bindings
 -
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
+-Required properties:
+-	- compatible: "nxp,ptn3460"
+-	- reg: i2c address of the bridge
+-	- powerdown-gpio: OF device-tree gpio specification  for PD_N pin.
+-	- reset-gpio: OF device-tree gpio specification for RST_N pin.
+-	- edid-emulation: The EDID emulation entry to use
+-		+-------+------------+------------------+
+-		| Value | Resolution | Description      |
+-		|   0   |  1024x768  | NXP Generic      |
+-		|   1   |  1920x1080 | NXP Generic      |
+-		|   2   |  1920x1080 | NXP Generic      |
+-		|   3   |  1600x900  | Samsung LTM200KT |
+-		|   4   |  1920x1080 | Samsung LTM230HT |
+-		|   5   |  1366x768  | NXP Generic      |
+-		|   6   |  1600x900  | ChiMei M215HGE   |
+-		+-------+------------+------------------+
+-
+-	- video interfaces: Device node can contain video interface port
+-			    nodes for panel according to [1].
+-
+-[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
+-
+-Example:
+-	lvds-bridge@20 {
+-		compatible = "nxp,ptn3460";
+-		reg = <0x20>;
+-		powerdown-gpio = <&gpy2 5 1 0 0>;
+-		reset-gpio = <&gpx1 5 1 0 0>;
+-		edid-emulation = <5>;
+-		ports {
+-			port@0 {
+-				bridge_out: endpoint {
+-					remote-endpoint = <&panel_in>;
+-				};
+-			};
+-		};
+-	};
+-- 
+2.33.0
 
