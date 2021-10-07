@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06EF9425C5A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 21:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32BF1425C5E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 21:41:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231495AbhJGTnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232589AbhJGTnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 7 Oct 2021 15:43:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45782 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232542AbhJGTnL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 15:43:11 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3509C061570
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 12:41:16 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id u18so29213984lfd.12
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 12:41:16 -0700 (PDT)
+        with ESMTP id S232993AbhJGTnM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 15:43:12 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96F34C061760
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 12:41:18 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id b20so29904842lfv.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 12:41:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WZ5raaSJ3Kh1m3565MHsi6//vzYo4hkeevp5MNSOJt4=;
-        b=AbO00kxEwuBcmi49QesZN1giMt72iFySJuAC6O7CpoMTKLLnWY/Sm5SunfqzMIKY5/
-         C1SG32C3bS0r14x8qS4oc8JtpiMTvT9heLEvBMaxgEfvnbQHsHeE13t2MINGg+TV7fg6
-         xUdfOK4wwvvDRZ8HAlBsXczfALPPImI5rYrLlXVx2UnKjCHfF+6ibK65xcAMpJv0y8Yv
-         dnf6Oo6uPsYNpHAmGfVrtfYY//4eknVUUwg0ddRACIFXA7Wci6Mwtsp+uIp7YH2ULlBJ
-         tSfK9kTpDB95S/BRzc6kfCntUuG5GrB98Em6b+GZipoJlmLithRsUAtMMglT4qt/RPq7
-         1Ung==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Ix/+t+gee+jLY4mEvvcEKIS0I2uhnEhpLTqn69/kXXo=;
+        b=yerk9gii9Yt/opJeS2cABRXKJXB6Kag06gzjeaxccuQdAA55Irt28TtHpN5h4ANCXg
+         n1e+sosf07UhGWUtrxjduGfP+9jQmTSO91sFLSKFQromE8ri/k+NDUYacu7KbfvXDDtp
+         f4E2b4XlSiAyqZlCzoslUh5xWfnWzXlpCR/UfUnccro4Cmw0EEpe8zMPb+bOaviEK80X
+         2rXh3NPj9mORk/i1bfpbdZndm7yekxk1pNZTFRiIpwFmWbrKBhD1Tq6SAjDFysQaYwPa
+         zeHGqjFJUHYhY0cP0aDrwHhT652XU3iAozdnXjeJiEK3HZ5SQaiYA8nvayKxzRMG/B1e
+         wJ9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WZ5raaSJ3Kh1m3565MHsi6//vzYo4hkeevp5MNSOJt4=;
-        b=dnj/IiVAGqQq9gBC7mxwLKLCqcFjurhPW5ldFNqiIPcxGbqrpCofZQ/icdRdE9Nk6O
-         XFOxLwndMqSIbh8Dq59u8q1ZtyG7vBeYvYsnc/rz553m84z7Ux8zcnP4uK5MVGjK+aNH
-         sj0+Xrt0mZSmKsF5/A4vf7pI9Zed9t1H7So3OyC8AmVrZwu724ABDaC/qWYr4OJ8tFQF
-         eDpRzYvw4g0dph1BHIKACg1dLD6AkbBDVeM8cZCgsX1FNpFBvadI5Rp9UAFQAHrQLmfG
-         MF62AGzkdGaMaCAQlQo7ax5v0U/fHZbgTd0NnJzZ5UOAKSrM5y5AAer89/sNheAdBSK0
-         hNVg==
-X-Gm-Message-State: AOAM5329+oa+dHuN75QXudTniu1KUrHstMdprX86l2WLjTEqNUfJdu0l
-        5m0y6qBN1ZgBuCqp25RncGq3ug==
-X-Google-Smtp-Source: ABdhPJx72lBMBm4B023ZywQIdYifb6RLPIYCHYxT2sMbt3Qa4kMZYvce/V4Tfti1jFrhxzvQgWKFgA==
-X-Received: by 2002:a05:6512:13a5:: with SMTP id p37mr6066109lfa.403.1633635675174;
-        Thu, 07 Oct 2021 12:41:15 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Ix/+t+gee+jLY4mEvvcEKIS0I2uhnEhpLTqn69/kXXo=;
+        b=wUW71tp/Py+EctSC2AWL3/wcgQe34L9vrw/edKqslzGlopFXS+VN/3C85L0Fl7YSVk
+         6GifByX6QjOCtgRgYvz0xT8xjjT3zWxSt2sv/2b8tqZRVaj91H1svZT5S3AsVP23YllC
+         O34YWE948WSb/O2sPAlwsa7YbSJnM2tV4ZCaqBSC2XWe6SyITEXpPLlLqcVnwKM7KkCP
+         qSofexUCR0gYx6Qi6Mtvr7DA+GnmUQUowiLOk971juUqJhxQH/+bdEcfzZxDSKr7vlJ1
+         2SCcDUth6qaOG+8Vp4rzEjrtEB9ZMwbRpJnzNcesW4ZLpAPTw6CAQchmjxTkIBTM1LB0
+         O56g==
+X-Gm-Message-State: AOAM531Va8FJGB3xEFULF7q7ee73Q9ETE6Ctk0X6aekyL0JhKbC/IzJQ
+        4JaHu/Lp+BilysPSUI5jXxqvTQ==
+X-Google-Smtp-Source: ABdhPJxfFSzWGdVUFUmYc/jUPxKS9emI/NKlsUKy1TK3lHZEwVNvn+P89DNgBkpLLJZtLUJ6U+C4xg==
+X-Received: by 2002:a05:6512:3409:: with SMTP id i9mr5887576lfr.165.1633635676933;
+        Thu, 07 Oct 2021 12:41:16 -0700 (PDT)
 Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id q8sm23879lfd.126.2021.10.07.12.41.14
+        by smtp.gmail.com with ESMTPSA id m25sm25631lji.52.2021.10.07.12.41.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 12:41:14 -0700 (PDT)
+        Thu, 07 Oct 2021 12:41:16 -0700 (PDT)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
@@ -63,68 +63,183 @@ Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 0/5] clk: samsung: Introduce Exynos850 SoC clock driver
-Date:   Thu,  7 Oct 2021 22:41:08 +0300
-Message-Id: <20211007194113.10507-1-semen.protsenko@linaro.org>
+Subject: [PATCH v2 1/5] clk: samsung: clk-pll: Implement pll0822x PLL type
+Date:   Thu,  7 Oct 2021 22:41:09 +0300
+Message-Id: <20211007194113.10507-2-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211007194113.10507-1-semen.protsenko@linaro.org>
+References: <20211007194113.10507-1-semen.protsenko@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series provides the implementation for Exynos850 clock
-driver, its documentation and corresponding changes for Samsung clock
-infrastructure (adds new PLL types used in Exynos850 SoC, following
-TRM).
+pll0822x PLL is used in Exynos850 SoC for top-level integer PLLs. The
+code was derived from very similar pll35xx type, with next differences:
 
-I tried to follow already established design for Samsung clock drivers
-(getting most insights from Exynos5433 clock driver), and integrate the
-driver into existing infrastructure. The whole driver was implemented
-from scratch, using mostly TRM and downstream kernel for clock
-dependencies/hierarchy info.
+1. Lock time for pll0822x is 150*P_DIV, when for pll35xx it's 270*P_DIV
+2. It's not suggested in Exynos850 TRM that S_DIV change doesn't require
+   performing PLL lock procedure (which is done in pll35xx
+   implementation)
 
-For now only basic clocks are implemented, including next blocks:
-  - CMU_TOP
-  - CMU_PERI
-  - CMU_CORE
-  - CMU_HSI
-  - CMU_DPU
+When defining pll0822x type, CON3 register offset should be provided as
+a "con" parameter of PLL() macro, like this:
 
-Some CMUs are still not implemented, but that can be added in future,
-when the need arises. The driver also lacks CLKOUT support, PM ops and
-automatic clocks control (using Q-Channel protocol). All that can be
-added independently later.
+    PLL(pll_0822x, 0, "fout_shared0_pll", "oscclk",
+        PLL_LOCKTIME_PLL_SHARED0, PLL_CON3_PLL_SHARED0,
+        exynos850_shared0_pll_rates),
 
-Implemented clock tree was tested via UART and MMC drivers, and using
-DebugFS clk support (e.g. using 'clk_summary' file). In order to keep
-all clocks running I added 'clk_ignore_unused' kernel param in my local
-tree, and defined CLOCK_ALLOW_WRITE_DEBUGFS in clk.c for actually
-testing the clocks via DebugFS.
+To define PLL rates table, one can use PLL_35XX_RATE() macro, e.g.:
 
+    PLL_35XX_RATE(26 * MHZ, 1600 * MHZ, 800, 13, 0)
+
+as it's completely appropriate for pl0822x type and there is no sense in
+duplicating that.
+
+If bit #1 (MANUAL_PLL_CTRL) is not set in CON1 register, it won't be
+possible to set new rate, with next error showing in kernel log:
+
+    Could not lock PLL fout_shared1_pll
+
+That can happen for example if bootloader clears that bit beforehand.
+PLL driver doesn't account for that, so if MANUAL_PLL_CTRL bit was
+cleared, it's assumed it was done for a reason and it shouldn't be
+possible to change that PLL's rate at all.
+
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+---
 Changes in v2:
-  - Added CMU_DPU implementation
-  - Moved bus clock enablement to clk-exynos850.c
-  - See also "v2 changes" list in each particular patch
+  - Added R-b tag by Krzysztof Kozlowski
+  - Added Ack tag by Chanwoo Choi
 
-Sam Protsenko (5):
-  clk: samsung: clk-pll: Implement pll0822x PLL type
-  clk: samsung: clk-pll: Implement pll0831x PLL type
-  dt-bindings: clock: Add bindings definitions for Exynos850 CMU
-  dt-bindings: clock: Document Exynos850 CMU bindings
-  clk: samsung: Introduce Exynos850 clock driver
+ drivers/clk/samsung/clk-pll.c | 91 +++++++++++++++++++++++++++++++++++
+ drivers/clk/samsung/clk-pll.h |  1 +
+ 2 files changed, 92 insertions(+)
 
- .../clock/samsung,exynos850-clock.yaml        | 185 ++++
- drivers/clk/samsung/Makefile                  |   1 +
- drivers/clk/samsung/clk-exynos850.c           | 835 ++++++++++++++++++
- drivers/clk/samsung/clk-pll.c                 | 196 ++++
- drivers/clk/samsung/clk-pll.h                 |   2 +
- include/dt-bindings/clock/exynos850.h         | 141 +++
- 6 files changed, 1360 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
- create mode 100644 drivers/clk/samsung/clk-exynos850.c
- create mode 100644 include/dt-bindings/clock/exynos850.h
-
+diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.c
+index 5873a9354b50..03131b149c0b 100644
+--- a/drivers/clk/samsung/clk-pll.c
++++ b/drivers/clk/samsung/clk-pll.c
+@@ -415,6 +415,89 @@ static const struct clk_ops samsung_pll36xx_clk_min_ops = {
+ 	.recalc_rate = samsung_pll36xx_recalc_rate,
+ };
+ 
++/*
++ * PLL0822x Clock Type
++ */
++/* Maximum lock time can be 150 * PDIV cycles */
++#define PLL0822X_LOCK_FACTOR		(150)
++
++#define PLL0822X_MDIV_MASK		(0x3FF)
++#define PLL0822X_PDIV_MASK		(0x3F)
++#define PLL0822X_SDIV_MASK		(0x7)
++#define PLL0822X_MDIV_SHIFT		(16)
++#define PLL0822X_PDIV_SHIFT		(8)
++#define PLL0822X_SDIV_SHIFT		(0)
++#define PLL0822X_LOCK_STAT_SHIFT	(29)
++#define PLL0822X_ENABLE_SHIFT		(31)
++
++static unsigned long samsung_pll0822x_recalc_rate(struct clk_hw *hw,
++						  unsigned long parent_rate)
++{
++	struct samsung_clk_pll *pll = to_clk_pll(hw);
++	u32 mdiv, pdiv, sdiv, pll_con3;
++	u64 fvco = parent_rate;
++
++	pll_con3 = readl_relaxed(pll->con_reg);
++	mdiv = (pll_con3 >> PLL0822X_MDIV_SHIFT) & PLL0822X_MDIV_MASK;
++	pdiv = (pll_con3 >> PLL0822X_PDIV_SHIFT) & PLL0822X_PDIV_MASK;
++	sdiv = (pll_con3 >> PLL0822X_SDIV_SHIFT) & PLL0822X_SDIV_MASK;
++
++	fvco *= mdiv;
++	do_div(fvco, (pdiv << sdiv));
++
++	return (unsigned long)fvco;
++}
++
++static int samsung_pll0822x_set_rate(struct clk_hw *hw, unsigned long drate,
++				     unsigned long prate)
++{
++	const struct samsung_pll_rate_table *rate;
++	struct samsung_clk_pll *pll = to_clk_pll(hw);
++	u32 pll_con3;
++
++	/* Get required rate settings from table */
++	rate = samsung_get_pll_settings(pll, drate);
++	if (!rate) {
++		pr_err("%s: Invalid rate : %lu for pll clk %s\n", __func__,
++			drate, clk_hw_get_name(hw));
++		return -EINVAL;
++	}
++
++	/* Change PLL PMS values */
++	pll_con3 = readl_relaxed(pll->con_reg);
++	pll_con3 &= ~((PLL0822X_MDIV_MASK << PLL0822X_MDIV_SHIFT) |
++			(PLL0822X_PDIV_MASK << PLL0822X_PDIV_SHIFT) |
++			(PLL0822X_SDIV_MASK << PLL0822X_SDIV_SHIFT));
++	pll_con3 |= (rate->mdiv << PLL0822X_MDIV_SHIFT) |
++			(rate->pdiv << PLL0822X_PDIV_SHIFT) |
++			(rate->sdiv << PLL0822X_SDIV_SHIFT);
++
++	/* Set PLL lock time */
++	writel_relaxed(rate->pdiv * PLL0822X_LOCK_FACTOR,
++			pll->lock_reg);
++
++	/* Write PMS values */
++	writel_relaxed(pll_con3, pll->con_reg);
++
++	/* Wait for PLL lock if the PLL is enabled */
++	if (pll_con3 & BIT(pll->enable_offs))
++		return samsung_pll_lock_wait(pll, BIT(pll->lock_offs));
++
++	return 0;
++}
++
++static const struct clk_ops samsung_pll0822x_clk_ops = {
++	.recalc_rate = samsung_pll0822x_recalc_rate,
++	.round_rate = samsung_pll_round_rate,
++	.set_rate = samsung_pll0822x_set_rate,
++	.enable = samsung_pll3xxx_enable,
++	.disable = samsung_pll3xxx_disable,
++};
++
++static const struct clk_ops samsung_pll0822x_clk_min_ops = {
++	.recalc_rate = samsung_pll0822x_recalc_rate,
++};
++
+ /*
+  * PLL45xx Clock Type
+  */
+@@ -1296,6 +1379,14 @@ static void __init _samsung_clk_register_pll(struct samsung_clk_provider *ctx,
+ 		else
+ 			init.ops = &samsung_pll35xx_clk_ops;
+ 		break;
++	case pll_0822x:
++		pll->enable_offs = PLL0822X_ENABLE_SHIFT;
++		pll->lock_offs = PLL0822X_LOCK_STAT_SHIFT;
++		if (!pll->rate_table)
++			init.ops = &samsung_pll0822x_clk_min_ops;
++		else
++			init.ops = &samsung_pll0822x_clk_ops;
++		break;
+ 	case pll_4500:
+ 		init.ops = &samsung_pll45xx_clk_min_ops;
+ 		break;
+diff --git a/drivers/clk/samsung/clk-pll.h b/drivers/clk/samsung/clk-pll.h
+index 79e41c226b90..213e94a97f23 100644
+--- a/drivers/clk/samsung/clk-pll.h
++++ b/drivers/clk/samsung/clk-pll.h
+@@ -36,6 +36,7 @@ enum samsung_pll_type {
+ 	pll_1451x,
+ 	pll_1452x,
+ 	pll_1460x,
++	pll_0822x,
+ };
+ 
+ #define PLL_RATE(_fin, _m, _p, _s, _k, _ks) \
 -- 
 2.30.2
 
