@@ -2,79 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A94B425A46
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:03:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B5DA425A54
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:06:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243452AbhJGSFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 14:05:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51208 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243333AbhJGSFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:05:32 -0400
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3EE9C061760
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 11:03:38 -0700 (PDT)
-Received: by mail-ot1-x334.google.com with SMTP id j11-20020a9d190b000000b00546fac94456so8491889ota.6
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 11:03:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=UqU2sc6nimwttVNTsN+KoIq0D+bxjGjE0Uy7w4zSjso=;
-        b=jLbW+7kkLTNwDo7nzsbCqMtw9ge068L0fVwd4nYZ32DtCDgR3hrMERyqPF8XokXjKM
-         gGvLUrYZf7iFOiN1n2xwIsANaEuHWtjXxisOvMsRXdB3vug5TsidLpUHrzXyRP1KVZ7S
-         nx3EaPhp3M0WGPkZEFcQG+oB01yueTwuhQ5W0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=UqU2sc6nimwttVNTsN+KoIq0D+bxjGjE0Uy7w4zSjso=;
-        b=RR1Um4aCTnGz4v8sWAZ91cKbaqudDGy79V6FS5PNj/oILHkL+jMRfOEADnOignfO9k
-         XSfDx7+rqQsj6hB/QJ8XC/q+XaL4drnhw/srvzz8+ueLCTEsi7U/NgcVd7XzAOZkbZuw
-         ioaSCwJS/w9hxGjz1lJpyRAC7lG3qo78rpuUmtiKqtC9llWBqJ3gGTdfQkplQPS+Diba
-         SkYm2oXNTlti0NC/rk7S2WChIYg5EnHF649pMsF9d6HfxlX4b2rOuBGHXv6ycmY7vR9L
-         3wowYEQ+0twsFbkB3FfjBigbSNVSWxbMwI1c79YkEvruNzIAZFXIuGYFsU1nUHofTVEl
-         ffyA==
-X-Gm-Message-State: AOAM530oN1Jt+x4DiXyZfl9arH4hnTqCcgsciis1QJpwBaVLmPzZkZxX
-        4+X81ny4s06gLyG3N+vTYSqAoZoTKVyw54iz3OuCRQ==
-X-Google-Smtp-Source: ABdhPJzdP57QnKdUaciIKhWDyQMB6RtxGohINlseRKeMlntrQwhQiwnOaiAxp80/FctFi0Fd4EUCp1h/9sGJoPkWh6k=
-X-Received: by 2002:a9d:6a0f:: with SMTP id g15mr5000139otn.126.1633629818067;
- Thu, 07 Oct 2021 11:03:38 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 7 Oct 2021 14:03:37 -0400
+        id S243116AbhJGSHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 14:07:55 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:54798 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233770AbhJGSHy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 14:07:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=uqZhubrZS0AC3XCDxYOs5HijLXlbSUCH28Z8t+sc3d0=; b=loExcZsc/YaIjMqkO/RpnyxTf2
+        Ouop7cKYoMODlVT0BhuhEZ+4sSV5CkVylC0KAeGrR588aM4gpRU9JptqndcNyZ2AYq9YfDm4L/UPp
+        9V8jrzl41TZXWP+Ni96CKAaVtaM3N/LiWppIg+ixvxz6+V67MiXvYZuYqBly1251YJSY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mYXmG-009ykS-Dh; Thu, 07 Oct 2021 20:05:56 +0200
+Date:   Thu, 7 Oct 2021 20:05:56 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH 10/13] net: dsa: qca8k: add explicit SGMII PLL
+ enable
+Message-ID: <YV83BAmhHfmDyCjv@lunn.ch>
+References: <20211006223603.18858-1-ansuelsmth@gmail.com>
+ <20211006223603.18858-11-ansuelsmth@gmail.com>
+ <YV4/ehy9aYJyozvy@lunn.ch>
+ <YV73umYovC0wh5hz@Ansuel-xps.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <1633628923-25047-5-git-send-email-pmaliset@codeaurora.org>
-References: <1633628923-25047-1-git-send-email-pmaliset@codeaurora.org> <1633628923-25047-5-git-send-email-pmaliset@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 7 Oct 2021 14:03:37 -0400
-Message-ID: <CAE-0n51NfLevCSwDDK0pxg=zmdw7pqw-wGEV2_MxBZZvh_caOQ@mail.gmail.com>
-Subject: Re: [PATCH v12 4/5] PCI: qcom: Add a flag in match data along with ops
-To:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
-        bhelgaas@google.com, bjorn.andersson@linaro.org,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org, svarbanov@mm-sol.com
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
-        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org,
-        linux-pci@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YV73umYovC0wh5hz@Ansuel-xps.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prasad Malisetty (2021-10-07 10:48:42)
-> Add pipe_clk_need_muxing flag in match data and configure
 
-This commit text isn't accurate. The flag isn't added in this patch
-anymore. Same goes for the commit title/subject. Can you please update
-it to say something like "Point match data to config struct"?
+On Thu, Oct 07, 2021 at 03:35:54PM +0200, Ansuel Smith wrote:
+> On Thu, Oct 07, 2021 at 02:29:46AM +0200, Andrew Lunn wrote:
+> > On Thu, Oct 07, 2021 at 12:36:00AM +0200, Ansuel Smith wrote:
+> > > Support enabling PLL on the SGMII CPU port. Some device require this
+> > > special configuration or no traffic is transmitted and the switch
+> > > doesn't work at all. A dedicated binding is added to the CPU node
+> > > port to apply the correct reg on mac config.
+> > 
+> > Why not just enable this all the time when the CPU port is in SGMII
+> > mode?
+> 
+> I don't know if you missed the cover letter with the reason. Sgmii PLL
+> is a mess. Some device needs it and some doesn't. With a wrong
+> configuration the result is not traffic. As it's all messy we decided to
+> set the PLL to be enabled with a dedicated binding and set it disabled
+> by default. We enouncer more device that require it disabled than device
+> that needs it enabled. (in the order of 70 that doesn't needed it and 2
+> that requires it enabled or port instability/no traffic/leds problem)
 
-> If the platform needs to switch pipe_clk_src.
->
-> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
-> ---
+What exactly does this PLL do? Clock recovery of the SGMII clock, and
+then using it in the opposite direction? What combinations of PHYs
+need it, and which don't?
 
-Otherwise code looks fine:
+> > Is it also needed for 1000BaseX?
+> > 
+> 
+> We assume it really depends on the device.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+That i find surprising. 1000BaseX and SGMII are very similar. I would
+expect a device with requires the PLL enabled for SGMII also needs it
+for 1000BaseX.
+
+> > DT properties like this are hard to use. It would be better if the
+> > switch can decide for itself if it needs the PLL enabled.
+> 
+> Again reason in the cover letter sgmii part. Some qca driver have some
+> logic based on switch revision. We tried that and it didn't work since
+> some device had no traffic with pll enabled (and with the revision set
+> to enable pll)
+
+This is my main problem with this patchset. You are adding lots of
+poorly documented properties which are proprietary to this switch. And
+you are saying, please try all 2^N combinations and see what works
+best. That is not very friendly at all.
+
+So it would be good to explain each one in detail. Maybe given the
+explanation, we can figure out a way to detect at runtime, and not
+need the option. If not, you can add it to the DT binding to help
+somebody pick a likely starting point for the 2^N search.
+
+	 Andrew
