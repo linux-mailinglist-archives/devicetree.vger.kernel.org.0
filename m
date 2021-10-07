@@ -2,112 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F33CE4256FA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 17:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AABAD4256FF
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 17:47:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241684AbhJGPsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 11:48:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45906 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241646AbhJGPsQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 11:48:16 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69EF6C061755
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 08:46:22 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id o204so1378199oih.13
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 08:46:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kjtYykHRfu3oN6LXYJsRLSWIj815s4nhh1Muy8N60sQ=;
-        b=R45UfSQ+bdE2Lt+bNuC/oJ0r+7Gm/HotFGaEEwCZFjEckLGqCmSFMFsjdHztQRIYLb
-         8s8E6tSjyNPW+RyLroTsdWcH6fZhgGzM4xbAMmcdjxX/7+8iFWkN1X6mAscYYVTwitaC
-         63Q80xUR5epHZCDW9iEb6UKkd4zNLr2Q9dtvAS0BtYcnCkszQ6Yx1iZO+mYf28UwmszR
-         xdGv62q0OKWIdOszgup8QDJaymbosGpLvpudkt3OBcBv8JgGSAbogNWVFwjuU8mqQBa6
-         LLRYNO8XxSU0Ztoe85f/VtN42HYhhN+rsHgu3PeJr/EcfnRNSkz+QZZd3siZ3gDLm76A
-         6zig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kjtYykHRfu3oN6LXYJsRLSWIj815s4nhh1Muy8N60sQ=;
-        b=A/gwkqxOaijxgcRCR6E06BhuS/rL2LGOXGGZFG4UZCSOBzIney9dFwmdVlF6I0A2Tr
-         cNE96a9ORkAAdZokJaVsSFJxnr/clRsHzFYo767cxje77y1b6sgc9oahfKKNwGjnM/nT
-         ZX+MaVn4nypt0Na6ViYDwbAvYwSMtz93qrCsDb5iC7ZmIVT/sRrB+d4jzLMsKF0Al1Dg
-         4uZp8Qw35K/hQ7A1LpRaBqx7xOodRrm2Ey3ZoNlTniS3dFYPufppaS+s7MPSaszsAv1T
-         xToGei81XRdkSyC/5p1yr+TaZAO/zNDm6sekY8ztucLSjovbSpeiW2ye/TrZ42LPBu/L
-         hE1g==
-X-Gm-Message-State: AOAM5332X0RQtkCUHownQn/oIxW5cRTSBvEhm2fSMVU+V+4qoRlUZLeD
-        sOaKiPSTQRij7Bsrw8c6DfRjyQ==
-X-Google-Smtp-Source: ABdhPJyb0r7BkApnwD6ZTwsdS6wSJDTlROhQ2XReuZb9Hhs6nHxCYwNvx87/aJx3BBzNBiCYkKJqDw==
-X-Received: by 2002:aca:3656:: with SMTP id d83mr12288367oia.176.1633621581738;
-        Thu, 07 Oct 2021 08:46:21 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id bj33sm5120916oib.31.2021.10.07.08.46.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 08:46:21 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 08:48:01 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 7/8] clk: qcom: dispcc-sm8250: stop using mmcx
- regulator
-Message-ID: <YV8WsQb9H7+CaLjP@ripper>
-References: <20210829154757.784699-1-dmitry.baryshkov@linaro.org>
- <20210829154757.784699-8-dmitry.baryshkov@linaro.org>
+        id S241701AbhJGPtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 11:49:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51354 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232870AbhJGPtP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 11:49:15 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 01D9F61074;
+        Thu,  7 Oct 2021 15:47:18 +0000 (UTC)
+Date:   Thu, 7 Oct 2021 16:51:23 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Mihail Chindris <mihail.chindris@analog.com>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <nuno.sa@analog.com>, <dragos.bogdan@analog.com>,
+        <alexandru.ardelean@analog.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>
+Subject: Re: [PATCH v6 4/6] drivers: iio: dac: ad5766: Fix dt property name
+Message-ID: <20211007165123.023ecbc1@jic23-huawei>
+In-Reply-To: <20211007080035.2531-5-mihail.chindris@analog.com>
+References: <20211007080035.2531-1-mihail.chindris@analog.com>
+        <20211007080035.2531-5-mihail.chindris@analog.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210829154757.784699-8-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 29 Aug 08:47 PDT 2021, Dmitry Baryshkov wrote:
+On Thu, 7 Oct 2021 08:00:34 +0000
+Mihail Chindris <mihail.chindris@analog.com> wrote:
 
-> Now as the common qcom clock controller code has been taught about power
-> domains, stop mentioning mmcx supply as a way to power up the clock
-> controller's gdsc.
+> In the documentation the name for the property is
+> output-range-microvolts which is a standard name, therefore this name
+> must be used.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Fixes: fd9373e41b9ba ("iio: dac: ad5766: add driver support for AD5766")
+> Signed-off-by: Mihail Chindris <mihail.chindris@analog.com>
+> Reviewed-by: Alexandru Ardelean <ardeleanalex@gmail.com>
+Applied this one to the fixes-togreg branch of iio.git and marked it for stable.
 
-Once we merge these, I expect that the boards will start crashing if
-the kernel is booted using an existing DTB?
+Thankfully this is (I think) far enough from the other changes that we
+should be able to take the other patches through the togreg tree and have
+them all meet up in linux-next / upstream.
 
-Is it okay to just merge the first 6 patches in the series now and
-postpone these two until we've had the dts change sitting for a while?
+Thanks,
 
-Regards,
-Bjorn
+Jonathan
 
 > ---
->  drivers/clk/qcom/dispcc-sm8250.c | 1 -
->  1 file changed, 1 deletion(-)
+>  drivers/iio/dac/ad5766.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
-> index 108dd1249b6a..cf0bb12eb6e1 100644
-> --- a/drivers/clk/qcom/dispcc-sm8250.c
-> +++ b/drivers/clk/qcom/dispcc-sm8250.c
-> @@ -1129,7 +1129,6 @@ static struct gdsc mdss_gdsc = {
->  	},
->  	.pwrsts = PWRSTS_OFF_ON,
->  	.flags = HW_CTRL,
-> -	.supply = "mmcx",
->  };
+> diff --git a/drivers/iio/dac/ad5766.c b/drivers/iio/dac/ad5766.c
+> index 3104ec32dfac..dafda84fdea3 100644
+> --- a/drivers/iio/dac/ad5766.c
+> +++ b/drivers/iio/dac/ad5766.c
+> @@ -503,13 +503,13 @@ static int ad5766_get_output_range(struct ad5766_state *st)
+>  	int i, ret, min, max, tmp[2];
 >  
->  static struct clk_regmap *disp_cc_sm8250_clocks[] = {
-> -- 
-> 2.33.0
-> 
+>  	ret = device_property_read_u32_array(&st->spi->dev,
+> -					     "output-range-voltage",
+> +					     "output-range-microvolts",
+>  					     tmp, 2);
+>  	if (ret)
+>  		return ret;
+>  
+> -	min = tmp[0] / 1000;
+> -	max = tmp[1] / 1000;
+> +	min = tmp[0] / 1000000;
+> +	max = tmp[1] / 1000000;
+>  	for (i = 0; i < ARRAY_SIZE(ad5766_span_tbl); i++) {
+>  		if (ad5766_span_tbl[i].min != min ||
+>  		    ad5766_span_tbl[i].max != max)
+
