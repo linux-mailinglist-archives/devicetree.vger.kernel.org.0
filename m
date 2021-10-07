@@ -2,106 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 238504253FC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5E7425408
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:26:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241416AbhJGN1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 09:27:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40690 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232869AbhJGN1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 09:27:30 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8268C061570;
-        Thu,  7 Oct 2021 06:25:36 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id v18so23189841edc.11;
-        Thu, 07 Oct 2021 06:25:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZtaAQUcIMAxwmN/4pd2KyUfGo5ZqQSY8rbyvPPScUUo=;
-        b=Xm1SX2ysSVEfGgCINe/ENA/iSoFbIyj1gorUkdZtdfQ6DBiSFEsrtQQcTHU3/UxkQl
-         5jVFR9vi1SkN3Rfs6xYuBjv8Pte1xg/i6rBRyCUICzKH8tFYERvO8704Tn0xBNStoT1l
-         ZQ7iKoTTv3jNdWyVEdLftTo2v1GBHUKWRWStaI6PFov4qT1XMIx0Kgwba+pAjtt8Kfpd
-         KLcnToA794UC2J9tKJ0gr81XRj+iTMkEIp/RRxPcgJ4/Ojyttk24KI24T1/HTqEeybOo
-         oBBTOwNQZ87jrfAlCzDFWFhKlcTb/z+yvrazzlIhY5mZXty4OWNXeCJ5ervILn6emAMC
-         RpIQ==
+        id S241344AbhJGN2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 09:28:50 -0400
+Received: from mail-vs1-f47.google.com ([209.85.217.47]:42946 "EHLO
+        mail-vs1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232869AbhJGN2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 09:28:50 -0400
+Received: by mail-vs1-f47.google.com with SMTP id l22so4301569vsq.9;
+        Thu, 07 Oct 2021 06:26:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZtaAQUcIMAxwmN/4pd2KyUfGo5ZqQSY8rbyvPPScUUo=;
-        b=7GH6zm+tZmL3sxHndVmJkWSDqZ7o9mDm9hutZQPyV6qMkKBZUOBvx3WY+RO1e302B7
-         7CdAjLU54xcTTAX7oxkyow3DzTgpQbiXwTNFwZ+itihoFuT7UBiOmVCMWEZsiDmdFB3C
-         UbIb0hYW5ZaCsvFF0Hlq/Df2955lbc+IbQMGB4vdKD8oU5zB8reGScItY+/n4ttP97AD
-         64YduWIEnqTn/QXPoq9X4Ur/A8oTunxRvhqeRwevWW0A185C7Z0/JQjGJUCcJSLvtNJF
-         5Pj2sQECxET1pQ8RMsL8GfydY/zy7CSdcGizf+E97ZglRgZqv88KnxJe1XUeKcTZ4NS0
-         YVYg==
-X-Gm-Message-State: AOAM5334e0uoL6RZPhyPoSzEVC4Qgyca4vgcZtVuw6cc7yd7EV2Fr5U0
-        0KqAnczvOn65BdXQi5Sex2Y=
-X-Google-Smtp-Source: ABdhPJxXUzW/7r/ROuBTG2S2BtbY3zXzRrX1UFoZrW7TMnMowtCxZmU6F5irOgPstO+ySO+UqFBYMg==
-X-Received: by 2002:a17:906:b254:: with SMTP id ce20mr5767002ejb.306.1633613135214;
-        Thu, 07 Oct 2021 06:25:35 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id ay19sm8572792edb.20.2021.10.07.06.25.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 06:25:34 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 15:25:32 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH 06/13] Documentation: devicetree: net: dsa:
- qca8k: document rgmii_1_8v bindings
-Message-ID: <YV71TCksnbixsYI0@Ansuel-xps.localdomain>
-References: <20211006223603.18858-1-ansuelsmth@gmail.com>
- <20211006223603.18858-7-ansuelsmth@gmail.com>
- <YV46wJYlJZHAZLyD@lunn.ch>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bkj8dwkFQ63OO4447PidWmaVxAbiH/cdrskhBNReVTk=;
+        b=afjR2c8z8bAgL6pldq1cN9sJ3V2m7YbhfmK04OE+pwh1MOq6WRAmFmPL1wYPDcMeqF
+         5Pee4JFqPUUmvA1xtGPATc2IFw0DbCXN0Xq2kPD7/Aq7xpNL9iUev6bR8nuU6MgIwdGB
+         vgNtgu57VKPJmq12m56FPqLn7+ydTlALW3J8YobngODChZdXXMO8UA+e/Af3qkVFl5tV
+         4XGZ4Wk2uy99Hj+O8pKi/u88otCWIgrDUr0ipPEbJhaYH+vRXlsgthzaHyK5+/w3GUIC
+         VQtaBzzwO6xxcHmF5Up4PkFv/BVv7WFnpNEqba3XYvKPzH1jPADCwhiXjG68CYyg0vvH
+         evXg==
+X-Gm-Message-State: AOAM531kJP2o86wC1kDwZgyaGWLcnGb5CEeoNr2uID7cUaV7XXA2ExL1
+        E6Z9MGfw2bSStQJGb1gD0KeoIIOuJziBySIh2sE=
+X-Google-Smtp-Source: ABdhPJxwTvcJiVL7qUeCezowJd8CF3ARkR4xTMVDfjJBd459kWNVDIXrMB8m8U31lyBmUPNWPXm4kOroxf0W9nVbv04=
+X-Received: by 2002:a67:cb0a:: with SMTP id b10mr3865390vsl.9.1633613215795;
+ Thu, 07 Oct 2021 06:26:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YV46wJYlJZHAZLyD@lunn.ch>
+References: <20211007124858.44011-1-tony@atomide.com> <20211007124858.44011-2-tony@atomide.com>
+In-Reply-To: <20211007124858.44011-2-tony@atomide.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 7 Oct 2021 15:26:44 +0200
+Message-ID: <CAMuHMdX3XBA25sUMF2SpfbH7XX5-UpPFj-0nHuwDOv49YWQn+A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: bus: simple-pm-bus: Make clocks and
+ power-domains optional
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
+        <linux-omap@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh@kernel.org>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Suman Anna <s-anna@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 07, 2021 at 02:09:36AM +0200, Andrew Lunn wrote:
-> On Thu, Oct 07, 2021 at 12:35:56AM +0200, Ansuel Smith wrote:
-> > Document new qca,rgmii0_1_8v and qca,rgmii56_1_8v needed to setup
-> > mac_pwr_sel register for ar8327 switch.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/dsa/qca8k.txt | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > index 8c73f67c43ca..1f6b7d2f609e 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > @@ -13,6 +13,8 @@ Required properties:
-> >  Optional properties:
-> >  
-> >  - reset-gpios: GPIO to be used to reset the whole device
-> > +- qca,rgmii0-1-8v: Set the internal regulator to supply 1.8v for MAC0 port
-> > +- qca,rgmii56-1-8v: Set the internal regulator to supply 1.8v for MAC5/6 port
-> 
-> What is the consumer of these 1.8v? The MACs are normally internal,
-> the regulators are internal, so why is a DT property needed?
-> 
->     Andrew
+Hi Tony,
 
-Only some device require this, with these bit at 0, the internal
-regulator provide 1.5v. It's not really a on/off but a toggle of the
-different operating voltage. Some device require this and some doesn't.
+Thanks for your patch!
+
+On Thu, Oct 7, 2021 at 2:49 PM Tony Lindgren <tony@atomide.com> wrote:
+> Clocks and power domains are not required by the simple-pm-bus driver.
+> There are buses with read-only registers for clocks and power domains
+> that are always on.
+
+The presence of clocks or power-domains properties is the only
+distinguishing factor between simple-pm-bus and simple-bus, from a
+DT point of view.  So if there has to be a distinguishment, the
+properties should be required
+
+If you don't have clocks and power-domains, you should use simple-bus.
+
+> Even without clocks and power domains configured, simple-pm-bus is still
+> different from simple-bus as simple-pm-bus enables runtime PM for the bus
+> driver.
+
+Which you need to have working Runtime PM for child devices, right? ;-)
+
+This is not specific to DT, but to Linux.
+One more reason to let Linux treat simple-pm-bus and simple-bus exactly
+the same.  Linux handles the clocks and power-domains (if present)
+transparently anyway, through PM Domains
+
+> Let's update the binding accordingly as this remove the related warnings
+> for dt_binding_check for omaps.
+>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Simon Horman <horms+renesas@verge.net.au>
+> Cc: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+
+> --- a/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> +++ b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> @@ -13,10 +13,9 @@ description: |
+>    A Simple Power-Managed Bus is a transparent bus that doesn't need a real
+>    driver, as it's typically initialized by the boot loader.
+>
+> -  However, its bus controller is part of a PM domain, or under the control
+> -  of a functional clock.  Hence, the bus controller's PM domain and/or
+> -  clock must be enabled for child devices connected to the bus (either
+> -  on-SoC or externally) to function.
+> +  However, its bus controller is typically part of a PM domain, or under
+> +  the control of a functional clock.  Without PM domain or functional clock,
+> +  it still enables runtime PM for the bus driver unlike "simple-bus".
+>
+>    While "simple-pm-bus" follows the "simple-bus" set of properties, as
+>    specified in the Devicetree Specification, it is not an extension of
+> @@ -43,10 +42,10 @@ properties:
+>
+>    clocks: true
+>      # Functional clocks
+> -    # Required if power-domains is absent, optional otherwise
+> +    # Typically used if power-domains is absent
+>
+>    power-domains:
+> -    # Required if clocks is absent, optional otherwise
+> +    # Typically used if clocks is absent
+>      minItems: 1
+>
+>  required:
+> @@ -55,12 +54,6 @@ required:
+>    - '#size-cells'
+>    - ranges
+>
+> -anyOf:
+> -  - required:
+> -      - clocks
+> -  - required:
+> -      - power-domains
+> -
+>  additionalProperties: true
+>
+>  examples:
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-	Ansuel
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
