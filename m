@@ -2,74 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1D6A4260B4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 01:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C66684260B8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 01:51:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234206AbhJGXst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 19:48:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45266 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233860AbhJGXss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 19:48:48 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 474F5C061570
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 16:46:54 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id k2-20020a056830168200b0054e523d242aso49876otr.6
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 16:46:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=gVE/1ADkJ8MTOhXMg6RxOoE4mte4x5DusQmTFFGGsBU=;
-        b=WoVlPccxHbuRTr5ECO9lMIta1ZkIBn8OSGWFIgYT2q5pUtArA7URZdzzXp35EDfPSy
-         KEigeax+oRE1HBvTYEr4YUpbI8NLvI0ma+lLdK38aDH4lzNGWrgK6AUTcv/yalhej6S0
-         NOlhvK9kCoW2oDdzEVJoL/HY6DGgCG1vxQODk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=gVE/1ADkJ8MTOhXMg6RxOoE4mte4x5DusQmTFFGGsBU=;
-        b=aNXWSv4PX3cYhwQp98OqJApxu1euZlhYFKvL4ZUxAuCjjiblBFvS30tWyM+SkkoNxp
-         QHJSNMJUMm24NRXLMeAY0m7OToHXTOWRlBnVmaTqEAUXmcwXhcKw31F93fcNWUKpSB+W
-         OOvI9erVt9KLPM+aRNZhqtUZb/QbWDXTVh4AKh4VJr6SJp/B3q8KWrEvhArzSHt05iCQ
-         41XfElS8v+oC4LEo7SvagRK4+ep3JzdVTs0EO4QKogRRSTz/+uA+1x4+KqvyQlQomjUm
-         P1AMgBqSZmmM45LK4wsCtD4Cj1uFbD7wMpwUIK/P4tjlvzEetZhQD9o46eeJsGljKRcX
-         I7AQ==
-X-Gm-Message-State: AOAM532FkL2EP2TbDldsppI5rmJPKSHoP+E34c0jHeXLyOM/qiJ2sGiF
-        otVdKqQomZQFafhDoCmE1SxKL4HR/TIKij/YPSgrig==
-X-Google-Smtp-Source: ABdhPJxlFP1/S8B0xAWuFNOhsUPgTNfrPc0wkMbmhmTCldN7UU+Qjct3D18HQXZEaHm/3kIj7Vvs8oXLVNcbNBEbTbE=
-X-Received: by 2002:a9d:5a90:: with SMTP id w16mr21830oth.126.1633650413709;
- Thu, 07 Oct 2021 16:46:53 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 7 Oct 2021 19:46:53 -0400
+        id S234231AbhJGXxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 19:53:50 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:55548 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235212AbhJGXxt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 19:53:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=0rTewvTn7wvPrU49mGtxMSiIC3GvG3uEdCDWIJLYZlY=; b=iDNv5SmtdL/sto2WTJBuv+Qy9K
+        qWsec2pgRPVUMa38yi8FO7+5r+S9plISdXi586uZpllPSo6oIvkJTy4UfuZ0aFsASeOmcdZIOBQjy
+        cNqEGAddjJI3nEQ5AiLm02W3Jancv/gV51TmTal2XlvSRE+wSRu9ursCYyc0MeBjc/vM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mYdAt-00A0Tc-JC; Fri, 08 Oct 2021 01:51:43 +0200
+Date:   Fri, 8 Oct 2021 01:51:43 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        robh+dt@kernel.org, kostap@marvell.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm/arm64: dts: Add MV88E6393X to CN9130-CRB device
+ tree
+Message-ID: <YV+IDzEdYuy+s/Ak@lunn.ch>
+References: <20211007230619.957016-1-chris.packham@alliedtelesis.co.nz>
+ <20211007230619.957016-3-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
-In-Reply-To: <20211007140854.1.I70615769f27bbaf7e480419d0f660f802b1fea43@changeid>
-References: <20211007140854.1.I70615769f27bbaf7e480419d0f660f802b1fea43@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 7 Oct 2021 19:46:53 -0400
-Message-ID: <CAE-0n53Ch+YYTzO31w0Gv5zvn6oUJGRMGxqdO_h4_ULaQ+7_fA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add Herobrine
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211007230619.957016-3-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Matthias Kaehlcke (2021-10-07 14:09:11)
-> Herobrine is a Chrome OS board/platform based on the QCA SC7280.
-> Add a .dtsi for the platform parts and a .dts for the board
-> specific bits. Currently the .dtsi has everything except the
-> compatible strings, things will likely get shuffled around in the
-> future as we learn more about the differences between boards.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+On Fri, Oct 08, 2021 at 12:06:19PM +1300, Chris Packham wrote:
+> The CN9130-CRB boards have a MV88E6393X switch connected to eth0.  Add
+> the necessary dts nodes and properties for this.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
+> 
+> This is taken from the Marvell SDK. I've re-ordered the port entries to
+> be in ascending order.
+> 
+>  arch/arm64/boot/dts/marvell/cn9130-crb.dtsi | 125 ++++++++++++++++++++
+>  1 file changed, 125 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi b/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
+> index e7918f325646..171f7394948e 100644
+> --- a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
+> @@ -185,6 +185,131 @@ &cp0_mdio {
+>  	phy0: ethernet-phy@0 {
+>  		reg = <0>;
+>  	};
+> +
+> +	switch6: switch0@6 {
+> +		/* Actual device is MV88E6393X */
+> +		compatible = "marvell,mv88e6190";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <6>;
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Is the interrupt output connected to a GPIO?
+
+> +
+> +		dsa,member = <0 0>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				label = "notused-port0";
+> +				phy-mode = "10gbase-kr";
+> +				status = "disabled";
+
+What is meant by not used? Does it go to a header? Is it not wired at
+all? You don't need to list a port if it is not actually used. So
+maybe you just want to delete this port all together?
+
+> +
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				label = "wan1";
+> +				phy-handle = <&switch0phy1>;
+> +			};
+> +
+
+
+> +
+> +			port@8 {
+> +				reg = <8>;
+> +				label = "lan8";
+> +				phy-handle = <&switch0phy8>;
+> +			};
+> +
+> +			port@9 {
+> +				reg = <9>;
+> +				label = "wanp9";
+
+Do these names correspond to some labeling? Ether the case or the silk
+screen? wanp9 is an odd name. Is it connected to a header?
+
+> +				phy-mode = "10gbase-kr";
+> +				fixed-link {
+> +					speed = <10000>;
+> +					full-duplex;
+> +				};
+> +			};
+
+  Andrew
