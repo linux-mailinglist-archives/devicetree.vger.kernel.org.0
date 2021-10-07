@@ -2,74 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94385425075
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 11:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFA98425082
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 11:58:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232625AbhJGJz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 05:55:26 -0400
-Received: from dnyon.com ([82.223.165.189]:43434 "EHLO dnyon.com"
+        id S240318AbhJGJ77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 05:59:59 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:28114 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232475AbhJGJzZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 05:55:25 -0400
-Received: from dnyon.com (55.red-81-39-194.dynamicip.rima-tde.net [81.39.194.55])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S232705AbhJGJ76 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 05:59:58 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633600685; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=grLuxOrRljvsBDIcmqLgOZ78xQRQ6+KbXk7lAEeruxc=; b=RR3e32b71SDH2RX9sFshZRCaWH9Hgx7BR41kY1+8fMgaXxSMR6p1AQbjx9O1dfZgTeb2qDh0
+ VnO3xQ4TLDLkKQFzBFRR/9f1ZBDjhcKPkvmsXaA4qEbIaI7eT36yJX/XxKYV9yVgAPyH1phd
+ YbrLkRguqpJeN/O5Dpg9roc+yR8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 615ec4a503355859c845507b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 09:57:57
+ GMT
+Sender: mkshah=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 7CEA2C43619; Thu,  7 Oct 2021 09:57:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from mkshah-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by dnyon.com (Postfix) with ESMTPSA id 0E1443FD71;
-        Thu,  7 Oct 2021 09:47:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=dnyon.com; s=mail;
-        t=1633600073; bh=qd7kluRu5cKVXNfP+NrNpCRiRCxNL9FJkxiisrNtYzM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=L7+U4QBwCMGyl+J+gFJ4w569/sVHmCHJ/cv/+NK/69qyg5/UHGmRJDHvJJMKwWcnC
-         i/Eiwg7nIWfMrlYeP4c5rVQPR8HE+uc1kaG4HD/a4mB6nnOD1PsUeok00w8M92KHp0
-         0RKOFJxTxx9X9AZSiHZ1f24so4LK00CuznGzPWfCLeseF95DgY27uw6UK8bFq7lYEj
-         /QHMRxiDPMAMtfjTTVeEIJ9eTkvP/pewzN6VJ5xm/m0c1CWKy8FgiS1aq3fo3Ig0RS
-         YlUDZ5eB4klGSH+/V60Ky9S0pHSo47b+5VS+wNF9MjpX6zJnBkAVnYPsYSCqRlEncI
-         H+n2TSDTlgISw==
-From:   Alejandro Tafalla <atafalla@dnyon.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        =?ISO-8859-1?Q?P=E9ter?= Ujfalusi 
-        <peter.ujfalusi@linux.intel.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 2/2] dt-bindings: sound: max98927: Add reset-gpios optional property
-Date:   Thu, 07 Oct 2021 11:47:46 +0200
-Message-ID: <5529627.DvuYhMxLoT@alexpc>
-In-Reply-To: <CAHp75VdbZmGeCq8A1E3AJU4T39xPUhomzrQqZNaDj8Zi0x9WrA@mail.gmail.com>
-References: <cover.1633572679.git.atafalla@dnyon.com> <4682758.31r3eYUQgx@alexpc> <CAHp75VdbZmGeCq8A1E3AJU4T39xPUhomzrQqZNaDj8Zi0x9WrA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        (Authenticated sender: mkshah)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 54C5AC43618;
+        Thu,  7 Oct 2021 09:57:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 54C5AC43618
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Maulik Shah <mkshah@codeaurora.org>
+To:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>,
+        Maulik Shah <mkshah@codeaurora.org>
+Subject: [PATCH v11 1/5] dt-bindings: Introduce QCOM Sleep stats bindings
+Date:   Thu,  7 Oct 2021 15:27:25 +0530
+Message-Id: <1633600649-7164-2-git-send-email-mkshah@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1633600649-7164-1-git-send-email-mkshah@codeaurora.org>
+References: <1633600649-7164-1-git-send-email-mkshah@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/10/21 9:06 Andy Shevchenko wrote:
-> On Thu, Oct 7, 2021 at 5:45 AM Alejandro Tafalla <atafalla@dnyon.com> wrote:
-> > On 7/10/21 4:38 Alejandro Tafalla wrote:
-> > > Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
-> > > ---
-> > > 
-> > >  Documentation/devicetree/bindings/sound/max9892x.txt | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > 
-> > Sorry, I forgot to add:  Acked-by: Rob Herring <robh@kernel.org>
-> 
-> And commit messages?
+From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
 
-Right, can I resend this patch with the commit message or I have to resend the 
-other one too?
+Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+Sleep stats driver. The driver is used for displaying Sleep statistic maintained
+by Always On Processor or Resource Power Manager.
+
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+---
+ .../bindings/soc/qcom/qcom-sleep-stats.yaml        | 47 ++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
+
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
+new file mode 100644
+index 0000000..5213daf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/qcom/qcom-sleep-stats.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. (QTI) Sleep stats bindings
++
++maintainers:
++  - Maulik Shah <mkshah@codeaurora.org>
++
++description:
++  Always On Processor/Resource Power Manager maintains statistics of the SoC
++  sleep modes involving powering down of the rails and oscillator clock.
++
++  Statistics includes SoC sleep mode type, number of times low power mode were
++  entered, time of last entry, time of last exit and accumulated sleep duration.
++
++properties:
++  compatible:
++    enum:
++      - qcom,rpmh-sleep-stats
++      - qcom,rpm-sleep-stats
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  # Example of rpmh sleep stats
++  - |
++    sram@c3f0000 {
++      compatible = "qcom,rpmh-sleep-stats";
++      reg = <0x0c3f0000 0x400>;
++    };
++  # Example of rpm sleep stats
++  - |
++    sram@4690000 {
++      compatible = "qcom,rpm-sleep-stats";
++      reg = <0x04690000 0x400>;
++    };
++...
 -- 
-Alejandro Tafalla
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
