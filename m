@@ -2,135 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 627CF426009
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 00:47:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3580F42602C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 01:06:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240975AbhJGWs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 18:48:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60108 "EHLO
+        id S235982AbhJGXIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 19:08:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240529AbhJGWsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 18:48:55 -0400
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7617C061760
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 15:47:00 -0700 (PDT)
-Received: by mail-io1-xd35.google.com with SMTP id x1so4623464iof.7
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 15:47:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=COVdMKi4vGrLOvs+TWC65+Lqr3T2s/9tiuZQIejj6cA=;
-        b=F3PD+1Hhdv7vBXT3BtD+4QLQhBQljFGKDrltOTGEjZnGbEhHZzSjtOs4iRGtPObT1B
-         C5CoWXV2BESIIXFng4L7iwuiFTbsVrhDvRlK4Z08ex6QsBRgKjmSx5B7Guh4Mzlobk61
-         41irwdC8dhfMkqK+vWH3cH7zDBLxcjTFjweBA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=COVdMKi4vGrLOvs+TWC65+Lqr3T2s/9tiuZQIejj6cA=;
-        b=bp0cQjWK4XgplL2wb3HEcMmAizYOSVcOf/z68dqrA39NxkLCO1jzbJXhC42tuUMe6V
-         lMOMQIkxHb2i1ZPfEOltrMr62oSqd/X9lO+evdRVuh9qLtrMLLgCiFMobt2YRjhRmwHW
-         FIn+N8iINXo40SBVDH6RUgk3VAkbxpDaFRYtk/+AcJK5BZCihcqJLWbU2YrCVdvIKSfd
-         atl7wW/PMgDPXS+m/XTUkJzJZWZiakfgx10HRBLpK5rX63IyhmRzhK6wrs7UKbajw8sH
-         4fbp/SgdOouBU6YcQwOe2MvotYv74J9yEzKU4xkfcODbS9P40qJwyNEsbxO471ikwjiN
-         vJCA==
-X-Gm-Message-State: AOAM532j5c9aGp7RHvSmUYgXbT/hVnCduSHLtAjng2I9SE19EV0puCZI
-        ao3VOcHWAOH5Mg/k22cxETlNbEKVOgRAGg==
-X-Google-Smtp-Source: ABdhPJxIvWMisnjTl6Pj+M6I4FYzWlIyhT+9SmGaw8lVizGndUIC2k7GtRwKk0Qewk1+wunscyLSsg==
-X-Received: by 2002:a6b:8f47:: with SMTP id r68mr4949152iod.18.1633646819930;
-        Thu, 07 Oct 2021 15:46:59 -0700 (PDT)
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
-        by smtp.gmail.com with ESMTPSA id v19sm211002ioh.44.2021.10.07.15.46.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 15:46:59 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id e144so8581046iof.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 15:46:58 -0700 (PDT)
-X-Received: by 2002:a02:cba7:: with SMTP id v7mr2701595jap.54.1633646818484;
- Thu, 07 Oct 2021 15:46:58 -0700 (PDT)
+        with ESMTP id S234956AbhJGXIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 19:08:21 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E43C061570
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 16:06:26 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id BD07D806A8;
+        Fri,  8 Oct 2021 12:06:21 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1633647981;
+        bh=V5jRFXD4f6RFjyknJn8RXjM/mGtdfUVdJ1dQT2sORiQ=;
+        h=From:To:Cc:Subject:Date;
+        b=F7y8L7knr9Ah5Llz54TexB9+Yw52yJ6lBdUH2ml2QVXBJnbykbz7kP5YnX7dF924c
+         EHFUiBWeYHBQEbeqVCsbL+9HiAWwWtXZG2cijk0hyBiVNhKeRmCSJ3xWqdmlnw1Vvr
+         e9UbVCaY/6kokhJYdH5FG9CGmv5jcTcEok/j5bTDZPDUUpSyB1TfaiflCoE1Y6K0tb
+         saD57H6drpVmojHTuIIUvB39btjDpW4GZvfnUH+p2mIfJ42SZTnncl98GQYcy9GrRw
+         5BNjAvgxVg3eUMkCZrOe0WLYqh0efBzbYdImpIpZtG6YhO/e1jkHKuOe6/mvBykfIS
+         7gJ9EGQdhNJMw==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B615f7d6d0000>; Fri, 08 Oct 2021 12:06:21 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.26])
+        by pat.atlnz.lc (Postfix) with ESMTP id 8FB2813EE39;
+        Fri,  8 Oct 2021 12:06:21 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 8D1302A0B00; Fri,  8 Oct 2021 12:06:21 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+        kostap@marvell.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/2] arm/arm64: dts: Enable more network hardware
+Date:   Fri,  8 Oct 2021 12:06:17 +1300
+Message-Id: <20211007230619.957016-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
- <CAD=FV=XP+mJCEG+=meCXDb06bmfPwze2SP9FaMuKZkSh25JCSg@mail.gmail.com> <CA+cxXhn3Bw4d_F2LwP34ko1UuDGHHoQWLxcdK17L-PoDJ3n+ug@mail.gmail.com>
-In-Reply-To: <CA+cxXhn3Bw4d_F2LwP34ko1UuDGHHoQWLxcdK17L-PoDJ3n+ug@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 7 Oct 2021 15:46:46 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=X1wTNE1wgou57UC6LcmN+4vTFJV9co9Sg9NgAXZm927A@mail.gmail.com>
-Message-ID: <CAD=FV=X1wTNE1wgou57UC6LcmN+4vTFJV9co9Sg9NgAXZm927A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: sc7180: Factor out ti-sn65dsi86 support
-To:     Philip Chen <philipchen@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=fKRHIqSe c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=8gfv0ekSlNoA:10 a=__zsmxHhwBNjUnNrKTkA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series enables the Switch and 2.5G Ethernet port on the CN9130-CRB. =
+The
+changes are based on the Marvell SDK.
 
-On Thu, Oct 7, 2021 at 3:29 PM Philip Chen <philipchen@chromium.org> wrote:
->
-> Hi
->
-> On Thu, Sep 30, 2021 at 9:22 AM Doug Anderson <dianders@chromium.org> wrote:
-> >
-> > Hi,
-> >
-> > On Wed, Sep 29, 2021 at 5:35 PM Philip Chen <philipchen@chromium.org> wrote:
-> > >
-> > > Factor out ti-sn65dsi86 edp bridge as a separate dts fragment.
-> > > This helps us introduce the second source edp bridge later.
-> > >
-> > > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> > > Signed-off-by: Philip Chen <philipchen@chromium.org>
-> > > ---
-> > >
-> > > Changes in v2:
-> > > - Move edp_brij_i2c completely out of sc7180-trogdor.dtsi to the
-> > >   bridge dts fragment, so that we can cleanly assign different
-> > >   edp bridge in every board rev.
-> > >
-> > >  .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  1 +
-> > >  .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  1 +
-> > >  .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  1 +
-> > >  .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  1 +
-> > >  .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi | 90 +++++++++++++++++++
-> > >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 86 ------------------
-> > >  6 files changed, 94 insertions(+), 86 deletions(-)
-> > >  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> > > index a758e4d22612..1d13fba3bd2f 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-> > > @@ -11,6 +11,7 @@
-> > >  ap_h1_spi: &spi0 {};
-> > >
-> > >  #include "sc7180-trogdor.dtsi"
-> > > +#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-> >
-> > It looks like you're missing homestar, aren't you? I'd expect that
-> > after applying your change that:
-> >
-> > git grep -A1 include.*sc7180-trogdor.dtsi
-> >
-> > ...should show your new include right after all includes of
-> > sc7180-trogdor.dtsi, but I don't see it for homestar.
->
-> I can't find homestar dts file in my upstream checkout.
-> But I found: https://patchwork.kernel.org/project/linux-arm-msm/patch/20210909122053.1.Ieafda79b74f74a2b15ed86e181c06a3060706ec5@changeid/
-> ...Is it merged anywhere?
+Chris Packham (2):
+  arm/arm64: dts: Enable 2.5G Ethernet port on CN9130-CRB
+  arm/arm64: dts: Add MV88E6393X to CN9130-CRB device tree
 
-The device trees need to be posted against the Qualcomm tree.
+ arch/arm64/boot/dts/marvell/cn9130-crb.dtsi | 129 +++++++++++++++++++-
+ 1 file changed, 127 insertions(+), 2 deletions(-)
 
-git://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+--=20
+2.33.0
 
-It should be in the for-next branch there.
-
--Doug
