@@ -2,152 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAC88425CDA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 22:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6829A425CF0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 22:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231976AbhJGUFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 16:05:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45240 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230060AbhJGUFu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 16:05:50 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 328D8610CC;
-        Thu,  7 Oct 2021 20:03:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633637036;
-        bh=tQrT1H6vAX9nQCz4/UDBS/7Ka8j9BQl8nLNXbURKSDI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Nml8N5qqjVN6g8w0QWjm28r40muERJvTDBtJlVP//mHm4s0tHUFPuxt57uMWKSCEQ
-         yMH4MD9jY75zoV+M+Q71r/nRh0VUlXT1gmXy0wsBUG5BVjlWlb+Vy6iZvIKP0c8yWU
-         rV8rKO/kskkzqUqKzNPluHfavLiBrTtaKK3CLm9BR1bgX5d2RDNl81xjt+R0fwf6sZ
-         cHw6kcBLirU68a4v8+HKgirdWl4e+HhtVjlIzQjucZu73aGzjf/djJ0w5amLvEaqwN
-         414d2CXmVLxr5XLDm5AGVPJfUvoEPcmduqXkSi2hdncHKLfXUcIBp6R6dtLtrz1e7S
-         mcpMSf7yuR4sA==
-Received: by mail-ed1-f53.google.com with SMTP id d3so128345edp.3;
-        Thu, 07 Oct 2021 13:03:56 -0700 (PDT)
-X-Gm-Message-State: AOAM531Jn2/OA5hN6sd+cpkpUASigNTttcZzIhJD+RLj+aIWUFHsZMrO
-        sJRw9a+uSfAEMO1LJmZ/QHIQgReb6MyvCE0Jqw==
-X-Google-Smtp-Source: ABdhPJy8X406aFLvUmYkMkdUnIEqcALE1K/+nEQVAeFie0M4tlomNRuuYu3oyJV5PQ2EW4dv9srP6exyuQeR2iodti4=
-X-Received: by 2002:a17:907:7d8b:: with SMTP id oz11mr8581991ejc.84.1633637034696;
- Thu, 07 Oct 2021 13:03:54 -0700 (PDT)
+        id S236109AbhJGULN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 16:11:13 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:26992 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233719AbhJGULM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 16:11:12 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633637358; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=TgUP7H/55CzhTMa+kBh6z+HzWDqvhowEqxczuK+iB1E=;
+ b=cOgAqdGb37sKY9RaWlhMO89VjFQejErda0OF4E/C4d38cyh2HRouFSdh4W/RQJ/xQI5A8XrK
+ s4kkEQYBLOxt2RLjC9ZgmbrdN+DEXVJjzMfEZmAvlJDbqK5Ds5QM7eZsXmtjGqlWyLbUZMJR
+ eqFffOBSNgusWI/QkfchIFLt1rQ=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 615f53d9de4c4ed3855fb0f6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 20:08:57
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 379A6C4360D; Thu,  7 Oct 2021 20:08:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B3021C4338F;
+        Thu,  7 Oct 2021 20:08:55 +0000 (UTC)
 MIME-Version: 1.0
-References: <20211007000954.30621-1-zev@bewilderbeest.net> <CAHp75VdYBB_FaMr-uKswdvDBdobTYZkiE6ncoALuG+YYVoMwyw@mail.gmail.com>
- <YV64ZbcsHvBObH2j@hatter.bewilderbeest.net> <YV7Miz9RMMx/17A0@kroah.com> <YV8VGeMreR6NJad4@hatter.bewilderbeest.net>
-In-Reply-To: <YV8VGeMreR6NJad4@hatter.bewilderbeest.net>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 7 Oct 2021 15:03:43 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLk-CqKVgWp3=XccHrCdQgdGoezB6=HAXMDe1Q5R4-0HA@mail.gmail.com>
-Message-ID: <CAL_JsqLk-CqKVgWp3=XccHrCdQgdGoezB6=HAXMDe1Q5R4-0HA@mail.gmail.com>
-Subject: Re: [PATCH 0/9] Dynamic DT device nodes
-To:     Zev Weiss <zev@bewilderbeest.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Joel Stanley <joel@jms.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Andy Shevchenko <andy@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Francis Laniel <laniel_francis@privacyrequired.com>,
-        Kees Cook <keescook@chromium.org>,
-        Andrey Konovalov <andreyknvl@gmail.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Daniel Axtens <dja@axtens.net>,
-        Alexey Dobriyan <adobriyan@gmail.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 08 Oct 2021 01:38:55 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     will@kernel.org
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        saiprakash.ranjan@codeaurora.org, swboyd@chromium.org,
+        mka@chromium.org, ohad@wizery.com, agross@kernel.org,
+        mathieu.poirier@linaro.org, robin.murphy@arm.com, joro@8bytes.org,
+        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        evgreen@chromium.org, dianders@chromium.org,
+        sibis=codeaurora.org@codeaurora.org
+Subject: Re: [PATCH v5 04/10] iommu/arm-smmu-qcom: Request direct mapping for
+ modem device
+In-Reply-To: <1631886935-14691-5-git-send-email-sibis@codeaurora.org>
+References: <1631886935-14691-1-git-send-email-sibis@codeaurora.org>
+ <1631886935-14691-5-git-send-email-sibis@codeaurora.org>
+Message-ID: <0dcf1cae8c8d173922788d2807a7975f@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 7, 2021 at 10:41 AM Zev Weiss <zev@bewilderbeest.net> wrote:
->
-> On Thu, Oct 07, 2021 at 03:31:39AM PDT, Greg Kroah-Hartman wrote:
-> >On Thu, Oct 07, 2021 at 02:05:41AM -0700, Zev Weiss wrote:
-> >> On Thu, Oct 07, 2021 at 12:04:41AM PDT, Andy Shevchenko wrote:
-> >> > On Thu, Oct 7, 2021 at 3:10 AM Zev Weiss <zev@bewilderbeest.net> wrote:
-> >> > > This patch series is in some ways kind of a v2 for the "Dynamic
-> >> > > aspeed-smc flash chips via 'reserved' DT status" series I posted
-> >> > > previously [0], but takes a fairly different approach suggested by Rob
-> >> > > Herring [1] and doesn't actually touch the aspeed-smc driver or
-> >> > > anything in the MTD subsystem, so I haven't marked it as such.
-> >> > >
-> >> > > To recap a bit of the context from that series, in OpenBMC there's a
-> >> > > need for certain devices (described by device-tree nodes) to be able
-> >> > > to be attached and detached at runtime (for example the SPI flash for
-> >> > > the host's firmware, which is shared between the BMC and the host but
-> >> > > can only be accessed by one or the other at a time).
-> >> >
-> >> > This seems quite dangerous. Why do you need that?
-> >>
-> >> Sometimes the host needs access to the flash (it's the host's firmware,
-> >> after all), sometimes the BMC needs access to it (e.g. to perform an
-> >> out-of-band update to the host's firmware).  To achieve the latter, the
-> >> flash needs to be attached to the BMC, but that requires some careful
-> >> coordination with the host to arbitrate which one actually has access to it
-> >> (that coordination is handled by userspace, which then tells the kernel
-> >> explicitly when the flash should be attached and detached).
-> >>
-> >> What seems dangerous?
-> >>
-> >> > Why can't device tree overlays be used?
-> >>
-> >> I'm hoping to stay closer to mainline.  The OpenBMC kernel has a documented
-> >> policy strongly encouraging upstream-first development:
-> >> https://github.com/openbmc/docs/blob/master/kernel-development.md
-> >>
-> >> I doubt Joel (the OpenBMC kernel maintainer) would be eager to start
-> >> carrying the DT overlay patches; I'd likewise strongly prefer to avoid
-> >> carrying them myself as additional downstream patches.  Hence the attempt at
-> >> getting a solution to the problem upstream.
-> >
-> >Then why not work to get device tree overlays to be merged properly?
+Hey Will,
 
-TBC, it's 'just' the general purpose userspace interface to apply
-overlays that's missing.
+Can you pick this patch up, the rest of
+the series is now in linux-next.
 
-I did suggest what's done here as overlays are kind of an overkill for
-this usecase. Much easier to write to a sysfs file than write an
-overlay, compile it with dtc, and provide it to the kernel all just to
-enable a device.
+On 2021-09-17 19:25, Sibi Sankar wrote:
+> The SID configuration requirement for Modem on SC7280 is similar to the
+> ones found on SC7180/SDM845 SoCs. So, add the SC7280 modem compatible 
+> to
+> the list to defer the programming of the modem SIDs to the kernel.
+> 
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> Reviewed-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> index 55690af1b25d..3b9b46fca0b3 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> @@ -231,6 +231,7 @@ static const struct of_device_id
+> qcom_smmu_client_of_match[] __maybe_unused = {
+>  	{ .compatible = "qcom,sc7180-mdss" },
+>  	{ .compatible = "qcom,sc7180-mss-pil" },
+>  	{ .compatible = "qcom,sc7280-mdss" },
+> +	{ .compatible = "qcom,sc7280-mss-pil" },
+>  	{ .compatible = "qcom,sc8180x-mdss" },
+>  	{ .compatible = "qcom,sdm845-mdss" },
+>  	{ .compatible = "qcom,sdm845-mss-pil" },
 
-Perhaps this could also be supported in the driver model directly.
-Given the "what about ACPI question", that is probably what should be
-done unless the answer is we don't care. I think we'd just need a flag
-to create devices, but not bind automatically. Or maybe abusing
-driver_override can accomplish that.
-
-> >Don't work on a half-of-a-solution when the real solution is already
-> >here.
-> >
->
-> I had been under the impression that the overlay patches had very dim
-> prospects of ever being accepted and that this might be a more tractable
-> alternative, but apparently was mistaken -- I'll look into what the
-> outstanding issues were with that and perhaps take a stab at addressing
-> them.
-
-What's dim is the patches allowing any modification to any part of the
-DT. Any changes to a DT need to work (i.e. have some effect). For
-example, randomly changing/adding/removing properties wouldn't have
-any effect because they've probably already be read and used.
-
-What I've suggested before is some sort of registration of nodes
-allowed to apply child nodes and properties to. That would serve the
-add-on board usecases which have been the main driver of this to date.
-That also got hung up on defining interface nodes to add-on boards.
-Your scope is more limited and can be limited to that scope while
-using the same configfs interface.
-
-Rob
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
