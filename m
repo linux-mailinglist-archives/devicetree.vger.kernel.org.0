@@ -2,154 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56C41424ED8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 10:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D52A424EFF
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 10:17:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240644AbhJGIOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 04:14:03 -0400
-Received: from mailout1.samsung.com ([203.254.224.24]:42907 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240653AbhJGIOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 04:14:00 -0400
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20211007081205epoutp01a9cee684f01b9e321796560f9a5f8c0d~rsWJd_DdN1820218202epoutp016
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 08:12:05 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20211007081205epoutp01a9cee684f01b9e321796560f9a5f8c0d~rsWJd_DdN1820218202epoutp016
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1633594325;
-        bh=sv3iKFzctSYPpRBYgsGGdvX+jiz+7NEpAZErUWFqi6I=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Yw7k6C4hF4ogHHLlA0wPcOx4FGKQjy3vngDtxWZ2WREJSzPwBVigNzXnR3oymPvR0
-         9922GOEosSbl0R+BUT35yLkmsjqNDMeY6Pdcc54TZFPztweYmbVWPWwoC/jYEDlUg5
-         D8hF+ZRQZDtxAp/izAKx2Nu4SFs0CHR06m47KHRQ=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20211007081148epcas2p2df63962d58ea3dcbb2b44f042d5edf62~rsV5THOb53104231042epcas2p2m;
-        Thu,  7 Oct 2021 08:11:48 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.88]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4HQ3v56VPyz4x9Qd; Thu,  7 Oct
-        2021 08:11:45 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D1.A8.09816.CBBAE516; Thu,  7 Oct 2021 17:11:41 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-        20211007081135epcas2p37b429e366099fd28e517d3d354a848b8~rsVtczRVO1824618246epcas2p3R;
-        Thu,  7 Oct 2021 08:11:35 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20211007081135epsmtrp29373393cc4a63052d8572bd78361659f~rsVtZLlRz2686626866epsmtrp2C;
-        Thu,  7 Oct 2021 08:11:35 +0000 (GMT)
-X-AuditID: b6c32a46-63bff70000002658-14-615eabbcec3e
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        B7.63.09091.7BBAE516; Thu,  7 Oct 2021 17:11:35 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.51]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20211007081135epsmtip28f26d26551b9dc3ac32fa55fecd11431~rsVtGcZ1k0802008020epsmtip2D;
-        Thu,  7 Oct 2021 08:11:35 +0000 (GMT)
-From:   Chanho Park <chanho61.park@samsung.com>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Bean Huo <beanhuo@micron.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Can Guo <cang@codeaurora.org>,
-        Jaegeuk Kim <jaegeuk@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Gyunghoon Kwon <goodjob.kwon@samsung.com>,
-        Sowon Na <sowon.na@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Chanho Park <chanho61.park@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 16/16] dt-bindings: ufs: exynos-ufs: add exynosautov9
- compatible
-Date:   Thu,  7 Oct 2021 17:09:34 +0900
-Message-Id: <20211007080934.108804-17-chanho61.park@samsung.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211007080934.108804-1-chanho61.park@samsung.com>
+        id S240620AbhJGIS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 04:18:56 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:46601 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240551AbhJGISv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 04:18:51 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633594618; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
+ To: From: Sender; bh=QtdtID0lZUv7mMN6G3/7I0C2S5hVbgargd1smzYRWEw=; b=QsTN9LIyzFLJfrnlX0VWE89DUUGr+Mjsa7RgtDoqqsJxlXtjNfTEQ7NARsu+HRjHfELIiD9X
+ 3oDM2UJerQGB5oKP+WTcLbw4SQeT8WUlQhu9QP6MXYrN0greZH/NesM/fCiiIKX2Kn97psy1
+ vJrcXBONCbtWJYDR6CrX2XnPR44=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 615eace603355859c81bf4e5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 08:16:38
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id EEBECC4360C; Thu,  7 Oct 2021 08:16:37 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from tykki (tynnyri.adurom.net [51.15.11.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2B20BC4338F;
+        Thu,  7 Oct 2021 08:16:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 2B20BC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
+Cc:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v7 10/24] wfx: add fwio.c/fwio.h
+References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
+        <20210920161136.2398632-11-Jerome.Pouiller@silabs.com>
+        <87sfxlj6s1.fsf@codeaurora.org> <2174509.SLDT7moDbM@pc-42>
+        <20211001160832.ozxc7bhlwlmjeqbo@pali>
+Date:   Thu, 07 Oct 2021 11:16:29 +0300
+In-Reply-To: <20211001160832.ozxc7bhlwlmjeqbo@pali> ("Pali \=\?utf-8\?Q\?Roh\?\=
+ \=\?utf-8\?Q\?\=C3\=A1r\=22's\?\= message of
+        "Fri, 1 Oct 2021 18:08:32 +0200")
+Message-ID: <87pmshckrm.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te1BUVRzHPffu3r0wrV0XxBOjgFcbRxpgl3hcExCToTtgDJOPqQzhDnvb
-        pX3O3qXnWCTxXCQYCGyxcJYmC2Q2HhIgm8u6RlIjFFKEjYO1goK8RFNgwHb3Uvnf53zv7zvf
-        8z33HByVTGGBeI7WyBq0jJrEfAUdF3fGhNmajjLS2haEuuw6i1Fjn3dg1O3FYYzqvVEioGrm
-        FlHqrvVLITV04Rmq3nlFSJV17aN+rLAglMtqRinLSAdCjSwVCqmW6YcIdXLgO4Qy/daJUWf6
-        VhGqwOYUUY96OkXU8qIDSfSnh66m0ua8Exg9VH4Codu+CqUbem4jdGtjCUZXWOyAfmAtxuj5
-        m6MCury9EdALrUF0kd2EpD/xqipOyTJy1hDCarN18hytIp5MPZC5LzM6RioLk+2iYskQLaNh
-        48mk/elhyTlqd00y5E1GneuW0hmOIyMS4gy6XCMbotRxxniS1cvV+lh9OMdouFytIlzLGp+T
-        SaWR0e7BLJXyUkU30I+L3rY0rKJ54BesFPjgkIiC+TfsIg9LiE4AJ2zKUuDr5rsA1jf9LOAX
-        fwM4+UWvsBTgXsdPV/byug3AuW6rkHfPAzg2tdfDGBEG2ycmgWfIn5gF0PVXtcizQIl6Afz9
-        0nFvnh9xCFZOTqAeFhBPw6Fxl5fFRCIsOe0Q8vsLhs6lEq/u49Z7upsxfmYDvPypS+Bh1D2T
-        f64O9QRA4h4OrRdXRLw5CbZNNCA8+8HJvvY1PRAuzNgw3mACsODPR2sfmgAs+XA/z3vgUm27
-        tzNK7ITW7gi+/jboHF3LXQ+LvVEeWQyLCyW8cQe0f1sr4HkLNJ1aWKtCw3ND9YA/rCoAG2ay
-        KkCI+bE25sfamP/PPQ3QRhDA6jmNguUi9ZH//eBsnaYVeG99aHInqJ6eC3cABAcOAHGU9Bfr
-        9mQwErGceedd1qDLNOSqWc4Bot1nXYkGbszWuZ+N1pgpi9oljYqJkcVGRktjyU3iz1afZySE
-        gjGyKpbVs4Z/fQjuE5iHMBuq7z1bWDsqKnt/MRVJqS5/8WPLH7bx0OxrXQ3bt3/ydWnLWW38
-        +eHCw2MBY0ftB9MG7zdfP6J4K7/0fPixnoTh65UXDvTTWaJaGepab0mpenAHqZlqD5p/JajP
-        Ud3nLFseTCyTHiwS0RnOa8eXXt4nE1prDqf1vvYwUvyNn23GVF+xbNXcyvnBb3edPMN3dgtn
-        QQ71Xz2ylPfe1m1TT50cmJ2+dTPYdKfLJDyzVSEzaSY248LgQfmACk9THnsBGFIWy2jVfePK
-        6wk4KZGA/Des65ICdRHEDvsHw6rdoMi1eV1uKNHWXPVS8kd1AUWb+mmjznxqRf3kyMbE71cL
-        fo0jBZySkYWiBo75B649ZyB+BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGIsWRmVeSWpSXmKPExsWy7bCSvO721XGJBgtui1icfLKGzeLBvG1s
-        Fi9/XmWzOPiwk8Vi2oefzBaf1i9jtbi8X9ti/pFzrBY9O50tTk9YxGTxZP0sZotFN7YxWdz4
-        1cZqsfHtDyaLGef3MVl0X9/BZrH8+D8mi9a9R9gt/u/ZwW7x++chJgcRj8tXvD1mNfSyeVzu
-        62Xy2LxCy2PxnpdMHptWdbJ5TFh0gNHj+/oONo+PT2+xePRtWcXo8XmTnEf7gW6mAJ4oLpuU
-        1JzMstQifbsEroyjE3YxFjxjr1i0+B9zA+Mlti5GDg4JAROJM+ccuxi5OIQEdjNKrP19mbmL
-        kRMoLivx7N0OdghbWOJ+yxFWiKL3jBKbVl9kBUmwCehKbHn+ihHEFhH4yCgx55sWSBGzwFoW
-        iRlbroB1CwsESzQsWA5mswioSlx+9gRsA6+Ag0TngkOsEBvkJY786gSLcwLF9+xaC3adkIC9
-        RNffSIhyQYmTM5+wgNjMQOXNW2czT2AUmIUkNQtJagEj0ypGydSC4tz03GLDAsO81HK94sTc
-        4tK8dL3k/NxNjOCo1NLcwbh91Qe9Q4xMHIyHGCU4mJVEePPtYxOFeFMSK6tSi/Lji0pzUosP
-        MUpzsCiJ817oOhkvJJCeWJKanZpakFoEk2Xi4JRqYPKXCKgquXI87cpq7e3toSEd92uPL/c+
-        EK5+727s2vlfSj1/3BYMFLjt03rosccr48oA5jYDFZ1TJ5zWLotq4r0R6ns31HDO4xptzbIO
-        ZY6AEzoGZzymVwizuXlek68M1ZJq7d5eaPVY3XDa/vNL3m6zYJt+MymaK/2EQln1NWeBXzpO
-        r1M+O5qse3fp58tKqYbIYIblKo9+HvJ4O61WteNtkvAJHuGZcW030sMWd8e2iPscnzR/19E7
-        IR/kr/devjJJXDtM07u5xTxktqOPVDaP+/n/jXs5X/XoTr4+d8O7+ZM7m3aLnvozfceJY8/0
-        qpTfC314atnRcrZgW4bCBdvN2rPcrtvnTuyMOvZDXImlOCPRUIu5qDgRAIrZgGE5AwAA
-X-CMS-MailID: 20211007081135epcas2p37b429e366099fd28e517d3d354a848b8
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20211007081135epcas2p37b429e366099fd28e517d3d354a848b8
-References: <20211007080934.108804-1-chanho61.park@samsung.com>
-        <CGME20211007081135epcas2p37b429e366099fd28e517d3d354a848b8@epcas2p3.samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Below two compatibles can be used for exynosautov9 SoC UFS controller.
+Pali Roh=C3=A1r <pali@kernel.org> writes:
 
-- samsung,exynosautov9-ufs: ExynosAutov9 UFS Physical Host
-- samsung,exynosautov9-ufs-vh: ExynosAutov9 UFS Virtual Host
+> On Friday 01 October 2021 17:09:41 J=C3=A9r=C3=B4me Pouiller wrote:
+>> On Friday 1 October 2021 13:58:38 CEST Kalle Valo wrote:
+>> > Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
+>> >=20
+>> > > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+>> > >
+>> > > Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+>> >=20
+>> > [...]
+>> >=20
+>> > > +static int get_firmware(struct wfx_dev *wdev, u32 keyset_chip,
+>> > > +                     const struct firmware **fw, int *file_offset)
+>> > > +{
+>> > > +     int keyset_file;
+>> > > +     char filename[256];
+>> > > +     const char *data;
+>> > > +     int ret;
+>> > > +
+>> > > +     snprintf(filename, sizeof(filename), "%s_%02X.sec",
+>> > > +              wdev->pdata.file_fw, keyset_chip);
+>> > > +     ret =3D firmware_request_nowarn(fw, filename, wdev->dev);
+>> > > +     if (ret) {
+>> > > +             dev_info(wdev->dev, "can't load %s, falling back to %s=
+.sec\n",
+>> > > +                      filename, wdev->pdata.file_fw);
+>> > > +             snprintf(filename, sizeof(filename), "%s.sec",
+>> > > +                      wdev->pdata.file_fw);
+>> > > +             ret =3D request_firmware(fw, filename, wdev->dev);
+>> > > +             if (ret) {
+>> > > +                     dev_err(wdev->dev, "can't load %s\n", filename=
+);
+>> > > +                     *fw =3D NULL;
+>> > > +                     return ret;
+>> > > +             }
+>> > > +     }
+>> >=20
+>> > How is this firmware file loading supposed to work? If I'm reading the
+>> > code right, the driver tries to load file "wfm_wf200_??.sec" but in
+>> > linux-firmware the file is silabs/wfm_wf200_C0.sec:
+>> >=20
+>> > https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmwar=
+e.git/tree/silabs
+>> >=20
+>> > That can't work automatically, unless I'm missing something of course.
+>>=20
+>> The firmware are signed. "C0" is the key used to sign this firmware. This
+>> key must match with the key burned into the chip. Fortunately, the driver
+>> is able to read the key accepted by the chip and automatically choose the
+>> right firmware.
+>>=20
+>> We could imagine to add a attribute in the DT to choose the firmware to
+>> load. However, it would be a pity to have to specify it manually whereas
+>> the driver is able to detect it automatically.
+>>=20
+>> Currently, the only possible key is C0. However, it exists some internal
+>> parts with other keys. In addition, it is theoretically possible to ask
+>> to Silabs to burn parts with a specific key in order to improve security
+>> of a product.=20
+>>=20
+>> Obviously, for now, this feature mainly exists for the Silabs firmware
+>> developers who have to work with other keys.
+>>=20=20
+>> > Also I would prefer to use directory name as the driver name wfx, but I
+>> > guess silabs is also doable.
+>>=20
+>> I have no opinion.
+>>=20
+>>=20
+>> > Also I'm not seeing the PDS files in linux-firmware. The idea is that
+>> > when user installs an upstream kernel and the linux-firmware everything
+>> > will work automatically, without any manual file installations.
+>>=20
+>> WF200 is just a chip. Someone has to design an antenna before to be able
+>> to use.
+>>=20
+>> However, we have evaluation boards that have antennas and corresponding
+>> PDS files[1]. Maybe linux-firmware should include the PDS for these boar=
+ds
+>
+> So chip vendor provides firmware and card vendor provides PDS files. In
+> my opinion all files should go into linux-firmware repository. If Silabs
+> has PDS files for its devel boards (which are basically cards) then I
+> think these files should go also into linux-firmware repository.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Chanho Park <chanho61.park@samsung.com>
----
- Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+I agree, all files required for normal functionality should be in
+linux-firmware. The upstream philosophy is that a user can just install
+the latest kernel and latest linux-firmware, and everything should work
+out of box (without any manual work).
 
-diff --git a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
-index d9b7535b872f..d5cfd99f4337 100644
---- a/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/samsung,exynos-ufs.yaml
-@@ -20,6 +20,8 @@ properties:
-   compatible:
-     enum:
-       - samsung,exynos7-ufs
-+      - samsung,exynosautov9-ufs
-+      - samsung,exynosautov9-ufs-vh
- 
-   reg:
-     items:
--- 
-2.33.0
+> And based on some parameter, driver should load correct PDS file. Seems
+> like DT can be a place where to put something which indicates which PDS
+> file should be used.
 
+Again I agree.
+
+> But should be in DT directly name of PDS file? Or should be in DT just
+> additional compatible string with card vendor name and then in driver
+> itself should be mapping table from compatible string to filename? I do
+> not know what is better.
+
+This is also what I was wondering, to me it sounds wrong to have a
+filename in DT. I was more thinking about calling it "antenna name" (and
+not the actually filename), but using compatible strings sounds good to
+me as well. But of course DT maintainers know this better.
+
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
