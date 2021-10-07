@@ -2,268 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BA304250E6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 12:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A66DA4250F6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 12:24:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240824AbhJGKWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 06:22:44 -0400
-Received: from mga03.intel.com ([134.134.136.65]:14341 "EHLO mga03.intel.com"
+        id S240846AbhJGK0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 06:26:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44768 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240795AbhJGKWm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 06:22:42 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10129"; a="226167762"
-X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; 
-   d="scan'208";a="226167762"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2021 03:20:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,354,1624345200"; 
-   d="scan'208";a="624193707"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 07 Oct 2021 03:20:43 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 07 Oct 2021 13:20:43 +0300
-Date:   Thu, 7 Oct 2021 13:20:43 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     davem@davemloft.net, netdev@vger.kernel.org, rafael@kernel.org,
-        saravanak@google.com, mw@semihalf.com, andrew@lunn.ch,
-        jeremy.linton@arm.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        devicetree@vger.kernel.org, snelson@pensando.io,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH net-next v3 4/9] device property: move mac addr helpers
- to eth.c
-Message-ID: <YV7J+1nEW5iZ7hcx@kuha.fi.intel.com>
-References: <20211007010702.3438216-1-kuba@kernel.org>
- <20211007010702.3438216-5-kuba@kernel.org>
+        id S231825AbhJGK0r (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 06:26:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1F60C60C4C;
+        Thu,  7 Oct 2021 10:24:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633602294;
+        bh=ovURSsNma7DN09CRPZqqCrVNUPMHPnGPJNUWoT0IKso=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kEOtFaILmndWWmHB4pF4w+OtT4NgSPduEzpl5Uh76av0g2xdnWNhz2PXPo0Z/d1pB
+         Y+EwBnWdBi4QRZ53FPpIyLBr8+vBHAu656j1RP9b6itykzJsbZXS+FGh2FKUTBenlA
+         VAmKqYcJWM23OolwNasAs7V52STFtYtMmjIQEv1aDkDIU+iLxy0RcQSixLHY4BQoZw
+         dRtrr6ZV7cMZExuglqI+9CNQOQ9DvCzZ+kEbeiZbvnUilTR41xN+3n1EeF2jDJIkwG
+         gRYnnJHPyUE/GkXG9FHlqIo0A9J0AO/wEJBm2ocBP3hOJ0vLyx7TV2Y5XUSgo24asi
+         6ylGqg+mwdijw==
+Received: by pali.im (Postfix)
+        id 0193A81A; Thu,  7 Oct 2021 12:24:51 +0200 (CEST)
+Date:   Thu, 7 Oct 2021 12:24:51 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>
+Subject: Re: [PATCH v7 08/24] wfx: add bus_sdio.c
+Message-ID: <20211007102451.gfqw7ucvwqxcgw4m@pali>
+References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
+ <149139701.nbvtKH4F0p@pc-42>
+ <CAPDyKFr62Kykg3=9WiXAV8UToqjw8gj4t6bbM7pGQ+iGGQRLmg@mail.gmail.com>
+ <4117481.h6P39bWmWk@pc-42>
+ <87czohckal.fsf@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211007010702.3438216-5-kuba@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87czohckal.fsf@codeaurora.org>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 06, 2021 at 06:06:57PM -0700, Jakub Kicinski wrote:
-> Move the mac address helpers out, eth.c already contains
-> a bunch of similar helpers.
+On Thursday 07 October 2021 11:26:42 Kalle Valo wrote:
+> Jérôme Pouiller <jerome.pouiller@silabs.com> writes:
+> > On Wednesday 6 October 2021 17:02:07 CEST Ulf Hansson wrote:
+> >> On Tue, 5 Oct 2021 at 10:14, Jérôme Pouiller <jerome.pouiller@silabs.com> wrote:
+> >> > On Friday 1 October 2021 17:23:16 CEST Ulf Hansson wrote:
+> >> > > On Thu, 30 Sept 2021 at 19:06, Pali Rohár <pali@kernel.org> wrote:
+> >> > > > On Thursday 30 September 2021 18:51:09 Jérôme Pouiller wrote:
+> >> > > > > On Thursday 30 September 2021 12:07:55 CEST Ulf Hansson wrote:
+> >> > > > > > On Mon, 20 Sept 2021 at 18:12, Jerome Pouiller
+> >> > > > > > <Jerome.Pouiller@silabs.com> wrote:
+> >> > > > > > >
+> >> > > > > > > From: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> >> > > > > > >
+> >> > > > > > > Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
+> >> > > > > > > ---
+> >> > > > > > >  drivers/net/wireless/silabs/wfx/bus_sdio.c | 261 +++++++++++++++++++++
+> >> > > > > > >  1 file changed, 261 insertions(+)
+> >> > > > > > >  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
+> >> > > > > > >
+> >> > > > > > > diff --git a/drivers/net/wireless/silabs/wfx/bus_sdio.c
+> >> > > > > > > b/drivers/net/wireless/silabs/wfx/bus_sdio.c
+> >> > > > > >
+> >> > > > > > [...]
+> >> > > > > >
+> >> > > > > > > +
+> >> > > > > > > +static int wfx_sdio_probe(struct sdio_func *func,
+> >> > > > > > > +                         const struct sdio_device_id *id)
+> >> > > > > > > +{
+> >> > > > > > > +       struct device_node *np = func->dev.of_node;
+> >> > > > > > > +       struct wfx_sdio_priv *bus;
+> >> > > > > > > +       int ret;
+> >> > > > > > > +
+> >> > > > > > > +       if (func->num != 1) {
+> >> > > > > > > + dev_err(&func->dev, "SDIO function number is %d while
+> >> > > > > > > it should always be 1 (unsupported chip?)\n",
+> >> > > > > > > +                       func->num);
+> >> > > > > > > +               return -ENODEV;
+> >> > > > > > > +       }
+> >> > > > > > > +
+> >> > > > > > > +       bus = devm_kzalloc(&func->dev, sizeof(*bus), GFP_KERNEL);
+> >> > > > > > > +       if (!bus)
+> >> > > > > > > +               return -ENOMEM;
+> >> > > > > > > +
+> >> > > > > > > +       if (!np || !of_match_node(wfx_sdio_of_match, np)) {
+> >> > > > > > > + dev_warn(&func->dev, "no compatible device found in
+> >> > > > > > > DT\n");
+> >> > > > > > > +               return -ENODEV;
+> >> > > > > > > +       }
+> >> > > > > > > +
+> >> > > > > > > +       bus->func = func;
+> >> > > > > > > +       bus->of_irq = irq_of_parse_and_map(np, 0);
+> >> > > > > > > +       sdio_set_drvdata(func, bus);
+> >> > > > > > > +       func->card->quirks |= MMC_QUIRK_LENIENT_FN0 |
+> >> > > > > > > +                             MMC_QUIRK_BLKSZ_FOR_BYTE_MODE |
+> >> > > > > > > +                             MMC_QUIRK_BROKEN_BYTE_MODE_512;
+> >> > > > > >
+> >> > > > > > I would rather see that you add an SDIO_FIXUP for the SDIO card, to
+> >> > > > > > the sdio_fixup_methods[], in drivers/mmc/core/quirks.h, instead of
+> >> > > > > > this.
+> >> > > > >
+> >> > > > > In the current patch, these quirks are applied only if the device appears
+> >> > > > > in the device tree (see the condition above). If I implement them in
+> >> > > > > drivers/mmc/core/quirks.h they will be applied as soon as the device is
+> >> > > > > detected. Is it what we want?
+> >> > > > >
+> >> > > > > Note: we already have had a discussion about the strange VID/PID declared
+> >> > > > > by this device:
+> >> > > > >   https://www.spinics.net/lists/netdev/msg692577.html
+> >> > > >
+> >> > > > Yes, vendor id 0x0000 is invalid per SDIO spec. So based on this vendor
+> >> > > > id, it is not possible to write any quirk in mmc/sdio generic code.
+> >> > > >
+> >> > > > Ulf, but maybe it could be possible to write quirk based on OF
+> >> > > > compatible string?
+> >> > >
+> >> > > Yes, that would be better in my opinion.
+> >> > >
+> >> > > We already have DT bindings to describe embedded SDIO cards (a subnode
+> >> > > to the mmc controller node), so we should be able to extend that I
+> >> > > think.
+> >> >
+> >> > So, this feature does not yet exist? Do you consider it is a blocker for
+> >> > the current patch?
+> >> 
+> >> Yes, sorry. I think we should avoid unnecessary hacks in SDIO func
+> >> drivers, especially those that deserve to be fixed in the mmc core.
+> >> 
+> >> Moreover, we already support the similar thing for eMMC cards, plus
+> >> that most parts are already done for SDIO too.
+> >> 
+> >> >
+> >> > To be honest, I don't really want to take over this change in mmc/core.
+> >> 
+> >> I understand. Allow me a couple of days, then I can post a patch to
+> >> help you out.
+> >
+> > Great! Thank you. I apologize for the extra work due to this invalid
+> > vendor id.
 > 
-> Suggested-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+> BTW please escalate in your company how HORRIBLE it is that you
+> manufacture SDIO devices without proper device ids, and make sure that
+> all your future devices have officially assigned ids. I cannot stress
+> enough how important that is for the Linux community!
 
-FWIW:
-
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
-> ---
-> v2: new patch
-> ---
->  drivers/base/property.c     | 63 -------------------------------------
->  include/linux/etherdevice.h |  6 ++++
->  include/linux/property.h    |  4 ---
->  net/ethernet/eth.c          | 63 +++++++++++++++++++++++++++++++++++++
->  4 files changed, 69 insertions(+), 67 deletions(-)
-> 
-> diff --git a/drivers/base/property.c b/drivers/base/property.c
-> index 453918eb7390..f1f35b48ab8b 100644
-> --- a/drivers/base/property.c
-> +++ b/drivers/base/property.c
-> @@ -15,7 +15,6 @@
->  #include <linux/of_graph.h>
->  #include <linux/of_irq.h>
->  #include <linux/property.h>
-> -#include <linux/etherdevice.h>
->  #include <linux/phy.h>
->  
->  struct fwnode_handle *dev_fwnode(struct device *dev)
-> @@ -935,68 +934,6 @@ int device_get_phy_mode(struct device *dev)
->  }
->  EXPORT_SYMBOL_GPL(device_get_phy_mode);
->  
-> -static void *fwnode_get_mac_addr(struct fwnode_handle *fwnode,
-> -				 const char *name, char *addr,
-> -				 int alen)
-> -{
-> -	int ret = fwnode_property_read_u8_array(fwnode, name, addr, alen);
-> -
-> -	if (ret == 0 && alen == ETH_ALEN && is_valid_ether_addr(addr))
-> -		return addr;
-> -	return NULL;
-> -}
-> -
-> -/**
-> - * fwnode_get_mac_address - Get the MAC from the firmware node
-> - * @fwnode:	Pointer to the firmware node
-> - * @addr:	Address of buffer to store the MAC in
-> - * @alen:	Length of the buffer pointed to by addr, should be ETH_ALEN
-> - *
-> - * Search the firmware node for the best MAC address to use.  'mac-address' is
-> - * checked first, because that is supposed to contain to "most recent" MAC
-> - * address. If that isn't set, then 'local-mac-address' is checked next,
-> - * because that is the default address.  If that isn't set, then the obsolete
-> - * 'address' is checked, just in case we're using an old device tree.
-> - *
-> - * Note that the 'address' property is supposed to contain a virtual address of
-> - * the register set, but some DTS files have redefined that property to be the
-> - * MAC address.
-> - *
-> - * All-zero MAC addresses are rejected, because those could be properties that
-> - * exist in the firmware tables, but were not updated by the firmware.  For
-> - * example, the DTS could define 'mac-address' and 'local-mac-address', with
-> - * zero MAC addresses.  Some older U-Boots only initialized 'local-mac-address'.
-> - * In this case, the real MAC is in 'local-mac-address', and 'mac-address'
-> - * exists but is all zeros.
-> -*/
-> -void *fwnode_get_mac_address(struct fwnode_handle *fwnode, char *addr, int alen)
-> -{
-> -	char *res;
-> -
-> -	res = fwnode_get_mac_addr(fwnode, "mac-address", addr, alen);
-> -	if (res)
-> -		return res;
-> -
-> -	res = fwnode_get_mac_addr(fwnode, "local-mac-address", addr, alen);
-> -	if (res)
-> -		return res;
-> -
-> -	return fwnode_get_mac_addr(fwnode, "address", addr, alen);
-> -}
-> -EXPORT_SYMBOL(fwnode_get_mac_address);
-> -
-> -/**
-> - * device_get_mac_address - Get the MAC for a given device
-> - * @dev:	Pointer to the device
-> - * @addr:	Address of buffer to store the MAC in
-> - * @alen:	Length of the buffer pointed to by addr, should be ETH_ALEN
-> - */
-> -void *device_get_mac_address(struct device *dev, char *addr, int alen)
-> -{
-> -	return fwnode_get_mac_address(dev_fwnode(dev), addr, alen);
-> -}
-> -EXPORT_SYMBOL(device_get_mac_address);
-> -
->  /**
->   * fwnode_irq_get - Get IRQ directly from a fwnode
->   * @fwnode:	Pointer to the firmware node
-> diff --git a/include/linux/etherdevice.h b/include/linux/etherdevice.h
-> index c8442d954d19..b3b6591d84c6 100644
-> --- a/include/linux/etherdevice.h
-> +++ b/include/linux/etherdevice.h
-> @@ -26,9 +26,15 @@
->  
->  #ifdef __KERNEL__
->  struct device;
-> +struct fwnode_handle;
-> +
->  int eth_platform_get_mac_address(struct device *dev, u8 *mac_addr);
->  unsigned char *arch_get_platform_mac_address(void);
->  int nvmem_get_mac_address(struct device *dev, void *addrbuf);
-> +void *device_get_mac_address(struct device *dev, char *addr, int alen);
-> +void *fwnode_get_mac_address(struct fwnode_handle *fwnode,
-> +			     char *addr, int alen);
-> +
->  u32 eth_get_headlen(const struct net_device *dev, const void *data, u32 len);
->  __be16 eth_type_trans(struct sk_buff *skb, struct net_device *dev);
->  extern const struct header_ops eth_header_ops;
-> diff --git a/include/linux/property.h b/include/linux/property.h
-> index 357513a977e5..4fb081684255 100644
-> --- a/include/linux/property.h
-> +++ b/include/linux/property.h
-> @@ -389,11 +389,7 @@ const void *device_get_match_data(struct device *dev);
->  
->  int device_get_phy_mode(struct device *dev);
->  
-> -void *device_get_mac_address(struct device *dev, char *addr, int alen);
-> -
->  int fwnode_get_phy_mode(struct fwnode_handle *fwnode);
-> -void *fwnode_get_mac_address(struct fwnode_handle *fwnode,
-> -			     char *addr, int alen);
->  struct fwnode_handle *fwnode_graph_get_next_endpoint(
->  	const struct fwnode_handle *fwnode, struct fwnode_handle *prev);
->  struct fwnode_handle *
-> diff --git a/net/ethernet/eth.c b/net/ethernet/eth.c
-> index b57530c231a6..9ea45aae04ee 100644
-> --- a/net/ethernet/eth.c
-> +++ b/net/ethernet/eth.c
-> @@ -51,6 +51,7 @@
->  #include <linux/if_ether.h>
->  #include <linux/of_net.h>
->  #include <linux/pci.h>
-> +#include <linux/property.h>
->  #include <net/dst.h>
->  #include <net/arp.h>
->  #include <net/sock.h>
-> @@ -558,3 +559,65 @@ int nvmem_get_mac_address(struct device *dev, void *addrbuf)
->  	return 0;
->  }
->  EXPORT_SYMBOL(nvmem_get_mac_address);
-> +
-> +static void *fwnode_get_mac_addr(struct fwnode_handle *fwnode,
-> +				 const char *name, char *addr,
-> +				 int alen)
-> +{
-> +	int ret = fwnode_property_read_u8_array(fwnode, name, addr, alen);
-> +
-> +	if (ret == 0 && alen == ETH_ALEN && is_valid_ether_addr(addr))
-> +		return addr;
-> +	return NULL;
-> +}
-> +
-> +/**
-> + * fwnode_get_mac_address - Get the MAC from the firmware node
-> + * @fwnode:	Pointer to the firmware node
-> + * @addr:	Address of buffer to store the MAC in
-> + * @alen:	Length of the buffer pointed to by addr, should be ETH_ALEN
-> + *
-> + * Search the firmware node for the best MAC address to use.  'mac-address' is
-> + * checked first, because that is supposed to contain to "most recent" MAC
-> + * address. If that isn't set, then 'local-mac-address' is checked next,
-> + * because that is the default address.  If that isn't set, then the obsolete
-> + * 'address' is checked, just in case we're using an old device tree.
-> + *
-> + * Note that the 'address' property is supposed to contain a virtual address of
-> + * the register set, but some DTS files have redefined that property to be the
-> + * MAC address.
-> + *
-> + * All-zero MAC addresses are rejected, because those could be properties that
-> + * exist in the firmware tables, but were not updated by the firmware.  For
-> + * example, the DTS could define 'mac-address' and 'local-mac-address', with
-> + * zero MAC addresses.  Some older U-Boots only initialized 'local-mac-address'.
-> + * In this case, the real MAC is in 'local-mac-address', and 'mac-address'
-> + * exists but is all zeros.
-> + */
-> +void *fwnode_get_mac_address(struct fwnode_handle *fwnode, char *addr, int alen)
-> +{
-> +	char *res;
-> +
-> +	res = fwnode_get_mac_addr(fwnode, "mac-address", addr, alen);
-> +	if (res)
-> +		return res;
-> +
-> +	res = fwnode_get_mac_addr(fwnode, "local-mac-address", addr, alen);
-> +	if (res)
-> +		return res;
-> +
-> +	return fwnode_get_mac_addr(fwnode, "address", addr, alen);
-> +}
-> +EXPORT_SYMBOL(fwnode_get_mac_address);
-> +
-> +/**
-> + * device_get_mac_address - Get the MAC for a given device
-> + * @dev:	Pointer to the device
-> + * @addr:	Address of buffer to store the MAC in
-> + * @alen:	Length of the buffer pointed to by addr, should be ETH_ALEN
-> + */
-> +void *device_get_mac_address(struct device *dev, char *addr, int alen)
-> +{
-> +	return fwnode_get_mac_address(dev_fwnode(dev), addr, alen);
-> +}
-> +EXPORT_SYMBOL(device_get_mac_address);
-> -- 
-> 2.31.1
-
-thanks,
-
--- 
-heikki
+Absolutely! Please really escalate this problem in your company and
+properly ask USB-IF for assigning PCMCIA vendor ID as USB-IF maintains
+PCMCIA vendor database and PCMCIA ids are used in SDIO devices:
+https://lore.kernel.org/linux-mmc/20210607140216.64iuprp3siggslrk@pali/
