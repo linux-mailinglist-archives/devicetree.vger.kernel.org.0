@@ -2,72 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC2C54256D6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 17:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F33CE4256FA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 17:46:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235222AbhJGPph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 11:45:37 -0400
-Received: from marcansoft.com ([212.63.210.85]:51204 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233463AbhJGPpg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 11:45:36 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id C74BB3FA60;
-        Thu,  7 Oct 2021 15:43:36 +0000 (UTC)
-Subject: Re: [PATCH v5 00/14] PCI: Add support for Apple M1
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        Joey Gouly <joey.gouly@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Arnd Bergmann <arnd@arndb.de>
-References: <20210929163847.2807812-1-maz@kernel.org>
- <20211004083845.GA22336@lpieralisi> <87czolrwgn.wl-maz@kernel.org>
- <CACRpkdZzdzJmatnYe2pcKCSW2=WJBa-DZQPib7aGW9m_GLrAwg@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <d9491159-670b-87c6-65b4-10f7c7ba62fe@marcan.st>
-Date:   Fri, 8 Oct 2021 00:43:34 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S241684AbhJGPsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 11:48:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241646AbhJGPsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 11:48:16 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69EF6C061755
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 08:46:22 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id o204so1378199oih.13
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 08:46:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kjtYykHRfu3oN6LXYJsRLSWIj815s4nhh1Muy8N60sQ=;
+        b=R45UfSQ+bdE2Lt+bNuC/oJ0r+7Gm/HotFGaEEwCZFjEckLGqCmSFMFsjdHztQRIYLb
+         8s8E6tSjyNPW+RyLroTsdWcH6fZhgGzM4xbAMmcdjxX/7+8iFWkN1X6mAscYYVTwitaC
+         63Q80xUR5epHZCDW9iEb6UKkd4zNLr2Q9dtvAS0BtYcnCkszQ6Yx1iZO+mYf28UwmszR
+         xdGv62q0OKWIdOszgup8QDJaymbosGpLvpudkt3OBcBv8JgGSAbogNWVFwjuU8mqQBa6
+         LLRYNO8XxSU0Ztoe85f/VtN42HYhhN+rsHgu3PeJr/EcfnRNSkz+QZZd3siZ3gDLm76A
+         6zig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kjtYykHRfu3oN6LXYJsRLSWIj815s4nhh1Muy8N60sQ=;
+        b=A/gwkqxOaijxgcRCR6E06BhuS/rL2LGOXGGZFG4UZCSOBzIney9dFwmdVlF6I0A2Tr
+         cNE96a9ORkAAdZokJaVsSFJxnr/clRsHzFYo767cxje77y1b6sgc9oahfKKNwGjnM/nT
+         ZX+MaVn4nypt0Na6ViYDwbAvYwSMtz93qrCsDb5iC7ZmIVT/sRrB+d4jzLMsKF0Al1Dg
+         4uZp8Qw35K/hQ7A1LpRaBqx7xOodRrm2Ey3ZoNlTniS3dFYPufppaS+s7MPSaszsAv1T
+         xToGei81XRdkSyC/5p1yr+TaZAO/zNDm6sekY8ztucLSjovbSpeiW2ye/TrZ42LPBu/L
+         hE1g==
+X-Gm-Message-State: AOAM5332X0RQtkCUHownQn/oIxW5cRTSBvEhm2fSMVU+V+4qoRlUZLeD
+        sOaKiPSTQRij7Bsrw8c6DfRjyQ==
+X-Google-Smtp-Source: ABdhPJyb0r7BkApnwD6ZTwsdS6wSJDTlROhQ2XReuZb9Hhs6nHxCYwNvx87/aJx3BBzNBiCYkKJqDw==
+X-Received: by 2002:aca:3656:: with SMTP id d83mr12288367oia.176.1633621581738;
+        Thu, 07 Oct 2021 08:46:21 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id bj33sm5120916oib.31.2021.10.07.08.46.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Oct 2021 08:46:21 -0700 (PDT)
+Date:   Thu, 7 Oct 2021 08:48:01 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 7/8] clk: qcom: dispcc-sm8250: stop using mmcx
+ regulator
+Message-ID: <YV8WsQb9H7+CaLjP@ripper>
+References: <20210829154757.784699-1-dmitry.baryshkov@linaro.org>
+ <20210829154757.784699-8-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdZzdzJmatnYe2pcKCSW2=WJBa-DZQPib7aGW9m_GLrAwg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210829154757.784699-8-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/10/2021 03.30, Linus Walleij wrote:
-> On Mon, Oct 4, 2021 at 11:05 AM Marc Zyngier <maz@kernel.org> wrote:
+On Sun 29 Aug 08:47 PDT 2021, Dmitry Baryshkov wrote:
+
+> Now as the common qcom clock controller code has been taught about power
+> domains, stop mentioning mmcx supply as a way to power up the clock
+> controller's gdsc.
 > 
->> Yes, that's absolutely fine. I hope we can resolve the issue on the
->> pinctrl binding pretty quickly, and get the arm-soc folks to pull the
->> DT changes in for 5.16 too.
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Once we merge these, I expect that the boards will start crashing if
+the kernel is booted using an existing DTB?
+
+Is it okay to just merge the first 6 patches in the series now and
+postpone these two until we've had the dts change sitting for a while?
+
+Regards,
+Bjorn
+
+> ---
+>  drivers/clk/qcom/dispcc-sm8250.c | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> I think I ACKed a patch for apple,npins = <> yesterday.
-
-You reviewed it :)
-
-It still needs some fixes to pass the schema linter though.
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+> diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
+> index 108dd1249b6a..cf0bb12eb6e1 100644
+> --- a/drivers/clk/qcom/dispcc-sm8250.c
+> +++ b/drivers/clk/qcom/dispcc-sm8250.c
+> @@ -1129,7 +1129,6 @@ static struct gdsc mdss_gdsc = {
+>  	},
+>  	.pwrsts = PWRSTS_OFF_ON,
+>  	.flags = HW_CTRL,
+> -	.supply = "mmcx",
+>  };
+>  
+>  static struct clk_regmap *disp_cc_sm8250_clocks[] = {
+> -- 
+> 2.33.0
+> 
