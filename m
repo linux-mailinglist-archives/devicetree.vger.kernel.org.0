@@ -2,130 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ECFB424BDC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 04:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34754424BF7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 04:57:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232058AbhJGCsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 22:48:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37660 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232191AbhJGCsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 22:48:15 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB18C061746;
-        Wed,  6 Oct 2021 19:46:22 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id p1so4035851pfh.8;
-        Wed, 06 Oct 2021 19:46:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IpVh1IYfpzKfR6GkSU+3lboEb+0mbcf/l+spamR+b4w=;
-        b=qUqtdUagXGAHjJ02iK3EMfeQQVQwbLTfNID8omD0ZiAPu6CSf3U3Hub+uP53ewURUY
-         HShMwL8OiIp1x1Z/xPUraEDuIWFQi4OIqZi6hXbo6pbXXrlpohC3u2r/tM1f7h2wavk4
-         tj33wD82910933jV6FPkEiv0xW8psa2+sKnso4MtRvBFTvOqx7eDFLxDAKasxS025rQC
-         UNZt5jEiU/XUnLiIkebPOE7rLHZK3BOogYPCBEUrB5yxk5K+8u8ArXY72L9+y8H3vgRI
-         SjxdRwBT5ON7qIvRxaFOUfbpeoiXaI8aMH3qUGUCSPYrqZRDDWLN5vhxzgW3/lm2odmA
-         CgRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=IpVh1IYfpzKfR6GkSU+3lboEb+0mbcf/l+spamR+b4w=;
-        b=kfoQjQjK8DA7IGY9nA7o78EY6oipkJD/XvvxEnVXzKkZr3prvUYHbBR9Q5SK5gxa1Z
-         zIqkgSg5FksTSX3NxjEmvvRVy5LhQ7kZ638/DkaG/ZAznupbSpUypBhnRqjYI3umpL7u
-         7xbuAfInd5CwTtIlbU8nQw42t6LsRwohDL1hJoMaXOevkgTSwlrTjTvVrg2m0M7e+BET
-         +bSoeuCKz5WIOM/ZYmH9Nw/+M8d5ZeTe7Cy4C8+7ADrg2z9PLwkmPThIqlF/Dq+ok/7Y
-         72igykPo0w3fsmo3BPPcnlhktH52T/QWKKQ/6vVjkbub7bi+SWGKS0y020EPocOpRbAt
-         Zbtw==
-X-Gm-Message-State: AOAM530duHzJNZ5hxn7mPvFuXe7lQoEY5EIh+hKGRhSzCd80o454c4Fh
-        /o7N7n/6v7D1MKB5bYCcILc=
-X-Google-Smtp-Source: ABdhPJwl5RGXpQauISnEDl9qOpBhvRuE7gS6xNbt6Ro1NKjU7GGs7xBeC94oFMrkiB25zWuCItbO/A==
-X-Received: by 2002:aa7:8439:0:b0:44c:80da:fc39 with SMTP id q25-20020aa78439000000b0044c80dafc39mr1806612pfn.47.1633574781962;
-        Wed, 06 Oct 2021 19:46:21 -0700 (PDT)
-Received: from [192.168.1.121] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
-        by smtp.gmail.com with ESMTPSA id t6sm22435915pfh.63.2021.10.06.19.46.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Oct 2021 19:46:21 -0700 (PDT)
-Message-ID: <99b43bbf-b63e-d684-dd61-3087e9f22dc4@gmail.com>
-Date:   Wed, 6 Oct 2021 19:46:08 -0700
+        id S239851AbhJGC7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 22:59:05 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:57134 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S239796AbhJGC7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 22:59:05 -0400
+X-UUID: 23a9fe624ca14001ac777cca9e1593f6-20211007
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=puAeYVHv80gaLD3QPUVP0U9ZlM4HRv166FTTO6hr2Lk=;
+        b=LqzMu5O1Ak1GXXXZIGexmWg/0ZCTwsSG5We2XLOH6iO7Ba4RPqZF5ht9oZZ69+uMg+JklvO1wEOXebFap0K1/ydqHp0no/CJKw0h7AA/w2OoRanFVNXcLOl70D13Lna3urZ/5YBRsjcFc+CPP8WM5CE1JtRZPqAeGH5mq87dze0=;
+X-UUID: 23a9fe624ca14001ac777cca9e1593f6-20211007
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 722450187; Thu, 07 Oct 2021 10:57:01 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 7 Oct 2021 10:57:00 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 7 Oct 2021 10:56:58 +0800
+Message-ID: <7703076927822fc31d1af37f8fd3bfe5e0513d29.camel@mediatek.com>
+Subject: Re: [PATCH v8 09/12] media: mtk-vcodec: Get rid of
+ mtk_smi_larb_get/put
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        David Airlie <airlied@linux.ie>,
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>
+CC:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
+        Matthias Kaehlcke <mka@chromium.org>, <anan.sun@mediatek.com>,
+        <yi.kuo@mediatek.com>, <acourbot@chromium.org>,
+        <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        <anthony.huang@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Irui Wang <irui.wang@mediatek.com>
+Date:   Thu, 7 Oct 2021 10:57:01 +0800
+In-Reply-To: <f9829a5a-984c-bced-0286-53f9edc8ae3d@collabora.com>
+References: <20210929013719.25120-1-yong.wu@mediatek.com>
+         <20210929013719.25120-10-yong.wu@mediatek.com>
+         <02f444d5-9633-3f9c-2d1f-97ce073d1180@collabora.com>
+         <79cbf64491273797f218f417234b8c95936bd3b1.camel@mediatek.com>
+         <f9829a5a-984c-bced-0286-53f9edc8ae3d@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH 0/9] Dynamic DT device nodes
-Content-Language: en-US
-To:     Zev Weiss <zev@bewilderbeest.net>, openbmc@lists.ozlabs.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Andy Shevchenko <andy@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Francis Laniel <laniel_francis@privacyrequired.com>,
-        Kees Cook <keescook@chromium.org>,
-        Andrey Konovalov <andreyknvl@gmail.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Daniel Axtens <dja@axtens.net>,
-        Alexey Dobriyan <adobriyan@gmail.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org
-References: <20211007000954.30621-1-zev@bewilderbeest.net>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20211007000954.30621-1-zev@bewilderbeest.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+T24gVGh1LCAyMDIxLTA5LTMwIGF0IDEyOjU3ICswMjAwLCBEYWZuYSBIaXJzY2hmZWxkIHdyb3Rl
+Og0KPiANCj4gT24gMzAuMDkuMjEgMDU6MjgsIFlvbmcgV3Ugd3JvdGU6DQo+ID4gSGkgRGFmbmEs
+DQo+ID4gDQo+ID4gVGhhbmtzIHZlcnkgbXVjaCBmb3IgdGhlIHJldmlldy4NCj4gPiANCj4gPiBP
+biBXZWQsIDIwMjEtMDktMjkgYXQgMTQ6MTMgKzAyMDAsIERhZm5hIEhpcnNjaGZlbGQgd3JvdGU6
+DQo+ID4gPiANCj4gPiA+IE9uIDI5LjA5LjIxIDAzOjM3LCBZb25nIFd1IHdyb3RlOg0KPiA+ID4g
+PiBNZWRpYVRlayBJT01NVSBoYXMgYWxyZWFkeSBhZGRlZCB0aGUgZGV2aWNlX2xpbmsgYmV0d2Vl
+biB0aGUNCj4gPiA+ID4gY29uc3VtZXINCj4gPiA+ID4gYW5kIHNtaS1sYXJiIGRldmljZS4gSWYg
+dGhlIHZjb2RlYyBkZXZpY2UgY2FsbCB0aGUNCj4gPiA+ID4gcG1fcnVudGltZV9nZXRfc3luYywN
+Cj4gPiA+ID4gdGhlIHNtaS1sYXJiJ3MgcG1fcnVudGltZV9nZXRfc3luYyBhbHNvIGJlIGNhbGxl
+ZA0KPiA+ID4gPiBhdXRvbWF0aWNhbGx5Lg0KPiA+ID4gPiANCj4gPiA+ID4gQ0M6IFRpZmZhbnkg
+TGluIDx0aWZmYW55LmxpbkBtZWRpYXRlay5jb20+DQo+ID4gPiA+IENDOiBJcnVpIFdhbmcgPGly
+dWkud2FuZ0BtZWRpYXRlay5jb20+DQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFlvbmcgV3UgPHlv
+bmcud3VAbWVkaWF0ZWsuY29tPg0KPiA+ID4gPiBSZXZpZXdlZC1ieTogRXZhbiBHcmVlbiA8ZXZn
+cmVlbkBjaHJvbWl1bS5vcmc+DQo+ID4gPiA+IEFja2VkLWJ5OiBUaWZmYW55IExpbiA8dGlmZmFu
+eS5saW5AbWVkaWF0ZWsuY29tPg0KPiA+ID4gPiBSZXZpZXdlZC1ieTogRGFmbmEgSGlyc2NoZmVs
+ZCA8ZGFmbmEuaGlyc2NoZmVsZEBjb2xsYWJvcmEuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+ID4g
+ICAgLi4uL3BsYXRmb3JtL210ay12Y29kZWMvbXRrX3Zjb2RlY19kZWNfcG0uYyAgIHwgMzcgKysr
+LS0tLQ0KPiA+ID4gPiAtLS0tLS0tDQo+ID4gPiA+IC0tDQo+ID4gPiA+ICAgIC4uLi9wbGF0Zm9y
+bS9tdGstdmNvZGVjL210a192Y29kZWNfZHJ2LmggICAgICB8ICAzIC0tDQo+ID4gPiA+ICAgIC4u
+Li9wbGF0Zm9ybS9tdGstdmNvZGVjL210a192Y29kZWNfZW5jLmMgICAgICB8ICAxIC0NCj4gPiA+
+ID4gICAgLi4uL3BsYXRmb3JtL210ay12Y29kZWMvbXRrX3Zjb2RlY19lbmNfcG0uYyAgIHwgNDQg
+KysrLS0tLQ0KPiA+ID4gPiAtLS0tLS0tDQoNCltzbmlwXQ0KDQo+ID4gPiA+ICAgIHZvaWQgbXRr
+X3Zjb2RlY19yZWxlYXNlX2RlY19wbShzdHJ1Y3QgbXRrX3Zjb2RlY19kZXYgKmRldikNCj4gPiA+
+ID4gICAgew0KPiA+ID4gPiAgICAJcG1fcnVudGltZV9kaXNhYmxlKGRldi0+cG0uZGV2KTsNCj4g
+PiA+ID4gLQlwdXRfZGV2aWNlKGRldi0+cG0ubGFyYnZkZWMpOw0KPiA+ID4gPiAgICB9DQo+ID4g
+PiANCj4gPiA+IE5vdyB0aGF0IGZ1bmN0aW9ucyBvbmx5IGRvICAncG1fcnVudGltZV9kaXNhYmxl
+KGRldi0+cG0uZGV2KTsnIHNvDQo+ID4gPiBpdA0KPiA+ID4gd2lsbCBiZSBtb3JlDQo+ID4gPiBy
+ZWFkYWJsZSB0byByZW1vdmUgdGhlIGZ1bmN0aW9uIG10a192Y29kZWNfcmVsZWFzZV9kZWNfcG0N
+Cj4gPiA+IGFuZCByZXBsYWNlIHdpdGggcG1fcnVudGltZV9kaXNhYmxlKGRldi0+cG0uZGV2KTsN
+Cj4gPiA+IFNhbWUgZm9yIHRoZSAnZW5jJyBlcXVpdmFsZW50Lg0KPiA+IA0KPiA+IE1ha2Ugc2Vu
+c2UuIEJ1dCBJdCBtYXkgYmUgbm90IHByb3BlciBpZiB1c2luZyBwbV9ydW50aW1lX2Rpc2FibGUN
+Cj4gPiBhcyB0aGUgc3ltbWV0cnkgd2l0aCBtdGtfdmNvZGVjX2luaXRfZGVjX3BtIGluIHRoZQ0K
+PiA+IG10a192Y29kZWNfcHJvYmUuDQo+ID4gDQo+ID4gTWF5YmUgd2Ugc2hvdWxkIG1vdmUgcG1f
+cnVudGltZV9lbmFibGUgb3V0IGZyb20NCj4gPiBtdGtfdmNvZGVjX2luaXRfZGVjX3BtDQo+ID4g
+aW50byBtdGtfdmNvZGVjX3Byb2JlLiBJIGNvdWxkIGRvIGEgbmV3IHBhdGNoIGZvciB0aGlzLiBJ
+cyB0aGlzIG9rDQo+ID4gZm9yDQo+ID4geW91Pw0KPiANCj4geWVzLCB0aGVyZSBpcyBhbHNvIGFz
+eW1ldHRyeSB3aGVuIGNhbGxpbmcgcG1fcnVudGltZSogaW4gZ2VuZXJhbCwNCj4gSSBzZWUgaW4g
+dGhlIGRlY29kZXIgaXQgaXMgY2FsbGVkIGZyb20gbXRrX3Zjb2RlY19kZWNfcG0uYw0KPiBidXQg
+aW4gdGhlIGVuY29kZXIgaXQgaXMgY2FsbGVkIGZyb20gbXRrX3Zjb2RlY19lbmMuYywNCj4gDQo+
+IEkgdGhpbmsgYWxsIGNhbGxzIHRvIHBtX3J1bnRpbWUqIHNob3VsZCBiZSBvdXQgb2YgdGhlICpf
+cG0uYyBmaWxlcw0KDQpPSy4gSSB3aWxsIHRyeSB0aGlzLg0KDQo+IHNpbmNlIGZvciBleGFtcGxl
+ICdtdGtfdmNvZGVjX2RlY19wd19vbicgYWxzbyBkbyBqdXN0IG9uZSBjYWxsIHRvDQo+IHBtX3J1
+bnRpbWVfcmVzdW1lX2FuZF9nZXQgc28gdGhpcyBmdW5jdGlvbiBjYW4gYWxzbyBiZSByZW1vdmVk
+Lg0KDQpJIGd1ZXNzIHRoaXMgb25lIHNob3VsZCBiZSByZXNlcnZlZCB0byB2Y29kZWMgZ3V5cy4g
+SSBzZWUgdGhpcyBmdW5jdGlvbg0KaXMgY2hhbmdlZCBhdCBbMV0uIExldCdzIGtlZXAgdGhpcyBw
+YXRjaHNldCBjbGVhbi4NCg0KWzFdIA0KaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9q
+ZWN0L2xpbnV4LW1lZGlhdGVrL3BhdGNoLzIwMjEwOTAxMDgzMjE1LjI1OTg0LTEwLXl1bmZlaS5k
+b25nQG1lZGlhdGVrLmNvbS8NCg0KPiANCj4gdGhhbmtzLA0KPiBEYWZuYQ0KPiANCj4gPiANCj4g
+PiA+IA0KPiA+ID4gVGhhbmtzLA0KPiA+ID4gRGFmbmENCj4gPiANCj4gPiBbc25pcF0NCj4gPiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+IExpbnV4
+LW1lZGlhdGVrIG1haWxpbmcgbGlzdA0KPiA+IExpbnV4LW1lZGlhdGVrQGxpc3RzLmluZnJhZGVh
+ZC5vcmcNCj4gPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
+bnV4LW1lZGlhdGVrDQo+ID4gDQo=
 
-
-On 10/6/2021 5:09 PM, Zev Weiss wrote:
-> Hello,
-> 
-> This patch series is in some ways kind of a v2 for the "Dynamic
-> aspeed-smc flash chips via 'reserved' DT status" series I posted
-> previously [0], but takes a fairly different approach suggested by Rob
-> Herring [1] and doesn't actually touch the aspeed-smc driver or
-> anything in the MTD subsystem, so I haven't marked it as such.
-> 
-> To recap a bit of the context from that series, in OpenBMC there's a
-> need for certain devices (described by device-tree nodes) to be able
-> to be attached and detached at runtime (for example the SPI flash for
-> the host's firmware, which is shared between the BMC and the host but
-> can only be accessed by one or the other at a time).  To provide that
-> ability, this series adds support for a new common device-tree
-> property, a boolean "dynamic" that indicates that the device may come
-> and go at runtime.  When present on a node, the sysfs file for that
-> node's "status" property is made writable, allowing userspace to do
-> things like:
-> 
->    $ echo okay > /sys/firmware/devicetree/.../status
->    $ echo reserved > /sys/firmware/devicetree/.../status
-> 
-> to activate and deactivate a dynamic device.
-
-This is a completely drive by comment here, but cannot you already 
-achieve what you want today by making the SPI-NOR to be loaded as a 
-module, probe it when you need it from the BMC, and unbind or rmmod the 
-drive when you need it on the server/host attached to the BMC?
-
-Looking at [0] there appears to be enough signaling visible by the BMC's 
-user-space that it ought to be possible?
-
-Assuming that there may be multiple flash chips and you somehow need to 
-access one in order to complete the BMC device boot, but not the other 
-one(s), you could imagine unbinding the spi-nor driver from the ones you 
-don't want to drive and wait until you have appropriate signaling made 
-available to your or is there a risk of racing with the host in doing so?
--- 
-Florian
