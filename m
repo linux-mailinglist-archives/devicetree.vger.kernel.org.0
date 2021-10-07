@@ -2,124 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D05364253B9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 066DA4253C9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:12:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241136AbhJGNMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 09:12:40 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:50844
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241110AbhJGNMh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 09:12:37 -0400
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id F05D73FFFF
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 13:10:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633612242;
-        bh=JhSvZ4bZ9XDCLRxn5WXaBJyzQncLRhcDh11CxYaApWU=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=Ssev8JtnHQHs3Uo1y0JyESJ1LF0vVKOGk7MddSRvqDn1nKPgVjgtKjsZrSTUSHV1p
-         rr5ea6VPIqhHsrL0SWS9DZib+ous1r7eLD6KdzjHUq3J1iDFCQloN3kmPF/x+Otfqg
-         pTObyuAR+rIQIq6FZWZoNfS+vSBvaB2PFC+U6EGFaA2k1+5Zz1IP4PCNR9WHpf+SZX
-         d17+NZDC2KRpWsQuI2zv3tb1EYNf7c8ThrfdNsqPxxxIWyUYU8Tv4/LkKEcQcoZhND
-         TIxfGlQjVf8cR53n4vfCYWsqRPC5t9b2uaEtuBTOm4zgZDClUo1bKe653iyZKCiAlG
-         zyMVHjmXTsQaA==
-Received: by mail-wr1-f71.google.com with SMTP id r21-20020adfa155000000b001608162e16dso4637676wrr.15
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 06:10:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JhSvZ4bZ9XDCLRxn5WXaBJyzQncLRhcDh11CxYaApWU=;
-        b=VWgEvIbYD3nnHrk4TNwd1c2x1pto6BiqlgaZYqwFPA/T4N+gsj0KdaaKi82JS0z0Vg
-         5v7DPPkM01Z5Zt1aWxnSjT8VEyx8VR3RmhJAehonAEfzAN/0etNSikVydwgCh/DXwO47
-         3unmcSBCw9xRecM9KDi9iZsl5y92pkOybgDQa8EdfrhB34io2ze1cx6Ew+BamthRFQlT
-         OhgM/Ub2S9e1cWrgR0/+l28q/ywflWpH6tPi/iN+gdlRKEUSzgyip/O7hh520eFwvItm
-         5uw6Nkkh9SDW7/5xu6pP9OUizFx50Dx2xO5lVPwEF2+j4b6EhUMU+hYdJRyBQLdn7Pg0
-         FYVA==
-X-Gm-Message-State: AOAM532RHqS5xxgdJAxXKoyyaLXGnpBj2/oSdNIio9r8kN+4zYuYoPJc
-        WHWPQjxjBoOObknCyOhal0MF/b8Bmk0AaNy22+MNBmMoyV9JkkOOG+MJa4+bklQSF52qNXOJc1/
-        HG/xhUQ7ZgGgGQklpwIue1ackd3Att6gXODCcBSI=
-X-Received: by 2002:a1c:ac86:: with SMTP id v128mr4569227wme.3.1633612241880;
-        Thu, 07 Oct 2021 06:10:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzLwRYPKIpB+6rBu8rzxazPdAbZRZWVT14g4gFsnMg69geQZ9M20oFRASa/T2iiTTB4yzVtpw==
-X-Received: by 2002:a1c:ac86:: with SMTP id v128mr4568961wme.3.1633612239499;
-        Thu, 07 Oct 2021 06:10:39 -0700 (PDT)
-Received: from [192.168.1.115] (xdsl-188-155-186-13.adslplus.ch. [188.155.186.13])
-        by smtp.gmail.com with ESMTPSA id v16sm2571457wrq.39.2021.10.07.06.10.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 06:10:39 -0700 (PDT)
-Subject: Re: [PATCH 1/7] dt-bindings: arm: apple: Add apple,pmgr binding
-To:     Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-serial@vger.kernel.org
-References: <20211005155923.173399-1-marcan@marcan.st>
- <20211005155923.173399-2-marcan@marcan.st>
- <18818eff-87d7-6a53-a4fd-7f3cbf625a0e@canonical.com>
- <57991dac-196e-a76d-831a-d4ac166bfe29@marcan.st>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <a5d52d94-4d42-6842-a40f-db25d2581929@canonical.com>
-Date:   Thu, 7 Oct 2021 15:10:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S241246AbhJGNOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 09:14:33 -0400
+Received: from foss.arm.com ([217.140.110.172]:53224 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241234AbhJGNOd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 09:14:33 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3910D6D;
+        Thu,  7 Oct 2021 06:12:39 -0700 (PDT)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 717E43F66F;
+        Thu,  7 Oct 2021 06:12:37 -0700 (PDT)
+Date:   Thu, 7 Oct 2021 14:12:32 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     kishon@ti.com, bhelgaas@google.com, robh@kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        hemantk@codeaurora.org, bjorn.andersson@linaro.org,
+        sallenki@codeaurora.org, skananth@codeaurora.org,
+        vpernami@codeaurora.org, vbadigan@codeaurora.org
+Subject: Re: [PATCH v8 0/3] Add Qualcomm PCIe Endpoint driver support
+Message-ID: <20211007131232.GA19662@lpieralisi>
+References: <20210920065946.15090-1-manivannan.sadhasivam@linaro.org>
+ <20211004041949.GA16442@workstation>
+ <20211007125724.GA27987@thinkpad>
 MIME-Version: 1.0
-In-Reply-To: <57991dac-196e-a76d-831a-d4ac166bfe29@marcan.st>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211007125724.GA27987@thinkpad>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/2021 17:26, Hector Martin wrote:
-> On 06/10/2021 15.56, Krzysztof Kozlowski wrote:
->>> diff --git a/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
->>> new file mode 100644
->>> index 000000000000..0304164e4140
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
->>> @@ -0,0 +1,74 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/arm/apple/apple,pmgr.yaml#
->>
->> Please don't store all Apple-related bindings in bindings/arm/apple, but
->> instead group per device type like in most of other bindings. In this
->> case - this looks like something close to power domain controller, so it
->> should be in bindings/power/
+On Thu, Oct 07, 2021 at 06:27:24PM +0530, Manivannan Sadhasivam wrote:
+> On Mon, Oct 04, 2021 at 09:49:49AM +0530, Manivannan Sadhasivam wrote:
+> > On Mon, Sep 20, 2021 at 12:29:43PM +0530, Manivannan Sadhasivam wrote:
+> > > Hello,
+> > > 
+> > > This series adds support for Qualcomm PCIe Endpoint controller found
+> > > in platforms like SDX55. The Endpoint controller is based on the designware
+> > > core with additional Qualcomm wrappers around the core.
+> > > 
+> > > The driver is added separately unlike other Designware based drivers that
+> > > combine RC and EP in a single driver. This is done to avoid complexity and
+> > > to maintain this driver autonomously.
+> > > 
+> > > The driver has been validated with an out of tree MHI function driver on
+> > > SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
+> > > 
+> > 
+> > Ping on this series! Patchwork says the state is still "New". Both
+> > binding and driver patches got enough reviews I believe. Are there any
+> > issues pending to be addressed?
+> > 
 > 
-> This is a controller that, right now, is only used to instantiate device 
-> power management controls, but the controller itself is just a generic 
-> syscon device. Depending on the register range, it could conceivably 
-> encompass other register types (e.g. clock selects) within it, though 
-> I'm not sure I want to do that right now. Apple calls several of these 
-> different register sets as a whole a "PMGR". So I'm not sure if it 
-> really qualifies as "just" a power domain controller. If we want to 
-> restrict this to the power state portion of PMGR, then it might make 
-> sense to call it something more specific...
+> Sorry for the noise. But not seeing any activity on this series is tempting me
+> to ping this thread. This series has been under review for almost 3 releases and
+> I don't want to miss this one too without any obvious reasons.
+
+You won't and thanks for your patience, I will pull it.
+
+Lorenzo
+
 > 
-> See arm/rockchip/pmu.yaml for the setup this is modeled after.
+> Thanks,
+> Mani
 > 
-
-Makes sense now and actually few other designs including Samsung Exynos
-have it as well.
-
-
-Best regards,
-Krzysztof
+> > Thanks,
+> > Mani
+> > 
+> > > Thanks,
+> > > Mani
+> > > 
+> > > Changes in v8:
+> > > 
+> > > * Added Reviewed-by tag from Rob for the driver patch
+> > > * Rebased on top of v5.15-rc1
+> > > 
+> > > Changes in v7:
+> > > 
+> > > * Used existing naming convention for callback functions
+> > > * Used active low state for PERST# gpio
+> > > 
+> > > Changes in v6:
+> > > 
+> > > * Removed status property in DT and added reviewed tag from Rob
+> > > * Switched to _relaxed variants as suggested by Rob
+> > > 
+> > > Changes in v5:
+> > > 
+> > > * Removed the DBI register settings that are not needed
+> > > * Used the standard definitions available in pci_regs.h
+> > > * Added defines for all the register fields
+> > > * Removed the left over code from previous iteration
+> > > 
+> > > Changes in v4:
+> > > 
+> > > * Removed the active_config settings needed for IPA integration
+> > > * Switched to writel for couple of relaxed versions that sneaked in
+> > > 
+> > > Changes in v3:
+> > > 
+> > > * Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
+> > > * Noticeable changes are:
+> > >   - Got rid of _relaxed calls and used readl/writel
+> > >   - Got rid of separate TCSR memory region and used syscon for getting the
+> > >     register offsets for Perst registers
+> > >   - Changed the wake gpio handling logic
+> > >   - Added remove() callback and removed "suppress_bind_attrs"
+> > >   - stop_link() callback now just disables PERST IRQ
+> > > * Added MMIO region and doorbell interrupt to the binding
+> > > * Added logic to write MMIO physicall address to MHI base address as it is
+> > >   for the function driver to work
+> > > 
+> > > Changes in v2:
+> > > 
+> > > * Addressed the comments from Rob on bindings patch
+> > > * Modified the driver as per binding change
+> > > * Fixed the warnings reported by Kbuild bot
+> > > * Removed the PERST# "enable_irq" call from probe()
+> > > 
+> > > Manivannan Sadhasivam (3):
+> > >   dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
+> > >     controller
+> > >   PCI: qcom-ep: Add Qualcomm PCIe Endpoint controller driver
+> > >   MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
+> > > 
+> > >  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
+> > >  MAINTAINERS                                   |  10 +-
+> > >  drivers/pci/controller/dwc/Kconfig            |  10 +
+> > >  drivers/pci/controller/dwc/Makefile           |   1 +
+> > >  drivers/pci/controller/dwc/pcie-qcom-ep.c     | 710 ++++++++++++++++++
+> > >  5 files changed, 888 insertions(+), 1 deletion(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> > >  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
+> > > 
+> > > -- 
+> > > 2.25.1
+> > > 
