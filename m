@@ -2,138 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 174F94252E0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 14:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44777425317
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 14:32:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233086AbhJGMVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 08:21:48 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:41898 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233053AbhJGMVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 08:21:47 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 197CJnBb037285;
-        Thu, 7 Oct 2021 07:19:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1633609189;
-        bh=9JwMLFdbNsLpLAiDqASjPrmPKp/VSOt/Bj/doasoH0U=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=OToP+/Mhx39NY0qtCVZ05rRs3mX4P8s1MLtO6z1vtQw3jz9sF9xxZVDk0RWx7oZ0N
-         PbsM69E6kNXmbD5YfCbahZn0KGLxo25uT6KwGsrJjN5kYZpoArFC/9dTmI6NiMjiS3
-         BAFUSCtzryaAaNSxc1Sw0JOWd7/Lz1YLT8U7DMKY=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 197CJn2r027336
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 7 Oct 2021 07:19:49 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 7
- Oct 2021 07:19:49 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 7 Oct 2021 07:19:49 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 197CJmjA111379;
-        Thu, 7 Oct 2021 07:19:49 -0500
-Date:   Thu, 7 Oct 2021 17:49:48 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Benoit Parrot <bparrot@ti.com>,
-        Maxime Ripard <mripard@kernel.org>,
+        id S241248AbhJGMd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 08:33:59 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:34868 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S241222AbhJGMd7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 08:33:59 -0400
+X-UUID: d963edc9d5364ad49636f68155f4c689-20211007
+X-UUID: d963edc9d5364ad49636f68155f4c689-20211007
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1390015297; Thu, 07 Oct 2021 20:32:03 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 7 Oct 2021 20:32:02 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 7 Oct 2021 20:32:02 +0800
+From:   Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>
-Subject: Re: [PATCH v4 01/11] media: cadence: csi2rx: Unregister v4l2 async
- notifier
-Message-ID: <20211007121946.tqkpgvej7xkb7xp3@ti.com>
-References: <20210915120240.21572-1-p.yadav@ti.com>
- <20210915120240.21572-2-p.yadav@ti.com>
- <YV4xwiUVGUi3biAT@pendragon.ideasonboard.com>
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+Subject: [PATCH] mailbox: mediatek: add support for dsp ipc
+Date:   Thu, 7 Oct 2021 20:32:00 +0800
+Message-ID: <20211007123200.16857-1-Allen-KH.Cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YV4xwiUVGUi3biAT@pendragon.ideasonboard.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/21 02:31AM, Laurent Pinchart wrote:
-> Hi Pratyush,
-> 
-> Thank you for the patch.
-> 
-> On Wed, Sep 15, 2021 at 05:32:30PM +0530, Pratyush Yadav wrote:
-> > The notifier is added to the global notifier list when registered. When
-> > the module is removed, the struct csi2rx_priv in which the notifier is
-> > embedded, is destroyed. As a result the notifier list has a reference to
-> > a notifier that no longer exists. This causes invalid memory accesses
-> > when the list is iterated over. Similar for when the probe fails.
-> > 
-> > Unregister and clean up the notifier to avoid this.
-> > 
-> > Fixes: 1fc3b37f34f6 ("media: v4l: cadence: Add Cadence MIPI-CSI2 RX driver")
-> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> 
-> Note that there are other issues in the driver in cleanup paths, in
-> particular a missing v4l2_async_notifier_cleanup() call in
-> csi2rx_parse_dt() when v4l2_async_notifier_add_fwnode_remote_subdev()
-> fails (moving the one from the other error path to an err label would be
-> best), and missing media_entity_cleanup() calls in both the probe error
-> path and the remove handler. Would you like to submit fixes for those ?
+This patch is for Mediatek DSP IPC which allows applications
+implement communication using mbox.
 
-Sure, will do.
+Two mailboxes used to send notification or short message
+between processors with dsp
 
-> 
-> > ---
-> > 
-> > (no changes since v3)
-> > 
-> > Changes in v3:
-> > - New in v3.
-> > 
-> >  drivers/media/platform/cadence/cdns-csi2rx.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> > index 7b44ab2b8c9a..d60975f905d6 100644
-> > --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> > +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> > @@ -469,6 +469,7 @@ static int csi2rx_probe(struct platform_device *pdev)
-> >  	return 0;
-> >  
-> >  err_cleanup:
-> > +	v4l2_async_nf_unregister(&csi2rx->notifier);
-> >  	v4l2_async_nf_cleanup(&csi2rx->notifier);
-> >  err_free_priv:
-> >  	kfree(csi2rx);
-> > @@ -479,6 +480,8 @@ static int csi2rx_remove(struct platform_device *pdev)
-> >  {
-> >  	struct csi2rx_priv *csi2rx = platform_get_drvdata(pdev);
-> >  
-> > +	v4l2_async_nf_unregister(&csi2rx->notifier);
-> > +	v4l2_async_nf_cleanup(&csi2rx->notifier);
-> >  	v4l2_async_unregister_subdev(&csi2rx->subdev);
-> >  	kfree(csi2rx);
-> >  
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+mbox0 is for ipc request.
+mbox1 is for ipc reply.
 
+Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+---
+ drivers/mailbox/Kconfig            |  10 ++
+ drivers/mailbox/Makefile           |   2 +
+ drivers/mailbox/mtk-adsp-mailbox.c | 209 +++++++++++++++++++++++++++++
+ 3 files changed, 221 insertions(+)
+ create mode 100644 drivers/mailbox/mtk-adsp-mailbox.c
+
+diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+index c9fc06c7e685..4435af555b63 100644
+--- a/drivers/mailbox/Kconfig
++++ b/drivers/mailbox/Kconfig
+@@ -236,6 +236,16 @@ config MTK_CMDQ_MBOX
+ 	  critical time limitation, such as updating display configuration
+ 	  during the vblank.
+ 
++config MTK_ADSP_IPC_MBOX
++	tristate "MediaTek ADSP Mailbox Support"
++	depends on ARCH_MEDIATEK || COMPILE_TEST
++	help
++	  Say yes here to add support for ADSP IPC mailbox driver.
++	  This mailbox driver is used to send notification or short message
++	  between processors with dsp. It will place the
++	  message to the share buffer and will access the ADSP mailbox
++	  registers to kick dsp.
++
+ config ZYNQMP_IPI_MBOX
+ 	bool "Xilinx ZynqMP IPI Mailbox"
+ 	depends on ARCH_ZYNQMP && OF
+diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+index c2089f04887e..479a9ae56d5e 100644
+--- a/drivers/mailbox/Makefile
++++ b/drivers/mailbox/Makefile
+@@ -51,6 +51,8 @@ obj-$(CONFIG_STM32_IPCC) 	+= stm32-ipcc.o
+ 
+ obj-$(CONFIG_MTK_CMDQ_MBOX)	+= mtk-cmdq-mailbox.o
+ 
++obj-$(CONFIG_MTK_ADSP_IPC_MBOX)	+= mtk-adsp-mailbox.o
++
+ obj-$(CONFIG_ZYNQMP_IPI_MBOX)	+= zynqmp-ipi-mailbox.o
+ 
+ obj-$(CONFIG_SUN6I_MSGBOX)	+= sun6i-msgbox.o
+diff --git a/drivers/mailbox/mtk-adsp-mailbox.c b/drivers/mailbox/mtk-adsp-mailbox.c
+new file mode 100644
+index 000000000000..120e1be39118
+--- /dev/null
++++ b/drivers/mailbox/mtk-adsp-mailbox.c
+@@ -0,0 +1,209 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (c) 2021 MediaTek Corporation. All rights reserved.
++ * Author: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
++ */
++
++#include <linux/firmware/mediatek/mtk-adsp-ipc.h>
++#include <linux/interrupt.h>
++#include <linux/io.h>
++#include <linux/iopoll.h>
++#include <linux/kernel.h>
++#include <linux/mailbox_controller.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/slab.h>
++
++/* adsp mbox register offset */
++#define MTK_ADSP_MBOX_IN_CMD 0x00
++#define MTK_ADSP_MBOX_IN_CMD_CLR 0x04
++#define MTK_ADSP_MBOX_OUT_CMD 0x1c
++#define MTK_ADSP_MBOX_OUT_CMD_CLR 0x20
++#define MTK_ADSP_MBOX_IN_MSG0 0x08
++#define MTK_ADSP_MBOX_IN_MSG1 0x0C
++#define MTK_ADSP_MBOX_OUT_MSG0 0x24
++#define MTK_ADSP_MBOX_OUT_MSG1 0x28
++
++struct mtk_adsp_mbox_priv {
++	struct device *dev;
++	struct mbox_controller mbox;
++	phys_addr_t pa_mboxreg[MTK_ADSP_MBOX_NUM];
++	void __iomem *va_mboxreg[MTK_ADSP_MBOX_NUM];
++};
++
++static irqreturn_t mtk_adsp_ipc_irq_handler(int irq, void *data)
++{
++	struct mbox_chan *ch = (struct mbox_chan *)data;
++	struct adsp_mbox_ch_info *ch_info = ch->con_priv;
++	void __iomem *reg = ch_info->va_reg[ch_info->id];
++	u32 op = readl(reg + MTK_ADSP_MBOX_OUT_CMD);
++
++	writel(op, reg + MTK_ADSP_MBOX_OUT_CMD_CLR);
++
++	return IRQ_WAKE_THREAD;
++}
++
++static irqreturn_t mtk_adsp_ipc_handler(int irq, void *data)
++{
++	struct mbox_chan *ch = (struct mbox_chan *)data;
++	struct adsp_mbox_ch_info *ch_info = ch->con_priv;
++
++	mbox_chan_received_data(ch, ch_info);
++
++	return IRQ_HANDLED;
++}
++
++static struct mbox_chan *mtk_adsp_mbox_xlate(struct mbox_controller *mbox,
++					     const struct of_phandle_args *sp)
++{
++	return &mbox->chans[sp->args[0]];
++}
++
++static int mtk_adsp_mbox_startup(struct mbox_chan *chan)
++{
++	struct adsp_mbox_ch_info *ch_info = chan->con_priv;
++	struct platform_device *pdev;
++	struct device *dev = chan->mbox->dev;
++	char *name;
++	int ret;
++	int irq;
++
++	pdev = container_of(dev, struct platform_device, dev);
++	name = kasprintf(GFP_KERNEL, "irq_mbox%d", ch_info->id);
++	if (!name) {
++		dev_err(dev, "mtk adsp mbox startup mbox%d %s\n", ch_info->id, name);
++		return -ENOMEM;
++	}
++
++	irq = platform_get_irq_byname(pdev, name);
++	if (irq < 0) {
++		dev_err(dev, "Failed to get ipc irq\n");
++		ret = -ENODEV;
++		goto err_name_free;
++	}
++
++	ret = devm_request_threaded_irq(dev, irq,
++					mtk_adsp_ipc_irq_handler, mtk_adsp_ipc_handler,
++					IRQF_TRIGGER_NONE, name,
++					chan);
++	if (ret < 0)
++		dev_err(dev, "failed to request irq %d\n", irq);
++
++err_name_free:
++	kfree(name);
++	return ret;
++}
++
++static void mtk_adsp_mbox_shutdown(struct mbox_chan *chan)
++{
++	chan->con_priv = NULL;
++}
++
++static int mtk_adsp_mbox_send_data(struct mbox_chan *chan, void *data)
++{
++	struct adsp_mbox_ch_info *ch_info = chan->con_priv;
++	void __iomem *reg = ch_info->va_reg[ch_info->id];
++
++	spin_lock(&ch_info->lock);
++	writel(ch_info->ipc_op_val, reg + MTK_ADSP_MBOX_IN_CMD);
++	spin_unlock(&ch_info->lock);
++
++	return 0;
++}
++
++static bool mtk_adsp_mbox_last_tx_done(struct mbox_chan *chan)
++{
++	struct adsp_mbox_ch_info *ch_info = chan->con_priv;
++	u32 id = ch_info->id;
++	void __iomem *reg = ch_info->va_reg[id];
++	u32 op = readl(reg + MTK_ADSP_MBOX_IN_CMD);
++
++	return (op == 0) ? true : false;
++}
++
++static const struct mbox_chan_ops adsp_mbox_chan_ops = {
++	.send_data	= mtk_adsp_mbox_send_data,
++	.startup	= mtk_adsp_mbox_startup,
++	.shutdown	= mtk_adsp_mbox_shutdown,
++	.last_tx_done	= mtk_adsp_mbox_last_tx_done,
++};
++
++static int mtk_adsp_mbox_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct mbox_controller *mbox;
++	struct mtk_adsp_mbox_priv *priv;
++	struct resource *res;
++	char *name;
++	int ret;
++	int i;
++
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	mbox = &priv->mbox;
++	mbox->dev = dev;
++	mbox->ops = &adsp_mbox_chan_ops;
++	mbox->txdone_irq = false;
++	mbox->txdone_poll = true;
++	mbox->of_xlate = mtk_adsp_mbox_xlate;
++	mbox->num_chans = MTK_ADSP_MBOX_NUM;
++	mbox->chans = devm_kcalloc(mbox->dev, mbox->num_chans,
++				   sizeof(*mbox->chans), GFP_KERNEL);
++	if (!mbox->chans)
++		return -ENOMEM;
++
++	for (i = 0; i < mbox->num_chans; i++) {
++		struct adsp_mbox_ch_info *ch_info;
++
++		name = kasprintf(GFP_KERNEL, "reg_mbox%d", i);
++		/* parse adsp mbox base */
++		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, name);
++		if (!res) {
++			dev_err(dev, "no MBOX resource %s\n", name);
++			return -ENXIO;
++		}
++
++		priv->pa_mboxreg[i] = (phys_addr_t)res->start;
++		priv->va_mboxreg[i] = devm_ioremap_resource(dev, res);
++		if (IS_ERR(priv->va_mboxreg[i]))
++			return PTR_ERR(priv->va_mboxreg[i]);
++
++		/* set adsp mbox channel info */
++		ch_info = devm_kzalloc(mbox->dev, sizeof(*ch_info), GFP_KERNEL);
++		if (!ch_info)
++			return -ENOMEM;
++
++		spin_lock_init(&ch_info->lock);
++		ch_info->id = i;
++		ch_info->va_reg[i] = priv->va_mboxreg[i];
++		mbox->chans[i].con_priv = ch_info;
++	}
++
++	platform_set_drvdata(pdev, priv);
++	ret = devm_mbox_controller_register(dev, &priv->mbox);
++	if (ret < 0)
++		dev_err(dev, "error: failed to register mailbox:%d\n", ret);
++
++	return ret;
++}
++
++static const struct of_device_id mtk_adsp_mbox_of_match[] = {
++	{ .compatible = "mediatek,mt8195-adsp-mbox", },
++	{},
++};
++MODULE_DEVICE_TABLE(of, mtk_adsp_mbox_of_match);
++
++static struct platform_driver mtk_adsp_ipc_mbox_driver = {
++	.probe		= mtk_adsp_mbox_probe,
++	.driver = {
++		.name	= "mtk_adsp_mbox",
++		.of_match_table = mtk_adsp_mbox_of_match,
++	},
++};
++module_platform_driver(mtk_adsp_ipc_mbox_driver);
++
++MODULE_AUTHOR("Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>");
++MODULE_DESCRIPTION("MTK ADSP mailbox IPC driver");
++MODULE_LICENSE("GPL v2");
 -- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+2.18.0
+
