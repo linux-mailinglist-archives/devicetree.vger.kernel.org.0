@@ -2,86 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A143F4253AC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D05364253B9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 15:10:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241005AbhJGNJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 09:09:42 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:35522
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233114AbhJGNJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 09:09:41 -0400
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
+        id S241136AbhJGNMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 09:12:40 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:50844
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241110AbhJGNMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 09:12:37 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 971793FFEF
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 13:07:46 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id F05D73FFFF
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 13:10:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633612066;
-        bh=FORzsUXne7M2qBjMCfFLm5GuHPWnU7ify0SwCg4gAzA=;
+        s=20210705; t=1633612242;
+        bh=JhSvZ4bZ9XDCLRxn5WXaBJyzQncLRhcDh11CxYaApWU=;
         h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
          In-Reply-To:Content-Type;
-        b=XEqBbV2i2rSqT8ONkBiX0A2Wd5dfk07hslLT/+ZTugU8iIjX3Yv07jynl9t6i687u
-         d6gh1EQ759SPJGYRKLeawX9payUCifUnK48USmn49Fvr8Gf059XaOhlFSwCKEi2uud
-         kfWHvMzri4As5Vup2egOqCoMA/I0o/jeKPBOrngH1he78HdW4bYR2Ad1zeGLB69xqU
-         4hWpsPPqTmDjhnee8yT6T7HpZjO981ih6pbaW1JaulSWI1R8TD6w+T2QIERW0DPsip
-         p3mawA6PT3QFQ+iAWzlmCZmTa7gYDYEvmm3ksOS6hsBAAEkxgjSLx1w+RapH0/mvVd
-         TF8pI0xzC/4Yg==
-Received: by mail-wr1-f72.google.com with SMTP id k16-20020a5d6290000000b00160753b430fso4667330wru.11
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 06:07:46 -0700 (PDT)
+        b=Ssev8JtnHQHs3Uo1y0JyESJ1LF0vVKOGk7MddSRvqDn1nKPgVjgtKjsZrSTUSHV1p
+         rr5ea6VPIqhHsrL0SWS9DZib+ous1r7eLD6KdzjHUq3J1iDFCQloN3kmPF/x+Otfqg
+         pTObyuAR+rIQIq6FZWZoNfS+vSBvaB2PFC+U6EGFaA2k1+5Zz1IP4PCNR9WHpf+SZX
+         d17+NZDC2KRpWsQuI2zv3tb1EYNf7c8ThrfdNsqPxxxIWyUYU8Tv4/LkKEcQcoZhND
+         TIxfGlQjVf8cR53n4vfCYWsqRPC5t9b2uaEtuBTOm4zgZDClUo1bKe653iyZKCiAlG
+         zyMVHjmXTsQaA==
+Received: by mail-wr1-f71.google.com with SMTP id r21-20020adfa155000000b001608162e16dso4637676wrr.15
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 06:10:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=FORzsUXne7M2qBjMCfFLm5GuHPWnU7ify0SwCg4gAzA=;
-        b=c2EzdFiQD4kpCHt0g0MNx/Cr6ZAYRs01tIgxGtc8hRUgY+GiJEq4+gmKU84AaObjH4
-         tWvbotBYFdL5IkNkjU3q0N5evORsoZBURTYqSALqdTtFDosbUVJUNzN1KD+hfDpa77j/
-         dcXR1bSFzNJtiuzvkkw7g3AjsG66w88WReHV0p2lP1wUF/tEK0KtgpcAocIv61rPoHTN
-         d7Wa6knrUQFz5uC9WMFZ5RRfIRT2Zg46i3WJ/irkdRpUSJE8xkhGIBlJCXSSIf6wd0Rp
-         LdoXpZffr4O5q2dia+IxjSfaKBe60aK5cvHchsN6kR62sH6QdVaQflmXtAt9OJLIplqN
-         HirA==
-X-Gm-Message-State: AOAM530pAXmgNQT6JOOy7jIc8/ZAWiCe6Cc8/APYFRbLQondPe3negvo
-        glLU4lqLak/Sjcy79/b6/WnzrJ2/Y1KehXTMopyYryQPbiVn6bcah6eRC6NQRe5ivxo/GL2/P9/
-        ErZOTf9y+a0d+ONthDAZqa1zhNH924KkE05/uy7c=
-X-Received: by 2002:adf:b355:: with SMTP id k21mr5428718wrd.380.1633612064184;
-        Thu, 07 Oct 2021 06:07:44 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy5pF3b8+6MeNpQSCXgOMr7rU57lLrOb+1ZGnujvyw0abYwmsBGvSJGW2lo9jvHE2DDTsCMuQ==
-X-Received: by 2002:adf:b355:: with SMTP id k21mr5428054wrd.380.1633612059354;
-        Thu, 07 Oct 2021 06:07:39 -0700 (PDT)
+        bh=JhSvZ4bZ9XDCLRxn5WXaBJyzQncLRhcDh11CxYaApWU=;
+        b=VWgEvIbYD3nnHrk4TNwd1c2x1pto6BiqlgaZYqwFPA/T4N+gsj0KdaaKi82JS0z0Vg
+         5v7DPPkM01Z5Zt1aWxnSjT8VEyx8VR3RmhJAehonAEfzAN/0etNSikVydwgCh/DXwO47
+         3unmcSBCw9xRecM9KDi9iZsl5y92pkOybgDQa8EdfrhB34io2ze1cx6Ew+BamthRFQlT
+         OhgM/Ub2S9e1cWrgR0/+l28q/ywflWpH6tPi/iN+gdlRKEUSzgyip/O7hh520eFwvItm
+         5uw6Nkkh9SDW7/5xu6pP9OUizFx50Dx2xO5lVPwEF2+j4b6EhUMU+hYdJRyBQLdn7Pg0
+         FYVA==
+X-Gm-Message-State: AOAM532RHqS5xxgdJAxXKoyyaLXGnpBj2/oSdNIio9r8kN+4zYuYoPJc
+        WHWPQjxjBoOObknCyOhal0MF/b8Bmk0AaNy22+MNBmMoyV9JkkOOG+MJa4+bklQSF52qNXOJc1/
+        HG/xhUQ7ZgGgGQklpwIue1ackd3Att6gXODCcBSI=
+X-Received: by 2002:a1c:ac86:: with SMTP id v128mr4569227wme.3.1633612241880;
+        Thu, 07 Oct 2021 06:10:41 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzLwRYPKIpB+6rBu8rzxazPdAbZRZWVT14g4gFsnMg69geQZ9M20oFRASa/T2iiTTB4yzVtpw==
+X-Received: by 2002:a1c:ac86:: with SMTP id v128mr4568961wme.3.1633612239499;
+        Thu, 07 Oct 2021 06:10:39 -0700 (PDT)
 Received: from [192.168.1.115] (xdsl-188-155-186-13.adslplus.ch. [188.155.186.13])
-        by smtp.gmail.com with ESMTPSA id d2sm24198585wrc.32.2021.10.07.06.07.37
+        by smtp.gmail.com with ESMTPSA id v16sm2571457wrq.39.2021.10.07.06.10.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 06:07:38 -0700 (PDT)
-Subject: Re: [PATCH v3 10/10] dt-bindings: mfd: samsung,s5m8767: document buck
- and LDO supplies
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-References: <20211006132324.76008-1-krzysztof.kozlowski@canonical.com>
- <20211006132324.76008-11-krzysztof.kozlowski@canonical.com>
- <CAPLW+4migQ+3NBsHgMd04N-Fc71CTzxoUMS3HN2S8377qFDa6g@mail.gmail.com>
+        Thu, 07 Oct 2021 06:10:39 -0700 (PDT)
+Subject: Re: [PATCH 1/7] dt-bindings: arm: apple: Add apple,pmgr binding
+To:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20211005155923.173399-1-marcan@marcan.st>
+ <20211005155923.173399-2-marcan@marcan.st>
+ <18818eff-87d7-6a53-a4fd-7f3cbf625a0e@canonical.com>
+ <57991dac-196e-a76d-831a-d4ac166bfe29@marcan.st>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <25ecf19b-eb40-ada6-2469-b0c29820b498@canonical.com>
-Date:   Thu, 7 Oct 2021 15:07:37 +0200
+Message-ID: <a5d52d94-4d42-6842-a40f-db25d2581929@canonical.com>
+Date:   Thu, 7 Oct 2021 15:10:37 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <CAPLW+4migQ+3NBsHgMd04N-Fc71CTzxoUMS3HN2S8377qFDa6g@mail.gmail.com>
+In-Reply-To: <57991dac-196e-a76d-831a-d4ac166bfe29@marcan.st>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -89,52 +86,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/10/2021 22:02, Sam Protsenko wrote:
-> On Wed, 6 Oct 2021 at 16:24, Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
+On 06/10/2021 17:26, Hector Martin wrote:
+> On 06/10/2021 15.56, Krzysztof Kozlowski wrote:
+>>> diff --git a/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+>>> new file mode 100644
+>>> index 000000000000..0304164e4140
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+>>> @@ -0,0 +1,74 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/arm/apple/apple,pmgr.yaml#
 >>
->> Document the properties with regulator supplies for bucks and LDOs.  At
->> least one board uses it (Exynos5250 Arndale).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>  .../bindings/mfd/samsung,s5m8767.yaml         | 38 +++++++++++++++++++
->>  1 file changed, 38 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
->> index b2529a48c890..12dea5aac8b6 100644
->> --- a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
->> @@ -96,6 +96,44 @@ properties:
->>      description: |
->>        GPIO specifiers for three host gpio's used for dvs.
->>
->> +  vinb1-supply:
->> +    description: Power supply for buck1
->> +  vinb2-supply:
->> +    description: Power supply for buck1
+>> Please don't store all Apple-related bindings in bindings/arm/apple, but
+>> instead group per device type like in most of other bindings. In this
+>> case - this looks like something close to power domain controller, so it
+>> should be in bindings/power/
 > 
-> Nitpick: all those vinb* are for buck1, or that's a typo (here and below)?
-
-Copy paste and needs fixing. Thanks for checking.
-
+> This is a controller that, right now, is only used to instantiate device 
+> power management controls, but the controller itself is just a generic 
+> syscon device. Depending on the register range, it could conceivably 
+> encompass other register types (e.g. clock selects) within it, though 
+> I'm not sure I want to do that right now. Apple calls several of these 
+> different register sets as a whole a "PMGR". So I'm not sure if it 
+> really qualifies as "just" a power domain controller. If we want to 
+> restrict this to the power state portion of PMGR, then it might make 
+> sense to call it something more specific...
 > 
->> +  vinb3-supply:
->> +    description: Power supply for buck1
->> +  vinb4-supply:
->> +    description: Power supply for buck1
->> +  vinb5-supply:
->> +    description: Power supply for buck1
->> +  vinb6-supply:
->> +    description: Power supply for buck1
->> +  vinb7-supply:
->> +    description: Power supply for buck1
->> +  vinb8-supply:
->> +    description: Power supply for buck1
->> +  vinb9-supply:
->> +    description: Power supply for buck1
->> +
+> See arm/rockchip/pmu.yaml for the setup this is modeled after.
+> 
+
+Makes sense now and actually few other designs including Samsung Exynos
+have it as well.
+
 
 Best regards,
 Krzysztof
