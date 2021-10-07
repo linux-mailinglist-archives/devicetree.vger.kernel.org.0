@@ -2,60 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9168E424BAA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 03:35:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D345424BC1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 04:25:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231346AbhJGBhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Oct 2021 21:37:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50730 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230300AbhJGBhF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Oct 2021 21:37:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 7113B61163;
-        Thu,  7 Oct 2021 01:35:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633570512;
-        bh=6g/6xP79GpkRSpkMJmsNb6NrI47wZ0uHxXpsAS59/d8=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=u7M14iswmST+eePTgkQwVZnEmq37ATRCE3Nikd9rerTWT390K1e4TJvtcsc+CCOJL
-         hBxhxEKsHgZC+mZzgcEGYcfAVuEQxlpbali0HYn9OADUM9mIIt33No9/hNPwUockbV
-         3ORxA5Q1BLpDt2kmsuz4IuCxpmnrqPglne7qe3ReV3Ed12DbXV6xXsZG24Q47yhOz6
-         Wmbbq3/BcErdQffZywbdUNc+4zlPEsw8qvrIe2dAqbFq/72YNba1QTHnCnPaDO3fiu
-         jEGOVrXVyJ4IbI/1CGnpfch48yXDcFJc+Tk0otrU2L0oIQFFAjmzlWYfEsIXhbCcUZ
-         IVRyeCi3cQ4ZA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 5E9376094F;
-        Thu,  7 Oct 2021 01:35:12 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v5.15, take 3
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <YV4WhkB4PQVMCCvu@robh.at.kernel.org>
-References: <YV4WhkB4PQVMCCvu@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <YV4WhkB4PQVMCCvu@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.15-3
-X-PR-Tracked-Commit-Id: b2d70c0dbf2731a37d1c7bcc86ab2387954d5f56
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 5af4055fa8133662831ae2fb6e188e8f6c172688
-Message-Id: <163357051232.16244.13728581848170905560.pr-tracker-bot@kernel.org>
-Date:   Thu, 07 Oct 2021 01:35:12 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
+        id S232243AbhJGC1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Oct 2021 22:27:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33000 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232191AbhJGC1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Oct 2021 22:27:03 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDC0EC061746;
+        Wed,  6 Oct 2021 19:25:09 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id 75so4217273pga.3;
+        Wed, 06 Oct 2021 19:25:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=6Fbp2oLqg5VLyJhPP2UoprEyUpjt3vE+k1k8NDwLMpk=;
+        b=fVpVXChAwZh74Yak5ikdgyaoheURY4K/ccbznO6zTnIB1AbJR+bIgOAW5/cSxWFoOZ
+         cY0eBdVYRQP1/jK52zezVr0uzpqaKqL4UT7RQvBZyhmKIcoiByFnE72l/T/lAzTh60PX
+         2ZZ2YfXaMMnXi99HoWBLG5uUJUaMAp+mwPmSs0A9L0wSZq5MBqIGrLe/fQpBMPOxvPnK
+         4rfWTUo7RKXBeIwus/mUrNTfwOqbla5PIcLbJRJuwd6IvqLGvZcPe9NmM60QdmCBRqmR
+         sMF0mjWUQFOWNx2GTwfCL5Ktgovulw8+KnJ+87QvW6vVfTE6IVfRZKsoah2Gd8VJ0NWK
+         +Eww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=6Fbp2oLqg5VLyJhPP2UoprEyUpjt3vE+k1k8NDwLMpk=;
+        b=dgs77bupENCFjzUry8FnJvPNsP97YcOzSZBsySEOKWw75LM8zIM4p5yU6bz3akj8X+
+         aKXVx74urTu+PtXpFAkkAhu9YJVp1paZ67os9LnhPveV5wUOI13m5G23KCFEdb9YPx42
+         y/B9dllFz4zv6V+wAADgIA+y8SMtDgVDWnQara2V5C4H36KtwpX9Af+Mzspcr743hfqX
+         lTEEXz5sIvsuI2iX2eArq0+xUDjA7O9QtJXj7XLt4/nBz9awADhajyMPjlROGuiyOG7o
+         OPNAopWnR334KM2HyoJeghXDQ4LjGci4IkuYWxCx3eCL/LKx30a7vcWO50954pr/0sIO
+         BeIA==
+X-Gm-Message-State: AOAM533TzoTodtjpZGHABOIJbcSEVHmd1zGVsts71IusFZ+099ywy3EN
+        a20eHAZlDuFtYl/gv49F1JU=
+X-Google-Smtp-Source: ABdhPJys1HdOqewyun+C+iToAvx9hnErbBSMfwtBGQraooU+JJaijDbgzG5Y0UhUonum+9KpDmz8JA==
+X-Received: by 2002:a63:ed4a:: with SMTP id m10mr1303051pgk.448.1633573509317;
+        Wed, 06 Oct 2021 19:25:09 -0700 (PDT)
+Received: from [10.230.29.137] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id g23sm22285369pfu.71.2021.10.06.19.24.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Oct 2021 19:25:08 -0700 (PDT)
+Message-ID: <1a15bbef-cf3d-33c6-b6c1-3dd607d71d1d@gmail.com>
+Date:   Wed, 6 Oct 2021 19:24:50 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Subject: Re: [PATCH 00/12] DT: CPU h/w id parsing clean-ups and cacheinfo id
+ support
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        James Morse <james.morse@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Jonas Bonn <jonas@southpole.se>,
+        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+        Stafford Horne <shorne@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, x86@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-csky@vger.kernel.org, openrisc@lists.librecores.org,
+        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+        linux-sh@vger.kernel.org, devicetree@vger.kernel.org
+References: <20211006164332.1981454-1-robh@kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20211006164332.1981454-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Wed, 6 Oct 2021 16:35:02 -0500:
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.15-3
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/5af4055fa8133662831ae2fb6e188e8f6c172688
+On 10/6/2021 9:43 AM, Rob Herring wrote:
+> The first 10 patches add a new function, of_get_cpu_hwid(), which parses
+> CPU DT node 'reg' property, and then use it to replace all the open
+> coded versions of parsing CPU node 'reg' properties.
+> 
+> The last 2 patches add support for populating the cacheinfo 'id' on DT
+> platforms. The minimum associated CPU hwid is used for the id. The id is
+> optional, but necessary for resctrl which is being adapted for Arm MPAM.
+> 
+> Tested on arm64. Compile tested on arm, x86 and powerpc.
 
-Thank you!
+On ARM and ARM64:
 
+Tested-by: Florian Fainelli <f.fainelli@gmail.com>
+
+lscpu -C continues to work on ARM64 as before with cache properties 
+provided in the FDT.
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Florian
