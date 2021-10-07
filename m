@@ -2,129 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 652CB424F3A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 10:23:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 364AF424F43
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 10:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240722AbhJGIZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 04:25:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240721AbhJGIZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 04:25:42 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF2CDC061746
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 01:23:48 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id k7so16357516wrd.13
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 01:23:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xe+XRJeApLVn7A/vQhil5r3wZhwLCdq+ejWt2cjD2gA=;
-        b=XWcAScmr6njF3YDdwtBuWNoW21XyoTU9jU89jfK0LpmzTFcU+O4TeqlEU4RhdIwjDz
-         QBb7bdwJFX1tdJnNXSE8eoxIONmFpqfMdVo/jEOkWjQyoCGzVy/znhTluRcphckXNXWU
-         4Ve8h0nZwQiNFTcJakBELhVFtPHosT75Ivbd3PfLUw7opjyC1f2lvUS70hkgd+Szw7z4
-         dthOY9QyJyCtKve/dS3LEPYU1l1y4NyZThhSNQ66lnXfccJRMinALTx1lB4FFzAHQ77T
-         djlPS4CYVesYL1D4Cc1PMQlXFqOcdk+zUi9q4t3FKuF4LzUAjqcXX6oK2ervT8R5BBCu
-         kijA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xe+XRJeApLVn7A/vQhil5r3wZhwLCdq+ejWt2cjD2gA=;
-        b=7H9IUfp8KU59uCHkM39MCtlqh5Ll1hPWn+EGgjEfym3EwQaIq9hDPomKgdUsOhO1LY
-         VdgjrUDAHPUUm3RdL9E6g7fAPHbv9d1ovt+xc9vrEDoW7ev8y1NWrdVW4dZdIr5TjGDs
-         9sIMZzgRUKF7DGai/xLIzdhg3h64nZgv0xFVdwUJPOOUPYhOXREazPiwZpGF8Mw2+dNZ
-         lhLeH3HVPPxIgHuZcx3SXFSQ8HPQ+gLId7kmpXKt7tp/Q1LisYQCbt4Tkqi31wS1sRT8
-         vKFFgnQHc6J+spRh412hyKCSTi8SA631X9uNo3AtEQiGkRmsWGLmVquX7DJPPyinhsX6
-         4VFg==
-X-Gm-Message-State: AOAM5323ltEt4SqJtSpnY3WFA6AdOvCwdmsGcT/ep406PWAqfHx9YY+5
-        SH6gK5zH8vTfPjtluLBmopODBA==
-X-Google-Smtp-Source: ABdhPJz2laknS3HcVubqmystTFIi96a9XD2RFlG+VlYikPz8L6hf/dtomFr4mAZE0x1m+d/b3BjgqQ==
-X-Received: by 2002:a5d:6d01:: with SMTP id e1mr3560205wrq.410.1633595027311;
-        Thu, 07 Oct 2021 01:23:47 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id u17sm9211793wrw.85.2021.10.07.01.23.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 01:23:46 -0700 (PDT)
-Subject: Re: [PATCH v9 08/17] ASoC: dt-bindings: add q6apm digital audio
- stream bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     lgirdwood@gmail.com, tiwai@suse.de, devicetree@vger.kernel.org,
-        broonie@kernel.org, plai@codeaurora.org,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        perex@perex.cz, bjorn.andersson@linaro.org, bgoswami@codeaurora.org
-References: <20211006113950.10782-1-srinivas.kandagatla@linaro.org>
- <20211006113950.10782-9-srinivas.kandagatla@linaro.org>
- <1633547293.527218.2218062.nullmailer@robh.at.kernel.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <4e70e1e3-162e-13c0-5cbd-0135d2585e96@linaro.org>
-Date:   Thu, 7 Oct 2021 09:23:45 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S240664AbhJGI3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 04:29:04 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:48660 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240557AbhJGI3D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 04:29:03 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633595230; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
+ To: From: Sender; bh=wI2s0bxPh2CPs/CNjvuA/9UBNxI8aMeMmsFnsc6CPxc=; b=AoVRM0zLrnlysS8jkPrqjP6rsFutDGcAXi7B+Hnuznat1qf2XVhRZYGrxovgeUpTpFRJ5DYX
+ 4/O4Quu3UxMYxSSgErdjSIXxhexRHkzRMFVw2bK03DqLUjn5d5cPOzPibv7PB24UFq+Rb53g
+ kc0HFIpu5yXs9/4TawpvZx11OkA=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 615eaf4ab8ab9916b3e9179b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 08:26:50
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 471BEC4360D; Thu,  7 Oct 2021 08:26:49 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from tykki (tynnyri.adurom.net [51.15.11.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id DF4CAC4338F;
+        Thu,  7 Oct 2021 08:26:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org DF4CAC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>
+Subject: Re: [PATCH v7 08/24] wfx: add bus_sdio.c
+References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
+        <149139701.nbvtKH4F0p@pc-42>
+        <CAPDyKFr62Kykg3=9WiXAV8UToqjw8gj4t6bbM7pGQ+iGGQRLmg@mail.gmail.com>
+        <4117481.h6P39bWmWk@pc-42>
+Date:   Thu, 07 Oct 2021 11:26:42 +0300
+In-Reply-To: <4117481.h6P39bWmWk@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
+ Pouiller"'s message of "Wed,
+        06 Oct 2021 17:42:23 +0200")
+Message-ID: <87czohckal.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-In-Reply-To: <1633547293.527218.2218062.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
 
+> On Wednesday 6 October 2021 17:02:07 CEST Ulf Hansson wrote:
+>> On Tue, 5 Oct 2021 at 10:14, J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@=
+silabs.com> wrote:
+>> > On Friday 1 October 2021 17:23:16 CEST Ulf Hansson wrote:
+>> > > On Thu, 30 Sept 2021 at 19:06, Pali Roh=C3=A1r <pali@kernel.org> wro=
+te:
+>> > > > On Thursday 30 September 2021 18:51:09 J=C3=A9r=C3=B4me Pouiller w=
+rote:
+>> > > > > On Thursday 30 September 2021 12:07:55 CEST Ulf Hansson wrote:
+>> > > > > > On Mon, 20 Sept 2021 at 18:12, Jerome Pouiller
+>> > > > > > <Jerome.Pouiller@silabs.com> wrote:
+>> > > > > > >
+>> > > > > > > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
+>> > > > > > >
+>> > > > > > > Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@si=
+labs.com>
+>> > > > > > > ---
+>> > > > > > >  drivers/net/wireless/silabs/wfx/bus_sdio.c | 261 ++++++++++=
++++++++++++
+>> > > > > > >  1 file changed, 261 insertions(+)
+>> > > > > > >  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio=
+.c
+>> > > > > > >
+>> > > > > > > diff --git a/drivers/net/wireless/silabs/wfx/bus_sdio.c
+>> > > > > > > b/drivers/net/wireless/silabs/wfx/bus_sdio.c
+>> > > > > >
+>> > > > > > [...]
+>> > > > > >
+>> > > > > > > +
+>> > > > > > > +static int wfx_sdio_probe(struct sdio_func *func,
+>> > > > > > > +                         const struct sdio_device_id *id)
+>> > > > > > > +{
+>> > > > > > > +       struct device_node *np =3D func->dev.of_node;
+>> > > > > > > +       struct wfx_sdio_priv *bus;
+>> > > > > > > +       int ret;
+>> > > > > > > +
+>> > > > > > > +       if (func->num !=3D 1) {
+>> > > > > > > + dev_err(&func->dev, "SDIO function number is %d while
+>> > > > > > > it should always be 1 (unsupported chip?)\n",
+>> > > > > > > +                       func->num);
+>> > > > > > > +               return -ENODEV;
+>> > > > > > > +       }
+>> > > > > > > +
+>> > > > > > > +       bus =3D devm_kzalloc(&func->dev, sizeof(*bus), GFP_K=
+ERNEL);
+>> > > > > > > +       if (!bus)
+>> > > > > > > +               return -ENOMEM;
+>> > > > > > > +
+>> > > > > > > +       if (!np || !of_match_node(wfx_sdio_of_match, np)) {
+>> > > > > > > + dev_warn(&func->dev, "no compatible device found in
+>> > > > > > > DT\n");
+>> > > > > > > +               return -ENODEV;
+>> > > > > > > +       }
+>> > > > > > > +
+>> > > > > > > +       bus->func =3D func;
+>> > > > > > > +       bus->of_irq =3D irq_of_parse_and_map(np, 0);
+>> > > > > > > +       sdio_set_drvdata(func, bus);
+>> > > > > > > +       func->card->quirks |=3D MMC_QUIRK_LENIENT_FN0 |
+>> > > > > > > +                             MMC_QUIRK_BLKSZ_FOR_BYTE_MODE |
+>> > > > > > > +                             MMC_QUIRK_BROKEN_BYTE_MODE_512;
+>> > > > > >
+>> > > > > > I would rather see that you add an SDIO_FIXUP for the SDIO car=
+d, to
+>> > > > > > the sdio_fixup_methods[], in drivers/mmc/core/quirks.h, instea=
+d of
+>> > > > > > this.
+>> > > > >
+>> > > > > In the current patch, these quirks are applied only if the devic=
+e appears
+>> > > > > in the device tree (see the condition above). If I implement the=
+m in
+>> > > > > drivers/mmc/core/quirks.h they will be applied as soon as the de=
+vice is
+>> > > > > detected. Is it what we want?
+>> > > > >
+>> > > > > Note: we already have had a discussion about the strange VID/PID=
+ declared
+>> > > > > by this device:
+>> > > > >   https://www.spinics.net/lists/netdev/msg692577.html
+>> > > >
+>> > > > Yes, vendor id 0x0000 is invalid per SDIO spec. So based on this v=
+endor
+>> > > > id, it is not possible to write any quirk in mmc/sdio generic code.
+>> > > >
+>> > > > Ulf, but maybe it could be possible to write quirk based on OF
+>> > > > compatible string?
+>> > >
+>> > > Yes, that would be better in my opinion.
+>> > >
+>> > > We already have DT bindings to describe embedded SDIO cards (a subno=
+de
+>> > > to the mmc controller node), so we should be able to extend that I
+>> > > think.
+>> >
+>> > So, this feature does not yet exist? Do you consider it is a blocker f=
+or
+>> > the current patch?
+>>=20
+>> Yes, sorry. I think we should avoid unnecessary hacks in SDIO func
+>> drivers, especially those that deserve to be fixed in the mmc core.
+>>=20
+>> Moreover, we already support the similar thing for eMMC cards, plus
+>> that most parts are already done for SDIO too.
+>>=20
+>> >
+>> > To be honest, I don't really want to take over this change in mmc/core.
+>>=20
+>> I understand. Allow me a couple of days, then I can post a patch to
+>> help you out.
+>
+> Great! Thank you. I apologize for the extra work due to this invalid
+> vendor id.
 
-On 06/10/2021 20:08, Rob Herring wrote:
-> On Wed, 06 Oct 2021 12:39:41 +0100, Srinivas Kandagatla wrote:
->> On AudioReach audio Framework, Audio Streams (PCM/Compressed) are managed by
->> Q6APM(Audio Process Manager) service. This patch adds bindings for this DAIs
->> exposed by the DSP.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>   .../bindings/sound/qcom,q6apm-dai.yaml        | 53 +++++++++++++++++++
->>   1 file changed, 53 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/sound/qcom,q6apm-dai.example.dts:19:18: fatal error: dt-bindings/soc/qcom,gpr.h: No such file or directory
->     19 |         #include <dt-bindings/soc/qcom,gpr.h>
+BTW please escalate in your company how HORRIBLE it is that you
+manufacture SDIO devices without proper device ids, and make sure that
+all your future devices have officially assigned ids. I cannot stress
+enough how important that is for the Linux community!
 
-This is because QCOM SoC relevant non-audio patches in this series have 
-been merged into the Qualcomm drivers-for-5.16 tree, as this series 
-depends those patches an immutable tag is available at:
-https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git 
-tags/20210927135559.738-6-srinivas.kandagatla@linaro.org
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-which is mentioned in cover-letter.
-
---srni
-
->        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/sound/qcom,q6apm-dai.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1441: dt_binding_check] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/1537089
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
