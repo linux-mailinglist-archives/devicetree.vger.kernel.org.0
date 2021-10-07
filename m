@@ -2,142 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7970A42515F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 12:44:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D065B425179
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 12:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240977AbhJGKqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 06:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60036 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240941AbhJGKqN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 06:46:13 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 069D5C061760
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 03:44:20 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id r10so17670361wra.12
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 03:44:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=3r67xCci0neztBxAHtXQxOTNTLTcg0zp3S6KOv2sEww=;
-        b=A/ctinh/LmGU0bsbKYZ/RJWjDQXeWNF+a+WfQF6FgnT58X7zxbi3z3nz4vcyO3uLDv
-         n0/9UMH5E07gxO9pEmd5653LWBnY41nANxUa2jmlxRcrxlXz0nXC/Lm9+uE3xKeQQMCs
-         f4rzcWofocwJStwmjb5zt11rsKtGxIS0IltojgSk1OJnIwLOpUY+sBmvJ+74pyJKGSOe
-         o0fFNMe+Q8B9//7Xe1bL/0g3DJBnvxy5dxwu6SUs2m8Gjg7M2/Xq5/s+YCGFIDYxRLle
-         mwJB5nf5rUVBRMRGVxssb5UwrglBHl+0I/4D5CapnpiVuRqG0npW4ilP6RCeqM5g59DH
-         wWkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3r67xCci0neztBxAHtXQxOTNTLTcg0zp3S6KOv2sEww=;
-        b=LCJ4/8MOaRJPwiiTrNutPgxf+vVMpOiaLbgaR2tpt9A8dH+oLihoU9EAnV8J66mCxA
-         DqgJI9peM38b1LUW7drvZOZ9gCgkZlRziQBgrXAfFsLDcI/T9BwYMBIqBNi1FBWC2Dht
-         7uO+i6tTAqlQo/8iSjeOQOK6xwrIjFRzw4mYotXVpUxnwBUepNCm50ci8MQ7Y4PBaDw8
-         e84xQgSN6jGEVk5pRkQkfvOjeDbN/29CQ0oea7THZfvIn67OwZCDDipLSRkOcQhgVhL9
-         NdLqzzpuFfbbBb3VIFhpDxj+waQyRtCoRIFWR4XUrd+hR5WEWPJB0SU0zUyCTcq/fZbM
-         n7gA==
-X-Gm-Message-State: AOAM533UnQxv80scEYhFbPdHCyVgzbnl/J3p8LYujZc8wjzS9H06koVX
-        cal9VMFgBpefHbKYz1sM5sn3mA==
-X-Google-Smtp-Source: ABdhPJwQbGU7M7S6lJx3kwLHiGUmc8npWrgEkePais+zSlwLwkIT/lJ377n6zjb5ZkqiTUOpu3TsrQ==
-X-Received: by 2002:adf:a48c:: with SMTP id g12mr4379486wrb.341.1633603458528;
-        Thu, 07 Oct 2021 03:44:18 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id c25sm5173296wml.37.2021.10.07.03.44.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 03:44:17 -0700 (PDT)
-Subject: Re: [PATCH v2] ASoC: dt-bindings: lpass: add binding headers for
- digital codecs
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-References: <1631109831-1360-1-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <04210158-e999-a3a3-ee53-ac9024ab9120@linaro.org>
-Date:   Thu, 7 Oct 2021 11:44:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232776AbhJGKwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 06:52:09 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:46451 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240858AbhJGKwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 06:52:02 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633603809; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
+ To: From: Sender; bh=mRlN5Ip/ZB+VIMd86+Ux36qweq4CFDscRaEK9N9zKkQ=; b=vAUgGBNXr6vBkYL6EYLswOCInrjNdsRo9NMkmpgAi/r82Dweg86w7sUjyZUSzqsBwIYqwsEm
+ 2iqrbUanEUJeOunVWdzoNHLQdenFw2lrmCoMfwnHWv5CO8WAnVRnOOBeZBfE2Tgv//CFf5bM
+ lEa6SLDQqYsaQyZjo8guj1pOUsY=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 615ed0d3de4c4ed385977aac (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 10:49:55
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 1EDE3C43616; Thu,  7 Oct 2021 10:49:54 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from tykki (tynnyri.adurom.net [51.15.11.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 24F38C4338F;
+        Thu,  7 Oct 2021 10:49:49 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 24F38C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org,
+        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v7 05/24] wfx: add main.c/main.h
+References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
+        <3570035.Z1gqkuQO5x@pc-42> <875yu9cjvk.fsf@codeaurora.org>
+        <2672405.M38RcEoSet@pc-42> <87zgrl86cx.fsf@codeaurora.org>
+Date:   Thu, 07 Oct 2021 13:49:47 +0300
+In-Reply-To: <87zgrl86cx.fsf@codeaurora.org> (Kalle Valo's message of "Thu, 07
+        Oct 2021 13:41:18 +0300")
+Message-ID: <87v92985ys.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-In-Reply-To: <1631109831-1360-1-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivasa,
+Kalle Valo <kvalo@codeaurora.org> writes:
 
+> J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
+>
+>>> >> >> I'm not really fond of having this kind of ASCII based parser in =
+the
+>>> >> >> kernel. Do you have an example compressed file somewhere?
+>>> >> >
+>>> >> > An example of uncompressed configuration file can be found here[1]=
+. Once
+>>> >> > compressed with [2], you get:
+>>> >> >
+>>> >> >     {a:{a:4,b:1},b:{a:{a:4,b:0,c:0,d:0,e:A},b:{a:4,b:0,c:0,d:0,e:B=
+},c:{a:4,b:0,c:0,d:0,e:C},d:{a:4,b:0,c:0,d:0,e:D},e:{a:4,b:0,c:0,d:0,e:E},f=
+:{a:4,b:0,c:0,d:0,e:F},g:{a:4,b:0,c:0,d:0,e:G},h:{a:4,b:0,c:0,d:0,e:H},i:{a=
+:4,b:0,c:0,d:0,e:I},j:{a:4,b:0,c:0,d:0,e:J},k:{a:4,b:0,c:0,d:0,e:K},l:{a:4,=
+b:0,c:0,d:1,e:L},m:{a:4,b:0,c:0,d:1,e:M}},c:{a:{a:4},b:{a:6},c:{a:6,c:0},d:=
+{a:6},e:{a:6},f:{a:6}},e:{b:0,c:1},h:{e:0,a:50,b:0,d:0,c:[{a:1,b:[0,0,0,0,0=
+,0]},{a:2,b:[0,0,0,0,0,0]},{a:[3,9],b:[0,0,0,0,0,0]},{a:A,b:[0,0,0,0,0,0]},=
+{a:B,b:[0,0,0,0,0,0]},{a:[C,D],b:[0,0,0,0,0,0]},{a:E,b:[0,0,0,0,0,0]}]},j:{=
+a:0,b:0}}
+>>> >>
+>>> >> So what's the grand idea with this braces format? I'm not getting it.
+>>> >
+>>> >   - It allows to describe a tree structure
+>>> >   - It is ascii (easy to dump, easy to copy-paste)
+>>> >   - It is small (as I explain below, size matters)
+>>> >   - Since it is similar to JSON, the structure is obvious to many peo=
+ple
+>>> >
+>>> > Anyway, I am not the author of that and I have to deal with it.
+>>>=20
+>>> I'm a supported for JSON like formats, flexibility and all that. But
+>>> they belong to user space, not kernel.
+>>>=20
+>>> >> Usually the drivers just consider this kind of firmware configuration
+>>> >> data as a binary blob and dump it to the firmware, without knowing w=
+hat
+>>> >> the data contains. Can't you do the same?
+>>> >
+>>> > [I didn't had received this mail :( ]
+>>> >
+>>> > The idea was also to send it as a binary blob. However, the firmware =
+use
+>>> > a limited buffer (1500 bytes) to parse it. In most of case the PDS ex=
+ceeds
+>>> > this size. So, we have to split the PDS before to send it.
+>>> >
+>>> > Unfortunately, we can't split it anywhere. The PDS is a tree structur=
+e and
+>>> > the firmware expects to receive a well formatted tree.
+>>> >
+>>> > So, the easiest way to send it to the firmware is to split the tree
+>>> > between each root nodes and send each subtree separately (see also the
+>>> > comment above wfx_send_pds()).
+>>> >
+>>> > Anyway, someone has to cook this configuration before to send it to t=
+he
+>>> > firmware. This could be done by a script outside of the kernel. Then =
+we
+>>> > could change the input format to simplify a bit the processing in the
+>>> > kernel.
+>>>=20
+>>> I think a binary file with TLV format would be much better, but I'm sure
+>>> there also other good choises.
+>>>=20
+>>> > However, the driver has already some users and I worry that changing
+>>> > the input format would lead to a mess.
+>>>=20
+>>> You can implement a script which converts the old format to the new
+>>> format. And you can use different naming scheme in the new format so
+>>> that we don't accidentally load the old format. And even better if you
+>>> add a some kind of signature in the new format and give a proper error
+>>> from the driver if it doesn't match.
+>>
+>> Ok. I am going to change the input format. I think the new function is
+>> going to look like:
+>>
+>> int wfx_send_pds(struct wfx_dev *wdev, u8 *buf, size_t buf_len)
+>> {
+>> 	int ret;
+>> 	int start =3D 0;
+>>
+>> 	if (buf[start] !=3D '{') {
+>> 		dev_err(wdev->dev, "valid PDS start with '{'. Did you forget to compre=
+ss it?\n");
+>> 		return -EINVAL;
+>> 	}
+>> 	while (start < buf_len) {
+>> 		len =3D strnlen(buf + start, buf_len - start);
+>> 		if (len > WFX_PDS_MAX_SIZE) {
+>> 			dev_err(wdev->dev, "PDS chunk is too big (legacy format?)\n");
+>> 			return -EINVAL;
+>> 		}
+>> 		dev_dbg(wdev->dev, "send PDS '%s'\n", buf + start);
+>> 		ret =3D wfx_hif_configuration(wdev, buf + start, len);
+>> 		/* FIXME: Add error handling here */
+>> 		start +=3D len;
+>> 	}
+>> 	return 0;
+>
+> Did you read at all what I wrote above? Please ditch the ASCII format
+> completely.
 
-On 08/09/2021 15:03, Srinivasa Rao Mandadapu wrote:
-> Add header defining for lpass internal digital codecs rx,tx and va
-> dai node id's.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
-> Changes since v1:
->      -- Add missing dai node ID's
-> 
->   include/dt-bindings/sound/qcom,lpass.h | 31 +++++++++++++++++++++++++++++++
->   1 file changed, 31 insertions(+)
-> 
+Sorry, I read this too hastily. I just saw "buf[start] !=3D '{'" and
+assumed this is the same ASCII format, but not sure anymore. Can you
+explain what changes you made now?
 
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Mark has already applied v1, 
-https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/commit/include/dt-bindings/sound/qcom,lpass.h?id=bfad37c53ae6168d03ab06868ea44e77995c43d5
-
-Can you please rebase on top of sound-next so that we endup with correct 
-defines.
-
---srini
-
-> diff --git a/include/dt-bindings/sound/qcom,lpass.h b/include/dt-bindings/sound/qcom,lpass.h
-> index 7b0b80b..a9404c3 100644
-> --- a/include/dt-bindings/sound/qcom,lpass.h
-> +++ b/include/dt-bindings/sound/qcom,lpass.h
-> @@ -10,6 +10,37 @@
->   
->   #define LPASS_DP_RX	5
->   
-> +#define LPASS_CDC_DMA_RX0 6
-> +#define LPASS_CDC_DMA_RX1 7
-> +#define LPASS_CDC_DMA_RX2 8
-> +#define LPASS_CDC_DMA_RX3 9
-> +#define LPASS_CDC_DMA_RX4 10
-> +#define LPASS_CDC_DMA_RX5 11
-> +#define LPASS_CDC_DMA_RX6 12
-> +#define LPASS_CDC_DMA_RX7 13
-> +#define LPASS_CDC_DMA_RX8 14
-> +#define LPASS_CDC_DMA_RX9 15
-> +
-> +#define LPASS_CDC_DMA_TX0 16
-> +#define LPASS_CDC_DMA_TX1 17
-> +#define LPASS_CDC_DMA_TX2 18
-> +#define LPASS_CDC_DMA_TX3 19
-> +#define LPASS_CDC_DMA_TX4 20
-> +#define LPASS_CDC_DMA_TX5 21
-> +#define LPASS_CDC_DMA_TX6 22
-> +#define LPASS_CDC_DMA_TX7 23
-> +#define LPASS_CDC_DMA_TX8 24
-> +
-> +#define LPASS_CDC_DMA_VA_TX0 25
-> +#define LPASS_CDC_DMA_VA_TX1 26
-> +#define LPASS_CDC_DMA_VA_TX2 27
-> +#define LPASS_CDC_DMA_VA_TX3 28
-> +#define LPASS_CDC_DMA_VA_TX4 29
-> +#define LPASS_CDC_DMA_VA_TX5 30
-> +#define LPASS_CDC_DMA_VA_TX6 31
-> +#define LPASS_CDC_DMA_VA_TX7 32
-> +#define LPASS_CDC_DMA_VA_TX8 33
-> +
->   #define LPASS_MCLK0	0
->   
->   #endif /* __DT_QCOM_LPASS_H */
-> 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
