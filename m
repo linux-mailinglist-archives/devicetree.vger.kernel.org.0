@@ -2,87 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C651F424DB2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 09:07:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA1C2424E1B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 09:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240178AbhJGHJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 03:09:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38416 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233691AbhJGHJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 03:09:17 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B48F3C061746;
-        Thu,  7 Oct 2021 00:07:23 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id g10so18832750edj.1;
-        Thu, 07 Oct 2021 00:07:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lpotU76vDdSm2eyI0wHhAXO0FhpuVMiLp6edMsQuB/8=;
-        b=kkEwdCfbTMghfRCVfLPPLp6Ro4F1GGM3fceeohiUVlRN4EvoS4bUU9ZEXdgNEcYSPQ
-         GqAsnu/9pLxoqx9/4XrtPZGMjLaG1cTG8SI+wqFhLWPUg6ltkKAg9Egsk/1tu02ev+bT
-         vB6yL1wCtirUM6SrADyGQJjRQwGgvaD8saIxAOpJFTm4GwRmOnBdRjCgGkI0jbVT/LYA
-         DUEdSsEUFz7oc2mT9zolDrRgEKm6+j9Ja6Q+6sGMF9C2+4cAf7FTDWoPhM0nQGcFplDi
-         362TcgNl4Uqr7APsGnhAdmCoDYqiagqQkjVOg0ajKvBiitYSGIHuQi8kOx9/LsUGVRer
-         REdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lpotU76vDdSm2eyI0wHhAXO0FhpuVMiLp6edMsQuB/8=;
-        b=B3D/NmWgMJgtPyqFLgFNEmI6XMp6hYZsLUci46EMNYsTSfhMlLBj6M9BUPfXeyn8Dy
-         kQh1IF1SYFtTQ5uRCPlggmUTp1o9UUoXJ3tAvtvtMO0Dr21bTgxB5XEQ3T4tlPR+OTVh
-         nsCAiFictvIQDJMpino+WDncU6udHY7kJUPivgyqln7hjTGochRQvZGM4qfCrLYTmAMK
-         0tvlxI+1jGXAZRBIbZb8T+PW/9dvCQlEMFJhPO+fddRL2SFZVN+aFeUroSpKX59jArgR
-         wpQZ5fFhs/EFEb3C1g48pmqR57InS8Daj2/fem61WxBwKbhCwvJcjQLfkG+PL0QIpqWW
-         yDAQ==
-X-Gm-Message-State: AOAM533vuCbhagApG/0UKEWAEmlD7mTlIQwQp8XlciGFShW0pDYPzkmo
-        aSXGJHobcoJAWOE+lxRHwkguv9fFO/C+oQSWmGg=
-X-Google-Smtp-Source: ABdhPJzPiN2EYEiuKmeFZCvmZzjTLeaum6RWXkWNbQ1qvZhfFyAItuboJf5DUkY/AeLRN5wZXWuWQUVdU1fvcd/tiwk=
-X-Received: by 2002:a17:906:5a47:: with SMTP id my7mr3576173ejc.128.1633590442300;
- Thu, 07 Oct 2021 00:07:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1633572679.git.atafalla@dnyon.com> <5004d52da527bf1dd9e5b17e20b2ce50a0b57b5a.1633572679.git.atafalla@dnyon.com>
- <4682758.31r3eYUQgx@alexpc>
-In-Reply-To: <4682758.31r3eYUQgx@alexpc>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 7 Oct 2021 10:06:46 +0300
-Message-ID: <CAHp75VdbZmGeCq8A1E3AJU4T39xPUhomzrQqZNaDj8Zi0x9WrA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] dt-bindings: sound: max98927: Add reset-gpios
- optional property
-To:     Alejandro Tafalla <atafalla@dnyon.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@linux.intel.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        id S240372AbhJGHdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 03:33:53 -0400
+Received: from gecko.sbs.de ([194.138.37.40]:55269 "EHLO gecko.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232512AbhJGHdx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 03:33:53 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 1977VT5r023273
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 7 Oct 2021 09:31:29 +0200
+Received: from [167.87.4.198] ([167.87.4.198])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 1977VR5D005691;
+        Thu, 7 Oct 2021 09:31:27 +0200
+Subject: Re: [PATCH v4 2/6] arm64: dts: ti:
+ am654-base-board/am65-iot2050-common: Disable mcan nodes
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Marc Kleine-Budde <mkl@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Alexei Starovoitov <ast@kernel.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Martin KaFai Lau <kafai@fb.com>,
+        Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        bpf@vger.kernel.org
+References: <20211006055344.22662-1-a-govindraju@ti.com>
+ <20211006055344.22662-3-a-govindraju@ti.com>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <c9907374-623b-e3eb-1be1-3c09a9f93674@siemens.com>
+Date:   Thu, 7 Oct 2021 09:31:27 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20211006055344.22662-3-a-govindraju@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 7, 2021 at 5:45 AM Alejandro Tafalla <atafalla@dnyon.com> wrote:
-> On 7/10/21 4:38 Alejandro Tafalla wrote:
-> > Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
-> > ---
-> >  Documentation/devicetree/bindings/sound/max9892x.txt | 3 +++
-> >  1 file changed, 3 insertions(+)
->
-> Sorry, I forgot to add:  Acked-by: Rob Herring <robh@kernel.org>
+On 06.10.21 07:53, Aswath Govindraju wrote:
+> AM654 base board and iot platforms do not have mcan instances pinned out.
+> Therefore, disable all the mcan instances.
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 8 ++++++++
+>  arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 8 ++++++++
+>  2 files changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> index 65da226847f4..1e0112b90d9f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> @@ -646,6 +646,14 @@
+>  	reset-gpios = <&wkup_gpio0 27 GPIO_ACTIVE_HIGH>;
+>  };
+>  
+> +&m_can0 {
+> +	status = "disabled";
+> +};
+> +
+> +&m_can1 {
+> +	status = "disabled";
+> +};
+> +
+>  &pcie1_ep {
+>  	status = "disabled";
+>  };
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> index cfbcebfa37c1..9043f91c9bec 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> @@ -416,6 +416,14 @@
+>  	status = "disabled";
+>  };
+>  
+> +&m_can0 {
+> +	status = "disabled";
+> +};
+> +
+> +&m_can1 {
+> +	status = "disabled";
+> +};
+> +
+>  &mailbox0_cluster0 {
+>  	interrupts = <436>;
+>  
+> 
 
-And commit messages?
+For the IOT2050 part:
 
+Reviewed-by: Jan Kiszka <jan.kiszka@siemens.com>
+
+Jan
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
