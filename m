@@ -2,80 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB8A425D95
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 22:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32DE7425E47
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 22:57:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242625AbhJGUeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 16:34:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57680 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242592AbhJGUeC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 16:34:02 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ABE3C061760;
-        Thu,  7 Oct 2021 13:32:08 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id i20so11731847edj.10;
-        Thu, 07 Oct 2021 13:32:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=gNfNT4ZVYh2wlx8jH6qTQIgLI6I2KmqQwh/kapU5aQE=;
-        b=fmpK/Uk8y8/zFkvhdtk0qWTP8q5HtULB1goDYfvUd8Dt6XvN5FGtuBGgGOKAbdKCP6
-         P/qSiJZk7Pz+l78Ml9sj1WB5RwavFkWm6ZiCYEdsBgas0NTSriP8yi91z5d2X3O2f+50
-         Ue+Zk733/XE17KimDCnCB3VDcVvmHFR0UGI4f0tJCQ8CEOHDWTfZlaokxBYxCvH5xQrz
-         AdKovsBNQp5EtOyb7VFZGC4FVx9SmzPEqEoOeH0TyA7fZW4iBlPsVfU9/xtkTunW4S9e
-         N8bdM7z4wxt7ihpbPmyzL6lb9RKWkXwnApzJbZuAqsgfuwn7hFRK46O4MDqmtvvWqwDk
-         UIuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gNfNT4ZVYh2wlx8jH6qTQIgLI6I2KmqQwh/kapU5aQE=;
-        b=JwcmGu+b8w6it7kcnP/jy742rqg390hgWvX4a+4EuDynd9I9p4uPnu9I+s5qyOJPfL
-         LwftnIxUQPfpZ1DDkRghSJrF1duBikeYEqXiL8G+6O+a6Mz7dC7h3ucgOjIyWSsKpwfy
-         vR7cIYD5I1PMjPVzYuCwQhhOifaVqTUxVr4pSk5+CyMp9XLPJ7+vD9MH3TlnIDZIRFi1
-         +eRmEdoKItsl/82u4vlHe/rjtuJx8DgADgSSzI6ABz0bnGAoHXmGjX+RAkReEQVbtKxy
-         TzC30paI1FA9KiaSw4hCRHTiTzofePZIXek7LwxiblX1nhkIA5uKn8NN9D/mC0XxqzVM
-         zCoQ==
-X-Gm-Message-State: AOAM533tKUogZQx70M+S6uLfHtuGdCl8AxlcvhCMgO0H5vVnEZ40WW/V
-        64k/zWD3DZR63djfOB1+mrs=
-X-Google-Smtp-Source: ABdhPJzTE3psm33CAdujVJ6nu/517WvMuODmUoGKCj5nAZK1w41/hkQsTjClAwx4cZLaVk/lNwubug==
-X-Received: by 2002:a05:6402:3186:: with SMTP id di6mr9220894edb.225.1633638726885;
-        Thu, 07 Oct 2021 13:32:06 -0700 (PDT)
-Received: from skbuf ([188.26.53.217])
-        by smtp.gmail.com with ESMTPSA id nd36sm162139ejc.17.2021.10.07.13.32.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 13:32:06 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 23:32:05 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 net-next 08/10] net: dsa: microchip: add support for
- port mirror operations
-Message-ID: <20211007203205.wpmh4uhg7epvke5i@skbuf>
-References: <20211007151200.748944-1-prasanna.vengateshan@microchip.com>
- <20211007151200.748944-9-prasanna.vengateshan@microchip.com>
+        id S233869AbhJGU7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 16:59:16 -0400
+Received: from mout.perfora.net ([74.208.4.196]:43931 "EHLO mout.perfora.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231366AbhJGU7Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 16:59:16 -0400
+Received: from toolbox.toradex.int ([66.171.181.186]) by mrelay.perfora.net
+ (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MguSE-1mCVEJ1KOu-00M8Ep;
+ Thu, 07 Oct 2021 22:57:07 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Marcel Ziswiler <marcel@ziswiler.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        soc@kernel.org
+Subject: [PATCH v3 0/3] ARM: prepare and add netgear gs110emx support
+Date:   Thu,  7 Oct 2021 22:56:56 +0200
+Message-Id: <20211007205659.702842-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211007151200.748944-9-prasanna.vengateshan@microchip.com>
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:wC5wm0mPAeNe1wIF4WhaqPOVApseydOu9oOLt6jiKS+6mv8Xcjv
+ vmAkDwkW68k7Vbk3gZQgHRnbOeNQL/qjK1p3roYGv9AJr67tWtB+5iKDNxx/JNCdOFOJCNw
+ KNicIBXyjzbT2rIjS0rDjmOsozhKl/Gow7Bs4ZdbRUYZk6Cv7iMFYy8lh2eQMFmtDTPPY0j
+ 5mkqqW5MGLZsGPLliAaxw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Gf+53WuWJkU=:43aiSZeva3r6WLZ4yE/fIl
+ uQxl/QQrKnD2glPjnEfaZcUdoK+rAWbBjtry+tzoh2aTz4JjS22QXm/ep+Ax6Z/tFw8Crj4wE
+ QIPXo5rRfuJ3G4fTbzF3RBk1H1/murYFfQ0Qte3lEZAd4V2B/ihERA4lsTgzgc0Akya/AnOQc
+ k4XPUtSI3SFR1Ve6CGte/qz1m6h9JjeqDCOBn9TiQ7rwTMmE79MuoQA+7uUqVebM1DvypRo8V
+ GsmXe1TSb13W7feDTE3OPjI5rqMz65peGXSlQqFZFA5Ue53lUJjqhuPpKIxw6WFWwprCRVAg1
+ HQJuMfDWgPs2xsPetPXVucPSIFRdO6hTc8UuI9bcFg2t6L8T+hYPaA2O9zJ5DAbemQt7NrtyN
+ bErCKTgbwiOWlx2363OPXysK9yhNyVnbwy0XjgitLKcUbSKx0NMuMhCG0PURE1UqE6oPHNMia
+ uW9bDxdVHnPUYnKDiqTsUrrCBVUMBIFuQWVV95Z0B07hqc/X0FrRfyLPqnmpPIuo+SGoxlVp8
+ B1h51hx2qnV66GgkcDHHPoGNIfGpAoFvTE7cSXVC4zZouWsoPBgX5h303Pa8TN4snGu1se6j6
+ M5MMx5WyvxqlZHuNwKYF3ampb57RDFR9WdTQlXQ6hQumoOum4gowTqJ+gdl+tPQTKAibbAXs5
+ 6ZAa0WvyetXnjrvka8+P8UJtnFppm0uw8ea7awzDcDiTSZjum3KUi73yB9jskZrN1nhxqAvMf
+ T1zLUo/sT0+/bB0C8caBl+ZKoUrw9beotwrq3A==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 07, 2021 at 08:41:58PM +0530, Prasanna Vengateshan wrote:
-> Added support for port_mirror_add() and port_mirror_del operations
-> 
-> Sniffing is limited to one port & alert the user if any new
-> sniffing port is selected
-> 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> ---
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+Cleanup mvebu_v7_defconfig and then add support for the Netgear
+GS110EMX which is an 8 port Gigabit switch with two additional
+Multi-Gig ports. An 88E6390X switch sits at its core connecting to two
+88X3310P 10G PHYs while the control plane is handled by an 88F6811
+Armada 381 SoC.
+
+Changes in v3:
+- Got rid of unused 3.3 volt regulator as suggested by Andrew.
+- Got rid of partitioning comment.
+- Added switch interrupt GPIO configuration.
+
+Changes in v2:
+- Add Andrew's reviewed-by tag.
+- Add Andrew's reviewed-by tag.
+- Send previous first patch separately to netdev mailing list as
+  suggested by Andrew.
+- Fix numbering of the PHY labels as suggested by Andrew.
+
+Marcel Ziswiler (3):
+  ARM: mvebu_v7_defconfig: enable mtd physmap
+  ARM: mvebu_v7_defconfig: rebuild default configuration
+  ARM: dts: mvebu: add device tree for netgear gs110emx switch
+
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/armada-381-netgear-gs110emx.dts  | 295 ++++++++++++++++++
+ arch/arm/configs/mvebu_v7_defconfig           |  18 +-
+ 3 files changed, 304 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm/boot/dts/armada-381-netgear-gs110emx.dts
+
+-- 
+2.26.2
+
