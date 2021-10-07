@@ -2,165 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A66DA4250F6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 12:24:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 592C7425115
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 12:31:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240846AbhJGK0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 06:26:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44768 "EHLO mail.kernel.org"
+        id S240857AbhJGKdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 06:33:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48700 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231825AbhJGK0r (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 06:26:47 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1F60C60C4C;
-        Thu,  7 Oct 2021 10:24:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633602294;
-        bh=ovURSsNma7DN09CRPZqqCrVNUPMHPnGPJNUWoT0IKso=;
+        id S240726AbhJGKde (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 06:33:34 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BFC7D60FC3;
+        Thu,  7 Oct 2021 10:31:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1633602701;
+        bh=rjKhAROtKEemtbK1MVWHzDSSAHwzCKKa7aWIBII+u6M=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kEOtFaILmndWWmHB4pF4w+OtT4NgSPduEzpl5Uh76av0g2xdnWNhz2PXPo0Z/d1pB
-         Y+EwBnWdBi4QRZ53FPpIyLBr8+vBHAu656j1RP9b6itykzJsbZXS+FGh2FKUTBenlA
-         VAmKqYcJWM23OolwNasAs7V52STFtYtMmjIQEv1aDkDIU+iLxy0RcQSixLHY4BQoZw
-         dRtrr6ZV7cMZExuglqI+9CNQOQ9DvCzZ+kEbeiZbvnUilTR41xN+3n1EeF2jDJIkwG
-         gRYnnJHPyUE/GkXG9FHlqIo0A9J0AO/wEJBm2ocBP3hOJ0vLyx7TV2Y5XUSgo24asi
-         6ylGqg+mwdijw==
-Received: by pali.im (Postfix)
-        id 0193A81A; Thu,  7 Oct 2021 12:24:51 +0200 (CEST)
-Date:   Thu, 7 Oct 2021 12:24:51 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        DTML <devicetree@vger.kernel.org>,
+        b=TVp1j6rPJYoLyLt69ZNT1udPquyr/jFRQSTF7wMlB1LXK+gRz7W1gztYG8NuWXV5K
+         3k+GYtqr+AHd7kjE7khwdWutNiVXOERGnxcRBRzRylGTlRseYSSAz5Ah5koaYjtfiV
+         CaJq3tPOwQ2j6tYoxFbKJj/yQKXeJEukMZ4RPdYc=
+Date:   Thu, 7 Oct 2021 12:31:39 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Joel Stanley <joel@jms.id.au>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>
-Subject: Re: [PATCH v7 08/24] wfx: add bus_sdio.c
-Message-ID: <20211007102451.gfqw7ucvwqxcgw4m@pali>
-References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
- <149139701.nbvtKH4F0p@pc-42>
- <CAPDyKFr62Kykg3=9WiXAV8UToqjw8gj4t6bbM7pGQ+iGGQRLmg@mail.gmail.com>
- <4117481.h6P39bWmWk@pc-42>
- <87czohckal.fsf@codeaurora.org>
+        devicetree <devicetree@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Andy Shevchenko <andy@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Francis Laniel <laniel_francis@privacyrequired.com>,
+        Kees Cook <keescook@chromium.org>,
+        Andrey Konovalov <andreyknvl@gmail.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Daniel Axtens <dja@axtens.net>,
+        Alexey Dobriyan <adobriyan@gmail.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>
+Subject: Re: [PATCH 0/9] Dynamic DT device nodes
+Message-ID: <YV7Miz9RMMx/17A0@kroah.com>
+References: <20211007000954.30621-1-zev@bewilderbeest.net>
+ <CAHp75VdYBB_FaMr-uKswdvDBdobTYZkiE6ncoALuG+YYVoMwyw@mail.gmail.com>
+ <YV64ZbcsHvBObH2j@hatter.bewilderbeest.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87czohckal.fsf@codeaurora.org>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <YV64ZbcsHvBObH2j@hatter.bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 07 October 2021 11:26:42 Kalle Valo wrote:
-> Jérôme Pouiller <jerome.pouiller@silabs.com> writes:
-> > On Wednesday 6 October 2021 17:02:07 CEST Ulf Hansson wrote:
-> >> On Tue, 5 Oct 2021 at 10:14, Jérôme Pouiller <jerome.pouiller@silabs.com> wrote:
-> >> > On Friday 1 October 2021 17:23:16 CEST Ulf Hansson wrote:
-> >> > > On Thu, 30 Sept 2021 at 19:06, Pali Rohár <pali@kernel.org> wrote:
-> >> > > > On Thursday 30 September 2021 18:51:09 Jérôme Pouiller wrote:
-> >> > > > > On Thursday 30 September 2021 12:07:55 CEST Ulf Hansson wrote:
-> >> > > > > > On Mon, 20 Sept 2021 at 18:12, Jerome Pouiller
-> >> > > > > > <Jerome.Pouiller@silabs.com> wrote:
-> >> > > > > > >
-> >> > > > > > > From: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> >> > > > > > >
-> >> > > > > > > Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> >> > > > > > > ---
-> >> > > > > > >  drivers/net/wireless/silabs/wfx/bus_sdio.c | 261 +++++++++++++++++++++
-> >> > > > > > >  1 file changed, 261 insertions(+)
-> >> > > > > > >  create mode 100644 drivers/net/wireless/silabs/wfx/bus_sdio.c
-> >> > > > > > >
-> >> > > > > > > diff --git a/drivers/net/wireless/silabs/wfx/bus_sdio.c
-> >> > > > > > > b/drivers/net/wireless/silabs/wfx/bus_sdio.c
-> >> > > > > >
-> >> > > > > > [...]
-> >> > > > > >
-> >> > > > > > > +
-> >> > > > > > > +static int wfx_sdio_probe(struct sdio_func *func,
-> >> > > > > > > +                         const struct sdio_device_id *id)
-> >> > > > > > > +{
-> >> > > > > > > +       struct device_node *np = func->dev.of_node;
-> >> > > > > > > +       struct wfx_sdio_priv *bus;
-> >> > > > > > > +       int ret;
-> >> > > > > > > +
-> >> > > > > > > +       if (func->num != 1) {
-> >> > > > > > > + dev_err(&func->dev, "SDIO function number is %d while
-> >> > > > > > > it should always be 1 (unsupported chip?)\n",
-> >> > > > > > > +                       func->num);
-> >> > > > > > > +               return -ENODEV;
-> >> > > > > > > +       }
-> >> > > > > > > +
-> >> > > > > > > +       bus = devm_kzalloc(&func->dev, sizeof(*bus), GFP_KERNEL);
-> >> > > > > > > +       if (!bus)
-> >> > > > > > > +               return -ENOMEM;
-> >> > > > > > > +
-> >> > > > > > > +       if (!np || !of_match_node(wfx_sdio_of_match, np)) {
-> >> > > > > > > + dev_warn(&func->dev, "no compatible device found in
-> >> > > > > > > DT\n");
-> >> > > > > > > +               return -ENODEV;
-> >> > > > > > > +       }
-> >> > > > > > > +
-> >> > > > > > > +       bus->func = func;
-> >> > > > > > > +       bus->of_irq = irq_of_parse_and_map(np, 0);
-> >> > > > > > > +       sdio_set_drvdata(func, bus);
-> >> > > > > > > +       func->card->quirks |= MMC_QUIRK_LENIENT_FN0 |
-> >> > > > > > > +                             MMC_QUIRK_BLKSZ_FOR_BYTE_MODE |
-> >> > > > > > > +                             MMC_QUIRK_BROKEN_BYTE_MODE_512;
-> >> > > > > >
-> >> > > > > > I would rather see that you add an SDIO_FIXUP for the SDIO card, to
-> >> > > > > > the sdio_fixup_methods[], in drivers/mmc/core/quirks.h, instead of
-> >> > > > > > this.
-> >> > > > >
-> >> > > > > In the current patch, these quirks are applied only if the device appears
-> >> > > > > in the device tree (see the condition above). If I implement them in
-> >> > > > > drivers/mmc/core/quirks.h they will be applied as soon as the device is
-> >> > > > > detected. Is it what we want?
-> >> > > > >
-> >> > > > > Note: we already have had a discussion about the strange VID/PID declared
-> >> > > > > by this device:
-> >> > > > >   https://www.spinics.net/lists/netdev/msg692577.html
-> >> > > >
-> >> > > > Yes, vendor id 0x0000 is invalid per SDIO spec. So based on this vendor
-> >> > > > id, it is not possible to write any quirk in mmc/sdio generic code.
-> >> > > >
-> >> > > > Ulf, but maybe it could be possible to write quirk based on OF
-> >> > > > compatible string?
-> >> > >
-> >> > > Yes, that would be better in my opinion.
-> >> > >
-> >> > > We already have DT bindings to describe embedded SDIO cards (a subnode
-> >> > > to the mmc controller node), so we should be able to extend that I
-> >> > > think.
-> >> >
-> >> > So, this feature does not yet exist? Do you consider it is a blocker for
-> >> > the current patch?
-> >> 
-> >> Yes, sorry. I think we should avoid unnecessary hacks in SDIO func
-> >> drivers, especially those that deserve to be fixed in the mmc core.
-> >> 
-> >> Moreover, we already support the similar thing for eMMC cards, plus
-> >> that most parts are already done for SDIO too.
-> >> 
-> >> >
-> >> > To be honest, I don't really want to take over this change in mmc/core.
-> >> 
-> >> I understand. Allow me a couple of days, then I can post a patch to
-> >> help you out.
-> >
-> > Great! Thank you. I apologize for the extra work due to this invalid
-> > vendor id.
+On Thu, Oct 07, 2021 at 02:05:41AM -0700, Zev Weiss wrote:
+> On Thu, Oct 07, 2021 at 12:04:41AM PDT, Andy Shevchenko wrote:
+> > On Thu, Oct 7, 2021 at 3:10 AM Zev Weiss <zev@bewilderbeest.net> wrote:
+> > > This patch series is in some ways kind of a v2 for the "Dynamic
+> > > aspeed-smc flash chips via 'reserved' DT status" series I posted
+> > > previously [0], but takes a fairly different approach suggested by Rob
+> > > Herring [1] and doesn't actually touch the aspeed-smc driver or
+> > > anything in the MTD subsystem, so I haven't marked it as such.
+> > > 
+> > > To recap a bit of the context from that series, in OpenBMC there's a
+> > > need for certain devices (described by device-tree nodes) to be able
+> > > to be attached and detached at runtime (for example the SPI flash for
+> > > the host's firmware, which is shared between the BMC and the host but
+> > > can only be accessed by one or the other at a time).
+> > 
+> > This seems quite dangerous. Why do you need that?
 > 
-> BTW please escalate in your company how HORRIBLE it is that you
-> manufacture SDIO devices without proper device ids, and make sure that
-> all your future devices have officially assigned ids. I cannot stress
-> enough how important that is for the Linux community!
+> Sometimes the host needs access to the flash (it's the host's firmware,
+> after all), sometimes the BMC needs access to it (e.g. to perform an
+> out-of-band update to the host's firmware).  To achieve the latter, the
+> flash needs to be attached to the BMC, but that requires some careful
+> coordination with the host to arbitrate which one actually has access to it
+> (that coordination is handled by userspace, which then tells the kernel
+> explicitly when the flash should be attached and detached).
+> 
+> What seems dangerous?
+> 
+> > Why can't device tree overlays be used?
+> 
+> I'm hoping to stay closer to mainline.  The OpenBMC kernel has a documented
+> policy strongly encouraging upstream-first development:
+> https://github.com/openbmc/docs/blob/master/kernel-development.md
+> 
+> I doubt Joel (the OpenBMC kernel maintainer) would be eager to start
+> carrying the DT overlay patches; I'd likewise strongly prefer to avoid
+> carrying them myself as additional downstream patches.  Hence the attempt at
+> getting a solution to the problem upstream.
 
-Absolutely! Please really escalate this problem in your company and
-properly ask USB-IF for assigning PCMCIA vendor ID as USB-IF maintains
-PCMCIA vendor database and PCMCIA ids are used in SDIO devices:
-https://lore.kernel.org/linux-mmc/20210607140216.64iuprp3siggslrk@pali/
+Then why not work to get device tree overlays to be merged properly?
+Don't work on a half-of-a-solution when the real solution is already
+here.
+
+thanks,
+
+greg k-h
