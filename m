@@ -2,145 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D526F425C9A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 21:51:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70DB5425CC3
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 22:00:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229490AbhJGTwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 15:52:53 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:33239 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230009AbhJGTwx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 15:52:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1633636242;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Y8dbSP1krNuwSnUXT8U1+QNeeNt6XCGicB1yuv4x2Jw=;
-    b=VK8M9zyyOsOxLdemR0iMEYn+1adCCXxs8pmQu9ome4ZcFZJrN2NNcp6HZkRKvvLh9l
-    BLRWp8nGbCkipjRzEh/pxqiQgc2ILY192k0vaLBjbFkKyTvSgjIC8CKfxDjIRuMG+2/6
-    rp8/gnTu0Q7pAY1o5P7V3cj7c/Fb4lYApaqZ2+NbBaYGJcZtOfaPHvPGa7pQ5OswQN6w
-    lFmR7C6I74FDogqEdktf/8m8jsuyVis8oY75Hs/yRTBz5w+jWIDXWMgX1AWFMOl6aCbd
-    Pd1ZgZ9PBpEu31oOU+RE5Rsyob/Mk+rnM/dePB+59LyZM/+FxLK3ynGeHq10YCxzzeUX
-    9tYw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4pSA8pmE1A=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
-    with ESMTPSA id 301038x97JogfYW
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 7 Oct 2021 21:50:42 +0200 (CEST)
-Date:   Thu, 7 Oct 2021 21:50:40 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Maulik Shah <mkshah@codeaurora.org>
-Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, agross@kernel.org,
-        dianders@chromium.org, linux@roeck-us.net, rnayak@codeaurora.org,
-        lsrao@codeaurora.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 1/5] dt-bindings: Introduce QCOM Sleep stats bindings
-Message-ID: <YV9PN1JNPhVQb8jN@gerhold.net>
-References: <1633600649-7164-1-git-send-email-mkshah@codeaurora.org>
- <1633600649-7164-2-git-send-email-mkshah@codeaurora.org>
+        id S241711AbhJGUCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 16:02:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50328 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241572AbhJGUCE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 16:02:04 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26CD6C061570;
+        Thu,  7 Oct 2021 13:00:09 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id b8so27426184edk.2;
+        Thu, 07 Oct 2021 13:00:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=hh+lZNjSIkT05bnwk/EJFj/zP4KhI9GsRMQVL0dXo6k=;
+        b=iyvuKGxfEww0uhMQNVAcTNSgTmYdaQwJDgCed3BdmB7PSVqALnfBFPflob7YCcnGr1
+         fOvSupGUbJu1vCYe6YUUOXhXwNyjfu89/IcJEE1RqNFK++4z473HeYammp/AsZ4SGEaf
+         MF9+EPy8OJsmMj0M0ajckVQb6+xjFi27gI9g7NZEpF13dMLTWXPFWtFpDEg33s2HBVZP
+         PdplrLh6tnupDYKxzA6thl8c00bQxCCMzq290YtJ5LmoLO6Yh5n3aoafw6qwahRFGRz2
+         kdGRPM9V3cO77zXrqErApVEnB1LOUiLTCbIdff6KiuUdua/nA3r2TWz/tgFLDRZk6g7z
+         YniQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hh+lZNjSIkT05bnwk/EJFj/zP4KhI9GsRMQVL0dXo6k=;
+        b=qpoUg5I8UibTSLKuWQxrniFvMhJQ+MVM3tLjsXXubTyT1prXwG4ZvfD9oK4o0ls3Tp
+         FmHxq0FA1MrknetzpwI4FXKA7tzmscRtJRAnJ7hgXNxDPRmnh6H+cxdJfPp2u3vJfmm5
+         ITA1/4H8q5nT/2rLo7ivpODQ/krxawaGXzjUard6vGyUhp3dbMZitXYYAbQP9TXd6ujP
+         iSItfU8+zvYn/vwVXh9+kkP5YLIBxq0qEiY2Iw74vj/ZP+5BNFEBW/v0UcaJXKNG/eth
+         6PjA/5PThuHfP8XXVPIAtgv8ol97MxgI92Oj2/GvBuevH5Eav90eFnII9yhq7Jdmarxt
+         e26w==
+X-Gm-Message-State: AOAM530fU6Q7trawBclEFPibLb4dNC39LzYfm62NYolQgyDi/BtSOSfo
+        EnUsk725A/zoJqHpqrLbgA0=
+X-Google-Smtp-Source: ABdhPJxN4R7Sew9KLEp88Dbje2xzHjLns7IakfFkt0VGPlTOw/oukFsco3kGoKMIN27lYeDLFLkYrA==
+X-Received: by 2002:a17:906:1bb1:: with SMTP id r17mr8108666ejg.533.1633636807563;
+        Thu, 07 Oct 2021 13:00:07 -0700 (PDT)
+Received: from skbuf ([188.26.53.217])
+        by smtp.gmail.com with ESMTPSA id e22sm173182edu.35.2021.10.07.13.00.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Oct 2021 13:00:07 -0700 (PDT)
+Date:   Thu, 7 Oct 2021 23:00:05 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <20211007200005.3ze43py7ma4omn7r@skbuf>
+References: <20211007151200.748944-1-prasanna.vengateshan@microchip.com>
+ <20211007151200.748944-6-prasanna.vengateshan@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1633600649-7164-2-git-send-email-mkshah@codeaurora.org>
+In-Reply-To: <20211007151200.748944-6-prasanna.vengateshan@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 07, 2021 at 03:27:25PM +0530, Maulik Shah wrote:
-> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
-> 
-> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
-> Sleep stats driver. The driver is used for displaying Sleep statistic maintained
-> by Always On Processor or Resource Power Manager.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
-> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
-> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  .../bindings/soc/qcom/qcom-sleep-stats.yaml        | 47 ++++++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
-> new file mode 100644
-> index 0000000..5213daf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/qcom/qcom-sleep-stats.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Thu, Oct 07, 2021 at 08:41:55PM +0530, Prasanna Vengateshan wrote:
+> +static int lan937x_mdio_register(struct dsa_switch *ds)
+> +{
+> +	struct device_node *mdio_np;
+> +	int ret;
 > +
-> +title: Qualcomm Technologies, Inc. (QTI) Sleep stats bindings
+> +	mdio_np = of_get_child_by_name(ds->dev->of_node, "mdio");
+> +	if (!mdio_np) {
+> +		dev_err(ds->dev, "no MDIO bus node\n");
+> +		return -ENODEV;
+> +	}
 > +
-> +maintainers:
-> +  - Maulik Shah <mkshah@codeaurora.org>
+> +	ds->slave_mii_bus = devm_mdiobus_alloc(ds->dev);
+> +	if (!ds->slave_mii_bus)
+> +		return -ENOMEM;
 > +
-> +description:
-> +  Always On Processor/Resource Power Manager maintains statistics of the SoC
-> +  sleep modes involving powering down of the rails and oscillator clock.
+> +	ds->slave_mii_bus->priv = ds->priv;
+> +	ds->slave_mii_bus->read = lan937x_sw_mdio_read;
+> +	ds->slave_mii_bus->write = lan937x_sw_mdio_write;
+> +	ds->slave_mii_bus->name = "lan937x slave smi";
+> +	snprintf(ds->slave_mii_bus->id, MII_BUS_ID_SIZE, "SMI-%d", ds->index);
+> +	ds->slave_mii_bus->parent = ds->dev;
+> +	ds->slave_mii_bus->phy_mask = ~ds->phys_mii_mask;
 > +
-> +  Statistics includes SoC sleep mode type, number of times low power mode were
-> +  entered, time of last entry, time of last exit and accumulated sleep duration.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,rpmh-sleep-stats
-> +      - qcom,rpm-sleep-stats
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Example of rpmh sleep stats
-> +  - |
-> +    sram@c3f0000 {
-> +      compatible = "qcom,rpmh-sleep-stats";
-> +      reg = <0x0c3f0000 0x400>;
-> +    };
-> +  # Example of rpm sleep stats
-> +  - |
-> +    sram@4690000 {
-> +      compatible = "qcom,rpm-sleep-stats";
-> +      reg = <0x04690000 0x400>;
-> +    };
+> +	ret = of_mdiobus_register(ds->slave_mii_bus, mdio_np);
 
-Does this region really only contain "rpm-*sleep*-stats"? AFAICT this is
-really a more generic memory region where various offsets are read from.
+Please use devm_of_mdiobus_register if you're going to use
+devm_mdiobus_alloc, or no devres at all.
+https://patchwork.kernel.org/project/netdevbpf/patch/20210920214209.1733768-3-vladimir.oltean@nxp.com/
 
-These are all the offsets in msm8998-pm.dtsi downstream [1]:
-  ...9000c: rpm-rail-stats offset
-  ...90014: rpm-sleep-stats offset (RPM_DYNAMIC_ADDR in your driver)
-  ...90018: rpm-log offset
-  ...9001c: "RPM FREE HEAP SPACE"
+> +	if (ret) {
+> +		dev_err(ds->dev, "unable to register MDIO bus %s\n",
+> +			ds->slave_mii_bus->id);
+> +	}
+> +
+> +	of_node_put(mdio_np);
+> +
+> +	return ret;
+> +}
+> +
+> +static phy_interface_t lan937x_get_interface(struct ksz_device *dev, int port)
+> +{
+> +	phy_interface_t interface;
+> +	u8 data8;
+> +	int ret;
+> +
+> +	if (lan937x_is_internal_phy_port(dev, port))
+> +		return PHY_INTERFACE_MODE_NA;
 
-How would you set up any of the other drivers if the entire region
-is declared as "rpm-sleep-stats"?
+Typically we use PHY_INTERFACE_MODE_INTERNAL.
 
-Perhaps this region should have a more generic name that represents what
-it actually is and not only one of the information it contains, similar
-to "qcom,rpm-msg-ram"?
+> +
+> +	/* read interface from REG_PORT_XMII_CTRL_1 register */
+> +	ret = lan937x_pread8(dev, port, REG_PORT_XMII_CTRL_1, &data8);
+> +	if (ret < 0)
+> +		return PHY_INTERFACE_MODE_NA;
+> +
+> +	switch (data8 & PORT_MII_SEL_M) {
+> +	case PORT_RMII_SEL:
+> +		interface = PHY_INTERFACE_MODE_RMII;
+> +		break;
+> +	case PORT_RGMII_SEL:
+> +		interface = PHY_INTERFACE_MODE_RGMII;
+> +		if (data8 & PORT_RGMII_ID_EG_ENABLE)
+> +			interface = PHY_INTERFACE_MODE_RGMII_TXID;
+> +		if (data8 & PORT_RGMII_ID_IG_ENABLE) {
+> +			interface = PHY_INTERFACE_MODE_RGMII_RXID;
+> +			if (data8 & PORT_RGMII_ID_EG_ENABLE)
+> +				interface = PHY_INTERFACE_MODE_RGMII_ID;
+> +		}
+> +		break;
+> +	case PORT_MII_SEL:
+> +	default:
+> +		/* Interface is MII */
+> +		interface = PHY_INTERFACE_MODE_MII;
+> +		break;
+> +	}
+> +
+> +	return interface;
+> +}
+> +
+> +static void lan937x_config_cpu_port(struct dsa_switch *ds)
+> +{
+> +	struct ksz_device *dev = ds->priv;
+> +	struct ksz_port *p;
+> +	int i;
+> +
+> +	ds->num_ports = dev->port_cnt;
+> +
+> +	for (i = 0; i < dev->port_cnt; i++) {
+> +		if (dsa_is_cpu_port(ds, i) && (dev->cpu_ports & (1 << i))) {
+> +			phy_interface_t interface;
+> +
+> +			dev->cpu_port = i;
+> +			dev->host_mask = (1 << dev->cpu_port);
+> +			dev->port_mask |= dev->host_mask;
+> +			p = &dev->ports[i];
+> +
+> +			/* Check if the device tree have specific interface
+> +			 * setting otherwise read & assign from XMII register
+> +			 * for host port interface
+> +			 */
+> +			interface = lan937x_get_interface(dev, i);
 
-Thanks,
-Stephan
+What does the CPU port have so special that you override it here?
+Again some compatibility with out-of-tree DT bindings?
 
-[1]: https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/msm8998-pm.dtsi?h=LA.UM.8.4.1.c25#n271
+> +			if (!p->interface)
+> +				p->interface = interface;
+> +
+> +			dev_info(dev->dev,
+> +				 "Port%d: using phy mode %s\n",
+> +				 i,
+> +				 phy_modes(p->interface));
+> +
+> +			/* enable cpu port */
+> +			lan937x_port_setup(dev, i, true);
+> +			p->vid_member = dev->port_mask;
+> +		}
+> +	}
+> +
+> +static u8 lan937x_rgmii_dly_reg_val(int port, u32 val)
+> +{
+> +	u8 reg_val;
+> +
+> +	/* force minimum delay if delay is less than min delay */
+> +	if (val && val < 2170)
+> +		val = 2170;
+> +
+> +	/* maximum delay is 4ns */
+> +	if (val > 4000)
+> +		val = 4000;
+
+These bindings are new. Given that you also document their min and max
+values, why don't you just error out on out-of-range values instead of
+silently doing what you think is going to be fine?
