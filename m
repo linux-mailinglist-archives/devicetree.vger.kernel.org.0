@@ -2,79 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 521D5425C8C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 21:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D526F425C9A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 21:51:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233734AbhJGTr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 15:47:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47064 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233709AbhJGTr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 15:47:59 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C302C061570;
-        Thu,  7 Oct 2021 12:46:05 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id x7so26504695edd.6;
-        Thu, 07 Oct 2021 12:46:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=NrCVdsgDNocRT0wIqN/j5SheKK9MCd2SRyvKMi/lfKU=;
-        b=nbm5jqik/K+hu0Zb7UU3fSb2rGsKEH9bDKC5MazZB0Nx+fcXWUAygPwUOi7gIS0mYC
-         IKOmIaG0Pg3Vh5cY4MKWTYLzN7kHK3wuXXl6TKfVsYJEEGdDcHGTIKeICvsseA0jVZ8I
-         1wTmus+hY2HD4XzSqpgMFZ/mh1zYvawZF/ImyZ+IV0EQtUW1lmgXRVmRAN6qury1ZUD2
-         zPRhQeiGQLIeiiwfwXFWpaCZ5M3nJ/6MMgucevOIOBS3uZySkfFqyYc4xN2SWYygJeXR
-         uWLHd7ABuUVWUtJGLeq6s9/zXfAvHD6nynRxHy5RxJ5NJkqvtRss1afE2t+HxAo30Sa3
-         LR3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NrCVdsgDNocRT0wIqN/j5SheKK9MCd2SRyvKMi/lfKU=;
-        b=3wsO4gqBsps6RbWGXZs96tpSR6Z/F7nunVv7jy59ZkQ8ydzRRw87Yx6d4kLUEZCW52
-         ldLD360KE8yM/jpqGrBWCM3srFuuu/Xo66KHvJbZlUUg8e5zY7cHmroJ/fZSTulznrcm
-         tCe6hUP7GMIHoeq3s9V5whLj1GW48vEp7xm+zpRAOMgEUA6Vn2wDpD1dbGUvlC/IDC+2
-         7DtsPIkD8jT2wdE6ywbCpaLKnFC4DvknholNIim0tRvFCRdocvnfYttxC2G3Mupbl8om
-         2MlTlYEffNnnHF9EjmNrCghygXrM53tOZNOErhO/48D3mB2Zcn5djN731h6u3vNJyBrS
-         Ww8Q==
-X-Gm-Message-State: AOAM531gIc7CT3VBDdmhEkQFThvHtsZtG0lsWRPq2PBdkiePUJZKQd8c
-        myGL5zDOJLL0meAK4McFaUWctEWtnU4=
-X-Google-Smtp-Source: ABdhPJyju9Lw9bM4dIj+1moPwPuxx3VJR/KMBZO0jM/VbM9M1Me4VvyBTWp6maCAf2bzC4xHZ0x2Cg==
-X-Received: by 2002:aa7:db17:: with SMTP id t23mr8535799eds.75.1633635963816;
-        Thu, 07 Oct 2021 12:46:03 -0700 (PDT)
-Received: from skbuf ([188.26.53.217])
-        by smtp.gmail.com with ESMTPSA id t4sm159075edc.2.2021.10.07.12.46.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 12:46:03 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 22:46:01 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 net-next 04/10] net: dsa: tag_ksz: add tag handling
- for Microchip LAN937x
-Message-ID: <20211007194601.mkwbc3tcjtgkduut@skbuf>
-References: <20211007151200.748944-1-prasanna.vengateshan@microchip.com>
- <20211007151200.748944-5-prasanna.vengateshan@microchip.com>
+        id S229490AbhJGTwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 15:52:53 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:33239 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230009AbhJGTwx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 15:52:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1633636242;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Y8dbSP1krNuwSnUXT8U1+QNeeNt6XCGicB1yuv4x2Jw=;
+    b=VK8M9zyyOsOxLdemR0iMEYn+1adCCXxs8pmQu9ome4ZcFZJrN2NNcp6HZkRKvvLh9l
+    BLRWp8nGbCkipjRzEh/pxqiQgc2ILY192k0vaLBjbFkKyTvSgjIC8CKfxDjIRuMG+2/6
+    rp8/gnTu0Q7pAY1o5P7V3cj7c/Fb4lYApaqZ2+NbBaYGJcZtOfaPHvPGa7pQ5OswQN6w
+    lFmR7C6I74FDogqEdktf/8m8jsuyVis8oY75Hs/yRTBz5w+jWIDXWMgX1AWFMOl6aCbd
+    Pd1ZgZ9PBpEu31oOU+RE5Rsyob/Mk+rnM/dePB+59LyZM/+FxLK3ynGeHq10YCxzzeUX
+    9tYw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4pSA8pmE1A=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.33.8 DYNA|AUTH)
+    with ESMTPSA id 301038x97JogfYW
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 7 Oct 2021 21:50:42 +0200 (CEST)
+Date:   Thu, 7 Oct 2021 21:50:40 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Maulik Shah <mkshah@codeaurora.org>
+Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, agross@kernel.org,
+        dianders@chromium.org, linux@roeck-us.net, rnayak@codeaurora.org,
+        lsrao@codeaurora.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v11 1/5] dt-bindings: Introduce QCOM Sleep stats bindings
+Message-ID: <YV9PN1JNPhVQb8jN@gerhold.net>
+References: <1633600649-7164-1-git-send-email-mkshah@codeaurora.org>
+ <1633600649-7164-2-git-send-email-mkshah@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211007151200.748944-5-prasanna.vengateshan@microchip.com>
+In-Reply-To: <1633600649-7164-2-git-send-email-mkshah@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 07, 2021 at 08:41:54PM +0530, Prasanna Vengateshan wrote:
-> The Microchip LAN937X switches have a tagging protocol which is
-> very similar to KSZ tagging. So that the implementation is added to
-> tag_ksz.c and reused common APIs
+On Thu, Oct 07, 2021 at 03:27:25PM +0530, Maulik Shah wrote:
+> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
 > 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+> Sleep stats driver. The driver is used for displaying Sleep statistic maintained
+> by Always On Processor or Resource Power Manager.
+> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 > ---
+>  .../bindings/soc/qcom/qcom-sleep-stats.yaml        | 47 ++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
+> new file mode 100644
+> index 0000000..5213daf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/qcom/qcom-sleep-stats.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. (QTI) Sleep stats bindings
+> +
+> +maintainers:
+> +  - Maulik Shah <mkshah@codeaurora.org>
+> +
+> +description:
+> +  Always On Processor/Resource Power Manager maintains statistics of the SoC
+> +  sleep modes involving powering down of the rails and oscillator clock.
+> +
+> +  Statistics includes SoC sleep mode type, number of times low power mode were
+> +  entered, time of last entry, time of last exit and accumulated sleep duration.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,rpmh-sleep-stats
+> +      - qcom,rpm-sleep-stats
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Example of rpmh sleep stats
+> +  - |
+> +    sram@c3f0000 {
+> +      compatible = "qcom,rpmh-sleep-stats";
+> +      reg = <0x0c3f0000 0x400>;
+> +    };
+> +  # Example of rpm sleep stats
+> +  - |
+> +    sram@4690000 {
+> +      compatible = "qcom,rpm-sleep-stats";
+> +      reg = <0x04690000 0x400>;
+> +    };
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+Does this region really only contain "rpm-*sleep*-stats"? AFAICT this is
+really a more generic memory region where various offsets are read from.
+
+These are all the offsets in msm8998-pm.dtsi downstream [1]:
+  ...9000c: rpm-rail-stats offset
+  ...90014: rpm-sleep-stats offset (RPM_DYNAMIC_ADDR in your driver)
+  ...90018: rpm-log offset
+  ...9001c: "RPM FREE HEAP SPACE"
+
+How would you set up any of the other drivers if the entire region
+is declared as "rpm-sleep-stats"?
+
+Perhaps this region should have a more generic name that represents what
+it actually is and not only one of the information it contains, similar
+to "qcom,rpm-msg-ram"?
+
+Thanks,
+Stephan
+
+[1]: https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/msm8998-pm.dtsi?h=LA.UM.8.4.1.c25#n271
