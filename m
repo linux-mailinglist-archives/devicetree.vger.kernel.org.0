@@ -2,113 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52D00425AD4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:32:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 498A7425AD8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:34:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243680AbhJGSeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 14:34:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58208 "EHLO
+        id S243678AbhJGSgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 14:36:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233598AbhJGSet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:34:49 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7616C061570;
-        Thu,  7 Oct 2021 11:32:55 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id r7so21864821wrc.10;
-        Thu, 07 Oct 2021 11:32:55 -0700 (PDT)
+        with ESMTP id S234200AbhJGSgi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:36:38 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAFD4C061755
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 11:34:44 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id c26-20020a056830349a00b0054d96d25c1eso8581391otu.9
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 11:34:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=BrYFk3n3wKlXA8WLTss5loXYswBXAXQcm0uu3iwx1oI=;
-        b=MsmiKmM5Xym6tqTIRo1kiphYf5bA1ylKLWS+V/xinVqK4hzPC6mYF8MnSUtIlH6DNV
-         RIt82LI/xZTYqZXJO01GpviNeRI6Yw3JUYGSFseeu4zog29LlNXUMl/MLCG2idIB5L8D
-         CjOaOzo5oK1/HTA3mta6bMF3wMn6I2nCtBEzeqPPyLan6c0TGMJ891xn0ivvqjMI6LDV
-         4nDF78xt+yP/1sOYDwWuE0jxCSwpiu0a91gBt6FPa3wl9P4HJ+5aI/AioM2SQ7SsGXj7
-         hN2kY88SrcJu6IYemiXcWBF6B9IjS6YXa9iSUfcNlvRM1+232yIm9u5nl8kM0WoTkEVi
-         T4ng==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=pMbvU4NuLdDg7x2gXhImMJJO8NYwPnWe5Vdp9WJAd/o=;
+        b=lYFzTwpxajvpajNgQ3XKznusSHTanFX+EeDXtgylVlLxQ6102Fn+EndYOXTM9n5nZ9
+         5ATqjdI+ZjKtzsFBGtAlPzRwEPrsAwhdobvc/jMce7fENw1Uq4w5HLoQELHmK32Nepaw
+         bBNcE8vmGxGcTGShbB8McfBqSlmzqmydwk56w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=BrYFk3n3wKlXA8WLTss5loXYswBXAXQcm0uu3iwx1oI=;
-        b=MeE60+B5mMgXwecBazz/3953iXdKndIwEr93377CQPVZ797EhReOloCmc9Fk2sUQ1o
-         SBnOlgV5BOdvHgWEnBPEFYLahaG5uAGmK8PupmnhCWSN9yg2n7NmbY6DLlkETg/ox50c
-         5HVKpnIj4nqFw4dHOJwTTkJhmrdf0JHvQNORVf1cVhT+RbziPccCBTd2KYh5jVqPKPq/
-         fyvlPn3KEIBf6zuKopTd7wHEPal1x8jf3xuzqU/vKxAjFt5+Mq/hjIPzRrCWqpxBUsDk
-         XBpm8F3We7mrFvk69qUkKnVV5mHQMOKBse/DfP+ug6Oj9qA8p4othmm6rwhxT7Hz23uc
-         3YUw==
-X-Gm-Message-State: AOAM533g3isLpJ0BCQnMJbOm8l6IpXc9ubVzX3cCR305sXnEf+c62eqN
-        v5rOUBGVuWRCzR6d5sfDgu76ID8lqdU=
-X-Google-Smtp-Source: ABdhPJxeMJ5V8OljD6sv6Bq3GPMYA2a4B9MI4IhMi5Wn4JY1Rjt7i54TrwpzsJgm+Ic44xKq6+7YZQ==
-X-Received: by 2002:a1c:7917:: with SMTP id l23mr1740719wme.36.1633631574175;
-        Thu, 07 Oct 2021 11:32:54 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id r205sm180356wma.3.2021.10.07.11.32.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 11:32:53 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 20:32:52 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: tegra: dts: remove unused backlight-boot-off
-Message-ID: <YV89VEW8TlT2DaKF@orome.fritz.box>
-References: <20210919152720.72748-1-david@ixit.cz>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=pMbvU4NuLdDg7x2gXhImMJJO8NYwPnWe5Vdp9WJAd/o=;
+        b=3dOYRw/qfwCKs917u13DzEoNyF8wtYuZWdhaqSF+apYMqgo15zc6pLX1tLhFz08rLE
+         42xP7i+NO//oRvkB46VmZvBOW50IAtrfm4gJUccYhhKJf0sZI7YFA5is5HbiHi1iOYQY
+         YzO6hDNlLi+afT027PWII11sXa8wtDV7KjYueUagQakD8iMSMJEbm6x++kgds9tCYpsq
+         k+iYDA35WGKPYIeDol9IIjvr6oeAyzNBjEcqOCE7XSLUCbVBSUNbsqMjDmUAAlOFMaoU
+         g4csmlZzbS0hL349/wo1pINNZ1HqdhAm3Ul7OvfhHBzEdix3Gr4geSAqa3ocEXKtWr+Q
+         rs0g==
+X-Gm-Message-State: AOAM531gjVxiI6X/57ueT/pB+cnEYEjcvSdL77dqUnloYyFQMb95Fysv
+        pbUmCXq3UAlou+hjXFkwqnaljj9WRb3ZDDhKhXWDzw==
+X-Google-Smtp-Source: ABdhPJyDJU9ANF00rxAGsnwYPAeFgl12LTvc5zWIlHFElQD2qEn72bHEeASpKui2Xeg3tM2e25hEinotUfg/QCJJLSI=
+X-Received: by 2002:a05:6830:1c2e:: with SMTP id f14mr4797816ote.159.1633631684290;
+ Thu, 07 Oct 2021 11:34:44 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 7 Oct 2021 14:34:43 -0400
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="LPO8ZLWxFwBYEdel"
-Content-Disposition: inline
-In-Reply-To: <20210919152720.72748-1-david@ixit.cz>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+In-Reply-To: <1633330133-29617-1-git-send-email-pillair@codeaurora.org>
+References: <1633330133-29617-1-git-send-email-pillair@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 7 Oct 2021 14:34:43 -0400
+Message-ID: <CAE-0n53rkv5SKO74M+7bkuMgaD7tS0k6a8m7KeQL8j3DTHdB_Q@mail.gmail.com>
+Subject: Re: [PATCH v6 0/3] Add support for sc7280 WPSS PIL loading
+To:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        ohad@wizery.com, p.zabel@pengutronix.de, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Rakesh Pillai (2021-10-03 23:48:50)
+> Add support for PIL loading of WPSS co-processor for SC7280 SOCs.
+>
+> Changes from v4/v5:
+> - Add yaml conversion for adsp/cdsp dt-bindings
+> - Change clock names in wpss dt-bindings
+> - Correct mistake in signed-off enail ID
 
---LPO8ZLWxFwBYEdel
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Can you keep a running tally here of the full progression of the series?
+That helps to look back and make sure we don't make a comment that has
+already been made before.
 
-On Sun, Sep 19, 2021 at 05:27:20PM +0200, David Heidelberg wrote:
-> backlight-boot-off was proposed as a patch, but ended not being accepted
-> since different solution was already in the place:
-> https://patchwork.kernel.org/project/linux-arm-kernel/patch/1406806970-12=
-561-1-git-send-email-thierry.reding@gmail.com/#21327479
->=20
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  arch/arm/boot/dts/tegra20-paz00.dts            | 2 --
->  arch/arm64/boot/dts/nvidia/tegra132-norrin.dts | 2 --
->  2 files changed, 4 deletions(-)
+One more request. Can you add support for 'firmware-name' like there is
+in Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt so that we
+can install firmware into some namespaced/versioned place instead of
+having to put wpss files into /lib/firmware? It would also be nice to
+load a single firmware file instead of having to split the file into
+many pieces.
 
-I've split these into two (one for arm/dt and another for arm64/dt) and
-applied them.
-
-Thanks,
-Thierry
-
---LPO8ZLWxFwBYEdel
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmFfPVEACgkQ3SOs138+
-s6HofhAAkHuFOoH9Xs9hJuwIyoJHZq0Z/CzqUIl2ORpr3Id7qQs1uIrrFFE8MzAB
-2lNS4r6XgU3ze2TH97G+Np740zqUvSw4fU/P5Iu+sIzOKwB+Fn2dICXBpkftSDGI
-h6RYBXbABAEl7iYB3rvOZDZWlV7q0mFAhNbBOz+UpaUEYUHuEE4f92o9r39mR8QO
-gL6FYs8FAnBHcaMXajeMF5ZDxCRnSn3XgJBj8pCMsjXz1RRRXX+tkL8b4p0fv2E6
-TkXjAGc/m9V98qdK7p4/ZvTM5K97TIJ6dzT9SU7TKwIVnRlwaCrQb6+obVhGi/Zh
-4pja71t1tNgKH65fwuhwvQ9Gozw0AUa/R8DcC58BAw8z0hZNx48nBLIFIELizttJ
-FD/cGkKCr7q+zFnfV23tTYrMourUuWVGIdy6YBj5CHIs7nNaq57Pw8M/PT4GtLdI
-ZuKqGWwwqlopQJ2xeFeNCtUM8Bba7Ho3dKbdPZEBieGZR8+sTu1htuwzME0wfRZD
-JO1WE1kn755LJaMQ2DMMYcTFp0IqzIx6RqsVEvcX5Wshj3fcQnCCKbsL/cVZVa/p
-7TsJl/YeWFUL8qLo+FvJFBGQytRVqGiGss/c49v4RIT6O+BnGdGSMjJfo8AdYa/w
-/BhUQG8BPkFg8IKTKFM1+xhV0Ij8hy5zlCy0ZtL6w0k14BIdMAU=
-=khHq
------END PGP SIGNATURE-----
-
---LPO8ZLWxFwBYEdel--
+>
+> Rakesh Pillai (3):
+>   dt-bindings: remoteproc: qcom: adsp: Convert binding to YAML
+>   dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
+>   remoteproc: qcom: q6v5_wpss: Add support for sc7280 WPSS
+>
