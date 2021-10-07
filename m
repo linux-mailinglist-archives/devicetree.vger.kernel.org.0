@@ -2,105 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6829A425CF0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 22:09:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FD95425D0D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 22:17:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236109AbhJGULN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 16:11:13 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:26992 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233719AbhJGULM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 16:11:12 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633637358; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=TgUP7H/55CzhTMa+kBh6z+HzWDqvhowEqxczuK+iB1E=;
- b=cOgAqdGb37sKY9RaWlhMO89VjFQejErda0OF4E/C4d38cyh2HRouFSdh4W/RQJ/xQI5A8XrK
- s4kkEQYBLOxt2RLjC9ZgmbrdN+DEXVJjzMfEZmAvlJDbqK5Ds5QM7eZsXmtjGqlWyLbUZMJR
- eqFffOBSNgusWI/QkfchIFLt1rQ=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 615f53d9de4c4ed3855fb0f6 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 20:08:57
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 379A6C4360D; Thu,  7 Oct 2021 20:08:57 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B3021C4338F;
-        Thu,  7 Oct 2021 20:08:55 +0000 (UTC)
+        id S233170AbhJGUTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 16:19:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54200 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233019AbhJGUTC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 16:19:02 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E8FEC061570;
+        Thu,  7 Oct 2021 13:17:08 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id b8so27598575edk.2;
+        Thu, 07 Oct 2021 13:17:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=+plWImOU9l+KmK1gHBeb8TkLTQenqco68zq/+N/xRCA=;
+        b=AlLe2bSpk3ACJg4+aP1dPdv9y105tDEaYEuWFe/8PwqxYyWKktoEXDCh/0DfVWKFWO
+         Fkd7VKAZEMBevISK9nAJL1gAK7BRHEajQfS71/HSXX5/M+kVNN3vOQutAmECatg9wRBC
+         Liy/eGxa9LPlK8VCiqGkCeeKAmRUOn1obgttCO/I0ITjkoIlqUXIgpxq85S4buW0Uw7N
+         mds5z1pf/y7+S46u+PIb4eC+XPbRplGnUn7Aso5AS0reCIG6/97l5vrP4djUV3bm7nxN
+         Mzav3fMX9tRdw0nB+bMnq4/yGpIoNevVuz0Cd+J9Q+YfC4sIER20h10PV97rB/TJHsXg
+         mbjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+plWImOU9l+KmK1gHBeb8TkLTQenqco68zq/+N/xRCA=;
+        b=Tm7f8eKTn5+zjRDVSYVWdo0jCFETJQEI5xHg4jwG0/3v+/2hgcVZu4Yg8q6z+JHU+2
+         1NYW6ZfGadR4+bHnoUkx4eGGurfeE7EwHVSCwKgiJGlCAo04fAom/1eRbUY2o+bHfrjh
+         INHJAT/QPuxe2c1VSdyBbSxDoQf1pny3nLbu/HWkJJibJEDOiPJOVNSQ8Mj/iGJLcnWZ
+         cCOTVnIKowjC+tu3K7WTWWZsg8B3VsFi9jT2wteLk50uTwxwZTV7BZDWyZwQ5ONDIDOy
+         /EHsncTU+CF1TPjQNgsOOsCoOe09n46EdQ4Tw9RH+vWYsEodITXO8Ed/jL0vsvOnnNPj
+         6mTw==
+X-Gm-Message-State: AOAM533s8sUPFSjSronO0dlAPOzyznwrWSCSg2EvHMe0TxYnNL0mJXRO
+        CVjE0k0lEMleKzTAdATNdEc=
+X-Google-Smtp-Source: ABdhPJw/uWfOz4fx52vESMTUS8qM+HHABmSRcaTiMLl3LdMVpnQLpnyrgzX2Ab/xbBDF7hTnxt2RdA==
+X-Received: by 2002:a17:906:2816:: with SMTP id r22mr4625004ejc.158.1633637826699;
+        Thu, 07 Oct 2021 13:17:06 -0700 (PDT)
+Received: from skbuf ([188.26.53.217])
+        by smtp.gmail.com with ESMTPSA id z4sm139845ejn.112.2021.10.07.13.17.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Oct 2021 13:17:06 -0700 (PDT)
+Date:   Thu, 7 Oct 2021 23:17:05 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 net-next 10/10] net: dsa: microchip: add support for
+ vlan operations
+Message-ID: <20211007201705.polwaqgbzff4u3vx@skbuf>
+References: <20211007151200.748944-1-prasanna.vengateshan@microchip.com>
+ <20211007151200.748944-11-prasanna.vengateshan@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 08 Oct 2021 01:38:55 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     will@kernel.org
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        saiprakash.ranjan@codeaurora.org, swboyd@chromium.org,
-        mka@chromium.org, ohad@wizery.com, agross@kernel.org,
-        mathieu.poirier@linaro.org, robin.murphy@arm.com, joro@8bytes.org,
-        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        evgreen@chromium.org, dianders@chromium.org,
-        sibis=codeaurora.org@codeaurora.org
-Subject: Re: [PATCH v5 04/10] iommu/arm-smmu-qcom: Request direct mapping for
- modem device
-In-Reply-To: <1631886935-14691-5-git-send-email-sibis@codeaurora.org>
-References: <1631886935-14691-1-git-send-email-sibis@codeaurora.org>
- <1631886935-14691-5-git-send-email-sibis@codeaurora.org>
-Message-ID: <0dcf1cae8c8d173922788d2807a7975f@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211007151200.748944-11-prasanna.vengateshan@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Will,
+On Thu, Oct 07, 2021 at 08:42:00PM +0530, Prasanna Vengateshan wrote:
+>  static int lan937x_read_table(struct ksz_device *dev, u32 *table)
+>  {
+>  	int ret;
+> @@ -193,6 +292,102 @@ static void lan937x_port_stp_state_set(struct dsa_switch *ds, int port,
+>  		ksz_update_port_member(dev, port);
+>  }
+>  
+> +static int lan937x_port_vlan_filtering(struct dsa_switch *ds, int port,
+> +				       bool flag,
+> +				       struct netlink_ext_ack *extack)
+> +{
+> +	struct ksz_device *dev = ds->priv;
+> +	int ret;
+> +
+> +	ret = lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE,
+> +			  flag);
 
-Can you pick this patch up, the rest of
-the series is now in linux-next.
+If you're going to resend anyway, can you please check the entire
+submission for this pattern, where you can eliminate the intermediary
+"ret" variable and just return the function call directly?
 
-On 2021-09-17 19:25, Sibi Sankar wrote:
-> The SID configuration requirement for Modem on SC7280 is similar to the
-> ones found on SC7180/SDM845 SoCs. So, add the SC7280 modem compatible 
-> to
-> the list to defer the programming of the modem SIDs to the kernel.
-> 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> Reviewed-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> index 55690af1b25d..3b9b46fca0b3 100644
-> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> @@ -231,6 +231,7 @@ static const struct of_device_id
-> qcom_smmu_client_of_match[] __maybe_unused = {
->  	{ .compatible = "qcom,sc7180-mdss" },
->  	{ .compatible = "qcom,sc7180-mss-pil" },
->  	{ .compatible = "qcom,sc7280-mdss" },
-> +	{ .compatible = "qcom,sc7280-mss-pil" },
->  	{ .compatible = "qcom,sc8180x-mdss" },
->  	{ .compatible = "qcom,sdm845-mdss" },
->  	{ .compatible = "qcom,sdm845-mss-pil" },
+	return lan937x_cfg(...)
 
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+Do you have an explanation for what SW_VLAN_ENABLE does exactly?
+
+> +
+> +	return ret;
+> +}
+> +
+> +static int lan937x_port_vlan_add(struct dsa_switch *ds, int port,
+> +				 const struct switchdev_obj_port_vlan *vlan,
+> +				 struct netlink_ext_ack *extack)
+> +{
+> +	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
+> +	struct ksz_device *dev = ds->priv;
+> +	struct lan937x_vlan vlan_entry;
+> +	int ret;
+> +
+> +	ret = lan937x_get_vlan_table(dev, vlan->vid, &vlan_entry);
+> +	if (ret < 0) {
+> +		NL_SET_ERR_MSG_MOD(extack, "Failed to get vlan table");
+> +		return ret;
+> +	}
+> +
+> +	vlan_entry.fid = lan937x_get_fid(vlan->vid);
+> +	vlan_entry.valid = true;
+> +
+> +	/* set/clear switch port when updating vlan table registers */
+> +	if (untagged)
+> +		vlan_entry.untag_prtmap |= BIT(port);
+> +	else
+> +		vlan_entry.untag_prtmap &= ~BIT(port);
+> +
+> +	vlan_entry.fwd_map |= BIT(port);
+> +
+> +	ret = lan937x_set_vlan_table(dev, vlan->vid, &vlan_entry);
+> +	if (ret < 0) {
+> +		NL_SET_ERR_MSG_MOD(extack, "Failed to set vlan table");
+> +		return ret;
+> +	}
+> +
+> +	/* change PVID */
+> +	if (vlan->flags & BRIDGE_VLAN_INFO_PVID) {
+> +		ret = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID,
+> +				       vlan->vid);
+> +		if (ret < 0) {
+> +			NL_SET_ERR_MSG_MOD(extack, "Failed to set pvid");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int lan937x_port_vlan_del(struct dsa_switch *ds, int port,
+> +				 const struct switchdev_obj_port_vlan *vlan)
+> +{
+> +	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
+> +	struct ksz_device *dev = ds->priv;
+> +	struct lan937x_vlan vlan_entry;
+> +	u16 pvid;
+> +	int ret;
+> +
+> +	lan937x_pread16(dev, port, REG_PORT_DEFAULT_VID, &pvid);
+> +	pvid &= 0xFFF;
+> +
+> +	ret = lan937x_get_vlan_table(dev, vlan->vid, &vlan_entry);
+> +	if (ret < 0) {
+> +		dev_err(dev->dev, "Failed to get vlan table\n");
+> +		return ret;
+> +	}
+> +	/* clear port fwd map */
+> +	vlan_entry.fwd_map &= ~BIT(port);
+> +
+> +	if (untagged)
+> +		vlan_entry.untag_prtmap &= ~BIT(port);
+
+This is bogus.
+The user can add a VLAN entry using:
+
+bridge vlan add dev lan0 vid 100 pvid untagged
+
+and remove it using
+
+bridge vlan del dev lan0 vid 100
+
+so BRIDGE_VLAN_INFO_UNTAGGED is not set on removal.
+
+Considering the fact that it doesn't matter whether the port is
+egress-tagged or not when it isn't in the fwd_map in the first place,
+I suggest you completely drop this condition.
+
+> +
+> +	ret = lan937x_set_vlan_table(dev, vlan->vid, &vlan_entry);
+> +	if (ret < 0) {
+> +		dev_err(dev->dev, "Failed to set vlan table\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID, pvid);
+
+What is the point of reading the pvid and writing it back unmodified?
+Is the AND-ing with 0xFFF supposed to do anything? Because when you
+write to REG_PORT_DEFAULT_VID, you write it with nothing in the upper
+bits, so I expect there to be nothing in the upper bits when you read it
+back either.
+
+> +	if (ret < 0) {
+> +		dev_err(dev->dev, "Failed to set pvid\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+
+Also, consider the following set of commands:
+
+ip link add br0 type bridge vlan_filtering 1
+ip link set lan0 master br0
+bridge vlan add dev lan0 vid 100 pvid untagged
+bridge vlan del dev lan0 vid 100
+ip link set br0 type bridge vlan_filtering 0
+
+The expectation is that the switch, being VLAN-unaware as it is currently
+configured, receives and sends any packet regardless of VLAN ID.
+If you put an IP on br0 in this state, are you able to ping an outside host?
