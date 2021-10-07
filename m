@@ -2,95 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A4E0425959
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6791E425961
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 19:26:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233392AbhJGR0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 13:26:49 -0400
-Received: from muru.com ([72.249.23.125]:41966 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233133AbhJGR0s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 13:26:48 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 6E3E080C7;
-        Thu,  7 Oct 2021 17:25:24 +0000 (UTC)
-Date:   Thu, 7 Oct 2021 20:24:52 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
-        <linux-omap@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Suman Anna <s-anna@ti.com>
-Subject: Re: [PATCH 1/3] dt-bindings: bus: simple-pm-bus: Make clocks and
- power-domains optional
-Message-ID: <YV8tZP05lAukFc4E@atomide.com>
-References: <20211007124858.44011-1-tony@atomide.com>
- <20211007124858.44011-2-tony@atomide.com>
- <CAMuHMdX3XBA25sUMF2SpfbH7XX5-UpPFj-0nHuwDOv49YWQn+A@mail.gmail.com>
+        id S233707AbhJGR1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 13:27:55 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:59782 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241842AbhJGR1y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 13:27:54 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633627560; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=VkS6NmPattbLWc8+MxzPrbJcF68lr+JijAPN1npuoe0=;
+ b=ifh7t+OYCCYKdCgMgB+t7GxcKwfmAccAsPoHQM96C5ABgGMCpGEnITUuHdcgff/jgujccKsb
+ NJo0iJm0iS98o7zFCWCjF2fQsWcI8y8ROQzGaGT1Yeep+KwxWGp5qq23e2zBLzegVAuwj86U
+ ExDPGO9q8z9EbvM/E9AJdghncPU=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 615f2da7de4c4ed385a03948 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 17:25:59
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 61317C4360D; Thu,  7 Oct 2021 17:25:58 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1CC90C4338F;
+        Thu,  7 Oct 2021 17:25:57 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdX3XBA25sUMF2SpfbH7XX5-UpPFj-0nHuwDOv49YWQn+A@mail.gmail.com>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 07 Oct 2021 22:55:57 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
+        manivannan.sadhasivam@linaro.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v11 4/5] PCI: qcom: Add a flag in match data along with
+ ops
+In-Reply-To: <20211005192131.GA1111392@bhelgaas>
+References: <20211005192131.GA1111392@bhelgaas>
+Message-ID: <f06496757db7a5ba41c94ff14e9c2ef9@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Geert Uytterhoeven <geert@linux-m68k.org> [211007 13:27]:
-> Hi Tony,
+On 2021-10-06 00:51, Bjorn Helgaas wrote:
+> On Wed, Oct 06, 2021 at 12:12:38AM +0530, Prasad Malisetty wrote:
+>> Add pipe_clk_need_muxing flag in match data and configure
+>> If the platform needs to switch pipe_clk_src.
+>> 
+>> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+>> ---
+>>  drivers/pci/controller/dwc/pcie-qcom.c | 70 
+>> ++++++++++++++++++++++++++++------
+>>  1 file changed, 59 insertions(+), 11 deletions(-)
+>> 
+>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c 
+>> b/drivers/pci/controller/dwc/pcie-qcom.c
+>> index 8a7a300..1d7a9cb 100644
+>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> @@ -189,6 +189,11 @@ struct qcom_pcie_ops {
+>>  	int (*config_sid)(struct qcom_pcie *pcie);
+>>  };
+>> 
+>> +struct qcom_pcie_cfg {
+>> +	const struct qcom_pcie_ops *ops;
+>> +	unsigned int pipe_clk_need_muxing:1;
+>> +};
 > 
-> Thanks for your patch!
+> Thanks for splitting this up; it's 90% of the way there.
 > 
-> On Thu, Oct 7, 2021 at 2:49 PM Tony Lindgren <tony@atomide.com> wrote:
-> > Clocks and power domains are not required by the simple-pm-bus driver.
-> > There are buses with read-only registers for clocks and power domains
-> > that are always on.
+> It would be better if this patch added only the definition and use of
+> qcom_pcie_cfg:
 > 
-> The presence of clocks or power-domains properties is the only
-> distinguishing factor between simple-pm-bus and simple-bus, from a
-> DT point of view.  So if there has to be a distinguishment, the
-> properties should be required
-
-Heh seems there is no need for distinguishment beyond the compatible
-property here though :)
-
-> If you don't have clocks and power-domains, you should use simple-bus.
-
-Except simple-bus is not the same as simple-pm-bus. We do not have
-simple-bus do pm_runtime_enable() as you well know having written it :)
-
-> > Even without clocks and power domains configured, simple-pm-bus is still
-> > different from simple-bus as simple-pm-bus enables runtime PM for the bus
-> > driver.
+>   +struct qcom_pcie_cfg {
+>   +     const struct qcom_pcie_ops *ops;
+>   +};
 > 
-> Which you need to have working Runtime PM for child devices, right? ;-)
+> and then the subsequent patch added the clock muxing stuff:
+> 
+>    struct qcom_pcie_cfg {
+>   +	unsigned int pipe_clk_need_muxing:1;
+> 
+>    struct qcom_pcie {
+>   +	unsigned int pipe_clk_need_muxing:1;
+> 
+>    static const struct qcom_pcie_cfg sc7280_cfg = {
+>   +	.pipe_clk_need_muxing = true,
+> 
+>   static int qcom_pcie_probe(struct platform_device *pdev)
+>   +	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
+> 
+> That way everything related to pipe_clk_need_muxing would be in a
+> single patch.
+> 
+>>  struct qcom_pcie {
+>>  	struct dw_pcie *pci;
+>>  	void __iomem *parf;			/* DT parf */
+>> @@ -197,6 +202,7 @@ struct qcom_pcie {
+>>  	struct phy *phy;
+>>  	struct gpio_desc *reset;
+>>  	const struct qcom_pcie_ops *ops;
+>> +	unsigned int pipe_clk_need_muxing:1;
+>>  };
+>> 
+>>  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
+>> @@ -1456,6 +1462,39 @@ static const struct qcom_pcie_ops ops_1_9_0 = {
+>>  	.config_sid = qcom_pcie_config_sid_sm8250,
+>>  };
+>> 
+Thanks Bjorn, Agree on it. I will incorporate the changes in next patch 
+version.
 
-Right. And based on what I remember we simply cannot do pm_runtime_enable()
-for simple-bus without breaking tons of devices.
+-Prasad
 
-> This is not specific to DT, but to Linux.
-> One more reason to let Linux treat simple-pm-bus and simple-bus exactly
-> the same.  Linux handles the clocks and power-domains (if present)
-> transparently anyway, through PM Domains
-
-I agree they should be treated the same way with simple-pm-bus just
-doing the pm_runtime_enable() being the only difference.
-
-But the clocks and power domain still should be optional. They are
-not required by simple-pm-bus.c driver, and may not be required by
-the hardware.
-
-Got any better solutions in mind? Adding yet another compatible or
-another driver does not seem to get us anywhere either with this :)
-
-Regards,
-
-Tony
-
-
+>> +static const struct qcom_pcie_cfg apq8084_cfg = {
+>> +	.ops = &ops_1_0_0,
+>> +};
+>> +
+>> +static const struct qcom_pcie_cfg ipq8064_cfg = {
+>> +	.ops = &ops_2_1_0,
+>> +};
+>> +
+>> +static const struct qcom_pcie_cfg msm8996_cfg = {
+>> +	.ops = &ops_2_3_2,
+>> +};
+>> +
+>> +static const struct qcom_pcie_cfg ipq8074_cfg = {
+>> +	.ops = &ops_2_3_3,
+>> +};
+>> +
+>> +static const struct qcom_pcie_cfg ipq4019_cfg = {
+>> +	.ops = &ops_2_4_0,
+>> +};
+>> +
+>> +static const struct qcom_pcie_cfg sdm845_cfg = {
+>> +	.ops = &ops_2_7_0,
+>> +};
+>> +
+>> +static const struct qcom_pcie_cfg sm8250_cfg = {
+>> +	.ops = &ops_1_9_0,
+>> +};
+>> +
+>> +static const struct qcom_pcie_cfg sc7280_cfg = {
+>> +	.ops = &ops_1_9_0,
+>> +	.pipe_clk_need_muxing = true,
+>> +};
+>> +
+>>  static const struct dw_pcie_ops dw_pcie_ops = {
+>>  	.link_up = qcom_pcie_link_up,
+>>  	.start_link = qcom_pcie_start_link,
+>> @@ -1467,6 +1506,7 @@ static int qcom_pcie_probe(struct 
+>> platform_device *pdev)
+>>  	struct pcie_port *pp;
+>>  	struct dw_pcie *pci;
+>>  	struct qcom_pcie *pcie;
+>> +	const struct qcom_pcie_cfg *pcie_cfg;
+>>  	int ret;
+>> 
+>>  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+>> @@ -1488,7 +1528,14 @@ static int qcom_pcie_probe(struct 
+>> platform_device *pdev)
+>> 
+>>  	pcie->pci = pci;
+>> 
+>> -	pcie->ops = of_device_get_match_data(dev);
+>> +	pcie_cfg = of_device_get_match_data(dev);
+>> +	if (!pcie_cfg || !pcie_cfg->ops) {
+>> +		dev_err(dev, "Invalid platform data\n");
+>> +		return NULL;
+>> +	}
+>> +
+>> +	pcie->ops = pcie_cfg->ops;
+>> +	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
+>> 
+>>  	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+>>  	if (IS_ERR(pcie->reset)) {
+>> @@ -1545,16 +1592,17 @@ static int qcom_pcie_probe(struct 
+>> platform_device *pdev)
+>>  }
+>> 
+>>  static const struct of_device_id qcom_pcie_match[] = {
+>> -	{ .compatible = "qcom,pcie-apq8084", .data = &ops_1_0_0 },
+>> -	{ .compatible = "qcom,pcie-ipq8064", .data = &ops_2_1_0 },
+>> -	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ops_2_1_0 },
+>> -	{ .compatible = "qcom,pcie-apq8064", .data = &ops_2_1_0 },
+>> -	{ .compatible = "qcom,pcie-msm8996", .data = &ops_2_3_2 },
+>> -	{ .compatible = "qcom,pcie-ipq8074", .data = &ops_2_3_3 },
+>> -	{ .compatible = "qcom,pcie-ipq4019", .data = &ops_2_4_0 },
+>> -	{ .compatible = "qcom,pcie-qcs404", .data = &ops_2_4_0 },
+>> -	{ .compatible = "qcom,pcie-sdm845", .data = &ops_2_7_0 },
+>> -	{ .compatible = "qcom,pcie-sm8250", .data = &ops_1_9_0 },
+>> +	{ .compatible = "qcom,pcie-apq8084", .data = &apq8084_cfg },
+>> +	{ .compatible = "qcom,pcie-ipq8064", .data = &ipq8064_cfg },
+>> +	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &ipq8064_cfg },
+>> +	{ .compatible = "qcom,pcie-apq8064", .data = &ipq8064_cfg },
+>> +	{ .compatible = "qcom,pcie-msm8996", .data = &msm8996_cfg },
+>> +	{ .compatible = "qcom,pcie-ipq8074", .data = &ipq8074_cfg },
+>> +	{ .compatible = "qcom,pcie-ipq4019", .data = &ipq4019_cfg },
+>> +	{ .compatible = "qcom,pcie-qcs404", .data = &ipq4019_cfg },
+>> +	{ .compatible = "qcom,pcie-sdm845", .data = &sdm845_cfg },
+>> +	{ .compatible = "qcom,pcie-sm8250", .data = &sm8250_cfg },
+>> +	{ .compatible = "qcom,pcie-sc7280", .data = &sc7280_cfg },
+>>  	{ }
+>>  };
+>> 
+>> --
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+>> Forum,
+>> a Linux Foundation Collaborative Project
+>> 
