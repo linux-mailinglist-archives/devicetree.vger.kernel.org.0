@@ -2,67 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B8F44256BA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 17:37:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC2C54256D6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 17:43:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233506AbhJGPjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 11:39:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45168 "EHLO mail.kernel.org"
+        id S235222AbhJGPph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 11:45:37 -0400
+Received: from marcansoft.com ([212.63.210.85]:51204 "EHLO mail.marcansoft.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230060AbhJGPjW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 7 Oct 2021 11:39:22 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S233463AbhJGPpg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 11:45:36 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7E48061139;
-        Thu,  7 Oct 2021 15:37:26 +0000 (UTC)
-Date:   Thu, 7 Oct 2021 16:41:30 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Nikita Travkin <nikita@trvn.ru>
-Cc:     lars@metafoo.de, robh+dt@kernel.org, stephan@gerhold.net,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: vendor-prefixes: Document liteon
- vendor prefix
-Message-ID: <20211007164130.57304c72@jic23-huawei>
-In-Reply-To: <20211006163058.145842-1-nikita@trvn.ru>
-References: <20211006163058.145842-1-nikita@trvn.ru>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id C74BB3FA60;
+        Thu,  7 Oct 2021 15:43:36 +0000 (UTC)
+Subject: Re: [PATCH v5 00/14] PCI: Add support for Apple M1
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        Joey Gouly <joey.gouly@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Arnd Bergmann <arnd@arndb.de>
+References: <20210929163847.2807812-1-maz@kernel.org>
+ <20211004083845.GA22336@lpieralisi> <87czolrwgn.wl-maz@kernel.org>
+ <CACRpkdZzdzJmatnYe2pcKCSW2=WJBa-DZQPib7aGW9m_GLrAwg@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <d9491159-670b-87c6-65b4-10f7c7ba62fe@marcan.st>
+Date:   Fri, 8 Oct 2021 00:43:34 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <CACRpkdZzdzJmatnYe2pcKCSW2=WJBa-DZQPib7aGW9m_GLrAwg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  6 Oct 2021 21:30:55 +0500
-Nikita Travkin <nikita@trvn.ru> wrote:
-
-> Add vendor prefix for LITE-ON Technology Corp.
+On 05/10/2021 03.30, Linus Walleij wrote:
+> On Mon, Oct 4, 2021 at 11:05 AM Marc Zyngier <maz@kernel.org> wrote:
 > 
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-Series looks good to me. I'll leave some time for dt binding review though
-before picking it up.
-
-Thanks,
-
-Jonathan
-
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>> Yes, that's absolutely fine. I hope we can resolve the issue on the
+>> pinctrl binding pretty quickly, and get the arm-soc folks to pull the
+>> DT changes in for 5.16 too.
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 1d77f151555b..477a5cba16fe 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -659,6 +659,8 @@ patternProperties:
->      description: Linux-specific binding
->    "^linx,.*":
->      description: Linx Technologies
-> +  "^liteon,.*":
-> +    description: LITE-ON Technology Corp.
->    "^litex,.*":
->      description: LiteX SoC builder
->    "^lltc,.*":
+> I think I ACKed a patch for apple,npins = <> yesterday.
 
+You reviewed it :)
+
+It still needs some fixes to pass the schema linter though.
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
