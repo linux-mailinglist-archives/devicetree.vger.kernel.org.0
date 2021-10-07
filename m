@@ -2,163 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09163425AB2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C0F425AC8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 20:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243690AbhJGS2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 14:28:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56614 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243666AbhJGS2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:28:10 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BD7EC061570;
-        Thu,  7 Oct 2021 11:26:16 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id t16so4711437eds.9;
-        Thu, 07 Oct 2021 11:26:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XxO0G2e2KmYJcacx8mK3ugFcVqSLBQrO6+A/auKa9jU=;
-        b=e5/ad2VW9gTeNN5ykwIhjk3Jlfsa0J/DeVyNJ9vbRYREPGcdfym2x2Dr3AdlSKuR6w
-         HZeGHGE9oFfaF19dy3XA4N9RsQbeTtMkVqdKaOfxxTjtxY6zK3ZzY1FkvI3BChM3mXoV
-         H16zMtXpgzbkZCNwVuKO/JdUdkR60+Wz8c6Wl2q7VZJcZGKt9QaZUMvwql42GuNERb7S
-         J2hRXsXCi4gwYQwepzqe6J6uMCdExEQMByjlpCVBfJm2E0Qvfu4zo7GROzZtdRgM/uQW
-         rWBwknrRLfXCL1c/jOBPjzg9gu+HLgn8MEwCawKDdFIP4cwzfPvX2yBz2Gr3bx3WkBOl
-         pZSA==
+        id S229511AbhJGScs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 14:32:48 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:38260
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231340AbhJGScr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 14:32:47 -0400
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 94E2640011
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 18:30:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633631451;
+        bh=udvQb5YkJZw9BC1VpFEKFml8jvra6kBTS8xwiHMdWjo=;
+        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=PidBQAMKAqlqRGuycfRit5J9xXYiA/nbivBPe8xwK/0vJ6rX3lATVTM8NVfhXsDe2
+         d516+gs5IuCR+JyuoEgA6fSLW4fonQF6202cNhgDQslyyx/nwoLwcH24bt4uWbxeUn
+         YwgHykYX70QzRQh2s/k0dNM+f8mzhDWjGtKyxJDT1jx91aUUgmDsWq/T9h/E7Hsxr2
+         n/+kaEjlfeevta+jCQNBQXaXaYrwf6o/uA+laN5I7lnhr1ofdteks7Zbe0bZpfWMbU
+         p6qw9R3X8WiGRMOIi/wg3qYle/2fIbvwQ0eRcSaoCGcZFDgrjGZ2wKCPcoGE6t/cnM
+         l6Q9JjRnhehkw==
+Received: by mail-wr1-f70.google.com with SMTP id f11-20020adfc98b000000b0015fedc2a8d4so5412980wrh.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 11:30:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XxO0G2e2KmYJcacx8mK3ugFcVqSLBQrO6+A/auKa9jU=;
-        b=s+5BPHXDHXMm2zKdAsqLA45Abrv6CwYuB8/cuIINZtB+kE1Q+qg1upMJcZJnxuPkip
-         yMElkEGMbPMcLwjNdT3XVR5m6WT7aH61JdqzAnGGin3EeVSIWDVzvb5PkEFsEfAEzP3M
-         KStmgUAN64JWGx47QqxTvmUSnM2LWCG9Mt17FXOBbfexcMWD9uMqYsyd18HS9/X8eXix
-         JEb/ON3NRWBQWqmjMnKZjZ2Poug565Aj92/votKGu0pF8hKYGGuoA+uLkClgwhrTmFCR
-         RHqDVUMYlzsb69U+cp6dax7gnSQeGxwjQFIlfjQ/NVB9v+txrqLc6oXIwBXQg39IVnfk
-         pr2A==
-X-Gm-Message-State: AOAM530O2w3wBjxTL+CiVtXK4W7oC/iFI9BIoRl3AoTXkq37VVv8spgF
-        hb/K9YrBPGNJe1183vnooDA=
-X-Google-Smtp-Source: ABdhPJwwFSkWf0VXYApfSWngLNN1l82rZdK/8jkUlYfU7btRv+pwtOTqNt2NBPwUnL+CDCWd2YdS4w==
-X-Received: by 2002:a17:906:180a:: with SMTP id v10mr7526535eje.112.1633631174384;
-        Thu, 07 Oct 2021 11:26:14 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id j5sm57648ejb.96.2021.10.07.11.26.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 11:26:14 -0700 (PDT)
-Date:   Thu, 7 Oct 2021 20:26:11 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=udvQb5YkJZw9BC1VpFEKFml8jvra6kBTS8xwiHMdWjo=;
+        b=Zj8VqXi8YANKrJmtHvWv4Y663lYioz61CFpHi97je/am++HmKSWDfOeozRG4C9ZcI6
+         PWRwMhhoqoJUhW5T5w8KfxhNKJGJJNzqwe3cowUKmaXtwjpVISDues/42qxxRUHbPcBA
+         1xFbdiozz2thutO3CopNKs6XJCY4Woijx/wS5aVmwNak6qt9UCNcMsm323IQe2hNh+Qz
+         MihM2mipknl12YcnZwn9+q3XXvlRps9xlpl1rsbNKkbqK/OvmqhzFVsRWH+mfkHpQZKT
+         W0jtyE8nTzrR+0Mxj2p81ywOn1d8JLrJa7QzzN7JoX14nC+Bnm3932Oh2kOIULTydU62
+         CiBA==
+X-Gm-Message-State: AOAM532a+/Yv/ZeJCJZo+qkKiGeF3fyE+GpCObkclY7gLiEWdJe9lpVu
+        f5WKxMe3UTl5FlYZu/93Vy0hZSLWXcCGakcsRVy+FEHK6UNtjHajcI/XLcNnBjaPMEPMiac8Da+
+        wYIQ7qPOhDsi39tA+qjqOqwEJ+zhNe30d5lcVlZc=
+X-Received: by 2002:a05:600c:198e:: with SMTP id t14mr6479274wmq.124.1633631451022;
+        Thu, 07 Oct 2021 11:30:51 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyT2n5BgOJPrzei+gD8cQeD3zwKMCoP1yPY+ofWDlle/pakNskAkBXVb2MkecmqRlMJyRGQpQ==
+X-Received: by 2002:a05:600c:198e:: with SMTP id t14mr6479248wmq.124.1633631450810;
+        Thu, 07 Oct 2021 11:30:50 -0700 (PDT)
+Received: from [192.168.1.24] (xdsl-188-155-186-13.adslplus.ch. [188.155.186.13])
+        by smtp.gmail.com with ESMTPSA id k17sm9578584wmj.0.2021.10.07.11.30.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Oct 2021 11:30:50 -0700 (PDT)
+To:     Chanho Park <chanho61.park@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH 10/13] net: dsa: qca8k: add explicit SGMII PLL
- enable
-Message-ID: <YV87w970EjDZqxk4@Ansuel-xps.localdomain>
-References: <20211006223603.18858-1-ansuelsmth@gmail.com>
- <20211006223603.18858-11-ansuelsmth@gmail.com>
- <YV4/ehy9aYJyozvy@lunn.ch>
- <YV73umYovC0wh5hz@Ansuel-xps.localdomain>
- <YV83BAmhHfmDyCjv@lunn.ch>
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20211007120855.56555-1-chanho61.park@samsung.com>
+ <CGME20211007121055epcas2p3257cda61bd7f28f8ac9f3ba126b8fd41@epcas2p3.samsung.com>
+ <20211007120855.56555-4-chanho61.park@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH 3/3] arm64: dts: exynos: add minimal support for
+ exynosautov9 sadk board
+Message-ID: <67df638a-5415-0107-1b83-287f0f871817@canonical.com>
+Date:   Thu, 7 Oct 2021 20:30:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YV83BAmhHfmDyCjv@lunn.ch>
+In-Reply-To: <20211007120855.56555-4-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 07, 2021 at 08:05:56PM +0200, Andrew Lunn wrote:
+On 07/10/2021 14:08, Chanho Park wrote:
+> SADK(Samsung Automotive Development Kit) is the development kit to
+> evaluate Exynos Auto v9 SoC. It has 16GB LPDDR4 DRAM and two
+> 256GB Samsung UFS. This patch enables only serial console and ufs0
+> device.
 > 
-> On Thu, Oct 07, 2021 at 03:35:54PM +0200, Ansuel Smith wrote:
-> > On Thu, Oct 07, 2021 at 02:29:46AM +0200, Andrew Lunn wrote:
-> > > On Thu, Oct 07, 2021 at 12:36:00AM +0200, Ansuel Smith wrote:
-> > > > Support enabling PLL on the SGMII CPU port. Some device require this
-> > > > special configuration or no traffic is transmitted and the switch
-> > > > doesn't work at all. A dedicated binding is added to the CPU node
-> > > > port to apply the correct reg on mac config.
-> > > 
-> > > Why not just enable this all the time when the CPU port is in SGMII
-> > > mode?
-> > 
-> > I don't know if you missed the cover letter with the reason. Sgmii PLL
-> > is a mess. Some device needs it and some doesn't. With a wrong
-> > configuration the result is not traffic. As it's all messy we decided to
-> > set the PLL to be enabled with a dedicated binding and set it disabled
-> > by default. We enouncer more device that require it disabled than device
-> > that needs it enabled. (in the order of 70 that doesn't needed it and 2
-> > that requires it enabled or port instability/no traffic/leds problem)
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  .../bindings/arm/samsung/samsung-boards.yaml  |  6 +++
+>  .../boot/dts/exynos/exynosautov9-sadk.dts     | 52 +++++++++++++++++++
+
+You need also Makefile entry.
+
+>  2 files changed, 58 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
 > 
-> What exactly does this PLL do? Clock recovery of the SGMII clock, and
-> then using it in the opposite direction? What combinations of PHYs
-> need it, and which don't?
->
+> diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+> index 0796f0c87727..2147e664d5bc 100644
+> --- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+> +++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+> @@ -199,6 +199,12 @@ properties:
+>                - samsung,exynos7-espresso        # Samsung Exynos7 Espresso
+>            - const: samsung,exynos7
+>  
+> +      - description: Exynos Auto v9 based boards
+> +        items:
+> +          - enum:
+> +              - samsung,samsung,exynosautov9-sadk   # Samsung Exynos Auto v9 SADK
 
-I will quote from Documentation
-bit 1: enable SGMII PLL (it's disabled by default)
-bit 2: enable rx chain. By default it's disabled and CLK125M_RX and
-DOUT_RX can be any logic of 1 or 0
-bit 3: enable TX driver. By default is in idle and kept in 900mV
-As you can see normally all these bit are disabled and I think forcing
-them on seems wrong.
-We can think about setting it based on the switch type and revision but
-again we found some that needed it anyway and goes out of any logic.
-The original idea is to add a biding to force the setting and make the
-driver decide itself the correct option. But considering we found that
-in 90% of the case, this is not needed, the switch default doesn't
-enable it and that only 2-3 device require it, I see the binding the
-only way to implement this and do not pollute the code with tons of
-condition.
+Double samsung.
 
-> > > Is it also needed for 1000BaseX?
-> > > 
-> > 
-> > We assume it really depends on the device.
+> +          - const: samsung,exynosautov9
+> +
+>  required:
+>    - compatible
+>  
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+> new file mode 100644
+> index 000000000000..e59ef39a368f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+> @@ -0,0 +1,52 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Samsung ExynosAutov9 SADK board device tree source
+
+Any Copyrights? Not needed, just mentioning...
+
+> + */
+> +
+> +/dts-v1/;
+> +#include "exynosautov9.dtsi"
+
+Include gpio.h here, because it is used. Probably you can also remove it
+from dtsi - I did not see it being used in there.
+
+> +
+> +/ {
+> +	model = "Samsung ExynosAutov9 SADK board";
+> +	compatible = "samsung,exynosautov9-sadk", "samsung,exynosautov9";
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &serial_0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &serial_0;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x80000000 0x0 0x77000000>,
+> +		      <0x8 0x80000000 0x1 0x7ba00000>,
+> +		      <0xa 0x00000000 0x2 0x00000000>;
+> +	};
+> +
+> +	ufs_0_fixed_vcc: fixedregulator@0 {
+
+Node name: "regulator" or "regulator-0" if you think you will have more
+of them.
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ufs-vcc";
+> +		gpio = <&gpq0 1 GPIO_ACTIVE_HIGH>;
+> +		regulator-boot-on;
+> +		enable-active-high;
+> +	};
+> +};
+> +
+> +&serial_0 {
+> +	status = "okay";
+> +};
+> +
+> +&ufs_0_phy {
+> +	status = "okay";
+> +};
+> +
+> +&ufs_0 {
+> +	status = "okay";
+> +	vcc-supply = <&ufs_0_fixed_vcc>;
+> +	vcc-fixed-regulator;
+> +};
 > 
-> That i find surprising. 1000BaseX and SGMII are very similar. I would
-> expect a device with requires the PLL enabled for SGMII also needs it
-> for 1000BaseX.
-> 
 
-With assume I mean we have no device with 1000BaseX (and I honestly
-don't know if it does exist) I think if it does require PLL for sgmii
-then it does require it also for 1000BaseX
 
-> > > DT properties like this are hard to use. It would be better if the
-> > > switch can decide for itself if it needs the PLL enabled.
-> > 
-> > Again reason in the cover letter sgmii part. Some qca driver have some
-> > logic based on switch revision. We tried that and it didn't work since
-> > some device had no traffic with pll enabled (and with the revision set
-> > to enable pll)
-> 
-> This is my main problem with this patchset. You are adding lots of
-> poorly documented properties which are proprietary to this switch. And
-> you are saying, please try all 2^N combinations and see what works
-> best. That is not very friendly at all.
-
-We have many device and we notice a common config for both qca8327 and
-qca8337. Wonder if this would be improved by adding some hint in the
-documentation on the correct configuration based on the switch model?
-We waited so much to push this just to check if all this bad stuff was
-actually needed or could be implemented differently, but we really find
-any logic. So I think the only way is ""spam"" the documentation with
-data on how to decide the correct option.
-
-> 
-> So it would be good to explain each one in detail. Maybe given the
-> explanation, we can figure out a way to detect at runtime, and not
-> need the option. If not, you can add it to the DT binding to help
-> somebody pick a likely starting point for the 2^N search.
-> 
-> 	 Andrew
-
--- 
-	Ansuel
+Best regards,
+Krzysztof
