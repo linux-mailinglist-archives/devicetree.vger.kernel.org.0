@@ -2,77 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42A55424D55
-	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 08:37:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40DC0424D8D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Oct 2021 08:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbhJGGjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 02:39:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59922 "EHLO
+        id S240445AbhJGG56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 02:57:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231279AbhJGGjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 02:39:07 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ECA3C061746
-        for <devicetree@vger.kernel.org>; Wed,  6 Oct 2021 23:37:13 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id r1so5155206qta.12
-        for <devicetree@vger.kernel.org>; Wed, 06 Oct 2021 23:37:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dUxrBRt6OvcLPoqJOHX2abNP7ltgihocL0g/sk7K2lw=;
-        b=CiajSCb53oY9Y7D5FhuUPDEnBHhSOyTuSZGT9aGm9ggRPT4+/EEWBLLIwHh0UqFuKE
-         ONe6Syoxkz0PK+gnBAm9UolufPrg8n//f8lOJwiZ/aON684yVzPxLDMM4/7WtA6Kyv5u
-         flk1mgyICUVxF4VdXVzEulYjBCAPlK7vqjGLc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dUxrBRt6OvcLPoqJOHX2abNP7ltgihocL0g/sk7K2lw=;
-        b=c6FRA86jJXWLlcM4wzCtdI/gwFRzHR1BCDe5A7rSe7ScriCMHIfFskjWjuAoU+Yy71
-         rffqeI5hzLPeIH+crXZEwd4MQdf6yYy6oRMRIrI5tBApcznmq3DC1Fg0PNyTrhverl7d
-         bvxN2geC8dsMV3uJzbv4lnwzh2BHO6r9/O5EyXFOAEGZwt4V15CVVTWg3pUYDfEw9uWo
-         M0rG7srh1oW8ZgwEfmvBQ1mxXmIrsDtt/EXThm1icYjZCGi887Rn3tZEgCj+9XkSgS1/
-         bO7OH4bJDUaPEKmTXteYQKpsq8eRoFIp5ME4oylsDEDuUFlulEaFGKufubtVFu6ZnVgP
-         u4Pg==
-X-Gm-Message-State: AOAM5321GRAfNe/EklK5pRXTkta/cYMBOvQKfqMJLuYrMVFZNrmOv57f
-        M4Avjj0RXXUFS0Vb1NsVjWwhvAaYmHFAWTT3p4g=
-X-Google-Smtp-Source: ABdhPJzJKGB0bKrPdFevp0Kfe6cAN2pA2BxujBR69LHxUrmv7BgsbuOxEEMKWMY2urlciyFICIvo2gpM0UIjfhrtoWg=
-X-Received: by 2002:a05:622a:11c9:: with SMTP id n9mr2966552qtk.295.1633588632121;
- Wed, 06 Oct 2021 23:37:12 -0700 (PDT)
+        with ESMTP id S240370AbhJGG5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 02:57:39 -0400
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A5CC061772;
+        Wed,  6 Oct 2021 23:55:44 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (71-212-29-146.tukw.qwest.net [71.212.29.146])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id B8E35F6;
+        Wed,  6 Oct 2021 23:55:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1633589744;
+        bh=1Wnuz/Ot9jwM2pt8JkasgbgyztxL92GcR7WxaDAQsMg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=d5tMm6wvON4Ka6HD3KVoHPZnEeSqOGW5/n2AeX6jFtaU8leqXHQu8oT2UNmuqcqJ4
+         Wafw5+Mp3KeyDx0m0jaTH/2vxMlBW4NyWO+VwuEL3Z23iy37CM0GGSTQkSRk0qH2ql
+         ZdtANJGsy5ExgP78bBO9UQQ46SzJQ+lw8Y5iTrMw=
+Date:   Wed, 6 Oct 2021 23:55:38 -0700
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     openbmc@lists.ozlabs.org, Jeremy Kerr <jk@codeconstruct.com.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/9] sysfs: add sysfs_remove_bin_file_self() function
+Message-ID: <YV6Z6omsBKgKqeoZ@hatter.bewilderbeest.net>
+References: <20211007000954.30621-1-zev@bewilderbeest.net>
+ <20211007000954.30621-2-zev@bewilderbeest.net>
+ <YV6EVcKUQj5DNiXZ@kroah.com>
+ <YV6Moz5eCsf6ZZWb@hatter.bewilderbeest.net>
+ <YV6P1dM6U6sSsefc@kroah.com>
 MIME-Version: 1.0
-References: <20210903015314.177987-1-joel@jms.id.au> <YTe46lyQDfV6OzOc@robh.at.kernel.org>
-In-Reply-To: <YTe46lyQDfV6OzOc@robh.at.kernel.org>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 7 Oct 2021 06:37:00 +0000
-Message-ID: <CACPK8XeC=ZN2SRP+M2pz9RiAPD=chZr9+aifnnY03HAXDQ3xOA@mail.gmail.com>
-Subject: Re: [PATCH] ipmi: bt: Add ast2600 compatible string
-To:     Rob Herring <robh@kernel.org>, Corey Minyard <minyard@acm.org>
-Cc:     openipmi-developer@lists.sourceforge.net,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <YV6P1dM6U6sSsefc@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Sept 2021 at 19:09, Rob Herring <robh@kernel.org> wrote:
+On Wed, Oct 06, 2021 at 11:12:37PM PDT, Greg Kroah-Hartman wrote:
+>On Wed, Oct 06, 2021 at 10:58:59PM -0700, Zev Weiss wrote:
+>> On Wed, Oct 06, 2021 at 10:23:33PM PDT, Greg Kroah-Hartman wrote:
+>> > On Wed, Oct 06, 2021 at 05:09:46PM -0700, Zev Weiss wrote:
+>> > > This is simply the bin_attribute analog to sysfs_remove_file_self().
+>> >
+>> > No, no binary sysfs file should be triggering a remove.
+>> >
+>> > binary sysfs files are "pass-through-only" from userspace to hardware,
+>> > the kernel should not be even knowing what is read/written to them.
+>> >
+>> > What do you think this is needed for?
+>> >
+>>
+>> So, I initially set out to be able to activate/deactivate specific DT nodes
+>> at runtime by using the device-tree "reserved" status as defined in the spec
+>> (but not currently used anywhere in the kernel) to mean essentially "create
+>> a device for this but don't bind a driver to it" (leaving it to userspace to
+>> invoke bind/unbind or similar), and added initial support for the specific
+>> driver I'm concerned with at the moment (aspeed-smc) -- that was the
+>> previous patch series linked in the cover letter of this one.
+>>
+>> In the discussion of that series, Rob suggested as an alternate approach:
+>>
+>> > Another possibility is making 'status' writeable from userspace. It is
+>> > just a sysfs file.
+>>
+>> That seemed sort of appealing to me, and this seemed like the most obvious
+>> way to go about implementing it.  Given that DT properties are binary
+>> attributes, I gather you'd consider that a non-starter though?
 >
-> On Fri, 03 Sep 2021 11:23:14 +0930, Joel Stanley wrote:
-> > The AST2600 has the same register set as the previous generation SoCs.
-> >
-> > Signed-off-by: Joel Stanley <joel@jms.id.au>
-> > ---
-> >  .../devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.txt          | 1 +
-> >  drivers/char/ipmi/bt-bmc.c                                       | 1 +
-> >  2 files changed, 2 insertions(+)
-> >
+>Why would a text attribute of "status" be a binary sysfs file?  That
+>feels really wrong as again, binary sysfs files are not supposed to be
+>parsed or handled by the kernel at all, they are only a pass-through.
 >
-> Acked-by: Rob Herring <robh@kernel.org>
 
-Corey, can you please merge this one?
+Well, at present all device tree properties are binary sysfs files 
+regardless of type, and from a brief git history check it appears 
+they've been that way since DT sysfs support was introduced in commit 
+75b57ecf9d1d ("of: Make device nodes kobjects so they show up in 
+sysfs").
 
-Cheers,
+On the surface it seems like it would make sense for string properties 
+like status to be text files instead of binary, but (a) looking at some 
+of the discussion that preceded that patch, it sounds like there may be 
+some ambiguity regarding what the "true" types of different properties 
+actually are [0], and (b) changing the contents of those files from e.g.  
+"okay\0" to "okay\n" seems likely to lead to broken userspace, so I'd 
+guess it's probably moot anyway.
 
-Joel
+[0] https://lore.kernel.org/lkml/1363801579.17680.3.camel@pasglop/
+
+
+Zev
+
