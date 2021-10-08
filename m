@@ -2,84 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11D86426285
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 04:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4A7442627F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 04:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241270AbhJHCsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 22:48:23 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:36383 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231928AbhJHCsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 22:48:14 -0400
-Received: by mail-ot1-f41.google.com with SMTP id 5-20020a9d0685000000b0054706d7b8e5so10001691otx.3;
-        Thu, 07 Oct 2021 19:46:20 -0700 (PDT)
+        id S234170AbhJHCsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 22:48:11 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:42679 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231928AbhJHCsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 22:48:11 -0400
+Received: by mail-ot1-f51.google.com with SMTP id c26-20020a056830349a00b0054d96d25c1eso9944514otu.9;
+        Thu, 07 Oct 2021 19:46:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=Zcjj5xjNcu3yBSi1V0zjT4XwOHiWirc0eie6sMutm3Q=;
-        b=WXduVdpRzX+wXq8LZ8SXMEzEEEL2vp98m5FSNAI9ZbBAjmNgZqA16mDBiZ172QsXA+
-         KGNibQApWfNHO2bHJoSceJz+oAxy1cmeOvhBV0DT5wNkeAaLQb70+LzjkTNIBDsCATCm
-         rMDSOBFWbnF48srmBWzUZEP9mr3zHuFqt/InNhTf9d2Rv8XJxT0rbcQ5bffKjvzhMFk7
-         r4tXz3yKb/cIhXZOxgq7E5rzeXVg49qcMrG33imb1t1h70EcDiIvqcsuhRYtiYeLcqcA
-         5x5Aj2ws6dbCmI9FLcwiEjNzIGqbYOHNGaSUjbbLBIzQOaDhzn/nN/MfXhk0QsEyaXvW
-         WUVQ==
-X-Gm-Message-State: AOAM5300ETYdqF7Qml/im2uiZMvB1bIg3lUCggwRo4k46go0DbZFAPzL
-        etOeK0ABjaPNHTuyWREaTA==
-X-Google-Smtp-Source: ABdhPJy/HBKh7vqWy3cKV2MqICEFzucVlBEHlS1spVkJgYlN8jqsSaZxNrI/zs2h1pu1ULZfV84rwg==
-X-Received: by 2002:a05:6830:4028:: with SMTP id i8mr6664972ots.12.1633661179812;
-        Thu, 07 Oct 2021 19:46:19 -0700 (PDT)
+        bh=WCH/ZvRJ095r2piVpiKap3cip9CDgRowlgzYoYtODk4=;
+        b=77jS+fI1VaA16kMEJLcg6k44CjRGkXayFA5yQq869kdn98ACyLX0pdiL6RFi9Nne9I
+         2Qzo+J4xgaiGBuj/6rfBx5QMM/9lK0peE7sohdDNgNktw6U341JR+2v+Wriv3E9PT+99
+         9XOQBeRNkehFp0Urne/DYvXRER6ITY2vC+MfmsAlrVRNm4EOlubc3FURX4/QmSETROPW
+         xre53S0HhBMHJ4ypw9XEmtazQN3m2i0ambhawe5vOfAy8zeohky2wiWFAZ3x9Ym/5QuX
+         sqLblLDjV5SHCQg1MCKPVPHnYs4o3TLtToVtQXEzvMM3i3+5wlL5FdCzLT55JYJhWZX9
+         jZIg==
+X-Gm-Message-State: AOAM530a8+x84DnCvJdjlhz/o8p6efo97HfhfD4uq17KuRNiIptBtIky
+        igIvtlXIGj6T8OQYhoDdXw==
+X-Google-Smtp-Source: ABdhPJw8aJTGTodhqaaRkMnbiMqq4zA5AnxSIR1dPlLXmJWPLZqAbAhjdJcXjZcWpq2dhcYcnx7A1w==
+X-Received: by 2002:a05:6830:2781:: with SMTP id x1mr6391596otu.349.1633661176215;
+        Thu, 07 Oct 2021 19:46:16 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r25sm231482ooq.43.2021.10.07.19.46.18
+        by smtp.gmail.com with ESMTPSA id h91sm261506otb.38.2021.10.07.19.46.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 19:46:19 -0700 (PDT)
-Received: (nullmailer pid 1409596 invoked by uid 1000);
+        Thu, 07 Oct 2021 19:46:15 -0700 (PDT)
+Received: (nullmailer pid 1409598 invoked by uid 1000);
         Fri, 08 Oct 2021 02:46:12 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Simon Horman <horms+renesas@verge.net.au>,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        Suman Anna <s-anna@ti.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20211007124858.44011-4-tony@atomide.com>
-References: <20211007124858.44011-1-tony@atomide.com> <20211007124858.44011-4-tony@atomide.com>
-Subject: Re: [PATCH 3/3] dt-bindings: bus: ti-sysc: Update to use yaml binding
+To:     Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+In-Reply-To: <20211007130641.3589-1-Allen-KH.Cheng@mediatek.com>
+References: <20211007130641.3589-1-Allen-KH.Cheng@mediatek.com>
+Subject: Re: [PATCH] dt-bindings: mediatek: add adsp-mbox document
 Date:   Thu, 07 Oct 2021 21:46:12 -0500
-Message-Id: <1633661172.611522.1409595.nullmailer@robh.at.kernel.org>
+Message-Id: <1633661172.621831.1409597.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Oct 2021 15:48:58 +0300, Tony Lindgren wrote:
-> Update the binding for ti-sysc interconnect target module driver to yaml
-> format.
+On Thu, 07 Oct 2021 21:06:41 +0800, Allen-KH Cheng wrote:
+> This patch adds document for mediatek adsp mbox
 > 
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Suman Anna <s-anna@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
 > ---
->  .../devicetree/bindings/bus/ti-sysc.txt       | 139 ----------------
->  .../devicetree/bindings/bus/ti-sysc.yaml      | 150 ++++++++++++++++++
->  2 files changed, 150 insertions(+), 139 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/bus/ti-sysc.txt
->  create mode 100644 Documentation/devicetree/bindings/bus/ti-sysc.yaml
+>  .../bindings/mailbox/mtk,adsp-mbox.yaml       | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/bus/ti-sysc.yaml:36:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/bus/ti-sysc.yaml:55:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.example.dts:22.44-31.11: ERROR (node_name_format): /example-0/adsp_mailbox@adsp_mailbox@10816000: multiple '@' characters in node name
+ERROR: Input tree has errors, aborting (use -f to force output)
+make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.example.dt.yaml] Error 2
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1441: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1537683
+See https://patchwork.ozlabs.org/patch/1537694
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
