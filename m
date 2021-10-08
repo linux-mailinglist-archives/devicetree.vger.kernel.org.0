@@ -2,266 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55BA0426CE8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04107426D18
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:56:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242587AbhJHOqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 10:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50464 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241341AbhJHOqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:46:03 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B029FC061570
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 07:44:07 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id j21so22441552lfe.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 07:44:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FTJ2jzOfmc3TfTGxqKqcv2O3a+phTUEvAqWV0+MH2I8=;
-        b=s53m6uBMCKLVuMai6xOkjXRWzjdBLDWO9V6TCYwEVJt2137PhtrSymyhoMDNpkbBTN
-         dTkXP50Zihn4E6SNLs1NBxsimctK1QYxpfOVPuzNH/MjjM6cDlAhFZtgB/8IDdftxwku
-         5CUbrSpqPYl1GyJKo4VhKPUGQVBKubfvlReegWA+A7s3/v2CyUuaxeNs+GqZodeeJZgV
-         m84zRvKn33o1ImOZ8uW2+2o9/o52yr5WEicoFX16v/w4zSsw5LwfY2PXV52S0ceL5Y9v
-         zinQG5YgDeMEheB4ZV3tpNB1oQ3Iv6TLky7A5Nq7vC4bnBwQnXWN0LZm78hR4k5S6/ue
-         G7Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FTJ2jzOfmc3TfTGxqKqcv2O3a+phTUEvAqWV0+MH2I8=;
-        b=QCxcyZTVxFnO2gV8O2HE3zgM9jG7AVqgzh80HjS+hMhSegG/+3SXMTDBqhzReQ+q8w
-         cT6NB8Qw/ue15YKwgdtrwsSZ25O/Q9/1t1Z4saIMoNMX9uBcCwCj2oWRBHZ6kq1kDG33
-         Q7YJY4/TX4+wY1KnJrzRNnz4HhRvGBQw7MGrQ2rLrpzh+drwvOtsEvqLHG8obqL/cuaG
-         SUM1tF9V1GDQnIYDfdE9VyVHjRhhwAuso9DOnw0Bp67zs/dBm70QYatNaxjkp8mne1Sl
-         jgq/2D0FQpw/zt0Ra80o37965l0JzDnHC8Nnoosaaua4bCOzHQKCwyD8AZII2r60wgSB
-         i6rQ==
-X-Gm-Message-State: AOAM533Oi0OsMYlQYypUcw16PQvxGdJKTJ0hLuFaTN/oXxDjHbkIKaah
-        QBGGO2lYZe/UsTeIGZPIDS1Z+msBzJG4Q+LJ1oHlSw==
-X-Google-Smtp-Source: ABdhPJzO67ce7CZQmVwkFnv5byVeOw9GUdg20sd6cp27QaBH2EPeuuev9vaX1QT+7hshqASQHLuGWvTJLwml3zHz5tY=
-X-Received: by 2002:a19:6a16:: with SMTP id u22mr10587977lfu.254.1633704245995;
- Fri, 08 Oct 2021 07:44:05 -0700 (PDT)
+        id S237929AbhJHO6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 10:58:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53322 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232200AbhJHO6F (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 10:58:05 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9F2E260F6B;
+        Fri,  8 Oct 2021 14:56:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633704969;
+        bh=xujWQTXjYOhyZ2RyQwPqWI29++CG8GP7k2MyQXlnTRA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QnO2Y25mqhEpD2uis/RXDeVsXsxECW9fev1qYn0QbHdKuya2CJ/QcxDtZkFrRwdwI
+         JxXvrqkIFa6y6etq6KfGVY1mZ7zNyeGHgtQFehqs5iYIYCr2df9F66sge3IMMezQVZ
+         sI3rmk5bl2yHYnRU4Q/D9JxA18ftaldaiH+Fkj3Dzr2zw3rYDWpFo3F6eI7kWQpgYt
+         3JuPdTv670CEFjmr26aqreMOF+m3AHXLFn5LrHZXfAgdpVvH7t4IEqD9IcA0ch/YXJ
+         dZhV3ZU19ddAA4J1Yzb2Yov0zLDcg5agRHKnzj5TWgTk9awEr7TJL+wALCKqohk8zq
+         pyNWAE/2daNVQ==
+Received: by mail-ed1-f43.google.com with SMTP id y12so24413923eda.4;
+        Fri, 08 Oct 2021 07:56:09 -0700 (PDT)
+X-Gm-Message-State: AOAM5312VaIv+2/jYwQLaxQgYP9e6+SylYuQANKCFPEuqld8t0g9ykaT
+        SDqxZ5Z9XvpLj5519LcqChHEWWKeXYZpJU/qwg==
+X-Google-Smtp-Source: ABdhPJx3Y34GgHtBFp/5Jw7IJqKuehz0xBb3j7mhVfZO4jfZeudpUPDTGLYxF4PGpxhhTFHTvDVGL3iKsa0QZCK7oFA=
+X-Received: by 2002:a05:6402:143b:: with SMTP id c27mr16161354edx.224.1633704968209;
+ Fri, 08 Oct 2021 07:56:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210930065733.31943-1-tony@atomide.com> <20210930065733.31943-5-tony@atomide.com>
-In-Reply-To: <20210930065733.31943-5-tony@atomide.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 8 Oct 2021 16:43:29 +0200
-Message-ID: <CAPDyKFpybVPeYy-FsXnzDXNri+f7rhPmKa6vBF8NMUc3dQCZRw@mail.gmail.com>
-Subject: Re: [PATCH 4/5] mmc: sdhci-omap: Implement PM runtime functions
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Chunyan Zhang <zhang.chunyan@linaro.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        DTML <devicetree@vger.kernel.org>
+References: <20210930131850.21202-1-yongqiang.niu@mediatek.com>
+ <20210930131850.21202-2-yongqiang.niu@mediatek.com> <CAAOTY_82OaLAz0o6BUcogQ=xgYTsFJSov=J72UzMwwq3YtkPdg@mail.gmail.com>
+ <ffe2d4aaf4f884c4de2d2a157d08087cef3e6a0f.camel@mediatek.com>
+In-Reply-To: <ffe2d4aaf4f884c4de2d2a157d08087cef3e6a0f.camel@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Fri, 8 Oct 2021 22:55:57 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9xhga5yP7OVB6npPesTHc8UR3WydwOvY=Fvo-CCawxLg@mail.gmail.com>
+Message-ID: <CAAOTY_9xhga5yP7OVB6npPesTHc8UR3WydwOvY=Fvo-CCawxLg@mail.gmail.com>
+Subject: Re: [PATCH v2, 1/1] mailbox: cmdq: add instruction time-out interrupt support
+To:     "yongqiang.niu" <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Sept 2021 at 08:57, Tony Lindgren <tony@atomide.com> wrote:
->
-> Implement PM runtime functions and enable MMC_CAP_AGGRESSIVE_PM.
+Hi, Yongqiang:
 
-I suggest you split this change into two pieces. MMC_CAP_AGGRESSIVE_PM
-is about enabling runtime PM management for the eMMC/SD card device,
-which is perfectly fine to use independently of whether runtime PM is
-supported for the host device.
+yongqiang.niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B410=E6=9C=
+=888=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=889:49=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> On Tue, 2021-10-05 at 07:41 +0800, Chun-Kuang Hu wrote:
+> > Hi, Yongqiang:
+> >
+> > Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B49=E6=
+=9C=8830=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:18=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+> > >
+> > > add time-out cycle setting to make sure time-out interrupt irq
+> > > will happened when instruction time-out for wait and poll
+> > >
+> > > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > > ---
+> > >  drivers/mailbox/mtk-cmdq-mailbox.c | 11 +++++++++++
+> > >  1 file changed, 11 insertions(+)
+> > >
+> > > diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c
+> > > b/drivers/mailbox/mtk-cmdq-mailbox.c
+> > > index 64175a893312..197b03222f94 100644
+> > > --- a/drivers/mailbox/mtk-cmdq-mailbox.c
+> > > +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+> > > @@ -36,6 +36,7 @@
+> > >  #define CMDQ_THR_END_ADDR              0x24
+> > >  #define CMDQ_THR_WAIT_TOKEN            0x30
+> > >  #define CMDQ_THR_PRIORITY              0x40
+> > > +#define CMDQ_THR_INSTN_TIMEOUT_CYCLES  0x50
+> > >
+> > >  #define GCE_GCTL_VALUE                 0x48
+> > >
+> > > @@ -54,6 +55,15 @@
+> > >  #define CMDQ_JUMP_BY_OFFSET            0x10000000
+> > >  #define CMDQ_JUMP_BY_PA                        0x10000001
+> > >
+> > > +/*
+> > > + * instruction time-out
+> > > + * cycles to issue instruction time-out interrupt for wait and
+> > > poll instructions
+> > > + * GCE axi_clock 156MHz
+> > > + * 1 cycle =3D 6.41ns
+> > > + * instruction time out 2^22*2*6.41ns =3D 53ms
+> >
+> > For different clients, the timeout value would be different, and each
+> > client could use timer to detect timeout, so it's not necessary to
+> > enable timeout in cmdq driver.
+> >
+> > Regards,
+> > Chun-Kuang.
+>
+> if we do not set cmdq hardware timeout, this condition will never
+> happen
+> cmdq_thread_irq_handler
+> if (irq_flag & CMDQ_THR_IRQ_ERROR)
+>                 err =3D true;
+>
+> and no error callback
+> else if (err) {
+>                         cmdq_task_exec_done(task, -ENOEXEC);
+>                         cmdq_task_handle_error(curr_task);
+>                         kfree(task);
+>                 }
+> the client will never received the error callback, cmdq hardware will
+> poll the event for ever and no report timeout
 
->
-> Note that we save context in probe to avoid restoring invalid context
-> on the first resume. For system suspend, we have the new PM runtime
-> functions do most of the work.
->
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  drivers/mmc/host/sdhci-omap.c | 66 +++++++++++++++++++++++++++++------
->  1 file changed, 56 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/mmc/host/sdhci-omap.c b/drivers/mmc/host/sdhci-omap.c
-> --- a/drivers/mmc/host/sdhci-omap.c
-> +++ b/drivers/mmc/host/sdhci-omap.c
-> @@ -117,6 +117,9 @@ struct sdhci_omap_host {
->
->         struct pinctrl          *pinctrl;
->         struct pinctrl_state    **pinctrl_state;
-> +       unsigned long           context_valid:1;
-> +       unsigned long           is_runtime_suspended:1;
-> +       unsigned long           needs_resume:1;
->         bool                    is_tuning;
->
->         /* Offset for omap specific registers from base */
-> @@ -1207,6 +1210,8 @@ static const struct soc_device_attribute sdhci_omap_soc_devices[] = {
->         }
->  };
->
-> +static void sdhci_omap_context_save(struct sdhci_omap_host *omap_host);
-> +
->  static int sdhci_omap_probe(struct platform_device *pdev)
->  {
->         int ret;
-> @@ -1338,6 +1343,8 @@ static int sdhci_omap_probe(struct platform_device *pdev)
->         /* R1B responses is required to properly manage HW busy detection. */
->         mmc->caps |= MMC_CAP_NEED_RSP_BUSY;
->
-> +       mmc->caps |= MMC_CAP_AGGRESSIVE_PM;
-> +
->         ret = sdhci_setup_host(host);
->         if (ret)
->                 goto err_put_sync;
-> @@ -1350,6 +1357,11 @@ static int sdhci_omap_probe(struct platform_device *pdev)
->         if (ret)
->                 goto err_cleanup_host;
->
-> +       sdhci_omap_context_save(omap_host);
-> +       omap_host->context_valid = 1;
+I think there are two way to implement the timeout mechanism. The
+first way is to use the GCE hardware to detect timeout. The second way
+is that client driver use timer to detect timeout, when it's timeout,
+use mbox_flush() to clean up the packets in mtk cmdq driver, and
+remove the error handle in irq handler.
+If you think the first way is better, I think you should pass the
+timeout value from client driver to cmdq driver because each client
+driver has different timeout value. And the GCE clock may be different
+in each SoC, so use clk_get_rate() to get the clock frequency for
+different SoC.
 
-Looks like you can remove this flag, it's not being used.
+Regards,
+Chun-Kuang.
 
-> +
-> +       pm_runtime_put_sync(dev);
-
-I recommend to use the PM runtime autosuspend feature, as to avoid an
-initial latency for every I/O request to the host driver. The mmc core
-already supports that, see mmc_release_host().
-
-The typical default timeout value for autosuspend, is usually set
-~50-200ms, by host drivers (if I recall correctly).
-
-> +
->         return 0;
->
->  err_cleanup_host:
-> @@ -1371,6 +1383,7 @@ static int sdhci_omap_remove(struct platform_device *pdev)
->         struct device *dev = &pdev->dev;
->         struct sdhci_host *host = platform_get_drvdata(pdev);
->
-> +       pm_runtime_get_sync(dev);
->         sdhci_remove_host(host, true);
->         pm_runtime_put_sync(dev);
-
-There is no guarantee that this triggers a call to
-->sdhci_omap_runtime_suspend(), which I guess is what we want.
-Userspace via sysfs may have increase the RPM usage count
-(pm_runtime_forbid(), for example.
-
-To address this, I would call pm_runtime_disable() first and then
-explicitly put the device into low power state, rather than relying on
-runtime PM to do it. Another option could be to use
-pm_runtime_force_suspend().
-
->         pm_runtime_disable(dev);
-> @@ -1402,42 +1415,75 @@ static void sdhci_omap_context_restore(struct sdhci_omap_host *omap_host)
->         sdhci_omap_writel(omap_host, SDHCI_OMAP_ISE, omap_host->ise);
->  }
->
-> -static int __maybe_unused sdhci_omap_suspend(struct device *dev)
-> +static int __maybe_unused sdhci_omap_runtime_suspend(struct device *dev)
->  {
->         struct sdhci_host *host = dev_get_drvdata(dev);
->         struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->         struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
->
-> -       sdhci_suspend_host(host);
-> -
-
-Shouldn't you call sdhci_runtime_suspend_host() somewhere here?
-
->         sdhci_omap_context_save(omap_host);
->
->         pinctrl_pm_select_idle_state(dev);
->
-> -       pm_runtime_force_suspend(dev);
-> +       omap_host->is_runtime_suspended = 1;
->
->         return 0;
->  }
->
-> -static int __maybe_unused sdhci_omap_resume(struct device *dev)
-> +static int __maybe_unused sdhci_omap_runtime_resume(struct device *dev)
->  {
->         struct sdhci_host *host = dev_get_drvdata(dev);
->         struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->         struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
->
-> -       pm_runtime_force_resume(dev);
-> -
->         pinctrl_pm_select_default_state(dev);
->
-> -       sdhci_omap_context_restore(omap_host);
-> +       if (omap_host->context_valid)
-> +               sdhci_omap_context_restore(omap_host);
-> +
-> +       omap_host->is_runtime_suspended = 0;
-
-Shouldn't you call sdhci_runtime_resume_host() somewhere here?
-
-> +
-> +       return 0;
-> +}
-> +
-> +static int __maybe_unused sdhci_omap_suspend(struct device *dev)
-> +{
-> +       struct sdhci_host *host = dev_get_drvdata(dev);
-> +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +       struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
-> +
-> +       if (omap_host->is_runtime_suspended)
-> +               return 0;
-
-So if the host is already runtime suspended, it's okay to just leave it as is?
-
-In a way that sounds like you could call pm_runtime_force_suspend()
-instead, assuming the sdhci_omap_runtime_suspend() can be extended to
-do the right thing for system suspend as well.
-
-It looks a bit odd that sdhci_suspend_host() is called only when the
-host is runtime resumed. Perhaps you can elaborate a bit more on why
-this is, so I can understand better what you want to achieve here.
-
-> +
-> +       sdhci_suspend_host(host);
-> +       sdhci_omap_runtime_suspend(dev);
-> +       omap_host->needs_resume = 1;
->
-> +       return 0;
-> +}
-> +
-> +static int __maybe_unused sdhci_omap_resume(struct device *dev)
-> +{
-> +       struct sdhci_host *host = dev_get_drvdata(dev);
-> +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +       struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
-> +
-> +       if (!omap_host->needs_resume)
-> +               return 0;
-> +
-> +       sdhci_omap_runtime_resume(dev);
->         sdhci_resume_host(host);
-> +       omap_host->needs_resume = 0;
->
->         return 0;
->  }
->  #endif
-> -static SIMPLE_DEV_PM_OPS(sdhci_omap_dev_pm_ops, sdhci_omap_suspend,
-> -                        sdhci_omap_resume);
-> +
-> +static const struct dev_pm_ops sdhci_omap_dev_pm_ops = {
-> +       SET_RUNTIME_PM_OPS(sdhci_omap_runtime_suspend,
-> +                          sdhci_omap_runtime_resume, NULL)
-> +       SET_SYSTEM_SLEEP_PM_OPS(sdhci_omap_suspend, sdhci_omap_resume)
-> +};
->
->  static struct platform_driver sdhci_omap_driver = {
->         .probe = sdhci_omap_probe,
-> --
-> 2.33.0
-
-Kind regards
-Uffe
+> >
+> > > + */
+> > > +#define CMDQ_INSTN_TIMEOUT_CYCLES      22
+> > > +
+> > >  struct cmdq_thread {
+> > >         struct mbox_chan        *chan;
+> > >         void __iomem            *base;
+> > > @@ -376,6 +386,7 @@ static int cmdq_mbox_send_data(struct mbox_chan
+> > > *chan, void *data)
+> > >                 writel((task->pa_base + pkt->cmd_buf_size) >> cmdq-
+> > > >shift_pa,
+> > >                        thread->base + CMDQ_THR_END_ADDR);
+> > >
+> > > +               writel(CMDQ_INSTN_TIMEOUT_CYCLES, thread->base +
+> > > CMDQ_THR_INSTN_TIMEOUT_CYCLES);
+> > >                 writel(thread->priority, thread->base +
+> > > CMDQ_THR_PRIORITY);
+> > >                 writel(CMDQ_THR_IRQ_EN, thread->base +
+> > > CMDQ_THR_IRQ_ENABLE);
+> > >                 writel(CMDQ_THR_ENABLED, thread->base +
+> > > CMDQ_THR_ENABLE_TASK);
+> > > --
+> > > 2.25.1
+> > >
