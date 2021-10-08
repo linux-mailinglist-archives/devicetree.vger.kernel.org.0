@@ -2,253 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 414EA426EB5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 18:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A47E426F0D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 18:35:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239362AbhJHQZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 12:25:13 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:45577 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234375AbhJHQYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 12:24:51 -0400
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 6A702240013;
-        Fri,  8 Oct 2021 16:22:53 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        <linux-mtd@lists.infradead.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Xiangsheng Hou <Xiangsheng.Hou@mediatek.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, jaimeliao@mxic.com.tw,
-        juliensu@mxic.com.tw,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [RFC PATCH 10/10] spi: mxic: Add support for pipelined ECC operations
-Date:   Fri,  8 Oct 2021 18:22:28 +0200
-Message-Id: <20211008162228.1753083-11-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20211008162228.1753083-1-miquel.raynal@bootlin.com>
-References: <20211008162228.1753083-1-miquel.raynal@bootlin.com>
+        id S229606AbhJHQhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 12:37:17 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3951 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229525AbhJHQhR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 12:37:17 -0400
+Received: from fraeml708-chm.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4HQtxv0Sh4z67P67;
+        Sat,  9 Oct 2021 00:32:03 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml708-chm.china.huawei.com (10.206.15.36) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.8; Fri, 8 Oct 2021 18:35:19 +0200
+Received: from localhost (10.52.124.14) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.8; Fri, 8 Oct 2021
+ 17:35:18 +0100
+Date:   Fri, 8 Oct 2021 17:34:59 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     <andrei.drimbarean@analog.com>
+CC:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <fazilyildiran@gmail.com>,
+        <robh+dt@kernel.org>, <jic23@kernel.org>,
+        <Michael.Hennerich@analog.com>, <lars@metafoo.de>
+Subject: Re: [PATCH 1/2] dt-bindings: add adpd188 schema
+Message-ID: <20211008173459.00002242@Huawei.com>
+In-Reply-To: <20211008112747.79969-2-andrei.drimbarean@analog.com>
+References: <20211008112747.79969-1-andrei.drimbarean@analog.com>
+        <20211008112747.79969-2-andrei.drimbarean@analog.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.124.14]
+X-ClientProxiedBy: lhreml707-chm.china.huawei.com (10.201.108.56) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some SPI-NAND chips do not have a proper on-die ECC engine providing
-error correction/detection. This is particularly an issue on embedded
-devices with limited resources because all the computations must
-happen in software, unless an external hardware engine is provided.
+On Fri, 8 Oct 2021 14:27:46 +0300
+<andrei.drimbarean@analog.com> wrote:
 
-These external engines are new and can be of two categories: external
-or pipelined. Macronix is providing both, the former being already
-supported. The second, however, is very SoC implementation dependent
-and must be instantiated by the SPI host controller directly.
+> From: Andrei Drimbarean <andrei.drimbarean@analog.com>
+Hi Andrei
 
-An entire subsystem has been contributed to support these engines which
-makes the insertion into another subsystem such as SPI quite
-straightforward without the need for a lot of specific functions.
+Welcome to IIO!
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- drivers/spi/spi-mxic.c | 114 ++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 112 insertions(+), 2 deletions(-)
+Anyhow, now for review.  Comments inline.
 
-diff --git a/drivers/spi/spi-mxic.c b/drivers/spi/spi-mxic.c
-index e10c55ee4d06..9481d1685faf 100644
---- a/drivers/spi/spi-mxic.c
-+++ b/drivers/spi/spi-mxic.c
-@@ -12,6 +12,8 @@
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/module.h>
-+#include <linux/mtd/nand.h>
-+#include <linux/mtd/nand-ecc-mxic.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/spi/spi.h>
-@@ -167,6 +169,7 @@
- #define HW_TEST(x)		(0xe0 + ((x) * 4))
- 
- struct mxic_spi {
-+	struct device *dev;
- 	struct clk *ps_clk;
- 	struct clk *send_clk;
- 	struct clk *send_dly_clk;
-@@ -177,6 +180,10 @@ struct mxic_spi {
- 		dma_addr_t dma;
- 		size_t size;
- 	} linear;
-+	struct {
-+		struct nand_ecc_engine *engine;
-+		bool enabled;
-+	} ecc;
- };
- 
- static int mxic_spi_clk_enable(struct mxic_spi *mxic)
-@@ -369,6 +376,13 @@ static int mxic_spi_data_xfer(struct mxic_spi *mxic, const void *txbuf,
- 	return 0;
- }
- 
-+static struct mxic_ecc_engine *mxic_spi_to_ecc_engine(struct mxic_spi *mxic)
-+{
-+	struct nand_ecc_engine *ecc_engine = mxic->ecc.engine;
-+
-+	return ecc_engine->priv;
-+}
-+
- static ssize_t mxic_spi_mem_dirmap_read(struct spi_mem_dirmap_desc *desc,
- 					u64 offs, size_t len, void *buf)
- {
-@@ -391,7 +405,14 @@ static ssize_t mxic_spi_mem_dirmap_read(struct spi_mem_dirmap_desc *desc,
- 	len = min_t(size_t, len, mxic->linear.size);
- 	writel(len, mxic->regs + LRD_RANGE);
- 
--	memcpy_fromio(buf, mxic->linear.map, len);
-+	if (mxic->ecc.enabled) {
-+		ret = mxic_ecc_process_data(mxic_spi_to_ecc_engine(mxic),
-+					    mxic->linear.dma + offs);
-+		if (ret)
-+			return ret;
-+	} else {
-+		memcpy_fromio(buf, mxic->linear.map, len);
-+	}
- 
- 	writel(INT_LRD_DIS, mxic->regs + INT_STS);
- 	writel(0, mxic->regs + LRD_CTRL);
-@@ -427,7 +448,14 @@ static ssize_t mxic_spi_mem_dirmap_write(struct spi_mem_dirmap_desc *desc,
- 	len = min_t(size_t, len, mxic->linear.size);
- 	writel(len, mxic->regs + LWR_RANGE);
- 
--	memcpy_toio(mxic->linear.map, buf, len);
-+	if (mxic->ecc.enabled) {
-+		ret = mxic_ecc_process_data(mxic_spi_to_ecc_engine(mxic),
-+					    mxic->linear.dma + offs);
-+		if (ret)
-+			return ret;
-+	} else {
-+		memcpy_toio(mxic->linear.map, buf, len);
-+	}
- 
- 	writel(INT_LWR_DIS, mxic->regs + INT_STS);
- 	writel(0, mxic->regs + LWR_CTRL);
-@@ -595,6 +623,80 @@ static int mxic_spi_transfer_one(struct spi_master *master,
- 	return 0;
- }
- 
-+/* ECC wrapper */
-+static int mxic_spi_mem_ecc_init_ctx(struct nand_device *nand)
-+{
-+	struct nand_ecc_engine_ops *ops = mxic_ecc_get_pipelined_ops();
-+
-+	return ops->init_ctx(nand);
-+}
-+
-+static void mxic_spi_mem_ecc_cleanup_ctx(struct nand_device *nand)
-+{
-+	struct nand_ecc_engine_ops *ops = mxic_ecc_get_pipelined_ops();
-+
-+	ops->cleanup_ctx(nand);
-+}
-+
-+static struct mxic_spi *mxic_nand_to_spi(struct nand_device *nand)
-+{
-+	struct device *dev = nand->ecc.engine->dev;
-+	struct spi_master *master = dev_get_drvdata(dev);
-+	struct mxic_spi *mxic = spi_master_get_devdata(master);
-+
-+	return mxic;
-+}
-+
-+static int mxic_spi_mem_ecc_prepare_io_req(struct nand_device *nand,
-+					   struct nand_page_io_req *req)
-+{
-+	struct nand_ecc_engine_ops *ops = mxic_ecc_get_pipelined_ops();
-+	struct mxic_spi *mxic = mxic_nand_to_spi(nand);
-+
-+	mxic->ecc.enabled = (req->mode != MTD_OPS_RAW);
-+
-+	return ops->prepare_io_req(nand, req);
-+}
-+
-+static int mxic_spi_mem_ecc_finish_io_req(struct nand_device *nand,
-+					  struct nand_page_io_req *req)
-+{
-+	struct nand_ecc_engine_ops *ops = mxic_ecc_get_pipelined_ops();
-+	struct mxic_spi *mxic = mxic_nand_to_spi(nand);
-+
-+	mxic->ecc.enabled = false;
-+
-+	return ops->finish_io_req(nand, req);
-+}
-+
-+static struct nand_ecc_engine_ops mxic_spi_mem_ecc_engine_pipelined_ops = {
-+	.init_ctx = mxic_spi_mem_ecc_init_ctx,
-+	.cleanup_ctx = mxic_spi_mem_ecc_cleanup_ctx,
-+	.prepare_io_req = mxic_spi_mem_ecc_prepare_io_req,
-+	.finish_io_req = mxic_spi_mem_ecc_finish_io_req,
-+};
-+
-+static int mxic_spi_mem_ecc_probe(struct platform_device *pdev,
-+				  struct mxic_spi *mxic)
-+{
-+	struct nand_ecc_engine *ecceng;
-+
-+	if (!mxic_ecc_get_pipelined_ops())
-+		return -EOPNOTSUPP;
-+
-+	ecceng = devm_kzalloc(&pdev->dev, sizeof(*ecceng), GFP_KERNEL);
-+	if (!ecceng)
-+		return -ENOMEM;
-+
-+	ecceng->dev = &pdev->dev;
-+	ecceng->ops = &mxic_spi_mem_ecc_engine_pipelined_ops;
-+
-+	nand_ecc_register_on_host_hw_engine(ecceng);
-+	mxic->ecc.engine = ecceng;
-+
-+	return 0;
-+}
-+
- static int __maybe_unused mxic_spi_runtime_suspend(struct device *dev)
- {
- 	struct spi_master *master = dev_get_drvdata(dev);
-@@ -640,6 +742,7 @@ static int mxic_spi_probe(struct platform_device *pdev)
- 	platform_set_drvdata(pdev, master);
- 
- 	mxic = spi_master_get_devdata(master);
-+	mxic->dev = &pdev->dev;
- 
- 	master->dev.of_node = pdev->dev.of_node;
- 
-@@ -684,6 +787,10 @@ static int mxic_spi_probe(struct platform_device *pdev)
- 
- 	mxic_spi_hw_init(mxic);
- 
-+	ret = mxic_spi_mem_ecc_probe(pdev, mxic);
-+	if (ret)
-+		dev_warn(&pdev->dev, "SPI-mem ECC engine not available\n");
-+
- 	ret = spi_register_master(master);
- 	if (ret) {
- 		dev_err(&pdev->dev, "spi_register_master failed\n");
-@@ -696,8 +803,11 @@ static int mxic_spi_probe(struct platform_device *pdev)
- static int mxic_spi_remove(struct platform_device *pdev)
- {
- 	struct spi_master *master = platform_get_drvdata(pdev);
-+	struct mxic_spi *mxic = spi_master_get_devdata(master);
-+	struct nand_ecc_engine *ecc_engine = mxic->ecc.engine;
- 
- 	pm_runtime_disable(&pdev->dev);
-+	nand_ecc_unregister_on_host_hw_engine(ecc_engine);
- 	spi_unregister_master(master);
- 
- 	return 0;
--- 
-2.27.0
+All patches need a patch description.  For a binding it's normal to put
+a little bit about the device here.
+
+> 
+> Signed-off-by: Andrei Drimbarean <andrei.drimbarean@analog.com>
+> ---
+>  .../bindings/iio/light/adi,adpd188.yaml       | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/adi,adpd188.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/adi,adpd188.yaml b/Documentation/devicetree/bindings/iio/light/adi,adpd188.yaml
+> new file mode 100644
+> index 000000000000..3c08b0904803
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/light/adi,adpd188.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/light/adi,adpd188.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADPD188 device driver
+> +
+> +maintainers:
+> +  - Andrei Drimbarean <andrei.drimbarean@analog.com>
+> +
+> +description: |
+> +  Bindings for the Analog Devices ADPD188 device. 
+
+What sort of device is it?  Give us a little bit of detail.
+
+> The device support both SPI and I2C
+
+Please keep the line length under 80 characters when it doesn't hurt readability to do so.
+
+> +  interfaces. Datasheet can be found here:
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/adpd188bi.pdf
+
+Blank line after blocks such as here.
+
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adpd188
+> +
+> +  reg:
+> +    description: SPI chip select number or I2C slave address
+> +    maxItems: 1
+
+No real need to describe this as it's very standard.
+
+    reg: true;
+
+is probably enough info for this one.
+
+> +
+> +  interrupts:
+> +    description: IRQ line for the device or device chain
+
+Device chain? That's unusual enough that we should probably have
+some more detail somewhere in this binding on what that means.
+
+> +    maxItems: 1
+> +
+> +  spi-cpol: true
+> +
+> +  spi-cpha: true
+> +
+> +  spi-max-frequency:
+> +    maximum: 10000000
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  status:
+> +    const: 'okay'
+
+That should not be in a binding document. It's a general property so
+if we did list it, we would need it everywhere. It is also perfectly
+acceptable to have a status that says the device isn't present.
+
+> +
+> +  adi,no-of-devices:
+> +    description: Number of daisy-chained devices on an I2C bus
+> +      string
+
+More detail needed on this I think.
+Also a default (0 or 1 based?)
+
+> +    $ref: "http://devicetree.org/schemas/types.yaml#/definitions/uint8"
+
+Are there any power supplies that should be described somewhere here?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      status = "okay";
+> +
+> +      adpd188@64 {
+> +        compatible = "adi,adpd188";
+> +        reg = <0x64>;
+> +        interrupts = <9 1>;
+> +        interrupt-parent = <&gpio>;
+> +        adi,no-of-devices = <8>;
+> +      };
+> +    };
+> +
+> +additionalProperties: false
+additionalProperties belongs above the 'examples' block.
+
 
