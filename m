@@ -2,122 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A9C427115
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 20:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3335427128
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:04:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240396AbhJHTAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 15:00:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44444 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231459AbhJHTAG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 15:00:06 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E551D60FF2;
-        Fri,  8 Oct 2021 18:58:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633719490;
-        bh=vJva/HpoeUn+4gPZyR4WLzqjqQsUwQtyF3rf7Q6S3T4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CgXaABOb9gNGAOqRfRfFgwTItuF6RLY77H3NnriIqYe0Y3fyo8GYxxC9df98OFaYW
-         Jb14pYa7EVnXQSU9egbiOzjVbThsZK6povp/ugOQyUC9m6ZJJO5MN6eHFzLUzMRtrr
-         whX9r+3s8HoBewDftCu4lNRX4V382LoIQcB+V9/qJ9yyPlDaea6yRr0AeYGHW869Q3
-         h6UesZupaY86jn+QKVTYJvjDayKQdn23mMhV+OBQgk9pmv640aoHIE8fs2spitLgEn
-         wmAtveTJ3By2OG3Ku4Xlr04l3nWNx2wVGfhXQjDxtafjlQOaZnFbu4arBzJ9m7367n
-         ardhDAoiNsdsw==
-Received: by mail-ed1-f50.google.com with SMTP id d9so15993192edh.5;
-        Fri, 08 Oct 2021 11:58:10 -0700 (PDT)
-X-Gm-Message-State: AOAM533XkHzUX3Jm6evTo1xCP6RGO/ndpZXWDVyDFicpAZwFYKfPkwoj
-        B0m2xX2/VzbopI6jjacodqSjJ26ECWql/qAwCQ==
-X-Google-Smtp-Source: ABdhPJzBttaP056QfvNAp0LGKfTv4Wu68h8vKSUgvj7d/nrVSCz93oZHkNGlo6sQGYTgKEc0qcv31neoUntcj2P7MSM=
-X-Received: by 2002:a17:906:71d4:: with SMTP id i20mr6499269ejk.390.1633719489276;
- Fri, 08 Oct 2021 11:58:09 -0700 (PDT)
+        id S231459AbhJHTGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 15:06:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54434 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231388AbhJHTGb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 15:06:31 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A674DC061570
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 12:04:35 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id o15so6790725vsr.13
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 12:04:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=+PFG95vsWGuyHt4PcF9O/qQQtXb2/roNae5ZiPerc+I=;
+        b=Vg84jUhZ066KbwPCq09KSWKk5BMC/nESlSL+LvmOsd9WOTqV4fVqB6I1sVrBLn+BEY
+         Lr4BmXiMbxhqGcrcd6KQBJY9t78dmrCJ4nL4AtiEg6etmi8+yWMScE37Qar+/wVHsDAP
+         yB04phzc7eYq7KCmvPVMKkcgnl9G99lu63U74=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=+PFG95vsWGuyHt4PcF9O/qQQtXb2/roNae5ZiPerc+I=;
+        b=fcHiRxD+cP6ygitXYBVe8Cu7g1Hb0cwA30+Kg4ikfkkMG+Vuv3WnUuV5v98bNOWy+b
+         DrqURRPlXFKAe1Wpd+3zaCpoKggIET9nr5dzQs6IuP4EIW2g5/7A/L7vlVYAoAOdKZ9n
+         xVAF3DLNXzVTVlQrsnKmEkc1UveS7ANAHGyj4fq1Guslr739zMpN4kE3+R/Is2lBoSrz
+         fdYGlKQ+urUSBWLdlrqojFNjQ8lZQ9Ni4XYsdWOnlLE1B6jELwGwFFnLSpnYCHik/SKq
+         6OhKgNsSBXwLbqT0loydSm8sTU7PXBWIPv9vduLMFgWL5wikY7M01vcur3Kg7LCV+AM/
+         AJ3g==
+X-Gm-Message-State: AOAM530YOcwHJTjbCnyBb48e63xxjMcrBWdncaKVwzDROOFoPxFHF758
+        00BJc1fTWYfJuKkLSEG/faxtxTZFJsA1BA==
+X-Google-Smtp-Source: ABdhPJyp6Eo0xZNLPvmQ1bzgqCM/aJPjLfhKaoiQAxHcTe8bh/Pat7a7zADU4ltkrhQwXouSWYkt8Q==
+X-Received: by 2002:a05:6102:e54:: with SMTP id p20mr13205074vst.22.1633719874499;
+        Fri, 08 Oct 2021 12:04:34 -0700 (PDT)
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
+        by smtp.gmail.com with ESMTPSA id t64sm29300vke.24.2021.10.08.12.04.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Oct 2021 12:04:34 -0700 (PDT)
+Received: by mail-ua1-f50.google.com with SMTP id i15so3232282uap.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 12:04:34 -0700 (PDT)
+X-Received: by 2002:a25:db91:: with SMTP id g139mr5128084ybf.391.1633719553275;
+ Fri, 08 Oct 2021 11:59:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210920182114.339419-1-krzysztof.kozlowski@canonical.com>
- <20210920182114.339419-6-krzysztof.kozlowski@canonical.com>
- <YUzuyG3e7sHlMHAJ@robh.at.kernel.org> <8871dd77-f9f1-bf25-78ad-48f97efcf7d9@canonical.com>
-In-Reply-To: <8871dd77-f9f1-bf25-78ad-48f97efcf7d9@canonical.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 8 Oct 2021 13:57:57 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK4cku0XPgEL=xot67FjfApxLHUDAvbwV6-MvpG_M0aKg@mail.gmail.com>
-Message-ID: <CAL_JsqK4cku0XPgEL=xot67FjfApxLHUDAvbwV6-MvpG_M0aKg@mail.gmail.com>
-Subject: Re: [PATCH 6/6] dt-bindings: hwmon: jedec,jc42: add nxp,se97b
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jiri Kosina <trivial@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20211008140735.3290892-1-pan@semihalf.com> <20211008140735.3290892-2-pan@semihalf.com>
+In-Reply-To: <20211008140735.3290892-2-pan@semihalf.com>
+From:   Alexandru M Stan <amstan@chromium.org>
+Date:   Fri, 8 Oct 2021 11:58:37 -0700
+X-Gmail-Original-Message-ID: <CAHNYxRxuj_p-+zHCO9iEK3H7QrBAPy1Cx0tCh3ufRqYnK124qQ@mail.gmail.com>
+Message-ID: <CAHNYxRxuj_p-+zHCO9iEK3H7QrBAPy1Cx0tCh3ufRqYnK124qQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] dts: socfpga: Add Mercury+ AA1 devicetree
+To:     =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
+Cc:     arnd@arndb.de, Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>, dinguyen@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        upstream@semihalf.com, Marcin Wojtas <mw@semihalf.com>,
+        Konrad Adamczyk <ka@semihalf.com>,
+        Tomasz Nowicki <tn@semihalf.com>,
+        Jacek Majkowski <jam@semihalf.com>,
+        Joanna Brozek <jbrozek@antmicro.com>,
+        Mariusz Glebocki <mglebocki@antmicro.com>,
+        Tomasz Gorochowik <tgorochowik@antmicro.com>,
+        Maciej Mikunda <mmikunda@antmicro.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 24, 2021 at 1:57 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
+On Fri, Oct 8, 2021 at 7:08 AM Pawe=C5=82 Anikiel <pan@semihalf.com> wrote:
 >
-> On 23/09/2021 23:16, Rob Herring wrote:
-> > On Mon, Sep 20, 2021 at 08:21:14PM +0200, Krzysztof Kozlowski wrote:
-> >> Document bindings for NXP SE97B, a DDR memory module temperature sensor
-> >> with integrated SPD and EEPROM via Atmel's AT24 interface.
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml | 9 +++++++++
-> >>  1 file changed, 9 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
-> >> index a7bb4e3a1c46..0e49b3901161 100644
-> >> --- a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
-> >> +++ b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
-> >> @@ -10,6 +10,14 @@ maintainers:
-> >>    - Jean Delvare <jdelvare@suse.com>
-> >>    - Guenter Roeck <linux@roeck-us.net>
-> >>
-> >> +select:
-> >> +  properties:
-> >> +    compatible:
-> >> +      const: jedec,jc-42.4-temp
-> >> +
-> >> +  required:
-> >> +    - compatible
-> >> +
-> >
-> > Is this supposed to be in the last patch? And why is it needed?
+> Add support for the Mercury+ AA1 module for Arria 10 SoC FPGA.
 >
-> Yes, this is here on purpose because of nxp,se97b which is sensor with
-> at24-compatible EEPROM.
+> Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
+> Signed-off-by: Joanna Brozek <jbrozek@antmicro.com>
+> Signed-off-by: Mariusz Glebocki <mglebocki@antmicro.com>
+> Signed-off-by: Tomasz Gorochowik <tgorochowik@antmicro.com>
+> Signed-off-by: Maciej Mikunda <mmikunda@antmicro.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../boot/dts/socfpga_arria10_mercury_aa1.dts  | 112 ++++++++++++++++++
+>  2 files changed, 113 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
 >
-> arch/arm/boot/dts/at91-nattis-2-natte-2.dts:
-> 169         temp@18 {
-> 170                 compatible = "nxp,se97b", "jedec,jc-42.4-temp";
->
-> 171                 reg = <0x18>;
-> 172                 smbus-timeout-disable;
-> 173         };
-> 174
-> 175         eeprom@50 {
-> 176                 compatible = "nxp,se97b", "atmel,24c02";
-> 177                 reg = <0x50>;
-> 178                 pagesize = <16>;
->
-> Without the select, dtbs_check was complaining about the second node:
->
-> eeprom@50: compatible: 'oneOf' conditional failed, one must be fixed:
->         ['nxp,se97b', 'atmel,24c02'] is too long
->         Additional items are not allowed ('atmel,24c02' was unexpected)
->         'jedec,jc-42.4-temp' was expected
->         From schema:
-> /home/dev/linux/linux/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
->
-> eeprom@50: 'pagesize' does not match any of the regexes: 'pinctrl-[0-9]+'
->         From schema:
-> /home/dev/linux/linux/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 7e0934180724..0a7809eb3795 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1078,6 +1078,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) +=3D \
+>         socfpga_arria10_socdk_nand.dtb \
+>         socfpga_arria10_socdk_qspi.dtb \
+>         socfpga_arria10_socdk_sdmmc.dtb \
+> +       socfpga_arria10_mercury_aa1.dtb \
+>         socfpga_cyclone5_chameleon96.dtb \
+>         socfpga_cyclone5_mcvevk.dtb \
+>         socfpga_cyclone5_socdk.dtb \
+> diff --git a/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts b/arch/arm=
+/boot/dts/socfpga_arria10_mercury_aa1.dts
+> new file mode 100644
+> index 000000000000..2a3364b26361
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
+> @@ -0,0 +1,112 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/dts-v1/;
+> +
+> +#include "socfpga_arria10.dtsi"
+> +
+> +/ {
+> +
+> +       model =3D "Enclustra Mercury AA1";
+> +       compatible =3D "altr,socfpga-arria10", "altr,socfpga";
+> +
+> +       aliases {
+> +               ethernet0 =3D &gmac0;
+> +               serial1 =3D &uart1;
+> +               i2c0 =3D &i2c0;
+> +               i2c1 =3D &i2c1;
 
-If a dt only lists one of the vendor specific compatibles, it is going
-to pass as this schema won't be applied with this change. We won't get
-an undocumented compatible either because it is documented. I don't
-have a better suggestion other than listing everything but
-'nxp,se97b'. I don't think it is really worth do that, so:
+Yeah, this is fine now. I still would have added this in
+"socfpga_arria10.dtsi" instead. I don't think there's ever a case
+where these aliases wouldn't be wanted for any user of this chip.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> +       };
+> +
+> +       memory@0 {
+> +               name =3D "memory";
+> +               device_type =3D "memory";
+> +               reg =3D <0x0 0x80000000>; /* 2GB */
+> +       };
+> +
+> +       chosen {
+> +               stdout-path =3D "serial1:115200n8";
+> +       };
+> +};
+> +
+> +&eccmgr {
+> +       sdmmca-ecc@ff8c2c00 {
+> +               compatible =3D "altr,socfpga-sdmmc-ecc";
+> +               reg =3D <0xff8c2c00 0x400>;
+> +               altr,ecc-parent =3D <&mmc>;
+> +               interrupts =3D <15 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <47 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <16 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <48 IRQ_TYPE_LEVEL_HIGH>;
+> +       };
+> +};
+> +
+> +&gmac0 {
+> +       phy-mode =3D "rgmii";
+> +       phy-addr =3D <0xffffffff>; /* probe for phy addr */
+> +
+> +       max-frame-size =3D <3800>;
+> +       status =3D "okay";
+> +
+> +       phy-handle =3D <&phy3>;
+> +
+> +       mdio {
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <0>;
+> +               compatible =3D "snps,dwmac-mdio";
+> +               phy3: ethernet-phy@3 {
+> +                       txd0-skew-ps =3D <0>; /* -420ps */
+> +                       txd1-skew-ps =3D <0>; /* -420ps */
+> +                       txd2-skew-ps =3D <0>; /* -420ps */
+> +                       txd3-skew-ps =3D <0>; /* -420ps */
+> +                       rxd0-skew-ps =3D <420>; /* 0ps */
+> +                       rxd1-skew-ps =3D <420>; /* 0ps */
+> +                       rxd2-skew-ps =3D <420>; /* 0ps */
+> +                       rxd3-skew-ps =3D <420>; /* 0ps */
+> +                       txen-skew-ps =3D <0>; /* -420ps */
+> +                       txc-skew-ps =3D <1860>; /* 960ps */
+> +                       rxdv-skew-ps =3D <420>; /* 0ps */
+> +                       rxc-skew-ps =3D <1680>; /* 780ps */
+> +                       reg =3D <3>;
+> +               };
+> +       };
+> +};
+> +
+> +&gpio0 {
+> +       status =3D "okay";
+> +};
+> +
+> +&gpio1 {
+> +       status =3D "okay";
+> +};
+> +
+> +&gpio2 {
+> +       status =3D "okay";
+> +};
+> +
+> +&i2c1 {
+> +       status =3D "okay";
+> +       isl12022: isl12022@6f {
+> +               status =3D "okay";
+> +               compatible =3D "isil,isl12022";
+> +               reg =3D <0x6f>;
+> +       };
+> +};
+> +
+> +/* Following mappings are taken from arria10 socdk dts */
+> +&mmc {
+> +       status =3D "okay";
+> +       cap-sd-highspeed;
+> +       broken-cd;
+> +       bus-width =3D <4>;
+> +};
+> +
+> +&osc1 {
+> +       clock-frequency =3D <33330000>;
+> +};
+> +
+> +&uart1 {
+> +       status =3D "okay";
+> +};
+> +
+> +&usb0 {
+> +       status =3D "okay";
+> +       dr_mode =3D "host";
+> +};
+> --
+> 2.25.1
+>
+
+Hello Pawe=C5=82,
+Thank you for respinning.
+
+This looks good as a base to make the boards be able to boot. I'd be
+happy if it lands (even the v3 patch).
+Just a small nit about the location of the aliases.
+
+Reviewed-by: Alexandru M Stan <amstan@chromium.org>
+
+Thanks,
+Alexandru Stan
