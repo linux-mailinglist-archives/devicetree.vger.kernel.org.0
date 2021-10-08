@@ -2,144 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACAD1426CB8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B789426CCC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:33:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230287AbhJHO2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 10:28:19 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:3042 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S233970AbhJHO2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:28:16 -0400
-X-IronPort-AV: E=Sophos;i="5.85,357,1624287600"; 
-   d="scan'208";a="96399320"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 08 Oct 2021 23:26:20 +0900
-Received: from localhost.localdomain (unknown [10.226.92.11])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A4F094008C5D;
-        Fri,  8 Oct 2021 23:26:18 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 2/2] arm64: dts: renesas: rzg2l-smarc: Enable microSD on SMARC platform
-Date:   Fri,  8 Oct 2021 15:26:09 +0100
-Message-Id: <20211008142609.13985-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211008142609.13985-1-biju.das.jz@bp.renesas.com>
-References: <20211008142609.13985-1-biju.das.jz@bp.renesas.com>
+        id S238915AbhJHOfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 10:35:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48078 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240224AbhJHOfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:35:40 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EEEBC061570;
+        Fri,  8 Oct 2021 07:33:45 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id v25so30435644wra.2;
+        Fri, 08 Oct 2021 07:33:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=TShzTngLZi6o8lnvb+j8av9MVCWHAWUlT4LrbexAp60=;
+        b=pmchaDdegR3myZdKHZV3r9+KFJhoet23YZP2QFSc+6jYCKT3uv7L6TBBAi6uWLmT5m
+         XXKwRYEKBe8lA4O9pgTrItK1ChPJOsJzJE9Fo17lX6XSsYgo2qTYslmOcw1vKSz7ALoj
+         p6ETP6Z+kTmh5ILTnqOVUPuAm0yvHqjSZxaFZHllo1L87bHlZGQNpi5lHX2Zr+I5DqgS
+         /RsSS8/ghniGNVvYwacrxnIsEQG8Glh9YOd0JDZ+hSp+trU0gm26dfXUEITblhX5Fb7O
+         lHkgiCCP+YuzzL9iXkF+TAjdvB1/fy59kkFBHvNAZrmRKJcK2Cp6r5kbUMj+JRYQ601Z
+         m+Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=TShzTngLZi6o8lnvb+j8av9MVCWHAWUlT4LrbexAp60=;
+        b=QmBYjLpEbb5tSvqznGH8eujKxxrnrcVUaqyE6A4Bu4h2LXzeeULzRQfLG3kwsUFt51
+         u6Mno4TbDoJsZLB1eAjvnNFexAGeHKYWbi6Y6eD5hBzdMzID/dQs+p2XRXcfxTmGY/Ek
+         El0fv/dtel+0cl7Pk5IKZ4jcemngB9NStxbpmuSxqxMOH3if2ir81rOh31nZow3+U7WK
+         aVLw6TF2A5MhaGGm5WspWHTnBBXE97NQXUf/LKIrfIU3W6KVLFJJCVZw2PZfJHU7roFJ
+         TXU8jJNRKjCTqw2CW8sUBxSymbZtQzMlXSAV60uM6AcLXWCQljM+Rf+Lb3WVrVvomXfQ
+         oTgg==
+X-Gm-Message-State: AOAM533vyaOW9xEu/iCEgCll03tJDOyFcebEIRRgeMOoQpxsyhr6gU+S
+        kxYmB97zrc+dTvFiDquz0yU=
+X-Google-Smtp-Source: ABdhPJwAtIQy4fNzxj7d0iRIf29L54prs1Xgk5dkVhacrkjXhk4lwBP2+waVCVUbE0adQC7vmnygoA==
+X-Received: by 2002:adf:bb88:: with SMTP id q8mr4512891wrg.390.1633703623613;
+        Fri, 08 Oct 2021 07:33:43 -0700 (PDT)
+Received: from [192.168.2.177] ([206.204.146.29])
+        by smtp.gmail.com with ESMTPSA id y191sm13532166wmc.36.2021.10.08.07.33.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Oct 2021 07:33:43 -0700 (PDT)
+Message-ID: <0623e9d8-8b79-d163-0204-745809b0d0ba@gmail.com>
+Date:   Fri, 8 Oct 2021 16:33:41 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Add MT6589 Fairphone 1
+Content-Language: en-US
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-mediatek@lists.infradead.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Arnd Bergmann <arnd@arndb.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+References: <20211005202833.96526-1-luca@z3ntu.xyz>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20211005202833.96526-1-luca@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables microSD card slot connected to SDHI1 on RZ/G2L SMARC
-platform.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-This patch has dependency upon [1] and [2]
-[1] https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=559045
-[2] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20211006171605.6861-1-biju.das.jz@bp.renesas.com/
-v1->v2:
- * Used angular brackets for states
- * Removed extra space from power source
- * Fixed gpio-hog node name
----
- arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi | 62 ++++++++++++++++++++
- 1 file changed, 62 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-index a02784fab46a..d8b3d32dc6f5 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-@@ -70,6 +70,16 @@
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 	};
-+
-+	vccq_sdhi1: regulator-vccq-sdhi1 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "SDHI1 VccQ";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpios = <&pinctrl RZG2L_GPIO(39, 1) GPIO_ACTIVE_HIGH>;
-+		gpios-states = <1>;
-+		states = <3300000 1>, <1800000 0>;
-+	};
- };
- 
- &audio_clk1{
-@@ -199,6 +209,45 @@
- 			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
- 	};
- 
-+	sd1-pwr-en-hog {
-+		gpio-hog;
-+		gpios = <RZG2L_GPIO(39, 2) GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "sd1_pwr_en";
-+	};
-+
-+	sdhi1_pins: sd1 {
-+		sd1_data {
-+			pins = "SD1_DATA0", "SD1_DATA1", "SD1_DATA2", "SD1_DATA3";
-+			power-source = <3300>;
-+		};
-+
-+		sd1_ctrl {
-+			pins = "SD1_CLK", "SD1_CMD";
-+			power-source = <3300>;
-+		};
-+
-+		sd1_mux {
-+			pinmux = <RZG2L_PORT_PINMUX(19, 0, 1)>; /* SD1_CD */
-+		};
-+	};
-+
-+	sdhi1_pins_uhs: sd1_uhs {
-+		sd1_data_uhs {
-+			pins = "SD1_DATA0", "SD1_DATA1", "SD1_DATA2", "SD1_DATA3";
-+			power-source = <1800>;
-+		};
-+
-+		sd1_ctrl_uhs {
-+			pins = "SD1_CLK", "SD1_CMD";
-+			power-source = <1800>;
-+		};
-+
-+		sd1_mux_uhs {
-+			pinmux = <RZG2L_PORT_PINMUX(19, 0, 1)>; /* SD1_CD */
-+		};
-+	};
-+
- 	sound_clk_pins: sound_clk {
- 		pins = "AUDIO_CLK1", "AUDIO_CLK2";
- 		input-enable;
-@@ -229,6 +278,19 @@
- 	status = "okay";
- };
- 
-+&sdhi1 {
-+	pinctrl-0 = <&sdhi1_pins>;
-+	pinctrl-1 = <&sdhi1_pins_uhs>;
-+	pinctrl-names = "default", "state_uhs";
-+
-+	vmmc-supply = <&reg_3p3v>;
-+	vqmmc-supply = <&vccq_sdhi1>;
-+	bus-width = <4>;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+};
-+
- &ssi0 {
- 	pinctrl-0 = <&ssi0_pins>;
- 	pinctrl-names = "default";
--- 
-2.17.1
+On 05/10/2021 22:28, Luca Weiss wrote:
+> Add the compatible for Fairphone 1 smartphone with MT6589 SoC.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
 
+This patch is now applied to v5.15-next/dts32
+
+Thanks!
+
+>   Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 80a05f6fee85..0fa55497b96f 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -32,6 +32,7 @@ properties:
+>             - const: mediatek,mt6580
+>         - items:
+>             - enum:
+> +              - fairphone,fp1
+>                 - mundoreader,bq-aquaris5
+>             - const: mediatek,mt6589
+>         - items:
+> 
