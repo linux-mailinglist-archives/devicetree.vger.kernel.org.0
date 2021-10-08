@@ -2,105 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DFD3426D38
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 17:06:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 453F4426D5E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 17:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242883AbhJHPIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 11:08:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55572 "EHLO
+        id S242991AbhJHPRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 11:17:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242802AbhJHPIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 11:08:13 -0400
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6506FC061570
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 08:06:18 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id d11so10303976ilc.8
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 08:06:18 -0700 (PDT)
+        with ESMTP id S242975AbhJHPRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 11:17:37 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FCAFC061570;
+        Fri,  8 Oct 2021 08:15:41 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id u20-20020a9d7214000000b0054e170300adso12000980otj.13;
+        Fri, 08 Oct 2021 08:15:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Nq/azJeEGbD1WnrPK14hpQApbcUJf/IRdz5vFG4BSxE=;
-        b=J43F8mclugqMy9/dsjCSgtUqxG19MCEw1ACvISp4/ifSlkXNM+YeHzXrOtRwX9cs7D
-         wokVxxqJ9zM0NKA9G0kis3NrUTvjgIEvRtmQ8kjKvkXBFhqw10ZV9B9jg/PCuRWb1mxN
-         /BwNDPH8isKyUOTmZYz4NCf1JzIOzYcesPy4c=
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=WJZtpd7hD5b0KIWZpJjJa7jxf+MQ6RsIzxaFpnA4ezs=;
+        b=MPipi01MzNpqu9cR83Ny8yWH7iyiOoFD1u/FQmHC2oJALoRoOD7sDI3MbBYa2Bl0Qi
+         NMMlY9Hz5v1hV+hHgOVGPOpuaDJkjnFLLPuD+pzOTlnsApPz7nw+SGbnJSuoEfMlK/+n
+         fyiFRwWGBL8eBYMIa9ZSEB+nx54hT6/iMji7UaQPd/e15DIjtkzxcfuUFtt0viWu79mX
+         Bs2Q2TnBbOOhlMpwk0/d8ZjC/rQc4crEy92KVPAV+kcDprerk+ENbu3//r04bNRYwSyx
+         PPoxoOIZZ9VWLF2JFiygkNE2vQ9hyMBkwF0r1s0wqible8Ojf1zHAi3IrJJMAUD/taT8
+         NbQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Nq/azJeEGbD1WnrPK14hpQApbcUJf/IRdz5vFG4BSxE=;
-        b=v81W38n5pwOecubeR3K4MMb2hk+F5qibRpES/Y3d9YFDZLG1PY5ZcWw8PnrlmiUm0Q
-         knMPzHU1aHCCO0vwAZLstF8FXlGLF6Nsxas3/M5pQr4a5QuBGfDUZkBHzcAEhOxFGfpz
-         JcvSWGGofxqyj86X4BRAKxUwuC5IwrdSPmQxRp+oIxZAfraavXU5Nkb67wGQUS1n5NQG
-         E1L/bKdBrS8tJDRNvcVf7Eg9ISmDK41koSC5LPcEjDAT0J7ehcN9QYyAle1X9LNkWJpa
-         dP8LJ+TJbBeGVi93ZNMP8XUO2uTH/dIsVZHEiv3WKHsd/JZ+PAjAQ4s0nx0UyU8aNlDF
-         +Uwg==
-X-Gm-Message-State: AOAM530NKlJ/S1zVO1qAdQwyQf/fsZk/hyW6Nm5Ep2Z4U4xjkHn6ZLtT
-        yYreTHfA5UEZcNscxSBNoltZsA72sqA1PQ==
-X-Google-Smtp-Source: ABdhPJwcbtSC7wNnjrFsCJu2xPdrN0CDOhww7i2Js3V7YfjwaxYJh6Dz2GPybwizMo+WEpRLue7mcg==
-X-Received: by 2002:a05:6e02:12a3:: with SMTP id f3mr6309349ilr.54.1633705577484;
-        Fri, 08 Oct 2021 08:06:17 -0700 (PDT)
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com. [209.85.166.54])
-        by smtp.gmail.com with ESMTPSA id q17sm1081318iod.51.2021.10.08.08.06.15
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=WJZtpd7hD5b0KIWZpJjJa7jxf+MQ6RsIzxaFpnA4ezs=;
+        b=ixJg+P77gw9RI/0/ejl1o/uwXsThMnbn1Wpq3gNzmkrk2L6MsIRZqxqhiHBG1I5MZ0
+         kqtGDOJOs9Q8oGsBlGNxmfrUo6asPAlQbn7lkj+izQCKkA698ympjmLdeL6PHtYGWctH
+         XP+SXA9pHtCg82ewpc9FuG8C4Oc20Zvg7zTLoLjpBK7wqkxHyJsQad15jgC8AHeHfF8S
+         tHOa3qtRe0U/t2q0INwwXDiYq6QLd1w0WItIbbQzwSp0LXRiUnN4dyTvAcaMSGTchkBr
+         Ss7LBFuJuCL796JeXcv0Vc6zmLvVGYcbF2EjWkd9D8c3+AjoAsR1j71UFKKAcdHjOa/a
+         VTCg==
+X-Gm-Message-State: AOAM5303GQ4d1ywhYw/TUVLpKH4CVHFCYpNXkitar2z9wfN3ZD3GNyrG
+        XsHT+2p0CGkyUkkhNgnhLyy5z+8t27o=
+X-Google-Smtp-Source: ABdhPJwK+BKtP3uijn1ZOG8xG1T7/wQaK/AzHpA1IcEIEs8JsEJWyhJ5qR4cPagtWZIPZhY64Clbkg==
+X-Received: by 2002:a9d:313:: with SMTP id 19mr9366632otv.189.1633706140648;
+        Fri, 08 Oct 2021 08:15:40 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id i42sm617251ota.43.2021.10.08.08.15.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 08:06:16 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id q205so11068745iod.8
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 08:06:15 -0700 (PDT)
-X-Received: by 2002:a6b:6a0c:: with SMTP id x12mr7755781iog.177.1633705574549;
- Fri, 08 Oct 2021 08:06:14 -0700 (PDT)
+        Fri, 08 Oct 2021 08:15:40 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH 6/6] dt-bindings: hwmon: jedec,jc42: add nxp,se97b
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+        Jiri Kosina <trivial@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210920182114.339419-1-krzysztof.kozlowski@canonical.com>
+ <20210920182114.339419-6-krzysztof.kozlowski@canonical.com>
+ <YUzuyG3e7sHlMHAJ@robh.at.kernel.org>
+ <8871dd77-f9f1-bf25-78ad-48f97efcf7d9@canonical.com>
+ <20210924115152.GC2694238@roeck-us.net>
+ <2c19f216-6347-e253-7f09-54f2a69f1481@canonical.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <b8634536-c131-8ec6-bae7-ad76c0542529@roeck-us.net>
+Date:   Fri, 8 Oct 2021 08:15:37 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
- <20210929173343.v2.2.I6050ba184b24d887e92692a72ee3054d643d6091@changeid>
-In-Reply-To: <20210929173343.v2.2.I6050ba184b24d887e92692a72ee3054d643d6091@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 8 Oct 2021 08:06:01 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WkyYc7VGEuhafMFfTtc+kjYb2kO_R70bbss4kur6Dwbw@mail.gmail.com>
-Message-ID: <CAD=FV=WkyYc7VGEuhafMFfTtc+kjYb2kO_R70bbss4kur6Dwbw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: drm/bridge: ps8640: Add aux-bus child
-To:     Philip Chen <philipchen@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Balletbo i Serra <enric.balletbo@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <2c19f216-6347-e253-7f09-54f2a69f1481@canonical.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 10/8/21 1:00 AM, Krzysztof Kozlowski wrote:
+> On 24/09/2021 13:51, Guenter Roeck wrote:
+>> On Fri, Sep 24, 2021 at 08:57:44AM +0200, Krzysztof Kozlowski wrote:
+>>> On 23/09/2021 23:16, Rob Herring wrote:
+>>>> On Mon, Sep 20, 2021 at 08:21:14PM +0200, Krzysztof Kozlowski wrote:
+>>>>> Document bindings for NXP SE97B, a DDR memory module temperature sensor
+>>>>> with integrated SPD and EEPROM via Atmel's AT24 interface.
+>>>>>
+>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>>>>> ---
+>>>>>   Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml | 9 +++++++++
+>>>>>   1 file changed, 9 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
+>>>>> index a7bb4e3a1c46..0e49b3901161 100644
+>>>>> --- a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
+>>>>> @@ -10,6 +10,14 @@ maintainers:
+>>>>>     - Jean Delvare <jdelvare@suse.com>
+>>>>>     - Guenter Roeck <linux@roeck-us.net>
+>>>>>   
+>>>>> +select:
+>>>>> +  properties:
+>>>>> +    compatible:
+>>>>> +      const: jedec,jc-42.4-temp
+>>>>> +
+>>>>> +  required:
+>>>>> +    - compatible
+>>>>> +
+>>>>
+>>>> Is this supposed to be in the last patch? And why is it needed?
+>>>
+>>> Yes, this is here on purpose because of nxp,se97b which is sensor with
+>>> at24-compatible EEPROM.
+>>>
+>>> arch/arm/boot/dts/at91-nattis-2-natte-2.dts:
+>>> 169         temp@18 {
+>>> 170                 compatible = "nxp,se97b", "jedec,jc-42.4-temp";
+>>>
+>>> 171                 reg = <0x18>;
+>>> 172                 smbus-timeout-disable;
+>>> 173         };
+>>> 174
+>>> 175         eeprom@50 {
+>>> 176                 compatible = "nxp,se97b", "atmel,24c02";
+>>
+>> How would that be handled anyway ? Yes, the chip includes both a temperature
+>> sensor and an eeprom, but this node should most definitely not instantiate as
+>> temperature sensor.
+>>
+> 
+> I am not sure if I understand the problem you are mentioning. You have
+> two nods in DT, two different compatible sets and two difference
+> devices. One eeprom and other one a temperature sensor.
+> 
 
-On Wed, Sep 29, 2021 at 5:35 PM Philip Chen <philipchen@chromium.org> wrote:
->
-> dp-aux-bus.yaml says we can list an eDP panel as a child of
-> an eDP controller node to represent the fact that the panel
-> is connected to the controller's DP AUX bus.
->
-> Let's add it to the ps8640 bindings.
->
-> Signed-off-by: Philip Chen <philipchen@chromium.org>
-> ---
->
-> (no changes since v1)
->
->  .../bindings/display/bridge/ps8640.yaml       | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
+I didn't realize that the driver is supposed to bind to "jedec,jc-42.4-temp"
+and that "nxp,se97b" is really informational.
 
-Landed on drm-misc-next:
+Sorry for the confusion.
 
-e539a77e44c7 dt-bindings: drm/bridge: ps8640: Add aux-bus child
-
-Then v3 can contain just the dts bits which will eventually land in
-the Qualcomm tree.
-
--Doug
+Guenter
