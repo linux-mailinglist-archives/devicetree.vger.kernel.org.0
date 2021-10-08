@@ -2,124 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79883426259
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 04:12:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 059CF42626D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 04:23:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235172AbhJHCOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 22:14:51 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:41774 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbhJHCOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 22:14:50 -0400
-Received: from notapiano (unknown [IPv6:2806:105e:7:9ede::6])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 027D21F45416;
-        Fri,  8 Oct 2021 03:12:49 +0100 (BST)
-Date:   Thu, 7 Oct 2021 21:12:45 -0500
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Brian Masney <masneyb@onstation.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Russell King <linux@armlinux.org.uk>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, ~lkcamp/patches@lists.sr.ht,
-        =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@collabora.com>,
-        kernel@collabora.com
-Subject: Re: [PATCH v3 2/5] leds: Add driver for QCOM SPMI Flash LEDs
-Message-ID: <20211008021245.barkpi4fd4lakt36@notapiano>
-References: <20210803162641.1525980-1-nfraprado@collabora.com>
- <20210803162641.1525980-3-nfraprado@collabora.com>
- <b1060e9a-f78e-fbe9-bde3-2b4d89cbc73e@gmail.com>
- <20210824214515.ekjpvaymkgxltlzp@notapiano>
- <278ea1e8-8b21-457d-78d7-fbb32544fe0a@gmail.com>
+        id S234089AbhJHCZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 22:25:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44948 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229501AbhJHCZA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Oct 2021 22:25:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5EFDD6103C;
+        Fri,  8 Oct 2021 02:23:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633659785;
+        bh=vv1BjdqYFGtWCazSG8NawFHuPDrSlMXWmYEnP/7By6w=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=W2F3NAL2PNL4YfcB+pCHgbHTe0iP1tVFeDtvsB/Qn7kwC5aDjFqzJFXUUg8EiNBqu
+         62h60wb7G6UG05e84hJxcE6x3tcRDAW85PtWo9ELjXf6zSBUkT1toU5CtHx+hRI6j7
+         GgD+oYjYorJK6bLrEErM4o6H2iKOp0u928v5xyyyQXSkjmjJOENuumDOuWQTI7zTuR
+         ZJ+I1MNj7s3Gs4g+PHBFr/0FZcBIxoeZicM/geGgOnaW/D4zhIexJugXYDtSEu6eP+
+         qtQbvd/qFU5SqaMLqVwjBpe0Uyv88JUELURqe9YtMJRb4OEXKhGg/aFITA+Gzb2sKn
+         ZD8kr14Ny9VyQ==
+Date:   Thu, 7 Oct 2021 19:23:04 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net PATCH v2 01/15] drivers: net: phy: at803x: fix resume for
+ QCA8327 phy
+Message-ID: <20211007192304.7a9acabe@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211008002225.2426-2-ansuelsmth@gmail.com>
+References: <20211008002225.2426-1-ansuelsmth@gmail.com>
+        <20211008002225.2426-2-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <278ea1e8-8b21-457d-78d7-fbb32544fe0a@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacek,
-
-> > > > +static int qcom_flash_flcdev_strobe_set(struct led_classdev_flash *fled_cdev,
-> > > > +					bool state)
-> > > > +{
-> > > > +	struct qcom_flash_led *led = flcdev_to_led(fled_cdev);
-> > > > +	struct qcom_flash_device *leds_dev = led_to_leds_dev(led);
-> > > > +	unsigned int bright;
-> > > > +	unsigned int i;
-> > > > +	int rc;
-> > > > +
-> > > > +	/* Can't operate on flash if torch is on */
-> > > > +	if (leds_dev->torch_enabled)
-> > > > +		return -EBUSY;
-> > > > +
-> > > > +	mutex_lock(&leds_dev->lock);
-> > > > +	if (!state) {
-> > > > +		rc = qcom_flash_fled_off(led);
-> > > > +	} else {
-> > > > +		/*
-> > > > +		 * Turn off flash LEDs from previous strobe
-> > > > +		 */
-> > > > +		rc = qcom_flash_check_timedout(leds_dev);
-> > > > +		if (rc > 0) {
-> > > > +			for (i = 0; i < leds_dev->num_leds; i++) {
-> > > > +				rc = qcom_flash_fled_off(&leds_dev->leds[i]);
-> > > > +				if (rc)
-> > > > +					goto unlock;
-> > > > +			}
-> > > > +		} else if (rc < 0) {
-> > > > +			goto unlock;
-> > > > +		}
-> > > 
-> > > What if flash gets timed out after this check here? Why do you need to
-> > > call qcom_flash_fled_off() if it has already timed out?
-> > 
-> > The issue is that after the flash times out, the hardware is not ready for
-> > another strobe.
-> > 
-> > When I strobe LED0 for example, the STATUS register, 0x10, gets set to 0x08
-> > indicating the LED0 is on. After the timeout, it changes to 0x04. At that point
-> > if I try to strobe LED0 again, it doesn't work. When I turn the LED0 off (write
-> > 0x00 to either the ENABLE or STROBE register), the STATUS is reset to 0x00. Now
-> > I'm able to strobe the LED0 again.
-> > 
-> > I'm not sure if this is the normal behavior on other flash LED controllers, and
-> > maybe there's even some configuration of this PMIC that resets the LED status
-> > automatically after the strobe timeout, but I have not been able to do that. So
-> > that's why I reset the status manually everytime it's needed.
+On Fri,  8 Oct 2021 02:22:11 +0200 Ansuel Smith wrote:
+> From Documentation phy resume triggers phy reset and restart
+> auto-negotiation. Add a dedicated function to wait reset to finish as
+> it was notice a regression where port sometime are not reliable after a
+> suspend/resume session. The reset wait logic is copied from phy_poll_reset.
+> Add dedicated suspend function to use genphy_suspend only with QCA8337
+> phy and set only additional debug settings for QCA8327. With more test
+> it was reported that QCA8327 doesn't proprely support this mode and
+> using this cause the unreliability of the switch ports, especially the
+> malfunction of the port0.
 > 
-> My point was that the flash may time out after reading STATUS register
-> and before writing QCOM_FLASH_ADDR_LED_STROBE_CTRL.
-> You can't be 100% sure that you know the exact STATUS state just
-> a moment before strobing.
+> Fixes: 52a6cdbe43a3 ("net: phy: at803x: add resume/suspend function to qca83xx phy")
 
-That's true, but that scenario only happens if there's an ongoing flash strobe
-happening and userspace triggers another strobe. Is that a scenario that really
-needs to be taken care of, and if so, what would be the correct behavior? Does
-the timeout need to be reset for this new strobe, possibly using updated
-brightness and timeout values? (Currently none of this happens)
+Strange, checkpatch catches the wrong hash being used, but the
+verify_fixes script doesn't. Did you mean:
 
-The purpose of this check is not to know if an ongoing flash strobe has
-timed out, but rather to differentiate if the previous time the LED was strobed
-was as a flash (with timeout) or torch (no timeout), because the flash
-case needs an extra reset step that can be ommited in the torch case. For this
-purpose there's no race condition.
+Fixes: 15b9df4ece17 ("net: phy: at803x: add resume/suspend function to qca83xx phy")
 
-> 
-> To alleviate that I propose to avoid checking the status and always
-> calling qcom_flash_fled_off() before initiating a new strobe.
+Or is 52a6cdbe43a3 the correct commit hash? Same question for patch 2.
 
-Thanks,
-Nicolas
+
+The fixes have to be a _separate_ series.
