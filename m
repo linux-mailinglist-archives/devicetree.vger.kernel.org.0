@@ -2,89 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2476942656B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 09:50:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E77A3426579
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 09:55:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229987AbhJHHwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 03:52:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53870 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229839AbhJHHwL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 03:52:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 36BFD61029;
-        Fri,  8 Oct 2021 07:50:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633679416;
-        bh=5Dnw1Sn92vfiwdKQwnNNnTDwu84Q7fYoJ44GzEToAbA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=j+kPdrGm20cz+1Vp/TJ/jOwyJ5S0DWWrF6Xvw2vjv5AH5VPE+jGzT5kIOfW9FCu7p
-         1iMaMAC8xxLHk0vZfdjPDmyOqV4i43BgLm+Jz76UlO+TMl8JYKhIjGtCLuaV976TRQ
-         /3uLqYeOUUtUS1g0ekylMZYOq/oYgYQhYZsE3dYSfDgyAdJ/d4vi5N+Qdiv6A5sY+z
-         mOjGp6+NKWKO5dPqT0Nu0VjjeYc+Ry9juu+1c1PoNTAFlCDnkxHCpDG/ezkWavozKj
-         oGGnTun4HSl7MhKgwqj1LhA6Orf3mCgpeCLfTCNVHMLJ1eQ466akH9c9Vi3PtAfWFf
-         OEn3tmOhIm5iA==
-Received: by mail-pj1-f44.google.com with SMTP id q7-20020a17090a2e0700b001a01027dd88so5380245pjd.1;
-        Fri, 08 Oct 2021 00:50:16 -0700 (PDT)
-X-Gm-Message-State: AOAM5319p8Dh5mCN6dljT4BMy6hn7jiXnHBNlE9nN+qYqCtYvwRE0/Sz
-        GUJVQvWmBZJjurtgbRaP6142wy4vCZVcSkUyYAA=
-X-Google-Smtp-Source: ABdhPJwJJdHSMEVTR8H83olSVUxlwjiGbt5wjQLfT8kTPM/V6x19UEn+nSFiRarZ7i5SjGmfdmZxAa28ARGqAhsUBL8=
-X-Received: by 2002:a17:902:a3c1:b0:13a:47a:1c5a with SMTP id
- q1-20020a170902a3c100b0013a047a1c5amr8199445plb.13.1633679415867; Fri, 08 Oct
- 2021 00:50:15 -0700 (PDT)
+        id S229693AbhJHH5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 03:57:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41266 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233058AbhJHH5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 03:57:36 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD38C061570
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 00:55:41 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id i84so19124247ybc.12
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 00:55:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=/dSKlCdv8X6cU/mR7hHjG9NUiVwclsiBP+J9jqavOUA=;
+        b=HfGEqFouv1qARxHVtxvs8QteX05YBAPNvfT80S5rO+/slKCSBsDpuHjY2soO7iNf0/
+         vicrgWhDfmP789poCCzn56okNdvEMB35f0mNlwN4s+24S9KaaiwxZSTnmpcnQI9UQgMX
+         jBvpEGM5+kkSg04UEdn+MRhGjCDJIfzF7aR8OdUO1GPy9Xpwigx2ML5SLMIOFFy78txP
+         WkOzvFhUbS9boTs259IJ4frUrZbSdd04zZyTuJsJCvdGnuoFHia1OnTP7kfxCC2SYVi0
+         O4ECLq4IdMwHSdsiXhCekb2KGB9dfXIjb7ZmlHieLja/tJfKKD5C9qhWPVyQhLcaY9Mw
+         8OwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=/dSKlCdv8X6cU/mR7hHjG9NUiVwclsiBP+J9jqavOUA=;
+        b=yWAIkyDA7jh/5PFJVOszDo685lfoVOoh5JK/AFllLWxo0hukZxllymaEyHOSYotxyo
+         I3QFIMfijoHZC6GKkEJp6vhGE07y/Diof/8enCBChJuKaA0qoWG799sAmHuWpFwvQ68e
+         J1QJe9XRkDtp47iB+LWEPK7RWauNkUpG1Pql446HauQPhAdovSz64PtweOP3BpfQbr3/
+         BUhYnOHfqVS6oj8SVa9qSJDHpAXlBfgbsZg5qLvFKd4MQkkE31zxH5IxdLdfM1/3/3h+
+         jOrTimLwum9bDk56NrTe+Kj+plqwTdC1i2VyTCMWgag5Jf6ZAHws7zvLS76DscmRJHhk
+         Q+hA==
+X-Gm-Message-State: AOAM533Tdigo5btprw4V15wtADQvhUwsBfhqYSsR9scC2uyar0zNz1z0
+        u23rGiCpEUe9wKv0SGZuVQS4l5IkkbZ4Lt7HSAE=
+X-Google-Smtp-Source: ABdhPJxM/KUnkCsBQoyIkaY1Sn1UGH5Rz+aXwrLpvw56vSbEHXTP41f+pzpcv9fNQpViodeyuNzdSRn+FyLgpE7DbZc=
+X-Received: by 2002:a25:45c6:: with SMTP id s189mr1745321yba.290.1633679740663;
+ Fri, 08 Oct 2021 00:55:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211005155923.173399-1-marcan@marcan.st> <20211005155923.173399-3-marcan@marcan.st>
- <CAL_JsqJenHAOw4gApzGpuj-8nZjkYhmBg0qBj-DV+CEJ7zXuVw@mail.gmail.com>
- <f95f6d61-8809-e668-0458-453a8dfbe641@marcan.st> <b5b25e17-d98b-d447-f917-4d728f52a6ff@marcan.st>
-In-Reply-To: <b5b25e17-d98b-d447-f917-4d728f52a6ff@marcan.st>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Fri, 8 Oct 2021 09:50:03 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfp7oMJ+moizqgXyS7LbPajY-_vbXFX6+5PFrcpUFy2nA@mail.gmail.com>
-Message-ID: <CAJKOXPfp7oMJ+moizqgXyS7LbPajY-_vbXFX6+5PFrcpUFy2nA@mail.gmail.com>
-Subject: Re: [PATCH 2/7] dt-bindings: power: Add apple,pmgr-pwrstate binding
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Reply-To: evelynbintaa01@gmail.com
+Sender: edwarradwillie@gmail.com
+Received: by 2002:a05:7110:3314:b0:fa:5085:1bc7 with HTTP; Fri, 8 Oct 2021
+ 00:55:40 -0700 (PDT)
+From:   Evelyn Binta <evelynbintaa01@gmail.com>
+Date:   Fri, 8 Oct 2021 07:55:40 +0000
+X-Google-Sender-Auth: oAGn5JbCJUmrs3Q0H4K90qi7Th4
+Message-ID: <CAONuF4PMr8ZH0Ejyw52qTVM=2UwP5fUUgtNhVcMO+RjenUdkww@mail.gmail.com>
+Subject: My Dear, I Need Your Urgent Help
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Oct 2021 at 17:56, Hector Martin <marcan@marcan.st> wrote:
->
-> On 07/10/2021 00.52, Hector Martin wrote:
-> > I realize this is all kind of "not the way things are usually done", but
-> > I don't want to pass up on the opportunity to have one driver last us
-> > multiple SoCs if we have the chance, and it's looking like it should :-)
->
-> Addendum: just found some prior art for this. See power/pd-samsung.yaml,
-> which is another single-PD binding (though in that case they put them in
-> the SoC node directly, not under a syscon).
+My Dear, Please do not be surprised to my message, i desperately need
+your friendly assistance there in your country. I am making
+preparations to relocate with my children there and i have some
+capital which i wanted to invest there to be able to take care of my
+kids and i want you by my side to plan the investment and decide the
+best city for us to reside by indicating your interest i will send you
+the full details on how the business will be executed. I will be
+waiting for your urgent response.
 
-Maybe the design is actually similar. In the Exynos there is a entire
-subblock managing power - called Power Management Unit (PMU). It
-controls most of power-related parts, except clock gating. For example
-it covers registers related to entering deep-sleep modes or power
-domains. However we split this into two:
-1. Actual PMU driver which controls system-level power (and provides
-syscon for other drivers needing to poke its registers... eh, life).
-2. Power domain driver which binds multiple devices to a small address
-spaces (three registers) inside PMU address space.
-
-The address spaces above overlap, so the (1) PMU driver takes for
-example 1004_0000 - 1004_5000 and power domain devices bind to e.g.
-1004_4000, 1004_4020, 1004_4040.
-
-Best regards,
-Krzysztof
+Mrs.Evelyn
