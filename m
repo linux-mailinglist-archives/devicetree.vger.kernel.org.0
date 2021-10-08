@@ -2,100 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5123B4261FA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 03:25:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C5A0426208
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 03:29:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241580AbhJHB1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 21:27:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38916 "EHLO
+        id S231618AbhJHBbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 21:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242269AbhJHB1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 21:27:46 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BBB0C0617AB
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 18:25:46 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id r19so30681970lfe.10
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 18:25:46 -0700 (PDT)
+        with ESMTP id S230234AbhJHBbM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 21:31:12 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1164CC061755
+        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 18:29:18 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id s11so1547653pgr.11
+        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 18:29:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KFilYJCf+KpWxQtdiRPdV9UvPSg+EjF5wR3x+/r1PaM=;
-        b=b8Kp3IwxAUvtNck1lwmE1eCa2D0sGIsH53MbErRUDrC2x71IDEeSO3vr05y1QVRK4N
-         XakZEvxTVTCJoW6tMZBIYBX/OG+JhezlK5lWV5NOdoQHGX0+rTsfhWvBNBnaVCuW9AyW
-         Zz7ecnwkpFi50/0o52sev5frAGtUqJVwgnOltDFcGy8uO1SJyMd4kfeG1+IcmeaP7Umw
-         XGa+so+3NFhLAaR8YhR6IxjuVSBBRKOw6zjWJnPgHtdJ5cIqNZJLYcPv0WZprgJAD6R5
-         +6R0XY03fdtOtAGn7S0VZZBkahD0uahB29LjDZlkHKfMFmERBxl4Zx4rsrZ8IpToiGg9
-         5MHg==
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WtHRg9pE0seuBB0ZG+GOfqW0Lt5umZXuKqLtBMykH80=;
+        b=Py38WVG6evZxTgbhtQhoj3yPWvrjQoA0BU1h9uNK/hr9cl8RFxQWrKLw34xpnThEG0
+         klI6GH7xt/dyjOl6vKJ/+uqNoFRQR5VTBhfce7zL1CDLMYkkRxn7vKyJ5G2OarXIonGN
+         SrMTwr87YxIkSK4U4VGIDb71ve5wWtv+axm0rWWkoKWR9BHWRH7s+t5TSM1igiXofeZf
+         8ECbHfYgLFSW2Hfkj+oN3qycwBORzeS0lX1ZCp62xxNkBqA81K/nfF9c6WEdlRwp9iJh
+         gsrCmt3+SVk4BlntQ1rjigO5ZiyDUCTj1MwehB5lPZvAzDzuWHJyTY3iuVQwmKVRpSff
+         UGGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KFilYJCf+KpWxQtdiRPdV9UvPSg+EjF5wR3x+/r1PaM=;
-        b=FjSCW34gOLNF/aHwfNfIR98b+r2NUjNeF6008sSJ0yn2aDWhSQKvSKEETyUK15TuCQ
-         w1i4iiP1LzzppNwwp1R1hUfTP6wZx7DHeIPexcMxYFh7uwIeIqyDSAa6Ds+VXAeK368g
-         +aVLDSIViwxiDbONTIHeyiCKjAq6wuGGJ7m1qvd+GgztO5VIQV3XMq7JSx8LrB3+Vrp4
-         EmpJHJk8EbN6iRmWBAOYKOAV2/LhK9F5fLhiO2PBZdheE9ppxtmCGGNUaMaukpna7WhP
-         +6YzD/ePA5bwokYcCJOcuhyxuqMqLA6Jdgqro2ckSNoPuU3ovE0dg2hZ2PcWTDWdRR9l
-         qkuA==
-X-Gm-Message-State: AOAM530WItTFYzTVMvyYtqVvAUyK6z8YdjEONL2VPAEVIcvxQgc1jGzX
-        s9dmP5eXvqP4wRpTQQRTc0AHXQ==
-X-Google-Smtp-Source: ABdhPJxOJu2O2CcCiy90VFNaP0Nc8PeIaVHfboDJZJSdT8OBJFAdj/N6EY6pIN9ZkS0YixLqBwRILA==
-X-Received: by 2002:a2e:5702:: with SMTP id l2mr373823ljb.370.1633656344600;
-        Thu, 07 Oct 2021 18:25:44 -0700 (PDT)
-Received: from umbar.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s4sm112875ljp.115.2021.10.07.18.25.43
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=WtHRg9pE0seuBB0ZG+GOfqW0Lt5umZXuKqLtBMykH80=;
+        b=PpEDuafE24yGPs/zXnACIphVfPqCn7IVNVIlkqAK3ZKtDdO4DayJz5FgvTCZA3XHCu
+         4ywZgigUwUl3JcQgkQFJ6leNMPkfSUMnqKjZGNXZ4tUih8mPIKcYeFpl0zkioylvDiYE
+         4jTzXeL4Gk2+ib7TkDGgAcG/LFUnEClRvKNPMB+od1S3locwbwD08kEiakuCRQviqPjd
+         fr92PIqwqmRcmwIXO8pCPLqDlgaitkMUPlDJkIwnMorr1mmYGXOGXxJS6SVxAATtG6Xp
+         H9f9SuDvYKM415owEuxR2P7lUtOo6VKlt62kiN4dCcXk7zQH5FhjOU9u9qINRaQE1c2z
+         oV9A==
+X-Gm-Message-State: AOAM531N35GKdUpO+Y0C9hP/tnsPb+jSRSXGge/Qa6Ggtue7vcpRj1e0
+        piQuNz4H88Mqy1WPxoU/F+fgkQ==
+X-Google-Smtp-Source: ABdhPJxKIyBEk/ExdyYLGRv9pO7zazoYAulMHHBsViB3AH1uRol820KvNN1onfoc9AFMNMN5/tyBjA==
+X-Received: by 2002:a63:e64a:: with SMTP id p10mr2349033pgj.263.1633656557550;
+        Thu, 07 Oct 2021 18:29:17 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id g10sm582784pfv.109.2021.10.07.18.29.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 18:25:44 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v3 25/25] arm64: dts: qcom: pm8994: add interrupt controller properties
-Date:   Fri,  8 Oct 2021 04:25:24 +0300
-Message-Id: <20211008012524.481877-26-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211008012524.481877-1-dmitry.baryshkov@linaro.org>
-References: <20211008012524.481877-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
+        Thu, 07 Oct 2021 18:29:17 -0700 (PDT)
+Date:   Thu, 07 Oct 2021 18:29:17 -0700 (PDT)
+X-Google-Original-Date: Thu, 07 Oct 2021 18:28:59 PDT (-0700)
+Subject:     Re: [PATCH] dt-bindings: clock: fu740-prci: add reset-cells
+In-Reply-To: <YUyydGrDNzISu6JX@robh.at.kernel.org>
+CC:     krzysztof.kozlowski@canonical.com, zong.li@sifive.com,
+        aou@eecs.berkeley.edu, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        mturquette@baylibre.com, Paul Walmsley <paul.walmsley@sifive.com>,
+        sboyd@kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     krzysztof.kozlowski@canonical.com, robh@kernel.org
+Message-ID: <mhng-b9e6d8f9-b9be-4651-9649-3378d227eae1@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that the pmic-mpp is a proper hierarchical IRQ chip, add interrupt
-controller properties ('interrupt-controller' and '#interrupt-cells').
-The interrupts property is no longer needed so remove it.
+On Thu, 23 Sep 2021 09:59:32 PDT (-0700), robh@kernel.org wrote:
+> On Mon, 20 Sep 2021 16:49:44 +0200, Krzysztof Kozlowski wrote:
+>> The SiFive FU740 Power Reset Clock Interrupt Controller is a reset line
+>> provider so add respective reset-cells property to fix:
+>>
+>>   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml: clock-controller@10000000:
+>>     '#reset-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> ---
+>>  .../devicetree/bindings/clock/sifive/fu740-prci.yaml          | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/pm8994.dtsi | 10 ++--------
- 1 file changed, 2 insertions(+), 8 deletions(-)
+Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8994.dtsi b/arch/arm64/boot/dts/qcom/pm8994.dtsi
-index 88a9d19b60ac..5ab46117d737 100644
---- a/arch/arm64/boot/dts/qcom/pm8994.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8994.dtsi
-@@ -124,14 +124,8 @@ pm8994_mpps: mpps@a000 {
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&pm8994_mpps 0 0 8>;
--			interrupts = <0 0xa0 0 IRQ_TYPE_NONE>,
--				     <0 0xa1 0 IRQ_TYPE_NONE>,
--				     <0 0xa2 0 IRQ_TYPE_NONE>,
--				     <0 0xa3 0 IRQ_TYPE_NONE>,
--				     <0 0xa4 0 IRQ_TYPE_NONE>,
--				     <0 0xa5 0 IRQ_TYPE_NONE>,
--				     <0 0xa6 0 IRQ_TYPE_NONE>,
--				     <0 0xa7 0 IRQ_TYPE_NONE>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 		};
- 	};
- 
--- 
-2.30.2
+For some reason I thought these went through your tree, LMK if you were 
+planning on having me take it through mine.
 
+Thanks!
