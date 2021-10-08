@@ -2,205 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 371E2426DCB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 17:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D244426DF2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 17:44:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243100AbhJHPpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 11:45:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35732 "EHLO
+        id S243294AbhJHPqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 11:46:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243459AbhJHPot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 11:44:49 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8668FC06177B
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 08:42:51 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id na16-20020a17090b4c1000b0019f5bb661f9so8156624pjb.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 08:42:51 -0700 (PDT)
+        with ESMTP id S243220AbhJHPpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 11:45:52 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 504A7C061762
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 08:43:57 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id d9so14090433edh.5
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 08:43:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=M+x5MOER261MbUl0OssjbNlVFcMcQKLgCQodPM213LU=;
-        b=uBYvelRobKTfrDeV3HYp85ouWk4dpJoJmi8LRMKm+v4WEZNLzrwNNM2uwITNlZqyKx
-         9nJhun35xgulMrcjVdIEaHTDcA6P22Gece914rSouoUkTYTSEKLL2P+V98A9JV9E962r
-         IsDpEyl+2igx9kfpAhTABuj7LhFNsTGJsrrxJtTVWmVJ2ZevVjhz22U+O64OfD5CfphV
-         c5CX28NOkKW372SSjJxpdxw214uXsaHMC2ihgyIp9YFkw38//zvzZKYVDeDZUqwjgX2F
-         xJ/DX9HGQSNuaCxBEUTter4ka5UkKjCgKjngvw9qIZfk/MtJORNHZksNkarVYzruX5NE
-         ZChg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J0QKzYHFcrWp6rGHQjbwElQWpCaDdhPkqu3ZduPHKAU=;
+        b=cdOhmqR6khu1y2lHUV5QBLHq3uWr3E0vo1geqNyGg7+YmMK8at0VppYJdqpsLigdJv
+         /8MT5TKPRDVAarSgs7Ayvbg5oWE/0vRL87moLh2BditqD1nRnNFY/9Xe4GF7y+sv27Rk
+         vplmSIb76doL3Bg97EEOMiPqHsEeu5FxiExg0Ti6MdWRrCqHrCJojrqh0AEUsFRW2XjO
+         HbDbLOtwpep7CIwIJbfKQKg3S8NZ2uajbJOOAsDqn+QxMRfH1XGUdbQ9ggPNHc6zzUZ5
+         nRffWnxA8PHgr3nHVCtdXvZbrTjDvcVqKQrb565lul+n9/6F0sae7IsqTTK0S2vo0gvY
+         xJ2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=M+x5MOER261MbUl0OssjbNlVFcMcQKLgCQodPM213LU=;
-        b=XItyLWOatVcsQkAvaN2UwVX2Gnixku4IljujfOcpwSnuLg4934jyQZuXluBdYeKtAf
-         jB0UajAKcR6eOQ30dOY0SsICPRojWHRGqbxU5MCQsbQpzq5YXwVWo3Z9htNSc/szHaka
-         XwBZkyZGxWVpOwIkHjKhHRCOOUqJK3slXXsdKa0r+c9QWIgaS2U1laMVqmFNc8XKD482
-         4ECheB+p0rr7jhAY8EHA/KxssXeciXNY/no6+sbvSSM2bdTLNwDnmZx05ewQZIY7TFqh
-         UKmdYgzFRHQ9pJUACqTRQAgfkGT1DCfaKk0uRwWsHfPXihA+v+qA2aSNV7EUkyv7BuTC
-         F52A==
-X-Gm-Message-State: AOAM532/uO0sqfLiGOc/rFJmpbH0mJ2LTvvaIsMJZmlzNhtRA9ZIptah
-        WLTf1DdzlQp9tKoWwP7QrYdNHw==
-X-Google-Smtp-Source: ABdhPJy6lAXGCc3KLUKlrLv5Ow61pYCX9c+ztKIVvvukaQ2lF377BooN5dvvWlHZzOw9nftYOjNkgw==
-X-Received: by 2002:a17:90a:c68b:: with SMTP id n11mr13173254pjt.90.1633707770960;
-        Fri, 08 Oct 2021 08:42:50 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id 130sm3110371pfy.209.2021.10.08.08.42.49
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J0QKzYHFcrWp6rGHQjbwElQWpCaDdhPkqu3ZduPHKAU=;
+        b=s+8kwJkFyywPD2Syh+skKoaFEKAkthiO2DGyGAM1OVuGnVUZGPBzqmVedADnkK54Wp
+         x53Rdso6dNmPZjnsHRX0rTVjKQvOrpzUEVYvUycbUG0pE+bxWn3CSS3A1ia3wmpSxJxH
+         WSu5Lf6o8KUKclkwrWbbM3+/WXDjj1xW05DQkumtxC70D/FjsWoXmlmqDttAM7AHTX9X
+         fLjF5sYyJC6zgzx3lNI8XVtFtpABAk5ObbN0ssJPerN8B80V5ZsYEYN+SteEVqtlwh2l
+         vbYMWAQZPtQxogE5NfTRuI5s3t/VWJuDVZEf0rd6C7GLKf3jllHUwPDjYTWnMFUTRIxl
+         SI1g==
+X-Gm-Message-State: AOAM53210CzpEgKMn0LzRFsecQ8GQmWz8ZM/fM4fnfTRwunBDHxGQDwH
+        gR2SjU2nmRdqasgQ6wa5wpwsMA==
+X-Google-Smtp-Source: ABdhPJwp556tCNysIjVve7LoIjl+z4ujnWlNA9JzdXsjruUyYiLDcBmIw+X1FtL2xDCW8/dEjCdJfw==
+X-Received: by 2002:a17:907:75c1:: with SMTP id jl1mr5173678ejc.288.1633707834786;
+        Fri, 08 Oct 2021 08:43:54 -0700 (PDT)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id cr9sm1192524edb.17.2021.10.08.08.43.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Oct 2021 08:42:49 -0700 (PDT)
-Date:   Fri, 8 Oct 2021 09:42:47 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Ohad Ben Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Fri, 08 Oct 2021 08:43:53 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 3/4] remoteproc: imx_dsp_rproc: Add remoteproc driver
- for DSP on i.MX
-Message-ID: <20211008154247.GA3614893@p14s>
-References: <1632625630-784-1-git-send-email-shengjiu.wang@nxp.com>
- <1632625630-784-4-git-send-email-shengjiu.wang@nxp.com>
- <20211006162511.GA3370862@p14s>
- <CAA+D8AOmnZ6wWBzJe5imMcyoVE0fSiOyLpWb83bYPwadJ5O-Mg@mail.gmail.com>
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v3 0/5] clk: samsung: Introduce Exynos850 SoC clock driver
+Date:   Fri,  8 Oct 2021 18:43:47 +0300
+Message-Id: <20211008154352.19519-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA+D8AOmnZ6wWBzJe5imMcyoVE0fSiOyLpWb83bYPwadJ5O-Mg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 08, 2021 at 09:53:18AM +0800, Shengjiu Wang wrote:
-> Hi Mathieu
-> 
-> On Thu, Oct 7, 2021 at 12:25 AM Mathieu Poirier
-> <mathieu.poirier@linaro.org> wrote:
-> >
-> > Hi Shengjiu,
-> >
-> > This pachset doesn't apply to rproc-next, which is now located here[1].  The
-> > change is in linux-next but not in mainline yet.
-> >
-> > https://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux.git/log/?h=rproc-next
-> 
-> Ok, I will double check it and fix it.
-> 
-> >
-> > On Sun, Sep 26, 2021 at 11:07:09AM +0800, Shengjiu Wang wrote:
-> > > Provide a basic driver to control DSP processor found on NXP i.MX8QM,
-> > > i.MX8QXP, i.MX8MP and i.MX8ULP.
-> > >
-> > > Currently it is able to resolve addresses between DSP and main CPU,
-> > > start and stop the processor, suspend and resume.
-> > >
-> > > The communication between DSP and main CPU is based on mailbox, there
-> > > are three mailbox channels (tx, rx, rxdb).
-> > >
-> > > This driver was tested on NXP i.MX8QM, i.MX8QXP, i.MX8MP and i.MX8ULP.
-> > >
-> > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > > ---
-> > >  drivers/remoteproc/Kconfig         |   11 +
-> > >  drivers/remoteproc/Makefile        |    1 +
-> > >  drivers/remoteproc/imx_dsp_rproc.c | 1206 ++++++++++++++++++++++++++++
-> > >  3 files changed, 1218 insertions(+)
-> > >  create mode 100644 drivers/remoteproc/imx_dsp_rproc.c
-> > >
-> >
-> > [...]
-> >
-> > > +
-> > > +/**
-> > > + * imx_dsp_attach_pm_domains() - attach the power domains
-> > > + * @priv: private data pointer
-> > > + *
-> > > + * On i.MX8QM and i.MX8QXP there is multiple power domains
-> > > + * required, so need to link them.
-> > > + */
-> > > +static int imx_dsp_attach_pm_domains(struct imx_dsp_rproc *priv)
-> > > +{
-> > > +     struct device *dev = priv->rproc->dev.parent;
-> > > +     int ret, i;
-> > > +
-> > > +     priv->num_domains = of_count_phandle_with_args(dev->of_node,
-> > > +                                                    "power-domains",
-> > > +                                                    "#power-domain-cells");
-> > > +
-> > > +     /* If only one domain, then no need to link the device */
-> > > +     if (priv->num_domains <= 1)
-> > > +             return 0;
-> > > +
-> > > +     priv->pd_dev = devm_kmalloc_array(dev, priv->num_domains,
-> > > +                                       sizeof(*priv->pd_dev),
-> > > +                                       GFP_KERNEL);
-> > > +     if (!priv->pd_dev)
-> > > +             return -ENOMEM;
-> > > +
-> > > +     priv->pd_dev_link = devm_kmalloc_array(dev, priv->num_domains,
-> > > +                                            sizeof(*priv->pd_dev_link),
-> > > +                                            GFP_KERNEL);
-> > > +     if (!priv->pd_dev_link)
-> > > +             return -ENOMEM;
-> > > +
-> > > +     for (i = 0; i < priv->num_domains; i++) {
-> > > +             priv->pd_dev[i] = dev_pm_domain_attach_by_id(dev, i);
-> > > +             if (IS_ERR(priv->pd_dev[i])) {
-> > > +                     ret = PTR_ERR(priv->pd_dev[i]);
-> > > +                     goto detach_pm;
-> > > +             }
-> >
-> > I have pointed a problem with the error handling in the above during the
-> > previous review and it was not addressed.
-> 
-> I have considered your comments.  Actually when
-> dev_pm_domain_attach_by_id() return NULL, the device_link_add()
-> will break, I have added comments below, so above error handling
-> for dev_pm_domain_attach_by_id() is enough.
+This patch series provides the implementation for Exynos850 clock
+driver, its documentation and corresponding changes for Samsung clock
+infrastructure (adds new PLL types used in Exynos850 SoC, following
+TRM).
 
-I would have used IS_ERR_OR_NULL() so that potential code inserted between the
-two function doesn't automatically assume priv->pd_dev[i] is valid.  But what
-you have here will work.
+I tried to follow already established design for Samsung clock drivers
+(getting most insights from Exynos5433 clock driver), and integrate the
+driver into existing infrastructure. The whole driver was implemented
+from scratch, using mostly TRM and downstream kernel for clock
+dependencies/hierarchy info.
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
- 
-> Best regards
-> Wang Shengjiu
-> >
-> > > +
-> > > +             /*
-> > > +              * device_link_add will check priv->pd_dev[i], if it is
-> > > +              * NULL, then will break.
-> > > +              */
-> > > +             priv->pd_dev_link[i] = device_link_add(dev,
-> > > +                                                    priv->pd_dev[i],
-> > > +                                                    DL_FLAG_STATELESS |
-> > > +                                                    DL_FLAG_PM_RUNTIME);
-> > > +             if (!priv->pd_dev_link[i]) {
-> > > +                     dev_pm_domain_detach(priv->pd_dev[i], false);
-> > > +                     ret = -EINVAL;
-> > > +                     goto detach_pm;
-> > > +             }
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +
-> > > +detach_pm:
-> > > +     while (--i >= 0) {
-> > > +             device_link_del(priv->pd_dev_link[i]);
-> > > +             dev_pm_domain_detach(priv->pd_dev[i], false);
-> > > +     }
-> > > +
-> > > +     return ret;
-> > > +}
-> > > +
+For now only basic clocks are implemented, including next blocks:
+  - CMU_TOP
+  - CMU_PERI
+  - CMU_CORE
+  - CMU_HSI
+  - CMU_DPU
+
+Some CMUs are still not implemented, but that can be added in future,
+when the need arises. The driver also lacks CLKOUT support, PM ops and
+automatic clocks control (using Q-Channel protocol). All that can be
+added independently later.
+
+Implemented clock tree was tested via UART and MMC drivers, and using
+DebugFS clk support (e.g. using 'clk_summary' file). In order to keep
+all clocks running I added 'clk_ignore_unused' kernel param in my local
+tree, and defined CLOCK_ALLOW_WRITE_DEBUGFS in clk.c for actually
+testing the clocks via DebugFS.
+
+Changes in v3:
+  - Changed the licence for bindings header to GPL+BSD
+  - Added R-b tag by Krzysztof Kozlowski to patches 4/5 and 5/5
+
+Changes in v2:
+  - Added CMU_DPU implementation
+  - Moved bus clock enablement to clk-exynos850.c
+  - See also "v2 changes" list in each particular patch
+
+Sam Protsenko (5):
+  clk: samsung: clk-pll: Implement pll0822x PLL type
+  clk: samsung: clk-pll: Implement pll0831x PLL type
+  dt-bindings: clock: Add bindings definitions for Exynos850 CMU
+  dt-bindings: clock: Document Exynos850 CMU bindings
+  clk: samsung: Introduce Exynos850 clock driver
+
+ .../clock/samsung,exynos850-clock.yaml        | 185 ++++
+ drivers/clk/samsung/Makefile                  |   1 +
+ drivers/clk/samsung/clk-exynos850.c           | 835 ++++++++++++++++++
+ drivers/clk/samsung/clk-pll.c                 | 196 ++++
+ drivers/clk/samsung/clk-pll.h                 |   2 +
+ include/dt-bindings/clock/exynos850.h         | 141 +++
+ 6 files changed, 1360 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
+ create mode 100644 drivers/clk/samsung/clk-exynos850.c
+ create mode 100644 include/dt-bindings/clock/exynos850.h
+
+-- 
+2.30.2
+
