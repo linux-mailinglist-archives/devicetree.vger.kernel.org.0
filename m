@@ -2,621 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40AC34263EF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 06:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF1224263FE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 07:13:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236407AbhJHEwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 00:52:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56574 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236460AbhJHEwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 00:52:31 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3711C061755;
-        Thu,  7 Oct 2021 21:50:36 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id g14so7168511pfm.1;
-        Thu, 07 Oct 2021 21:50:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=MIUF41TkqHVT1fXzSToar6PXUD+9teYon6DlZK04Ek4=;
-        b=gCEeA6VVyVIkf982EqRJUQ4yNR4odrjk01pPYf6SRldhs2/CMNdJIn/aCCIcqHtZ70
-         OWBP/nFX75QZZGeiIVPeCb4+ftcZbcy0wqda2ImFaNmzjUo98z7X/JQG3KT56xXk0itq
-         Q0cwtgz4WLT9mOD/lQfuVcfJBW+w6zBKzhFeQejEMQasYxggXVNXz01P2rYSSFcO5oxS
-         gpfdGQcMROxByxWTezLUWvAVgxIlzod4h46cGXxmBhJbRG0taDODqnjz1HuUtRVdV+Y7
-         6pvMYZx7OrsykOR5gHxJLOmFeoiFTIo5AUhw3D4c+vZ+NBE3VC5KBrtalrrBQEi4q5KP
-         AOEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=MIUF41TkqHVT1fXzSToar6PXUD+9teYon6DlZK04Ek4=;
-        b=ggCtqdK9gGFEkoj+qVPvkr2R6Bgq3beD+8p9KDsBQrBPdU9W8SLKBwRn6N/8CgNLB0
-         6qneto95B09GA02K5va6vTyPhzKd+4bPSkvYyZSR0dxGU9XUy2t3PjU7A3POF4aTDk6e
-         wmcM0DMwUXhsbmCXxldJBTNV8cvjDIlWfF0ArFlWi+yLAyIG8y3M+8aQf//AbX9Jtbow
-         rUf8gKQWooxUKdAv/H2Lb1Z4wFPkgZmNR4rbW55mH8kc9X11/dfj0f9uBfxtR1TuOh0c
-         HHDhqxxA+P4MC4n9OTj4QQL8xjzwktGH2cNFRhbZrUNGgLk1enRXe5cpUFSrKW8ssHn+
-         ymtg==
-X-Gm-Message-State: AOAM532zpVwkaEG/tdAApeUb/4IiaQQt1R0oIrvrhiiun7R8wTrILjGB
-        Tqhps1maBJKsT213S1de81w=
-X-Google-Smtp-Source: ABdhPJxm2vUZMkcrPMavhvBWrptcIxryAbADa0A4BYB4KPK57qOzTghPIMBybguqTAP8AwQX2U8cIg==
-X-Received: by 2002:a62:8f8a:0:b0:44c:6e3c:4807 with SMTP id n132-20020a628f8a000000b0044c6e3c4807mr8281986pfd.68.1633668636023;
-        Thu, 07 Oct 2021 21:50:36 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:479:5014:1d07:e136:b921:8d67])
-        by smtp.gmail.com with ESMTPSA id f4sm885182pgn.93.2021.10.07.21.50.31
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 07 Oct 2021 21:50:35 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     oder_chiou@realtek.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, robh+dt@kernel.org
-Cc:     lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, cy_huang@richtek.com,
-        devicetree@vger.kernel.org, allen_lin@richtek.com
-Subject: [PATCH v3 2/2] ASoC: rt9120: Add rt9210 audio amplifier support
-Date:   Fri,  8 Oct 2021 12:50:12 +0800
-Message-Id: <1633668612-25524-3-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1633668612-25524-1-git-send-email-u0084500@gmail.com>
-References: <1633668612-25524-1-git-send-email-u0084500@gmail.com>
+        id S229615AbhJHFPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 01:15:32 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:48139 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229511AbhJHFPc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 01:15:32 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633670017; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
+ Subject: Sender; bh=M3oSCWJ7aQEJa+w9EA0EHaehA9KHiO9jYl3HRs7dc/I=; b=nBSiCHBsJZiUlCoO5EK2hu9rdfvDpD1cW334l0RzgYcZZ9xGlG6m308ty5LVhVYfqo4ZmjkC
+ 3uRWOdxj2pA3K+r6Vu+ffvhvCz1kzQJGyMqe9iw225z/4o0278FvzmqUfQzJdwSX5m440l+9
+ YIS23c4CBVBhW+gnzr65IyXN6C0=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 615fd370de4c4ed385156482 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 08 Oct 2021 05:13:20
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E2820C43616; Fri,  8 Oct 2021 05:13:19 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.100] (unknown [157.48.163.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 871DCC4338F;
+        Fri,  8 Oct 2021 05:13:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 871DCC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: lpass: add binding headers for
+ digital codecs
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+References: <1631109831-1360-1-git-send-email-srivasam@codeaurora.org>
+ <04210158-e999-a3a3-ee53-ac9024ab9120@linaro.org>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <155b8dbf-8b2a-0484-ac38-1ec6e0a68537@codeaurora.org>
+Date:   Fri, 8 Oct 2021 10:43:10 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <04210158-e999-a3a3-ee53-ac9024ab9120@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Thanks for notification Srini!!!
 
-Add Richtek rt9120 audio amplifier support.
-
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- sound/soc/codecs/Kconfig  |  10 +
- sound/soc/codecs/Makefile |   2 +
- sound/soc/codecs/rt9120.c | 489 ++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 501 insertions(+)
- create mode 100644 sound/soc/codecs/rt9120.c
-
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 82ee233..155050d 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -187,6 +187,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_RT715_SDCA_SDW
- 	imply SND_SOC_RT1308_SDW
- 	imply SND_SOC_RT1316_SDW
-+	imply SND_SOC_RT9120
- 	imply SND_SOC_SDW_MOCKUP
- 	imply SND_SOC_SGTL5000
- 	imply SND_SOC_SI476X
-@@ -1288,6 +1289,15 @@ config SND_SOC_RT715_SDCA_SDW
- 	select REGMAP_SOUNDWIRE
- 	select REGMAP_SOUNDWIRE_MBQ
- 
-+config SND_SOC_RT9120
-+	tristate "Richtek RT9120 Stereo Class-D Amplifier"
-+	depends on I2C
-+	select REGMAP_I2C
-+	select GPIOLIB
-+	help
-+	  Enable support for Richtek RT9120 20W, stereo, inductor-less,
-+	  high-efficiency Class-D audio amplifier.
-+
- config SND_SOC_SDW_MOCKUP
- 	tristate "SoundWire mockup codec"
- 	depends on EXPERT
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index 8dcea2c..5ba164d 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -203,6 +203,7 @@ snd-soc-rt711-objs := rt711.o rt711-sdw.o
- snd-soc-rt711-sdca-objs := rt711-sdca.o rt711-sdca-sdw.o
- snd-soc-rt715-objs := rt715.o rt715-sdw.o
- snd-soc-rt715-sdca-objs := rt715-sdca.o rt715-sdca-sdw.o
-+snd-soc-rt9120-objs := rt9120.o
- snd-soc-sdw-mockup-objs := sdw-mockup.o
- snd-soc-sgtl5000-objs := sgtl5000.o
- snd-soc-alc5623-objs := alc5623.o
-@@ -531,6 +532,7 @@ obj-$(CONFIG_SND_SOC_RT711)     += snd-soc-rt711.o
- obj-$(CONFIG_SND_SOC_RT711_SDCA_SDW)     += snd-soc-rt711-sdca.o
- obj-$(CONFIG_SND_SOC_RT715)     += snd-soc-rt715.o
- obj-$(CONFIG_SND_SOC_RT715_SDCA_SDW)     += snd-soc-rt715-sdca.o
-+obj-$(CONFIG_SND_SOC_RT9120)	+= snd-soc-rt9120.o
- obj-$(CONFIG_SND_SOC_SDW_MOCKUP)     += snd-soc-sdw-mockup.o
- obj-$(CONFIG_SND_SOC_SGTL5000)  += snd-soc-sgtl5000.o
- obj-$(CONFIG_SND_SOC_SIGMADSP)	+= snd-soc-sigmadsp.o
-diff --git a/sound/soc/codecs/rt9120.c b/sound/soc/codecs/rt9120.c
-new file mode 100644
-index 00000000..83da64c
---- /dev/null
-+++ b/sound/soc/codecs/rt9120.c
-@@ -0,0 +1,489 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <sound/pcm.h>
-+#include <sound/pcm_params.h>
-+#include <sound/soc.h>
-+#include <sound/tlv.h>
-+
-+#define RT9120_REG_DEVID	0x00
-+#define RT9120_REG_I2SFMT	0x02
-+#define RT9120_REG_I2SWL	0x03
-+#define RT9120_REG_SDIOSEL	0x04
-+#define RT9120_REG_SYSCTL	0x05
-+#define RT9120_REG_SPKGAIN	0x07
-+#define RT9120_REG_VOLRAMP	0x0A
-+#define RT9120_REG_ERRRPT	0x10
-+#define RT9120_REG_MSVOL	0x20
-+#define RT9120_REG_SWRESET	0x40
-+#define RT9120_REG_INTERNAL0	0x65
-+#define RT9120_REG_INTERNAL1	0x69
-+#define RT9120_REG_UVPOPT	0x6C
-+
-+#define RT9120_VID_MASK		GENMASK(15, 8)
-+#define RT9120_SWRST_MASK	BIT(7)
-+#define RT9120_MUTE_MASK	GENMASK(5, 4)
-+#define RT9120_I2SFMT_MASK	GENMASK(4, 2)
-+#define RT9120_I2SFMT_SHIFT	2
-+#define RT9120_CFG_FMT_I2S	0
-+#define RT9120_CFG_FMT_LEFTJ	1
-+#define RT9120_CFG_FMT_RIGHTJ	2
-+#define RT9120_CFG_FMT_DSPA	3
-+#define RT9120_CFG_FMT_DSPB	7
-+#define RT9120_AUDBIT_MASK	GENMASK(1, 0)
-+#define RT9120_CFG_AUDBIT_16	0
-+#define RT9120_CFG_AUDBIT_20	1
-+#define RT9120_CFG_AUDBIT_24	2
-+#define RT9120_AUDWL_MASK	GENMASK(5, 0)
-+#define RT9120_CFG_WORDLEN_16	16
-+#define RT9120_CFG_WORDLEN_24	24
-+#define RT9120_CFG_WORDLEN_32	32
-+#define RT9120_DVDD_UVSEL_MASK	GENMASK(5, 4)
-+
-+#define RT9120_VENDOR_ID	0x4200
-+#define RT9120_RESET_WAITMS	20
-+#define RT9120_CHIPON_WAITMS	20
-+#define RT9120_AMPON_WAITMS	50
-+#define RT9120_AMPOFF_WAITMS	100
-+#define RT9120_LVAPP_THRESUV	2000000
-+
-+/* 8000 to 192000 supported , only 176400 not support */
-+#define RT9120_RATES_MASK	(SNDRV_PCM_RATE_8000_192000 &\
-+				 ~SNDRV_PCM_RATE_176400)
-+#define RT9120_FMTS_MASK	(SNDRV_PCM_FMTBIT_S16_LE |\
-+				 SNDRV_PCM_FMTBIT_S24_LE |\
-+				 SNDRV_PCM_FMTBIT_S32_LE)
-+
-+struct rt9120_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+};
-+
-+/* 11bit [min,max,step] = [-103.9375dB, 24dB, 0.0625dB] */
-+static const DECLARE_TLV_DB_SCALE(digital_gain, -1039375, 625, -1039375);
-+
-+static const char * const sdo_select_text[] = {
-+	"None", "INTF", "Final", "RMS Detect"
-+};
-+
-+static const struct soc_enum sdo_select_enum =
-+	SOC_ENUM_SINGLE(RT9120_REG_SDIOSEL, 4, ARRAY_SIZE(sdo_select_text),
-+			sdo_select_text);
-+
-+static const struct snd_kcontrol_new rt9120_snd_controls[] = {
-+	SOC_SINGLE_TLV("MS Volume", RT9120_REG_MSVOL, 0, 2047, 1, digital_gain),
-+	SOC_SINGLE("SPK Gain", RT9120_REG_SPKGAIN, 0, 7, 0),
-+	SOC_SINGLE("PBTL Switch", RT9120_REG_SYSCTL, 3, 1, 0),
-+	SOC_ENUM("SDO Select", sdo_select_enum),
-+};
-+
-+static int internal_power_event(struct snd_soc_dapm_widget *w,
-+				struct snd_kcontrol *kcontrol, int event)
-+{
-+	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_PRE_PMU:
-+		snd_soc_component_write(comp, RT9120_REG_ERRRPT, 0);
-+		break;
-+	case SND_SOC_DAPM_POST_PMU:
-+		msleep(RT9120_AMPON_WAITMS);
-+		break;
-+	case SND_SOC_DAPM_POST_PMD:
-+		msleep(RT9120_AMPOFF_WAITMS);
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dapm_widget rt9120_dapm_widgets[] = {
-+	SND_SOC_DAPM_MIXER("DMIX", SND_SOC_NOPM, 0, 0, NULL, 0),
-+	SND_SOC_DAPM_DAC("LDAC", NULL, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_DAC("RDAC", NULL, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_SUPPLY("PWND", RT9120_REG_SYSCTL, 6, 1,
-+			    internal_power_event, SND_SOC_DAPM_PRE_PMU |
-+			    SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
-+	SND_SOC_DAPM_PGA("SPKL PA", SND_SOC_NOPM, 0, 0, NULL, 0),
-+	SND_SOC_DAPM_PGA("SPKR PA", SND_SOC_NOPM, 0, 0, NULL, 0),
-+	SND_SOC_DAPM_OUTPUT("SPKL"),
-+	SND_SOC_DAPM_OUTPUT("SPKR"),
-+};
-+
-+static const struct snd_soc_dapm_route rt9120_dapm_routes[] = {
-+	{ "DMIX", NULL, "AIF Playback" },
-+	/* SPKL */
-+	{ "LDAC", NULL, "PWND" },
-+	{ "LDAC", NULL, "DMIX" },
-+	{ "SPKL PA", NULL, "LDAC" },
-+	{ "SPKL", NULL, "SPKL PA" },
-+	/* SPKR */
-+	{ "RDAC", NULL, "PWND" },
-+	{ "RDAC", NULL, "DMIX" },
-+	{ "SPKR PA", NULL, "RDAC" },
-+	{ "SPKR", NULL, "SPKR PA" },
-+	/* Cap */
-+	{ "AIF Capture", NULL, "LDAC" },
-+	{ "AIF Capture", NULL, "RDAC" },
-+};
-+
-+static int rt9120_codec_probe(struct snd_soc_component *comp)
-+{
-+	struct rt9120_data *data = snd_soc_component_get_drvdata(comp);
-+
-+	snd_soc_component_init_regmap(comp, data->regmap);
-+
-+	/* Internal setting */
-+	snd_soc_component_write(comp, RT9120_REG_INTERNAL1, 0x03);
-+	snd_soc_component_write(comp, RT9120_REG_INTERNAL0, 0x69);
-+	return 0;
-+}
-+
-+static const struct snd_soc_component_driver rt9120_component_driver = {
-+	.probe = rt9120_codec_probe,
-+	.controls = rt9120_snd_controls,
-+	.num_controls = ARRAY_SIZE(rt9120_snd_controls),
-+	.dapm_widgets = rt9120_dapm_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(rt9120_dapm_widgets),
-+	.dapm_routes = rt9120_dapm_routes,
-+	.num_dapm_routes = ARRAY_SIZE(rt9120_dapm_routes),
-+};
-+
-+static int rt9120_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
-+{
-+	struct snd_soc_component *comp = dai->component;
-+	unsigned int format;
-+
-+	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-+	case SND_SOC_DAIFMT_I2S:
-+		format = RT9120_CFG_FMT_I2S;
-+		break;
-+	case SND_SOC_DAIFMT_LEFT_J:
-+		format = RT9120_CFG_FMT_LEFTJ;
-+		break;
-+	case SND_SOC_DAIFMT_RIGHT_J:
-+		format = RT9120_CFG_FMT_RIGHTJ;
-+		break;
-+	case SND_SOC_DAIFMT_DSP_A:
-+		format = RT9120_CFG_FMT_DSPA;
-+		break;
-+	case SND_SOC_DAIFMT_DSP_B:
-+		format = RT9120_CFG_FMT_DSPB;
-+		break;
-+	default:
-+		dev_err(dai->dev, "Unknown dai format\n");
-+		return -EINVAL;
-+	}
-+
-+	snd_soc_component_update_bits(comp, RT9120_REG_I2SFMT,
-+				      RT9120_I2SFMT_MASK,
-+				      format << RT9120_I2SFMT_SHIFT);
-+	return 0;
-+}
-+
-+static int rt9120_hw_params(struct snd_pcm_substream *substream,
-+			    struct snd_pcm_hw_params *param,
-+			    struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_component *comp = dai->component;
-+	unsigned int param_width, param_slot_width;
-+	int width;
-+
-+	switch (width = params_width(param)) {
-+	case 16:
-+		param_width = RT9120_CFG_AUDBIT_16;
-+		break;
-+	case 20:
-+		param_width = RT9120_CFG_AUDBIT_20;
-+		break;
-+	case 24:
-+	case 32:
-+		param_width = RT9120_CFG_AUDBIT_24;
-+		break;
-+	default:
-+		dev_err(dai->dev, "Unsupported data width [%d]\n", width);
-+		return -EINVAL;
-+	}
-+
-+	snd_soc_component_update_bits(comp, RT9120_REG_I2SFMT,
-+				      RT9120_AUDBIT_MASK, param_width);
-+
-+	switch (width = params_physical_width(param)) {
-+	case 16:
-+		param_slot_width = RT9120_CFG_WORDLEN_16;
-+		break;
-+	case 24:
-+		param_slot_width = RT9120_CFG_WORDLEN_24;
-+		break;
-+	case 32:
-+		param_slot_width = RT9120_CFG_WORDLEN_32;
-+		break;
-+	default:
-+		dev_err(dai->dev, "Unsupported slot width [%d]\n", width);
-+		return -EINVAL;
-+	}
-+
-+	snd_soc_component_update_bits(comp, RT9120_REG_I2SWL,
-+				      RT9120_AUDWL_MASK, param_slot_width);
-+	return 0;
-+}
-+
-+static const struct snd_soc_dai_ops rt9120_dai_ops = {
-+	.set_fmt = rt9120_set_fmt,
-+	.hw_params = rt9120_hw_params,
-+};
-+
-+static struct snd_soc_dai_driver rt9120_dai = {
-+	.name = "rt9120_aif",
-+	.playback = {
-+		.stream_name = "AIF Playback",
-+		.rates = RT9120_RATES_MASK,
-+		.formats = RT9120_FMTS_MASK,
-+		.rate_max = 192000,
-+		.rate_min = 8000,
-+		.channels_min = 1,
-+		.channels_max = 2,
-+	},
-+	.capture = {
-+		.stream_name = "AIF Capture",
-+		.rates = RT9120_RATES_MASK,
-+		.formats = RT9120_FMTS_MASK,
-+		.rate_max = 192000,
-+		.rate_min = 8000,
-+		.channels_min = 1,
-+		.channels_max = 2,
-+	},
-+	.ops = &rt9120_dai_ops,
-+	.symmetric_rate = 1,
-+	.symmetric_sample_bits = 1,
-+};
-+
-+static const struct regmap_range rt9120_rd_yes_ranges[] = {
-+	regmap_reg_range(0x00, 0x0C),
-+	regmap_reg_range(0x10, 0x15),
-+	regmap_reg_range(0x20, 0x27),
-+	regmap_reg_range(0x30, 0x38),
-+	regmap_reg_range(0x3A, 0x40),
-+	regmap_reg_range(0x65, 0x65),
-+	regmap_reg_range(0x69, 0x69),
-+	regmap_reg_range(0x6C, 0x6C)
-+};
-+
-+static const struct regmap_access_table rt9120_rd_table = {
-+	.yes_ranges = rt9120_rd_yes_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(rt9120_rd_yes_ranges),
-+};
-+
-+static const struct regmap_range rt9120_wr_yes_ranges[] = {
-+	regmap_reg_range(0x00, 0x00),
-+	regmap_reg_range(0x02, 0x0A),
-+	regmap_reg_range(0x10, 0x15),
-+	regmap_reg_range(0x20, 0x27),
-+	regmap_reg_range(0x30, 0x38),
-+	regmap_reg_range(0x3A, 0x3D),
-+	regmap_reg_range(0x40, 0x40),
-+	regmap_reg_range(0x65, 0x65),
-+	regmap_reg_range(0x69, 0x69),
-+	regmap_reg_range(0x6C, 0x6C)
-+};
-+
-+static const struct regmap_access_table rt9120_wr_table = {
-+	.yes_ranges = rt9120_wr_yes_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(rt9120_wr_yes_ranges),
-+};
-+
-+static int rt9120_get_reg_size(unsigned int reg)
-+{
-+	switch (reg) {
-+	case 0x00:
-+	case 0x09:
-+	case 0x20 ... 0x27:
-+		return 2;
-+	case 0x30 ... 0x3D:
-+		return 3;
-+	case 0x3E ... 0x3F:
-+		return 4;
-+	default:
-+		return 1;
-+	}
-+}
-+
-+static int rt9120_reg_read(void *context, unsigned int reg, unsigned int *val)
-+{
-+	struct rt9120_data *data = context;
-+	struct i2c_client *i2c = to_i2c_client(data->dev);
-+	int size = rt9120_get_reg_size(reg);
-+	u8 raw[4] = {0};
-+	int ret;
-+
-+	ret = i2c_smbus_read_i2c_block_data(i2c, reg, size, raw);
-+	if (ret < 0)
-+		return ret;
-+	else if (ret != size)
-+		return -EIO;
-+
-+	switch (size) {
-+	case 4:
-+		*val = be32_to_cpup((__be32 *)raw);
-+		break;
-+	case 3:
-+		*val = raw[0] << 16 | raw[1] << 8 | raw[0];
-+		break;
-+	case 2:
-+		*val = be16_to_cpup((__be16 *)raw);
-+		break;
-+	default:
-+		*val = raw[0];
-+	}
-+
-+	return 0;
-+}
-+
-+static int rt9120_reg_write(void *context, unsigned int reg, unsigned int val)
-+{
-+	struct rt9120_data *data = context;
-+	struct i2c_client *i2c = to_i2c_client(data->dev);
-+	int size = rt9120_get_reg_size(reg);
-+	__be32 be32_val;
-+	u8 *rawp = (u8 *)&be32_val;
-+	int offs = 4 - size;
-+
-+	be32_val = cpu_to_be32(val);
-+	return i2c_smbus_write_i2c_block_data(i2c, reg, size, rawp + offs);
-+}
-+
-+static const struct regmap_config rt9120_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 32,
-+	.max_register = RT9120_REG_UVPOPT,
-+
-+	.reg_read = rt9120_reg_read,
-+	.reg_write = rt9120_reg_write,
-+
-+	.wr_table = &rt9120_wr_table,
-+	.rd_table = &rt9120_rd_table,
-+};
-+
-+static int rt9120_check_vendor_info(struct rt9120_data *data)
-+{
-+	unsigned int devid;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, RT9120_REG_DEVID, &devid);
-+	if (ret)
-+		return ret;
-+
-+	if ((devid & RT9120_VID_MASK) != RT9120_VENDOR_ID) {
-+		dev_err(data->dev, "DEVID not correct [0x%04x]\n", devid);
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rt9120_do_register_reset(struct rt9120_data *data)
-+{
-+	int ret;
-+
-+	ret = regmap_write(data->regmap, RT9120_REG_SWRESET,
-+			   RT9120_SWRST_MASK);
-+	if (ret)
-+		return ret;
-+
-+	msleep(RT9120_RESET_WAITMS);
-+	return 0;
-+}
-+
-+static int rt9120_probe(struct i2c_client *i2c)
-+{
-+	struct rt9120_data *data;
-+	struct gpio_desc *pwdnn_gpio;
-+	struct regulator *dvdd_supply;
-+	int dvdd_supply_volt, ret;
-+
-+	data = devm_kzalloc(&i2c->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->dev = &i2c->dev;
-+	i2c_set_clientdata(i2c, data);
-+
-+	pwdnn_gpio = devm_gpiod_get_optional(&i2c->dev, "pwdnn",
-+					     GPIOD_OUT_HIGH);
-+	if (IS_ERR(pwdnn_gpio)) {
-+		dev_err(&i2c->dev, "Failed to initialize 'pwdnn' gpio\n");
-+		return PTR_ERR(pwdnn_gpio);
-+	} else if (pwdnn_gpio) {
-+		dev_dbg(&i2c->dev, "'pwdnn' from low to high, wait chip on\n");
-+		msleep(RT9120_CHIPON_WAITMS);
-+	}
-+
-+	data->regmap = devm_regmap_init(&i2c->dev, NULL, data,
-+					&rt9120_regmap_config);
-+	if (IS_ERR(data->regmap)) {
-+		ret = PTR_ERR(data->regmap);
-+		dev_err(&i2c->dev, "Failed to init regmap [%d]\n", ret);
-+		return ret;
-+	}
-+
-+	ret = rt9120_check_vendor_info(data);
-+	if (ret) {
-+		dev_err(&i2c->dev, "Failed to check vendor info\n");
-+		return ret;
-+	}
-+
-+	ret = rt9120_do_register_reset(data);
-+	if (ret) {
-+		dev_err(&i2c->dev, "Failed to do register reset\n");
-+		return ret;
-+	}
-+
-+	dvdd_supply = devm_regulator_get(&i2c->dev, "dvdd");
-+	if (IS_ERR(dvdd_supply)) {
-+		dev_err(&i2c->dev, "No dvdd regulator found\n");
-+		return PTR_ERR(dvdd_supply);
-+	}
-+
-+	dvdd_supply_volt = regulator_get_voltage(dvdd_supply);
-+	if (dvdd_supply_volt <= RT9120_LVAPP_THRESUV) {
-+		dev_dbg(&i2c->dev, "dvdd low voltage design\n");
-+		ret = regmap_update_bits(data->regmap, RT9120_REG_UVPOPT,
-+					 RT9120_DVDD_UVSEL_MASK, 0);
-+		if (ret) {
-+			dev_err(&i2c->dev, "Failed to config dvdd uvsel\n");
-+			return ret;
-+		}
-+	}
-+
-+	return devm_snd_soc_register_component(&i2c->dev,
-+					       &rt9120_component_driver,
-+					       &rt9120_dai, 1);
-+}
-+
-+static const struct of_device_id __maybe_unused rt9120_device_table[] = {
-+	{ .compatible = "richtek,rt9120", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, rt9120_device_table);
-+
-+static struct i2c_driver rt9120_driver = {
-+	.driver = {
-+		.name = "rt9120",
-+		.of_match_table = rt9120_device_table,
-+	},
-+	.probe_new = rt9120_probe,
-+};
-+module_i2c_driver(rt9120_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_DESCRIPTION("RT9120 Audio Amplifier Driver");
-+MODULE_LICENSE("GPL");
+On 10/7/2021 4:14 PM, Srinivas Kandagatla wrote:
+> Hi Srinivasa,
+>
+>
+> On 08/09/2021 15:03, Srinivasa Rao Mandadapu wrote:
+>> Add header defining for lpass internal digital codecs rx,tx and va
+>> dai node id's.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> ---
+>> Changes since v1:
+>>      -- Add missing dai node ID's
+>>
+>>   include/dt-bindings/sound/qcom,lpass.h | 31 
+>> +++++++++++++++++++++++++++++++
+>>   1 file changed, 31 insertions(+)
+>>
+>
+>
+> Mark has already applied v1, 
+> https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/commit/include/dt-bindings/sound/qcom,lpass.h?id=bfad37c53ae6168d03ab06868ea44e77995c43d5
+>
+> Can you please rebase on top of sound-next so that we endup with 
+> correct defines.
+Sure. will post v3 patch after rebase.
+>
+> --srini
+>
+>> diff --git a/include/dt-bindings/sound/qcom,lpass.h 
+>> b/include/dt-bindings/sound/qcom,lpass.h
+>> index 7b0b80b..a9404c3 100644
+>> --- a/include/dt-bindings/sound/qcom,lpass.h
+>> +++ b/include/dt-bindings/sound/qcom,lpass.h
+>> @@ -10,6 +10,37 @@
+>>     #define LPASS_DP_RX    5
+>>   +#define LPASS_CDC_DMA_RX0 6
+>> +#define LPASS_CDC_DMA_RX1 7
+>> +#define LPASS_CDC_DMA_RX2 8
+>> +#define LPASS_CDC_DMA_RX3 9
+>> +#define LPASS_CDC_DMA_RX4 10
+>> +#define LPASS_CDC_DMA_RX5 11
+>> +#define LPASS_CDC_DMA_RX6 12
+>> +#define LPASS_CDC_DMA_RX7 13
+>> +#define LPASS_CDC_DMA_RX8 14
+>> +#define LPASS_CDC_DMA_RX9 15
+>> +
+>> +#define LPASS_CDC_DMA_TX0 16
+>> +#define LPASS_CDC_DMA_TX1 17
+>> +#define LPASS_CDC_DMA_TX2 18
+>> +#define LPASS_CDC_DMA_TX3 19
+>> +#define LPASS_CDC_DMA_TX4 20
+>> +#define LPASS_CDC_DMA_TX5 21
+>> +#define LPASS_CDC_DMA_TX6 22
+>> +#define LPASS_CDC_DMA_TX7 23
+>> +#define LPASS_CDC_DMA_TX8 24
+>> +
+>> +#define LPASS_CDC_DMA_VA_TX0 25
+>> +#define LPASS_CDC_DMA_VA_TX1 26
+>> +#define LPASS_CDC_DMA_VA_TX2 27
+>> +#define LPASS_CDC_DMA_VA_TX3 28
+>> +#define LPASS_CDC_DMA_VA_TX4 29
+>> +#define LPASS_CDC_DMA_VA_TX5 30
+>> +#define LPASS_CDC_DMA_VA_TX6 31
+>> +#define LPASS_CDC_DMA_VA_TX7 32
+>> +#define LPASS_CDC_DMA_VA_TX8 33
+>> +
+>>   #define LPASS_MCLK0    0
+>>     #endif /* __DT_QCOM_LPASS_H */
+>>
 -- 
-2.7.4
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
