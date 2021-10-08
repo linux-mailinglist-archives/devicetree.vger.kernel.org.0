@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B150D426751
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 12:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A936C426758
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 12:04:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238188AbhJHKEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 06:04:06 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:56816 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236118AbhJHKEG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 06:04:06 -0400
-Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mYmhb-0008SB-JP; Fri, 08 Oct 2021 12:02:07 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     krzysztof.kozlowski@canonical.com, robh@kernel.org,
-        linux-riscv@lists.infradead.org
-Cc:     krzysztof.kozlowski@canonical.com, zong.li@sifive.com,
-        aou@eecs.berkeley.edu, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        mturquette@baylibre.com, Paul Walmsley <paul.walmsley@sifive.com>,
-        sboyd@kernel.org, Palmer Dabbelt <palmer@dabbelt.com>
-Subject: Re: [PATCH] dt-bindings: clock: fu740-prci: add reset-cells
-Date:   Fri, 08 Oct 2021 12:02:06 +0200
-Message-ID: <24526929.Pe8KFHSfS2@diego>
-In-Reply-To: <mhng-b9e6d8f9-b9be-4651-9649-3378d227eae1@palmerdabbelt-glaptop>
-References: <mhng-b9e6d8f9-b9be-4651-9649-3378d227eae1@palmerdabbelt-glaptop>
+        id S239485AbhJHKGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 06:06:04 -0400
+Received: from mail-vs1-f52.google.com ([209.85.217.52]:33381 "EHLO
+        mail-vs1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239040AbhJHKGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 06:06:03 -0400
+Received: by mail-vs1-f52.google.com with SMTP id 188so10006228vsv.0;
+        Fri, 08 Oct 2021 03:04:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IG1zG8hjjixHU5HadJfOCwY+Dd3QiJXF0mBzg0TG0Z4=;
+        b=a9MyF9RA4/QebD2MvLBzLnBlwea884dlZAp0cFuufuxyDuGZBgWKLkIcwcTSZNc6Wa
+         W9oFUNzrzX+OKcDButQYI1hOJVco4tXCDtFeMM8lfndhxx8PTlyKDq9/XkkupSRtr9sI
+         c4SNKcie/4KLdzdIdR8kTmqqrwqd0EUvo2x+WoA4Ol3o+Vc6guFZZwqYEGuqTPojaosz
+         tcLYx1aRDJjkB1ja4UD7nr7xtE4ROhTjtTQmwdXZ8DSW/YfQGrRA3Y9lFd87oaA2h6wb
+         W2vyY8zJp3bofRzSVnJAI+fD5RoclXwNgC/FlVTl1v3Duk95xA8ZNSYyhnqU/qjZADsO
+         s1HQ==
+X-Gm-Message-State: AOAM532H+3/+XfFLGVqSPbjGDRdqlLUawnT9YnZnipkWIMbfYkcTASiT
+        EE344qF+hUbNE1fHh5iVZpyaxnHWDWrO7vG9D24CgjAx
+X-Google-Smtp-Source: ABdhPJz5HbXHeyLHFAe7u3Yd2zr2xWxyb/vDETASScdAbDpF5lPlEo+OLkoFyRqu5BCGdnPBDFYhGrat1nSelkh2fmo=
+X-Received: by 2002:a67:d111:: with SMTP id u17mr8361098vsi.37.1633687448326;
+ Fri, 08 Oct 2021 03:04:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20211007155451.10654-1-biju.das.jz@bp.renesas.com> <20211007155451.10654-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211007155451.10654-2-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 8 Oct 2021 12:03:57 +0200
+Message-ID: <CAMuHMdVQ5nZGUZnAYmdzEu0cavZYDTG4K86WRQ7z4n6umPj3fA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: renesas: r9a07g044: Add SDHI nodes
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 8. Oktober 2021, 03:29:17 CEST schrieb Palmer Dabbelt:
-> On Thu, 23 Sep 2021 09:59:32 PDT (-0700), robh@kernel.org wrote:
-> > On Mon, 20 Sep 2021 16:49:44 +0200, Krzysztof Kozlowski wrote:
-> >> The SiFive FU740 Power Reset Clock Interrupt Controller is a reset line
-> >> provider so add respective reset-cells property to fix:
-> >>
-> >>   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml: clock-controller@10000000:
-> >>     '#reset-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >> ---
-> >>  .../devicetree/bindings/clock/sifive/fu740-prci.yaml          | 4 ++++
-> >>  1 file changed, 4 insertions(+)
-> >>
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
-> 
-> For some reason I thought these went through your tree, LMK if you were 
-> planning on having me take it through mine.
+On Thu, Oct 7, 2021 at 5:55 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add SDHI{0, 1} nodes to RZ/G2L SoC DTSI.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Normally both driver + binding patches go through the driver-tree
-and actual dts changes through the tree carrying the dts files.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.16.
 
-So for a clock-patch this should be the clock-tree aka Mike Turquette
-and Stephen Boyd - already in Cc of original patch, so I'd assume they'll
-pick it up.
+Gr{oetje,eeting}s,
 
+                        Geert
 
-Heiko
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
