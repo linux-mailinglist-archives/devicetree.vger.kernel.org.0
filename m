@@ -2,72 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7138D42680C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 12:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A76D3426849
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 12:51:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240009AbhJHKh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 06:37:29 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:7125 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240014AbhJHKhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 06:37:12 -0400
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPA id 34122240003;
-        Fri,  8 Oct 2021 10:35:15 +0000 (UTC)
-From:   Herve Codina <herve.codina@bootlin.com>
-Cc:     Herve Codina <herve.codina@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 4/4] ARM: dts: spear3xx: Fix gmac node
-Date:   Fri,  8 Oct 2021 12:34:40 +0200
-Message-Id: <20211008103440.3929006-5-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211008103440.3929006-1-herve.codina@bootlin.com>
-References: <20211008103440.3929006-1-herve.codina@bootlin.com>
+        id S239650AbhJHKxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 06:53:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53606 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230042AbhJHKxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 06:53:32 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF984C061570;
+        Fri,  8 Oct 2021 03:51:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=dMUi9fUk9Sl1RKpo0LrAUB/zQghMevCatyl2BQsJhqI=; b=DPyq9tYdKHX5MIMlxg5ptXmbvs
+        IsxJ8MQGTTQLcO9qpDk5Sv/gRhGgkLc1PL4gsQvwPCaZdOoUGRZJRSKMqia98Trd5GmFteaUAl5Rz
+        65YmtlkgM2Cp033duDQjLBO3s6rGONvDBesae+043lom0pzbma+QjV4PzhJJAqvcYZsKsL+sng0dF
+        5sJGDW7RBDe+jLwWtjBQ5U9t/ZvHdFM9cS+aWDaLp0NYNhdMLyakFYsN9fHqFBZKxoqVTStnOqNme
+        HXUCpTL1bn8Us/27enQMT+if6J/QpY078SGOQ+zL82yCk2jiWc6g0z2lWj+KBtL4HSNA/AaKHGa/2
+        9IbmEMLA==;
+Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=[192.168.1.10])
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1mYnTR-0001QZ-Td; Fri, 08 Oct 2021 13:51:33 +0300
+Subject: Re: [PATCH v6 2/3] arm64: tegra: Add NVDEC to Tegra186/194 device
+ trees
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     jonathanh@nvidia.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210916145517.2047351-1-mperttunen@nvidia.com>
+ <20210916145517.2047351-3-mperttunen@nvidia.com>
+ <YV3ojTpZuH9HU5DU@orome.fritz.box>
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+Message-ID: <bd6b2743-65d1-7af5-41f5-ecfa5981f30c@kapsi.fi>
+Date:   Fri, 8 Oct 2021 13:51:33 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <YV3ojTpZuH9HU5DU@orome.fritz.box>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 84.249.134.236
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SPEAr3xx, ethernet driver is not compatible with the SPEAr600
-one.
-Indeed, SPEAr3xx uses an earlier version of this IP (v3.40) and
-needs some driver tuning compare to SPEAr600.
+On 10/6/21 9:18 PM, Thierry Reding wrote:
+> On Thu, Sep 16, 2021 at 05:55:16PM +0300, Mikko Perttunen wrote:
+>> Add a device tree node for NVDEC on Tegra186, and
+>> device tree nodes for NVDEC and NVDEC1 on Tegra194.
+>>
+>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+>> ---
+>> v5:
+>> * Change from nvidia,instance to nvidia,host1x-class
+>> v4:
+>> * Add dma-coherent markers
+>> v3:
+>> * Change read2 to read-1
+>> v2:
+>> * Add NVDECSRD1 memory client
+>> * Add also to T194 (both NVDEC0/1)
+>> ---
+>>   arch/arm64/boot/dts/nvidia/tegra186.dtsi | 16 ++++++++++
+>>   arch/arm64/boot/dts/nvidia/tegra194.dtsi | 38 ++++++++++++++++++++++++
+>>   2 files changed, 54 insertions(+)
+> 
+> The driver patch adds support for Tegra210, so could we also add NVDEC
+> entries for that?
+> 
+> Thierry
+> 
 
-The v3.40 IP support was added to stmmac driver and this patch
-fixes this issue and use the correct compatible string for
-SPEAr3xx
+Yes. I don't have my T210 system set up right now to verify, though, and 
+I don't have time to look at this in the next few weeks.
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- arch/arm/boot/dts/spear3xx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/spear3xx.dtsi b/arch/arm/boot/dts/spear3xx.dtsi
-index f266b7b03482..cc88ebe7a60c 100644
---- a/arch/arm/boot/dts/spear3xx.dtsi
-+++ b/arch/arm/boot/dts/spear3xx.dtsi
-@@ -47,7 +47,7 @@ dma@fc400000 {
- 		};
- 
- 		gmac: eth@e0800000 {
--			compatible = "st,spear600-gmac";
-+			compatible = "snps,dwmac-3.40a";
- 			reg = <0xe0800000 0x8000>;
- 			interrupts = <23 22>;
- 			interrupt-names = "macirq", "eth_wake_irq";
--- 
-2.31.1
-
+Mikko
