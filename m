@@ -2,384 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 920584265E5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 10:27:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD1404265ED
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 10:29:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233947AbhJHI3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 04:29:00 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:56928 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233750AbhJHI25 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 04:28:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1633681622; x=1665217622;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=ZIgk1BO52wi9iX8frdaMHZnO5fNm34EsRUH3Vn77JX0=;
-  b=krw8ieNu35KJTT9rOzBnMzHeam8y0BKtKfT836dy4DucjRmzksFFRWn7
-   xRUrWr/SC4cRmInxt197/hq3bupq8h8dukQTgj8slO3SkUrWhdM381Zzd
-   6digvfL3vV+lV8ShXUX/7ltz9hy6ZJQ7A2BFhydnuA557qft6xtOc6qPh
-   Jwk93HfI8VU2j9Df5vIKISCKnSInscCofN+qKiVqovT+TLamyF2WwyLp1
-   rca8KWOnMVD5OAli+jhc/gFP++cPvDdJPAnY2PwDx3yDiRi5wRI/r7pCb
-   1FjHbPZFOHZd6pTXJ39ld6Tq4EJRBCZhmyA53Lqe/Kg+vXQ6VOeq58lOQ
-   g==;
-IronPort-SDR: 6jZ0MfKPCAHnglZjq6nxQhhvjAo/9P7/FZi5Era74M9MUjLRhUAkjWwIPb1TWPArWIMd02frVl
- 5PIF3FhVJJPvNnCmMm2TPNq/K0b4W67P3Pw/NR3e4sTUCrvIuaC9xOry+/ya38Ga53+QDb1tjg
- 9lSmW/fcf8wT9DCoNeoC1smqo7rNUHdzMbQDADR9z6xHDmBpmftml9RAr0fnaGRzjn/fMNPALl
- sHgCIJ/iS4m2CVqpUHpbId4pWDy5HzACh9kwPnx3imv5ESqxlSNupJZvaS9kJlN4hssdSOcIFW
- 2laM+zMt32gOYSR3K/GbhGQF
-X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; 
-   d="scan'208";a="132175381"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Oct 2021 01:27:01 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Fri, 8 Oct 2021 01:27:00 -0700
-Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Fri, 8 Oct 2021 01:26:56 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <robh+dt@kernel.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <nicolas.ferre@microchip.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
-        <Eugen.Hristev@microchip.com>, <Kavyasree.Kotagiri@microchip.com>,
-        <Manohar.Puri@microchip.com>
-Subject: [PATCH v8 3/3] clk: lan966x: Add lan966x SoC clock driver
-Date:   Fri, 8 Oct 2021 13:56:35 +0530
-Message-ID: <20211008082635.31774-4-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211008082635.31774-1-kavyasree.kotagiri@microchip.com>
-References: <20211008082635.31774-1-kavyasree.kotagiri@microchip.com>
+        id S234117AbhJHIbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 04:31:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233993AbhJHIbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 04:31:47 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D38EC061570;
+        Fri,  8 Oct 2021 01:29:52 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id y26so36453277lfa.11;
+        Fri, 08 Oct 2021 01:29:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Lkb1rpTxp3ezL8W0CzTqYzbSnbCPEH62gOKXD45LUwI=;
+        b=poefWLp6aXgSyy/BL1sqVpqpaxXamaYwTrj//ErZkBKT0FfIZbNtXk6TE2JTxjdDWX
+         oFSG6sDm9E3UC88GSSOrDAtlNtR69B3+clLsRDOl3WdwlLnkTOi7aom+yxW+wq4oZEvC
+         EtXsMpWkNyPM9qeAF0hxd+NHKEPf8fHn5ZrTvtLIZnuJjyZzxWwCY9D74GzaA+3iYTXN
+         HPwHCcJyZlARKh3rz+x7/CjbeCmCda+9MJcmax3CyMxR99k/Q1CiWQjhpx3lBS6TDnCa
+         k+WuPTrxIb35PpKVexDVTb4c6/FbyQwLAVH11xLDuBTyy0fZvJtqycbTFOzWeTwS7KQk
+         6Kiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Lkb1rpTxp3ezL8W0CzTqYzbSnbCPEH62gOKXD45LUwI=;
+        b=C0d5oKB4NlejclmJJfRieEiHSvEqJQHDwb1KDV0EIak2R4UKPUna+Ef/UDNkq+t9PB
+         aZujSYRgFGl9sRyNeCxSzJuAPcc7kF4jd5Ib6yCGEQZ8GDs1rRsjm22XHODMyWy0XuIj
+         BqN+2XiQXV6JGkxpPZpR87nw5fShQpkgqcKknIHCDUrPw3vcazEP5O96Zh36tIRlWxpZ
+         y+Mbq9i3pLsmOnybPnT/fAEzWvw+7W8z0+7XBCcgjyzKhxLNWqgItwC+1I+g/4f+lpe6
+         M85kN0pH/qMMaHz3UBsU2NJU6huHQbqqjfa8LtrPuQKUd+zZ5s5ZZdEGJA02MICvReao
+         drgA==
+X-Gm-Message-State: AOAM533+X+uRWixBBG1A52nPlmCdd5H6R16DHoYHO8Ec3dw2aMvTbzEV
+        nBYc1HNQzzITYRIbtY5Ju1c=
+X-Google-Smtp-Source: ABdhPJxjxeS3yG78Os9mx5PkCqbTxZpo+GPucqTwrhLqIHq+ADlBhrV3ZS0jYcpvZ5VLecVPl6BoOw==
+X-Received: by 2002:ac2:509a:: with SMTP id f26mr2838559lfm.563.1633681790434;
+        Fri, 08 Oct 2021 01:29:50 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id z24sm219930ljz.93.2021.10.08.01.29.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Oct 2021 01:29:49 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH linux-pinctrl 1/2] Revert "dt-bindings: pinctrl: bcm4708-pinmux: rework binding to use syscon"
+Date:   Fri,  8 Oct 2021 10:29:31 +0200
+Message-Id: <20211008082932.1370-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds Generic Clock Controller driver for lan966x SoC.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Lan966x clock controller contains 3 PLLs - cpu_clk, ddr_clk
-and sys_clk. It generates and supplies clock to various
-peripherals within SoC.
-Register settings required to provide GCK clocking to a
-peripheral is as below:
-GCK_SRC_SEL     = Select clock source.
-GCK_PRESCALER   = Set divider value.
-GCK_ENA         = 1 - Enable GCK clock.
+This reverts commit 2ae80900f239484069569380e1fc4340fd6e0089.
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Co-developed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+My rework was unneeded & wrong. It replaced a clear & correct "reg"
+property usage with a custom "offset" one.
+
+Back then I didn't understand how to properly handle CRU block binding.
+I heard / read about syscon and tried to use it in a totally invalid
+way. That change also missed Rob's review (obviously).
+
+Northstar's pin controller is a simple consistent hardware block that
+can be cleanly mapped using a 0x24 long reg space.
+
+Since the rework commit there wasn't any follow up modifying in-kernel
+DTS files to use the new binding. Broadcom also isn't known to use that
+bugged binding. There is close to zero chance this revert may actually
+cause problems / regressions.
+
+This commit is a simple revert. Example binding may (should) be updated
+/ cleaned up but that can be handled separately.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
-v7 -> v8:
-- Defined new constant DIV_MAX.
-- Corrected and updated divider value condition check.
-- Added Acked-by.
+ .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 23 +++++++++++--------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
 
-v6 -> v7:
-- Added Kconfig and Makefile entires for lan966x clock driver.
-
-v5 -> v6:
-- No changes.
-
-v4 -> v5:
-- Returning proper error - PTR_ERR.
-- Removed unused variable "ret" in probe function.
-
-v3 -> v4:
-- Used clk_parent_data instead of of_clk_get_parent_name().
-
-v2 -> v3:
-- No changes.
-
-v1 -> v2:
-- No changes.
-
- drivers/clk/Kconfig       |   7 ++
- drivers/clk/Makefile      |   1 +
- drivers/clk/clk-lan966x.c | 239 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 247 insertions(+)
- create mode 100644 drivers/clk/clk-lan966x.c
-
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index c5b3dc97396a..1b992a554ff8 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -221,6 +221,13 @@ config COMMON_CLK_GEMINI
- 	  This driver supports the SoC clocks on the Cortina Systems Gemini
- 	  platform, also known as SL3516 or CS3516.
+diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+index 470aff599c27..78600a8fe403 100644
+--- a/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+@@ -17,9 +17,6 @@ description:
  
-+config COMMON_CLK_LAN966X
-+	bool "Generic Clock Controller driver for LAN966X SoC"
-+	help
-+	  This driver provides support for Generic Clock Controller(GCK) on
-+	  LAN966X SoC. GCK generates and supplies clock to various peripherals
-+	  within the SoC.
+   A list of pins varies across chipsets so few bindings are available.
+ 
+-  Node of the pinmux must be nested in the CRU (Central Resource Unit) "syscon"
+-  node.
+-
+ properties:
+   compatible:
+     enum:
+@@ -27,10 +24,11 @@ properties:
+       - brcm,bcm4709-pinmux
+       - brcm,bcm53012-pinmux
+ 
+-  offset:
+-    description: offset of pin registers in the CRU block
++  reg:
+     maxItems: 1
+-    $ref: /schemas/types.yaml#/definitions/uint32-array
 +
- config COMMON_CLK_ASPEED
- 	bool "Clock driver for Aspeed BMC SoCs"
- 	depends on ARCH_ASPEED || COMPILE_TEST
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index e42312121e51..d8565ef01b34 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -37,6 +37,7 @@ obj-$(CONFIG_ARCH_HIGHBANK)		+= clk-highbank.o
- obj-$(CONFIG_CLK_HSDK)			+= clk-hsdk-pll.o
- obj-$(CONFIG_COMMON_CLK_K210)		+= clk-k210.o
- obj-$(CONFIG_LMK04832)			+= clk-lmk04832.o
-+obj-$(CONFIG_COMMON_CLK_LAN966X)	+= clk-lan966x.o
- obj-$(CONFIG_COMMON_CLK_LOCHNAGAR)	+= clk-lochnagar.o
- obj-$(CONFIG_COMMON_CLK_MAX77686)	+= clk-max77686.o
- obj-$(CONFIG_COMMON_CLK_MAX9485)	+= clk-max9485.o
-diff --git a/drivers/clk/clk-lan966x.c b/drivers/clk/clk-lan966x.c
-new file mode 100644
-index 000000000000..bfca8ae7a912
---- /dev/null
-+++ b/drivers/clk/clk-lan966x.c
-@@ -0,0 +1,239 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Microchip LAN966x SoC Clock driver.
-+ *
-+ * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
-+ *
-+ * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk-provider.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#include <dt-bindings/clock/microchip,lan966x.h>
-+
-+#define GCK_ENA         BIT(0)
-+#define GCK_SRC_SEL     GENMASK(9, 8)
-+#define GCK_PRESCALER   GENMASK(23, 16)
-+
-+#define DIV_MAX		256
-+
-+static const char *clk_names[N_CLOCKS] = {
-+	"qspi0", "qspi1", "qspi2", "sdmmc0",
-+	"pi", "mcan0", "mcan1", "flexcom0",
-+	"flexcom1", "flexcom2", "flexcom3",
-+	"flexcom4", "timer", "usb_refclk",
-+};
-+
-+struct lan966x_gck {
-+	struct clk_hw hw;
-+	void __iomem *reg;
-+};
-+#define to_lan966x_gck(hw) container_of(hw, struct lan966x_gck, hw)
-+
-+static const struct clk_parent_data lan966x_gck_pdata[] = {
-+	{ .fw_name = "cpu_clk", .name = "cpu_clk" },
-+	{ .fw_name = "ddr_clk", .name = "ddr_clk" },
-+	{ .fw_name = "sys_clk", .name = "sys_clk" },
-+};
-+
-+static struct clk_init_data init = {
-+	.parent_data = lan966x_gck_pdata,
-+	.num_parents = ARRAY_SIZE(lan966x_gck_pdata),
-+};
-+
-+static void __iomem *base;
-+
-+static int lan966x_gck_enable(struct clk_hw *hw)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 val = readl(gck->reg);
-+
-+	val |= GCK_ENA;
-+	writel(val, gck->reg);
-+
-+	return 0;
-+}
-+
-+static void lan966x_gck_disable(struct clk_hw *hw)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 val = readl(gck->reg);
-+
-+	val &= ~GCK_ENA;
-+	writel(val, gck->reg);
-+}
-+
-+static int lan966x_gck_set_rate(struct clk_hw *hw,
-+				unsigned long rate,
-+				unsigned long parent_rate)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 div, val = readl(gck->reg);
-+
-+	if (rate == 0 || parent_rate == 0)
-+		return -EINVAL;
-+
-+	/* Set Prescalar */
-+	div = parent_rate / rate;
-+	val &= ~GCK_PRESCALER;
-+	val |= FIELD_PREP(GCK_PRESCALER, (div - 1));
-+	writel(val, gck->reg);
-+
-+	return 0;
-+}
-+
-+static long lan966x_gck_round_rate(struct clk_hw *hw, unsigned long rate,
-+				   unsigned long *parent_rate)
-+{
-+	unsigned int div;
-+
-+	if (rate == 0 || *parent_rate == 0)
-+		return -EINVAL;
-+
-+	if (rate >= *parent_rate)
-+		return *parent_rate;
-+
-+	div = DIV_ROUND_CLOSEST(*parent_rate, rate);
-+
-+	return *parent_rate / div;
-+}
-+
-+static unsigned long lan966x_gck_recalc_rate(struct clk_hw *hw,
-+					     unsigned long parent_rate)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 div, val = readl(gck->reg);
-+
-+	div = FIELD_GET(GCK_PRESCALER, val);
-+
-+	return parent_rate / (div + 1);
-+}
-+
-+static int lan966x_gck_determine_rate(struct clk_hw *hw,
-+				      struct clk_rate_request *req)
-+{
-+	struct clk_hw *parent;
-+	int i;
-+
-+	for (i = 0; i < clk_hw_get_num_parents(hw); ++i) {
-+		parent = clk_hw_get_parent_by_index(hw, i);
-+		if (!parent)
-+			continue;
-+
-+		/* Maximum prescaler divider value is 256 */
-+		if (clk_hw_get_rate(parent) / req->rate <= DIV_MAX) {
-+			req->best_parent_hw = parent;
-+			req->best_parent_rate = clk_hw_get_rate(parent);
-+
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static u8 lan966x_gck_get_parent(struct clk_hw *hw)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 val = readl(gck->reg);
-+
-+	return FIELD_GET(GCK_SRC_SEL, val);
-+}
-+
-+static int lan966x_gck_set_parent(struct clk_hw *hw, u8 index)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 val = readl(gck->reg);
-+
-+	val &= ~GCK_SRC_SEL;
-+	val |= FIELD_PREP(GCK_SRC_SEL, index);
-+	writel(val, gck->reg);
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops lan966x_gck_ops = {
-+	.enable         = lan966x_gck_enable,
-+	.disable        = lan966x_gck_disable,
-+	.set_rate       = lan966x_gck_set_rate,
-+	.round_rate     = lan966x_gck_round_rate,
-+	.recalc_rate    = lan966x_gck_recalc_rate,
-+	.determine_rate = lan966x_gck_determine_rate,
-+	.set_parent     = lan966x_gck_set_parent,
-+	.get_parent     = lan966x_gck_get_parent,
-+};
-+
-+static struct clk_hw *lan966x_gck_clk_register(struct device *dev, int i)
-+{
-+	struct lan966x_gck *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return ERR_PTR(-ENOMEM);
-+
-+	priv->reg = base + (i * 4);
-+	priv->hw.init = &init;
-+	ret = devm_clk_hw_register(dev, &priv->hw);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return &priv->hw;
-+};
-+
-+static int lan966x_clk_probe(struct platform_device *pdev)
-+{
-+	struct clk_hw_onecell_data *hw_data;
-+	struct device *dev = &pdev->dev;
-+	int i;
-+
-+	hw_data = devm_kzalloc(dev, sizeof(*hw_data), GFP_KERNEL);
-+	if (!hw_data)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	init.ops = &lan966x_gck_ops;
-+
-+	hw_data->num = N_CLOCKS;
-+
-+	for (i = 0; i < N_CLOCKS; i++) {
-+		init.name = clk_names[i];
-+		hw_data->hws[i] = lan966x_gck_clk_register(dev, i);
-+		if (IS_ERR(hw_data->hws[i])) {
-+			dev_err(dev, "failed to register %s clock\n",
-+				init.name);
-+			return PTR_ERR(hw_data->hws[i]);
-+		}
-+	}
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, hw_data);
-+}
-+
-+static const struct of_device_id lan966x_clk_dt_ids[] = {
-+	{ .compatible = "microchip,lan966x-gck", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, lan966x_clk_dt_ids);
-+
-+static struct platform_driver lan966x_clk_driver = {
-+	.probe  = lan966x_clk_probe,
-+	.driver = {
-+		.name = "lan966x-clk",
-+		.of_match_table = lan966x_clk_dt_ids,
-+	},
-+};
-+builtin_platform_driver(lan966x_clk_driver);
-+
-+MODULE_AUTHOR("Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>");
-+MODULE_DESCRIPTION("LAN966X clock driver");
-+MODULE_LICENSE("GPL v2");
++  reg-names:
++    const: cru_gpio_control
+ 
+ patternProperties:
+   '-pins$':
+@@ -72,19 +70,24 @@ allOf:
+                         uart1_grp ]
+ 
+ required:
+-  - offset
++  - reg
++  - reg-names
+ 
+ additionalProperties: false
+ 
+ examples:
+   - |
+     cru@1800c100 {
+-        compatible = "syscon", "simple-mfd";
++        compatible = "simple-bus";
+         reg = <0x1800c100 0x1a4>;
++        ranges;
++        #address-cells = <1>;
++        #size-cells = <1>;
+ 
+-        pinctrl {
++        pin-controller@1c0 {
+             compatible = "brcm,bcm4708-pinmux";
+-            offset = <0xc0>;
++            reg = <0x1c0 0x24>;
++            reg-names = "cru_gpio_control";
+ 
+             spi-pins {
+                 function = "spi";
 -- 
-2.17.1
+2.26.2
 
