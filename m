@@ -2,165 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 590414268AE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 13:27:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 058D74268BC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 13:28:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbhJHL3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 07:29:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33528 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240181AbhJHL3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 07:29:07 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82D1C061755;
-        Fri,  8 Oct 2021 04:27:09 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id i12so16165818wrb.7;
-        Fri, 08 Oct 2021 04:27:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tLi89EnDPjR+G+5RZAaz/qdjvJ+j6uhtWnhwzVW71cE=;
-        b=PIgIYvyiO7MafYMnWpo0WxprZr99rhBFPMNQhs5AwDzC/wCtL50WyZfh6AEc+c2izj
-         KiU+/Yubs9ACeyRpTzAMT11XsHVu/KvttB5RIzycwJCslNgUri5qWLir7euF+CmtrQQz
-         ioU9yChMm+sAq/xSkb7Su0cIFBLHEmdJl9tGp7xtoq6lHlN7k8Em4ibapqXwmtt5M7g5
-         V4Tm6q276qEMZHaZKofTss89/+ytxexejyHWlc+psoaBUiTzh30/ahft8QqnIcHzSsJ0
-         vSvQa1sGGDUh6Zi8gmSREgJy/QO5hnxQbVeXQAAiNhatQKXI37wYxa12wER1C7W5dCh0
-         034A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=tLi89EnDPjR+G+5RZAaz/qdjvJ+j6uhtWnhwzVW71cE=;
-        b=tqWbti3F6X1WPSevbIzNRxR33VAUlDJCv1jkVTuYfwfdlDvmB3Wg1KDSFXGPw5UglP
-         BHX9isZkcNVVkC3Y1nrRmHZmk006qk1+aWgdMeB149bGB1HaZI/MMTousmmtBZ5zjcbl
-         Uf6qRMmRcqnu4k7EOK+I0b62IWtHPRV02WqJJz7GtZEvd7XdJPVABRB2dxSLf+7mpJZr
-         IP7qT4Ao19UMT2J9eV/Zk2HMx8IajuNiwgLKzDa6dXuQWLHEeuNjAKVAfDOWOZnKC6/8
-         Bg3OWHOlYkNCwM0G+Q41CGhaX7LVYo5L0Ek5fbXAi4ykiDx6zO0Qzu1TG6rp1B3f4nh8
-         o2dw==
-X-Gm-Message-State: AOAM533wQ6u+1KEWEcO2s7t5eowMIC8Ev7eyKRVz5dsM3pI8yOt7gDGB
-        9bDuzBouDdUTmolrSosiF84=
-X-Google-Smtp-Source: ABdhPJwrkjde/Z6e4X54arkfrAdFRWNfEIUqRoReDcJ36V+ZMZwqv/l72Kt5Mb9TWy2qNeQR5oHLEQ==
-X-Received: by 2002:a5d:59a4:: with SMTP id p4mr3151969wrr.332.1633692428046;
-        Fri, 08 Oct 2021 04:27:08 -0700 (PDT)
-Received: from [192.168.2.177] ([206.204.146.29])
-        by smtp.gmail.com with ESMTPSA id t15sm2222520wru.6.2021.10.08.04.27.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 04:27:06 -0700 (PDT)
-Message-ID: <1ec3cefb-12cd-86e8-fff2-1ab0d10034b6@gmail.com>
-Date:   Fri, 8 Oct 2021 13:27:05 +0200
+        id S240328AbhJHLak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 07:30:40 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:65262 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240344AbhJHLah (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 07:30:37 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1981fMeI003084;
+        Fri, 8 Oct 2021 07:28:28 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 3bhtt1pmwg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 08 Oct 2021 07:28:28 -0400
+Received: from SCSQMBX10.ad.analog.com (SCSQMBX10.ad.analog.com [10.77.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 198BSQeq029968
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 8 Oct 2021 07:28:27 -0400
+Received: from SCSQCASHYB6.ad.analog.com (10.77.17.132) by
+ SCSQMBX10.ad.analog.com (10.77.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
+ Fri, 8 Oct 2021 04:28:25 -0700
+Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
+ SCSQCASHYB6.ad.analog.com (10.77.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
+ Fri, 8 Oct 2021 04:28:25 -0700
+Received: from zeus.spd.analog.com (10.66.68.11) by scsqmbx11.ad.analog.com
+ (10.77.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
+ Transport; Fri, 8 Oct 2021 04:28:25 -0700
+Received: from andrei-VirtualBox.ad.analog.com (ADRIMBAR-L02.ad.analog.com [10.48.65.112])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 198BSMC4022852;
+        Fri, 8 Oct 2021 07:28:22 -0400
+From:   <andrei.drimbarean@analog.com>
+To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <devicetree@vger.kernel.org>, <fazilyildiran@gmail.com>,
+        <andrei.drimbarean@analog.com>, <robh+dt@kernel.org>,
+        <jic23@kernel.org>, <Michael.Hennerich@analog.com>,
+        <lars@metafoo.de>
+Subject: [PATCH 0/2] ADPD188 linux driver
+Date:   Fri, 8 Oct 2021 14:27:45 +0300
+Message-ID: <20211008112747.79969-1-andrei.drimbarean@analog.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH v10, 4/5] soc: mediatek: add mtk mutex support for MT8192
-Content-Language: en-US
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Hsin-Yi Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>
-References: <20210930155222.5861-1-yongqiang.niu@mediatek.com>
- <20210930155222.5861-5-yongqiang.niu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20210930155222.5861-5-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: oP_EpB22cHIlZEo76gJQOYq3h1USiML8
+X-Proofpoint-GUID: oP_EpB22cHIlZEo76gJQOYq3h1USiML8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-10-08_03,2021-10-07_02,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 impostorscore=0 bulkscore=0 suspectscore=0
+ mlxlogscore=999 mlxscore=0 adultscore=0 malwarescore=0 clxscore=1011
+ phishscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2109230001 definitions=main-2110080067
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Andrei Drimbarean <andrei.drimbarean@analog.com>
 
+The ADPD188BI is a complete photometric system for smoke 
+detection using optical dual wavelength technology. The module 
+integrates an efficient photometric front end, two light 
+emitting diodes (LEDs), and two photodiodes (PDs). 
 
-On 30/09/2021 17:52, Yongqiang Niu wrote:
-> Add mtk mutex support for MT8192 SoC.
-> 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+The front end of the application specific integrated circuit 
+(ASIC) consists of a control block, a 14-bit analog-to-digital 
+converter (ADC) with a 20-bit burst accumulator, and three 
+flexible, independently configurable LED drivers.
 
-Applied to v5.15-next/soc
+Datasheet information here: https://www.analog.com/media/en/technical-documentation/data-sheets/adpd188bi.pdf
 
-Thanks!
+The device is controlled via either SPI or I2C interface.
 
-> ---
->   drivers/soc/mediatek/mtk-mutex.c | 35 ++++++++++++++++++++++++++++++++
->   1 file changed, 35 insertions(+)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-> index 2e4bcc300576..2ca55bb5a8be 100644
-> --- a/drivers/soc/mediatek/mtk-mutex.c
-> +++ b/drivers/soc/mediatek/mtk-mutex.c
-> @@ -39,6 +39,18 @@
->   #define MT8167_MUTEX_MOD_DISP_DITHER		15
->   #define MT8167_MUTEX_MOD_DISP_UFOE		16
->   
-> +#define MT8192_MUTEX_MOD_DISP_OVL0		0
-> +#define MT8192_MUTEX_MOD_DISP_OVL0_2L		1
-> +#define MT8192_MUTEX_MOD_DISP_RDMA0		2
-> +#define MT8192_MUTEX_MOD_DISP_COLOR0		4
-> +#define MT8192_MUTEX_MOD_DISP_CCORR0		5
-> +#define MT8192_MUTEX_MOD_DISP_AAL0		6
-> +#define MT8192_MUTEX_MOD_DISP_GAMMA0		7
-> +#define MT8192_MUTEX_MOD_DISP_POSTMASK0		8
-> +#define MT8192_MUTEX_MOD_DISP_DITHER0		9
-> +#define MT8192_MUTEX_MOD_DISP_OVL2_2L		16
-> +#define MT8192_MUTEX_MOD_DISP_RDMA4		17
-> +
->   #define MT8183_MUTEX_MOD_DISP_RDMA0		0
->   #define MT8183_MUTEX_MOD_DISP_RDMA1		1
->   #define MT8183_MUTEX_MOD_DISP_OVL0		9
-> @@ -214,6 +226,20 @@ static const unsigned int mt8183_mutex_mod[DDP_COMPONENT_ID_MAX] = {
->   	[DDP_COMPONENT_WDMA0] = MT8183_MUTEX_MOD_DISP_WDMA0,
->   };
->   
-> +static const unsigned int mt8192_mutex_mod[DDP_COMPONENT_ID_MAX] = {
-> +	[DDP_COMPONENT_AAL0] = MT8192_MUTEX_MOD_DISP_AAL0,
-> +	[DDP_COMPONENT_CCORR] = MT8192_MUTEX_MOD_DISP_CCORR0,
-> +	[DDP_COMPONENT_COLOR0] = MT8192_MUTEX_MOD_DISP_COLOR0,
-> +	[DDP_COMPONENT_DITHER] = MT8192_MUTEX_MOD_DISP_DITHER0,
-> +	[DDP_COMPONENT_GAMMA] = MT8192_MUTEX_MOD_DISP_GAMMA0,
-> +	[DDP_COMPONENT_POSTMASK0] = MT8192_MUTEX_MOD_DISP_POSTMASK0,
-> +	[DDP_COMPONENT_OVL0] = MT8192_MUTEX_MOD_DISP_OVL0,
-> +	[DDP_COMPONENT_OVL_2L0] = MT8192_MUTEX_MOD_DISP_OVL0_2L,
-> +	[DDP_COMPONENT_OVL_2L2] = MT8192_MUTEX_MOD_DISP_OVL2_2L,
-> +	[DDP_COMPONENT_RDMA0] = MT8192_MUTEX_MOD_DISP_RDMA0,
-> +	[DDP_COMPONENT_RDMA4] = MT8192_MUTEX_MOD_DISP_RDMA4,
-> +};
-> +
->   static const unsigned int mt2712_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
->   	[MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
->   	[MUTEX_SOF_DSI0] = MUTEX_SOF_DSI0,
-> @@ -275,6 +301,13 @@ static const struct mtk_mutex_data mt8183_mutex_driver_data = {
->   	.no_clk = true,
->   };
->   
-> +static const struct mtk_mutex_data mt8192_mutex_driver_data = {
-> +	.mutex_mod = mt8192_mutex_mod,
-> +	.mutex_sof = mt8183_mutex_sof,
-> +	.mutex_mod_reg = MT8183_MUTEX0_MOD0,
-> +	.mutex_sof_reg = MT8183_MUTEX0_SOF0,
-> +};
-> +
->   struct mtk_mutex *mtk_mutex_get(struct device *dev)
->   {
->   	struct mtk_mutex_ctx *mtx = dev_get_drvdata(dev);
-> @@ -507,6 +540,8 @@ static const struct of_device_id mutex_driver_dt_match[] = {
->   	  .data = &mt8173_mutex_driver_data},
->   	{ .compatible = "mediatek,mt8183-disp-mutex",
->   	  .data = &mt8183_mutex_driver_data},
-> +	{ .compatible = "mediatek,mt8192-disp-mutex",
-> +	  .data = &mt8192_mutex_driver_data},
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, mutex_driver_dt_match);
-> 
+The first implementation used adpd188_spi/i2c.c to initialize regmap that
+was then used in the core driver source. But the I2C implementation needed
+to work with multiple daisy-chained devices. The properties of the
+daisy-chained devices is that only one of them sets the sampling rate
+automatically while the others sample when they receive a sample ready
+signal from the previous device and only the last of the chain forwards and
+interrupt to the host, which needs to read data from all devices at that
+point.
+
+Moreover, all devices start on power-up with the same I2C address, which is
+not configurable in the hardware. It needs to be configured in software by
+changing a register. To differentiate between devices that need to change
+address and those that don't we set devices to change only when their GPIO1
+is held high. Each device has its GPIO1 tied to GPIO0 of the previous
+device, except the first device, which has its GPIO1 tied low.
+
+So the way to change the addresses is as follows:
+ 1. Set all GPIO1 to high.
+ 2. Change devices that have GPIO1 tied high to a new address.
+ 3. Change GPIO1 to low for devices of the old address.
+ 4. Go to new address and repeat from step 1.
+
+Because of this, a single driver instance ends up controlling multiple
+physical devices that are daisy-chained at the same time.
+
+Andrei Drimbarean (2):
+  dt-bindings: add adpd188 schema
+  drivers:iio:light: add ADPD188 driver support
+
+ .../bindings/iio/light/adi,adpd188.yaml       |   72 +
+ drivers/iio/light/Kconfig                     |   30 +
+ drivers/iio/light/Makefile                    |    3 +
+ drivers/iio/light/adpd188.c                   | 1389 +++++++++++++++++
+ drivers/iio/light/adpd188.h                   |   64 +
+ drivers/iio/light/adpd188_i2c.c               |  243 +++
+ drivers/iio/light/adpd188_spi.c               |   97 ++
+ 7 files changed, 1898 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/adi,adpd188.yaml
+ create mode 100644 drivers/iio/light/adpd188.c
+ create mode 100644 drivers/iio/light/adpd188.h
+ create mode 100644 drivers/iio/light/adpd188_i2c.c
+ create mode 100644 drivers/iio/light/adpd188_spi.c
+
+-- 
+2.25.1
+
