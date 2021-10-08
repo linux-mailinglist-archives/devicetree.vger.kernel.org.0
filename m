@@ -2,143 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADC16426A04
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 13:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E95564269E6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 13:43:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241498AbhJHLpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 07:45:21 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:47498
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243316AbhJHLnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 07:43:42 -0400
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E22A53FFFF
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 11:41:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633693262;
-        bh=YenCxJtlGV3PQlymT33h0MoUTyi5idKH+CvjTblUKV8=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=jMvxH1CwIT/9CBvh3h0vlXkivI6eRQceXXIPMJkT3jhsCkoJshhCfffBU3avyQBL8
-         zuJLF5TAemahK9bzlqZ3uqHIa+H4SGRnoJwO4+wvzLqLvbyOc1egqsDL59vjtPT40i
-         3LrrpN+yPvRf6rCQAXuvv4ZX8hG/e5f8gZjRv3gEgfcyfRVdAx1SsFN9b1UhEJYEJi
-         uOZsVst/LlHlZIVmJXnlBxi8KqdQ+ST7z6bQlPcMGOdMOM/4bWkkvSbdDr9aNy8p9v
-         eh6uH9kfMwHgpepLATrpITtNQGYjq93E6lt5V0T57FfYzlW8/c9WkTL++l9Jz49423
-         vUAY6U1nHJCCQ==
-Received: by mail-ed1-f69.google.com with SMTP id u17-20020a50d511000000b003daa3828c13so8917830edi.12
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 04:41:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YenCxJtlGV3PQlymT33h0MoUTyi5idKH+CvjTblUKV8=;
-        b=vP7AwvHlw0I4U9/79I1rHHQJs5Yt2MP9IKsZ57LqGB+RRmwaNgDCFFcp7uBbAgbzZ/
-         TaSUAghkmL4xs/KI9V2a4wLw0nEKrInS0iPoA2KwdFvE9/Eqv1i2Z/PqKiXhctdnhqUB
-         84DWbrVbK2aBPvp3zjrg1byVoWdW3fuvW0/b+xkwjFT1wgSiRl92+saD8r7liYvN3JuV
-         qVcz2MtU8JkPWlr/4VvM5O+KCF466D0/S5r1Poo2sEWY2c5anK3tCcrpu2eOlEeR2G5V
-         AUyOXGx6gy7ulWKVXF08lU/S7ncefVIoUGDxh530WKB0CKA7/n4LGkAxtrUAL62v9jGz
-         3Zlw==
-X-Gm-Message-State: AOAM530Q0MrXaSWseJfC0l95O1utDpY/mZg++mnYf9SL9OLFoW1+fItZ
-        CrueCiPqzM4AEMQ3E4wICh+u1pFobSUiu6es1Jxd1jjMlu/0+giYM+2R7mFg1e88TlzGL8fCoLc
-        m0BAcOXTDns915QAPQHjvRXgn0a673cyHXavTMfY=
-X-Received: by 2002:a17:907:1c0e:: with SMTP id nc14mr3610936ejc.103.1633693259154;
-        Fri, 08 Oct 2021 04:40:59 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxomzDMpxmD/kRXVctv2bbCqa67VNyIA5xEzK0LWLUsGmubPwb/clohBcAxG5qJ4i+p3jGu3g==
-X-Received: by 2002:a17:907:1c0e:: with SMTP id nc14mr3610907ejc.103.1633693258920;
-        Fri, 08 Oct 2021 04:40:58 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-186-13.adslplus.ch. [188.155.186.13])
-        by smtp.gmail.com with ESMTPSA id kw5sm10121ejc.110.2021.10.08.04.40.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Oct 2021 04:40:58 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 10/10] dt-bindings: mfd: samsung,s5m8767: document buck and LDO supplies
-Date:   Fri,  8 Oct 2021 13:40:24 +0200
-Message-Id: <20211008114024.135335-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211008113723.134648-1-krzysztof.kozlowski@canonical.com>
-References: <20211008113723.134648-1-krzysztof.kozlowski@canonical.com>
+        id S241407AbhJHLot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 07:44:49 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:53710 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243448AbhJHLoF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 07:44:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1633693330; x=1665229330;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ByWoSgpOz8sZiCzoDYKtmBjQsscj636gJWSCmvlpJsw=;
+  b=nsDx0CrbPMJDH3Gq9S24tY2z2DzyVR5nE3eydT8H177GLlLgjIYXVO/M
+   z59oyX+w+yxiXYrt+fS6A08SIoL81l0935/gJ7ug0sCH0MZf+5bd9WTJM
+   L21C4woD5FFtfBXQi/ufYiRgrY0LVF7kLrrq+R6SgJ6DMQ5c1mstVCqC6
+   jur/NImVnWyMx0uNtlP/JWwPLkH09voq6WZTQx56mivGY12RZMjBIkfa2
+   0U5bLxJ7Pa659/3ZZOqUPNoDEEUYAI3yI4BW2y8giVzmtP/PPyo9ERcRe
+   5HS6BKy+Jo7P+KBz7P99O7FvSV5CtHmVxMnh/vu65ztgPAEo3snv1hZZf
+   g==;
+IronPort-SDR: ZLBJR5dA//EmvmIkINY3QlPyGblkuuvxSC04XImd/1fYUkbnv2Y9p3yd/QsYhn+5rE9WVJSKjO
+ Wtd71M3X97SbxpdlK/3s3RXc3ldbaRfzQvZCLR/ANLpG6GN0SHXLQcF5ITLuqIIXbAI+s8IRUD
+ 17TE9lnCjNk/9+iO7nJnPB02ilD91l2vI62r2Bhrzuf7BeVsyHI3ejO/9PjC9ukBI9yXiwbpJ/
+ nclISf2ZbGBu7oc+FdWJUkPVYlwXsD/xF9GFXjmKQNpL/T9pSmQ6/x/benbdvRWn9W4k2oxvIO
+ 3dzjcK8dL9fsdSgeX426UfX+
+X-IronPort-AV: E=Sophos;i="5.85,357,1624345200"; 
+   d="scan'208";a="139528888"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Oct 2021 04:42:08 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 8 Oct 2021 04:42:08 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 8 Oct 2021 04:42:06 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
+        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH 0/2] Extend Sparx5 switch reset driver for lan966x
+Date:   Fri, 8 Oct 2021 13:43:28 +0200
+Message-ID: <20211008114330.1328713-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the properties with regulator supplies for bucks and LDOs.  At
-least one board uses it (Exynos5250 Arndale).
+This patch serie extends the Microchip Sparx5 reset driver to support
+lan966x
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/mfd/samsung,s5m8767.yaml         | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Horatiu Vultur (2):
+  dt-bindings: reset: Add lan966x support
+  reset: mchp: sparx5: Extend support for lan966x
 
-diff --git a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
-index b2529a48c890..5531718abdf0 100644
---- a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
-+++ b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
-@@ -96,6 +96,44 @@ properties:
-     description: |
-       GPIO specifiers for three host gpio's used for dvs.
- 
-+  vinb1-supply:
-+    description: Power supply for buck1
-+  vinb2-supply:
-+    description: Power supply for buck2
-+  vinb3-supply:
-+    description: Power supply for buck3
-+  vinb4-supply:
-+    description: Power supply for buck4
-+  vinb5-supply:
-+    description: Power supply for buck5
-+  vinb6-supply:
-+    description: Power supply for buck6
-+  vinb7-supply:
-+    description: Power supply for buck7
-+  vinb8-supply:
-+    description: Power supply for buck8
-+  vinb9-supply:
-+    description: Power supply for buck9
-+
-+  vinl1-supply:
-+    description: Power supply for LDO3, LDO10, LDO26, LDO27
-+  vinl2-supply:
-+    description: Power supply for LDO13, LDO16, LDO25, LDO28
-+  vinl3-supply:
-+    description: Power supply for LDO11, LDO14
-+  vinl4-supply:
-+    description: Power supply for LDO4, LDO9
-+  vinl5-supply:
-+    description: Power supply for LDO12, LDO17, LDO19, LDO23
-+  vinl6-supply:
-+    description: Power supply for LDO18, LDO20, LDO21, LDO24
-+  vinl7-supply:
-+    description: Power supply for LDO5, LDO22
-+  vinl8-supply:
-+    description: Power supply for LDO1, LDO6, LDO7, LDO8, LDO15
-+  vinl9-supply:
-+    description: Power supply for LDO2
-+
-   wakeup-source: true
- 
- required:
+ .../bindings/reset/microchip,rst.yaml         | 10 ++-
+ drivers/reset/Kconfig                         |  2 +-
+ drivers/reset/reset-microchip-sparx5.c        | 62 ++++++++++++++++---
+ 3 files changed, 64 insertions(+), 10 deletions(-)
+
 -- 
-2.30.2
+2.33.0
 
