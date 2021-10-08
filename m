@@ -2,77 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B7FC426BDB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:43:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CCCA426BF1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:49:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbhJHNpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 09:45:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50994 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229487AbhJHNpp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 09:45:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BF65160F5B;
-        Fri,  8 Oct 2021 13:43:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633700629;
-        bh=1o9q1XcL0I+ROV0ip9arNCr7TM35n15Zzw1snvEtGcI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RGnWbO0Mzk+jd1zPqtfu0npWY10dB4OeJnTuFb6RA3BkXr9+Oek/joN9GpIRNYitX
-         xJiJs8+lL6jUhWRKkJPiLmgbXaSmad9ISbNq1w+nm/bLQz6erKUx8mZkdbkODZ8jV4
-         Y6ukTvxxsstcHhBHqgnPE9dLP+mzAdX/QrWMv932mWSTtnmK14Pa3x+F9YnycdifJJ
-         MHsuTfMZsUPIHe5alopFMUxQRYJoiyVxqNci3z1S0jF2ULemwVsSkuAnVSicbpzhiv
-         vsF0pOklNqVJkgX2DvJgwzmbD+qs0j+v6pviv9XSUdy5alB5XzoWnRtGY1Y7CzsvtP
-         PynHQzujJGUeA==
-Received: by pali.im (Postfix)
-        id 76DD3760; Fri,  8 Oct 2021 15:43:47 +0200 (CEST)
-Date:   Fri, 8 Oct 2021 15:43:47 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5] arm64: dts: marvell: add Globalscale MOCHAbin
-Message-ID: <20211008134347.lskm5pzt73pkf7oc@pali>
-References: <20211008114343.57920-1-robert.marko@sartura.hr>
- <20211008120855.46zbo2fl5edwf7ja@pali>
- <CA+HBbNGvFtws2GF7RLbznAbXfvjKx4rOJ=eMeuHOJ6s7iANtzw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+HBbNGvFtws2GF7RLbznAbXfvjKx4rOJ=eMeuHOJ6s7iANtzw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+        id S229559AbhJHNvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 09:51:39 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:45673 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229487AbhJHNvi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 09:51:38 -0400
+Received: by mail-ot1-f49.google.com with SMTP id g15-20020a9d128f000000b0054e3d55dd81so6630018otg.12;
+        Fri, 08 Oct 2021 06:49:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=bWXEazop75TJR+kI2eloq93UC63vOjR9qIoQx+KsDQw=;
+        b=2DiIRwFwPwynEW3fCM1Y5NE7abeOFGalmu+PmY/KUN3kyJT5siSjTRK9TuTegfzVQk
+         hXyR7TwMqW+HiQxDdCRlLu1rCtZSBUuKPzYzV7YBFiCd+sGbZc/EcfC5TWGGxB3FigA0
+         p73LoOOCioI5D9snUrXvU5rzsKZJs+9mbnldiAw6SjzQ/9oQfd+Zd3QRkGUiaQV011Fl
+         Xkw4KXOp5el1UFfVnSS90Wlo5Fj25VlCgWHeAyNfUsdvOcrFqzd3Gz4mP1i/7unjgtUZ
+         +dlU48WnR6tBXM1+ZaRNwaiwMAgAKh7SkWnsfR9UVL6l/diGiS7AiaVn0hVJOhbH+YBm
+         CeCg==
+X-Gm-Message-State: AOAM532gAuFq0E71ZAQ5CmhiSuxbYFNIgSPVWKxVxuSxct07cu8AlF2t
+        arLHwAxdofAx3x2sXfnWUw==
+X-Google-Smtp-Source: ABdhPJyMYLKi60w44HsKR1AnDRlwua/9SZ7aCmh11p841ai7yJMRlEDLVAAVqdD/0++63p0N1AYTfg==
+X-Received: by 2002:a05:6830:1497:: with SMTP id s23mr8705196otq.148.1633700982938;
+        Fri, 08 Oct 2021 06:49:42 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id n17sm617914oic.21.2021.10.08.06.49.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Oct 2021 06:49:42 -0700 (PDT)
+Received: (nullmailer pid 2706682 invoked by uid 1000);
+        Fri, 08 Oct 2021 13:49:41 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Scott Branden <sbranden@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+In-Reply-To: <20211008082932.1370-1-zajec5@gmail.com>
+References: <20211008082932.1370-1-zajec5@gmail.com>
+Subject: Re: [PATCH linux-pinctrl 1/2] Revert "dt-bindings: pinctrl: bcm4708-pinmux: rework binding to use syscon"
+Date:   Fri, 08 Oct 2021 08:49:41 -0500
+Message-Id: <1633700981.551401.2706681.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 08 October 2021 15:28:38 Robert Marko wrote:
-> > > +     cp0_pcie_reset_pins: cp0-pcie-reset-pins {
-> > > +             marvell,pins = "mpp9";
-> > > +             marvell,function = "gpio";
-> >
-> > Now I spotted this. Why is PERST# pin configured into gpio mode? Is
-> > there some issue that this pin in pcie mode is not working properly,
-> > that PCIe controller cannot handle it correctly? Or something else?
+On Fri, 08 Oct 2021 10:29:31 +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Its because I have seen way too many broken controllers when it comes
-> to PERST and
-> other Armada 7k/8k devices are using it in GPIO mode as well.
-> Just look at the number of conversions back to GPIO for other
-> platforms as there is always some bug.
+> This reverts commit 2ae80900f239484069569380e1fc4340fd6e0089.
+> 
+> My rework was unneeded & wrong. It replaced a clear & correct "reg"
+> property usage with a custom "offset" one.
+> 
+> Back then I didn't understand how to properly handle CRU block binding.
+> I heard / read about syscon and tried to use it in a totally invalid
+> way. That change also missed Rob's review (obviously).
+> 
+> Northstar's pin controller is a simple consistent hardware block that
+> can be cleanly mapped using a 0x24 long reg space.
+> 
+> Since the rework commit there wasn't any follow up modifying in-kernel
+> DTS files to use the new binding. Broadcom also isn't known to use that
+> bugged binding. There is close to zero chance this revert may actually
+> cause problems / regressions.
+> 
+> This commit is a simple revert. Example binding may (should) be updated
+> / cleaned up but that can be handled separately.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 23 +++++++++++--------
+>  1 file changed, 13 insertions(+), 10 deletions(-)
+> 
 
-I know that A3720 has broken PERST# control in PCIe block... or at least
-I was not able to figure out how A3720 PCIe block can control PERST#. So
-configuring it in gpio mode and let PERST# to be controlled manually via
-gpio by the software is the workaround.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I just wanted to know if A7k/A8k/CN913x is also broken in the same way
-as A3720.
+yamllint warnings/errors:
 
-Or it it just a configuration workaround for missing driver or missing
-proper software setup.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: cru-bus@1800c100: pinctrl: 'reg' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: cru-bus@1800c100: pinctrl: 'reg-names' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: cru-bus@1800c100: pinctrl: 'offset' does not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: pinctrl: 'reg' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: pinctrl: 'reg-names' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: pinctrl: 'offset' does not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.example.dt.yaml: cru@1800c100: $nodename:0: 'cru@1800c100' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/simple-bus.yaml
 
-HW bugs like this should be properly documented and not hidden behind
-some configuration in DTS file. And reported to HW vendors.
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1538264
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
