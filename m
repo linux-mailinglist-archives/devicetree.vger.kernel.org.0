@@ -2,90 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ABAC426CAF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6C65426CB5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:26:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240847AbhJHOXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 10:23:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39718 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240647AbhJHOXV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 10:23:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 480BB604D2;
-        Fri,  8 Oct 2021 14:21:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633702885;
-        bh=6q2yTJ+TQhPACP+8wkdHIGOXx3v45IfrWME5TRHKZCM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=CUedJ3rEZmLn+ZSl4qm2rvZiBQH88ClU/l1nKBmZnOd89oBJIrdRL/KTxp3gnFZ6C
-         ecwyke9EGEs0rJk3qfJkWjpFG47rTeaJjngnl3pgm7EQL1M9copq0EiKA6H8VQYgX0
-         IdtYshoIr/YpsBnVXgpv5VfEyJeFctFuUI1jpIgqnzPa9TCrND8JtPSjJcUIyCJBCv
-         0SCCCYLJwUtnFjzLT3rAGiacsyykey4w9CIa3dY9y3pNNv0iJfc+4eAcJ1QnG37rbc
-         fv+zonvJJrY4uDqPMbxq5pRMcBkz7GxseXbEfhqyojwEDmicRbKmNpbZzaUDHraiKd
-         0h7Rwd2xiDVEQ==
-Date:   Fri, 8 Oct 2021 07:21:24 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net PATCH v2 01/15] drivers: net: phy: at803x: fix resume for
- QCA8327 phy
-Message-ID: <20211008072124.58d9885b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <YWAFP/Uf4LPK2oe6@Ansuel-xps.localdomain>
-References: <20211008002225.2426-1-ansuelsmth@gmail.com>
-        <20211008002225.2426-2-ansuelsmth@gmail.com>
-        <20211007192304.7a9acabe@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-        <YWAFP/Uf4LPK2oe6@Ansuel-xps.localdomain>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S240788AbhJHO2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 10:28:18 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:3042 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229756AbhJHO2M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:28:12 -0400
+X-IronPort-AV: E=Sophos;i="5.85,357,1624287600"; 
+   d="scan'208";a="96399313"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 08 Oct 2021 23:26:15 +0900
+Received: from localhost.localdomain (unknown [10.226.92.11])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4365D4010715;
+        Fri,  8 Oct 2021 23:26:13 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/2] Add eMMC/Micro SD support
+Date:   Fri,  8 Oct 2021 15:26:07 +0100
+Message-Id: <20211008142609.13985-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Oct 2021 10:45:51 +0200 Ansuel Smith wrote:
-> On Thu, Oct 07, 2021 at 07:23:04PM -0700, Jakub Kicinski wrote:
-> > On Fri,  8 Oct 2021 02:22:11 +0200 Ansuel Smith wrote:  
-> > > From Documentation phy resume triggers phy reset and restart
-> > > auto-negotiation. Add a dedicated function to wait reset to finish as
-> > > it was notice a regression where port sometime are not reliable after a
-> > > suspend/resume session. The reset wait logic is copied from phy_poll_reset.
-> > > Add dedicated suspend function to use genphy_suspend only with QCA8337
-> > > phy and set only additional debug settings for QCA8327. With more test
-> > > it was reported that QCA8327 doesn't proprely support this mode and
-> > > using this cause the unreliability of the switch ports, especially the
-> > > malfunction of the port0.
-> > > 
-> > > Fixes: 52a6cdbe43a3 ("net: phy: at803x: add resume/suspend function to qca83xx phy")  
-> > 
-> > Strange, checkpatch catches the wrong hash being used, but the
-> > verify_fixes script doesn't. Did you mean:
-> > 
-> > Fixes: 15b9df4ece17 ("net: phy: at803x: add resume/suspend function to qca83xx phy")
-> > 
-> > Or is 52a6cdbe43a3 the correct commit hash? Same question for patch 2.
-> > 
-> > 
-> > The fixes have to be a _separate_ series.  
-> 
-> this series contains changes that depends on the fixes. (the 4th patch
-> that rename the define is based on this 2 patch) How to handle that?
-> I know it was wrong to put net and net-next patch in the same series but
-> I don't know how to handle this strange situation. Any hint about that?
+This patch series aims to add eMMC/Micro SD support on RZ/G2L SMARC EVK
+platform.
 
-If there is a functional dependency you'll need to send the net changes
-first and then wait until the trees are merged before sending net-next
-changes. Merge usually happens Thursday afternoon (pacific). You can
-post the net-next changes as RFC before the trees get merged to make
-sure they are reviewed and ready to go in.
+This patch series has dependency upon [1]
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=559045
 
-> About the wrong hash, yes I wrongly took the hash from my local branch.
+v1->v2:
+ * Dropped SoC dtsi patches, since it is accepted for 5.16.
+ * Updated the comment from 64Gb to 64 GB for eMMC size
+ * Added angular brackets for states
+ * Fix the gpio-hog node names 
+ * Fixed label names to match with the schematics
 
-Indeed, looks like our checker got broken hence my confusion.
+Biju Das (2):
+  arm64: dts: renesas: rzg2l-smarc-som: Enable eMMC on SMARC platform
+  arm64: dts: renesas: rzg2l-smarc: Enable microSD on SMARC platform
+
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     | 143 ++++++++++++++++++
+ arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  |  62 ++++++++
+ 2 files changed, 205 insertions(+)
+
+-- 
+2.17.1
+
