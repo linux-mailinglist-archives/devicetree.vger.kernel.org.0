@@ -2,279 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09647426AEE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 14:36:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE487426B17
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 14:42:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241521AbhJHMi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 08:38:26 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:49942
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241510AbhJHMiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 08:38:25 -0400
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0D6C43FFEF
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 12:36:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633696590;
-        bh=eSoJ3kAkfN9iwV+DdMfMcLgfueJX5pTLP7nY41zjT7s=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=H1wyFa3tKR3aJ9xbI41cxwBg0TIT20RZQZ/a98d6h7xghHR87h/MItUr+49W0iHMW
-         KR/jOtkpK6ZZ2lE2Dz69vAgcq+RX25SLitQRvBT/+rPBPeCComtdBeoTycD+yL2xqu
-         yV97iT5scc0DKXoifBMhxhy7PmYln+j8heA4oMtZUr0RknDuTNm3ON6w6SlgpaBm39
-         OJW+RLFKXiLZoTKNVmywdctq6c9e1TOCr08pdEtDA2Kl2d9Be6YUHeKKHdxf3JHu/P
-         EZCc0CLHmZeSDW6CFahhbQMNKn2ce6u4v3naBkgRSmabGwuycR2Em9OnqO3VJVSW12
-         Y6H05yWE2u+4Q==
-Received: by mail-ed1-f70.google.com with SMTP id r11-20020aa7cfcb000000b003d4fbd652b9so7021384edy.14
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 05:36:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eSoJ3kAkfN9iwV+DdMfMcLgfueJX5pTLP7nY41zjT7s=;
-        b=uIh/yL+n7ATVjijv/gksj07ux5s9tfO1p0sU7HL2dRuWop4WYTts/wVIqMMK4Mp2EB
-         nt5dRHVb230mBqFU0HG3ke4/FrYBwXigSDYEAWXiY3c98FY7eGDhpVOnGpEbJgaaJrRw
-         WoD3wXDkKB7dgA5il7PPKUig/NajZeyJbv+t+ulRPF7sO5ysX4OwunFgSvfxHhkrGq/d
-         POkFvzb3CBUyDRmXmDowa7q9VoBjLDPmqCuJsNel0Mhd7swkMXT9NVTIdug9jGU7eVH0
-         p0YPYdecRvhmpf8LnxMbTBuuQotK+kQYahNeYp4ZxuQV9X1sXk0NRYFlOygjKIhpWzEE
-         IUqg==
-X-Gm-Message-State: AOAM530W9oxQrPVa+OM78ah8duRdbm5JToWt0gR75IdhW6aV4/1cJCgw
-        iP73ZnPMA7OlL5quYIA3iZr1SIWSt6QOzHFI2QSdzKd/nqL6vqeGf4aymZ2YbM7xRDfwYCn/SzV
-        z7s+jg7BSB26Tv6UGkSDYAhCRWZB7F5tSC71jkTU=
-X-Received: by 2002:a50:d4cd:: with SMTP id e13mr14339983edj.29.1633696588849;
-        Fri, 08 Oct 2021 05:36:28 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxfUag/psaCoJDstFoeutUlzvMpDO5Nw0209k7pi1TQGUdnAkoDXtCiUlcGV/huIX9NXzuLEQ==
-X-Received: by 2002:a50:d4cd:: with SMTP id e13mr14339895edj.29.1633696588158;
-        Fri, 08 Oct 2021 05:36:28 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-186-13.adslplus.ch. [188.155.186.13])
-        by smtp.gmail.com with ESMTPSA id f25sm860239ejb.34.2021.10.08.05.36.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Oct 2021 05:36:27 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 2/2] dt-bindings: mfd: maxim,max77686: convert to dtschema
-Date:   Fri,  8 Oct 2021 14:35:52 +0200
-Message-Id: <20211008123552.191384-3-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211008123552.191384-1-krzysztof.kozlowski@canonical.com>
-References: <20211008123552.191384-1-krzysztof.kozlowski@canonical.com>
+        id S230253AbhJHMov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 08:44:51 -0400
+Received: from mail-eopbgr1400093.outbound.protection.outlook.com ([40.107.140.93]:40193
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230239AbhJHMou (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 08:44:50 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K8vNYr/iBLz8KPcNpuFloOfHYURpXHAjGdZ+4uGQY9Cse63J91y5tkYFxMY1l5xA13PW+0x1VUEpNb8k8jA1+kQA+6djwWr8YYHBroKlTFdwTpk7ot+nQ+2oXXc6BC1zl17ZI3WBSqoLtm8gFgbPzrOX242OqVoUT6/qAWjDn4syEQNYPMtq/TOtNTK21Cx2FTy/9No1kT45OGvHqQEmlVHm/0r6Ndanp9p5btFXc4AWRcAjvrCJ+zjxAtR+HTWSV9fPJ4OBU5yjl9tmcIPhgy/d0TzkYxY14wEgI19owS3BGBrE3wZTGX7HNG4k1tbc4pv9YyEWE2fAF9JIgipjNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=B28TtzVJBImkY79GBDCeGk1rMfw+YzgapnUXZeosy8w=;
+ b=jjnbtXeBz7PdupQzjjioPtwfA4xAEDkqtR+gy2JMlGkFKE6CW8mjCBLnv2rtD0xAg9a7vmTPA3CEVhzW2Bq+CNIMd6A2z/jPVmVqEfwor5SrUN9XpoI0ZW4OHnBvIngOU544dtDYu+YZ9XJEWCo9tRpYtHATQxl3WkaYOMqqHcBoIa9hIXc/ygtFzlO9nUM1Z+Lcd2lH2te58Q8ufjR2B84Vez96FUoEJKrk0JX33bSkkRicXsppZTVCtaELMQTI6KBOxP97VCcjNBN+aO+pJZETx8PVbkwqQwqBRhusIGmWlWILw5q+o70JzUUc+YLxShzalkDVOAabXcVSk2rlQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B28TtzVJBImkY79GBDCeGk1rMfw+YzgapnUXZeosy8w=;
+ b=fWE9Ou0tIia4wBntBMqPeFTgaznnLldgTmR2sFoppMw4/wiXEiZcgXW5/v25g5zzbq3/snSzQEFR7ZJNt2UqWBnUKnn2xxPgmWODgVabRsW/zfORlz5OiyFcfGmNWk69nDmjSXccmcanbgJpOLMopkF/sBYH0w7uEgUNGTg4/vQ=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OSAPR01MB3730.jpnprd01.prod.outlook.com (2603:1096:604:53::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.19; Fri, 8 Oct
+ 2021 12:42:52 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::9ca6:1cf:5:9fc1]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::9ca6:1cf:5:9fc1%3]) with mapi id 15.20.4587.018; Fri, 8 Oct 2021
+ 12:42:52 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH 2/3] arm64: dts: renesas: rzg2l-smarc-som: Enable eMMC on
+ SMARC platform
+Thread-Topic: [PATCH 2/3] arm64: dts: renesas: rzg2l-smarc-som: Enable eMMC on
+ SMARC platform
+Thread-Index: AQHXu5Ox4/dokw/QOkuKV9S8zZhk+qvJAZcAgAAJ0QA=
+Date:   Fri, 8 Oct 2021 12:42:51 +0000
+Message-ID: <OS0PR01MB5922CFA47D2B427FF65BE5F886B29@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20211007155451.10654-1-biju.das.jz@bp.renesas.com>
+ <20211007155451.10654-3-biju.das.jz@bp.renesas.com>
+ <CAMuHMdXgc9MnZyznCN0CkM4bkoqz71JTAnHG_CeaDHAOCpVutg@mail.gmail.com>
+In-Reply-To: <CAMuHMdXgc9MnZyznCN0CkM4bkoqz71JTAnHG_CeaDHAOCpVutg@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linux-m68k.org; dkim=none (message not signed)
+ header.d=none;linux-m68k.org; dmarc=none action=none
+ header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a7f98f38-5a29-4bfa-cc6c-08d98a5924aa
+x-ms-traffictypediagnostic: OSAPR01MB3730:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <OSAPR01MB37308E215207B2B0A73A66DB86B29@OSAPR01MB3730.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3276;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: f731PBAHSgjckPuMKTNMXKTsDL3VdSsnK/xUgOD9FwsC0EkRqesfVy3tEf+8oN5kZihvC7jIm3V/5J7nzuiuKWcOEZS1zHKlrI8MbyXhIeorQhE2Xh0zWW/MIjg18c0v81N62OUnZo5fpTcfxpyAlRSeq5fn4PJFfLNo7CNKKoKpFjFdAJ7yT1QQ+WhiV/qNIsvd6n2wazaF0+uq/uxtrK7Zm34men0YNr9grYoCD2C+fz0EwBjnaHlANARJpTrLIAyA6Hz397sxEzz+d31qwd8UORAUlusP3iq7aIKwsWhp3kiqD4QJ86FGwUcYw/9PNKUc+tCMMUAarL6APjGY3tlR5ydE1NS8W9ocYkilM0wfcIvCbM7vmyd+vvofPmdQ70NfJvlW/Sk/bmUucmcLu/642Sn/D++cICa3pFMKdWVxKbMqYJ+IAnIvtrHYc1shJwjIJ9PFvHj0yVQpsXI8hDi3b55rQVGtipxy1u0lWC7dobfX1Kz26Xz7VMuU3HGY2kQr72RzG/8WcpBYQJbVo9dUWBA0z1dpwbLAWfWnhYNuIZKhZuX3moMCweaqNCq1S0RP4h7fqAfHc+0NqP5kU/NkEDrmxuHV6c97Fdpnf0nDKhfoglNe4b6uWBPpEWpjD3Pc9LvzN76c1CnS1SI57w/sZE2M1RkFvenPNKXPA3qA8uQDTU1dCR3ntPYt/wMsxZR1zJ8QqlYpbS7pTIOszQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(316002)(5660300002)(38100700002)(86362001)(122000001)(53546011)(6506007)(76116006)(8676002)(508600001)(7696005)(55016002)(71200400001)(186003)(4326008)(2906002)(107886003)(26005)(8936002)(54906003)(66946007)(66556008)(6916009)(52536014)(66476007)(38070700005)(64756008)(33656002)(9686003)(66446008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MVd0K3BYdXBmQUs5L0NVcnd0cXZIZUtGN3E4ZG8yTmxyRTRWWVJvWk9GbGlo?=
+ =?utf-8?B?akYwbUVWQ2lTc2xOeWhtR2J1a2dPSjFOQnErR2RDYjJXWk00TklSc1lQbGIz?=
+ =?utf-8?B?QUdXUnRtT2x3SVAvWEEwU2QyVExISW1iaCt0cythSDNjNTlIUlV3U2RoeGsy?=
+ =?utf-8?B?NDhrbjFONlNyUjRFODhvZEE3cU5mYWY1MkFyV2czSTZqdkgreWF3aG5ZWGhK?=
+ =?utf-8?B?TkFEZjF0SFBQbnhUU2tVcWhNaHB1RzFKUGllRTRDeDE2RTJZckZjY1ZTcTQ5?=
+ =?utf-8?B?YTc3R05jMTc5M1lzTWsxYnhsRGM2ZEVHbDljSUhkanRpc1J3M3pPVTZwT05G?=
+ =?utf-8?B?dXFsSzd6UUl1QXVtS0lNcFNWUi9nakNWQTdXUGx0bThKQW9sVU0xK3lNRUc0?=
+ =?utf-8?B?VFdacU5JaHlRQUVvaTlKbDZEdDcvM094M29tNWhZT2VqYjVlZ0pCZzRaMW1P?=
+ =?utf-8?B?M0FMeVVuWTBselhnNkNENHNzOTdDRU1pNEo2QzVPZUYvYStlTzl0eGltanl5?=
+ =?utf-8?B?bStJd0VLV1JaRXlsNkJrWmRsRUxGeXZESVFvZk5WZVdDbUxzcVgzdlRsZWw3?=
+ =?utf-8?B?bC9JdG5waE5kc29IdGxBTHo1U0ltUno4M3JRWTJHcmVyWk8yWW8zR08veVZk?=
+ =?utf-8?B?K0dlUlIydjh5N1pVU0JzOUNWNTBFYnpabW5IT09QeitKdTVxTXN0d3QyS253?=
+ =?utf-8?B?UElhTDJPMDZKTGxjT2hZMHRLWWFSZlJmZzNkSnFiN2MxS0M5eUQwUWJEdmsv?=
+ =?utf-8?B?c0l5YWQ4M3pFY0REbDZNMnZCM3R3Yzh2bTBkT24yakJPMnl6dVRkajFxY3Fs?=
+ =?utf-8?B?VDlmRHJrNDVMckhQdHpCeE1XL1BDeGExcnd4ajBsNDFkWC9LK2ZvQ09BQ2hl?=
+ =?utf-8?B?K1AvTlo0RnJpVmMvZ3VINXpZSVBDM1JKdDVVdE5CNWx4Uit1WlRlazZJYnE0?=
+ =?utf-8?B?Mm9oeURHQ21iZXBpMTV2U0FwT2xOcXF0eUF5SHdGWFAralZOd3hWUTI2dWc5?=
+ =?utf-8?B?b1NwQVY2azh3QU8zdUFuUjJTM2xRSkp0V2xGcExDQVNUZEEzWHNpUnZjajhj?=
+ =?utf-8?B?Q3FrOGd4dmgxN2ozRmR3T081d0t0Z2FLQXpQQkx2NW1KajQzN0JtMXlpd3Mw?=
+ =?utf-8?B?TkljazdFazRGZE1EREtBeFBOZlFPNnl4R05INzhTdU9xU01QOFVzMGdHZzJv?=
+ =?utf-8?B?RmFtTFBtQVE2MDZRZTQ2Qno1UFowbzhua0JOTktiRjhDYVZsbkZmU3JHajVP?=
+ =?utf-8?B?WXA1R3lhdWFTR3lPZW5MSzFjWkJIWkY3dlZuWVVwaG9scTJtRU0veE40YjR5?=
+ =?utf-8?B?dFJNSUZvdGUyeERuQ1piNTNUclpESmEzNjdnOFpxblVPdEtKU25lNVNBWXNa?=
+ =?utf-8?B?bzRxU0FYTUwzWGh3dU1MdEN5ckRQN25sK0pNd3J3TWxEMUEveEtRZmlKTVB5?=
+ =?utf-8?B?OFM1RkhrS1Z6L2hQdVdlcmZyYllTVHlkM1hWajVzaXphZVhKaVBQKzBGRjJX?=
+ =?utf-8?B?RklVb1lkZnlrUVVvRUxXRHB6YWJPSHIvRHFIeVNFUEY0TFB1UkN2R1UyaHNP?=
+ =?utf-8?B?c25YU2IwZGNOOFIrTE9ZR0plUkZHL2tIUzE2NnMvU3QvK2psRHJsYS9nQkVE?=
+ =?utf-8?B?T0t6QWRham1hbFRtQlZuOVRTR2tvMnNBQWtSS1VLbmJVNGszRDM1UG13Rjcw?=
+ =?utf-8?B?QzQrVHhUbysybFNIRmVIY0JWSlpkeHo1Y3UvM1Q5MjlESGdmQlRuNE52TVA2?=
+ =?utf-8?Q?f8KyRqzAkR2RfgGItc=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7f98f38-5a29-4bfa-cc6c-08d98a5924aa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2021 12:42:51.9669
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: efbGe1OAhdJxe3NBfJ8wyMzA05PZwv4ZRMhMHfRllaLBGCJvLtwY8YVgvc2PyKN9hY5gI/6eLeUiIepnSH4wZYUiPQEerw7/IRfYy7xB20I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB3730
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the MFD part of Maxim MAX77686 PMIC to DT schema format.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-
----
-
-Changes since v1:
-1. Add tag.
-2. Correct title prefix.
-3. Extend example with LDO22.
----
- .../devicetree/bindings/mfd/max77686.txt      |  26 ----
- .../bindings/mfd/maxim,max77686.yaml          | 132 ++++++++++++++++++
- MAINTAINERS                                   |   1 -
- 3 files changed, 132 insertions(+), 27 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/max77686.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77686.yaml
-
-diff --git a/Documentation/devicetree/bindings/mfd/max77686.txt b/Documentation/devicetree/bindings/mfd/max77686.txt
-deleted file mode 100644
-index 42968b7144e0..000000000000
---- a/Documentation/devicetree/bindings/mfd/max77686.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Maxim MAX77686 multi-function device
--
--MAX77686 is a Multifunction device with PMIC, RTC and Charger on chip. It is
--interfaced to host controller using i2c interface. PMIC and Charger submodules
--are addressed using same i2c slave address whereas RTC submodule uses
--different i2c slave address,presently for which we are statically creating i2c
--client while probing.This document describes the binding for mfd device and
--PMIC submodule.
--
--Bindings for the built-in 32k clock generator block and
--regulators are defined in ../clk/maxim,max77686.txt and
--../regulator/max77686.txt respectively.
--
--Required properties:
--- compatible : Must be "maxim,max77686";
--- reg : Specifies the i2c slave address of PMIC block.
--- interrupts : This i2c device has an IRQ line connected to the main SoC.
--
--Example:
--
--	max77686: pmic@9 {
--		compatible = "maxim,max77686";
--		interrupt-parent = <&wakeup_eint>;
--		interrupts = <26 0>;
--		reg = <0x09>;
--	};
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77686.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77686.yaml
-new file mode 100644
-index 000000000000..859655a789c3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max77686.yaml
-@@ -0,0 +1,132 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/maxim,max77686.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim MAX77686 Power Management IC
-+
-+maintainers:
-+  - Chanwoo Choi <cw00.choi@samsung.com>
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+
-+description: |
-+  This is a part of device tree bindings for Maxim MAX77686 Power Management
-+  Integrated Circuit (PMIC).
-+
-+  The Maxim MAX77686 is a Power Management IC which includes voltage and
-+  current regulators, RTC and clock outputs.
-+
-+  The MAX77686 provides three 32.768khz clock outputs that can be controlled
-+  (gated/ungated) over I2C.  The clock IDs are defined as preprocessor macros
-+  in dt-bindings/clock/maxim,max77686.h.
-+
-+properties:
-+  compatible:
-+    const: maxim,max77686
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  voltage-regulators:
-+    $ref: ../regulator/maxim,max77686.yaml
-+    description:
-+      List of child nodes that specify the regulators.
-+
-+  wakeup-source: true
-+
-+required:
-+  - compatible
-+  - '#clock-cells'
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        max77686: pmic@9 {
-+            compatible = "maxim,max77686";
-+            reg = <0x09>;
-+
-+            interrupt-parent = <&gpx0>;
-+            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+            pinctrl-0 = <&max77686_irq>;
-+            pinctrl-names = "default";
-+            wakeup-source;
-+            #clock-cells = <1>;
-+
-+            voltage-regulators {
-+                LDO1 {
-+                    regulator-name = "VALIVE_1.0V_AP";
-+                    regulator-min-microvolt = <1000000>;
-+                    regulator-max-microvolt = <1000000>;
-+                    regulator-always-on;
-+                };
-+
-+                LDO2 {
-+                    regulator-name = "VM1M2_1.2V_AP";
-+                    regulator-min-microvolt = <1200000>;
-+                    regulator-max-microvolt = <1200000>;
-+                    regulator-always-on;
-+                    regulator-state-mem {
-+                        regulator-on-in-suspend;
-+                    };
-+                };
-+
-+                // ...
-+
-+                LDO22 {
-+                    regulator-name = "VMEM_VDD_2.8V";
-+                    regulator-min-microvolt = <2800000>;
-+                    regulator-max-microvolt = <2800000>;
-+                    maxim,ena-gpios = <&gpk0 2 GPIO_ACTIVE_HIGH>;
-+                };
-+
-+                // ...
-+
-+                BUCK1 {
-+                    regulator-name = "VDD_MIF";
-+                    regulator-min-microvolt = <850000>;
-+                    regulator-max-microvolt = <1100000>;
-+                    regulator-always-on;
-+                    regulator-boot-on;
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                    };
-+                };
-+
-+                BUCK2 {
-+                    regulator-name = "VDD_ARM";
-+                    regulator-min-microvolt = <850000>;
-+                    regulator-max-microvolt = <1500000>;
-+                    regulator-always-on;
-+                    regulator-boot-on;
-+                    regulator-state-mem {
-+                        regulator-on-in-suspend;
-+                    };
-+                };
-+
-+                // ...
-+
-+                BUCK9 {
-+                    regulator-name = "CAM_ISP_CORE_1.2V";
-+                    regulator-min-microvolt = <1000000>;
-+                    regulator-max-microvolt = <1200000>;
-+                    maxim,ena-gpios = <&gpm0 3 GPIO_ACTIVE_HIGH>;
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 00e47346a680..e086102e8340 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11498,7 +11498,6 @@ M:	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
- M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
- L:	linux-kernel@vger.kernel.org
- S:	Supported
--F:	Documentation/devicetree/bindings/*/max77686.txt
- F:	Documentation/devicetree/bindings/*/maxim,max77686.yaml
- F:	Documentation/devicetree/bindings/clock/maxim,max77686.txt
- F:	Documentation/devicetree/bindings/mfd/max14577.txt
--- 
-2.30.2
-
+SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIHJldmlldy4NCg0KPiBTdWJqZWN0OiBSZTogW1BB
+VENIIDIvM10gYXJtNjQ6IGR0czogcmVuZXNhczogcnpnMmwtc21hcmMtc29tOiBFbmFibGUgZU1N
+Qw0KPiBvbiBTTUFSQyBwbGF0Zm9ybQ0KPiANCj4gSGkgQmlqdSwNCj4gDQo+IE9uIFRodSwgT2N0
+IDcsIDIwMjEgYXQgNTo1NSBQTSBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+
+DQo+IHdyb3RlOg0KPiA+IFJaL0cyTCBTb00gaGFzIGJvdGggNjRHYiBlTU1DIGFuZCBtaWNybyBT
+RCBjb25uZWN0ZWQgdG8gU0RISTAuDQo+ID4NCj4gPiBCb3RoIHRoZXNlIGludGVyZmFjZXMgYXJl
+IG11dHVhbGx5IGV4Y2x1c2l2ZSBhbmQgdGhlIFNEMCBkZXZpY2UNCj4gPiBzZWxlY3Rpb24gaXMg
+YmFzZWQgb24gdGhlIFhPUiBiZXR3ZWVuIEdQSU9fU0QwX0RFVl9TRUwgYW5kIFNXMVsyXQ0KPiA+
+IHN3aXRjaCBwb3NpdGlvbi4NCj4gPg0KPiA+IFRoaXMgcGF0Y2ggc2V0cyBHUElPX1NEMF9ERVZf
+U0VMIHRvIGhpZ2ggaW4gRFQuIFVzZSB0aGUgYmVsb3cgc3dpdGNoDQo+ID4gc2V0dGluZyBsb2dp
+YyBmb3IgZGV2aWNlIHNlbGVjdGlvbiBiZXR3ZWVuIGVNTUMgYW5kIG1pY3JvU0Qgc2xvdA0KPiA+
+IGNvbm5lY3RlZCB0byBTREhJMC4NCj4gPg0KPiA+IFNldCBTVzFbMl0gdG8gcG9zaXRpb24gMi9P
+RkYgZm9yIHNlbGVjdGluZyBlTU1DIFNldCBTVzFbMl0gdG8gcG9zaXRpb24NCj4gPiAzL09OIGZv
+ciBzZWxlY3RpbmcgbWljcm8gU0QNCj4gPg0KPiA+IFRoaXMgcGF0Y2ggZW5hYmxlcyBlTU1DIG9u
+IFJaL0cyTCBTTUFSQyBwbGF0Zm9ybSBieSBkZWZhdWx0Lg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1i
+eTogQmlqdSBEYXMgPGJpanUuZGFzLmp6QGJwLnJlbmVzYXMuY29tPg0KPiANCj4gPiAtLS0gYS9h
+cmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvcnpnMmwtc21hcmMtc29tLmR0c2kNCj4gPiArKysg
+Yi9hcmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvcnpnMmwtc21hcmMtc29tLmR0c2kNCj4gDQo+
+ID4gKyAgICAgICB2Y2NxX3NkaGkwOiByZWd1bGF0b3ItdmNjcS1zZGhpMCB7DQo+ID4gKyAgICAg
+ICAgICAgICAgIGNvbXBhdGlibGUgPSAicmVndWxhdG9yLWdwaW8iOw0KPiA+ICsNCj4gPiArICAg
+ICAgICAgICAgICAgcmVndWxhdG9yLW5hbWUgPSAiU0RISTAgVmNjUSI7DQo+ID4gKyAgICAgICAg
+ICAgICAgIHJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDE4MDAwMDA+Ow0KPiA+ICsgICAgICAg
+ICAgICAgICByZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCA9IDwzMzAwMDAwPjsNCj4gPiArICAgICAg
+ICAgICAgICAgc3RhdGVzID0gPDMzMDAwMDAgMSAxODAwMDAwIDA+Ow0KPiA+ICsgICAgICAgICAg
+ICAgICByZWd1bGF0b3ItYm9vdC1vbjsNCj4gPiArICAgICAgICAgICAgICAgZ3Bpb3MgPSA8JnBp
+bmN0cmwgUlpHMkxfR1BJTygzOSwgMCkgR1BJT19BQ1RJVkVfSElHSD47DQo+IA0KPiBJcyB0aGlz
+IGNvcnJlY3Q/DQo+IEFjY29yZGluZyB0byB0aGUgc2NoZW1hdGljcywgdGhlIEdQSU8gc2hvdWxk
+IGJlIGhpZ2ggdG8gc2VsZWN0IDMuM1YuDQoNClllcywgQnV0IGl0IGlzICJBTkQiIE9wZXJhdGlv
+biBiZXR3ZWVuIFNEMF9ERVZfU0VMIGFuZCBHUElPX1NEMF9QV1JfU0VMLg0KDQpGb3IgZU1NQywg
+U0QwX1BXUl9TRUwgd2lsbCBiZSBhbHdheXMgMS44Vg0KDQpGb3IgTWljcm8gU0QsIFNEMF9QV1Jf
+U0VMIHdpbGwgYmUgMy4zViB3aGVuIEdQSU9fU0QwX1BXUl9TRUwgaXMgaGlnaA0KICAgICAgICAg
+IFNEMF9QV1JfU0VMIHdpbGwgYmUgMS44ViB3aGVuIEdQSU9fU0QwX1BXUl9TRUwgaXMgbG93Lg0K
+DQpUaGUgdGFibGUgbmV4dCB0byBpdCBoYXMgdGhlIGRldGFpbHMuDQoNClJlZ2FyZHMsDQpCaWp1
+DQoNCj4gDQo+ID4gKyAgICAgICAgICAgICAgIHJlZ3VsYXRvci1hbHdheXMtb247DQo+ID4gKyAg
+ICAgICB9Ow0KPiA+ICB9Ow0KPiANCj4gR3J7b2V0amUsZWV0aW5nfXMsDQo+IA0KPiAgICAgICAg
+ICAgICAgICAgICAgICAgICBHZWVydA0KPiANCj4gLS0NCj4gR2VlcnQgVXl0dGVyaG9ldmVuIC0t
+IFRoZXJlJ3MgbG90cyBvZiBMaW51eCBiZXlvbmQgaWEzMiAtLSBnZWVydEBsaW51eC0NCj4gbTY4
+ay5vcmcNCj4gDQo+IEluIHBlcnNvbmFsIGNvbnZlcnNhdGlvbnMgd2l0aCB0ZWNobmljYWwgcGVv
+cGxlLCBJIGNhbGwgbXlzZWxmIGEgaGFja2VyLg0KPiBCdXQgd2hlbiBJJ20gdGFsa2luZyB0byBq
+b3VybmFsaXN0cyBJIGp1c3Qgc2F5ICJwcm9ncmFtbWVyIiBvciBzb21ldGhpbmcNCj4gbGlrZSB0
+aGF0Lg0KPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0tIExpbnVzIFRvcnZhbGRz
+DQo=
