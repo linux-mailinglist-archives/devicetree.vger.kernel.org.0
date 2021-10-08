@@ -2,127 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2073F426C07
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:53:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2947426C27
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:56:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234008AbhJHNzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 09:55:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38496 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232599AbhJHNzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 09:55:20 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF714C061570;
-        Fri,  8 Oct 2021 06:53:24 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id m22so30224458wrb.0;
-        Fri, 08 Oct 2021 06:53:24 -0700 (PDT)
+        id S242444AbhJHN6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 09:58:08 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:22061 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234049AbhJHN6H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 09:58:07 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yYWsu0Rg4yRualNrYxMIo7dnaqfU/YPo4u7hxec75RQ=;
-        b=bbohXNY2pN0tG0VfoSJkDk8zsi8ByEGKv47t0+GqCwHguogMWEq0doeEkGAiHLue74
-         tzC3QRTIA9xm3y4nVI7dd05PRfn/yIDLwRTgiUoOH6BzZkknS0tAZpy9gypIagpgixoK
-         0jw3ZjfgZnlMoA7m3VVroeT/TyFmLDmwP7qB32TkscZoDHF5+tUc97n0B582epeuiHVA
-         XEkdmZHdrlEVSr9tym+Wl60MDNgwCWOGQLuFAD7q9V07eDrrdtaETK75mBUjkBvfL78/
-         n4No8br5zx7Wed0F30CPolSvsbqHq7Fc6UQ1F+Pp/FqnvTnAiiWCxJWEEb18deIuqviO
-         vRfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yYWsu0Rg4yRualNrYxMIo7dnaqfU/YPo4u7hxec75RQ=;
-        b=wP3gN/+XWRsYbvnNMJsYtYfIvInb1ty+E70LgnRGe7VgMcYVPfCnEB2gsJ4x1+l3k9
-         BEQaAFSelT5mW+TDTm9q2M2glN6zEH/Vd/7uMmHPK5yBlzlsV4YB3KpkoMhEBtgc6vF6
-         wNcK8xnbRmOUnw7pTVUegmVjwZyfDhcqMJ0P3fztYV4LpiBbltgDmWV9TpGOyfYVCjOA
-         Sq1UkB+deen7n8KFAtfxrfmlXALjOZGch4EGdQVCtK56jIC0zRbq8LcZE1+HKPC7wGoi
-         pCkkgeiUkBcmmtUnVTNDUeogkFXNEzk+th5C9taqwegHt14IeC514gWr77GvsVCDKRaw
-         V0VQ==
-X-Gm-Message-State: AOAM5316C85u+dWnkqIhR0R9pnzXdZWhceBMwzwcAWdq/qneNx3Mc1bO
-        GQ/LZWJW58eChqcZHKnnYTA=
-X-Google-Smtp-Source: ABdhPJwCCsh7mGFTBgvB/ol1kIoTWolzftm8yGGomZgw7NW71Awlwc9f6CNm1UOrwC/9jfT/DR6yCQ==
-X-Received: by 2002:a1c:7c02:: with SMTP id x2mr3427289wmc.165.1633701203204;
-        Fri, 08 Oct 2021 06:53:23 -0700 (PDT)
-Received: from [192.168.2.177] ([206.204.146.29])
-        by smtp.gmail.com with ESMTPSA id c7sm3794235wmq.13.2021.10.08.06.53.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 06:53:19 -0700 (PDT)
-Message-ID: <bc29d5bc-9ce7-6147-a708-e6304249b600@gmail.com>
-Date:   Fri, 8 Oct 2021 15:53:16 +0200
+  d=axis.com; q=dns/txt; s=axis-central1; t=1633701372;
+  x=1665237372;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=me75zdxB12WIuwzb16S9PBlfZIdHjvMQdZm15J1RVJw=;
+  b=iewVfZwwi86xOSCxPH4qYYP2E0udq9O4CtjLZQV9ytrHXD5ER7x15mei
+   EJNzIGvZUzSybgx+R8q2lnXbP3rR815acRqAdi9CIZUrhQCkkmecl8wmm
+   hdEpzcXwb1M33wWEKRf6cuYord5tefqpWar2NFTVATvfw+gWZEXDV16nz
+   nhGmm2H2yL90RHxSRZRbCJDoylWLnzyE55T7DM01fAbXLJlx2WVgLcs0W
+   BTMV125CnGX9exsjwnjU8AfDWux5o3iljIsfIhEAz1HGPnfXqP3LhbnBV
+   abtblKotk7GbVe5IcqHfar9wV+Mp1NbBEgDdn48p2Uz0sjwWodWjufMx9
+   g==;
+Date:   Fri, 8 Oct 2021 15:56:10 +0200
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     kernel <kernel@axis.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "peda@axentia.se" <peda@axentia.se>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: io-channel-mux: Add property
+ for settle time
+Message-ID: <20211008135610.GA16402@axis.com>
+References: <20211007134641.13417-1-vincent.whitchurch@axis.com>
+ <20211007134641.13417-3-vincent.whitchurch@axis.com>
+ <1633661172.633248.1409599.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [v3,7/9] dt-bindings: arm64: dts: mediatek: Add mt7986 series
-Content-Language: en-US
-To:     Sam Shih <sam.shih@mediatek.com>
-Cc:     Ryder.Lee@mediatek.com, devicetree@vger.kernel.org,
-        enric.balletbo@collabora.com, fparent@baylibre.com,
-        gregkh@linuxfoundation.org, herbert@gondor.apana.org.au,
-        hsinyi@chromium.org, john@phrozen.org, linus.walleij@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-crypto@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux@roeck-us.net, mpm@selenic.com, mturquette@baylibre.com,
-        robh+dt@kernel.org, sboyd@kernel.org, sean.wang@kernel.org,
-        seiya.wang@mediatek.com, wim@linux-watchdog.org
-References: <9552b0dc-337f-7edc-2997-50603dfe8bcd@gmail.com>
- <20210924114046.26070-1-sam.shih@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20210924114046.26070-1-sam.shih@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1633661172.633248.1409599.nullmailer@robh.at.kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
-
-I'd advise to split this series in parts for:
-- basic device support via dts.
-- pinctrl driver + dts
-- clk driver + dts
-
-I would also advise to not send new versions of patches as new threads and don't 
-respond in the same thread. At least for me that breaks my workflow as I use b4.
-
-Regards,
-Matthias
-
-
-On 24/09/2021 13:40, Sam Shih wrote:
-> MT7986 series is Mediatek's new 4-core SoC, which is mainly for
-> wifi-router application. The difference between mt7986a and mt7986b
-> is that some pins do not exist on mt7986b.
+On Fri, Oct 08, 2021 at 04:46:12AM +0200, Rob Herring wrote:
+> On Thu, 07 Oct 2021 15:46:40 +0200, Vincent Whitchurch wrote:
+> > Hardware may require some time for the muxed analog signals to settle
+> > after the muxing is changed.  Allow this time to be specified in the
+> > devicetree.
+> > 
+> > Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> > ---
+> >  .../devicetree/bindings/iio/multiplexer/io-channel-mux.yaml  | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
 > 
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+
+Yes, these are not new warnings.
+
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
 > 
-> ---
-> v3: changed 'MT7986' to 'MT7986 series' in the commit message
-> v2: added an Acked-by tag
-> ---
->   Documentation/devicetree/bindings/arm/mediatek.yaml | 8 ++++++++
->   1 file changed, 8 insertions(+)
+> Full log is available here: https://patchwork.ozlabs.org/patch/1537724
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index 80a05f6fee85..a9a778269684 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -76,6 +76,14 @@ properties:
->             - enum:
->                 - mediatek,mt7629-rfb
->             - const: mediatek,mt7629
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt7986a-rfb
-> +          - const: mediatek,mt7986a
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt7986b-rfb
-> +          - const: mediatek,mt7986b
->         - items:
->             - enum:
->                 - mediatek,mt8127-moose
 > 
+> adc0mux: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dt.yaml
+> 
+> adc10mux: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dt.yaml
+[...]
+
+I think the fix for these is to add a "#io-channel-cells": const 1 to
+the schema.
+
+> envelope-detector-mux: channels: ['', '', 'sync-1', 'in', 'out', 'sync-2', 'sys-reg', 'ana-reg'] has non-unique elements
+> 	arch/arm/boot/dts/at91-tse850-3.dt.yaml
+
+This one looks like an error in that particular devicetree.
