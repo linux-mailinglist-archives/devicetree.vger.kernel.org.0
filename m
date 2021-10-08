@@ -2,119 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 189A242715B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD37E427161
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:23:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbhJHTXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 15:23:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57122 "EHLO mail.kernel.org"
+        id S240480AbhJHTZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 15:25:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59126 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231316AbhJHTW6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 15:22:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F20261168;
-        Fri,  8 Oct 2021 19:21:02 +0000 (UTC)
+        id S231316AbhJHTZA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 15:25:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 117736120C
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 19:23:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633720862;
-        bh=J3eo4Tu7qrOc2MiIoucmmx1WpNLGsUtlgBPNto2aiUs=;
+        s=k20201202; t=1633720985;
+        bh=5SF9dAQW84jt+sFJIXPvCVpma/lc66zeyItpvZ+6RXg=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aMgdTZipDf/D9JrNtQ1hae/jIFbuVzrHOHObvkCzN0PwN+MUX7wX4b7y5RYryzZNb
-         k7R9VKUyNPE9KsFDyCCSr2oUlWcnSmXAxnpG20J2RVSM6Fouk1/VFHupXpnRjZrIy3
-         5JrDaRemtKNzcf6Db4fApIKyePuqWYXlDtzFjefd6OSvz/DmYUjpNwTr0btuHDrNle
-         eIovcmW/7ab9LvyCocUjL7r8J3PbWc9oNX2DCOESIgyB1FceTnabR6bXlTbS7efQ/p
-         Lw87suge/FKKtJcNvhl2UOUY5a6A0ENS77hje9aLYncDTfp0+7MOC20HzX+F6wrGO5
-         iWJsr4VitJT/w==
-Received: by mail-ed1-f49.google.com with SMTP id g10so39333737edj.1;
-        Fri, 08 Oct 2021 12:21:02 -0700 (PDT)
-X-Gm-Message-State: AOAM531+AaJ+rp7zz7OE5sZ6o7fCzkw4QQDbohX9bT2KDkYwHHGYxriD
-        ijFmtjHFqmcL80JqhY587Zc//TgPb5JovtIHeA==
-X-Google-Smtp-Source: ABdhPJwsjP40w5LS3Pe0FI+JbwaB1t8n80TdqFlA4RgJ+smCkKocJH5RCRmN8VKIUMTL96V/wG4XUpUzCKI4Hk9FSP8=
-X-Received: by 2002:a50:da06:: with SMTP id z6mr17576606edj.355.1633720860729;
- Fri, 08 Oct 2021 12:21:00 -0700 (PDT)
+        b=duxnZbDDhRFt2DYY2k+KtpZd341YTFw2E++JmibZxOePdA1uYk7PYUgqqEK7Bxp7g
+         48bWedzW1aBv1rDXSdb36hBfz5asvI4lE9nf3AfpPktrMCJeshg6YWA1VQ7hjkLuId
+         1XNHLYTXeWj620cGNH6bEJ2Lh7pALoP/CNrbLICZgvXMEPIyD+Mpitt/6/VfIu3xb8
+         9kO46AT8ATy71GkJyPiMDTyEBN7BHa6KqeKKh9P58DXcEv6kQ6rQ+HgytPUbNV7wV/
+         oAhYrCNta1b+2SAaGKLnpzJXsRUGOgbCytJXVTSIhlVrZOGZLMjOkT2CFbBoBf/tlW
+         63MiAgjRue8Ng==
+Received: by mail-ed1-f43.google.com with SMTP id r18so40190172edv.12
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 12:23:04 -0700 (PDT)
+X-Gm-Message-State: AOAM531/ARq6s8rBRp/snQhjlx4iB9buGXjoMWvrRCbFO2Rt/HnXYUXE
+        3MtN9U85X7mzEMqpJrwg9zNKO5PEh9yrMJuyFQ==
+X-Google-Smtp-Source: ABdhPJxr7vbwJkVU68Z/WBrwgn3iBRzg21K4k9yDQrYFJDFFABiWOPU2nd41CzNLw9EUzaKIPjJsRp/+6QDJwN43BCk=
+X-Received: by 2002:a17:906:9399:: with SMTP id l25mr6294212ejx.363.1633720983371;
+ Fri, 08 Oct 2021 12:23:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <1633518555-8195-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1633518555-8195-5-git-send-email-hayashi.kunihiko@socionext.com>
- <YV395BTH/gqcuDJH@robh.at.kernel.org> <f2138a98-9740-d1de-5dc9-e14a68fa509b@socionext.com>
-In-Reply-To: <f2138a98-9740-d1de-5dc9-e14a68fa509b@socionext.com>
+References: <20211006113950.10782-1-srinivas.kandagatla@linaro.org>
+ <20211006113950.10782-9-srinivas.kandagatla@linaro.org> <1633547293.527218.2218062.nullmailer@robh.at.kernel.org>
+ <4e70e1e3-162e-13c0-5cbd-0135d2585e96@linaro.org>
+In-Reply-To: <4e70e1e3-162e-13c0-5cbd-0135d2585e96@linaro.org>
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 8 Oct 2021 14:20:48 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL8N+h7bciDt=4fMHyAP=DL=YikpaTh2v4q383XVXH2AA@mail.gmail.com>
-Message-ID: <CAL_JsqL8N+h7bciDt=4fMHyAP=DL=YikpaTh2v4q383XVXH2AA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] dt-bindings: clock: uniphier: Add clock binding
- for SoC-glue
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Date:   Fri, 8 Oct 2021 14:22:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK6ankPjqXO9jghPQ7y7FHFM-8K-pyPHeE8oNa98eeauQ@mail.gmail.com>
+Message-ID: <CAL_JsqK6ankPjqXO9jghPQ7y7FHFM-8K-pyPHeE8oNa98eeauQ@mail.gmail.com>
+Subject: Re: [PATCH v9 08/17] ASoC: dt-bindings: add q6apm digital audio
+ stream bindings
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, Takashi Iwai <tiwai@suse.de>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 7, 2021 at 3:50 AM Kunihiko Hayashi
-<hayashi.kunihiko@socionext.com> wrote:
+On Thu, Oct 7, 2021 at 3:23 AM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
 >
-> Hi Rob,
 >
-> On 2021/10/07 4:49, Rob Herring wrote:
-> > On Wed, Oct 06, 2021 at 08:09:14PM +0900, Kunihiko Hayashi wrote:
-> >> Update binding document for clocks implemented in SoC-glue.
+>
+> On 06/10/2021 20:08, Rob Herring wrote:
+> > On Wed, 06 Oct 2021 12:39:41 +0100, Srinivas Kandagatla wrote:
+> >> On AudioReach audio Framework, Audio Streams (PCM/Compressed) are managed by
+> >> Q6APM(Audio Process Manager) service. This patch adds bindings for this DAIs
+> >> exposed by the DSP.
 > >>
-> >> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> >> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
 > >> ---
-> >>   .../bindings/clock/socionext,uniphier-clock.yaml         | 16
-> > ++++++++++++++++
-> >>   1 file changed, 16 insertions(+)
+> >>   .../bindings/sound/qcom,q6apm-dai.yaml        | 53 +++++++++++++++++++
+> >>   1 file changed, 53 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
 > >>
-> >> diff --git
-> > a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
-> > b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
-> >> index ee8d16a8019e..05a9d1f89756 100644
-> >> ---
-> > a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
-> >> +++
-> > b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
-> >> @@ -46,6 +46,9 @@ properties:
-> >>             - socionext,uniphier-ld20-peri-clock
-> >>             - socionext,uniphier-pxs3-peri-clock
-> >>             - socionext,uniphier-nx1-peri-clock
-> >> +      - description: SoC-glue clock
-> >> +        enum:
-> >> +          - socionext,uniphier-pro4-sg-clock
-> >>
-> >>     "#clock-cells":
-> >>       const: 1
-> >> @@ -95,3 +98,16 @@ examples:
-> >>
-> >>           // other nodes ...
-> >>       };
-> >> +
-> >> +  - |
-> >> +    soc-glue@5f800000 {
-> >> +        compatible = "socionext,uniphier-sysctrl", "simple-mfd",
-> > "syscon";
-> >> +        reg = <0x5f800000 0x2000>;
-> >> +
-> >> +        clock {
-> >> +            compatible = "socionext,uniphier-pro4-sg-clock";
-> >> +            #clock-cells = <1>;
-> >> +        };
-> >> +
-> >> +        // other nodes ...
-> >> +    };
 > >
-> > What's the value of this 2nd example? It's just a different compatible
-> > string.
-> Following the previous three examples in the document, it describes the
-> difference between the parent nodes that place the clock.
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/sound/qcom,q6apm-dai.example.dts:19:18: fatal error: dt-bindings/soc/qcom,gpr.h: No such file or directory
+> >     19 |         #include <dt-bindings/soc/qcom,gpr.h>
 >
-> They are common to be child nodes of "syscon", and the definition of the
-> parent node is not in this document.
-> Should I put them together in a common example?
+> This is because QCOM SoC relevant non-audio patches in this series have
+> been merged into the Qualcomm drivers-for-5.16 tree, as this series
+> depends those patches an immutable tag is available at:
+> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+> tags/20210927135559.738-6-srinivas.kandagatla@linaro.org
+>
+> which is mentioned in cover-letter.
 
-I'd just drop the example.
+My bot doesn't know how to read cover letters. I need a clue in the
+patch or you get this email to be sure the dependency is known.
 
 Rob
