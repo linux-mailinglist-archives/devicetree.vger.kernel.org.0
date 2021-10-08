@@ -2,202 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22B414262A4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 04:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA1E4262D4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 05:20:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229562AbhJHC53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 22:57:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58828 "EHLO
+        id S234409AbhJHDWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 23:22:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbhJHC53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 22:57:29 -0400
-Received: from mail-pg1-x549.google.com (mail-pg1-x549.google.com [IPv6:2607:f8b0:4864:20::549])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8937FC061570
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 19:55:34 -0700 (PDT)
-Received: by mail-pg1-x549.google.com with SMTP id p19-20020a634f53000000b002877a03b293so817550pgl.10
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 19:55:34 -0700 (PDT)
+        with ESMTP id S229501AbhJHDWF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 23:22:05 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C8CC061570;
+        Thu,  7 Oct 2021 20:20:10 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id ls18so6491304pjb.3;
+        Thu, 07 Oct 2021 20:20:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=X8sWSPambKP/qgtgkdxrgW4KdByfW8QTTGplZqAi3X4=;
-        b=kxwws56MgQGuuHEoflZCZg9OKfZmQn71OggIYD8Ix1jn7lLhD8orccBdRkd1S6t1f7
-         7UiJJr4mlLF5YyEZ1B57lwE/j/s2Jpd7w0CtSW/96IUQvYOc/gmZxmzcS+uGAeMtulce
-         fqc2/ZpoeDi4HxJ5aut7DlfKALzrrIRzvrNWjPkBCfFnaNYKzfY4XGm9w5l0c2XHgQx/
-         9JP26aB+7diIUF59cBfE2XDMyAQSem58/fB9C2sATCwVcws1UXpttBR3TV5V3FSe0+yE
-         t6bJxdtY4XPEplUanvl6nO6KBbDamCHWmVJ02Q7iImdZqgJM1V0GN5tDB0GMgH6OxUHn
-         p3NQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zVTSAl6LZtzKmggtyfDtdu7T8Rzv0p9J9tbrf+mG8Kc=;
+        b=BKlPbYXJaCs/xFNopSiyb+ee96SGWK7ykvOVihDcVUGMZTTvdiATq9R5BwJv/zfqBo
+         /4zRMccDziBKvDxbWuWgMsWFdgjmgOWxHtrrCydpa5n7bt3GADjVXtwPVOqC+ZVcSH5g
+         CjtDc1TOLkq7SA4/KGdDKDuReQpyUabL6+E1ZR1Zxk/egazoUSQjdTZJiATfxxAnt96P
+         3ri8Deq1yprqsNFIjp0IIrKCsq8x9Mtx8KWvbGngSre+ejBXRua+o/GpCWEswrtExc9w
+         X3UBvtTA+YTUIDI1dzqYEYwNWNKHO7D/3MlNmoVVW+H1kt5mQnxfUZBAA5/adZOQGe9R
+         /o0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=X8sWSPambKP/qgtgkdxrgW4KdByfW8QTTGplZqAi3X4=;
-        b=lge9nKyIDCORYWwHuJQVTuLEBIrgesDMTEM5679Hvx/2mkoqTijSC9l/FRU7UQVUR5
-         7J16j7wx5QZLZpZRTP4D3I90RTMoKgEBm53WjnrutJ6kqQEhuTb8A+HQXuORcxP+4qOx
-         jO1AptkHlJhF6l9A0yWb8lyEZSz2QROS+J18gp+otBwRhGaOzyjX6JdNv1X7owQKD0oX
-         tNzPa2u5eS0HQsL6XuLkFc49x2sPN3NbPeE43qVSZDQy0/xSOLbqgrCgHXFURSWXC6QI
-         9qQQKGCfe69wCw7OOX0WWRk2hsbNERgPegoZqY3hsAiIorQn6hxCC+wmLLC+U/eL5ItT
-         u7gg==
-X-Gm-Message-State: AOAM533TlxrgVY0AAJnWVbEMq7h17aYUmmquNBpOIcIGYGQKSxmWNL3f
-        0b14yeOkOc7DKbQxDoAzuIs0S6kK7JPL
-X-Google-Smtp-Source: ABdhPJzoWu49ivuUExnKB/ZYT8C4I10Px1JjXZjA8G7Cupyq4Q3BDsg85zboUEUloHjODSl5zo1BA8y0hWyN
-X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:10:da3a:304:6b3b:6ccd])
- (user=tzungbi job=sendgmr) by 2002:a17:90a:3ee4:: with SMTP id
- k91mr235909pjc.1.1633661733584; Thu, 07 Oct 2021 19:55:33 -0700 (PDT)
-Date:   Fri,  8 Oct 2021 10:55:23 +0800
-Message-Id: <20211008025523.1852319-1-tzungbi@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.33.0.882.g93a45727a2-goog
-Subject: [RESEND PATCH v4] ASoC: dt-bindings: mediatek: mt8192: re-add audio
- afe document
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     broonie@kernel.org, robh+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, tzungbi@google.com,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zVTSAl6LZtzKmggtyfDtdu7T8Rzv0p9J9tbrf+mG8Kc=;
+        b=cbQ+yX+5nNX83klGkEU7IA1oL1hR7BA7UcNkD2zaSPqiWe0ORIP1w5VMGd2mk3ZIcd
+         WvfgkI3ZFI5YyjM6FfqiV4gX29k3u9xIosVB+atJhzjzCnbsItxsrvDEBI82CJpo/oc4
+         sLStvCQrtWbb8mUPEN0f83vorA89OPcPEYUcmvnEHPXj360FWFL55Nav1I/576u0nZZO
+         p5g3BQQD34v/DWK7luo+sZfWsjlt4hTx1xTp2mxVu67BPiNI0/0rI5vKl2KXUijd2YlN
+         ZfP5rpefUz0yltEyiiBdosjvDfLsRz02n/P/RYaHZpERE3nEqwWzBPNlNElgJhEvRoen
+         LbyA==
+X-Gm-Message-State: AOAM531gNT8ZIEAxzNo934L9s8il8coK9XwMM2m1GBLBUr8xx5g1YjQo
+        sJP4num7Zg+2RQ5YZlsQtxQ=
+X-Google-Smtp-Source: ABdhPJz5Q1rQEGAiHqo/yCyOB1rtEECuMA0ka2Ln8ZWdaSIsbSmiiPUGvr0H0jrg2CmEf8BZV/V0hw==
+X-Received: by 2002:a17:90a:345:: with SMTP id 5mr9442835pjf.189.1633663210526;
+        Thu, 07 Oct 2021 20:20:10 -0700 (PDT)
+Received: from ubt.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id j198sm713943pgc.4.2021.10.07.20.20.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Oct 2021 20:20:09 -0700 (PDT)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] Add Unisoc's SC2730 regulator support
+Date:   Fri,  8 Oct 2021 11:19:51 +0800
+Message-Id: <20211008031953.339461-1-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The document was merged as commit 1afc60e00de3 ("dt-bindings:
-mediatek: mt8192: add audio afe document").
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-However, [1] revealed that the commit 1afc60e00de3 breaks
-dt_binding_check due to dt-bindings/clock/mt8192-clk.h doesn't
-exist.
+Changes since v1:
+* Addressed Mark's comments:
+- Removed debugfs things from SC2730 driver and deleted sc2730_regulator_remove() which deal with debugfs only;
+- Changed to use C++ style comments on the head of driver.
+* Added Rob's Reviewed-by for bindings changes.
 
-As a temporary fix, commit 7d94ca3c8acd ("ASoC: mt8192: revert
-add audio afe document") reverted commit 1afc60e00de3.
+Chunyan Zhang (1):
+  dt-bindings: regulator: Add bindings for Unisoc's SC2730 regulator
 
-dt-bindings/clock/mt8192-clk.h is in mainline per commit
-f35f1a23e0e1 ("clk: mediatek: Add dt-bindings of MT8192 clocks").
-Re-adds the document back.
+Zhongfa Wang (1):
+  regulator: Add Unisoc's SC2730 regulator driver
 
-[1]: https://mailman.alsa-project.org/pipermail/alsa-devel/2020-November/176873.html
+ .../regulator/sprd,sc2730-regulator.yaml      |  61 +++
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/sc2730-regulator.c          | 404 ++++++++++++++++++
+ 4 files changed, 476 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.yaml
+ create mode 100644 drivers/regulator/sc2730-regulator.c
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
----
-Changes from v3
-(https://mailman.alsa-project.org/pipermail/alsa-devel/2021-September/189705.html):
-- Fix the indent errors.
-
-Changes from v2
-(https://mailman.alsa-project.org/pipermail/alsa-devel/2021-August/189058.html):
-- Simplify the commit message.
-
-Changes from v1
-(https://mailman.alsa-project.org/pipermail/alsa-devel/2021-August/189048.html):
-- Add more context to the commit message.
-
- .../bindings/sound/mt8192-afe-pcm.yaml        | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-new file mode 100644
-index 000000000000..5e9fe067f440
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek AFE PCM controller for mt8192
-+
-+maintainers:
-+  - Jiaxin Yu <jiaxin.yu@mediatek.com>
-+  - Shane Chien <shane.chien@mediatek.com>
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt8192-audio
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: audiosys
-+
-+  mediatek,apmixedsys:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of the mediatek apmixedsys controller
-+
-+  mediatek,infracfg:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of the mediatek infracfg controller
-+
-+  mediatek,topckgen:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of the mediatek topckgen controller
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: AFE clock
-+      - description: ADDA DAC clock
-+      - description: ADDA DAC pre-distortion clock
-+      - description: audio infra sys clock
-+      - description: audio infra 26M clock
-+
-+  clock-names:
-+    items:
-+      - const: aud_afe_clk
-+      - const: aud_dac_clk
-+      - const: aud_dac_predis_clk
-+      - const: aud_infra_clk
-+      - const: aud_infra_26m_clk
-+
-+required:
-+  - compatible
-+  - interrupts
-+  - resets
-+  - reset-names
-+  - mediatek,apmixedsys
-+  - mediatek,infracfg
-+  - mediatek,topckgen
-+  - power-domains
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/mt8192-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/power/mt8192-power.h>
-+    #include <dt-bindings/reset-controller/mt8192-resets.h>
-+
-+    afe: mt8192-afe-pcm {
-+        compatible = "mediatek,mt8192-audio";
-+        interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>;
-+        resets = <&watchdog MT8192_TOPRGU_AUDIO_SW_RST>;
-+        reset-names = "audiosys";
-+        mediatek,apmixedsys = <&apmixedsys>;
-+        mediatek,infracfg = <&infracfg>;
-+        mediatek,topckgen = <&topckgen>;
-+        power-domains = <&scpsys MT8192_POWER_DOMAIN_AUDIO>;
-+        clocks = <&audsys CLK_AUD_AFE>,
-+                 <&audsys CLK_AUD_DAC>,
-+                 <&audsys CLK_AUD_DAC_PREDIS>,
-+                 <&infracfg CLK_INFRA_AUDIO>,
-+                 <&infracfg CLK_INFRA_AUDIO_26M_B>;
-+        clock-names = "aud_afe_clk",
-+                      "aud_dac_clk",
-+                      "aud_dac_predis_clk",
-+                      "aud_infra_clk",
-+                      "aud_infra_26m_clk";
-+    };
-+
-+...
 -- 
-2.33.0.882.g93a45727a2-goog
+2.25.1
 
