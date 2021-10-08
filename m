@@ -2,108 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9080427391
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 00:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2136A4273AF
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 00:23:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243563AbhJHWWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 18:22:02 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:38511 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231830AbhJHWWB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 18:22:01 -0400
-Received: by mail-oi1-f177.google.com with SMTP id t4so13753807oie.5;
-        Fri, 08 Oct 2021 15:20:05 -0700 (PDT)
+        id S243621AbhJHWZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 18:25:44 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:43532 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243643AbhJHWZj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 18:25:39 -0400
+Received: by mail-oi1-f171.google.com with SMTP id o4so15529251oia.10;
+        Fri, 08 Oct 2021 15:23:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=UU6kbMIJ6P0+5LUEJL0eEAN6Y3jPevBlPgH2FjrwHnA=;
-        b=6m7l58ZqzCgBjCZUu6prLMLynijDqQh6An/+WJgR8By9uGRpyMwt+k91NWovCLMoZr
-         E+a5MLXRoIx10N1Fwlf9sVcaujEUIAGc7JIXVnHa89VC1pbtQ+Pmy7WFKuHX3sSCGtjO
-         a7DEz1k1Bvqfo3mtv99Y5KXpxJn97612riizPVLHShjtpHmrOR06GFaZ3voKvbfjGPQI
-         BLlLxBQPBhXWIs9m9OCb0fQe4Oh3wMJpn3626srOmzdpBowwUXE64P2jsm7vflrz25Y/
-         aVu8yI+YtKqS4UpaMosYDi5GRist2LpsI9rXqFmU77XDS7IuZIC4wpVUTF1xdhavu/0e
-         0DJw==
-X-Gm-Message-State: AOAM5316Yq2g5i7cWBqNSsHysvCLbzLwvrcCsR4K3qMeudfHjdXDPPUw
-        jlJaq/7zkBx2K0EWZnji3NuSkvU/Kg==
-X-Google-Smtp-Source: ABdhPJzy7BWI36byfDiSz/sSJ/LcU68rMB1Z+VoTQBSiuLbVB1C7jFa2dQsUtAsjty74pAZ7+8mnig==
-X-Received: by 2002:a05:6808:292:: with SMTP id z18mr9290273oic.61.1633731604863;
-        Fri, 08 Oct 2021 15:20:04 -0700 (PDT)
+        bh=QM5aQoLjMON9vUj5/950puKSpv86HsWUic3m5pIT+Q4=;
+        b=L/SYXCKhboQiC6in7eCjvmUOFHWrYu1v0HzWGzEmWvaZklEL+wt1xN9FngGUKIqLRD
+         knf0f2+BMnUtdGQkS5YWNxxyw+dH5wD6c7hCgQ247lsV4Hhn4/y6V37Vcm8JDN44tIvx
+         LsGQQU4nBpiVKMVU/5HKI4DkP341CM00rezArGxSUOgbgRfbE2cVC0nVlELCT7fZmRuh
+         L+22X5ywasXokodyyVsXz8j4SWMGKYpVro4MigJLZUDeErn5+0GbPi/3GVajvudA7qas
+         VQpmBD2tUpPdzmwzuTQkYjr4kD53kc+GgIraDh4sQD+3ZBOO8cMa+c4jupI83fnHLsAZ
+         wzpw==
+X-Gm-Message-State: AOAM530QSKB+8U0gbcs7dgyjDPv7RWuTRhLvlb64qz4FjyFCKa+Wi1FI
+        mdmEHc/e15G2FJvaUi75/g==
+X-Google-Smtp-Source: ABdhPJwkgy/xy5obkA8eXwuJcSXnu6uvohGDw1jDVEACBLgns6g5AigK/d5AQ+oVoc2Lb3CwlHxwMw==
+X-Received: by 2002:aca:4bc4:: with SMTP id y187mr6512011oia.174.1633731818563;
+        Fri, 08 Oct 2021 15:23:38 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a13sm159169oiy.9.2021.10.08.15.20.01
+        by smtp.gmail.com with ESMTPSA id e16sm207808oiw.2.2021.10.08.15.23.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Oct 2021 15:20:02 -0700 (PDT)
-Received: (nullmailer pid 3419237 invoked by uid 1000);
-        Fri, 08 Oct 2021 22:20:01 -0000
-Date:   Fri, 8 Oct 2021 17:20:01 -0500
+        Fri, 08 Oct 2021 15:23:37 -0700 (PDT)
+Received: (nullmailer pid 3424008 invoked by uid 1000);
+        Fri, 08 Oct 2021 22:23:36 -0000
+Date:   Fri, 8 Oct 2021 17:23:36 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Li Yang <leoyang.li@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 02/16] dt-bindings: i2c: imx: update schema to align
- with original txt binding
-Message-ID: <YWDEESYAuQSIfOSQ@robh.at.kernel.org>
-References: <20211001000417.15334-1-leoyang.li@nxp.com>
- <20211001000417.15334-3-leoyang.li@nxp.com>
- <CAL_JsqJShTL4zf2Bh=fYHfsujKu1rtuduxp7EKYsRqEXdkLCEA@mail.gmail.com>
- <CADRPPNRhVuHTxTpU8RCBMMTVe2V23pjqt8Z5vV=5efepWk6yPg@mail.gmail.com>
+To:     Satya Priya <skakit@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mka@chromium.org,
+        swboyd@chromium.org, collinsd@codeurora.org,
+        subbaram@codeaurora.org, kgunda@codeaurora.org
+Subject: Re: [PATCH V2 1/4] regulator: dt-bindings: Add pm8008 regulator
+ bindings
+Message-ID: <YWDE6Nu5Z3sAKGv4@robh.at.kernel.org>
+References: <1633060859-22969-1-git-send-email-skakit@codeaurora.org>
+ <1633060859-22969-2-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CADRPPNRhVuHTxTpU8RCBMMTVe2V23pjqt8Z5vV=5efepWk6yPg@mail.gmail.com>
+In-Reply-To: <1633060859-22969-2-git-send-email-skakit@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 01, 2021 at 12:37:54PM -0500, Li Yang wrote:
-> On Fri, Oct 1, 2021 at 8:24 AM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Thu, Sep 30, 2021 at 7:04 PM Li Yang <leoyang.li@nxp.com> wrote:
-> > >
-> > > When the binding was converted from txt to yaml, it actually added more
-> > > constrains than the original txt binding which was already used in many
-> > > in-tree DTSes.  Some of the newly added constrains are either not valid
-> > > or not neccessary.
-> >
-> > IMO, both of these should be fixed in the dts files.
-> >
-> > > Not all SoCs use ipg as the clock name for i2c.  There is no point in
-> > > having SoC integration information defined in i2c binding.  Remove the
-> > > clock name requirement in the schema.
-> >
-> > Any name you want is not fine. Your choices are remove clock-names,
-> > add all the names used, or change everyone to use 'ipg'.
+On Fri, Oct 01, 2021 at 09:30:56AM +0530, Satya Priya wrote:
+> Add bindings for pm8008 pmic regulators.
 > 
-> I understand that the name should be important as clocks are
-> referenced by name.  But since the i2c controller only has one clock ,
-> the name is never referenced in the driver.
-
-Then just remove 'clock-names' from the dts file.
-
-> If we really want to define the name, IMO, it should be from the
-> perspective of the i2c controller like "clkin" or "i2c" instead of the
-> "ipg" from the perspective of SoC integration which could be changing
-> with a different integration.  I can list both "i2c" and "ipg" for now
-> as a workaround though.
-
-$modulename for $foo-names always looks made up and pointless to me.
-
+> Signed-off-by: Satya Priya <skakit@codeaurora.org>
+> ---
+> Changes in V2:
+>  - Moved this patch before "mfd: pm8008: Add pm8008 regulator node" to
+>    resolve dtschema errors. Removed regulator-min-microvolt and 
+>    regulator-max-microvolt properties.
 > 
-> >
-> > > The original txt binding didn't require the order of tx and rx for
-> > > dmas/dma-names.  Many in tree DTSes are already using the other order.
-> > > Both orders should just work fine.  Update the schema to allow both.
-> >
-> > Doesn't sound like a case where defining the order is challenging.
+>  .../bindings/regulator/qcom,pm8008-regulator.yaml  | 72 ++++++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
 > 
-> No, it is not challenging.  But as dma channel is only referenced by
-> name instead of index.  I don't see too much benefit in enforcing the
-> order other than easier to create the schema.
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
+> new file mode 100644
+> index 0000000..31ac1eb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/qcom,pm8008-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. PM8008 Regulator bindings
+> +
+> +maintainers:
+> +  - Satya Priya <skakit@codeaurora.org>
+> +
+> +description:
+> +  Qualcomm Technologies, Inc. PM8008 is an I2C controlled PMIC
+> +  containing 7 LDO regulators.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,pm8008-regulator
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  vdd_l1_l2-supply:
+> +    description: Input supply phandle of ldo1 and ldo2 regulators.
+> +
+> +  vdd_l3_l4-supply:
+> +    description: Input supply phandle of ldo3 and ldo4 regulators.
+> +
+> +  vdd_l5-supply:
+> +    description: Input supply phandle of ldo5 regulator.
+> +
+> +  vdd_l6-supply:
+> +    description: Input supply phandle of ldo6 regulator.
+> +
+> +  vdd_l7-supply:
+> +    description: Input supply phandle of ldo7 regulator.
+> +
+> +patternProperties:
+> +  "^regulator@[0-9a-f]+$":
+> +    type: object
+> +
+> +    $ref: "regulator.yaml#"
+> +
+> +    description: PM8008 regulator peripherals of PM8008 regulator device
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 1
 
-Easier is nice, and that's the 'DT way' is the other reason.
+blank line here
 
-Rob
+What do the reg values represent here? You need to define that since it 
+specific to this devices. Some constraints on the values would be nice 
+too.
+
+> +      regulator-name: true
+
+blank line.
+
+> +      qcom,min-dropout-voltage:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Specifies the minimum voltage in microvolts that the parent
+
+Use a standard unit suffix and you can drop the type ref.
+
+> +          supply regulator must output, above the output of this
+> +          regulator.
+> +
+> +    required:
+> +      - reg
+> +      - regulator-name
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +...
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
+> 
