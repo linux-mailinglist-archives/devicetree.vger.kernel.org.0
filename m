@@ -2,162 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6E17426A23
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 13:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02DA0426A26
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 13:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243357AbhJHLvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 07:51:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37762 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243261AbhJHLvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 07:51:43 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4661C061772;
-        Fri,  8 Oct 2021 04:49:28 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id v17so28944022wrv.9;
-        Fri, 08 Oct 2021 04:49:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=i1USBJq9F3A9TOJZg6Wun0mkV6fuM/zyzzq0ur+ZWkM=;
-        b=TrHWFpZk1hBg4BNeXKvJbfJJ6DVgKu9vSyROmzcutuCtBP92iFon9Hc1IwCieShoQS
-         P8bm62d+2+YpgbV0vEr6jKoElMLYWATbfJJJy4Me3gj3kTU2aZyKrY1dnFMetszxksfN
-         y+mJJqVCUGGI6ZcO4AFrStPUlOHviZQyzLBnreYPS9hlZ9ZSWCU57gU7DA/s9tnwz+cD
-         2ueenDzipjfvutsEc1ucvvwRsFSlh0aTG31vhnThuAaoUIE5bHfP8WjNoSijfObZwcJc
-         u5Fm5XOe3OfhoXavxGGVujBqPU2Tzpf0erk8uuVL+1dvUizbvf+eOwziXnI0iv0joknT
-         RVww==
+        id S240228AbhJHLww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 07:52:52 -0400
+Received: from mail-vs1-f46.google.com ([209.85.217.46]:38743 "EHLO
+        mail-vs1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241072AbhJHLwv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 07:52:51 -0400
+Received: by mail-vs1-f46.google.com with SMTP id x192so7970875vsx.5;
+        Fri, 08 Oct 2021 04:50:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=i1USBJq9F3A9TOJZg6Wun0mkV6fuM/zyzzq0ur+ZWkM=;
-        b=ejQv1TiGAP9FYazuDmT/8x5adXKsJLdXdjoOofOUbOrmXAz8h5DjPbcJ0fQZXOVSXX
-         1M61D03pJWRQJLhmnPBljj40Kwg3aA1YxuXpM0CMhhTsd+nM5bzl18D4wtzrbnd0Cs50
-         vQeukuZNnXtQiAfRzUaea1pmLxu1t3XqXjpbx6YSN6uXBXan1hJRW2pDhDA8oaYhjU5g
-         cymX+gaZXUtKjdmAovZpelLDIjJvqfUnASoUXp51XY0smUazbCyphlui+n8nnelXL0gg
-         HifZc1dFOrZ3gC/pXSQJQRx3u1xhB1ZeX2rppzhQrXEMUGpMhHMWoFCclBPaazREVXrl
-         GkxA==
-X-Gm-Message-State: AOAM533LJDk6QBqBeboAPqoZHUYu265TSa6yrGTYFHAiMO8p1KseL5qc
-        GEhjD2cWC7m0v7h+f6jSZQs=
-X-Google-Smtp-Source: ABdhPJwEb1M1xAqD7t+bZHRlFTnnVa7+ol3EKhZKsTwrkNUouAJXScKLX+w24KKdd+gB+6dDenYqSA==
-X-Received: by 2002:a5d:64c3:: with SMTP id f3mr3501505wri.73.1633693767284;
-        Fri, 08 Oct 2021 04:49:27 -0700 (PDT)
-Received: from [192.168.2.177] ([206.204.146.29])
-        by smtp.gmail.com with ESMTPSA id a81sm2342283wmd.30.2021.10.08.04.49.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 04:49:26 -0700 (PDT)
-Message-ID: <686404ce-2e0b-5470-b095-1c1fd7c18250@gmail.com>
-Date:   Fri, 8 Oct 2021 13:49:25 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nQIe1mpPozhcy3n95drUQugG9ZDdKS0eZzq0/N/T6Dk=;
+        b=EAUAiIcTpSyTy7HnEfBCkBQ4PK++62TfxsvpSs4PKmfNcwZnfLbxAhfbT34VVLKgRU
+         qD8FSepmWBIt7e4Nmp4lVX6qewiszA9DozYmoHYKrIRuJETHkf6CUEboleEtbK01g8bm
+         U58hbrPpwUo6MsQ7miDdKOHGPc7EzyNw4sBrpjToU9qvlj46WnqDt4cAJeQaZ2kBIejb
+         hxz8RjUbP6qYkkpumycj10/bMsOHAaXjAOyTheiZnq1SaW6oZVdpaj+spnrzi/pBd1eu
+         7iSvNQ1D3AD9K37nFMjd9KERVHWTCRqk5e5fwFBYdDk2xNltFhfwiYrd2tZpnzf7w4OJ
+         dDGQ==
+X-Gm-Message-State: AOAM532f+otCN6Wkzgemn93+U9+YaZ5FcSEocYCw3WjNaz8utCkNDw/M
+        bfViTZXvfMRn0ivnSy7/8mMQc1vkCkb48vtRrxg=
+X-Google-Smtp-Source: ABdhPJzb50Lwf3AqKsaa3r8TgaTkPnOEbJbnHBz5c2Ym+VLBkRV9KHXIWxLzY/RTjy5V7M675IJ+DDqGQjdBzd2hFPI=
+X-Received: by 2002:a05:6102:d8c:: with SMTP id d12mr3061347vst.35.1633693856099;
+ Fri, 08 Oct 2021 04:50:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH 2/2] arm: dts: mt6589: Add device tree for Fairphone 1
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-mediatek@lists.infradead.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Arnd Bergmann <arnd@arndb.de>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org
-References: <20211005202833.96526-1-luca@z3ntu.xyz>
- <20211005202833.96526-2-luca@z3ntu.xyz>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20211005202833.96526-2-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20211007155451.10654-1-biju.das.jz@bp.renesas.com> <20211007155451.10654-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211007155451.10654-3-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 8 Oct 2021 13:50:44 +0200
+Message-ID: <CAMuHMdVAk0_Fp=EPYJLd41DARk7qji62T=qvrdNyfYukOvJE4Q@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: rzg2l-smarc-som: Enable eMMC on
+ SMARC platform
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Biju,
+
+On Thu, Oct 7, 2021 at 5:55 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> RZ/G2L SoM has both 64Gb eMMC and micro SD connected to SDHI0.
+>
+> Both these interfaces are mutually exclusive and the SD0 device
+> selection is based on the XOR between GPIO_SD0_DEV_SEL and SW1[2]
+> switch position.
+>
+> This patch sets GPIO_SD0_DEV_SEL to high in DT. Use the below switch
+> setting logic for device selection between eMMC and microSD slot
+> connected to SDHI0.
+>
+> Set SW1[2] to position 2/OFF for selecting eMMC
+> Set SW1[2] to position 3/ON for selecting micro SD
+>
+> This patch enables eMMC on RZ/G2L SMARC platform by default.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+Thanks for your patch!
 
 
-On 05/10/2021 22:28, Luca Weiss wrote:
-> Add rudimentary support for the Fairphone 1, based on MT6589 to boot to
-> UART console.
-> 
-> The recently added SMP support needs to be disabled for this board as
-> the kernel panics executing /init with it, even though the CPUs seem to
-> start up fine - maybe a stability issue.
-> 
-> [    0.072010] smp: Bringing up secondary CPUs ...
-> [    0.131888] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
-> [    0.191889] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
-> [    0.251890] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
-> [    0.251982] smp: Brought up 1 node, 4 CPUs
-> [    0.254745] SMP: Total of 4 processors activated (7982.28 BogoMIPS).
-> [    0.255582] CPU: All CPU(s) started in SVC mode.
-> 
-> [    0.472039] Run /init as init process
-> [    0.473317] Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000004
-> 
+> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+> @@ -5,14 +5,55 @@
+>   * Copyright (C) 2021 Renesas Electronics Corp.
+>   */
+>
+> +#include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+>
+> +/* SW1[2] should be at position 2/OFF to enable 64Gb eMMC */
 
-Would be nice to find out why. Did you tried to boot the system with 
-enable-method set but with bringing up just one or two cpus?
+64 GB (the MTFC64GASAQHD datasheet isn't clear about the exact size
+and the meaning of GB)
 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->   arch/arm/boot/dts/Makefile                 |  1 +
->   arch/arm/boot/dts/mt6589-fairphone-fp1.dts | 30 ++++++++++++++++++++++
->   2 files changed, 31 insertions(+)
->   create mode 100644 arch/arm/boot/dts/mt6589-fairphone-fp1.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 7e0934180724..24f402db2613 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1437,6 +1437,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
->   	mt2701-evb.dtb \
->   	mt6580-evbp1.dtb \
->   	mt6589-aquaris5.dtb \
-> +	mt6589-fairphone-fp1.dtb \
->   	mt6592-evb.dtb \
->   	mt7623a-rfb-emmc.dtb \
->   	mt7623a-rfb-nand.dtb \
-> diff --git a/arch/arm/boot/dts/mt6589-fairphone-fp1.dts b/arch/arm/boot/dts/mt6589-fairphone-fp1.dts
-> new file mode 100644
-> index 000000000000..32c14ecf2244
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/mt6589-fairphone-fp1.dts
-> @@ -0,0 +1,30 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
+> +#define EMMC   1
+> +
 > +/*
-> + * Copyright (c) 2021, Luca Weiss <luca@z3ntu.xyz>
+> + * To enable uSD card on CN3,
+> + * SW1[2] should be at position 3/ON.
+> + * Disable eMMC by setting "#define EMMC       0" above.
 > + */
+> +#define SDHI   (!EMMC)
 > +
-> +/dts-v1/;
-> +#include "mt6589.dtsi"
+>  / {
+>         memory@48000000 {
+>                 device_type = "memory";
+>                 /* first 128MB is reserved for secure area. */
+>                 reg = <0x0 0x48000000 0x0 0x78000000>;
+>         };
 > +
-> +/ {
-> +	model = "Fairphone 1";
-> +	compatible = "fairphone,fp1", "mediatek,mt6589";
+> +       reg_1p8v: regulator0 {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "fixed-1.8V";
+> +               regulator-min-microvolt = <1800000>;
+> +               regulator-max-microvolt = <1800000>;
+> +               regulator-boot-on;
+> +               regulator-always-on;
+> +       };
 > +
-> +	chosen {
-> +		stdout-path = &uart3;
-> +	};
+> +       reg_3p3v: regulator1 {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "fixed-3.3V";
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +               regulator-boot-on;
+> +               regulator-always-on;
+> +       };
 > +
-> +	cpus {
+> +       vccq_sdhi0: regulator-vccq-sdhi0 {
+> +               compatible = "regulator-gpio";
+> +
+> +               regulator-name = "SDHI0 VccQ";
+> +               regulator-min-microvolt = <1800000>;
+> +               regulator-max-microvolt = <3300000>;
+> +               states = <3300000 1 1800000 0>;
 
-I'd expected "&cpus" why can we overwrite delete the node property like this here?
+"make dtbs_check" says:
 
-> +		/* SMP is not stable on this board, makes the kernel panic */
-> +		/delete-property/ enable-method;
-> +	};
+    regulator-vccq-sdhi0: states:0: [3300000, 1, 1800000, 0] is too long
+
+Please group the two states using angular brackets.
+
+> +               regulator-boot-on;
+> +               gpios = <&pinctrl RZG2L_GPIO(39, 0) GPIO_ACTIVE_HIGH>;
+> +               regulator-always-on;
+> +       };
+>  };
+>
+>  &adc {
+> @@ -32,4 +73,108 @@
+>         adc_pins: adc {
+>                 pinmux = <RZG2L_PORT_PINMUX(9, 0, 2)>; /* ADC_TRG */
+>         };
 > +
-> +	memory {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0x40000000>;
-> +	};
-> +};
+> +       /*
+> +        * SDO device selection is XOR between GPIO_SD0_DEV_SEL and SW1[2]
+> +        * The below switch logic can be used to select the device between
+> +        * eMMC and microSD, after setting GPIO_SD0_DEV_SEL to high in DT.
+> +        * SW1[2] should be at position 2/OFF to enable 64Gb eMMC
+> +        * SW1[2] should be at position 3/ON to enable uSD card CN3
+> +        */
+> +       gpio_sd0_dev_sel {
+
+    gpio_sd0_dev_sel: $nodename:0: 'gpio_sd0_dev_sel' does not match
+'^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+    (for all hogs)
+
+Please use e.g. "sd0-dev-sel-hog".
+
+> +               gpio-hog;
+> +               gpios = <RZG2L_GPIO(41, 1) GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name = "gpio_sd0_dev_sel";
+> +       };
 > +
-> +&uart3 {
-> +	status = "okay";
-> +};
-> 
+> +       sd0_pwr_en {
+
+gpio-sd0-pwr-en-hog (with "gpio-" prefix, to match schematics)
+
+> +               gpio-hog;
+> +               gpios = <RZG2L_GPIO(4, 1) GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name = "sd0_pwr_en";
+
+gpio_sd0_pwr_en
+
+> +       };
+
+The rest looks good to me.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
