@@ -2,120 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC63426E22
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 17:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D88F7426E5A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 18:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243108AbhJHPys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 11:54:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38324 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243069AbhJHPyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 11:54:47 -0400
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54DA5C061755
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 08:52:52 -0700 (PDT)
-Received: by mail-il1-x12a.google.com with SMTP id h10so3469188ilq.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 08:52:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Ac00s+PRxBmgu3lFPELG1EG9EqpXm9N50GQn2NdGX80=;
-        b=Tw8EtKcNyxCSI8Oav/rTOA2zpFi3rNCHInhlVMCcFX2vY1AefU8OyiMin18iKfOKRL
-         okgNXLaHez2T61cy9WirxUvZ2ZPkBPEKoMOG5LrVCxbBOWr/soQkDNbLnCMTLEPT5iHY
-         jrh+7Yp2J5dbcURs3oxaJMEsVXF6qLbobZODQp/Hz+SLnk1qVFKsCagmIx0OL4tvFr8Y
-         zf9KG1ZdUGJLqS737vGsp3K45LXZaQVGrLeCWtIZ3O4+wFebtaHIaZfsXZzP3GMW8+Vk
-         2qtfbIgXZ3tuZL+RDcUeA/WhV/LrobOsuoQjYpFrSi/1Yj0bD3KM+4V0vEKOMiWKehp0
-         lyLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Ac00s+PRxBmgu3lFPELG1EG9EqpXm9N50GQn2NdGX80=;
-        b=0IXDT1RIXxjCkKBwe3eEJ9Ctcf/quLEQvsfak4lSYyKrRjdBX9M2xLTsSoeTWjBRFL
-         TUWfllNoDC9I50eNWc9ORPw6+gvf8tjCO07ZCi1lXrjlMLhR4ZWts6xLCn97t09oUPtv
-         yXO6ew5WwkQIgL5uA9dXP0L78wME7Gcde9oH2PAo7RF7tAFaz2eW1hLtlC6t60PJZ/Gq
-         OhSeM1JCDeJP6S8szMdfjKlOL3BdQrxNO1tR7hCxw8qcMyh1387bf7jCeYpAD2GLs+Nj
-         6xDUQSK0imnyyjw4dpcH5VggAj8TOvCwPYlSDH8u0KF+JcysgvGSWO0iTFmywhVCtZ2V
-         WU6Q==
-X-Gm-Message-State: AOAM530Hs3H+ZCxBZ802C6+PY5oOeBrPPnu3zLi7p6/xtAfIYZep725i
-        0iEgRg0MSdLrlaN4O2CJFZCboGo5EKPeIF/Wj45bUkqJbpkpdQ==
-X-Google-Smtp-Source: ABdhPJxlL991Sm7cGy5p23FjZmGBQYOjZwg0XmCfEwsR87F/DK2SMzgr9qaPwm0W60l/bxW/tTI1QByy6W/Za3r1Pfw=
-X-Received: by 2002:a05:6e02:1023:: with SMTP id o3mr8254592ilj.27.1633708371331;
- Fri, 08 Oct 2021 08:52:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211008114343.57920-1-robert.marko@sartura.hr>
- <20211008120855.46zbo2fl5edwf7ja@pali> <CA+HBbNGvFtws2GF7RLbznAbXfvjKx4rOJ=eMeuHOJ6s7iANtzw@mail.gmail.com>
- <20211008134347.lskm5pzt73pkf7oc@pali>
-In-Reply-To: <20211008134347.lskm5pzt73pkf7oc@pali>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Fri, 8 Oct 2021 17:52:40 +0200
-Message-ID: <CA+HBbNEDxBDvNZPSWnBYJOUhqdwonBhFwD9P0xhSGccdvQJx3Q@mail.gmail.com>
-Subject: Re: [PATCH v5] arm64: dts: marvell: add Globalscale MOCHAbin
-To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
+        id S229559AbhJHQG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 12:06:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57250 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229525AbhJHQG1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 12:06:27 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2AD8561027;
+        Fri,  8 Oct 2021 16:04:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633709071;
+        bh=KD398jaQvDXHUuNuLLyW0QSjhLdu/GhpQY+K7ndSUhk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=mBuz/TKs0bb7lggF2tsR8GEVsq5OHRmCuGk7DywHvfvYjbYePF3TTziXgSG9/1Clf
+         NRe8x16NSyn+6Gx2NmqQGsTOgj6KnkAkXBD9U+mCOQdC9CMpcTw4NMs37VS3EcBqlT
+         FvRmLUK7gyfRua/epdFQQXjWtyFgeK6vRhD79yJlqVBHUD2kHgLcoLOw0ROc4sH8kd
+         OBqg4nMBADFtZgUlctmI63joNjAY0VXZ71suciugI8/iZTArlz5UPtZUTsX/7h3mHu
+         ziQ1o91J/ZHWn9KZfFyYfoqGozUlhfrnqX6pkcj7rBzNsyi699hTNEmBATgwVXHhuX
+         tCKKlem8htmvw==
+Date:   Fri, 8 Oct 2021 18:04:27 +0200
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
         gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
         devicetree <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5] arm64: dts: marvell: add Globalscale MOCHAbin
+Message-ID: <20211008180427.68be1d3f@thinkpad>
+In-Reply-To: <CA+HBbNEDxBDvNZPSWnBYJOUhqdwonBhFwD9P0xhSGccdvQJx3Q@mail.gmail.com>
+References: <20211008114343.57920-1-robert.marko@sartura.hr>
+        <20211008120855.46zbo2fl5edwf7ja@pali>
+        <CA+HBbNGvFtws2GF7RLbznAbXfvjKx4rOJ=eMeuHOJ6s7iANtzw@mail.gmail.com>
+        <20211008134347.lskm5pzt73pkf7oc@pali>
+        <CA+HBbNEDxBDvNZPSWnBYJOUhqdwonBhFwD9P0xhSGccdvQJx3Q@mail.gmail.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 8, 2021 at 3:43 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
->
-> On Friday 08 October 2021 15:28:38 Robert Marko wrote:
-> > > > +     cp0_pcie_reset_pins: cp0-pcie-reset-pins {
-> > > > +             marvell,pins =3D "mpp9";
-> > > > +             marvell,function =3D "gpio";
-> > >
-> > > Now I spotted this. Why is PERST# pin configured into gpio mode? Is
-> > > there some issue that this pin in pcie mode is not working properly,
-> > > that PCIe controller cannot handle it correctly? Or something else?
-> >
-> > Its because I have seen way too many broken controllers when it comes
-> > to PERST and
-> > other Armada 7k/8k devices are using it in GPIO mode as well.
-> > Just look at the number of conversions back to GPIO for other
-> > platforms as there is always some bug.
->
-> I know that A3720 has broken PERST# control in PCIe block... or at least
-> I was not able to figure out how A3720 PCIe block can control PERST#. So
-> configuring it in gpio mode and let PERST# to be controlled manually via
-> gpio by the software is the workaround.
->
-> I just wanted to know if A7k/A8k/CN913x is also broken in the same way
-> as A3720.
->
-> Or it it just a configuration workaround for missing driver or missing
-> proper software setup.
->
-> HW bugs like this should be properly documented and not hidden behind
-> some configuration in DTS file. And reported to HW vendors.
+On Fri, 8 Oct 2021 17:52:40 +0200
+Robert Marko <robert.marko@sartura.hr> wrote:
 
-I have to agree, so I did some digging.
-I don't think that the Armada 8k PCI driver actually supports HW level PERS=
-T#.
-I then looked at the functional specs and the only thing that looks
-related to PERST#
-is PCIe Software Reset Register which has a SoftWarePERst bit.
+> I have to agree, so I did some digging.
+> I don't think that the Armada 8k PCI driver actually supports HW level PERST#.
+> I then looked at the functional specs and the only thing that looks
+> related to PERST#
+> is PCIe Software Reset Register which has a SoftWarePERst bit.
+> 
+> Can you maybe look at it?
+> 
+> Removed the reset-gpios and set the PERST pinmux to PCIe, and the
+> QCA9377 card will
+> show up, but I have no idea whether PERST# actually ever gets toggled.
 
-Can you maybe look at it?
-
-Removed the reset-gpios and set the PERST pinmux to PCIe, and the
-QCA9377 card will
-show up, but I have no idea whether PERST# actually ever gets toggled.
-
-Regards,
-Robert
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+You can check with voltmeter, toggle the bit via mw command in u-boot.
