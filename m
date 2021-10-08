@@ -2,210 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8545426392
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 06:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF97C4263D5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 06:35:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbhJHEON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 00:14:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48006 "EHLO
+        id S229714AbhJHEhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 00:37:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbhJHEOM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 00:14:12 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E384DC061570;
-        Thu,  7 Oct 2021 21:12:17 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id r1so8374773qta.12;
-        Thu, 07 Oct 2021 21:12:17 -0700 (PDT)
+        with ESMTP id S229696AbhJHEhi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 00:37:38 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED3DEC061570;
+        Thu,  7 Oct 2021 21:35:43 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id b12so382720qtq.3;
+        Thu, 07 Oct 2021 21:35:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=kpVveClApwG0f1MnOqx8Bs+gZiIua6pFcbtmAW5z2vE=;
-        b=HFR4Iurmu8llLf9/t436kyERqMxFzX0S9BXVmQphHY+eC094l2FixYiSO/6IyRNrzg
-         aGnSn1JLegb+klcmlL9c1FHA6kv8ooUumw8gQ/zUrSEVix7JDROjy1ggNEtJ5OPfIKAE
-         DubkE0HzXEtoETInYz7iIkiFfSQcsa4UsOs6OumtJY+ohNxSwbSF3OxjqFAGOzJJ8Q75
-         zraUH9qJ/pgTZXCCXZj605AfcXXwEqvIf0LSSOmIvjgDCjW1EfRmaibzdvqNIpR+HJFp
-         LuKOKTNDsKsjt5X0SjEDa/dxID3ceTSPG9OgLZlioueIvqUmCwSxrW1ydmNwRjkabnca
-         Hzqg==
+        bh=2ZuW84FCUeNefVYpl7AXF9/6C9HEWosikSwgMkrYqEo=;
+        b=XDBDrBRCGDfMhmfBsfE4sYKoyPV6PDJ6GFvDUZJKpWtPB1mLpgU0cYQm5X5YNh3mnD
+         3p8FNTlquaHZ8+ppbR8E612WozKfh7KLFuGh+mqvFBHcySVnfIAmS8PDOcpVBxleTeRT
+         zl7Yg1iEbVGFlmHnqu04v7jeaskKs2aT0PvDQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=kpVveClApwG0f1MnOqx8Bs+gZiIua6pFcbtmAW5z2vE=;
-        b=HLoI2Hlz4FSXG/MSelvtfuVPLZOW0SJcPzQ3Q00eaggOMkDB+FT2WAQr2RrUUSjZfc
-         UJWr+zvPSPnBiDingvTYXtZrLoNp1WBn8n3Dk2QFkDSlSxdR3YqNR5uGFDs6e+652rF+
-         c/dba00KFXs5RywOgn2iuazz7PxYpmwEADAGuViCMPRPYSqPu+L1lFZiiX8PzATNW9HP
-         AP/+UGPGGzWFFORNvEVAQQFXKQ3auh+VDJNpirFprK4Ff71EZSfhtK6578DhmWIM7RoH
-         7YMzDv1C15Dy9/c3JxR9ulEHwKXS8xQ9etAvYG1gDShexWw1Rd0JSlrSSUVmVWg3PZj4
-         PpAw==
-X-Gm-Message-State: AOAM530I/lMuNaaLXGCSyfS+Lry15A3ews6dlWRfPRvKzYB9W/VGAce6
-        R/wP4md+RUELvHZlkg4e9aQf2sH7zQkBU0s1K10=
-X-Google-Smtp-Source: ABdhPJzb94QCdtXn2IloaHOWQOje6kwaxFQI1o2Yjku+KrGOvzD0W8w4bJY53EmcCjFfEfO5v9EsOb93TC2vxJ2i4kM=
-X-Received: by 2002:ac8:1e06:: with SMTP id n6mr9069200qtl.365.1633666337060;
- Thu, 07 Oct 2021 21:12:17 -0700 (PDT)
+        bh=2ZuW84FCUeNefVYpl7AXF9/6C9HEWosikSwgMkrYqEo=;
+        b=lckDwYVC6uIp9HUSsgMVlJ9JaeRCxCjq9hQEKPtFV6/Sjhf3Jz5+HV/0kQkzTQQ32s
+         gxcufiuo649ryRmYhI3iS2inpEkWzk3+hvJeJ6gaQlGZz/+PNQjj0QFvay5c9sS0iyIC
+         EyhRUPTtSypVF1g9K6mYSRD+nON3S5WqjevGg0x82lxWUTXGX18dJkGJMNdEBZ3rJO6N
+         acl7SNUn45Lp6+3I5pCwjkutTtUkQEF72J8f/cCn9YHcpPx/NqMz7np+EYl6yMOFV8OM
+         Anr6NpvPoNVbsOmrHwjxNFSDa30v3X36xuHTpZY85YDIL1BzfeofIWM5dHX8nzqVh7V5
+         wQpg==
+X-Gm-Message-State: AOAM530Zrt2wZO0Z2gGddD0ruko3vlcwidzMoAPdcsdLnEK3UMA5fRLC
+        ApVxLYQUcCS2ameimOIOBqU9RpKd2qEGXGv/UYE=
+X-Google-Smtp-Source: ABdhPJx23WvHqotWOkfOASvG4ZJEedhf8Z22sYYHd357XdyP13GG/0PdPRGQ7t/sI6n+IBEYzZwvvHjHMJCb9sipnQY=
+X-Received: by 2002:a05:622a:1345:: with SMTP id w5mr9462603qtk.259.1633667743064;
+ Thu, 07 Oct 2021 21:35:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <1632625630-784-1-git-send-email-shengjiu.wang@nxp.com>
- <1632625630-784-5-git-send-email-shengjiu.wang@nxp.com> <YVTrbPC4/ir974xs@robh.at.kernel.org>
- <CAA+D8ANdQQFuPh_F8DZka+Y6hVDGuT8BvRfWdUFJxHd5JTQPNA@mail.gmail.com> <CAL_JsqK2KHfDisDXsuyWX0P99uY+nmEG72AsNUmqGRjJKHmg_Q@mail.gmail.com>
-In-Reply-To: <CAL_JsqK2KHfDisDXsuyWX0P99uY+nmEG72AsNUmqGRjJKHmg_Q@mail.gmail.com>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Fri, 8 Oct 2021 12:12:06 +0800
-Message-ID: <CAA+D8ANDP0ZPFKbRaYCwD+8zE3qvckKo9JjXwNBFUPrJ66=idw@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] dt-bindings: dsp: fsl: update binding document for
- remote proc driver
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Ohad Ben Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210927023053.6728-1-chiawei_wang@aspeedtech.com> <20210927023053.6728-2-chiawei_wang@aspeedtech.com>
+In-Reply-To: <20210927023053.6728-2-chiawei_wang@aspeedtech.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Fri, 8 Oct 2021 04:35:31 +0000
+Message-ID: <CACPK8Xc+9yFJn_pO1sAVQJu_FWkA1U9XnbB+TLYgfdbHi1TyaQ@mail.gmail.com>
+Subject: Re: [PATCH v7 1/5] ARM: dts: aspeed: Drop reg-io-width from LPC nodes
+To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Oskar Senft <osk@google.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
-
-On Sat, Oct 2, 2021 at 12:40 AM Rob Herring <robh@kernel.org> wrote:
+On Mon, 27 Sept 2021 at 02:31, Chia-Wei Wang
+<chiawei_wang@aspeedtech.com> wrote:
 >
-> On Wed, Sep 29, 2021 at 9:34 PM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
-> >
-> > Hi Rob
-> >
-> > On Thu, Sep 30, 2021 at 6:40 AM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Sun, Sep 26, 2021 at 11:07:10AM +0800, Shengjiu Wang wrote:
-> > > > As there are two drivers for DSP on i.MX, one is for sound open
-> > > > firmware, another is for remote processor framework. In order to
-> > > > distinguish two kinds of driver, defining different compatible strings.
-> > > >
-> > > > For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
-> > > > are needed and the mailbox channel is different with SOF.
-> > > >
-> > > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > > > Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
-> > > > ---
-> > > >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
-> > > >  1 file changed, 75 insertions(+), 6 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > > > index 7afc9f2be13a..51ea657f6d42 100644
-> > > > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > > > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > > > @@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
-> > > >
-> > > >  maintainers:
-> > > >    - Daniel Baluta <daniel.baluta@nxp.com>
-> > > > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> > > >
-> > > >  description: |
-> > > >    Some boards from i.MX8 family contain a DSP core used for
-> > > > @@ -19,6 +20,10 @@ properties:
-> > > >        - fsl,imx8qxp-dsp
-> > > >        - fsl,imx8qm-dsp
-> > > >        - fsl,imx8mp-dsp
-> > > > +      - fsl,imx8qxp-hifi4
-> > > > +      - fsl,imx8qm-hifi4
-> > > > +      - fsl,imx8mp-hifi4
-> > > > +      - fsl,imx8ulp-hifi4
-> > > >
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > @@ -28,37 +33,63 @@ properties:
-> > > >        - description: ipg clock
-> > > >        - description: ocram clock
-> > > >        - description: core clock
-> > > > +      - description: debug interface clock
-> > > > +      - description: message unit clock
-> > > > +    minItems: 3
-> > > > +    maxItems: 5
-> > >
-> > > Don't need maxItems.
-> >
-> > Ok, I will update it.
-> >
-> > >
-> > > >
-> > > >    clock-names:
-> > > >      items:
-> > > >        - const: ipg
-> > > >        - const: ocram
-> > > >        - const: core
-> > > > +      - const: debug
-> > > > +      - const: mu
-> > > > +    minItems: 3
-> > > > +    maxItems: 5
-> > >
-> > > ditto
-> >
-> > Ok, I will update it.
-> >
-> > >
-> > > >
-> > > >    power-domains:
-> > > >      description:
-> > > >        List of phandle and PM domain specifier as documented in
-> > > >        Documentation/devicetree/bindings/power/power_domain.txt
-> > > > +    minItems: 1
-> > >
-> > > This is curious. The h/w sometimes has fewer power domains?
-> >
-> > On i.MX8QM/8QXP,  there are independent power domains for DSP core,
-> > DSP's RAM and DSP's MU.
-> > But on i.MX8MP, all these DSP components are in same audio subsystem
-> > There is only one power domain for whole audio subsystem,  when
-> > power on audio subsystem, the DSP's components are powered on also.
-> >
-> > So the number of power domain depends on how the DSP component
-> > integrated in SoC.
+> The 'reg-io-width' properties are not used by LPC drivers
+> nor documented as part of bindings. Therefore drop them.
+
+I assume they are there due to the lpc having a 'syscon' compatible.
+THey are documented in the syscon bindings:
+
+Documentation/devicetree/bindings/mfd/syscon.yaml
+
+Andrew, do you have any comments?
+
 >
-> Sounds like you can write an if/then schema for this difference.
+> This is in preparation to move aspeed-lpc.txt to YAML schema.
 >
-
-I try this:
-
-allOf:
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - fsl,imx8mp-hifi4
-              - fsl,imx8mp-dsp
-
-    then:
-      properties:
-        power-domains:
-          maxItems: 1
-
-    else:
-      properties:
-        power-domains:
-          maxItems: 4
-
-
-But the dt_binding_check report error:
-  DTEX    Documentation/devicetree/bindings/dsp/fsl,dsp.example.dts
-  DTC     Documentation/devicetree/bindings/dsp/fsl,dsp.example.dt.yaml
-  CHECK   Documentation/devicetree/bindings/dsp/fsl,dsp.example.dt.yaml
-/opt/alsa/sound/Documentation/devicetree/bindings/dsp/fsl,dsp.example.dt.yaml:
-dsp@3b6e8000: power-domains: [[4294967295]] is too short
-        From schema:
-/opt/alsa/sound/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-
-I don't know the reason, could you please help to have a look what
-is wrong?
-
-Best regards
-Wang Shengjiu
+> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+> ---
+>  arch/arm/boot/dts/aspeed-g4.dtsi | 1 -
+>  arch/arm/boot/dts/aspeed-g5.dtsi | 1 -
+>  arch/arm/boot/dts/aspeed-g6.dtsi | 1 -
+>  3 files changed, 3 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed-g4.dtsi
+> index c5aeb3cf3a09..45a25eb4baa4 100644
+> --- a/arch/arm/boot/dts/aspeed-g4.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g4.dtsi
+> @@ -345,7 +345,6 @@
+>                         lpc: lpc@1e789000 {
+>                                 compatible = "aspeed,ast2400-lpc-v2", "simple-mfd", "syscon";
+>                                 reg = <0x1e789000 0x1000>;
+> -                               reg-io-width = <4>;
+>
+>                                 #address-cells = <1>;
+>                                 #size-cells = <1>;
+> diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
+> index 73ca1ec6fc24..8e1d00d8445e 100644
+> --- a/arch/arm/boot/dts/aspeed-g5.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g5.dtsi
+> @@ -436,7 +436,6 @@
+>                         lpc: lpc@1e789000 {
+>                                 compatible = "aspeed,ast2500-lpc-v2", "simple-mfd", "syscon";
+>                                 reg = <0x1e789000 0x1000>;
+> -                               reg-io-width = <4>;
+>
+>                                 #address-cells = <1>;
+>                                 #size-cells = <1>;
+> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+> index 1b47be1704f8..0d1aae6887cd 100644
+> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+> @@ -490,7 +490,6 @@
+>                         lpc: lpc@1e789000 {
+>                                 compatible = "aspeed,ast2600-lpc-v2", "simple-mfd", "syscon";
+>                                 reg = <0x1e789000 0x1000>;
+> -                               reg-io-width = <4>;
+>
+>                                 #address-cells = <1>;
+>                                 #size-cells = <1>;
+> --
+> 2.17.1
+>
