@@ -2,89 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2947426C27
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 281F5426C54
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:05:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242444AbhJHN6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 09:58:08 -0400
-Received: from smtp2.axis.com ([195.60.68.18]:22061 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234049AbhJHN6H (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 09:58:07 -0400
+        id S230385AbhJHOHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 10:07:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41462 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229607AbhJHOHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:07:32 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 169DCC061570;
+        Fri,  8 Oct 2021 07:05:37 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id g15-20020a9d128f000000b0054e3d55dd81so6687229otg.12;
+        Fri, 08 Oct 2021 07:05:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1633701372;
-  x=1665237372;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=me75zdxB12WIuwzb16S9PBlfZIdHjvMQdZm15J1RVJw=;
-  b=iewVfZwwi86xOSCxPH4qYYP2E0udq9O4CtjLZQV9ytrHXD5ER7x15mei
-   EJNzIGvZUzSybgx+R8q2lnXbP3rR815acRqAdi9CIZUrhQCkkmecl8wmm
-   hdEpzcXwb1M33wWEKRf6cuYord5tefqpWar2NFTVATvfw+gWZEXDV16nz
-   nhGmm2H2yL90RHxSRZRbCJDoylWLnzyE55T7DM01fAbXLJlx2WVgLcs0W
-   BTMV125CnGX9exsjwnjU8AfDWux5o3iljIsfIhEAz1HGPnfXqP3LhbnBV
-   abtblKotk7GbVe5IcqHfar9wV+Mp1NbBEgDdn48p2Uz0sjwWodWjufMx9
-   g==;
-Date:   Fri, 8 Oct 2021 15:56:10 +0200
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     kernel <kernel@axis.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "peda@axentia.se" <peda@axentia.se>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: io-channel-mux: Add property
- for settle time
-Message-ID: <20211008135610.GA16402@axis.com>
-References: <20211007134641.13417-1-vincent.whitchurch@axis.com>
- <20211007134641.13417-3-vincent.whitchurch@axis.com>
- <1633661172.633248.1409599.nullmailer@robh.at.kernel.org>
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=+8cmniGBVN2PezeljEbDSbJUvW2F5mbVKylcUXP/x7w=;
+        b=iG7tVZn2+bYvwKFyxomcWVADB9zRlDQjYaGD9UzpSpCMqCuK7+wYzy+dEiOQDtV0a8
+         1RrVilgcTat4Z911VWl3O0tJRfpWvF7xHwmuwhHZoqWJncqnTfjDskC3wtKSObeZ3PYA
+         Y8/DgSEyQHyWcp74LeqPnvSUv+bN69j3G+odLM8vPmg5KdDu3uTnICWgqDdaGnV2ECxI
+         RRdHymYHs5XTs4ptFhfVMdmgm1YGkSuLRM055x/dL3+YNqsoHltvnsagrBh1Gb2b3a5T
+         6lyGpG2fcbOa/v8psniFp1+DTRl7Jb8hPUf0/9BopdPI3y7vD/NCQoGO/qThsK/orpOu
+         83sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=+8cmniGBVN2PezeljEbDSbJUvW2F5mbVKylcUXP/x7w=;
+        b=cpjzUjejxoyk1B4/eWcSjxiHxg4pNScXgjLgReFs9p6f9MK6zkLfBiI8xrur+H9xQ/
+         nmk9bA0Kf9i4DwFCLjOyxrlv7gXOyxPH5k9JFFDCpAAFX0vJ/t6PvggQkgxLNBSgr6BH
+         F9Kp91cjTlLFUuE2VkkOrsEcRvIMWTLWKO1z5RQtydQ09SkPlp5GmPPlLlqSQnvSgBZQ
+         /K37H/YOOTGkJCuT6bDI7WEyts294Diw43NStyc1NmqQp4Ti6tDDld2jNBrShM/SVm+S
+         7/i9VSDEhNy5WYHZ7pS906Df2WvrltZPxioADJAY8F6Msq1156eyASyxCLSHV9jvJ0h5
+         ErlQ==
+X-Gm-Message-State: AOAM532nha+C6eyoaf74uoKI+JhaovJbiKqDVyQpztQLpAkQlBGfL9M1
+        eEKUOeRPQSx+JvbqZqm3VFQ=
+X-Google-Smtp-Source: ABdhPJyc4aEce/oZYp2+1eG/MuQb/NZigkdhWbVH6kMKwDM9WHMi7k6KDBmo7i0NLZvSMAyLDp9SfA==
+X-Received: by 2002:a9d:19c1:: with SMTP id k59mr8631537otk.348.1633701936488;
+        Fri, 08 Oct 2021 07:05:36 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id z83sm642787oiz.41.2021.10.08.07.05.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Oct 2021 07:05:35 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 8 Oct 2021 07:05:34 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 8/8] dt-bindings: hwmon/pmbus: Add ti,lm25066
+ power-management IC
+Message-ID: <20211008140534.GA1806215@roeck-us.net>
+References: <20210928092242.30036-1-zev@bewilderbeest.net>
+ <20210928092242.30036-9-zev@bewilderbeest.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1633661172.633248.1409599.nullmailer@robh.at.kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210928092242.30036-9-zev@bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 08, 2021 at 04:46:12AM +0200, Rob Herring wrote:
-> On Thu, 07 Oct 2021 15:46:40 +0200, Vincent Whitchurch wrote:
-> > Hardware may require some time for the muxed analog signals to settle
-> > after the muxing is changed.  Allow this time to be specified in the
-> > devicetree.
-> > 
-> > Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> > ---
-> >  .../devicetree/bindings/iio/multiplexer/io-channel-mux.yaml  | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
+On Tue, Sep 28, 2021 at 02:22:42AM -0700, Zev Weiss wrote:
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Yes, these are not new warnings.
+Applied.
 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1537724
-> 
-> 
-> adc0mux: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dt.yaml
-> 
-> adc10mux: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dt.yaml
-[...]
+Thanks,
+Guenter
 
-I think the fix for these is to add a "#io-channel-cells": const 1 to
-the schema.
-
-> envelope-detector-mux: channels: ['', '', 'sync-1', 'in', 'out', 'sync-2', 'sys-reg', 'ana-reg'] has non-unique elements
-> 	arch/arm/boot/dts/at91-tse850-3.dt.yaml
-
-This one looks like an error in that particular devicetree.
+> ---
+>  .../bindings/hwmon/pmbus/ti,lm25066.yaml      | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
+> new file mode 100644
+> index 000000000000..da8292bc32f5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/ti,lm25066.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: National Semiconductor/Texas Instruments LM250x6/LM506x power-management ICs
+> +
+> +maintainers:
+> +  - Zev Weiss <zev@bewilderbeest.net>
+> +
+> +description: |
+> +  The LM25066 family of power-management ICs (a.k.a. hot-swap
+> +  controllers or eFuses in various contexts) are PMBus devices that
+> +  offer temperature, current, voltage, and power monitoring.
+> +
+> +  Datasheet: https://www.ti.com/lit/ds/symlink/lm25066.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,lm25056
+> +      - ti,lm25066
+> +      - ti,lm5064
+> +      - ti,lm5066
+> +      - ti,lm5066i
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  shunt-resistor-micro-ohms:
+> +    description:
+> +      Shunt (sense) resistor value in micro-Ohms
+> +    default: 1000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@40 {
+> +            compatible = "ti,lm25066";
+> +            reg = <0x40>;
+> +            shunt-resistor-micro-ohms = <675>;
+> +        };
+> +    };
