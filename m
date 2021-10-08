@@ -2,140 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 202B9426616
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 10:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29B1A42662F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 10:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234853AbhJHImj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 04:42:39 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:45680 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S236195AbhJHImc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 04:42:32 -0400
-X-UUID: 640cd50e4be74a288750845f5a7eac3d-20211008
-X-UUID: 640cd50e4be74a288750845f5a7eac3d-20211008
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1160262783; Fri, 08 Oct 2021 16:40:34 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 8 Oct 2021 16:40:33 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 8 Oct
- 2021 16:40:32 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 8 Oct 2021 16:40:32 +0800
-From:   Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        id S230045AbhJHIrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 04:47:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52836 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229987AbhJHIru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 04:47:50 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6499C061570;
+        Fri,  8 Oct 2021 01:45:55 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id r18so33551500edv.12;
+        Fri, 08 Oct 2021 01:45:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qbtc42tdcLddddPk4Nl/b0hjJZcICwZrpNrFhchyl3A=;
+        b=VNU1+gt1YxzOTUPAJ/W0KbL8ooIsnJBlW/2qXPFiMmnbWof7EMgjH+aB4lWTgUP3LR
+         28CoAJIgthXfOMx97mZ2OYc5JJzSTq11EscOcp6JZ0t6DFEBcJjG5jSeL53v0b9iXoFk
+         oEY/5JPpAJPWgbGoWIGurqsNgK7XKjtjtuqfKdmeUxNmnZlXv8K8qhFrRIuSD6b939wX
+         YX5CcgYpLx4B6FFUFdKnfNL5ewB+ciUZxCb10EBqQAmKyVC42YXXwNYY0QCTeoZcwhsl
+         HVa8GxIaNwsRULrLhf1WE6wRGaGU+cZrBfuKsFTKTBT8WHzFbae9wC42xxP5SvaTBdL+
+         J96A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qbtc42tdcLddddPk4Nl/b0hjJZcICwZrpNrFhchyl3A=;
+        b=bwnOm8vt6uqROi5N4jQlKjrL8HphxtcEGvedwVIPm6hpzgiCZ+YtZDv5adudCysJYu
+         /6au92u/UFKbcuzAAYKHrJ6cWN0tCRM8n3ROYV8kVQ20o9bf136zbqnTfj6hhoyO0+rs
+         wuiSesBxKLCB6/MYRn7LfxXEI6ed3WNKQ+hJXo+CbCa5fugYpo5S+VW5CyrwzwajtZS+
+         P5pjZGiccsF5FJifL73Sikx6qXnPlt2nAuwn3onV8phxnf1EeBqblMbWWFN4hzIkkwmX
+         1Sodvps9MZBn7hoVO1BSOIvgdDAXxEM9p8PQ3T4DSsHjvG+19u8+YWuFIPvSOkRJRgV5
+         ALag==
+X-Gm-Message-State: AOAM530rDFo0QjO+Yt5yYbkoLje4Woj/E9SFQOYxXDYP45mi9uYh3WMd
+        I3l9MUq6p5E61mKvwXrDiiI=
+X-Google-Smtp-Source: ABdhPJypgP4ryswRLVF5ukX7LG9Tu9NMaJutQfu1nojnjmTqsHUPd8w9OfgRlsfjD2BN4raRqI5lYQ==
+X-Received: by 2002:a17:906:66d5:: with SMTP id k21mr2435901ejp.487.1633682754052;
+        Fri, 08 Oct 2021 01:45:54 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.gmail.com with ESMTPSA id z19sm662331ejp.97.2021.10.08.01.45.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Oct 2021 01:45:53 -0700 (PDT)
+Date:   Fri, 8 Oct 2021 10:45:51 +0200
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-Subject: [PATCH v2] dt-bindings: mediatek: add adsp-mbox document
-Date:   Fri, 8 Oct 2021 16:40:30 +0800
-Message-ID: <20211008084030.2439-1-Allen-KH.Cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net PATCH v2 01/15] drivers: net: phy: at803x: fix resume for
+ QCA8327 phy
+Message-ID: <YWAFP/Uf4LPK2oe6@Ansuel-xps.localdomain>
+References: <20211008002225.2426-1-ansuelsmth@gmail.com>
+ <20211008002225.2426-2-ansuelsmth@gmail.com>
+ <20211007192304.7a9acabe@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211007192304.7a9acabe@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds document for mediatek adsp mbox
+On Thu, Oct 07, 2021 at 07:23:04PM -0700, Jakub Kicinski wrote:
+> On Fri,  8 Oct 2021 02:22:11 +0200 Ansuel Smith wrote:
+> > From Documentation phy resume triggers phy reset and restart
+> > auto-negotiation. Add a dedicated function to wait reset to finish as
+> > it was notice a regression where port sometime are not reliable after a
+> > suspend/resume session. The reset wait logic is copied from phy_poll_reset.
+> > Add dedicated suspend function to use genphy_suspend only with QCA8337
+> > phy and set only additional debug settings for QCA8327. With more test
+> > it was reported that QCA8327 doesn't proprely support this mode and
+> > using this cause the unreliability of the switch ports, especially the
+> > malfunction of the port0.
+> > 
+> > Fixes: 52a6cdbe43a3 ("net: phy: at803x: add resume/suspend function to qca83xx phy")
+> 
+> Strange, checkpatch catches the wrong hash being used, but the
+> verify_fixes script doesn't. Did you mean:
+> 
+> Fixes: 15b9df4ece17 ("net: phy: at803x: add resume/suspend function to qca83xx phy")
+> 
+> Or is 52a6cdbe43a3 the correct commit hash? Same question for patch 2.
+> 
+> 
+> The fixes have to be a _separate_ series.
 
-Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
----
- .../bindings/mailbox/mtk,adsp-mbox.yaml       | 76 +++++++++++++++++++
- 1 file changed, 76 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
+Hi,
+this series contains changes that depends on the fixes. (the 4th patch
+that rename the define is based on this 2 patch) How to handle that?
+I know it was wrong to put net and net-next patch in the same series but
+I don't know how to handle this strange situation. Any hint about that?
 
-diff --git a/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
-new file mode 100644
-index 000000000000..9028e403ceda
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/mtk,adsp-mbox.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek ADSP mailbox
-+
-+maintainers:
-+  - Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-+
-+description: |
-+  The MTK ADSP mailbox Inter-Processor Communication (IPC) enables the SoC
-+  to ommunicate with ADSP by passing messages through two mailbox channels.
-+  The MTK ADSP mailbox IPC also provides the ability for one processor to
-+  signal the other processor using interrupts.
-+
-+  mbox0 is handling ipc reply
-+  mbox1 is handling ipc request
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: mediatek,mt8195-adsp-mbox
-+
-+  "#mbox-cells":
-+    const: 1
-+
-+  reg:
-+    description: 
-+      Physical address base for dsp mbox base registers.
-+    maxItems: 2
-+    minItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: reg_mbox0 
-+      - const: reg_mbox1
-+
-+  interrupts:
-+    description: 
-+      adsp mbox interrupt
-+    maxItems: 2
-+    minItems: 2
-+
-+  interrupt-names:
-+    items:
-+      - const: irq_mbox0 
-+      - const: irq_mbox1
-+
-+required:
-+  - compatible
-+  - "#mbox-cells"
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    adsp_mailbox:adsp_mailbox@10816000 {
-+        compatible = "mediatek,mt8195-adsp-mbox";
-+        #mbox-cells = <1>;
-+        reg = <0x10816000 0x1000>,
-+              <0x10817000 0x1000>;
-+        reg-names = "reg_mbox0", "reg_mbox1";
-+        interrupts = <GIC_SPI 702 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 703 IRQ_TYPE_LEVEL_HIGH 0>;
-+        interrupt-names = "irq_mbox0", "irq_mbox1";
-+    };
-+
+About the wrong hash, yes I wrongly took the hash from my local branch.
+
 -- 
-2.18.0
-
+	Ansuel
