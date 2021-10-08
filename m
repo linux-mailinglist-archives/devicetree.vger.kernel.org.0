@@ -2,243 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3335427128
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:04:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0364942711F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:01:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231459AbhJHTGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 15:06:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54434 "EHLO
+        id S231245AbhJHTDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 15:03:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231388AbhJHTGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 15:06:31 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A674DC061570
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 12:04:35 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id o15so6790725vsr.13
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 12:04:35 -0700 (PDT)
+        with ESMTP id S231312AbhJHTDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 15:03:41 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A56C061570;
+        Fri,  8 Oct 2021 12:01:45 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id z24so5749679qtv.9;
+        Fri, 08 Oct 2021 12:01:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+PFG95vsWGuyHt4PcF9O/qQQtXb2/roNae5ZiPerc+I=;
-        b=Vg84jUhZ066KbwPCq09KSWKk5BMC/nESlSL+LvmOsd9WOTqV4fVqB6I1sVrBLn+BEY
-         Lr4BmXiMbxhqGcrcd6KQBJY9t78dmrCJ4nL4AtiEg6etmi8+yWMScE37Qar+/wVHsDAP
-         yB04phzc7eYq7KCmvPVMKkcgnl9G99lu63U74=
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=xew2Cqp055SEboMYSD4xaomAE75lVTjIUs6xXR179/0=;
+        b=C+zkVLwQ561jKCx3zhQEnbk8TmUmArvKZwuTu4o6hFVYBf50l6nH4eFXzxeT6ckUFG
+         iCT7GRokfADm3mNb1neAQNsX8B+bhJQe3zQAv/kVlJe6lq/GOCY/0zCqZMG/JLnZx84+
+         QTJGxJARW6YfYHxWtL1p6VQgRNDqyww+1GGeqigEy+zt+NntIzIhypf3jsCXtUyhCXQY
+         JXRo/4T++xB6+pLKViUSF1mz7D37WsgOLsf2/WFzq51e8PYFd32ltlPrTQ3Fq4ORQ8zk
+         DiSu2vcdV9MIj6pwSf2XDvgtd7/eGnvA34XGuLQxsdeFv8D7XsXVRwNAysOAKAMTr0+8
+         WhwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+PFG95vsWGuyHt4PcF9O/qQQtXb2/roNae5ZiPerc+I=;
-        b=fcHiRxD+cP6ygitXYBVe8Cu7g1Hb0cwA30+Kg4ikfkkMG+Vuv3WnUuV5v98bNOWy+b
-         DrqURRPlXFKAe1Wpd+3zaCpoKggIET9nr5dzQs6IuP4EIW2g5/7A/L7vlVYAoAOdKZ9n
-         xVAF3DLNXzVTVlQrsnKmEkc1UveS7ANAHGyj4fq1Guslr739zMpN4kE3+R/Is2lBoSrz
-         fdYGlKQ+urUSBWLdlrqojFNjQ8lZQ9Ni4XYsdWOnlLE1B6jELwGwFFnLSpnYCHik/SKq
-         6OhKgNsSBXwLbqT0loydSm8sTU7PXBWIPv9vduLMFgWL5wikY7M01vcur3Kg7LCV+AM/
-         AJ3g==
-X-Gm-Message-State: AOAM530YOcwHJTjbCnyBb48e63xxjMcrBWdncaKVwzDROOFoPxFHF758
-        00BJc1fTWYfJuKkLSEG/faxtxTZFJsA1BA==
-X-Google-Smtp-Source: ABdhPJyp6Eo0xZNLPvmQ1bzgqCM/aJPjLfhKaoiQAxHcTe8bh/Pat7a7zADU4ltkrhQwXouSWYkt8Q==
-X-Received: by 2002:a05:6102:e54:: with SMTP id p20mr13205074vst.22.1633719874499;
-        Fri, 08 Oct 2021 12:04:34 -0700 (PDT)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id t64sm29300vke.24.2021.10.08.12.04.34
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xew2Cqp055SEboMYSD4xaomAE75lVTjIUs6xXR179/0=;
+        b=JF/AP17xS6mi2q4RvIr/iCPLfY/k64V7lWMqKvBDNviorBkORp3TUdQuH+fYBnZCQk
+         YipFbDBahEKgvJSwAPj8Dy5kurngoFCN+DYnfZJuK7xVHA1ddyVaLzTbjy49qS1Oo+bm
+         PqwvjFqTAJYDapMzqDR7eXJzibQgD6Hdw6sNg8fp0LdZlIxeMEldDltSP48RUXLhaerY
+         eCXyOMUP9pzNPZyYjOPD0TozaJejyWMW8DaGgx8XBe17a3X5pHLaSK7M+oj99gpkzaEA
+         v8lCXLZfJ+PyjN+cjS8JEnmENHk7X++E9YyQ4c1SRyMFnFdcNr5HG9mUixc9KRHm5uzj
+         HqSA==
+X-Gm-Message-State: AOAM530X8h0nZXh1x1LIE3Ah9GfqAKMhhmnl5UxwJL9udz8ppVYOKBCD
+        5rl2x11UM4FgY1SLSiaIkQ4=
+X-Google-Smtp-Source: ABdhPJwzquROKMLegjco20qGn59bJ5syteqkBCE5kUqtvcwMyaDc2geIlDVH3Sdsrj2dMslo6mBkrQ==
+X-Received: by 2002:ac8:5e51:: with SMTP id i17mr19299qtx.339.1633719704376;
+        Fri, 08 Oct 2021 12:01:44 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id f15sm101193qtf.66.2021.10.08.12.01.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 12:04:34 -0700 (PDT)
-Received: by mail-ua1-f50.google.com with SMTP id i15so3232282uap.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 12:04:34 -0700 (PDT)
-X-Received: by 2002:a25:db91:: with SMTP id g139mr5128084ybf.391.1633719553275;
- Fri, 08 Oct 2021 11:59:13 -0700 (PDT)
+        Fri, 08 Oct 2021 12:01:44 -0700 (PDT)
+Subject: Re: [PATCH 7/9] of: make OF_DYNAMIC selectable independently of
+ OF_UNITTEST
+To:     Zev Weiss <zev@bewilderbeest.net>, openbmc@lists.ozlabs.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211007000954.30621-1-zev@bewilderbeest.net>
+ <20211007000954.30621-8-zev@bewilderbeest.net>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <288e4900-c23c-56ee-5c23-9a51cd3f315e@gmail.com>
+Date:   Fri, 8 Oct 2021 14:01:43 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20211008140735.3290892-1-pan@semihalf.com> <20211008140735.3290892-2-pan@semihalf.com>
-In-Reply-To: <20211008140735.3290892-2-pan@semihalf.com>
-From:   Alexandru M Stan <amstan@chromium.org>
-Date:   Fri, 8 Oct 2021 11:58:37 -0700
-X-Gmail-Original-Message-ID: <CAHNYxRxuj_p-+zHCO9iEK3H7QrBAPy1Cx0tCh3ufRqYnK124qQ@mail.gmail.com>
-Message-ID: <CAHNYxRxuj_p-+zHCO9iEK3H7QrBAPy1Cx0tCh3ufRqYnK124qQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/1] dts: socfpga: Add Mercury+ AA1 devicetree
-To:     =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
-Cc:     arnd@arndb.de, Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>, dinguyen@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        upstream@semihalf.com, Marcin Wojtas <mw@semihalf.com>,
-        Konrad Adamczyk <ka@semihalf.com>,
-        Tomasz Nowicki <tn@semihalf.com>,
-        Jacek Majkowski <jam@semihalf.com>,
-        Joanna Brozek <jbrozek@antmicro.com>,
-        Mariusz Glebocki <mglebocki@antmicro.com>,
-        Tomasz Gorochowik <tgorochowik@antmicro.com>,
-        Maciej Mikunda <mmikunda@antmicro.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211007000954.30621-8-zev@bewilderbeest.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 8, 2021 at 7:08 AM Pawe=C5=82 Anikiel <pan@semihalf.com> wrote:
->
-> Add support for the Mercury+ AA1 module for Arria 10 SoC FPGA.
->
-> Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
-> Signed-off-by: Joanna Brozek <jbrozek@antmicro.com>
-> Signed-off-by: Mariusz Glebocki <mglebocki@antmicro.com>
-> Signed-off-by: Tomasz Gorochowik <tgorochowik@antmicro.com>
-> Signed-off-by: Maciej Mikunda <mmikunda@antmicro.com>
+On 10/6/21 7:09 PM, Zev Weiss wrote:
+> The writable status sysfs file enabled by the 'dynamic' DT property
+> requires CONFIG_OF_DYNAMIC to be useful, but that shouldn't require
+> dragging in CONFIG_OF_UNITTEST as well.
+> 
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
 > ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../boot/dts/socfpga_arria10_mercury_aa1.dts  | 112 ++++++++++++++++++
->  2 files changed, 113 insertions(+)
->  create mode 100644 arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
->
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 7e0934180724..0a7809eb3795 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1078,6 +1078,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) +=3D \
->         socfpga_arria10_socdk_nand.dtb \
->         socfpga_arria10_socdk_qspi.dtb \
->         socfpga_arria10_socdk_sdmmc.dtb \
-> +       socfpga_arria10_mercury_aa1.dtb \
->         socfpga_cyclone5_chameleon96.dtb \
->         socfpga_cyclone5_mcvevk.dtb \
->         socfpga_cyclone5_socdk.dtb \
-> diff --git a/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts b/arch/arm=
-/boot/dts/socfpga_arria10_mercury_aa1.dts
-> new file mode 100644
-> index 000000000000..2a3364b26361
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
-> @@ -0,0 +1,112 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/dts-v1/;
-> +
-> +#include "socfpga_arria10.dtsi"
-> +
-> +/ {
-> +
-> +       model =3D "Enclustra Mercury AA1";
-> +       compatible =3D "altr,socfpga-arria10", "altr,socfpga";
-> +
-> +       aliases {
-> +               ethernet0 =3D &gmac0;
-> +               serial1 =3D &uart1;
-> +               i2c0 =3D &i2c0;
-> +               i2c1 =3D &i2c1;
+>  drivers/of/Kconfig | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> index 3dfeae8912df..8e0ba87db030 100644
+> --- a/drivers/of/Kconfig
+> +++ b/drivers/of/Kconfig
+> @@ -55,12 +55,14 @@ config OF_KOBJ
+>  # Hardly any platforms need this.  It is safe to select, but only do so if you
+>  # need it.
+>  config OF_DYNAMIC
+> -	bool "Support for dynamic device trees" if OF_UNITTEST
+> +	bool "Support for dynamic device trees"
+>  	select OF_KOBJ
+>  	help
+>  	  On some platforms, the device tree can be manipulated at runtime.
+> -	  While this option is selected automatically on such platforms, you
+> -	  can enable it manually to improve device tree unit test coverage.
+> +	  With this option enabled, device tree nodes that are marked with
+> +	  the "dynamic" property can have their status toggled between
+> +	  "okay" and "reserved" via sysfs.  This can also be enabled to
+> +	  increase test coverage with CONFIG_OF_UNITTEST if desired.
+>  
+>  config OF_ADDRESS
+>  	def_bool y
+> 
 
-Yeah, this is fine now. I still would have added this in
-"socfpga_arria10.dtsi" instead. I don't think there's ever a case
-where these aliases wouldn't be wanted for any user of this chip.
-
-> +       };
-> +
-> +       memory@0 {
-> +               name =3D "memory";
-> +               device_type =3D "memory";
-> +               reg =3D <0x0 0x80000000>; /* 2GB */
-> +       };
-> +
-> +       chosen {
-> +               stdout-path =3D "serial1:115200n8";
-> +       };
-> +};
-> +
-> +&eccmgr {
-> +       sdmmca-ecc@ff8c2c00 {
-> +               compatible =3D "altr,socfpga-sdmmc-ecc";
-> +               reg =3D <0xff8c2c00 0x400>;
-> +               altr,ecc-parent =3D <&mmc>;
-> +               interrupts =3D <15 IRQ_TYPE_LEVEL_HIGH>,
-> +                            <47 IRQ_TYPE_LEVEL_HIGH>,
-> +                            <16 IRQ_TYPE_LEVEL_HIGH>,
-> +                            <48 IRQ_TYPE_LEVEL_HIGH>;
-> +       };
-> +};
-> +
-> +&gmac0 {
-> +       phy-mode =3D "rgmii";
-> +       phy-addr =3D <0xffffffff>; /* probe for phy addr */
-> +
-> +       max-frame-size =3D <3800>;
-> +       status =3D "okay";
-> +
-> +       phy-handle =3D <&phy3>;
-> +
-> +       mdio {
-> +               #address-cells =3D <1>;
-> +               #size-cells =3D <0>;
-> +               compatible =3D "snps,dwmac-mdio";
-> +               phy3: ethernet-phy@3 {
-> +                       txd0-skew-ps =3D <0>; /* -420ps */
-> +                       txd1-skew-ps =3D <0>; /* -420ps */
-> +                       txd2-skew-ps =3D <0>; /* -420ps */
-> +                       txd3-skew-ps =3D <0>; /* -420ps */
-> +                       rxd0-skew-ps =3D <420>; /* 0ps */
-> +                       rxd1-skew-ps =3D <420>; /* 0ps */
-> +                       rxd2-skew-ps =3D <420>; /* 0ps */
-> +                       rxd3-skew-ps =3D <420>; /* 0ps */
-> +                       txen-skew-ps =3D <0>; /* -420ps */
-> +                       txc-skew-ps =3D <1860>; /* 960ps */
-> +                       rxdv-skew-ps =3D <420>; /* 0ps */
-> +                       rxc-skew-ps =3D <1680>; /* 780ps */
-> +                       reg =3D <3>;
-> +               };
-> +       };
-> +};
-> +
-> +&gpio0 {
-> +       status =3D "okay";
-> +};
-> +
-> +&gpio1 {
-> +       status =3D "okay";
-> +};
-> +
-> +&gpio2 {
-> +       status =3D "okay";
-> +};
-> +
-> +&i2c1 {
-> +       status =3D "okay";
-> +       isl12022: isl12022@6f {
-> +               status =3D "okay";
-> +               compatible =3D "isil,isl12022";
-> +               reg =3D <0x6f>;
-> +       };
-> +};
-> +
-> +/* Following mappings are taken from arria10 socdk dts */
-> +&mmc {
-> +       status =3D "okay";
-> +       cap-sd-highspeed;
-> +       broken-cd;
-> +       bus-width =3D <4>;
-> +};
-> +
-> +&osc1 {
-> +       clock-frequency =3D <33330000>;
-> +};
-> +
-> +&uart1 {
-> +       status =3D "okay";
-> +};
-> +
-> +&usb0 {
-> +       status =3D "okay";
-> +       dr_mode =3D "host";
-> +};
-> --
-> 2.25.1
->
-
-Hello Pawe=C5=82,
-Thank you for respinning.
-
-This looks good as a base to make the boards be able to boot. I'd be
-happy if it lands (even the v3 patch).
-Just a small nit about the location of the aliases.
-
-Reviewed-by: Alexandru M Stan <amstan@chromium.org>
-
-Thanks,
-Alexandru Stan
+The help message should be extended to explain the impact of enabling
+OF_DYNAMIC manually (as opposed to auto selected) - it will be to
+allow writes to a node's "status" property in sysfs if the node contains
+a true value for the "dynamic" property.
