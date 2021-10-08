@@ -2,181 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B192A426F12
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 18:36:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52AC1426F8D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 19:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbhJHQiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 12:38:20 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:40857 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231237AbhJHQiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 12:38:13 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 6A26A580FF2;
-        Fri,  8 Oct 2021 12:36:17 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Fri, 08 Oct 2021 12:36:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=gDYXv/fFdnWqv
-        tr1uvd+CSFoRdT7CSrilcDcl3UTHuQ=; b=cBcp12SubnOlXqasSnxaobasEiOwF
-        mSjVU2l40AdmXOu5HTu8mHWmb3xY01sIBp5W94Mr/JZB7w4lhmOGNFaRUCVlJdU4
-        sfkt/cpJ/q20log4d5lZLjh0hstQ8Ern5hI69vC34HLY1u5cuwmXhDyoihp8rd8i
-        3XxM/jW/ESQonp3j6JyPyQZPJHdODON3lp0KaP3ohc3ME5uIz+AvwLvNInq1Tssd
-        29YOuzAd2xwKBj0eRrWz1cCqJ/s9szeYytGIdGlhpVdP72+cHfroBz8muZtKURl2
-        29Ib2VVw+ezOTtfdc2V1zxlpTPWdUGL3W0TguUQA66zd19RgMqfcy4jrg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=gDYXv/fFdnWqvtr1uvd+CSFoRdT7CSrilcDcl3UTHuQ=; b=oLcZbuWl
-        WKf8fLTS1YJZhD52MysFL91NDHh7lH5QSE+c9ZPqiVE2168GQnWLKSXgh7AW4hpj
-        FX1swTpZaPO+i9eZqaPNE6pTfNnFlVMiDUCaDygJ+xZsAjC3WP4Cn+A4F4V/jx5S
-        PJakhLLB+4+jiv2jOeAHSltcZ6hh0Gx7GpyRnCHKQ+rSxLuk3o62kfraZWlTqNtp
-        EH6frBbgN7NYr4HqywY6YOuPAEYygrdVKfw9cD2Ffcmu8FEM4HszJ6A2Gfh+AXEO
-        uJ5aZx2Q1WWjbPqXdF3mhnkOupQCaFKuvtlXHbL7bXWGHWzzUCC1skS/mJioytxq
-        WiKZvIcsFieJNg==
-X-ME-Sender: <xms:gXNgYRUXQOwxOUsVuhVr14_bsZlhUAlfwqLARr5z_WUj1_K0uFLlag>
-    <xme:gXNgYRnOWPFgi4CRvh4ZP_lwi5Yij6G82f3Ap_QsUO1SPxZxgBOJ2RfufIfHTGm0M
-    7uOGvYOmLmLrTmEyUI>
-X-ME-Received: <xmr:gXNgYdaOZjDfcTNJ1b6SN8mdXwkvxACl7BTpGvZt-Z4_dYD9MPAVA-Mh0lDhPNNde9OxnHZX3Al8UD2NIxCYIQZ3wLg2tT29oXnX1w2UY84q7F8dqnN_aCw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddttddguddttdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufhvvghn
-    ucfrvghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtth
-    gvrhhnpeeivdduffetvdeiveeiffdvjeevieevudfhieefgeehheehtdfgheffueehfefh
-    leenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgpdhgihhthhhusgdrtghomh
-    dpohhfthgtrdhnvghtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghi
-    lhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:gXNgYUWBKkbDaAYDulQQp0Q0u5OvCEoAFfWw6oiMn3OkR1G2milGVA>
-    <xmx:gXNgYbnMHE52Gt8f9r_7OA7dy78R9RtlA6QymOiggdZkR8z4f5ZXqA>
-    <xmx:gXNgYRf9o8vcMfqoPQpCcvLiR7ehh5Ml6OAsjg63R9wwrOIZbW97Ag>
-    <xmx:gXNgYafyOOLqJhTkg6uqg2IE-PsSNGWnwycOAqJADbojS6GS7Y1q3Q>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 8 Oct 2021 12:36:13 -0400 (EDT)
-From:   Sven Peter <sven@svenpeter.dev>
-To:     Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Olof Johansson <olof@lixom.net>,
-        Christian Zigotzky <chzigotzky@xenosoft.de>,
-        Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Sven Peter <sven@svenpeter.dev>, Arnd Bergmann <arnd@arndb.de>,
-        Hector Martin <marcan@marcan.st>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 01/11] dt-bindings: i2c: Add Apple I2C controller bindings
-Date:   Fri,  8 Oct 2021 18:35:22 +0200
-Message-Id: <20211008163532.75569-2-sven@svenpeter.dev>
-X-Mailer: git-send-email 2.30.1 (Apple Git-130)
-In-Reply-To: <20211008163532.75569-1-sven@svenpeter.dev>
-References: <20211008163532.75569-1-sven@svenpeter.dev>
+        id S231164AbhJHRbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 13:31:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35970 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229606AbhJHRbq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 13:31:46 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A8D7960C4B;
+        Fri,  8 Oct 2021 17:29:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633714190;
+        bh=bSGggQj63KGrt2Kn1+h4ufJaXOF8u2nTO9GXID1cojc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ecjj162xpf30CfKEr+875wqw75PE8CkmDVZ3+Zf7UoU4GGwBI93AY3cFknjLR9cnJ
+         wMJYJTa9hV/gXl6pTdP7ZY2rXQI/i/3VSkPDKuGsnt89HnFcHJhSBK0RGYroGig//a
+         G3EfpP6IVonW9gL+xmmGkmLQJk2qLPR1DRb8TDaARsfsaTf6aS/T/YU9FJn4Bez8Cd
+         6rrxmjSSE9pbNWFyVfiWrJcCRQMsVRcjUVJEBoElkK8xIWez41UpaPYNkfflAAbjeN
+         zPKgO7WDzDW3jBbhF8rf0RnIL7Vzr2OXxyYiLEjR16wer12pZtcp50zl/sD+Y0KbzV
+         Hlo47IcrVksmA==
+Received: by pali.im (Postfix)
+        id 4735C760; Fri,  8 Oct 2021 19:29:48 +0200 (CEST)
+Date:   Fri, 8 Oct 2021 19:29:48 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5] arm64: dts: marvell: add Globalscale MOCHAbin
+Message-ID: <20211008172948.rpev5iptnczdofwi@pali>
+References: <20211008114343.57920-1-robert.marko@sartura.hr>
+ <20211008120855.46zbo2fl5edwf7ja@pali>
+ <CA+HBbNGvFtws2GF7RLbznAbXfvjKx4rOJ=eMeuHOJ6s7iANtzw@mail.gmail.com>
+ <20211008134347.lskm5pzt73pkf7oc@pali>
+ <CA+HBbNEDxBDvNZPSWnBYJOUhqdwonBhFwD9P0xhSGccdvQJx3Q@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+HBbNEDxBDvNZPSWnBYJOUhqdwonBhFwD9P0xhSGccdvQJx3Q@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Apple I2C controller is based on the PASemi I2C controller.
-It is present on Apple SoCs such as the M1.
+On Friday 08 October 2021 17:52:40 Robert Marko wrote:
+> On Fri, Oct 8, 2021 at 3:43 PM Pali Rohár <pali@kernel.org> wrote:
+> >
+> > On Friday 08 October 2021 15:28:38 Robert Marko wrote:
+> > > > > +     cp0_pcie_reset_pins: cp0-pcie-reset-pins {
+> > > > > +             marvell,pins = "mpp9";
+> > > > > +             marvell,function = "gpio";
+> > > >
+> > > > Now I spotted this. Why is PERST# pin configured into gpio mode? Is
+> > > > there some issue that this pin in pcie mode is not working properly,
+> > > > that PCIe controller cannot handle it correctly? Or something else?
+> > >
+> > > Its because I have seen way too many broken controllers when it comes
+> > > to PERST and
+> > > other Armada 7k/8k devices are using it in GPIO mode as well.
+> > > Just look at the number of conversions back to GPIO for other
+> > > platforms as there is always some bug.
+> >
+> > I know that A3720 has broken PERST# control in PCIe block... or at least
+> > I was not able to figure out how A3720 PCIe block can control PERST#. So
+> > configuring it in gpio mode and let PERST# to be controlled manually via
+> > gpio by the software is the workaround.
+> >
+> > I just wanted to know if A7k/A8k/CN913x is also broken in the same way
+> > as A3720.
+> >
+> > Or it it just a configuration workaround for missing driver or missing
+> > proper software setup.
+> >
+> > HW bugs like this should be properly documented and not hidden behind
+> > some configuration in DTS file. And reported to HW vendors.
+> 
+> I have to agree, so I did some digging.
+> I don't think that the Armada 8k PCI driver actually supports HW level PERST#.
+> I then looked at the functional specs and the only thing that looks
+> related to PERST#
+> is PCIe Software Reset Register which has a SoftWarePERst bit.
+> 
+> Can you maybe look at it?
 
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
----
-v1 -> v2: no changes
+Some details are in "PCIe Reset" section in Hardware Specification. In
+Software Functional Specification seems to be nothing useful. Just those
+registers without description.
 
- .../devicetree/bindings/i2c/apple,i2c.yaml    | 61 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 62 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/apple,i2c.yaml
-
-diff --git a/Documentation/devicetree/bindings/i2c/apple,i2c.yaml b/Documentation/devicetree/bindings/i2c/apple,i2c.yaml
-new file mode 100644
-index 000000000000..22fc8483256f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/apple,i2c.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/i2c/apple,i2c.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Apple/PASemi I2C controller
-+
-+maintainers:
-+  - Sven Peter <sven@svenpeter.dev>
-+
-+description: |
-+  Apple SoCs such as the M1 come with a I2C controller based on the one found
-+  in machines with P. A. Semi's PWRficient processors.
-+  The bus is used to communicate with e.g. USB PD chips or the speaker
-+  amp.
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - apple,t8103-i2c
-+      - apple,i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: I2C bus reference clock
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    description: |
-+      Desired I2C bus clock frequency in Hz. If not specified, 100 kHz will be
-+      used. This frequency is generated by dividing the reference clock.
-+      Allowed values are between ref_clk/(16*4) and ref_clk/(16*255).
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c@35010000 {
-+      compatible = "apple,t8103-i2c";
-+      reg = <0x35010000 0x4000>;
-+      interrupt-parent = <&aic>;
-+      interrupts = <0 627 4>;
-+      clocks = <&ref_clk>;
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7cfd63ce7122..74aa85967ca3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1735,6 +1735,7 @@ B:	https://github.com/AsahiLinux/linux/issues
- C:	irc://irc.oftc.net/asahi-dev
- T:	git https://github.com/AsahiLinux/linux.git
- F:	Documentation/devicetree/bindings/arm/apple.yaml
-+F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
- F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
- F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
--- 
-2.25.1
-
+> Removed the reset-gpios and set the PERST pinmux to PCIe, and the
+> QCA9377 card will
+> show up, but I have no idea whether PERST# actually ever gets toggled.
+> 
+> Regards,
+> Robert
+> -- 
+> Robert Marko
+> Staff Embedded Linux Engineer
+> Sartura Ltd.
+> Lendavska ulica 16a
+> 10000 Zagreb, Croatia
+> Email: robert.marko@sartura.hr
+> Web: www.sartura.hr
