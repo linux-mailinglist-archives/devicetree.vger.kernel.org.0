@@ -2,151 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A3BD426B92
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DA38426B97
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:19:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbhJHNSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 09:18:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58496 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230258AbhJHNSn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 09:18:43 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED41C061570;
-        Fri,  8 Oct 2021 06:16:48 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id r18so29835032wrg.6;
-        Fri, 08 Oct 2021 06:16:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Gr1byabWHn1PUa1m+Lt+dKzXId3ni3LSSa9lwDSa3gk=;
-        b=TJwvim7w+eQFFfurbsl40FGMPwvnfLNLF3mqkVbNUxpugKorDKYZpgJ6ppC/PTEfU/
-         zOILl/qFEGzOdn6zfkCqtCzngeViZPdhvYzMHbM3IFZjQGHrra/zDS/6TMIKgTnVc55t
-         FcMxubz12x29/ajr4yg/4IapyvyKUFNo3xqRhsRdQeIVc4OPAXyzrkZY81y6rOdHomht
-         hqzwPEcVHx/WmerpaSHDHB18z/kd2XNccqlNpJydYkZY9xgv9A3ahUCBrPFCZeng3Ptm
-         jP6ttiHbfEf7muJb0bTHpjXuPa4qjwlq/IFgZ8831A1pXDw+R+PUitOMme4fSBTH9oWk
-         WxPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Gr1byabWHn1PUa1m+Lt+dKzXId3ni3LSSa9lwDSa3gk=;
-        b=iFs4jdEOVja953VOS/7c6Nmef6OKoxLGerjQlvVaYtTnnCbFxerO+qAedYx9EU/YZD
-         b2Y2fTlT/kvv+SVYlS+j1W92y6wup2HixbFe4BMuJ5nbNMUT6pLN5slTpUp1wds2FiEY
-         tMr4xRmVEEkSE/DyV5L9gBP8JnsRM0QNnJ952EC+HqwwOjcQFwXZoMwIEIpm/1bShNFk
-         2WtX23Sb28V1V39vyr9FEoV7F619dWR4Ybv/4jkTzYsmS2ODOEo0wNFsEoiu/ivgdziR
-         ECGeayWmzSVdX9EifSXPnKe0z8g2Co6KEkoWgbWvfUi2aXGE4l9oUAG5LV1Udqbq1WTR
-         YSrg==
-X-Gm-Message-State: AOAM530bkpknxGv0vP6iIos2jPh5VxIhkVMEki+ucWW1lj6EzutPD+53
-        An4blNrZbdu1GOr7t1CkhCE=
-X-Google-Smtp-Source: ABdhPJwchweLQBjxy6TkxOtLDsNz1AODqVJ3fWsbZRISUfWyoArhAgv4Go21sBR80xsRmqCQwndA7w==
-X-Received: by 2002:a5d:6245:: with SMTP id m5mr4099639wrv.148.1633699006563;
-        Fri, 08 Oct 2021 06:16:46 -0700 (PDT)
-Received: from [192.168.2.177] ([206.204.146.29])
-        by smtp.gmail.com with ESMTPSA id g2sm2642909wrb.20.2021.10.08.06.16.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 06:16:45 -0700 (PDT)
-Message-ID: <266143bd-6135-adf6-8a80-537f9d6ea3ff@gmail.com>
-Date:   Fri, 8 Oct 2021 15:16:43 +0200
+        id S233882AbhJHNVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 09:21:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40140 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230307AbhJHNVN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 09:21:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D5A6460F90;
+        Fri,  8 Oct 2021 13:19:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1633699157;
+        bh=+JglBXxBnSUVB9GQZsTSuKPQDCB1ekWacRK+pwgemJc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Hp5loLG497ZSdXEaIchGPL9a/PrJaPB8wbSB1neUBZsQTgqo6FXct0Vc/Nw3V2yDX
+         GxEoMx8RKJoxxP90rZOq0g2nTFi2aPdqzD9i4fgpE81hqlrI4ZsIv2a6oEUwmRCmYg
+         H0VsbsHsfQXK6KcF691RaRzX/rGXBGWvYtbklb7epgZagcmfTmGw+xx2Qd5dxUd2+B
+         tvFkk1+UW9ytEZ9qGHoRksdbt6GJGGXiX5Stacpxlmh1B2NlHMi2fNgSwwFDZvyqR6
+         CMgLQChileAWVovWJy6wxqEA3W9dnfeCP5KUF9qR567YCZ8OawYUCz8Ju8FVMsLZ20
+         7tg5SKe8YMbsA==
+Received: by mail-ed1-f44.google.com with SMTP id y12so23175372eda.4;
+        Fri, 08 Oct 2021 06:19:17 -0700 (PDT)
+X-Gm-Message-State: AOAM533uW3Xyzc4Fz7udzYrkC1yrPFeLqdOxGIGxxlmQPjGw/XalMxvE
+        Q+4yeyUAuKDjOKyV0C5XywGc68czN+7wCpSXxw==
+X-Google-Smtp-Source: ABdhPJx6f8Hj3dfCFZF+/6Eeox6eeV7wRXT07WZpWpj2kSyZgXJsn7oroQaAIXDuHahyfypPhn31js0QvywE334cG6w=
+X-Received: by 2002:a17:907:7d8b:: with SMTP id oz11mr4447823ejc.84.1633699156461;
+ Fri, 08 Oct 2021 06:19:16 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH v4 0/7] Add support to the mmsys driver to be a reset
- controller
-Content-Language: en-US
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        linux-kernel@vger.kernel.org
-Cc:     linux-mediatek@lists.infradead.org, eizan@chromium.org,
-        kernel@collabora.com, drinkcat@chromium.org,
-        jitao.shi@mediatek.com, chunkuang.hu@kernel.org,
-        hsinyi@chromium.org, Crystal Guo <crystal.guo@mediatek.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Fabien Parent <fparent@baylibre.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-watchdog@vger.kernel.org
-References: <20210930083150.3317003-1-enric.balletbo@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20210930083150.3317003-1-enric.balletbo@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20210916141028.32058-1-matthias.schiffer@ew.tq-group.com> <9bd436c8c61052ec65e1f9e830c10cd783320822.camel@ew.tq-group.com>
+In-Reply-To: <9bd436c8c61052ec65e1f9e830c10cd783320822.camel@ew.tq-group.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 8 Oct 2021 08:19:04 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+b2oiBwWzHP3398GGTh0Od1wgQRhf99EB82edi5Rg=gA@mail.gmail.com>
+Message-ID: <CAL_Jsq+b2oiBwWzHP3398GGTh0Od1wgQRhf99EB82edi5Rg=gA@mail.gmail.com>
+Subject: Re: [PATCH] Describe "fail" status for /cpus/cpu* nodes
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc:     Mailing List <devicetree-spec@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Oct 8, 2021 at 5:31 AM Matthias Schiffer
+<matthias.schiffer@ew.tq-group.com> wrote:
+>
+> On Thu, 2021-09-16 at 16:10 +0200, Matthias Schiffer wrote:
+> > There are situations where it is desirable to use the same base Device
+> > Tree for devices with a different number of CPUs: There may be CPU
+> > variants with different numbers of cores that can be used interchangably
+> > on the same mainboard, or there are multiple CPU sockets. Not needing to
+> > explicitly build a device tree for each such variant can make
+> > maintenance significantly easier.
+> >
+> > For this to work, a system firmware / bootloader needs to adjust the
+> > Device Tree by removing or disabling the excess CPU nodes. However, this
+> > is currently not easily possible due to the special meaning of the
+> > "disabled" status for CPU nodes:
+> >
+> > - A "disabled" CPU node is interpreted as inactive, but existent. The
+> >   Linux kernel will attempt to enable such CPUs on boot, which will
+> >   obviously fail for non-existent CPUs
+> > - Removing the CPU node altogether from a Device Tree is much more
+> >   complex than setting a single property, as it may leave dangling
+> >   phandle references, often requiring specific knowledge of other nodes'
+> >   structure to deal with them.
+> >
+> > In the discussion [1] it was suggested to introduce a new status value
+> > for CPUs that should really not be used at all. Rob proposed to use the
+> > value "fail", which already exists in the generic definitions of the
+> > status property.
+> >
+> > [1] https://www.lkml.org/lkml/2020/8/26/1237
+>
+> Hi,
+> I haven't received any feedback regarding this spec update yet. Should
+> I also send a kernel patch that actually implements this behaviour?
 
+Looks fine to me, just hadn't gotten around to applying.
 
-On 30/09/2021 10:31, Enric Balletbo i Serra wrote:
-> Dear all,
-> 
-> The following patchset is a reimplementation of the patch sent by Jitao
-> Shi [1] some time ago. As suggested by Chun-Kuang Hu, this time the
-> reset is done using the reset API, where the mmsys driver is the reset
-> controller and the mtk_dsi driver is the reset consumer.
-> 
-> Note that the first patch is kind of unrelated change, it's just a
-> cleanup but is needed if you want to apply all the following patches
-> cleanly.
-> 
-> This patchset is important in order to have the DSI panel working on some
-> kukui MT8183 Chromebooks (i.e Lenovo IdeaPad Duet). Without it, you just
-> get a black screen.
-> 
+> Do properties described in the spec also need to be documented in the
+> kernel's Documentation/devicetree/bindings? It seems that there is no
+> generic "cpu" binding documentation at the moment, only arch-specific
+> variants.
 
-Patch 1-5 pushed to v5.15-next/dts64
-Patch 6-7 pushed to v5.15-next/soc
+https://github.com/devicetree-org/dt-schema/blob/main/schemas/cpus.yaml
 
-Thanks!
-Matthias
-
-> Best regards,
->    Enric
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20210420132614.150242-4-jitao.shi@mediatek.com/
-> 
-> 
-> Changes in v4:
-> - Remove unnused variable as pointed by Hsin-Yi
-> 
-> Changes in v3:
-> - Based on top of the patch that converts mmsys to schema
-> - Fix typo in the commit description
-> 
-> Changes in v2:
-> - Fix build test ERROR Reported-by: kernel test robot <lkp@intel.com>
-> - Added a new patch to describe the dsi reset optional property.
-> 
-> Enric Balletbo i Serra (7):
->    arm64: dts: mediatek: Move reset controller constants into common
->      location
->    dt-bindings: mediatek: Add #reset-cells to mmsys system controller
->    dt-bindings: display: mediatek: add dsi reset optional property
->    arm64: dts: mt8173: Add the mmsys reset bit to reset the dsi0
->    arm64: dts: mt8183: Add the mmsys reset bit to reset the dsi0
->    soc: mediatek: mmsys: Add reset controller support
->    drm/mediatek: mtk_dsi: Reset the dsi0 hardware
-> 
->   .../bindings/arm/mediatek/mediatek,mmsys.yaml |  4 ++
->   .../display/mediatek/mediatek,dsi.txt         |  6 ++
->   arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  2 +
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  5 +-
->   drivers/gpu/drm/mediatek/mtk_dsi.c            |  5 +-
->   drivers/soc/mediatek/mtk-mmsys.c              | 68 +++++++++++++++++++
->   drivers/soc/mediatek/mtk-mmsys.h              |  2 +
->   drivers/watchdog/mtk_wdt.c                    |  6 +-
->   .../mt2712-resets.h                           |  0
->   include/dt-bindings/reset/mt8173-resets.h     |  2 +
->   .../mt8183-resets.h                           |  3 +
->   .../mt8192-resets.h                           |  0
->   12 files changed, 97 insertions(+), 6 deletions(-)
->   rename include/dt-bindings/{reset-controller => reset}/mt2712-resets.h (100%)
->   rename include/dt-bindings/{reset-controller => reset}/mt8183-resets.h (98%)
->   rename include/dt-bindings/{reset-controller => reset}/mt8192-resets.h (100%)
-> 
+Rob
