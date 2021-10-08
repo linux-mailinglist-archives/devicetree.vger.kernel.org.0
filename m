@@ -2,123 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E9D242650A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 09:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75C2E426511
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 09:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229664AbhJHHMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 03:12:43 -0400
-Received: from mx1.tq-group.com ([93.104.207.81]:45391 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229490AbhJHHMn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 03:12:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1633677048; x=1665213048;
-  h=subject:from:to:cc:date:mime-version:
-   content-transfer-encoding:message-id;
-  bh=jWRHRVPBFUVetVaD+ip2tzxDrpeioyY+OQf4Xmta5Mg=;
-  b=W0Ngx5S3OyohZ3200i0V1o+DyGtDIxN4JiQOC94qwiSXmjrg56yrVDMH
-   PZ+l7VgwfYq5dJ377RiKnCan1+M2lUGqbnpKLpniGwnhf/+gERjfw9Jyk
-   iMfslQhzTGxXBP0TEp9Rol7xEYGgD8UWy1ykmUpuKsMUz7vwcwebRR/+n
-   TEiqL0gPt+sQfB7JzcSgcxBDTALOIwrqkP95ix0UiyZGVkAi3O9Bv3ZKH
-   P1YSPMMgYUyym4P23v5XQAnYEmpCREoF5mt39zLe4J82vke4sUz/TZ0L4
-   RmvMugJ0hH/nlOKS59NDARUm9RadD/kLSl063Hw1QlLCUD8/BptbQSPZB
-   w==;
-X-IronPort-AV: E=Sophos;i="5.85,356,1624312800"; 
-   d="scan'208";a="19934038"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Oct 2021 09:10:47 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 08 Oct 2021 09:10:47 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 08 Oct 2021 09:10:47 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1633677047; x=1665213047;
-  h=subject:from:to:cc:date:mime-version:
-   content-transfer-encoding:message-id;
-  bh=jWRHRVPBFUVetVaD+ip2tzxDrpeioyY+OQf4Xmta5Mg=;
-  b=TOZYn8l2TBErpX73ID7emRlGD4OrAv8fcevpHjHSgNu9yomgJDAwpjtF
-   7FBYuXswMe2prDoBalCQWy3GdfbCCbtaB4Nn3aaxpijgO41p2CIQP9sog
-   EZ8wZQkB4UNOtsmmPDeNqq1bY1tQNqMhIwTrSGiUTOPQs5iMmcOCgHuwM
-   BrZRFZ36NjOf+VQcj4+byOwfBlpL1rBldU0ECRahJHNKdEcUBZVthy51U
-   6dHUZ/YHH3280U/kOz2QHntapN/wkiRq/hgUK8VdO8JOk40Fj2dVDZdri
-   BnrAinhKHJ5DYKdccDEZ+7QAc9BFQaDoAb8ROFREAQ/E7U95KmeCYzfid
-   A==;
-X-IronPort-AV: E=Sophos;i="5.85,356,1624312800"; 
-   d="scan'208";a="19934037"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Oct 2021 09:10:47 +0200
-Received: from vtuxmail01.tq-net.de (localhost [127.0.0.1])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTP id E992E280065;
-        Fri,  8 Oct 2021 09:10:46 +0200 (CEST)
-Received: by vtuxmail01 (kopano-spooler) with MAPI; Fri, 8 Oct 2021 09:10:46
- +0200
-Subject: AW: (EXT) Re: [PATCH 1/2] dt-bindings: mtd: spi-nor: Add
- output-driver-strength property
-From:   "Alexander Stein" <Alexander.Stein@ew.tq-group.com>
-To:     "Rob Herring" <robh@kernel.org>
-Cc:     "Miquel Raynal" <miquel.raynal@bootlin.com>,
-        "Tudor Ambarus" <tudor.ambarus@microchip.com>,
-        =?us-ascii?Q?linux-kernel=40vger=2Ekern?= =?us-ascii?Q?el=2Eorg?= 
-        <linux-kernel@vger.kernel.org>, "Michael Walle" <michael@walle.cc>,
-        =?us-ascii?Q?devicetree=40vger=2Ekernel=2Eorg?= 
-        <devicetree@vger.kernel.org>,
-        "Richard Weinberger" <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        "Rob Herring" <robh@kernel.org>,
-        =?us-ascii?Q?linux-mtd=40lists=2Einfradead=2Eorg?= 
-        <linux-mtd@lists.infradead.org>, "Pratyush Yadav" <p.yadav@ti.com>
-Date:   Fri, 8 Oct 2021 07:10:46 +0000
-Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Priority: 3 (Normal)
-X-Mailer: Kopano 8.7.82
-Message-Id: <kcEE.RpXtjvjwSXyzkQ19eSpGDg.AB9KnRO81wE@vtuxmail01.tq-net.de>
+        id S229814AbhJHHPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 03:15:18 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:35830 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229693AbhJHHPR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 03:15:17 -0400
+X-UUID: 82172bf867174dd08af19ca7eea86e21-20211008
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=qWjr+AiJvYo10hf1cS6L6W6bO/DtrFRJjsgwpRlO+3k=;
+        b=rjLsj8+2NCkKY6qFoWiVjATBm9mrR/P/OnNoYMfPcJgOrPC+nkFCCJnFsCrKByACRiiG64Zahm9qw1AkGPl/6+H5LiXBfoC/xaYUXscmxXInOrLtTkvovnFGdzR+kCOhfLxr5PdQPeojBqE4JrRyQWNFvqlW2VdolCN6AqqOSgU=;
+X-UUID: 82172bf867174dd08af19ca7eea86e21-20211008
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 440280912; Fri, 08 Oct 2021 15:13:20 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 8 Oct 2021 15:13:19 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 8 Oct 2021 15:13:18 +0800
+Message-ID: <461ed34baaf49acda8a3287635f0b4670240cd35.camel@mediatek.com>
+Subject: Re: [PATCH v7 3/7] i2c: mediatek: Dump i2c/dma register when a
+ timeout occurs
+From:   Kewei Xu <kewei.xu@mediatek.com>
+To:     Wolfram Sang <wsa@the-dreams.de>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <caiyu.chen@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
+        <yuhan.wei@mediatek.com>
+Date:   Fri, 8 Oct 2021 15:13:21 +0800
+In-Reply-To: <YVf+KCztQI9XrdEq@kunai>
+References: <20210917101416.20760-1-kewei.xu@mediatek.com>
+         <20210917101416.20760-4-kewei.xu@mediatek.com> <YVf+KCztQI9XrdEq@kunai>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 05 Oct 2021 14:26:28 +0200, Rob Herring wrote:
-> From: Rob Herring <robh@kernel.org>
-> On Mon, 04 Oct 2021 13:15:28 +0200, Alexander Stein wrote:
-> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >
-> > This property is for optimizing output voltage impedance and is
-> > specific to each board.
-> >
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > I checked Micron and Macronix datasheets. Both have similar but not
-> > identical supported values. Also the register locations are different.
-> > For those reasons I decided to specify the Ohms value directly and let
-> > the device specfic driver figure out if it is supported where to write
-> > it to.
-> > BTW: Are the Ohm values and the corresponding register bits standardized
-> > somewhere=3F
-> >
-> >=C2=A0 Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 6 ++++++
-> >=C2=A0 1 file changed, 6 insertions(+)
-> >
->
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
->
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
->
-> Full log is available here: https://patchwork.ozlabs.org/patch/1536062
-
-Thanks for pointing that out. I checked the amount of error messages related to
-jedec,spi-nor.yaml before and after applying these patches using
-> ARCH=3Darm64 make -j12 dtbs_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mtd/jedec,spi-nor.yaml 2>&1 > /dev/null | wc -l
-
-with all arm64 platforms enabled. There wasn't a change in the line count,
-so I assume this new binding didn't cause them.
-
-Best regards,
-Alexander
+T24gU2F0LCAyMDIxLTEwLTAyIGF0IDA4OjM3ICswMjAwLCBXb2xmcmFtIFNhbmcgd3JvdGU6DQo+
+ID4gQEAgLTgzNyw2ICs4MzksNTcgQEAgc3RhdGljIGludCBtdGtfaTJjX3NldF9zcGVlZChzdHJ1
+Y3QgbXRrX2kyYw0KPiA+ICppMmMsIHVuc2lnbmVkIGludCBwYXJlbnRfY2xrKQ0KPiA+ICAJcmV0
+dXJuIDA7DQo+ID4gIH0NCj4gPiArc3RhdGljIHZvaWQgaTJjX2R1bXBfcmVnaXN0ZXIoc3RydWN0
+IG10a19pMmMgKmkyYykNCj4gPiArew0KPiA+ICsJZGV2X2VycihpMmMtPmRldiwgIlNMQVZFX0FE
+RFI6IDB4JXgsIElOVFJfTUFTSzogMHgleFxuIiwNCj4gPiArCQltdGtfaTJjX3JlYWR3KGkyYywg
+T0ZGU0VUX1NMQVZFX0FERFIpLA0KPiA+ICsJCW10a19pMmNfcmVhZHcoaTJjLCBPRkZTRVRfSU5U
+Ul9NQVNLKSk7DQo+IA0KPiBJIHRoaW5rIHRoaXMgaXMgdG9vIHZlcmJvc2UgYW5kIHNob3VsZCBi
+ZSBhIGRlYnVnZ2luZyBvbmx5IHBhdGNoIG5vdA0KPiByZWFsbHkgc3VpdGVkIGZvciB1cHN0cmVh
+bS4gQnV0IGlmIHlvdSBsaWtlIGl0IHRoaXMgd2F5LCB0aGVuIGtlZXANCj4gdGhlIHZlcmJvc2l0
+eS4gSG93ZXZlciwgZGV2X2VyciBpcyB0b28gc3Ryb25nLCB0aGlzIHJlYWxseSBuZWVkcyB0bw0K
+PiBiZQ0KPiBkZXZfZGJnLiBUaW1lb3V0cyBjYW4gaGFwcGVuIG9uIGFuIEkyQyBidXMsIHRoaW5r
+IGFib3V0IGFuIEVFUFJPTSBpbg0KPiBhDQo+IGxvbmcgZXJhc2UgY3ljbGUgd2hpbGUgeW91IHdh
+bnQgdG8gcmVhZCBpdC4gUGVyZmVjdGx5IG5vcm1hbC4NCj4gDQo+IA0KPiA+ICAJaWYgKHJldCA9
+PSAwKSB7DQo+ID4gLQkJZGV2X2RiZyhpMmMtPmRldiwgImFkZHI6ICV4LCB0cmFuc2ZlciB0aW1l
+b3V0XG4iLCBtc2dzLQ0KPiA+ID5hZGRyKTsNCj4gPiArCQlkZXZfZXJyKGkyYy0+ZGV2LCAiYWRk
+cjogJXgsIHRyYW5zZmVyIHRpbWVvdXRcbiIsIG1zZ3MtDQo+ID4gPmFkZHIpOw0KPiA+ICsJCWky
+Y19kdW1wX3JlZ2lzdGVyKGkyYyk7DQo+IA0KPiBOZWVkcyB0byBzdGF5IGRldl9kYmcgYXMgd2Vs
+bC4NCj4gDQo+IFllcywgSXQgaXMgdXNlZCBmb3IgZGVidWdnaW5nLGJ1dCBkdW1wIHRoZSB2YWx1
+ZSBvZiB2YWx1ZSBvZiB0aGUNCj4gcmVnaXN0ZXIgaXMgdmVyeSBpbXBvcnRhbnQgZm9yIGRlYnVn
+Z2luZyxzbyB3ZSB0aGluayBpdCBpcw0KPiBuZWNlc3NhcnkuIFdlIHdpbGwgdXNlIGRldl9kYmcg
+dG8gcmVwbGFjZSBkZXZfZXJyIGluIFY4LiBUaGFua3N+DQo=
 
