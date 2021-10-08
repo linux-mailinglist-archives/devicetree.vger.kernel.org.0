@@ -2,94 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BC27426B61
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 14:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 462FD426B65
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:03:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241543AbhJHNBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 09:01:17 -0400
-Received: from mail-vk1-f182.google.com ([209.85.221.182]:36696 "EHLO
-        mail-vk1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230258AbhJHNBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 09:01:16 -0400
-Received: by mail-vk1-f182.google.com with SMTP id f126so4158605vke.3;
-        Fri, 08 Oct 2021 05:59:21 -0700 (PDT)
+        id S230263AbhJHNE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 09:04:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55318 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230258AbhJHNE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 09:04:58 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6572FC061570;
+        Fri,  8 Oct 2021 06:03:03 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id v10so13604599oic.12;
+        Fri, 08 Oct 2021 06:03:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=RnDy90zGkmnNy7TioUKWbmT3Tf/BHpUr+QhKrUdfflA=;
+        b=dq8GilYwFgJEM5sErjmvQ/srEaFhxezwXDhufioUjD8SZ5HCGQgNyVto8N+ivuzCzw
+         Ah5sL34GPO9KqBMOPDPwDOXyaGDwyT5FpGfI3hTeSc9oZTMsin6OWz1Hc5iqLSKyO4fx
+         n1EngoufJMtjUQbSzdE9OLSkTASeeRUvbMcKLPH6IFd6eQCiFQkqVZGXky0F1AOI2tWt
+         6bhXJVztJEksY+RXBgjhdOxr67Bjmc/94C6vL1qF9auwWwmccb2lVWimwYW8V4zAv0qs
+         OwnYB8SAx10X3FuJK3/qd0A3Cjpz65Y1eSjR3x1x8xlKYAc/GdPR9jUqLq6DMd/mZqL0
+         yJqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7EM0tUYP8y3cd0/1ZgnQUpesjr4ZJi+NxkiKS6jSKnY=;
-        b=6gF4iR0CT2Bznh/jyZ/2bFvb15M0uV9SRmYQRvcotNsa9APqB5i8xBVxuuNHuSfbO+
-         x9l9LZw3zrzaiDpbgQXZKR+8uB/Tmw696HAVS/xWenR18KkSn+GM9/66vfd90P+zbrun
-         J8vAWqz4AT1cnyGl5z/WY2v3fXHxptLYxcxRPYa+BORE77UJl4SmNeUa2JK2s6RM2DzF
-         z8GdzllcVg+zzPn27dw9A9M/lLlho5WsSERrGZ5tMsfD+MnAf+IbT7PK3se+nGfK6TQ+
-         euCQgtkoOiPTjqpwsrsfaOvtU7iQ3TfOVBAImFS1NZSh13IAPHpyl0Qaq+c9NrZaJevM
-         fMDw==
-X-Gm-Message-State: AOAM532i6bYqYQHUvHUV6jTzcOUYhlHBUCAISFvKNE1qqaBw4tYpeHqP
-        aN0f8uJryyLU+Nl+vn+M7jILcUyD/3q1nwo5xM9UNb+k
-X-Google-Smtp-Source: ABdhPJxOfYbu6TaL+p/+CuNb/+bOJLEYIWU6JP+lqefNv5EjQrsur0uhQJdy7qj/zsg3x8cL0k859ryN6AaDJM+AjVM=
-X-Received: by 2002:a1f:230c:: with SMTP id j12mr9128937vkj.11.1633697961087;
- Fri, 08 Oct 2021 05:59:21 -0700 (PDT)
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=RnDy90zGkmnNy7TioUKWbmT3Tf/BHpUr+QhKrUdfflA=;
+        b=tp5XvmtO9NGOtyZ8h2Kcrj2U/r4/mo4asslyGCwQmCJtxvSB0ra3pNCChd3dFMAaNb
+         0rWUS1VgtpFAy+TihIPQfVPdcT4XEIG4kencFSckE0Yy09y4nUaxGK5FtKO5pkk9mFTi
+         BblRBtWntKtVSBX6Sw3WDZqjRn13Wp4+/4hKYqtqdRh5kKAShyGWgz64Bzes9THkCZ5L
+         SrPTYyRnim+p+cBieQA2Zhv8pFJX5PPWLOFxsO2OjaQZ/wrnE6KJdjXbLnyXqMmA3k5Z
+         r5LUQi3DC5iv+L/KD8Y3jB/KZROlM0Uu28IEZ6uZXvZZc+GRgkUBHsSp4Nrf63dS0RuN
+         Ddtg==
+X-Gm-Message-State: AOAM532HqrlMfebnzvT6nlvexmfjvvjjvGWgzfwAmfntTb//0BDkwtrj
+        om8V9gPnv3nJNDEnG96Qvsc=
+X-Google-Smtp-Source: ABdhPJwk/DJFQJlB7Tte3OVChyyKTA7n4DzI7j0A2+ZiLIaTz8L/W6Mfk4C9V163xcRGsuQ0qfoZ6A==
+X-Received: by 2002:a05:6808:cf:: with SMTP id t15mr7255602oic.93.1633698182633;
+        Fri, 08 Oct 2021 06:03:02 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id r25sm472982ooq.43.2021.10.08.06.03.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Oct 2021 06:03:01 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 8 Oct 2021 06:03:00 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Jiri Kosina <trivial@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: hwmon: ibm,cffps: move to trivial
+ devices
+Message-ID: <20211008130300.GA3670503@roeck-us.net>
+References: <20210921102832.143352-1-krzysztof.kozlowski@canonical.com>
+ <20210921102832.143352-3-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-References: <20211007155451.10654-1-biju.das.jz@bp.renesas.com>
- <20211007155451.10654-4-biju.das.jz@bp.renesas.com> <CAMuHMdX_sHb9w1v9g7Lycp-RQnm9sHGv8MtJmfM3js5DrwO6+A@mail.gmail.com>
-In-Reply-To: <CAMuHMdX_sHb9w1v9g7Lycp-RQnm9sHGv8MtJmfM3js5DrwO6+A@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 8 Oct 2021 14:59:09 +0200
-Message-ID: <CAMuHMdWE+MAOqt6sAN3JDPx_FnXmqE_GVB2LeU9wZjnMjyW3sg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: rzg2l-smarc: Enable microSD on
- SMARC platform
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210921102832.143352-3-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 8, 2021 at 2:11 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Thu, Oct 7, 2021 at 5:55 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > This patch enables microSD card slot connected to SDHI1 on RZ/G2L SMARC
-> > platform.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> > @@ -70,6 +70,16 @@
-> >                 regulator-min-microvolt = <5000000>;
-> >                 regulator-max-microvolt = <5000000>;
-> >         };
-> > +
-> > +       vccq_sdhi1: regulator-vccq-sdhi1 {
-> > +               compatible = "regulator-gpio";
-> > +               regulator-name = "SDHI1 VccQ";
-> > +               regulator-min-microvolt = <1800000>;
-> > +               regulator-max-microvolt = <3300000>;
-> > +               gpios = <&pinctrl RZG2L_GPIO(39, 1) GPIO_ACTIVE_HIGH>;
->
-> Is this correct? Schematics say GPIO high is 3.3V.
+On Tue, Sep 21, 2021 at 12:28:29PM +0200, Krzysztof Kozlowski wrote:
+> The IBM Common Form Factor Power Supply Versions 1 and 2 bindings are
+> trivial, so they can be integrated into trivial devices bindings.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Yes it is, as per the value "1" in states below.
+Following Rob's suggestion:
 
-> > +               gpios-states = <1>;
-> > +               states = <3300000 1 1800000 0>;
-> > +       };
+"... I'd much rather have a schema for these than wait on 
+someone to decide to convert them. That could mean a device.txt -> 
+trivial-devices.yaml -> device.yaml trip, but that doesn't seem that 
+terrible to me. Then we at least are running schema checks on the 
+devices and know if actual users have more undocumented properties."
 
-Gr{oetje,eeting}s,
+Applied.
 
-                        Geert
+Thanks,
+Guenter
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> ---
+>  .../devicetree/bindings/hwmon/ibm,cffps1.txt  | 26 -------------------
+>  .../devicetree/bindings/trivial-devices.yaml  |  6 +++++
+>  MAINTAINERS                                   |  1 -
+>  3 files changed, 6 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/ibm,cffps1.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/ibm,cffps1.txt b/Documentation/devicetree/bindings/hwmon/ibm,cffps1.txt
+> deleted file mode 100644
+> index d9a2719f9243..000000000000
+> --- a/Documentation/devicetree/bindings/hwmon/ibm,cffps1.txt
+> +++ /dev/null
+> @@ -1,26 +0,0 @@
+> -Device-tree bindings for IBM Common Form Factor Power Supply Versions 1 and 2
+> ------------------------------------------------------------------------------
+> -
+> -Required properties:
+> - - compatible				: Must be one of the following:
+> -						"ibm,cffps1"
+> -						"ibm,cffps2"
+> -						or "ibm,cffps" if the system
+> -						must support any version of the
+> -						power supply
+> - - reg = < I2C bus address >;		: Address of the power supply on the
+> -					  I2C bus.
+> -
+> -Example:
+> -
+> -    i2c-bus@100 {
+> -        #address-cells = <1>;
+> -        #size-cells = <0>;
+> -        #interrupt-cells = <1>;
+> -        < more properties >
+> -
+> -        power-supply@68 {
+> -            compatible = "ibm,cffps1";
+> -            reg = <0x68>;
+> -        };
+> -    };
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 6ad0628741cf..791079021f1b 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -113,6 +113,12 @@ properties:
+>            - mps,mp2975
+>              # Honeywell Humidicon HIH-6130 humidity/temperature sensor
+>            - honeywell,hi6130
+> +            # IBM Common Form Factor Power Supply Versions (all versions)
+> +          - ibm,cffps
+> +            # IBM Common Form Factor Power Supply Versions 1
+> +          - ibm,cffps1
+> +            # IBM Common Form Factor Power Supply Versions 2
+> +          - ibm,cffps2
+>              # Infineon IR36021 digital POL buck controller
+>            - infineon,ir36021
+>              # Infineon IR38064 Voltage Regulator
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 15c4d3c809e8..cc5df54bdc51 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14956,7 +14956,6 @@ S:	Maintained
+>  W:	http://hwmon.wiki.kernel.org/
+>  W:	http://www.roeck-us.net/linux/drivers/
+>  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git
+> -F:	Documentation/devicetree/bindings/hwmon/ibm,cffps1.txt
+>  F:	Documentation/devicetree/bindings/hwmon/ltc2978.txt
+>  F:	Documentation/devicetree/bindings/hwmon/max31785.txt
+>  F:	Documentation/hwmon/adm1275.rst
