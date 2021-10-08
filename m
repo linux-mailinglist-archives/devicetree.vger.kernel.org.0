@@ -2,90 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51C1A426B59
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 14:56:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61001426B5C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 14:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241993AbhJHM57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 08:57:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53764 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241537AbhJHM56 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 08:57:58 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6284AC061570
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 05:56:03 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id y15so38995386lfk.7
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 05:56:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SxcONP4zerIk6DCHmdX7lnhsoemICqZWD19R4vNHLps=;
-        b=UEYzs6P1v2evhYYtpcW7MzRTaa3q89FiXx0thtHS9FTnuHVxIC0cXx1fmTurIta5tn
-         aIWVGHR9wqZt2g/0u+Fec8/iGJAodJ5im71oqR7kHabQ0srtJnUpkj9CFkfnXfsqdZ8/
-         bM9aPqw9U8Lg51PmqCfdDcRaO0HDe3pbpmwBHCH0N6Glw4mwox0INYSvvatcgwojlozf
-         QMkQovKh1NSr3aX+dCv4aYAZZfEmWuJIuEHF07f4okrZ7A8Zeb7rJMztKfh9at/Q9Lc8
-         KmtOdAjj5p0Ziz+CNNd3Xh9kyTo+/aAeBZpW712RvajjhtXnJjCDrKUK9ux+0QpaS1BJ
-         p+UA==
+        id S241537AbhJHM6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 08:58:06 -0400
+Received: from mail-vs1-f52.google.com ([209.85.217.52]:42698 "EHLO
+        mail-vs1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242124AbhJHM6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 08:58:06 -0400
+Received: by mail-vs1-f52.google.com with SMTP id l22so7986695vsq.9;
+        Fri, 08 Oct 2021 05:56:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=SxcONP4zerIk6DCHmdX7lnhsoemICqZWD19R4vNHLps=;
-        b=XKaFmUaEhzCLnyOnnaxC6p4c2jXC5QUmSPHK2V1WEVCLac26/r7TaJ2q3IorZk3Cqh
-         7zKUsKRVpbrpR3gzkSpjRmo24QUTKRQ7+wj2OOSRYZVYYZcYeSqpgh/TmlTphxlMUPT+
-         jcDijQqmO/CMRJLtqimBXl/LWkoAua8WKczQbVeBUNiyJQCQ/uxaSo+9fMVTIac7GpPZ
-         zGIW2HVPnqcz+wALAtGfkjCwiQ3UehE9nyTGnt6f3cPViCc80JclBOnao295eZc9MwU0
-         KqZLEUb+DLOpyrSBvPPcgvu0ZWH1fT1op08XZSUiWBiTn5xosXtycqh+A3H3ZUY36EBV
-         IWiA==
-X-Gm-Message-State: AOAM5300X7hAru0HoXQI20iKjLP4O+JKSmmTTcxzoMPBlkvlefdZheec
-        tlZ1wGigVAMm0rfL6uo0b7pQPzpLVB8wbUM46ROviX68mX0mSg==
-X-Google-Smtp-Source: ABdhPJz8exzMlBq2sC2QvF9flm6Pf+q5TB7ewUEISX8lXZx6bpyOvZDKfO2lLjVC/2EVpA9JxRxqcUlKk9QBF2oGF5U=
-X-Received: by 2002:a05:6512:3e1e:: with SMTP id i30mr10142610lfv.273.1633697760433;
- Fri, 08 Oct 2021 05:56:00 -0700 (PDT)
+        bh=QbNRDYbUInfalX6L9Ogc3pNoDeOxrxefMK44LIdGSZs=;
+        b=g8JvPE+05OhGUrFp++ntkrHwCg67Zu7SiCjAm5zWYfwmfC24oVqnF0DkLwJxtZnkjo
+         yU966e8unw/Ui/XyNkSKoZ3vV9fMxhhzRqYF4vDVWTfIWJeLZhauWw/xZVwUDWMuvumf
+         ZaAJDX6s261ddSnAvjEAihTpLXBrdbw6UNhfCfqYX3NWeUNdASIGzXvk3f3uzgmFe7i5
+         MSwJeLxliOoTe/O3xY1GLHj+H+Uxs2ApGf2OwQad3t7gE5cd/OPq3ZNgDPMc2ml0WsJF
+         JssdSpj+cZXL3OjnJMeWPjibliLcCywNbx6w7mrts+vLSmTcbrAPfmM3PpOI3kFaqa1a
+         UHTg==
+X-Gm-Message-State: AOAM532Zpjepxjo6PolStfzC7FJ0BkFrQa2yD9RZrfxKbb673nDrS/M5
+        jgy9IS1HnyQfTvn4unP2flfEeDSnPFL+a2e2+KOE6fCRs/w=
+X-Google-Smtp-Source: ABdhPJy5sOMI+IEARY8vNuwiYRTAjHcVi8CDkQ1m3s7Q68dWYTqtR32jLp12RRIFhIlsogu0ViKmgQowBO6KtLk+3Hk=
+X-Received: by 2002:a67:ac04:: with SMTP id v4mr10586756vse.50.1633697770379;
+ Fri, 08 Oct 2021 05:56:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
- <YUkKCe7845uCqoy5@robh.at.kernel.org> <20210921125831.GB1864238@roeck-us.net>
- <CAL_JsqLo=inkKVKSU8N=_h90RfpDk6NNWPKdKyTXh-VvqXDCag@mail.gmail.com>
- <20210921205247.GA2363535@roeck-us.net> <CAL_Jsq+NXuF+F7OE3vyEbTUj6sxyMHVWHXbCuPPoFaKjpyZREQ@mail.gmail.com>
- <20210924002951.GA3027924@roeck-us.net> <YU2D7L7QMgCJZUeb@localhost.localdomain>
- <20210924114636.GB2694238@roeck-us.net> <CABoTLcQYHZbsgzXN7XXKQdDn8S-YsuE+ks9WShAEKcBJojEfcQ@mail.gmail.com>
- <20210925132631.GB1240690@roeck-us.net>
-In-Reply-To: <20210925132631.GB1240690@roeck-us.net>
-From:   Oskar Senft <osk@google.com>
-Date:   Fri, 8 Oct 2021 08:55:44 -0400
-Message-ID: <CABoTLcTKAn5TVs3wadZQiheeKA5kUGBtMRbFWprRWoqRJV=J9Q@mail.gmail.com>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for tmp421
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Rob Herring <robh@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        devicetree@vger.kernel.org
+References: <20211007155451.10654-1-biju.das.jz@bp.renesas.com>
+ <20211007155451.10654-3-biju.das.jz@bp.renesas.com> <CAMuHMdXgc9MnZyznCN0CkM4bkoqz71JTAnHG_CeaDHAOCpVutg@mail.gmail.com>
+ <OS0PR01MB5922CFA47D2B427FF65BE5F886B29@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922CFA47D2B427FF65BE5F886B29@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 8 Oct 2021 14:55:59 +0200
+Message-ID: <CAMuHMdXcc5+-ramVcVaBnwM6jE71aS97_Z_fEDuMiaO0UZjg=g@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: rzg2l-smarc-som: Enable eMMC on
+ SMARC platform
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter
+Hi Biju,
 
-> Numbering in sysfs is not relevant here; the index should always start with 0.
-Ok, in that case, I'll encode LTD as @0 and RTD1..3 as @1..@3.
-
-> > In this example, RTD1, RTD2 and LTD would be temperature sensors and
-> > RTD3 would be a voltage sensor.
+On Fri, Oct 8, 2021 at 2:43 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH 2/3] arm64: dts: renesas: rzg2l-smarc-som: Enable eMMC
+> > on SMARC platform
+> > On Thu, Oct 7, 2021 at 5:55 PM Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > > RZ/G2L SoM has both 64Gb eMMC and micro SD connected to SDHI0.
+> > >
+> > > Both these interfaces are mutually exclusive and the SD0 device
+> > > selection is based on the XOR between GPIO_SD0_DEV_SEL and SW1[2]
+> > > switch position.
+> > >
+> > > This patch sets GPIO_SD0_DEV_SEL to high in DT. Use the below switch
+> > > setting logic for device selection between eMMC and microSD slot
+> > > connected to SDHI0.
+> > >
+> > > Set SW1[2] to position 2/OFF for selecting eMMC Set SW1[2] to position
+> > > 3/ON for selecting micro SD
+> > >
+> > > This patch enables eMMC on RZ/G2L SMARC platform by default.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > >
-> > Would that make more sense? Is the use of strings acceptable?
+> > > --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
 > >
-> I don't think so. I am quite sure that rtd3 is still a temperature,
-> and I am not sure if other sensor types on that chip may need dt
-> configuration.
-Reading the existing nct7802_in_is_visible() and
-nct7802_temp_is_visible() [1] in I read that RTD3 could either be
-voltage or temperature.
+> > > +       vccq_sdhi0: regulator-vccq-sdhi0 {
+> > > +               compatible = "regulator-gpio";
+> > > +
+> > > +               regulator-name = "SDHI0 VccQ";
+> > > +               regulator-min-microvolt = <1800000>;
+> > > +               regulator-max-microvolt = <3300000>;
+> > > +               states = <3300000 1 1800000 0>;
+> > > +               regulator-boot-on;
+> > > +               gpios = <&pinctrl RZG2L_GPIO(39, 0) GPIO_ACTIVE_HIGH>;
+> >
+> > Is this correct?
+> > According to the schematics, the GPIO should be high to select 3.3V.
+>
+> Yes, But it is "AND" Operation between SD0_DEV_SEL and GPIO_SD0_PWR_SEL.
+>
+> For eMMC, SD0_PWR_SEL will be always 1.8V
+>
+> For Micro SD, SD0_PWR_SEL will be 3.3V when GPIO_SD0_PWR_SEL is high
+>           SD0_PWR_SEL will be 1.8V when GPIO_SD0_PWR_SEL is low.
 
-I'll go ahead and propose another patch version on [3] for that.
+Doesn't the first state in states = <3300000 1 1800000 0> correspond
+to GPIO_SD0_PWR_SEL being low?
 
-[1] https://github.com/torvalds/linux/blob/master/drivers/hwmon/nct7802.c#L778
-[2] https://github.com/torvalds/linux/blob/master/drivers/hwmon/nct7802.c#L679
-[3] https://lore.kernel.org/all/20210921004627.2786132-1-osk@google.com/
+Oh no, the second cell is the GPIO state...
+Why is it common to order these in reverse order? :-(
+
+Sorry, you're right. Please ignore my comment, also for the next patch.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
