@@ -2,113 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5273C427146
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:14:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D97427153
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241785AbhJHTPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 15:15:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53152 "EHLO mail.kernel.org"
+        id S231539AbhJHTU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 15:20:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55354 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231407AbhJHTPf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 15:15:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0C21D61038;
-        Fri,  8 Oct 2021 19:13:40 +0000 (UTC)
+        id S231342AbhJHTUW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 15:20:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0504861100;
+        Fri,  8 Oct 2021 19:18:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633720420;
-        bh=AC8mlvl5rpF4l6tOqjjPamQgwiRioSA2m1qyyv95PCQ=;
+        s=k20201202; t=1633720707;
+        bh=IC9kNsRFIBO+K8d9i6+XTu+7i8NQDKUt9EGCz3dsmac=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dk6yvwYY35lLQNJOG6jJoBC18AUEpzfo7iIUP9XGBBjLELZYLKT6Jm9RnH05rrPnY
-         Ft1jaVk8qJ3cmjAuI9NUEwSJH3FMjclwv667zC09NslNOQMdbVpZI753XwRKYdGtqn
-         prNNDc9CE9a3Lf5m3gokvzKKS3fxwtEeP+/RV0Dh4R89CIvw63OH689QO6NIbe0cxI
-         HAfth3XHvI75Vzd2beCbPov9yVPhPGEliZwp37faJkA38ng9zeiw06BTWpId87rUvU
-         AuUWOwEE/76FBPnjxHV5Z3BSHW91aE3rfGgKiUDvAmXf9zrmODwYO/gblboRVK7cin
-         9EjDnI1PLv+dw==
-Received: by mail-ed1-f48.google.com with SMTP id x7so38184871edd.6;
-        Fri, 08 Oct 2021 12:13:39 -0700 (PDT)
-X-Gm-Message-State: AOAM531sbuBKiV0yi+7/aHHeTm1kNz7WgkFaDDn5trp1kuNHQHm3Sphg
-        w7ir88Eh4NczedmPizGKWM93Zd4zUx1wjpgu9Q==
-X-Google-Smtp-Source: ABdhPJzQEW4du5+j1cLnAV3kaaQAC/63eZPYU9De08b8WapQk+yA6t4Vce3DmKIB2uMz/mCtM0KTzCGtvMz+GzFQzfg=
-X-Received: by 2002:a05:6402:27d2:: with SMTP id c18mr8693395ede.271.1633720418392;
- Fri, 08 Oct 2021 12:13:38 -0700 (PDT)
+        b=BpP1jk6pQ92wMYrNJJz//UzDyIl7KDMW06pY0T2+/sdPu5gjz3r73bfN9q2cGyrEQ
+         sud2KOsGrgUNoR+N9Oc0h826ZN50zQ5NZ6LS+kD/CVsBx5SuhiIjyW3a97uWncfgZb
+         QnZ391AKNF/jjq6BkhcO2ic6Ln9+QmkBu54kb7ENA7k6LNx73/7h4D7gMPH2zflUzo
+         rrRNqzd125lCTk9JTFmb6OKgo/WcAjTN52Ku54KyF4PSoAwPjhHVpk/LZovW05yPey
+         F55WwmujVXSf3MqWRnT5PZiNORb9kZ5bAXVErrBJjsIMF/OzhdMYM7EyvwyukXf/hd
+         DVPpj7BxaNtOA==
+Received: by mail-ed1-f44.google.com with SMTP id d9so16172839edh.5;
+        Fri, 08 Oct 2021 12:18:26 -0700 (PDT)
+X-Gm-Message-State: AOAM5308/AY7MxLU7MtVSBXUGHvyV3tpa4Rtgby4gfxEPdv3zOegaOcj
+        eaDW5LDz74BRn3UhB+z52Vohc86DjQxxH5pKMg==
+X-Google-Smtp-Source: ABdhPJxqow2M5nj6LodviTLlbfFr4zL57L7+Vcp4BPJ43DFWyfStrDXyuWmCoFsVAuWT7QiI7UzLZynfXN+8NRHIZ5E=
+X-Received: by 2002:a05:6402:27d2:: with SMTP id c18mr8725154ede.271.1633720705455;
+ Fri, 08 Oct 2021 12:18:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211007134641.13417-1-vincent.whitchurch@axis.com>
- <20211007134641.13417-3-vincent.whitchurch@axis.com> <1633661172.633248.1409599.nullmailer@robh.at.kernel.org>
- <20211008135610.GA16402@axis.com> <d794e44d-e67a-e51e-93b0-9b23edba2e21@axentia.se>
-In-Reply-To: <d794e44d-e67a-e51e-93b0-9b23edba2e21@axentia.se>
+References: <cover.1632984254.git.krzysztof.adamski@nokia.com>
+ <3ff7b4cc57dab2073fa091072366c1e524631729.1632984254.git.krzysztof.adamski@nokia.com>
+ <20211002142219.GC34532@roeck-us.net> <YVqu92dUgNKlYMlG@localhost.localdomain>
+ <20211005141457.GB2395636@roeck-us.net> <YV4NUqf7ey5Yr55P@robh.at.kernel.org>
+ <YV6m8MRa4+lKOWTp@localhost.localdomain> <18a5d5c9-2885-68da-256b-7ae1c3b95819@roeck-us.net>
+In-Reply-To: <18a5d5c9-2885-68da-256b-7ae1c3b95819@roeck-us.net>
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 8 Oct 2021 14:13:25 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKPFnNsX6g2GWFaF3ntb7mfCt4+YxFtv_JfMt2mp1s+mg@mail.gmail.com>
-Message-ID: <CAL_JsqKPFnNsX6g2GWFaF3ntb7mfCt4+YxFtv_JfMt2mp1s+mg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: io-channel-mux: Add property for
- settle time
-To:     Peter Rosin <peda@axentia.se>
-Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        kernel <kernel@axis.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Date:   Fri, 8 Oct 2021 14:18:13 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJP2yX1YoJP00+DK1S=p3TXKVhjvproKsJZtDQQ_6L5Fg@mail.gmail.com>
+Message-ID: <CAL_JsqJP2yX1YoJP00+DK1S=p3TXKVhjvproKsJZtDQQ_6L5Fg@mail.gmail.com>
+Subject: Re: [PATCH v3 11/11] dt-bindings: hwmon: allow specifying channels
+ for tmp421
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Linux HWMON List <linux-hwmon@vger.kernel.org>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 8, 2021 at 10:27 AM Peter Rosin <peda@axentia.se> wrote:
+On Fri, Oct 8, 2021 at 9:33 AM Guenter Roeck <linux@roeck-us.net> wrote:
 >
-> On 2021-10-08 15:56, Vincent Whitchurch wrote:
-> > On Fri, Oct 08, 2021 at 04:46:12AM +0200, Rob Herring wrote:
-> >> On Thu, 07 Oct 2021 15:46:40 +0200, Vincent Whitchurch wrote:
-> >>> Hardware may require some time for the muxed analog signals to settle
-> >>> after the muxing is changed.  Allow this time to be specified in the
-> >>> devicetree.
+> On 10/7/21 12:51 AM, Krzysztof Adamski wrote:
+> > Dnia Wed, Oct 06, 2021 at 03:55:46PM -0500, Rob Herring napisa=C5=82(a)=
+:
 > >>>
-> >>> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> >>> ---
-> >>>  .../devicetree/bindings/iio/multiplexer/io-channel-mux.yaml  | 5 +++++
-> >>>  1 file changed, 5 insertions(+)
+> >>>     input@0 {
+> >>>         reg =3D <0>;
+> >>>         label =3D "output voltage";
+> >>>     };
 > >>>
+> >>> Anyway, maybe Rob has an idea how to name this properly.
 > >>
-> >> Running 'make dtbs_check' with the schema in this patch gives the
-> >> following warnings. Consider if they are expected or the schema is
-> >> incorrect. These may not be new warnings.
+> >> No, I don't have a sense of the range of h/w...
 > >
-> > Yes, these are not new warnings.
+> > I feel like we are stuck. Rob does not have a sense of the range of the
+> > h/w and Guenter does not have a sense of the DeviceTree idioms. How can
+> > we solve that?
 > >
-> >> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> >> This will change in the future.
-> >>
-> >> Full log is available here: https://patchwork.ozlabs.org/patch/1537724
-> >>
-> >>
-> >> adc0mux: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> >>      arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dt.yaml
-> >>
-> >> adc10mux: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-> >>      arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dt.yaml
-> > [...]
-> >
-> > I think the fix for these is to add a "#io-channel-cells": const 1 to
-> > the schema.
 >
-> Agreed.
+> That is why I am asking questions. It doesn't mean we are stuck.
 >
-> >> envelope-detector-mux: channels: ['', '', 'sync-1', 'in', 'out', 'sync-2', 'sys-reg', 'ana-reg'] has non-unique elements
-> >>      arch/arm/boot/dts/at91-tse850-3.dt.yaml
+> > Could we, maybe, just focus on this typical, simplified, case I have fo=
+r
+> > now - a sensor with several channels of known, same type (temperature)?
+> > We clearly are unable handle all possible cases here, for now.
 > >
-> > This one looks like an error in that particular devicetree.
+> > Does this look sane for that usecase or what would you, Rob, change?
 > >
-> The double '' is intentional; this mux is 8-way but only 6 legs are
-> connected, with the first two unused. I don't know how or where to make
-> changes to dodge the warning. I don't want to put names on things that
-> do not exist, and the iio-mux driver is using empty names as a hint to
-> not configure any child channel for those indices that have empty names.
-> If e.g. channels 0-5 are in use, then this is not a problem since you
-> can just end early with 6 names instead of 8, but alas, channels 2-7
-> was what the hw-crowd fancied in this case.
+> > sensor@4c {
+> >    compatible =3D "ti,tmp422";
+> >    reg =3D <0x4c>;
+> >    #address-cells =3D <1>;
+> >    #size-cells =3D <0>;
+> >
+> >    input@0 {
+> >      reg =3D <0x0>;
+> >      ti,n-factor =3D <0x1>;
+> >      label =3D "local";
+> >    };
+> >
+> >    input@1 {
+> >      reg =3D <0x1>;
+> >      ti,n-factor =3D <0x0>;
+> >      label =3D "somelabel";
+> >    };
+> >
+> >    input@2 {
+> >      reg =3D <0x2>;
+> >      status =3D "disabled";
+> >    };
+> > };
+> >
+> > There were some doubts whether "input" makes sense here.  I still think
+> > it doas as even in HWMON subsystem, we have "hwmon_temp_input" and
+> > HWMON_T_INPUT, so a temperature channel _is_ an input.  Of course I can
+> > change it to "temperature" or "channel", just tell me which one is
+> > accepted.
+> >
+>
+> I'd be fine with "channel" or "sensor". Both would be generic.
 
-There's a specific string type for this: non-unique-string-array
-
-Unfortunately, no way to say unique or empty strings.
+'channel' aligns with multi-channel ADC node naming, so that's fine for me.
 
 Rob
