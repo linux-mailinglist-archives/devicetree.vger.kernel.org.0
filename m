@@ -2,111 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0364942711F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CBA442712D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231245AbhJHTDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 15:03:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53742 "EHLO
+        id S231316AbhJHTIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 15:08:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231312AbhJHTDl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 15:03:41 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A56C061570;
-        Fri,  8 Oct 2021 12:01:45 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id z24so5749679qtv.9;
-        Fri, 08 Oct 2021 12:01:45 -0700 (PDT)
+        with ESMTP id S231455AbhJHTIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 15:08:44 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB545C061764
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 12:06:48 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id n63so14974193oif.7
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 12:06:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xew2Cqp055SEboMYSD4xaomAE75lVTjIUs6xXR179/0=;
-        b=C+zkVLwQ561jKCx3zhQEnbk8TmUmArvKZwuTu4o6hFVYBf50l6nH4eFXzxeT6ckUFG
-         iCT7GRokfADm3mNb1neAQNsX8B+bhJQe3zQAv/kVlJe6lq/GOCY/0zCqZMG/JLnZx84+
-         QTJGxJARW6YfYHxWtL1p6VQgRNDqyww+1GGeqigEy+zt+NntIzIhypf3jsCXtUyhCXQY
-         JXRo/4T++xB6+pLKViUSF1mz7D37WsgOLsf2/WFzq51e8PYFd32ltlPrTQ3Fq4ORQ8zk
-         DiSu2vcdV9MIj6pwSf2XDvgtd7/eGnvA34XGuLQxsdeFv8D7XsXVRwNAysOAKAMTr0+8
-         WhwA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LrmfX34GObvirBK4Iq8eQUnGcvQ0wY+TvxWBiA97kls=;
+        b=G2GT+K3lGKazwMmL6lbYFr4VtJsTOMVA2fV1wnnPCedS+C2rSUmMi2e9P4z6yfPUXq
+         yis176soBf1pdDcxpoxRWMVEX/DLMNc+xbFAR9iDk2s73MxinxOaU/yLP+jHYAISts4Q
+         n2TziaGC7+ybL47H/l9BWf9zrgKMUOGHWQ7MBMoLRddiKBGmgdeBHDkQ9vXxnwgq6uAF
+         iOWseFM4mIk/IL+rNRVZPqEpMF3u590Syw/vkaP4dZFeU1Y8DnnCwXKSBBHzsQX5+iIE
+         YJx+RKzKNgJvDT6mMqvPd8Aw6OKcDUJ/VqnxXOamDBr6oKy0saOhZmnHTBFgEZwv6xra
+         T8gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xew2Cqp055SEboMYSD4xaomAE75lVTjIUs6xXR179/0=;
-        b=JF/AP17xS6mi2q4RvIr/iCPLfY/k64V7lWMqKvBDNviorBkORp3TUdQuH+fYBnZCQk
-         YipFbDBahEKgvJSwAPj8Dy5kurngoFCN+DYnfZJuK7xVHA1ddyVaLzTbjy49qS1Oo+bm
-         PqwvjFqTAJYDapMzqDR7eXJzibQgD6Hdw6sNg8fp0LdZlIxeMEldDltSP48RUXLhaerY
-         eCXyOMUP9pzNPZyYjOPD0TozaJejyWMW8DaGgx8XBe17a3X5pHLaSK7M+oj99gpkzaEA
-         v8lCXLZfJ+PyjN+cjS8JEnmENHk7X++E9YyQ4c1SRyMFnFdcNr5HG9mUixc9KRHm5uzj
-         HqSA==
-X-Gm-Message-State: AOAM530X8h0nZXh1x1LIE3Ah9GfqAKMhhmnl5UxwJL9udz8ppVYOKBCD
-        5rl2x11UM4FgY1SLSiaIkQ4=
-X-Google-Smtp-Source: ABdhPJwzquROKMLegjco20qGn59bJ5syteqkBCE5kUqtvcwMyaDc2geIlDVH3Sdsrj2dMslo6mBkrQ==
-X-Received: by 2002:ac8:5e51:: with SMTP id i17mr19299qtx.339.1633719704376;
-        Fri, 08 Oct 2021 12:01:44 -0700 (PDT)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id f15sm101193qtf.66.2021.10.08.12.01.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 12:01:44 -0700 (PDT)
-Subject: Re: [PATCH 7/9] of: make OF_DYNAMIC selectable independently of
- OF_UNITTEST
-To:     Zev Weiss <zev@bewilderbeest.net>, openbmc@lists.ozlabs.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211007000954.30621-1-zev@bewilderbeest.net>
- <20211007000954.30621-8-zev@bewilderbeest.net>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <288e4900-c23c-56ee-5c23-9a51cd3f315e@gmail.com>
-Date:   Fri, 8 Oct 2021 14:01:43 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LrmfX34GObvirBK4Iq8eQUnGcvQ0wY+TvxWBiA97kls=;
+        b=jkRSRhTKTbmsqEtcVRdLAAweMiyEcnW9jBDFPQS28ahTNAgkYPD7lLOjOU8saUoP+h
+         vtSnCRXUAyBar89J/lFerf3FG9MK0xmdxOfinUsyV7FaunBuiTSyegyrYJcs3FqzgLbq
+         aSXTWw3QJ4xefjkALOt7sxqYrbYl3bvjt6Hu2xt6DolpjsBG/nrrO24VbfilNMYmtiLI
+         IOeHzZ91JS94SbvQ/1rX5Wv6cDeIOPXmPiPrs3PKQfowh0zyZhXpW5bHsRzhh0CnNu4c
+         dJjnc7g2vmEzicmpzJLoBmWOf+v8Zd6fN8ndK8HTDTHRQ0Uo+UJJZTm9ywCQwIZWshgm
+         G72w==
+X-Gm-Message-State: AOAM530ZGtcCUiaoB8QcoeUqLxeUEQ0gQVhur9/xs+MR7wMcCgI2Ub5j
+        eJX76tRWnHRlw0bwEaSwdetcWg==
+X-Google-Smtp-Source: ABdhPJzVSQg8dziDkJydMZ6Kb5vkX9g4Lyp0OAZsBdvJIKINGRiNPzQHWR7UWwOiY1gowTV1UakbjA==
+X-Received: by 2002:aca:e009:: with SMTP id x9mr18290787oig.156.1633720007878;
+        Fri, 08 Oct 2021 12:06:47 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id i127sm52577oia.43.2021.10.08.12.06.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Oct 2021 12:06:47 -0700 (PDT)
+Date:   Fri, 8 Oct 2021 12:08:25 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Krzysztof Wilczy??ski <kw@linux.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        vidyas@nvidia.com
+Subject: Re: [PATCH v2 1/2] PCI: dwc: Perform host_init() before registering
+ msi
+Message-ID: <YWCXKevPYiSkqapt@ripper>
+References: <YSVTdedrDSgSYgwm@ripper>
+ <20210824202925.GA3491441@bjorn-Precision-5520>
+ <YSVjQgDmatkkCxtn@ripper>
+ <20211008174803.GA32277@lpieralisi>
 MIME-Version: 1.0
-In-Reply-To: <20211007000954.30621-8-zev@bewilderbeest.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211008174803.GA32277@lpieralisi>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/6/21 7:09 PM, Zev Weiss wrote:
-> The writable status sysfs file enabled by the 'dynamic' DT property
-> requires CONFIG_OF_DYNAMIC to be useful, but that shouldn't require
-> dragging in CONFIG_OF_UNITTEST as well.
+On Fri 08 Oct 10:48 PDT 2021, Lorenzo Pieralisi wrote:
+
+> [+Vidya]
 > 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> ---
->  drivers/of/Kconfig | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
+> On Tue, Aug 24, 2021 at 02:23:14PM -0700, Bjorn Andersson wrote:
+> > On Tue 24 Aug 13:29 PDT 2021, Bjorn Helgaas wrote:
+> > 
+> > > On Tue, Aug 24, 2021 at 01:15:49PM -0700, Bjorn Andersson wrote:
+> > > > On Tue 24 Aug 12:05 PDT 2021, Bjorn Helgaas wrote:
+> > > > 
+> > > > > On Mon, Aug 23, 2021 at 08:49:57AM -0700, Bjorn Andersson wrote:
+> > > > > > On the Qualcomm sc8180x platform the bootloader does something related
+> > > > > > to PCI that leaves a pending "msi" interrupt, which with the current
+> > > > > > ordering often fires before init has a chance to enable the clocks that
+> > > > > > are necessary for the interrupt handler to access the hardware.
+> > > > > > 
+> > > > > > Move the host_init() call before the registration of the "msi" interrupt
+> > > > > > handler to ensure the host driver has a chance to enable the clocks.
+> > > > > 
+> > > > > Did you audit other drivers for similar issues?  If they do, we should
+> > > > > fix them all at once.
+> > > > 
+> > > > I only looked at the DesignWware drivers, in an attempt to find any
+> > > > issues the proposed reordering.
+> > > > 
+> > > > The set of bugs causes by drivers registering interrupts before critical
+> > > > resources tends to be rather visible and I don't know if there's much
+> > > > value in speculatively "fixing" drivers.
+> > > > 
+> > > > E.g. a quick look through the drivers I see a similar pattern in
+> > > > pci-tegra.c, but it's unlikely that they have the similar problem in
+> > > > practice and I have no way to validate that a change to the order would
+> > > > have a positive effect - or any side effects.
+> > > > 
+> > > > Or am I misunderstanding your request?
+> > > 
+> > > That is exactly my request.
+> > 
+> > Okay.
+> > 
+> > > I'm not sure if the potential issue you
+> > > noticed in pci-tegra.c is similar to the one I mentioned here:
+> > > 
+> > >   https://lore.kernel.org/linux-pci/20210624224040.GA3567297@bjorn-Precision-5520/
+> > > 
+> > 
+> > As I still have the tegra driver open, I share your concern about the
+> > use of potentially uninitialized variables.
+> > 
+> > The problem I was concerned about was however the same as in my patch
+> > and the rockchip one, that if the tegra hardware isn't clocked the
+> > pm_runtime_get_sync() (which would turn on power and clock) happens
+> > after setting up the msi chain handler...
+> > 
+> > > but I am actually in favor of speculatively fixing drivers even though
+> > > they're hard to test.  Code like this tends to get copied to other
+> > > places, and fixing several drivers sometimes exposes opportunities for
+> > > refactoring and sharing code.
+> > > 
+> > 
+> > Looking through the other cases mentioned in your reply above certainly
+> > gives a feeling that this problem has been inherited from driver to
+> > driver...
+> > 
+> > I've added a ticket to my backlog to take a deeper look at this.
 > 
-> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> index 3dfeae8912df..8e0ba87db030 100644
-> --- a/drivers/of/Kconfig
-> +++ b/drivers/of/Kconfig
-> @@ -55,12 +55,14 @@ config OF_KOBJ
->  # Hardly any platforms need this.  It is safe to select, but only do so if you
->  # need it.
->  config OF_DYNAMIC
-> -	bool "Support for dynamic device trees" if OF_UNITTEST
-> +	bool "Support for dynamic device trees"
->  	select OF_KOBJ
->  	help
->  	  On some platforms, the device tree can be manipulated at runtime.
-> -	  While this option is selected automatically on such platforms, you
-> -	  can enable it manually to improve device tree unit test coverage.
-> +	  With this option enabled, device tree nodes that are marked with
-> +	  the "dynamic" property can have their status toggled between
-> +	  "okay" and "reserved" via sysfs.  This can also be enabled to
-> +	  increase test coverage with CONFIG_OF_UNITTEST if desired.
->  
->  config OF_ADDRESS
->  	def_bool y
+> Vidya, can you look into this please ? In the meantime I would merge
+> this series.
 > 
 
-The help message should be extended to explain the impact of enabling
-OF_DYNAMIC manually (as opposed to auto selected) - it will be to
-allow writes to a node's "status" property in sysfs if the node contains
-a true value for the "dynamic" property.
+I would greatly appreciate that, as it unlocks 5G connectivity and NVME
+support on my laptop. I still intend to review the items Bjorn pointed
+out, but I haven't gotten there yet.
+
+Thanks,
+Bjorn
+
+> Thanks,
+> Lorenzo
+> 
+> > 
+> > Regards,
+> > Bjorn
