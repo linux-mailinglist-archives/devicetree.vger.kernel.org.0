@@ -2,150 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2744F4270EB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 20:46:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8713A4270FA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 20:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231245AbhJHSsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 14:48:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50188 "EHLO
+        id S239577AbhJHSxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 14:53:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbhJHSsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 14:48:22 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2752C061762
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 11:46:26 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id g6so23164562ybb.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 11:46:26 -0700 (PDT)
+        with ESMTP id S239650AbhJHSxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 14:53:46 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A26C1C061755;
+        Fri,  8 Oct 2021 11:51:49 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id a16so6996489qvm.2;
+        Fri, 08 Oct 2021 11:51:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7cPY3v1LzlioKfdhDOw7Hm3RkTquyHY7MkNmossNAIo=;
-        b=Nlof5WbhDqBjYqgMvc96/D8WqHy+mHAz4nkyQ5wCmn1lCOfLCq6DllC+M78UmTy9Gg
-         nx43NobVwOd7zEmzGHpvZhu2KzQBW/yHkXpzskzWAG/T1dvfcjaSWO53aEqE2ox1a40Q
-         XmzDxVx6kSdmOWqXaEmXjq2Op4AqzjgHwfr7k=
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5OFGDuHzExZ6YP988U4dV7DWZHlKPehmZBF+7HQaBd4=;
+        b=Qbr3DjwRQJiFCz/iZijzIywpO9gCHA83P1c+1KydCmVze/r0EwFdTeeu24sNlZX96O
+         9A+DS6Cpvkt6iHDlPpkFmu/XxP96aZ3ba9QTR/InvaMd0U/3rWghVRbmJ8ONFjxF6md8
+         l3j4fQoOYxHp5mkDrlrUxsBUdknMPJQzVTk55BhwbtsbZzhMyIjfTeZCzZVyEqb5oXwz
+         0vcV/vatVoyMPUNl0xtLA6iyd6DHt2wRvGGZecH3X6V/2PtrPeOCYomGDGXaToYT7jMG
+         OSU0DOQWpz1hfkxuB5Ac9Id6wmDDe6piU/MLnzS3VyrcQs9MCTQY8+Y3qvOhBaM8ywHm
+         r2kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7cPY3v1LzlioKfdhDOw7Hm3RkTquyHY7MkNmossNAIo=;
-        b=lHSgW/qz1hYNtg/lygy6b5r6ZIWeH3YcLV9O/APLnyOI8F+x1Duo4y6oIo9OPHCgx4
-         CTekcpbRfhQQzHyN+WR6O5P2Ti0qI6/eAZA1IzgKx+AGs1D/j0DxW25r/NQ2ZNqmPPBW
-         XpZZx7f58OJ6FIanBY2fIA9pph7gsRT0+n4Qwv4VFx1W8c9Ad2NdmeU4QmSyyiiC27aI
-         QZqPXll4Z7jY07U05Q8ov0wrctH+cLD9fhvC20AanUUFth2SbnQ5BDKQcN2VV/+DidtN
-         pIvBr7frGVMzl6kwfun16d1k7bLblztXNGVECX74+pZwBZNRf2cOliBcp72YSbWCAkiv
-         J5uQ==
-X-Gm-Message-State: AOAM532aUDG9lRYvB2ggnHAYFlEAn5/6HSjoj9DcwoHTzGeBMZeb25xB
-        cXqHrjrq3nma4XLxFRfJ+v+R1A8sDVktERG9qGIRtQ==
-X-Google-Smtp-Source: ABdhPJyZUwO5Ug3lqnQigymhQvAaymbLFwuwZq10/tTMgr15nkxW87dHUuBkdt8PbeVpF2+LXnrOXo3L7SKHl9dnIBI=
-X-Received: by 2002:a25:7c07:: with SMTP id x7mr5469298ybc.217.1633718786049;
- Fri, 08 Oct 2021 11:46:26 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5OFGDuHzExZ6YP988U4dV7DWZHlKPehmZBF+7HQaBd4=;
+        b=qZq7A3cjZS0vhDHu5PUbWnUWbHxzWY1liEr4ueJqaGKqpfDV7uIQy9JqP8V939geIo
+         tNqrDczoBmxcQ3VM7R3qFprQ6cpgkSqrghC4iqtGI6z9lVliVNXemMDLYy2pQPLWZrON
+         leQOpO1WkvB9BqEJzE3+gHbhYYhG/4eDV1RIXqACKBJoqfGROUfMbiqwMELhVD1eGIYW
+         LnRdI7acSwL0eIDT4qVX7DfbM2Cwn/lkvpo6m15o59pKcdta9F5EEaQALl2B8tWzBCut
+         oVzfbT5CwbT4qu9RD7N3SZ/bkNFj5XaKus6ghTpQ2SeJiMy88vXt3asIn/eUIRr8X2PD
+         SZ5w==
+X-Gm-Message-State: AOAM530Q7HqX3CSy6Ri+RTzKHjwV7o4q07fcKRcBZVl/bDqFG0B6iViV
+        eZ36ThPSBGIyCM/dU/IfaMLGVSQG7K0=
+X-Google-Smtp-Source: ABdhPJwIdJPfZHh0U1VqbIp0YlYn56ZGOs1BCLi+ARFJUQB0lk32U3CgXOpqvhg+L8Lj33UkotzwYg==
+X-Received: by 2002:a0c:b4c9:: with SMTP id h9mr11768089qvf.6.1633719108780;
+        Fri, 08 Oct 2021 11:51:48 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id p190sm175319qkf.15.2021.10.08.11.51.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Oct 2021 11:51:48 -0700 (PDT)
+Subject: Re: [PATCH 6/9] of: add support for 'dynamic' DT property
+To:     Zev Weiss <zev@bewilderbeest.net>, openbmc@lists.ozlabs.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211007000954.30621-1-zev@bewilderbeest.net>
+ <20211007000954.30621-7-zev@bewilderbeest.net>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <7bf5cfce-e84d-f0e8-e6e8-8e6fedffd154@gmail.com>
+Date:   Fri, 8 Oct 2021 13:51:47 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
- <20210929173343.v2.3.I630340a51130f4582dbe14e42f673b74e0531a2b@changeid>
- <CAE-0n53EBvKv-RdMwiiOsUkb+LOKAKwrpP7cDavx4meA2vbvcA@mail.gmail.com>
- <CAD=FV=XoOhSNP2EXurkA=G9iG2BnH9VzkvSEiNJ8W71s8N9bgg@mail.gmail.com> <CA+cxXhkM9Gzc+0EVapZVu=pJZ3WZawgucG5J2=bokYEJXFNKCQ@mail.gmail.com>
-In-Reply-To: <CA+cxXhkM9Gzc+0EVapZVu=pJZ3WZawgucG5J2=bokYEJXFNKCQ@mail.gmail.com>
-From:   Philip Chen <philipchen@chromium.org>
-Date:   Fri, 8 Oct 2021 11:46:15 -0700
-Message-ID: <CA+cxXh=1D08O6EcC4Xq6+cCEthCtXfASOfGW38z=FhkmW3ce9g@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: sc7180: Support Parade ps8640 edp bridge
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211007000954.30621-7-zev@bewilderbeest.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On 10/6/21 7:09 PM, Zev Weiss wrote:
+> Nodes marked with this (boolean) property will have a writable status
+> sysfs file, which can be used to toggle them between "okay" and
+> "reserved", effectively hot-plugging them.  Note that this will only
+> be effective for devices on busses that register for OF reconfig
+> notifications (currently spi, i2c, and platform), and only if
+> CONFIG_OF_DYNAMIC is enabled.
+> 
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> ---
+>  drivers/of/kobj.c | 69 +++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+> 
+> diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
+> index 378cb421aae1..141ae23f3130 100644
+> --- a/drivers/of/kobj.c
+> +++ b/drivers/of/kobj.c
+> @@ -36,6 +36,69 @@ static ssize_t of_node_property_read(struct file *filp, struct kobject *kobj,
+>  	return memory_read_from_buffer(buf, count, &offset, pp->value, pp->length);
+>  }
+>  
+> +static ssize_t of_node_status_write(struct file *filp, struct kobject *kobj,
+> +                                    struct bin_attribute *bin_attr, char *buf,
+> +                                    loff_t offset, size_t count)
+> +{
+> +	int rc;
+> +	char *newstatus;
+> +	struct property **deadprev;
+> +	struct property *newprop = NULL;
+> +	struct property *oldprop = container_of(bin_attr, struct property, attr);
+> +	struct device_node *np = container_of(kobj, struct device_node, kobj);
+> +
+> +	if (WARN_ON_ONCE(strcmp(oldprop->name, "status")))
+> +		return -EIO;
+> +
+> +	if (offset)
+> +		return -EINVAL;
+> +
+> +	if (sysfs_buf_streq(buf, count, "okay") || sysfs_buf_streq(buf, count, "ok"))
+> +		newstatus = "okay";
+> +	else if (sysfs_buf_streq(buf, count, "reserved"))
+> +		newstatus = "reserved";
+> +	else if (sysfs_buf_streq(buf, count, "disabled"))
+> +		newstatus = "disabled";
+> +	else
+> +		return -EINVAL;
+> +
+> +	if (!strcmp(newstatus, oldprop->value))
+> +		return count;
+> +
 
-On Thu, Oct 7, 2021 at 11:15 AM Philip Chen <philipchen@chromium.org> wrote:
->
-> Hi,
->
-> On Thu, Sep 30, 2021 at 9:22 AM Doug Anderson <dianders@chromium.org> wrote:
-> >
-> > Hi,
-> >
-> > On Wed, Sep 29, 2021 at 9:02 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > >
-> > > > +       pp3300_brij_ps8640: pp3300-brij-ps8640 {
-> > > > +               compatible = "regulator-fixed";
-> > > > +               status = "okay";
-> > > > +               regulator-name = "pp3300_brij_ps8640";
-> > > > +
-> > > > +               regulator-min-microvolt = <3300000>;
-> > > > +               regulator-max-microvolt = <3300000>;
-> > > > +
-> > > > +               gpio = <&tlmm 32 GPIO_ACTIVE_HIGH>;
-> > >
-> > > Doesn't this need
-> > >
-> > >                 enable-active-high;
-> >
-> > Looks like it. Without that it looks like it assumes active low.
-> Thanks for catching this.
-> I'll fix it in v3.
->
-> >
-> >
-> > > > +
-> > > > +               pinctrl-names = "default";
-> > > > +               pinctrl-0 = <&en_pp3300_edp_brij_ps8640>;
-> > > > +
-> > > > +               vin-supply = <&pp3300_a>;
-> > > > +       };
-> > > > +};
-> > > > +
-> > > > +&dsi0_out {
-> > > > +       remote-endpoint = <&ps8640_in>;
-> > >
-> > > Should this also have data-lanes to be "complete"?
-> >
-> > That's still back in the main trogdor.dtsi, isn't it?
-> Yes, I think so.
-> Plus, ti-sn65 dts doesn't define data-lanes for input either.
-Sorry, I was wrong.
-ti-sn65 dts actually defines data-lanes for input.
-However, since ps8640 driver doesn't parse input data-lanes for now,
-it's not useful to add data-lanes here anyway.
+If the general approach of this patch set is the correct way to provide the desired
+functionality (I'm still pondering that), then a version of the following code
+probably belongs in drivers/of/dynamic.c so that it is easier to maintain and keep
+consistent with other dynamic devicetree updates.  If you look at the code there
+that touches deadprops (eg __of_changeset_entry_apply()) you will notice that the
+locking issues are more extensive than what is implemented here.
 
->
-> >
-> >
-> > > > +edp_brij_i2c: &i2c2 {
-> > > > +       status = "okay";
-> > > > +       clock-frequency = <400000>;
-> > > > +
-> > > > +       ps8640_bridge: edp-bridge@8 {
-> > >
-> > > Just bridge@8 to match ti bridge? Also, is the label used? If not
-> > > please drop it.
-> >
-> > I agree with Stephen about it being "bridge@8". Personally I don't
-> > mind labels like this even if they're not used since they don't hurt
-> > and it creates less churn to add them now, but I won't fight hard to
-> > keep them.
-> I will make it "bridge@8" to match ti-sn65 dts.
-> Meanwhile, can we keep "ps8640_bridge" label to match ti-sn65 dts?
->
-> >
-> >
-> > > > +               aux_bus: aux-bus {
-> > >
-> > > Is this label used either?
-> >
-> > Yeah, I'd get rid of this one since there you didn't add it in the
-> > sn65dsi86 dtsi file and it seems exceedingly unlikely we'd need it for
-> > any reason.
-> Sure, I will remove "aux_bus" label in v3.
->
-> >
-> > -Doug
+I'm still thinking about how this interacts with other forms of dynamic devicetree
+changes (eg drivers/of/dynamic.c and also overlays).
+
+> +	/*
+> +	 * of_update_property_self() doesn't free replaced properties, so
+> +	 * rifle through deadprops first to see if there's an equivalent old
+> +	 * status property we can reuse instead of allocating a new one.
+> +	 */
+> +	mutex_lock(&of_mutex);
+> +	for (deadprev = &np->deadprops; *deadprev; deadprev = &(*deadprev)->next) {
+> +		struct property *deadprop = *deadprev;
+> +		if (!strcmp(deadprop->name, "status") &&
+> +		    deadprop->length == strlen(newstatus) + 1 &&
+> +		    !strcmp(deadprop->value, newstatus)) {
+> +			*deadprev = deadprop->next;
+> +			deadprop->next = NULL;
+> +			newprop = deadprop;
+> +			break;
+> +		}
+> +	}
+> +	mutex_unlock(&of_mutex);
+> +
+> +	if (!newprop) {
+> +		newprop = kzalloc(sizeof(*newprop), GFP_KERNEL);
+> +		if (!newprop)
+> +			return -ENOMEM;
+> +
+> +		newprop->name = oldprop->name;
+> +		newprop->value = newstatus;
+> +		newprop->length = strlen(newstatus) + 1;
+> +	}
+> +
+> +	rc = of_update_property_self(np, newprop, true);
+
+-Frank
+
+> +
+> +	return rc ? rc : count;
+> +}
+> +
+>  /* always return newly allocated name, caller must free after use */
+>  static const char *safe_name(struct kobject *kobj, const char *orig_name)
+>  {
+> @@ -79,6 +142,12 @@ int __of_add_property_sysfs(struct device_node *np, struct property *pp)
+>  	pp->attr.size = secure ? 0 : pp->length;
+>  	pp->attr.read = of_node_property_read;
+>  
+> +	if (!strcmp(pp->name, "status") && of_property_read_bool(np, "dynamic")) {
+> +		pp->attr.attr.mode |= 0200;
+> +		pp->attr.write = of_node_status_write;
+> +		pp->attr.growable = true;
+> +	}
+> +
+>  	rc = sysfs_create_bin_file(&np->kobj, &pp->attr);
+>  	WARN(rc, "error adding attribute %s to node %pOF\n", pp->name, np);
+>  	return rc;
+> 
+
