@@ -2,96 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD37E427161
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:23:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7146427167
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 21:27:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240480AbhJHTZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 15:25:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59126 "EHLO mail.kernel.org"
+        id S231342AbhJHT24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 15:28:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32852 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231316AbhJHTZA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 15:25:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 117736120C
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 19:23:05 +0000 (UTC)
+        id S231316AbhJHT2z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 15:28:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 243BE61073;
+        Fri,  8 Oct 2021 19:27:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633720985;
-        bh=5SF9dAQW84jt+sFJIXPvCVpma/lc66zeyItpvZ+6RXg=;
+        s=k20201202; t=1633721220;
+        bh=QnbMDhIm9HL7pJkR672kGyuF+7MeVCbdnt2qg7XEDQs=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=duxnZbDDhRFt2DYY2k+KtpZd341YTFw2E++JmibZxOePdA1uYk7PYUgqqEK7Bxp7g
-         48bWedzW1aBv1rDXSdb36hBfz5asvI4lE9nf3AfpPktrMCJeshg6YWA1VQ7hjkLuId
-         1XNHLYTXeWj620cGNH6bEJ2Lh7pALoP/CNrbLICZgvXMEPIyD+Mpitt/6/VfIu3xb8
-         9kO46AT8ATy71GkJyPiMDTyEBN7BHa6KqeKKh9P58DXcEv6kQ6rQ+HgytPUbNV7wV/
-         oAhYrCNta1b+2SAaGKLnpzJXsRUGOgbCytJXVTSIhlVrZOGZLMjOkT2CFbBoBf/tlW
-         63MiAgjRue8Ng==
-Received: by mail-ed1-f43.google.com with SMTP id r18so40190172edv.12
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 12:23:04 -0700 (PDT)
-X-Gm-Message-State: AOAM531/ARq6s8rBRp/snQhjlx4iB9buGXjoMWvrRCbFO2Rt/HnXYUXE
-        3MtN9U85X7mzEMqpJrwg9zNKO5PEh9yrMJuyFQ==
-X-Google-Smtp-Source: ABdhPJxr7vbwJkVU68Z/WBrwgn3iBRzg21K4k9yDQrYFJDFFABiWOPU2nd41CzNLw9EUzaKIPjJsRp/+6QDJwN43BCk=
-X-Received: by 2002:a17:906:9399:: with SMTP id l25mr6294212ejx.363.1633720983371;
- Fri, 08 Oct 2021 12:23:03 -0700 (PDT)
+        b=S2irSZZb9tAfaQp/1hWnVHqEgXPHPRSFy3Jo9wgAjYJVOBJqcvE8qAWuH5FWtfihQ
+         7HZaRqR3/zgL7coZpXpoVoEUAzz+N4cIlzYUCs6mwhSnQLph/3iYzNVqDnw9mebWq+
+         9Xfb4IJCP2a3J+iXGjQoA7cbq1KyS89E802O2sJhBU6L5ypR3U8QagieZa9jN8Apzc
+         OpBTBnGaY4bPjvus9a5DgsFnR23lWuUYab1E2l7L5cW8S3iSezbWe3nfAA3OHP9NfX
+         /n7OvAOeMxwskm1yR0pn1X8hJpDV5PATi3ti0cPqbWBU/ZqKi+wf98w/Vz9ZiZu1xc
+         YMn6clcnlPzMQ==
+Received: by mail-ed1-f48.google.com with SMTP id b8so40123741edk.2;
+        Fri, 08 Oct 2021 12:27:00 -0700 (PDT)
+X-Gm-Message-State: AOAM5329Jp6QCnA5JVDQsibVFHTJ/bPehWwneOGrcP2lIy1O+ZPb1494
+        QhrfpdPrb45YttNlhldOupDK3qCPKG+NUlBwNw==
+X-Google-Smtp-Source: ABdhPJz+IaG9foJegj3syUX1Q/KhZ5o+aDRniyboqmQtQ+omUebDWUdPCNHXTCAG+ENu05ulqk/trTBuMHOfiThknVM=
+X-Received: by 2002:a05:6402:44c:: with SMTP id p12mr17558796edw.145.1633721218518;
+ Fri, 08 Oct 2021 12:26:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211006113950.10782-1-srinivas.kandagatla@linaro.org>
- <20211006113950.10782-9-srinivas.kandagatla@linaro.org> <1633547293.527218.2218062.nullmailer@robh.at.kernel.org>
- <4e70e1e3-162e-13c0-5cbd-0135d2585e96@linaro.org>
-In-Reply-To: <4e70e1e3-162e-13c0-5cbd-0135d2585e96@linaro.org>
+References: <1632625630-784-1-git-send-email-shengjiu.wang@nxp.com>
+ <1632625630-784-5-git-send-email-shengjiu.wang@nxp.com> <YVTrbPC4/ir974xs@robh.at.kernel.org>
+ <CAA+D8ANdQQFuPh_F8DZka+Y6hVDGuT8BvRfWdUFJxHd5JTQPNA@mail.gmail.com>
+ <CAL_JsqK2KHfDisDXsuyWX0P99uY+nmEG72AsNUmqGRjJKHmg_Q@mail.gmail.com>
+ <CAA+D8ANDP0ZPFKbRaYCwD+8zE3qvckKo9JjXwNBFUPrJ66=idw@mail.gmail.com> <CAA+D8AMLn6Hn4P9U38dPKFO1z4k5x1Nf43X2ej6ohNY9O8Z+tQ@mail.gmail.com>
+In-Reply-To: <CAA+D8AMLn6Hn4P9U38dPKFO1z4k5x1Nf43X2ej6ohNY9O8Z+tQ@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 8 Oct 2021 14:22:51 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK6ankPjqXO9jghPQ7y7FHFM-8K-pyPHeE8oNa98eeauQ@mail.gmail.com>
-Message-ID: <CAL_JsqK6ankPjqXO9jghPQ7y7FHFM-8K-pyPHeE8oNa98eeauQ@mail.gmail.com>
-Subject: Re: [PATCH v9 08/17] ASoC: dt-bindings: add q6apm digital audio
- stream bindings
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>, Takashi Iwai <tiwai@suse.de>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Jaroslav Kysela <perex@perex.cz>,
+Date:   Fri, 8 Oct 2021 14:26:47 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJOZBPNZBv=Q32myz5SvvZ4Nifv88zWecu=6zxNqynAEA@mail.gmail.com>
+Message-ID: <CAL_JsqJOZBPNZBv=Q32myz5SvvZ4Nifv88zWecu=6zxNqynAEA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] dt-bindings: dsp: fsl: update binding document for
+ remote proc driver
+To:     Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Ohad Ben Cohen <ohad@wizery.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 7, 2021 at 3:23 AM Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
+On Fri, Oct 8, 2021 at 2:19 AM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
 >
->
->
-> On 06/10/2021 20:08, Rob Herring wrote:
-> > On Wed, 06 Oct 2021 12:39:41 +0100, Srinivas Kandagatla wrote:
-> >> On AudioReach audio Framework, Audio Streams (PCM/Compressed) are managed by
-> >> Q6APM(Audio Process Manager) service. This patch adds bindings for this DAIs
-> >> exposed by the DSP.
-> >>
-> >> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >> ---
-> >>   .../bindings/sound/qcom,q6apm-dai.yaml        | 53 +++++++++++++++++++
-> >>   1 file changed, 53 insertions(+)
-> >>   create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
-> >>
+> On Fri, Oct 8, 2021 at 12:12 PM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
 > >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > Hi Rob
 > >
-> > yamllint warnings/errors:
+> > On Sat, Oct 2, 2021 at 12:40 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Wed, Sep 29, 2021 at 9:34 PM Shengjiu Wang <shengjiu.wang@gmail.com> wrote:
+> > > >
+> > > > Hi Rob
+> > > >
+> > > > On Thu, Sep 30, 2021 at 6:40 AM Rob Herring <robh@kernel.org> wrote:
+> > > > >
+> > > > > On Sun, Sep 26, 2021 at 11:07:10AM +0800, Shengjiu Wang wrote:
+> > > > > > As there are two drivers for DSP on i.MX, one is for sound open
+> > > > > > firmware, another is for remote processor framework. In order to
+> > > > > > distinguish two kinds of driver, defining different compatible strings.
+> > > > > >
+> > > > > > For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
+> > > > > > are needed and the mailbox channel is different with SOF.
+> > > > > >
+> > > > > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > > > > > Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > > > > > ---
+> > > > > >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
+> > > > > >  1 file changed, 75 insertions(+), 6 deletions(-)
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > > > > > index 7afc9f2be13a..51ea657f6d42 100644
+> > > > > > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > > > > > @@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
+> > > > > >
+> > > > > >  maintainers:
+> > > > > >    - Daniel Baluta <daniel.baluta@nxp.com>
+> > > > > > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> > > > > >
+> > > > > >  description: |
+> > > > > >    Some boards from i.MX8 family contain a DSP core used for
+> > > > > > @@ -19,6 +20,10 @@ properties:
+> > > > > >        - fsl,imx8qxp-dsp
+> > > > > >        - fsl,imx8qm-dsp
+> > > > > >        - fsl,imx8mp-dsp
+> > > > > > +      - fsl,imx8qxp-hifi4
+> > > > > > +      - fsl,imx8qm-hifi4
+> > > > > > +      - fsl,imx8mp-hifi4
+> > > > > > +      - fsl,imx8ulp-hifi4
+> > > > > >
+> > > > > >    reg:
+> > > > > >      maxItems: 1
+> > > > > > @@ -28,37 +33,63 @@ properties:
+> > > > > >        - description: ipg clock
+> > > > > >        - description: ocram clock
+> > > > > >        - description: core clock
+> > > > > > +      - description: debug interface clock
+> > > > > > +      - description: message unit clock
+> > > > > > +    minItems: 3
+> > > > > > +    maxItems: 5
+> > > > >
+> > > > > Don't need maxItems.
+> > > >
+> > > > Ok, I will update it.
+> > > >
+> > > > >
+> > > > > >
+> > > > > >    clock-names:
+> > > > > >      items:
+> > > > > >        - const: ipg
+> > > > > >        - const: ocram
+> > > > > >        - const: core
+> > > > > > +      - const: debug
+> > > > > > +      - const: mu
+> > > > > > +    minItems: 3
+> > > > > > +    maxItems: 5
+> > > > >
+> > > > > ditto
+> > > >
+> > > > Ok, I will update it.
+> > > >
+> > > > >
+> > > > > >
+> > > > > >    power-domains:
+> > > > > >      description:
+> > > > > >        List of phandle and PM domain specifier as documented in
+> > > > > >        Documentation/devicetree/bindings/power/power_domain.txt
+> > > > > > +    minItems: 1
+> > > > >
+> > > > > This is curious. The h/w sometimes has fewer power domains?
+> > > >
+> > > > On i.MX8QM/8QXP,  there are independent power domains for DSP core,
+> > > > DSP's RAM and DSP's MU.
+> > > > But on i.MX8MP, all these DSP components are in same audio subsystem
+> > > > There is only one power domain for whole audio subsystem,  when
+> > > > power on audio subsystem, the DSP's components are powered on also.
+> > > >
+> > > > So the number of power domain depends on how the DSP component
+> > > > integrated in SoC.
+> > >
+> > > Sounds like you can write an if/then schema for this difference.
+> > >
 > >
-> > dtschema/dtc warnings/errors:
-> > Documentation/devicetree/bindings/sound/qcom,q6apm-dai.example.dts:19:18: fatal error: dt-bindings/soc/qcom,gpr.h: No such file or directory
-> >     19 |         #include <dt-bindings/soc/qcom,gpr.h>
+> > I try this:
+> >
+> > allOf:
+> >   - if:
+> >       properties:
+> >         compatible:
+> >           contains:
+> >             enum:
+> >               - fsl,imx8mp-hifi4
+> >               - fsl,imx8mp-dsp
+> >
+> >     then:
+> >       properties:
+> >         power-domains:
+> >           maxItems: 1
+> >
+> >     else:
+> >       properties:
+> >         power-domains:
+> >           maxItems: 4
+> >
+> >
+> > But the dt_binding_check report error:
+> >   DTEX    Documentation/devicetree/bindings/dsp/fsl,dsp.example.dts
+> >   DTC     Documentation/devicetree/bindings/dsp/fsl,dsp.example.dt.yaml
+> >   CHECK   Documentation/devicetree/bindings/dsp/fsl,dsp.example.dt.yaml
+> > /opt/alsa/sound/Documentation/devicetree/bindings/dsp/fsl,dsp.example.dt.yaml:
+> > dsp@3b6e8000: power-domains: [[4294967295]] is too short
+> >         From schema:
+> > /opt/alsa/sound/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> >
+> > I don't know the reason, could you please help to have a look what
+> > is wrong?
 >
-> This is because QCOM SoC relevant non-audio patches in this series have
-> been merged into the Qualcomm drivers-for-5.16 tree, as this series
-> depends those patches an immutable tag is available at:
-> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
-> tags/20210927135559.738-6-srinivas.kandagatla@linaro.org
->
-> which is mentioned in cover-letter.
+> Seems still need to add "minItems" in original power-domains besides
+> if/then schema. otherwise the dt_binding_check report above
+> error.
 
-My bot doesn't know how to read cover letters. I need a clue in the
-patch or you get this email to be sure the dependency is known.
+Yes, that's right. The main section has to pass for all cases, so you
+need the maximum range (1-4 items).
 
 Rob
