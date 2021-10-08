@@ -2,337 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3BFF426A0E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 13:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A36014269CE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 13:41:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242630AbhJHLro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 07:47:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243144AbhJHLrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 07:47:07 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1891C08C5E7;
-        Fri,  8 Oct 2021 04:32:18 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id t2so28806065wrb.8;
-        Fri, 08 Oct 2021 04:32:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=DXpoD3oDZrKV8QtdRuxL6pqOpnLAebcj0SdO2ln/m4Q=;
-        b=JoHG/uBTZMFntcRACH/l+sr2pkbeCEVIUKfEOvxMk1fWVn5q2LHM8DZPmPRFJOd52s
-         ZxJjmOKW7/QvhflfrNabweN1S65/lH0zjlKxZc/tygVFjih2yS5wafk843o/KTHTQqxu
-         cLmgYxNVKLp0zRTVXcyzCb4xKK2ttp+eSzIAK8ANBjfwTbhK2zqnajKjiYzE/YVdVdj1
-         S09HZ567+0FgaGV91WbgLql6DD/pfjWbDUawiWYgNQHCqoWyTXm9VU0UGaTaGSs4Mhpn
-         kUzdalLUqugjbrsf26a6oUuO+IF92o2rPDRvJjYCvHKknFCsH5FpRaF4+ujGXsyiOOQK
-         oh2Q==
+        id S230147AbhJHLmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 07:42:07 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:33554
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241603AbhJHLkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 07:40:00 -0400
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 778934000F
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 11:38:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633693084;
+        bh=aTSEz98+bylpmPPcNopQa23h1tajKRR6XK7sZAFZg1k=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=LwfWPQ978SogYXqg0QEhZaIt73YOlvGE6NpF/m7ST3bVX9cg8GBUCNAfJ6JuCLWIU
+         RHmO0+4eMSK6cMncCOoA3JaTeJJ4upNR6Qsj1oRqku1SJzCjEnJ92C4SAJ1ULhth+M
+         RQopOaDjJwM1OG8WssFdzp1oMcfCu9ljIWZiLFahqp8Wy025oKHyrqN/KLhGoo4igB
+         yJEXlG/vH4XrSVkzFT+GVPR8MHue0DwUHEJF3r4qlIveOlRhM0IqTlMpgM+TLsyLG9
+         6CP4qsv5t0Jow2DvB6u7PmjUEzePnzwcAFa+SSeaAWi++EP/ghHef54n2OMiHjJdN7
+         zdINtHbK/qjig==
+Received: by mail-ed1-f69.google.com with SMTP id v9-20020a50d849000000b003db459aa3f5so6330516edj.15
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 04:38:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=DXpoD3oDZrKV8QtdRuxL6pqOpnLAebcj0SdO2ln/m4Q=;
-        b=5z6rKZhK5RB/RE/aZhROrllO05ZGa6slHwp/EVv8Qja4AZztkGLcw4Jv0ClAg7l80c
-         ZMlOQAnj8bCMl1mPQhsyL1R3Xa2SO2yTSotpoO4Vp2DX9eAymzJzzz057TNIj816Y8Ri
-         ULm2C+1oHQ0/UDo9I1zgoeKY+iPkRy9pRVY/EZxZu1emv2W+5WWNBB5g1cAigcPTQBzL
-         pm6jtdBG5gi4j/Hl2EEZxcLVa6IG/IM4fuZOr33Zdjq6qJgaTyA+WwzauuMsbCYEWbtp
-         7hff7gAKCQriY4Q41Pia3jJguOrKKjNrDWWPiXOTOgZOXtSUNasJFQzEuTl6BPPeJXsZ
-         YQvQ==
-X-Gm-Message-State: AOAM5314aeQxOqbFII/3P93BXVivsPwNdHupTXRwu/Ao/hnN8SI0rsGB
-        zbUSdrxEAfU2BVvKuVPWArY=
-X-Google-Smtp-Source: ABdhPJzRugL91kPs3CreYLsjNr8KP8wyVH+RlXWJS54eDst45B5cQSXmo6JVBJbr4/pB/eUoCUmMDg==
-X-Received: by 2002:a5d:5889:: with SMTP id n9mr3464217wrf.248.1633692737420;
-        Fri, 08 Oct 2021 04:32:17 -0700 (PDT)
-Received: from [192.168.2.177] ([206.204.146.29])
-        by smtp.gmail.com with ESMTPSA id o6sm3272001wri.49.2021.10.08.04.32.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 04:32:16 -0700 (PDT)
-Message-ID: <9e038baa-9f2e-bc72-e4a7-f184a30ce57a@gmail.com>
-Date:   Fri, 8 Oct 2021 13:32:14 +0200
+        bh=aTSEz98+bylpmPPcNopQa23h1tajKRR6XK7sZAFZg1k=;
+        b=4wIhR1nFPNsKHelQWH7/FTSkeDz7WQ1LR8nupBhn0oOAq0iEpMpGmiTvWi206PhriW
+         myEqQ3/8w+RUtefExF4McggBnmJ6Vk8hQcVlxKaHT/3avN4B66y2Ks51qByGcR6qF/gv
+         sFh8PReg0OrZAGFZyNeIbUMlxK89C9ijxYKXqwCxhHuxmX8aWia6UCs4gRCcFxZT49Rz
+         Vg/JffjEd57e5iYbwRdeYxQ1Kbg/65V+GRzA4t8rpCqXZJ/1Do0ZDmsyiATqFXPuIwTZ
+         /Bq6qlITh2vg73VuwIXqtcIDcadIl1LscLoz38Dcn38FrrYGAql/KJRB7lGtpzlXvukw
+         LzSA==
+X-Gm-Message-State: AOAM531wbCMWvYs44SXZu4Y5Am+mQN3rq8K7bVJFGLGZqNvlCnH7947j
+        cqMiyT06025ocqoMryWZclb6qwTuhhoSsu0zlFS4WA8jeDgFDwpbTW+ET0c5Bf1WdZLksq1/uJL
+        rmx3yLb+tEjuvJM4Qvc/jsEdnX6Bv5o4//PErKKM=
+X-Received: by 2002:a05:6402:4405:: with SMTP id y5mr3069457eda.339.1633693084010;
+        Fri, 08 Oct 2021 04:38:04 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy8NR7U/YVnS2fiVyjL2cLT+NkCncwBCqM2zQeAmZ6DE79hAPBigKIL+nDpB77FDCkcqo6xhw==
+X-Received: by 2002:a05:6402:4405:: with SMTP id y5mr3069407eda.339.1633693083838;
+        Fri, 08 Oct 2021 04:38:03 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-186-13.adslplus.ch. [188.155.186.13])
+        by smtp.gmail.com with ESMTPSA id la1sm819948ejc.48.2021.10.08.04.38.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Oct 2021 04:38:03 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>
+Subject: [PATCH v4 00/10] regulator/mfd/clock: dt-bindings: Samsung S2M and S5M to dtschema
+Date:   Fri,  8 Oct 2021 13:37:12 +0200
+Message-Id: <20211008113723.134648-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH v10, 2/5] drm/mediatek: add component POSTMASK
-Content-Language: en-US
-To:     "yongqiang.niu" <yongqiang.niu@mediatek.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Hsin-Yi Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>
-References: <20210930155222.5861-1-yongqiang.niu@mediatek.com>
- <20210930155222.5861-3-yongqiang.niu@mediatek.com>
- <fffdc65c-9c74-3183-f8cf-293134144042@collabora.com>
- <3eff2cfb15677f03d6dcd724fd977ab48fe101aa.camel@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <3eff2cfb15677f03d6dcd724fd977ab48fe101aa.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi All,
+
+Changes since v2
+================
+1. Add Stephen's and Rob's tags.
+2. Correct inb-supply description in patch 10/10.
+
+Changes since v2
+================
+1. Add Rob's tags.
+2. Remove "regulator-name" from properties (all regulator dtschema).
+3. Move "unevaluatedProperties" higher to make code easier to read (all regulator dtschema).
+4. Add ref-type to op-mode property (patch 6: s5m8767 regulators).
+
+Changes since v1
+================
+1. Drop DTS patches - applied.
+2. Fully remove bindings/regulator/samsung,s5m8767.txt .
+3. Minor subject reformatting and few typos in text.
 
 
-On 08/10/2021 04:09, yongqiang.niu wrote:
-> On Fri, 2021-10-01 at 13:00 +0200, Dafna Hirschfeld wrote:
->>
->> On 30.09.21 17:52, Yongqiang Niu wrote:
->>> This patch add component POSTMASK.
->>>
->>> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
->>> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
->>> Reviewed-by: CK Hu <ck.hu@mediatek.com>
->>> ---
->>>    drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 102 ++++++++++++++-
->>> -----
->>>    drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
->>>    2 files changed, 73 insertions(+), 30 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
->>> b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
->>> index 4a2abcf3e5f9..89170ad825fd 100644
->>> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
->>> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
->>> @@ -62,6 +62,12 @@
->>>    #define DITHER_ADD_LSHIFT_G(x)			(((x) & 0x7) <<
->>> 4)
->>>    #define DITHER_ADD_RSHIFT_G(x)			(((x) & 0x7) <<
->>> 0)
->>>    
->>> +#define DISP_POSTMASK_EN			0x0000
->>> +#define POSTMASK_EN					BIT(0)
->>> +#define DISP_POSTMASK_CFG			0x0020
->>> +#define POSTMASK_RELAY_MODE				BIT(0)
->>> +#define DISP_POSTMASK_SIZE			0x0030
->>> +
->>>    struct mtk_ddp_comp_dev {
->>>    	struct clk *clk;
->>>    	void __iomem *regs;
->>> @@ -214,6 +220,32 @@ static void mtk_dither_stop(struct device
->>> *dev)
->>>    	writel_relaxed(0x0, priv->regs + DISP_DITHER_EN);
->>>    }
->>>    
->>> +static void mtk_postmask_config(struct device *dev, unsigned int
->>> w,
->>> +				unsigned int h, unsigned int vrefresh,
->>> +				unsigned int bpc, struct cmdq_pkt
->>> *cmdq_pkt)
->>> +{
->>> +	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
->>> +
->>> +	mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv-
->>>> regs,
->>> +		      DISP_POSTMASK_SIZE);
->>> +	mtk_ddp_write(cmdq_pkt, POSTMASK_RELAY_MODE, &priv->cmdq_reg,
->>> +		      priv->regs, DISP_POSTMASK_CFG);
->>> +}
->>> +
->>> +static void mtk_postmask_start(struct device *dev)
->>> +{
->>> +	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
->>> +
->>> +	writel(POSTMASK_EN, priv->regs + DISP_POSTMASK_EN);
->>> +}
->>> +
->>> +static void mtk_postmask_stop(struct device *dev)
->>> +{
->>> +	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
->>> +
->>> +	writel_relaxed(0x0, priv->regs + DISP_POSTMASK_EN);
->>> +}
->>> +
->>>    static const struct mtk_ddp_comp_funcs ddp_aal = {
->>>    	.clk_enable = mtk_aal_clk_enable,
->>>    	.clk_disable = mtk_aal_clk_disable,
->>> @@ -289,6 +321,14 @@ static const struct mtk_ddp_comp_funcs ddp_ovl
->>> = {
->>>    	.bgclr_in_off = mtk_ovl_bgclr_in_off,
->>>    };
->>>    
->>> +static const struct mtk_ddp_comp_funcs ddp_postmask = {
->>> +	.clk_enable = mtk_ddp_clk_enable,
->>> +	.clk_disable = mtk_ddp_clk_disable,
->>> +	.config = mtk_postmask_config,
->>> +	.start = mtk_postmask_start,
->>> +	.stop = mtk_postmask_stop,
->>> +};
->>> +
->>>    static const struct mtk_ddp_comp_funcs ddp_rdma = {
->>>    	.clk_enable = mtk_rdma_clk_enable,
->>>    	.clk_disable = mtk_rdma_clk_disable,
->>> @@ -324,6 +364,7 @@ static const char * const
->>> mtk_ddp_comp_stem[MTK_DDP_COMP_TYPE_MAX] = {
->>>    	[MTK_DISP_MUTEX] = "mutex",
->>>    	[MTK_DISP_OD] = "od",
->>>    	[MTK_DISP_BLS] = "bls",
->>> +	[MTK_DISP_POSTMASK] = "postmask",
->>>    };
->>>    
->>>    struct mtk_ddp_comp_match {
->>> @@ -333,36 +374,37 @@ struct mtk_ddp_comp_match {
->>>    };
->>>    
->>>    static const struct mtk_ddp_comp_match
->>> mtk_ddp_matches[DDP_COMPONENT_ID_MAX] = {
->>> -	[DDP_COMPONENT_AAL0]	= { MTK_DISP_AAL,	0, &ddp_aal
->>> },
->>> -	[DDP_COMPONENT_AAL1]	= { MTK_DISP_AAL,	1, &ddp_aal
->>> },
->>> -	[DDP_COMPONENT_BLS]	= { MTK_DISP_BLS,	0, NULL },
->>> -	[DDP_COMPONENT_CCORR]	= { MTK_DISP_CCORR,	0,
->>> &ddp_ccorr },
->>> -	[DDP_COMPONENT_COLOR0]	= { MTK_DISP_COLOR,	0,
->>> &ddp_color },
->>> -	[DDP_COMPONENT_COLOR1]	= { MTK_DISP_COLOR,	1,
->>> &ddp_color },
->>> -	[DDP_COMPONENT_DITHER]	= { MTK_DISP_DITHER,	0,
->>> &ddp_dither },
->>> -	[DDP_COMPONENT_DPI0]	= { MTK_DPI,		0, &ddp_dpi
->>> },
->>> -	[DDP_COMPONENT_DPI1]	= { MTK_DPI,		1, &ddp_dpi
->>> },
->>> -	[DDP_COMPONENT_DSI0]	= { MTK_DSI,		0, &ddp_dsi
->>> },
->>> -	[DDP_COMPONENT_DSI1]	= { MTK_DSI,		1, &ddp_dsi
->>> },
->>> -	[DDP_COMPONENT_DSI2]	= { MTK_DSI,		2, &ddp_dsi
->>> },
->>> -	[DDP_COMPONENT_DSI3]	= { MTK_DSI,		3, &ddp_dsi
->>> },
->>> -	[DDP_COMPONENT_GAMMA]	= { MTK_DISP_GAMMA,	0,
->>> &ddp_gamma },
->>> -	[DDP_COMPONENT_OD0]	= { MTK_DISP_OD,	0, &ddp_od },
->>> -	[DDP_COMPONENT_OD1]	= { MTK_DISP_OD,	1, &ddp_od },
->>> -	[DDP_COMPONENT_OVL0]	= { MTK_DISP_OVL,	0, &ddp_ovl
->>> },
->>> -	[DDP_COMPONENT_OVL1]	= { MTK_DISP_OVL,	1, &ddp_ovl
->>> },
->>> -	[DDP_COMPONENT_OVL_2L0]	= { MTK_DISP_OVL_2L,	0, &ddp_ovl
->>> },
->>> -	[DDP_COMPONENT_OVL_2L1]	= { MTK_DISP_OVL_2L,	1, &ddp_ovl
->>> },
->>> -	[DDP_COMPONENT_OVL_2L2] = { MTK_DISP_OVL_2L,    2, &ddp_ovl },
->>> -	[DDP_COMPONENT_PWM0]	= { MTK_DISP_PWM,	0, NULL },
->>> -	[DDP_COMPONENT_PWM1]	= { MTK_DISP_PWM,	1, NULL },
->>> -	[DDP_COMPONENT_PWM2]	= { MTK_DISP_PWM,	2, NULL },
->>> -	[DDP_COMPONENT_RDMA0]	= { MTK_DISP_RDMA,	0,
->>> &ddp_rdma },
->>> -	[DDP_COMPONENT_RDMA1]	= { MTK_DISP_RDMA,	1,
->>> &ddp_rdma },
->>> -	[DDP_COMPONENT_RDMA2]	= { MTK_DISP_RDMA,	2,
->>> &ddp_rdma },
->>> -	[DDP_COMPONENT_UFOE]	= { MTK_DISP_UFOE,	0,
->>> &ddp_ufoe },
->>> -	[DDP_COMPONENT_WDMA0]	= { MTK_DISP_WDMA,	0, NULL },
->>> -	[DDP_COMPONENT_WDMA1]	= { MTK_DISP_WDMA,	1, NULL },
->>> +	[DDP_COMPONENT_AAL0]		= { MTK_DISP_AAL,	0,
->>> &ddp_aal },
->>> +	[DDP_COMPONENT_AAL1]		= { MTK_DISP_AAL,	1,
->>> &ddp_aal },
->>> +	[DDP_COMPONENT_BLS]		= { MTK_DISP_BLS,	0, NULL },
->>> +	[DDP_COMPONENT_CCORR]		= { MTK_DISP_CCORR,	0,
->>> &ddp_ccorr },
->>> +	[DDP_COMPONENT_COLOR0]		= { MTK_DISP_COLOR,	0,
->>> &ddp_color },
->>> +	[DDP_COMPONENT_COLOR1]		= { MTK_DISP_COLOR,	1,
->>> &ddp_color },
->>> +	[DDP_COMPONENT_DITHER]		= { MTK_DISP_DITHER,	0,
->>> &ddp_dither },
->>> +	[DDP_COMPONENT_DPI0]		= { MTK_DPI,		0,
->>> &ddp_dpi },
->>> +	[DDP_COMPONENT_DPI1]		= { MTK_DPI,		1,
->>> &ddp_dpi },
->>> +	[DDP_COMPONENT_DSI0]		= { MTK_DSI,		0,
->>> &ddp_dsi },
->>> +	[DDP_COMPONENT_DSI1]		= { MTK_DSI,		1,
->>> &ddp_dsi },
->>> +	[DDP_COMPONENT_DSI2]		= { MTK_DSI,		2,
->>> &ddp_dsi },
->>> +	[DDP_COMPONENT_DSI3]		= { MTK_DSI,		3,
->>> &ddp_dsi },
->>> +	[DDP_COMPONENT_GAMMA]		= { MTK_DISP_GAMMA,	0,
->>> &ddp_gamma },
->>> +	[DDP_COMPONENT_OD0]		= { MTK_DISP_OD,	0, &ddp_od
->>> },
->>> +	[DDP_COMPONENT_OD1]		= { MTK_DISP_OD,	1, &ddp_od
->>> },
->>> +	[DDP_COMPONENT_OVL0]		= { MTK_DISP_OVL,	0,
->>> &ddp_ovl },
->>> +	[DDP_COMPONENT_OVL1]		= { MTK_DISP_OVL,	1,
->>> &ddp_ovl },
->>> +	[DDP_COMPONENT_OVL_2L0]		= { MTK_DISP_OVL_2L,	0,
->>> &ddp_ovl },
->>> +	[DDP_COMPONENT_OVL_2L1]		= { MTK_DISP_OVL_2L,	1,
->>> &ddp_ovl },
->>> +	[DDP_COMPONENT_OVL_2L2]		= { MTK_DISP_OVL_2L,    2,
->>> &ddp_ovl },
->>> +	[DDP_COMPONENT_POSTMASK0]	= { MTK_DISP_POSTMASK,	0,
->>> &ddp_postmask },
->>
->> Hi, I can't see where is DDP_COMPONENT_POSTMASK0 defined.
->>
->> Thanks,
->> Dafna
-> 
-> it is defined in mtk_mmsys.h
-> 
-> 
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20210930155222.5861-3-yongqiang.niu@mediatek.com/
-> 
+Intro
+=====
+This patchset converts all devicetree bindings of Samsung S2M and S5M
+PMIC devices from txt to dtschema.
 
-That link is not really usefull. It's part of my maintainer repo:
-https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/log/?h=v5.15-next/soc
+It includes also two fixes because later conversion depends on it
+(contextually).
 
-My fault not having pushed that to linux-next.
 
-Regards,
-Matthias
+Merging/dependencies
+====================
+1. Regulator related binding changes depend on first two commits (the
+   fixes), because of context.
+2. The mfd bindings depend on clock and regulator bindings.
 
->>
->>> +	[DDP_COMPONENT_PWM0]		= { MTK_DISP_PWM,	0,
->>> NULL },
->>> +	[DDP_COMPONENT_PWM1]		= { MTK_DISP_PWM,	1,
->>> NULL },
->>> +	[DDP_COMPONENT_PWM2]		= { MTK_DISP_PWM,	2,
->>> NULL },
->>> +	[DDP_COMPONENT_RDMA0]		= { MTK_DISP_RDMA,	0,
->>> &ddp_rdma },
->>> +	[DDP_COMPONENT_RDMA1]		= { MTK_DISP_RDMA,	1,
->>> &ddp_rdma },
->>> +	[DDP_COMPONENT_RDMA2]		= { MTK_DISP_RDMA,	2,
->>> &ddp_rdma },
->>> +	[DDP_COMPONENT_UFOE]		= { MTK_DISP_UFOE,	0,
->>> &ddp_ufoe },
->>> +	[DDP_COMPONENT_WDMA0]		= { MTK_DISP_WDMA,	0,
->>> NULL },
->>> +	[DDP_COMPONENT_WDMA1]		= { MTK_DISP_WDMA,	1,
->>> NULL },
->>>    };
->>>    
->>>    static bool mtk_drm_find_comp_in_ddp(struct device *dev,
->>> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
->>> b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
->>> index bb914d976cf5..cd1dec6b4cdf 100644
->>> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
->>> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
->>> @@ -30,6 +30,7 @@ enum mtk_ddp_comp_type {
->>>    	MTK_DISP_UFOE,
->>>    	MTK_DSI,
->>>    	MTK_DPI,
->>> +	MTK_DISP_POSTMASK,
->>>    	MTK_DISP_PWM,
->>>    	MTK_DISP_MUTEX,
->>>    	MTK_DISP_OD,
->>>
+The fixes and bindings changes (patches 1-10) should go via the same
+tree.  For example regulator or mfd tree.
+
+Another alternative is that regulator patches (1-2, 4-6) go via Mark who
+later gives MFD a stable branch/tag to pull. Then the clock and MFD
+bindings would go on top via MFD tree. Or any other setup you would like
+to have.
+
+
+Overview of devices
+===================
+Essentially all Samsung S2M and S5M PMICs are very similar devices. They
+provide the same functionality: regulators, RTC, 2 or 3 clocks and main
+power management (e.g. power cut to SoC).
+
+The differences are mostly in registers layout and number of regulators.
+
+The drivers are built around one common part, mfd/sec-core.c, and share
+some drivers between devices:
+1. MFD sec-core for all devices,
+1. one clock driver for most of devices,
+2. one RTC driver for all devices,
+3. three regulator drivers.
+
+The regulator drivers were implementing slightly different features,
+therefore one regulator binding for all devices does not make much
+sense.  However the clock device binding can be shared.
+
+The final dtschema bindings try to implement this - share only the clock
+bindings.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (10):
+  regulator: s5m8767: do not use reset value as DVS voltage if GPIO DVS
+    is disabled
+  regulator: dt-bindings: samsung,s5m8767: correct
+    s5m8767,pmic-buck-default-dvs-idx property
+  dt-bindings: clock: samsung,s2mps11: convert to dtschema
+  regulator: dt-bindings: samsung,s2m: convert to dtschema
+  regulator: dt-bindings: samsung,s2mpa01: convert to dtschema
+  regulator: dt-bindings: samsung,s5m8767: convert to dtschema
+  dt-bindings: mfd: samsung,s2mps11: convert to dtschema
+  dt-bindings: mfd: samsung,s2mpa01: convert to dtschema
+  dt-bindings: mfd: samsung,s5m8767: convert to dtschema
+  dt-bindings: mfd: samsung,s5m8767: document buck and LDO supplies
+
+ .../bindings/clock/samsung,s2mps11.txt        |  49 ---
+ .../bindings/clock/samsung,s2mps11.yaml       |  45 +++
+ .../bindings/mfd/samsung,s2mpa01.yaml         |  91 ++++++
+ .../bindings/mfd/samsung,s2mps11.yaml         | 267 +++++++++++++++
+ .../bindings/mfd/samsung,s5m8767.yaml         | 307 ++++++++++++++++++
+ .../bindings/mfd/samsung,sec-core.txt         |  86 -----
+ .../bindings/regulator/samsung,s2mpa01.txt    |  79 -----
+ .../bindings/regulator/samsung,s2mpa01.yaml   |  62 ++++
+ .../bindings/regulator/samsung,s2mps11.txt    | 102 ------
+ .../bindings/regulator/samsung,s2mps11.yaml   |  44 +++
+ .../bindings/regulator/samsung,s2mps13.yaml   |  44 +++
+ .../bindings/regulator/samsung,s2mps14.yaml   |  44 +++
+ .../bindings/regulator/samsung,s2mps15.yaml   |  44 +++
+ .../bindings/regulator/samsung,s2mpu02.yaml   |  44 +++
+ .../bindings/regulator/samsung,s5m8767.txt    | 145 ---------
+ .../bindings/regulator/samsung,s5m8767.yaml   |  74 +++++
+ MAINTAINERS                                   |   9 +-
+ drivers/regulator/s5m8767.c                   |  21 +-
+ 18 files changed, 1080 insertions(+), 477 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/samsung,s2mps11.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/samsung,s2mpa01.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/samsung,sec-core.txt
+ delete mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mpa01.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mpa01.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps11.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps11.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps13.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps14.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mps15.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s2mpu02.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/samsung,s5m8767.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
+
+-- 
+2.30.2
+
