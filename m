@@ -2,211 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18D8742663A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 10:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F761426681
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 11:16:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234134AbhJHIwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 04:52:51 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:10258 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229814AbhJHIwu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 04:52:50 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1633683055; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=ssTCzAJW4KsbNSp7XkqqLGqNhNhRH4PblSGftvSlO10=; b=Zm7X9ya/4f0RoXP8I/5rSoxs+Oiwgc7vURT+cen58UcAodCYqLWozzXer/M5JhE4vf0Ljz69
- 4PdZeF72VCw8XheUH0/mgnWU1B8fDEdcT5RDrBB5fA6PN0w2imvDTTCBa+f9z1trPHniFHh9
- zmM/9raCJHSZcXxTqbnzGNy2Ab4=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 6160065a446c6db0cb94b58c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 08 Oct 2021 08:50:34
- GMT
-Sender: mkshah=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 45283C43460; Fri,  8 Oct 2021 08:50:33 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.29.129] (unknown [49.36.85.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkshah)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C2662C4338F;
-        Fri,  8 Oct 2021 08:50:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C2662C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v11 1/5] dt-bindings: Introduce QCOM Sleep stats bindings
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, agross@kernel.org,
-        dianders@chromium.org, linux@roeck-us.net, rnayak@codeaurora.org,
-        lsrao@codeaurora.org, devicetree@vger.kernel.org
-References: <1633600649-7164-1-git-send-email-mkshah@codeaurora.org>
- <1633600649-7164-2-git-send-email-mkshah@codeaurora.org>
- <YV9PN1JNPhVQb8jN@gerhold.net>
-From:   Maulik Shah <mkshah@codeaurora.org>
-Message-ID: <b4c26217-67b1-516a-325f-a58e321c4e09@codeaurora.org>
-Date:   Fri, 8 Oct 2021 14:20:24 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S235982AbhJHJSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 05:18:48 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:20670 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237435AbhJHJSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 05:18:45 -0400
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20211008091648epoutp0325b12d2423fcc8881cb0144d23c02360~sA37W9b5F0207002070epoutp03Q
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 09:16:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20211008091648epoutp0325b12d2423fcc8881cb0144d23c02360~sA37W9b5F0207002070epoutp03Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1633684608;
+        bh=miAtkadnYd/2T/NQKtt07AJqR2dyJw61+Mh591sYDto=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=WUwsSNVd2coL0UkNe9JXyuJyCj9VWw/tKmYGyeW3I9J59mcfyc+fLMkJQ+d5YEX9O
+         pZfg1g8HWRunrpM93vSsI4MeudtVoBLvAO+wvtcqcG5c7ppn3vj9SbpQSC05Sj6nNA
+         btYb+A22b9T1CnMtxfOSmJeu9TojRrsU/8rgomrU=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20211008091647epcas2p30dedf6dddf88c297736544709383e5a7~sA36fdqpr2697626976epcas2p3m;
+        Fri,  8 Oct 2021 09:16:47 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.88]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4HQjHY1qDdz4x9Pv; Fri,  8 Oct
+        2021 09:16:41 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        AC.F6.09472.87C00616; Fri,  8 Oct 2021 18:16:40 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+        20211008091639epcas2p443a12d674adbb34aa5771cae2c0659fe~sA3ztrWHn0813808138epcas2p4f;
+        Fri,  8 Oct 2021 09:16:39 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20211008091639epsmtrp2e3285115a7fdfeeef840887737c4de32~sA3zsqwij2378623786epsmtrp2r;
+        Fri,  8 Oct 2021 09:16:39 +0000 (GMT)
+X-AuditID: b6c32a48-d5fff70000002500-e7-61600c7807c5
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        15.FD.08750.77C00616; Fri,  8 Oct 2021 18:16:39 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20211008091639epsmtip1b3597f8e1a2c3270af2cf687f6617bad~sA3zf73Ow0184001840epsmtip1a;
+        Fri,  8 Oct 2021 09:16:39 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH v2 0/3] add initial support for exynosautov9
+Date:   Fri,  8 Oct 2021 18:14:40 +0900
+Message-Id: <20211008091443.44625-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <YV9PN1JNPhVQb8jN@gerhold.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpnk+LIzCtJLcpLzFFi42LZdljTQreCJyHR4PEHZYvL+7Ut5h85x2qx
+        8e0PJospf5YzWcw4v4/JonXvEXaLw2/aWS1W7frD6MDhMauhl81j56y77B6bVnWyedy5tofN
+        o2/LKkaPz5vkAtiism0yUhNTUosUUvOS81My89JtlbyD453jTc0MDHUNLS3MlRTyEnNTbZVc
+        fAJ03TJzgO5RUihLzCkFCgUkFhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYF+gVJ+YWl+al6+Wl
+        llgZGhgYmQIVJmRnTF5zkrlgIm/Fy9Ur2RoYn3J1MXJySAiYSMzva2bsYuTiEBLYwSjx5UIX
+        C4TziVHi5KbN7BDOZ0aJ7nenmWBadn9cyAyR2MUocezmOrCEkMBHRolLm+RBbDYBXYktz1+B
+        zRUR6GSUWPltG1gRs8ABRoktF+y6GDk4hAVsJNq7HEBMFgFViauHq0AqeAXsJDaumsMOsUte
+        4sivTmaIuKDEyZlPWCCmyEs0b50NdoOEwD12ie2rJrFCNLhIXOvdCXWosMSr41ugBklJfH63
+        lw2ioZtRovXRf6jEakaJzkYfCNte4tf0LawgBzELaEqs36UPYkoIKEscuQW1l0+i4/Bfdogw
+        r0RHmxBEo7rEge3TWSBsWYnuOZ+hrvGQWPJoESskdGIlzh9awz6BUX4Wkm9mIflmFsLeBYzM
+        qxjFUguKc9NTi40KTOBxmpyfu4kRnCK1PHYwzn77Qe8QIxMH4yFGCQ5mJRHefPvYRCHelMTK
+        qtSi/Pii0pzU4kOMpsDgncgsJZqcD0zSeSXxhiaWBiZmZobmRqYG5krivHP/OSUKCaQnlqRm
+        p6YWpBbB9DFxcEo1MJmY2Pncbf7yyfzcU5fHNyvDDGI/TVWTfJpUocD+qjFg98xL9hvrFSYl
+        PhJxsfsop/pY9OJzfqHtfrxcSYJlLyRDe1y0rvVZroxLsb2rJbi++IhIwG7Z6tNSd+e/Sr+Y
+        kOm/g5mHwTM+edfkT+/Wft/457GAVOWeUMkeQctQ0xT5HZ3/kjboPj0tLC49eaFvYa9b4/aE
+        z5ecmNmstt/hdZD+GFeatdXd/WHRnLmrvbhK/0QYz/Ti1E93PMFk63Plm1zQhIwpNjkHYn+e
+        SCk581Dmc0fY7VgXtRXSFx70BDgLxvfvm9+/6+gZtX9Cc+eoFF6trX9qm15wQT+m82lnk2K/
+        +VKjE9PK3kw31pqixFKckWioxVxUnAgAs+goPBoEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBLMWRmVeSWpSXmKPExsWy7bCSnG45T0KiwbH1xhaX92tbzD9yjtVi
+        49sfTBZT/ixnsphxfh+TReveI+wWh9+0s1qs2vWH0YHDY1ZDL5vHzll32T02repk87hzbQ+b
+        R9+WVYwenzfJBbBFcdmkpOZklqUW6dslcGVMXnOSuWAib8XL1SvZGhifcnUxcnJICJhI7P64
+        kLmLkYtDSGAHo8SClYcZIRKyEs/e7WCHsIUl7rccYYUoes8osWfqbVaQBJuArsSW568YQRIi
+        At2MEv2NvUwgDrPAEUaJ/99/sXQxcnAIC9hItHc5gJgsAqoSVw9XgfTyCthJbFw1B2qBvMSR
+        X53MEHFBiZMzn7CA2MxA8eats5knMPLNQpKahSS1gJFpFaNkakFxbnpusWGBUV5quV5xYm5x
+        aV66XnJ+7iZGcOBqae1g3LPqg94hRiYOxkOMEhzMSiK8+faxiUK8KYmVValF+fFFpTmpxYcY
+        pTlYlMR5L3SdjBcSSE8sSc1OTS1ILYLJMnFwSjUwcbVWPl746b7x9i2nM7dL7N7Zc/H2St1v
+        Alo2qlVheyNu+zV69qUsLbyy3PFxcCCHSeQPw32d03kCJ3tt5v/mNKFlFquXzIuT4kZBTxKd
+        pxzgecZzYvHnv/N/93T4qCz/tKSqt57jxIr7TRU6nzIP1pxvztl280n35H/rmNbuyfmsHMuz
+        auvGb+Fzfxrsf/r2zHqvyxP2HpEq5O+cfZzZkGfSldNeh7ZfkX85PaDR5Em9tojZfxO3Vwsd
+        3zkYv35TNkN21qctMVKHJavWbFIMfxsQop67kPvGZ+XpHXx7j7LJeR3SN4691WRf2ZKgJ+XS
+        uGc6W3zClydFbmejfFr7WIQb3xX7Cedtz8zOkv94S4mlOCPRUIu5qDgRAH7abp7LAgAA
+X-CMS-MailID: 20211008091639epcas2p443a12d674adbb34aa5771cae2c0659fe
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20211008091639epcas2p443a12d674adbb34aa5771cae2c0659fe
+References: <CGME20211008091639epcas2p443a12d674adbb34aa5771cae2c0659fe@epcas2p4.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan,
+This patchset supports minimal set for ExynosAuto v9 SoC and SADK board.
+This contains serial_0 as uart console and ufs_0 for rootfs storage.
+Regarding UFS, it depends on UFS patchset[1].
 
-On 10/8/2021 1:20 AM, Stephan Gerhold wrote:
-> On Thu, Oct 07, 2021 at 03:27:25PM +0530, Maulik Shah wrote:
->> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
->>
->> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
->> Sleep stats driver. The driver is used for displaying Sleep statistic maintained
->> by Always On Processor or Resource Power Manager.
->>
->> Cc: devicetree@vger.kernel.org
->> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
->> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
->> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->> ---
->>   .../bindings/soc/qcom/qcom-sleep-stats.yaml        | 47 ++++++++++++++++++++++
->>   1 file changed, 47 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
->> new file mode 100644
->> index 0000000..5213daf
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
->> @@ -0,0 +1,47 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/soc/qcom/qcom-sleep-stats.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Technologies, Inc. (QTI) Sleep stats bindings
->> +
->> +maintainers:
->> +  - Maulik Shah <mkshah@codeaurora.org>
->> +
->> +description:
->> +  Always On Processor/Resource Power Manager maintains statistics of the SoC
->> +  sleep modes involving powering down of the rails and oscillator clock.
->> +
->> +  Statistics includes SoC sleep mode type, number of times low power mode were
->> +  entered, time of last entry, time of last exit and accumulated sleep duration.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,rpmh-sleep-stats
->> +      - qcom,rpm-sleep-stats
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  # Example of rpmh sleep stats
->> +  - |
->> +    sram@c3f0000 {
->> +      compatible = "qcom,rpmh-sleep-stats";
->> +      reg = <0x0c3f0000 0x400>;
->> +    };
->> +  # Example of rpm sleep stats
->> +  - |
->> +    sram@4690000 {
->> +      compatible = "qcom,rpm-sleep-stats";
->> +      reg = <0x04690000 0x400>;
->> +    };
-> 
-> Does this region really only contain "rpm-*sleep*-stats"? AFAICT this is
-> really a more generic memory region where various offsets are read from.
+[1]: https://lore.kernel.org/linux-samsung-soc/20211007080934.108804-1-chanho61.park@samsung.com/T/#t
 
-Right the area contains all kind of sleep stats/logs.
+Changes since v1:
+- add static and  __initconst of patch1
+- Use pin and pins suffix for pinctrl nodes
+- Remove non-SoC pins
+- Move fixed rate clock nodes out of soc@0
+- Add cortex-a76 compatibles to cpu and pmu node.
+- Use lowercase of address representations
+- Add pmu / syscon compatible.
 
-> 
-> These are all the offsets in msm8998-pm.dtsi downstream [1]:
->    ...9000c: rpm-rail-stats offset
->    ...90014: rpm-sleep-stats offset (RPM_DYNAMIC_ADDR in your driver)
->    ...90018: rpm-log offset
->    ...9001c: "RPM FREE HEAP SPACE"
-> 
-> How would you set up any of the other drivers if the entire region
-> is declared as "rpm-sleep-stats"?
+Chanho Park (3):
+  pinctrl: samsung: support ExynosAutov9 SoC pinctrl
+  arm64: dts: exynos: add initial support for exynosautov9 SoC
+  arm64: dts: exynos: add minimal support for exynosautov9 sadk board
 
-We don't need to setup other drivers.
-The idea is to have single stats driver (qcom_sleep_stats) that can be 
-enahanced to to read other stats also on both RPM/ PRMH targets.
-
-Today this driver reads only sleep stats from offset 0x90014.
-if in future say, we want to read rpm-rail-stats from offset 0x9000c 
-then it can be added in the existing driver.
-
-In the rpm data, add one more entry to indicate reading rpm-rail-stats,
-something like below and add new compatible flag for the target, may be
-"qcom,rpm-sleep-stats-legacy" and should work like,
-
-#define RPM_RAIL_STATS_ADDR 0xc
-
-static const struct stats_config rpm_data = {
-         .stats_offset = 0,
-         .num_records = 2,
-         .appended_stats_avail = true,
-         .dynamic_offset = true,
-         .rpm_rail_stats = true,
-};
-
-and check in driver probe like
-
-         if (config->rpm_rail_stats) {
-	//create rpm rail stats related files.
-         }
-
-Similarly for other rpm-logs / any other stats can be added in same driver.
-
-Hope this clarifies.
-
-> 
-> Perhaps this region should have a more generic name that represents what
-> it actually is and not only one of the information it contains, similar
-> to "qcom,rpm-msg-ram"?
-
-sram looks good to me. Actually on RPM targets its RPM data ram and RPMH 
-targets its msgram. To keep the name common sram is used here.
-
-Thanks,
-Maulik
-
-> 
-> Thanks,
-> Stephan
-> 
-> [1]: https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/msm8998-pm.dtsi?h=LA.UM.8.4.1.c25#n271
-> 
+ .../bindings/arm/samsung/samsung-boards.yaml  |    6 +
+ .../devicetree/bindings/mfd/syscon.yaml       |    1 +
+ .../bindings/pinctrl/samsung-pinctrl.txt      |    1 +
+ arch/arm64/boot/dts/exynos/Makefile           |    3 +-
+ .../boot/dts/exynos/exynosautov9-pinctrl.dtsi | 1189 +++++++++++++++++
+ .../boot/dts/exynos/exynosautov9-sadk.dts     |   56 +
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  |  301 +++++
+ .../pinctrl/samsung/pinctrl-exynos-arm64.c    |  108 ++
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |    2 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |    1 +
+ 10 files changed, 1667 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9.dtsi
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member of Code Aurora Forum, hosted by The Linux Foundation
+2.33.0
+
