@@ -2,188 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17BE342624A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 04:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79883426259
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 04:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234702AbhJHCHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 22:07:07 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:50702 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234468AbhJHCHF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 22:07:05 -0400
-X-UUID: 76c63b06c6f04e6cac66398d8265fb89-20211008
-X-UUID: 76c63b06c6f04e6cac66398d8265fb89-20211008
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 376056038; Fri, 08 Oct 2021 10:05:07 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 8 Oct 2021 10:05:06 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 8 Oct 2021 10:05:05 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: [PATCH v11, 2/2] soc: mediatek: mmsys: Add mt8192 mmsys routing table
-Date:   Fri, 8 Oct 2021 10:05:04 +0800
-Message-ID: <20211008020504.1678-3-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211008020504.1678-1-yongqiang.niu@mediatek.com>
-References: <20211008020504.1678-1-yongqiang.niu@mediatek.com>
+        id S235172AbhJHCOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 22:14:51 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:41774 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229501AbhJHCOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 22:14:50 -0400
+Received: from notapiano (unknown [IPv6:2806:105e:7:9ede::6])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 027D21F45416;
+        Fri,  8 Oct 2021 03:12:49 +0100 (BST)
+Date:   Thu, 7 Oct 2021 21:12:45 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Brian Masney <masneyb@onstation.org>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Russell King <linux@armlinux.org.uk>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, ~lkcamp/patches@lists.sr.ht,
+        =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@collabora.com>,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 2/5] leds: Add driver for QCOM SPMI Flash LEDs
+Message-ID: <20211008021245.barkpi4fd4lakt36@notapiano>
+References: <20210803162641.1525980-1-nfraprado@collabora.com>
+ <20210803162641.1525980-3-nfraprado@collabora.com>
+ <b1060e9a-f78e-fbe9-bde3-2b4d89cbc73e@gmail.com>
+ <20210824214515.ekjpvaymkgxltlzp@notapiano>
+ <278ea1e8-8b21-457d-78d7-fbb32544fe0a@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <278ea1e8-8b21-457d-78d7-fbb32544fe0a@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-mt8192 has different routing registers than mt8183
+Hi Jacek,
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
- drivers/soc/mediatek/mt8192-mmsys.h | 77 +++++++++++++++++++++++++++++
- drivers/soc/mediatek/mtk-mmsys.c    | 11 +++++
- 2 files changed, 88 insertions(+)
- create mode 100644 drivers/soc/mediatek/mt8192-mmsys.h
+> > > > +static int qcom_flash_flcdev_strobe_set(struct led_classdev_flash *fled_cdev,
+> > > > +					bool state)
+> > > > +{
+> > > > +	struct qcom_flash_led *led = flcdev_to_led(fled_cdev);
+> > > > +	struct qcom_flash_device *leds_dev = led_to_leds_dev(led);
+> > > > +	unsigned int bright;
+> > > > +	unsigned int i;
+> > > > +	int rc;
+> > > > +
+> > > > +	/* Can't operate on flash if torch is on */
+> > > > +	if (leds_dev->torch_enabled)
+> > > > +		return -EBUSY;
+> > > > +
+> > > > +	mutex_lock(&leds_dev->lock);
+> > > > +	if (!state) {
+> > > > +		rc = qcom_flash_fled_off(led);
+> > > > +	} else {
+> > > > +		/*
+> > > > +		 * Turn off flash LEDs from previous strobe
+> > > > +		 */
+> > > > +		rc = qcom_flash_check_timedout(leds_dev);
+> > > > +		if (rc > 0) {
+> > > > +			for (i = 0; i < leds_dev->num_leds; i++) {
+> > > > +				rc = qcom_flash_fled_off(&leds_dev->leds[i]);
+> > > > +				if (rc)
+> > > > +					goto unlock;
+> > > > +			}
+> > > > +		} else if (rc < 0) {
+> > > > +			goto unlock;
+> > > > +		}
+> > > 
+> > > What if flash gets timed out after this check here? Why do you need to
+> > > call qcom_flash_fled_off() if it has already timed out?
+> > 
+> > The issue is that after the flash times out, the hardware is not ready for
+> > another strobe.
+> > 
+> > When I strobe LED0 for example, the STATUS register, 0x10, gets set to 0x08
+> > indicating the LED0 is on. After the timeout, it changes to 0x04. At that point
+> > if I try to strobe LED0 again, it doesn't work. When I turn the LED0 off (write
+> > 0x00 to either the ENABLE or STROBE register), the STATUS is reset to 0x00. Now
+> > I'm able to strobe the LED0 again.
+> > 
+> > I'm not sure if this is the normal behavior on other flash LED controllers, and
+> > maybe there's even some configuration of this PMIC that resets the LED status
+> > automatically after the strobe timeout, but I have not been able to do that. So
+> > that's why I reset the status manually everytime it's needed.
+> 
+> My point was that the flash may time out after reading STATUS register
+> and before writing QCOM_FLASH_ADDR_LED_STROBE_CTRL.
+> You can't be 100% sure that you know the exact STATUS state just
+> a moment before strobing.
 
-diff --git a/drivers/soc/mediatek/mt8192-mmsys.h b/drivers/soc/mediatek/mt8192-mmsys.h
-new file mode 100644
-index 000000000000..7ea1531ee8af
---- /dev/null
-+++ b/drivers/soc/mediatek/mt8192-mmsys.h
-@@ -0,0 +1,77 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+
-+#ifndef __SOC_MEDIATEK_MT8192_MMSYS_H
-+#define __SOC_MEDIATEK_MT8192_MMSYS_H
-+
-+#define MT8192_MMSYS_OVL_MOUT_EN		0xf04
-+#define MT8192_DISP_OVL1_2L_MOUT_EN		0xf08
-+#define MT8192_DISP_OVL0_2L_MOUT_EN		0xf18
-+#define MT8192_DISP_OVL0_MOUT_EN		0xf1c
-+#define MT8192_DISP_RDMA0_SEL_IN		0xf2c
-+#define MT8192_DISP_RDMA0_SOUT_SEL		0xf30
-+#define MT8192_DISP_CCORR0_SOUT_SEL		0xf34
-+#define MT8192_DISP_AAL0_SEL_IN			0xf38
-+#define MT8192_DISP_DITHER0_MOUT_EN		0xf3c
-+#define MT8192_DISP_DSI0_SEL_IN			0xf40
-+#define MT8192_DISP_OVL2_2L_MOUT_EN		0xf4c
-+
-+#define MT8192_DISP_OVL0_GO_BLEND			BIT(0)
-+#define MT8192_DITHER0_MOUT_IN_DSI0			BIT(0)
-+#define MT8192_OVL0_MOUT_EN_DISP_RDMA0			BIT(0)
-+#define MT8192_OVL2_2L_MOUT_EN_RDMA4			BIT(0)
-+#define MT8192_DISP_OVL0_GO_BG				BIT(1)
-+#define MT8192_DISP_OVL0_2L_GO_BLEND			BIT(2)
-+#define MT8192_DISP_OVL0_2L_GO_BG			BIT(3)
-+#define MT8192_OVL1_2L_MOUT_EN_RDMA1			BIT(4)
-+#define MT8192_OVL0_MOUT_EN_OVL0_2L			BIT(4)
-+#define MT8192_RDMA0_SEL_IN_OVL0_2L			0x3
-+#define MT8192_RDMA0_SOUT_COLOR0			0x1
-+#define MT8192_CCORR0_SOUT_AAL0				0x1
-+#define MT8192_AAL0_SEL_IN_CCORR0			0x1
-+#define MT8192_DSI0_SEL_IN_DITHER0			0x1
-+
-+static const struct mtk_mmsys_routes mmsys_mt8192_routing_table[] = {
-+	{
-+		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-+		MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDMA0,
-+		MT8192_OVL0_MOUT_EN_DISP_RDMA0
-+	}, {
-+		DDP_COMPONENT_OVL_2L2, DDP_COMPONENT_RDMA4,
-+		MT8192_DISP_OVL2_2L_MOUT_EN, MT8192_OVL2_2L_MOUT_EN_RDMA4,
-+		MT8192_OVL2_2L_MOUT_EN_RDMA4
-+	}, {
-+		DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
-+		MT8192_DISP_DITHER0_MOUT_EN, MT8192_DITHER0_MOUT_IN_DSI0,
-+		MT8192_DITHER0_MOUT_IN_DSI0
-+	}, {
-+		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-+		MT8192_DISP_RDMA0_SEL_IN, MT8192_RDMA0_SEL_IN_OVL0_2L,
-+		MT8192_RDMA0_SEL_IN_OVL0_2L
-+	}, {
-+		DDP_COMPONENT_CCORR, DDP_COMPONENT_AAL0,
-+		MT8192_DISP_AAL0_SEL_IN, MT8192_AAL0_SEL_IN_CCORR0,
-+		MT8192_AAL0_SEL_IN_CCORR0
-+	}, {
-+		DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
-+		MT8192_DISP_DSI0_SEL_IN, MT8192_DSI0_SEL_IN_DITHER0,
-+		MT8192_DSI0_SEL_IN_DITHER0
-+	}, {
-+		DDP_COMPONENT_RDMA0, DDP_COMPONENT_COLOR0,
-+		MT8192_DISP_RDMA0_SOUT_SEL, MT8192_RDMA0_SOUT_COLOR0,
-+		MT8192_RDMA0_SOUT_COLOR0
-+	}, {
-+		DDP_COMPONENT_CCORR, DDP_COMPONENT_AAL0,
-+		MT8192_DISP_CCORR0_SOUT_SEL, MT8192_CCORR0_SOUT_AAL0,
-+		MT8192_CCORR0_SOUT_AAL0
-+	}, {
-+		DDP_COMPONENT_OVL0, DDP_COMPONENT_OVL_2L0,
-+		MT8192_MMSYS_OVL_MOUT_EN, MT8192_DISP_OVL0_GO_BG,
-+		MT8192_DISP_OVL0_GO_BG,
-+	}, {
-+		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-+		MT8192_MMSYS_OVL_MOUT_EN, MT8192_DISP_OVL0_2L_GO_BLEND,
-+		MT8192_DISP_OVL0_2L_GO_BLEND,
-+	}
-+};
-+
-+#endif /* __SOC_MEDIATEK_MT8192_MMSYS_H */
-diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
-index a78e88f27b62..5ecfe09a5751 100644
---- a/drivers/soc/mediatek/mtk-mmsys.c
-+++ b/drivers/soc/mediatek/mtk-mmsys.c
-@@ -13,6 +13,7 @@
- #include "mtk-mmsys.h"
- #include "mt8167-mmsys.h"
- #include "mt8183-mmsys.h"
-+#include "mt8192-mmsys.h"
- #include "mt8365-mmsys.h"
- 
- static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
-@@ -53,6 +54,12 @@ static const struct mtk_mmsys_driver_data mt8183_mmsys_driver_data = {
- 	.num_routes = ARRAY_SIZE(mmsys_mt8183_routing_table),
- };
- 
-+static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
-+	.clk_driver = "clk-mt8192-mm",
-+	.routes = mmsys_mt8192_routing_table,
-+	.num_routes = ARRAY_SIZE(mmsys_mt8192_routing_table),
-+};
-+
- static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data = {
- 	.clk_driver = "clk-mt8365-mm",
- 	.routes = mt8365_mmsys_routing_table,
-@@ -167,6 +174,10 @@ static const struct of_device_id of_match_mtk_mmsys[] = {
- 		.compatible = "mediatek,mt8183-mmsys",
- 		.data = &mt8183_mmsys_driver_data,
- 	},
-+	{
-+		.compatible = "mediatek,mt8192-mmsys",
-+		.data = &mt8192_mmsys_driver_data,
-+	},
- 	{
- 		.compatible = "mediatek,mt8365-mmsys",
- 		.data = &mt8365_mmsys_driver_data,
--- 
-2.25.1
+That's true, but that scenario only happens if there's an ongoing flash strobe
+happening and userspace triggers another strobe. Is that a scenario that really
+needs to be taken care of, and if so, what would be the correct behavior? Does
+the timeout need to be reset for this new strobe, possibly using updated
+brightness and timeout values? (Currently none of this happens)
 
+The purpose of this check is not to know if an ongoing flash strobe has
+timed out, but rather to differentiate if the previous time the LED was strobed
+was as a flash (with timeout) or torch (no timeout), because the flash
+case needs an extra reset step that can be ommited in the torch case. For this
+purpose there's no race condition.
+
+> 
+> To alleviate that I propose to avoid checking the status and always
+> calling qcom_flash_fled_off() before initiating a new strobe.
+
+Thanks,
+Nicolas
