@@ -2,135 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0607D426CCD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:33:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CA6C426CCA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:33:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237984AbhJHOfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 10:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48080 "EHLO
+        id S230511AbhJHOfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 10:35:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240847AbhJHOfk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:35:40 -0400
-Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A523C061755;
-        Fri,  8 Oct 2021 07:33:45 -0700 (PDT)
-Received: by mail-oo1-xc31.google.com with SMTP id y16-20020a4ade10000000b002b5dd6f4c8dso2959158oot.12;
-        Fri, 08 Oct 2021 07:33:45 -0700 (PDT)
+        with ESMTP id S229756AbhJHOfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:35:30 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E62F7C061570
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 07:33:34 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id t4so12193120oie.5
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 07:33:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=TyZwl74lRCt2TasBtcyjKKOdKqwyWiXvdieNTc+JDP8=;
-        b=ato6ulzHug6BQckfLqvQTdNQV3wk/Ar84KBv+iI/P+AYBcTjwrMNaZvVMKc3a/OFyt
-         dNSNDdS4+zWKhfzCocPrmozna8w4qXluRMt4wos52KGHKdolNNyG9NcuEhst9+eVfj4s
-         qGQOcYXC9unL5Xgdvu9zSpCpUa6/Ic2tlr6fND0Qcbby2bN3dWPCRfqSrkAE1/HF3NSu
-         Gc7tW6QTM4uWYOnaw+OmQi08UmFs1zFFjXiaxWiSHb7o52nhUH5U4HqPGPjm8/q9sWfr
-         UL+QyM8ZOqLzaHWlppaclALVyaTEGq9Lqg7vAqfm+UIboVX1L+/a3XiLvhtFhvAE8m7l
-         MPzA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QgfxwBmF1+monDAdjg0g2KuWwbKnod/mIT9QO6h2iro=;
+        b=kZZWfT+PowKkZ01WdnR/B1jT/bbJbNn/nk3qm9dOEkSnkXGMSnwCE5oj5OyGVzAKlD
+         8g7BU3Wbwxtygo0NG7m8z1G1h91Zn2H8Uzr6zZItNJ+ctbiNn8SP2V+Uei79rv/VMoD6
+         ntkssCThEGK9QfAG36PGku21bWbycBVhaBd+4krVLC28qKTTxXCMLIp6Q6SLREmWI5YP
+         poopFO0ZBSFYuieiYcNJh9uxZr4n3JzdYH53+9son7vCgu+hw17EoMk6xX/GYczF28lB
+         NvWQ/hyqS4KHgD/S6OdDWD81XkhNT9Q0SJewpDCE1gE/AYAeqc74WsjlHK9Oj/CEj1Sk
+         MeqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=TyZwl74lRCt2TasBtcyjKKOdKqwyWiXvdieNTc+JDP8=;
-        b=h9NTIh/LiVb1fPzFhy5nvJ8BNNLeLNzZPIHMubu1ozZYp94X8zK8MadnNiEfzfe/3t
-         dxubPDmOiojDgGQPHA88Wo2+waWeRjgtzE4BZzumn1imcr2gQlgWAM/pRQBGeQNL9/WD
-         qP8x5jq2GzF8uGU+mzRFYPGckcWtzWUj4rYIskGhJwovFbTl4o+7XinDgOGGaX+CfBNo
-         IDypZUKkIltTzvH/kLVUyvVcBFJamHKNLcPkKtZZyYl1/Q2+A2uh4kzAKaFTmeo78Vzi
-         ZLY8b0XC0/mFXn/g3u5ta/bYBmdZmxqnQMMgfFTQdpjEc6Cdeedn/Y6BOJf+BotOTlIJ
-         8bbA==
-X-Gm-Message-State: AOAM532q/wCHhCJrDD/ld6h17K9N6krUY9Qy+Lqm6YyOFVg3ZB5Y8Wsf
-        txGUrMznxyVvs31JjOHvffuA6LdsIr8=
-X-Google-Smtp-Source: ABdhPJzTzyGrvdvODixbybo2XIzPLTO3cIFBQY8n7nnZ6xMTpyR7kgcdY456Yhpnhg0LZvTzzHr8pw==
-X-Received: by 2002:a4a:c18d:: with SMTP id w13mr8168077oop.15.1633703624478;
-        Fri, 08 Oct 2021 07:33:44 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l25sm542102oot.36.2021.10.08.07.33.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 07:33:43 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v3 11/11] dt-bindings: hwmon: allow specifying channels
- for tmp421
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <cover.1632984254.git.krzysztof.adamski@nokia.com>
- <3ff7b4cc57dab2073fa091072366c1e524631729.1632984254.git.krzysztof.adamski@nokia.com>
- <20211002142219.GC34532@roeck-us.net>
- <YVqu92dUgNKlYMlG@localhost.localdomain>
- <20211005141457.GB2395636@roeck-us.net> <YV4NUqf7ey5Yr55P@robh.at.kernel.org>
- <YV6m8MRa4+lKOWTp@localhost.localdomain>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <18a5d5c9-2885-68da-256b-7ae1c3b95819@roeck-us.net>
-Date:   Fri, 8 Oct 2021 07:33:42 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QgfxwBmF1+monDAdjg0g2KuWwbKnod/mIT9QO6h2iro=;
+        b=LbG18iHP7TvdYDxQThGEOkYhym8WmkUA2+t5xIOibc3xqjcX1mKpvMCaj1cepon9Mn
+         phs7GFqy/j+9SXwoHepS+D4raD5UwsQJa+v1jQKpkWQUOl5qgEiBsiY206NClFycHOND
+         2e6657HA5zuaGkoJaAsAIUAeVAlgKYvcUO1cVDE9hzSJJ3sXTlqygHNl13gdj+KHtrcL
+         AkvD+TyAPNF/ADOC5ZIVXP2eUN/gZnsZZIW7AYzwVZ+OUTzn/Wv2WD9gZi3ev8V9h7fY
+         2wFxO2NnpQQt8Lsky5BXulbTrFyrdr06pon3YBz2tc6aY3e9Pa2IV0QoHNl7cLfiz1ZK
+         5/oQ==
+X-Gm-Message-State: AOAM533ayxQmWJ1+mVi/gyQ+GuiHAhtHlp65eYJv2M2p5dJryIcV9yu7
+        gb+2pM/grSwNvBGx3oRJMNaon1goTexcAA==
+X-Google-Smtp-Source: ABdhPJztPy3B1mNAjhJ8cMLMpGBuT+PpLTVRAsaup4KklmIJNTxLcde2Bhdop0OObqSvkVfXvO+m7Q==
+X-Received: by 2002:aca:3656:: with SMTP id d83mr16497564oia.176.1633703614214;
+        Fri, 08 Oct 2021 07:33:34 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id u9sm720809oiu.19.2021.10.08.07.33.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Oct 2021 07:33:33 -0700 (PDT)
+Date:   Fri, 8 Oct 2021 07:35:12 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>
+Subject: Re: [PATCH v3] ASoC: qcom: soundwire: Enable soundwire bus clock for
+ version 1.6
+Message-ID: <YWBXIIjPP7Qunyvf@ripper>
+References: <1633671232-30310-1-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <YV6m8MRa4+lKOWTp@localhost.localdomain>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1633671232-30310-1-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/7/21 12:51 AM, Krzysztof Adamski wrote:
-> Dnia Wed, Oct 06, 2021 at 03:55:46PM -0500, Rob Herring napisał(a):
->>>
->>>     input@0 {
->>>         reg = <0>;
->>>         label = "output voltage";
->>>     };
->>>
->>> Anyway, maybe Rob has an idea how to name this properly.
->>
->> No, I don't have a sense of the range of h/w...
-> 
-> I feel like we are stuck. Rob does not have a sense of the range of the
-> h/w and Guenter does not have a sense of the DeviceTree idioms. How can
-> we solve that?
+On Thu 07 Oct 22:33 PDT 2021, Srinivasa Rao Mandadapu wrote:
+
+> Add support for soundwire 1.6 version to gate RX/TX bus clock.
 > 
 
-That is why I am asking questions. It doesn't mean we are stuck.
+Are you really adding soundwire 1.6 support in order to gate RX/TX bus
+clock?
 
-> Could we, maybe, just focus on this typical, simplified, case I have for
-> now - a sensor with several channels of known, same type (temperature)?
-> We clearly are unable handle all possible cases here, for now.
-> 
-> Does this look sane for that usecase or what would you, Rob, change?
-> 
-> sensor@4c {
->    compatible = "ti,tmp422";
->    reg = <0x4c>;
->    #address-cells = <1>;
->    #size-cells = <0>;
-> 
->    input@0 {
->      reg = <0x0>;
->      ti,n-factor = <0x1>;
->      label = "local";
->    };
-> 
->    input@1 {
->      reg = <0x1>;
->      ti,n-factor = <0x0>;
->      label = "somelabel";
->    };
-> 
->    input@2 {
->      reg = <0x2>;
->      status = "disabled";
->    };
-> };
-> 
-> There were some doubts whether "input" makes sense here.  I still think
-> it doas as even in HWMON subsystem, we have "hwmon_temp_input" and
-> HWMON_T_INPUT, so a temperature channel _is_ an input.  Of course I can
-> change it to "temperature" or "channel", just tell me which one is
-> accepted.
-> 
+Could it be that you're ungating the bus clock so that soundwire 1.6
+starts working? The commit message should properly describe why you're
+doing your change.
 
-I'd be fine with "channel" or "sensor". Both would be generic.
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 
-Guenter
+Venkata is the first who certified the origin of this patch, yet you're
+the author. Either this should be From Venkata (i.e. git commit
+--author) or perhaps you need a Co-developed-by here to say that you
+collaborated on this and both certify its origin.
+
+> ---
+> Changes since v2:
+>     -- Update error check after ioremap.
+
+What about the other things I noted in v2?
+
+> Changes since v1:
+>     -- Add const name to mask value.
+> 
+>  drivers/soundwire/qcom.c | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index 0ef79d6..bd6fabd 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -109,6 +109,7 @@
+>  #define SWR_MAX_CMD_ID	14
+>  #define MAX_FIFO_RD_RETRY 3
+>  #define SWR_OVERFLOW_RETRY_COUNT 30
+> +#define SWRM_HCTL_REG_MASK ~BIT(1)
+>  
+>  struct qcom_swrm_port_config {
+>  	u8 si;
+> @@ -127,6 +128,7 @@ struct qcom_swrm_ctrl {
+>  	struct device *dev;
+>  	struct regmap *regmap;
+>  	void __iomem *mmio;
+> +	char __iomem *swrm_hctl_reg;
+>  	struct completion broadcast;
+>  	struct completion enumeration;
+>  	struct work_struct slave_work;
+> @@ -610,6 +612,12 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
+>  	val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
+>  	val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
+>  
+> +	if (ctrl->swrm_hctl_reg) {
+> +		val = ioread32(ctrl->swrm_hctl_reg);
+> +		val &= SWRM_HCTL_REG_MASK;
+
+Make a define with a name that clarifies what BIT(1) is and use that
+here, hiding a magic number in an empty define isn't making this more
+maintainable.
+
+Essentially put the name of the bit in the register description in a
+define and use that here.
+
+> +		iowrite32(val, ctrl->swrm_hctl_reg);
+> +	}
+> +
+>  	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
+>  
+>  	/* Enable Auto enumeration */
+> @@ -1200,7 +1208,7 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+>  	struct qcom_swrm_ctrl *ctrl;
+>  	const struct qcom_swrm_data *data;
+>  	int ret;
+> -	u32 val;
+> +	int val, swrm_hctl_reg = 0;
+
+Don't you get a warning from passing val as an int to a function that
+takes a u32 pointer?
+
+Also there's no reason to zero-initialize swrm_hctl_reg.
+
+>  
+>  	ctrl = devm_kzalloc(dev, sizeof(*ctrl), GFP_KERNEL);
+>  	if (!ctrl)
+> @@ -1251,6 +1259,11 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+>  	ctrl->bus.port_ops = &qcom_swrm_port_ops;
+>  	ctrl->bus.compute_params = &qcom_swrm_compute_params;
+>  
+> +	if (!of_property_read_u32(dev->of_node, "qcom,swrm-hctl-reg", &swrm_hctl_reg)) {
+
+As I said in my feedback of v2, this property is not documented in the
+DT binding.
+
+
+But more important, upstream we do not approve of the downstream
+methodology of having properties pointing to single registers in some
+memory block somewhere.
+
+Describe the hardware block that you reference fully in devicetree and
+make a proper reference to it.
+
+Unfortunately your patch lacks details necessary to know where this
+register lives, so it's not possible for me to recommend a proper
+design.
+
+Regards,
+Bjorn
+
+> +		ctrl->swrm_hctl_reg = devm_ioremap(&pdev->dev, swrm_hctl_reg, 0x4);
+> +		if (!ctrl->swrm_hctl_reg)
+> +			return -ENODEV;
+> +	}
+>  	ret = qcom_swrm_get_port_config(ctrl);
+>  	if (ret)
+>  		goto err_clk;
+> -- 
+> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> 
