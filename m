@@ -2,194 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CA6C426CCA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55BA0426CE8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:44:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230511AbhJHOfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 10:35:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48018 "EHLO
+        id S242587AbhJHOqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 10:46:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229756AbhJHOfa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:35:30 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E62F7C061570
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 07:33:34 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id t4so12193120oie.5
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 07:33:34 -0700 (PDT)
+        with ESMTP id S241341AbhJHOqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:46:03 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B029FC061570
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 07:44:07 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id j21so22441552lfe.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 07:44:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=QgfxwBmF1+monDAdjg0g2KuWwbKnod/mIT9QO6h2iro=;
-        b=kZZWfT+PowKkZ01WdnR/B1jT/bbJbNn/nk3qm9dOEkSnkXGMSnwCE5oj5OyGVzAKlD
-         8g7BU3Wbwxtygo0NG7m8z1G1h91Zn2H8Uzr6zZItNJ+ctbiNn8SP2V+Uei79rv/VMoD6
-         ntkssCThEGK9QfAG36PGku21bWbycBVhaBd+4krVLC28qKTTxXCMLIp6Q6SLREmWI5YP
-         poopFO0ZBSFYuieiYcNJh9uxZr4n3JzdYH53+9son7vCgu+hw17EoMk6xX/GYczF28lB
-         NvWQ/hyqS4KHgD/S6OdDWD81XkhNT9Q0SJewpDCE1gE/AYAeqc74WsjlHK9Oj/CEj1Sk
-         MeqQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FTJ2jzOfmc3TfTGxqKqcv2O3a+phTUEvAqWV0+MH2I8=;
+        b=s53m6uBMCKLVuMai6xOkjXRWzjdBLDWO9V6TCYwEVJt2137PhtrSymyhoMDNpkbBTN
+         dTkXP50Zihn4E6SNLs1NBxsimctK1QYxpfOVPuzNH/MjjM6cDlAhFZtgB/8IDdftxwku
+         5CUbrSpqPYl1GyJKo4VhKPUGQVBKubfvlReegWA+A7s3/v2CyUuaxeNs+GqZodeeJZgV
+         m84zRvKn33o1ImOZ8uW2+2o9/o52yr5WEicoFX16v/w4zSsw5LwfY2PXV52S0ceL5Y9v
+         zinQG5YgDeMEheB4ZV3tpNB1oQ3Iv6TLky7A5Nq7vC4bnBwQnXWN0LZm78hR4k5S6/ue
+         G7Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QgfxwBmF1+monDAdjg0g2KuWwbKnod/mIT9QO6h2iro=;
-        b=LbG18iHP7TvdYDxQThGEOkYhym8WmkUA2+t5xIOibc3xqjcX1mKpvMCaj1cepon9Mn
-         phs7GFqy/j+9SXwoHepS+D4raD5UwsQJa+v1jQKpkWQUOl5qgEiBsiY206NClFycHOND
-         2e6657HA5zuaGkoJaAsAIUAeVAlgKYvcUO1cVDE9hzSJJ3sXTlqygHNl13gdj+KHtrcL
-         AkvD+TyAPNF/ADOC5ZIVXP2eUN/gZnsZZIW7AYzwVZ+OUTzn/Wv2WD9gZi3ev8V9h7fY
-         2wFxO2NnpQQt8Lsky5BXulbTrFyrdr06pon3YBz2tc6aY3e9Pa2IV0QoHNl7cLfiz1ZK
-         5/oQ==
-X-Gm-Message-State: AOAM533ayxQmWJ1+mVi/gyQ+GuiHAhtHlp65eYJv2M2p5dJryIcV9yu7
-        gb+2pM/grSwNvBGx3oRJMNaon1goTexcAA==
-X-Google-Smtp-Source: ABdhPJztPy3B1mNAjhJ8cMLMpGBuT+PpLTVRAsaup4KklmIJNTxLcde2Bhdop0OObqSvkVfXvO+m7Q==
-X-Received: by 2002:aca:3656:: with SMTP id d83mr16497564oia.176.1633703614214;
-        Fri, 08 Oct 2021 07:33:34 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id u9sm720809oiu.19.2021.10.08.07.33.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Oct 2021 07:33:33 -0700 (PDT)
-Date:   Fri, 8 Oct 2021 07:35:12 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: Re: [PATCH v3] ASoC: qcom: soundwire: Enable soundwire bus clock for
- version 1.6
-Message-ID: <YWBXIIjPP7Qunyvf@ripper>
-References: <1633671232-30310-1-git-send-email-srivasam@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FTJ2jzOfmc3TfTGxqKqcv2O3a+phTUEvAqWV0+MH2I8=;
+        b=QCxcyZTVxFnO2gV8O2HE3zgM9jG7AVqgzh80HjS+hMhSegG/+3SXMTDBqhzReQ+q8w
+         cT6NB8Qw/ue15YKwgdtrwsSZ25O/Q9/1t1Z4saIMoNMX9uBcCwCj2oWRBHZ6kq1kDG33
+         Q7YJY4/TX4+wY1KnJrzRNnz4HhRvGBQw7MGrQ2rLrpzh+drwvOtsEvqLHG8obqL/cuaG
+         SUM1tF9V1GDQnIYDfdE9VyVHjRhhwAuso9DOnw0Bp67zs/dBm70QYatNaxjkp8mne1Sl
+         jgq/2D0FQpw/zt0Ra80o37965l0JzDnHC8Nnoosaaua4bCOzHQKCwyD8AZII2r60wgSB
+         i6rQ==
+X-Gm-Message-State: AOAM533Oi0OsMYlQYypUcw16PQvxGdJKTJ0hLuFaTN/oXxDjHbkIKaah
+        QBGGO2lYZe/UsTeIGZPIDS1Z+msBzJG4Q+LJ1oHlSw==
+X-Google-Smtp-Source: ABdhPJzO67ce7CZQmVwkFnv5byVeOw9GUdg20sd6cp27QaBH2EPeuuev9vaX1QT+7hshqASQHLuGWvTJLwml3zHz5tY=
+X-Received: by 2002:a19:6a16:: with SMTP id u22mr10587977lfu.254.1633704245995;
+ Fri, 08 Oct 2021 07:44:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1633671232-30310-1-git-send-email-srivasam@codeaurora.org>
+References: <20210930065733.31943-1-tony@atomide.com> <20210930065733.31943-5-tony@atomide.com>
+In-Reply-To: <20210930065733.31943-5-tony@atomide.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 8 Oct 2021 16:43:29 +0200
+Message-ID: <CAPDyKFpybVPeYy-FsXnzDXNri+f7rhPmKa6vBF8NMUc3dQCZRw@mail.gmail.com>
+Subject: Re: [PATCH 4/5] mmc: sdhci-omap: Implement PM runtime functions
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Chunyan Zhang <zhang.chunyan@linaro.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 07 Oct 22:33 PDT 2021, Srinivasa Rao Mandadapu wrote:
+On Thu, 30 Sept 2021 at 08:57, Tony Lindgren <tony@atomide.com> wrote:
+>
+> Implement PM runtime functions and enable MMC_CAP_AGGRESSIVE_PM.
 
-> Add support for soundwire 1.6 version to gate RX/TX bus clock.
-> 
+I suggest you split this change into two pieces. MMC_CAP_AGGRESSIVE_PM
+is about enabling runtime PM management for the eMMC/SD card device,
+which is perfectly fine to use independently of whether runtime PM is
+supported for the host device.
 
-Are you really adding soundwire 1.6 support in order to gate RX/TX bus
-clock?
-
-Could it be that you're ungating the bus clock so that soundwire 1.6
-starts working? The commit message should properly describe why you're
-doing your change.
-
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-
-Venkata is the first who certified the origin of this patch, yet you're
-the author. Either this should be From Venkata (i.e. git commit
---author) or perhaps you need a Co-developed-by here to say that you
-collaborated on this and both certify its origin.
-
+>
+> Note that we save context in probe to avoid restoring invalid context
+> on the first resume. For system suspend, we have the new PM runtime
+> functions do most of the work.
+>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
 > ---
-> Changes since v2:
->     -- Update error check after ioremap.
-
-What about the other things I noted in v2?
-
-> Changes since v1:
->     -- Add const name to mask value.
-> 
->  drivers/soundwire/qcom.c | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> index 0ef79d6..bd6fabd 100644
-> --- a/drivers/soundwire/qcom.c
-> +++ b/drivers/soundwire/qcom.c
-> @@ -109,6 +109,7 @@
->  #define SWR_MAX_CMD_ID	14
->  #define MAX_FIFO_RD_RETRY 3
->  #define SWR_OVERFLOW_RETRY_COUNT 30
-> +#define SWRM_HCTL_REG_MASK ~BIT(1)
->  
->  struct qcom_swrm_port_config {
->  	u8 si;
-> @@ -127,6 +128,7 @@ struct qcom_swrm_ctrl {
->  	struct device *dev;
->  	struct regmap *regmap;
->  	void __iomem *mmio;
-> +	char __iomem *swrm_hctl_reg;
->  	struct completion broadcast;
->  	struct completion enumeration;
->  	struct work_struct slave_work;
-> @@ -610,6 +612,12 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
->  	val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
->  	val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
->  
-> +	if (ctrl->swrm_hctl_reg) {
-> +		val = ioread32(ctrl->swrm_hctl_reg);
-> +		val &= SWRM_HCTL_REG_MASK;
-
-Make a define with a name that clarifies what BIT(1) is and use that
-here, hiding a magic number in an empty define isn't making this more
-maintainable.
-
-Essentially put the name of the bit in the register description in a
-define and use that here.
-
-> +		iowrite32(val, ctrl->swrm_hctl_reg);
-> +	}
+>  drivers/mmc/host/sdhci-omap.c | 66 +++++++++++++++++++++++++++++------
+>  1 file changed, 56 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/mmc/host/sdhci-omap.c b/drivers/mmc/host/sdhci-omap.c
+> --- a/drivers/mmc/host/sdhci-omap.c
+> +++ b/drivers/mmc/host/sdhci-omap.c
+> @@ -117,6 +117,9 @@ struct sdhci_omap_host {
+>
+>         struct pinctrl          *pinctrl;
+>         struct pinctrl_state    **pinctrl_state;
+> +       unsigned long           context_valid:1;
+> +       unsigned long           is_runtime_suspended:1;
+> +       unsigned long           needs_resume:1;
+>         bool                    is_tuning;
+>
+>         /* Offset for omap specific registers from base */
+> @@ -1207,6 +1210,8 @@ static const struct soc_device_attribute sdhci_omap_soc_devices[] = {
+>         }
+>  };
+>
+> +static void sdhci_omap_context_save(struct sdhci_omap_host *omap_host);
 > +
->  	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
->  
->  	/* Enable Auto enumeration */
-> @@ -1200,7 +1208,7 @@ static int qcom_swrm_probe(struct platform_device *pdev)
->  	struct qcom_swrm_ctrl *ctrl;
->  	const struct qcom_swrm_data *data;
->  	int ret;
-> -	u32 val;
-> +	int val, swrm_hctl_reg = 0;
+>  static int sdhci_omap_probe(struct platform_device *pdev)
+>  {
+>         int ret;
+> @@ -1338,6 +1343,8 @@ static int sdhci_omap_probe(struct platform_device *pdev)
+>         /* R1B responses is required to properly manage HW busy detection. */
+>         mmc->caps |= MMC_CAP_NEED_RSP_BUSY;
+>
+> +       mmc->caps |= MMC_CAP_AGGRESSIVE_PM;
+> +
+>         ret = sdhci_setup_host(host);
+>         if (ret)
+>                 goto err_put_sync;
+> @@ -1350,6 +1357,11 @@ static int sdhci_omap_probe(struct platform_device *pdev)
+>         if (ret)
+>                 goto err_cleanup_host;
+>
+> +       sdhci_omap_context_save(omap_host);
+> +       omap_host->context_valid = 1;
 
-Don't you get a warning from passing val as an int to a function that
-takes a u32 pointer?
+Looks like you can remove this flag, it's not being used.
 
-Also there's no reason to zero-initialize swrm_hctl_reg.
+> +
+> +       pm_runtime_put_sync(dev);
 
->  
->  	ctrl = devm_kzalloc(dev, sizeof(*ctrl), GFP_KERNEL);
->  	if (!ctrl)
-> @@ -1251,6 +1259,11 @@ static int qcom_swrm_probe(struct platform_device *pdev)
->  	ctrl->bus.port_ops = &qcom_swrm_port_ops;
->  	ctrl->bus.compute_params = &qcom_swrm_compute_params;
->  
-> +	if (!of_property_read_u32(dev->of_node, "qcom,swrm-hctl-reg", &swrm_hctl_reg)) {
+I recommend to use the PM runtime autosuspend feature, as to avoid an
+initial latency for every I/O request to the host driver. The mmc core
+already supports that, see mmc_release_host().
 
-As I said in my feedback of v2, this property is not documented in the
-DT binding.
+The typical default timeout value for autosuspend, is usually set
+~50-200ms, by host drivers (if I recall correctly).
 
+> +
+>         return 0;
+>
+>  err_cleanup_host:
+> @@ -1371,6 +1383,7 @@ static int sdhci_omap_remove(struct platform_device *pdev)
+>         struct device *dev = &pdev->dev;
+>         struct sdhci_host *host = platform_get_drvdata(pdev);
+>
+> +       pm_runtime_get_sync(dev);
+>         sdhci_remove_host(host, true);
+>         pm_runtime_put_sync(dev);
 
-But more important, upstream we do not approve of the downstream
-methodology of having properties pointing to single registers in some
-memory block somewhere.
+There is no guarantee that this triggers a call to
+->sdhci_omap_runtime_suspend(), which I guess is what we want.
+Userspace via sysfs may have increase the RPM usage count
+(pm_runtime_forbid(), for example.
 
-Describe the hardware block that you reference fully in devicetree and
-make a proper reference to it.
+To address this, I would call pm_runtime_disable() first and then
+explicitly put the device into low power state, rather than relying on
+runtime PM to do it. Another option could be to use
+pm_runtime_force_suspend().
 
-Unfortunately your patch lacks details necessary to know where this
-register lives, so it's not possible for me to recommend a proper
-design.
+>         pm_runtime_disable(dev);
+> @@ -1402,42 +1415,75 @@ static void sdhci_omap_context_restore(struct sdhci_omap_host *omap_host)
+>         sdhci_omap_writel(omap_host, SDHCI_OMAP_ISE, omap_host->ise);
+>  }
+>
+> -static int __maybe_unused sdhci_omap_suspend(struct device *dev)
+> +static int __maybe_unused sdhci_omap_runtime_suspend(struct device *dev)
+>  {
+>         struct sdhci_host *host = dev_get_drvdata(dev);
+>         struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+>         struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
+>
+> -       sdhci_suspend_host(host);
+> -
 
-Regards,
-Bjorn
+Shouldn't you call sdhci_runtime_suspend_host() somewhere here?
 
-> +		ctrl->swrm_hctl_reg = devm_ioremap(&pdev->dev, swrm_hctl_reg, 0x4);
-> +		if (!ctrl->swrm_hctl_reg)
-> +			return -ENODEV;
-> +	}
->  	ret = qcom_swrm_get_port_config(ctrl);
->  	if (ret)
->  		goto err_clk;
-> -- 
-> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-> 
+>         sdhci_omap_context_save(omap_host);
+>
+>         pinctrl_pm_select_idle_state(dev);
+>
+> -       pm_runtime_force_suspend(dev);
+> +       omap_host->is_runtime_suspended = 1;
+>
+>         return 0;
+>  }
+>
+> -static int __maybe_unused sdhci_omap_resume(struct device *dev)
+> +static int __maybe_unused sdhci_omap_runtime_resume(struct device *dev)
+>  {
+>         struct sdhci_host *host = dev_get_drvdata(dev);
+>         struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+>         struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
+>
+> -       pm_runtime_force_resume(dev);
+> -
+>         pinctrl_pm_select_default_state(dev);
+>
+> -       sdhci_omap_context_restore(omap_host);
+> +       if (omap_host->context_valid)
+> +               sdhci_omap_context_restore(omap_host);
+> +
+> +       omap_host->is_runtime_suspended = 0;
+
+Shouldn't you call sdhci_runtime_resume_host() somewhere here?
+
+> +
+> +       return 0;
+> +}
+> +
+> +static int __maybe_unused sdhci_omap_suspend(struct device *dev)
+> +{
+> +       struct sdhci_host *host = dev_get_drvdata(dev);
+> +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> +       struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
+> +
+> +       if (omap_host->is_runtime_suspended)
+> +               return 0;
+
+So if the host is already runtime suspended, it's okay to just leave it as is?
+
+In a way that sounds like you could call pm_runtime_force_suspend()
+instead, assuming the sdhci_omap_runtime_suspend() can be extended to
+do the right thing for system suspend as well.
+
+It looks a bit odd that sdhci_suspend_host() is called only when the
+host is runtime resumed. Perhaps you can elaborate a bit more on why
+this is, so I can understand better what you want to achieve here.
+
+> +
+> +       sdhci_suspend_host(host);
+> +       sdhci_omap_runtime_suspend(dev);
+> +       omap_host->needs_resume = 1;
+>
+> +       return 0;
+> +}
+> +
+> +static int __maybe_unused sdhci_omap_resume(struct device *dev)
+> +{
+> +       struct sdhci_host *host = dev_get_drvdata(dev);
+> +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> +       struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
+> +
+> +       if (!omap_host->needs_resume)
+> +               return 0;
+> +
+> +       sdhci_omap_runtime_resume(dev);
+>         sdhci_resume_host(host);
+> +       omap_host->needs_resume = 0;
+>
+>         return 0;
+>  }
+>  #endif
+> -static SIMPLE_DEV_PM_OPS(sdhci_omap_dev_pm_ops, sdhci_omap_suspend,
+> -                        sdhci_omap_resume);
+> +
+> +static const struct dev_pm_ops sdhci_omap_dev_pm_ops = {
+> +       SET_RUNTIME_PM_OPS(sdhci_omap_runtime_suspend,
+> +                          sdhci_omap_runtime_resume, NULL)
+> +       SET_SYSTEM_SLEEP_PM_OPS(sdhci_omap_suspend, sdhci_omap_resume)
+> +};
+>
+>  static struct platform_driver sdhci_omap_driver = {
+>         .probe = sdhci_omap_probe,
+> --
+> 2.33.0
+
+Kind regards
+Uffe
