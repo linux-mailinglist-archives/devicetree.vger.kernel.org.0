@@ -2,116 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7680D42643B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 07:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE88B426489
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 08:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbhJHFuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 01:50:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbhJHFuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 01:50:11 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26C7FC061755
-        for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 22:48:16 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id r10so26017578wra.12
-        for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 22:48:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Xza3FZu4/45i3mPqxeQ2Q2oi0Y+FkLNAPOGd2b40l+w=;
-        b=g75tY/NDC5XJY7BXDLhtUI+ly8rpIHUO0hAfLxt1Lqp0TuKXjBW2VpXfF5DB4muVTE
-         TapcRhfi+n4hY2hJVfWQ7NCZgn8Y1NnhG8nqFHjPIgoYZrGPm3sfl+jzTD/4sqchekSQ
-         Z84RnZPfXJb4euhKwhKR21JWlxMKAxmc/xuglDMYa9rnMBaAvuigGOiOAljwLUixTnVX
-         TZUEkBDK3iGQAugiI3ys4ajhotgoSgQcBq5cqZLGZXS6TzqXhuCsTM3LlZ3iahdnRzgM
-         BYW64aE7+OwwSceG8moDoPNHocI60+o6SmKvOvUENyLfWxLQsd69SBeB5u8AdBsm7pq0
-         yVhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Xza3FZu4/45i3mPqxeQ2Q2oi0Y+FkLNAPOGd2b40l+w=;
-        b=vQzfMT1qZHyt3bLl6KExwFfReHlwIOlC381jcYZJ5omsKAeHjZvVlQLBroyj81KcaV
-         /VYmFVS/NouwqySOU3kuj1BHKO9Mg7uu09K9udfZ9w/oub8+vq1sK+J1Atm7Umnh6+RS
-         +zrqcdh1W6ktgaZKYAatC9kaj0JbL/fGDWo0vR1qWeEf7csZ6SHpBcKfrgoODBNzz+ZS
-         K47UsA2HTqag/DYBYjpVSYjd8wr34fEIDL0cgYhj35eWo91FvOIJEJw7phLFezMspO6O
-         fmnckDT5hX66SYv20W5dOBZF4Mc2c8EeaDOAFkCNslvs0vNtdGTL7kMW8RowZInNkUaT
-         xcug==
-X-Gm-Message-State: AOAM530p4KT5+Tt3s2KDaTI4j/nt1Fjxgexqaq1Ygk4Zbdy1X59/C046
-        C3wWSGNoeU3TLgsqSPRSPHxAH84+kIXgq34G8pqx6w==
-X-Google-Smtp-Source: ABdhPJy9UbYUMVl4HBmsmA6GSsZCNVNCqohyBOf6eLhBVYwyPCiXWpaOFeF4fRn+cVVaHILtjVVGPf4oUNk8A3ScN7Q=
-X-Received: by 2002:a05:600c:4111:: with SMTP id j17mr1359473wmi.59.1633672094680;
- Thu, 07 Oct 2021 22:48:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211007123632.697666-1-anup.patel@wdc.com> <20211007123632.697666-9-anup.patel@wdc.com>
- <1633661172.604098.1409593.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1633661172.604098.1409593.nullmailer@robh.at.kernel.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Fri, 8 Oct 2021 11:18:03 +0530
-Message-ID: <CAAhSdy1VnK9qKcJN42f9g5j7C1WNkzjpj6QQVFKD=2d9cYzDtQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v4 08/10] dt-bindings: timer: Add ACLINT MTIMER bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Anup Patel <anup.patel@wdc.com>, Marc Zyngier <maz@kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Bin Meng <bmeng.cn@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>
+        id S229721AbhJHGVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 02:21:15 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:37330 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229654AbhJHGVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 02:21:14 -0400
+X-UUID: 991e0cb2b94c4b64b1361b7e31c0ba4f-20211008
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=DXaYlcXovTi8AVzeCqHB6o3jCTRK2bXcD3iWckAtv/E=;
+        b=FFXNRkuW2sVUU64o/3ccYTYeEgQVly/HNW/PlfPmgPDAi51jX3BxSGIhLiwCJx9oaHf5/zQDS5I/OqbUbK1DcoSjHGiSwPcNssnVm9u4RrP4JEZL7fdKHlKgg9xeSxI8TwLdye5x+Lfo1gYZadb2yFuIeQxMfZJ7ZQHcVYyciCI=;
+X-UUID: 991e0cb2b94c4b64b1361b7e31c0ba4f-20211008
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 114358499; Fri, 08 Oct 2021 14:19:16 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 8 Oct 2021 14:19:15 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 8 Oct 2021 14:19:14 +0800
+Message-ID: <72d26b0622538bdfda4e64519d34088e8c21656a.camel@mediatek.com>
+Subject: Re: [PATCH v7 2/7] i2c: mediatek: Reset the handshake signal
+ between i2c and dma
+From:   Kewei Xu <kewei.xu@mediatek.com>
+To:     Wolfram Sang <wsa@the-dreams.de>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <caiyu.chen@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
+        <yuhan.wei@mediatek.com>
+Date:   Fri, 8 Oct 2021 14:19:17 +0800
+In-Reply-To: <YVf8jQPHoQtbCfth@kunai>
+References: <20210917101416.20760-1-kewei.xu@mediatek.com>
+         <20210917101416.20760-3-kewei.xu@mediatek.com> <YVf8jQPHoQtbCfth@kunai>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 8, 2021 at 8:16 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, 07 Oct 2021 18:06:30 +0530, Anup Patel wrote:
-> > We add DT bindings documentation for the ACLINT MTIMER device
-> > found on RISC-V SOCs.
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
-> > ---
-> >  .../bindings/timer/riscv,aclint-mtimer.yaml   | 67 +++++++++++++++++++
-> >  1 file changed, 67 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml:31:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
->
-> dtschema/dtc warnings/errors:
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/patch/1537679
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
+T24gU2F0LCAyMDIxLTEwLTAyIGF0IDA4OjMwICswMjAwLCBXb2xmcmFtIFNhbmcgd3JvdGU6DQo+
+ID4gKyNkZWZpbmUgSTJDX0NMUl9ERUJVR0NUUgkJMHgwMDAwDQo+IA0KPiBIbW0sIEkgZG9uJ3Qg
+dGhpbmsgdGhhdCBhIG1hY3JvIHRvIGNsZWFyIGEgcmVnaXN0ZXIgaGVscHMNCj4gcmVhZGFiaWxp
+dHkuLi4NCj4gDQo+ID4gKwkJbXRrX2kyY193cml0ZXcoaTJjLCBJMkNfQ0xSX0RFQlVHQ1RSLA0K
+PiA+IE9GRlNFVF9ERUJVR0NUUkwpOw0KPiANCj4gLi4NCj4gDQo+ICArCQltdGtfaTJjX3dyaXRl
+dyhpMmMsIDAsIE9GRlNFVF9ERUJVR0NUUkwpOw0KPiANCj4gbG9va3MgZ29vZCB0byBtZS4gQW55
+aG93LCBpdCBpcyBub3QgYSBiaWcgaXNzdWUuIExldCBtZSBrbm93IGlmIHlvdQ0KPiB3YW50DQo+
+IHRvIGNoYW5nZSBpdCBvciBrZWVwIGl0Lg0KPiANCk9LLCBJIHdpbGwgdXNlIDB4MDAgaW5zdGVh
+ZCBvZiBtYWNybyBvbiBWOCB2ZXJzaW9uLFRoYW5rcy4NCg0K
 
-Sure, I will fix the "yamllint" warning in the next patch revision.
-
-Let me know if there are any other comments.
-
-Regards,
-Anup
-
->
