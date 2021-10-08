@@ -2,115 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC4F6426B81
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:11:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A3BD426B92
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 15:16:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241993AbhJHNNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 09:13:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57310 "EHLO
+        id S230282AbhJHNSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 09:18:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241522AbhJHNNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 09:13:44 -0400
-Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C6AEC061570;
-        Fri,  8 Oct 2021 06:11:49 -0700 (PDT)
-Received: by mail-oo1-xc35.google.com with SMTP id r1-20020a4a9641000000b002b6b55007bfso728693ooi.3;
-        Fri, 08 Oct 2021 06:11:49 -0700 (PDT)
+        with ESMTP id S230258AbhJHNSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 09:18:43 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED41C061570;
+        Fri,  8 Oct 2021 06:16:48 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id r18so29835032wrg.6;
+        Fri, 08 Oct 2021 06:16:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=q1IIoNZrvzr/hNM2qUG7pSqa5Zq3cpShJfrzoqqC0pI=;
-        b=iNG0boy5ahfBaBaU5bTlJI+gmvF2knwFpycn11yVC4AcKWlhpPtzeeA6AodEeOinDN
-         2YvcFllf2/ney3M/CJ55TenJn+fmIc8dJ7sqGVppW4VWWESBRw77chLmAtCCrk9fOq5s
-         KAZI+RZ7k0zWvSfJrNEyJ5INIaZtxY9LXz6/UW1SqY1K5Fs2JK2C5GWaJSly1N23cMwK
-         8e+BOz1e63jpbPwZ+UHPbVPLp20NHv+aAc3diPqsnlyGPqtDMjW5vjH6JmUQnmFp94Kv
-         zivQYvXLJR7o6RLbKKnRF4FtFOEjwLGmLI5BR9nDKes6Uvf7j54NNVabRyfULK02CigF
-         0s4w==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Gr1byabWHn1PUa1m+Lt+dKzXId3ni3LSSa9lwDSa3gk=;
+        b=TJwvim7w+eQFFfurbsl40FGMPwvnfLNLF3mqkVbNUxpugKorDKYZpgJ6ppC/PTEfU/
+         zOILl/qFEGzOdn6zfkCqtCzngeViZPdhvYzMHbM3IFZjQGHrra/zDS/6TMIKgTnVc55t
+         FcMxubz12x29/ajr4yg/4IapyvyKUFNo3xqRhsRdQeIVc4OPAXyzrkZY81y6rOdHomht
+         hqzwPEcVHx/WmerpaSHDHB18z/kd2XNccqlNpJydYkZY9xgv9A3ahUCBrPFCZeng3Ptm
+         jP6ttiHbfEf7muJb0bTHpjXuPa4qjwlq/IFgZ8831A1pXDw+R+PUitOMme4fSBTH9oWk
+         WxPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=q1IIoNZrvzr/hNM2qUG7pSqa5Zq3cpShJfrzoqqC0pI=;
-        b=ma4eLP35giC06H5XOLqUis/YFcP8jvv9FhfIxspm0EAnhDQk55WgQqxhG5L+eoLaM4
-         ayWdFy13Lkxbm5ufKHJGAjEs6VOyWjiF5Ndbc6FDq44OD2oRZGUhQHzB6RAHfZbLT+Vu
-         sb+WVOYEOQkrSGCqYtHIq68GsYSrmv/Qtp0GXjzA6cgYhGOIlOsqXC9MxnPmAWSL6ZCg
-         KNmehLU6I90r/SBhdBVC02x7kuvayz0LuiEKKk/qx57qbdCSxklB21L+M6mfZL61dUEf
-         FdFzTdYbtmQTB3b5VS7fr10hsxCejOlM94s7CC+Ttvc+/vidjB9TR844m74Qq/YGpRYR
-         cu5g==
-X-Gm-Message-State: AOAM530pcYWkPWX+pw8k1qVVNQf1uv8UAXLvWILL5+cL7+Rva3lgy+O/
-        wn07RfPC7YQj4te/KxxE+0l1GR7KJJk=
-X-Google-Smtp-Source: ABdhPJzPIc/aO6gYXmcp99zYUpnx8i+SkATO0WxqHHyIVl6PjnSdtTRzDncrhYDQ53mHQxQNSF0k3Q==
-X-Received: by 2002:a4a:d455:: with SMTP id p21mr7958124oos.97.1633698708609;
-        Fri, 08 Oct 2021 06:11:48 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id m23sm478611oom.34.2021.10.08.06.11.46
+        bh=Gr1byabWHn1PUa1m+Lt+dKzXId3ni3LSSa9lwDSa3gk=;
+        b=iFs4jdEOVja953VOS/7c6Nmef6OKoxLGerjQlvVaYtTnnCbFxerO+qAedYx9EU/YZD
+         b2Y2fTlT/kvv+SVYlS+j1W92y6wup2HixbFe4BMuJ5nbNMUT6pLN5slTpUp1wds2FiEY
+         tMr4xRmVEEkSE/DyV5L9gBP8JnsRM0QNnJ952EC+HqwwOjcQFwXZoMwIEIpm/1bShNFk
+         2WtX23Sb28V1V39vyr9FEoV7F619dWR4Ybv/4jkTzYsmS2ODOEo0wNFsEoiu/ivgdziR
+         ECGeayWmzSVdX9EifSXPnKe0z8g2Co6KEkoWgbWvfUi2aXGE4l9oUAG5LV1Udqbq1WTR
+         YSrg==
+X-Gm-Message-State: AOAM530bkpknxGv0vP6iIos2jPh5VxIhkVMEki+ucWW1lj6EzutPD+53
+        An4blNrZbdu1GOr7t1CkhCE=
+X-Google-Smtp-Source: ABdhPJwchweLQBjxy6TkxOtLDsNz1AODqVJ3fWsbZRISUfWyoArhAgv4Go21sBR80xsRmqCQwndA7w==
+X-Received: by 2002:a5d:6245:: with SMTP id m5mr4099639wrv.148.1633699006563;
+        Fri, 08 Oct 2021 06:16:46 -0700 (PDT)
+Received: from [192.168.2.177] ([206.204.146.29])
+        by smtp.gmail.com with ESMTPSA id g2sm2642909wrb.20.2021.10.08.06.16.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 06:11:47 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     Oskar Senft <osk@google.com>
-Cc:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Rob Herring <robh@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        devicetree@vger.kernel.org
-References: <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
- <YUkKCe7845uCqoy5@robh.at.kernel.org> <20210921125831.GB1864238@roeck-us.net>
- <CAL_JsqLo=inkKVKSU8N=_h90RfpDk6NNWPKdKyTXh-VvqXDCag@mail.gmail.com>
- <20210921205247.GA2363535@roeck-us.net>
- <CAL_Jsq+NXuF+F7OE3vyEbTUj6sxyMHVWHXbCuPPoFaKjpyZREQ@mail.gmail.com>
- <20210924002951.GA3027924@roeck-us.net>
- <YU2D7L7QMgCJZUeb@localhost.localdomain>
- <20210924114636.GB2694238@roeck-us.net>
- <CABoTLcQYHZbsgzXN7XXKQdDn8S-YsuE+ks9WShAEKcBJojEfcQ@mail.gmail.com>
- <20210925132631.GB1240690@roeck-us.net>
- <CABoTLcTKAn5TVs3wadZQiheeKA5kUGBtMRbFWprRWoqRJV=J9Q@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for
- tmp421
-Message-ID: <1fe19e35-972d-c50a-c04f-a3eb4d09e1db@roeck-us.net>
-Date:   Fri, 8 Oct 2021 06:11:45 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Fri, 08 Oct 2021 06:16:45 -0700 (PDT)
+Message-ID: <266143bd-6135-adf6-8a80-537f9d6ea3ff@gmail.com>
+Date:   Fri, 8 Oct 2021 15:16:43 +0200
 MIME-Version: 1.0
-In-Reply-To: <CABoTLcTKAn5TVs3wadZQiheeKA5kUGBtMRbFWprRWoqRJV=J9Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Subject: Re: [PATCH v4 0/7] Add support to the mmsys driver to be a reset
+ controller
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        linux-kernel@vger.kernel.org
+Cc:     linux-mediatek@lists.infradead.org, eizan@chromium.org,
+        kernel@collabora.com, drinkcat@chromium.org,
+        jitao.shi@mediatek.com, chunkuang.hu@kernel.org,
+        hsinyi@chromium.org, Crystal Guo <crystal.guo@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Fabien Parent <fparent@baylibre.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org
+References: <20210930083150.3317003-1-enric.balletbo@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20210930083150.3317003-1-enric.balletbo@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/8/21 5:55 AM, Oskar Senft wrote:
-> Hi Guenter
+
+
+On 30/09/2021 10:31, Enric Balletbo i Serra wrote:
+> Dear all,
 > 
->> Numbering in sysfs is not relevant here; the index should always start with 0.
-> Ok, in that case, I'll encode LTD as @0 and RTD1..3 as @1..@3.
+> The following patchset is a reimplementation of the patch sent by Jitao
+> Shi [1] some time ago. As suggested by Chun-Kuang Hu, this time the
+> reset is done using the reset API, where the mmsys driver is the reset
+> controller and the mtk_dsi driver is the reset consumer.
 > 
->>> In this example, RTD1, RTD2 and LTD would be temperature sensors and
->>> RTD3 would be a voltage sensor.
->>>
->>> Would that make more sense? Is the use of strings acceptable?
->>>
->> I don't think so. I am quite sure that rtd3 is still a temperature,
->> and I am not sure if other sensor types on that chip may need dt
->> configuration.
-> Reading the existing nct7802_in_is_visible() and
-> nct7802_temp_is_visible() [1] in I read that RTD3 could either be
-> voltage or temperature.
+> Note that the first patch is kind of unrelated change, it's just a
+> cleanup but is needed if you want to apply all the following patches
+> cleanly.
+> 
+> This patchset is important in order to have the DSI panel working on some
+> kukui MT8183 Chromebooks (i.e Lenovo IdeaPad Duet). Without it, you just
+> get a black screen.
 > 
 
-Ah yes, you are correct. The same applies to RTD1 and RTD2, actually,
-Sorry, it has been too long since I wrote the driver. And it really needs
-a conversion to the new hwmon API.
+Patch 1-5 pushed to v5.15-next/dts64
+Patch 6-7 pushed to v5.15-next/soc
 
-Guenter
+Thanks!
+Matthias
 
-> I'll go ahead and propose another patch version on [3] for that.
+> Best regards,
+>    Enric
 > 
-> [1] https://github.com/torvalds/linux/blob/master/drivers/hwmon/nct7802.c#L778
-> [2] https://github.com/torvalds/linux/blob/master/drivers/hwmon/nct7802.c#L679
-> [3] https://lore.kernel.org/all/20210921004627.2786132-1-osk@google.com/
+> [1] https://lore.kernel.org/linux-arm-kernel/20210420132614.150242-4-jitao.shi@mediatek.com/
 > 
-
+> 
+> Changes in v4:
+> - Remove unnused variable as pointed by Hsin-Yi
+> 
+> Changes in v3:
+> - Based on top of the patch that converts mmsys to schema
+> - Fix typo in the commit description
+> 
+> Changes in v2:
+> - Fix build test ERROR Reported-by: kernel test robot <lkp@intel.com>
+> - Added a new patch to describe the dsi reset optional property.
+> 
+> Enric Balletbo i Serra (7):
+>    arm64: dts: mediatek: Move reset controller constants into common
+>      location
+>    dt-bindings: mediatek: Add #reset-cells to mmsys system controller
+>    dt-bindings: display: mediatek: add dsi reset optional property
+>    arm64: dts: mt8173: Add the mmsys reset bit to reset the dsi0
+>    arm64: dts: mt8183: Add the mmsys reset bit to reset the dsi0
+>    soc: mediatek: mmsys: Add reset controller support
+>    drm/mediatek: mtk_dsi: Reset the dsi0 hardware
+> 
+>   .../bindings/arm/mediatek/mediatek,mmsys.yaml |  4 ++
+>   .../display/mediatek/mediatek,dsi.txt         |  6 ++
+>   arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  2 +
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  5 +-
+>   drivers/gpu/drm/mediatek/mtk_dsi.c            |  5 +-
+>   drivers/soc/mediatek/mtk-mmsys.c              | 68 +++++++++++++++++++
+>   drivers/soc/mediatek/mtk-mmsys.h              |  2 +
+>   drivers/watchdog/mtk_wdt.c                    |  6 +-
+>   .../mt2712-resets.h                           |  0
+>   include/dt-bindings/reset/mt8173-resets.h     |  2 +
+>   .../mt8183-resets.h                           |  3 +
+>   .../mt8192-resets.h                           |  0
+>   12 files changed, 97 insertions(+), 6 deletions(-)
+>   rename include/dt-bindings/{reset-controller => reset}/mt2712-resets.h (100%)
+>   rename include/dt-bindings/{reset-controller => reset}/mt8183-resets.h (98%)
+>   rename include/dt-bindings/{reset-controller => reset}/mt8192-resets.h (100%)
+> 
