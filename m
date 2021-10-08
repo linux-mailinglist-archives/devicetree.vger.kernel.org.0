@@ -2,147 +2,604 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E61824272A0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 22:52:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E224272A2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 22:53:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243069AbhJHUyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 16:54:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51304 "EHLO
+        id S243035AbhJHUzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 16:55:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242932AbhJHUyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 16:54:09 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F49CC061570;
-        Fri,  8 Oct 2021 13:52:13 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id m3so44307687lfu.2;
-        Fri, 08 Oct 2021 13:52:13 -0700 (PDT)
+        with ESMTP id S242946AbhJHUzS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 16:55:18 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4333DC061570
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 13:53:22 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id g8so40933547edt.7
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 13:53:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=7g6gDjHhhS40IiOHUGFSZlIOtiIZlGNrVMwrxorSJ3c=;
-        b=Cav3L043ILftm3k08p/PdGpS70S2KFmvJ5pKFzpulXASOqgDqL9t/gu5uAy22bI/S8
-         eGVos0YANGmNwaSrJNHD5GfV0cN+hyTGyoDtNQyI9eZRq2cc/37MEoZvSHD8ofR1UV5Z
-         uT96V/z4+eTXlhvJZvU2/9cY8pYHa6HBluRXNp62kS5NdeLbU5l6KLUfdDRcjRgEN/sA
-         PSirpp9zOTsiUlBO+H93Ib47hgaJqgl/vEU2vji13RvcHdXo00WqdG70OX37ZhofXn3x
-         2npOSdX74Ej0k1XLfaBrB8CDHlpniIpCSUisNyvr12FW5LA8+xbqocHOnzWAPR4Qp1wk
-         opoA==
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5u0NieLjrWyzYbO6C4kk3jLDqSa9CwStDJXyDa/0uME=;
+        b=203u3jRUO5y+WI0HOmp7qpFSH8YF//pZUBnO1z7JZrtqDTslavrdtWmAqkBCdRDTCZ
+         dQiETlduL+wJTgMl5XV3jvcoLjKmV/RbtK0I13a3WR+le/vIOsYRhWfURcsDf08wbE7S
+         DL+TylZFkeaAbB7zINpMNejpeI/LVwQ3fKTTliab+DtGQbjf14kIBFl3rAbqfTGFToAl
+         xNOgrRq/b20n68e0WH+XxE6DkgxZ9fQfHej9nT6Nr7iT/wd5dPRi/96Ng2dkD544mbJK
+         KHWUo52wjU0+BWVV7CnwZu5RlvXX4KnHFD3o1UV5sgB2lICegQTxxhswtLTV5a4mdsIU
+         ttuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=7g6gDjHhhS40IiOHUGFSZlIOtiIZlGNrVMwrxorSJ3c=;
-        b=TLKL3RFT3y9eMJa+rZKFWxjakcp8BIVakYOx72/kyNs111/oROmJ4SjA4mC7OcsSu0
-         sJLVss17TjZGpLEAUNKXBld9wVo9dmwNdF2MuuFBdDvgXd95Fs1pOJClCupmDeueMZNz
-         iXE0HPFRTDJEOs78ry8ROqoQ/vgUcCeZfe9OGKCtQTzhScaxA3drQFzVgRpxLrzEp2aJ
-         bC4pJS9URsrH+NjnDJRCDVTJk7z8B2A4+HPc5LZC0CcXqvldfndW8qC+19TbQ7b4c8OL
-         5w7v37zo/Pil6o9eRLQAepYoq458HdvHuk1GIgSMS752MArhpZosFwO+XfQKtns/dFHN
-         hawA==
-X-Gm-Message-State: AOAM531ppxaaizS55AK/U7r+CJw8m6MNZO73zUXkNtz0ft8zOJS9K7yW
-        QHi44a/NkYSI0BYTRRg1n7o=
-X-Google-Smtp-Source: ABdhPJzPyIYpdlFYtK1n40u91+MFmdeJxJmDCe22SOvBkCZ0qHoy/qpiARoRQG4w7vQeJhTdN0bcwg==
-X-Received: by 2002:a05:6512:2301:: with SMTP id o1mr11961418lfu.333.1633726331801;
-        Fri, 08 Oct 2021 13:52:11 -0700 (PDT)
-Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id bj40sm28460ljb.106.2021.10.08.13.52.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 13:52:11 -0700 (PDT)
-Subject: Re: [PATCH V2 linux-pinctrl 1/2] Revert "dt-bindings: pinctrl:
- bcm4708-pinmux: rework binding to use syscon"
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Scott Branden <sbranden@broadcom.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20211008153939.19685-1-zajec5@gmail.com>
- <1633722536.868012.3211952.nullmailer@robh.at.kernel.org>
- <cf2ca705-d6d7-d69a-3c66-59f7c997f6b8@gmail.com>
- <YWCuwlWlHcAxsKm/@robh.at.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <25e875ff-ec4d-0872-4e56-2cd528ad3ee8@gmail.com>
-Date:   Fri, 8 Oct 2021 22:52:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        bh=5u0NieLjrWyzYbO6C4kk3jLDqSa9CwStDJXyDa/0uME=;
+        b=ARRrOFXNq6j+jVdfqWj15rCIX3vg1xlhWQnKHIOf4ED2Py+/ZeMbxaoOjw0fNrPfT8
+         LKvRhgClHWRSVA7CBfwXMu0Fol92RkRW6A89gq4vVEv2ZkGjyK28KrlSE4xZo323ND3q
+         yR9LgXZz6v8JgUOL+sL7O4xSdfuB45YiKpRlpeVpaFndBaQsoW3MLm70yJ0ZFUucxY+P
+         3BQfZ9KNhtoZgHtO+zKAAzZ2XCrx0WiAb6pSI2d6PfhIJzEAhSsRddBgcIApmICI9hX5
+         dLauJmdPQCAQyy++kuQYYwHUj0uQNNYQ+W+Ag88UFRyh2hjhXHiIZRV/0twEoCHG3xkV
+         yMyA==
+X-Gm-Message-State: AOAM533Xpmg48/PDqF/4u5CqF1fskZ6BsdDEZjahPfmED7dwQu+auWYx
+        26AXCxZzJoacGgip5ANhfYRLng==
+X-Google-Smtp-Source: ABdhPJxlLcYn1I9wwSDocLBnVOUGLi9Hj3nmtFGJRyYjO838bS990lDqrIAfaQGHrmjQrWB1vw7PEw==
+X-Received: by 2002:a17:906:1945:: with SMTP id b5mr6798031eje.347.1633726400765;
+        Fri, 08 Oct 2021 13:53:20 -0700 (PDT)
+Received: from fedora.. (dh207-98-202.xnet.hr. [88.207.98.202])
+        by smtp.googlemail.com with ESMTPSA id y4sm132308ejw.3.2021.10.08.13.53.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Oct 2021 13:53:20 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     robh+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        pali@kernel.org, kabel@kernel.org
+Cc:     Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v6] arm64: dts: marvell: add Globalscale MOCHAbin
+Date:   Fri,  8 Oct 2021 22:53:13 +0200
+Message-Id: <20211008205313.69016-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <YWCuwlWlHcAxsKm/@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08.10.2021 22:49, Rob Herring wrote:
-> On Fri, Oct 08, 2021 at 10:08:46PM +0200, Rafał Miłecki wrote:
->> On 08.10.2021 21:48, Rob Herring wrote:
->>> On Fri, 08 Oct 2021 17:39:38 +0200, Rafał Miłecki wrote:
->>>> From: Rafał Miłecki <rafal@milecki.pl>
->>>>
->>>> This reverts commit 2ae80900f239484069569380e1fc4340fd6e0089.
->>>>
->>>> My rework was unneeded & wrong. It replaced a clear & correct "reg"
->>>> property usage with a custom "offset" one.
->>>>
->>>> Back then I didn't understand how to properly handle CRU block binding.
->>>> I heard / read about syscon and tried to use it in a totally invalid
->>>> way. That change also missed Rob's review (obviously).
->>>>
->>>> Northstar's pin controller is a simple consistent hardware block that
->>>> can be cleanly mapped using a 0x24 long reg space.
->>>>
->>>> Since the rework commit there wasn't any follow up modifying in-kernel
->>>> DTS files to use the new binding. Broadcom also isn't known to use that
->>>> bugged binding. There is close to zero chance this revert may actually
->>>> cause problems / regressions.
->>>>
->>>> This commit is a simple revert. Example binding may (should) be updated
->>>> / cleaned up but that can be handled separately.
->>>>
->>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>>> ---
->>>> V2: Update brcm,cru.yaml to avoid new yamllint warnings/errors
->>>> ---
->>>>    .../devicetree/bindings/mfd/brcm,cru.yaml     | 11 +++++----
->>>>    .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 23 +++++++++++--------
->>>>    2 files changed, 19 insertions(+), 15 deletions(-)
->>>>
->>>
->>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>>
->>> yamllint warnings/errors:
->>>
->>> dtschema/dtc warnings/errors:
->>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.example.dt.yaml: cru@1800c100: $nodename:0: 'cru@1800c100' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
->>> 	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/simple-bus.yaml
->>
->> It's warning we already have and not something introduced by this
->> revert.
-> 
-> We don't allow warnings, so you're saying this one was warning before?
+Globalscale MOCHAbin is a Armada 7040 based development board.
 
-Yes.
+Specifications:
+* Armada 7040 Quad core ARMv8 Cortex A-72 @ 1.4GHz
+* 2 / 4 / 8 GB of DDR4 DRAM
+* 16 GB eMMC
+* 4MB SPI-NOR (Bootloader)
+* 1x M.2-2280 B-key socket (for SSD expansion, SATA3 only)
+* 1x M.2-2250 B-key socket (for modems, USB2.0 and I2C only)
+* 1x Mini-PCIe 3.0 (x1, USB2.0 and I2C)
+* 1x SATA 7+15 socket (SATA3)
+* 1x 16-pin (2×8) MikroBus Connector
+* 1x SIM card slot (Connected to the mini-PCIe and both M.2 slots)
+* 2x USB3.0 Type-A ports via SMSC USB5434B hub
+* Cortex 2x5 JTAG
+* microUSB port for UART (PL2303GL/PL2303SA onboard)
+* 1x 10G SFP+
+* 1x 1G SFP (Connected to 88E1512 PHY)
+* 1x 1G RJ45 with PoE PD (Connected to 88E1512 PHY)
+* 4x 1G RJ45 ports via Topaz 88E6141 switch
+* RTC with battery holder (SoC provided, requires CR2032 battery)
+* 1x 12V DC IN
+* 1x Power switch
+* 1x 12V fan header (3-pin, power only)
+* 1x mini-PCIe LED header (2x0.1" pins)
+* 1x M.2-2280 LED header (2x0.1" pins)
+* 6x Bootstrap jumpers
+* 1x Power LED (Green)
+* 3x Tri-color RGB LEDs (Controllable)
+* 1x Microchip ATECC608B secure element
 
+Note that 1G SFP and 1G WAN cannot be used at the same time as they are in
+parallel connected to the same PHY.
 
->> As a revert this commit should introduce as little non-revert changes
->> as possible. I'm planning to improve that example later in a separated
->> commit.
-> 
-> You have to fix the warning as part of this series.
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+---
+Changes in v6:
+* Use reset-gpios instead of reset-gpio per the DT binding
+* Add the CLKREQ PCIe pinmux
 
-OK
+Changes in v5:
+* Change LED labels to use the common "color:name" format instead
 
+Changes in v4:
+* Rename the "u-boot" partition to "firmware" which is more appropriate
+as it a concatenation of mv-ddr + TF-A + U-boot
 
->> Can you take a look at this commit despite your bot warning, please?
-> 
-> If 'CRU' is a hardware block, then I don't think most of the revert is
-> right to use 'simple-bus'.
-> 
-> If you want to just replace 'offset' with 'reg', then I'd be happy to
-> see that. I've been pushing child nodes of syscons in that direction.
+Changes in v3:
+* Use IRQ_TYPE_LEVEL_LOW instead of IRQ_TYPE_EDGE_FALLING as both the
+PCA9554 and Topaz switch have an active LOW IRQ signal.
 
-Well, it's a revert, not a fix, it goes from totally wrong to semi-wrong
-;) Let me send V3.
+Changes in v2:
+* Use "10gbase-r" instead of "10gbase-kr"
+---
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../boot/dts/marvell/armada-7040-mochabin.dts | 458 ++++++++++++++++++
+ 2 files changed, 459 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+
+diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+index 34efe0fb6f37..4d3a2ae9adbd 100644
+--- a/arch/arm64/boot/dts/marvell/Makefile
++++ b/arch/arm64/boot/dts/marvell/Makefile
+@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-uDPU.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-db.dtb
++dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-mochabin.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-clearfog-gt-8k.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-db.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-mcbin.dtb
+diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+new file mode 100644
+index 000000000000..f3b0d57a24a3
+--- /dev/null
++++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+@@ -0,0 +1,458 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * Device Tree file for Globalscale MOCHAbin
++ * Copyright (C) 2019 Globalscale technologies, Inc.
++ * Copyright (C) 2021 Sartura Ltd.
++ *
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include "armada-7040.dtsi"
++
++/ {
++	model = "Globalscale MOCHAbin";
++	compatible = "globalscale,mochabin", "marvell,armada7040",
++		     "marvell,armada-ap806-quad", "marvell,armada-ap806";
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	aliases {
++		ethernet0 = &cp0_eth0;
++		ethernet1 = &cp0_eth1;
++		ethernet2 = &cp0_eth2;
++		ethernet3 = &swport1;
++		ethernet4 = &swport2;
++		ethernet5 = &swport3;
++		ethernet6 = &swport4;
++	};
++
++	/* SFP+ 10G */
++	sfp_eth0: sfp-eth0 {
++		compatible = "sff,sfp";
++		i2c-bus = <&cp0_i2c1>;
++		los-gpio = <&sfp_gpio 3 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpio = <&sfp_gpio 2 GPIO_ACTIVE_LOW>;
++		tx-disable-gpio = <&sfp_gpio 1 GPIO_ACTIVE_HIGH>;
++		tx-fault-gpio  = <&sfp_gpio 0 GPIO_ACTIVE_HIGH>;
++	};
++
++	/* SFP 1G */
++	sfp_eth2: sfp-eth2 {
++		compatible = "sff,sfp";
++		i2c-bus = <&cp0_i2c0>;
++		los-gpio = <&sfp_gpio 7 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpio = <&sfp_gpio 6 GPIO_ACTIVE_LOW>;
++		tx-disable-gpio = <&sfp_gpio 5 GPIO_ACTIVE_HIGH>;
++		tx-fault-gpio  = <&sfp_gpio 4 GPIO_ACTIVE_HIGH>;
++	};
++};
++
++/* microUSB UART console */
++&uart0 {
++	status = "okay";
++
++	pinctrl-0 = <&uart0_pins>;
++	pinctrl-names = "default";
++};
++
++/* eMMC */
++&ap_sdhci0 {
++	status = "okay";
++
++	bus-width = <4>;
++	non-removable;
++	/delete-property/ marvell,xenon-phy-slow-mode;
++	no-1-8-v;
++};
++
++&cp0_pinctrl {
++	cp0_uart0_pins: cp0-uart0-pins {
++		marvell,pins = "mpp6", "mpp7";
++		marvell,function = "uart0";
++	};
++
++	cp0_spi0_pins: cp0-spi0-pins {
++		marvell,pins = "mpp56", "mpp57", "mpp58", "mpp59";
++		marvell,function = "spi0";
++	};
++
++	cp0_spi1_pins: cp0-spi1-pins {
++		marvell,pins = "mpp13", "mpp14", "mpp15", "mpp16";
++		marvell,function = "spi1";
++	};
++
++	cp0_i2c0_pins: cp0-i2c0-pins {
++		marvell,pins = "mpp37", "mpp38";
++		marvell,function = "i2c0";
++	};
++
++	cp0_i2c1_pins: cp0-i2c1-pins {
++		marvell,pins = "mpp2", "mpp3";
++		marvell,function = "i2c1";
++	};
++
++	pca9554_int_pins: pca9554-int-pins {
++		marvell,pins = "mpp27";
++		marvell,function = "gpio";
++	};
++
++	cp0_rgmii1_pins: cp0-rgmii1-pins {
++		marvell,pins = "mpp44", "mpp45", "mpp46", "mpp47", "mpp48", "mpp49",
++			       "mpp50", "mpp51", "mpp52", "mpp53", "mpp54", "mpp55";
++		marvell,function = "ge1";
++	};
++
++	is31_sdb_pins: is31-sdb-pins {
++		marvell,pins = "mpp30";
++		marvell,function = "gpio";
++	};
++
++	cp0_pcie_reset_pins: cp0-pcie-reset-pins {
++		marvell,pins = "mpp9";
++		marvell,function = "gpio";
++	};
++
++	cp0_pcie_clkreq_pins: cp0-pcie-clkreq-pins {
++		marvell,pins = "mpp5";
++		marvell,function = "pcie1";
++	};
++
++	cp0_switch_pins: cp0-switch-pins {
++		marvell,pins = "mpp0", "mpp1";
++		marvell,function = "gpio";
++	};
++
++	cp0_phy_pins: cp0-phy-pins {
++		marvell,pins = "mpp12";
++		marvell,function = "gpio";
++	};
++};
++
++/* mikroBUS UART */
++&cp0_uart0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_uart0_pins>;
++};
++
++/* mikroBUS SPI */
++&cp0_spi0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_spi0_pins>;
++};
++
++/* SPI-NOR */
++&cp0_spi1{
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_spi1_pins>;
++
++	spi-flash@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <20000000>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "firmware";
++				reg = <0x0 0x3e0000>;
++				read-only;
++			};
++
++			partition@3e0000 {
++				label = "hw-info";
++				reg = <0x3e0000 0x10000>;
++				read-only;
++			};
++
++			partition@3f0000 {
++				label = "u-boot-env";
++				reg = <0x3f0000 0x10000>;
++			};
++		};
++	};
++};
++
++/* mikroBUS, 1G SFP and GPIO expander */
++&cp0_i2c0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_i2c0_pins>;
++	clock-frequency = <100000>;
++
++	sfp_gpio: pca9554@39 {
++		compatible = "nxp,pca9554";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pca9554_int_pins>;
++		reg = <0x39>;
++
++		interrupt-parent = <&cp0_gpio1>;
++		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		/*
++		 * IO0_0: SFP+_TX_FAULT
++		 * IO0_1: SFP+_TX_DISABLE
++		 * IO0_2: SFP+_PRSNT
++		 * IO0_3: SFP+_LOSS
++		 * IO0_4: SFP_TX_FAULT
++		 * IO0_5: SFP_TX_DISABLE
++		 * IO0_6: SFP_PRSNT
++		 * IO0_7: SFP_LOSS
++		 */
++	};
++};
++
++/* IS31FL3199, mini-PCIe and 10G SFP+ */
++&cp0_i2c1 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_i2c1_pins>;
++	clock-frequency = <100000>;
++
++	leds@64 {
++		compatible = "issi,is31fl3199";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&is31_sdb_pins>;
++		shutdown-gpios = <&cp0_gpio1 30 GPIO_ACTIVE_HIGH>;
++		reg = <0x64>;
++
++		led1_red: led@1 {
++			label = "red:led1";
++			reg = <1>;
++			led-max-microamp = <20000>;
++		};
++
++		led1_green: led@2 {
++			label = "green:led1";
++			reg = <2>;
++		};
++
++		led1_blue: led@3 {
++			label = "blue:led1";
++			reg = <3>;
++		};
++
++		led2_red: led@4 {
++			label = "red:led2";
++			reg = <4>;
++		};
++
++		led2_green: led@5 {
++			label = "green:led2";
++			reg = <5>;
++		};
++
++		led2_blue: led@6 {
++			label = "blue:led2";
++			reg = <6>;
++		};
++
++		led3_red: led@7 {
++			label = "red:led3";
++			reg = <7>;
++		};
++
++		led3_green: led@8 {
++			label = "green:led3";
++			reg = <8>;
++		};
++
++		led3_blue: led@9 {
++			label = "blue:led3";
++			reg = <9>;
++		};
++	};
++};
++
++&cp0_mdio {
++	status = "okay";
++
++	/* 88E1512 PHY */
++	eth2phy: ethernet-phy@1 {
++		reg = <1>;
++		sfp = <&sfp_eth2>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&cp0_phy_pins>;
++		reset-gpios = <&cp0_gpio1 12 GPIO_ACTIVE_LOW>;
++	};
++
++	/* 88E6141 Topaz switch */
++	switch: switch@3 {
++		compatible = "marvell,mv88e6085";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&cp0_switch_pins>;
++		reset-gpios = <&cp0_gpio1 0 GPIO_ACTIVE_LOW>;
++
++		interrupt-parent = <&cp0_gpio1>;
++		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			swport1: port@1 {
++				reg = <1>;
++				label = "lan0";
++				phy-handle = <&swphy1>;
++			};
++
++			swport2: port@2 {
++				reg = <2>;
++				label = "lan1";
++				phy-handle = <&swphy2>;
++			};
++
++			swport3: port@3 {
++				reg = <3>;
++				label = "lan2";
++				phy-handle = <&swphy3>;
++			};
++
++			swport4: port@4 {
++				reg = <4>;
++				label = "lan3";
++				phy-handle = <&swphy4>;
++			};
++
++			port@5 {
++				reg = <5>;
++				label = "cpu";
++				ethernet = <&cp0_eth1>;
++				phy-mode = "2500base-x";
++				managed = "in-band-status";
++			};
++		};
++
++		mdio {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			swphy1: swphy1@17 {
++				reg = <17>;
++			};
++
++			swphy2: swphy2@18 {
++				reg = <18>;
++			};
++
++			swphy3: swphy3@19 {
++				reg = <19>;
++			};
++
++			swphy4: swphy4@20 {
++				reg = <20>;
++			};
++		};
++	};
++};
++
++&cp0_ethernet {
++	status = "okay";
++};
++
++/* 10G SFP+ */
++&cp0_eth0 {
++	status = "okay";
++
++	phy-mode = "10gbase-r";
++	phys = <&cp0_comphy4 0>;
++	managed = "in-band-status";
++	sfp = <&sfp_eth0>;
++};
++
++/* Topaz switch uplink */
++&cp0_eth1 {
++	status = "okay";
++
++	phy-mode = "2500base-x";
++	phys = <&cp0_comphy0 1>;
++
++	fixed-link {
++		speed = <2500>;
++		full-duplex;
++	};
++};
++
++/* 1G SFP or 1G RJ45 */
++&cp0_eth2 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&cp0_rgmii1_pins>;
++
++	phy = <&eth2phy>;
++	phy-mode = "rgmii-id";
++};
++
++&cp0_utmi {
++	status = "okay";
++};
++
++/* SMSC USB5434B hub */
++&cp0_usb3_0 {
++	status = "okay";
++
++	phys = <&cp0_comphy1 0>, <&cp0_utmi0>;
++	phy-names = "cp0-usb3h0-comphy", "utmi";
++};
++
++/* miniPCI-E USB */
++&cp0_usb3_1 {
++	status = "okay";
++};
++
++&cp0_sata0 {
++	status = "okay";
++
++	/* 7 + 12 SATA connector (J24) */
++	sata-port@0 {
++		phys = <&cp0_comphy2 0>;
++		phy-names = "cp0-sata0-0-phy";
++	};
++
++	/* M.2-2250 B-key (J39) */
++	sata-port@1 {
++		phys = <&cp0_comphy3 1>;
++		phy-names = "cp0-sata0-1-phy";
++	};
++};
++
++/* miniPCI-E (J5) */
++&cp0_pcie2 {
++	status = "okay";
++
++	pinctrl-names = "default", "clkreq";
++	pinctrl-0 = <&cp0_pcie_reset_pins>;
++	pinctrl-1 = <&cp0_pcie_clkreq_pins>;
++	phys = <&cp0_comphy5 2>;
++	phy-names = "cp0-pcie2-x1-phy";
++	reset-gpios = <&cp0_gpio1 9 GPIO_ACTIVE_LOW>;
++};
+-- 
+2.33.0
+
