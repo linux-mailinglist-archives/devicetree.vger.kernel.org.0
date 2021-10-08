@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1112C4261C4
+	by mail.lfdr.de (Postfix) with ESMTP id EBA494261C9
 	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 03:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236145AbhJHB1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Oct 2021 21:27:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38882 "EHLO
+        id S237054AbhJHB1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Oct 2021 21:27:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235847AbhJHB13 (ORCPT
+        with ESMTP id S231324AbhJHB13 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 7 Oct 2021 21:27:29 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC87C061570
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC6E8C061768
         for <devicetree@vger.kernel.org>; Thu,  7 Oct 2021 18:25:34 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id b20so32910899lfv.3
+Received: by mail-lf1-x12c.google.com with SMTP id x27so32284827lfa.9
         for <devicetree@vger.kernel.org>; Thu, 07 Oct 2021 18:25:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=l105OhexlN6YNfKbmvTA4DJELYmmbABapWIiAJPQyxM=;
-        b=y/co2dD2esQ18LGntt0gVHDGfAXcFRT6rLMVqTGdfs+AXzJavXcu4tAN+RYErFH6Dz
-         2XXGOdR25b2SE8d/tedvc/KOoKcWXmUjt3uzrII9fFB9g+TUNgA0cbJkyhOchnwIX6Uy
-         swz/6suR0pd0O2jPFW7hDf6uR7KnqiW87WZBKJZ/g3EvracbfQHwebvpgibhlqnbhNLw
-         k3E+BdHTo5sC+c4Pqn3jSneKCiOfX9giusz7vyMN9zwTuBCeJiXa6NM066HXo7SaRwWZ
-         MtZMPo356KBZO5F09lb5vK4cXqFshiXb756qfkceMaLIegimsVYL9EBIWjDkSj3rXbbN
-         liZQ==
+        bh=jPqe703H6IymTOKSZQDO6LX/0zlyxMHngDY3uRoclEk=;
+        b=uJgSuxFdLZN7ePM6wH+96t2n+DPHBqLeAszdom840iKOnzfwFlh2K5EJv5ccn5i5Ay
+         c88gbpvUK06xWacn0aiVry6qdIVO7XPnk7bSUbK58enUzsnhWDrRqXxJ4MNTLdZPMSdn
+         dPaD3f14YTf9RML2mrVyY/I7q3qwi1594f1m8PaxaZJ/BjJP7dTC5YrI5mR3JEZsNgd7
+         Vc0HHhDOLI2GG3fftoBoEIDBZxFMwzL/JwTg6+pK4xh+KSk3U3yFGxEUNm5adh4SW7VE
+         X0OH61CY+P1x1j22mebXtnvq5ns5NLo+68qXt3ULXVayT1/o+JAuC/YagrWRwIItXrhd
+         dj9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=l105OhexlN6YNfKbmvTA4DJELYmmbABapWIiAJPQyxM=;
-        b=73CrLSRGyhsCeE6JEsqiA/mspgM/gSYBi8ELDb3qhssw05o7vv8X5heBTPRQiBO75z
-         Ess/nakk88Ds8CgWJH6G10Hg2iNAXmwsRP8VkqDxH9BYjE0UdIs4chPuG84TGfsXpRZ3
-         yfyPgqDC3FKdMgmzlPoLYKZgpLHrhLWnrydPpBjYeIyQpH0p35E/FqjXD6qy64Wr7aSr
-         4gK25TmwANkFNwF4buMbEgi8ElJSTKF66bsWHuhu14MYhpCQjcbiNVlQ3iZkg9kqjCRp
-         QBKZyWyoFTEJTDzUTBBN4wMDxe6Gd7hVMm7Xa09SNlr0ijsXY0+snh363Uk45WjbU08q
-         nhVw==
-X-Gm-Message-State: AOAM533/LNcZx/TQtt67D1JZVKeBdVI7Zjni9bV8lc64fH2SWHhQKZEc
-        tJaLwjmg6lVy0PpEePofeQuG2w==
-X-Google-Smtp-Source: ABdhPJwopk30Bc926Mud4VJWcurop+dtnSxECkNEljaY0psvnPvu55RmvcNzZgPlZkT5eE4USvGsvQ==
-X-Received: by 2002:a05:651c:1589:: with SMTP id h9mr364343ljq.151.1633656332732;
-        Thu, 07 Oct 2021 18:25:32 -0700 (PDT)
+        bh=jPqe703H6IymTOKSZQDO6LX/0zlyxMHngDY3uRoclEk=;
+        b=TWxsic3mHJd0Q0wV5Jbk18P2N2yt+CmyAE4HizejENKZSEpMlaZxMgDa0r3SevA6bU
+         sYiJu+LHwcZ0NUs7PW+C9oCdICGw0SQStnpuzXSqd9aCEoe+GxlyvHakng75DUXCg6DP
+         cejX7N7uJYIxpN506u6Znot3lfk70ZY+Z5M9Miz/EpkuZrwX/aifApu3T0KXB5Alz2dp
+         UPP8gJ4CleNjy2UQ00Lk9y8G5UOCCkmeadpgaQ7022bFuQ716HJFhfhQxfbGj7D4yK8g
+         cnbn307l3ZsqdcKWNr3PKdFMyGwjfh7LxPdMK9R3sf6Aacnir7P1fN27N2KY4erBZHK3
+         lbng==
+X-Gm-Message-State: AOAM533E0m8qFtrGzR8TkaicHDWXGVfG8snT+9F6BYhyndy7PmUOe6/0
+        6jp03h1UKwjmkzdugskXgxCoMw==
+X-Google-Smtp-Source: ABdhPJwMxbV0vtkbZvaATJwbz9qAxRs/uR2BDyciy0OSyfS7SqgfG/Kd1ol93HvioqxwiS8XVjW/gQ==
+X-Received: by 2002:a05:6512:c24:: with SMTP id z36mr6419114lfu.62.1633656333297;
+        Thu, 07 Oct 2021 18:25:33 -0700 (PDT)
 Received: from umbar.lan ([37.153.55.125])
         by smtp.gmail.com with ESMTPSA id s4sm112875ljp.115.2021.10.07.18.25.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Oct 2021 18:25:32 -0700 (PDT)
+        Thu, 07 Oct 2021 18:25:33 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -54,9 +54,9 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH v3 07/25] ARM: dts: qcom-pma8084: add gpio-ranges to mpps nodes
-Date:   Fri,  8 Oct 2021 04:25:06 +0300
-Message-Id: <20211008012524.481877-8-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 08/25] ARM: dts: qcom-mdm9615: add gpio-ranges to mpps node, fix its name
+Date:   Fri,  8 Oct 2021 04:25:07 +0300
+Message-Id: <20211008012524.481877-9-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211008012524.481877-1-dmitry.baryshkov@linaro.org>
 References: <20211008012524.481877-1-dmitry.baryshkov@linaro.org>
@@ -66,26 +66,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add gpio-ranges property to mpps device tree nodes, adding the mapping between
-pinctrl and GPIO pins.
+Rename mpp node to mpps@50 (instead of mpp@50). Also add gpio-ranges
+property to mpps device tree nodes, adding the mapping between pinctrl
+and GPIO pins.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom-pma8084.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/qcom-mdm9615.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom-pma8084.dtsi b/arch/arm/boot/dts/qcom-pma8084.dtsi
-index e921c5e93a5d..fcee2afe6740 100644
---- a/arch/arm/boot/dts/qcom-pma8084.dtsi
-+++ b/arch/arm/boot/dts/qcom-pma8084.dtsi
-@@ -42,6 +42,7 @@ pma8084_mpps: mpps@a000 {
- 			reg = <0xa000>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			gpio-ranges = <&pma8084_mpps 0 0 8>;
- 			interrupts = <0 0xa0 0 IRQ_TYPE_NONE>,
- 				     <0 0xa1 0 IRQ_TYPE_NONE>,
- 				     <0 0xa2 0 IRQ_TYPE_NONE>,
+diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+index dda2ceec6591..cfff1a5706ed 100644
+--- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
++++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+@@ -300,7 +300,7 @@ pwrkey@1c {
+ 					pull-up;
+ 				};
+ 
+-				pmicmpp: mpp@50 {
++				pmicmpp: mpps@50 {
+ 					compatible = "qcom,pm8018-mpp", "qcom,ssbi-mpp";
+ 					interrupt-parent = <&pmicintc>;
+ 					interrupts = <24 IRQ_TYPE_NONE>,
+@@ -312,6 +312,7 @@ pmicmpp: mpp@50 {
+ 					reg = <0x50>;
+ 					gpio-controller;
+ 					#gpio-cells = <2>;
++					gpio-ranges = <&pmicmpp 0 0 6>;
+ 				};
+ 
+ 				rtc@11d {
 -- 
 2.30.2
 
