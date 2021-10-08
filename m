@@ -2,142 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 281F5426C54
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D707426C60
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 16:07:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230385AbhJHOHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 10:07:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41462 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbhJHOHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 10:07:32 -0400
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 169DCC061570;
-        Fri,  8 Oct 2021 07:05:37 -0700 (PDT)
-Received: by mail-ot1-x334.google.com with SMTP id g15-20020a9d128f000000b0054e3d55dd81so6687229otg.12;
-        Fri, 08 Oct 2021 07:05:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+8cmniGBVN2PezeljEbDSbJUvW2F5mbVKylcUXP/x7w=;
-        b=iG7tVZn2+bYvwKFyxomcWVADB9zRlDQjYaGD9UzpSpCMqCuK7+wYzy+dEiOQDtV0a8
-         1RrVilgcTat4Z911VWl3O0tJRfpWvF7xHwmuwhHZoqWJncqnTfjDskC3wtKSObeZ3PYA
-         Y8/DgSEyQHyWcp74LeqPnvSUv+bN69j3G+odLM8vPmg5KdDu3uTnICWgqDdaGnV2ECxI
-         RRdHymYHs5XTs4ptFhfVMdmgm1YGkSuLRM055x/dL3+YNqsoHltvnsagrBh1Gb2b3a5T
-         6lyGpG2fcbOa/v8psniFp1+DTRl7Jb8hPUf0/9BopdPI3y7vD/NCQoGO/qThsK/orpOu
-         83sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=+8cmniGBVN2PezeljEbDSbJUvW2F5mbVKylcUXP/x7w=;
-        b=cpjzUjejxoyk1B4/eWcSjxiHxg4pNScXgjLgReFs9p6f9MK6zkLfBiI8xrur+H9xQ/
-         nmk9bA0Kf9i4DwFCLjOyxrlv7gXOyxPH5k9JFFDCpAAFX0vJ/t6PvggQkgxLNBSgr6BH
-         F9Kp91cjTlLFUuE2VkkOrsEcRvIMWTLWKO1z5RQtydQ09SkPlp5GmPPlLlqSQnvSgBZQ
-         /K37H/YOOTGkJCuT6bDI7WEyts294Diw43NStyc1NmqQp4Ti6tDDld2jNBrShM/SVm+S
-         7/i9VSDEhNy5WYHZ7pS906Df2WvrltZPxioADJAY8F6Msq1156eyASyxCLSHV9jvJ0h5
-         ErlQ==
-X-Gm-Message-State: AOAM532nha+C6eyoaf74uoKI+JhaovJbiKqDVyQpztQLpAkQlBGfL9M1
-        eEKUOeRPQSx+JvbqZqm3VFQ=
-X-Google-Smtp-Source: ABdhPJyc4aEce/oZYp2+1eG/MuQb/NZigkdhWbVH6kMKwDM9WHMi7k6KDBmo7i0NLZvSMAyLDp9SfA==
-X-Received: by 2002:a9d:19c1:: with SMTP id k59mr8631537otk.348.1633701936488;
-        Fri, 08 Oct 2021 07:05:36 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id z83sm642787oiz.41.2021.10.08.07.05.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Oct 2021 07:05:35 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 8 Oct 2021 07:05:34 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon/pmbus: Add ti,lm25066
- power-management IC
-Message-ID: <20211008140534.GA1806215@roeck-us.net>
-References: <20210928092242.30036-1-zev@bewilderbeest.net>
- <20210928092242.30036-9-zev@bewilderbeest.net>
+        id S229607AbhJHOJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 10:09:22 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:42733 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233744AbhJHOJW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 10:09:22 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1633702047; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=0AUwiHljy/Jsgx0Ckk5s71QCrmfpt6geV2aG8yQfxKQ=; b=ptsASENy+UtPKY0hH+0OvO8YmFdFvpnRGhdEISu2ZaPkPo+WQgVOrL/KKbxB5q0jdJ0xfDj+
+ AES2DWKbYNIafpf1oh4juag0LnHd3e+IYG4ARxh7vW3qXh93VNPRitrZD2ujOPjWRZpRXWzO
+ bEKCfw2XR+uwtoLTz/0TvEZeR24=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 6160509bf3e5b80f1fde74a3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 08 Oct 2021 14:07:23
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A06CFC43617; Fri,  8 Oct 2021 14:07:23 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.100] (unknown [157.48.163.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7ADAEC43460;
+        Fri,  8 Oct 2021 14:07:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 7ADAEC43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v2 4/5] ASoC: codecs: tx-macro: Update tx default values
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <agross@kernel.org; bjorn.andersson@linaro.org;
+ lgirdwood@gmail.com; broonie@kernel.org;robh+dt@kernel.org;
+ plai@codeaurora.org; bgoswami@codeaurora.org; perex@perex.cz;
+ tiwai@suse.com;srinivas.kandagatla@linaro.org; rohitkr@codeaurora.org;
+ linux-arm-msm@vger.kernel.org; alsa-devel@alsa-project.org;
+ devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+ swboyd@chromium.org; judyhsiao@chromium.org;>
+ <1632313878-12089-1-git-send-email-srivasam@codeaurora.org>
+ <1632313878-12089-5-git-send-email-srivasam@codeaurora.org>
+ <e65c77f4-766c-a5ce-9cbd-f1697c1be28c@linaro.org>
+ <20ddc4ea-e99c-5492-1931-be1999655563@codeaurora.org>
+ <da23bfce-23cd-0869-d752-b0713136072a@linaro.org>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <5748236d-7db2-9d19-a113-6e66b3dee81f@codeaurora.org>
+Date:   Fri, 8 Oct 2021 19:37:12 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210928092242.30036-9-zev@bewilderbeest.net>
+In-Reply-To: <da23bfce-23cd-0869-d752-b0713136072a@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 28, 2021 at 02:22:42AM -0700, Zev Weiss wrote:
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Applied.
+On 9/28/2021 2:01 PM, Srinivas Kandagatla wrote:
+>
+>
+> On 27/09/2021 17:42, Srinivasa Rao Mandadapu wrote:
+>>
+>> On 9/27/2021 4:12 PM, Srinivas Kandagatla wrote:
+>> Thanks for your time Srini!!
+>>>
+>>> On 22/09/2021 13:31, Srinivasa Rao Mandadapu wrote:
+>>>> Update mic control register default values to hardware reset values
+>>>>
+>>>> Fixes: c39667ddcfc5 (ASoC: codecs: lpass-tx-macro: add support for 
+>>>> lpass tx macro)
+>>>>
+>>>> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+>>>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>>>> ---
+>>>>   sound/soc/codecs/lpass-tx-macro.c | 6 +++---
+>>>>   1 file changed, 3 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/sound/soc/codecs/lpass-tx-macro.c 
+>>>> b/sound/soc/codecs/lpass-tx-macro.c
+>>>> index e980b2e..66c39fb 100644
+>>>> --- a/sound/soc/codecs/lpass-tx-macro.c
+>>>> +++ b/sound/soc/codecs/lpass-tx-macro.c
+>>>> @@ -279,7 +279,7 @@ static const struct reg_default tx_defaults[] = {
+>>>>       { CDC_TX_CLK_RST_CTRL_SWR_CONTROL, 0x00},
+>>>>       { CDC_TX_TOP_CSR_TOP_CFG0, 0x00},
+>>>>       { CDC_TX_TOP_CSR_ANC_CFG, 0x00},
+>>>> -    { CDC_TX_TOP_CSR_SWR_CTRL, 0x00},
+>>>> +    { CDC_TX_TOP_CSR_SWR_CTRL, 0x60},
+>>>
+>>> This does not make sense as this register only has one bit to control.
+>>> Why do we even need to change this, can you please explain what 
+>>> happens if we do not change this?
+>>
+>> This register change is not making any impact. But when verified , 
+>> reset state of this register is 0x60. so is the reason for change.
+>>
+>> Will revert it and post again.
+>>
+>>>
+>>>>       { CDC_TX_TOP_CSR_FREQ_MCLK, 0x00},
+>>>>       { CDC_TX_TOP_CSR_DEBUG_BUS, 0x00},
+>>>>       { CDC_TX_TOP_CSR_DEBUG_EN, 0x00},
+>>>> @@ -290,8 +290,8 @@ static const struct reg_default tx_defaults[] = {
+>>>>       { CDC_TX_TOP_CSR_SWR_DMIC1_CTL, 0x00},
+>>>>       { CDC_TX_TOP_CSR_SWR_DMIC2_CTL, 0x00},
+>>>>       { CDC_TX_TOP_CSR_SWR_DMIC3_CTL, 0x00},
+>>>> -    { CDC_TX_TOP_CSR_SWR_AMIC0_CTL, 0x00},
+>>>> -    { CDC_TX_TOP_CSR_SWR_AMIC1_CTL, 0x00},
+>>>> +    { CDC_TX_TOP_CSR_SWR_AMIC0_CTL, 0x0E},
+>>>> +    { CDC_TX_TOP_CSR_SWR_AMIC1_CTL, 0x0E},
+>>>
+>>> These two registers should have default value of 0x06 as this has 
+>>> only one clk selection field with bits 2:1.
+>>
+>> In Kodiak document reset state 0x0E and clk selection field is with 
+>> bits 3:1
+>>
+>> *LPASS_TX_TX_TOP_CSR_SWR_MIC1_CTL*|0x32200D4
+>> Offset:     0x54     Reset State:     0x0000000E 
+>
+> In that case you should probably consider using 
+> regmap_register_patch() for corrections to the default registers in 
+> sm8250 case.
+As regmap_register_patch() not working in this use case, updating 
+defaults in probe for sc7280 specific differences.
+>
+> --srini
+>
+>>
+>>>
+>>> -srini
+>>>
+>>>
+>>>>       { CDC_TX_INP_MUX_ADC_MUX0_CFG0, 0x00},
+>>>>       { CDC_TX_INP_MUX_ADC_MUX0_CFG1, 0x00},
+>>>>       { CDC_TX_INP_MUX_ADC_MUX1_CFG0, 0x00},
+>>>>
+>> -- 
+>> Qualcomm India Private Limited, on behalf of Qualcomm Innovation 
+>> Center, Inc.,
+>> is a member of Code Aurora Forum, a Linux Foundation Collaborative 
+>> Project.
+>>
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-Thanks,
-Guenter
-
-> ---
->  .../bindings/hwmon/pmbus/ti,lm25066.yaml      | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-> new file mode 100644
-> index 000000000000..da8292bc32f5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/pmbus/ti,lm25066.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: National Semiconductor/Texas Instruments LM250x6/LM506x power-management ICs
-> +
-> +maintainers:
-> +  - Zev Weiss <zev@bewilderbeest.net>
-> +
-> +description: |
-> +  The LM25066 family of power-management ICs (a.k.a. hot-swap
-> +  controllers or eFuses in various contexts) are PMBus devices that
-> +  offer temperature, current, voltage, and power monitoring.
-> +
-> +  Datasheet: https://www.ti.com/lit/ds/symlink/lm25066.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,lm25056
-> +      - ti,lm25066
-> +      - ti,lm5064
-> +      - ti,lm5066
-> +      - ti,lm5066i
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  shunt-resistor-micro-ohms:
-> +    description:
-> +      Shunt (sense) resistor value in micro-Ohms
-> +    default: 1000
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic@40 {
-> +            compatible = "ti,lm25066";
-> +            reg = <0x40>;
-> +            shunt-resistor-micro-ohms = <675>;
-> +        };
-> +    };
