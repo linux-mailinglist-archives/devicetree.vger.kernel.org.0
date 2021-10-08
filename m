@@ -2,70 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A936C426758
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 12:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F2442677A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 12:17:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239485AbhJHKGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 06:06:04 -0400
-Received: from mail-vs1-f52.google.com ([209.85.217.52]:33381 "EHLO
-        mail-vs1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239040AbhJHKGD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 06:06:03 -0400
-Received: by mail-vs1-f52.google.com with SMTP id 188so10006228vsv.0;
-        Fri, 08 Oct 2021 03:04:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IG1zG8hjjixHU5HadJfOCwY+Dd3QiJXF0mBzg0TG0Z4=;
-        b=a9MyF9RA4/QebD2MvLBzLnBlwea884dlZAp0cFuufuxyDuGZBgWKLkIcwcTSZNc6Wa
-         W9oFUNzrzX+OKcDButQYI1hOJVco4tXCDtFeMM8lfndhxx8PTlyKDq9/XkkupSRtr9sI
-         c4SNKcie/4KLdzdIdR8kTmqqrwqd0EUvo2x+WoA4Ol3o+Vc6guFZZwqYEGuqTPojaosz
-         tcLYx1aRDJjkB1ja4UD7nr7xtE4ROhTjtTQmwdXZ8DSW/YfQGrRA3Y9lFd87oaA2h6wb
-         W2vyY8zJp3bofRzSVnJAI+fD5RoclXwNgC/FlVTl1v3Duk95xA8ZNSYyhnqU/qjZADsO
-         s1HQ==
-X-Gm-Message-State: AOAM532H+3/+XfFLGVqSPbjGDRdqlLUawnT9YnZnipkWIMbfYkcTASiT
-        EE344qF+hUbNE1fHh5iVZpyaxnHWDWrO7vG9D24CgjAx
-X-Google-Smtp-Source: ABdhPJz5HbXHeyLHFAe7u3Yd2zr2xWxyb/vDETASScdAbDpF5lPlEo+OLkoFyRqu5BCGdnPBDFYhGrat1nSelkh2fmo=
-X-Received: by 2002:a67:d111:: with SMTP id u17mr8361098vsi.37.1633687448326;
- Fri, 08 Oct 2021 03:04:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211007155451.10654-1-biju.das.jz@bp.renesas.com> <20211007155451.10654-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211007155451.10654-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 8 Oct 2021 12:03:57 +0200
-Message-ID: <CAMuHMdVQ5nZGUZnAYmdzEu0cavZYDTG4K86WRQ7z4n6umPj3fA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: renesas: r9a07g044: Add SDHI nodes
-To:     Biju Das <biju.das.jz@bp.renesas.com>
+        id S239627AbhJHKTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 06:19:17 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:54394 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239304AbhJHKTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 06:19:16 -0400
+Received: from ert768.prtnl (ert768.prtnl [192.168.224.11])
+        by sparta.prtnl (Postfix) with ESMTP id E2C9D44A024E;
+        Fri,  8 Oct 2021 12:17:16 +0200 (CEST)
+From:   Roan van Dijk <roan@protonic.nl>
+To:     Jonathan Cameron <jic23@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, david@protonic.nl,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Roan van Dijk <roan@protonic.nl>
+Subject: [PATCH v5 0/4] iio: chemical: Add support for Sensirion SCD4x CO2 sensor
+Date:   Fri,  8 Oct 2021 12:17:02 +0200
+Message-Id: <20211008101706.755942-1-roan@protonic.nl>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 7, 2021 at 5:55 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add SDHI{0, 1} nodes to RZ/G2L SoC DTSI.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+This series adds support for the Sensirion SCD4x sensor.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.16.
+The driver supports continuous reads of temperature, relative humdity and CO2
+concentration. There is an interval of 5 seconds between readings. During
+this interval the drivers checks if the sensor has new data available.
 
-Gr{oetje,eeting}s,
+The driver is based on the scd30 driver. However, The scd4x has become too
+different to just expand the scd30 driver. I made a new driver instead of
+expanding the scd30 driver. I hope I made the right choice by doing so?
 
-                        Geert
+Changes since v5:
+scd4x.c:
+  - Fix bug in trigger_handler
+
+Changes since v4:
+scd4x.c:
+  - Minor fixes in documentation
+  - Reorder trigger_handler so memcpy is not needed anymore
+Documentation:
+  - Change information about the KernelVersion for the 
+    calibration_forced_value_available
+
+Changes since v3:
+scd4x.c
+  - Change read and write_and_fetch function parameter. CRC byte is now
+    hidden inside the function.
+  - Fix minor style issues
+  - Add calibration_forced_value_available attribute to the driver
+  - Remove including BUFFER_TRIGGERED
+  - Change calibbias to raw ADC readings rather than converting it to
+    milli degrees C.
+Documentation:
+  - Change description of driver attributes
+  - Add calibration_forced_value_available documentation
+
+Changes since v2:
+scd4x.c:
+  - Change boolean operations
+  - Document scope of lock
+  - Remove device *dev from struct
+  - Add goto block for errror handling
+  - Add function to read value per channel in read_raw
+  - Fix bug with lock in error paths
+  - Remove conversion of humidity and temperature values
+  - Add scale and offset to temperature channel
+  - Add scale to humidity channel
+  - Move memset out of locked section
+  - Remove unused irq functions
+  - Move device register at end of probe function
+Documentation:
+  - Copy content of sysfs-bus-iio-scd30 to sysfs-bus-iio
+  - Remove Documentation/ABI/testing/sysfs-bus-iio-scd30
+
+Changes since v1:
+dt-bindings:
+  - Separated compatible string for each sensor type
+scd4x.c:
+  - Changed probe, resume and suspend functions to static
+  - Added SIMPLE_DEV_PM_OPS function call for power management
+    operations.
+
+Roan van Dijk (4):
+  dt-bindings: iio: chemical: sensirion,scd4x: Add yaml description
+  MAINTAINERS: Add myself as maintainer of the scd4x driver
+  drivers: iio: chemical: Add support for Sensirion SCD4x CO2 sensor
+  iio: documentation: Document scd4x calibration use
+
+ Documentation/ABI/testing/sysfs-bus-iio       |  41 ++
+ Documentation/ABI/testing/sysfs-bus-iio-scd30 |  34 -
+ .../iio/chemical/sensirion,scd4x.yaml         |  46 ++
+ MAINTAINERS                                   |   6 +
+ drivers/iio/chemical/Kconfig                  |  13 +
+ drivers/iio/chemical/Makefile                 |   1 +
+ drivers/iio/chemical/scd4x.c                  | 689 ++++++++++++++++++
+ 7 files changed, 796 insertions(+), 34 deletions(-)
+ delete mode 100644 Documentation/ABI/testing/sysfs-bus-iio-scd30
+ create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd4x.yaml
+ create mode 100644 drivers/iio/chemical/scd4x.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
