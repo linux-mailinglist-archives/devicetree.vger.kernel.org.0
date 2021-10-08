@@ -2,86 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CB5F426D7F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 17:30:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 292CC426D85
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 17:31:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242780AbhJHPce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 11:32:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43546 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231129AbhJHPcd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 11:32:33 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 99BB860FD7;
-        Fri,  8 Oct 2021 15:30:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633707038;
-        bh=8+7ImSJ4m3PvpXuUfyLFMGEhzENQrTkj1pOv+1Kg52I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dyxiipKlHhyZPn5jRpNP9wWXumvxzgjOzQMfGY3mYHIMn7r8cca3a8Ra/wYUMXJuR
-         4jzbjtWhVz9I+evoy6pDRsjLBpHbq3n/CuCI0AjMCuId56uJZnuNqBGqzgPqRKKiuJ
-         Azl7WFQgrvdT4yoNnZ4JDbQujjUbnW+T9CmUtoNtVTY8QDv4BE7cww4xNgT1wvdv52
-         8ng+XHoxOXPSq548p697OdRdEEKOBB4xSnAqob/AuWJzJ3JtV9I6GuN+LOYDUx22co
-         eXAiuvrfFtj4Z8Hi82eIZssIyiNs7hLKDyapT644nOB4s6jGCcBZHnwyPwFlxyj/C0
-         LXRrBsBtbWs6A==
-Date:   Fri, 8 Oct 2021 16:30:35 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: Re: [PATCH v2 4/5] ASoC: codecs: tx-macro: Update tx default values
-Message-ID: <YWBkGzwiOeiIdr9F@sirena.org.uk>
-References: <agross@kernel.org;bjorn.andersson@linaro.org;lgirdwood@gmail.com;broonie@kernel.org;robh+dt@kernel.org;plai@codeaurora.org;bgoswami@codeaurora.org;perex@perex.cz;tiwai@suse.com;srinivas.kandagatla@linaro.org;rohitkr@codeaurora.org;linux-arm-msm@vger.kernel.org;alsa-devel@alsa-project.org;devicetree@vger.kernel.org;linux-kernel@vger.kernel.org;swboyd@chromium.org;judyhsiao@chromium.org;>
- <1632313878-12089-1-git-send-email-srivasam@codeaurora.org>
- <1632313878-12089-5-git-send-email-srivasam@codeaurora.org>
- <e65c77f4-766c-a5ce-9cbd-f1697c1be28c@linaro.org>
- <20ddc4ea-e99c-5492-1931-be1999655563@codeaurora.org>
- <da23bfce-23cd-0869-d752-b0713136072a@linaro.org>
- <5748236d-7db2-9d19-a113-6e66b3dee81f@codeaurora.org>
+        id S243004AbhJHPdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 11:33:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33062 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242929AbhJHPdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 11:33:38 -0400
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 313BEC061755
+        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 08:31:43 -0700 (PDT)
+Received: by mail-vs1-xe34.google.com with SMTP id w13so11032459vsa.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 08:31:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wfDWQNp2UL5+jS6p6MxQkSeoBswEyDZEW6ZvRWiqAYE=;
+        b=FG4nizPJKDttHDSuuLn3c6p8Myl+TE1ZajoLc02DiK82T5KiV2nzbAt9Lv37fLIA8x
+         jKWygR3yU4GfALjLvhn9RMbmj/MaEHuxJgQEoSfc5lYuqIkrvBvRubGjJHE63lSnPr1B
+         QTFecQ9I+HD1MPhI5wHPc4d0fh3EkJfZl/pqaQT9QiF3n1eJoI8wIO0hbET6LovqlLUG
+         idSGGFCcJz6UCgWODWsu5YjmH08T+PLc0TXKMwKEPjR5fsPatYxvLH8cm6U75QRAx9xo
+         x0+OJbzzXys4T0ZoXT5HVbErDYC6s1LvqGnsBCkjOLwX9Ue7hn4MVNOPWPtT9ip/m4Ds
+         EZSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wfDWQNp2UL5+jS6p6MxQkSeoBswEyDZEW6ZvRWiqAYE=;
+        b=OsFvAmxYAJUTfAckBZ2v7YES2L+7WiZewgKddoPoqV2L1vuZB2TleM0IWTht/2pBsC
+         mwnx7k1p6JRFJSxEXuCSOMMb1sY4HpNPZ3YbPF5aUKVyMasgcQJv1aE4k75YGN3BS+x6
+         aVR1a/FRuD5HxfxH1Ddmk9dl7rQameiEWqc27aFnJt0BHRPYJIb3hPmsXJyiEgWg2Ohs
+         fNaq8Zk6zdmhPiOYkustYXfk4dx3r5BdyyqjJAxzS1Q17pd0IMPwxUXATY6UUK1vggIC
+         VKeyslChofxGzm3rmKRsUOJWdIsda+TPzBThYAGwrOU/jJdTcD4uOdMWXy9azQhbNmmm
+         Kolw==
+X-Gm-Message-State: AOAM5315+wv5SWXskb7M/A4MuB0IT+xvsXR7PtWlbk1vRvDxhGGsZpqO
+        f4fufD8TtUzOA3h0sLcB+4YIfRox0wD+do2qxYhRXHPsM8Mbsw==
+X-Google-Smtp-Source: ABdhPJyvkGFu2hMnsDq29OMlmBSQiVg7L1kDuYFftacecAIHtbfGGV1GkOkzVRQpb7mW2uyOr4/ZNuPmO90t1XUAn1k=
+X-Received: by 2002:a67:d91b:: with SMTP id t27mr11899992vsj.55.1633707102322;
+ Fri, 08 Oct 2021 08:31:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eXI7rXJOJnv0Yxnj"
-Content-Disposition: inline
-In-Reply-To: <5748236d-7db2-9d19-a113-6e66b3dee81f@codeaurora.org>
-X-Cookie: When your memory goes, forget it!
+References: <20211007194113.10507-1-semen.protsenko@linaro.org>
+ <20211007194113.10507-4-semen.protsenko@linaro.org> <abe4bdeb-ee15-d8c8-54af-1cdf7282b004@canonical.com>
+In-Reply-To: <abe4bdeb-ee15-d8c8-54af-1cdf7282b004@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 8 Oct 2021 18:31:30 +0300
+Message-ID: <CAPLW+4mM978QS8ce9ipnhAPc0ge2H8+ZZ5bsc=7Ryq4-yL8NQw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] dt-bindings: clock: Add bindings definitions for
+ Exynos850 CMU
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 8 Oct 2021 at 09:45, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 07/10/2021 21:41, Sam Protsenko wrote:
+> > Clock controller driver is designed to have separate instances for each
+> > particular CMU. So clock IDs in this bindings header also start from 1
+> > for each CMU.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > ---
+> > Changes in v2:
+> >   - Added all clock ids
+> >   - Added CLK_ prefix for all clock constants
+> >   - Added R-b tag by Krzysztof Kozlowski
+> >   - Added Ack tag by Rob Herring
+> >
+> >  include/dt-bindings/clock/exynos850.h | 141 ++++++++++++++++++++++++++
+> >  1 file changed, 141 insertions(+)
+> >  create mode 100644 include/dt-bindings/clock/exynos850.h
+> >
+> > diff --git a/include/dt-bindings/clock/exynos850.h b/include/dt-bindings/clock/exynos850.h
+> > new file mode 100644
+> > index 000000000000..a44c5f91d3c7
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/exynos850.h
+> > @@ -0,0 +1,141 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+>
+> The bindings are preferred to be under GPL-2.0+BSD. I don't know about
+> such policy for the headers but it seems reasonable - allows re-usage in
+> other systems. Do you mind licensing it under:
+> GPL-2.0-only or BSD-2-Clause
+> ?
+>
 
---eXI7rXJOJnv0Yxnj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Sure, will do in v3.
 
-On Fri, Oct 08, 2021 at 07:37:12PM +0530, Srinivasa Rao Mandadapu wrote:
-> On 9/28/2021 2:01 PM, Srinivas Kandagatla wrote:
-
-> > In that case you should probably consider using regmap_register_patch()
-> > for corrections to the default registers in sm8250 case.
-
-> As regmap_register_patch() not working in this use case, updating defaults
-> in probe for sc7280 specific differences.
-
-In what way is regmap_register_patch() not working?
-
---eXI7rXJOJnv0Yxnj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFgZBoACgkQJNaLcl1U
-h9C7eAf/XNE/8gWTD1il/H3m6CvBtA6i9ZKiAEK7auQN6RRstOai7B6solohK+n7
-+cAuDDJXZhZicTfYD7kb4fxPLPB/qV4c/sdNw1JEBGdbqDDamSwh9ZCfIvzMF24U
-pyvxSMqKqhC+sopzP4Nkd2eJ7Wfs5nmoQQmg4USw18bqPXCyYG/0EnFgsUEUGpC1
-+9U5zWuOUaN44RZhRsLK5Zc3jkit7XlSON1K4cnFPxadBXaF+uWF3Xo9JayG4Xfy
-AQQdTel0p0ed3zbsYkoU7knG6EZXMAC8Td5Dfds//hd7hbf+cD6geeVbmO4LLHUT
-MuanBlwPHQ2n6rbj+o4nWyL4jo5+KA==
-=do89
------END PGP SIGNATURE-----
-
---eXI7rXJOJnv0Yxnj--
+> Best regards,
+> Krzysztof
+>
+> > +/*
+> > + * Copyright (C) 2021 Linaro Ltd.
+> > + * Author: Sam Protsenko <semen.protsenko@linaro.org>
+> > + *
+> > + * Device Tree binding constants for Exynos850 clock controller.
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_CLOCK_EXYNOS_850_H
+> > +#define _DT_BINDINGS_CLOCK_EXYNOS_850_H
+> > +
+> > +/* CMU_TOP */
