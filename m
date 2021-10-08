@@ -2,140 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7832E42677B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 12:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 483EC42679F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 12:21:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239636AbhJHKTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 06:19:19 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:54430 "EHLO
-        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239583AbhJHKTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 06:19:17 -0400
-Received: from ert768.prtnl (ert768.prtnl [192.168.224.11])
-        by sparta.prtnl (Postfix) with ESMTP id 5786844A0252;
-        Fri,  8 Oct 2021 12:17:17 +0200 (CEST)
-From:   Roan van Dijk <roan@protonic.nl>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, david@protonic.nl,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Roan van Dijk <roan@protonic.nl>
-Subject: [PATCH v5 4/4] iio: documentation: Document scd4x calibration use
-Date:   Fri,  8 Oct 2021 12:17:06 +0200
-Message-Id: <20211008101706.755942-5-roan@protonic.nl>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211008101706.755942-1-roan@protonic.nl>
-References: <20211008101706.755942-1-roan@protonic.nl>
+        id S239767AbhJHKXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 06:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46608 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239811AbhJHKXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 06:23:20 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C02EEC061570;
+        Fri,  8 Oct 2021 03:21:24 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 264021F4575D
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, stanimir.varbanov@linaro.org,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 1/3] dt-bindings: media: venus: Add sdm660 dt schema
+Date:   Fri,  8 Oct 2021 12:21:17 +0200
+Message-Id: <20211008102119.268869-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries from Documentation/ABI/testing/sysfs-bus-iio-scd30
-to Documentation/ABI/testing/sysfs-bus-iio. The attributes of the scd4x
-and scd30 are common.
+Add a schema description for the Venus video decoder/encoder IP
+in SDM660.
 
-Remove Documentation/ABI/testing/sysfs-bus-iio-scd30.
-
-Signed-off-by: Roan van Dijk <roan@protonic.nl>
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- Documentation/ABI/testing/sysfs-bus-iio       | 41 +++++++++++++++++++
- Documentation/ABI/testing/sysfs-bus-iio-scd30 | 34 ---------------
- 2 files changed, 41 insertions(+), 34 deletions(-)
- delete mode 100644 Documentation/ABI/testing/sysfs-bus-iio-scd30
+ .../bindings/media/qcom,sdm660-venus.yaml     | 186 ++++++++++++++++++
+ 1 file changed, 186 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-index 6ad47a67521c..c27347d3608e 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio
-+++ b/Documentation/ABI/testing/sysfs-bus-iio
-@@ -1957,3 +1957,44 @@ Description:
- 		Specify the percent for light sensor relative to the channel
- 		absolute value that a data field should change before an event
- 		is generated. Units are a percentage of the prior reading.
+diff --git a/Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml
+new file mode 100644
+index 000000000000..33da7d3cfd38
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml
+@@ -0,0 +1,186 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/calibration_auto_enable
-+Date:		June 2020
-+KernelVersion:	5.8
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Some sensors have the ability to apply auto calibration at
-+		runtime. For example, it may be necessary to compensate for
-+		contaminant build-up in a measurement chamber or optical
-+		element deterioration that would otherwise lead to sensor drift.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/media/qcom,sdm660-venus.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+		Writing 1 or 0 to this attribute will respectively activate or
-+		deactivate this auto calibration function.
++title: Qualcomm Venus video encode and decode accelerators
 +
-+		Upon reading, the current status is returned.
++maintainers:
++  - Stanimir Varbanov <stanimir.varbanov@linaro.org>
++  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/calibration_forced_value
-+Date:		June 2020
-+KernelVersion:	5.8
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Some sensors have the ability to apply a manual calibration using
-+		a known measurement value, perhaps obtained from an external
-+		reference device.
++description: |
++  The Venus IP is a video encode and decode accelerator present
++  on Qualcomm platforms
 +
-+		Writing a value to this function will force such a calibration
-+		change. For the scd30 the value should be from the range
-+		[400 1 2000].
++properties:
++  compatible:
++    const: qcom,sdm660-venus
 +
-+		Note for the scd30 that a valid value may only be obtained once
-+		it is has been written. Until then any read back of this value
-+		should be ignored. As for the scd4x an error will be returned
-+		immediately if the manual calibration has failed.
++  reg:
++    maxItems: 1
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/calibration_forced_value_available
-+KernelVersion:  5.15
-+Contact:        linux-iio@vger.kernel.org
-+Description:
-+		Available range for the forced calibration value, expressed as:
++  clocks:
++    maxItems: 4
 +
-+		- a range specified as "[min step max]"
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-scd30 b/Documentation/ABI/testing/sysfs-bus-iio-scd30
-deleted file mode 100644
-index b9712f390bec..000000000000
---- a/Documentation/ABI/testing/sysfs-bus-iio-scd30
-+++ /dev/null
-@@ -1,34 +0,0 @@
--What:		/sys/bus/iio/devices/iio:deviceX/calibration_auto_enable
--Date:		June 2020
--KernelVersion:	5.8
--Contact:	linux-iio@vger.kernel.org
--Description:
--		Contaminants build-up in the measurement chamber or optical
--		elements deterioration leads to sensor drift.
--
--		One can compensate for sensor drift by using automatic self
--		calibration procedure (asc).
--
--		Writing 1 or 0 to this attribute will respectively activate or
--		deactivate asc.
--
--		Upon reading current asc status is returned.
--
--What:		/sys/bus/iio/devices/iio:deviceX/calibration_forced_value
--Date:		June 2020
--KernelVersion:	5.8
--Contact:	linux-iio@vger.kernel.org
--Description:
--		Contaminants build-up in the measurement chamber or optical
--		elements deterioration leads to sensor drift.
--
--		One can compensate for sensor drift by using forced
--		recalibration (frc). This is useful in case there's known
--		co2 reference available nearby the sensor.
--
--		Picking value from the range [400 1 2000] and writing it to the
--		sensor will set frc.
--
--		Upon reading current frc value is returned. Note that after
--		power cycling default value (i.e 400) is returned even though
--		internally sensor had recalibrated itself.
++  clock-names:
++    items:
++      - const: core
++      - const: iface
++      - const: bus
++      - const: bus_throttle
++
++  interconnects:
++    maxItems: 2
++
++  interconnect-names:
++    items:
++      - const: cpu-cfg
++      - const: video-mem
++
++  interrupts:
++    maxItems: 1
++
++  iommus:
++    maxItems: 20
++
++  memory-region:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  video-decoder:
++    type: object
++
++    properties:
++      compatible:
++        const: venus-decoder
++
++      clocks:
++        maxItems: 1
++
++      clock-names:
++        items:
++          - const: vcodec0_core
++
++      power-domains:
++        maxItems: 1
++
++    required:
++      - compatible
++      - clocks
++      - clock-names
++      - power-domains
++
++    additionalProperties: false
++
++  video-encoder:
++    type: object
++
++    properties:
++      compatible:
++        const: venus-encoder
++
++      clocks:
++        maxItems: 1
++
++      clock-names:
++        items:
++          - const: vcodec0_core
++
++      power-domains:
++        maxItems: 1
++
++    required:
++      - compatible
++      - clocks
++      - clock-names
++      - power-domains
++
++    additionalProperties: false
++
++  video-firmware:
++    type: object
++
++    description: |
++      Firmware subnode is needed when the platform does not
++      have TrustZone.
++
++    properties:
++      iommus:
++        maxItems: 1
++
++    required:
++      - iommus
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++  - iommus
++  - memory-region
++  - power-domains
++  - video-decoder
++  - video-encoder
++
++additionalProperties: false
++
++examples:
++  - |
++        #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
++        #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++        video-codec@cc00000 {
++                compatible = "qcom,sdm660-venus";
++                reg = <0x0cc00000 0xff000>;
++                clocks = <&mmcc VIDEO_CORE_CLK>,
++                         <&mmcc VIDEO_AHB_CLK>,
++                         <&mmcc VIDEO_AXI_CLK>,
++                         <&mmcc THROTTLE_VIDEO_AXI_CLK>;
++                clock-names = "core", "iface", "bus", "bus_throttle";
++                interconnects = <&gnoc 0 &mnoc 13>,
++                                <&mnoc 4 &bimc 5>;
++                interconnect-names = "cpu-cfg", "video-mem";
++                interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>;
++                iommus = <&mmss_smmu 0x400>,
++                         <&mmss_smmu 0x401>,
++                         <&mmss_smmu 0x40a>,
++                         <&mmss_smmu 0x407>,
++                         <&mmss_smmu 0x40e>,
++                         <&mmss_smmu 0x40f>,
++                         <&mmss_smmu 0x408>,
++                         <&mmss_smmu 0x409>,
++                         <&mmss_smmu 0x40b>,
++                         <&mmss_smmu 0x40c>,
++                         <&mmss_smmu 0x40d>,
++                         <&mmss_smmu 0x410>,
++                         <&mmss_smmu 0x421>,
++                         <&mmss_smmu 0x428>,
++                         <&mmss_smmu 0x429>,
++                         <&mmss_smmu 0x42b>,
++                         <&mmss_smmu 0x42c>,
++                         <&mmss_smmu 0x42d>,
++                         <&mmss_smmu 0x411>,
++                         <&mmss_smmu 0x431>;
++                memory-region = <&venus_region>;
++                power-domains = <&mmcc VENUS_GDSC>;
++
++                video-decoder {
++                        compatible = "venus-decoder";
++                        clocks = <&mmcc VIDEO_SUBCORE0_CLK>;
++                        clock-names = "vcodec0_core";
++                        power-domains = <&mmcc VENUS_CORE0_GDSC>;
++                };
++
++                video-encoder {
++                        compatible = "venus-encoder";
++                        clocks = <&mmcc VIDEO_SUBCORE0_CLK>;
++                        clock-names = "vcodec0_core";
++                        power-domains = <&mmcc VENUS_CORE0_GDSC>;
++                };
++        };
 -- 
-2.30.2
+2.33.0
 
