@@ -2,110 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52AC1426F8D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 19:29:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38F4D426FBA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 19:48:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbhJHRbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 13:31:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35970 "EHLO mail.kernel.org"
+        id S231234AbhJHRuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 13:50:09 -0400
+Received: from foss.arm.com ([217.140.110.172]:38918 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229606AbhJHRbq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Oct 2021 13:31:46 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A8D7960C4B;
-        Fri,  8 Oct 2021 17:29:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633714190;
-        bh=bSGggQj63KGrt2Kn1+h4ufJaXOF8u2nTO9GXID1cojc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Ecjj162xpf30CfKEr+875wqw75PE8CkmDVZ3+Zf7UoU4GGwBI93AY3cFknjLR9cnJ
-         wMJYJTa9hV/gXl6pTdP7ZY2rXQI/i/3VSkPDKuGsnt89HnFcHJhSBK0RGYroGig//a
-         G3EfpP6IVonW9gL+xmmGkmLQJk2qLPR1DRb8TDaARsfsaTf6aS/T/YU9FJn4Bez8Cd
-         6rrxmjSSE9pbNWFyVfiWrJcCRQMsVRcjUVJEBoElkK8xIWez41UpaPYNkfflAAbjeN
-         zPKgO7WDzDW3jBbhF8rf0RnIL7Vzr2OXxyYiLEjR16wer12pZtcp50zl/sD+Y0KbzV
-         Hlo47IcrVksmA==
-Received: by pali.im (Postfix)
-        id 4735C760; Fri,  8 Oct 2021 19:29:48 +0200 (CEST)
-Date:   Fri, 8 Oct 2021 19:29:48 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5] arm64: dts: marvell: add Globalscale MOCHAbin
-Message-ID: <20211008172948.rpev5iptnczdofwi@pali>
-References: <20211008114343.57920-1-robert.marko@sartura.hr>
- <20211008120855.46zbo2fl5edwf7ja@pali>
- <CA+HBbNGvFtws2GF7RLbznAbXfvjKx4rOJ=eMeuHOJ6s7iANtzw@mail.gmail.com>
- <20211008134347.lskm5pzt73pkf7oc@pali>
- <CA+HBbNEDxBDvNZPSWnBYJOUhqdwonBhFwD9P0xhSGccdvQJx3Q@mail.gmail.com>
+        id S231217AbhJHRuH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 13:50:07 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8332B1063;
+        Fri,  8 Oct 2021 10:48:11 -0700 (PDT)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D6FFC3F766;
+        Fri,  8 Oct 2021 10:48:09 -0700 (PDT)
+Date:   Fri, 8 Oct 2021 18:48:03 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Krzysztof Wilczy??ski <kw@linux.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        vidyas@nvidia.com
+Subject: Re: [PATCH v2 1/2] PCI: dwc: Perform host_init() before registering
+ msi
+Message-ID: <20211008174803.GA32277@lpieralisi>
+References: <YSVTdedrDSgSYgwm@ripper>
+ <20210824202925.GA3491441@bjorn-Precision-5520>
+ <YSVjQgDmatkkCxtn@ripper>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+HBbNEDxBDvNZPSWnBYJOUhqdwonBhFwD9P0xhSGccdvQJx3Q@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <YSVjQgDmatkkCxtn@ripper>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 08 October 2021 17:52:40 Robert Marko wrote:
-> On Fri, Oct 8, 2021 at 3:43 PM Pali Rohár <pali@kernel.org> wrote:
-> >
-> > On Friday 08 October 2021 15:28:38 Robert Marko wrote:
-> > > > > +     cp0_pcie_reset_pins: cp0-pcie-reset-pins {
-> > > > > +             marvell,pins = "mpp9";
-> > > > > +             marvell,function = "gpio";
-> > > >
-> > > > Now I spotted this. Why is PERST# pin configured into gpio mode? Is
-> > > > there some issue that this pin in pcie mode is not working properly,
-> > > > that PCIe controller cannot handle it correctly? Or something else?
-> > >
-> > > Its because I have seen way too many broken controllers when it comes
-> > > to PERST and
-> > > other Armada 7k/8k devices are using it in GPIO mode as well.
-> > > Just look at the number of conversions back to GPIO for other
-> > > platforms as there is always some bug.
-> >
-> > I know that A3720 has broken PERST# control in PCIe block... or at least
-> > I was not able to figure out how A3720 PCIe block can control PERST#. So
-> > configuring it in gpio mode and let PERST# to be controlled manually via
-> > gpio by the software is the workaround.
-> >
-> > I just wanted to know if A7k/A8k/CN913x is also broken in the same way
-> > as A3720.
-> >
-> > Or it it just a configuration workaround for missing driver or missing
-> > proper software setup.
-> >
-> > HW bugs like this should be properly documented and not hidden behind
-> > some configuration in DTS file. And reported to HW vendors.
-> 
-> I have to agree, so I did some digging.
-> I don't think that the Armada 8k PCI driver actually supports HW level PERST#.
-> I then looked at the functional specs and the only thing that looks
-> related to PERST#
-> is PCIe Software Reset Register which has a SoftWarePERst bit.
-> 
-> Can you maybe look at it?
+[+Vidya]
 
-Some details are in "PCIe Reset" section in Hardware Specification. In
-Software Functional Specification seems to be nothing useful. Just those
-registers without description.
+On Tue, Aug 24, 2021 at 02:23:14PM -0700, Bjorn Andersson wrote:
+> On Tue 24 Aug 13:29 PDT 2021, Bjorn Helgaas wrote:
+> 
+> > On Tue, Aug 24, 2021 at 01:15:49PM -0700, Bjorn Andersson wrote:
+> > > On Tue 24 Aug 12:05 PDT 2021, Bjorn Helgaas wrote:
+> > > 
+> > > > On Mon, Aug 23, 2021 at 08:49:57AM -0700, Bjorn Andersson wrote:
+> > > > > On the Qualcomm sc8180x platform the bootloader does something related
+> > > > > to PCI that leaves a pending "msi" interrupt, which with the current
+> > > > > ordering often fires before init has a chance to enable the clocks that
+> > > > > are necessary for the interrupt handler to access the hardware.
+> > > > > 
+> > > > > Move the host_init() call before the registration of the "msi" interrupt
+> > > > > handler to ensure the host driver has a chance to enable the clocks.
+> > > > 
+> > > > Did you audit other drivers for similar issues?  If they do, we should
+> > > > fix them all at once.
+> > > 
+> > > I only looked at the DesignWware drivers, in an attempt to find any
+> > > issues the proposed reordering.
+> > > 
+> > > The set of bugs causes by drivers registering interrupts before critical
+> > > resources tends to be rather visible and I don't know if there's much
+> > > value in speculatively "fixing" drivers.
+> > > 
+> > > E.g. a quick look through the drivers I see a similar pattern in
+> > > pci-tegra.c, but it's unlikely that they have the similar problem in
+> > > practice and I have no way to validate that a change to the order would
+> > > have a positive effect - or any side effects.
+> > > 
+> > > Or am I misunderstanding your request?
+> > 
+> > That is exactly my request.
+> 
+> Okay.
+> 
+> > I'm not sure if the potential issue you
+> > noticed in pci-tegra.c is similar to the one I mentioned here:
+> > 
+> >   https://lore.kernel.org/linux-pci/20210624224040.GA3567297@bjorn-Precision-5520/
+> > 
+> 
+> As I still have the tegra driver open, I share your concern about the
+> use of potentially uninitialized variables.
+> 
+> The problem I was concerned about was however the same as in my patch
+> and the rockchip one, that if the tegra hardware isn't clocked the
+> pm_runtime_get_sync() (which would turn on power and clock) happens
+> after setting up the msi chain handler...
+> 
+> > but I am actually in favor of speculatively fixing drivers even though
+> > they're hard to test.  Code like this tends to get copied to other
+> > places, and fixing several drivers sometimes exposes opportunities for
+> > refactoring and sharing code.
+> > 
+> 
+> Looking through the other cases mentioned in your reply above certainly
+> gives a feeling that this problem has been inherited from driver to
+> driver...
+> 
+> I've added a ticket to my backlog to take a deeper look at this.
 
-> Removed the reset-gpios and set the PERST pinmux to PCIe, and the
-> QCA9377 card will
-> show up, but I have no idea whether PERST# actually ever gets toggled.
+Vidya, can you look into this please ? In the meantime I would merge
+this series.
+
+Thanks,
+Lorenzo
+
 > 
 > Regards,
-> Robert
-> -- 
-> Robert Marko
-> Staff Embedded Linux Engineer
-> Sartura Ltd.
-> Lendavska ulica 16a
-> 10000 Zagreb, Croatia
-> Email: robert.marko@sartura.hr
-> Web: www.sartura.hr
+> Bjorn
