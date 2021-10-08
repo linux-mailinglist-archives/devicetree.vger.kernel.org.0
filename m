@@ -2,125 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B34F4271D6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 22:08:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0701C4271F3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Oct 2021 22:18:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241709AbhJHUKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 16:10:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41152 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231584AbhJHUKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 16:10:47 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF3FC061570;
-        Fri,  8 Oct 2021 13:08:51 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id j21so25875697lfe.0;
-        Fri, 08 Oct 2021 13:08:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=SvSecvKN+CG0meIBIuOZ66lX5o0E6MQFEWg90R8UlQw=;
-        b=fVOINyEbOLrsm+S5bai0uYf9CSlDbUG0AtM46n93N7B1iv84zSLST92obxzsd0oIjG
-         A2yrL8VzgBMF0NXrBT84XLdLHqKEJtgdZZUbq6nHpjtRiRzBemsqvwrRBdI3lTxzjwBx
-         eOEJykY8NveLzv/4AIgIDPYYTVy4FYN0YvgidtfnMHW/+qiwNsO3U4y37ihNr6470R2S
-         tHP05t4Ct4L2MQxfMY8/V7Z5wenp4Ifap8ASADub5NGLvvClu3+JcbCeb2ZWY0D2lceg
-         S940ebtZyLk8aVco4CQMojrNZkGtXFldAJht8Uz9GHgq4FOiqMJ8r3atXnzCfnRlj76+
-         juqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=SvSecvKN+CG0meIBIuOZ66lX5o0E6MQFEWg90R8UlQw=;
-        b=f3NUbHTg6fajqJbT/cBQ6AEJavt4Pf7RnEhihsh5BLWVMxym88VcN7w5oCDh2b+1Hu
-         AwGecGgLVmPCCE1lgAMI0zYq122puFe9im5vqLwi9PkeX3cNny7DmCG5cRtm6RCgE+Ms
-         UfWhTIdH5c7E2V52UNsFCU7OsIDVv2szwzKErmbz4v0725WN2AshJ6/E2280RgiUbm/T
-         AfrtZ85EK6yzg3Y0EIvppE8uuYLY6HigJgthgTgshlkGkISdtd2zlgOCq7u4NjZFgJ44
-         USIGDmIFAASfStIOjW2RgAU3yhJB7ge7d7O3+bdnG1Et3Ki/KC7MCmSbWm72aSjR4jT0
-         FM0A==
-X-Gm-Message-State: AOAM531zmwOTCE4g/4xF97quaWHl56+gd7rt/eNYdqAG5Zmo40R43bRb
-        X6nV6/HLVVks9AI/O601ubY=
-X-Google-Smtp-Source: ABdhPJz0lsQ4+eQVLaSuW5oMxXBEX6xuS3cSfnTO6tjJGmU+oiw07uhmWLWXNu5NTGunXYTgFgt/lQ==
-X-Received: by 2002:a05:6512:3083:: with SMTP id z3mr12588754lfd.242.1633723730320;
-        Fri, 08 Oct 2021 13:08:50 -0700 (PDT)
-Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id b21sm24580lfs.49.2021.10.08.13.08.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 13:08:49 -0700 (PDT)
-Subject: Re: [PATCH V2 linux-pinctrl 1/2] Revert "dt-bindings: pinctrl:
- bcm4708-pinmux: rework binding to use syscon"
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Scott Branden <sbranden@broadcom.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20211008153939.19685-1-zajec5@gmail.com>
- <1633722536.868012.3211952.nullmailer@robh.at.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <cf2ca705-d6d7-d69a-3c66-59f7c997f6b8@gmail.com>
-Date:   Fri, 8 Oct 2021 22:08:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        id S231590AbhJHUU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 16:20:28 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:57166 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230091AbhJHUU2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 16:20:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=nbEL2f9U72GlI7AKCPstfB4LethwKKgejTASqHX6Tho=; b=R2JejGfzJNcn6v52uEmXg2gfLX
+        mB6DxBI2GX2cRa4vGah0xsv1g7h9Idl2UFT5nm/elBx8linAyOkMotppfYEGSZE8R1PaB+Us/txTd
+        Gzoxk0fCVfI3YYx8qpiWV8Jd/+flg46sYi4q0XtAeXKwhLsePCB4jXSabHNvXVnKLCKE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mYwK0-00A5dN-Pr; Fri, 08 Oct 2021 22:18:24 +0200
+Date:   Fri, 8 Oct 2021 22:18:24 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     p.zabel@pengutronix.de, robh+dt@kernel.org,
+        lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
+        UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] reset: mchp: sparx5: Extend support for lan966x
+Message-ID: <YWCnkPjgqCKTTI/S@lunn.ch>
+References: <20211008114330.1328713-1-horatiu.vultur@microchip.com>
+ <20211008114330.1328713-3-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-In-Reply-To: <1633722536.868012.3211952.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211008114330.1328713-3-horatiu.vultur@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08.10.2021 21:48, Rob Herring wrote:
-> On Fri, 08 Oct 2021 17:39:38 +0200, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> This reverts commit 2ae80900f239484069569380e1fc4340fd6e0089.
->>
->> My rework was unneeded & wrong. It replaced a clear & correct "reg"
->> property usage with a custom "offset" one.
->>
->> Back then I didn't understand how to properly handle CRU block binding.
->> I heard / read about syscon and tried to use it in a totally invalid
->> way. That change also missed Rob's review (obviously).
->>
->> Northstar's pin controller is a simple consistent hardware block that
->> can be cleanly mapped using a 0x24 long reg space.
->>
->> Since the rework commit there wasn't any follow up modifying in-kernel
->> DTS files to use the new binding. Broadcom also isn't known to use that
->> bugged binding. There is close to zero chance this revert may actually
->> cause problems / regressions.
->>
->> This commit is a simple revert. Example binding may (should) be updated
->> / cleaned up but that can be handled separately.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->> V2: Update brcm,cru.yaml to avoid new yamllint warnings/errors
->> ---
->>   .../devicetree/bindings/mfd/brcm,cru.yaml     | 11 +++++----
->>   .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 23 +++++++++++--------
->>   2 files changed, 19 insertions(+), 15 deletions(-)
->>
+On Fri, Oct 08, 2021 at 01:43:30PM +0200, Horatiu Vultur wrote:
+> This patch extends sparx5 driver to support also the lan966x. The
+> process to reset the switch is the same only it has different offsets.
+> Therefore make the driver more generic and add support for lan966x.
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.example.dt.yaml: cru@1800c100: $nodename:0: 'cru@1800c100' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
-> 	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/simple-bus.yaml
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 
-It's warning we already have and not something introduced by this
-revert.
+Thanks for making it generic.
 
-As a revert this commit should introduce as little non-revert changes
-as possible. I'm planning to improve that example later in a separated
-commit.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Can you take a look at this commit despite your bot warning, please?
+    Andrew
