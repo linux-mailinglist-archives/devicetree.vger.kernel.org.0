@@ -2,153 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 878CB427443
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 01:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CBAA427469
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 01:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243835AbhJHXla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 19:41:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60676 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243774AbhJHXl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 19:41:29 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3CBC061570
-        for <devicetree@vger.kernel.org>; Fri,  8 Oct 2021 16:39:33 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id q189so24471892ybq.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Oct 2021 16:39:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nmFzS3AbTLHxdnncfbOvzzEVI7phr9NSLef8AoPLTjM=;
-        b=mqx3+t8D+JNOVWKdQ1Pga0ueYs2XLMy4d5Gy1AhlLlPXMz+5mtjl1gOKVWvmZ0RySb
-         hczOVymBc69zb54sud6Zaz2/2qQZcts2POEpeEYbjUk4DwgbeHmRPZQfnNWyYFeoX/yU
-         /KBWQPiqB2QEiJdiXI4Jb9o+u2fvkGLqWYeik=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nmFzS3AbTLHxdnncfbOvzzEVI7phr9NSLef8AoPLTjM=;
-        b=vP2ywGt0haUHT9/Ocm3OP8ubPVqhAhBleKNptgI0SRKCPyKXEmk+yS++K7YHgfZvH2
-         pmNYdmYLaZk0CICBPQOy976NU2OwmzzdWDSu9rl16bfdZmx30ce5mwcUtZVmf4CreSmC
-         CV1KCHYR/0sgBSEsvEiWSaIV294lfEr7aVJP/OADGg+e3QEuGBjSXrgDu3Jff1VYtmpt
-         C3oLFViNy61gIZ+Vc2aqyQ47q6VOj2IEHHt9pMOHXfpQ28j9mhL8JLPgqIj1kIS4o7nW
-         y/klhQcFr+pFHS85/TmKqvvtwsLFP6GRGeeh9CvRi6RjGe0vHO8+KXhixE35x0VSt5GR
-         fEvg==
-X-Gm-Message-State: AOAM531PaLf7t7PhhhP90Eh1qh4tUUD3hU9nAXd1VjVGywggB8aXfm/m
-        hIlF0EtqWsiwzn8Nu16aQnE7ZZQz1h9LGqjGtmo60A==
-X-Google-Smtp-Source: ABdhPJwwucls5tMBedD7hFAv3uw/mJALkRLyU3e5okdsFA0sAW8kY+NrN9gaf2eWJXVfsdW9DZ1IsnmkSLu3PNPJx6c=
-X-Received: by 2002:a25:cf07:: with SMTP id f7mr6786613ybg.100.1633736372830;
- Fri, 08 Oct 2021 16:39:32 -0700 (PDT)
+        id S243904AbhJHX4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Oct 2021 19:56:43 -0400
+Received: from ixit.cz ([94.230.151.217]:54570 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S243797AbhJHX4n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Oct 2021 19:56:43 -0400
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id E98F223B26;
+        Sat,  9 Oct 2021 01:54:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1633737285;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Jjj+dkLqcm62HXFhe382RlEs6G3aC/Y2l1+WVv+UoqA=;
+        b=b7TQs3ZQsaGwmjrwgHMxr6Q1+A4FeewOid4w0kWt61k3Di5KF7t9lro8atCfMRDRvYSNU5
+        FgyDc38pNJhVL0JvYr01JQE8UAu0RaJw24+v43UWeeUJd1j9wneP+yPd6mAh5cfPsJWqbt
+        8AeLM+4PdZP7Q76tmVwd0/2KXc7bdaE=
+From:   David Heidelberg <david@ixit.cz>
+To:     robh+dt@kernel.org, gregkh@linuxfoundation.org
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+Subject: [PATCH] dt-bindings: serial: uartlite: drop $ref for -bits property
+Date:   Sat,  9 Oct 2021 01:43:12 +0200
+Message-Id: <20211008234312.61688-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20210929173343.v2.1.Ib7e63ae17e827ce0636a09d5dec9796043e4f80a@changeid>
- <20210929173343.v2.3.I630340a51130f4582dbe14e42f673b74e0531a2b@changeid>
- <CAE-0n53EBvKv-RdMwiiOsUkb+LOKAKwrpP7cDavx4meA2vbvcA@mail.gmail.com>
- <CAD=FV=XoOhSNP2EXurkA=G9iG2BnH9VzkvSEiNJ8W71s8N9bgg@mail.gmail.com>
- <CA+cxXhkM9Gzc+0EVapZVu=pJZ3WZawgucG5J2=bokYEJXFNKCQ@mail.gmail.com>
- <CA+cxXh=1D08O6EcC4Xq6+cCEthCtXfASOfGW38z=FhkmW3ce9g@mail.gmail.com> <CAD=FV=VfuxrrFbzZwCQr-6KYb2OXEPmrAH5y9UPr4V6Pud2h7g@mail.gmail.com>
-In-Reply-To: <CAD=FV=VfuxrrFbzZwCQr-6KYb2OXEPmrAH5y9UPr4V6Pud2h7g@mail.gmail.com>
-From:   Philip Chen <philipchen@chromium.org>
-Date:   Fri, 8 Oct 2021 16:39:21 -0700
-Message-ID: <CA+cxXh=wfuZjhUWA2VmEs_5-GpK1Db_jtin2EeaWvBsSMpEzew@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: sc7180: Support Parade ps8640 edp bridge
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Fixes warning:
+Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml: properties:xlnx,data-bits: {'const': '$ref'} is not allowed for '$ref'
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
 
-On Fri, Oct 8, 2021 at 4:13 PM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Fri, Oct 8, 2021 at 11:46 AM Philip Chen <philipchen@chromium.org> wrote:
-> >
-> > Hi
-> >
-> > On Thu, Oct 7, 2021 at 11:15 AM Philip Chen <philipchen@chromium.org> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Thu, Sep 30, 2021 at 9:22 AM Doug Anderson <dianders@chromium.org> wrote:
-> > > >
-> > > > Hi,
-> > > >
-> > > > On Wed, Sep 29, 2021 at 9:02 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > > > >
-> > > > > > +       pp3300_brij_ps8640: pp3300-brij-ps8640 {
-> > > > > > +               compatible = "regulator-fixed";
-> > > > > > +               status = "okay";
-> > > > > > +               regulator-name = "pp3300_brij_ps8640";
-> > > > > > +
-> > > > > > +               regulator-min-microvolt = <3300000>;
-> > > > > > +               regulator-max-microvolt = <3300000>;
-> > > > > > +
-> > > > > > +               gpio = <&tlmm 32 GPIO_ACTIVE_HIGH>;
-> > > > >
-> > > > > Doesn't this need
-> > > > >
-> > > > >                 enable-active-high;
-> > > >
-> > > > Looks like it. Without that it looks like it assumes active low.
-> > > Thanks for catching this.
-> > > I'll fix it in v3.
-> > >
-> > > >
-> > > >
-> > > > > > +
-> > > > > > +               pinctrl-names = "default";
-> > > > > > +               pinctrl-0 = <&en_pp3300_edp_brij_ps8640>;
-> > > > > > +
-> > > > > > +               vin-supply = <&pp3300_a>;
-> > > > > > +       };
-> > > > > > +};
-> > > > > > +
-> > > > > > +&dsi0_out {
-> > > > > > +       remote-endpoint = <&ps8640_in>;
-> > > > >
-> > > > > Should this also have data-lanes to be "complete"?
-> > > >
-> > > > That's still back in the main trogdor.dtsi, isn't it?
-> > > Yes, I think so.
-> > > Plus, ti-sn65 dts doesn't define data-lanes for input either.
-> > Sorry, I was wrong.
-> > ti-sn65 dts actually defines data-lanes for input.
-> > However, since ps8640 driver doesn't parse input data-lanes for now,
-> > it's not useful to add data-lanes here anyway.
->
-> Ah, right. This one _isn't_ in the dtsi. Looking closer, I agree with
-> you that it's not useful. Specifically it should be noted that, unlike
-> ti-sn65dsi86, this bridge part looks to only support 2-lanes of DP
-> traffic. If both of these two lanes are routed to the panel then
-> there's really nothing to specify--that should be the default
-> assumption of the driver if/when it ever adds support for data-lanes.
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-Actually, dsi0_out is the input to the bridge.
-So the data lanes here are "MIPI DSI lanes", which is hardcoded to 4,
-for both sn65 driver and ps8640 driver, right?
+diff --git a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
+index b8a2bfe14bed..f7617b88c7c3 100644
+--- a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
++++ b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
+@@ -38,7 +38,6 @@ properties:
+       The fixed baud rate that the device was configured for.
+ 
+   xlnx,data-bits:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+     enum: [5, 6, 7, 8]
+     description:
+       The fixed number of data bits that the device was configured for.
+-- 
+2.33.0
 
-What's different in sn65 driver and ps8640 driver is the output data
-lanes for DP:
-* sn65 supports 1, 2, or 4 DP lanes. The driver parses DP "data lanes"
-from DT and then configures the support accordingly.
-* ps8640 supports 1 or 2 DP lanes. As of now, the driver doesn't parse
-DP "data lanes" from DT.
-
-As a result:
-* Adding input "data lanes" for either sn65 or ps8640 DT is not useful.
-* Adding output "data lanes" for sn65 DT is useful, while adding
-output "data lanes" for ps8640 DT is not useful.
-
->
-> -Doug
