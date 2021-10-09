@@ -2,102 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 375DA4276D4
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 05:12:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51C074277C7
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 08:38:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232256AbhJIDOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Oct 2021 23:14:23 -0400
-Received: from mail-qv1-f51.google.com ([209.85.219.51]:36683 "EHLO
-        mail-qv1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230400AbhJIDOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Oct 2021 23:14:22 -0400
-Received: by mail-qv1-f51.google.com with SMTP id jo30so7622260qvb.3;
-        Fri, 08 Oct 2021 20:12:26 -0700 (PDT)
+        id S230136AbhJIGkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 02:40:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39840 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229538AbhJIGkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 02:40:07 -0400
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C0B2C061570;
+        Fri,  8 Oct 2021 23:38:11 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id u20-20020a9d7214000000b0054e170300adso14229012otj.13;
+        Fri, 08 Oct 2021 23:38:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=yKoplyR7afwfmQLpDG7G94oI4vcD4x6/t29Mo4g9I5k=;
+        b=CXtIaXqbe0r+I5WRQc3DTriZM/14KqOPCAZ/KxIPWQQCV7Ztntc9rR2lCwaQNC2kT1
+         VyKVOXWOjxGjPZhMjhq/AaPPG/4MxXnQmsJuIvTnJQP/IS8I9cug5yhtqAMW8sph0T3O
+         priq0DKBo3JLYRcfl7Wt3cOLqyVqEa3jmjLE+tLRgvHXyJSZFdnVrqK45n5O/8hKMDjz
+         x1RmmMCM2QGtB8XQKzlFd0xtJRe6paKdWPiGhsfQ6i3qKQkXAiPOBfE5g/4piX0LEja6
+         L7D4bg27QNg3rVQXpU1bLOb9/mShSFifDBgRWW6fVIdNZuYyi30wIL4ZEt5R31pTEBAU
+         gDow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RZSR3JWmSBMwGLbANGREyXBTPWcaZYMU43ykvJz+HmI=;
-        b=vV3l25w8bCYVo3pxMIZTJ+32rLJyILCf3do8JCbFKZGJqjf6OyaeyRNO+d+oRlwf3i
-         dXGvjakaTuo7cd8Kw5VA3lMWEbILVo2GW/sOMX1nEtXRETWOAqB5/WirLqgyGf376Xfl
-         qvZt36Bp+SGnTC5jift3UgDGiSLMeaNM9oz0Sg/3htt+cyYY3aueOyO6FngwKRgRQzVF
-         a8p8ZEowOjcxEwt3qG2z8E0MdyA6VLLEHrjpx11+zXB2GpTwXaZMg/wKQBrx4AKm8K4d
-         tsV9btbbhnmXEJbgSNUlOn+GG3/5S+sH7li1RzUyaNuRKNkgDKVOzrFN8NMzhqteVZRn
-         kBRw==
-X-Gm-Message-State: AOAM532sQGfeQEP2wRuhH4/U+OtVgWqk/NU/+1hJ6rJC/jEEP0yyiKBG
-        qtEQoy14CTIshql9uUNm2+eyVOetKYo=
-X-Google-Smtp-Source: ABdhPJy/tr6e6T8hkvh04q9zNBiSwDkHyyvIf4ohzDR2hiO8Wb6yXpt8g/Li6dCVl7n8bq537HwqRA==
-X-Received: by 2002:a05:6214:1022:: with SMTP id k2mr13642992qvr.53.1633749145983;
-        Fri, 08 Oct 2021 20:12:25 -0700 (PDT)
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com. [209.85.222.181])
-        by smtp.gmail.com with ESMTPSA id g27sm935407qkl.27.2021.10.08.20.12.25
+        h=x-gm-message-state:sender:subject:to:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=yKoplyR7afwfmQLpDG7G94oI4vcD4x6/t29Mo4g9I5k=;
+        b=H+71fnq/v33RlDUPN40l2TgUvffG3IQ7jce6iztBJZTV7H2dHNvgUart/4Ks6Wmiml
+         FMXZq4vtRGblxVjJom6SZXxdSo8qk0qFls8iIaV6fg9o0vxuz1VFCmsgzEM386QMDu/n
+         cm/mmhVm1xzde+i+ImUEfGI6uAaRCkWGWs8MEkwD5fh7nTZiHpVzfRim97g1wzbHRS1U
+         ldGWTWa3Isz2Ty3VBhXNErfZfUomoKGciIEsU8eyw+nVbt5PPUT2J/hP/JMtSRbSHOw7
+         JULcY75VdlfIk2dsz6ZOmFBbbrmb/TbbwTvAMiZniihVyeY7V4MvHa9wQqv+7K/aHjAK
+         xSVQ==
+X-Gm-Message-State: AOAM53396tL+k8CscE/szpcWjvu2KdeUwTBer57fNYE0IlkuVK8syxat
+        UuG44va+KKcCAvWu5+9m5fyzfhSR6nk=
+X-Google-Smtp-Source: ABdhPJxpVWFUMkEBwmuyrlGI5xvsqeIia2XIh4LAOUrlIwX3nAgfG5qExvYCQT3we6w997mQQ5nO0w==
+X-Received: by 2002:a9d:1b41:: with SMTP id l59mr12351768otl.283.1633761490393;
+        Fri, 08 Oct 2021 23:38:10 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u26sm378384oic.51.2021.10.08.23.38.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Oct 2021 20:12:25 -0700 (PDT)
-Received: by mail-qk1-f181.google.com with SMTP id x12so11431055qkf.9;
-        Fri, 08 Oct 2021 20:12:25 -0700 (PDT)
-X-Received: by 2002:a37:b842:: with SMTP id i63mr5942720qkf.262.1633749145064;
- Fri, 08 Oct 2021 20:12:25 -0700 (PDT)
+        Fri, 08 Oct 2021 23:38:09 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add nct7802 bindings
+To:     Oskar Senft <osk@google.com>, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20211009024430.3322230-1-osk@google.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <089c590f-5b35-8a2a-6132-d8d3e2695c15@roeck-us.net>
+Date:   Fri, 8 Oct 2021 23:38:08 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211001000924.15421-1-leoyang.li@nxp.com> <20211001000924.15421-3-leoyang.li@nxp.com>
- <YVsrYp3kZNmB1CIu@robh.at.kernel.org>
-In-Reply-To: <YVsrYp3kZNmB1CIu@robh.at.kernel.org>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Fri, 8 Oct 2021 22:12:13 -0500
-X-Gmail-Original-Message-ID: <CADRPPNSqJJ3RObHLVmpcg71Gz6jXi+Qa3kv-Z2oyBHzv4qcx_g@mail.gmail.com>
-Message-ID: <CADRPPNSqJJ3RObHLVmpcg71Gz6jXi+Qa3kv-Z2oyBHzv4qcx_g@mail.gmail.com>
-Subject: Re: [PATCH 2/5] memory: fsl_ifc: populate child devices without
- relying on simple-bus
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211009024430.3322230-1-osk@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 4, 2021 at 12:14 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Sep 30, 2021 at 07:09:21PM -0500, Li Yang wrote:
-> > After we update the binding to not use simple-bus compatible for the
-> > controller, we need the driver to populate the child devices explicitly.
-> >
-> > Signed-off-by: Li Yang <leoyang.li@nxp.com>
-> > ---
-> >  drivers/memory/fsl_ifc.c | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >
-> > diff --git a/drivers/memory/fsl_ifc.c b/drivers/memory/fsl_ifc.c
-> > index d062c2f8250f..251d713cd50b 100644
-> > --- a/drivers/memory/fsl_ifc.c
-> > +++ b/drivers/memory/fsl_ifc.c
-> > @@ -88,6 +88,7 @@ static int fsl_ifc_ctrl_remove(struct platform_device *dev)
-> >  {
-> >       struct fsl_ifc_ctrl *ctrl = dev_get_drvdata(&dev->dev);
-> >
-> > +     of_platform_depopulate(&dev->dev);
-> >       free_irq(ctrl->nand_irq, ctrl);
-> >       free_irq(ctrl->irq, ctrl);
-> >
-> > @@ -285,6 +286,14 @@ static int fsl_ifc_ctrl_probe(struct platform_device *dev)
-> >               }
-> >       }
-> >
-> > +     /* legacy dts may still use "simple-bus" compatible */
-> > +     if (!of_device_is_compatible(dev->dev.of_node, "simple-bus")) {
-> > +             ret = of_platform_populate(dev->dev.of_node, NULL, NULL,
-> > +                                             &dev->dev);
->
-> There's no need to make this conditional. of_platform_populate() is safe
-> to call multiple times. If that doesn't work, it's a bug.
+Hi Oskar,
 
-I think that it is probably an optimization to avoid re-populate the
-bus for legacy device trees.  But it might be cleaner to just
-re-populate anyway?
+On 10/8/21 7:44 PM, Oskar Senft wrote:
+> Document bindings for the Nuvoton NCT7802Y driver.
+> 
+> Signed-off-by: Oskar Senft <osk@google.com>
 
-Regards,
-Leo
+Please pdon't expect from reviewers to figure out what changed
+between versions and provide change logs.
+
+Thanks,
+Guenter
+
+> ---
+>   .../bindings/hwmon/nuvoton,nct7802.yaml       | 142 ++++++++++++++++++
+>   1 file changed, 142 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+> new file mode 100644
+> index 000000000000..a97b89d0d197
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+> @@ -0,0 +1,142 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/nuvoton,nct7802.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton NCT7802Y Hardware Monitoring IC
+> +
+> +maintainers:
+> +  - Guenter Roeck <linux@roeck-us.net>
+> +
+> +description: |
+> +  The NCT7802Y is a hardware monitor IC which supports one on-die and up to
+> +  5 remote temperature sensors with SMBus interface.
+> +
+> +  Datasheets:
+> +    https://www.nuvoton.com/export/resource-files/Nuvoton_NCT7802Y_Datasheet_V12.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,nct7802
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  input@0:
+> +    type: object
+> +    description: Local Temperature Sensor ("LTD")
+> +    properties:
+> +      reg:
+> +        const: 0
+> +    required:
+> +      - reg
+> +
+> +  input@1:
+> +    type: object
+> +    description: Remote Temperature Sensor or Voltage Sensor ("RTD1")
+> +    properties:
+> +      reg:
+> +        const: 1
+> +      sensor-type:
+> +        items:
+> +          - enum:
+> +              - temperature
+> +              - voltage
+> +      temperature-mode:
+> +        items:
+> +          - enum:
+> +              - thermistor
+> +              - thermal-diode
+> +    required:
+> +      - reg
+> +      - sensor-type
+> +
+> +  input@2:
+> +    type: object
+> +    description: Remote Temperature Sensor or Voltage Sensor ("RTD2")
+> +    properties:
+> +      reg:
+> +        const: 2
+> +      sensor-type:
+> +        items:
+> +          - enum:
+> +              - temperature
+> +              - voltage
+> +      temperature-mode:
+> +        items:
+> +          - enum:
+> +              - thermistor
+> +              - thermal-diode
+> +    required:
+> +      - reg
+> +      - sensor-type
+> +
+> +  input@3:
+> +    type: object
+> +    description: Remote Temperature Sensor or Voltage Sensor ("RTD3")
+> +    properties:
+> +      reg:
+> +        const: 3
+> +      sensor-type:
+> +        items:
+> +          - enum:
+> +              - temperature
+> +              - voltage
+> +    required:
+> +      - reg
+> +      - sensor-type
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        nct7802@28 {
+> +            compatible = "nuvoton,nct7802";
+> +            reg = <0x28>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            input@0 { /* LTD */
+> +              reg = <0>;
+> +              status = "okay";
+> +            };
+> +
+> +            input@1 { /* RTD1 */
+> +              reg = <1>;
+> +              status = "okay";
+> +              sensor-type = "temperature";
+> +              temperature-mode = "thermistor";
+> +            };
+> +
+> +            input@2 { /* RTD2 */
+> +              reg = <2>;
+> +              status = "okay";
+> +              sensor-type = "temperature";
+> +              temperature-mode = "thermal-diode";
+> +            };
+> +
+> +            input@3 { /* RTD3 */
+> +              reg = <3>;
+> +              status = "okay";
+> +              sensor-type = "voltage";
+> +            };
+> +        };
+> +    };
+> 
+
