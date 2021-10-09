@@ -2,117 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7C2427C94
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 20:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D866427C9E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 20:23:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229937AbhJIST0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 14:19:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53334 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbhJISTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 14:19:21 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6DCC061570;
-        Sat,  9 Oct 2021 11:17:24 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id i20so32938890edj.10;
-        Sat, 09 Oct 2021 11:17:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=fuBuwonIJ/RYFG6qboWBn9V7FEmG4HhkblayeVkZims=;
-        b=ZNED6jBa7yKU3y0a4qmmg0m4NOHYArHGUNDJsaeJXyAv2CTC9NJc7+yM6ML2OTr761
-         2RE+wNLxTOQmG7QAwsyOp71L5v7TdgXeKwIAHYV4zr4FbzzhPEBxW2WZJieydPUWzGFw
-         qUgVr1/x1B1JCXpP4AwB2bLCVqjPEaNhQHgEi0qoQHjmoQuF2fry3h4Sx9jT0nDrZBWU
-         ITVq6gMl96sNOS36X5GomkudDfkwaYTskPOauoOUagcH02z0NOKMnpuFMbRsabWNo69+
-         c86nIMQscoPtM3R3peCO+eJxs7Spk4lYRIi3z6ibc1kPjJaGtHVGfr5bpgXohuh5YgXA
-         YNBA==
+        id S229518AbhJISZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 14:25:10 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:50218
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229558AbhJISZJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 14:25:09 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id DB1523FFF4
+        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 18:23:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633803791;
+        bh=zM6bXngNodKvbWIfKelGBWZlSPfZzg8bpEP/hU6qczs=;
+        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=Xi/P9jiJkYrX4kATFu7r8i6S0gv89SHNTgYOYR6lsYYG8fN+zwoXPrKHBsnamXcAE
+         TiLodbb2fpQAEylgTHuYoGh2MaVQdCCn9CIoeXi3fk647G81dnuJ9rJJmd5W3EStPJ
+         LCfqKUm4ZEkUPdmo+eQ3o2qz6du+nsrCH8VLiMM3pzvcUvkt6OX0FXSm23SK9ffWar
+         j4rvZlv3jzX003ICaFejpR26Bb34g+erzQxFhBLzNP1uGAP8+gXiKgRH9z+4WRj68A
+         9MPVpMqgUo7dHesJn3pOm6ktXtaQCg+qTrFlDE2ZU1/PvOlTP/8/GRlUL6ELVkKPvN
+         3z9cdLTjYVnkA==
+Received: by mail-ed1-f71.google.com with SMTP id p20-20020a50cd94000000b003db23619472so12025262edi.19
+        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 11:23:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fuBuwonIJ/RYFG6qboWBn9V7FEmG4HhkblayeVkZims=;
-        b=sf0mE8LTBHbkxI0gmLD6xxIHjv411RtbzNH/2XWy8OxWRI4AQapIUJY5dD1NBmxD/q
-         IRJPv+U3/2QmFDdis9CkNUcwJqJ9ydj+iyt2FHtjdHhMZ8a7LIZG/VwU6TXdYZxd06Gx
-         BIn8vi03DhoLz08UqQYnnmdOWeub9+YXcThONLj3KCtZFvJs+UC80O/dVhogXNxhgptA
-         CcOuggkahT9oCqlR51P4QlTd1uonXBSqhxYlCFXlHGiZ1u8/K1IVE64r0pIKHrBrFjGc
-         Y7xsAVTr5AsESXTiedZDCW6wKtaUo9H35HSyrjV3efzJWesNWdxqnYLjGisrnqnYlwJf
-         gKhQ==
-X-Gm-Message-State: AOAM531+y7XS/aiRilbCJ4KZ0LhzlnOoWtCG/bE9ZyoBPTIXEMD9QGRg
-        7gtBdH7vh6ITA07FjxdovsqHdQ11gaM=
-X-Google-Smtp-Source: ABdhPJzPt4YW3wsGvqc7+shQyegZckapPHFmZy1Q0kXu7hZxEshZjuFYPyViQIpSEUad4HtSnoanpw==
-X-Received: by 2002:a05:6402:4389:: with SMTP id o9mr26674669edc.38.1633803442907;
-        Sat, 09 Oct 2021 11:17:22 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id t19sm1243182ejb.115.2021.10.09.11.17.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Oct 2021 11:17:22 -0700 (PDT)
-Date:   Sat, 9 Oct 2021 20:17:19 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zM6bXngNodKvbWIfKelGBWZlSPfZzg8bpEP/hU6qczs=;
+        b=ACBUAhTVbht9H3YN0kryW32DNPgIkBH7ragQU/8uiStxj5YTynkaRIs7P26bjp4KFI
+         GrajB6EVtgP9FLwU1/sXmDj/NQv8KYwMxK+pY40gGdSdwq19RDocf4sXoo7bGbBmQ2YL
+         yAGHar0injwRSuNxh09BFfjboHo8hEGRJO59NZwOarwA+ZiZ273lLgszTrzjoS9TSK/J
+         ULz6o/HSzVtLLZ6/dmIxHzJobMTOzoQG3MO6qZN7p6wgziYsPC2WB6J7FIqkjcqoVA8Q
+         TpM4AY1D6cwXfdVmoq5h4v4thu3mV3uvlDooBtVzeSim7OEY0cfqyAPXJmQt9scSwUWM
+         a01g==
+X-Gm-Message-State: AOAM5305NhdQ6GttQfKdtD/TThTDE27Y+NSyNGFe3TiutDcR7Gd9j7g2
+        S/Kmc5ZLFNV9tuMm480kaiTcon5K4+xVXPz2hKdxMYXJD2HbT19/zsgLMkciY8vMQe8UIPKylND
+        cMAypHxb8v0QHAOXoQM9ewDl2Sy5nZETkI2XDNZQ=
+X-Received: by 2002:a05:6402:2684:: with SMTP id w4mr25332911edd.108.1633803790904;
+        Sat, 09 Oct 2021 11:23:10 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy+Cy2D+JVwcNKNtL8KsRRZa9b2S1k6ikrgWm8qJkLztlkO6oqjiuXs6ULdN9fAC1k0rK0pUQ==
+X-Received: by 2002:a05:6402:2684:: with SMTP id w4mr25332880edd.108.1633803790657;
+        Sat, 09 Oct 2021 11:23:10 -0700 (PDT)
+Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u16sm1245628ejy.14.2021.10.09.11.23.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Oct 2021 11:23:10 -0700 (PDT)
+To:     Chanho Park <chanho61.park@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH v2 15/15] dt-bindings: net: dsa: qca8k: document
- support for qca8328
-Message-ID: <YWHcr0wkdN0XjBNZ@Ansuel-xps.localdomain>
-References: <20211008002225.2426-1-ansuelsmth@gmail.com>
- <20211008002225.2426-16-ansuelsmth@gmail.com>
- <YWHQXYx7kYckTcqT@lunn.ch>
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20211008091443.44625-1-chanho61.park@samsung.com>
+ <CGME20211008091640epcas2p1fde9bedf5492db3f35207d118e5d9123@epcas2p1.samsung.com>
+ <20211008091443.44625-3-chanho61.park@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: add initial support for
+ exynosautov9 SoC
+Message-ID: <cadc117c-fc4e-cc86-fd99-77151c68b333@canonical.com>
+Date:   Sat, 9 Oct 2021 20:23:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YWHQXYx7kYckTcqT@lunn.ch>
+In-Reply-To: <20211008091443.44625-3-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 09, 2021 at 07:24:45PM +0200, Andrew Lunn wrote:
-> On Fri, Oct 08, 2021 at 02:22:25AM +0200, Ansuel Smith wrote:
-> > QCA8328 is the birrget brother of 8327. Document the new compatible
+On 08/10/2021 11:14, Chanho Park wrote:
+> Add minimal support for ExynosAuto v9 SoC[1].
 > 
-> birrget?
+> - Enumarate all pinctrl nodes
+> - UART with exynos850 compatible
+> - UFS0 HCI + Phy
 > 
+> Like exynos850, this also uses fixed-rate clock nodes until clock driver
+> has been supported. The clock nodes are initialized on bootloader stage
+> thus we don't need to control them so far.
 > 
->
+> [1]: https://www.samsung.com/semiconductor/minisite/exynos/products/automotiveprocessor/exynos-auto-v9/
+> 
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  .../devicetree/bindings/mfd/syscon.yaml       |    1 +
+>  .../boot/dts/exynos/exynosautov9-pinctrl.dtsi | 1189 +++++++++++++++++
+>  arch/arm64/boot/dts/exynos/exynosautov9.dtsi  |  301 +++++
+>  3 files changed, 1491 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
+>  create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index abe3fd817e0b..75dcbb741010 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -55,6 +55,7 @@ properties:
+>                - samsung,exynos4-sysreg
+>                - samsung,exynos5-sysreg
+>                - samsung,exynos5433-sysreg
+> +              - samsung,exynosautov9-sysreg
+>  
+>            - const: syscon
 
-Me sending patch lat at night... it was brother.
+This has to be a separate patch.
 
-> > binding.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/dsa/qca8k.txt | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > index 9fb4db65907e..0e84500b8db2 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > @@ -3,6 +3,7 @@
-> >  Required properties:
-> >  
-> >  - compatible: should be one of:
-> > +    "qca,qca8328"
-> >      "qca,qca8327"
-> >      "qca,qca8334"
-> >      "qca,qca8337"
-> 
-> This is much nice than the old DT property. But since the internal IDs
-> are the same, i think it would be good to add a little documentation
-> here about how the 8327 and 8328 differ, since most people are not
-> going to look at the commit message.
-> 
->       Andrew
+>  
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
+> new file mode 100644
+> index 000000000000..8489b9bea3c9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
+> @@ -0,0 +1,1189 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Samsung's ExynosAutov9 SoC pin-mux and pin-config device tree source
+> + *
+> + * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+> + *
+> + * Samsung's ExynosAutov9 SoC pin-mux and pin-config options are listed as
+> + * device tree nodes in this file.
+> + */
+> +
+> +#include <dt-bindings/pinctrl/samsung.h>
+> +
+> +&pinctrl_alive {
+> +	gpa0: gpa0 {
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	gpa1: gpa1 {
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	dp0_hpd_pin: dp0-hpd-pin {
 
-Ok will add some description on how to understand the correct compatible
-to use.
+Keep same suffix everywhere, so "-pins", even if there is just one pin.
+However no need for suffix in the label - schema does not care about
+labels, so:
 
--- 
-	Ansuel
+    dp0_hpd: dp0-hpd-pins {
+
+> +		samsung,pins = "gpa1-0";
+> +		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
+> +	};
+> +
+> +	dp1_hpd_pin: dp1-hpd-pin {
+> +		samsung,pins = "gpa1-1";
+> +		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
+> +	};
+> +
+> +	gpq0: gpq0 {
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +	};
+> +
+> +	speedy0_pin: speedy0-pin {
+> +		samsung,pins = "gpq0-0";
+> +		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
+> +		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
+> +	};
+> +
+> +	speedy1_pin: speedy1-pin {
+> +		samsung,pins = "gpa0-3";
+> +		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
+> +		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
+> +	};
+> +};
+> +
+> +&pinctrl_aud {
+> +	gpb0: gpb0 {
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +	};
+> +
+> +	gpb1: gpb1 {
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +	};
+> +
+> +	gpb2: gpb2 {
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +	};
+> +
+> +	gpb3: gpb3 {
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +	};
+> +
+> +	aud_codec_mclk_pin: aud-codec-mclk-pin {
+> +		samsung,pins = "gpb0-4";
+> +		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
+> +		samsung,pin-pud = <EXYNOS_PIN_PULL_DOWN>;
+> +	};
+> +
+> +	aud_codec_mclk_idle_pin: aud-codec-mclk-idle-pin {
+> +		samsung,pins = "gpb0-4";
+> +		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
+> +		samsung,pin-pud = <EXYNOS_PIN_PULL_DOWN>;
+> +	};
+> +
+> +	aud_i2s0_pins: aud-i2s0-pins {
+> +		samsung,pins = "gpb0-0", "gpb0-1", "gpb0-2", "gpb0-3";
+> +		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
+> +		samsung,pin-pud = <EXYNOS_PIN_PULL_DOWN>;
+> +	};
+> +
+> +	aud_i2s0_idle_pins_pins: aud-i2s0-idle-pins-pins {
+
+Duplicates pins pins.
+
+
+Best regards,
+Krzysztof
