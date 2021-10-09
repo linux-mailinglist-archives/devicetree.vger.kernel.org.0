@@ -2,249 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D84C3427CE2
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 20:53:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19010427D0E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 21:11:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbhJISzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 14:55:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33274 "EHLO
+        id S229737AbhJITNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 15:13:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbhJISzt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 14:55:49 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17463C061762
-        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 11:53:52 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id t9so52572355lfd.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 11:53:52 -0700 (PDT)
+        with ESMTP id S229722AbhJITNP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 15:13:15 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56DDCC061762
+        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 12:11:18 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id x27so53748604lfa.9
+        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 12:11:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=aFYMKeV5hddsUlwSzkhz2vEZhuGgqpLM+mvhz6QXyZs=;
-        b=JtcsvkwudwN7dB3yh+bplfM/CnuY/iQq92p716RnIkfqW22avqchktp5fvXMSWET4a
-         gry2jKpVb9/ywqJXKBB4RZJLkhI14Z5+KHmgTevUwVwpg+V+nhdlZPBu2WfRstgzLx68
-         l83oi11xASPT/hnkJlpGuhG6Luf1y3hs7pxMZSQpeDO+JJAaqFa6bn9d41vCDVHtEAff
-         4E71YR09v+nfLNveI399Wf4SL131hO6XxvOr7BMP+KTuo8X/aI4ltFnPVDZ5wtqodXes
-         fxjexBLuVpcFimrV6uCsZhAC6x87qaZnr/es5rjghxApw9VKJ1/7knTojcWjfBeQDHlU
-         4xvQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YHzV+YpP+BYjr0TZ1VjoF5fEGQZXlwNqfD/o1zzTFIE=;
+        b=E+m4bBy6bZpj9fmAwtCryXLrW01nTSb/mEIuv+KVdwV+5nKJekxgEvPo9begWp16Qu
+         cgLY2qg7Rad9OQ2tL78AEMxm04X85A4CuHDcBavK7ZDk84flxLal2xyHzuauvmpWw9aD
+         YCI96g5C8+lsPQtFSc3HnxW14rVNUTsZNvZ6G1nWK7YFIFWXXpy4SBKJO9Ua5dt78npG
+         88YTmaUcvwFgYsstbKiAAb0ztcWg7SKT06u6VFGjanEm5lrNUYgzNumPjByqTaioxTDh
+         nRQkMP010Q32kKGMILupHVEOyK5Nxh3j8c+xOyNSmOcKsPsW7DAoaViUl9OoFyJ20D39
+         01VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=aFYMKeV5hddsUlwSzkhz2vEZhuGgqpLM+mvhz6QXyZs=;
-        b=N5NCj18paImEEP8CJfy8NHna4jga2bESC5twRAAPlSe377MSoM63IMRqVzktkIEcNd
-         OVekVcimqIK8Xi+inzKrEQhkI+OkH58xcIZCfifh0CoohQH0GwHov3ilEbmmSqUF6PN1
-         1sohkwfTa1cs5DPQyuSsdeBMamLQe+pyYlax5zH7lwyEzl8K3aLdGp0fLiFd19xedeAd
-         mkzbLGdJPmnYDsYNk+Nt4xMFV7bJAslMdZ558ryF4YcZ36Orm/aTGHAHNXiteOeiwpme
-         Rt2HNmMWO2WQAXzru/6pvHywWZHnhpyqxAkZEVybv5kfyZZCTq19G35fT7z+3XYvle+t
-         rkmA==
-X-Gm-Message-State: AOAM533J+6Ztq9kTj7yvQeDohc3wiUJqkOtVrqQpljjaku1m/PcjF7q/
-        irOcYXXZehnU5+GesRitXgJnt75FRA0szAvCpvZqcQ==
-X-Google-Smtp-Source: ABdhPJwvdzugSooDsLSPpoaBq1BC/XkwAvd/Rimydex/6p1/HzEx85t7SvffedoRKcRJlyuNhoxIrjuPmf7Z+oPczs4=
-X-Received: by 2002:a05:6512:3107:: with SMTP id n7mr529056lfb.179.1633805630057;
- Sat, 09 Oct 2021 11:53:50 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YHzV+YpP+BYjr0TZ1VjoF5fEGQZXlwNqfD/o1zzTFIE=;
+        b=bzxtJlmpIVGet+IRJz6BnX1f04kbbWOY2jO4npMHdklfieZ1ppLDSkPUcyLbp+CyIX
+         r8hgdM3BJKRK5TNhb3zyESLWekfElBA1ujUN3icT2nt0GDbbZVgCgSg/EQDlpTUd691T
+         nWhG+VsFqyYFai20bZb3kspklvaFD3TQrvJCEzcEQ+u+o6o9vJcMQy1qJN4LfaMXz1t8
+         E64tVRuNYbs+VnN4cE9rd275CZqKLi5CKr4AKmjO3idC25ma1DKMfdZ6JWYhoDA5Qonj
+         4zEM+moTKPsFPhn0bgh/JI8qQ79ucPEEw0vU8GLxbhKqYYndME/iiScRCsMv0NyIZYRp
+         QjZA==
+X-Gm-Message-State: AOAM53121dHJjUrvm5SKNojC2bUWMIbvA3U2TG1z33KbfZXZjSi0xVJ2
+        XRimeAJYB1YbzKrGuT8ScWp5dg==
+X-Google-Smtp-Source: ABdhPJzrt6nic+Xq3OUoi8vcr5PyPvYs27zUrEVJnKzAO7UGjhd9XtlyB2G3GmYJ6sEG0c5+Py6jBA==
+X-Received: by 2002:a05:6512:5c2:: with SMTP id o2mr16727718lfo.207.1633806676559;
+        Sat, 09 Oct 2021 12:11:16 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id r3sm272311lfc.114.2021.10.09.12.11.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Oct 2021 12:11:16 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v4 0/2] Add support for Sharp LS060T1SX01 panel
+Date:   Sat,  9 Oct 2021 22:11:12 +0300
+Message-Id: <20211009191114.45900-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20211009185257.2230013-1-osk@google.com> <20211009185257.2230013-2-osk@google.com>
-In-Reply-To: <20211009185257.2230013-2-osk@google.com>
-From:   Oskar Senft <osk@google.com>
-Date:   Sat, 9 Oct 2021 14:53:34 -0400
-Message-ID: <CABoTLcTS0WqROUn5vz=fh238Q-mc5fu6SVoAnA-BXJLpGZWv_A@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] hwmon: (nct7802) Make temperature/voltage sensors configurable
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changes since "PATCH v4 2/2" as requested in the review:
-- Changed device tree node name from "signal" to "channel".
-- Removed unrelated changes to replace literal values with #defines.
-- Fixed formatting issues by running clang-format.
-- Removed unneccessary check for reg >= 1 && reg <= 3.
-- nct7802_get_channel_config is now returning an error value.
-- nct7802_configure_channels now stops processing the device tree on
-the first error.
-- Simplified logic for LTD default configuration in nct7802_configure_channels.
+Add driver to support Sharp LS06T1SX01 6.0" FullHD panel found e.g. in
+the kwaek.ca Dragonboard Display Adapter Bundle.
 
-On Sat, Oct 9, 2021 at 2:53 PM Oskar Senft <osk@google.com> wrote:
->
-> This change allows LTD and RTD inputs to be configured via
-> device tree bindings. If the DT bindings are not present or
-> invalid, the input configuration is not modified and left at
-> HW defaults.
->
-> Signed-off-by: Oskar Senft <osk@google.com>
-> ---
->  drivers/hwmon/nct7802.c | 133 ++++++++++++++++++++++++++++++++++++++--
->  1 file changed, 129 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/hwmon/nct7802.c b/drivers/hwmon/nct7802.c
-> index 604af2f6103a..e28f8eaf9f0f 100644
-> --- a/drivers/hwmon/nct7802.c
-> +++ b/drivers/hwmon/nct7802.c
-> @@ -51,6 +51,23 @@ static const u8 REG_VOLTAGE_LIMIT_MSB_SHIFT[2][5] = {
->  #define REG_CHIP_ID            0xfe
->  #define REG_VERSION_ID         0xff
->
-> +/*
-> + * Resistance temperature detector (RTD) modes according to 7.2.32 Mode
-> + * Selection Register
-> + */
-> +#define RTD_MODE_CURRENT       0x1
-> +#define RTD_MODE_THERMISTOR    0x2
-> +#define RTD_MODE_VOLTAGE       0x3
-> +
-> +#define MODE_RTD_MASK          0x3
-> +#define MODE_LTD_EN            0x40
-> +
-> +/*
-> + * Bit offset for sensors modes in REG_MODE.
-> + * Valid for index 0..2, indicating RTD1..3.
-> + */
-> +#define MODE_BIT_OFFSET_RTD(index) ((index) * 2)
-> +
->  /*
->   * Data structures and manipulation thereof
->   */
-> @@ -1038,7 +1055,116 @@ static const struct regmap_config nct7802_regmap_config = {
->         .volatile_reg = nct7802_regmap_is_volatile,
->  };
->
-> -static int nct7802_init_chip(struct nct7802_data *data)
-> +static int nct7802_get_channel_config(struct device *dev,
-> +                                     struct device_node *node, u8 *mode_mask,
-> +                                     u8 *mode_val)
-> +{
-> +       u32 reg;
-> +       const char *type_str, *md_str;
-> +       u8 md;
-> +
-> +       if (!node->name || of_node_cmp(node->name, "channel"))
-> +               return 0;
-> +
-> +       if (of_property_read_u32(node, "reg", &reg)) {
-> +               dev_err(dev, "Could not read reg value for '%s'\n",
-> +                       node->full_name);
-> +               return -EINVAL;
-> +       }
-> +
-> +       if (reg > 3) {
-> +               dev_err(dev, "Invalid reg (%u) in '%s'\n", reg,
-> +                       node->full_name);
-> +               return -EINVAL;
-> +       }
-> +
-> +       if (reg == 0) {
-> +               if (!of_device_is_available(node))
-> +                       *mode_val &= ~MODE_LTD_EN;
-> +               else
-> +                       *mode_val |= MODE_LTD_EN;
-> +               *mode_mask |= MODE_LTD_EN;
-> +               return 0;
-> +       }
-> +
-> +       /* At this point we have reg >= 1 && reg <= 3 */
-> +
-> +       if (!of_device_is_available(node)) {
-> +               *mode_val &= ~(MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1));
-> +               *mode_mask |= MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1);
-> +               return 0;
-> +       }
-> +
-> +       if (of_property_read_string(node, "sensor-type", &type_str)) {
-> +               dev_err(dev, "No type for '%s'\n", node->full_name);
-> +               return -EINVAL;
-> +       }
-> +
-> +       if (!strcmp(type_str, "voltage")) {
-> +               *mode_val |= (RTD_MODE_VOLTAGE & MODE_RTD_MASK)
-> +                            << MODE_BIT_OFFSET_RTD(reg - 1);
-> +               *mode_mask |= MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1);
-> +               return 0;
-> +       }
-> +
-> +       if (strcmp(type_str, "temperature")) {
-> +               dev_err(dev, "Invalid type '%s' for '%s'\n", type_str,
-> +                       node->full_name);
-> +               return -EINVAL;
-> +       }
-> +
-> +       if (reg == 3) {
-> +               /* RTD3 only supports thermistor mode */
-> +               md = RTD_MODE_THERMISTOR;
-> +       } else {
-> +               if (of_property_read_string(node, "temperature-mode",
-> +                                           &md_str)) {
-> +                       dev_err(dev, "No mode for '%s'\n", node->full_name);
-> +                       return -EINVAL;
-> +               }
-> +
-> +               if (!strcmp(md_str, "thermal-diode"))
-> +                       md = RTD_MODE_CURRENT;
-> +               else if (!strcmp(md_str, "thermistor"))
-> +                       md = RTD_MODE_THERMISTOR;
-> +               else {
-> +                       dev_err(dev, "Invalid mode '%s' for '%s'\n", md_str,
-> +                               node->full_name);
-> +                       return -EINVAL;
-> +               }
-> +       }
-> +
-> +       *mode_val |= (md & MODE_RTD_MASK) << MODE_BIT_OFFSET_RTD(reg - 1);
-> +       *mode_mask |= MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1);
-> +
-> +       return 0;
-> +}
-> +
-> +static int nct7802_configure_channels(struct device *dev,
-> +                                     struct nct7802_data *data)
-> +{
-> +       bool found_channel_config = false;
-> +       u8 mode_mask = 0, mode_val = 0;
-> +       struct device_node *node;
-> +       int err;
-> +
-> +       /* Enable local temperature sensor by default */
-> +       mode_val |= MODE_LTD_EN;
-> +       mode_mask |= MODE_LTD_EN;
-> +
-> +       if (dev->of_node) {
-> +               for_each_child_of_node(dev->of_node, node) {
-> +                       err = nct7802_get_channel_config(dev, node, &mode_mask,
-> +                                                        &mode_val);
-> +                       if (err)
-> +                               return err;
-> +               }
-> +       }
-> +
-> +       return regmap_update_bits(data->regmap, REG_MODE, mode_mask, mode_val);
-> +}
-> +
-> +static int nct7802_init_chip(struct device *dev, struct nct7802_data *data)
->  {
->         int err;
->
-> @@ -1047,8 +1173,7 @@ static int nct7802_init_chip(struct nct7802_data *data)
->         if (err)
->                 return err;
->
-> -       /* Enable local temperature sensor */
-> -       err = regmap_update_bits(data->regmap, REG_MODE, 0x40, 0x40);
-> +       err = nct7802_configure_channels(dev, data);
->         if (err)
->                 return err;
->
-> @@ -1074,7 +1199,7 @@ static int nct7802_probe(struct i2c_client *client)
->         mutex_init(&data->access_lock);
->         mutex_init(&data->in_alarm_lock);
->
-> -       ret = nct7802_init_chip(data);
-> +       ret = nct7802_init_chip(dev, data);
->         if (ret < 0)
->                 return ret;
->
-> --
-> 2.33.0.882.g93a45727a2-goog
->
+Changes since v3:
+ - Replaced small msleeps with usleep_range
+
+Changes since v2:
+ - Add missing power supplies used by the panel according to the
+   datasheet
+
+Changes since v1:
+ - Fix the id in the schema file
+
+----------------------------------------------------------------
+Dmitry Baryshkov (2):
+      dt-bindings: add bindings for the Sharp LS060T1SX01 panel
+      drm/panel: Add support for Sharp LS060T1SX01 panel
+
+ .../bindings/display/panel/sharp,ls060t1sx01.yaml  |  56 ++++
+ drivers/gpu/drm/panel/Kconfig                      |  10 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c    | 333 +++++++++++++++++++++
+ 4 files changed, 400 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c
+
+
