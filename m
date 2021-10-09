@@ -2,122 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4AE5427BE5
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 18:22:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A4C9427BEA
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 18:27:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbhJIQYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 12:24:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56000 "EHLO
+        id S229558AbhJIQ3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 12:29:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229984AbhJIQYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 12:24:39 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90FD9C061762
-        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 09:22:42 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id d20so8331906qvm.8
-        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 09:22:42 -0700 (PDT)
+        with ESMTP id S229518AbhJIQ3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 12:29:16 -0400
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F6F8C061570;
+        Sat,  9 Oct 2021 09:27:19 -0700 (PDT)
+Received: by mail-io1-xd31.google.com with SMTP id 5so14411897iov.9;
+        Sat, 09 Oct 2021 09:27:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ps7DiQtOW0yxAPEQdZyI3WtmSKsINX3O22ig4yrRkE0=;
-        b=KzlqXDDtk47pPSC9GsMmBzmf0IOh6D1Wcti108dAkQdpZd3NdNTFOpp6HBtqRizfC1
-         p1AGFQXVSP0TU4XlTlXrsywxgYv4sMRSvwwY1MU+c4QOqn1doef7DUUcZIcgUO+xBI3t
-         UMbr2b+fPYdo3DWT1uKjaLvE2CHqwI2TqQl8sKiMyukknM+51UUBxL3EmfDM717VGwSO
-         UbY4OE78Gw2aG0lSjuKDZe/XA77HMe6/iiMQaSTpS0Mn7uObsnZV2kRCf9oYbVe4AOL7
-         vKwrJ1ZvVLTj0770a3GgR/Whp34ZdScZLoaLoJ2xq0YrCQdovB0oerOr7msSwpViC4zW
-         WySQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KombIHVlZOMP4XadihU884YzUUN1SHaapvqwBZQ2iuQ=;
+        b=ByB5eoTxH/tkVBwz2uDnfVnft/IyHvcvOW/ps4hLSx0o8/8sluexO6eMreCD9JTZqg
+         3RBL5FQbpvM4/gQEB8qm63TOhYSjn1whHgig1jklRBbOYh0RMCG+/h2Tih8UuO094IO5
+         RSCKy7ZwjhHakDacE5WnLtmdHyfziSSzU2FaQ+crJy2faLUlOvj5TMTSljAbkSl2r+pM
+         Y4mQYoumWWcwBTX040k0Xlm6fgUIis7bEcDcVtKGwwN+C5v6zjf9/9qAdGtb4H38X5sx
+         yp+EPWuhT6Sfa0WbP4RGLRU05YAqLqLBF5AUgD+N8eGLE1FCiRgESCkLa1G/wy4MRBqZ
+         7+0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ps7DiQtOW0yxAPEQdZyI3WtmSKsINX3O22ig4yrRkE0=;
-        b=oTzVG7GHN3kko1JyvaojA3JtrCPP1PVcuP0ygsORHGwkNLAJBeYyerjiKSii5XHCuZ
-         B9ieOoLoOvHnJg525ny+FlqbPGsAbc0lsbXH5uPmq7Ss2XmtYGVeIy3yUf5E2TMYDK/i
-         dCgAYHHnVWpID2mCN+itjnFaqabJ+GfC4mQ4VwGCGezZTH4CigQ63kWo+fL/B6+2Q4lx
-         TFbzWSKPxi6/QNsfF32XRp3hbeo+NpMENn4/JsmyBjx3T9MA2JmfVuvgkkp9XxYfvYaN
-         h6nhPDGRvPalEbKNGbl6G/bgoKaugAKweJzzxCNf+pvTLEysNbGblcsK+CCX1gbrB9Xu
-         Vk9g==
-X-Gm-Message-State: AOAM533cYshDQh0Yl8a1QO2CiOzztzncELsG5p7L3++Kdk/zAgS2kkZt
-        lpIzCbq4ROHAMlu+GHgDiVyYz1NoSsNj8XsKm02i6w==
-X-Google-Smtp-Source: ABdhPJyzMbqYmICxCJiO0kJAwrdaVGemEC/CVJakJfw0G7PzEcywRdikyCTJ7DRm4WhyRdmW4SyQq2iRexvTKx8A0pA=
-X-Received: by 2002:a05:6214:70f:: with SMTP id b15mr15970638qvz.16.1633796561708;
- Sat, 09 Oct 2021 09:22:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210926001005.3442668-1-dmitry.baryshkov@linaro.org>
- <20210926001005.3442668-3-dmitry.baryshkov@linaro.org> <YWG3oC7Bp54tIYkN@ravnborg.org>
-In-Reply-To: <YWG3oC7Bp54tIYkN@ravnborg.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 9 Oct 2021 19:22:30 +0300
-Message-ID: <CAA8EJppeW=s8ngS59hvUyCqmhodtTO3f8k7Aof=-umudCvs2jA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] drm/panel: Add support for Sharp LS060T1SX01 panel
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KombIHVlZOMP4XadihU884YzUUN1SHaapvqwBZQ2iuQ=;
+        b=GBrxSqJrQHWkpkNp82eWgaMEwMflb7bjXaVvxwjezVRGE+jZdb1tMYBkkUgQJ+inni
+         4QGlHsryEk5iBXzC951TYdflYrQdeyC8MUiPAxTW2gBvrUttnkmXWnq+yCaC9YuHh8ll
+         jYy9bo1N3JNdKFx31HURawsZxEP8vVOjL3L0v1C1pRxhrE8tkCFiPCbiOwwUPX9JCvuu
+         2VgZID+n+QP8VETYySuYLXA/4dPZKgMg8VtoHq+pZJAEq+PW1NSUrcCSwB6O1uQ9MTXF
+         6/BVVCU5E9GOe/Zve+DFKM9SAKFhPJ0LhMdIX+wc3EqEmuyrCFipgIPTkByGeZ/Mim1Q
+         WKOg==
+X-Gm-Message-State: AOAM531dXWL6JSp2hfal8go/zIYUHNHw7/MVf36BGwO9rHPQEI6+SVc1
+        zP1ZjCS0NPlce6k9YBWyebM=
+X-Google-Smtp-Source: ABdhPJzov8/HyYhOWD1DIHnHRVUJx8QleE10QE88ovOQKWA9xnPgr3c/V1DC6Xr16UOhryMFUqFdog==
+X-Received: by 2002:a05:6602:1644:: with SMTP id y4mr11727199iow.82.1633796838296;
+        Sat, 09 Oct 2021 09:27:18 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:cb0f:c46c:9a27:ace])
+        by smtp.gmail.com with ESMTPSA id y5sm1253722ilg.58.2021.10.09.09.27.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Oct 2021 09:27:17 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V2 0/9] arm64: imx8mn: Enable additional power domains and peripherals
+Date:   Sat,  9 Oct 2021 11:26:50 -0500
+Message-Id: <20211009162700.1452857-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 9 Oct 2021 at 18:39, Sam Ravnborg <sam@ravnborg.org> wrote:
->
-> Hi Dmityry,
->
-> On Sun, Sep 26, 2021 at 03:10:05AM +0300, Dmitry Baryshkov wrote:
-> > Add driver to support Sharp LS06T1SX01 FullHD panel. The panel uses
-> > nt35695 driver IC. For example this LCD module can be found in the
-> > kwaek.ca Dragonboard Display Adapter Bundle.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->
-> The driver looks fine. It would have been nicer could you have used
-> regulator_bulk - but I guess timing constraints prevents that - right?
+The blk-ctrl and the GPCv2 in the i.MX8MN is similar but slightly different to that
+of the i.MX8MM.  This series is based on work from Lucas Stach for i.MX8MM, but
+adapted for i.MX8MN.  With the additional power domains and blk-ctrl enabled,
+additional peripherals like gpu and USB can be enabled.
 
-Yes, there are explicit timing constraints in the datasheet, so I had
-to follow them and to turn regulators on and off one by one.
+V2:  Add mising patches for expanding GPCv2 which are necessary
+       to make the blk-ctl operate.
+     Fix clk names
+     Fix missing references to structures in blk-ctl driver to link
+       them to the device tree.
 
->
-> Please address the following checkpatch warnings:
->
-> -:181: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
-> #181: FILE: drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c:129:
-> +       msleep(1);
->
-> -:187: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
-> #187: FILE: drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c:135:
-> +       msleep(10);
->
-> -:193: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
-> #193: FILE: drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c:141:
-> +       msleep(10);
->
-> -:210: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
-> #210: FILE: drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c:158:
-> +       msleep(10);
->
-> -:241: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
-> #241: FILE: drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c:189:
-> +       msleep(10);
->
+Adam Ford (9):
+  soc: imx: gpcv2: keep i.MX8MN gpumix bus clock enabled
+  soc: imx: gpcv2: Add dispmix and mipi domains to imx8mn
+  dt-bindings: power: imx8mn: add defines for DISP blk-ctrl domains
+  dt-bindings: soc: add binding for i.MX8MN DISP blk-ctrl
+  soc: imx: imx8m-blk-ctrl: add i.MX8MN DISP blk-ctrl
+  arm64: dts: imx8mn: add GPC node
+  arm64: dts: imx8mn: put USB controller into power-domains
+  arm64: dts: imx8mn: add DISP blk-ctrl
+  arm64: dts: imx8mn: Enable GPU
 
-Ack, I'll fix the msleep's and send the v4.
-
->
-> I expect patches to be checkpatch --strict clean - or it is mentioned in
-> the changelog otherwise.
->
->         Sam
-
-
+ .../soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml     |  97 +++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     | 103 ++++++++++++++++++
+ drivers/soc/imx/gpcv2.c                       |  26 +++++
+ drivers/soc/imx/imx8m-blk-ctrl.c              |  75 ++++++++++++-
+ include/dt-bindings/power/imx8mn-power.h      |   5 +
+ 5 files changed, 305 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
