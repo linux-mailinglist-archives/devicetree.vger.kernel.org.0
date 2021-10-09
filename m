@@ -2,293 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9F4427953
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 13:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E544642795F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 13:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232417AbhJILCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 07:02:46 -0400
-Received: from ixit.cz ([94.230.151.217]:41726 "EHLO ixit.cz"
+        id S232181AbhJILPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 07:15:40 -0400
+Received: from ixit.cz ([94.230.151.217]:41754 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231932AbhJILCq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Oct 2021 07:02:46 -0400
+        id S231932AbhJILPj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Oct 2021 07:15:39 -0400
 Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id CA90120064;
-        Sat,  9 Oct 2021 13:00:47 +0200 (CEST)
+        by ixit.cz (Postfix) with ESMTPSA id 0669A20064;
+        Sat,  9 Oct 2021 13:13:40 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1633777248;
+        t=1633778021;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding;
-        bh=D5OZZStBDWR0Yfk/KUPyl72+0dY9A0/rhYfI20JIbMc=;
-        b=ClDl3UnN+gOgRSjyUKH+qvxT91iF2wA/lAnXa0Ue04HCUsKNcBjE2Yg/cZJOzb503lqWNz
-        WA3yfCZLB6Jq3N7T82bY6oYd3k3oWlzyxZUqSXqUfMQ2evP+ccTrxYDvePZoc8UPcMgEhW
-        lv6ru74sv4k5z7s2ZFJVAD8xg+mDhZE=
+        bh=7CzgujPt9VaXozmAuTSRx2+fkUV5y4FFTGUZ/Wh2Nxc=;
+        b=HjAykaMply+l7azhgLQWDaNf7OtPnd8hfshK7x1D3wUun4WPW2vo+HtIV/8Zk/VlYcLlSE
+        tqpQxBaAbvnZ/ha6djerABcnccU46JqtEVJ67Apu4NTMiBF/0ypr2xmDTDbmHrXtCzqnSH
+        rqE6RnEUtkU4hbwXtg+pbQ1ZZuUk9vk=
 From:   David Heidelberg <david@ixit.cz>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, ~okias/devicetree@lists.sr.ht,
         David Heidelberg <david@ixit.cz>
-Subject: [PATCH] WIP: dt-bindings: input: microchip,cap11xx: Convert txt bindings to yaml
-Date:   Sat,  9 Oct 2021 12:59:22 +0200
-Message-Id: <20211009105922.48835-1-david@ixit.cz>
+Subject: [PATCH] dt-bindings: net: nfc: nxp,pn544: Convert txt bindings to yaml
+Date:   Sat,  9 Oct 2021 13:12:15 +0200
+Message-Id: <20211009111215.51775-1-david@ixit.cz>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert binding for the Microchip CAP11xx series HW to the YAML syntax.
+Convert bindings for NXP PN544 NFC driver to YAML syntax.
 
 Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- .../devicetree/bindings/input/cap11xx.txt     |  78 ----------
- .../bindings/input/microchip,cap11xx.yaml     | 146 ++++++++++++++++++
- 2 files changed, 146 insertions(+), 78 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/cap11xx.txt
- create mode 100644 Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+ .../bindings/net/nfc/nxp,pn544.yaml           | 67 +++++++++++++++++++
+ .../devicetree/bindings/net/nfc/pn544.txt     | 33 ---------
+ 2 files changed, 67 insertions(+), 33 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/nfc/pn544.txt
 
-diff --git a/Documentation/devicetree/bindings/input/cap11xx.txt b/Documentation/devicetree/bindings/input/cap11xx.txt
-deleted file mode 100644
-index 8c67a0b5058d..000000000000
---- a/Documentation/devicetree/bindings/input/cap11xx.txt
-+++ /dev/null
-@@ -1,78 +0,0 @@
--Device tree bindings for Microchip CAP11xx based capacitive touch sensors
--
--The node for this device must be a child of a I2C controller node, as the
--device communication via I2C only.
--
--Required properties:
--
--	compatible:		Must contain one of:
--					"microchip,cap1106"
--					"microchip,cap1126"
--					"microchip,cap1188"
--
--	reg:			The I2C slave address of the device.
--
--	interrupts:		Property describing the interrupt line the
--				device's ALERT#/CM_IRQ# pin is connected to.
--				The device only has one interrupt source.
--
--Optional properties:
--
--	autorepeat:		Enables the Linux input system's autorepeat
--				feature on the input device.
--
--	microchip,sensor-gain:	Defines the gain of the sensor circuitry. This
--				effectively controls the sensitivity, as a
--				smaller delta capacitance is required to
--				generate the same delta count values.
--				Valid values are 1, 2, 4, and 8.
--				By default, a gain of 1 is set.
--
--	microchip,irq-active-high:	By default the interrupt pin is active low
--				open drain. This property allows using the active
--				high push-pull output.
--
--	linux,keycodes:		Specifies an array of numeric keycode values to
--				be used for the channels. If this property is
--				omitted, KEY_A, KEY_B, etc are used as
--				defaults. The array must have exactly six
--				entries.
--
--Example:
--
--i2c_controller {
--	cap1106@28 {
--		compatible = "microchip,cap1106";
--		interrupt-parent = <&gpio1>;
--		interrupts = <0 0>;
--		reg = <0x28>;
--		autorepeat;
--		microchip,sensor-gain = <2>;
--
--		linux,keycodes = <103>,		/* KEY_UP */
--				 <106>,		/* KEY_RIGHT */
--				 <108>,		/* KEY_DOWN */
--				 <105>,		/* KEY_LEFT */
--				 <109>,		/* KEY_PAGEDOWN */
--				 <104>;		/* KEY_PAGEUP */
--
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		usr@0 {
--			label = "cap11xx:green:usr0";
--			reg = <0>;
--		};
--
--		usr@1 {
--			label = "cap11xx:green:usr1";
--			reg = <1>;
--		};
--
--		alive@2 {
--			label = "cap11xx:green:alive";
--			reg = <2>;
--			linux,default_trigger = "heartbeat";
--		};
--	};
--}
-diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+diff --git a/Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml b/Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
 new file mode 100644
-index 000000000000..89079c019794
+index 000000000000..c44f5ee8e2c2
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-@@ -0,0 +1,146 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: "http://devicetree.org/schemas/input/microchip,cap11xx.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/net/nfc/nxp,pn544.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Device tree bindings for Microchip CAP11xx based capacitive touch sensors
-+
-+description: |
-+  The Microchip CAP1xxx Family of RightTouchTM multiple-channel capacitive
-+  touch controllers and LED drivers. The device communication via I2C only.
++title: NXP Semiconductors PN544 NFC Controller
 +
 +maintainers:
 +  - Rob Herring <robh+dt@kernel.org>
 +
 +properties:
 +  compatible:
-+    enum:
-+      - microchip,cap1106
-+      - microchip,cap1126
-+      - microchip,cap1188
++    const: nxp,pn544-i2c
++
++  clock-frequency: true
 +
 +  reg:
 +    maxItems: 1
 +
-+  '#address-cells':
-+    const: 1
-+  '#size-cells':
-+    const: 0
-+
 +  interrupts:
 +    maxItems: 1
-+    description: |
-+      Property describing the interrupt line the
-+      device's ALERT#/CM_IRQ# pin is connected to.
-+      The device only has one interrupt source.
 +
-+  autorepeat:
-+    description: |
-+      Enables the Linux input system's autorepeat feature on the input device.
++  enable-gpios:
++    description: Output GPIO pin used for enabling/disabling the PN544
 +
-+  linux,keycodes:
-+    minItems: 6
-+    maxItems: 6
-+    description: |
-+      Specifies an array of numeric keycode values to
-+      be used for the channels. If this property is
-+      omitted, KEY_A, KEY_B, etc are used as defaults.
-+      The array must have exactly six entries.
++  firmware-gpios:
++    description: Output GPIO pin used to enter firmware download mode
 +
-+  microchip,sensor-gain:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 1
-+    enum: [1, 2, 4, 8]
-+    description: |
-+      Defines the gain of the sensor circuitry. This
-+      effectively controls the sensitivity, as a
-+      smaller delta capacitance is required to
-+      generate the same delta count values.
++  pinctrl-names:
++    items:
++      - const: default
 +
-+  microchip,irq-active-high:
-+    type: boolean
-+    description: |
-+      By default the interrupt pin is active low
-+      open drain. This property allows using the active
-+      high push-pull output.
-+
-+patternProperties:
-+  "^led@[0-7]$":
-+    type: object
-+    description: CAP11xx LEDs
-+    $ref: ../leds/common.yaml#
-+
-+    properties:
-+      reg:
-+        enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+
-+      label: true
-+
-+      linux,default-trigger: true
-+
-+      default-state: true
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - microchip,cap1106
-+    then:
-+      patternProperties:
-+        "^led@[0-7]$": false
++  pintctrl-0: true
 +
 +required:
 +  - compatible
++  - clock-frequency
++  - reg
 +  - interrupts
++  - enable-gpios
++  - firmware-gpios
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
 +    i2c {
 +      #address-cells = <1>;
 +      #size-cells = <0>;
 +
-+      cap1188@28 {
-+        compatible = "microchip,cap1188";
-+        interrupt-parent = <&gpio1>;
-+        interrupts = <0 0>;
++      pn544@28 {
++        compatible = "nxp,pn544-i2c";
++
 +        reg = <0x28>;
-+        autorepeat;
-+        microchip,sensor-gain = <2>;
++        clock-frequency = <400000>;
 +
-+        linux,keycodes = <103>,	/* KEY_UP */
-+                         <106>,	/* KEY_RIGHT */
-+                         <108>,	/* KEY_DOWN */
-+                         <105>,	/* KEY_LEFT */
-+                         <109>,	/* KEY_PAGEDOWN */
-+                         <104>;	/* KEY_PAGEUP */
++        interrupt-parent = <&gpio1>;
++        interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
 +
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        led@0 {
-+                label = "cap11xx:green:usr0";
-+                reg = <0>;
-+        };
-+
-+        led@1 {
-+                label = "cap11xx:green:usr1";
-+                reg = <1>;
-+        };
-+
-+        led@2 {
-+                label = "cap11xx:green:alive";
-+                reg = <2>;
-+                linux,default-trigger = "heartbeat";
-+        };
++        enable-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
++        firmware-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
 +      };
 +    };
+diff --git a/Documentation/devicetree/bindings/net/nfc/pn544.txt b/Documentation/devicetree/bindings/net/nfc/pn544.txt
+deleted file mode 100644
+index 2bd82562ce8e..000000000000
+--- a/Documentation/devicetree/bindings/net/nfc/pn544.txt
++++ /dev/null
+@@ -1,33 +0,0 @@
+-* NXP Semiconductors PN544 NFC Controller
+-
+-Required properties:
+-- compatible: Should be "nxp,pn544-i2c".
+-- clock-frequency: I²C work frequency.
+-- reg: address on the bus
+-- interrupts: GPIO interrupt to which the chip is connected
+-- enable-gpios: Output GPIO pin used for enabling/disabling the PN544
+-- firmware-gpios: Output GPIO pin used to enter firmware download mode
+-
+-Optional SoC Specific Properties:
+-- pinctrl-names: Contains only one value - "default".
+-- pintctrl-0: Specifies the pin control groups used for this controller.
+-
+-Example (for ARM-based BeagleBone with PN544 on I2C2):
+-
+-&i2c2 {
+-
+-
+-	pn544: pn544@28 {
+-
+-		compatible = "nxp,pn544-i2c";
+-
+-		reg = <0x28>;
+-		clock-frequency = <400000>;
+-
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		enable-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
+-		firmware-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
+-	};
+-};
 -- 
 2.33.0
 
