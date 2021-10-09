@@ -2,143 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEAFB427AF6
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 16:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 206CC427AFC
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 16:52:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234115AbhJIOwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 10:52:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35546 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233657AbhJIOwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 10:52:31 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE112C061762
-        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 07:50:34 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id y26so52299134lfa.11
-        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 07:50:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8u5boEiOHXRTtFCRA3j2LCxqfGEF272vdjbUJEc+y8o=;
-        b=obn0VTqUprwckfAtkMfS7NilcpVJSLbr67SZIErNjZ3L0+Mhco3Ks+pssD9/tVLYC7
-         CAHBh6+rVURtCxdy+PUzvvqIKP3ggVPixJlTMI7Strf3nRCmhpWfbBV+6iCRqPWOQJxk
-         AWlDTyKHoGT/xAIsUPP7wMxGS0mnDpVrQcCs+nHKdOJl6qLJWduBeABtuQWILnoaCa7r
-         rpzBANeFR/mKuBfbtd2KUKmwGRfJHapX3PiKlOA9egGIitOn9Hm0E3FHRMU3pzgSTspL
-         g/CvH1jUhJvIHwkTL3HVmqLBkGocNhZBiGGLD3eWhnq8K1V8V7/LwoF3TlOdK0noa5vU
-         3PbA==
+        id S234283AbhJIOym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 10:54:42 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:33322
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233599AbhJIOyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 10:54:38 -0400
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 80EB43FFFD
+        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 14:52:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633791160;
+        bh=cUxQy0Bth8q+GCo4vniDh9W7ssLXht20HUqFZATsxok=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=O1cOJHu5S2s5g6CVxWSYXRFuVPLSXrSRx/BhizxvBYFUugeMj/mJzVsz4W+idzW2b
+         yFEgw8CN5TaT37d8sSUrM3+65A1OR1p5V7MzbPVpRVtNsFRVCSJojzkqLzQQ1c5h02
+         jWAAcCMMJAHpCx7AcRD+kPuCyS8tmf0u5xlFtaaJ9L62y7Fh+zGFyLK8Tg8WhUAoge
+         hbfxFWoWo7AGawRzgC1UTJLFjz2ZCs7dyQxZ8Gtpihia2t7KO6rzA9V6u1mxzKxOQA
+         9VbC3FJcP4CLqk8zMI/txxkUq5AzP0nsMGQZXo0YljKsvB7JHh6DjhX//reQCpDNUW
+         wn/ZJiyZ9t4Tw==
+Received: by mail-ed1-f70.google.com with SMTP id c7-20020a05640227c700b003d27f41f1d4so11721306ede.16
+        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 07:52:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8u5boEiOHXRTtFCRA3j2LCxqfGEF272vdjbUJEc+y8o=;
-        b=NNcw6injw7OFiSaJe/urAe/pvkJ+Cah+Uy6oIxbZYoSrq49g7xjscdG079/goLEf4P
-         q/hxOjpWnNgPDv7cc60HNcXMucoZdnx6yCVyc/A3ZUclIa1eg1BTHD3poppD5cqemvlJ
-         btC4dqsHKRjS1rcsnm8VHhZefZCuZdyi7Ge4uavE22bofsYGknnf4Q2/1+zHg7aVKj22
-         B+V0hxHq3A1HIvdaRSqw8WhwLuc6g2C5SnHyOw6pVPl1waDnIFF6vrLOyCP1AJ0OiYcC
-         uHD9KRlQAEDVfI95ycDC8Ach7gb/z7D2VcpbkpZSRMVe0z00wuMDRkreNfmgG4FohJcG
-         Ft/Q==
-X-Gm-Message-State: AOAM533jYXOGQ/MEAun6Kgx3Q7J4MSUU/bnn8cPOZxL7Zbh6fbsqChUo
-        6Gl5C/fbPQue3LWVb/E7LjNlPMk/3i6iN7kZ7E14VA==
-X-Google-Smtp-Source: ABdhPJxtuXZ2/oVwpPI2elX8ZhhW1XWmKYZgF4HVbCs0z8jixVibVyqOlr1AvgW2bP3P4v/92tRBNAfhf8gV2g11n9k=
-X-Received: by 2002:a2e:9c56:: with SMTP id t22mr10447062ljj.85.1633791032730;
- Sat, 09 Oct 2021 07:50:32 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cUxQy0Bth8q+GCo4vniDh9W7ssLXht20HUqFZATsxok=;
+        b=McIQZ11QWEiyvSmAhqtHHCevFmshXVvj5JQzl2BG8NRauyh6evAQ/mBIDhM42ROAaj
+         y9389bcUAlnnL9Ji62BNAYcocLVj5LwruXPSr/2z+orzUKax+eVlSu5n1xFWyBbMkB9D
+         BG1+KOpzEVK595D/PnRFBLIdLTiWD//OS8f+SgnDJ1aSk1DZt5aA06hrOaPcI5wGt2xy
+         a0eatTTKUA72CFjLf8iGV8kLFYpBLF9Gc7JJNCLC4ABWbd75hplfBReZY583JRbGCWxT
+         +f5QEQYZoXm7FTqHo60YXU1+7NoesZ43Ven6Ozw/AC1+JYuGTcGASXJVTMWqdF9HMvTy
+         fpcQ==
+X-Gm-Message-State: AOAM532rrpWcFEzIrXegJkEA7QfIEfnEUijfJQ4S5WYOa3MoXYIbmtvR
+        FWTlzmcy9wu+KhRg8eBafC7Z4z5QrDShi6hqKxuX9iZUm8gX0wz2eSC0W7nytIW+1qXuEIhxXv5
+        C5PBZ73HhyN5akKR0FJmDrf6BaxxokyMwZFHwNik=
+X-Received: by 2002:a17:906:4f96:: with SMTP id o22mr12106272eju.169.1633791160217;
+        Sat, 09 Oct 2021 07:52:40 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyQkyKpJO+752VWuzH558+pOz9Vyk2rpYND0quJOBJ3uvzM5hpazCy/T4WFK8NFjQUP0vkb3w==
+X-Received: by 2002:a17:906:4f96:: with SMTP id o22mr12106249eju.169.1633791160026;
+        Sat, 09 Oct 2021 07:52:40 -0700 (PDT)
+Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id i4sm1307649edt.29.2021.10.09.07.52.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Oct 2021 07:52:39 -0700 (PDT)
+Subject: Re: [PATCH v5 3/8] dt-bindings: memory-controllers: Introduce
+ ti,gpmc-child
+To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
+Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
+        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211007120830.17221-1-rogerq@kernel.org>
+ <20211007120830.17221-4-rogerq@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <a6478659-cea1-8c5a-287d-acc27b60a898@canonical.com>
+Date:   Sat, 9 Oct 2021 16:52:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211009025858.3326725-1-osk@google.com> <20211009025858.3326725-2-osk@google.com>
- <0674a2d0-f0a2-d6bc-33e3-483614602bae@roeck-us.net>
-In-Reply-To: <0674a2d0-f0a2-d6bc-33e3-483614602bae@roeck-us.net>
-From:   Oskar Senft <osk@google.com>
-Date:   Sat, 9 Oct 2021 10:50:16 -0400
-Message-ID: <CABoTLcTL42a23=P501UoqNWr76A3fmEoxwjymz1-g0MNMyYPRA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] hwmon: (nct7802) Make temperature sensors configurable.
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211007120830.17221-4-rogerq@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter
+On 07/10/2021 14:08, Roger Quadros wrote:
+> This binding is meant for the child nodes of the TI GPMC node. The node
+> represents any device connected to the GPMC bus. It may be a Flash chip,
+> RAM chip or Ethernet controller, etc. These properties are meant for
+> configuring the GPMC settings/timings and will accompany the bindings
+> supported by the respective device.
+> 
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../memory-controllers/ti,gpmc-child.yaml     | 245 ++++++++++++++++++
+>  1 file changed, 245 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
+> 
 
-Thanks for the review!
 
-> > +     return sprintf(buf, "%u\n",
-> > +                     ((mode >> MODE_BIT_OFFSET_RTD(sattr->index)) &
-> > +                             MODE_RTD_MASK) + 2);
->
-> Please split into two patches to simplify review. The changes from
-> constant to define are logically separate and should thus be in a
-> separate patch.
-Ok, will do.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-> > +     if (index >= 30 && index < 38 &&                        /* local */
-> > +         (reg & MODE_LTD_EN) != MODE_LTD_EN)
->
-> This is just a single bit, so "!(reg & MODE_LTD_EN)" is sufficient.
-Ack.
 
-> > +static bool nct7802_get_input_config(struct device *dev,
-> > +     struct device_node *input, u8 *mode_mask, u8 *mode_val)
->
-> Please align continuation lines with "(".
-Oh, even if that would result in a lot of extra lines? Or just start
-the first argument on a new line?
-
-> The function should return an error code.
-Ok, I'll look into that.
-
-> > +     if (reg >= 1 && reg <= 3 && !of_device_is_available(input)) {
->
-> reg will always be >=1 and <=3 here.
-Good catch!
-
-> > +             *mode_val &= ~(MODE_RTD_MASK
-> > +                     << MODE_BIT_OFFSET_RTD(reg-1));
->
-> space around '-'
-Oh yeah, I'm sorry. Is there a code formatter I should have run? I did
-run "checkpatch.pl", hoping that it would catch those.
-
-> > +             *mode_mask |= MODE_RTD_MASK
-> > +                     << MODE_BIT_OFFSET_RTD(reg-1);
->
-> Unnecessary continuation lines. There are several more of those;
-> I won't comment on it further. Please only use continuation lines if
-> the resulting line length is otherwise > 100 columns.
-Argh, yeah. After refactoring that function, I thought I caught all of
-them, but obviously I didn't. According to [1] we should stay within
-80 columns (and use tabs that are 8 spaces wide). I assume that still
-applies? The rest of this code follows that rule.
-
-> > +     if (dev->of_node) {
-> > +             for_each_child_of_node(dev->of_node, input) {
-> > +                     if (nct7802_get_input_config(dev, input, &mode_mask,
-> > +                                     &mode_val))
-> > +                             found_input_config = true;
->
-> This is mixing errors with "dt configuration does not exist".
-> nct7802_get_input_config() should return an actual error if the
-> DT configuration is bad, and return that error to the calling code
-> if that is the case.
-Ok, I'll change that. I wasn't sure whether we'd rather configure "as
-much as we can" or fail completely without configuring anything. Shall
-we allow all of the configuration to be validated before erroring out?
-That would make it easier to get the DT right in one pass, but makes
-the code more complicated.
-
-> > +     if (!found_input_config) {
-> > +             /* Enable local temperature sensor by default */
-> > +             mode_val |= MODE_LTD_EN;
-> > +             mode_mask |= MODE_LTD_EN;
-> > +     }
->
-> This can be set by default since nct7802_get_input_config()
-> removes it if the channel is disabled, meaning found_input_config
-> is really unnecessary.
-Ok. Should we actually phase out the "LTD enabled by default"
-completely? Or is that for a future change?
-
-Thanks
-Oskar.
+Best regards,
+Krzysztof
