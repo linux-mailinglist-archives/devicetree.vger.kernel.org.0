@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1951427D5A
+	by mail.lfdr.de (Postfix) with ESMTP id 91920427D59
 	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 22:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230003AbhJIUkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229959AbhJIUkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sat, 9 Oct 2021 16:40:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56030 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbhJIUkH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 16:40:07 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A17DC061762
+        with ESMTP id S230052AbhJIUkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 16:40:08 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBE15C061570
         for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 13:38:10 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id r19so52375433lfe.10
+Received: by mail-lf1-x131.google.com with SMTP id m3so54724990lfu.2
         for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 13:38:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=99pKd25SlfyNwZ2UvwoyajO81GWR+hZ2KGuOR2xE0FM=;
-        b=EIBIWYWFul8IPgIji+n3BzdBAhv0Xpv6Xn1l8hoSkAsP70pW8DbIlTL13nbigbiFNx
-         DUS7tOKZP78iQEl54HYzocsibZSwFy7EZaJRvk2MR2y/BVVVIQMz1MRo/fYi7YfjWwXh
-         yM0pK297AfiMZj3psrvJuk4/p4p+WyZw19I6/LC1hWjHetMNAFoiyl1JF9zAf3AtMPTw
-         dh6/ANd5hGjuBkR1IZ3X9NEEdiie80SIrQUZXTfRZ/d4+zFK3uvwlNOHLtfy6glPQ896
-         JQ+uExeHVLBGacViv/myj55tEI7b1fS9camfT2HUMOqc4966KOZ3ADABOJuiD3nR4eOY
-         PEhw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=CQPUEa8OvCosmaFsM7/Dz8Pb+7os83Bmi+8K2CLkYuQ=;
+        b=XZNLFqDtLHyAt0u7ubWFUXHSZxiW4SFeSMa51typpx5XhAF0iV6eOIJY/JAD7YPLzj
+         PTXEEXhXY8SwXbE0HXi59GBE6Bop1i2ZZpVYP/6YynUA0nmPU8pZEdJzQ1+At1pOp/ga
+         9oVa1bE7E3RT9Gapt1f/GddcWDRQQNLzgE/4qgEjuaHbqxcK56kqXSw0g0M6VaQDeq6v
+         C7efmxHNIirle4sKsmJetqOozE6KyFRchB9p4V/eLe/0kSGjbkMwIvRcaQFNkb+WLULO
+         qXkqTIdzEEuqrk+G/HU8HuV7ruxK+AmA1Tm8c7LxENMmMeOORO/fymJWUGpxJXTRXfrA
+         WdxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=99pKd25SlfyNwZ2UvwoyajO81GWR+hZ2KGuOR2xE0FM=;
-        b=MCOcfcvNioJAkbEwxU/w3Vg7+YFBrdc2jSeoKUpEfT2Jdmi9s70vltmUTqXBapoFdz
-         JLm1SnKPE4PCDqXPEGkogv6jQk8N+QeRKFSZSW/swfaQZ8i5MpMMo2tcmYQSOu4Sluza
-         8qHMMzqlTrCmbbKF6UZeWdgjJ+BGOM8YcggtcYK3jTlzG8ow7qfXkEs4n01WpyEpMO5o
-         7WWHy1HCXvdpn22f5bA4CcJrBS8B48g5+E4oagYdERqX04pIS8byhSLRP/udf76sDQQd
-         UTEGWBCTERhR2LWZvPwPE8RAExij+s6wnRTi/Naf8aC/PfTFXIOpjWg2Aj9yjJYGuU1I
-         qo6w==
-X-Gm-Message-State: AOAM530UEJYPs0yj97yTf9Z04xtLYU4OcnFwg+752EyVPBTNvwN3zRNC
-        sHuZdZVInrE01HtJbq93LSscHw==
-X-Google-Smtp-Source: ABdhPJycmqupkmyS1Zhq+1iJIoVBvzOOt90oNU+a/t5Be9s5S6+JdTpEMrkNK8bZ6yYMfE2D8Pgj2g==
-X-Received: by 2002:a05:651c:2115:: with SMTP id a21mr12779368ljq.34.1633811888549;
-        Sat, 09 Oct 2021 13:38:08 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=CQPUEa8OvCosmaFsM7/Dz8Pb+7os83Bmi+8K2CLkYuQ=;
+        b=37MXEQ4nyzsm8yvzcl4OPLjwOw354QXcUYr2KpYCJnRhL88xLTwlAMem8x60uLDkGm
+         m/vRfPgbCSDL0Synd9lGmIyaVYOvC9rwGM4UF3Lp9xam54RuZVZnIeNU42NPchikTbwJ
+         GYleCvhNkzR04vjc5m7+9mhtPYkl03cgwY61xYqx4qwOwxQ4DbX6Qg7Z+F9WEMV8CASr
+         zzLDXqkX7I6cGA52zDqsfIvc32ODhms94AkZ8riYe1m2WAAG9GYEy+8ydeVRHJr116CC
+         GTKqcreJJyulIhtR7dVO2xYzgb0cvEOge/7ADFPQsRu/VLR84jDY6MBdQ1fghBGRG+Yj
+         Quog==
+X-Gm-Message-State: AOAM5316lsHBX1HD33pCkJMxz46bwLs7UugdGFj0aSncsqDFX68PKPJj
+        2OpfIssQ6YMPxFz9WM3V900SLA==
+X-Google-Smtp-Source: ABdhPJxQEFHB6g1MJrKY8GcRZK2unqUnU6fzHUKuONkab4hwflHH3zsN4HGL6SDN/2JwxC9ky5MD9w==
+X-Received: by 2002:a2e:9097:: with SMTP id l23mr12710117ljg.416.1633811889174;
+        Sat, 09 Oct 2021 13:38:09 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id q187sm303794ljb.6.2021.10.09.13.38.07
+        by smtp.gmail.com with ESMTPSA id q187sm303794ljb.6.2021.10.09.13.38.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Sat, 09 Oct 2021 13:38:08 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -54,43 +54,92 @@ To:     Thierry Reding <thierry.reding@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v5 0/2] Add support for Sharp LS060T1SX01 panel
-Date:   Sat,  9 Oct 2021 23:38:04 +0300
-Message-Id: <20211009203806.56821-1-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 1/2] dt-bindings: add bindings for the Sharp LS060T1SX01 panel
+Date:   Sat,  9 Oct 2021 23:38:05 +0300
+Message-Id: <20211009203806.56821-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211009203806.56821-1-dmitry.baryshkov@linaro.org>
+References: <20211009203806.56821-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver to support Sharp LS06T1SX01 6.0" FullHD panel found e.g. in
-the kwaek.ca Dragonboard Display Adapter Bundle.
+Add devicetree bindings for the Sharp LS060T1SX01 6.0" FullHD panel
+using NT35695 driver. This panel can be found i.e. in the Dragonboard
+Display Adapter bundle.
 
-Changes since v4:
- - Use MIPI_DSI_MODE_NO_EOT_PACKET instead of the old name
-
-Changes since v3:
- - Replaced small msleeps with usleep_range
-
-Changes since v2:
- - Add missing power supplies used by the panel according to the
-   datasheet
-
-Changes since v1:
- - Fix the id in the schema file
-
-----------------------------------------------------------------
-Dmitry Baryshkov (2):
-      dt-bindings: add bindings for the Sharp LS060T1SX01 panel
-      drm/panel: Add support for Sharp LS060T1SX01 panel
-
- .../bindings/display/panel/sharp,ls060t1sx01.yaml  |  56 ++++
- drivers/gpu/drm/panel/Kconfig                      |  10 +
- drivers/gpu/drm/panel/Makefile                     |   1 +
- drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c    | 333 +++++++++++++++++++++
- 4 files changed, 400 insertions(+)
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../display/panel/sharp,ls060t1sx01.yaml      | 56 +++++++++++++++++++
+ 1 file changed, 56 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c
+
+diff --git a/Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml
+new file mode 100644
+index 000000000000..271c097cc9a4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/sharp,ls060t1sx01.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sharp Microelectronics 6.0" FullHD TFT LCD panel
++
++maintainers:
++  - Dmitry Baryskov <dmitry.baryshkov@linaro.org>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: sharp,ls060t1sx01
++
++  reg: true
++  backlight: true
++  reset-gpios: true
++  port: true
++
++  avdd-supply:
++    description: handle of the regulator that provides the positive supply voltage
++  avee-supply:
++    description: handle of the regulator that provides the negative supply voltage
++  vddi-supply:
++    description: handle of the regulator that provides the I/O supply voltage
++  vddh-supply:
++    description: handle of the regulator that provides the analog supply voltage
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "sharp,ls060t1sx01";
++            reg = <0>;
++            avdd-supply = <&pm8941_l22>;
++            backlight = <&backlight>;
++            reset-gpios = <&pm8916_gpios 25 GPIO_ACTIVE_LOW>;
++        };
++    };
++
++...
+-- 
+2.33.0
 
