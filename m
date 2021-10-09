@@ -2,342 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC317427ADB
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 16:35:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B75A3427ADF
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 16:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233634AbhJIOhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 10:37:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233159AbhJIOhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 10:37:34 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61CF8C061570;
-        Sat,  9 Oct 2021 07:35:37 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id l7-20020a0568302b0700b0054e40740571so9577173otv.0;
-        Sat, 09 Oct 2021 07:35:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:to:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=XWlZarvv2JxPdrzhfRVj8fyMdevADTATJGBJxYBWoLE=;
-        b=AOU8zwZItd6x4C4+kwSwuUXQr8wtrHWenJ9GWRw9PCVoTLsY+pqIHcVsmStezMl1ym
-         3BpOZS/VJ58AEqUq/rk2l1uraQgs10aEYpg1viay2ZZKPKnGOXljGgN6mEYLQFFyPlzt
-         KSf7LxfQyfbuD/Cbdpy/N5zQ5O6xBADjUOFCiux24o338j0BJSZUo6o+UB90YDzv73I7
-         WKEpufoFN3v+1a/EthStv5u0P8qJKKEw8lq0LXa/84gexQdR1z0+ec8dMThRlQNigQJ5
-         l/VDWrySjzxBemQzE8YZI49zzsC4FnIpFhutAkBpNtDPRthvfY4Mg208dtwuIpIJpGk0
-         UuuQ==
+        id S233634AbhJIOkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 10:40:18 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:33188
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233300AbhJIOkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 10:40:17 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 200753FFFC
+        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 14:38:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633790300;
+        bh=piKl389zZcyeHqnlCZHkGS20SA85lTrv1Cw48kxXcc4=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=IfzgzRinl/pdjD8kscCSljHRVmwn6ru/+yLOnyB+KsiRUKB9rK1+ylIRiDq2typAx
+         vLWV1e/yC5ifLfEldo95bMBpVIwhZpq187383uMNGCcHp9SEa9z6MvlTiGcSvcOG2+
+         067VVXBNuHQC90+gJL/IHFeljk/5rptxoh/gzwseu3S7iv3m24WIenmegtRkOfFmJh
+         p4nQtbaMmFnAzHPgK0O1cY9eDvpVq4R4rI651ovVlofdrO4Wh0m8YP0zlcBAR4DUrT
+         6IWXYwkBEkLSZrQuomeO39X3XlOIG5c8NB4m4tNQZVkluh2ZGN5+FVqSohoKe/q+ag
+         0wY/6Eefxwl/w==
+Received: by mail-ed1-f71.google.com with SMTP id u17-20020a50d511000000b003daa3828c13so11740319edi.12
+        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 07:38:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:to:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=XWlZarvv2JxPdrzhfRVj8fyMdevADTATJGBJxYBWoLE=;
-        b=S4U+csd6JlD/kn8+mGkRxUo09eiUm4oTb+q78TOrMiAjIpXQ4j9k5Ypgd2i18BEY+F
-         DGoZvHz31PagMxWvswTFn5V6yNCHGq7KISEO3yXelZlaoKCW7TIWm6JxYbId+/z25i0F
-         zpGbz0XLXww/L2DDZLwvNVTsF2ZRGrcEL3KEIAd2JJn25dvC9l/G43ZhdtVFfh7yGAee
-         7m30XzqYynkYgByX32VuX41xI0OdSJRICO+V8v55mk8aEsAt1QUSb0zFfUsmUCzR1nOa
-         MWpWEcidOZpvlhGt6m4yaGUGtwOc5iD5hIi/imDXcJyPp3K0rrGz9pFf7QAKqoh6GNK/
-         Sc9w==
-X-Gm-Message-State: AOAM530FpoWkR9nWkO2W0VD30/qjy33p8PpIlpVpW93MGBQT+/CTijR2
-        x+Rb7ozzrIKTRlLGth3LL1qx/2a8leA=
-X-Google-Smtp-Source: ABdhPJyMBkX/F0Ft4kQWEykV5BgWfFHIrG0yfYAG4ZKITh0UaSaPd6kqOgwi3b5IGtF82ORN6y+Iag==
-X-Received: by 2002:a05:6830:2386:: with SMTP id l6mr10988733ots.88.1633790136445;
-        Sat, 09 Oct 2021 07:35:36 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id j16sm561135oig.29.2021.10.09.07.35.34
+        bh=piKl389zZcyeHqnlCZHkGS20SA85lTrv1Cw48kxXcc4=;
+        b=6aVhF9N/1vBVRffZblxbqwN5ARtriBFw3HNGsBtYtYUzpCuFynSlCTT5V0/1PdPZ/o
+         Zoor6k3+4Rb7KyEPYKPqYtITBLxefiXygfW0AW9y0OPpXOtRcZFnLvxnrfhml76qvNOy
+         2juQia/dxGLOboy54pE/P7s8vut2m5klilPxDkxi4mzaT39s5Emsf39ocWE0g0eGU5WJ
+         NqeJ3fjkvkk+n0i+uZMqjLcjqnWtZfGQPETqvgEmFVGCwRhL9PY+zhY0/qZeMHDuGWyI
+         x8wX8Yr/IKLTN+MF7JqArCDSETakmkYXU52mm8DLGu8TnpE81Con/OOCZy91aSySa9QU
+         zebw==
+X-Gm-Message-State: AOAM531DEf1aCeR0h6cVblcBN2XkfmzqdwydsDzXVRdtn+cbEnqG8Wgd
+        WybW+stJQLZkQG6eDCj2vOPuuwrGp3ZbAfmMlyPVbXD3NegYpF7f44raf1O+dc7auOrn20v7pfY
+        kCEbNbokI1WvzbifmgTrQ4jra5hJ4qEV+a0Atbfs=
+X-Received: by 2002:a17:906:454a:: with SMTP id s10mr12005409ejq.11.1633790299743;
+        Sat, 09 Oct 2021 07:38:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJySnG0AidBa0+FS688Hs3cRj+PsAMJtoScCF1sdlpdUlvL/P3XWYtMxfLUNnXJZN29ivuMmPg==
+X-Received: by 2002:a17:906:454a:: with SMTP id s10mr12005382ejq.11.1633790299467;
+        Sat, 09 Oct 2021 07:38:19 -0700 (PDT)
+Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id r19sm1285131edt.54.2021.10.09.07.38.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Oct 2021 07:35:35 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     Oskar Senft <osk@google.com>, Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20211009025858.3326725-1-osk@google.com>
- <20211009025858.3326725-2-osk@google.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v4 2/2] hwmon: (nct7802) Make temperature sensors
- configurable.
-Message-ID: <0674a2d0-f0a2-d6bc-33e3-483614602bae@roeck-us.net>
-Date:   Sat, 9 Oct 2021 07:35:33 -0700
+        Sat, 09 Oct 2021 07:38:18 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: net: nfc: nxp,pn544: Convert txt bindings to
+ yaml
+To:     David Heidelberg <david@ixit.cz>, Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~okias/devicetree@lists.sr.ht
+References: <20211009111215.51775-1-david@ixit.cz>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <b52a93da-e805-b04e-3b50-454956764d04@canonical.com>
+Date:   Sat, 9 Oct 2021 16:38:17 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211009025858.3326725-2-osk@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20211009111215.51775-1-david@ixit.cz>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/8/21 7:58 PM, Oskar Senft wrote:
-> This change allows LTD and RTD inputs to be configured via
-> device tree bindings. If the DT bindings are not present,
-> the input configuration is not modified and left at HW
-> defaults.
+On 09/10/2021 13:12, David Heidelberg wrote:
+> Convert bindings for NXP PN544 NFC driver to YAML syntax.
 > 
-> Signed-off-by: Oskar Senft <osk@google.com>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->   drivers/hwmon/nct7802.c | 158 ++++++++++++++++++++++++++++++++++++----
->   1 file changed, 144 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/hwmon/nct7802.c b/drivers/hwmon/nct7802.c
-> index 604af2f6103a..5a7e38e8a188 100644
-> --- a/drivers/hwmon/nct7802.c
-> +++ b/drivers/hwmon/nct7802.c
-> @@ -51,6 +51,23 @@ static const u8 REG_VOLTAGE_LIMIT_MSB_SHIFT[2][5] = {
->   #define REG_CHIP_ID		0xfe
->   #define REG_VERSION_ID		0xff
->   
-> +/*
-> + * Resistance temperature detector (RTD) modes according to 7.2.32 Mode
-> + * Selection Register
-> + */
-> +#define RTD_MODE_CURRENT	0x1
-> +#define RTD_MODE_THERMISTOR	0x2
-> +#define RTD_MODE_VOLTAGE	0x3
-> +
-> +#define MODE_RTD_MASK		0x3
-> +#define MODE_LTD_EN		0x40
-> +
-> +/*
-> + * Bit offset for sensors modes in REG_MODE.
-> + * Valid for index 0..2, indicating RTD1..3.
-> + */
-> +#define MODE_BIT_OFFSET_RTD(index) ((index) * 2)
-> +
->   /*
->    * Data structures and manipulation thereof
->    */
-> @@ -74,7 +91,9 @@ static ssize_t temp_type_show(struct device *dev,
->   	if (ret < 0)
->   		return ret;
->   
-> -	return sprintf(buf, "%u\n", (mode >> (2 * sattr->index) & 3) + 2);
-> +	return sprintf(buf, "%u\n",
-> +			((mode >> MODE_BIT_OFFSET_RTD(sattr->index)) &
-> +				MODE_RTD_MASK) + 2);
-
-Please split into two patches to simplify review. The changes from
-constant to define are logically separate and should thus be in a
-separate patch.
-
->   }
->   
->   static ssize_t temp_type_store(struct device *dev,
-> @@ -94,7 +113,8 @@ static ssize_t temp_type_store(struct device *dev,
->   	if (type < 3 || type > 4)
->   		return -EINVAL;
->   	err = regmap_update_bits(data->regmap, REG_MODE,
-> -			3 << 2 * sattr->index, (type - 2) << 2 * sattr->index);
-> +			MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(sattr->index),
-> +			(type - 2) << MODE_BIT_OFFSET_RTD(sattr->index));
->   	return err ? : count;
->   }
->   
-> @@ -682,24 +702,24 @@ static umode_t nct7802_temp_is_visible(struct kobject *kobj,
->   	struct device *dev = kobj_to_dev(kobj);
->   	struct nct7802_data *data = dev_get_drvdata(dev);
->   	unsigned int reg;
-> +	unsigned int rtd_mode;
->   	int err;
->   
->   	err = regmap_read(data->regmap, REG_MODE, &reg);
->   	if (err < 0)
->   		return 0;
->   
-> -	if (index < 10 &&
-> -	    (reg & 03) != 0x01 && (reg & 0x03) != 0x02)		/* RD1 */
-> +	rtd_mode = (reg >> MODE_BIT_OFFSET_RTD(index / 10)) & MODE_RTD_MASK;
-> +	if (index >= 0 && index < 20 &&				/* RD1, RD 2*/
-> +	    rtd_mode != 0x01 && rtd_mode != 0x02)
->   		return 0;
->   
-> -	if (index >= 10 && index < 20 &&
-> -	    (reg & 0x0c) != 0x04 && (reg & 0x0c) != 0x08)	/* RD2 */
-> -		return 0;
-> -	if (index >= 20 && index < 30 && (reg & 0x30) != 0x20)	/* RD3 */
-> +	if (index >= 20 && index < 30 && rtd_mode != 0x02)	/* RD3 */
->   		return 0;
->   
-> -	if (index >= 30 && index < 38)				/* local */
-> -		return attr->mode;
-> +	if (index >= 30 && index < 38 &&			/* local */
-> +	    (reg & MODE_LTD_EN) != MODE_LTD_EN)
-
-This is just a single bit, so "!(reg & MODE_LTD_EN)" is sufficient.
-
-> +		return 0;
->   
->   	err = regmap_read(data->regmap, REG_PECI_ENABLE, &reg);
->   	if (err < 0)
-> @@ -1038,7 +1058,118 @@ static const struct regmap_config nct7802_regmap_config = {
->   	.volatile_reg = nct7802_regmap_is_volatile,
->   };
->   
-> -static int nct7802_init_chip(struct nct7802_data *data)
-> +static bool nct7802_get_input_config(struct device *dev,
-> +	struct device_node *input, u8 *mode_mask, u8 *mode_val)
-
-Please align continuation lines with "(".
-The function should return an error code.
-
-> +{
-> +	u32 reg;
-> +	const char *type_str, *md_str;
-> +	u8 md;
-> +
-> +	if (!input->name || of_node_cmp(input->name, "input"))
-> +		return false;
-> +
-> +	if (of_property_read_u32(input, "reg", &reg)) {
-> +		dev_err(dev, "Could not read reg value for '%s'\n",
-> +			input->full_name);
-> +		return false;
-> +	}
-> +
-> +	if (reg > 3) {
-> +		dev_err(dev,
-> +			"Invalid reg (%u) in '%s'\n", reg, input->full_name);
-> +		return false;
-> +	}
-> +
-> +	if (reg == 0) {
-> +		if (!of_device_is_available(input))
-> +			*mode_val &= ~MODE_LTD_EN;
-> +		else
-> +			*mode_val |= MODE_LTD_EN;
-> +		*mode_mask |= MODE_LTD_EN;
-> +		return true;
-> +	}
-> +
-> +	if (reg >= 1 && reg <= 3 && !of_device_is_available(input)) {
-
-reg will always be >=1 and <=3 here.
-
-> +		*mode_val &= ~(MODE_RTD_MASK
-> +			<< MODE_BIT_OFFSET_RTD(reg-1));
-
-space around '-'
-
-> +		*mode_mask |= MODE_RTD_MASK
-> +			<< MODE_BIT_OFFSET_RTD(reg-1);
-
-Unnecessary continuation lines. There are several more of those;
-I won't comment on it further. Please only use continuation lines if
-the resulting line length is otherwise > 100 columns.
-
-> +		return true;
-> +	}
-> +
-> +	if (of_property_read_string(input, "sensor-type", &type_str)) {
-> +		dev_err(dev, "No type for '%s'\n", input->full_name);
-> +		return false;
-> +	}
-> +
-> +	if (!strcmp(type_str, "voltage")) {
-> +		*mode_val |= (RTD_MODE_VOLTAGE & MODE_RTD_MASK)
-> +			<< MODE_BIT_OFFSET_RTD(reg-1);
-> +		*mode_mask |= MODE_RTD_MASK
-> +			<< MODE_BIT_OFFSET_RTD(reg-1);
-> +		return true;
-> +	}
-> +
-> +	if (strcmp(type_str, "temperature")) {
-> +		dev_err(dev, "Invalid type '%s' for '%s'\n", type_str,
-> +			input->full_name);
-> +		return false;
-> +	}
-> +
-> +	if (reg == 3) {
-> +		/* RTD3 only supports thermistor mode */
-> +		md = RTD_MODE_THERMISTOR;
-> +	} else {
-> +		if (of_property_read_string(input, "temperature-mode",
-> +								&md_str)) {
-> +			dev_err(dev, "No mode for '%s'\n", input->full_name);
-> +			return false;
-> +		}
-> +
-> +		if (!strcmp(md_str, "thermal-diode"))
-> +			md = RTD_MODE_CURRENT;
-> +		else if (!strcmp(md_str, "thermistor"))
-> +			md = RTD_MODE_THERMISTOR;
-> +		else {
-> +			dev_err(dev, "Invalid mode '%s' for '%s'\n", md_str,
-> +				input->full_name);
-> +			return false;
-> +		}
-> +	}
-> +
-> +	*mode_val |= (md & MODE_RTD_MASK)
-> +		<< MODE_BIT_OFFSET_RTD(reg-1);
-
-space before and after '-'
-
-> +	*mode_mask |= MODE_RTD_MASK
-> +		<< MODE_BIT_OFFSET_RTD(reg-1);
-> +
-> +	return true;
-> +}
-> +
-> +static int nct7802_configure_inputs(struct device *dev,
-> +	struct nct7802_data *data)
-> +{
-> +	bool found_input_config = false;
-> +	u8 mode_mask = 0, mode_val = 0;
-> +	struct device_node *input;
-> +
-> +	if (dev->of_node) {
-> +		for_each_child_of_node(dev->of_node, input) {
-> +			if (nct7802_get_input_config(dev, input, &mode_mask,
-> +					&mode_val))
-> +				found_input_config = true;
-
-This is mixing errors with "dt configuration does not exist".
-nct7802_get_input_config() should return an actual error if the
-DT configuration is bad, and return that error to the calling code
-if that is the case.
-
-> +		}
-> +	}
-> +
-> +	if (!found_input_config) {
-> +		/* Enable local temperature sensor by default */
-> +		mode_val |= MODE_LTD_EN;
-> +		mode_mask |= MODE_LTD_EN;
-> +	}
-
-This can be set by default since nct7802_get_input_config()
-removes it if the channel is disabled, meaning found_input_config
-is really unnecessary.
-
-> +
-> +	return regmap_update_bits(data->regmap, REG_MODE, mode_mask, mode_val);
-> +}
-> +
-> +static int nct7802_init_chip(struct device *dev, struct nct7802_data *data)
->   {
->   	int err;
->   
-> @@ -1047,8 +1178,7 @@ static int nct7802_init_chip(struct nct7802_data *data)
->   	if (err)
->   		return err;
->   
-> -	/* Enable local temperature sensor */
-> -	err = regmap_update_bits(data->regmap, REG_MODE, 0x40, 0x40);
-> +	err = nct7802_configure_inputs(dev, data);
->   	if (err)
->   		return err;
->   
-> @@ -1074,7 +1204,7 @@ static int nct7802_probe(struct i2c_client *client)
->   	mutex_init(&data->access_lock);
->   	mutex_init(&data->in_alarm_lock);
->   
-> -	ret = nct7802_init_chip(data);
-> +	ret = nct7802_init_chip(dev, data);
->   	if (ret < 0)
->   		return ret;
->   
+>  .../bindings/net/nfc/nxp,pn544.yaml           | 67 +++++++++++++++++++
+>  .../devicetree/bindings/net/nfc/pn544.txt     | 33 ---------
+>  2 files changed, 67 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/nfc/pn544.txt
 > 
 
+Hi,
+
+Thanks for the patch. Please use get_maintainers.pl to get the list of
+folks to Cc. You missed Rob. This is even weirder because you put him as
+a maintainer...
+
+> diff --git a/Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml b/Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
+> new file mode 100644
+> index 000000000000..c44f5ee8e2c2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/nfc/nxp,pn544.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP Semiconductors PN544 NFC Controller
+> +
+> +maintainers:
+> +  - Rob Herring <robh+dt@kernel.org>
+
+This should not be Rob but someone responsible for the driver. I see
+there is no maintainers entry, so put there me:
+
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,pn544-i2c
+> +
+> +  clock-frequency: true
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    description: Output GPIO pin used for enabling/disabling the PN544
+> +
+> +  firmware-gpios:
+> +    description: Output GPIO pin used to enter firmware download mode
+> +
+> +  pinctrl-names:
+> +    items:
+> +      - const: default
+> +
+> +  pintctrl-0: true
+
+Drop pinctrl, there is a typo here and this is already provided by the
+schema.
+
+> +
+> +required:
+> +  - compatible
+> +  - clock-frequency
+> +  - reg
+> +  - interrupts
+> +  - enable-gpios
+> +  - firmware-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+
+Use 4-space indentation for the example. Easier to read.
+
+> +
+> +      pn544@28 {
+
+Nodes should have generic name, so "nfc".
+
+> +        compatible = "nxp,pn544-i2c";
+
+
+
+Best regards,
+Krzysztof
