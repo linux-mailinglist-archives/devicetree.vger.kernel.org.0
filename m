@@ -2,102 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6D27427D6C
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 22:41:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CBA0427DB5
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 23:37:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230003AbhJIUm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 16:42:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54070 "EHLO mail.kernel.org"
+        id S230116AbhJIVjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 17:39:13 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:58694 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229806AbhJIUm7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Oct 2021 16:42:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6905960F90;
-        Sat,  9 Oct 2021 20:40:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633812061;
-        bh=HwWE77+NdeRx9l7KL8B4x2PzoXQ2pMa2AlP5+SKIX08=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=I5nHXhQ2IIK9y6PhZCBJ8dTNMkxIbfmZB7hZ6uob0bvHyHhN8drpW68/n9wO5glUF
-         tFtzSfRttTyKWOJhFAhwNl/ys6hcQPiEaqT3BY4sKwyiUFr9+iTqs5RdRSPhrFM2lF
-         lgubZgv9usBD2eDbYHTpu+/DBo6VDAk2Sr2Y0gvFowJN2tbNRoqozQO8QthexjXWRG
-         ufFeAFhtGaoCwAwdgr3bU2k6zDgOZlTHeI6/0tF3lTky7kgCTAQ0EvQgGuEVz2FRFk
-         OrREBAyPzTlEk2j+Pk30glj6fBHxfF4+18GXasi9VecR1zbYehXdiDlw1phZcXKC8t
-         i1007eZSmTqaQ==
-Subject: Re: [PATCH v3 4/5] dt-bindings: clock: Document Exynos850 CMU
- bindings
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
+        id S230052AbhJIVjN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Oct 2021 17:39:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=Chk7yE4J2WOqoX/5dLGbdpv9rujKzHvkaAG1M3o1khQ=; b=l4x709xfkEYY9qNWS4juI1FElQ
+        EQQaQbQ28CIIFstyfZKEVQGpGvf4cnX50tcURnZCZpjlGDvmrVJo2ozVhvR686EcUloI1RskpJ0Yo
+        fz6nAHa1q1DemVwAQhJwuxh3JdvLNEL6IVAjb5Y414EsxTQJOub6upCysWs9uNU75f1E=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mZK1m-00ABFQ-A2; Sat, 09 Oct 2021 23:37:10 +0200
+Date:   Sat, 9 Oct 2021 23:37:10 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-References: <20211008154352.19519-1-semen.protsenko@linaro.org>
- <20211008154352.19519-5-semen.protsenko@linaro.org>
-From:   Sylwester Nawrocki <snawrocki@kernel.org>
-Message-ID: <7049b3a9-dc8f-2ae9-01e6-eb3b6f461400@kernel.org>
-Date:   Sat, 9 Oct 2021 22:40:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matthew Hagan <mnhagan88@gmail.com>
+Subject: Re: [net-next PATCH v2 08/15] dt-bindings: net: dsa: qca8k: Add MAC
+ swap and clock phase properties
+Message-ID: <YWILhniu2KFIGut9@lunn.ch>
+References: <20211008002225.2426-1-ansuelsmth@gmail.com>
+ <20211008002225.2426-9-ansuelsmth@gmail.com>
+ <YWHMRMTSa8xP4SKK@lunn.ch>
+ <YWHamNcXmxuaVgB+@Ansuel-xps.localdomain>
+ <YWHx7Q9jBrws8ioN@lunn.ch>
+ <YWH2P7ogyH3T0CVp@Ansuel-xps.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <20211008154352.19519-5-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YWH2P7ogyH3T0CVp@Ansuel-xps.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08.10.2021 17:43, Sam Protsenko wrote:
-> Provide dt-schema documentation for Exynos850 SoC clock controller.
+> Here is 2 configuration one from an Netgear r7800 qca8337:
 > 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+> 	switch@10 {
+> 		compatible = "qca,qca8337";
+> 		#address-cells = <1>;
+> 		#size-cells = <0>;
+> 		reg = <0x10>;
+> 
+> 		qca8k,rgmii0_1_8v;
+> 		qca8k,rgmii56_1_8v;
+> 
+> 		ports {
+> 			#address-cells = <1>;
+> 			#size-cells = <0>;
+> 
+> 			port@0 {
+> 				reg = <0>;
+> 				label = "cpu";
+> 				ethernet = <&gmac1>;
+> 				phy-mode = "rgmii-id";
+> 
+> 				fixed-link {
+> 					speed = <1000>;
+> 					full-duplex;
+> 				};
+> 			};
+> 
+> 			port@1 {
+> 				reg = <1>;
+> 				label = "lan1";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port1>;
+> 			};
+> 
+> 			port@2 {
+> 				reg = <2>;
+> 				label = "lan2";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port2>;
+> 			};
+> 
+> 			port@3 {
+> 				reg = <3>;
+> 				label = "lan3";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port3>;
+> 			};
+> 
+> 			port@4 {
+> 				reg = <4>;
+> 				label = "lan4";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port4>;
+> 			};
+> 
+> 			port@5 {
+> 				reg = <5>;
+> 				label = "wan";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port5>;
+> 			};
+> 
+> 			port@6 {
+> 				reg = <6>;
+> 				label = "cpu";
+> 				ethernet = <&gmac2>;
+> 				phy-mode = "sgmii";
+> 
+> 				fixed-link {
+> 					speed = <1000>;
+> 					full-duplex;
+> 				};
 
-> diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-> new file mode 100644
-> index 000000000000..79202e6e6402
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-> @@ -0,0 +1,185 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/samsung,exynos850-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung Exynos850 SoC clock controller
-> +
-> +maintainers:
-> +  - Sam Protsenko <semen.protsenko@linaro.org>
-> +  - Chanwoo Choi <cw00.choi@samsung.com>
-> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
-> +  - Tomasz Figa <tomasz.figa@gmail.com>
-> +
-> +description: |
-> +  Exynos850 clock controller is comprised of several CMU units, generating
-> +  clocks for different domains. Those CMU units are modeled as separate device
-> +  tree nodes, and might depend on each other. Root clocks in that clock tree are
-> +  two external clocks:: OSCCLK (26 MHz) and RTCCLK (32768 Hz). Those external
-> +  clocks must be defined as fixed-rate clocks in dts.
-> +
-> +  CMU_TOP is a top-level CMU, where all base clocks are prepared using PLLs and
-> +  dividers; all other leaf clocks (other CMUs) are usually derived from CMU_TOP.
-> +
-> +  Each clock is assigned an identifier and client nodes can use this identifier
-> +  to specify the clock which they consume. All clocks that available for usage
+So here, it is a second CPU port.  But some other board could connect
+an SGMII PHY, and call the port lan5. Or it could be connected to an
+SFP cage, and used that way. Or are you forced to use it as a CPU
+port, or not use it at all?
 
-s/All clocks that available/All clocks available ?
-No need to resend, I can amend it when applying.
+> And here is one with mac swap Tp-Link Archer c7 v4 qca8327 
+> 
+> 	switch0@10 {
+> 		compatible = "qca,qca8337";
+> 		#address-cells = <1>;
+> 		#size-cells = <0>;
+> 
+> 		reg = <0>;
+> 		qca,sgmii-rxclk-falling-edge;
+> 		qca,mac6-exchange;
+> 
+> 		ports {
+> 			#address-cells = <1>;
+> 			#size-cells = <0>;
+> 
+> 			port@0 {
+> 				reg = <0>;
+> 				label = "cpu";
+> 				ethernet = <&eth0>;
+> 				phy-mode = "sgmii";
+> 
+> 				fixed-link {
+> 					speed = <1000>;
+> 					full-duplex;
+> 				};
 
+So when looking for SGMI properties, you need to look here. Where as
+in the previous example, you would look in port 6. And the reverse is
+true for RGMII delays.
+
+> 			};
+> 
+> 			port@1 {
+> 				reg = <1>;
+> 				label = "wan";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port1>;
+> 			};
+> 
+> 			port@2 {
+> 				reg = <2>;
+> 				label = "lan1";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port2>;
+> 			};
+> 
+> 			port@3 {
+> 				reg = <3>;
+> 				label = "lan2";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port3>;
+> 			};
+> 
+> 			port@4 {
+> 				reg = <4>;
+> 				label = "lan3";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port4>;
+> 			};
+> 
+> 			port@5 {
+> 				reg = <5>;
+> 				label = "lan4";
+> 				phy-mode = "internal";
+> 				phy-handle = <&phy_port5>;
+> 			};
+> 		};
+
+So here, port '6' is not used. But it could be connected to an RGMII
+PHY and called lan5. Would the naming work out? What does devlink
+think of it, etc. What about phy-handle? Is there an external MDIO
+bus? What address would be used if there is no phy-handle?
+
+      Andrew
