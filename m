@@ -2,82 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08FE7427B18
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 17:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF7A427B1F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 17:08:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234306AbhJIPGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 11:06:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38610 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233858AbhJIPGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 11:06:14 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2C1C061570
-        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 08:04:17 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id z11so43374483lfj.4
-        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 08:04:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OGLe+JiUqi54F2ySkYsS2QtCX9LvehXQPY8S3qSaldE=;
-        b=I+eXPqnyOBKaP7ZCe8NDNREAhvgj1Smo9KSis2Ca746ylAN2D8hwMNdC+llB5Id66f
-         nzL+L4Kbob01fdTUCPIhUlDQlXDwu12BsSWx1Wy5UVfNrdx8vbAYKDv2gO1S2Mr18Hmj
-         UEMRfU6YbUtaBNa7OApZ39rSgDsrSnzlDboVIzrWiHntB4cUoEoBnh8IceFQ6YyRRqtt
-         JItUKm9XdHefcut6cLD5xClPGMEvLmmLPzxcOiKkIdDEz1d25QdqwN8HwHb+TR7AXbYj
-         7t49k+Mdaq66SJi1j3zc46lTK5Vuk0/3d2jf4WCotEFp91caF4r9z9E9CKnQmGlKd71B
-         iLQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OGLe+JiUqi54F2ySkYsS2QtCX9LvehXQPY8S3qSaldE=;
-        b=wGaAtoyDm/lR6KeJvsjc1EEGEzKQ9FUsX72kCPv48IKdPjStM6mC4pmZ3Kr4WfXCtq
-         oStRBJWlUup4yaGLLKBl5m5FTeD2w3UXDHEW09QNwOYvXR6F9FNQyVwcD3fCKWTFPYtM
-         BG2LQU0t1RqgCrcqZ2rLrfbj/3SXJ7fUcRhJC/7hlIn+rPAPmD0kwLS5dw9IhXAFopVI
-         2G0SQLIFDhxVyjuasD6gnCewtAxRCxbQwnB3ojGqSV+xxaI9PwEZGLQuItdSsJUgUDwd
-         3Q9a9SE/03bTq5QZQ63CopsgisFXY4qBSe2/JGwu8GBMfAwPnOkFpRTSUbv42Llyl5xl
-         G0DA==
-X-Gm-Message-State: AOAM5304M8sJZ2ryZ5rIsSJjV7l8/1XmEHx1VZyXheDH7BHIY4g7SeKv
-        S90uHQbX/A3OJFxWFVj7aZCHkNuJ8OFaOIrDO7YYPg==
-X-Google-Smtp-Source: ABdhPJwuv1AfC/v3+61gVtwUHbxRn+7J7M5NkHomfve/dLIPI1fRqJFmU/N5GJYDX0n1nV/oVLeDcndMMBR/GXXCZcc=
-X-Received: by 2002:a2e:9c56:: with SMTP id t22mr10513412ljj.85.1633791855450;
- Sat, 09 Oct 2021 08:04:15 -0700 (PDT)
+        id S234453AbhJIPKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 11:10:48 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:58268 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234451AbhJIPKr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Oct 2021 11:10:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=Pv0+7rWPKrlMw9H5rxG9lpi8X4fA+ytO8wXfsiSyzqk=; b=jhOxGaNBYfgru9lQFvcM9bXGo9
+        AGdXQAh8rb3JymlgGd/hl5SzYm+QtLRS5Hk0XhsbgbnpzqzuMrYLgO2Z4K5CMwT1BxEnQ17hOTcGi
+        TxZszjHEn53aOW042WyBQ8zP8vh2YrlOtgn4lAgXWaIV6QDXj9SuDFdWqyrvKQt+/WJk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mZDxu-00A9xp-GH; Sat, 09 Oct 2021 17:08:46 +0200
+Date:   Sat, 9 Oct 2021 17:08:46 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v2 04/15] drivers: net: phy: at803x: better
+ describe debug regs
+Message-ID: <YWGwfgXcezhgBZ/K@lunn.ch>
+References: <20211008002225.2426-1-ansuelsmth@gmail.com>
+ <20211008002225.2426-5-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-References: <20211009025858.3326725-1-osk@google.com> <20211009025858.3326725-2-osk@google.com>
- <0674a2d0-f0a2-d6bc-33e3-483614602bae@roeck-us.net> <CABoTLcTL42a23=P501UoqNWr76A3fmEoxwjymz1-g0MNMyYPRA@mail.gmail.com>
-In-Reply-To: <CABoTLcTL42a23=P501UoqNWr76A3fmEoxwjymz1-g0MNMyYPRA@mail.gmail.com>
-From:   Oskar Senft <osk@google.com>
-Date:   Sat, 9 Oct 2021 11:03:59 -0400
-Message-ID: <CABoTLcTqhoFp0EafC5Asn-nPkkKVeYCROefXHDcQvZs==RijDQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] hwmon: (nct7802) Make temperature sensors configurable.
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211008002225.2426-5-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Please align continuation lines with "(".
-> Oh, even if that would result in a lot of extra lines? Or just start
-> the first argument on a new line?
+On Fri, Oct 08, 2021 at 02:22:14AM +0200, Ansuel Smith wrote:
+> Give a name to known debug regs from Documentation instead of using
+> unknown hex values.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 
-> > space around '-'
-> Oh yeah, I'm sorry. Is there a code formatter I should have run? I did
-> run "checkpatch.pl", hoping that it would catch those.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-> > Unnecessary continuation lines. There are several more of those;
-> > I won't comment on it further. Please only use continuation lines if
-> > the resulting line length is otherwise > 100 columns.
-> Argh, yeah. After refactoring that function, I thought I caught all of
-> them, but obviously I didn't. According to [1] we should stay within
-> 80 columns (and use tabs that are 8 spaces wide). I assume that still
-> applies? The rest of this code follows that rule.
-
-For all of the above: I found that running clang-format within subl
-for the new code does what we want. Sorry again for that, I'll start
-doing that from now.
-
-Oskar.
+    Andrew
