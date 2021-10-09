@@ -2,174 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3123427C09
-	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 18:33:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC21A427C3D
+	for <lists+devicetree@lfdr.de>; Sat,  9 Oct 2021 19:07:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230400AbhJIQfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 12:35:50 -0400
-Received: from ixit.cz ([94.230.151.217]:42386 "EHLO ixit.cz"
+        id S230051AbhJIRJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 13:09:24 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:58378 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229587AbhJIQfu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Oct 2021 12:35:50 -0400
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 5D14820064;
-        Sat,  9 Oct 2021 18:33:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1633797231;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=VG0XiF7oaA2a7ZkmNQfV1Wi+icaIuRu9C91JRKV71Fs=;
-        b=R2wx0ccZ26o/LhT82tyvvIwzmTzBhtcndZBdQj8WsN43Yu2DE3IwHNe4Vkg3OwDOKb/z8G
-        eoqBsQKm/X0FN6CldQnXjLBaO+jb9y5MLABU2lqqGkV44e90c1+/NpjfVhfWFBVaTP8qIc
-        Vex0pmD7IutmfEvWdjcHeUh3IRHvP/I=
-From:   David Heidelberg <david@ixit.cz>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~okias/devicetree@lists.sr.ht,
-        David Heidelberg <david@ixit.cz>
-Subject: [PATCH] dt-bindings: power: reset: gpio-poweroff: Convert txt bindings to yaml
-Date:   Sat,  9 Oct 2021 18:32:26 +0200
-Message-Id: <20211009163226.45564-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        id S230006AbhJIRJX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Oct 2021 13:09:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=zuZsEL5r4HUDY8P7sZmSmVljLz2SRdQ8ORvkwmWDmHU=; b=c5UMF+cFzIEHXaylUd+kdMRbVT
+        r/mSApLEWE8nK1GCcOI9d3uBZH/ub8er5ht6AV0NIWHEpg0lFxP6MN47YthLfnAm6doTxw39m5Qb+
+        KQxg7WoYDYCGWXhF6eGskf0doPixYGREqJ2lfl7x8FvLDaEY8knW/qjEoWhjkEYl7KaM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mZFob-00AAJr-05; Sat, 09 Oct 2021 19:07:17 +0200
+Date:   Sat, 9 Oct 2021 19:07:16 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matthew Hagan <mnhagan88@gmail.com>
+Subject: Re: [net-next PATCH v2 08/15] dt-bindings: net: dsa: qca8k: Add MAC
+ swap and clock phase properties
+Message-ID: <YWHMRMTSa8xP4SKK@lunn.ch>
+References: <20211008002225.2426-1-ansuelsmth@gmail.com>
+ <20211008002225.2426-9-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211008002225.2426-9-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert power-off action connected to the GPIO documentation to the YAML syntax.
+On Fri, Oct 08, 2021 at 02:22:18AM +0200, Ansuel Smith wrote:
+> Add names and decriptions of additional PORT0_PAD_CTRL properties.
+> Document new binding qca,mac6_exchange that exchange the mac0 port
+> with mac6.
+> qca,sgmii-(rx|tx)clk-falling-edge are for setting the respective clock
+> phase to failling edge.
+> 
+> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/net/dsa/qca8k.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> index 9383d6bf2426..208ee5bc1bbb 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> @@ -13,6 +13,11 @@ Required properties:
+>  Optional properties:
+>  
+>  - reset-gpios: GPIO to be used to reset the whole device
+> +- qca,mac6-exchange: Internally swap MAC0 with MAC6.
+> +- qca,sgmii-rxclk-falling-edge: Set the receive clock phase to falling edge.
+> +                                Mostly used in qca8327 with CPU port 0 set to
+> +                                sgmii.
+> +- qca,sgmii-txclk-falling-edge: Set the transmit clock phase to falling edge.
+>  - qca,rgmii0-1-8v: Set the internal regulator to supply 1.8v for MAC0 port.
+>                     This is needed for qca8337 and toggles the supply voltage
+>                     from 1.5v to 1.8v. For the specific regs it was observed
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../bindings/power/reset/gpio-poweroff.txt    | 41 ------------
- .../bindings/power/reset/gpio-poweroff.yaml   | 64 +++++++++++++++++++
- 2 files changed, 64 insertions(+), 41 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt
- create mode 100644 Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
+The edge configuration is a port configuration. So it should be inside
+the port DT node it applies to. That also gives a clean way forward
+when a new switch appears with more SGMII interfaces, each with its
+own edge configuration.
 
-diff --git a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt
-deleted file mode 100644
-index 3e56c1b34a4c..000000000000
---- a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--Driver a GPIO line that can be used to turn the power off.
--
--The driver supports both level triggered and edge triggered power off.
--At driver load time, the driver will request the given gpio line and
--install a handler to power off the system. If the optional properties
--'input' is not found, the GPIO line will be driven in the inactive
--state. Otherwise its configured as an input.
--
--When the power-off handler is called, the gpio is configured as an
--output, and drive active, so triggering a level triggered power off
--condition. This will also cause an inactive->active edge condition, so
--triggering positive edge triggered power off. After a delay of 100ms,
--the GPIO is set to inactive, thus causing an active->inactive edge,
--triggering negative edge triggered power off. After another 100ms
--delay the GPIO is driver active again. If the power is still on and
--the CPU still running after a 3000ms delay, a WARN_ON(1) is emitted.
--
--Required properties:
--- compatible : should be "gpio-poweroff".
--- gpios : The GPIO to set high/low, see "gpios property" in
--  Documentation/devicetree/bindings/gpio/gpio.txt. If the pin should be
--  low to power down the board set it to "Active Low", otherwise set
--  gpio to "Active High".
--
--Optional properties:
--- input : Initially configure the GPIO line as an input. Only reconfigure
--  it to an output when the power-off handler is called. If this optional
--  property is not specified, the GPIO is initialized as an output in its
--  inactive state.
--- active-delay-ms: Delay (default 100) to wait after driving gpio active
--- inactive-delay-ms: Delay (default 100) to wait after driving gpio inactive
--- timeout-ms: Time to wait before asserting a WARN_ON(1). If nothing is
--              specified, 3000 ms is used.
--
--Examples:
--
--gpio-poweroff {
--	compatible = "gpio-poweroff";
--	gpios = <&gpio 4 0>;
--	timeout-ms = <3000>;
--};
-diff --git a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
-new file mode 100644
-index 000000000000..50ae0cec6493
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
-@@ -0,0 +1,64 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/reset/gpio-poweroff.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Driver a GPIO line that can be used to turn the power off
-+
-+maintainers:
-+  - Sebastian Reichel <sre@kernel.org>
-+
-+description:
-+  The driver supports both level triggered and edge triggered power off.
-+  At driver load time, the driver will request the given gpio line and
-+  install a handler to power off the system. If the optional properties
-+  'input' is not found, the GPIO line will be driven in the inactive
-+  state. Otherwise its configured as an input.
-+
-+  When the power-off handler is called, the gpio is configured as an
-+  output, and drive active, so triggering a level triggered power off
-+  condition. This will also cause an inactive->active edge condition, so
-+  triggering positive edge triggered power off. After a delay of 100ms,
-+  the GPIO is set to inactive, thus causing an active->inactive edge,
-+  triggering negative edge triggered power off. After another 100ms
-+  delay the GPIO is driver active again. If the power is still on and
-+  the CPU still running after a 3000ms delay, a WARN_ON(1) is emitted.
-+
-+properties:
-+  compatible:
-+    const: gpio-poweroff
-+
-+  gpios: true
-+
-+  input:
-+    description: |
-+      Initially configure the GPIO line as an input. Only reconfigure
-+      it to an output when the power-off handler is called. If this optional
-+      property is not specified, the GPIO is initialized as an output in its inactive state.
-+
-+  active-delay-ms:
-+    default: 100
-+    description: Delay to wait after driving gpio active
-+
-+  inactive-delay-ms:
-+    default: 100
-+    description: Delay to wait after driving gpio inactive
-+
-+  timeout-ms:
-+    default: 3000
-+    description: Time to wait before asserting a WARN_ON(1).
-+
-+required:
-+  - compatible
-+  - gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio-poweroff {
-+        compatible = "gpio-poweroff";
-+        gpios = <&gpio 4 0>;
-+        timeout-ms = <3000>;
-+    };
--- 
-2.33.0
+But that then leads into the MAC0/MAC6 swap mess. I need to think
+about that some more, how do we cleanly describe that in DT.
 
+      Andrew
