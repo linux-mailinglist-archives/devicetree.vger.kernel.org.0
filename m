@@ -2,233 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 347FC427E61
-	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 03:57:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E691427E7B
+	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 05:06:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232181AbhJJB7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 21:59:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39916 "EHLO
+        id S230093AbhJJDIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 23:08:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbhJJB6Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 21:58:25 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB62BC06177B;
-        Sat,  9 Oct 2021 18:56:24 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id a25so36067227edx.8;
-        Sat, 09 Oct 2021 18:56:24 -0700 (PDT)
+        with ESMTP id S230017AbhJJDIt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 23:08:49 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92E03C061764
+        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 20:06:51 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id m3so57298242lfu.2
+        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 20:06:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=65S6lCh47tZ5HxQyo6DocfizCuDWrcJIBiYIGFhvY1k=;
-        b=mJWQtEL0O+3B0eLbY62Rh4f1pwQ7EXajJNKfLKm+Qo0CjYjQzRvwMYFEBmbCX4VccU
-         PtxrHPANjnZF8Ybbs3SrpC/4iAoZZjl5xQ9fgxE32YHjWaOIl83rL0UOBC0OJgV8SBIf
-         7ChvswFvD4mGjV85RPTl7vUDPX/dqzPLk98zzkhlwNFI5F67QvP9WRhkfFYlnj+LifAR
-         dHXV6U4su96n/9v3hUAErwokU7SB/h0sfm4Es7L2UPkxqnPGx/XUKKXDD0535Vzlm8IW
-         8/Qjqes1gIZERVtH7koafHvPbbfCYCLKOJoRehekKwaldLlOzmaq598PDcSM81dGp/jd
-         nGFg==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CaeM4Um/Mm9c+IwBdlqDrAg0WdGnkz5I6n2M37I5Tuc=;
+        b=Yp+4JR6Gtleh3VZFvcH+Q60V6yiJ+P41B/j8EVQpqs3oGWWBJzqBfkW2ENLoZaSd/r
+         mNfJs8JfsXtZTnhLsxtZw42Xgfhwprjx01U6so0atizTDlesWw+MhH1ODiyIzlIU1Fme
+         MvWOMVqKCQ+pazXZWJwjPqVK1WGmfzE43Xt8UOeLlqMC0PTLzvRylC84iZzikpWrTKpU
+         fLUSdP7uFHx1w9929LBxcpi2Sxg4dSdTEGULG1zb20Jwhqc4XWGpiDzxdJxLcceRV1jT
+         eWi0favmXM6PIxZW9MkXi1/2DbhqCe4Uqiem2Y3rjCuqf2kqaV7kjQ7Avu3fsEXcm2nd
+         AgYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=65S6lCh47tZ5HxQyo6DocfizCuDWrcJIBiYIGFhvY1k=;
-        b=PZ1m8wp5MnzKo8CjTxZbZ31CN6i6jPAzLtveH437GYJ/USCEdT62HRI6v06wszcAX8
-         obvop6spYbIJheWQJSudimKCTYaE57PRzrgfP+RMlgHPARKqnNuIP8eX0zfDPkD3m+Hm
-         r+FaqkLbG4OiwSf9tak+CnVycKcOvI/ONNpQchckfknT4fD1z0lTz0sdjlhyWuBgPfUn
-         hhlANdrcj+7Yc3zucFfnT53wzxIngS2SFYfWVJ/k/gSQPd1x+DFB5gylbMnBKGknphMz
-         liCBrEE4mnVZfU92Ogny0WDy0XYIcghPhNd0THjqq4uU7ZWC3hZU+duPUzRMbEYwS8ov
-         AvRA==
-X-Gm-Message-State: AOAM532qPTr9aV0orpOobxvWIUDLfreL8y9zXvTQbXWXPcKjH32/9uh0
-        g6g5M8W4vrqnXUPzKepUBCY=
-X-Google-Smtp-Source: ABdhPJxMIt7F4ILICHqyAP5I4Py4EGQsUUf5FxCti1SBd22xO3sSAhGimgGMvv4FQEqyiIH61oXTiw==
-X-Received: by 2002:a50:cf4d:: with SMTP id d13mr28232129edk.50.1633830983188;
-        Sat, 09 Oct 2021 18:56:23 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.googlemail.com with ESMTPSA id x11sm1877253edj.62.2021.10.09.18.56.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Oct 2021 18:56:22 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>
-Subject: [net-next PATCH v3 13/13] drivers: net: dsa: qca8k: set internal delay also for sgmii
-Date:   Sun, 10 Oct 2021 03:56:03 +0200
-Message-Id: <20211010015603.24483-14-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211010015603.24483-1-ansuelsmth@gmail.com>
-References: <20211010015603.24483-1-ansuelsmth@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CaeM4Um/Mm9c+IwBdlqDrAg0WdGnkz5I6n2M37I5Tuc=;
+        b=0ZjVlMJUr83JSiRm/OC5HHC9iRhIiaHRZjKdowx4Hb9yTZmiyRk83Y1zLip6/u/9WP
+         8/7kCRUrEerNeqKCeF+iYQGY/sVlVbnjanDqj+aFrFc95shsV7b4HvsatCGMDdkruIFI
+         2YulqR+g5lr0gnhpYMpJb5oNAHkdvvvZv220s4AiJ2Y1dMW2Nqz1f9sLQfbMC5/8aizu
+         MxKCNBogKNUFlJwFn1Qoa3V4DZhEjJkfhesT1dYDtLRJuaUDsh006z58ie0PUSGWBbmi
+         hMeaszNhODMtvGXaZJGJo3LTIf2Gm2RKEtthVH6fNDe/NHOija+J/TPvgp1S0Ln09Q40
+         E2lA==
+X-Gm-Message-State: AOAM5314mIsma6oepO8Jd9sODwZTUfRY8yPx6mnQ7hxA4/E4HQo+mYrt
+        RmD6FZpdEiNrJFivOofh+F8XlkndQ+WyB8vZJYtBBQ==
+X-Google-Smtp-Source: ABdhPJxMPKU+g0GbKcyP8SL1oUpbVUhYYy6KC4R/60Zbq5HadVP2j0SJXmpzWE48MJPKb/kDfrRp+zQJz0GYK065dF4=
+X-Received: by 2002:a2e:9b87:: with SMTP id z7mr13516729lji.253.1633835209224;
+ Sat, 09 Oct 2021 20:06:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211009185257.2230013-1-osk@google.com> <b73b638e-5a24-4960-354d-c8ab5d61c387@roeck-us.net>
+In-Reply-To: <b73b638e-5a24-4960-354d-c8ab5d61c387@roeck-us.net>
+From:   Oskar Senft <osk@google.com>
+Date:   Sat, 9 Oct 2021 23:06:33 -0400
+Message-ID: <CABoTLcQBjbW_wtQUo9jdbPbcJJcLaHEA+Oe17bWSCy+_GqOeLg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: hwmon: Add nct7802 bindings
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QCA original code report port instability and sa that SGMII also require
-to set internal delay. Generalize the rgmii delay function and apply the
-advised value if they are not defined in DT.
+Hi Guenter
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- drivers/net/dsa/qca8k.c | 102 +++++++++++++++++++++++++---------------
- drivers/net/dsa/qca8k.h |   2 +
- 2 files changed, 67 insertions(+), 37 deletions(-)
+Thanks again for your review!
 
-diff --git a/drivers/net/dsa/qca8k.c b/drivers/net/dsa/qca8k.c
-index 7c68c272ce3a..21776826bf2e 100644
---- a/drivers/net/dsa/qca8k.c
-+++ b/drivers/net/dsa/qca8k.c
-@@ -1164,13 +1164,67 @@ qca8k_setup(struct dsa_switch *ds)
- 	return 0;
- }
- 
-+static void
-+qca8k_mac_config_setup_internal_delay(struct qca8k_priv *priv, struct dsa_port *dp,
-+				      u32 reg, const struct phylink_link_state *state)
-+{
-+	u32 delay, val = 0;
-+	int ret;
-+
-+	if (state->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-+	    state->interface == PHY_INTERFACE_MODE_RGMII_TXID ||
-+	    state->interface == PHY_INTERFACE_MODE_SGMII) {
-+		if (of_property_read_u32(dp->dn, "tx-internal-delay-ps", &delay))
-+			delay = 1;
-+		else
-+			/* Switch regs accept value in ns, convert ps to ns */
-+			delay = delay / 1000;
-+
-+		if (delay > QCA8K_MAX_DELAY) {
-+			dev_err(priv->dev, "rgmii tx delay is limited to a max value of 3ns, setting to the max value");
-+			delay = 3;
-+		}
-+
-+		val |= QCA8K_PORT_PAD_RGMII_TX_DELAY(delay) |
-+			QCA8K_PORT_PAD_RGMII_TX_DELAY_EN;
-+	}
-+
-+	if (state->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-+	    state->interface == PHY_INTERFACE_MODE_RGMII_RXID ||
-+	    state->interface == PHY_INTERFACE_MODE_SGMII) {
-+		if (of_property_read_u32(dp->dn, "rx-internal-delay-ps", &delay))
-+			delay = 2;
-+		else
-+			/* Switch regs accept value in ns, convert ps to ns */
-+			delay = delay / 1000;
-+
-+		if (delay > QCA8K_MAX_DELAY) {
-+			dev_err(priv->dev, "rgmii rx delay is limited to a max value of 3ns, setting to the max value");
-+			delay = 3;
-+		}
-+
-+		val |= QCA8K_PORT_PAD_RGMII_RX_DELAY(delay) |
-+			QCA8K_PORT_PAD_RGMII_RX_DELAY_EN;
-+	}
-+
-+	/* Set RGMII delay based on the selected values */
-+	ret = qca8k_rmw(priv, reg,
-+			QCA8K_PORT_PAD_RGMII_TX_DELAY_MASK |
-+			QCA8K_PORT_PAD_RGMII_TX_DELAY_MASK |
-+			QCA8K_PORT_PAD_RGMII_RX_DELAY_MASK |
-+			QCA8K_PORT_PAD_RGMII_RX_DELAY_EN,
-+			val);
-+	if (ret)
-+		dev_err(priv->dev, "Failed to set internal delay for CPU port %d", dp->index);
-+}
-+
- static void
- qca8k_phylink_mac_config(struct dsa_switch *ds, int port, unsigned int mode,
- 			 const struct phylink_link_state *state)
- {
- 	struct qca8k_priv *priv = ds->priv;
- 	struct dsa_port *dp;
--	u32 reg, val, delay;
-+	u32 reg, val;
- 	int ret;
- 
- 	switch (port) {
-@@ -1222,44 +1276,11 @@ qca8k_phylink_mac_config(struct dsa_switch *ds, int port, unsigned int mode,
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
- 	case PHY_INTERFACE_MODE_RGMII_RXID:
- 		dp = dsa_to_port(ds, port);
--		val = QCA8K_PORT_PAD_RGMII_EN;
--
--		if (state->interface == PHY_INTERFACE_MODE_RGMII_ID ||
--		    state->interface == PHY_INTERFACE_MODE_RGMII_TXID) {
--			if (of_property_read_u32(dp->dn, "tx-internal-delay-ps", &delay))
--				delay = 1;
--			else
--				/* Switch regs accept value in ns, convert ps to ns */
--				delay = delay / 1000;
--
--			if (delay > QCA8K_MAX_DELAY) {
--				dev_err(priv->dev, "rgmii tx delay is limited to a max value of 3ns, setting to the max value");
--				delay = 3;
--			}
--
--			val |= QCA8K_PORT_PAD_RGMII_TX_DELAY(delay) |
--			       QCA8K_PORT_PAD_RGMII_TX_DELAY_EN;
--		}
- 
--		if (state->interface == PHY_INTERFACE_MODE_RGMII_ID ||
--		    state->interface == PHY_INTERFACE_MODE_RGMII_RXID) {
--			if (of_property_read_u32(dp->dn, "rx-internal-delay-ps", &delay))
--				delay = 2;
--			else
--				/* Switch regs accept value in ns, convert ps to ns */
--				delay = delay / 1000;
--
--			if (delay > QCA8K_MAX_DELAY) {
--				dev_err(priv->dev, "rgmii rx delay is limited to a max value of 3ns, setting to the max value");
--				delay = 3;
--			}
--
--			val |= QCA8K_PORT_PAD_RGMII_RX_DELAY(delay) |
--			       QCA8K_PORT_PAD_RGMII_RX_DELAY_EN;
--		}
-+		qca8k_write(priv, reg, QCA8K_PORT_PAD_RGMII_EN);
- 
--		/* Set RGMII delay based on the selected values */
--		qca8k_write(priv, reg, val);
-+		/* Configure rgmii delay from dp or taking advised values */
-+		qca8k_mac_config_setup_internal_delay(priv, dp, reg, state);
- 
- 		/* QCA8337 requires to set rgmii rx delay for all ports.
- 		 * This is enabled through PORT5_PAD_CTRL for all ports,
-@@ -1341,6 +1362,13 @@ qca8k_phylink_mac_config(struct dsa_switch *ds, int port, unsigned int mode,
- 					QCA8K_PORT0_PAD_SGMII_RXCLK_FALLING_EDGE |
- 					QCA8K_PORT0_PAD_SGMII_TXCLK_FALLING_EDGE,
- 					val);
-+
-+		/* From original code is reported port instability as SGMII also
-+		 * require delay set. Apply advised values here or take them from DT.
-+		 */
-+		if (state->interface == PHY_INTERFACE_MODE_SGMII)
-+			qca8k_mac_config_setup_internal_delay(priv, dp, reg, state);
-+
- 		break;
- 	default:
- 		dev_err(ds->dev, "xMII mode %s not supported for port %d\n",
-diff --git a/drivers/net/dsa/qca8k.h b/drivers/net/dsa/qca8k.h
-index c032db5e0d41..92867001cc34 100644
---- a/drivers/net/dsa/qca8k.h
-+++ b/drivers/net/dsa/qca8k.h
-@@ -39,7 +39,9 @@
- #define QCA8K_REG_PORT5_PAD_CTRL			0x008
- #define QCA8K_REG_PORT6_PAD_CTRL			0x00c
- #define   QCA8K_PORT_PAD_RGMII_EN			BIT(26)
-+#define   QCA8K_PORT_PAD_RGMII_TX_DELAY_MASK		GENMASK(23, 22)
- #define   QCA8K_PORT_PAD_RGMII_TX_DELAY(x)		((x) << 22)
-+#define   QCA8K_PORT_PAD_RGMII_RX_DELAY_MASK		GENMASK(21, 20)
- #define   QCA8K_PORT_PAD_RGMII_RX_DELAY(x)		((x) << 20)
- #define	  QCA8K_PORT_PAD_RGMII_TX_DELAY_EN		BIT(25)
- #define   QCA8K_PORT_PAD_RGMII_RX_DELAY_EN		BIT(24)
--- 
-2.32.0
+> > Signed-off-by: Oskar Senft <osk@google.com>
+> > ---
+>
+> change log goes here.
+This might be a silly question: I'm using "git send-email", but I
+don't think there's a way to edit the e-mail before it goes out. Do I
+just add "---\n[Change log]" manually in the commit description?
 
+> > +description: |
+> > +  The NCT7802Y is a hardware monitor IC which supports one on-die and up to
+> > +  5 remote temperature sensors with SMBus interface.
+> > +
+>
+> Just noticed: 5 remote temperature sensors ? Shouldn't that be 3 ?
+This includes 2 temperature sensors that are queried via PECI (i.e.
+SMBus). I generated the description from the "general description"
+section in the datasheet. I think the driver doesn't implement the 2
+PECI sensors at this time, but the statement about the HW is still
+true.
+
+> > +      sensor-type:
+> > +        items:
+> > +          - enum:
+> > +              - temperature
+> > +              - voltage
+> > +      temperature-mode:
+> > +        items:
+> > +          - enum:
+> > +              - thermistor
+> > +              - thermal-diode
+> > +    required:
+> > +      - reg
+> > +      - sensor-type
+>
+> If I understand correctly, "temperature-mode" is implemented as mandatory
+> for channels 1 and 2 if sensor-type is "temperature" (which makes sense).
+> No idea though if it is possible to express that in yaml.
+> If not, can it be mentioned as comment ?
+
+After doing a bit more searching, I found the amazing "if: then:
+else:" construct that allows to express this properly and eliminates
+the code duplication. I'll follow up in PATCH v6.
+
+Thanks
+Oskar.
+
+
+
+>
+> > +
+> > +  channel@2:
+> > +    type: object
+> > +    description: Remote Temperature Sensor or Voltage Sensor ("RTD2")
+> > +    properties:
+> > +      reg:
+> > +        const: 2
+> > +      sensor-type:
+> > +        items:
+> > +          - enum:
+> > +              - temperature
+> > +              - voltage
+> > +      temperature-mode:
+> > +        items:
+> > +          - enum:
+> > +              - thermistor
+> > +              - thermal-diode
+> > +    required:
+> > +      - reg
+> > +      - sensor-type
+> > +
+> > +  channel@3:
+> > +    type: object
+> > +    description: Remote Temperature Sensor or Voltage Sensor ("RTD3")
+> > +    properties:
+> > +      reg:
+> > +        const: 3
+> > +      sensor-type:
+> > +        items:
+> > +          - enum:
+> > +              - temperature
+> > +              - voltage
+> > +    required:
+> > +      - reg
+> > +      - sensor-type
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        nct7802@28 {
+> > +            compatible = "nuvoton,nct7802";
+> > +            reg = <0x28>;
+> > +
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            channel@0 { /* LTD */
+> > +              reg = <0>;
+> > +              status = "okay";
+> > +            };
+> > +
+> > +            channel@1 { /* RTD1 */
+> > +              reg = <1>;
+> > +              status = "okay";
+> > +              sensor-type = "temperature";
+> > +              temperature-mode = "thermistor";
+> > +            };
+> > +
+> > +            channel@2 { /* RTD2 */
+> > +              reg = <2>;
+> > +              status = "okay";
+> > +              sensor-type = "temperature";
+> > +              temperature-mode = "thermal-diode";
+> > +            };
+> > +
+> > +            channel@3 { /* RTD3 */
+> > +              reg = <3>;
+> > +              status = "okay";
+> > +              sensor-type = "voltage";
+> > +            };
+> > +        };
+> > +    };
+> >
+>
