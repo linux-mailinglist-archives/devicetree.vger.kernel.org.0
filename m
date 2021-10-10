@@ -2,196 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E691427E7B
-	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 05:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78312427E89
+	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 05:25:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230093AbhJJDIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 23:08:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55002 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230017AbhJJDIt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 23:08:49 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92E03C061764
-        for <devicetree@vger.kernel.org>; Sat,  9 Oct 2021 20:06:51 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id m3so57298242lfu.2
-        for <devicetree@vger.kernel.org>; Sat, 09 Oct 2021 20:06:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CaeM4Um/Mm9c+IwBdlqDrAg0WdGnkz5I6n2M37I5Tuc=;
-        b=Yp+4JR6Gtleh3VZFvcH+Q60V6yiJ+P41B/j8EVQpqs3oGWWBJzqBfkW2ENLoZaSd/r
-         mNfJs8JfsXtZTnhLsxtZw42Xgfhwprjx01U6so0atizTDlesWw+MhH1ODiyIzlIU1Fme
-         MvWOMVqKCQ+pazXZWJwjPqVK1WGmfzE43Xt8UOeLlqMC0PTLzvRylC84iZzikpWrTKpU
-         fLUSdP7uFHx1w9929LBxcpi2Sxg4dSdTEGULG1zb20Jwhqc4XWGpiDzxdJxLcceRV1jT
-         eWi0favmXM6PIxZW9MkXi1/2DbhqCe4Uqiem2Y3rjCuqf2kqaV7kjQ7Avu3fsEXcm2nd
-         AgYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CaeM4Um/Mm9c+IwBdlqDrAg0WdGnkz5I6n2M37I5Tuc=;
-        b=0ZjVlMJUr83JSiRm/OC5HHC9iRhIiaHRZjKdowx4Hb9yTZmiyRk83Y1zLip6/u/9WP
-         8/7kCRUrEerNeqKCeF+iYQGY/sVlVbnjanDqj+aFrFc95shsV7b4HvsatCGMDdkruIFI
-         2YulqR+g5lr0gnhpYMpJb5oNAHkdvvvZv220s4AiJ2Y1dMW2Nqz1f9sLQfbMC5/8aizu
-         MxKCNBogKNUFlJwFn1Qoa3V4DZhEjJkfhesT1dYDtLRJuaUDsh006z58ie0PUSGWBbmi
-         hMeaszNhODMtvGXaZJGJo3LTIf2Gm2RKEtthVH6fNDe/NHOija+J/TPvgp1S0Ln09Q40
-         E2lA==
-X-Gm-Message-State: AOAM5314mIsma6oepO8Jd9sODwZTUfRY8yPx6mnQ7hxA4/E4HQo+mYrt
-        RmD6FZpdEiNrJFivOofh+F8XlkndQ+WyB8vZJYtBBQ==
-X-Google-Smtp-Source: ABdhPJxMPKU+g0GbKcyP8SL1oUpbVUhYYy6KC4R/60Zbq5HadVP2j0SJXmpzWE48MJPKb/kDfrRp+zQJz0GYK065dF4=
-X-Received: by 2002:a2e:9b87:: with SMTP id z7mr13516729lji.253.1633835209224;
- Sat, 09 Oct 2021 20:06:49 -0700 (PDT)
+        id S229685AbhJJD1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 23:27:05 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:48810 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229813AbhJJD1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 23:27:04 -0400
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20211010032504epoutp03912812d920986c33d93e09e67f347858~sjXZ-4NEu1128411284epoutp03C
+        for <devicetree@vger.kernel.org>; Sun, 10 Oct 2021 03:25:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20211010032504epoutp03912812d920986c33d93e09e67f347858~sjXZ-4NEu1128411284epoutp03C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1633836304;
+        bh=tziF0CK8TiQ9F3q2VKz+sIDVdiEtQ166g3MSWA2B3pM=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=P9kj7REesoh+3jLeJpd9qElthevH7YAnbZw3mgxhj/adp10WTNmD49s6ogLRv7RgZ
+         F1EpfPwjeB0aCO9K1dR1SMFt87bMbWY9a6ORNEFUXH0n3Iv4VXkfA2JXoTjNNq0Rv8
+         3NLI2boburjWQe4n1FraKcr+TLZDD2ebOdynFBqc=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20211010032503epcas2p288087266642ae5ffef1837e685dc83d1~sjXYo6-ob2883828838epcas2p2m;
+        Sun, 10 Oct 2021 03:25:03 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.90]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4HRnNn70SXz4x9Q2; Sun, 10 Oct
+        2021 03:24:57 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        F7.D8.09749.90D52616; Sun, 10 Oct 2021 12:24:57 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+        20211010032456epcas2p25241e07ab3ce673bcbb428f1c7c5a787~sjXSQQqsP1853818538epcas2p2U;
+        Sun, 10 Oct 2021 03:24:56 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20211010032456epsmtrp1127b6c6e116f8353d230192c3947912a~sjXSPhlW-3229632296epsmtrp1Q;
+        Sun, 10 Oct 2021 03:24:56 +0000 (GMT)
+X-AuditID: b6c32a47-d29ff70000002615-6f-61625d092f47
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        A6.85.08750.80D52616; Sun, 10 Oct 2021 12:24:56 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20211010032456epsmtip2f19ac2aa64b6b595f0ec0435072172de~sjXSE--eQ1129911299epsmtip2x;
+        Sun, 10 Oct 2021 03:24:56 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH v3 0/3] add initial support for exynosautov9
+Date:   Sun, 10 Oct 2021 12:22:43 +0900
+Message-Id: <20211010032246.146939-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20211009185257.2230013-1-osk@google.com> <b73b638e-5a24-4960-354d-c8ab5d61c387@roeck-us.net>
-In-Reply-To: <b73b638e-5a24-4960-354d-c8ab5d61c387@roeck-us.net>
-From:   Oskar Senft <osk@google.com>
-Date:   Sat, 9 Oct 2021 23:06:33 -0400
-Message-ID: <CABoTLcQBjbW_wtQUo9jdbPbcJJcLaHEA+Oe17bWSCy+_GqOeLg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: hwmon: Add nct7802 bindings
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupgk+LIzCtJLcpLzFFi42LZdljTTJczNinRoO+UpcXl/doW84+cY7XY
+        +PYHk8WUP8uZLGac38dk0br3CLvF4TftrBardv1hdODwmNXQy+axc9Zddo9NqzrZPO5c28Pm
+        0bdlFaPH501yAWxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYGhrqGlhbmSgp5ibmptkou
+        PgG6bpk5QPcoKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtScgrMC/SKE3OLS/PS9fJS
+        S6wMDQyMTIEKE7Izrr0RL9jIXdF34Ah7A+NWzi5GTg4JAROJ6a3PWboYuTiEBHYwSkxdco4N
+        wvnEKNH+ej2U85lR4sOd88wwLffubWOCSOwCSkydzQaSEBL4yCixeVENiM0moCux5fkrRpAi
+        EYFORomV30A6ODmYBQ4wSmy5YAdiCwvYSOy/uBJsKouAqsSj32dZQWxeAXuJ3fM6WSG2yUsc
+        +dXJDBEXlDg58wkLxBx5ieats5lBFkgI3GOXOPPqESNEg4vElXer2SFsYYlXx7dA2VISL/vb
+        2CEauhklWh/9h0qsZpTobPSBsO0lfk3fArSZA2iDpsT6XfogpoSAssSRW1B7+SQ6Dv9lhwjz
+        SnS0CUE0qksc2D6dBcKWleie8xnqfA+J1Vs72SHhEyvR+PI18wRG+VlIvpmF5JtZCHsXMDKv
+        YhRLLSjOTU8tNiowhkdqcn7uJkZwktRy38E44+0HvUOMTByMhxglOJiVRHi1TBIThXhTEiur
+        Uovy44tKc1KLDzGaAsN3IrOUaHI+ME3nlcQbmlgamJiZGZobmRqYK4nzzv3nlCgkkJ5Ykpqd
+        mlqQWgTTx8TBKdXAFLiv8E3+mZdJTAslfvNt7W1tFrdP75BVeTxz/4Yb0+dzn03Ov6Nv9J+r
+        KnZuh430lo9Wx/lvhRf0J8R83P1HgKn62qRE9qvB7wVtleWupn/Lr8iZen2Rl+S+9AveizTT
+        5tVPZJFZKjrtwguRgDWXpB4e6l/mxKL+STnG2NdS4WhXxAymrKjus5EuLxTWtMR9c9jzWOnM
+        mmrhCeZH+h9br5HUl6y6wmPFoSX0zrnSStlkSrdQkuffSXPze1aYNr+dv0Bq2++elTxPWm/1
+        P424NtNnxX975oiAu2cUC1dODIwu3eIbYL8klcfzZVD8rhs2psY+bnyShww/Pqr3yJ4pvYh7
+        0sPaq0Lx2qs/ndurxFKckWioxVxUnAgA13QkmxsEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBLMWRmVeSWpSXmKPExsWy7bCSvC5HbFKiwZ4ORYvL+7Ut5h85x2qx
+        8e0PJospf5YzWcw4v4/JonXvEXaLw2/aWS1W7frD6MDhMauhl81j56y77B6bVnWyedy5tofN
+        o2/LKkaPz5vkAtiiuGxSUnMyy1KL9O0SuDKuvREv2Mhd0XfgCHsD41bOLkZODgkBE4l797Yx
+        dTFycQgJ7GCU2NHxlxEiISvx7N0OdghbWOJ+yxFWEFtI4D2jxOqFiSA2m4CuxJbnrxhBmkUE
+        uhkl+ht7wSYxCxxhlPj//RcLSJWwgI3E/osrmUFsFgFViUe/z4JN4hWwl9g9r5MVYoO8xJFf
+        ncwQcUGJkzOfgPUyA8Wbt85mnsDINwtJahaS1AJGplWMkqkFxbnpucWGBUZ5qeV6xYm5xaV5
+        6XrJ+bmbGMGBq6W1g3HPqg96hxiZOBgPMUpwMCuJ8GqZJCYK8aYkVlalFuXHF5XmpBYfYpTm
+        YFES573QdTJeSCA9sSQ1OzW1ILUIJsvEwSnVwLT44HvB38qHL5j+mRmzZc+C/L1bj77eZF6s
+        nlt47lPssSUcsembskzMbk5I1P55KF0s3vzpIeltwuv2K/la8ZTmqRzTdLE6ofteLcPdM7ks
+        woRpQkz+Nzv/Y2suVSl8693CsmQi3zo5sztJ6x848RlXJlx+PLWi9OdCnWvP5py5VnvHv1J3
+        tlX0Cy8R9w0Xj+34f+cT24kzB34dZ/x7Mye7S+Rjh0y3cxDzoTc5gafDFnJ3T5/LGxOvst/1
+        7OOUcFGuVuFHGwqXiLP2J4ivm/V6qmf9Wg1bOYa/a1IKwr64vsqwltr0+kIUi/k2vurnq4xb
+        2bbu4NHb9n3esv+RT0Ls7RleyE99vX3hxm/WlQlKLMUZiYZazEXFiQB4gBy8ywIAAA==
+X-CMS-MailID: 20211010032456epcas2p25241e07ab3ce673bcbb428f1c7c5a787
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20211010032456epcas2p25241e07ab3ce673bcbb428f1c7c5a787
+References: <CGME20211010032456epcas2p25241e07ab3ce673bcbb428f1c7c5a787@epcas2p2.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter
+This patchset supports minimal set for ExynosAuto v9 SoC and SADK board.
+This contains serial_0 as uart console and ufs_0 for rootfs storage.
+Regarding UFS, it depends on UFS patchset[1].
 
-Thanks again for your review!
+[1]: https://lore.kernel.org/linux-samsung-soc/20211007080934.108804-1-chanho61.park@samsung.com/T/#t
 
-> > Signed-off-by: Oskar Senft <osk@google.com>
-> > ---
->
-> change log goes here.
-This might be a silly question: I'm using "git send-email", but I
-don't think there's a way to edit the e-mail before it goes out. Do I
-just add "---\n[Change log]" manually in the commit description?
+Changes since v2:
+- pinctrl patch has been merged. So, remove it from v3 patchset.
+- Separate mfd/syscon.yaml dt-binding patch
+- Use "-pins" suffix for all pinctrl node name but do not follow this for labels.
 
-> > +description: |
-> > +  The NCT7802Y is a hardware monitor IC which supports one on-die and up to
-> > +  5 remote temperature sensors with SMBus interface.
-> > +
->
-> Just noticed: 5 remote temperature sensors ? Shouldn't that be 3 ?
-This includes 2 temperature sensors that are queried via PECI (i.e.
-SMBus). I generated the description from the "general description"
-section in the datasheet. I think the driver doesn't implement the 2
-PECI sensors at this time, but the statement about the HW is still
-true.
+Changes since v1:
+- add static and  __initconst of patch1
+- Use pin and pins suffix for pinctrl nodes
+- Remove non-SoC pins
+- Move fixed rate clock nodes out of soc@0
+- Add cortex-a76 compatibles to cpu and pmu node.
+- Use lowercase of address representations
+- Add pmu / syscon compatible.
 
-> > +      sensor-type:
-> > +        items:
-> > +          - enum:
-> > +              - temperature
-> > +              - voltage
-> > +      temperature-mode:
-> > +        items:
-> > +          - enum:
-> > +              - thermistor
-> > +              - thermal-diode
-> > +    required:
-> > +      - reg
-> > +      - sensor-type
->
-> If I understand correctly, "temperature-mode" is implemented as mandatory
-> for channels 1 and 2 if sensor-type is "temperature" (which makes sense).
-> No idea though if it is possible to express that in yaml.
-> If not, can it be mentioned as comment ?
+ .../bindings/arm/samsung/samsung-boards.yaml  |    6 +
+ .../devicetree/bindings/mfd/syscon.yaml       |    1 +
+ arch/arm64/boot/dts/exynos/Makefile           |    3 +-
+ .../boot/dts/exynos/exynosautov9-pinctrl.dtsi | 1189 +++++++++++++++++
+ .../boot/dts/exynos/exynosautov9-sadk.dts     |   56 +
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  |  301 +++++
+ 6 files changed, 1555 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9.dtsi
 
-After doing a bit more searching, I found the amazing "if: then:
-else:" construct that allows to express this properly and eliminates
-the code duplication. I'll follow up in PATCH v6.
+-- 
+2.33.0
 
-Thanks
-Oskar.
-
-
-
->
-> > +
-> > +  channel@2:
-> > +    type: object
-> > +    description: Remote Temperature Sensor or Voltage Sensor ("RTD2")
-> > +    properties:
-> > +      reg:
-> > +        const: 2
-> > +      sensor-type:
-> > +        items:
-> > +          - enum:
-> > +              - temperature
-> > +              - voltage
-> > +      temperature-mode:
-> > +        items:
-> > +          - enum:
-> > +              - thermistor
-> > +              - thermal-diode
-> > +    required:
-> > +      - reg
-> > +      - sensor-type
-> > +
-> > +  channel@3:
-> > +    type: object
-> > +    description: Remote Temperature Sensor or Voltage Sensor ("RTD3")
-> > +    properties:
-> > +      reg:
-> > +        const: 3
-> > +      sensor-type:
-> > +        items:
-> > +          - enum:
-> > +              - temperature
-> > +              - voltage
-> > +    required:
-> > +      - reg
-> > +      - sensor-type
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        nct7802@28 {
-> > +            compatible = "nuvoton,nct7802";
-> > +            reg = <0x28>;
-> > +
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            channel@0 { /* LTD */
-> > +              reg = <0>;
-> > +              status = "okay";
-> > +            };
-> > +
-> > +            channel@1 { /* RTD1 */
-> > +              reg = <1>;
-> > +              status = "okay";
-> > +              sensor-type = "temperature";
-> > +              temperature-mode = "thermistor";
-> > +            };
-> > +
-> > +            channel@2 { /* RTD2 */
-> > +              reg = <2>;
-> > +              status = "okay";
-> > +              sensor-type = "temperature";
-> > +              temperature-mode = "thermal-diode";
-> > +            };
-> > +
-> > +            channel@3 { /* RTD3 */
-> > +              reg = <3>;
-> > +              status = "okay";
-> > +              sensor-type = "voltage";
-> > +            };
-> > +        };
-> > +    };
-> >
->
