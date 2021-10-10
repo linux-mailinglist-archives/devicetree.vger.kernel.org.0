@@ -2,150 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC76F427F8D
-	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 09:06:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 086F3427FA2
+	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 09:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbhJJHHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 03:07:36 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:34096 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230520AbhJJHHY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 03:07:24 -0400
-X-UUID: 6e5c8d03af7041b7a7b1a07beca3a2f9-20211010
-X-UUID: 6e5c8d03af7041b7a7b1a07beca3a2f9-20211010
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 530102062; Sun, 10 Oct 2021 15:05:22 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Sun, 10 Oct 2021 15:05:20 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 10 Oct 2021 15:05:19 +0800
-From:   Kewei Xu <kewei.xu@mediatek.com>
-To:     <wsa@the-dreams.de>
-CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
-        <caiyu.chen@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
-        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>
-Subject: [PATCH v8 5/5] i2c: mediatek: modify bus speed calculation formula
-Date:   Sun, 10 Oct 2021 15:05:16 +0800
-Message-ID: <20211010070516.26763-6-kewei.xu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211010070516.26763-1-kewei.xu@mediatek.com>
-References: <20211010070516.26763-1-kewei.xu@mediatek.com>
+        id S230254AbhJJHSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 03:18:03 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:41414
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229697AbhJJHSB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Oct 2021 03:18:01 -0400
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9EAE940011
+        for <devicetree@vger.kernel.org>; Sun, 10 Oct 2021 07:16:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1633850162;
+        bh=k4FEo+R2PPzniUn68O7kiRbxrh5HJoaNN/ovFoAxqV0=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=nh33PvV2SVpDNnncn/VM3yMyHz3yeB6mB5pVv+9NjVRCkGv/vLcNTF39iPY5SuGzG
+         roIwSoLt3MXqqaN8535CUzkqiS4iDV4bDiPbZm/MvIixp+wnA50Ch9wO1etGow2llu
+         AQIikCXb9L/dxiHXss+iS8G//LjAEcrCAwoSWazOZrSwI3ILxP1c9YwafTaaJVCCa2
+         bC+GLHEG7h5MP2e/7SsfJPjWS5mJIhysV1MfFQHYvtebFub6fcUWj9ag+vh0l5ORH1
+         Xv+lkS9mtJaK1XystrjOJgfpierfzjVfxPBmYIYp35E4ODNPPzh0cJc6pT9TGIsSzi
+         EfnrSlhiyLPKA==
+Received: by mail-ed1-f69.google.com with SMTP id h19-20020aa7de13000000b003db6ad5245bso4336497edv.9
+        for <devicetree@vger.kernel.org>; Sun, 10 Oct 2021 00:16:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=k4FEo+R2PPzniUn68O7kiRbxrh5HJoaNN/ovFoAxqV0=;
+        b=ItNI8FiTOihSvRiTzP73nF4b9oHQvMqyo4cFQ+6IIaCKkxKKEFqA/NCxMQI/Q3L5oh
+         ZTnr0uealhsEgMFpV6mxEL6Qs7Zm3JrlsX5wJX5NvHcmwWGPg8fdeMTVkp99rBQpz6Ce
+         UlL2JdQuXFZnJip3maX99/9op8EJdr8l18TUwxla7HHs0XxXa9A+exgTjGvq1AmuA17y
+         COfp/nYlqd5ZakzsX7i9HXRHBOzBkywxRMuTKI4X5EllgTS6F/OprLfnIzuT2z4a/bJe
+         aQ0fN/i17+QRv+EHYRMCYKPoN1mI0DTbxe45MjkWYEuRwtOcHLuqGaQsUEwI9Y6Hn1yV
+         TAUA==
+X-Gm-Message-State: AOAM5305ph8jjRitr4hAjr3O72nobOHM08BWKZDkIWhlUDw3fCInQ1/z
+        YSvjR8be4t1g56ORy6mgX8v52n9FccxysdHdqWVbLlYerML/1NAJGDY1g7gEDUs7easC1AS0UUX
+        s3Nt8Om/SSMnSuR7wWZFZ7tVCG1rH/kEjYyA8sDE=
+X-Received: by 2002:a05:6402:447:: with SMTP id p7mr30046091edw.261.1633850162270;
+        Sun, 10 Oct 2021 00:16:02 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwKJ1LnCMDlzvINCMqobmWUknzNB8ILpJGIav9Gfqt0DYWqrzDusZHDUAUIdl48qhK1WrNnCg==
+X-Received: by 2002:a05:6402:447:: with SMTP id p7mr30046080edw.261.1633850162146;
+        Sun, 10 Oct 2021 00:16:02 -0700 (PDT)
+Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id bw25sm1786265ejb.20.2021.10.10.00.16.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Oct 2021 00:16:01 -0700 (PDT)
+Subject: Re: [PATCH v3 1/3] dt-bindings: mfd: add samsung,exynosautov9-sysreg
+ compatible
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>
+References: <20211010032246.146939-1-chanho61.park@samsung.com>
+ <CGME20211010032456epcas2p2b56e49dcc5973224b26725cb8b7589b3@epcas2p2.samsung.com>
+ <20211010032246.146939-2-chanho61.park@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <6d300a40-2f6d-84b4-22ba-a47ffeba8d10@canonical.com>
+Date:   Sun, 10 Oct 2021 09:16:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+In-Reply-To: <20211010032246.146939-2-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When clock-div is 0 or greater than 1, the bus speed
-calculated by the old speed calculation formula will be
-larger than the target speed. So we update the formula.
+On 10/10/2021 05:22, Chanho Park wrote:
+> Add document Samsung's Exynos Auto v9 compatible for system registers.
+> 
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-Reviewed-by: Qii Wang <qii.wang@mediatek.com>
----
- drivers/i2c/busses/i2c-mt65xx.c | 35 +++++++++++++++++++++++----------
- 1 file changed, 25 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-index 3db4ed3f9050..ad07647f88d5 100644
---- a/drivers/i2c/busses/i2c-mt65xx.c
-+++ b/drivers/i2c/busses/i2c-mt65xx.c
-@@ -68,11 +68,12 @@
- #define I2C_DEFAULT_CLK_DIV		5
- #define MAX_SAMPLE_CNT_DIV		8
- #define MAX_STEP_CNT_DIV		64
--#define MAX_CLOCK_DIV			256
-+#define MAX_CLOCK_DIV_8BITS		256
-+#define MAX_CLOCK_DIV_5BITS		32
- #define MAX_HS_STEP_CNT_DIV		8
--#define I2C_STANDARD_MODE_BUFFER	(1000 / 2)
--#define I2C_FAST_MODE_BUFFER		(300 / 2)
--#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 2)
-+#define I2C_STANDARD_MODE_BUFFER	(1000 / 3)
-+#define I2C_FAST_MODE_BUFFER		(300 / 3)
-+#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 3)
- 
- #define I2C_CONTROL_RS                  (0x1 << 1)
- #define I2C_CONTROL_DMA_EN              (0x1 << 2)
-@@ -724,14 +725,26 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	unsigned int best_mul;
- 	unsigned int cnt_mul;
- 	int ret = -EINVAL;
-+	int clock_div_constraint = 0;
- 
- 	if (target_speed > I2C_MAX_HIGH_SPEED_MODE_FREQ)
- 		target_speed = I2C_MAX_HIGH_SPEED_MODE_FREQ;
- 
-+	if (i2c->use_default_timing) {
-+		clock_div_constraint = 0;
-+	} else if (i2c->dev_comp->ltiming_adjust &&
-+		   i2c->ac_timing.inter_clk_div > 1) {
-+		clock_div_constraint = 1;
-+	} else if (i2c->dev_comp->ltiming_adjust &&
-+		   i2c->ac_timing.inter_clk_div == 0) {
-+		clock_div_constraint = -1;
-+	}
-+
- 	max_step_cnt = mtk_i2c_max_step_cnt(target_speed);
- 	base_step_cnt = max_step_cnt;
- 	/* Find the best combination */
--	opt_div = DIV_ROUND_UP(clk_src >> 1, target_speed);
-+	opt_div = DIV_ROUND_UP(clk_src >> 1, target_speed) +
-+		  clock_div_constraint;
- 	best_mul = MAX_SAMPLE_CNT_DIV * max_step_cnt;
- 
- 	/* Search for the best pair (sample_cnt, step_cnt) with
-@@ -766,7 +779,8 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	sample_cnt = base_sample_cnt;
- 	step_cnt = base_step_cnt;
- 
--	if ((clk_src / (2 * sample_cnt * step_cnt)) > target_speed) {
-+	if ((clk_src / (2 * (sample_cnt * step_cnt - clock_div_constraint))) >
-+		 target_speed) {
- 		/* In this case, hardware can't support such
- 		 * low i2c_bus_freq
- 		 */
-@@ -853,13 +867,16 @@ static int mtk_i2c_set_speed_adjust_timing(struct mtk_i2c *i2c,
- 	target_speed = i2c->speed_hz;
- 	parent_clk /= i2c->clk_src_div;
- 
--	if (i2c->dev_comp->timing_adjust)
--		max_clk_div = MAX_CLOCK_DIV;
-+	if (i2c->dev_comp->timing_adjust && i2c->dev_comp->ltiming_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_5BITS;
-+	else if (i2c->dev_comp->timing_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_8BITS;
- 	else
- 		max_clk_div = 1;
- 
- 	for (clk_div = 1; clk_div <= max_clk_div; clk_div++) {
- 		clk_src = parent_clk / clk_div;
-+		i2c->ac_timing.inter_clk_div = clk_div - 1;
- 
- 		if (target_speed > I2C_MAX_FAST_MODE_PLUS_FREQ) {
- 			/* Set master code speed register */
-@@ -906,8 +923,6 @@ static int mtk_i2c_set_speed_adjust_timing(struct mtk_i2c *i2c,
- 		break;
- 	}
- 
--	i2c->ac_timing.inter_clk_div = clk_div - 1;
--
- 	return 0;
- }
- 
--- 
-2.25.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
+Best regards,
+Krzysztof
