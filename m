@@ -2,233 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 476A44280C9
-	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 13:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA464280DD
+	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 13:40:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232132AbhJJLTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 07:19:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48430 "EHLO
+        id S231897AbhJJLmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 07:42:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232167AbhJJLSW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 07:18:22 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD22CC0613DF;
-        Sun, 10 Oct 2021 04:16:20 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id d9so31490814edh.5;
-        Sun, 10 Oct 2021 04:16:20 -0700 (PDT)
+        with ESMTP id S231894AbhJJLmj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 07:42:39 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7D13C061764;
+        Sun, 10 Oct 2021 04:40:40 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id b8so55516008edk.2;
+        Sun, 10 Oct 2021 04:40:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TH+I2aVPtNSn1H4wrwimzYH2fn7rX1yhAgj/wkO2epY=;
-        b=SAwKikuFE7Gqk2mpSPnL6vEAUJ7Wa4nTc98aaI0981t4K/Fno551seimvndVh+iO5/
-         jP1HW0ArDjUIVrE74G1Cvg7ijRi0abJh8IrXwRZbS/9siNIX1352nYGCkiwKypUCN4rF
-         ARCztPwpy1DZ+lIzB3vXN5xeltdvyVHFOPmU1sSdVYf7mLtD1wgtXxQrZis89t+MOylp
-         U6WERl8sCxpJ2ohok9YghzcLLzq5xBy2ixOitUDZg/rF20cXy4LlTXhggDU2z6MmXYkc
-         YJGV2ZrzgpToWqQt0TzDSHqWNd4zsMoeGx0+Zy8Vpw5hiDy/vjXrrZLKTBWJiYh2bqVj
-         XXmw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ZwHHSl6iZFkJFRf7Rx7RAcQVkeUEshDkhUR0gfMkh98=;
+        b=S0+Xca3eP7sEa6Y/D2sXWtKshGHKw62dsaYuv9uvDLjnFyzpzfcRze691IvPS1/EGa
+         hKDyVtRvj7ZmFJqabg2jdSMGpWp/sUw3M/nBIbz3j8cdHcYnTFlzAc2wi48xTslcstJC
+         mEZbrlUWScXx1NYBioV6nnBpDkJuDBBwe6HJvq61hGbcn76M7ZWwr+gWYlU5q/z4mJRW
+         qntp1uS5fUX+Sq4qID/mhEXRAXQw9BCNi+vXH3Ls1Ge8s3aCukl8eH2A1SIHW1EszOM2
+         ApneXSOGvEa1m6rwcwUjGKhMORAy7g489uOhWMQCqBQvYpvsLPvFXce+YEys+ff5TBbg
+         ro9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TH+I2aVPtNSn1H4wrwimzYH2fn7rX1yhAgj/wkO2epY=;
-        b=jrosKiKB8QSvvQl81XKpaRFFnY+m6QmrXjEN52UvP7zSi5mAMQY4G38ckZpEpdi6JD
-         zpAfdp6f9fsWwxs8gL4/6fbNi7gHZR4awTfE4hw4d62bCvXWLcP5MkOf3mB2E9c6bxwi
-         I5SfDZu5wg1MpeHyDGrqwwV9GiZ6nbgLW5CcQjbysd8EfCQHzhl9ZyQzustNSZ4OmpeO
-         RqpzNNGZutNql/zWKANtZnJl+xd0leIloGhh+7trjqzlTkeRqMVUwWShSLKTt9bFF3yD
-         YaOx39ryHd+9EnmyZBouSatYIClIb4o4GdGUanCIoTbr4SDHk+1UCfn22N6T00g9pG9u
-         sFKA==
-X-Gm-Message-State: AOAM531cJIN3hMTvLg7AePOCD4n9mse+nx8dxy9Os5E9Wm+qLDkpU0Fe
-        qxWtzE14KxKqPXZKO7ESFak=
-X-Google-Smtp-Source: ABdhPJz92WfjiBDX77VFxq8S4b0B9O88QGuVYaRLINnw1XGWmfheI8GeS7+7V/3Td2y290GBherxLg==
-X-Received: by 2002:a17:906:5cf:: with SMTP id t15mr18081370ejt.375.1633864579275;
-        Sun, 10 Oct 2021 04:16:19 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.googlemail.com with ESMTPSA id z5sm2414438edm.82.2021.10.10.04.16.18
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZwHHSl6iZFkJFRf7Rx7RAcQVkeUEshDkhUR0gfMkh98=;
+        b=45QtJ0/Zpo1UWJeJm/hlk8eIXBgIl/fj3YvmJyf4nXx665irGmLksQ1vbsDY4FR5wZ
+         Ex3MSsmcT4PHryE3VtWc4uyTovdohSDVVaoAmghpBOmaTRZsEAZ/7VglsdSH7lU9oaZG
+         3VuCrAaLnAmJSW9ZrvuNSBeLKbTmKVmTn4IalkUlEBm/FBaRDFx+qT5CPkaFkTQgWM0G
+         nYJ5CPnAngqhfGpJPnLprT8OUn0vWugvi4cxYARdfzHkkJkW0gj9vJbz7LWP/FfRWCcI
+         1CW5GJF+dl8jJsLO4JxjFqNuUVaVUaO8WSTNviuOUs6Mz5TG7vMW2KcxoKF5v5LaVDMP
+         h5OQ==
+X-Gm-Message-State: AOAM530+agQoBIz1KYxk8FDTVulpwehChpo7otg/VWh6mVNAlHPiapDo
+        l9yOGh1Feujnxd9/AJfQUqU=
+X-Google-Smtp-Source: ABdhPJwiShsIHfMG7RhBDJFf5zBNvqiWrgyNebz12Ge/FvGRVUM04yjEYomLUmeJW069ama1yILrsQ==
+X-Received: by 2002:a17:907:6010:: with SMTP id fs16mr15356405ejc.266.1633866039360;
+        Sun, 10 Oct 2021 04:40:39 -0700 (PDT)
+Received: from skbuf ([188.26.53.217])
+        by smtp.gmail.com with ESMTPSA id g17sm2425195edv.72.2021.10.10.04.40.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Oct 2021 04:16:19 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
+        Sun, 10 Oct 2021 04:40:38 -0700 (PDT)
+Date:   Sun, 10 Oct 2021 14:40:37 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
         "David S. Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
         Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>
-Subject: [net-next PATCH v4 13/13] drivers: net: dsa: qca8k: set internal delay also for sgmii
-Date:   Sun, 10 Oct 2021 13:15:56 +0200
-Message-Id: <20211010111556.30447-14-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211010111556.30447-1-ansuelsmth@gmail.com>
-References: <20211010111556.30447-1-ansuelsmth@gmail.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matthew Hagan <mnhagan88@gmail.com>
+Subject: Re: [net-next PATCH 07/13] net: dsa: qca8k: add support for
+ mac6_exchange, sgmii falling edge
+Message-ID: <20211010114037.2xy65gbdeshpwg2s@skbuf>
+References: <20211006223603.18858-1-ansuelsmth@gmail.com>
+ <20211006223603.18858-8-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211006223603.18858-8-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QCA original code report port instability and sa that SGMII also require
-to set internal delay. Generalize the rgmii delay function and apply the
-advised value if they are not defined in DT.
+On Thu, Oct 07, 2021 at 12:35:57AM +0200, Ansuel Smith wrote:
+> Some device set the switch to exchange the mac0 port with mac6 port. Add
+> support for this in the qca8k driver. Also add support for SGMII rx/tx
+> clock falling edge. This is only present for pad0, pad5 and pad6 have
+> these bit reserved from Documentation.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+> ---
+>  drivers/net/dsa/qca8k.c | 33 +++++++++++++++++++++++++++++++++
+>  drivers/net/dsa/qca8k.h |  3 +++
+>  2 files changed, 36 insertions(+)
+> 
+> diff --git a/drivers/net/dsa/qca8k.c b/drivers/net/dsa/qca8k.c
+> index 5bce7ac4dea7..3a040a3ed58e 100644
+> --- a/drivers/net/dsa/qca8k.c
+> +++ b/drivers/net/dsa/qca8k.c
+> @@ -973,6 +973,34 @@ qca8k_setup_mac_pwr_sel(struct qca8k_priv *priv)
+>  	return ret;
+>  }
+>  
+> +static int
+> +qca8k_setup_port0_pad_ctrl_reg(struct qca8k_priv *priv)
+> +{
+> +	struct device_node *node = priv->dev->of_node;
+> +	u32 mask = 0;
+> +	int ret = 0;
+> +
+> +	/* Swap MAC0-MAC6 */
+> +	if (of_property_read_bool(node, "qca,mac6-exchange"))
+> +		mask |= QCA8K_PORT0_PAD_CTRL_MAC06_EXCHG;
+> +
+> +	/* SGMII Clock phase configuration */
+> +	if (of_property_read_bool(node, "qca,sgmii-rxclk-falling-edge"))
+> +		mask |= QCA8K_PORT0_PAD_SGMII_RXCLK_FALLING_EDGE;
+> +
+> +	if (of_property_read_bool(node, "qca,sgmii-txclk-falling-edge"))
+> +		mask |= QCA8K_PORT0_PAD_SGMII_TXCLK_FALLING_EDGE;
+> +
+> +	if (mask)
+> +		ret = qca8k_rmw(priv, QCA8K_REG_PORT0_PAD_CTRL,
+> +				QCA8K_PORT0_PAD_CTRL_MAC06_EXCHG |
+> +				QCA8K_PORT0_PAD_SGMII_RXCLK_FALLING_EDGE |
+> +				QCA8K_PORT0_PAD_SGMII_TXCLK_FALLING_EDGE,
+> +				mask);
+> +
+> +	return ret;
+> +}
+> +
+>  static int
+>  qca8k_setup(struct dsa_switch *ds)
+>  {
+> @@ -1006,6 +1034,11 @@ qca8k_setup(struct dsa_switch *ds)
+>  	if (ret)
+>  		return ret;
+>  
+> +	/* Configure additional PORT0_PAD_CTRL properties */
+> +	ret = qca8k_setup_port0_pad_ctrl_reg(priv);
+> +	if (ret)
+> +		return ret;
+> +
+>  	/* Enable CPU Port */
+>  	ret = qca8k_reg_set(priv, QCA8K_REG_GLOBAL_FW_CTRL0,
+>  			    QCA8K_GLOBAL_FW_CTRL0_CPU_PORT_EN);
+> diff --git a/drivers/net/dsa/qca8k.h b/drivers/net/dsa/qca8k.h
+> index fc7db94cc0c9..3fded69a6839 100644
+> --- a/drivers/net/dsa/qca8k.h
+> +++ b/drivers/net/dsa/qca8k.h
+> @@ -35,6 +35,9 @@
+>  #define   QCA8K_MASK_CTRL_DEVICE_ID_MASK		GENMASK(15, 8)
+>  #define   QCA8K_MASK_CTRL_DEVICE_ID(x)			((x) >> 8)
+>  #define QCA8K_REG_PORT0_PAD_CTRL			0x004
+> +#define   QCA8K_PORT0_PAD_CTRL_MAC06_EXCHG		BIT(31)
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- drivers/net/dsa/qca8k.c | 102 +++++++++++++++++++++++++---------------
- drivers/net/dsa/qca8k.h |   2 +
- 2 files changed, 67 insertions(+), 37 deletions(-)
+Where can I find more information about this mac0/mac6 exchange? In this
+document for ar8327, bit 31 of PORT0 PAD MODE CTRL is reserved.
+http://www.datasheet.es/PDF/771154/AR8327-pdf.html
 
-diff --git a/drivers/net/dsa/qca8k.c b/drivers/net/dsa/qca8k.c
-index 947346511514..444894d108ee 100644
---- a/drivers/net/dsa/qca8k.c
-+++ b/drivers/net/dsa/qca8k.c
-@@ -1164,13 +1164,67 @@ qca8k_setup(struct dsa_switch *ds)
- 	return 0;
- }
- 
-+static void
-+qca8k_mac_config_setup_internal_delay(struct qca8k_priv *priv, struct dsa_port *dp,
-+				      u32 reg, const struct phylink_link_state *state)
-+{
-+	u32 delay, val = 0;
-+	int ret;
-+
-+	if (state->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-+	    state->interface == PHY_INTERFACE_MODE_RGMII_TXID ||
-+	    state->interface == PHY_INTERFACE_MODE_SGMII) {
-+		if (of_property_read_u32(dp->dn, "tx-internal-delay-ps", &delay))
-+			delay = 1;
-+		else
-+			/* Switch regs accept value in ns, convert ps to ns */
-+			delay = delay / 1000;
-+
-+		if (delay > QCA8K_MAX_DELAY) {
-+			dev_err(priv->dev, "rgmii tx delay is limited to a max value of 3ns, setting to the max value");
-+			delay = 3;
-+		}
-+
-+		val |= QCA8K_PORT_PAD_RGMII_TX_DELAY(delay) |
-+			QCA8K_PORT_PAD_RGMII_TX_DELAY_EN;
-+	}
-+
-+	if (state->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-+	    state->interface == PHY_INTERFACE_MODE_RGMII_RXID ||
-+	    state->interface == PHY_INTERFACE_MODE_SGMII) {
-+		if (of_property_read_u32(dp->dn, "rx-internal-delay-ps", &delay))
-+			delay = 2;
-+		else
-+			/* Switch regs accept value in ns, convert ps to ns */
-+			delay = delay / 1000;
-+
-+		if (delay > QCA8K_MAX_DELAY) {
-+			dev_err(priv->dev, "rgmii rx delay is limited to a max value of 3ns, setting to the max value");
-+			delay = 3;
-+		}
-+
-+		val |= QCA8K_PORT_PAD_RGMII_RX_DELAY(delay) |
-+			QCA8K_PORT_PAD_RGMII_RX_DELAY_EN;
-+	}
-+
-+	/* Set RGMII delay based on the selected values */
-+	ret = qca8k_rmw(priv, reg,
-+			QCA8K_PORT_PAD_RGMII_TX_DELAY_MASK |
-+			QCA8K_PORT_PAD_RGMII_TX_DELAY_MASK |
-+			QCA8K_PORT_PAD_RGMII_RX_DELAY_MASK |
-+			QCA8K_PORT_PAD_RGMII_RX_DELAY_EN,
-+			val);
-+	if (ret)
-+		dev_err(priv->dev, "Failed to set internal delay for CPU port %d", dp->index);
-+}
-+
- static void
- qca8k_phylink_mac_config(struct dsa_switch *ds, int port, unsigned int mode,
- 			 const struct phylink_link_state *state)
- {
- 	struct qca8k_priv *priv = ds->priv;
- 	struct dsa_port *dp;
--	u32 reg, val, delay;
-+	u32 reg, val;
- 	int ret;
- 
- 	switch (port) {
-@@ -1222,44 +1276,11 @@ qca8k_phylink_mac_config(struct dsa_switch *ds, int port, unsigned int mode,
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
- 	case PHY_INTERFACE_MODE_RGMII_RXID:
- 		dp = dsa_to_port(ds, port);
--		val = QCA8K_PORT_PAD_RGMII_EN;
--
--		if (state->interface == PHY_INTERFACE_MODE_RGMII_ID ||
--		    state->interface == PHY_INTERFACE_MODE_RGMII_TXID) {
--			if (of_property_read_u32(dp->dn, "tx-internal-delay-ps", &delay))
--				delay = 1;
--			else
--				/* Switch regs accept value in ns, convert ps to ns */
--				delay = delay / 1000;
--
--			if (delay > QCA8K_MAX_DELAY) {
--				dev_err(priv->dev, "rgmii tx delay is limited to a max value of 3ns, setting to the max value");
--				delay = 3;
--			}
--
--			val |= QCA8K_PORT_PAD_RGMII_TX_DELAY(delay) |
--			       QCA8K_PORT_PAD_RGMII_TX_DELAY_EN;
--		}
- 
--		if (state->interface == PHY_INTERFACE_MODE_RGMII_ID ||
--		    state->interface == PHY_INTERFACE_MODE_RGMII_RXID) {
--			if (of_property_read_u32(dp->dn, "rx-internal-delay-ps", &delay))
--				delay = 2;
--			else
--				/* Switch regs accept value in ns, convert ps to ns */
--				delay = delay / 1000;
--
--			if (delay > QCA8K_MAX_DELAY) {
--				dev_err(priv->dev, "rgmii rx delay is limited to a max value of 3ns, setting to the max value");
--				delay = 3;
--			}
--
--			val |= QCA8K_PORT_PAD_RGMII_RX_DELAY(delay) |
--			       QCA8K_PORT_PAD_RGMII_RX_DELAY_EN;
--		}
-+		qca8k_write(priv, reg, QCA8K_PORT_PAD_RGMII_EN);
- 
--		/* Set RGMII delay based on the selected values */
--		qca8k_write(priv, reg, val);
-+		/* Configure rgmii delay from dp or taking advised values */
-+		qca8k_mac_config_setup_internal_delay(priv, dp, reg, state);
- 
- 		/* QCA8337 requires to set rgmii rx delay for all ports.
- 		 * This is enabled through PORT5_PAD_CTRL for all ports,
-@@ -1341,6 +1362,13 @@ qca8k_phylink_mac_config(struct dsa_switch *ds, int port, unsigned int mode,
- 					QCA8K_PORT0_PAD_SGMII_RXCLK_FALLING_EDGE |
- 					QCA8K_PORT0_PAD_SGMII_TXCLK_FALLING_EDGE,
- 					val);
-+
-+		/* From original code is reported port instability as SGMII also
-+		 * require delay set. Apply advised values here or take them from DT.
-+		 */
-+		if (state->interface == PHY_INTERFACE_MODE_SGMII)
-+			qca8k_mac_config_setup_internal_delay(priv, dp, reg, state);
-+
- 		break;
- 	default:
- 		dev_err(ds->dev, "xMII mode %s not supported for port %d\n",
-diff --git a/drivers/net/dsa/qca8k.h b/drivers/net/dsa/qca8k.h
-index c032db5e0d41..92867001cc34 100644
---- a/drivers/net/dsa/qca8k.h
-+++ b/drivers/net/dsa/qca8k.h
-@@ -39,7 +39,9 @@
- #define QCA8K_REG_PORT5_PAD_CTRL			0x008
- #define QCA8K_REG_PORT6_PAD_CTRL			0x00c
- #define   QCA8K_PORT_PAD_RGMII_EN			BIT(26)
-+#define   QCA8K_PORT_PAD_RGMII_TX_DELAY_MASK		GENMASK(23, 22)
- #define   QCA8K_PORT_PAD_RGMII_TX_DELAY(x)		((x) << 22)
-+#define   QCA8K_PORT_PAD_RGMII_RX_DELAY_MASK		GENMASK(21, 20)
- #define   QCA8K_PORT_PAD_RGMII_RX_DELAY(x)		((x) << 20)
- #define	  QCA8K_PORT_PAD_RGMII_TX_DELAY_EN		BIT(25)
- #define   QCA8K_PORT_PAD_RGMII_RX_DELAY_EN		BIT(24)
--- 
-2.32.0
-
+> +#define   QCA8K_PORT0_PAD_SGMII_RXCLK_FALLING_EDGE	BIT(19)
+> +#define   QCA8K_PORT0_PAD_SGMII_TXCLK_FALLING_EDGE	BIT(18)
+>  #define QCA8K_REG_PORT5_PAD_CTRL			0x008
+>  #define QCA8K_REG_PORT6_PAD_CTRL			0x00c
+>  #define   QCA8K_PORT_PAD_RGMII_EN			BIT(26)
+> -- 
+> 2.32.0
+> 
