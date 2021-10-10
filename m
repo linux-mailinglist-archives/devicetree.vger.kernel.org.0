@@ -2,219 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CDDC427E1B
-	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 01:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AA05427E3E
+	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 03:56:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231277AbhJIXvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Oct 2021 19:51:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41068 "EHLO
+        id S229648AbhJJB6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Oct 2021 21:58:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230342AbhJIXvN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 19:51:13 -0400
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9F7BC061570;
-        Sat,  9 Oct 2021 16:49:15 -0700 (PDT)
-Received: by mail-ot1-x334.google.com with SMTP id l7-20020a0568302b0700b0054e40740571so10752165otv.0;
-        Sat, 09 Oct 2021 16:49:15 -0700 (PDT)
+        with ESMTP id S229549AbhJJB6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Oct 2021 21:58:08 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D233CC061570;
+        Sat,  9 Oct 2021 18:56:10 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id d3so24497593edp.3;
+        Sat, 09 Oct 2021 18:56:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=je1XZIxljgdSR278fp4p1LdoO9f59hu34O6qug1reV4=;
-        b=qM09xTUaQU5TmqVOUFyfH71NBCO+EsREBkLHEny26Z67CdFRvMMhd4LrpcmsN9VtBc
-         mHndOfODqBDmmWHy8ppw8rBJPhbQelbqyhH4pvsJLz6PSTOxAkikQWMZmGNHioq6JiA1
-         E820I2jcws5Ik6gYp9xraqcpdUD+nWK9kp9tyx7E93gB2xQGt+Ai5AIL9lOSREttbY9T
-         Ns13lyFcoTqCH5eSeel1WT9tBn9qgHdrFYIIDG89hSEyfCDwnoCj1swHi+0BS1iVPZef
-         XohXq08mX/UciM18H8t3h8cYmy74RT0KRMSHllzAy5YiEzGgpyE2Zb+bOqo/04lRQeoU
-         g5SA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gTfaka8Pz1ktsGyu11SQTbgTqP0j1W5UerGz8aBIKfw=;
+        b=X5BB5xeJAey+a+fjT11tj4xEsuk3+0bPxjkZeEdYR2RpuJ5h/xiiaz+OsEsrjZDRfJ
+         H4dt9a8obXVEqf9ADqmUc/0QPZnYXtfHDZEpczjgA1I5oAn7+LUbItIyWvwaVQTiF0/Z
+         8Bp/iwUAtESjXIAdIACHOqA1D+eLlSS+CnbWmEQGy72X8PvJ6DWEOJ6kAbYZ/lDgxRCS
+         fJikDwqlS29IMD7gFuHdqcPGVz0afuWKX3VxlAYzfOL55phEa8YAgsqNQi3mLBx+RyuT
+         EdUQqbrV1VNr+rJmKI2w1N0EmU/tPgfe4pwSu5MdmWkbES5xHfrTTm/4szI64m+RgNyN
+         PyrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=je1XZIxljgdSR278fp4p1LdoO9f59hu34O6qug1reV4=;
-        b=TxT7Rl7DPhqVHyjiF5XJ+Qs1j92wodvNq/TlHKlk2xAT57SyuRgHMoo9TBu5I4BgVG
-         S8jqsJk+FiPNXJZOQRuzILoAaEvORxNbw+8+Qvl24U8n3i/JS3Zuc2jvNW/+7+4XJd8R
-         99VvScKcJ2+a+2oitAwe6ax+35eORKZQFFLPA1FKmnYUsqcET1+8JPXyauS3liWvo0bO
-         VixdaELdlhoX1SgMqOwOD612fKMOp5ABwpR9nNIfCD1k0JHj+TXMLqTwYmt4NX63jHYZ
-         wn5hZ7Vr/ZTo+KYRFam5kTZ4l9vkf2yPFMqOnFwqB0m921uOvrYCLygAsUDIL74+YRtO
-         /ZnQ==
-X-Gm-Message-State: AOAM531A/g+/3FsS+2bIUGDMr6M7yLTaJ1/8M5rp2zIqKSB1pV59FaVB
-        mHifZ+ETG6X4NrvMjAa1spQ=
-X-Google-Smtp-Source: ABdhPJxzP2b+kx2aWPE8XYDoJOmsRkxxYSAqAsXQJgb9xBBnyTGDFsYtgPTbMzowveRS0rvALOwVrA==
-X-Received: by 2002:a05:6830:1514:: with SMTP id k20mr14457570otp.44.1633823354966;
-        Sat, 09 Oct 2021 16:49:14 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id k21sm796717oig.26.2021.10.09.16.49.14
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gTfaka8Pz1ktsGyu11SQTbgTqP0j1W5UerGz8aBIKfw=;
+        b=Zj6l4u+yuzLfdrUJ9iPgQwjd7cGmyYwvHzo5QhKvfOusM7mz+85sblIUNk53uvrgY/
+         aMuAKQiVVL4fRKQdwpaa4MfBjz+DYdmttgykNQcAhWatanU/hVlmS4/VtvPmu45uBw9/
+         GYi8mQc6N3M2sMibAEjdlq2ly4YYfkCL4imNkXKX9vjihOVH9UHhUxYGsfX5UgQfWwxc
+         +mXB5Kj34o1TJscXEmwJcEMac951h7pwJFMIT690euEsS7HKx67iunJEHN06WvqwpOHk
+         9kJjKc1fdZ9+MakUdQ8Sb6ThjADxI7puQptGzhN4ZdH4JiElY0xjoD1mPDHWjB3fMQfE
+         XeeA==
+X-Gm-Message-State: AOAM530iCJguX5485v37R6W1IlJngpk1SbTveo1ysuI2bTYmGells+aR
+        FvkhMpjaJT7qPIev8Qi7uI0=
+X-Google-Smtp-Source: ABdhPJx+fjPXhOPOASEr4Ddv2f+PQ7q0TZ8/Jd5QXUKnhNEi23OTSqja5UCttDDNQq60M5ePq4bkWQ==
+X-Received: by 2002:a17:906:368c:: with SMTP id a12mr15803241ejc.143.1633830969037;
+        Sat, 09 Oct 2021 18:56:09 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.googlemail.com with ESMTPSA id x11sm1877253edj.62.2021.10.09.18.56.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Oct 2021 16:49:14 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 9 Oct 2021 16:49:13 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, kernel@pengutronix.de, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, linux-imx@nxp.com, amitk@kernel.org,
-        rui.zhang@intel.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alistair23@gmail.com,
-        linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v12 05/10] thermal: sy7636a: Add thermal driver for
- sy7636a
-Message-ID: <20211009234913.GA2234993@roeck-us.net>
-References: <20211009115031.18392-1-alistair@alistair23.me>
- <20211009115031.18392-9-alistair@alistair23.me>
+        Sat, 09 Oct 2021 18:56:08 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>
+Subject: [net-next PATCH v3 00/13] Multiple improvement for qca8337 switch
+Date:   Sun, 10 Oct 2021 03:55:50 +0200
+Message-Id: <20211010015603.24483-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211009115031.18392-9-alistair@alistair23.me>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 09, 2021 at 09:50:27PM +1000, Alistair Francis wrote:
-> Add thermal driver to enable kernel based polling
-> and shutdown of device for temperatures out of spec
-> 
+This series is the final step of a long process of porting 80+ devices
+to use the new qca8k driver instead of the hacky qca one based on never
+merged swconfig platform.
+Some background to justify all these additions.
+QCA used a special binding to declare raw initval to set the swich. I
+made a script to convert all these magic values and convert 80+ dts and
+scan all the needed "unsupported regs". We find a baseline where we
+manage to find the common and used regs so in theory hopefully we don't
+have to add anymore things.
+We discovered lots of things with this, especially about how differently
+qca8327 works compared to qca8337.
 
-It _should_ be possible to implement this as part of the hwmon driver
-(by using the _with_info hwmon API).
+In short, we found that qca8327 have some problem with suspend/resume for
+their internal phy. It instead sets some dedicated regs that suspend the
+phy without setting the standard bit. First 4 patch are to fix this.
+There is also a patch about preferring master. This is directly from the
+original driver and it seems to be needed to prevent some problem with
+the pause frame.
 
-Guenter
+Every ipq806x target sets the mac power sel and this specific reg
+regulates the output voltage of the regulator. Without this some
+instability can occur.
 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> ---
->  drivers/thermal/Kconfig           |  6 ++
->  drivers/thermal/Makefile          |  1 +
->  drivers/thermal/sy7636a_thermal.c | 94 +++++++++++++++++++++++++++++++
->  3 files changed, 101 insertions(+)
->  create mode 100644 drivers/thermal/sy7636a_thermal.c
-> 
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index d7f44deab5b1..6ee0e7de1b37 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -450,6 +450,12 @@ depends on (ARCH_STI || ARCH_STM32) && OF
->  source "drivers/thermal/st/Kconfig"
->  endmenu
->  
-> +config SY7636A_THERMAL
-> +	tristate "SY7636A thermal management"
-> +	help
-> +	  Enable the sy7636a thermal driver, which supports the
-> +	  temperature sensor embedded in Silabs SY7636A IC.
-> +
->  source "drivers/thermal/tegra/Kconfig"
->  
->  config GENERIC_ADC_THERMAL
-> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> index 82fc3e616e54..2e1aca8a0a09 100644
-> --- a/drivers/thermal/Makefile
-> +++ b/drivers/thermal/Makefile
-> @@ -51,6 +51,7 @@ obj-$(CONFIG_DA9062_THERMAL)	+= da9062-thermal.o
->  obj-y				+= intel/
->  obj-$(CONFIG_TI_SOC_THERMAL)	+= ti-soc-thermal/
->  obj-y				+= st/
-> +obj-$(CONFIG_SY7636A_THERMAL)	+= sy7636a_thermal.o
->  obj-$(CONFIG_QCOM_TSENS)	+= qcom/
->  obj-y				+= tegra/
->  obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
-> diff --git a/drivers/thermal/sy7636a_thermal.c b/drivers/thermal/sy7636a_thermal.c
-> new file mode 100644
-> index 000000000000..9e58305ca3ce
-> --- /dev/null
-> +++ b/drivers/thermal/sy7636a_thermal.c
-> @@ -0,0 +1,94 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Functions to access SY3686A power management chip temperature
-> + *
-> + * Copyright (C) 2019 reMarkable AS - http://www.remarkable.com/
-> + *
-> + * Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
-> + *          Alistair Francis <alistair@alistair23.me>
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/thermal.h>
-> +
-> +#include <linux/mfd/sy7636a.h>
-> +
-> +static int sy7636a_get_temp(void *arg, int *res)
-> +{
-> +	unsigned int mode_ctr;
-> +	int ret, reg_val;
-> +	struct regmap *regmap = arg;
-> +	bool isVoltageActive;
-> +
-> +	ret = regmap_read(regmap,
-> +			SY7636A_REG_OPERATION_MODE_CRL, &mode_ctr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	isVoltageActive = mode_ctr & SY7636A_OPERATION_MODE_CRL_ONOFF;
-> +
-> +	/* If operation mode isn't set to control, then let's set it. */
-> +	if (!isVoltageActive) {
-> +		ret = regmap_write(regmap,
-> +				SY7636A_REG_OPERATION_MODE_CRL,
-> +				mode_ctr | SY7636A_OPERATION_MODE_CRL_ONOFF);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = regmap_read(regmap,
-> +			SY7636A_REG_TERMISTOR_READOUT, &reg_val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Restore the operation mode if it wasn't set */
-> +	if (!isVoltageActive) {
-> +		ret = regmap_write(regmap,
-> +				SY7636A_REG_OPERATION_MODE_CRL,
-> +				mode_ctr);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	*res = reg_val * 1000;
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct thermal_zone_of_device_ops ops = {
-> +	.get_temp	= sy7636a_get_temp,
-> +};
-> +
-> +static int sy7636a_thermal_probe(struct platform_device *pdev)
-> +{
-> +	struct regmap *regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	struct thermal_zone_device *thermal_zone_dev;
-> +
-> +	thermal_zone_dev = devm_thermal_zone_of_sensor_register(
-> +			pdev->dev.parent,
-> +			0,
-> +			regmap,
-> +			&ops);
-> +
-> +	return PTR_ERR_OR_ZERO(thermal_zone_dev);
-> +}
-> +
-> +static const struct platform_device_id sy7636a_thermal_id_table[] = {
-> +	{ "sy7636a-thermal", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(platform, sy7636a_thermal_id_table);
-> +
-> +static struct platform_driver sy7636a_thermal_driver = {
-> +	.driver = {
-> +		.name = "sy7636a-thermal",
-> +	},
-> +	.probe = sy7636a_thermal_probe,
-> +	.id_table = sy7636a_thermal_id_table,
-> +};
-> +module_platform_driver(sy7636a_thermal_driver);
-> +
-> +MODULE_AUTHOR("Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>");
-> +MODULE_DESCRIPTION("SY7636A thermal driver");
-> +MODULE_LICENSE("GPL v2");
+Some configuration (for some reason) swap mac6 with mac0. We add support
+for this.
+Also, we discovered that some device doesn't work at all with pll enabled
+for sgmii line. In the original code this was based on the switch
+revision. In later revision the pll regs were decided based on the switch
+type (disabled for qca8327 and enabled for qca8337) but still some
+device had that disabled in the initval regs.
+Considering we found at least one qca8337 device that required pll
+disabled to work (no traffic problem) we decided to introduce a binding
+to enable pll and set it only with that.
+
+Lastly, we add support for led open drain that require the power-on-sel
+to set. Also, some device have only the power-on-sel set in the initval
+so we add also support for that. This is needed for the correct function
+of the switch leds.
+Qca8327 have a special reg in the pws regs that set it to a reduced
+48pin layout. This is needed or the switch doesn't work.
+
+These are all the special configuration we find on all these devices that
+are from various targets. Mostly ath79, ipq806x and bcm53xx.
+
+Changes v3:
+- Drop phy patches (proposed separateley)
+- Drop special pwr binding. Rework to ipq806x specific
+- Better describe compatible and add serial print on switch chip
+- Drop mac exchange. Rework falling edge and move it to mac_config
+- Add support for port 6 cpu port. Drop hardcoded cpu port to port0
+- Improve port stability with sgmii. QCA source have intenal delay also
+  for sgmii
+- Add warning with pll enabled on wrong configuration
+
+Changes v2:
+- Reword Documentation patch to dt-bindings
+- Propose first 2 phy patch to net
+- Better describe and add hint on how to use all the new
+  bindings 
+- Rework delay scan function and move to phylink mac_config
+- Drop package48 wrong binding
+- Introduce support for qca8328 switch
+- Fix wrong binding name power-on-sel
+- Return error on wrong config with led open drain and 
+  ignore-power-on-sel not set
+
+Ansuel Smith (13):
+  net: dsa: qca8k: add mac_power_sel support
+  net: dsa: qca8k: add support for sgmii falling edge
+  dt-bindings: net: dsa: qca8k: Add MAC swap and clock phase properties
+  drivers: net: dsa: qca8k: add support for cpu port 6
+  dt-bindings: net: dsa: qca8k: Document support for CPU port 6
+  net: dsa: qca8k: move rgmii delay detection to phylink mac_config
+  net: dsa: qca8k: add explicit SGMII PLL enable
+  dt-bindings: net: dsa: qca8k: Document qca,sgmii-enable-pll
+  drivers: net: dsa: qca8k: add support for pws config reg
+  dt-bindings: net: dsa: qca8k: document open drain binding
+  drivers: net: dsa: qca8k: add support for QCA8328
+  dt-bindings: net: dsa: qca8k: document support for qca8328
+  drivers: net: dsa: qca8k: set internal delay also for sgmii
+
+ .../devicetree/bindings/net/dsa/qca8k.txt     |  38 ++-
+ drivers/net/dsa/qca8k.c                       | 285 +++++++++++++-----
+ drivers/net/dsa/qca8k.h                       |  21 +-
+ 3 files changed, 262 insertions(+), 82 deletions(-)
+
+-- 
+2.32.0
+
