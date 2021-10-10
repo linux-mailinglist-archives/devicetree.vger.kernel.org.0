@@ -2,94 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA9DC42835E
-	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 21:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25003428370
+	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 21:42:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232759AbhJJTeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 15:34:06 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:37852 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232548AbhJJTeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 15:34:01 -0400
-Received: by mail-ot1-f48.google.com with SMTP id r43-20020a05683044ab00b0054716b40005so18895200otv.4;
-        Sun, 10 Oct 2021 12:32:02 -0700 (PDT)
+        id S229679AbhJJToQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 15:44:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46140 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232196AbhJJToM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 15:44:12 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E9EC061745;
+        Sun, 10 Oct 2021 12:42:13 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id z20so58619371edc.13;
+        Sun, 10 Oct 2021 12:42:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=7AOn8IBQkBi70i3vw/2+YYiK72dXO95HMpLtZaqXWmE=;
+        b=BwZsHRvCFNYTqJaIimsvr7VH/e8F2yHtpuSRGTHD62fEbUSKuntU/Is2kIgPG3e1WY
+         lgSjxCdtVNfSj0htwkEHdm77ixgh0zuR/auc+c2H2pqOAWKjnNYcJIMuqXFLaxCTD4A9
+         zA7OTpr77XDDlAlMFASeznK15g2dQ7cVFHziN/sXWXc+uRpnXMiM36564/HCF8n8DCXI
+         EvYTMmzZhgJbxbqZsY/3BMO6cRUd+Vf6J7f634UPRbc9+wmjqwiN5QyySyUuntOvjXAd
+         Qvtr7/95gYbztOfHKIATQjal5zxrZoENjKLVTDkMLYWiXLer4uDXSJUOMvJPqrdXYrVE
+         PJHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=9HyABHgPYgGal/sy/skHP8VtC/QmAdxeyMbtN7+dwms=;
-        b=3I6IpCpE+6hM3qSB1EEyrtYfmo6+uMa5m+cAbXIFa4dbZ286DcGkhYKg+9885b/JaU
-         wcM79znX74eRiKeW93fpQLOZqM8d05Y0RdZ7Er/hRsYbKPgokXq9bNp0BaVcjUaYaxKp
-         52Q0efexDEEbM8IiUQk5gqejul1rTaGrlGJYlI8WuigdVnXWh34Di7M0EEJoSAwM0ZSq
-         y4LI11+AjvDs+IlHmojP4adN/Cdeeu1hvoQNatJzTjXydkSiIBM2G9nin7ZSx++cZrvF
-         +AYMf4g9WACDqBQuv+5o+2pgVZH9Zbpvtc9ezqYgf/dFIt9Naoi18W3quqgMQnMyikmX
-         pz/Q==
-X-Gm-Message-State: AOAM530NbHCW3UClwK6UAgKTZKF/jt3MANNTBZtuoOfxx4PIHOSX0gQo
-        4NO0CLchvI9uSXoyeodm+w==
-X-Google-Smtp-Source: ABdhPJxUkh7mUwxcvqyvZnzD/TkQmuaAeXID3n3EbuHLG3ekM/EhzvUKrm3JDoG9JI2V0JVaELrd9w==
-X-Received: by 2002:a05:6830:3151:: with SMTP id c17mr17982596ots.372.1633894322514;
-        Sun, 10 Oct 2021 12:32:02 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bo31sm1271139oib.13.2021.10.10.12.32.01
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7AOn8IBQkBi70i3vw/2+YYiK72dXO95HMpLtZaqXWmE=;
+        b=aMukZpiBEG3S9O/0lH5KQwdRxeI4SN3dcpopywvaljHSNQs3zlD2Fn+jPEsoE/8/I7
+         aREYt63zNVh13QVWqAWuehV/tq4N1v3qteEjvHe+ChwJvMA7N41h+408LXQ04r2LrnEv
+         fTmKbxURn0t+v8TgdJ+/DmovRf/lUBLQ3LNSdauHgtlIZFALU7/CKfTP10Ym/Z34uafz
+         Tlof/whmGEAoEzR/VtW1id4K7a23EF8uv+o3up0hd7pUCq5nB3ys0tlDFBE79mgrpUY4
+         NlEfr2hR5RmZL5LHGJQnfwUNh7f4OjzjkWDi/C8yjF7RoG8dILNqgNLMJ8/xbZBrXunq
+         aeFg==
+X-Gm-Message-State: AOAM533MHG07dvawH8J07wEIZIjKaNUP8g4CRbCJ/BGKXD+zOjFEHr5B
+        WIE6cN0kjIb0AeHbE0LZ8cQ=
+X-Google-Smtp-Source: ABdhPJzzvz0UXcm3p2Nz7dEd8n+BhjyawhvOWElMqb7JnCGeIwb3Bu+qL05ZohFlWMwE7AXH090Nlg==
+X-Received: by 2002:a50:d903:: with SMTP id t3mr34509709edj.70.1633894932238;
+        Sun, 10 Oct 2021 12:42:12 -0700 (PDT)
+Received: from skbuf ([188.26.53.217])
+        by smtp.gmail.com with ESMTPSA id z4sm2438120ejn.112.2021.10.10.12.42.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Oct 2021 12:32:02 -0700 (PDT)
-Received: (nullmailer pid 3158662 invoked by uid 1000);
-        Sun, 10 Oct 2021 19:31:56 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Oskar Senft <osk@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>
-In-Reply-To: <20211010033112.3621816-1-osk@google.com>
-References: <20211010033112.3621816-1-osk@google.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: hwmon: Add nct7802 bindings
-Date:   Sun, 10 Oct 2021 14:31:56 -0500
-Message-Id: <1633894316.391361.3158661.nullmailer@robh.at.kernel.org>
+        Sun, 10 Oct 2021 12:42:11 -0700 (PDT)
+Date:   Sun, 10 Oct 2021 22:42:10 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v4 01/13] net: dsa: qca8k: add mac_power_sel
+ support
+Message-ID: <20211010194210.yqgytrriuuk5gdh2@skbuf>
+References: <20211010111556.30447-1-ansuelsmth@gmail.com>
+ <20211010111556.30447-2-ansuelsmth@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211010111556.30447-2-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 09 Oct 2021 23:31:11 -0400, Oskar Senft wrote:
-> This change documents the device tree bindings for the Nuvoton
-> NCT7802Y driver.
+On Sun, Oct 10, 2021 at 01:15:44PM +0200, Ansuel Smith wrote:
+> Add missing mac power sel support needed for ipq8064/5 SoC that require
+> 1.8v for the internal regulator port instead of the default 1.5v.
+> If other device needs this, consider adding a dedicated binding to
+> support this.
 > 
-> Signed-off-by: Oskar Senft <osk@google.com>
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
-> Changes from PATCH v5:
-> - Refactored to use patternProperties.
-> - Added validation for sensor-type and temperature-mode.
-> ---
->  .../bindings/hwmon/nuvoton,nct7802.yaml       | 144 ++++++++++++++++++
->  1 file changed, 144 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml:41:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml:48:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml:53:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml:66:19: [warning] wrong indentation: expected 20 but found 18 (indentation)
-./Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml:85:19: [warning] wrong indentation: expected 20 but found 18 (indentation)
-./Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml:90:19: [warning] wrong indentation: expected 20 but found 18 (indentation)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1538966
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
