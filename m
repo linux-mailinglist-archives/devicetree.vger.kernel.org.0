@@ -2,109 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9C114283F8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 00:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EFAC428430
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 01:55:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231136AbhJJWIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 18:08:23 -0400
-Received: from ixit.cz ([94.230.151.217]:50278 "EHLO ixit.cz"
+        id S233264AbhJJX5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 19:57:34 -0400
+Received: from mx.socionext.com ([202.248.49.38]:24769 "EHLO mx.socionext.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230364AbhJJWIX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Oct 2021 18:08:23 -0400
-Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 2562420064;
-        Mon, 11 Oct 2021 00:06:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1633903582;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=uZj5d5AasDC0yGtneihJgs5zOpaWOjkQUqwj3rrpnMM=;
-        b=ctj8Q1q+FWwxgLuXTSdKDPIMPQuYwmzTbF6ioCGWaU7IUFsJffa19IuaAv2Z5m3kxExi7v
-        xp7dwlZ7TigZ2tdJy2wykGRuVL1+Zj8QscNQ7i4oPX4CTNxaHnW0pTDJm1gbmM2IjlNTlj
-        f7yiqStARtCZONqFMHo7goTsExi/DNU=
-Date:   Mon, 11 Oct 2021 00:04:52 +0200
-From:   David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH] dt-bindings: reserved-memory: ramoops: Convert txt
- bindings to yaml
+        id S231481AbhJJX5e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Oct 2021 19:57:34 -0400
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 11 Oct 2021 08:55:34 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 331EB2058B40;
+        Mon, 11 Oct 2021 08:55:34 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Mon, 11 Oct 2021 08:55:34 +0900
+Received: from yuzu2.css.socionext.com (yuzu2 [172.31.9.57])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id BDCB8C1E11;
+        Mon, 11 Oct 2021 08:55:33 +0900 (JST)
+Received: from [10.212.182.24] (unknown [10.212.182.24])
+        by yuzu2.css.socionext.com (Postfix) with ESMTP id 466E1B62B3;
+        Mon, 11 Oct 2021 08:55:33 +0900 (JST)
+Subject: Re: [PATCH v2 4/5] dt-bindings: clock: uniphier: Add clock binding
+ for SoC-glue
 To:     Rob Herring <robh@kernel.org>
-Cc:     Anton Vorontsov <anton@enomsg.org>, linux-kernel@vger.kernel.org,
-        Colin Cross <ccross@android.com>, devicetree@vger.kernel.org,
-        ~okias/devicetree@lists.sr.ht, Rob Herring <robh+dt@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Kees Cook <keescook@chromium.org>
-Message-Id: <408S0R.DDH2XGNA3OQR3@ixit.cz>
-In-Reply-To: <1633894316.420061.3158665.nullmailer@robh.at.kernel.org>
-References: <20211009111927.53280-1-david@ixit.cz>
-        <1633894316.420061.3158665.nullmailer@robh.at.kernel.org>
-X-Mailer: geary/40.0
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org
+References: <1633518555-8195-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1633518555-8195-5-git-send-email-hayashi.kunihiko@socionext.com>
+ <YV395BTH/gqcuDJH@robh.at.kernel.org>
+ <f2138a98-9740-d1de-5dc9-e14a68fa509b@socionext.com>
+ <CAL_JsqL8N+h7bciDt=4fMHyAP=DL=YikpaTh2v4q383XVXH2AA@mail.gmail.com>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <1fe99277-10e0-0149-cef5-e839bd2515bb@socionext.com>
+Date:   Mon, 11 Oct 2021 08:55:33 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+In-Reply-To: <CAL_JsqL8N+h7bciDt=4fMHyAP=DL=YikpaTh2v4q383XVXH2AA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-
-On Sun, Oct 10 2021 at 14:31:56 -0500, Rob Herring <robh@kernel.org> 
-wrote:
-> On Sat, 09 Oct 2021 13:19:27 +0200, David Heidelberg wrote:
->>  Convert ramoops driver to the YAML syntax.
->> 
->>  Signed-off-by: David Heidelberg <david@ixit.cz>
->>  ---
->>   .../bindings/reserved-memory/ramoops.txt      |  66 ---------
->>   .../bindings/reserved-memory/ramoops.yaml     | 126 
->> ++++++++++++++++++
->>   2 files changed, 126 insertions(+), 66 deletions(-)
->>   delete mode 100644 
->> Documentation/devicetree/bindings/reserved-memory/ramoops.txt
->>   create mode 100644 
->> Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
->> 
+On 2021/10/09 4:20, Rob Herring wrote:
+> On Thu, Oct 7, 2021 at 3:50 AM Kunihiko Hayashi
+> <hayashi.kunihiko@socionext.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> On 2021/10/07 4:49, Rob Herring wrote:
+>>> On Wed, Oct 06, 2021 at 08:09:14PM +0900, Kunihiko Hayashi wrote:
+>>>> Update binding document for clocks implemented in SoC-glue.
+>>>>
+>>>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>>> ---
+>>>>    .../bindings/clock/socionext,uniphier-clock.yaml         | 16
+>>> ++++++++++++++++
+>>>>    1 file changed, 16 insertions(+)
+>>>>
+>>>> diff --git
+>>> a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+>>> b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+>>>> index ee8d16a8019e..05a9d1f89756 100644
+>>>> ---
+>>> a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+>>>> +++
+>>> b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+>>>> @@ -46,6 +46,9 @@ properties:
+>>>>              - socionext,uniphier-ld20-peri-clock
+>>>>              - socionext,uniphier-pxs3-peri-clock
+>>>>              - socionext,uniphier-nx1-peri-clock
+>>>> +      - description: SoC-glue clock
+>>>> +        enum:
+>>>> +          - socionext,uniphier-pro4-sg-clock
+>>>>
+>>>>      "#clock-cells":
+>>>>        const: 1
+>>>> @@ -95,3 +98,16 @@ examples:
+>>>>
+>>>>            // other nodes ...
+>>>>        };
+>>>> +
+>>>> +  - |
+>>>> +    soc-glue@5f800000 {
+>>>> +        compatible = "socionext,uniphier-sysctrl", "simple-mfd",
+>>> "syscon";
+>>>> +        reg = <0x5f800000 0x2000>;
+>>>> +
+>>>> +        clock {
+>>>> +            compatible = "socionext,uniphier-pro4-sg-clock";
+>>>> +            #clock-cells = <1>;
+>>>> +        };
+>>>> +
+>>>> +        // other nodes ...
+>>>> +    };
+>>>
+>>> What's the value of this 2nd example? It's just a different compatible
+>>> string.
+>> Following the previous three examples in the document, it describes the
+>> difference between the parent nodes that place the clock.
+>>
+>> They are common to be child nodes of "syscon", and the definition of the
+>> parent node is not in this document.
+>> Should I put them together in a common example?
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for 
-> dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1538758
-> 
-> 
-> ramoops@ac300000: 'devinfo-size' does not match any of the regexes: 
-> 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
-> 	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
-> 
-doesn't exist besides oneplus bindings
+> I'd just drop the example.
+I see. I'd drop the example in next.
 
-> ramoops@ffc00000: 'msg-size' does not match any of the regexes: 
-> 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dt.yaml
+Thank you,
 
-doesn't exist
-> 
-> ramoops@ffc00000: 'msg-size', 'no-map' do not match any of the 
-> regexes: 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dt.yaml
-> 	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dt.yaml
-> 	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
-> 	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
-
-doesn't exist and I'm not sure if no-map make sense for pstore ramoops, 
-since it HAS to be mapped (if I understood right).
-
-Binding should be right, I can send patches for fired warnings.
-
-David
-
-
-
-
+---
+Best Regards
+Kunihiko Hayashi
