@@ -2,101 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 890C24283F5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 00:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9C114283F8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 00:06:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233102AbhJJWGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 18:06:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48772 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230364AbhJJWGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 18:06:22 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12C39C06161C
-        for <devicetree@vger.kernel.org>; Sun, 10 Oct 2021 15:04:23 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id w2so6500722qtn.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Oct 2021 15:04:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/5ObYAYd+03W3YBA6Pn4wWGWrRT1oHT143L5O16ds/c=;
-        b=iixu0wmaF8IUA/xgeB9L8/92WlYvhOjmVUz0NDhb7kc/TIkwUAvwGCjxbIEzhrY/US
-         1Tstm41AyFKwl9H9laUcb6Fn/MF0aEdslMb3FioJKkqXR8tbPLlETMQx//2ilxqsYqsB
-         0KsvVU1zlidSTC672lVuh3XkD2H9S9Lo7LXjpOuwoJzO05nXbbL3yTNglVHRUHqDu36o
-         80V0HkaB6g70lrKGIwq6IU65xFwxRRebxM70QpwYUeWz8dF225DqIMYUAVNNjdJ22urD
-         v3BovLFWSW5j+qpi3Ui9NMFgQDnTY3k14oG4t/Qhudz04dy3vj0sBi/0+mzok/dFnZ2f
-         TWfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/5ObYAYd+03W3YBA6Pn4wWGWrRT1oHT143L5O16ds/c=;
-        b=6OA0TdkcOniO1YZ8ql3jwjitWiqVvbARp/al9UQIB+QcaeDaLcbq+4qG4akO4N8eAt
-         bZZouxCSvTPWUWCVQG91W+jlNPuo8oMWVy2TseI+Ccy9LpCD0dAsUJ32qFDAvbvz11v/
-         3QPZHIjAVKQnlYxrH44XnpSekcgJaoe3g3f9v2jjRLMmlUeK7us+N7Mp3b6oK1CraBD4
-         OdcGBtW5Xn+sQSnhc/Kuv8UU7hh5Jj7mw95/A5d6NJnI8N9FHXS2fT1OqXnCU2Rll6Ro
-         2Zf5/qSIX6SqpfGKkdu0LlJheHaw8Ege2qSROAQWz7Uh+/y+skgdptQNiAP7rM35LlV4
-         QAIA==
-X-Gm-Message-State: AOAM532jSlH7Nbrhqcc6RQmanPJ0Ebbx32h4gHBzUu2U/DNR6eMcN3+I
-        /IuSqru39vk362+4O6Cjwq6oqjtHuuCu/RQJmyngYpHVER0=
-X-Google-Smtp-Source: ABdhPJywgah7MRxRl8oRmiYWPWnUYFa6xvG6BmWJ9xvv5CRsXI3mGQPiMXd8S0SIeI6iXs311/kDxlBcrKOgV+4Dhn4=
-X-Received: by 2002:a05:622a:409:: with SMTP id n9mr11463895qtx.153.1633903462263;
- Sun, 10 Oct 2021 15:04:22 -0700 (PDT)
+        id S231136AbhJJWIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 18:08:23 -0400
+Received: from ixit.cz ([94.230.151.217]:50278 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230364AbhJJWIX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Oct 2021 18:08:23 -0400
+Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 2562420064;
+        Mon, 11 Oct 2021 00:06:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1633903582;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=uZj5d5AasDC0yGtneihJgs5zOpaWOjkQUqwj3rrpnMM=;
+        b=ctj8Q1q+FWwxgLuXTSdKDPIMPQuYwmzTbF6ioCGWaU7IUFsJffa19IuaAv2Z5m3kxExi7v
+        xp7dwlZ7TigZ2tdJy2wykGRuVL1+Zj8QscNQ7i4oPX4CTNxaHnW0pTDJm1gbmM2IjlNTlj
+        f7yiqStARtCZONqFMHo7goTsExi/DNU=
+Date:   Mon, 11 Oct 2021 00:04:52 +0200
+From:   David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH] dt-bindings: reserved-memory: ramoops: Convert txt
+ bindings to yaml
+To:     Rob Herring <robh@kernel.org>
+Cc:     Anton Vorontsov <anton@enomsg.org>, linux-kernel@vger.kernel.org,
+        Colin Cross <ccross@android.com>, devicetree@vger.kernel.org,
+        ~okias/devicetree@lists.sr.ht, Rob Herring <robh+dt@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Kees Cook <keescook@chromium.org>
+Message-Id: <408S0R.DDH2XGNA3OQR3@ixit.cz>
+In-Reply-To: <1633894316.420061.3158665.nullmailer@robh.at.kernel.org>
+References: <20211009111927.53280-1-david@ixit.cz>
+        <1633894316.420061.3158665.nullmailer@robh.at.kernel.org>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-References: <20211009203806.56821-1-dmitry.baryshkov@linaro.org> <YWMj8Yj5XM7YUPqs@ravnborg.org>
-In-Reply-To: <YWMj8Yj5XM7YUPqs@ravnborg.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 11 Oct 2021 01:04:11 +0300
-Message-ID: <CAA8EJppqiGa4sgLVNxCO5w0FksfO-a+w_EwFEdjkZ05vU7Jr9Q@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] Add support for Sharp LS060T1SX01 panel
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 10 Oct 2021 at 20:33, Sam Ravnborg <sam@ravnborg.org> wrote:
->
-> Hi Dmitry,
->
-> On Sat, Oct 09, 2021 at 11:38:04PM +0300, Dmitry Baryshkov wrote:
-> > Add driver to support Sharp LS06T1SX01 6.0" FullHD panel found e.g. in
-> > the kwaek.ca Dragonboard Display Adapter Bundle.
-> >
-> > Changes since v4:
-> >  - Use MIPI_DSI_MODE_NO_EOT_PACKET instead of the old name
-> >
-> > Changes since v3:
-> >  - Replaced small msleeps with usleep_range
-> >
-> > Changes since v2:
-> >  - Add missing power supplies used by the panel according to the
-> >    datasheet
-> >
-> > Changes since v1:
-> >  - Fix the id in the schema file
-> >
-> > ----------------------------------------------------------------
-> > Dmitry Baryshkov (2):
-> >       dt-bindings: add bindings for the Sharp LS060T1SX01 panel
-> >       drm/panel: Add support for Sharp LS060T1SX01 panel
->
-> Applied to drm-misc-next and this time on purpose.
-> Thanks for the quick fixes.
 
-Thank you and sorry for the confusion/mess during the merge.
 
--- 
-With best wishes
-Dmitry
+
+On Sun, Oct 10 2021 at 14:31:56 -0500, Rob Herring <robh@kernel.org> 
+wrote:
+> On Sat, 09 Oct 2021 13:19:27 +0200, David Heidelberg wrote:
+>>  Convert ramoops driver to the YAML syntax.
+>> 
+>>  Signed-off-by: David Heidelberg <david@ixit.cz>
+>>  ---
+>>   .../bindings/reserved-memory/ramoops.txt      |  66 ---------
+>>   .../bindings/reserved-memory/ramoops.yaml     | 126 
+>> ++++++++++++++++++
+>>   2 files changed, 126 insertions(+), 66 deletions(-)
+>>   delete mode 100644 
+>> Documentation/devicetree/bindings/reserved-memory/ramoops.txt
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
+>> 
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for 
+> dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/1538758
+> 
+> 
+> ramoops@ac300000: 'devinfo-size' does not match any of the regexes: 
+> 'pinctrl-[0-9]+'
+> 	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
+> 	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
+> 
+doesn't exist besides oneplus bindings
+
+> ramoops@ffc00000: 'msg-size' does not match any of the regexes: 
+> 'pinctrl-[0-9]+'
+> 	arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dt.yaml
+
+doesn't exist
+> 
+> ramoops@ffc00000: 'msg-size', 'no-map' do not match any of the 
+> regexes: 'pinctrl-[0-9]+'
+> 	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dt.yaml
+> 	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dt.yaml
+> 	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
+> 	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
+
+doesn't exist and I'm not sure if no-map make sense for pstore ramoops, 
+since it HAS to be mapped (if I understood right).
+
+Binding should be right, I can send patches for fired warnings.
+
+David
+
+
+
+
