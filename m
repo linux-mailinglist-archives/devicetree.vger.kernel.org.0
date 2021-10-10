@@ -2,65 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29630428364
-	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 21:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23BC642835F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 21:32:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233000AbhJJTeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 15:34:09 -0400
-Received: from mail-oo1-f48.google.com ([209.85.161.48]:42530 "EHLO
-        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232701AbhJJTeG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 15:34:06 -0400
-Received: by mail-oo1-f48.google.com with SMTP id a17-20020a4a6851000000b002b59bfbf669so4667171oof.9;
-        Sun, 10 Oct 2021 12:32:07 -0700 (PDT)
+        id S232941AbhJJTeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 15:34:07 -0400
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:40672 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232788AbhJJTeE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 15:34:04 -0400
+Received: by mail-oi1-f173.google.com with SMTP id n63so21629448oif.7;
+        Sun, 10 Oct 2021 12:32:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=oK4cASLRG9KDw6Buwhljv1jwTC0VF/5L0ZVtZoaadh4=;
-        b=I2A0ETz2IjrEpmlITvUS5so/Ltb3Iq3HbWpeWDCvjj9ibapPJZLVZkhVghuDDnlEXw
-         s+xRKd0h9n270PznxiZtvMU9x9LBWfUX0VPbeENWKPkbTQv1piRCK/l5ORLU1W90+qE4
-         mWYj/mp3qXhhd7uzGOUPmsV0S07rx7bbR388h63eqShBkdAoiwzulfTZHdkTaI2od0T1
-         RyxudA3IP1rET72uGSIP14RSTiBSlK6EVkaknvZIFnO4HCeRO+kuUFnIcW2pHUv1LZ42
-         n9fGh0gKcA0OGjAs1uBBKdefzVbbwBoOM0802/DRcOM4T3k6n5jujIqbdaUdO8pTxGmV
-         ulCw==
-X-Gm-Message-State: AOAM531TUya+pEdxKGVymYFZNoCSjVEm87xMLvRxvp4tl9Tm6yo+Yfpt
-        h7ug2E7uDqcM/sfUCycIRg==
-X-Google-Smtp-Source: ABdhPJw/3P18DACANSvasaUJGLn0BgTelQ5sB9S5VvdRh2KhSyIwW4IzTCeFWzSXcM8rcl8Z5Nwj/Q==
-X-Received: by 2002:a4a:e499:: with SMTP id s25mr16419515oov.46.1633894326677;
-        Sun, 10 Oct 2021 12:32:06 -0700 (PDT)
+        bh=vjkhCUUdOAJupIZyq/RaQw7WVueC2al6gsubBxanD5I=;
+        b=7NHNJL8Qfxp/u3FeFaLxuhxe6xxaVhveExiZKeb/XkUafwUTAIocuegzTldKeOT1s/
+         82z656Z/AIQPedaZtLjdNlDOzKssQtawFjvFnk6RjZeDx5ymYeFWRkpPvrsB/eGdQty4
+         xZx8Lv92paL08dzteDAs8tE9nRgDZXZTTDk+x50HCUnw6ftB9q1trqSUuJhAiePUGtYr
+         XtPBix+JRU6S0+VSNhG7GmDGYVt2LaBUTE06/gNua4aZtnZebgUtEeAWGIzL7pbRJxjm
+         OYAPOCd5tfiVilX7ilETMhlxrt8zAGqDg2kdAHSfPiexMadSVJZ3V9GiEu0oYg28aRvW
+         UtSA==
+X-Gm-Message-State: AOAM530Odu54rCmONbaY83XvcdlnQTZfZm/Yzehv4EpggVQCHINsmDDr
+        ++AlLWuGnK9cT1uxngxmusSfW0k1jg==
+X-Google-Smtp-Source: ABdhPJy0WCsod6NuMiAjXjV0rTr2RY2zZMYRxOxUmNioDXahaWss/NoaFhv5uK8Lr7zpSwrT8Tw0Kw==
+X-Received: by 2002:a05:6808:1387:: with SMTP id c7mr15156081oiw.151.1633894325291;
+        Sun, 10 Oct 2021 12:32:05 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b19sm1298316otk.75.2021.10.10.12.32.05
+        by smtp.gmail.com with ESMTPSA id s18sm1267425oij.3.2021.10.10.12.32.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Oct 2021 12:32:06 -0700 (PDT)
-Received: (nullmailer pid 3158664 invoked by uid 1000);
+        Sun, 10 Oct 2021 12:32:04 -0700 (PDT)
+Received: (nullmailer pid 3158672 invoked by uid 1000);
         Sun, 10 Oct 2021 19:31:56 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org
-In-Reply-To: <20211009104309.45117-1-david@ixit.cz>
-References: <20211009104309.45117-1-david@ixit.cz>
-Subject: Re: [PATCH] WIP: dt-bindings: arm: hwmon: gpio-fan: Convert txt bindings to yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     linux-nfc@lists.01.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Greer <mgreer@animalcreek.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Charles Gorand <charles.gorand@effinnov.com>,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org
+In-Reply-To: <20211010142317.168259-6-krzysztof.kozlowski@canonical.com>
+References: <20211010142317.168259-1-krzysztof.kozlowski@canonical.com> <20211010142317.168259-6-krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH 6/7] dt-bindings: nfc: ti,trf7970a: convert to dtschema
 Date:   Sun, 10 Oct 2021 14:31:56 -0500
-Message-Id: <1633894316.403809.3158663.nullmailer@robh.at.kernel.org>
+Message-Id: <1633894316.452946.3158671.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 09 Oct 2021 12:43:09 +0200, David Heidelberg wrote:
-> Convert fan devices connected to GPIOs to the YAML syntax.
+On Sun, 10 Oct 2021 16:23:16 +0200, Krzysztof Kozlowski wrote:
+> Convert the TI TRF7970A NFC to DT schema format.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
->  .../devicetree/bindings/hwmon/gpio-fan.txt    | 41 -----------
->  .../devicetree/bindings/hwmon/gpio-fan.yaml   | 69 +++++++++++++++++++
->  2 files changed, 69 insertions(+), 41 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.txt
->  create mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
+>  .../bindings/net/nfc/ti,trf7970a.yaml         | 98 +++++++++++++++++++
+>  .../devicetree/bindings/net/nfc/trf7970a.txt  | 43 --------
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 99 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/nfc/trf7970a.txt
 > 
 
 Running 'make dtbs_check' with the schema in this patch gives the
@@ -70,28 +74,9 @@ incorrect. These may not be new warnings.
 Note that it is not yet a requirement to have 0 warnings for dtbs_check.
 This will change in the future.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1538743
+Full log is available here: https://patchwork.ozlabs.org/patch/1539014
 
 
-fan: 'gpio-fan,speed-map' is a required property
-	arch/arm/boot/dts/kirkwood-nas2big.dt.yaml
-	arch/arm/boot/dts/kirkwood-net2big.dt.yaml
-
-gpio-fan: gpio-fan,speed-map: 'anyOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml
-	arch/arm/boot/dts/gemini-dlink-dns-313.dt.yaml
-
-gpio_fan: gpio-fan,speed-map: 'anyOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/am57xx-beagle-x15.dt.yaml
-	arch/arm/boot/dts/am57xx-beagle-x15-revb1.dt.yaml
-	arch/arm/boot/dts/am57xx-beagle-x15-revc.dt.yaml
-
-gpio-fan: gpio-fan,speed-map: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/gemini-dlink-dir-685.dt.yaml
-	arch/arm/boot/dts/gemini-dlink-dns-313.dt.yaml
-
-gpio_fan: gpio-fan,speed-map: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/am57xx-beagle-x15.dt.yaml
-	arch/arm/boot/dts/am57xx-beagle-x15-revb1.dt.yaml
-	arch/arm/boot/dts/am57xx-beagle-x15-revc.dt.yaml
+nfc@0: 't5t-rmb-extra-byte-quirk', 'vin-voltage-override' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/imx6dl-prtrvt.dt.yaml
 
