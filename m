@@ -2,92 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 793FE4281FA
-	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 16:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B382D4281FC
+	for <lists+devicetree@lfdr.de>; Sun, 10 Oct 2021 16:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbhJJOr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 10:47:57 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:59488 "EHLO vps0.lunn.ch"
+        id S232606AbhJJOvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 10:51:35 -0400
+Received: from phobos.denx.de ([85.214.62.61]:35936 "EHLO phobos.denx.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231990AbhJJOr5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Oct 2021 10:47:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=XZpXfE81hl2GLeGyZKWimAEjp7hFRT6iSMzwNGCRpXs=; b=GMHop48KOdYTfy/WQSqo2gK03W
-        WGXCxWGgWfir9NwjjvQfJQeJ9dU1YydibcwyWLmDaPEBsBp8sUiIxpboQqOgTxw8LoHUwzc2i+VUF
-        RDYMYI6hlB4avGkKPmMresT0SB7QA8BjIIdfHSDIsi67UIl4wfogfRtIx+7w3EO7XnDE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mZa57-00AEqu-3b; Sun, 10 Oct 2021 16:45:41 +0200
-Date:   Sun, 10 Oct 2021 16:45:41 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kostap@marvell.com" <kostap@marvell.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] arm/arm64: dts: Add MV88E6393X to CN9130-CRB device
- tree
-Message-ID: <YWL8laRaWwordXdE@lunn.ch>
-References: <20211007230619.957016-1-chris.packham@alliedtelesis.co.nz>
- <20211007230619.957016-3-chris.packham@alliedtelesis.co.nz>
- <YV+IDzEdYuy+s/Ak@lunn.ch>
- <62e8a697-666c-03ae-cc06-0a51e3ff09c0@alliedtelesis.co.nz>
+        id S232540AbhJJOvf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 10 Oct 2021 10:51:35 -0400
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 89E1B83647;
+        Sun, 10 Oct 2021 16:49:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1633877375;
+        bh=Ej0hDILui1l5Qt2VEw5utZOqn0m7cYw1EuLb/2+VKvE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=i7kgVm+1Z+4SEir+1fEcfVbINOOCOZ+n7M4563r3wzYkdWHGRKW1NjEtobgXZ2UNS
+         APRFkN9622+BXbg00z/92wdmxuMuz/uUxUs0x+z+7KRafmkN/J/q8LlUSiZbGs2sMi
+         GJzD65X9rHssGzluVFyu+ICTfwr2rUw6sMvLE8oyV+7SuA7sTYWF8IoJ/E1tlSGCxh
+         qglOqJK/5Oj0VUUz1zED/N3JqmKC96wl9+i0x/J8vQtzdvMMNc3ZcWYbIRsb9i1H7z
+         ZT4a8FjFgbjDfFG9/Wg9K3lnGIe8QHgoIgBFtWpVJXnxmmzyjLDnxVU2xsjtvn9vW4
+         ohAtad+QCJ5og==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: [PATCH v6 1/2] dt-bindings: display: bridge: lvds-codec: Document LVDS data mapping select
+Date:   Sun, 10 Oct 2021 16:49:18 +0200
+Message-Id: <20211010144919.38392-1-marex@denx.de>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <62e8a697-666c-03ae-cc06-0a51e3ff09c0@alliedtelesis.co.nz>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> >> +			port@9 {
-> >> +				reg = <9>;
-> >> +				label = "wanp9";
-> > Do these names correspond to some labeling? Ether the case or the silk
-> > screen?
-> The silkscreen just says P1-P8. I was tempted to rename "wan1" -> "lan1" 
-> to match the others. I could also change them all to "pN" or "portN" if 
-> preferred.
+Decoder input LVDS format is a property of the decoder chip or even
+its strapping. Add DT property data-mapping the same way lvds-panel
+does, to define the LVDS data mapping.
 
-I normally say, use the labels from the case. That is what the user
-sees. But if this RDK does not have case, then maybe lan1-lan8 would
-be better, to match the silk screen. And then call port9 sfp1?
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+V2: - Use allOf
+    - Move the data-mapping to endpoint
+V3: - Rebase on V2 submitted a while ago, reinstate changelog
+    - Drop the allOf and un-rebase on previous pclk patch
+V4: - port@1, remove $ref: /schemas/graph.yaml#/properties/port and
+      add $ref: /schemas/graph.yaml#/$defs/port-base
+V5: - Move the data-mapping property to port@0 , decoder LVDS input
+    - Add RB from Laurent
+V6: - No change
+---
+ .../bindings/display/bridge/lvds-codec.yaml   | 33 ++++++++++++++++++-
+ 1 file changed, 32 insertions(+), 1 deletion(-)
 
-> P9 is connected to a SFP+ cage. I know there has been some work on the 
-> bindings for that which I haven't caught up with.
+diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+index 304a1367faaa..1faae3e323a4 100644
+--- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+@@ -49,11 +49,26 @@ properties:
+ 
+     properties:
+       port@0:
+-        $ref: /schemas/graph.yaml#/properties/port
++        $ref: /schemas/graph.yaml#/$defs/port-base
+         description: |
+           For LVDS encoders, port 0 is the parallel input
+           For LVDS decoders, port 0 is the LVDS input
+ 
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-mapping:
++                enum:
++                  - jeida-18
++                  - jeida-24
++                  - vesa-24
++                description: |
++                  The color signals mapping order. See details in
++                  Documentation/devicetree/bindings/display/panel/lvds.yaml
++
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description: |
+@@ -71,6 +86,22 @@ properties:
+ 
+   power-supply: true
+ 
++if:
++  not:
++    properties:
++      compatible:
++        contains:
++          const: lvds-decoder
++then:
++  properties:
++    ports:
++      properties:
++        port@0:
++          properties:
++            endpoint:
++              properties:
++                data-mapping: false
++
+ required:
+   - compatible
+   - ports
+-- 
+2.33.0
 
-Pretty simple. You need a node about the SFP itself:
-
-sfp_eth3: sfp-eth3 {
-        compatible = "sff,sfp";
-        i2c-bus = <&sfp_1g_i2c>;
-        los-gpios = <&cpm_gpio2 22 GPIO_ACTIVE_HIGH>;
-        mod-def0-gpios = <&cpm_gpio2 21 GPIO_ACTIVE_LOW>;
-        maximum-power-milliwatt = <1000>;
-        pinctrl-names = "default";
-        pinctrl-0 = <&cpm_sfp_1g_pins &cps_sfp_1g_pins>;
-        tx-disable-gpios = <&cps_gpio1 24 GPIO_ACTIVE_HIGH>;
-        tx-fault-gpios = <&cpm_gpio2 19 GPIO_ACTIVE_HIGH>;
-};
-
-If you don't have any of the GPIO, just don't list them.
-
-And in the MAC you need to reference the sfp:
-
-        sfp = <&sfp_eth3>;
-
-Given that this is a marvell device, you might also need some comphy
-configuration in the MAC node:
-
-        phy-names = "comphy";
-        phys = <&cps_comphy5 0>;
-
-	Andrew
