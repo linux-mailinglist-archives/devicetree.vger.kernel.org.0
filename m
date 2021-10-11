@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09D67428509
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 04:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 206FB42853B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 04:42:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233222AbhJKCNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 22:13:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45958 "EHLO
+        id S233540AbhJKCoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 22:44:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231872AbhJKCN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 22:13:26 -0400
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00198C061570;
-        Sun, 10 Oct 2021 19:11:26 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id w8so5935904qts.4;
-        Sun, 10 Oct 2021 19:11:26 -0700 (PDT)
+        with ESMTP id S231560AbhJKCoV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 22:44:21 -0400
+Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AD39C061570;
+        Sun, 10 Oct 2021 19:42:21 -0700 (PDT)
+Received: by mail-qv1-xf2d.google.com with SMTP id k19so4482312qvm.13;
+        Sun, 10 Oct 2021 19:42:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to:content-transfer-encoding;
-        bh=TjqKF2G+ot9TWefZKW3C9zHAsRlyIodJTLXAqIsvayg=;
-        b=gDWcKZ0UQztjnosn+22+oduSALPggiMtDr3olLnvrtYEutZ786C4flvHc2fHJjmPU0
-         PPwaWBzvwFuZ+326y4SVRvpv2eb8sN216gPGVTv0dT0Qs20IDijIIxPzaiVtgggPqnFE
-         WT5t8aHKxXA3zOKNtalmN/r3756ntnokcVPRFvVED5OtbTC3AJyN8vN8Vo3DPZ2BSGP7
-         lC56keMz8sBpmzihf9FiJtahDFabdcX70lHM4DdH3TD5Z3BMz2tkVYjX6gyA95kqxXAZ
-         KaA7O8KFJFUSApVDM23gK3dkY2pbty16Eakpc31z1Tk3W8naj8Qao6Z01vShxF5iqJfK
-         jiiw==
+        bh=yAKGdgRdxijlpNEEly6ajSA0nM9YaEScSkQfHadvQQ8=;
+        b=fdQw78PJDdUbQ3YKHND49JSP3mbGJYAOFyiFRbN0GFxryw4xw+vR2zD1VegJ4RVKkQ
+         s0RqWHN/JfmTlNVHwQG46FsDmy/CKB/mdyQFX6A//jRy7HumeotIjyevNuHGmFiIiX/X
+         eOOOWgN5KgN8Q75TqRHnHBbLCWC7wsYUaKBUmClAwh5rwjb2yEyrBgzCkGRHylgEEKDh
+         tPM74lBEZyOS/VLV9NFHQi+bfBI1jmSOHSJ3NR+TJyDihrtKuId4HxzhcaH5fyXOEVd1
+         lfke0xK0LessI928B55Wbsmig/gIxtYyQKKl1xrgzI8ERJA0f/mG5/O+IUv7ZOgPy1xE
+         bOCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=TjqKF2G+ot9TWefZKW3C9zHAsRlyIodJTLXAqIsvayg=;
-        b=rVeNK2rOJK7O0ggKZ39F0YdaCn9J1p9JY/z6V0NLGZNdtkbVahOeBlyRDk4xI8ji/s
-         OzLPEPOf2/fpv+Al+OWCI4E2Z5qjJXTBcQ6XD2oORiPprrkFJL6D7f9J6qfr2axrW7vi
-         2lWZbunhhQzmdWyigHlrd4KLqBsuHAXP4IkHIdP6Eq0khurstp0gCOUbGkgcPTA3Hzk/
-         QcdpADW8C7AHHsgpaNAqb0R8j8m8ST4dxk0L2G0xq8b4zdWnSN1qpFFlHINOQzYidAfY
-         0LlY6Ev9rUf5Bwi86I1iw48JG+RmJJpphCuzmm63hHBJrarYnT70o0HCUdQG74XxWefh
-         9DMA==
-X-Gm-Message-State: AOAM531cKSr94M5MkzAnfwnTLata80A1/jdtnzWDomYCSysYIbzfyF7k
-        hARHi3e0jDUrwBn8F4rHQSI=
-X-Google-Smtp-Source: ABdhPJwnOFDzduH2yaeDsuWn7nxMdHFMXNlCkIL5KytE07B7ka8nsZDabGpiUT2Vna/P7Qgr0GFaCA==
-X-Received: by 2002:a05:622a:316:: with SMTP id q22mr12131941qtw.225.1633918286096;
-        Sun, 10 Oct 2021 19:11:26 -0700 (PDT)
+        bh=yAKGdgRdxijlpNEEly6ajSA0nM9YaEScSkQfHadvQQ8=;
+        b=r4TIKzPUWBrArika1UXVCYQ/kxFZGLxjfkP0m6aXz7hjS+BXqksg07iNSN5Gv0IY2c
+         5IUdY1KPsuYkULdoIt9uCeGiiygvM8PVs37m7bexiUxsE7FJ9xpFKrcN/+f5ISYMta+m
+         qJd2HqE5AaPWfI5zLoqNwDeQtG4qfvWD+HIqiVktAf/7p8aBZn+rpLdZ5aAh6bIiUhvH
+         mQ5mIKl+rmj0UeQcho/O1QEBn9iDGxT/2mPL27UoJ/G+Rmqllyq61B74VcrvtxKq4HjY
+         8UQYJmzMStve1JuQjVqMG8T0Yya2Q9+7iaJ6NQ0kSNG7iNSrO1Z53UJQa/saShiwwJ+8
+         faUg==
+X-Gm-Message-State: AOAM531kFJk27wr+uOZPPxLg9SiXhVKS2KpxDKGSBaZMDCcQDLCLM113
+        oVnY3kZibCVx2mEcG8aTgYI=
+X-Google-Smtp-Source: ABdhPJxump/1TE0sa4bjF9NLSX89uFm/F+jA+jOxLE/IJxzR6fFrmBD9HZ8PW9XIUVpOgpfgitsRbg==
+X-Received: by 2002:ad4:59d0:: with SMTP id el16mr12916992qvb.60.1633920140298;
+        Sun, 10 Oct 2021 19:42:20 -0700 (PDT)
 Received: from [192.168.1.121] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
-        by smtp.gmail.com with ESMTPSA id q22sm619750qkj.64.2021.10.10.19.11.24
+        by smtp.gmail.com with ESMTPSA id t64sm3659612qkd.71.2021.10.10.19.42.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Oct 2021 19:11:25 -0700 (PDT)
-Message-ID: <fe8833a4-df21-475b-7ddf-dcda54550652@gmail.com>
-Date:   Sun, 10 Oct 2021 19:11:23 -0700
+        Sun, 10 Oct 2021 19:42:19 -0700 (PDT)
+Message-ID: <e902fed0-cde8-ab81-c0d0-64bd296bbcba@gmail.com>
+Date:   Sun, 10 Oct 2021 19:42:17 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.1.2
-Subject: Re: [net-next PATCH v5 06/14] net: dsa: qca8k: rework rgmii delay
- logic and scan for cpu port 6
+Subject: Re: [net-next PATCH v5 12/14] drivers: net: dsa: qca8k: add support
+ for QCA8328
 Content-Language: en-US
 To:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
@@ -65,41 +65,26 @@ To:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
         Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20211011013024.569-1-ansuelsmth@gmail.com>
- <20211011013024.569-7-ansuelsmth@gmail.com>
+ <20211011013024.569-13-ansuelsmth@gmail.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20211011013024.569-7-ansuelsmth@gmail.com>
+In-Reply-To: <20211011013024.569-13-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
+Nit: please remove the "drivers: " prefix from your v6 and do that 
+across your entire patch series.
 
 On 10/10/2021 6:30 PM, Ansuel Smith wrote:
-> Future proof commit. This switch have 2 CPU port
-
-Plural: ports.
-
-> and one valid
-> configuration is first CPU port set to sgmii and second CPU port set to
-> regmii-id. 
-
-rgmii-id
-
-> The current implementation detects delay only for CPU port
-> zero set to rgmii and doesn't count any delay set in a secondary CPU
-> port. Drop the current delay scan function and move it to the sgmii
-> parser function to generilize
-
-generalize
-
-> and implicitly add support for secondary
-> CPU port set to rgmii-id. Introduce new logic where delay is enabled
-> also with internal delay binding declared and rgmii set as PHY mode.
+> QCA8328 switch is the bigger brother of the qca8327. Same regs different
+> chip. Change the function to set the correct pin layout and introduce a
+> new match_data to differentiate the 2 switch as they have the same ID
+> and their internal PHY have the same ID.
 > 
 > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 
-Otherwise, looking good to me.
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
 Florian
