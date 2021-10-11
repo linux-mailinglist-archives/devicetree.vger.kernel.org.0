@@ -2,99 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0985B428632
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 07:27:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29FAC428637
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 07:32:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233340AbhJKF3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 01:29:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60500 "EHLO
+        id S231519AbhJKFeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 01:34:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231560AbhJKF3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 01:29:21 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC96C061570
-        for <devicetree@vger.kernel.org>; Sun, 10 Oct 2021 22:27:22 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mZnqA-0004do-9g; Mon, 11 Oct 2021 07:27:10 +0200
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mZnq8-0001Ul-GZ; Mon, 11 Oct 2021 07:27:08 +0200
-Date:   Mon, 11 Oct 2021 07:27:08 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx6dl-prtrvt: drop undocumented TRF7970A NFC
- properties
-Message-ID: <20211011052708.GH29653@pengutronix.de>
-References: <20211010133215.145722-1-krzysztof.kozlowski@canonical.com>
+        with ESMTP id S230341AbhJKFeg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 01:34:36 -0400
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F179CC061570;
+        Sun, 10 Oct 2021 22:32:36 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 398A7424EC;
+        Mon, 11 Oct 2021 05:32:30 +0000 (UTC)
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20211005155923.173399-1-marcan@marcan.st>
+ <20211005155923.173399-7-marcan@marcan.st>
+ <77ae3bb1-6da5-3ec6-de33-5e5f661b6145@canonical.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 6/7] tty: serial: samsung_tty: Support runtime PM
+Message-ID: <46109820-904b-4e87-5134-7d045dbbe57e@marcan.st>
+Date:   Mon, 11 Oct 2021 14:32:29 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211010133215.145722-1-krzysztof.kozlowski@canonical.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 07:26:38 up 235 days,  8:50, 102 users,  load average: 0.03, 0.08,
- 0.12
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <77ae3bb1-6da5-3ec6-de33-5e5f661b6145@canonical.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 10, 2021 at 03:32:15PM +0200, Krzysztof Kozlowski wrote:
-> Neither the bindings nor the device driver use/document
-> "vin-voltage-override" and "t5t-rmb-extra-byte-quirk" properties.
+On 06/10/2021 16.43, Krzysztof Kozlowski wrote:
+> On 05/10/2021 17:59, Hector Martin wrote:
+>> +	pm_runtime_get_noresume(&pdev->dev);
+>> +	pm_runtime_set_active(&pdev->dev);
+>> +	pm_runtime_enable(&pdev->dev);
+>> +
 > 
-> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> You need to cleanup in error paths (put/disable).
 
-Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
+There are none though, this function always returns success past this point.
 
-Thank you!
+>>   	if (port) {
+>> +		pm_runtime_get_sync(&dev->dev);
+> 
+> 1. You need to check return status.
+> 2. Why do you need to resume the device here?
 
-> ---
->  arch/arm/boot/dts/imx6dl-prtrvt.dts | 2 --
->  1 file changed, 2 deletions(-)
+As Rafael mentioned, this is basically disabling PM so the device is 
+enabled when not bound (which seems to be expected behavior). Not sure 
+what I'd do if the resume fails... this is the remove path after all, 
+it's not like we're doing anything else with the device at this point.
+
+>> +
+>>   		s3c24xx_serial_cpufreq_deregister(to_ourport(port));
+>>   		uart_remove_one_port(&s3c24xx_uart_drv, port);
+>> +
+>> +		pm_runtime_disable(&dev->dev);
 > 
-> diff --git a/arch/arm/boot/dts/imx6dl-prtrvt.dts b/arch/arm/boot/dts/imx6dl-prtrvt.dts
-> index 5ac84445e9cc..56bb1ca56a2d 100644
-> --- a/arch/arm/boot/dts/imx6dl-prtrvt.dts
-> +++ b/arch/arm/boot/dts/imx6dl-prtrvt.dts
-> @@ -67,11 +67,9 @@ nfc@0 {
->  		ti,enable-gpios = <&gpio5 12 GPIO_ACTIVE_LOW>,
->  				  <&gpio5 11 GPIO_ACTIVE_LOW>;
->  		vin-supply = <&reg_3v3>;
-> -		vin-voltage-override = <3100000>;
->  		autosuspend-delay = <30000>;
->  		irq-status-read-quirk;
->  		en2-rf-quirk;
-> -		t5t-rmb-extra-byte-quirk;
->  		status = "okay";
->  	};
->  };
-> -- 
-> 2.30.2
-> 
-> 
-> 
+> Why disabling it only if port!=NULL? Can remove() be called if
+> platform_set_drvdata() was not?
+
+Good question, I'm not entirely sure why these code paths have a check 
+for NULL there. They were already there, do you happen to know why? To 
+me it sounds like remove would only be called if probe succeeds, at 
+which point drvdata should always be set.
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
