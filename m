@@ -2,88 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 895BD4299B6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 01:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8167B4299BF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 01:16:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235718AbhJKXPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 19:15:50 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:36854 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235708AbhJKXPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 19:15:50 -0400
-Received: by mail-ot1-f44.google.com with SMTP id p6-20020a9d7446000000b0054e6bb223f3so8846678otk.3;
-        Mon, 11 Oct 2021 16:13:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=DF/d5K0cmxoRkh9SydPvlCe1QMk0HbpgU+/wg0AVV2o=;
-        b=phfP82wLetlEu0gRwYx+pkFB7iMWsZOtKj/4TBuOyKswEKhhihQfIJQPTFSZUvGQHC
-         OwyYPBMGX/ZqOQXPJ6vUitkdG9TsaCDOmLWohOQIAWakd5vDxbbLbQxJBxW4b4g+ign6
-         pFWegdPzfOkhgh+r8poThtGwDcd0+6UGyjasjqPP8OFTeDfhkGDsbGZFfs8bOExhxlvY
-         LCl4wjezBvxN6VVdxy1VQRnLCwEQo5oJksqKNVmVUKvFWt7+odil2BJqbsuEYuIuGVex
-         aA7zk3PW3658X3K9sgk62hU0fDY4nbARuEFUGMxZMLTTUiRybqztE6s060rCvXHf/Im4
-         KNxA==
-X-Gm-Message-State: AOAM532mwoGMiTz4qu4mJMRCxPw3eioxuBFWObW3o9PpIuJbh3lbOKos
-        TWfcCOx3TVGZVhlIkjHHB+S7kSJApw==
-X-Google-Smtp-Source: ABdhPJy6od+aZa9csuzLBy1w8Z9iY9Ca4jrZ7WaqPvk3lpAM+SGIgdAqicVrOYilyATFt1MGFp/MFQ==
-X-Received: by 2002:a9d:4c8:: with SMTP id 66mr23888697otm.113.1633994029005;
-        Mon, 11 Oct 2021 16:13:49 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d7sm2012596otl.19.2021.10.11.16.13.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 16:13:48 -0700 (PDT)
-Received: (nullmailer pid 1347638 invoked by uid 1000);
-        Mon, 11 Oct 2021 23:13:43 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     dmaengine@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        devicetree@vger.kernel.org, list@opendingux.net,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20211011143652.51976-2-paul@crapouillou.net>
-References: <20211011143652.51976-1-paul@crapouillou.net> <20211011143652.51976-2-paul@crapouillou.net>
-Subject: Re: [PATCH 1/5] dt-bindings: dma: ingenic: Add compatible strings for MDMA and BDMA
-Date:   Mon, 11 Oct 2021 18:13:43 -0500
-Message-Id: <1633994023.327839.1347637.nullmailer@robh.at.kernel.org>
+        id S229884AbhJKXS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 19:18:56 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:59528 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229771AbhJKXSz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Oct 2021 19:18:55 -0400
+Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1ma4XD-0001SF-O2; Tue, 12 Oct 2021 01:16:43 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        linux-riscv@lists.infradead.org
+Cc:     Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Anup Patel <anup.patel@wdc.com>,
+        Anup Patel <anup.patel@wdc.com>
+Subject: Re: [PATCH v8 1/8] RISC-V: Enable CPU_IDLE drivers
+Date:   Tue, 12 Oct 2021 01:16:42 +0200
+Message-ID: <4300884.9bbH7Ay9ha@diego>
+In-Reply-To: <20211011081820.1135261-2-anup.patel@wdc.com>
+References: <20211011081820.1135261-1-anup.patel@wdc.com> <20211011081820.1135261-2-anup.patel@wdc.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Oct 2021 16:36:48 +0200, Paul Cercueil wrote:
-> The JZ4760 and JZ4760B SoCs have two additional DMA controllers: the
-> MDMA, which only supports memcpy operations, and the BDMA which is
-> mostly used for transfer between memories and the BCH controller.
-> The JZ4770 also features the same BDMA as in the JZ4760B, but does not
-> seem to have a MDMA.
+Hi Anup,
+
+Am Montag, 11. Oktober 2021, 10:18:13 CEST schrieb Anup Patel:
+> We force select CPU_PM and provide asm/cpuidle.h so that we can
+> use CPU IDLE drivers for Linux RISC-V kernel.
 > 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> Signed-off-by: Anup Patel <anup.patel@wdc.com>
 > ---
->  .../devicetree/bindings/dma/ingenic,dma.yaml  | 26 ++++++++++++-------
->  1 file changed, 17 insertions(+), 9 deletions(-)
+>  arch/riscv/Kconfig                |  7 +++++++
+>  arch/riscv/configs/defconfig      |  1 +
+>  arch/riscv/configs/rv32_defconfig |  1 +
+>  arch/riscv/include/asm/cpuidle.h  | 24 ++++++++++++++++++++++++
+>  arch/riscv/kernel/process.c       |  3 ++-
+>  5 files changed, 35 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/riscv/include/asm/cpuidle.h
 > 
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 8de2afb460f7..d02f1f5a2431 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -46,6 +46,7 @@ config RISCV
+>  	select CLONE_BACKWARDS
+>  	select CLINT_TIMER if !MMU
+>  	select COMMON_CLK
+> +	select CPU_PM if CPU_IDLE
+>  	select EDAC_SUPPORT
+>  	select GENERIC_ARCH_TOPOLOGY if SMP
+>  	select GENERIC_ATOMIC64 if !64BIT
+> @@ -564,5 +565,11 @@ source "kernel/power/Kconfig"
+>  
+>  endmenu
+>  
+> +menu "CPU Power Management"
+> +
+> +source "drivers/cpuidle/Kconfig"
+> +
+> +endmenu
+> +
+>  source "arch/riscv/kvm/Kconfig"
+>  source "drivers/firmware/Kconfig"
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+another issue, the "arch/riscv/kvm/Kconfig" line above comes from a
+commit that is not in the riscv-tree at all but in the kvm-tree [0],
+making this patch fail to apply onto riscv/for-next alone.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/dma/ingenic,dma.yaml:19:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/dma/ingenic,dma.yaml:32:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+If you have multiple independent patch series in flight, like shown in
+the github branch you references, it might be easier to base each on
+top of the relevant branch cleanly and after one gets applied rebase
+the other ones.
 
-dtschema/dtc warnings/errors:
+That way you're not dependent on the others going in first and also
+people can test patch series individually without too much hassle.
 
-doc reference errors (make refcheckdocs):
+Thanks
+Heiko
 
-See https://patchwork.ozlabs.org/patch/1539355
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/kvms390/linux.git/commit/?h=next&id=99cdc6c18c2d815e940e81b9b477d469bdd41788
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
 
