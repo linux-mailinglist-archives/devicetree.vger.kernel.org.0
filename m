@@ -2,88 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A8142918C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 16:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBD21429258
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 16:42:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244460AbhJKOTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 10:19:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38722 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S243292AbhJKORZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Oct 2021 10:17:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 07AAC61078;
-        Mon, 11 Oct 2021 14:11:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1633961503;
-        bh=zD+AKuupSTYCoj9CcPWhQv82n92KFccXo3yZu9KbnTk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NlKtPXc5y6RKZlCZzv1omZ6axzdFRkATGimdWqud/doU9kWYbzWK8c0frJfhyCfLI
-         25ejDlAh8OTc9yIpR7+XpyRQ/ozUm23Hghu+kZm18hSSqo8LFwfCdWdj1Q36P7RC1s
-         RGilW596VwN3Iu2z9xOnIPfCQexNBFvXud4Wc7LCmK+Okkl28DLAK6t1vFI2NrOtUv
-         Nv8c08ulC+pST0QI54DxJwrRA3d7rPFEOrCqCX+AVttHvG1YkuRyqqBiIW5fG03Vt0
-         YUEB5DJGFFXTLh+olfNiKhBXi7upaYffBalzaH+yPxgvBhCX3LbLixIKY8a2km/qHx
-         PRn4hNJ6S1Hfg==
-Received: by mail-ed1-f54.google.com with SMTP id g10so67631296edj.1;
-        Mon, 11 Oct 2021 07:11:42 -0700 (PDT)
-X-Gm-Message-State: AOAM531ftzA5BIuV5h3aBp5wQsVaUlXLMm7JxJ/jITQNhfz/0vt4XJt8
-        Yb3QcpGua/nOd9Rt0BTRQ/Kq9+t3ZDvKEs6WXQ==
-X-Google-Smtp-Source: ABdhPJw0f8TOUqPxU2srZU6oT+yPzQ8tPFsfVqJQ97sHOzWxNPvUan4j9Baaqte3d/Xw1feY7RVQSsfUXDUCp9emalk=
-X-Received: by 2002:a17:906:9399:: with SMTP id l25mr25557872ejx.363.1633961500932;
- Mon, 11 Oct 2021 07:11:40 -0700 (PDT)
+        id S243820AbhJKOoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 10:44:23 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:29120 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243934AbhJKOoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 10:44:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1633963327;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=xSsNGdNQB08KyOhFukELZ4y35yt3el1uuyG09AFN9Gw=;
+    b=UTq16JQObMxCVxmJy5Bblpbus46OFB8i+8sbv1hd/0iZD95z63xQOSYII3Fj+3uUVS
+    h+F2mYFivYcakD/T+6MMLm/v6SsunRjx33iF/d9JRYAX3FiP/wWFwyRiI9niJ4Of9tat
+    ClsruDZsFkxwVt4bNXP3P7vo4V4MrZ7TElzrjg83QV+s7PQipEjQI7KWjXqYcCvv5H7b
+    /mjHkKlHBzuTmh/AFKzqk9rxqTl3ogFR2mkScG6CvROmZekn/PnIsXuik7diVALyT+0l
+    B2jQwp+sk7vRwzllBomZG251qnwOsXNTZmypLQ57bSHrvnUg3bi4cCAY7/ZrPqvyRbnx
+    yGsQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXTbAOHjRHIhr3eFeIrw=="
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.33.8 SBL|AUTH)
+    with ESMTPSA id 301038x9BEg3tv6
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 11 Oct 2021 16:42:03 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Loic Poulain <loic.poulain@linaro.org>,
+        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Aleksander Morgado <aleksander@aleksander.es>,
+        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH net-next v2 0/4] net: wwan: Add Qualcomm BAM-DMUX WWAN network driver
+Date:   Mon, 11 Oct 2021 16:17:32 +0200
+Message-Id: <20211011141733.3999-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20210923064137.60722-1-zhang.lyra@gmail.com> <20210923064137.60722-3-zhang.lyra@gmail.com>
- <YV1XpL7ibF1y4LbV@google.com>
-In-Reply-To: <YV1XpL7ibF1y4LbV@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 11 Oct 2021 09:11:29 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
-Message-ID: <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
- global registers
-To:     Lee Jones <lee.jones@linaro.org>, Stephen Boyd <sboyd@kernel.org>
-Cc:     Chunyan Zhang <zhang.lyra@gmail.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 6, 2021 at 3:00 AM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Thu, 23 Sep 2021, Chunyan Zhang wrote:
->
-> > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> >
-> > Add bindings for Unisoc system global register which provide register map
-> > for clocks.
-> >
-> > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
-> >  1 file changed, 68 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
->
-> Unapplied v3 and applied this (v4) instead, thanks.
+The BAM Data Multiplexer provides access to the network data channels
+of modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916
+or MSM8974. This series adds a driver that allows using it.
 
-What about the clock binding this depends on:
+For more information about BAM-DMUX, see PATCH 4/4.
 
-Unknown file referenced: [Errno 2] No such file or directory:
-'/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
-xargs: dt-doc-validate: exited with status 255; aborting
-make[1]: *** Deleting file
-'Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml'
-Unknown file referenced: [Errno 2] No such file or directory:
-'/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
-make[1]: *** [scripts/Makefile.lib:385:
-Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml]
-Error 255
+Shortly said, BAM-DMUX is built using a simple protocol layer on top of
+a DMA engine (Qualcomm BAM DMA). For BAM-DMUX, the BAM DMA engine runs in
+a special mode where the modem/remote side is responsible for powering
+on the BAM when needed but we are responsible to initialize it.
+The BAM is powered off when unneeded by coordinating power control
+via bidirectional interrupts from the BAM-DMUX driver.
 
+The series first adds one possible solution for handling the "powered
+remotely" mode in the bam_dma driver, then it adds the BAM-DMUX driver.
+In combination with the RPMSG_WWAN_CTRL driver the WWAN control ports
+(QMI/AT) are exposed via the WWAN subsystem. However, the driver does
+not currently make use of the link management of the WWAN subsystem.
+Unifying the link management for the many different Qualcomm modem
+setups is a huge undertaking that I believe is better addressed
+separately. I discuss this in detail in PATCH 4/4.
 
-Once again, all the components of MFD bindings need to be applied together.
+All the changes in this patch series are based on a fairly complicated
+driver from Qualcomm [1]. I do not have access to documentation about
+"BAM-DMUX", although Jeffrey Hugo has shared many helpful insights
+about the creation process of BAM-DMUX [2].
 
-Rob
+The driver has been used in postmarketOS [3] on various smartphones/tablets
+based on Qualcomm MSM8916 and MSM8974 for more than a year now with
+no reported problems. It works out of the box with ModemManager and only
+requires minor changes in oFono (in particular since it does not support
+WWAN control ports, e.g. /dev/wwan0qmi0 yet).
+
+Changes in v2:
+  - Rename "qcom,remote-power-collapse" -> "qcom,powered-remotely"
+  - Rebase on net-net and fix conflicts
+  - Rename network interfaces from "rmnet%d" -> "wwan%d"
+  - Fix wrong file name in MAINTAINERS entry
+
+[1]: https://source.codeaurora.org/quic/la/kernel/msm-3.10/tree/drivers/soc/qcom/bam_dmux.c?h=LA.BR.1.2.9.1-02310-8x16.0
+[2]: https://lore.kernel.org/netdev/e37868ee-2bd0-3b50-eb95-8eb2bf32d956@quicinc.com/
+[3]: https://postmarketos.org/
+
+Stephan Gerhold (4):
+  dt-bindings: dmaengine: bam_dma: Add "powered remotely" mode
+  dmaengine: qcom: bam_dma: Add "powered remotely" mode
+  dt-bindings: net: Add schema for Qualcomm BAM-DMUX
+  net: wwan: Add Qualcomm BAM-DMUX WWAN network driver
+
+ .../devicetree/bindings/dma/qcom_bam_dma.txt  |   2 +
+ .../bindings/net/qcom,bam-dmux.yaml           |  87 ++
+ MAINTAINERS                                   |   8 +
+ drivers/dma/qcom/bam_dma.c                    |  88 +-
+ drivers/net/wwan/Kconfig                      |  13 +
+ drivers/net/wwan/Makefile                     |   1 +
+ drivers/net/wwan/qcom_bam_dmux.c              | 907 ++++++++++++++++++
+ 7 files changed, 1074 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml
+ create mode 100644 drivers/net/wwan/qcom_bam_dmux.c
+
+-- 
+2.33.0
+
