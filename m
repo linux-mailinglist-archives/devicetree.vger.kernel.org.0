@@ -2,100 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85CF64285FA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 06:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B5C942860F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 06:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233102AbhJKEok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 00:44:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50752 "EHLO
+        id S229556AbhJKEvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 00:51:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230102AbhJKEoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 00:44:39 -0400
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A8CC061570;
-        Sun, 10 Oct 2021 21:42:39 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id B05B941EF0;
-        Mon, 11 Oct 2021 04:42:32 +0000 (UTC)
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-serial@vger.kernel.org
-References: <20211005155923.173399-1-marcan@marcan.st>
- <20211005155923.173399-3-marcan@marcan.st>
- <b5b3fcb4-077b-d33d-03cc-ac0611cb56a1@canonical.com>
- <5b89aed0-f9b7-fdba-16d8-a8bd9e2d7437@marcan.st>
- <6e92a8d3-798a-267a-d24e-6b9ff0c3c645@canonical.com>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 2/7] dt-bindings: power: Add apple,pmgr-pwrstate binding
-Message-ID: <60b3f115-8549-9080-774b-f2c8b98ce6d0@marcan.st>
-Date:   Mon, 11 Oct 2021 13:42:30 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S229504AbhJKEvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 00:51:31 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F22BDC061570;
+        Sun, 10 Oct 2021 21:49:31 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id g5so7410827plg.1;
+        Sun, 10 Oct 2021 21:49:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-disposition:content-transfer-encoding;
+        bh=PJRPSmHOQxCp45UEkvrzfKi8Gls65lpBH+lWVNhdSr4=;
+        b=j2+X13U0WS5BXUJdQ5J41WDAVk74/CaEjB57CEadeSHodbjZE5nWxdd9Yej6VyO8MU
+         V08Ofu82n7qcZ43gQ1zpXsts1TpgweBbBJj0UJXDi6RPlwgkxL7XsU8Ea037YNAl4ojU
+         PqbBJhLea1gNvIJRxnoJgrGAkWzUsb1jhUy4LYGbldSug0bPG2W4u/V7mOwGvb4dOQOT
+         h2mIyihmRSjWSVWHDrlx/CLKsG1HlAFnLtJ5A7h5aJns2kNAgEv3JBVtGve3c9n4dVA/
+         bqYcqt7olgFTZhhVEPiHs6Ylvj7JlVwxHwcaAeaXQPPE9RiBZR41darCbQi0AwwJN+oi
+         V5cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-disposition
+         :content-transfer-encoding;
+        bh=PJRPSmHOQxCp45UEkvrzfKi8Gls65lpBH+lWVNhdSr4=;
+        b=IbAPfD764Y91aguDto2sWdbgslMOBYIGI6PntnVayQ7W0wdMfHSPQOFD/iNZaHLd8w
+         xw84XP00JJUmTCWQkz3gmMqCsnky1wnCHhjEZNmIrM8CchtvdtNchq6IwliK6WWLlvwE
+         BuCM8Ezs5q80Jf786pADccrl4K31fOgwcVLkLLOCH5S+ycA+Inap/9VRxuWKzc250hM7
+         Zs2Z2EGnGpHUMHAKScZOI8BP4r8V/pqlDvnBmM0aIAxnlY91gJ90UEOMwMiqdr+nWynd
+         iJu23fUxCMEWMwMwSxJBAwJLuniujkXGhHYizEB7Xyd2r+3jCfAQqwP9j9JQvu8ZD/B5
+         AdYw==
+X-Gm-Message-State: AOAM532h92JxhYiTD6pG83mrgtnHGWkErd2uQfsgSc0NwqeT5JWi4JTv
+        WOXgpggVvev0N8/VGvue1WY=
+X-Google-Smtp-Source: ABdhPJxx25ZKhM8mTGHSh7wU7+XAshVrV9AI6rxzfGxFi5ufDqLv22+h5uLw8+oMmX/QQ5YB9j9Prg==
+X-Received: by 2002:a17:90b:370f:: with SMTP id mg15mr7215550pjb.209.1633927771474;
+        Sun, 10 Oct 2021 21:49:31 -0700 (PDT)
+Received: from localhost.localdomain ([171.211.26.24])
+        by smtp.gmail.com with ESMTPSA id y13sm6657792pgc.46.2021.10.10.21.49.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Oct 2021 21:49:30 -0700 (PDT)
+From:   DENG Qingfang <dqfext@gmail.com>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v5 05/14] drivers: net: dsa: qca8k: add support for cpu port 6
+Date:   Mon, 11 Oct 2021 12:49:23 +0800
+Message-Id: <20211011044923.23063-1-dqfext@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211011013024.569-6-ansuelsmth@gmail.com>
+References: <20211011013024.569-1-ansuelsmth@gmail.com> <20211011013024.569-6-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <6e92a8d3-798a-267a-d24e-6b9ff0c3c645@canonical.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2021 22.12, Krzysztof Kozlowski wrote:
->>>> +  power-domains:
->>>> +    description:
->>>> +      Reference to parent power domains. A domain may have multiple parents,
->>>> +      and all will be powered up when it is powered.
->>>
->>> How many items?
->>
->> One or more (if there are none the property should not exist). I guess
->> that should be encoded.
-> 
-> Probably this should not go without any constraints. Are you sure it
-> could have more than one? It would mean more than one parent.
+On Mon, Oct 11, 2021 at 03:30:15AM +0200, Ansuel Smith wrote:
+>  static int
+>  qca8k_parse_port_config(struct qca8k_priv *priv)
+>  {
+> @@ -1011,13 +1027,14 @@ static int
+>  qca8k_setup(struct dsa_switch *ds)
+>  {
+>  	struct qca8k_priv *priv = (struct qca8k_priv *)ds->priv;
+> +	u8 cpu_port;
 
-Yes, at least that is the way Apple describes it in their device tree. 
-As I understand it, this is basically a dependency tree of SoC blocks 
-that need to be powered up/clocked for a downstream device to work. In 
-other words, it's not just a pure clock/power tree, but also represents 
-blocks of logic that are shared between devices. So, for example, the 
-ADT has relationships like these:
+cpu_port should be of type int.
 
-SIO_BUSIF parents: (none)
-SIO       parents: SIO_BUSIF
-PMS_BUSIF parents: (none)
-PMS       parents: (none)
-AUDIO_P   parents: SIO
-SIO_ADMA  parents: SIO, PMS
-MCA0      parents: AUDIO_P, SIO_ADMA
-
-That said, we know some of the data from the ADT is dodgy and doesn't 
-match the true hardware (see also the dependency from SIO to SIO_BUSIF 
-there, but not from PMS to PMS_BUSIF, which feels wrong), so as we learn 
-more about the real relationships between these domains we'll adjust the 
-devicetree to better reflect the hardware layout.
-
-There is also the case that even if technically a downstream device 
-depends on two domains (directly), the existing genpd infrastructure 
-doesn't handle that automatically like it does the single domain case, 
-so it ends up making sense to just have some extra domain-domain 
-dependencies to keep a bunch of boilerplate manual genpd handling code 
-out of device drivers.
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+>  	int ret, i;
+>  	u32 mask;
+>  
+> -	/* Make sure that port 0 is the cpu port */
+> -	if (!dsa_is_cpu_port(ds, 0)) {
+> -		dev_err(priv->dev, "port 0 is not the CPU port");
+> -		return -EINVAL;
+> +	cpu_port = qca8k_find_cpu_port(ds);
+> +	if (cpu_port < 0) {
+> +		dev_err(priv->dev, "No cpu port configured in both cpu port0 and port6");
+> +		return cpu_port;
+>  	}
