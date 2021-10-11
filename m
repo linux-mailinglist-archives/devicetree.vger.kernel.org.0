@@ -2,55 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47E934284F5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 04:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09D67428509
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 04:11:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233470AbhJKCFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 22:05:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44150 "EHLO
+        id S233222AbhJKCNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 22:13:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231578AbhJKCFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 22:05:16 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 575A8C061570;
-        Sun, 10 Oct 2021 19:03:17 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id r18so61457921edv.12;
-        Sun, 10 Oct 2021 19:03:17 -0700 (PDT)
+        with ESMTP id S231872AbhJKCN0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 22:13:26 -0400
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00198C061570;
+        Sun, 10 Oct 2021 19:11:26 -0700 (PDT)
+Received: by mail-qt1-x832.google.com with SMTP id w8so5935904qts.4;
+        Sun, 10 Oct 2021 19:11:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=KJXce0Dfy/CltbodZR4nSYkzFQVsW666XbiANtrNeQw=;
-        b=Hno2COTeQ1JRehZ2/b9h67IyZ6hdfxLZzeqoIjHvzszNa/vjZtOzpXQnrKY1Xb6+P6
-         DO1ZzjAsK0t3Maw4O/20ObOibISfQQTlMdBtX5GxzIsSslLIkhFPM+GMaoTOdP8tGmXZ
-         nD+wGSIrQrqVzwDSVOD9ANlCncRYZA2cQ1YXA4SqEAQCVKDm8UCl4QrQHsA91WOjRZzH
-         SXS4Od0HS8qdWhgOsp3i5XOAxBY9vlFIVXQEcWlnZS2hGXClQMUEHklx4++/3ax3LgzO
-         Hqj20WYcBWkRkMNXUe2AD5vXaotaYz7/QiGdB0teK6FI1JrYoGDiqEWcAMZ6C9ry9Wm6
-         U+CQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=TjqKF2G+ot9TWefZKW3C9zHAsRlyIodJTLXAqIsvayg=;
+        b=gDWcKZ0UQztjnosn+22+oduSALPggiMtDr3olLnvrtYEutZ786C4flvHc2fHJjmPU0
+         PPwaWBzvwFuZ+326y4SVRvpv2eb8sN216gPGVTv0dT0Qs20IDijIIxPzaiVtgggPqnFE
+         WT5t8aHKxXA3zOKNtalmN/r3756ntnokcVPRFvVED5OtbTC3AJyN8vN8Vo3DPZ2BSGP7
+         lC56keMz8sBpmzihf9FiJtahDFabdcX70lHM4DdH3TD5Z3BMz2tkVYjX6gyA95kqxXAZ
+         KaA7O8KFJFUSApVDM23gK3dkY2pbty16Eakpc31z1Tk3W8naj8Qao6Z01vShxF5iqJfK
+         jiiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KJXce0Dfy/CltbodZR4nSYkzFQVsW666XbiANtrNeQw=;
-        b=6y5Vf8r5vi6LR8OtE9m2HUq3YzC2WjYc+wj3eAiHAxP83emNvEgM1ZSfItSAwVMLg/
-         lMGeHpbCbaEdLWZVOjBzp9xO/Hc4HoC6uoHKcfG7PVJJEgOTn91WXdU6ItfStP9RylyG
-         HUReIQMiK5OVuqU5g/hai8D6fZGgkmotiD4E3Np+AlD43ArW74NZxvH+qzefCsY37MiW
-         +sNO1chYFiiG6iUSklvb1bYj8BmVT7qb4ZuPIHfhZwhJJrsis4j7bJ9KP47sP53Riz04
-         KemiLcmAhqwQ4CmpV/a57wjdXJV1Ko/h5S6f606neYno3tCi1r/h2b1ZbF8ZkRjWjXzp
-         d/aw==
-X-Gm-Message-State: AOAM530O5kjziqbNdLiiM/qCjzlTycwFwGT2YxcJt0CMcxaw68Fh98rg
-        1MkCgudswI2WNPF1ea1HdOE=
-X-Google-Smtp-Source: ABdhPJwAp20VnhaG2e1KqRMhT/OIp2qWxCilKjAp4umuNUovhDX7cuPLHPI6jikh3IWXzijdllLFCA==
-X-Received: by 2002:a50:cc03:: with SMTP id m3mr37924241edi.278.1633917795893;
-        Sun, 10 Oct 2021 19:03:15 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id l8sm2695876ejn.103.2021.10.10.19.03.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Oct 2021 19:03:15 -0700 (PDT)
-Date:   Mon, 11 Oct 2021 04:02:11 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=TjqKF2G+ot9TWefZKW3C9zHAsRlyIodJTLXAqIsvayg=;
+        b=rVeNK2rOJK7O0ggKZ39F0YdaCn9J1p9JY/z6V0NLGZNdtkbVahOeBlyRDk4xI8ji/s
+         OzLPEPOf2/fpv+Al+OWCI4E2Z5qjJXTBcQ6XD2oORiPprrkFJL6D7f9J6qfr2axrW7vi
+         2lWZbunhhQzmdWyigHlrd4KLqBsuHAXP4IkHIdP6Eq0khurstp0gCOUbGkgcPTA3Hzk/
+         QcdpADW8C7AHHsgpaNAqb0R8j8m8ST4dxk0L2G0xq8b4zdWnSN1qpFFlHINOQzYidAfY
+         0LlY6Ev9rUf5Bwi86I1iw48JG+RmJJpphCuzmm63hHBJrarYnT70o0HCUdQG74XxWefh
+         9DMA==
+X-Gm-Message-State: AOAM531cKSr94M5MkzAnfwnTLata80A1/jdtnzWDomYCSysYIbzfyF7k
+        hARHi3e0jDUrwBn8F4rHQSI=
+X-Google-Smtp-Source: ABdhPJwnOFDzduH2yaeDsuWn7nxMdHFMXNlCkIL5KytE07B7ka8nsZDabGpiUT2Vna/P7Qgr0GFaCA==
+X-Received: by 2002:a05:622a:316:: with SMTP id q22mr12131941qtw.225.1633918286096;
+        Sun, 10 Oct 2021 19:11:26 -0700 (PDT)
+Received: from [192.168.1.121] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
+        by smtp.gmail.com with ESMTPSA id q22sm619750qkj.64.2021.10.10.19.11.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Oct 2021 19:11:25 -0700 (PDT)
+Message-ID: <fe8833a4-df21-475b-7ddf-dcda54550652@gmail.com>
+Date:   Sun, 10 Oct 2021 19:11:23 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Subject: Re: [net-next PATCH v5 06/14] net: dsa: qca8k: rework rgmii delay
+ logic and scan for cpu port 6
+Content-Language: en-US
+To:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Vladimir Oltean <olteanv@gmail.com>,
         "David S. Miller" <davem@davemloft.net>,
@@ -58,60 +64,42 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH v5 04/14] dt-bindings: net: dsa: qca8k: Document
- support for CPU port 6
-Message-ID: <YWObIyEZvjpoKG00@Ansuel-xps.localdomain>
 References: <20211011013024.569-1-ansuelsmth@gmail.com>
- <20211011013024.569-5-ansuelsmth@gmail.com>
- <16d2a19b-5092-763b-230c-5b0a6237d852@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <16d2a19b-5092-763b-230c-5b0a6237d852@gmail.com>
+ <20211011013024.569-7-ansuelsmth@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20211011013024.569-7-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 10, 2021 at 06:50:39PM -0700, Florian Fainelli wrote:
-> 
-> 
-> On 10/10/2021 6:30 PM, Ansuel Smith wrote:
-> > The switch now support CPU port to be set 6 instead of be hardcoded to
-> > 0. Document support for it and describe logic selection.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >   Documentation/devicetree/bindings/net/dsa/qca8k.txt | 6 +++++-
-> >   1 file changed, 5 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.txt b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > index cc214e655442..aeb206556f54 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.txt
-> > @@ -29,7 +29,11 @@ the mdio MASTER is used as communication.
-> >   Don't use mixed external and internal mdio-bus configurations, as this is
-> >   not supported by the hardware.
-> > -The CPU port of this switch is always port 0.
-> > +This switch support 2 CPU port.
-> 
-> Plural: ports.
-> 
-> > Normally and advised configuration is with
-> > +CPU port set to port 0. It is also possible to set the CPU port to port 6
-> > +if the device requires it. The driver will configure the switch to the defined
-> > +port. With both CPU port declared the first CPU port is selected as primary
-> > +and the secondary CPU ignored.
-> 
-> Is this universally supported by all models that this binding covers? If
-> not, you might want to explain that?
-> -- 
-> Florian
 
-Yes we tested this and both qca8327 and qca8337 work correctly with cpu
-port6 set as primary port. (no cpu0 defined)
-If you were referring to double cpu mode. That is the common
-configuration with this switch but we currently doesn't support
-multi-cpu in DSA.
 
+On 10/10/2021 6:30 PM, Ansuel Smith wrote:
+> Future proof commit. This switch have 2 CPU port
+
+Plural: ports.
+
+> and one valid
+> configuration is first CPU port set to sgmii and second CPU port set to
+> regmii-id. 
+
+rgmii-id
+
+> The current implementation detects delay only for CPU port
+> zero set to rgmii and doesn't count any delay set in a secondary CPU
+> port. Drop the current delay scan function and move it to the sgmii
+> parser function to generilize
+
+generalize
+
+> and implicitly add support for secondary
+> CPU port set to rgmii-id. Introduce new logic where delay is enabled
+> also with internal delay binding declared and rgmii set as PHY mode.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+
+Otherwise, looking good to me.
 -- 
-	Ansuel
+Florian
