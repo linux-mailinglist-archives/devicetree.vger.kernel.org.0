@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0589E4287D2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 09:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75FAF4287CA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 09:39:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234648AbhJKHlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 03:41:53 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:57476
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234575AbhJKHlt (ORCPT
+        id S234586AbhJKHlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 03:41:51 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:43794
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234545AbhJKHls (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Oct 2021 03:41:49 -0400
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        Mon, 11 Oct 2021 03:41:48 -0400
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 714E240021
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 07:39:47 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 39DDE3FFF3
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 07:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1633937987;
-        bh=hrLA5o9OEIQ0nHS0Sc5B651Iz0OK3SR27lQhWVZgzKI=;
+        s=20210705; t=1633937988;
+        bh=UgKOyYZwudZNcbOmLjHV2oxljhkCMf/FkAv9xZY25jk=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=I0mYu0D31VuK4pRmlCnk7ZywwcaMk+gp0zhdWj8iXMgwQewfI9QG6qIU91Pwhh+c2
-         9wGMiTvyaksVArjqqY/f8gbxgAOX2sNvaPds7LVIL888LQLe3Pe9Mb+dg1fn/KvpzV
-         E3sy0MKQDDQELkQMzsQ4E+RRWD8smZFiCX72yMd6n2+Mpi6+kOWIYPi/qC78Hlyzme
-         jjHQvA831DH0+HtG4sOSbORbLOqWx2Dp9e0FJbg5spbKEFYoYEq28FJvt5b2RbBOF0
-         Uj0rABuoFsPV0tvCyVslMnu9goVjeZBN1Pey87RySvXFIahhr3HAy4xea+A3NNdxM6
-         yl5Mryw2TRQig==
-Received: by mail-ed1-f69.google.com with SMTP id r11-20020aa7cfcb000000b003d4fbd652b9so13035279edy.14
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 00:39:47 -0700 (PDT)
+         MIME-Version;
+        b=VcX+7spCnd6U+Ae1SvJ6nByzv9umNK0MFTJqQhyyT6zUPS34NIgD/5QFP02Pz3YSz
+         S9X/6sy8vogjKrIYEzC0w847WiYaJJ0ak9Zv69EygZTSAjTE6F1h7HHwzsJhcImej9
+         srYnfkUyZe9RajA0QNQW2rE3NSzdZ8TuxX/YZ5rgbpjpNyO7KQ6LauPo4ClpriR6fx
+         Ip+v9mF6anCXRxVOptLhOU4HHXLeYUv8P9gdUD5SkA/w8EYLZCEF4cfYeShmTW13lQ
+         /cKHZzjpE1AcSraO53f5zCTSA0Byxv1akTDS5Sv6guGY+hD9mzJFWAf1ydOuiiJcS8
+         vWgCiMYAgmlKg==
+Received: by mail-ed1-f70.google.com with SMTP id h19-20020aa7de13000000b003db6ad5245bso6464894edv.9
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 00:39:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hrLA5o9OEIQ0nHS0Sc5B651Iz0OK3SR27lQhWVZgzKI=;
-        b=d0rkpryq4V1bWq7fBt2pquKVUsm5UDh022U18BsNRWPCl+FGlfgv43+M4meBldFc75
-         r3X4w+Ncg8yVZMfMdl7DipfAycGd8Z3HXhPmZkA/ZUHNyLYHd9bUUIwGOGgqbPb3ky9L
-         ugKi+Olha8BjRcvVDW087oO5yi5MkeUi1H+y7dhlVB5O9b1bxYt9uqAjSqgdTQJriQdp
-         CdR0//OjUfOoVFhZPOw9caHJW7MZ8f3afEdMk1ctbFHQqqcNKBZdqFs8AOc3Iai1mVGf
-         XQp8PTFuMu5gMUhoZwcxTRoZZ6tfNB2h5TkQ+GaOX8xfhoweUqZHgFcRQYGpeBj6JtJM
-         1GTA==
-X-Gm-Message-State: AOAM532KkmUy25Mun+Os4K976NshN0vM2QiU6knMAj0fXM8ss90zgrUC
-        ZOpYM00g+H8QDnEyFPsqqZHRuaSP6GsLGNNGq1gQHVbWFX1XVAB5idSe+tmhPWwpNOV1xaJ+RkH
-        HVNtWohUKkVSU/yINyINEksIq2l2h2xja3vum0/Q=
-X-Received: by 2002:a50:be81:: with SMTP id b1mr39180540edk.59.1633937986050;
-        Mon, 11 Oct 2021 00:39:46 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwRojHIPPzkKpzS+divt5D4CXRSkB9G3jbMbb2k4RwWF1y3DeZtH0vRHHfAbA51bv493rwOpQ==
-X-Received: by 2002:a50:be81:: with SMTP id b1mr39180520edk.59.1633937985884;
-        Mon, 11 Oct 2021 00:39:45 -0700 (PDT)
+        bh=UgKOyYZwudZNcbOmLjHV2oxljhkCMf/FkAv9xZY25jk=;
+        b=Oq2iwiINdkJtEwTFlPmgCbzo7cDIOdRPYqAk50XJnhlGCpp5pJwDDnRUt18c/jadZE
+         ZZI2H8qsFw4GroiLYHbf74JRX5eFhjttDpd2sN1eQOsic+k923Jn5Z1OZ+XsqV1uy0Ev
+         OHQVRObX8UjSyYIjLFhMyumFkWg9/PFoDw66eucbaGd/SOfi7KaAkgxfMldADbqJzKiE
+         lYk3lyRItRTRlZFrh9HmbSteq0ch5g7cXrKe37JgxE4RuhMo3BhiOhWi5U79LLBHicT+
+         GKWIZFM2Fv5WK5n0MFjFTUpKCuSJSVaaMGymEQHtw6Wh0cThXXvdVIz43Jet1LCqXTy/
+         fjuQ==
+X-Gm-Message-State: AOAM533W41oBNLHDuntlAcTgrqMC0C7+C4T6Kd9GzHOWQ6OLqVqHn1xh
+        ordMPQdSlwEsV/fvbIaxJ0GCAvH9SC9G/CPUNNFlBqnRXnQNQlERbgRBFObcGXkUIlVoi0fQb57
+        K1y9zHy5oOwArlm2PvWmRaki4Kdh1emFYzEFzpq0=
+X-Received: by 2002:a05:6402:90b:: with SMTP id g11mr285852edz.32.1633937987495;
+        Mon, 11 Oct 2021 00:39:47 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwpldaLH9a88wXudeyQvv2eytBFPukbJ2BYMZlSB5t8tpzJmcsqoMhbsiBWxgjJeaELLuFqBA==
+X-Received: by 2002:a05:6402:90b:: with SMTP id g11mr285836edz.32.1633937987365;
+        Mon, 11 Oct 2021 00:39:47 -0700 (PDT)
 Received: from localhost.localdomain (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y8sm3023965ejm.104.2021.10.11.00.39.43
+        by smtp.gmail.com with ESMTPSA id y8sm3023965ejm.104.2021.10.11.00.39.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 00:39:45 -0700 (PDT)
+        Mon, 11 Oct 2021 00:39:46 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         "David S. Miller" <davem@davemloft.net>,
@@ -63,148 +63,43 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Mark Greer <mgreer@animalcreek.com>, linux-nfc@lists.01.org,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org
-Subject: [PATCH v2 1/8] dt-bindings: nfc: nxp,nci: convert to dtschema
-Date:   Mon, 11 Oct 2021 09:39:27 +0200
-Message-Id: <20211011073934.34340-2-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 2/8] dt-bindings: nfc: nxp,nci: document NXP PN547 binding
+Date:   Mon, 11 Oct 2021 09:39:28 +0200
+Message-Id: <20211011073934.34340-3-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211011073934.34340-1-krzysztof.kozlowski@canonical.com>
 References: <20211011073934.34340-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the NXP NCI NFC controller to DT schema format.
-
-Drop the "clock-frequency" property during conversion because it is a
-property of I2C bus controller, not I2C slave device.  It was also never
-used by the driver.
+NXP PN547 NFC controller seems to be compatible with the NXP NCI and
+there already DTS files using two compatibles.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../devicetree/bindings/net/nfc/nxp,nci.yaml  | 57 +++++++++++++++++++
- .../devicetree/bindings/net/nfc/nxp-nci.txt   | 33 -----------
- MAINTAINERS                                   |  1 +
- 3 files changed, 58 insertions(+), 33 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/nfc/nxp-nci.txt
+ Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml b/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
-new file mode 100644
-index 000000000000..70634d20d4d7
---- /dev/null
+index 70634d20d4d7..7465aea2e1c0 100644
+--- a/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
 +++ b/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
-@@ -0,0 +1,57 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/nfc/nxp,nci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP Semiconductors NCI NFC controller
-+
-+maintainers:
-+  - Charles Gorand <charles.gorand@effinnov.com>
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+
-+properties:
-+  compatible:
-+    const: nxp,nxp-nci-i2c
-+
-+  enable-gpios:
-+    description: Output GPIO pin used for enabling/disabling the controller
-+
-+  firmware-gpios:
-+    description: Output GPIO pin used to enter firmware download mode
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - enable-gpios
-+  - interrupts
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        nfc@29 {
-+            compatible = "nxp,nxp-nci-i2c";
-+
-+            reg = <0x29>;
-+
-+            interrupt-parent = <&gpio1>;
-+            interrupts = <29 IRQ_TYPE_LEVEL_HIGH>;
-+
-+            enable-gpios = <&gpio0 30 GPIO_ACTIVE_HIGH>;
-+            firmware-gpios = <&gpio0 31 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/nfc/nxp-nci.txt b/Documentation/devicetree/bindings/net/nfc/nxp-nci.txt
-deleted file mode 100644
-index 285a37c2f189..000000000000
---- a/Documentation/devicetree/bindings/net/nfc/nxp-nci.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--* NXP Semiconductors NXP NCI NFC Controllers
--
--Required properties:
--- compatible: Should be "nxp,nxp-nci-i2c".
--- clock-frequency: I²C work frequency.
--- reg: address on the bus
--- interrupts: GPIO interrupt to which the chip is connected
--- enable-gpios: Output GPIO pin used for enabling/disabling the chip
--
--Optional SoC Specific Properties:
--- pinctrl-names: Contains only one value - "default".
--- pintctrl-0: Specifies the pin control groups used for this controller.
--- firmware-gpios: Output GPIO pin used to enter firmware download mode
--
--Example (for ARM-based BeagleBone with NPC100 NFC controller on I2C2):
--
--&i2c2 {
--
--
--	npc100: npc100@29 {
--
--		compatible = "nxp,nxp-nci-i2c";
--
--		reg = <0x29>;
--		clock-frequency = <100000>;
--
--		interrupt-parent = <&gpio1>;
--		interrupts = <29 IRQ_TYPE_LEVEL_HIGH>;
--
--		enable-gpios = <&gpio0 30 GPIO_ACTIVE_HIGH>;
--		firmware-gpios = <&gpio0 31 GPIO_ACTIVE_HIGH>;
--	};
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7cfd63ce7122..3294aaf5e56c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13632,6 +13632,7 @@ NXP-NCI NFC DRIVER
- R:	Charles Gorand <charles.gorand@effinnov.com>
- L:	linux-nfc@lists.01.org (subscribers-only)
- S:	Supported
-+F:	Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
- F:	drivers/nfc/nxp-nci
+@@ -12,7 +12,11 @@ maintainers:
  
- NXP i.MX 8QXP/8QM JPEG V4L2 DRIVER
+ properties:
+   compatible:
+-    const: nxp,nxp-nci-i2c
++    oneOf:
++      - const: nxp,nxp-nci-i2c
++      - items:
++          - const: nxp,pn547
++          - const: nxp,nxp-nci-i2c
+ 
+   enable-gpios:
+     description: Output GPIO pin used for enabling/disabling the controller
 -- 
 2.30.2
 
