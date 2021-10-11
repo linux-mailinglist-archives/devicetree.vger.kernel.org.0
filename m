@@ -2,227 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB73D4291B4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 16:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7691C4291BF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 16:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238838AbhJKO1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 10:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42788 "EHLO
+        id S238881AbhJKOaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 10:30:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243088AbhJKO1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 10:27:24 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932B1C09B054;
-        Mon, 11 Oct 2021 06:58:34 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id i1so15287923qtr.6;
-        Mon, 11 Oct 2021 06:58:34 -0700 (PDT)
+        with ESMTP id S238733AbhJKOaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 10:30:06 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44854C0F26DB;
+        Mon, 11 Oct 2021 07:03:44 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id g62-20020a9d2dc4000000b0054752cfbc59so21887497otb.1;
+        Mon, 11 Oct 2021 07:03:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:from:to:cc:references:message-id:date:user-agent
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kqrxxGCbuV1+Wb54X2S9cpbSCgL2RLWSvelFSnVKInA=;
-        b=faORq9Uk/3SyX2hlObvqIDLLC9yibUJ////9EJLmx1I2hoa5xmtfqXHgWjWjnkATym
-         5dd0OwI8rQ7asznjmDC+cs23/JyvmbF/9KCo4SryVVM4ZV6BvelduJL9qu+lZHeNfFOD
-         yG6RYF7X+zSEaBtSmz1XEKPwoVkttXiIPihX5H4UdY7g2YmgCeE6R0mywFWIljhkb5ot
-         WPz5z/peWojuy2Pe2Pj4mZQgYnE4vYpgZbP5AAHfZNbHNKN9cZV5lD5U47pE20DLNzPt
-         O4ZTtKQmtRJys6uU3rrBG1DMXi2dUchxi0nawJmYwrUK6vscjGty3vJ9Rfxs/qnlc6SK
-         UC4Q==
+        bh=Wk2Xx1j0bx+Uzm6+zVtoR+iElmlhVw742pfk98i7Meo=;
+        b=NIfMYYCFLTpTDfun8Ee/OSUF2VGp2b9acMddBT4BLrYbUwCjhTE86XZtENHr/lLVwM
+         kd2J7rrdc0BSeFP7HL+sHD+h07iwJIxe5DQzwZ39qLDVo8Li4bMdQZw003haCaUHgftQ
+         D28MXSIIJhx88qEwJP3IXr2WB1sF1bfKfe6x2WQUvzNi5BdCKdwil4z3Y9k7zh5iJHup
+         VhIY7pBucw7+jRgfqp8mnUspeUfAJ9U728A688VPbL4C7b9v1ZVybU7CsHmaxXl4J1wf
+         5hrkVf5VSI2cxELQFCWjtpglLDcwzQOjVtVEJup4mR1g/J2QuC9mPvpaLd/DC8hET1SC
+         wtbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=kqrxxGCbuV1+Wb54X2S9cpbSCgL2RLWSvelFSnVKInA=;
-        b=MkHEn2I/VWOoIKfiiwzw3U4TOPajTu0XI7HyKKTP/hnIXjplOvAsYSE57UYL8pRhj1
-         4u3pJibp7KWAYS6539rVyoSfgMVracRrTA/NNK86yrGRfPnZMy1CpPgrIJNqbKencCTS
-         kHM64smbGQQWMxIPw87kPdae49MAngJP9XmC5tjLio+1hFKnfL2Excpu0rmmxrj5yRVK
-         nT9YnMjBhRQsg3jSm6G7qnvArm7KMgTXbaIQdSjY4xD9dP6YrhnQmN7BKgG6lbM5199a
-         5kWeyVOMFT4qEy09VkVvpAvH+Yeoxd0CKO6dZyd0srfFa0CJHkdrx8PmYmkazKy56vuw
-         IR9w==
-X-Gm-Message-State: AOAM530aYyqcxnhENkOJ2hxSct1XbdEhgZqt8Ly2k1ZarAqm6OKjTgzv
-        oNKsz1JMuHKLBWiZ2vyYnwg=
-X-Google-Smtp-Source: ABdhPJy8eU96X6cybbCi+HK8BrLg44dixtV4huqfV0oNdJTb5amfv1e8vOpH4rgFrXrFILKgKrGnGg==
-X-Received: by 2002:a05:622a:1341:: with SMTP id w1mr15254404qtk.127.1633960713719;
-        Mon, 11 Oct 2021 06:58:33 -0700 (PDT)
-Received: from ?IPv6:2600:2b00:7f04:c300:b01e:1134:3ab1:111a? ([2600:2b00:7f04:c300:b01e:1134:3ab1:111a])
-        by smtp.gmail.com with ESMTPSA id j15sm4718788qth.3.2021.10.11.06.58.32
+        bh=Wk2Xx1j0bx+Uzm6+zVtoR+iElmlhVw742pfk98i7Meo=;
+        b=CFquIv6loUTDt39gLkt4yVq70A4SRNZxihSunxL+59xaaiqWksUX8EY7nJKdsCwAxQ
+         rZjZBeC9fUGdB3zJkmlRhn/X4ivqQoz2O49sb8p67nUu0qxXhDehKWlVso5TQx6B/Bds
+         ZSCSq1TD1x20SLAlG3XCO4/VwZ3gbxhfy0rT3riu5f8ZomtpkhWiQ1AqTXsaSCXdi0OV
+         Hyabibju1gYsBf4Pe6hSU2Kz1kHNA1HYrutz9DNstj/KQgUhZ/EiMovSIcIeHQpQkqRl
+         5+i08mcMzMRrE+B/JFYc7YjqQ7XoHj6cCUwACjaDJTEXcVrqrH9GHgaUk72jxQ725VPn
+         wx/w==
+X-Gm-Message-State: AOAM533q88EnJg+2Hl8hU1XCnjp4wqihFOqrZumhtLNz8ncK5YlNmcAz
+        HO/Hv5ohzI+Ma3DRS6R69VrWHbq+Vu0=
+X-Google-Smtp-Source: ABdhPJzlP2rpo0wr+QhmeS/8Y69NkoGzg390wQEQY2P2xzrM4BpaVMOPatuwxi8Tt28gZt64LVoHyw==
+X-Received: by 2002:a05:6830:2317:: with SMTP id u23mr19222391ote.385.1633961017772;
+        Mon, 11 Oct 2021 07:03:37 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id bc19sm1577028oob.29.2021.10.11.07.03.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Oct 2021 06:58:33 -0700 (PDT)
-Subject: Re: [PATCH 6/9] of: add support for 'dynamic' DT property
-From:   Frank Rowand <frowand.list@gmail.com>
-To:     Zev Weiss <zev@bewilderbeest.net>, openbmc@lists.ozlabs.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211007000954.30621-1-zev@bewilderbeest.net>
- <20211007000954.30621-7-zev@bewilderbeest.net>
- <7bf5cfce-e84d-f0e8-e6e8-8e6fedffd154@gmail.com>
-Message-ID: <05e4c31e-db7e-e8f2-fa37-3cdcdf902e19@gmail.com>
-Date:   Mon, 11 Oct 2021 08:58:32 -0500
+        Mon, 11 Oct 2021 07:03:37 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v7 2/2] hwmon: (nct7802) Make temperature/voltage sensors
+ configurable
+To:     Oskar Senft <osk@google.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20211011012212.91357-1-osk@google.com>
+ <20211011012212.91357-2-osk@google.com>
+ <98dcaa85-d04c-7a9c-1901-8786d361477c@roeck-us.net>
+ <CABoTLcTERUpwPSc7fVUAMqs37XCZJhMFbFRT2oyTt_TodE6GnA@mail.gmail.com>
+ <518a6ab3-80af-bbe9-69e5-55e6741bdcbe@roeck-us.net>
+ <CABoTLcQtfoXCy+j9W6-NxAtWN13yTs322BFtCebbMCZr-cWzaA@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <22086eb0-a25a-09c9-0f10-0702e412a6fc@roeck-us.net>
+Date:   Mon, 11 Oct 2021 07:03:35 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <7bf5cfce-e84d-f0e8-e6e8-8e6fedffd154@gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <CABoTLcQtfoXCy+j9W6-NxAtWN13yTs322BFtCebbMCZr-cWzaA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matt, Greg,
-
-On 10/8/21 1:51 PM, Frank Rowand wrote:
-> On 10/6/21 7:09 PM, Zev Weiss wrote:
->> Nodes marked with this (boolean) property will have a writable status
->> sysfs file, which can be used to toggle them between "okay" and
->> "reserved", effectively hot-plugging them.  Note that this will only
->> be effective for devices on busses that register for OF reconfig
->> notifications (currently spi, i2c, and platform), and only if
->> CONFIG_OF_DYNAMIC is enabled.
->>
->> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
->> ---
->>  drivers/of/kobj.c | 69 +++++++++++++++++++++++++++++++++++++++++++++++
->>  1 file changed, 69 insertions(+)
->>
->> diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
->> index 378cb421aae1..141ae23f3130 100644
->> --- a/drivers/of/kobj.c
->> +++ b/drivers/of/kobj.c
->> @@ -36,6 +36,69 @@ static ssize_t of_node_property_read(struct file *filp, struct kobject *kobj,
->>      return memory_read_from_buffer(buf, count, &offset, pp->value, pp->length);
->>  }
->>  
->> +static ssize_t of_node_status_write(struct file *filp, struct kobject *kobj,
->> +                                    struct bin_attribute *bin_attr, char *buf,
->> +                                    loff_t offset, size_t count)
->> +{
->> +    int rc;
->> +    char *newstatus;
->> +    struct property **deadprev;
->> +    struct property *newprop = NULL;
->> +    struct property *oldprop = container_of(bin_attr, struct property, attr);
->> +    struct device_node *np = container_of(kobj, struct device_node, kobj);
->> +
->> +    if (WARN_ON_ONCE(strcmp(oldprop->name, "status")))
->> +            return -EIO;
->> +
->> +    if (offset)
->> +            return -EINVAL;
->> +
->> +    if (sysfs_buf_streq(buf, count, "okay") || sysfs_buf_streq(buf, count, "ok"))
->> +            newstatus = "okay";
->> +    else if (sysfs_buf_streq(buf, count, "reserved"))
->> +            newstatus = "reserved";
->> +    else if (sysfs_buf_streq(buf, count, "disabled"))
->> +            newstatus = "disabled";
->> +    else
->> +            return -EINVAL;
->> +
->> +    if (!strcmp(newstatus, oldprop->value))
->> +            return count;
->> +
+On 10/11/21 5:57 AM, Oskar Senft wrote:
+> Hi Guenter
 > 
-> If the general approach of this patch set is the correct way to provide the desired
-> functionality (I'm still pondering that), then a version of the following code
-
-After pondering, this approach does not appear workable to me.
-
-If we allow one property to be writable via sysfs we open the door for any property to
-be writable from sysfs.  This will likely lead to a desire to modify more than one
-related property as a single transaction (so that the changes occur as a single
-transaction, under a single lock event, with a single notification after all
-of the properties are modified).  This is not meant to be an exhaustive list of
-the issues that have already been thought through in the context of overlays
-(though not all of the issues have been addressed with overlays, at least many
-of them, such as one transaction to apply an entire overlay, have been.)
-
-I don't want to make this a long missive, but will at least note the next
-issue that popped up in my pondering, which is complications from modifying
-the same items in a devicetree via different methods, such as both writing
-to sysfs and applying/removing overlays.  If the problems in the previous
-paragraph are not sufficient to prevent the sysfs approach then I can
-elaborate further on these additional issues.
-
-So another approach is needed.  I have no yet thought this through, but I
-have an alternative.  First, change the new property name from "dynamic"
-to something more descriptive like "ownership_shifts_between_os_and_others"
-(yes, my suggestions is way too verbose and needs to be word smithed, but
-the point is to clearly state the underlying action that occurs), then
-define the result of this variable to be driver specific, where the
-driver is required upon probe to instantiate the device in a manner
-that does not impact the other user(s) of the underlying hardware
-and to use a driver specific method to transfer control of the
-hardware between the os and the other user(s).  I propose the method
-would be via a device specific file (or set of files) in sysfs (Greg's
-input invited on the use of sysfs in this manner - if I recall correctly
-this is the current preferred mechanism).
-
--Frank
-
-
-> probably belongs in drivers/of/dynamic.c so that it is easier to maintain and keep
-> consistent with other dynamic devicetree updates.  If you look at the code there
-> that touches deadprops (eg __of_changeset_entry_apply()) you will notice that the
-> locking issues are more extensive than what is implemented here.
+> I appreciate your help with this!
 > 
-> I'm still thinking about how this interacts with other forms of dynamic devicetree
-> changes (eg drivers/of/dynamic.c and also overlays).
+>> First, please don't top-post.
+> Argh, I'm sorry - old habits! The Gmail web UI makes it too easy to do that :-/
 > 
->> +    /*
->> +     * of_update_property_self() doesn't free replaced properties, so
->> +     * rifle through deadprops first to see if there's an equivalent old
->> +     * status property we can reuse instead of allocating a new one.
->> +     */
->> +    mutex_lock(&of_mutex);
->> +    for (deadprev = &np->deadprops; *deadprev; deadprev = &(*deadprev)->next) {
->> +            struct property *deadprop = *deadprev;
->> +            if (!strcmp(deadprop->name, "status") &&
->> +                deadprop->length == strlen(newstatus) + 1 &&
->> +                !strcmp(deadprop->value, newstatus)) {
->> +                    *deadprev = deadprop->next;
->> +                    deadprop->next = NULL;
->> +                    newprop = deadprop;
->> +                    break;
->> +            }
->> +    }
->> +    mutex_unlock(&of_mutex);
->> +
->> +    if (!newprop) {
->> +            newprop = kzalloc(sizeof(*newprop), GFP_KERNEL);
->> +            if (!newprop)
->> +                    return -ENOMEM;
->> +
->> +            newprop->name = oldprop->name;
->> +            newprop->value = newstatus;
->> +            newprop->length = strlen(newstatus) + 1;
->> +    }
->> +
->> +    rc = of_update_property_self(np, newprop, true);
+>> Second, no, submitting both patches was the right thing to do, but
+>> you should not drop a Reviewed-by: tag if there was no change to
+>> the patch.
+> Got it, makes sense. How do I untangle this mess? Resubmit a v8, this
+> time with the "Reviewed-by:" added back in? Or are you ok tagging the
+> v7 again. I'm sorry!
 > 
-> -Frank
-> 
->> +
->> +    return rc ? rc : count;
->> +}
->> +
->>  /* always return newly allocated name, caller must free after use */
->>  static const char *safe_name(struct kobject *kobj, const char *orig_name)
->>  {
->> @@ -79,6 +142,12 @@ int __of_add_property_sysfs(struct device_node *np, struct property *pp)
->>      pp->attr.size = secure ? 0 : pp->length;
->>      pp->attr.read = of_node_property_read;
->>  
->> +    if (!strcmp(pp->name, "status") && of_property_read_bool(np, "dynamic")) {
->> +            pp->attr.attr.mode |= 0200;
->> +            pp->attr.write = of_node_status_write;
->> +            pp->attr.growable = true;
->> +    }
->> +
->>      rc = sysfs_create_bin_file(&np->kobj, &pp->attr);
->>      WARN(rc, "error adding attribute %s to node %pOF\n", pp->name, np);
->>      return rc;
->>
+
+I'll tag again. No worries, just keep it in mind for next time.
+
+Thanks,
+Guenter
+
