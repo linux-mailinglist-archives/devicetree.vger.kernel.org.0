@@ -2,160 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E0814295BD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 19:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E6644295D4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 19:37:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231682AbhJKRhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 13:37:12 -0400
-Received: from thorn.bewilderbeest.net ([71.19.156.171]:46583 "EHLO
-        thorn.bewilderbeest.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbhJKRhL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 13:37:11 -0400
-Received: from hatter.bewilderbeest.net (71-212-29-146.tukw.qwest.net [71.212.29.146])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id D272312B;
-        Mon, 11 Oct 2021 10:35:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1633973711;
-        bh=37FA9CA4jkUipLpx6mASR21lCskkzjZexvQxoi2xAds=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=irpmmvZaPGMwlOIi9xZHr3WBV5ncQWV2tnQ7+PODTjtFt/nLyMkYsSujDA1/KBMDH
-         C7Q552FOG8yEcEz8F7jAtrlZ65FGfi3sqnSaQPCcIrfrEa56FbPZ/m6A9dB5SxQlVW
-         BF6O/6HS+yaMjymyFad5ZFyQu2ObOVmlZ5Lr6w+4=
-Date:   Mon, 11 Oct 2021 10:35:05 -0700
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/9] of: add support for 'dynamic' DT property
-Message-ID: <YWR1yRmcFU66DnO5@hatter.bewilderbeest.net>
-References: <20211007000954.30621-1-zev@bewilderbeest.net>
- <20211007000954.30621-7-zev@bewilderbeest.net>
- <7bf5cfce-e84d-f0e8-e6e8-8e6fedffd154@gmail.com>
- <05e4c31e-db7e-e8f2-fa37-3cdcdf902e19@gmail.com>
+        id S232387AbhJKRjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 13:39:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60400 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231300AbhJKRjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 13:39:47 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08A5AC06161C
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 10:37:47 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id l7-20020a0568302b0700b0054e40740571so16951207otv.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 10:37:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tj0ez8KOIN3iGavit2nL31CdJWBPsMoFo8+gcn8vAXw=;
+        b=k5ipc3mQAiV0dS9BwOOkFinF90cqy17wrCoe1I1PNBdMpcHiQp6gvslxlfGPI70NxJ
+         qUrKcIxLFNEE7qgg7R5jHasMtvpdAbp9sDtZF3pBN3gapqOkOydT0JE+c1F0di39XM2Z
+         VbuNyetuNkmF8i7ee8VH6xYeUAT+tIhNUZQM76g+AD5BsQgirr2Le9dN7W1duKr7XE4T
+         DxRSCgGT/7Hy9cBkMcr1d06r8QMvHBKPiMFigFg1H4QKX4EVCeJa4s5as5RgRtgNIfvA
+         J9C9gPNCT2JaHhvi6dvm+Ykt3111sT6AnuSz5qrY99nMFAzBnc3J8CdaTzuFra230vzp
+         T+lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tj0ez8KOIN3iGavit2nL31CdJWBPsMoFo8+gcn8vAXw=;
+        b=iTUGmlh6hNsemOiKrnzt79XErzjPzhSUqobMhkqE4xouROsA9P9aBSHiWpicMH/xJp
+         Edb9/lk/KzpqTmCqUuifhuTv0UloEJwNCxq9+AkqZTteLMG8ejHPebuJ73y/6n/QpRQh
+         MfNVCkjet8j/4ZJC8x2VQwxkDrtNRcdlVCYsuDjT31vlwq9rExGf+u9NfbDsHjSTjqlr
+         jEuGkbyD6CbfdHCx+wzPeDLaK2SU99fewYLtFuHxDg3FmsJLaKHgA5I46QqSxEnjiCiQ
+         5xA2mMaVlcN8NMUMGa9W7lCCHhKLdjGpUxc69yHDYMi1bEKUuVRO/uV7mxEKyMa8Na61
+         2bFQ==
+X-Gm-Message-State: AOAM531/Kggr1dCfCG67t9IaZYyG1uI+9SKPl4Pl7JYlylGuapt7RWW2
+        oNAmGoqdKKNlJQcbo6Ug1JWknA==
+X-Google-Smtp-Source: ABdhPJx84ZRrul5YadMUtFSkOfvABSC5HC18sJxJwkxN2sgpQFbW7cFm812AGdbEjSMEwU72VtM8vA==
+X-Received: by 2002:a05:6830:17da:: with SMTP id p26mr22664423ota.116.1633973866343;
+        Mon, 11 Oct 2021 10:37:46 -0700 (PDT)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id s18sm1820955oij.3.2021.10.11.10.37.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Oct 2021 10:37:45 -0700 (PDT)
+Date:   Mon, 11 Oct 2021 10:39:20 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Aleksander Morgado <aleksander@aleksander.es>,
+        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: Re: [PATCH net-next v2 2/4] dmaengine: qcom: bam_dma: Add "powered
+ remotely" mode
+Message-ID: <YWR2yN3x3zroz1GX@ripper>
+References: <20211011141733.3999-1-stephan@gerhold.net>
+ <20211011141733.3999-3-stephan@gerhold.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <05e4c31e-db7e-e8f2-fa37-3cdcdf902e19@gmail.com>
+In-Reply-To: <20211011141733.3999-3-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+On Mon 11 Oct 07:17 PDT 2021, Stephan Gerhold wrote:
 
-Thanks for the thorough consideration on this.  (More inline below.)
+> In some configurations, the BAM DMA controller is set up by a remote
+> processor and the local processor can simply start making use of it
+> without setting up the BAM. This is already supported using the
+> "qcom,controlled-remotely" property.
+> 
+> However, for some reason another possible configuration is that the
+> remote processor is responsible for powering up the BAM, but we are
+> still responsible for initializing it (e.g. resetting it etc).
+> 
+> This configuration is quite challenging to handle properly because
+> the power control is handled through separate channels
+> (e.g. device-specific SMSM interrupts / smem-states). Great care
+> must be taken to ensure the BAM registers are not accessed while
+> the BAM is powered off since this results in a bus stall.
+> 
+> Attempt to support this configuration with minimal device-specific
+> code in the bam_dma driver by tracking the number of requested
+> channels. Consumers of DMA channels are responsible to only request
+> DMA channels when the BAM was powered on by the remote processor,
+> and to release them before the BAM is powered off.
+> 
+> When the first channel is requested the BAM is initialized (reset)
+> and it is also put into reset when the last channel was released.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+> Changes since RFC:
+>   - Drop qcom-specific terminology "power collapse", instead rename
+>     "qcom,remote-power-collapse" -> "qcom,powered-remotely"
+> 
+> NOTE: This is *not* a compile-time requirement for the BAM-DMUX driver
+>       so this could also go through the dmaengine tree.
+> 
+> See original RFC for a discussion of alternative approaches to handle
+> this configuration:
+>   https://lore.kernel.org/netdev/20210719145317.79692-3-stephan@gerhold.net/
+> ---
+>  drivers/dma/qcom/bam_dma.c | 88 ++++++++++++++++++++++++--------------
+>  1 file changed, 56 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/dma/qcom/bam_dma.c b/drivers/dma/qcom/bam_dma.c
+> index c8a77b428b52..1b33a3ebbfec 100644
+> --- a/drivers/dma/qcom/bam_dma.c
+> +++ b/drivers/dma/qcom/bam_dma.c
+> @@ -388,6 +388,8 @@ struct bam_device {
+>  	/* execution environment ID, from DT */
+>  	u32 ee;
+>  	bool controlled_remotely;
+> +	bool powered_remotely;
+> +	u32 active_channels;
+>  
+>  	const struct reg_offset_data *layout;
+>  
+> @@ -415,6 +417,44 @@ static inline void __iomem *bam_addr(struct bam_device *bdev, u32 pipe,
+>  		r.ee_mult * bdev->ee;
+>  }
+>  
+> +/**
+> + * bam_reset - reset and initialize BAM registers
 
-On Mon, Oct 11, 2021 at 06:58:32AM PDT, Frank Rowand wrote:
->Hi Matt, Greg,
->
->On 10/8/21 1:51 PM, Frank Rowand wrote:
->> On 10/6/21 7:09 PM, Zev Weiss wrote:
->>> Nodes marked with this (boolean) property will have a writable status
->>> sysfs file, which can be used to toggle them between "okay" and
->>> "reserved", effectively hot-plugging them.  Note that this will only
->>> be effective for devices on busses that register for OF reconfig
->>> notifications (currently spi, i2c, and platform), and only if
->>> CONFIG_OF_DYNAMIC is enabled.
->>>
->>> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
->>> ---
->>>  drivers/of/kobj.c | 69 +++++++++++++++++++++++++++++++++++++++++++++++
->>>  1 file changed, 69 insertions(+)
->>>
->>> diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
->>> index 378cb421aae1..141ae23f3130 100644
->>> --- a/drivers/of/kobj.c
->>> +++ b/drivers/of/kobj.c
->>> @@ -36,6 +36,69 @@ static ssize_t of_node_property_read(struct file *filp, struct kobject *kobj,
->>>      return memory_read_from_buffer(buf, count, &offset, pp->value, pp->length);
->>>  }
->>>
->>> +static ssize_t of_node_status_write(struct file *filp, struct kobject *kobj,
->>> +                                    struct bin_attribute *bin_attr, char *buf,
->>> +                                    loff_t offset, size_t count)
->>> +{
->>> +    int rc;
->>> +    char *newstatus;
->>> +    struct property **deadprev;
->>> +    struct property *newprop = NULL;
->>> +    struct property *oldprop = container_of(bin_attr, struct property, attr);
->>> +    struct device_node *np = container_of(kobj, struct device_node, kobj);
->>> +
->>> +    if (WARN_ON_ONCE(strcmp(oldprop->name, "status")))
->>> +            return -EIO;
->>> +
->>> +    if (offset)
->>> +            return -EINVAL;
->>> +
->>> +    if (sysfs_buf_streq(buf, count, "okay") || sysfs_buf_streq(buf, count, "ok"))
->>> +            newstatus = "okay";
->>> +    else if (sysfs_buf_streq(buf, count, "reserved"))
->>> +            newstatus = "reserved";
->>> +    else if (sysfs_buf_streq(buf, count, "disabled"))
->>> +            newstatus = "disabled";
->>> +    else
->>> +            return -EINVAL;
->>> +
->>> +    if (!strcmp(newstatus, oldprop->value))
->>> +            return count;
->>> +
->>
->> If the general approach of this patch set is the correct way to provide the desired
->> functionality (I'm still pondering that), then a version of the following code
->
->After pondering, this approach does not appear workable to me.
->
+Please include a set of () after the function name.
 
-Okay -- I had come to a similar conclusion, if for slightly different 
-reasons (basically, just that the sets of "things that would avoid 
-binary sysfs attr abuse" and "things that would maintain userspace 
-compatibility" seemed pretty disjoint).
+> + * @bdev: bam device
+> + */
+> +static void bam_reset(struct bam_device *bdev)
+> +{
+> +	u32 val;
+> +
+> +	/* s/w reset bam */
+> +	/* after reset all pipes are disabled and idle */
+> +	val = readl_relaxed(bam_addr(bdev, 0, BAM_CTRL));
+> +	val |= BAM_SW_RST;
+> +	writel_relaxed(val, bam_addr(bdev, 0, BAM_CTRL));
+> +	val &= ~BAM_SW_RST;
+> +	writel_relaxed(val, bam_addr(bdev, 0, BAM_CTRL));
 
-> <snip>
->
->So another approach is needed.  I have no yet thought this through, but I
->have an alternative.  First, change the new property name from "dynamic"
->to something more descriptive like "ownership_shifts_between_os_and_others"
->(yes, my suggestions is way too verbose and needs to be word smithed, but
->the point is to clearly state the underlying action that occurs), then
->define the result of this variable to be driver specific, where the
->driver is required upon probe to instantiate the device in a manner
->that does not impact the other user(s) of the underlying hardware
->and to use a driver specific method to transfer control of the
->hardware between the os and the other user(s).  I propose the method
->would be via a device specific file (or set of files) in sysfs (Greg's
->input invited on the use of sysfs in this manner - if I recall correctly
->this is the current preferred mechanism).
->
+Seems odd to me that we assert and deassert the reset in back-to-back
+writes, without any delay etc. That said, this is unrelated to your
+patch as you just moved this hunk from below.
 
-I'm not sure if you've had a chance to take a look at it already, but 
-this sounds fairly similar to the approach I took in the semi-prequel 
-series that preceded this one: 
-https://lore.kernel.org/openbmc/20210929115409.21254-1-zev@bewilderbeest.net/
+> +
+> +	/* make sure previous stores are visible before enabling BAM */
+> +	wmb();
+> +
+> +	/* enable bam */
+> +	val |= BAM_EN;
+> +	writel_relaxed(val, bam_addr(bdev, 0, BAM_CTRL));
+> +
+> +	/* set descriptor threshhold, start with 4 bytes */
+> +	writel_relaxed(DEFAULT_CNT_THRSHLD,
+> +			bam_addr(bdev, 0, BAM_DESC_CNT_TRSHLD));
+> +
+> +	/* Enable default set of h/w workarounds, ie all except BAM_FULL_PIPE */
+> +	writel_relaxed(BAM_CNFG_BITS_DEFAULT, bam_addr(bdev, 0, BAM_CNFG_BITS));
+> +
+> +	/* enable irqs for errors */
+> +	writel_relaxed(BAM_ERROR_EN | BAM_HRESP_ERR_EN,
+> +			bam_addr(bdev, 0, BAM_IRQ_EN));
+> +
+> +	/* unmask global bam interrupt */
+> +	writel_relaxed(BAM_IRQ_MSK, bam_addr(bdev, 0, BAM_IRQ_SRCS_MSK_EE));
+> +}
+> +
+>  /**
+>   * bam_reset_channel - Reset individual BAM DMA channel
+>   * @bchan: bam channel
+> @@ -512,6 +552,9 @@ static int bam_alloc_chan(struct dma_chan *chan)
+>  		return -ENOMEM;
+>  	}
+>  
+> +	if (bdev->active_channels++ == 0 && bdev->powered_remotely)
+> +		bam_reset(bdev);
+> +
+>  	return 0;
+>  }
+>  
+> @@ -565,6 +608,13 @@ static void bam_free_chan(struct dma_chan *chan)
+>  	/* disable irq */
+>  	writel_relaxed(0, bam_addr(bdev, bchan->id, BAM_P_IRQ_EN));
+>  
+> +	if (--bdev->active_channels == 0 && bdev->powered_remotely) {
+> +		/* s/w reset bam */
+> +		val = readl_relaxed(bam_addr(bdev, 0, BAM_CTRL));
+> +		val |= BAM_SW_RST;
+> +		writel_relaxed(val, bam_addr(bdev, 0, BAM_CTRL));
+> +	}
+> +
+>  err:
+>  	pm_runtime_mark_last_busy(bdev->dev);
+>  	pm_runtime_put_autosuspend(bdev->dev);
+> @@ -1164,38 +1214,10 @@ static int bam_init(struct bam_device *bdev)
+>  		bdev->num_channels = val & BAM_NUM_PIPES_MASK;
+>  	}
+>  
+> -	if (bdev->controlled_remotely)
+> +	if (bdev->controlled_remotely || bdev->powered_remotely)
+>  		return 0;
 
-The general idea there was to start making use of the "reserved" status 
-value (defined in the DT spec but thus far not really implemented 
-anywhere that I'm aware of) instead of introducing a new property.
+I think the resulting code would be cleaner if you flipped it around as:
 
-The implementation in that series was very driver-specific (probably 
-overly so), but I think could be generalized somewhat in a couple 
-directions without an enormous amount of additional work.  First 
-(top-down), we could have the driver core avoid automatically binding 
-drivers for reserved devices.  Second (bottom-up), the machinery 
-implemented in the aspeed-smc driver in that series could be lifted into 
-the MTD spi-nor framework as suggested by Dhananjay.
+	/* Reset BAM now if fully controlled locally */
+	if (!bdev->controlled_remotely && !bdev->powered_remotely)
+		bam_reset(bdev);
 
-Rob, Greg -- do you think another version of that patch series with 
-those changes might be a viable strategy?
+	return 0;
 
+Regards,
+Bjorn
 
-Thanks,
-Zev
-
+>  
+> -	/* s/w reset bam */
+> -	/* after reset all pipes are disabled and idle */
+> -	val = readl_relaxed(bam_addr(bdev, 0, BAM_CTRL));
+> -	val |= BAM_SW_RST;
+> -	writel_relaxed(val, bam_addr(bdev, 0, BAM_CTRL));
+> -	val &= ~BAM_SW_RST;
+> -	writel_relaxed(val, bam_addr(bdev, 0, BAM_CTRL));
+> -
+> -	/* make sure previous stores are visible before enabling BAM */
+> -	wmb();
+> -
+> -	/* enable bam */
+> -	val |= BAM_EN;
+> -	writel_relaxed(val, bam_addr(bdev, 0, BAM_CTRL));
+> -
+> -	/* set descriptor threshhold, start with 4 bytes */
+> -	writel_relaxed(DEFAULT_CNT_THRSHLD,
+> -			bam_addr(bdev, 0, BAM_DESC_CNT_TRSHLD));
+> -
+> -	/* Enable default set of h/w workarounds, ie all except BAM_FULL_PIPE */
+> -	writel_relaxed(BAM_CNFG_BITS_DEFAULT, bam_addr(bdev, 0, BAM_CNFG_BITS));
+> -
+> -	/* enable irqs for errors */
+> -	writel_relaxed(BAM_ERROR_EN | BAM_HRESP_ERR_EN,
+> -			bam_addr(bdev, 0, BAM_IRQ_EN));
+> -
+> -	/* unmask global bam interrupt */
+> -	writel_relaxed(BAM_IRQ_MSK, bam_addr(bdev, 0, BAM_IRQ_SRCS_MSK_EE));
+> -
+> +	bam_reset(bdev);
+>  	return 0;
+>  }
