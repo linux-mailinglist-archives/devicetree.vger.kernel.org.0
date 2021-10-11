@@ -2,186 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C44D42994B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 00:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 712A04299AB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 01:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235447AbhJKWGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 18:06:44 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:59122 "EHLO gloria.sntech.de"
+        id S235654AbhJKXO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 19:14:26 -0400
+Received: from mga06.intel.com ([134.134.136.31]:47884 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235301AbhJKWGn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Oct 2021 18:06:43 -0400
-Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1ma3PM-00016Q-QT; Tue, 12 Oct 2021 00:04:32 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        linux-riscv@lists.infradead.org
-Cc:     Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Anup Patel <anup.patel@wdc.com>,
-        Anup Patel <anup.patel@wdc.com>
-Subject: Re: [PATCH v8 1/8] RISC-V: Enable CPU_IDLE drivers
-Date:   Tue, 12 Oct 2021 00:04:31 +0200
-Message-ID: <30695639.mNO2d7px6N@diego>
-In-Reply-To: <20211011081820.1135261-2-anup.patel@wdc.com>
-References: <20211011081820.1135261-1-anup.patel@wdc.com> <20211011081820.1135261-2-anup.patel@wdc.com>
+        id S235636AbhJKXOZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Oct 2021 19:14:25 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10134"; a="287867793"
+X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; 
+   d="scan'208";a="287867793"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2021 16:12:24 -0700
+X-IronPort-AV: E=Sophos;i="5.85,365,1624345200"; 
+   d="scan'208";a="490674153"
+Received: from vg1-mobl2.amr.corp.intel.com (HELO [10.212.193.198]) ([10.212.193.198])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2021 16:12:23 -0700
+Subject: Re: [PATCH v2 01/15] x86/cpu: Move intel-family to arch-independent
+ headers
+To:     "Winiarska, Iwona" <iwona.winiarska@intel.com>,
+        "bp@alien8.de" <bp@alien8.de>
+Cc:     "corbet@lwn.net" <corbet@lwn.net>,
+        "jae.hyun.yoo@linux.intel.com" <jae.hyun.yoo@linux.intel.com>,
+        "x86@kernel.org" <x86@kernel.org>,
+        "Lutomirski, Andy" <luto@kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "Luck, Tony" <tony.luck@intel.com>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "Williams, Dan J" <dan.j.williams@intel.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "mingo@redhat.com" <mingo@redhat.com>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "olof@lixom.net" <olof@lixom.net>, "arnd@arndb.de" <arnd@arndb.de>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "zweiss@equinix.com" <zweiss@equinix.com>,
+        "d.mueller@elsoft.ch" <d.mueller@elsoft.ch>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "yazen.ghannam@amd.com" <yazen.ghannam@amd.com>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>
+References: <20210803113134.2262882-1-iwona.winiarska@intel.com>
+ <20210803113134.2262882-2-iwona.winiarska@intel.com>
+ <YVtQG+idmwKn0qLe@zn.tnic>
+ <58ef4107e9b2c60a2605aac0d2fb6670a95bc9e0.camel@intel.com>
+ <67f2cfda-c78b-6282-f5a3-2f345f8e2849@intel.com>
+ <43e367e452c6c8d9c6a275299d7ff6f2bb26b8e3.camel@intel.com>
+From:   Dave Hansen <dave.hansen@intel.com>
+Autocrypt: addr=dave.hansen@intel.com; keydata=
+ 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
+ z5cecg==
+Message-ID: <18cd5f4a-452b-f043-5686-fc5af47eb5ac@intel.com>
+Date:   Mon, 11 Oct 2021 16:12:20 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <43e367e452c6c8d9c6a275299d7ff6f2bb26b8e3.camel@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anup,
-
-Am Montag, 11. Oktober 2021, 10:18:13 CEST schrieb Anup Patel:
-> We force select CPU_PM and provide asm/cpuidle.h so that we can
-> use CPU IDLE drivers for Linux RISC-V kernel.
+On 10/11/21 1:53 PM, Winiarska, Iwona wrote:
+>> If you're in include/linux/x86-hacks.h, what prevents you from doing
+>>
+>> #include "../../arch/x86/include/asm/intel-family.h"
+>>
+>> ?
+>>
+>> In the end, to the compiler, it's just a file in a weird location in the
+>> tree.  I think I'd prefer one weird include to moving that file out of
+>> arch/x86.
+> Using relative includes in include/linux is uncommon (I can see just one usage
+> in libfdt.h pulling stuff from scripts), so I thought I can't use it in this way
+> (seems slightly hacky to pull stuff from outside include path).
 > 
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> ---
->  arch/riscv/Kconfig                |  7 +++++++
->  arch/riscv/configs/defconfig      |  1 +
->  arch/riscv/configs/rv32_defconfig |  1 +
->  arch/riscv/include/asm/cpuidle.h  | 24 ++++++++++++++++++++++++
->  arch/riscv/kernel/process.c       |  3 ++-
->  5 files changed, 35 insertions(+), 1 deletion(-)
->  create mode 100644 arch/riscv/include/asm/cpuidle.h
-> 
-> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> index 8de2afb460f7..d02f1f5a2431 100644
-> --- a/arch/riscv/Kconfig
-> +++ b/arch/riscv/Kconfig
-> @@ -46,6 +46,7 @@ config RISCV
->  	select CLONE_BACKWARDS
->  	select CLINT_TIMER if !MMU
->  	select COMMON_CLK
-> +	select CPU_PM if CPU_IDLE
->  	select EDAC_SUPPORT
->  	select GENERIC_ARCH_TOPOLOGY if SMP
->  	select GENERIC_ATOMIC64 if !64BIT
-> @@ -564,5 +565,11 @@ source "kernel/power/Kconfig"
->  
->  endmenu
->  
-> +menu "CPU Power Management"
-> +
-> +source "drivers/cpuidle/Kconfig"
-> +
-> +endmenu
-> +
->  source "arch/riscv/kvm/Kconfig"
->  source "drivers/firmware/Kconfig"
-> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> index be21f54e9b91..39b4c32e7997 100644
-> --- a/arch/riscv/configs/defconfig
-> +++ b/arch/riscv/configs/defconfig
-> @@ -20,6 +20,7 @@ CONFIG_SOC_SIFIVE=y
->  CONFIG_SOC_VIRT=y
->  CONFIG_SMP=y
->  CONFIG_HOTPLUG_CPU=y
-> +CONFIG_CPU_IDLE=y
->  CONFIG_VIRTUALIZATION=y
->  CONFIG_KVM=y
->  CONFIG_JUMP_LABEL=y
+> But if that would be ok, it looks like a good alternative to avoid duplication
+> in this case.
 
-This doesn't apply.
+If you don't want to do it from a header, you can also do it directly
+from a .c file that's outside of arch/x86.
 
-In the history of your tree that you referenced in the cover-letter
-I found "RISC-V: Enable KVM for RV64 and RV32"
-with that nice "DO NOT UPSTREAM !!!!!" message in caps in it ;-)
-
-This of course makes this not apply on the main riscv tree.
-
-So you might want to base your series on top of a clean "for-next"
-branch of Palmer's tree instead of collecting other stuff below it.
-
-Same for rv32_defconfig below.
-
-
-Heiko
-
-
-> diff --git a/arch/riscv/configs/rv32_defconfig b/arch/riscv/configs/rv32_defconfig
-> index ad01f50c98f1..fed827c82a9e 100644
-> --- a/arch/riscv/configs/rv32_defconfig
-> +++ b/arch/riscv/configs/rv32_defconfig
-> @@ -20,6 +20,7 @@ CONFIG_SOC_VIRT=y
->  CONFIG_ARCH_RV32I=y
->  CONFIG_SMP=y
->  CONFIG_HOTPLUG_CPU=y
-> +CONFIG_CPU_IDLE=y
->  CONFIG_VIRTUALIZATION=y
->  CONFIG_KVM=y
->  CONFIG_JUMP_LABEL=y
-> diff --git a/arch/riscv/include/asm/cpuidle.h b/arch/riscv/include/asm/cpuidle.h
-> new file mode 100644
-> index 000000000000..71fdc607d4bc
-> --- /dev/null
-> +++ b/arch/riscv/include/asm/cpuidle.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2021 Allwinner Ltd
-> + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
-> + */
-> +
-> +#ifndef _ASM_RISCV_CPUIDLE_H
-> +#define _ASM_RISCV_CPUIDLE_H
-> +
-> +#include <asm/barrier.h>
-> +#include <asm/processor.h>
-> +
-> +static inline void cpu_do_idle(void)
-> +{
-> +	/*
-> +	 * Add mb() here to ensure that all
-> +	 * IO/MEM accesses are completed prior
-> +	 * to entering WFI.
-> +	 */
-> +	mb();
-> +	wait_for_interrupt();
-> +}
-> +
-> +#endif
-> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> index 03ac3aa611f5..504b496787aa 100644
-> --- a/arch/riscv/kernel/process.c
-> +++ b/arch/riscv/kernel/process.c
-> @@ -23,6 +23,7 @@
->  #include <asm/string.h>
->  #include <asm/switch_to.h>
->  #include <asm/thread_info.h>
-> +#include <asm/cpuidle.h>
->  
->  register unsigned long gp_in_global __asm__("gp");
->  
-> @@ -37,7 +38,7 @@ extern asmlinkage void ret_from_kernel_thread(void);
->  
->  void arch_cpu_idle(void)
->  {
-> -	wait_for_interrupt();
-> +	cpu_do_idle();
->  	raw_local_irq_enable();
->  }
->  
-> 
-
-
-
-
+I think that's a much better alternative than moving stuff elsewhere.
