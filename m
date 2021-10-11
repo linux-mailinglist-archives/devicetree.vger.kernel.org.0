@@ -2,401 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A8A5429406
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 17:58:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3673B42953A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 19:06:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236786AbhJKQAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 12:00:31 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:41740 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236128AbhJKQAa (ORCPT
+        id S233376AbhJKRIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 13:08:47 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:40018 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232477AbhJKRIq (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Oct 2021 12:00:30 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19BCVNn4020055;
-        Mon, 11 Oct 2021 17:58:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=NkmHfnL+jynPd7YVXCwoowRax6yqbL8FZy/ZvX3tZeM=;
- b=ArdzC9lju9qZQkvC56MvXP3Jb2IcC6IpFlIECLBjfSc9X0Ng77Zx0qRKGHJKKZa/iNaW
- ME+YTUjzm+6OFgFE6FnYTFf0E2VpIOxG0cbcAzh8rGIeMRb/5ABTMGcSLwaGMBhRHBFw
- 2KC9jSr6niLqyXfDlbnPf4lY//l8uum4dNa4lLuvXCaiWel6eahkiQVJy5PS8ZVa75UC
- WcuLrhAQzP8iJWgQxDxFx1bufWObXLYgHccw0EV0fbFRj6DCfRqShfyxvHpaL/muLZ8N
- zKTBkQHlBCQedQWijfyBVXUIlBi/vGxdqcAoV3Ixn9BwQt+upj+vCZYsoL46sULnrNwS 6g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3bmgquav6q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 11 Oct 2021 17:58:06 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F0FAD100038;
-        Mon, 11 Oct 2021 17:58:05 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E7DE0231DE0;
-        Mon, 11 Oct 2021 17:58:05 +0200 (CEST)
-Received: from localhost (10.75.127.50) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 11 Oct 2021 17:58:05
- +0200
-From:   Olivier Moysan <olivier.moysan@foss.st.com>
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "Lars-Peter Clausen" <lars@metafoo.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: [PATCH v4 5/7] iio: adc: stm32-adc: add support of internal channels
-Date:   Mon, 11 Oct 2021 17:57:15 +0200
-Message-ID: <20211011155717.1594-6-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211011155717.1594-1-olivier.moysan@foss.st.com>
-References: <20211011155717.1594-1-olivier.moysan@foss.st.com>
+        Mon, 11 Oct 2021 13:08:46 -0400
+Received: from [77.244.183.192] (port=63592 helo=melee.dev.aim)
+        by hostingweb31.netsons.net with esmtpa (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1mZxfQ-00DXft-LW; Mon, 11 Oct 2021 17:56:44 +0200
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>
+Subject: [PATCH 7/8] watchdog: max77714: add driver for the watchdog in the MAX77714 PMIC
+Date:   Mon, 11 Oct 2021 17:56:14 +0200
+Message-Id: <20211011155615.257529-8-luca@lucaceresoli.net>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211011155615.257529-1-luca@lucaceresoli.net>
+References: <20211011155615.257529-1-luca@lucaceresoli.net>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-11_05,2021-10-11_01,2020-04-07_01
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support of ADC2 internal channels VDDCORE, VREFINT and VBAT.
-The reserved label name "vddcore", "vrefint" and "vbat" must
-be used in Device Tree channel node, to enable the corresponding
-internal channel.
+Add a simple driver to suppor the watchdog embedded in the Maxim MAX77714
+PMIC.
 
-Note: This patch does not provide support of internal channels
-for F4 and H7.
-
-Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
 ---
- drivers/iio/adc/stm32-adc-core.c |   1 +
- drivers/iio/adc/stm32-adc-core.h |  10 +++
- drivers/iio/adc/stm32-adc.c      | 138 ++++++++++++++++++++++++++++++-
- 3 files changed, 146 insertions(+), 3 deletions(-)
+ MAINTAINERS                     |   1 +
+ drivers/watchdog/Kconfig        |   9 ++
+ drivers/watchdog/Makefile       |   1 +
+ drivers/watchdog/max77714_wdt.c | 171 ++++++++++++++++++++++++++++++++
+ 4 files changed, 182 insertions(+)
+ create mode 100644 drivers/watchdog/max77714_wdt.c
 
-diff --git a/drivers/iio/adc/stm32-adc-core.c b/drivers/iio/adc/stm32-adc-core.c
-index c088cb990193..b6e18eb101f7 100644
---- a/drivers/iio/adc/stm32-adc-core.c
-+++ b/drivers/iio/adc/stm32-adc-core.c
-@@ -659,6 +659,7 @@ static int stm32_adc_probe(struct platform_device *pdev)
+diff --git a/MAINTAINERS b/MAINTAINERS
+index df394192f14e..08900b5729a5 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11390,6 +11390,7 @@ M:	Luca Ceresoli <luca@lucaceresoli.net>
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
+ F:	drivers/mfd/max77714.c
++F:	drivers/watchdog/max77714_wdt.c
+ F:	include/linux/mfd/max77714.h
  
- 	priv->cfg = (const struct stm32_adc_priv_cfg *)
- 		of_match_device(dev->driver->of_match_table, dev)->data;
-+	spin_lock_init(&priv->common.lock);
+ MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
+diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+index bf59faeb3de1..00bc3f932a6c 100644
+--- a/drivers/watchdog/Kconfig
++++ b/drivers/watchdog/Kconfig
+@@ -699,6 +699,15 @@ config MAX77620_WATCHDOG
+ 	 MAX77620 chips. To compile this driver as a module,
+ 	 choose M here: the module will be called max77620_wdt.
  
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	priv->common.base = devm_ioremap_resource(&pdev->dev, res);
-diff --git a/drivers/iio/adc/stm32-adc-core.h b/drivers/iio/adc/stm32-adc-core.h
-index 2322809bfd2f..faedf7a49555 100644
---- a/drivers/iio/adc/stm32-adc-core.h
-+++ b/drivers/iio/adc/stm32-adc-core.h
-@@ -102,6 +102,9 @@
- #define STM32H7_ADC_CALFACT		0xC4
- #define STM32H7_ADC_CALFACT2		0xC8
- 
-+/* STM32MP1 - ADC2 instance option register */
-+#define STM32MP1_ADC2_OR		0xD0
++config MAX77714_WATCHDOG
++	tristate "Maxim MAX77714 Watchdog Timer"
++	depends on MFD_MAX77714 || COMPILE_TEST
++	help
++	 This is the driver for watchdog timer in the MAX77714 PMIC.
++	 Say 'Y' here to enable the watchdog timer support for
++	 MAX77714 chips. To compile this driver as a module,
++	 choose M here: the module will be called max77714_wdt.
 +
- /* STM32H7 - common registers for all ADC instances */
- #define STM32H7_ADC_CSR			(STM32_ADCX_COMN_OFFSET + 0x00)
- #define STM32H7_ADC_CCR			(STM32_ADCX_COMN_OFFSET + 0x08)
-@@ -168,23 +171,30 @@ enum stm32h7_adc_dmngt {
- #define STM32H7_EOC_MST			BIT(2)
- 
- /* STM32H7_ADC_CCR - bit fields */
-+#define STM32H7_VBATEN			BIT(24)
-+#define STM32H7_VREFEN			BIT(22)
- #define STM32H7_PRESC_SHIFT		18
- #define STM32H7_PRESC_MASK		GENMASK(21, 18)
- #define STM32H7_CKMODE_SHIFT		16
- #define STM32H7_CKMODE_MASK		GENMASK(17, 16)
- 
-+/* STM32MP1_ADC2_OR - bit fields */
-+#define STM32MP1_VDDCOREEN		BIT(0)
-+
- /**
-  * struct stm32_adc_common - stm32 ADC driver common data (for all instances)
-  * @base:		control registers base cpu addr
-  * @phys_base:		control registers base physical addr
-  * @rate:		clock rate used for analog circuitry
-  * @vref_mv:		vref voltage (mv)
-+ * @lock:		spinlock
-  */
- struct stm32_adc_common {
- 	void __iomem			*base;
- 	phys_addr_t			phys_base;
- 	unsigned long			rate;
- 	int				vref_mv;
-+	spinlock_t			lock;		/* lock for common register */
- };
- 
- #endif
-diff --git a/drivers/iio/adc/stm32-adc.c b/drivers/iio/adc/stm32-adc.c
-index 85d09cbd41ae..943ca03f4d31 100644
---- a/drivers/iio/adc/stm32-adc.c
-+++ b/drivers/iio/adc/stm32-adc.c
-@@ -77,6 +77,30 @@ enum stm32_adc_extsel {
- 	STM32_EXT20,
- };
- 
-+enum stm32_adc_int_ch {
-+	STM32_ADC_INT_CH_NONE = -1,
-+	STM32_ADC_INT_CH_VDDCORE,
-+	STM32_ADC_INT_CH_VREFINT,
-+	STM32_ADC_INT_CH_VBAT,
-+	STM32_ADC_INT_CH_NB,
-+};
-+
-+/**
-+ * struct stm32_adc_ic - ADC internal channels
-+ * @name:	name of the internal channel
-+ * @idx:	internal channel enum index
+ config IMX2_WDT
+ 	tristate "IMX2+ Watchdog"
+ 	depends on ARCH_MXC || ARCH_LAYERSCAPE || COMPILE_TEST
+diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+index 1bd2d6f37c53..268a942311a0 100644
+--- a/drivers/watchdog/Makefile
++++ b/drivers/watchdog/Makefile
+@@ -215,6 +215,7 @@ obj-$(CONFIG_WM831X_WATCHDOG) += wm831x_wdt.o
+ obj-$(CONFIG_WM8350_WATCHDOG) += wm8350_wdt.o
+ obj-$(CONFIG_MAX63XX_WATCHDOG) += max63xx_wdt.o
+ obj-$(CONFIG_MAX77620_WATCHDOG) += max77620_wdt.o
++obj-$(CONFIG_MAX77714_WATCHDOG) += max77714_wdt.o
+ obj-$(CONFIG_ZIIRAVE_WATCHDOG) += ziirave_wdt.o
+ obj-$(CONFIG_SOFT_WATCHDOG) += softdog.o
+ obj-$(CONFIG_MENF21BMC_WATCHDOG) += menf21bmc_wdt.o
+diff --git a/drivers/watchdog/max77714_wdt.c b/drivers/watchdog/max77714_wdt.c
+new file mode 100644
+index 000000000000..2d468db849f9
+--- /dev/null
++++ b/drivers/watchdog/max77714_wdt.c
+@@ -0,0 +1,171 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Maxim MAX77714 Watchdog Driver
++ *
++ * Copyright (C) 2021 Luca Ceresoli
++ * Author: Luca Ceresoli <luca@lucaceresoli.net>
 + */
-+struct stm32_adc_ic {
-+	const char *name;
-+	u32 idx;
++
++#include <linux/err.h>
++#include <linux/kernel.h>
++#include <linux/mfd/max77714.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/watchdog.h>
++
++struct max77714_wdt {
++	struct device		*dev;
++	struct regmap		*rmap;
++	struct watchdog_device	wd_dev;
 +};
 +
-+static const struct stm32_adc_ic stm32_adc_ic[STM32_ADC_INT_CH_NB] = {
-+	{ "vddcore", STM32_ADC_INT_CH_VDDCORE },
-+	{ "vrefint", STM32_ADC_INT_CH_VREFINT },
-+	{ "vbat", STM32_ADC_INT_CH_VBAT },
++/* Timeout in seconds, indexed by TWD bits of CNFG_GLBL2 register */
++unsigned int max77714_margin_value[] = { 2, 16, 64, 128 };
++
++static int max77714_wdt_start(struct watchdog_device *wd_dev)
++{
++	struct max77714_wdt *wdt = watchdog_get_drvdata(wd_dev);
++
++	return regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL2,
++				  MAX77714_WDTEN, MAX77714_WDTEN);
++}
++
++static int max77714_wdt_stop(struct watchdog_device *wd_dev)
++{
++	struct max77714_wdt *wdt = watchdog_get_drvdata(wd_dev);
++
++	return regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL2,
++				  MAX77714_WDTEN, 0);
++}
++
++static int max77714_wdt_ping(struct watchdog_device *wd_dev)
++{
++	struct max77714_wdt *wdt = watchdog_get_drvdata(wd_dev);
++
++	return regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL3,
++				  MAX77714_WDTC, 1);
++}
++
++static int max77714_wdt_set_timeout(struct watchdog_device *wd_dev,
++				    unsigned int timeout)
++{
++	struct max77714_wdt *wdt = watchdog_get_drvdata(wd_dev);
++	unsigned int new_timeout, new_twd;
++	int err;
++
++	for (new_twd = 0; new_twd < ARRAY_SIZE(max77714_margin_value) - 1; new_twd++)
++		if (timeout <= max77714_margin_value[new_twd])
++			break;
++
++	/* new_wdt is not out of bounds here due to the "- 1" in the for loop */
++	new_timeout = max77714_margin_value[new_twd];
++
++	/*
++	 * "If the value of TWD needs to be changed, clear the system
++	 * watchdog timer first [...], then change the value of TWD."
++	 * (MAX77714 datasheet)
++	 */
++	err = regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL3,
++				 MAX77714_WDTC, 1);
++	if (err)
++		return err;
++
++	err = regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL2,
++				 MAX77714_TWD_MASK, new_twd);
++	if (err)
++		return err;
++
++	wd_dev->timeout = new_timeout;
++
++	dev_dbg(wdt->dev, "New timeout = %u s (WDT = 0x%x)", new_timeout, new_twd);
++
++	return 0;
++}
++
++static const struct watchdog_info max77714_wdt_info = {
++	.identity = "max77714-watchdog",
++	.options = WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGICCLOSE,
 +};
 +
- /**
-  * struct stm32_adc_trig_info - ADC trigger info
-  * @name:		name of the trigger, corresponding to its source
-@@ -126,6 +150,9 @@ struct stm32_adc_regs {
-  * @res:		resolution selection register & bitfield
-  * @smpr:		smpr1 & smpr2 registers offset array
-  * @smp_bits:		smpr1 & smpr2 index and bitfields
-+ * @or_vdd:		option register & vddcore bitfield
-+ * @ccr_vbat:		common register & vbat bitfield
-+ * @ccr_vref:		common register & vrefint bitfield
-  */
- struct stm32_adc_regspec {
- 	const u32 dr;
-@@ -139,6 +166,9 @@ struct stm32_adc_regspec {
- 	const struct stm32_adc_regs res;
- 	const u32 smpr[2];
- 	const struct stm32_adc_regs *smp_bits;
-+	const struct stm32_adc_regs or_vdd;
-+	const struct stm32_adc_regs ccr_vbat;
-+	const struct stm32_adc_regs ccr_vref;
- };
- 
- struct stm32_adc;
-@@ -195,6 +225,7 @@ struct stm32_adc_cfg {
-  * @cal:		optional calibration data on some devices
-  * @chan_name:		channel name array
-  * @num_diff:		number of differential channels
-+ * @int_ch:		internal channel indexes array
-  */
- struct stm32_adc {
- 	struct stm32_adc_common	*common;
-@@ -219,6 +250,7 @@ struct stm32_adc {
- 	struct stm32_adc_calib	cal;
- 	char			chan_name[STM32_ADC_CH_MAX][STM32_ADC_CH_SZ];
- 	u32			num_diff;
-+	int			int_ch[STM32_ADC_INT_CH_NB];
- };
- 
- struct stm32_adc_diff_channel {
-@@ -451,6 +483,24 @@ static const struct stm32_adc_regspec stm32h7_adc_regspec = {
- 	.smp_bits = stm32h7_smp_bits,
- };
- 
-+static const struct stm32_adc_regspec stm32mp1_adc_regspec = {
-+	.dr = STM32H7_ADC_DR,
-+	.ier_eoc = { STM32H7_ADC_IER, STM32H7_EOCIE },
-+	.ier_ovr = { STM32H7_ADC_IER, STM32H7_OVRIE },
-+	.isr_eoc = { STM32H7_ADC_ISR, STM32H7_EOC },
-+	.isr_ovr = { STM32H7_ADC_ISR, STM32H7_OVR },
-+	.sqr = stm32h7_sq,
-+	.exten = { STM32H7_ADC_CFGR, STM32H7_EXTEN_MASK, STM32H7_EXTEN_SHIFT },
-+	.extsel = { STM32H7_ADC_CFGR, STM32H7_EXTSEL_MASK,
-+		    STM32H7_EXTSEL_SHIFT },
-+	.res = { STM32H7_ADC_CFGR, STM32H7_RES_MASK, STM32H7_RES_SHIFT },
-+	.smpr = { STM32H7_ADC_SMPR1, STM32H7_ADC_SMPR2 },
-+	.smp_bits = stm32h7_smp_bits,
-+	.or_vdd = { STM32MP1_ADC2_OR, STM32MP1_VDDCOREEN },
-+	.ccr_vbat = { STM32H7_ADC_CCR, STM32H7_VBATEN },
-+	.ccr_vref = { STM32H7_ADC_CCR, STM32H7_VREFEN },
++static const struct watchdog_ops max77714_wdt_ops = {
++	.start		= max77714_wdt_start,
++	.stop		= max77714_wdt_stop,
++	.ping		= max77714_wdt_ping,
++	.set_timeout	= max77714_wdt_set_timeout,
 +};
 +
- /*
-  * STM32 ADC registers access routines
-  * @adc: stm32 adc instance
-@@ -489,6 +539,14 @@ static void stm32_adc_set_bits(struct stm32_adc *adc, u32 reg, u32 bits)
- 	spin_unlock_irqrestore(&adc->lock, flags);
- }
- 
-+static void stm32_adc_set_bits_common(struct stm32_adc *adc, u32 reg, u32 bits)
++static int max77714_wdt_probe(struct platform_device *pdev)
 +{
-+	spin_lock(&adc->common->lock);
-+	writel_relaxed(readl_relaxed(adc->common->base + reg) | bits,
-+		       adc->common->base + reg);
-+	spin_unlock(&adc->common->lock);
++	struct device *dev = &pdev->dev;
++	struct max77714_wdt *wdt;
++	struct watchdog_device *wd_dev;
++	unsigned int regval;
++	int err;
++
++	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
++	if (!wdt)
++		return -ENOMEM;
++
++	wdt->dev = dev;
++
++	wd_dev = &wdt->wd_dev;
++	wd_dev->info = &max77714_wdt_info;
++	wd_dev->ops = &max77714_wdt_ops;
++	wd_dev->min_timeout = 2;
++	wd_dev->max_timeout = 128;
++
++	platform_set_drvdata(pdev, wdt);
++	watchdog_set_drvdata(wd_dev, wdt);
++
++	wdt->rmap = dev_get_regmap(dev->parent, NULL);
++	if (!wdt->rmap)
++		return dev_err_probe(wdt->dev, -ENODEV, "Failed to get parent regmap\n");
++
++	/* WD_RST_WK: if 1 wdog restarts; if 0 wdog shuts down */
++	err = regmap_update_bits(wdt->rmap, MAX77714_CNFG2_ONOFF,
++				 MAX77714_WD_RST_WK, MAX77714_WD_RST_WK);
++	if (err)
++		return dev_err_probe(wdt->dev, err, "Error updating CNFG2_ONOFF\n");
++
++	err = regmap_read(wdt->rmap, MAX77714_CNFG_GLBL2, &regval);
++	if (err)
++		return dev_err_probe(wdt->dev, err, "Error reading CNFG_GLBL2\n");
++
++	/* enable watchdog | enable auto-clear in sleep state */
++	regval |= (MAX77714_WDTEN | MAX77714_WDTSLPC);
++
++	err = regmap_write(wdt->rmap, MAX77714_CNFG_GLBL2, regval);
++	if (err)
++		return dev_err_probe(wdt->dev, err, "Error writing CNFG_GLBL2\n");
++
++	wd_dev->timeout = max77714_margin_value[regval & MAX77714_TWD_MASK];
++
++	dev_dbg(wdt->dev, "Timeout = %u s (WDT = 0x%x)",
++		wd_dev->timeout, regval & MAX77714_TWD_MASK);
++
++	set_bit(WDOG_HW_RUNNING, &wd_dev->status);
++
++	watchdog_stop_on_unregister(wd_dev);
++
++	err = devm_watchdog_register_device(dev, wd_dev);
++	if (err)
++		return dev_err_probe(dev, err, "Cannot register watchdog device\n");
++
++	dev_info(dev, "registered as /dev/watchdog%d\n", wd_dev->id);
++
++	return 0;
 +}
 +
- static void stm32_adc_clr_bits(struct stm32_adc *adc, u32 reg, u32 bits)
- {
- 	unsigned long flags;
-@@ -498,6 +556,14 @@ static void stm32_adc_clr_bits(struct stm32_adc *adc, u32 reg, u32 bits)
- 	spin_unlock_irqrestore(&adc->lock, flags);
- }
- 
-+static void stm32_adc_clr_bits_common(struct stm32_adc *adc, u32 reg, u32 bits)
-+{
-+	spin_lock(&adc->common->lock);
-+	writel_relaxed(readl_relaxed(adc->common->base + reg) & ~bits,
-+		       adc->common->base + reg);
-+	spin_unlock(&adc->common->lock);
-+}
++static struct platform_driver max77714_wdt_driver = {
++	.driver	= {
++		.name	= "max77714-watchdog",
++	},
++	.probe	= max77714_wdt_probe,
++};
 +
- /**
-  * stm32_adc_conv_irq_enable() - Enable end of conversion interrupt
-  * @adc: stm32 adc instance
-@@ -579,6 +645,60 @@ static int stm32_adc_hw_start(struct device *dev)
- 	return ret;
- }
- 
-+static void stm32_adc_int_ch_enable(struct iio_dev *indio_dev)
-+{
-+	struct stm32_adc *adc = iio_priv(indio_dev);
-+	u32 i;
++module_platform_driver(max77714_wdt_driver);
 +
-+	for (i = 0; i < STM32_ADC_INT_CH_NB; i++) {
-+		if (adc->int_ch[i] == STM32_ADC_INT_CH_NONE)
-+			continue;
-+
-+		switch (i) {
-+		case STM32_ADC_INT_CH_VDDCORE:
-+			dev_dbg(&indio_dev->dev, "Enable VDDCore\n");
-+			stm32_adc_set_bits(adc, adc->cfg->regs->or_vdd.reg,
-+					   adc->cfg->regs->or_vdd.mask);
-+			break;
-+		case STM32_ADC_INT_CH_VREFINT:
-+			dev_dbg(&indio_dev->dev, "Enable VREFInt\n");
-+			stm32_adc_set_bits_common(adc, adc->cfg->regs->ccr_vref.reg,
-+						  adc->cfg->regs->ccr_vref.mask);
-+			break;
-+		case STM32_ADC_INT_CH_VBAT:
-+			dev_dbg(&indio_dev->dev, "Enable VBAT\n");
-+			stm32_adc_set_bits_common(adc, adc->cfg->regs->ccr_vbat.reg,
-+						  adc->cfg->regs->ccr_vbat.mask);
-+			break;
-+		}
-+	}
-+}
-+
-+static void stm32_adc_int_ch_disable(struct stm32_adc *adc)
-+{
-+	u32 i;
-+
-+	for (i = 0; i < STM32_ADC_INT_CH_NB; i++) {
-+		if (adc->int_ch[i] == STM32_ADC_INT_CH_NONE)
-+			continue;
-+
-+		switch (i) {
-+		case STM32_ADC_INT_CH_VDDCORE:
-+			stm32_adc_clr_bits(adc, adc->cfg->regs->or_vdd.reg,
-+					   adc->cfg->regs->or_vdd.mask);
-+			break;
-+		case STM32_ADC_INT_CH_VREFINT:
-+			stm32_adc_clr_bits_common(adc, adc->cfg->regs->ccr_vref.reg,
-+						  adc->cfg->regs->ccr_vref.mask);
-+			break;
-+		case STM32_ADC_INT_CH_VBAT:
-+			stm32_adc_clr_bits_common(adc, adc->cfg->regs->ccr_vbat.reg,
-+						  adc->cfg->regs->ccr_vbat.mask);
-+			break;
-+		}
-+	}
-+}
-+
- /**
-  * stm32f4_adc_start_conv() - Start conversions for regular channels.
-  * @indio_dev: IIO device instance
-@@ -947,11 +1067,13 @@ static int stm32h7_adc_prepare(struct iio_dev *indio_dev)
- 		goto pwr_dwn;
- 	calib = ret;
- 
-+	stm32_adc_int_ch_enable(indio_dev);
-+
- 	stm32_adc_writel(adc, STM32H7_ADC_DIFSEL, adc->difsel);
- 
- 	ret = stm32h7_adc_enable(indio_dev);
- 	if (ret)
--		goto pwr_dwn;
-+		goto ch_disable;
- 
- 	/* Either restore or read calibration result for future reference */
- 	if (calib)
-@@ -967,6 +1089,8 @@ static int stm32h7_adc_prepare(struct iio_dev *indio_dev)
- 
- disable:
- 	stm32h7_adc_disable(indio_dev);
-+ch_disable:
-+	stm32_adc_int_ch_disable(adc);
- pwr_dwn:
- 	stm32h7_adc_enter_pwr_down(adc);
- 
-@@ -978,6 +1102,7 @@ static void stm32h7_adc_unprepare(struct iio_dev *indio_dev)
- 	struct stm32_adc *adc = iio_priv(indio_dev);
- 
- 	stm32h7_adc_disable(indio_dev);
-+	stm32_adc_int_ch_disable(adc);
- 	stm32h7_adc_enter_pwr_down(adc);
- }
- 
-@@ -1800,7 +1925,7 @@ static int stm32_adc_generic_chan_init(struct iio_dev *indio_dev,
- 	const struct stm32_adc_info *adc_info = adc->cfg->adc_info;
- 	struct device_node *child;
- 	const char *name;
--	int val, scan_index = 0, ret;
-+	int val, scan_index = 0, ret, i;
- 	bool differential;
- 	u32 vin[2];
- 
-@@ -1820,6 +1945,10 @@ static int stm32_adc_generic_chan_init(struct iio_dev *indio_dev,
- 				return -EINVAL;
- 			}
- 			strncpy(adc->chan_name[val], name, STM32_ADC_CH_SZ);
-+			for (i = 0; i < STM32_ADC_INT_CH_NB; i++) {
-+				if (!strncmp(stm32_adc_ic[i].name, name, STM32_ADC_CH_SZ))
-+					adc->int_ch[i] = val;
-+			}
- 		} else if (ret != -EINVAL) {
- 			dev_err(&indio_dev->dev, "Invalid label %d\n", ret);
- 			goto err;
-@@ -1869,6 +1998,9 @@ static int stm32_adc_chan_of_init(struct iio_dev *indio_dev, bool timestamping)
- 	u32 smp = 0;
- 	bool legacy = false;
- 
-+	for (i = 0; i < STM32_ADC_INT_CH_NB; i++)
-+		adc->int_ch[i] = STM32_ADC_INT_CH_NONE;
-+
- 	num_channels = of_get_available_child_count(node);
- 	/* If no channels have been found, fallback to channels legacy properties. */
- 	if (!num_channels) {
-@@ -2219,7 +2351,7 @@ static const struct stm32_adc_cfg stm32h7_adc_cfg = {
- };
- 
- static const struct stm32_adc_cfg stm32mp1_adc_cfg = {
--	.regs = &stm32h7_adc_regspec,
-+	.regs = &stm32mp1_adc_regspec,
- 	.adc_info = &stm32h7_adc_info,
- 	.trigs = stm32h7_adc_trigs,
- 	.has_vregready = true,
++MODULE_DESCRIPTION("MAX77714 watchdog timer driver");
++MODULE_AUTHOR("Luca Ceresoli <luca@lucaceresoli.net>");
++MODULE_LICENSE("GPL v2");
 -- 
-2.17.1
+2.25.1
 
