@@ -2,123 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EFAC428430
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 01:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7EBF428490
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 03:22:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233264AbhJJX5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 19:57:34 -0400
-Received: from mx.socionext.com ([202.248.49.38]:24769 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231481AbhJJX5e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Oct 2021 19:57:34 -0400
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 11 Oct 2021 08:55:34 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 331EB2058B40;
-        Mon, 11 Oct 2021 08:55:34 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Mon, 11 Oct 2021 08:55:34 +0900
-Received: from yuzu2.css.socionext.com (yuzu2 [172.31.9.57])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id BDCB8C1E11;
-        Mon, 11 Oct 2021 08:55:33 +0900 (JST)
-Received: from [10.212.182.24] (unknown [10.212.182.24])
-        by yuzu2.css.socionext.com (Postfix) with ESMTP id 466E1B62B3;
-        Mon, 11 Oct 2021 08:55:33 +0900 (JST)
-Subject: Re: [PATCH v2 4/5] dt-bindings: clock: uniphier: Add clock binding
- for SoC-glue
-To:     Rob Herring <robh@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel@vger.kernel.org
-References: <1633518555-8195-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1633518555-8195-5-git-send-email-hayashi.kunihiko@socionext.com>
- <YV395BTH/gqcuDJH@robh.at.kernel.org>
- <f2138a98-9740-d1de-5dc9-e14a68fa509b@socionext.com>
- <CAL_JsqL8N+h7bciDt=4fMHyAP=DL=YikpaTh2v4q383XVXH2AA@mail.gmail.com>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <1fe99277-10e0-0149-cef5-e839bd2515bb@socionext.com>
-Date:   Mon, 11 Oct 2021 08:55:33 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <CAL_JsqL8N+h7bciDt=4fMHyAP=DL=YikpaTh2v4q383XVXH2AA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S233102AbhJKBYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Oct 2021 21:24:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34956 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232813AbhJKBYS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 21:24:18 -0400
+Received: from mail-qt1-x849.google.com (mail-qt1-x849.google.com [IPv6:2607:f8b0:4864:20::849])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0268AC061570
+        for <devicetree@vger.kernel.org>; Sun, 10 Oct 2021 18:22:18 -0700 (PDT)
+Received: by mail-qt1-x849.google.com with SMTP id l14-20020ac8458e000000b002a7829805b8so1897351qtn.22
+        for <devicetree@vger.kernel.org>; Sun, 10 Oct 2021 18:22:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=pelpqGop9lNK0ivkhrG4qKsEmnDb1OiP8EZo1Fz2vqE=;
+        b=hp7SXw7jtocsPJY2qeNaqGCipXyVGn6axSHZaPOQaTyZ26+Xroo5tcvNvJ7ZipX/Yt
+         KPq611KjO+9iLfrdcLY6JcLHrUp6OvfmMM++nkzaq2SetrEWyL8r32lOj6YyfoSXeAbH
+         Fr/wOlK1kFMfP+nB54KD7G754v1lmkJIa4WbRj1jcOX+5Le/RCNazkJpvS77BNWUyuAp
+         byhfpwzYyKsuqgdhQs2OMnES6J0dn7WuOPOwBixVtdqwHf8P+aWu4c75nMC8xemVADCT
+         UafLuSCaCfwwYweoMppmYC52PdvcA02o/q4ywMEVWJeRJHG/Pm2Dh8/L9AR2Nr5wLA0Y
+         0hPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=pelpqGop9lNK0ivkhrG4qKsEmnDb1OiP8EZo1Fz2vqE=;
+        b=wagQonBzqC+NZVPKO/4bXOg5GUscpjFh/YojerESRW2lXigh53qzLh7Vjy/hWuVfSm
+         zgv6XpSudUCAPQFTdwLN5nCqtSPhI1nBJ9ThCNLAX2RXB/7s5R4Ruy0gshOYaNlOa9/B
+         PDuzTYuxGC5PNMZsMflmcI+SkMW+JSx0hofSg+1koBvnC0OqZwiiyYrcp/z4FvUTwHBA
+         Y0PAiC4oVEgn3tIyemLHg6znEwWteRuWw+a0xU+GUvmmNRiXNGeOwlaTNMOY1sObdkU5
+         W2DxxbYcfxIlHdCLaZM3Cq3Wmb7np5CMoYfuDbq1fzb485CCSVsN8g0ntvyv4vxbLrrf
+         1Y8g==
+X-Gm-Message-State: AOAM531HOZSfHNhm2lA+bXiPPY7ChotQVFHKSKgykP4fFcx+nu57H7Sh
+        Ld0B1Vosb5yYB8YsGDA9Orwo2OA=
+X-Google-Smtp-Source: ABdhPJxakqS3R8xOFBlupR06TVZ/cUaN2aXRdEF/OW4Gfgmo0Ro10oYgMUoHGtdJNMM/YAHTF5V+zHg=
+X-Received: from osk.cam.corp.google.com ([2620:0:1004:1a:8461:b843:7404:1394])
+ (user=osk job=sendgmr) by 2002:ac8:7e86:: with SMTP id w6mr11757072qtj.277.1633915336530;
+ Sun, 10 Oct 2021 18:22:16 -0700 (PDT)
+Date:   Sun, 10 Oct 2021 21:22:11 -0400
+Message-Id: <20211011012212.91357-1-osk@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.33.0.882.g93a45727a2-goog
+Subject: [PATCH v7 1/2] dt-bindings: hwmon: Add nct7802 bindings
+From:   Oskar Senft <osk@google.com>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Oskar Senft <osk@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021/10/09 4:20, Rob Herring wrote:
-> On Thu, Oct 7, 2021 at 3:50 AM Kunihiko Hayashi
-> <hayashi.kunihiko@socionext.com> wrote:
->>
->> Hi Rob,
->>
->> On 2021/10/07 4:49, Rob Herring wrote:
->>> On Wed, Oct 06, 2021 at 08:09:14PM +0900, Kunihiko Hayashi wrote:
->>>> Update binding document for clocks implemented in SoC-glue.
->>>>
->>>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->>>> ---
->>>>    .../bindings/clock/socionext,uniphier-clock.yaml         | 16
->>> ++++++++++++++++
->>>>    1 file changed, 16 insertions(+)
->>>>
->>>> diff --git
->>> a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
->>> b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
->>>> index ee8d16a8019e..05a9d1f89756 100644
->>>> ---
->>> a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
->>>> +++
->>> b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
->>>> @@ -46,6 +46,9 @@ properties:
->>>>              - socionext,uniphier-ld20-peri-clock
->>>>              - socionext,uniphier-pxs3-peri-clock
->>>>              - socionext,uniphier-nx1-peri-clock
->>>> +      - description: SoC-glue clock
->>>> +        enum:
->>>> +          - socionext,uniphier-pro4-sg-clock
->>>>
->>>>      "#clock-cells":
->>>>        const: 1
->>>> @@ -95,3 +98,16 @@ examples:
->>>>
->>>>            // other nodes ...
->>>>        };
->>>> +
->>>> +  - |
->>>> +    soc-glue@5f800000 {
->>>> +        compatible = "socionext,uniphier-sysctrl", "simple-mfd",
->>> "syscon";
->>>> +        reg = <0x5f800000 0x2000>;
->>>> +
->>>> +        clock {
->>>> +            compatible = "socionext,uniphier-pro4-sg-clock";
->>>> +            #clock-cells = <1>;
->>>> +        };
->>>> +
->>>> +        // other nodes ...
->>>> +    };
->>>
->>> What's the value of this 2nd example? It's just a different compatible
->>> string.
->> Following the previous three examples in the document, it describes the
->> difference between the parent nodes that place the clock.
->>
->> They are common to be child nodes of "syscon", and the definition of the
->> parent node is not in this document.
->> Should I put them together in a common example?
-> 
-> I'd just drop the example.
-I see. I'd drop the example in next.
+This change documents the device tree bindings for the Nuvoton
+NCT7802Y driver.
 
-Thank you,
-
+Signed-off-by: Oskar Senft <osk@google.com>
 ---
-Best Regards
-Kunihiko Hayashi
+Changes from PATCH v6:
+- Fixed formatting error reported by yamllint
+
+Changes from PATCH v5:
+- Refactored to use patternProperties.
+- Added validation for sensor-type and temperature-mode.
+---
+ .../bindings/hwmon/nuvoton,nct7802.yaml       | 144 ++++++++++++++++++
+ 1 file changed, 144 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+new file mode 100644
+index 000000000000..a0a245938528
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+@@ -0,0 +1,144 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/nuvoton,nct7802.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nuvoton NCT7802Y Hardware Monitoring IC
++
++maintainers:
++  - Guenter Roeck <linux@roeck-us.net>
++
++description: |
++  The NCT7802Y is a hardware monitor IC which supports one on-die and up to
++  5 remote temperature sensors with SMBus interface.
++
++  Datasheets:
++    https://www.nuvoton.com/export/resource-files/Nuvoton_NCT7802Y_Datasheet_V12.pdf
++
++properties:
++  compatible:
++    enum:
++      - nuvoton,nct7802
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^channel@[0-3]$":
++    type: object
++    properties:
++      reg:
++        items:
++          - enum:
++              - 0    # Local Temperature Sensor ("LTD")
++              - 1    # Remote Temperature Sensor or Voltage Sensor 1 ("RTD1")
++              - 2    # Remote Temperature Sensor or Voltage Sensor 2 ("RTD2")
++              - 3    # Remote Temperature Sensor or Voltage Sensor 3 ("RTD3")
++      sensor-type:
++        items:
++          - enum:
++              - temperature
++              - voltage
++      temperature-mode:
++        items:
++          - enum:
++              - thermistor
++              - thermal-diode
++    required:
++      - reg
++    allOf:
++      # For channels RTD1, RTD2 and RTD3, require sensor-type to be set.
++      # Otherwise (for all other channels), do not allow temperature-mode to be
++      # set.
++      - if:
++          properties:
++            reg:
++              items:
++                - enum:
++                    - 1
++                    - 2
++                    - 3
++        then:
++          required:
++            - sensor-type
++        else:
++          not:
++            required:
++              - sensor-type
++
++      # For channels RTD1 and RTD2 and if sensor-type is "temperature", require
++      # temperature-mode to be set. Otherwise (for all other channels or
++      # sensor-type settings), do not allow temperature-mode to be set
++      - if:
++          properties:
++            reg:
++              items:
++                - enum:
++                    - 1
++                    - 2
++            sensor-type:
++              items:
++                - enum:
++                    - temperature
++        then:
++          required:
++            - temperature-mode
++        else:
++          not:
++            required:
++              - temperature-mode
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        nct7802@28 {
++            compatible = "nuvoton,nct7802";
++            reg = <0x28>;
++
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            channel@0 { /* LTD */
++              reg = <0>;
++              status = "okay";
++            };
++
++            channel@1 { /* RTD1 */
++              reg = <1>;
++              status = "okay";
++              sensor-type = "voltage";
++            };
++
++            channel@2 { /* RTD2 */
++              reg = <2>;
++              status = "okay";
++              sensor-type = "temperature";
++              temperature-mode = "thermal-diode";
++            };
++
++            channel@3 { /* RTD3 */
++              reg = <3>;
++              status = "okay";
++              sensor-type = "temperature";
++            };
++        };
++    };
+-- 
+2.33.0.882.g93a45727a2-goog
+
