@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0465F428A22
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 11:48:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEA17428A3A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 11:55:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235624AbhJKJu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 05:50:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35794 "EHLO
+        id S235672AbhJKJ5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 05:57:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235607AbhJKJu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 05:50:28 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81EDDC061570
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 02:48:28 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id c16so16299743lfb.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 02:48:28 -0700 (PDT)
+        with ESMTP id S235602AbhJKJ5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 05:57:39 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55278C06161C
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 02:55:39 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id t9so70166825lfd.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 02:55:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=sXA6QwmITsjrRwNAqFVX/8z3VInDqhY9+HfUPlZSIMU=;
-        b=RevfbEt51UnI/o9r3lnBJaz+lo2umTMSRJ25nu15DagEntnZgyqP8dIA/YtNW/OhEv
-         h7XRkcTH2HzO+QgsxstXUReYbXuawg36h4rGMMFuzJRc7UpcPO+5U3raAIQE+jHeiI7t
-         cUFdmKhY+h67G9Gjc8hvg7xARfuT9AmeNckotCNELl30tpbNryNOD1pcew8bYHPE4/gb
-         HyzC/YPqBYF3vludDwn8cA2jn5HQHwjh+OwzAaPMOLZvv/7G914MQZFm0389uZSLD9zs
-         jhCfuY8tSJQcsKh9rec6SyFxDc/0lSquf9qRAeNsv/N24vpoKxw9bwabYfzuinaz/UbY
-         fLLA==
+        bh=kBarjcZyLGiMmFvfK+amIgyffwqYFHfGdnIAQ0ZFp2o=;
+        b=rYeD11KIuoPJThVYkeB5rzUzibSLWoGNxT+6aTE0groDYRXL/JHFEJTXZHsFinPxuy
+         JtFSeAXGAxJiH3Wm7yokhzb3VISE8ZkIWckcS1ufXs/Yu/5ncUZH9MzDT44hTKLGkg4c
+         jiRyTxToJ1KftcIOdA/PcRftLDtnqlbEQu6g5KqpFyX9FamMBo+WJC2GlJIRZ9NCFY6d
+         vV8JhEAV9Vvxtd7J1PkmnVl0eqkY6RyBKL1967TORxSTG1PdmSe3Dejx7jtHSvNCZrar
+         srph6nOHMugapsLaeym+1BFPkmv9Gxe6Ult/8v2s2noLZ+RYbvCEzXlgWR6wUA5Hi9/K
+         zZ+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=sXA6QwmITsjrRwNAqFVX/8z3VInDqhY9+HfUPlZSIMU=;
-        b=Wp69sb9nNE4M8LJe3aIZtNweIZfCENl4UWcAhV2tOoiXiMSUop/YuDevuH7lqpFB7e
-         B0Npi4e9N2rNXIeAfGRjlX7pF0RXyWLXMdcPnVUqeBuBjH2ucOwceu/dkRtKeIRrO6rL
-         xVLy109FYj6EB9wTxPI0HWzJ3nKOsIjIxHf/U/z1X4JcFB8/pE6PJefSWyFEvYAacxtP
-         EvwuX4OkOmelZXzF48qKB+8k1tnDH9GvLjx0Ke+OWSD2UtUeqtnc5FUJjAF9nUjQ4kzC
-         YLlWJpWqcELzTUR/bASYPGUvTV32h0HJyKZywZr9es7GXKh0VHScnO5hPdlQk8XgjGsQ
-         SnKA==
-X-Gm-Message-State: AOAM531xU03UbHau+uG7kuZ8cueahzMtNk4nnczShh/aH/JOeHjkW8r2
-        CD14Hi20LOaygTS/3cAiOyWAWA==
-X-Google-Smtp-Source: ABdhPJxtJt3r5Vs+fGmC6w85nyS2flYyvGo6P5gdgPhrnm/2Ve6MWB2bJO2PpBOD8excDPxbWIvHNQ==
-X-Received: by 2002:a05:6512:208d:: with SMTP id t13mr9466234lfr.261.1633945706853;
-        Mon, 11 Oct 2021 02:48:26 -0700 (PDT)
+        bh=kBarjcZyLGiMmFvfK+amIgyffwqYFHfGdnIAQ0ZFp2o=;
+        b=GetyC3CxHWFjaHRi1FUunJndlEw/9Aq2uoUE4lLqvPlDoz7BdIi2XnzCrYTo3DYGGe
+         b2JF0vJgGy0rb7rQeyS4q0iaJadVF9Puhwu4IdZj+ppC2mqWBbGvJRKpE1JMrmpOqC0Q
+         bV26mKHlsgJ/YXD5Ll+JZqcTwVTyv1HQ/zLCFnd6AP+UdxeQVDelNA/R4qi/qgQpAio2
+         y5gsL3hRT7XLjZAQQDC7rTVbXJAGkM0N001WWPzLr5CL3Xlzbs86WMw+da8m/T4gqghX
+         02/uirb5CvUIMEBSODuRELq/Nl635Fc1y9rpqrx0W5B+K3ROHzzI75jiepLVnSLPdJWX
+         bB7A==
+X-Gm-Message-State: AOAM532nj53Na/ohq6RH4Agv3b4sOBUxbNBVo2hkFvg/tmtI96IOJyuC
+        SzIO9If45DR5Np/epNoOBKTIdbu5p/ua9A==
+X-Google-Smtp-Source: ABdhPJziEqkbBzWOz4Rl56dfiWZg5Pw8RIf2s/vb0RdTbZVPffhDLHLq3/+7CcK+kz0XxuhNGkihGA==
+X-Received: by 2002:a2e:b053:: with SMTP id d19mr12536957ljl.290.1633946137602;
+        Mon, 11 Oct 2021 02:55:37 -0700 (PDT)
 Received: from localhost.localdomain (62-248-207-242.elisa-laajakaista.fi. [62.248.207.242])
-        by smtp.gmail.com with ESMTPSA id p9sm687138lfe.3.2021.10.11.02.48.26
+        by smtp.gmail.com with ESMTPSA id h4sm689183lft.184.2021.10.11.02.55.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 02:48:26 -0700 (PDT)
+        Mon, 11 Oct 2021 02:55:37 -0700 (PDT)
 From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
         Thara Gopinath <thara.gopinath@linaro.org>
-Subject: [PATCH] dts: qcom: msm8996: Add device tree entries to support crypto engine
-Date:   Mon, 11 Oct 2021 12:48:22 +0300
-Message-Id: <20211011094822.1580122-1-vladimir.zapolskiy@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: sdm845: Fix Qualcomm crypto engine bus clock
+Date:   Mon, 11 Oct 2021 12:55:34 +0300
+Message-Id: <20211011095534.1580406-1-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,59 +63,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The change adds description of Qualcomm crypto engine controller and
-BAM associated with it. The change is inspired by commit 3e482859f1ef
-("dts: qcom: sdm845: Add dt entries to support crypto engine.")
+The change corrects the described bus clock of the QCE.
 
-While performance of cryptographic algorithms executed on QCE is lower
-than e.g. ones tinkered for ARM NEON, the offloaded execution would
-make sense:
-
-    # cryptsetup benchmark | grep aes
-    aes-cbc        128b        71.0 MiB/s        71.9 MiB/s
-    aes-cbc        256b        62.4 MiB/s        62.4 MiB/s
-    aes-xts        256b        70.7 MiB/s        70.8 MiB/s
-    aes-xts        512b        62.0 MiB/s        63.3 MiB/s
-
+Fixes: 3e482859f1ef ("dts: qcom: sdm845: Add dt entries to support crypto engine.")
 Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Thara Gopinath <thara.gopinath@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 52df22ab3f6a..a03cbeb58246 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -705,6 +705,28 @@ tsens1: thermal-sensor@4ad000 {
- 			#thermal-sensor-cells = <1>;
- 		};
- 
-+		cryptobam: dma@644000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0x00644000 0x24000>;
-+			interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc GCC_CE1_CLK>;
-+			clock-names = "bam_clk";
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely = <1>;
-+		};
-+
-+		crypto: crypto@67a000 {
-+			compatible = "qcom,crypto-v5.4";
-+			reg = <0x0067a000 0x6000>;
-+			clocks = <&gcc GCC_CE1_AHB_CLK>,
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index b051adfed4a9..79a87eeee090 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -2376,7 +2376,7 @@ crypto: crypto@1dfa000 {
+ 			compatible = "qcom,crypto-v5.4";
+ 			reg = <0 0x01dfa000 0 0x6000>;
+ 			clocks = <&gcc GCC_CE1_AHB_CLK>,
+-				 <&gcc GCC_CE1_AHB_CLK>,
 +				 <&gcc GCC_CE1_AXI_CLK>,
-+				 <&gcc GCC_CE1_CLK>;
-+			clock-names = "iface", "bus", "core";
-+			dmas = <&cryptobam 6>, <&cryptobam 7>;
-+			dma-names = "rx", "tx";
-+		};
-+
- 		tcsr_mutex_regs: syscon@740000 {
- 			compatible = "syscon";
- 			reg = <0x00740000 0x40000>;
+ 				 <&rpmhcc 15>;
+ 			clock-names = "iface", "bus", "core";
+ 			dmas = <&cryptobam 6>, <&cryptobam 7>;
 -- 
 2.33.0
 
