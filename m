@@ -2,126 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEAA6428628
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 07:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E37428631
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 07:23:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233089AbhJKFT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 01:19:28 -0400
-Received: from marcansoft.com ([212.63.210.85]:56662 "EHLO mail.marcansoft.com"
+        id S231966AbhJKFZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 01:25:45 -0400
+Received: from muru.com ([72.249.23.125]:43204 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231966AbhJKFT1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Oct 2021 01:19:27 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 215C3425D6;
-        Mon, 11 Oct 2021 05:17:21 +0000 (UTC)
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-References: <20211005155923.173399-1-marcan@marcan.st>
- <20211005155923.173399-3-marcan@marcan.st>
- <CAL_JsqJenHAOw4gApzGpuj-8nZjkYhmBg0qBj-DV+CEJ7zXuVw@mail.gmail.com>
- <f95f6d61-8809-e668-0458-453a8dfbe641@marcan.st>
- <b5b25e17-d98b-d447-f917-4d728f52a6ff@marcan.st>
- <CAJKOXPfp7oMJ+moizqgXyS7LbPajY-_vbXFX6+5PFrcpUFy2nA@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 2/7] dt-bindings: power: Add apple,pmgr-pwrstate binding
-Message-ID: <2a1aaec7-25e6-f779-fd18-23378537bbd2@marcan.st>
-Date:   Mon, 11 Oct 2021 14:17:19 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S231560AbhJKFZo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Oct 2021 01:25:44 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 9DC92805F;
+        Mon, 11 Oct 2021 05:24:15 +0000 (UTC)
+Date:   Mon, 11 Oct 2021 08:23:42 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Chunyan Zhang <zhang.chunyan@linaro.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 4/5] mmc: sdhci-omap: Implement PM runtime functions
+Message-ID: <YWPKXvPCTIir+TzG@atomide.com>
+References: <20210930065733.31943-1-tony@atomide.com>
+ <20210930065733.31943-5-tony@atomide.com>
+ <CAPDyKFpybVPeYy-FsXnzDXNri+f7rhPmKa6vBF8NMUc3dQCZRw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAJKOXPfp7oMJ+moizqgXyS7LbPajY-_vbXFX6+5PFrcpUFy2nA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFpybVPeYy-FsXnzDXNri+f7rhPmKa6vBF8NMUc3dQCZRw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/10/2021 16.50, Krzysztof Kozlowski wrote:
-> On Wed, 6 Oct 2021 at 17:56, Hector Martin <marcan@marcan.st> wrote:
->> Addendum: just found some prior art for this. See power/pd-samsung.yaml,
->> which is another single-PD binding (though in that case they put them in
->> the SoC node directly, not under a syscon).
+* Ulf Hansson <ulf.hansson@linaro.org> [211008 14:44]:
+> On Thu, 30 Sept 2021 at 08:57, Tony Lindgren <tony@atomide.com> wrote:
+> >
+> > Implement PM runtime functions and enable MMC_CAP_AGGRESSIVE_PM.
 > 
-> Maybe the design is actually similar. In the Exynos there is a entire
-> subblock managing power - called Power Management Unit (PMU). It
-> controls most of power-related parts, except clock gating. For example
-> it covers registers related to entering deep-sleep modes or power
-> domains. However we split this into two:
-> 1. Actual PMU driver which controls system-level power (and provides
-> syscon for other drivers needing to poke its registers... eh, life).
-> 2. Power domain driver which binds multiple devices to a small address
-> spaces (three registers) inside PMU address space.
+> I suggest you split this change into two pieces. MMC_CAP_AGGRESSIVE_PM
+> is about enabling runtime PM management for the eMMC/SD card device,
+> which is perfectly fine to use independently of whether runtime PM is
+> supported for the host device.
+
+OK
+
+> > @@ -1350,6 +1357,11 @@ static int sdhci_omap_probe(struct platform_device *pdev)
+> >         if (ret)
+> >                 goto err_cleanup_host;
+> >
+> > +       sdhci_omap_context_save(omap_host);
+> > +       omap_host->context_valid = 1;
 > 
-> The address spaces above overlap, so the (1) PMU driver takes for
-> example 1004_0000 - 1004_5000 and power domain devices bind to e.g.
-> 1004_4000, 1004_4020, 1004_4040.
+> Looks like you can remove this flag, it's not being used.
 
-It's similar, except Apple tends to group registers into uniform arrays, 
-sometimes with gaps. They definitely do some ugly overlap stuff in their 
-devicetree/OS which we'll try to avoid (e.g. the audio driver directly 
-poking clock select registers...).
+Hmm I think it is needed as otherwise we end up trying to restore
+an invalid context on probe on the first pm_runtime_get(). Do you
+have some nicer solution for that in mind?
 
-Here's an incomplete memory map of the PMGR-related stuff in this SoC:
+> > +
+> > +       pm_runtime_put_sync(dev);
+> 
+> I recommend to use the PM runtime autosuspend feature, as to avoid an
+> initial latency for every I/O request to the host driver. The mmc core
+> already supports that, see mmc_release_host().
+> 
+> The typical default timeout value for autosuspend, is usually set
+> ~50-200ms, by host drivers (if I recall correctly).
 
-2_3b00_0000:  Clocking
-      0_0000:   PLLs
-      4_0000:   Clock selects / dividers
-         000:    86 selects x 32bit (device clocks)
-         200:    8 selects x 32bit (aux clocks)
-         280:    2 selects x 32bit
-      4_4000:   NCOs (used for audio) (5 x one 16KiB page each)
-2_3b70_0000:  PMGR
-      0_0000:   Pwr-state registers
-        0000:    10 controls x 64bit  (CPUs)
-        0100:    143 controls x 64bit (general devices)
-        0c00:    2 controls x 64bit   (SEP)
-        4000:    13 controls x 64bit  (ISP)
-        8000:    5 controls x 64bit   (VENC)
-        c000:    7 controls x 64bit   (ANE)
-      1_0000:    10 controls x 64bit  (DISP0)
-      1_c000:   Power gates
-          10:    74 power gates (24 bytes each?)
-      3_4100:   Performance counters? (16 bytes each, big array)
-      5_4000:   Secondary CPU spin-up controls
+OK I have a patch to also enable autosuspend too, I'll add that
+too for the next revision.
 
-I believe the weird groupings into page-sized areas have to do with 
-security, so they can map only those ranges to certain coprocessors and 
-the like via the IOMMUs.
+> > @@ -1371,6 +1383,7 @@ static int sdhci_omap_remove(struct platform_device *pdev)
+> >         struct device *dev = &pdev->dev;
+> >         struct sdhci_host *host = platform_get_drvdata(pdev);
+> >
+> > +       pm_runtime_get_sync(dev);
+> >         sdhci_remove_host(host, true);
+> >         pm_runtime_put_sync(dev);
+> 
+> There is no guarantee that this triggers a call to
+> ->sdhci_omap_runtime_suspend(), which I guess is what we want.
+> Userspace via sysfs may have increase the RPM usage count
+> (pm_runtime_forbid(), for example.
+> 
+> To address this, I would call pm_runtime_disable() first and then
+> explicitly put the device into low power state, rather than relying on
+> runtime PM to do it. Another option could be to use
+> pm_runtime_force_suspend().
 
-There is also a MiniPMGR that uses the same register formats, but 
-different counts/offsets, at 2_3d28_0000 (this one stays up in sleep 
-mode, AIUI)
+OK I'll take a look.
 
-So I think we won't need any overlaps, since e.g. the whole 00000-14000 
-subrange is all power state controls, so a driver doing system-level 
-stuff wouldn't have to care about those. Those would just be bound by 
-the syscon in this patchset. I chose to use a syscon to avoid having raw 
-ioremaps for each domain instance, since each one of those eats up a 
-whole page of mapping AIUI (and shows up in /proc/iomem individually).
+> > @@ -1402,42 +1415,75 @@ static void sdhci_omap_context_restore(struct sdhci_omap_host *omap_host)
+> >         sdhci_omap_writel(omap_host, SDHCI_OMAP_ISE, omap_host->ise);
+> >  }
+> >
+> > -static int __maybe_unused sdhci_omap_suspend(struct device *dev)
+> > +static int __maybe_unused sdhci_omap_runtime_suspend(struct device *dev)
+> >  {
+> >         struct sdhci_host *host = dev_get_drvdata(dev);
+> >         struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> >         struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
+> >
+> > -       sdhci_suspend_host(host);
+> > -
+> 
+> Shouldn't you call sdhci_runtime_suspend_host() somewhere here?
 
-One question is whether if we need to poke at power gates directly 
-(which isn't clear right now), we should have a separate top-level 
-pmgr-pwrgate syscon as a parent, or just instantiate power gate subnodes 
-under the same pmgr syscon at 1c000.
+I'm pretty sure I tried, but runtime resume did not seem to work after
+doing that.. I'll take a look again.
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+> > +static int __maybe_unused sdhci_omap_suspend(struct device *dev)
+> > +{
+> > +       struct sdhci_host *host = dev_get_drvdata(dev);
+> > +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > +       struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
+> > +
+> > +       if (omap_host->is_runtime_suspended)
+> > +               return 0;
+> 
+> So if the host is already runtime suspended, it's okay to just leave it as is?
+
+Ideally yeah there should not be anything left to do for suspesnd at
+that point. But sounds like I may be missing something.
+
+> In a way that sounds like you could call pm_runtime_force_suspend()
+> instead, assuming the sdhci_omap_runtime_suspend() can be extended to
+> do the right thing for system suspend as well.
+
+OK I'll check.
+
+> It looks a bit odd that sdhci_suspend_host() is called only when the
+> host is runtime resumed. Perhaps you can elaborate a bit more on why
+> this is, so I can understand better what you want to achieve here.
+
+I guess I'm not clear on what's left for sdhci_suspend_host() to do if
+the host is already runtime suspended :)
+
+Regards,
+
+Tony
