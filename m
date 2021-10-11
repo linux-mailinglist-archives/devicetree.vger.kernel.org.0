@@ -2,75 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DDA34299F4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 01:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78BA34299F6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 01:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231274AbhJKXqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 19:46:01 -0400
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:36796 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbhJKXqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 19:46:01 -0400
-Received: by mail-oi1-f175.google.com with SMTP id u69so14292101oie.3;
-        Mon, 11 Oct 2021 16:44:00 -0700 (PDT)
+        id S232234AbhJKXqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 19:46:55 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:38458 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229576AbhJKXqz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 19:46:55 -0400
+Received: by mail-ot1-f47.google.com with SMTP id w10-20020a056830280a00b0054e4e6c85a6so14660090otu.5
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 16:44:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+BUlZ4e8wGtyUddl3B3V8IIgRy/F1Q/YMaD0zfsdH5w=;
-        b=zaFrbc0HTvOoU/BLYwKEbKacZbPJ49UmmzIddZL47/DQi0ibnmiBYDqVuFm3iG+6Kx
-         dLDryDIp74zkytxedFb2xRRAyYl2gAb3AzUijWWOYxlOm+fOvdfF6dR31ID1dfSFV8l7
-         Fwl8VbfFHbCQsq5VyBwBEWOJNIE+GFGc72Q3bDkt6HInaUJvHL6FCTFyoFUIlUkuZSiw
-         uMYqN6lUrQ/78lhOK/cJVVf32gr7PFwKmBeVcmS6IGqpwpfk5RtWQpn0csV3Zrj8MbAe
-         5xh1gr4mCwuVS7GP4KSEmbynM3NaNDIkMi05C7dPeCh8oI9bK6vjnxymLb9t48Od2fiq
-         lUAQ==
-X-Gm-Message-State: AOAM532u+bDlegJDTtmDittN51MjRV7/cBU3msWDTfJSmEO2ZwDzxL+6
-        pttt5FWirf22jZXq2mW6Dg==
-X-Google-Smtp-Source: ABdhPJyOjjoM+hYtcCO2pjFkYQug9Xy0uuBwVt89270/foNYGA0Ynei7PxmBDF8pPHikXbAxsJYM2Q==
-X-Received: by 2002:a05:6808:1686:: with SMTP id bb6mr1445756oib.40.1633995838956;
-        Mon, 11 Oct 2021 16:43:58 -0700 (PDT)
+        bh=dq9+YkMx0GHCeJWvTqnKsmwOPTk7sjGTA6ATq7IokFA=;
+        b=5Fr28HX0SSe9cSF7nP+ftojxz3AehidfKenblUexGgW9dHwclTWhHiU600KqizD733
+         HzoDlDU1/kCTYuo/oW1zQpRXKedDfoa1t93IxMuuSloSzsmTHxCNbRic/p4qbhXv3MEB
+         JO4lf74sdfQy30bNEzofNj0Ym7prqrkcH9TZe0cqYT1jhW5KZuXHAmJFORiKNrEHQgqV
+         /EpZRkZ1Jqoh4s5XHtAULqs5pM18bESPVsuFXLmUPpW/yscx/LFeiJOg8EApQ90yijR2
+         uID5o+m5KswfRMoMQn62uOq6kJV4VHKJ3NxdQvZOAv59pY/W4GsuKnYS9mflfS8H64Aa
+         qKTQ==
+X-Gm-Message-State: AOAM530o4XoSwyovh3G/Gnk1vl2sm7CAV4pYO1jhjS6jqTgQjQ86I+UK
+        6A5E3hkLNIDGE8Ync2IwlA==
+X-Google-Smtp-Source: ABdhPJwdGAZLwdNaLgCvThYshN0fgEkSQ3hr7M+UCK9PDK4rr/2YteoPrw9SV/cr4euuY0pIsDg4ZQ==
+X-Received: by 2002:a9d:7114:: with SMTP id n20mr14449501otj.25.1633995894622;
+        Mon, 11 Oct 2021 16:44:54 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m23sm1779455oom.34.2021.10.11.16.43.57
+        by smtp.gmail.com with ESMTPSA id r4sm2060017oti.27.2021.10.11.16.44.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 16:43:58 -0700 (PDT)
-Received: (nullmailer pid 1390824 invoked by uid 1000);
-        Mon, 11 Oct 2021 23:43:57 -0000
-Date:   Mon, 11 Oct 2021 18:43:57 -0500
+        Mon, 11 Oct 2021 16:44:53 -0700 (PDT)
+Received: (nullmailer pid 1392392 invoked by uid 1000);
+        Mon, 11 Oct 2021 23:44:53 -0000
+Date:   Mon, 11 Oct 2021 18:44:53 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, devicetree@vger.kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, shawnguo@kernel.org,
-        shengjiu.wang@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v6 4/4] dt-bindings: dsp: fsl: update binding document
- for remote proc driver
-Message-ID: <YWTMPQKqc5m7vwlL@robh.at.kernel.org>
-References: <1633944015-789-1-git-send-email-shengjiu.wang@nxp.com>
- <1633944015-789-5-git-send-email-shengjiu.wang@nxp.com>
+To:     Markus Schneider-Pargmann <msp@baylibre.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 1/7] dt-bindings: mediatek,dpintf: Add DP_INTF binding
+Message-ID: <YWTMdewWCNCZy+UE@robh.at.kernel.org>
+References: <20211011094624.3416029-1-msp@baylibre.com>
+ <20211011094624.3416029-2-msp@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1633944015-789-5-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <20211011094624.3416029-2-msp@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Oct 2021 17:20:15 +0800, Shengjiu Wang wrote:
-> As there are two drivers for DSP on i.MX, one is for sound open
-> firmware, another is for remote processor framework. In order to
-> distinguish two kinds of driver, defining different compatible strings.
+On Mon, 11 Oct 2021 11:46:18 +0200, Markus Schneider-Pargmann wrote:
+> DP_INTF is a similar functional block to mediatek,dpi but is different
+> in that it serves the DisplayPort controller on mediatek SoCs and uses
+> different clocks. Therefore this patch creates a new binding file for
+> this functional block.
 > 
-> For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
-> are needed and the mailbox channel is different with SOF.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 123 +++++++++++++++++-
->  1 file changed, 117 insertions(+), 6 deletions(-)
+> 
+> Notes:
+>     Changes v3 -> v4:
+>     - Fixed clock names in the example as the clock patch series is merged into
+>       next now
+>     - Add missing ports decleration to the example
+> 
+>     Changes v1 -> v2:
+>     - Move the devicetree binding from mediatek,dpi into its own binding file.
+> 
+>  .../display/mediatek/mediatek,dpintf.yaml     | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dpintf.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
