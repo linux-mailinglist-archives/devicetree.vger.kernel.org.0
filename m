@@ -2,92 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE11428551
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 04:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70E544285B1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 06:09:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230273AbhJKCuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Oct 2021 22:50:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54104 "EHLO
+        id S233398AbhJKELA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 00:11:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233340AbhJKCuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Oct 2021 22:50:10 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE230C061570;
-        Sun, 10 Oct 2021 19:48:10 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id o204so14550124oih.13;
-        Sun, 10 Oct 2021 19:48:10 -0700 (PDT)
+        with ESMTP id S232145AbhJKELA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 00:11:00 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDDF8C061570;
+        Sun, 10 Oct 2021 21:09:00 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id x33-20020a9d37a4000000b0054733a85462so20040183otb.10;
+        Sun, 10 Oct 2021 21:09:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=rB0jy0vpwiblrk5yT433/gDQBNOVLb3BwFhWsJbyq1I=;
-        b=mhSp5Dc+49JylgRxtvz4asKc2ISrC3yhOrDucsQbPqBGDhPqR/+g6l3OeA7Q+21jMF
-         zij7cdztCwxGWUa4iKncEbj+Zw86x+C8mll2WuiNYV/gpi1RsF+tw6X3xQq+w88+6OHe
-         fPccsCiBzFmrQ39j+xKo/4BZfFESJf+Rt/UE5/PxUfVFdgptEZ7ti1E5Th6jYW7pTN+n
-         ZhZxzrCnp8BTB36RssQFAZQA5+nG/9u1mSTr976YJDx8f6buTxYT5XtvDsk8c+jfKcWJ
-         bl9mdrzsa+yIln1jIuI/7xX93fEULFyXMioCR3+JB4u8FU58kRyUsX4kErWbip3Y5HAv
-         +7vg==
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=QunyXUt74Gx3GYDTkgdqDinXhHjEbO9JIPtdoMQbpkY=;
+        b=DHbZF6KgPcU6w2KvrVB6smtJTD/qX+YmRqw+mcDxwjVuNdIObUKwIPmW+mb3XZu966
+         eXi6kgXlFCjkhBQ/MbruKhbA6qI1qDZrTY+FUwELNqhmSan5vjejAghLN7jWjGTcYoSi
+         l9wZ/56Mgvkf/nLAkOJQbHz4PQOgGh//Uu+Q33v+pFbYhGHP/lVpNXxwTF00D145QnnR
+         eVVmOsiaspsKPHM4YzBdlUD4Gdc+Gr+/oMCZOOrzmf4EuZrgzVRO0uZUz54DLolRXlda
+         HVAnNl7oSbfV5pLkFCJfo00Q1HPTTERZPhctrjalhL0QVAUCyjLdEfR6sX6blGBT5Rza
+         v1aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=rB0jy0vpwiblrk5yT433/gDQBNOVLb3BwFhWsJbyq1I=;
-        b=El9P0Em04LXIJ+IhAt43Z5TEp/XhfzzK3V/2kC6RTCXghaeoTTOfRTF1nGjgEB9wky
-         GvanAPectsaL3sFFa+oSJq34UKzx/15kZdEu6tNzdDwwLZdiA+RX4KfeJMoO6V5W36zz
-         C6tVimH7HWhgV8eBybjn+b9djsZeeEWiT7NbaHI9+5HKIyJaEpbw4sAk+uMqJYViGXCr
-         oeHHx+b2XvRxbx09Pz4xCTYpuruFjE9nPRXH0GGCqo/auzoAGB1oECNqcwUwAng7+FKe
-         RRK6W6fnkNZ8OJ9+7V9Y6VY4IJ1A+ISPMR6KS5GgmUKhcjLU90ZMGYt4CWpDFLJyiS3O
-         n7RA==
-X-Gm-Message-State: AOAM5314wTQ0StpUY+Rr9Px+ZYizma5KHPXYo4xuLFuFWbZmv+VtPSM5
-        TVOdeJi4r5KLPYw+BkHs5nA=
-X-Google-Smtp-Source: ABdhPJz/mmu0Z91EnDCm2evuxGNVKDWJG4WnfpHMev7fmxaDdvLnLnAqszSzDdIJjgTB9b5Gocb0Ig==
-X-Received: by 2002:a54:4d89:: with SMTP id y9mr16626296oix.22.1633920490258;
-        Sun, 10 Oct 2021 19:48:10 -0700 (PDT)
-Received: from ?IPV6:2600:1700:dfe0:49f0:3cb6:937e:609b:a590? ([2600:1700:dfe0:49f0:3cb6:937e:609b:a590])
-        by smtp.gmail.com with ESMTPSA id c9sm903323otn.77.2021.10.10.19.48.08
+        bh=QunyXUt74Gx3GYDTkgdqDinXhHjEbO9JIPtdoMQbpkY=;
+        b=HQTxEjBtQConlcjfmyn3wntAQ31GFYgLzjksR8sUBjb3JmSwmg+UCdrT17Uk8hUrV7
+         +KVr1O/FGsXW3RmtftU1WewS03goOeQEwCrevSUpytbpUIYhiiq+lTMjBvfYUQkqjQwF
+         b3oRwb3vl+MHUW/lk7xI8+zXpnmWy10IgKrWmlH4JRoXESi+KxdpXYSCk9BdMxoSDbi+
+         dSO2qjdG+dVkEHqIRqNBNFQjj6ne56snixhsC4VSHTrICobfeB0gBOfjiL6/Shm0yTuk
+         z17D2/mqhJIsAGMUcqxPl+djXeUxkrVfHMKh/xegIyHq4KN86Nuk5E0LmjsuuMxm4W2r
+         qYGQ==
+X-Gm-Message-State: AOAM530hxxN/CJEXTIzfnakpSVJGcutyE4sCdRBb0yEvg2SnBd5NelZv
+        6h9/ldej5tshIv5RgzoPsGzSbIVPjUg=
+X-Google-Smtp-Source: ABdhPJwpAcgppMcWBFbG7irS9GGd/OPmt76AGy16JZREt0YxmjivC9nUaV7a0yOkQrlVvXnxkZ65dA==
+X-Received: by 2002:a9d:7018:: with SMTP id k24mr5484280otj.168.1633925339859;
+        Sun, 10 Oct 2021 21:08:59 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id az14sm589495oib.51.2021.10.10.21.08.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Oct 2021 19:48:09 -0700 (PDT)
-Message-ID: <484c3594-910d-eacb-6844-88a8ba9b7b3a@gmail.com>
-Date:   Sun, 10 Oct 2021 19:48:07 -0700
+        Sun, 10 Oct 2021 21:08:59 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v7 2/2] hwmon: (nct7802) Make temperature/voltage sensors
+ configurable
+To:     Oskar Senft <osk@google.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20211011012212.91357-1-osk@google.com>
+ <20211011012212.91357-2-osk@google.com>
+ <98dcaa85-d04c-7a9c-1901-8786d361477c@roeck-us.net>
+ <CABoTLcTERUpwPSc7fVUAMqs37XCZJhMFbFRT2oyTt_TodE6GnA@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <518a6ab3-80af-bbe9-69e5-55e6741bdcbe@roeck-us.net>
+Date:   Sun, 10 Oct 2021 21:08:57 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [net-next PATCH v5 10/14] drivers: net: dsa: qca8k: add support
- for pws config reg
+In-Reply-To: <CABoTLcTERUpwPSc7fVUAMqs37XCZJhMFbFRT2oyTt_TodE6GnA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-To:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211011013024.569-1-ansuelsmth@gmail.com>
- <20211011013024.569-11-ansuelsmth@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20211011013024.569-11-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/10/2021 6:30 PM, Ansuel Smith wrote:
-> Some qca8327 switch require to force the ignore of power on sel
-> strapping. Some switch require to set the led open drain mode in regs
-> instead of using strapping. While most of the device implements this
-> using the correct way using pin strapping, there are still some broken
-> device that require to be set using sw regs.
-> Introduce a new binding and support these special configuration.
-> As led open drain require to ignore pin strapping to work, the probe
-> fails with EINVAL error with incorrect configuration.
+On 10/10/21 6:53 PM, Oskar Senft wrote:
+> I wasn't sure if submitting JUST a v7 of nuvoton,nct7802.yaml (i.e.
+> the 1/2 in this series) would be the right thing to do and thought it
+> would be easier to follow if I dropped both. I couldn't find
+> documentation on what's the right thing to do in that case. Would it
+> have been better to only submit nuvoton,nct7802.yaml as "PATCH v7" ?
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+First, please don't top-post.
+
+Second, no, submitting both patches was the right thing to do, but
+you should not drop a Reviewed-by: tag if there was no change to
+the patch.
+
+Guenter
+
+> Oskar.
+> 
+> On Sun, Oct 10, 2021 at 9:49 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>>
+>> On 10/10/21 6:22 PM, Oskar Senft wrote:
+>>> This change allows LTD and RTD inputs to be configured via
+>>> device tree bindings. If the DT bindings are not present or
+>>> invalid, the input configuration is not modified and left at
+>>> HW defaults.
+>>>
+>>> Signed-off-by: Oskar Senft <osk@google.com>
+>>
+>> I sent a Reviewed-by: for v6 of this patch.
+>>
+>>> ---
+>>> Changes from PATCH v6:
+>>> - None (resubmitted due to changes in nuvoton,nct7802.yaml).
+>>>
+>>
+>> Why did you drop it if there was no change ?
+>>
+>> Guenter
+>>
+>>> Changes from PATCH v5:
+>>> - Removed unused "found_channel_config" variable.
+>>> - Initialize mode_mask and mode_val to defaults.
+>>> ---
+>>>    drivers/hwmon/nct7802.c | 129 ++++++++++++++++++++++++++++++++++++++--
+>>>    1 file changed, 125 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/hwmon/nct7802.c b/drivers/hwmon/nct7802.c
+>>> index 604af2f6103a..d56f78327619 100644
+>>> --- a/drivers/hwmon/nct7802.c
+>>> +++ b/drivers/hwmon/nct7802.c
+>>> @@ -51,6 +51,23 @@ static const u8 REG_VOLTAGE_LIMIT_MSB_SHIFT[2][5] = {
+>>>    #define REG_CHIP_ID         0xfe
+>>>    #define REG_VERSION_ID              0xff
+>>>
+>>> +/*
+>>> + * Resistance temperature detector (RTD) modes according to 7.2.32 Mode
+>>> + * Selection Register
+>>> + */
+>>> +#define RTD_MODE_CURRENT     0x1
+>>> +#define RTD_MODE_THERMISTOR  0x2
+>>> +#define RTD_MODE_VOLTAGE     0x3
+>>> +
+>>> +#define MODE_RTD_MASK                0x3
+>>> +#define MODE_LTD_EN          0x40
+>>> +
+>>> +/*
+>>> + * Bit offset for sensors modes in REG_MODE.
+>>> + * Valid for index 0..2, indicating RTD1..3.
+>>> + */
+>>> +#define MODE_BIT_OFFSET_RTD(index) ((index) * 2)
+>>> +
+>>>    /*
+>>>     * Data structures and manipulation thereof
+>>>     */
+>>> @@ -1038,7 +1055,112 @@ static const struct regmap_config nct7802_regmap_config = {
+>>>        .volatile_reg = nct7802_regmap_is_volatile,
+>>>    };
+>>>
+>>> -static int nct7802_init_chip(struct nct7802_data *data)
+>>> +static int nct7802_get_channel_config(struct device *dev,
+>>> +                                   struct device_node *node, u8 *mode_mask,
+>>> +                                   u8 *mode_val)
+>>> +{
+>>> +     u32 reg;
+>>> +     const char *type_str, *md_str;
+>>> +     u8 md;
+>>> +
+>>> +     if (!node->name || of_node_cmp(node->name, "channel"))
+>>> +             return 0;
+>>> +
+>>> +     if (of_property_read_u32(node, "reg", &reg)) {
+>>> +             dev_err(dev, "Could not read reg value for '%s'\n",
+>>> +                     node->full_name);
+>>> +             return -EINVAL;
+>>> +     }
+>>> +
+>>> +     if (reg > 3) {
+>>> +             dev_err(dev, "Invalid reg (%u) in '%s'\n", reg,
+>>> +                     node->full_name);
+>>> +             return -EINVAL;
+>>> +     }
+>>> +
+>>> +     if (reg == 0) {
+>>> +             if (!of_device_is_available(node))
+>>> +                     *mode_val &= ~MODE_LTD_EN;
+>>> +             else
+>>> +                     *mode_val |= MODE_LTD_EN;
+>>> +             *mode_mask |= MODE_LTD_EN;
+>>> +             return 0;
+>>> +     }
+>>> +
+>>> +     /* At this point we have reg >= 1 && reg <= 3 */
+>>> +
+>>> +     if (!of_device_is_available(node)) {
+>>> +             *mode_val &= ~(MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1));
+>>> +             *mode_mask |= MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1);
+>>> +             return 0;
+>>> +     }
+>>> +
+>>> +     if (of_property_read_string(node, "sensor-type", &type_str)) {
+>>> +             dev_err(dev, "No type for '%s'\n", node->full_name);
+>>> +             return -EINVAL;
+>>> +     }
+>>> +
+>>> +     if (!strcmp(type_str, "voltage")) {
+>>> +             *mode_val |= (RTD_MODE_VOLTAGE & MODE_RTD_MASK)
+>>> +                          << MODE_BIT_OFFSET_RTD(reg - 1);
+>>> +             *mode_mask |= MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1);
+>>> +             return 0;
+>>> +     }
+>>> +
+>>> +     if (strcmp(type_str, "temperature")) {
+>>> +             dev_err(dev, "Invalid type '%s' for '%s'\n", type_str,
+>>> +                     node->full_name);
+>>> +             return -EINVAL;
+>>> +     }
+>>> +
+>>> +     if (reg == 3) {
+>>> +             /* RTD3 only supports thermistor mode */
+>>> +             md = RTD_MODE_THERMISTOR;
+>>> +     } else {
+>>> +             if (of_property_read_string(node, "temperature-mode",
+>>> +                                         &md_str)) {
+>>> +                     dev_err(dev, "No mode for '%s'\n", node->full_name);
+>>> +                     return -EINVAL;
+>>> +             }
+>>> +
+>>> +             if (!strcmp(md_str, "thermal-diode"))
+>>> +                     md = RTD_MODE_CURRENT;
+>>> +             else if (!strcmp(md_str, "thermistor"))
+>>> +                     md = RTD_MODE_THERMISTOR;
+>>> +             else {
+>>> +                     dev_err(dev, "Invalid mode '%s' for '%s'\n", md_str,
+>>> +                             node->full_name);
+>>> +                     return -EINVAL;
+>>> +             }
+>>> +     }
+>>> +
+>>> +     *mode_val |= (md & MODE_RTD_MASK) << MODE_BIT_OFFSET_RTD(reg - 1);
+>>> +     *mode_mask |= MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1);
+>>> +
+>>> +     return 0;
+>>> +}
+>>> +
+>>> +static int nct7802_configure_channels(struct device *dev,
+>>> +                                   struct nct7802_data *data)
+>>> +{
+>>> +     /* Enable local temperature sensor by default */
+>>> +     u8 mode_mask = MODE_LTD_EN, mode_val = MODE_LTD_EN;
+>>> +     struct device_node *node;
+>>> +     int err;
+>>> +
+>>> +     if (dev->of_node) {
+>>> +             for_each_child_of_node(dev->of_node, node) {
+>>> +                     err = nct7802_get_channel_config(dev, node, &mode_mask,
+>>> +                                                      &mode_val);
+>>> +                     if (err)
+>>> +                             return err;
+>>> +             }
+>>> +     }
+>>> +
+>>> +     return regmap_update_bits(data->regmap, REG_MODE, mode_mask, mode_val);
+>>> +}
+>>> +
+>>> +static int nct7802_init_chip(struct device *dev, struct nct7802_data *data)
+>>>    {
+>>>        int err;
+>>>
+>>> @@ -1047,8 +1169,7 @@ static int nct7802_init_chip(struct nct7802_data *data)
+>>>        if (err)
+>>>                return err;
+>>>
+>>> -     /* Enable local temperature sensor */
+>>> -     err = regmap_update_bits(data->regmap, REG_MODE, 0x40, 0x40);
+>>> +     err = nct7802_configure_channels(dev, data);
+>>>        if (err)
+>>>                return err;
+>>>
+>>> @@ -1074,7 +1195,7 @@ static int nct7802_probe(struct i2c_client *client)
+>>>        mutex_init(&data->access_lock);
+>>>        mutex_init(&data->in_alarm_lock);
+>>>
+>>> -     ret = nct7802_init_chip(data);
+>>> +     ret = nct7802_init_chip(dev, data);
+>>>        if (ret < 0)
+>>>                return ret;
+>>>
+>>>
+>>
+
