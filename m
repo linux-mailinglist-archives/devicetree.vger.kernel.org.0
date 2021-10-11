@@ -2,64 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43DE54299AE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 01:13:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D50C4299B3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 01:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235636AbhJKXPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 19:15:46 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:34453 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235622AbhJKXPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 19:15:46 -0400
-Received: by mail-oi1-f170.google.com with SMTP id z11so26687075oih.1;
-        Mon, 11 Oct 2021 16:13:45 -0700 (PDT)
+        id S235709AbhJKXPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 19:15:49 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:42877 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235622AbhJKXPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 19:15:48 -0400
+Received: by mail-ot1-f46.google.com with SMTP id c26-20020a056830349a00b0054d96d25c1eso23560443otu.9;
+        Mon, 11 Oct 2021 16:13:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=tD30uQ2DlWg/Srv+bQh0AB6RrI17CFHuZ9aaH7t42I4=;
-        b=DTnEjTtThSVhOhi/B0hLBpGy50Qi7gmA566NSNi/ccMJz2aTbkP6rBYln4Rk0YcLgJ
-         vZPy5qQ3yqTKf4w+qQhvqbZJw5g0f5eCmhNq1cQnNHWzFJWkq8f+IXoXe7dLjlcHMD49
-         TZV1tNxYxKnofzCYh/qdFI0cNNznj54WJh+5z1sqUJZcq/epCdzhxAn1TxcJUK2AXOIX
-         TdkUDlg7og3d98wHycwkGfZe6Tyy4RoPbTC1wjH5BF1f1RD4vB3hjbEJscfIHRYtKpnK
-         69R3mTRw9EVJx9/kC86mGr3DP536EkyPR+GmtVsl48r6o62tZGn5a6J6BdBiesWIv+Ke
-         qLag==
-X-Gm-Message-State: AOAM5321QWRZDt62HH/ZHmFUuS5ZyuAPwsYaI/gZMygcayzA5Zqaiqwr
-        1yJ51zWVi73NsSYEPLnfXg==
-X-Google-Smtp-Source: ABdhPJzJAiCnXOesBGcIEXOE/1j1Fy08Mvz6MllerqCyO0cxyOTtJBv2tTpoJsTreMowkdnXcBLQRw==
-X-Received: by 2002:a05:6808:2106:: with SMTP id r6mr1302751oiw.72.1633994024922;
-        Mon, 11 Oct 2021 16:13:44 -0700 (PDT)
+        bh=7zuoS5ImJfku8d8xCEMyvxbsSp1wfRVxODVvjTNPpWI=;
+        b=amsw0I40qmeKasNEjfYH2Jd4dK2wBuvNBUVvnolS+jQRmzD6fAMsKFaDwVx1G6Dh35
+         3knGgQUQoJq+RPbioGihQzCSqF5oiFAf7FB62v122N9WLIQRppUHioW8pDAvvDBT//yq
+         NF0sESjjmW7e4anLcOCyazbM3wd3rHY8AjaIq8SqjZgJchBPct7+xptY80wakF7xC2d5
+         nr7jYET6ZdFzA4D1BUG69J4HQm5WClfpdSp5ifFT6gGbuRxz2uHdVVSxH7lZUCxnr/0q
+         O8gp4T1lRtNG4EwdVr3O3NCxL7czJieyWYjtbYqgr19EdolOPR89jKzg6Ao6EzSuqelA
+         XHRg==
+X-Gm-Message-State: AOAM533zqOlNXUU1b1h9M9bf66Z+woWXfbuLhjkMP6DjnUANESDgvD/K
+        3VxDMZPLTeJznPtyReohAgaB4Kat9w==
+X-Google-Smtp-Source: ABdhPJwgjqa80alYqxnGTfd3HMgT9XwEeOu7Wz9fbyC7hQnvyMYxKzqnL/RZNXXaNYHYTgIuXCirxw==
+X-Received: by 2002:a9d:7114:: with SMTP id n20mr14348496otj.25.1633994026820;
+        Mon, 11 Oct 2021 16:13:46 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k2sm1800346oot.37.2021.10.11.16.13.43
+        by smtp.gmail.com with ESMTPSA id r4sm2049640oiw.36.2021.10.11.16.13.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 16:13:44 -0700 (PDT)
-Received: (nullmailer pid 1347635 invoked by uid 1000);
+        Mon, 11 Oct 2021 16:13:45 -0700 (PDT)
+Received: (nullmailer pid 1347640 invoked by uid 1000);
         Mon, 11 Oct 2021 23:13:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     alexandru.tachici@analog.com
-Cc:     devicetree@vger.kernel.org, linux@armlinux.org.uk, andrew@lunn.ch,
-        kuba@kernel.org, netdev@vger.kernel.org, hkallweit1@gmail.com,
-        robh+dt@kernel.org, davem@davemloft.net, o.rempel@pengutronix.de,
+To:     Olivier Moysan <olivier.moysan@foss.st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
         linux-kernel@vger.kernel.org
-In-Reply-To: <20211011142215.9013-9-alexandru.tachici@analog.com>
-References: <20211011142215.9013-1-alexandru.tachici@analog.com> <20211011142215.9013-9-alexandru.tachici@analog.com>
-Subject: Re: [PATCH v3 8/8] dt-bindings: adin1100: Add binding for ADIN1100 Ethernet PHY
+In-Reply-To: <20211011155717.1594-2-olivier.moysan@foss.st.com>
+References: <20211011155717.1594-1-olivier.moysan@foss.st.com> <20211011155717.1594-2-olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v4 1/7] dt-bindings: iio: stm32-adc: add generic channel binding
 Date:   Mon, 11 Oct 2021 18:13:43 -0500
-Message-Id: <1633994023.311795.1347634.nullmailer@robh.at.kernel.org>
+Message-Id: <1633994023.340533.1347639.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Oct 2021 17:22:15 +0300, alexandru.tachici@analog.com wrote:
-> From: Alexandru Tachici <alexandru.tachici@analog.com>
+On Mon, 11 Oct 2021 17:57:11 +0200, Olivier Moysan wrote:
+> Add ADC generic channel binding. This binding should
+> be used as an alternate to legacy channel properties
+> whenever possible.
+> ADC generic channel binding allows to identify supported
+> internal channels through the following reserved label names:
+> "vddcore", "vrefint" and "vbat".
+> This binding also allows to set a different sampling time
+> for each channel.
 > 
-> DT bindings for the ADIN1100 10BASE-T1L Ethernet PHY.
-> 
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 > ---
->  .../devicetree/bindings/net/adi,adin1100.yaml | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/adi,adin1100.yaml
+>  .../bindings/iio/adc/st,stm32-adc.yaml        | 100 ++++++++++++++++--
+>  1 file changed, 93 insertions(+), 7 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -68,24 +78,16 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/adi,adin1100.yaml: 'oneOf' conditional failed, one must be fixed:
-	'unevaluatedProperties' is a required property
-	'additionalProperties' is a required property
-	hint: A schema with a "$ref" to another schema either can define all properties used and use "additionalProperties" or can use "unevaluatedProperties"
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/adi,adin1100.yaml: 'anyOf' conditional failed, one must be fixed:
-	'properties' is a required property
-	'patternProperties' is a required property
-	hint: Metaschema for devicetree binding documentation
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/adi,adin1100.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/net/adi,adin1100.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/adi,adin1100.example.dt.yaml: ethernet: '10base-t1l-2.4vpp' does not match any of the regexes: '.*-names$', '.*-supply$', '^#.*-cells$', '^#[a-zA-Z0-9,+\\-._]{0,63}$', '^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}$', '^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+(,[0-9a-fA-F]+)*$', '^__.*__$', 'pinctrl-[0-9]+'
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/dt-core.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.example.dt.yaml: adc@48003000: adc@100:channel@13: 'st,min-sample-time-nsecs' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.example.dt.yaml: adc@48003000: adc@100:channel@14: 'st,min-sample-time-nsecs' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.example.dt.yaml: adc@48003000: adc@100:channel@15: 'st,min-sample-time-nsecs' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1539350
+See https://patchwork.ozlabs.org/patch/1539385
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
