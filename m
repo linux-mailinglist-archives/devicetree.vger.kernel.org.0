@@ -2,89 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F725428AC5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 12:31:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5197428AE5
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 12:40:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235814AbhJKKdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 06:33:39 -0400
-Received: from muru.com ([72.249.23.125]:43318 "EHLO muru.com"
+        id S235792AbhJKKm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 06:42:57 -0400
+Received: from sauhun.de ([88.99.104.3]:53402 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235602AbhJKKdi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Oct 2021 06:33:38 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 2D2568061;
-        Mon, 11 Oct 2021 10:32:09 +0000 (UTC)
-Date:   Mon, 11 Oct 2021 13:31:36 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-        robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
-        nsekhar@ti.com, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/8] dt-bindings: memory-controllers: ti,gpmc: Convert
- to yaml
-Message-ID: <YWQSiNX/bBKcdTl2@atomide.com>
-References: <20211007120830.17221-1-rogerq@kernel.org>
- <6b90a6fd-001f-a41a-b69f-2bd3ec8a8e26@canonical.com>
- <e165b6ee-91d3-3a50-3b9d-3f15fa82a101@kernel.org>
- <64b65579-7153-1e7d-9866-77ce07fd1df5@canonical.com>
- <YWPRbmaJQN85wRIO@atomide.com>
- <f2125e81-07da-92ea-899a-d06ecae1919f@kernel.org>
+        id S235868AbhJKKm4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Oct 2021 06:42:56 -0400
+Received: from localhost (p54b3315a.dip0.t-ipconnect.de [84.179.49.90])
+        by pokefinder.org (Postfix) with ESMTPSA id A69DB2C00A6;
+        Mon, 11 Oct 2021 12:40:53 +0200 (CEST)
+Date:   Mon, 11 Oct 2021 12:40:53 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Kewei Xu <kewei.xu@mediatek.com>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        leilk.liu@mediatek.com, qii.wang@mediatek.com,
+        liguo.zhang@mediatek.com, caiyu.chen@mediatek.com,
+        ot_daolong.zhu@mediatek.com, yuhan.wei@mediatek.com
+Subject: Re: [PATCH v8 1/5] i2c: mediatek: Reset the handshake signal between
+ i2c and dma
+Message-ID: <YWQUtUALm+p32bui@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@the-dreams.de>,
+        Kewei Xu <kewei.xu@mediatek.com>, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
+        qii.wang@mediatek.com, liguo.zhang@mediatek.com,
+        caiyu.chen@mediatek.com, ot_daolong.zhu@mediatek.com,
+        yuhan.wei@mediatek.com
+References: <20211010070516.26763-1-kewei.xu@mediatek.com>
+ <20211010070516.26763-2-kewei.xu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6TggNdb/jhd7lklB"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f2125e81-07da-92ea-899a-d06ecae1919f@kernel.org>
+In-Reply-To: <20211010070516.26763-2-kewei.xu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Roger Quadros <rogerq@kernel.org> [211011 07:04]:
-> Hi Tony,
-> 
-> On 11/10/2021 08:53, Tony Lindgren wrote:
-> > * Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> [211009 14:56]:
-> >> On 08/10/2021 21:10, Roger Quadros wrote:
-> >>> Krzysztof,
-> >>>
-> >>> On 07/10/2021 20:37, Krzysztof Kozlowski wrote:
-> >>>> On 07/10/2021 14:08, Roger Quadros wrote:
-> >>>>> Hi,
-> >>>>>
-> >>>>> This series converts ti,gpmc memory controller and ti,gpmc-nand and
-> >>>>> ti,gpmc-onenand MTD controller bindings to yaml.
-> >>>>>
-> >>>>> cheers,
-> >>>>> -roger
-> >>>>>
-> >>>>
-> >>>> Hi,
-> >>>>
-> >>>> Although you did not mention it here, it looks like you have some
-> >>>> dependencies between the patches. Maybe this shall go simply via Rob's tree?
-> >>>>
-> >>>
-> >>> Rob has acked all the DT binding patches.
-> >>> So it is upto you and Miquèl to decide the best way. MTD tree or Memory controller tree
-> >>> for the dt-bindings patches.
-> >>>
-> >>> The ARM: dts changes should go via Tony's OMAP SoC tree.
-> >>>
-> >>> Or if Tony is OK with it then maybe all patches can go via Tony's tree? :)
-> >>>
-> >>
-> >>
-> >> I reviewed the two memory-controller patches, so feel free to take them
-> >> via MTD or OMAP SoC.
-> > 
-> > Sounds like I should pick up these because of the dts changes.
-> 
-> There is no dependency with the dts patches but it would be great if you can pick them all up.
 
-OK all pushed out now to omap-for-v5.16/gpmc.
+--6TggNdb/jhd7lklB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
+On Sun, Oct 10, 2021 at 03:05:12PM +0800, Kewei Xu wrote:
+> Due to changes in the hardware design of the handshaking signal
+> between i2c and dma, it is necessary to reset the handshaking
+> signal before each transfer to ensure that the multi-msgs can
+> be transferred correctly.
+>=20
+> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
+> Reviewed-by: Qii Wang <qii.wang@mediatek.com>
 
-Tony
+Applied to for-next, thanks!
+
+
+--6TggNdb/jhd7lklB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFkFLUACgkQFA3kzBSg
+KbZ0nQ//fejqkK4MR8ztJDpUH+a24oeWRNYjKA1JUibK8o7Vc6HBcI9j2Jxpsnoc
+k+YN4CvmIqcONm/SXoTBrNCcXoHN0Tj+uPrh2ATTSltyghL4qn/eAkaU4imbBTxA
+NdG5GsCJS8aTpE2iPls8VQd6AY5Bk4DJFXax/XqIY3GcBWz4Bv6FEt0AZnj6h4DL
+m1eF+T+YI1Hme2dWljv1hMRR+AIC7OUp3CZFkBDjrZD2Xqp3akDv05LkSONlbSrt
+FqXW8UoudEZ67ERKwHKyfngARylCTTiJkpJiDxQw1EiKFQ2yzGPiJ8rhMgHa3fKy
+D5YSBcotOroR31RcFAzVG6icOECh8D834YA4sms0hE3ew5p/akMAdBI3nCM6Oq34
+F0/NU+MDliYoGJM1noSyfVM3ppIzO6CFyAW7xtVMvANruqIkBgeNMDzmALf1y+pq
+s8T/f7mr/Hth6PEDEosPV74+CDVm4X0Sh+5DZ6W1fNDHMhVIWYmBArflGp9s27gX
+4WTsyCW0YPmdzCvYIrhYEk3hkGCjfrJiayy+2ukbRm07r88J6+hO0lA/mGs+GQLo
+Y4lpxLr66NgnVg7n4r0r6sYz7azDU43k8Du/eWeZeS7rtNpTAv79yqe73dkkRT2l
+2qvr7xq5QbT6PiM9mneMbQ9zShkzC3MBP8cUEZmKsgI0D6gm3Rs=
+=VPLH
+-----END PGP SIGNATURE-----
+
+--6TggNdb/jhd7lklB--
