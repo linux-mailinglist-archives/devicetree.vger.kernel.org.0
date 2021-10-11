@@ -2,205 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FDF142870E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 08:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4987E428720
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 09:02:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234281AbhJKGwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 02:52:44 -0400
-Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:34714 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233148AbhJKGwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Oct 2021 02:52:44 -0400
-Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
-        by mx0a-0014ca01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19B55hqk013078;
-        Sun, 10 Oct 2021 23:50:32 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=proofpoint;
- bh=wvwhvktZ4oUvg2xNLcn7P07o6pFEXt0Z+P3ayPIJuw8=;
- b=PM6HlXRLUDrwtDII2sSMudRYxmuxyI85sggL78tRxUX1E6n8LF4K1vVmts9lzxtSKync
- 50U3fhMvpBFzw2xxkUE/ISAQZLFu9gZvkVFYJlZqzqrth/+Qwt9xUfeoTnwtvHwKxnVH
- 58KbbR2qPhm4gcmGkEjodx3R5jJzOSbhkofMvr5cLqSFl6/ofcLPXVXsW2PtkJkYMVRS
- F4WRQ20hW+eQB3Bv9TFVabaNdSdwcdhI4T1JVQB/h6IO7sw0uD4C7mUFjQW6j25Vxmlb
- ohVgKcHO6PChzCuFnNYuXpTOcWpzcvdNw0HG57F6H6mNieaQ7Bwnpia44oMZQ8787VG3 Ng== 
-Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2176.outbound.protection.outlook.com [104.47.57.176])
-        by mx0a-0014ca01.pphosted.com with ESMTP id 3bkwk5tas2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 10 Oct 2021 23:50:32 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dVBQhS5rbiO1DNJ5SwyaRP4r9t5UyxGQFfmO2wqM1LufboQeb3NB6HXprlQqT/RSYlUAMbomtgGTFiXcDA52rmRNHHYYPTj51tdzqNvEGSWF/TQeN0dV3lDC+aTGTDLiog9mn4WGl3O2gkEWOgLiGSCO2UsD4tSOioY/7REaRvc24bdd5OeOejlPGkWvaqhytC1c6zHI425A0dUzegLI+KYEbJ43DJFrGwp/S7sZ/YQQOGBKpH6Xq8amjT20hgKnpseEaHGlgWke+Wdh+dPrvM2AyeVvhg1FghUiMIMt0CiQmiIZgP55hZa8RU9qVDN86wnY5uAWZ1UPqEreogXmCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wvwhvktZ4oUvg2xNLcn7P07o6pFEXt0Z+P3ayPIJuw8=;
- b=TsTySAfOQMbBxK8Juv7R/qjx46speDE43fpyGxp7dH8Cb4KWEyZP0XXWJgMuCWVafL0fgnvpTx/SBMge/XXVZuS1UhTdyV52DHjtuNIcmyUX0xLn5TCQtcC+vvzCJRvEdy6NGFEnVtbG8TSxtHm0VRYUBa2OAp/kbK0aeor/M3RlC7tyCFbzohLsHv/3POHfUJg8YxhGpHPvf5BXhxN0nugeYgiphhPcw1PgJo/Ij12ywnw7TzhOCk2emTwGf6EjI3dIoxXxgM8hD3GZAmP6gkPoQ+rtiGK9esQEWhw0JwHXhmBzt8V8X/nVmpzWaRjgI3M3Wn8wtDz3bm4TfKR96A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cadence.com; dmarc=pass action=none header.from=cadence.com;
- dkim=pass header.d=cadence.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wvwhvktZ4oUvg2xNLcn7P07o6pFEXt0Z+P3ayPIJuw8=;
- b=e+vpf4XLQRB4alw3K7hBJcBKv9Oos8eGHcb8RqOppGOXy2RpdOksc4Ws7LfZ4LcC9NTrF1HVcS6turnySeo3vVMkse7sxdy6xKCHAF3Z2/RxyJtipzfUM9gvOyurI0CelJAL2KbFCuHEutXIjzP5MREfyGlaA/UnsOUupqQjb/U=
-Received: from DM6PR07MB6154.namprd07.prod.outlook.com (2603:10b6:5:17e::20)
- by DM6PR07MB5370.namprd07.prod.outlook.com (2603:10b6:5:45::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.22; Mon, 11 Oct
- 2021 06:50:30 +0000
-Received: from DM6PR07MB6154.namprd07.prod.outlook.com
- ([fe80::e453:f454:9058:598e]) by DM6PR07MB6154.namprd07.prod.outlook.com
- ([fe80::e453:f454:9058:598e%6]) with mapi id 15.20.4587.026; Mon, 11 Oct 2021
- 06:50:30 +0000
-From:   Swapnil Kashinath Jakhade <sjakhade@cadence.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     Milind Parab <mparab@cadence.com>,
-        "lokeshvutla@ti.com" <lokeshvutla@ti.com>
-Subject: RE: [PATCH v2 00/15] PHY: Add support for multilink configurations in
- Cadence Sierra PHY driver
-Thread-Topic: [PATCH v2 00/15] PHY: Add support for multilink configurations
- in Cadence Sierra PHY driver
-Thread-Index: AQHXpK0vf/++FvVsJ0eafISJtjn/3aulPymAgChPEMA=
-Date:   Mon, 11 Oct 2021 06:50:30 +0000
-Message-ID: <DM6PR07MB6154EFBCCAB7ED1BEACAE1CEC5B59@DM6PR07MB6154.namprd07.prod.outlook.com>
-References: <20210908122930.10224-1-sjakhade@cadence.com>
- <23a8f4d9-3467-1cf5-eec7-a4d33fe03458@ti.com>
-In-Reply-To: <23a8f4d9-3467-1cf5-eec7-a4d33fe03458@ti.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcc2pha2hhZGVcYXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRiYTI5ZTM1Ylxtc2dzXG1zZy04MmNhYjk3OS0yYTVmLTExZWMtODU4NC1jOGY3NTA0NDIyZDhcYW1lLXRlc3RcODJjYWI5N2ItMmE1Zi0xMWVjLTg1ODQtYzhmNzUwNDQyMmQ4Ym9keS50eHQiIHN6PSIzMDk2IiB0PSIxMzI3ODQwODYyNTYzNDUxMDQiIGg9ImdEVXBKN1J6Q3kydjlXclRkQVFYK2tONGFlUT0iIGlkPSIiIGJsPSIwIiBibz0iMSIvPjwvbWV0YT4=
-x-dg-rorf: true
-authentication-results: ti.com; dkim=none (message not signed)
- header.d=none;ti.com; dmarc=none action=none header.from=cadence.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0d1c8177-4b0f-474a-d26e-08d98c836a81
-x-ms-traffictypediagnostic: DM6PR07MB5370:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR07MB5370DF380CA31B20647B4B33C5B59@DM6PR07MB5370.namprd07.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dU/eyxUUiHla2BdxbGnqJQpyJ5fx7JgtH0p6bCJMVTtTs4pFBBOEih8M6dDslcd2KTWh3G/vAN/EJ/Te5khoMkuMpCWtej+pVdMKh2nPXiQsJCYqzSuUBUN/sRO8/iy9siukEpAURuTl7zAWZgMVts6TKWbR7bUtj5opNT7stiFtpj9zMuZBHmJAUeIzDfZVNKKu/ZMu7Abt24jvnKqGhH5PgoHsHiQP9s0ncNvkspw4IAxoLqa12Cv1j4NquallArZBSZrRLX7F6gj3f7fzSvv14GpzbL9QeaK/eMXWU1HOFnUxpfATw+GbZIIjHjecPO0bHljn4WztWqjknREm4cEWgvFUQVqSvzO8T1Ez1ftkgjMJBwezZrMhS3Vb6MGOFEIWSZcIIMRi6WjusMhSU2TCg8IGSz2VsL+YauueKyrGCtE1uj6ZZkooc/EORBVuw61NNvCnuatQ+P1xj7zTvkNnSiMb7bxWnb6U7l6FTfiUs7eSrwsoNyyvRQFbVzMSyoGbURjoRdk+8i6+Shc9/1epVQqTu2dwHbGwi7VYu71cg9x3dw2YWUpMkwRwf17e4iQBQWJDoN0By1ENAAWlLugp5+cMRJWMqqeodJMYWtlOLi7jlHAklxql2wL0AGXb4iTyPLXg2U/qEBSEiRKl85ZWrzU8PLhDIjRJHSVvIuvqHZzgXV1uw8/JR/CZBLMA6/Q8hKwzYuXUOCGjANAXi01ZyBC8dx/7WzIQ+Ke+zUBeA+JY1hEb+Au2fjDs2rNg
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR07MB6154.namprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(36092001)(6506007)(53546011)(5660300002)(66446008)(64756008)(66556008)(38070700005)(66476007)(110136005)(66946007)(54906003)(2906002)(508600001)(71200400001)(26005)(38100700002)(316002)(76116006)(55016002)(9686003)(186003)(86362001)(7696005)(8676002)(52536014)(122000001)(4326008)(8936002)(33656002)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?N3pRMEdEYi85MkxERXBIaFRyM1d3WU5wckJldEMzTFpFeEREdVNJV2xLRldv?=
- =?utf-8?B?TktyR3orNnJBQnBJNCtXWnh3YUE3T0g1U3JTSlRLamNvMFIxZm1VbVI4ampm?=
- =?utf-8?B?cnl3dExiN1VRZTJJNjRhTXQ3Z1JaSEREd2kvWEF1RTFRdlQzNGRsTmZpUm0r?=
- =?utf-8?B?cTcxNHlsWTVhSG5kRlNXWUc1ak8wQ1VvbHRIa0tGN1Exd3FSZmlRcDBrb1ZQ?=
- =?utf-8?B?OEhxMkYzdUxZc2o5ai9oSStoT0dBZzZ5ZERGOXg2NTBSM3dJYzdjTnplaUlk?=
- =?utf-8?B?bmJoSTZLazJPZkhIOGwwdGFGVjk2Z3k3d0UxU0w3Ym5mZk1NL1YwQnM3T1ZX?=
- =?utf-8?B?a3Y0NWhFRGFYazZiQXhNUHoySHdHUjhxS2lpK1hXVWtJRVphdGNDeUdSYXY3?=
- =?utf-8?B?VHJVaWphZnI4OWNOQ1h2RDU1cUFEMXIvS2lPZnplVmxXWWJFRzhpWGJqQ3p0?=
- =?utf-8?B?cGxzcFNqVzFLd3ZUK3BmVTAzRXlxWi85cnhEUzFkRkRQUTF1c3RYSi9ZZWRV?=
- =?utf-8?B?R0E1QmhJQkRQaGJOYlFvSW0yQ0tkVTlvS2tlM3BKdm9aMm9wY0pOVW03SWxD?=
- =?utf-8?B?elFkOTM2NHlOZVNuMVZUL3paWld0akVjM1dMdW1GckFSL1BxOGYyMGJNcWpo?=
- =?utf-8?B?NWhVOEk3WEY1cU1jNXZUMGtFQ2tDNHdqdC90NDRyZS9ZN1YwOWIzTHloTjc3?=
- =?utf-8?B?SEtaWm5LMTFqNVVKbG5kTTB0RWZyemhmT3dwTzM5L291c0hFUk5YVDlERWNt?=
- =?utf-8?B?VzlnMG95c3dXZTVSVkVLdFF5RDl3V3V1RTU1dW9CaDVZQ3c2UTI1YkFyUWF5?=
- =?utf-8?B?SDFadUNRSkhiTWN6bHMyQWxIQTJ5VWk1YVM0dDUwQkRaZ2VTd1lES3F2ZXEw?=
- =?utf-8?B?OSt2VXVyYUJDR0tzYVYvTEErM0xwdUNKR3NQSXhIWTNLM0E0eWJ6SDByUXB5?=
- =?utf-8?B?djhHcVh1ZVFDNFl5L3BxUnFzLyt1cnBKbGhWZ0JDZVgvSkJQTkhrejFRdzRL?=
- =?utf-8?B?WS94bno1VVh6emlrUEg2TXJHdENEcWxJclc0WElsSUhBOHFpdTdtbnF1dUs0?=
- =?utf-8?B?cGNuclJIRXZ4SVJDT0lESlNhcTA2TnV2dURTVjVpbVorNWxCdXA2MWE5K3Z2?=
- =?utf-8?B?blZjbTVmUlNBdVdZczdjOThiRjNsbll0WnhiNk4wZVVET2ppWmJwMHErZGUr?=
- =?utf-8?B?b2N0azhrVldML285S2gyZ1lwbllJK0FTeXRkQkIwMTR4VDhkQWwwV3MxQTlR?=
- =?utf-8?B?eGI3eXZxQWJrb3B1SXowdlBNVGxVbGVOZUorckp6cEtpWjlyWGtpQzFaRkRH?=
- =?utf-8?B?ZDFxMFZrT1RQU1dsd084cVlscExQOUVvWWJValZFWVdWVEVkanFqWTRsNzh5?=
- =?utf-8?B?SVhsOENOMGhpMGlVbCt2Y1RjVGZCb3h6UGltT1NWNkxWWXBBa3J4SUQvR0xR?=
- =?utf-8?B?dXluayttUFNPQm9YR0VmVEppNC84ejM3N3lhY0M1VXJYUHNxNWNobFZDUGVG?=
- =?utf-8?B?OENZTmo5WjF3OTV4YnFpN1RQTGoxZmViTFBVMmJ1blYvWmxEdUlTd0w3Q2pl?=
- =?utf-8?B?U0dzMlBOTEhVMHlXazdNaUNQMlQxY3g2eEowVHdoMW1MVGJnb2o5OG9MN3VZ?=
- =?utf-8?B?SnZDVkF3QldxdkxaNWpBWjRqMitoUlU3MXZubkZ5cEV6N1dtdU5QVXpJb09p?=
- =?utf-8?B?Q1Z1ZFJWRy9tTHJlTTVJZjdXNHJXak9OSnJNZGtKNzAwQUVWTWZmd01QeVNk?=
- =?utf-8?Q?5iGYw80Kzssf+WHMuOZ6ArZDxx85OU5Juc479Bq?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S234435AbhJKHEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 03:04:52 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:60664 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233775AbhJKHEv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 03:04:51 -0400
+X-UUID: fdd0e469a2e949298b1827122c71b0bf-20211011
+X-UUID: fdd0e469a2e949298b1827122c71b0bf-20211011
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2083840527; Mon, 11 Oct 2021 15:02:48 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 11 Oct 2021 15:02:47 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 11 Oct
+ 2021 15:02:46 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 11 Oct 2021 15:02:45 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Tzung-Bi Shih" <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v7, 00/15] Support multi hardware decode using of_platform_populate
+Date:   Mon, 11 Oct 2021 15:02:32 +0800
+Message-ID: <20211011070247.792-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR07MB6154.namprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d1c8177-4b0f-474a-d26e-08d98c836a81
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Oct 2021 06:50:30.4133
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IoVhT3IJA4d/GAn4L7Ni2g9krurubC+sjMXi1DMnSng1NirkwXDmZEWyVPrWnisrNjGtO6QLlXr9b9z4qxW3A3SsJLNUx4ymrL9tG1dj+rU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR07MB5370
-X-Proofpoint-GUID: _23ybT7zjvRqF1B-osKhsoiMLW_L0HS1
-X-Proofpoint-ORIG-GUID: _23ybT7zjvRqF1B-osKhsoiMLW_L0HS1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-10-11_02,2021-10-07_02,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 phishscore=0
- impostorscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1011
- malwarescore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0 bulkscore=0
- spamscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2109230001 definitions=main-2110110038
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgVmlub2QsDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQXN3YXRo
-IEdvdmluZHJhanUgPGEtZ292aW5kcmFqdUB0aS5jb20+DQo+IFNlbnQ6IFdlZG5lc2RheSwgU2Vw
-dGVtYmVyIDE1LCAyMDIxIDg6NDQgUE0NCj4gVG86IFN3YXBuaWwgS2FzaGluYXRoIEpha2hhZGUg
-PHNqYWtoYWRlQGNhZGVuY2UuY29tPjsNCj4gdmtvdWxAa2VybmVsLm9yZzsga2lzaG9uQHRpLmNv
-bTsgcm9iaCtkdEBrZXJuZWwub3JnOw0KPiBwLnphYmVsQHBlbmd1dHJvbml4LmRlOyBsaW51eC1w
-aHlAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7
-IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+IENjOiBNaWxpbmQgUGFyYWIgPG1wYXJhYkBj
-YWRlbmNlLmNvbT47IGxva2VzaHZ1dGxhQHRpLmNvbQ0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYy
-IDAwLzE1XSBQSFk6IEFkZCBzdXBwb3J0IGZvciBtdWx0aWxpbmsgY29uZmlndXJhdGlvbnMNCj4g
-aW4gQ2FkZW5jZSBTaWVycmEgUEhZIGRyaXZlcg0KPiANCj4gRVhURVJOQUwgTUFJTA0KPiANCj4g
-DQo+IA0KPiBPbiAwOC8wOS8yMSA1OjU5IHBtLCBTd2FwbmlsIEpha2hhZGUgd3JvdGU6DQo+ID4g
-Q2FkZW5jZSBTaWVycmEgUEhZIGlzIGEgbXVsdGlwcm90b2NvbCBQSFkgc3VwcG9ydGluZyBkaWZm
-ZXJlbnQNCj4gPiBtdWx0aWxpbmsgUEhZIGNvbmZpZ3VyYXRpb25zLiBUaGlzIHBhdGNoIHNlcmll
-cyBleHRlbmRzIGZ1bmN0aW9uYWxpdHkNCj4gPiBvZiBTaWVycmEgUEhZIGRyaXZlciBieSBhZGRp
-bmcgZmVhdHVyZXMgbGlrZSBzdXBwb3J0IGZvciBtdWx0aWxpbmsNCj4gPiBtdWx0aXByb3RvY29s
-IGNvbmZpZ3VyYXRpb25zLCBkZXJpdmVkIHJlZmVyZW5jZSBjbG9jayBldGMuDQo+ID4NCj4gPiBU
-aGUgY2hhbmdlcyBoYXZlIGJlZW4gdmFsaWRhdGVkIG9uIFRJIEo3MjFFIHBsYXRmb3JtLg0KPiA+
-DQo+ID4gVmVyc2lvbiBIaXN0b3J5Og0KPiA+DQo+ID4gdjI6DQo+ID4gICAgLSBBZGRlZCBhIG5l
-dyBwYXRjaCAzLzE1IHRvIHJlbmFtZSB0aGUgU1NDIG1hY3JvcyBmb3IgZHQtYmluZGluZ3MNCj4g
-PiAgICAgIHRvIHVzZSBnZW5lcmljIG5hbWVzLiBUaGVzZSBtYWNyb3MgYXJlIG5vdCB5ZXQgdXNl
-ZCBpbiBhbnkgRFRTIGZpbGUuDQo+ID4NCj4gPiBTd2FwbmlsIEpha2hhZGUgKDE1KToNCj4gPiAg
-IHBoeTogY2FkZW5jZTogU2llcnJhOiBVc2Ugb2ZfZGV2aWNlX2dldF9tYXRjaF9kYXRhKCkgdG8g
-Z2V0IGRyaXZlcg0KPiA+ICAgICBkYXRhDQo+ID4gICBwaHk6IGNhZGVuY2U6IFNpZXJyYTogUHJl
-cGFyZSBkcml2ZXIgdG8gYWRkIHN1cHBvcnQgZm9yIG11bHRpbGluaw0KPiA+ICAgICBjb25maWd1
-cmF0aW9ucw0KPiA+ICAgZHQtYmluZGluZ3M6IHBoeTogY2FkZW5jZS10b3JyZW50OiBSZW5hbWUg
-U1NDIG1hY3JvcyB0byB1c2UgZ2VuZXJpYw0KPiA+ICAgICBuYW1lcw0KPiA+ICAgZHQtYmluZGlu
-Z3M6IHBoeTogY2FkZW5jZS1zaWVycmE6IEFkZCBiaW5kaW5nIHRvIHNwZWNpZnkgU1NDIG1vZGUN
-Cj4gPiAgIHBoeTogY2FkZW5jZTogU2llcnJhOiBBZGQgc3VwcG9ydCB0byBnZXQgU1NDIHR5cGUg
-ZnJvbSBkZXZpY2UgdHJlZQ0KPiA+ICAgcGh5OiBjYWRlbmNlOiBTaWVycmE6IFJlbmFtZSBzb21l
-IHJlZ21hcCB2YXJpYWJsZXMgdG8gYmUgaW4gc3luYyB3aXRoDQo+ID4gICAgIFNpZXJyYSBkb2N1
-bWVudGF0aW9uDQo+ID4gICBwaHk6IGNhZGVuY2U6IFNpZXJyYTogQWRkIFBIWSBQQ1MgY29tbW9u
-IHJlZ2lzdGVyIGNvbmZpZ3VyYXRpb25zDQo+ID4gICBwaHk6IGNhZGVuY2U6IFNpZXJyYTogQ2hl
-Y2sgY21uX3JlYWR5IGFzc2VydGlvbiBkdXJpbmcgUEhZIHBvd2VyIG9uDQo+ID4gICBwaHk6IGNh
-ZGVuY2U6IFNpZXJyYTogQ2hlY2sgUElQRSBtb2RlIFBIWSBzdGF0dXMgdG8gYmUgcmVhZHkgZm9y
-DQo+ID4gICAgIG9wZXJhdGlvbg0KPiA+ICAgcGh5OiBjYWRlbmNlOiBTaWVycmE6IFVwZGF0ZSBz
-aW5nbGUgbGluayBQQ0llIHJlZ2lzdGVyIGNvbmZpZ3VyYXRpb24NCj4gPiAgIHBoeTogY2FkZW5j
-ZTogU2llcnJhOiBGaXggdG8gZ2V0IGNvcnJlY3QgcGFyZW50IGZvciBtdXggY2xvY2tzDQo+ID4g
-ICBwaHk6IGNhZGVuY2U6IFNpZXJyYTogQWRkIHN1cHBvcnQgZm9yIFBIWSBtdWx0aWxpbmsgY29u
-ZmlndXJhdGlvbnMNCj4gPiAgIHBoeTogY2FkZW5jZTogU2llcnJhOiBBZGQgUENJZSArIFFTR01J
-SSBQSFkgbXVsdGlsaW5rIGNvbmZpZ3VyYXRpb24NCj4gPiAgIGR0LWJpbmRpbmdzOiBwaHk6IGNh
-ZGVuY2Utc2llcnJhOiBBZGQgY2xvY2sgSUQgZm9yIGRlcml2ZWQgcmVmZXJlbmNlDQo+ID4gICAg
-IGNsb2NrDQo+ID4gICBwaHk6IGNhZGVuY2U6IFNpZXJyYTogQWRkIHN1cHBvcnQgZm9yIGRlcml2
-ZWQgcmVmZXJlbmNlIGNsb2NrIG91dHB1dA0KPiA+DQo+IA0KPiBmb3IgdGhlIGNvbXBsZXRlIHNl
-cmllcywNCj4gDQo+IFJldmlld2VkLWJ5OiBBc3dhdGggR292aW5kcmFqdSA8YS1nb3ZpbmRyYWp1
-QHRpLmNvbT4NCj4gDQo+IFRoYW5rcywNCj4gQXN3YXRoDQo+IA0KDQpDb3VsZCB5b3UgcGxlYXNl
-IGNvbnNpZGVyIG1lcmdpbmcgdGhpcyBzZXJpZXMgaWYgbG9va3Mgb2theS4NCg0KVGhhbmtzICYg
-cmVnYXJkcywNClN3YXBuaWwNCg0KPiA+ICAuLi4vYmluZGluZ3MvcGh5L3BoeS1jYWRlbmNlLXNp
-ZXJyYS55YW1sICAgICAgfCAgICA5ICsNCj4gPiAgLi4uL2JpbmRpbmdzL3BoeS9waHktY2FkZW5j
-ZS10b3JyZW50LnlhbWwgICAgIHwgICAgNCArLQ0KPiA+ICBkcml2ZXJzL3BoeS9jYWRlbmNlL3Bo
-eS1jYWRlbmNlLXNpZXJyYS5jICAgICAgfCAxMjk5ICsrKysrKysrKysrKysrKy0tDQo+ID4gIGlu
-Y2x1ZGUvZHQtYmluZGluZ3MvcGh5L3BoeS1jYWRlbmNlLmggICAgICAgICB8ICAgIDkgKy0NCj4g
-PiAgNCBmaWxlcyBjaGFuZ2VkLCAxMjI2IGluc2VydGlvbnMoKyksIDk1IGRlbGV0aW9ucygtKQ0K
-PiA+DQoNCg==
+This series adds support for multi hardware decode into mtk-vcodec, by first
+adding use of_platform_populate to manage each hardware information: interrupt,
+clock, register bases and power. Secondly add core thread to deal with core
+hardware message, at the same time, add msg queue for different hardware
+share messages. Lastly, the architecture of different specs are not the same,
+using specs type to separate them.
+
+This series has been tested with both MT8183 and MT8173. Decoding was working
+for both chips.
+
+Patches 1~3 rewrite get register bases and power on/off interface.
+
+Patch 4 add to support multi hardware.
+
+Patch 5 separate video encoder and decoder document
+
+Patches 6-15 add interfaces to support core hardware.
+----
+Changes compared with v6:
+- Use of_platform_populate to manage multi hardware, not component framework for patch 4/15
+- Re-write dtsi document for hardware architecture changed for patch 13/15
+-The dtsi will write like below in patch 13/15:
+    vcodec_dec: vcodec_dec@16000000 {
+        compatible = "mediatek,mt8192-vcodec-dec";
+        #address-cells = <2>;
+        #size-cells = <2>;
+        ranges;
+        reg = <0 0x16000000 0 0x1000>;		/* VDEC_SYS */
+        mediatek,scp = <&scp>;
+        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+        vcodec_lat {
+            compatible = "mediatek,mtk-vcodec-lat";
+            reg = <0 0x16010000 0 0x800>;		/* VDEC_MISC */
+            reg-name = "reg-misc";
+            interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+            iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+                 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+                 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+                 <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
+                 <&topckgen CLK_TOP_MAINPLL_D4>;
+            clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+                  "vdec-vdec", "vdec-top";
+            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+        };
+
+        vcodec_core {
+            compatible = "mediatek,mtk-vcodec-core";
+            reg = <0 0x16025000 0 0x1000>;		/* VDEC_CORE_MISC */
+            reg-names = "reg-misc";
+            interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
+            iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
+            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+                 <&vdecsys CLK_VDEC_VDEC>,
+                 <&vdecsys CLK_VDEC_LAT>,
+                 <&vdecsys CLK_VDEC_LARB1>,
+                 <&topckgen CLK_TOP_MAINPLL_D4>;
+            clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+                  "vdec-vdec", "vdec-top";
+            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
+        };
+    };
+
+Changes compared with v5:
+- Add decoder hardware block diagram for patch 13/15
+
+Changes compared with v4:
+- Fix comments for patch 4/15
+  >> +     if (dev->is_comp_supported) {
+  >> +             ret = mtk_vcodec_init_master(dev);
+  >> +             if (ret < 0)
+  >> +                     goto err_component_match;
+  >> +     } else {
+  >> +             platform_set_drvdata(pdev, dev);
+  >> +     }
+  Fix platform_set_drvdata.
+- Fix build error for patch 9/15
+- Add depend patch in case of error header file for patch 13/15
+
+Changes compared with v3:
+- Fix return value for patch 1/15
+- Fix comments for patch 4/15
+  > Looking up "mediatek,mtk-vcodec-core" to determine if it uses component framwork sounds like...
+  Add prameter in pdata, for all platform will use compoent after mt8183
+
+  >> +     if (dev->is_comp_supported) {
+  >> +             ret = mtk_vcodec_init_master(dev);
+  >> +             if (ret < 0)
+  >> +                     goto err_component_match;
+  >> +     } else {
+  >> +             platform_set_drvdata(pdev, dev);
+  >> +     }
+  > + Has asked the same question in [1].  Why it removes the
+  > +platform_set_drvdata() above?  mtk_vcodec_init_master() also calls platform_set_drvdata().
+  Must call component_master_add_with_match after platform_set_drvdata for component architecture.
+- Fix yaml files check fail for patch 5/15
+- Fix yaml file check fail for patch 14/15
+
+Changes compared with v1:
+- Fix many comments for patch 3/14
+- Remove unnecessary code for patch 4/14
+- Using enum mtk_vdec_hw_count instead of magic numbers for patch 6/14
+- Reconstructed get/put lat buffer for lat and core hardware for patch 7/14
+- Using yaml format to instead of txt file for patch 12/14
+
+Yunfei Dong (15):
+  media: mtk-vcodec: Get numbers of register bases from DT
+  media: mtk-vcodec: Align vcodec wake up interrupt interface
+  media: mtk-vcodec: Refactor vcodec pm interface
+  media: mtk-vcodec: Manage multi hardware information
+  dt-bindings: media: mtk-vcodec: Separate video encoder and decoder
+    dt-bindings
+  media: mtk-vcodec: Use pure single core for MT8183
+  media: mtk-vcodec: Add irq interface for multi hardware
+  media: mtk-vcodec: Add msg queue feature for lat and core architecture
+  media: mtk-vcodec: Generalize power and clock on/off interfaces
+  media: mtk-vcodec: Add new interface to lock different hardware
+  media: mtk-vcodec: Add core thread
+  media: mtk-vcodec: Support 34bits dma address for vdec
+  dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8192
+  media: mtk-vcodec: Add core dec and dec end ipi msg
+  media: mtk-vcodec: Use codec type to separate different hardware
+
+ .../media/mediatek,vcodec-comp-decoder.yaml   | 193 ++++++++++++
+ .../media/mediatek,vcodec-decoder.yaml        | 175 +++++++++++
+ .../media/mediatek,vcodec-encoder.yaml        | 185 +++++++++++
+ .../bindings/media/mediatek-vcodec.txt        | 130 --------
+ drivers/media/platform/mtk-vcodec/Makefile    |   2 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec.c      |   4 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec.h      |   1 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  | 233 +++++++++++---
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.c   | 165 ++++++++++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.h   |  53 ++++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   |  98 ++++--
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.h   |  13 +-
+ .../mtk-vcodec/mtk_vcodec_dec_stateful.c      |   2 +
+ .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |   2 +
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  75 ++++-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |  12 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   |   1 -
+ .../platform/mtk-vcodec/mtk_vcodec_intr.c     |  27 +-
+ .../platform/mtk-vcodec/mtk_vcodec_intr.h     |   4 +-
+ .../platform/mtk-vcodec/mtk_vcodec_util.c     |  87 +++++-
+ .../platform/mtk-vcodec/mtk_vcodec_util.h     |   8 +-
+ .../platform/mtk-vcodec/vdec/vdec_h264_if.c   |   2 +-
+ .../mtk-vcodec/vdec/vdec_h264_req_if.c        |   2 +-
+ .../platform/mtk-vcodec/vdec/vdec_vp8_if.c    |   2 +-
+ .../platform/mtk-vcodec/vdec/vdec_vp9_if.c    |   2 +-
+ .../media/platform/mtk-vcodec/vdec_drv_if.c   |  21 +-
+ .../media/platform/mtk-vcodec/vdec_ipi_msg.h  |  16 +-
+ .../platform/mtk-vcodec/vdec_msg_queue.c      | 290 ++++++++++++++++++
+ .../platform/mtk-vcodec/vdec_msg_queue.h      | 157 ++++++++++
+ .../media/platform/mtk-vcodec/vdec_vpu_if.c   |  46 ++-
+ .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  22 ++
+ .../platform/mtk-vcodec/venc/venc_h264_if.c   |   2 +-
+ .../platform/mtk-vcodec/venc/venc_vp8_if.c    |   2 +-
+ 33 files changed, 1756 insertions(+), 278 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.h
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
+
+-- 
+2.25.1
+
