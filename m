@@ -2,108 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81D854297EB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 22:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1934F42981B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Oct 2021 22:26:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234779AbhJKUIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 16:08:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231926AbhJKUIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 16:08:43 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C66CC061570;
-        Mon, 11 Oct 2021 13:06:43 -0700 (PDT)
-Received: from zn.tnic (p200300ec2f08bb0022234ba9186d35fd.dip0.t-ipconnect.de [IPv6:2003:ec:2f08:bb00:2223:4ba9:186d:35fd])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 63C7A1EC01FC;
-        Mon, 11 Oct 2021 22:06:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1633982801;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=sHYrqFRbYrEH2ohEyvm54WlvJW+Ifcb/2V9eQlCd/PU=;
-        b=mIYzaIydq3WW3gWAjE6T2K1pdYPtVCYlQvaJDfXOzzREBc6lCOfiQmEe6P+MpCD7Gbnp4i
-        9X0N4OQCjQChihVgTg6tbJ5oHYmKKsTrwIQ0seEOiQX1ho+iAkWowyBq53F2wrrem02c9f
-        Kc09T7ysxEghODkpZO5N02Jn0nUt1rU=
-Date:   Mon, 11 Oct 2021 22:06:38 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     "Winiarska, Iwona" <iwona.winiarska@intel.com>
-Cc:     "corbet@lwn.net" <corbet@lwn.net>,
-        "jae.hyun.yoo@linux.intel.com" <jae.hyun.yoo@linux.intel.com>,
-        "d.mueller@elsoft.ch" <d.mueller@elsoft.ch>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "Luck, Tony" <tony.luck@intel.com>,
-        "Lutomirski, Andy" <luto@kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "mingo@redhat.com" <mingo@redhat.com>,
-        "rdunlap@infradead.org" <rdunlap@infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "zweiss@equinix.com" <zweiss@equinix.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "yazen.ghannam@amd.com" <yazen.ghannam@amd.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>,
-        "x86@kernel.org" <x86@kernel.org>,
-        "Williams, Dan J" <dan.j.williams@intel.com>
-Subject: Re: [PATCH v2 01/15] x86/cpu: Move intel-family to arch-independent
- headers
-Message-ID: <YWSZTq8NWWcCMXtA@zn.tnic>
-References: <20210803113134.2262882-1-iwona.winiarska@intel.com>
- <20210803113134.2262882-2-iwona.winiarska@intel.com>
- <YVtQG+idmwKn0qLe@zn.tnic>
- <58ef4107e9b2c60a2605aac0d2fb6670a95bc9e0.camel@intel.com>
+        id S234969AbhJKU2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 16:28:13 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:40684 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234896AbhJKU2L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 11 Oct 2021 16:28:11 -0400
+Received: from [77.244.183.192] (port=65250 helo=melee.fritz.box)
+        by hostingweb31.netsons.net with esmtpa (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1ma1s8-00FUmk-SF; Mon, 11 Oct 2021 22:26:08 +0200
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>
+Subject: [PATCH 8/8] rtc: max77686: add MAX77714 support
+Date:   Mon, 11 Oct 2021 22:25:50 +0200
+Message-Id: <20211011155615.257529-9-luca@lucaceresoli.net>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211011155615.257529-1-luca@lucaceresoli.net>
+References: <20211011155615.257529-1-luca@lucaceresoli.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <58ef4107e9b2c60a2605aac0d2fb6670a95bc9e0.camel@intel.com>
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 11, 2021 at 07:21:26PM +0000, Winiarska, Iwona wrote:
-> Same reason why PECI can't just include arch/x86 directly (we're building for
-> ARM, not x86).
+The RTC included in the MAX77714 PMIC is very similar to the one in the
+MAX77686. Reuse the rtc-max77686.c driver with the minimum required changes
+for the MAX77714 RTC.
 
-Aha.
+Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+---
 
-So what do you need those INTEL_FAM6* defines for?
+*** NOTE ***
 
-I see peci_cpu_device_ids[] which are used to match the CPU so at least
-that thing must be loading on x86 hardware... reading your 0th message,
-it sounds like that peci-cpu thing is loaded on an x86 CPU and it then
-exposes those interfaces which a PECI controller accesses.
+This patch didn't reach most recipients having hit a limit in my service
+provider (125 e-mails per hour). I'm resending it, as far as possible with
+proper message-id etc. Apologies for any duplicate.
 
-And then I see in init_core_mask() the single usage of INTEL_FAM6* and
-that drivers/hwmon/peci/cputemp.c is a CPU temp monitoring client so
-that thing probably runs on x86 too.
+ drivers/rtc/Kconfig        |  2 +-
+ drivers/rtc/rtc-max77686.c | 24 ++++++++++++++++++++++++
+ 2 files changed, 25 insertions(+), 1 deletion(-)
 
-Or?
+diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+index e1bc5214494e..a73591ad292b 100644
+--- a/drivers/rtc/Kconfig
++++ b/drivers/rtc/Kconfig
+@@ -375,7 +375,7 @@ config RTC_DRV_MAX8997
 
-If it does, then you don't need the code move.
+ config RTC_DRV_MAX77686
+ 	tristate "Maxim MAX77686"
+-	depends on MFD_MAX77686 || MFD_MAX77620 || COMPILE_TEST
++	depends on MFD_MAX77686 || MFD_MAX77620 || MFD_MAX77714 || COMPILE_TEST
+ 	help
+ 	  If you say yes here you will get support for the
+ 	  RTC of Maxim MAX77686/MAX77620/MAX77802 PMIC.
+diff --git a/drivers/rtc/rtc-max77686.c b/drivers/rtc/rtc-max77686.c
+index 9901c596998a..e6564bc2171e 100644
+--- a/drivers/rtc/rtc-max77686.c
++++ b/drivers/rtc/rtc-max77686.c
+@@ -19,6 +19,7 @@
 
-But it looks like I'm missing something...
+ #define MAX77686_I2C_ADDR_RTC		(0x0C >> 1)
+ #define MAX77620_I2C_ADDR_RTC		0x68
++#define MAX77714_I2C_ADDR_RTC		0x48
+ #define MAX77686_INVALID_I2C_ADDR	(-1)
 
--- 
-Regards/Gruss,
-    Boris.
+ /* Define non existing register */
+@@ -203,6 +204,28 @@ static const struct max77686_rtc_driver_data max77686_drv_data = {
+ 	.regmap_config = &max77686_rtc_regmap_config,
+ };
 
-https://people.kernel.org/tglx/notes-about-netiquette
++static const struct regmap_irq_chip max77714_rtc_irq_chip = {
++	.name		= "max77714-rtc",
++	.status_base	= MAX77686_RTC_INT,
++	.mask_base	= MAX77686_RTC_INTM,
++	.num_regs	= 1,
++	.irqs		= max77686_rtc_irqs,
++	.num_irqs	= ARRAY_SIZE(max77686_rtc_irqs) - 1, /* no WTSR on 77714 */
++};
++
++static const struct max77686_rtc_driver_data max77714_drv_data = {
++	.delay = 16000,
++	.mask  = 0x7f,
++	.map   = max77686_map,
++	.alarm_enable_reg = false,
++	.rtc_irq_from_platform = false,
++	/* On MAX77714 RTCA1 is BIT 1 of RTCINT (0x00). Not supported by this driver. */
++	.alarm_pending_status_reg = MAX77686_INVALID_REG,
++	.rtc_i2c_addr = MAX77714_I2C_ADDR_RTC,
++	.rtc_irq_chip = &max77714_rtc_irq_chip,
++	.regmap_config = &max77686_rtc_regmap_config,
++};
++
+ static const struct regmap_config max77620_rtc_regmap_config = {
+ 	.reg_bits = 8,
+ 	.val_bits = 8,
+@@ -846,6 +869,7 @@ static const struct platform_device_id rtc_id[] = {
+ 	{ "max77686-rtc", .driver_data = (kernel_ulong_t)&max77686_drv_data, },
+ 	{ "max77802-rtc", .driver_data = (kernel_ulong_t)&max77802_drv_data, },
+ 	{ "max77620-rtc", .driver_data = (kernel_ulong_t)&max77620_drv_data, },
++	{ "max77714-rtc", .driver_data = (kernel_ulong_t)&max77714_drv_data, },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(platform, rtc_id);
+--
+2.25.1
