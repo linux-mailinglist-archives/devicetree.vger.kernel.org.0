@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7703042A08A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:04:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56C7442A093
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:05:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235417AbhJLJGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 05:06:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41510 "EHLO
+        id S235528AbhJLJHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 05:07:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235386AbhJLJGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 05:06:41 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CF66C061749
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:04:40 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id r10so64756003wra.12
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:04:40 -0700 (PDT)
+        with ESMTP id S235496AbhJLJHa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 05:07:30 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF21C061570
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:05:29 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id r10so64763638wra.12
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:05:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=UwNILf/oluFUUL5PRUd2S4kE1LT5CdgyGEGUgX5bbxQ=;
-        b=W6+2A3muXydBcHY/YF74R9Dh7MLGWONPA3LeeKLsKxiK1FD/dPcgXuStynOCL0/KsM
-         4rHWc0ij/gMMghBussGkcCz1tQ9RIEAbQ0R31is7iooKjUj4dG9918VvbE/IZxdNFugB
-         I9uXtMBGeUpQdz9qDmS588A6fge1rY7zFDa6M6+IgdCoLymzCByNymv7gbkbPgWJtg/2
-         Pw+JbagwgQT6P3Fe65I9XHmGEMNFS12b7+R33ZxJ/SvPmH8eyP4ZCzxbq25itDhjs2u+
-         Q1InWToDbUEWIR1RLik2xe0SJ+lsQMQPRvBTSC2GIlPEzeE1RoiHZ0eWUN8gcQJcs5dn
-         rm9w==
+        bh=wr/2NPJuS3pCGpcja/YdLD+ws/Bsmb2EvXsaz8P7nBk=;
+        b=c7IxciNHtOvpD93/zJf8U7mD2WwzdWpgTLDmu07hiDi8Wfl4HHdL5aazSay0mgUrPd
+         BWzDgu9hbnY2dGuy8OC0n3CwQ/ckOB/bp1oEq17L0WVFtWSNaCDnEglLBNyvWl/Kznaf
+         ZPrfxdOfTlZkRlH1ShlbVnyxdcezK92VgTpHJfxf5P4h4MpN4PyHW7X5z3J57bFA3D/k
+         0a7pM7AphUImc2xHdrzCi1W2mgUL4wUUI0l26dK0ui35nDLRs5y7lEuFuM+5GaQf1e/S
+         TyoUmr5kGUgu3QJCDo0dmCtANxufQAL/hEbl51pzlD34dt9/RqbDdat9+jOUND9oGuVL
+         Cbpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=UwNILf/oluFUUL5PRUd2S4kE1LT5CdgyGEGUgX5bbxQ=;
-        b=Bw8XZfrRK8eFCJxkYrG54Eqa/nBimHAgDmB/JDbzNkCQBpgLIA1B/TVMQsiqu8R9nZ
-         lPTjNHwCifPze0kGZEF1mXiqa4E+rtZcVJxME2RPvf0s95JKsv6XwnlQvw/e3TY68Z95
-         j9wgT+vDwpajISmM3EHdxY2zB7OMirGNuNFiAxUcL7pdDGh24A+udPkKlbGwNddMsZHc
-         xsKtB4TBjjr/4xLvxsSgU0XC7DHnqnWYWs2FkruquBGFO1ppqfROCy1tX+w5egDZMv3O
-         sOwkNAqswN+yhu+mFlV/Nks4d5mYOum+dZabhTaUJyM11kZhKhk4d74hVaxl0cAQktyk
-         z5cg==
-X-Gm-Message-State: AOAM532NSVeBxM7wGaNrxTA3BKiVPhDU6tQGYvquAZdAIFZtaLqwF/Ei
-        phPVw60ZESEbSKZAEqXw+KMqjzIozralQg==
-X-Google-Smtp-Source: ABdhPJwRzweIQF2jbPBf/OBl+c01b0VQ2tg2Le+bMbucYkda7/fJjKV7wd4vuvPXckxhCnHoc+8CsQ==
-X-Received: by 2002:adf:fb44:: with SMTP id c4mr30838267wrs.179.1634029479152;
-        Tue, 12 Oct 2021 02:04:39 -0700 (PDT)
+        bh=wr/2NPJuS3pCGpcja/YdLD+ws/Bsmb2EvXsaz8P7nBk=;
+        b=Ie3vdejgKFxuNOahpcHG86zCTVA/stR+EHgI8f/vZPBgvLctidYPM5IjdAD5LVZx7G
+         vVABKvBUe5hRyLw+gP5PGVt/+oR2+G7ldqAfY0zItidebM+GnVQjBwtph6lpua57yYju
+         BVnceB6cTjSGyBcAH/x7d3p+3poHfgwFRmc+FtcivnmwZIosCq4AKuhFaL+MoFlEaUTk
+         +qlBwvzE3PePdakFcGRbKbgX3cqeNjiS54CkyOXtC7ESv/6KMbHT43ifxiMZUDjMLol3
+         uT2noLDkP8JhJjdv0YuaI9+k0p1xmsoCl4ZK/vk7bpiw+s+OBzJjatlc0+MLu8tArLol
+         hhhQ==
+X-Gm-Message-State: AOAM532bd7dO39iue0yDh2e39A8+TTInPppW8HPbdUE9KK6DUmI7m7YZ
+        omgBPkY1iZ2p9Y6R4svJ3DJkdQ==
+X-Google-Smtp-Source: ABdhPJzaM6vlGT8UtCZ7Hx0Ajh7TCVZxn9HXjngx99Nxx4cftOosPSp98BNwQTw4tPX0u8Kke6EvkQ==
+X-Received: by 2002:adf:a34c:: with SMTP id d12mr30919653wrb.267.1634029527864;
+        Tue, 12 Oct 2021 02:05:27 -0700 (PDT)
 Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id c17sm9909734wrq.4.2021.10.12.02.04.37
+        by smtp.googlemail.com with ESMTPSA id p8sm1892712wmg.15.2021.10.12.02.05.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Oct 2021 02:04:38 -0700 (PDT)
-Subject: Re: [PATCH v3 4/5] ASoC: codecs: tx-macro: Update tx default values
+        Tue, 12 Oct 2021 02:05:27 -0700 (PDT)
+Subject: Re: [PATCH v3 1/5] ASoC: qcom: Add compatible names in va,wsa,rx,tx
+ codec drivers for sc7280
 To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
         agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
         broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
@@ -59,14 +60,14 @@ To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
         judyhsiao@chromium.org
 Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
 References: <1633702144-19017-1-git-send-email-srivasam@codeaurora.org>
- <1633702144-19017-5-git-send-email-srivasam@codeaurora.org>
+ <1633702144-19017-2-git-send-email-srivasam@codeaurora.org>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <9261e403-9cbf-d955-d555-1e9cbbdde3df@linaro.org>
-Date:   Tue, 12 Oct 2021 10:04:37 +0100
+Message-ID: <8886b174-f3d3-7bad-a2b9-ea7def2a36e4@linaro.org>
+Date:   Tue, 12 Oct 2021 10:05:26 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <1633702144-19017-5-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <1633702144-19017-2-git-send-email-srivasam@codeaurora.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -77,69 +78,68 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 08/10/2021 15:09, Srinivasa Rao Mandadapu wrote:
-> Update mic control register default values to hardware reset values
-> lpass sc7280.
-> 
-> Fixes: c39667ddcfc5 (ASoC: codecs: lpass-tx-macro: add support for lpass tx macro)
-
-I dont think this should have fixes tag, as you are adding default 
-values for sc7280.
-
-with that fixed,
-
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
+> Add compatible names for sc7280 based targets in digital codec drivers
+> va,wsa,rx and tx.
 > 
 > Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 > Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 > ---
->   sound/soc/codecs/lpass-tx-macro.c | 19 +++++++++++++++++--
->   1 file changed, 17 insertions(+), 2 deletions(-)
+
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+
+>   sound/soc/codecs/lpass-rx-macro.c  | 1 +
+>   sound/soc/codecs/lpass-tx-macro.c  | 1 +
+>   sound/soc/codecs/lpass-va-macro.c  | 1 +
+>   sound/soc/codecs/lpass-wsa-macro.c | 1 +
+>   4 files changed, 4 insertions(+)
 > 
+> diff --git a/sound/soc/codecs/lpass-rx-macro.c b/sound/soc/codecs/lpass-rx-macro.c
+> index 196b068..c2b9333 100644
+> --- a/sound/soc/codecs/lpass-rx-macro.c
+> +++ b/sound/soc/codecs/lpass-rx-macro.c
+> @@ -3577,6 +3577,7 @@ static int rx_macro_remove(struct platform_device *pdev)
+>   }
+>   
+>   static const struct of_device_id rx_macro_dt_match[] = {
+> +	{ .compatible = "qcom,sc7280-lpass-rx-macro" },
+>   	{ .compatible = "qcom,sm8250-lpass-rx-macro" },
+>   	{ }
+>   };
 > diff --git a/sound/soc/codecs/lpass-tx-macro.c b/sound/soc/codecs/lpass-tx-macro.c
-> index d472af1..6742405 100644
+> index 27a0d5d..5dcae73 100644
 > --- a/sound/soc/codecs/lpass-tx-macro.c
 > +++ b/sound/soc/codecs/lpass-tx-macro.c
-> @@ -272,7 +272,7 @@ struct tx_macro {
+> @@ -1843,6 +1843,7 @@ static int tx_macro_remove(struct platform_device *pdev)
+>   }
 >   
->   static const DECLARE_TLV_DB_SCALE(digital_gain, -8400, 100, -8400);
+>   static const struct of_device_id tx_macro_dt_match[] = {
+> +	{ .compatible = "qcom,sc7280-lpass-tx-macro" },
+>   	{ .compatible = "qcom,sm8250-lpass-tx-macro" },
+>   	{ }
+>   };
+> diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-va-macro.c
+> index 56c93f4..70f09b4 100644
+> --- a/sound/soc/codecs/lpass-va-macro.c
+> +++ b/sound/soc/codecs/lpass-va-macro.c
+> @@ -1472,6 +1472,7 @@ static int va_macro_remove(struct platform_device *pdev)
+>   }
 >   
-> -static const struct reg_default tx_defaults[] = {
-> +static struct reg_default tx_defaults[] = {
->   	/* TX Macro */
->   	{ CDC_TX_CLK_RST_CTRL_MCLK_CONTROL, 0x00 },
->   	{ CDC_TX_CLK_RST_CTRL_FS_CNT_CONTROL, 0x00 },
-> @@ -1781,9 +1781,10 @@ static const struct snd_soc_component_driver tx_macro_component_drv = {
->   static int tx_macro_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
->   	struct tx_macro *tx;
->   	void __iomem *base;
-> -	int ret;
-> +	int ret, reg;
+>   static const struct of_device_id va_macro_dt_match[] = {
+> +	{ .compatible = "qcom,sc7280-lpass-va-macro" },
+>   	{ .compatible = "qcom,sm8250-lpass-va-macro" },
+>   	{}
+>   };
+> diff --git a/sound/soc/codecs/lpass-wsa-macro.c b/sound/soc/codecs/lpass-wsa-macro.c
+> index d3ac318..75baf8e 100644
+> --- a/sound/soc/codecs/lpass-wsa-macro.c
+> +++ b/sound/soc/codecs/lpass-wsa-macro.c
+> @@ -2445,6 +2445,7 @@ static int wsa_macro_remove(struct platform_device *pdev)
+>   }
 >   
->   	tx = devm_kzalloc(dev, sizeof(*tx), GFP_KERNEL);
->   	if (!tx)
-> @@ -1805,6 +1806,20 @@ static int tx_macro_probe(struct platform_device *pdev)
->   	if (IS_ERR(base))
->   		return PTR_ERR(base);
->   
-> +	/* Update defaults for lpass sc7280 */
-> +	if (of_device_is_compatible(np, "qcom,sc7280-lpass-tx-macro")) {
-> +		for (reg = 0; reg < ARRAY_SIZE(tx_defaults); reg++) {
-> +			switch (tx_defaults[reg].reg) {
-> +			case CDC_TX_TOP_CSR_SWR_AMIC0_CTL:
-> +			case CDC_TX_TOP_CSR_SWR_AMIC1_CTL:
-> +				tx_defaults[reg].def = 0x0E;
-> +				break;
-> +			default:
-> +				break;
-> +			}
-> +		}
-> +	}
-> +
->   	tx->regmap = devm_regmap_init_mmio(dev, base, &tx_regmap_config);
->   
->   	dev_set_drvdata(dev, tx);
+>   static const struct of_device_id wsa_macro_dt_match[] = {
+> +	{.compatible = "qcom,sc7280-lpass-wsa-macro"},
+>   	{.compatible = "qcom,sm8250-lpass-wsa-macro"},
+>   	{}
+>   };
 > 
