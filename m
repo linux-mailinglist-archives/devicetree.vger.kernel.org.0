@@ -2,64 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FB45429AB8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 03:05:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E76429ABB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 03:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbhJLBHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 21:07:55 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:46616 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231199AbhJLBHy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 21:07:54 -0400
-Received: by mail-ot1-f53.google.com with SMTP id u20-20020a9d7214000000b0054e170300adso23780189otj.13
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 18:05:54 -0700 (PDT)
+        id S231861AbhJLBJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 21:09:16 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:39867 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231199AbhJLBJP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 21:09:15 -0400
+Received: by mail-ot1-f51.google.com with SMTP id k2-20020a056830168200b0054e523d242aso14337102otr.6;
+        Mon, 11 Oct 2021 18:07:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=VjdYNK7OQ7hv3OxllKfXVmVGKMwQu3mEkE/Q9mo5ta0=;
-        b=Fy2Guv4nvwyn6B7eVyiDMMq0rQm4dPfbATWE/HVEPh2o/ylZRc7nUvJYzzooQyfbDQ
-         aDjfF25mgZEHyDp8AAB4IWAi2A7CZnKYo2cwH+13ECWoFt75GRG/O3mwin/0o62kpY1L
-         WU4pLmP3MCPqH6O7mEdfxamVYQ/GpBo//oE4Y3k403SPceRHjLgGGy5ElS6lK9LUS22w
-         9d8UX+qfvn2xQ+yKl0uCTfqQeGlbVFE2YQOz+qYy7L7p+xMTygvs51xg5NYgCFTehpGl
-         ZmHiZR1PR1nf4RWctS/1NYhjMvFRxzyl6oJkc6rLTwJPG15Yp8+DMiXrFtVuTd/kwFdA
-         aH9w==
-X-Gm-Message-State: AOAM532ULHsb6DaOshUNqexpaW8MYweA6dAbEAbIqzF52rA7PiQGdL4K
-        MuKHQQFPA4h/Gq5EH8V7zg==
-X-Google-Smtp-Source: ABdhPJxPZmvk4gqoyqDn3+CCwopf9IfMsBPzmI+VY99BWhzrp7o3kCdoLZS+LpvgtPHt7npOpmadVw==
-X-Received: by 2002:a05:6830:3184:: with SMTP id p4mr4257859ots.219.1634000753686;
-        Mon, 11 Oct 2021 18:05:53 -0700 (PDT)
+        bh=oNKIkgIeyAhvnUpCpJSDJiW2bX74JtLFJG0XP81iGgs=;
+        b=6gajEEXYe6C6vFabQEyQUzjVs0G3Li2rH4t+vlEEbjBdGceknPXezSO6t+0bIW6xal
+         I841YDyc6EqpY30Qu4TixFKMVbYPGb91RutHqNcSwd98zmgo3JmJYDdwQvFKWeuSUR/g
+         gf1PyAov72Ck3wGvmLv3E+e3RqVFhk/GVzuXVEPdOJvSjyJxyaVYGDxDShzHhUMVzl3a
+         3irKVpTDMVPNDNDV7mL6/WYdkz1HZL5mxrOdCzUh0zDZhRJ5GZyXDsVg6oSo4smJ4SSk
+         FhDdyVWCVsJUOY4dlmOKtXw7l+vpvRdCStxYwrMgtdQ8X1458vGMsPzfb7G+6itC/GII
+         sQow==
+X-Gm-Message-State: AOAM531ZXF473al55iTSlUZLnwVOyBi0I9Djh/BT8AcSmJfyGgUgyvRn
+        S3RIvAyq2PamuRb+HXv1EA==
+X-Google-Smtp-Source: ABdhPJxZ31PlfFMh6vQNPQjBd9RwWuQtvQ5MQFK70WXxj3fALbzpUEclVT37F2/tAZV+2ZFKR/d83g==
+X-Received: by 2002:a05:6830:1c7c:: with SMTP id s28mr22962910otg.345.1634000834737;
+        Mon, 11 Oct 2021 18:07:14 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e7sm1029343otq.4.2021.10.11.18.05.52
+        by smtp.gmail.com with ESMTPSA id f61sm2062459otf.73.2021.10.11.18.07.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 18:05:53 -0700 (PDT)
-Received: (nullmailer pid 1512514 invoked by uid 1000);
-        Tue, 12 Oct 2021 01:05:52 -0000
-Date:   Mon, 11 Oct 2021 20:05:52 -0500
+        Mon, 11 Oct 2021 18:07:14 -0700 (PDT)
+Received: (nullmailer pid 1514762 invoked by uid 1000);
+        Tue, 12 Oct 2021 01:07:13 -0000
+Date:   Mon, 11 Oct 2021 20:07:13 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     robh+dt@kernel.org, neil@brown.name, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: memory: add binding for Mediatek's MT7621
- SDRAM memory controller
-Message-ID: <YWTfcJoKNpIBc4kl@robh.at.kernel.org>
-References: <20211002060910.30613-1-sergio.paracuellos@gmail.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-sunxi@lists.linux.dev,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: sunxi: Export CLK_DRAM for
+ devfreq
+Message-ID: <YWTfwZXV/Baz+An7@robh.at.kernel.org>
+References: <20211004012739.39053-1-samuel@sholland.org>
+ <20211004012739.39053-2-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211002060910.30613-1-sergio.paracuellos@gmail.com>
+In-Reply-To: <20211004012739.39053-2-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 02 Oct 2021 08:09:10 +0200, Sergio Paracuellos wrote:
-> Add binding documentation for Mediatek's SDRAM memory controller present on
-> MT7621 SoC.
+On Sun, 03 Oct 2021 20:27:34 -0500, Samuel Holland wrote:
+> The MBUS node needs to reference the CLK_DRAM clock, as the MBUS
+> hardware implements memory dynamic frequency scaling using this clock.
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> Export this clock for SoCs which will be getting a devfreq driver.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
->  .../mediatek,mt7621-memc.yaml                 | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
+>  drivers/clk/sunxi-ng/ccu-sun50i-a64.h      | 2 --
+>  drivers/clk/sunxi-ng/ccu-sun8i-h3.h        | 2 --
+>  include/dt-bindings/clock/sun50i-a64-ccu.h | 2 +-
+>  include/dt-bindings/clock/sun8i-h3-ccu.h   | 2 +-
+>  4 files changed, 2 insertions(+), 6 deletions(-)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
