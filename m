@@ -2,196 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBD8F42A978
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 18:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED92742A9D7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 18:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231165AbhJLQdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 12:33:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59478 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230420AbhJLQdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 12:33:53 -0400
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FE13C061570
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 09:31:51 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id f15so3362279ilu.7
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 09:31:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Iw9QJo/84T3WomDFU6RT6oMiaO5fSEG3pR5RMhjSIyM=;
-        b=SBo5E22X2dPYignx1or33Qf4VsdxKhNkuV0vn01sOdy967YW4bdSIoG2JI9ewPgLV2
-         36E5nUym/dMouMF9CUaWgsmCTdl3Qoju+ly8n3K+QthjQSWoa8LrbSiyhemBMakSRGfF
-         CP1jo4hOD6HEnNcd4sIhwyRnEmLIz9BnBQzOyYQhVPvROFLCg2jD2yTrWtf8ESDuyqI5
-         ArEZJpIYWrIFuS0H+PYf1R6Fq1d9IJRM0ZvhK0dN0Ig/4XCu7RiKL889h+xxEBCetfSF
-         Yq7drg4T+dqaLWOFZromuSBRaVXpMVZFhb4qAozf6nICcBm+obMbH8GU8As/imnsQsoD
-         MPgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Iw9QJo/84T3WomDFU6RT6oMiaO5fSEG3pR5RMhjSIyM=;
-        b=3H16CHYo5hiNyWyssOdHSKtPJGsby2ObMnO9CXm/Fz0V5FPV1snJA25MVK/K+AtpDJ
-         BHzCgZKAg/JYbJV8CsSt5ZU8VBr/t0jQJ9mkrA9oo4eCMFcupzCKqfhKbJsEJIE64dpP
-         dowBsTZ5psM5hlGe8TmJPCKEp4gpb4/KXDqy2s9+YQgOUU14vGrcBp7sQH6s0jgmDqeL
-         B2/AsDV1SDAFZe+qStLHMYig5DGTa60R6ccoWzu+9HP51Q+EmymynjFj1dmwP/IybIGo
-         1MisizA4c3FLHilFi81PlRr+hQcqDYNkVDntLgT7imsQH3ViQBu1p/30hOFBqLi+Nqn7
-         ZEXg==
-X-Gm-Message-State: AOAM531IaEHAMAIMWM1MOGz0MIQ0W8HmUSQLbbj4g3sDJbaH2V/uBEn0
-        AqGnp29D5xMGPE9Oca20onrGubjASwu2dWGPizgESyTthVpM4Q==
-X-Google-Smtp-Source: ABdhPJzmEqZj9D+83Txyx5v6milizTobe+5yMaZ1tg/3dO2lUnIGl+NfkDWxuiJc9gHumk1D5JciNVUJAqwtHj818WM=
-X-Received: by 2002:a05:6e02:6d2:: with SMTP id p18mr22118845ils.159.1634056310899;
- Tue, 12 Oct 2021 09:31:50 -0700 (PDT)
+        id S229809AbhJLQqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 12:46:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46088 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229495AbhJLQqj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 12:46:39 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8BEAB610C7;
+        Tue, 12 Oct 2021 16:44:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634057077;
+        bh=KeX+BG4wAcsB9J5AKsMPYn5iNld2NIip98TVnq2Z0WM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bzqNCCj15wa0+D8MWLENv52AaNWC1A/NPf/sILxVwYOLC3MRs10VSb2xs6zhaD4M1
+         x2pdMr2wT5BQyhfR3MSCGEajP+zN+WFxlVKVozq2dcUfA2RXL4+3F4vTdbg/NLimSr
+         qLhb6tGLi4JBTn2q4hSPLlJBdOfh6PhKN9Z9KkHGSC+2q6FfX1EzQ/e1TA9TzBwY/b
+         KnGKSkw0HUk4DZ5n3CySDkvjah0KKgNStnapHXbCGKFeZ5LhBSANu+M4ckiIe6A7Su
+         uP2CV2g8PxpSosVJAtJEfmGi759V13bqC6Dn2tYDpDJNcxjuW341KICuRw0h725V/p
+         Ekn5szpAmzzYA==
+Received: by mail-ed1-f51.google.com with SMTP id r18so1776361edv.12;
+        Tue, 12 Oct 2021 09:44:37 -0700 (PDT)
+X-Gm-Message-State: AOAM531lou5G5Rn9peUsQtvZ1v96B9UXdRp1u/1PIKAAthq1xhZ8diDQ
+        XgxBA0VLTYC/CmiQqYEfqV2f79UsuW9s6rNy1Q==
+X-Google-Smtp-Source: ABdhPJwqVR2jSft1mVnG3jdDc3khbpgABAtQS3jjxS6wPg6456KrVt92ooA7hgnvi21CRcYK35xXx5mEk5b+0PZHFGo=
+X-Received: by 2002:a17:907:7d8b:: with SMTP id oz11mr35736927ejc.84.1634057075915;
+ Tue, 12 Oct 2021 09:44:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210607123317.3242031-1-robert.marko@sartura.hr>
- <20210607123317.3242031-5-robert.marko@sartura.hr> <CA+HBbNH7wcpfQOX2=vZmW78GoWy_WL3Pz-dMKe0N0ebZDp+oUw@mail.gmail.com>
- <20210713222528.GA952399@robh.at.kernel.org> <CA+HBbNFj5+6sLKxmL8XtsZQ48ch8OjTbJ1bwkDC8dfRiOyWY1Q@mail.gmail.com>
- <20210719225906.GA2769608@robh.at.kernel.org> <CACRpkdbq6Jow6AT9OpsR7Q0JVCWVMcmamh9KHPXMtUnkoe7ZFw@mail.gmail.com>
- <CA+HBbNFEs-=5XTK7PUL+LsgBCcPfwHsCPe4v6byK0x=O_7TRPA@mail.gmail.com>
- <CACRpkdZfZLQMgpMAF2FwSVt1YAzhQJ9ZWkVUjVc2xpmWL7yEvQ@mail.gmail.com>
- <CA+HBbNHZyYnnyz9=4Hgav96ZH8-R-nYoi300j2x3fgei8aa4zQ@mail.gmail.com> <CACRpkdaBUrgnyFnO0Tdae56PKR4pLN1boLpK0FMCk7eYshZ5LA@mail.gmail.com>
-In-Reply-To: <CACRpkdaBUrgnyFnO0Tdae56PKR4pLN1boLpK0FMCk7eYshZ5LA@mail.gmail.com>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Tue, 12 Oct 2021 18:31:40 +0200
-Message-ID: <CA+HBbNFeTN45cz8G75V94tF9cBcOGNzeenTMjdJ-4oKFCvHYLA@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        "Jonathan M. Polom" <jmp@epiphyte.org>,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>,
-        Andrew Lunn <andrew@lunn.ch>
+References: <20211004191527.1610759-1-sean.anderson@seco.com>
+ <20211004191527.1610759-2-sean.anderson@seco.com> <YVwdWIJiV1nkJ4A3@shell.armlinux.org.uk>
+ <YWWKuhn4FfgbcqO/@robh.at.kernel.org> <2e5ebf4e-bc97-1b8b-02e2-fe455aa1c100@seco.com>
+In-Reply-To: <2e5ebf4e-bc97-1b8b-02e2-fe455aa1c100@seco.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 12 Oct 2021 11:44:23 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+MAy8CRjLvqAg5oC53=ZO2UZcH_s0kMnaYD8M+y8+dLw@mail.gmail.com>
+Message-ID: <CAL_Jsq+MAy8CRjLvqAg5oC53=ZO2UZcH_s0kMnaYD8M+y8+dLw@mail.gmail.com>
+Subject: Re: [RFC net-next PATCH 01/16] dt-bindings: net: Add pcs property
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        netdev <netdev@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 4, 2021 at 12:48 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+On Tue, Oct 12, 2021 at 11:18 AM Sean Anderson <sean.anderson@seco.com> wrote:
 >
-> Hi Robert,
+> Hi Rob,
 >
-> sorry for slow reply, I am a bit busy.
->
-> On Tue, Aug 24, 2021 at 10:03 AM Robert Marko <robert.marko@sartura.hr> wrote:
-> > On Wed, Aug 11, 2021 at 2:17 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > >
-> > > On Tue, Aug 3, 2021 at 9:23 PM Robert Marko <robert.marko@sartura.hr> wrote:
-> > >
-> > > > The pins that this driver wants to expose are used for SFP-s only,
-> > > > they are provided by the Lattice CPLD which also does other things.
-> > > >
-> > > > Linux has a generic SFP driver which is used to manage these SFP
-> > > > ports, but it only supports GPIO-s, it has no concept of anything else.
-> > > > Since the driver is fully generic, I have no idea how could one extend it
-> > > > to effectively handle these pins internally, especially since I have more
-> > > > switches that use the CPLD for SFP-s as well, even for 48 ports and 192
-> > > > pins for them.
-> > >
-> > > Which file is this driver in so I can look?
+> On 10/12/21 9:16 AM, Rob Herring wrote:
+> > On Tue, Oct 05, 2021 at 10:39:36AM +0100, Russell King (Oracle) wrote:
+> >> On Mon, Oct 04, 2021 at 03:15:12PM -0400, Sean Anderson wrote:
+> >> > Add a property for associating PCS devices with ethernet controllers.
+> >> > Because PCS has no generic analogue like PHY, I have left off the
+> >> > -handle suffix.
+> >>
+> >> For PHYs, we used to have phy and phy-device as property names, but the
+> >> modern name is "phy-handle". I think we should do the same here, so I
+> >> would suggest using "pcs-handle".
 > >
-> > Hi Linus,
-> > Sorry for the late reply.
-> >
-> > Sure, here is the generic Linux driver that is used for SFP handling:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/sfp.c?h=v5.14-rc7
+> > On 1G and up ethernet, we have 2 PHYs. There's the external (typically)
+> > ethernet PHY which is what the above properties are for. Then there's
+> > the on-chip serdes PHY similar to SATA, PCIe, etc. which includes the
+> > PCS part. For this part, we should use the generic PHY binding. I think
+> > we already have bindings doing that.
 >
-> So this has this:
+> In the 802.3 models, there are several components which convert between
+> the MII (from the MAC) and the MDI (the physical protocol on the wire).
+> These are the Physical Coding Sublayer (PCS), Physical Medium Attachment
+> (PMA) sublayer, and Physical Medium Dependent (PMD) sublayer. The PMD
+> converts between the physical layer signaling and the on-chip (or
+> on-board) signalling. The PMA performs clock recovery and converts the
+> serial data from the PMD into parallel data for the PCS. The PCS handles
+> autonegotiation, CSMA/CD, and conversion to the apripriate MII for
+> communicating with the MAC.
 >
-> enum {
->         GPIO_MODDEF0,
->         GPIO_LOS,
->         GPIO_TX_FAULT,
->         GPIO_TX_DISABLE,
->         GPIO_RATE_SELECT,
->         GPIO_MAX,
->
->         SFP_F_PRESENT = BIT(GPIO_MODDEF0),
->         SFP_F_LOS = BIT(GPIO_LOS),
->         SFP_F_TX_FAULT = BIT(GPIO_TX_FAULT),
->         SFP_F_TX_DISABLE = BIT(GPIO_TX_DISABLE),
->         SFP_F_RATE_SELECT = BIT(GPIO_RATE_SELECT),
->
->         SFP_E_INSERT = 0,
->         SFP_E_REMOVE,
->
-> This does not look general purpose to me at all?
-> It's just some hardware engineer that thougt "GPIO"
-> was a nice thing to call this.
+> In the above model, generic serdes devices generally correspond to the
+> PMA/PMD sublayers. The PCS is generally a separate device, both
+> on the hardware and software level. It provides an ethernet-specific
+> layer on top of the more generic underlying encoding. For this reason,
+> the PCS should be modeled as its own device, which may then contain a
+> reference to the appropriate serdes.
 
-Hi Linus.
-These were historically always just regular GPIO-s, usually connected
-directly to the SoC
-GPIO controller or some kind of a GPIO expander and thus it uses gpiod.
+On the h/w I've worked on, PCS was an additional block instantiated
+within the PHY, so it looked like one block to s/w. But that's been
+almost 10 years ago now.
 
->
-> > > Maybe it is not a good idea to look for generic code just because
-> > > it is convenient? I have had this problem before with GPIO, along
-> > > the lines "lemme just do this dirty thing this one time because it
-> > > is so convenient for me" (more or less) and the answer is still
-> > > "no".
-> > >
-> > > Can you either augment the driver to handle a regmap with bit indices
-> > > instead or write a new similar driver for that or refactor it some other
-> > > way?
-> > >
-> > > It is not a simple solution to your problem, but it might be the right
-> > > solution even if it means some more work.
-> >
-> > I understand your position, believe me, I spend some time looking at
-> > what would be the logical way for these switches.
-> > But I see no way how could the SFP driver be extended in a generic way
-> > that would allow supporting different register layouts when it comes to pins.
->
-> Why do you think you have to use the GPIO abstraction and bindings?
-> Just invent something that satisfy your needs, the bindings are just
-> strings. Why does the consumer have to use the GPIO binding?
-> They can just use phandle named anything. Some "sfp-foo-resource = <&...>
-> or so.
->
-> For example I created this:
-> Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-> It's handling out a resource using a phandle. Nothing different than
-> GPIO, regulator, clock etc. Just invent something for SFP?
+If you do have 2 h/w blocks, one option is doing something like this:
 
-The SFP driver requires GPIO-s, it only knows how to use GPIO-s, and
-its a generic driver,
-it covers any device that has an SFP port that is implemented per spec.
-So, I cannot just extend it to suit my devices needs and I don't see
-how can I extend it in
-a generic manner so that it controls the pins directly via a regmap
-for example, especially since
-each switch has a different number of SFP ports and thus pins and a
-different register layout.
+phys = <&pcs_phy>, <&sgmii_phy>;
 
-I have added Andrew Lunn as he is one of the maintainers of PHYLIB
-under which the SFP driver
-is, he may have some input on how to proceed with this.
+I'm okay with 'pcs-handle', but just want to make sure we're not using
+it where 'phys' would work.
 
-I honestly think that we have some kind of misunderstanding here and
-look forward to resolving it.
-
-Regards,
-Robert
-
->
-> Yours,
-> Linus Walleij
-
-
-
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+> The above model describes physical layers such as 1000BASE-X or
+> 10GBASE-X where the PCS/PMA/PMD is the last layer before the physical
+> medium. In that case, the PCS could be modeled as a traditional PHY.
+> However, when using (e.g.) SGMII, it is common for the "MDI" to be
+> SGMII, and for another PHY to convert to 1000BASE-T. To model this
+> correctly, the PCS/PMA/PMD layer must be considered independently from
+> the PHY which will ultimately convert the MII to the MDI.
