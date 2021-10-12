@@ -2,112 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E44F42A799
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EAF242A7A4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235355AbhJLOs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 10:48:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35622 "EHLO
+        id S237010AbhJLOxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 10:53:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237183AbhJLOst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:48:49 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03FB0C061749
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 07:46:48 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id e3so34074318wrc.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 07:46:47 -0700 (PDT)
+        with ESMTP id S235355AbhJLOxC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:53:02 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22DC8C061745
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 07:51:00 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id k7so67601294wrd.13
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 07:51:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=RbIVq/UEdcc303XkmHmHl8p3Hwos0Z4AAzrjzZdBALI=;
-        b=DU9GCSdjmbQDH4t2pDu84NBnFqarQaZSsu55xSBMjG9CuOeHu0S+r8gzFr7IuIvQnc
-         sz3qWc0KiqJMIf1/O5UHJF/ZQyT9FSyiPvDTjThe/lPMMoVWQP94D7a3eb/Ed6O/gOzC
-         qCrXwhx587iVKnxlmWxcYurRTQBfv8gZ/WC6qJX3EbBGc89eXNQfHo+VdRJSfGq2WyLT
-         3DwUq/WNRTHFdnECHj5IphjGV/RrwTkdZ8tXxbTUmOiRf7EwEQGO5NBS8Gy6TCK6o7VC
-         x/ND7fepNo8yjbelB1nDSrrx2+h3Zg5625L4ntpq//PcOSzpmeJ8Ym8ZKe+6SpxYGJzm
-         NSqw==
+        bh=CjTQbSHcm7VtINyZoRSXIZ9bJVbGO3ptnUtUnzquW7Q=;
+        b=xI3YY7OTNUdc763OfDc3VV9hte9dq1H7Sp/X9Q956NkzANA1kGGirWrn87WKTt0FQJ
+         UjL5Pxeh382JtYyH0RwzzdAV6EurHgx9mYOY8rv6gkGhrKYh+Pc74JaHyl5X0Xuz4o50
+         As0jbux70rntYo3L8ZnBffUxjcQnxPjG2khuZ/dxOCDpcqgsbwHQEdMtcHl2EnYK+i2y
+         IgTjpRZiyWIpHjtwR2b83/2z4KhLpJCV3Xv51iBscjbVW9x5IOttox8TPsSkplKwFRj3
+         m6YNiG8Udfd2SvG3PlRsHqxpn1i4zuft7FUEx0+g2tJ3dJNSWeSBJIg2qxZjSlEmrlz8
+         dHWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=RbIVq/UEdcc303XkmHmHl8p3Hwos0Z4AAzrjzZdBALI=;
-        b=GDSTC4LGtRBNd92CH701ZCkLS/3LN20thJTKjUsWKe/Dk0ATgJrISbNroaJ7PKsjJS
-         eDK+pDuSF3z1Hn+Nbf4X7jNGjuk2iiZgJhz+I3GbW5hoOWFfqHM5OAHLs4CG5RSWZh9l
-         sA9HwQ5n3zDaFZlVNJOcFtYKPIMEWTOR+R5dX+mT+Pv/Dm3I8gA0LUgANA61lq669s54
-         /GFlZ5paqm81TCOp7Xyjgi+F470gOxVjuwKRdEyocg5UbOszg4+AZtaBeu/e10CILDvt
-         PzgTm6fOeOQBYoPjyYQnlV0AK+Mrkz5SQ9UZJpS96v6cgyZdPYKBGYoixFCJRDjYs13w
-         W9PA==
-X-Gm-Message-State: AOAM532SyrrkA1QQ2gqoXgYXE21UbSNVlPeQEgpOR8/A1I8VgmpTAWa2
-        Jm0zUgamKAJm7myNJbcf8aT9xw==
-X-Google-Smtp-Source: ABdhPJxncDBh31Ae/0zMNyUymugMmwtXjQ3mNw2WOuxjxw1IkmIyhIycZL34TQNU5ljpM7BBpBo+Cw==
-X-Received: by 2002:adf:bd8a:: with SMTP id l10mr32155651wrh.159.1634050006604;
-        Tue, 12 Oct 2021 07:46:46 -0700 (PDT)
+        bh=CjTQbSHcm7VtINyZoRSXIZ9bJVbGO3ptnUtUnzquW7Q=;
+        b=UbZiPyTSeqd0Vjt9N5Q0GzewX7a+8dIsZm2DlxxlMgm0fLznQxhll2SU4Mp3S3Tr0g
+         eolRv4gtGhYOasIGHz2LJVqCN3VatLzxfo+REk7faR0rA8QmfyVBAAepBPjTBX5CnpLo
+         cVskUaSFu5fmOVpqJiAMR4MJitbUSOUh8hZnN+fd9b+i1CeEpNp2+lol2DMbicCSk5dh
+         CHyZGEHaJxJKPuzm2y48LW2lzTKectrzzsCdN7exC9mD2sPepKhhCtzl62lo7MMxkwd/
+         7mKbioX9GwF8zlMZQPPsjGP9wE5gholbTuh3IEfR89P7yX4hQ+666akuewLHK2ce//c3
+         LG/Q==
+X-Gm-Message-State: AOAM530NrYEt9C5JvgcbDDM8vZbDr7w78M38x4Ym2wBvDo83kMIGHE00
+        Fzhk6oU4gv9vNvvDM7wBylzlVg==
+X-Google-Smtp-Source: ABdhPJzZ3bh4fiEUDaG8ALYrKIFy7DJqjTc+COvz2Ky6QaGqldCge7K0tJSBmcdrDZbWi6KsycgvoA==
+X-Received: by 2002:a05:6000:1563:: with SMTP id 3mr8033532wrz.20.1634050258581;
+        Tue, 12 Oct 2021 07:50:58 -0700 (PDT)
 Received: from google.com ([95.148.6.175])
-        by smtp.gmail.com with ESMTPSA id d24sm2570330wmb.35.2021.10.12.07.46.45
+        by smtp.gmail.com with ESMTPSA id t3sm2621283wmj.33.2021.10.12.07.50.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 07:46:46 -0700 (PDT)
-Date:   Tue, 12 Oct 2021 15:46:43 +0100
+        Tue, 12 Oct 2021 07:50:58 -0700 (PDT)
+Date:   Tue, 12 Oct 2021 15:50:56 +0100
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] mfd: qcom-spmi-pmic: Document eight more PMICs to
- binding
-Message-ID: <YWWfkyoV0rF4C4PP@google.com>
-References: <20211005024812.2038249-1-bjorn.andersson@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: Re: [RESEND v2 1/3] dt-bindings: gpio: Convert X-Powers AXP209 GPIO
+ binding to a schema
+Message-ID: <YWWg0PjnuBCKO3Tq@google.com>
+References: <20210924071614.868307-1-maxime@cerno.tech>
+ <CAL_JsqL3BUX8jO4X12Au_VAytboisQAoxDYz03rQfDMJjL4EDA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211005024812.2038249-1-bjorn.andersson@linaro.org>
+In-Reply-To: <CAL_JsqL3BUX8jO4X12Au_VAytboisQAoxDYz03rQfDMJjL4EDA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 04 Oct 2021, Bjorn Andersson wrote:
+On Tue, 12 Oct 2021, Rob Herring wrote:
 
-> Update the binding with eitght more SPMI PMIC compatibles found in the
-
-Spell check.
-
-> PMIC info list in the Qualcomm socinfo driver.
+> On Fri, Sep 24, 2021 at 2:16 AM Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > The X-Powers AXP PMICs feature a GPIO Controller supported by Linux
+> > thanks to its device tree binding.
+> >
+> > Now that we have the DT validation in place, let's convert the device
+> > tree bindings for that driver over to a YAML schema.
+> >
+> > Cc: Chen-Yu Tsai <wens@csie.org>
+> > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > Cc: linux-gpio@vger.kernel.org
+> > Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> >
+> > ---
+> >
+> > Changes from v1:
+> >   - Removed the example and moved it in the mfd schema
+> > ---
+> >  .../devicetree/bindings/gpio/gpio-axp209.txt  | 75 -------------------
+> >  .../bindings/gpio/x-powers,axp209-gpio.yaml   | 55 ++++++++++++++
+> >  2 files changed, 55 insertions(+), 75 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-axp209.txt
+> >  create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> This one not being applied with the rest of the series is also
+> breaking linux-next.
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
-> index 5ef79bf3d035..1d2b5f067556 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
-> @@ -29,6 +29,8 @@ Required properties:
->                     "qcom,pm8916",
->                     "qcom,pm8004",
->                     "qcom,pm8909",
-> +                   "qcom,pm8028",
-> +                   "qcom,pm8901",
->                     "qcom,pm8950",
->                     "qcom,pmi8950",
->                     "qcom,pm8998",
-> @@ -38,6 +40,12 @@ Required properties:
->                     "qcom,pmk8350",
->                     "qcom,pm7325",
->                     "qcom,pmr735a",
-> +                   "qcom,pm8150",
-> +                   "qcom,pm8150l",
-> +                   "qcom,pm8150b",
-> +                   "qcom,pmk8002",
-> +                   "qcom,pm8150c",
-> +                   "qcom,smb2351",
->                     or generalized "qcom,spmi-pmic".
->  - reg:             Specifies the SPMI USID slave address for this device.
->                     For more information see:
+> b4 am -P_ -sl -o - 20210924071614.868307-1-maxime@cerno.tech | git am
 
-Is there any reason why these can't be in lexicographical order?
+Thanks for the link.
+
+Seeing as there are no *real* dependencies, it would be better for
+Linus to take the patch (if he's okay with it of course).
 
 -- 
 Lee Jones [李琼斯]
