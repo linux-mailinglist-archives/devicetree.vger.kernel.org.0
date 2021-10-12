@@ -2,69 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8165D42AB89
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 20:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0805542AB9D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 20:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbhJLSHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 14:07:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38376 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231808AbhJLSG7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 14:06:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6025D6109E;
-        Tue, 12 Oct 2021 18:04:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634061897;
-        bh=TOIZ/lPFpgW5s2Q1ZJj0S3XD3XwX6DCR2QMtHMh5HnI=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=lSrOSqOZZCP+H7YGOynlMHxLFlORNDK1/ZLMvLOK2rugUv8G5e6i567su/tntefoJ
-         UwMWrAxnW3WClWMisGlFUtxhS4IStUZRCtqeNIk9tE7N6swnPFSWhYxtj6h6uNne3y
-         y+4RNpyg9Sl/bPbx6T9jE7xhAhdu/o4J9sBL9x2T70uTeOz0YwBmBRcAXEVfD8hVz+
-         88kXQZyK6KPZrzV9o9Xe5JVVQUQYGdEyMUKoE99mE7+0EFYfB5UGMfEcIeuicTyYZZ
-         nAOEJySasmDku2hwG0UAvlzEZiTcWMNJbKDsiX/90Tr+i+ZnJZ78wcnURS/bH/FsWa
-         O0/kkpnOH4doQ==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210914090338.5945-1-hsin-hsiung.wang@mediatek.com>
-References: <20210914090338.5945-1-hsin-hsiung.wang@mediatek.com>
-Subject: Re: [PATCH v12 0/5] Add SPMI support for Mediatek SoC IC
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        id S231672AbhJLSJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 14:09:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53988 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232740AbhJLSJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 14:09:12 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A982DC061570;
+        Tue, 12 Oct 2021 11:07:10 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id u18so445760lfd.12;
+        Tue, 12 Oct 2021 11:07:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=DRCwLgEAONvFgKey07j1rJr2zlgk68fuh0WGNXA5pUI=;
+        b=Iw8u6Vdeo6bEQ4D38jIkZxsrMgohnIDf38LukDy4SSHQre/9hBhur8Xkf8xpsj2INU
+         ZVXBRBaMhSXUYynfft/6fDHD2hlHgDIjiV0iunFWJKRCxdcUT6lYhZfCRey2t3aaeZqQ
+         qLFxH2yP3BAsVyy6lpyPiaM1avc+mj5EfFCEWZmnwWxMGmbtEYEUgYeSbPcbQou7ELXH
+         pMGUDSc+VrZ+S+R4mPZ30aHQ/fy5FJ9y1D/TxCS1U0QojpfqTCm48vhGasNmQmwSMhXD
+         ZXqRW0g9gbJl7sgydv8S3NsguJmiEwy1V/7xZS7FiidoKrnvTEBEOFWLdoNxOvS6bkYz
+         wXEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DRCwLgEAONvFgKey07j1rJr2zlgk68fuh0WGNXA5pUI=;
+        b=PnfPYfLrOhoXuijA2o5Fn533AQb7OYboTuea/ZGnpq56ZeDcGOj9OtwzyzofCk3XJ1
+         +Hy8DDrYgy9xVqFHOpnNT9DKdo6VmkYaYmi1oBQIDUi2QlxTieQbh3flwTagWMHK+97J
+         /g+W13LvGFAw/HdSVmFmXGSXaeBNEq8gf5FussLrwd/FIFtv6+B+HtJEeHK00zjOjm8T
+         37MnEznsHgE6/91LgLI8YR4YsTQbL/jrDB8XEgl0AsSZgxEMRA5KFkq5+d0pZJh77g96
+         XL2PLj+97mfLz8UjYirgru0D1muZC4eseddgTOiowXaxOTFpPpOLTuuYb8Fbr2iLxt8e
+         Qxig==
+X-Gm-Message-State: AOAM532UqM+iCcRocP4+UfTozxquBt25ySnVMNcRvS10puPwngIjHr6H
+        aL973vaW0te1hNaCL+16p9U=
+X-Google-Smtp-Source: ABdhPJw8bBVaGEztANZDCouYtkxQg87MaokItd0sNAjgSPWbs0J3GCtmafb5QyOODTlHvvzK4VQeSA==
+X-Received: by 2002:a05:6512:3189:: with SMTP id i9mr35822457lfe.152.1634062009591;
+        Tue, 12 Oct 2021 11:06:49 -0700 (PDT)
+Received: from [192.168.1.103] ([31.173.83.90])
+        by smtp.gmail.com with ESMTPSA id s18sm1095372lfg.27.2021.10.12.11.06.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Oct 2021 11:06:49 -0700 (PDT)
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a07g044: Add GbEthernet nodes
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 12 Oct 2021 11:04:56 -0700
-Message-ID: <163406189612.936959.767305130802405261@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20211012165144.30350-1-biju.das.jz@bp.renesas.com>
+ <20211012165144.30350-2-biju.das.jz@bp.renesas.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <f37fb863-92bc-79b1-26e4-1336874041d1@gmail.com>
+Date:   Tue, 12 Oct 2021 21:06:47 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
+MIME-Version: 1.0
+In-Reply-To: <20211012165144.30350-2-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Hsin-Hsiung Wang (2021-09-14 02:03:33)
-> This series adds support for new SoC MT6873/MT8192/MT8195 to the spmi dri=
-ver.
-> This series is based on Chun-Jie's patches[1].
->=20
-> [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D52=
-1655
->=20
-> changes since v11:
-> - rebase to v5.15-rc1.
->=20
-> Henry Chen (1):
->   spmi: mediatek: Add support for MT8195
->=20
-> Hsin-Hsiung Wang (4):
->   dt-bindings: spmi: modify the constraint 'maxItems' to 'minItems'
->   dt-bindings: spmi: document binding for the Mediatek SPMI controller
->   spmi: mediatek: Add support for MT6873/8192
->   arm64: dts: mt8192: add spmi node
+On 10/12/21 7:51 PM, Biju Das wrote:
 
-Please drop the dts patch from the series so I can easily pick up the
-whole lot. Also fix the binding problem reported by Rob. Otherwise the
-patches look OK to me.
+> Add Gigabit Ethernet{0,1} nodes to SoC DTSI.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 40 ++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> index 0b0372a02515..93e1ec271ff1 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> @@ -488,6 +488,46 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		eth0: ethernet@11c20000 {
+> +			compatible = "renesas,r9a07g044-gbeth",
+> +				     "renesas,rzg2l-gbeth";
+> +			reg = <0 0x11c20000 0 0x10000>;
+> +			interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "mux", "fil",  "arp_ns";
+
+   Why 2 spaces before "arp_ns"?
+
+[...]
+
+MBR, Sergey
