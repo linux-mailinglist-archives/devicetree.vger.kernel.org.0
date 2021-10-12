@@ -2,580 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB1A1429EE0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 09:45:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B4A429EF3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 09:49:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234123AbhJLHrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 03:47:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51100 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234082AbhJLHrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 03:47:47 -0400
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73053C061570;
-        Tue, 12 Oct 2021 00:45:45 -0700 (PDT)
-Received: by mail-qv1-xf30.google.com with SMTP id o13so12440749qvm.4;
-        Tue, 12 Oct 2021 00:45:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gW64m3XB5BSp8h2AkTgWp9/yyezJvXcPHQfOL1U6WH4=;
-        b=awvBciHWiHTifOkAxs7nM0qYgbBxp13vec5X9gk45kWaBbrNbvMFHu4rPyf9JACuyk
-         iGS56aNsGbCW8EbuLhLT3ZJCUwqxHLMnbcS+1qYPn3NajbHI83OxlRA1N6tlc7ppISdm
-         WRkM3aAS1NMrsn6CyK92qMeP3qM3ixoephAE44tsVv3NfGb3uRQwHDzgQDOnE65qQbq4
-         ixGacf+tpCdfAqVlOrjy6PSIo72k8Qhabom2uvhIP4eIs4nIfulHCbiejWibYulsSAgg
-         FkRQXvgY9E/8920CcHX8mCN7PY0QecwoMChwctImR2X3AZ09RUfrWozBCFbNI/igbghU
-         0FxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gW64m3XB5BSp8h2AkTgWp9/yyezJvXcPHQfOL1U6WH4=;
-        b=oxEAFUlafIx+gq8nOP9MedGefTrC+p2DVP9qaMf8lBKoK0aSwKtt5j8Wd2mtzWo2rZ
-         1taOW1DsFjyGQw74ZWOW2kI8bI/mWebzVBIwmncFvRjssCEXAv8qDp61UBrTWP1/AD5r
-         Lc9al+jTkFGTGkeJZ8TkuC4vW3U9nQ8O7EAB3kaAG3SJzgAGX6JyOsFGeC1Et/BVseAP
-         3r/A1ITiL1Q0gOmhTrRFdBdCxE5LbVJEusa4TEpNu+RS7BG/PZnEcSBdhAiAmXnuxvoO
-         S7z1BKC1LeUQt+ISN0JygSdfjpnb7pf7W7ZnSGJnrVp+eEblbnL0nnyKJmUbljr1r1WW
-         aFBA==
-X-Gm-Message-State: AOAM530jyCIxVrQPCKEq35A+eV2CWliY8G57Iyrd8anSGc8ELuIUplH8
-        uiIwdT7hR9gAlLgcBYQ7vdh6DxgVf0lH5e2YAyA=
-X-Google-Smtp-Source: ABdhPJy6gu/+x68GgwhtHrjgwYijPtCSfoxjzwPbjh68ThDPiI2qVFF5yIADaN0gTDYvk4FBkNIYR8vXMpxisqB1nv4=
-X-Received: by 2002:a0c:e2cc:: with SMTP id t12mr28045363qvl.59.1634024743431;
- Tue, 12 Oct 2021 00:45:43 -0700 (PDT)
+        id S232568AbhJLHu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 03:50:59 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:52747 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232541AbhJLHu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 03:50:56 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id DD8A822205;
+        Tue, 12 Oct 2021 09:48:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1634024927;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=XTY/Z+zotHcX5KpcuZaorS0sZpvLJgkD21qg7w9gSRQ=;
+        b=LWsI1mI6pSamxpDS/0+dFr2odTpKKzNiH6/1yG4SErONEZ2/U+oBsSryCX6kdka0owzZMP
+        DhXdqjh+2CuV/P8auid/ozf8cdDxmpTGrRZc1+gBbUPCEgCMQeKqfe6uxsO40QV3wn5VNG
+        E5LGJih/KiyGiPJztKa8y0OH1XN3seM=
 MIME-Version: 1.0
-References: <20210908120425.10084-1-bbudiredla@marvell.com> <20210908120425.10084-2-bbudiredla@marvell.com>
-In-Reply-To: <20210908120425.10084-2-bbudiredla@marvell.com>
-From:   Bharat Bhushan <bharatb.linux@gmail.com>
-Date:   Tue, 12 Oct 2021 13:15:32 +0530
-Message-ID: <CAAeCc_m0z4=vBA5MrvBJVoZ+DwObxAC-=myMNWCxz88Sjh41iA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] drivers: perf: Add LLC-TAD perf counter support
-To:     Bhaskara Budiredla <bbudiredla@marvell.com>
-Cc:     will@kernel.org, mark.rutland@arm.com, robh+dt@kernel.org,
-        sgoutham@marvell.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 12 Oct 2021 09:48:46 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nor: Add
+ output-driver-strength property
+In-Reply-To: <20211012061704.284214-1-alexander.stein@ew.tq-group.com>
+References: <20211012061704.284214-1-alexander.stein@ew.tq-group.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <a347541ba3f8c76912d4afdb6dc64d4d@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please find comments inline
-
-On Wed, Sep 8, 2021 at 5:35 PM Bhaskara Budiredla
-<bbudiredla@marvell.com> wrote:
->
-> This driver adds support for Last-level cache tag-and-data unit
-> (LLC-TAD) PMU that is featured in some of the Marvell's CN10K
-> infrastructure silicons.
->
-> The LLC is divided into 2N slices distributed across N Mesh tiles
-> in a single-socket configuration. The driver always configures the
-> same counter for all of the TADs. The user would end up effectively
-> reserving one of eight counters in every TAD to look across all TADs.
-> The occurrences of events are aggregated and presented to the user
-> at the end of an application run. The driver does not provide a way
-> for the user to partition TADs so that different TADs are used for
-> different applications.
->
-> The event counters are zeroed to start event counting to avoid any
-> rollover issues. TAD perf counters are 64-bit, so it's not currently
-> possible to overflow event counters at current mesh and core
-> frequencies.
->
-> To measure tad pmu events use perf tool stat command. For instance:
->
-> perf stat -e tad_dat_msh_in_dss,tad_req_msh_out_any <application>
-> perf stat -e tad_alloc_any,tad_hit_any,tad_tag_rd <application>
->
-> Signed-off-by: Bhaskara Budiredla <bbudiredla@marvell.com>
+Am 2021-10-12 08:17, schrieb Alexander Stein:
+> This property is for optimizing output voltage impedance and is
+> specific to each board. It overwrites the default set by the flash
+> device. Various flash devices support different impedances.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
->  drivers/perf/Kconfig                 |   7 +
->  drivers/perf/Makefile                |   1 +
->  drivers/perf/marvell_cn10k_tad_pmu.c | 430 +++++++++++++++++++++++++++
->  3 files changed, 438 insertions(+)
->  create mode 100644 drivers/perf/marvell_cn10k_tad_pmu.c
->
-> diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
-> index 77522e5efe11..73dca11f8080 100644
-> --- a/drivers/perf/Kconfig
-> +++ b/drivers/perf/Kconfig
-> @@ -137,6 +137,13 @@ config ARM_DMC620_PMU
->           Support for PMU events monitoring on the ARM DMC-620 memory
->           controller.
->
-> +config MARVELL_CN10K_TAD_PMU
-> +       tristate "Marvell CN10K LLC-TAD PMU"
-> +       depends on ARM64
+> Changes in v2:
+> * Updated the property description and the commit message accordingly
+> 
+>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index ed590d7c6e37..4c3c506a8853 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -72,6 +72,14 @@ properties:
+>        be used on such systems, to denote the absence of a reliable 
+> reset
+>        mechanism.
+> 
+> +  output-driver-strength:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Output driver strength in ohms which optimizes the impedance at 
+> Vcc/2
+> +      output voltage. This property overwrites the default set by the 
+> flash
+> +      device. This is board specific and should be determined by the
+> +      manufacturer. Various flash devices support different 
+> impedances.
 
-Can you add COMPILE_TEST dependency?
+Mh, this seems to be very tailored to this flash chip. Eg. the "Vcc/2", 
+is
+this something specific to this flash or is this some kind of common 
+usage?
+For example, Winbond flashes specifies the output driver strength in 
+percent.
+Settings are 25%, 50%, 75%, 100% there.
 
-> +       help
-> +         Provides support for Last-Level cache Tag-and-data Units (LLC-TAD)
-> +         performance monitors on CN10K family silicons.
-> +
->  source "drivers/perf/hisilicon/Kconfig"
->
->  endmenu
-> diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
-> index 5260b116c7da..2db5418d5b0a 100644
-> --- a/drivers/perf/Makefile
-> +++ b/drivers/perf/Makefile
-> @@ -14,3 +14,4 @@ obj-$(CONFIG_THUNDERX2_PMU) += thunderx2_pmu.o
->  obj-$(CONFIG_XGENE_PMU) += xgene_pmu.o
->  obj-$(CONFIG_ARM_SPE_PMU) += arm_spe_pmu.o
->  obj-$(CONFIG_ARM_DMC620_PMU) += arm_dmc620_pmu.o
-> +obj-$(CONFIG_MARVELL_CN10K_TAD_PMU) += marvell_cn10k_tad_pmu.o
-> diff --git a/drivers/perf/marvell_cn10k_tad_pmu.c b/drivers/perf/marvell_cn10k_tad_pmu.c
-> new file mode 100644
-> index 000000000000..968772a757f4
-> --- /dev/null
-> +++ b/drivers/perf/marvell_cn10k_tad_pmu.c
-> @@ -0,0 +1,430 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/* Marvell CN10K LLC-TAD perf driver
-> + *
-> + * Copyright (C) 2021 Marvell
-> + *
-> + * This program is free software; you can redistribute it and/or modify
-> + * it under the terms of the GNU General Public License version 2 as
-> + * published by the Free Software Foundation.
-> + */
-> +
-> +#define pr_fmt(fmt) "tad_pmu: " fmt
-> +
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/cpuhotplug.h>
-> +#include <linux/perf_event.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/arm-smccc.h>
+I'd have to ask a hardware guy, if one could convert between these two
+representations of the driver strength.
 
-Do we need this header file ?
+Rob, do you know how is this case ususally handled? Can there be 
+different
+properties, like:
 
-> +
-> +#define TAD_PFC_OFFSET         0x0
-> +#define TAD_PFC(counter)       (TAD_PFC_OFFSET | (counter << 3))
-> +#define TAD_PRF_OFFSET         0x100
-> +#define TAD_PRF(counter)       (TAD_PRF_OFFSET | (counter << 3))
-> +#define TAD_PRF_CNTSEL_MASK    0xFF
-> +#define TAD_MAX_COUNTERS       8
-> +
-> +#define to_tad_pmu(p) (container_of(p, struct tad_pmu, pmu))
-> +
-> +struct tad_region {
-> +       void __iomem    *base;
-> +};
-> +
-> +struct tad_pmu {
-> +       struct pmu pmu;
-> +       struct tad_region *regions;
-> +       u32 region_cnt;
-> +       unsigned int cpu;
-> +       struct hlist_node node;
-> +       struct perf_event *events[TAD_MAX_COUNTERS];
-> +       DECLARE_BITMAP(counters_map, TAD_MAX_COUNTERS);
-> +};
-> +
-> +static int tad_pmu_cpuhp_state;
-> +
-> +static void tad_pmu_event_counter_read(struct perf_event *event)
-> +{
-> +       struct tad_pmu *tad_pmu = to_tad_pmu(event->pmu);
-> +       struct hw_perf_event *hwc = &event->hw;
-> +       u32 counter_idx = hwc->idx;
-> +       u64 delta, prev, new;
-> +       int i;
-> +
-> +       do {
-> +               prev = local64_read(&hwc->prev_count);
-> +               for (i = 0, new = 0; i < tad_pmu->region_cnt; i++)
-> +                       new += readq(tad_pmu->regions[i].base +
-> +                                    TAD_PFC(counter_idx));
-> +       } while (local64_cmpxchg(&hwc->prev_count, prev, new) != prev);
-> +
-> +       delta = (new - prev) & GENMASK_ULL(63, 0);
-> +       local64_add(delta, &event->count);
-> +}
-> +
-> +static void tad_pmu_event_counter_stop(struct perf_event *event, int flags)
-> +{
-> +       struct tad_pmu *tad_pmu = to_tad_pmu(event->pmu);
-> +       struct hw_perf_event *hwc = &event->hw;
-> +       u32 counter_idx = hwc->idx;
-> +       int i;
-> +
-> +       /* TAD()_PFC() stop counting on the write
-> +        * which sets TAD()_PRF()[CNTSEL] == 0
-> +        */
-> +       for (i = 0; i < tad_pmu->region_cnt; i++)
-> +               writeq_relaxed(0, tad_pmu->regions[i].base +
-> +                              TAD_PRF(counter_idx));
-> +
-> +       tad_pmu_event_counter_read(event);
-> +       hwc->state |= PERF_HES_STOPPED | PERF_HES_UPTODATE;
-> +}
-> +
-> +static void tad_pmu_event_counter_start(struct perf_event *event, int flags)
-> +{
-> +       struct tad_pmu *tad_pmu = to_tad_pmu(event->pmu);
-> +       struct hw_perf_event *hwc = &event->hw;
-> +       u32 event_idx = event->attr.config;
-> +       u32 counter_idx = hwc->idx;
-> +       u64 reg_val;
-> +       int i;
-> +
-> +       hwc->state = 0;
-> +
-> +       /* Typically TAD_PFC() are zeroed to start counting */
-> +       for (i = 0; i < tad_pmu->region_cnt; i++)
-> +               writeq_relaxed(0, tad_pmu->regions[i].base +
-> +                              TAD_PFC(counter_idx));
-> +
-> +       /* TAD()_PFC() start counting on the write
-> +        * which sets TAD()_PRF()[CNTSEL] != 0
-> +        */
-> +       for (i = 0; i < tad_pmu->region_cnt; i++) {
-> +               reg_val = readq_relaxed(tad_pmu->regions[i].base +
-> +                                       TAD_PRF(counter_idx));
-> +               reg_val |= (event_idx & 0xFF);
-> +               writeq_relaxed(reg_val, tad_pmu->regions[i].base +
-> +                              TAD_PRF(counter_idx));
-> +       }
-> +}
-> +
-> +static void tad_pmu_event_counter_del(struct perf_event *event, int flags)
-> +{
-> +       struct tad_pmu *tad_pmu = to_tad_pmu(event->pmu);
-> +       struct hw_perf_event *hwc = &event->hw;
-> +       int idx = hwc->idx;
-> +
-> +       tad_pmu_event_counter_stop(event, flags | PERF_EF_UPDATE);
-> +       tad_pmu->events[idx] = NULL;
-> +       clear_bit(idx, tad_pmu->counters_map);
-> +}
-> +
-> +static int tad_pmu_event_counter_add(struct perf_event *event, int flags)
-> +{
-> +       struct tad_pmu *tad_pmu = to_tad_pmu(event->pmu);
-> +       struct hw_perf_event *hwc = &event->hw;
-> +       int idx;
-> +
-> +       /* Get a free counter for this event */
-> +       idx = find_first_zero_bit(tad_pmu->counters_map, TAD_MAX_COUNTERS);
-> +       if (idx == TAD_MAX_COUNTERS)
-> +               return -EAGAIN;
-> +
-> +       set_bit(idx, tad_pmu->counters_map);
-> +
-> +       hwc->idx = idx;
-> +       hwc->state = PERF_HES_STOPPED;
-> +       tad_pmu->events[idx] = event;
-> +
-> +       if (flags & PERF_EF_START)
-> +               tad_pmu_event_counter_start(event, flags);
-> +
-> +       return 0;
-> +}
-> +
-> +static int tad_pmu_event_init(struct perf_event *event)
-> +{
-> +       struct tad_pmu *tad_pmu = to_tad_pmu(event->pmu);
-> +
-> +       if (!event->attr.disabled)
-> +               return -EINVAL;
-> +
-> +       if (event->attr.type != event->pmu->type)
-> +               return -ENOENT;
-> +
-> +       if (event->state != PERF_EVENT_STATE_OFF)
-> +               return -EINVAL;
-> +
-> +       event->cpu = tad_pmu->cpu;
-> +       event->hw.idx = -1;
-> +       event->hw.config_base = event->attr.config;
-> +
-> +       return 0;
-> +}
-> +
-> +static ssize_t tad_pmu_event_show(struct device *dev,
-> +                               struct device_attribute *attr, char *page)
-> +{
-> +       struct perf_pmu_events_attr *pmu_attr;
-> +
-> +       pmu_attr = container_of(attr, struct perf_pmu_events_attr, attr);
-> +       return sprintf(page, "event=0x%02llx\n", pmu_attr->id);
+output-driver-strength-ohms
+output-driver-strength-percent
 
-Please use sysfs_emit();
+or similar.
 
-> +}
-> +
-> +#define TAD_PMU_EVENT_ATTR(name, config)                       \
-> +       PMU_EVENT_ATTR_ID(name, tad_pmu_event_show, config)
-> +
-> +static struct attribute *tad_pmu_event_attrs[] = {
-> +       TAD_PMU_EVENT_ATTR(tad_none, 0x0),
-> +       TAD_PMU_EVENT_ATTR(tad_req_msh_in_any, 0x1),
-> +       TAD_PMU_EVENT_ATTR(tad_req_msh_in_mn, 0x2),
-> +       TAD_PMU_EVENT_ATTR(tad_req_msh_in_exlmn, 0x3),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_in_any, 0x4),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_in_mn, 0x5),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_in_exlmn, 0x6),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_in_dss, 0x7),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_in_retry_dss, 0x8),
-> +       TAD_PMU_EVENT_ATTR(tad_dat_msh_in_any, 0x9),
-> +       TAD_PMU_EVENT_ATTR(tad_dat_msh_in_dss, 0xa),
-> +       TAD_PMU_EVENT_ATTR(tad_req_msh_out_any, 0xb),
-> +       TAD_PMU_EVENT_ATTR(tad_req_msh_out_dss_rd, 0xc),
-> +       TAD_PMU_EVENT_ATTR(tad_req_msh_out_dss_wr, 0xd),
-> +       TAD_PMU_EVENT_ATTR(tad_req_msh_out_evict, 0xe),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_out_any, 0xf),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_out_retry_exlmn, 0x10),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_out_retry_mn, 0x11),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_out_exlmn, 0x12),
-> +       TAD_PMU_EVENT_ATTR(tad_rsp_msh_out_mn, 0x13),
-> +       TAD_PMU_EVENT_ATTR(tad_snp_msh_out_any, 0x14),
-> +       TAD_PMU_EVENT_ATTR(tad_snp_msh_out_mn, 0x15),
-> +       TAD_PMU_EVENT_ATTR(tad_snp_msh_out_exlmn, 0x16),
-> +       TAD_PMU_EVENT_ATTR(tad_dat_msh_out_any, 0x17),
-> +       TAD_PMU_EVENT_ATTR(tad_dat_msh_out_fill, 0x18),
-> +       TAD_PMU_EVENT_ATTR(tad_dat_msh_out_dss, 0x19),
-> +       TAD_PMU_EVENT_ATTR(tad_alloc_dtg, 0x1a),
-> +       TAD_PMU_EVENT_ATTR(tad_alloc_ltg, 0x1b),
-> +       TAD_PMU_EVENT_ATTR(tad_alloc_any, 0x1c),
-> +       TAD_PMU_EVENT_ATTR(tad_hit_dtg, 0x1d),
-> +       TAD_PMU_EVENT_ATTR(tad_hit_ltg, 0x1e),
-> +       TAD_PMU_EVENT_ATTR(tad_hit_any, 0x1f),
-> +       TAD_PMU_EVENT_ATTR(tad_tag_rd, 0x20),
-> +       TAD_PMU_EVENT_ATTR(tad_dat_rd, 0x21),
-> +       TAD_PMU_EVENT_ATTR(tad_dat_rd_byp, 0x22),
-> +       TAD_PMU_EVENT_ATTR(tad_ifb_occ, 0x23),
-> +       TAD_PMU_EVENT_ATTR(tad_req_occ, 0x24),
-> +       NULL,
-
-extra ' for last entry.
-
-> +};
-> +
-> +static const struct attribute_group tad_pmu_events_attr_group = {
-> +       .name = "events",
-> +       .attrs = tad_pmu_event_attrs,
-> +};
-> +
-> +PMU_FORMAT_ATTR(event, "config:0-7");
-> +
-> +static struct attribute *tad_pmu_format_attrs[] = {
-> +       &format_attr_event.attr,
-> +       NULL,
-
-extra ' here as well
-
-> +};
-> +
-> +static struct attribute_group tad_pmu_format_attr_group = {
-> +       .name = "format",
-> +       .attrs = tad_pmu_format_attrs,
-> +};
-> +
-> +static ssize_t tad_pmu_cpumask_show(struct device *dev,
-> +                               struct device_attribute *attr, char *buf)
-> +{
-> +       struct tad_pmu *tad_pmu = to_tad_pmu(dev_get_drvdata(dev));
-> +
-> +       return cpumap_print_to_pagebuf(true, buf, cpumask_of(tad_pmu->cpu));
-> +}
-> +
-> +static DEVICE_ATTR(cpumask, 0444, tad_pmu_cpumask_show, NULL);
-> +
-> +static struct attribute *tad_pmu_cpumask_attrs[] = {
-> +       &dev_attr_cpumask.attr,
-> +       NULL,
-> +};
-> +
-> +static struct attribute_group tad_pmu_cpumask_attr_group = {
-> +       .attrs = tad_pmu_cpumask_attrs,
-> +};
-> +
-> +static const struct attribute_group *tad_pmu_attr_groups[] = {
-> +       &tad_pmu_events_attr_group,
-> +       &tad_pmu_format_attr_group,
-> +       &tad_pmu_cpumask_attr_group,
-> +       NULL,
-
-extra ' here as well.
-
-> +};
-> +
-> +static int tad_pmu_probe(struct platform_device *pdev)
-> +{
-> +       struct device_node *node = pdev->dev.of_node;
-> +       struct tad_region *regions;
-> +       struct tad_pmu *tad_pmu;
-> +       struct resource *res;
-> +       u32 tad_pmu_page_size;
-> +       u32 tad_page_size;
-> +       u32 tad_cnt;
-> +       int i, ret;
-> +       char *name;
-> +
-> +       tad_pmu = devm_kzalloc(&pdev->dev, sizeof(*tad_pmu), GFP_KERNEL);
-> +       if (!tad_pmu)
-> +               return -ENOMEM;
-> +
-> +       platform_set_drvdata(pdev, tad_pmu);
-> +
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       if (!res) {
-> +               dev_err(&pdev->dev, "Mem resource not found\n");
-> +               return -ENODEV;
-> +       }
-> +
-> +       ret = of_property_read_u32(node, "marvell,tad-page-size",
-> +                                  &tad_page_size);
-> +       if (ret) {
-> +               dev_err(&pdev->dev, "Can't find tad-page-size property\n");
-> +               return ret;
-> +       }
-> +
-> +       ret = of_property_read_u32(node, "marvell,tad-pmu-page-size",
-> +                                  &tad_pmu_page_size);
-> +       if (ret) {
-> +               dev_err(&pdev->dev, "Can't find tad-pmu-page-size property\n");
-> +               return ret;
-> +       }
-> +
-> +       ret = of_property_read_u32(node, "marvell,tad-cnt", &tad_cnt);
-> +       if (ret) {
-> +               dev_err(&pdev->dev, "Can't find tad-cnt property\n");
-> +               return ret;
-> +       }
-> +
-> +       regions = devm_kcalloc(&pdev->dev, tad_cnt,
-> +                              sizeof(*regions), GFP_KERNEL);
-> +       if (!regions)
-> +               return -ENOMEM;
-> +
-> +       /* ioremap the distributed TAD pmu regions */
-> +       for (i = 0; i < tad_cnt && res->start < res->end; i++) {
-> +               regions[i].base = devm_ioremap(&pdev->dev,
-> +                                              res->start,
-> +                                              tad_pmu_page_size);
-> +               if (IS_ERR(regions[i].base)) {
-> +                       dev_err(&pdev->dev, "TAD%d ioremap fail\n", i);
-> +                       return -ENOMEM;
-> +               }
-> +               res->start += tad_page_size;
-> +       }
-> +
-> +       tad_pmu->regions = regions;
-> +       tad_pmu->region_cnt = tad_cnt;
-> +
-> +       tad_pmu->pmu = (struct pmu) {
-> +
-> +               .module         = THIS_MODULE,
-> +               .attr_groups    = tad_pmu_attr_groups,
-> +               .capabilities   = PERF_PMU_CAP_NO_EXCLUDE |
-> +                                 PERF_PMU_CAP_NO_INTERRUPT,
-> +               .task_ctx_nr    = perf_invalid_context,
-> +
-> +               .event_init     = tad_pmu_event_init,
-> +               .add            = tad_pmu_event_counter_add,
-> +               .del            = tad_pmu_event_counter_del,
-> +               .start          = tad_pmu_event_counter_start,
-> +               .stop           = tad_pmu_event_counter_stop,
-> +               .read           = tad_pmu_event_counter_read,
-> +       };
-> +
-> +       tad_pmu->cpu = raw_smp_processor_id();
-> +
-> +       /* Register pmu instance for cpu hotplug */
-> +       ret = cpuhp_state_add_instance_nocalls(tad_pmu_cpuhp_state,
-> +                                              &tad_pmu->node);
-> +       if (ret) {
-> +               dev_err(&pdev->dev, "Error %d registering hotplug\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       name = "tad";
-> +       ret = perf_pmu_register(&tad_pmu->pmu, name, -1);
-> +       if (ret)
-> +               cpuhp_state_remove_instance_nocalls(tad_pmu_cpuhp_state,
-> +                                                   &tad_pmu->node);
-> +
-> +       return ret;
-> +}
-> +
-> +static int tad_pmu_remove(struct platform_device *pdev)
-> +{
-> +       struct tad_pmu *pmu = platform_get_drvdata(pdev);
-> +
-> +       cpuhp_state_remove_instance_nocalls(tad_pmu_cpuhp_state,
-> +                                               &pmu->node);
-> +       perf_pmu_unregister(&pmu->pmu);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id tad_pmu_of_match[] = {
-> +       { .compatible = "marvell,cn10k-tad-pmu", },
-> +       {},
-> +};
-> +
-> +static struct platform_driver tad_pmu_driver = {
-> +       .driver         = {
-> +               .name   = "cn10k_tad_pmu",
-> +               .of_match_table = of_match_ptr(tad_pmu_of_match),
-> +               .suppress_bind_attrs = true,
-> +       },
-> +       .probe          = tad_pmu_probe,
-> +       .remove         = tad_pmu_remove,
-> +};
-> +
-> +static int tad_pmu_offline_cpu(unsigned int cpu, struct hlist_node *node)
-> +{
-> +       struct tad_pmu *pmu = hlist_entry_safe(node, struct tad_pmu, node);
-> +       unsigned int target;
-> +
-> +       if (cpu != pmu->cpu)
-> +               return 0;
-> +
-> +       target = cpumask_any_but(cpu_online_mask, cpu);
-> +       if (target >= nr_cpu_ids)
-> +               return 0;
-> +
-> +       perf_pmu_migrate_context(&pmu->pmu, cpu, target);
-> +       pmu->cpu = target;
-> +
-> +       return 0;
-> +}
-> +
-> +static int __init tad_pmu_init(void)
-> +{
-> +       int ret;
-> +
-> +       ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN,
-> +                                     "perf/cn10k/tadpmu:online",
-> +                                     NULL,
-> +                                     tad_pmu_offline_cpu);
-> +       if (ret < 0)
-> +               return ret;
-> +       tad_pmu_cpuhp_state = ret;
-> +       return platform_driver_register(&tad_pmu_driver);
-> +}
-> +
-> +static void __exit tad_pmu_exit(void)
-> +{
-> +       platform_driver_unregister(&tad_pmu_driver);
-> +       cpuhp_remove_multi_state(tad_pmu_cpuhp_state);
-> +}
-> +
-> +module_init(tad_pmu_init);
-> +module_exit(tad_pmu_exit);
-> +
-> +MODULE_DESCRIPTION("Marvell CN10K LLC-TAD Perf driver");
-> +MODULE_AUTHOR("Bhaskara Budiredla <bbudiredla@marvell.com>");
-> +MODULE_LICENSE("GPL v2");
-> --
-> 2.17.1
->
+-michael
